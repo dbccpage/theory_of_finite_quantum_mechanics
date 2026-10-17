@@ -20,8 +20,20 @@ Rather than postulating continuous wavefunctions and differential equations as p
 
 ## Derivation Arc
 
-Pre-Genesis Genesis Finite Quantum Mechanics The Continuum ┌────────────────┐ ┌──────────────────┐ ┌─────────────────────────┐ ┌─────────────────────────┐ │ Primitive Cuts │ ──> │ Discrete Graphs │ ──> │ Finite Hilbert Spaces │ ──> │ Scale Coarse-Graining │ │ & Distinctions │ │ Cochain Complex │ │ Algebraic Observables │ │ Macroscopic Limit │ │ (Zero Context) │ │ Discrete Bianchi │ │ Exact Bell/CHSH Bounds │ │ Continuous Quantum Mechanics│ └────────────────┘ └──────────────────┘ └─────────────────────────┘ └─────────────────────────┘
+```mermaid
+flowchart LR
+    A["<b>Stage 1: Pre-Genesis</b><br>Primitive Cuts & Distinctions<br>(Zero Context)"]
+    B["<b>Stage 2: Genesis</b><br>Discrete Graphs<br>Cochain Complex<br>Discrete Bianchi"]
+    C["<b>Stage 3: Finite QM</b><br>Finite Hilbert Spaces<br>Algebraic Observables<br>Exact Bell/CHSH Bounds"]
+    D["<b>Stage 4: The Continuum</b><br>Scale Coarse-Graining<br>Macroscopic Limit<br>Continuous Quantum Mechanics"]
 
+    A --> B --> C --> D
+
+    style A fill:#1e1e2e,stroke:#89b4fa,stroke-width:2px,color:#cdd6f4
+    style B fill:#1e1e2e,stroke:#a6e3a1,stroke-width:2px,color:#cdd6f4
+    style C fill:#1e1e2e,stroke:#f9e2af,stroke-width:2px,color:#cdd6f4
+    style D fill:#1e1e2e,stroke:#f38ba8,stroke-width:2px,color:#cdd6f4
+```
 
 ### 1. Pre-Genesis: Foundational Distinctions
 - Starting from bare marks and elementary distinctions prior to geometric assumptions.
@@ -73,4 +85,18 @@ cargo test
 
 # Elaborate formal proofs
 lake build
+
+## License
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
