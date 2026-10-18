@@ -124,7 +124,6 @@ def test_disk_1x1_dim_h1_is_native_and_topology_swap_is_visible(monkeypatch):
     assert report.graph_b1 == 0
     assert report.num_channels == 4
     assert report.authority_effect == "None"
-    # A local nullity of these native ranks would be num_channels, not 0.
     assert report.dim_h1 != report.num_channels - report.rank_d1 - report.rank_d0
 
     swapped = dict(sent)

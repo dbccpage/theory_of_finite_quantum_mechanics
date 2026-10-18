@@ -12,7 +12,6 @@ def plot_higgs_potential_comparison(ax):
     ax.set_title('Test 1: Higgs Potential Energy Landscape', fontsize=14, fontweight='bold')
     categories = ['Linear\nFit', 'Quadratic\nFit', 'Quartic\nFit\n(Mexican Hat)']
     claimed = [0.0, 0.0, 1.0]
-    # Consumes verified values from higgs_pure_linear_certificate.json
     reality = [1.0, 1.0, 0.9856]
 
     x = np.arange(len(categories))

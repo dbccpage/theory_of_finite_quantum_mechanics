@@ -33,7 +33,6 @@ def test_crossed_module_axioms() -> None:
     assert cm.g_order == 2
     assert cm.h_order == 2
     assert cm.partial_map == (0, 0)
-    # Peiffer identity and crossed module condition verified in __post_init__
 
 
 def test_4complex_coboundary_nilpotence() -> None:
@@ -41,22 +40,17 @@ def test_4complex_coboundary_nilpotence() -> None:
     lattice = FourComplexLattice()
     p1, p2, p3 = lattice.boundary_operators()
 
-    # Boundary nilpotence: partial_1 @ partial_2 == 0
     p1_p2 = p1 @ p2
     assert np.allclose(p1_p2, 0.0), "Boundary partial_1 @ partial_2 != 0"
 
-    # Boundary nilpotence: partial_2 @ partial_3 == 0
     p2_p3 = p2 @ p3
     assert np.allclose(p2_p3, 0.0), "Boundary partial_2 @ partial_3 != 0"
 
-    # Coboundary operators: d_0 = p1.T, d_1 = p2.T, d_2 = p3.T
     d0 = p1.T
     d1 = p2.T
     d2 = p3.T
 
-    # Coboundary nilpotence: d_1 @ d_0 == 0
     assert np.allclose(d1 @ d0, 0.0), "Coboundary d_1 @ d_0 != 0"
-    # Coboundary nilpotence: d_2 @ d_1 == 0
     assert np.allclose(d2 @ d1, 0.0), "Coboundary d_2 @ d_1 != 0"
 
 
@@ -104,14 +98,12 @@ def test_nontrivial_postnikov_obstructs_1form_quantum_double() -> None:
         surface_linking_number=1,
     )
 
-    # Bare audit: sign obstruction
     receipt_bare = Higher2GroupEngine.audit_2group_gauge_theory(model, projection_mode="none")
     assert receipt_bare.terminal_route == TerminalRoute.OPEN_SIGN_OBSTRUCTION
-    assert receipt_bare.involution_pairing_phi1 == 2.0  # 1 - (-1) = 2
+    assert receipt_bare.involution_pairing_phi1 == 2.0
     assert math.isclose(receipt_bare.cochain_curvature_gamma2, math.pi, abs_tol=1e-5)
     assert receipt_bare.average_sign_gin == 0.0
 
-    # 1-form Quantum Double audit: still obstructed because 3-cocycle phase on 2-surface remains uncancelled
     receipt_1qd = Higher2GroupEngine.audit_2group_gauge_theory(model, projection_mode="1form_qd")
     assert receipt_1qd.terminal_route == TerminalRoute.OPEN_SIGN_OBSTRUCTION
     assert receipt_1qd.involution_pairing_phi1 == 2.0

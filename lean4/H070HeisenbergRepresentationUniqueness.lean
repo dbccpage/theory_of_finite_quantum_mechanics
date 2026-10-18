@@ -1,23 +1,7 @@
-/-
-  H070HeisenbergRepresentationUniqueness.lean
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
 
-  Campaign C500 Block 03: Finite Heisenberg Representation Classification.
-  Scope: finite multiplication/center calculations for the explicit Fin 3
-  carrier, four natural-number identities, and checks of a declared census
-  table. No representation, irreducibility, intertwiner or classification
-  theorem is encoded. In particular the table equation formerly named
-  finite_stone_von_neumann_odd_prime was not a Stone-von Neumann proof.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 namespace FableHilbertWalk20260819.H070
 
--- ===========================================================================
--- Section 1: Heisenberg Group Structure for p = 3
--- ===========================================================================
 
 structure Heis3 where
   q : Fin 3
@@ -25,7 +9,6 @@ structure Heis3 where
   z : Fin 3
   deriving DecidableEq, Repr
 
-/-- In F_3, 2 * 2 = 4 = 1 mod 3, so inv2 = 2. -/
 def inv2_3 : Fin 3 := 2
 
 def omega3 (q1 p1 q2 p2 : Fin 3) : Fin 3 :=
@@ -40,7 +23,6 @@ def mul_heis3 (g1 g2 : Heis3) : Heis3 :=
 
 def eye_heis3 : Heis3 := ⟨0, 0, 0⟩
 
-/-- The center of H(F_3) consists of elements with q = 0 and p = 0. -/
 def is_central3 (g : Heis3) : Prop := g.q = 0 ∧ g.p = 0
 
 instance (g : Heis3) : Decidable (is_central3 g) := by
@@ -55,7 +37,6 @@ theorem center_commutes_heis3 (c g : Heis3) (hc : is_central3 c) :
   revert cq cp cz gq gp gz
   decide
 
-/-- Commutator of generators (1, 0, 0) and (0, 1, 0) produces central element with z = 1. -/
 theorem generator_commutation_heis3 :
     let gQ : Heis3 := ⟨1, 0, 0⟩
     let gP : Heis3 := ⟨0, 1, 0⟩
@@ -63,26 +44,16 @@ theorem generator_commutation_heis3 :
   decide
 
 
--- ===========================================================================
--- Section 2: Finite Stone-von Neumann Sum of Squares Dimension Identity
--- ===========================================================================
 
-/-- Instantiation for p = 3: 9 * 1 + 2 * 9 = 27. -/
 theorem heis3_sum_of_squares : 3^2 * 1 + (3 - 1) * 3^2 = 3^3 := by decide
 
-/-- Instantiation for p = 5: 25 * 1 + 4 * 25 = 125. -/
 theorem heis5_sum_of_squares : 5^2 * 1 + (5 - 1) * 5^2 = 5^3 := by decide
 
-/-- Instantiation for p = 7: 49 * 1 + 6 * 49 = 343. -/
 theorem heis7_sum_of_squares : 7^2 * 1 + (7 - 1) * 7^2 = 7^3 := by decide
 
-/-- Instantiation for p = 11: 121 * 1 + 10 * 121 = 1331. -/
 theorem heis11_sum_of_squares : 11^2 * 1 + (11 - 1) * 11^2 = 11^3 := by decide
 
 
--- ===========================================================================
--- Section 3: Declared Census Table (No Representation Classification)
--- ===========================================================================
 
 inductive CentralCharacterType where
   | TrivialCentralCharacter
@@ -99,8 +70,6 @@ def census_for_character (p : Nat) : CentralCharacterType → RepresentationCens
   | CentralCharacterType.TrivialCentralCharacter => ⟨CentralCharacterType.TrivialCentralCharacter, 1, p^2⟩
   | CentralCharacterType.NonTrivialCentralCharacter c => ⟨CentralCharacterType.NonTrivialCentralCharacter c, p, 1⟩
 
-/-- Fields of the declared census table. Its nominal NonTrivial constructor has
-    no nonzero/prime hypothesis, and this equation does not classify representations. -/
 theorem declared_census_table_fields (p : Nat) (c : Nat) :
     (census_for_character p (CentralCharacterType.NonTrivialCentralCharacter c)).num_inequivalent_irreps = 1 ∧
     (census_for_character p (CentralCharacterType.NonTrivialCentralCharacter c)).irrep_dimension = p := by
@@ -108,9 +77,6 @@ theorem declared_census_table_fields (p : Nat) (c : Nat) :
   exact ⟨rfl, rfl⟩
 
 
--- ===========================================================================
--- Section 4: Characteristic 2 and Composite Modulus Separation
--- ===========================================================================
 
 inductive ModulusClassificationStatus where
   | ODD_PRIME_CENSUS_INPUT
@@ -145,9 +111,6 @@ theorem modulus9_unclassified :
     classify_modulus 9 = ModulusClassificationStatus.UNCLASSIFIED := by decide
 
 
--- ===========================================================================
--- Section 5: Axiom Census & Auditing
--- ===========================================================================
 
 #print axioms center_commutes_heis3
 #print axioms generator_commutation_heis3
@@ -164,6 +127,8 @@ theorem modulus9_unclassified :
 end FableHilbertWalk20260819.H070
 
 
-/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
 theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
   decide
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H070HeisenbergRepresentationUniqueness.lean Claim: center_commutes_heis3 AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

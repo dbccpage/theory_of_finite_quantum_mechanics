@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Regression test for the end-to-end demo pipeline."""
 
 from __future__ import annotations
@@ -20,28 +19,23 @@ class TestDemoPipeline(unittest.TestCase):
         self.assertEqual(receipt["authority_effect"], "None")
         self.assertTrue("master_sha256" in receipt)
 
-        # Step 1: Interval calculus
         s1 = receipt["step1_coda_q_interval_calculus"]
         self.assertTrue(s1["zero_float_certified"])
 
-        # Step 2: 1D & 2D Discretization defect
         s2 = receipt["step2_cs_q_discretization_defect"]
         self.assertTrue(s2["1d_encloses_1_3"])
         self.assertTrue(s2["2d_encloses_1_9"])
 
-        # Step 3: Wilsonian extrapolation
         s3 = receipt["step3_wilsonian_extrapolation"]
         self.assertEqual(s3["extrapolated_thermodynamic_limit"]["width"], "0")
         self.assertEqual(s3["extrapolated_thermodynamic_limit"]["lo"], "7/13")
 
-        # Pontryagin duality (1D & 2D)
         p = receipt["pontryagin_duality_bridge"]
         self.assertTrue(p["orthogonality_1d"])
         self.assertTrue(p["orthogonality_2d"])
         self.assertEqual(p["1d_staged_receipt"]["spine_fence"]["pi_from_exact_q"], "REFUSED")
         self.assertEqual(p["2d_staged_receipt"]["spine_fence"]["pi_from_exact_q_2d"], "REFUSED")
 
-        # Meron Wilsonian Bridge
         m = receipt["meron_wilsonian_bridge"]
         self.assertEqual(m["partition_sums"]["4"], 912)
         self.assertEqual(m["partition_sums"]["6"], 33012)

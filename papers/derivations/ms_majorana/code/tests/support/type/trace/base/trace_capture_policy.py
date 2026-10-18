@@ -18,7 +18,7 @@ class TraceCapturePolicy:
     """Immutable recording/retention/redaction policy configuration."""
 
     policy_id: str = "default_policy"
-    capture_level: str = "full"  # "full", "minimal", "off"
+    capture_level: str = "full"
     retention_days: int = 30
     redact_fields: Tuple[str, ...] = ()
     authority_effect: str = "None"

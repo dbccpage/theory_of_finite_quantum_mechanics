@@ -1,41 +1,9 @@
-/-
-  H007 -- complexification. AuthorityEffect: None. Candidate only.
-  Not PROVEN. Kind: LIFT RUNG.
 
-  Claim identifier: HW-H007
-  Source-paper contact: QM_062 (U(1) selector, audited as proposal),
-  QM_207 (complex phase fiber, audited as proposal). Work order hard
-  obligation 6.
 
-  Target proposition
-    A complex-like structure (GaussInt = Z[i], with i*i = -1 and
-    genuine conjugation) is AVAILABLE over the free module, and the
-    real-like carrier Int embeds in it respecting the operations.
-    Obligation 6: the entire H000-H006 pipeline already ran over
-    Int with trivial conjugation, so the complex carrier has NOT
-    been selected by anything below this rung.
 
-  Imports added at this rung
-    The carrier Z[i] itself. In this host R and C are unavailable
-    (see the HWKernel Rat boundary receipt): Z[i] is the cheapest
-    complex-like carrier the host supports choice-free, and taking
-    it is an explicit import, not a derivation.
 
-  Theorem or counterexample
-    gi_squared: i * i = -1 in the imported carrier.
-    embed_add / embed_mul / embed_conj: Int embeds respecting
-    operations and (trivial) conjugation.
-    real_pipeline_complete: re-export of the intPack instantiations
-    of H004/H005/H006 punchline theorems -- the obligation 6 model.
 
-  Nonclaim boundary
-    No claim that Z[i], C, or any phase carrier is forced. No claim
-    that Z[i] approximates C in any analytic sense: density and
-    completeness are unavailable imports here.
 
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 import HWKernel
 import H004FreeLinearization
@@ -49,7 +17,6 @@ open FableHilbertWalk20260819.H004
 open FableHilbertWalk20260819.H005 (sesq delta_orthonormal)
 open FableHilbertWalk20260819.H006
 
-/-- i * i = -1: the defining property of the imported unit. -/
 theorem gi_squared :
     GaussInt.gmul GaussInt.gi GaussInt.gi =
       GaussInt.gneg GaussInt.gone :=
@@ -57,7 +24,6 @@ theorem gi_squared :
 
 #print axioms gi_squared
 
-/-! ## The real-like carrier embeds. -/
 
 def embed (a : Int) : GaussInt := ⟨a, 0⟩
 
@@ -75,8 +41,6 @@ theorem embed_conj (a : Int) :
 
 #print axioms embed_mul
 
-/-- The imaginary unit lies outside the embedded real-like line:
-    the complexification genuinely adds something. -/
 theorem gi_not_embedded : ¬ ∃ a : Int, embed a = GaussInt.gi := by
   intro h
   rcases h with ⟨a, ha⟩
@@ -85,8 +49,6 @@ theorem gi_not_embedded : ¬ ∃ a : Int, embed a = GaussInt.gi := by
 
 #print axioms gi_not_embedded
 
-/-! ## Obligation 6: H000-H006 runs over the real-like carrier, so
-    the complex import has not been selected by any earlier rung. -/
 
 theorem real_pipeline_complete :
     (∀ (v : Vec Int Bool) (x : Bool),
@@ -107,9 +69,6 @@ theorem real_pipeline_complete :
 
 #print axioms real_pipeline_complete
 
-/-- H007 punchline: complex structure is available (i exists, i^2 =
-    -1, the real line embeds) but not forced (the full pipeline
-    below this rung runs real). -/
 theorem complexification :
     (GaussInt.gmul GaussInt.gi GaussInt.gi =
       GaussInt.gneg GaussInt.gone) ∧
@@ -121,3 +80,6 @@ theorem complexification :
 #print axioms complexification
 
 end FableHilbertWalk20260819.H007
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H007Complexification.lean Claim: gi_squared AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

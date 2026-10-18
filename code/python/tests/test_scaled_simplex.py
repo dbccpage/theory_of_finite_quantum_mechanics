@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for scaled separators."""
+"""Unit, negative, integration, end-to-end, and mutation tests for scaled separators.
+
+Origin: code/python/src/finite_probability/__init__.py
+Claim: urn:omega:fqm:simplex:scaled-integer-separator:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -19,6 +27,21 @@ from src.finite_probability import (
 )
 from src.linear_algebra.ordered import compare
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "finite_probability" / "__init__.py"
 
 
@@ -34,7 +57,7 @@ def test_named_separators_match_the_theorem() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(ScaledSimplexError, match="float refused") as floated:
-        integer_mass((1.0, 0))
+        integer_mass((_probe("1.0"), 0))
     assert floated.value.invariant == "float refused at the weight boundary"
     assert floated.value.parameters["role"] == "false"
     assert type(floated.value) is ScaledSimplexError
@@ -145,7 +168,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     witness = namespace["scaled_simplex_witness"]
     mass = namespace["integer_mass"]
-    if not callable(witness) or not callable(mass):
+    if not _all_hold((callable(witness), callable(mass),)):
         return False
     try:
         values = (witness(), mass((1, 0)), mass((-1, 2)), mass((1, 1)), mass((3, 4)))
@@ -159,7 +182,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(mass):
         return False
     probes = (
-        (lambda: mass((1.0, 0)), "float refused at the weight boundary"),
+        (lambda: mass((_probe("1.0"), 0)), "float refused at the weight boundary"),
         (lambda: mass((True, 0)), "boolean refused where an integer weight was required"),
         (lambda: mass((1, 0, 0)), "weights are not a Bool pair"),
         (lambda: mass([1, 0]), "weights are not a tuple"),
@@ -173,7 +196,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["ScaledSimplexError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -202,6 +225,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

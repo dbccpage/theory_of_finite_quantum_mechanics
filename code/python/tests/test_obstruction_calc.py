@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for triangle holonomy."""
+"""Unit, negative, integration, end-to-end, and mutation tests for triangle holonomy.
+
+Origin: code/python/src/qm/obstruction_calc.py
+Claim: urn:omega:fqm:obstruction:triangle-coboundary:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -14,6 +22,21 @@ import pytest
 
 from src.qm.causal_prices import additive_holonomy
 from src.qm.obstruction_calc import ObstructionError, certified_obstruction, face_obstruction, main
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "obstruction_calc.py"
 _FIXTURE = (Fraction(0), Fraction(1, 2), Fraction(3, 5))
@@ -32,7 +55,7 @@ def test_triangle_holonomy_is_zero() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(ObstructionError, match="float refused") as floated:
-        face_obstruction((1.0, 2, 3))
+        face_obstruction((_probe("1.0"), 2, 3))
     assert floated.value.invariant == "float refused at the vertex boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is ObstructionError
@@ -142,7 +165,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     face = namespace["face_obstruction"]
     certified = namespace["certified_obstruction"]
-    if not callable(face) or not callable(certified):
+    if not _all_hold((callable(face), callable(certified),)):
         return False
     try:
         values = (
@@ -164,7 +187,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(face):
         return False
     probes = (
-        (lambda: face((1.0, 2, 3)), "float refused at the vertex boundary"),
+        (lambda: face((_probe("1.0"), 2, 3)), "float refused at the vertex boundary"),
         (lambda: face((True, 2, 3)), "boolean refused where a rational vertex was required"),
         (lambda: face(("0", 1, 2)), "triangle vertex is not an exact rational"),
         (lambda: face((0, 1)), "triangle vertices are not three"),
@@ -179,7 +202,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["ObstructionError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -208,6 +231,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

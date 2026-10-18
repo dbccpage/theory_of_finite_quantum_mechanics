@@ -1,24 +1,4 @@
-// AuthorityEffect: None.
 
-//! Declared combinatorial area count and Page schedule from the finite-QM
-//! simplicial host.
-//!
-//! Source: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/simplicial_gravity.rs`,
-//! the functions `area_model` and `page_curve`. The constraint relaxation in
-//! that file stays a JSON host over `omega_general_relativity::simplicial_dynamics`.
-//!
-//! `boundary_area = 4 n - 2 |glued|`. Bulk, boundary and reduction counts are
-//! `d` to those powers. Entropy is the imposed convention `area / 4`, not a
-//! derived von Neumann entropy. The Page schedule radiates `a` in `steps`
-//! equal shares, with the remainder on the first steps. The clock is
-//! `(tau - kappa * radiated / a) / (1 + tau * kappa * radiated / a)`.
-//!
-//! Refused: an empty complex, a carrier above the stated bounds, a face used
-//! twice or outside its tetrahedron, an odd or tiny area, a nonpositive `tau`,
-//! and a `kappa` outside `[0, tau]`.
-//!
-//! AuthorityEffect: None. Finite steps of this schedule do not establish a
-//! continuum limit.
 
 use num_bigint::BigInt;
 use omega_number_theory::rational::{ri, rq, Rational as Q};
@@ -33,7 +13,6 @@ fn qstr(q: &Q) -> String {
     }
 }
 
-/// Face-gluing census of a declared tetrahedron complex.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct AreaModel {
     pub tetrahedra: usize,
@@ -45,7 +24,6 @@ pub struct AreaModel {
     pub entropy_convention: String,
 }
 
-/// One step of the imposed area schedule.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct PageStep {
     pub step: usize,
@@ -59,7 +37,6 @@ pub struct PageStep {
     pub proper_time: String,
 }
 
-/// Count boundary faces and the imposed `A/4` label.
 pub fn area_model(
     n: usize,
     glued: &[[(usize, usize); 2]],
@@ -91,7 +68,6 @@ pub fn area_model(
     })
 }
 
-/// Radiate area `a` in `steps` shares and record the imposed clock.
 pub fn page_curve(
     a: usize,
     steps: usize,

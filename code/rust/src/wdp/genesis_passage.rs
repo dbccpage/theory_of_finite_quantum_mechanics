@@ -1,10 +1,3 @@
-//! Native port of Genesis `PrimitivePassage.step` (the original paper kernel).
-//!
-//! Positions index `occ`; token values are not positions. Store order, directed
-//! pairs, and column order are significant. A guarded-out event is a no-op in
-//! the source's TOTAL replay. `enabled` additionally declares the guard-success
-//! partial-operation reading used by the continuation adapter. Resource refusal
-//! is neither a source no-op nor an obstruction certificate.
 
 use serde::{Deserialize, Serialize};
 
@@ -69,9 +62,6 @@ pub fn separated(columns: &[Column], i: usize, j: usize) -> bool {
 }
 
 impl PassageState {
-    /// Original `zeroDeclP`: true before declaration, a convention, not an
-    /// assertion that an undeclared observer exists. Educational `zero_p_gate`
-    /// is the strict alternative (`declared && zero_declared`).
     pub fn zero_declared(&self, i: usize, j: usize) -> bool {
         self.obs.as_ref().is_none_or(|cols| !separated(cols, i, j))
     }
@@ -136,9 +126,6 @@ impl PassageState {
         })
     }
 
-    /// Guard-success reading. Idempotent admissions/settings remain available;
-    /// halt is available even at a terminal. This is declared alongside, and
-    /// does not change, the source's total no-op semantics.
     pub fn enabled(&self, event: &PassageEvent) -> bool {
         use PassageEvent::*;
         if matches!(event, Halt) {
@@ -159,9 +146,6 @@ impl PassageState {
         }
     }
 
-    /// Exact total transition on the Rust natural-number fragment of the
-    /// original Lean state. In particular refinement does NOT require license;
-    /// passage refusal records active obstruction, NOT response exhaustion.
     pub fn step(&self, event: &PassageEvent) -> Self {
         use PassageEvent::*;
         if !self.enabled(event) {
@@ -218,7 +202,6 @@ impl PassageState {
         out
     }
 
-    /// A structural-cell bound, not a bound on numeric values or CPU time.
     pub fn within_cells(&self, limit: usize) -> bool {
         let mut total = Some(self.occ.len());
         for count in [
@@ -238,10 +221,6 @@ impl PassageState {
         total.is_some_and(|n| n <= limit)
     }
 
-    /// Original `nextFamilyP`: all same-level repair blocks, then singleton
-    /// funded extension proposals, per obstructed protected pair. Keeps ties
-    /// and repeats. This is a proposal family: halted/license/budget gates are
-    /// still checked on execution and do not disappear because of membership.
     pub fn next_family(
         &self,
         max_candidates: usize,

@@ -6,7 +6,7 @@ from omega_engine_projects.finite_to_continuum.code.circle_piecewise_linear impo
 def test_one_immutable_periodic_profile_has_exact_all_grid_targets():
     source = [[0, 0], [Q(1, 2), 1], [1, 0]]
     p = P(source)
-    source[1][1] = 200  # Constructor retained an immutable value, not caller storage.
+    source[1][1] = 200
     assert p.norm == 1 and p.lipschitz == 2 and p.square_integral == Q(1, 3)
     assert p.uniform_samples(4) == (0, Q(1, 2), 1, Q(1, 2))
     assert p.evaluate(Q(-1, 4)) == Q(1, 2) and p.evaluate(Q(3, 2)) == 1

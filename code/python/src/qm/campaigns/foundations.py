@@ -1,4 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 """Foundational walk, discrete walk engines, and simplicial complex quantum mechanics.
 
 This module serves as the primary backwards-compatible public facade for the
@@ -22,10 +21,8 @@ AuthorityEffect: None.
 
 from __future__ import annotations
 
-# 2. Canonical Math Crates
 from ..domain.primitive_difference import PrimitiveDifference
 
-# 1. Primitives and Operator Constants
 from ..domain.primitives import (
     HADAMARD_2,
     I2,
@@ -50,7 +47,6 @@ from ..domain.primitives import (
     von_neumann_entropy,
 )
 
-# 8. Advanced Targets (Loops 4, 5, 13-22)
 from .advanced_targets import (
     D3_STATE_BUILDERS,
     D4_STATE_BUILDERS,
@@ -116,7 +112,6 @@ from .contextuality_f2 import (
     peres_mermin_square,
 )
 
-# 4. Phase 1 Separating Experiment & Phase 2 Discrete Walk Engines
 from .discrete_walk import (
     CABELLO_9_BASES,
     CABELLO_18_VECTORS,
@@ -159,7 +154,6 @@ from .quantum_correlation import (
     partial_trace_right,
 )
 
-# 6. Quantum Information Protocols & Nonlocality (Loops 4-7, 11-12)
 from .quantum_protocols import (
     build_qutrit_phase_point_operators,
     derive_bell_singlet_correlation,
@@ -172,7 +166,6 @@ from .quantum_protocols import (
     simulate_discrete_superdense_coding,
 )
 
-# 3. Rungs 1-8 Domain Implementation
 from .rungs import (
     BoundaryDefense,
     CochainPacket,
@@ -217,7 +210,6 @@ from .rungs import (
     weights_to_probabilities,
 )
 
-# 5. Simplicial Complex Quantum Mechanics (Loops 1-3)
 from .simplicial_qm import (
     arbitrary_degree_polynomial_reduction,
     build_octahedral_mub_polytope,
@@ -233,7 +225,6 @@ from .simplicial_qm import (
     tetrahedron_3cell_boundary,
 )
 
-# 7. Stabilizer and Topological Codes (Loops 8-10)
 from .stabilizer_codes import (
     build_four_qubit_css_surface_code,
     build_steane_seven_qubit_code,
@@ -241,7 +232,6 @@ from .stabilizer_codes import (
 )
 
 __all__ = [
-    # Constants
     "I2",
     "SIGMA_I",
     "SIGMA_X",
@@ -263,7 +253,6 @@ __all__ = [
     "marginals",
     "pure_state",
     "ket00",
-    # Crates
     "PrimitiveDifference",
     "l1_to_l2_amplitude_lift",
     "verify_born_normalization",
@@ -294,7 +283,6 @@ __all__ = [
     "Rung5SuperpositionFiber",
     "Rung6InterferenceCrossTerm",
     "evaluate_6rung_ladder",
-    # Rungs 1-8
     "primitive_difference",
     "is_same",
     "check_difference_cocycle",
@@ -336,7 +324,6 @@ __all__ = [
     "gleason_dimension_2_counterexample",
     "discrete_gleason_triads_d3",
     "rational_pythagorean_frames_d2",
-    # Discrete walk engines
     "CABELLO_18_VECTORS",
     "CABELLO_9_BASES",
     "evaluate_quartic_frame_sum_rational",
@@ -351,7 +338,6 @@ __all__ = [
     "build_glued_simplex_packet",
     "cabello_interface_from_packet",
     "monotone_admission_from_packet",
-    # Simplicial complex QM
     "arbitrary_degree_polynomial_reduction",
     "polynomial_reduce_mod_circle",
     "solve_frame_additive_homogeneous_polynomial",
@@ -364,7 +350,6 @@ __all__ = [
     "build_octahedron_graph_state_stabilizers",
     "evaluate_octahedral_depolarizing_noise_threshold",
     "evaluate_octahedral_graph_state_entanglement",
-    # Quantum protocols
     "evaluate_discrete_pythagorean_bell_chsh",
     "derive_bell_singlet_correlation",
     "evaluate_pell_pythagorean_tsirelson_convergence",
@@ -374,11 +359,9 @@ __all__ = [
     "evaluate_qutrit_discrete_wigner",
     "simulate_discrete_quantum_teleportation",
     "simulate_discrete_superdense_coding",
-    # Stabilizer codes
     "build_three_qubit_bitflip_code",
     "build_four_qubit_css_surface_code",
     "build_steane_seven_qubit_code",
-    # Advanced Targets (Loops 4, 5, 13-22)
     "verify_target4_rational_cayley_so8", "verify_target5_pentagon_identity_q5",
     "build_prime_p_phase_point_operators", "evaluate_prime_p_discrete_wigner", "verify_gross_stabilizer_covariance",
     "build_shor_nine_qubit_code", "extract_shor_syndrome", "decode_and_recover_shor", "simulate_shor_error_recovery", "verify_all_single_qubit_errors_recovery",

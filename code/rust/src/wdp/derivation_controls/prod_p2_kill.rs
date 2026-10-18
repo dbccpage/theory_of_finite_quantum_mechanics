@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P2-KILL (Evaluate P2 kill conditions: G.5 pass share, failure-list use).
 
 pub fn evaluate_p2_kill(initial_passed: usize, batch_size: usize, repaired_passed: bool) -> (bool, bool, bool) {
     let kill_low_share = batch_size == 0 || (initial_passed * 2 < batch_size);

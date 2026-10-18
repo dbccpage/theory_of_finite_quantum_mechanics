@@ -1,9 +1,3 @@
-//! WDP retention adapter for declared branching, partial labelled updates.
-//!
-//! Directed update data is an additional input: reports do not select or
-//! orient it. Native bisimulation and succession classification live in
-//! omega_category_theory. A comparison must be a checked report equivalence;
-//! a nontransitive tolerance is refused instead of silently closed.
 
 use crate::error::WdpError;
 use omega_category_theory::finite_relational::{

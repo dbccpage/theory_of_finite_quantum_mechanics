@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Finite to Continuum Bridging Package.
 

@@ -1,7 +1,3 @@
-//! Growth against refinement: continuous limit obstruction, fine-graining entropy, and field escalation rates.
-//!
-//! Campaign C250 Block 09 (Global Steps 251-275).
-//! AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
 #[cfg(test)]
 use num_integer::Integer;
@@ -14,7 +10,6 @@ use omega_quantum_physics::branch_finegraining::{BranchCounting, BranchCountingE
 use omega_quantum_physics::growth_refinement::{growth_witness, w_state_carrier};
 use serde::{Deserialize, Serialize};
 
-/// Evaluation report for unbounded growth.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct GrowthReport {
     pub growth_unbounded: bool,
@@ -22,7 +17,6 @@ pub struct GrowthReport {
     pub sample_witness_conductors: Vec<(usize, usize)>,
 }
 
-/// Evaluate unbounded growth across prime-qudit MUB families.
 pub fn evaluate_growth_unboundedness() -> GrowthReport {
     let conductors = [1, 2, 4, 8, 12, 24, 120, 210, 840];
     let witnesses = conductors
@@ -45,7 +39,6 @@ pub fn evaluate_growth_unboundedness() -> GrowthReport {
     }
 }
 
-/// Evaluation report for refinement duality.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct RefinementReport {
     pub refinement_bounded_on_rational_sector: bool,
@@ -54,7 +47,6 @@ pub struct RefinementReport {
     pub uniform_rational_bound_claimed: bool,
 }
 
-/// Evaluate branch counting on rational vs irrational sectors.
 pub fn evaluate_refinement_duality() -> RefinementReport {
     let rational_weights = [rq(1, 2), rq(1, 3), rq(1, 6)];
     let count = BranchCounting::new(&rational_weights, None)
@@ -83,14 +75,12 @@ pub fn evaluate_refinement_duality() -> RefinementReport {
     }
 }
 
-/// Evaluation report for CGLMP conductors.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct CglmpReport {
     pub cglmp_dimension_conductors: Vec<(usize, usize)>,
     pub smallest_conductor_carrying_all_cglmp_d_le_8: usize,
 }
 
-/// LCM of declared CGLMP conductor labels; no operators or minimality proof are supplied.
 pub fn evaluate_cglmp_conductors() -> CglmpReport {
     let cglmp = [(3, 24), (4, 240), (5, 120), (6, 120), (7, 840), (8, 480)];
     let mut all_lcm = 1;
@@ -104,14 +94,12 @@ pub fn evaluate_cglmp_conductors() -> CglmpReport {
     }
 }
 
-/// Evaluation report for W-state normalization conductors.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct WStateReport {
     pub w_state_conductors: Vec<(usize, usize)>,
     pub smallest_conductor_carrying_w_states_up_to_11: usize,
 }
 
-/// Evaluate minimal conductors for multi-qubit W states up to 11 qubits.
 pub fn evaluate_w_state_conductors() -> WStateReport {
     let mut w_conds = Vec::with_capacity(11);
     let mut all_lcm = 1;
@@ -131,14 +119,12 @@ pub fn evaluate_w_state_conductors() -> WStateReport {
     }
 }
 
-/// Evaluation report for differential pricing.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct PricingReport {
     pub growth_and_refinement_priced_differently: bool,
     pub limit_object: String,
 }
 
-/// Record differential pricing and inductive limit object.
 pub fn evaluate_differential_pricing() -> PricingReport {
     PricingReport {
         growth_and_refinement_priced_differently: evaluate_growth_unboundedness()
@@ -148,7 +134,6 @@ pub fn evaluate_differential_pricing() -> PricingReport {
     }
 }
 
-/// Full Block 09 execution report.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Block09Report {
     pub authority_effect: String,
@@ -169,7 +154,6 @@ pub struct Block09Report {
     pub pricing_details: PricingReport,
 }
 
-/// Run complete Block 09 execution in Rust.
 pub fn run_block_09_execution() -> Block09Report {
     let growth = evaluate_growth_unboundedness();
     let refinement = evaluate_refinement_duality();

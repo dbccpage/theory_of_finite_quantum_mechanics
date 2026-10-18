@@ -1,17 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Chapter 5: Declared U(1) connections, gauge transformations,
-//! Hermitian connection Laplacians, and spectral perturbation bounds.
-//! Finite evidence for WDP-CH05-P01, WDP-CH05-P02, and the declared U(1)
-//! specialization of WDP-CH05-O01; not a general vector-bundle perturbation proof.
-//!
-//! WDP owns the declaration: a named vertex carrier and exact unit-modulus
-//! phases over Q(i), validated once in [`U1Connection::new`]. Everything
-//! computed from it belongs to `omega_holonomy`, exactly and without floats:
-//! - loop holonomy: `omega_holonomy::compute_loop_holonomy` on [`U1Connection::connection`];
-//! - the Hermitian connection Laplacian L_U = D - A_U and its quadratic form:
-//!   `omega_holonomy::ConnectionLaplacian::compute`;
-//! - the WDP-CH05-O01 Weyl–Gershgorin bound:
-//!   `omega_holonomy::ConnectionLaplacian::perturbation_certificate`.
 
 use omega_kernel::resource_limits::OperationLimits;
 use std::collections::{BTreeMap, BTreeSet};
@@ -24,12 +10,6 @@ use serde::Serialize;
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
 
-/// A declared U(1) connection on a finite oriented graph.
-///
-/// Phases are exact Gaussian rationals of modulus one, such as `3/5 + 4/5 i`.
-/// A reverse edge, if declared, must carry exactly the conjugate phase; if it is
-/// not declared, `omega_holonomy` supplies the inverse, which for a unit phase is
-/// the conjugate. There is no deserializer: every value passed through `new`.
 #[derive(Debug, Clone, Serialize)]
 pub struct U1Connection {
     complex: CellComplex,
@@ -37,9 +17,6 @@ pub struct U1Connection {
     authority_effect: AuthorityEffect,
 }
 
-/// Exact finite comparison of two declared unweighted U(1) Laplacians.
-/// The spectral statement is conditional on the caller's supplied lower bound
-/// being a valid gap bound for the first Laplacian; this receipt does not prove it.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct U1PerturbationComparison {
     pub row_sum_bounds: Vec<BigRational>,
@@ -89,7 +66,6 @@ impl U1Connection {
                     });
                 }
                 if u > v {
-                    // Already registered from the (v, u) declaration.
                     continue;
                 }
             }
@@ -108,12 +84,10 @@ impl U1Connection {
         })
     }
 
-    /// The vertex and edge carrier, as `omega_holonomy` sees it.
     pub fn complex(&self) -> &CellComplex {
         &self.complex
     }
 
-    /// The 1×1 transport matrices, as `omega_holonomy` sees them.
     pub fn connection(&self) -> &DiscreteConnection<GaussianRational<BigRational>> {
         &self.connection
     }
@@ -122,13 +96,6 @@ impl U1Connection {
         self.authority_effect
     }
 
-    /// Compute an exact perturbation bound from the two actual connections.
-    ///
-    /// With H = L(other) - L(self), each |H_ij| is at most
-    /// |Re H_ij| + |Im H_ij|. Hermiticity gives ||H||_2 <= max row sum,
-    /// so Weyl bounds every ordered eigenvalue displacement by that value
-    /// and every adjacent spectral-gap shrinkage by twice that value.
-    /// Unlike an epsilon declaration, these bounds are computed from transports.
     pub fn perturbation_comparison(
         &self,
         other: &Self,
@@ -182,12 +149,6 @@ impl U1Connection {
         })
     }
 
-    /// Applies a U(1) gauge transformation g: V -> U(1), U'_uv = g(u)^* U_uv g(v).
-    ///
-    /// Each gauge phase must be exactly unit modulus, so the result is again a
-    /// U(1) connection. The action itself is `omega_holonomy`'s
-    /// `apply_gauge_transformation`, U'(u, v) = g(v) U(u, v) g(u)^{-1}, which for
-    /// commuting unit phases is the same map.
     pub fn gauge_transform(
         &self,
         gauge: &BTreeMap<String, GaussianRational<BigRational>>,
@@ -252,11 +213,9 @@ mod tests {
 
         let lap = ConnectionLaplacian::compute(conn.complex(), conn.connection(), None).unwrap();
         assert!(lap.is_hermitian());
-        // A flat connection's constant section has zero Dirichlet energy.
         let constant = vec![one.clone(), one.clone(), one];
         assert!(lap.evaluate_quadratic_form(&constant).unwrap().is_zero());
 
-        // Delta_W = 2 on the triangle: bound 2/100, tolerance 4/100 < 1/2.
         let cert = lap.perturbation_certificate(qr(1, 100), qr(1, 2)).unwrap();
         assert_eq!(cert.max_weighted_degree, q(2));
         assert!(cert.gap_survives);
@@ -279,7 +238,6 @@ mod tests {
         let gauged_hol = compute_loop_holonomy(gauged.connection(), &loop_path()).unwrap();
         assert_eq!(gauged_hol.get(0, 0), &rotation);
 
-        // A frustrated U(1) cycle has no parallel section: the Laplacian kernel is trivial.
         let lap = ConnectionLaplacian::compute(conn.complex(), conn.connection(), None).unwrap();
         assert!(lap.has_spectral_gap());
     }

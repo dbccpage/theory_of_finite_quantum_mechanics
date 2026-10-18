@@ -1,6 +1,3 @@
-// AuthorityEffect: None.
-// Factorization over a declared real field only; no splitting-degree or
-// multiplicative-dependence claim. Coefficients ascend internally.
 #[allow(dead_code)]
 #[path = "rational_factors.rs"]
 mod rational;
@@ -258,8 +255,6 @@ fn squarefree(p: &[Element], d: u64) -> Result<Vec<(Polynomial, usize)>> {
     Ok(result)
 }
 
-// Exact Horner substitution p(X+offset). In Trager's norm the bar sends
-// sqrt(d) to -sqrt(d); it is NOT complex conjugation of this real field.
 fn shift(p: &[Element], offset: &Element, d: u64) -> Polynomial {
     let mut result = vec![Element::zero()];
     for coefficient in p.iter().rev() {
@@ -317,8 +312,6 @@ fn separable_shift(p: &[Element], d: u64) -> Result<(usize, Polynomial, Polynomi
     let bound = degree
         .checked_mul(degree)
         .ok_or("REPRESENTATION_SIZE_OVERFLOW")?;
-    // At most n^2 shifts identify a root of g with one of its conjugate.
-    // The n^2+1 integer choices below therefore include a squarefree norm.
     for s in 0..=bound {
         let offset = Element {
             a: Q::zero(),
@@ -517,7 +510,6 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
         .map(parse_rational)
         .collect::<Result<Vec<_>>>()?;
     if self_join {
-        // Deliberately wrong copied mutation required by the exact-fold gate.
         let mut numerator = BigInt::zero();
         for (i, a) in terms.iter().enumerate() {
             for (j, b) in terms.iter().enumerate() {
@@ -535,9 +527,6 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
 }
 
 fn raw_number_admission(input: &str) -> Result<()> {
-    // Inspect numeric tokens before duplicate object keys can discard them.
-    // String contents (including escaped quotes/backslashes) are not numbers.
-    // This is only an exactness gate; serde remains the JSON syntax authority.
     let bytes = input.as_bytes();
     let mut index = 0;
     let mut in_string = false;
@@ -584,8 +573,6 @@ fn run() -> Result<Value> {
     let raw_numbers = raw_number_admission(&input);
     let fields: BTreeMap<String, Box<RawValue>> =
         serde_json::from_str(&input).map_err(|e| format!("INVALID_JSON:{e}"))?;
-    // Malformed JSON keeps its syntax error; valid JSON cannot hide an
-    // inexact number by overwriting its key with a later exact value.
     raw_numbers?;
     if fields.len() != 3
         || ["operation", "conductor", "coefficients"]
@@ -594,9 +581,6 @@ fn run() -> Result<Value> {
     {
         return Err("EXACT_FIELDS_REQUIRED".into());
     }
-    // Deserialize each surviving field to its required type before building
-    // a Value. With arbitrary_precision, Value itself can promote a literal
-    // reserved-number object; direct u64/String deserialization cannot.
     let conductor: u64 = serde_json::from_str(fields["conductor"].get())
         .map_err(|_| "INTEGER_CONDUCTOR_REQUIRED")?;
     let operation: String =

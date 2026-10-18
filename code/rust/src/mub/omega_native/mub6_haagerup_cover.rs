@@ -1,61 +1,3 @@
-//! Cover readiness + finite branch-and-bound cover driver for the **Haagerup / Szöllősi**
-//! complex Hadamard matrix basepoint H6 in the 2-circulant family B_6(θ) over `Q(ζ₂₄)`.
-//!
-//! # Mathematical Foundations
-//!
-//! The Szöllősi / Beauchamp-Nicoară 2-circulant matrix B_6(a, b, c, d, e, f) is given by:
-//!
-//! ```text
-//!   H = [ A    B  ]
-//!       [ B†  -A† ]
-//! ```
-//!
-//! where A = circ(a, b, c) and B = circ(d, e, f). For unit-modulus entries, the complex
-//! Hadamard orthogonality condition H H† = 6 I_6 reduces to the complex deltoid identity:
-//!
-//! ```text
-//!   z₁ + z₂ = 0
-//! ```
-//!
-//! where z₁ = a c* + b a* + c b* and z₂ = d f* + e d* + f e*.
-//! In dephased form (a = 1, d = 1), discrete basepoints in the cyclotomic field `Q(ζ₂₄)`
-//! were cataloged in `szollosi_triad_solver.rs` via `search_discrete_szollosi_chm_points()`.
-//!
-//! Discrete basepoint Point 0:
-//! * (kb, kc, ke, kf) = (0, 6, 0, 12)
-//! * (b, c, e, f) = (1, i, 1, -1)
-//! * z₁ = -i + 1 + i = 1, z₂ = -1 + 1 - 1 = -1 => z₁ + z₂ = 0.
-//!
-//! Discrete basepoint Point 3:
-//! * (kb, kc, ke, kf) = (0, 8, 0, 16)
-//! * (b, c, e, f) = (1, ω, 1, ω²) with ω = e^{2πi/3} = ζ₂₄⁸
-//! * z₁ = 0, z₂ = 0 => z₁ + z₂ = 0.
-//!
-//! # Triple Assembly & Column Factorization
-//!
-//! The triple T = (B₁, B₂, B₃) consists of 18 column vectors in ℂ⁶:
-//! * B₁: Standard basis I₆ (columns 0..6)
-//! * B₂: Fourier matrix F₆ (columns 6..12) via `f6_family_columns(0, 0)`
-//! * B₃: Haagerup matrix H₆ (columns 12..18) with normalized columns (1/√6) H_{:, j}
-//!
-//! For any candidate fourth basis vector v in the 5-torus:
-//!
-//! ```text
-//!   Φ^sq(T, v) = ∑_{i=0}^{17} (|⟨e_i, v⟩|² − 1/6)²
-//! ```
-//!
-//! If Φ^sq(T, v) ≥ ε > 0 over a box covering the region, then for any unitary basis U:
-//!
-//! ```text
-//!   Ψ^sq(T, U) = ∑_{j=0}^5 Φ^sq(T, U_j) ≥ 6 ε > 0
-//! ```
-//!
-//! completely ruling out any fourth mutually unbiased basis extending the triple in that box.
-//!
-//! # Firewall Line & Scope
-//!
-//! * All certificates use exact rational / cyclotomic arithmetic over `Q(ζ₂₄)`.
-//! * Zero floating-point arithmetic permitted in certificate generation.
 
 use num_rational::BigRational;
 use num_traits::{ToPrimitive, Zero};
@@ -80,8 +22,6 @@ use omega_number_theory::rational::ri;
 
 pub use crate::omega_native::exact::mub6_field::inv_sqrt6;
 
-/// Construct Haagerup / Szöllősi discrete basepoint Point 0:
-/// (kb, kc, ke, kf) = (0, 6, 0, 12) => (b, c, e, f) = (1, i, 1, -1).
 pub fn haagerup_h6_basepoint_point0() -> Matrix6 {
     let b = Cyc24::zeta24(0);
     let c = Cyc24::zeta24(6);
@@ -91,8 +31,6 @@ pub fn haagerup_h6_basepoint_point0() -> Matrix6 {
         .expect("Szollosi deltoid condition z1 + z2 == 0 holds for point 0")
 }
 
-/// Construct Haagerup / Szöllősi discrete basepoint Point 3:
-/// (kb, kc, ke, kf) = (0, 8, 0, 16) => (b, c, e, f) = (1, ω, 1, ω²).
 pub fn haagerup_h6_basepoint_point3() -> Matrix6 {
     let b = Cyc24::zeta24(0);
     let c = Cyc24::zeta24(8);
@@ -102,12 +40,10 @@ pub fn haagerup_h6_basepoint_point3() -> Matrix6 {
         .expect("Szollosi deltoid condition z1 + z2 == 0 holds for point 3")
 }
 
-/// Primary Haagerup matrix H₆ basepoint (defaults to Point 0).
 pub fn haagerup_h6_matrix() -> Matrix6 {
     haagerup_h6_basepoint_point0()
 }
 
-/// Extract orthonormal columns (in ℂ⁶) from a 6×6 complex Hadamard matrix by multiplying with 1/√6.
 pub fn haagerup_columns_from_matrix(m: &Matrix6) -> [ExactVec; D] {
     let s = inv_sqrt6();
     std::array::from_fn(|col| {
@@ -119,13 +55,10 @@ pub fn haagerup_columns_from_matrix(m: &Matrix6) -> [ExactVec; D] {
     })
 }
 
-/// Orthonormal columns of the primary Haagerup matrix H₆ basepoint in `Q(ζ₂₄)`.
 pub fn haagerup_h6_columns() -> [ExactVec; D] {
     haagerup_columns_from_matrix(&haagerup_h6_matrix())
 }
 
-/// Exact oracle verification: checks that H₆ is an exact complex Hadamard matrix
-/// and its columns form an orthonormal basis unbiased to the standard basis.
 pub fn haagerup_h6_is_exact_chm() -> bool {
     let m = haagerup_h6_matrix();
     let rep = verify_chm(&m);
@@ -136,7 +69,6 @@ pub fn haagerup_h6_is_exact_chm() -> bool {
     basis_is_exact_chm(&cols)
 }
 
-/// Standard basis columns I₆ in ℂ⁶.
 pub fn standard_basis_columns() -> [ExactVec; D] {
     std::array::from_fn(|idx| {
         let mut v: ExactVec = std::array::from_fn(|_| Cyc24::zero());
@@ -145,10 +77,6 @@ pub fn standard_basis_columns() -> [ExactVec; D] {
     })
 }
 
-/// Assemble the 18 columns of the fixed triple (I₆, F₆, H₆).
-/// * B₁ columns 0..6: Standard basis I₆
-/// * B₂ columns 6..12: Fourier matrix F₆ (f6_family_columns(0, 0))
-/// * B₃ columns 12..18: Haagerup matrix H₆ (declared Point 0 basepoint)
 pub fn haagerup_seed_triple_columns() -> Vec<ExactVec> {
     let mut cols = Vec::with_capacity(3 * D);
     cols.extend_from_slice(&standard_basis_columns());
@@ -157,7 +85,6 @@ pub fn haagerup_seed_triple_columns() -> Vec<ExactVec> {
     cols
 }
 
-/// Assemble 18 columns with a specific 6×6 Haagerup matrix basepoint.
 pub fn haagerup_seed_triple_columns_with_matrix(h: &Matrix6) -> Vec<ExactVec> {
     let mut cols = Vec::with_capacity(3 * D);
     cols.extend_from_slice(&standard_basis_columns());
@@ -166,17 +93,14 @@ pub fn haagerup_seed_triple_columns_with_matrix(h: &Matrix6) -> Vec<ExactVec> {
     cols
 }
 
-/// Exact oracle: verify that B₁, B₂, B₃ are all exact CHMs.
 pub fn haagerup_seed_triple_bases_are_chm() -> bool {
     let cols = haagerup_seed_triple_columns();
     let _b1: [ExactVec; D] = std::array::from_fn(|i| cols[i].clone());
     let b2: [ExactVec; D] = std::array::from_fn(|i| cols[D + i].clone());
     let b3: [ExactVec; D] = std::array::from_fn(|i| cols[2 * D + i].clone());
-    // B2 (F6) and B3 (H6) are exact CHMs, each mutually unbiased to standard basis B1 (I6).
     basis_is_exact_chm(&b2) && basis_is_exact_chm(&b3)
 }
 
-/// Build exact and fast (f64) enclosures for the Haagerup seed triple.
 pub fn haagerup_seed_enclosed() -> (EnclosedTriple, EnclosedTripleF64) {
     let cols = haagerup_seed_triple_columns();
     (
@@ -185,7 +109,6 @@ pub fn haagerup_seed_enclosed() -> (EnclosedTriple, EnclosedTripleF64) {
     )
 }
 
-/// Build exact and fast enclosures with B₂/B₃ widened by `±delta` (for continuous neighborhood no-go).
 pub fn haagerup_seed_neighborhood_enclosed(
     delta: &BigRational,
 ) -> (EnclosedTriple, EnclosedTripleF64) {
@@ -197,19 +120,16 @@ pub fn haagerup_seed_neighborhood_enclosed(
     )
 }
 
-/// Standard neighborhood radius δ = 1/1000.
 pub fn neighborhood_delta_1_1000() -> BigRational {
     ri(1) / ri(1000)
 }
 
-/// Run branch-and-bound cover over a stated candidate region against the Haagerup seed triple.
 pub fn cover_haagerup_region(region: VectorBox, max_depth: u32) -> CoverCertificate {
     let (exact, fast) = haagerup_seed_enclosed();
     let report = cover_region_prefiltered(&exact, &fast, region, max_depth);
     report.certificate("haagerup_h6_seed_prefiltered_region")
 }
 
-/// Run branch-and-bound cover over a stated candidate region with ±δ neighborhood widening.
 pub fn cover_haagerup_neighborhood_region(
     delta: &BigRational,
     region: VectorBox,
@@ -222,17 +142,14 @@ pub fn cover_haagerup_neighborhood_region(
     ))
 }
 
-/// Fast verification on the narrow torus cell (depth 24).
 pub fn cover_haagerup_narrow_cell() -> CoverCertificate {
     cover_haagerup_region(narrow_torus_cell(), 24)
 }
 
-/// Verification on the wide torus cell (depth 30).
 pub fn cover_haagerup_wide_cell() -> CoverCertificate {
     cover_haagerup_region(wide_torus_cell(), 30)
 }
 
-/// Cover a single presplit chunk of the gauge-fixed 5-torus.
 pub fn cover_haagerup_gauge_fixed_chunk(
     presplit_depth: u32,
     chunk_index: usize,
@@ -251,7 +168,6 @@ pub fn cover_haagerup_gauge_fixed_chunk(
     ))
 }
 
-/// Parallel cover of the full gauge-fixed 5-torus against the Haagerup seed.
 pub fn cover_haagerup_gauge_fixed_cover_parallel(
     presplit_depth: u32,
     max_depth: u32,
@@ -271,11 +187,7 @@ pub fn cover_haagerup_gauge_fixed_cover_parallel(
     report.certificate(&label)
 }
 
-// ---------------------------------------------------------------------------
-// Scaled Multi-Box Complex for Kernel Reflection (Lane V1d)
-// ---------------------------------------------------------------------------
 
-/// Individual box entry in the kernel reflection multi-box complex schema.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ScaledBoxRecord {
     pub index: usize,
@@ -284,7 +196,6 @@ pub struct ScaledBoxRecord {
     pub gap: String,
 }
 
-/// Metadata section for the multi-box complex in the reflection schema.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ScaledComplexMeta {
     pub region_label: String,
@@ -300,7 +211,6 @@ pub struct ScaledComplexMeta {
     pub max_depth_used: u32,
 }
 
-/// Root artifact schema matching Lane V1d / `omega.mub.kernel-reflection-scaled.v1`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ScaledBoxComplexArtifact {
     pub schema_version: String,
@@ -313,11 +223,6 @@ pub struct ScaledBoxComplexArtifact {
     pub boxes: Vec<ScaledBoxRecord>,
 }
 
-/// Generate a certified multi-box complex over the narrow torus cell partitioned to `presplit_depth`.
-///
-/// For `presplit_depth = 6`, this partitions the narrow torus cell into 64 contiguous sub-boxes,
-/// computes the exact rational lower bound `residual_sq_lower` for each box, and verifies
-/// that every bound is strictly positive: Φ^sq(T, v) ≥ gap_i > 0.
 pub fn generate_haagerup_scaled_box_complex(presplit_depth: u32) -> ScaledBoxComplexArtifact {
     let (enclosed, _) = haagerup_seed_enclosed();
     let boxes_regions = presplit_region(narrow_torus_cell(), presplit_depth);
@@ -381,7 +286,6 @@ pub fn generate_haagerup_scaled_box_complex(presplit_depth: u32) -> ScaledBoxCom
     }
 }
 
-/// Serialize and write `kernel_reflection_haagerup_h6_box_cover.json` to the target path.
 pub fn write_haagerup_reflection_artifact(path: &std::path::Path) -> Result<(), String> {
     let artifact = generate_haagerup_scaled_box_complex(6);
     let json = serde_json::to_string_pretty(&artifact)
@@ -389,9 +293,6 @@ pub fn write_haagerup_reflection_artifact(path: &std::path::Path) -> Result<(), 
     std::fs::write(path, json).map_err(|e| format!("Failed to write artifact to {path:?}: {e}"))
 }
 
-// ---------------------------------------------------------------------------
-// Diagnostics and Status
-// ---------------------------------------------------------------------------
 
 fn smoke_basis_box_col0_near_e0() -> BasisBox {
     let small = Interval::new(ri(-1) / ri(20), ri(1) / ri(20));
@@ -405,7 +306,6 @@ fn smoke_basis_box_col0_near_e0() -> BasisBox {
     bbox
 }
 
-/// Diagnostic: exact vector residual lower bound on the smoke box near e0.
 pub fn haagerup_seed_smoke_vector_gap() -> BigRational {
     let cols = haagerup_seed_triple_columns();
     let enclosed = EnclosedTriple::from_exact_columns(&cols);
@@ -413,7 +313,6 @@ pub fn haagerup_seed_smoke_vector_gap() -> BigRational {
     enclosed.residual_sq_lower(&bbox[0])
 }
 
-/// Haagerup cover status report.
 #[derive(Debug, Clone, Serialize)]
 pub struct HaagerupCoverStatus {
     pub matrix_name: &'static str,
@@ -426,7 +325,6 @@ pub struct HaagerupCoverStatus {
     pub firewall: &'static str,
 }
 
-/// Generate status summary for the Haagerup cover setup.
 pub fn haagerup_cover_status() -> HaagerupCoverStatus {
     let is_exact_chm = haagerup_h6_is_exact_chm();
     let triple_is_pairwise_chm = haagerup_seed_triple_bases_are_chm();

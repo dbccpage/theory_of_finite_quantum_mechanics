@@ -1,4 +1,3 @@
-//! Exact finite quantum mechanical states, density operators, observables, and campaigns.
 
 use crate::linear_algebra::{ExactMatrix, GaussianRational, MatrixError, Q};
 use crate::linear_algebra::scalars::{q, Semiring};
@@ -78,6 +77,7 @@ impl DensityOperator {
 }
 
 pub mod domain;
+pub mod exact_token;
 pub mod entrypoints;
 pub mod campaigns;
 pub mod entropy_solver;

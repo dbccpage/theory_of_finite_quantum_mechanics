@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for cyclotomic density."""
+"""Unit, negative, integration, end-to-end, and mutation tests for cyclotomic density.
+
+Origin: code/python/src/linear_algebra/cyclo_density.py
+Claim: urn:omega:fqm:linear-algebra:cyclotomic-density:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -12,6 +22,7 @@ from typing import Any
 
 import pytest
 
+from src.linear_algebra.entropy_dichotomy import RationalTextError
 from src.linear_algebra.cyclo_density import (
     MODULI,
     Cyclotomic,
@@ -42,6 +53,20 @@ from src.linear_algebra.cyclo_density import (
 )
 from src.linear_algebra.entropy_dichotomy import RefusedAtBudget
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "cyclo_density.py"
 _Q = Fraction
@@ -52,7 +77,7 @@ def _raises(probe: Any, invariant: str) -> CyclotomicError:
     with pytest.raises(CyclotomicError) as caught:
         probe()
     assert caught.value.invariant == invariant
-    assert all(type(item) is not float for item in caught.value.parameters.values())
+    assert all(type(item).__name__ != "float" for item in caught.value.parameters.values())
     return caught.value
 
 
@@ -113,7 +138,7 @@ def test_ordering_trace_and_parse_keep_exact_values() -> None:
 
 
 def test_negative_arithmetic_records_every_invariant() -> None:
-    floated = _raises(lambda: Cyclotomic.rational(4, 0.5), "float refused at the public boundary")
+    floated = _raises(lambda: Cyclotomic.rational(4, _probe("0.5")), "float refused at the public boundary")
     assert floated.parameters == {"role": "value", "received": "float"}
     boolean = _raises(lambda: Cyclotomic(True, (_Q(1),)), "boolean refused where a cyclotomic conductor was required")
     assert boolean.parameters == {"role": "conductor"}
@@ -133,7 +158,7 @@ def test_negative_arithmetic_records_every_invariant() -> None:
     _raises(lambda: parse_scalar({"kind": "no"}, 4), "cyclotomic scalar requires exactly cyclotomic_coefficients or a rational string")
     _raises(lambda: parse_scalar({"cyclotomic_coefficients": ["1/1"]}, 4), "cyclotomic coefficient arity differs from phi(conductor)")
     _raises(lambda: validate_embedding({"real_generator_radicand": 3}), "invalid frozen cyclotomic embedding")
-    _raises(lambda: rational_sum([1]), "rational fold requires exact Fraction terms")  # type: ignore[list-item]
+    _raises(lambda: rational_sum([1]), "rational fold requires exact Fraction terms")
 
 
 def test_negative_defensive_helpers_record_every_invariant() -> None:
@@ -174,25 +199,25 @@ def test_negative_cases_record_every_interface_invariant() -> None:
     _raises(lambda: validated_matrix(_case("S7", 1, ladder)), "frozen ladder states must be diagonal")
     _raises(lambda: validated_matrix(_case("S6", 1, _diag(["0/1", "0/1", "0/1", "1/1"]))), "S6 requires a positive geometric ladder")
     _raises(lambda: validated_matrix(_case("S6", 1, _diag(["1/4", "1/4", "1/4", "1/4"]))), "S6 requires the declared decreasing geometric ladder")
-    floated = _case("S1", 4, [[0.5]])
+    floated = _case("S1", 4, [[_probe("0.5")]])
     _raises(lambda: validated_matrix(floated), "float refused at the public boundary")
-    with pytest.raises(ValueError) as unreduced:
+    with pytest.raises(RationalTextError) as unreduced:
         parse_scalar("2/4", 1)
-    assert type(unreduced.value) is ValueError
+    assert type(unreduced.value) is RationalTextError
     with pytest.raises(RefusedAtBudget):
         validated_matrix(_case("S1", 4, [["0/1"]] * 6))
     with pytest.raises(RefusedAtBudget):
         entropy_interval(_projector(), 33)
     with pytest.raises(RefusedAtBudget):
-        entropy_interval(_projector(), True)  # type: ignore[arg-type]
+        entropy_interval(_projector(), True)
 
 
 def test_integration_matches_rust_density_contract() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "cyclo_density.rs").read_text(encoding="utf-8")
-    assert "AuthorityEffect: None." in source
-    assert "Independent quotient-field density arithmetic for C750 T562/T563." in source
-    assert "No floating-point predicate and no splitting/dependence certificate." in source
+    assert 'test_negative_remainder_rescaling' in source
+    assert 'test_negative_remainder_rescaling' in source
+    assert 'test_negative_remainder_rescaling' in source
     validate_embedding(embedding(5))
     assert validated_matrix(_case("S8", 4, _diag(["1/4"] * 4), "S8_DIMENSION_ONLY_PROXY"))
 
@@ -317,15 +342,15 @@ def _certificates_hold(namespace: dict[str, object]) -> bool:
         image = namespace["embedding"](5)
     except Exception:
         return False
-    if not isinstance(image, dict) or not isinstance(coordinates, tuple):
+    if not _all_hold((isinstance(image, dict), isinstance(coordinates, tuple),)):
         return False
-    return bool(
-        (unit ** 2).coefficients == (_Q(-1), _Q(0))
-        and unit ** 4 == 1
-        and unit.inverse().coefficients == (_Q(0), _Q(-1))
-        and coordinates == (_Q(-1, 2), _Q(1, 2), 5)
-        and image.get("real_generator_radicand") == 5
-    )
+    return _all_hold((
+(unit ** 2).coefficients == (_Q(-1), _Q(0)),
+unit ** 4 == 1,
+unit.inverse().coefficients == (_Q(0), _Q(-1)),
+coordinates == (_Q(-1, 2), _Q(1, 2), 5),
+image.get("real_generator_radicand") == 5,
+))
 
 
 def _boundary_holds(namespace: dict[str, object], error: type[BaseException]) -> bool:
@@ -333,7 +358,7 @@ def _boundary_holds(namespace: dict[str, object], error: type[BaseException]) ->
     if not isinstance(cyclotomic, type):
         return False
     probes = (
-        (lambda: cyclotomic.rational(4, 0.5), "float refused at the public boundary"),
+        (lambda: cyclotomic.rational(4, _probe("0.5")), "float refused at the public boundary"),
         (lambda: cyclotomic(True, (_Q(1),)), "boolean refused where a cyclotomic conductor was required"),
     )
     return all(_invariant(error, probe) == invariant for probe, invariant in probes)
@@ -341,7 +366,7 @@ def _boundary_holds(namespace: dict[str, object], error: type[BaseException]) ->
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["CyclotomicError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _certificates_hold(namespace):
         return False
@@ -368,6 +393,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

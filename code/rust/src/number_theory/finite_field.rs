@@ -1,16 +1,5 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Finite fields `GF(p^k)` as polynomials over `F_p` modulo a monic
-//! irreducible of degree `k`.
-//!
-//! An element is its coefficient vector `c_0 + c_1 x + ... + c_{k-1} x^{k-1}`
-//! with each `c_i` in `0..p`. Degree 1 is the prime field `F_p`.
-//!
-//! Moved from `omega_mub::omega_native::odd_prime_power_weyl`, where it was
-//! private, so that the MUB controls could share one field instead of
-//! hand-writing `GF(9)`, `GF(25)`, `GF(27)` and `GF(49)`.
 
-/// An element of `GF(p^k)`: `coeffs[i]` is the coefficient of `x^i`.
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FieldElement {
     pub coeffs: Vec<usize>,
@@ -22,7 +11,6 @@ impl FieldElement {
     }
 }
 
-/// `GF(p^k)`, with every element enumerated.
 #[derive(Debug, Clone)]
 pub struct FiniteField {
     prime: usize,
@@ -32,10 +20,6 @@ pub struct FiniteField {
 }
 
 impl FiniteField {
-    /// `GF(p^k)` modulo `x^k + modulus_lower[k-1] x^{k-1} + ... + modulus_lower[0]`.
-    ///
-    /// The modulus is not checked: pass an irreducible one, for example from
-    /// [`find_irreducible_monic`], or use [`FiniteField::with_first_irreducible`].
     pub fn new(prime: usize, degree: usize, modulus_lower: Vec<usize>) -> Self {
         let elements = enumerate_elements(prime, degree);
         Self {
@@ -46,8 +30,6 @@ impl FiniteField {
         }
     }
 
-    /// `GF(p^k)` modulo the first monic irreducible in enumeration order, or
-    /// `None` if `p` is not prime, `k` is zero, or `p^k` overflows.
     pub fn with_first_irreducible(prime: usize, degree: usize) -> Option<Self> {
         if !is_prime(prime) || degree == 0 {
             return None;
@@ -57,7 +39,6 @@ impl FiniteField {
         Some(Self::new(prime, degree, modulus_lower))
     }
 
-    /// The prime field `F_p`, or `None` if `p` is not prime.
     pub fn prime_field(prime: usize) -> Option<Self> {
         Self::with_first_irreducible(prime, 1)
     }
@@ -92,7 +73,6 @@ impl FiniteField {
         self.base(1)
     }
 
-    /// The element `value mod p` of the prime subfield.
     pub fn base(&self, value: usize) -> FieldElement {
         let mut coeffs = vec![0; self.degree];
         coeffs[0] = value % self.prime;
@@ -159,8 +139,6 @@ impl FiniteField {
         acc
     }
 
-    /// The absolute trace `Tr(x) = x + x^p + ... + x^{p^{k-1}}`, which lies in
-    /// `F_p`. An error means the modulus was not irreducible.
     pub fn trace_value(&self, element: &FieldElement) -> Result<usize, String> {
         let mut sum = self.zero();
         let mut conjugate = element.clone();
@@ -178,8 +156,6 @@ impl FiniteField {
     }
 }
 
-/// The first monic irreducible of degree `degree` over `F_prime`, as its lower
-/// coefficients, in the order `index -> (index mod p, index / p mod p, ...)`.
 pub fn find_irreducible_monic(prime: usize, degree: usize) -> Option<Vec<usize>> {
     if !is_prime(prime) || degree == 0 {
         return None;
@@ -200,8 +176,6 @@ pub fn find_irreducible_monic(prime: usize, degree: usize) -> Option<Vec<usize>>
     None
 }
 
-/// Whether the monic polynomial with lower coefficients `lower` is irreducible
-/// over `F_prime`, by trial division by every monic divisor up to half degree.
 pub fn is_irreducible_monic(prime: usize, lower: &[usize]) -> bool {
     let degree = lower.len();
     if !is_prime(prime) || degree == 0 || lower.iter().any(|&coeff| coeff >= prime) {
@@ -273,7 +247,6 @@ fn enumerate_elements(prime: usize, degree: usize) -> Vec<FieldElement> {
     elements
 }
 
-/// `base^exponent`, or `None` on overflow.
 pub fn checked_pow(base: usize, exponent: usize) -> Option<usize> {
     let mut acc = 1usize;
     for _ in 0..exponent {
@@ -282,7 +255,6 @@ pub fn checked_pow(base: usize, exponent: usize) -> Option<usize> {
     Some(acc)
 }
 
-/// Trial-division primality test.
 pub fn is_prime(n: usize) -> bool {
     if n < 2 {
         return false;

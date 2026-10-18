@@ -1,4 +1,3 @@
-//! Exact witness for the 4D simplicial bivector, closure, Bianchi, and SO(4) transport carrier in `derivation.md`.
 
 pub type Bivector6 = [i64; 6];
 
@@ -130,7 +129,6 @@ pub fn witness() -> Witness {
             }
         }
     }
-    // Chain boundary d3 * d4 on Delta^4
     let d4 = [1_i64, -1, 1, -1, 1];
     let mut d3_d4_max = 0_i64;
     for &(i, j, k) in &hs {

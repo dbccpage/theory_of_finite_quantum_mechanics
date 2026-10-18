@@ -1,24 +1,5 @@
-/-
-  H014 bilinear product -- uniqueness of the integer product map
-  on cartesian report coordinates, under named extras.
-  AuthorityEffect: None. Candidate only.
 
-  QM_122 remaining job 7.1.4, scoped. The composition interface
-  used here is: a map that is additive and integer-homogeneous in
-  each slot, and that sends a pair of report-basis vectors to the
-  corresponding product-basis vector. On the host Bool × Bool that
-  map is unique and equals the pointwise product already named in
-  H014.tensor.
 
-  This does not prove that cartesian product is the only legal
-  way to combine systems. The coordinate set Bool × Bool is an
-  import of the interface. Direct sum lives on a different host
-  and is not a rival for this interface.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H004FreeLinearization
@@ -30,8 +11,6 @@ open FableHilbertWalk20260819.HWKernel
 open FableHilbertWalk20260819.H004 (delta)
 open FableHilbertWalk20260819.H014 (tensor)
 
-/-- Named extras for a bilinear, Kronecker-normalized product on
-    cartesian report coordinates. -/
 structure BilinearKroneckerEmbed where
   embed : (Bool → Int) → (Bool → Int) → (Bool × Bool → Int)
   add_left :
@@ -51,7 +30,6 @@ structure BilinearKroneckerEmbed where
       embed (delta intPack i) (delta intPack j) p =
         delta intPack (i, j) p
 
-/-- The H014 product map meets those extras. -/
 def tensorEmbed : BilinearKroneckerEmbed where
   embed := tensor
   add_left := fun u1 u2 v p => Int.add_mul (u1 p.1) (u2 p.1) (v p.2)
@@ -69,7 +47,6 @@ def tensorEmbed : BilinearKroneckerEmbed where
 
 #print axioms tensorEmbed
 
-/-- Pointwise expansion of a Bool-vector in the report basis. -/
 theorem bool_vec_expand (u : Bool → Int) (q : Bool) :
     u q =
       u false * delta intPack false q +
@@ -78,7 +55,6 @@ theorem bool_vec_expand (u : Bool → Int) (q : Bool) :
 
 #print axioms bool_vec_expand
 
-/-- Under the named extras, the embed is the pointwise product. -/
 theorem embed_eq_tensor (E : BilinearKroneckerEmbed)
     (u v : Bool → Int) (p : Bool × Bool) :
     E.embed u v p = tensor u v p := by
@@ -140,10 +116,6 @@ theorem embed_eq_tensor (E : BilinearKroneckerEmbed)
 
 #print axioms embed_eq_tensor
 
-/-- Punchline: the named extras pin the product map on this
-    coordinate host. Direct sum is a different host, so it is
-    not a same-interface rival. Combining-system uniqueness
-    beyond this coordinate set is not proved. -/
 theorem bilinear_product_unique_on_bool_prod
     (E : BilinearKroneckerEmbed) :
     (∀ u v p, E.embed u v p = tensor u v p) ∧
@@ -153,3 +125,6 @@ theorem bilinear_product_unique_on_bool_prod
 #print axioms bilinear_product_unique_on_bool_prod
 
 end FableHilbertWalk20260819.H014Bilin
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H014BilinearProduct.lean Claim: bool_vec_expand AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

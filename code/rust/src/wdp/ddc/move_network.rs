@@ -1,13 +1,3 @@
-//! DDC Move Network & Futile Cycle Detector (U24).
-//!
-//! Models discrete deformation trajectories as chemical/kinetic move networks:
-//! - Complexes combining state classes, tokens, and catalytic operands.
-//! - Directed state graph: nodes are (state_id, Phi_1, Gamma_2).
-//! - Edges are DDC operations (E, R, C, I, Λ, D, M, T) consuming tokens.
-//! - Futile Cycle: A directed cycle in the state graph where:
-//!   net Delta Phi_1 = 0, net Delta Gamma_2 = 0, and total token_cost > 0.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, HashMap, HashSet};
@@ -87,7 +77,6 @@ impl MoveNetwork {
         });
     }
 
-    /// Detect simple directed cycles and evaluate whether they are futile.
     pub fn detect_futile_cycles(&self) -> Vec<FutileCycle> {
         let mut adj: HashMap<&str, Vec<&MoveEdge>> = HashMap::new();
         for edge in &self.edges {
@@ -97,7 +86,6 @@ impl MoveNetwork {
         let mut futile_cycles = Vec::new();
         let mut seen_cycles: HashSet<Vec<String>> = HashSet::new();
 
-        // Search for cycles up to length 8 starting from each node
         for start_node in self.nodes.keys() {
             let mut path: Vec<(&str, &MoveEdge)> = Vec::new();
             let mut in_path: HashSet<&str> = HashSet::new();
@@ -134,7 +122,6 @@ impl MoveNetwork {
             for &edge in edges {
                 let next = edge.to_state.as_str();
                 if next == target && !path.is_empty() {
-                    // Closed cycle found!
                     let mut cycle_nodes = vec![target.to_string()];
                     let mut actions = Vec::new();
                     let mut total_tokens = 0;
@@ -148,13 +135,11 @@ impl MoveNetwork {
                         net_phi1 += step_edge.delta_phi1;
                         net_gamma2 += step_edge.delta_gamma2;
                     }
-                    // add final edge
                     actions.push(edge.action_rune.clone());
                     total_tokens += edge.token_cost;
                     net_phi1 += edge.delta_phi1;
                     net_gamma2 += edge.delta_gamma2;
 
-                    // Canonical rotation for deduplication
                     let min_idx = cycle_nodes
                         .iter()
                         .enumerate()
@@ -197,7 +182,6 @@ impl MoveNetwork {
         }
     }
 
-    /// Evaluates a trajectory of visited states and detects if a cycle was traversed `k` times.
     pub fn count_cycle_traversals(
         &self,
         trajectory: &[&str],
@@ -207,7 +191,7 @@ impl MoveNetwork {
             return 0;
         }
 
-        let m = cycle.len() - 1; // number of steps in one traversal
+        let m = cycle.len() - 1;
         let mut count = 0;
         let mut i = 0;
 

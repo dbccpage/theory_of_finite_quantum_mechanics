@@ -1,4 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 """Quantum contextuality thresholds across cyclotomic number fields.
 
 Campaign C250 Block 07 (Global Steps 201 to 225).
@@ -16,9 +15,8 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
 
-# --- Conductor 8 and Conductor 24: Peres 33 Rays in d = 3 ---
 
-PeresCoordZ8 = Tuple[int, int]  # a + b * sqrt(2)
+PeresCoordZ8 = Tuple[int, int]
 PeresRayZ8 = Tuple[PeresCoordZ8, PeresCoordZ8, PeresCoordZ8]
 
 
@@ -83,9 +81,8 @@ def construct_peres_33_rays() -> Tuple[List[PeresRayZ8], List[Tuple[int, int]], 
     return unique, pairs, triads
 
 
-# --- Conductor 12: Candidate Rays in d = 3 ---
 
-Coord12 = Tuple[int, int]  # a + b * sqrt(3) in Q(zeta_12)^+
+Coord12 = Tuple[int, int]
 Ray12 = Tuple[Coord12, Coord12, Coord12]
 
 
@@ -152,7 +149,6 @@ def construct_conductor_12_rays() -> Tuple[List[Ray12], List[Tuple[int, int]], L
     return unique, pairs, triads
 
 
-# --- Conductor 1: Cabello 18 Rays in d = 4 ---
 
 CabelloRay4D = Tuple[int, int, int, int]
 CabelloContext4D = Tuple[int, int, int, int]
@@ -191,7 +187,6 @@ CABELLO_9_CONTEXTS: Tuple[CabelloContext4D, ...] = (
 )
 
 
-# --- KS Boolean Valuation Solver with Unit Propagation ---
 
 def solve_ks_coloring(
     n_rays: int,
@@ -212,7 +207,6 @@ def solve_ks_coloring(
         changed = True
         while changed:
             changed = False
-            # Check pair orthogonality
             for u, v in pairs:
                 if assn[u] == 1 and assn[v] == 1:
                     return None
@@ -222,7 +216,6 @@ def solve_ks_coloring(
                 elif assn[v] == 1 and assn[u] == -1:
                     assn[u] = 0
                     changed = True
-            # Check context additivity
             for ctx in contexts:
                 vals = [assn[v] for v in ctx]
                 ones = vals.count(1)
@@ -261,7 +254,6 @@ def solve_ks_coloring(
             solutions.append(res)
             return True
 
-        # Branch 1
         b1 = list(res)
         b1[unassigned] = 1
         conflict = False
@@ -274,7 +266,6 @@ def solve_ks_coloring(
             if not find_all:
                 return True
 
-        # Branch 0
         b0 = list(res)
         b0[unassigned] = 0
         if search(b0):
@@ -287,7 +278,6 @@ def solve_ks_coloring(
     return len(solutions) > 0, len(solutions), solutions
 
 
-# --- Domain Class: ContextualityThresholds ---
 
 class ContextualityThresholds:
     """Exact arithmetic and valuation evaluator for contextuality thresholds across conductors."""

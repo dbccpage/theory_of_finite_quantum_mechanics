@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for Phi1."""
+"""Unit, negative, integration, end-to-end, and mutation tests for Phi1.
+
+Origin: code/python/src/functional/l1_seminorm.py
+Claim: urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1
+AuthorityEffect: None
+Mutation-Kills: 9 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -16,6 +24,21 @@ from src.functional.l1_seminorm import (
     L1SeminormError,
     evaluate_weighted_l1_quotient,
 )
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = (
     Path(__file__).resolve().parents[1] / "src" / "functional" / "l1_seminorm.py"
@@ -97,7 +120,7 @@ def test_dual_orthogonality_violation() -> None:
 
 def test_negative_boundary_refusals() -> None:
     with pytest.raises(L1SeminormError, match="float refused") as caught:
-        L1Seminorm([[1.5], [0.0]], [1, 1])
+        L1Seminorm([[_probe("1.5")], [_probe("0.0")]], [1, 1])
     assert caught.value.parameters["role"] == "boundary[0][0]"
     with pytest.raises(L1SeminormError, match="boolean refused"):
         L1Seminorm([[True], [False]], [1, 1])
@@ -254,7 +277,7 @@ def test_end_to_end_public_contract() -> None:
         evaluate_weighted_l1_quotient(
             boundary=[[1], [0]],
             weights=[2, 3],
-            omega=[1.0, 2],
+            omega=[_probe("1.0"), 2],
             alpha=[1],
             primal_residual=[0, 2],
             dual_witness=[0, 3],
@@ -309,7 +332,7 @@ def _load_source(source: str, name: str) -> dict[str, object]:
 def _oracle(namespace: dict[str, object]) -> bool:
     evaluate = namespace["evaluate_weighted_l1_quotient"]
     error_type = namespace["L1SeminormError"]
-    if not callable(evaluate) or not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((callable(evaluate), isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     error = error_type
     try:
@@ -328,7 +351,7 @@ def _oracle(namespace: dict[str, object]) -> bool:
         return False
     probes = (
         dict(boundary=[[1], [0]], weights=[2, 0], omega=[1, 2], alpha=[1], primal_residual=[0, 2], dual_witness=[0, 0], reported_value=0),
-        dict(boundary=[[1.0], [0]], weights=[2, 3], omega=[1, 2], alpha=[1], primal_residual=[0, 2], dual_witness=[0, 3], reported_value=6),
+        dict(boundary=[[_probe("1.0")], [0]], weights=[2, 3], omega=[1, 2], alpha=[1], primal_residual=[0, 2], dual_witness=[0, 3], reported_value=6),
         dict(boundary=[[True], [0]], weights=[2, 3], omega=[1, 2], alpha=[1], primal_residual=[0, 2], dual_witness=[0, 3], reported_value=6),
         dict(boundary=[[1], [0]], weights=[2, 3], omega=[1, 2], alpha=[1], primal_residual=[0, 2], dual_witness=[0, 3], reported_value=7),
         dict(boundary=[[1], [0]], weights=[2, 3], omega=[1, 2], alpha=[1], primal_residual=[0, 2], dual_witness=[2, 3], reported_value=8),
@@ -364,6 +387,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

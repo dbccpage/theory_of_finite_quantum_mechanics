@@ -1,12 +1,16 @@
-"""Exact finite C750 T561--564 kernel. AuthorityEffect: None.
+"""Exact rational purity and interval certificate for admitted densities.
 
-The entropy verdict is conditional on cited Baker input A1 and real-log facts.
-It is not an arithmetic test for transcendence. Exact PSD validation and rational
-Sturm entropy enclosures cover encoded rational symmetric matrices up to d=5.
-Explicit splitting/dependence output additionally requires a characteristic
-polynomial with rational roots and at most one distinct quadratic pair. The
-cyclotomic density path additionally implements the five launch scalar fields
-for purity verdicts and intervals, not splitting/dependence. Bounds are unchanged.
+Origin: lean4/EntropyDichotomy.lean theorem entropy_dichotomy_general_dimension.
+The Python certificate recomputes rational purity and dyadic enclosures. It
+does not discharge the Lean proof.
+Claim: urn:omega:fqm:entropy:rational-purity-interval-certificate:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/linear_algebra/test_entropy_dichotomy.py.
+Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 10; AST Sonar cognitive complexity max 9; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 10.
+Scope Fence: Verdicts that name Baker input A1 are conditional on that cited
+input. This file does not prove transcendence, does not admit a float, and
+does not claim a physical entropy theorem beyond the exact rational certificate.
+Explicit splitting output requires rational roots and at most one quadratic pair.
 """
 
 from __future__ import annotations
@@ -19,17 +23,44 @@ from fractions import Fraction as Q
 from functools import reduce
 from math import gcd, lcm
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 _DATA_DIR = Path(__file__).resolve().parent.parent / "qm" / "data"
 
 
-class RefusedAtBudget(ValueError):
+class EntropyKernelError(ValueError):
+    """One violated entropy-kernel invariant, with the measured parameters."""
+
+    def __init__(self, invariant: str, parameters: Mapping[str, object] | None = None) -> None:
+        self.invariant = invariant
+        self.parameters = {} if parameters is None else dict(parameters)
+        super().__init__(invariant)
+
+
+class RationalTextError(EntropyKernelError):
+    """A rational token is not a reduced a/b string."""
+
+
+class RefusedAtBudget(EntropyKernelError):
     """No mathematical negative follows from this computational refusal."""
 
 
-class UnsupportedExactScope(ValueError):
+class UnsupportedExactScope(EntropyKernelError):
     """The general theorem remains separate from this implemented domain."""
+
+
+def _ve(invariant: str, **parameters: object) -> EntropyKernelError:
+    return EntropyKernelError(invariant, parameters)
+
+
+def _text(invariant: str, **parameters: object) -> RationalTextError:
+    return RationalTextError(invariant, parameters)
+
+
+def _delta(left: int, right: int) -> Q:
+    if left == right:
+        return Q(1)
+    return Q(0)
 
 
 class _Budget:
@@ -51,8 +82,6 @@ MAX_COEFFICIENT = 64
 MAX_K = 32
 MAX_TERMS = 4096
 MAX_FIXTURES = 64
-# Operational ceilings for newly implemented algorithms; these do not rename
-# the launch's dependence-search or approximation-series bounds.
 RATIONAL_ROOT_RESOURCE_LIMIT = 100000
 STURM_SUBDIVISION_RESOURCE_LIMIT = 4096
 CLASS = {"S1": (2, 4), "S2": (3, 3), "S3": (2, 8), "S4": (4, 8),
@@ -63,40 +92,55 @@ INTERFACE = _DATA_DIR / "rational_quadratic_fixtures.json"
 
 
 def rat(q: Q | int) -> str:
-    q = Q(q)
-    return f"{q.numerator}/{q.denominator}"
+    if isinstance(q, float) or type(q) is bool:
+        raise _ve("float or boolean refused where a rational was required", received=type(q).__name__)
+    parsed = Q(q)
+    return f"{parsed.numerator}/{parsed.denominator}"
+
+
+def _reject_float_list(value: list[Any], path: str) -> None:
+    for index, item in enumerate(value):
+        reject_floats(item, f"{path}[{index}]")
 
 
 def reject_floats(value: Any, path: str = "object") -> None:
     if isinstance(value, float):
-        raise ValueError(f"float leakage at {path}")
+        raise _ve(f"float leakage at {path}", path=path, received="float")
     if isinstance(value, dict):
         for key, item in value.items():
             reject_floats(item, f"{path}.{key}")
-    elif isinstance(value, list):
-        for index, item in enumerate(value):
-            reject_floats(item, f"{path}[{index}]")
+        return
+    if isinstance(value, list):
+        _reject_float_list(value, path)
+
+
+def _parsed_token(value: str) -> Q:
+    try:
+        return Q(value)
+    except (ValueError, ZeroDivisionError) as exc:
+        raise _text("invalid rational input", received=value) from exc
 
 
 def parse_rat(value: Any, *, bounded: bool = False) -> Q:
-    if not isinstance(value, str):
-        raise ValueError("rational input must be an a/b string")
-    try:
-        q = Q(value)
-    except (ValueError, ZeroDivisionError) as exc:
-        raise ValueError("invalid rational input") from exc
-    if value != rat(q):
-        raise ValueError("rational input must be reduced a/b with positive denominator")
-    if bounded and (abs(q.numerator) > MAX_INPUT or q.denominator > MAX_INPUT):
+    if isinstance(value, float):
+        raise _text("float refused at the public boundary", role="rational", received="float")
+    if type(value) is bool or not isinstance(value, str):
+        raise _text("rational input must be an a/b string", received=type(value).__name__)
+    parsed = _parsed_token(value)
+    if value != rat(parsed):
+        raise _text("rational input must be reduced a/b with positive denominator", received=value)
+    if bounded and (abs(parsed.numerator) > MAX_INPUT or parsed.denominator > MAX_INPUT):
         raise RefusedAtBudget("rational_input bound 4096 exhausted")
-    return q
+    return parsed
 
 
 def prime_factors(value: int, budget: _Budget | None = None) -> dict[int, int]:
     """Trial division with an explicit candidate budget; no failed-search claim."""
+    if type(value) is bool or type(value) is not int:
+        raise _ve("prime factorization requires an exact integer", received=type(value).__name__)
     value = abs(value)
     if value == 0:
-        raise ValueError("zero has no prime exponent vector")
+        raise _ve("zero has no prime exponent vector")
     budget = budget or _Budget(MAX_CANDIDATES, "dependence_candidates_max=100000 exhausted in exact factoring")
     factors: dict[int, int] = {}
     candidate = 2
@@ -113,7 +157,7 @@ def prime_factors(value: int, budget: _Budget | None = None) -> dict[int, int]:
 
 def valuations(value: Q) -> dict[int, int]:
     if value <= 0:
-        raise ValueError("log argument must be strictly positive")
+        raise _ve("log argument must be strictly positive")
     result = prime_factors(value.numerator)
     for p, exponent in prime_factors(value.denominator).items():
         result[p] = result.get(p, 0) - exponent
@@ -132,7 +176,7 @@ def quadratic_root(center: Q, coefficient: Q, radicand: int) -> dict[str, Any]:
 def sqrt_rational(value: Q) -> tuple[Q, int]:
     """Return nonnegative c and squarefree d with sqrt(value)=c*sqrt(d)."""
     if value < 0:
-        raise ValueError("negative discriminant")
+        raise _ve("negative discriminant")
     if value == 0:
         return Q(0), 1
     square, radical = 1, 1
@@ -151,14 +195,13 @@ def multiply(left: list[list[Q]], right: list[list[Q]]) -> list[list[Q]]:
 def charpoly(matrix: list[list[Q]]) -> list[Q]:
     """Faddeev--LeVerrier over Q; all coefficients of det(xI-matrix)."""
     n = len(matrix)
-    previous = [[Q(i == j) for j in range(n)] for i in range(n)]
+    previous = [[_delta(i, j) for j in range(n)] for i in range(n)]
     coefficients = [Q(1)]
     for degree in range(1, n + 1):
         product = multiply(matrix, previous)
         coefficient = -sum((product[i][i] for i in range(n)), Q(0)) / degree
         coefficients.append(coefficient)
-        previous = [[product[i][j] + (coefficient if i == j else 0)
-                     for j in range(n)] for i in range(n)]
+        previous = [[product[i][j] + _delta(i, j) * coefficient for j in range(n)] for i in range(n)]
     return coefficients
 
 
@@ -185,7 +228,7 @@ def _poly_eval(poly: list[Q], value: Q) -> Q:
 def _poly_divmod(left: list[Q], right: list[Q]) -> tuple[list[Q], list[Q]]:
     left, right = _poly_trim(left[:]), _poly_trim(right[:])
     if not any(right):
-        raise ValueError("division by the zero polynomial")
+        raise _ve("division by the zero polynomial")
     if len(left) < len(right):
         return [Q(0)], left
     quotient = [Q(0)] * (len(left) - len(right) + 1)
@@ -204,7 +247,7 @@ def _poly_divmod(left: list[Q], right: list[Q]) -> tuple[list[Q], list[Q]]:
 def _poly_exact_div(left: list[Q], right: list[Q]) -> list[Q]:
     quotient, remainder = _poly_divmod(left, right)
     if any(remainder):
-        raise ValueError("nonzero remainder in exact polynomial division")
+        raise _ve("nonzero remainder in exact polynomial division")
     return quotient
 
 
@@ -234,30 +277,40 @@ def _divisors(value: int, budget: _Budget) -> list[int]:
     return sorted(divisors)
 
 
-def _find_rational_root(poly: list[Q], budget: _Budget) -> Q | None:
-    """Rational-root theorem on [0,1], justified by prior exact density checks.
+def _integer_content(poly: list[Q]) -> list[int]:
+    denominator = lcm(*(value.denominator for value in poly))
+    integer = [value.numerator * (denominator // value.denominator) for value in poly]
+    content = reduce(gcd, integer)
+    return [value // content for value in integer]
 
-    None means every rational-root candidate in that interval was tested. A
-    factorization or enumeration budget failure raises separately.
-    """
+
+def _root_on_denominator(poly: list[Q], budget: _Budget, numerator: int, denominators: list[int]) -> Q | None:
+    for denominator in denominators:
+        budget.spend()
+        if numerator > denominator or gcd(numerator, denominator) != 1:
+            continue
+        candidate = Q(numerator, denominator)
+        if _poly_eval(poly, candidate) == 0:
+            return candidate
+    return None
+
+
+def _search_rational_root(poly: list[Q], budget: _Budget, numerators: list[int], denominators: list[int]) -> Q | None:
+    for numerator in numerators:
+        found = _root_on_denominator(poly, budget, numerator, denominators)
+        if found is not None:
+            return found
+    return None
+
+
+def _find_rational_root(poly: list[Q], budget: _Budget) -> Q | None:
+    """Rational-root theorem on [0,1]. None means every candidate was tested."""
     if poly[-1] == 0:
         return Q(0)
     if _poly_eval(poly, Q(1)) == 0:
         return Q(1)
-    denominator = lcm(*(value.denominator for value in poly))
-    integer = [value.numerator * (denominator // value.denominator) for value in poly]
-    content = reduce(gcd, integer)
-    integer = [value // content for value in integer]
-    numerators = _divisors(abs(integer[-1]), budget)
-    denominators = _divisors(abs(integer[0]), budget)
-    for numerator in numerators:
-        for denominator in denominators:
-            budget.spend()
-            if numerator <= denominator and gcd(numerator, denominator) == 1:
-                candidate = Q(numerator, denominator)
-                if _poly_eval(poly, candidate) == 0:
-                    return candidate
-    return None
+    integer = _integer_content(poly)
+    return _search_rational_root(poly, budget, _divisors(abs(integer[-1]), budget), _divisors(abs(integer[0]), budget))
 
 
 def _quadratic_square(poly: list[Q]) -> list[Q] | None:
@@ -269,125 +322,238 @@ def _quadratic_square(poly: list[Q]) -> list[Q] | None:
     return quadratic if poly_product(quadratic, quadratic) == poly else None
 
 
-def validate_psd(matrix: list[list[Q]]) -> None:
-    """Exact rational Schur complements, including singular zero-pivot cases.
+def _negative_diagonal(current: list[list[Q]]) -> bool:
+    return any(current[i][i] < 0 for i in range(len(current)))
 
-    A positive pivot gives a congruence to pivot direct-sum Schur complement.
-    A zero diagonal with a nonzero incident entry has a negative 2x2 principal
-    minor. Each successful step eliminates a row/column; no search is involved.
-    """
+
+def _zero_pivot_defect(current: list[list[Q]]) -> bool:
+    size = len(current)
+    for index in range(size):
+        if current[index][index] == 0 and any(current[index][column] for column in range(size)):
+            return True
+    return False
+
+
+def _refuse_indefinite(current: list[list[Q]]) -> None:
+    if _negative_diagonal(current):
+        raise _ve("negative eigenvalue: exact Schur complement is not positive semidefinite")
+    if _zero_pivot_defect(current):
+        raise _ve("negative eigenvalue: zero diagonal has a nonzero off-diagonal entry")
+
+
+def _schur_complement(current: list[list[Q]], pivot: int) -> list[list[Q]]:
+    indices = [index for index in range(len(current)) if index != pivot]
+    value = current[pivot][pivot]
+    return [
+        [current[i][j] - current[i][pivot] * current[pivot][j] / value for j in indices]
+        for i in indices
+    ]
+
+
+def validate_psd(matrix: list[list[Q]]) -> None:
+    """Exact rational Schur complements, including singular zero-pivot cases."""
     current = [row[:] for row in matrix]
     while current:
-        if any(current[i][i] < 0 for i in range(len(current))):
-            raise ValueError("negative eigenvalue: exact Schur complement is not positive semidefinite")
-        for i in range(len(current)):
-            if current[i][i] == 0 and any(current[i][j] for j in range(len(current))):
-                raise ValueError("negative eigenvalue: zero diagonal has a nonzero off-diagonal entry")
+        _refuse_indefinite(current)
         pivot = next((i for i in range(len(current)) if current[i][i] > 0), None)
         if pivot is None:
             return
-        indices = [i for i in range(len(current)) if i != pivot]
-        value = current[pivot][pivot]
-        current = [[current[i][j] - current[i][pivot] * current[pivot][j] / value
-                    for j in indices] for i in indices]
+        current = _schur_complement(current, pivot)
+
+
+def _require_s8_scope(case: dict[str, Any]) -> None:
+    if case["scope"] != "S8_DIMENSION_ONLY_PROXY":
+        raise _ve("S8 code support unresolved; dimension-only proxy label required")
+
+
+def _require_declared_scope(case: dict[str, Any]) -> None:
+    if case["system_id"] == "S8":
+        _require_s8_scope(case)
+        return
+    if case["scope"] != "DECLARED_SYSTEM_STATE":
+        raise _ve("state scope label mismatch")
+
+
+def _require_diagonal_ladder(matrix: list[list[Q]], n: int) -> None:
+    if any(matrix[i][j] for i in range(n) for j in range(n) if i != j):
+        raise _ve("frozen ladder states must be diagonal")
+
+
+def _require_geometric_ratio(matrix: list[list[Q]], n: int) -> None:
+    if matrix[0][0] <= 0:
+        raise _ve("S6 requires a positive geometric ladder")
+    ratio = matrix[1][1] / matrix[0][0]
+    if not 0 < ratio < 1:
+        raise _ve("S6 requires the declared decreasing geometric ladder")
+    if any(matrix[i][i] != matrix[0][0] * ratio**i for i in range(n)):
+        raise _ve("S6 requires the declared decreasing geometric ladder")
 
 
 def _check_system_scope_and_ladder(case: dict[str, Any], matrix: list[list[Q]], n: int) -> None:
-    if case["system_id"] == "S8":
-        if case["scope"] != "S8_DIMENSION_ONLY_PROXY":
-            raise ValueError("S8 code support unresolved; dimension-only proxy label required")
-    elif case["scope"] != "DECLARED_SYSTEM_STATE":
-        raise ValueError("state scope label mismatch")
+    _require_declared_scope(case)
     if case["system_id"] in {"S6", "S7"}:
-        if any(matrix[i][j] for i in range(n) for j in range(n) if i != j):
-            raise ValueError("frozen ladder states must be diagonal")
+        _require_diagonal_ladder(matrix, n)
     if case["system_id"] == "S6":
-        if matrix[0][0] <= 0:
-            raise ValueError("S6 requires a positive geometric ladder")
-        ratio = matrix[1][1] / matrix[0][0]
-        if not 0 < ratio < 1 or any(matrix[i][i] != matrix[0][0] * ratio**i for i in range(n)):
-            raise ValueError("S6 requires the declared decreasing geometric ladder")
+        _require_geometric_ratio(matrix, n)
+
+
+def _require_case_identity(case: dict[str, Any]) -> None:
+    reject_floats(case, "input")
+    if set(case) != INPUT_KEYS or not isinstance(case["fixture_id"], str):
+        raise _ve("typed input requires exactly the five interface fields")
+    if not case["fixture_id"]:
+        raise _ve("fixture_id: nonempty string required")
+    if case["system_id"] not in CLASS:
+        raise _ve("system missing from frozen class")
+
+
+def _require_conductor(case: dict[str, Any]) -> int:
+    dimension, conductor = CLASS[case["system_id"]]
+    if type(case["conductor"]) is bool or type(case["conductor"]) is not int or case["conductor"] != conductor:
+        raise _ve("frozen conductor mismatch", received=type(case["conductor"]).__name__)
+    return dimension
+
+
+def _parse_square(raw: object, dimension: int) -> list[list[Q]]:
+    if not isinstance(raw, list) or len(raw) > MAX_D:
+        raise RefusedAtBudget("matrix_dimension_max=5 exhausted")
+    if len(raw) != dimension or any(not isinstance(row, list) or len(row) != dimension for row in raw):
+        raise _ve("frozen system dimension mismatch")
+    return [[parse_rat(entry, bounded=True) for entry in row] for row in raw]
+
+
+def _require_symmetric_trace(matrix: list[list[Q]], dimension: int) -> None:
+    if any(matrix[i][j] != matrix[j][i] for i in range(dimension) for j in range(dimension)):
+        raise _ve("input is not real symmetric; complex carrier matrices require another exact implementation")
+    if sum((matrix[i][i] for i in range(dimension)), Q(0)) != 1:
+        raise _ve("unnormalised spectrum: trace must equal one")
 
 
 def validated_matrix(case: dict[str, Any]) -> list[list[Q]]:
-    reject_floats(case, "input")
-    if set(case) != INPUT_KEYS or not isinstance(case["fixture_id"], str):
-        raise ValueError("typed input requires exactly the five interface fields")
-    if not case["fixture_id"]:
-        raise ValueError("fixture_id: nonempty string required")
-    if case["system_id"] not in CLASS:
-        raise ValueError("system missing from frozen class")
-    n, conductor = CLASS[case["system_id"]]
-    if type(case["conductor"]) is not int or case["conductor"] != conductor:
-        raise ValueError("frozen conductor mismatch")
-    raw = case["matrix"]
-    if not isinstance(raw, list) or len(raw) > MAX_D:
-        raise RefusedAtBudget("matrix_dimension_max=5 exhausted")
-    if len(raw) != n or any(not isinstance(row, list) or len(row) != n for row in raw):
-        raise ValueError("frozen system dimension mismatch")
-    matrix = [[parse_rat(x, bounded=True) for x in row] for row in raw]
-    if any(matrix[i][j] != matrix[j][i] for i in range(n) for j in range(n)):
-        raise ValueError("input is not real symmetric; complex carrier matrices require another exact implementation")
-    if sum((matrix[i][i] for i in range(n)), Q(0)) != 1:
-        raise ValueError("unnormalised spectrum: trace must equal one")
-    _check_system_scope_and_ladder(case, matrix, n)
+    _require_case_identity(case)
+    dimension = _require_conductor(case)
+    matrix = _parse_square(case["matrix"], dimension)
+    _require_symmetric_trace(matrix, dimension)
+    _check_system_scope_and_ladder(case, matrix, dimension)
     validate_psd(matrix)
     return matrix
 
 
-def polynomial_spectrum(coefficients: list[Q]) -> tuple[list[dict[str, Any]], list[Q]]:
-    """Graph-independent extraction of rational roots and one quadratic pair.
+def _peel_rational_root(
+    remaining: list[Q],
+    budget: _Budget,
+    roots: list[dict[str, Any]],
+    reconstructed: list[Q],
+) -> tuple[list[Q], list[Q]]:
+    root = _find_rational_root(remaining, budget)
+    if root is None:
+        degree = len(remaining) - 1
+        raise UnsupportedExactScope(
+            f"residual characteristic degree {degree}: splitting/dependence beyond one quadratic pair is unsupported; no negative result"
+        )
+    while len(remaining) > 1 and _poly_eval(remaining, root) == 0:
+        remaining = _poly_exact_div(remaining, [Q(1), -root])
+        roots.append(rational_root(root))
+        reconstructed = poly_product(reconstructed, [Q(1), -root])
+    return remaining, reconstructed
 
-    Repeated quadratic factors are supported. Other residual factors retain an
-    explicit unsupported-splitting/dependence outcome, not a mathematical claim.
-    """
-    roots: list[dict[str, Any]] = []
-    reconstructed = [Q(1)]
-    remaining = coefficients[:]
-    if len(coefficients) > MAX_D + 1:
-        raise RefusedAtBudget("characteristic_degree_max=5 exhausted")
-    budget = _Budget(RATIONAL_ROOT_RESOURCE_LIMIT,
-                    "IMPLEMENTATION_RESOURCE_LIMIT: rational-root search units are trial-factor candidates, generated divisors, and divisor-pair candidates")
+
+def _append_linear(remaining: list[Q], roots: list[dict[str, Any]], reconstructed: list[Q]) -> list[Q]:
+    root = -remaining[1] / remaining[0]
+    roots.append(rational_root(root))
+    return poly_product(reconstructed, [Q(1), -root])
+
+
+def _append_quadratic_roots(roots: list[dict[str, Any]], center: Q, coefficient: Q, radical: int) -> None:
+    if radical == 1:
+        roots.extend([rational_root(center - coefficient), rational_root(center + coefficient)])
+        return
+    roots.extend([quadratic_root(center, -coefficient, radical), quadratic_root(center, coefficient, radical)])
+
+
+def _append_quadratic(remaining: list[Q], roots: list[dict[str, Any]], reconstructed: list[Q], multiplicity: int) -> list[Q]:
+    _ignored, linear, constant = remaining
+    coefficient, radical = sqrt_rational(linear * linear - 4 * constant)
+    center = -linear / 2
+    coefficient = coefficient / 2
+    for _ in range(multiplicity):
+        reconstructed = poly_product(reconstructed, remaining)
+        _append_quadratic_roots(roots, center, coefficient, radical)
+    return reconstructed
+
+
+def _finish_low_degree(
+    remaining: list[Q],
+    roots: list[dict[str, Any]],
+    reconstructed: list[Q],
+    multiplicity: int,
+) -> list[Q]:
+    if len(remaining) == 2:
+        return _append_linear(remaining, roots, reconstructed)
+    if len(remaining) == 3:
+        return _append_quadratic(remaining, roots, reconstructed, multiplicity)
+    return reconstructed
+
+
+def _ordered_roots(roots: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    rational = sorted([item for item in roots if item["kind"] == "rational"], key=lambda item: Q(item["value"]))
+    quadratic = sorted(
+        [item for item in roots if item["kind"] == "quadratic"],
+        key=lambda item: (Q(item["center"]), item["radicand"], Q(item["coefficient"])),
+    )
+    return rational, quadratic
+
+
+def _require_one_quadratic_pair(quadratic: list[dict[str, Any]]) -> None:
+    pairs = {(item["center"], abs(Q(item["coefficient"])), item["radicand"]) for item in quadratic}
+    if len(pairs) > 1:
+        raise UnsupportedExactScope("multiple quadratic pairs: dependence support refused; no negative independence result")
+
+
+def _push_spectrum(spectrum: list[dict[str, Any]], root: dict[str, Any]) -> None:
+    if spectrum and spectrum[-1]["root"] == root:
+        spectrum[-1]["multiplicity"] += 1
+        return
+    spectrum.append({"root": root, "multiplicity": 1})
+
+
+def _group_spectrum(roots: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rational, quadratic = _ordered_roots(roots)
+    _require_one_quadratic_pair(quadratic)
+    spectrum: list[dict[str, Any]] = []
+    for root in rational + quadratic:
+        _push_spectrum(spectrum, root)
+    return spectrum
+
+
+def _peel_high_degree(
+    remaining: list[Q],
+    budget: _Budget,
+    roots: list[dict[str, Any]],
+    reconstructed: list[Q],
+) -> tuple[list[Q], list[Q], int]:
     multiplicity = 1
     while len(remaining) > 3:
         quadratic = _quadratic_square(remaining)
         if quadratic is not None:
-            remaining, multiplicity = quadratic, 2
-            break
-        root = _find_rational_root(remaining, budget)
-        if root is None:
-            raise UnsupportedExactScope(f"residual characteristic degree {len(remaining)-1}: splitting/dependence beyond one quadratic pair is unsupported; no negative result")
-        while len(remaining) > 1 and _poly_eval(remaining, root) == 0:
-            remaining = _poly_exact_div(remaining, [Q(1), -root])
-            roots.append(rational_root(root))
-            reconstructed = poly_product(reconstructed, [Q(1), -root])
-    if len(remaining) == 2:
-        root = -remaining[1] / remaining[0]
-        roots.append(rational_root(root))
-        reconstructed = poly_product(reconstructed, [Q(1), -root])
-    elif len(remaining) == 3:
-        _, linear, constant = remaining
-        coefficient, d = sqrt_rational(linear * linear - 4 * constant)
-        center, coefficient = -linear / 2, coefficient / 2
-        for _ in range(multiplicity):
-            reconstructed = poly_product(reconstructed, remaining)
-            if d == 1:
-                roots.extend([rational_root(center - coefficient), rational_root(center + coefficient)])
-            else:
-                roots.extend([quadratic_root(center, -coefficient, d), quadratic_root(center, coefficient, d)])
-    rational = sorted([r for r in roots if r["kind"] == "rational"], key=lambda r: Q(r["value"]))
-    quadratic = sorted([r for r in roots if r["kind"] == "quadratic"],
-                       key=lambda r: (Q(r["center"]), r["radicand"], Q(r["coefficient"])))
-    quadratic_pairs = {(r["center"], abs(Q(r["coefficient"])), r["radicand"]) for r in quadratic}
-    if len(quadratic_pairs) > 1:
-        raise UnsupportedExactScope("multiple quadratic pairs: dependence support refused; no negative independence result")
-    spectrum: list[dict[str, Any]] = []
-    for root in rational + quadratic:
-        if spectrum and spectrum[-1]["root"] == root:
-            spectrum[-1]["multiplicity"] += 1
-        else:
-            spectrum.append({"root": root, "multiplicity": 1})
-    return spectrum, reconstructed
+            return quadratic, reconstructed, 2
+        remaining, reconstructed = _peel_rational_root(remaining, budget, roots, reconstructed)
+    return remaining, reconstructed, multiplicity
+
+
+def polynomial_spectrum(coefficients: list[Q]) -> tuple[list[dict[str, Any]], list[Q]]:
+    """Graph-independent extraction of rational roots and one quadratic pair."""
+    roots: list[dict[str, Any]] = []
+    reconstructed = [Q(1)]
+    if len(coefficients) > MAX_D + 1:
+        raise RefusedAtBudget("characteristic_degree_max=5 exhausted")
+    budget = _Budget(
+        RATIONAL_ROOT_RESOURCE_LIMIT,
+        "IMPLEMENTATION_RESOURCE_LIMIT: rational-root search units are trial-factor candidates, generated divisors, and divisor-pair candidates",
+    )
+    remaining, reconstructed, multiplicity = _peel_high_degree(coefficients[:], budget, roots, reconstructed)
+    reconstructed = _finish_low_degree(remaining, roots, reconstructed, multiplicity)
+    return _group_spectrum(roots), reconstructed
 
 
 def _find_basis_pivots(rows: list[list[Q]]) -> list[int]:
@@ -406,38 +572,68 @@ def _find_basis_pivots(rows: list[list[Q]]) -> list[int]:
     return indices
 
 
+def _eliminate_tracked(
+    residual: list[Q],
+    representation: list[Q],
+    tracked: list[tuple[int, list[Q], list[Q]]],
+    sign: int,
+) -> tuple[list[Q], list[Q]]:
+    for pivot, normalized, coeffs in tracked:
+        factor = residual[pivot]
+        residual = [a - factor * b for a, b in zip(residual, normalized)]
+        representation = [a + Q(sign) * factor * b for a, b in zip(representation, coeffs)]
+    return residual, representation
+
+
+def _next_nonzero(residual: list[Q]) -> int:
+    for index, value in enumerate(residual):
+        if value:
+            return index
+    raise _ve("Q row basis failed reconstruction")
+
+
+def _scale_tracked(residual: list[Q], representation: list[Q], pivot: int) -> tuple[list[Q], list[Q]]:
+    scale = residual[pivot]
+    return [entry / scale for entry in residual], [entry / scale for entry in representation]
+
+
+def _one_tracked_row(
+    index: int,
+    original: list[Q],
+    tracked: list[tuple[int, list[Q], list[Q]]],
+    rank: int,
+) -> tuple[int, list[Q], list[Q]]:
+    residual, representation = _eliminate_tracked(original[:], [_delta(index, column) for column in range(rank)], tracked, -1)
+    pivot = _next_nonzero(residual)
+    residual, representation = _scale_tracked(residual, representation, pivot)
+    return pivot, residual, representation
+
+
 def _build_tracked_basis(basis: list[list[Q]], rank: int) -> list[tuple[int, list[Q], list[Q]]]:
     tracked: list[tuple[int, list[Q], list[Q]]] = []
-    for i, original in enumerate(basis):
-        residual = original[:]
-        representation = [Q(i == j) for j in range(rank)]
-        for pivot, normalized, coeffs in tracked:
-            factor = residual[pivot]
-            residual = [a - factor * b for a, b in zip(residual, normalized)]
-            representation = [a - factor * b for a, b in zip(representation, coeffs)]
-        pivot = next(j for j, value in enumerate(residual) if value)
-        scale = residual[pivot]
-        tracked.append((pivot, [x / scale for x in residual], [x / scale for x in representation]))
+    for index, original in enumerate(basis):
+        tracked.append(_one_tracked_row(index, original, tracked, rank))
     return tracked
 
 
+def _bounded_coordinate(representation: list[Q]) -> list[Q]:
+    denominator = lcm(*(entry.denominator for entry in representation))
+    relation = [denominator] + [-entry.numerator * (denominator // entry.denominator) for entry in representation]
+    divisor = reduce(gcd, relation)
+    if any(abs(entry // divisor) > MAX_COEFFICIENT for entry in relation):
+        raise RefusedAtBudget("dependence_integer_coefficient_abs_max=64 exhausted in exact coordinates")
+    return representation
+
+
+def _one_coordinate(original: list[Q], tracked: list[tuple[int, list[Q], list[Q]]], rank: int) -> list[Q]:
+    residual, representation = _eliminate_tracked(original[:], [Q(0)] * rank, tracked, 1)
+    if any(residual):
+        raise _ve("Q row basis failed reconstruction")
+    return _bounded_coordinate(representation)
+
+
 def _compute_row_coordinates(rows: list[list[Q]], tracked: list[tuple[int, list[Q], list[Q]]], rank: int) -> list[list[Q]]:
-    coordinates = []
-    for original in rows:
-        residual, representation = original[:], [Q(0)] * rank
-        for pivot, normalized, coeffs in tracked:
-            factor = residual[pivot]
-            residual = [a - factor * b for a, b in zip(residual, normalized)]
-            representation = [a + factor * b for a, b in zip(representation, coeffs)]
-        if any(residual):
-            raise AssertionError("Q row basis failed reconstruction")
-        denominator = lcm(*(x.denominator for x in representation))
-        relation = [denominator] + [-x.numerator * (denominator // x.denominator) for x in representation]
-        divisor = reduce(gcd, relation)
-        if any(abs(x // divisor) > MAX_COEFFICIENT for x in relation):
-            raise RefusedAtBudget("dependence_integer_coefficient_abs_max=64 exhausted in exact coordinates")
-        coordinates.append(representation)
-    return coordinates
+    return [_one_coordinate(original, tracked, rank) for original in rows]
 
 
 def row_basis(rows: list[list[Q]]) -> tuple[list[int], list[list[Q]]]:
@@ -450,37 +646,116 @@ def row_basis(rows: list[list[Q]]) -> tuple[list[int], list[list[Q]]]:
     return indices, coordinates
 
 
-def dependence(spectrum: list[dict[str, Any]]) -> dict[str, Any]:
-    arguments = [entry["root"] for entry in spectrum
-                 if entry["root"] != rational_root(Q(0))]
-    pair = [q for q in arguments if q["kind"] == "quadratic"]
-    exponent_maps = [valuations(Q(q["value"])) for q in arguments if q["kind"] == "rational"]
-    norm_factors: dict[int, int] = {}
+def _quadratic_pair(arguments: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    pair = [item for item in arguments if item["kind"] == "quadratic"]
+    if pair and len(pair) != 2:
+        raise UnsupportedExactScope("quadratic conjugate pair not available")
+    return pair
+
+
+def _norm_of_pair(pair: list[dict[str, Any]]) -> dict[int, int]:
+    if not pair:
+        return {}
+    center, coefficient = Q(pair[0]["center"]), Q(pair[0]["coefficient"])
+    norm = center**2 - coefficient**2 * pair[0]["radicand"]
+    if norm <= 0:
+        raise _ve("quadratic log arguments must be strictly positive")
+    return valuations(norm)
+
+
+def _rational_exponent_row(factors: dict[int, int], primes: list[int], paired: int) -> list[Q]:
+    row = [Q(factors.get(prime, 0)) for prime in primes]
+    if paired != 0:
+        row.append(Q(0))
+    return row
+
+
+def _quadratic_exponent_row(item: dict[str, Any], primes: list[int], norm_factors: dict[int, int]) -> list[Q]:
+    sign = 1 if Q(item["coefficient"]) > 0 else -1
+    return [Q(norm_factors.get(prime, 0), 2) for prime in primes] + [Q(sign, 2)]
+
+
+def _exponent_row(item: dict[str, Any], primes: list[int], pair: list[dict[str, Any]], norm_factors: dict[int, int]) -> list[Q]:
+    if item["kind"] == "rational":
+        paired = 1 if pair else 0
+        return _rational_exponent_row(valuations(Q(item["value"])), primes, paired)
+    return _quadratic_exponent_row(item, primes, norm_factors)
+
+
+def _dependence_method(pair: list[dict[str, Any]]) -> str:
     if pair:
-        if len(pair) != 2:
-            raise UnsupportedExactScope("quadratic conjugate pair not available")
-        center, coefficient = Q(pair[0]["center"]), Q(pair[0]["coefficient"])
-        norm = center**2 - coefficient**2 * pair[0]["radicand"]
-        if norm <= 0:
-            raise ValueError("quadratic log arguments must be strictly positive")
-        norm_factors = valuations(norm)
-    primes = sorted({p for factors in exponent_maps + [norm_factors] for p in factors})
-    generators: list[dict[str, Any]] = [{"kind": "prime", "value": p} for p in primes]
+        return "PRIME_AND_CONJUGATE_RATIO_Q_ROW_BASIS"
+    return "PRIME_EXPONENT_Q_ROW_BASIS"
+
+
+def _nonzero_arguments(spectrum: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    arguments: list[dict[str, Any]] = []
+    for entry in spectrum:
+        if entry["root"] != rational_root(Q(0)):
+            arguments.append(entry["root"])
+    return arguments
+
+
+def _rational_maps(arguments: list[dict[str, Any]]) -> list[dict[int, int]]:
+    maps: list[dict[int, int]] = []
+    for item in arguments:
+        if item["kind"] == "rational":
+            maps.append(valuations(Q(item["value"])))
+    return maps
+
+
+def _prime_support(exponent_maps: list[dict[int, int]], norm_factors: dict[int, int]) -> list[int]:
+    primes: set[int] = set()
+    for factors in exponent_maps + [norm_factors]:
+        for prime in factors:
+            primes.add(prime)
+    return sorted(primes)
+
+
+def _prime_generators(primes: list[int]) -> list[dict[str, Any]]:
+    generators: list[dict[str, Any]] = []
+    for prime in primes:
+        generators.append({"kind": "prime", "value": prime})
+    return generators
+
+
+def _wire_rows(rows: list[list[Q]]) -> list[list[str]]:
+    wired: list[list[str]] = []
+    for row in rows:
+        wired.append([rat(entry) for entry in row])
+    return wired
+
+
+def _dependence_record(
+    pair: list[dict[str, Any]],
+    arguments: list[dict[str, Any]],
+    generators: list[dict[str, Any]],
+    rows: list[list[Q]],
+    indices: list[int],
+    coordinates: list[list[Q]],
+) -> dict[str, Any]:
+    return {
+        "status": "EXACT",
+        "method": _dependence_method(pair),
+        "arguments": arguments,
+        "generators": generators,
+        "exponent_rows": _wire_rows(rows),
+        "basis_argument_indices": indices,
+        "coordinates": _wire_rows(coordinates),
+    }
+
+
+def dependence(spectrum: list[dict[str, Any]]) -> dict[str, Any]:
+    arguments = _nonzero_arguments(spectrum)
+    pair = _quadratic_pair(arguments)
+    norm_factors = _norm_of_pair(pair)
+    primes = _prime_support(_rational_maps(arguments), norm_factors)
+    generators = _prime_generators(primes)
     if pair:
         generators.append({"kind": "quadratic_ratio", "numerator": pair[1], "denominator": pair[0]})
-    rows: list[list[Q]] = []
-    for q in arguments:
-        if q["kind"] == "rational":
-            factors = valuations(Q(q["value"]))
-            rows.append([Q(factors.get(p, 0)) for p in primes] + ([Q(0)] if pair else []))
-        else:
-            sign = 1 if Q(q["coefficient"]) > 0 else -1
-            rows.append([Q(norm_factors.get(p, 0), 2) for p in primes] + [Q(sign, 2)])
+    rows = [_exponent_row(item, primes, pair, norm_factors) for item in arguments]
     indices, coordinates = row_basis(rows)
-    return {"status": "EXACT", "method": "PRIME_AND_CONJUGATE_RATIO_Q_ROW_BASIS" if pair else "PRIME_EXPONENT_Q_ROW_BASIS",
-            "arguments": arguments, "generators": generators,
-            "exponent_rows": [[rat(q) for q in row] for row in rows],
-            "basis_argument_indices": indices, "coordinates": [[rat(q) for q in row] for row in coordinates]}
+    return _dependence_record(pair, arguments, generators, rows, indices, coordinates)
 
 
 def splitting_field(spectrum: list[dict[str, Any]], conductor: int) -> dict[str, Any]:
@@ -503,7 +778,7 @@ def _verdict_from_validated_purity(purity: str, interval: dict[str, Any] | None 
     Arithmetic establishes only purity, never transcendence itself.
     """
     if purity not in {"PURE", "MIXED"}:
-        raise ValueError("verdict domain requires a previously validated purity witness")
+        raise _ve("verdict domain requires a previously validated purity witness")
     if interval is not None:
         validate_interval(interval)
     if purity == "PURE":
@@ -521,7 +796,7 @@ def analyze(case: dict[str, Any]) -> dict[str, Any]:
     coefficients = charpoly(matrix)
     spectrum, reconstructed = polynomial_spectrum(coefficients)
     if coefficients != reconstructed:
-        raise ValueError("spectrum product does not match characteristic polynomial")
+        raise _ve("spectrum product does not match characteristic polynomial")
     power_sum = sum((matrix[i][j] * matrix[j][i] for i in range(len(matrix)) for j in range(len(matrix))), Q(0))
     purity = "PURE" if power_sum == 1 else "MIXED"
     return {"characteristic_polynomial": [rat(q) for q in coefficients], "spectrum": spectrum,
@@ -548,7 +823,7 @@ def entropy_verdict(case: dict[str, Any], *, approximation_k: int | None = None)
 
 def _atanh_series_interval(q: Q, epsilon: Q) -> tuple[Q, Q, int]:
     if not 1 <= q <= 2 or epsilon <= 0:
-        raise ValueError("series interval requires 1<=q<=2 and positive epsilon")
+        raise _ve("series interval requires 1<=q<=2 and positive epsilon")
     z = (q - 1) / (q + 1)
     power, partial = z, Q(0)
     for terms in range(1, MAX_TERMS + 1):
@@ -563,7 +838,7 @@ def _atanh_series_interval(q: Q, epsilon: Q) -> tuple[Q, Q, int]:
 def log_interval(q: Q, epsilon: Q) -> tuple[Q, Q, int]:
     """Real ln(q), rational atanh series and rigorously bounded rational tail."""
     if q <= 0:
-        raise ValueError("log interval requires a strictly positive rational; log(0) is never evaluated")
+        raise _ve("log interval requires a strictly positive rational; log(0) is never evaluated")
     if q == 1:
         return Q(0), Q(0), 0
     if q > 1:
@@ -578,8 +853,6 @@ def log_interval(q: Q, epsilon: Q) -> tuple[Q, Q, int]:
     part_epsilon = epsilon / (shift + 1)
     low, high, terms = _atanh_series_interval(scaled, part_epsilon)
     low2, high2, terms2 = _atanh_series_interval(Q(2), part_epsilon)
-    # The known sign ln(q)<=0 prevents a loose upper endpoint from making the
-    # entropy lower bound negative near q=1. This uses the same real-log input.
     return low - shift * high2, min(Q(0), high - shift * low2), max(terms, terms2)
 
 
@@ -621,7 +894,7 @@ def squarefree_factors(poly: list[Q]) -> list[tuple[list[Q], int]]:
         for _ in range(count):
             rebuilt = poly_product(rebuilt, factor)
     if rebuilt != poly:
-        raise ValueError("squarefree factor multiplicities failed exact characteristic-polynomial reconstruction")
+        raise _ve("squarefree factor multiplicities failed exact characteristic-polynomial reconstruction")
     return factors
 
 
@@ -641,17 +914,22 @@ def sturm_sequence(poly: list[Q]) -> list[list[Q]]:
 def _variations(sequence: list[list[Q]], value: Q) -> int:
     values = [_poly_eval(poly, value) for poly in sequence]
     signs = [1 if entry > 0 else -1 for entry in values if entry]
-    return sum(left != right for left, right in zip(signs, signs[1:]))
+    changes = 0
+    for left, right in zip(signs, signs[1:]):
+        if left != right:
+            changes += 1
+    return changes
+
+
+def _upper_hit(sequence: list[list[Q]], upper: Q) -> int:
+    if _poly_eval(sequence[0], upper) == 0:
+        return 1
+    return 0
 
 
 def _open_root_count(sequence: list[list[Q]], lower: Q, upper: Q) -> int:
-    """Distinct roots in the OPEN interval (lower, upper).
-
-    Ignoring zero signs makes V(lower)-V(upper) count (lower,upper]; subtract
-    an upper-endpoint root explicitly. Midpoint roots are then recorded once.
-    """
-    return (_variations(sequence, lower) - _variations(sequence, upper)
-            - int(_poly_eval(sequence[0], upper) == 0))
+    """Distinct roots in the OPEN interval (lower, upper)."""
+    return _variations(sequence, lower) - _variations(sequence, upper) - _upper_hit(sequence, upper)
 
 
 def sturm_spectrum_intervals(coefficients: list[Q], bits: int,
@@ -677,44 +955,108 @@ def sturm_spectral_clusters(coefficients: list[Any], bits: int,
     return _sturm_enclosures(coefficients, bits, budget, clusters=True)
 
 
+def _peel_sturm_endpoint(factor: list[Q], endpoint: Q, multiplicity: int, result: list[tuple[Q, Q, int, int]]) -> list[Q]:
+    if len(factor) > 1 and _poly_eval(factor, endpoint) == 0:
+        result.append((endpoint, endpoint, 1, multiplicity))
+        return _poly_exact_div(factor, [Q(1), -endpoint])
+    return factor
+
+
+def _bin_is_terminal(clusters: bool, count: int, lower: Q, upper: Q, tolerance: Q) -> bool:
+    if upper - lower > tolerance:
+        return False
+    if clusters:
+        return True
+    return count == 1 and lower > 0
+
+
+def _exact_bit(value: bool) -> int:
+    if value:
+        return 1
+    return 0
+
+
+def _enqueue_sturm_split(
+    pending: list[tuple[Q, Q, int]],
+    result: list[tuple[Q, Q, int, int]],
+    factor: list[Q],
+    sequence: list[list[Q]],
+    lower: Q,
+    upper: Q,
+    count: int,
+    multiplicity: int,
+    budget: _Budget,
+) -> None:
+    budget.spend()
+    midpoint = (lower + upper) / 2
+    exact = _poly_eval(factor, midpoint) == 0
+    left = _open_root_count(sequence, lower, midpoint)
+    right = _open_root_count(sequence, midpoint, upper)
+    if left < 0 or right < 0 or left + right + _exact_bit(exact) != count:
+        raise _ve("Sturm subdivision lost or double-counted an eigenvalue")
+    if exact:
+        result.append((midpoint, midpoint, 1, multiplicity))
+    pending.append((midpoint, upper, right))
+    pending.append((lower, midpoint, left))
+
+
+def _consume_sturm_bin(
+    pending: list[tuple[Q, Q, int]],
+    result: list[tuple[Q, Q, int, int]],
+    factor: list[Q],
+    sequence: list[list[Q]],
+    lower: Q,
+    upper: Q,
+    count: int,
+    multiplicity: int,
+    budget: _Budget,
+    tolerance: Q,
+    clusters: bool,
+) -> None:
+    if count == 0:
+        return
+    if _bin_is_terminal(clusters, count, lower, upper, tolerance):
+        result.append((lower, upper, count, multiplicity))
+        return
+    _enqueue_sturm_split(pending, result, factor, sequence, lower, upper, count, multiplicity, budget)
+
+
+def _enclose_one_factor(
+    factor: list[Q],
+    multiplicity: int,
+    budget: _Budget,
+    tolerance: Q,
+    clusters: bool,
+    result: list[tuple[Q, Q, int, int]],
+) -> None:
+    for endpoint in (Q(0), Q(1)):
+        factor = _peel_sturm_endpoint(factor, endpoint, multiplicity, result)
+    if len(factor) == 1:
+        return
+    sequence = sturm_sequence(factor)
+    count = _open_root_count(sequence, Q(0), Q(1))
+    if count != len(factor) - 1:
+        raise _ve("Sturm root census does not place every density eigenvalue in [0,1]")
+    pending = [(Q(0), Q(1), count)]
+    while pending:
+        lower, upper, count = pending.pop()
+        _consume_sturm_bin(pending, result, factor, sequence, lower, upper, count, multiplicity, budget, tolerance, clusters)
+
+
+def _require_sturm_census(result: list[tuple[Q, Q, int, int]], coefficients: list[Any]) -> None:
+    total = sum(count * multiplicity for _lower, _upper, count, multiplicity in result)
+    if total != len(coefficients) - 1:
+        raise _ve("Sturm multiplicity census differs from the characteristic degree")
+
+
 def _sturm_enclosures(coefficients: list[Any], bits: int, budget: _Budget | None,
                        *, clusters: bool) -> list[tuple[Q, Q, int, int]]:
-    budget = budget or _Budget(STURM_SUBDIVISION_RESOURCE_LIMIT,
-                              "IMPLEMENTATION_RESOURCE_LIMIT: sturm_subdivisions")
+    active = budget or _Budget(STURM_SUBDIVISION_RESOURCE_LIMIT, "IMPLEMENTATION_RESOURCE_LIMIT: sturm_subdivisions")
     tolerance = Q(1, 2**bits)
     result: list[tuple[Q, Q, int, int]] = []
     for original, multiplicity in squarefree_factors(coefficients):
-        factor = original[:]
-        for endpoint in [Q(0), Q(1)]:
-            if len(factor) > 1 and _poly_eval(factor, endpoint) == 0:
-                result.append((endpoint, endpoint, 1, multiplicity))
-                factor = _poly_exact_div(factor, [Q(1), -endpoint])
-        if len(factor) == 1:
-            continue
-        sequence = sturm_sequence(factor)
-        count = _open_root_count(sequence, Q(0), Q(1))
-        if count != len(factor) - 1:
-            raise ValueError("Sturm root census does not place every density eigenvalue in [0,1]")
-        pending = [(Q(0), Q(1), count)]
-        while pending:
-            lower, upper, count = pending.pop()
-            if not count:
-                continue
-            if upper - lower <= tolerance and (clusters or (count == 1 and lower > 0)):
-                result.append((lower, upper, count, multiplicity))
-                continue
-            budget.spend()
-            midpoint = (lower + upper) / 2
-            exact = _poly_eval(factor, midpoint) == 0
-            left = _open_root_count(sequence, lower, midpoint)
-            right = _open_root_count(sequence, midpoint, upper)
-            if left < 0 or right < 0 or left + right + int(exact) != count:
-                raise ValueError("Sturm subdivision lost or double-counted an eigenvalue")
-            if exact:
-                result.append((midpoint, midpoint, 1, multiplicity))
-            pending.extend([(midpoint, upper, right), (lower, midpoint, left)])
-    if sum(count * multiplicity for _, _, count, multiplicity in result) != len(coefficients) - 1:
-        raise ValueError("Sturm multiplicity census differs from the characteristic degree")
+        _enclose_one_factor(original[:], multiplicity, active, tolerance, clusters, result)
+    _require_sturm_census(result, coefficients)
     return sorted(result)
 
 
@@ -730,133 +1072,273 @@ def entropy_interval(case: dict[str, Any], k: int) -> dict[str, Any]:
     return _entropy_interval_from_characteristic(coefficients, k)
 
 
+def _require_precision(k: object) -> int:
+    if type(k) is bool or type(k) is not int or not 0 <= k <= MAX_K:
+        raise RefusedAtBudget("approximation_k_max=32 exhausted or invalid precision")
+    return k
+
+
+def _positive_count(value: object) -> int:
+    if type(value) is bool or type(value) is not int or value < 1:
+        raise _ve("Sturm cluster count and multiplicity must be positive integers")
+    return value
+
+
+def _dyadic_point(value: Q, bits: int) -> bool:
+    return (value * 2**bits).denominator == 1
+
+
+def _cluster_geometry_bad(lower: Q, upper: Q, count: int, tolerance: Q, bits: int) -> bool:
+    if not 0 <= lower <= upper <= 1:
+        return True
+    if upper - lower > tolerance:
+        return True
+    if lower == upper and count != 1:
+        return True
+    if not _dyadic_point(lower, bits) or not _dyadic_point(upper, bits):
+        return True
+    return False
+
+
+def _cluster_contribution(
+    lower: Q,
+    upper: Q,
+    count: int,
+    multiplicity: int,
+    epsilon: Q,
+    dimension: int,
+    radius: Q,
+    tolerance: Q,
+    bits: int,
+) -> tuple[Q, Q, int]:
+    _positive_count(count)
+    _positive_count(multiplicity)
+    if _cluster_geometry_bad(lower, upper, count, tolerance, bits):
+        raise _ve("Sturm cluster geometry or width violates the dyadic contract")
+    if lower == upper and lower in {Q(0), Q(1)}:
+        return Q(0), Q(0), 0
+    midpoint = (lower + upper) / 2
+    log_lo, log_hi, used_terms = log_interval(midpoint, epsilon / (8 * dimension))
+    error_radius = radius if lower != upper else Q(0)
+    weight = count * multiplicity
+    low = weight * max(Q(0), -midpoint * log_hi - error_radius)
+    high = weight * (-midpoint * log_lo + error_radius)
+    return low, high, used_terms
+
+
+def _sum_clusters(
+    enclosures: list[tuple[Q, Q, int, int]],
+    epsilon: Q,
+    dimension: int,
+    radius: Q,
+    tolerance: Q,
+    bits: int,
+) -> tuple[Q, Q, int]:
+    lower, upper, terms = Q(0), Q(0), 0
+    for left, right, count, multiplicity in enclosures:
+        low, high, used = _cluster_contribution(left, right, count, multiplicity, epsilon, dimension, radius, tolerance, bits)
+        lower += low
+        upper += high
+        terms = max(terms, used)
+    return lower, upper, terms
+
+
+def _interval_record(
+    k: int,
+    lower: Q,
+    upper: Q,
+    epsilon: Q,
+    terms: int,
+    bits: int,
+    radius: Q,
+    dimension: int,
+    resource: _Budget,
+    enclosures: list[tuple[Q, Q, int, int]],
+) -> dict[str, Any]:
+    return {
+        "authority_effect": "None",
+        "quantity_type": "APPROXIMATION_NOT_MEMBERSHIP",
+        "metric": "ABSOLUTE_REAL_ERROR",
+        "k": k,
+        "lower": rat(lower),
+        "upper": rat(upper),
+        "midpoint": rat((lower + upper) / 2),
+        "width": rat(upper - lower),
+        "error_bound": rat(epsilon),
+        "max_series_terms_used": terms,
+        "root_isolation": "EXACT_RATIONAL_STURM_SPECTRAL_CLUSTERS",
+        "approximation_algorithm": "DYADIC_STURM_CLUSTERS_WITH_UNIFORM_ENTROPY_MODULUS",
+        "spectral_count_convention": "OPEN_BINS_PLUS_EXACT_SINGLETONS",
+        "cluster_precision_bits": bits,
+        "uniform_entropy_radius": rat(radius),
+        "sturm_subdivision_proved_bound": dimension * bits,
+        "log_shift_proved_bound": bits + 1,
+        "series_terms_proved_bound": 64,
+        "sturm_subdivisions_used": resource.limit - resource.remaining,
+        "sturm_subdivision_limit": resource.limit,
+        "sturm_resource_limit_kind": "IMPLEMENTATION_RESOURCE_LIMIT",
+        "input_dimension": dimension,
+        "spectral_enclosures": [
+            {"lower": rat(left), "upper": rat(right), "distinct_root_count": count, "multiplicity": multiplicity}
+            for left, right, count, multiplicity in enclosures
+        ],
+        "analytic_input": "REAL_LOG_ATANH_TAIL_AND_UNIFORM_ENTROPY_MODULUS",
+        "transcendence_anchor": "A1",
+    }
+
+
+def _attach_embedding(result: dict[str, Any], cyclotomic_embedding: dict[str, Any] | None) -> None:
+    if cyclotomic_embedding is None:
+        return
+    import cyclotomic_density
+    result["root_isolation"] = cyclotomic_density.ROOT_ISOLATION
+    result["embedding"] = cyclotomic_embedding
+
+
 def _entropy_interval_from_characteristic(coefficients: list[Any], k: int, *,
                                            cyclotomic_embedding: dict[str, Any] | None = None) -> dict[str, Any]:
-    """Counted dyadic root clusters with a uniform modulus for -x*ln(x).
-
-    Called after density admission. No root-separation or positive-eigenvalue
-    lower bound is required. See entropy_cluster_bounds.md for the uniform
-    d*(k+12)<=220 subdivision and 64-series-term success bounds.
-    """
-    if type(k) is not int or not 0 <= k <= MAX_K:
-        raise RefusedAtBudget("approximation_k_max=32 exhausted or invalid precision")
-    epsilon, dimension = Q(1, 2**k), len(coefficients) - 1
-    bits = k + 12
+    """Counted dyadic root clusters with a uniform modulus for -x*ln(x)."""
+    precision = _require_precision(k)
+    epsilon, dimension = Q(1, 2**precision), len(coefficients) - 1
+    bits = precision + 12
     tolerance = Q(1, 2**bits)
     radius = tolerance * (bits + 2)
-    resource = _Budget(STURM_SUBDIVISION_RESOURCE_LIMIT,
-                       "IMPLEMENTATION_RESOURCE_LIMIT: sturm_subdivisions")
+    resource = _Budget(STURM_SUBDIVISION_RESOURCE_LIMIT, "IMPLEMENTATION_RESOURCE_LIMIT: sturm_subdivisions")
     enclosures = sturm_spectral_clusters(coefficients, bits, resource)
-    lower, upper, terms = Q(0), Q(0), 0
-    if sum(count * multiplicity for _, _, count, multiplicity in enclosures) != dimension:
-        raise ValueError("Sturm spectral enclosure multiplicity sum differs from input dimension")
-    for a, b, count, multiplicity in enclosures:
-        if any(type(value) is not int or value < 1 for value in (count, multiplicity)):
-            raise ValueError("Sturm cluster count and multiplicity must be positive integers")
-        if (not 0 <= a <= b <= 1 or b - a > tolerance or (a == b and count != 1)
-                or (a * 2**bits).denominator != 1 or (b * 2**bits).denominator != 1):
-            raise ValueError("Sturm cluster geometry or width violates the dyadic contract")
-        if a == b and a in {Q(0), Q(1)}:
-            continue
-        midpoint = (a + b) / 2
-        log_lo, log_hi, used_terms = log_interval(midpoint, epsilon / (8 * dimension))
-        error_radius = radius if a != b else Q(0)
-        lower += count * multiplicity * max(Q(0), -midpoint * log_hi - error_radius)
-        upper += count * multiplicity * (-midpoint * log_lo + error_radius)
-        terms = max(terms, used_terms)
-    result = {"authority_effect": "None", "quantity_type": "APPROXIMATION_NOT_MEMBERSHIP",
-              "metric": "ABSOLUTE_REAL_ERROR", "k": k, "lower": rat(lower), "upper": rat(upper),
-              "midpoint": rat((lower + upper) / 2), "width": rat(upper - lower),
-              "error_bound": rat(epsilon), "max_series_terms_used": terms,
-              "root_isolation": "EXACT_RATIONAL_STURM_SPECTRAL_CLUSTERS",
-              "approximation_algorithm": "DYADIC_STURM_CLUSTERS_WITH_UNIFORM_ENTROPY_MODULUS",
-              "spectral_count_convention": "OPEN_BINS_PLUS_EXACT_SINGLETONS",
-              "cluster_precision_bits": bits, "uniform_entropy_radius": rat(radius),
-              "sturm_subdivision_proved_bound": dimension * bits,
-              "log_shift_proved_bound": bits + 1, "series_terms_proved_bound": 64,
-              "sturm_subdivisions_used": resource.limit - resource.remaining,
-              "sturm_subdivision_limit": resource.limit,
-              "sturm_resource_limit_kind": "IMPLEMENTATION_RESOURCE_LIMIT",
-              "input_dimension": dimension,
-              "spectral_enclosures": [{"lower": rat(a), "upper": rat(b),
-                                       "distinct_root_count": count, "multiplicity": multiplicity}
-                                      for a, b, count, multiplicity in enclosures],
-              "analytic_input": "REAL_LOG_ATANH_TAIL_AND_UNIFORM_ENTROPY_MODULUS",
-              "transcendence_anchor": "A1"}
-    if cyclotomic_embedding is not None:
-        import cyclotomic_density
-        result["root_isolation"] = cyclotomic_density.ROOT_ISOLATION
-        result["embedding"] = cyclotomic_embedding
+    if sum(count * multiplicity for _a, _b, count, multiplicity in enclosures) != dimension:
+        raise _ve("Sturm spectral enclosure multiplicity sum differs from input dimension")
+    lower, upper, terms = _sum_clusters(enclosures, epsilon, dimension, radius, tolerance, bits)
+    result = _interval_record(precision, lower, upper, epsilon, terms, bits, radius, dimension, resource, enclosures)
+    _attach_embedding(result, cyclotomic_embedding)
     validate_interval(result)
     return result
 
 
-def _check_interval_bounds(interval: dict[str, Any]) -> int:
+def _require_interval_kind(interval: dict[str, Any]) -> None:
     reject_floats(interval, "entropy_interval")
-    if interval.get("quantity_type") != "APPROXIMATION_NOT_MEMBERSHIP" or interval.get("metric") != "ABSOLUTE_REAL_ERROR":
-        raise ValueError("interval must be approximation, never carrier membership")
+    if interval.get("quantity_type") != "APPROXIMATION_NOT_MEMBERSHIP":
+        raise _ve("interval must be approximation, never carrier membership")
+    if interval.get("metric") != "ABSOLUTE_REAL_ERROR":
+        raise _ve("interval must be approximation, never carrier membership")
+
+
+def _require_interval_precision(interval: dict[str, Any]) -> int:
     k = interval.get("k")
-    if type(k) is not int or not 0 <= k <= MAX_K:
-        raise ValueError("invalid interval precision")
-    lo, hi, midpoint = (parse_rat(interval[key]) for key in ("lower", "upper", "midpoint"))
-    if lo < 0 or lo > hi or midpoint != (lo + hi) / 2:
-        raise ValueError("invalid rational entropy enclosure")
-    if parse_rat(interval["width"]) != hi - lo or hi - lo > Q(1, 2**k):
-        raise ValueError("entropy interval exceeds declared error obligation")
-    if parse_rat(interval["error_bound"]) != Q(1, 2**k):
-        raise ValueError("entropy error bound does not equal 2^-k")
+    if type(k) is bool or type(k) is not int or not 0 <= k <= MAX_K:
+        raise _ve("invalid interval precision")
     return k
 
 
+def _require_interval_order(lower: Q, upper: Q, midpoint: Q) -> None:
+    if lower < 0 or lower > upper or midpoint != (lower + upper) / 2:
+        raise _ve("invalid rational entropy enclosure")
+
+
+def _require_interval_width(interval: dict[str, Any], lower: Q, upper: Q, k: int) -> None:
+    if parse_rat(interval["width"]) != upper - lower or upper - lower > Q(1, 2**k):
+        raise _ve("entropy interval exceeds declared error obligation")
+    if parse_rat(interval["error_bound"]) != Q(1, 2**k):
+        raise _ve("entropy error bound does not equal 2^-k")
+
+
+def _check_interval_bounds(interval: dict[str, Any]) -> int:
+    _require_interval_kind(interval)
+    k = _require_interval_precision(interval)
+    lower, upper, midpoint = (parse_rat(interval[key]) for key in ("lower", "upper", "midpoint"))
+    _require_interval_order(lower, upper, midpoint)
+    _require_interval_width(interval, lower, upper, k)
+    return k
+
+
+def _require_sturm_kind(interval: dict[str, Any], root_isolation: object) -> None:
+    admitted = {"EXACT_RATIONAL_STURM_SPECTRAL_CLUSTERS", "EXACT_CYCLOTOMIC_REAL_STURM_SPECTRAL_CLUSTERS"}
+    if root_isolation not in admitted:
+        raise _ve("invalid Sturm operational resource accounting")
+    if interval.get("sturm_resource_limit_kind") != "IMPLEMENTATION_RESOURCE_LIMIT":
+        raise _ve("invalid Sturm operational resource accounting")
+
+
+def _require_sturm_counts(used: object, limit: object) -> tuple[int, int]:
+    if type(used) is bool or type(used) is not int or type(limit) is bool or type(limit) is not int:
+        raise _ve("invalid Sturm operational resource accounting")
+    if limit != STURM_SUBDIVISION_RESOURCE_LIMIT or not 0 <= used <= limit:
+        raise _ve("invalid Sturm operational resource accounting")
+    return used, limit
+
+
+def _require_series_terms(series_terms: object) -> int:
+    if type(series_terms) is bool or type(series_terms) is not int or not 0 <= series_terms <= MAX_TERMS:
+        raise _ve("invalid frozen series-term accounting")
+    return series_terms
+
+
 def _check_sturm_accounting(interval: dict[str, Any]) -> tuple[int, int]:
-    used, limit = interval.get("sturm_subdivisions_used"), interval.get("sturm_subdivision_limit")
+    used = interval.get("sturm_subdivisions_used")
+    limit = interval.get("sturm_subdivision_limit")
     root_isolation = interval.get("root_isolation")
     if root_isolation == "EXACT_CYCLOTOMIC_REAL_STURM_SPECTRAL_CLUSTERS":
         import cyclotomic_density
         cyclotomic_density.validate_embedding(interval.get("embedding"))
-    if (root_isolation not in {"EXACT_RATIONAL_STURM_SPECTRAL_CLUSTERS",
-                               "EXACT_CYCLOTOMIC_REAL_STURM_SPECTRAL_CLUSTERS"}
-            or interval.get("sturm_resource_limit_kind") != "IMPLEMENTATION_RESOURCE_LIMIT"
-            or type(used) is not int or type(limit) is not int
-            or limit != STURM_SUBDIVISION_RESOURCE_LIMIT or not 0 <= used <= limit):
-        raise ValueError("invalid Sturm operational resource accounting")
-    series_terms = interval.get("max_series_terms_used")
-    if type(series_terms) is not int or not 0 <= series_terms <= MAX_TERMS:
-        raise ValueError("invalid frozen series-term accounting")
-    return used, series_terms
+    _require_sturm_kind(interval, root_isolation)
+    checked_used, _checked_limit = _require_sturm_counts(used, limit)
+    return checked_used, _require_series_terms(interval.get("max_series_terms_used"))
+
+
+def _require_dimension_list(interval: dict[str, Any]) -> tuple[int, list[Any]]:
+    dimension = interval.get("input_dimension")
+    enclosures = interval.get("spectral_enclosures")
+    if type(dimension) is bool or type(dimension) is not int or not 1 <= dimension <= MAX_D:
+        raise _ve("invalid spectral enclosure dimension or list")
+    if not isinstance(enclosures, list):
+        raise _ve("invalid spectral enclosure dimension or list")
+    return dimension, enclosures
+
+
+def _require_bound_field(interval: dict[str, Any], key: str, expected: int) -> None:
+    if type(interval.get(key)) is not int or interval[key] != expected:
+        raise _ve("invalid proved cluster approximation bounds or count convention")
+
+
+def _require_algorithm_bounds(interval: dict[str, Any], dimension: int, k: int, used: int, series_terms: int) -> int:
+    bits = k + 12
+    if interval.get("approximation_algorithm") != "DYADIC_STURM_CLUSTERS_WITH_UNIFORM_ENTROPY_MODULUS":
+        raise _ve("invalid proved cluster approximation bounds or count convention")
+    if interval.get("spectral_count_convention") != "OPEN_BINS_PLUS_EXACT_SINGLETONS":
+        raise _ve("invalid proved cluster approximation bounds or count convention")
+    _require_bound_field(interval, "cluster_precision_bits", bits)
+    _require_bound_field(interval, "sturm_subdivision_proved_bound", dimension * bits)
+    _require_bound_field(interval, "log_shift_proved_bound", bits + 1)
+    _require_bound_field(interval, "series_terms_proved_bound", 64)
+    if interval.get("uniform_entropy_radius") != rat(Q(bits + 2, 2**bits)):
+        raise _ve("invalid proved cluster approximation bounds or count convention")
+    if used > dimension * bits or series_terms > 64:
+        raise _ve("invalid proved cluster approximation bounds or count convention")
+    return bits
+
+
+def _enclosure_weight(enclosure: object, bits: int) -> int:
+    if not isinstance(enclosure, dict) or set(enclosure) != {"lower", "upper", "distinct_root_count", "multiplicity"}:
+        raise _ve("spectral enclosure requires lower, upper, distinct_root_count, and multiplicity")
+    count = enclosure["distinct_root_count"]
+    multiplicity = enclosure["multiplicity"]
+    if type(multiplicity) is bool or type(multiplicity) is not int or multiplicity < 1:
+        raise _ve("spectral enclosure multiplicity must be a positive integer")
+    if type(count) is bool or type(count) is not int or count < 1:
+        raise _ve("spectral enclosure distinct root count must be a positive integer")
+    lower, upper = parse_rat(enclosure["lower"]), parse_rat(enclosure["upper"])
+    if _cluster_geometry_bad(lower, upper, count, Q(1, 2**bits), bits):
+        raise _ve("spectral cluster geometry, width, or singleton root count is invalid")
+    return count * multiplicity
 
 
 def _check_spectral_enclosures(interval: dict[str, Any], k: int, used: int, series_terms: int) -> None:
-    dimension, enclosures = interval.get("input_dimension"), interval.get("spectral_enclosures")
-    if type(dimension) is not int or not 1 <= dimension <= MAX_D or not isinstance(enclosures, list):
-        raise ValueError("invalid spectral enclosure dimension or list")
-    bits = k + 12
-    expected_bounds = {"cluster_precision_bits": bits,
-                       "sturm_subdivision_proved_bound": dimension * bits,
-                       "log_shift_proved_bound": bits + 1, "series_terms_proved_bound": 64}
-    if (interval.get("approximation_algorithm") != "DYADIC_STURM_CLUSTERS_WITH_UNIFORM_ENTROPY_MODULUS"
-            or interval.get("spectral_count_convention") != "OPEN_BINS_PLUS_EXACT_SINGLETONS"
-            or any(type(interval.get(key)) is not int or interval[key] != value
-                   for key, value in expected_bounds.items())
-            or interval.get("uniform_entropy_radius") != rat(Q(bits + 2, 2**bits))
-            or used > dimension * bits or series_terms > 64):
-        raise ValueError("invalid proved cluster approximation bounds or count convention")
+    dimension, enclosures = _require_dimension_list(interval)
+    bits = _require_algorithm_bounds(interval, dimension, k, used, series_terms)
     total = 0
     for enclosure in enclosures:
-        if set(enclosure) != {"lower", "upper", "distinct_root_count", "multiplicity"}:
-            raise ValueError("spectral enclosure requires lower, upper, distinct_root_count, and multiplicity")
-        count, multiplicity = enclosure["distinct_root_count"], enclosure["multiplicity"]
-        if type(multiplicity) is not int or multiplicity < 1:
-            raise ValueError("spectral enclosure multiplicity must be a positive integer")
-        if type(count) is not int or count < 1:
-            raise ValueError("spectral enclosure distinct root count must be a positive integer")
-        a, b = parse_rat(enclosure["lower"]), parse_rat(enclosure["upper"])
-        if (not 0 <= a <= b <= 1 or b - a > Q(1, 2**bits) or (a == b and count != 1)
-                or (a * 2**bits).denominator != 1 or (b * 2**bits).denominator != 1):
-            raise ValueError("spectral cluster geometry, width, or singleton root count is invalid")
-        total += count * multiplicity
+        total += _enclosure_weight(enclosure, bits)
     if total != dimension:
-        raise ValueError("spectral enclosure multiplicity sum differs from input dimension")
+        raise _ve("spectral enclosure multiplicity sum differs from input dimension")
 
 
 def validate_interval(interval: dict[str, Any]) -> None:
@@ -879,16 +1361,16 @@ def fixtures(interface: Path | None = None) -> list[dict[str, Any]]:
 
 def validate_fixture_batch(values: Any) -> list[dict[str, Any]]:
     if not isinstance(values, list) or not values:
-        raise ValueError("fixtures: nonempty array required")
+        raise _ve("fixtures: nonempty array required")
     if len(values) > MAX_FIXTURES:
         raise RefusedAtBudget("fixture_cases_max=64 exhausted")
     seen = set()
     for case in values:
         identity = case.get("fixture_id") if isinstance(case, dict) else None
         if not isinstance(identity, str) or not identity:
-            raise ValueError("fixture_id: nonempty string required")
+            raise _ve("fixture_id: nonempty string required")
         if identity in seen:
-            raise ValueError(f"fixture_id:{identity}: duplicate fixture ID")
+            raise _ve(f"fixture_id:{identity}: duplicate fixture ID")
         seen.add(identity)
     return values
 
@@ -906,38 +1388,106 @@ def serialized(value: Any) -> str:
 def validate_case_record(record: dict[str, Any]) -> None:
     reject_floats(record, "case_record")
     if set(record) != {"input", "output"}:
-        raise ValueError("case record must contain typed input and output")
+        raise _ve("case record must contain typed input and output")
     expected = analyze(record["input"])
     for field in expected:
-        # Python structural equality conflates True with 1 and False with 0.
-        # JSON serialization preserves primitive types recursively, including
-        # integers nested inside spectrum entries and dependence coordinate data.
         if serialized(record["output"].get(field)) != serialized(expected[field]):
-            raise ValueError(f"{record['input']['fixture_id']}: injected or invalid {field}")
+            raise _ve(f"{record['input']['fixture_id']}: injected or invalid {field}")
     if set(record["output"]) != set(expected):
-        raise ValueError("unexpected output field")
+        raise _ve("unexpected output field")
 
 
 MUTATIONS = ("float_leakage", "zero_log_zero", "unnormalised_spectrum", "splitting_degree_one", "algebraic_entropy_claim")
 
 
+def _injection_fixture(name: str) -> str:
+    if name == "splitting_degree_one":
+        return "s1_sqrt2"
+    if name == "zero_log_zero":
+        return "s1_pure"
+    return "s1_mixed_half"
+
+
+def _apply_injection(name: str, record: dict[str, Any]) -> dict[str, Any]:
+    if name == "float_leakage":
+        raise _ve("float refused at the public boundary", role="injection", received="float")
+    if name == "zero_log_zero":
+        record["output"]["entropy"]["quantity_type"] = "UNDEFINED_LOG_ZERO"
+        return record
+    if name == "unnormalised_spectrum":
+        record["input"]["matrix"][0][0] = "3/2"
+        return record
+    if name == "splitting_degree_one":
+        record["output"]["splitting_field"]["spectrum_degree_over_q"] = 1
+        return record
+    record["output"]["entropy"]["verdict"] = "CARRIED"
+    return record
+
+
 def injected_record(name: str) -> dict[str, Any]:
     if name not in MUTATIONS:
-        raise ValueError("unknown injection")
-    fixture_id = "s1_sqrt2" if name == "splitting_degree_one" else "s1_pure" if name == "zero_log_zero" else "s1_mixed_half"
-    case = next(case for case in fixtures() if case["fixture_id"] == fixture_id)
+        raise _ve("unknown injection", received=name)
+    case = next(item for item in fixtures() if item["fixture_id"] == _injection_fixture(name))
     record = {"input": copy.deepcopy(case), "output": analyze(case)}
-    if name == "float_leakage":
-        record["output"]["entropy"]["injected_float"] = float("0")
-    elif name == "zero_log_zero":
-        record["output"]["entropy"]["quantity_type"] = "UNDEFINED_LOG_ZERO"
-    elif name == "unnormalised_spectrum":
-        record["input"]["matrix"][0][0] = "3/2"
-    elif name == "splitting_degree_one":
-        record["output"]["splitting_field"]["spectrum_degree_over_q"] = 1
-    elif name == "algebraic_entropy_claim":
-        record["output"]["entropy"]["verdict"] = "CARRIED"
-    return record
+    return _apply_injection(name, record)
+
+
+def _reject_verdict_mix(args: Any, parser: argparse.ArgumentParser) -> None:
+    if args.verdict_only and (args.inject or args.intervals is not None):
+        parser.error("--verdict-only cannot be combined with --inject or --intervals")
+
+
+def _reject_cyclotomic_mix(args: Any, parser: argparse.ArgumentParser) -> None:
+    if args.cyclotomic_characteristic and (args.verdict_only or args.inject or args.intervals is not None):
+        parser.error("--cyclotomic-characteristic cannot be combined with another output mode")
+
+
+def _reject_spectral_mix(args: Any, parser: argparse.ArgumentParser) -> None:
+    mixed = args.cyclotomic_characteristic or args.verdict_only or args.inject or args.intervals is not None
+    if args.spectral_roots and mixed:
+        parser.error("--spectral-roots cannot be combined with another output mode")
+
+
+def _run_inject(args: Any) -> int:
+    try:
+        validate_case_record(injected_record(args.inject))
+    except ValueError as exc:
+        print(f"INJECTION_REJECTED {args.inject}: {exc}")
+        return 1
+    print(f"INJECTION_SURVIVED {args.inject}")
+    return 2
+
+
+def _verdict_report(interface: Path | None) -> dict[str, Any]:
+    return {
+        "authority_effect": "None",
+        "schema": "c750_b01_verdict_v1",
+        "cases": [{"input": case, "entropy": entropy_verdict(case)} for case in fixtures(interface)],
+    }
+
+
+def _interval_report(interface: Path | None, precision: int) -> dict[str, Any]:
+    return {
+        "authority_effect": "None",
+        "intervals": [
+            {"fixture_id": case["fixture_id"], "interval": entropy_interval(case, precision)}
+            for case in fixtures(interface)
+        ],
+    }
+
+
+def _select_report(args: Any) -> dict[str, Any]:
+    if args.spectral_roots:
+        import polynomial_roots
+        return polynomial_roots.report(args.interface)
+    if args.cyclotomic_characteristic:
+        import cyclotomic_density
+        return cyclotomic_density.characteristic_report(args.interface)
+    if args.verdict_only:
+        return _verdict_report(args.interface)
+    if args.intervals is not None:
+        return _interval_report(args.interface, args.intervals)
+    return report(args.interface)
 
 
 def main() -> int:
@@ -949,35 +1499,12 @@ def main() -> int:
     parser.add_argument("--cyclotomic-characteristic", action="store_true")
     parser.add_argument("--spectral-roots", action="store_true")
     args = parser.parse_args()
-    if args.verdict_only and (args.inject or args.intervals is not None):
-        parser.error("--verdict-only cannot be combined with --inject or --intervals")
-    if args.cyclotomic_characteristic and (args.verdict_only or args.inject or args.intervals is not None):
-        parser.error("--cyclotomic-characteristic cannot be combined with another output mode")
-    if args.spectral_roots and (args.cyclotomic_characteristic or args.verdict_only or args.inject or args.intervals is not None):
-        parser.error("--spectral-roots cannot be combined with another output mode")
+    _reject_verdict_mix(args, parser)
+    _reject_cyclotomic_mix(args, parser)
+    _reject_spectral_mix(args, parser)
     if args.inject:
-        try:
-            validate_case_record(injected_record(args.inject))
-        except ValueError as exc:
-            print(f"INJECTION_REJECTED {args.inject}: {exc}")
-            return 1
-        print(f"INJECTION_SURVIVED {args.inject}")
-        return 2
-    if args.spectral_roots:
-        import polynomial_roots
-        value = polynomial_roots.report(args.interface)
-    elif args.cyclotomic_characteristic:
-        import cyclotomic_density
-        value = cyclotomic_density.characteristic_report(args.interface)
-    elif args.verdict_only:
-        value = {"authority_effect": "None", "schema": "c750_b01_verdict_v1", "cases": [
-            {"input": case, "entropy": entropy_verdict(case)} for case in fixtures(args.interface)]}
-    elif args.intervals is not None:
-        value = {"authority_effect": "None", "intervals": [
-            {"fixture_id": case["fixture_id"], "interval": entropy_interval(case, args.intervals)} for case in fixtures(args.interface)]}
-    else:
-        value = report(args.interface)
-    sys.stdout.buffer.write(serialized(value).encode("utf-8"))
+        return _run_inject(args)
+    sys.stdout.buffer.write(serialized(_select_report(args)).encode("utf-8"))
     return 0
 
 

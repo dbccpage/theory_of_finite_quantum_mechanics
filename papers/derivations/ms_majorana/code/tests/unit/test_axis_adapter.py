@@ -92,8 +92,6 @@ class TestCrossAxisConflationRefused:
 
 class TestAdapterTotalityOverDeclaredTable:
     def test_every_exported_spelling_resolves_on_its_axis(self) -> None:
-        # Totality: the exported table IS the closed law; every row resolves
-        # to exactly the registry token the table declares.
         axis_by_name = {axis.__name__: axis for axis in SUPPORTED_AXES}
         table = alias_table()
         assert set(table) == set(axis_by_name)
@@ -105,9 +103,6 @@ class TestAdapterTotalityOverDeclaredTable:
                 assert member.value == expected_value
                 assert isinstance(member, axis)
                 checked_rows += 1
-        # The table is non-trivial: all four axes carry identity rows and the
-        # declared paper aliases ride on top (8+3 routing, 5+5 diagnostic,
-        # 3+6 cohomological, 4+0 extension).
         assert checked_rows == (8 + 3) + (5 + 5) + (3 + 6) + (4 + 0)
 
     @pytest.mark.parametrize(
@@ -210,9 +205,7 @@ class TestGtlaReceiptLayerPathAxisValidation:
             GtlaReceipt(**_receipt_kwargs(step))
 
     def test_receipt_token_sets_mirror_the_live_enums_exactly(self) -> None:
-        # The mirrored frozensets in omega_replay must stay in lockstep with
-        # types.py (the mirror comment demands it; this is the tripwire).
-        from omega_engine.crates.replay import (  # noqa: PLC0415
+        from omega_engine.crates.replay import (
             _DIAGNOSTIC_CLASS_TOKENS,
             _EXTENSION_STATUS_TOKENS,
             _ROUTING_TERMINAL_TOKENS,

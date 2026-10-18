@@ -12,12 +12,11 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-# Ensure repository root is in sys.path
 REPO_ROOT = Path(__file__).resolve().parents[4]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from omega_engine_projects.fsp.code.sign_sql.exact_models import (  # noqa: E402
+from omega_engine_projects.fsp.code.sign_sql.exact_models import (
     meron_database,
     meron_summary,
     meron_transfer_trace,
@@ -37,43 +36,42 @@ class BlindClusterOracle:
 
     @property
     def total_subgraphs(self) -> int:
-        return self._summary["graphs"]  # 256
+        return self._summary["graphs"]
 
     @property
     def total_configurations(self) -> int:
-        return self._summary["configurations"]  # 1296
+        return self._summary["configurations"]
 
     @property
     def negative_configurations(self) -> int:
-        return self._summary["negative_configurations"]  # 192
+        return self._summary["negative_configurations"]
 
     @property
     def signed_partition(self) -> str:
-        return self._summary["signed_partition"]  # "912"
+        return self._summary["signed_partition"]
 
     @property
     def absolute_partition(self) -> str:
-        return self._summary["absolute_partition"]  # "1296"
+        return self._summary["absolute_partition"]
 
     @property
     def average_sign(self) -> str:
-        return self._summary["average_sign"]  # "19/27"
+        return self._summary["average_sign"]
 
     @property
     def zero_charge_subgraphs(self) -> int:
-        return self._summary["zero_meron_graphs"]  # 199
+        return self._summary["zero_meron_graphs"]
 
     @property
     def cancelling_subgraphs(self) -> int:
-        return self.total_subgraphs - self.zero_charge_subgraphs  # 57
+        return self.total_subgraphs - self.zero_charge_subgraphs
 
     @property
     def reduced_partition(self) -> str:
-        return self._summary["reduced_partition"]  # "912"
+        return self._summary["reduced_partition"]
 
     def get_sample_subgraphs(self, limit: int = 5) -> list[dict]:
         """Return sample subgraphs with cycle decomposition for prompt inclusion."""
-        # Query representative subgraphs: both zero-charge and cancelling
         samples = []
         rows = self._con.execute(
             """
@@ -87,7 +85,6 @@ class BlindClusterOracle:
         ).fetchall()
 
         for gid, k, odd_cycles, weight, reduced_weight in rows:
-            # Get component cycle info
             components = self._con.execute(
                 """
                 SELECT cluster, COUNT(node) as size
@@ -99,7 +96,6 @@ class BlindClusterOracle:
                 (gid,),
             ).fetchall()
 
-            # Get configuration signs for this subgraph
             configs = self._con.execute(
                 """
                 SELECT mask, sign, weight
@@ -137,7 +133,6 @@ class BlindClusterOracle:
         score = 0
         feedback = []
 
-        # Rubric item 1: Exact target Z
         z_match = False
         if claimed_z is not None:
             try:
@@ -151,7 +146,6 @@ class BlindClusterOracle:
         else:
             feedback.append(f"FAIL: Claimed Z={claimed_z} does not match exact ground-truth 912.")
 
-        # Rubric item 2: Cycle/cluster independence
         if cycle_independence_recognized:
             score += 1
             feedback.append(
@@ -160,7 +154,6 @@ class BlindClusterOracle:
         else:
             feedback.append("FAIL: Failed to recognize factorized cycle independence.")
 
-        # Rubric item 3: Parity cancellation
         if parity_cancellation_proved:
             score += 1
             feedback.append(
@@ -169,7 +162,6 @@ class BlindClusterOracle:
         else:
             feedback.append("FAIL: Did not prove that single cycle flips invert the global sign.")
 
-        # Rubric item 4: Zero-charge reduction
         if zero_sector_reduction_used:
             score += 1
             feedback.append(

@@ -1,7 +1,3 @@
-//! Factored rational PSD witness shared by the degree 2, 4, 6, and 8 diagnostics.
-//!
-//! `W = sum_k weight_k v_k v_k^T`. Every weight is strictly positive, and
-//! `trace_inner` requires a symmetric matrix of the witness dimension.
 
 use num_rational::BigRational;
 use num_traits::Zero;

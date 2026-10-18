@@ -1,58 +1,21 @@
-//! Finite Rust shadow of the **core** `PrimitiveDifference` quotient/descent kernel.
-//!
-//! Corresponds to the Lean definitions `ZeroRel`, `zeroRel_equivalence`,
-//! `ResidualQuotient`, `classOf`, `DeltaCongruent`, `deltaFactor`, and the theorem
-//! `deltaFactor_exists_iff_deltaCongruent` — but **over a declared finite domain**, where
-//! those become decidable. It does **not** implement the full Lean file: the Lean also
-//! carries `DeltaCongruentMod`/`deltaFactorMod`, `InvariantCongruent`/`invariantFactor`,
-//! pair factorization, the `localGreenGlobalRed` obstruction, `PointedPrimitiveDifference`,
-//! and `QuotientCompatiblePrimitiveDifference`, none of which live here yet.
-//!
-//! **Placement.** Below homology: `primitive_difference <- homological <- functional <-
-//! certifier/replay/runner`, never the reverse. This module imports nothing from those
-//! crates (pure `core`/`std`). Provisional home: `omega_homotopy_type_theory`; long-term a
-//! root primitive crate. Lean anchor: `lean4/PrimitiveDifference.lean`.
-//!
-//! **Scope.** Every check is over the listed finite domain — evidence on that domain, not a
-//! global Lean theorem over arbitrary `Carrier`. The soundness bridge (finite checker ⇒ Lean
-//! statement on the subtype) is the `PrimitiveDifferenceFinite.lean` obligation (PD-L4/L5/L6).
-//! No such file exists in this repository; see `lean_anchor.missing_namespace` in the
-//! `primitive_difference.yaml` contract.
 
 use core::sync::atomic::{AtomicU64, Ordering};
 
-/// Monotonic source of per-carrier brand tokens. The token is opaque metadata; it affects
-/// no mathematical output (quotient, classes, δ̄ are unchanged) — it only prevents a
-/// `QuotientClass` minted by one validated carrier from being used against another.
 static CARRIER_COUNTER: AtomicU64 = AtomicU64::new(0);
 
-/// The primitive difference: `δ` over carrier `A` valued in `B`, plus the `Zero`
-/// predicate selecting which differences count as "no difference". The implementor must
-/// supply a `Zero` whose induced `ZeroRel` is reflexive/symmetric/transitive (the Lean
-/// fields `zero_refl/zero_symm/zero_trans`); [`FiniteCarrier::validate_zero_laws`] checks
-/// this on a finite domain and returns the first counterexample on failure.
 pub trait PrimitiveDifference {
-    /// `A` — the carrier.
     type Carrier;
-    /// `B` — the difference codomain.
     type Diff: PartialEq;
 
-    /// `δ : A → A → B`.
     fn delta(&self, x: &Self::Carrier, y: &Self::Carrier) -> Self::Diff;
 
-    /// `Zero : B → Prop` — does this difference count as no difference?
     fn zero(&self, d: &Self::Diff) -> bool;
 
-    /// `ZeroRel x y := Zero(δ x y)` (Lean: `PrimitiveDifference.ZeroRel`).
     fn zero_rel(&self, x: &Self::Carrier, y: &Self::Carrier) -> bool {
         self.zero(&self.delta(x, y))
     }
 }
 
-/// An opaque, **carrier-branded** quotient class. Constructed only by
-/// [`ValidatedFiniteCarrier`]; the inner fields are private, so a class cannot be forged or
-/// read as a raw `usize`, and one carrier's class cannot be silently used against another
-/// (the brand is checked in [`DeltaFactor::apply`]).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct QuotientClass {
     carrier_id: u64,
@@ -60,72 +23,51 @@ pub struct QuotientClass {
 }
 
 impl QuotientClass {
-    /// The class index in `0..num_classes`. Read-only; cannot construct a class.
     pub fn index(self) -> usize {
         self.index
     }
 
-    /// The brand of the carrier that minted this class (opaque).
     pub fn carrier_id(self) -> u64 {
         self.carrier_id
     }
 }
 
-/// Failure of a finite check, with the domain-index counterexample.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum PrimitiveDifferenceError {
-    /// `ZeroRel(x,x)` is false at domain index `x`.
     ZeroReflexivityFailure { x: usize },
-    /// `ZeroRel(x,y)` holds but `ZeroRel(y,x)` does not.
     ZeroSymmetryFailure { x: usize, y: usize },
-    /// `ZeroRel(x,y)` and `ZeroRel(y,z)` hold but `ZeroRel(x,z)` does not.
     ZeroTransitivityFailure { x: usize, y: usize, z: usize },
-    /// `x~x'` and `y~y'` but `δ(x,y) ≠ δ(x',y')`.
     DeltaCongruenceFailure {
         x: usize,
         x_prime: usize,
         y: usize,
         y_prime: usize,
     },
-    /// The joint observable `(φ, ψ)` disagrees on the zero-related domain pair `(x, y)`:
-    /// a component may descend alone, yet the pair does not — the LGGR witness (Lean:
-    /// `localGreenGlobalRed_pair_obstruction`, a single zero-related pair, not four indices).
     PairCongruenceFailure { x: usize, y: usize },
-    /// `n * n` (or `class_count * class_count`) overflows `usize` — domain/class scale too large
-    /// for the finite O(n²) checker. Diagnostic refusal; does not mint authority.
     DomainScaleOverflow { n: usize },
 }
 
-/// Token proving `ZeroRel` is an equivalence on a finite domain of the given length.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct ZeroLawWitness {
     pub domain_len: usize,
 }
 
-/// Token proving `DeltaCongruent` holds on a finite domain of the given length.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct DeltaCongruenceWitness {
     pub domain_len: usize,
 }
 
-/// Token proving the joint observable `(φ, ψ)` descends on a finite domain of the given length.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct PairDescentWitness {
     pub domain_len: usize,
 }
 
-/// A zero-related domain pair `(x, y)` on which a joint observable fails to agree — the LGGR
-/// witness (Lean: the witness of `localGreenGlobalRed_pair_obstruction`).
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct PairObstructionWitness {
     pub x: usize,
     pub y: usize,
 }
 
-/// Local-green / global-red summary for an observable pair `(φ, ψ)` (Lean:
-/// `localGreenGlobalRed_pair_obstruction`). The thesis case is `left_descends && !pair_descends`:
-/// a component descends locally while the joint observation does not descend globally. This is
-/// **failed descent evidence** — it is not Φ₁, Γ₂, cohomology, or authority.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct LocalGlobalPairObstruction {
     pub left_descends: bool,
@@ -134,9 +76,6 @@ pub struct LocalGlobalPairObstruction {
     pub counterexample: Option<PairObstructionWitness>,
 }
 
-/// A raw (unvalidated) finite carrier. Only the zero-law check is exposed here; quotient and
-/// descent operations require promotion to [`ValidatedFiniteCarrier`] via
-/// [`FiniteCarrier::try_validate`], so they can never run on a non-equivalence `ZeroRel`.
 pub struct FiniteCarrier<'a, P: PrimitiveDifference> {
     diff: &'a P,
     domain: Vec<P::Carrier>,
@@ -151,16 +90,12 @@ impl<'a, P: PrimitiveDifference> FiniteCarrier<'a, P> {
         self.domain.len()
     }
 
-    /// `ZeroRel` is an equivalence **on this domain** (Lean: `zeroRel_equivalence`). Returns
-    /// a deterministic counterexample on failure. The relation is evaluated once per ordered
-    /// pair and checked in O(n^2) time and O(n^2) bits of temporary storage.
     pub fn validate_zero_laws(&self) -> Result<ZeroLawWitness, PrimitiveDifferenceError> {
         self.validate_zero_partition().map(|_| ZeroLawWitness {
             domain_len: self.domain.len(),
         })
     }
 
-    /// Promote to a [`ValidatedFiniteCarrier`] iff `ZeroRel` is an equivalence on the domain.
     pub fn try_validate(self) -> Result<ValidatedFiniteCarrier<'a, P>, PrimitiveDifferenceError> {
         let partition = self.validate_zero_partition()?;
         let carrier_id = CARRIER_COUNTER.fetch_add(1, Ordering::Relaxed);
@@ -220,8 +155,6 @@ impl<'a, P: PrimitiveDifference> FiniteCarrier<'a, P> {
             }
         }
 
-        // A reflexive symmetric relation is transitive exactly when the representative
-        // partition has all and only the relation edges inside each class.
         for x in 0..n {
             for z in (x + 1)..n {
                 let same_class = class_of[x] == class_of[z];
@@ -235,8 +168,6 @@ impl<'a, P: PrimitiveDifference> FiniteCarrier<'a, P> {
                     return Err(PrimitiveDifferenceError::ZeroTransitivityFailure { x, y, z });
                 }
 
-                // Choose the earlier class representative. The later endpoint was still
-                // unassigned when that class was formed, so the missing outer edge is known.
                 let (x0, y0, z0) = if class_of[x] < class_of[z] {
                     (reps[class_of[x]], x, z)
                 } else {
@@ -259,21 +190,15 @@ struct ZeroPartition {
     class_of: Vec<usize>,
 }
 
-/// A finite carrier whose `ZeroRel` has been verified an equivalence. Quotient and descent
-/// operations live here; they cannot be reached without that proof.
 pub struct ValidatedFiniteCarrier<'a, P: PrimitiveDifference> {
     diff: &'a P,
     domain: Vec<P::Carrier>,
-    /// Domain indices of the class representatives.
     reps: Vec<usize>,
-    /// Class index for each domain index. Built while validating the zero relation.
     class_of: Vec<usize>,
-    /// Brand identifying this validated carrier (see [`QuotientClass`]).
     carrier_id: u64,
 }
 
 impl<'a, P: PrimitiveDifference> ValidatedFiniteCarrier<'a, P> {
-    /// Validate-and-construct in one step.
     pub fn try_new(diff: &'a P, domain: Vec<P::Carrier>) -> Result<Self, PrimitiveDifferenceError> {
         FiniteCarrier::new(diff, domain).try_validate()
     }
@@ -297,20 +222,14 @@ impl<'a, P: PrimitiveDifference> ValidatedFiniteCarrier<'a, P> {
         }
     }
 
-    /// `ResidualQuotient`: the distinct classes (Lean: `ResidualQuotient`).
     pub fn residual_quotient(&self) -> Vec<QuotientClass> {
         (0..self.reps.len()).map(|ci| self.brand(ci)).collect()
     }
 
-    /// Canonical `classOf` over the validated finite domain: the class of `domain[i]`,
-    /// or `None` if `i` is out of range (Lean: `classOf`, restricted to the domain).
     pub fn class_of_index(&self, i: usize) -> Option<QuotientClass> {
         self.class_of.get(i).copied().map(|class| self.brand(class))
     }
 
-    /// **Diagnostic only** — classifies an arbitrary `Carrier` value by `ZeroRel` to a
-    /// representative. This is NOT the Lean `classOf`: it accepts values outside the
-    /// validated domain, so its result is a convenience read, not a quotient statement.
     pub fn class_of_value_diagnostic(&self, x: &P::Carrier) -> Option<QuotientClass> {
         self.reps
             .iter()
@@ -318,8 +237,6 @@ impl<'a, P: PrimitiveDifference> ValidatedFiniteCarrier<'a, P> {
             .map(|ci| self.brand(ci))
     }
 
-    /// `DeltaCongruent` **on this domain** (Lean: `DeltaCongruent`). First counterexample
-    /// on failure.
     pub fn validate_delta_congruence(
         &self,
     ) -> Result<DeltaCongruenceWitness, PrimitiveDifferenceError> {
@@ -355,21 +272,15 @@ impl<'a, P: PrimitiveDifference> ValidatedFiniteCarrier<'a, P> {
         self.validate_delta_congruence().is_ok()
     }
 
-    /// Finite shadow of `deltaFactor_exists_iff_deltaCongruent`: a factorization exists on
-    /// the domain **iff** `DeltaCongruent` holds on the domain.
     pub fn delta_factors_through_quotient_on_domain(&self) -> bool {
         self.delta_congruent_on_domain()
     }
 
-    /// Access the descended operation `δ̄` — available **only** when `DeltaCongruent` holds.
     pub fn try_delta_factor(&self) -> Result<DeltaFactor<'_, 'a, P>, PrimitiveDifferenceError> {
         let _ = self.validate_delta_congruence()?;
         Ok(DeltaFactor { carrier: self })
     }
 
-    /// An observable `φ : Carrier → G` descends on the domain iff it agrees on every
-    /// zero-related pair (Lean: `InvariantCongruent` /
-    /// `invariantFactor_exists_iff_invariantCongruent`). Diagnostic; mints nothing.
     pub fn observable_descends_on_domain<G, F>(&self, phi: F) -> bool
     where
         G: PartialEq,
@@ -382,9 +293,6 @@ impl<'a, P: PrimitiveDifference> ValidatedFiniteCarrier<'a, P> {
             .all(|(i, value)| value == &values[self.reps[self.class_of[i]]])
     }
 
-    /// The joint observable `(φ, ψ)` descends on the domain iff it agrees on every
-    /// zero-related pair; otherwise the first zero-related witness `(x, y)` is returned
-    /// (Lean: the pair-congruence half of `localGreenGlobalRed_pair_obstruction`).
     pub fn validate_pair_descent_on_domain<G, H, FP, FQ>(
         &self,
         phi: FP,
@@ -414,12 +322,6 @@ impl<'a, P: PrimitiveDifference> ValidatedFiniteCarrier<'a, P> {
         })
     }
 
-    /// Local-green / global-red classification of an observable pair `(φ, ψ)`: whether each
-    /// component descends, whether the pair descends, and a witness zero-related pair on which
-    /// the joint disagrees. `left_descends && !pair_descends` is the thesis case — a component
-    /// is locally green while the joint observation is globally red (Lean:
-    /// `localGreenGlobalRed_pair_obstruction`). Failed-descent evidence only; not Φ₁/Γ₂/
-    /// cohomology/authority.
     pub fn local_green_global_red<G, H, FP, FQ>(
         &self,
         phi: FP,
@@ -462,16 +364,11 @@ impl<'a, P: PrimitiveDifference> ValidatedFiniteCarrier<'a, P> {
     }
 }
 
-/// The descended difference `δ̄ : Quotient × Quotient → B`. Existence is gated on a verified
-/// `DeltaCongruent`, so [`DeltaFactor::apply`] is representative-independent by construction
-/// (Lean: `deltaFactor`). Classes from a different carrier are rejected by the brand check.
 pub struct DeltaFactor<'c, 'a, P: PrimitiveDifference> {
     carrier: &'c ValidatedFiniteCarrier<'a, P>,
 }
 
 impl<'c, 'a, P: PrimitiveDifference> DeltaFactor<'c, 'a, P> {
-    /// `δ̄(qx, qy)` = `δ` on the class representatives. `None` if either class was minted by a
-    /// different carrier (brand mismatch) or its index is out of range.
     pub fn apply(&self, qx: QuotientClass, qy: QuotientClass) -> Option<P::Diff> {
         let id = self.carrier.carrier_id;
         if qx.carrier_id != id || qy.carrier_id != id {
@@ -492,9 +389,6 @@ mod tests {
     use super::*;
     use std::cell::Cell;
 
-    /// `δ(x,_) = x`, `Zero ≡ True` — collapse everything to one class. `ZeroRel` is a valid
-    /// equivalence (total), but `δ` is not congruent, so no factorization exists
-    /// (Lean: `boolAllZeroNonconstant_no_factorization`).
     struct BoolAllZeroNonconstant;
     impl PrimitiveDifference for BoolAllZeroNonconstant {
         type Carrier = bool;
@@ -527,8 +421,6 @@ mod tests {
         }
     }
 
-    /// `δ(x,y) = (x − y) mod 2`, `Zero(d) = (d == 0)`. `ZeroRel` is parity-equality and the
-    /// parity difference descends.
     struct ParityDifference;
     impl PrimitiveDifference for ParityDifference {
         type Carrier = i64;
@@ -548,8 +440,8 @@ mod tests {
         assert_eq!(vc.num_classes(), 2);
         assert!(vc.delta_congruent_on_domain());
         let factor = vc.try_delta_factor().expect("congruent ⇒ factor exists");
-        let c_even = vc.class_of_index(0).unwrap(); // domain[0] = 0
-        let c_odd = vc.class_of_index(1).unwrap(); // domain[1] = 1
+        let c_even = vc.class_of_index(0).unwrap();
+        let c_odd = vc.class_of_index(1).unwrap();
         assert_eq!(factor.apply(c_even, c_odd), Some(1));
     }
 
@@ -558,7 +450,6 @@ mod tests {
         let p = ParityDifference;
         let vc = ValidatedFiniteCarrier::try_new(&p, vec![0, 1, 2, 3]).unwrap();
         let factor = vc.try_delta_factor().unwrap();
-        // class_of_index(0)==(2) (even), (1)==(3) (odd); δ̄ is single-valued on classes.
         assert_eq!(vc.class_of_index(0), vc.class_of_index(2));
         assert_eq!(vc.class_of_index(1), vc.class_of_index(3));
         let a = factor.apply(vc.class_of_index(0).unwrap(), vc.class_of_index(1).unwrap());
@@ -572,7 +463,7 @@ mod tests {
         let vc = ValidatedFiniteCarrier::try_new(&p, vec![0, 1, 2, 3]).unwrap();
         assert!(vc.class_of_index(0).is_some());
         assert!(vc.class_of_index(3).is_some());
-        assert!(vc.class_of_index(4).is_none()); // outside the validated domain
+        assert!(vc.class_of_index(4).is_none());
     }
 
     #[test]
@@ -583,12 +474,9 @@ mod tests {
         assert_ne!(a.carrier_id(), b.carrier_id());
         let fa = a.try_delta_factor().unwrap();
         let class_from_b = b.class_of_index(0).unwrap();
-        // a class minted by carrier b cannot be applied to carrier a's factor.
         assert_eq!(fa.apply(class_from_b, class_from_b), None);
     }
 
-    /// Configurable integer difference for the law-rejection cases: `δ(x,y) = x − y`,
-    /// `Zero` supplied as a function pointer.
     struct IntDiff(fn(i64) -> bool);
     impl PrimitiveDifference for IntDiff {
         type Carrier = i64;
@@ -603,7 +491,7 @@ mod tests {
 
     #[test]
     fn zero_rel_not_reflexive_rejected() {
-        let p = IntDiff(|_d| false); // nothing is zero ⇒ ZeroRel(x,x) false
+        let p = IntDiff(|_d| false);
         assert_eq!(
             ValidatedFiniteCarrier::try_new(&p, vec![0]).err(),
             Some(PrimitiveDifferenceError::ZeroReflexivityFailure { x: 0 })
@@ -612,7 +500,6 @@ mod tests {
 
     #[test]
     fn zero_rel_not_symmetric_rejected() {
-        // zero(0)=true (reflexive), zero(2)=true, zero(-2)=false ⇒ asymmetric.
         let p = IntDiff(|d| d == 0 || d == 2);
         match ValidatedFiniteCarrier::try_new(&p, vec![0, 2]).err() {
             Some(PrimitiveDifferenceError::ZeroSymmetryFailure { .. }) => {}
@@ -622,7 +509,6 @@ mod tests {
 
     #[test]
     fn zero_rel_not_transitive_rejected() {
-        // |d|<=1 is reflexive and symmetric but not transitive (0~1, 1~2, 0≁2).
         let p = IntDiff(|d| d.abs() <= 1);
         let domain = vec![0, 1, 2];
         match ValidatedFiniteCarrier::try_new(&p, domain.clone()).err() {
@@ -647,11 +533,9 @@ mod tests {
 
     #[test]
     fn finite_domain_scope_not_global_claim() {
-        // The SAME PrimitiveDifference yields different quotients on different domains —
-        // results are scoped to the declared domain, not global over `Carrier`.
         let p = ParityDifference;
         let two = ValidatedFiniteCarrier::try_new(&p, vec![0, 1]).unwrap();
-        let one = ValidatedFiniteCarrier::try_new(&p, vec![0, 2]).unwrap(); // both even
+        let one = ValidatedFiniteCarrier::try_new(&p, vec![0, 2]).unwrap();
         assert_eq!(two.num_classes(), 2);
         assert_eq!(one.num_classes(), 1);
     }
@@ -660,9 +544,7 @@ mod tests {
     fn observable_descends_iff_congruent_on_domain() {
         let p = ParityDifference;
         let vc = ValidatedFiniteCarrier::try_new(&p, vec![0, 1, 2, 3]).unwrap();
-        // φ = parity is invariant on parity classes → descends.
         assert!(vc.observable_descends_on_domain(|x: &i64| x.rem_euclid(2)));
-        // ψ = the raw value is NOT invariant (0 ~ 2 yet 0 ≠ 2) → does not descend.
         assert!(!vc.observable_descends_on_domain(|x: &i64| *x));
     }
 
@@ -670,11 +552,10 @@ mod tests {
     fn lggr_local_green_global_red_pair_obstruction() {
         let p = ParityDifference;
         let vc = ValidatedFiniteCarrier::try_new(&p, vec![0, 1, 2, 3]).unwrap();
-        // φ descends (parity), ψ does not (raw value): the pair (φ, ψ) fails to descend.
         let lggr = vc.local_green_global_red(|x: &i64| x.rem_euclid(2), |x: &i64| *x);
-        assert!(lggr.left_descends); // local green: φ descends alone
-        assert!(!lggr.right_descends); // ψ does not descend
-        assert!(!lggr.pair_descends); // global red: the pair does not descend
+        assert!(lggr.left_descends);
+        assert!(!lggr.right_descends);
+        assert!(!lggr.pair_descends);
         assert!(lggr.counterexample.is_some());
         match vc.validate_pair_descent_on_domain(|x: &i64| x.rem_euclid(2), |x: &i64| *x) {
             Err(PrimitiveDifferenceError::PairCongruenceFailure { .. }) => {}
@@ -686,7 +567,6 @@ mod tests {
     fn lggr_both_descend_pair_descends() {
         let p = ParityDifference;
         let vc = ValidatedFiniteCarrier::try_new(&p, vec![0, 1, 2, 3]).unwrap();
-        // both components congruent (parity, and a constant) → the pair descends, no witness.
         let lggr = vc.local_green_global_red(|x: &i64| x.rem_euclid(2), |_x: &i64| 0i64);
         assert!(lggr.left_descends && lggr.right_descends && lggr.pair_descends);
         assert!(lggr.counterexample.is_none());

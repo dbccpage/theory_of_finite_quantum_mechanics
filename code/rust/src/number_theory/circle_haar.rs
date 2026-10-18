@@ -1,6 +1,3 @@
-//! Finite, exact witnesses for the circle bridge. No infinite object is certified.
-//! The dyadic direct limit is Z[1/2]/Z; its metric completion is the circle.
-//! AuthorityEffect: None.
 
 use std::collections::BTreeMap;
 
@@ -11,7 +8,6 @@ use crate::dyadic_presentation::{CharacterSumLimits, DyadicLevel};
 use crate::rational::Rational;
 use crate::rational_turns::RationalTurn;
 
-/// Execution ceiling, independent of the mathematical definition for arbitrary N.
 pub const MAX_GRID_ORDER: usize = 128;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -42,7 +38,6 @@ fn check_order(order: usize) -> Result<(), CircleHaarError> {
     }
 }
 
-/// k -> k/N in Q/Z, represented by the canonical rational turn in [0,1).
 pub fn embedded_turn(order: usize, residue: usize) -> Result<Rational, CircleHaarError> {
     check_order(order)?;
     if residue >= order {
@@ -55,7 +50,6 @@ pub fn embedded_turn(order: usize, residue: usize) -> Result<Rational, CircleHaa
     )
 }
 
-/// The unique specified inclusion k -> (M/N)k when N divides M.
 pub fn refine_residue(n: usize, m: usize, k: usize) -> Result<usize, CircleHaarError> {
     embedded_turn(n, k)?;
     check_order(m)?;
@@ -65,13 +59,11 @@ pub fn refine_residue(n: usize, m: usize, k: usize) -> Result<usize, CircleHaarE
     Ok((m / n) * k)
 }
 
-/// Execute the actual sum of roots of unity, using Q(zeta_N), not an asserted delta.
 pub fn character_average(order: usize, frequency: i64) -> Result<Rational, CircleHaarError> {
     check_order(order)?;
     let convert =
         |e: crate::cyclotomic_field::CyclotomicError| CircleHaarError::Arithmetic(e.to_string());
     if order.is_power_of_two() {
-        // Retain the existing dyadic owner's exact summation and its limits.
         let sum = DyadicLevel::new(order.trailing_zeros())
             .and_then(|level| {
                 level.normalized_inner_product(
@@ -104,8 +96,6 @@ pub fn character_average(order: usize, frequency: i64) -> Result<Rational, Circl
         .ok_or_else(|| CircleHaarError::Arithmetic("normalized sum was not rational".into()))
 }
 
-/// Haar recovery for a finite Laurent polynomial with rational coefficients.
-/// Alias-free N > max |k| implies the result is c_0; smaller N is executed too.
 pub fn polynomial_average(
     order: usize,
     coefficients: &BTreeMap<i64, Rational>,
@@ -125,9 +115,6 @@ pub struct SampleEnclosure {
     pub radius: Rational,
 }
 
-/// Validate an entire finite prefix of exact samples, including seams and refinement.
-/// Each enclosure contains the integral of any common L-Lipschitz extension.
-/// A finite prefix alone does not establish an infinite sampling family.
 pub fn lipschitz_sample_prefix(
     lipschitz: &Rational,
     samples: &[Vec<Rational>],

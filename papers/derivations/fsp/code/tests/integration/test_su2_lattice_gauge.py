@@ -35,8 +35,8 @@ def test_su2_gauge_action_gap():
     g = 1.0
     model = SU2LatticePlaquetteModel(g_coupling=g, theta_angle=math.pi)
 
-    e_q0 = model.evaluate_magnetic_flux_energy(0)  # -2.0 / g^2 = -2.0
-    e_q1 = model.evaluate_magnetic_flux_energy(1)  # +2.0 / g^2 = +2.0
+    e_q0 = model.evaluate_magnetic_flux_energy(0)
+    e_q1 = model.evaluate_magnetic_flux_energy(1)
 
     assert e_q0 == pytest.approx(-2.0)
     assert e_q1 == pytest.approx(2.0)
@@ -55,19 +55,15 @@ def test_su2_topological_flux_disjoint_weight_spectra():
     try:
         receipt = bridge.index_su2_model_paths(model, beta=1.0, model_name="SU2_Theta_Pi")
 
-        # 1. Verify presence of both positive (Q=0) and negative (Q=1) paths
         assert receipt.positive_weight_count > 0
         assert receipt.negative_weight_count > 0
 
-        # 2. Key Discovery: Spectral overlap is empty!
         assert len(receipt.spectral_overlap) == 0
         assert receipt.is_disjoint is True
 
-        # 3. Disjoint weights imply no weight-preserving involution can exist in any basis
         assert receipt.action_gap_delta_s == pytest.approx(4.0)
         assert receipt.uncancelled_defect_mass > 0.0
 
-        # 4. Deterministic routing to SplitBrainRefusal (witnessing Troyer-Wiese complexity)
         assert receipt.terminal_route == "SplitBrainRefusal"
     finally:
         bridge.close()
@@ -81,7 +77,6 @@ def test_su2_zero_theta_sign_free_control():
     try:
         receipt = bridge.index_su2_model_paths(model, beta=1.0, model_name="SU2_Theta_Zero")
 
-        # At theta = 0, all paths have parity +1
         assert receipt.negative_weight_count == 0
         assert receipt.positive_weight_count > 0
         assert receipt.uncancelled_defect_mass == 0.0
@@ -98,7 +93,6 @@ def test_su2_gin_posting_list_mode_resolution():
     try:
         bridge.index_su2_model_paths(model, beta=1.0, model_name="SU2_Posting_Audit")
 
-        # Modes 1..8 must have non-empty posting lists
         assert len(bridge.posting_index) > 0
         for m in range(1, 9):
             assert len(bridge.posting_index[m]) > 0

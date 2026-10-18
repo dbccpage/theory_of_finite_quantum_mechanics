@@ -1,8 +1,3 @@
-//! Campaign module derivation_closure.
-//!
-//! Differentiation on polynomials of degree at most 3. Leibniz's rule is
-//! checked on a product, and the fourth derivative of a cubic is zero both
-//! by iterating the derivative and by the degree drop.
 
 pub fn verify() -> Result<Vec<i64>, &'static str> {
     let left = vec![1i64, 0, 1];

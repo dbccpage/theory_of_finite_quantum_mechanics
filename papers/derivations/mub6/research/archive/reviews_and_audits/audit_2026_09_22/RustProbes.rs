@@ -1,5 +1,3 @@
-// Adversarial audit inputs, not a certificate. AuthorityEffect: None.
-// stated region only; mints no authority
 use omega_mub::omega_native::l1_discrete_solver::network_simplex::{Arc, NetworkSimplex};
 use omega_mub::omega_native::mub6_smale_sentry::{
     krawczyk_contractor, rat, QuadraticComponent, RationalInterval, RationalIntervalBox,
@@ -7,7 +5,6 @@ use omega_mub::omega_native::mub6_smale_sentry::{
 };
 
 fn main() {
-    // f(x) = x^2 - 1 has the exact root 1 inside X = [9/10, 11/10].
     let system = SquarePolynomialSystem::new(vec![QuadraticComponent::new(
         rat(-1, 1),
         vec![rat(0, 1)],
@@ -38,7 +35,6 @@ fn main() {
     assert_eq!(bounded.flow[0], 1);
     println!("UPPER_BOUND_IGNORED: capacity=0, returned flow=1");
 
-    // Debug builds panic instead of returning the existing ArithmeticOverflow error.
     let overflow = std::panic::catch_unwind(|| {
         let solver = NetworkSimplex::new(3, vec![], vec![i128::MAX, 1, i128::MIN]);
         solver.check_balanced_demand()

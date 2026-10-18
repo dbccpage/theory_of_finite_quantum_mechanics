@@ -1,6 +1,3 @@
-//! Applications: OEAS Applied Workflow Operad.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::HashSet;
 use serde::{Deserialize, Serialize};
@@ -21,7 +18,6 @@ pub const OEAS_ADMITTED_PORT_COLOURS: &[&str] = &[
     "EvaluationReceipt",
 ];
 
-/// Agent capability slice restricting an interpreter to permitted skill generators.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AgentCapabilitySlice {
     pub agent_id: String,
@@ -50,7 +46,6 @@ impl AgentCapabilitySlice {
     }
 }
 
-/// Applied workflow operad typing all skill generators and planar workflow trees.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OEASWorkflowOperad {
     pub operad: PlanarColoredOperad,

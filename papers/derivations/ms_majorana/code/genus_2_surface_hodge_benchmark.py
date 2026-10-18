@@ -12,7 +12,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 import numpy as np
 
-# Ensure code directory is in sys.path
 code_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path(".")
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -65,7 +64,6 @@ def build_genus_2_double_torus_complex() -> Network:
     def n2(r: int, c: int) -> int:
         return grid_size * grid_size + (r % grid_size) * grid_size + (c % grid_size)
 
-    # Torus 1
     for r in range(grid_size):
         for c in range(grid_size):
             u = n1(r, c)
@@ -80,7 +78,6 @@ def build_genus_2_double_torus_complex() -> Network:
             faces.append((u, vr, vd))
             faces.append((u, vd, vu))
 
-    # Torus 2
     for r in range(grid_size):
         for c in range(grid_size):
             u = n2(r, c)
@@ -95,7 +92,6 @@ def build_genus_2_double_torus_complex() -> Network:
             faces.append((u, vr, vd))
             faces.append((u, vd, vu))
 
-    # Genus-2 connecting neck tubes (4 inter-torus coupling edges & 4 triangular faces)
     for c in range(2):
         u1 = n1(0, c)
         v1 = n1(0, c + 1)
@@ -122,18 +118,14 @@ def benchmark_genus_2_hodge_laplacian() -> Genus2HodgeReceipt:
     d0, _ = build_incidence(g2_net)
     d1 = build_face_boundary(g2_net)
 
-    # 1-cochain Hodge Laplacian Delta_1 = d0 @ d0^T + d1 @ d1^T
     delta_1 = d0 @ d0.T + d1 @ d1.T
 
-    # Compute eigenvalues (symmetric positive semi-definite matrix)
     eigvals = np.linalg.eigvalsh(delta_1)
     eigvals_sorted = np.sort(eigvals)
 
-    # Count zero eigenvalues (tolerance 1e-4)
     zero_eigs = [ev for ev in eigvals_sorted if abs(ev) < 1e-4]
     num_zero_eigs = len(zero_eigs)
 
-    # Hodge spectral gap lambda_5
     spectral_gap = float(eigvals_sorted[4]) if len(eigvals_sorted) >= 5 else 0.0
 
     t1 = time.perf_counter()

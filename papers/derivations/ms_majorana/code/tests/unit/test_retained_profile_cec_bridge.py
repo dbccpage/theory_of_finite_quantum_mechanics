@@ -307,8 +307,6 @@ def test_cec_refuses_a_noncommuting_old_transition() -> None:
 def test_cec_preserves_external_all_pairs_policy_demands() -> None:
     problem = _problem(protected=(), closure_policy=ClosurePolicy.EXTERNAL_ALL_PAIRS)
     packet = _cec_packet(problem)
-    # The helper child has explicit protection for only the target pair. It is
-    # not allowed to erase the parent's externally declared all-pairs policy.
     receipt = evaluate_cec_child_packet(packet)
     assert not receipt.accepted
     assert dict(receipt.checks)["protected_preserved"] is False
@@ -687,7 +685,7 @@ def test_digest_and_terminal_type_substitution_cannot_change_controller_result()
         )
         assert type(cec_result) is ConservativeExtensionProposal
         assert len(cec_result.evaluations) == 2
-        refusal = terminalize_declared_search(problem, [], (), _complete())  # type: ignore[arg-type]
+        refusal = terminalize_declared_search(problem, [], (), _complete())
         assert type(refusal) is TypedRefusal
         assert type(refusal.code) is RefusalCode
     finally:
@@ -833,7 +831,7 @@ def test_terminal_eliminator_rejects_lookalikes() -> None:
     with pytest.raises(BridgeError):
         SameLevelRepair(())
     with pytest.raises(BridgeError):
-        terminal_kind(("SameLevelRepair",))  # type: ignore[arg-type]
+        terminal_kind(("SameLevelRepair",))
 
 
 def test_public_replay_and_terminalizer_expose_no_truth_function_hooks() -> None:
@@ -851,11 +849,11 @@ def test_public_replay_and_terminalizer_expose_no_truth_function_hooks() -> None
     packet = _cec_packet(problem)
     receipt = evaluate_cec_child_packet(packet)
     with pytest.raises(TypeError):
-        replay_cec_child_packet(  # type: ignore[call-arg]
+        replay_cec_child_packet(
             packet, receipt, _admission_oracle=lambda _: (("forged", True),)
         )
     with pytest.raises(TypeError):
-        terminalize_declared_search(  # type: ignore[call-arg]
+        terminalize_declared_search(
             problem,
             (),
             (packet,),
@@ -905,8 +903,6 @@ def test_demand_orbits_transport_under_pr2_renaming_fixture() -> None:
         (("0", "1"),),
         (("2", "3"),),
     }
-    # Raw least-pair selection returns the same tuple in both presentations,
-    # but the selected pair has opposite observer meaning under the renaming.
     source_least = min(obstruction.pair for obstruction in active_obstructions(source))
     target_least = min(obstruction.pair for obstruction in active_obstructions(target))
     assert source_least == target_least == ("0", "1")
@@ -976,7 +972,7 @@ def test_exact_runtime_types_and_authority_are_enforced() -> None:
             authority_effect=StringAlias("None"),
         )
     with pytest.raises(BridgeError):
-        SearchExhaustionV1(1, True, (), ())  # type: ignore[arg-type]
+        SearchExhaustionV1(1, True, (), ())
     with pytest.raises(BridgeError):
         RetainedDiffV1("s1", "s0", "wrong-order")
 

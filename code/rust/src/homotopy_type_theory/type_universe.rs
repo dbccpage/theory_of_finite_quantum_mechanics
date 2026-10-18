@@ -1,12 +1,7 @@
-//! Finite universe-level record for HoTT type formers.
-//!
-//! Structural only: records a universe level and name; not a cumulative
-//! hierarchy kernel.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// A named universe level `U_n`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TypeUniverse {
     pub level: u32,
@@ -14,10 +9,6 @@ pub struct TypeUniverse {
 }
 
 impl TypeUniverse {
-    /// Validate structural well-formedness: name must be non-empty.
-    ///
-    /// `level` is always a valid `u32`; no further range restriction is imposed
-    /// at this record layer.
     pub fn validate(&self) -> Result<(), TypeUniverseError> {
         if self.name.is_empty() {
             return Err(TypeUniverseError::EmptyName);

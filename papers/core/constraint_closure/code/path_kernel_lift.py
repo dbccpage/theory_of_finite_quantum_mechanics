@@ -35,7 +35,6 @@ from regge_alpha_wall import (
     w_obstruction_removal,
 )
 
-# --- FOC-012 evaluators and kernels (finite, no phase) ---
 
 
 def delta_eval(e1: int, e2: int, eg: int) -> int:
@@ -139,7 +138,6 @@ def g3_fail_local_green_global_red() -> dict[str, Any]:
     }
 
 
-# --- hex geodesics: unique on axes, many off-axis ---
 
 
 def hex_shortest_path_count(q: int, r: int) -> int:
@@ -155,7 +153,6 @@ def hex_shortest_path_count(q: int, r: int) -> int:
     n = max(ax, ay, az)
     if n == 0:
         return 1
-    # Two smaller cube-abs values sum to n. Interleave: C(n, smaller).
     others = sorted((ax, ay, az))
     return math.comb(n, others[0])
 
@@ -199,7 +196,6 @@ def hex_shell_paths(radius: int) -> dict[str, Any]:
     }
 
 
-# --- PO-011 χ=1 product vs two-site n_e ---
 
 
 def one_local_stays_chi1() -> dict[str, Any]:
@@ -275,7 +271,6 @@ def declared_face_two_site_fixture() -> dict[str, Any]:
     }
 
 
-# --- local green / global red on the hex wall ---
 
 
 def local_green_global_red_hex(radius: int) -> dict[str, Any]:
@@ -299,7 +294,6 @@ def local_green_global_red_hex(radius: int) -> dict[str, Any]:
             interior_red += 1
     n_interior = interior_green + interior_red
     e_local_product = 1 if interior_red == 0 else 0
-    # This is a declared evaluator question, not a QED calculation.
     e_g_alpha = 0
     d = delta_eval(e_local_product, 1, e_g_alpha)
     units = hex_wall_deficit_units(radius)

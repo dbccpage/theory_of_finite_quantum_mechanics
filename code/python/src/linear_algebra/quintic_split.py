@@ -347,7 +347,6 @@ class SplittingAlgebra:
         }
 
     def mul(self, left: Element, right: Element) -> Element:
-        # First combine equal exponent sums, then reduce once per monomial.
         raw: Monomial = {}
         for left_index, left_value in left.items():
             for right_index, right_value in right.items():
@@ -664,7 +663,6 @@ def _require_fixed_basis(
 
 
 def _require_kernel(algebra: SplittingAlgebra, span: Span, generators: list[tuple[int, ...]], dimension: int, ambient: list[Element] | None) -> None:
-    # Compare subspaces, not a preferred basis. This independently recounts the kernel.
     actual = algebra.fixed_basis(generators, ambient)
     if len(actual) != dimension:
         raise _fail("quintic_degree: exact invariant kernel dimension differs")

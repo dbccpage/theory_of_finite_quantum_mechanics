@@ -40,7 +40,6 @@ class GraphColoringCohomology:
         self.k = num_colors
         self.num_edges = len(edges)
 
-        # Incidence matrix d0: vertices -> edges
         self.d0 = np.zeros((self.num_edges, self.n), dtype=float)
         for idx, (u, v) in enumerate(edges):
             self.d0[idx, u] = -1.0
@@ -50,7 +49,6 @@ class GraphColoringCohomology:
         """Compute edge 1-cochain discrepancy for a candidate assignment."""
         w = np.zeros(self.num_edges, dtype=float)
         for idx, (u, v) in enumerate(self.edges):
-            # Non-zero discrepancy if colors match (conflict)
             if assignment[u] == assignment[v]:
                 w[idx] = 1.0
         return w
@@ -100,7 +98,6 @@ class GraphColoringCohomology:
         if np.allclose(w, 0.0):
             return False
 
-        # Project w onto im(d0)
         u, s, vh = np.linalg.svd(self.d0, full_matrices=False)
         rank = np.sum(s > 1e-10)
         if rank > 0:

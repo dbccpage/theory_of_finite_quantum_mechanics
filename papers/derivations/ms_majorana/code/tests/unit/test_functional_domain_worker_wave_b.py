@@ -19,9 +19,8 @@ from omega_engine.crates.runtime.rt_functional_domain_worker import (
 from omega_engine.crates.type.engine_io import DomainWorkerInput
 
 
-# STUB_MIRROR import paths that Wave B workers must not use.
 _FORBIDDEN_IMPORT_SUBSTRINGS = (
-    "linear_algebra.gram_schmidt",  # use gram_schmidt_proto only
+    "linear_algebra.gram_schmidt",
     "functional._rust_lib_surface",
     "search.search_mcts",
 )
@@ -108,7 +107,6 @@ def test_residual_l1_refuses_inf_and_bad_tol() -> None:
 
 def test_gamma2_closed() -> None:
     w = FunctionalDomainWorker()
-    # d1 = [[1, -1]] maps h=[1,1] -> [0]
     out = w.run(
         DomainWorkerInput(
             task_id="g0",
@@ -163,7 +161,7 @@ def test_gamma2_indeterminate_not_solved() -> None:
     )
     assert out.status == "INDETERMINATE"
     assert out.result["closure_status"] == "IndeterminateWithinTolerance"
-    assert out.result["is_closed"] is True  # tol-admitted, not algebraic closed
+    assert out.result["is_closed"] is True
     assert 0.0 < out.result["gamma2"] <= 1e-9
     assert out.status != "SOLVED"
 
@@ -220,7 +218,6 @@ def test_gamma2_fractional_dims_refused() -> None:
 def test_incidence_residual_exact_repair() -> None:
     """omega1 - d0 alpha = 0 when omega1 is exact coboundary."""
     w = FunctionalDomainWorker()
-    # path graph 0-1-2: edges (0,1),(1,2); alpha=[0,1,3] => d0 a = [1,2]
     out = w.run(
         DomainWorkerInput(
             task_id="inc1",
@@ -451,7 +448,6 @@ def test_worker_source_forbids_stub_mirror_imports() -> None:
         assert not any(bad in m for m in imported), (
             f"Wave B must not import STUB_MIRROR path: {bad}; got {imported}"
         )
-    # No DIY residual mass
     assert "sum(abs" not in text
     assert "from omega_engine.crates.functional.phi1 import residual_l1" in text
     assert "from omega_engine.crates.functional.gamma2 import gamma2" in text or (
@@ -469,8 +465,7 @@ def test_linear_algebra_worker_still_avoids_stub_gram_schmidt() -> None:
 
 
 def test_epic_002_tombstone_exists() -> None:
-    root = Path(__file__).resolve().parents[4]  # repo root via .../ooutwire_docs/../../..
-    # worktree-safe: walk up from this test file to find master_plans
+    root = Path(__file__).resolve().parents[4]
     here = Path(__file__).resolve()
     candidates = []
     for p in here.parents:

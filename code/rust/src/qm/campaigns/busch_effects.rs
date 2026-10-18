@@ -1,4 +1,3 @@
-//! Bounded Busch recovery experiments and countermodel reports.
 use omega_number_theory::cyclotomic_ordered::{
     CyclotomicRealRoot, FieldElementF, FieldElementFPlus,
 };
@@ -207,9 +206,6 @@ pub fn run_all_recovery_combinations() -> Vec<StateRecoveryReport> {
     results
 }
 
-// ---------------------------------------------------------------------------
-// Section 9: Countermodels
-// ---------------------------------------------------------------------------
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct D2CountermodelReport {
@@ -271,9 +267,6 @@ pub fn d2_projective_countermodel_evaluation(conductor: usize) -> D2Countermodel
     let e2_valid = e2.is_effect(&mut embedding);
     let sum_valid = e_sum.is_effect(&mut embedding);
 
-    // Homogeneous extension of the cubic qubit frame function:
-    // g(E)=t/2 + z^3/(2t^2), t=Tr E, z=E00-E11. For a rank-one
-    // projector this equals (1+n_z^3)/2; antipodal projectors sum to one.
     let cubic_extension = |e: &HermitianMatrix| {
         let t = e
             .trace()
@@ -540,9 +533,6 @@ pub fn bounded_effect_algebraic_search(
     })
 }
 
-// ---------------------------------------------------------------------------
-// Unit Tests
-// ---------------------------------------------------------------------------
 
 #[cfg(test)]
 mod tests {

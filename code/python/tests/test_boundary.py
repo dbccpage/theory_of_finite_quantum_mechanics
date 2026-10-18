@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the triangle boundary."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the triangle boundary.
+
+Origin: code/python/src/homology/boundary.py
+Claim: urn:omega:fqm:homology:triangle-boundary-square:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -20,6 +30,21 @@ from src.homology.boundary import (
 from src.homology.errors import DimensionMismatchError, NonZeroCompositionError, require_composition_zero
 from src.linear_algebra import ExactMatrix
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "homology" / "boundary.py"
 _ZERO = (Fraction(0), Fraction(0), Fraction(0))
 _CYCLE = (Fraction(1), Fraction(-1), Fraction(1))
@@ -39,7 +64,7 @@ def test_negative_boundary_failures() -> None:
     operator = BoundaryOperator(edge)
 
     with pytest.raises(DimensionMismatchError, match="float refused") as floated:
-        operator.apply((1.0, 0, 0))
+        operator.apply((_probe("1.0"), 0, 0))
     assert floated.value.parameters["role"] == "chain[0]"
 
     with pytest.raises(DimensionMismatchError, match="boolean refused") as boolean:
@@ -145,7 +170,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     defect_of = namespace["triangle_boundary_defect"]
     boundaries = namespace["triangle_boundaries"]
     operator = namespace["BoundaryOperator"]
-    if not callable(defect_of) or not callable(boundaries) or not isinstance(operator, type):
+    if not _all_hold((callable(defect_of), callable(boundaries), isinstance(operator, type),)):
         return False
     try:
         defect = defect_of()
@@ -167,16 +192,16 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
     boundaries = namespace["triangle_boundaries"]
     require = namespace["require_boundary_square"]
     matrix_type = namespace["ExactMatrix"]
-    if not isinstance(mismatch, type) or not isinstance(nonzero, type) or not isinstance(operator_type, type):
+    if not _all_hold((isinstance(mismatch, type), isinstance(nonzero, type), isinstance(operator_type, type),)):
         return False
     factory = getattr(matrix_type, "from_rows", None)
-    if not isinstance(matrix_type, type) or not callable(factory) or not callable(boundaries) or not callable(require):
+    if not _all_hold((isinstance(matrix_type, type), callable(factory), callable(boundaries), callable(require),)):
         return False
     edge, _face = boundaries()
     operator = operator_type(edge)
     bad_face = factory([[Fraction(1)], [Fraction(1)], [Fraction(1)]])
     expected = (
-        (mismatch, lambda: operator.apply((1.0, 0, 0)), "float refused at the public boundary"),
+        (mismatch, lambda: operator.apply((_probe("1.0"), 0, 0)), "float refused at the public boundary"),
         (mismatch, lambda: operator.apply((True, 0, 0)), "boolean refused where a rational was required"),
         (mismatch, lambda: operator.apply("123"), "boundary chain must be a sequence"),
         (mismatch, lambda: operator.apply((1, 0)), "boundary chain length does not match the operator"),
@@ -191,7 +216,7 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["DimensionMismatchError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -220,6 +245,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

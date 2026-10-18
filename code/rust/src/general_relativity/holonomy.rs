@@ -1,8 +1,3 @@
-//! Non-abelian discrete loop holonomy engine over exact quaternions / rational matrices.
-//!
-//! Origin: papers/derivations/general_relativity/rust/src/holonomy.rs
-//! Claim: DERIV-GR-HOLO-001
-//! AuthorityEffect: None.
 
 use num_rational::Ratio;
 use num_traits::{One, Zero};
@@ -15,7 +10,6 @@ pub enum HolonomyError {
     SingularElement,
 }
 
-/// A rational quaternion q = a + b*i + c*j + d*k representing an SU(2) / Spin(3) element.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RationalQuaternion {
     pub a: Ratio<i64>,
@@ -56,7 +50,6 @@ impl RationalQuaternion {
     }
 }
 
-/// Computes the path-ordered non-abelian holonomy along a list of quaternionic transports.
 pub fn compute_path_ordered_holonomy(transports: &[RationalQuaternion]) -> Result<RationalQuaternion, HolonomyError> {
     if transports.is_empty() {
         return Err(HolonomyError::EmptyLoop);

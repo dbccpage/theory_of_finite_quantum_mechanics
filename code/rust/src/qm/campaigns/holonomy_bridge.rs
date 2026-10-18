@@ -1,8 +1,3 @@
-//! Campaign module holonomy_bridge.
-//!
-//! The modular generators `S` and `T` satisfy `S² = -I` and `(ST)³ = -I`.
-//! Each identity is a matrix product, and `S⁴` is the identity by squaring
-//! `S²` a second time.
 
 pub fn verify() -> Result<[[i64; 2]; 2], &'static str> {
     let s = [[0i64, -1], [1, 0]];

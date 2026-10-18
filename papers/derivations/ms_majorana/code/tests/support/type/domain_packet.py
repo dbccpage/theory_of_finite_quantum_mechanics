@@ -110,7 +110,6 @@ class DomainPacket(Generic[THeader, TPayload]):
         return str(p)
 
 
-# Concrete Typed Domain Packets
 
 @dataclass(frozen=True)
 class SymbolGamePayload:
@@ -161,15 +160,15 @@ class ResidualPacket(DomainPacket[DomainPacketHeader, ResidualPayload]):
 class ObserverPayload:
     """Minimal 9-tuple Observer: O = (K, F, R, delta, d0, d1, J, M, tau)."""
     observer_id: str
-    carrier_k: List[str] = field(default_factory=list)                     # K: finite carrier
-    local_state_spaces_f: Dict[str, Any] = field(default_factory=dict)     # F: local state spaces
-    comparison_relation_r: List[Tuple[str, str]] = field(default_factory=list) # R: comparison relation
-    delta_defect_map: Dict[str, float] = field(default_factory=dict)       # delta: defect operator
-    d0_admissible_repair: List[str] = field(default_factory=list)          # d0: local repair / gauge shift
-    d1_closure_operator: str = "coboundary_d1"                             # d1: closure check
-    gauge_norm_j: str = "L1_defect_norm"                                  # J: measuring ruler / norm
-    transformation_class_m: str = "EquivariantMorphisms"                   # M: compatible transformation class
-    terminalizer_tau: str = "PASS_TO_MASTER"                               # tau: terminal status rule
+    carrier_k: List[str] = field(default_factory=list)
+    local_state_spaces_f: Dict[str, Any] = field(default_factory=dict)
+    comparison_relation_r: List[Tuple[str, str]] = field(default_factory=list)
+    delta_defect_map: Dict[str, float] = field(default_factory=dict)
+    d0_admissible_repair: List[str] = field(default_factory=list)
+    d1_closure_operator: str = "coboundary_d1"
+    gauge_norm_j: str = "L1_defect_norm"
+    transformation_class_m: str = "EquivariantMorphisms"
+    terminalizer_tau: str = "PASS_TO_MASTER"
     measurement_operator: str = ""
     probe_fields: List[str] = field(default_factory=list)
     observed_values: Dict[str, float] = field(default_factory=dict)

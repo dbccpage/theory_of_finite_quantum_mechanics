@@ -1,36 +1,3 @@
-//! Epistemic observer kernel for the companion note `WDP-DOC-EPIS-NOGO-001`.
-//!
-//! This module is a thin terminalising layer over
-//! [`crate::empirical_presheaf`], which owns the empirical model, the support
-//! presheaf, the descent bridge and the exact LP receipts. What is added here:
-//!
-//! - [`evaluate_epistemic_contextuality`]: one call that takes an empirical
-//!   model over a cover and returns either a verified global section (a joint
-//!   distribution marginalising exactly to every table) or a typed
-//!   [`ContextualObstruction`] carrying its witness: the `Z_2` parity cut when
-//!   the model is of parity type (the finite form of the
-//!   Abramsky–Mansfield–Barbosa obstruction, WDP §15.5), the unextendable
-//!   local section for logical contextuality, and the exact L1 dual witness
-//!   for probabilistic contextuality. Every witness is re-verified here before
-//!   it is reported.
-//! - [`nerve_h1_dimension`]: the first rational Čech cohomology of the cover's
-//!   nerve, reported as a *cover invariant*. It is the same for every model on
-//!   the same cover, contextual or not, and is exposed so that it cannot be
-//!   mistaken for a contextuality witness.
-//! - [`parity_analysis`]: `F_2` Gaussian elimination over the parity
-//!   constraints of an arbitrary cover, generalising
-//!   [`crate::empirical_presheaf::ParityCycle`] from cycles to any cover.
-//! - [`EpistemicObserver`]: the WDP observer 5-tuple `(K, Adm, ||.||, Term, L)`
-//!   with an explicit boundary projection whose private fibre dimension is
-//!   `state_dim - boundary_dim`, a terminaliser, and an append-only SHA-256
-//!   hash-chained ledger of receipts.
-//!
-//! What is decided here is decided by enumeration and exact linear
-//! programming, never by cohomology. A pivot budget that runs out is a typed
-//! refusal, not a verdict.
-//!
-//! AuthorityEffect: None. Every verdict is diagnostic; nothing here admits,
-//! promotes or authorises anything.
 
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
@@ -46,8 +13,6 @@ use crate::empirical_presheaf::{
 };
 use crate::open_set::OpenSet;
 
-/// Canonical coprime string form of an exact rational (`p/q`, or `p` when
-/// the denominator is one), the repository's JSON wire form.
 pub fn rational_string(value: &Q) -> String {
     let value = value.reduced();
     if value.denom().is_one_value() {
@@ -66,7 +31,6 @@ impl IsOneValue for num_bigint::BigInt {
     }
 }
 
-/// Parse the canonical string form back into an exact rational.
 pub fn parse_rational(text: &str) -> Option<Q> {
     let (n, d) = match text.split_once('/') {
         Some((n, d)) => (n, d),
@@ -80,12 +44,7 @@ pub fn parse_rational(text: &str) -> Option<Q> {
     Some(Q::new(n, d))
 }
 
-// ---------------------------------------------------------------------------
-// Building a model from context tables
-// ---------------------------------------------------------------------------
 
-/// One row of a context table: the context index, the joint outcome in the
-/// context's own measurement order, and its exact probability.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TableRow {
     pub context: usize,
@@ -93,16 +52,13 @@ pub struct TableRow {
     pub p: Q,
 }
 
-/// Typed refusals of this kernel. None is a verdict about the model.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum EpistemicError {
     Empirical(EmpiricalError),
-    /// The tables are not compatible on an overlap: no presheaf, no verdict.
     Signalling(SignallingWitness),
     RowShape { context: usize },
     DuplicateRow { context: usize, outcome: Vec<usize> },
     Cech(String),
-    /// A receipt of the LP layer failed exact re-verification.
     WitnessRejected(String),
 }
 
@@ -118,9 +74,6 @@ impl From<EmpiricalError> for EpistemicError {
     }
 }
 
-/// Build an [`EmpiricalModel`] from sparse context tables. Missing rows are
-/// zero. Normalisation and non-negativity are checked by the model
-/// constructor; no-signalling is checked by [`evaluate_epistemic_contextuality`].
 pub fn model_from_rows(
     arities: Vec<usize>,
     contexts: Vec<Vec<usize>>,
@@ -153,28 +106,19 @@ pub fn model_from_rows(
     Ok(EmpiricalModel::new(scenario, distributions)?)
 }
 
-// ---------------------------------------------------------------------------
-// Parity cut (WDP §15.5) on an arbitrary cover
-// ---------------------------------------------------------------------------
 
-/// A subset of contexts whose parity constraints sum to `0 = 1` over `F_2`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ParityCut {
     pub contexts: Vec<usize>,
 }
 
-/// Outcome of the parity analysis.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ParityStatus {
-    /// Some context's support is not a parity hyperplane; no cut is defined.
     NotParityModel { context: usize },
-    /// The parity system is solvable; one solution is given.
     Consistent { solution: Vec<usize> },
-    /// The parity system is inconsistent; the cut witnesses it.
     Cut(ParityCut),
 }
 
-/// If the support of binary context `c` is `{x : xor(x) = p}`, return `p`.
 fn parity_of_support(model: &EmpiricalModel, c: usize) -> Result<Option<u8>, EmpiricalError> {
     let scenario = model.scenario();
     let context = &scenario.contexts()[c];
@@ -202,9 +146,6 @@ fn bits(mask: u64) -> Vec<usize> {
     (0..64).filter(|&i| mask & (1u64 << i) != 0).collect()
 }
 
-/// Gaussian elimination over `F_2` of the parity constraints of all maximal
-/// contexts. Each row carries the set of original contexts it is a sum of,
-/// so an inconsistent row names its cut.
 fn context_symdiff(left: &BTreeSet<usize>, right: &BTreeSet<usize>) -> BTreeSet<usize> {
     left.symmetric_difference(right).copied().collect()
 }
@@ -254,11 +195,7 @@ pub fn parity_analysis(model: &EmpiricalModel) -> Result<ParityStatus, Epistemic
     Ok(ParityStatus::Consistent { solution })
 }
 
-// ---------------------------------------------------------------------------
-// Nerve cohomology: a cover invariant
-// ---------------------------------------------------------------------------
 
-/// `dim_Q H^1` of the nerve of the cover. It depends on the cover only.
 pub fn nerve_h1_dimension(model: &EmpiricalModel) -> Result<usize, EpistemicError> {
     let cover: Vec<OpenSet> = model
         .scenario()
@@ -270,45 +207,32 @@ pub fn nerve_h1_dimension(model: &EmpiricalModel) -> Result<usize, EpistemicErro
     Ok(result.dim_h1)
 }
 
-// ---------------------------------------------------------------------------
-// Verdicts
-// ---------------------------------------------------------------------------
 
-/// A supported local section that extends to no global assignment.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LocalSection {
     pub context: usize,
     pub outcome: Vec<usize>,
 }
 
-/// A verified joint distribution over the global assignments (index order of
-/// [`Scenario::assignment_of`] on all measurements).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GlobalSection {
     pub joint: Vec<Q>,
     pub nerve_h1_dim: usize,
 }
 
-/// An obstruction to a global section, with its witness.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ContextualObstruction {
-    /// No global assignment is supported: every descent fibre over the cover
-    /// is `NoGlobalExtension`.
     Strong {
         descent: DescentSummary,
-        /// The `Z_2` cut when the model is of parity type.
         cocycle_class: Option<ParityCut>,
         nerve_h1_dim: usize,
         lp_dual_witness: L1DefectReceipt,
     },
-    /// Some supported local section extends to no global assignment.
     Logical {
         unextendable: LocalSection,
         nerve_h1_dim: usize,
         lp_dual_witness: L1DefectReceipt,
     },
-    /// Every support extends, but no joint distribution exists: the L1
-    /// distance from the noncontextual polytope is positive.
     Probabilistic { lp_dual_witness: L1DefectReceipt, nerve_h1_dim: usize },
 }
 
@@ -336,7 +260,6 @@ impl ContextualObstruction {
     }
 }
 
-/// The two outcomes of a decided evaluation.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ContextualityVerdict {
     GlobalSection(GlobalSection),
@@ -344,7 +267,6 @@ pub enum ContextualityVerdict {
 }
 
 impl ContextualityVerdict {
-    /// The shape the specification asks for.
     pub fn into_result(self) -> Result<GlobalSection, ContextualObstruction> {
         match self {
             ContextualityVerdict::GlobalSection(g) => Ok(g),
@@ -364,7 +286,6 @@ impl ContextualityVerdict {
         }
     }
 
-    /// JSON with every rational in canonical string form.
     pub fn to_json(&self) -> serde_json::Value {
         use serde_json::{json, Value};
         let qs = |v: &[Q]| Value::Array(v.iter().map(|x| Value::String(rational_string(x))).collect());
@@ -402,8 +323,6 @@ impl ContextualityVerdict {
     }
 }
 
-/// Exact check that a joint distribution over global assignments
-/// marginalises to every table of the model.
 pub fn verify_joint(model: &EmpiricalModel, joint: &[Q]) -> Result<(), EpistemicError> {
     let scenario = model.scenario();
     let all = scenario.all_positions();
@@ -432,14 +351,6 @@ pub fn verify_joint(model: &EmpiricalModel, joint: &[Q]) -> Result<(), Epistemic
     Ok(())
 }
 
-/// Decide contextuality exactly and report the witness.
-///
-/// Order of decision: signalling is refused; the exact L1 defect receipt is
-/// obtained and replayed; an empty global support is `Strong` (with the
-/// parity cut when defined); an unextendable supported section is `Logical`;
-/// a positive defect with full extendability is `Probabilistic`; a zero
-/// defect yields the LP's primal minimiser, re-verified here as a joint
-/// distribution, as the global section.
 pub fn evaluate_epistemic_contextuality(
     model: &EmpiricalModel,
     pivots: usize,
@@ -504,12 +415,7 @@ pub fn evaluate_epistemic_contextuality(
     Ok(ContextualityVerdict::GlobalSection(GlobalSection { joint, nerve_h1_dim }))
 }
 
-// ---------------------------------------------------------------------------
-// The observer 5-tuple with an explicit private fibre
-// ---------------------------------------------------------------------------
 
-/// Declared boundary projection `pi : X -> Y` by dimensions. The private
-/// fibre `ker pi` has dimension `state_dim - boundary_dim`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BoundaryProjection {
     pub state_dim: usize,
@@ -522,18 +428,13 @@ impl BoundaryProjection {
     }
 }
 
-/// Terminal verdicts of the observer's terminaliser.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Terminal {
-    /// A global section was exhibited and verified for this cover.
     Admitted,
-    /// An obstruction was witnessed; the kind names which.
     Refused { kind: String },
-    /// The kernel refused to decide (signalling, budget, replay failure).
     LiftRequired { reason: String },
 }
 
-/// One ledger entry: hash-chained receipt of a terminalised evaluation.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LedgerEntry {
     pub index: usize,
@@ -547,17 +448,11 @@ pub struct LedgerEntry {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ObserverError {
     BoundaryLargerThanState { state_dim: usize, boundary_dim: usize },
-    /// Postulate P2 of the note: the private fibre must be non-trivial.
     TrivialPrivateFiber,
     EmptyCarrier,
     Undeclared(EmpiricalError),
 }
 
-/// The observer 5-tuple `(K, Adm, ||.||, Term, L)` with its boundary
-/// projection. The five declared components are the companion module's
-/// [`ObserverTuple`]; `K` is additionally bound to a concrete carrier of
-/// measurement arities, `Term` is implemented by
-/// [`EpistemicObserver::terminalize`], and `L` is the hash-chained ledger.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EpistemicObserver {
     pub name: String,
@@ -590,7 +485,6 @@ impl EpistemicObserver {
         Ok(Self { name: name.into(), tuple, carrier_arities, boundary, ledger: Vec::new() })
     }
 
-    /// Every output of this kernel is diagnostic.
     pub fn authority_effect(&self) -> &'static str {
         AUTHORITY_EFFECT
     }
@@ -599,15 +493,12 @@ impl EpistemicObserver {
         self.boundary.private_fiber_dim()
     }
 
-    /// The model's measurements must lie inside the observer's carrier with
-    /// the same arities: an observer cannot evaluate what it does not carry.
     pub fn carries(&self, model: &EmpiricalModel) -> bool {
         let arities = model.scenario().arities();
         arities.len() <= self.carrier_arities.len()
             && arities.iter().zip(&self.carrier_arities).all(|(a, b)| a == b)
     }
 
-    /// `Term`: the deterministic map from an evaluation to a closed terminal.
     pub fn terminalize(&self, evaluation: &Result<ContextualityVerdict, EpistemicError>) -> Terminal {
         match evaluation {
             Ok(ContextualityVerdict::GlobalSection(_)) => Terminal::Admitted,
@@ -616,8 +507,6 @@ impl EpistemicObserver {
         }
     }
 
-    /// Evaluate a model the observer carries, with the default pivot budget,
-    /// and append the receipt to the ledger.
     pub fn evaluate_and_record(
         &mut self,
         command: impl Into<String>,
@@ -632,7 +521,6 @@ impl EpistemicObserver {
         evaluation
     }
 
-    /// Append a receipt to the ledger `L` and return it.
     pub fn record(
         &mut self,
         command: impl Into<String>,
@@ -672,10 +560,6 @@ impl EpistemicObserver {
         format!("{:x}", hasher.finalize())
     }
 
-    /// Re-hash the chain. A tampered entry breaks the chain at its index.
-    /// This checks internal consistency only; a truncated tail is a
-    /// consistent prefix, so completeness needs an externally pinned tip
-    /// ([`EpistemicObserver::complete_against`]).
     pub fn verify_ledger(&self) -> Result<(), usize> {
         let mut previous = "0".repeat(64);
         for entry in &self.ledger {
@@ -694,7 +578,6 @@ impl EpistemicObserver {
         Ok(())
     }
 
-    /// Completeness against an externally pinned tip digest.
     pub fn complete_against(&self, pinned_tip: &str) -> bool {
         !pinned_tip.is_empty()
             && self.verify_ledger().is_ok()

@@ -1,6 +1,3 @@
-//! Admission protocol for declared M2 quantum packets. The gauge complex and
-//! residual mathematics live in omega_quantum_physics::gauge_cochain_complex.
-//! AuthorityEffect: None.
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::{involution as star, matrix as mx};
 use num_traits::{One, Signed};
@@ -9,7 +6,6 @@ use omega_number_theory::rational::Rational;
 use omega_quantum_physics::exact_hermitian;
 use omega_quantum_physics::gauge_cochain_complex::{BornEntry, M2Packet, VerifiedM2Packet};
 
-/// Typed refusals, in the verifier's check order.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum M2Refusal {
     #[error("matrix algebra refused: {0}")]
@@ -56,7 +52,6 @@ fn is_effect(e: &BasicMatrix<GaussianRat>) -> bool {
             .is_ok_and(|complement| exact_hermitian::is_positive_semidefinite(&complement))
 }
 
-/// Replay a packet's declarations in order, refusing at the first failure.
 pub fn verify(packet: M2Packet) -> Result<VerifiedM2Packet, M2Refusal> {
     if packet.states.is_empty() {
         return Err(M2Refusal::MissingField("states"));
@@ -137,8 +132,6 @@ pub fn verify(packet: M2Packet) -> Result<VerifiedM2Packet, M2Refusal> {
     VerifiedM2Packet::from_declaration(packet).map_err(|e| M2Refusal::GaugeComplex(e.to_string()))
 }
 
-/// The paper's worked example: `rho = |0><0|`, `E = |+><+|`, declared `p = 1/2`,
-/// a two-outcome POVM `{E, I - E}`, and the identity channel.
 pub fn worked_example_packet(declared_probability: Rational) -> M2Packet {
     let half = GaussianRat::from_rational(Rational::new(1.into(), 2.into()));
     let rho =

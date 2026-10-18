@@ -54,7 +54,7 @@ class EvaluationResult:
     """Deterministic evaluation verdict decision envelope."""
     evaluator_id: str
     candidate_id: str
-    verdict: str  # "ACCEPT" | "REJECT" | "CONDITIONAL"
+    verdict: str
     is_admissible: bool
     rejection_reasons: List[str]
     authority_effect: str = "RequestsDecision"
@@ -83,19 +83,19 @@ class Evaluator:
     ) -> EvaluationResult:
         """Apply policy thresholds deterministically to input facts."""
         reasons = []
-        
+
         phi1_mass = float(input_data.fact_envelopes.get("phi1_mass", 0.0))
         gamma2_mass = float(input_data.fact_envelopes.get("gamma2_mass", 0.0))
-        
+
         if policy.require_exactness and phi1_mass > policy.max_phi1_tol:
             reasons.append(f"Phi1 residual mass ({phi1_mass:.4e}) exceeds tolerance ({policy.max_phi1_tol:.4e})")
-        
+
         if gamma2_mass > policy.max_gamma2_tol:
             reasons.append(f"Gamma2 curvature defect ({gamma2_mass:.4e}) exceeds tolerance ({policy.max_gamma2_tol:.4e})")
-        
+
         is_admissible = len(reasons) == 0
         verdict = "ACCEPT" if is_admissible else "REJECT"
-        
+
         return EvaluationResult(
             evaluator_id=self.evaluator_id,
             candidate_id=input_data.candidate_id,

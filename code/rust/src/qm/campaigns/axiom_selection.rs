@@ -1,13 +1,3 @@
-//! Campaign C500 Block 07: Finite Operational Reconstruction and Rivals.
-//!
-//! Mechanizes:
-//! 1. State space linear dimensions across classical, complex, real, and quaternionic theories.
-//! 2. Exact evaluation of local tomography D(AB) == D(A) * D(B).
-//! 3. Operational-model reconstruction remains unverified.
-//! 4. Audit of Naimark dilation vs Born rule derivation.
-//!
-//! AuthorityEffect: None.
-//! Citation: sealed-derivation-v1 (3100c4e).
 
 use serde_json::json;
 
@@ -15,7 +5,6 @@ use num_bigint::BigInt;
 use omega_quantum_physics::operational_axiom_selection::{
     local_tomography_dimensions, FiniteRivalTheory, OperationalModelError,
 };
-/// The report dispatches to checked arbitrary-precision carrier dimensions.
 pub fn evaluate_local_tomography(
     theory: &str,
     a: u64,
@@ -34,8 +23,6 @@ pub fn evaluate_local_tomography_typed(
     Ok((result.holds(), result.deficit))
 }
 
-/// Naimark is an operator identity, not a derivation of Born probabilities.
-/// Returns (derives_born_rule, theorem_assumes_trace_pairing).
 pub fn audit_naimark_dilation() -> (bool, bool) {
     (false, false)
 }
@@ -62,7 +49,6 @@ fn checked_naimark_fixture() -> bool {
         .is_some_and(|c| verify_naimark_certificate(&c) == Ok(true))
 }
 
-/// Generate canonical Block 07 receipt.
 pub fn generate_canonical_block07_rust_receipt() -> serde_json::Value {
     let (c_tomo, _) = evaluate_local_tomography_typed(FiniteRivalTheory::Classical, 2, 2)
         .expect("fixed positive carrier dimensions");
@@ -153,22 +139,18 @@ mod tests {
 
     #[test]
     fn test_local_tomography() {
-        // Classical: 2 * 2 = 4 == 4
         let (c_holds, c_def) = evaluate_local_tomography("classical", 2, 2).unwrap();
         assert!(c_holds);
         assert_eq!(c_def, BigInt::from(0));
 
-        // Complex: 4 * 4 = 16 == 16
         let (z_holds, z_def) = evaluate_local_tomography("complex", 2, 2).unwrap();
         assert!(z_holds);
         assert_eq!(z_def, BigInt::from(0));
 
-        // Real: 3 * 3 = 9 != 10 (deficit -1)
         let (r_holds, r_def) = evaluate_local_tomography("real", 2, 2).unwrap();
         assert!(!r_holds);
         assert_eq!(r_def, BigInt::from(-1));
 
-        // Quaternionic: 6 * 6 = 36 != 28 (deficit 8)
         let (h_holds, h_def) = evaluate_local_tomography("quaternionic", 2, 2).unwrap();
         assert!(!h_holds);
         assert_eq!(h_def, BigInt::from(8));

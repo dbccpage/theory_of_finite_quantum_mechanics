@@ -36,7 +36,6 @@ class TestL1SolverGaps(unittest.TestCase):
         self.assertIsInstance(d1_rational, Matrix)
         self.assertEqual(d1_rational.shape, (3, 3))
 
-        # Solve exact rational quotient for cochain [1, 1, -2] (non-zero 1-cohomology survivor)
         cert = exact_quotient_l1_distance(complex_obj, dim=1, cochain_raw=[1, 1, -2])
         self.assertTrue(cert.verify())
         self.assertEqual(cert.distance, 4)

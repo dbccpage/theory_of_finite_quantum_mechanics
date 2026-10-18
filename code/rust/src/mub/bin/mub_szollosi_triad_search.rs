@@ -1,6 +1,3 @@
-//! Binary CLI: Execute exact Szöllősi B6 and Tao S6 MU triad compatibility search and emit receipts.
-//!
-//! AuthorityEffect: None
 
 use omega_mub::omega_native::exact::szollosi_triad_solver::{
     emit_receipt_files, execute_szollosi_triad_search,

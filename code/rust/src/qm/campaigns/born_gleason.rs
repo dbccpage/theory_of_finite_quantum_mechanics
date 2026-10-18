@@ -1,49 +1,21 @@
-//! Target 18 — Born/Gleason conditional uniqueness with exposed assumptions.
-//!
-//! Conditional uniqueness: under dimension, continuity/noncontextuality, and
-//! scalar assumptions, frame functions on rays coincide with the Born rule.
-//! Hypotheses are **exposed** — unpaid assumptions refuse the uniqueness claim.
-//!
-//! The assumptions other than the dimension are declared booleans, not
-//! computed properties. In particular non-contextuality is declared: a
-//! `FrameFunction` here assigns values to the projectors of one basis only, so
-//! there is no second context in which a ray's value could differ, and nothing
-//! here can test context independence. Every report of these assumptions
-//! (`GleasonAssumptions::unpaid`, the refusal `AssumptionsUnpaid`, and the
-//! callers in `sealed_finite_matrix_recovery` and `engine_bridge`) reports
-//! declarations.
-//!
-//! AuthorityEffect: None. Not PROVED continuum Gleason. Finite toy certificates only.
 
 use num_traits::{One, Zero};
 
-/// Fence.
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; conditional Born/Gleason face; assumptions exposed.";
 
-/// Exact rationals (`BigRational`); frame values cannot overflow.
 pub type Q = omega_number_theory::rational::Rational;
 
-/// Exposed assumptions for conditional uniqueness. `dimension` is data; every
-/// boolean is a declaration that nothing here computes.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GleasonAssumptions {
-    /// Hilbert dimension n ≥ 3 for classical Gleason; n=2 is special (OPEN residual).
     pub dimension: usize,
-    /// Declared, not computed: the frame function's value depends only on the
-    /// ray. A frame function on one basis has no second context to compare.
     pub noncontextual: bool,
-    /// Declared: continuity / countable additivity stand-in (finite additivity on orthogonal families).
     pub finite_additivity: bool,
-    /// Declared: scalar field complex (true) vs real (false — rebit residual).
     pub complex_scalars: bool,
-    /// Declared: explicit “no continuum uniqueness without these” fence.
     pub no_silent_continuum: bool,
 }
 
 impl GleasonAssumptions {
-    /// The assumptions not paid. Apart from `dimension_ge_3`, each entry names
-    /// a declaration that was declared false, not a property found to fail.
     pub fn unpaid(&self) -> Vec<&'static str> {
         let mut u = Vec::new();
         if self.dimension < 3 {
@@ -77,11 +49,9 @@ pub enum BornGleasonError {
     Empty,
 }
 
-/// Finite frame function on computational-basis projectors (diagonal face).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FrameFunction {
     pub dim: usize,
-    /// f(|i⟩⟨i|) for i in 0..dim
     pub on_basis: Vec<Q>,
 }
 
@@ -103,14 +73,11 @@ impl FrameFunction {
         })
     }
 
-    /// Born frame from state populations |c_i|².
     pub fn born_from_populations(pops: &[Q]) -> Result<Self, BornGleasonError> {
         Self::try_new(pops.to_vec())
     }
 }
 
-/// Conditional uniqueness theorem face: if assumptions paid and frame equals
-/// Born populations of some density, accept diagnostic uniqueness on basis.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ConditionalUniqueness {
     pub assumptions: GleasonAssumptions,
@@ -120,7 +87,6 @@ pub struct ConditionalUniqueness {
 }
 
 impl ConditionalUniqueness {
-    /// Refuse unless assumptions paid; then check frame == born_reference.
     pub fn try_prove(
         assumptions: GleasonAssumptions,
         frame: FrameFunction,
@@ -145,7 +111,6 @@ impl ConditionalUniqueness {
     }
 }
 
-/// Dimension-2 residual: uniqueness not claimed (Gleason needs n≥3).
 pub const OPEN_RESIDUAL_DIM2: &str =
     "OPEN residual: dim=2 frame-function uniqueness is not discharged by this face \
      (classical Gleason requires dim ≥ 3). AuthorityEffect None.";
@@ -168,19 +133,12 @@ mod tests {
         }
     }
 
-    // --- Lean parity: BornSelectionImport / dim_two_forces_busch_route ------
-    //
-    // These mirror, by name, the theorems in qm_wave7_completion.lean. If either
-    // side changes its fence the pair stops agreeing, which is the point.
 
-    /// Parity with Lean `gleason_dim3plus_fails_at_dim_two`: the projection
-    /// route is absent at the estate's working dimension.
     #[test]
     fn parity_gleason_route_absent_at_dim_two() {
         assert!(!available_born_routes(2).contains(&BornSelectionRoute::GleasonDim3Plus));
     }
 
-    /// Parity with Lean `dim_two_forces_busch_route`.
     #[test]
     fn parity_dim_two_forces_busch_route() {
         assert!(dim_two_forces_busch_route());
@@ -190,8 +148,6 @@ mod tests {
         );
     }
 
-    /// Parity with Lean `gleason_dim3plus_bound_reachable`: the fence
-    /// discriminates rather than refusing everywhere.
     #[test]
     fn parity_gleason_route_available_from_dim_three() {
         let r = available_born_routes(3);
@@ -199,8 +155,6 @@ mod tests {
         assert!(r.contains(&BornSelectionRoute::BuschPovm));
     }
 
-    /// The Rust assumption gate and the route table agree at every small
-    /// dimension. Guards against the two fences drifting apart inside Rust.
     #[test]
     fn assumption_gate_and_route_table_agree() {
         for dim in 0..6usize {
@@ -264,9 +218,6 @@ mod tests {
         assert!(One::is_one(&Q::one()));
     }
 
-    /// Weights with denominators near 10^12 used to overflow the `Ratio<i64>`
-    /// sum (a panic in debug builds, a false refusal in release); the sum is
-    /// now exact.
     #[test]
     fn large_denominators_sum_exactly() {
         let (p, q) = (1_000_000_000_039i64, 999_999_999_989i64);

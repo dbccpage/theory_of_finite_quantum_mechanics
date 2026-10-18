@@ -1,40 +1,26 @@
-/-
-  H037FourQubitCssSurfaceCode.lean
-  AuthorityEffect: None.
 
-  Finite claim only. The [[4,2,2]] CSS generators on four qubits, the two
-  logical pairs, their symplectic commutation phases, and single-qubit
-  syndrome detection. No continuum surface is constructed.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 namespace FableHilbertWalk20260819.H037
 
 def dot4 (a b : List Int) : Int :=
   (List.zipWith (· * ·) a b).foldl (· + ·) 0
 
-/-- Symplectic commutation phase of two Pauli operators `(x, z)`. -/
 def pauliPhase (x1 z1 x2 z2 : List Int) : Int :=
   if (dot4 x1 z2 + dot4 z1 x2) % 2 = 0 then 1 else -1
 
 def zZero : List Int := [0, 0, 0, 0]
 
-/-- Stabilizer `S_Z = ZZZZ`. -/
 def szX : List Int := zZero
 def szZ : List Int := [1, 1, 1, 1]
 
-/-- Stabilizer `S_X = XXXX`. -/
 def sxX : List Int := [1, 1, 1, 1]
 def sxZ : List Int := zZero
 
-/-- Logical qubit 1: `Z_L1 = ZIZI` wait: `Z_L1 = ZZII`, `X_L1 = XIXI`. -/
 def zl1X : List Int := zZero
 def zl1Z : List Int := [1, 1, 0, 0]
 def xl1X : List Int := [1, 0, 1, 0]
 def xl1Z : List Int := zZero
 
-/-- Logical qubit 2: `Z_L2 = ZIZI`, `X_L2 = XXII`. -/
 def zl2X : List Int := zZero
 def zl2Z : List Int := [1, 0, 1, 0]
 def xl2X : List Int := [1, 1, 0, 0]
@@ -72,14 +58,12 @@ theorem cross_logical_x1_z2_commutes :
 theorem cross_logical_x2_z1_commutes :
     pauliPhase xl2X xl2Z zl1X zl1Z = 1 := by decide
 
-/-- Each single-qubit `X` meets `S_Z` once, so the phase is `-1`. -/
 theorem single_x_errors_detected :
     pauliPhase xErr0 zZero szX szZ = -1 ∧
       pauliPhase xErr1 zZero szX szZ = -1 ∧
       pauliPhase xErr2 zZero szX szZ = -1 ∧
       pauliPhase xErr3 zZero szX szZ = -1 := by decide
 
-/-- Each single-qubit `Z` meets `S_X` once, so the phase is `-1`. -/
 theorem single_z_errors_detected :
     pauliPhase zZero xErr0 sxX sxZ = -1 ∧
       pauliPhase zZero xErr1 sxX sxZ = -1 ∧
@@ -89,6 +73,8 @@ theorem single_z_errors_detected :
 end FableHilbertWalk20260819.H037
 
 
-/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
 theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
   decide
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H037FourQubitCssSurfaceCode.lean Claim: stabilizers_commute AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

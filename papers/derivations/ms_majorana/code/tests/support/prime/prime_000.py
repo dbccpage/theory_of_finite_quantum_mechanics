@@ -30,7 +30,6 @@ def admit_declaration(packet: DeclarationPacket) -> AdmissionDecision:
             steps=tuple(steps),
         )
 
-    # 0 locus
     if not packet.locus_hash:
         return refuse(
             AdmissionKind.REFUSE_MISSING_LOCUS,
@@ -39,21 +38,18 @@ def admit_declaration(packet: DeclarationPacket) -> AdmissionDecision:
         )
     ok("locus_grounding", f"locus={packet.locus_hash}")
 
-    # 1 carrier
     if not packet.carrier:
         return refuse(
             AdmissionKind.REFUSE_MISSING_CARRIER, "carrier", "MISSING_carrier"
         )
     ok("carrier", f"carrier={packet.carrier}")
 
-    # 2 observer
     if not packet.observer:
         return refuse(
             AdmissionKind.REFUSE_MISSING_OBSERVER, "observer", "MISSING_observer"
         )
     ok("observer", f"observer={packet.observer}")
 
-    # 3 primitive difference
     if not packet.primitive_difference:
         return refuse(
             AdmissionKind.REFUSE_MISSING_PRIMITIVE_DIFFERENCE,
@@ -62,14 +58,12 @@ def admit_declaration(packet: DeclarationPacket) -> AdmissionDecision:
         )
     ok("primitive_difference", f"δ={packet.primitive_difference}")
 
-    # 4 ZeroRel
     if not packet.zero_rel:
         return refuse(
             AdmissionKind.REFUSE_MISSING_ZERO_REL, "zero_rel", "MISSING_zero_rel"
         )
     ok("zero_rel", f"ZeroRel={packet.zero_rel}")
 
-    # 5 witness or typed refusal route
     if not packet.witness and not packet.refusal_route:
         return refuse(
             AdmissionKind.REFUSE_MISSING_WITNESS,
@@ -81,7 +75,6 @@ def admit_declaration(packet: DeclarationPacket) -> AdmissionDecision:
         f"witness={packet.witness!r} refusal_route={packet.refusal_route!r}",
     )
 
-    # 6 optional policy
     if packet.request_split:
         steps.append({"step": "optional_policy", "status": "SPLIT"})
         return AdmissionDecision(

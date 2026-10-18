@@ -11,7 +11,6 @@ import sys
 from pathlib import Path
 import pytest
 
-# Ensure code directory is in sys.path
 code_dir = Path(__file__).resolve().parent.parent.parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -63,7 +62,6 @@ class TestL8ClusterBenchmarkReceipt:
         assert r1 != "not_a_receipt"
         assert r1 != 42
 
-        # Check digest is valid hex SHA-256
         digest = r1.canonical_digest()
         assert isinstance(digest, str)
         assert len(digest) == 64
@@ -87,9 +85,7 @@ class TestSU2ClusterBenchmarkRunner:
         runner = SU2ClusterBenchmarkRunner(lattice_dim=4)
         base = Lattice4DCoord(3, 3, 3, 3, runner.dims)
         cluster = runner.generate_cluster_sites(base, cluster_size=2)
-        # 2^4 = 16 sites
         assert len(cluster) == 16
-        # Verify periodic boundary wrapping
         assert any(c.x0 == 0 for c in cluster)
         assert any(c.x1 == 0 for c in cluster)
 
@@ -107,7 +103,7 @@ class TestSU2ClusterBenchmarkRunner:
         receipt = runner.run_benchmark(
             num_rounds=3,
             cluster_size=2,
-            random_threshold=Fraction(1, 1),  # deterministic accept
+            random_threshold=Fraction(1, 1),
         )
         assert receipt.benchmark_id == "bm_l8_2x2x2x2"
         assert receipt.total_sites == 16
@@ -120,7 +116,6 @@ class TestSU2ClusterBenchmarkRunner:
         assert receipt.authority_effect == "None"
 
     def test_l8_lattice_dimensions_and_structure(self):
-        # Test L=8 initialization and cluster structure (V=4096 sites, 16384 links)
         runner = SU2ClusterBenchmarkRunner(lattice_dim=8)
         assert runner.dims == (8, 8, 8, 8)
         assert runner.lattice.volume == 4096
@@ -131,7 +126,6 @@ class TestSU2ClusterBenchmarkRunner:
         assert len(cluster) == 16
 
     def test_run_benchmark_l3_multiturn(self):
-        # L=3 lattice: V = 81 sites, 324 links - fast and comprehensive multi-turn benchmark
         runner = SU2ClusterBenchmarkRunner(lattice_dim=3)
         receipt = runner.run_benchmark(
             num_rounds=2,

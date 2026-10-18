@@ -1,12 +1,3 @@
-//! Finite colours, ports, operands, and operation declarations.
-//!
-//! Rust face of `omega_engine/crates/kernel/higher_operad/model.py`. Field
-//! names, field order in the canonical payload, validation rules, and the
-//! `canonical_id` domain strings are all load-bearing: they decide the
-//! identifier, and the identifier is what the estate stores.
-//!
-//! AuthorityEffect: None. Nothing here mints authority; `AuthorityEffect` is a
-//! declared ceiling that this module only ever checks, never raises.
 
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
@@ -29,7 +20,6 @@ pub enum ModelError {
     AuthorityCeilingExceeded,
 }
 
-/// Whether an invocation is an entry point or a disciplined inner step.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum InvocationGrade {
     #[serde(rename = "entry")]
@@ -53,8 +43,6 @@ impl Default for InvocationGrade {
     }
 }
 
-/// The authority ladder. Ordering is the whole point: `rank` is what makes
-/// "effect may not exceed ceiling" checkable.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum AuthorityEffect {
     #[serde(rename = "None")]
@@ -77,7 +65,6 @@ impl AuthorityEffect {
         }
     }
 
-    /// Mirrors `AUTHORITY_RANK` in the Python kernel.
     pub fn rank(self) -> u8 {
         match self {
             Self::None => 0,
@@ -160,8 +147,6 @@ impl PortSpec {
         })
     }
 
-    /// Type identity ignores `port_id`: two ports are the same type when their
-    /// colour and schema agree, regardless of what the slot is called.
     pub fn same_type(&self, other: &PortSpec) -> bool {
         self.colour_id == other.colour_id && self.schema_ref == other.schema_ref
     }
@@ -175,7 +160,6 @@ impl PortSpec {
     }
 }
 
-/// The typed external boundary of an operation or a workflow expression.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BoundarySignature {
     pub inputs: Vec<PortSpec>,
@@ -187,8 +171,6 @@ impl BoundarySignature {
         Self { inputs, output }
     }
 
-    /// Two boundaries are parallel when a rewrite between them is even
-    /// type-admissible. This is the gate a 2-cell has to pass.
     pub fn parallel_to(&self, other: &BoundarySignature) -> bool {
         self.inputs.len() == other.inputs.len()
             && self
@@ -207,7 +189,6 @@ impl BoundarySignature {
     }
 }
 
-/// An immutable reference to an admitted artifact.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct OperandRef {
     pub artifact_digest: String,
@@ -253,7 +234,6 @@ impl OperandRef {
     }
 }
 
-/// A compiled, immutable operation declaration: exact arity, one output.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct OperationSpec {
     pub operation_id: String,
@@ -269,8 +249,6 @@ pub struct OperationSpec {
     pub authority_ceiling: AuthorityEffect,
 }
 
-/// Builder-shaped input so callers do not have to pass eleven positional
-/// arguments in the right order.
 #[derive(Debug, Clone)]
 pub struct OperationSpecInput<'a> {
     pub operation_id: &'a str,
@@ -300,8 +278,6 @@ impl OperationSpec {
             }
         }
 
-        // Order is preserved (unlike `sorted_unique`); only duplicates are
-        // refused, matching the Python constructor.
         let mut tool_refs = Vec::with_capacity(input.tool_refs.len());
         let mut tool_seen = std::collections::BTreeSet::new();
         for item in &input.tool_refs {
@@ -370,11 +346,6 @@ impl OperationSpec {
     }
 }
 
-/// Agent-path fibration from `skill_operad/hott.py`.
-///
-/// Mathematical identity types stay in `omega_homotopy_type_theory`. This
-/// record is the estate path: antibody screens, boundary agreement, and a
-/// witness when transport fails. `authority_effect` is always `"None"`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum AgentPathWitness {
     Hallucination {
@@ -657,7 +628,6 @@ mod tests {
         assert_eq!(first, second);
         assert!(first.starts_with("sha256:"));
 
-        // A different domain over the same payload must not collide.
         let raw = super::canonical_id("omega.oewas.colour.v1", &spec.to_canonical()).unwrap();
         assert_ne!(first, raw);
     }

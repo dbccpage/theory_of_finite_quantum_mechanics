@@ -37,19 +37,16 @@ def test_fractional_statistical_and_braiding_phases():
     """Validates fractional statistical exchange phase pi/3 and braiding phase 2pi/3 for nu = 1/3."""
     model = LaughlinStateAnyonModel(model_id="laughlin_phases", laughlin_m=3)
 
-    # 1. Elementary exchange phase
     theta_stat, eta_stat = model.compute_statistical_phase()
     assert pytest.approx(theta_stat, abs=1e-7) == math.pi / 3.0
     assert pytest.approx(eta_stat.real, abs=1e-7) == 0.5
     assert pytest.approx(eta_stat.imag, abs=1e-7) == 0.5 * math.sqrt(3.0)
 
-    # 2. Full braiding monodromy (2 exchanges)
     theta_braid, eta_braid = model.compute_braiding_phase()
     assert pytest.approx(theta_braid, abs=1e-7) == 2.0 * math.pi / 3.0
     assert pytest.approx(eta_braid.real, abs=1e-7) == -0.5
     assert pytest.approx(eta_braid.imag, abs=1e-7) == 0.5 * math.sqrt(3.0)
 
-    # Statistical phase is not +-1 (not bosonic and not fermionic)
     assert abs(eta_stat - 1.0) > 0.5
     assert abs(eta_stat - (-1.0)) > 0.5
 
@@ -63,7 +60,6 @@ def test_modular_s_matrix_unitarity_and_monodromy():
     assert all(len(row) == 3 for row in s_matrix)
     assert max_unitarity_err <= 1e-12
 
-    # Monodromy M_11 must equal exp(i * 2 pi / 3)
     theta_braid, eta_braid = model.compute_braiding_phase()
     assert pytest.approx(abs(m11 - eta_braid), abs=1e-10) == 0.0
 
@@ -73,12 +69,10 @@ def test_fractional_cochain_holonomy_non_contractibility():
     model = LaughlinStateAnyonModel(model_id="laughlin_holonomy", laughlin_m=3)
     hol_real, hol_imag, is_contractible, gamma_2 = model.compute_cochain_holonomy()
 
-    # Holonomy is exp(i * 2 pi / 3) = -0.5 + 0.866025i != 1.0
     assert pytest.approx(hol_real, abs=1e-6) == -0.5
     assert pytest.approx(hol_imag, abs=1e-6) == 0.5 * math.sqrt(3.0)
     assert is_contractible is False
 
-    # Strictly positive cochain curvature
     assert gamma_2 == pytest.approx(2.0 * math.pi / 3.0, abs=1e-6)
     assert gamma_2 > 0.0
 
@@ -99,12 +93,10 @@ def test_abelian_involution_obstruction_and_open_sign_routing():
         assert receipt.cochain_curvature_gamma_2 > 0.0
         assert receipt.is_abelian_involution_obstructed is True
 
-        # Boltzmann weight asymmetry: Delta_qe = 0.073 > Delta_qh = 0.026
         assert receipt.boltzmann_weight_quasihole > receipt.boltzmann_weight_quasielectron
         assert receipt.weight_gap_delta_w > 0.0
         assert receipt.uncancelled_defect_mass_phi_1 > 0.0
 
-        # Deterministic BQNF routing
         assert receipt.terminal_route == "OpenSignObstruction"
     finally:
         engine.close()
@@ -119,7 +111,7 @@ def test_trivial_integer_control_m_1():
         model_id="laughlin_control_m1",
         laughlin_m=1,
         delta_qh=0.05,
-        delta_qe=0.05,  # Symmetric control
+        delta_qe=0.05,
     )
     engine = FQHLaughlinBraidingEngine(in_memory=True)
     try:
@@ -146,16 +138,11 @@ def test_gin_mode_posting_list_resolution():
         cfg_count = c.fetchone()[0]
         assert cfg_count == 2
 
-        # 4 distinct modes:
-        # 1: Quasihole Locus (eta_1), 2: Quasihole Locus (eta_2),
-        # 3: Braiding loop boundary (gamma in Z_1), 4: Fractional flux core (Phi^* = Phi_0 / 3)
         c.execute("SELECT COUNT(DISTINCT mode_id) FROM GinModePostingList;")
         distinct_modes = c.fetchone()[0]
         assert distinct_modes == 4
 
-        # Mode 1 occupied by quasihole configuration
         assert 1 in engine.posting_index[1]
-        # Mode 2 occupied by quasielectron configuration
         assert 2 in engine.posting_index[2]
     finally:
         engine.close()

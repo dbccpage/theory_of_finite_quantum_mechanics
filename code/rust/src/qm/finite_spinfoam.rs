@@ -1,7 +1,4 @@
-// AuthorityEffect: None.
 
-//! JSON host for the finite spin-foam models. The arithmetic is
-//! `omega_quantum_physics::finite_spinfoam`.
 
 pub use crate::qm::domain::finite_spinfoam_model::{
     adjoint_bulk, admissible, census, quantum_integer, real_value, simplex4, sphere_euler,

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from ..exceptions import InvariantViolationError
 
-MAX_OBJECTIVE_LENGTH: int = 16384  # 16 KB max for objective statement
+MAX_OBJECTIVE_LENGTH: int = 16384
 
 
 @dataclass(frozen=True, slots=True, eq=False)

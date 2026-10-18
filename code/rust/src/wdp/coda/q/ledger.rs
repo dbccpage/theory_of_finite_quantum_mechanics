@@ -1,6 +1,5 @@
 use omega_types::q_continuum::{AuthorityScope, DescentResult, QContinuumLedger, Residual};
 
-/// Append-only in-memory ledger wrapper for Q policy.
 #[derive(Clone, Debug, Default, PartialEq, Eq)]
 pub struct QLedger {
     inner: QContinuumLedger,

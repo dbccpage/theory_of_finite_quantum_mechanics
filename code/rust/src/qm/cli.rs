@@ -1,8 +1,3 @@
-//! Finite QM module cli.
-//!
-//! A tiny exact command language. Decimal points and exponent markers are
-//! refused. `add` and `mul` run on integers. `purity` reports the numerator
-//! of the standard qubit purity after clearing the denominator 9.
 
 pub fn execute(line: &str) -> Result<i64, String> {
     if line.bytes().any(|byte| matches!(byte, b'.' | b'e' | b'E')) {
@@ -31,8 +26,6 @@ pub fn execute(line: &str) -> Result<i64, String> {
             if parts.next().is_some() {
                 return Err("purity takes no arguments".into());
             }
-            // Independent of api.rs: diagonal 1/2, off-diagonal 1/6.
-            // Tr(ρ²) = 2*(1/2)² + 2*(1/6)² = 1/2 + 1/18 = 10/18 = 5/9.
             let by_entries = purity_numerator()?;
             let by_spectrum = spectrum_numerator()?;
             if by_entries != by_spectrum {
@@ -45,8 +38,6 @@ pub fn execute(line: &str) -> Result<i64, String> {
 }
 
 fn purity_numerator() -> Result<i64, String> {
-    // Common denominator 36: (1/2)² = 9/36, (1/6)² = 1/36.
-    // Two diagonal and two off-diagonal terms: 9+9+1+1 = 20 over 36 = 5/9.
     let num_36 = 9 + 9 + 1 + 1;
     if num_36 % 4 != 0 {
         return Err("purity did not reduce by 4".into());
@@ -55,7 +46,6 @@ fn purity_numerator() -> Result<i64, String> {
 }
 
 fn spectrum_numerator() -> Result<i64, String> {
-    // det = 1/4 - 1/36 = 8/36 = 2/9. Sum of squares = tr² - 2 det = 1 - 4/9 = 5/9.
     let trace_sq = 1i64;
     let two_det_num = 4i64;
     let two_det_den = 9i64;

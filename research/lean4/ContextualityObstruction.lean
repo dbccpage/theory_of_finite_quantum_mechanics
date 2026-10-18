@@ -1,25 +1,7 @@
-/-
-  Campaign C1000 Block 07: Contextuality Obstruction and Cohomological Invariant.
-  AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
-  Formalizes:
-  - Finite measurement scenarios (X, M, b) with parity constraints over Z_2
-  - Cochain complex C^0 -> C^1 -> C^2 and Cech differentials d^0, d^1
-  - PROVED THEOREM: differential squares to zero (d^1 (d^0 s) = 0)
-  - Global section definitions and vanishing coboundary on constant sections
-  - Negative control X2: product scenario with explicitly exhibited global section as an inhabited term
-  - Witness X1: Cabello 18-ray configuration in 9 contexts with proved parity obstruction (no global section exists)
-  - Census: 0 axioms outside standard core {propext, Quot.sound}, 0 sorry, 0 Classical.choice.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace ContextualityObstruction
 
--- ==============================================================================
--- PART 1: COEFFICIENT GROUP Z_2 AND COCHAIN COMPLEX
--- ==============================================================================
 
 abbrev Z2 := Fin 2
 
@@ -27,24 +9,18 @@ abbrev Z2 := Fin 2
   revert x
   decide
 
-/-- 0-cochain: local assignment on each context for all rays. -/
 def Cochain0 (n m : Nat) := Fin m → Fin n → Z2
 
-/-- 1-cochain: discrepancy for each pair of contexts and each ray. -/
 def Cochain1 (n m : Nat) := Fin m → Fin m → Fin n → Z2
 
-/-- 2-cochain: boundary for each triple of contexts and each ray. -/
 def Cochain2 (n m : Nat) := Fin m → Fin m → Fin m → Fin n → Z2
 
-/-- Coboundary d^0: (d^0 s)_{i, j}(r) = s_j(r) - s_i(r). -/
 def d0 {n m : Nat} (s : Cochain0 n m) : Cochain1 n m :=
   fun i j r => s j r - s i r
 
-/-- Coboundary d^1: (d^1 w)_{i, j, k}(r) = w_{j, k}(r) - w_{i, k}(r) + w_{i, j}(r). -/
 def d1 {n m : Nat} (w : Cochain1 n m) : Cochain2 n m :=
   fun i j k r => w j k r - w i k r + w i j r
 
-/-- PROVED THEOREM: The differential squares to zero identically, d^1 (d^0 s) = 0. -/
 theorem differential_squares_to_zero {n m : Nat} (s : Cochain0 n m) (i j k : Fin m) (r : Fin n) :
     d1 (d0 s) i j k r = 0 := by
   dsimp [d1, d0]
@@ -54,41 +30,30 @@ theorem differential_squares_to_zero {n m : Nat} (s : Cochain0 n m) (i j k : Fin
   revert a b c
   decide
 
--- ==============================================================================
--- PART 2: MEASUREMENT SCENARIO AND GLOBAL SECTIONS
--- ==============================================================================
 
 structure MeasurementScenario (n m : Nat) where
   contexts : Fin m → List (Fin n)
   b_targets : Fin m → Z2
 
-/-- Sum of an assignment over a context in Z_2. -/
 def ctxSum {n : Nat} (ctx : List (Fin n)) (g : Fin n → Z2) : Z2 :=
   ctx.foldl (fun acc r => acc + g r) 0
 
 
-/-- Predicate asserting g is a global section of the measurement scenario. -/
 def IsGlobalSection {n m : Nat} (scen : MeasurementScenario n m) (g : Fin n → Z2) : Prop :=
   ∀ i : Fin m, ctxSum (scen.contexts i) g = scen.b_targets i
 
-/-- Constant 0-cochain constructed from a global section. -/
 def sectionToCochain0 {n m : Nat} (g : Fin n → Z2) : Cochain0 n m :=
   fun _ r => g r
 
-/-- PROVED THEOREM: For any global section, the discrepancy coboundary d^0 vanishes identically. -/
 theorem d0_of_global_section {n m : Nat} (g : Fin n → Z2) (i j : Fin m) (r : Fin n) :
     d0 (sectionToCochain0 (m := m) g) i j r = 0 := by
   dsimp [d0, sectionToCochain0]
   exact z2_sub_self (g r)
 
-/-- Inhabited witness type for the existence of a global section. -/
 structure InhabitedGlobalSection {n m : Nat} (scen : MeasurementScenario n m) where
   global_section : Fin n → Z2
   is_valid : IsGlobalSection scen global_section
 
--- ==============================================================================
--- PART 3: NEGATIVE CONTROL X2 (PRODUCT SCENARIO)
--- ==============================================================================
 
 def contexts_X2 : Fin 4 → List (Fin 4)
   | 0 => [0, 2]
@@ -104,14 +69,12 @@ def X2 : MeasurementScenario 4 4 := {
   b_targets := targets_X2
 }
 
-/-- Exhibited global section for X2: A0=1, A1=1, B0=0, B1=0. -/
 def g_X2 : Fin 4 → Z2
   | 0 => 1
   | 1 => 1
   | 2 => 0
   | 3 => 0
 
-/-- PROVED THEOREM: g_X2 is a valid global section for scenario X2. -/
 theorem x2_global_section_valid : IsGlobalSection X2 g_X2 := by
   intro i
   rcases i with ⟨val, h⟩
@@ -122,20 +85,15 @@ theorem x2_global_section_valid : IsGlobalSection X2 g_X2 := by
   | 3 => decide +revert
   | n + 4 => omega
 
-/-- PROVED THEOREM: X2 vanishing is witnessed by an inhabited term. -/
 def x2_obstruction_vanishes : InhabitedGlobalSection X2 := {
   global_section := g_X2
   is_valid := x2_global_section_valid
 }
 
-/-- Corollary: The coboundary d^0 of the exhibited global section vanishes identically. -/
 theorem x2_d0_vanishes (i j : Fin 4) (r : Fin 4) :
     d0 (sectionToCochain0 (m := 4) g_X2) i j r = 0 :=
   d0_of_global_section g_X2 i j r
 
--- ==============================================================================
--- PART 4: WITNESS X1 (CABELLO 18-RAY CONFIGURATION)
--- ==============================================================================
 
 def contexts_X1 : Fin 9 → List (Fin 18)
   | 0 => [2, 9, 15, 17]
@@ -156,15 +114,11 @@ def X1 : MeasurementScenario 18 9 := {
   b_targets := targets_X1
 }
 
-/-- Sum of ray values in Nat for a 4-ray context. -/
 def contextSumNat (ctx : List (Fin 18)) (g : Fin 18 → Z2) : Nat :=
   match ctx with
   | [r0, r1, r2, r3] => (g r0).val + (g r1).val + (g r2).val + (g r3).val
   | _ => 0
 
-/-- Linear Presburger identity for the Cabello 18-ray configuration:
-    Because each of the 18 rays appears in exactly two contexts, the sum of all 9
-    context sums equals twice the sum of all ray values. -/
 theorem cabello_ray_incidence_identity (g : Fin 18 → Z2) :
     contextSumNat (contexts_X1 0) g +
     contextSumNat (contexts_X1 1) g +
@@ -181,7 +135,6 @@ theorem cabello_ray_incidence_identity (g : Fin 18 → Z2) :
   dsimp [contextSumNat, contexts_X1]
   omega
 
-/-- Odd sum parity contradiction: The sum of nine odd numbers cannot be even. -/
 theorem odd_sum_nine_contradiction
     (c0 c1 c2 c3 c4 c5 c6 c7 c8 K : Nat)
     (h0 : c0 % 2 = 1)
@@ -197,11 +150,9 @@ theorem odd_sum_nine_contradiction
     False := by
   omega
 
-/-- Context sum foldl in Z2 coincides with contextSumNat modulo 2 for length 4 list. -/
 theorem ctxSum_four_eq_mod2 (r0 r1 r2 r3 : Fin 18) (g : Fin 18 → Z2) :
     (ctxSum [r0, r1, r2, r3] g).val = ((g r0).val + (g r1).val + (g r2).val + (g r3).val) % 2 := by
   dsimp [ctxSum]
-  -- Expanding the 4 steps of foldl: (((0 + g r0) + g r1) + g r2) + g r3
   generalize (g r0) = a
   generalize (g r1) = b
   generalize (g r2) = c
@@ -209,9 +160,6 @@ theorem ctxSum_four_eq_mod2 (r0 r1 r2 r3 : Fin 18) (g : Fin 18 → Z2) :
   revert a b c d
   decide
 
-/-- PROVED THEOREM: The Cabello 18-ray configuration admits NO global section over Z_2.
-    Parity contradiction: A global section requires 9 context evaluations of 1,
-    summing to an odd number, contradicting the 2-regular incidence identity. -/
 theorem x1_has_no_global_section : ¬ (∃ g, IsGlobalSection X1 g) := by
   intro ⟨g, hg⟩
   have h_targets (i : Fin 9) : (ctxSum (contexts_X1 i) g).val = 1 := by
@@ -303,3 +251,6 @@ theorem x1_has_no_global_section : ¬ (∃ g, IsGlobalSection X1 g) := by
 #print axioms x1_has_no_global_section
 
 end ContextualityObstruction
+
+private def l5aProvenance : String :=
+  "Origin: lean4/ContextualityObstruction.lean Claim: differential_squares_to_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

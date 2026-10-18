@@ -1,16 +1,6 @@
-//! Induced orientations.
-//!
-//! Tetra boundary of `(v0,v1,v2,v3)`:
-//! `+(v1,v2,v3) - (v0,v2,v3) + (v0,v1,v3) - (v0,v1,v2)`.
-//!
-//! Pentatope boundary of `(v0,v1,v2,v3,v4)`:
-//! `+(v1,v2,v3,v4) - (v0,v2,v3,v4) + (v0,v1,v3,v4) - (v0,v1,v2,v4) + (v0,v1,v2,v3)`.
-//!
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 
-/// Face opposite vertex `i` carries sign `(-1)^i`, with the remaining vertices in order.
 pub fn triangle_boundary_of_tetra(tetra: [u32; 4]) -> [([u32; 3], i8); 4] {
     let [v0, v1, v2, v3] = tetra;
     [
@@ -21,7 +11,6 @@ pub fn triangle_boundary_of_tetra(tetra: [u32; 4]) -> [([u32; 3], i8); 4] {
     ]
 }
 
-/// Facet opposite vertex `i` carries sign `(-1)^i`, with the remaining vertices in order.
 pub fn tetra_boundary_of_pentatope(pentatope: [u32; 5]) -> [([u32; 4], i8); 5] {
     let [v0, v1, v2, v3, v4] = pentatope;
     [

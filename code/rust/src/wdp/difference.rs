@@ -1,6 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Root W: Genesis Primitive Difference, Carrier Symmetries & Presentation Blind Spots.
-//! Formalizes Chapter 1 & Chapter 3 foundations.
 
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
@@ -10,7 +7,6 @@ use omega_category_theory::finite_report_query::{
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// A finite carrier set of discrete named states.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub struct Carrier {
     pub states: BTreeSet<String>,
@@ -40,14 +36,12 @@ impl Carrier {
     }
 }
 
-/// Primitive difference outcome comparing two elements on a carrier.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum DifferenceOutcome {
     Same,
     Different,
 }
 
-/// Computes primitive difference delta_0(x, y) on a carrier.
 pub fn primitive_difference(x: &str, y: &str) -> DifferenceOutcome {
     if x == y {
         DifferenceOutcome::Same
@@ -56,7 +50,6 @@ pub fn primitive_difference(x: &str, y: &str) -> DifferenceOutcome {
     }
 }
 
-/// A presentation map q: X -> P mapping carrier states to presented tokens.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PresentationMap {
     pub carrier: Carrier,
@@ -85,13 +78,6 @@ impl PresentationMap {
         })
     }
 
-    /// Decides whether a query on the carrier can be read from this
-    /// presentation, through the DP-1 owner
-    /// `omega_category_theory::finite_report_query`. The presentation is the
-    /// report with the declared `report_codomain` (every presented token must
-    /// lie in it); the query table must be total on the carrier with values
-    /// in `query_codomain`. The result is a decoder on the realized image or a
-    /// collision witness; unrealized codomain tokens play no part.
     pub fn decide_query(
         &self,
         report_codomain: &[String],
@@ -123,7 +109,6 @@ impl PresentationMap {
             })
     }
 
-    /// Computes presentation fibers q^-1(p) for every presented token p in P.
     pub fn fibers(&self) -> BTreeMap<String, BTreeSet<String>> {
         let mut fibers: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
         for (state, token) in &self.mapping {
@@ -135,7 +120,6 @@ impl PresentationMap {
         fibers
     }
 
-    /// Identifies presentation blind spots: fibers containing >= 2 distinct states.
     pub fn blind_spots(&self) -> BTreeMap<String, BTreeSet<String>> {
         self.fibers()
             .into_iter()
@@ -143,7 +127,6 @@ impl PresentationMap {
             .collect()
     }
 
-    /// Evaluates whether two distinct states x != y are separable by this presentation.
     pub fn is_separable(&self, x: &str, y: &str) -> Result<bool, WdpError> {
         let px = self.present(x)?;
         let py = self.present(y)?;
@@ -191,7 +174,7 @@ mod tests {
         let carrier = Carrier::new(vec!["s0", "s1", "s2", "s3"]).unwrap();
         let mut mapping = BTreeMap::new();
         mapping.insert("s0".to_string(), "p0".to_string());
-        mapping.insert("s1".to_string(), "p0".to_string()); // s0, s1 in blind spot
+        mapping.insert("s1".to_string(), "p0".to_string());
         mapping.insert("s2".to_string(), "p1".to_string());
         mapping.insert("s3".to_string(), "p2".to_string());
 

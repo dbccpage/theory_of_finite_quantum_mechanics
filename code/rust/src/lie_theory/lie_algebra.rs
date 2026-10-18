@@ -1,34 +1,11 @@
-//! Finite-dimensional Lie algebras over an exact field, by structure constants.
-//!
-//! A [`LieAlgebra`] is a dimension and structure constants `c_ab^e` with
-//! `[x_a, x_b] = sum_e c_ab^e x_e`. Everything that depends only on these constants is
-//! generic over the algebra, so `sl(2)`, `so(n)`, `u(1)`, `su(N)` and any matrix Lie
-//! algebra share it:
-//!
-//! - [`verify_antisymmetry`] and [`verify_jacobi`] (the two axioms), and
-//!   [`adjoint_is_representation`]: the Jacobi identity holds exactly when
-//!   `a -> ad x_a` is a representation (`[ad x_a, ad x_b] = ad [x_a, x_b]`), checked
-//!   independently of [`verify_jacobi`] and in agreement with it in the tests;
-//! - the adjoint representation [`adjoint_matrix`], the Killing form [`killing_form`];
-//! - [`structure_constants_from_matrices`]: the structure constants of a matrix Lie algebra
-//!   from a basis of matrices closed under the commutator (refused with a typed error if a
-//!   commutator leaves the span, or the matrices are dependent);
-//! - the Chevalley-Eilenberg complex `C^k = Lambda^k g*` with trivial coefficients
-//!   ([`chevalley_eilenberg_differential`]); `d^2 = 0` holds exactly when the Jacobi identity
-//!   does, and its cohomology ([`cohomology_betti_numbers`]) is the Lie-algebra cohomology:
-//!   `1, 0, 0, 1` for `sl(2)` and `1, 2, 2, 1` for the Heisenberg algebra.
-//!
-//! AuthorityEffect: None.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::elimination::{self, LinearSolution};
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
 use linear_algebra::scalars::{ExactRing, Field, Ring, Semiring};
 
-/// The largest dimension of an algebra whose cohomology complex is built.
 pub const MAX_COMPLEX_DIMENSION: usize = 8;
 
-/// Refusals of the Lie-algebra constructions.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum LieAlgebraError {
     #[error("a structure-constant table for dimension {dimension} needs {expected} entries, got {actual}")]
@@ -53,17 +30,14 @@ pub enum LieAlgebraError {
     Matrix(#[from] ExactFieldError),
 }
 
-/// A Lie algebra with a chosen basis and its structure constants.
 pub trait LieAlgebra {
     type Scalar: Field + ExactRing;
 
     fn dimension(&self) -> usize;
 
-    /// `c_ab^e`, with `[x_a, x_b] = sum_e c_ab^e x_e`. The indices are in `0..dimension()`.
     fn structure_constant(&self, a: usize, b: usize, e: usize) -> Self::Scalar;
 }
 
-/// A table of structure constants, `table[(a * n + b) * n + e] = c_ab^e`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct StructureConstants<F> {
     dimension: usize,
@@ -71,7 +45,6 @@ pub struct StructureConstants<F> {
 }
 
 impl<F: Field + ExactRing> StructureConstants<F> {
-    /// A table for `dimension`, refused unless it has `dimension^3` entries.
     pub fn new(dimension: usize, table: Vec<F>) -> Result<Self, LieAlgebraError> {
         let expected = dimension * dimension * dimension;
         if table.len() != expected {
@@ -84,7 +57,6 @@ impl<F: Field + ExactRing> StructureConstants<F> {
         Ok(Self { dimension, table })
     }
 
-    /// The table from a function of `(a, b, e)`.
     pub fn from_fn(dimension: usize, mut f: impl FnMut(usize, usize, usize) -> F) -> Self {
         let mut table = Vec::with_capacity(dimension * dimension * dimension);
         for a in 0..dimension {
@@ -97,7 +69,6 @@ impl<F: Field + ExactRing> StructureConstants<F> {
         Self { dimension, table }
     }
 
-    /// The abelian algebra of dimension `n` (all brackets zero).
     pub fn abelian(n: usize) -> Self {
         Self::from_fn(n, |_, _, _| F::zero())
     }
@@ -125,7 +96,6 @@ fn check_index<L: LieAlgebra + ?Sized>(algebra: &L, index: usize) -> Result<(), 
     Ok(())
 }
 
-/// `[x_a, x_b] = -[x_b, x_a]` for every pair, which includes `[x_a, x_a] = 0`.
 pub fn verify_antisymmetry<L: LieAlgebra>(algebra: &L) -> bool {
     let n = algebra.dimension();
     (0..n).all(|a| {
@@ -140,8 +110,6 @@ pub fn verify_antisymmetry<L: LieAlgebra>(algebra: &L) -> bool {
     })
 }
 
-/// The Jacobi identity `[[x_a, x_b], x_c] + [[x_b, x_c], x_a] + [[x_c, x_a], x_b] = 0` for every
-/// triple of basis elements, as `sum_d (c_ab^d c_dc^e + c_bc^d c_da^e + c_ca^d c_db^e) = 0`.
 pub fn verify_jacobi<L: LieAlgebra>(algebra: &L) -> bool {
     let n = algebra.dimension();
     let c = |a: usize, b: usize, e: usize| algebra.structure_constant(a, b, e);
@@ -166,7 +134,6 @@ pub fn verify_jacobi<L: LieAlgebra>(algebra: &L) -> bool {
     true
 }
 
-/// The bracket `[x, y]` of two vectors of coordinates.
 pub fn bracket<L: LieAlgebra>(
     algebra: &L,
     x: &[L::Scalar],
@@ -191,7 +158,6 @@ pub fn bracket<L: LieAlgebra>(
     Ok(out)
 }
 
-/// The matrix of `ad x_a` in the basis: entry `(e, b)` is `c_ab^e`.
 pub fn adjoint_matrix<L: LieAlgebra>(
     algebra: &L,
     a: usize,
@@ -203,8 +169,6 @@ pub fn adjoint_matrix<L: LieAlgebra>(
     })?)
 }
 
-/// `[ad x_a, ad x_b] = sum_e c_ab^e ad x_e` for every pair: the adjoint map is a representation.
-/// For an antisymmetric bracket this is equivalent to the Jacobi identity.
 pub fn adjoint_is_representation<L: LieAlgebra>(algebra: &L) -> Result<bool, LieAlgebraError> {
     let n = algebra.dimension();
     let ad: Vec<BasicMatrix<L::Scalar>> = (0..n)
@@ -228,7 +192,6 @@ pub fn adjoint_is_representation<L: LieAlgebra>(algebra: &L) -> Result<bool, Lie
     Ok(true)
 }
 
-/// The Killing form `K_ab = tr(ad x_a ad x_b)`.
 pub fn killing_form<L: LieAlgebra>(algebra: &L) -> Result<BasicMatrix<L::Scalar>, LieAlgebraError> {
     let n = algebra.dimension();
     let ad: Vec<BasicMatrix<L::Scalar>> = (0..n)
@@ -243,9 +206,6 @@ pub fn killing_form<L: LieAlgebra>(algebra: &L) -> Result<BasicMatrix<L::Scalar>
     Ok(BasicMatrix::from_row_major(n, n, entries).map_err(ExactFieldError::from)?)
 }
 
-/// The structure constants of the matrix Lie algebra spanned by `basis`, each `[b_a, b_b]`
-/// expressed in the basis by an exact linear solve. Refused if the matrices are not square of a
-/// common size, are linearly dependent, or if some commutator is not in their span.
 pub fn structure_constants_from_matrices<F: Field + ExactRing>(
     basis: &[BasicMatrix<F>],
 ) -> Result<StructureConstants<F>, LieAlgebraError> {
@@ -254,7 +214,6 @@ pub fn structure_constants_from_matrices<F: Field + ExactRing>(
     if basis.iter().any(|m| m.rows() != size || m.cols() != size) {
         return Err(LieAlgebraError::Shape);
     }
-    // Columns are the flattened basis matrices.
     let columns: Vec<F> = (0..size * size)
         .flat_map(|row| basis.iter().map(move |m| m.as_slice()[row].clone()))
         .collect();
@@ -278,11 +237,7 @@ pub fn structure_constants_from_matrices<F: Field + ExactRing>(
     StructureConstants::new(n, table)
 }
 
-// ---------------------------------------------------------------------------------------
-// The Chevalley-Eilenberg complex
-// ---------------------------------------------------------------------------------------
 
-/// The strictly increasing `k`-subsets of `0..n`, in lexicographic order: the basis of `Lambda^k`.
 fn subsets(n: usize, k: usize) -> Vec<Vec<usize>> {
     fn grow(n: usize, k: usize, start: usize, current: &mut Vec<usize>, out: &mut Vec<Vec<usize>>) {
         if current.len() == k {
@@ -300,8 +255,6 @@ fn subsets(n: usize, k: usize) -> Vec<Vec<usize>> {
     out
 }
 
-/// Sort `word` by adjacent transpositions, returning the sign and the sorted word, or `None` if an
-/// index repeats (the wedge product vanishes).
 fn sort_word(mut word: Vec<usize>) -> Option<(i8, Vec<usize>)> {
     let mut sign = 1i8;
     for i in 1..word.len() {
@@ -325,9 +278,6 @@ fn check_complex_size<L: LieAlgebra>(algebra: &L) -> Result<usize, LieAlgebraErr
     Ok(n)
 }
 
-/// The matrix of the Chevalley-Eilenberg differential `d: Lambda^k g* -> Lambda^(k+1) g*`, rows
-/// indexed by the `(k+1)`-subsets and columns by the `k`-subsets (both in lexicographic order),
-/// for the dual basis `e^a`: `d e^c = - sum_{a<b} c_ab^c e^a ^ e^b`, extended as a derivation.
 pub fn chevalley_eilenberg_differential<L: LieAlgebra>(
     algebra: &L,
     k: usize,
@@ -344,7 +294,6 @@ pub fn chevalley_eilenberg_differential<L: LieAlgebra>(
     let mut entries = vec![L::Scalar::zero(); rows.len() * columns.len()];
     for (col, subset) in columns.iter().enumerate() {
         for position in 0..k {
-            // Leibniz: d(e^{i_1} ^ ... ^ e^{i_k}) = sum_j (-1)^(j-1) e^{i_1} ^ ... ^ d e^{i_j} ^ ... ^ e^{i_k}.
             let leibniz_sign = if position % 2 == 0 { 1i8 } else { -1i8 };
             let c = subset[position];
             for a in 0..n {
@@ -380,8 +329,6 @@ pub fn chevalley_eilenberg_differential<L: LieAlgebra>(
     )
 }
 
-/// `d_{k+1} d_k = 0` for every `k`: the Chevalley-Eilenberg complex is a complex. For an
-/// antisymmetric bracket this holds exactly when the Jacobi identity does.
 pub fn chevalley_eilenberg_squares_to_zero<L: LieAlgebra>(
     algebra: &L,
 ) -> Result<bool, LieAlgebraError> {
@@ -396,8 +343,6 @@ pub fn chevalley_eilenberg_squares_to_zero<L: LieAlgebra>(
     Ok(true)
 }
 
-/// The Betti numbers `b_k = dim H^k(g)` of the complex, `k = 0..=dimension`, by
-/// `b_k = dim C^k - rank d_k - rank d_{k-1}`. Requires the complex property (`d^2 = 0`).
 pub fn cohomology_betti_numbers<L: LieAlgebra>(algebra: &L) -> Result<Vec<usize>, LieAlgebraError> {
     let n = check_complex_size(algebra)?;
     let mut ranks = Vec::with_capacity(n + 1);

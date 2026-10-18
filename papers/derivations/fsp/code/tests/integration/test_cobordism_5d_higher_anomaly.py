@@ -34,7 +34,6 @@ def test_5complex_boundary_nilpotence() -> None:
     assert p4.shape == (15, 6)
     assert p5.shape == (6, 1)
 
-    # Nilpotence: partial_4 @ partial_5 == 0
     p4_p5 = p4 @ p5
     assert np.allclose(p4_p5, 0.0), f"Boundary partial_4 @ partial_5 != 0: {p4_p5}"
 
@@ -43,16 +42,12 @@ def test_ahss_cobordism_group_decomposition() -> None:
     """Verifies the Atiyah-Hirzebruch spectral sequence decomposition and invariant evaluation."""
     cob = CobordismGroup5D(has_postnikov_arf=True, has_mixed_gravitational=True)
 
-    # Both zero: nu_5 == 0
     assert cob.evaluate_invariant_nu5(postnikov_eval=0, k3_signature_div16=0, w1_gauge_eval=0) == 0
 
-    # Postnikov-Arf active: nu_5 == 1
     assert cob.evaluate_invariant_nu5(postnikov_eval=1, k3_signature_div16=0, w1_gauge_eval=0) == 1
 
-    # Mixed gravitational active (K3 signature sigma/16 = 1 and w1 = 1): nu_5 == 1
     assert cob.evaluate_invariant_nu5(postnikov_eval=0, k3_signature_div16=1, w1_gauge_eval=1) == 1
 
-    # Both active: 1 + 1 == 0 (mod 2)
     assert cob.evaluate_invariant_nu5(postnikov_eval=1, k3_signature_div16=1, w1_gauge_eval=1) == 0
 
 
@@ -84,18 +79,16 @@ def test_global_gravitational_anomaly_obstructs_2double() -> None:
         is_spin=True,
         is_orientable=True,
         postnikov_eval=0,
-        w1_gauge_eval=1,  # mixed gauge-gravitational anomaly on K3: w1 * (sigma/16) = 1 * 1 = 1
+        w1_gauge_eval=1,
     )
     assert model.evaluate_5d_invariant() == 1
 
-    # Audit without higher 2-double: sign obstruction
     receipt_bare = CobordismAnomalyEngine.audit_cobordism_anomaly(model, use_higher_2double=False)
     assert receipt_bare.terminal_route == TerminalRoute.OPEN_SIGN_OBSTRUCTION
     assert receipt_bare.involution_pairing_phi1 == 2.0
     assert math.isclose(receipt_bare.cochain_curvature_gamma2, math.pi, abs_tol=1e-5)
     assert receipt_bare.average_sign_gin == 0.0
 
-    # Audit WITH higher 2-double: STILL OBSTRUCTED by the global gravitational anomaly
     receipt_2qd = CobordismAnomalyEngine.audit_cobordism_anomaly(model, use_higher_2double=True)
     assert receipt_2qd.terminal_route == TerminalRoute.OPEN_SIGN_OBSTRUCTION
     assert receipt_2qd.involution_pairing_phi1 == 2.0
@@ -110,7 +103,7 @@ def test_non_orientable_pin_minus_anomaly() -> None:
         four_manifold_type="RP4",
         is_spin=False,
         is_orientable=False,
-        pin_minus_nu16=2,  # exp(2pi i * 2 / 16) = exp(i pi / 4)
+        pin_minus_nu16=2,
     )
     receipt = CobordismAnomalyEngine.audit_cobordism_anomaly(model, use_higher_2double=True)
     assert receipt.terminal_route == TerminalRoute.OPEN_SIGN_OBSTRUCTION

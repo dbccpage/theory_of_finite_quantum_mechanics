@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Finite cyclic presentations, character sums, and rational interval enclosures.
 
@@ -34,7 +33,6 @@ from fractions import Fraction
 from hashlib import sha256
 from typing import Any, Callable, Dict, Sequence, Tuple
 
-# Support large rational string serialization
 if hasattr(sys, "set_int_max_str_digits"):
     sys.set_int_max_str_digits(100000)
 
@@ -47,14 +45,11 @@ from interval_calculus import (
     rational_heron_sqrt_bounds,
 )
 
-# ==============================================================================
-# 1. Finite Cyclic Presentations & Inductive Colimit Inclusions
-# ==============================================================================
 
 @dataclass(frozen=True)
 class CyclicPresentation:
     """Finite cyclic group G_n = < x | x^{2^n} = 1 > at level n >= 0.
-    
+
     Additive carrier: Z / 2^n Z represented as {0, 1, ..., 2^n - 1}.
     Each element k represents the dyadic angle 2 pi * (k / 2^n) on S^1.
     """
@@ -75,7 +70,7 @@ class CyclicPresentation:
 
     def inclusion_to_next(self, elem: int) -> int:
         """Canonical inclusion i_n: G_n -> G_{n+1} mapping x |-> x^2.
-        
+
         Additively: k |-> 2k (mod 2^{n+1}).
         Preserves the dyadic rational coordinate: k / 2^n == (2k) / 2^{n+1}.
         """
@@ -92,20 +87,17 @@ class CyclicPresentation:
         return Fraction(el, self.order)
 
 
-# ==============================================================================
-# 2. Pontryagin Dual & Exact Character Calculus
-# ==============================================================================
 
 @dataclass(frozen=True)
 class PontryaginCharacter:
     """Character chi_k: G_n -> S^1 in the Pontryagin dual of G_n.
-    
+
     chi_k(m) = exp(2 pi i * k * m / 2^n).
     Since G_n is finite cyclic, dual(G_n) =~ G_n naturally via k |-> chi_k.
     """
 
     level: int
-    index: int  # k in {0, ..., 2^n - 1}
+    index: int
     order: int
 
     def __init__(self, level: int, index: int) -> None:
@@ -129,7 +121,7 @@ class PontryaginCharacter:
 
     def dual_pullback_from_next(self, higher_char: PontryaginCharacter) -> PontryaginCharacter:
         """Dual map i_n^*: dual(G_{n+1}) -> dual(G_n) induced by inclusion i_n: G_n -> G_{n+1}.
-        
+
         (chi_K o i_n)(m) = chi_K(2m) = exp(2 pi i K (2m) / 2^{n+1}) = exp(2 pi i K m / 2^n).
         Thus i_n^*(chi_K) = chi_{K mod 2^n}.
         """
@@ -144,12 +136,11 @@ class PontryaginCharacter:
 
     def eval_interval(self, elem: int, pi_order: int = 4) -> Tuple[RationalInterval, RationalInterval]:
         """Certified rational interval evaluation of (cos(2 pi tau), sin(2 pi tau)).
-        
+
         Computes exact bounds via rational Taylor expansions of cos and sin around dyadic angles.
         Zero float leakage.
         """
         turn = self.angle_turn(elem)
-        # Handle exact cardinal angles first
         if turn == 0:
             return RationalInterval(Fraction(1), Fraction(1)), RationalInterval(Fraction(0), Fraction(0))
         if turn == Fraction(1, 2):
@@ -159,12 +150,10 @@ class PontryaginCharacter:
         if turn == Fraction(3, 4):
             return RationalInterval(Fraction(0), Fraction(0)), RationalInterval(Fraction(-1), Fraction(-1))
 
-        # For general dyadic turn, compute angle theta in [lo_theta, hi_theta] using certified pi
         pi_int = certified_pi_enclosure(terms=pi_order)
         theta_lo = 2 * turn * pi_int.lo
         theta_hi = 2 * turn * pi_int.hi
 
-        # Certified Taylor series for cos(x) and sin(x) with alternating series remainder bounds
         cos_lo, cos_hi = _cos_interval(theta_lo, theta_hi, order=8)
         sin_lo, sin_hi = _sin_interval(theta_lo, theta_hi, order=8)
         return RationalInterval(cos_lo, cos_hi), RationalInterval(sin_lo, sin_hi)
@@ -172,8 +161,6 @@ class PontryaginCharacter:
 
 def _cos_interval(x_lo: Fraction, x_hi: Fraction, order: int = 8) -> Tuple[Fraction, Fraction]:
     """Alternating Taylor series rational bounds for cos on bounded range."""
-    # cos(x) = sum_{m=0}^M (-1)^m x^{2m} / (2m)!
-    # Over [x_lo, x_hi]
     vals = []
     for x in (x_lo, x_hi):
         terms = [Fraction(1)]
@@ -185,7 +172,6 @@ def _cos_interval(x_lo: Fraction, x_hi: Fraction, order: int = 8) -> Tuple[Fract
         s_even = sum((-1)**m * terms[m] for m in range(0, (order // 2) * 2 + 1))
         s_odd = sum((-1)**m * terms[m] for m in range(0, (order // 2) * 2))
         vals.extend([min(s_even, s_odd), max(s_even, s_odd)])
-    # Clamp to [-1, 1]
     lo = max(Fraction(-1), min(vals))
     hi = min(Fraction(1), max(vals))
     return lo, hi
@@ -193,7 +179,6 @@ def _cos_interval(x_lo: Fraction, x_hi: Fraction, order: int = 8) -> Tuple[Fract
 
 def _sin_interval(x_lo: Fraction, x_hi: Fraction, order: int = 8) -> Tuple[Fraction, Fraction]:
     """Alternating Taylor series rational bounds for sin on bounded range."""
-    # sin(x) = sum_{m=0}^M (-1)^m x^{2m+1} / (2m+1)!
     vals = []
     for x in (x_lo, x_hi):
         terms = [x]
@@ -210,9 +195,6 @@ def _sin_interval(x_lo: Fraction, x_hi: Fraction, order: int = 8) -> Tuple[Fract
     return lo, hi
 
 
-# ==============================================================================
-# 3. Exact Character Orthogonality & Discrete Haar Measure
-# ==============================================================================
 
 @dataclass(frozen=True)
 class CharacterOrthogonalityReceipt:
@@ -222,7 +204,7 @@ class CharacterOrthogonalityReceipt:
     char_k: int
     char_j: int
     is_orthogonal: bool
-    sum_exact_delta: Fraction  # Exact (1/2^n) sum_{m} chi_{k-j}(m) in Q (1 if k == j, else 0)
+    sum_exact_delta: Fraction
     real_interval: RationalInterval
     imag_interval: RationalInterval
     authority_effect: str = "None"
@@ -251,12 +233,8 @@ def verify_character_orthogonality(level: int, k: int, j: int) -> CharacterOrtho
     ord_val = g.order
     diff = (k - j) % ord_val
 
-    # Algebraic identity over roots of unity:
-    # If diff == 0, every term is chi_0(m) = 1, so sum is ord_val.
-    # If diff != 0, sum_{m=0}^{N-1} omega^{m diff} = (omega^{N diff} - 1) / (omega^diff - 1) = 0.
     exact_delta = Fraction(1) if diff == 0 else Fraction(0)
 
-    # Interval summation over certified character evaluations
     char_k = PontryaginCharacter(level, k)
     char_j = PontryaginCharacter(level, j)
 
@@ -268,7 +246,6 @@ def verify_character_orthogonality(level: int, k: int, j: int) -> CharacterOrtho
     for m in g.elements:
         re_k, im_k = char_k.eval_interval(m)
         re_j, im_j = char_j.eval_interval(m)
-        # (re_k + i im_k)(re_j - i im_j) = (re_k re_j + im_k im_j) + i (im_k re_j - re_k im_j)
         term_re = re_k * re_j + im_k * im_j
         term_im = im_k * re_j - re_k * im_j
         real_lo_sum += term_re.lo
@@ -279,7 +256,6 @@ def verify_character_orthogonality(level: int, k: int, j: int) -> CharacterOrtho
     avg_real = RationalInterval(real_lo_sum / ord_val, real_hi_sum / ord_val)
     avg_imag = RationalInterval(imag_lo_sum / ord_val, imag_hi_sum / ord_val)
 
-    # Check that exact delta is enclosed in the interval
     is_ortho = (avg_real.lo <= exact_delta <= avg_real.hi) and (avg_imag.lo <= Fraction(0) <= avg_imag.hi)
 
     return CharacterOrthogonalityReceipt(
@@ -294,9 +270,6 @@ def verify_character_orthogonality(level: int, k: int, j: int) -> CharacterOrtho
     )
 
 
-# ==============================================================================
-# 4. Constructive Continuum Enclosure & Cauchy Contraction
-# ==============================================================================
 
 @dataclass(frozen=True)
 class ContinuumEnclosure:
@@ -310,7 +283,7 @@ class ContinuumEnclosure:
 
     name: str
     intervals: Tuple[RationalInterval, ...]
-    contractive_rate: Fraction  # Bound on width(I_n) / width(I_{n-1})
+    contractive_rate: Fraction
 
     def __init__(
         self,
@@ -347,7 +320,6 @@ class ContinuumEnclosure:
             nxt = self.intervals[i + 1]
             if nxt.width > curr.width:
                 return False
-            # Overlap check
             if nxt.lo > curr.hi or nxt.hi < curr.lo:
                 return False
         return True
@@ -369,11 +341,9 @@ def constructive_cauchy_completion(
 
     for n in range(steps):
         raw_iv = generator(n)
-        # Intersect with previous bounds to ensure strict nesting
         nested_lo = max(curr_lo, raw_iv.lo)
         nested_hi = min(curr_hi, raw_iv.hi)
         if nested_lo > nested_hi:
-            # Fall back to raw interval if intersection is empty
             nested_lo = raw_iv.lo
             nested_hi = raw_iv.hi
         iv = RationalInterval(nested_lo, nested_hi)
@@ -384,9 +354,6 @@ def constructive_cauchy_completion(
     return ContinuumEnclosure(name=name, intervals=seq)
 
 
-# ==============================================================================
-# 5. Fixed-Point Transcendental Enclosures
-# ==============================================================================
 
 def pi_enclosure_sequence(max_terms: int = 8) -> ContinuumEnclosure:
     """Generates Cauchy interval sequence contracting to pi via Machin's formula."""
@@ -412,7 +379,6 @@ def sqrt2_enclosure_sequence(max_steps: int = 6) -> ContinuumEnclosure:
 
 def ln2_enclosure_sequence(max_order: int = 8) -> ContinuumEnclosure:
     """Generates Cauchy interval sequence contracting to ln(2) via power series."""
-    # ln(2) = 2 sum_{k=0}^M (1 / (2k+1)) * (1/3)^{2k+1}
     intervals = []
     z = Fraction(1, 3)
     z2 = Fraction(1, 9)
@@ -429,9 +395,6 @@ def ln2_enclosure_sequence(max_order: int = 8) -> ContinuumEnclosure:
     return ContinuumEnclosure(name="ln(2)", intervals=intervals)
 
 
-# ==============================================================================
-# 6. Genesis Mark-to-Domain Primitives & Authority Firewall
-# ==============================================================================
 
 @dataclass(frozen=True)
 class DomainContinuumElement:
@@ -460,7 +423,7 @@ class DomainContinuumElement:
 
 def lift_mark_to_continuum(mark: str, enclosure: ContinuumEnclosure) -> DomainContinuumElement:
     """Genesis Mark-to-Domain lift: lifts symbolic wire distinction '<>' to a typed continuum element.
-    
+
     Enforces Law 1 (Realization is Non-Authoritative): AuthorityEffect remains strictly None.
     Fails closed if the enclosure violates the Cauchy contractive property.
     """
@@ -478,9 +441,6 @@ def lift_mark_to_continuum(mark: str, enclosure: ContinuumEnclosure) -> DomainCo
     )
 
 
-# ==============================================================================
-# 7. Stamped Evidence Receipt Custody
-# ==============================================================================
 
 def _contains_float(value: Any) -> bool:
     if type(value) is float:
@@ -494,23 +454,19 @@ def _contains_float(value: Any) -> bool:
 
 def generate_inductive_presentation_receipt() -> Dict[str, Any]:
     """Generates a stamped cryptographic evidence receipt for the Inductive Presentation programme."""
-    # 1. Test cyclic inclusions
     g3 = CyclicPresentation(3)
     inc_samples = [g3.inclusion_to_next(x) for x in range(8)]
 
-    # 2. Test character orthogonality on G_3 (Z_8)
     ortho_receipts = [
         verify_character_orthogonality(level=3, k=k, j=0).to_dict()
         for k in range(4)
     ]
 
-    # 3. Test transcendental enclosures
     pi_enc = pi_enclosure_sequence(max_terms=6)
     e_enc = e_enclosure_sequence(max_order=6)
     sqrt2_enc = sqrt2_enclosure_sequence(max_steps=5)
     ln2_enc = ln2_enclosure_sequence(max_order=6)
 
-    # 4. Lift wire marks
     lifted_pi = lift_mark_to_continuum("<pi>", pi_enc).to_dict()
     lifted_sqrt2 = lift_mark_to_continuum("<sqrt2>", sqrt2_enc).to_dict()
 

@@ -19,8 +19,6 @@ import pytest
 
 from omega_engine.crates.homology_theory import hashing as h
 
-# .../anomalon/math/omega_homology/tests -> 7 ancestors up to the
-# repo root, where tests/golden/ is shared with the Rust suite.
 def _find_golden() -> Path:
     cur = Path(__file__).resolve().parent
     for _ in range(10):
@@ -36,7 +34,7 @@ GOLDEN = _find_golden()
 
 
 def _fixture() -> dict:
-    if not GOLDEN.exists():  # pragma: no cover - configuration failure
+    if not GOLDEN.exists():
         pytest.fail(f"shared golden fixture missing at {GOLDEN}")
     return json.loads(GOLDEN.read_text(encoding="utf-8"))
 
@@ -89,7 +87,7 @@ def test_the_unframed_collision_pair_is_separated():
     forgot the framing from passing, so the collision is asserted here rather
     than assumed.
     """
-    unframed = lambda n, d: h.signed_bytes_le(n) + h.signed_bytes_le(d)  # noqa: E731
+    unframed = lambda n, d: h.signed_bytes_le(n) + h.signed_bytes_le(d)
     assert unframed(1, 515) == unframed(769, 2), (
         "premise broken - this pair must collide"
     )
@@ -177,7 +175,6 @@ def test_coefficients_beyond_i64_round_trip():
     huge = 170141183460469231731687303715884105727
     assert huge > 2**63 - 1, "premise: the value must exceed i64"
     assert int.from_bytes(h.signed_bytes_le(huge), "little", signed=True) == huge
-    # And it is one of the fixture's pinned rationals, so Rust agrees on its digest.
     pairs = _pairs(_fixture()["inputs"]["rationals"])
     assert (huge, 1) in pairs
 

@@ -1,15 +1,3 @@
-//! Stable ∞-Categories and Spectra.
-//!
-//! Provides mathematically rigorous foundations for stable homotopy theory:
-//! - Pointed ∞-categories with zero object (initial and terminal)
-//! - Fiber and cofiber sequences
-//! - Suspension functor Σ and Loop functor Ω
-//! - Adjoint equivalence: Ω ≃ Σ^{-1} (unit η: X ≃ ΩΣX and counit ε: ΣΩY ≃ Y)
-//! - Ω-Spectra: sequences of objects E_n with equivalences E_n ≃ Ω E_{n+1}
-//!
-//! Zero floats. Soviet Builder allocation bounded by `OperationLimits`.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::HashMap;
 
@@ -18,14 +6,12 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// An object in a pointed ∞-category.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PointedObject {
     pub id: String,
     pub is_zero: bool,
 }
 
-/// A morphism in a stable ∞-category.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PointedMorphism {
     pub id: String,
@@ -35,7 +21,6 @@ pub struct PointedMorphism {
     pub is_equivalence: bool,
 }
 
-/// A fiber sequence F -> X -> B in a stable ∞-category.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiberSequence {
     pub fiber: String,
@@ -45,37 +30,27 @@ pub struct FiberSequence {
     pub projection_map: String,
 }
 
-/// A level in an Ω-spectrum.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SpectrumLevel {
     pub level: usize,
     pub space_id: String,
-    /// Structure map σ_n: E_n -> Ω E_{n+1}
     pub structure_map_id: String,
 }
 
-/// Stable ∞-category representation with exact verification.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StableInfinityCategory {
     pub objects: Vec<PointedObject>,
     pub morphisms: Vec<PointedMorphism>,
     pub zero_object_id: String,
-    /// Suspension map on objects: X -> ΣX
     pub suspension_objects: HashMap<String, String>,
-    /// Loop map on objects: Y -> ΩY
     pub loop_objects: HashMap<String, String>,
-    /// Unit morphisms η_X: X -> Ω(ΣX)
     pub unit_morphisms: HashMap<String, String>,
-    /// Counit morphisms ε_Y: Σ(ΩY) -> Y
     pub counit_morphisms: HashMap<String, String>,
-    /// Registered fiber sequences
     pub fiber_sequences: Vec<FiberSequence>,
-    /// Registered spectra
     pub spectra: HashMap<String, Vec<SpectrumLevel>>,
 }
 
 impl StableInfinityCategory {
-    /// Constructs a stable ∞-category with a designated zero object under `OperationLimits`.
     pub fn new(zero_object: impl Into<String>, limits: &OperationLimits) -> Result<Self, HigherCategoryError> {
         let zero_id = zero_object.into();
         let mut objects = Vec::new();
@@ -101,7 +76,6 @@ impl StableInfinityCategory {
         })
     }
 
-    /// Adds a pointed object.
     pub fn add_object(&mut self, id: impl Into<String>, limits: &OperationLimits) -> Result<(), HigherCategoryError> {
         let id_str = id.into();
         if self.objects.iter().any(|o| o.id == id_str) {
@@ -115,7 +89,6 @@ impl StableInfinityCategory {
         Ok(())
     }
 
-    /// Adds a morphism.
     pub fn add_morphism(
         &mut self,
         id: impl Into<String>,
@@ -150,14 +123,12 @@ impl StableInfinityCategory {
         Ok(())
     }
 
-    /// Sets suspension and loop correspondence on objects.
     pub fn set_suspension_loop_pair(&mut self, x: &str, sigma_x: &str, omega_sigma_x: &str) -> Result<(), HigherCategoryError> {
         self.suspension_objects.insert(x.to_string(), sigma_x.to_string());
         self.loop_objects.insert(sigma_x.to_string(), omega_sigma_x.to_string());
         Ok(())
     }
 
-    /// Registers the unit morphism η_X: X -> Ω(ΣX).
     pub fn set_unit_equivalence(&mut self, x: &str, eta_map: &str) -> Result<(), HigherCategoryError> {
         let m = self.get_morphism(eta_map)?;
         if m.source != x {
@@ -176,7 +147,6 @@ impl StableInfinityCategory {
         Ok(())
     }
 
-    /// Registers the counit morphism ε_Y: Σ(ΩY) -> Y.
     pub fn set_counit_equivalence(&mut self, y: &str, epsilon_map: &str) -> Result<(), HigherCategoryError> {
         let m = self.get_morphism(epsilon_map)?;
         if m.target != y {
@@ -195,7 +165,6 @@ impl StableInfinityCategory {
         Ok(())
     }
 
-    /// Gets a morphism reference by ID.
     pub fn get_morphism(&self, id: &str) -> Result<&PointedMorphism, HigherCategoryError> {
         self.morphisms
             .iter()
@@ -203,13 +172,10 @@ impl StableInfinityCategory {
             .ok_or_else(|| HigherCategoryError::OneCellNotFound { id: id.to_string() })
     }
 
-    /// Checks if an object with the given ID exists.
     pub fn has_object(&self, id: &str) -> bool {
         self.objects.iter().any(|o| o.id == id)
     }
 
-    /// Verifies the loop-suspension mutual equivalence:
-    /// For registered objects, η_X: X ≃ ΩΣX and ε_Y: ΣΩY ≃ Y are equivalences.
     pub fn verify_loop_suspension_equivalence(&self) -> Result<(), HigherCategoryError> {
         if self.objects.len() > 1 && (self.unit_morphisms.is_empty() || self.counit_morphisms.is_empty()) {
             return Err(HigherCategoryError::SuspensionLoopInvertibilityViolation {
@@ -265,12 +231,10 @@ impl StableInfinityCategory {
         Ok(())
     }
 
-    /// Registers an Ω-spectrum.
     pub fn add_spectrum(&mut self, spectrum_id: impl Into<String>, levels: Vec<SpectrumLevel>) {
         self.spectra.insert(spectrum_id.into(), levels);
     }
 
-    /// Verifies that all structure maps in an Ω-spectrum are equivalences: E_n ≃ Ω E_{n+1}.
     pub fn verify_spectrum(&self, spectrum_id: &str) -> Result<(), HigherCategoryError> {
         let levels = self.spectra.get(spectrum_id).ok_or_else(|| {
             HigherCategoryError::ZeroCellNotFound { id: spectrum_id.to_string() }

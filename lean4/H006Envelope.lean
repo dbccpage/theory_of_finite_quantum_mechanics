@@ -1,20 +1,5 @@
-/-
-  H006Envelope -- n=2 permutation lifts among GaussInt isometries.
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  FRONTIER R4. On Bool there are exactly two reversible report
-  maps: identity and toggle. Their permU extensions are the
-  permutation lifts. swapI is an isometry that is not among them
-  (H006.swapI_not_permutation). The envelope is therefore strict,
-  and the permutation-lift subclass has size 2. Not a
-  classification of all (possibly infinite) linear isometries.
-  Not a Hilbert unitary group.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 import HWKernel
 import H003ReversibilityGate
@@ -33,7 +18,6 @@ def idRev : Reversible (fun q : Bool => q) where
   left := fun _ => rfl
   right := fun _ => rfl
 
-/-- A bijection of Bool is identity or toggle. -/
 theorem bool_reversible_id_or_toggle {τ : Bool → Bool}
     (R : Reversible τ) :
     (∀ q, τ q = q) ∨ (∀ q, τ q = toggle q) := by
@@ -59,27 +43,23 @@ theorem bool_reversible_id_or_toggle {τ : Bool → Bool}
 
 #print axioms bool_reversible_id_or_toggle
 
-/-- permU of the identity is the identity. -/
 theorem permU_id (v : Vec GaussInt Bool) (q : Bool) :
     permU gaussPack idRev v q = v q :=
   rfl
 
 #print axioms permU_id
 
-/-- permU of toggle swaps coordinates. -/
 theorem permU_toggle (v : Vec GaussInt Bool) (q : Bool) :
     permU gaussPack toggleRev v q = v (toggle q) :=
   rfl
 
 #print axioms permU_toggle
 
-/-- Toggle is an involution. -/
 theorem toggle_toggle (q : Bool) : toggle (toggle q) = q := by
   cases q <;> rfl
 
 #print axioms toggle_toggle
 
-/-- A permutation lift is globally identity or globally coordinate-swap. -/
 theorem permutation_lift_id_or_swap
     {τ : Bool → Bool} (R : Reversible τ) :
     (∀ v q, permU gaussPack R v q = v q) ∨
@@ -102,7 +82,6 @@ theorem permutation_lift_id_or_swap
 
 #print axioms permutation_lift_id_or_swap
 
-/-- Identity lift and coordinate-swap lift are unequal as maps. -/
 theorem id_and_toggle_lifts_unequal :
     permU gaussPack idRev ≠ permU gaussPack toggleRev := by
   intro h
@@ -113,10 +92,6 @@ theorem id_and_toggle_lifts_unequal :
 
 #print axioms id_and_toggle_lifts_unequal
 
-/-- Punchline: at n=2 the permutation lifts are exactly identity
-    and coordinate-swap. swapI is an isometry outside that pair.
-    Not a Hilbert unitary group. Not a count of all linear
-    isometries of (Z[i])². -/
 theorem two_permutation_lifts_envelope_strict :
     (permU gaussPack idRev ≠ permU gaussPack toggleRev) ∧
       ((∀ v q, permU gaussPack idRev v q = v q) ∧
@@ -132,3 +107,6 @@ theorem two_permutation_lifts_envelope_strict :
 #print axioms two_permutation_lifts_envelope_strict
 
 end FableHilbertWalk20260819.H006Envelope
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H006Envelope.lean Claim: bool_reversible_id_or_toggle AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

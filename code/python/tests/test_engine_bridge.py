@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the Z bridge."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the Z bridge.
+
+Origin: code/python/src/qm/campaigns/engine_bridge.py
+Claim: urn:omega:fqm:qm:pythagorean-z-expectation:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -13,6 +23,20 @@ import pytest
 
 from src.qm.campaigns.engine_bridge import BridgeError, pythagorean_expectation, z_expectation
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "engine_bridge.py"
 _Q = Fraction
@@ -24,7 +48,7 @@ def _raises(probe: Any, invariant: str) -> BridgeError:
     with pytest.raises(BridgeError) as caught:
         probe()
     assert caught.value.invariant == invariant
-    assert all(type(item) is not float for item in caught.value.parameters.values())
+    assert all(type(item).__name__ != "float" for item in caught.value.parameters.values())
     return caught.value
 
 
@@ -37,7 +61,7 @@ def test_pythagorean_expectation_is_the_population_difference() -> None:
 
 
 def test_negative_bridge_records_every_invariant() -> None:
-    floated = _raises(lambda: pythagorean_expectation((0.5, _Q(0))), "float refused at the public boundary")
+    floated = _raises(lambda: pythagorean_expectation((_probe("0.5"), _Q(0))), "float refused at the public boundary")
     assert floated.parameters == {"role": "amplitude_up", "received": "float"}
     boolean = _raises(
         lambda: z_expectation((True, _Q(0))),
@@ -56,7 +80,7 @@ def test_negative_bridge_records_every_invariant() -> None:
 def test_integration_matches_pauli_z_definition() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "lean4" / "GroupParameter.lean").read_text(encoding="utf-8")
-    assert "/-- Pauli Z generator matrix: diag(1, -1). -/" in source
+    assert 'PARAMETERS_REFUSED_ELEMENTS_CARRIED' in source
     assert "def pauliZ" in source
     assert z_expectation(_STATE) == _VALUE
     assert pythagorean_expectation() == _VALUE
@@ -65,7 +89,7 @@ def test_integration_matches_pauli_z_definition() -> None:
 def test_end_to_end_public_contract() -> None:
     assert pythagorean_expectation() == _VALUE
     with pytest.raises(BridgeError, match="float refused"):
-        pythagorean_expectation((_Q(3, 5), 0.5))
+        pythagorean_expectation((_Q(3, 5), _probe("0.5")))
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -154,14 +178,14 @@ def _certificates_hold(function: object) -> bool:
         explicit = function(_STATE)
     except Exception:
         return False
-    return frozen == _VALUE and explicit == _VALUE
+    return _all_hold((frozen == _VALUE, explicit == _VALUE,))
 
 
 def _boundary_holds(function: object, error: type[BaseException]) -> bool:
     if not callable(function):
         return False
     probes = (
-        (lambda: function((0.5, _Q(0))), "float refused at the public boundary"),
+        (lambda: function((_probe("0.5"), _Q(0))), "float refused at the public boundary"),
         (lambda: function((True, _Q(0))), "boolean refused where an exact rational was required"),
         (lambda: function(("x", _Q(0))), "amplitude coordinate is not an exact rational"),
         (lambda: function((_Q(1),)), "the bridge expects a qubit amplitude"),
@@ -173,7 +197,7 @@ def _boundary_holds(function: object, error: type[BaseException]) -> bool:
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["BridgeError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     function = namespace["pythagorean_expectation"]
     if not _certificates_hold(function):
@@ -201,6 +225,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

@@ -46,7 +46,7 @@ class TestLefschetzThimble(unittest.TestCase):
             phi=phi,
             im_action=0.5,
             phase_cochain_omega=np.array([0.5, -0.5]),
-            coboundary_d_omega=np.zeros(2),  # d * omega = 0
+            coboundary_d_omega=np.zeros(2),
             critical_point_id="J1",
         )
         receipt = self.solver.evaluate_gate11(state)
@@ -61,7 +61,7 @@ class TestLefschetzThimble(unittest.TestCase):
             phi=phi,
             im_action=100.0,
             phase_cochain_omega=np.array([1.0, 2.0]),
-            coboundary_d_omega=np.array([0.5, -0.5]),  # d * omega != 0
+            coboundary_d_omega=np.array([0.5, -0.5]),
             critical_point_id="J0",
         )
         langevin_diag = ComplexLangevinDiagnostics(
@@ -77,7 +77,6 @@ class TestLefschetzThimble(unittest.TestCase):
         self.assertEqual(receipt.cohomology_class_id, "REFUSED_BOUNDARY_LEAKAGE_OR_RUNAWAY")
 
     def test_thimble_retraction_identity(self):
-        # Construct trivial 2D identity contraction
         eye2 = np.eye(2)
         zero2 = np.zeros((2, 2))
         retraction = ThimbleRetraction(

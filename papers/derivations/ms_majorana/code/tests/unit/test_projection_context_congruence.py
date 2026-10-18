@@ -12,22 +12,18 @@ def test_dfa_minimization_returning_witness():
     """
     states = ["S0", "S1", "S2"]
 
-    # Action generators
     generators = {
         "a": lambda s: {"S0": "S2", "S1": "S0", "S2": "S2"}[s],
         "b": lambda s: {"S0": "S1", "S1": "S1", "S2": "S2"}[s],
     }
 
-    # Protected observation: S0 and S1 emit 0, S2 emits 1
     def obs(s):
         return 0 if s in ("S0", "S1") else 1
 
     engine = ProjectionContextCongruenceEngine(states, generators, obs)
     result = engine.compute_core_c()
 
-    # Initial blocks: [S0, S1] and [S2]
     assert len(result.initial_blocks) == 2
-    # Final blocks: [S0], [S1], [S2] because 'a' separates S0 and S1
     assert len(result.final_blocks) == 3
     assert result.splits_count == 1
     assert len(result.witnesses) == 1
@@ -36,8 +32,8 @@ def test_dfa_minimization_returning_witness():
     assert witness.state_x == "S0"
     assert witness.state_y == "S1"
     assert witness.context_word == ("a",)
-    assert witness.obs_x_after == "1"  # S0 -> S2 emits 1
-    assert witness.obs_y_after == "0"  # S1 -> S0 emits 0
+    assert witness.obs_x_after == "1"
+    assert witness.obs_y_after == "0"
 
 
 def test_no_genesis_boundary_constant_observation():
@@ -51,7 +47,6 @@ def test_no_genesis_boundary_constant_observation():
         "rotate": lambda s: {"x1": "x2", "x2": "x3", "x3": "x4", "x4": "x1"}[s]
     }
 
-    # Constant observation: everything emits 42
     def constant_obs(s):
         return 42
 
@@ -72,11 +67,9 @@ def test_partition_refinement_idempotency():
     def obs(s):
         return "even" if s in ("A", "C") else "odd"
 
-    # Pass 1
     engine1 = ProjectionContextCongruenceEngine(states, generators, obs)
     res1 = engine1.compute_core_c()
 
-    # Pass 2 using final blocks as new initial observation mapping
     block_map = {}
     for idx, blk in enumerate(res1.final_blocks):
         for member in blk:
@@ -97,13 +90,11 @@ def test_calculus_discrete_integration_congruence():
 
     Partitioning real line grid points into equivalence classes under shift action.
     """
-    # Grid x in 0..10
     grid = list(range(11))
     generators = {
-        "dx": lambda x: min(10, x + 1),  # Forward Euler shift
+        "dx": lambda x: min(10, x + 1),
     }
 
-    # Observation: total integrated sum modulo 5
     def total_area_obs(x):
         return (x * (x + 1) // 2) % 5
 

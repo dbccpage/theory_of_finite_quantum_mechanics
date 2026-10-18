@@ -18,6 +18,6 @@ def test_network_residual_smoke():
 
 def test_old_coda_network_import_deleted():
     with pytest.raises(ImportError):
-        import omega_engine.crates.coda.network_residual  # type: ignore
+        import omega_engine.crates.coda.network_residual
 
 

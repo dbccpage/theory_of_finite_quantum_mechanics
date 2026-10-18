@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 import numpy as np
 
-# Ensure code directory is in sys.path
 code_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path(".")
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -43,9 +42,7 @@ class TestReplicaHierarchyClaims(unittest.TestCase):
         profile = ReplicaObserverProfile(edge_weights={(0, 1): 1.0, (1, 2): 1.0, (2, 0): 1.0})
         cochain = {(0, 1): 3.0, (1, 2): -4.0, (2, 0): 2.5}
 
-        # Global evaluation
         j_global = profile.evaluate_replica_cochain(cochain)
-        # Sum of singletons
         j_singletons = sum(profile.evaluate_singleton(e, val) for e, val in cochain.items())
 
         self.assertAlmostEqual(j_global, j_singletons, places=6)
@@ -62,21 +59,20 @@ class TestReplicaHierarchyClaims(unittest.TestCase):
         j_orig = profile.evaluate_replica_cochain(cochain)
         j_scaled = profile.evaluate_replica_cochain(scaled_cochain)
 
-        self.assertGreaterEqual(j_orig, 0.0)  # RE1 Non-negativity
-        self.assertAlmostEqual(j_scaled, c * j_orig, places=6)  # RE2 Positive Homogeneity
+        self.assertGreaterEqual(j_orig, 0.0)
+        self.assertAlmostEqual(j_scaled, c * j_orig, places=6)
 
     def test_claim_d4_re4_orbit_invariance(self):
         """Cross-validate Claim D4: RE4 constrains weights on declared edge-exchange orbits."""
-        # Orbit: symmetric edges (0, 1) and (1, 2) in cyclic 3-graph
         profile = ReplicaObserverProfile(edge_weights={(0, 1): 1.0, (1, 2): 1.0, (2, 0): 1.0})
 
         cochain_a = {(0, 1): 4.0, (1, 2): 2.0}
-        cochain_permuted = {(0, 1): 2.0, (1, 2): 4.0}  # Orbit-swapped
+        cochain_permuted = {(0, 1): 2.0, (1, 2): 4.0}
 
         j_a = profile.evaluate_replica_cochain(cochain_a)
         j_b = profile.evaluate_replica_cochain(cochain_permuted)
 
-        self.assertEqual(j_a, j_b)  # Orbit invariance under equal weights
+        self.assertEqual(j_a, j_b)
 
     def test_claim_d5_re3_re5_unweighted_sum_calibration(self):
         """Cross-validate Claim D5: RE3+RE5 give exact unweighted edgewise L1 sum sum_e |x_e|."""
@@ -91,22 +87,19 @@ class TestReplicaHierarchyClaims(unittest.TestCase):
 
     def test_non_calibrated_edge_exchange_orbits(self):
         """Verify non-unit scalar weighting (c_e != 1) on non-calibrated edge exchange orbits when RE5 is dropped."""
-        # Non-calibrated profile with distinct positive weights c_e != 1 across edges in the same orbit
         profile = ReplicaObserverProfile(
             edge_weights={(0, 1): 2.5, (1, 2): 0.5, (2, 0): 1.0},
             singleton_calibration=False,
         )
 
         cochain_a = {(0, 1): 4.0, (1, 2): 2.0, (2, 0): 1.0}
-        cochain_swapped = {(0, 1): 2.0, (1, 2): 4.0, (2, 0): 1.0}  # Orbit-swapped values
+        cochain_swapped = {(0, 1): 2.0, (1, 2): 4.0, (2, 0): 1.0}
 
         j_weighted_a = profile.evaluate_replica_cochain(cochain_a)
         j_weighted_swapped = profile.evaluate_replica_cochain(cochain_swapped)
 
-        # 1. Verifies positive weighted sum: 2.5*4.0 + 0.5*2.0 + 1.0*1.0 = 12.0
         self.assertEqual(j_weighted_a, 12.0)
 
-        # 2. Verifies orbit weight asymmetry when c_e != c_e': 2.5*2.0 + 0.5*4.0 + 1.0*1.0 = 8.0
         self.assertEqual(j_weighted_swapped, 8.0)
         self.assertNotEqual(j_weighted_a, j_weighted_swapped)
 

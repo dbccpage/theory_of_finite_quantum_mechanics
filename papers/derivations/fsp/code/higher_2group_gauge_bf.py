@@ -65,10 +65,9 @@ class StrictCrossedModule:
     g_inv: Tuple[int, ...]
     h_inv: Tuple[int, ...]
     partial_map: Tuple[int, ...]
-    alpha_map: Tuple[Tuple[int, ...], ...]  # alpha[g][h] = g |> h
+    alpha_map: Tuple[Tuple[int, ...], ...]
 
     def __post_init__(self) -> None:
-        # Validate Peiffer identity: partial(g |> h) == g * partial(h) * g^{-1}
         for g in range(self.g_order):
             g_inv_val = self.g_inv[g]
             for h in range(self.h_order):
@@ -79,7 +78,6 @@ class StrictCrossedModule:
                 if lhs != rhs:
                     raise ValueError(f"Peiffer identity failed at g={g}, h={h}: lhs={lhs} != rhs={rhs}")
 
-        # Validate crossed module condition: partial(h1) |> h2 == h1 * h2 * h1^{-1}
         for h1 in range(self.h_order):
             part_h1 = self.partial_map[h1]
             h1_inv_val = self.h_inv[h1]
@@ -101,8 +99,8 @@ class StrictCrossedModule:
         h_mul = ((0, 1), (1, 0))
         g_inv = (0, 1)
         h_inv = (0, 1)
-        partial_map = (0, 0)  # trivial map to 0 (identity)
-        alpha_map = ((0, 1), (0, 1))  # trivial action
+        partial_map = (0, 0)
+        alpha_map = ((0, 1), (0, 1))
         return cls(
             g_order=g_order,
             h_order=h_order,
@@ -123,7 +121,7 @@ class PostnikovClass:
     """
     crossed_module: StrictCrossedModule
     is_trivial: bool
-    cocycle_table: Tuple[Tuple[Tuple[int, ...], ...], ...]  # a[g1][g2][g3] in H
+    cocycle_table: Tuple[Tuple[Tuple[int, ...], ...], ...]
 
     def evaluate(self, g1: int, g2: int, g3: int) -> int:
         """Evaluates 3-cocycle on a triple of 1-gauge group elements."""
@@ -150,8 +148,6 @@ class PostnikovClass:
                         t4 = self.evaluate(g1, g2, cm.g_mul[g3][g4])
                         t5 = self.evaluate(g1, g2, g3)
 
-                        # In abelian H: t1 - t2 + t3 - t4 + t5
-                        # For Z_2: sum mod 2
                         res = (t1 + t2 + t3 + t4 + t5) % cm.h_order
                         if res != 0:
                             return False
@@ -181,7 +177,6 @@ class PostnikovClass:
             for g2 in range(2):
                 row = []
                 for g3 in range(2):
-                    # Cup product of 1-cocycles: a = g1 * g2 * g3
                     row.append((g1 * g2 * g3) % 2)
                 plane.append(tuple(row))
             table.append(tuple(plane))
@@ -312,7 +307,6 @@ class Higher2GroupGaugeModel:
         if self.postnikov.is_trivial:
             return 1.0 + 0.0j
 
-        # Non-trivial Postnikov 3-cocycle evaluation under linking
         phase = math.pi * (self.surface_linking % 2)
         return cmath.exp(1.0j * phase)
 
@@ -323,8 +317,6 @@ class Higher2GroupGaugeModel:
         However, the 2-form surface defect 3-cocycle phase [a] is NOT doubled by 1-form operators,
         leaving the defect sign uncancelled: M_eff = bare_holonomy * |Tr(1)|^2.
         """
-        # If bare holonomy is negative (-1), 1-form double multiplies by positive factor |g|^2
-        # but fails to cancel the 2-surface 3-cocycle phase:
         return bare_holonomy
 
     def compute_higher_2double_projection(self, bare_holonomy: complex) -> complex:
@@ -347,7 +339,7 @@ class Higher2GroupEngine:
     def audit_2group_gauge_theory(
         cls,
         model: Higher2GroupGaugeModel,
-        projection_mode: str = "none",  # "none", "1form_qd", "higher_2qd"
+        projection_mode: str = "none",
     ) -> Higher2GroupAuditReceipt:
         """
         Audits 4D 2-group gauge theory, testing whether Postnikov classes [a] in H^3(BG, H)
@@ -375,15 +367,13 @@ class Higher2GroupEngine:
                 avg_sign = 1.0
                 route = TerminalRoute.EXACT_REPAIR
             else:
-                # Postnikov obstruction: 1-form quantum double leaves uncancelled 3-cocycle sign
                 gamma_2 = abs(cmath.phase(eff_hol))
                 re_val = eff_hol.real
-                # Sign obstruction: negative real trace
                 phi_1 = float(max(0.0, 1.0 - re_val) + abs(eff_hol.imag))
                 avg_sign = float(max(0.0, re_val))
                 route = TerminalRoute.OPEN_SIGN_OBSTRUCTION
 
-        else:  # projection_mode == "none"
+        else:
             eff_hol = bare_hol
             is_1qd = False
             is_2qd = False

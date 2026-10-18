@@ -34,7 +34,7 @@ def test_kitaev_chain_majorana_zero_mode_isolation():
         assert mzm_rec.is_boundary_isolated is True
         assert set(mzm_rec.unpaired_zero_modes) == {1, 8}
         assert mzm_rec.mzm_status == "MZM_TOPOLOGICALLY_PROTECTED"
-        assert len(mzm_rec.bulk_bonded_modes) == 6  # Modes 2, 3, 4, 5, 6, 7 are bulk bonded
+        assert len(mzm_rec.bulk_bonded_modes) == 6
     finally:
         gin.close()
 

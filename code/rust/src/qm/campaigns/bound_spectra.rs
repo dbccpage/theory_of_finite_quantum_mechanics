@@ -1,8 +1,3 @@
-//! Campaign module bound_spectra.
-//!
-//! The path Laplacian on three vertices has a kernel (the constant vector)
-//! and a quadratic form equal to the sum of squared edge jumps. Both readings
-//! of `x^T L x` agree, and the value sits inside the Gershgorin interval.
 
 pub fn verify() -> Result<i64, &'static str> {
     let laplacian = [[1i64, -1, 0], [-1, 2, -1], [0, -1, 1]];
@@ -42,7 +37,6 @@ pub fn verify() -> Result<i64, &'static str> {
         .iter()
         .try_fold(0i64, |acc, v| v.checked_mul(*v).and_then(|square| acc.checked_add(square)))
         .ok_or("norm")?;
-    // Gershgorin puts every eigenvalue in [0, 4], so x^T L x ≤ 4 ||x||².
     let cap = norm_sq.checked_mul(4).ok_or("cap")?;
     if by_matrix < 0 || by_matrix > cap {
         return Err("Rayleigh value left the Gershgorin bound");

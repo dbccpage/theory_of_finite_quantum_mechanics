@@ -216,7 +216,6 @@ def verify_full_coverage(
     if not all_leaves:
         return False, "Empty leaf collection"
 
-    # Identify active coordinates where domain has strictly positive width
     active_coords = [k for k in range(len(domain)) if domain[k].width() > 0]
     if not active_coords:
         return False, "Domain has zero volume in all coordinates (degenerate domain)"
@@ -225,23 +224,19 @@ def verify_full_coverage(
     total_leaf_vol = Fraction(0, 1)
 
     for i, leaf in enumerate(all_leaves):
-        # 1. Domain containment: leaf must be inside domain
         for k in range(len(domain)):
             if leaf[k].lo < domain[k].lo or leaf[k].hi > domain[k].hi:
                 return False, f"Leaf {i} exceeds domain bounds on coordinate {k}"
-            # On degenerate coordinates, leaf must match domain exactly
             if domain[k].width() == 0 and (leaf[k].lo != domain[k].lo or leaf[k].hi != domain[k].hi):
                 return False, f"Leaf {i} violates fixed coordinate {k}"
         total_leaf_vol += active_box_volume(leaf, active_coords)
 
-    # 2. Volume conservation: sum of leaf volumes must equal domain volume in active coordinates
     if total_leaf_vol != domain_vol:
         return (
             False,
             f"Volume mismatch: sum of leaves = {total_leaf_vol}, domain = {domain_vol}, diff = {total_leaf_vol - domain_vol}",
         )
 
-    # 3. Relative interior disjointness check across active coordinates (exhaustive, no leaf cutoff)
     n = len(all_leaves)
     for i in range(n):
         for j in range(i + 1, n):

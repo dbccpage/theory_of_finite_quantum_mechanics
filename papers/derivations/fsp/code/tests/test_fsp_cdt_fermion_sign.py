@@ -41,7 +41,6 @@ def test_lean4_fermion_sign_theorems():
     lean_file = tower_dir / "lean4" / "regge_wdw_core.lean"
     assert lean_file.exists(), f"Lean core file missing: {lean_file}"
 
-    # Run Lean 4 elaboration
     result = subprocess.run(
         ["lean", str(lean_file)],
         capture_output=True,
@@ -75,10 +74,8 @@ def test_yaml_contract_schema():
 
 def test_dirac_operator_antihermitian_hopping():
     """3. Test anti-Hermitian property of kinetic Dirac hopping and breaking by chemical potential."""
-    # Triangular complex with 4 vertices and 6 edges
     edges = [(0, 1), (1, 2), (2, 0), (0, 3), (1, 3), (2, 3)]
-    
-    # Without chemical potential: D_kin^dagger = -D_kin
+
     op_zero_mu = SimplicialDiracOperator(
         num_vertices=4,
         edges=edges,
@@ -87,7 +84,6 @@ def test_dirac_operator_antihermitian_hopping():
     )
     assert op_zero_mu.is_antihermitian_hopping(tol=1e-10)
 
-    # With chemical potential mu > 0: Hermiticity broken
     op_with_mu = SimplicialDiracOperator(
         num_vertices=4,
         edges=edges,
@@ -100,15 +96,14 @@ def test_dirac_operator_antihermitian_hopping():
 def test_grassmann_path_integral_berezin_scaling():
     """4. Test that Grassmann path integral evaluates to det(D) with Berezin scaling."""
     edges = [(0, 1), (1, 2), (2, 0)]
-    
+
     op1 = SimplicialDiracOperator(num_vertices=3, edges=edges, mass=0.5)
     det1, sign1 = op1.evaluate_determinant()
-    
-    # Scale mass by factor alpha
+
     alpha = 2.0
     op2 = SimplicialDiracOperator(num_vertices=3, edges=edges, mass=0.5 * alpha)
     det2, sign2 = op2.evaluate_determinant()
-    
+
     assert isinstance(det1, complex)
     assert sign1 in (-1, 1)
     assert abs(det1) > 0.0
@@ -131,7 +126,6 @@ def test_bipartite_reflection_exact_involution_cancellation():
     assert involution.is_weight_preserving
     assert involution.is_involution_certified
 
-    # Check that sum of weights cancels identically
     z_b, z_f, avg_sign, c1_norm, phi_1, bound_sat, classification = (
         evaluator.compute_bqnf_quotient_bounds(configs, involution)
     )
@@ -153,7 +147,6 @@ def test_frustrated_ensemble_bqnf_quotient_norm_bounds():
     assert len(configs) == 25
 
     involution = evaluator.search_bqnf_involution_witness(configs)
-    # Frustrated ensemble should not have exact involution
     assert not involution.has_exact_involution
 
     z_b, z_f, avg_sign, c1_norm, phi_1, bound_sat, classification = (
@@ -174,7 +167,6 @@ def test_volume_exponential_sign_decay():
     avg_signs = []
 
     for v in volumes:
-        # As volume increases, the geometric action scaling increases
         configs = evaluator.generate_frustrated_chiral_ensemble(
             ensemble_id=f"ens_vol_{v}",
             num_configs=30,
@@ -187,7 +179,6 @@ def test_volume_exponential_sign_decay():
         avg_sign = abs(z_f / z_b) if z_b > 0 else 0.0
         avg_signs.append(avg_sign)
 
-    # Average sign is strictly bounded in [0, 1]
     for s in avg_signs:
         assert 0.0 <= s <= 1.0
 
@@ -198,13 +189,11 @@ def test_sqlite_relational_views():
     """8. Test SQLite ViewCdtFermionSignBqnfAudit produces certified verdicts."""
     evaluator = CdtFermionSignEvaluator()
 
-    # 1. Bipartite ensemble
     c_bipartite = evaluator.generate_bipartite_reflection_ensemble("ens_sql_bip", num_pairs=5)
     r_bipartite = evaluator.record_ensemble_evaluation("ens_sql_bip", "BIPARTITE_REFLECTION", c_bipartite)
     assert r_bipartite["audit_verdict"] == "EXACT_INVOLUTION_CANCELLED"
     assert r_bipartite["classification"] == "ExactCancellation"
 
-    # 2. Frustrated ensemble
     c_frustrated = evaluator.generate_frustrated_chiral_ensemble("ens_sql_frust", num_configs=15)
     r_frustrated = evaluator.record_ensemble_evaluation("ens_sql_frust", "CHIRAL_FRUSTRATED", c_frustrated)
     assert r_frustrated["audit_verdict"] == "BOUNDED_OPEN_SIGN_OBSTRUCTION"

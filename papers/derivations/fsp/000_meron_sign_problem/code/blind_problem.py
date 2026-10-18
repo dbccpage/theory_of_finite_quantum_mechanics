@@ -77,7 +77,6 @@ def generate_blind_problem_packet() -> dict:
     oracle = BlindClusterOracle()
     samples = oracle.get_sample_subgraphs(limit=4)
 
-    # Format sample cases for prompting
     sample_text_blocks = []
     for s in samples:
         block = (

@@ -1,7 +1,3 @@
-//! Recovered original WD-2 Genesis-six (M,U,p,rho,G,T) and WD-5 TEN-symbol
-//! operational packet. These are not the education-six or compressed policy-five.
-//! Original rho acts on unbounded histories; it is retained as executable data.
-//! No profile-to-grammar encoder, state-level context, or authority is invented.
 
 use crate::types::AuthorityEffect;
 use omega_category_theory::finite_history_context::{
@@ -177,9 +173,6 @@ impl<C: HistoryContext> OriginalGenesisObserver<C> {
         let x = self.history_state(word)?;
         Ok(&self.profile_labels[self.memory.reports()[x]])
     }
-    /// The same source rho is executed, then its output is checked in D*.
-    /// No finite-state collapse or totality theorem for arbitrary implementations
-    /// is inferred from this successful finite invocation.
     pub fn contextual_profile(
         &self,
         context: &str,
@@ -203,8 +196,6 @@ impl<C: HistoryContext> OriginalGenesisObserver<C> {
             .copied()
             .ok_or(OriginalObserverError::UnknownGrammar)
     }
-    /// G and T are separate original components. Routing a profile requires an
-    /// EXTRA checked encoder; neither a profile label nor Proved is authority.
     pub fn terminal_for_history(
         &self,
         word: &[usize],
@@ -237,8 +228,6 @@ pub struct GenesisClassification {
 }
 
 impl OriginalGenesisObserver<FiniteWordTransducer> {
-    /// O1: two histories have unequal profiles. O2: a context separates a
-    /// previously equal-profile pair. Both decisions cover all D*, and ignore G/T by definition.
     pub fn classify_original(&self) -> Result<GenesisClassification, OriginalObserverError> {
         let first_report = self.memory.reports()[self.initial];
         let mut words = BTreeMap::from([(self.initial, vec![])]);
@@ -281,7 +270,6 @@ impl OriginalGenesisObserver<FiniteWordTransducer> {
             o2_witness,
         })
     }
-    /// Checked total context realizations over the actual declared input alphabet.
     pub fn new_checked(
         data: GenesisSixData,
         contexts: BTreeMap<String, FiniteWordTransducer>,
@@ -296,8 +284,6 @@ impl OriginalGenesisObserver<FiniteWordTransducer> {
         }
         Self::new(data, contexts)
     }
-    /// Universal descent for this finite transducer, via a closed finite product
-    /// graph representing every input history. Counterexamples include words.
     pub fn context_state_descent(
         &self,
         context: &str,
@@ -310,8 +296,6 @@ impl OriginalGenesisObserver<FiniteWordTransducer> {
     }
 }
 
-/// Exact recovered WD-5 ten-symbol semantics: Sigma,S,s0,Lambda,C,Pi,u,r,p,rho.
-/// The Mealy report r:S x Sigma -> Lambda is independent of profile p:S->Pi.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct OriginalOperationalData {
     pub states: Vec<String>,
@@ -411,8 +395,6 @@ impl OriginalOperationalObserver {
     pub fn authority_effect(&self) -> AuthorityEffect {
         AuthorityEffect::None
     }
-    /// Emits r(state,input) BEFORE applying u(state,input), preserving Mealy
-    /// semantics and the original input-dependent report rather than a Moore label.
     pub fn report_trace(
         &self,
         word: &[usize],
@@ -428,8 +410,6 @@ impl OriginalOperationalObserver {
         }
         Ok((reports, state))
     }
-    /// W1->W2 is possible exactly when this state action preserves reachability.
-    /// The returned history action is an explicit lift, not an assumed fork match.
     pub fn lift_state_context(
         &self,
         context: &str,

@@ -1,6 +1,3 @@
-//! Raw admitted regimes and actual observation/challenge rules of pinned
-//! 19L57G1 derivation.model/observe/candidates. Tokens remain opaque strings;
-//! equality is the source's metatheory dedup convention, not an internal law.
 use num_bigint::{BigInt, BigUint};
 use omega_combinatorics::cartesian_words::CartesianWords;
 use omega_combinatorics::enumeration::CombinatoricsError;
@@ -264,8 +261,6 @@ impl PrimitiveRegime {
             .iter()
             .all(|&(i, j)| profiles[i] != profiles[j]))
     }
-    /// Exact source translation. The source's w{index} convention can collide
-    /// with arbitrarily supplied tokens; dedup is retained rather than fixed.
     pub fn delta_events(
         &self,
         delta: &PrimitiveDelta,
@@ -318,8 +313,6 @@ impl PrimitiveRegime {
             )?
             .satisfies(limits)
     }
-    /// The actual unpruned candidate space, with source order retained. Its
-    /// whole product is admitted before enumeration; no partial list escapes.
     pub fn full_deltas(
         &self,
         cost: usize,
@@ -381,7 +374,6 @@ impl PrimitiveRegime {
             .ok_or(PrimitiveExecutionError::IndexOverflow)?;
         let mut tuple_budget = limits.max_tuples;
         if cost == 1 {
-            // iter_cost1_items emits every missing rule before any instance.
             for form in 0..max_form {
                 if !self.rules.contains(&form) {
                     append(PrimitiveItem::NewRuleAll { form })?;
@@ -428,10 +420,6 @@ impl PrimitiveRegime {
         }
         Ok(out)
     }
-    /// Independent full-replay minimum over the declared <=2 item space.
-    /// Unlike the source's fast entrypoint, this supports uniform-rule bases
-    /// and does not assume generated tokens are fresh. No pruned fast output
-    /// is promoted to a valid response without this actual replay check.
     pub fn minimum_responses_checked(
         &self,
         target: (usize, usize),
@@ -484,7 +472,6 @@ pub struct PrimitiveLimits {
     pub max_candidates: usize,
 }
 
-// The variant order is the pinned source item_key: data, forms, rules, instances.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case", deny_unknown_fields)]
 pub enum PrimitiveItem {

@@ -1,39 +1,11 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Sharp observer completion with distinct realization and repair images
-//! (monograph Appendix T, WDP-DIM-1 and the realizable-domain corollary
-//! WDP-DIM-R).
-//!
-//! Data over `Q`: a source map `D_s : U → V` with realizable image `R`, a repair
-//! map `D_r : F → V` with repair image `B`, and an existing observer
-//! `Q : V → Y` with kernel `K`. Added rows `E` give `A = (Q, E)` and
-//! `ker A = K ∩ ker E`. With `T = R ∩ K ∩ B`:
-//!
-//! * raw (T.1): `R ∩ ker A = 0`, sharp count `dim(R ∩ K)`;
-//! * quotient (T.2): `ker A ⊆ B`, sharp count `dim K − dim(K ∩ B)`;
-//! * joint (T.3): both, sharp count `dim K − dim(K ∩ B) + dim T`, which is the
-//!   separate sum minus `dim((R ∩ K)/T)`;
-//! * realizable quotient (T.8): `R ∩ ker A ⊆ B`, sharp count
-//!   `dim(R ∩ K) − dim T`.
-//!
-//! [`produce_completion`] constructs attaining dual-coordinate rows and an
-//! obstruction basis (`lower_columns`); [`check_completion`] replays the
-//! sufficiency criterion, the sharp count and the T.3 obstruction-basis rule
-//! independently of the producer. Restricted menus (T.5) and the separate
-//! repair-operation witness (T.6) are checked here as well. Elimination,
-//! kernels, images and inverses are delegated to
-//! `linear_algebra::exact_field::elimination`; this module only presents the
-//! WDP subspaces. A finite rational row count is not a continuum
-//! reconstruction, a physical instrument or an authorization to repair.
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::elimination::{image_basis, inverse, kernel_basis, rref};
 use linear_algebra::exact_field::ExactFieldError;
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 
-/// A rational vector of the ambient space `V`.
 pub type Vector = Vec<BigRational>;
 
-/// Reference cap on a finite instrument shelf (exhaustive subset search).
 pub const MAX_SHELF: usize = 16;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -50,20 +22,14 @@ pub enum DistinctImageError {
 
 type Result<T> = std::result::Result<T, DistinctImageError>;
 
-/// Which separation property a completion must supply.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum CompletionTarget {
-    /// T.1: distinguish individual realizable defects.
     Raw,
-    /// T.2: distinguish repair classes globally on `V`.
     Quotient,
-    /// T.3: both raw and global quotient separation.
     Joint,
-    /// T.8: distinguish repair classes of realizable candidates only.
     RealizableQuotient,
 }
 
-/// The finite rational presentation `(D_s, D_r, Q)` by columns and rows.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DistinctImageProblem {
     ambient: usize,
@@ -72,7 +38,6 @@ pub struct DistinctImageProblem {
     observer_rows: Vec<Vector>,
 }
 
-/// Subspace dimensions and sharp counts of WDP-DIM-1 / WDP-DIM-R.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DimensionFacts {
     pub dim_r: usize,
@@ -85,11 +50,9 @@ pub struct DimensionFacts {
     pub quotient_minimum: usize,
     pub joint_minimum: usize,
     pub realizable_quotient_minimum: usize,
-    /// `raw_minimum + quotient_minimum`.
     pub separate_sum: usize,
 }
 
-/// A produced or submitted completion: added rows and an obstruction basis.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Completion {
     pub target: CompletionTarget,
@@ -97,7 +60,6 @@ pub struct Completion {
     pub lower_columns: Vec<Vector>,
 }
 
-/// T.6: a claimed repair needs `D_adm u = r⋆`, `r⋆ ∈ B` and `r⋆ = δ`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RepairOperationWitness {
     pub admissible_columns: Vec<Vector>,
@@ -106,25 +68,18 @@ pub struct RepairOperationWitness {
     pub defect: Vector,
 }
 
-/// T.5 annihilator-menu result.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum AnnihilatorStatus {
-    /// Rows annihilating `B` that attain the target.
     Feasible(Vec<Vector>),
-    /// Every row system annihilating `B` fails; a nonzero vector of `T`.
     Impossible(Vector),
 }
 
-/// T.5 finite-shelf selection: chosen indices and their exact total cost.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ShelfSelection {
     pub indices: Option<Vec<usize>>,
     pub cost: Option<BigRational>,
 }
 
-// ---------------------------------------------------------------------------
-// Subspace presentation over the elimination owner
-// ---------------------------------------------------------------------------
 
 fn columns_matrix(columns: &[Vector], n: usize) -> Result<BasicMatrix<BigRational>> {
     let k = columns.len();
@@ -148,7 +103,6 @@ fn unit(n: usize, i: usize) -> Vector {
     v
 }
 
-/// A basis of the span of `columns` (pivot columns, in order).
 fn span(columns: &[Vector], n: usize) -> Result<Vec<Vector>> {
     if columns.is_empty() {
         return Ok(Vec::new());
@@ -156,7 +110,6 @@ fn span(columns: &[Vector], n: usize) -> Result<Vec<Vector>> {
     Ok(image_basis(&columns_matrix(columns, n)?)?)
 }
 
-/// A basis of `{v : row·v = 0 for every row}`.
 fn null_space(rows: &[Vector], n: usize) -> Result<Vec<Vector>> {
     if rows.is_empty() {
         return Ok((0..n).map(|i| unit(n, i)).collect());
@@ -168,7 +121,6 @@ fn rank_of(columns: &[Vector], n: usize) -> Result<usize> {
     Ok(span(columns, n)?.len())
 }
 
-/// A basis of `span(x) ∩ span(y)`, for bases `x` and `y`.
 fn intersect(x: &[Vector], y: &[Vector], n: usize) -> Result<Vec<Vector>> {
     if x.is_empty() || y.is_empty() {
         return Ok(Vec::new());
@@ -197,7 +149,6 @@ fn contained(sub: &[Vector], sup: &[Vector], n: usize) -> Result<bool> {
     Ok(rank_of(&joined, n)? == rank_of(sup, n)?)
 }
 
-/// Vectors `c` of `sup` with `span(sub) ⊕ span(c) = span(sub) + span(sup)`.
 fn complement_in(sub: &[Vector], sup: &[Vector], n: usize) -> Result<Vec<Vector>> {
     let mut joined = sub.to_vec();
     joined.extend_from_slice(sup);
@@ -213,8 +164,6 @@ fn complement_in(sub: &[Vector], sup: &[Vector], n: usize) -> Result<Vec<Vector>
         .collect())
 }
 
-/// Dual coordinate rows of the block `block` of an ordered independent prefix,
-/// after extending the prefix to a basis of `V` by standard vectors.
 fn dual_rows(prefix: &[Vector], block: std::ops::Range<usize>, n: usize) -> Result<Vec<Vector>> {
     if block.is_empty() {
         return Ok(Vec::new());
@@ -241,9 +190,6 @@ fn apply(rows: &[Vector], v: &Vector) -> Vector {
         .collect()
 }
 
-// ---------------------------------------------------------------------------
-// The WDP presentation
-// ---------------------------------------------------------------------------
 
 struct Subspaces {
     r: Vec<Vector>,
@@ -305,7 +251,6 @@ impl DistinctImageProblem {
         Ok(Subspaces { r, b, k, rk, kb, t })
     }
 
-    /// WDP-DIM-1 and WDP-DIM-R counts, recomputed from the matrices.
     pub fn analyze(&self) -> Result<DimensionFacts> {
         let s = self.subspaces()?;
         let quotient = s.k.len() - s.kb.len();
@@ -330,20 +275,17 @@ impl DistinctImageProblem {
         null_space(&all, self.ambient)
     }
 
-    /// T.1: `R ∩ ker(Q, E) = 0`.
     pub fn raw_holds(&self, rows: &[Vector]) -> Result<bool> {
         self.check_vectors(rows)?;
         let n = self.ambient;
         Ok(intersect(&span(&self.source_columns, n)?, &self.observer_kernel(rows)?, n)?.is_empty())
     }
 
-    /// T.2: `ker(Q, E) ⊆ B`.
     pub fn quotient_holds(&self, rows: &[Vector]) -> Result<bool> {
         self.check_vectors(rows)?;
         contained(&self.observer_kernel(rows)?, &span(&self.repair_columns, self.ambient)?, self.ambient)
     }
 
-    /// T.8: `R ∩ ker(Q, E) ⊆ B`.
     pub fn realizable_quotient_holds(&self, rows: &[Vector]) -> Result<bool> {
         self.check_vectors(rows)?;
         let n = self.ambient;
@@ -370,7 +312,6 @@ impl DistinctImageProblem {
     }
 }
 
-/// Construct attaining rows and the obstruction basis for `target`.
 pub fn produce_completion(
     problem: &DistinctImageProblem,
     target: CompletionTarget,
@@ -411,9 +352,6 @@ pub fn produce_completion(
     })
 }
 
-/// Replay a submitted completion: sharp row count, sufficiency, and the T.3
-/// obstruction-basis rule for `lower_columns`. Width and rank alone are not
-/// accepted. Returns the facts on acceptance.
 pub fn check_completion(
     problem: &DistinctImageProblem,
     completion: &Completion,
@@ -452,8 +390,6 @@ pub fn check_completion(
     Ok(facts)
 }
 
-/// T.6: replay `D_adm u = r⋆`, `r⋆ ∈ B` and `r⋆ = δ`. Acceptance is a
-/// certificate, not authorization to apply the operation.
 pub fn check_repair_operation(
     problem: &DistinctImageProblem,
     witness: &RepairOperationWitness,
@@ -480,7 +416,6 @@ pub fn check_repair_operation(
     Ok(())
 }
 
-/// T.5 rows required to annihilate `B`.
 pub fn annihilator_status(
     problem: &DistinctImageProblem,
     target: CompletionTarget,
@@ -502,15 +437,12 @@ pub fn annihilator_status(
             Ok(AnnihilatorStatus::Feasible(rows))
         }
         CompletionTarget::Raw => {
-            // T = 0: R ∩ K meets B trivially; dual rows of R ∩ K after B.
             let mut prefix = s.b.clone();
             prefix.extend(s.rk.iter().cloned());
             let rows = dual_rows(&prefix, s.b.len()..s.b.len() + s.rk.len(), n)?;
             Ok(AnnihilatorStatus::Feasible(rows))
         }
         CompletionTarget::RealizableQuotient => {
-            // Annihilating B leaves T in the kernel, which the realizable
-            // quotient criterion permits; complement T inside R ∩ K after B.
             let comp = complement_in(&s.t, &s.rk, n)?;
             let mut prefix = s.b.clone();
             prefix.extend(comp.iter().cloned());
@@ -547,7 +479,6 @@ fn subset_cost(costs: &[BigRational], mask: u32) -> BigRational {
         .fold(BigRational::zero(), |acc, (_, c)| acc + c)
 }
 
-/// T.5 finite shelf: a minimum-cost sufficient subset by exhaustive search.
 pub fn produce_shelf(
     problem: &DistinctImageProblem,
     shelf: &[Vector],
@@ -577,9 +508,6 @@ pub fn produce_shelf(
     })
 }
 
-/// Independent shelf checker: re-enumerates every subset. It rejects an
-/// insufficient selection, a mismatched cost, a strictly cheaper sufficient
-/// subset, and an impossibility claim while the full shelf suffices.
 pub fn check_shelf(
     problem: &DistinctImageProblem,
     shelf: &[Vector],
@@ -622,7 +550,6 @@ pub fn check_shelf(
     }
 }
 
-/// Apply rows to a vector (the added report `E v`).
 pub fn report(rows: &[Vector], v: &Vector) -> Vector {
     apply(rows, v)
 }

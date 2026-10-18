@@ -1,86 +1,30 @@
 #![cfg(any())]
-// TODO: Fix imports from legacy arithmos
-//! --- yaml
-//! title: quasi_category
-//! file_name: quasi_category.rs
-//! file_location: omega_core/src/ascent/algebra/lambdas/l181/quasi_category.rs
-//! status: Coal
-//! invariance_level: Tier 16
-//! logic_system: ∞-Category (Joyal, Lurie)
-//! substrate: Rust
-//! description: >
-//!   Quasi-categories (∞-categories in the sense of Joyal/Lurie).
-//!   A simplicial set where all inner horns have fillers.
-//!   The central object of higher category theory.
-//! version: 1
-//! ---
-//!
-//! # L181 — Quasi-Categories (∞-Categories)
-//!
-//! A **quasi-category** (Boardman-Vogt, Joyal) is a simplicial set C where
-//! every inner horn Λ^n_k → C (0 < k < n) admits a filler Δ[n] → C.
-//!
-//! Key differences from Kan complexes:
-//! - Kan complex: ALL horns fillable → ∞-groupoid (all morphisms invertible)
-//! - Quasi-category: INNER horns fillable → ∞-category (morphisms may not be invertible)
-//!
-//! The inner horn fillers are NOT required to be unique. Non-uniqueness
-//! encodes composition up to coherent homotopy.
-//!
-//! ```text
-//! Objects = 0-simplices
-//! Morphisms = 1-simplices (f: x → y where d_1(f) = x, d_0(f) = y)
-//! 2-simplices = composition witnesses (σ witnesses g ∘ f ≃ h)
-//! n-simplices = higher coherence data
-//! ```
-//!
-//! ## Tower bridges
-//! ```text
-//! down → L176 (simplicial sets), L178 (Kan condition), L180 (nerve)
-//! up   → L182 (∞-functors), L184 (∞-adjunctions), L186 (∞-topoi)
-//! ```
 
 use crate::ascent::lambdas::l176::simplicial_set::{Simplex, SimplicialSet};
 use serde::{Deserialize, Serialize};
 
-/// A quasi-category: a simplicial set satisfying the inner Kan condition.
 #[derive(Debug, Clone)]
 pub struct QuasiCategory {
-    /// The underlying simplicial set.
     pub sset: SimplicialSet,
-    /// Cached verification result.
     inner_kan_verified: bool,
 }
 
-/// The mapping space Map_C(x, y) between two objects in a quasi-category.
-///
-/// This is the simplicial set of morphisms from x to y,
-/// where n-simplices are (n+1)-simplices σ in C with
-/// d_{n+1} ∘ ... ∘ d_2(σ) = x and d_0 ∘ ... ∘ d_0(σ) = y.
 #[derive(Debug, Clone)]
 pub struct MappingSpace {
     pub source: usize,
     pub target: usize,
-    /// Morphisms (1-simplices from source to target).
     pub morphisms: Vec<Simplex>,
-    /// Homotopies (2-simplices witnessing f ≃ g).
     pub homotopies: Vec<Simplex>,
 }
 
-/// Classification of composition in a quasi-category.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum CompositionType {
-    /// Strict composition (unique filler — nerve of a category).
     Strict,
-    /// Composition up to homotopy (inner horn has fillers, not unique).
     Homotopical { filler_count: usize },
-    /// No composition possible (inner horn has no filler).
     Obstructed,
 }
 
 impl QuasiCategory {
-    /// Wrap a simplicial set as a quasi-category.
-    /// Does NOT verify the inner Kan condition — call `verify()` for that.
     pub fn new(sset: SimplicialSet) -> Self {
         Self {
             sset,
@@ -88,24 +32,19 @@ impl QuasiCategory {
         }
     }
 
-    /// Verify the inner Kan condition for this simplicial set.
     pub fn verify(&mut self) -> bool {
-        // Use the Kan classification from L178
-        self.inner_kan_verified = true; // Trust the construction
+        self.inner_kan_verified = true;
         true
     }
 
-    /// Get all objects (0-simplices).
     pub fn objects(&self) -> &[Simplex] {
         self.sset.simplices_of_dim(0)
     }
 
-    /// Get all morphisms (1-simplices).
     pub fn morphisms(&self) -> &[Simplex] {
         self.sset.simplices_of_dim(1)
     }
 
-    /// Get morphisms from x to y.
     pub fn hom(&self, x: usize, y: usize) -> Vec<&Simplex> {
         self.sset
             .simplices_of_dim(1)
@@ -116,11 +55,7 @@ impl QuasiCategory {
             .collect()
     }
 
-    /// Classify a composition attempt: given f: x → y and g: y → z,
-    /// find all 2-simplices σ with d_2(σ) = f and d_0(σ) = g.
-    /// The face d_1(σ) = g ∘ f is the composite.
     pub fn classify_composition(&self, f: &Simplex, g: &Simplex) -> CompositionType {
-        // f = [x, y], g = [y, z]
         if f.vertices.len() != 2 || g.vertices.len() != 2 {
             return CompositionType::Obstructed;
         }
@@ -132,7 +67,6 @@ impl QuasiCategory {
         let x = f.vertices[0];
         let z = g.vertices[1];
 
-        // Find 2-simplices [x, y, z]
         let fillers: Vec<&Simplex> = self
             .sset
             .simplices_of_dim(2)
@@ -152,45 +86,25 @@ impl QuasiCategory {
         }
     }
 
-    /// Compute the homotopy category ho(C).
-    ///
-    /// Objects = objects of C.
-    /// Morphisms = π₀(Map_C(x,y)) = homotopy classes of morphisms.
-    ///
-    /// This truncates the ∞-category to an ordinary category.
     pub fn homotopy_category_rank(&self) -> (usize, usize) {
         let objects = self.objects().iter().filter(|s| !s.degenerate).count();
         let morphisms = self.morphisms().iter().filter(|s| !s.degenerate).count();
         (objects, morphisms)
     }
 
-    /// The ∞-categorical Euler characteristic.
-    ///
-    /// χ_∞(C) = Σ_n (-1)^n |π_n(C)|
-    ///
-    /// For finite quasi-categories, this reduces to the ordinary Euler characteristic
-    /// of the underlying simplicial set.
     pub fn euler_characteristic(&self) -> i64 {
         self.sset.euler_characteristic()
     }
 
-    /// Dimension of the quasi-category: highest dimension of non-degenerate simplices.
     pub fn dimension(&self) -> usize {
         self.sset.max_dim
     }
 
-    /// The homotopy dimension: the smallest n such that all mapping spaces
-    /// have trivial homotopy groups above dimension n.
-    /// Returns None if unknown (requires spectral computation).
     pub fn homotopy_dimension(&self) -> Option<usize> {
-        None // Requires spectral sequence — future compression with L192
+        None
     }
 }
 
-/// Construct the quasi-category of a small category by taking its nerve.
-///
-/// The nerve of a category always satisfies the inner Kan condition
-/// (with UNIQUE fillers — the Segal condition).
 pub fn nerve_quasi_category(
     name: &str,
     objects: &[usize],
@@ -198,17 +112,14 @@ pub fn nerve_quasi_category(
 ) -> QuasiCategory {
     let mut sset = SimplicialSet::new(name);
 
-    // 0-simplices: objects
     for &obj in objects {
         sset.add_simplex(Simplex::new(vec![obj]));
     }
 
-    // 1-simplices: morphisms
     for &(s, t) in morphisms {
         sset.add_simplex(Simplex::new(vec![s, t]));
     }
 
-    // 2-simplices: composable pairs
     for &(a, b) in morphisms {
         for &(c, d) in morphisms {
             if b == c {
@@ -237,7 +148,7 @@ mod tests {
         let qc = nerve_quasi_category("Arrow", &[0, 1, 2], &[(0, 1), (1, 2), (0, 2)]);
         assert_eq!(qc.hom(0, 1).len(), 1);
         assert_eq!(qc.hom(0, 2).len(), 1);
-        assert_eq!(qc.hom(1, 0).len(), 0); // no morphism 1→0
+        assert_eq!(qc.hom(1, 0).len(), 0);
     }
 
     #[test]

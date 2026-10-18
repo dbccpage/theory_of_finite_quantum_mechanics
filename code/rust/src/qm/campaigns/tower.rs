@@ -1,11 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Cyclotomic tower, directed field inclusion, and Born weight real subfield invariance.
-//!
-//! Computes the declared conductor-divisibility diagram and Gaussian norms.
-//! Divisibility is sufficient for the diagram, not an iff for field inclusion:
-//! zeta_6 = 1 + zeta_3, although 6 does not divide 3.
-//! The label LCM 120 is not a proved minimal carrier for actual target amplitudes.
 
 use num_bigint::BigUint;
 use num_integer::Integer;
@@ -13,7 +6,6 @@ use num_traits::ToPrimitive;
 use omega_number_theory::rational::Rational;
 use serde::{Deserialize, Serialize};
 
-/// Legacy name: checks positive conductor divisibility, not arbitrary field inclusion.
 pub fn is_directed_subfield(m: u32, n: u32) -> bool {
     if m == 0 || n == 0 {
         false
@@ -22,7 +14,6 @@ pub fn is_directed_subfield(m: u32, n: u32) -> bool {
     }
 }
 
-/// Target conductor inventory record.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct TargetConductorRecord {
     pub target_id: u32,
@@ -32,7 +23,6 @@ pub struct TargetConductorRecord {
     pub real_subfield_desc: &'static str,
 }
 
-/// Declared labels for 23 target records; not a minimality or all-amplitude proof.
 pub const TARGET_CONDUCTORS: [TargetConductorRecord; 23] = [
     TargetConductorRecord {
         target_id: 1,
@@ -197,7 +187,6 @@ pub const TARGET_CONDUCTORS: [TargetConductorRecord; 23] = [
     },
 ];
 
-/// Computes the target LCM conductor n* for the corpus targets.
 pub fn compute_target_conductor_lcm() -> u32 {
     let conductors: Vec<u32> = TARGET_CONDUCTORS.iter().map(|t| t.conductor).collect();
     conductors
@@ -207,7 +196,6 @@ pub fn compute_target_conductor_lcm() -> u32 {
         .expect("bounded declared conductor LCM")
 }
 
-/// Verifies that all declared conductor labels divide their LCM, 120.
 pub fn verify_target_lcm_conductor_embedding() -> bool {
     let n_star = compute_target_conductor_lcm();
     assert_eq!(n_star, 120, "Target LCM conductor must be exactly 120");
@@ -216,7 +204,6 @@ pub fn verify_target_lcm_conductor_embedding() -> bool {
         .all(|t| is_directed_subfield(t.conductor, n_star))
 }
 
-/// Computed squared norm for rational real/imaginary coordinates, not a generic field.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct VerifiedBornWeight {
     pub weight: Rational,

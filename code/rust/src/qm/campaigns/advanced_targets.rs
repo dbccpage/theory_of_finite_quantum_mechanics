@@ -1,8 +1,3 @@
-//! Campaign module advanced_targets.
-//!
-//! Conductors 3 and 4 are coprime, so the totient ladder multiplies:
-//! `φ(3) φ(4) = φ(12)`. Each totient is counted by residues and by the
-//! product formula.
 
 pub fn verify() -> Result<usize, &'static str> {
     let phi_3 = totient(3)?;

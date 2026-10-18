@@ -1,12 +1,8 @@
-//! Presheaf functor F: Open(X)^op -> C and natural transformations (SH-02, SH-04, SH-05, Presheaf Contract).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::{OpenSet, PosetTopology};
 use std::collections::BTreeMap;
 use std::fmt::Debug;
 
-/// Presheaf validation errors conforming to `presheaf.contract.yaml`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PresheafError {
     MissingOpenSet(OpenSet),
@@ -16,16 +12,11 @@ pub enum PresheafError {
     NaturalityFailed { u: OpenSet, v: OpenSet },
 }
 
-/// A finite presheaf F: Open(X)^op -> Set (or Vect).
-///
-/// Stores for each OpenSet U a finite list of sections F(U), and for each inclusion
-/// V subset U a restriction function rho_{V, U}: F(U) -> F(V).
 #[derive(Clone)]
 pub struct Presheaf<T> {
     pub name: String,
     pub topology: PosetTopology,
     pub sections_map: BTreeMap<OpenSet, Vec<T>>,
-    /// Custom restriction function: (U, V, section_u) -> section_v
     pub restriction_fn: std::sync::Arc<dyn Fn(&OpenSet, &OpenSet, &T) -> T + Send + Sync>,
 }
 
@@ -58,7 +49,6 @@ impl<T: Clone + PartialEq + Debug> Presheaf<T> {
         self.sections_map.get(u).map(Vec::as_slice).unwrap_or(&[])
     }
 
-    /// Apply restriction rho_{V,U}(s). Verifies V is subset of U.
     pub fn restrict(&self, u: &OpenSet, v: &OpenSet, s: &T) -> Result<T, PresheafError> {
         if !v.is_subset(u) {
             return Err(PresheafError::NotSubset {
@@ -69,13 +59,9 @@ impl<T: Clone + PartialEq + Debug> Presheaf<T> {
         Ok((self.restriction_fn)(u, v, s))
     }
 
-    /// Validate presheaf functoriality laws according to `presheaf.contract.yaml`:
-    /// 1. For each open U, rho_{U,U} = id_{F(U)}
-    /// 2. For each chain W subset V subset U, rho_{W,U} = rho_{W,V} o rho_{V,U}
     pub fn validate_functoriality(&self) -> Result<(), PresheafError> {
         let opens: Vec<OpenSet> = self.sections_map.keys().cloned().collect();
 
-        // 1. Identity law
         for u in &opens {
             for s in self.sections(u) {
                 let res = self.restrict(u, u, s)?;
@@ -85,7 +71,6 @@ impl<T: Clone + PartialEq + Debug> Presheaf<T> {
             }
         }
 
-        // 2. Composition law
         for u in &opens {
             for v in &opens {
                 if !v.is_subset(u) {
@@ -115,7 +100,6 @@ impl<T: Clone + PartialEq + Debug> Presheaf<T> {
     }
 }
 
-/// A natural transformation alpha: F -> G between presheaves (SH-04).
 #[derive(Clone)]
 pub struct PresheafMorphism<T, V> {
     pub source: Presheaf<T>,
@@ -140,7 +124,6 @@ impl<T: Clone + PartialEq + Debug, V: Clone + PartialEq + Debug> PresheafMorphis
         (self.component_fn)(u, s)
     }
 
-    /// Verify naturality condition: rho^G_{V,U}(alpha_U(s)) == alpha_V(rho^F_{V,U}(s)).
     pub fn check_naturality(&self) -> Result<bool, PresheafError> {
         let opens: Vec<OpenSet> = self.source.sections_map.keys().cloned().collect();
         for u in &opens {
@@ -161,7 +144,6 @@ impl<T: Clone + PartialEq + Debug, V: Clone + PartialEq + Debug> PresheafMorphis
     }
 }
 
-/// Construct presheaf kernel: ker(alpha)(U) = {s in F(U) | alpha_U(s) == zero_val} (SH-05).
 pub fn presheaf_kernel<T: Clone + PartialEq + Debug, V: Clone + PartialEq + Debug>(
     morph: &PresheafMorphism<T, V>,
     zero_val: &V,

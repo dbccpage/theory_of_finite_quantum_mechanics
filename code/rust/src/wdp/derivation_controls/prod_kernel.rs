@@ -1,4 +1,3 @@
-//! Proof-Carrying Reasoning Kernel (PROD-KERNEL) exact arithmetic verifier.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum KernelOutcome {

@@ -1,6 +1,3 @@
-//! Replay-bound finite 2-cells; no univalence or infinite-coherence claim.
-//!
-//! Rust face of `omega_engine/kernel/higher_operad/cells.py`.
 
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
@@ -257,7 +254,6 @@ impl Attestation {
     }
 }
 
-/// Sealed attestation verified by OEOS replay.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ReplayVerifiedAttestation {
     attestation: Attestation,

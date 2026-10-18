@@ -1,36 +1,8 @@
-/-
-  H017Fin -- End of a finite enumerated report set is M_n(Z[i]).
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  QM_122 remaining job 7.2 / STACK ordinary M_n(C) item: the
-  general finite label set. H017Matrix recovered End of Bool as
-  M_2(Z[i]). This file generalizes the label set: for any
-  enumerated report set Q, End of Q → GaussInt is left-multiplication
-  by a unique n × n Gauss-integer matrix, n = |Q| = E.elems.length.
 
-  Named extras, as hypotheses, not flags:
-    (1) coefficient pack K (instantiated at gaussPack);
-    (2) a finite enumeration E of the report set Q;
-    (3) additivity of an endomorphism;
-    (4) pack-homogeneity of that endomorphism.
 
-  Theorems: every such endomorphism is left-multiplication by a
-  unique n × n matrix; matrix product is composition; conjugate
-  transpose implements the H005 pairing. The Bool host of
-  H017Matrix is the n = 2 case; the product host enumBoolProd is
-  n = 4. Pauli generators stay in H017Matrix.
 
-  This is not M_n(C). The field C, the spectral theorem, Gleason
-  uniqueness at n ≥ 3, CPTP channels, unique Hilbert tensor, the
-  circle group, and continuous time remain named extras (H017Extras).
-  Do not read this recovery as ordinary complex matrix mechanics.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H004FreeLinearization
@@ -43,30 +15,22 @@ open FableHilbertWalk20260819.HWKernel
 open FableHilbertWalk20260819.H004
 open FableHilbertWalk20260819.H005 (sesq)
 
-/-- Named finite matrix object: n × n matrices on an enumerated
-    report set, n = E.elems.length. -/
 def Mat (K Q : Type) : Type := Q → Q → K
 
-/-- Action of a matrix on a free vector, summed over the declared
-    enumeration. -/
 def applyMat {K Q : Type} (P : StarRingPack K) (E : Enum Q)
     (A : Mat K Q) (v : Vec K Q) : Vec K Q :=
   fun i => rsum P (E.elems.map (fun j => P.mul (A i j) (v j)))
 
-/-- Matrix product, summed over the declared enumeration. -/
 def mmul {K Q : Type} (P : StarRingPack K) (E : Enum Q)
     (A B : Mat K Q) : Mat K Q :=
   fun i j => rsum P (E.elems.map (fun k => P.mul (A i k) (B k j)))
 
-/-- Identity matrix. -/
 def ident {K Q : Type} (P : StarRingPack K) [DecidableEq Q] : Mat K Q :=
   fun i j => if (i == j) = true then P.one else P.zero
 
-/-- Conjugate transpose. -/
 def adj {K Q : Type} (P : StarRingPack K) (A : Mat K Q) : Mat K Q :=
   fun i j => P.conj (A j i)
 
-/-- Named extras for an endomorphism of the free module on Q. -/
 structure LinearEnd {K : Type} (Q : Type) (P : StarRingPack K) where
   map : Vec K Q → Vec K Q
   map_add :
@@ -76,8 +40,6 @@ structure LinearEnd {K : Type} (Q : Type) (P : StarRingPack K) where
     ∀ c u q,
       map (smul P c u) q = P.mul c (map u q)
 
-/-- Matrix of an endomorphism: columns are the images of the
-    report basis. -/
 def matOf {K Q : Type} [DecidableEq Q] {P : StarRingPack K}
     (T : LinearEnd Q P) : Mat K Q :=
   fun i j => T.map (delta P j) i
@@ -131,7 +93,6 @@ theorem mul3_reassoc {K : Type} (P : StarRingPack K) (a b c : K) :
 
 #print axioms mul3_reassoc
 
-/-- Endomorphism of a matrix: left-multiplication. -/
 def endOfMat {K Q : Type} (P : StarRingPack K) (E : Enum Q)
     (A : Mat K Q) : LinearEnd Q P where
   map := applyMat P E A
@@ -169,7 +130,6 @@ theorem map_zero {K Q : Type} {P : StarRingPack K}
 
 #print axioms map_zero
 
-/-- Expansion of a vector along a list of report labels. -/
 def expandOn {K Q : Type} [DecidableEq Q] (P : StarRingPack K)
     (v : Vec K Q) (l : List Q) : Vec K Q :=
   fun x => rsum P (l.map (fun j => P.mul (v j) (delta P j x)))
@@ -213,8 +173,6 @@ theorem expandOn_enum {K Q : Type} [DecidableEq Q] (P : StarRingPack K)
 
 #print axioms expandOn_enum
 
-/-- Under the named extras, the map is left-multiplication by its
-    matrix. -/
 theorem apply_eq_matOf {K Q : Type} [DecidableEq Q] {P : StarRingPack K}
     (E : Enum Q) (T : LinearEnd Q P) (v : Vec K Q) (x : Q) :
     T.map v x = applyMat P E (matOf T) v x := by
@@ -261,8 +219,6 @@ theorem matOf_apply {K Q : Type} [DecidableEq Q] (P : StarRingPack K)
 
 #print axioms matOf_apply
 
-/-- The matrix of an endomorphism is the unique matrix that acts
-    as that endomorphism. -/
 theorem matrix_of_end_unique {K Q : Type} [DecidableEq Q]
     {P : StarRingPack K} (E : Enum Q) (T : LinearEnd Q P)
     (A : Mat K Q) (h : ∀ v x, T.map v x = applyMat P E A v x) :
@@ -335,7 +291,6 @@ theorem mmul_as_composition {K Q : Type} (P : StarRingPack K)
 
 #print axioms mmul_as_composition
 
-/-- Conjugate transpose is the adjoint of the admitted pairing. -/
 theorem sesq_conj_transpose {K Q : Type} (P : StarRingPack K)
     (E : Enum Q) (A : Mat K Q) (u v : Vec K Q) :
     sesq P E (applyMat P E A u) v =
@@ -392,10 +347,6 @@ theorem sesq_conj_transpose {K Q : Type} (P : StarRingPack K)
 
 #print axioms sesq_conj_transpose
 
-/-- Punchline: under the named extras, End of the free GaussInt
-    module on a finite enumerated report set Q is M_n(Z[i]) with
-    n = |Q|. Composition is matrix product. Conjugate transpose is
-    the pairing adjoint. This is not M_n(C). -/
 theorem finite_gauss_matrix_algebra {Q : Type} [DecidableEq Q]
     (E : Enum Q) :
     (∀ (T : LinearEnd Q gaussPack) (v : Vec GaussInt Q) (x : Q),
@@ -428,8 +379,6 @@ theorem four_label_size : enumBoolProd.elems.length = 4 :=
 
 #print axioms four_label_size
 
-/-- The two-label host is the n = 2 case already named M_2(Z[i])
-    in H017Matrix. Action agrees. -/
 theorem applyMat_agrees_two_level {K : Type} (P : StarRingPack K)
     (A : Mat K Bool) (v : Vec K Bool) (i : Bool) :
     applyMat P enumBool A v i =
@@ -440,9 +389,6 @@ theorem applyMat_agrees_two_level {K : Type} (P : StarRingPack K)
 
 #print axioms applyMat_agrees_two_level
 
-/-- Instantiation at the two-label host: M_2(Z[i]). Does not
-    replace H017Matrix; it is the same n = 2 case of the general
-    recovery. -/
 theorem two_label_gauss_matrix_algebra :
     ∀ (T : LinearEnd Bool gaussPack) (v : Vec GaussInt Bool) (x : Bool),
       T.map v x = applyMat gaussPack enumBool (matOf T) v x :=
@@ -450,8 +396,6 @@ theorem two_label_gauss_matrix_algebra :
 
 #print axioms two_label_gauss_matrix_algebra
 
-/-- Instantiation at the four-label product host: M_4(Z[i]).
-    Still not M_n(C). -/
 theorem four_label_gauss_matrix_algebra :
     ∀ (T : LinearEnd (Bool × Bool) gaussPack)
       (v : Vec GaussInt (Bool × Bool)) (x : Bool × Bool),
@@ -461,3 +405,6 @@ theorem four_label_gauss_matrix_algebra :
 #print axioms four_label_gauss_matrix_algebra
 
 end FableHilbertWalk20260819.H017Fin
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H017Fin.lean Claim: rsum_map_mul_right AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

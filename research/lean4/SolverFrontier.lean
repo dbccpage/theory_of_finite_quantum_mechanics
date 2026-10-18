@@ -1,30 +1,13 @@
-/-!
-# Finite all-co-minima plan frontier
 
-This module formalizes only the selection law used by the Python reference
-router.  A caller supplies one explicit finite batch, a verifier bit for each
-plan, and a declared strict cost comparison.  The selector retains every
-verified plan that is not strictly dominated inside that batch.
 
-It does not prove that the batch exhausts a grammar, that verifier bits are
-sound, that costs are physically complete, or that a selected plan has
-authority.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace OmegaCore.SolverFrontier
 
-/-- One inert plan and its already-declared verification and cost data. -/
 structure Candidate (Plan Cost : Type) where
   plan : Plan
   cost : Cost
   verified : Bool
 
-/-- Batch-relative co-minimality under a caller-declared strict comparison. -/
 def onFrontier {Plan Cost : Type}
     (strictlyBetter : Cost → Cost → Bool)
     (batch : List (Candidate Plan Cost))
@@ -33,7 +16,6 @@ def onFrontier {Plan Cost : Type}
     !(batch.any fun other =>
       other.verified && strictlyBetter other.cost candidate.cost)
 
-/-- Executable finite selector. No representative is chosen among ties. -/
 def selectFrontier {Plan Cost : Type}
     (strictlyBetter : Cost → Cost → Bool)
     (batch : List (Candidate Plan Cost)) : List (Candidate Plan Cost) :=
@@ -89,9 +71,6 @@ theorem all_verified_coMinima_retained {Plan Cost : Type}
     intro other otherInBatch otherVerified
     exact minimal other otherInBatch otherVerified
 
-/-- Two separately witnessed co-minimal plans are both retained. Cost equality
-is not needed: under a partial order, incomparable costs may also be
-co-minimal. -/
 theorem coMinima_pair_retained {Plan Cost : Type}
     (strictlyBetter : Cost → Cost → Bool)
     (batch : List (Candidate Plan Cost))
@@ -121,3 +100,6 @@ theorem coMinima_pair_retained {Plan Cost : Type}
 #print axioms coMinima_pair_retained
 
 end OmegaCore.SolverFrontier
+
+private def l5aProvenance : String :=
+  "Origin: lean4/SolverFrontier.lean Claim: mem_selectFrontier_iff AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

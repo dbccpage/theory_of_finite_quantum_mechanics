@@ -1,4 +1,3 @@
-//! Emit the MUB deep-run terminalization report as JSON.
 
 use std::path::PathBuf;
 

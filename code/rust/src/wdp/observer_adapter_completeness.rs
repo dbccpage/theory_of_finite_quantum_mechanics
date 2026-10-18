@@ -1,5 +1,3 @@
-//! Finite typed observer specialization of universal partial-structure descent.
-//! Archival custody and authorization are opaque metadata, never mathematical proof.
 use omega_category_theory::finite_partial_structure::{
     descend, DescentError, FinitePartialStructure, PartialOperation, Predicate, SortQuotient,
 };
@@ -87,7 +85,6 @@ pub struct ObserverQuotient {
 pub struct ObserverAdapterPacket {
     pub source: ObserverTables,
     pub quotient: ObserverQuotient,
-    /// Labels retained verbatim; neither archive identity nor authority is checked.
     pub archival_annotations: Vec<String>,
 }
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -116,7 +113,6 @@ fn labels_valid(carriers: &BTreeMap<Sort, Vec<String>>) -> bool {
     })
 }
 impl ObserverAdapterPacket {
-    /// Require precisely the layers needed by this query, without completing omissions.
     pub fn require(
         &self,
         operations: &[Operation],
@@ -211,7 +207,6 @@ impl ObserverAdapterPacket {
     }
 }
 impl ObserverAdapterReceipt {
-    /// Replay actual source, sort maps, undefined entries, predicates and output.
     pub fn verify_against(
         &self,
         packet: &ObserverAdapterPacket,
@@ -288,10 +283,8 @@ mod tests {
                 ),
                 "{op:?}"
             );
-            // Identity adapts the same source without changing any semantic table.
             let identity = identity(packet.source);
             assert_eq!(identity.adapt().unwrap().target, identity.source);
-            // Forgetting this one role makes incompatible interpretations indistinguishable.
             let mut alternative = identity.source.clone();
             alternative.operations.get_mut(&op).unwrap().fill(Some(2));
             assert_ne!(alternative, identity.source);

@@ -1,11 +1,7 @@
-//! Unit type former `1` / `⊤`.
-//!
-//! Structural record only: id plus opaque ref to the unique unit term `★`.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Unit type `1` with its unique inhabitant reference.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct UnitType {
     pub id: String,
@@ -13,7 +9,6 @@ pub struct UnitType {
 }
 
 impl UnitType {
-    /// Validate that id and unit term reference are non-empty.
     pub fn validate(&self) -> Result<(), UnitTypeError> {
         if self.id.is_empty() {
             return Err(UnitTypeError::EmptyId);

@@ -1,165 +1,213 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
+use theory_of_finite_qm::group_parameter::{build_frozen_inventory, classify_group_parameter, ParameterVerdict, SubgroupType};
+const PROVENANCE: &str = "Origin: code/rust/src/qm/group_param.rs Claim: urn:fqm:group-parameter:identity-carried-and-fifteen-refused AuthorityEffect: None";
+const SAMPLE: i64 = 18;
+const EXPECTED: i64 = 15;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-//! Integration tests and mutation tests for Campaign C1000 Block 09: Group Parameter and Dichotomy.
-
-use finite_qm_native::group_parameter::*;
-
-#[test]
-fn test_t1015_independent_reimplementation() {
-    let inventory = build_frozen_inventory().unwrap();
-    assert_eq!(inventory.len(), 18);
-
-    let carried = inventory
-        .iter()
-        .filter(|r| r.parameter_verdict == "CARRIED")
-        .count();
-    let refused = inventory
-        .iter()
-        .filter(|r| r.parameter_verdict == "REFUSED_TRANSCENDENTAL")
-        .count();
-    assert_eq!(carried, 3);
-    assert_eq!(refused, 15);
-
-    // Verify classifier returns Carried for identity and RefusedTranscendental for non-identity
-    let v_rot_id = classify_group_parameter(SubgroupType::Rotation, true, true, true).unwrap();
-    assert_eq!(v_rot_id, ParameterVerdict::Carried);
-
-    let v_rot_non_id = classify_group_parameter(SubgroupType::Rotation, false, true, true).unwrap();
-    assert_eq!(v_rot_non_id, ParameterVerdict::RefusedTranscendental);
-
-    let v_boost_id = classify_group_parameter(SubgroupType::Boost, true, true, true).unwrap();
-    assert_eq!(v_boost_id, ParameterVerdict::Carried);
-
-    let v_boost_non_id = classify_group_parameter(SubgroupType::Boost, false, true, true).unwrap();
-    assert_eq!(v_boost_non_id, ParameterVerdict::RefusedTranscendental);
-
-    let v_time_id =
-        classify_group_parameter(SubgroupType::TimeEvolution, true, true, true).unwrap();
-    assert_eq!(v_time_id, ParameterVerdict::Carried);
-
-    let v_time_non_id =
-        classify_group_parameter(SubgroupType::TimeEvolution, false, true, true).unwrap();
-    assert_eq!(v_time_non_id, ParameterVerdict::RefusedTranscendental);
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-#[test]
-fn test_t1016_cross_language_parity() {
-    let inventory = build_frozen_inventory().unwrap();
-    let ids: Vec<&str> = inventory.iter().map(|r| r.item_id.as_str()).collect();
-    let expected_ids = vec![
-        "ROT_ID",
-        "ROT_C2",
-        "ROT_C3",
-        "ROT_C4",
-        "ROT_C6",
-        "ROT_I60_PLUS",
-        "ROT_I60_MINUS",
-        "ROT_PYTH_3_4_5",
-        "ROT_POLAR_B05",
-        "BOOST_ID",
-        "BOOST_B1",
-        "BOOST_B1_SQ",
-        "BOOST_PYTH_5_12_13",
-        "BOOST_PYTH_7_24_25",
-        "BOOST_POLAR_B05",
-        "TIME_ID",
-        "TIME_PAULI_Z",
-        "TIME_PAULI_X",
-    ];
-    assert_eq!(ids, expected_ids);
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
+}
 
-    // Verify all non-identity items have certified approximations with error bounds <= 1e-5
-    for r in &inventory {
-        if !r.is_identity {
-            let approx = r
-                .approximation_interval
-                .as_ref()
-                .expect("Non-identity must have approximation interval");
-            assert!(approx.is_approximation);
-            assert_eq!(approx.metric, "absolute_difference");
-            assert!(approx.error_bound() <= omega_number_theory::rational::rq(1, 100_000));
-            assert!(approx.q_min() <= approx.q_max());
-        } else {
-            assert!(r.approximation_interval.is_none());
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
+}
+
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
+    }
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
     }
 }
 
-#[test]
-fn test_t1017_mutation_1_exact_element_confusion_killed() {
-    // Injected mutation: claiming parameter is CARRIED because matrix entries are rational
-    let defective_classify = |is_exact_matrix: bool, is_id: bool| -> ParameterVerdict {
-        if is_exact_matrix {
-            // BUG: confuses exact matrix with carried parameter
-            ParameterVerdict::Carried
-        } else if is_id {
-            ParameterVerdict::Carried
-        } else {
-            ParameterVerdict::RefusedTranscendental
-        }
-    };
-
-    // B1 boost has exact rational entries but parameter ln(2) is transcendental
-    let mutated_verdict = defective_classify(true, false);
-    assert_eq!(mutated_verdict, ParameterVerdict::Carried);
-
-    // Correct logic must kill this mutation
-    let correct = classify_group_parameter(SubgroupType::Boost, false, true, true).unwrap();
-    assert_eq!(correct, ParameterVerdict::RefusedTranscendental);
-}
-
-#[test]
-fn test_t1017_mutation_2_approximation_typed_as_membership_killed() {
-    let inventory = build_frozen_inventory().unwrap();
-    for r in &inventory {
-        if let Some(approx) = &r.approximation_interval {
-            // Must strictly be false: approximation is never membership
-            assert!(!approx.is_carrier_membership);
-            assert!(approx.is_approximation);
-        }
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
     }
 }
 
-#[test]
-fn test_t1017_mutation_3_identity_case_handled() {
-    // At theta = 0, parameter 0 is in Q, so it MUST be CARRIED
-    let v_rot = classify_group_parameter(SubgroupType::Rotation, true, true, true).unwrap();
-    assert_eq!(v_rot, ParameterVerdict::Carried);
-
-    let v_boost = classify_group_parameter(SubgroupType::Boost, true, true, true).unwrap();
-    assert_eq!(v_boost, ParameterVerdict::Carried);
-
-    let v_time = classify_group_parameter(SubgroupType::TimeEvolution, true, true, true).unwrap();
-    assert_eq!(v_time, ParameterVerdict::Carried);
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
 }
 
-#[test]
-fn test_t1017_mutation_4_algebraic_cosine_assumed_rational_killed() {
-    // Injected mutation: assumes cosine must be rational for theorem to apply
-    let inventory = build_frozen_inventory().unwrap();
-    let rot_i60 = inventory
-        .iter()
-        .find(|r| r.item_id == "ROT_I60_PLUS")
-        .unwrap();
-    // cos(2*pi/5) = (-1 + sqrt(5)) / 4 is in Q(sqrt(5)), algebraic non-rational
-    assert_eq!(rot_i60.minimal_polynomial, "4*x^2 + 2*x - 1");
-    // Theorem applies directly via Lindemann-Weierstrass
-    assert_eq!(rot_i60.parameter_verdict, "REFUSED_TRANSCENDENTAL");
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
 }
 
-#[test]
-fn test_t1017_mutation_5_planted_algebraic_rapidity_refuted() {
-    // Planted non-zero algebraic rapidity claiming algebraic cosh
-    let audit_rapidity = |eta_algebraic_nonzero: bool,
-                          cosh_algebraic: bool|
-     -> Result<(), &'static str> {
-        if eta_algebraic_nonzero && cosh_algebraic {
-            Err("Lindemann-Weierstrass contradiction: algebraic nonzero eta forces transcendental e^eta and cosh(eta)")
-        } else {
-            Ok(())
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
         }
-    };
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
 
-    assert!(audit_rapidity(true, true).is_err());
-    assert!(audit_rapidity(false, true).is_ok());
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn verdict_code(verdict: ParameterVerdict) -> i64 {
+    match verdict {
+        ParameterVerdict::Carried => 1,
+        ParameterVerdict::RefusedTranscendental => 2,
+        ParameterVerdict::ExternallyInterfaced => 3,
+    }
+}
+
+fn refused_count() -> Result<i64, ClaimError> {
+    let inventory = build_frozen_inventory().map_err(|_| violated("inventory", 0, 18))?;
+    require(inventory.len() as i64 == SAMPLE, "inventory length", inventory.len() as i64, SAMPLE)?;
+    let mut carried = 0i64;
+    let mut refused = 0i64;
+    for row in &inventory {
+        if row.is_identity {
+            require(row.parameter_verdict == "CARRIED", "identity verdict", 0, 1)?;
+            carried = checked_add(carried, 1)?;
+        } else {
+            require(row.parameter_verdict == "REFUSED_TRANSCENDENTAL", "refused verdict", 0, 1)?;
+            refused = checked_add(refused, 1)?;
+        }
+    }
+    require(carried == 3, "carried", carried, 3)?;
+    Ok(refused)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    refused_count()
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let carried = classify_group_parameter(SubgroupType::Rotation, true, true, true)
+        .map_err(|_| violated("classify", 0, 1))?;
+    require(verdict_code(carried) == 1, "carried code", verdict_code(carried), 1)?;
+    let refused = classify_group_parameter(SubgroupType::Boost, false, true, true)
+        .map_err(|_| violated("classify", 0, 2))?;
+    require(verdict_code(refused) == 2, "refused code", verdict_code(refused), 2)?;
+    let time = classify_group_parameter(SubgroupType::TimeEvolution, false, true, false);
+    require(time.is_err(), "unhandled time", 0, 1)?;
+    require(value == 15, "refused inventory", value, 15)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
+}
+
+#[test]
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
+}
+
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

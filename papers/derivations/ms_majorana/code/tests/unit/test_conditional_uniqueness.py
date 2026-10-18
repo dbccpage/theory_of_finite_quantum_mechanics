@@ -124,17 +124,14 @@ def test_uniqueness_fails_without_lt():
     assert satisfies_ax_lift_v0_minus_lt(NamedLift.REAL)
     assert satisfies_ax_lift_v0_minus_lt(NamedLift.QUAT)
     assert NamedLift.COMPLEX is not NamedLift.REAL
-    # full V0 still unique
     assert satisfies_ax_lift_v0(NamedLift.COMPLEX)
     assert not satisfies_ax_lift_v0(NamedLift.REAL)
 
 
 def test_uniqueness_requires_local_tomography_on_registry():
-    # full V0 ⇒ unique complex
     for lift in NamedLift:
         if satisfies_ax_lift_v0(lift):
             assert lift is NamedLift.COMPLEX
-    # minus LT: at least two distinct passers
     passers = [L for L in NamedLift if satisfies_ax_lift_v0_minus_lt(L)]
     assert len(passers) == 3
     assert NamedLift.COMPLEX in passers and NamedLift.REAL in passers
@@ -145,7 +142,6 @@ def test_absolute_uniqueness_refused_outside_registry():
     absolute_uniqueness_claim = False
     assert absolute_mathematical_uniqueness_open is True
     assert absolute_uniqueness_claim is False
-    # outside labels are not NamedLift members
     assert OutsideRegistry.ELLP_PHANTOM.value not in {L.value for L in NamedLift}
     assert OutsideRegistry.JORDAN_UNKNOWN != OutsideRegistry.ELLP_PHANTOM
 
@@ -158,7 +154,6 @@ def test_v01_does_not_upgrade_absolute_uniqueness():
     assert continuum_pathway == "openContinuumImport"
     assert absolute_uniqueness_claim is False
     assert len(AX_LIFT_V0_1_OPTIONAL) == 2
-    # optional list does not change registry V0 uniqueness
     assert satisfies_ax_lift_v0(NamedLift.COMPLEX)
     assert not satisfies_ax_lift_v0(NamedLift.REAL)
 

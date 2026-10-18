@@ -25,7 +25,6 @@ def test_actual_weighted_sql_histories_equal_the_retained_source_moments(r, m, k
     con = meron_database(4, m, response.time.q)
     try:
         weights = profile.uniform_samples(4)
-        # Use the original histories; spatial labels and weights are a declared query.
         sql = """WITH profile(site,value) AS (VALUES (0,?),(1,?),(2,?),(3,?)),
         history AS (SELECT f.gid,f.mask,f.sign,f.weight,
           qsum(qmul(p.value,qmul('1/2',CASE WHEN n.site%2=0

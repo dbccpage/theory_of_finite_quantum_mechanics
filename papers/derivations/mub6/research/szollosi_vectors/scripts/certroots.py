@@ -16,7 +16,7 @@ APX=[ast.literal_eval(l.replace("~","").replace(" E","e").replace("E","e")) for 
 c,fl=elim.factor(); fl=sorted(fl,key=lambda t:t[0].degree())
 log("factors",len(fl))
 WP=24000; EPS_BITS=3000
-def q_of(a):  # exact rational of an arb midpoint
+def q_of(a):
     m,e=a.mid().man_exp(); m=int(m); e=int(e)
     return fmpq(m*2**e) if e>=0 else fmpq(m,2**(-e))
 sols=[]; nreal=[]
@@ -32,7 +32,7 @@ for k,(f,_) in enumerate(fl):
     for r in rr:
         x=arb(q_of(r))
         for _ in range(8): x=arb(q_of(x-F(x)/dF(x)))
-        xr=q_of(x); xr=fmpq(int(xr.p*2**(EPS_BITS+64)//xr.q),2**(EPS_BITS+64))  # round to EPS_BITS+64 bits
+        xr=q_of(x); xr=fmpq(int(xr.p*2**(EPS_BITS+64)//xr.q),2**(EPS_BITS+64))
         eps=fmpq(1,2**EPS_BITS); lo=xr-eps; hi=xr+eps
         if not (f(lo)*f(hi)<0): raise SystemExit(f"no certified sign change in factor {k}")
         ivs.append((lo,hi))
@@ -47,6 +47,5 @@ for k,(f,_) in enumerate(fl):
     if any(ivs[i][1]>=ivs[i+1][0] for i in range(len(ivs)-1)): raise SystemExit("intervals overlap")
     if len(rr): log("factor",k,"deg",f.degree(),"Sturm count",nst,"certified disjoint intervals",len(ivs))
 ctx.prec=300
-# disjointness: the isolating intervals came from FLINT's isolation of distinct roots; check distinct coordinates too
 log("real solutions",len(sols),"max coordinate radius %.2e" % max(s["rad_max"] for s in sols))
 json.dump({"nreal_per_factor":nreal,"factor_degrees":[f.degree() for f,_ in fl],"sols":sols},open(sys.argv[3],"w"))

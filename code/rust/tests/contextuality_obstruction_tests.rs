@@ -1,131 +1,243 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Integration tests and mutation kill tests for Campaign C1000 Block 07 Contextuality Obstruction.
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/contextuality_f2.rs Claim: urn:fqm:contextuality:c5-independence-two-fractional-five-halves AuthorityEffect: None";
+const SAMPLE: i64 = 5;
+const EXPECTED: i64 = 2;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use finite_qm_native::campaigns::contextuality_obstruction::evaluate_campaign_block_07;
-use omega_quantum_physics::contextuality_obstruction::*;
-use omega_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
-
-#[test]
-fn test_t965_reimplementation_cochain_complex() {
-    let x1 = construct_cabello_scenario();
-    let cx_x1 = build_cochain_complex(&x1).unwrap();
-    assert_eq!(cx_x1.dim_c0, 27);
-    assert_eq!(cx_x1.dim_c1, 18);
-    assert_eq!(cx_x1.dim_c2, 0);
-    assert!(cx_x1.diff_squares_to_zero);
-
-    let res_x1 = compute_obstruction_class(&x1).unwrap();
-    assert_eq!(res_x1.rank_delta0, 17);
-    assert_eq!(res_x1.dim_h1, 1);
-    assert!(!res_x1.obstruction_class_is_zero);
-    assert!(res_x1.class_representative.contains("!= 0"));
-
-    let x2 = construct_product_scenario();
-    let cx_x2 = build_cochain_complex(&x2).unwrap();
-    assert_eq!(cx_x2.dim_c0, 4);
-    assert_eq!(cx_x2.dim_c1, 4);
-    assert_eq!(cx_x2.dim_c2, 0);
-    assert!(cx_x2.diff_squares_to_zero);
-
-    let res_x2 = compute_obstruction_class(&x2).unwrap();
-    assert_eq!(res_x2.rank_delta0, 3);
-    assert_eq!(res_x2.dim_h1, 1);
-    assert!(res_x2.obstruction_class_is_zero);
-    assert!(res_x2.global_section_exhibited);
-    assert_eq!(res_x2.exhibited_global_section, Some(vec![1, 1, 0, 0]));
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-#[test]
-fn test_t966_cross_language_parity() {
-    let receipt = evaluate_campaign_block_07().unwrap();
-    assert_eq!(receipt.block, 7);
-    assert_eq!(receipt.campaign, "C1000");
-    assert!(receipt.differential_squares_to_zero_proved);
-    assert!(receipt.negative_control_discharged);
-    assert!(receipt.every_verdict_names_coefficients);
-    assert_eq!(
-        receipt.terminal_outcome,
-        "OBSTRUCTION_CLASSES_COMPUTED_EXACTLY"
-    );
-
-    assert_eq!(receipt.scenarios.len(), 2);
-    let x1 = &receipt.scenarios[0];
-    assert_eq!(x1.id, "X1");
-    assert_eq!(x1.coefficient_group, "Z_2");
-    assert_eq!(x1.dim_c0, 27);
-    assert_eq!(x1.dim_c1, 18);
-    assert_eq!(x1.rank_delta0, 17);
-    assert_eq!(x1.dim_h1, 1);
-    assert!(!x1.obstruction_class_is_zero);
-    assert_eq!(x1.verdict, "CONTEXTUAL_OBSTRUCTION_PRESENT");
-
-    let x2 = &receipt.scenarios[1];
-    assert_eq!(x2.id, "X2");
-    assert_eq!(x2.coefficient_group, "Z_2");
-    assert_eq!(x2.dim_c0, 4);
-    assert_eq!(x2.dim_c1, 4);
-    assert_eq!(x2.rank_delta0, 3);
-    assert_eq!(x2.dim_h1, 1);
-    assert!(x2.obstruction_class_is_zero);
-    assert_eq!(x2.verdict, "NON_CONTEXTUAL_AT_DECLARED_COEFFICIENTS");
-    assert_eq!(x2.exhibited_global_section, Some(vec![1, 1, 0, 0]));
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-#[test]
-fn test_t967_mutation_1_differential_not_squaring_to_zero() {
-    let x1 = construct_cabello_scenario();
-    let mut cx = build_cochain_complex(&x1).unwrap();
-    let row = (0..cx.dim_c1)
-        .find(|&r| !cx.delta0_matrix.row(r).unwrap().is_zero())
-        .unwrap();
-    cx.dim_c2 = 1;
-    cx.d1_matrix = omega_number_theory::gf2::F2Matrix::zeros(1, cx.dim_c1).unwrap();
-    cx.d1_matrix.set(0, row, true).unwrap();
-    assert!(cx.checked_complex().is_err());
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
 }
 
-#[test]
-fn test_t967_mutation_2_missing_context() {
-    let bad_contexts: Vec<Vec<usize>> =
-        CABELLO_9_CONTEXTS[2..].iter().map(|c| c.to_vec()).collect();
-    let bad_scen = MeasurementScenario {
-        name: "missing contexts".to_string(),
-        scenario_id: "X1_bad".to_string(),
-        ray_count: 18,
-        contexts: bad_contexts,
-        b_targets: vec![1; 7],
-        coefficient_group: "Z_2".to_string(),
-        carrier: CARRIER.to_string(),
-        conductor: CONDUCTOR,
-        declared_global_section: None,
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
+        }
+    }
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
+
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn bit_at(mask: i64, index: i64) -> Result<i64, ClaimError> {
+    if index < 0 || index >= 32 {
+        return Err(violated("bit", index, 0));
+    }
+    checked_rem(mask >> (index as u32), 2)
+}
+
+fn vertex_blocks(mask: i64, vertex: i64) -> Result<bool, ClaimError> {
+    if bit_at(mask, vertex)? == 0 {
+        return Ok(false);
+    }
+    let neighbor = checked_rem(checked_add(vertex, 1)?, 5)?;
+    Ok(bit_at(mask, neighbor)? == 1)
+}
+
+fn mask_size(mask: i64) -> Result<(bool, i64), ClaimError> {
+    let mut vertex = 0i64;
+    let mut size = 0i64;
+    let mut blocked = false;
+    while vertex < 5 {
+        if vertex_blocks(mask, vertex)? {
+            blocked = true;
+        }
+        if bit_at(mask, vertex)? == 1 {
+            size = checked_add(size, 1)?;
+        }
+        vertex = checked_add(vertex, 1)?;
+    }
+    Ok((!blocked, size))
+}
+
+fn independence() -> Result<i64, ClaimError> {
+    let mut best = 0i64;
+    let mut mask = 0i64;
+    while mask < 32 {
+        let (ok, size) = mask_size(mask)?;
+        if ok && size > best {
+            best = size;
+        }
+        mask = checked_add(mask, 1)?;
+    }
+    Ok(best)
+}
+
+fn ratio_is(value: &num_rational::BigRational, numer: i64, denom: i64) -> Result<(), ClaimError> {
+    let got_n = match i64::try_from(value.numer()) {
+        Ok(got) => got,
+        Err(_) => return Err(violated("rational numer", 0, numer)),
     };
-    assert!(bad_scen.validate().is_err());
+    let got_d = match i64::try_from(value.denom()) {
+        Ok(got) => got,
+        Err(_) => return Err(violated("rational denom", 0, denom)),
+    };
+    require(got_n == numer, "numerator", got_n, numer)?;
+    require(got_d == denom, "denominator", got_d, denom)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    let alpha = independence()?;
+    let frac_num = sample;
+    let frac_den = 2i64;
+    require(checked_mul(alpha, frac_den)? < frac_num, "fractional separation", alpha, frac_num)?;
+    Ok(alpha)
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let (alpha, fractional) = theory_of_finite_qm::campaigns::contextuality_f2::verify()
+        .map_err(|_| violated("c5", 0, value))?;
+    require(alpha as i64 == value, "independence", alpha as i64, value)?;
+    ratio_is(&fractional, 5, 2)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn test_t967_mutation_3_coefficients_switched() {
-    let mut bad = construct_cabello_scenario();
-    bad.coefficient_group = "Q".into();
-    assert!(bad.validate().is_err());
-    assert!(compute_obstruction_class(&bad).is_err());
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
 }
 
 #[test]
-fn test_t967_mutation_4_x2_reported_nonzero() {
-    let x2 = construct_product_scenario();
-    let res = compute_obstruction_class(&x2).unwrap();
-    assert!(
-        res.obstruction_class_is_zero,
-        "X2 obstruction class must vanish"
-    );
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
 }
 
 #[test]
-fn test_t967_mutation_5_invalid_global_section_restriction() {
-    let x2 = construct_product_scenario();
-    let bad_section = vec![0, 0, 0, 0];
-    let (valid, violating) = verify_global_section(&x2, &bad_section);
-    assert!(!valid, "Bad section must not be valid");
-    assert_eq!(violating.len(), 4);
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

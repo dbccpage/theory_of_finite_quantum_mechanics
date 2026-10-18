@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 import numpy as np
 
-# Ensure code directories are in sys.path
 code_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path(".")
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -57,7 +56,6 @@ def evaluate_network_majorana_parity(
             total_parity_sum=0,
         )
 
-    # 1. Build GF(2) incidence matrix from Network edges
     d0_gf2_rows = []
     node_idx = {n: i for i, n in enumerate(network.nodes)}
     for u, v in network.edges:
@@ -70,17 +68,13 @@ def evaluate_network_majorana_parity(
     _, pivots = gf2_mat.rref()
     rank_f2 = len(pivots)
 
-    # 2. Extract binary parity defect vector b from edge values under threshold
     if edge_values is not None:
         b_vec = [1 if abs(edge_values.get(e, 0.0)) > threshold else 0 for e in network.edges]
     else:
-        # Default: boundary mode defect at edge 0
         b_vec = [0] * n_e
         b_vec[0] = 1
 
     total_parity = sum(b_vec) % 2
-    # dim_h1 and the Exact schedule are native classify, not n_e - rank.
-    # A zero face keeps the graph rectangular; it does not add a constraint.
     measured = classify_native(d0_gf2_rows, [[0] * n_e], b_vec, budget=1)
     dim = measured["dim_h1"]
     if isinstance(dim, bool) or not isinstance(dim, int):
@@ -99,7 +93,6 @@ def evaluate_network_majorana_parity(
 
 
 if __name__ == "__main__":
-    # Test on a 10-site Kitaev ring network topology
     nodes = list(range(10))
     edges = [(i, (i + 1) % 10) for i in range(10)]
     ring_net = Network(nodes=nodes, edges=edges)

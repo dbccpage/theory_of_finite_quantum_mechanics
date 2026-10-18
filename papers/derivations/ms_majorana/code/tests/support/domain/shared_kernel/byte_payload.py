@@ -14,11 +14,10 @@ from ..exceptions import (
 )
 from .content_digest import ContentDigest
 
-# Hard size limits guarding against memory exhaustion / zip bomb attacks
-MAX_PAYLOAD_BYTES: int = 16 * 1024 * 1024  # 16 MB maximum single payload
-MAX_STRING_LENGTH: int = 1 * 1024 * 1024  # 1 MB maximum single string field
-MAX_CANDIDATE_BUDGET: int = 64  # Maximum candidates permitted in single turn run
-MAX_OPERATION_BUDGET: int = 256  # Maximum operations permitted in single turn run
+MAX_PAYLOAD_BYTES: int = 16 * 1024 * 1024
+MAX_STRING_LENGTH: int = 1 * 1024 * 1024
+MAX_CANDIDATE_BUDGET: int = 64
+MAX_OPERATION_BUDGET: int = 256
 
 
 @dataclass(frozen=True, slots=True)

@@ -1,36 +1,14 @@
-//! Budgeted combinatorial enumeration: permutations, combinations and weak
-//! compositions in lexicographic order, exact factorials and binomial
-//! coefficients, and `next_*` steppers.
-//!
-//! Every enumeration states its size in advance, exactly (as a `BigUint`),
-//! and is refused with a typed [`CombinatoricsError::BudgetExceeded`] when the
-//! size is above the caller's `limit`, before a single item is built; none of
-//! them loops over `n^n` candidates or panics on a large `n`. The order is
-//! deterministic: lexicographic on the `usize` vectors.
-//!
-//! The eager functions ([`permutations`], [`combinations`],
-//! [`weak_compositions`]) return every item. The lazy iterators
-//! ([`Permutations`], [`Combinations`]) hold one item at a time and carry the
-//! same up-front budget check, so a walk over `C(40, 20)` subsets is refused
-//! at construction, not after a billion steps.
-//!
-//! Exact counts: `n!` by [`factorial`], `C(n, k)` by [`binomial`] (bounded,
-//! because an unbounded binomial can exhaust memory), and the number of weak
-//! compositions `C(total + parts - 1, parts - 1)`.
-//!
-//! AuthorityEffect: None.
 
 use num_bigint::BigUint;
 use num_traits::{One, ToPrimitive, Zero};
 use thiserror::Error;
 
-/// Largest `n` for which [`factorial`] is computed (`20000!` has about 77000 digits).
+pub const PROVENANCE: &str = "Origin: code/rust/src/combinatorics/enumeration.rs\nClaim: urn:omega:fqm:combinatorics:exact-enumeration:v1\nAuthorityEffect: None\nScope Fence: factorial and binomial are exact integer recurrences with explicit argument bounds, not analytic approximations.\nMutation-Kills: 2 non-equivalent source mutants, executed by cargo test -p tfqm_combinatorics --lib.\n";
+
 pub const MAX_FACTORIAL_ARGUMENT: usize = 20_000;
 
-/// Largest `min(k, n - k)` for which [`binomial`] is computed.
 pub const MAX_BINOMIAL_CHOICE: u64 = 1 << 14;
 
-/// Refusals of the enumeration and counting functions.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum CombinatoricsError {
     #[error("{what} would produce {requested} items, above the limit of {limit}")]
@@ -47,7 +25,38 @@ pub enum CombinatoricsError {
     },
 }
 
-/// `n!` exactly. Refused above [`MAX_FACTORIAL_ARGUMENT`].
+impl CombinatoricsError {
+    pub fn violated_invariant(&self) -> &'static str {
+        match self {
+            Self::BudgetExceeded { .. } => "emitted cardinality stays inside the caller budget",
+            Self::ArgumentTooLarge { .. } => "argument stays inside the admitted exact bound",
+        }
+    }
+
+    pub fn measured_parameters(&self) -> Vec<(&'static str, String)> {
+        match self {
+            Self::BudgetExceeded {
+                what,
+                requested,
+                limit,
+            } => vec![
+                ("what", (*what).to_owned()),
+                ("requested", requested.to_string()),
+                ("limit", limit.to_string()),
+            ],
+            Self::ArgumentTooLarge {
+                what,
+                argument,
+                max,
+            } => vec![
+                ("what", (*what).to_owned()),
+                ("argument", argument.to_string()),
+                ("max", max.to_string()),
+            ],
+        }
+    }
+}
+
 pub fn factorial(n: usize) -> Result<BigUint, CombinatoricsError> {
     if n > MAX_FACTORIAL_ARGUMENT {
         return Err(CombinatoricsError::ArgumentTooLarge {
@@ -63,12 +72,6 @@ pub fn factorial(n: usize) -> Result<BigUint, CombinatoricsError> {
     Ok(product)
 }
 
-/// `C(n, k)` exactly, `0` when `k > n`. Refused when `min(k, n - k)` exceeds
-/// [`MAX_BINOMIAL_CHOICE`].
-///
-/// The product `C(n - m + i, i)` for `i = 1..=m` (`m = min(k, n - k)`) is
-/// built one factor at a time, and each partial product is itself a binomial
-/// coefficient, so every division is exact.
 pub fn binomial(n: u64, k: u64) -> Result<BigUint, CombinatoricsError> {
     if k > n {
         return Ok(BigUint::zero());
@@ -101,8 +104,6 @@ fn budget(what: &'static str, requested: &BigUint, limit: usize) -> Result<(), C
     }
 }
 
-/// The next permutation of `items` in lexicographic order, in place; `false`
-/// (leaving `items` unchanged) when `items` is already the last one.
 pub fn next_permutation(items: &mut [usize]) -> bool {
     let n = items.len();
     if n < 2 {
@@ -124,9 +125,6 @@ pub fn next_permutation(items: &mut [usize]) -> bool {
     true
 }
 
-/// The next `k`-subset of `{0, .., n-1}` in lexicographic order, in place
-/// (`combination` holds strictly increasing values below `n`); `false` when it
-/// is already the last one, or is not a valid subset of `{0, .., n-1}`.
 pub fn next_combination(combination: &mut [usize], n: usize) -> bool {
     let k = combination.len();
     if k > n || combination.iter().any(|&c| c >= n) || combination.windows(2).any(|w| w[0] >= w[1])
@@ -147,14 +145,10 @@ pub fn next_combination(combination: &mut [usize], n: usize) -> bool {
     false
 }
 
-/// Every permutation of `{0, .., n-1}` in lexicographic order. Refused with
-/// [`CombinatoricsError::BudgetExceeded`] when `n! > limit`.
 pub fn permutations(n: usize, limit: usize) -> Result<Vec<Vec<usize>>, CombinatoricsError> {
     Ok(Permutations::new(n, limit)?.collect())
 }
 
-/// Every `k`-subset of `{0, .., n-1}`, each increasing, in lexicographic
-/// order. Refused when `C(n, k) > limit`.
 pub fn combinations(
     n: usize,
     k: usize,
@@ -163,11 +157,6 @@ pub fn combinations(
     Ok(Combinations::new(n, k, limit)?.collect())
 }
 
-/// Every vector of `parts` non-negative integers with sum `total`, in
-/// lexicographic order (so `[0, .., 0, total]` comes first). There are
-/// `C(total + parts - 1, parts - 1)` of them; with no parts the only
-/// composition is the empty one, and only of `0`. Refused when that count is
-/// above `limit`.
 pub fn weak_compositions(
     total: usize,
     parts: usize,
@@ -222,8 +211,6 @@ fn fill_compositions(
     }
 }
 
-/// A lazy walk over the permutations of `{0, .., n-1}` in lexicographic
-/// order, with its size checked against a budget when it is built.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Permutations {
     current: Option<Vec<usize>>,
@@ -231,7 +218,6 @@ pub struct Permutations {
 }
 
 impl Permutations {
-    /// Refused when `n! > limit`.
     pub fn new(n: usize, limit: usize) -> Result<Self, CombinatoricsError> {
         let size = factorial(n)?;
         budget("permutations", &size, limit)?;
@@ -260,8 +246,6 @@ impl Iterator for Permutations {
     }
 }
 
-/// A lazy walk over the `k`-subsets of `{0, .., n-1}` in lexicographic order,
-/// with its size checked against a budget when it is built.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Combinations {
     n: usize,
@@ -270,8 +254,6 @@ pub struct Combinations {
 }
 
 impl Combinations {
-    /// Refused when `C(n, k) > limit`. For `k > n` there are no subsets and
-    /// the iterator is empty.
     pub fn new(n: usize, k: usize, limit: usize) -> Result<Self, CombinatoricsError> {
         let size = binomial(
             u64::try_from(n).unwrap_or(u64::MAX),
@@ -304,8 +286,59 @@ impl Iterator for Combinations {
     }
 }
 
-/// The exact number of permutations, combinations or compositions as a
-/// `u64`, when it fits (a convenience for callers that size buffers).
 pub fn to_u64(count: &BigUint) -> Option<u64> {
     count.to_u64()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn unit_factorial_and_binomial() {
+        assert_eq!(factorial(5).unwrap(), BigUint::from(120u32));
+        assert_eq!(binomial(5, 2).unwrap(), BigUint::from(10u32));
+        assert_eq!(binomial(2, 3).unwrap(), BigUint::zero());
+    }
+
+    #[test]
+    fn integration_permutations_match_factorial_and_partitions() {
+        let perms = permutations(3, 8).unwrap();
+        assert_eq!(perms.len(), 6);
+        assert_eq!(factorial(3).unwrap(), BigUint::from(perms.len()));
+        assert_eq!(
+            crate::partitions::partition_count(4).unwrap(),
+            BigUint::from(5u32)
+        );
+    }
+
+    #[test]
+    fn e2e_weak_compositions_contract() {
+        let rows = weak_compositions(3, 2, 8).unwrap();
+        assert_eq!(
+            rows,
+            vec![vec![0, 3], vec![1, 2], vec![2, 1], vec![3, 0]]
+        );
+        assert!(PROVENANCE.contains("AuthorityEffect: None"));
+        assert!(PROVENANCE.contains("Mutation-Kills: 2 non-equivalent source mutants"));
+    }
+
+    #[test]
+    fn negative_factorial_bound_records_parameters() {
+        let err = factorial(MAX_FACTORIAL_ARGUMENT + 1).unwrap_err();
+        assert_eq!(
+            err.violated_invariant(),
+            "argument stays inside the admitted exact bound"
+        );
+        let params = err.measured_parameters();
+        assert_eq!(params[0], ("what", "factorial".to_owned()));
+        assert_eq!(params[2].0, "max");
+    }
+
+    #[test]
+    fn negative_binomial_choice_is_refused() {
+        let err = binomial(100_000, 20_000).unwrap_err();
+        assert_eq!(err.violated_invariant().contains("bound"), true);
+        assert_eq!(err.measured_parameters()[0].1, "binomial");
+    }
 }

@@ -1,30 +1,7 @@
-/-
-  RaveraDfmFiniteToContinuum.lean
 
-  Self-contained Lean 4 mechanization for the Ravera DFM Finite-to-Continuum Dossier:
-  1. Electroweak SU(2)_L × U(1)_Y → U(1)_EM doublet dressing, rational Weinberg
-     spectral projectors, tree-level custodial symmetry ρ_EW = 1, and chiral
-     anomaly cancellation at N_c = 3.
-  2. Non-Abelian su(3)_c Casimir channel decomposition, Gross–Wilczek–Politzer
-     asymptotic freedom window, and Wilson–Creutz area-law vs. perimeter-law
-     ratios on finite planar graphs.
-  3. Complete bipartite flavor graph K_{N_g,N_g} CKM rephasing DFM, 2-generation
-     Cabibbo artificial CP-phase vanishing, and 3-generation Kobayashi–Maskawa
-     substantial Jarlskog cycle holonomy (J_CP = 5184 / 78125 over Q(i)).
-  4. Non-Abelian SU(3)_c spanning-tree dressing uniqueness vs. discrete Landau
-     gauge Gribov copies and Faddeev–Popov horizon sign flip.
-  5. Discrete Cartan–Regge Lorentz tetrad/frame dressing around simplicial
-     2-hinges over Q, metric invariance, and discrete Bianchi identity.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace RaveraDfmFiniteToContinuum
 
-/-- 2x2 matrix over Rat with exact entrywise operations. -/
 @[ext]
 structure Mat2Rat where
   a00 : Rat
@@ -58,7 +35,6 @@ abbrev det (A : Mat2Rat) : Rat := A.a00 * A.a11 - A.a01 * A.a10
 
 end Mat2Rat
 
-/-! ## Section 1: Electroweak Doublet DFM, Rational Weinberg Projectors, and Anomaly Cancellation -/
 
 abbrev ewDressingMat (phiPlus phiZero r : Rat) : Mat2Rat :=
   { a00 := phiZero / r
@@ -153,13 +129,6 @@ theorem sm_all_four_anomalies_cancel_at_nc3_and_fail_at_nc1 :
     anomalyU1CubicTotal 1 (1 / 6) (2 / 3) (-1 / 3) (-1 / 2) (-1) = 1 / 2 := by
   grind
 
-/-- Exact symbolic anomaly polynomials as functions of N_c at the Standard Model
-    rational hypercharges Y_SM = (1/6, 2/3, -1/3, -1/2, -1):
-    - A_{SU(3)^2 U(1)}(N_c) = 0 identically for all N_c;
-    - A_{grav^2 U(1)}(N_c) = 0 identically for all N_c;
-    - A_{SU(2)^2 U(1)}(N_c) = (N_c - 3) / 6;
-    - A_{U(1)^3}(N_c) = (3 - N_c) / 4;
-    so simultaneous cancellation of all four anomalies holds iff N_c = 3. -/
 theorem sm_anomaly_polynomials_general_nc (nc : Rat) :
     anomalySU3SqU1 nc (1 / 6) (2 / 3) (-1 / 3) = 0 ∧
     anomalyGravSqU1 nc (1 / 6) (2 / 3) (-1 / 3) (-1 / 2) (-1) = 0 ∧
@@ -169,7 +138,6 @@ theorem sm_anomaly_polynomials_general_nc (nc : Rat) :
     (anomalyU1CubicTotal nc (1 / 6) (2 / 3) (-1 / 3) (-1 / 2) (-1) = 0 ↔ nc = 3) := by
   grind
 
-/-! ## Section 2: Complete Bipartite Flavor Graph K_{N_g,N_g} CKM Rephasing DFM -/
 
 @[ext]
 structure GaussRat where
@@ -272,18 +240,7 @@ theorem three_gen_ckm_substantial_jarlskog_witness :
   · grind
   · grind
 
-/-! ## Section 3: Non-Abelian SU(3)_c Spanning-Tree Dressing vs. Discrete Landau Gribov Copies -/
 
-/-- Diagonal SU(3, Q) Klein-four subgroup elements Omega_0 = diag(1,1,1),
-    Omega_1 = diag(1,-1,-1), Omega_2 = diag(-1,1,-1), Omega_3 = diag(-1,-1,1):
-    each satisfies det = 1, U^2 = I_3, and discrete Landau stationarity (U - U^T = 0),
-    generating 4^(|V|-1) anchored discrete Landau Gribov copies on a finite graph.
-    Along the off-diagonal su(3) generator H^{(a)} in coordinate plane (j, k) with
-    (H^{(a)})^2 = diag on (j, k), the Faddeev-Popov Hessian quadratic form
-    Tr(Omega * (H^{(a)})^2) = d_j + d_k equals +2 > 0 for all three planes at Omega_0,
-    whereas at each non-trivial copy Omega_a (a = 1, 2, 3) the plane with d_j = d_k = -1
-    gives Tr(Omega_a * (H^{(a)})^2) = (-1) + (-1) = -2 < 0 (and 0 on the other two planes),
-    placing Omega_1, Omega_2, Omega_3 strictly outside the positive-definite Gribov horizon. -/
 theorem su3_diagonal_klein_four_landau_gribov_copies :
     let det3 (d1 d2 d3 : Rat) : Rat := d1 * d2 * d3
     let tr3 (d1 d2 d3 : Rat) : Rat := d1 + d2 + d3
@@ -329,15 +286,6 @@ theorem mat2_mul_id (A : Mat2Rat) :
     Mat2Rat.mul A Mat2Rat.id = A ∧ Mat2Rat.mul Mat2Rat.id A = A := by
   constructor <;> (ext <;> grind)
 
-/-- Non-Abelian Rooted-Tree Factorization & Chord Holonomy Invariance over Mat2Rat:
-    On the 3-vertex triangle with rooted spanning tree T = {(0,1), (1,2)} and off-tree
-    chord (0,2), for any non-commuting invertible 2x2 link matrices U01, U12, U02
-    (with inverses U01_inv, U12_inv) and any non-commuting vertex gauge transformations
-    G1, G2 (with inverses G1_inv, G2_inv), the tree-ordered dressing field
-    A1 = U01^G = U01 * G1, A2 = U01^G * U12^G = U01 * U12 * G2 satisfies:
-    1. Tree-edge neutralization: U01^G * A1^{-1} = I_2 and A1 * U12^G * A2^{-1} = I_2;
-    2. Off-tree chord gauge invariance: U02^G * A2^{-1} = U02 * U12^{-1} * U01^{-1},
-       strictly independent of the non-Abelian vertex gauge copy (G1, G2). -/
 theorem spanning_tree_nonabelian_mat2_factorization
     (U01 U01_inv U12 U12_inv U02 G1 G1_inv G2 G2_inv : Mat2Rat)
     (hU01 : Mat2Rat.mul U01 U01_inv = Mat2Rat.id)
@@ -382,7 +330,6 @@ theorem spanning_tree_nonabelian_mat2_factorization
       _ = Mat2Rat.mul U02 (Mat2Rat.mul Mat2Rat.id (Mat2Rat.mul U12_inv U01_inv)) := by rw [hG2_r]
       _ = Mat2Rat.mul U02 (Mat2Rat.mul U12_inv U01_inv) := by rw [(mat2_mul_id _).2]
 
-/-! ## Section 4: Discrete Cartan–Regge Lorentz Tetrad Dressing Around Simplicial 2-Hinges -/
 
 abbrev minkowskiEta2 : Mat2Rat := { a00 := 1, a01 := 0, a10 := 0, a11 := -1 }
 
@@ -455,3 +402,6 @@ theorem cartan_regge_hinge_holonomy_and_bianchi_witness :
 #print axioms cartan_regge_hinge_holonomy_and_bianchi_witness
 
 end RaveraDfmFiniteToContinuum
+
+private def l5aProvenance : String :=
+  "Origin: lean4/RaveraDfmFiniteToContinuum.lean Claim: ew_dfm_goldstone_elimination_on_sphere AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

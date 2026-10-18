@@ -1,19 +1,4 @@
-/-
-  Campaign C1000 Block 10: Consolidated Causal Price List, FQMR-1 Adjudication, and Axiom Consolidation.
-  AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
-  Formalizes:
-  - Price-list schema and row structure (admissions, imports, parameters, extensions)
-  - Census counts: 2 admissions, 13 imported structures, 18 external parameters + 7 search bounds (25 parameter rows), 7 field extensions = 47 total rows
-  - Bidirectional totality certificate
-  - FQMR-1 10-clause adjudication table against the launch-frozen class
-  - Proof that all 10 clauses are discharged (clauses_discharged = 10, clauses_open = 0)
-  - Structural sentence verification against Block 09, Block 03, and Block 05
-  - Consolidation of cited Lean theorems across Blocks 01-09 with zero Classical.choice dependence
-  - Terminal outcome: FQMR1_CLOSED_AT_DECLARED_CLASS
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 import CausalOrder
 import NoSignalling
@@ -27,7 +12,6 @@ import GroupParameter
 
 namespace CausalPriceList
 
-/-! ### Target C1000-T1029: Price List Schema and Enums -/
 
 inductive ItemKind where
   | admission : ItemKind
@@ -49,7 +33,6 @@ structure PriceListRow where
   target : String
   deriving DecidableEq, Repr
 
-/-- Exact row count of the consolidated causal price list: 47 rows. -/
 def totalRowCount : Nat := 47
 def admissionCount : Nat := 2
 def importedStructureCount : Nat := 13
@@ -60,7 +43,6 @@ theorem price_list_row_partition :
     admissionCount + importedStructureCount + externalParameterCount + fieldExtensionCount = totalRowCount := by
   rfl
 
-/-! ### Target C1000-T1034: Admissions as First-Class Rows -/
 
 def admissionCausalOrder : PriceListRow := {
   itemId := "ADM_CAUSAL_ORDER",
@@ -86,7 +68,6 @@ def admissions_have_own_rows : Bool := true
 
 theorem admissions_have_own_rows_true : admissions_have_own_rows = true := rfl
 
-/-! ### Target C1000-T1032: Field Extension Census (7 extensions) -/
 
 structure FieldExtensionRecord where
   id : String
@@ -129,7 +110,6 @@ def fieldExtensions : List FieldExtensionRecord := [
 
 theorem extension_count_eq_seven : fieldExtensions.length = 7 := rfl
 
-/-! ### Target C1000-T1035: FQMR-1 10-Clause Adjudication Table -/
 
 inductive ClauseStatus where
   | discharged : ClauseStatus
@@ -170,18 +150,12 @@ def clausesDischargedCount : Nat := 10
 def clausesOpenCount : Nat := 0
 def parametersUntypedCount : Nat := 0
 
-/-! ### Target C1000-T1036: Structural Sentence Assembly and Verification -/
 
-/-- Structural sentence:
-    'The finite quantum mechanics carrier Q1 carries group elements while refusing non-identity group
-     parameters as transcendental, prices rotation groups by cyclotomic conductor, and demonstrates
-     non-closure of boost composition via infinite-order rotation.' -/
 def structuralSentenceSupported : Bool := true
 
 theorem structural_sentence_holds :
     structuralSentenceSupported = true := rfl
 
-/-! ### Target C1000-T1047: Terminal Selection -/
 
 def campaignTerminal : String := "FQMR1_CLOSED_AT_DECLARED_CLASS"
 def terminalOutcome : String := "FQMR1_CLOSED_AT_DECLARED_CLASS"
@@ -189,21 +163,17 @@ def terminalOutcome : String := "FQMR1_CLOSED_AT_DECLARED_CLASS"
 theorem campaign_terminal_correct :
     campaignTerminal = "FQMR1_CLOSED_AT_DECLARED_CLASS" := rfl
 
-/-! ### Target C1000-T1044: Consolidated Axiom Census Across Blocks 01-10 -/
 
--- Block 01
 #print axioms CausalOrder.spacelike_symm
 #print axioms CausalOrder.spacelike_irrefl
 #print axioms CausalOrder.incomparability_not_transitive_c1
 #print axioms CausalOrder.c2_mu_top_bottom
 #print axioms CausalOrder.order_independence_witness
 
--- Block 02
 #print axioms NoSignalling.marginal_identity
 #print axioms NoSignalling.partial_trace_uniqueness
 #print axioms NoSignalling.no_signalling_under_admitted_composition
 
--- Block 03
 #print axioms RotationGroups.octGenA_ortho
 #print axioms RotationGroups.octGenB_ortho
 #print axioms RotationGroups.octGenA_order4
@@ -213,7 +183,6 @@ theorem campaign_terminal_correct :
 #print axioms RotationGroups.icosahedral_conductor_ge_5
 #print axioms RotationGroups.icosahedral_trace_field_lemma
 
--- Block 04
 #print axioms LorentzBoost.boost_hyperbolic_identity
 #print axioms LorentzBoost.boost_det
 #print axioms LorentzBoost.boost_trace
@@ -226,7 +195,6 @@ theorem campaign_terminal_correct :
 #print axioms LorentzBoost.gamma_lowest_terms_3
 #print axioms LorentzBoost.gamma_lowest_terms_4
 
--- Block 05
 #print axioms BoostComposition.composition_not_symmetric
 #print axioms BoostComposition.polar_reconstruction
 #print axioms BoostComposition.polar_rotation_uniqueness
@@ -234,34 +202,24 @@ theorem campaign_terminal_correct :
 #print axioms BoostComposition.frozen_pair_not_in_niven_set
 #print axioms BoostComposition.frozen_pair_rotation_infinite_order
 
--- Block 06
 #print axioms QuantumCorrelation.classical_chsh_bound
 #print axioms QuantumCorrelation.q2_tsirelson_attainment
 #print axioms QuantumCorrelation.no_int_sq_two
 #print axioms QuantumCorrelation.no_gaussian_int_sq_two
--- REVIEWER CORRECTION (PR #231). Two reports stood here, on
--- `q1_witness_not_attained` and `washington_criterion`. Both named theorems
--- that were `rfl` on a definition or on a structure literal, and both are
--- WITHDRAWN in QuantumCorrelation.lean. An axiom census counts what it is
--- pointed at; pointing it at a tautology inflates the count without adding
--- evidence. Replaced with the block's two genuine bounded results.
 #print axioms QuantumCorrelation.q1_scaled_chsh_value
 #print axioms QuantumCorrelation.q1_violates_classical_bound
 
--- Block 07
 #print axioms ContextualityObstruction.differential_squares_to_zero
 #print axioms ContextualityObstruction.x2_global_section_valid
 #print axioms ContextualityObstruction.x2_d0_vanishes
 #print axioms ContextualityObstruction.cabello_ray_incidence_identity
 #print axioms ContextualityObstruction.x1_has_no_global_section
 
--- Block 08
 #print axioms CommutingObservables.factor_commutation_all
 #print axioms CommutingObservables.c1_commuting_assignment_exists
 #print axioms CommutingObservables.c2_commuting_assignment_exists
 #print axioms CommutingObservables.c3_antichain_obstructed
 
--- Block 09
 #print axioms GroupParameter.classify_identity_carried
 #print axioms GroupParameter.classify_rotation_non_identity
 #print axioms GroupParameter.classify_boost_non_identity
@@ -272,7 +230,6 @@ theorem campaign_terminal_correct :
 #print axioms GroupParameter.unified_group_parameter_dichotomy
 #print axioms GroupParameter.inventory_partition
 
--- Block 10
 #print axioms price_list_row_partition
 #print axioms admissions_distinct
 #print axioms extension_count_eq_seven
@@ -280,7 +237,6 @@ theorem campaign_terminal_correct :
 #print axioms structural_sentence_holds
 #print axioms campaign_terminal_correct
 
-/-- Integer price of a field extension: degree times conductor. -/
 def extensionPrice (e : FieldExtensionRecord) : Nat :=
   e.degree * e.conductor
 
@@ -307,3 +263,6 @@ theorem extension_ids_unique : (fieldExtensions.map (·.id)).Nodup := by
   decide
 
 end CausalPriceList
+
+private def l5aProvenance : String :=
+  "Origin: lean4/CausalPriceList.lean Claim: price_list_row_partition AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

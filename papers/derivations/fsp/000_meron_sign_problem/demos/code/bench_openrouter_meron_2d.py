@@ -47,12 +47,12 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from demo_2d_gross_neveu_meron import (  # noqa: E402
+from demo_2d_gross_neveu_meron import (
     WIRE_TURNS_2D_GN,
     validate_wire_string,
 )
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
+from blind_problem import assert_lexical_hygiene
 
 RESULTS_DIR = DEMOS_DIR / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -84,7 +84,6 @@ def build_benchmark_prompts() -> List[Dict[str, Any]]:
     """Builds zero-shot and few-shot Gamma38 wire prompts for the 4 stages."""
     benchmark_turns = []
 
-    # One-shot demonstration example (Turn 0: Carrier -> Turn 1: Breakup)
     one_shot_example = (
         "Example turn:\n"
         "Input: op<<11>op<<1><10000>>op<<10><0><1>>>\n"
@@ -96,10 +95,8 @@ def build_benchmark_prompts() -> List[Dict[str, Any]]:
         stage = turn_spec["stage"]
         raw_wire = turn_spec["wire_prompt"]
 
-        # 1. Zero-shot condition: raw wire string
         zero_shot_prompt = raw_wire
 
-        # 2. Few-shot condition: example + query wire
         few_shot_prompt = f"{one_shot_example}Input: {raw_wire}\nOutput:"
 
         assert_lexical_hygiene(zero_shot_prompt)
@@ -158,7 +155,6 @@ def generate_mock_model_response(
     turn_num = turn_spec["turn"]
 
     if model_id == "stealth/space-bunny-alpha":
-        # Deep reasoning tier: high reasoning tokens, 100% few-shot accuracy
         content = expected if condition == "few_shot" else expected
         reasoning = (
             "Decomposing 2D staggered Gross-Neveu plaquettes. "
@@ -170,11 +166,9 @@ def generate_mock_model_response(
         completion_tokens = 32
         latency_ms = 850
     elif model_id == "meta-llama/llama-3.3-70b-instruct":
-        # 70B open-weights: strong few-shot conformance
         if condition == "few_shot":
             content = expected
         else:
-            # Zero-shot occasionally wraps in conversational prose
             content = expected if turn_num <= 2 else expected
         reasoning = ""
         reasoning_tokens = 0
@@ -182,7 +176,6 @@ def generate_mock_model_response(
         completion_tokens = 24
         latency_ms = 350
     else:
-        # 8B fast tier: requires few-shot formatting prompt
         if condition == "few_shot":
             content = expected
         else:
@@ -241,10 +234,8 @@ def extract_wire_from_response(raw_text: str) -> Optional[str]:
     if validate_wire_string(trimmed):
         return trimmed
 
-    # Look for op<<...>> pattern inside the text
     start_idx = trimmed.find("op<<")
     if start_idx != -1:
-        # Attempt to slice up to closing brackets
         for end_idx in range(len(trimmed), start_idx + 4, -1):
             cand = trimmed[start_idx:end_idx].strip()
             if validate_wire_string(cand):
@@ -285,7 +276,6 @@ def evaluate_model_turn(
     expected_wire = turn_spec["expected_wire"]
     is_exact_match = (extracted_wire == expected_wire)
 
-    # Opcode check (e.g. op<<101> or op<<1100>)
     expected_opcode = expected_wire[:expected_wire.find(">", 4) + 1] if ">" in expected_wire[4:] else expected_wire
     opcode_hit = bool(extracted_wire and extracted_wire.startswith(expected_opcode))
 
@@ -420,7 +410,6 @@ def run_2d_meron_benchmark(
         "evaluation_records": all_turn_results,
     }
 
-    # Compute SHA-256 digest over canonical serialized body
     ser = json.dumps(receipt_data, indent=2, sort_keys=True)
     digest = hashlib.sha256(ser.encode("utf-8")).hexdigest()
     receipt_data["sha256_digest"] = digest

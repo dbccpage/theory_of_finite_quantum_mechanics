@@ -27,7 +27,6 @@ def test_fixture_exact_counts(tmp_path: Path) -> None:
     (crates / "beta" / "src" / "nested" / "mod.rs").write_text(
         "// c\n", encoding="utf-8"
     )
-    # skip target noise
     (crates / "alpha" / "target" / "x.rs").parent.mkdir(parents=True, exist_ok=True)
     (crates / "alpha" / "target" / "x.rs").write_text("skip\n", encoding="utf-8")
 
@@ -78,7 +77,6 @@ def test_empty_file_binding_fields_are_not_counted(tmp_path: Path) -> None:
 
 
 def test_no_autogen_contract_api() -> None:
-    # Report builder must not expose a function that writes empty contracts.
     import omega_engine_governance.contracts.c2s1_bijection as m
 
     assert not hasattr(m, "auto_write_empty_contracts")

@@ -126,17 +126,13 @@ def z2_gauge_plaquette_invariance() -> Dict[str, Any]:
     Therefore, [H, G_v] = 0 for all vertices v!
     Physical subspace H_phys = { |psi> : G_v |psi> = +1 for all v } is strictly preserved.
     """
-    # X strings are masks in the four-link Pauli basis. Commutation with
-    # the ZZZZ flux is determined by the parity of their common support.
     generator_masks = [0b1001, 0b0011, 0b0110, 0b1100]
     flux_mask = 0b1111
     links_per_vertex = [(mask & flux_mask).bit_count() for mask in generator_masks]
     anti_commutation_signs = [(-1) ** k for k in links_per_vertex]
     commutes_with_flux = all(sign == 1 for sign in anti_commutation_signs)
-    # In the X eigenbasis, each Gauss constraint has eigenvalue (-1)^parity.
     physical_labels = [label for label in range(16)
                        if all((label & mask).bit_count() % 2 == 0 for mask in generator_masks)]
-    # Electric terms are diagonal there. The flux flips all four X eigenbits.
     commutes_with_electric = all(
         (label ^ (1 << link)) ^ mask == (label ^ mask) ^ (1 << link)
         for label in range(16) for link in range(4) for mask in generator_masks

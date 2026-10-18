@@ -1,19 +1,7 @@
-/-
-  Campaign core -- shared carriers for grok_pd_night_20260814.
-  AuthorityEffect: None. Not a theorem. Not PROVEN.
 
-  Downstream obligations must import this file instead of restating
-  Realization, polarity wrappers, Observation, SplitPresentation,
-  AmbientDynamics, or the residual quotient. Changing a core
-  definition must break dependents.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace GrokPdNight20260814.Core
 
-/-- B004 representation data. The realizing biconditional is not a field. -/
 structure Realization (X : Type) (D : Type) where
   δ : X → X → D
   Zero : D → Prop
@@ -37,7 +25,6 @@ def HasSymm {X D : Type} (ρ : Realization X D) : Prop :=
 def HasTrans {X D : Type} (ρ : Realization X D) : Prop :=
   ∀ x y z : X, zeroRel ρ x y → zeroRel ρ y z → zeroRel ρ x z
 
-/-- B006 least equivalence containing a raw relation. -/
 inductive EqvClosure {X : Type} (R : X → X → Prop) : X → X → Prop
   | base {x y : X} : R x y → EqvClosure R x y
   | refl (x : X) : EqvClosure R x x
@@ -45,7 +32,6 @@ inductive EqvClosure {X : Type} (R : X → X → Prop) : X → X → Prop
   | trans {x y z : X} :
       EqvClosure R x y → EqvClosure R y z → EqvClosure R x z
 
-/-- Kernel-shaped pack. Laws enter as supplied theorems, not as imports. -/
 structure PrimitiveDifference (α : Type) (β : Type) where
   δ : α → α → β
   Zero : β → Prop
@@ -65,19 +51,16 @@ def ofRealization {X D : Type} (ρ : Realization X D)
 def ZeroRel {α β : Type} (P : PrimitiveDifference α β) (x y : α) : Prop :=
   P.Zero (P.δ x y)
 
-/-- B014 polarity wrappers. One field each; semantics live in theorems. -/
 structure ApartPred (X : Type) where
   rel : X → X → Prop
 
 structure ZeroPred (X : Type) where
   rel : X → X → Prop
 
-/-- B002 presentation-indexed observation. Map is declared data. -/
 structure Observation (X : Type) (Y : Type) (Prov : Type) where
   map : X → Y
   provenance : Prov
 
-/-- E004 declared split. Law is a field because this is an import package. -/
 structure SplitPresentation (X : Type) (M : Type) where
   p : X → M
   i : M → X
@@ -86,16 +69,13 @@ structure SplitPresentation (X : Type) (M : Type) where
 def IsSplit {X M : Type} (p : X → M) (i : M → X) : Prop :=
   ∀ m : M, p (i m) = m
 
-/-- E006 induced endomap. -/
 def inducedP {X M : Type} (S : SplitPresentation X M) : X → X :=
   fun x => S.i (S.p x)
 
-/-- E007 declared single-step dynamics. No laws. -/
 structure AmbientDynamics (X : Type) (Prov : Type) where
   T : X → X
   provenance : Prov
 
-/-- B008 residual quotient of a named Setoid. -/
 def ResidualQuotient {X : Type} (S : Setoid X) : Type :=
   Quotient S
 
@@ -109,3 +89,6 @@ theorem classOf_eq_iff {X : Type} (S : Setoid X) (x y : X) :
 #print axioms classOf_eq_iff
 
 end GrokPdNight20260814.Core
+
+private def l5aProvenance : String :=
+  "Origin: lean4/Core.lean Claim: classOf_eq_iff AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

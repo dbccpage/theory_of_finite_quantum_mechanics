@@ -1,45 +1,19 @@
-//! H-O3: Nine Up-Lift certificate bits bound field-by-field to
-//! `PaperER003.LicensedLiftCertificate`, used as the Algorithm Prime 000
-//! **step-9** lift gate.
-//!
-//! Lean source of truth:
-//! `omega_engine/lean4/research_programs/paper_er003_licensed_lift_certificate.lean`
-//! (`PaperER003.LicensedLiftCertificate`).
-//!
-//! MSS nine conditions:
-//! `research/published/008_engine_runtime/007_the_symbol_game/016_mss_reconstruction_spine.md`
-//!
-//! This module mints **no** authority. A green gate is residual-reduction
-//! evidence under `AuthorityEffect::None`, not `IsAuth`.
 
 use omega_types::authority::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
-// ---------------------------------------------------------------------------
-// Nine MSS Up-Lift certificate bits
-// ---------------------------------------------------------------------------
 
-/// The nine mandatory Up-Lift certificate conditions (MSS spine §Nine Conditions).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
 pub struct NineUpLiftBits {
-    /// (1) Exhaustion Trace — same-level repair/quotient exhausted and recorded.
     pub exhaustion_trace: bool,
-    /// (2) Refusal / Failure Witness — same-level closure failed or refused.
     pub refusal_or_failure_witness: bool,
-    /// (3) Generator Traceability — every new generator traces to the obstruction.
     pub generator_traceability: bool,
-    /// (4) Preservation — prior admitted judgments remain valid.
     pub preservation: bool,
-    /// (5) Conservativity — no new theorems in the restricted prior vocabulary.
     pub conservativity: bool,
-    /// (6) Obstruction Resolution — named target obstruction resolved or refined.
     pub obstruction_resolution: bool,
-    /// (7) Minimality — removing any single new generator restores the obstruction.
     pub minimality: bool,
-    /// (8) Replayability — finite, deterministic, machine-checkable evaluation.
     pub replayability: bool,
-    /// (9) Authority Preservation — `AuthorityEffect::None`; no silent promotion.
     pub authority_preservation: bool,
 }
 
@@ -89,7 +63,6 @@ impl NineUpLiftBits {
             .collect()
     }
 
-    /// All-true bits with authority preserved (for fully licensed candidates).
     pub fn all_true() -> Self {
         Self {
             exhaustion_trace: true,
@@ -105,11 +78,7 @@ impl NineUpLiftBits {
     }
 }
 
-// ---------------------------------------------------------------------------
-// PaperER003.LicensedLiftCertificate mirrors (runtime)
-// ---------------------------------------------------------------------------
 
-/// Mirror of Lean `LiftEvidenceChecklist` (boolean preflight).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
 pub struct LiftEvidenceChecklist {
     pub source_residual_hash: bool,
@@ -132,7 +101,6 @@ impl LiftEvidenceChecklist {
         "closure_preserved",
     ];
 
-    /// Lean `liftChecklistComplete`.
     pub fn lift_checklist_complete(&self) -> bool {
         self.source_residual_hash
             && self.target_carrier_hash
@@ -143,15 +111,11 @@ impl LiftEvidenceChecklist {
             && self.closure_preserved
     }
 
-    /// Lean `liftChecklistDecision` Present iff complete.
     pub fn decision_present(&self) -> bool {
         self.lift_checklist_complete()
     }
 }
 
-/// Mirror of Lean `LiftCertificate` (string hashes + readiness flags).
-///
-/// Prop-level non-emptiness proofs are runtime checks: hashes must be non-empty.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct PaperEr003LiftCertificate {
     pub source_residual_hash: String,
@@ -166,7 +130,6 @@ pub struct PaperEr003LiftCertificate {
 }
 
 impl PaperEr003LiftCertificate {
-    /// Lean hash-presence obligations (runtime).
     pub fn hashes_present(&self) -> bool {
         !self.source_residual_hash.is_empty()
             && !self.target_carrier_hash.is_empty()
@@ -175,12 +138,10 @@ impl PaperEr003LiftCertificate {
             && !self.closure_check_hash.is_empty()
     }
 
-    /// Lean `liftReady`.
     pub fn lift_ready(&self) -> bool {
         self.residual_reduced && self.replay_checked && self.closure_preserved
     }
 
-    /// Lean `checklistOfCertificate` (hashes assumed present when this is used post-check).
     pub fn checklist_of_certificate(&self) -> LiftEvidenceChecklist {
         LiftEvidenceChecklist {
             source_residual_hash: !self.source_residual_hash.is_empty(),
@@ -189,12 +150,10 @@ impl PaperEr003LiftCertificate {
             replay_hash: !self.replay_hash.is_empty(),
             closure_check_hash: !self.closure_check_hash.is_empty(),
             residual_reduced: self.residual_reduced,
-            // Lean: closure_preserved := cert.closure_preserved && cert.replay_checked
             closure_preserved: self.closure_preserved && self.replay_checked,
         }
     }
 
-    /// Demo certificate aligned with Lean `demoLiftCertificate`.
     pub fn demo() -> Self {
         Self {
             source_residual_hash: "residual:demo".into(),
@@ -210,34 +169,15 @@ impl PaperEr003LiftCertificate {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Field-by-field binding table (H-O3)
-// ---------------------------------------------------------------------------
 
-/// One row of the nine-bit ↔ PaperER003 field binding.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct NineBitBinding {
-    /// Index 1..=9 of the MSS nine conditions.
     pub nine_index: u8,
     pub nine_field: &'static str,
-    /// PaperER003.LicensedLiftCertificate field path(s).
     pub paper_er003_fields: &'static [&'static str],
     pub lean_anchor: &'static str,
 }
 
-/// Binding table: each of the nine bits maps to named PaperER003 fields.
-///
-/// | # | Nine bit | PaperER003 fields |
-/// |---|---|---|
-/// | 1 | exhaustion_trace | source_residual_hash (present) |
-/// | 2 | refusal_or_failure_witness | source_residual_hash (obstruction residual declared) |
-/// | 3 | generator_traceability | operator_hash |
-/// | 4 | preservation | closure_preserved |
-/// | 5 | conservativity | closure_check_hash + closure_preserved |
-/// | 6 | obstruction_resolution | residual_reduced |
-/// | 7 | minimality | target_carrier_hash + operator_hash |
-/// | 8 | replayability | replay_hash + replay_checked |
-/// | 9 | authority_preservation | policy_violation = false (+ AuthorityEffect::None) |
 pub const NINE_BIT_BINDINGS: [NineBitBinding; 9] = [
     NineBitBinding {
         nine_index: 1,
@@ -304,15 +244,10 @@ pub const NINE_BIT_BINDINGS: [NineBitBinding; 9] = [
     },
 ];
 
-/// Project nine bits onto the Lean checklist (when certificate hashes are present).
-///
-/// This is the **forward** binding used by the step-9 gate: a bit that is true
-/// may only remain true if the corresponding PaperER003 fields hold on `cert`.
 pub fn project_nine_onto_checklist(
     bits: &NineUpLiftBits,
     cert: &PaperEr003LiftCertificate,
 ) -> LiftEvidenceChecklist {
-    // Hash presence
     let src = !cert.source_residual_hash.is_empty();
     let tgt = !cert.target_carrier_hash.is_empty();
     let op = !cert.operator_hash.is_empty();
@@ -320,19 +255,12 @@ pub fn project_nine_onto_checklist(
     let closure_h = !cert.closure_check_hash.is_empty();
 
     LiftEvidenceChecklist {
-        // (1)(2) → source residual hash
         source_residual_hash: bits.exhaustion_trace && bits.refusal_or_failure_witness && src,
-        // (7) → target carrier
         target_carrier_hash: bits.minimality && tgt,
-        // (3)(7) → operator
         operator_hash: bits.generator_traceability && bits.minimality && op,
-        // (8) → replay hash
         replay_hash: bits.replayability && replay_h,
-        // (5) → closure check hash
         closure_check_hash: bits.conservativity && closure_h,
-        // (6) → residual reduced
         residual_reduced: bits.obstruction_resolution && cert.residual_reduced,
-        // (4)(5)(8) → closure preserved (Lean also folds replay_checked)
         closure_preserved: bits.preservation
             && bits.conservativity
             && cert.closure_preserved
@@ -341,46 +269,36 @@ pub fn project_nine_onto_checklist(
     }
 }
 
-/// Verify that each true nine-bit has its bound PaperER003 fields satisfied.
 pub fn verify_field_binding(
     bits: &NineUpLiftBits,
     cert: &PaperEr003LiftCertificate,
 ) -> Result<(), Vec<&'static str>> {
     let mut fails = Vec::new();
 
-    // 1 Exhaustion → source residual hash present
     if bits.exhaustion_trace && cert.source_residual_hash.is_empty() {
         fails.push("bit1_exhaustion_requires_source_residual_hash");
     }
-    // 2 Refusal witness → source residual hash present
     if bits.refusal_or_failure_witness && cert.source_residual_hash.is_empty() {
         fails.push("bit2_refusal_witness_requires_source_residual_hash");
     }
-    // 3 Traceability → operator_hash
     if bits.generator_traceability && cert.operator_hash.is_empty() {
         fails.push("bit3_traceability_requires_operator_hash");
     }
-    // 4 Preservation → closure_preserved
     if bits.preservation && !cert.closure_preserved {
         fails.push("bit4_preservation_requires_closure_preserved");
     }
-    // 5 Conservativity → closure_check_hash + closure_preserved
     if bits.conservativity && (cert.closure_check_hash.is_empty() || !cert.closure_preserved) {
         fails.push("bit5_conservativity_requires_closure_check_and_preserved");
     }
-    // 6 Obstruction resolution → residual_reduced
     if bits.obstruction_resolution && !cert.residual_reduced {
         fails.push("bit6_resolution_requires_residual_reduced");
     }
-    // 7 Minimality → target_carrier_hash + operator_hash
     if bits.minimality && (cert.target_carrier_hash.is_empty() || cert.operator_hash.is_empty()) {
         fails.push("bit7_minimality_requires_target_carrier_and_operator_hash");
     }
-    // 8 Replayability → replay_hash + replay_checked
     if bits.replayability && (cert.replay_hash.is_empty() || !cert.replay_checked) {
         fails.push("bit8_replayability_requires_replay_hash_and_checked");
     }
-    // 9 Authority → !policy_violation
     if bits.authority_preservation && cert.policy_violation {
         fails.push("bit9_authority_requires_no_policy_violation");
     }
@@ -392,9 +310,6 @@ pub fn verify_field_binding(
     }
 }
 
-// ---------------------------------------------------------------------------
-// Step-9 gate
-// ---------------------------------------------------------------------------
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum LiftGateRefusal {
@@ -435,18 +350,6 @@ impl fmt::Display for LiftGateRefusal {
     }
 }
 
-/// Admitted step-9 lift under the bound gate (still AuthorityEffect::None).
-///
-/// **Sealed.** Fields are private and there is no `Deserialize`: the only way to
-/// obtain one is [`step9_licensed_lift_gate`], which checks all nine up-lift
-/// bits and the certificate. Previously the fields were public and the type
-/// derived `Deserialize`, so a caller could assemble an admission with a
-/// hand-filled checklist and any consumer inspecting `checklist` was reading the
-/// caller's assertion rather than the gate's verdict.
-///
-/// `Serialize` is retained because receipts embed admissions; deserialization is
-/// not, because a type you can deserialize is a type you can forge by writing
-/// JSON.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct LicensedLiftAdmission {
     generators: Vec<String>,
@@ -478,20 +381,11 @@ impl LicensedLiftAdmission {
     }
 }
 
-/// **Step-9 gate:** admit a lift only if
-/// 1. all nine MSS bits are true,
-/// 2. each true bit's PaperER003 fields hold (field binding),
-/// 3. certificate hashes present,
-/// 4. Lean `liftChecklistComplete` on projected checklist,
-/// 5. Lean `liftReady`,
-/// 6. `policy_violation = false`,
-/// 7. `AuthorityEffect::None`.
 pub fn step9_licensed_lift_gate(
     generators: Vec<String>,
     nine_bits: NineUpLiftBits,
     certificate: PaperEr003LiftCertificate,
 ) -> Result<LicensedLiftAdmission, LiftGateRefusal> {
-    // 7 — authority always None at this gate
     let authority = AuthorityEffect::None;
 
     if !nine_bits.authority_preservation {
@@ -526,7 +420,6 @@ pub fn step9_licensed_lift_gate(
         return Err(LiftGateRefusal::ChecklistIncomplete);
     }
 
-    // Consistency with Lean checklistOfCertificate path
     let lean_checklist = certificate.checklist_of_certificate();
     if !lean_checklist.decision_present() {
         return Err(LiftGateRefusal::ChecklistIncomplete);
@@ -542,7 +435,6 @@ pub fn step9_licensed_lift_gate(
     })
 }
 
-/// Build a certificate from residual/operator/carrier labels (deterministic hashes).
 pub fn certificate_from_labels(
     residual_label: &str,
     carrier_label: &str,

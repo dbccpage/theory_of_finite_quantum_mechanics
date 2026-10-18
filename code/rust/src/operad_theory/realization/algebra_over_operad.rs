@@ -1,13 +1,9 @@
-//! Realization: Multi-sorted algebras and recursive planar tree evaluation.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::HashMap;
 use std::sync::Arc;
 use serde::{Deserialize, Serialize};
 use crate::foundation::{OperadColour, PlanarColoredOperad, PlanarTree, TreeChild};
 
-/// External policy decision reference.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PolicyDecisionRef {
     pub decision_id: String,
@@ -27,7 +23,6 @@ impl PolicyDecisionRef {
     }
 }
 
-/// Immutable deterministic evaluation receipt.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EvaluationReceipt {
     pub receipt_id: String,
@@ -40,7 +35,6 @@ pub struct EvaluationReceipt {
     pub emitted_at: String,
 }
 
-/// Evaluation outcome from evaluating an operadic tree.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct EvaluationOutcome {
     pub is_completed: bool,
@@ -51,7 +45,6 @@ pub struct EvaluationOutcome {
 
 type ActionFn = Arc<dyn Fn(&[serde_json::Value]) -> Result<serde_json::Value, String> + Send + Sync>;
 
-/// Multi-sorted algebra over a coloured operad.
 #[derive(Clone)]
 pub struct OperadAlgebra {
     pub operad: PlanarColoredOperad,
@@ -174,7 +167,6 @@ impl OperadAlgebra {
         if let Some(action) = self.actions.get(tree.root.op_id.as_str()) {
             action(&child_results)
         } else {
-            // Default structural json packaging
             Ok(serde_json::json!({
                 "operation": tree.root.op_id.as_str(),
                 "inputs": child_results,

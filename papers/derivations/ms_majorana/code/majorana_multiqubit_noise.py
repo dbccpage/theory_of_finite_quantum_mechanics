@@ -316,7 +316,6 @@ class MultiQubitNoisyBraidReferee:
 
     def evaluate(self, proposal: MultiQubitNoisyBraidProposalPacket) -> MultiQubitNoisyBraidReceipt:
         """Evaluates proposal packet against SO(4N) and noise leakage invariants."""
-        # 1. Parameter boundary checks
         if proposal.num_qubits < 1:
             return self._emit_rejection(
                 proposal, "REFUSAL_INVALID_QUBITS", Fraction(0, 1), Fraction(0, 1)
@@ -324,7 +323,6 @@ class MultiQubitNoisyBraidReferee:
 
         num_modes = 4 * proposal.num_qubits
 
-        # 2. Build multi-qubit circuit
         try:
             circuit = MultiQubitBraidCircuit(proposal.num_qubits)
             for op, args in proposal.operations:
@@ -358,7 +356,6 @@ class MultiQubitNoisyBraidReferee:
                 proposal, f"REFUSAL_CIRCUIT_BUILD_FAILED: {exc}", Fraction(0, 1), Fraction(0, 1)
             )
 
-        # 3. Evaluate composite braid matrix
         mat = circuit.evaluate_matrix()
         is_ortho = mat.is_orthogonal()
         det = mat.determinant()
@@ -369,7 +366,6 @@ class MultiQubitNoisyBraidReferee:
                 proposal, "REFUSAL_NON_SO_MATRIX", Fraction(0, 1), Fraction(0, 1)
             )
 
-        # 4. Build noise Hamiltonian
         try:
             noise = LocalMajoranaNoise.stray_couplings(num_modes, proposal.noise_couplings)
         except NativeMathRefusal as exc:

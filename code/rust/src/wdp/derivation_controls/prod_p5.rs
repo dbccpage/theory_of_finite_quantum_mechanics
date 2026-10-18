@@ -1,4 +1,3 @@
-//! P5 Continuous Claim-Ledger Certification (PROD-P5) exact verifier.
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ClaimStatus {

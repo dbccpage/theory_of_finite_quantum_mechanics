@@ -168,7 +168,6 @@ def test_import_status_packaging():
     assert OB_CLONE_CLASSICAL is ImportStatus.DERIVED
     assert OB_CLONE_FROM_FINL1 is ImportStatus.UNDERIVABLE
     assert OB_CLONE_UNDER_LINEAR_LIFT is ImportStatus.CONDITIONAL_IMPORT
-    # Classical countermodel: FinL1 admits clone ⇒ universal no-cloning not FinL1-forced
     assert classical_clone(FAIR).total == 4
 
 
@@ -180,7 +179,6 @@ def test_no_cloning_package():
     assert OB_CLONE_UNDER_LINEAR_LIFT is ImportStatus.CONDITIONAL_IMPORT
 
 
-# --- Linearity obstruction residual ---
 
 
 def amp_joint_add(j: AmpJoint, k: AmpJoint) -> AmpJoint:

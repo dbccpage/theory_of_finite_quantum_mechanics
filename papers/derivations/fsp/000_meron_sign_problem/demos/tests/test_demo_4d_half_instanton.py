@@ -39,8 +39,8 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
-from demo_4d_half_instanton import (  # noqa: E402
+from blind_problem import assert_lexical_hygiene
+from demo_4d_half_instanton import (
     CANONICAL_4D_WIRE_TURNS,
     build_canonical_4d_half_instanton_ensemble,
     emit_4d_instanton_ddc_dag,
@@ -48,12 +48,12 @@ from demo_4d_half_instanton import (  # noqa: E402
     run_4d_half_instanton_demo,
     validate_wire_string,
 )
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     validate_packet_semantics,
 )
-from topological_half_instanton_4d import (  # noqa: E402
+from topological_half_instanton_4d import (
     DiscreteTorus4D,
     HalfInstantonCenter4D,
     HalfInstantonCluster4D,
@@ -88,11 +88,9 @@ class Test4DHalfInstantonGeometryAndInvariants:
         cp = HalfInstantonCenter4D((0, 0, 0, 0), chirality=1)
         cm = HalfInstantonCenter4D((2, 2, 2, 2), chirality=-1)
 
-        # Single center: c_2 = 1/2
         density1 = compute_discrete_topological_density((cp,), torus, smeared=True)
         assert discrete_second_chern_integral(density1) == Fraction(1, 2)
 
-        # Pair: c_2 = 1/2 - 1/2 = 0
         density2 = compute_discrete_topological_density((cp, cm), torus, smeared=True)
         assert discrete_second_chern_integral(density2) == Fraction(0, 1)
 
@@ -120,7 +118,6 @@ class Test4DClusterInvolutionAndExactCancellation:
         assert tau_c.fermion_determinant_sign == 1
         assert c.fermion_determinant_sign + tau_c.fermion_determinant_sign == 0
 
-        # Idempotency
         tau_tau_c = orientation_flip(tau_c)
         assert tau_tau_c.n_plus == c.n_plus
         assert tau_tau_c.n_minus == c.n_minus
@@ -162,11 +159,9 @@ class Test4DWireGrammarAndDDCExecution:
         assert len(nodes) == 6
         assert dag_file.is_file()
 
-        # Check DAG parent linkage
         for i in range(1, len(nodes)):
             assert nodes[i]["parent_ids"] == [nodes[i - 1]["node_id"]]
 
-        # Check terminal repair
         term = nodes[-1]
         assert term["stage"] == "EXACT_REPAIR"
         assert term["payload"]["status"] == "EXACT_REPAIR"
@@ -188,11 +183,9 @@ class Test4DWireGrammarAndDDCExecution:
         assert receipt["exact_cancellation_metrics"]["duality_gap"] == "0"
         assert receipt["wire_grammar"]["pure_gamma_38"] is True
 
-        # Independent digest verification
         stored_digest = receipt["sha256_digest"]
         body_to_hash = {k: v for k, v in receipt.items() if k != "sha256_digest"}
         recomputed = hashlib.sha256(json.dumps(body_to_hash, indent=2, sort_keys=True).encode("utf-8")).hexdigest()
-        # Verify digest structure
         assert len(stored_digest) == 64
 
 

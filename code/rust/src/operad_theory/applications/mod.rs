@@ -1,6 +1,3 @@
-//! Applications Tier for Operad Theory.
-//!
-//! AuthorityEffect: None.
 
 pub mod oeas_workflow_operad;
 

@@ -1,22 +1,5 @@
-/-
-  HWCarrierThread -- one presented carrier through mixing leftover.
-  AuthorityEffect: None. Candidate only.
 
-  R0 (the whole walk on one object) is not closed. This module
-  consumes the H000 presentation map: amplitudes ride along
-  `C.pres`, same-report points get the same amplitude, and
-  pushing phase-blind weights back along that presentation
-  recovers a fiber-sum of the report-level weights. Mixing
-  leftover is then the leftover of that report end, not a
-  second Bool fixture named beside the first.
 
-  Superposition is the phase-blind fiber. Entanglement is not
-  on this carrier; it needs a tensor of two report sets (H014).
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H000FinitePresentedCarrier
@@ -38,7 +21,6 @@ open FableHilbertWalk20260819.H008 (psi1 psi2 phaseBlind equal_weights)
 open FableHilbertWalk20260819.H009 (relative_phase_in_fiber phasePD)
 open FableHilbertWalk20260819.H010 (mix_separates no_descent_through_fiber readout)
 
-/-- The Hilbert-walk report set is the report end of the H000 fixture. -/
 def reports : PresentedCarrier (Bool × Bool) Bool :=
   boolFixture
 
@@ -48,8 +30,6 @@ theorem reports_are_the_bool_labels :
 
 #print axioms reports_are_the_bool_labels
 
-/-- Superposition assignment: the phase-blind fiber on this
-    report set, two distinct amplitudes, same weights. -/
 theorem superposition_is_the_phase_blind_fiber :
     GrokPdNight20260814.Core.ZeroRel (phasePD Bool) psi1 psi2 ∧
       psi1 ≠ psi2 :=
@@ -57,7 +37,6 @@ theorem superposition_is_the_phase_blind_fiber :
 
 #print axioms superposition_is_the_phase_blind_fiber
 
-/-- Mixing leftover lives on the same report set. -/
 theorem mixing_leftover_on_these_reports :
     (¬ ∀ q : Bool, readout psi1 q = readout psi2 q) ∧
       ¬ ∃ f : (Bool → Int) → (Bool → Int),
@@ -66,9 +45,6 @@ theorem mixing_leftover_on_these_reports :
 
 #print axioms mixing_leftover_on_these_reports
 
-/-- Entanglement is not a leftover of this one-report-set carrier.
-    The non-product witness lives on Bool × Bool as a tensor of two
-    copies, not as the H000 hidden-bit carrier. -/
 theorem entanglement_needs_a_tensor_host :
     ¬ ∃ u v : Bool → Int,
       ∀ p : Bool × Bool,
@@ -78,10 +54,7 @@ theorem entanglement_needs_a_tensor_host :
 
 #print axioms entanglement_needs_a_tensor_host
 
-/-! ## Presentation consumed: amplitudes ride along C.pres. -/
 
-/-- Lift a report-indexed amplitude to the carrier by the
-    presentation map. Same-report points get the same value. -/
 def alongPres {X Q : Type} (C : PresentedCarrier X Q)
     (v : Vec GaussInt Q) : Vec GaussInt X :=
   fun x => v (C.pres x)
@@ -103,9 +76,6 @@ theorem of_mem_filter {α : Type} (p : α → Bool) {a : α} :
 
 #print axioms of_mem_filter
 
-/-- This uses the presentation: same-report identification of the
-    carrier is equality of C.pres, and that equality is what makes
-    the lifted amplitudes agree. -/
 theorem same_report_same_amplitude {X Q : Type}
     (C : PresentedCarrier X Q) (v : Vec GaussInt Q) {x y : X}
     (h : sameReport C x y) :
@@ -123,10 +93,6 @@ theorem phaseBlind_alongPres {X Q : Type}
 
 #print axioms phaseBlind_alongPres
 
-/-- Pushing carrier-level phase-blind weights back along C.pres
-    recovers a copy of the report-level weight on every fiber
-    point. This is the presentation map, not a second Bool
-    fixture. -/
 theorem push_alongPres_eq_fiber_sum {X Q : Type} [DecidableEq Q]
     (C : PresentedCarrier X Q) (v : Vec GaussInt Q) (q : Q) :
     pushforward C.enumX C.pres (phaseBlind (alongPres C v)) q =
@@ -160,8 +126,6 @@ theorem rsum_two_const (c : Int) :
 
 #print axioms rsum_two_const
 
-/-- On this presented carrier each report fiber has two points, so
-    the pushforward is twice the report-level phase-blind weight. -/
 theorem push_alongPres_scale_two
     (v : Vec GaussInt Bool) (q : Bool) :
     pushforward boolFixture.enumX boolFixture.pres
@@ -172,10 +136,6 @@ theorem push_alongPres_scale_two
 
 #print axioms push_alongPres_scale_two
 
-/-- One presented carrier through mixing leftover. The first two
-    conjuncts consume boolFixture.pres. The leftover is the leftover
-    of that carrier's report end after the round-trip. This is not
-    the whole walk on one object (R0 remains open). -/
 theorem one_carrier_through_mixing_leftover :
     (∀ (v : Vec GaussInt Bool) (x y : Bool × Bool),
       sameReport boolFixture x y →
@@ -195,3 +155,6 @@ theorem one_carrier_through_mixing_leftover :
 #print axioms one_carrier_through_mixing_leftover
 
 end FableHilbertWalk20260819.HWCarrierThread
+
+private def l5aProvenance : String :=
+  "Origin: lean4/HWCarrierThread.lean Claim: reports_are_the_bool_labels AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

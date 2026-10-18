@@ -123,7 +123,6 @@ class WeylSlabLattice:
         hol_real = math.cos(phase)
         hol_imag = math.sin(phase)
 
-        # Contractible iff phase is an integer multiple of 2pi (i.e. Hol == 1.0 + 0.0i)
         is_contractible = (abs(hol_real - 1.0) <= 1e-7 and abs(hol_imag) <= 1e-7)
         return hol_real, hol_imag, is_contractible
 
@@ -159,43 +158,33 @@ class ChiralAnomalyInflowEngine:
         """
         Audits chiral anomaly inflow, spectral flow, and GIN mode index sign cancellation.
         """
-        # 1. Callan-Harvey spectral flow check at theta = 2pi
         q_bulk, q_surf, q_net = lattice.compute_spectral_flow(2.0 * math.pi)
         net_anomaly = int(round(q_net))
 
-        # 2. Chiral Trotter path weights
         w_plus, w_minus, delta_w = lattice.compute_chiral_weights(beta=beta)
 
-        # 3. Cochain holonomy
         hol_real, hol_imag, is_contractible = lattice.compute_cochain_holonomy()
 
-        # 4. Defect mass and cochain curvature
         phi_1 = round(delta_w, 6)
         gamma_2 = 0.0 if is_contractible else round(abs(math.atan2(hol_imag, hol_real)), 6)
 
-        # 5. BQNF Terminal Routing:
-        # If mu_5 == 0: exact sign cancellation, contractible holonomy -> ExactRepair
-        # If mu_5 > 0: weight discrepancy delta_w > 0, non-contractible holonomy -> SplitBrainRefusal
         if lattice.mu_5 == 0.0 and is_contractible and phi_1 <= 1e-6:
             terminal_route = "ExactRepair"
         else:
             terminal_route = "SplitBrainRefusal"
 
-        # 6. GIN mode indexing into relational SQLite database
         c = self.conn.cursor()
         c.execute("SELECT COALESCE(MAX(cfg_id), 0) FROM FermionConfigurations;")
         max_cfg = c.fetchone()[0]
         cfg1 = max_cfg + 1
         cfg2 = max_cfg + 2
 
-        # Insert configuration 1 (positive chirality sector)
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
                VALUES (?, ?, 1, 4, ?, 1, 1);""",
             (cfg1, lattice.lattice_id, round(w_plus, 6)),
         )
-        # Insert configuration 2 (negative chirality sector)
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
@@ -203,7 +192,6 @@ class ChiralAnomalyInflowEngine:
             (cfg2, lattice.lattice_id, round(w_minus, 6)),
         )
 
-        # Modes: 1: Node_R, 2: Node_L, 3: Arc_Top, 4: Arc_Bottom
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (1, ?, 1);", (cfg1,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (3, ?, 1);", (cfg1,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (2, ?, 1);", (cfg2,))

@@ -1,60 +1,31 @@
-//! FiniteQMContractV1 schema types — fence newtypes, import ledger, canonical hash.
-//!
-//! AuthorityEffect: None. Not GlobalGreen. Shape-only; does not implement full QM math.
-//!
-//! Non-inference fence (mandatory; see finite_vocabulary_fence.md):
-//! `FiniteCarrier` ⇏ `FiniteDimension` ⇏ `FiniteCertificate` ⇏ `ContinuumDebt`
-//! (`FiniteDimContinuumScalars` debt). Continuum scalars ⇏ finite certificate;
-//! finite certificate ⇏ finite-dim Hilbert; finite carrier ⇏ continuum object is finite.
-//!
-//! **Name fence:** [`ContinuumDebt`] in *this* module is the FiniteQM schema continuum-debt
-//! carrier. It is **not** [`crate::coda::continuum::ContinuumDebt`] (Q-admission debt).
 
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;
 
-/// JSON schema version tag for FiniteQMContractV1 instances.
 pub const SCHEMA_VERSION: &str = "FiniteQMContractV1";
 
-/// Canonical contract URN (versioned identity).
 pub const CONTRACT_URN: &str = "urn:omega:math:finite_qm:v1.0.0";
 
-/// Authority effect fixed for every FiniteQMContractV1 instance.
 pub const AUTHORITY_EFFECT: &str = "None";
 
-/// Encoding tag for the deterministic JSON form used by [`FiniteQmContractV1::canonical_hash_sha256`].
 pub const CANONICAL_JSON_ENCODING: &str = "omega.canonical_json.v1";
 
-/// Smoke-fixture digest: SHA-256 (lowercase hex) of
-/// [`FiniteQmContractV1::smoke_fixture`] under [`CANONICAL_JSON_ENCODING`].
-///
-/// Recomputed by `fixture_canonical_hash_is_stable`. Do not hand-edit without re-running
-/// the fixture construction.
 pub const SMOKE_FIXTURE_SHA256: &str =
     "6bb78de524b10eb32ae23f3b5aa277b632e0490ca888ab554340202d8a3a10f0";
 
-/// Finite set of states / discrete support (fence `FINITE_CARRIER`).
-///
-/// Not finite-dim Hilbert rank; not a certificate; not continuum-scalar debt.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiniteCarrier {
     pub carrier_id: String,
     pub support_cardinality: u64,
 }
 
-/// Finite-dimensional vector/Hilbert rank (fence `FINITE_DIMENSION`).
-///
-/// Not a finite carrier of continuum $X$; not a finite certificate.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiniteDimension {
     pub dimension_id: String,
     pub rank: u64,
 }
 
-/// Finite evidence/receipt/audit artifact (fence `FINITE_CERTIFICATE`).
-///
-/// Not finite-dim Hilbert; not finite presentation.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiniteCertificate {
     pub certificate_id: String,
@@ -62,10 +33,6 @@ pub struct FiniteCertificate {
     pub payload_digest_sha256: String,
 }
 
-/// Finite-dim system with continuum scalars, e.g. $M_n(\mathbb{C})$
-/// (fence `FINITE_DIM_CONTINUUM_SCALARS`).
-///
-/// Not a finite certificate; does not claim the continuum object is finite as a set.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiniteDimContinuumScalars {
     pub declaration_id: String,
@@ -73,17 +40,12 @@ pub struct FiniteDimContinuumScalars {
     pub scalar_field: String,
 }
 
-/// FiniteQM schema continuum-debt (`FiniteDimContinuumScalars` debt).
-///
-/// **Not** [`crate::coda::continuum::ContinuumDebt`] (Q-admission firewall debt).
-/// Field name in the JSON schema is `continuum_debt`.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContinuumDebt {
     pub scalars: FiniteDimContinuumScalars,
     pub notes: Vec<String>,
 }
 
-/// Import-slot status vocabulary for the FiniteQM import ledger.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum ImportSlotStatus {
@@ -92,7 +54,6 @@ pub enum ImportSlotStatus {
     Witnessed,
 }
 
-/// One declared import slot (spectral, monoidal, tomography, U(1), …).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ImportSlot {
     pub slot_id: String,
@@ -102,14 +63,12 @@ pub struct ImportSlot {
     pub witness_ref: Option<String>,
 }
 
-/// Ordered ledger of import slots (canonicalized by `slot_id` before hashing).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ImportLedger {
     pub slots: Vec<ImportSlot>,
 }
 
 impl ImportLedger {
-    /// Default import slots from the finite QM ingredient ladder ceiling (all OPEN).
     pub fn default_open_slots() -> Self {
         let defs = [
             (
@@ -194,7 +153,6 @@ struct UntrustedFiniteQmContractV1 {
     import_ledger: ImportLedger,
 }
 
-/// Versioned FiniteQMContractV1 instance (JSON schema root).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(try_from = "UntrustedFiniteQmContractV1")]
 pub struct FiniteQmContractV1 {
@@ -247,7 +205,6 @@ impl FiniteQmContractV1 {
         Ok(())
     }
 
-    /// Build a contract instance; forces schema/authority constants and sorts the import ledger.
     pub fn new(
         carrier: FiniteCarrier,
         dimension: FiniteDimension,
@@ -268,7 +225,6 @@ impl FiniteQmContractV1 {
         }
     }
 
-    /// Smoke fixture used for the pinned canonical hash (deterministic, no wall-clock).
     pub fn smoke_fixture() -> Self {
         Self::new(
             FiniteCarrier {
@@ -299,7 +255,6 @@ impl FiniteQmContractV1 {
         )
     }
 
-    /// Compact, key-sorted JSON bytes (`omega.canonical_json.v1` subset for this schema).
     pub fn canonical_json_bytes(&self) -> Result<Vec<u8>, String> {
         self.validate().map_err(|e| e.to_string())?;
         let value = serde_json::to_value(self).map_err(|e| e.to_string())?;
@@ -309,7 +264,6 @@ impl FiniteQmContractV1 {
             .map_err(|e| e.to_string())
     }
 
-    /// SHA-256 (lowercase hex) of [`Self::canonical_json_bytes`].
     pub fn canonical_hash_sha256(&self) -> Result<String, String> {
         let bytes = self.canonical_json_bytes()?;
         let mut hasher = Sha256::new();
@@ -337,7 +291,6 @@ fn normalize_value(value: serde_json::Value) -> Result<serde_json::Value, String
             Ok(serde_json::Value::Array(out))
         }
         serde_json::Value::Object(map) => {
-            // BTreeMap forces key-sorted object encoding for stability across map insert order.
             let ordered: BTreeMap<String, serde_json::Value> = map.into_iter().collect();
             let mut out = serde_json::Map::new();
             for (k, v) in ordered {
@@ -354,7 +307,6 @@ mod tests {
 
     #[test]
     fn fence_types_are_distinct_newtypes() {
-        // Distinct struct types: equal field shapes do not collapse identities.
         let carrier = FiniteCarrier {
             carrier_id: "c".into(),
             support_cardinality: 2,
@@ -381,8 +333,6 @@ mod tests {
         assert_ne!(carrier.carrier_id, dimension.dimension_id);
         assert_ne!(dimension.dimension_id, certificate.certificate_id);
         assert_ne!(certificate.certificate_id, debt.scalars.declaration_id);
-        // Type-level fence: these are different Rust types (compile-time), and field
-        // names refuse alias collapse in the schema.
         assert_eq!(std::mem::size_of_val(&carrier) > 0, true);
         assert_eq!(
             std::any::type_name::<FiniteCarrier>().contains("FiniteCarrier"),
@@ -405,7 +355,6 @@ mod tests {
                 .contains("FiniteDimContinuumScalars"),
             true
         );
-        // Schema ContinuumDebt is not the Q-admission ContinuumDebt path.
         assert!(
             !std::any::type_name::<ContinuumDebt>().contains("continuum::ContinuumDebt")
                 || std::any::type_name::<ContinuumDebt>().contains("finite_qm_types")
@@ -415,8 +364,6 @@ mod tests {
     #[test]
     fn non_inference_fields_do_not_coerce() {
         let fixture = FiniteQmContractV1::smoke_fixture();
-        // Holding a carrier does not fill dimension, certificate, or continuum debt by inference:
-        // field identities remain distinct even when numeric ranks match.
         assert_ne!(fixture.carrier.carrier_id, fixture.dimension.dimension_id);
         assert_ne!(
             fixture.dimension.dimension_id,
@@ -430,7 +377,6 @@ mod tests {
             fixture.carrier.carrier_id,
             fixture.continuum_debt.scalars.declaration_id
         );
-        // Explicit non-inference documentation markers present in module (string fence).
         let src = include_str!("finite_qm_types.rs");
         assert!(src.contains("FiniteCarrier"));
         assert!(src.contains("FiniteDimension"));
@@ -450,12 +396,10 @@ mod tests {
             assert_eq!(slot.status, ImportSlotStatus::Open);
             assert!(slot.witness_ref.is_none());
         }
-        // Sorted by slot_id for canonical hash stability.
         let ids: Vec<&str> = ledger.slots.iter().map(|s| s.slot_id.as_str()).collect();
         let mut sorted = ids.clone();
         sorted.sort_unstable();
         assert_eq!(ids, sorted);
-        // Serde vocabulary is SCREAMING_SNAKE_CASE.
         let json = serde_json::to_string(&ImportSlotStatus::Declared).unwrap();
         assert_eq!(json, "\"DECLARED\"");
         let json = serde_json::to_string(&ImportSlotStatus::Witnessed).unwrap();
@@ -489,8 +433,6 @@ mod tests {
     fn fixture_canonical_hash_is_stable() {
         let fixture = FiniteQmContractV1::smoke_fixture();
         let digest = fixture.canonical_hash_sha256().expect("hash");
-        // If this fails after intentional schema change, update SMOKE_FIXTURE_SHA256
-        // and the math contract fixture note together.
         assert_eq!(digest, SMOKE_FIXTURE_SHA256);
     }
 

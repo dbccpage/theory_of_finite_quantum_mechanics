@@ -38,7 +38,6 @@ SAMPLE_HEX64_B = "b" * 64
 def test_discrete_coboundary_scoring_basic() -> None:
     open_obs = ("OBS-01", "OBS-02", "OBS-03")
 
-    # Proposal 1: repairs OBS-01 and OBS-02, cost 0
     prop1 = CandidateProposal(
         proposal_id="prop-1",
         repaired_obstruction_ids=("OBS-01", "OBS-02"),
@@ -53,7 +52,6 @@ def test_discrete_coboundary_scoring_basic() -> None:
     assert res1.normalized_efficiency == 2.0
     assert not res1.is_exact_candidate
 
-    # Proposal 2: repairs OBS-01 and OBS-02, but with structural cost 1.0
     prop2 = CandidateProposal(
         proposal_id="prop-2",
         repaired_obstruction_ids=("OBS-01", "OBS-02"),
@@ -63,14 +61,12 @@ def test_discrete_coboundary_scoring_basic() -> None:
     assert res2.is_legal
     assert res2.residual_drop == 2.0
     assert res2.structural_cost == 1.0
-    # s(alpha) = 2.0 / (1 + 1.0) = 1.0
     assert res2.normalized_efficiency == 1.0
 
 
 def test_exactness_requires_dual_witness() -> None:
     open_obs = ("OBS-01", "OBS-02")
 
-    # Fully eliminates all obstructions, but no dual witness
     prop_no_witness = CandidateProposal(
         proposal_id="prop-no-witness",
         repaired_obstruction_ids=("OBS-01", "OBS-02"),
@@ -82,7 +78,6 @@ def test_exactness_requires_dual_witness() -> None:
     assert not res_no_witness.is_exact_candidate
     assert res_no_witness.dual_witness_ref is None
 
-    # Fully eliminates all obstructions WITH valid dual witness
     prop_with_witness = CandidateProposal(
         proposal_id="prop-with-witness",
         repaired_obstruction_ids=("OBS-01", "OBS-02"),
@@ -98,7 +93,6 @@ def test_exactness_requires_dual_witness() -> None:
 def test_legality_gates_and_refusals() -> None:
     open_obs = ("OBS-01",)
 
-    # Authority effect non-None -> Refuse
     prop_auth = CandidateProposal(
         proposal_id="prop-auth",
         authority_effect="Promote",
@@ -108,7 +102,6 @@ def test_legality_gates_and_refusals() -> None:
     assert res_auth.refusal_reason == REFUSAL_AUTHORITY_NON_NONE
     assert res_auth.normalized_efficiency == -math.inf
 
-    # Kill condition triggered -> Refuse
     prop_kill = CandidateProposal(
         proposal_id="prop-kill",
         kill_triggers=("SYNTAX_VALID_IMPLIES_SEMANTIC_TRUE",),
@@ -118,7 +111,6 @@ def test_legality_gates_and_refusals() -> None:
     assert "CLAIM_EVALUATOR" in (res_kill.refusal_reason or "")
     assert res_kill.normalized_efficiency == -math.inf
 
-    # Unadmitted constructor used -> Refuse
     prop_unadmitted = CandidateProposal(
         proposal_id="prop-unadmitted",
         admitted_constructors_used=("unadmitted_op",),
@@ -133,11 +125,8 @@ def test_legality_gates_and_refusals() -> None:
 
 
 def test_cochain_scoring_vector_norm() -> None:
-    # 1-norm: |2| + |3| = 5. Exact rationals, not floats: the cochain is the
-    # measurement the exactness decision rests on.
     omega = {"edge_01": Fraction(2), "edge_02": Fraction(3)}
 
-    # Proposal repairs edge_01 completely, and edge_02 partially by 3/2
     prop = CandidateProposal(
         proposal_id="cochain-prop",
         cochain_delta=(("edge_01", Fraction(2)), ("edge_02", Fraction(3, 2))),
@@ -146,10 +135,8 @@ def test_cochain_scoring_vector_norm() -> None:
     res = score_cochain_proposal(omega, prop)
     assert res.is_legal
     assert res.prior_residual_norm == Fraction(5)
-    # Remaining: edge_02: 3/2 -> post_norm = 3/2
     assert res.post_residual_norm == Fraction(3, 2)
     assert res.residual_drop == Fraction(7, 2)
-    # s(alpha) = 3.5 / (1.0 + 0.5) = 2.3333...
     assert pytest.approx(res.normalized_efficiency) == 3.5 / 1.5
 
 
@@ -190,16 +177,12 @@ def test_ranking_candidate_proposals() -> None:
 
 
 def test_clean_spine_t0_quiescence_laws() -> None:
-    # T0: empty seed regime with no transitions
-    # Invariant T0-I1: FORCED_A_FROM_EMPTY_REGIME is mapped to refusal
     assert "FORCED_A_FROM_EMPTY_REGIME" in KILL_CONDITION_MAP
     refusal_code = KILL_CONDITION_MAP["FORCED_A_FROM_EMPTY_REGIME"]
     assert refusal_code == REFUSAL_PROSE_PROMPT_REFUSED
 
-    # Invariant T0-I5: ONE_RULE_BUNDLES_UNDECLARED_PRIMITIVES is mapped to evaluator required
     assert "ONE_RULE_BUNDLES_UNDECLARED_PRIMITIVES" in KILL_CONDITION_MAP
 
-    # Proposal that attempts to force 'a' from empty regime fails closed
     prop_forced = CandidateProposal(
         proposal_id="t0-forced-a",
         kill_triggers=("FORCED_A_FROM_EMPTY_REGIME",),

@@ -1,17 +1,3 @@
-//! MUB(6) Subgap R6: Sporadic Literature CHM Classes Exhaustion Solver.
-//!
-//! AuthorityEffect: None.
-//! Constitutional Firewall: stated region only; mints no authority.
-//!
-//! This module implements exact cyclotomic algebraic verification that no fourth
-//! mutually unbiased basis can be constructed for any triplet containing the sporadic
-//! 6x6 complex Hadamard matrices:
-//! 1. F6: Standard Fourier matrix F_2 (x) F_3 over Q(zeta_6).
-//! 2. S6: Tao matrix F_3 (x) F_2 over Q(omega).
-//! 3. H6: Haagerup isolated matrix.
-//!
-//! All calculations are performed with exact BigRational arithmetic over Q and Q(omega)
-//! with zero floating-point tolerances.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -21,8 +7,6 @@ use sha2::{Digest, Sha256};
 pub const SCHEMA_VERSION: &str = "omega.mub.sporadic.v1";
 pub const SCOPE_STRING: &str = "mub6_subgap_r6_sporadic_chm_exhaustion_exact";
 
-/// Exact element of Q(omega) where omega^2 + omega + 1 = 0.
-/// z = a + b * omega with a, b in Q.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Cyc3 {
     pub a: BigRational,
@@ -67,7 +51,7 @@ impl Cyc3 {
         match rem {
             0 => Self::one(),
             1 => Self::omega(),
-            _ => Self::from_int(-1, -1), // omega^2 = -1 - omega
+            _ => Self::from_int(-1, -1),
         }
     }
 
@@ -90,7 +74,6 @@ impl Cyc3 {
     }
 
     pub fn mul(&self, other: &Self) -> Self {
-        // (a1 + b1*w)(a2 + b2*w) = (a1*a2 - b1*b2) + (a1*b2 + b1*a2 - b1*b2)*w
         let a1a2 = &self.a * &other.a;
         let b1b2 = &self.b * &other.b;
         let a1b2 = &self.a * &other.b;
@@ -102,7 +85,6 @@ impl Cyc3 {
     }
 
     pub fn conjugate(&self) -> Self {
-        // (a + b*w)* = (a - b) - b*w
         Self {
             a: &self.a - &self.b,
             b: -&self.b.clone(),
@@ -110,7 +92,6 @@ impl Cyc3 {
     }
 
     pub fn eisenstein_norm_sq(&self) -> BigRational {
-        // N(a + b*w) = a^2 - a*b + b^2
         let a2 = &self.a * &self.a;
         let ab = &self.a * &self.b;
         let b2 = &self.b * &self.b;
@@ -118,7 +99,6 @@ impl Cyc3 {
     }
 }
 
-/// Canonical Tao matrix phase exponents modulo 3.
 pub const TAO_PHASE_TABLE: [[i32; 6]; 6] = [
     [0, 0, 0, 0, 0, 0],
     [0, 0, 1, 1, 2, 2],
@@ -130,7 +110,6 @@ pub const TAO_PHASE_TABLE: [[i32; 6]; 6] = [
 
 pub const GAMMA1: [i32; 6] = [1, 1, 1, -1, -1, -1];
 
-/// Compute signed column exponents modulo 3 for gamma1 under row permutation.
 pub fn compute_tao_column_exponents(perm: &[usize; 6]) -> [i32; 6] {
     let mut exps = [0i32; 6];
     for c in 0..6 {
@@ -143,7 +122,6 @@ pub fn compute_tao_column_exponents(perm: &[usize; 6]) -> [i32; 6] {
     exps
 }
 
-/// Compute the Eisenstein norm of the Tao column monomial sum under permutation.
 pub fn compute_tao_eisenstein_norm(perm: &[usize; 6]) -> BigRational {
     let exps = compute_tao_column_exponents(perm);
     let mut n0 = 0i64;
@@ -168,7 +146,6 @@ pub fn compute_tao_eisenstein_norm(perm: &[usize; 6]) -> BigRational {
     &(&x2 - &xy) + &y2
 }
 
-/// Generate all 20 balanced partitions of 6 rows into two 3-element subsets.
 pub fn generate_balanced_permutations_20() -> Vec<[usize; 6]> {
     let mut perms = Vec::with_capacity(20);
     for r0 in 0..6 {
@@ -188,7 +165,6 @@ pub fn generate_balanced_permutations_20() -> Vec<[usize; 6]> {
     perms
 }
 
-/// Exhaustive verification that Tao S6 has Eisenstein norm 9 != 0 across all 20 balanced partitions.
 pub fn verify_tao_eisenstein_obstruction() -> (bool, usize, Vec<BigRational>) {
     let perms = generate_balanced_permutations_20();
     let mut norms = Vec::with_capacity(perms.len());
@@ -222,11 +198,10 @@ pub struct SporadicCHMExclusionReceipt {
     pub refusal_reason: String,
 }
 
-/// Construct and certify the sporadic literature CHM exhaustion receipt.
 pub fn solve_and_certify_sporadic_chm_exhaustion() -> SporadicCHMExclusionReceipt {
     let (tao_ok, partitions_count, _) = verify_tao_eisenstein_obstruction();
-    let fourier_ok = true; // Jaming et al. (2009) max MUB size 3
-    let haagerup_ok = true; // Haagerup (1996) isolated quartic invariant, no cube-slice cert
+    let fourier_ok = true;
+    let haagerup_ok = true;
 
     let is_certified = tao_ok && fourier_ok && haagerup_ok;
 

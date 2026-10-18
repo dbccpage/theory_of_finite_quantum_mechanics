@@ -1,5 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-# Reference: Campaign C250 Block 01, Steps 05-10, Paper 122, H058.
 
 """Busch-Gleason Effect Frame Algebra over Cyclotomic Number Fields.
 
@@ -15,9 +13,6 @@ from fractions import Fraction
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 
 
-# ---------------------------------------------------------------------------
-# Section 1: Exact Rational Polynomials and Sturm Sequences
-# ---------------------------------------------------------------------------
 
 class RationalPoly:
     """Exact univariate polynomial with Fraction coefficients: sum_{k=0}^d c_k x^k."""
@@ -27,7 +22,6 @@ class RationalPoly:
             self.coeffs: Tuple[Fraction, ...] = coeffs.coeffs
             return
         c_list = [Fraction(c) for c in coeffs]
-        # Strip trailing zero coefficients
         while c_list and c_list[-1] == 0:
             c_list.pop()
         self.coeffs = tuple(c_list)
@@ -199,20 +193,12 @@ def count_roots_in_interval(sturm: List[RationalPoly], a: Union[Fraction, int], 
     return sign_variations(sturm, a) - sign_variations(sturm, b)
 
 
-# ---------------------------------------------------------------------------
-# Section 2: Cyclotomic Real Root Isolation and Exact Embeddings
-# ---------------------------------------------------------------------------
 
 CONDUCTOR_MIN_POLYS: Dict[int, RationalPoly] = {
-    # n=4: theta_4 = 0, F^+ = Q, min poly is x
     4: RationalPoly([Fraction(0), Fraction(1)]),
-    # n=5: theta_5^2 + theta_5 - 1 = 0
     5: RationalPoly([Fraction(-1), Fraction(1), Fraction(1)]),
-    # n=8: theta_8^2 - 2 = 0
     8: RationalPoly([Fraction(-2), Fraction(0), Fraction(1)]),
-    # n=12: theta_12^2 - 3 = 0
     12: RationalPoly([Fraction(-3), Fraction(0), Fraction(1)]),
-    # n=24: theta_24^4 - 4 theta_24^2 + 1 = 0
     24: RationalPoly([Fraction(1), Fraction(0), Fraction(-4), Fraction(0), Fraction(1)]),
 }
 
@@ -237,7 +223,6 @@ class CyclotomicRealRoot:
         a_init, b_init = CONDUCTOR_INITIAL_INTERVALS[conductor]
         self.a: Fraction = a_init
         self.b: Fraction = b_init
-        # Confirm isolating interval contains exactly one real root
         if conductor != 4:
             roots_count = count_roots_in_interval(self.sturm, self.a, self.b)
             if roots_count != 1:
@@ -258,7 +243,6 @@ class CyclotomicRealRoot:
             self.a = mid
             self.b = mid
             return
-        # Count roots in (a, mid]
         if count_roots_in_interval(self.sturm, self.a, mid) == 1:
             self.b = mid
         else:
@@ -277,7 +261,6 @@ class CyclotomicRealRoot:
             val = poly.eval(Fraction(0))
             return 1 if val > 0 else (-1 if val < 0 else 0)
 
-        # Reduce modulo minimal polynomial
         _, rem = poly.div_rem(self.poly)
         if rem.is_zero():
             return 0
@@ -307,9 +290,7 @@ class CyclotomicRealRoot:
         if rem.is_zero():
             return Fraction(0), Fraction(0)
 
-        # Compute Lipschitz bound on derivative of rem
         rem_deriv = rem.derivative()
-        # Find rough upper bound for |x| on initial interval
         max_abs_x = max(abs(self.a), abs(self.b), Fraction(2))
         lip_bound = Fraction(0)
         for i, c in enumerate(rem_deriv.coeffs):
@@ -328,9 +309,6 @@ class CyclotomicRealRoot:
         return val_mid - radius, val_mid + radius
 
 
-# ---------------------------------------------------------------------------
-# Section 3: Maximal Real Subfield F^+ = Q(theta_n)
-# ---------------------------------------------------------------------------
 
 F_PLUS_DEGREES: Dict[int, int] = {
     4: 1,
@@ -440,7 +418,6 @@ class FieldElementFPlus:
         if self.is_zero() or other.is_zero():
             return FieldElementFPlus.zero(self.conductor)
 
-        # Polynomial multiplication followed by reduction modulo minimal polynomial
         p1 = self.to_poly()
         p2 = other.to_poly()
         prod = p1 * p2
@@ -468,7 +445,6 @@ class FieldElementFPlus:
         poly = self.to_poly()
         min_p = CONDUCTOR_MIN_POLYS[self.conductor]
 
-        # Extended Euclidean algorithm in Q[x]
         r0, r1 = min_p, poly
         s0, s1 = RationalPoly([Fraction(1)]), RationalPoly(())
         t0, t1 = RationalPoly(()), RationalPoly([Fraction(1)])
@@ -479,7 +455,6 @@ class FieldElementFPlus:
             s0, s1 = s1, s0 - q * s1
             t0, t1 = t1, t0 - q * t1
 
-        # r0 is now a nonzero scalar polynomial
         if r0.degree != 0 or r0.coeffs[0] == 0:
             raise ZeroDivisionError("Element has non-trivial factor with minimal polynomial")
 
@@ -512,9 +487,6 @@ class FieldElementFPlus:
         return f"FPlus_{self.conductor}{self.coeffs}"
 
 
-# ---------------------------------------------------------------------------
-# Section 4: Cyclotomic Field F = Q(zeta_n) = F^+(xi)
-# ---------------------------------------------------------------------------
 
 def xi_squared(conductor: int) -> FieldElementFPlus:
     """Return xi^2 in F^+, where F = F^+(xi) and sigma(xi) = -xi.
@@ -525,7 +497,6 @@ def xi_squared(conductor: int) -> FieldElementFPlus:
     if conductor in (4, 8, 12, 24):
         return FieldElementFPlus.rational(Fraction(-1), conductor)
     elif conductor == 5:
-        # -3 - theta_5
         return FieldElementFPlus(5, [Fraction(-3), Fraction(-1)])
     else:
         raise ValueError(f"Conductor {conductor} not supported")
@@ -615,7 +586,6 @@ class FieldElementF:
         if not isinstance(other, FieldElementF):
             other = FieldElementF.rational(other, self.conductor)
 
-        # (x1 + y1 xi)(x2 + y2 xi) = (x1 x2 + y1 y2 xi^2) + (x1 y2 + x2 y1) xi
         xi2 = xi_squared(self.conductor)
         new_real = self.real * other.real + self.imag * other.imag * xi2
         new_imag = self.real * other.imag + self.imag * other.real
@@ -657,9 +627,6 @@ class FieldElementF:
         return f"({self.real} + {self.imag}*xi)"
 
 
-# ---------------------------------------------------------------------------
-# Section 5: Exact Hermitian Matrices over F = Q(zeta_n)
-# ---------------------------------------------------------------------------
 
 class HermitianMatrix:
     """Exact d x d Hermitian matrix over cyclotomic field F (A^dagger = A)."""
@@ -675,7 +642,6 @@ class HermitianMatrix:
         self.dim = dim
         self.conductor = conductor
 
-        # Convert entries to FieldElementF
         grid: List[List[FieldElementF]] = []
         for row in entries:
             r_list: List[FieldElementF] = []
@@ -688,11 +654,9 @@ class HermitianMatrix:
                     r_list.append(FieldElementF.rational(cell, conductor))
             grid.append(r_list)
 
-        # Validate dimensions
         if len(grid) != dim or any(len(r) != dim for r in grid):
             raise ValueError(f"Expected {dim}x{dim} matrix, got {len(grid)}x{len(grid[0]) if grid else 0}")
 
-        # Assert Hermitian property: A_jk = sigma(A_kj)
         for j in range(dim):
             if not grid[j][j].imag.is_zero():
                 raise ValueError(f"Diagonal entry ({j}, {j}) must be purely real in F^+, got {grid[j][j]}")
@@ -783,7 +747,6 @@ class HermitianMatrix:
         res = FieldElementFPlus.zero(self.conductor)
         for i in range(d):
             for k in range(d):
-                # (A_ik * B_ki).real
                 term = self.entries[i][k] * other.entries[k][i]
                 res = res + term.real
         return res
@@ -793,24 +756,18 @@ class HermitianMatrix:
         d = self.dim
         minors: List[FieldElementFPlus] = []
 
-        # 1x1 minors: A_ii
         for i in range(d):
             minors.append(self.entries[i][i].real)
 
-        # 2x2 minors
         if d == 2:
-            # det(A) = A_00 A_11 - |A_01|^2
             det_2 = self.entries[0][0].real * self.entries[1][1].real - self.entries[0][1].norm()
             minors.append(det_2)
         elif d == 3:
-            # Minors for subsets {0, 1}, {0, 2}, {1, 2}
             pairs = [(0, 1), (0, 2), (1, 2)]
             for j, k in pairs:
                 m_jk = self.entries[j][j].real * self.entries[k][k].real - self.entries[j][k].norm()
                 minors.append(m_jk)
 
-            # 3x3 determinant
-            # det(A) = A_00 * m_12 - A_11 * |A_02|^2 - A_22 * |A_01|^2 + 2 Re(A_01 * A_12 * conj(A_02))
             m_12 = self.entries[1][1].real * self.entries[2][2].real - self.entries[1][2].norm()
             cross = self.entries[0][1] * self.entries[1][2] * self.entries[0][2].conjugate()
             det_3 = (
@@ -842,13 +799,11 @@ class HermitianMatrix:
         """Return coefficients of char poly det(lambda*I - A) = lambda^d + c_{d-1} lambda^{d-1} + ... + c_0 in F^+."""
         conductor = self.conductor
         if self.dim == 2:
-            # lambda^2 - tr(A) lambda + det(A)
             c2 = FieldElementFPlus.one(conductor)
             c1 = -self.trace()
             c0 = self.entries[0][0].real * self.entries[1][1].real - self.entries[0][1].norm()
             return [c0, c1, c2]
         elif self.dim == 3:
-            # lambda^3 - tr(A) lambda^2 + (sum of 2x2 minors) lambda - det(A)
             minors = self.principal_minors()
             m01, m02, m12 = minors[3], minors[4], minors[5]
             det3 = minors[6]
@@ -864,13 +819,11 @@ class HermitianMatrix:
         """Construct trace-orthogonal canonical basis of Herm_d(F) over F^+ of size d^2."""
         basis: List[HermitianMatrix] = []
 
-        # d diagonal projectors D_j = E_jj
         for j in range(dim):
             grid = [[FieldElementF.zero(conductor) for _ in range(dim)] for _ in range(dim)]
             grid[j][j] = FieldElementF.one(conductor)
             basis.append(cls(dim, conductor, grid))
 
-        # d(d-1)/2 symmetric off-diagonal matrices S_jk = E_jk + E_kj
         for j in range(dim):
             for k in range(j + 1, dim):
                 grid = [[FieldElementF.zero(conductor) for _ in range(dim)] for _ in range(dim)]
@@ -878,7 +831,6 @@ class HermitianMatrix:
                 grid[k][j] = FieldElementF.one(conductor)
                 basis.append(cls(dim, conductor, grid))
 
-        # d(d-1)/2 skew-Hermitian matrices scaled by xi: T_jk = xi E_jk - xi E_kj
         for j in range(dim):
             for k in range(j + 1, dim):
                 grid = [[FieldElementF.zero(conductor) for _ in range(dim)] for _ in range(dim)]
@@ -903,9 +855,6 @@ class HermitianMatrix:
         return f"HermitianMatrix(dim={self.dim}, conductor={self.conductor}, entries={self.entries})"
 
 
-# ---------------------------------------------------------------------------
-# Section 6: Effect Algebra Eff_d(F, iota)
-# ---------------------------------------------------------------------------
 
 class EffectAlgebra:
     """Manages exact membership tests and operations on Eff_d(F, iota)."""
@@ -924,14 +873,9 @@ class EffectAlgebra:
     def verify_via_characteristic_polynomial(self, A: HermitianMatrix) -> bool:
         """Alternative exact test: verify all eigenvalues of iota(A) lie in [0, 1]."""
         char_coeffs = A.characteristic_polynomial()
-        # Build rational interval approximations to determine root count in [0, 1]
-        # For our algebraic validation, this confirms Sylvester agreement
         return self.contains(A)
 
 
-# ---------------------------------------------------------------------------
-# Section 7: Busch Constructive Chain and Density Recovery
-# ---------------------------------------------------------------------------
 
 class EffectFrameFunction:
     """Callable protocol representing an additive effect frame function f: Eff_d(F, iota) -> F^+."""
@@ -989,7 +933,6 @@ def density_squeeze(
 ) -> Tuple[Fraction, Fraction]:
     """Execute Definition 2.7 density squeeze: find r <= iota(lambda) <= s and check r f(E) <= f(lambda E) <= s f(E)."""
     r, s = lambda_val.interval_bounds(embedding, epsilon)
-    # Scaled effect lambda E
     lam_E = E.scalar_mul(lambda_val)
     val_lam = f(lam_E)
     val_E = f(E)
@@ -1018,16 +961,12 @@ def linear_extension(
     dim = A.dim
     conductor = A.conductor
 
-    # Compute a rational bound mu > 0 such that A + mu I >= 0 and A <= mu I
-    # Row sum upper bound on entries
     max_row_sum = Fraction(0)
     for i in range(dim):
         row_sum = Fraction(0)
         for j in range(dim):
             n_val = A.entries[i][j].norm()
-            # Bound norm of entry
             _, upper_n = n_val.interval_bounds(embedding, Fraction(1))
-            # Safe integer ceiling on sqrt(upper_n)
             row_sum += Fraction(int(upper_n + Fraction(1)) + 1)
         if row_sum > max_row_sum:
             max_row_sum = row_sum
@@ -1036,11 +975,9 @@ def linear_extension(
     ident = HermitianMatrix.identity(dim, conductor)
     two_mu = mu * Fraction(2)
 
-    # E_A = (A + mu*I) / (2*mu)
     shifted = A + ident.scalar_mul(mu)
     E_A = shifted.scalar_mul(Fraction(1) / two_mu)
 
-    # Evaluate extended functional: tilde_f(A) = 2*mu * f(E_A) - mu * f(I)
     val_E_A = f(E_A)
     return val_E_A * two_mu - FieldElementFPlus.rational(mu, conductor)
 
@@ -1055,32 +992,23 @@ def recover_density_matrix(
 
     Uses linear extension on canonical trace-orthogonal basis {D_j, S_jk, T_jk}.
     """
-    # Evaluate linear extension on all basis matrices
-    # D_j = E_jj (dimension d)
-    # S_jk = E_jk + E_kj (dimension d(d-1)/2)
-    # T_jk = xi E_jk - xi E_kj (dimension d(d-1)/2)
     xi2 = xi_squared(conductor)
     grid = [[FieldElementF.zero(conductor) for _ in range(dim)] for _ in range(dim)]
 
-    # 1. Diagonal components: tr(rho D_j) = rho_jj
     for j in range(dim):
         D_j = HermitianMatrix.canonical_basis(dim, conductor)[j]
-        # D_j is already in Eff_d(F, iota)
         val_d = f(D_j)
         grid[j][j] = FieldElementF(conductor, val_d)
 
-    # 2. Off-diagonal components
     idx = dim
     for j in range(dim):
         for k in range(j + 1, dim):
             S_jk = HermitianMatrix.canonical_basis(dim, conductor)[idx]
             val_s = linear_extension(f, S_jk, embedding)
-            # tr(rho S_jk) = 2 * Re(rho_jk) => Re(rho_jk) = val_s / 2
             re_jk = val_s * Fraction(1, 2)
 
             T_jk = HermitianMatrix.canonical_basis(dim, conductor)[idx + dim * (dim - 1) // 2]
             val_t = linear_extension(f, T_jk, embedding)
-            # tr(rho T_jk) = -2 * xi^2 * Im(rho_jk) => Im(rho_jk) = val_t / (-2 * xi^2)
             im_jk = val_t / (xi2 * Fraction(-2))
 
             cell_jk = FieldElementF(conductor, re_jk, im_jk)
@@ -1090,7 +1018,6 @@ def recover_density_matrix(
 
     recovered_rho = HermitianMatrix(dim, conductor, grid)
 
-    # Verify trace is 1 and rho is positive semidefinite
     tr_rho = recovered_rho.trace()
     if tr_rho != FieldElementFPlus.one(conductor):
         raise ValueError(f"Recovered state trace != 1, got {tr_rho}")
@@ -1100,21 +1027,16 @@ def recover_density_matrix(
     return recovered_rho
 
 
-# ---------------------------------------------------------------------------
-# Section 8: State Recovery Verification Matrix
-# ---------------------------------------------------------------------------
 
 def construct_effect_basis(dim: int, conductor: int) -> List[HermitianMatrix]:
     """Construct an explicit basis of d^2 genuine effects spanning Herm_d(F) over F^+."""
     effects: List[HermitianMatrix] = []
 
-    # d diagonal projections D_j = E_jj
     for j in range(dim):
         grid = [[FieldElementF.zero(conductor) for _ in range(dim)] for _ in range(dim)]
         grid[j][j] = FieldElementF.one(conductor)
         effects.append(HermitianMatrix(dim, conductor, grid))
 
-    # d(d-1)/2 projections P^+_jk = (1/2)(D_j + D_k + S_jk)
     half = Fraction(1, 2)
     for j in range(dim):
         for k in range(j + 1, dim):
@@ -1125,7 +1047,6 @@ def construct_effect_basis(dim: int, conductor: int) -> List[HermitianMatrix]:
             grid[k][j] = FieldElementF.rational(half, conductor)
             effects.append(HermitianMatrix(dim, conductor, grid))
 
-    # d(d-1)/2 projections P^xi_jk = (1 / (1 - xi^2)) * (D_j - xi^2 D_k - T_jk)
     xi2 = xi_squared(conductor)
     denom = FieldElementFPlus.one(conductor) - xi2
     inv_denom = denom.inverse()
@@ -1135,7 +1056,6 @@ def construct_effect_basis(dim: int, conductor: int) -> List[HermitianMatrix]:
             grid = [[FieldElementF.zero(conductor) for _ in range(dim)] for _ in range(dim)]
             grid[j][j] = FieldElementF(conductor, inv_denom)
             grid[k][k] = FieldElementF(conductor, (-xi2) * inv_denom)
-            # T_jk entry at (j, k) is xi, so -T_jk entry is -xi
             grid[j][k] = FieldElementF(conductor, FieldElementFPlus.zero(conductor), -inv_denom)
             grid[k][j] = FieldElementF(conductor, FieldElementFPlus.zero(conductor), inv_denom)
             effects.append(HermitianMatrix(dim, conductor, grid))
@@ -1167,10 +1087,7 @@ def construct_test_density_matrix(dim: int, conductor: int, state_kind: str) -> 
         return HermitianMatrix(dim, conductor, grid)
 
     elif state_kind == "mixed_cyclotomic":
-        # Density matrix with non-trivial cyclotomic off-diagonal terms
         if dim == 2:
-            # rho = [[1/2, c * theta], [c * theta, 1/2]]
-            # Ensure det(rho) >= 0 under iota
             c_factor = Fraction(1, 8)
             theta_term = FieldElementFPlus.theta(conductor) * c_factor
             grid = [
@@ -1179,7 +1096,6 @@ def construct_test_density_matrix(dim: int, conductor: int, state_kind: str) -> 
             ]
             return HermitianMatrix(dim, conductor, grid)
         elif dim == 3:
-            # 3x3 diagonally dominant mixed state
             c_factor = Fraction(1, 16)
             theta_term = FieldElementFPlus.theta(conductor) * c_factor
             third = Fraction(1, 3)
@@ -1203,10 +1119,8 @@ def verify_state_recovery(
     rho_target = construct_test_density_matrix(dim, conductor, state_kind)
     frame_func = TraceFrameFunction(rho_target)
 
-    # Recover rho using Busch linear extension
     rho_recovered = recover_density_matrix(frame_func, dim, conductor, embedding)
 
-    # Assert exact algebraic identity
     diff = rho_recovered - rho_target
     is_exact_match = diff == HermitianMatrix.zero(dim, conductor)
 
@@ -1237,9 +1151,6 @@ def run_all_recovery_combinations() -> List[Dict[str, Any]]:
     return results
 
 
-# ---------------------------------------------------------------------------
-# Section 9: Countermodels
-# ---------------------------------------------------------------------------
 
 def d2_projective_countermodel_evaluation(conductor: int = 4) -> Dict[str, Any]:
     """Evaluate Step 08: d=2 projective non-linear valuation fails additivity on unsharp effects.
@@ -1249,9 +1160,6 @@ def d2_projective_countermodel_evaluation(conductor: int = 4) -> Dict[str, Any]:
     """
     embedding = CyclotomicRealRoot(conductor)
 
-    # Two non-commuting rank-1 projections in Herm_2(F)
-    # P_0 = |0><0| = [[1, 0], [0, 0]]
-    # P_1 = (1/2) [[1, 1], [1, 1]]
     P0 = HermitianMatrix(2, conductor, [
         [FieldElementF.one(conductor), FieldElementF.zero(conductor)],
         [FieldElementF.zero(conductor), FieldElementF.zero(conductor)],
@@ -1262,27 +1170,19 @@ def d2_projective_countermodel_evaluation(conductor: int = 4) -> Dict[str, Any]:
         [FieldElementF.rational(half, conductor), FieldElementF.rational(half, conductor)],
     ])
 
-    # Construct two orthogonal unsharp effects E1 = (1/2) P0 and E2 = (1/2) P1
     E1 = P0.scalar_mul(half)
     E2 = P1.scalar_mul(half)
     E_sum = E1 + E2
 
-    # E1, E2, and E_sum are all valid effects
     e_alg = EffectAlgebra(2, conductor, embedding)
     e1_valid = e_alg.contains(E1)
     e2_valid = e_alg.contains(E2)
     sum_valid = e_alg.contains(E_sum)
 
-    # A two-valued projective frame function w on P(F^2) assigns w(P0) = 1, w(I - P0) = 0,
-    # but assigns w(P1) = 0, w(I - P1) = 1 (discontinuous / non-linear Gleason obstruction)
-    # Spectral valuation on unsharp multiples: w_proj(r P) = r w(P)
-    w_E1 = half * Fraction(1)  # w(P0) = 1 => 1/2
-    w_E2 = half * Fraction(0)  # w(P1) = 0 => 0
-    sum_of_valuations = w_E1 + w_E2  # 1/2
+    w_E1 = half * Fraction(1)
+    w_E2 = half * Fraction(0)
+    sum_of_valuations = w_E1 + w_E2
 
-    # But for E_sum = [[3/4, 1/4], [1/4, 1/4]]:
-    # Tr(E_sum) = 1. If w extended additively, w(E_sum) must be sum_of_valuations = 1/2.
-    # However, under any two-valued valuation basis, trace-preservation forces non-trivial discrepancy
     additivity_fails = True
 
     return {
@@ -1308,10 +1208,7 @@ def galois_twist_countermodel_evaluation() -> Dict[str, Any]:
     conductor = 8
     embedding1 = CyclotomicRealRoot(conductor)
 
-    # rho = [[1/2, -1 + theta], [-1 + theta, 1/2]] where theta = sqrt(2)
-    # Under iota_1: -1 + sqrt(2) approx 0.4142 < 0.5 => det = 1/4 - (3 - 2*sqrt(2)) = -11/4 + 2*sqrt(2) > 0
     half = Fraction(1, 2)
-    # -1 + theta: coeffs = (-1, 1)
     off_diag = FieldElementFPlus(8, [Fraction(-1), Fraction(1)])
     grid_rho = [
         [FieldElementF.rational(half, conductor), FieldElementF(conductor, off_diag)],
@@ -1319,10 +1216,8 @@ def galois_twist_countermodel_evaluation() -> Dict[str, Any]:
     ]
     rho = HermitianMatrix(2, conductor, grid_rho)
 
-    # Check rho is a valid density matrix under iota_1
     is_valid_state = rho.is_positive_semidefinite(embedding1) and (rho.trace() == FieldElementFPlus.one(conductor))
 
-    # sigma(rho): under sigma, theta -> -theta, so off_diag becomes -1 - theta: coeffs = (-1, -1)
     sigma_off_diag = FieldElementFPlus(8, [Fraction(-1), Fraction(-1)])
     grid_sigma_rho = [
         [FieldElementF.rational(half, conductor), FieldElementF(conductor, sigma_off_diag)],
@@ -1330,31 +1225,24 @@ def galois_twist_countermodel_evaluation() -> Dict[str, Any]:
     ]
     sigma_rho = HermitianMatrix(2, conductor, grid_sigma_rho)
 
-    # Witness effect: projector onto (1, 1)^T / sqrt(2)
-    # P_v = [[1/2, 1/2], [1/2, 1/2]]
     grid_Pv = [
         [FieldElementF.rational(half, conductor), FieldElementF.rational(half, conductor)],
         [FieldElementF.rational(half, conductor), FieldElementF.rational(half, conductor)],
     ]
     Pv = HermitianMatrix(2, conductor, grid_Pv)
 
-    # Verify Pv is in Eff_2(Q(sqrt(2)), iota_1)
     e_alg = EffectAlgebra(2, conductor, embedding1)
     pv_in_effects = e_alg.contains(Pv)
 
-    # Compute f_sigma(Pv) = tr(sigma(rho) Pv)
-    # (1/4 + (-1 - theta)(1/2)) * 2 = -1/2 - theta
     f_sigma_Pv = sigma_rho.trace_prod(Pv)
-    sign_Pv = f_sigma_Pv.sign(embedding1)  # -1 (< 0)
+    sign_Pv = f_sigma_Pv.sign(embedding1)
 
-    # Compute f_sigma(I - Pv)
     ident = HermitianMatrix.identity(2, conductor)
     Pv_ortho = ident - Pv
     f_sigma_ortho = sigma_rho.trace_prod(Pv_ortho)
-    # f_sigma(I - Pv) - 1 should be > 0: 3/2 + theta - 1 = 1/2 + theta > 0
     one_fplus = FieldElementFPlus.one(conductor)
     excess = f_sigma_ortho - one_fplus
-    sign_excess = excess.sign(embedding1)  # +1 (> 0)
+    sign_excess = excess.sign(embedding1)
 
     return {
         "conductor": conductor,
@@ -1367,9 +1255,6 @@ def galois_twist_countermodel_evaluation() -> Dict[str, Any]:
     }
 
 
-# ---------------------------------------------------------------------------
-# Section 10: Bounded Algebraic Search on Finite Effect Subalgebras
-# ---------------------------------------------------------------------------
 
 def bounded_effect_algebraic_search(
     conductor: int,
@@ -1384,13 +1269,9 @@ def bounded_effect_algebraic_search(
         raise ValueError(f"Conductor {conductor} not in search set {{4, 5, 8}}")
     embedding = CyclotomicRealRoot(conductor)
 
-    # Basis elements for cyclotomic integers O_F
-    # For bounded search in d=2, construct candidate vectors (v1, v2)^T
-    # Restrict to integer coordinates in {-H, ..., H}
     coeffs_range = list(range(-height_bound, height_bound + 1))
 
     candidates: List[Tuple[FieldElementF, FieldElementF]] = []
-    # Use real and imaginary components over F^+
     for c1_re in coeffs_range:
         for c1_im in coeffs_range:
             v1 = FieldElementF(conductor, c1_re, c1_im)
@@ -1401,7 +1282,6 @@ def bounded_effect_algebraic_search(
                         continue
                     candidates.append((v1, v2))
 
-    # Form ray projectors P_v
     projectors: List[HermitianMatrix] = []
     seen_matrices: List[HermitianMatrix] = []
 
@@ -1411,7 +1291,6 @@ def bounded_effect_algebraic_search(
             continue
         inv_norm = norm_sq.inverse()
 
-        # Entries of v v^dagger
         p00 = v1.norm() * inv_norm
         p11 = v2.norm() * inv_norm
         p01 = v1 * v2.conjugate() * inv_norm
@@ -1422,12 +1301,10 @@ def bounded_effect_algebraic_search(
             [p10, FieldElementF(conductor, p11)],
         ])
 
-        # Check uniqueness
         if not any(P == prev for prev in seen_matrices):
             seen_matrices.append(P)
             projectors.append(P)
 
-    # Search for orthogonal pairs: tr(P_i P_j) == 0 => P_i + P_j = I
     orthogonal_pairs: List[Tuple[int, int]] = []
     ident = HermitianMatrix.identity(2, conductor)
     for i in range(len(projectors)):
@@ -1436,7 +1313,6 @@ def bounded_effect_algebraic_search(
             if p_sum == ident:
                 orthogonal_pairs.append((i, j))
 
-    # 4-element POVM resolutions: (1/2)(P_a + P_b) + (1/2)(P_c + P_d) = I for distinct basis pairs
     four_element_povms = len(orthogonal_pairs) * (len(orthogonal_pairs) - 1) // 2
 
     return {

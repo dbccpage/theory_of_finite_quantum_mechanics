@@ -1256,9 +1256,6 @@ def _global_admission_obstructions(
         codes.add("NO_AUTHENTICATED_HOST_ATTESTATION")
     if outcome.prime000_conformance_verdict != "Conforms":
         codes.add("PRIME000_CONFORMANCE_PARTIAL")
-    # HostOutcomeV1 has no signature/key/certificate fields.  Therefore no v1
-    # mapping, even one claiming a different attestation string, can establish
-    # the fully authenticated premise required for outer I.
     codes.add("RUST_HOST_V1_HAS_NO_AUTHENTICATED_ATTESTATION")
     return tuple(sorted(code for code in codes if code))
 

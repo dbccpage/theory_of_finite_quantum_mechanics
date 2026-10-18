@@ -36,7 +36,6 @@ TOPOLOGY_WIRE: dict[str, str] = {
     "Torus": "Torus",
 }
 
-# Three-way receipt vocabulary. TypedHarmonic is the refined native terminal.
 UNREFINED_TERMINAL: dict[str, str] = {
     "Exact": "Exact",
     "OpenObstruction": "OpenObstruction",

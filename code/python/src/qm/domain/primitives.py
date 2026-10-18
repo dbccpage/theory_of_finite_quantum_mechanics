@@ -125,7 +125,6 @@ def exact_is_psd(m: Sequence[Sequence[Any]]) -> bool:
         return False
     n = len(mat)
 
-    # 1. Exact Hermiticity check
     for i in range(n):
         if mat[i][i].imag != 0:
             return False
@@ -133,7 +132,6 @@ def exact_is_psd(m: Sequence[Sequence[Any]]) -> bool:
             if mat[i][j] != mat[j][i].conjugate():
                 return False
 
-    # 2. Symmetric diagonal elimination
     A = [[mat[i][j] for j in range(n)] for i in range(n)]
     for step in range(n):
         for i in range(step, n):
@@ -147,8 +145,6 @@ def exact_is_psd(m: Sequence[Sequence[Any]]) -> bool:
                 break
 
         if pivot_idx == -1:
-            # All remaining diagonal entries are zero.
-            # In a PSD matrix, all remaining entries must be identically zero.
             for i in range(step, n):
                 for j in range(step, n):
                     if i != j and (A[i][j].real != 0 or A[i][j].imag != 0):

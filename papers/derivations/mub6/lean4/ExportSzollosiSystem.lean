@@ -1,6 +1,5 @@
 import SzollosiExecutableSystem
 
-/-- Write the complete executable system and rational parity probes. -/
 def main (args : List String) : IO Unit := do
   match args with
   | [output] =>

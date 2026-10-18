@@ -1,20 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveLiftCertificate
 import PrimitiveRepairBoundary
-/-!
-Primitive spine summary kernel.
 
-This file collects projection lemmas across the primitive difference,
-invariant descent, obstruction classifier, repair boundary, terminal packet,
-repair certificate, and lift-candidate layers.
--/
 
 namespace OmegaCore
 namespace PrimitiveSpineSummary
@@ -216,3 +203,6 @@ theorem summaryWithCertificate_implies_admissible_witnessed_exact
 
 end PrimitiveSpineSummary
 end OmegaCore
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PrimitiveSpineSummary.lean Claim: spine_delta_descends_iff_congruent AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

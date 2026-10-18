@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 
 import json
@@ -27,7 +26,7 @@ def run_ambiguity_demo() -> dict[str, Any]:
     D0_trivial = [
         [1, 1, 0],
         [0, 1, 1],
-        [0, 0, 1],  
+        [0, 0, 1],
     ]
     D1_trivial = [
         [0, 0, 0],

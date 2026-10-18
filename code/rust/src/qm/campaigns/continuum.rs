@@ -1,14 +1,9 @@
-//! Continuum Lift and Boundary Classification for Finite Quantum Mechanics (Band E).
-//!
-//! AuthorityEffect: None.
-//! Citation: sealed-derivation-v1 (3100c4e).
 
 use crate::linear_algebra::matrix as mx;
 use omega_number_theory::cyclotomic::GaussianRat;
 use omega_number_theory::rational::Rational;
 use omega_quantum_physics::continuum::canonical_commutator_obstruction;
 
-/// Wintner-Wielandt trace evaluation on finite-dimensional matrices.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WintnerWielandtWitness {
     pub dimension: usize,
@@ -18,8 +13,6 @@ pub struct WintnerWielandtWitness {
 }
 
 impl WintnerWielandtWitness {
-    /// In any finite dimension d >= 1, tr(AB - BA) = 0 in any commutative ring,
-    /// whereas tr(c * I_d) = d * c. If c != 0, tr(AB - BA) = tr(c * I_d) is algebraically obstructed.
     pub fn new(dimension: usize) -> Self {
         assert!(dimension >= 1, "Dimension must be >= 1");
         assert!(dimension <= 128, "finite dimension budget is 128");
@@ -51,7 +44,6 @@ impl WintnerWielandtWitness {
     }
 }
 
-/// Weyl-Heisenberg clock and shift operator invariants in dimension d.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WeylHeisenbergInvariants {
     pub dimension: usize,
@@ -100,7 +92,6 @@ fn weyl_fixture<const D: usize, const C: usize>() -> bool {
     system.verify_relations() == Ok(true)
 }
 
-/// Structural inventory of gains and losses under the continuum completion functor Q^ab -> C.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ContinuumBoundaryReport {
     pub authority_effect: &'static str,

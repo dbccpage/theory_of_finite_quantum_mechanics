@@ -1,21 +1,5 @@
-/-
-  H010Scale -- mixing doubles total weight for every amplitude
-  vector on Bool.
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  FRONTIER R1: Parseval-type scale law for the mixing map in
-  general. H010.mix_doubles_total is only the two witnesses.
-  Here: |z+w|^2 + |z-w|^2 = 2(|z|^2+|w|^2) over GaussInt, so
-  totalWeight (mix v) = 2 * totalWeight v for every v.
-  Not a probability interpretation. Not uniqueness of the
-  quadratic readout.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H004FreeLinearization
@@ -29,7 +13,6 @@ open FableHilbertWalk20260819.H004 (Vec)
 open FableHilbertWalk20260819.H008
 open FableHilbertWalk20260819.H010
 
-/-- Squared modulus from coordinates. Equals phaseBlind. -/
 def nsq (z : GaussInt) : Int :=
   z.re * z.re + z.im * z.im
 
@@ -72,9 +55,6 @@ theorem rsum_two (f : Bool → Int) :
 
 #print axioms rsum_two
 
-/-- Punchline: mixing doubles total weight for every amplitude
-    vector on the two-label host. H010.mix_doubles_total is the
-    psi1/psi2 special case. -/
 theorem mix_doubles_total_any (v : Vec GaussInt Bool) :
     totalWeight enumBool (mix v) = 2 * totalWeight enumBool v := by
   unfold totalWeight
@@ -95,3 +75,6 @@ theorem witnesses_are_the_special_case :
 #print axioms witnesses_are_the_special_case
 
 end FableHilbertWalk20260819.H010Scale
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H010Scale.lean Claim: phaseBlind_nsq AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

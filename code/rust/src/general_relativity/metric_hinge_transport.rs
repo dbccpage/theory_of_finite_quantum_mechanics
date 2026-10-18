@@ -1,8 +1,3 @@
-//! Metric-derived transport in oriented orthonormal hinge-adapted frames.
-//! The exact class has rational normal-plane cosines and sines; algebraic
-//! rotations outside that class are refused rather than rounded. The metric
-//! supplies the angle; orientation, closed link, frame gluing and observation
-//! are explicit additional premises. AuthorityEffect: None.
 
 use crate::certified_dihedral::{
     deficit_enclosure, DeficitEnclosure, GeometryError, MetricHingeStar,
@@ -32,7 +27,6 @@ pub enum Orientation {
 #[derive(Debug, Clone)]
 pub struct MetricHingeTransport {
     deficit: DeficitEnclosure,
-    /// (cos theta, sin theta), with the positive interior sine.
     normal_rotations: Vec<(Q, Q)>,
     links: Vec<So4>,
 }
@@ -62,8 +56,6 @@ impl MetricHingeTransport {
         let mut links = Vec::new();
         for a in deficit.angles() {
             let [aa, bb, ab] = a.normal_gram();
-            // Only the ratios need be rational; neither normal length needs
-            // itself have a rational square root.
             let square_norm = aa * bb;
             let cosine_square = ab * ab / &square_norm;
             let cosine_abs = sqrt_exact(&cosine_square).ok_or(TransportError::AlgebraicRotation)?;
@@ -78,7 +70,6 @@ impl MetricHingeTransport {
                 return Err(TransportError::AlgebraicRotation);
             }
             let mut m = So4::identity().m;
-            // Coordinate change across one developed sector is R(-theta).
             m[2][2] = cosine.clone();
             m[3][3] = cosine.clone();
             m[2][3] = sine.clone();
@@ -103,7 +94,6 @@ impl MetricHingeTransport {
     }
     pub fn holonomy(&self, base: usize, orientation: Orientation) -> Result<So4, TransportError> {
         let w = loop_product(&self.links, base)?;
-        // Reverse the cyclic word and invert each link.
         Ok(match orientation {
             Orientation::Forward => w,
             Orientation::Reverse => w.transpose(),
@@ -134,8 +124,6 @@ impl MetricHingeTransport {
         }
         Ok(w)
     }
-    /// Declared triangle observation: early=H0, late=remaining word,
-    /// direct=I after closed endpoint-frame identification. K=W-I.
     pub fn observed_defect(&self, base: usize) -> Result<[[Q; 4]; 4], TransportError> {
         let w = self.holonomy(base, Orientation::Forward)?;
         Ok(std::array::from_fn(|i| {

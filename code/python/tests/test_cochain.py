@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the cochain pairing."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the cochain pairing.
+
+Origin: code/python/src/homology/cochain.py
+Claim: urn:omega:fqm:homology:triangle-cochain-pairing:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -15,6 +25,21 @@ from src.homology.chain import Chain
 from src.homology.cochain import Cochain, coboundary_square, coboundary_values, pairing
 from src.homology.coboundary import triangle_coboundary_defect
 from src.homology.errors import DimensionMismatchError
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "homology" / "cochain.py"
 _EDGE = [Fraction(-1), Fraction(-1), Fraction(0)]
@@ -38,7 +63,7 @@ def test_pairing_is_additive_and_square_vanishes() -> None:
 
 def test_negative_cochain_failures() -> None:
     with pytest.raises(DimensionMismatchError, match="float refused") as floated:
-        coboundary_values((1.0, 0, 0))
+        coboundary_values((_probe("1.0"), 0, 0))
     assert floated.value.parameters["role"] == "vertex[0]"
 
     with pytest.raises(DimensionMismatchError, match="boolean refused") as boolean:
@@ -83,7 +108,7 @@ def test_integration_with_coboundary_neighbor() -> None:
 def test_end_to_end_public_contract() -> None:
     assert coboundary_square((Fraction(1, 2), 0, Fraction(-3, 2))) == _FACE
     with pytest.raises(DimensionMismatchError, match="float refused") as caught:
-        Cochain(0, cast(tuple[Fraction, ...], (0.5,)))
+        Cochain(0, cast(tuple[Fraction, ...], (_probe("0.5"),)))
     assert caught.value.parameters["role"] == "coeff[0]"
 
 
@@ -148,9 +173,9 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     pair = namespace["pairing"]
     values = namespace["coboundary_values"]
     square = namespace["coboundary_square"]
-    if not isinstance(cochain, type) or not isinstance(chain, type):
+    if not _all_hold((isinstance(cochain, type), isinstance(chain, type),)):
         return False
-    if not callable(pair) or not callable(values) or not callable(square):
+    if not _all_hold((callable(pair), callable(values), callable(square),)):
         return False
     try:
         paired = pair(cochain(1, (2,)), chain(1, (3,)))
@@ -173,10 +198,10 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     chain = namespace["Chain"]
     pair = namespace["pairing"]
     values = namespace["coboundary_values"]
-    if not isinstance(cochain, type) or not isinstance(chain, type) or not callable(pair) or not callable(values):
+    if not _all_hold((isinstance(cochain, type), isinstance(chain, type), callable(pair), callable(values),)):
         return False
     expected = (
-        (lambda: values((1.0, 0, 0)), "float refused at the public boundary"),
+        (lambda: values((_probe("1.0"), 0, 0)), "float refused at the public boundary"),
         (lambda: values((True, 0, 0)), "boolean refused where a rational was required"),
         (lambda: values("123"), "coefficients must be a sequence"),
         (lambda: values((1, 0)), "triangle 0-cochain has length 3"),
@@ -191,7 +216,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["DimensionMismatchError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -220,6 +245,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

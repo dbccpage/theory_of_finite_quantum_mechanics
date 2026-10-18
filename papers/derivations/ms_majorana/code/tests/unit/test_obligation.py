@@ -49,7 +49,6 @@ class TestObligation:
                 "AUTHORITY_LAUNDER",
                 f"authority_effect must be None (got {self.authority_effect})",
             )
-        # Verify non-vacuous assertion expression rule
         expr_clean = self.assertion_expr.strip().lower()
         if expr_clean in (
             "assert true",

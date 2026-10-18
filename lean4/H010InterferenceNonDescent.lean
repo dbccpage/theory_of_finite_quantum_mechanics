@@ -1,49 +1,9 @@
-/-
-  H010 -- interference non-descent. AuthorityEffect: None. Candidate
-  only. Not PROVEN. Kind: LIFT RUNG (obstruction).
 
-  Claim identifier: HW-H010
-  Source-paper contact: QM_061 C3-C5 (the (1,1)/(1,-1) witness,
-  replayed exactly at integer scale), QM_121 interference rung,
-  QM_208 (audited as proposal). Work order hard obligations 2, 3, 4;
-  mutation gate G6.
 
-  Target proposition
-    A mixing presentation (unnormalized Hadamard, integer entries,
-    normalization disclosed as total-weight doubling) separates two
-    vectors that the phase-blind presentation identifies. Therefore
-    NO function of the phase-blind report reproduces the mixed
-    readout: the mixed observable does not descend through the
-    phase quotient. Phase is operationally visible after a change
-    of presentation.
 
-  Imports added at this rung
-    The mixing map itself (a declared second presentation) and its
-    normalization convention (entries 1, 1, 1, -1; total weight
-    doubles -- disclosed, and proved for the witnesses).
 
-  Theorem or counterexample
-    mix_separates: readout distinguishes psi1 from psi2 (ob. 3).
-    equal_weights (H008): phase-blind identifies them (ob. 2).
-    no_descent_through_fiber: no f with readout = f o phaseBlind
-    (ob. 4, the non-factorization theorem, exact statement).
-    mutation_phase_removed: replacing psi2's phase by +1 kills the
-    separation (G6 mutation 1).
-    mutation_diagonal_readout: without mixing, the readout descends
-    -- phase stays invisible to diagonal measurement (the work
-    order's countermodel for this rung, G6 mutation 2).
-    int_realization: the whole witness runs over Int -- interference
-    non-descent does NOT select i, C, or U(1) (feeds H011).
 
-  Nonclaim boundary
-    No claim that every physical interference experiment is
-    represented. No claim that complex amplitudes are unique or
-    necessary (int_realization proves the opposite for this
-    witness). No probability interpretation of the weights.
 
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 import HWKernel
 import H004FreeLinearization
@@ -57,18 +17,14 @@ open FableHilbertWalk20260819.H004
 open FableHilbertWalk20260819.H008
 open FableHilbertWalk20260819.H009
 
-/-- Unnormalized Hadamard mixing: integer entries, no scaling
-    convention smuggled. -/
 def mix (v : Vec GaussInt Bool) : Vec GaussInt Bool :=
   fun q =>
     if q then GaussInt.gadd (v false) (GaussInt.gneg (v true))
     else GaussInt.gadd (v false) (v true)
 
-/-- Readout: mixed presentation followed by the phase-blind map. -/
 def readout (v : Vec GaussInt Bool) : Bool → Int :=
   phaseBlind (mix v)
 
-/-! ## Obligation 3: the mixing map separates the witnesses. -/
 
 theorem mix_psi1 : ∀ q : Bool, readout psi1 q = if q then 0 else 4 := by
   decide
@@ -81,8 +37,6 @@ theorem mix_separates : ¬(∀ q : Bool, readout psi1 q = readout psi2 q) := by
 
 #print axioms mix_separates
 
-/-- Normalization disclosure: total weight doubles under the
-    unnormalized mixing, checked on both witnesses. -/
 theorem mix_doubles_total :
     totalWeight enumBool (mix psi1) = 2 * totalWeight enumBool psi1 ∧
       totalWeight enumBool (mix psi2) = 2 * totalWeight enumBool psi2 := by
@@ -90,9 +44,6 @@ theorem mix_doubles_total :
 
 #print axioms mix_doubles_total
 
-/-! ## Obligation 4: the non-factorization theorem, exactly stated:
-    no function of the phase-blind report reproduces the mixed
-    readout. -/
 
 theorem no_descent_through_fiber :
     ¬ ∃ f : (Bool → Int) → (Bool → Int),
@@ -109,13 +60,7 @@ theorem no_descent_through_fiber :
 
 #print axioms no_descent_through_fiber
 
-/-! ## G6 mutation 1: remove the distinguishing phase. The witness
-    collapses: the test fails when its data is neutralized. The
-    mutant is defined LITERALLY (not as an alias of psi1), so the
-    statements below are checks on independent definitions, not
-    self-comparisons. -/
 
-/-- psi2 with its relative phase stripped: (1, +1), written out. -/
 def psi2_mutated : Vec GaussInt Bool :=
   fun q => if q then GaussInt.gone else GaussInt.gone
 
@@ -130,13 +75,6 @@ theorem mutation_phase_removed :
 
 #print axioms mutation_phase_removed
 
-/-! ## G6 mutation 2: drop the mixing. Without the mixing map the
-    witnesses provably do not separate -- phase invisible to
-    diagonal measurement. (Descent of the unmixed readout through
-    the fiber holds definitionally, recorded below for contrast
-    with no_descent_through_fiber; the statement that can FAIL,
-    and therefore carries the mutation-sensitivity content, is
-    diagonal_blind_on_witnesses.) -/
 
 theorem mutation_diagonal_readout :
     ∃ f : (Bool → Int) → (Bool → Int),
@@ -151,8 +89,6 @@ theorem diagonal_blind_on_witnesses :
 
 #print axioms diagonal_blind_on_witnesses
 
-/-! ## Rival carrier: the entire witness runs over Int. Non-descent
-    does not select i, C, or U(1). Feeds H011. -/
 
 def iPsi1 : Vec Int Bool := fun _ => 1
 
@@ -189,9 +125,6 @@ theorem int_no_descent :
 
 #print axioms int_no_descent
 
-/-- H010 punchline: the phase-blind quotient does not carry the
-    mixed observable (with both mutations failing as they must),
-    and the obstruction already lives over the integers. -/
 theorem interference_non_descent :
     (∀ q : Bool, phaseBlind psi1 q = phaseBlind psi2 q) ∧
       ¬(∀ q : Bool, readout psi1 q = readout psi2 q) ∧
@@ -206,3 +139,6 @@ theorem interference_non_descent :
 #print axioms interference_non_descent
 
 end FableHilbertWalk20260819.H010
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H010InterferenceNonDescent.lean Claim: mix_psi1 AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

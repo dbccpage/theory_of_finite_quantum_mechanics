@@ -1,29 +1,3 @@
-//! Finite function gluing on a declared cover, and the boundary to general
-//! finite presheaves.
-//!
-//! AuthorityEffect: None.
-//!
-//! Function sections: a finite target `X`, a finite family of declared
-//! contexts `U_i ⊆ X`, a finite value alphabet `B` and exactly one total table
-//! `s_i: U_i -> B` per context. On the union `U = ⋃ U_i`, pairwise agreement
-//! on every overlap is equivalent to one and only one global function
-//! `s: U -> B` with `s|U_i = s_i`. The empty cover glues to the empty
-//! function. A global report on `X` additionally needs `U = X`; otherwise the
-//! request is refused with `IncompleteCoverage` (gluing on the smaller union
-//! stays a separate, valid problem).
-//!
-//! General presheaves are a different decision problem: after the functor
-//! laws are checked by the category owner
-//! [`omega_category_theory::finite_report_descent::FiniteReportPresheaf`],
-//! the fiber of global restriction over a matching family can have zero, one
-//! or many elements. This module builds replayable receipts for those three
-//! cases on top of the owner and does not reimplement it. Overlaps include
-//! empty intersections, which a general presheaf may not ignore.
-//!
-//! History erasure is checked with the DP-1 owner
-//! [`omega_category_theory::finite_report_query`]: a specified query on a
-//! finite history set may be erased to an endpoint report exactly when it
-//! factors through that report.
 
 use omega_category_theory::finite_report_descent::{DescentError, FiniteReportPresheaf};
 use omega_category_theory::finite_report_query::{
@@ -32,7 +6,6 @@ use omega_category_theory::finite_report_query::{
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt;
 
-/// Typed refusals for function gluing. None of them is a gluing verdict.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum GluingRefusal<C, P, V> {
     DuplicateTargetPoint { point: P },
@@ -57,7 +30,6 @@ impl<C: fmt::Debug, P: fmt::Debug, V: fmt::Debug> fmt::Display for GluingRefusal
 
 impl<C: fmt::Debug, P: fmt::Debug, V: fmt::Debug> std::error::Error for GluingRefusal<C, P, V> {}
 
-/// A declared function cover: target, contexts with exact domains, alphabet.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FunctionCover<C, P, V> {
     target: BTreeSet<P>,
@@ -65,19 +37,14 @@ pub struct FunctionCover<C, P, V> {
     alphabet: BTreeSet<V>,
 }
 
-/// Admitted local sections: exactly one total table per declared context.
 pub type LocalSections<C, P, V> = BTreeMap<C, BTreeMap<P, V>>;
 
-/// The two function-gluing verdicts on admitted input.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum FunctionGlueDecision<C, P, V> {
-    /// The unique global function on the union, with one containing context
-    /// per point as a finite uniqueness witness.
     UniqueFunctionGlue {
         global: BTreeMap<P, V>,
         containing_context: BTreeMap<P, C>,
     },
-    /// Two sections disagree at a point of their overlap.
     Incompatible {
         left: C,
         right: C,
@@ -87,7 +54,6 @@ pub enum FunctionGlueDecision<C, P, V> {
     },
 }
 
-/// Why a function-glue verdict failed replay.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum FunctionGlueReplayFailure {
     GlobalDomainMismatch,
@@ -103,8 +69,6 @@ where
     P: Ord + Clone + fmt::Debug,
     V: Ord + Clone + fmt::Debug,
 {
-    /// Admits a declared cover. Contexts must lie inside the target; the
-    /// union is not required to be the target here (see `glue_on_target`).
     pub fn new(
         target: &[P],
         contexts: &[(C, Vec<P>)],
@@ -158,13 +122,10 @@ where
         &self.contexts
     }
 
-    /// The union of the declared contexts.
     pub fn union(&self) -> BTreeSet<P> {
         self.contexts.values().flatten().cloned().collect()
     }
 
-    /// Admits raw local sections: one per declared context, each total on its
-    /// exact domain, values in the alphabet, no duplicate rows.
     pub fn admit_sections(
         &self,
         sections: &[(C, Vec<(P, V)>)],
@@ -213,9 +174,6 @@ where
         Ok(out)
     }
 
-    /// Glues on the union of the cover. Every pair of contexts is compared on
-    /// its whole overlap (an empty overlap has nothing to compare for
-    /// functions: the set of functions on the empty set has one element).
     pub fn glue_on_union(
         &self,
         sections: &[(C, Vec<(P, V)>)],
@@ -224,8 +182,6 @@ where
         Ok(Self::glue_admitted(&locals))
     }
 
-    /// Glues for a global report on the declared target; refuses when the
-    /// union of the cover misses target points.
     pub fn glue_on_target(
         &self,
         sections: &[(C, Vec<(P, V)>)],
@@ -275,8 +231,6 @@ where
         }
     }
 
-    /// Replays a verdict against the cover and the raw sections without
-    /// trusting the producer.
     pub fn verify_function_glue(
         &self,
         sections: &[(C, Vec<(P, V)>)],
@@ -337,8 +291,6 @@ where
     }
 }
 
-/// One rejected global section: its restriction to `context` is `actual`,
-/// while the matching family requires `expected`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub struct RejectedGlobalRow {
     pub global: usize,
@@ -347,7 +299,6 @@ pub struct RejectedGlobalRow {
     pub expected: usize,
 }
 
-/// Receipts for a validated finite presheaf, a cover and a matching family.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PresheafGlueReceipt {
     UniquePresheafGlue {
@@ -365,7 +316,6 @@ pub enum PresheafGlueReceipt {
     },
 }
 
-/// Why a presheaf receipt failed replay.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PresheafReplayFailure {
     Descent(DescentError),
@@ -413,10 +363,6 @@ fn rejection_rows(
     rows
 }
 
-/// Classifies gluing of a matching family on a validated finite presheaf by
-/// the size of the owner's descent fiber, and attaches the finite exclusion
-/// table. Incompatible families and malformed covers come back as the
-/// owner's `DescentError` (overlaps include empty intersections).
 pub fn classify_presheaf_gluing(
     presheaf: &FiniteReportPresheaf,
     target: u64,
@@ -441,9 +387,6 @@ pub fn classify_presheaf_gluing(
     })
 }
 
-/// Replays a presheaf receipt: the owner re-validates cover and matching
-/// family; every listed rejection row must be true, and every global section
-/// other than the glue must be excluded by a row.
 pub fn verify_presheaf_receipt(
     presheaf: &FiniteReportPresheaf,
     target: u64,
@@ -520,10 +463,6 @@ pub fn verify_presheaf_receipt(
     }
 }
 
-/// History erasure for one specified query, decided by the DP-1 owner: the
-/// query may be read from the endpoint report exactly when the decision is
-/// `Factorable`; a `Collision` names two histories with equal endpoints and
-/// unequal query values. No conclusion about unspecified queries follows.
 pub fn history_erasure_decision<H, E, Q>(
     histories: &[H],
     endpoints: &[E],

@@ -1,25 +1,9 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import Std
 
-/-!
-Overnight T4: character factorization on remainders, no Complex.
 
-A character of `Z` with values in `Z/m` sending `1` to `r` is
-`k ↦ (k * r) % m`. It factors through `Z/n` exactly when
-`n * r ≡ 0 (mod m)`.
 
-This is the remainder form of `z^n = 1`. Dual of `Z/n` stays
-`Z/n`. Embedding into `U(1)` is not proved here.
 
-AuthorityEffect: None.
--/
 
 namespace OvernightT4
 
@@ -34,7 +18,6 @@ theorem factors_through_n {r n m : Int} (_hm : 0 < m) :
   simp [charEval]
   exact Int.dvd_iff_emod_eq_zero.symm
 
-/-- For target `Z/n` and `r = 1`, the character factors at `n`. -/
 theorem generator_killed_by_n {n : Int} (_hn : 0 < n) :
     charEval 1 n n = 0 := by
   simp [charEval]
@@ -70,3 +53,6 @@ theorem scope_boundary_refuses_kills :
 #print axioms scope_boundary_refuses_kills
 
 end OvernightT4
+
+private def l5aProvenance : String :=
+  "Origin: lean4/T4CharacterRemainder.lean Claim: charEval_add AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

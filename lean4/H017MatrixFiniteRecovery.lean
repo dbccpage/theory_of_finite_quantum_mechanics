@@ -1,38 +1,8 @@
-/-
-  H017Matrix -- recover the named 2x2 Gauss-integer matrix algebra.
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  QM_122 remaining job 7.2 / STACK item 4. The named object is
-  M_2(Z[i]): 2x2 matrices over the admitted GaussInt pack, acting
-  on the H004 free module Bool -> GaussInt. Ordinary two-level
-  quantum mechanics uses this as the integer-Gaussian skeleton of
-  M_2(C) before completing the scalars.
 
-  Named extras, as hypotheses, not flags:
-    (1) coefficient pack K (instantiated at gaussPack);
-    (2) two-point report set Bool;
-    (3) additivity of an endomorphism;
-    (4) pack-homogeneity of that endomorphism.
 
-  Theorems: every such endomorphism is left-multiplication by a
-  unique 2x2 matrix; matrix product is composition; conjugate
-  transpose implements the H005 pairing; Pauli X,Y,Z of ordinary
-  two-level QM live in this algebra and Y is not an integer matrix.
 
-  This is not M_n(C). Missing extras for that object, named in
-  English, not as a Bool ledger: the field C (completeness / density);
-  a general finite label set in place of Bool; the spectral theorem;
-  Gleason uniqueness of the Born square; CPTP channels; uniqueness
-  of tensor product as a combining rule; the circle group; continuous
-  time; a Python dual of these statements; a drop-one count of a
-  full extra list. Do not read this list as a theorem.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H004FreeLinearization
@@ -46,28 +16,22 @@ open FableHilbertWalk20260819.H004
 open FableHilbertWalk20260819.H005 (sesq)
 open FableHilbertWalk20260819.H007 (embed)
 
-/-- Named finite matrix object: 2x2 matrices on the Bool report set. -/
 def Mat (K : Type) : Type := Bool → Bool → K
 
-/-- Action of a 2x2 matrix on a two-coordinate vector. -/
 def applyMat {K : Type} (P : StarRingPack K) (A : Mat K)
     (v : Vec K Bool) : Vec K Bool :=
   fun i => P.add (P.mul (A i false) (v false)) (P.mul (A i true) (v true))
 
-/-- Matrix product on the Bool index set. -/
 def mmul {K : Type} (P : StarRingPack K) (A B : Mat K) : Mat K :=
   fun i j =>
     P.add (P.mul (A i false) (B false j)) (P.mul (A i true) (B true j))
 
-/-- Identity matrix. -/
 def ident {K : Type} (P : StarRingPack K) : Mat K :=
   fun i j => if i == j then P.one else P.zero
 
-/-- Conjugate transpose. -/
 def adj {K : Type} (P : StarRingPack K) (A : Mat K) : Mat K :=
   fun i j => P.conj (A j i)
 
-/-- Named extras for an endomorphism of the free two-point module. -/
 structure LinearEnd {K : Type} (P : StarRingPack K) where
   map : Vec K Bool → Vec K Bool
   map_add :
@@ -77,11 +41,9 @@ structure LinearEnd {K : Type} (P : StarRingPack K) where
     ∀ c u q,
       map (smul P c u) q = P.mul c (map u q)
 
-/-- Matrix of an endomorphism: columns are the images of the report basis. -/
 def matOf {K : Type} {P : StarRingPack K} (T : LinearEnd P) : Mat K :=
   fun i j => T.map (delta P j) i
 
-/-- Endomorphism of a matrix: left-multiplication. -/
 def endOfMat {K : Type} (P : StarRingPack K) (A : Mat K) : LinearEnd P where
   map := applyMat P A
   map_add := fun u v q => by
@@ -115,7 +77,6 @@ theorem vec_bool_expand {K : Type} (P : StarRingPack K)
 
 #print axioms vec_bool_expand
 
-/-- Under the named extras, the map is left-multiplication by its matrix. -/
 theorem apply_eq_matOf {K : Type} {P : StarRingPack K} (T : LinearEnd P)
     (v : Vec K Bool) (x : Bool) :
     T.map v x = applyMat P (matOf T) v x := by
@@ -203,7 +164,6 @@ theorem mul3_reassoc {K : Type} (P : StarRingPack K) (a b c : K) :
     P.mul (P.mul a b) c = P.mul b (P.mul a c) := by
   rw [P.mul_comm a b, P.mul_assoc]
 
-/-- Conjugate transpose is the adjoint of the admitted pairing. -/
 theorem sesq_conj_transpose {K : Type} (P : StarRingPack K) (A : Mat K)
     (u v : Vec K Bool) :
     sesq P enumBool (applyMat P A u) v =
@@ -225,7 +185,6 @@ theorem sesq_conj_transpose {K : Type} (P : StarRingPack K) (A : Mat K)
 
 #print axioms sesq_conj_transpose
 
-/-! ## Named ordinary two-level objects: Pauli matrices over Z[i]. -/
 
 def pauliX : Mat GaussInt :=
   fun i j => if i == j then GaussInt.gzero else GaussInt.gone
@@ -270,8 +229,6 @@ theorem pauliX_Z_anticommute :
 
 #print axioms pauliX_Z_anticommute
 
-/-- Pauli Y uses the imaginary unit. The integer matrix host of H012
-    does not contain it. Complexification is doing work. -/
 theorem pauliY_not_integer_matrix :
     ¬ ∃ A : Bool → Bool → Int, ∀ i j : Bool, pauliY i j = embed (A i j) := by
   intro h
@@ -286,10 +243,6 @@ theorem pauliY_not_integer_matrix :
 
 #print axioms pauliY_not_integer_matrix
 
-/-- Punchline: under the named extras, End of the two-point GaussInt
-    module is M_2(Z[i]), composition is matrix product, conjugate
-    transpose is the pairing adjoint, and the ordinary Pauli generators
-    live here. This is not M_n(C). -/
 theorem two_level_gauss_matrix_algebra :
     (∀ (T : LinearEnd gaussPack) (v : Vec GaussInt Bool) (x : Bool),
       T.map v x = applyMat gaussPack (matOf T) v x) ∧
@@ -315,3 +268,6 @@ theorem two_level_gauss_matrix_algebra :
 #print axioms two_level_gauss_matrix_algebra
 
 end FableHilbertWalk20260819.H017Matrix
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H017MatrixFiniteRecovery.lean Claim: vec_bool_expand AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

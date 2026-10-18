@@ -1,9 +1,3 @@
-//! Campaign module pauli_spin_stat.
-//!
-//! The swap on two qubits squares to the identity by matrix multiplication
-//! and by its action on the four basis vectors. The singlet is the
-//! antisymmetric vector, with swap eigenvalue `-1`; the triplet eigenvalue
-//! is `+1`.
 
 pub fn verify() -> Result<i64, &'static str> {
     let swap = [

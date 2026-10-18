@@ -1,8 +1,3 @@
-//! Finite refutation of the Phi_1-decreasing repair policy on two windows.
-//!
-//! One-cell: C0 = 0, C1 = Q e, C2 = Q s, d0 = 0, d1 = id, J = absolute value,
-//! h_n = 2^{-n}. Filled triangle: delta_n = 2^{-n}(1, 1, 0) with the P08 maps.
-//! Values are reduced rationals. This check is not a continuum limit.
 
 use std::cmp::Ordering;
 
@@ -254,7 +249,6 @@ fn dot(left: [Rat; 3], right: [Rat; 3]) -> Rat {
         .add(left[2].mul(right[2]))
 }
 
-/// d0 f = (f1 - f0, f2 - f1, f2 - f0) on vertices (0, 1, 2).
 fn d0(vertex: [Rat; 3]) -> [Rat; 3] {
     [
         vertex[1].sub(vertex[0]),
@@ -263,7 +257,6 @@ fn d0(vertex: [Rat; 3]) -> [Rat; 3] {
     ]
 }
 
-/// d1 x = x01 + x12 - x02 on edges (01, 12, 02).
 fn d1(edge: [Rat; 3]) -> Rat {
     edge[0].add(edge[1]).sub(edge[2])
 }
@@ -277,7 +270,6 @@ fn column_sum_norm(columns: &[i128]) -> Rat {
 }
 
 fn one_cell_norm() -> Rat {
-    // Unweighted L1 to L1 norm: largest absolute column sum of d1 = (1).
     let norm = column_sum_norm(&[1]);
     let attained = Rat::one();
     assert_eq!(attained.abs(), norm.mul(attained.abs()));
@@ -285,7 +277,6 @@ fn one_cell_norm() -> Rat {
 }
 
 fn triangle_norm() -> Rat {
-    // Row (1, 1, -1). Each absolute column sum is 1.
     let norm = column_sum_norm(&[1, 1, -1]);
     for index in 0..3 {
         assert!(
@@ -299,7 +290,6 @@ fn triangle_norm() -> Rat {
     norm
 }
 
-/// C0 is the zero space, so d0 is the zero map and d1 d0 has nothing else to hit.
 fn one_cell_composition_is_zero() -> bool {
     let d0_image = 0_i128;
     let d1_image = d0_image;
@@ -321,7 +311,6 @@ fn circulation_ok(y: [Rat; 3]) -> bool {
     bounded && adjoint
 }
 
-/// A closed edge field on this triangle is the coboundary of (0, x01, x01 + x12).
 fn is_exact(edge: [Rat; 3]) -> bool {
     if !d1(edge).is_zero() {
         return false;
@@ -370,7 +359,6 @@ fn scaled_repair(index: u32) -> [Rat; 3] {
 
 fn eval_one(value: Rat) -> Eval {
     assert!(value >= Rat::zero(), "one-cell run uses a nonnegative value");
-    // im d0 = {0}, so the only repair is f = 0 and Phi_1([h]) = |h|.
     let phi = value.sub(Rat::zero()).abs();
     let gamma = value.abs();
     let y = Rat::one();
@@ -512,7 +500,6 @@ fn ratio_of(step: Step) -> (i128, i128) {
     step.r_cl.expect("Phi_1 > 0 on this state")
 }
 
-/// Prefix record for n = 0, 1, 2, plus the coboundary shift that the gate refuses.
 pub fn witness() -> Witness {
     let one = [one_cell(0), one_cell(1), one_cell(2)];
     let tri = [triangle(0), triangle(1), triangle(2)];

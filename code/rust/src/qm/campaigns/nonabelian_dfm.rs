@@ -1,7 +1,3 @@
-//! Campaign module nonabelian_dfm.
-//!
-//! `S3` as the semidirect product `C3 ⋊ C2`, with `s r s^{-1} = r^{-1}`.
-//! The relation is the multiplication table, and every triple associates.
 
 pub fn verify() -> Result<usize, &'static str> {
     let r = (1u8, 0u8);

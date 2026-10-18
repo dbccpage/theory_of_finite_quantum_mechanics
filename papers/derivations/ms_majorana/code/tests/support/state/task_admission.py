@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/task_admission.rs
-# Rust sha256: 8904c36f0dce155de2c735d1199b553f2a4b5772121d462318515a449938d951
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,135 +38,102 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 TASK_PACKET_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 TASK_ENVELOPE_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 TASK_COMPILATION_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 TASK_LEASE_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 TASK_RECEIPT_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_FROZEN_BASE: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_PACKET_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_GOAL_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_OBSERVER_DOMAIN: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_STATE_DOMAIN: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_EVIDENCE_CEILING: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_GOAL_DECLARATION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_HOST_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_PRODUCER_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_EVALUATOR_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_AUTHORITY_WITNESS_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEASE_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_UPSTREAM_REFERENCE_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_UPSTREAM_PACKET_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_UPSTREAM_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_UPSTREAM_PACKET_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEGACY_LEASE_REFERENCE_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEGACY_LEASE_PATH: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEGACY_LEASE_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEGACY_LEASE_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEGACY_SCHEMA_REFERENCE_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEGACY_SCHEMA_PATH: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEGACY_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_LEGACY_SCHEMA_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_PACKET_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_OBSERVER_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_BUNDLE_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_WRITE_SURFACE: Any = None
 
 
@@ -199,7 +162,6 @@ class FrozenTaskArtifactV1(_RustSurfaceObject):
             setattr(self, fld, value)
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_SOURCE_MANIFEST: Any = None
 
 
@@ -857,7 +819,6 @@ def sha256(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
@@ -992,6 +953,5 @@ TaskAdmissionError.__doc__ = (
 )
 
 
-# END GENERATED RUST SURFACE
 
 

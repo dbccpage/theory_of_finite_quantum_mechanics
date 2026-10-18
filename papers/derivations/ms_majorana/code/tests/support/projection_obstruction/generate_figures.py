@@ -28,8 +28,7 @@ def generate_fig1_bell_state_defect():
 
     plt.figure(figsize=(7, 4.5), dpi=300)
     plt.plot(Jt, defect, color="#1f77b4", lw=2.5, label=r"$D_{12}(t) = \|\rho(t) - \Pi\rho(t)\|_1$")
-    
-    # Highlight peak at pi/4
+
     jt_peak = np.pi / 4
     defect_peak = 1.5
     plt.plot(jt_peak, defect_peak, "ro", markersize=8, label=rf"Peak at $Jt=\pi/4$: {defect_peak:.1f}")
@@ -52,19 +51,18 @@ def generate_fig1_bell_state_defect():
 def generate_fig2_short_time_lower_bound():
     """Figure 2: Theorem 5.1 Short-Time Defect Certificate D_e(t) vs nu_e t - 24 g^2 t^2."""
     t = np.linspace(0, 0.05, 300)
-    nu_e = 2.0  # TFIM raw normal rate for J=1
-    g = 3.0     # Incident norm bound
+    nu_e = 2.0
+    g = 3.0
 
     linear_tangent = nu_e * t
     quadratic_bound = nu_e * t - 24 * (g**2) * (t**2)
-    # Model illustrative trajectory
     exact_sim = nu_e * t - 4 * (g**2) * (t**2)
 
     plt.figure(figsize=(7, 4.5), dpi=300)
     plt.plot(t, exact_sim, color="#2ca02c", lw=2.5, label=r"Illustrative Trajectory $D_e(t)$")
     plt.plot(t, linear_tangent, color="#1f77b4", linestyle="--", lw=1.8, label=r"First-Order Normal Rate $\nu_e t$")
     plt.plot(t, quadratic_bound, color="#d62728", linestyle="-.", lw=2.0, label=r"Theorem 5.1 Bound $\nu_e t - 24g^2 t^2$")
-    
+
     plt.fill_between(t, quadratic_bound, exact_sim, color="#2ca02c", alpha=0.15, label="Certificate Validity Domain")
 
     plt.title("Figure 2: Theorem 5.1 Short-Time Defect Lower-Bound Certificate", fontsize=12, fontweight="bold")

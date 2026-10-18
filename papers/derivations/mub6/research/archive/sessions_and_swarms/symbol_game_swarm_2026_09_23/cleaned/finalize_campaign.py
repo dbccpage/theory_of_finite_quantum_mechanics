@@ -16,9 +16,6 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 ALL = HERE / "proposals_all_500.json"
 
-# One Round 1 A record represents each of the 50 prompts selected for Round 2.
-# The order reflects obligation leverage and a bounded first check. Some high
-# priority rows need correction of a specific source defect before reuse.
 PRIORITY = """
 T06_08 T07_06 T08_03 T05_03 T05_06 T05_10 T04_07 T05_11 T09_10 T03_08
 T04_10 T10_01 T01_16 T02_07 T07_08 T07_09 T06_03 T08_05 T08_19 T09_21
@@ -28,15 +25,15 @@ T03_25 T04_02 T04_25 T06_12 T06_25 T08_16 T09_03 T09_07 T07_01 T10_25
 """.split()
 
 BLOCKED = {
-    "T03_03",  # incompatible family-membership and distance statements
-    "T05_03",  # proposed 4x4-minor condition conflicts with rank six
-    "T05_11",  # basis count includes fixed identity basis
-    "T07_01",  # positive 25x25 pivots conflict with completeness
-    "T09_03",  # rank 25 conflicts with completeness
-    "T09_07",  # rank sequence starts with rank 25
-    "T09_13",  # forced growth lacks a valid rank argument
-    "T10_06",  # alpha threshold used in the wrong direction
-    "T10_25",  # sign-off has no per-session certificate receipts
+    "T03_03",
+    "T05_03",
+    "T05_11",
+    "T07_01",
+    "T09_03",
+    "T09_07",
+    "T09_13",
+    "T10_06",
+    "T10_25",
 }
 
 NEXT = {

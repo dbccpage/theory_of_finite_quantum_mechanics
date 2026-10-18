@@ -138,7 +138,7 @@ def test_normalized_face_rejects_duplicate_edge_uses() -> None:
 @pytest.mark.parametrize("coefficient", [0, 1.0, True])
 def test_boundary_coefficients_are_nonzero_exact_integers(coefficient: object) -> None:
     with pytest.raises(ValueError):
-        BoundaryUseV1("e.ab", coefficient)  # type: ignore[arg-type]
+        BoundaryUseV1("e.ab", coefficient)
 
 
 def test_edge_endpoints_must_be_declared() -> None:

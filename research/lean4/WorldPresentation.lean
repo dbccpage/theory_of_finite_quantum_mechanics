@@ -1,41 +1,20 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 
-/-!
-# F0: finite presentation boundary
 
-This is the scoped Lean completion of frontier-ledger item F0.  It packages a
-finite index carrier, PrimitiveDifference/ZeroRel, an admissible subobject,
-repairs, an observer-indexed evaluator, witness predicate, terminal type, and
-an authority ceiling with no escalating constructor.
 
-It does not derive this presentation from the literal token `<>`.
--/
 
 namespace OmegaWorld
 
-/-- The pure mathematical World has no authority-increasing constructor. -/
 inductive AuthorityEffect where
   | none
   deriving DecidableEq
 
-/-- Evaluation either uses a bound observer or refuses explicitly. -/
 inductive EvalOrRefuse (Residual : Type) where
   | evaluated (value : Residual)
   | refusedNoObserver
   deriving DecidableEq
 
-/--
-A finite declared presentation.  `admissible` is deliberately separate from
-the zero relation induced by `primitive`.
--/
 structure Presentation where
   presentationId : Nat
   stage : Nat
@@ -57,14 +36,12 @@ structure Presentation where
 
 namespace Presentation
 
-/-- Absence of an observer is data and produces a typed refusal. -/
 def evaluateOrRefuse (P : Presentation) (x : Fin P.carrierSize) :
     EvalOrRefuse P.Residual :=
   match P.observer with
   | none => .refusedNoObserver
   | some observer => .evaluated (P.evaluate observer x)
 
-/-- Remove only the observer binding, keeping the remainder of the declaration. -/
 def withoutObserver (P : Presentation) : Presentation :=
   { P with observer := none }
 
@@ -72,7 +49,6 @@ theorem withoutObserver_refuses (P : Presentation) (x : Fin P.carrierSize) :
     (P.withoutObserver.evaluateOrRefuse x) = .refusedNoObserver := by
   rfl
 
-/-- Change presentation identity without conflating the raw carrier. -/
 def reidentify (P : Presentation) (newId : Nat) : Presentation :=
   { P with presentationId := newId }
 
@@ -80,7 +56,6 @@ theorem reidentify_id (P : Presentation) (newId : Nat) :
     (P.reidentify newId).presentationId = newId := by
   rfl
 
-/-- Two differently identified declarations remain distinct even on one raw carrier. -/
 theorem reidentify_ne (P : Presentation) {leftId rightId : Nat}
     (h : leftId ≠ rightId) :
     P.reidentify leftId ≠ P.reidentify rightId := by
@@ -88,15 +63,16 @@ theorem reidentify_ne (P : Presentation) {leftId rightId : Nat}
   apply h
   exact congrArg Presentation.presentationId presentationsEqual
 
-/-- The authority field cannot contain a stronger value. -/
 theorem authority_is_none (P : Presentation) :
     P.authorityEffect = .none :=
   P.authority_none
 
-/-- The declared zero relation is exactly the shared-kernel relation. -/
 theorem zeroRel_is_declared (P : Presentation) (x y : Fin P.carrierSize) :
     P.primitive.ZeroRel x y = P.primitive.Zero (P.primitive.δ x y) := by
   rfl
 
 end Presentation
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldPresentation.lean Claim: withoutObserver_refuses AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -47,7 +47,6 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Sequence, Tuple
 
-# Path resolution
 CODE_DIR = Path(__file__).resolve().parent
 REPO_ROOT = CODE_DIR
 for p in Path(__file__).resolve().parents:
@@ -60,11 +59,9 @@ if str(CODE_DIR) not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-# Import ROP Result monad
-from omega_engine_operations.domain.rop.result import Err, Ok, Refusal, Result  # noqa: E402
+from omega_engine_operations.domain.rop.result import Err, Ok, Refusal, Result
 
-# Import Symbol Game Tower parser and Gamma38 alphabet
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     App,
     parse_packet,
@@ -72,23 +69,21 @@ from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
     validate_packet_semantics,
 )
 
-# Import 4D Half-Instantons & Second Chern Class
-from topological_half_instanton_4d import (  # noqa: E402
+from topological_half_instanton_4d import (
     DiscreteTorus4D,
     HalfInstantonCluster4D,
 )
-from topological_half_instanton_4d import (  # noqa: E402
+from topological_half_instanton_4d import (
     fermion_determinant_sign as instanton_fermion_sign,
 )
-from topological_half_instanton_4d import (  # noqa: E402
+from topological_half_instanton_4d import (
     orientation_flip as instanton_orientation_flip,
 )
-from topological_half_instanton_4d import (  # noqa: E402
+from topological_half_instanton_4d import (
     second_chern_number as instanton_second_chern,
 )
 
-# Import 3D Topological Meron Strings
-from topological_meron_3d import (  # noqa: E402
+from topological_meron_3d import (
     ClosedStringLoop3D,
     Lattice3D,
     MeronClusterConfiguration,
@@ -97,13 +92,10 @@ from topological_meron_3d import (  # noqa: E402
     loop_involution_tau,
     winding_parity,
 )
-from topological_meron_3d import (  # noqa: E402
+from topological_meron_3d import (
     cluster_involution_tau as cluster_involution_tau_3d,
 )
 
-# ---------------------------------------------------------------------------
-# Zero-Float Enforcement
-# ---------------------------------------------------------------------------
 
 
 def assert_no_floats(*values: Any) -> None:
@@ -119,9 +111,6 @@ def assert_no_floats(*values: Any) -> None:
                 assert_no_floats(k, v)
 
 
-# ---------------------------------------------------------------------------
-# Lexical & Claim Hygiene Verification
-# ---------------------------------------------------------------------------
 
 FORBIDDEN_DOMAIN_WORDS: Tuple[str, ...] = (
     "meron",
@@ -181,9 +170,6 @@ def assert_claim_hygiene(text: str) -> None:
             )
 
 
-# ---------------------------------------------------------------------------
-# Value Objects and States
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -280,11 +266,9 @@ class CombinedTopologicalCluster:
             base_4d = instanton_fermion_sign(self.half_instanton)
             return base_4d * self.sign_factor
 
-        # 4D is zero charge or integer charge
         if self.winding_parity_3d == 1:
             return -1 * self.sign_factor
 
-        # Both 4D and 3D are in even/zero sectors
         return 1
 
 
@@ -305,9 +289,6 @@ class TopologicalClusterState:
         assert_no_floats(self.weights, self.partition_sum, self.duality_gap, self.odd_cancelled)
 
 
-# ---------------------------------------------------------------------------
-# Wire Encoding Helper (Fraction to Gamma38 RationalValue)
-# ---------------------------------------------------------------------------
 
 
 def fraction_to_gamma38(f: Fraction) -> str:
@@ -345,17 +326,10 @@ def generate_gamma38_wire(state: TopologicalClusterState | None = None) -> str:
     Conforms strictly to Gamma_38 (0-9, a-z, <, >) and validates via validate_packet_semantics.
     """
     if state is not None and state.wire:
-        # Validate state wire
         parsed = parse_packet(state.wire)
         validate_packet_semantics(parsed)
         return state.wire
 
-    # Canonical default composite 4D cluster wire:
-    # op<<11>
-    #   op<<101><100><0><1><10><11><100>>  (4-simplex)
-    #   op<<0><><0><1>>                     (Level 1 Up-Lift)
-    #   op<<10010><0><1><10>>               (RationalValue +1/2)
-    # >
     canonical_wire = "op<<11>op<<101><100><0><1><10><11><100>>op<<0><><0><1>>op<<10010><0><1><10>>>"
     parsed = parse_packet(canonical_wire)
     validate_packet_semantics(parsed)
@@ -509,9 +483,6 @@ def validate_topological_charge_rop(charge: Any) -> Result[Fraction, Refusal]:
     return Ok(f_charge)
 
 
-# ---------------------------------------------------------------------------
-# Cluster Involution Tau Implementation
-# ---------------------------------------------------------------------------
 
 
 def cluster_involution_tau(cluster: Any) -> Any:
@@ -536,7 +507,6 @@ def cluster_involution_tau(cluster: Any) -> Any:
         return cluster_involution_tau_3d(cluster)
 
     if isinstance(cluster, CombinedTopologicalCluster):
-        # 1. Check odd half-instanton sector
         if cluster.is_odd_half_instanton and cluster.half_instanton is not None:
             flipped_instanton = instanton_orientation_flip(cluster.half_instanton)
             return CombinedTopologicalCluster(
@@ -547,9 +517,7 @@ def cluster_involution_tau(cluster: Any) -> Any:
                 sign_factor=cluster.sign_factor,
             )
 
-        # 2. Check odd 3D winding sector (regardless of whether 4D sector has N+ == N- or N+ - N- in 2Z \ {0})
         if cluster.winding_parity_3d == 1:
-            # Flip sign factor and reverse odd 3D winding loops
             return CombinedTopologicalCluster(
                 cluster_id=f"{cluster.cluster_id}_tau",
                 half_instanton=cluster.half_instanton,
@@ -558,15 +526,11 @@ def cluster_involution_tau(cluster: Any) -> Any:
                 sign_factor=-cluster.sign_factor,
             )
 
-        # 3. Zero-charge even sector: invariant under tau
         return cluster
 
     raise TypeError(f"Unsupported cluster type for involution: {type(cluster).__name__}")
 
 
-# ---------------------------------------------------------------------------
-# Execution of Involution Cancellation
-# ---------------------------------------------------------------------------
 
 
 def _is_odd_sector_cluster(cluster: Any) -> bool:
@@ -590,7 +554,6 @@ def _cluster_fermion_sign(cluster: Any) -> int:
         p = winding_parity(cluster)
         if p == 0:
             return 1
-        # For odd winding loop, determine orientation from first non-zero winding component
         for w_comp in cluster.winding_vector:
             if w_comp != 0:
                 return -1 if w_comp > 0 else 1
@@ -681,7 +644,6 @@ def execute_involution_cancellation(
             f"Weights count {len(weight_list)} does not match clusters count {len(clusters)}"
         )
 
-    # Phase 1: Partition into even/zero sectors and odd sectors
     zero_sum = Fraction(0, 1)
     odd_indices: List[int] = []
 
@@ -691,10 +653,8 @@ def execute_involution_cancellation(
         if _is_odd_sector_cluster(c):
             odd_indices.append(i)
         else:
-            # Even/zero sector: contributes to partition sum
             zero_sum += sign * w
 
-    # Phase 2: Build Inverted Posting Index for Odd Clusters
     from collections import defaultdict
 
     posting_index: Dict[Tuple[Any, ...], List[int]] = defaultdict(list)
@@ -702,7 +662,6 @@ def execute_involution_cancellation(
         key = _cluster_topological_key(clusters[i])
         posting_index[key].append(i)
 
-    # Phase 3: Dynamic Involutive Pair Matching
     paired_indices: set[int] = set()
     odd_sectors_cancelled = 0
     uncancelled_odd_sum = Fraction(0, 1)
@@ -716,18 +675,15 @@ def execute_involution_cancellation(
         w_i = weight_list[i]
         s_i = _cluster_fermion_sign(c_i)
 
-        # Theoretical involution partner target key
         tau_c_i = cluster_involution_tau(c_i)
         target_key = _cluster_topological_key(tau_c_i)
 
-        # Lookup candidates in posting index
         candidate_indices = [
             j for j in posting_index.get(target_key, [])
             if j != i and j not in paired_indices
         ]
 
         if candidate_indices:
-            # Prioritize candidate with exact weight match
             best_j = next(
                 (j for j in candidate_indices if weight_list[j] == w_i),
                 candidate_indices[0],
@@ -739,7 +695,6 @@ def execute_involution_cancellation(
             paired_indices.add(i)
             paired_indices.add(best_j)
 
-            # Check weight preservation and sign inversion
             weight_preserved = (w_i == w_j)
             sign_inverted = (s_j == -s_i)
 
@@ -748,15 +703,12 @@ def execute_involution_cancellation(
             if weight_preserved and sign_inverted and pair_residual == Fraction(0, 1):
                 odd_sectors_cancelled += 2
             else:
-                # Asymmetric weight or broken sign inversion
                 has_unrepaired_defect = True
                 uncancelled_odd_sum += pair_residual
         else:
-            # Unpaired odd cluster
             has_unrepaired_defect = True
             uncancelled_odd_sum += s_i * w_i
 
-    # Phase 4: Compute Actual Duality Gap and Total Partition Sum
     actual_odd_sum = uncancelled_odd_sum
     duality_gap = abs(actual_odd_sum)
 
@@ -769,7 +721,6 @@ def execute_involution_cancellation(
         final_odd_sum = Fraction(0, 1)
     else:
         status = "UNREPAIRED_OBSTRUCTION"
-        # Ensure duality_gap > 0 when any odd cluster is unpaired or asymmetric
         if duality_gap == Fraction(0, 1):
             duality_gap = Fraction(1, 1)
         final_odd_sum = actual_odd_sum
@@ -787,9 +738,6 @@ def execute_involution_cancellation(
     )
 
 
-# ---------------------------------------------------------------------------
-# DDC DAG Trace Emission (5-Stage Causal Chain)
-# ---------------------------------------------------------------------------
 
 
 def emit_ddc_dag_trace(
@@ -941,9 +889,6 @@ def emit_ddc_dag_trace(
     return nodes
 
 
-# ---------------------------------------------------------------------------
-# Unified Topological Cluster 4D Solver
-# ---------------------------------------------------------------------------
 
 
 class TopologicalCluster4DSolver:
@@ -1048,23 +993,19 @@ class TopologicalCluster4DSolver:
         s_flip = self.fermion_determinant_sign(tau_c)
         tau_tau_c = self.cluster_involution_tau(tau_c)
 
-        # Check weight preservation
         w_tau = getattr(tau_c, "weight", w)
         weight_preserved = (w == w_tau)
 
-        # Involutive idempotency
         involution_intact = (
             self.fermion_determinant_sign(tau_tau_c) == s_orig
         )
 
-        # Distinguish odd sectors from neutral vacuum sectors
         is_odd = _is_odd_sector_cluster(cluster)
         doublet_sum = (s_orig + s_flip) * w
         if is_odd:
             exact_doublet = (doublet_sum == Fraction(0, 1))
             duality_gap_val = abs(doublet_sum)
         else:
-            # Neutral vacuum / zero-charge sectors are strictly positive (sigma = sigma_flip = +1)
             exact_doublet = (s_orig == 1 and s_flip == 1)
             duality_gap_val = Fraction(0, 1)
 

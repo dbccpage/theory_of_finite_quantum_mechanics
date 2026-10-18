@@ -51,20 +51,15 @@ def wigner_6j_exact(j1: int, j2: int, j3: int, j4: int, j5: int, j6: int) -> Fra
     {j1 j2 j3}
     {j4 j5 j6}
     """
-    # Check all four triangle conditions
     triads = [(j1, j2, j3), (j1, j5, j6), (j4, j2, j6), (j4, j5, j3)]
     for triad in triads:
         if not triangle_valid(*triad):
             return Fraction(0)
 
-    # Prefactor: product of four Δ(triad) values
-    # Δ(a,b,c)² = (a+b-c)!(a-b+c)!(-a+b+c)! / (a+b+c+1)!
-    # Product of 4 Δ² values, then take sqrt at the end
     prefactor_sq = Fraction(1)
     for triad in triads:
         prefactor_sq *= triangle_delta_squared(*triad)
 
-    # Perimeter sums p_i
     p = [
         j1 + j2 + j3,
         j1 + j5 + j6,
@@ -72,7 +67,6 @@ def wigner_6j_exact(j1: int, j2: int, j3: int, j4: int, j5: int, j6: int) -> Fra
         j4 + j5 + j3,
     ]
 
-    # Opposite-edge sums q_k
     q = [
         j1 + j2 + j4 + j5,
         j2 + j3 + j5 + j6,
@@ -92,11 +86,6 @@ def wigner_6j_exact(j1: int, j2: int, j3: int, j4: int, j5: int, j6: int) -> Fra
             den *= Fraction(math.factorial(qk - z))
         total += num / den
 
-    # Result = sqrt(prefactor_sq) * total.  A Fraction return value is honest
-    # only when the prefactor has a rational square root.  Refuse other cases
-    # instead of silently replacing an irrational algebraic value by a nearby
-    # bounded-denominator fraction.  For the regular spin-1 fixture:
-    # prefactor_sq = (1/24)^4, sqrt = (1/24)^2 = 1/576
     return _sqrt_fraction_exact(prefactor_sq) * total
 
 
@@ -104,25 +93,22 @@ def verify_regular_tetrahedron() -> dict:
     """Verify {1 1 1; 1 1 1} = 1/6 on the regular spin-1 tetrahedron."""
     result = wigner_6j_exact(1, 1, 1, 1, 1, 1)
 
-    # Intermediate values for audit
     p = [3, 3, 3, 3]
     q = [4, 4, 4]
     z_min, z_max = 3, 4
 
-    # Term at z=3
     num_3 = (-1) ** 3 * math.factorial(4)
     den_3_p = math.factorial(0) ** 4
     den_3_q = math.factorial(1) ** 3
     term_3 = num_3 // (den_3_p * den_3_q)
 
-    # Term at z=4
     num_4 = (-1) ** 4 * math.factorial(5)
     den_4_p = math.factorial(1) ** 4
     den_4_q = math.factorial(0) ** 3
     term_4 = num_4 // (den_4_p * den_4_q)
 
-    raw_sum = term_3 + term_4  # = -24 + 120 = 96
-    prefactor = Fraction(1, 576)  # Δ^4 = (1/24)^2 = 1/576
+    raw_sum = term_3 + term_4
+    prefactor = Fraction(1, 576)
 
     return {
         "6j_exact": result,

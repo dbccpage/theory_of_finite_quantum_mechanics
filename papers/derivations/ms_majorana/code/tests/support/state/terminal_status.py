@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/terminal_status.rs
-# Rust sha256: be29b347684ed451ca8ebf1e11276bfa8943484fbb25a631eec319bc4baaceea
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -89,7 +85,6 @@ TerminalStatus = Enum(
 TerminalStatus.__doc__ = "Structural mirror of Rust ``TerminalStatus`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL_TERMINAL_STATUSES: Any = None
 
 
@@ -178,6 +173,5 @@ def terminal_from_fiber(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

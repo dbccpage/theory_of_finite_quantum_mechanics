@@ -74,9 +74,6 @@ def _build_winding_loop_3d(
     return ClosedStringLoop3D(id=loop_id, coordinates=pts, lattice_dim=lattice_dim)
 
 
-# ===========================================================================
-# 1. 3D Meron String Loops: Extreme Winding & Linking
-# ===========================================================================
 
 
 class TestExtremeWinding3D:
@@ -94,7 +91,6 @@ class TestExtremeWinding3D:
         assert tau_loop.winding_vector == (-5, 7, -11)
         assert tau_loop.winding_parity == 1
 
-        # Cancellation in solver
         canc = execute_involution_cancellation([loop, tau_loop])
         assert canc.odd_sectors_cancelled == 2
         assert canc.duality_gap == Fraction(0, 1)
@@ -122,7 +118,6 @@ class TestExtremeWinding3D:
         assert loop_even.winding_vector == (50, -50, 0)
         assert loop_even.winding_parity == 0
 
-        # Even loop does not require cancellation, contributes +w to even sum
         w = Fraction(42, 1)
         canc = execute_involution_cancellation([loop_even], [w])
         assert canc.odd_sectors_cancelled == 0
@@ -179,13 +174,11 @@ class TestComplexInterlockingLinks3D:
         l3 = ClosedStringLoop3D("L3", l3_pts, lattice_dim=lattice)
 
         mat = exact_linking_matrix([l1, l2, l3])
-        # Check symmetric integer matrix with 0 diagonal
         assert mat[0][0] == 0 and mat[1][1] == 0 and mat[2][2] == 0
         assert mat[0][1] == mat[1][0]
         assert mat[1][2] == mat[2][1]
         assert mat[0][2] == mat[2][0]
 
-        # Topological chain structure
         assert abs(mat[0][1]) == 1
         assert abs(mat[1][2]) == 1
         assert mat[0][2] == 0
@@ -203,9 +196,6 @@ class TestComplexInterlockingLinks3D:
         assert mat[1][2] == 0 and mat[1][3] == 0
 
 
-# ===========================================================================
-# 2. 4D Half-Instantons: High-Charge & Symmetric Sectors
-# ===========================================================================
 
 
 class TestHalfInstantons4D:
@@ -219,7 +209,6 @@ class TestHalfInstantons4D:
         assert c.is_half_integer_charge is False
         assert fermion_determinant_sign(c) == 1
 
-        # Integer charge sector behaves as even/positive sector
         canc = execute_involution_cancellation([c])
         assert canc.odd_sectors_cancelled == 0
         assert canc.zero_sectors_positive is True
@@ -290,9 +279,6 @@ class TestHalfInstantons4D:
             assert fermion_determinant_sign(tau_tau_c) == fermion_determinant_sign(c)
 
 
-# ===========================================================================
-# 3. Proper Pairing and Zero Duality Gap
-# ===========================================================================
 
 
 class TestProperPairingCancellation:
@@ -324,14 +310,12 @@ class TestProperPairingCancellation:
         assert s2 == 1
         assert (s1 + s2) * weight == Fraction(0, 1)
 
-        # verify_zero_sum_doublet method on solver
         d_info = solver.verify_zero_sum_doublet((c, tau_c))
         assert d_info["exact_zero_sum_doublet"] is True
         assert d_info["duality_gap"] == "0"
         assert d_info["weight_preserved"] is True
         assert d_info["involution_intact"] is True
 
-        # Standalone verify_zero_sum_doublet from topological_half_instanton_4d
         from topological_half_instanton_4d import (
             verify_zero_sum_doublet as verify_instanton_doublet,
         )
@@ -340,11 +324,9 @@ class TestProperPairingCancellation:
         assert inst_info["duality_gap"] == "0"
         assert inst_info["pair_weighted_sum"] == "0"
 
-        # verify_doublet_rop ROP method
         rop_res = solver.verify_doublet_rop((c, tau_c))
         assert rop_res.is_ok
 
-        # execute_involution_cancellation
         canc = execute_involution_cancellation([c, tau_c])
         assert canc.odd_sectors_cancelled == 2
         assert canc.duality_gap == Fraction(0, 1)
@@ -355,7 +337,6 @@ class TestProperPairingCancellation:
         """Verifies that partner with identical sign is rejected with typed refusal."""
         solver = TopologicalCluster4DSolver()
         c = HalfInstantonCluster4D(1, 0, weight=Fraction(5, 3))
-        # Forged partner: swapped centers but sign_factor=1 (both signs = -1)
         c_forged = HalfInstantonCluster4D(0, 1, weight=Fraction(5, 3), sign_factor=1)
 
         rop_res = solver.verify_doublet_rop((c, c_forged))
@@ -385,9 +366,6 @@ class TestProperPairingCancellation:
         assert canc.duality_gap == abs(w2 - w1)
 
 
-# ===========================================================================
-# 4. Neutral Vacuum Sectors: Strict Positivity
-# ===========================================================================
 
 
 class TestNeutralVacuumSectors:
@@ -424,9 +402,6 @@ class TestNeutralVacuumSectors:
         assert canc.status == "EXACT_REPAIR"
 
 
-# ===========================================================================
-# 5. Mixed Ensembles: Dense Mixtures with Coprime Weights
-# ===========================================================================
 
 
 class TestDenseMixedEnsembles:
@@ -434,7 +409,6 @@ class TestDenseMixedEnsembles:
 
     def test_dense_mixed_ensemble_exact_repair(self) -> None:
         """Constructs dense mixture of odd 3D loops, odd 4D instantons, and neutral vacuum sectors."""
-        # Odd 4D instanton pairs
         w_4d_1 = Fraction(1000000007, 998244353)
         c1 = HalfInstantonCluster4D(17, 4, weight=w_4d_1)
         tau_c1 = orientation_flip(c1)
@@ -443,7 +417,6 @@ class TestDenseMixedEnsembles:
         c2 = HalfInstantonCluster4D(3, 0, weight=w_4d_2)
         tau_c2 = orientation_flip(c2)
 
-        # Odd 3D loop pairs
         w_3d_1 = Fraction(314159265, 271828182)
         l1 = _build_winding_loop_3d(5, -7, 11, loop_id="l1_odd")
         tau_l1 = loop_involution_tau(l1)
@@ -452,14 +425,12 @@ class TestDenseMixedEnsembles:
         l2 = _build_winding_loop_3d(100, 101, 102, loop_id="l2_odd")
         tau_l2 = loop_involution_tau(l2)
 
-        # Neutral 4D vacuum sectors
         w_vac1 = Fraction(500000000, 1000000001)
         vac1 = HalfInstantonCluster4D(10, 10, weight=w_vac1)
 
         w_vac2 = Fraction(7777777, 8888889)
-        vac2 = HalfInstantonCluster4D(4, 2, weight=w_vac2)  # Even charge 4-2=2
+        vac2 = HalfInstantonCluster4D(4, 2, weight=w_vac2)
 
-        # Even 3D loop
         w_loop_even = Fraction(9999991, 10000019)
         l_even = _build_winding_loop_3d(2, 4, 6, loop_id="l_even")
 
@@ -491,7 +462,6 @@ class TestDenseMixedEnsembles:
         vac = HalfInstantonCluster4D(10, 10, weight=w_vac)
 
         clusters = [c1, tau_c1, l1, tau_l1, vac]
-        # Perturb weight of c1
         delta = Fraction(1, 1000000000)
         tampered_weights = [w1 + delta, w1, w2, w2, w_vac]
 
@@ -511,7 +481,6 @@ class TestDenseMixedEnsembles:
         w_vac = Fraction(500000000, 1000000001)
         vac = HalfInstantonCluster4D(10, 10, weight=w_vac)
 
-        # c1 is unpaired
         clusters = [c1, l1, tau_l1, vac]
         weights = [w1, w2, w2, w_vac]
 
@@ -520,9 +489,6 @@ class TestDenseMixedEnsembles:
         assert canc.duality_gap == w1
 
 
-# ===========================================================================
-# 6. Zero Floating-Point Conversions AST Audit
-# ===========================================================================
 
 
 class TestZeroFloatPurity:

@@ -41,7 +41,6 @@ class RationalInterval:
 
     def mul(self, other: RationalInterval) -> RationalInterval:
         """Interval multiplication: [min(products), max(products)]."""
-        # Fast branch based on signs to avoid unnecessary Fraction multiplications
         s_lo, s_hi = self.lo, self.hi
         o_lo, o_hi = other.lo, other.hi
 
@@ -110,10 +109,8 @@ class RationalInterval:
         return hash((self.lo, self.hi))
 
 
-# A VectorBox is a sequence of 12 RationalIntervals representing [x0, y0, ..., x5, y5].
 VectorBox = Tuple[RationalInterval, ...]
 
-# A BasisBox is a sequence of 6 VectorBoxes representing candidate columns [U0, ..., U5].
 BasisBox = Tuple[VectorBox, ...]
 
 

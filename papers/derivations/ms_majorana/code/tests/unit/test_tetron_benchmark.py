@@ -1,6 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 
 """Invariants for the tetron homology benchmark and its certificate ledger.
 
@@ -32,7 +30,6 @@ from omega_engine.crates.majorana.engines.classifier import classify
 from omega_engine.crates.majorana.engines.harmonic import DEFAULT_BUDGET
 
 
-# --- the analytic census is the real one --------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -76,7 +73,6 @@ def test_only_the_zero_class_is_exact() -> None:
     assert all(c["phi1_weight"] >= 3 for c in typed)
 
 
-# --- iid noise is dominated by detected obstructions ---------------------------
 
 
 def test_iid_noise_is_dominated_by_open_obstructions() -> None:
@@ -96,7 +92,6 @@ def test_zero_noise_is_all_exact() -> None:
     assert row["terminals"] == {"Exact": 20}
 
 
-# --- structure rows agree with the carrier ------------------------------------
 
 
 @pytest.mark.parametrize("topology,expected", [("disk", 0), ("cylinder", 1), ("torus", 2)])
@@ -115,7 +110,6 @@ def test_structure_reports_code_distance_only_when_one_exists() -> None:
     assert structure_row("cylinder", 3, 4, DEFAULT_BUDGET)["code_distance"] == 4
 
 
-# --- the dense baseline refuses to allocate what it cannot -------------------
 
 
 def test_dense_baseline_refuses_infeasible_dimensions() -> None:
@@ -139,7 +133,6 @@ def test_timing_row_separates_the_two_costs() -> None:
     assert row["authority_effect"] == "None"
 
 
-# --- ledger replay -------------------------------------------------------------
 
 
 def test_ledger_rows_cover_every_terminal_and_replay(tmp_path) -> None:

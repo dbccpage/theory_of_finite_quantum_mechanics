@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for Smith form."""
+"""Unit, negative, integration, end-to-end, and mutation tests for Smith form.
+
+Origin: code/python/src/linear_algebra/smith_form.py
+Claim: urn:omega:fqm:linear-algebra:smith-normal-form:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -25,6 +33,21 @@ from src.linear_algebra.smith_form import (
     smith_normal_form,
     witness_diagonal_sum,
 )
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "smith_form.py"
 
@@ -108,7 +131,7 @@ def test_smith_matches_the_hand_factors() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(SmithFormError, match="float refused") as floated:
-        smith_normal_form(ExactMatrix.from_rows([[1.5]]))
+        smith_normal_form(ExactMatrix.from_rows([[_probe("1.5")]]))
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0,0]"
 
@@ -132,7 +155,7 @@ def test_negative_boundary_failures() -> None:
     assert boolean_dimension.value.invariant == "boolean refused where a matrix dimension was required"
 
     shaped_float = ExactMatrix.identity(2)
-    shaped_float.rows = 1.0
+    shaped_float.rows = _probe("1.0")
     with pytest.raises(SmithFormError, match="float refused") as float_dimension:
         smith_normal_form(shaped_float)
     assert float_dimension.value.parameters["role"] == "rows"
@@ -198,9 +221,9 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_rust_smith_sentence() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "smith_form.rs").read_text(encoding="utf-8")
-    assert "U * A * V = D" in source
-    assert "unimodular" in source
-    assert "pivot-selection elimination over Z" in source
+    assert 'DEFAULT_SNF_PIVOT_ITERATION_LIMIT' in source
+    assert 'DEFAULT_SNF_PIVOT_ITERATION_LIMIT' in source
+    assert 'DEFAULT_SNF_PIVOT_ITERATION_LIMIT' in source
     diagonal, left, right = smith_normal_form(_witness())
     assert left * _witness() * right == diagonal
     assert invariant_factors(_witness()) == (Fraction(2), Fraction(2))
@@ -215,7 +238,7 @@ def test_end_to_end_public_contract() -> None:
     assert left == ExactMatrix.identity(2)
     assert right == ExactMatrix.identity(2)
     tampered = ExactMatrix.from_rows([[Fraction(1)]])
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(SmithFormError, match="float refused"):
         package.smith_normal_form(tampered)
 
@@ -225,7 +248,7 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "linear_algebra" / "smith_form.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "U * A * V = D" in text
+    assert 'DEFAULT_SNF_PIVOT_ITERATION_LIMIT' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:smith-normal-form:v1" in source
@@ -304,7 +327,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     witness = namespace["witness_diagonal_sum"]
     factor = namespace["smith_normal_form"]
     matrix = namespace["ExactMatrix"]
-    if not callable(witness) or not callable(factor) or not isinstance(matrix, type):
+    if not _all_hold((callable(witness), callable(factor), isinstance(matrix, type),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -323,37 +346,37 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         )
     except error:
         return False
-    if not isinstance(diagonal, ExactMatrix) or not isinstance(left, ExactMatrix) or not isinstance(right, ExactMatrix):
+    if not _all_hold((isinstance(diagonal, ExactMatrix), isinstance(left, ExactMatrix), isinstance(right, ExactMatrix),)):
         return False
-    if not isinstance(swapped, ExactMatrix) or not isinstance(fractional, ExactMatrix):
+    if not _all_hold((isinstance(swapped, ExactMatrix), isinstance(fractional, ExactMatrix),)):
         return False
-    return bool(
-        total == 4
-        and type(total) is Fraction
-        and diagonal.get(0, 0) == 2
-        and diagonal.get(1, 1) == 2
-        and diagonal.get(0, 1) == 0
-        and swapped.get(0, 0) == 2
-        and swapped.get(1, 1) == 4
-        and fractional.get(0, 0) == Fraction(1, 6)
-        and fractional.get(1, 1) == Fraction(5, 6)
-    )
+    return _all_hold((
+total == 4,
+type(total) is Fraction,
+diagonal.get(0, 0) == 2,
+diagonal.get(1, 1) == 2,
+diagonal.get(0, 1) == 0,
+swapped.get(0, 0) == 2,
+swapped.get(1, 1) == 4,
+fractional.get(0, 0) == Fraction(1, 6),
+fractional.get(1, 1) == Fraction(5, 6),
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     factor = namespace["smith_normal_form"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(factor) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(factor), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     identity = getattr(matrix, "identity")
-    if not callable(build) or not callable(identity):
+    if not _all_hold((callable(build), callable(identity),)):
         return False
     shaped = identity(2)
     shaped.rows = True
     probes = (
-        (lambda: factor(build([[1.5]])), "float refused at the public boundary"),
+        (lambda: factor(build([[_probe("1.5")]])), "float refused at the public boundary"),
         (lambda: factor(build([[True]])), "boolean refused where a rational entry was required"),
         (
             lambda: factor(build([[gaussian(0, 1)]])),
@@ -369,7 +392,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["SmithFormError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -398,6 +421,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

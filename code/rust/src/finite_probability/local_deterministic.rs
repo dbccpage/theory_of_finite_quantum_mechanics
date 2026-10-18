@@ -1,6 +1,3 @@
-//! Local deterministic vertices of a declared finite measurement scenario.
-//! Contexts name jointly read variables; each assignment contributes one point mass
-//! per context. This carrier construction makes no convex or contextuality verdict.
 use omega_number_theory::rational::{ri, Rational};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -20,8 +17,6 @@ pub enum LocalVertexError {
     #[error("the deterministic vertex enumeration exceeds its declared limits")]
     Budget,
 }
-/// Outcome order inside context c is its bit pattern in the listed variable order.
-/// All sizes are checked against declared budgets before allocation or enumeration.
 pub fn binary_local_vertices(
     variables: usize,
     contexts: &[Vec<usize>],
@@ -33,10 +28,6 @@ pub fn binary_local_vertices(
     finite_local_vertices(&vec![2; variables], contexts, limits)
 }
 
-/// Mixed-radix generalization. `outcomes[v]` is the positive outcome count for
-/// variable v; variable 0 (and the first variable in each context) varies fastest.
-/// Enumerates ALL assignments, never a sampled support. Binary callers retain
-/// their original enumeration order and domain bounds.
 pub fn finite_local_vertices(
     outcomes: &[usize],
     contexts: &[Vec<usize>],
@@ -99,7 +90,7 @@ pub fn finite_local_vertices(
             let (mut local, mut stride) = (0, 1);
             for &v in c {
                 local += ((assignment / strides[v]) % outcomes[v]) * stride;
-                stride *= outcomes[v]; // bounded above by the checked context size
+                stride *= outcomes[v];
             }
             point[offset + local] = ri(1);
         }

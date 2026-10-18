@@ -1,23 +1,3 @@
-//! ORT / process NDJSON gate for `dda_sprint_trajectory` tapes.
-//!
-//! Schema id: `dda_sprint_trajectory.v1`
-//!
-//! Integrity mode requires each record to carry:
-//! - `run_id`
-//! - step index: `step_index` or `step_id`
-//! - residual norm Φ₁: `phi1` or `residual_norm` or `residual_energy`
-//! - state fingerprint: `state_vector` or `state_fingerprint` or
-//!   both `input_hash` and `output_hash`
-//! - `authority_effect` exactly equal to the string `"None"`
-//!
-//! When any record carries `step_hash`, the chain is re-derived with SHA-256
-//! over the JSON object with `step_hash` excluded (same rule as Python
-//! `trajectory_recorder._step_hash`).
-//!
-//! Historical ORT process tapes classify as `LEGACY_PROCESS_TAPE` and fail
-//! integrity mode without rewriting those files.
-//!
-//! AuthorityEffect: None. Diagnostic gate only; mints no authority.
 
 use serde_json::{Map, Value};
 use sha2::{Digest, Sha256};
@@ -151,7 +131,6 @@ fn record_integrity_violations(line: usize, record: &Map<String, Value>) -> Vec<
     out
 }
 
-/// Canonical SHA-256 of record fields excluding `step_hash` (Python parity).
 pub fn step_hash(record: &Map<String, Value>) -> String {
     let mut payload = Map::new();
     for (k, v) in record {
@@ -159,18 +138,13 @@ pub fn step_hash(record: &Map<String, Value>) -> String {
             payload.insert(k.clone(), v.clone());
         }
     }
-    // BTreeMap ordering via serde_json::Map is insertion order; re-serialize
-    // with sorted keys by rebuilding through BTreeMap.
     let ordered: std::collections::BTreeMap<_, _> = payload.into_iter().collect();
     let encoded = serde_json::to_string(&ordered).expect("json serialize step payload");
-    // Python uses separators=(',', ':') and sort_keys=True — serde_json default
-    // is compact without spaces, matching that.
     let mut hasher = Sha256::new();
     hasher.update(encoded.as_bytes());
     format!("{:x}", hasher.finalize())
 }
 
-/// Verify step_hash chain across records (Python `verify_trajectory_chain` twin).
 pub fn verify_trajectory_chain(records: &[Map<String, Value>]) -> Result<(), String> {
     if records.is_empty() {
         return Ok(());
@@ -252,7 +226,6 @@ fn load_ndjson_path(path: &Path) -> Result<NdjsonLoadResult, String> {
     Ok((records, violations))
 }
 
-/// Validate a DDA sprint trajectory tape from in-memory records.
 pub fn validate_dda_sprint_trajectory_records(
     records: &[Map<String, Value>],
     load_violations: Vec<Violation>,
@@ -355,7 +328,6 @@ pub fn validate_dda_sprint_trajectory_records(
     }
 }
 
-/// Validate a DDA sprint trajectory NDJSON file.
 pub fn validate_dda_sprint_trajectory_path(
     path: &Path,
     require_integrity_v1: bool,
@@ -368,12 +340,6 @@ pub fn validate_dda_sprint_trajectory_path(
     ))
 }
 
-/// Build one INTEGRITY_V1 record map for ORT / sprint emitters (STORY-ORT-DDA-002).
-///
-/// When `chain` is true, `prev_step_hash` is stored and `step_hash` is derived
-/// via [`step_hash`]. Authority is always the string `"None"`. `phi1` is exact
-/// and is written as its canonical rational string (`"1"`, `"1/2"`), never as a
-/// JSON float.
 #[allow(clippy::too_many_arguments)]
 pub fn emit_integrity_v1_record(
     run_id: &str,
@@ -534,7 +500,6 @@ mod tests {
 
         let mut edited = r0;
         edited.insert("phi1".into(), json!(99.0));
-        // leave stale step_hash
         let broken = validate_dda_sprint_trajectory_records(&[edited, r1], vec![], true);
         assert!(!broken.ok);
         assert!(broken.violations.iter().any(|v| v.code == "CHAIN_BROKEN"));

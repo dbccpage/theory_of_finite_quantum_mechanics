@@ -1,16 +1,3 @@
-//! Exact scalars with a complex conjugation, for unitary and Hermitian constructions.
-//!
-//! A [`ComplexField`] is an exact field of the `linear_algebra::scalars` tower that is a
-//! subfield of `C` closed under complex conjugation, together with the few constants that
-//! the constructions of this crate need: the embedding of `Q`, and `i` and `1/sqrt 2` when
-//! the field contains them. The implementations are for the fields of
-//! `omega_number_theory`: `Q`, `Q(i)`, `Q(zeta_5)`, `Q(zeta_8)`, `Q(zeta_12)`,
-//! `Q(zeta_24)` and `Q(zeta_N)` for any compile-time conductor `N`.
-//!
-//! The adjoint, Hermitian and unitary predicates are here as well; they refuse non-square
-//! input with a typed error instead of answering "no".
-//!
-//! AuthorityEffect: None.
 
 use std::hash::Hash;
 
@@ -22,15 +9,10 @@ use omega_number_theory::cyclotomic::{Cyc12, Cyc24, Cyc5, Cyc8, GaussianRat};
 use omega_number_theory::cyclotomic_field::Cyclotomic;
 use omega_number_theory::rational::{ri, Rational};
 
-/// An exact subfield of `C` closed under complex conjugation.
 pub trait ComplexField: Field + ExactRing + Hash + Eq {
-    /// The complex conjugate.
     fn conjugate(&self) -> Self;
-    /// The rational `r` as an element of the field.
     fn from_rational(r: &BigRational) -> Self;
-    /// `i`, when the field contains it.
     fn imaginary_unit() -> Option<Self>;
-    /// `1 / sqrt 2`, when the field contains it.
     fn inverse_sqrt_two() -> Option<Self>;
 }
 
@@ -135,11 +117,9 @@ impl<const N: usize> ComplexField for Cyclotomic<N> {
     fn from_rational(r: &BigRational) -> Self {
         Cyclotomic::rational(r.clone())
     }
-    /// `i = zeta_N^(N/4)` when `4 | N`.
     fn imaginary_unit() -> Option<Self> {
         (N % 4 == 0).then(|| Cyclotomic::zeta(i64::try_from(N / 4).expect("a conductor fits i64")))
     }
-    /// `1/sqrt 2 = (zeta_8 + zeta_8^-1) / 2` when `8 | N`.
     fn inverse_sqrt_two() -> Option<Self> {
         (N % 8 == 0).then(|| {
             let k = i64::try_from(N / 8).expect("a conductor fits i64");
@@ -150,12 +130,10 @@ impl<const N: usize> ComplexField for Cyclotomic<N> {
     }
 }
 
-/// The integer `n` as a field element.
 pub fn from_integer<F: ComplexField>(n: i64) -> F {
     F::from_rational(&ri(n))
 }
 
-/// The adjoint `A† = conj(A)^T`.
 pub fn dagger<F: ComplexField>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, ExactFieldError> {
     Ok(BasicMatrix::try_from_fn_result::<_, ExactFieldError>(
         m.cols(),
@@ -164,7 +142,6 @@ pub fn dagger<F: ComplexField>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, Exa
     )?)
 }
 
-/// `A = A†`; a non-square matrix is refused.
 pub fn is_hermitian<F: ComplexField>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     if m.rows() != m.cols() {
         return Err(ExactFieldError::NotSquare {
@@ -176,7 +153,6 @@ pub fn is_hermitian<F: ComplexField>(m: &BasicMatrix<F>) -> Result<bool, ExactFi
     Ok(dagger(m)? == *m)
 }
 
-/// `A† A = I`; a non-square matrix is refused.
 pub fn is_unitary<F: ComplexField>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     if m.rows() != m.cols() {
         return Err(ExactFieldError::NotSquare {
@@ -188,7 +164,6 @@ pub fn is_unitary<F: ComplexField>(m: &BasicMatrix<F>) -> Result<bool, ExactFiel
     mx::is_identity_matrix(&mx::multiply(&dagger(m)?, m)?)
 }
 
-/// The Kronecker product of a list of matrices, left to right (the empty list is the `1 x 1` identity).
 pub fn kronecker_all<F: ComplexField>(
     factors: &[BasicMatrix<F>],
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
@@ -199,8 +174,6 @@ pub fn kronecker_all<F: ComplexField>(
     Ok(acc)
 }
 
-/// A bounded root-order query. None means the declared bound was insufficient;
-/// use cyclotomic_root_order for a field-wide infinite-order decision.
 pub fn multiplicative_order<
     T: linear_algebra::scalars::Field + linear_algebra::scalars::ExactRing,
 >(
@@ -220,8 +193,6 @@ pub fn multiplicative_order<
     None
 }
 
-/// Every root of unity in Q(zeta_N) has order dividing lcm(N,2).
-/// This finite field-wide bound therefore distinguishes finite from infinite order.
 pub fn cyclotomic_root_order<const N: usize>(z: &Cyclotomic<N>) -> Option<usize> {
     let bound = if N % 2 == 0 { N } else { N.checked_mul(2)? };
     let mut power = Cyclotomic::<N>::one();
@@ -240,7 +211,6 @@ mod tests {
     use omega_number_theory::rational::rq;
 
     fn check_field<F: ComplexField + std::fmt::Debug>() {
-        // Conjugation is an involutive ring automorphism on a sample built from the field's constants.
         let half = F::from_rational(&rq(1, 2));
         let third = F::from_rational(&rq(-1, 3));
         let mut sample = vec![half, third, from_integer::<F>(2)];

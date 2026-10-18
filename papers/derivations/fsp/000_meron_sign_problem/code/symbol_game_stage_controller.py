@@ -20,7 +20,6 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-# Path resolution
 CODE_DIR = Path(__file__).resolve().parent
 REPO_ROOT = CODE_DIR.parents[3]
 if str(CODE_DIR) not in sys.path:
@@ -28,19 +27,19 @@ if str(CODE_DIR) not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     validate_packet_semantics,
 )
 
-from meron_exact_model import (  # noqa: E402
+from meron_exact_model import (
     meron_database,
     meron_summary,
     meron_transfer_trace,
     rational,
 )
-from oracle import BlindClusterOracle  # noqa: E402
+from oracle import BlindClusterOracle
 
 RESULTS_DIR = CODE_DIR / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -80,8 +79,6 @@ class SymbolGameStageController:
         neg_configs = self.summary["negative_configurations"]
         avg_sign = self.summary["average_sign"]
 
-        # Gamma38 wire: op<<11>op<<1><nodes>>op<<10><edges>>>
-        # Encoded as graph container opcode <11>
         wire_str = f"op<<11>op<<1><{bin(num_nodes)[2:]}>>op<<10><0><1>>>"
         parsed = parse_packet(wire_str)
         validate_packet_semantics(parsed)
@@ -114,9 +111,7 @@ class SymbolGameStageController:
     def stage_1_probe_breakup(self) -> Dict[str, Any]:
         """Stage 1: Probe local plaquette breakup into disjoint cycles."""
         node_id = "DAG_N01_BREAKUP"
-        # Plaquette gate factors into vertical (a=1) and horizontal (b=(q-1)/2=1) bond pairs.
-        # This yields closed loop (1-cycle) components.
-        wire_str = "op<<101><10><0><1><10>>"  # 2-simplex / plaquette cell decomposition
+        wire_str = "op<<101><10><0><1><10>>"
         parsed = parse_packet(wire_str)
         validate_packet_semantics(parsed)
 
@@ -149,7 +144,6 @@ class SymbolGameStageController:
         odd_winding_subgraphs = sum(1 for r in orbits if r[2] > 0)
         zero_odd_subgraphs = sum(1 for r in orbits if r[2] == 0)
 
-        # Wire: Level 2 Obstruction Witness opcode <100>: op<<100><>op<<11>...>>
         wire_str = "op<<100><>op<<11>op<<1><10>>op<<1><11>>>>"
         parsed = parse_packet(wire_str)
         validate_packet_semantics(parsed)
@@ -180,8 +174,7 @@ class SymbolGameStageController:
         req_node_id = "DAG_N03_LIFT_REQ"
         grant_node_id = "DAG_N03_LIFT_GRANT"
 
-        # Request node
-        wire_req = "op<<1100><liftreq>>"  # Typed request
+        wire_req = "op<<1100><liftreq>>"
         parsed_req = parse_packet(wire_req)
         validate_packet_semantics(parsed_req)
 
@@ -202,9 +195,7 @@ class SymbolGameStageController:
         }
         self.dag_nodes.append(req_node)
 
-        # Host evaluates the lift:
-        # Check if tau: s_i -> -s_i satisfies w(tau(C)) = w(C) and sigma(tau(C)) = -sigma(C)
-        wire_grant = "op<<0><><0><1>>"  # Level 1 Up-Lift opcode <0>
+        wire_grant = "op<<0><><0><1>>"
         parsed_grant = parse_packet(wire_grant)
         validate_packet_semantics(parsed_grant)
 
@@ -242,7 +233,6 @@ class SymbolGameStageController:
         trace = meron_transfer_trace(sites=self.sites, repetitions=self.repetitions, q=self.q)
         assert str(exact_Z) == trace
 
-        # Wire: RationalValue opcode <10010>: op<<10010><sign><num><den>>
         bin_z = bin(exact_Z)[2:]
         wire_str = f"op<<10010><0><{bin_z}><1>>"
         parsed = parse_packet(wire_str)

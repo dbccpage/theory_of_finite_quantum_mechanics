@@ -1,7 +1,3 @@
-//! Clean-room exact arithmetic in `Q(zeta_120)`.
-//!
-//! This field is used only for finite MUB control lanes that need fifth roots
-//! of unity while preserving the existing d=2/d=3/d=4 phases.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -10,8 +6,6 @@ use crate::rational::ri;
 
 const DEGREE: usize = 32;
 
-// Phi_120(x) = x^32 + x^28 - x^20 - x^16 - x^12 + x^4 + 1.
-// Coefficients c_j for x^32 + sum_{j<32} c_j x^j.
 const PHI120_LOW: [i64; DEGREE] = [
     1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
     0,

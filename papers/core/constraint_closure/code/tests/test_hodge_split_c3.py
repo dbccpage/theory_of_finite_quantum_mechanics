@@ -89,12 +89,12 @@ class TestRepresentativeOptimality:
     )
     def test_R_rep_equals_one(self, omega):
         result = compute_split_inflation(omega)
-        if abs(np.sum(omega)) > 1e-12:  # non-coboundary
+        if abs(np.sum(omega)) > 1e-12:
             assert abs(result["R_rep"] - 1.0) < 1e-12
 
     def test_coboundary_is_indeterminate(self):
         """For exact coboundaries (s=0), R_rep is 0/0."""
-        omega = np.array([1.0, -1.0, 0.0])  # sum = 0, in im(d0)
+        omega = np.array([1.0, -1.0, 0.0])
         result = compute_split_inflation(omega)
         assert math.isnan(result["R_rep"])
 

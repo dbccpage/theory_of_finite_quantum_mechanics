@@ -3,9 +3,6 @@ Pytest Test Suite for Universe CODA (CODA-000 through CODA-009 & OE-000 Prime Tr
 AuthorityEffect: None.
 """
 
-# Recovered with the engine: this is universe_coda/test_universe_coda.py
-# (deleted by 5449b85238), repointed at the recovered
-# anomalon.code.coda_engine surface.
 from omega_engine.crates.engine.eng_coda import (
     SelfRepairAdjunction,
     CandidatePacket,
@@ -92,7 +89,7 @@ def test_oe_000_7step_local_declaration():
     carrier = SimplicialCarrier(vertices=["v0", "v1"], edges=[("v0", "v1")])
     observer = ObserverPacket(observer_id="obs_01", gauge_name="L1_norm")
     h1 = {("v0", "v1"): 1.5}
-    
+
     decl = LocalDeclarationOrder(
         step0_grounding_hash="sha256_abc",
         step1_carrier=carrier,
@@ -119,7 +116,6 @@ def test_repair_to_closed_l2_hodge_projection():
         edges=[(0, 1), (1, 2), (0, 2)],
         faces=[(0, 1, 2)]
     )
-    # Non-closed 1-cochain h with face charge = 1 + 1 - 0 = 2 != 0
     h1 = {(0, 1): 1.0, (1, 2): 1.0, (0, 2): 0.0}
 
     receipt = ObstructionCalculus.repair_to_closed_l2(carrier, h1)
@@ -128,7 +124,6 @@ def test_repair_to_closed_l2_hodge_projection():
     assert receipt["gamma_2_before"] > 0.0
     assert receipt["gamma_2_after"] < 1e-6
 
-    # Verify d1(h_closed) == 0
     h_closed = receipt["h_closed"]
     c2_closed = CohomologicalEngine.d1(carrier, h_closed)
     assert abs(c2_closed[(0, 1, 2)]) < 1e-6
@@ -150,14 +145,12 @@ def test_repair_to_closed_local_stencil():
 def test_pullback_carrier_span_options():
     carrier_A = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2)], faces=[])
     carrier_B = SimplicialCarrier(vertices=[1, 2, 3], edges=[(1, 2), (2, 3)], faces=[])
-    
-    # Strict option A
+
     pulled_A, loss_A = ObstructionCalculus.pullback_carrier_span(carrier_A, carrier_B, "strict")
     assert pulled_A.vertices == [1, 2]
     assert pulled_A.edges == [(1, 2)]
     assert len(loss_A) == 0
 
-    # Homotopy coherent option B
     pulled_B, loss_B = ObstructionCalculus.pullback_carrier_span(carrier_A, carrier_B, "homotopy_coherent")
     assert len(loss_B) == 1
 
@@ -215,12 +208,10 @@ def test_3way_hodge_decomposition():
 
 
 def test_compute_exact_betti_1():
-    # Triangle with 1 face => contractible b1 = 0
     triangle = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[(0, 1, 2)])
     b1_tri, _, _ = ObstructionCalculus.compute_exact_betti_1(triangle)
     assert b1_tri == 0
 
-    # 1-cycle without face => b1 = 1
     cycle = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[])
     b1_cyc, _, _ = ObstructionCalculus.compute_exact_betti_1(cycle)
     assert b1_cyc == 1
@@ -230,18 +221,15 @@ def test_extract_orthonormal_harmonic_basis():
     cycle = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[])
     B_on = ObstructionCalculus.extract_orthonormal_harmonic_basis(cycle)
     assert B_on.shape == (3, 1)
-    # Norm of basis vector is 1
     assert abs(np.linalg.norm(B_on) - 1.0) < 1e-6
 
 
 def test_evaluate_dda_transition():
-    # 1. Exact class => emit T
     receipt_exact = {"gamma_2_after": 0.0, "harmonic_mass": 0.0, "loss_ledger": []}
     trans_exact = ObstructionCalculus.evaluate_dda_transition(receipt_exact)
     assert trans_exact["next_letter"] == "T"
     assert trans_exact["reason"] == "EXACT_CLASS"
 
-    # 2. Harmonic residual survives => emit M
     receipt_harm = {"gamma_2_after": 0.0, "harmonic_mass": 0.5, "loss_ledger": []}
     trans_harm = ObstructionCalculus.evaluate_dda_transition(receipt_harm)
     assert trans_harm["next_letter"] == "M"
@@ -282,7 +270,6 @@ def test_monotone_l1_cycle_step():
         edges=[(0, 1), (1, 2), (0, 2)],
         faces=[]
     )
-    # Non-minimal l1 1-cochain h = (2, 2, 2), cycle = (1, 1, -1)
     h1 = {(0, 1): 2.0, (1, 2): 2.0, (0, 2): 2.0}
     c_cochain = {(0, 1): 1.0, (1, 2): 1.0, (0, 2): -1.0}
 
@@ -294,15 +281,12 @@ def test_fet_triad_and_merkle_verification():
     )
     h1 = {(0, 1): 1.0, (1, 2): 1.0, (0, 2): 0.0}
 
-    # 1. Functional
     func_vals = ResidualFunctional.evaluate(carrier, h1)
     assert func_vals["gamma_2"] > 0.0
 
-    # 2. Evaluator
     eval_receipt = ResidualEvaluator.evaluate(func_vals)
     assert eval_receipt["label"] == "ACTIVE_CLOSURE_FAILURE"
 
-    # 3. Terminalizer & Merkle Tape
     engine = PrimeTriadEngine()
     terminalizer = DDATerminalizer(engine, genesis_hash="GENESIS_TEST")
 
@@ -311,14 +295,12 @@ def test_fet_triad_and_merkle_verification():
     assert status == "STEP_RECORDED"
     assert len(terminalizer.merkle_tape) == 1
 
-    # 4. Verify Tape in O(N)
     valid, msg = verify_merkle_tape(terminalizer.merkle_tape, genesis_hash="GENESIS_TEST")
     assert valid is True
     assert msg == "MERKLE_TAPE_VERIFIED"
 
 
 def test_compute_exact_betti_1_with_snf():
-    # Pure cycle => b1 = 1, SNF d0 = [1, 1]
     cycle = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[])
     res_cycle = ObstructionCalculus.compute_exact_betti_1_with_snf(cycle)
     assert res_cycle["b1"] == 1
@@ -326,22 +308,18 @@ def test_compute_exact_betti_1_with_snf():
     assert res_cycle["snf_diagonal_d0"] == [1, 1]
 
 def test_compute_exact_betti_numbers():
-    # 1. Filled triangle => (b0=1, b1=0, b2=0)
     tri = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[(0, 1, 2)])
     res_tri = ObstructionCalculus.compute_exact_betti_numbers(tri)
     assert (res_tri["b0"], res_tri["b1"], res_tri["b2"]) == (1, 0, 0)
 
-    # 2. Pure 1-cycle => (b0=1, b1=1, b2=0)
     cycle = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[])
     res_cyc = ObstructionCalculus.compute_exact_betti_numbers(cycle)
     assert (res_cyc["b0"], res_cyc["b1"], res_cyc["b2"]) == (1, 1, 0)
 
-    # 3. Path of 2 edges => (b0=1, b1=0, b2=0)
     path = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2)], faces=[])
     res_path = ObstructionCalculus.compute_exact_betti_numbers(path)
     assert (res_path["b0"], res_path["b1"], res_path["b2"]) == (1, 0, 0)
 
-    # 4. Two disconnected edges => (b0=2, b1=0, b2=0)
     disc = SimplicialCarrier(vertices=[0, 1, 2, 3], edges=[(0, 1), (2, 3)], faces=[])
     res_disc = ObstructionCalculus.compute_exact_betti_numbers(disc)
     assert (res_disc["b0"], res_disc["b1"], res_disc["b2"]) == (2, 0, 0)
@@ -349,26 +327,21 @@ def test_compute_exact_betti_numbers():
 
 def test_solve_l1_gauge_minimization():
     carrier = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[])
-    # Cochain d0(alpha) for alpha = (1, 3, 7) => d0 = (2, 4, 6)
     cochain = np.array([2.0, 4.0, 6.0])
     min_l1, alpha_opt = ObstructionCalculus.solve_l1_gauge_minimization(carrier, cochain)
-    # Since cochain is exact, min_l1 should be 0.0
     assert abs(min_l1) < 1e-6
 
 
 def test_coda_deriv_001_autopoietic_adjunction():
     carrier = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[])
     f0 = {0: 1.0, 1: 4.0, 2: 9.0}
-    
-    # 1. Section functor F
+
     f_alpha = SelfRepairAdjunction.section_functor_F(carrier, f0)
     assert f_alpha[(0, 1)] == 3.0
-    
-    # 2. Galois insertion verify
+
     galois_ok = SelfRepairAdjunction.verify_galois_insertion(carrier, f0)
     assert galois_ok is True
-    
-    # 3. Self-Repair stability verify
+
     h1 = {e: float(val) for e, val in f_alpha.items()}
     stab_ok = SelfRepairAdjunction.verify_autopoietic_stability(carrier, h1)
     assert stab_ok is True
@@ -378,19 +351,18 @@ def test_coda_deriv_004_colimit_aggregation_engine():
     carrier = SimplicialCarrier(vertices=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)], faces=[(0, 1, 2)])
     lc1 = {(0, 1): 1.0, (1, 2): 2.0, (0, 2): 3.0}
     lc2 = {(0, 1): 2.0, (1, 2): 4.0, (0, 2): 6.0}
-    
+
     global_cochain = ColimitAggregationEngine.aggregate_local_cochains(carrier, [lc1, lc2])
     assert global_cochain[(0, 1)] == 1.5
     assert global_cochain[(1, 2)] == 3.0
     assert global_cochain[(0, 2)] == 4.5
-    
+
     res = ColimitAggregationEngine.verify_bilipschitz_defect_bounds(carrier, global_cochain)
     assert res["status"] == "BILIPSCHITZ_BOUNDS_VERIFIED"
     assert res["bounds_hold"] is True
 
 
 def test_coda_deriv_003_monotone_l1_multi_cycle_descent():
-    # 2-cycle carrier (figure 8 graph) with b1 = 2
     carrier = SimplicialCarrier(
         vertices=[0, 1, 2, 3],
         edges=[(0, 1), (1, 2), (0, 2), (2, 3), (0, 3)],

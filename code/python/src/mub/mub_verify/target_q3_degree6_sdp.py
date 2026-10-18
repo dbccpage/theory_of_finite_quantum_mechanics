@@ -31,16 +31,12 @@ from .target_a4_gram_certifier import (
     exact_rational,
 )
 
-# Constants & Epistemic Firewall
 SCHEMA_VERSION: str = "omega.mub.degree6-diagnostics.v2"
 FIREWALL_LINE: str = "stated region only; mints no authority"
 AUTHORITY_EFFECT: str = "None"
 SCOPE_STRING: str = "experimental_coefficient_projection_only_no_moment_soundness"
 
-# Dimensions of the proposed degree-6 labels; no Level-3 relaxation is established.
-# Invariant: 1 (identity) + 4 (A_a) + 6 (P_ab) + 6 (Q_ab) + 4 (T_abc triples) = 21
 DEG6_INVARIANT_DIM: int = 21
-# Extended: 1 + 24 (single projectors) + 6 (P_ab) + 4 (T_abc) = 35
 DEG6_EXTENDED_DIM: int = 35
 
 
@@ -50,9 +46,6 @@ def _require_exact(value: Any) -> Fraction:
     return Fraction(value)
 
 
-# ==============================================================================
-# Zero Floating-Point Type Auditor
-# ==============================================================================
 
 def assert_no_float(obj: Any, path: str = "root") -> None:
     """Recursively verify that no float or complex types exist in any data structure."""
@@ -72,9 +65,6 @@ def assert_no_float(obj: Any, path: str = "root") -> None:
             assert_no_float(getattr(obj, f_name), f"{path}.{f_name}")
 
 
-# ==============================================================================
-# Exact Rational LDL^T Decomposition & Pivot Verifier
-# ==============================================================================
 
 def ldlt_decomposition_rational(
     m: Sequence[Sequence[Fraction]],
@@ -139,9 +129,6 @@ def ldlt_pivots_strictly_positive(
     return pivots
 
 
-# ==============================================================================
-# Basis Monomial Indexers (Degree <= 3 Monomials)
-# ==============================================================================
 
 def get_basis_pairs() -> List[Tuple[int, int]]:
     """Return the 6 lexicographically ordered basis pairs (a, b) with 0 <= a < b < 4."""
@@ -162,9 +149,6 @@ def get_basis_triples() -> List[Tuple[int, int, int]]:
     return triples
 
 
-# ==============================================================================
-# Degree-6 Symmetry-Reduced Moment Matrix
-# ==============================================================================
 
 def cyc_real_rational(z: Cyc24) -> Fraction:
     """Return Re(z) only when it lies in Q; reject non-rational components."""
@@ -449,9 +433,6 @@ def build_degree6_extended_diagnostic_matrix(
     return m6
 
 
-# ==============================================================================
-# Dual Witness Factored Constructors
-# ==============================================================================
 
 @dataclass(frozen=True)
 class DualWitnessRational:
@@ -542,8 +523,8 @@ def build_invariant_dual_witness_x0(strict: bool = True) -> DualWitnessRational:
     """
     z = [Fraction(0) for _ in range(DEG6_INVARIANT_DIM)]
     z[0] = Fraction(-1)
-    z[1] = Fraction(1)  # A_0
-    z[4] = Fraction(1)  # A_3
+    z[1] = Fraction(1)
+    z[4] = Fraction(1)
 
     vectors = [z]
     weights = [Fraction(1)]
@@ -604,9 +585,6 @@ def build_extended_dual_witness_s6(strict: bool = True) -> DualWitnessRational:
     )
 
 
-# ==============================================================================
-# Certificate Receipts & Master Solver
-# ==============================================================================
 
 @dataclass(frozen=True)
 class DualWitnessReceipt:
@@ -672,7 +650,6 @@ def build_block_diagonal_gramian() -> List[List[Cyc24]]:
 
 def evaluate_target_q3_diagnostics() -> Degree6DiagnosticReport:
     """Evaluate two experimental coefficient matrices without candidate certification."""
-    # 1. Diagnose the 21x21 coefficient matrix for X=0
     g_diag = build_block_diagonal_gramian()
     m6_diag = build_degree6_invariant_diagnostic_matrix(g_diag)
     w_x0 = build_invariant_dual_witness_x0(strict=True)
@@ -694,7 +671,6 @@ def evaluate_target_q3_diagnostics() -> Degree6DiagnosticReport:
         pivots=[str(p) for p in pivots_x0],
     )
 
-    # 2. Diagnose the 35x35 coefficient matrix for the synthetic S6 fixture
     g_synth = canonical_quad_gramian()
     m6_synth = build_degree6_extended_diagnostic_matrix(g_synth)
     w_s6 = build_extended_dual_witness_s6(strict=True)

@@ -1,8 +1,3 @@
-//! Campaign module cptp_channel.
-//!
-//! Amplitude-damping Kraus operators with rational entries `3/5` and `4/5`.
-//! Completeness `K0† K0 + K1† K1 = I` is the matrix sum, and it is also the
-//! statement that the channel preserves the trace of a fixed density.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;

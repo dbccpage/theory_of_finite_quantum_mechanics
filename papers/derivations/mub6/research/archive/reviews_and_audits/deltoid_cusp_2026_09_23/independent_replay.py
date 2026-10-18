@@ -18,7 +18,6 @@ from pathlib import Path
 import sympy as sp
 
 
-# Independent transcription of the explicit matrix in the attached prompt.
 D_EXPONENTS = (
     (0, 0, 0, 0, 0, 0),
     (0, 0, 2, 4, 5, 1),
@@ -100,7 +99,6 @@ def decode_multiplier(terms, variables):
 
 def main() -> None:
     directory = Path(__file__).resolve().parent
-    # Missing artifacts are errors; no partial replay is reported as success.
     audit = json.loads((directory / "input_audit.json").read_text(encoding="utf-8"))
     certificate = json.loads((directory / "literal_certificate.json").read_text(encoding="utf-8"))
     variables, sources = independently_reconstruct()

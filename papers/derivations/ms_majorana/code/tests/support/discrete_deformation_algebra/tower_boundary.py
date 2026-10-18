@@ -35,7 +35,7 @@ class ImportLedgerEntry:
     term_id: str
     term_name: str
     is_priced: bool
-    status: str  # "adapter_candidate", "unresolved_import", "admitted_backend"
+    status: str
     source_locus: Optional[SourceLocus] = None
 
 

@@ -10,7 +10,6 @@ from pathlib import Path
 from typing import Dict
 import numpy as np
 
-# Ensure code directory is in sys.path
 code_dir = Path(__file__).resolve().parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -38,16 +37,15 @@ class TestDDACrossValidation(unittest.TestCase):
     def test_claim_d8_type_distinction_raw_vs_quotient(self):
         """Cross-validate Claim D8: Raw discrepancy I and quotient residual Phi1 are distinct."""
         net = Network(nodes=[0, 1, 2], edges=[(0, 1), (1, 2), (2, 0)], faces=[(0, 1, 2)])
-        # Pure gauge field with non-zero edge tally
         pure_gauge = gradient(net, {0: 0.0, 1: 5.0, 2: 12.0})
         raw_tally_I = sum(abs(v) for v in pure_gauge.values())
 
         res = residual_after_gauge_fix(net, pure_gauge, method="l1")
         phi1 = res["residual_size"]
 
-        self.assertGreater(raw_tally_I, 0.0)  # Raw edge tally I = 24.0
-        self.assertAlmostEqual(phi1, 0.0, places=5)  # Quotient residual Phi1 = 0.0
-        self.assertNotEqual(raw_tally_I, phi1)  # Proves D8 type distinction
+        self.assertGreater(raw_tally_I, 0.0)
+        self.assertAlmostEqual(phi1, 0.0, places=5)
+        self.assertNotEqual(raw_tally_I, phi1)
 
     def test_claim_e4_exact_short_time_lower_bound(self):
         """Cross-validate Claim E4 / Theorem 5.1: Short-time defect bound D_e(t) >= nu_e*t - 24*g^2*t^2."""
@@ -60,11 +58,10 @@ class TestDDACrossValidation(unittest.TestCase):
 
     def test_claim_h5_three_patch_coverage_witness(self):
         """Cross-validate Claim H5: Three-patch diagram full coverage with non-zero raw residual I = 6.0."""
-        # 3-patch triangle network with unit circulating edge weights
         patch_net = Network(nodes=[0, 1, 2], edges=[(0, 1), (1, 2), (2, 0)], faces=[(0, 1, 2)])
         edge_vals = {(0, 1): 2.0, (1, 2): 2.0, (2, 0): 2.0}
         raw_I = sum(abs(v) for v in edge_vals.values())
-        self.assertEqual(raw_I, 6.0)  # Verifies H5 exact finite witness I(s) = 6.0
+        self.assertEqual(raw_I, 6.0)
 
 
 def run_cross_validation_report() -> Dict[str, str]:

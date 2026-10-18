@@ -13,7 +13,6 @@ import sys
 from pathlib import Path
 import pytest
 
-# Ensure coda is accessible
 coda_dir = Path(__file__).resolve().parents[1] / "coda"
 ooutwire_dir = Path(__file__).resolve().parents[2]
 
@@ -36,7 +35,6 @@ def test_degree_1_ordinary_repair_solved():
     net = Network(nodes, edges)
 
     engine = DDAEngine(net)
-    # Exact potential: v(0)=0, v(1)=1, v(2)=3 -> edge values (1, 2, 3)
     edge_vals = {(0, 1): 1.0, (1, 2): 2.0, (0, 2): 3.0}
 
     foundation = engine.run_foundation(edge_vals)
@@ -58,7 +56,6 @@ def test_forced_lift_c1_to_c2():
     net = Network(nodes, edges, faces)
 
     engine = DDAEngine(net)
-    # Non-zero curl on face (0,1,2): gamma2 > 0
     edge_vals = {(0, 1): 1.0, (1, 2): 1.0, (2, 0): 1.0, (0, 3): 0.0, (1, 3): 0.0, (2, 3): 0.0}
 
     foundation = engine.run_foundation(edge_vals)
@@ -72,7 +69,7 @@ def test_forced_lift_c1_to_c2():
     assert cert.to_degree == 2
     assert cert.lift_kind == "tetrahedra"
     assert cert.num_higher_cells == 1
-    assert cert.num_tetrahedra == 1  # backward compatibility alias
+    assert cert.num_tetrahedra == 1
     assert cert.trigger_curvature_mass > 0
     assert cert.is_valid()
 
@@ -87,7 +84,6 @@ def test_forced_unsupported_lift_c2_to_c3():
     engine = DDAEngine(net)
     engine.degree_window = 2
 
-    # Force lift at degree 2 with non-zero curvature mass gamma3 = 1.0
     term = engine.lift_or_terminate((0.0, 1.0, 0.0), max_lifts=2)
 
     assert term.status == TerminationStatus.AUTHORIZATION_EXHAUSTED
@@ -98,7 +94,7 @@ def test_forced_unsupported_lift_c2_to_c3():
     assert c2_cert.from_degree == 2
     assert c2_cert.to_degree == 3
     assert c2_cert.lift_kind == "unsupported"
-    assert c2_cert.num_higher_cells == 0  # Zero cell invention!
+    assert c2_cert.num_higher_cells == 0
     assert c2_cert.is_valid()
 
 

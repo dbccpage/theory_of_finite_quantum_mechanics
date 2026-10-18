@@ -115,26 +115,21 @@ class BFTopologicalModel:
         - c2_unlinked: Circle in xz-plane shifted to (3.0, 0, 0) (Lk = 0).
         """
         n = self.num_loop_points
-        # Circle 1: in xy-plane, normal = z
         c1 = [
             [math.cos(2.0 * math.pi * i / n), math.sin(2.0 * math.pi * i / n), 0.0]
             for i in range(n)
         ]
 
-        # Circle 2 (Linked): in xz-plane, normal = y, centered at (0.5, 0, 0)
-        # Orientation chosen so that Lk = +1
         c2_linked = [
             [0.5 + math.cos(2.0 * math.pi * i / n), 0.0, -math.sin(2.0 * math.pi * i / n)]
             for i in range(n)
         ]
 
-        # Circle 2 (Reversed): parameterization reversed
         c2_reversed = [
             [0.5 + math.cos(-2.0 * math.pi * i / n), 0.0, -math.sin(-2.0 * math.pi * i / n)]
             for i in range(n)
         ]
 
-        # Circle 2 (Unlinked): shifted outside c1
         c2_unlinked = [
             [3.0 + math.cos(2.0 * math.pi * i / n), 0.0, -math.sin(2.0 * math.pi * i / n)]
             for i in range(n)
@@ -179,7 +174,6 @@ class BFTopologicalModel:
                 dist = math.sqrt(diff[0]**2 + diff[1]**2 + diff[2]**2)
                 if dist < 1e-12:
                     continue
-                # cross product dr1 x dr2
                 cross = [
                     d1[1] * d2[2] - d1[2] * d2[1],
                     d1[2] * d2[0] - d1[0] * d2[2],
@@ -300,12 +294,10 @@ class BFTopologicalBraidingEngine:
 
         is_symmetric = (not is_chiral) and (not is_z2_energy_split)
 
-        # Defect mass calculation
         if test_unlinked:
             phi_1 = 0.0
             terminal_route = TerminalRoute.EXACT_REPAIR.value
         elif is_symmetric:
-            # Under symmetric pairing, imaginary part cancels identically
             phi_1 = 0.0
             terminal_route = TerminalRoute.EXACT_REPAIR.value
         elif is_chiral:
@@ -318,7 +310,6 @@ class BFTopologicalBraidingEngine:
             phi_1 = gamma_2
             terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value if phi_1 > 0 else TerminalRoute.EXACT_REPAIR.value
 
-        # GIN relational index population
         cfg_id_pos = 1001
         cfg_id_neg = 1002
         sign_pos = 1 if holonomy.real >= 0 else -1
@@ -341,7 +332,6 @@ class BFTopologicalBraidingEngine:
             (cfg_id_neg, f"{model.model_id}_neg", 2, 4, w_neg, sign_neg, -1 if is_chiral else 1),
         )
 
-        # Postings for loop modes
         for mode_idx in range(4):
             self.conn.execute(
                 """
@@ -360,7 +350,6 @@ class BFTopologicalBraidingEngine:
                 (mode_idx, cfg_id_neg, 1 if mode_idx in (2, 3) else 0),
             )
 
-        # Record Involution Pair
         self.conn.execute(
             """
             INSERT OR REPLACE INTO GinInvolutionPairs

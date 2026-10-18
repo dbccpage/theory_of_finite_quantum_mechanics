@@ -20,7 +20,7 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from omega_engine_projects.fsp.demos.blind_cluster_recovery.blind_problem import (  # noqa: E402
+from omega_engine_projects.fsp.demos.blind_cluster_recovery.blind_problem import (
     assert_lexical_hygiene,
     generate_blind_problem_packet,
 )
@@ -93,7 +93,6 @@ def build_prompt_arm2_attention_masking(packet: dict) -> str:
     """
     masked_samples = []
     for s in packet["samples"]:
-        # Distractor masking: replace explicit vertex connectivity with abstract cycle invariants
         masked_samples.append(
             f"Macro-Topology Spectrum (Subgraph {s['subgraph_id']}):\n"
             f"  Component Cycle Invariants: {s['cycle_count']} independent loops [lengths: {[c['length'] for c in s['cycles']]}]\n"
@@ -140,7 +139,6 @@ def build_prompt_arm3_hieroglyphics(packet: dict) -> str:
     """
     ddc_blocks = []
     for s in packet["samples"]:
-        # Express each subgraph as a compact DDC trace
         cycle_runes = "".join(f"[C_{i}:{c['length']}]" for i, c in enumerate(s["cycles"]))
         ddc_blocks.append(
             f"DDC_GRAPH_{s['subgraph_id']}:\n"

@@ -23,7 +23,6 @@ from pathlib import Path
 
 import pytest
 
-# Ensure code directory and repo root are on path
 _CODE_DIR = Path(__file__).resolve().parent.parent.parent
 _REPO_ROOT = _CODE_DIR
 for p in Path(__file__).resolve().parents:
@@ -36,19 +35,17 @@ if str(_CODE_DIR) not in sys.path:
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-# Import Tower Parser and AST nodes
-from omega_engine_pfp.domain.tower.grammar import App, Atom, Diff  # noqa: E402, F401
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.grammar import App, Atom, Diff
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
-    SIGMA_36,  # noqa: F401
+    SIGMA_36,
     parse_packet,
     serialize_packet,
     validate_packet_semantics,
 )
 
-# Import M1: 3D Topological Meron Strings
 try:
-    from topological_meron_3d import (  # noqa: E402
+    from topological_meron_3d import (
         ClosedStringLoop3D,
         Lattice3D,
         build_hopf_link_pair,
@@ -58,28 +55,24 @@ try:
         linking_number,
         winding_parity,
     )
-    _MERON_3D_AVAILABLE = True  # noqa: F401
+    _MERON_3D_AVAILABLE = True
 except ImportError:
-    _MERON_3D_AVAILABLE = False  # noqa: F401
+    _MERON_3D_AVAILABLE = False
 
-# Import M2: 4D Half-Instantons & Second Chern Class
 try:
-    from topological_half_instanton_4d import (  # noqa: E402
+    from topological_half_instanton_4d import (
         HalfInstantonCluster4D,
         fermion_determinant_sign,
         orientation_flip,
         second_chern_number,
         verify_zero_sum_doublet,
     )
-    _INSTANTON_4D_AVAILABLE = True  # noqa: F401
+    _INSTANTON_4D_AVAILABLE = True
 except ImportError:
-    _INSTANTON_4D_AVAILABLE = False  # noqa: F401
+    _INSTANTON_4D_AVAILABLE = False
 
 
-# ============================================================================
-# M3 & M4 PRODUCTION IMPORTS
-# ============================================================================
-from adversarial_topological_audit import (  # noqa: E402
+from adversarial_topological_audit import (
     MutationSuiteResult,
     WolandDialecticalProsecutor,
     execute_hostile_mutation_suite,
@@ -87,7 +80,7 @@ from adversarial_topological_audit import (  # noqa: E402
     generate_master_receipt,
     verify_master_receipt_digest,
 )
-from topological_cluster_4d_solver import (  # noqa: E402
+from topological_cluster_4d_solver import (
     CancellationResult,
     TopologicalCluster4DSolver,
     TopologicalClusterState,
@@ -97,16 +90,10 @@ from topological_cluster_4d_solver import (  # noqa: E402
     validate_gamma38_wire,
 )
 
-# ============================================================================
-# TIER 1: FEATURE COVERAGE (F1 TO F14, >=5 TESTS PER FEATURE)
-# ============================================================================
 
 class TestTier1FeatureCoverage:
     """Tier 1: Feature Coverage verifying Features F1 to F14."""
 
-    # ------------------------------------------------------------------------
-    # Feature F1: 3D Closed Meron String Loops
-    # ------------------------------------------------------------------------
 
     def test_f1_01_loop_creation_contract_validity(self) -> None:
         """F1: ClosedStringLoop3D accepts valid coordinates forming a closed loop on T^3."""
@@ -147,9 +134,6 @@ class TestTier1FeatureCoverage:
         loop_neg = build_winding_loop("x", direction=-1)
         assert loop_neg.winding_vector == (-1, 0, 0)
 
-    # ------------------------------------------------------------------------
-    # Feature F2: 3D Winding Parity I(c)
-    # ------------------------------------------------------------------------
 
     def test_f2_01_winding_parity_even_zero_vector(self) -> None:
         """F2: (0, 0, 0) winding gives parity 0."""
@@ -180,9 +164,6 @@ class TestTier1FeatureCoverage:
         neg_loop = build_winding_loop("x", direction=-1)
         assert winding_parity(neg_loop) == 1
 
-    # ------------------------------------------------------------------------
-    # Feature F3: 3D Loop Linking Pairing Lk(c_1, c_2)
-    # ------------------------------------------------------------------------
 
     def test_f3_01_linking_number_disjoint_unlinked_loops_is_zero(self) -> None:
         """F3: Disjoint unlinked loops have Lk = 0."""
@@ -222,9 +203,6 @@ class TestTier1FeatureCoverage:
                 assert isinstance(val, int)
                 assert not isinstance(val, float)
 
-    # ------------------------------------------------------------------------
-    # Feature F4: 4D Discrete Second Chern Class c_2
-    # ------------------------------------------------------------------------
 
     def test_f4_01_second_chern_zero_charge_sector(self) -> None:
         """F4: Equal centers N_+ = N_- yield exact c_2 = 0 in Fraction."""
@@ -258,9 +236,6 @@ class TestTier1FeatureCoverage:
                 c2 = second_chern_number(c)
                 assert c2.denominator in (1, 2)
 
-    # ------------------------------------------------------------------------
-    # Feature F5: 4D Fermion Determinant Sign sigma(C)
-    # ------------------------------------------------------------------------
 
     def test_f5_01_fermion_sign_zero_charge_strictly_positive(self) -> None:
         """F5: Zero-charge sectors (N_+ = N_- = 0) have sign +1."""
@@ -287,9 +262,6 @@ class TestTier1FeatureCoverage:
         c = HalfInstantonCluster4D(n_plus=4, n_minus=2)
         assert fermion_determinant_sign(c) == 1
 
-    # ------------------------------------------------------------------------
-    # Feature F6: Orientation Flip Involution tau
-    # ------------------------------------------------------------------------
 
     def test_f6_01_orientation_flip_involutive_idempotency(self) -> None:
         """F6: tau(tau(C)) preserves counts and sign factor."""
@@ -328,9 +300,6 @@ class TestTier1FeatureCoverage:
         assert tau_c.volume == 64
         assert tau_c.weight == Fraction(5, 3)
 
-    # ------------------------------------------------------------------------
-    # Feature F7: Topological Cluster Cancellation Solver
-    # ------------------------------------------------------------------------
 
     def test_f7_01_cluster_cancellation_pairwise_zero_sum_doublet(self) -> None:
         """F7: (1 + (-1)) * w(C) == 0 evaluates to exact rational zero."""
@@ -379,9 +348,6 @@ class TestTier1FeatureCoverage:
         assert res.duality_gap == Fraction(0, 1)
         assert res.status == "EXACT_REPAIR"
 
-    # ------------------------------------------------------------------------
-    # Feature F8: Pure Gamma38 Wire Grammar Encoding
-    # ------------------------------------------------------------------------
 
     def test_f8_01_gamma38_wire_alphabet_strict_subset(self) -> None:
         """F8: Emitted wire uses only characters from Gamma38."""
@@ -415,9 +381,6 @@ class TestTier1FeatureCoverage:
         validate_packet_semantics(pkt)
         assert serialize_packet(pkt) == wire_t5
 
-    # ------------------------------------------------------------------------
-    # Feature F9: Zero Domain Keyword Smuggling
-    # ------------------------------------------------------------------------
 
     def test_f9_01_wire_free_from_forbidden_domain_keywords(self) -> None:
         """F9: Wire packet contains zero forbidden domain words."""
@@ -452,9 +415,6 @@ class TestTier1FeatureCoverage:
         from blind_problem import BLIND_PROBLEM_DESCRIPTION, assert_lexical_hygiene
         assert_lexical_hygiene(BLIND_PROBLEM_DESCRIPTION)
 
-    # ------------------------------------------------------------------------
-    # Feature F10: DDC DAG Trace Emission
-    # ------------------------------------------------------------------------
 
     def test_f10_01_dag_trace_valid_jsonl_structure(self, tmp_path: Path) -> None:
         """F10: DDC DAG trace file emits valid JSON Lines."""
@@ -511,9 +471,6 @@ class TestTier1FeatureCoverage:
         assert terminal["action"] == "CERTIFY_EXACT_REPAIR"
         assert terminal["payload"]["duality_gap"] == "0"
 
-    # ------------------------------------------------------------------------
-    # Feature F11: Master Receipt Emission
-    # ------------------------------------------------------------------------
 
     def test_f11_01_master_receipt_valid_json_file_creation(self, tmp_path: Path) -> None:
         """F11: Master receipt file is generated as valid JSON."""
@@ -558,9 +515,6 @@ class TestTier1FeatureCoverage:
             cert = t["certified_rational_receipt"]
             assert cert["duality_gap"] == "0/1"
 
-    # ------------------------------------------------------------------------
-    # Feature F12: Hostile Adversarial Mutation Suite
-    # ------------------------------------------------------------------------
 
     def test_f12_01_mutation_suite_perturbed_fermion_sign_fail_closed(self) -> None:
         """F12: Perturbed fermion sign fails closed with typed refusal."""
@@ -590,25 +544,22 @@ class TestTier1FeatureCoverage:
         assert res.all_fail_closed is True
         assert res.refusals == res.total_mutations
 
-    # ------------------------------------------------------------------------
-    # Feature F13: Zero Floating-Point Conversions
-    # ------------------------------------------------------------------------
 
     def test_f13_01_reject_float_in_cluster_weights(self) -> None:
         """F13: Float in cluster weights raises TypeError."""
         c = [HalfInstantonCluster4D(1, 0)]
         with pytest.raises(TypeError, match="Floats forbidden"):
-            execute_involution_cancellation(c, weights=[1.0])  # type: ignore
+            execute_involution_cancellation(c, weights=[1.0])
 
     def test_f13_02_reject_float_in_second_chern_charge(self) -> None:
         """F13: Float in HalfInstantonCluster4D fields raises TypeError."""
         with pytest.raises(TypeError):
-            HalfInstantonCluster4D(n_plus=1.5, n_minus=0)  # type: ignore
+            HalfInstantonCluster4D(n_plus=1.5, n_minus=0)
 
     def test_f13_03_reject_float_in_linking_numbers(self) -> None:
         """F13: Float in ClosedStringLoop3D dimensions raises TypeError or ValueError."""
         with pytest.raises((TypeError, ValueError)):
-            Lattice3D(dimensions=(4.0, 4, 4))  # type: ignore
+            Lattice3D(dimensions=(4.0, 4, 4))
 
     def test_f13_04_reject_float_in_partition_sum_evaluation(self) -> None:
         """F13: Evaluation of partition sum operates entirely in Fraction and int."""
@@ -626,9 +577,6 @@ class TestTier1FeatureCoverage:
         float_literals = re.findall(r":\s*([0-9]+\.[0-9]+)\b", content)
         assert len(float_literals) == 0
 
-    # ------------------------------------------------------------------------
-    # Feature F14: Comprehensive E2E Test Suite
-    # ------------------------------------------------------------------------
 
     def test_f14_01_e2e_suite_architecture_four_tiers(self) -> None:
         """F14: E2E suite verifies presence of all 4 tiers."""
@@ -661,9 +609,6 @@ class TestTier1FeatureCoverage:
         assert "test_e2e_4d_topological_clusters.py" in cmd
 
 
-# ============================================================================
-# TIER 2: BOUNDARY & CORNER CASES (20 TESTS)
-# ============================================================================
 
 class TestTier2BoundaryCornerCases:
     """Tier 2: Boundary conditions, extreme sizes, edge invariants."""
@@ -748,7 +693,7 @@ class TestTier2BoundaryCornerCases:
 
     def test_t2_14_rational_wire_coprime_reduction_enforced(self) -> None:
         """T2.14: Rational wire grammar opcode <10010> parses coprime fraction."""
-        wire = "op<<10010><0><1><10>>"  # +1/2
+        wire = "op<<10010><0><1><10>>"
         pkt = parse_packet(wire)
         validate_packet_semantics(pkt)
 
@@ -792,9 +737,6 @@ class TestTier2BoundaryCornerCases:
         assert res.odd_sectors_cancelled == 0
 
 
-# ============================================================================
-# TIER 3: CROSS-FEATURE COMBINATIONS (8 TESTS)
-# ============================================================================
 
 class TestTier3CrossFeatureCombinations:
     """Tier 3: Multi-feature composition, compound states, end-to-end cycles."""
@@ -812,7 +754,6 @@ class TestTier3CrossFeatureCombinations:
             l_even, l_odd_1, l_odd_2, c_zero, c_odd_1, c_odd_2
         ]
         res = execute_involution_cancellation(ensemble)
-        # Even sectors: l_even (1) + c_zero (1) = 2
         assert res.zero_sum == Fraction(2, 1)
         assert res.odd_sum == Fraction(0, 1)
         assert res.total_partition_sum == Fraction(2, 1)
@@ -825,9 +766,9 @@ class TestTier3CrossFeatureCombinations:
         assert validate_gamma38_wire(state.wire) is True
         wire = (
             "op<<11>"
-            "op<<101><100><0><1><10><11><100>>"  # 4-simplex
-            "op<<0><><0><1>>"                     # Up-Lift
-            "op<<10010><0><1><10>>>"              # +1/2
+            "op<<101><100><0><1><10><11><100>>"
+            "op<<0><><0><1>>"
+            "op<<10010><0><1><10>>>"
         )
         pkt = parse_packet(wire)
         validate_packet_semantics(pkt)
@@ -877,8 +818,8 @@ class TestTier3CrossFeatureCombinations:
 
     def test_t3_07_fermion_sign_and_winding_parity_joint_factorization(self) -> None:
         """T3.07: Total sign factors as sigma_total = sigma_4D * (-1)^I(3D)."""
-        loop = build_winding_loop("x")  # I = 1 -> (-1)^1 = -1
-        instanton = HalfInstantonCluster4D(1, 0)  # sigma_4D = -1
+        loop = build_winding_loop("x")
+        instanton = HalfInstantonCluster4D(1, 0)
         p_3d = winding_parity(loop)
         sign_3d = -1 if p_3d == 1 else 1
         sign_4d = fermion_determinant_sign(instanton)
@@ -893,9 +834,6 @@ class TestTier3CrossFeatureCombinations:
         assert res.odd_sum == Fraction(0, 1)
 
 
-# ============================================================================
-# TIER 4: REAL-WORLD APPLICATION SCENARIOS (5 TESTS)
-# ============================================================================
 
 class TestTier4RealWorldScenarios:
     """Tier 4: End-to-end full campaign lifecycle evaluation."""

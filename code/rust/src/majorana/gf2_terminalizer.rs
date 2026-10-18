@@ -1,57 +1,16 @@
-//! Majorana GF(2) parity **diagnostic classifier / receipt**, and elements of
-//! the cyclotomic ring $\mathbb{Z}[\zeta_{16}]$.
-//!
-//! `Cyclotomic16Element` is an element of $\mathbb{Z}[\zeta_{16}]$ with `i64`
-//! coefficients; its one operation is an overflow-checked product modulo
-//! $\zeta^8 + 1$. No braid identity is checked in this crate: the braid
-//! relations of Majorana braid operators are checked, over $\mathbb{Q}(i)$, by
-//! `omega_quantum_physics::majorana_fock_algebra`. This module used to call
-//! itself a "$\mathbb{Q}(\zeta_{16})$ braid verifier".
-//!
-//! # Authority fence (MANDATORY)
-//!
-//! This module is a **diagnostic classifier and receipt emitter only**.
-//! - **AuthorityEffect: None** on every emitted certificate.
-//! - It is **not** a CODA_GTLA / sweep / CODA authority terminalizer.
-//! - It does **not** mint `CertifiedAuthority`, does not close an authority gate,
-//!   and does not promote FOC `ExactRepair` or any other terminal status.
-//! - The historical name `*Terminalizer*` and method `terminalize` mean
-//!   "produce a parity-schedule diagnostic receipt", **not** "mint terminal authority".
-//!
-//! # What it computes
-//!
-//! Polynomial-time GF(2) Gaussian elimination, coboundary boundary validation
-//! ($d_1 \cdot d_0 = 0 \pmod 2$), parity schedule classification
-//! (`Exact`, `ClosedResidual`, `OpenObstruction` as **diagnostic** labels only),
-//! and exact cyclotomic field arithmetic rejecting floating-point approximations.
-//!
-//! Certificate tag: `omega.majorana-gf2-receipt.v1`  
-//! AuthorityEffect: None
-//!
-//! Canonical crate home: `omega_majorana` (re-exported from `omega_engines::quantum`).
 
 use serde::{Deserialize, Serialize};
 
-/// Explicit fence for importers / skills.
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; not physical Majorana; GF(2) diagnostic only.";
 
-/// Diagnostic schedule classification under GF(2) parity analysis.
-///
-/// Labels are receipt fields only. They do **not** mint authority, FOC ExactRepair,
-/// or CODA_GTLA terminal status. `Exact` here means "GF(2) syndrome is a coboundary",
-/// not "certified exact repair".
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum GF2ScheduleStatus {
-    /// Diagnostic: exact parity solution ($d_0 x = \omega \pmod 2$ solvable).
     Exact,
-    /// Diagnostic: closed residual parity ($d_1 \omega = 0 \pmod 2$, non-trivial cycle).
     ClosedResidual,
-    /// Diagnostic: open parity obstruction ($d_1 \omega \neq 0 \pmod 2$).
     OpenObstruction,
 }
 
-/// A GF(2) Matrix representing coboundary operators or syndrome schedules.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GF2Matrix {
     pub rows: usize,
@@ -60,7 +19,6 @@ pub struct GF2Matrix {
 }
 
 impl GF2Matrix {
-    /// Creates a new GF(2) matrix initialized to zeros.
     pub fn zeros(rows: usize, cols: usize) -> Self {
         Self {
             rows,
@@ -69,11 +27,6 @@ impl GF2Matrix {
         }
     }
 
-    /// Creates a GF(2) matrix from a 2D vector of binary values (modulo 2).
-    ///
-    /// Rows are rectangularized to the longest row. A shorter row is padded
-    /// with zeros; taking the width from row 0 alone left a later short row
-    /// to panic in `rref` and `matmul`.
     pub fn from_data(data: Vec<Vec<u8>>) -> Self {
         let rows = data.len();
         let cols = data.iter().map(Vec::len).max().unwrap_or(0);
@@ -92,7 +45,6 @@ impl GF2Matrix {
         }
     }
 
-    /// Performs matrix multiplication $C = A \cdot B \pmod 2$.
     pub fn matmul(&self, rhs: &GF2Matrix) -> Result<GF2Matrix, String> {
         if self.cols != rhs.rows {
             return Err(format!(
@@ -113,19 +65,16 @@ impl GF2Matrix {
         Ok(result)
     }
 
-    /// Checks if the matrix is identical to the zero matrix.
     pub fn is_zero(&self) -> bool {
         self.data.iter().all(|row| row.iter().all(|&v| v == 0))
     }
 
-    /// Computes Gaussian elimination over GF(2) and returns rank and reduced row-echelon form.
     pub fn rref(&self) -> (usize, GF2Matrix) {
         let mut mat = self.clone();
         let mut rank = 0;
         let mut col = 0;
 
         while rank < mat.rows && col < mat.cols {
-            // Find pivot
             let mut pivot_row = None;
             for r in rank..mat.rows {
                 if mat.data[r][col] == 1 {
@@ -136,7 +85,6 @@ impl GF2Matrix {
 
             if let Some(p_row) = pivot_row {
                 mat.data.swap(rank, p_row);
-                // Eliminate below and above
                 for r in 0..mat.rows {
                     if r != rank && mat.data[r][col] == 1 {
                         for c in 0..mat.cols {
@@ -152,10 +100,6 @@ impl GF2Matrix {
     }
 }
 
-/// Diagnostic receipt for a GF(2) cocycle/schedule classification.
-///
-/// Always carries `authority_effect = "None"`. Does not mint `CertifiedAuthority`.
-/// Tag: `omega.majorana-gf2-receipt.v1`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Gf2ScheduleReceipt {
     pub certificate_tag: String,
@@ -164,17 +108,12 @@ pub struct Gf2ScheduleReceipt {
     pub d1_rank: usize,
     pub q1_dimension: usize,
     pub boundary_valid: bool,
-    /// Always `"None"`.
     pub authority_effect: String,
 }
 
-/// GF(2) **diagnostic cocycle classifier** (membership in im/ker of declared maps).
-///
-/// Canonical name for the abacus Deutsch/Albert demanded. Does **not** mint authority.
 pub struct Gf2CocycleClassifier;
 
 impl Gf2CocycleClassifier {
-    /// Verifies boundary condition $d_1 \cdot d_0 = 0 \pmod 2$.
     pub fn verify_boundary(d0: &GF2Matrix, d1: &GF2Matrix) -> bool {
         match d1.matmul(d0) {
             Ok(prod) => prod.is_zero(),
@@ -182,9 +121,6 @@ impl Gf2CocycleClassifier {
         }
     }
 
-    /// Classify $\omega\in C^1$ against declared $(d_0,d_1)$: Exact / ClosedResidual / Open.
-    ///
-    /// Emits [`Gf2ScheduleReceipt`] with `authority_effect: "None"`.
     pub fn classify(
         d0: &GF2Matrix,
         d1: &GF2Matrix,
@@ -250,12 +186,8 @@ impl Gf2CocycleClassifier {
     }
 }
 
-/// An element of the cyclotomic ring $\mathbb{Z}[\zeta_{16}]$: integer
-/// coefficients on $1, \zeta, \dots, \zeta^7$, with $\zeta^8 = -1$. It carries
-/// no division and verifies no braid identity.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Cyclotomic16Element {
-    /// Coefficients $[c_0, c_1, \dots, c_7]$ for basis $1, \zeta, \zeta^2, \dots, \zeta^7$.
     pub coeffs: [i64; 8],
 }
 
@@ -276,9 +208,6 @@ impl Cyclotomic16Element {
         Self { coeffs: c }
     }
 
-    /// The product in $\mathbb{Z}[\zeta_{16}]$, reducing modulo $\zeta^8 + 1$;
-    /// `None` when a coefficient leaves `i64` (it used to wrap silently in
-    /// release builds).
     pub fn checked_mul(&self, rhs: &Self) -> Option<Self> {
         let mut raw = [0i64; 16];
         for i in 0..8 {
@@ -286,7 +215,6 @@ impl Cyclotomic16Element {
                 raw[i + j] = raw[i + j].checked_add(self.coeffs[i].checked_mul(rhs.coeffs[j])?)?;
             }
         }
-        // Reduce using zeta^8 = -1
         let mut res = [0i64; 8];
         for k in 0..8 {
             res[k] = raw[k].checked_sub(raw[k + 8])?;
@@ -294,7 +222,6 @@ impl Cyclotomic16Element {
         Some(Self { coeffs: res })
     }
 
-    /// $\zeta$ itself.
     pub fn zeta() -> Self {
         let mut c = [0; 8];
         c[1] = 1;
@@ -308,29 +235,25 @@ mod tests {
 
     #[test]
     fn test_gf2_matrix_boundary_and_terminalization() {
-        // d0: 3 vertices to 3 edges (Triangle complex)
         let d0_data = vec![
-            vec![1, 1, 0], // edge 0: (v0, v1)
-            vec![0, 1, 1], // edge 1: (v1, v2)
-            vec![1, 0, 1], // edge 2: (v0, v2)
+            vec![1, 1, 0],
+            vec![0, 1, 1],
+            vec![1, 0, 1],
         ];
         let d0 = GF2Matrix::from_data(d0_data);
 
-        // d1: 3 edges to 1 face
         let d1_data = vec![
-            vec![1, 1, 1], // face 0: e0 + e1 + e2
+            vec![1, 1, 1],
         ];
         let d1 = GF2Matrix::from_data(d1_data);
 
         assert!(Gf2CocycleClassifier::verify_boundary(&d0, &d1));
 
-        // Exact syndrome: e0 + e1 + e2 = d0(v1)
         let exact_syndrome = vec![1, 1, 0];
         let cert_exact = Gf2CocycleClassifier::classify(&d0, &d1, &exact_syndrome).unwrap();
         assert_eq!(cert_exact.status, GF2ScheduleStatus::Exact);
         assert_eq!(cert_exact.certificate_tag, "omega.majorana-gf2-receipt.v1");
 
-        // Open obstruction syndrome: single edge defect
         let open_syndrome = vec![1, 0, 0];
         let cert_open = Gf2CocycleClassifier::classify(&d0, &d1, &open_syndrome).unwrap();
         assert_eq!(cert_open.status, GF2ScheduleStatus::OpenObstruction);
@@ -356,15 +279,12 @@ mod tests {
         let prod = one.checked_mul(&one).unwrap();
         assert_eq!(prod, one);
 
-        // zeta^4 * zeta^4 = zeta^8 mod (zeta^8 + 1) = -1
         let mut zeta4 = Cyclotomic16Element::zero();
         zeta4.coeffs[4] = 1;
         let zeta8 = zeta4.checked_mul(&zeta4).unwrap();
         assert_eq!(zeta8.coeffs[0], -1);
     }
 
-    /// The reduction is modulo `zeta^8 + 1`, so `zeta` has order exactly 16;
-    /// reducing modulo `zeta^8 - 1` would give order 8.
     #[test]
     fn zeta_has_order_sixteen() {
         let zeta = Cyclotomic16Element::zeta();
@@ -380,7 +300,6 @@ mod tests {
         assert_eq!(order, Some(16));
     }
 
-    /// A product whose coefficients leave `i64` is refused, not wrapped.
     #[test]
     fn coefficient_overflow_is_refused() {
         let big = Cyclotomic16Element::from_scalar(i64::MAX / 2 + 1);

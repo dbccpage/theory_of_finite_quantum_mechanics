@@ -2,7 +2,6 @@ use std::fmt;
 
 use thiserror::Error;
 
-/// Mandatory Q packet fields.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum QPacketField {
     Carrier,
@@ -34,7 +33,6 @@ impl fmt::Display for QPacketField {
     }
 }
 
-/// Typed Q validation/admission failures.
 #[derive(Clone, Debug, PartialEq, Eq, Error)]
 pub enum QError {
     #[error("missing mandatory Q packet field: {0}")]

@@ -130,7 +130,6 @@ def compute_susy_saturation_scale(
     e_sat_gev = v_ew * angular_factor
     e_sat_tev = e_sat_gev / 1000.0
 
-    # Also compute for v_EW = 237.8 GeV baseline
     v_ew_alt = 237.8
     e_sat_gev_alt = v_ew_alt * angular_factor
     e_sat_tev_alt = e_sat_gev_alt / 1000.0
@@ -167,20 +166,17 @@ class ReggeSUSYSaturationSolverAdapter(BaseSolver):
         triangle_areas = data.get("triangle_areas", [1.0, 1.0, 1.0, 1.0])
         immirzi_gamma = float(data.get("immirzi_gamma", 0.274066))
 
-        # 1. Regge-Barbero-Immirzi action
         regge_res = compute_4d_regge_immirzi_action_and_deficit(
             hinge_valencies_4d=hinge_valencies_4d,
             triangle_areas=triangle_areas,
             immirzi_gamma=immirzi_gamma,
         )
 
-        # 2. SUSY Saturation scale computation
         susy_res = compute_susy_saturation_scale(
             v_ew=v_ew,
             angular_factor=angular_factor,
         )
 
-        # 3. Primitive Difference quotient on 2-simplex triangle
         d0 = np.array([[-1.0, 1.0, 0.0], [0.0, -1.0, 1.0], [1.0, 0.0, -1.0]])
         cochain = data.get("cochain", [1.0, 1.0, 1.0])
         pd_res = compute_primitive_difference_quotient(cochain, d0)

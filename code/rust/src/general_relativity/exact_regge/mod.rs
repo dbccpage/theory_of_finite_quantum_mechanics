@@ -1,25 +1,3 @@
-//! 4D Regge simplicial calculus over `Q`.
-//!
-//! What this module evaluates exactly:
-//! squared edge lengths, Cayley-Menger volume squares, triangle area bivectors
-//! in `∧² Q^4`, the Barrett-Crane simplicity condition `Σ ∧ Σ = 0`, transition
-//! matrices that have been certified in `SO(4, Q)`, hinge holonomy products,
-//! the contracted closure identity on each tetrahedron, the Coxeter-Freudenthal
-//! 1-to-16 refinement, and the rational predicate `(S - S_EH)² ≤ (C a²)²`.
-//!
-//! What this module does not evaluate: the classical Regge sum `Σ A_h ε_h`.
-//! The deficit angle `ε_h` is an arccosine and is not an element of `Q`.
-//! The rational proxy below is `Σ A_h² κ_h`, where `κ_h = ||U_h - I||_F²`.
-//! On a flat chart every supplied holonomy is the identity, the proxy is `0`,
-//! and the flat Einstein-Hilbert value used for the bound is the rational `0`.
-//! `einstein_hilbert_fence` returns that proxy. A chart is admitted as flat
-//! only when the decision equals `flat_einstein_hilbert`. `|S| < 1e-6` is not
-//! that decision.
-//! That is not a numerical value of the round 4-sphere Einstein-Hilbert action.
-//! This module does not call the surrounding crate's `f64` modules
-//! `cayley_menger`, `regge_4d`, `regge_action`, or `regge_calculus`.
-//!
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 

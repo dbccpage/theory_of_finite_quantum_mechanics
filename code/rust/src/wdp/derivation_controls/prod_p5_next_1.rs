@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P5-NEXT-1 (15 ClaimStatus values to Chapter 20 Status).
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ClaimStatus {

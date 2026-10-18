@@ -15,8 +15,6 @@ import pytest
 
 from omega_engine.crates.replay import DescentWitness, GtlaReceipt, ReplayTracePacket
 
-# Behavior pins frozen in
-# omega_engine/research/published/001_coda/007_gtla/tests/fixtures/frozen_fixtures_v1.md
 GOLDEN_F1_REPLAY_HASH = (
     "00d4f4499db810b77f6a16320e6ea2ff7ce13065532d0aaec140bc1e81b89351"
 )
@@ -85,8 +83,6 @@ def test_f1_analog_construct_canonical_bytes_stable_and_witness_binds() -> None:
     assert first.canonical_bytes() == second.canonical_bytes()
     assert first.replay_hash == second.replay_hash
 
-    # Canonical discipline mirrors ReplayTracePacket: sorted keys, tight
-    # separators, tuples serialized as lists.
     payload = json.loads(first.canonical_bytes().decode("utf-8"))
     assert list(payload.keys()) == sorted(payload.keys())
     assert isinstance(payload["layer_path"], list)
@@ -142,15 +138,15 @@ def test_f8_scope_widening_changes_bytes_and_old_witness_refuses() -> None:
 def test_f8_scope_is_frozen_at_construction() -> None:
     receipt = _receipt()
     with pytest.raises(dataclasses.FrozenInstanceError):
-        receipt.scope = "widened-scope"  # type: ignore[misc]
+        receipt.scope = "widened-scope"
 
 
 @pytest.mark.parametrize(
     "bad_sha",
     [
-        "z" * 64,  # non-hex
-        CLAIM_SHA256.upper(),  # uppercase
-        CLAIM_SHA256[:63],  # truncated
+        "z" * 64,
+        CLAIM_SHA256.upper(),
+        CLAIM_SHA256[:63],
     ],
 )
 def test_f11_forged_hash_fields_are_refused(bad_sha: str) -> None:

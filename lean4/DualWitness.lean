@@ -1,40 +1,23 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
--- Quantum Dual Witnesses and Contextuality in Lean 4
--- AuthorityEffect: None
 
 namespace DualWitness
 
-/-- Discrete 2-coordinate witness with infinity-norm bounded coefficients in {-1, 0, 1}.
-    This models an L-infinity bounded measurement observable on a 2-dimensional discrete carrier. -/
 structure DiscreteWitness where
   w0 : Int
   w1 : Int
   h_bound0 : w0.natAbs ≤ 1
   h_bound1 : w1.natAbs ≤ 1
 
-/-- Discrete state difference between two diagonal distributions on 2 states,
-    represented as integer coordinate differences (d0, d1). -/
 structure StateDifference where
   diff0 : Int
   diff1 : Int
 
-/-- Trace norm (discrete L1 norm) on 2-state coordinate difference: |d0| + |d1|. -/
 def trace_norm (d : StateDifference) : Nat :=
   d.diff0.natAbs + d.diff1.natAbs
 
-/-- Dual pairing between a discrete witness w and a state difference d: w0 * d0 + w1 * d1. -/
 def dual_pairing (w : DiscreteWitness) (d : StateDifference) : Int :=
   w.w0 * d.diff0 + w.w1 * d.diff1
 
-/-- Dual witness pairing bound: the absolute value of the dual pairing is bounded
-    above by the discrete trace norm (L1 norm) of the state difference. -/
 theorem dual_witness_certifies_trace_distance (w : DiscreteWitness) (d : StateDifference) :
     (dual_pairing w d).natAbs ≤ trace_norm d := by
   dsimp [dual_pairing, trace_norm]
@@ -49,10 +32,9 @@ theorem dual_witness_certifies_trace_distance (w : DiscreteWitness) (d : StateDi
   have h_sum := Nat.add_le_add h0 h1
   exact Nat.le_trans h_tri h_sum
 
-/-- Sign values in {-1, 1} for Mermin-Peres magic square combinatorial valuations. -/
 inductive SignVal
-  | Pos : SignVal  -- +1
-  | Neg : SignVal  -- -1
+  | Pos : SignVal
+  | Neg : SignVal
   deriving DecidableEq, Repr
 
 def mulSign : SignVal → SignVal → SignVal
@@ -60,7 +42,6 @@ def mulSign : SignVal → SignVal → SignVal
   | SignVal.Neg, SignVal.Pos => SignVal.Neg
   | SignVal.Neg, SignVal.Neg => SignVal.Pos
 
-/-- A classical predetermined sign valuation assignment to the 9 cells of the 3x3 grid. -/
 structure MagicSquareAssignment where
   m11 : SignVal
   m12 : SignVal
@@ -86,8 +67,6 @@ def total_row_prod (s : MagicSquareAssignment) : SignVal :=
 def total_col_prod (s : MagicSquareAssignment) : SignVal :=
   mulSign (mulSign (col1_prod s) (col2_prod s)) (col3_prod s)
 
-/-- Commutativity and associativity of sign multiplication forces the product of all row products
-    to equal the product of all column products. -/
 theorem total_row_eq_total_col (s : MagicSquareAssignment) :
     total_row_prod s = total_col_prod s := by
   obtain ⟨m11, m12, m13, m21, m22, m23, m31, m32, m33⟩ := s
@@ -96,10 +75,6 @@ theorem total_row_eq_total_col (s : MagicSquareAssignment) :
   cases m31 <;> cases m32 <;> cases m33 <;>
   rfl
 
-/-- Mermin-Peres Contextuality Parity Obstruction Theorem:
-    No classical non-contextual value assignment can satisfy row products = (+1, +1, +1)
-    and column products = (+1, +1, -1). This demonstrates the algebraic obstruction
-    to non-contextual hidden variables on the discrete grid. -/
 theorem mermin_peres_parity_obstruction (s : MagicSquareAssignment) :
     row1_prod s = SignVal.Pos →
     row2_prod s = SignVal.Pos →
@@ -126,3 +101,6 @@ theorem mermin_peres_parity_obstruction (s : MagicSquareAssignment) :
 #print axioms mermin_peres_parity_obstruction
 
 end DualWitness
+
+private def l5aProvenance : String :=
+  "Origin: lean4/DualWitness.lean Claim: dual_witness_certifies_trace_distance AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

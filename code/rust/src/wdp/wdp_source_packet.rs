@@ -1,11 +1,3 @@
-//! Source-bound, finite exact operational packets. AuthorityEffect: None.
-//!
-//! Source SHA-256 binds the supplied raw bytes, without parsing or claiming that
-//! their prose derives the independently declared carrier. Request/carrier/result
-//! commitments use framed SHA-256 over sorted JSON with canonical rational string
-//! scalars. Replay checks the source bytes, every premise, the carrier, and the
-//! submitted result. Only Euclidean Hodge and one weighted Kraus map on one Gram
-//! state are admitted; no continuum, tensor, or all-composed-words claim is made.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::rational_bareiss::{
@@ -80,7 +72,6 @@ premise_enum!(WdpPacketAvailabilityModelV1 {
     Unknown
 });
 
-/// This boundary reads no paths. Callers supply the exact bytes being pinned.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SourceBindingV1 {
@@ -413,7 +404,6 @@ fn verify_source(
     })
 }
 
-/// Sorted JSON is a semantic wire commitment, distinct from the raw source hash.
 pub fn packet_digest<T: Serialize>(domain: &str, value: &T) -> Result<String, WdpPacketRefusalV1> {
     let value = serde_json::to_value(value)
         .map_err(|error| refuse(WdpPacketRefusalCodeV1::Wire, error.to_string()))?;
@@ -689,8 +679,6 @@ fn channel_image(
     Ok(GaussianMatrixV1::encode(&image))
 }
 
-/// Produce a source/carrier/premise-bound exact result. One rational budget is
-/// shared through decoding, owner construction, and result replay.
 pub fn evaluate_source_packet(
     request: &WdpSourcePacketRequestV1,
 ) -> Result<WdpSourcePacketResultV1, WdpPacketRefusalV1> {
@@ -740,8 +728,6 @@ pub fn evaluate_source_packet(
     Ok(result)
 }
 
-/// Verify supplied source bytes and independently replay the submitted candidate.
-/// Replay has one new run budget, shared by all work within that run.
 pub fn replay_source_packet(
     request: &WdpSourcePacketRequestV1,
     result: &WdpSourcePacketResultV1,

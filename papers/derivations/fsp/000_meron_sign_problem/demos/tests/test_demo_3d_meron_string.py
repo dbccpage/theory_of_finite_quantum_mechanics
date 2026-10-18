@@ -41,7 +41,7 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from demo_3d_meron_string_linking import (  # noqa: E402
+from demo_3d_meron_string_linking import (
     WIRE_TURNS_3D_STRINGS,
     MeronStringCluster3D,
     build_canonical_3d_string_ensemble,
@@ -51,14 +51,14 @@ from demo_3d_meron_string_linking import (  # noqa: E402
     run_demo,
     validate_wire_string,
 )
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     validate_packet_semantics,
 )
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
-from topological_meron_3d import (  # noqa: E402
+from blind_problem import assert_lexical_hygiene
+from topological_meron_3d import (
     ClosedStringLoop3D,
     Lattice3D,
     build_hopf_link_pair,
@@ -68,9 +68,6 @@ from topological_meron_3d import (  # noqa: E402
     linking_number,
 )
 
-# ============================================================================
-# Test Suite 1: 3D Torus Geometry & Loop Winding
-# ============================================================================
 
 
 class TestLattice3DAndLoopGeometry:
@@ -108,9 +105,6 @@ class TestLattice3DAndLoopGeometry:
         assert p.winding_vector == (0, 0, 0)
 
 
-# ============================================================================
-# Test Suite 2: Topological Invariants & Gauss Linking
-# ============================================================================
 
 
 class TestTopologicalInvariantsAndLinking:
@@ -125,7 +119,6 @@ class TestTopologicalInvariantsAndLinking:
         p = build_plaquette_loop("xy", lattice_dim=dim, size=2)
         assert p.winding_parity == 0
 
-        # Helical loop with W = (1, 1, 0) has even parity (1+1+0) mod 2 = 0
         pts_helical: list[tuple[int, int, int]] = []
         for k in range(6):
             pts_helical.append((k, k, 0))
@@ -151,9 +144,6 @@ class TestTopologicalInvariantsAndLinking:
         assert lk == 0
 
 
-# ============================================================================
-# Test Suite 3: Meron String Cluster Involution Properties
-# ============================================================================
 
 
 class TestMeronStringCluster3DInvolution:
@@ -179,7 +169,6 @@ class TestMeronStringCluster3DInvolution:
         assert tau_c.fermion_sign == 1
         assert tau_c.weight == c.weight
 
-        # Involution idempotence: tau(tau(C)) has same sign and weight
         tau_tau_c = tau_c.orientation_flip()
         assert tau_tau_c.fermion_sign == c.fermion_sign
         assert tau_tau_c.weight == c.weight
@@ -193,9 +182,6 @@ class TestMeronStringCluster3DInvolution:
             c.orientation_flip()
 
 
-# ============================================================================
-# Test Suite 4: Exact Bipartite Cancellation Solver
-# ============================================================================
 
 
 class TestBipartiteCancellationSolver:
@@ -221,7 +207,6 @@ class TestBipartiteCancellationSolver:
         """Perturbed ensemble with un-paired meron string reports OBSTRUCTION_REMAINS."""
         ensemble = build_canonical_3d_string_ensemble((6, 6, 6))
         dim = (6, 6, 6)
-        # Add an un-paired odd meron
         mx_extra = build_winding_loop("x", offset=(1, 1, 1), lattice_dim=dim, steps=6, loop_id="mx_extra")
         extra_cluster = MeronStringCluster3D(
             cluster_id="c_extra",
@@ -237,9 +222,6 @@ class TestBipartiteCancellationSolver:
         assert res["odd_meron_residual"] == Fraction(-15, 1)
 
 
-# ============================================================================
-# Test Suite 5: Gamma38 Wire Grammar & DDC DAG Trace
-# ============================================================================
 
 
 class TestGamma38WireGrammarAndDDCDAG:
@@ -276,7 +258,6 @@ class TestGamma38WireGrammarAndDDCDAG:
             pkt = parse_packet(wire)
             validate_packet_semantics(pkt)
 
-        # Terminal certification node
         assert nodes[-1]["action"] == "CERTIFY_EXACT_REPAIR"
         assert nodes[-1]["payload"]["status"] == "EXACT_REPAIR"
         assert nodes[-1]["payload"]["duality_gap"] == "0"
@@ -306,9 +287,6 @@ class TestGamma38WireGrammarAndDDCDAG:
         assert embedded == recomp
 
 
-# ============================================================================
-# Test Suite 6: Zero Floats AST Audit & Lexical Hygiene
-# ============================================================================
 
 
 class TestZeroFloatsAndLexicalHygiene:

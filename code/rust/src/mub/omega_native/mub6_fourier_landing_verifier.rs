@@ -1,13 +1,7 @@
-//! MUB(6) Concrete Route C Fourier-Triple Landing Bridge Verifier (Pilot 048 / Frontier 1)
-//!
-//! Validates constituent-triple Fourier-family membership from a concrete complete
-//! complex MU family without assuming exhaustive family counts, reconciling the exact
-//! Fourier cross-ratio invariant and phase-dependent trace expressions.
 
 use num_rational::BigRational;
 use serde::{Deserialize, Serialize};
 
-/// Receipt for Fourier-triple landing bridge verification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FourierLandingReceipt {
     pub status: String,
@@ -17,9 +11,7 @@ pub struct FourierLandingReceipt {
     pub constituent_triples_checked: usize,
 }
 
-/// Verify concrete Route C Fourier landing bridge.
 pub fn verify_fourier_landing() -> FourierLandingReceipt {
-    // Cross ratio for Fourier family
     let cross_ratio = BigRational::from_integer(1.into());
 
     FourierLandingReceipt {

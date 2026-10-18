@@ -1,24 +1,3 @@
-//! The Yang-Baxter equation as an exact matrix identity, and the standard solutions.
-//!
-//! For `R` acting on `V (x) V` with `dim V = n`, write `R12 = R (x) 1`, `R23 = 1 (x) R`
-//! and `R13 = P23 R12 P23` (`P23 = 1 (x) P`, `P` the flip). The equations checked are
-//!
-//! - the braid form `R12 R23 R12 = R23 R12 R23` (constant `R`; the braid relation of the
-//!   fusion-space generators of `braided` is this identity, see
-//!   [`crate::braid_group`]);
-//! - the spectral form `R12(a) R13(b) R23(c) = R23(c) R13(b) R12(a)`, with the three
-//!   arguments given explicitly (`a = u - v, b = u, c = v` for the additive law,
-//!   `a = z1/z2, b = z1, c = z2` for the multiplicative law);
-//! - the spectral braid form for `R_check = P R`:
-//!   `Rc12(x) Rc23(y) Rc12(z) = Rc23(z) Rc12(y) Rc23(x)`.
-//!
-//! Each checker returns the defect matrix (the difference of the two sides), so a
-//! caller can see where an equation fails. The standard solutions are Yang's rational
-//! `R(u) = u 1 + P`, the Hecke/Jones `R(q)`, and the symmetric six-vertex (XXZ)
-//! `R(q, z)`. Note that `u 1 + c P` satisfies the equation for every constant `c`, and
-//! `u 1 + Z (x) Z` does too: neither is a negative control.
-//!
-//! AuthorityEffect: None.
 
 use linear_algebra::backend::basic_matrix::{BasicMatrix, OperationLimits};
 use linear_algebra::exact_field::matrix;
@@ -38,8 +17,6 @@ fn charge(what: &'static str, requested: u128, limit: usize) -> Result<(), Fusio
     Ok(())
 }
 
-// Charge all simultaneously retained embeddings and all dense products before
-// constructing an operator on V tensor V tensor V.
 fn preflight(
     n: usize,
     products: usize,
@@ -63,8 +40,6 @@ fn preflight(
     charge("Yang-Baxter scalar work", work, limits.max_scalar_ops)
 }
 
-/// The dimension `n` of `V` for a matrix acting on `V tensor V` (`rows = cols = n^2`).
-/// Integer bisection takes at most `usize::BITS` steps, including extreme declarations.
 pub fn base_dimension<K: FusionScalar>(r: &BasicMatrix<K>) -> Result<usize, FusionError> {
     if r.rows() != r.cols() {
         return Err(FusionError::NotSquare {
@@ -95,12 +70,10 @@ pub fn base_dimension<K: FusionScalar>(r: &BasicMatrix<K>) -> Result<usize, Fusi
     })
 }
 
-/// The flip `P (e_i tensor e_j) = e_j tensor e_i` on `V tensor V`, `dim V = n`.
 pub fn swap_matrix<K: FusionScalar>(n: usize) -> Result<BasicMatrix<K>, FusionError> {
     swap_matrix_with_limits(n, DEFAULT_BRAID_LIMITS)
 }
 
-/// [`swap_matrix`] with an explicit allocation budget. The zero carrier is retained.
 pub fn swap_matrix_with_limits<K: FusionScalar>(
     n: usize,
     limits: OperationLimits,
@@ -131,7 +104,6 @@ fn check_family_shape<K: FusionScalar>(r: &BasicMatrix<K>, n: usize) -> Result<(
     Ok(())
 }
 
-/// `R12 = R tensor 1`, `R23 = 1 tensor R` and `R13 = P23 R12 P23`.
 fn embeddings<K: FusionScalar>(
     r: &BasicMatrix<K>,
     n: usize,
@@ -154,14 +126,12 @@ fn embeddings<K: FusionScalar>(
     Ok([r12, r13, r23])
 }
 
-/// `R12 R23 R12 - R23 R12 R23` for a constant `R` on `V tensor V`.
 pub fn braid_form_defect<K: FusionScalar>(
     r: &BasicMatrix<K>,
 ) -> Result<BasicMatrix<K>, FusionError> {
     braid_form_defect_with_limits(r, DEFAULT_BRAID_LIMITS)
 }
 
-/// [`braid_form_defect`] with aggregate allocation and scalar-work limits.
 pub fn braid_form_defect_with_limits<K: FusionScalar>(
     r: &BasicMatrix<K>,
     limits: OperationLimits,
@@ -182,7 +152,6 @@ pub fn braid_form_defect_with_limits<K: FusionScalar>(
     matrix::sub(&left, &right).map_err(FusionError::from)
 }
 
-/// `R12(a) R13(b) R23(c) - R23(c) R13(b) R12(a)` on one spectral carrier.
 pub fn spectral_form_defect<K: FusionScalar>(
     family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,
     a: &K,
@@ -192,7 +161,6 @@ pub fn spectral_form_defect<K: FusionScalar>(
     spectral_form_defect_with_limits(family, a, b, c, DEFAULT_BRAID_LIMITS)
 }
 
-/// [`spectral_form_defect`] with aggregate limits; each family argument is evaluated once.
 pub fn spectral_form_defect_with_limits<K: FusionScalar>(
     family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,
     a: &K,
@@ -223,7 +191,6 @@ pub fn spectral_form_defect_with_limits<K: FusionScalar>(
     matrix::sub(&left, &right).map_err(FusionError::from)
 }
 
-/// `Rc12(x) Rc23(y) Rc12(z) - Rc23(z) Rc12(y) Rc23(x)` for braid-form matrices.
 pub fn spectral_braid_form_defect<K: FusionScalar>(
     family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,
     x: &K,
@@ -233,7 +200,6 @@ pub fn spectral_braid_form_defect<K: FusionScalar>(
     spectral_braid_form_defect_with_limits(family, x, y, z, DEFAULT_BRAID_LIMITS)
 }
 
-/// [`spectral_braid_form_defect`] with aggregate limits and one evaluation per argument.
 pub fn spectral_braid_form_defect_with_limits<K: FusionScalar>(
     family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,
     x: &K,
@@ -268,7 +234,6 @@ pub fn spectral_braid_form_defect_with_limits<K: FusionScalar>(
     matrix::sub(&left, &right).map_err(FusionError::from)
 }
 
-/// Yang's rational solution `R(u) = u 1 + P` on `C^n tensor C^n`.
 pub fn yang_rational<K: FusionScalar>(n: usize, u: &K) -> Result<BasicMatrix<K>, FusionError> {
     let dimension = n.checked_mul(n).ok_or(FusionError::Overflow {
         context: "sizing Yang's R-matrix",
@@ -283,9 +248,6 @@ pub fn yang_rational<K: FusionScalar>(n: usize, u: &K) -> Result<BasicMatrix<K>,
     .map_err(FusionError::from)
 }
 
-/// The Hecke / Jones braid matrix on `C^2 (x) C^2`:
-/// `[[q,0,0,0],[0,0,1,0],[0,1,q-1/q,0],[0,0,0,q]]`; it satisfies the braid relation and
-/// `(R - q)(R + 1/q) = 0`.
 pub fn hecke<K: FusionScalar>(q: &K) -> Result<BasicMatrix<K>, FusionError> {
     let q_inverse = omega_number_theory::scalar::inverse(q).map_err(FusionError::from)?;
     let zero = K::zero();
@@ -299,7 +261,6 @@ pub fn hecke<K: FusionScalar>(q: &K) -> Result<BasicMatrix<K>, FusionError> {
     .map_err(FusionError::from)
 }
 
-/// The Hecke relation defect `(R - q)(R + 1/q)` (zero for the Hecke matrix at `q`).
 pub fn hecke_quadratic_defect<K: FusionScalar>(
     r: &BasicMatrix<K>,
     q: &K,
@@ -329,9 +290,6 @@ pub fn hecke_quadratic_defect<K: FusionScalar>(
     matrix::multiply_with_limits(&left, &right, DEFAULT_BRAID_LIMITS).map_err(FusionError::from)
 }
 
-/// The symmetric six-vertex (XXZ) `R`-matrix in multiplicative parameters,
-/// `[[a,0,0,0],[0,b,c,0],[0,c,b,0],[0,0,0,a]]` with `a = q z - 1/(q z)`, `b = z - 1/z`,
-/// `c = q - 1/q`.
 pub fn six_vertex<K: FusionScalar>(q: &K, z: &K) -> Result<BasicMatrix<K>, FusionError> {
     let qz = q.mul(z);
     let a = qz.sub(&omega_number_theory::scalar::inverse(&qz).map_err(FusionError::from)?);
@@ -359,8 +317,6 @@ mod tests {
 
     #[test]
     fn oversized_yang_baxter_embeddings_refuse_before_dense_products() {
-        // The input has only 65,536 entries; its three-fold carrier would have
-        // 16,777,216 entries per embedding and require billions of products.
         let r = matrix::identity::<Rational>(256).unwrap();
         assert_eq!(base_dimension(&r).unwrap(), 16);
         assert!(matches!(
@@ -440,7 +396,6 @@ mod tests {
         )
         .map_err(FusionError::from)
         .unwrap());
-        // e_1 (x) e_2 (index 1*3 + 2 = 5) goes to e_2 (x) e_1 (index 2*3 + 1 = 7).
         assert_eq!(p.get(7, 5).unwrap(), q(1, 1));
         assert_eq!(p.get(5, 5).unwrap(), q(0, 1));
         assert_eq!(base_dimension(&p).unwrap(), 3);
@@ -467,7 +422,6 @@ mod tests {
             matrix::is_zero_matrix(&defect),
             "R12(u-v) R13(u) R23(v) = R23(v) R13(u) R12(u-v)"
         );
-        // Braid form for Rc(u) = P R(u): Rc12(u-v) Rc23(u) Rc12(v) = Rc23(v) Rc12(u) Rc23(u-v).
         let braid_family = |x: &Rational| -> Result<BasicMatrix<Rational>, FusionError> {
             matrix::multiply(
                 &swap_matrix::<Rational>(2)?,
@@ -477,7 +431,6 @@ mod tests {
         };
         let defect = spectral_braid_form_defect(braid_family, &(&u - &v), &u, &v).unwrap();
         assert!(matrix::is_zero_matrix(&defect));
-        // Unitarity R(u) R(-u) = (1 - u^2) 1 and regularity R(0) = P.
         let product = matrix::multiply(
             &yang_rational::<Rational>(2, &u).unwrap(),
             &yang_rational::<Rational>(2, &(-&u)).unwrap(),
@@ -501,7 +454,6 @@ mod tests {
 
     #[test]
     fn mismatched_spectral_arguments_violate_the_equation() {
-        // Negative control (K5): Yang's R with R12(u + v) instead of R12(u - v) fails.
         let (u, v) = (q(3, 2), q(2, 5));
         let family = |x: &Rational| yang_rational::<Rational>(2, x);
         let defect = spectral_form_defect(family, &(&u + &v), &u, &v).unwrap();
@@ -512,7 +464,6 @@ mod tests {
     fn hecke_matrices_satisfy_the_braid_relation_and_the_quadratic_relation() {
         let two = q(2, 1);
         let r = hecke(&two).unwrap();
-        // The documented matrix at q = 2.
         assert_eq!(
             r,
             matrix::from_rows(vec![
@@ -528,7 +479,6 @@ mod tests {
         assert!(matrix::is_zero_matrix(
             &hecke_quadratic_defect(&r, &two).unwrap()
         ));
-        // R - R^{-1} = (q - 1/q) 1.
         let difference = matrix::sub(
             &r,
             &elimination::inverse(&r)
@@ -552,7 +502,6 @@ mod tests {
 
     #[test]
     fn perturbed_hecke_matrices_violate_the_braid_relation() {
-        // Negative control (K5): with q + 1/q in the (2,2) entry instead of q - 1/q.
         let two = q(2, 1);
         let mut entries = matrix::to_rows(&hecke(&two).unwrap())
             .map_err(FusionError::from)
@@ -575,7 +524,6 @@ mod tests {
         let ratio = &z1 / &z2;
         let defect = spectral_form_defect(family, &ratio, &z1, &z2).unwrap();
         assert!(matrix::is_zero_matrix(&defect));
-        // Changing one weight destroys it (b -> b + 1 in a single evaluation).
         let perturbed = |z: &Rational| -> Result<BasicMatrix<Rational>, FusionError> {
             let mut entries =
                 matrix::to_rows(&six_vertex(&param, z)?).map_err(FusionError::from)?;
@@ -600,7 +548,6 @@ mod tests {
         let identity = matrix::identity::<Rational>(4)
             .map_err(FusionError::from)
             .unwrap();
-        // u 1 + Z (x) Z commutes with itself and DOES satisfy the equation (not a control).
         let commuting = |x: &Rational| {
             matrix::add(
                 &matrix::scale(&identity, x).map_err(FusionError::from)?,
@@ -611,7 +558,6 @@ mod tests {
         assert!(matrix::is_zero_matrix(
             &spectral_form_defect(commuting, &(&u - &v), &u, &v).unwrap()
         ));
-        // u 1 + 2 X (x) X + Z (x) Z mixes non-commuting terms and fails.
         let mixed = |x: &Rational| -> Result<BasicMatrix<Rational>, FusionError> {
             matrix::add(
                 &matrix::add(
@@ -626,8 +572,6 @@ mod tests {
         assert!(!matrix::is_zero_matrix(
             &spectral_form_defect(mixed, &(&u - &v), &u, &v).unwrap()
         ));
-        // u 1 + c P satisfies the equation for every constant c (not a control either):
-        // R(u) = c R_Yang(u / c) and the additive law is homogeneous.
         let scaled_flip = |x: &Rational| -> Result<BasicMatrix<Rational>, FusionError> {
             matrix::add(
                 &matrix::scale(&identity, x).map_err(FusionError::from)?,

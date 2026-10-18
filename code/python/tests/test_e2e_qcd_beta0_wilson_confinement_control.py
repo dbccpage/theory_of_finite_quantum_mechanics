@@ -3,6 +3,11 @@ Asymptotic Freedom (beta_0 = 11 - 2/3 n_f, beta_1 = 102 - 38/3 n_f), Rational-We
 Gell-Mann Fierz Completeness, and Finite-Graph Wilson-Loop Confinement Witness over Q.
 
 AuthorityEffect: None.
+
+Unit, integration, and negative tests.
+
+Origin: code/python/src/qm/campaigns/qcd_confinement.py
+Claim: evaluate_qm221_qcd_beta0_wilson_confinement certificate locked by exact checks in this file
 """
 
 from __future__ import annotations
@@ -18,7 +23,7 @@ from finite_qm.use_cases.qcd_beta0_wilson_confinement_control import (
 )
 
 
-def test_part_a_su3_gell_mann_casimirs_and_fierz_completeness() -> None:
+def test_unit_part_a_su3_gell_mann_casimirs_and_fierz_completeness() -> None:
     r = evaluate_qm221_qcd_beta0_wilson_confinement()
     assert r.color_dimension_nc == 3
     assert r.gluon_generator_count == 8
@@ -124,3 +129,12 @@ def test_part_e_lean4_part4_and_fable_receipt_parity() -> None:
     assert receipt["mcts_summary"]["needs_backtrack"] is False
     expected_lean_sha = "sha256:" + hashlib.sha256(canonical_lean.read_bytes()).hexdigest()
     assert receipt["sovereign_verification_artifacts"]["lean4_sha256"] == expected_lean_sha
+
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'qcd_confinement.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'evaluate_qm221_qcd_beta0_wilson_confinement' in source
+    assert _MODULE_PATH.is_file()

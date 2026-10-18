@@ -71,7 +71,7 @@ class WindowLiftCert:
     num_higher_cells: int
     lifted_residuals: Tuple[float, float, float]
     trigger_curvature_mass: float = 0.0
-    lift_kind: str = "tetrahedra"  # "tetrahedra" | "unsupported" | "generic_placeholder"
+    lift_kind: str = "tetrahedra"
     authority_effect: str = "None"
 
     @property
@@ -117,19 +117,15 @@ class DDAEngine:
         """Algorithm 1: Foundation step initializing cochains and computing initial residuals."""
         self.current_edge_values = dict(edge_values)
 
-        # 1. Compute Phi1 (quotient residual after gauge fix)
         res_fix = residual_after_gauge_fix(self.network, self.current_edge_values, method="l1")
         phi1 = res_fix["residual_size"]
 
-        # 2. Compute gamma2 (face curl consistency)
         curls = curl(self.network, self.current_edge_values)
         gamma2 = float(sum(abs(v) for v in curls.values())) if curls else 0.0
 
-        # 3. Compute chi (harmonic L1 cohomology residual on closed cochains)
         chi = phi1 if gamma2 < 1e-6 else 0.0
 
 
-        # Compute carrier hash
         h = hashlib.sha256()
         h.update(str(self.network.nodes).encode())
         h.update(str(self.network.edges).encode())
@@ -159,7 +155,6 @@ class DDAEngine:
 
         before_hash = self.current_bag.fingerprint()
 
-        # Compute initial residuals
         res_before = residual_after_gauge_fix(self.network, self.current_edge_values, method="l1")
         phi1_before = res_before["residual_size"]
         curls_before = curl(self.network, self.current_edge_values)
@@ -168,11 +163,9 @@ class DDAEngine:
         loss_ledger = {}
 
         if move_type == "exact_d0":
-            # Apply exact d0 potential subtraction
             self.current_edge_values = res_before["residual"]
             loss_ledger["gauge_potentials_removed"] = float(sum(abs(v) for v in res_before["potentials"].values()))
         elif move_type == "coexact_curl":
-            # Simple 2-cell curl reduction along face boundaries
             if self.network.faces:
                 for u, v, w in self.network.faces:
                     face_curl = (
@@ -194,7 +187,6 @@ class DDAEngine:
             loss_ledger["gauge_potentials_removed"] = float(sum(abs(v) for v in res_multi["potentials"].values()))
             loss_ledger["cycle_coeffs_removed"] = float(sum(abs(v) for v in res_multi["cycle_coeffs"].values()))
 
-        # Compute updated residuals
         res_after = residual_after_gauge_fix(self.network, self.current_edge_values, method="l1")
         phi1_after = res_after["residual_size"]
         curls_after = curl(self.network, self.current_edge_values)
@@ -228,7 +220,6 @@ class DDAEngine:
         """Algorithm 3: Evaluates degree fixed point and decides whether to lift window or terminate."""
         phi_k, gamma_kp1, chi_k = current_residuals
 
-        # 1. Solved check
         if phi_k < tol and gamma_kp1 < tol and chi_k < tol:
             return self._record_termination(TerminationCert(
                 status=TerminationStatus.SOLVED,
@@ -239,13 +230,11 @@ class DDAEngine:
                 authority_effect="None",
             ))
 
-        # 2. Lift condition check
         if self.degree_window <= max_lifts:
             from_deg = self.degree_window
             to_deg = from_deg + 1
 
             if from_deg == 1:
-                # Degree 1 -> Degree 2 transition (3-cell tetrahedra)
                 self.degree_window = to_deg
                 tetrahedra = detect_tetrahedra(self.network)
                 self.network = Network(
@@ -275,10 +264,8 @@ class DDAEngine:
                 }
                 self.current_bag = FingerprintedBag(name=f"state_deg_{self.degree_window}", data=bag_data)
 
-                # Recurse at elevated window
                 return self.lift_or_terminate(lifted_residuals, tol=tol, max_lifts=max_lifts)
             else:
-                # Degree k >= 2 transition: discover higher-simplex cells via higher_simplex_assembly
                 from omega_engine.crates.functional.higher_simplex_assembly import discover_higher_cells_for_lift
                 from omega_engine.crates.discrete_deformation_algebra.degree_generic_residual import residual_triple_for_lift
 
@@ -303,7 +290,6 @@ class DDAEngine:
                     }
                     self.current_bag = FingerprintedBag(name=f"state_deg_{self.degree_window}", data=bag_data)
 
-                    # Recurse at elevated window
                     return self.lift_or_terminate(lifted_residuals, tol=tol, max_lifts=max_lifts)
                 else:
                     lift_cert = WindowLiftCert(
@@ -327,7 +313,6 @@ class DDAEngine:
                         authority_effect="None",
                     ))
 
-        # 3. Typed irresolvable obstruction
         if gamma_kp1 < 1e-6 and chi_k > 1e-6:
             alg_class = f"closed-residual:harmonic_h1_norm_{chi_k:.4f}"
         else:

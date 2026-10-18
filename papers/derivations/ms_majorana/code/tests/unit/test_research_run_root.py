@@ -584,8 +584,6 @@ def test_rehashed_trace_substitution_cannot_detach_semantic_root(
         ),
     )
 
-    # The attacker can recompute the outer root after rebinding the bytes, but
-    # cannot make those unrelated semantic steps agree with the retained root.
     assert detached.root_id != original_root.root_id
     with pytest.raises(ResearchRunRootError, match="semantic trace does not match"):
         verify_research_run_root(detached, tmp_path)

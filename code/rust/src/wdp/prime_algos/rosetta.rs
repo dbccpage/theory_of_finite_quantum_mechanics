@@ -1,12 +1,3 @@
-//! Rosetta empirical layer: cross-domain residual-family stats under one alphabet.
-//!
-//! H-O2: if Algorithm Prime 000 + DDA is a domain-independent obstruction algebra,
-//! then letter tapes and trichotomy branches should be comparable across domains
-//! without domain-specific secret authority paths.
-//!
-//! This module **does not prove** the Rosetta conjecture. It computes finite
-//! statistics and hard invariants (shared required letters, authority None,
-//! no foreign alphabet symbols).
 
 use crate::prime_algos::prime_algorithm_0::{
     run_prime_algorithm_0, DefectBranch, DomainAdapter, EvidenceProvenance, PrimeAlgorithm0Receipt,
@@ -17,7 +8,6 @@ use omega_types::authority::AuthorityEffect;
 use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet};
 
-/// Compact summary of one domain's Prime 000 letter tape.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct DomainTapeSummary {
     pub domain: String,
@@ -29,7 +19,6 @@ pub struct DomainTapeSummary {
     pub phi1: Option<u64>,
     pub gamma2: Option<u64>,
     pub authority_effect: String,
-    /// Whether THIS domain's masses were computed or declared.
     pub provenance: EvidenceProvenance,
 }
 
@@ -39,7 +28,6 @@ impl DomainTapeSummary {
         for ch in r.letter_tape.chars() {
             *hist.entry(ch.to_string()).or_insert(0) += 1;
         }
-        // Normalize Λ if stored as multi-byte — letter() uses "Λ"
         Self {
             domain: r.domain.as_str().to_string(),
             residual_family_label: r.residual_family_label.clone(),
@@ -49,57 +37,34 @@ impl DomainTapeSummary {
             terminal: r.terminal.as_str().to_string(),
             phi1: r.phi1,
             gamma2: r.gamma2,
-            // Read from the receipt. This was hard-coded `"None".into()`, so any
-            // assertion comparing it to "None" compared a literal against itself
-            // and could not fail.
             authority_effect: format!("{:?}", r.authority_effect),
             provenance: r.evidence_provenance,
         }
     }
 }
 
-/// Roster-level provenance, derived from the receipts rather than asserted.
-///
-/// The previous field was a hard-coded `FixtureDrivenStructuralDemo` on the whole
-/// report. That was true when every adapter declared its numbers, and would have
-/// silently stayed true after one began computing them.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum RosterProvenance {
-    /// Every domain declared its masses.
     AllFixtureDriven,
-    /// Some domains compute, some declare. Names the ones that compute.
     Mixed { verifier_produced: Vec<String> },
-    /// Every domain's masses were computed by a verifier.
     AllVerifierProduced,
 }
 
-/// Aggregate Rosetta report over several domains.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct RosettaReport {
-    /// What the numbers below actually are, derived from the receipts.
     pub provenance: RosterProvenance,
     pub domains: Vec<DomainTapeSummary>,
-    /// Every domain emits C, R, and T at least once.
     pub shared_required_letters: bool,
-    /// Every letter is in the declared 8-letter alphabet.
     pub alphabet_closed: bool,
-    /// All receipts carry AuthorityEffect::None.
     pub authority_all_none: bool,
-    /// Φ₁ and Γ₂ always stored as distinct slots (never a merged field).
     pub phi_gamma_separated: bool,
-    /// Literature steps never appear before first T in any domain.
     pub literature_always_after_terminal: bool,
     pub branch_histogram: BTreeMap<String, usize>,
     pub terminal_histogram: BTreeMap<String, usize>,
     pub residual_family_count: usize,
-    /// Distinct residual-family labels seen.
     pub residual_families: Vec<String>,
-    /// Jaccard similarity of letter *sets* between domain pairs (scaled ×1000).
     pub pairwise_letter_jaccard_x1000: BTreeMap<String, u64>,
-    /// No receipt violates a *decidable* letter law. Not full conformance — see
-    /// `prime_algorithm_0_conformance::UNDECIDABLE_WITHOUT_PER_STEP_STATE`.
     pub no_decidable_letter_law_violation: bool,
-    /// Domain -> the letter laws it broke. Empty iff the flag above is true.
     pub letter_law_violations: BTreeMap<String, Vec<String>>,
     pub rosetta_smoke_pass: bool,
 }
@@ -111,7 +76,6 @@ fn alphabet_letters() -> BTreeSet<char> {
         .collect()
 }
 
-/// Build a Rosetta report from already-run receipts.
 pub fn rosetta_from_receipts(receipts: &[PrimeAlgorithm0Receipt]) -> RosettaReport {
     let allowed = alphabet_letters();
     let domains: Vec<DomainTapeSummary> = receipts
@@ -125,7 +89,6 @@ pub fn rosetta_from_receipts(receipts: &[PrimeAlgorithm0Receipt]) -> RosettaRepo
 
     let alphabet_closed = domains.iter().all(|d| {
         d.letter_tape.chars().all(|c| {
-            // multi-byte ops: allow any char that appears in some alphabet letter
             allowed.contains(&c) || "Λ".contains(c)
         })
     });
@@ -134,17 +97,6 @@ pub fn rosetta_from_receipts(receipts: &[PrimeAlgorithm0Receipt]) -> RosettaRepo
         .iter()
         .all(|r| r.authority_effect == AuthorityEffect::None);
 
-    // Φ₁ and Γ₂ must be independent slots, not one mass surfaced twice.
-    //
-    // This previously matched all four (Option, Option) combinations and returned
-    // `true` in every arm -- a tautology. It could not fail, so every conjunction
-    // containing it was weaker than it read, and no test could tell it from a
-    // constant. Replaced with a witness that can actually be absent:
-    //
-    // aliased fields cannot produce a receipt in which they DIFFER, so observing a
-    // difference anywhere in the roster witnesses separation. A roster where they
-    // never differ is reported unseparated rather than silently green -- weak
-    // evidence, but evidence, and it fails when there is none.
     let phi_gamma_separated = receipts.iter().any(|r| match (r.phi1, r.gamma2) {
         (Some(p), Some(g)) => p != g,
         (Some(_), None) | (None, Some(_)) => true,
@@ -185,10 +137,6 @@ pub fn rosetta_from_receipts(receipts: &[PrimeAlgorithm0Receipt]) -> RosettaRepo
         }
     }
 
-    // Letter-law conformance, per receipt. This was omitted entirely, so
-    // `rosetta_smoke_pass` stayed true while a domain terminalised an open
-    // residual — a T-law violation the checker could already see and the smoke
-    // verdict simply never asked about.
     let letter_law_violations: BTreeMap<String, Vec<String>> = receipts
         .iter()
         .filter_map(|r| {
@@ -214,7 +162,6 @@ pub fn rosetta_from_receipts(receipts: &[PrimeAlgorithm0Receipt]) -> RosettaRepo
         && no_decidable_letter_law_violation
         && !domains.is_empty();
 
-    // Derived, never asserted: the roster's provenance is whatever its receipts say.
     let verifier_produced: Vec<String> = receipts
         .iter()
         .filter(|r| r.evidence_provenance == EvidenceProvenance::VerifierProduced)
@@ -247,19 +194,16 @@ pub fn rosetta_from_receipts(receipts: &[PrimeAlgorithm0Receipt]) -> RosettaRepo
     }
 }
 
-/// Run all provided adapters and compute the Rosetta report.
 pub fn rosetta_run(adapters: &[&dyn DomainAdapter]) -> RosettaReport {
     let receipts: Vec<PrimeAlgorithm0Receipt> =
         adapters.iter().map(|a| run_prime_algorithm_0(*a)).collect();
     rosetta_from_receipts(&receipts)
 }
 
-/// Convenience: run the built-in multi-domain roster.
 pub fn rosetta_builtin_roster() -> RosettaReport {
     rosetta_from_receipts(&builtin_receipts())
 }
 
-/// The built-in roster's receipts, so conformance and the report read the same runs.
 pub fn builtin_receipts() -> Vec<PrimeAlgorithm0Receipt> {
     use crate::prime_algos::domain_adapters::{
         CodaResidualAdapter, FspChannelAAdapter, GenericMss0Adapter,
@@ -274,7 +218,6 @@ pub fn builtin_receipts() -> Vec<PrimeAlgorithm0Receipt> {
     adapters.iter().map(|a| run_prime_algorithm_0(*a)).collect()
 }
 
-/// Residual-family row for empirical tables (domain × family × branch × terminal).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ResidualFamilyStat {
     pub domain: PrimeDomain,
@@ -309,7 +252,6 @@ mod tests {
         SymbolGameExpressivityAdapter,
     };
 
-    /// Asserts only the conjuncts that can actually fail.
     #[test]
     fn rosetta_builtin_roster_reports_measurable_structure() {
         let report = rosetta_builtin_roster();
@@ -320,17 +262,6 @@ mod tests {
         assert!(report.alphabet_closed);
         assert!(report.literature_always_after_terminal);
 
-        // `shared_required_letters` is FALSE, and that is the correct reading.
-        //
-        // It reported true only because a domain that refused kept executing:
-        // MUB emits "refuse construction" at step 4, and the runner used to carry
-        // on through Q¹ (R), the mass split, the lift search and routing (R
-        // again), so the tape acquired the required letters *after* the refusal.
-        //
-        // With refusals terminal, MUB stops at step 4 and terminalises. Its tape
-        // carries no `R`, because no residual projection ever ran. The Rosetta
-        // "every domain emits C, R and T" invariant was an artifact of ignoring
-        // refusals, not a property of the domains.
         assert!(
             !report.shared_required_letters,
             "a refusing domain cannot emit R; if this passes, refusals stopped              being terminal again"
@@ -344,11 +275,6 @@ mod tests {
         assert!(!mub.letter_tape.contains('R'));
     }
 
-    /// The smoke verdict now consults letter-law conformance, and FSP breaks it.
-    ///
-    /// FSP has masses (1, 1) -> Open, terminalises with `T` at Γ₂ = 1, which the
-    /// T law forbids ("T is inert and requires zero closure defect"). The old
-    /// `rosetta_smoke_pass` never asked, so it stayed true over a known violation.
     #[test]
     fn smoke_verdict_sees_the_fsp_t_law_violation() {
         let report = rosetta_builtin_roster();
@@ -380,7 +306,6 @@ mod tests {
         let table = residual_family_table(&receipts);
         let labels: BTreeSet<_> = table.iter().map(|r| r.family.as_str()).collect();
         assert!(labels.len() >= 4);
-        // FSP is Open (gamma2>0); generic/coda/sg are StabilizedSurvivor
         assert!(table.iter().any(|r| r.branch == DefectBranch::Open));
         assert!(table
             .iter()
@@ -397,7 +322,6 @@ mod tests {
         assert!(j > 0, "expected some shared letters");
     }
 
-    /// All built-in adapters are currently fixture-driven, and say so.
     #[test]
     fn roster_provenance_is_fixture_driven() {
         let report = rosetta_builtin_roster();

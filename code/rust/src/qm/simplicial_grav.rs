@@ -1,4 +1,3 @@
-//! Exact declared simplicial models, with no continuum-gravity or unitarity inference.
 use crate::qm::finite_witness::{field_q, field_usize, parse_q, qstr, qvec};
 use crate::linear_algebra::matrix as mx;
 use num_traits::Zero;

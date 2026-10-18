@@ -1,4 +1,3 @@
-// AuthorityEffect: None.
 use num_rational::BigRational;
 use omega_category_theory::finite_report_query::{
     ReportQueryDecision, ReportQueryProblem, ReportQueryRefusal,
@@ -12,15 +11,6 @@ use crate::coda::types::{LayerExecutionRecord, LayerId, ProblemInstance};
 pub struct Layer3Cs;
 
 impl Layer3Cs {
-    /// Evaluates Layer 3: Continuum Shadow (CODA-CS), legacy table check.
-    ///
-    /// The projection table must be total and exact on the distinct fine
-    /// profile tokens: every fine token has exactly one row, no row names a
-    /// token outside the fine profile (for example an extra `{99: 0}`), and
-    /// every image lies in the coarse profile. Repeated tokens in either
-    /// profile are refused. This is a typing check of one table; it does not
-    /// decide whether a query factors through a report (see
-    /// [`Layer3Cs::evaluate_report_query`]).
     pub fn evaluate(problem: &ProblemInstance) -> (LayerExecutionRecord, bool) {
         let fine: BTreeSet<i64> = problem.fine_profile.iter().copied().collect();
         let coarse: BTreeSet<i64> = problem.coarse_profile.iter().copied().collect();
@@ -70,11 +60,6 @@ impl Layer3Cs {
         (record, consistent)
     }
 
-    /// Decides the DP-1 report/query problem through the category owner
-    /// [`omega_category_theory::finite_report_query`]: total report and query
-    /// tables on a declared source, codomain membership as a typing premise,
-    /// and either a decoder on the realized image or a collision witness.
-    /// Refusals are typed and do not produce a verdict.
     pub fn evaluate_report_query<X, A, B>(
         source: &[X],
         report_codomain: &[A],

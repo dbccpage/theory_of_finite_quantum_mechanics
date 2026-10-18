@@ -1,9 +1,3 @@
-//! Named WDP calibration packets and problem-bound exact replay receipts.
-//!
-//! Numerical composition/enclosure mathematics is delegated to
-//! `omega_measurement::affine_calibration`. Packet identity, ordered stages and
-//! actual input are bound explicitly; physical traceability and confidence
-//! claims remain separate requirements rather than consequences of arithmetic.
 
 use num_rational::BigRational;
 use omega_measurement::affine_calibration::{
@@ -84,8 +78,6 @@ impl CalibrationPacket {
     }
 }
 
-/// Input and every intermediate output appear in declared order. A stage ID
-/// may repeat when a calibration is applied twice: position remains binding.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CalibrationReceipt {
     pub packet: CalibrationPacket,
@@ -110,9 +102,6 @@ pub fn evaluate_calibration_packet(
     })
 }
 
-/// Replay against the externally supplied actual problem, never merely the
-/// candidate's self-declared packet. This checks input, stage count/order/IDs,
-/// exact coefficients and bounds, all intermediate enclosures and final output.
 pub fn verify_calibration_receipt(
     actual_packet: &CalibrationPacket,
     candidate: &CalibrationReceipt,
@@ -121,8 +110,6 @@ pub fn verify_calibration_receipt(
     Ok(candidate == &checked)
 }
 
-/// A nominal chain-update supremum plus old and new uncertainty propagation.
-/// It does not collapse uncertain realizations into the nominal update bound.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CalibrationUpdateReceipt {
     pub old: CalibrationReceipt,
@@ -206,7 +193,6 @@ mod tests {
         new.packet_id = "packet-1".into();
         new.stages[0].calibration = AffineCalibration::new(q(1), q(-1), q(0), q(0), q(0)).unwrap();
         let receipt = evaluate_calibration_update(&old, &new).unwrap();
-        // Delta(t)=3t-4 on [3,5], exact supremum 11.
         assert_eq!(receipt.nominal_update_supremum, q(11));
         assert!(verify_calibration_update(&old, &new, &receipt).unwrap());
         assert!(!verify_calibration_update(&new, &old, &receipt).unwrap());

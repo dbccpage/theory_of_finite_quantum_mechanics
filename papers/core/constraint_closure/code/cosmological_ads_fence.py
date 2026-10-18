@@ -70,8 +70,6 @@ def evaluate_declared_sign_cases() -> dict:
     """Evaluate k=6 and three supplied matter cases without physical transport."""
     gc = discrete_k6_sign_fixture()
 
-    # Check: matter cannot flip AdS to dS
-    # Normal matter: dust (w=0), radiation (w=1/3), stiff matter (w=1)
     matter_cases = [
         {"label": "dust", "rho": 1.0, "p": 0.0},
         {"label": "radiation", "rho": 1.0, "p": 1.0 / 3},

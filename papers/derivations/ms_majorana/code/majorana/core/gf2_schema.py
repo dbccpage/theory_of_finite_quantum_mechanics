@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-# SPDX-License-Identifier: Apache-2.0
 from typing import Literal
 
 GF2Bit = Literal[0, 1]

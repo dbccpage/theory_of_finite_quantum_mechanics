@@ -1,16 +1,3 @@
-//! Derived Categories and Mapping Cones.
-//!
-//! Provides chain complexes, chain maps, mapping cones $C(f) = Y \oplus X[1]$,
-//! block differential matrix computation $\begin{pmatrix} d_Y & f \\ 0 & -d_X \end{pmatrix}$,
-//! and nilpotence verification $d_{C(f)}^2 = 0$.
-//!
-//! Invariants:
-//! - Zero floating-point arithmetic.
-//! - Exact integer arithmetic over $\mathbb{Z}$.
-//! - Soviet Builder allocation limits via `OperationLimits` and `reserve_exact`.
-//! - Content-addressed SHA-256 state hashing.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -21,7 +8,6 @@ use sha2::{Digest, Sha256};
 use crate::dg_category::{add_terms, canonicalize_terms, scale_terms};
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// Chain complex in homological grading with differential $d_n: X_n \to X_{n-1}$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ChainComplex {
     pub id: String,
@@ -79,7 +65,6 @@ impl ChainComplex {
         result
     }
 
-    /// Verifies $d_n \circ d_{n+1} = 0$ across all degrees.
     pub fn check_nilpotence(&self) -> Result<(), HigherCategoryError> {
         for (&deg, generators) in &self.components {
             for gen in generators {
@@ -100,7 +85,6 @@ impl ChainComplex {
     }
 }
 
-/// Chain map $f: X \to Y$ between chain complexes.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ChainMap {
     pub id: String,
@@ -153,7 +137,6 @@ impl ChainMap {
         result
     }
 
-    /// Verifies chain map property: $d_Y \circ f_n = f_{n-1} \circ d_X$.
     pub fn check_commutes_with_differential(
         &self,
         x: &ChainComplex,
@@ -161,11 +144,9 @@ impl ChainMap {
     ) -> Result<(), HigherCategoryError> {
         for (&deg, generators) in &x.components {
             for gen in generators {
-                // Path 1: f then d_Y
                 let f_x = self.apply_to_gen(deg, gen);
                 let d_y_f_x = y.apply_differential_to_terms(deg, &f_x);
 
-                // Path 2: d_X then f
                 let d_x = x.differential_of(deg, gen);
                 let f_d_x = self.apply_to_terms(deg - 1, &d_x);
 
@@ -184,16 +165,14 @@ impl ChainMap {
     }
 }
 
-/// Block matrix descriptor for cone differential $d_{C(f)}$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ConeDifferentialMatrix {
     pub degree: i32,
-    pub d_y_sign: i8, // +1
-    pub f_sign: i8,   // +1
-    pub d_x_sign: i8, // -1
+    pub d_y_sign: i8,
+    pub f_sign: i8,
+    pub d_x_sign: i8,
 }
 
-/// Mapping cone $C(f) = Y \oplus X[1]$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MappingCone {
     pub id: String,
@@ -205,10 +184,6 @@ pub struct MappingCone {
 }
 
 impl MappingCone {
-    /// Constructs the mapping cone $C(f) = Y \oplus X[1]$ with block differential:
-    /// $$d_{C(f)} = \begin{pmatrix} d_Y & f \\ 0 & -d_X \end{pmatrix}$$
-    ///
-    /// Verifies $d_{C(f)}^2 = 0$ constructively.
     pub fn construct(
         map: &ChainMap,
         x: &ChainComplex,
@@ -223,13 +198,12 @@ impl MappingCone {
         let mut cone = ChainComplex::new(&cone_id);
         let mut block_matrices = BTreeMap::new();
 
-        // Determine all degrees present in Y or X[1] (degree n has X_{n-1})
         let mut degrees = BTreeSet::new();
         for &deg in y.components.keys() {
             degrees.insert(deg);
         }
         for &deg in x.components.keys() {
-            degrees.insert(deg + 1); // X[1]_n = X_{n-1}
+            degrees.insert(deg + 1);
         }
 
         if degrees.len() >= limits.max_cells {
@@ -239,7 +213,6 @@ impl MappingCone {
             });
         }
 
-        // Add generators: Y_n generators prefixed "Y::" and X[1]_n = X_{n-1} generators prefixed "X1::"
         for &deg in &degrees {
             if let Some(y_gens) = y.components.get(&deg) {
                 let entry = cone.components.entry(deg).or_default();
@@ -257,9 +230,6 @@ impl MappingCone {
             }
         }
 
-        // Set cone differential:
-        // For y in Y_n: d_{C(f)}(y) = d_Y(y)
-        // For x in X[1]_n (which is in X_{n-1}): d_{C(f)}(x) = f(x) - d_X(x)
         for &deg in &degrees {
             block_matrices.insert(
                 deg,
@@ -271,7 +241,6 @@ impl MappingCone {
                 },
             );
 
-            // 1. Differentials on Y_n
             if let Some(y_gens) = y.components.get(&deg) {
                 for gen in y_gens {
                     let d_y = y.differential_of(deg, gen);
@@ -283,18 +252,15 @@ impl MappingCone {
                 }
             }
 
-            // 2. Differentials on X1_n = X_{n-1}
             let x_deg = deg - 1;
             if let Some(x_gens) = x.components.get(&x_deg) {
                 for gen in x_gens {
-                    // Coupling f(x) in Y_{n-1}
                     let f_x = map.apply_to_gen(x_deg, gen);
                     let mut terms: Vec<(i64, String)> = f_x
                         .into_iter()
                         .map(|(c, g)| (c, format!("Y::{g}")))
                         .collect();
 
-                    // Shifted negative differential -d_X(x) in X_{n-2} = X1_{n-1}
                     let d_x = x.differential_of(x_deg, gen);
                     let neg_d_x: Vec<(i64, String)> = d_x
                         .into_iter()
@@ -307,7 +273,6 @@ impl MappingCone {
             }
         }
 
-        // Constructive validation: d_{C(f)}^2 must be identically 0
         cone.check_nilpotence()?;
 
         Ok(Self {
@@ -321,7 +286,6 @@ impl MappingCone {
     }
 }
 
-/// Quasi-isomorphism certificate between chain complexes.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QuasiIsomorphism {
     pub chain_map_id: String,
@@ -329,7 +293,6 @@ pub struct QuasiIsomorphism {
     pub degrees_checked: Vec<i32>,
 }
 
-/// Derived Category $\mathcal{D}(\mathcal{A})$ structure holding complexes and mapping cones.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DerivedCategory {
     pub name: String,

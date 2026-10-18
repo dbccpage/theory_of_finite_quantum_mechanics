@@ -1,13 +1,9 @@
-//! Realization: Operadic Modules & Algebra Modules.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use crate::foundation::{Operation, OperationId, OperadSignature, PlanarColoredOperad};
 use super::algebra_over_operad::OperadAlgebra;
 
-/// An operadic right module M over an operad O with action gamma: M o O -> M.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OperadicModule {
     pub operad: PlanarColoredOperad,
@@ -60,7 +56,6 @@ impl OperadicModule {
     }
 }
 
-/// An infinitesimal module M over a specific O-algebra A.
 #[derive(Clone)]
 pub struct AlgebraModule {
     pub algebra: OperadAlgebra,

@@ -61,7 +61,6 @@ class ObstructionReceipt:
     independently_verifiable: bool
     coefficient_domain: str = "Q"
     authority_effect: str = "None"
-    # Optional future: model_digest, protected_set, weights, dual feasibility checks
 
 
 def evaluate_obstruction(
@@ -80,10 +79,8 @@ def evaluate_obstruction(
     """
     analysis: CochainAnalysis = analyze_finite_cochain(complex_, omega)
 
-    # Quantitative closure defect Γ₂
     gamma2 = _l1_norm(analysis.closure_defect, v)
 
-    # Quantitative Φ₁ and residual / repair
     if analysis.verdict is Verdict.EXACT_REPAIR:
         phi1 = Fraction(0)
         residual = tuple(Fraction(0) for _ in analysis.beta)
@@ -98,7 +95,7 @@ def evaluate_obstruction(
         classification = ObstructionClass.CLOSED_NONEXACT
     elif analysis.verdict is Verdict.CURVATURE:
         residual = analysis.beta
-        phi1 = _l1_norm(residual, w)  # residual after attempted gauge still carries curvature
+        phi1 = _l1_norm(residual, w)
         alpha = None
         dual_phi = None
         classification = ObstructionClass.NONCLOSED
@@ -110,8 +107,6 @@ def evaluate_obstruction(
         dual_phi = None
         classification = ObstructionClass.INVALID_COMPLEX
 
-    # Independent verifiability is already enforced by the exact solver
-    # (assertions on witnesses, SHA-256 binding of the full computation).
     independently_verifiable = True
 
     return ObstructionReceipt(
@@ -128,7 +123,6 @@ def evaluate_obstruction(
     )
 
 
-# Convenience re-export for cascade / self-solver layers
 solve_obstruction = evaluate_obstruction
 
 __all__ = [

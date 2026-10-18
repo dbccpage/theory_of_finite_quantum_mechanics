@@ -1,8 +1,3 @@
-//! Target P4: supplied-matrix residuals and interval arithmetic.
-//! AuthorityEffect: None.
-//!
-//! No parameter-to-matrix map or derivative enclosure is supplied. Parameter-only
-//! certification fails closed. The interval path retains B1's arithmetic scope.
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
@@ -16,8 +11,6 @@ use omega_number_theory::rational::rq;
 pub const NUM_ANCHORS_CANONICAL: usize = 250;
 pub const MISSING_EVIDENCE: &str = "MissingProofObligation: parameter-bound Szollosi matrices, verified derivative enclosures, and common-gauge continuation evidence are required";
 
-/// Compute every entry of H H* - 6 I. Nonzero residuals are returned unchanged.
-/// Entry modulus, family membership, derivatives and parameter binding are not checked.
 pub fn compute_matrix_residual(h: &[Vec<Cyc24>]) -> Result<Vec<Vec<Cyc24>>, String> {
     if h.len() != 6 || h.iter().any(|row| row.len() != 6) {
         return Err("Matrix must be 6x6".into());
@@ -42,7 +35,6 @@ fn require_parameter(t: &BigRational) -> Result<(), String> {
     Ok(())
 }
 
-/// Reject parameter-only requests without a concrete matrix witness.
 pub fn compute_2circulant_residual_matrix(
     t: &BigRational,
 ) -> Result<(BigRational, BigRational), String> {
@@ -50,13 +42,11 @@ pub fn compute_2circulant_residual_matrix(
     Err(MISSING_EVIDENCE.into())
 }
 
-/// Reject unsupported derivative bounds.
 pub fn compute_algebraic_derivative_bound(t: &BigRational) -> Result<BigRational, String> {
     require_parameter(t)?;
     Err(MISSING_EVIDENCE.into())
 }
 
-/// Interval overlap only; radii must be strictly positive.
 pub fn verify_continuation_step(
     t1: &BigRational,
     d1: &BigRational,
@@ -66,7 +56,6 @@ pub fn verify_continuation_step(
     d1 > &BigRational::zero() && d2 > &BigRational::zero() && (t2 - t1).abs() <= d1 + d2
 }
 
-/// Reuse the audited B1 cover with its declared-bound arithmetic scope.
 pub fn build_interval_cover(num_anchors: usize) -> Result<MultiAnchorCover, String> {
     let cover = build_multi_anchor_covering(num_anchors, &delta_certified())
         .map_err(|error| error.to_string())?;
@@ -74,7 +63,6 @@ pub fn build_interval_cover(num_anchors: usize) -> Result<MultiAnchorCover, Stri
     Ok(cover)
 }
 
-/// Fail closed until independent matrix and analytic evidence is implemented.
 pub fn build_matrix_residual_verifier(num_anchors: usize) -> Result<(), String> {
     if num_anchors < 80 {
         return Err("Invalid anchor count".into());

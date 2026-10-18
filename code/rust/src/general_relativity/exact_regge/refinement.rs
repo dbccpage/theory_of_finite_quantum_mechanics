@@ -1,16 +1,3 @@
-//! Coxeter-Freudenthal 1-to-16 refinement of one 4-simplex.
-//!
-//! Reference simplex at scale 2: `2 ≥ x0 ≥ x1 ≥ x2 ≥ x3 ≥ 0`.
-//! A child is a lattice path of four `+e_{π(k)}` steps whose five vertices all
-//! lie in that simplex. There are exactly 16 such paths.
-//! Barycentric coordinates of a lattice point `p` relative to the corners
-//! `(0,0,0,0), (2,0,0,0), (2,2,0,0), (2,2,2,0), (2,2,2,2)` are
-//! `λ0 = 1 - p0/2`, `λ1 = (p0-p1)/2`, `λ2 = (p1-p2)/2`, `λ3 = (p2-p3)/2`, `λ4 = p3/2`.
-//! Map by `Σ λ_k V_k`. Orient each child so its signed volume has the same sign
-//! as the parent (swap vertices 0 and 1 if the product of the signed volumes is
-//! negative). Parent signed volume `0` is [`ManifoldError::Degenerate`].
-//!
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 
@@ -20,11 +7,6 @@ use linear_algebra::regge_exact::{q_i64, signed_volume_4};
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 
-/// Images of the 16 Freudenthal children, in enumeration order, oriented with the parent.
-///
-/// Starts run through `{0,1,2}^4` in lexicographic order. For each start, permutations
-/// of `{0,1,2,3}` are lexicographic. A path is kept only when all five vertices lie in
-/// the reference simplex. Dividing by 2 in the barycentric map is exact in `Q`.
 pub fn freudenthal_refine_16(
     parent: &[[BigRational; 4]; 5],
 ) -> Result<Vec<[[BigRational; 4]; 5]>, ManifoldError> {

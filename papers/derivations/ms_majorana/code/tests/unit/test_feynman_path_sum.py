@@ -17,7 +17,6 @@ class DiscreteGraph:
 
     def __init__(self, num_nodes: int):
         self.num_nodes = num_nodes
-        # Matrix storing complex edge weights w(e) * exp(i theta(e))
         self.weights = [
             [0.0 + 0.0j for _ in range(num_nodes)] for _ in range(num_nodes)
         ]
@@ -73,7 +72,6 @@ def enumerate_path_sum(
 def test_feynman_path_sum_matrix_power_equivalence():
     """Verify that 1-cochain path sum matches matrix power M^n for QM_031."""
     g = DiscreteGraph(3)
-    # Edge weights and U(1) phase angles
     g.set_edge(0, 1, 0.707, math.pi / 4)
     g.set_edge(0, 2, 0.707, -math.pi / 4)
     g.set_edge(1, 2, 1.0, math.pi / 2)

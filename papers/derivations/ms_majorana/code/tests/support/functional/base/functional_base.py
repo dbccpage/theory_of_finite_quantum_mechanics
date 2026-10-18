@@ -103,14 +103,11 @@ class FunctionalBase(ABC):
 
     def compute(self, state: Any, input_ref: str = "state_ref_001") -> FunctionalOutput:
         """Final execution envelope for functional measurement."""
-        # 1. Compute input state hash
         state_raw = str(state).encode("utf-8")
         input_hash = f"sha256:{hashlib.sha256(state_raw).hexdigest()}"
 
-        # 2. Compute internal measurement values
         values, solver_refs, candidate_cert_refs = self._compute_values(state)
 
-        # 3. Construct ephemeral TraceSignal
         signal = TraceSignal(
             source_ref=f"functional:{self.functional_id}",
             source_contract_ref=CONTRACT_ID,

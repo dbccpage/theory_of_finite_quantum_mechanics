@@ -1,13 +1,3 @@
-/-
-  GaussIntKernel.lean
-  Core Gaussian integer arithmetic shared by the quotient-fiber and
-  interference modules (retired papers QM_060 and QM_061).
-  AuthorityEffect: None
-  Zero Mathlib dependency.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 structure GaussInt where
   re : Int
@@ -52,3 +42,6 @@ theorem conj_mul_self_im (a : GaussInt) : (mul (conj a) a).im = 0 := by
 end GaussInt
 
 def Vec (K : Type) (Q : Type) := Q → K
+
+private def l5aProvenance : String :=
+  "Origin: lean4/GaussIntKernel.lean Claim: int_sq_nonneg AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

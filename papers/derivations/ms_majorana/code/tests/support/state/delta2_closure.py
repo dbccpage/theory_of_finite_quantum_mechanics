@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/delta2_closure.rs
-# Rust sha256: 6767b18a30da72d470bfc8b9bb55a3aa7f40d179fe8fb27509ca22b6d6c9a504
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,11 +38,9 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 DELTA2_CLOSURE_PACKET_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 DELTA2_CLOSURE_VERIFICATION_SCHEMA_V1: Any = None
 
 
@@ -60,7 +54,6 @@ Delta2ObligationIdV1.__doc__ = (
 )
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
@@ -286,6 +279,5 @@ def verify_delta2_closure_v1(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

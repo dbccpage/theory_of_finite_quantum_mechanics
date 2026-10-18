@@ -1,37 +1,9 @@
-//! l1 harmonic projection and cohomology-class typing over GF(2).
-//!
-//! For a residual `r` with `d1 r = 0`, the class `[r]` in
-//! `H^1 = ker d1 / im d0` is the logical parity error. Two questions matter:
-//!
-//! **How big is it?** `Phi_1([r]) = min over alpha of weight(r + d0 alpha)` --
-//! the minimum-Hamming-weight representative of the coset `r + im d0`. This is
-//! the number of parity channels that must be wrong to realize the logical
-//! error, so the minimum over nonzero classes is the array's **code distance**.
-//!
-//! **Which one is it?** The coordinates of `[r]` in a fixed basis of `H^1`.
-//!
-//! Non-claim: over GF(2) with 0/1 entries, `||v||_p^p = weight(v)` for every
-//! `p`, so l1 and l2 minimisation coincide *identically*, at every Betti
-//! number. No l1-vs-l2 separation is claimed here and none is possible in this
-//! carrier. What `dim H^1 >= 2` buys is typing.
-//!
-//! Complexity: the search is `2 ** rank d0` Gray-code steps. That is not an
-//! implementation defect -- minimum-weight coset representative over GF(2) is
-//! syndrome decoding, NP-hard in general. The budget makes the cost explicit
-//! and `exact` makes the degradation visible.
-//!
-//! Python dual face: `omega_engine/omega_engine_majorana/engines/harmonic.py`.
-//!
-//! AuthorityEffect: None.
 
 use crate::gf2_terminalizer::GF2Matrix;
 
-/// Default cap on coset elements examined by the l1 search.
 pub const DEFAULT_BUDGET: u64 = 1 << 22;
 
-// --- a minimal fixed-width bitset --------------------------------------------
 
-/// Bit vector over `Vec<u64>`, ordered as a big integer for canonical tie-breaks.
 #[derive(Debug, Clone, PartialEq, Eq)]
 struct Bits {
     words: Vec<u64>,
@@ -72,7 +44,6 @@ impl Bits {
         self.words.iter().all(|&word| word == 0)
     }
 
-    /// Index of the highest set bit, or `None` if zero.
     fn high_bit(&self) -> Option<usize> {
         for (index, &word) in self.words.iter().enumerate().rev() {
             if word != 0 {
@@ -83,13 +54,7 @@ impl Bits {
     }
 }
 
-// --- span with tag tracking ---------------------------------------------------
 
-/// Pivot table keyed by leading bit, carrying a tag alongside each vector.
-///
-/// Each stored pivot's leading bit is unique, so a nonzero combination always
-/// retains the largest such leading bit. If the current leading bit has no
-/// pivot, the vector is outside the span and reduction stops.
 struct Span {
     pivots: Vec<Option<(Bits, Bits)>>,
 }
@@ -116,10 +81,6 @@ impl Span {
         (residue, tag)
     }
 
-    /// Insert `mask` with `tag`. Returns `true` if it was independent.
-    ///
-    /// Independence is the *computed* predicate `residue != 0`; storing the
-    /// pivot is the side effect, not the verdict.
     fn insert(&mut self, mask: &Bits, tag: &Bits, tag_len: usize) -> bool {
         let (residue, accumulated) = self.reduce(mask, tag_len);
         let independent = !residue.is_zero();
@@ -132,12 +93,7 @@ impl Span {
     }
 }
 
-// --- l1 harmonic projection ---------------------------------------------------
 
-/// Result of minimising Hamming weight over the coset `r + im d0`.
-///
-/// `exact` is the only field that licenses calling `weight` a minimum. When it
-/// is `false` the search was capped and `weight` is an upper bound.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct L1HarmonicProjection {
     pub weight: usize,
@@ -145,15 +101,10 @@ pub struct L1HarmonicProjection {
     pub alpha: Vec<u8>,
     pub exact: bool,
     pub searched: u64,
-    /// `2 ** rank d0`, saturating at `u64::MAX` when the rank exceeds 63.
     pub coset_size: u64,
     pub authority_effect: &'static str,
 }
 
-/// A basis of `im d0` as `(channel_mask, alpha_mask)` pairs.
-///
-/// `alpha_mask` records which unit 0-cochains produced the channel mask, so a
-/// minimising combination can be turned back into a witness `alpha`.
 fn image_basis(d0: &GF2Matrix) -> Vec<(Bits, Bits)> {
     let mut span = Span::new(d0.rows.max(1));
     let mut basis = Vec::new();
@@ -176,14 +127,6 @@ fn image_basis(d0: &GF2Matrix) -> Vec<(Bits, Bits)> {
     basis
 }
 
-/// Minimum-Hamming-weight representative of `residual + im d0`.
-///
-/// Enumerates the coset by reflected Gray code: one XOR and one popcount per
-/// element. Ties are broken by smallest bitmask, so the representative is
-/// canonical and replay-stable across the Rust and Python faces.
-///
-/// `budget` caps the number of elements examined; past it the result is an
-/// **upper bound** and `exact` is `false`.
 pub fn l1_harmonic_projection(
     d0: &GF2Matrix,
     residual: &[u8],
@@ -203,9 +146,7 @@ pub fn l1_harmonic_projection(
     })
 }
 
-// --- cohomology basis and class typing ----------------------------------------
 
-/// A basis of `H^1 = ker d1 / im d0`, with the machinery to place a residual.
 pub struct H1Basis {
     pub dim: usize,
     pub generators: Vec<Vec<u8>>,
@@ -213,7 +154,6 @@ pub struct H1Basis {
     span: Span,
 }
 
-/// Basis of `ker d1` by back-substitution on the RREF of `d1`.
 fn kernel_basis(d1: &GF2Matrix, num_channels: usize) -> Vec<Vec<u8>> {
     if d1.rows == 0 {
         return (0..num_channels)
@@ -246,18 +186,11 @@ fn kernel_basis(d1: &GF2Matrix, num_channels: usize) -> Vec<Vec<u8>> {
         .collect()
 }
 
-/// Build a basis of `H^1`.
-///
-/// `im d0` is loaded first with a zero tag; each kernel vector still
-/// independent becomes a generator, tagged by its index. The pivot table then
-/// carries, for every stored vector, which generators it is congruent to
-/// modulo `im d0` -- which is exactly what class typing needs.
 pub fn h1_basis(d0: &GF2Matrix, d1: &GF2Matrix) -> H1Basis {
     let num_channels = d0.rows;
     let mut span = Span::new(num_channels.max(1));
     let mut generators: Vec<Vec<u8>> = Vec::new();
 
-    // A generous tag width: at most num_channels independent classes.
     let tag_len = num_channels.max(1);
     for (channel_mask, _alpha) in image_basis(d0) {
         span.insert(&channel_mask, &Bits::zeros(tag_len), tag_len);
@@ -280,10 +213,6 @@ pub fn h1_basis(d0: &GF2Matrix, d1: &GF2Matrix) -> H1Basis {
 }
 
 impl H1Basis {
-    /// Coordinates of `[residual]`, or `None` if the residual is outside `ker d1`.
-    ///
-    /// `None` means it is in no cohomology class at all -- an `OpenObstruction`,
-    /// not a logical error.
     pub fn class_coordinates(&self, residual: &[u8]) -> Option<Vec<u8>> {
         if residual.len() != self.num_channels {
             return None;
@@ -296,7 +225,6 @@ impl H1Basis {
         Some((0..self.dim).map(|index| tag.get(index)).collect())
     }
 
-    /// A representative of the class with the given coordinates.
     pub fn class_representative(&self, coordinates: &[u8]) -> Vec<u8> {
         let mut vector = vec![0u8; self.num_channels];
         for (index, &bit) in coordinates.iter().enumerate().take(self.dim) {
@@ -309,7 +237,6 @@ impl H1Basis {
         vector
     }
 
-    /// Label used in receipts, e.g. `h1:10`.
     pub fn class_id(coordinates: &[u8]) -> String {
         let mut label = String::from("h1:");
         for &bit in coordinates {
@@ -319,11 +246,6 @@ impl H1Basis {
     }
 }
 
-/// Minimum `Phi_1` over the nonzero classes of `H^1`.
-///
-/// Returns `(None, true)` when `H^1 = 0`: there is no nontrivial class, so
-/// there is no logical error to weigh. The flag is `true` only if every class
-/// was searched exactly.
 pub fn code_distance(
     d0: &GF2Matrix,
     d1: &GF2Matrix,
@@ -333,8 +255,6 @@ pub fn code_distance(
     if basis.dim == 0 {
         return Ok((None, true));
     }
-    // `1u64 << dim` panics in debug and wraps in release once dim >= 64.
-    // Release would then report no logical class (`None`) for a nonzero H^1.
     if basis.dim >= 64 {
         return Err(
             "code distance refused: dim H^1 >= 64 does not fit an exact class enumeration".into(),
@@ -363,7 +283,6 @@ mod tests {
     use crate::repair_limit::{apply_d0, gf2_add};
     use crate::tetron::{build_tetron_array, logical_class_representative, Axis, Topology};
 
-    /// Independent oracle: enumerate every alpha in C^0, not a basis of im d0.
     fn brute_force_min_weight(d0: &GF2Matrix, residual: &[u8]) -> usize {
         let mut best = residual.iter().filter(|&&b| b == 1).count();
         for bits in 0u64..(1u64 << d0.cols) {
@@ -381,7 +300,6 @@ mod tests {
     fn matches_brute_force_over_all_alpha() {
         for topology in [Topology::Disk, Topology::Cylinder, Topology::Torus] {
             let (complex, report) = build_tetron_array(2, 2, topology).unwrap();
-            // Deterministic pseudo-random residuals; no rand dependency.
             let mut state: u64 = 0x2026_0805;
             for _ in 0..8 {
                 let residual: Vec<u8> = (0..report.num_channels)
@@ -438,7 +356,6 @@ mod tests {
             let shifted = gf2_add(&residual, &apply_d0(&complex.d0, &alpha).unwrap()).unwrap();
             let moved = l1_harmonic_projection(&complex.d0, &shifted, DEFAULT_BUDGET).unwrap();
             assert_eq!(moved.weight, baseline.weight);
-            // canonical representative, so the witness is identical too
             assert_eq!(moved.representative, baseline.representative);
         }
     }
@@ -531,11 +448,6 @@ mod tests {
         );
     }
 
-    /// Golden fixture pinning the Rust face to the Python face.
-    ///
-    /// Values produced by `omega_engine_majorana.demos.tetron_homology_benchmark`
-    /// on 2026-08-05 and recorded in `artifacts/tetron_homology_report.json`.
-    /// If the two faces drift, this fails rather than letting them diverge.
     #[test]
     fn per_class_weights_match_the_python_face() {
         let (complex, _) = build_tetron_array(3, 4, Topology::Torus).unwrap();
@@ -555,7 +467,6 @@ mod tests {
         }
         observed.sort();
 
-        // torus 3x4: the diagonal class must cross every row AND every column.
         assert_eq!(
             observed,
             vec![
@@ -567,7 +478,6 @@ mod tests {
         );
     }
 
-    /// Structure fixture, same source as above.
     #[test]
     fn structure_matches_the_python_face() {
         let cases = [

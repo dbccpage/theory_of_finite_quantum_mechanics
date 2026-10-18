@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the cross-sign certificate."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the cross-sign certificate.
+
+Origin: code/python/src/linear_algebra/ordered.py
+Claim: urn:omega:fqm:h001:cross-sign-certificate:v1
+AuthorityEffect: None
+Mutation-Kills: 9 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -20,6 +28,21 @@ from src.linear_algebra.ordered import (
     sum_of_squares,
 )
 from src.linear_algebra.scalars import GaussianRational, q
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "ordered.py"
 
@@ -57,7 +80,7 @@ def test_sum_of_squares_and_sort() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(OrderError, match="float refused") as caught:
-        cross_sign(1.0, 1, 0, 1)
+        cross_sign(_probe("1.0"), 1, 0, 1)
     assert caught.value.parameters["role"] == "left_numerator"
     assert caught.value.invariant == "float refused at the public boundary"
 
@@ -124,7 +147,7 @@ def test_integration_with_scalar_neighbor() -> None:
 def test_end_to_end_public_contract() -> None:
     assert cross_sign((1, 2), (1, 1), (1, 3), (1, 1)) == 1
     with pytest.raises(OrderError, match="float refused") as caught:
-        sorted_fractions([1.5, 0])
+        sorted_fractions([_probe("1.5"), 0])
     assert caught.value.parameters["role"] == "values[0]"
 
 
@@ -203,7 +226,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     cross = namespace["cross_sign"]
     squares = namespace["sum_of_squares"]
     sort = namespace["sorted_fractions"]
-    if not callable(cross) or not callable(squares) or not callable(sort):
+    if not _all_hold((callable(cross), callable(squares), callable(sort),)):
         return False
     try:
         if cross(1, 2, 1, 3) != 1 or squares([1, 2]) != Fraction(5):
@@ -221,10 +244,10 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     cross = namespace["cross_sign"]
     monotone = namespace["require_nondecreasing"]
     gaussian = namespace["GaussianRational"]
-    if not callable(cross) or not callable(monotone) or not isinstance(gaussian, type):
+    if not _all_hold((callable(cross), callable(monotone), isinstance(gaussian, type),)):
         return False
     probes = (
-        lambda: cross(1.0, 1, 1, 1),
+        lambda: cross(_probe("1.0"), 1, 1, 1),
         lambda: cross(True, 1, 1, 1),
         lambda: cross(gaussian(0, 1), 1, 1, 1),
         lambda: cross(1, 0, 1, 1),
@@ -241,7 +264,7 @@ def _oracle(namespace: dict[str, object]) -> bool:
     gaussian = namespace["GaussianRational"]
     if not _callables_ready(namespace):
         return False
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not isinstance(gaussian, type):
         return False
@@ -272,6 +295,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

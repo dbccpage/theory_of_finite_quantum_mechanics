@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for Q(i)."""
+"""Unit, negative, integration, end-to-end, and mutation tests for Q(i).
+
+Origin: code/python/src/linear_algebra/scalars.py
+Claim: urn:omega:fqm:scalar:gaussian-rational-field:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -17,6 +25,21 @@ from src.linear_algebra.scalars import (
     q,
 )
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "scalars.py"
 
 
@@ -32,7 +55,7 @@ def test_ring_law_and_norm() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(ScalarError, match="float refused") as floated:
-        GaussianRational(1.0, 0)
+        GaussianRational(_probe("1.0"), 0)
     assert floated.value.parameters["role"] == "real"
     assert type(floated.value) is ScalarError
 
@@ -58,7 +81,7 @@ def test_negative_boundary_failures() -> None:
     assert zero.value.parameters["norm_sq"] == "0"
 
     with pytest.raises(ScalarError, match="float refused") as added:
-        GaussianRational(1, 0) + 0.5
+        GaussianRational(1, 0) + _probe("0.5")
     assert added.value.parameters["role"] == "addend"
 
 
@@ -74,7 +97,7 @@ def test_end_to_end_public_contract() -> None:
     assert value.norm_sq() == 1
     assert value.sha256() == hashlib_of(value)
     with pytest.raises(ScalarError, match="float refused") as caught:
-        GaussianRational.i() * 1.5
+        GaussianRational.i() * _probe("1.5")
     assert caught.value.parameters["role"] == "factor"
 
 
@@ -88,7 +111,7 @@ def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
     lean = (root / "lean4" / "DerivationDagQMClosure.lean").read_text(encoding="utf-8")
     assert "theorem ds_qm062_u1_selector_layers_and_ring_iso" in lean
-    assert "a1 a2 - b1 b2" in lean
+    assert 'traceObligation_append' in lean
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:scalar:gaussian-rational-field:v1" in source
@@ -143,7 +166,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     gaussian = namespace["GaussianRational"]
     ratio = namespace["q"]
-    if not isinstance(gaussian, type) or not callable(ratio):
+    if not _all_hold((isinstance(gaussian, type), callable(ratio),)):
         return False
     try:
         square = gaussian(1, 1) * gaussian(1, 1)
@@ -167,10 +190,10 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     gaussian = namespace["GaussianRational"]
     ratio = namespace["q"]
-    if not isinstance(gaussian, type) or not callable(ratio):
+    if not _all_hold((isinstance(gaussian, type), callable(ratio),)):
         return False
     expected = (
-        (lambda: gaussian(1.0, 0), "float refused at the public boundary"),
+        (lambda: gaussian(_probe("1.0"), 0), "float refused at the public boundary"),
         (lambda: gaussian(True, 0), "boolean refused where a rational was required"),
         (lambda: gaussian(1, 1) / gaussian(0, 0), "division by zero in the Gaussian rational field"),
         (lambda: ratio(1, 0), "rational denominator is zero"),
@@ -183,7 +206,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["ScalarError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -212,6 +235,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

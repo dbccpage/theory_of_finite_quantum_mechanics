@@ -1,8 +1,3 @@
-//! Exact witness for the finite carrier in `derivation.md`.
-//!
-//! Sites are `(Z/4Z)^2`. Configurations are the two orientations of each
-//! 4-cycle: 16 faces and 8 generator cycles. The selected hypotheses are
-//! `A=1`, `s=+1`, and `m=(W_x+W_y) mod 2`. The partition is not the 1D trace 912.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Witness {

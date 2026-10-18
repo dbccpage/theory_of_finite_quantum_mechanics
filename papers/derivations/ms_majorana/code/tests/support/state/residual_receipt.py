@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/residual_receipt.rs
-# Rust sha256: 76c319dc6cb3a3d14c31c55771a94e3f028fb383fbe8aaecac3d46301890f242
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from typing import Any
 
@@ -94,6 +90,5 @@ class ResidualTransitionLedger(_RustSurfaceObject):
             setattr(self, fld, value)
 
 
-# END GENERATED RUST SURFACE
 
 

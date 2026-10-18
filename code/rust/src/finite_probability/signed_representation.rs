@@ -1,9 +1,3 @@
-//! Exact operational classification of normalized signed finite valuations.
-//! AuthorityEffect: None. Signed mass is not a probability state. A partition
-//! restricts accessible effects; it yields a classical report state exactly when
-//! every block mass is nonnegative. Signed instruments descend exactly when
-//! target-block row sums agree within each source block; descended maps must
-//! additionally be nonnegative. These hypotheses are checked, never inferred.
 use num_traits::{One, Signed, Zero};
 use omega_number_theory::rational::Rational;
 
@@ -42,7 +36,6 @@ pub struct SignedValuation {
 }
 
 impl SignedValuation {
-    /// Divide arbitrary signed rational weights by their strictly positive total.
     pub fn from_weights(weights: Vec<Rational>) -> Result<Self, SignedRepresentationError> {
         let total: Rational = weights.iter().cloned().sum();
         if weights.is_empty() || !total.is_positive() {
@@ -55,9 +48,6 @@ impl SignedValuation {
     pub fn masses(&self) -> &[Rational] {
         &self.masses
     }
-    /// A negative indicator expectation is a separating witness against ANY
-    /// stochastic representation preserving that reported indicator: classical
-    /// states and effects in [0,1] have nonnegative pairing in every dimension.
     pub fn negative_indicator(&self) -> Option<(usize, Rational)> {
         self.masses
             .iter()
@@ -65,8 +55,6 @@ impl SignedValuation {
             .find(|(_, mass)| mass.is_negative())
             .map(|(i, mass)| (i, mass.clone()))
     }
-    /// The minimal negative mass in all decompositions w=a-b with a,b>=0.
-    /// Pointwise b_i>=max(-w_i,0), attained by disjoint Jordan parts.
     pub fn negativity(&self) -> Rational {
         self.masses
             .iter()
@@ -86,9 +74,6 @@ impl SignedValuation {
                 .collect(),
         )
     }
-    /// If |f_i|<=bound, then |sum_i w_i f_i|<=bound*(1+2N),
-    /// N the Jordan negative mass. This is a sharp obstruction certificate
-    /// against nonnegative global models, using actual weights and readouts.
     pub fn expectation_negativity_bound(
         &self,
         readouts: &[Rational],
@@ -114,8 +99,6 @@ impl SignedValuation {
         })
     }
 
-    /// Unique classical model of the block-indicator readouts. With all singleton
-    /// blocks this exists iff every original weight is nonnegative.
     pub fn report_state(
         &self,
         reports: &[usize],
@@ -130,7 +113,6 @@ impl SignedValuation {
     }
 }
 
-/// Actual signed readout and its sharp total-variation obstruction bound.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SignedExpectationBound {
     pub expectation: Rational,
@@ -155,8 +137,6 @@ fn validate_partition(
     Ok(())
 }
 
-/// Checked nonnegative outcome maps on a report quotient. Each row across ALL
-/// outcomes has total mass one; individual outcome maps may be substochastic.
 #[derive(Debug, Clone)]
 pub struct SignedInstrumentQuotient {
     reports: Vec<usize>,
@@ -164,9 +144,6 @@ pub struct SignedInstrumentQuotient {
     forgetting: StochasticMap,
 }
 impl SignedInstrumentQuotient {
-    /// Signed input maps use row-state convention p'=pM. This tests the complete
-    /// operational quotient equation M_o D = D T_o (row convention), without
-    /// silently replacing non-descending or negative report dynamics.
     pub fn try_new(
         reports: Vec<usize>,
         count: usize,

@@ -105,7 +105,6 @@ def test_auxiliary_to_fock_trace_reconstruction():
 
 
 def test_explicit_negative_field_existence_witnesses():
-    # 4-site ring with 4 slices at z=2, mask 15721
     res_ring = hem.run_auxiliary_field_analysis(4, RING, slices=4, r="2", hs="8", fugacity="2", field_masks=[15721])
     assert res_ring["negative_fields"] == 1
     assert res_ring["selected_subset_average_sign"] == "-1"
@@ -114,7 +113,6 @@ def test_explicit_negative_field_existence_witnesses():
     assert witness["up"] == "11072073737867929807204939234025/2305843009213693952"
     assert witness["down"] == "-1034021712177776419381618902295/147573952589676412928"
 
-    # 3-site triangle with 4 slices at z=1, mask 1281
     res_tri = hem.run_auxiliary_field_analysis(3, TRIANGLE, slices=4, r="2", hs="8", fugacity="1", field_masks=[1281])
     assert res_tri["negative_fields"] == 1
     assert res_tri["selected_subset_average_sign"] == "-1"

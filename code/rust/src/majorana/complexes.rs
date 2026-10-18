@@ -1,17 +1,10 @@
-//! Finite cell complexes for Majorana GF(2) play (triangle, plaquette, prism).
-//!
-//! Built so that \(d_1 \circ d_0 = 0 \pmod 2\) by construction (edge-vertex + face-edge).
-//! AuthorityEffect: None.
 
 use crate::gf2_terminalizer::GF2Matrix;
 
-/// A 2-step GF(2) chain complex \(C_0 \xrightarrow{d_0} C_1 \xrightarrow{d_1} C_2\).
 #[derive(Debug, Clone)]
 pub struct ChainComplexGf2 {
     pub name: &'static str,
-    /// \(d_0\): |E| × |V| (edge-vertex incidence mod 2).
     pub d0: GF2Matrix,
-    /// \(d_1\): |F| × |E| (face-edge incidence mod 2).
     pub d1: GF2Matrix,
     pub num_vertices: usize,
     pub num_edges: usize,
@@ -24,9 +17,6 @@ impl ChainComplexGf2 {
     }
 }
 
-/// Triangle: 3 vertices, 3 edges, 1 face.
-///
-/// Edges: e0=(0,1), e1=(1,2), e2=(0,2). Face: all three edges.
 pub fn triangle() -> ChainComplexGf2 {
     let d0 = GF2Matrix::from_data(vec![vec![1, 1, 0], vec![0, 1, 1], vec![1, 0, 1]]);
     let d1 = GF2Matrix::from_data(vec![vec![1, 1, 1]]);
@@ -40,9 +30,6 @@ pub fn triangle() -> ChainComplexGf2 {
     }
 }
 
-/// Square plaquette: 4 vertices, 4 edges, 1 face.
-///
-/// Edges: (0,1),(1,2),(2,3),(3,0). Face: cycle of four.
 pub fn plaquette() -> ChainComplexGf2 {
     let d0 = GF2Matrix::from_data(vec![
         vec![1, 1, 0, 0],
@@ -61,32 +48,18 @@ pub fn plaquette() -> ChainComplexGf2 {
     }
 }
 
-/// Triangular prism: 6 vertices, 9 edges, 5 faces (2 triangles + 3 quads).
-///
-/// Bottom triangle 0,1,2; top 3,4,5; vertical edges 0-3,1-4,2-5.
-/// Faces: bottom, top, and three lateral quads (each as 4-edge incidence).
 pub fn prism() -> ChainComplexGf2 {
-    // Edge order:
-    // 0:(0,1) 1:(1,2) 2:(0,2) bottom
-    // 3:(3,4) 4:(4,5) 5:(3,5) top
-    // 6:(0,3) 7:(1,4) 8:(2,5) vertical
     let d0 = GF2Matrix::from_data(vec![
-        vec![1, 1, 0, 0, 0, 0], // e0
-        vec![0, 1, 1, 0, 0, 0], // e1
-        vec![1, 0, 1, 0, 0, 0], // e2
-        vec![0, 0, 0, 1, 1, 0], // e3
-        vec![0, 0, 0, 0, 1, 1], // e4
-        vec![0, 0, 0, 1, 0, 1], // e5
-        vec![1, 0, 0, 1, 0, 0], // e6
-        vec![0, 1, 0, 0, 1, 0], // e7
-        vec![0, 0, 1, 0, 0, 1], // e8
+        vec![1, 1, 0, 0, 0, 0],
+        vec![0, 1, 1, 0, 0, 0],
+        vec![1, 0, 1, 0, 0, 0],
+        vec![0, 0, 0, 1, 1, 0],
+        vec![0, 0, 0, 0, 1, 1],
+        vec![0, 0, 0, 1, 0, 1],
+        vec![1, 0, 0, 1, 0, 0],
+        vec![0, 1, 0, 0, 1, 0],
+        vec![0, 0, 1, 0, 0, 1],
     ]);
-    // Faces as edge sets (mod 2 incidence):
-    // f0 bottom: e0,e1,e2
-    // f1 top: e3,e4,e5
-    // f2 side 01-34: e0,e7,e3,e6
-    // f3 side 12-45: e1,e8,e4,e7
-    // f4 side 02-35: e2,e8,e5,e6
     let d1 = GF2Matrix::from_data(vec![
         vec![1, 1, 1, 0, 0, 0, 0, 0, 0],
         vec![0, 0, 0, 1, 1, 1, 0, 0, 0],
@@ -104,9 +77,7 @@ pub fn prism() -> ChainComplexGf2 {
     }
 }
 
-/// Example syndromes for triangle play (edge-length 3).
 pub fn exact_syndrome_example() -> Vec<u8> {
-    // d0 * e_1 = edge incidence of vertex 1 = (1,1,0) on triangle edges
     vec![1, 1, 0]
 }
 
@@ -114,44 +85,19 @@ pub fn open_syndrome_example() -> Vec<u8> {
     vec![1, 0, 0]
 }
 
-/// Closed but non-exact cycle on triangle: all edges (boundary of face) — in GF(2)
-/// this is d1^T * face; for classification we need d1 ω = 0 and not in im d0.
-/// On triangle, ω = (1,1,1) has d1 ω = 1+1+1 = 1 mod 2 → open.
-/// For closed residual use a graph with H1 ≠ 0 — plaquette cycle ω = (1,1,1,1):
-/// d1 ω = 0 mod 2, and not a vertex coboundary if consistent.
 pub fn closed_residual_syndrome_example() -> Vec<u8> {
-    // Plaquette full cycle (all four edges)
     vec![1, 1, 1, 1]
 }
 
-// ---------------------------------------------------------------------------
-// Multi-plaquette surface-code toys (CODE_DEMO only; not device thresholds)
-// ---------------------------------------------------------------------------
 
-/// Planar \(2\times 2\) plaquette grid (disk topology): \(3\times 3\) vertices,
-/// 12 edges, 4 faces. Disk fill ⇒ \(\dim H^1 = 0\) under \(d_1 d_0 = 0\).
-///
-/// Surface-code **shadow**: edge residual \(e\) with face syndrome \(s = d_1 e\).
-/// Logical-like nontrivial classes require the torus toy below.
 pub fn surface_grid_2x2_planar() -> ChainComplexGf2 {
     surface_grid(2, 2, false)
 }
 
-/// Periodic \(2\times 2\) plaquette torus: \(2\times 2\) vertices, 8 edges, 4 faces.
-/// Expect \(\dim H^1 = 2\) (two independent non-contractible cycles over \(\mathbb{F}_2\)).
-///
-/// **Not** a Willow/Microsoft surface-code packet. CODE_DEMO only.
 pub fn surface_grid_2x2_torus() -> ChainComplexGf2 {
     surface_grid(2, 2, true)
 }
 
-/// Build an \(m\times n\) plaquette grid over GF(2).
-///
-/// - `periodic = false`: planar \((m+1)\times(n+1)\) vertices (disk if all faces filled).
-/// - `periodic = true`: \(m\times n\) vertices with wrap (torus).
-///
-/// Edge order: all horizontal edges first (row-major), then all vertical.
-/// Face order: plaquette row-major; each face uses the four bounding edges.
 pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
     assert!(m >= 1 && n >= 1, "need at least one plaquette");
     let (nrows, ncols) = if periodic { (m, n) } else { (m + 1, n + 1) };
@@ -163,7 +109,6 @@ pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
         rr * ncols + cc
     };
 
-    // Horizontal edges: for each row r, each col c in 0..n_h
     let n_h_per_row = if periodic { n } else { n };
     let n_h_rows = if periodic { m } else { m + 1 };
     let mut h_edges: Vec<(usize, usize)> = Vec::new();
@@ -179,7 +124,6 @@ pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
         }
     }
 
-    // Vertical edges
     let n_v_per_col = if periodic { m } else { m };
     let n_v_cols = if periodic { n } else { n + 1 };
     let mut v_edges: Vec<(usize, usize)> = Vec::new();
@@ -203,8 +147,6 @@ pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
         d0_data[num_h + ei][v] = 1;
     }
 
-    // Face (r,c): lower-left vertex (r,c) in plaquette coords
-    // edges: H(r,c), V(r,c+1), H(r+1,c), V(r,c)  (indices)
     let h_index = |r: usize, c: usize| -> usize {
         if periodic {
             (r % m) * n + (c % n)
@@ -239,8 +181,6 @@ pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
     } else {
         "surface_grid_2x2_planar"
     };
-    // Only the 2x2 names are static for the two public constructors; rebuild name via leak only if needed.
-    // For general m,n callers use the private builder only via the two pubs for now.
     let _ = (m, n);
     ChainComplexGf2 {
         name: if periodic && m == 2 && n == 2 {
@@ -248,7 +188,6 @@ pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
         } else if !periodic && m == 2 && n == 2 {
             "surface_grid_2x2_planar"
         } else {
-            // fallthrough label for future expansion
             name
         },
         d0: GF2Matrix::from_data(d0_data),
@@ -259,21 +198,14 @@ pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
     }
 }
 
-/// Nontrivial \(H^1\) cocycle on the \(2\times 2\) torus (cochain class, not bare chain cycle).
-///
-/// Edge order: 4 horizontal then 4 vertical. Representative: alternating H edges
-/// `e1 + e3` — lies in \(\ker d_1 \setminus \operatorname{im} d_0\) (CODE_DEMO).
 pub fn torus_logical_x_example() -> Vec<u8> {
     vec![0, 1, 0, 1, 0, 0, 0, 0]
 }
 
-/// Independent nontrivial cocycle: both vertical edges of the first vertical “row”
-/// (`e4 + e5`). Also \(\ker d_1 \setminus \operatorname{im} d_0\) on the \(2\times 2\) torus.
 pub fn torus_logical_z_example() -> Vec<u8> {
     vec![0, 0, 0, 0, 1, 1, 0, 0]
 }
 
-/// One edge flip → open plaquette syndrome on torus/planar grids with faces.
 pub fn surface_open_single_edge_example(num_edges: usize) -> Vec<u8> {
     let mut w = vec![0u8; num_edges];
     if num_edges > 0 {
@@ -282,9 +214,7 @@ pub fn surface_open_single_edge_example(num_edges: usize) -> Vec<u8> {
     w
 }
 
-/// Vertex coboundary of vertex 0 on a complex (Exact class when boundary-valid).
 pub fn surface_exact_from_vertex0(d0: &GF2Matrix) -> Vec<u8> {
-    // column 0 of d0 is the coboundary of vertex 0 (d0 is |E|×|V|)
     (0..d0.rows).map(|r| d0.data[r][0]).collect()
 }
 
@@ -320,8 +250,6 @@ mod tests {
 
     #[test]
     fn play_plaquette_even_cycle_is_exact() {
-        // Kills: labeling every even-weight closed vector ClosedResidual.
-        // (1,1,1,1) = d0*(0,1,0,1) on C4, and the plaquette has q1 = 0.
         let c = plaquette();
         let cert =
             Gf2CocycleClassifier::classify(&c.d0, &c.d1, &closed_residual_syndrome_example())
@@ -342,7 +270,6 @@ mod tests {
         let exact = Gf2CocycleClassifier::classify(&c.d0, &c.d1, &exact_syn).unwrap();
         assert_eq!(exact.status, GF2ScheduleStatus::Exact);
         assert_eq!(exact.authority_effect, "None");
-        // Disk fill: homology trivial → q1_dimension 0
         assert_eq!(exact.q1_dimension, 0);
 
         let open_syn = surface_open_single_edge_example(c.num_edges);
@@ -358,7 +285,6 @@ mod tests {
         assert_eq!(c.num_edges, 8);
         assert!(c.verify_boundary());
 
-        // Non-contractible cycles: closed (all plaquette syndromes 0) and not Exact
         let lx = torus_logical_x_example();
         let cert_x = Gf2CocycleClassifier::classify(&c.d0, &c.d1, &lx).unwrap();
         assert_eq!(
@@ -379,7 +305,6 @@ mod tests {
         assert_eq!(cert_z.status, GF2ScheduleStatus::ClosedResidual);
         assert_eq!(cert_z.authority_effect, "None");
 
-        // Single edge remains open
         let open = Gf2CocycleClassifier::classify(
             &c.d0,
             &c.d1,

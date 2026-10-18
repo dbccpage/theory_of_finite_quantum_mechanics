@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Ensure finite_to_continuum/code/ is on sys.path for pytest and unittest."""
 
 from __future__ import annotations

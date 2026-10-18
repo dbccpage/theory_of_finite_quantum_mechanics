@@ -56,7 +56,6 @@ class ThimbleMetropolisSampler:
         accepted = 0
 
         def get_point_and_weight(tau_val: float) -> Tuple[complex, float, float]:
-            # Initial perturbation from critical point along unstable direction
             z_init = [cp[i] + tau_val * unstable_dir[i] for i in range(self.action.n_vars)]
             flow_res = steepest_descent_flow_with_frame(
                 self.action, z_init, dt=0.01, steps=int(flow_time / 0.01)
@@ -166,7 +165,6 @@ class TemperedLefschetzThimbleSampler:
             reweighted_integral: estimate of Z on the target surface
         """
         n_vars = self.action.n_vars
-        # Initialize positions on real space for each replica
         replicas_x = [[self.rng.uniform(-1.0, 1.0) for _ in range(n_vars)] for _ in range(self.n_replicas)]
 
         target_samples: List[List[complex]] = []
@@ -176,7 +174,6 @@ class TemperedLefschetzThimbleSampler:
         total_swaps_accepted = 0
 
         for step in range(n_samples):
-            # 1. Metropolis update within each replica
             for alpha in range(self.n_replicas):
                 t_alpha = self.flow_times[alpha]
                 x_curr = replicas_x[alpha]
@@ -189,7 +186,6 @@ class TemperedLefschetzThimbleSampler:
                 if self.rng.random() < ratio:
                     replicas_x[alpha] = x_prop
 
-            # 2. Replica swap proposal
             if step > 0 and step % swap_interval == 0:
                 alpha = self.rng.randint(0, self.n_replicas - 2)
                 t_a, t_b = self.flow_times[alpha], self.flow_times[alpha + 1]
@@ -206,7 +202,6 @@ class TemperedLefschetzThimbleSampler:
                     replicas_x[alpha], replicas_x[alpha + 1] = x_b, x_a
                     total_swaps_accepted += 1
 
-            # 3. Record measurement on target replica (largest flow time T)
             z_target, _, phi_target = self._evaluate_state(replicas_x[-1], self.flow_times[-1])
             target_samples.append(z_target)
             target_phases.append(phi_target)

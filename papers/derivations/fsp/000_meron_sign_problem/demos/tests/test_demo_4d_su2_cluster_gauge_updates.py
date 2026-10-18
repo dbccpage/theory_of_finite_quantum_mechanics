@@ -39,8 +39,8 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
-from demo_4d_su2_cluster_gauge_updates import (  # noqa: E402
+from blind_problem import assert_lexical_hygiene
+from demo_4d_su2_cluster_gauge_updates import (
     CANONICAL_4D_SU2_WIRE_TURNS,
     build_gauge_coupled_ensemble,
     emit_4d_su2_cluster_ddc_dag,
@@ -48,12 +48,12 @@ from demo_4d_su2_cluster_gauge_updates import (  # noqa: E402
     run_su2_gauge_update_cycle,
     validate_wire_string,
 )
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     validate_packet_semantics,
 )
-from su2_link_holonomy_4d import (  # noqa: E402
+from su2_link_holonomy_4d import (
     LatticeGaugeField4D,
     RationalSU2,
     SU2TopologicalClusterCoupler,
@@ -127,11 +127,9 @@ class Test4DSU2WireGrammarAndDDCExecution:
         assert len(nodes) == 6
         assert dag_file.is_file()
 
-        # Check DAG parent linkage
         for i in range(1, len(nodes)):
             assert nodes[i]["parent_ids"] == [nodes[i - 1]["node_id"]]
 
-        # Check terminal repair
         term = nodes[-1]
         assert term["stage"] == "EXACT_REPAIR"
         assert term["payload"]["status"] == "EXACT_REPAIR"
@@ -155,7 +153,6 @@ class Test4DSU2WireGrammarAndDDCExecution:
         assert receipt["exact_cancellation_metrics"]["duality_gap"] == "0"
         assert receipt["wire_grammar"]["pure_gamma_38"] is True
 
-        # Independent digest verification
         stored_digest = receipt["sha256_digest"]
         body_to_hash = {k: v for k, v in receipt.items() if k != "sha256_digest"}
         recomputed = hashlib.sha256(json.dumps(body_to_hash, indent=2, sort_keys=True).encode("utf-8")).hexdigest()

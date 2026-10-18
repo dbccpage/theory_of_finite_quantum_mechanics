@@ -1,14 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Primitive Difference Axiomatics, Evaluation Preorders & Triad (Phi_1, Gamma_2, R_cl) Diagnostics.
-//!
-//! Grounded in FOC-006 / FOC-000 ("Primitive Axiomatics of Finite Obstruction Calculus"):
-//! 1. Root W (Genesis Admission Kernel): Admitted unentailed non-identification witness.
-//! 2. Root P (Evaluation Kernel): Cochain evaluation C^0 -> C^1 -> C^2 and quotient defect Q^1.
-//! 3. Evaluation Preorders: Reflexive-transitive closure of evaluation relations.
-//! 4. Triad Obstruction Signature: (Phi_1, Gamma_2, R_cl) with Three-Way Classification.
-//!
-//! Root P owns no arithmetic here: d_0 and d_1 come from `omega_homology`, and
-//! Phi_1, Gamma_2 and the exact trichotomy come from `omega_functional`.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -31,37 +20,24 @@ use crate::cochains::{coboundary_rows, named_graph_carrier};
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
 
-/// The Ten Primitive Difference Axioms (A1–A10).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum PrimitiveDifferenceAxiom {
-    /// A1: Non-Identification of Distinct Primitive Carrier Items.
     A01NonIdentification,
-    /// A2: Unentailed Witness Admission (Root W is an admission, not a derived proof).
     A02UnentailedAdmission,
-    /// A3: Local Evaluation Relation (Reflexive-Transitive Closure generates Preorder).
     A03EvaluationRelation,
-    /// A4: Directed Evaluation Carrier (Simplicial 1-skeleton with assigned orientations).
     A04DirectedEvaluationCarrier,
-    /// A5: Nilpotent Coboundary Hierarchy (d_1 o d_0 = 0).
     A05NilpotentCoboundary,
-    /// A6: Quotient Defect Purity (Q^1 = C^1 / im(d_0) invariant under gauge shift).
     A06QuotientDefectPurity,
-    /// A7: Descended Closure Map (kappa^1([h]) = d_1 h is well-defined).
     A07DescendedClosureMap,
-    /// A8: Exact Triad Trichotomy (Removable Gauge vs Closed Obstruction vs Rupture).
     A08TriadTrichotomy,
-    /// A9: Observer-Selected Metric Invariance (Quotient norms independent of node relabeling).
     A09ObserverSelectedMetric,
-    /// A10: Anti-Reification Firewall (AuthorityEffect::None on all mathematical readouts).
     A10AntiReificationFirewall,
 }
 
-/// Root W: Genesis Admission Kernel.
-/// Designated witness capturing primitive difference as an admitted, unentailed non-identification.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GenesisAdmissionKernel {
     pub carrier_items: BTreeSet<String>,
-    pub admitted_differences: Vec<(String, String, String)>, // (item_a, item_b, witness_token)
+    pub admitted_differences: Vec<(String, String, String)>,
     pub authority_effect: AuthorityEffect,
 }
 
@@ -89,7 +65,6 @@ impl GenesisAdmissionKernel {
     }
 }
 
-/// Evaluation Preorder P = rtc(R) constructed via reflexive-transitive closure.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EvaluationPreorder {
     domain: Vec<String>,
@@ -97,7 +72,6 @@ pub struct EvaluationPreorder {
 }
 
 impl EvaluationPreorder {
-    /// Resolves names without discarding edges, then delegates closure to its owner.
     pub fn from_relation(
         domain: Vec<String>,
         base_pairs: &[(String, String)],
@@ -157,12 +131,6 @@ impl EvaluationPreorder {
     }
 }
 
-/// Exact rational Triad Obstruction Signature (Phi_1, Gamma_2, R_cl).
-///
-/// Holds only sealed `omega_functional` evidence: a replayed Phi_1 certificate,
-/// the exact Gamma_2 of its primal residual, and the certified trichotomy class.
-/// There is no public constructor; [`EvaluationCarrier::compute_triad_signature`]
-/// is the only way to obtain one.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TriadSignature {
     phi1: VerifiedExactPhi1,
@@ -172,12 +140,10 @@ pub struct TriadSignature {
 }
 
 impl TriadSignature {
-    /// Replayed Phi_1 certificate: value, optimal potential, residual, dual witness.
     pub fn phi1(&self) -> &VerifiedExactPhi1 {
         &self.phi1
     }
 
-    /// Exact Gamma_2 of the Phi_1 primal residual, with its curvature 2-cochain.
     pub fn gamma2(&self) -> &ExactGamma2Result {
         &self.gamma2
     }
@@ -190,7 +156,6 @@ impl TriadSignature {
         self.trichotomy.diagnostic_class()
     }
 
-    /// Closure ratio R_cl = Gamma_2 / Phi_1; `None` if Phi_1 = 0 and Gamma_2 > 0.
     pub fn r_cl(&self) -> Option<BigRational> {
         let (phi_1, gamma_2) = (self.trichotomy.phi1_value(), self.trichotomy.gamma2_value());
         if !phi_1.is_zero() {
@@ -207,12 +172,11 @@ impl TriadSignature {
     }
 }
 
-/// Finite 2-Complex Evaluation Carrier: C^0 -(d_0)-> C^1 -(d_1)-> C^2.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EvaluationCarrier {
     pub vertices: Vec<String>,
     pub edges: Vec<(String, String)>,
-    pub faces: Vec<(String, String, String)>, // triangles (u, v, w) with edges (u,v), (v,w), (u,w)
+    pub faces: Vec<(String, String, String)>,
     pub authority_effect: AuthorityEffect,
 }
 
@@ -230,8 +194,6 @@ impl EvaluationCarrier {
         }
     }
 
-    /// The unit-weighted `omega_homology` carrier. It owns d_0, d_1 and the
-    /// nilpotence law d_1 o d_0 = 0, which is verified at construction.
     pub fn carrier(&self) -> Result<Carrier, WdpError> {
         named_graph_carrier(
             &self.vertices,
@@ -242,11 +204,6 @@ impl EvaluationCarrier {
         )
     }
 
-    /// Computes the exact rational Triad Signature (Phi_1, Gamma_2, R_cl).
-    ///
-    /// Phi_1 is solved and replayed by `omega_solvers::solver_lp_phi1_quotient`, Gamma_2
-    /// is `omega_functional::gamma2` on the Phi_1 primal residual, and the class
-    /// is `omega_policy::trichotomy::classify_exact`.
     pub fn compute_triad_signature(&self, h: &[BigRational]) -> Result<TriadSignature, WdpError> {
         let carrier = self.carrier()?;
         let d0 = coboundary_rows(carrier.d0());
@@ -304,7 +261,7 @@ mod tests {
         assert!(kernel.admit_difference("alpha", "beta", "token_ab").is_ok());
         assert!(kernel
             .admit_difference("alpha", "alpha", "token_aa")
-            .is_err()); // A1 violation
+            .is_err());
         assert_eq!(kernel.authority_effect, AuthorityEffect::None);
     }
 
@@ -317,16 +274,15 @@ mod tests {
         ];
         let preorder = EvaluationPreorder::from_relation(domain, &base_rel).unwrap();
 
-        assert!(preorder.leq("x0", "x0").unwrap()); // reflexivity
+        assert!(preorder.leq("x0", "x0").unwrap());
         assert!(preorder.leq("x0", "x1").unwrap());
         assert!(preorder.leq("x1", "x2").unwrap());
-        assert!(preorder.leq("x0", "x2").unwrap()); // transitive closure
+        assert!(preorder.leq("x0", "x2").unwrap());
         assert!(!preorder.leq("x2", "x0").unwrap());
     }
 
     #[test]
     fn test_nilpotence_d1_d0_is_zero() {
-        // omega_homology verifies d1 * d0 = 0 when the carrier is built.
         let carrier = filled_triangle().carrier().unwrap();
         let test_phi = vec![qr(1, 2), qr(3, 4), qr(-1, 3)];
         let d0_phi = carrier.d0().mul_vec(&test_phi).unwrap();
@@ -338,7 +294,6 @@ mod tests {
     fn test_triad_three_way_classification() {
         let carrier = filled_triangle();
 
-        // 1. Exact repair: h is an exact coboundary h = d0(phi)
         let exact_h = carrier
             .carrier()
             .unwrap()
@@ -354,7 +309,6 @@ mod tests {
         assert!(sig1.gamma2().value().is_zero());
         assert_eq!(sig1.r_cl(), Some(q(0)));
 
-        // 2. Active closure failure: d1(h) != 0
         let rupture_h = vec![q(1), q(1), q(0)];
         let sig2 = carrier.compute_triad_signature(&rupture_h).unwrap();
         assert_eq!(
@@ -364,7 +318,6 @@ mod tests {
         assert_eq!(sig2.gamma2().coboundary(), &[q(2)]);
         assert!(!sig2.gamma2().value().is_zero());
 
-        // 3. Closed residual: the same h on the hollow triangle has no 2-cell to fail.
         let sig3 = triangle(vec![])
             .compute_triad_signature(&rupture_h)
             .unwrap();

@@ -89,7 +89,6 @@ def test_declared_instrument_hosts():
     assert density_luders_requires_lift_host("complexHilbertLift") is True
 
 
-# --- Density Lüders (W6.10 spectral projector bind) ---
 
 
 @dataclass(frozen=True)
@@ -188,7 +187,6 @@ def test_general_povm_marked_open():
     assert general_povm_instrument_open is True
 
 
-# --- Soft / Kraus / ternary instrument bind (W6.10 capital) ---
 
 ID2 = Mat2(1, 0, 0, 1)
 SOFT_EFFECT0 = Mat2(2, 1, 1, 2)

@@ -1,14 +1,3 @@
-//! Target Q4: experimental rational coefficient-matrix diagnostics.
-//!
-//! AuthorityEffect: None.
-//!
-//! The proposed degree-8 lifts are not validated projector moment matrices. They fail a
-//! repeated-standard-basis positivity control, and their real cyclotomic terms need
-//! not be rational. Diagnostic builders explicitly project onto the constant
-//! power-basis coefficient. This is not an ordered-field embedding or a
-//! positivity-preserving map. Negative traces concern only the constructed rational
-//! matrices; they do not certify a candidate or a Lasserre relaxation.
-//! The former certification entry points fail closed.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -32,7 +21,6 @@ pub const SCOPE_STRING: &str = "experimental_coefficient_projection_only_no_mome
 pub const DEG8_INVARIANT_DIM: usize = 22;
 pub const DEG8_EXTENDED_DIM: usize = 36;
 
-/// Experimental 22x22 coefficient matrix; projector moment semantics are unverified.
 pub fn build_degree8_invariant_diagnostic_matrix(
     g: &[Vec<Cyc24>],
 ) -> Result<Vec<Vec<BigRational>>, String> {
@@ -57,10 +45,8 @@ pub fn build_degree8_invariant_diagnostic_matrix(
     let n = DEG8_INVARIANT_DIM;
     let mut m8 = vec![vec![BigRational::zero(); n]; n];
 
-    // 1. Base identity <1>
     m8[0][0] = BigRational::one();
 
-    // 2. Linear projector sums A_a (indices 1..4)
     for a in 0..NUM_BASES {
         let idx_a = 1 + a;
         m8[0][idx_a] = BigRational::one();
@@ -86,7 +72,6 @@ pub fn build_degree8_invariant_diagnostic_matrix(
         }
     }
 
-    // 3. Projector pairs P_{ab} (indices 5..10) and Q_{ab} (indices 11..16)
     for (p_idx, &(a, b)) in pairs.iter().enumerate() {
         let idx_p = 5 + p_idx;
         let idx_q = 11 + p_idx;
@@ -135,7 +120,6 @@ pub fn build_degree8_invariant_diagnostic_matrix(
         m8[idx_q][idx_q] = exp_q;
     }
 
-    // Cross-terms among pairs
     for (p1, &(a, b)) in pairs.iter().enumerate() {
         for (p2, &(c, d)) in pairs.iter().enumerate() {
             if p1 < p2 {
@@ -155,7 +139,6 @@ pub fn build_degree8_invariant_diagnostic_matrix(
         }
     }
 
-    // 4. Degree-3 Triples T_{abc} (indices 17..20)
     for (t_idx, &(a, b, c)) in triples.iter().enumerate() {
         let idx_t = 17 + t_idx;
 
@@ -207,7 +190,6 @@ pub fn build_degree8_invariant_diagnostic_matrix(
         };
     }
 
-    // Cross-terms among triples
     for (t1, &(a1, b1, c1)) in triples.iter().enumerate() {
         for (t2, &(a2, b2, c2)) in triples.iter().enumerate() {
             if t1 < t2 {
@@ -231,7 +213,6 @@ pub fn build_degree8_invariant_diagnostic_matrix(
         }
     }
 
-    // 5. Degree-4 Quadruples / Pair Products R_{abcd} (index 21 for 4 bases)
     for (q_idx, &(a, b, c, d)) in quadruples.iter().enumerate() {
         let idx_r = 21 + q_idx;
 
@@ -304,7 +285,6 @@ pub fn build_degree8_invariant_diagnostic_matrix(
     Ok(m8)
 }
 
-/// Experimental 36x36 coefficient matrix; projector moment semantics are unverified.
 pub fn build_degree8_extended_diagnostic_matrix(
     g: &[Vec<Cyc24>],
 ) -> Result<Vec<Vec<BigRational>>, String> {
@@ -329,10 +309,8 @@ pub fn build_degree8_extended_diagnostic_matrix(
     let n = DEG8_EXTENDED_DIM;
     let mut m8 = vec![vec![BigRational::zero(); n]; n];
 
-    // 1. Base identity <1>
     m8[0][0] = BigRational::one();
 
-    // 2. Single projectors Pi_{a, i} (indices 1..24)
     for a in 0..NUM_BASES {
         for i in 0..DIM_HILBERT {
             let idx = 1 + a * DIM_HILBERT + i;
@@ -361,7 +339,6 @@ pub fn build_degree8_extended_diagnostic_matrix(
         }
     }
 
-    // 3. Projector pairs P_{ab} (indices 25..30)
     for (p_idx, &(a, b)) in pairs.iter().enumerate() {
         let col_p = 25 + p_idx;
         let mut diag_mod_sq = BigRational::zero();
@@ -382,7 +359,6 @@ pub fn build_degree8_extended_diagnostic_matrix(
         m8[col_p][col_p] = exp_p;
     }
 
-    // 4. Degree-3 Triples T_{abc} (indices 31..34)
     for (t_idx, &(a, b, c)) in triples.iter().enumerate() {
         let col_t = 31 + t_idx;
         let mut bargmann_sum = BigRational::zero();
@@ -413,7 +389,6 @@ pub fn build_degree8_extended_diagnostic_matrix(
         };
     }
 
-    // 5. Degree-4 Quadruples / Pair Products R_{abcd} (index 35 for 4 bases)
     for (q_idx, &(a, b, c, d)) in quadruples.iter().enumerate() {
         let col_r = 35 + q_idx;
         let mut bargmann_quad_sum = BigRational::zero();

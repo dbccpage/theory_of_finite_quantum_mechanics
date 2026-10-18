@@ -46,10 +46,8 @@ def test_density_trace_hermitian_psd() -> None:
 
 def test_budget_exceeded() -> None:
     eng = PromptDiagnosisEngine(density_budget=2)
-    # Many edges → high dim residual
     text = "\n".join(f"clause {i} must stay." for i in range(20))
     d = eng.diagnose(text)
-    # May or may not exceed depending on edge count; force small budget on residual
     if d.cohomology.c1_dim > 2:
         assert d.density.budget_status in {"OK", "BUDGET_EXCEEDED"}
         if d.cohomology.c1_dim > eng.density_budget:
@@ -108,7 +106,6 @@ def test_intent_preservation_failure() -> None:
         "Must preserve uniqueness.\nOther stuff.",
         retain_clause_text=True,
     )
-    # Craft improved diagnosis from text missing the MUST
     improved = eng.diagnose("Other stuff only.", retain_clause_text=True)
     cmp = eng.compare(original, improved)
     assert cmp["intent_preservation"]["passed"] is False

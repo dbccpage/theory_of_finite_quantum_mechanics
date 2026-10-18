@@ -29,6 +29,6 @@ def test_certified_pipeline_smoke():
 
 def test_old_coda_import_deleted():
     with pytest.raises(ImportError):
-        import omega_engine.crates.coda.certified_pipeline  # type: ignore
+        import omega_engine.crates.coda.certified_pipeline
 
 

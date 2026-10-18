@@ -1,13 +1,6 @@
-//! Multi-qubit mode-block braid words from the paper's historical gate labels.
-//!
-//! Each qubit label denotes a block of four modes. `Cnot` preserves the source
-//! program's bridge-braid convention; this finite adjoint calculation does not
-//! establish its action as a logical CNOT on a separately encoded Hilbert space.
-//! AuthorityEffect: None.
 
 use crate::braid_action::{BraidActionError, MajoranaBraidAction, MAX_BRAID_MODES};
 
-/// Default bound on the complete synthesized elementary word.
 pub const DEFAULT_MAX_COMPILED_STEPS: usize = 65_536;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -76,7 +69,6 @@ fn append_block_swap(
     Ok(())
 }
 
-/// Compile operations once into elementary steps and the shared sparse action.
 pub fn compile_multiqubit_braid(
     num_qubits: usize,
     operations: &[MultiQubitOperation],
@@ -84,7 +76,6 @@ pub fn compile_multiqubit_braid(
     compile_multiqubit_braid_with_limit(num_qubits, operations, DEFAULT_MAX_COMPILED_STEPS)
 }
 
-/// Compile with a declared bound on all routing and inverse-routing steps.
 pub fn compile_multiqubit_braid_with_limit(
     num_qubits: usize,
     operations: &[MultiQubitOperation],
@@ -265,7 +256,6 @@ mod tests {
                 .len(),
             65
         );
-        // Kills: an empty word returning Ok with a non-identity action.
         let empty = compile_multiqubit_braid_with_limit(4, &[], 0).unwrap();
         assert_eq!(empty.steps.len(), 0);
         assert_eq!(empty.gate_count, 0);
@@ -278,7 +268,6 @@ mod tests {
 
     #[test]
     fn invalid_operations_fail_before_evaluation() {
-        // Kills: collapsing every refusal into one error variant.
         assert_eq!(
             compile_multiqubit_braid(0, &[]),
             Err(MultiQubitBraidError::InvalidQubitCount)

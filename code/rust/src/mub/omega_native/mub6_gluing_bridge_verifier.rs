@@ -1,13 +1,7 @@
-//! MUB(6) Vector Curvature to Basis Non-Extension Gluing Bridge (Pilot 043 / Subgap R4)
-//!
-//! Validates the gluing bridge establishing that positive continuous vector curvature
-//! Psi^2(v) > 0 strictly implies basis-level non-extension ~HasFourthBasis(T) under
-//! BasisVectorMUContract without custom axioms.
 
 use num_rational::BigRational;
 use serde::{Deserialize, Serialize};
 
-/// Receipt for Subgap R4 gluing bridge verification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GluingBridgeReceipt {
     pub status: String,
@@ -18,7 +12,6 @@ pub struct GluingBridgeReceipt {
     pub formal_theorems: Vec<String>,
 }
 
-/// Verify Subgap R4 basis gluing bridge.
 pub fn verify_gluing_bridge() -> GluingBridgeReceipt {
     let psi_sq_floor = BigRational::new(1.into(), 100.into());
 

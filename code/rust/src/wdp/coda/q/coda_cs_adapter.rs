@@ -1,25 +1,3 @@
-//! CODA_CS → Q profile-factorization adapter (experimental).
-//!
-//! --- Math Contract:
-//! - Purpose: admit a **finite-domain** profile-factorization receipt into a
-//!   diagnostic Q residual bundle under the FORWARD_ONLY direction
-//!   \(q = \bar{q} \circ \operatorname{Prof}\) ⇒ fiber constancy.
-//! - Inputs: one [`ProfileFactorizationReceipt`] carrying Fin samples, Prof/q
-//!   values, optional \(\bar{q}\), fiber-constancy witness id, residual list.
-//! - Outputs: [`AdapterDecision`] in `{ConditionalSupport, OpenResidual, Refused}`
-//!   aligned with [`QTerminal`], plus a diagnostic [`QPacket`].
-//! - Invariants: AuthorityEffect is always [`AuthorityEffectLevel::None`];
-//!   never emits [`QTerminal::TerminalWithinScope`]; reverse factorization
-//!   (fiber constancy ⇒ continuum \(\bar{q}\)) remains OPEN and is not claimed.
-//! - Failure: missing Prof/q samples fail closed as [`AdapterError`]; evidence
-//!   defects that are still well-formed receipts return typed refuse / residual
-//!   decisions rather than panicking.
-//! - Numerical status: values are opaque strings (no floating-point promotion).
-//! - Authority: diagnostic only. **Disabled for PROD product** until Targets 1–7
-//!   of the finite-QM / CODA_CS–Q parity program are green.
-//!
-//! Module path: `crate::coda::q::coda_cs_adapter` (bridge surface for `omega_q` as the
-//! named consumer; no `omega_api` coupling).
 
 use std::collections::BTreeMap;
 
@@ -30,18 +8,12 @@ use thiserror::Error;
 
 use super::packet::{QPacket, QTerminal, ResidualSpec, TransportSpec};
 
-/// Experimental status marker. PROD product surfaces must not enable this adapter
-/// until Targets 1–7 of the CODA_CS–Q parity program are receipted green.
 pub const CODA_CS_Q_ADAPTER_STATUS: &str = "experimental";
 
-/// One finite domain sample with its profile and query evaluations.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DomainSample {
-    /// Stable domain-element label (finite sample id).
     pub domain_id: String,
-    /// Profile value \(\operatorname{Prof}(x)\) as an opaque string.
     pub prof: String,
-    /// Query value \(q(x)\) as an opaque string.
     pub q: String,
 }
 
@@ -59,7 +31,6 @@ impl DomainSample {
     }
 }
 
-/// Optional factor-map entry \(\bar{q}(\operatorname{Prof}) = v\).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QBarEntry {
     pub prof: String,
@@ -75,26 +46,13 @@ impl QBarEntry {
     }
 }
 
-/// Finite-domain profile-factorization receipt consumed by the adapter.
-///
-/// Carries Fin samples, Prof/q evaluations, optional \(\bar{q}\), a
-/// fiber-constancy witness id/hash, and a residual list. Completeness is
-/// derived by the adapter; the receipt never mints authority.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ProfileFactorizationReceipt {
-    /// Stable receipt identifier.
     pub receipt_id: String,
-    /// Finite domain samples with Prof and q values.
     pub samples: Vec<DomainSample>,
-    /// Optional factor map \(\bar{q}\) on image of Prof (finite table).
     pub q_bar: Option<Vec<QBarEntry>>,
-    /// Optional fiber-constancy witness hash or id.
     pub fiber_constancy_witness_id: Option<String>,
-    /// Optional claim that a pointwise factorization check already passed.
-    /// When `Some(true)`, the adapter re-verifies; a claim without evidence
-    /// refuses closed.
     pub pointwise_check_passed: Option<bool>,
-    /// Residual list. Required non-empty when factorization is incomplete.
     pub residuals: Vec<String>,
 }
 
@@ -146,7 +104,6 @@ impl ProfileFactorizationReceipt {
     }
 }
 
-/// Typed fail-closed errors for structurally missing receipt evidence.
 #[derive(Clone, Debug, PartialEq, Eq, Error)]
 pub enum AdapterError {
     #[error("profile factorization receipt has no finite domain samples")]
@@ -157,24 +114,18 @@ pub enum AdapterError {
     MissingQSample { domain_id: String },
 }
 
-/// Diagnostic adapter decision aligned with [`QTerminal`].
-///
-/// Authority effect is always None. `TerminalWithinScope` is never produced.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum AdapterDecision {
-    /// Finite-domain factorization checks passed; conditional support only.
     ConditionalSupport {
         packet: QPacket,
         residuals: Vec<Residual>,
         obligations: Vec<String>,
     },
-    /// Factorization incomplete with declared residuals.
     OpenResidual {
         packet: QPacket,
         residuals: Vec<Residual>,
         obligations: Vec<String>,
     },
-    /// Evidence present but fails closed (fiber violation, bare claim, unpaid residual).
     Refused {
         packet: QPacket,
         residuals: Vec<Residual>,
@@ -215,13 +166,11 @@ impl AdapterDecision {
         }
     }
 
-    /// Always [`AuthorityEffectLevel::None`]; the adapter never mints authority.
     pub fn authority_effect(&self) -> AuthorityEffectLevel {
         AuthorityEffectLevel::None
     }
 }
 
-/// Pure CODA_CS → Q adapter. Fail-closed; AuthorityEffect None.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct CodaCsToQAdapter;
 
@@ -230,10 +179,6 @@ impl CodaCsToQAdapter {
         Self
     }
 
-    /// Admit a profile-factorization receipt into a diagnostic Q decision.
-    ///
-    /// Returns [`AdapterError`] when Prof/q samples are missing. Well-formed
-    /// receipts that fail evidence checks return `Ok(Refused | OpenResidual)`.
     pub fn admit(
         &self,
         receipt: &ProfileFactorizationReceipt,
@@ -247,7 +192,6 @@ impl CodaCsToQAdapter {
             "never mint AuthorityEffect ≠ None; never claim TerminalWithinScope".to_string(),
         ];
 
-        // Fiber constancy: Prof(x) = Prof(y) ⇒ q(x) = q(y).
         if let Some(violation) = fiber_constancy_violation(receipt) {
             obligations.push(format!(
                 "fiber constancy violated on Prof=`{}` (domain `{}` vs `{}`)",
@@ -281,7 +225,6 @@ impl CodaCsToQAdapter {
             });
         }
 
-        // Factorization claim without a re-verified pointwise pass → refuse.
         let claims_factorization = receipt.pointwise_check_passed == Some(true)
             || receipt.q_bar.as_ref().is_some_and(|t| !t.is_empty());
 
@@ -355,7 +298,6 @@ impl CodaCsToQAdapter {
                     "do not promote to continuum or TerminalWithinScope without paid descent debts",
                 ),
             );
-            // Success still carries a diagnostic residual fence (continuum reverse OPEN).
             let fence = Residual::new(
                 format!("residual:coda-cs:{}:finite-scope-fence", receipt.receipt_id),
                 receipt.receipt_id.clone(),
@@ -369,7 +311,6 @@ impl CodaCsToQAdapter {
             });
         }
 
-        // Incomplete factorization: residual list is mandatory.
         if receipt.residuals.iter().all(|r| r.trim().is_empty()) {
             obligations
                 .push("factorization incomplete but residual field missing or empty".to_string());
@@ -457,7 +398,6 @@ fn validate_samples(receipt: &ProfileFactorizationReceipt) -> Result<(), Adapter
 }
 
 fn fiber_constancy_violation(receipt: &ProfileFactorizationReceipt) -> Option<FiberViolation> {
-    // prof -> (domain_id, q) first witness
     let mut first: BTreeMap<&str, (&str, &str)> = BTreeMap::new();
     for sample in &receipt.samples {
         match first.get(sample.prof.as_str()) {
@@ -495,7 +435,6 @@ fn verify_pointwise_factorization(receipt: &ProfileFactorizationReceipt) -> Poin
         };
     }
 
-    // Claimed pass without re-verifiable table coverage is refused.
     if receipt.pointwise_check_passed == Some(true) && table.is_empty() {
         return PointwiseStatus::ClaimWithoutEvidence {
             reason: "pointwise_check_passed claimed true without q_bar evidence".to_string(),
@@ -534,7 +473,6 @@ fn verify_pointwise_factorization(receipt: &ProfileFactorizationReceipt) -> Poin
         }
     }
 
-    // Claimed true is only accepted when re-verification succeeded.
     if receipt.pointwise_check_passed == Some(false) {
         return PointwiseStatus::Failed {
             reason: "pointwise_check_passed explicitly false despite table".to_string(),
@@ -599,9 +537,7 @@ fn diagnostic_packet(
 mod tests {
     use super::*;
 
-    /// Happy path: Fin-small fiber-constant query with q_bar and witness.
     fn happy_fin_small_receipt() -> ProfileFactorizationReceipt {
-        // Domain {a0,a1,a2}, Prof(x)=parity class, q(x)=parity (fiber constant).
         ProfileFactorizationReceipt::new("fin-small-parity")
             .with_samples([
                 DomainSample::new("a0", "even", "0"),
@@ -636,7 +572,6 @@ mod tests {
             decision.packet().terminal_request,
             Some(QTerminal::ConditionalSupport)
         );
-        // Fence residual present; never TerminalWithinScope.
         assert!(!decision.residuals().is_empty());
         assert_ne!(decision.terminal(), QTerminal::TerminalWithinScope);
     }
@@ -713,7 +648,6 @@ mod tests {
                 DomainSample::new("x1", "p1", "1"),
             ])
             .with_pointwise_check_passed(true)
-            // no q_bar table
             .with_residual("claimed complete");
 
         let decision = CodaCsToQAdapter::new()
@@ -740,7 +674,7 @@ mod tests {
             ])
             .with_q_bar([
                 QBarEntry::new("even", "0"),
-                QBarEntry::new("odd", "9"), // wrong
+                QBarEntry::new("odd", "9"),
             ])
             .with_pointwise_check_passed(true)
             .with_fiber_constancy_witness_id("w")
@@ -761,7 +695,6 @@ mod tests {
             DomainSample::new("x0", "p0", "0"),
             DomainSample::new("x1", "p1", "1"),
         ]);
-        // fiber constant, but no q_bar / witness → incomplete; residuals empty → refuse
 
         let decision = CodaCsToQAdapter::new().admit(&receipt).expect("decision");
 

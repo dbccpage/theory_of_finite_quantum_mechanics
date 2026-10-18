@@ -25,8 +25,8 @@ REPO_ROOT = _find_repo_root(Path(__file__).resolve())
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from omega_engine_operations.domain.rop.result import Err  # noqa: E402
-from omega_engine_woland.infrastructure.providers.credential_source import (  # noqa: E402
+from omega_engine_operations.domain.rop.result import Err
+from omega_engine_woland.infrastructure.providers.credential_source import (
     resolve_credential,
 )
 
@@ -156,7 +156,6 @@ def main():
     print(f"Prompt tokens: {usage.get('prompt_tokens')}, Completion tokens: {usage.get('completion_tokens')}")
     print(f"Reasoning length: {len(reasoning)} chars, Content length: {len(content)} chars")
 
-    # Save raw receipt
     receipt = {
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "firewall": FIREWALL,
@@ -171,13 +170,12 @@ def main():
         json.dump(receipt, f, indent=2, sort_keys=True)
     print(f"Receipt written to: {receipt_path}")
 
-    # Save synthesis document
     md_content = f"""# MUB(6) Phase 1 Step 1.3: Singular Segre Branch (Subgap R7) Super Bunny Alpha Synthesis
 
-**Date:** {datetime.now(timezone.utc).isoformat()}  
-**Model:** Super Bunny Alpha (`stealth/space-bunny-alpha`)  
-**Firewall Line:** `{FIREWALL}`  
-**Latency:** {latency:.2f}s | **Tokens:** {usage.get('total_tokens', 'N/A')}  
+**Date:** {datetime.now(timezone.utc).isoformat()}
+**Model:** Super Bunny Alpha (`stealth/space-bunny-alpha`)
+**Firewall Line:** `{FIREWALL}`
+**Latency:** {latency:.2f}s | **Tokens:** {usage.get('total_tokens', 'N/A')}
 
 ---
 

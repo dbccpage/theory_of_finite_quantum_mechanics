@@ -72,7 +72,6 @@ def _exact_solve_q(
         if r == nrows:
             break
 
-    # Check consistency
     for i in range(r, nrows):
         if M[i][-1] != 0:
             return None
@@ -143,7 +142,6 @@ def exact_rational_l1_quotient(
     omega_frac = [Fraction(x) for x in omega]
     d0_frac = [[Fraction(x) for x in row] for row in d0]
 
-    # Edge cases
     if m == 0:
         return ExactL1Result(
             primal_obj=Fraction(0),
@@ -156,11 +154,8 @@ def exact_rational_l1_quotient(
             dual_witness=[],
         )
 
-    # 1. First test whether omega in im(d0) directly over Q
-    # Solves d0 * alpha = omega exactly
     exact_closure_alpha = _exact_solve_q(d0_frac, omega_frac)
     if exact_closure_alpha is not None:
-        # Exact closure holds: Phi = 0
         residual_frac = [Fraction(0)] * m
         w_frac = [Fraction(0)] * m
         return ExactL1Result(
@@ -174,15 +169,12 @@ def exact_rational_l1_quotient(
             dual_witness=w_frac,
         )
 
-    # 2. If not closed, propose candidate basis via numerical LP
     omega_flt = np.array([float(x) for x in omega_frac])
     d0_flt = np.array([[float(x) for x in row] for row in d0_frac])
 
     from dual_witness import compute_l1_quotient_with_dual_witness
     num_res = compute_l1_quotient_with_dual_witness(omega_flt, d0_flt)
 
-    # Try exact reconstruction from active constraints:
-    # Identify edges where residual is zero (d0 * alpha = omega)
     active_rows = [i for i, r_val in enumerate(num_res.primal_residual) if abs(r_val) < 1e-6]
     alpha_frac: Optional[List[Fraction]] = None
     if active_rows:
@@ -191,27 +183,19 @@ def exact_rational_l1_quotient(
         alpha_frac = _exact_solve_q(A_sub, b_sub)
 
     if alpha_frac is None:
-        # Fallback to limit_denominator with large bound
         alpha_frac = [Fraction(x).limit_denominator(10**12) for x in num_res.primal_alpha]
 
-    # Propose dual witness: sign of residual for nonzero components
     w_frac = [Fraction(x).limit_denominator(10**12) for x in num_res.dual_witness]
 
-    # Project dual witness to exact cycle in ker(d0^T) over Q if needed
-    # d0^T has shape (n, m). Basis of ker(d0^T) consists of cycles in Q^m.
     d0_T_frac = [[d0_frac[i][j] for i in range(m)] for j in range(n)]
     cycles = _exact_nullspace_q(d0_T_frac)
 
-    # If dual witness is slightly non-cycle, solve for exact cycle coordinates
     if cycles and any(sum(d0_frac[i][j] * w_frac[i] for i in range(m)) != 0 for j in range(n)):
-        # Solve cycles @ c = w_frac
         cycle_matrix = [[cycles[k][i] for k in range(len(cycles))] for i in range(m)]
         c_sol = _exact_solve_q(cycle_matrix, w_frac)
         if c_sol is not None:
             w_frac = [sum(cycles[k][i] * c_sol[k] for k in range(len(cycles))) for i in range(m)]
 
-    # 3. Exact Verification of Primal and Dual Certificates
-    # (a) Compute exact residual r = omega - d0 * alpha
     residual_frac: List[Fraction] = []
     for i in range(m):
         d0_alpha_i = sum(d0_frac[i][j] * alpha_frac[j] for j in range(n))
@@ -221,7 +205,6 @@ def exact_rational_l1_quotient(
     exact_dual = sum(w_frac[i] * omega_frac[i] for i in range(m))
     exact_gap = abs(exact_primal - exact_dual)
 
-    # (b) Strict exact feasibility checks
     dual_divergence_zero = all(
         sum(d0_frac[i][j] * w_frac[i] for i in range(m)) == 0 for j in range(n)
     )

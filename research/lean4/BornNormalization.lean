@@ -1,18 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
--- Born Normalization for Finite Quantum Carriers in Lean 4
--- AuthorityEffect: None
 
 namespace BornNormalization
 
-/-- A discrete 2-dimensional density operator represented by integer diagonal weights scaled by a positive denominator `denom`.
-    Unit trace condition: a + d = denom, with non-negative diagonal elements a, d ≥ 0. -/
 structure DiscreteDensity2 where
   a : Nat
   d : Nat
@@ -20,18 +9,14 @@ structure DiscreteDensity2 where
   h_denom_pos : denom > 0
   h_unit_trace : a + d = denom
 
-/-- The trace of a discrete density operator. -/
 def trace (ρ : DiscreteDensity2) : Nat :=
   ρ.a + ρ.d
 
-/-- Unit trace theorem: Tr(ρ) = denom. -/
 theorem density_trace_eq_denom (ρ : DiscreteDensity2) :
     trace ρ = ρ.denom := by
   dsimp [trace]
   exact ρ.h_unit_trace
 
-/-- A discrete binary POVM partition of identity: E0 + E1 = I.
-    Represented by diagonal weights satisfying e0_a + e1_a = 1 and e0_d + e1_d = 1. -/
 structure DiscretePOVM2 where
   e0_a : Nat
   e0_d : Nat
@@ -40,19 +25,12 @@ structure DiscretePOVM2 where
   h_res_a : e0_a + e1_a = 1
   h_res_d : e0_d + e1_d = 1
 
-/-- Unnormalized Born expectation Tr(E0 ρ) * denom = e0_a * ρ.a + e0_d * ρ.d. -/
 def born_outcome_0 (ρ : DiscreteDensity2) (povm : DiscretePOVM2) : Nat :=
   povm.e0_a * ρ.a + povm.e0_d * ρ.d
 
-/-- Unnormalized Born expectation Tr(E1 ρ) * denom = e1_a * ρ.a + e1_d * ρ.d. -/
 def born_outcome_1 (ρ : DiscreteDensity2) (povm : DiscretePOVM2) : Nat :=
   povm.e1_a * ρ.a + povm.e1_d * ρ.d
 
-/-- Born Probability Normalization Redundancy Theorem:
-    The sum of Born measurement outcome probabilities across any complete POVM partition of identity
-    equals the density operator trace (and thus equals denom, corresponding to total probability 1.0).
-    This establishes that Born normalization is an algebraic redundancy once unit trace and resolution
-    of identity are established. -/
 theorem born_normalization_redundancy (ρ : DiscreteDensity2) (povm : DiscretePOVM2) :
     born_outcome_0 ρ povm + born_outcome_1 ρ povm = ρ.denom := by
   dsimp [born_outcome_0, born_outcome_1]
@@ -66,7 +44,6 @@ theorem born_normalization_redundancy (ρ : DiscreteDensity2) (povm : DiscretePO
   rw [Nat.one_mul, Nat.one_mul]
   exact ρ.h_unit_trace
 
-/-- A pure state amplitude vector (c0, c1) over integers with sum of squares equal to denom. -/
 structure DiscretePureState2 where
   c0 : Int
   c1 : Int
@@ -74,27 +51,21 @@ structure DiscretePureState2 where
   h_denom_pos : denom > 0
   h_norm : c0 * c0 + c1 * c1 = (denom : Int)
 
-/-- The rank-1 projector matrix elements for a pure state:
-    P_00 = c0 * c0, P_11 = c1 * c1, P_01 = c0 * c1, P_10 = c1 * c0. -/
 def proj_00 (ψ : DiscretePureState2) : Int := ψ.c0 * ψ.c0
 def proj_11 (ψ : DiscretePureState2) : Int := ψ.c1 * ψ.c1
 def proj_01 (ψ : DiscretePureState2) : Int := ψ.c0 * ψ.c1
 def proj_10 (ψ : DiscretePureState2) : Int := ψ.c1 * ψ.c0
 
-/-- Projector self-adjointness: P_01 = P_10 for real amplitudes. -/
 theorem projector_self_adjoint (ψ : DiscretePureState2) :
     proj_01 ψ = proj_10 ψ := by
   dsimp [proj_01, proj_10]
   exact Int.mul_comm ψ.c0 ψ.c1
 
-/-- Projector trace theorem: P_00 + P_11 = denom. -/
 theorem projector_trace (ψ : DiscretePureState2) :
     proj_00 ψ + proj_11 ψ = (ψ.denom : Int) := by
   dsimp [proj_00, proj_11]
   exact ψ.h_norm
 
-/-- Projector idempotence on diagonal components:
-    (P^2)_00 = P_00 * P_00 + P_01 * P_10 = c0^2 (c0^2 + c1^2) = denom * P_00. -/
 theorem projector_idempotence_00 (ψ : DiscretePureState2) :
     proj_00 ψ * proj_00 ψ + proj_01 ψ * proj_10 ψ = (ψ.denom : Int) * proj_00 ψ := by
   dsimp [proj_00, proj_01, proj_10]
@@ -105,8 +76,6 @@ theorem projector_idempotence_00 (ψ : DiscretePureState2) :
     simp [Int.mul_comm, Int.mul_left_comm]
   rw [h2, ← h1, ψ.h_norm]
 
-/-- Projector idempotence on off-diagonal component:
-    (P^2)_01 = P_00 * P_01 + P_01 * P_11 = (c0^2 + c1^2) * (c0 * c1) = denom * P_01. -/
 theorem projector_idempotence_01 (ψ : DiscretePureState2) :
     proj_00 ψ * proj_01 ψ + proj_01 ψ * proj_11 ψ = (ψ.denom : Int) * proj_01 ψ := by
   dsimp [proj_00, proj_01, proj_11]
@@ -117,7 +86,6 @@ theorem projector_idempotence_01 (ψ : DiscretePureState2) :
     simp [Int.mul_comm, Int.mul_left_comm]
   rw [h2, ← h1, ψ.h_norm]
 
-/-- Ray invariance: Global sign inversion c -> -c leaves the projector matrix invariant. -/
 theorem ray_invariance_sign_flip (ψ : DiscretePureState2) :
     (-ψ.c0) * (-ψ.c0) = proj_00 ψ ∧
     (-ψ.c1) * (-ψ.c1) = proj_11 ψ ∧
@@ -140,3 +108,6 @@ theorem ray_invariance_sign_flip (ψ : DiscretePureState2) :
 #print axioms ray_invariance_sign_flip
 
 end BornNormalization
+
+private def l5aProvenance : String :=
+  "Origin: lean4/BornNormalization.lean Claim: density_trace_eq_denom AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -49,7 +49,6 @@ def check_adapter(
             reason="ADAPTER_INADEQUATE",
             enters_dda_trace=False,
         )
-    # Losses allowed if recorded
     return AdapterCheck(
         placement=placement,
         status=AdapterStatus.ADMITTED,

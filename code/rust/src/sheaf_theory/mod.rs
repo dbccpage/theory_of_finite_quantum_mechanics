@@ -1,11 +1,3 @@
-//! `omega_sheaf_theory` — Sheaf theory, Alexandrov poset topology, Čech cohomology, Grothendieck sites, and stacks.
-//!
-//! **Domain:** Mathematics / Sheaf Theory / Categorical Topology.
-//! **AuthorityEffect:** None. Not PROVED; not GlobalGreen.
-//!
-//! Implements:
-//! - 12 Governance Contracts under `omega_engine_governance/contracts/.../sheaf_theory/`
-//! - 25 Sheaf Theory Primitives (SH-01 through SH-25)
 
 pub mod cech;
 pub mod empirical_presheaf;

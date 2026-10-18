@@ -1,13 +1,3 @@
-//! The Pauli matrix representation of unit quaternions and its adjoint action.
-//!
-//! `U(a,b,c,d)=a I-i(b X+c Y+d Z)` is a representation of the rational
-//! unit quaternions in `SU(2,Q(i))`. The primary adjoint map is
-//! `R(U)_jk=Tr(sigma_j U sigma_k U^dagger)/2`: it is a homomorphism, has
-//! kernel `{+-I}` on SU(2), and forgets every scalar phase on U(2).
-//! The quaternion/spinor-norm algorithms are owned by `crate::su2`.
-//! All matrices use checked `linear_algebra::exact_field` operations.
-//!
-//! AuthorityEffect: None.
 use crate::pauli_symplectic::{pauli, Pauli, PauliError};
 use crate::scalar::{dagger, is_unitary};
 use crate::su2::{Quaternion, Su2Error};
@@ -63,7 +53,6 @@ pub fn unit_quaternion_matrix(
     .map_err(ExactFieldError::from)?)
 }
 
-/// The adjoint cover as a primary group map, independent of any quantum channel.
 pub fn adjoint_su2(u: &BasicMatrix<GaussianRat>) -> Result<BasicMatrix<Rational>, SpinLiftError> {
     if u.shape() != (2, 2) || !is_unitary(u)? {
         return Err(SpinLiftError::NotQubitUnitary);
@@ -90,7 +79,6 @@ pub fn adjoint_su2(u: &BasicMatrix<GaussianRat>) -> Result<BasicMatrix<Rational>
     Ok(result)
 }
 
-/// A rational matrix spin lift, with the square-class refusal of the quaternion owner.
 pub fn matrix_spin_lift(
     r: &BasicMatrix<Rational>,
 ) -> Result<BasicMatrix<GaussianRat>, SpinLiftError> {
@@ -98,7 +86,6 @@ pub fn matrix_spin_lift(
     unit_quaternion_matrix(&[w, x, y, z])
 }
 
-/// Quaternion units in the fixed order (1,-1,i,-i,j,-j,k,-k).
 pub fn quaternion_group_matrices() -> Result<Vec<BasicMatrix<GaussianRat>>, SpinLiftError> {
     let group = crate::su2::quaternion_group()?;
     let mut units = group.elements().to_vec();

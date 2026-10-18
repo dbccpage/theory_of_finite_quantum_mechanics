@@ -1,14 +1,3 @@
-//! Matolcsi-Weiner Conjecture 2 verifier binary.
-//!
-//! Verifies the algebraic identity from arXiv:2503.14752 on the catalog of known
-//! MUB-triples in omega_mub, using exact Cyc24 arithmetic.
-//!
-//! The chain: Conj2 + Conj3 ⟹ Zauner's conjecture (MUB(6) = 3).
-//!
-//! Usage:
-//!   cargo run --bin mub6_conj2_verifier
-//!
-//! AuthorityEffect: None
 
 use omega_mub::omega_native::exact::d6_exact_curvature_cochain::{
     canonical_triple_exact, inner, is_mutually_unbiased_triple_exact,
@@ -30,7 +19,6 @@ const DIGEST_CONTRACT: &str =
 
 type ExactVec = [Cyc24; 6];
 
-/// Compute the CHM transition H = sqrt(6) * <U1_j, U2_k>.
 fn transition_matrix(basis1_cols: &[ExactVec], basis2_cols: &[ExactVec]) -> [[Cyc24; 6]; 6] {
     let sqrt_six = Cyc24::sqrt2().mul(&Cyc24::sqrt3());
     std::array::from_fn(|row| {
@@ -48,7 +36,6 @@ fn extract_bases(all_cols: &[[Cyc24; 6]]) -> (Vec<ExactVec>, Vec<ExactVec>, Vec<
     (b1, b2, b3)
 }
 
-/// Verify Conjecture 2 on a single MUB-triple, returning per-matrix results.
 fn verify_triple(triple_id: &str, all_cols: &[ExactVec]) -> TripleResult {
     let is_mu = is_mutually_unbiased_triple_exact(all_cols);
     assert!(
@@ -137,7 +124,6 @@ fn main() {
 
     let mut results = Vec::new();
 
-    // --- Triple 1: Canonical product triple T0 ---
     println!("[1/7] Canonical triple T0 = {{I, X2⊗Q0, Y2⊗Q1}}");
     let t0_cols = canonical_triple_exact();
     assert_eq!(t0_cols.len(), 18);
@@ -154,7 +140,6 @@ fn main() {
     );
     results.push(r);
 
-    // --- Triples 2-7: All 6 genuine Diță seeds ---
     let seeds = all_genuine_dita_seeds();
     for (i, &(dx, dy, qa)) in seeds.iter().enumerate() {
         println!("[{}/7] Diță seed F6({dx},{dy}) + Y2⊗Q{qa}", i + 2);

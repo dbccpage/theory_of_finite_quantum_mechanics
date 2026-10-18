@@ -1,6 +1,3 @@
-//! Rational Taylor enclosure arithmetic for w(s)=2 exp(is)+exp(-2is).
-//! This does not identify a CHM family or establish a MUB curvature bound.
-//! Evidence: test_deltoid_cusp_asymptotics.rs. AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -20,9 +17,6 @@ pub struct TaylorLagrangeEnclosureReport {
 pub fn evaluate_taylor_lagrange_enclosure(
     delta: &BigRational,
 ) -> Result<TaylorLagrangeEnclosureReport, String> {
-    // On [0,1], 3-3u+3u^2/4 decreases for u=s^2, while
-    // s^3-s^5/4 increases. Outside this range endpoint evaluation
-    // alone is not a valid enclosure method.
     if delta < &BigRational::zero() || delta > &BigRational::one() {
         return Err("Taylor enclosure requires 0 <= delta <= 1".into());
     }
@@ -37,7 +31,6 @@ pub fn evaluate_taylor_lagrange_enclosure(
     let re_lo = &re_hi - q(3, 1) * d2 + q(3, 4) * d4;
     let im_hi = d3 - q(1, 4) * d5;
     let im_lo = -&im_hi;
-    // Componentwise Lagrange majorants: (2+2^6)/6! and (2+2^7)/7!.
     let re_rem = q(11, 120) * d6;
     let im_rem = q(13, 504) * d7;
     Ok(TaylorLagrangeEnclosureReport {

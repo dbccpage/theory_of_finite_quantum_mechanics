@@ -1,18 +1,6 @@
-/-
-  GR002.HodgeSplitC3
 
-  Formalization of exact L1 Hodge-split fixture calculations on the oriented
-  directed 3-cycle C3 = ∂Δ².  The global 7/3 upper bound is not proved here.
 
-  Theorems:
-    1. d0_c3: Linear map R³ → R³ representing coboundary on 1-cochains.
-    2. spatial_mean: L2 harmonic projection h = (s, s, s) where s = (w0+w1+w2)/3.
-    3. exact_comp: d0_alpha = (w0-s, w1-s, w2-s).
-    4. R_split_indicator: R_split(e_0) = 7/3 for standard basis vectors.
-    5. nonzero_equal_ratio: (3|s|)/(3|s|) = 1 when s is nonzero.
 
-  AuthorityEffect: None.
--/
 
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.NormNum

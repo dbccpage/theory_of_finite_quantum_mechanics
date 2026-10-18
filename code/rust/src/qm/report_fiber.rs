@@ -1,4 +1,3 @@
-//! Executable finite hosts for QM_122 C1--C40. Universal statements remain in Lean.
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use linear_algebra::image_kernel::ExactRowReduction;
 use num_traits::Zero;
@@ -174,7 +173,6 @@ pub fn carrier_stage(stage: usize) -> Result<CarrierStage, String> {
             image == sorted_edges
         })
         .count();
-    // The source explicitly admits orientation reversal for the one-loop chain.
     let automorphism_order = vertex_automorphisms * if stage == 4 { 2 } else { 1 };
     Ok(CarrierStage {
         stage,
@@ -187,7 +185,6 @@ pub fn carrier_stage(stage: usize) -> Result<CarrierStage, String> {
     })
 }
 
-/// `C(n, k)`, or `None` when it does not fit `usize`.
 fn binomial(n: usize, k: usize) -> Option<usize> {
     if k > n {
         return Some(0);
@@ -195,8 +192,6 @@ fn binomial(n: usize, k: usize) -> Option<usize> {
     (0..k).try_fold(1usize, |acc, i| Some(acc.checked_mul(n - i)? / (i + 1)))
 }
 
-/// The scaled simplex: nonnegative integer weights on `labels` points summing
-/// to `scale`, in lexicographic order. Refused past 100,000 points.
 pub fn scaled_simplex(labels: usize, scale: usize) -> Result<Vec<Vec<usize>>, String> {
     let count = labels
         .checked_sub(1)
@@ -223,10 +218,6 @@ pub fn scaled_simplex(labels: usize, scale: usize) -> Result<Vec<Vec<usize>>, St
     Ok(out)
 }
 
-/// C2: the declared weights `(2, 3, 5)` lie in the scaled simplex of three
-/// labels at scale 10, which the enumeration and the count `C(12, 2)` agree
-/// on, and the rational simplex point `(1/3, 1/3, 1/3)` has no point there
-/// (`10/3` is not an integer), so the scaled simplex is not the rational one.
 fn integer_weights_at_declared_scale() -> Result<bool, String> {
     let (labels, scale) = (3, 10);
     let simplex = scaled_simplex(labels, scale)?;
@@ -245,14 +236,12 @@ fn basis_vector(n: usize, q: usize) -> Vec<G> {
         .collect()
 }
 
-/// `<u, g v>` for a declared Gram form `g`.
 fn form(g: &BasicMatrix<G>, u: &[G], v: &[G]) -> Result<G, String> {
     let gv =
         crate::linear_algebra::matrix::multiply_vector(g, v).map_err(|e| e.to_string())?;
     crate::linear_algebra::involution::inner_product(u, &gv).map_err(|e| e.to_string())
 }
 
-/// Whether the report basis of `C^n` is orthonormal for the form `g`.
 fn basis_orthonormal(g: &BasicMatrix<G>, n: usize) -> Result<bool, String> {
     for a in 0..n {
         for b in 0..n {
@@ -265,9 +254,6 @@ fn basis_orthonormal(g: &BasicMatrix<G>, n: usize) -> Result<bool, String> {
     Ok(true)
 }
 
-/// C6: `diag(1, 1)` and `diag(1, 2)` are both positive definite, keep the
-/// report basis orthogonal, and are not proportional; the basis is orthonormal
-/// for the first only. Which form counts as "orthonormal" is a declaration.
 fn gram_form_not_unique() -> Result<bool, String> {
     use crate::linear_algebra::matrix::diagonal;
     use omega_quantum_physics::exact_hermitian::is_positive_definite;
@@ -293,9 +279,6 @@ fn gram_form_not_unique() -> Result<bool, String> {
         && !basis_orthonormal(&g2, 2)?)
 }
 
-/// C30: on the carrier's label set the surrogate `3 <= |Q|` is false, and
-/// among report-basis vectors there is one orthonormal frame of two and none
-/// of three.
 fn two_label_dimension_below_three(labels: usize) -> Result<bool, String> {
     let identity =
         crate::linear_algebra::matrix::identity(labels).map_err(|e| e.to_string())?;
@@ -327,11 +310,6 @@ fn two_label_dimension_below_three(labels: usize) -> Result<bool, String> {
     Ok(labels < 3 && frames(labels)? == 1 && frames(3)? == 0)
 }
 
-/// C23: the declared pairing `<w, e>` and the report-swapped pairing
-/// `<w o swap, e>` of the quadratic weights of every amplitude with parts in
-/// `{-1, 0, 1}` share the unit-effect total and are nonnegative on the
-/// effects in `{0, 1, 2}^2`; at amplitudes `(2, 1)` they disagree on the
-/// false-indicator `(1, 0)` (4 against 1).
 fn unit_total_pairing_rivals() -> Result<bool, String> {
     let declared = |w: &[Q], e: &[Q]| &w[0] * &e[0] + &w[1] * &e[1];
     let swapped = |w: &[Q], e: &[Q]| &w[1] * &e[0] + &w[0] * &e[1];
@@ -358,7 +336,6 @@ fn unit_total_pairing_rivals() -> Result<bool, String> {
         && swapped(&w, &false_indicator) == ri(1))
 }
 
-/// Whether `group` is closed under `mul` and every element squares to `one`.
 fn closed_with_exponent_two<T: PartialEq>(
     group: &[T],
     mul: impl Fn(&T, &T) -> T,
@@ -370,10 +347,6 @@ fn closed_with_exponent_two<T: PartialEq>(
     (closed, group.iter().all(|g| mul(g, g) == *one))
 }
 
-/// C11, C24: the extra "not of exponent two" excludes the sign group, is met
-/// by the Gaussian units and by the cube roots of unity, and so selects no
-/// single group: those two are not isomorphic (orders 4 and 3). Each group is
-/// checked to be closed under multiplication.
 fn phase_extra_does_not_select_circle() -> bool {
     use omega_number_theory::cyclotomic::EisensteinRat as E;
     let signs = [G::one(), G::from_ints(-1, 0)];
@@ -391,11 +364,6 @@ fn phase_extra_does_not_select_circle() -> bool {
         && units.len() != cube_roots.len()
 }
 
-/// C25, C31: `Y = [[0, -i], [i, 0]]` is Hermitian, squares to `I` and
-/// anticommutes with `X` and `Z`, and has non-real entries; no real symmetric
-/// matrix with entries in `{-1, 0, 1}` does all of that, while `X` itself
-/// passes every condition except anticommuting with `X` (the search is not
-/// vacuous).
 fn pauli_y_requires_imaginary_coefficients() -> Result<bool, String> {
     use crate::linear_algebra::{involution as star, matrix as mx};
     let m = |rows: [[(i64, i64); 2]; 2]| {
@@ -437,9 +405,6 @@ fn pauli_y_requires_imaginary_coefficients() -> Result<bool, String> {
     Ok(y_ok && real_solutions == 0 && without_x > 0)
 }
 
-/// C7, C35: at two labels the reversible report maps are the identity and
-/// the toggle, and their permutation lifts are isometries; `i` times the swap
-/// is an isometry of the Gaussian pairing outside those lifts.
 fn permutation_isometry_envelope_strict() -> Result<bool, String> {
     use crate::linear_algebra::{involution as star, matrix as mx};
     let reversible = permutations(2)?;
@@ -476,9 +441,6 @@ fn permutation_isometry_envelope_strict() -> Result<bool, String> {
         && !lifts.contains(&i_swap))
 }
 
-/// C28: fractions as integer pairs compared by cross-multiplication: half plus
-/// half, formed without reduction as `(4, 4)`, is one; half is neither zero
-/// nor one; `(2, 4)` is half. The host's reduced rationals agree.
 fn fractional_half_weights() -> bool {
     let same = |(a, b): (i64, i64), (c, d): (i64, i64)| a * d == b * c;
     let add = |(a, b): (i64, i64), (c, d): (i64, i64)| (a * d + b * c, b * d);
@@ -490,9 +452,6 @@ fn fractional_half_weights() -> bool {
         && rq(1, 2) + rq(1, 2) == ri(1)
 }
 
-/// C12: the `p`-th power readout `sum |v_i|^p` of the basis vector and of the
-/// plus vector before and after integer mixing. The ratios agree (a uniform
-/// rescaling by 2) exactly at `p = 2`.
 fn power_readout_ratios(p: u32) -> (Q, Q) {
     let readout = |v: [i64; 2]| -> Q { v.iter().map(|x| ri(x.abs().pow(p))).sum() };
     let mix_real = |v: [i64; 2]| [v[0] + v[1], v[0] - v[1]];
@@ -634,8 +593,6 @@ pub fn run(input: &Value) -> Result<Value, String> {
     )
 }
 
-/// An admitted Gaussian-integer host operator on a declared finite carrier.
-/// Storage, composition, adjoint and action use canonical scalar/matrix owners.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct GaussianOperator {
     matrix: BasicMatrix<G>,
@@ -740,19 +697,14 @@ mod tests {
         assert_eq!(carrier_stage(7).unwrap().betti_h1, 1);
         assert_eq!(carrier_stage(8).unwrap().betti_h1, 0);
     }
-    /// Each former constant check now computes its property; each helper is
-    /// checked against a case where the property fails.
     #[test]
     fn computed_checks_fail_where_their_property_fails() {
-        // The scaled simplex agrees with its count, and a point of the rational
-        // simplex appears exactly when the scale divides evenly.
         let simplex = scaled_simplex(3, 9).unwrap();
         assert_eq!(Some(simplex.len()), binomial(11, 2));
         assert!(simplex.contains(&vec![3, 3, 3]));
         assert!(scaled_simplex(0, 3).is_err());
         assert!(scaled_simplex(8, 64).is_err());
         assert!(integer_weights_at_declared_scale().unwrap());
-        // A form that is not positive definite, and forms that are proportional.
         use crate::linear_algebra::matrix::diagonal;
         use omega_quantum_physics::exact_hermitian::is_positive_definite;
         assert!(!is_positive_definite(
@@ -764,16 +716,13 @@ mod tests {
             2
         )
         .unwrap());
-        // Three labels do carry a three-element frame.
         assert!(two_label_dimension_below_three(2).unwrap());
         assert!(!two_label_dimension_below_three(3).unwrap());
-        // Exponent two holds for the signs and fails for the units.
         let (closed, two) =
             closed_with_exponent_two(&[G::one(), G::from_ints(-1, 0)], G::mul, &G::one());
         assert!(closed && two);
         let (closed, two) = closed_with_exponent_two(&[G::one(), G::i()], G::mul, &G::one());
         assert!(!closed && !two);
-        // The readout ratios agree at p = 2 only.
         assert_eq!(power_readout_ratios(2), (ri(2), ri(2)));
         assert_eq!(power_readout_ratios(4), (ri(2), ri(8)));
         for check in [

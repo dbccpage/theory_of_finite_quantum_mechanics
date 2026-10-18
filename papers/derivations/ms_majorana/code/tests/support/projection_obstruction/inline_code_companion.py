@@ -43,9 +43,9 @@ def run_example_62_tfim_normal_rate(J: float = 1.0) -> Tuple[float, float]:
         Tuple[float, float]: (norm_eigval_sum, nu_e)
     """
     plus = np.array([1, 1], dtype=complex) / np.sqrt(2)
-    rp = np.outer(plus, plus)  # |+><+|
+    rp = np.outer(plus, plus)
     Z = np.array([[1, 0], [0, -1]], dtype=complex)
-    He = -J * np.kron(Z, Z)  # J bond term
+    He = -J * np.kron(Z, Z)
     rab = np.kron(rp, rp)
     rhodot = -1j * (He @ rab - rab @ He)
 
@@ -80,7 +80,7 @@ def run_section_745_tripartite_all_green_diagram() -> Tuple[float, list]:
     edges = [("x12", "u1"), ("x12", "u2"), ("x23", "u2"), ("x23", "u3"), ("x31", "u3"), ("x31", "u1")]
     watcher = {("x12", "u1"): 0, ("x12", "u2"): 1, ("x23", "u2"): 1, ("x23", "u3"): 2, ("x31", "u3"): 2, ("x31", "u1"): 0}
 
-    d = {ed: s[ed[1]] - s[ed[0]] for ed in edges}  # identity restrictions
+    d = {ed: s[ed[1]] - s[ed[0]] for ed in edges}
     I_val = float(sum(np.abs(v).sum() for v in d.values()))
     J_vals = [float(sum(np.abs(np.delete(d[ed], a)).sum() for ed in edges if watcher[ed] == a)) for a in range(3)]
     return I_val, J_vals

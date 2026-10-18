@@ -130,7 +130,6 @@ class FspPfpReferee:
 
         initial_action = self.lattice.total_wilson_action()
 
-        # Step 1: Verify all candidate links are unitary and det(U) == 1
         all_unitary = True
         all_det_one = True
         for prop in packet.proposals:
@@ -155,7 +154,6 @@ class FspPfpReferee:
                 proposal_digest=packet.canonical_digest(),
             )
 
-        # Step 2: Temporarily apply proposals to evaluate candidate state
         saved_links = []
         for prop in packet.proposals:
             coord = Lattice4DCoord(prop.x0, prop.x1, prop.x2, prop.x3, self.lattice.dims)
@@ -165,11 +163,9 @@ class FspPfpReferee:
         candidate_action = self.lattice.total_wilson_action()
         computed_delta = candidate_action - initial_action
 
-        # Step 3: Check involution tau pairing on candidate state
         inv_check = self.lattice.verify_involution_sign_balance()
         inv_verified = bool(inv_check["sign_cancellation_certified"])
 
-        # Step 4: Metropolis acceptance filter
         is_accepted = False
         status_reason = ""
 
@@ -180,7 +176,6 @@ class FspPfpReferee:
             is_accepted = True
             status_reason = "ACCEPTED: Action descending or stationary (Delta S <= 0)"
         else:
-            # Acceptance probability alpha = 1 / (1 + computed_delta) in Q
             alpha = Fraction(1, 1) / (Fraction(1, 1) + computed_delta)
             if random_threshold <= alpha:
                 is_accepted = True
@@ -189,7 +184,6 @@ class FspPfpReferee:
                 is_accepted = False
                 status_reason = f"REJECTED: Metropolis rational ratio {alpha} < {random_threshold}"
 
-        # If not accepted, revert to original state
         if not is_accepted:
             for coord, mu, link in saved_links:
                 self.lattice.set_link(coord, mu, link)

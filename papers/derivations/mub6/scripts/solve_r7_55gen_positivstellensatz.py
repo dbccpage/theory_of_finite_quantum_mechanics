@@ -75,9 +75,6 @@ class Exact55GeneratorSystem:
     @staticmethod
     def eval_corner_determinant(x: list[list[Fraction]], y: list[list[Fraction]]) -> tuple[Fraction, Fraction]:
         """3x3 corner determinant top-left minor."""
-        # P_corner = (z11 - 1)(z22 - 1) - (z12 - 1)(z21 - 1)
-        # Real: (x11-1)(x22-1) - y11*y22 - ((x12-1)(x21-1) - y12*y21)
-        # Imag: (x11-1)*y22 + (x22-1)*y11 - ((x12-1)*y21 + (x21-1)*y12)
         p_re = ((x[1][1] - 1) * (x[2][2] - 1) - y[1][1] * y[2][2]
                 - ((x[1][2] - 1) * (x[2][1] - 1) - y[1][2] * y[2][1]))
         p_im = ((x[1][1] - 1) * y[2][2] + (x[2][2] - 1) * y[1][1]
@@ -103,18 +100,12 @@ class Exact55GeneratorSystem:
 
 def create_tao_point() -> tuple[list[list[Fraction]], list[list[Fraction]]]:
     """Exact rational representation of the Tao S6 matrix over Eisenstein integers."""
-    # S6 = F3 (x) F2.
-    # omega = -1/2 + i*sqrt(3)/2, omega^2 = -1/2 - i*sqrt(3)/2.
-    # In rational projection for real parts:
-    # 1 -> 1, omega -> -1/2, omega^2 -> -1/2
-    # For testing algebraic structure over Q:
     x = [[Fraction(0)] * 6 for _ in range(6)]
     y = [[Fraction(0)] * 6 for _ in range(6)]
     for j in range(6):
         x[0][j] = Fraction(1)
         x[j][0] = Fraction(1)
 
-    # Fill phase pattern mod 3
     phase_pattern = [
         [0, 0, 0, 0, 0, 0],
         [0, 0, 1, 1, 2, 2],
@@ -131,7 +122,7 @@ def create_tao_point() -> tuple[list[list[Fraction]], list[list[Fraction]]]:
                 y[j][k] = Fraction(0)
             elif p == 1:
                 x[j][k] = Fraction(-1, 2)
-                y[j][k] = Fraction(866, 1000)  # rational proxy
+                y[j][k] = Fraction(866, 1000)
             elif p == 2:
                 x[j][k] = Fraction(-1, 2)
                 y[j][k] = Fraction(-866, 1000)
@@ -142,8 +133,6 @@ def create_karlsson_point(z_angle: int = 0) -> tuple[list[list[Fraction]], list[
     """Exact rational Karlsson boundary matrix representative (z=0 Diță slice)."""
     x = [[Fraction(1)] * 6 for _ in range(6)]
     y = [[Fraction(0)] * 6 for _ in range(6)]
-    # On slice z = 0, Karlsson specializes to Dita with affine parameters
-    # Row 1 has entries with -1
     x[1][1] = Fraction(-1)
     x[1][2] = Fraction(1)
     x[1][3] = Fraction(-1)

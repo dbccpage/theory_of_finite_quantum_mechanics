@@ -184,7 +184,6 @@ class TestHomologicalPerturbation(unittest.TestCase):
         self.assertTrue(receipt.success)
         self.assertEqual(receipt.delta_D0.data, ((b - a * c,),))
 
-        # Independent chain-map check with the hand-computed i'(x) = x - a u.
         i_prime_x = ExactMatrix.from_rows(
             ((1,), (-a,)), expected_rows=2, expected_cols=1, label="i'x"
         )

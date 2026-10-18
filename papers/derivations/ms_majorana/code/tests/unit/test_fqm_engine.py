@@ -25,7 +25,6 @@ from omega_engine.crates.quantum_physics.bipartite_carrier import BipartiteEdge
 from omega_engine.crates.quantum_physics.bipartite_retraction import d1_witness, product_witness
 
 
-# --------------------------------------------------------------------------- primitives
 
 
 def test_trace_norm_is_sum_of_absolute_eigenvalues_on_a_known_matrix():
@@ -55,7 +54,6 @@ def test_partial_trace_b_is_not_partial_trace_a():
     assert not np.allclose(partial_trace_b(prod), partial_trace_a(prod))
 
 
-# ------------------------------------------------------------------- the projection P_e
 
 
 def test_P_e_is_idempotent():
@@ -72,7 +70,6 @@ def test_Q_e_annihilates_the_tangent_component():
     assert trace_norm(edge.Q_e(edge.P_e(z))) == pytest.approx(0.0, abs=1e-12)
 
 
-# ------------------------------------------------- the mutation killer for defect D5
 
 
 def test_nu_e_vanishes_on_the_product_manifold():
@@ -83,8 +80,8 @@ def test_nu_e_vanishes_on_the_product_manifold():
     """
     edge = product_witness()
     rdot, _ = edge.derivatives()
-    assert trace_norm(rdot) == pytest.approx(0.8)  # the un-projected quantity is NOT zero
-    assert edge.nu_e() == pytest.approx(0.0, abs=1e-12)  # the projected one is
+    assert trace_norm(rdot) == pytest.approx(0.8)
+    assert edge.nu_e() == pytest.approx(0.0, abs=1e-12)
 
 
 def test_product_edge_stays_product_under_evolution():
@@ -97,7 +94,6 @@ def test_interacting_edge_has_strictly_positive_nu_e():
     assert d1_witness().nu_e() == pytest.approx(2.0)
 
 
-# ------------------------------------------------- regression pinning defect D1
 
 
 def test_a_e_as_defined_is_not_the_second_order_coefficient():
@@ -110,7 +106,7 @@ def test_a_e_as_defined_is_not_the_second_order_coefficient():
     assert r["a_e_as_defined"] == pytest.approx(6.891618, abs=1e-6)
     assert r["a_e_true"] == pytest.approx(5.954592, abs=1e-6)
     assert r["omitted_cross_term_norm"] == pytest.approx(5.760000, abs=1e-6)
-    assert r["discrepancy"] > 0.9  # not a rounding artifact
+    assert r["discrepancy"] > 0.9
 
 
 def test_cross_term_is_genuinely_omitted_from_the_defined_a_e():
@@ -126,7 +122,6 @@ def test_cross_term_is_not_small():
     assert trace_norm(edge.cross_term()) > 0.5 * edge.a_e_as_defined()
 
 
-# ------------------------------------------------------------------ the short-time bound
 
 
 @pytest.mark.parametrize("t", [0.02, 0.05, 0.1])
@@ -144,7 +139,6 @@ def test_first_order_slope_matches_nu_e():
     assert edge.exact_defect(small) / small == pytest.approx(edge.nu_e(), rel=1e-3)
 
 
-# ------------------------------------------------------------------------ scope fences
 
 
 def test_engine_declares_its_host_as_an_import():
@@ -158,7 +152,6 @@ def test_engine_declares_its_host_as_an_import():
     assert edge.nu_e() >= 0.0
 
 
-# --------------------------------------------------- Step B: dual-certificate stub for Phi1
 
 
 def test_solve_phi1_dual_witness():
@@ -174,7 +167,6 @@ def test_solve_phi1_dual_witness():
     assert res["min_l1"] == pytest.approx(0.0, abs=1e-5)
 
 
-# ----------------------------------------------- Step D: corrected second-order bound bar_a_e
 
 
 @pytest.mark.parametrize("t", [0.02, 0.05, 0.1])
@@ -187,7 +179,6 @@ def test_bar_a_e_corrected_bound_holds(t):
     assert bound <= edge.exact_defect(t) + 1e-9
 
 
-# ----------------------------------------------- Step 5: Gleason d=2 falsifier check
 
 
 def test_gleason_d2_falsifier():
@@ -196,12 +187,10 @@ def test_gleason_d2_falsifier():
     r = gleason_d2_falsifier_check()
     assert r["gleason_applies_at_d2"] is False
     assert r["status"] == "GLEASON_UNIQUENESS_FALSIFIED_AT_D2"
-    # The countermodel must be IN the class Gleason quantifies over, or it is not one.
     assert r["is_a_frame_function"] is True
     assert r["is_non_born"] is True
 
 
-# ----------------------------------------------- Step C: Composition sandbox
 
 
 def test_composition_sandbox_cartesian_vs_tensor():
@@ -214,7 +203,6 @@ def test_composition_sandbox_cartesian_vs_tensor():
     cb = FiniteGraphCarrier(vertices=[0, 1], edges=[(0, 1)])
     sandbox = CartesianCompositionSandbox(ca, cb)
 
-    # 1. Separable product state can be represented
     psi_a = np.array([1.0, 0.0])
     psi_b = np.array([0.0, 1.0])
     rho_sep = np.outer(np.kron(psi_a, psi_b), np.kron(psi_a, psi_b).conj())
@@ -222,7 +210,6 @@ def test_composition_sandbox_cartesian_vs_tensor():
     assert res_sep["is_separable"] is True
     assert res_sep["can_represent_in_cartesian"] is True
 
-    # 2. Entangled Bell state cannot be represented in Cartesian sum cochains
     psi_bell = (np.array([1.0, 0.0, 0.0, 1.0])) / np.sqrt(2.0)
     rho_bell = np.outer(psi_bell, psi_bell.conj())
     res_bell = sandbox.evaluate_local_tomography_contract(rho_bell)
@@ -231,7 +218,6 @@ def test_composition_sandbox_cartesian_vs_tensor():
     assert res_bell["status"] == "TENSOR_PRODUCT_NOT_DERIVED"
 
 
-# ----------------------------------------------- Step 2: Import Necessity Countermodel Harness
 
 
 def test_import_necessity_countermodels():
@@ -255,7 +241,6 @@ def test_import_necessity_countermodels():
     assert verification["status"] == "DROP_ONE_NECESSITY_VERIFIED"
 
 
-# ----------------------------------------------- Step 3 & 4: Sealed Matrix Recovery Engine (REC-FULL)
 
 
 def test_sealed_matrix_recovery_suite():
@@ -290,11 +275,9 @@ def test_qam_001_covariant_wigner_yanase_monotonicity():
         solve_covariant_wigner_yanase_monotonicity,
     )
 
-    # A state the channel actually moves, so the check is not vacuous.
     rho = 0.5 * (np.eye(2, dtype=complex) + 0.7 * SIGMA_X + 0.3 * SIGMA_Z)
     H = SIGMA_Z.astype(complex)
 
-    # Dephasing: K0 = sqrt(1-p) I, K1 = sqrt(p) sigma_z. Unital as well as trace preserving.
     p = 0.3
     kraus_ops = [np.sqrt(1.0 - p) * np.eye(2, dtype=complex), np.sqrt(p) * SIGMA_Z]
     assert is_unital(kraus_ops) is True

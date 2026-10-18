@@ -1,17 +1,3 @@
-//! MUB(6) Gap G1 Approach B: Cylindrical Algebraic Slice Gröbner Elimination Solver.
-//!
-//! AuthorityEffect: None.
-//! Constitutional Firewall: stated region only; mints no authority.
-//!
-//! This module implements exact rational multivariate polynomial elimination over Q
-//! for cylindrical coordinate slices of the defining ideal I_55 of 6x6 complex Hadamard matrices.
-//!
-//! Core capabilities:
-//! 1. Exact multivariable polynomial arithmetic in Q[x_1, ..., x_n] using BigRational.
-//! 2. Graded reverse lexicographical (grevlex) term ordering.
-//! 3. Multivariate division algorithm reducing S-polynomials modulo ideal generators.
-//! 4. S-polynomial generation S(f, g) and Buchberger confluence verification.
-//! 5. Exact certification of cylindrical algebraic slice elimination terminating at deg <= 8.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -23,10 +9,8 @@ use std::collections::BTreeMap;
 pub const SCHEMA_VERSION: &str = "omega.mub.groebner.v1";
 pub const SCOPE_STRING: &str = "mub6_i55_cylindrical_slice_groebner_exact";
 
-/// Monomial represented as fixed-length exponent array.
 pub type Monomial4 = [u32; 4];
 
-/// Grevlex comparison: total degree first; if tied, reverse lexicographical comparison inverted.
 pub fn grevlex_compare(m1: &Monomial4, m2: &Monomial4) -> Ordering {
     let deg1: u32 = m1.iter().sum();
     let deg2: u32 = m2.iter().sum();
@@ -35,17 +19,14 @@ pub fn grevlex_compare(m1: &Monomial4, m2: &Monomial4) -> Ordering {
     }
     for (e1, e2) in m1.iter().rev().zip(m2.iter().rev()) {
         if e1 != e2 {
-            // Note: in grevlex, smaller index in reverse wins
             return e2.cmp(e1);
         }
     }
     Ordering::Equal
 }
 
-/// Exact 4-variable polynomial with rational coefficients over Q.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ExactPoly4 {
-    /// Non-zero terms mapped from monomial to coefficient.
     pub terms: BTreeMap<Monomial4, BigRational>,
 }
 
@@ -186,7 +167,6 @@ pub fn monomial_lcm(m1: &Monomial4, m2: &Monomial4) -> Monomial4 {
     ]
 }
 
-/// Multivariate polynomial division of f by divisors, returning remainder.
 pub fn multivariate_remainder(f: &ExactPoly4, divisors: &[ExactPoly4]) -> ExactPoly4 {
     let mut remainder = ExactPoly4::zero();
     let mut p = f.clone();
@@ -223,7 +203,6 @@ pub fn multivariate_remainder(f: &ExactPoly4, divisors: &[ExactPoly4]) -> ExactP
     remainder
 }
 
-/// Compute S-polynomial S(f, g) = lcm(lm(f), lm(g))/lt(f) * f - lcm(lm(f), lm(g))/lt(g) * g.
 pub fn compute_s_polynomial(f: &ExactPoly4, g: &ExactPoly4) -> ExactPoly4 {
     let (lm_f, lc_f) = f.leading_term().expect("f must be non-zero");
     let (lm_g, lc_g) = g.leading_term().expect("g must be non-zero");
@@ -240,7 +219,6 @@ pub fn compute_s_polynomial(f: &ExactPoly4, g: &ExactPoly4) -> ExactPoly4 {
     term_f.sub(&term_g)
 }
 
-/// Verify Buchberger's criterion: for all i < j, rem(S(g_i, g_j), G) == 0.
 pub fn verify_buchberger_criterion(basis: &[ExactPoly4]) -> (bool, usize, usize) {
     let mut total_pairs = 0usize;
     let mut zero_pairs = 0usize;
@@ -260,7 +238,6 @@ pub fn verify_buchberger_criterion(basis: &[ExactPoly4]) -> (bool, usize, usize)
     (is_confluent, total_pairs, zero_pairs)
 }
 
-/// Run Buchberger algorithm to compute Gröbner basis of cylindrical slice.
 pub fn compute_slice_groebner_basis(generators: &[ExactPoly4]) -> Vec<ExactPoly4> {
     let mut basis: Vec<ExactPoly4> = generators.iter().filter(|g| !g.is_zero()).cloned().collect();
     let mut pairs: Vec<(usize, usize)> = Vec::new();
@@ -291,7 +268,6 @@ pub fn compute_slice_groebner_basis(generators: &[ExactPoly4]) -> Vec<ExactPoly4
     basis
 }
 
-/// Create the canonical 4-variable cylindrical slice S_corner = {x_1, y_1, x_2, y_2}.
 pub fn create_canonical_corner_slice() -> Vec<ExactPoly4> {
     let x1 = ExactPoly4::var(0);
     let y1 = ExactPoly4::var(1);
@@ -327,7 +303,6 @@ pub struct GroebnerSliceReceipt {
     pub refusal_reason: String,
 }
 
-/// Construct and certify the Gröbner elimination receipt on the cylindrical slice.
 pub fn solve_and_certify_cylindrical_slice_groebner() -> GroebnerSliceReceipt {
     let generators = create_canonical_corner_slice();
     let basis = compute_slice_groebner_basis(&generators);

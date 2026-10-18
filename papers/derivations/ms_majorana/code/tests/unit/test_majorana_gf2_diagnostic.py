@@ -226,7 +226,7 @@ def test_repair_capacity_distance_five_is_two_and_zero_refuses(monkeypatch):
     with pytest.raises(NativeMathRefusal, match="d must be positive"):
         diagnostic.repair_capacity(distance=0)
     with pytest.raises(TypeError):
-        diagnostic.repair_capacity(distance=5.0)  # type: ignore[arg-type]
+        diagnostic.repair_capacity(distance=5.0)
     assert calls == [
         ("majorana_gf2_diagnostic", {"operation": "repair_capacity", "distance": 5}),
         ("majorana_gf2_diagnostic", {"operation": "repair_capacity", "distance": 4}),
@@ -310,8 +310,6 @@ def test_gf2_rank_solve_and_product_follow_the_native_fixture(monkeypatch):
         _assert_no_float(payload)
         operation = payload["operation"]
         if operation == "rref":
-            # True GF(2) rank is 2 and the real rank is 3. The fixture rank is
-            # neither, so a local elimination cannot satisfy the assertion.
             assert payload["matrix"]["data"] == [[1, 1, 0], [1, 0, 1], [0, 1, 1]]
             return {"matrix": payload["matrix"], "pivots": [0]}
         if operation == "solve":

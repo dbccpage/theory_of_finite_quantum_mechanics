@@ -80,13 +80,11 @@ def check_manifest(manifest_path: Path, skip_header_schema: bool = False) -> lis
         for relative in sorted(recorded - expected):
             errors.append(f"Excluded file listed in manifest: {relative}")
 
-        # Check required structural files/patterns
         for pattern in REQUIRED_PATTERNS:
             target = ROOT / pattern
             if not target.is_file() or not target.stat().st_size:
                 errors.append(f"Required file missing or empty: {pattern}")
 
-        # Check paper header compliance on mub6.md
         mono_path = ROOT / "mub6.md"
         if mono_path.is_file():
             try:

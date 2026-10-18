@@ -35,7 +35,7 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from bench_openrouter_meron_2d import (  # noqa: E402
+from bench_openrouter_meron_2d import (
     MODELS_TO_BENCHMARK,
     build_benchmark_prompts,
     evaluate_model_turn,
@@ -43,14 +43,11 @@ from bench_openrouter_meron_2d import (  # noqa: E402
     generate_mock_model_response,
     run_2d_meron_benchmark,
 )
-from demo_2d_gross_neveu_meron import validate_wire_string  # noqa: E402
-from omega_engine_pfp.domain.tower.parser import GAMMA_38  # noqa: E402
+from demo_2d_gross_neveu_meron import validate_wire_string
+from omega_engine_pfp.domain.tower.parser import GAMMA_38
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
+from blind_problem import assert_lexical_hygiene
 
-# ============================================================================
-# Test Suite 1: Benchmark Prompts & Lexical Hygiene
-# ============================================================================
 
 
 class TestBenchmarkPromptsAndLexicalHygiene:
@@ -84,9 +81,6 @@ class TestBenchmarkPromptsAndLexicalHygiene:
             assert validate_wire_string(wire) is True
 
 
-# ============================================================================
-# Test Suite 2: Wire Extraction & Validation
-# ============================================================================
 
 
 class TestWireExtractionAndValidation:
@@ -115,9 +109,6 @@ class TestWireExtractionAndValidation:
         assert extract_wire_from_response("   \n\t  ") is None
 
 
-# ============================================================================
-# Test Suite 3: Mock Response Generation & Hashing
-# ============================================================================
 
 
 class TestMockResponseGeneration:
@@ -150,9 +141,6 @@ class TestMockResponseGeneration:
         assert "content" in resp["choices"][0]["message"]
 
 
-# ============================================================================
-# Test Suite 4: Full Benchmark Runner & Receipt Integrity
-# ============================================================================
 
 
 class TestBenchmarkRunnerAndReceipt:
@@ -181,7 +169,6 @@ class TestBenchmarkRunnerAndReceipt:
         assert data["metrics_summary"]["valid_wire_count"] == 24
         assert data["metrics_summary"]["wire_validity_rate"] == "1"
 
-        # Verify SHA-256 digest recomputation
         with open(out_receipt, "r", encoding="utf-8") as f:
             disk_data = json.load(f)
 
@@ -191,9 +178,6 @@ class TestBenchmarkRunnerAndReceipt:
         assert embedded == recomp
 
 
-# ============================================================================
-# Test Suite 5: Zero Floats AST Static Audit
-# ============================================================================
 
 
 class TestZeroFloatsASTStaticAudit:

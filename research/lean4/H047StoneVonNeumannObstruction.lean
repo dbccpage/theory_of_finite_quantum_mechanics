@@ -1,27 +1,7 @@
-/-
-  H047StoneVonNeumannObstruction.lean
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
 
-  Shows in this model under exact ring arithmetic that:
-  1. For any finite-dimensional linear operators Q, P in M_N(R), the commutator
-     [Q, P] = Q P - P Q has strictly vanishing trace:
-       Tr([Q, P]) = Tr(QP) - Tr(PQ) = 0.
-  2. The continuum Heisenberg canonical commutation relation [Q, P] = i * hbar * I_N
-     requires Tr([Q, P]) = i * hbar * N. For any N >= 1 with non-zero scalar,
-     this produces the finite Stone-von Neumann commutator trace obstruction:
-       0 = Tr([Q, P]) != i * hbar * N.
-  3. On discrete phase space Z / N Z (exemplified by N = 3 over Eisenstein ring Z[omega]),
-     the Weyl shift operator X and clock operator Z circumvent this obstruction:
-       Z X = omega * X Z,
-     establishing the discrete Weyl commutation relation without trace contradictions.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 namespace FableHilbertWalk20260819.H047
 
--- 1. General 2x2 and 3x3 Commutator Trace Vanishing
 structure Mat2 where
   m00 : Int
   m01 : Int
@@ -43,7 +23,6 @@ def sub2 (A B : Mat2) : Mat2 :=
 
 def comm2 (A B : Mat2) : Mat2 := sub2 (mul2 A B) (mul2 B A)
 
-/-- For ANY 2x2 matrices Q and P, Tr([Q, P]) = 0 identically. -/
 theorem tr_comm2_vanishes (Q P : Mat2) : tr2 (comm2 Q P) = 0 := by
   dsimp [tr2, comm2, sub2, mul2]
   have h0 : Q.m00 * P.m00 = P.m00 * Q.m00 := by rw [Int.mul_comm]
@@ -84,7 +63,6 @@ def sub3 (A B : Mat3) : Mat3 :=
 
 def comm3 (A B : Mat3) : Mat3 := sub3 (mul3 A B) (mul3 B A)
 
-/-- For ANY 3x3 matrices Q and P, Tr([Q, P]) = 0 identically. -/
 theorem tr_comm3_vanishes (Q P : Mat3) : tr3 (comm3 Q P) = 0 := by
   dsimp [tr3, comm3, sub3, mul3]
   have h00 : Q.m00 * P.m00 = P.m00 * Q.m00 := by rw [Int.mul_comm]
@@ -98,7 +76,6 @@ theorem tr_comm3_vanishes (Q P : Mat3) : tr3 (comm3 Q P) = 0 := by
   have h21 : Q.m21 * P.m12 = P.m12 * Q.m21 := by rw [Int.mul_comm]
   omega
 
-/-- The trace of the identity matrix in dimension N = 3 is 3 != 0. -/
 def eye3 : Mat3 :=
   ⟨1, 0, 0,
    0, 1, 0,
@@ -106,7 +83,6 @@ def eye3 : Mat3 :=
 
 theorem tr_eye3_nonzero : tr3 eye3 = 3 ∧ tr3 eye3 ≠ 0 := by decide
 
-/-- Finite Stone-von Neumann obstruction: Tr([Q, P]) = 0 cannot equal eye3. -/
 theorem finite_heisenberg_obstruction (Q P : Mat3) :
     comm3 Q P ≠ eye3 := by
   intro h
@@ -117,11 +93,9 @@ theorem finite_heisenberg_obstruction (Q P : Mat3) :
   rw [h3] at heye
   contradiction
 
--- 2. Discrete Weyl Commutation on Z / 3 Z over Eisenstein Ring Z[omega]
--- omega^3 = 1, 1 + omega + omega^2 = 0 => omega^2 = -1 - omega
 structure Eisenstein where
-  a : Int  -- real part
-  b : Int  -- omega part (a + b * omega)
+  a : Int
+  b : Int
   deriving DecidableEq, Repr
 
 def ez : Eisenstein := ⟨0, 0⟩
@@ -145,7 +119,6 @@ instance : Add Eisenstein := ⟨eadd⟩
 instance : Sub Eisenstein := ⟨esub⟩
 instance : Mul Eisenstein := ⟨emul⟩
 
-/-- 3x3 Matrix with Eisenstein entries. -/
 structure Mat3E where
   m00 : Eisenstein
   m01 : Eisenstein
@@ -174,23 +147,19 @@ def smul3E (c : Eisenstein) (A : Mat3E) : Mat3E :=
    c * A.m10, c * A.m11, c * A.m12,
    c * A.m20, c * A.m21, c * A.m22⟩
 
--- Shift operator X on Z/3Z: |0> |-> |1>, |1> |-> |2>, |2> |-> |0|
 def X_shift3 : Mat3E :=
   ⟨ez, ez, eone,
    eone, ez, ez,
    ez, eone, ez⟩
 
--- Clock operator Z on Z/3Z: diag(1, omega, omega^2)
 def Z_clock3 : Mat3E :=
   ⟨eone, ez, ez,
    ez, eomega, ez,
    ez, ez, eomega2⟩
 
-/-- Discrete Weyl commutation relation: Z * X = omega * (X * Z). -/
 theorem discrete_weyl_commutation :
     mul3E Z_clock3 X_shift3 = smul3E eomega (mul3E X_shift3 Z_clock3) := by decide
 
-/-- Both X and Z have order 3 (unitarity in finite group): X^3 = I, Z^3 = I. -/
 def eye3E : Mat3E :=
   ⟨eone, ez, ez,
    ez, eone, ez,
@@ -211,3 +180,6 @@ theorem z_cubed_is_identity :
 #print axioms z_cubed_is_identity
 
 end FableHilbertWalk20260819.H047
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H047StoneVonNeumannObstruction.lean Claim: tr_comm2_vanishes AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -1,11 +1,5 @@
 import Std
 
-/-!
-AuthorityEffect: None.
-Concrete normalizers, not route predicates: an integral quotient section and
-the binary triangle switching section. These prove the stated finite families;
-they do not mechanically verify Python RREF or its general graph traversal.
--/
 
 namespace NormalFormLaws
 

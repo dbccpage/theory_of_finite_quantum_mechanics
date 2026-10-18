@@ -15,18 +15,12 @@ from dataclasses import dataclass
 from fractions import Fraction
 from typing import Any, List, Sequence, Tuple
 
-# ---------------------------------------------------------------------------
-# Type Aliases (Exact Arithmetic Only)
-# ---------------------------------------------------------------------------
 Point3D = Tuple[int, int, int]
 Vector3D = Tuple[int, int, int]
 RationalPoint3D = Tuple[Fraction, Fraction, Fraction]
 RationalVector2D = Tuple[Fraction, Fraction]
 
 
-# ---------------------------------------------------------------------------
-# Lattice3D on 3-Torus T^3
-# ---------------------------------------------------------------------------
 @dataclass(frozen=True)
 class Lattice3D:
     """Discrete 3-torus lattice T^3 with periodic boundary conditions.
@@ -76,9 +70,6 @@ class Lattice3D:
         )
 
 
-# ---------------------------------------------------------------------------
-# Winding Vector and Unwrapping Computation
-# ---------------------------------------------------------------------------
 def compute_unwrapped_path(
     coordinates: Sequence[Point3D],
     lattice_dim: Tuple[int, int, int] = (4, 4, 4),
@@ -91,7 +82,6 @@ def compute_unwrapped_path(
     unwrapped: List[Point3D] = [coordinates[0]]
     curr = coordinates[0]
 
-    # If the last coordinate equals the first, loop is explicitly closed
     pts = list(coordinates)
     if pts[0] == pts[-1] and len(pts) > 2:
         pts = pts[:-1]
@@ -149,9 +139,6 @@ def compute_winding_vector(
     )
 
 
-# ---------------------------------------------------------------------------
-# ClosedStringLoop3D Value Object
-# ---------------------------------------------------------------------------
 @dataclass(frozen=True)
 class ClosedStringLoop3D:
     """Represents a closed 1D meron string loop on 3-torus T^3.
@@ -235,9 +222,6 @@ def winding_parity(loop: ClosedStringLoop3D) -> int:
     return loop.winding_parity
 
 
-# ---------------------------------------------------------------------------
-# Exact Discrete Gauss Linking via Generic Rational Planar Projection
-# ---------------------------------------------------------------------------
 def _ccw_2d(p1: RationalVector2D, p2: RationalVector2D, p3: RationalVector2D) -> Fraction:
     """Exact 2D counter-clockwise orientation determinant over Fraction."""
     return (p2[0] - p1[0]) * (p3[1] - p1[1]) - (p2[1] - p1[1]) * (p3[0] - p1[0])
@@ -285,7 +269,6 @@ def _segment_intersection_2d(
     cp3 = _ccw_2d(c, d, a)
     cp4 = _ccw_2d(c, d, b)
 
-    # Transverse crossing condition
     if ((cp1 > 0 and cp2 < 0) or (cp1 < 0 and cp2 > 0)) and \
        ((cp3 > 0 and cp4 < 0) or (cp3 < 0 and cp4 > 0)):
         t = cp3 / (cp3 - cp4)
@@ -296,7 +279,6 @@ def _segment_intersection_2d(
         dir2 = (d[0] - c[0], d[1] - c[1])
         return "CROSSING", z1, z2, dir1, dir2
 
-    # Degeneracy: a vertex projects strictly onto the other segment
     if (cp1 == 0 and _point_on_segment_2d(c, a, b)) or \
        (cp2 == 0 and _point_on_segment_2d(d, a, b)) or \
        (cp3 == 0 and _point_on_segment_2d(a, c, d)) or \
@@ -318,7 +300,6 @@ def discrete_gauss_linking_number(
     pts1 = loop_1.unwrapped_coordinates()
     pts2 = loop_2.unwrapped_coordinates()
 
-    # Normalize closed loop representations
     if pts1[0] == pts1[-1] and len(pts1) > 2:
         pts1 = pts1[:-1]
     if pts2[0] == pts2[-1] and len(pts2) > 2:
@@ -327,7 +308,6 @@ def discrete_gauss_linking_number(
     n1 = len(pts1)
     n2 = len(pts2)
 
-    # Deterministic sequence of rational projection directions (vx, vy, 1)
     projection_candidates = [
         (Fraction(1, 17), Fraction(1, 37)),
         (Fraction(1, 19), Fraction(1, 41)),
@@ -363,12 +343,9 @@ def discrete_gauss_linking_number(
                     if z1 == z2:
                         raise ValueError("Loops intersect directly in 3D; linking number undefined for non-disjoint loops")
 
-                    # Crossing sign: right-hand rule for over-strand relative to under-strand
                     if z1 > z2:
-                        # loop 1 is over, loop 2 is under
                         det = dir1[0] * dir2[1] - dir1[1] * dir2[0]
                     else:
-                        # loop 2 is over, loop 1 is under
                         det = dir2[0] * dir1[1] - dir2[1] * dir1[0]
 
                     sgn = 1 if det > 0 else -1
@@ -386,9 +363,6 @@ def discrete_gauss_linking_number(
     raise RuntimeError("Failed to find non-degenerate projection direction in candidate set")
 
 
-# ---------------------------------------------------------------------------
-# Exact Oriented Cross-Facet Intersection Counting (Seifert Surface Piercing)
-# ---------------------------------------------------------------------------
 def _point_in_polygon_2d(
     px: Fraction,
     py: Fraction,
@@ -431,7 +405,6 @@ def facet_intersection_linking_number(
     if pts2[0] == pts2[-1] and len(pts2) > 2:
         pts2 = pts2[:-1]
 
-    # Check if loop_1 is planar
     xs = set(p[0] for p in pts1)
     ys = set(p[1] for p in pts1)
     zs = set(p[2] for p in pts1)
@@ -449,7 +422,6 @@ def facet_intersection_linking_number(
         plane_val = Fraction(list(ys)[0])
         poly_2d = [(Fraction(p[2]), Fraction(p[0])) for p in pts1]
     else:
-        # Fall back to discrete Gauss linking if non-planar
         return discrete_gauss_linking_number(loop_1, loop_2)
 
     n2 = len(pts2)
@@ -461,7 +433,6 @@ def facet_intersection_linking_number(
         c1 = Fraction(p_curr[plane_axis])
         c2 = Fraction(p_next[plane_axis])
 
-        # Case 1: edge strictly crosses the plane
         if (c1 < plane_val < c2) or (c2 < plane_val < c1):
             t = (plane_val - c1) / (c2 - c1)
             inter_coords: List[Fraction] = []
@@ -480,7 +451,6 @@ def facet_intersection_linking_number(
             sgn = 1 if c2 > c1 else -1
             total_lk += sgn * wn
 
-        # Case 2: vertex lies exactly on the plane
         elif c1 == plane_val:
             p_prev = pts2[(j - 1) % n2]
             c_prev = Fraction(p_prev[plane_axis])
@@ -499,9 +469,6 @@ def facet_intersection_linking_number(
     return total_lk
 
 
-# ---------------------------------------------------------------------------
-# Canonical Linking Interface
-# ---------------------------------------------------------------------------
 def linking_number(
     loop_1: ClosedStringLoop3D,
     loop_2: ClosedStringLoop3D,
@@ -522,9 +489,6 @@ def exact_linking_matrix(loops: Sequence[ClosedStringLoop3D]) -> List[List[int]]
     return matrix
 
 
-# ---------------------------------------------------------------------------
-# Standard Loop Generators for 3D Lattice
-# ---------------------------------------------------------------------------
 def build_winding_loop(
     axis: str,
     offset: Point3D = (0, 0, 0),
@@ -613,7 +577,6 @@ def build_hopf_link_pair(
     """
     ox, oy, oz = origin
 
-    # Loop 1 in xy-plane at z = oz + 1: [ox, ox+2] x [oy, oy+2]
     z1 = oz + 1
     h1_pts: List[Point3D] = [
         (ox, oy, z1),
@@ -626,7 +589,6 @@ def build_hopf_link_pair(
         (ox, oy + 1, z1),
     ]
 
-    # Loop 2 in yz-plane at x = ox + 1: threads through center (ox+1, oy+1, z1)
     x2 = ox + 1
     h2_pts: List[Point3D] = [
         (x2, oy + 1, oz),
@@ -653,9 +615,6 @@ def build_unlinked_pair(
     return l1, l2
 
 
-# ---------------------------------------------------------------------------
-# Meron Cluster Configuration, Involution and Exact Cancellation
-# ---------------------------------------------------------------------------
 @dataclass(frozen=True)
 class MeronClusterConfiguration:
     """A configuration C of k loops with discrete orientation assignments.
@@ -712,7 +671,6 @@ def create_meron_cluster_configuration(
     if not isinstance(weight, Fraction):
         raise TypeError(f"Weight must be int or Fraction, got {type(base_weight)}")
 
-    # Compute fermion sign sigma(C)
     sign = 1
     for i, loop in enumerate(loop_tuple):
         if loop.winding_parity == 1:
@@ -758,7 +716,6 @@ def cluster_involution_tau(
             )
         idx = target_loop_index
 
-    # Invert the orientation of the targeted loop
     new_orientations = list(config.orientations)
     new_orientations[idx] = -new_orientations[idx]
 
@@ -783,16 +740,12 @@ def verify_involution_cancellation(config: MeronClusterConfiguration) -> dict[st
     tau_c = cluster_involution_tau(config)
     tau_tau_c = cluster_involution_tau(tau_c)
 
-    # 1. Involution property: tau(tau(C)) == C
     is_involution = tau_tau_c.orientations == config.orientations
 
-    # 2. Sign reversal: sigma(tau(C)) == -sigma(C)
     sign_reverses = (tau_c.sign == -config.sign)
 
-    # 3. Weight preservation: w(tau(C)) == w(C)
     weight_preserved = (tau_c.base_weight == config.base_weight)
 
-    # 4. Exact zero-sum cancellation: (1 + (-1)) w(C) = 0
     pair_sum = config.sign * config.base_weight + tau_c.sign * tau_c.base_weight
     cancellation_verified = (pair_sum == Fraction(0))
 

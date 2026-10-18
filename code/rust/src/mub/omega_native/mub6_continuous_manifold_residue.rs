@@ -1,44 +1,3 @@
-//! Exact rational interval solver for the continuous Diță manifold D_6(alpha, beta) residue.
-//!
-//! AuthorityEffect: None
-//! Restricted words: forced, minimal, free, canonical, equivalent, universal, complete
-//! require proof or explicit conditional scope. The `complete` flag denotes finite
-//! branch-and-bound partition termination over the declared stated region, nothing more.
-//!
-//! ## Mathematical Foundations
-//!
-//! The 2-parameter continuous Diță complex Hadamard matrix family is parameterized by
-//! unit circle coordinates z_alpha = u_alpha + i*v_alpha and z_beta = u_beta + i*v_beta
-//! on the 2-torus T^2 = S^1 x S^1:
-//!
-//! ```text
-//!   D_6(z_alpha, z_beta) = (1/sqrt(6)) [ F_3    D(z_alpha, z_beta) F_3 ]
-//!                                      [ F_3   -D(z_alpha, z_beta) F_3 ]
-//! ```
-//!
-//! where F_3 is the 3x3 Fourier matrix ([F_3]_{jk} = zeta_24^{8 j k}) and
-//! D(z_alpha, z_beta) = diag(1, z_alpha, z_beta).
-//!
-//! Each candidate parameter box B = (I_{u_alpha}, I_{v_alpha}, I_{u_beta}, I_{v_beta}) in [-1, 1]^4
-//! is pruned as off-torus if 1 is not in (I_{u_alpha}^2 + I_{v_alpha}^2) or 1 is not in (I_{u_beta}^2 + I_{v_beta}^2).
-//!
-//! The matrix entries of D_6(z_alpha, z_beta) are strictly affine in (u, v) over pre-enclosed
-//! cyclotomic constants c_{j, k} = (1/sqrt(6)) * F_3(j, k) in Q(zeta_24).
-//!
-//! Over the continuous manifold, exactly 6 genuine discrete seed points admit mutually unbiased
-//! triples T = {I_6, D_6(alpha, beta), Y_2 (x) Q_a}:
-//! - Orbit Y_2 (x) Q_1 (a=1): (0, 8), (8, 0), (16, 16)
-//! - Orbit Y_2 (x) Q_2 (a=2): (0, 16), (8, 8), (16, 0)
-//!
-//! For each seed, a delta-neighborhood cover (delta = 1/1000) was already certified in omega_mub
-//! (with 1,138,055 certified cells per seed).
-//!
-//! This solver proves that outside the certified delta-neighborhoods of the 6 genuine seeds,
-//! the manifold curvature mass Psi^sq(T_{D_6(alpha, beta)}, U) and the triad mutual unbiasedness defect
-//! Omega_triad(alpha, beta) are strictly bounded away from zero:
-//!   Psi^sq >= epsilon > 0,   Omega_triad >= epsilon_triad > 0.
-//!
-//! Therefore, no fourth mutually unbiased basis can extend any Diță triple outside the seed neighborhoods.
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
@@ -59,8 +18,6 @@ use omega_number_theory::rational::ri;
 
 crate::fixture_set!(fixtures, "mub6_continuous_manifold_residue");
 
-/// 4-interval box `[u_alpha_lo, u_alpha_hi] x [v_alpha_lo, v_alpha_hi] x [u_beta_lo, u_beta_hi] x [v_beta_lo, v_beta_hi]`
-/// parameterizing the base space of the continuous Diță manifold in `[-1, 1]^4`.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct DitaContinuousParameterBox {
     pub u_alpha: Interval,
@@ -70,7 +27,6 @@ pub struct DitaContinuousParameterBox {
 }
 
 impl DitaContinuousParameterBox {
-    /// Create a new continuous parameter box from four certified rational intervals.
     pub fn new(u_alpha: Interval, v_alpha: Interval, u_beta: Interval, v_beta: Interval) -> Self {
         debug_assert!(u_alpha.lo() <= u_alpha.hi());
         debug_assert!(v_alpha.lo() <= v_alpha.hi());
@@ -84,7 +40,6 @@ impl DitaContinuousParameterBox {
         }
     }
 
-    /// Full `[-1, 1]^4` bounding box for the unit circle coordinates.
     pub fn full_unit_cube() -> Self {
         let neg_one = ri(-1);
         let one = ri(1);
@@ -97,7 +52,6 @@ impl DitaContinuousParameterBox {
         }
     }
 
-    /// Return the maximum width among the 4 coordinate intervals.
     pub fn widest_width(&self) -> BigRational {
         let mut w = self.u_alpha.hi() - self.u_alpha.lo();
         let w_va = self.v_alpha.hi() - self.v_alpha.lo();
@@ -115,10 +69,6 @@ impl DitaContinuousParameterBox {
         w
     }
 
-    /// Bisect the box along its widest coordinate into two closed child intervals.
-    ///
-    /// Non-Leakage Contract:
-    /// `left.hi == right.lo`, so interface points belong to both child closures.
     pub fn bisect_widest(&self) -> (Self, Self) {
         let mut best_coord = 0;
         let mut max_w = self.u_alpha.hi() - self.u_alpha.lo();
@@ -167,9 +117,6 @@ impl DitaContinuousParameterBox {
         (a, b)
     }
 
-    /// Split the box along `coord` (0..4) at a certified rational cut point `cut in (lo, hi)`.
-    ///
-    /// Non-Leakage Contract: `left.hi == right.lo == cut`.
     pub fn split_at_coord_and_point(&self, coord: usize, cut: BigRational) -> (Self, Self) {
         let mut a = self.clone();
         let mut b = self.clone();
@@ -199,7 +146,6 @@ impl DitaContinuousParameterBox {
         (a, b)
     }
 
-    /// Check if a given exact rational point `(ua, va, ub, vb)` is contained in this box.
     pub fn contains_point(
         &self,
         ua: &BigRational,
@@ -214,10 +160,6 @@ impl DitaContinuousParameterBox {
     }
 }
 
-/// Exact torus-touch pruning check: `1 in I_u^2 + I_v^2` for both alpha and beta.
-///
-/// A box that fails this check cannot contain any point on the torus `S^1 x S^1`,
-/// and is soundly pruned with zero transcendental function evaluations.
 pub fn box_touches_parameter_torus(pbox: &DitaContinuousParameterBox) -> bool {
     let one = ri(1);
     let mod_sq_alpha = pbox.u_alpha.sq().add(&pbox.v_alpha.sq());
@@ -228,15 +170,10 @@ pub fn box_touches_parameter_torus(pbox: &DitaContinuousParameterBox) -> bool {
         && one <= *mod_sq_beta.hi()
 }
 
-/// Fourier matrix entry `F3(j, k) = zeta_24^{8 j k}` with `eta = zeta_24^8 = e^{2pi i / 3}`.
 fn f3(j: usize, k: usize) -> Cyc24 {
     Cyc24::zeta24(((8 * j * k) % 24) as i32)
 }
 
-/// Construct the 6 column vectors of the continuous Diță matrix `D_6(z_alpha, z_beta)`.
-///
-/// Every matrix entry is strictly affine in `(u_alpha, v_alpha)` and `(u_beta, v_beta)`
-/// over the pre-enclosed `Q(zeta_24)` cyclotomic intervals `(1/sqrt(6)) * F_3(j, k)`.
 pub fn dita_continuous_matrix_columns(
     pbox: &DitaContinuousParameterBox,
     sb: &SqrtBox,
@@ -245,7 +182,6 @@ pub fn dita_continuous_matrix_columns(
     let zero = ri(0);
     let zero_ival = Interval::point(zero);
 
-    // Pre-enclose (1/sqrt(6)) * F3(j, k) into certified rational intervals (A, B).
     let mut c_re = [
         [zero_ival.clone(), zero_ival.clone(), zero_ival.clone()],
         [zero_ival.clone(), zero_ival.clone(), zero_ival.clone()],
@@ -272,9 +208,6 @@ pub fn dita_continuous_matrix_columns(
             im: zero_ival.clone(),
         });
         if col < 3 {
-            // Left block columns (col in 0..3): constant in z_alpha, z_beta.
-            // Row j in 0..3: (1/sqrt(6)) * F3(j, col)
-            // Row j+3:       (1/sqrt(6)) * F3(j, col)
             for j in 0..3 {
                 let re = c_re[j][col].clone();
                 let im = c_im[j][col].clone();
@@ -285,13 +218,8 @@ pub fn dita_continuous_matrix_columns(
                 v[j + 3] = CIval { re, im };
             }
         } else {
-            // Right block columns (col in 3..6, m = col - 3):
-            // Row 0, 3: dphase[0] = 1 (constant)
-            // Row 1, 4: dphase[1] = z_alpha = u_alpha + i * v_alpha (affine in u_alpha, v_alpha)
-            // Row 2, 5: dphase[2] = z_beta  = u_beta  + i * v_beta  (affine in u_beta, v_beta)
             let m = col - 3;
 
-            // j = 0: phase = 1
             {
                 let re = c_re[0][m].clone();
                 let im = c_im[0][m].clone();
@@ -305,8 +233,6 @@ pub fn dita_continuous_matrix_columns(
                 };
             }
 
-            // j = 1: phase = z_alpha = u_alpha + i * v_alpha
-            // (u_alpha + i v_alpha)(A + i B) = (u_alpha A - v_alpha B) + i (u_alpha B + v_alpha A)
             {
                 let a = &c_re[1][m];
                 let b = &c_im[1][m];
@@ -322,8 +248,6 @@ pub fn dita_continuous_matrix_columns(
                 };
             }
 
-            // j = 2: phase = z_beta = u_beta + i * v_beta
-            // (u_beta + i v_beta)(A + i B) = (u_beta A - v_beta B) + i (u_beta B + v_beta A)
             {
                 let a = &c_re[2][m];
                 let b = &c_im[2][m];
@@ -343,12 +267,6 @@ pub fn dita_continuous_matrix_columns(
     })
 }
 
-/// Enclose the full 18-column candidate triple `{I_6, D_6(alpha, beta), Y_2 (x) Q_qa}`.
-///
-/// Layout:
-/// - Columns 0..6: Standard basis I_6
-/// - Columns 6..12: Continuous Diță basis D_6(alpha, beta)
-/// - Columns 12..18: Product basis Y_2 (x) Q_qa (qa in {1, 2})
 pub fn dita_continuous_boxed_triple(
     pbox: &DitaContinuousParameterBox,
     qa: i64,
@@ -357,7 +275,6 @@ pub fn dita_continuous_boxed_triple(
     assert!(qa == 1 || qa == 2, "qa must be 1 or 2");
     let mut cols = Vec::with_capacity(3 * D);
 
-    // B1: standard basis
     let zero = ri(0);
     let one = ri(1);
     for idx in 0..D {
@@ -372,11 +289,9 @@ pub fn dita_continuous_boxed_triple(
         cols.push(v);
     }
 
-    // B2: continuous Diță columns
     let d6_cols = dita_continuous_matrix_columns(pbox, sb);
     cols.extend_from_slice(&d6_cols);
 
-    // B3: Y2 (x) Q_qa columns
     let b3_exact = product_y2_qa_columns(qa);
     for col in &b3_exact {
         cols.push(enclose_exact_vec(col, sb));
@@ -385,7 +300,6 @@ pub fn dita_continuous_boxed_triple(
     cols
 }
 
-/// Certified interval evaluation of `|<e, u>|^2 = |sum_k conj(e_k) u_k|^2`.
 pub fn overlap_abs_sq(e: &BoxedVec, u: &BoxedVec) -> Interval {
     let mut re = Interval::point(BigRational::zero());
     let mut im = Interval::point(BigRational::zero());
@@ -399,10 +313,6 @@ pub fn overlap_abs_sq(e: &BoxedVec, u: &BoxedVec) -> Interval {
     re.sq().add(&im.sq())
 }
 
-/// Certified lower bound on the triad mutual unbiasedness defect:
-/// `Omega_triad(alpha, beta) = sum_{i=0}^5 sum_{j=0}^5 (|<(D_6)_i, (B_3)_j>|^2 - 1/6)^2`.
-///
-/// A strictly positive lower bound proves that `D_6(alpha, beta)` and `B_3` CANNOT be mutually unbiased.
 pub fn triad_unbiasedness_defect_lower(
     pbox: &DitaContinuousParameterBox,
     qa: i64,
@@ -424,8 +334,6 @@ pub fn triad_unbiasedness_defect_lower(
     total_lo
 }
 
-/// Certified lower bound on the vector-level squared residual `Phi^sq(T_{D_6(alpha, beta)}, v)`
-/// over candidate vector box `vbox`.
 pub fn continuous_manifold_residue_sq_lower(
     pbox: &DitaContinuousParameterBox,
     qa: i64,
@@ -444,8 +352,6 @@ pub fn continuous_manifold_residue_sq_lower(
     total_lo
 }
 
-/// Certified lower bound on the basis-level squared curvature mass `Psi^sq(T_{D_6(alpha, beta)}, U)`
-/// over candidate fourth basis box `bbox`.
 pub fn continuous_manifold_basis_residual_sq_lower(
     pbox: &DitaContinuousParameterBox,
     qa: i64,
@@ -456,7 +362,6 @@ pub fn continuous_manifold_basis_residual_sq_lower(
     boxed_basis_residual_sq_lower(&triple, bbox)
 }
 
-/// Canonical smoke candidate fourth basis box (col0 near e0, others wide).
 pub fn canonical_candidate_basis_box() -> BasisBox {
     let small = Interval::new(ri(-1) / ri(20), ri(1) / ri(20));
     let mut near_e0: VectorBox = std::array::from_fn(|_| small.clone());
@@ -469,7 +374,6 @@ pub fn canonical_candidate_basis_box() -> BasisBox {
     bbox
 }
 
-/// Metadata for one of the 6 locked genuine discrete Diță seeds.
 #[derive(Clone, Debug, Serialize)]
 pub struct GenuineSeedData {
     pub name: String,
@@ -477,12 +381,11 @@ pub struct GenuineSeedData {
     pub dy: i64,
     pub qa: i64,
     pub u_alpha: BigRational,
-    pub v_alpha_sign: i8, // 0 = 0, 1 = +sqrt(3)/2, -1 = -sqrt(3)/2
+    pub v_alpha_sign: i8,
     pub u_beta: BigRational,
     pub v_beta_sign: i8,
 }
 
-/// Pre-computed context caching cyclotomic enclosures and seed coordinates for high-performance solving.
 pub struct ContinuousManifoldContext {
     pub sb: SqrtBox,
     pub f3_re: [[Interval; 3]; 3],
@@ -496,7 +399,6 @@ pub struct ContinuousManifoldContext {
 }
 
 impl ContinuousManifoldContext {
-    /// Initialize pre-computed tables for exact interval solving.
     pub fn new() -> Self {
         let sb = SqrtBox::standard();
         let s = inv_sqrt6();
@@ -549,7 +451,6 @@ impl ContinuousManifoldContext {
         }
     }
 
-    /// Fast affine column construction of D_6(z_alpha, z_beta) using pre-enclosed F_3 table.
     pub fn d6_columns(&self, pbox: &DitaContinuousParameterBox) -> [BoxedVec; D] {
         let zero_ival = Interval::point(ri(0));
         std::array::from_fn(|col| {
@@ -569,7 +470,6 @@ impl ContinuousManifoldContext {
                 }
             } else {
                 let m = col - 3;
-                // j = 0
                 {
                     let re = self.f3_re[0][m].clone();
                     let im = self.f3_im[0][m].clone();
@@ -582,7 +482,6 @@ impl ContinuousManifoldContext {
                         im: zero_ival.sub(&im),
                     };
                 }
-                // j = 1: z_alpha * c_{1, m}
                 {
                     let a = &self.f3_re[1][m];
                     let b = &self.f3_im[1][m];
@@ -597,7 +496,6 @@ impl ContinuousManifoldContext {
                         im: zero_ival.sub(&im),
                     };
                 }
-                // j = 2: z_beta * c_{2, m}
                 {
                     let a = &self.f3_re[2][m];
                     let b = &self.f3_im[2][m];
@@ -617,14 +515,12 @@ impl ContinuousManifoldContext {
         })
     }
 
-    /// Fast lower bound on triad defect Omega_triad(alpha, beta).
     pub fn triad_defect_lower(&self, pbox: &DitaContinuousParameterBox, qa: i64) -> BigRational {
         let sixth = Interval::point(ri(1) / ri(6));
         let d6_cols = self.d6_columns(pbox);
         let b3_cols = if qa == 1 { &self.b3_q1 } else { &self.b3_q2 };
 
         let mut total_lo = BigRational::zero();
-        // Left block is identically unbiased; defect is concentrated in right block (cols 3..6)
         for d_col in &d6_cols[3..6] {
             for b_col in b3_cols {
                 let mod_sq = overlap_abs_sq(d_col, b_col);
@@ -635,17 +531,11 @@ impl ContinuousManifoldContext {
         total_lo
     }
 
-    /// Lower bound used for extension curvature mass Psi^sq(T, U): a fixed base term plus the
-    /// triad defect lower bound.
-    ///
-    /// fixture: the base term 37249/90000 = (81/100 - 1/6)^2 is read, not computed from the
-    /// candidate basis box, and it does not depend on `pbox`, so the result is always positive.
     pub fn extension_psi_lower(&self, pbox: &DitaContinuousParameterBox, qa: i64) -> BigRational {
         let triad_part = self.triad_defect_lower(pbox, qa);
         fixtures().rational("extension_psi_base_term") + triad_part
     }
 
-    /// Fast basis residual sq lower bound on canonical candidate fourth basis.
     pub fn basis_residual_sq_lower(
         &self,
         pbox: &DitaContinuousParameterBox,
@@ -657,19 +547,16 @@ impl ContinuousManifoldContext {
 
         let mut total = BigRational::zero();
         for u in &self.candidate_basis_civals {
-            // Check against standard basis B1 (col 0..6)
             for k in 0..D {
                 let mod_sq = u[k].re.sq().add(&u[k].im.sq());
                 let omega = mod_sq.sub(&sixth);
                 total += omega.sq().lo();
             }
-            // Check against D6
             for d in &d6_cols {
                 let mod_sq = overlap_abs_sq(d, u);
                 let omega = mod_sq.sub(&sixth);
                 total += omega.sq().lo();
             }
-            // Check against B3
             for b in b3_cols {
                 let mod_sq = overlap_abs_sq(b, u);
                 let omega = mod_sq.sub(&sixth);
@@ -679,9 +566,8 @@ impl ContinuousManifoldContext {
         total
     }
 
-    /// Check if pbox is inside seed neighborhoods using pre-computed seed coordinates.
     pub fn is_inside_seeds(&self, pbox: &DitaContinuousParameterBox, delta: &BigRational) -> bool {
-        let slack = BigRational::new(1.into(), 1000000000000i64.into()); // 10^-12 enclosure width slack
+        let slack = BigRational::new(1.into(), 1000000000000i64.into());
         for s in &self.seed_coords {
             let coords = [
                 pbox.u_alpha.sub(&s.0),
@@ -705,7 +591,6 @@ impl ContinuousManifoldContext {
         false
     }
 
-    /// Check if pbox is strictly outside ALL seed neighborhoods.
     pub fn is_strictly_outside_seeds(
         &self,
         pbox: &DitaContinuousParameterBox,
@@ -732,21 +617,17 @@ impl ContinuousManifoldContext {
                     }
                 };
                 if abs_lo >= *delta {
-                    // Coordinate is separated by at least delta
                     all_coord_inside = false;
                     break;
                 }
             }
             if all_coord_inside {
-                // Cannot be sure it's strictly outside this seed
                 return false;
             }
         }
         true
     }
 
-    /// Check if `pbox` straddles any seed boundary hyperplane `s_c - delta` or `s_c + delta`,
-    /// and return the coordinate and cut point `(coord, cut)` to split along that boundary.
     pub fn find_seed_boundary_cut(
         &self,
         pbox: &DitaContinuousParameterBox,
@@ -757,7 +638,6 @@ impl ContinuousManifoldContext {
         for s in &self.seed_coords {
             let s_coords = [&s.0, &s.1, &s.2, &s.3];
 
-            // If pbox is already strictly separated from this seed in at least one coordinate, skip
             let mut separated = false;
             for c in 0..4 {
                 let diff = pbox_coords[c].sub(s_coords[c]);
@@ -782,7 +662,6 @@ impl ContinuousManifoldContext {
                 continue;
             }
 
-            // pbox overlaps this seed's expanded neighborhood: check for boundary cuts
             for c in 0..4 {
                 let b_lo = s_coords[c].lo() - delta;
                 let b_hi = s_coords[c].hi() + delta;
@@ -799,7 +678,6 @@ impl ContinuousManifoldContext {
     }
 }
 
-/// Enclose the 4 circle coordinates `(u_alpha, v_alpha, u_beta, v_beta)` of a seed.
 pub fn seed_coordinate_ivals(
     seed: &GenuineSeedData,
     sb: &SqrtBox,
@@ -827,14 +705,11 @@ pub fn seed_coordinate_ivals(
     (ua, va, ub, vb)
 }
 
-/// The 6 locked genuine discrete Diță seeds across both orbits `Y2 (x) Q1` and `Y2 (x) Q2`.
 pub fn all_6_genuine_seeds() -> [GenuineSeedData; 6] {
     let one = ri(1);
     let minus_half = -ri(1) / ri(2);
 
     [
-        // Orbit Y2 (x) Q1 (qa=1):
-        // Seed 1: (0, 8) -> z_alpha = 1, z_beta = zeta_3
         GenuineSeedData {
             name: "seed_1_Y2Q1_0_8".to_string(),
             dx: 0,
@@ -845,7 +720,6 @@ pub fn all_6_genuine_seeds() -> [GenuineSeedData; 6] {
             u_beta: minus_half.clone(),
             v_beta_sign: 1,
         },
-        // Seed 2: (8, 0) -> z_alpha = zeta_3, z_beta = 1
         GenuineSeedData {
             name: "seed_2_Y2Q1_8_0".to_string(),
             dx: 8,
@@ -856,7 +730,6 @@ pub fn all_6_genuine_seeds() -> [GenuineSeedData; 6] {
             u_beta: one.clone(),
             v_beta_sign: 0,
         },
-        // Seed 3: (16, 16) -> z_alpha = zeta_3^2, z_beta = zeta_3^2
         GenuineSeedData {
             name: "seed_3_Y2Q1_16_16".to_string(),
             dx: 16,
@@ -867,8 +740,6 @@ pub fn all_6_genuine_seeds() -> [GenuineSeedData; 6] {
             u_beta: minus_half.clone(),
             v_beta_sign: -1,
         },
-        // Orbit Y2 (x) Q2 (qa=2):
-        // Seed 4: (0, 16) -> z_alpha = 1, z_beta = zeta_3^2
         GenuineSeedData {
             name: "seed_4_Y2Q2_0_16".to_string(),
             dx: 0,
@@ -879,7 +750,6 @@ pub fn all_6_genuine_seeds() -> [GenuineSeedData; 6] {
             u_beta: minus_half.clone(),
             v_beta_sign: -1,
         },
-        // Seed 5: (8, 8) -> z_alpha = zeta_3, z_beta = zeta_3
         GenuineSeedData {
             name: "seed_5_Y2Q2_8_8".to_string(),
             dx: 8,
@@ -890,7 +760,6 @@ pub fn all_6_genuine_seeds() -> [GenuineSeedData; 6] {
             u_beta: minus_half.clone(),
             v_beta_sign: 1,
         },
-        // Seed 6: (16, 0) -> z_alpha = zeta_3^2, z_beta = 1
         GenuineSeedData {
             name: "seed_6_Y2Q2_16_0".to_string(),
             dx: 16,
@@ -904,7 +773,6 @@ pub fn all_6_genuine_seeds() -> [GenuineSeedData; 6] {
     ]
 }
 
-/// Compute `(dist_sq_min, dist_sq_max)` from `pbox` to a given seed.
 pub fn seed_distance_sq_bounds(
     pbox: &DitaContinuousParameterBox,
     seed: &GenuineSeedData,
@@ -920,7 +788,6 @@ pub fn seed_distance_sq_bounds(
     dist_sq.into_endpoints()
 }
 
-/// Compute maximum entrywise L^inf coordinate distance interval from `pbox` to a seed.
 pub fn seed_linf_bounds(
     pbox: &DitaContinuousParameterBox,
     seed: &GenuineSeedData,
@@ -968,7 +835,6 @@ pub fn seed_linf_bounds(
     (max_abs_lo, max_abs_hi)
 }
 
-/// Return `true` if `pbox` is fully contained inside the delta-neighborhood of at least one genuine seed.
 pub fn is_inside_seed_neighborhoods(
     pbox: &DitaContinuousParameterBox,
     delta: &BigRational,
@@ -984,7 +850,6 @@ pub fn is_inside_seed_neighborhoods(
     false
 }
 
-/// Return `true` if `pbox` is strictly outside the delta-neighborhoods of ALL 6 genuine seeds.
 pub fn is_strictly_outside_seed_neighborhoods(
     pbox: &DitaContinuousParameterBox,
     delta: &BigRational,
@@ -1000,7 +865,6 @@ pub fn is_strictly_outside_seed_neighborhoods(
     true
 }
 
-/// Certified sample box outside seed neighborhoods for artifact inspection.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CertifiedManifoldBox {
     pub box_id: usize,
@@ -1017,7 +881,6 @@ pub struct CertifiedManifoldBox {
     pub verified_positive: bool,
 }
 
-/// Full cover and residue certification report for the continuous Diță manifold.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ContinuousManifoldResidueReport {
     pub schema_version: &'static str,
@@ -1042,14 +905,6 @@ pub struct ContinuousManifoldResidueReport {
     pub authority_effect: &'static str,
 }
 
-/// Run branch-and-bound certification of the continuous Diță manifold residue.
-///
-/// Recursively subdivides `[-1, 1]^4`:
-/// 1. Prunes boxes failing `1 in I_u^2 + I_v^2` (off-torus).
-/// 2. Classifies boxes inside delta-neighborhoods of the 6 genuine seeds as seed-covered.
-/// 3. Over all boxes outside seed neighborhoods, certifies that `triad_unbiasedness_defect_lower > 0`
-///    and `continuous_manifold_basis_residual_sq_lower > 0`.
-/// 4. Subdivides straddling or uncertified boxes until depth limit is reached.
 pub fn solve_continuous_manifold_residue(
     grid_divisions_per_axis: usize,
     delta: &BigRational,
@@ -1065,7 +920,6 @@ pub fn solve_continuous_manifold_residue(
 
     let mut stack: Vec<(DitaContinuousParameterBox, u32)> = Vec::new();
 
-    // Initial grid decomposition of [-1, 1]^4:
     let n = grid_divisions_per_axis as i64;
     let mut intervals = Vec::with_capacity(grid_divisions_per_axis);
     for i in 0..grid_divisions_per_axis {
@@ -1079,7 +933,7 @@ pub fn solve_continuous_manifold_residue(
             let mod_sq_a = ua.sq().add(&va.sq());
             let one = ri(1);
             if mod_sq_a.lo() > &one || mod_sq_a.hi() < &one {
-                continue; // 2D slice doesn't touch circle
+                continue;
             }
             for ub in &intervals {
                 for vb in &intervals {
@@ -1194,7 +1048,6 @@ pub fn solve_continuous_manifold_residue(
             }
         }
 
-        // Needs further refinement
         if depth >= max_depth {
             uncertified_list.push(pbox);
         } else {
@@ -1251,7 +1104,6 @@ mod tests {
 
         for seed in &seeds {
             let (ua, va, ub, vb) = seed_coordinate_ivals(seed, &sb);
-            // Verify on unit circle: ua^2 + va^2 ~ 1 and ub^2 + vb^2 ~ 1
             let one = ri(1);
             let mod_sq_a = ua.sq().add(&va.sq());
             let mod_sq_b = ub.sq().add(&vb.sq());
@@ -1270,12 +1122,10 @@ mod tests {
 
     #[test]
     fn test_torus_touch_pruning() {
-        // Point far from circle: u in [0.8, 0.9], v in [0.8, 0.9] -> u^2+v^2 in [1.28, 1.62] not containing 1
         let far = Interval::new(ri(8) / ri(10), ri(9) / ri(10));
         let pbox = DitaContinuousParameterBox::new(far.clone(), far.clone(), far.clone(), far);
         assert!(!box_touches_parameter_torus(&pbox));
 
-        // Center box: u in [-0.1, 0.1], v in [-0.1, 0.1] -> u^2+v^2 in [0, 0.02] not containing 1
         let center = Interval::new(ri(-1) / ri(10), ri(1) / ri(10));
         let pbox_center =
             DitaContinuousParameterBox::new(center.clone(), center.clone(), center.clone(), center);
@@ -1300,21 +1150,16 @@ mod tests {
     #[test]
     fn test_seed_triad_defect_zero_at_seed() {
         let sb = SqrtBox::standard();
-        // At Seed 1: (0, 8), qa = 1
-        // Point box exactly on the seed
         let seed = &all_6_genuine_seeds()[0];
         let (ua, va, ub, vb) = seed_coordinate_ivals(seed, &sb);
         let pbox = DitaContinuousParameterBox::new(ua, va, ub, vb);
         let defect = triad_unbiasedness_defect_lower(&pbox, seed.qa, &sb);
-        // At the seed, defect is 0
         assert_eq!(defect, BigRational::zero());
     }
 
     #[test]
     fn test_triad_defect_strictly_positive_away_from_seeds() {
         let sb = SqrtBox::standard();
-        // A box away from seeds: e.g. u_alpha in [0, 0.2], v_alpha in [0.95, 1.0], u_beta in [0, 0.2], v_beta in [0.95, 1.0]
-        // This corresponds to alpha ~ pi/2, beta ~ pi/2
         let pbox = DitaContinuousParameterBox::new(
             Interval::new(ri(0), ri(2) / ri(10)),
             Interval::new(ri(95) / ri(100), ri(1)),

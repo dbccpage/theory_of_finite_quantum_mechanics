@@ -1,45 +1,12 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 
-/-!
-# W8.10: exact finite gate-vacuity classifier
 
-The DDA D9 target asks whether a Bool-valued gate can emit both outcomes on a
-declared finite input family.  This file formalizes exactly that finite
-question.  A typed family contains its finite input list and its gate.  The
-classifier separates empty scope, nonempty all-pass, nonempty all-fail, and
-mixed observations.
 
-For a mixed family, a proof of the scan result yields the existence of one pass
-input and one fail input.  Those two inputs form a mixed certificate, and every
-mixed declared list has length at least two.  Declared input lists are required
-to be duplicate-free, so the explicit two-point family is cardinality-minimal
-for certifying non-vacuity at this finite Bool surface.
 
-The gate outcomes also carry a genuine `PrimitiveDifference Bool Bool` from
-the shared kernel.  Its difference is exclusive-or and its `ZeroRel` is
-exactly equality of outcomes.  The explicit pass/fail pair therefore has a
-nonzero difference and is not zero-related.
 
-The eight gates on a fixed three-point carrier are also exhausted exactly: one
-is all-pass, one is all-fail, and six are mixed.  A conditional black-box lower
-bound shows that any one omitted declared input can conceal a failure while all
-queried results agree with the constant-pass gate.  No unrestricted numeric or
-exponential query lower bound is claimed.
 
-No external gate implementation is inspected.  No estate sweep, unrestricted
-input-independence result, anti-cheat-law promotion, WGOC composition theorem,
-or authority transition is claimed.
 
-AuthorityEffect: None.
--/
 
 namespace OmegaWorld
 namespace GateVacuityW810
@@ -48,7 +15,6 @@ open OmegaCore
 
 universe u
 
-/-- The four exact outcomes of scanning a declared finite Bool gate family. -/
 inductive GateClass where
   | emptyScope
   | allPass
@@ -56,11 +22,6 @@ inductive GateClass where
   | mixed
   deriving DecidableEq
 
-/--
-An executable four-way classifier for a finite list of observed gate results.
-`true` is pass and `false` is fail.  The empty case is separated before the
-two membership tests, so empty scope is never mislabeled all-pass or all-fail.
--/
 def classifyOutcomes (outcomes : List Bool) : GateClass :=
   if outcomes = [] then
     .emptyScope
@@ -78,7 +39,6 @@ def EveryFail (outcomes : List Bool) : Prop :=
 def HasBothOutcomes (outcomes : List Bool) : Prop :=
   true ∈ outcomes ∧ false ∈ outcomes
 
-/-- Constancy of the observed restriction, including the empty scope. -/
 def OutcomeConstant (outcomes : List Bool) : Prop :=
   ∀ left : Bool, left ∈ outcomes →
     ∀ right : Bool, right ∈ outcomes → left = right
@@ -156,7 +116,6 @@ theorem classify_mixed_iff (outcomes : List Bool) :
         simp [classifyOutcomes, HasBothOutcomes, empty, hasPass, hasFail]
     · simp [classifyOutcomes, HasBothOutcomes, empty, hasPass]
 
-/-- The exact finite D9 vacuity criterion: non-mixed is precisely constant. -/
 theorem classify_not_mixed_iff_constant (outcomes : List Bool) :
     classifyOutcomes outcomes ≠ .mixed ↔ OutcomeConstant outcomes := by
   constructor
@@ -205,7 +164,6 @@ theorem classify_allFail_iff (outcomes : List Bool) :
       ⟨everyFail.1,
         (all_false_iff_true_not_mem outcomes).1 everyFail.2⟩
 
-/-- The executable scan has exactly one of the four declared finite results. -/
 theorem classifier_exhaustive (outcomes : List Bool) :
     classifyOutcomes outcomes = .emptyScope ∨
       classifyOutcomes outcomes = .allPass ∨
@@ -213,7 +171,6 @@ theorem classifier_exhaustive (outcomes : List Bool) :
       classifyOutcomes outcomes = .mixed := by
   cases classifyOutcomes outcomes <;> simp
 
-/-- Any observed list classified mixed contains at least two entries. -/
 theorem mixed_requires_two_outcomes (outcomes : List Bool)
     (mixedResult : classifyOutcomes outcomes = .mixed) :
     2 ≤ outcomes.length := by
@@ -226,7 +183,6 @@ theorem mixed_requires_two_outcomes (outcomes : List Bool)
       | cons second rest =>
           simp
 
-/-- A finite input family together with the Bool gate evaluated on it. -/
 structure DeclaredGateFamily (α : Type u) where
   inputs : List α
   inputsNodup : inputs.Nodup
@@ -238,7 +194,6 @@ def observedOutcomes (family : DeclaredGateFamily α) : List Bool :=
 def scanGate (family : DeclaredGateFamily α) : GateClass :=
   classifyOutcomes (observedOutcomes family)
 
-/-- A concrete two-input certificate internal to one declared family. -/
 structure MixedCertificate (family : DeclaredGateFamily α) where
   passInput : α
   passMember : passInput ∈ family.inputs
@@ -301,11 +256,6 @@ theorem finite_scan_exhaustion (family : DeclaredGateFamily α) :
       scanGate family = .mixed :=
   classifier_exhaustive (observedOutcomes family)
 
-/--
-Mathematical constancy on the declared restriction.  It is true on empty scope;
-the classifier still reports that case separately as `emptyScope`.  This is
-not a predicate for "vacuous on a nonempty scope".
--/
 def GateVacuous (family : DeclaredGateFamily α) : Prop :=
   OutcomeConstant (observedOutcomes family)
 
@@ -315,10 +265,8 @@ theorem finite_gate_vacuous_iff_not_mixed
   exact (classify_not_mixed_iff_constant
     (observedOutcomes family)).symm
 
-/-- The gate that passes every input. -/
 def constantPassGate (_input : α) : Bool := true
 
-/-- A comparison gate that fails at exactly one declared input. -/
 def failOnlyAt [DecidableEq α] (hidden input : α) : Bool :=
   if input = hidden then false else true
 
@@ -341,12 +289,6 @@ theorem queried_outcomes_agree_when_failure_is_omitted
       simp [constantPassGate, failOnlyAt, headNotHidden,
         inductionHypothesis hiddenOmittedTail]
 
-/--
-Conditional black-box lower bound: if a duplicate-free declared carrier has a
-hidden input and a distinct control input, omitting the hidden input leaves the
-constant-pass and hidden-fail gates observationally identical on every query,
-although their full finite classifications are all-pass and mixed.
--/
 theorem omitted_input_can_hide_failure
     [DecidableEq α]
     (inputs queried : List α) (inputsNodup : inputs.Nodup)
@@ -394,17 +336,12 @@ theorem omitted_input_can_hide_failure
            failMember := hiddenMember
            failOutcome := by simp [failOnlyAt] }⟩
 
-/-- Exclusive-or difference on Bool gate outcomes. -/
 def outcomeDelta : Bool → Bool → Bool
   | false, false => false
   | false, true => true
   | true, false => true
   | true, true => false
 
-/--
-The lawful shared-kernel Primitive Difference for gate outcomes.  A residual is
-zero exactly when the two observed gate results agree.
--/
 def gateOutcomePD : PrimitiveDifference Bool Bool where
   δ := outcomeDelta
   Zero := fun residual => residual = false
@@ -451,7 +388,6 @@ theorem certificate_difference_nonzero
   · rw [gate_outcome_zeroRel_iff]
     simp [certificate.passOutcome, certificate.failOutcome]
 
-/-- The explicit cardinality-two finite family witnessing non-vacuity. -/
 inductive TwoPoint where
   | passPoint
   | failPoint
@@ -490,10 +426,6 @@ theorem two_point_nonzero_pair :
     · rw [gate_outcome_zeroRel_iff]
       decide
 
-/--
-The explicit certificate has two inputs, and no mixed declared family can have
-fewer.  This is cardinality minimality, not an exponential lower bound.
--/
 theorem two_point_certificate_is_minimal :
     twoPointFamily.inputs.length = 2 ∧
       scanGate twoPointFamily = .mixed ∧
@@ -506,14 +438,12 @@ theorem two_point_certificate_is_minimal :
     · intro family mixedResult
       exact mixed_family_requires_two_inputs family mixedResult
 
-/-- The fixed duplicate-free three-point carrier used for exact exhaustion. -/
 inductive Fin3Point where
   | p0
   | p1
   | p2
   deriving DecidableEq
 
-/-- All eight deterministic Bool gates on the fixed three-point carrier. -/
 inductive Fin3GateCode where
   | fff
   | fft
@@ -547,7 +477,6 @@ def fin3Gate : Fin3GateCode → Fin3Point → Bool
   | .ttf, .p2 => false
   | .ttt, _ => true
 
-/-- Encode an arbitrary Bool gate by its complete truth table on `Fin3Point`. -/
 def fin3CodeOf (gate : Fin3Point → Bool) : Fin3GateCode :=
   match gate .p0, gate .p1, gate .p2 with
   | false, false, false => .fff
@@ -559,7 +488,6 @@ def fin3CodeOf (gate : Fin3Point → Bool) : Fin3GateCode :=
   | true, true, false => .ttf
   | true, true, true => .ttt
 
-/-- Decoding the truth-table code recovers every Bool gate extensionally. -/
 theorem fin3Gate_fin3CodeOf (gate : Fin3Point → Bool) :
     fin3Gate (fin3CodeOf gate) = gate := by
   funext point
@@ -569,18 +497,15 @@ theorem fin3Gate_fin3CodeOf (gate : Fin3Point → Bool) :
         cases point <;>
           simp [fin3CodeOf, fin3Gate, h0, h1, h2]
 
-/-- Encoding a decoded gate recovers its unique code. -/
 theorem fin3CodeOf_fin3Gate (code : Fin3GateCode) :
     fin3CodeOf (fin3Gate code) = code := by
   cases code <;> decide
 
-/-- Explicit unique-representation proposition without any enumeration oracle. -/
 def HasUniqueFin3Code (gate : Fin3Point → Bool) : Prop :=
   ∃ code : Fin3GateCode,
     fin3Gate code = gate ∧
       ∀ other : Fin3GateCode, fin3Gate other = gate → other = code
 
-/-- Every deterministic Bool gate on `Fin3Point` has exactly one table code. -/
 theorem fin3_every_gate_has_unique_code (gate : Fin3Point → Bool) :
     HasUniqueFin3Code gate := by
   refine ⟨fin3CodeOf gate, fin3Gate_fin3CodeOf gate, ?_⟩
@@ -617,7 +542,6 @@ theorem fin3_each_gate_classified_exactly (code : Fin3GateCode) :
       (code ≠ .fff ∧ code ≠ .ttt ∧ fin3Class code = .mixed) := by
   cases code <;> decide
 
-/-- Exact exhaustion counts for all `2^3 = 8` gates on the Fin3 carrier. -/
 theorem fin3_exact_class_counts :
     fin3ClassCount .emptyScope = 0 ∧
       fin3ClassCount .allPass = 1 ∧
@@ -625,10 +549,6 @@ theorem fin3_exact_class_counts :
       fin3ClassCount .mixed = 6 := by
   decide
 
-/--
-The exact code counts are counts of all functions because every function has
-one and only one code.
--/
 theorem fin3_all_functions_exact_class_counts :
     (∀ gate : Fin3Point → Bool,
       HasUniqueFin3Code gate) ∧
@@ -642,7 +562,6 @@ inductive W810AuthorityEffect where
   | none
   deriving DecidableEq
 
-/-- Bundled exact finite result with every unavailable promotion retained false. -/
 structure FiniteGateVacuitySurface where
   family : DeclaredGateFamily TwoPoint
   familyIsExact : family = twoPointFamily
@@ -770,3 +689,6 @@ def finiteGateVacuitySurface : FiniteGateVacuitySurface where
 
 end GateVacuityW810
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldGateVacuity.lean Claim: all_true_iff_false_not_mem AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

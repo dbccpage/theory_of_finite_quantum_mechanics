@@ -1,22 +1,3 @@
-//! Target A10: Rust Native Global Atlas Aggregator & Volume Certifier.
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: floating point types are strictly forbidden in this module.
-//! All coordinates, intervals, bounds, mesh steps, margins, volumes, transitions, and cochains
-//! are computed in exact rational arithmetic (num_rational::BigRational) and exact integers.
-//!
-//! AuthorityEffect: None.
-//!
-//! This module formalizes and verifies Target A10 of the MUB(6) research program:
-//! 1. Exact rational partition tree aggregator over BigRational combining all 6 regional covers:
-//!    - Component 1: Affine Diță Fourier chart (F_6)
-//!    - Component 2: Szöllősi deltoid arc and desingularized cusps (B_6)
-//!    - Component 3: Tao confluence chart (S_6)
-//!    - Component 4: 2D Periodic collar partition cover
-//!    - Component 5: Karlsson volume exterior boundary interface
-//!    - Component 6: Isolated Haagerup orbit neighborhood (H_6)
-//! 2. Exact volume conservation certifier confirming sum vol(C_i) = Vol_total with exact zero gap.
-//! 3. Multi-chart boundary interface adjacency checker verifying overlap without uncertified gaps.
-//! 4. Network Simplex acceleration confirming positive cycle circulation Phi_1 > 0 across composite loops.
 
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
@@ -33,28 +14,19 @@ use crate::omega_native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
 use omega_number_theory::rational::rq;
 use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
-/// Total number of required regional cover components in the global atlas.
 pub const NUM_REGIONAL_COMPONENTS: usize = 6;
 
-/// The 6 canonical regional cover components of the MUB(6) global atlas.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum RegionalCoverComponent {
-    /// Component 1: Affine Diță Fourier chart (F_6).
     DitaFourierF6,
-    /// Component 2: Szöllősi deltoid arc and desingularized cusps (B_6).
     SzollosiDeltoidB6,
-    /// Component 3: Tao confluence chart (S_6).
     TaoConfluenceS6,
-    /// Component 4: 2D Periodic collar partition cover.
     PeriodicCollar2D,
-    /// Component 5: Karlsson volume exterior boundary interface.
     KarlssonVolumeExterior,
-    /// Component 6: Isolated Haagerup orbit neighborhood (H_6).
     HaagerupOrbitH6,
 }
 
 impl RegionalCoverComponent {
-    /// Array of all 6 components in canonical order.
     pub const ALL: [RegionalCoverComponent; NUM_REGIONAL_COMPONENTS] = [
         RegionalCoverComponent::DitaFourierF6,
         RegionalCoverComponent::SzollosiDeltoidB6,
@@ -64,7 +36,6 @@ impl RegionalCoverComponent {
         RegionalCoverComponent::HaagerupOrbitH6,
     ];
 
-    /// Human-readable descriptive name.
     pub fn name(&self) -> &'static str {
         match self {
             Self::DitaFourierF6 => "Affine Dita Fourier chart (F_6)",
@@ -76,7 +47,6 @@ impl RegionalCoverComponent {
         }
     }
 
-    /// Canonical short identifier.
     pub fn canonical_id(&self) -> &'static str {
         match self {
             Self::DitaFourierF6 => "F6_dita_fourier",
@@ -88,7 +58,6 @@ impl RegionalCoverComponent {
         }
     }
 
-    /// 0-based component index in 0..6.
     pub fn component_index(&self) -> usize {
         match self {
             Self::DitaFourierF6 => 0,
@@ -100,7 +69,6 @@ impl RegionalCoverComponent {
         }
     }
 
-    /// Convert from 0-based index.
     pub fn from_index(index: usize) -> Option<Self> {
         match index {
             0 => Some(Self::DitaFourierF6),
@@ -113,7 +81,6 @@ impl RegionalCoverComponent {
         }
     }
 
-    /// Certified default obstruction margin for this component.
     pub fn default_margin(&self) -> BigRational {
         match self {
             Self::KarlssonVolumeExterior => base_gap(),
@@ -122,8 +89,6 @@ impl RegionalCoverComponent {
     }
 }
 
-/// Errors arising during global cover aggregation, volume conservation,
-/// interface adjacency, and cycle circulation certification.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum GlobalCoverError {
     #[error("Missing regional cover component: {0:?}")]
@@ -208,8 +173,6 @@ pub enum GlobalCoverError {
     SerializationError(String),
 }
 
-/// A k-dimensional axis-aligned hyper-rectangle with exact rational interval bounds:
-/// `[lo_0, hi_0] x ... x [lo_{k-1}, hi_{k-1}]`.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct RationalCell {
     pub bounds: Vec<(BigRational, BigRational)>,
@@ -218,7 +181,6 @@ pub struct RationalCell {
 }
 
 impl RationalCell {
-    /// Construct a new rational cell with non-degeneracy validation: `lo < hi` along all dimensions.
     pub fn new(
         bounds: Vec<(BigRational, BigRational)>,
         margin: BigRational,
@@ -239,7 +201,6 @@ impl RationalCell {
         })
     }
 
-    /// Construct a k-dimensional unit hypercube `[0, 1]^dim`.
     pub fn unit_hypercube(dim: usize, margin: BigRational) -> Self {
         let zero = BigRational::zero();
         let one = BigRational::one();
@@ -251,12 +212,10 @@ impl RationalCell {
         }
     }
 
-    /// Dimensionality of the cell.
     pub fn dimension(&self) -> usize {
         self.bounds.len()
     }
 
-    /// Exact rational hyper-volume: product of interval lengths `(hi_j - lo_j)`.
     pub fn volume(&self) -> BigRational {
         let mut vol = BigRational::one();
         for (lo, hi) in &self.bounds {
@@ -265,7 +224,6 @@ impl RationalCell {
         vol
     }
 
-    /// Tests whether an exact rational point lies within this closed cell.
     pub fn contains_point(&self, pt: &[BigRational]) -> bool {
         if pt.len() != self.bounds.len() {
             return false;
@@ -278,7 +236,6 @@ impl RationalCell {
         true
     }
 
-    /// Tests whether the open interiors of `self` and `other` overlap.
     pub fn overlaps_interior(&self, other: &Self) -> bool {
         let min_dim = self.bounds.len().min(other.bounds.len());
         for j in 0..min_dim {
@@ -291,7 +248,6 @@ impl RationalCell {
         true
     }
 
-    /// Subdivides the cell along dimension `dim` at `cut`, returning `(left, right)`.
     pub fn subdivide(
         &self,
         dim: usize,
@@ -333,7 +289,6 @@ impl RationalCell {
         Ok((left, right))
     }
 
-    /// Bisects the cell at the exact midpoint along dimension `dim`.
     pub fn bisect(&self, dim: usize) -> Result<(Self, Self), GlobalCoverError> {
         if dim >= self.bounds.len() {
             return Err(GlobalCoverError::CutOutOfBounds {
@@ -349,7 +304,6 @@ impl RationalCell {
         self.subdivide(dim, &mid)
     }
 
-    /// Computes a deterministic SHA-256 hash digest of the cell bounds and margin.
     pub fn hash_digest(&self) -> String {
         let mut hasher = Sha256::new();
         for (lo, hi) in &self.bounds {
@@ -363,7 +317,6 @@ impl RationalCell {
     }
 }
 
-/// Recursive exact rational partition tree.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum RegionalPartitionTree {
     Leaf(RationalCell),
@@ -376,12 +329,10 @@ pub enum RegionalPartitionTree {
 }
 
 impl RegionalPartitionTree {
-    /// Construct a single leaf partition tree.
     pub fn leaf(cell: RationalCell) -> Self {
         Self::Leaf(cell)
     }
 
-    /// Collect all leaves in the partition tree.
     pub fn leaves(&self) -> Vec<RationalCell> {
         let mut result = Vec::new();
         self.collect_leaves(&mut result);
@@ -398,7 +349,6 @@ impl RegionalPartitionTree {
         }
     }
 
-    /// Total number of leaf cells.
     pub fn leaf_count(&self) -> usize {
         match self {
             Self::Leaf(_) => 1,
@@ -406,7 +356,6 @@ impl RegionalPartitionTree {
         }
     }
 
-    /// Sum of hyper-volumes of all leaf cells.
     pub fn total_volume(&self) -> BigRational {
         match self {
             Self::Leaf(cell) => cell.volume(),
@@ -414,7 +363,6 @@ impl RegionalPartitionTree {
         }
     }
 
-    /// Minimum obstruction margin across all leaf cells.
     pub fn min_margin(&self) -> BigRational {
         match self {
             Self::Leaf(cell) => cell.margin.clone(),
@@ -430,12 +378,10 @@ impl RegionalPartitionTree {
         }
     }
 
-    /// Returns true iff all leaf margins are strictly positive (> 0).
     pub fn all_margins_positive(&self) -> bool {
         self.min_margin() > BigRational::zero()
     }
 
-    /// Computes a deterministic SHA-256 hash digest of the partition tree.
     pub fn hash_digest(&self) -> String {
         let mut hasher = Sha256::new();
         self.hash_into(&mut hasher);
@@ -465,7 +411,6 @@ impl RegionalPartitionTree {
     }
 }
 
-/// Regional cover patch wrapping a partition tree and certified volume.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RegionalCoverPatch {
     pub component: RegionalCoverComponent,
@@ -478,7 +423,6 @@ pub struct RegionalCoverPatch {
 }
 
 impl RegionalCoverPatch {
-    /// Construct a verified regional cover patch.
     pub fn new(
         component: RegionalCoverComponent,
         name: impl Into<String>,
@@ -516,12 +460,10 @@ impl RegionalCoverPatch {
         })
     }
 
-    /// Total number of certified leaf cells.
     pub fn leaf_count(&self) -> usize {
         self.partition_tree.leaf_count()
     }
 
-    /// Verifies consistency: positive margin, positive volume, certified flag.
     pub fn verify(&self) -> Result<(), GlobalCoverError> {
         let zero = BigRational::zero();
         if self.volume <= zero {
@@ -542,7 +484,6 @@ impl RegionalCoverPatch {
     }
 }
 
-/// Boundary interface between two overlapping charts in the atlas.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ChartBoundaryInterface {
     pub chart_a: RegionalCoverComponent,
@@ -555,7 +496,6 @@ pub struct ChartBoundaryInterface {
 }
 
 impl ChartBoundaryInterface {
-    /// Construct a new boundary interface between charts A and B.
     pub fn new(
         chart_a: RegionalCoverComponent,
         chart_b: RegionalCoverComponent,
@@ -578,7 +518,6 @@ impl ChartBoundaryInterface {
         }
     }
 
-    /// Verifies interface adjacency: positive overlap volume, positive margin, zero boundary gap.
     pub fn verify_adjacency(&self) -> Result<InterfaceAdjacencyReceipt, GlobalCoverError> {
         let zero = BigRational::zero();
 
@@ -623,7 +562,6 @@ impl ChartBoundaryInterface {
     }
 }
 
-/// Verification receipt for a single boundary interface between charts.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct InterfaceAdjacencyReceipt {
     pub chart_a: RegionalCoverComponent,
@@ -635,7 +573,6 @@ pub struct InterfaceAdjacencyReceipt {
     pub is_adjacent: bool,
 }
 
-/// Verification report summarizing all multi-chart boundary interfaces.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GlobalAdjacencyReport {
     pub total_interfaces: usize,
@@ -646,8 +583,6 @@ pub struct GlobalAdjacencyReport {
     pub receipts: Vec<InterfaceAdjacencyReceipt>,
 }
 
-/// Verification receipt for exact rational volume conservation:
-/// sum vol(C_i) = Vol_total with exact zero gap (`vol_diff.is_zero()`).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct VolumeConservationReceipt {
     pub declared_total_volume: BigRational,
@@ -659,7 +594,6 @@ pub struct VolumeConservationReceipt {
     pub certified: bool,
 }
 
-/// Directed cycle loop of charts for Network Simplex discrete circulation certification.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CompositeCycleLoop {
     pub name: String,
@@ -669,7 +603,6 @@ pub struct CompositeCycleLoop {
 }
 
 impl CompositeCycleLoop {
-    /// Create a new composite cycle loop.
     pub fn new(
         name: impl Into<String>,
         nodes: Vec<RegionalCoverComponent>,
@@ -700,7 +633,6 @@ impl CompositeCycleLoop {
         })
     }
 
-    /// Canonical triad loop: F_6 -> B_6 -> S_6 -> F_6.
     pub fn triad_loop() -> Self {
         let margin = certified_margin();
         Self {
@@ -715,7 +647,6 @@ impl CompositeCycleLoop {
         }
     }
 
-    /// Canonical collar exterior loop: Collar -> Karlsson -> Haagerup -> Collar.
     pub fn collar_exterior_loop() -> Self {
         let margin = certified_margin();
         Self {
@@ -730,8 +661,6 @@ impl CompositeCycleLoop {
         }
     }
 
-    /// Full 6-chart composite loop traversing all regional covers:
-    /// F_6 -> B_6 -> S_6 -> Collar -> Karlsson -> Haagerup -> F_6.
     pub fn full_six_chart_loop() -> Self {
         let margin = certified_margin();
         Self {
@@ -757,7 +686,6 @@ impl CompositeCycleLoop {
     }
 }
 
-/// Verification receipt for positive cycle circulation Phi_1 > 0 via Network Simplex.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CycleCirculationReceipt {
     pub loop_name: String,
@@ -773,7 +701,6 @@ pub struct CycleCirculationReceipt {
     pub certified: bool,
 }
 
-/// Full comprehensive global atlas certification receipt.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GlobalAtlasReceipt {
     pub firewall: String,
@@ -787,7 +714,6 @@ pub struct GlobalAtlasReceipt {
     pub certified: bool,
 }
 
-/// Global Atlas Aggregator combining all 6 regional covers over BigRational.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GlobalAtlasAggregator {
     pub declared_total_volume: BigRational,
@@ -797,7 +723,6 @@ pub struct GlobalAtlasAggregator {
 }
 
 impl GlobalAtlasAggregator {
-    /// Construct a new empty global atlas aggregator with a declared total volume.
     pub fn new(declared_total_volume: BigRational) -> Self {
         Self {
             declared_total_volume,
@@ -807,7 +732,6 @@ impl GlobalAtlasAggregator {
         }
     }
 
-    /// Add a regional cover patch to the atlas. Returns error on duplicate component.
     pub fn add_patch(&mut self, patch: RegionalCoverPatch) -> Result<(), GlobalCoverError> {
         if self.patches.contains_key(&patch.component) {
             return Err(GlobalCoverError::DuplicateComponent(patch.component));
@@ -817,7 +741,6 @@ impl GlobalAtlasAggregator {
         Ok(())
     }
 
-    /// Add a boundary interface between two charts.
     pub fn add_interface(
         &mut self,
         interface: ChartBoundaryInterface,
@@ -826,7 +749,6 @@ impl GlobalAtlasAggregator {
         Ok(())
     }
 
-    /// Add a composite cycle loop for Network Simplex acceleration.
     pub fn add_composite_loop(
         &mut self,
         cycle_loop: CompositeCycleLoop,
@@ -835,7 +757,6 @@ impl GlobalAtlasAggregator {
         Ok(())
     }
 
-    /// Verifies that all 6 canonical regional cover components are present.
     pub fn verify_component_completeness(&self) -> Result<(), GlobalCoverError> {
         for comp in &RegionalCoverComponent::ALL {
             if !self.patches.contains_key(comp) {
@@ -845,7 +766,6 @@ impl GlobalAtlasAggregator {
         Ok(())
     }
 
-    /// Certifies exact volume conservation: sum vol(C_i) = Vol_total with exact zero gap (`vol_diff.is_zero()`).
     pub fn certify_volume_conservation(
         &self,
     ) -> Result<VolumeConservationReceipt, GlobalCoverError> {
@@ -891,7 +811,6 @@ impl GlobalAtlasAggregator {
         })
     }
 
-    /// Verifies multi-chart boundary interface adjacency and connectivity across the atlas.
     pub fn check_all_interfaces(&self) -> Result<GlobalAdjacencyReport, GlobalCoverError> {
         if self.interfaces.is_empty() {
             return Err(GlobalCoverError::BoundaryGapDetected {
@@ -916,7 +835,6 @@ impl GlobalAtlasAggregator {
             receipts.push(rc);
         }
 
-        // Connectivity BFS across the 6 components
         let mut visited = BTreeSet::new();
         let start = RegionalCoverComponent::ALL[0];
         let mut queue = VecDeque::new();
@@ -948,7 +866,6 @@ impl GlobalAtlasAggregator {
         })
     }
 
-    /// Solves the discrete cycle circulation obstruction for a composite loop via Network Simplex.
     pub fn solve_loop_circulation(
         &self,
         loop_def: &CompositeCycleLoop,
@@ -1010,7 +927,6 @@ impl GlobalAtlasAggregator {
         let phi1_sol = solve_phi1(&boundary, &omega)
             .map_err(|e: NetworkSimplexError| GlobalCoverError::SimplexFailure(format!("{e:?}")))?;
 
-        // Telescoping coboundary sum around closed cycle must be identically zero
         let d_alpha_sum: i128 = boundary
             .edges
             .iter()
@@ -1024,8 +940,6 @@ impl GlobalAtlasAggregator {
             });
         }
 
-        // Exact zero duality gap check:
-        // for a directed 1-cycle with positive circulation, min-cost flow objective matches net circulation
         let dual_gap_zero = phi1_sol.objective == net_circulation;
         if !dual_gap_zero {
             return Err(GlobalCoverError::DualGapNonZero {
@@ -1059,7 +973,6 @@ impl GlobalAtlasAggregator {
         })
     }
 
-    /// Certifies positive cycle circulation across all registered composite loops.
     pub fn certify_cycle_circulations(
         &self,
         scale: i128,
@@ -1072,7 +985,6 @@ impl GlobalAtlasAggregator {
         Ok(receipts)
     }
 
-    /// Computes a deterministic SHA-256 hash digest of the entire aggregated atlas.
     pub fn atlas_hash(&self) -> String {
         let mut hasher = Sha256::new();
         hasher.update(self.declared_total_volume.to_string().as_bytes());
@@ -1089,11 +1001,6 @@ impl GlobalAtlasAggregator {
         format!("{:x}", hasher.finalize())
     }
 
-    /// Executes the full certification suite on the global atlas:
-    /// 1. Component completeness (all 6 components present).
-    /// 2. Exact volume conservation (zero gap).
-    /// 3. Multi-chart boundary interface adjacency and connectivity.
-    /// 4. Network Simplex positive cycle circulation across composite loops.
     pub fn certify_global_atlas(
         &self,
         scale: i128,
@@ -1118,8 +1025,6 @@ impl GlobalAtlasAggregator {
     }
 }
 
-/// Construct a partition tree with a given target volume and margin.
-/// Subdivides into dyadic leaf cells of equal volume.
 pub fn build_component_partition(
     dim: usize,
     target_vol: BigRational,
@@ -1161,22 +1066,11 @@ pub fn build_component_partition(
     })
 }
 
-/// Construct the canonical 6-component MUB(6) global atlas aggregator.
-///
-/// Volumes:
-/// - Component 1: F_6 Dita Fourier chart = 1/12
-/// - Component 2: B_6 Szollosi deltoid arc = 1/12
-/// - Component 3: S_6 Tao confluence chart = 1/12
-/// - Component 4: 2D Periodic collar partition cover = 2/12 (= 1/6)
-/// - Component 5: Karlsson volume exterior boundary interface = 6/12 (= 1/2)
-/// - Component 6: H_6 Isolated Haagerup orbit neighborhood = 1/12
-/// Total volume = 1/12 + 1/12 + 1/12 + 2/12 + 6/12 + 1/12 = 12/12 = 1.
 pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {
     let one = BigRational::one();
     let mut atlas = GlobalAtlasAggregator::new(one);
     let margin = certified_margin();
 
-    // 1. Affine Diță Fourier chart (F_6): volume = 1/12
     let vol_f6 = rq(1, 12);
     let tree_f6 = build_component_partition(4, vol_f6, 2, margin.clone())
         .expect("F6 partition construction must succeed");
@@ -1190,7 +1084,6 @@ pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {
         .add_patch(patch_f6)
         .expect("Adding F6 patch must succeed");
 
-    // 2. Szöllősi deltoid arc and desingularized cusps (B_6): volume = 1/12
     let vol_b6 = rq(1, 12);
     let tree_b6 = build_component_partition(4, vol_b6, 2, margin.clone())
         .expect("B6 partition construction must succeed");
@@ -1204,7 +1097,6 @@ pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {
         .add_patch(patch_b6)
         .expect("Adding B6 patch must succeed");
 
-    // 3. Tao confluence chart (S_6): volume = 1/12
     let vol_s6 = rq(1, 12);
     let tree_s6 = build_component_partition(5, vol_s6, 2, margin.clone())
         .expect("S6 partition construction must succeed");
@@ -1218,7 +1110,6 @@ pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {
         .add_patch(patch_s6)
         .expect("Adding S6 patch must succeed");
 
-    // 4. 2D Periodic collar partition cover: volume = 2/12 = 1/6
     let vol_collar = rq(2, 12);
     let tree_collar = build_component_partition(2, vol_collar, 4, margin.clone())
         .expect("Collar partition construction must succeed");
@@ -1232,7 +1123,6 @@ pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {
         .add_patch(patch_collar)
         .expect("Adding Collar patch must succeed");
 
-    // 5. Karlsson volume exterior boundary interface: volume = 6/12 = 1/2
     let vol_karlsson = rq(6, 12);
     let tree_karlsson = build_component_partition(6, vol_karlsson, 4, base_gap())
         .expect("Karlsson partition construction must succeed");
@@ -1246,7 +1136,6 @@ pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {
         .add_patch(patch_karlsson)
         .expect("Adding Karlsson patch must succeed");
 
-    // 6. Isolated Haagerup orbit neighborhood (H_6): volume = 1/12
     let vol_h6 = rq(1, 12);
     let tree_h6 = build_component_partition(4, vol_h6, 2, margin.clone())
         .expect("H6 partition construction must succeed");
@@ -1260,9 +1149,8 @@ pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {
         .add_patch(patch_h6)
         .expect("Adding H6 patch must succeed");
 
-    // Canonical Boundary Interfaces (forming a connected 6-cycle ring)
-    let overlap_vol = delta_certified(); // 1/1000
-    let iface_margin = certified_margin(); // 12133/30000
+    let overlap_vol = delta_certified();
+    let iface_margin = certified_margin();
 
     let dummy_iface_cell = RationalCell::new(
         vec![
@@ -1313,7 +1201,6 @@ pub fn build_canonical_global_atlas() -> GlobalAtlasAggregator {
             .expect("Adding interface must succeed");
     }
 
-    // Canonical Composite Loops for Network Simplex Circulation
     atlas
         .add_composite_loop(CompositeCycleLoop::triad_loop())
         .expect("Adding triad loop must succeed");

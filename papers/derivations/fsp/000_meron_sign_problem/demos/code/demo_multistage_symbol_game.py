@@ -21,7 +21,7 @@ CODE_DIR = DEMOS_DIR.parent / "code"
 if str(CODE_DIR) not in sys.path:
     sys.path.insert(0, str(CODE_DIR))
 
-from symbol_game_stage_controller import (  # noqa: E402
+from symbol_game_stage_controller import (
     SymbolGameStageController,
     replay_certified_dag,
 )
@@ -40,7 +40,7 @@ def main() -> int:
     print(f"================================================================================")
     print(f"  THE SYMBOL GAME: MULTI-STAGE DDC DAG REPLAY ({args.sites}-SITE LATTICE)")
     print(f"================================================================================")
-    
+
     res = replay_certified_dag(sites=args.sites, target_path=out_dag)
     print(f"Stages Executed: {res['nodes']} turns")
     print(f"Terminal Status: {res['terminal_status']}")

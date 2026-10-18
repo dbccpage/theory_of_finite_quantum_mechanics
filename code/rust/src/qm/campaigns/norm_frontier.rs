@@ -1,14 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-// Reference: Campaign C500 Block 02, Targets C500-T326 through C500-T350.
 
-//! Campaign C500 Block 02: Norm-Indexed Approximation Frontier.
-//!
-//! Independent Rust implementation verifying:
-//! 1. Direct-CCR defect lower bounds: ||QP - PQ - lambda*I||_{1, norm} >= |lambda|.
-//! 2. Phase distance on circle S^1 and nearest d-th root of unity approximation.
-//! 3. Finite nearest-root table for rational phase 5/8, with an analytic upper bound.
-//! 4. Fixed-family winding formula with branch-cut refusal and a cited obstruction.
-//! 5. Exact deterministic receipt generation with zero floating-point arithmetic in decision paths.
 
 use num_bigint::{BigInt, BigUint};
 use num_integer::Integer;
@@ -20,7 +10,6 @@ use omega_number_theory::rational::{ri, rq, Rational};
 use omega_number_theory::rational_circle::{nearest_root_of_unity, phase_distance_on_circle};
 use omega_quantum_physics::norm_approximation_frontier::{clock_shift_winding, NormFrontierError};
 
-/// Result of verifying the direct-CCR defect lower bounds.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CcrDefectBoundResult {
     pub dimension: usize,
@@ -55,7 +44,6 @@ pub fn verify_ccr_defect_lower_bounds(
     })
 }
 
-/// Row in the twisted-Weyl phase approximation schedule.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WeylPhaseScheduleRow {
     pub dimension: usize,
@@ -86,10 +74,6 @@ pub fn compute_weyl_phase_schedule(
     Ok(rows)
 }
 
-/// A declared unbounded nominal root family for a rational phase a/b.
-/// d_j=b(j+1), k_j=(a mod b)(j+1) are arbitrary-precision integers;
-/// k_j/d_j is exactly the target phase modulo one for every j. This
-/// certifies phase error zero, rather than inferring a limit from a finite table.
 pub fn exact_rational_weyl_schedule_term(target: &Rational, index: &BigUint) -> (BigUint, BigUint) {
     let multiplier = BigInt::from(index + BigUint::from(1u8));
     let d = target.denom() * &multiplier;
@@ -102,14 +86,11 @@ pub fn exact_rational_weyl_schedule_term(target: &Rational, index: &BigUint) -> 
 }
 fn verify_declared_unbounded_rational_schedule(target: &Rational) -> bool {
     let (d, k) = exact_rational_weyl_schedule_term(target, &BigUint::from(0u8));
-    // d_j=(j+1)d_0 with d_0>0 supplies unbounded dimensions, while
-    // cancellation of the common multiplier supplies the exact zero error.
     !d.is_zero()
         && phase_distance_on_circle(target, &Rational::new(BigInt::from(k), BigInt::from(d)))
             .is_zero()
 }
 
-/// Voiculescu / Bott index topological obstruction result.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BottObstructionResult {
     pub dimension: usize,
@@ -147,7 +128,6 @@ pub fn compute_bott_index_witness(d: usize) -> Result<BottObstructionResult, Nor
     }
 }
 
-/// Canonical Block 02 receipt struct.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CanonicalBlock02Receipt {
     pub authority_effect: String,

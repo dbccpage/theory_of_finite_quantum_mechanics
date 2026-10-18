@@ -1,65 +1,3 @@
-//! `BoundEpkMeasurement` — the sealed aggregate that owns one source triple.
-//!
-//! # Why this exists
-//!
-//! Review of PR #1799 established that sealing [`crate::prime_seam::LggrEpkObservation`]
-//! was necessary but not sufficient. Its constructor still accepted four
-//! independently-supplied things — a ledger, a defect, an adequacy verdict, and a
-//! provenance claim — so a genuine `NumericallySupported` verdict earned on corpus
-//! A could be paired with a fabricated zero defect from corpus B. The result read
-//! `GreenNumericallySupported`, carried corpus A's *valid* digest, and permitted
-//! continuation.
-//!
-//! That is the same unbound-pair attack the module docs describe, committed one
-//! level up. The fix is not another check. It is to remove the seam a substitution
-//! could be inserted into:
-//!
-//! ```text
-//!   ONE (records, trace_ledger, boundary) triple
-//!        │
-//!        ├── metrics          (computed here, never supplied)
-//!        ├── per-row defects  (computed here, never supplied)
-//!        ├── adequacy verdict (computed here, never supplied)
-//!        ├── corpus digest    (computed here, never supplied)
-//!        └── provenance       (CHECKED here, never merely asserted)
-//! ```
-//!
-//! # RETRACTED — this module is `REJECTED_UNSOUND`
-//!
-//! An earlier revision of this comment claimed the aggregate closed the
-//! unbound-pair family. **It does not, and the claim is withdrawn.** Verified by
-//! execution:
-//!
-//! ```text
-//! same records/ledger/boundary
-//!   with capacity evidence -> NumericallySupported
-//!   without evidence       -> Undeclared
-//! digests equal                    = true      <-- the digest omits adequacy
-//! cross-adequacy descend accepted  = true
-//! detector_adequate                = true      <-- ATTACK
-//! ```
-//!
-//! The digest below binds `observed_corpus`, `provenance`, rows, `ngd` and `nrke`
-//! — but NOT the adequacy kind, declaration digest, capacity evidence, or
-//! structural failures. Five further blockers are recorded `VERIFIED_OPEN` in
-//! `docs/lggr_prime_seam/residual_ledger.md`.
-//!
-//! Continuation is therefore **quarantined**: see
-//! [`crate::prime_seam::V1_QUARANTINE_REASON`]. The calculations here remain
-//! useful as diagnostics; they must not gate.
-//!
-//! # Provenance is checked, not claimed
-//!
-//! [`EvaluatorProvenance::Exhibited`] is a claim that the evaluator values were
-//! observed rather than produced by an oracle. A caller asserting it proves
-//! nothing. Here it is **admissible only if** the corpus is ledger-backed: every
-//! composition record's `local_left_pass` / `local_right_pass` must agree with the
-//! corresponding [`TraceRecord::evaluator_pass`] in the supplied trace ledger. That
-//! is a real check against real data, and it is the same consistency the adequacy
-//! protocol audits as `LocalEvaluatorLedgerMismatch`. Requesting `Exhibited` for a
-//! corpus that fails it is a **typed refusal**, not a downgrade.
-//!
-//! **AuthorityEffect: None.**
 
 use serde::Serialize;
 use sha2::{Digest, Sha256};
@@ -80,21 +18,9 @@ use crate::prime_seam::{
 };
 use crate::verdict::{classify, EvaluatorProvenance, LggrVerdict};
 
-/// Schema tag for the canonical encoding this module hashes.
 pub const BOUND_MEASUREMENT_SCHEMA: &str = "omega.epk.bound-measurement.v1";
 
-// ── canonical encoding ───────────────────────────────────────────────────────
 
-/// Length-prefixed, tagged canonical hasher.
-///
-/// Every field contributes `len(tag) ‖ tag ‖ len(value) ‖ value`, with lengths as
-/// big-endian `u64`. Because both tag and value are length-prefixed, no choice of
-/// field contents can be re-partitioned into a different field sequence — the
-/// delimiter-collision surface of a NUL-separated encoding does not exist here.
-///
-/// This replaces an earlier encoding that interpolated Rust `Debug` output. `Debug`
-/// is explicitly not a stability contract; a derive change would silently alter
-/// every receipt identity in the corpus.
 pub(crate) struct CanonicalHasher {
     hasher: Sha256,
 }
@@ -139,8 +65,6 @@ impl CanonicalHasher {
     }
 
     pub(crate) fn f64_field(&mut self, tag: &str, value: f64) -> &mut Self {
-        // IEEE-754 bit pattern: exact, locale-independent, and distinguishes
-        // values that would print identically.
         self.bytes(tag, &value.to_bits().to_be_bytes())
     }
 
@@ -165,7 +89,6 @@ impl CanonicalHasher {
     }
 }
 
-/// Stable tag for a verdict. Explicit, versioned, and independent of `Debug`.
 pub(crate) fn verdict_tag(v: &LggrVerdict) -> &'static str {
     match v {
         LggrVerdict::Red { .. } => "Red",
@@ -176,7 +99,6 @@ pub(crate) fn verdict_tag(v: &LggrVerdict) -> &'static str {
     }
 }
 
-// ── errors ───────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Clone, PartialEq, thiserror::Error)]
 pub enum BoundMeasurementError {
@@ -186,7 +108,6 @@ pub enum BoundMeasurementError {
     Metrics(#[from] EpkError),
     #[error("row {index} is out of range for a corpus of {len} records")]
     RowOutOfRange { index: usize, len: usize },
-    /// `Exhibited` was requested but the corpus is not ledger-backed.
     #[error(
         "provenance Exhibited refused: record {record_id} declares \
          (left={declared_left}, right={declared_right}) but the trace ledger \
@@ -199,10 +120,8 @@ pub enum BoundMeasurementError {
         ledger_left: Option<bool>,
         ledger_right: Option<bool>,
     },
-    /// A receipt's claimed hash does not match a recomputation over its contents.
     #[error("receipt hash mismatch: claimed {claimed}, recomputed {recomputed}")]
     ReceiptHashMismatch { claimed: String, recomputed: String },
-    /// A descent receipt from a different measurement was presented.
     #[error(
         "receipt is bound to corpus {receipt_digest}, this measurement is {measurement_digest}"
     )]
@@ -212,14 +131,7 @@ pub enum BoundMeasurementError {
     },
 }
 
-// ── the aggregate ────────────────────────────────────────────────────────────
 
-/// One measurement over one corpus. All fields private; no `Deserialize`.
-///
-/// ```compile_fail
-/// use omega_epk::bound_measurement::BoundEpkMeasurement;
-/// let _: BoundEpkMeasurement = serde_json::from_str("{}").unwrap();
-/// ```
 #[derive(Debug, Clone, Serialize)]
 pub struct BoundEpkMeasurement {
     schema: &'static str,
@@ -234,11 +146,6 @@ pub struct BoundEpkMeasurement {
 }
 
 impl BoundEpkMeasurement {
-    /// The **only** way to obtain bound EPK evidence.
-    ///
-    /// Consumes one `(records, trace_ledger, boundary)` triple and derives metrics,
-    /// per-row defects, the adequacy verdict, the corpus digest, and the provenance
-    /// admissibility check from it. Nothing pre-computed is accepted.
     pub fn measure(
         records: &[CompositionRecord],
         trace_ledger: &TraceLedger,
@@ -251,9 +158,6 @@ impl BoundEpkMeasurement {
             return Err(BoundMeasurementError::EmptyCorpus);
         }
 
-        // Provenance is checked against the ledger, never taken on the caller's
-        // word. `Exhibited` means "these evaluator values were observed"; the only
-        // observation available is the trace ledger, so it must agree.
         if requested_provenance == EvaluatorProvenance::Exhibited {
             for record in records {
                 let ledger_left = trace_ledger
@@ -286,9 +190,6 @@ impl BoundEpkMeasurement {
             .map(|r| r.composed_trace_id.clone())
             .collect();
 
-        // The measurement digest binds the corpus the adequacy protocol read to
-        // the rows these defects came from. A verdict from another corpus cannot
-        // be attached to this measurement because it was never supplied.
         let mut h = CanonicalHasher::new(BOUND_MEASUREMENT_SCHEMA);
         h.str_field("observed_corpus", adequacy.observed_corpus_digest());
         h.str_field(
@@ -324,7 +225,6 @@ impl BoundEpkMeasurement {
         self.schema
     }
 
-    /// Digest binding this corpus, its rows, and the adequacy verdict that read it.
     pub fn corpus_digest(&self) -> &str {
         &self.corpus_digest
     }
@@ -353,8 +253,6 @@ impl BoundEpkMeasurement {
         self.record_ids.get(index).map(String::as_str)
     }
 
-    /// The defect for one row of **this** corpus. Callers cannot supply a defect;
-    /// they can only name a row.
     pub fn defect(&self, index: usize) -> Result<&GluingDefect, BoundMeasurementError> {
         self.defects
             .get(index)
@@ -364,21 +262,16 @@ impl BoundEpkMeasurement {
             })
     }
 
-    /// Classify one row against **this** measurement's adequacy verdict.
     pub fn verdict(&self, index: usize) -> Result<LggrVerdict, BoundMeasurementError> {
         let defect = self.defect(index)?;
-        // `classify` cannot fail here: the defect came from `evaluator_gluing_defect`
-        // so it is in range and internally consistent by construction.
         Ok(classify(defect, Some(&self.adequacy), self.provenance)
             .expect("defects derived from evaluator_gluing_defect are always well-formed"))
     }
 
-    /// **Always** [`AuthorityEffect::None`].
     pub fn authority_effect(&self) -> AuthorityEffect {
         AuthorityEffect::None
     }
 
-    /// Capped at [`EvidenceCeiling::BoundaryChecked`], like every EPK reading.
     pub fn evidence_ceiling(&self, index: usize) -> Result<EvidenceCeiling, BoundMeasurementError> {
         Ok(self
             .verdict(index)?
@@ -386,13 +279,7 @@ impl BoundEpkMeasurement {
             .meet(EvidenceCeiling::BoundaryChecked))
     }
 
-    // ── minting bound downstream evidence ────────────────────────────────────
 
-    /// Mint an observation for one row of **this** corpus.
-    ///
-    /// The caller names a row; every value in the result is derived here. There is
-    /// no parameter through which a defect, ledger, or adequacy verdict from
-    /// another corpus could enter.
     pub fn observe(&self, index: usize) -> Result<LggrEpkObservation, BoundMeasurementError> {
         let defect = *self.defect(index)?;
         let verdict = self.verdict(index)?;
@@ -407,7 +294,6 @@ impl BoundEpkMeasurement {
         ))
     }
 
-    /// Mint a **verified** descent receipt for an observation from this corpus.
     pub fn descend(
         &self,
         source_carrier: impl Into<String>,
@@ -438,11 +324,6 @@ impl BoundEpkMeasurement {
         }))
     }
 
-    /// Promote a transport-layer receipt to a verified one by **recomputing** its
-    /// canonical hash against the observation it claims to describe.
-    ///
-    /// This is the only path from a deserialized [`PrimeDescentReceipt`] to
-    /// something a gate will accept.
     pub fn verify_receipt(
         &self,
         receipt: PrimeDescentReceipt,
@@ -460,11 +341,6 @@ impl BoundEpkMeasurement {
         Ok(VerifiedDescentReceipt::seal(receipt))
     }
 
-    /// Mint sealed continuation evidence.
-    ///
-    /// `detector_adequate` comes from this measurement's adequacy verdict;
-    /// `adapter_sound` comes from the receipt. Neither is a caller parameter, which
-    /// is what makes a lossy descent actually block Prime 002.
     pub fn continuation_evidence(
         &self,
         receipt: &VerifiedDescentReceipt,

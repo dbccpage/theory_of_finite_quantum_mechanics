@@ -1,4 +1,3 @@
-// AuthorityEffect: None.
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use serde_json::json;
@@ -14,16 +13,6 @@ use omega_solvers::solver_cohomology_simplicial_l1::{
 pub struct Layer1Foc;
 
 impl Layer1Foc {
-    /// Evaluates Layer 1: Finite Obstruction Calculus (CODA-FOC) with default zero
-    /// closure slack (`tau = 0`) when the coboundary composition is curved (`K = d1 d0 != 0`).
-    ///
-    /// - On the **flat locus** (`K = d1 d0 = 0`), uses [`ExactCochainComplexQ`] and
-    ///   [`solve_l1_quotient`] to certify the quotient-invariant pair
-    ///   `(\Phi_1([x]), \Gamma_2([x]))`.
-    /// - On the **curved locus** (`K = d1 d0 != 0`), [`ExactCochainComplexQ`] is not
-    ///   constructed; instead, solves the constrained representative-repair LP
-    ///   `\min_{f \in C^0} \|x - d_0 f\|_1 \text{ s.t. } \|d_1 x - K f\|_1 \le \Gamma_2^{\mathrm{raw}}(x) + \tau`
-    ///   using [`omega_functional::gamma2::RawClosureDefectResult`].
     pub fn evaluate(
         problem: &ProblemInstance,
     ) -> Result<
@@ -39,15 +28,6 @@ impl Layer1Foc {
         Self::evaluate_with_closure_guard(problem, &BigRational::zero())
     }
 
-    /// Evaluates Layer 1 with an explicit non-negative closure budget slack `tau >= 0`:
-    ///
-    /// ```text
-    /// min_{f in C^0} ||x - d0 f||_1   s.t.   ||d1 x - K f||_1 <= Gamma_2_raw(x) + tau.
-    /// ```
-    ///
-    /// Keeps [`ExactCochainComplexQ`] strictly restricted to the flat (`K = 0`) locus,
-    /// and routes curved (`K != 0`) presentations through [`solve_l1_curved_constrained`]
-    /// backed by [`omega_functional::gamma2::RawClosureDefectResult`].
     pub fn evaluate_with_closure_guard(
         problem: &ProblemInstance,
         tau: &BigRational,
@@ -176,8 +156,6 @@ impl Layer1Foc {
         }
     }
 
-    /// Solve the closure-constrained repair linear program directly on `problem`
-    /// and return the sealed [`VerifiedCurvedConstrainedPhi1`] certificate.
     pub fn evaluate_curved_constrained(
         problem: &ProblemInstance,
         tau: &BigRational,

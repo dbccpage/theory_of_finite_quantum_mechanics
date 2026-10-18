@@ -10,7 +10,6 @@ from omega_engine.crates.homotopy_type_theory.primitive_difference import (
 )
 
 
-# 1. Collapse everything to one class. zero is always True, but delta = x.
 class BoolAllZeroNonconstant(PrimitiveDifference[bool, bool]):
     def delta(self, x: bool, y: bool) -> bool:
         return x
@@ -40,7 +39,6 @@ def test_delta_congruence_counterexample_reported():
     assert exc.value.y_prime == 0
 
 
-# 2. Parity difference: delta = (x - y) % 2, zero = (d == 0)
 class ParityDifference(PrimitiveDifference[int, int]):
     def delta(self, x: int, y: int) -> int:
         return (x - y) % 2
@@ -55,8 +53,8 @@ def test_parity_difference_descends():
     assert vc.num_classes() == 2
     assert vc.delta_congruent_on_domain()
     factor = vc.try_delta_factor()
-    c_even = vc.class_of_index(0)  # domain[0] = 0
-    c_odd = vc.class_of_index(1)  # domain[1] = 1
+    c_even = vc.class_of_index(0)
+    c_odd = vc.class_of_index(1)
     assert factor.apply(c_even, c_odd) == 1
 
 
@@ -89,7 +87,6 @@ def test_cross_carrier_quotient_class_rejected():
     assert fa.apply(class_from_b, class_from_b) is None
 
 
-# 3. Configurable integer difference with zero laws checks
 class IntDiff(PrimitiveDifference[int, int]):
     def __init__(self, zero_fn) -> None:
         self.zero_fn = zero_fn
@@ -109,17 +106,14 @@ def test_zero_rel_not_reflexive_rejected():
 
 
 def test_zero_rel_not_symmetric_rejected():
-    # zero(0)=True (reflexive), zero(2)=True, zero(-2)=False
     p = IntDiff(lambda d: d == 0 or d == 2)
     with pytest.raises(ZeroSymmetryFailure) as exc:
         ValidatedFiniteCarrier.try_new(p, [0, 2])
-    # x=0, y=2 -> delta(0,2)=-2 (not zero), but delta(2,0)=2 (zero) -> asymmetric
     assert exc.value.x == 1
     assert exc.value.y == 0
 
 
 def test_zero_rel_not_transitive_rejected():
-    # |d|<=1 is reflexive and symmetric but not transitive (0~1, 1~2, 0≁2)
     p = IntDiff(lambda d: abs(d) <= 1)
     with pytest.raises(ZeroTransitivityFailure) as exc:
         ValidatedFiniteCarrier.try_new(p, [0, 1, 2])

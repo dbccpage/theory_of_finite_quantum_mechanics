@@ -11,11 +11,7 @@ AuthorityEffect: None.
 
 from omega_engine.crates.majorana.engines.classifier import classify
 
-# A single 2-cycle: two vertices joined by two parallel edges.
-#   d0 : C^0 (2 vertices) -> C^1 (2 edges), each edge = v0 + v1
-#   b_1 = E - V + 1 = 2 - 2 + 1 = 1
 D0 = [[1, 1], [1, 1]]
-# No 2-cells at all: d1 is the zero map out of C^1.
 D1_ZERO = [[0, 0]]
 
 
@@ -39,7 +35,6 @@ def test_zero_face_residual_is_typed_not_exact() -> None:
 
 def test_zero_face_exact_residual_still_classifies_exact() -> None:
     """Anti-vacuity: the zero-face complex is not simply refusing everything."""
-    # d0 * (1,0) = (1,1): an exact residual.
     result = classify(D0, D1_ZERO, [1, 1])
     assert result["terminal_status"] == "Exact", result
 

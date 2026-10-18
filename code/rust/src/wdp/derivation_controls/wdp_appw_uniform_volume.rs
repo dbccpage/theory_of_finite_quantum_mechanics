@@ -1,4 +1,3 @@
-//! Exact rational witness for `WDP-APPW-UNIFORM-VOLUME` (`derivation.md`).
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Frac {

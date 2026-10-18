@@ -1,12 +1,8 @@
-//! Canonical finite sums of normalized real radicals. AuthorityEffect: None.
 use crate::quadratic::Surd;
 use crate::rational::Rational;
 use num_bigint::BigInt;
 use num_traits::Zero;
 use std::collections::BTreeMap;
-/// An exact finite sum `sum c_r sqrt(r)` over distinct squarefree radicands.
-/// Such sums are equal exactly when their coefficients are, because square roots
-/// of distinct squarefree integers are linearly independent over `Q`.
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct SurdSum {
     terms: BTreeMap<BigInt, Rational>,
@@ -30,7 +26,6 @@ impl SurdSum {
         }
     }
 
-    /// The value when it is rational (only the radicand `1` survives).
     pub fn as_rational(&self) -> Option<Rational> {
         match self.terms.len() {
             0 => Some(Rational::zero()),

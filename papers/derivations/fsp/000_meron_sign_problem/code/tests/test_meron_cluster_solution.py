@@ -48,9 +48,6 @@ def miner(oracle: BlindClusterOracle) -> AntibodyMiner:
     return AntibodyMiner(oracle)
 
 
-# =========================================================================
-# Tier 1: Exact Rational Ground Truth and Orbit Involutions
-# =========================================================================
 
 
 def test_oracle_ground_truth_invariants(oracle: BlindClusterOracle) -> None:
@@ -121,9 +118,6 @@ def test_fixture_satisfies_character_law_and_equal_orbit_weights() -> None:
     assert summary["reconstruction"] is True
 
 
-# =========================================================================
-# Tier 2: Lexical Hygiene Firewall
-# =========================================================================
 
 
 def test_lexical_hygiene_blocks_all_forbidden_tokens() -> None:
@@ -153,9 +147,6 @@ def test_all_five_prompt_arms_pass_lexical_hygiene() -> None:
         assert len(p) > 100, f"Prompt Arm {i} is unexpectedly short"
 
 
-# =========================================================================
-# Tier 3: Epistemic Immune Mining & Rubric Scoring
-# =========================================================================
 
 
 def test_positive_control_scores_perfect(miner: AntibodyMiner) -> None:
@@ -182,14 +173,13 @@ def test_positive_control_scores_perfect(miner: AntibodyMiner) -> None:
 
 def test_hallucination_mutation_mines_antibodies(miner: AntibodyMiner) -> None:
     """Mutating responses with specific errors triggers corresponding typed antibodies."""
-    # Mutation 1: Partition drift
     resp_drift = json.dumps(
         {
             "cycle_independence": True,
             "cycle_parity_invariant_found": True,
             "cancellation_mechanism": "Odd cycle flips cancel pairwise to zero.",
             "zero_odd_sector_subgraphs": 199,
-            "exact_partition_z": 128,  # Hallucinated value
+            "exact_partition_z": 128,
             "scratchpad": "Got 128.",
         }
     )
@@ -197,7 +187,6 @@ def test_hallucination_mutation_mines_antibodies(miner: AntibodyMiner) -> None:
     assert res["score"] == 3
     assert any(a["code"] == "ANTI_PARTITION_DRIFT" for a in abs_drift)
 
-    # Mutation 2: Coupled cycle assumption
     resp_coupled = json.dumps(
         {
             "cycle_independence": False,
@@ -212,13 +201,12 @@ def test_hallucination_mutation_mines_antibodies(miner: AntibodyMiner) -> None:
     assert res["score"] == 3
     assert any(a["code"] == "ANTI_COUPLED_CYCLE_HALLUCINATION" for a in abs_coupled)
 
-    # Mutation 3: Sector leak
     resp_leak = json.dumps(
         {
             "cycle_independence": True,
             "cycle_parity_invariant_found": True,
             "cancellation_mechanism": "Odd cycle flips cancel pairwise to zero.",
-            "zero_odd_sector_subgraphs": 256,  # Included cancelling subgraphs
+            "zero_odd_sector_subgraphs": 256,
             "exact_partition_z": 912,
             "scratchpad": "Used all 256 subgraphs.",
         }
@@ -228,9 +216,6 @@ def test_hallucination_mutation_mines_antibodies(miner: AntibodyMiner) -> None:
     assert any(a["code"] == "ANTI_NEGATIVE_CONTRIBUTION_LEAK" for a in abs_leak)
 
 
-# =========================================================================
-# Tier 4: Budget Guard & Deterministic Persistence
-# =========================================================================
 
 
 def test_dry_run_executes_safely_without_spend() -> None:

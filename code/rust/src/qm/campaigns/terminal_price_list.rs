@@ -1,11 +1,6 @@
-//! The price list and the terminal claim for finite quantum mechanics.
-//!
-//! Campaign C250 Block 10 (Global Steps 276-300).
-//! AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
 use serde::{Deserialize, Serialize};
 
-/// A declared primitive on the finite QM price list.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Declaration {
     pub index: usize,
@@ -16,7 +11,6 @@ pub struct Declaration {
     pub status: String,
 }
 
-/// A formal mathematical refusal recorded in the ledger.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FormalRefusal {
     pub index: usize,
@@ -87,8 +81,6 @@ pub fn get_declaration_count() -> usize {
     get_declarations().len()
 }
 
-/// The declaration indices are exactly `1..=n`. Their sum equals the closed
-/// triangular number, and the same sum taken from the stored index field.
 pub fn inventory_index_mass() -> Result<usize, &'static str> {
     let decls = get_declarations();
     let n = decls.len();
@@ -164,7 +156,6 @@ pub fn get_refusal_count() -> usize {
     get_formal_refusals().len()
 }
 
-/// Comprehensive verification report for Block 10.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Block10VerificationReport {
     pub declaration_count: usize,

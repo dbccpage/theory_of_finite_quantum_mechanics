@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 CODA 2D Pontryagin Duality Bridge: Discrete Torus to Circle Torus T^2 and Continuum R^2.
 
@@ -47,7 +46,7 @@ class Pontryagin2DProgrammeError(Exception):
         super().__init__(f"{code}: {detail}")
 
 
-StageStatus = str  # EXACT_Q | OBSERVED | MODELLING_DECLARATION | LITERATURE_IMPORT | NORMALIZATION | HOST_FLOAT | EXPERIMENTAL_HOST | OPEN
+StageStatus = str
 
 
 @dataclass(frozen=True)
@@ -90,7 +89,6 @@ class Pontryagin2DStagedReceipt:
         raise KeyError(f"Stage '{name}' not found in 2D receipt")
 
 
-# --- 2D Kill Condition Guards ---
 
 def refuse_pi_from_exact_q_2d(claimed_exact_q_outputs_pi: bool) -> None:
     if claimed_exact_q_outputs_pi:
@@ -131,7 +129,6 @@ def refuse_alpha_2d_as_certified_exact(is_exact_certificate: bool, is_experiment
         )
 
 
-# --- 2D Stages 0 to 6 ---
 
 def stage0_finite_exact_2d(
     lx: int = 4,
@@ -269,9 +266,6 @@ def stage5_continuous_host_eval_2d(
             claim="continuous 2D host eval blocked without dual normalization",
         )
     pi_enc = certified_pi_enclosure(terms=10)
-    # 2D amplitude: sinc(pi * k_x) * sinc(pi * k_y)
-    # For k_x = 1/6, sinc(pi/6) = 3/pi
-    # a_2d = (3/pi) * (3/pi) = 9 / (pi^2)
     nine = RationalInterval(Fraction(9), Fraction(9))
     pi_sq = pi_enc * pi_enc
     a_2d_enc = nine / pi_sq
@@ -314,7 +308,6 @@ def run_pontryagin_2d_staged_programme(
     s1 = stage1_discrete_torus_group(s0)
     s2 = stage2_unbounded_torus_declaration(declare_free_z2=declare_free_z2)
 
-    # Honesty fences
     refuse_pi_from_exact_q_2d(False)
     refuse_t2_derived_from_l1_alone(False)
     if s1.status == "OBSERVED":
@@ -366,7 +359,6 @@ def run_pontryagin_2d_staged_programme(
     )
 
 
-# --- 2D Discrete Torus Character Orthogonality ---
 
 class Discrete2DTorusFourier:
     """Fourier analysis on 2D cyclic lattice Z_{L_x} x Z_{L_y} via Pontryagin dual characters."""
@@ -387,7 +379,6 @@ class Discrete2DTorusFourier:
         orthogonality_verified = True
         violations = []
 
-        # Product of two 1D cyclic groups
         for kx in range(lx_val):
             for mx in range(lx_val):
                 diff_x = (kx - mx) % lx_val

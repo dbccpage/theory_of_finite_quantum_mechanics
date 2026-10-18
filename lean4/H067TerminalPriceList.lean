@@ -1,13 +1,3 @@
-/-
-C250 terminal boundary. AuthorityEffect: None.
-The original success-flag proofs at 22824045918194a72a9557b9410bf5d2e5380b93
-are withdrawn as evidence of physics. This module proves inventory properties
-and a concrete obstruction to deriving verification from a displayed label.
-Sealed citation: sealed-derivation-v1, 3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 namespace FableHilbertWalk20260819.H067
 
 inductive DeclarationId
@@ -29,7 +19,6 @@ def declarationName : DeclarationId → String
   | .branch_weighting_beyond_rational => "branch_weighting_beyond_rational"
   | .conductor_escalation_purification => "conductor_escalation_purification"
 
-/-- An inventory count, without a theorem of independence or exhaustiveness. -/
 theorem declaration_count_is_six : declarations.length = 6 := by decide
 
 theorem inventory_contains_each_id (d : DeclarationId) : d ∈ declarations := by
@@ -50,8 +39,6 @@ theorem label_collision : good.displayedLabel = bad.displayedLabel := rfl
 
 theorem different_evidence : good.checked ≠ bad.checked := by decide
 
-/-- A status label alone cannot reconstruct the verification decision on this
-inhabited model. The two states have the same label and opposite evidence. -/
 theorem verification_does_not_descend_to_label :
     ¬ ∃ f : Nat → Bool, ∀ s : EvidenceState, f s.displayedLabel = s.checked := by
   intro ⟨f, h⟩
@@ -81,3 +68,6 @@ theorem verified_requires_present_success (check : Option Bool) :
 #print axioms verification_does_not_descend_to_label
 #print axioms verified_requires_present_success
 end FableHilbertWalk20260819.H067
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H067TerminalPriceList.lean Claim: declaration_count_is_six AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

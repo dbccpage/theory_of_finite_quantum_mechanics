@@ -213,7 +213,6 @@ def verify_dual_witness_bound(rho1: np.ndarray, rho2: np.ndarray) -> bool:
     t_norm = trace_norm(diff)
     W_opt = construct_dual_witness(diff)
     alignment = float(np.real(np.trace(W_opt.conj().T @ diff)))
-    # Duality gap zero: alignment == trace_norm
     return bool(np.isclose(alignment, t_norm, atol=1e-10))
 
 def exact_dephasing_defect(

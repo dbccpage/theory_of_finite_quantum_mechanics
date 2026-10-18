@@ -30,7 +30,6 @@ from hamiltonian_gin_bridge import HamiltonianGinBridge
 
 def test_bipartite_hamiltonian_indexing_and_sign_repair():
     """This finite ring Euler ensemble has exact equal-weight partners."""
-    # 4-site periodic ring with 2 identical spin-up fermions
     lattice = FermionicLattice.linear_chain(4, periodic=True)
     h_bip = DiscreteFermionicHamiltonian(lattice, t=1.0, u=0.0, num_up=2, num_down=0)
 
@@ -64,7 +63,6 @@ def test_bipartite_hamiltonian_indexing_and_sign_repair():
 
 def test_frustrated_triangle_hamiltonian_indexing_obstruction():
     """Validates that a frustrated triangle cluster leaves unpartnered negative paths routing to SplitBrainRefusal."""
-    # 3-site triangle cluster with 2 identical spin-up fermions
     lattice = FermionicLattice.triangle_cluster()
     h_tri = DiscreteFermionicHamiltonian(lattice, t=1.0, u=0.0, num_up=2, num_down=0)
 
@@ -79,8 +77,6 @@ def test_frustrated_triangle_hamiltonian_indexing_obstruction():
 
         assert index_res["total_paths"] == 27
         assert index_res["negative_paths"] == 6
-        # On a triangle cluster, positive weights are 0.4444 and 1.0; negative weights are 0.2963
-        # No partner can have identical weight, so matched pairs must be 0
         assert index_res["matched_pairs"] == 0
         assert index_res["unpartnered_negatives"] == 6
         assert index_res["is_completely_paired"] is False

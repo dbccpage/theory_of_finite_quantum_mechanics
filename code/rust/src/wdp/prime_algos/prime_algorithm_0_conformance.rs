@@ -1,90 +1,36 @@
-//! Letter-law conformance for Prime Algorithm 0 receipts.
-//!
-//! A receipt records a *letter tape* and a terminal. The DDA alphabet attaches a
-//! law to each letter (`op_verification`). Some of those laws are decidable from
-//! a receipt alone; most are not, because a receipt does not record the carrier
-//! state either side of each step.
-//!
-//! This module decides the ones it can and **names the ones it cannot**. The
-//! distinction is carried in the verdict type itself rather than in a comment,
-//! because the previous shape — a `conforms()` returning `violations.is_empty()`
-//! — reported a clean bill of health for a receipt whose most substantive laws
-//! had never been evaluated. Two of those five have since become decidable (see
-//! [`NEWLY_DECIDABLE_WITH_PER_STEP_STATE`]); three remain.
-//!
-//! AuthorityEffect: None. Deciding a letter law mints nothing.
 
 use crate::prime_algos::prime_algorithm_0::PrimeAlgorithm0Receipt;
 use crate::ddc::dda_alphabet::DdaOp;
 use serde::Serialize;
 
-/// Letters every lawful tape must contain, per the Rosetta shared-structure invariant.
 pub const REQUIRED_LETTERS: [char; 3] = ['C', 'R', 'T'];
 
-/// The five letters `agent_contract::ACTIVE_OPERATIONS` admits on an agent packet.
-/// Emitting anything else is lawful for a domain adapter but **unrepresentable at
-/// the agent surface**, so it is reported as an observation, not a violation.
 pub const AGENT_ACTIVE_LETTERS: [char; 5] = ['E', 'R', 'I', 'M', 'T'];
 
-/// Laws that genuinely cannot be decided from a Prime Algorithm 0 receipt, because the
-/// receipt does not record the state either side of each step.
-///
-/// This is not documentation. It is carried in every [`ReceiptConformance`] and
-/// is what forces the verdict to [`ConformanceVerdict::Partial`] rather than
-/// [`ConformanceVerdict::Conforms`].
 pub const UNDECIDABLE_WITHOUT_PER_STEP_STATE: [&str; 3] = [
     "E must land at Exact (needs the after-state cochain, not just its masses)",
     "I/M/T inert on the cochain (needs before/after cochain state)",
     "C/D/Lambda must actually change the carrier (needs per-step carrier identity)",
 ];
 
-/// Laws that WERE listed above and are now decided by [`check_receipt`].
-///
-/// Kept as a named constant rather than deleted, because the earlier list made a
-/// claim about the estate that was false and the correction is worth carrying:
-///
-/// * `"R must not move Phi1"` — decided from [`PrimeStepRecord::phi1_after`].
-/// * `"D requires a loss ledger"` — the earlier wording was *"no loss-ledger field
-///   is recorded anywhere"*. That was true of this receipt and **false of the
-///   estate**: `DDAStepCert.loss_ledger` in
-///   `research/ooutwire_docs/universe_anomalonica/code/dda_engine.py` records one
-///   and populates it (`gauge_potentials_removed`, `curl_mass_canceled`,
-///   `cycle_coeffs_removed`). [`PrimeStepRecord::loss_ledger`] now mirrors it, and
-///   a `D` without one is refused.
 pub const NEWLY_DECIDABLE_WITH_PER_STEP_STATE: [&str; 2] = [
     "R must not move Phi1 (decided from PrimeStepRecord::phi1_after)",
     "D requires a loss ledger (decided from PrimeStepRecord::loss_ledger)",
 ];
 
-/// A letter law broken by a receipt, decided from recorded data alone.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum ReceiptViolation {
-    /// The tape contains `T` while the receipt reports Γ₂ > 0.
-    ///
-    /// Mirrors `op_verification::OpViolation::TerminalizedOpenResidual`: `T` is
-    /// *"inert, and refuses Γ₂ ≠ 0"*. An Open residual may close with `M`, never `T`.
     TerminalizedOpenResidual { gamma2: u64 },
-    /// A tape character outside the declared 8-letter alphabet.
     ForeignLetter { letter: char },
-    /// A tape missing one of `C`, `R`, `T`.
     MissingRequiredLetter { letter: char },
-    /// The receipt carries authority. A Prime Algorithm 0 receipt never may (CODA-5).
     AuthorityMinted { effect: String },
-    /// `letter_tape` disagrees with the executed steps it is supposed to summarise.
     TapeStepMismatch { tape: String, from_steps: String },
-    /// An `R` step moved Φ₁. A residual projection reports the residual; it does
-    /// not repair it, so Φ₁ either side of an `R` must agree.
     ResidualProjectionMovedPhi1 {
         prime_step: u8,
         before: Option<u64>,
         after: Option<u64>,
     },
-    /// A `D` step carried no loss ledger. Descent discards; discarding without
-    /// accounting for what was discarded is the failure this refuses.
     DescentWithoutLossLedger { prime_step: u8 },
-    /// A step's recorded `phi1_after` / `gamma2_after` contradicts the receipt's
-    /// own final masses. The per-step state is a derivation, never an independent
-    /// measurement, so any disagreement means one of the two was written by hand.
     StepMassesContradictReceipt {
         prime_step: u8,
         step_phi1: Option<u64>,
@@ -92,22 +38,10 @@ pub enum ReceiptViolation {
     },
 }
 
-/// The verdict for one receipt.
-///
-/// `Conforms` is deliberately reachable only when **nothing** was left unchecked.
-/// Because [`UNDECIDABLE_WITHOUT_PER_STEP_STATE`] is still non-empty, no receipt
-/// produced by the current runner can reach it — that is the point. The list has
-/// shrunk from five to three, so the gap is closing rather than permanent. The
-/// variant exists so the type can express real conformance if per-step state is
-/// ever recorded, and so that "no violation found" cannot be spelled the same way
-/// as "verified against every law".
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum ConformanceVerdict {
-    /// Every law was evaluated and none was violated.
     Conforms,
-    /// No decidable law was violated, but the named laws could not be evaluated.
     Partial { unchecked_laws: Vec<String> },
-    /// At least one decidable law was violated.
     Violated {
         violations: Vec<ReceiptViolation>,
         unchecked_laws: Vec<String>,
@@ -115,16 +49,10 @@ pub enum ConformanceVerdict {
 }
 
 impl ConformanceVerdict {
-    /// True only for [`ConformanceVerdict::Conforms`].
-    ///
-    /// Deliberately NOT `violations.is_empty()`. A receipt with no decidable
-    /// violation but unevaluated laws is `Partial`, and `Partial` is not
-    /// conformance.
     pub fn conforms(&self) -> bool {
         matches!(self, ConformanceVerdict::Conforms)
     }
 
-    /// True when no decidable law was violated — the weaker, honest predicate.
     pub fn no_decidable_violation(&self) -> bool {
         !matches!(self, ConformanceVerdict::Violated { .. })
     }
@@ -145,7 +73,6 @@ impl ConformanceVerdict {
     }
 }
 
-/// Per-receipt conformance result.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ReceiptConformance {
     pub domain: String,
@@ -153,14 +80,11 @@ pub struct ReceiptConformance {
     pub phi1: Option<u64>,
     pub gamma2: Option<u64>,
     pub terminal: String,
-    /// Carries both the violations and the obligations that went unevaluated.
     pub verdict: ConformanceVerdict,
-    /// Letters lawful here but rejected by `agent_contract::ACTIVE_OPERATIONS`.
     pub letters_unrepresentable_at_agent_surface: Vec<char>,
 }
 
 impl ReceiptConformance {
-    /// See [`ConformanceVerdict::conforms`] — true only under full verification.
     pub fn conforms(&self) -> bool {
         self.verdict.conforms()
     }
@@ -188,12 +112,10 @@ fn unchecked() -> Vec<String> {
         .collect()
 }
 
-/// Check one Prime Algorithm 0 receipt against the decidable letter laws.
 pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
     let allowed = alphabet_chars();
     let mut violations = Vec::new();
 
-    // T law: a tape that seals must not seal an Open residual.
     if r.letter_tape.contains('T') {
         if let Some(g) = r.gamma2 {
             if g != 0 {
@@ -202,7 +124,6 @@ pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
         }
     }
 
-    // Alphabet closure.
     let mut seen_foreign = Vec::new();
     for c in r.letter_tape.chars() {
         if !allowed.contains(&c) && !seen_foreign.contains(&c) {
@@ -211,24 +132,18 @@ pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
         }
     }
 
-    // Required letters.
     for req in REQUIRED_LETTERS {
         if !r.letter_tape.contains(req) {
             violations.push(ReceiptViolation::MissingRequiredLetter { letter: req });
         }
     }
 
-    // CODA-5: the receipt must not carry authority. Checked against the field, so
-    // a receipt constructed with authority is caught rather than defined away.
     if !r.authority_is_none() {
         violations.push(ReceiptViolation::AuthorityMinted {
             effect: format!("{:?}", r.authority_effect),
         });
     }
 
-    // Tape/step agreement. `letter_tape` is a summary of the executed steps; if the
-    // two disagree, every law decided from the tape was decided from a string that
-    // no longer describes the run. Receipt fields are public, so this is reachable.
     let from_steps: String = r.steps.iter().map(|s| s.op.as_str()).collect();
     if from_steps != r.letter_tape {
         violations.push(ReceiptViolation::TapeStepMismatch {
@@ -237,11 +152,6 @@ pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
         });
     }
 
-    // R law: a residual projection reports Φ₁, it does not move it.
-    //
-    // Previously listed as undecidable. It is decidable the moment the receipt
-    // records Φ₁ per step: walk the steps and compare each `R` against the state
-    // carried by the step before it.
     let mut prev_phi1: Option<u64> = None;
     let mut seen_first = false;
     for step in &r.steps {
@@ -256,11 +166,6 @@ pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
         seen_first = true;
     }
 
-    // D law: descent must account for what it discarded.
-    //
-    // No step this runner emits is a descent, so this never fires today — which is
-    // exactly why it is worth having: it is the guard that makes adding a `D`
-    // impossible without also adding its ledger.
     for step in &r.steps {
         if step.op == "D"
             && step
@@ -275,10 +180,6 @@ pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
         }
     }
 
-    // The per-step masses are a derivation of the receipt's own masses, so they
-    // cannot legitimately disagree. Receipt fields are public; this catches a
-    // hand-edited step record the same way TapeStepMismatch catches a hand-edited
-    // tape.
     for step in &r.steps {
         if step.prime_step >= 6 && step.phi1_after != r.phi1 {
             violations.push(ReceiptViolation::StepMassesContradictReceipt {
@@ -290,7 +191,6 @@ pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
         }
     }
 
-    // Observation, not a violation: letters no agent packet could carry.
     let mut unrepresentable: Vec<char> = Vec::new();
     for c in r.letter_tape.chars() {
         if allowed.contains(&c)
@@ -302,8 +202,6 @@ pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
     }
 
     let verdict = if violations.is_empty() {
-        // NOT `Conforms`: the laws in UNDECIDABLE_WITHOUT_PER_STEP_STATE were never
-        // evaluated, and a receipt cannot be called conformant on laws nobody ran.
         ConformanceVerdict::Partial {
             unchecked_laws: unchecked(),
         }
@@ -325,7 +223,6 @@ pub fn check_receipt(r: &PrimeAlgorithm0Receipt) -> ReceiptConformance {
     }
 }
 
-/// Check every receipt in the built-in Rosetta roster.
 pub fn check_builtin_roster() -> Vec<ReceiptConformance> {
     crate::prime_algos::rosetta::builtin_receipts()
         .iter()
@@ -338,10 +235,6 @@ mod tests {
     use super::*;
     use crate::prime_algos::prime_algorithm_0::{PrimeAlgorithm0Receipt, PrimeStepRecord};
 
-    /// A receipt with no decidable violation is `Partial`, never `Conforms`.
-    ///
-    /// This is the whole point of the type: "we found nothing wrong" and "we
-    /// checked everything" must not be the same value.
     #[test]
     fn clean_receipt_is_partial_not_conformant() {
         let roster = check_builtin_roster();
@@ -376,8 +269,6 @@ mod tests {
                 op: c.to_string(),
                 executed: c != 'M',
                 message: String::new(),
-                // prime_step 1 is before the masses exist, so `None` here is both
-                // correct and consistent with the receipt-cross-check.
                 phi1_after: None,
                 gamma2_after: None,
                 loss_ledger: None,
@@ -386,7 +277,6 @@ mod tests {
         r
     }
 
-    /// The T law fires: sealing an open residual is a violation.
     #[test]
     fn terminalizing_an_open_residual_is_a_violation() {
         let c = check_receipt(&receipt_with("CRT", Some(1)));
@@ -396,8 +286,6 @@ mod tests {
             .contains(&ReceiptViolation::TerminalizedOpenResidual { gamma2: 1 }));
     }
 
-    /// ...and does NOT fire when the residual is closed — so the check is not
-    /// unconditionally true.
     #[test]
     fn terminalizing_a_closed_residual_is_lawful() {
         let c = check_receipt(&receipt_with("CRT", Some(0)));
@@ -420,12 +308,10 @@ mod tests {
             .contains(&ReceiptViolation::ForeignLetter { letter: 'Z' }));
     }
 
-    /// A tape that disagrees with its own executed steps is caught. Receipt fields
-    /// are public, so this is reachable by any caller that edits one and not the other.
     #[test]
     fn tape_disagreeing_with_steps_is_a_violation() {
         let mut r = receipt_with("CRT", Some(0));
-        r.letter_tape = "CRTE".into(); // steps still spell CRT
+        r.letter_tape = "CRTE".into();
         let c = check_receipt(&r);
         assert!(
             c.violations()
@@ -436,16 +322,9 @@ mod tests {
         );
     }
 
-    /// The R law fires when a residual projection moves Φ₁.
-    ///
-    /// This law was listed as undecidable until the receipt began recording Φ₁ per
-    /// step. The test builds the exact situation the law forbids and asserts it is
-    /// caught -- without the per-step field there is nothing to compare and the
-    /// violation is unconstructible.
     #[test]
     fn r_step_moving_phi1_is_a_violation() {
         let mut r = receipt_with("CRT", Some(0));
-        // step 0 leaves Φ₁ = 1; the R at step 1 reports 4 instead.
         r.steps[0].phi1_after = Some(1);
         r.steps[1].phi1_after = Some(4);
         let c = check_receipt(&r);
@@ -463,8 +342,6 @@ mod tests {
         );
     }
 
-    /// ...and does NOT fire when Φ₁ is unchanged across the R, so the check is
-    /// not unconditionally true.
     #[test]
     fn r_step_preserving_phi1_is_lawful() {
         let mut r = receipt_with("CRT", Some(0));
@@ -481,11 +358,6 @@ mod tests {
         );
     }
 
-    /// The D law fires on a descent with no loss ledger.
-    ///
-    /// No step the runner emits is a descent, so this never fires in practice --
-    /// which is the point. It is the guard that makes adding a `D` impossible
-    /// without also accounting for what it discarded.
     #[test]
     fn descent_without_loss_ledger_is_a_violation() {
         let r = receipt_with("CRDT", Some(0));
@@ -499,7 +371,6 @@ mod tests {
         );
     }
 
-    /// ...and does not fire once the descent accounts for its loss.
     #[test]
     fn descent_with_a_populated_loss_ledger_is_lawful() {
         let mut r = receipt_with("CRDT", Some(0));
@@ -521,7 +392,6 @@ mod tests {
         );
     }
 
-    /// Per-step masses are a derivation, so they may not contradict the receipt.
     #[test]
     fn step_masses_contradicting_the_receipt_is_a_violation() {
         let mut r = receipt_with("CRT", Some(0));
@@ -538,10 +408,6 @@ mod tests {
         );
     }
 
-    /// The undecidable list shrank, and the two laws that left it are decided.
-    ///
-    /// Guards the correction directly: the removed D entry previously claimed
-    /// "no loss-ledger field is recorded anywhere", which was false of the estate.
     #[test]
     fn undecidable_list_shrank_by_exactly_the_newly_decidable_laws() {
         assert_eq!(UNDECIDABLE_WITHOUT_PER_STEP_STATE.len(), 3);

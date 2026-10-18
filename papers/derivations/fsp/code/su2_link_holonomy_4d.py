@@ -152,9 +152,7 @@ class Lattice4DSU2:
         if len(dims) != 4 or any(d <= 0 for d in dims):
             raise ValueError(f"Lattice dims must be a 4-tuple of positive ints, got {dims}")
         self.dims = dims
-        # Link storage: map (x0, x1, x2, x3, mu) -> ExactRationalSU2
         self._links: Dict[Tuple[int, int, int, int, int], ExactRationalSU2] = {}
-        # Initialize to identity
         for x0 in range(dims[0]):
             for x1 in range(dims[1]):
                 for x2 in range(dims[2]):
@@ -226,12 +224,10 @@ class Lattice4DSU2:
         for nu in range(4):
             if nu == mu:
                 continue
-            # Forward plaquette at x
             if mu < nu:
                 staple_action += self.plaquette_action(coord, mu, nu)
             else:
                 staple_action += self.plaquette_action(coord, nu, mu)
-            # Backward plaquette from x - nu
             x_minus_nu = coord.shift(nu, step=-1)
             if mu < nu:
                 staple_action += self.plaquette_action(x_minus_nu, mu, nu)
@@ -268,7 +264,6 @@ class Lattice4DSU2:
         s_tau = tau_lat.total_wilson_action()
         is_action_invariant = (s_orig == s_tau)
 
-        # Check unitarity and determinant across all links
         all_unitary = True
         for x0 in range(self.dims[0]):
             for x1 in range(self.dims[1]):
@@ -305,26 +300,20 @@ class Lattice4DSU2:
         if not (Fraction(0, 1) <= rational_random_threshold <= Fraction(1, 1)):
             raise ValueError(f"Random threshold must be in [0, 1], got {rational_random_threshold}")
 
-        # Compute initial local action
         old_action = self.local_staple_action(coord, mu)
         old_link = self.get_link(coord, mu)
 
-        # Temporarily apply candidate
         self.set_link(coord, mu, candidate_link)
         new_action = self.local_staple_action(coord, mu)
 
         delta_s = new_action - old_action
 
-        # Acceptance filter:
-        # If Delta S <= 0, accept immediately
         if delta_s <= Fraction(0, 1):
             return (True, delta_s)
 
-        # Rational acceptance probability: alpha = 1 / (1 + delta_s) in Q
         alpha = Fraction(1, 1) / (Fraction(1, 1) + delta_s)
         if rational_random_threshold <= alpha:
             return (True, delta_s)
 
-        # Reject: restore old link
         self.set_link(coord, mu, old_link)
         return (False, delta_s)

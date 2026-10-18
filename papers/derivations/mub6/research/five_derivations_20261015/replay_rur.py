@@ -21,7 +21,7 @@ from flint import arb, arb_poly, ctx, fmpq, fmpq_poly
 
 SCRIPTS = Path(__file__).resolve().parents[1] / "szollosi_vectors" / "scripts"
 sys.path.insert(0, str(SCRIPTS))
-from param import load_param  # noqa: E402
+from param import load_param
 
 
 def exact_dyadic(value: arb) -> fmpq:

@@ -1,20 +1,6 @@
-//! The finite carrier `Fin n = {0, ..., n-1}`.
-//!
-//! A carrier is determined by its cardinality, which is at least one. The field is
-//! private: a value comes from [`FinN::try_new`], so a zero-point carrier cannot be spelled
-//! and no consumer re-checks it. Products of carriers use row-major pair indexing, the
-//! convention shared by [`crate::simplex::ProbabilitySimplex::product`],
-//! [`crate::stochastic_map::StochasticMap::tensor`] and the joint tables of
-//! [`crate::joint_table`]: the pair `(i, j)` of `Fin n x Fin m` has index `i * m + j`.
-//!
-//! AuthorityEffect: None.
 
 use crate::error::ClassicalShadowError;
 
-/// `left * right`, refusing a product that does not fit in `usize`.
-///
-/// Every size product in this crate (pair carriers, product distributions, tensor maps,
-/// structural maps) goes through this one function.
 pub(crate) fn checked_size_product(
     left: usize,
     right: usize,
@@ -23,14 +9,12 @@ pub(crate) fn checked_size_product(
         .ok_or(ClassicalShadowError::SizeOverflow { left, right })
 }
 
-/// The finite set `{0, ..., n-1}` with `n >= 1`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct FinN {
     n: usize,
 }
 
 impl FinN {
-    /// `Fin n`, refusing `n = 0`.
     pub fn try_new(n: usize) -> Result<Self, ClassicalShadowError> {
         if n == 0 {
             return Err(ClassicalShadowError::ZeroCardinality);
@@ -38,32 +22,24 @@ impl FinN {
         Ok(Self { n })
     }
 
-    /// The number of points `n >= 1`.
     pub fn cardinality(&self) -> usize {
         self.n
     }
 
-    /// The points `0, 1, ..., n-1` in order.
     pub fn elements(&self) -> std::ops::Range<usize> {
         0..self.n
     }
 
-    /// Whether `index` names a point of the carrier.
     pub fn contains(&self, index: usize) -> bool {
         index < self.n
     }
 
-    /// The product carrier `Fin n x Fin m = Fin (n m)`, refusing a size that overflows.
     pub fn product(&self, other: &FinN) -> Result<FinN, ClassicalShadowError> {
         Ok(FinN {
             n: checked_size_product(self.n, other.n)?,
         })
     }
 
-    /// The row-major index `i * m + j` of the pair `(i, j)` in `self x other`.
-    ///
-    /// Refuses a point outside either factor, so the result is always a point of
-    /// [`FinN::product`].
     pub fn pair_index(
         &self,
         other: &FinN,
@@ -82,7 +58,6 @@ impl FinN {
                 bound: other.n,
             });
         }
-        // `i < n` and `j < m`, so `i * m + j < n * m`, which `product` checked.
         self.product(other)?;
         Ok(i * other.n + j)
     }
@@ -112,7 +87,6 @@ mod tests {
         let a = FinN::try_new(3).unwrap();
         let b = FinN::try_new(4).unwrap();
         assert_eq!(a.product(&b).unwrap().cardinality(), 12);
-        // Every pair gets a distinct index in 0..12, and the order is row-major.
         let mut seen = vec![false; 12];
         for i in 0..3 {
             for j in 0..4 {

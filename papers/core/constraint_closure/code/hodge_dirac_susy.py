@@ -41,29 +41,20 @@ def build_operators_glued_triangles():
     Face f0=(v0,v1,v2): boundary e0 + e1 + e2
     Face f1=(v0,v1,v3): boundary e0 + e3 + e4
     """
-    # d0: 5 edges x 4 vertices
-    # e0=(v0,v1): -v0 + v1
-    # e1=(v1,v2): -v1 + v2
-    # e2=(v2,v0): -v2 + v0
-    # e3=(v1,v3): -v1 + v3
-    # e4=(v3,v0): -v3 + v0
     d0 = np.array(
         [
-            [-1, 1, 0, 0],  # e0
-            [0, -1, 1, 0],  # e1
-            [1, 0, -1, 0],  # e2
-            [0, -1, 0, 1],  # e3
-            [1, 0, 0, -1],  # e4
+            [-1, 1, 0, 0],
+            [0, -1, 1, 0],
+            [1, 0, -1, 0],
+            [0, -1, 0, 1],
+            [1, 0, 0, -1],
         ],
         dtype=float,
     )
-    # d1: 2 faces x 5 edges
-    # f0 = e0 + e1 + e2
-    # f1 = e0 + e3 + e4
     d1 = np.array(
         [
-            [1, 1, 1, 0, 0],  # f0
-            [1, 0, 0, 1, 1],  # f1
+            [1, 1, 1, 0, 0],
+            [1, 0, 0, 1, 1],
         ],
         dtype=float,
     )
@@ -86,11 +77,9 @@ def build_dirac_operator(d0: np.ndarray, d1: np.ndarray) -> np.ndarray:
 
     D = np.zeros((n_total, n_total), dtype=float)
 
-    # Top-right block: d0^T (n_vert x n_edge) and d1 (n_face x n_edge)
     D[:n_vert, n_even:] = d0.T
     D[n_vert:n_even, n_even:] = d1
 
-    # Bottom-left block: d0 (n_edge x n_vert) and d1^T (n_edge x n_face)
     D[n_even:, :n_vert] = d0
     D[n_even:, n_vert:n_even] = d1.T
 
@@ -116,10 +105,8 @@ def compute_laplacians(d0: np.ndarray, d1: np.ndarray) -> dict:
     evals_2 = np.sort(np.linalg.eigvalsh(Delta_2))
     evals_1 = np.sort(np.linalg.eigvalsh(Delta_1_filled))
 
-    # Even sector eigenvalues (combined)
     evals_even = np.sort(np.concatenate([evals_0, evals_2]))
 
-    # Witten index: dim ker(even) - dim ker(odd)
     n_zero_even = np.sum(np.abs(evals_even) < 1e-10)
     n_zero_odd = np.sum(np.abs(evals_1) < 1e-10)
     witten_index = int(n_zero_even - n_zero_odd)
@@ -142,13 +129,10 @@ def verify_susy_single_simplex() -> dict:
     """Complete verification of Hodge-Dirac supersymmetry on Δ^2."""
     d0, d1 = build_operators_single_simplex()
 
-    # Nilpotency
     nilpotent = np.allclose(d1 @ d0, 0)
 
-    # Laplacians
     laps = compute_laplacians(d0, d1)
 
-    # D^2 check
     D = build_dirac_operator(d0, d1)
     D2 = D @ D
     n_vert = 3
@@ -162,21 +146,16 @@ def verify_susy_single_simplex() -> dict:
     ])
     d2_matches = np.allclose(D2, D2_expected)
 
-    # Self-adjoint
     self_adjoint = np.allclose(D, D.T)
 
-    # Anticommutation with grading
     Gamma = np.diag([1] * n_even + [-1] * n_edge)
     anticommutes = np.allclose(D @ Gamma + Gamma @ D, 0)
 
-    # H^1 rank drop
     rank_d0 = np.linalg.matrix_rank(d0)
-    dim_ker_d0_star = n_edge - rank_d0  # dim H^1(boundary) for hollow
-    # With face: ker(d1) ∩ ker(d0^T)^⊥... H^1(filled) = ker(d1)/im(d0)
-    dim_h1_hollow = n_edge - np.linalg.matrix_rank(d0)  # = 1 on C3
-    # With face attached
+    dim_ker_d0_star = n_edge - rank_d0
+    dim_h1_hollow = n_edge - np.linalg.matrix_rank(d0)
     rank_d1 = np.linalg.matrix_rank(d1)
-    dim_h1_filled = n_edge - np.linalg.matrix_rank(d0) - rank_d1  # = 0
+    dim_h1_filled = n_edge - np.linalg.matrix_rank(d0) - rank_d1
 
     return {
         "nilpotent": nilpotent,

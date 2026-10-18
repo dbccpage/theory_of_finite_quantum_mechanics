@@ -29,7 +29,6 @@ import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-# Path setup
 DEMOS_DIR = Path(__file__).resolve().parent.parent
 CODE_DIR = DEMOS_DIR.parent / "code"
 REPO_ROOT = DEMOS_DIR.parents[2]
@@ -38,10 +37,10 @@ if str(CODE_DIR) not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
-from oracle import BlindClusterOracle  # noqa: E402
-from symbol_game_stage_controller import SymbolGameStageController  # noqa: E402
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from blind_problem import assert_lexical_hygiene
+from oracle import BlindClusterOracle
+from symbol_game_stage_controller import SymbolGameStageController
+from omega_engine_pfp.domain.tower.parser import (
     parse_packet,
     validate_packet_semantics,
     GAMMA_38,
@@ -161,7 +160,6 @@ def extract_turn_metrics(
     latency = resp_data.get("client_latency", 0.0)
     tokens_per_sec = (completion_tokens / latency) if latency > 0 else 0.0
 
-    # Lift request detection (Turn 3)
     lift_requested = False
     proposed_involution = ""
     if turn_spec["turn"] == 3:
@@ -170,7 +168,6 @@ def extract_turn_metrics(
             lift_requested = True
             proposed_involution = "tau_i: s_i -> -s_i on odd-winding cycle"
 
-    # Exact repair detection (Turn 4)
     exact_repair_achieved = False
     if turn_spec["turn"] == 4:
         if "912" in content and "199" in content:
@@ -294,7 +291,6 @@ def main() -> int:
         print(f"\nLive trial complete. Results written to: {out_path}")
         return 0 if receipt["verified"] else 1
 
-    # Offline replay
     print("\n[REPLAY MODE] Verifying certified multi-turn interactive trial receipts offline...")
     receipt = replay_certified_multiturn_trial()
     print(f"Trial ID: {receipt['trial_id']}")

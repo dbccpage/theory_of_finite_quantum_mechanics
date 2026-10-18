@@ -1,24 +1,10 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import WorldPresentation
 
-/-!
-# F3: finite repair exhaustion and verified one-generator lifts
 
-The result is relative to one explicitly declared finite move list.  Exhaustion
-permits a proposal; it does not derive necessity, minimality, conservativity, or
-authority.  Those are separate proof fields in `VerifiedOneGeneratorLift`.
--/
 
 namespace OmegaWorld
 
-/-- No declared move in `moves` strictly lowers the score at `state`. -/
 def Exhausted {State Move : Type} (score : State -> Nat)
     (applyMove : Move -> State -> State) (moves : List Move) (state : State) : Prop :=
   forall move, move ∈ moves -> score state ≤ score (applyMove move state)
@@ -33,7 +19,6 @@ theorem not_exhausted_of_improving {State Move : Type}
   have noDecrease := exhausted move member
   exact (Nat.not_lt_of_ge noDecrease) improves
 
-/-- Replay data for every member of one frozen, finite repair universe. -/
 structure ExhaustionReceipt (State Move : Type) where
   score : State -> Nat
   applyMove : Move -> State -> State
@@ -54,7 +39,6 @@ inductive LiftRefusal where
   | missingExhaustion
   deriving DecidableEq
 
-/-- A proposal cannot pass the first lift gate without an exhaustion receipt. -/
 def requireExhaustion {State Move : Type}
     (receipt : Option (ExhaustionReceipt State Move)) :
     Except LiftRefusal (ExhaustionReceipt State Move) :=
@@ -67,11 +51,6 @@ theorem survivor_without_exhaustion_refuses {State Move : Type} :
       .error .missingExhaustion := by
   rfl
 
-/--
-The single generator is a field, not a list.  Exhaustion, round-trip descent,
-old-judgment preservation, resolution, and removal-based minimality are
-independent proof obligations.
--/
 structure VerifiedOneGeneratorLift (source target : Presentation) where
   generatorId : String
   generator_nonempty : generatorId ≠ ""
@@ -145,3 +124,6 @@ theorem preserves_zero_rel
 
 end VerifiedOneGeneratorLift
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldLiftExhaustion.lean Claim: not_exhausted_of_improving AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

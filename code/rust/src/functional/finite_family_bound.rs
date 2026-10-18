@@ -1,8 +1,3 @@
-//! Exact quadratic density bounds for a supplied finite family.
-//!
-//! Migrated from the Majorana paper's `family_bound.py`. The supplied rates,
-//! interaction bounds and finite counts are premises, not computed dynamics.
-//! Acceptance certifies these rows and the displayed arithmetic only.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -95,7 +90,6 @@ impl FiniteFamilyMember {
     }
 
     pub fn active_edge_density(&self) -> Rational {
-        // The constructor and evaluation boundary validate positive counts.
         integer(self.active_edge_rates.len()) / integer(self.edge_count)
     }
 
@@ -150,9 +144,6 @@ impl UniformFamilyBoundCertificate {
     }
 }
 
-/// Check every supplied member before computing `nu*t - 24*g^2*t^2`.
-/// Invalid value objects are errors; well-formed failed premises produce a
-/// refused certificate with no member bounds or conclusion fields.
 pub fn certify_uniform_family(
     members: &[FiniteFamilyMember],
     premises: &UniformFamilyPremises,

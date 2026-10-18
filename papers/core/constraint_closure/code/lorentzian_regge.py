@@ -29,7 +29,6 @@ class Lorentzian4Complex:
     four_simplices: List[Tuple[int, ...]] = field(default_factory=list)
     tol: float = 1e-10
 
-    # Cell caches by dimension k in {0, 1, 2, 3, 4}
     cells: Dict[int, List[Tuple[int, ...]]] = field(default_factory=dict, init=False)
     _boundary_cache: Dict[int, np.ndarray] = field(default_factory=dict, init=False)
 
@@ -41,33 +40,28 @@ class Lorentzian4Complex:
         self._boundary_cache.clear()
         self.cells = {0: [], 1: [], 2: [], 3: [], 4: []}
 
-        # Canonicalize 4-simplices
         canon_4 = sorted(list(set(tuple(sorted(s)) for s in self.four_simplices)))
         self.four_simplices = canon_4
         self.cells[4] = list(canon_4)
 
-        # Downward closure: 3-simplices (tetrahedra)
         c3 = set()
         for s in self.cells[4]:
             for i in range(5):
                 c3.add(tuple(sorted(s[:i] + s[i + 1 :])))
         self.cells[3] = sorted(list(c3))
 
-        # 2-simplices (triangles / hinges)
         c2 = set()
         for s in self.cells[3]:
             for i in range(4):
                 c2.add(tuple(sorted(s[:i] + s[i + 1 :])))
         self.cells[2] = sorted(list(c2))
 
-        # 1-simplices (edges)
         c1 = set()
         for s in self.cells[2]:
             for i in range(3):
                 c1.add(tuple(sorted(s[:i] + s[i + 1 :])))
         self.cells[1] = sorted(list(c1))
 
-        # 0-simplices (vertices)
         c0 = sorted(list(set((v,) for v in self.vertices.keys())))
         self.cells[0] = c0
 
@@ -105,9 +99,6 @@ class Lorentzian4Complex:
             + self.num_four_simplices
         )
 
-    # ------------------------------------------------------------------
-    # Lorentzian Geometry & Minkowski Metrics
-    # ------------------------------------------------------------------
 
     def edge_vector(self, edge: Tuple[int, int]) -> np.ndarray:
         """Displacement 4-vector Delta x = x_v - x_u."""
@@ -120,7 +111,6 @@ class Lorentzian4Complex:
         Uses Minkowski metric convention eta = diag(-1, +1, +1, +1).
         """
         dx = self.edge_vector(edge)
-        # dx[0] is time t, dx[1:] is spatial
         dt2 = float(dx[0] ** 2)
         dr2 = float(np.sum(dx[1:] ** 2))
         return dr2 - dt2
@@ -149,9 +139,6 @@ class Lorentzian4Complex:
                 counts["null"] += 1
         return counts
 
-    # ------------------------------------------------------------------
-    # Simplicial Operators & Boundary Matrices
-    # ------------------------------------------------------------------
 
     def boundary_matrix(self, k: int) -> np.ndarray:
         """Assemble boundary operator matrix partial_k: C_k -> C_{k-1}."""
@@ -205,9 +192,6 @@ class Lorentzian4Complex:
                 tetra_counts[t] = tetra_counts.get(t, 0) + 1
         return {t for t, count in tetra_counts.items() if count == 1}
 
-    # ------------------------------------------------------------------
-    # Simplicial Bianchi Operator
-    # ------------------------------------------------------------------
 
     def bianchi_flux(self, curvature_2cochain: np.ndarray) -> np.ndarray:
         """Evaluate discrete Bianchi 3-flux: d_2 omega_R on tetrahedra C_3.
@@ -234,9 +218,6 @@ class Lorentzian4Complex:
             "authority_effect": "None",
         }
 
-    # ------------------------------------------------------------------
-    # Adaptive Subdivision Operations
-    # ------------------------------------------------------------------
 
     def stellar_subdivide(self, simplex_idx: int) -> Tuple[int, List[Tuple[int, ...]]]:
         """Perform 1-to-5 stellar subdivision (Pachner move 1 -> 5) on 4-simplex.
@@ -255,14 +236,11 @@ class Lorentzian4Complex:
 
         target = self.cells[4][simplex_idx]
 
-        # Allocate new vertex identifier
         new_v_id = max(self.vertices.keys()) + 1 if self.vertices else 0
-        # Compute barycenter coordinates in Minkowski space
         target_coords = [self.vertices[v] for v in target]
         barycenter = np.mean(target_coords, axis=0)
         self.vertices[new_v_id] = barycenter
 
-        # Replace target with five daughter 4-simplices
         new_four_simplices = [s for i, s in enumerate(self.four_simplices) if i != simplex_idx]
         daughters = []
         for i in range(5):
@@ -288,7 +266,6 @@ class Lorentzian4Complex:
         midpoint = 0.5 * (self.vertices[u] + self.vertices[v])
         self.vertices[new_v_id] = midpoint
 
-        # Split 4-simplices containing both u and v
         new_fours = []
         for s in self.four_simplices:
             if u in s and v in s:

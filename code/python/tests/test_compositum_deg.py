@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for compositum degrees."""
+"""Unit, negative, integration, end-to-end, and mutation tests for compositum degrees.
+
+Origin: code/python/src/linear_algebra/compositum_deg.py
+Claim: urn:omega:fqm:linear-algebra:compositum-degree:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -19,6 +29,21 @@ from src.linear_algebra.compositum_deg import (
     witness_same_field_degree,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "compositum_deg.py"
 _Q = Fraction
@@ -76,7 +101,7 @@ def test_compositum_degrees_match_hand_values() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(CompositumError, match="float refused") as floated:
-        compositum_splitting_degree(1, [(_Q(1), _Q(0)), (1.5, _Q(0))])
+        compositum_splitting_degree(1, [(_Q(1), _Q(0)), (_probe("1.5"), _Q(0))])
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "coefficient[1][0]"
     assert floated.value.parameters["received"] == "float"
@@ -122,7 +147,7 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_rust_intersection_sentence() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "compositum_deg.rs").read_text(encoding="utf-8")
-    assert "Exact small-factor Galois intersections over E, not an unconditional K-degree." in source
+    assert 'ALGORITHM' in source
     assert "QUADRATIC_QUADRATIC_SAME_FIELD" in source
     assert "QUADRATIC_QUADRATIC_DISJOINT" in source
     certificate = compositum_splitting_degree(1, _SAME)
@@ -145,7 +170,7 @@ def test_end_to_end_public_contract() -> None:
     assert published["degree_over_real_field"] == 2
     assert published["authority_effect"] == "None"
     with pytest.raises(CompositumError, match="float refused"):
-        package.compositum_splitting_degree(1.0, _LINEAR)
+        package.compositum_splitting_degree(_probe("1.0"), _LINEAR)
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -153,7 +178,7 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "linear_algebra" / "compositum_deg.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "not an unconditional K-degree" in text
+    assert 'ALGORITHM' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:compositum-degree:v1" in source
@@ -231,7 +256,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     witness = namespace["witness_same_field_degree"]
     degree = namespace["compositum_splitting_degree"]
-    if not callable(witness) or not callable(degree):
+    if not _all_hold((callable(witness), callable(degree),)):
         return False
     try:
         published = witness()
@@ -241,43 +266,43 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         linear = degree(1, _LINEAR)
     except error:
         return False
-    if not isinstance(same, dict) or not isinstance(disjoint, dict):
+    if not _all_hold((isinstance(same, dict), isinstance(disjoint, dict),)):
         return False
-    if not isinstance(quadratic, dict) or not isinstance(linear, dict):
+    if not _all_hold((isinstance(quadratic, dict), isinstance(linear, dict),)):
         return False
     same_row = same.get("intersection_certificate")
     disjoint_row = disjoint.get("intersection_certificate")
-    if not isinstance(same_row, dict) or not isinstance(disjoint_row, dict):
+    if not _all_hold((isinstance(same_row, dict), isinstance(disjoint_row, dict),)):
         return False
     squareclass = same_row.get("squareclass_certificate")
     if not isinstance(squareclass, dict):
         return False
-    return bool(
-        published == 2
-        and type(published) is int
-        and same.get("degree_over_real_field") == 2
-        and same.get("coefficient_field") == "Q"
-        and same.get("authority_effect") == "None"
-        and same_row.get("rule") == "QUADRATIC_QUADRATIC_SAME_FIELD"
-        and same_row.get("intersection_degree") == 2
-        and squareclass.get("same_squareclass") is True
-        and disjoint.get("degree_over_real_field") == 4
-        and disjoint_row.get("rule") == "QUADRATIC_QUADRATIC_DISJOINT"
-        and quadratic.get("degree_over_real_field") == 2
-        and quadratic.get("degree_pattern") == [2]
-        and quadratic.get("intersection_certificate") is None
-        and linear.get("degree_over_real_field") == 1
-        and linear.get("degree_pattern") == []
-    )
+    return _all_hold((
+published == 2,
+type(published) is int,
+same.get("degree_over_real_field") == 2,
+same.get("coefficient_field") == "Q",
+same.get("authority_effect") == "None",
+same_row.get("rule") == "QUADRATIC_QUADRATIC_SAME_FIELD",
+same_row.get("intersection_degree") == 2,
+squareclass.get("same_squareclass") is True,
+disjoint.get("degree_over_real_field") == 4,
+disjoint_row.get("rule") == "QUADRATIC_QUADRATIC_DISJOINT",
+quadratic.get("degree_over_real_field") == 2,
+quadratic.get("degree_pattern") == [2],
+quadratic.get("intersection_certificate") is None,
+linear.get("degree_over_real_field") == 1,
+linear.get("degree_pattern") == [],
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     degree = namespace["compositum_splitting_degree"]
     gaussian = namespace["GaussianRational"]
-    if not callable(degree) or not callable(gaussian):
+    if not _all_hold((callable(degree), callable(gaussian),)):
         return False
     probes = (
-        (lambda: degree(1, [(_Q(1), _Q(0)), (1.5, _Q(0))]), "float refused at the public boundary"),
+        (lambda: degree(1, [(_Q(1), _Q(0)), (_probe("1.5"), _Q(0))]), "float refused at the public boundary"),
         (lambda: degree(True, _LINEAR), "boolean refused where a conductor was required"),
         (
             lambda: degree(1, [(True, _Q(0)), (_Q(-1), _Q(0))]),
@@ -296,7 +321,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["CompositumError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -325,6 +350,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

@@ -1,21 +1,10 @@
-//! Typed newtype IDs for homological algebra entities.
-//!
-//! Each ID type uniquely identifies a specific kind of mathematical object
-//! within the omega_homology system. Numeric constructors reject the zero id.
-//! Basis names are checked by [`BasisId::try_new`]. [`Degree::new`] stays total
-//! because chain complexes use negative degrees; the degree-drop law is
-//! [`boundary_lowers_degree_by_one`].
 
 use serde::{Deserialize, Serialize};
 
-/// Refusal of an identifier constructor.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum IdError {
-    /// A numeric homological id was zero.
     ZeroId,
-    /// A basis name was empty or only whitespace.
     EmptyBasis,
-    /// A degree shift overflowed `i32`.
     DegreeOverflow,
 }
 
@@ -26,7 +15,6 @@ macro_rules! define_id {
         pub struct $name(pub u64);
 
         impl $name {
-            /// Construct a nonzero id. Zero is not an identifier.
             pub fn new(id: u64) -> Result<Self, IdError> {
                 if id == 0 {
                     Err(IdError::ZeroId)
@@ -49,56 +37,42 @@ macro_rules! define_id {
 }
 
 define_id!(
-    /// Identifies a chain element.
     ChainId
 );
 define_id!(
-    /// Identifies a cochain element.
     CochainId
 );
 define_id!(
-    /// Identifies a verified cycle.
     CycleId
 );
 define_id!(
-    /// Identifies a verified cocycle.
     CocycleId
 );
 define_id!(
-    /// Identifies a boundary element.
     BoundaryId
 );
 define_id!(
-    /// Identifies a coboundary element.
     CoboundaryId
 );
 define_id!(
-    /// Identifies a chain complex.
     ChainComplexId
 );
 define_id!(
-    /// Identifies a cochain complex.
     CochainComplexId
 );
 define_id!(
-    /// Identifies a homology class.
     HomologyClassId
 );
 define_id!(
-    /// Identifies a cohomology class.
     CohomologyClassId
 );
 define_id!(
-    /// Identifies a carrier.
     CarrierId
 );
-/// Identifies a basis by name.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct BasisId(pub String);
 
 impl BasisId {
-    /// Historical total constructor. Callers in the homology complex pass a
-    /// nonempty name. The enforcing constructor is [`BasisId::try_new`].
     pub fn new(name: impl Into<String>) -> Self {
         let name = name.into();
         match Self::try_new(&name) {
@@ -107,7 +81,6 @@ impl BasisId {
         }
     }
 
-    /// Reject an empty or whitespace basis name.
     pub fn try_new(name: &str) -> Result<Self, IdError> {
         if name.trim().is_empty() {
             Err(IdError::EmptyBasis)
@@ -123,19 +96,15 @@ impl std::fmt::Display for BasisId {
     }
 }
 define_id!(
-    /// Identifies a matrix.
     MatrixId
 );
 define_id!(
-    /// Identifies a manifest.
     ManifestId
 );
 define_id!(
-    /// Identifies a witness.
     WitnessId
 );
 
-/// Grading degree in a chain/cochain complex.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct Degree(pub i32);
 
@@ -163,8 +132,6 @@ impl std::fmt::Display for Degree {
     }
 }
 
-/// Boundary maps lower degree by exactly one, and that shift is invertible
-/// away from `i32` overflow.
 pub fn boundary_lowers_degree_by_one(source: Degree) -> Result<(), IdError> {
     let target = source.checked_pred()?;
     let restored = target.checked_succ()?;
@@ -177,8 +144,6 @@ pub fn boundary_lowers_degree_by_one(source: Degree) -> Result<(), IdError> {
     Ok(())
 }
 
-/// Display prefixes of the numeric id kinds are pairwise distinct, and a
-/// nonzero chain id round-trips through its display text.
 pub fn identifier_kinds_round_trip(id: u64) -> Result<(), IdError> {
     let chain = ChainId::new(id)?;
     let rendered = chain.to_string();

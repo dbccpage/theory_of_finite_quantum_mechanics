@@ -81,16 +81,13 @@ def verify_prime_power_chain_category_laws(chain: List[int]) -> Dict[str, Any]:
         raise ValueError("A directed subsystem needs a nonempty list of dimensions.")
     for dimension in chain:
         _require_dimension(dimension)
-    # Check pairwise divisibility along chain; do not disable validation with -O.
     for i in range(len(chain) - 1):
         if chain[i + 1] % chain[i] != 0:
             raise ValueError(f"{chain[i]} does not divide {chain[i+1]}")
 
-    # Verify composition of multiplicity factors
     pairs_tested = 0
     for i in range(len(chain)):
         d1 = chain[i]
-        # Identity: k = d1 / d1 = 1
         assert d1 // d1 == 1
         for j in range(i + 1, len(chain)):
             d2 = chain[j]

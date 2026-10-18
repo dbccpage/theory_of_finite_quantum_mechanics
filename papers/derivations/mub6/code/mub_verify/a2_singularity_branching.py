@@ -55,7 +55,7 @@ from .a1_collar_swarm import load_governor_module
 
 def compute_nontrivial_d(a: Fraction, b: Fraction, c: Fraction) -> Fraction:
     """Compute exact rational d on the non-trivial branch of (a-1)(d-1) = (b-1)(c-1).
-    
+
     Requires a != 1.
     """
     if a == 1:
@@ -66,32 +66,27 @@ def compute_nontrivial_d(a: Fraction, b: Fraction, c: Fraction) -> Fraction:
 def generate_nontrivial_variety_points():
     """Verify that points on the non-trivial branch have det = 0 and Phi_1 = 0."""
     gov_mod = load_governor_module()
-    
+
     test_cases = [
-        # (a, b, c) where a != c and b != d
         (Fraction(2), Fraction(3), Fraction(4)),
         (Fraction(3, 2), Fraction(5, 3), Fraction(7, 5)),
         (Fraction(-1), Fraction(2), Fraction(-3)),
         (Fraction(1, 3), Fraction(2, 5), Fraction(3, 7)),
         (Fraction(4, 5), Fraction(6, 7), Fraction(8, 9)),
     ]
-    
+
     results = []
     for a, b, c in test_cases:
         d = compute_nontrivial_d(a, b, c)
-        
-        # Verify a != c and b != d (ensuring non-triviality)
+
         is_nontrivial = (a != c) and (b != d)
-        
-        # Factorized formula
+
         factored_det = (a - 1) * (d - 1) - (b - 1) * (c - 1)
-        
-        # Standard corner formula
+
         standard_det = a * d - b * c - a + b + c - d
-        
-        # Run through full L1 Symbol Game Governor
+
         det_val, phi1, gov = verify_witness(a, b, c, d, gov_mod)
-        
+
         results.append({
             "a": str(a),
             "b": str(b),
@@ -104,22 +99,21 @@ def generate_nontrivial_variety_points():
             "phi1": str(phi1),
             "admitted": (phi1 == 0),
         })
-    
+
     return results
 
 
 def generate_negative_control_off_variety():
     """Verify that perturbed points off the variety have det != 0 and Phi_1 > 0."""
     gov_mod = load_governor_module()
-    
-    # Take a valid point on variety and perturb d by delta
+
     a = Fraction(2)
     b = Fraction(3)
     c = Fraction(4)
-    d_exact = compute_nontrivial_d(a, b, c) # d = 1 + (2 * 3) / 1 = 7
-    
+    d_exact = compute_nontrivial_d(a, b, c)
+
     deltas = [Fraction(1, 10), Fraction(-1, 5), Fraction(1), Fraction(2)]
-    
+
     perturb_results = []
     for delta in deltas:
         d_perturbed = d_exact + delta
@@ -131,7 +125,7 @@ def generate_negative_control_off_variety():
             "phi1_equals_abs_det": (phi1 == abs(det_val)),
             "admitted": (phi1 == 0),
         })
-    
+
     return perturb_results
 
 
@@ -139,7 +133,7 @@ def run_a2_derivation_session():
     """Execute complete A2 verification and save report."""
     nontrivial_results = generate_nontrivial_variety_points()
     negative_controls = generate_negative_control_off_variety()
-    
+
     report_data = {
         "target": "A2 (Singular Cusp Branching)",
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -153,14 +147,14 @@ def run_a2_derivation_session():
             "all_phi1_match_abs_det": all(r["phi1_equals_abs_det"] for r in negative_controls),
         }
     }
-    
+
     base = os.path.join(os.path.dirname(__file__), "..", "..", "..", "research")
     os.makedirs(base, exist_ok=True)
-    
+
     json_path = os.path.join(base, "a2_singularity_branching_receipt.json")
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(report_data, f, indent=2)
-        
+
     md_path = os.path.join(base, "a2_singularity_branching_report.md")
     with open(md_path, "w", encoding="utf-8") as f:
         f.write("# Target A2: Singular Cusp Branching & Variety Decomposition\n\n")
@@ -192,7 +186,7 @@ def run_a2_derivation_session():
         f.write("$$\\sin(\\theta_1 / 2) \\sin(\\theta_4 / 2) = \\sin(\\theta_2 / 2) \\sin(\\theta_3 / 2)$$\n")
         f.write("$$\\theta_1 + \\theta_4 \\equiv \\theta_2 + \\theta_3 \\pmod{2\\pi}$$\n\n")
         f.write("This specifies the singular boundary locus where corner coordinates degenerate, completing the algebraic foundation of Target A2.\n")
-        
+
     print(f"A2 Derivation Complete.")
     print(f"JSON Receipt: {json_path}")
     print(f"Report: {md_path}")

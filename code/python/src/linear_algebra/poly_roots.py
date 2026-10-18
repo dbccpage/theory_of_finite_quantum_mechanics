@@ -20,8 +20,6 @@ from . import cyclo_density as field
 from . import entropy_dichotomy as kernel
 
 
-# Entropy-kernel polynomial routines are annotated over Q but evaluate field
-# operations. Returned coefficients are lifted back onto this cyclotomic carrier.
 REPRESENTATION = "ORDERED_REAL_POLYNOMIAL_ROOTS_V1"
 SCOPE = "EXACT_ROOT_IDENTITIES_NO_SPLITTING_DEGREE_OR_DEPENDENCE"
 Polynomial = list[field.Cyclotomic]

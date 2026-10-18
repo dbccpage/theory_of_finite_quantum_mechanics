@@ -1,9 +1,3 @@
-//! Exact first-order leakage for declared rational idempotents and a generator.
-//!
-//! t ||(I-P) G P||_1 bounds the operator leakage of the Euler step, not the
-//! finite-time exponential without an additional remainder estimate. In
-//! particular a nonzero G^2 can contribute a nonzero t^2/2 term.
-//! Matrix arithmetic belongs to linear_algebra; norms use this crate's owner.
 
 use crate::residual_splitting::{weighted_l1_operator_norm, ResidualSplittingError};
 use crate::Phi1Functional;
@@ -34,7 +28,6 @@ pub enum ProjectionLeakageError {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ProjectionLeakage {
     pub commutator_l1: Q,
-    /// P1 P2 psi; the product need not itself be an idempotent.
     pub product_state: Vec<Q>,
     pub product_residual_l1: Q,
     pub first_order_operator_bound: Q,

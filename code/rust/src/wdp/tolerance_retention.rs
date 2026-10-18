@@ -1,6 +1,3 @@
-//! Declared tolerance analysis of an existing WDP total retention packet.
-//! The full report alphabet is explicit and may include unrealized reports.
-//! A greatest forward relation is not presented as an equivalence quotient.
 
 use crate::error::WdpError;
 use crate::retention::RetentionPacket;

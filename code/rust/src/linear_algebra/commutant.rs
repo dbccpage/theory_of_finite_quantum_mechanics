@@ -1,7 +1,3 @@
-//! Exact centralizers of a finite matrix family, with replayed commutation.
-//! The linear equations use row-major matrix coordinates. All dimensions,
-//! construction work, elimination work and basis storage are bounded before allocation.
-//! AuthorityEffect: None.
 use super::{charge, element_count, plus, times, ExactFieldError};
 use super::{elimination, matrix};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
@@ -44,7 +40,6 @@ fn system<F: Field + ExactRing>(
         value
     })
 }
-/// Dimension of the common centralizer; an empty family centralizes every matrix.
 pub fn commutant_dimension_with_limits<F: Field + ExactRing>(
     n: usize,
     generators: &[BasicMatrix<F>],
@@ -58,7 +53,6 @@ pub fn commutant_dimension_with_limits<F: Field + ExactRing>(
     let equations = system(n, generators, limits)?;
     Ok(vars - elimination::rank_with_limits(&equations, limits)?)
 }
-/// Construct an exact basis and independently replay every commutator.
 pub fn commutant_basis_with_limits<F: Field + ExactRing>(
     n: usize,
     generators: &[BasicMatrix<F>],

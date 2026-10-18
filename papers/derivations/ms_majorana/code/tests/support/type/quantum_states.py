@@ -19,9 +19,6 @@ class QuantumState:
     amplitudes: np.ndarray
 
     def __post_init__(self):
-        # Lightweight, non-authority coercion: accept any array-like and ensure
-        # the stored value is a finite numeric ndarray. No normalization,
-        # dimension, dtype, or positivity validation is performed.
         arr = np.asarray(self.amplitudes)
         if arr.size and np.issubdtype(arr.dtype, np.number):
             if not np.all(np.isfinite(arr)):

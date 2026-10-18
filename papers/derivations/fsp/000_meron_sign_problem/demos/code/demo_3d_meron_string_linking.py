@@ -26,7 +26,6 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Sequence, Tuple
 
-# Path setup for operations and symbol game imports
 DEMOS_DIR = Path(__file__).resolve().parent.parent
 CODE_DIR = DEMOS_DIR.parent / "code"
 REPO_ROOT = DEMOS_DIR
@@ -42,15 +41,15 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     serialize_packet,
     validate_packet_semantics,
 )
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
-from topological_meron_3d import (  # noqa: E402
+from blind_problem import assert_lexical_hygiene
+from topological_meron_3d import (
     ClosedStringLoop3D,
     Lattice3D,
     build_hopf_link_pair,
@@ -66,9 +65,6 @@ SYMBOLIC_3D_STRING_DAG_TRACE = RESULTS_DIR / "symbol_game_3d_meron_string_dag.js
 CERTIFIED_3D_STRING_RECEIPT = RESULTS_DIR / "certified_3d_meron_string_results.json"
 
 
-# ============================================================================
-# Section 1: 3D String Cluster Ensemble Architecture
-# ============================================================================
 
 
 class MeronStringCluster3D:
@@ -202,7 +198,6 @@ def build_canonical_3d_string_ensemble(
     lattice = Lattice3D(dim)
     ensemble = MeronString3DEnsemble(lattice)
 
-    # 1. Contractible plaquette loop (even sector)
     p_loop = build_plaquette_loop("xy", origin=(0, 0, 0), size=2, lattice_dim=dim, loop_id="p_loop")
     ensemble.add_cluster(
         MeronStringCluster3D(
@@ -214,7 +209,6 @@ def build_canonical_3d_string_ensemble(
         )
     )
 
-    # 2. Hopf link pair (even sector, non-trivial linking Lk = 1)
     h1, h2 = build_hopf_link_pair(origin=(1, 1, 1), lattice_dim=dim)
     ensemble.add_cluster(
         MeronStringCluster3D(
@@ -226,7 +220,6 @@ def build_canonical_3d_string_ensemble(
         )
     )
 
-    # 3. Unlinked planar loop pair (even sector, Lk = 0)
     u1, u2 = build_unlinked_pair(lattice_dim=dim)
     ensemble.add_cluster(
         MeronStringCluster3D(
@@ -238,7 +231,6 @@ def build_canonical_3d_string_ensemble(
         )
     )
 
-    # 4. Even-winding helical loop (W = (1, 1, 0), I = 0)
     pts_helical: List[Tuple[int, int, int]] = []
     for k in range(dim[0]):
         pts_helical.append((k, k, 0))
@@ -254,7 +246,6 @@ def build_canonical_3d_string_ensemble(
         )
     )
 
-    # 5 & 6. X-meron string loop and its orientation-flipped partner tau(X)
     mx = build_winding_loop("x", offset=(0, 0, 0), lattice_dim=dim, steps=dim[0], loop_id="meron_x")
     c_mx = MeronStringCluster3D(
         cluster_id="c_meron_x",
@@ -267,7 +258,6 @@ def build_canonical_3d_string_ensemble(
     ensemble.add_cluster(c_mx)
     ensemble.add_cluster(tau_c_mx)
 
-    # 7 & 8. Y-meron string loop and partner tau(Y)
     my = build_winding_loop("y", offset=(0, 0, 0), lattice_dim=dim, steps=dim[1], loop_id="meron_y")
     c_my = MeronStringCluster3D(
         cluster_id="c_meron_y",
@@ -280,7 +270,6 @@ def build_canonical_3d_string_ensemble(
     ensemble.add_cluster(c_my)
     ensemble.add_cluster(tau_c_my)
 
-    # 9 & 10. Z-meron string loop and partner tau(Z)
     mz = build_winding_loop("z", offset=(0, 0, 0), lattice_dim=dim, steps=dim[2], loop_id="meron_z")
     c_mz = MeronStringCluster3D(
         cluster_id="c_meron_z",
@@ -296,9 +285,6 @@ def build_canonical_3d_string_ensemble(
     return ensemble
 
 
-# ============================================================================
-# Section 2: Inverted Posting Index Bipartite Cancellation Solver
-# ============================================================================
 
 
 def execute_3d_string_cancellation(
@@ -312,8 +298,6 @@ def execute_3d_string_cancellation(
     for c in ensemble.zero_meron_clusters:
         zero_meron_sum += c.fermion_sign * c.weight
 
-    # Posting index for odd-winding meron clusters
-    # Key: (abs(Wx), abs(Wy), abs(Wz), weight, loop_count)
     pos_buckets: Dict[Tuple[int, int, int, Fraction, int], List[MeronStringCluster3D]] = {}
     neg_buckets: Dict[Tuple[int, int, int, Fraction, int], List[MeronStringCluster3D]] = {}
 
@@ -341,7 +325,6 @@ def execute_3d_string_cancellation(
         for i in range(matched):
             p_cfg = p_list[i]
             n_cfg = n_list[i]
-            # Verify exact pair zero sum
             pair_sum = p_cfg.fermion_sign * p_cfg.weight + n_cfg.fermion_sign * n_cfg.weight
             if pair_sum != Fraction(0, 1):
                 raise ArithmeticError(f"Doublet sum non-zero: {pair_sum}")
@@ -377,15 +360,11 @@ def execute_3d_string_cancellation(
     }
 
 
-# ============================================================================
-# Section 3: Pure Gamma38 Wire Grammar Turn Protocol
-# ============================================================================
 
 WIRE_TURNS_3D_STRINGS = [
     {
         "turn": 1,
         "stage": "STRING_LOOP_DECOMPOSITION",
-        # Carrier: 3D torus with 216 sites (binary 11011000) and 3D topology
         "input_wire": "op<<11>op<<1><11011000>>op<<10><0><1>>>",
         "wire_prompt": "op<<11>op<<1><11011000>>op<<10><0><1>>>",
         "grammar_prompt": "op<<11>op<<1><11011000>>op<<10><0><1>>>",
@@ -398,7 +377,6 @@ WIRE_TURNS_3D_STRINGS = [
         "input_wire": "op<<101><100><0><1><10><11><100>>",
         "wire_prompt": "op<<101><100><0><1><10><11><100>>",
         "grammar_prompt": "op<<101><100><0><1><10><11><100>>",
-        # Holonomy wire: Opcode <100>, string winding parity & linking localized
         "expected_response_wire": "op<<100><>op<<11>op<<1><11>>op<<1><110>>>>",
         "action": "MEASURE_HOLONOMY",
     },
@@ -408,19 +386,15 @@ WIRE_TURNS_3D_STRINGS = [
         "input_wire": "op<<100><>op<<11>op<<1><11>>op<<1><110>>>>",
         "wire_prompt": "op<<100><>op<<11>op<<1><11>>op<<1><110>>>>",
         "grammar_prompt": "op<<100><>op<<11>op<<1><11>>op<<1><110>>>>",
-        # Universal lift request
         "expected_response_wire": "op<<1100><liftreq>>",
         "action": "REQUEST_LIFT",
     },
     {
         "turn": 4,
         "stage": "EXACT_REPAIR",
-        # Host grant wire
         "input_wire": "op<<0><><0><1>>",
         "wire_prompt": "op<<0><><0><1>>",
         "grammar_prompt": "op<<0><><0><1>>",
-        # Terminal repair wire: Opcode <10010>, exact rational partition value Z = 310
-        # 310 in binary: 100110110
         "expected_response_wire": "op<<10010><0><100110110><1>>",
         "action": "CERTIFY_EXACT_REPAIR",
     },
@@ -602,9 +576,6 @@ def generate_3d_string_receipt(
     return raw_receipt
 
 
-# ============================================================================
-# Section 4: Standalone Execution Pipeline
-# ============================================================================
 
 
 def run_demo(
@@ -622,7 +593,6 @@ def run_demo(
     print("  Invariants: Winding parity I(c) in {0, 1} and Gauss linking Lk in Z")
     print("=" * 74)
 
-    # 1. Assemble canonical ensemble
     ensemble = build_canonical_3d_string_ensemble((6, 6, 6))
     print(f"\n[PHASE 1] Assembled 3D string loop ensemble with {ensemble.total_clusters} clusters.")
     for idx, c in enumerate(ensemble.clusters):
@@ -630,13 +600,11 @@ def run_demo(
         sign_str = f"{c.fermion_sign:+d}"
         print(f"  Cluster {idx} ({c.cluster_id}): {kind:<7} Loops={c.loop_count} Sign={sign_str} Weight={c.weight}")
 
-    # 2. Inspect topological invariants (Hopf link & winding)
     h_cluster = [c for c in ensemble.clusters if c.cluster_id == "c_hopf_link_pair"][0]
     lk = linking_number(h_cluster.loops[0], h_cluster.loops[1])
     print("\n[PHASE 2] Topological Invariant Verification:")
     print(f"  Hopf Link Gauss linking number Lk(h1, h2): {lk}")
 
-    # 3. Execute exact cancellation solver
     canc_res = execute_3d_string_cancellation(ensemble)
     print("\n[PHASE 3] Exact Involution Solver Execution:")
     print(f"  Status: {canc_res['status']}")
@@ -645,7 +613,6 @@ def run_demo(
     print(f"  Zero-Meron Partition Sum: {canc_res['zero_meron_sum']}")
     print(f"  Total Signed Partition Z: {canc_res['total_partition_sum']}")
 
-    # 4. Symbol Game Wire Grammar Verification
     print("\n[PHASE 4] Symbol Game 5-Stage Wire Grammar Verification:")
     for turn in WIRE_TURNS_3D_STRINGS:
         assert_lexical_hygiene(turn["wire_prompt"])
@@ -659,7 +626,6 @@ def run_demo(
         if not (is_in_valid and is_resp_valid):
             raise ValueError(f"Turn {turn['turn']} wire string failed Gamma38 grammar validation")
 
-    # 5. Emit DAG and Receipt
     dag_nodes = emit_3d_string_ddc_dag(dag_path, canc_res)
     receipt = generate_3d_string_receipt(receipt_path, canc_res)
 

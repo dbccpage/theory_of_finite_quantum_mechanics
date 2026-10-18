@@ -1,6 +1,3 @@
-//! Finite controls for PLAN-WDP-EDITORIAL (E1-E12).
-//! Nonsurjective singleton factorization, mixed-sign weight boundedness,
-//! bit-to-sign CHSH conversion, vector-target adapter descent, and J.6 switching sum.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct EditorialSummary {

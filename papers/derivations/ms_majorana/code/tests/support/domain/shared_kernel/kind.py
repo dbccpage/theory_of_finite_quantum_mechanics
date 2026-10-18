@@ -77,10 +77,6 @@ class Role(Kind):
     VALID_ROLES: ClassVar[frozenset[str]] = frozenset(r.value for r in RoleKind)
 
     def __post_init__(self) -> None:
-        # ``dataclass(slots=True)`` creates a replacement class object, so the
-        # implicit ``__class__`` cell used by zero-argument super() can refer to
-        # the pre-decoration class on supported Python versions.  Call the
-        # base invariant explicitly so construction is portable.
         Kind.__post_init__(self)
         if self.value not in self.VALID_ROLES:
             raise InvariantViolationError(

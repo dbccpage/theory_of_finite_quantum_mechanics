@@ -1,39 +1,13 @@
-//! The PROVED/GlobalGreen fence, discharged structurally.
-//!
-//! A carrier in this crate cannot mint authority. `CertifiedAuthority` is
-//! defined in `omega_types`, its sole constructor demands a matching
-//! `DescentWitness` and an `IsAuth` token, and `omega_types` is not in this
-//! crate's dependency closure. That is a property of the build graph rather
-//! than a convention anyone has to honour: adding the dependency to any
-//! manifest on the path turns this test red.
-//!
-//! The closure is read from the manifests rather than from `cargo metadata`.
-//! A governance assertion should not depend on a child process, an `--offline`
-//! package cache, or a package lock the test could block on indefinitely.
-//!
-//! Dev edges are followed from this crate only. A dependency's own
-//! dev-dependencies are never linked into anything this crate builds --
-//! `omega_homology` and `omega_functional` both dev-depend on
-//! `omega_contracts`, which does reach `omega_types`, so following those edges
-//! would report a violation that cannot occur.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{BTreeSet, VecDeque};
 use std::path::{Path, PathBuf};
 
-/// The crate that defines `CertifiedAuthority`.
 const AUTHORITY_CRATE: &str = "omega_types";
 
-/// Pinned so that re-homing the type cannot quietly make this fence vacuous.
 const AUTHORITY_TYPE_DECL: &str = "pub struct CertifiedAuthority";
 
-/// Reached only through `omega_homology`, never directly. A traversal that
-/// stopped at direct dependencies would fail here rather than satisfy the
-/// negative assertion below for the wrong reason.
 const MUST_REACH: &[&str] = &["linear_algebra", "omega_homotopy_type_theory"];
 
-/// Every carrier's fence opens with this. The tail after it is per-module.
 const FENCE_PREFIX: &str = "AuthorityEffect None; not PROVED; not GlobalGreen;";
 
 const CLAIM_WORDS: &[&str] = &["PROVED", "GlobalGreen"];
@@ -66,9 +40,6 @@ fn assert_certified_authority_unreachable() {
     assert_no_fence_claims_authority(&src_dir);
 }
 
-/// The structural argument says no carrier here *can* mint authority. This says
-/// none of them *claims* to, which is the separate half of the obligation and
-/// the half a dependency walk cannot see.
 fn assert_no_fence_claims_authority(src_dir: &Path) {
     let fences = fence_literals(src_dir);
     assert!(
@@ -92,9 +63,6 @@ fn assert_no_fence_claims_authority(src_dir: &Path) {
     }
 }
 
-/// `not PROVED` and `no auto GlobalGreen` are denials; a bare `PROVED` is a
-/// claim. Looking two words back separates them without banning the word, which
-/// a fence has to be able to use in order to say what it is not.
 fn is_negated(before: &str) -> bool {
     before
         .split_whitespace()
@@ -103,9 +71,6 @@ fn is_negated(before: &str) -> bool {
         .any(|word| NEGATORS.contains(&word.trim_matches(|c: char| !c.is_alphanumeric())))
 }
 
-/// The fence names `omega_types` as the crate to stay clear of. If
-/// `CertifiedAuthority` is ever re-homed, that name goes stale and the negative
-/// assertion starts passing for no reason at all.
 fn assert_authority_type_still_lives(root: &Path) {
     let candidate1 = root
         .parent()
@@ -134,7 +99,6 @@ fn assert_authority_type_still_lives(root: &Path) {
     );
 }
 
-/// Path dependencies reachable from `root`, by package name.
 fn path_dependency_closure(root: &Path) -> BTreeSet<String> {
     let mut seen = BTreeSet::new();
     let mut names = BTreeSet::new();
@@ -200,8 +164,6 @@ fn package_name(manifest: &str) -> Option<String> {
     None
 }
 
-/// `key = "value"`, where `key` must be a key rather than a substring of a
-/// longer one, so every occurrence is tried before giving up.
 fn quoted_value(line: &str, key: &str) -> Option<String> {
     line.match_indices(key).find_map(|(at, _)| {
         let rest = line[at + key.len()..].trim_start();
@@ -211,7 +173,6 @@ fn quoted_value(line: &str, key: &str) -> Option<String> {
     })
 }
 
-/// Every `AUTHORITY_FENCE` declaration under `src_dir`, as (module, value).
 fn fence_literals(src_dir: &Path) -> Vec<(String, String)> {
     const DECL: &str = "const AUTHORITY_FENCE:";
     let mut out = Vec::new();
@@ -237,8 +198,6 @@ fn fence_literals(src_dir: &Path) -> Vec<(String, String)> {
                 .unwrap_or_default()
                 .to_string_lossy()
                 .into_owned();
-            // This module names the constant in order to search for it, so it
-            // matches itself. It is not a carrier and declares no fence.
             if module == "certified_authority_fence" {
                 continue;
             }
@@ -257,14 +216,6 @@ fn fence_literals(src_dir: &Path) -> Vec<(String, String)> {
     out
 }
 
-/// Reads a `&str` constant's value from just after its colon, stopping at the
-/// semicolon that ends the item and joining any concatenated pieces.
-///
-/// The scan tracks whether it is inside a string, because these fences are
-/// semicolon-separated clauses: the first `;` in the text is part of the value,
-/// not the end of the declaration. Backslash-newline continuations are resolved
-/// the way rustc resolves them, by swallowing the newline and the indentation
-/// that follows it.
 fn read_string_constant(decl: &str) -> (String, usize) {
     let mut value = String::new();
     let mut in_string = false;

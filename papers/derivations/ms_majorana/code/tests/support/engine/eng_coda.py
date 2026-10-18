@@ -13,14 +13,13 @@ CODA_ENGINE_ROLE = "math_suite_callable_by_domain_worker"
 CODA_ENGINE_FILE_CONTRACT = "urn:omega:engine:coda_engine:file:v1.0.0"
 
 
-# --- OE-000 / CODA-000 Cohomological Infrastructure ---
 
 @dataclass
 class SimplicialCarrier:
     """Finite 2-truncated simplicial carrier P = (V, E, F)."""
     vertices: List[Any]
-    edges: List[Tuple[Any, Any]]  # 1-simplices (u, v)
-    faces: List[Tuple[Any, Any, Any]] = field(default_factory=list)  # 2-simplices (u, v, w)
+    edges: List[Tuple[Any, Any]]
+    faces: List[Tuple[Any, Any, Any]] = field(default_factory=list)
 
     def validate(self) -> bool:
         """Validate carrier combinatorial structure (basis honesty)."""
@@ -275,13 +274,11 @@ class ObstructionCalculus(Engine):
         d1_mat, _, _ = cls._build_d1_matrix(carrier)
         h_vec = np.array([h_1.get(e, 0.0) for e in carrier.edges])
 
-        # 1. Exact part d0 f: solve (d0.T @ W @ d0) f = d0.T @ W @ h
         L_vert = d0_mat.T @ W @ d0_mat
         rhs_vert = d0_mat.T @ W @ h_vec
         f_sol, _, _, _ = np.linalg.lstsq(L_vert, rhs_vert, rcond=None)
         exact_vec = d0_mat @ f_sol
 
-        # 2. Coexact part d1* u: solve (d1 @ W_inv @ d1.T) u = d1 @ h
         if len(carrier.faces) > 0:
             L_face = d1_mat @ W_inv @ d1_mat.T
             rhs_face = d1_mat @ h_vec
@@ -290,7 +287,6 @@ class ObstructionCalculus(Engine):
         else:
             coexact_vec = np.zeros(n_edges)
 
-        # 3. Harmonic part
         harmonic_vec = h_vec - exact_vec - coexact_vec
 
         exact_dict = {e: float(exact_vec[i]) for i, e in enumerate(carrier.edges)}
@@ -363,10 +359,8 @@ class ObstructionCalculus(Engine):
         import scipy.optimize as opt
         d0_mat, _, _ = cls._build_d0_matrix(carrier)
 
-        # Variables: x = [alpha_0..alpha_{n_v-1}, s_0..s_{n_e-1}]
         c = np.concatenate([np.zeros(n_v), np.ones(n_e)])
 
-        # Constraints: d0 alpha - s <= omega and -d0 alpha - s <= -omega
         I_e = np.eye(n_e)
         A_ub = np.vstack([
             np.hstack([d0_mat, -I_e]),
@@ -593,24 +587,20 @@ class ObstructionCalculus(Engine):
         L1 = cls.hodge_laplacian_matrix(carrier)
         evals, evecs = np.linalg.eigh(L1)
 
-        # Nullspace eigenvectors corresponding to small eigenvalues
         null_mask = evals < 1e-7
         B_raw = evecs[:, null_mask]
 
         if B_raw.shape[1] == 0:
             return np.zeros((n_edges, 0))
 
-        # Take up to exact b1 basis vectors
         if B_raw.shape[1] > b1:
             B_raw = B_raw[:, :b1]
 
-        # Orthonormalization via Cholesky decomposition of Gram matrix G = B^T B
         G = B_raw.T @ B_raw
         try:
             R = np.linalg.cholesky(G)
             B_on = B_raw @ np.linalg.inv(R.T)
         except np.linalg.LinAlgError:
-            # Fallback to QR orthonormalization
             B_on, _ = np.linalg.qr(B_raw)
 
         return B_on
@@ -679,12 +669,10 @@ class ObstructionCalculus(Engine):
                 "loss_ledger": []
             }
 
-        # Build incidence matrices for d1: C1 -> C2
         n_edges = len(carrier.edges)
         n_faces = len(carrier.faces)
         edge_map = {e: idx for idx, e in enumerate(carrier.edges)}
-        
-        # d1 matrix of shape (n_faces, n_edges)
+
         d1_mat = np.zeros((n_faces, n_edges))
         for f_idx, (u, v, w) in enumerate(carrier.faces):
             for (e_u, e_v), sign in [((u, v), 1.0), ((v, w), 1.0), ((u, w), -1.0)]:
@@ -693,22 +681,18 @@ class ObstructionCalculus(Engine):
                 elif (e_v, e_u) in edge_map:
                     d1_mat[f_idx, edge_map[(e_v, e_u)]] -= sign
 
-        # h vector
         h_vec = np.array([h_1.get(e, 0.0) for e in carrier.edges])
         d1_h = d1_mat @ h_vec
 
-        # Face Laplacian L_face = d1 @ d1.T
         L_face = d1_mat @ d1_mat.T
 
-        # Solve L_face u = d1_h via least squares
         u_sol, _, _, _ = np.linalg.lstsq(L_face, d1_h, rcond=None)
 
-        # h_closed = h - d1.T @ u_sol
         correction = d1_mat.T @ u_sol
         h_closed_vec = h_vec - correction
 
         h_closed = {e: float(h_closed_vec[i]) for i, e in enumerate(carrier.edges)}
-        
+
         c_2_after = CohomologicalEngine.d1(carrier, h_closed)
         gamma_2_after = math.sqrt(sum(val ** 2 for val in c_2_after.values())) if c_2_after else 0.0
         l2_dist = float(np.linalg.norm(correction))
@@ -869,7 +853,7 @@ class ObstructionCalculus(Engine):
         Re-uses existing residual mass shift delta_Phi1.
         """
         gamma_2 = receipt_l2.get("gamma_2_before", 0.0)
-        c_mesh = 1.0  # Normalized mesh constant on unit 2-simplex
+        c_mesh = 1.0
         gap_bound = c_mesh * gamma_2
         delta_phi_1 = receipt_l2.get("delta_phi_1", 0.0)
 
@@ -918,8 +902,6 @@ class ObstructionCalculus(Engine):
                 "status": "NO_HARMONIC_CYCLES"
             }
 
-        # LP formulation: min sum_i z_i
-        # s.t. -z_i <= h_i - sum_j t_j B_{i,j} <= z_i
         c_obj = np.concatenate([np.zeros(b1), np.ones(n_edges)])
 
         A_ub1 = np.hstack([-B_harm, -np.eye(n_edges)])
@@ -958,7 +940,6 @@ class ObstructionCalculus(Engine):
 
 
 
-# --- Functional–Evaluator–Terminalizer Triad & Merkle Tape Verifier ---
 
 import hashlib
 
@@ -1036,7 +1017,6 @@ class DDATerminalizer:
         self.current_root = genesis_hash
 
     def process_step(self, letter: str, receipt: Dict[str, Any]) -> str:
-        # Check CanContinue_n predicate
         can_cont = self.engine.can_continue(
             stage=self.engine.ops_count,
             has_obligation=True,
@@ -1078,7 +1058,6 @@ def verify_merkle_tape(tape: List[StepRecord], genesis_hash: str = "GENESIS_000"
     return True, "MERKLE_TAPE_VERIFIED"
 
 
-# --- OE-000 Candidate Packet, Intake Trace, & 7-Step Local Declaration ---
 
 @dataclass
 class CandidatePacket:
@@ -1192,7 +1171,7 @@ class PrimeTriadEngine:
 
     def record_transform_move(
         self,
-        move: str,  # "D" (Descent) or "Λ" (Structural Lift)
+        move: str,
         loss_or_gain: str,
         forcing_obstruction: str,
     ) -> Dict[str, str]:
@@ -1215,11 +1194,10 @@ class PrimeTriadEngine:
         }
 
 
-# --- Legacy CODAMasterSuite (CODA-000 to CODA-009) ---
 
 class CODAMasterSuite:
     """Master CODA Computational Framework (CODA-000 to CODA-009)."""
-    
+
     def __init__(self, N_nodes: int, edges: List[Tuple[int, int]], faces: List[Tuple[int, int, int]]):
         self.N_nodes = N_nodes
         self.edges = edges
@@ -1229,13 +1207,13 @@ class CODAMasterSuite:
             edges=edges,
             faces=faces
         )
-        
+
     def coda_000_foc_curvature(self, cochain: np.ndarray) -> np.ndarray:
         """CODA-000 (FOC): Compute face curvature K_f = (d_1 delta)_f."""
         edge_map = {e: idx for idx, e in enumerate(self.edges)}
         for (u, v), idx in list(edge_map.items()):
             edge_map[(v, u)] = idx
-            
+
         curvatures = np.zeros(len(self.faces))
         for f_idx, (u, v, w) in enumerate(self.faces):
             e1 = edge_map.get((u, v))
@@ -1280,7 +1258,7 @@ class CODAMasterSuite:
         phi_1 = self.coda_002_mur_l1_gauge_norm(cochain)
         d_emb = self.coda_005_cs_q_bridge_embedding(cochain[0])
         nu_e, a_e, mi_pinsker = self.coda_008_q_rates(J_int=J_int, t=t)
-        
+
         return {
             "coda_000_face_curvature": float(curv[0]),
             "coda_002_l1_gauge_norm_phi1": phi_1,
@@ -1291,7 +1269,6 @@ class CODAMasterSuite:
         }
 
 
-# --- CODA-DERIV-001 & CODA-DERIV-004 Mechanics ---
 
 class SelfRepairAdjunction:
     """CODA-DERIV-001: Self-Repair Adjunction F ⊣ G (CODA-006 / CODA-003).
@@ -1325,7 +1302,7 @@ class SelfRepairAdjunction:
         f_alpha = cls.section_functor_F(carrier, f_0)
         g_f_alpha = cls.repair_functor_G(carrier, f_alpha)
         d0_g_f = cls.section_functor_F(carrier, g_f_alpha)
-        
+
         diff = sum(abs(d0_g_f.get(e, 0.0) - f_alpha.get(e, 0.0)) for e in carrier.edges)
         return bool(diff < tol)
 
@@ -1341,7 +1318,7 @@ class SelfRepairAdjunction:
         d0_alpha1 = cls.section_functor_F(carrier, alpha1)
         alpha2 = cls.repair_functor_G(carrier, d0_alpha1)
         d0_alpha2 = cls.section_functor_F(carrier, alpha2)
-        
+
         diff = sum(abs(d0_alpha2.get(e, 0.0) - d0_alpha1.get(e, 0.0)) for e in carrier.edges)
         return bool(diff < tol)
 
@@ -1360,12 +1337,12 @@ class ColimitAggregationEngine:
         """Compute colimit presheaf aggregation colim_i omega_i = mean_i omega_i(e)."""
         if not local_cochains:
             return {e: 0.0 for e in carrier.edges}
-        
+
         global_cochain: Dict[Tuple[Any, Any], float] = {}
         for e in carrier.edges:
             vals = [lc.get(e, 0.0) for lc in local_cochains if e in lc]
             global_cochain[e] = float(np.mean(vals)) if vals else 0.0
-            
+
         return global_cochain
 
     @staticmethod
@@ -1378,12 +1355,11 @@ class ColimitAggregationEngine:
         """Verify global bi-Lipschitz defect bounds c * Phi_1 <= D_M <= C * Phi_1."""
         h_vec = np.array([h_1.get(e, 0.0) for e in carrier.edges])
         phi_1, _ = ObstructionCalculus.solve_l1_gauge_minimization(carrier, h_vec)
-        
-        # Bridge B1 classical diagonal embedding defect D_e = 0.5 * ||omega||_1
+
         d_emb = 0.5 * float(np.sum(np.abs(h_vec)))
-        
+
         bounds_hold = bool(c_min * phi_1 <= d_emb <= c_max * phi_1) if phi_1 > 1e-9 else True
-        
+
         return {
             "phi_1": phi_1,
             "d_emb": d_emb,
@@ -1400,16 +1376,16 @@ def run_coda_master_suite() -> Dict[str, float]:
     edges = [(0, 1), (1, 2), (2, 0)]
     faces = [(0, 1, 2)]
     coda = CODAMasterSuite(3, edges, faces)
-    
+
     cochain = np.array([1.0, 0.5, -0.8])
     ledger = coda.coda_009_master_ledger(cochain, J_int=1.5, t=0.05)
-    
+
     print(f"CODA-000 Face Curvature K_f: {ledger['coda_000_face_curvature']:.4f}")
     print(f"CODA-002 l1 Gauge Norm Phi_1: {ledger['coda_002_l1_gauge_norm_phi1']:.4f}")
     print(f"CODA-005 CS-Q-Bridge Defect D_e: {ledger['coda_005_cs_q_bridge_defect']:.4f}")
     print(f"CODA-008 Normal Rate nu_e: {ledger['coda_008_nu_e']:.4f}, Acceleration a_e: {ledger['coda_008_a_e']:.4f}")
     print(f"CODA-009 Master Ledger QMI: {ledger['coda_008_pinsker_qmi']:.6f}")
-    
+
     return ledger
 
 if __name__ == "__main__":

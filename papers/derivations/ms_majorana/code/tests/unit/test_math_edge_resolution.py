@@ -23,9 +23,7 @@ def test_camel_to_snake_keeps_acronym_and_digit_runs_together():
     assert camel_to_snake("LinearMap") == "linear_map"
     assert camel_to_snake("VectorSpace") == "vector_space"
     assert camel_to_snake("CanonicalBytes") == "canonical_bytes"
-    # A digit-led run must not split into l_1_seminorm.
     assert camel_to_snake("L1Seminorm") == "l1_seminorm"
-    # Consecutive capitals are one acronym, not one word per letter.
     assert camel_to_snake("CDGAlgebra") == "cdg_algebra"
 
 
@@ -39,13 +37,11 @@ def test_classify_relation_separates_verb_led_from_noun_led():
     assert (
         classify_relation("underlying_graded_module_structure") == RELATION_UNDERLYING
     )
-    # Noun-led labels name the role the target plays.
     assert classify_relation("coefficient_field") == RELATION_PARAMETER
     assert classify_relation("matrix structure") == RELATION_PARAMETER
 
 
 def test_classify_relation_strips_leading_articles_before_deciding():
-    # Without article stripping these fall through to parameter_role.
     assert classify_relation("the underlying cochain complex") == RELATION_UNDERLYING
     assert classify_relation("The provides clause") == RELATION_PROVIDES
 
@@ -54,7 +50,6 @@ def test_classify_relation_only_empty_labels_are_unclassified():
     assert classify_relation(None) == RELATION_UNCLASSIFIED
     assert classify_relation("") == RELATION_UNCLASSIFIED
     assert classify_relation("   ") == RELATION_UNCLASSIFIED
-    # An article-only label degenerates to empty and must not claim a relation.
     assert classify_relation("the") == RELATION_UNCLASSIFIED
 
 
@@ -72,7 +67,6 @@ def test_extract_edges_resolves_via_camel_to_snake_join():
     resolved, dangling = edges[0], edges[1]
     assert resolved.resolved_target == "urn:omega:math:linear_map:v0.1.0"
     assert resolved.relation == RELATION_DEFINES
-    # The original prose survives classification.
     assert resolved.note == "defines_the_map"
 
     assert dangling.resolved_target is None
@@ -91,7 +85,6 @@ def test_extract_edges_ignores_non_legacy_relationship_entries():
 
 
 def test_extract_edges_ignores_mapping_shaped_relationships():
-    # System contracts use `relationships:` as a mapping with `extends`, not a list.
     doc = {
         "relationships": {"extends": ["urn:omega:constitution:base_contract:v1.0.0"]}
     }
@@ -184,7 +177,6 @@ def test_build_report_on_missing_root_reports_nothing(tmp_path: Path):
     assert report.total_edges == 0
     assert report.math_contract_count == 0
     assert edges == []
-    # An empty corpus must not report a perfect resolution rate.
     assert report.resolution_rate == 0.0
 
 
@@ -202,5 +194,4 @@ def test_markdown_reports_unresolved_targets_and_authority(tmp_path: Path):
     assert "AuthorityEffect" in text
     assert "`None`" in text
     assert "Basis" in text
-    # The expected identifier tells the reader what to create.
     assert "urn:omega:math:basis" in text

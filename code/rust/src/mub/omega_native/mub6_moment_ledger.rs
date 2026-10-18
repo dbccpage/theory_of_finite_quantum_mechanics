@@ -1,11 +1,3 @@
-//! Target Q5: Exact Moment SDP Hierarchy Ledger and Benchmark Suite.
-//!
-//! AuthorityEffect: None.
-//!
-//! This module aggregates, benchmarks, and audits exact rational matrix diagnostics
-//! and dual witnesses across the degree 2, 4, 6, and 8 SDP moment relaxations.
-//! Zero floating-point arithmetic is permitted; all calculations are over
-//! `num_rational::BigRational` and `Cyc24`.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -25,9 +17,6 @@ use omega_number_theory::cyclotomic::Cyc24;
 
 crate::fixture_set!(fixtures, "mub6_moment_ledger");
 
-// ==============================================================================
-// Constants & Epistemic Firewall
-// ==============================================================================
 
 pub const SCHEMA_VERSION: &str = "omega.mub.moment-sdp-ledger.v1";
 pub const SCOPE_STRING: &str = "exact_moment_sdp_hierarchy_ledger_benchmarks";
@@ -37,7 +26,6 @@ pub const STATUS_MISSING_PROOF_OBLIGATION: &str = "MISSING_PROOF_OBLIGATION";
 
 pub const SUPPORTED_DEGREES: &[usize] = &[2, 4, 6, 8];
 
-// Validated exact trace constants across candidates and degrees
 pub const DEGREE_2_X0_TRACE: (i64, i64) = (-9, 20);
 pub const DEGREE_2_S6_TRACE: (i64, i64) = (-6, 1);
 
@@ -55,11 +43,7 @@ pub fn rational_from_pair(pair: (i64, i64)) -> BigRational {
     BigRational::new(pair.0.into(), pair.1.into())
 }
 
-// ==============================================================================
-// Candidate Gramians & Serialization
-// ==============================================================================
 
-/// Construct the repeated standard basis Gramian (all 4 bases identical).
 pub fn repeated_basis_gramian() -> Vec<Vec<Cyc24>> {
     let one = Cyc24::rat(BigRational::one());
     let zero = Cyc24::zero();
@@ -74,7 +58,6 @@ pub fn repeated_basis_gramian() -> Vec<Vec<Cyc24>> {
     g
 }
 
-/// Return BTreeMap of the 3 canonical candidate Gramians: "x0", "s6", "repeated".
 pub fn build_candidate_gramians() -> BTreeMap<String, Vec<Vec<Cyc24>>> {
     let mut map = BTreeMap::new();
     map.insert("x0".to_string(), build_block_diagonal_gramian());
@@ -83,7 +66,6 @@ pub fn build_candidate_gramians() -> BTreeMap<String, Vec<Vec<Cyc24>>> {
     map
 }
 
-/// Format exact rational matrix into canonical newline-separated numerator/denominator payload.
 pub fn canonical_matrix_payload(m: &[Vec<BigRational>]) -> String {
     m.iter()
         .flatten()
@@ -91,7 +73,6 @@ pub fn canonical_matrix_payload(m: &[Vec<BigRational>]) -> String {
         .collect()
 }
 
-/// Compute canonical SHA-256 fingerprint for an exact rational matrix.
 pub fn compute_matrix_fingerprint(m: &[Vec<BigRational>]) -> String {
     let payload = canonical_matrix_payload(m);
     let mut hasher = Sha256::new();
@@ -99,11 +80,7 @@ pub fn compute_matrix_fingerprint(m: &[Vec<BigRational>]) -> String {
     format!("{:x}", hasher.finalize())
 }
 
-// ==============================================================================
-// Degree Matrix Dispatcher
-// ==============================================================================
 
-/// Construct exact rational matrices for given degree and Gramian.
 pub fn build_degree_matrices(
     degree: usize,
     g: &[Vec<Cyc24>],
@@ -151,9 +128,6 @@ pub fn build_degree_matrices(
     Ok(map)
 }
 
-// ==============================================================================
-// Data Structures
-// ==============================================================================
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DualWitnessReceipt {
@@ -210,11 +184,7 @@ pub struct MomentSdpLedgerFixtures {
     pub fingerprints: BTreeMap<String, String>,
 }
 
-// ==============================================================================
-// Benchmark & Ledger Evaluation
-// ==============================================================================
 
-/// Evaluate exact traces, pivots, and fingerprints for a single degree.
 pub fn evaluate_degree_benchmark(
     degree: usize,
     candidates: Option<&BTreeMap<String, Vec<Vec<Cyc24>>>>,
@@ -485,7 +455,6 @@ pub fn evaluate_degree_benchmark(
     })
 }
 
-/// Evaluate and aggregate the complete Moment SDP Hierarchy Ledger across degrees 2, 4, 6, 8.
 pub fn evaluate_moment_sdp_hierarchy_ledger() -> Result<MomentSDPHierarchyLedger, String> {
     let candidates = build_candidate_gramians();
     let mut entries = BTreeMap::new();
@@ -511,22 +480,17 @@ pub fn evaluate_moment_sdp_hierarchy_ledger() -> Result<MomentSDPHierarchyLedger
     })
 }
 
-// ==============================================================================
-// Canonical Fixtures Operations
-// ==============================================================================
 
 pub const CANONICAL_FIXTURES_JSON: &str = include_str!(concat!(
     env!("CARGO_MANIFEST_DIR"),
     "/fixtures/mub_moment_sdp_ledger_fixtures.json"
 ));
 
-/// Load canonical fixtures from embedded JSON string.
 pub fn load_canonical_fixtures() -> Result<MomentSdpLedgerFixtures, String> {
     serde_json::from_str(CANONICAL_FIXTURES_JSON)
         .map_err(|e| format!("Failed to parse canonical fixtures JSON: {}", e))
 }
 
-/// Generate the complete canonical SHA-256 fixture dictionary across all degrees and candidate Gramians.
 pub fn generate_moment_sdp_ledger_fixtures() -> Result<MomentSdpLedgerFixtures, String> {
     let candidates = build_candidate_gramians();
     let mut fingerprints = BTreeMap::new();
@@ -550,7 +514,6 @@ pub fn generate_moment_sdp_ledger_fixtures() -> Result<MomentSdpLedgerFixtures, 
     })
 }
 
-/// Verify that current matrix computations match precomputed canonical SHA-256 fingerprints.
 pub fn verify_moment_sdp_ledger_fixtures(
     fixtures: &MomentSdpLedgerFixtures,
 ) -> Result<bool, String> {
@@ -578,15 +541,11 @@ pub fn verify_moment_sdp_ledger_fixtures(
     Ok(true)
 }
 
-/// Convenience method to verify embedded canonical fixtures.
 pub fn verify_canonical_fixtures() -> Result<bool, String> {
     let fixtures = load_canonical_fixtures()?;
     verify_moment_sdp_ledger_fixtures(&fixtures)
 }
 
-// ==============================================================================
-// Flat Extension Rank Gap Obstruction
-// ==============================================================================
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct FlatExtensionReceipt {
@@ -601,7 +560,6 @@ pub struct FlatExtensionReceipt {
     pub summary: String,
 }
 
-/// Compute and certify the flat extension rank gap at the specified moment level.
 pub fn certify_flat_extension_rank_gap(level: usize) -> Result<FlatExtensionReceipt, String> {
     if level != 1 {
         return Err(format!(
@@ -609,7 +567,6 @@ pub fn certify_flat_extension_rank_gap(level: usize) -> Result<FlatExtensionRece
             level
         ));
     }
-    // fixture: neither rank is computed from a moment matrix.
     let rank_0 = fixtures().count("flat_extension_rank_m0");
     let rank_1 = fixtures().count("flat_extension_rank_m1");
     let gap = rank_1 - rank_0;
@@ -629,13 +586,7 @@ pub fn certify_flat_extension_rank_gap(level: usize) -> Result<FlatExtensionRece
     })
 }
 
-// ==============================================================================
-// Fail-Closed Certification APIs
-// ==============================================================================
 
-/// Fail-closed enforcement rejecting any claim of universal MUB(6) non-existence via moment SDP alone.
-///
-/// AuthorityEffect: None.
 pub fn claim_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), String> {
     let deg_str = match degree {
         Some(d) => format!(" at degree {}", d),
@@ -647,17 +598,14 @@ pub fn claim_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), St
     ))
 }
 
-/// Fail-closed endpoint rejecting universal certification.
 pub fn certify_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), String> {
     claim_universal_mub6_nonexistence(degree)
 }
 
-/// Fail-closed certification endpoint.
 pub fn solve_target_q5_moment_certificate() -> Result<(), String> {
     Err("MissingProofObligation: valid projector moment identities and a positivity-preserving exact field representation across higher degrees are required for moment hierarchy certification".into())
 }
 
-/// Fail-closed certification endpoint for specific degree.
 pub fn solve_target_q5_moment_certificate_for_degree(degree: usize) -> Result<(), String> {
     Err(format!(
         "MissingProofObligation: valid projector moment identities and a positivity-preserving exact field representation for degree {} are required for moment hierarchy certification",
@@ -665,7 +613,6 @@ pub fn solve_target_q5_moment_certificate_for_degree(degree: usize) -> Result<()
     ))
 }
 
-/// Fail-closed moment matrix builder for degree k.
 pub fn build_degree_k_moment_matrix(
     k: usize,
     _g: &[Vec<Cyc24>],

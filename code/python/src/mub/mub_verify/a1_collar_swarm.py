@@ -14,24 +14,21 @@ from fractions import Fraction
 
 def _clean_response(text: str) -> str:
     """Strip markdown fences, preamble, and extract the dict expression.
-    
+
     LLMs often wrap responses in ```python ... ``` blocks or add
     explanatory text. This extracts just the {..} dict expression.
     """
-    # Remove ```python ... ``` fences
     text = re.sub(r'```(?:python)?\s*', '', text)
-    
-    # Find the first { and last } to extract the dict
+
     first_brace = text.find('{')
     last_brace = text.rfind('}')
     if first_brace == -1 or last_brace == -1 or first_brace >= last_brace:
         return ""
-    
+
     extracted = text[first_brace:last_brace + 1]
-    
-    # Collapse to single line (some models use multiline dicts)
+
     extracted = ' '.join(extracted.split())
-    
+
     return extracted
 
 def load_governor_module():

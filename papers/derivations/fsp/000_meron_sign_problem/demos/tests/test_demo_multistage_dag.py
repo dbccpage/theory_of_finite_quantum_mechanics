@@ -34,7 +34,6 @@ def test_4site_multistage_dag_execution(tmp_path: Path):
     assert res["verified"] is True
     assert out_file.exists()
 
-    # Verify DAG causality: every parent_id must exist in earlier lines
     seen_ids = set()
     with out_file.open("r", encoding="utf-8") as f:
         for line in f:
@@ -51,17 +50,14 @@ def test_gamma38_wire_grammar_strictness():
 
     for node in nodes:
         wire = node["gamma38_wire"]
-        # Character set audit
         for ch in wire:
             assert ch in GAMMA_38, f"Illegal character '{ch}' in wire string: {wire}"
 
-        # Roundtrip parse and serialize
         parsed = parse_packet(wire)
         validate_packet_semantics(parsed)
         serialized = serialize_packet(parsed)
         assert serialized == wire
 
-    # Negative control: non-Gamma38 character must raise LexicalError
     with pytest.raises(LexicalError):
         parse_packet("op<<11>_illegal_underscore_>")
 

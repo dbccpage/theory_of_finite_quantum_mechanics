@@ -21,8 +21,8 @@ from typing import Any, Dict, List, Optional, Union
 @dataclass
 class DDAOperationRecord:
     operation_id: str
-    operation_type: str  # e.g., 'FOUNDATION', 'DDA_STEP', 'WINDOW_LIFT', 'TERMINATION'
-    tape_token: str       # e.g., 'E', 'R', 'C', 'I', 'L', 'Λ', 'D', 'M', 'T'
+    operation_type: str
+    tape_token: str
     residual_before: float
     residual_after: float
     delta_residual: float
@@ -42,8 +42,6 @@ class DDATraceRecorder:
 
         self.trace_dir.mkdir(parents=True, exist_ok=True)
 
-        # External trace mirroring is opt-in; this package must not infer or
-        # create repository-escaping paths during ordinary tests.
         self.agents_dir: Optional[Path] = None
         mirror_dir = os.environ.get("CODA_DDA_TRACE_MIRROR_DIR")
         if mirror_dir:

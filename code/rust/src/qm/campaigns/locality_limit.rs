@@ -1,13 +1,10 @@
-//! Program locality and dense-orbit scope report. AuthorityEffect: None.
 use omega_number_theory::rational::{ri, rq};
 use omega_quantum_physics::continuous_time_locality_limit::*;
 use serde_json::json;
-/// Audit of C250 dense cyclic orbit claim: returns (status, dense_orbit_alone_implies_continuous_action).
 pub fn audit_c250_dense_orbit() -> (&'static str, bool) {
     ("NARROWED", false)
 }
 
-/// Generate canonical Block 06 receipt.
 pub fn generate_canonical_block06_rust_receipt() -> serde_json::Value {
     let (status, dense_implies) = audit_c250_dense_orbit();
     let b1 = trotter_first_order_error_bound(&rq(1, 2), &10.into(), &ri(2))

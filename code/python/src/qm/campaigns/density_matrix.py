@@ -1,4 +1,3 @@
-# AuthorityEffect: None.
 from __future__ import annotations
 
 from fractions import Fraction
@@ -228,7 +227,6 @@ def exact_measure_and_update(
     p_mat = to_exact_matrix(projection)
     d = len(rho_mat)
 
-    # Compute P rho P
     temp = [
         [sum((rho_mat[i][k] * p_mat[k][j] for k in range(d)), Gaussian.of(0)) for j in range(d)]
         for i in range(d)

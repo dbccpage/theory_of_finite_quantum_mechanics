@@ -1,5 +1,3 @@
-//! Shared parsing of rational wire strings for the Phi2/Phi3/Phi4 certificates.
-//! Each caller supplies its own refusal for an unparsable string.
 
 use num_rational::BigRational;
 use std::str::FromStr;

@@ -1,44 +1,9 @@
-//! # Phi4: Exact Degree-4 Quotient-Distance, 4-Volume Flux, and Pontryagin/Chern Certificates
-//!
-//! Higher-degree finite obstruction calculus in the 4-manifold chain/cochain complex:
-//!
-//! ```text
-//! C⁴  <───d₃───  C³  <───d₂───  C²  <───d₁───  C¹  <───d₀───  C⁰       (cochains)
-//! C₄  ───∂₄───>  C₃  ───∂₃───>  C₂  ───∂₂───>  C₁  ───∂₁───>  C₀       (chains, ∂ₖ = dₖ₋₁ᵀ)
-//! ```
-//!
-//! With the full sequence of cochain nilpotence laws:
-//! 1. 1-skeleton nilpotence: `d₁ ∘ d₀ = 0` (or `∂₁ ∘ ∂₂ = 0`).
-//! 2. Discrete Bianchi identity: `d₂ ∘ d₁ = 0` (or `∂₂ ∘ ∂₃ = 0`).
-//! 3. 4-volume curvature / Bianchi coboundary identity: `d₃ ∘ d₂ = 0` (or `∂₃ ∘ ∂₄ = 0`).
-//!
-//! ## Mathematical Definition
-//!
-//! For a 4-cochain target flux `G ∈ C⁴(K; ℚ)` (4-volume density or Pontryagin/Chern cup product)
-//! on a 4-dimensional cell complex with non-trivial 4-cavities (`b₄ ≥ 1`):
-//!
-//! ```text
-//! Φ₄([G]) = min_{C ∈ C³(K; ℚ)} ‖G - d₃ C‖_{1, μ}
-//! ```
-//!
-//! By exact linear programming weak duality over `ℚ`:
-//!
-//! ```text
-//! Φ₄([G]) ≥ max_{v ∈ C₄(K; ℚ)} ⟨G, v⟩
-//! subject to:
-//!   d₃ᵀ v = 0       (v ∈ Z₄(K; ℚ), closed 4-cycle / 4-volume cavity)
-//!   |v_σ| ≤ μ_σ     ∀ σ ∈ K₄ (4-cells)
-//! ```
-//!
-//! When primal and dual values match exactly, weak duality establishes optimality
-//! with zero duality gap in `ℚ`.
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
 use serde::{Deserialize, Serialize};
 use std::str::FromStr;
 
-/// Wire shape for string-encoded rational certificate payloads.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ExactPhi4CertificateWire {
@@ -87,7 +52,6 @@ impl TryFrom<ExactPhi4CertificateWire> for ExactPhi4Certificate {
     }
 }
 
-/// Strongly typed exact rational certificate over `BigRational`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(try_from = "ExactPhi4CertificateWire")]
 pub struct ExactPhi4Certificate {
@@ -180,7 +144,6 @@ pub enum ExactPhi4CertificateError {
     ReportedValueMismatch { reported: String, certified: String },
 }
 
-/// Output of a verified exact rational degree-4 certificate.
 #[derive(Debug, Clone)]
 pub struct VerifiedExactPhi4 {
     value: BigRational,
@@ -207,16 +170,12 @@ impl VerifiedExactPhi4 {
     }
 }
 
-/// The Degree-4 Obstruction Functional (Φ₄) and Discrete Curvature / Pontryagin Evaluator.
 pub struct Phi4Functional;
 
 impl Phi4Functional {
-    /// Verify an exact degree-4 quotient-distance certificate over `ℚ`.
     pub fn verify_exact_certificate(
         cert: ExactPhi4Certificate,
     ) -> Result<VerifiedExactPhi4, ExactPhi4CertificateError> {
-        // `BigRational::new_raw` bypasses parsing. Comparisons and products
-        // panic on a zero denominator, so refuse before either one runs.
         if certificate_has_zero_denominator(&cert) {
             return Err(ExactPhi4CertificateError::ZeroRationalDenominator);
         }
@@ -229,7 +188,6 @@ impl Phi4Functional {
         }
         let cell3_count = cert.d3[0].len();
 
-        // 1. Validate dimensions
         if cert.flux_g.len() != cell4_count {
             return Err(ExactPhi4CertificateError::Cell4DimensionMismatch {
                 expected_4cells: cell4_count,
@@ -338,7 +296,6 @@ impl Phi4Functional {
             }
         }
 
-        // 2. Validate 4-volume curvature nilpotence: d3 * d2 == 0
         for cell4_idx in 0..cell4_count {
             for cell2_idx in 0..cell2_count {
                 let mut sum = BigRational::zero();
@@ -355,7 +312,6 @@ impl Phi4Functional {
             }
         }
 
-        // 3. Optional validation of discrete Bianchi identity: d2 * d1 == 0
         if let Some(ref d1) = cert.d1 {
             let edge_count = if !d1.is_empty() { d1[0].len() } else { 0 };
             for cell3_idx in 0..cell3_count {
@@ -374,7 +330,6 @@ impl Phi4Functional {
                 }
             }
 
-            // 4. Optional validation of 1-skeleton nilpotence: d1 * d0 == 0
             if let Some(ref d0) = cert.d0 {
                 let vertex_count = if !d0.is_empty() { d0[0].len() } else { 0 };
                 for face_idx in 0..cell2_count {
@@ -395,7 +350,6 @@ impl Phi4Functional {
             }
         }
 
-        // 5. Verify primal residual feasibility: r = G - d3 * C
         for cell4_idx in 0..cell4_count {
             let mut d3_c = BigRational::zero();
             for cell3_idx in 0..cell3_count {
@@ -411,7 +365,6 @@ impl Phi4Functional {
             }
         }
 
-        // 6. Verify dual cycle closure: d3^T * v == 0
         for cell3_idx in 0..cell3_count {
             let mut boundary_v = BigRational::zero();
             for cell4_idx in 0..cell4_count {
@@ -425,7 +378,6 @@ impl Phi4Functional {
             }
         }
 
-        // 7. Verify dual norm bound: |v_σ| <= μ_σ
         for cell4_idx in 0..cell4_count {
             let abs_dual = cert.dual_witness[cell4_idx].abs();
             if abs_dual > cert.weights[cell4_idx] {
@@ -437,19 +389,16 @@ impl Phi4Functional {
             }
         }
 
-        // 8. Compute primal objective: sum_σ μ_σ |r_σ|
         let mut primal_value = BigRational::zero();
         for cell4_idx in 0..cell4_count {
             primal_value += &cert.weights[cell4_idx] * cert.primal_residual[cell4_idx].abs();
         }
 
-        // 9. Compute dual objective: ⟨G, v⟩ = sum_σ G_σ * v_σ
         let mut dual_value = BigRational::zero();
         for cell4_idx in 0..cell4_count {
             dual_value += &cert.flux_g[cell4_idx] * &cert.dual_witness[cell4_idx];
         }
 
-        // 10. Check zero duality gap: primal_value - dual_value == 0
         let gap = &primal_value - &dual_value;
         if !gap.is_zero() {
             return Err(ExactPhi4CertificateError::PositiveDualityGap {
@@ -459,7 +408,6 @@ impl Phi4Functional {
             });
         }
 
-        // 11. Check reported value agreement
         if primal_value != cert.reported_value {
             return Err(ExactPhi4CertificateError::ReportedValueMismatch {
                 reported: cert.reported_value.to_string(),
@@ -475,7 +423,6 @@ impl Phi4Functional {
         })
     }
 
-    /// Evaluate 4-volume curvature defect: Γ₄(C) = ‖d₃ C‖_{1, μ}.
     pub fn evaluate_curvature_defect(
         d3: &[Vec<BigRational>],
         potential_c: &[BigRational],
@@ -524,7 +471,6 @@ impl Phi4Functional {
         Ok(total_defect)
     }
 
-    /// Evaluate discrete Pontryagin pairing: ⟨P, v⟩ = sum_σ P_σ * v_σ.
     pub fn evaluate_pontryagin_pairing(
         pontryagin_4cochain: &[BigRational],
         fundamental_4cycle: &[BigRational],
@@ -682,20 +628,13 @@ mod tests {
         );
     }
 
-    /// Simplex 5-boundary complex: ∂Δ⁵ ≅ S⁴
-    /// 6 vertices, 15 edges, 20 faces, 15 tetrahedra, 6 4-simplices.
     fn simplex5_boundary_complex() -> (
         Vec<Vec<BigRational>>,
         Vec<Vec<BigRational>>,
         Vec<Vec<BigRational>>,
         Vec<Vec<BigRational>>,
     ) {
-        // Combinatorial orientation for 6 4-simplices:
-        // s_i = (-1)^i [0, ..., \hat{i}, ..., 5]
-        // Fundamental 4-cycle: v* = (1, -1, 1, -1, 1, -1)^T
         let mut d3 = vec![vec![BigRational::zero(); 15]; 6];
-        // Standard simplicial faces for 6 4-simplices from 15 tetrahedra
-        // Let's create an exact d3 where d3^T * (1, -1, 1, -1, 1, -1)^T == 0
         for tet in 0..15 {
             let i1 = tet % 6;
             let i2 = (tet + 1) % 6;
@@ -718,7 +657,6 @@ mod tests {
         let cell4_count = 6;
         let cell3_count = 15;
 
-        // Trivial 4-flux on acyclic part
         let flux_g = vec![q(0, 1); cell4_count];
         let potential_c = vec![q(0, 1); cell3_count];
         let primal_residual = vec![q(0, 1); cell4_count];

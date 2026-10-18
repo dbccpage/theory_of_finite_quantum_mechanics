@@ -1,6 +1,3 @@
-//! Foundation Tier for Operad Theory.
-//!
-//! AuthorityEffect: None.
 
 pub mod colour;
 pub mod operation;

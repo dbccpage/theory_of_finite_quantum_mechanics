@@ -1,5 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-# Reference: Paper 122 §7.2, H013, H017, H020, BET-C, GAP-F001-S000-004, GAP-F001-S000-010.
 
 """Exact finite Cabello/Peres matrices, frames, and bounded arithmetic.
 
@@ -201,10 +199,10 @@ class GleasonCyclotomic:
             (0, 7, 24), (0, -24, 7),
         ]
         triads = [
-            (0, 1, 2),  # T0
-            (3, 4, 2),  # T1
-            (5, 1, 6),  # T2
-            (7, 0, 8),  # T3
+            (0, 1, 2),
+            (3, 4, 2),
+            (5, 1, 6),
+            (7, 0, 8),
         ]
 
         for t_idx, t in enumerate(triads):
@@ -260,10 +258,8 @@ class GleasonCyclotomic:
                 no_rational_sqrt_2 = False
                 break
 
-        # Divisibility is computed; the field criterion is a declared interpretation.
         conductor_120_not_divisible_by_28 = 120 % 28 != 0
 
-        # In U: 7 * (0)^2 = 0 < 1; In V: 7 * (1)^2 = 7 > 1
         in_U = 7 * 0 * 0 < 1
         in_V = 7 * 1 * 1 > 1
 
@@ -306,7 +302,6 @@ class GleasonCyclotomic:
         6. Confirms that sum_{v in T} f_rho(v) == 1 on all triads for all these states,
            supporting quantum state multiplicity on finite subgraphs without non-Bornian refutation.
         """
-        # Conductor 120 (Pythagorean) triads
         rays_pyth = [
             (1, 0, 0), (0, 1, 0), (0, 0, 1),
             (3, 4, 0), (-4, 3, 0),
@@ -314,20 +309,18 @@ class GleasonCyclotomic:
             (0, 7, 24), (0, -24, 7),
         ]
         triads_pyth = [
-            (0, 1, 2),  # T0
-            (3, 4, 2),  # T1
-            (5, 1, 6),  # T2
-            (7, 0, 8),  # T3
+            (0, 1, 2),
+            (3, 4, 2),
+            (5, 1, 6),
+            (7, 0, 8),
         ]
 
-        # Verify orthogonality of Pythagorean triads
         for t in triads_pyth:
             v0, v1, v2 = [rays_pyth[i] for i in t]
             assert sum(v0[k] * v1[k] for k in range(3)) == 0
             assert sum(v0[k] * v2[k] for k in range(3)) == 0
             assert sum(v1[k] * v2[k] for k in range(3)) == 0
 
-        # Frame valuations on Pythagorean triads
         f_pure0_pyth = [Fraction(v[0]**2, sum(x**2 for x in v)) for v in rays_pyth]
         f_pure2_pyth = [Fraction(v[2]**2, sum(x**2 for x in v)) for v in rays_pyth]
         f_mix_pyth = [Fraction(1, 3) for _ in rays_pyth]
@@ -343,11 +336,7 @@ class GleasonCyclotomic:
         assert all(s == Fraction(1) for s in pyth_sums_mix)
         assert all(s == Fraction(1) for s in pyth_sums_rival)
 
-        # On higher-conductor rotation triads T4-T9:
-        # Across any orthogonal rotation in SO(3, R), sum_{v in T} v_k^2 = 1 identically.
-        # For rho_mix = (1/3) I_3: sum = 1/3 + 1/3 + 1/3 = 1 identically.
-        # For rho_rival = diag(1/2, 0, 1/2): sum = 1/2 (1) + 1/2 (1) = 1 identically.
-        higher_triads_verified = 6  # T4-T6 (conductor 240, pi/8), T7-T9 (conductor 840, 2pi/7)
+        higher_triads_verified = 6
 
         valuations_distinct = (
             f_pure0_pyth[0] != f_mix_pyth[0] and
@@ -461,14 +450,12 @@ class GleasonCyclotomic:
         unique, pairs, triads = _peres_33_rays_and_triads()
         n_rays = len(unique)
 
-        # 1. Triad incidence matrix A (16 x 33)
         A_triads = [[Fraction(1) if r in t else Fraction(0) for r in range(n_rays)] for t in triads]
         rank_A, _, free_A, _ = _exact_rref(A_triads)
-        affine_dim = n_rays - rank_A  # 17
+        affine_dim = n_rays - rank_A
         trace1_dim = 5
-        excess_dim = affine_dim - trace1_dim  # 12
+        excess_dim = affine_dim - trace1_dim
 
-        # 2. Quadratic form components on the 33 rays
         q_rows: List[List[Fraction]] = [[] for _ in range(8)]
         for r in unique:
             nsq = sum(r[k][0] ** 2 + 2 * r[k][1] ** 2 for k in range(3))
@@ -494,14 +481,11 @@ class GleasonCyclotomic:
             q_rows[6].append(Fraction(yz_a, nsq))
             q_rows[7].append(Fraction(yz_b, nsq))
 
-        # Combined constraint matrix: 16 triad rows + 8 quadratic rows = 24 rows
         combined_mat = [list(row) for row in A_triads] + q_rows
         c_rank, _, c_free, c_null = _exact_rref(combined_mat)
 
-        # First null basis vector z in Q^33 (orthogonal to all triads and all quadratic forms)
         z = c_null[0]
         max_abs = max(abs(x) for x in z)
-        # Scale z so max abs is 1/10
         scale = Fraction(1, 10) / max_abs
         z_scaled = [x * scale for x in z]
 
@@ -536,9 +520,8 @@ class GleasonCyclotomic:
         """Compute modular sqrt(-1) witnesses for the selected primes only.
         No p-adic topology, transfer principle, or external measure is constructed."""
         primes = [2, 3, 5, 7, 11, 13, 17]
-        isotropic_primes = [p for p in primes if p > 2 and p % 4 == 1]  # [5, 13, 17]
+        isotropic_primes = [p for p in primes if p > 2 and p % 4 == 1]
 
-        # Explicit sqrt(-1) mod p witnesses
         witnesses = {}
         for p in isotropic_primes:
             i_p = None
@@ -567,9 +550,8 @@ class GleasonCyclotomic:
         }
 
 
-# Module-level exact algebraic helpers for Peres 33 rays, uncolorability, and exact RREF
 
-PeresCoordZ8 = Tuple[int, int]  # a + b * sqrt(2)
+PeresCoordZ8 = Tuple[int, int]
 PeresRayZ8 = Tuple[PeresCoordZ8, PeresCoordZ8, PeresCoordZ8]
 
 
@@ -654,12 +636,10 @@ def _solve_ks_01(
             count[0] += 1
             return True
 
-        # Try 0
         val[idx] = 0
         if search(idx + 1):
             return True
 
-        # Try 1
         can_be_one = True
         for nb in adj[idx]:
             if nb < idx and val[nb] == 1:

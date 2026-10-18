@@ -44,9 +44,6 @@ DEFAULT_RECEIPT_PATH: str = "artifacts/mub_target_g1_orbit_incompatibilities_rec
 D: int = 6
 
 
-# ==============================================================================
-# 0. Zero Floating-Point Type Auditor
-# ==============================================================================
 
 def assert_no_float(obj: Any, path: str = "root", seen: Optional[Set[int]] = None) -> None:
     """Recursively verify that zero floating-point or complex types exist.
@@ -101,9 +98,6 @@ def assert_no_float(obj: Any, path: str = "root", seen: Optional[Set[int]] = Non
             assert_no_float(v, f"{path}.{k}", seen)
 
 
-# ==============================================================================
-# 1. Vector 1: T05_06 Corner Determinant Factorization & Absence of Exotic Components
-# ==============================================================================
 
 def corner_determinant(
     a: Cyc24 | Fraction,
@@ -118,7 +112,6 @@ def corner_determinant(
     assert_no_float((a, b, c, d), "corner_determinant")
     if isinstance(a, Cyc24):
         one = Cyc24.one()
-        # Ensure b, c, d are Cyc24
         b_c = b if isinstance(b, Cyc24) else Cyc24.rat(b)
         c_c = c if isinstance(c, Cyc24) else Cyc24.rat(c)
         d_c = d if isinstance(d, Cyc24) else Cyc24.rat(d)
@@ -146,7 +139,7 @@ def evaluate_matrix_corner_determinant(
 
 def direct_3x3_determinant(m: Sequence[Sequence[Cyc24]]) -> Cyc24:
     """Direct exact determinant of a 3x3 matrix over Cyc24.
-    
+
     det = m00(m11 m22 - m12 m21) - m01(m10 m22 - m12 m20) + m02(m10 m21 - m11 m20).
     """
     assert_no_float(m, "direct_3x3_determinant.m")
@@ -207,12 +200,10 @@ def verify_boundary_positivstellensatz(x: Fraction, y: Fraction) -> Dict[str, An
     assert_no_float((x, y), "verify_boundary_positivstellensatz")
     f = x * x + y * y - Fraction(1, 1)
 
-    # Upper branch x >= 2: g = x - 2 >= 0
     sigma_0_up = Fraction(1, 3) * (x - Fraction(2, 1)) ** 2 + Fraction(1, 3) * (y**2)
     sigma_1_up = Fraction(4, 3)
     rhs_up = Fraction(-1, 3) * f + sigma_0_up + sigma_1_up * (x - Fraction(2, 1))
 
-    # Lower branch x <= -2: g = -2 - x >= 0
     sigma_0_lo = Fraction(1, 3) * (x + Fraction(2, 1)) ** 2 + Fraction(1, 3) * (y**2)
     sigma_1_lo = Fraction(4, 3)
     rhs_lo = Fraction(-1, 3) * f + sigma_0_lo + sigma_1_lo * (Fraction(-2, 1) - x)
@@ -242,14 +233,12 @@ def verify_t05_06_corner_factorization() -> Dict[str, Any]:
     h6 = haagerup_h6_matrix()
     b6_pt_cusp = szollosi_b6_matrix(0, 8, 8, 0)
 
-    # Dephase before applying corner determinant formula
     det_f6 = evaluate_matrix_corner_determinant(f6, dephase_first=True)
     det_s6 = evaluate_matrix_corner_determinant(s6, dephase_first=True)
     det_b6_can = evaluate_matrix_corner_determinant(b6_can, dephase_first=True)
     det_h6 = evaluate_matrix_corner_determinant(h6, dephase_first=True)
     det_b6_cusp = evaluate_matrix_corner_determinant(b6_pt_cusp, dephase_first=True)
 
-    # Direct 3x3 determinant control: on dephased matrices, direct det equals corner det
     direct_controls: Dict[str, str] = {}
     for label, mat, c_det in [
         ("F6_Fourier", f6, det_f6),
@@ -265,11 +254,9 @@ def verify_t05_06_corner_factorization() -> Dict[str, Any]:
             raise ValueError(f"Direct 3x3 determinant mismatch for {label}: direct {d_det} != corner {c_det}")
         direct_controls[label] = str(d_det)
 
-    # Regular corner conditions: non-zero dephased corner determinant
     if det_f6.is_zero() or det_s6.is_zero() or det_b6_can.is_zero() or det_h6.is_zero():
         raise ValueError("Canonical representatives must have non-zero dephased corner determinants")
 
-    # Exotic subvariety exclusions via exact algebraic identities
     test_x = Fraction(3, 5)
     test_y = Fraction(4, 5)
     null_annihilated = verify_annihilated_entry_nullstellensatz(test_x, test_y)
@@ -301,9 +288,6 @@ def verify_t05_06_corner_factorization() -> Dict[str, Any]:
     return res
 
 
-# ==============================================================================
-# 2. Vector 2: T05_10 Cross-Orbit Triad Obstruction
-# ==============================================================================
 
 def check_hadamard_unimodularity(
     u: Sequence[Sequence[Cyc24]],
@@ -331,7 +315,7 @@ def check_mu_transition_modulus(
 
     For raw unnormalized CHMs H_1, H_2 with H H^* = 6I, the transition U = H_1^* H_2
     satisfies the MU condition iff |U_{jk}|^2 == 6 for all j, k.
-    
+
     Returns (is_mu, list of violations).
     """
     assert_no_float(u, "check_mu_transition_modulus.u")
@@ -375,7 +359,6 @@ def verify_cross_orbit_s6_b6_obstruction() -> Dict[str, Any]:
     s6 = tao_s6_matrix()
     s6_dag = matrix_adjoint(s6)
 
-    # Test against canonical B6, Haagerup H6, and discrete Szollosi points
     test_partners: List[Tuple[str, List[List[Cyc24]]]] = [
         ("B6_Canonical", szollosi_b6_canonical()),
         ("H6_Haagerup", haagerup_h6_matrix()),
@@ -420,7 +403,6 @@ def verify_same_orbit_s6_s6_obstruction() -> Dict[str, Any]:
     s6 = tao_s6_matrix()
     s6_dag = matrix_adjoint(s6)
 
-    # Representative non-trivial permutations and phases
     perms = [
         ("Transposition_(0_1)", [1, 0, 2, 3, 4, 5]),
         ("Transposition_(1_2)", [0, 2, 1, 3, 4, 5]),
@@ -527,9 +509,6 @@ def verify_t05_10_cross_orbit_triad_obstruction() -> Dict[str, Any]:
     return res
 
 
-# ==============================================================================
-# 3. Vector 3: T05_11 Combinatorial Pigeonhole Lemma (Reindexed for 6 Non-Identity Bases)
-# ==============================================================================
 
 def combinations_exact(n: int, k: int) -> int:
     """Exact integer binomial coefficient binom(n, k)."""
@@ -565,18 +544,14 @@ def reindexed_pigeonhole_dita_count(
     )
 
     if cross_orbit_exclusion:
-        # Cross-orbit obstruction: max(n_tao, n_szollosi) <= 1 and both cannot be present simultaneously
         max_non_dita = min(1, n_tao_max + n_szollosi_max) + n_haagerup_max
     else:
         max_non_dita = n_tao_max + n_szollosi_max + n_haagerup_max
 
     min_dita = n_non_identity - max_non_dita
 
-    # Pure Dita pairs extending I_6: binom(min_dita, 2)
-    # Each pair {B_i, B_j} forms an MU triple (I_6, B_i, B_j) extending I_6
     pure_dita_triples_extending_i6 = combinations_exact(min_dita, 2)
 
-    # Pure Dita triples among non-identity bases: binom(min_dita, 3)
     pure_dita_triples_among_non_id = combinations_exact(min_dita, 3)
 
     return {
@@ -636,7 +611,7 @@ def verify_pigeonhole_global_cover_bridge_integration(
     2. With n_Tao + n_Szollosi <= 1 and n_Haagerup <= 0, minimum Dita count is 5.
     3. Forced pure Dita pairs extending I_6 is binom(5, 2) = 10 >= 1.
     4. Forced pure Dita triples among non-identity bases is binom(5, 3) = 10 >= 1.
-    
+
     The global cover bridge remains undischarged until moduli classification exhaustiveness,
     continuous parameter incompatibility, and global cover gluing theorems are proved.
     """
@@ -648,9 +623,9 @@ def verify_pigeonhole_global_cover_bridge_integration(
     if dita_margin <= Fraction(0, 1):
         raise ValueError(f"dita_margin must be strictly positive, got {dita_margin}")
 
-    min_dita = n_non_id - max_exotic  # 5
-    dita_pairs_extending_i6 = min_dita * (min_dita - 1) // 2  # 10
-    dita_triples_among_non_id = min_dita * (min_dita - 1) * (min_dita - 2) // 6  # 10
+    min_dita = n_non_id - max_exotic
+    dita_pairs_extending_i6 = min_dita * (min_dita - 1) // 2
+    dita_triples_among_non_id = min_dita * (min_dita - 1) * (min_dita - 2) // 6
 
     receipt = {
         "status": "CONDITIONAL_COUNTING_REPLAY",
@@ -683,9 +658,6 @@ def verify_pigeonhole_global_cover_bridge_integration(
 
 
 
-# ==============================================================================
-# 4. Vector 4: T02_07 Transition Matrix Unimodularity Failure for Tao Matrix S6
-# ==============================================================================
 
 def evaluate_tao_gauge_partner_transitions() -> Dict[str, Any]:
     """Test transition unimodularity for S6 against a comprehensive battery of gauge partners.
@@ -696,7 +668,6 @@ def evaluate_tao_gauge_partner_transitions() -> Dict[str, Any]:
     s6 = tao_s6_matrix()
     s6_dag = matrix_adjoint(s6)
 
-    # Battery 1: All 15 transpositions (i j) in S6
     transposition_results: List[Dict[str, Any]] = []
     for i in range(D):
         for j in range(i + 1, D):
@@ -715,7 +686,6 @@ def evaluate_tao_gauge_partner_transitions() -> Dict[str, Any]:
                 "distinct_moduli": distinct_mods,
             })
 
-    # Battery 2: Cyclic permutations (shifts by 1..5)
     cyclic_results: List[Dict[str, Any]] = []
     for shift in range(1, D):
         p = [(r + shift) % D for r in range(D)]
@@ -732,8 +702,6 @@ def evaluate_tao_gauge_partner_transitions() -> Dict[str, Any]:
             "distinct_moduli": distinct_mods,
         })
 
-    # Battery 3: Non-trivial diagonal phase gauge transformations
-    # Third roots of unity phases (0, 8, 16 mod 24)
     phase_patterns = [
         ("Phase_Alternating_3rd_Roots", [0, 8, 16, 0, 8, 16]),
         ("Phase_Single_Excitation", [8, 0, 0, 0, 0, 0]),
@@ -755,7 +723,6 @@ def evaluate_tao_gauge_partner_transitions() -> Dict[str, Any]:
             "distinct_moduli": distinct_mods,
         })
 
-    # Battery 4: Transpose of S6
     s6_trans = [[s6[c][r] for c in range(D)] for r in range(D)]
     u_trans = matrix_mul(s6_dag, s6_trans)
     is_mu_trans, viol_trans = check_mu_transition_modulus(u_trans, expected_mod_sq=6)
@@ -787,9 +754,6 @@ def verify_t02_07_tao_unimodularity_failure() -> Dict[str, Any]:
     return evaluate_tao_gauge_partner_transitions()
 
 
-# ==============================================================================
-# 5. Vector 5: T03_06 Szollosi Unimodularity Obstruction
-# ==============================================================================
 
 def evaluate_szollosi_parameter_pair_transition(
     pt1_params: Tuple[int, int, int, int],
@@ -802,7 +766,6 @@ def evaluate_szollosi_parameter_pair_transition(
     b1 = szollosi_b6_matrix(*pt1_params)
     b2 = szollosi_b6_matrix(*pt2_params)
 
-    # Verify both are valid CHMs
     ok1, msg1 = is_unitary_chm(b1)
     ok2, msg2 = is_unitary_chm(b2)
     if not ok1 or not ok2:
@@ -811,7 +774,6 @@ def evaluate_szollosi_parameter_pair_transition(
     u = matrix_mul(matrix_adjoint(b1), b2)
     is_mu, viol = check_mu_transition_modulus(u, expected_mod_sq=6)
 
-    # Compute distinct squared moduli
     distinct_moduli = sorted({str(u[r][c].abs_sq()) for r in range(D) for c in range(D)})
 
     return {
@@ -869,9 +831,6 @@ def verify_t03_06_szollosi_unimodularity_obstruction() -> Dict[str, Any]:
     return out
 
 
-# ==============================================================================
-# 6. Master Grand Synthesis Receipt Generator & Auditor
-# ==============================================================================
 
 def generate_target_g1_orbit_incompatibilities_receipt(
     save_path: Optional[str] = None,

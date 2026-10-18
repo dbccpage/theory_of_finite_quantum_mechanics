@@ -1,9 +1,3 @@
-//! Explicit, stateless dispatch of checked finite functional measurements.
-//!
-//! This layer emits no workload verdict, terminal status, or actor license.
-//! It supports the named Phi1 and Gamma2 kernels only; it does not reinterpret
-//! a raw norm as Phi1 or alias Xi to Wigner-Yanase. Hashes bind typed serialized
-//! data, not original HTTP bytes, a native binary, or an authenticated carrier.
 
 use std::collections::BTreeMap;
 
@@ -33,21 +27,16 @@ pub enum FunctionalInput {
     Gamma2(Vec<BigRational>),
 }
 
-/// This is a mathematical range declaration, not a resource budget.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum FunctionalRange {
     UnboundedAllowed,
 }
 
-/// Functional evidence cannot authorize or promote itself.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum FunctionalAuthorityEffect {
     None,
 }
 
-/// Shape-only transport record. Deserialize does not validate its claims.
-/// Use replay_functional_record against the independently selected configuration
-/// and original typed input before relying on its arithmetic or bindings.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct UntrustedFunctionalRecord {
@@ -81,21 +70,6 @@ impl FunctionalEvidence {
     }
 }
 
-/// Only actual checked computation or replay can construct this result.
-///
-/// No deserializer, public field setter, terminal conversion, or promotion API.
-///
-/// ~~~compile_fail
-/// use omega_functional::factory::FunctionalOutput;
-/// let forged: FunctionalOutput = serde_json::from_str("{}").unwrap();
-/// ~~~
-///
-/// ~~~compile_fail
-/// use omega_functional::factory::{FunctionalOutput, UntrustedFunctionalRecord, FunctionalEvidence};
-/// fn forge(record: UntrustedFunctionalRecord, evidence: FunctionalEvidence) -> FunctionalOutput {
-///     FunctionalOutput { record, evidence }
-/// }
-/// ~~~
 #[derive(Debug, Clone)]
 pub struct FunctionalOutput {
     record: UntrustedFunctionalRecord,
@@ -134,21 +108,6 @@ mod sealed {
     pub trait Kernel {}
 }
 
-/// Inward computational port, not a plugin or an authority-creation interface.
-/// The supported implementations are sealed; adding a kernel requires an
-/// explicit in-crate implementation, contract binding, and executable witnesses.
-///
-/// ~~~compile_fail
-/// use omega_functional::factory::{BaseFunctionalKernel, FunctionalInput, FunctionalOutput, FunctionalError};
-/// struct OutsideKernel;
-/// impl BaseFunctionalKernel for OutsideKernel {
-///     fn functional_id(&self) -> &'static str { "forged" }
-///     fn functional_version(&self) -> u32 { 1 }
-///     fn compute(&self, _: &FunctionalInput) -> Result<FunctionalOutput, FunctionalError> {
-///         Err(FunctionalError::UnknownKernel)
-///     }
-/// }
-/// ~~~
 pub trait BaseFunctionalKernel: sealed::Kernel {
     fn functional_id(&self) -> &'static str;
     fn functional_version(&self) -> u32;
@@ -161,8 +120,6 @@ enum KernelConfiguration {
     Gamma2(ExactCochainComplexQ),
 }
 
-/// Immutable selected presentation. Configuration never changes during compute.
-/// No mutable global registry, inference, fallback, cache, or candidate ranking.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ConfiguredFunctional {
     configuration: KernelConfiguration,
@@ -212,8 +169,6 @@ impl BaseFunctionalKernel for ConfiguredFunctional {
     }
 
     fn compute(&self, state: &FunctionalInput) -> Result<FunctionalOutput, FunctionalError> {
-        // Admission precedes hashing. These typed algebraic boundaries are not
-        // substitutes for ingress byte/bit limits in the host/controller.
         let evidence = match (&self.configuration, state) {
             (KernelConfiguration::Phi1(space), FunctionalInput::Phi1(certificate)) => {
                 FunctionalEvidence::Phi1(space.evaluate(certificate.clone())?)
@@ -272,8 +227,6 @@ impl BaseFunctionalKernel for ConfiguredFunctional {
     }
 }
 
-/// Dispatch only the explicitly requested, configured kernel. Known-but-different
-/// configuration is not an alias; unknown names never trigger a default kernel.
 pub fn evaluate_functional(
     name: &str,
     kernel: &ConfiguredFunctional,
@@ -288,9 +241,6 @@ pub fn evaluate_functional(
     kernel.compute(state)
 }
 
-/// Recompute against independent inputs and compare the complete record.
-/// Comparing serialized data avoids arithmetic on potentially invalid in-process
-/// new_raw rationals supplied in an untrusted record.
 pub fn replay_functional_record(
     name: &str,
     kernel: &ConfiguredFunctional,
@@ -326,8 +276,6 @@ fn output_commitment(
     record: &UntrustedFunctionalRecord,
 ) -> Result<FunctionalContentHash, FunctionalError> {
     let value = serde_json::to_value(record).map_err(|_| FunctionalError::SerializationFailed)?;
-    // Bind every record field except the hash itself. Explicit BTreeMap sorting
-    // makes key order independent of serde_json's optional preserve_order feature.
     let mut fields: BTreeMap<String, serde_json::Value> = value
         .as_object()
         .ok_or(FunctionalError::SerializationFailed)?
@@ -425,7 +373,6 @@ mod tests {
             .compute(&FunctionalInput::Gamma2(vec![q(7), q(-5)]))
             .unwrap();
         let again = evaluate_functional("gamma2", &kernel, &input).unwrap();
-        // (3 - 1)/2 = (7 - 5)/2 = 1, not the raw representative norm 4 or 12.
         assert_eq!(first.evidence().value(), &q(1));
         assert_eq!(shifted.evidence().value(), &q(1));
         assert_eq!(
@@ -441,7 +388,6 @@ mod tests {
     fn phi1_dispatch_verifies_an_optimum_instead_of_raw_representative_mass() {
         let output =
             evaluate_functional("phi1", &phi1(), &FunctionalInput::Phi1(certificate())).unwrap();
-        // min_a 2|3-a| + 3|-4| = 12, whereas the raw mass is 18.
         assert_eq!(output.evidence().value(), &q(12));
         assert_eq!(output.record().values, vec![q(12)]);
         assert!(matches!(output.evidence(), FunctionalEvidence::Phi1(_)));

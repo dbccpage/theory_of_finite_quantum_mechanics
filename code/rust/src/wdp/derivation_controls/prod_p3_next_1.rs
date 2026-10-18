@@ -1,8 +1,3 @@
-//! Finite executable witness for `PROD-P3-NEXT-1`.
-//!
-//! Models the P3 `GuardTransferChecker` soundness check (source soundness +
-//! target transfer safety under a representation adapter) and exact Appendix Q.4
-//! rational break-even pricing, with fixed `authority_effect = "None"`.
 
 #![forbid(unsafe_code)]
 
@@ -75,7 +70,6 @@ pub fn gcd(mut a: i128, mut b: i128) -> i128 {
     if a == 0 { 1 } else { a }
 }
 
-/// Computes exact rational saving `h*v - N*g - C_0` as reduced `(num, den)`.
 pub fn price_saving(
     candidates: i128,
     hits: i128,
@@ -162,9 +156,7 @@ mod tests {
             Err(TransferRefusal::SourceUnsound(vec!["zero".to_string()]))
         );
 
-        // Reference input.json saving: N=4, h=2, v=1, g=1/10, C_0=1 -> 3/5
         assert_eq!(price_saving(4, 2, 1, 1, 1, 10, 1, 1), (3, 5));
-        // Q.4 worked example: N=10000, v=1, g=1/1000, C_0=2 -> h=12 gives 0, h=13 gives 1
         assert_eq!(price_saving(10000, 12, 1, 1, 1, 1000, 2, 1), (0, 1));
         assert_eq!(price_saving(10000, 13, 1, 1, 1, 1000, 2, 1), (1, 1));
     }

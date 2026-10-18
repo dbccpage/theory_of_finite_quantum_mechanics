@@ -1,8 +1,3 @@
-//! Shared-noise control only. Candidates are {0,1}, the free report is *, and
-//! instruments A and B each have price 1. The declared segments are
-//! L_0 = {(e,e): e in [-1,1]} and L_1 = {(1+e,-1+e): e in [-1,1]}.
-//! Costs below are exact integer cost units on that finite carrier. The
-//! marginal-interval product is a different carrier. No continuum limit.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 struct Q {
@@ -183,7 +178,6 @@ fn admit(worlds: &mut Vec<World>, candidate: World) {
     }
 }
 
-/// Critical-cell worlds for these two segments, in sampler order.
 fn sample() -> Vec<World> {
     let segs = segments();
     let mut worlds = Vec::new();
@@ -284,8 +278,6 @@ fn mask_price(instruments: &[usize], mask: u32) -> i64 {
     total
 }
 
-/// Minimum price of a suite that separates different answers. `None` means no suite does.
-/// A one-instrument `None` is not replaced by that instrument's price.
 fn fixed(worlds: &[World], instruments: &[usize]) -> Option<i64> {
     let width = instruments.len();
     let mut best: Option<i64> = None;
@@ -373,8 +365,6 @@ fn difference_constant(seg: &Segment) -> Option<Q> {
     Some(seg.offsets[0].sub(seg.offsets[1]))
 }
 
-/// On these two segments the reading difference is constant on each answer and
-/// equals `scale * answer`, with the two constants distinct.
 fn identity_separates() -> bool {
     let segs = segments();
     let (c0, c1) = match (difference_constant(&segs[0]), difference_constant(&segs[1])) {
@@ -421,7 +411,6 @@ fn carrier_mask(worlds: &[World]) -> i64 {
     masks[0] as i64
 }
 
-/// Exact shared-noise costs. Product fields are null-optimum data, not the joint optimum.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Witness {
     pub worlds: i64,
@@ -482,7 +471,6 @@ pub fn witness() -> Witness {
 const MARGINAL_NOT_JOINT: &str = "coordinate enclosure is not a realizable joint report";
 const PRICE_NOT_OPTIMUM: &str = "insufficient product-suite price is not an optimum";
 
-/// Joint feasibility uses one common parameter. Marginal interval membership is refused.
 pub fn refuse_coordinate_enclosure(za_n: i64, za_d: i64, zb_n: i64, zb_d: i64) -> Result<i64, &'static str> {
     if za_d == 0 || zb_d == 0 {
         return Err("zero denominator");
@@ -502,7 +490,6 @@ pub fn refuse_coordinate_enclosure(za_n: i64, za_d: i64, zb_n: i64, zb_d: i64) -
     Ok(joint[0])
 }
 
-/// The product carrier's stored optimum is null. Its full-suite price is not that optimum.
 pub fn refuse_product_price_as_optimum(price: i64) -> Result<(), &'static str> {
     let report = witness();
     if !report.product_optimum_null || report.product_suite_sufficient {

@@ -1,5 +1,3 @@
-//! Programme residual ledgers and coherence admission records.
-//! AuthorityEffect: None. Not PROVED. Not GlobalGreen.
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::matrix;
 use num_traits::Signed;
@@ -8,7 +6,6 @@ use omega_number_theory::{cyclotomic::GaussianRat, rational::Rational};
 use omega_quantum_physics::exact_hermitian::{self};
 use omega_quantum_physics::residual_density_calculus::{sector_measurement, ResidualDensityError};
 
-/// Nonnegative sector masses with positive total.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ResidualLedger {
     masses: Vec<Rational>,
@@ -29,7 +26,6 @@ impl ResidualLedger {
         Ok(Self { masses })
     }
 
-    /// The orientation-blind ledger `|x|` of a signed residual.
     pub fn from_signed_residual(x: &[Rational]) -> Result<Self, ResidualDensityError> {
         Self::new(x.iter().map(Signed::abs).collect())
     }
@@ -42,7 +38,6 @@ impl ResidualLedger {
         self.masses.iter().sum()
     }
 
-    /// `p(s) = mu(s) / M`.
     pub fn weights(&self) -> Vec<Rational> {
         BornProbabilities::from_weights(&self.masses)
             .expect("constructor admits positive finite masses")
@@ -50,7 +45,6 @@ impl ResidualLedger {
             .to_vec()
     }
 
-    /// `rho = diag(p)`.
     pub fn diagonal_density(&self) -> BasicMatrix<GaussianRat> {
         let entries: Vec<GaussianRat> = self
             .weights()
@@ -60,13 +54,11 @@ impl ResidualLedger {
         matrix::diagonal(&entries).expect("constructor bounds the diagonal carrier")
     }
 
-    /// `Tr(rho^2) = sum p(s)^2`.
     pub fn purity(&self) -> Rational {
         self.weights().iter().map(|p| p * p).sum()
     }
 }
 
-/// Read a trace-one PSD diagonal density back as a ledger of its diagonal.
 pub fn ledger_from_diagonal_density(
     rho: &BasicMatrix<GaussianRat>,
 ) -> Result<ResidualLedger, ResidualDensityError> {
@@ -87,10 +79,6 @@ pub fn ledger_from_diagonal_density(
     ResidualLedger::new(sector_measurement(rho)?)
 }
 
-/// A coherence license as evaluated for one candidate. The fields are private,
-/// so a license exists only as [`evaluate_coherence`] computed it. The source's
-/// fifth field, "authority ceiling unchanged", is not stored: no diagnostic
-/// here can represent authority, so it would be a constant.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct CoherenceLicense {
     sector_identity_preserved: bool,
@@ -100,22 +88,18 @@ pub struct CoherenceLicense {
 }
 
 impl CoherenceLicense {
-    /// Computed: the coherent matrix keeps the ledger's weights on its diagonal.
     pub fn sector_identity_preserved(&self) -> bool {
         self.sector_identity_preserved
     }
 
-    /// Computed: at least one off-diagonal phase was actually supplied.
     pub fn phase_relation_declared(&self) -> bool {
         self.phase_relation_declared
     }
 
-    /// Computed: the coherent matrix is exactly PSD.
     pub fn psd_condition_satisfied(&self) -> bool {
         self.psd_condition_satisfied
     }
 
-    /// Declared by the caller.
     pub fn observer_basis_declared(&self) -> bool {
         self.observer_basis_declared
     }
@@ -128,7 +112,6 @@ impl CoherenceLicense {
     }
 }
 
-/// Evaluate a proposed coherent density `rho` for a ledger.
 pub fn evaluate_coherence(
     ledger: &ResidualLedger,
     rho: &BasicMatrix<GaussianRat>,
@@ -158,7 +141,6 @@ pub fn evaluate_coherence(
     }
 }
 
-/// Admit a coherent density only when its license is complete.
 pub fn licensed_coherent_density(
     ledger: &ResidualLedger,
     rho: BasicMatrix<GaussianRat>,

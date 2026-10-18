@@ -1,16 +1,6 @@
-/-
-  GR002.HodgeDiracSUSY
 
-  Formalization of Discrete Hodge-Dirac Supersymmetry on the 2-Simplex Δ².
 
-  Theorems:
-    1. d0_c3_sum_zero: Im(d0) ⊆ Ker(d1) where d1 is the face 2-coboundary (1,1,1).
-    2. d1_d0_nilpotent: d1 ∘ d0 = 0 identically.
-    3. delta1_isotropic: the displayed coordinate maps satisfy
-       d0 d0ᵀ + d1ᵀ d1 = 3 I₃ on the single 2-simplex.
 
-  AuthorityEffect: None.
--/
 
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Ring

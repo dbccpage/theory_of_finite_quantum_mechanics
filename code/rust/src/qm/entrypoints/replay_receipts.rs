@@ -1,8 +1,3 @@
-//! Entrypoint: replay_receipts.
-//!
-//! A receipt is an initial integer state and a list of additions. Replaying
-//! forward must meet the recorded final state, and walking the same additions
-//! backward from that final state must recover the initial state.
 
 pub fn run_replay_receipts() -> Result<(), String> {
     let initial = 5i64;

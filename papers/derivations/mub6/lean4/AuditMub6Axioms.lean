@@ -3,12 +3,8 @@ import Lean.Util.CollectAxioms
 
 open Lean Elab Command
 
-/-! Audit every declaration owned by a local source module, not only selected
-published theorem names. Fails when a local module is omitted or any dependency
-lies outside the explicitly allowed foundational axiom set. -/
 run_elab do
   let env ← getEnv
-  -- Cache this projection: EnvironmentHeader.moduleNames maps the entire import array.
   let moduleNames := env.header.moduleNames
   let progress ← IO.getStderr
   progress.putStrLn "MUB6_AUDIT_PHASE environment_loaded"
@@ -23,8 +19,6 @@ run_elab do
       throwError "Local source module not imported: {moduleName}"
   let moduleSet := modules.foldl (fun (s : NameHashSet) name => s.insert name) {}
   let allowed : Array Name := #[``propext, ``Classical.choice, ``Quot.sound]
-  -- Select owned declarations before sorting, so imported mathlib declarations
-  -- do not dominate this local audit's time and memory.
   let localDeclarations := env.constants.toList.filter fun (name, _) =>
     match env.getModuleIdxFor? name with
     | some idx => moduleSet.contains moduleNames[idx.toNat]!

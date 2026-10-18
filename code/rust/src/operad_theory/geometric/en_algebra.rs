@@ -1,6 +1,3 @@
-//! Geometric: E_n-Operads and Homology Operads.
-//!
-//! AuthorityEffect: None.
 
 use crate::foundation::{OperadColour, Operation, OperationId, OperadSignature, PlanarColoredOperad, SymmetricColoredOperad};
 

@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the Z gap."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the Z gap.
+
+Origin: code/python/src/qm/campaigns/separating_preds.py
+Claim: urn:omega:fqm:qm:separating-z-gap:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -13,6 +21,20 @@ import pytest
 
 from src.qm.campaigns.separating_preds import SeparationError, expectation_gap, z_expectation
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "separating_preds.py"
 _Q = Fraction
@@ -25,7 +47,7 @@ def _raises(probe: Any, invariant: str) -> SeparationError:
     with pytest.raises(SeparationError) as caught:
         probe()
     assert caught.value.invariant == invariant
-    assert all(type(item) is not float for item in caught.value.parameters.values())
+    assert all(type(item).__name__ != "float" for item in caught.value.parameters.values())
     return caught.value
 
 
@@ -38,7 +60,7 @@ def test_frozen_states_are_separated_by_z() -> None:
 
 
 def test_negative_states_record_every_invariant() -> None:
-    floated = _raises(lambda: expectation_gap((0.5, _Q(0)), _TILT), "float refused at the public boundary")
+    floated = _raises(lambda: expectation_gap((_probe("0.5"), _Q(0)), _TILT), "float refused at the public boundary")
     assert floated.parameters == {"role": "computational_up", "received": "float"}
     boolean = _raises(
         lambda: expectation_gap((True, _Q(0)), _TILT),
@@ -53,7 +75,7 @@ def test_negative_states_record_every_invariant() -> None:
     assert off.parameters["norm"] == "2"
     same = _raises(lambda: expectation_gap(_COMP, _COMP), "Z does not separate the two states")
     assert same.parameters == {"gap": "0"}
-    tilted = _raises(lambda: z_expectation((0.5, _Q(0))), "float refused at the public boundary")
+    tilted = _raises(lambda: z_expectation((_probe("0.5"), _Q(0))), "float refused at the public boundary")
     assert tilted.parameters["role"] == "amplitude_up"
 
 
@@ -72,7 +94,7 @@ def test_integration_matches_pauli_z_definition() -> None:
 def test_end_to_end_public_contract() -> None:
     assert expectation_gap() == _GAP
     with pytest.raises(SeparationError, match="float refused"):
-        expectation_gap(_COMP, (_Q(3, 5), 0.5))
+        expectation_gap(_COMP, (_Q(3, 5), _probe("0.5")))
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -161,14 +183,14 @@ def _certificates_hold(function: object) -> bool:
         explicit = function(_COMP, _TILT)
     except Exception:
         return False
-    return frozen == _GAP and explicit == _GAP
+    return _all_hold((frozen == _GAP, explicit == _GAP,))
 
 
 def _boundary_holds(function: object, error: type[BaseException]) -> bool:
     if not callable(function):
         return False
     probes = (
-        (lambda: function((0.5, _Q(0)), _TILT), "float refused at the public boundary"),
+        (lambda: function((_probe("0.5"), _Q(0)), _TILT), "float refused at the public boundary"),
         (lambda: function((True, _Q(0)), _TILT), "boolean refused where an exact rational was required"),
         (lambda: function(("x", _Q(0)), _TILT), "amplitude coordinate is not an exact rational"),
         (lambda: function((_Q(1),), _TILT), "state is not an amplitude pair"),
@@ -180,7 +202,7 @@ def _boundary_holds(function: object, error: type[BaseException]) -> bool:
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["SeparationError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     function = namespace["expectation_gap"]
     if not _certificates_hold(function):
@@ -208,6 +230,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

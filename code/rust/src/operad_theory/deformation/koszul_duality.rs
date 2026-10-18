@@ -1,12 +1,8 @@
-//! Deformation: Koszul duality and proposed quadratic dual skeletons.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use crate::foundation::{Operation, OperationId, OperadSignature};
 use super::quadratic_operad::QuadraticOperad;
 
-/// Proposed structural dual skeleton of a quadratic operad.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProposedQuadraticDual {
     pub original_name: String,
@@ -15,7 +11,6 @@ pub struct ProposedQuadraticDual {
     pub notes: String,
 }
 
-/// Builder for constructing Koszul dual skeletons.
 pub struct KoszulDualBuilder;
 
 impl KoszulDualBuilder {

@@ -1,4 +1,3 @@
-//! Primitive difference domain types.
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -15,7 +14,6 @@ pub enum DifferenceError {
 }
 
 impl PrimitiveDifference {
-    /// `D(x, y) = y - x`, stored with the given label.
     pub fn between(label: impl Into<String>, x: i64, y: i64) -> Result<Self, DifferenceError> {
         let delta = y.checked_sub(x).ok_or(DifferenceError::Overflow)?;
         Ok(Self {
@@ -24,18 +22,15 @@ impl PrimitiveDifference {
         })
     }
 
-    /// Evaluate the primitive difference on a pair.
     pub fn evaluate(x: i64, y: i64) -> Result<i64, DifferenceError> {
         y.checked_sub(x).ok_or(DifferenceError::Overflow)
     }
 
-    /// Scale a stored sample difference by an integer.
     pub fn scale(&self, factor: i64) -> Result<i64, DifferenceError> {
         self.delta.checked_mul(factor).ok_or(DifferenceError::Overflow)
     }
 }
 
-/// Antisymmetry `D(x,y) + D(y,x) = 0` and the cocycle `D(x,y)+D(y,z) = D(x,z)`.
 pub fn sample_cocycle() -> Result<(), DifferenceError> {
     let points = [0i64, 1, 3, 7, 12];
     for &x in &points {

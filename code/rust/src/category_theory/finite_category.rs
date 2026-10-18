@@ -1,15 +1,7 @@
-//! Shared finite category declarations.
-//!
-//! This module is the canonical finite category data model for the functor
-//! core.  It keeps declarations explicit and auditable, while
-//! `ValidatedFiniteCategory` marks data that has passed the finite category
-//! law checks.
 
 use super::cat_functor::Category;
 use std::collections::{BTreeMap, BTreeSet};
 
-/// Composition table convention:
-/// compositions[(f, g)] = g composed after f.
 pub type CompositionTable = BTreeMap<(String, String), String>;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -85,7 +77,6 @@ impl DeclaredFiniteCategory {
             .map(|mor| (mor.source.as_str(), mor.target.as_str()))
     }
 
-    /// Returns g ∘ f (first `f`, then `g`).
     pub fn compose(&self, f: &str, g: &str) -> Option<&str> {
         self.compositions
             .get(&(f.into(), g.into()))

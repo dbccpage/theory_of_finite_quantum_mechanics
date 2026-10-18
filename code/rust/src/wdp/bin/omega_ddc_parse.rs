@@ -1,10 +1,3 @@
-//! Standalone Native CLI Binary for DDC Tape Parsing & Verification.
-//!
-//! Usage:
-//!   omega_ddc_parse --tape <path/to/ddc.jsonl> [--output <receipt.json>]
-//!   cat ddc.jsonl | omega_ddc_parse --stdin [--output <receipt.json>]
-//!
-//! AuthorityEffect: None.
 
 use std::env;
 use std::fs;

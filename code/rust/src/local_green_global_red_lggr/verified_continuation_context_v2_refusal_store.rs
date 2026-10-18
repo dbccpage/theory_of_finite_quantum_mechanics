@@ -1,47 +1,3 @@
-//! `AppendLogRefusalStore` — the third real v2 verifier.
-//!
-//! # The defect this closes
-//!
-//! In v1, prior refusals were a **caller-supplied packet field**. A caller who
-//! wanted to continue simply omitted them, and nothing could tell the difference
-//! between "no refusal was ever recorded" and "a refusal was recorded and left
-//! out". The field was deleted; [`RefusalStore`] replaced it. This is the first
-//! implementation that actually stores anything.
-//!
-//! Omission is now **inexpressible**: `standing_refusals` reads the store, the
-//! store is append-only, and there is deliberately **no removal method** on this
-//! type. Not a private one, not a `#[cfg(test)]` one. A refusal that was recorded
-//! can only be un-recorded by editing the file on disk — which is what the pin
-//! below is for.
-//!
-//! # Durability is the point, not a bonus
-//!
-//! Backed by [`omega_replay::append_log::AppendLogV1`], a hash-chained JSONL log
-//! that `fsync`s before acknowledging an append. `open` re-verifies the entire
-//! chain — sequence continuity, parent linkage, and per-record digest — and
-//! refuses wholesale on any mismatch. The in-memory index is rebuilt **from
-//! disk**, never carried across, so a process restart cannot lose a refusal.
-//!
-//! # What this does NOT establish — the truncation gap
-//!
-//! **A hash chain detects modification, not tail truncation.** Delete the last
-//! `n` lines and what remains is still a perfectly valid chain: sequences start
-//! at 0, parents link, digests verify. [`AppendLogRefusalStore::open`] will
-//! succeed and silently report fewer refusals than were recorded.
-//!
-//! That is precisely the forgetting this type exists to prevent, so it is not
-//! papered over: [`AppendLogRefusalStore::open_pinned`] takes a
-//! [`RefusalStorePin`] captured earlier and refuses if the log has lost records
-//! or diverged from it. The residual does not vanish — it **moves** to "the pin
-//! must live somewhere the caller cannot rewrite", which is a narrower and more
-//! honest problem than "trust the file". Where that pin lives is not solved here.
-//!
-//! `open` (unpinned) is retained for first-run bootstrap, where there is no
-//! earlier pin by construction. Its blind spot is asserted by a test rather than
-//! described in prose, so it cannot rot into a false claim.
-//!
-//! **AuthorityEffect: None.** A standing refusal blocks continuation; nothing
-//! here mints permission to continue.
 
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
@@ -51,8 +7,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::verified_continuation_context_v2::{ContinuationBlockerV2, RefusalStore};
 
-/// Payload schema tag. Present in every record so a foreign log cannot be
-/// mistaken for a refusal log.
 const REFUSAL_RECORD_SCHEMA: &str = "omega.epk.v2.refusal.v1";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -91,10 +45,6 @@ impl From<AppendLogError> for RefusalStoreError {
     }
 }
 
-/// A witness to how much of the log had been written at a point in time.
-///
-/// Carrying one forward is what turns "the chain is internally consistent" into
-/// "the chain still contains everything it contained before".
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RefusalStorePin {
@@ -111,7 +61,6 @@ impl RefusalStorePin {
     }
 }
 
-/// Append-only, hash-chained, per-run refusal store.
 #[derive(Debug)]
 pub struct AppendLogRefusalStore {
     log: AppendLogV1,
@@ -121,19 +70,11 @@ pub struct AppendLogRefusalStore {
 }
 
 impl AppendLogRefusalStore {
-    /// Open (creating if absent) and rebuild the index from disk.
-    ///
-    /// Does **not** detect tail truncation — see the module docs and
-    /// [`Self::open_pinned`]. Use this only where no earlier pin can exist.
     pub fn open(path: impl Into<PathBuf>) -> Result<Self, RefusalStoreError> {
         let (log, records) = AppendLogV1::open(path.into())?;
         Self::index(log, records)
     }
 
-    /// Open and verify the log still contains everything `pin` witnessed.
-    ///
-    /// Refuses on truncation (fewer records than pinned) and on divergence (the
-    /// record at the pinned position no longer has the pinned digest).
     pub fn open_pinned(
         path: impl Into<PathBuf>,
         pin: &RefusalStorePin,
@@ -164,8 +105,6 @@ impl AppendLogRefusalStore {
         let mut head_sha256 = None;
         let record_count = records.len() as u64;
         for record in records {
-            // A payload we cannot read is NOT skipped. Skipping would silently
-            // drop a refusal, which is the whole failure mode being prevented.
             let parsed: RefusalRecordV1 =
                 serde_json::from_value(record.payload.clone()).map_err(|e| {
                     RefusalStoreError::ForeignRecord {
@@ -196,11 +135,6 @@ impl AppendLogRefusalStore {
         })
     }
 
-    /// Append one refusal and return the pin that now witnesses the log.
-    ///
-    /// There is no counterpart that removes one. Recording the same refusal for
-    /// the same run twice is idempotent in the index, but both appends are kept
-    /// on the chain — the log is a history, not a set.
     pub fn record(
         &mut self,
         run_id: &str,
@@ -222,8 +156,6 @@ impl AppendLogRefusalStore {
         Ok(self.pin())
     }
 
-    /// Witness the current extent of the log, to be checked by a later
-    /// [`Self::open_pinned`].
     pub fn pin(&self) -> RefusalStorePin {
         RefusalStorePin {
             record_count: self.record_count,
@@ -250,8 +182,6 @@ mod tests {
     use super::*;
     use std::fs;
 
-    /// Per-test scratch path. No `Date::now`/rand available, so the caller
-    /// supplies a distinct name.
     fn scratch(name: &str) -> PathBuf {
         let dir = std::env::temp_dir().join("omega_epk_v2_refusal_store_tests");
         let _ = fs::create_dir_all(&dir);
@@ -275,7 +205,6 @@ mod tests {
 
     #[test]
     fn a_refusal_survives_reopening_because_it_is_rebuilt_from_disk() {
-        // The load-bearing property. A restart must not clear a refusal.
         let p = scratch("survives");
         let pin = {
             let mut s = AppendLogRefusalStore::open(&p).unwrap();
@@ -330,14 +259,11 @@ mod tests {
             .record("run-1", ContinuationBlockerV2::WitnessMissing)
             .unwrap();
         assert_eq!(s.standing_refusals("run-1").len(), 1);
-        // ...but the history keeps both appends.
         assert_eq!(pin.record_count(), 2);
     }
 
     #[test]
     fn tail_truncation_is_detected_against_a_pin() {
-        // THE attack: delete the last lines so a refusal is forgotten. The
-        // remaining chain is still internally valid, so only the pin catches it.
         let p = scratch("truncated");
         let mut s = AppendLogRefusalStore::open(&p).unwrap();
         s.record("run-1", ContinuationBlockerV2::WitnessMissing)
@@ -351,11 +277,9 @@ mod tests {
         let kept: Vec<&str> = text.lines().take(1).collect();
         fs::write(&p, format!("{}\n", kept.join("\n"))).unwrap();
 
-        // The truncated log still opens cleanly on its own terms...
         let blind = AppendLogRefusalStore::open(&p).unwrap();
         assert_eq!(blind.standing_refusals("run-1").len(), 1);
 
-        // ...and the pin is what refuses it.
         assert!(matches!(
             AppendLogRefusalStore::open_pinned(&p, &pin),
             Err(RefusalStoreError::Truncated {
@@ -367,9 +291,6 @@ mod tests {
 
     #[test]
     fn unpinned_open_cannot_see_truncation() {
-        // Executable statement of the residual. If someone later makes `open`
-        // truncation-safe, this test fails and the module docs get corrected --
-        // which is the point of asserting a gap rather than describing it.
         let p = scratch("residual");
         let mut s = AppendLogRefusalStore::open(&p).unwrap();
         s.record("run-1", ContinuationBlockerV2::WitnessMissing)
@@ -398,7 +319,6 @@ mod tests {
             .unwrap();
         drop(s);
 
-        // Same length, different content: rebuild the log with another blocker.
         fs::remove_file(&p).unwrap();
         let mut rewritten = AppendLogRefusalStore::open(&p).unwrap();
         rewritten
@@ -420,7 +340,6 @@ mod tests {
             .unwrap();
         drop(s);
 
-        // Flip the blocker without resealing: the chain digest no longer matches.
         let text = fs::read_to_string(&p).unwrap();
         fs::write(&p, text.replace("DetectorInadequate", "BudgetExhausted")).unwrap();
 
@@ -432,8 +351,6 @@ mod tests {
 
     #[test]
     fn a_foreign_payload_is_refused_not_skipped() {
-        // Skipping an unreadable record would silently drop a refusal -- exactly
-        // the failure mode this store exists to prevent.
         let p = scratch("foreign");
         let mut raw = AppendLogV1::open(p.clone()).unwrap().0;
         raw.append(serde_json::json!({"something": "else"}))

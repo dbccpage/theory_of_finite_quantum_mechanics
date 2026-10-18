@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 CODA 2D CS-Q Discretization Defect Operators and 2D Multi-Mesh Refinement.
 
@@ -171,7 +170,7 @@ def verify_2d_mesh_refinement(
 
 class Discrete2DCubatureSolver:
     """Computes double integral iint_{[0,1]^2} f(x, y) dx dy via 2D trapezoidal product rule.
-    
+
     By 2D Euler-Maclaurin expansion:
       |E(hx, hy)| <= (M_xx / 12) * hx^2 + (M_yy / 12) * hy^2
     where M_xx >= max |d^2 f / dx^2| and M_yy >= max |d^2 f / dy^2|.
@@ -198,7 +197,6 @@ class Discrete2DCubatureSolver:
         hx = Fraction(1, nx_val)
         hy = Fraction(1, ny_val)
 
-        # 2D trapezoidal product sum
         total = Fraction(0)
         for i in range(nx_val + 1):
             wx = Fraction(1, 2) if (i == 0 or i == nx_val) else Fraction(1)

@@ -17,12 +17,11 @@ from typing import Any
 
 logger = logging.getLogger(__name__)
 
-# Attempt fail-soft import of compiled PyO3 native extension
 _native: Any = None
 _NATIVE_AVAILABLE: bool = False
 
 try:
-    from . import _native as _compiled_native  # type: ignore[attr-defined]
+    from . import _native as _compiled_native
 
     _native = _compiled_native
     _NATIVE_AVAILABLE = True
@@ -47,7 +46,6 @@ def list_suites() -> list[str]:
     """List available computational suite identifiers."""
     if _NATIVE_AVAILABLE and _native is not None:
         return _native.list_suites()
-    # Pure-Python fail-soft fallback: extract suite keys from defaults.json
     try:
         fixture = files("src.qm.data").joinpath("defaults.json")
         data = json.loads(fixture.read_text(encoding="utf-8"))
@@ -63,7 +61,6 @@ def claims(paper: str = "qm122") -> dict[str, Any]:
         raise ValueError(f"UNKNOWN_PAPER:{paper}")
     if _NATIVE_AVAILABLE and _native is not None:
         return json.loads(_native.qm122_claims_json())
-    # Pure-Python fail-soft fallback: load quantum_claims.json directly
     fixture = files("src.qm.data").joinpath("quantum_claims.json")
     return json.loads(fixture.read_text(encoding="utf-8"))
 

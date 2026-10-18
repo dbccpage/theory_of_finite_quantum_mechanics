@@ -41,7 +41,6 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Iterator, List, Mapping, Sequence, Set, Tuple
 
-# Path setup
 _CODE_DIR = Path(__file__).resolve().parent
 if str(_CODE_DIR) not in sys.path:
     sys.path.insert(0, str(_CODE_DIR))
@@ -58,9 +57,6 @@ from topological_cluster_4d_solver import (
 )
 
 
-# ============================================================================
-# Section 1: Exact Rational SU(2) Quaternions
-# ============================================================================
 
 
 @dataclass(frozen=True)
@@ -83,7 +79,6 @@ class RationalSU2:
             if not isinstance(val, (int, Fraction)):
                 raise TypeError(f"Coefficients must be int or Fraction, got {type(val).__name__}")
 
-        # Ensure all are Fraction
         if type(self.a0) is int:
             object.__setattr__(self, "a0", Fraction(self.a0, 1))
         if type(self.a1) is int:
@@ -227,9 +222,6 @@ class RationalSU2:
         )
 
 
-# ============================================================================
-# Section 2: 4D Lattice Gauge Field on T^4 with L >= 8
-# ============================================================================
 
 
 class LatticeGaugeField4D:
@@ -293,7 +285,7 @@ class LatticeGaugeField4D:
         """Returns coordinate shifted in direction mu by steps, with periodic wrapping."""
         x_list = list(x)
         x_list[mu] += steps
-        return self.torus.wrap(tuple(x_list))  # type: ignore
+        return self.torus.wrap(tuple(x_list))
 
     def plaquette(
         self,
@@ -381,22 +373,17 @@ class LatticeGaugeField4D:
         x_w = self.torus.wrap(x)
         old_link = self.get_link(x_w, mu)
 
-        # Calculate affected action before update
         action_before = Fraction(0, 1)
         for nu in range(4):
             if nu != mu:
                 p1_plane = (min(mu, nu), max(mu, nu))
-                # Forward plaquette
                 action_before += self.plaquette_action(x_w, p1_plane[0], p1_plane[1])
-                # Backward plaquette (starting at x - nu)
                 x_minus_nu = self.shift(x_w, nu, steps=-1)
                 action_before += self.plaquette_action(x_minus_nu, p1_plane[0], p1_plane[1])
 
-        # Apply update
         new_link = rotation * old_link
         self.set_link(x_w, mu, new_link)
 
-        # Calculate affected action after update
         action_after = Fraction(0, 1)
         for nu in range(4):
             if nu != mu:
@@ -454,13 +441,11 @@ class LatticeGaugeField4D:
         x0 = self.torus.wrap(center.coords)
         chirality = center.chirality
 
-        # Plane (0, 1): U_0 = i (with sign=chirality), U_1 = j -> P_01 = chirality * k
         u0 = RationalSU2.from_generators(1, sign=chirality)
         u1 = RationalSU2.from_generators(2, sign=1)
         self.set_link(x0, 0, u0)
         self.set_link(self.shift(x0, 0), 1, u1)
 
-        # Dual plane (2, 3): U_2 = j, U_3 = -i -> P_23 = k
         u2 = RationalSU2.from_generators(2, sign=1)
         u3 = RationalSU2.from_generators(1, sign=-1)
         self.set_link(x0, 2, u2)
@@ -485,9 +470,6 @@ class LatticeGaugeField4D:
         return flipped
 
 
-# ============================================================================
-# Section 3: Coupling Gauge Updates to 4D Topological Cluster Solver
-# ============================================================================
 
 
 class SU2TopologicalClusterCoupler:
@@ -530,7 +512,6 @@ class SU2TopologicalClusterCoupler:
 
         tau_cluster = orientation_flip(base_cluster)
 
-        # Insert links for both centers into gauge field
         self.gauge_field.insert_localized_half_instanton(base_center)
         if tau_cluster.centers:
             self.gauge_field.insert_localized_half_instanton(tau_cluster.centers[0])
@@ -565,7 +546,6 @@ class SU2TopologicalClusterCoupler:
                     centers=(c,),
                 )
             clusters.append(cluster)
-            # Insert center links into gauge field
             self.gauge_field.insert_localized_half_instanton(c)
 
         return clusters

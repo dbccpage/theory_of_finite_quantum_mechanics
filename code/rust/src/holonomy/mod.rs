@@ -1,8 +1,3 @@
-//! omega_holonomy — Exact Discrete Gauge Holonomy, Connection Laplacians,
-//! and Curvature Commutators for the Omega Engine.
-//!
-//! AuthorityEffect: None.
-//! Governing Rule: RULE[user_global] (Strict Zero-Float Law, Soviet Builder discipline).
 
 pub mod connection;
 pub mod curvature;

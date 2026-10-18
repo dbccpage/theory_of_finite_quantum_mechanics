@@ -1,10 +1,3 @@
-//! CH20 finite-table evaluator and model-preserving profile transport.
-//!
-//! Boolean tables are declared semantics, not physical truth. Evidence is checked
-//! against those tables independently of admission or policy. Terminal routing
-//! replays only the ordered candidate prefix admitted by the profile budget.
-//! Receipts bind data but never replace semantic replay; transport never copies a
-//! source status. Every result has `AuthorityEffect::None`.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -25,8 +18,6 @@ fn digest<T: Serialize + ?Sized>(data: &T) -> Result<String, WdpError> {
         .map_err(|_| invalid("profile receipt serialization failed"))
 }
 
-/// Finite checked profile. Serialization is permitted; unchecked deserialization
-/// is deliberately unavailable. Constructors validate admission and policy.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct FiniteProfile {
     table: BTreeMap<String, bool>,
@@ -79,14 +70,10 @@ impl FiniteProfile {
         self.budget
     }
 
-    /// Independent semantic verification; no claimed receipt/status is consulted.
     pub fn verify_evidence(&self, evidence: &TableEvidence) -> bool {
         self.table.get(&evidence.query) == Some(&evidence.value)
     }
 
-    /// Guards in Proved, Refuted, Undetermined, OutsideProfile, Refused order.
-    /// A Boolean model makes proved/refuted mutually exclusive. The remaining
-    /// cases partition admission, policy, and absence of verified prefix evidence.
     pub fn status_guards(
         &self,
         query: &str,
@@ -167,8 +154,6 @@ impl FiniteProfile {
         Ok(receipt)
     }
 
-    /// Recompute from independently supplied problem data, including policy and
-    /// budget. A well-hashed false status or wrong candidate prefix is rejected.
     pub fn verify_receipt(
         &self,
         query: &str,
@@ -200,8 +185,6 @@ pub enum ProfileStatus {
     Refused,
 }
 
-/// Untrusted candidate receipt. Public fields support wire/candidate checking;
-/// verify_receipt must replay the model before any routing decision.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ProfileEvaluationReceipt {
     pub query: String,
@@ -214,7 +197,6 @@ pub struct ProfileEvaluationReceipt {
 }
 
 impl ProfileEvaluationReceipt {
-    /// A content commitment only; this does not verify the declared status.
     pub fn recompute_digest(&self) -> Result<String, WdpError> {
         digest(&(
             &self.query,
@@ -227,8 +209,6 @@ impl ProfileEvaluationReceipt {
     }
 }
 
-/// Checked total injective query encoding preserving every source table value.
-/// Admission, refusal policy and budget are deliberately independent profiles.
 #[derive(Debug, Clone, Serialize)]
 pub struct ProfileTransport {
     source: FiniteProfile,
@@ -300,9 +280,6 @@ impl ProfileTransport {
         Ok(transported)
     }
 
-    /// Transport each candidate intact and replay target policy/budget. Invalid
-    /// source evidence is refused, never silently filtered or repaired. Candidate
-    /// order is preserved, so neither budget prefix can be manufactured.
     pub fn replay_target(
         &self,
         source_query: &str,
@@ -332,7 +309,6 @@ impl ProfileTransport {
         Ok(receipt)
     }
 
-    /// Recompute evidence translation, both profile routes and both receipts.
     pub fn verify_target_replay(
         &self,
         source_query: &str,
@@ -359,8 +335,6 @@ pub struct TransportEvaluationReceipt {
 }
 
 impl TransportEvaluationReceipt {
-    /// Bind the whole checked map and both profile receipts, not just its used image.
-    /// As with profile receipts, this commitment alone supplies no semantic truth.
     pub fn recompute_digest(&self) -> Result<String, WdpError> {
         digest(&(
             &self.transported_candidates,

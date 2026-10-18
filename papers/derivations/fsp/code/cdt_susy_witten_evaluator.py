@@ -81,37 +81,33 @@ class CdtSusyWittenEvaluator:
         seed: int = 42,
     ) -> Dict[str, Any]:
         r"""Constructs the discrete energy spectrum of bosons and fermions under H_SUSY.
-        
+
         Under exact unbroken supersymmetry:
         - Ground state has E_0 = 0.
         - n_boson_zero bosonic states and n_fermion_zero fermionic states at E = 0.
         - All positive energy states E_k > 0 form exact pairs (one boson, one fermion) with E_b = E_f.
         - Consequently, for any \beta > 0:
           \Delta_Witten(\beta) = \sum_b e^{-\beta E_b} - \sum_f e^{-\beta E_f} = n_b^(0) - n_f^(0) \in \mathbb{Z} identically.
-          
+
         Under broken supersymmetry:
         - Ground states are lifted to E_0 = m_breaking^2 > 0.
         - Boson-fermion degeneracy is split: E_{b,k} \neq E_{f,k}.
         - \Delta_Witten(\beta) acquires temperature dependence.
         """
         rng = np.random.default_rng(seed)
-        
-        # Positive energy levels
+
         base_energies = np.sort(rng.uniform(0.5, 5.0, size=num_doublets))
-        
+
         if not is_broken:
-            # Exact unbroken SUSY
             e_boson_zero = np.zeros(n_boson_zero, dtype=float)
             e_fermion_zero = np.zeros(n_fermion_zero, dtype=float)
             e_boson_excited = base_energies.copy()
             e_fermion_excited = base_energies.copy()
             ground_energy = 0.0
         else:
-            # Spontaneously / geometrically broken SUSY
             ground_energy = float(m_breaking**2)
             e_boson_zero = np.full(n_boson_zero, ground_energy, dtype=float)
             e_fermion_zero = np.full(n_fermion_zero, ground_energy + 0.5 * m_breaking, dtype=float)
-            # Split doublet energies
             splits = rng.normal(0, m_breaking, size=num_doublets)
             e_boson_excited = np.maximum(0.1, base_energies + splits)
             e_fermion_excited = np.maximum(0.1, base_energies - splits)
@@ -146,44 +142,39 @@ class CdtSusyWittenEvaluator:
         seed: int = 42,
     ) -> Tuple[float, float, int]:
         r"""Evaluates the Nicolai map \xi = \mathcal{N}(\phi) and fermion determinant.
-        
+
         Under unbroken N=1 supersymmetry:
         The Nicolai map transforms interacting bosonic configurations into Gaussian random fields:
         det(D_F) = |det(\delta\mathcal{N}/\delta\phi)| > 0.
         The fermion determinant is strictly positive, and the sign problem is identically suppressed (<Sign> = 1.0).
-        
+
         Under broken supersymmetry (m_breaking > 0):
         The Nicolai map develops a non-isometric defect, causing det(D_F) to develop sign oscillations.
-        
+
         Returns:
             (nicolai_residual, fermion_determinant, fermion_sign)
         """
         rng = np.random.default_rng(seed)
         nv = num_vertices
-        
-        # 1D circular or simplicial derivative operator
+
         D_kin = np.zeros((nv, nv), dtype=float)
         for i in range(nv):
             D_kin[i, (i + 1) % nv] = 0.5
             D_kin[i, (i - 1) % nv] = -0.5
 
-        # Potential curvature W''(\phi)
         phi = rng.standard_normal(nv)
         m_scalar = 1.0
         w_prime_prime = m_scalar + 0.2 * phi**2
         W_mat = np.diag(w_prime_prime)
 
-        # Nicolai Jacobian: M_F = \partial + W''(\phi)
         M_F = D_kin + W_mat
         jac_det = float(np.linalg.det(M_F))
 
         if not is_broken:
-            # Exact Nicolai isometry: det(D_F) = |jac_det|
             fermion_det = abs(jac_det)
             fermion_sign = 1
             nicolai_residual = 0.0
         else:
-            # Broken SUSY: curvature tearing or gravitino mass adds anti-commuting mismatch
             breaking_matrix = rng.normal(0, m_breaking, size=(nv, nv))
             M_broken = M_F + breaking_matrix
             fermion_det = float(np.linalg.det(M_broken))
@@ -199,14 +190,14 @@ class CdtSusyWittenEvaluator:
         target_Q: int = 0,
     ) -> float:
         r"""Solves the L1 Super-Wheeler-DeWitt joint constraint defect norm.
-        
+
         \Phi_super = min_\alpha ||\Omega_SUSY - D_super \alpha||_1
         where \Omega_SUSY = [\mathcal{S}_\alpha, p_i, \mathcal{H}_\perp]^T.
-        
+
         When supersymmetry is unbroken, the local supercharge constraint \mathcal{S}_\alpha |\Psi\rangle = 0
         squares to the Hamiltonian constraint \{\mathcal{S}, \bar{\mathcal{S}}\} = 2 \sigma^\mu \mathcal{H}_\mu,
         guaranteeing \mathcal{H}_\perp |\Psi\rangle = 0 and \Phi_super <= 1e-8.
-        
+
         When supersymmetry is broken (m_breaking > 0), the goldstino / gravitino mismatch
         produces an unabsorbable super-Hamiltonian defect \Phi_super > 1e-8.
         """
@@ -231,7 +222,6 @@ class CdtSusyWittenEvaluator:
         m_breaking = 0.35 if is_broken else 0.0
         configs = []
 
-        # Target topological Witten index
         n_b_target = 2
         n_f_target = 0
         witten_target = n_b_target - n_f_target
@@ -296,7 +286,7 @@ class CdtSusyWittenEvaluator:
         seed: int = 42,
     ) -> Dict[str, Any]:
         """Evaluates supersymmetry cancellation, Witten index, and Super-WDW constraints across an ensemble.
-        
+
         Persists results into SQLite database and queries ViewCdtSusyWittenAudit.
         """
         configs = self.generate_ensemble(
@@ -322,7 +312,6 @@ class CdtSusyWittenEvaluator:
             is_susy_pres = int(not cfg.is_broken)
             is_super_wdw_sat = int(cfg.super_wdw_defect_norm <= 1e-8)
 
-            # Insert trajectory row
             self.cur.execute(
                 """INSERT OR REPLACE INTO CdtSusyWittenTrajectory
                    (ensemble_id, config_id, sweep_id, num_vertices, four_volume,
@@ -367,7 +356,6 @@ class CdtSusyWittenEvaluator:
         else:
             classification = "SusyBreakingSignResurgenceObstruction"
 
-        # Insert Susy Cancellation Audit row
         self.cur.execute(
             """INSERT OR REPLACE INTO CdtSusyCancellationAudit
                (ensemble_id, susy_regime, num_configurations, mean_witten_index,
@@ -387,7 +375,6 @@ class CdtSusyWittenEvaluator:
             ),
         )
 
-        # Insert Summary row
         self.cur.execute(
             """INSERT OR REPLACE INTO CdtSuperWdwSummary
                (ensemble_id, susy_regime, max_super_wdw_defect, mean_super_wdw_defect,
@@ -404,7 +391,6 @@ class CdtSusyWittenEvaluator:
         )
         self.conn.commit()
 
-        # Query ViewCdtSusyWittenAudit
         self.cur.execute(
             """SELECT ensemble_id, susy_regime, num_configurations,
                       mean_witten_index, witten_temperature_derivative,
@@ -442,7 +428,7 @@ class CdtSusyWittenEvaluator:
         seed: int = 42,
     ) -> Dict[str, Any]:
         r"""Evaluates the topological Witten index across varying temperatures \beta.
-        
+
         Proves \Delta_Witten(\beta) is strictly independent of \beta because all excited states
         E > 0 cancel pairwise: Tr((-1)^F e^{-\beta E}) = 0 identically.
         """

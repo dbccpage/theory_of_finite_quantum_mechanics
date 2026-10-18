@@ -1,21 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 
-/-!
-The retained-profile / conservative-extension bridge.
 
-This module is deliberately presentation-theoretic.  A retained difference is
-declared before any observer is chosen; profile difference is observer-relative.
-The quotient below carries whole demand orbits and never chooses a preferred
-representative.
--/
 
 namespace RetainedProfileCECBridge
 
@@ -24,30 +10,23 @@ open OmegaCore.PrimitiveDifference
 
 universe u v w u' v' w' i o o'
 
-/-! ## Retention, observation, and active obstruction -/
 
-/-- Pre-observer evidence that the distinction between `x` and `y` is retained. -/
 def RetainedDiff {X : Type u}
     (retained : X → X → Prop) (x y : X) : Prop :=
   retained x y
 
-/-- A retention requirement that the current repair regime is not allowed to erase. -/
 def Protected {X : Type u}
     (guarded : X → X → Prop) (x y : X) : Prop :=
   guarded x y
 
-/-- Observer-relative profile separation.  It is not a premise of active obstruction. -/
 def ProfileDifference {I : Type i} {X : Type u} {O : Type o}
     (profile : I → X → O) (observer : I) (x y : X) : Prop :=
   profile observer x ≠ profile observer y
 
-/-- Observer-relative zero: the selected profile does not distinguish the pair. -/
 def ZeroRel_r {I : Type i} {X : Type u} {O : Type o}
     (profile : I → X → O) (observer : I) (x y : X) : Prop :=
   ¬ ProfileDifference profile observer x y
 
-/-- A retained distinction is active precisely when the selected observer
-identifies it and the distinction is protected. -/
 structure ActiveObstruction {I : Type i} {X : Type u} {O : Type o}
     (profile : I → X → O) (observer : I)
     (retained guarded : X → X → Prop) (x y : X) : Prop where
@@ -55,7 +34,6 @@ structure ActiveObstruction {I : Type i} {X : Type u} {O : Type o}
   zeroRelated : ZeroRel_r profile observer x y
   isProtected : Protected guarded x y
 
-/-- The exact bridge: no observer-relative profile-positivity assumption occurs. -/
 theorem retainedDiff_zeroRel_protected_activeObstruction
     {I : Type i} {X : Type u} {O : Type o}
     {profile : I → X → O} {observer : I}
@@ -66,7 +44,6 @@ theorem retainedDiff_zeroRel_protected_activeObstruction
   intro h
   exact ⟨h.1, h.2.1, h.2.2⟩
 
-/-! ### Protection is necessary: an explicit collapse fixture -/
 
 def boolRetainedDeclaration (x y : Bool) : Prop :=
   x = true ∧ y = false
@@ -75,9 +52,6 @@ def boolConstantProfile (_ : Unit) (_ : Bool) : Unit := ()
 
 def boolNeverProtected (_ _ : Bool) : Prop := False
 
-/-- A constant observer profile collapses a specifically declared retained pair,
-but without protection the pair is not an active obstruction.  The fixture does
-not define retained difference to mean state inequality in general. -/
 theorem unprotected_collapse_countermodel :
     RetainedDiff boolRetainedDeclaration true false ∧
       ZeroRel_r boolConstantProfile () true false ∧
@@ -93,10 +67,7 @@ theorem unprotected_collapse_countermodel :
   · intro h
     exact h.isProtected
 
-/-! ## Same-presentation repair -/
 
-/-- A state carrier, a signature of primitive transitions, and its primitive
-difference presentation. -/
 structure Presentation (X : Type u) (Sig : Type v) (R : Type w) where
   difference : PrimitiveDifference X R
   step : Sig → X → X
@@ -118,8 +89,6 @@ theorem run_append {X : Type u} {Sig : Type v} {R : Type w}
 
 end Presentation
 
-/-- Both endpoints inhabit the same carrier `X`, and every program token has
-the same signature `Sig`; changing either type cannot inhabit this certificate. -/
 structure SameLevelRepair {X : Type u} {Sig : Type v} {R : Type w}
     (P : Presentation X Sig R) (start finish : X) where
   program : List Sig
@@ -140,7 +109,6 @@ theorem sameLevelRepair_replays_in_same_carrier_and_signature
     ∃ program : List Sig, P.run program x = y :=
   ⟨repair.program, repair.reaches⟩
 
-/-! ## Total and exclusive terminal classification -/
 
 inductive Terminal where
   | SameLevelRepair
@@ -148,9 +116,6 @@ inductive Terminal where
   | ConservativeExtensionProposal
 deriving DecidableEq, Repr
 
-/-- Only declared evidence is inspected.  Verified same-level repair has
-priority; otherwise a proposal requires both exhausted same-level search and
-verified extension admissibility. -/
 structure TerminalEvidence where
   sameLevelRepairVerified : Bool
   sameLevelSearchExhausted : Bool
@@ -196,8 +161,6 @@ theorem classifyTerminal_total (e : TerminalEvidence) :
   | mk repair exhausted admissible =>
       cases repair <;> cases exhausted <;> cases admissible <;> decide
 
-/-- A stronger exactly-one statement: whichever constructor is selected, both
-other constructor equalities are refuted. -/
 theorem classifyTerminal_exclusive (e : TerminalEvidence) :
     (classifyTerminal e = .SameLevelRepair ∧
         classifyTerminal e ≠ .TypedRefusal ∧
@@ -212,13 +175,7 @@ theorem classifyTerminal_exclusive (e : TerminalEvidence) :
   | mk repair exhausted admissible =>
       cases repair <;> cases exhausted <;> cases admissible <;> decide
 
-/-! ## Conservative extension certificates -/
 
-/-- A conservative extension embeds and retracts both carrier and signature,
-commutes with transitions, preserves retained/protected distinctions, reflects
-the new zero relation back to the old one, and contains a genuinely new carrier
-element or signature token.  Zero refinement is deliberately one-way: an old
-zero-related pair may split in the extended presentation. -/
 structure ConservativeExtensionCertificate
     {X : Type u} {Sig : Type v} {R : Type w}
     {Y : Type u'} {Tau : Type v'} {S : Type w'}
@@ -279,9 +236,6 @@ theorem signatureEmbed_injective
       congrArg C.signatureRetract h
     _ = b := C.signatureRetract_embed b
 
-/-- Every zero identification retained after embedding was already an old zero
-identification.  The converse is intentionally absent, allowing an active old
-zero class to split in the extension. -/
 theorem embedded_zeroRel_refines
     {X : Type u} {Sig : Type v} {R : Type w}
     {Y : Type u'} {Tau : Type v'} {S : Type w'}
@@ -295,7 +249,6 @@ theorem embedded_zeroRel_refines
     oldP.difference.ZeroRel x y :=
   C.zero_refinement h
 
-/-- A nonzero old distinction cannot collapse after embedding. -/
 theorem embedded_nonzero_preserved
     {X : Type u} {Sig : Type v} {R : Type w}
     {Y : Type u'} {Tau : Type v'} {S : Type w'}
@@ -311,14 +264,11 @@ theorem embedded_nonzero_preserved
 
 end ConservativeExtensionCertificate
 
-/-! ## Demand orbits and quotient transitions -/
 
 structure DemandFamily (I : Type i) (X : Type u) (O : Type o) where
   profile : I → X → O
   declared : I → Prop
 
-/-- Two states share a demand orbit when every declared demand has the same
-profile after every program over the current signature. -/
 def DemandOrbitRel {I : Type i} {X : Type u} {Sig : Type v}
     {R : Type w} {O : Type o}
     (P : Presentation X Sig R) (D : DemandFamily I X O) (x y : X) : Prop :=
@@ -376,8 +326,6 @@ theorem demandOrbitClass_eq_iff
   · intro h
     exact Quotient.sound h
 
-/-- Transition acts directly on orbit classes.  Its construction uses
-congruence and contains no representative selector or ordering. -/
 def quotientTransition
     {I : Type i} {X : Type u} {Sig : Type v} {R : Type w} {O : Type o}
     (P : Presentation X Sig R) (D : DemandFamily I X O) (op : Sig) :
@@ -396,7 +344,6 @@ theorem quotientTransition_carries_demandOrbitClass
       demandOrbitClass P D (P.step op x) :=
   rfl
 
-/-! ## Equal-cost extensions need not be unique -/
 
 structure ObserverExtension {X : Type u} {O : Type o} (base : X → O)
     (Oplus : Type o') where
@@ -447,8 +394,6 @@ theorem refinement_profiles_not_related_by_postmap :
   have hFalseTrue : false = true := hSource.symm.trans hSpare
   cases hFalseTrue
 
-/-- Both one-coordinate extensions solve the declared source/target separation
-at equal cost, yet no post-map turns the first profile into the second. -/
 theorem nonunique_equalCost_extension_countermodel :
     refinementA.profile .source ≠ refinementA.profile .target ∧
       refinementB.profile .source ≠ refinementB.profile .target ∧
@@ -461,7 +406,6 @@ theorem nonunique_equalCost_extension_countermodel :
   · intro h
     cases h
 
-/-! ## Hard scope fence -/
 
 structure ScopeFence where
   cochainClaims : Prop
@@ -502,3 +446,6 @@ theorem bridgeScope_hardFalse :
 #print axioms bridgeScope_hardFalse
 
 end RetainedProfileCECBridge
+
+private def l5aProvenance : String :=
+  "Origin: lean4/RetainedProfileCecBridge.lean Claim: retainedDiff_zeroRel_protected_activeObstruction AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

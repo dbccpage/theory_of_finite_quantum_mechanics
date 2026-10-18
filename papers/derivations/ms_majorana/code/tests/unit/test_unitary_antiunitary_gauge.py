@@ -119,18 +119,15 @@ def test_conj_conjugates_sesqui():
 
 def test_conj_changes_nonreal_sesqui():
     u, v = GaussInt(1, 0), GaussInt(0, 1)
-    assert u.sesqui(v) == GaussInt(0, 1)  # i
-    assert u.conj().sesqui(v.conj()) == GaussInt(0, -1)  # -i
+    assert u.sesqui(v) == GaussInt(0, 1)
+    assert u.conj().sesqui(v.conj()) == GaussInt(0, -1)
     assert u.conj().sesqui(v.conj()) != u.sesqui(v)
 
 
 def test_composition_algebra():
     sample = GaussInt(1, 1)
-    # mulI² = -1
     assert sample.mul_i().mul_i() == GaussInt(-1, -1)
-    # conj² = id
     assert sample.conj().conj() == sample
-    # noncommute
     assert sample.conj().mul_i() != sample.mul_i().conj()
 
 

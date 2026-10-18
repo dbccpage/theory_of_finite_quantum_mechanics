@@ -1,7 +1,3 @@
-//! Exact finite SU(2)_2 tetrahedral recoupling at q=exp(i pi/4).
-//! Labels are twice-spin 0,1,2. This computes quantum Racah coefficients and
-//! finite products, with no continuum or triangulation-invariance admission.
-//! AuthorityEffect: None.
 use omega_number_theory::quadratic::Quadratic;
 pub type IsingScalar = Quadratic<2>;
 pub const AUTHORITY_FENCE: &str =
@@ -51,9 +47,6 @@ fn delta_squared(a: u8, b: u8, c: u8) -> IsingScalar {
         .checked_div(&qfactorial((a + b + c) / 2 + 1))
         .expect("admissibility keeps denominator nonzero")
 }
-/// An exact quantum Racah amplitude `factor * sqrt(squared_prefactor)`.
-/// Keeping the positive root as data admits the fourth roots appearing in
-/// unnormalized SU(2)_2 six-j symbols without falsely narrowing their field.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RacahCoefficient {
     factor: IsingScalar,
@@ -69,7 +62,6 @@ impl RacahCoefficient {
     pub fn squared_value(&self) -> IsingScalar {
         self.factor.mul(&self.factor).mul(&self.squared_prefactor)
     }
-    /// Refuse when this unnormalized coefficient needs a field extension.
     pub fn quadratic_value(&self) -> Result<IsingScalar, SpinFoamError> {
         if self.factor == IsingScalar::zero() {
             return Ok(IsingScalar::zero());
@@ -79,8 +71,6 @@ impl RacahCoefficient {
             .mul(&self.squared_prefactor.sqrt().ok_or(SpinFoamError::Field)?))
     }
 }
-/// {a b c; d e f}_q in the quantum Racah convention, retaining an exact
-/// positive-root certificate. Forbidden couplings have amplitude zero.
 pub fn ising_six_j_radical(labels: [u8; 6]) -> Result<RacahCoefficient, SpinFoamError> {
     let [a, b, c, d, e, f] = labels;
     if labels.iter().any(|&v| v > 2) {
@@ -134,13 +124,9 @@ pub fn ising_six_j_radical(labels: [u8; 6]) -> Result<RacahCoefficient, SpinFoam
         squared_prefactor,
     })
 }
-/// The six-j value in Q(sqrt(2)), with a typed field-extension refusal.
-/// Use `ising_six_j_radical` to retain every admissible coefficient exactly.
 pub fn ising_six_j(labels: [u8; 6]) -> Result<IsingScalar, SpinFoamError> {
     ising_six_j_radical(labels)?.quadratic_value()
 }
-/// F^{abc}_d[e,f], including quantum dimension factors and the standard
-/// (-1)^(a+b+c+d)/2 recoupling phase. Inadmissible rows have zero amplitude.
 pub fn ising_f(a: u8, b: u8, c: u8, d: u8, e: u8, f: u8) -> Result<IsingScalar, SpinFoamError> {
     if [a, b, c, d, e, f].iter().any(|&v| v > 2) {
         return Err(SpinFoamError::Label);
@@ -153,8 +139,6 @@ pub fn ising_f(a: u8, b: u8, c: u8, d: u8, e: u8, f: u8) -> Result<IsingScalar, 
         return Ok(IsingScalar::zero());
     }
     let racah = ising_six_j_radical([a, b, e, c, d, f])?;
-    // The two separate roots can require fourth roots of two. The normalized
-    // recoupling uses their product, which lies in the declared quadratic field.
     let root = quantum_dimension(e)?
         .mul(&quantum_dimension(f)?)
         .mul(racah.squared_prefactor())

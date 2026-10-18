@@ -1,6 +1,3 @@
-//! Deformation Tier for Operad Theory.
-//!
-//! AuthorityEffect: None.
 
 pub mod quadratic_operad;
 pub mod cooperad;

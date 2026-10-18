@@ -139,9 +139,6 @@ def outcome_of(report: StructureBenchReport, constraint_id: str) -> ConstraintOu
     raise AssertionError(f"{constraint_id} not in the report")
 
 
-# --------------------------------------------------------------------------
-# The evaluator can pass -- established before any failure is reported
-# --------------------------------------------------------------------------
 
 
 def test_a_conforming_bundle_is_clean(tmp_path):
@@ -156,9 +153,6 @@ def test_a_conforming_bundle_decides_every_constraint(tmp_path):
     assert reachable == declared == len(CONSTRAINT_IDS)
 
 
-# --------------------------------------------------------------------------
-# The findings, measured against the live emitter
-# --------------------------------------------------------------------------
 
 
 def test_the_live_emitter_writes_unsorted_json_keys(tmp_path):
@@ -284,9 +278,6 @@ def test_the_spec_and_the_epic_disagree_about_the_hash_function():
     assert "BLAKE3-hashed" in epic
 
 
-# --------------------------------------------------------------------------
-# UNVERIFIABLE is not a pass
-# --------------------------------------------------------------------------
 
 
 def test_an_unverifiable_constraint_is_not_clean(tmp_path):
@@ -351,9 +342,6 @@ def test_the_report_states_all_three_counts(tmp_path):
     assert "unverifiable" in rendered
 
 
-# --------------------------------------------------------------------------
-# Each constraint can fail
-# --------------------------------------------------------------------------
 
 
 def test_a_missing_file_violates_presence(tmp_path):
@@ -589,9 +577,6 @@ def test_a_missing_terminal_verdict_is_unverifiable_not_satisfied(tmp_path):
     )
 
 
-# --------------------------------------------------------------------------
-# Report and result integrity
-# --------------------------------------------------------------------------
 
 
 def test_a_report_must_cover_every_declared_constraint():

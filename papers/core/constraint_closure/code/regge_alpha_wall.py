@@ -30,7 +30,7 @@ import math
 from typing import Any
 
 PI = math.pi
-QED_ALPHA_INV = 137.035999177  # 2022 CODATA reference value, not derived
+QED_ALPHA_INV = 137.035999177
 QED_ALPHA_INV_SOURCE = "https://physics.nist.gov/cuu/pdf/wallet_2022.pdf"
 
 
@@ -120,7 +120,6 @@ def hex_wall_report(max_r: int = 8) -> dict[str, Any]:
                 "over_two_pi": rad / (2.0 * PI),
             }
         )
-    # Computed: units = 6+18R, radians = 2π + 6π R, so per_R → 6π.
     return {
         "rows": rows,
         "units_formula": "6+18R",
@@ -134,7 +133,7 @@ def hex_wall_report(max_r: int = 8) -> dict[str, Any]:
 def transform_248_to_137() -> dict[str, Any]:
     raw = eight_pi_cubed()
     half = four_pi_cubed()
-    triangle = PI**2 + PI  # angle sum π, and π²
+    triangle = PI**2 + PI
     out = half + triangle
     return {
         "two_pi_cubed": raw,

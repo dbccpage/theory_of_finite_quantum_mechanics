@@ -37,7 +37,6 @@ class CauchySandwich4Complex:
     shift: Dict[int, np.ndarray] = field(default_factory=dict)
     tol: float = 1e-10
 
-    # Underlying Lorentzian 4-complex
     lorentzian_complex: Lorentzian4Complex = field(init=False)
     _spatial_n: int = field(init=False)
     top_vertex_map: Dict[int, int] = field(init=False)
@@ -47,7 +46,6 @@ class CauchySandwich4Complex:
         if self._spatial_n < 4:
             raise ValueError("Spatial slice must contain at least 4 vertices for a 3-simplex")
 
-        # Set default lapse to 1.0 and shift to 0.0 if not provided
         for v in self.spatial_vertices:
             if v not in self.lapse:
                 self.lapse[v] = 1.0
@@ -60,16 +58,12 @@ class CauchySandwich4Complex:
         """Construct 4D vertex coordinates and prism-triangulated 4-simplices."""
         sorted_verts = sorted(self.spatial_vertices.keys())
         max_id = max(sorted_verts) if sorted_verts else 0
-        # Disjoint mapping: top slice vertices are explicitly mapped to unique, non-colliding IDs
         self.top_vertex_map = {v: max_id + 1 + i for i, v in enumerate(sorted_verts)}
         v_coords_4d: Dict[int, np.ndarray] = {}
 
-        # 1. Vertex coordinates in R^{1,3}: t = x^0, spatial = x^1, x^2, x^3
         for v, pos_3d in self.spatial_vertices.items():
-            # Initial Cauchy slice Sigma_0 at t = t0
             v_coords_4d[v] = np.array([self.t0, pos_3d[0], pos_3d[1], pos_3d[2]], dtype=float)
 
-            # Final Cauchy slice Sigma_1 at t = t0 + N_v * dt, with shift N_v * dt
             n_v = self.lapse.get(v, 1.0)
             shift_v = self.shift.get(v, np.zeros(3, dtype=float))
             t1 = self.t0 + n_v * self.dt
@@ -77,7 +71,6 @@ class CauchySandwich4Complex:
             v_top = self.top_vertex_map[v]
             v_coords_4d[v_top] = np.array([t1, pos_final[0], pos_final[1], pos_final[2]], dtype=float)
 
-        # 2. Canonical Kuhn prism triangulation for each tetrahedron tau x [0, 1]
         four_simplices: List[Tuple[int, ...]] = []
         for tau in self.spatial_tetrahedra:
             a, b, c, d = sorted(tau)
@@ -100,9 +93,6 @@ class CauchySandwich4Complex:
             tol=self.tol,
         )
 
-    # ------------------------------------------------------------------
-    # Accessors & Foliation Properties
-    # ------------------------------------------------------------------
 
     @property
     def num_vertices(self) -> int:
@@ -177,9 +167,6 @@ class CauchySandwich4Complex:
         """Backward-compatible alias for has_timelike_tracks(). Note: checks vertical tracks only."""
         return self.has_timelike_tracks()
 
-    # ------------------------------------------------------------------
-    # Lapse and Shift Variations & Gauge Cochains
-    # ------------------------------------------------------------------
 
     def compute_gauge_1cochain_from_variation(
         self,
@@ -197,12 +184,9 @@ class CauchySandwich4Complex:
         edges = self.lorentzian_complex.cells.get(1, [])
         beta = np.zeros(len(edges), dtype=float)
 
-        # Displacement 4-vectors for each vertex in 4D sandwich
         delta_coords: Dict[int, np.ndarray] = {}
         for v in self.spatial_vertices:
-            # Sigma_0 vertices are fixed base Cauchy slice: delta x = 0
             delta_coords[v] = np.zeros(4, dtype=float)
-            # Sigma_1 vertices are displaced:
             v_top = self.top_vertex_map[v]
             dn = delta_lapse.get(v, 0.0)
             dsh = delta_shift.get(v, np.zeros(3, dtype=float))
@@ -214,7 +198,6 @@ class CauchySandwich4Complex:
             u, w = edge
             edge_vec = self.lorentzian_complex.vertices[w] - self.lorentzian_complex.vertices[u]
             disp_diff = delta_coords[w] - delta_coords[u]
-            # Invariant Minkowski contraction
             beta[idx] = float(np.sum(eta * edge_vec * disp_diff))
 
         return beta
@@ -248,7 +231,6 @@ class CauchySandwich4Complex:
         num_tri = self.num_triangles
         omega = np.zeros(num_tri, dtype=float)
 
-        # Non-trivial localized constraint defect on interface triangles
         if num_tri > 0:
             omega[0] = extrinsic_curvature_pert
             if num_tri > 1:

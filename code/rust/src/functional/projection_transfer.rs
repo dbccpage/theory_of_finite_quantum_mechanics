@@ -1,8 +1,3 @@
-//! Exact finite reverse-triangle transfer for supplied vectors and their images.
-//!
-//! Extracted from the Majorana paper's `transfer.py` and its program adapter.
-//! The pairwise Lipschitz premise is checked before issuing a transfer bound.
-//! No global regularity of a map or density-matrix interpretation is inferred.
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
@@ -19,7 +14,6 @@ pub enum TransferError {
     ZeroDenominator,
 }
 
-/// Complete finite witness retained so every reported quantity can be replayed.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ReverseTriangleCertificate {
     pub states: [Vec<Rational>; 4],
@@ -32,9 +26,7 @@ pub struct ReverseTriangleCertificate {
     pub transfer_lower_bound: Rational,
     pub pairwise_lipschitz_premise: bool,
     pub reverse_triangle_holds: bool,
-    /// Absent when the supplied Lipschitz premise fails.
     pub defect_difference_bound_holds: Option<bool>,
-    /// Absent when the supplied Lipschitz premise fails.
     pub transfer_holds: Option<bool>,
 }
 
@@ -66,8 +58,6 @@ fn distance(left: &[Rational], right: &[Rational]) -> Rational {
     left.iter().zip(right).map(|(a, b)| (a - b).abs()).sum()
 }
 
-/// Check one finite pair. A failed premise is a valid refused calculation:
-/// both conclusion fields are absent, even if their inequalities happen to hold.
 pub fn reverse_triangle_certificate(
     rho: &[Rational],
     sigma: &[Rational],

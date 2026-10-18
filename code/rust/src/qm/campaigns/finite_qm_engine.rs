@@ -1,8 +1,3 @@
-//! Campaign module finite_qm_engine.
-//!
-//! One step of a finite engine applies the rotation `[[0,-1],[1,0]]`.
-//! The determinant is 1 by the Leibniz formula and by the action on the
-//! standard basis, and the rotation preserves the squared Euclidean norm.
 
 pub fn verify() -> Result<i64, &'static str> {
     let rotation = [[0i64, -1], [1, 0]];
@@ -16,7 +11,6 @@ pub fn verify() -> Result<i64, &'static str> {
     let column_area = rotation[1][0]
         .checked_mul(rotation[0][1].checked_neg().ok_or("neg")?)
         .ok_or("det")?;
-    // Columns are the images of the basis. det is the signed area of those images.
     if leibniz != 1 || column_area != 1 {
         return Err("engine step is not a rotation of determinant 1");
     }

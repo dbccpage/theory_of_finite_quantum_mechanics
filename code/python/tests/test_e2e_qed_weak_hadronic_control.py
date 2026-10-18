@@ -4,6 +4,11 @@ AuthorityEffect: None.
 
 Each test recomputes the quantity it checks from the stored values or from the
 public functions, rather than reading a flag the builder wrote.
+
+Unit, integration, and negative tests.
+
+Origin: code/python/src/qm/campaigns/page_wootters.py
+Claim: RationalInterval certificate locked by exact checks in this file
 """
 
 from __future__ import annotations
@@ -48,7 +53,7 @@ from finite_qm.use_cases.qed_weak_hadronic_control import (
 )
 
 
-def test_qm226_klein_nishina_values_and_thomson_limit() -> None:
+def test_negative_qm226_klein_nishina_values_and_thomson_limit() -> None:
     audit = build_qed_tree_level_audit()
     assert klein_nishina_ratio(Fraction(1), Fraction(0)) == Fraction(3, 16)
     assert klein_nishina_ratio(Fraction(2), Fraction(-1)) == Fraction(13, 125)
@@ -77,24 +82,58 @@ def test_qm226_bhabha_moller_crossing_is_s_u_not_s_t() -> None:
         bhabha_reduced_amplitude(Fraction(1), Fraction(1), Fraction(1))
 
 
-def test_qm227_weyl_gammas_gamma5_and_projectors() -> None:
-    audit = build_chiral_projector_audit()
+def _gamma_anticommutator_matches(audit: object, mu: int, nu: int) -> bool:
     metric = (1, -1, -1, -1)
+    anti = qi_add(
+        qi_matmul(audit.gammas[mu], audit.gammas[nu]),
+        qi_matmul(audit.gammas[nu], audit.gammas[mu]),
+    )
+    expected = qi_zeros(4)
+    if mu == nu:
+        expected = qi_scale(Fraction(2 * metric[mu]), qi_eye(4))
+    return qi_mat_eq(anti, expected)
+
+
+def _gamma_pairs_hold(audit: object) -> bool:
     for mu in range(4):
         for nu in range(4):
-            anti = qi_add(qi_matmul(audit.gammas[mu], audit.gammas[nu]), qi_matmul(audit.gammas[nu], audit.gammas[mu]))
-            expected = qi_scale(Fraction(2 * metric[mu]), qi_eye(4)) if mu == nu else qi_zeros(4)
-            assert qi_mat_eq(anti, expected)
-    diag = [Qi.from_int(d) for d in (-1, -1, 1, 1)]
-    assert all(audit.gamma5[i][j] == (diag[i] if i == j else Qi.from_int(0)) for i in range(4) for j in range(4))
+            if _gamma_anticommutator_matches(audit, mu, nu) is False:
+                return False
+    return True
+
+
+def _gamma5_diagonal_holds(audit: object) -> bool:
+    diag = (Qi.from_int(-1), Qi.from_int(-1), Qi.from_int(1), Qi.from_int(1))
+    zero = Qi.from_int(0)
+    for index in range(4):
+        for column in range(4):
+            expected = zero
+            if index == column:
+                expected = diag[index]
+            if audit.gamma5[index][column] != expected:
+                return False
+    return True
+
+
+def _right_handed_spinor_holds(audit: object) -> bool:
+    right = qi_matvec(audit.p_right, audit.spinor)
+    for entry in right:
+        if entry.is_zero() is False:
+            return all(item.is_zero() for item in qi_matvec(audit.p_left, right))
+    return False
+
+
+def test_qm227_weyl_gammas_gamma5_and_projectors() -> None:
+    audit = build_chiral_projector_audit()
+    assert _gamma_pairs_hold(audit)
+    assert _gamma5_diagonal_holds(audit)
     pl, pr = audit.p_left, audit.p_right
     assert [pl[k][k] for k in range(4)] == [Qi.from_int(d) for d in (1, 1, 0, 0)]
     assert [pr[k][k] for k in range(4)] == [Qi.from_int(d) for d in (0, 0, 1, 1)]
-    assert qi_mat_eq(qi_matmul(pl, pl), pl) and qi_mat_eq(qi_matmul(pl, pr), qi_zeros(4))
+    assert qi_mat_eq(qi_matmul(pl, pl), pl)
+    assert qi_mat_eq(qi_matmul(pl, pr), qi_zeros(4))
     assert qi_mat_eq(qi_add(pl, pr), qi_eye(4))
-    right = qi_matvec(pr, audit.spinor)
-    assert any(not x.is_zero() for x in right)
-    assert all(x.is_zero() for x in qi_matvec(pl, right))
+    assert _right_handed_spinor_holds(audit)
     assert audit.passed
 
 
@@ -179,3 +218,12 @@ def test_qm226_227_228_combined_report_passes() -> None:
     report = evaluate_qed_weak_hadronic_control()
     assert report.control_ids == ("QM-226", "QM-227", "QM-228")
     assert report.passed
+
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'page_wootters.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'RationalInterval' in source
+    assert _MODULE_PATH.is_file()

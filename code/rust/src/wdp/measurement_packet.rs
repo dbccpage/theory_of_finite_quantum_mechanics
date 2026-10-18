@@ -1,16 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Problem-bound declared quantum measurement through the full WDP ladder.
-//!
-//! This connects the exact instrument owner, a retained/reaccessed mark, an
-//! explicitly accepting observation context, exact calibration, and a checked
-//! documentary traceability graph. All checking is against the independently
-//! supplied actual problem. Rehashing an incorrect output cannot make it pass.
-//!
-//! The selected outcome is declared event data, not proof that a physical event
-//! occurred. Graph documents and evaluator standing are declared data, not
-//! signatures, external standards, awareness, or authentic apparatus evidence.
-//! Arithmetic error enclosures remain conditional on the supplied stage and
-//! documentary bounds. The module grants no governance authority.
 
 use std::collections::BTreeSet;
 
@@ -94,7 +81,6 @@ pub struct NumericMeasurementScale {
     pub unit: UnitSpec,
     pub lower: BigRational,
     pub upper: BigRational,
-    /// The corrected nominal value must lie on this grid; no rounding occurs.
     pub resolution: BigRational,
 }
 
@@ -115,8 +101,6 @@ pub enum ObservationStatus {
     Undetermined,
 }
 
-/// Evaluator identities/standing are explicit model inputs. Their physical or
-/// institutional validity is not established by this finite algebraic checker.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct InstrumentObservationContext {
     pub interaction_id: String,
@@ -134,8 +118,6 @@ pub struct InstrumentMark {
     pub indication: BigRational,
 }
 
-/// Retention is documentary data. Admission additionally recomputes the mark
-/// from the actual declared instrument/state/outcome; a matching hash is not enough.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct InstrumentRegistration {
     pub registration_id: String,
@@ -162,8 +144,6 @@ pub struct AcceptedInstrumentObservation {
     pub authority_effect: AuthorityEffect,
 }
 
-/// All declarations necessary to replay a packet. This object must be supplied
-/// independently by the caller; a candidate receipt is never its own problem.
 #[derive(Debug, Clone)]
 pub struct QuantumMeasurementProblem {
     pub packet_id: String,
@@ -196,14 +176,10 @@ pub struct DeclaredMeasurementResult {
     pub corrected_value: BigRational,
     pub stated_uncertainty: BigRational,
     pub combined_uncertainty: BigRational,
-    /// Connects the result to the native measurement owner's exact value carrier.
     pub native_value: MeasurementValue,
     pub authority_effect: AuthorityEffect,
 }
 
-/// Candidate data are public for transport/adversarial mutation. Only a full
-/// replay against an actual problem establishes acceptance; no digest promotes
-/// any of these claimed fields on its own.
 #[derive(Debug, Clone, PartialEq)]
 pub struct QuantumMeasurementReceipt {
     pub problem_digest: String,
@@ -265,7 +241,6 @@ fn calibration_receipt_payload(receipt: &CalibrationReceipt) -> Value {
     })
 }
 
-/// Recompute and bind a retained registration before granting witness status.
 pub fn register_instrument_problem(
     actual: &QuantumMeasurementProblem,
 ) -> Result<InstrumentRegistration, MeasurementPacketError> {
@@ -297,8 +272,6 @@ pub fn register_instrument_problem(
     Ok(registration.clone())
 }
 
-/// Re-access is a separate supplied artifact. It must match exact retained
-/// data, including the complete instrument receipt and its scalar indication.
 pub fn witness_instrument_registration(
     registration: &InstrumentRegistration,
     evaluator_id: &str,
@@ -363,8 +336,6 @@ pub fn accept_instrument_observation(
 fn actual_problem_digest(
     actual: &QuantumMeasurementProblem,
 ) -> Result<String, MeasurementPacketError> {
-    // Every declared input appears, with the validated instrument/state bound by
-    // their canonical exact receipt. Stage order and provenance order are kept.
     let instrument = actual
         .instrument
         .receipt(actual.selected_outcome, &actual.input_state)?;
@@ -384,8 +355,6 @@ fn actual_problem_digest(
 }
 
 impl QuantumMeasurementReceipt {
-    /// Recompute the content hash only. This deliberately does not validate
-    /// arithmetic or the actual problem; `verify_quantum_measurement` does that.
     pub fn refresh_digest(&mut self) -> Result<(), MeasurementPacketError> {
         self.receipt_digest = digest(&json!({
             "kind": "wdp-quantum-measurement-receipt-v1", "problem_digest": self.problem_digest,
@@ -523,8 +492,6 @@ pub fn evaluate_quantum_measurement(
     Ok(receipt)
 }
 
-/// Recompute the complete ladder and arithmetic from the actual supplied
-/// problem and re-access artifact. Freshly rehashed false records fail equality.
 pub fn verify_quantum_measurement(
     actual: &QuantumMeasurementProblem,
     reaccessed_mark: &InstrumentMark,

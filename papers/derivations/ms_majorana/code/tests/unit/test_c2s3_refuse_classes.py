@@ -23,7 +23,6 @@ def test_required_codes_exact_membership() -> None:
     assert_catalog_complete(codes)
     for c in REQUIRED_CLASS_CODES:
         assert c in codes
-    # exact set size from catalog (may grow later; must include all required)
     assert len(codes) >= len(REQUIRED_CLASS_CODES)
     assert len(codes) == len(set(codes)), "duplicate codes in catalog"
 

@@ -1,29 +1,8 @@
-//! # Phi1: exact quotient-distance certificates
-//!
-//! The exact Phi1 path is certificate-gated:
-//!
-//! ```text
-//! Phi1([omega]) = min_alpha ||omega - d0 alpha||_{1,w}
-//! ```
-//!
-//! A raw representative norm is available only as a display diagnostic. It is
-//! not Phi1 and cannot be promoted to a verified quotient-distance result.
-//!
-//! **Warning**:
-//! - A replayed certificate seals one fact: the reported value is exactly the
-//!   weighted l1 quotient distance, proved by matching primal and dual bounds.
-//!   The seal is verifier-scoped evidence about that value and nothing more.
-//! - [`VerifiedExactPhi1`] must not be used for authority minting, lift
-//!   acceptance, or terminal classification. Authority claims require the CODA-FDA
-//!   terminalizer and are not created by CODA-FOC obstruction data alone, zero or
-//!   nonzero: a passing certificate is evidence, never a grant.
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use serde::{Deserialize, Serialize};
 
-/// Submitted exact finite rational witness for the weighted l1 quotient
-/// distance. Both the primal residual and the dual witness are mandatory.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ExactPhi1Certificate {
@@ -36,18 +15,12 @@ pub struct ExactPhi1Certificate {
     pub reported_value: BigRational,
 }
 
-/// Sealed result of replaying an [`ExactPhi1Certificate`].
-///
-/// The fields are private so downstream exact trichotomy and packet code can
-/// require a value that only the verifier can construct.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct VerifiedExactPhi1 {
     certificate: ExactPhi1Certificate,
 }
 
 impl VerifiedExactPhi1 {
-    /// The exact submitted witness, available read-only for bound persistence.
-    /// Mutating a cloned certificate requires fresh verification.
     pub fn certificate(&self) -> &ExactPhi1Certificate {
         &self.certificate
     }
@@ -106,9 +79,6 @@ pub enum ExactPhi1CertificateError {
 pub struct Phi1Functional;
 
 impl Phi1Functional {
-    /// Evaluate a proposed repair and dual witness on the declared presentation.
-    /// The residual and both objective values are calculated here, before the
-    /// same certificate verifier seals the result. No solver-reported scalar is trusted.
     pub fn evaluate_exact_witness(
         omega: &[BigRational],
         d0: &[Vec<BigRational>],
@@ -157,7 +127,6 @@ impl Phi1Functional {
         })
     }
 
-    /// Evaluate an exact repair proposal without claiming quotient optimality.
     pub fn evaluate_representative(
         omega: &[BigRational],
         d0: &[Vec<BigRational>],
@@ -201,7 +170,6 @@ impl Phi1Functional {
         Ok((residual, mass))
     }
 
-    /// Raw representative mass only; it does not establish a quotient minimum.
     pub fn unweighted_l1_rational(residual: &[BigRational]) -> Option<BigRational> {
         if residual.iter().any(|q| q.denom().is_zero()) {
             return None;
@@ -209,13 +177,10 @@ impl Phi1Functional {
         Some(l1_mass(residual))
     }
 
-    /// Hamming mass of a packed binary representative, not a minimum claim.
     pub fn binary_representative_mass(words: &[u64]) -> usize {
         words.iter().map(|word| word.count_ones() as usize).sum()
     }
 
-    /// Verify an exact dual feasible witness and return its pairing with omega.
-    /// A nonzero pairing refutes exact repair; it need not attain the optimum.
     pub fn verify_exact_dual_bound(
         d0: &[Vec<BigRational>],
         omega: &[BigRational],
@@ -269,9 +234,6 @@ impl Phi1Functional {
         Ok(dot(witness, omega))
     }
 
-    /// Express a verified integer-carrier quotient value in declared units.
-    /// The scale must be strictly positive; the source remains the sealed
-    /// primal-dual result, not a caller-supplied solver objective.
     pub fn scaled_verified_value(verified: &VerifiedExactPhi1, scale: i128) -> Option<BigRational> {
         if scale <= 0 {
             return None;
@@ -279,15 +241,9 @@ impl Phi1Functional {
         Some(verified.value() / BigRational::from_integer(scale.into()))
     }
 
-    /// Replay the exact finite rational primal-dual certificate.
-    ///
-    /// The primal witness gives an upper bound and the dual witness gives a
-    /// lower bound. Matching exact values prove optimality by weak duality.
     pub fn verify_exact_certificate(
         certificate: ExactPhi1Certificate,
     ) -> Result<VerifiedExactPhi1, ExactPhi1CertificateError> {
-        // BigRational::new_raw is public. A typed in-process caller can bypass
-        // serde's nonzero-denominator check, so reject before any arithmetic.
         let mut values = certificate
             .omega
             .iter()
@@ -363,12 +319,10 @@ impl Phi1Functional {
     }
 }
 
-/// Exact unweighted rational mass `sum |x_i|`; callers check denominators.
 pub(crate) fn l1_mass(values: &[BigRational]) -> BigRational {
     values.iter().map(Signed::abs).sum()
 }
 
-/// Exact rational dot product over the zipped prefix; the crate-wide copy.
 pub(crate) fn dot(left: &[BigRational], right: &[BigRational]) -> BigRational {
     left.iter()
         .zip(right)
@@ -387,16 +341,10 @@ pub enum Phi1FormReplayError {
 }
 
 impl Phi1Functional {
-    /// Floating residual mass for legacy search proposals. This preserves the
-    /// input's floating-point behavior, including nonfinite values, and is not
-    /// a quotient minimum or a verified Phi1 certificate.
     pub fn unweighted_l1_diagnostic(residual: &[f64]) -> f64 {
         residual.iter().map(|value| value.abs()).sum()
     }
 
-    /// Replay the finite weighted-l1 achiever and dual against the supplied
-    /// spanning coboundaries. The caller is responsible for declaring a full
-    /// generating family; no authority is minted by this value.
     pub fn replay_form(
         weights: &[BigRational],
         residual: &[BigRational],
@@ -452,8 +400,6 @@ impl Phi1Functional {
         Ok(value)
     }
 
-    /// Exact weighted residual mass over signed machine integers.
-    /// A missing result means mismatched dimensions, a negative weight, or overflow.
     pub fn weighted_l1_i128(weights: &[i128], residual: &[i128]) -> Option<i128> {
         if weights.len() != residual.len() || weights.iter().any(|weight| *weight < 0) {
             return None;
@@ -467,9 +413,6 @@ impl Phi1Functional {
             })
     }
 
-    /// Exact weighted residual mass over rationals. A missing result means
-    /// mismatched dimensions, a zero denominator, or a negative weight.
-    /// Strict positivity for quotient certificates is checked by their verifier.
     pub fn weighted_l1_rational(
         weights: &[BigRational],
         residual: &[BigRational],
@@ -545,7 +488,6 @@ impl Phi1Functional {
     }
 }
 
-/// Floating replay measurements. These are not a verified exact quotient value.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct PrimalDualDiagnostic {
     pub primal_mass: f64,
@@ -564,8 +506,6 @@ pub enum PrimalDualDiagnosticError {
 }
 
 impl Phi1Functional {
-    /// Measure a floating primal/dual proposal. The caller decides policy over
-    /// the result; no tolerance, admission status, or authorization is accepted here.
     pub fn diagnose_primal_dual(
         d0: &nalgebra::DMatrix<f64>,
         omega: &nalgebra::DVector<f64>,
@@ -626,7 +566,6 @@ pub enum DualWitnessError {
 }
 
 impl Phi1Functional {
-    /// Bounded finite pairing only; this does not establish primal optimality.
     pub fn verify_display_dual_pairing(
         dual: &[f64],
         primal: &[f64],
@@ -661,8 +600,6 @@ impl Phi1Functional {
 }
 
 impl Phi1Functional {
-    /// Fixed-width weighted mass for a bounded proposal. Evaluation owns the
-    /// residual subtraction, absolute values and reduction; no heap is allocated.
     pub fn bounded_representative_mass(
         weights: &[omega_kernel::bounded_rational::StackRational],
         reading: &[omega_kernel::bounded_rational::StackRational],
@@ -689,7 +626,6 @@ impl Phi1Functional {
     }
 }
 
-/// Bounded binary quotient evaluation. A capped search is only an upper bound.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BinaryPhi1Evaluation {
     pub weight: usize,
@@ -701,8 +637,6 @@ pub struct BinaryPhi1Evaluation {
 }
 
 impl Phi1Functional {
-    /// Evaluate a binary coset by an independent image basis and Gray enumeration.
-    /// The finite budget is explicit; no partial enumeration certifies a minimum.
     pub fn binary_coset_projection(
         rows: &[Vec<u8>],
         columns: usize,

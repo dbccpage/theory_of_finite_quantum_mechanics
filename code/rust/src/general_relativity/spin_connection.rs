@@ -1,8 +1,3 @@
-//! Discrete spin connection omega^{ab} and tetrad-spin compatibility.
-//!
-//! Origin: papers/derivations/general_relativity/rust/src/spin_connection.rs
-//! Claim: DERIV-GR-SPINCONN-001
-//! AuthorityEffect: None.
 
 use num_rational::Ratio;
 use num_traits::Zero;
@@ -15,11 +10,9 @@ pub enum SpinConnectionError {
     TorsionDetected,
 }
 
-/// Discrete spin connection 1-form omega_mu^{ab} on an oriented simplicial complex.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DiscreteSpinConnection {
     pub dim: usize,
-    /// Key: (edge_idx, a, b) where a, b are internal Lorentz indices
     pub omega: BTreeMap<(usize, usize, usize), Ratio<i64>>,
 }
 
@@ -31,7 +24,6 @@ impl DiscreteSpinConnection {
         }
     }
 
-    /// Sets antisymmetric spin connection: omega^{ba} = -omega^{ab}.
     pub fn set_component(&mut self, edge: usize, a: usize, b: usize, val: Ratio<i64>) {
         self.omega.insert((edge, a, b), val);
         self.omega.insert((edge, b, a), -val);
@@ -41,7 +33,6 @@ impl DiscreteSpinConnection {
         self.omega.get(&(edge, a, b)).copied().unwrap_or_else(Ratio::zero)
     }
 
-    /// Verifies antisymmetry omega^{ab} + omega^{ba} = 0.
     pub fn verify_antisymmetry(&self) -> bool {
         for (&(edge, a, b), &val) in &self.omega {
             let rev = self.get_component(edge, b, a);

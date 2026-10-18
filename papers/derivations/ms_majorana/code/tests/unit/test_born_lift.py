@@ -31,7 +31,6 @@ def test_l1_to_l2_amplitude_lift():
     phases = np.array([0.0, np.pi / 2])
     psi = l1_to_l2_amplitude_lift(rho, phases)
 
-    # sqrt(0.75)*e^{i0} and sqrt(0.25)*e^{i pi/2}
     assert pytest.approx(abs(psi[0]), 1e-6) == np.sqrt(0.75)
     assert pytest.approx(abs(psi[1]), 1e-6) == 0.5
     assert verify_born_normalization(psi)

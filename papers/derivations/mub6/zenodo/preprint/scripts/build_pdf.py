@@ -31,7 +31,6 @@ def build() -> None:
                "--variable", "mathfont:Latin Modern Math"], input=header + body)
     digest = hashlib.sha256((ROOT / "mub6.md").read_bytes()).hexdigest()
     tex = f"% manuscript-sha256: {digest}\n" + tex
-    # Long exact coefficients and matrix identities need a little more display room.
     tex = tex.replace("\\begin{document}", "\\allowdisplaybreaks\n\\begin{document}")
     (ROOT / "mub6.tex").write_text(tex, encoding="utf-8", newline="\n")
     for _ in range(3):

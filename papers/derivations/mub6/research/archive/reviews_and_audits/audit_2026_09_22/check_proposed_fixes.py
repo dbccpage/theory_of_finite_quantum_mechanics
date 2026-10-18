@@ -6,7 +6,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-import omega_engine.crates.mub_verify  # Initialize package before isolated module overrides.
+import omega_engine.crates.mub_verify
 PATCHED = ROOT / "scratch/audit_2026_09_22/patched/omega_engine/crates/mub_verify"
 
 

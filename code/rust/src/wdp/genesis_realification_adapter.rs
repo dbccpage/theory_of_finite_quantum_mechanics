@@ -1,7 +1,3 @@
-//! A declared finite complex realization mapped to its balanced real tensor.
-//! State admission stays with the quantum owner, and balancing with the math owner.
-//! These maps preserve a supplied operational model; they select no scalar/Born
-//! axioms from the primitive mark and grant no execution permission.
 
 use crate::types::AuthorityEffect;
 use linear_algebra::backend::basic_matrix::{BasicMatrix, OperationLimits};
@@ -18,8 +14,6 @@ pub struct DeclaredRealComposite {
 }
 
 impl DeclaredRealComposite {
-    /// The caller supplies the actual complex composite and its local dimensions.
-    /// Entangled inputs are allowed. Arithmetic refusal never grants admission.
     pub fn from_complex(
         state: &ExactDensityState,
         left_dimension: usize,

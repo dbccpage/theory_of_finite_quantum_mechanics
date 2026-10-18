@@ -1,15 +1,6 @@
-//! Test-only helpers shared by the unit tests of several modules: the field axioms
-//! stated once through the `linear_algebra` scalar tower, and a deterministic
-//! pseudo-random stream (no randomness, no time) for reproducible grids.
-//!
-//! AuthorityEffect: None.
 
 use linear_algebra::scalars::{ExactRing, Field};
 
-/// The field axioms on a finite sample, through the `linear_algebra` trait tower only:
-/// additive and multiplicative identities, additive inverses, commutativity,
-/// associativity, distributivity, and `a * a^-1 = 1` for every nonzero `a` (with
-/// `try_inv` refusing zero). Every element of `samples` is paired with every other.
 pub(crate) fn check_field_axioms<F: Field + ExactRing>(samples: &[F]) {
     let zero = F::zero();
     let one = F::one();
@@ -57,7 +48,6 @@ pub(crate) fn check_field_axioms<F: Field + ExactRing>(samples: &[F]) {
     }
 }
 
-/// A deterministic linear congruential stream, for reproducible test grids.
 pub(crate) struct Lcg(u64);
 
 impl Lcg {
@@ -65,7 +55,6 @@ impl Lcg {
         Self(seed)
     }
 
-    /// The next value in `-bound..=bound`.
     pub(crate) fn next_signed(&mut self, bound: i64) -> i64 {
         self.0 = self
             .0
@@ -75,7 +64,6 @@ impl Lcg {
         i64::try_from((self.0 >> 33) % span).expect("fits") - bound
     }
 
-    /// The next value in `0..bound`.
     pub(crate) fn next_below(&mut self, bound: u64) -> u64 {
         self.0 = self
             .0

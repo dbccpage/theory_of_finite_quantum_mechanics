@@ -2,7 +2,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Repo root is 3 levels up from code/python/tests/
 repo_root = Path(__file__).resolve().parents[3]
 oracles_dir = repo_root / "code" / "python" / "oracles"
 dag_dir = repo_root / "dag"

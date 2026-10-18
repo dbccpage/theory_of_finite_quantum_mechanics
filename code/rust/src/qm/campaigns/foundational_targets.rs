@@ -1,20 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Foundational Targets 1 through 12 in exact discrete algebraic structures.
-//!
-//! Provides genuine algebraic implementations and verifications for:
-//! - Target 1: Primitive Difference D(x, y) = y - x, antisymmetry, and cocycle condition.
-//! - Target 2: Simplicial Diamond 2-complex holonomy selecting cyclotomic ring Z[zeta_12].
-//! - Target 3: Chain-cochain bilinear evaluation and vanishing Sorkin 3-path interference I_3 == 0.
-//! - Target 4: Exact rational Cayley transform flow on so(8, Q) preserving SO(8, Q) isometry.
-//! - Target 5: Combinatorial recoupling and Biedenharn-Elliott pentagon identity in Q^5.
-//! - Target 6: Cabello 18-ray sign polytope transfer matrix eliminating non-Bornian vertices.
-//! - Target 7: Monotone layer signed permutation unitarity with irreversible non-exchangeable residue.
-//! - Target 8: Bell-CHSH Pythagorean correlation inequality and Tsirelson bound.
-//! - Target 9: 3-qubit bit-flip stabilizer code [[3, 1, 1]] with deterministic syndrome decoding.
-//! - Target 10: Quantum teleportation protocol with exact Bell basis projection and Pauli correction.
-//! - Target 11: Superdense coding transmitting 2 classical bits via 1 entangled qubit.
-//! - Target 12: 4-qubit CSS code [[4, 2, 2]] stabilizers X^{\otimes 4}, Z^{\otimes 4} and k=2 logical qubits.
 
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::matrix as mx;
@@ -25,9 +9,6 @@ use omega_quantum_physics::pauli::{pauli_commutes, Pauli};
 use omega_quantum_physics::stabilizer_code_distance::StabilizerCode;
 use serde::{Deserialize, Serialize};
 
-// =========================================================================== //
-// Target 1: Primitive Difference
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target1PrimitiveDifferenceReceipt {
@@ -77,9 +58,6 @@ pub fn verify_target1_primitive_difference() -> Target1PrimitiveDifferenceReceip
     }
 }
 
-// =========================================================================== //
-// Target 2: Diamond Complex Holonomy Ring Z[zeta_12]
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target2DiamondComplexReceipt {
@@ -90,10 +68,6 @@ pub struct Target2DiamondComplexReceipt {
 }
 
 pub fn verify_target2_diamond_complex() -> Target2DiamondComplexReceipt {
-    // Simplicial diamond 2-complex:
-    // Vertices: 0, 1, 2, 3
-    // Triangles: F_A = (0, 1, 2), F_B = (1, 3, 2) sharing edge (1, 2)
-    // Outer boundary 4-cycle C4 = (0 -> 1 -> 3 -> 2 -> 0)
     let c4_vertices = [0usize, 1, 3, 2];
     let j_perm = |v: usize| -> usize {
         match v {
@@ -114,7 +88,6 @@ pub fn verify_target2_diamond_complex() -> Target2DiamondComplexReceipt {
         }
     }
 
-    // Face rotation tau on F_A = (0, 1, 2): 0 -> 1 -> 2 -> 0
     let tau_perm = |v: usize| -> usize {
         match v {
             0 => 1,
@@ -141,7 +114,6 @@ pub fn verify_target2_diamond_complex() -> Target2DiamondComplexReceipt {
     let zeta3_cubed = zeta3.mul(&zeta3).mul(&zeta3);
     let order_3_ok = tau_order3 && zeta3_cubed == Cyc12::one() && zeta3 != Cyc12::one();
 
-    // Minimal polynomial Phi_12(x) = x^4 - x^2 + 1 = 0
     let zeta12 = Cyc12::zeta12(1);
     let z2 = zeta12.mul(&zeta12);
     let z4 = z2.mul(&z2);
@@ -156,9 +128,6 @@ pub fn verify_target2_diamond_complex() -> Target2DiamondComplexReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 3: Sorkin 3-Path Interference and Chain-Cochain Bilinearity
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target3SorkinInterferenceReceipt {
@@ -169,8 +138,8 @@ pub struct Target3SorkinInterferenceReceipt {
 
 pub fn verify_target3_sorkin_interference() -> Target3SorkinInterferenceReceipt {
     let psi_a = Cyc12::one();
-    let psi_b = Cyc12::zeta12(2); // zeta_6
-    let psi_c = Cyc12::zeta12(4); // zeta_3
+    let psi_b = Cyc12::zeta12(2);
+    let psi_c = Cyc12::zeta12(4);
 
     let prob = |amps: &[Cyc12]| -> Rational {
         let mut sum = Cyc12::zero();
@@ -202,9 +171,6 @@ pub fn verify_target3_sorkin_interference() -> Target3SorkinInterferenceReceipt 
     }
 }
 
-// =========================================================================== //
-// Target 4: Rational Cayley Transform over so(8, Q)
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target4RationalCayleyReceipt {
@@ -243,9 +209,6 @@ pub fn verify_target4_rational_cayley() -> Target4RationalCayleyReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 5: Combinatorial Recoupling / Biedenharn-Elliott Pentagon Identity
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target5PentagonIdentityReceipt {
@@ -261,13 +224,6 @@ pub struct Target5PentagonIdentityReceipt {
 }
 
 pub fn verify_target5_pentagon_identity() -> Target5PentagonIdentityReceipt {
-    // 5 parenthesization tree states in Q^5 matching Lean 4 H020:
-    // T1: (((0, 1), 2), 3) -> index 0 (basis vector e0 = [1, 0, 0, 0, 0]^T)
-    // T2: ((0, (1, 2)), 3) -> index 1 (basis vector e1 = [0, 1, 0, 0, 0]^T)
-    // T3: (0, ((1, 2), 3)) -> index 2 (basis vector e2 = [0, 0, 1, 0, 0]^T)
-    // T4: (0, (1, (2, 3))) -> index 3 (basis vector e3 = [0, 0, 0, 1, 0]^T)
-    // T5: ((0, 1), (2, 3)) -> index 4 (basis vector e4 = [0, 0, 0, 0, 1]^T)
-    // All 5 parenthesizations share the exact same leaf frontier [0, 1, 2, 3].
     enum Tree {
         Leaf(usize),
         Branch(Box<Tree>, Box<Tree>),
@@ -300,7 +256,6 @@ pub fn verify_target5_pentagon_identity() -> Target5PentagonIdentityReceipt {
         leaves == [0usize, 1, 2, 3]
     });
 
-    // Helper to build 5x5 transposition permutation matrix swapping rows i and j in Q^5
     let transposition_matrix = |i: usize, j: usize| -> BasicMatrix<Rational> {
         let mut m = mx::identity::<Rational>(5).expect("declared finite fixture");
         m.set(i, i, r_zero()).expect("fixture index");
@@ -310,30 +265,20 @@ pub fn verify_target5_pentagon_identity() -> Target5PentagonIdentityReceipt {
         m
     };
 
-    // Elementary associator transitions in GL(5, Q) / O(5, Q):
-    // F1 swaps (0, 1): T1 <-> T2
-    // F2 swaps (1, 2): T2 <-> T3
-    // F3 swaps (2, 3): T3 <-> T4
-    // F4 swaps (0, 4): T1 <-> T5
-    // F5 swaps (4, 3): T5 <-> T4
     let f1 = transposition_matrix(0, 1);
     let f2 = transposition_matrix(1, 2);
     let f3 = transposition_matrix(2, 3);
     let f4 = transposition_matrix(0, 4);
     let f5 = transposition_matrix(4, 3);
 
-    // Path 1 composite operator: P1 = F3 * F2 * F1 in Q^{5x5}
     let p1 =
         mx::multiply(&mx::multiply(&f3, &f2).expect("fixture shape"), &f1).expect("fixture shape");
 
-    // Path 2 composite operator: P2 = F5 * F4 in Q^{5x5}
     let p2 = mx::multiply(&f5, &f4).expect("fixture shape");
 
-    // Initial configuration e0 = [1, 0, 0, 0, 0]^T
     let mut e0 = mx::zeros::<Rational>(5, 5).expect("declared finite fixture");
     e0.set(0, 0, r_one()).expect("fixture index");
 
-    // Terminal configuration e3 = [0, 0, 0, 1, 0]^T
     let mut e3 = mx::zeros::<Rational>(5, 5).expect("declared finite fixture");
     e3.set(3, 0, r_one()).expect("fixture index");
 
@@ -343,14 +288,10 @@ pub fn verify_target5_pentagon_identity() -> Target5PentagonIdentityReceipt {
     let p1_ok = path1_vec == e3;
     let p2_ok = path2_vec == e3;
 
-    // Path associator deficit on initial configuration: (P1 - P2) e0 == 0 in Q^5
     let init_deficit_zero = path1_vec == path2_vec;
 
-    // Both paths evaluate to the identical terminal configuration e3 on e0:
     let deficit_zero = p1_ok && p2_ok && init_deficit_zero;
 
-    // Notice that while P1 e0 == P2 e0 == e3, P1 and P2 as global operators on Q^5
-    // are distinct permutations: full operator equality is false, matching Lean 4 H020:
     let full_op_eq = p1 == p2;
 
     Target5PentagonIdentityReceipt {
@@ -368,9 +309,6 @@ pub fn verify_target5_pentagon_identity() -> Target5PentagonIdentityReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 6: Cabello 18-Ray Sign Polytope Interface Consistency
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target6CabelloPolytopeReceipt {
@@ -393,7 +331,6 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
 
     let tetrads = omega_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
 
-    // 1. Verify mutual orthogonality of all 9 tetrads
     let mut all_ortho = true;
     for t in &tetrads {
         for i in 0..4 {
@@ -405,7 +342,6 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
         }
     }
 
-    // 2. Verify hypergraph regularity: each ray appears in exactly 2 tetrads
     let mut degrees = [0usize; 18];
     for t in &tetrads {
         for &r in t {
@@ -414,11 +350,8 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
     }
     let all_deg_two = degrees.iter().all(|&d| d == 2);
 
-    // 3. Mod-2 parity obstruction: 9 bases != 2k (9 is odd, 2k is even)
     let parity_ok = all_deg_two && (tetrads.len() % 2 == 1);
 
-    // 4. Non-PSD extreme vertex witness: M = diag(1, 1, 1, -1) has lambda_min = -1/2
-    // Expectation on v17 = [0, 0, 0, 1] is -1 < 0
     let v17 = rays[17];
     let m_diag = [1i64, 1, 1, -1];
     let bad_vertex_expectation = m_diag[0] * v17[0] * v17[0]
@@ -427,10 +360,6 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
         + m_diag[3] * v17[3] * v17[3];
     let non_psd_detected = bad_vertex_expectation < 0;
 
-    // 5. Check all 18 pure state projectors P_v = v v^T are positive semidefinite
-    // Under Sylvester's criterion, a symmetric matrix is PSD iff all principal minors are >= 0.
-    // For rank-1 projector v v^T: diagonal entries v_i^2 >= 0, and all 2x2 principal minors
-    // det [[v_i^2, v_i v_j], [v_i v_j, v_j^2]] = (v_i v_j)^2 - (v_i v_j)^2 = 0 >= 0 identically.
     let mut all_pure_psd = true;
     for r in &rays {
         let norm_sq = dot(r, r);
@@ -447,12 +376,8 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
         }
     }
 
-    // 6. Glued interface operator condition:
-    // Transfer matrix across shared interface T_AB = diag(-1, 1, 1, 1) in O(4, Q)
-    // Normal vector n = (0, 0, 0, 1)
     let normal = [0i64, 0, 0, 1];
 
-    // Check all 18 Cabello pure states have zero interface deficit: delta_AB(P_r) = 0
     let mut all_pure_interface_continuous = true;
     for r in &rays {
         let n_dot_r = dot(&normal, r);
@@ -463,8 +388,6 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
         }
     }
 
-    // For non-Bornian extreme vertex rho_bad with <n, rho_bad n> = -1 < 0:
-    // delta_AB(rho_bad) = 1 != 0, strictly eliminating it
     let bad_exp = m_diag[0] * normal[0] * normal[0]
         + m_diag[1] * normal[1] * normal[1]
         + m_diag[2] * normal[2] * normal[2]
@@ -486,9 +409,6 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 7: Monotone Layer Signed Permutation Unitarity
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target7MonotoneUnitarityReceipt {
@@ -498,8 +418,6 @@ pub struct Target7MonotoneUnitarityReceipt {
 }
 
 pub fn verify_target7_monotone_unitarity() -> Target7MonotoneUnitarityReceipt {
-    // 1. Signed permutation on exchangeable configurations:
-    // Signed permutation matrix S in hyperoctahedral group B_3 = O(3, Z)
     let mut s_exch = mx::zeros::<Rational>(3, 3).expect("declared finite fixture");
     s_exch.set(0, 1, r_one()).expect("fixture index");
     s_exch.set(1, 0, -r_one()).expect("fixture index");
@@ -509,12 +427,10 @@ pub fn verify_target7_monotone_unitarity() -> Target7MonotoneUnitarityReceipt {
     let is_signed_perm = mx::multiply(&s_t, &s_exch).expect("fixture shape")
         == mx::identity::<Rational>(3).expect("declared finite fixture");
 
-    // 2. Non-exchangeable monotone admission projection P: keeps first 2 components, drops 3rd
     let mut p_adm = mx::zeros::<Rational>(3, 3).expect("declared finite fixture");
     p_adm.set(0, 0, r_one()).expect("fixture index");
     p_adm.set(1, 1, r_one()).expect("fixture index");
 
-    // Defect operator Delta_irr = I - P^T * P = diag(0, 0, 1)
     let id3 = mx::identity::<Rational>(3).expect("declared finite fixture");
     let p_t_p = mx::multiply(&mx::transpose(&p_adm).expect("fixture shape"), &p_adm)
         .expect("fixture shape");
@@ -527,9 +443,6 @@ pub fn verify_target7_monotone_unitarity() -> Target7MonotoneUnitarityReceipt {
         }
     }
 
-    // Resource vector v = [1/2, 1/2, 1/4]
-    // ||v||_1 = 5/4, ||P v||_1 = 1
-    // Irreversible residue Delta = ||v||_1 - ||P v||_1 = 1/4 > 0
     let v = [rq(1, 2), rq(1, 2), rq(1, 4)];
     let l1_orig = &v[0] + &v[1] + &v[2];
     let l1_proj = &v[0] + &v[1];
@@ -543,9 +456,6 @@ pub fn verify_target7_monotone_unitarity() -> Target7MonotoneUnitarityReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 8: Bell-CHSH Pythagorean Inequality and Tsirelson Bound
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target8BellChshReceipt {
@@ -558,9 +468,6 @@ pub struct Target8BellChshReceipt {
 }
 
 pub fn verify_target8_bell_chsh() -> Target8BellChshReceipt {
-    // Exact Pythagorean (3, 4, 5) measurement bases in Q^2:
-    // a1 = (0, 1), a2 = (1, 0)
-    // b1 = (-3/5, -4/5), b2 = (4/5, -3/5)
     let a1 = [r_zero(), r_one()];
     let a2 = [r_one(), r_zero()];
     let b1 = [rq(-3, 5), rq(-4, 5)];
@@ -568,7 +475,6 @@ pub fn verify_target8_bell_chsh() -> Target8BellChshReceipt {
 
     let dot2 = |u: &[Rational; 2], v: &[Rational; 2]| -> Rational { &u[0] * &v[0] + &u[1] * &v[1] };
 
-    // Check orthonormality in Q^2
     let ortho_ok = dot2(&a1, &a1) == r_one()
         && dot2(&a2, &a2) == r_one()
         && dot2(&b1, &b1) == r_one()
@@ -576,19 +482,14 @@ pub fn verify_target8_bell_chsh() -> Target8BellChshReceipt {
         && dot2(&a1, &a2) == r_zero()
         && dot2(&b1, &b2) == r_zero();
 
-    // Quantum singlet correlation E(a, b) = - a . b
-    let e11 = -dot2(&a1, &b1); // +4/5
-    let e12 = -dot2(&a1, &b2); // +3/5
-    let e21 = -dot2(&a2, &b1); // +3/5
-    let e22 = -dot2(&a2, &b2); // -4/5
+    let e11 = -dot2(&a1, &b1);
+    let e12 = -dot2(&a1, &b2);
+    let e21 = -dot2(&a2, &b1);
+    let e22 = -dot2(&a2, &b2);
 
-    // Standard CHSH functional: S = |E(a1, b1) + E(a1, b2) + E(a2, b1) - E(a2, b2)|
-    //   = |4/5 + 3/5 + 3/5 - (-4/5)| = |14/5| = 14/5 = 2.8
     let s_val = (&e11 + &e12 + &e21 - &e22).abs();
     let violates_lr = s_val > ri(2);
 
-    // Enumerate all 16 local hidden variable (LHV) deterministic assignments in {-1, 1}^4
-    // using the identical functional: F(A, B) = A1*B1 + A1*B2 + A2*B1 - A2*B2
     let mut max_lhv = r_zero();
     let signs = [ri(-1), ri(1)];
     for a1_s in &signs {
@@ -604,7 +505,6 @@ pub fn verify_target8_bell_chsh() -> Target8BellChshReceipt {
         }
     }
 
-    // Pythagorean check: (14/5 / 2)^2 = (7/5)^2 = 49/25 <= 2 = 50/25
     let half_s = &s_val * rq(1, 2);
     let pythagorean_ratio = &half_s * &half_s;
     let pythagorean_ok = pythagorean_ratio <= ri(2) && violates_lr;
@@ -619,9 +519,6 @@ pub fn verify_target8_bell_chsh() -> Target8BellChshReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 9: 3-Qubit Bit-Flip Stabilizer Code [[3, 1, 1]]
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target9BitFlipCodeReceipt {
@@ -660,9 +557,6 @@ pub fn verify_target9_bitflip_code() -> Target9BitFlipCodeReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 10: Quantum Teleportation Protocol
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target10TeleportationReceipt {
@@ -706,9 +600,6 @@ pub fn verify_target10_teleportation() -> Target10TeleportationReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 11: Superdense Coding Protocol
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target11SuperdenseCodingReceipt {
@@ -727,11 +618,6 @@ pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
     let neg_one = one.neg();
     let neg_i = i_phase.neg();
 
-    // 4 Bell state vectors in (Z[i])^4 generated by single-qubit Pauli operators on Alice's qubit:
-    // v00 = (1, 0, 0, 1)   for message (0, 0) -> (I \otimes I) |Phi^+>
-    // v01 = (0, 1, 1, 0)   for message (0, 1) -> (X \otimes I) |Phi^+>
-    // v10 = (1, 0, 0, -1)  for message (1, 0) -> (Z \otimes I) |Phi^+>
-    // v11 = (0, -i, i, 0)  for message (1, 1) -> (Y \otimes I) |Phi^+> with i in Z[i]
     let bell_states: [[Cyc12; 4]; 4] = [
         [one.clone(), zero.clone(), zero.clone(), one.clone()],
         [zero.clone(), one.clone(), one.clone(), zero.clone()],
@@ -739,7 +625,6 @@ pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
         [zero.clone(), neg_i, i_phase, zero.clone()],
     ];
 
-    // Compute Gram matrix G_ij = <v_i, v_j> = sum_k v_i[k]^* * v_j[k] in Z[i]
     let mut is_scaled_id = true;
     for i in 0..4 {
         for j in 0..4 {
@@ -755,15 +640,12 @@ pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
         }
     }
 
-    // Explicit decoding circuit execution:
-    // 1. CNOT gate (control = qubit 0, target = qubit 1)
     let mut cnot = mx::zeros::<Cyc12>(4, 4).expect("declared finite fixture");
     cnot.set(0, 0, one.clone()).expect("fixture index");
     cnot.set(1, 1, one.clone()).expect("fixture index");
     cnot.set(2, 3, one.clone()).expect("fixture index");
     cnot.set(3, 2, one.clone()).expect("fixture index");
 
-    // 2. Scaled Hadamard gate \sqrt{2}(H \otimes I)
     let mut h_scaled = mx::zeros::<Cyc12>(4, 4).expect("declared finite fixture");
     h_scaled.set(0, 0, one.clone()).expect("fixture index");
     h_scaled.set(0, 2, one.clone()).expect("fixture index");
@@ -774,7 +656,6 @@ pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
     h_scaled.set(3, 1, one.clone()).expect("fixture index");
     h_scaled.set(3, 3, neg_one).expect("fixture index");
 
-    // Decoding operator: U_dec = (H \otimes I) * CNOT
     let u_dec = mx::multiply(&h_scaled, &cnot).expect("fixture shape");
 
     let mut circuit_ok = true;
@@ -802,7 +683,6 @@ pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
             &norms[msg_idx] / total
         });
 
-        // Check that decoded vector has support only on basis index msg_idx with norm^2 == 4
         for row in 0..4 {
             let val = decoded.get_ref(row, 0).expect("fixture index");
             let norm_sq = val.mul(&val.conj());
@@ -830,9 +710,6 @@ pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
     }
 }
 
-// =========================================================================== //
-// Target 12: 4-Qubit CSS Code [[4, 2, 2]]
-// =========================================================================== //
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target12CssCodeReceipt {
@@ -863,10 +740,6 @@ pub fn verify_target12_css_code() -> Target12CssCodeReceipt {
         }
     }
 
-    // Syndrome extraction and error detection across all 12 single-qubit Pauli errors:
-    // For each qubit position q in 0..4 and each error E in {X, Y, Z}:
-    // Syndrome s(E) = (anticommutes(E, S_X), anticommutes(E, S_Z)).
-    // A single-qubit error is detected iff s(E) != (false, false) (i.e. not the trivial syndrome).
     let mut detected_errors = 0usize;
     for q in 0..4 {
         for err_pauli in [Pauli::X, Pauli::Y, Pauli::Z] {
@@ -881,7 +754,6 @@ pub fn verify_target12_css_code() -> Target12CssCodeReceipt {
     }
     let all_detected = detected_errors == 12;
 
-    // n, k and the distance are computed from the two checks, not declared.
     let code =
         StabilizerCode::try_new(vec![sx.to_vec(), sz.to_vec()]).expect("XXXX and ZZZZ commute");
     let distance = code
@@ -1002,9 +874,6 @@ mod tests {
         assert!(r.all_single_qubit_errors_detected);
     }
 
-    /// `[[4, 2, 2]]` is now computed: the distance search finds a weight-2 logical
-    /// operator only after every weight-1 candidate is detected, which is the same
-    /// fact as `all_single_qubit_errors_detected`.
     #[test]
     fn test_target12_parameters_are_computed() {
         let r = verify_target12_css_code();
@@ -1013,6 +882,6 @@ mod tests {
         let d = code.distance().unwrap();
         assert_eq!(d.distance(), r.code_distance);
         assert!(code.is_logical(d.witness()).unwrap());
-        assert_eq!(d.candidates_checked(), 13); // 12 detected weight-1 errors, then XX on qubits 0 and 1
+        assert_eq!(d.candidates_checked(), 13);
     }
 }

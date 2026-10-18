@@ -1,6 +1,3 @@
-// AuthorityEffect: None.
-// Exact cubic/quartic splitting degree over E, NOT over a complex carrier K.
-// No quintic, compositum, root-assignment, or multiplicative-dependence claim.
 #[allow(dead_code)]
 #[path = "field_factors.rs"]
 mod factors;
@@ -182,8 +179,6 @@ fn irreducible(certificate: &Value, monic: &[E], d: u64) -> Result<()> {
     Ok(())
 }
 
-// Conrad, Cubics and Quartics, Theorems 2.1/3.4 and Corollary 4.3.
-// Each signed polynomial expression is an exact stepwise rational fold.
 fn cubic_discriminant(a: &E, b: &E, c: &E, d: u64) -> E {
     sum(&[
         a.square(d).mul(&b.square(d), d),

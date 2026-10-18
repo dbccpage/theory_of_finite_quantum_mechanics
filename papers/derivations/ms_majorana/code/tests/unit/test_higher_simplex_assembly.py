@@ -27,7 +27,7 @@ class TestHigherSimplexAssembly(unittest.TestCase):
         self.assertEqual(len(complex_obj.cells[0]), 4)
         self.assertEqual(len(complex_obj.cells[1]), 6)
         self.assertEqual(len(complex_obj.cells[2]), 4)
-        self.assertEqual(len(complex_obj.cells[3]), 1)  # (0, 1, 2, 3)
+        self.assertEqual(len(complex_obj.cells[3]), 1)
 
         report = nilpotency_report(complex_obj)
         self.assertTrue(report["all_nilpotent"])
@@ -48,13 +48,11 @@ class TestHigherSimplexAssembly(unittest.TestCase):
 
     def test_skeleton_filtering_refuses_missing_faces(self):
         """Verify skeleton filtering refuses 3-cells when one of the boundary 2-faces is missing."""
-        # 4 vertices, but omit edge (2, 3) so one triangle (1,2,3) is missing
         net = Network(
             nodes=[0, 1, 2, 3],
-            edges=[(0, 1), (0, 2), (0, 3), (1, 2), (1, 3)],  # Missing (2, 3)
+            edges=[(0, 1), (0, 2), (0, 3), (1, 2), (1, 3)],
         )
         complex_obj = assemble_from_network(net, max_dim=3)
-        # Should not form the 3-simplex (0, 1, 2, 3) because faces depending on (2,3) are missing
         self.assertNotIn(3, complex_obj.cells)
 
     def test_discover_higher_cells_for_lift(self):
@@ -67,7 +65,6 @@ class TestHigherSimplexAssembly(unittest.TestCase):
         self.assertEqual(len(cells), 1)
         self.assertEqual(lift_kind, "tetrahedra")
 
-        # Open ring without higher cells
         net_ring = Network(nodes=[0, 1, 2], edges=[(0, 1), (1, 2), (2, 0)])
         cells_empty, lift_kind_empty = discover_higher_cells_for_lift(net_ring, from_degree=2)
         self.assertEqual(len(cells_empty), 0)

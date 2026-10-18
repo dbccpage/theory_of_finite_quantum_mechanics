@@ -1,6 +1,3 @@
-//! Native histories -> shared preparation protocol -> local measurements ->
-//! exact Bell table. Probabilities are supplied positive laws, not inferred from
-//! token counts. All declared preparations/settings must execute without loss.
 use crate::genesis_carrier::{PassageAnswer, PassageCarrier, PassageQuestion};
 use crate::genesis_joint_dynamics::{PassageJoint, PassageJointError, PassageJointRequest};
 use omega_category_theory::finite_joint_dynamics::{JointDynamicsAnalysis, JointDynamicsError};
@@ -13,26 +10,21 @@ use std::collections::BTreeSet;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PassageMeasurement {
-    /// Local alphabet only: no remote setting or interaction can enter a response.
     pub word: Vec<usize>,
     pub question: PassageQuestion,
-    /// Exhaustive distinct answers on this declared finite preparation family.
     pub outcomes: Vec<PassageAnswer>,
 }
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PreparationLaw {
     Shared(Vec<Rational>),
-    /// Context order is left setting major, then right setting.
     ByContext(Vec<Vec<Rational>>),
 }
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PassageBellRequest {
     pub joint: PassageJointRequest,
-    /// Same pre-measurement word for every setting. May contain interactions.
     pub preparation_word: Vec<usize>,
     pub left_settings: Vec<PassageMeasurement>,
     pub right_settings: Vec<PassageMeasurement>,
-    /// Weights index the original admitted pairs, BEFORE preparation_word.
     pub law: PreparationLaw,
     pub bell_limits: BellLimits,
     pub max_cells: usize,
@@ -234,8 +226,6 @@ impl PassageBellExperiment {
                 .map_err(PassageBellError::Probability)?,
         })
     }
-    /// Replay expected native histories and protocols; no certificate-supplied
-    /// source, response table, probability row, or premise label is trusted.
     pub fn verify(
         request: &PassageBellRequest,
         c: &PassageBellCertificate,

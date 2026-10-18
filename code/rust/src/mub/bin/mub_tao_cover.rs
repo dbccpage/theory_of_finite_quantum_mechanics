@@ -1,17 +1,3 @@
-//! Production runner: Branch-and-bound cover certification for Terence Tao's isolated spectral seed triple {I, F6, S6}.
-//!
-//! AuthorityEffect: None
-//! Restricted words: forced, minimal, free, canonical, equivalent, universal, complete
-//! require proof or explicit conditional scope. The `complete` flag denotes finite
-//! branch-and-bound partition termination over the declared stated region, nothing more.
-//!
-//! Usage:
-//! ```text
-//! cargo run -p omega_mub --bin mub_tao_cover -- --complex
-//! cargo run -p omega_mub --bin mub_tao_cover -- --narrow
-//! cargo run -p omega_mub --bin mub_tao_cover -- --wide
-//! cargo run -p omega_mub --bin mub_tao_cover -- --presplit 6 --depth 32 --chunk 0 --chunk-end 8
-//! ```
 
 use omega_mub::omega_native::exact::mub6_tao_cover::{
     cover_tao_narrow_cell, cover_tao_wide_cell, tao_gauge_fixed_chunk_cover,
@@ -82,7 +68,6 @@ fn main() {
         }
     }
 
-    // Always run smoke check first
     let (smoke_pass, smoke_gap) = tao_seed_smoke_check();
     println!("Smoke check (bad basis box col0 near e0 excluded): {smoke_pass}");
     if let Some(gap) = smoke_gap {
@@ -90,7 +75,6 @@ fn main() {
     }
     assert!(smoke_pass, "Tao seed smoke check failed");
 
-    // If chunk mode is selected:
     if let Some(start_chunk) = chunk {
         let end_chunk = chunk_end.unwrap_or(start_chunk + 1);
         println!("Running gauge-fixed 5-torus chunk cover for chunks {start_chunk}..{end_chunk} at depth {depth}...");
@@ -104,7 +88,6 @@ fn main() {
         return;
     }
 
-    // If threads > 0, run parallel full cover:
     if threads > 0 {
         println!("Running parallel cover with {threads} threads, presplit {presplit}, depth {depth}...");
         let cert = tao_gauge_fixed_cover_parallel(presplit, depth, threads);
@@ -115,7 +98,6 @@ fn main() {
         return;
     }
 
-    // If no specific single mode is given, run standard verification and emit complex
     let run_all = !run_narrow && !run_wide && !emit_complex;
 
     if run_narrow || run_all {

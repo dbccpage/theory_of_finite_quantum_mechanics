@@ -1,8 +1,3 @@
-//! Campaign module quantum_protocols.
-//!
-//! Teleportation of a rational qubit through an unnormalized Bell pair.
-//! The sum of the four corrected Bell branches equals twice the initial
-//! state, which is the identity with the factor `1/2` cleared.
 
 pub fn verify() -> Result<i64, &'static str> {
     let a = 3i64;

@@ -42,7 +42,6 @@ def iter_files(root: Path) -> list[Path]:
     files = walk_files(
         root, EXCLUDED_DIRS, EXCLUDED_NAMES - {MANIFEST_NAME, SUMS_NAME}, EXCLUDED_SUFFIXES
     )
-    # Only this envelope's manifests are circular. Nested sealed packages are payload.
     return [p for p in files if p not in {root / MANIFEST_NAME, root / SUMS_NAME}]
 
 

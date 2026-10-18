@@ -1,16 +1,4 @@
-/-
-  Campaign C1000 Block 08: Commuting Observables, Finite Microcausality, and Odd-Cycle Obstruction.
-  AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
-  Formalizes:
-  - Finite microcausality condition over bipartite carrier Q1
-  - Non-degeneracy condition (non-scalar observables, distinct maximal abelian subalgebras)
-  - General theorem: tensor factor commutation ([A ⊗ I, I ⊗ B] = 0)
-  - Proved Theorem C1: three-element V poset admits commuting assignment
-  - Proved Theorem C2: four-element diamond admits commuting assignment
-  - Proved Theorem: three-element antichain is obstructed by Pigeonhole Principle on 2 tensor factors
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 import CausalOrder
 import NoSignalling
@@ -20,11 +8,9 @@ namespace CommutingObservables
 open CausalOrder
 open NoSignalling
 
-/-- Exact 4x4 matrix commutator [A, B] = A * B - B * A. -/
 def comm4 (A B : Matrix4) : Matrix4 :=
   fun x y => mul4 A B x y - mul4 B A x y
 
-/-- Commuting predicate for 4x4 matrices. -/
 def isCommuting4 (A B : Matrix4) : Prop :=
   ∀ x y, comm4 A B x y = 0
 
@@ -33,45 +19,34 @@ theorem comm4_skew (A B : Matrix4) (x y : Coord2 × Coord2) :
   dsimp [comm4]
   omega
 
-/-- Scalar matrix predicate: A = c * I. -/
 def isScalar4 (A : Matrix4) : Prop :=
   ∃ c : Int, ∀ x y, A x y = if x = y then c else 0
 
-/-- 4x4 identity. -/
 def id4 : Matrix4 := fun x y => if x = y then 1 else 0
 
-/-- Scalar 2x2 predicate: A = c * I_2. -/
 def isScalar2 (A : Matrix2) : Prop :=
   ∃ c : Int, ∀ i j, A i j = if i = j then c else 0
 
-/-- Hermitian over `Int` is symmetric. Observables are Hermitian; the Python
-    validator enforces it at step 1 and the Lean side now requires it too,
-    because the MASA lemma below is false without it. -/
 def isSymmetric2 (A : Matrix2) : Prop :=
   ∀ i j, A i j = A j i
 
-/-- Exact 2x2 commutator. -/
 def comm2 (A B : Matrix2) : Matrix2 :=
   fun i j => mul2 A B i j - mul2 B A i j
 
 def isCommuting2 (A B : Matrix2) : Prop :=
   ∀ i j, comm2 A B i j = 0
 
-/-- Factor choice for bipartite system Q1. -/
 inductive FactorChoice where
   | factor1
   | factor2
   deriving DecidableEq
 
-/-- Embed a 2x2 matrix into factor 1: A ⊗ I_2. -/
 def embedFactor1 (A : Matrix2) : Matrix4 :=
   tensorComp A id2
 
-/-- Embed a 2x2 matrix into factor 2: I_2 ⊗ B. -/
 def embedFactor2 (B : Matrix2) : Matrix4 :=
   tensorComp id2 B
 
-/-- General theorem: Any observable on factor 1 commutes with any observable on factor 2. -/
 theorem factor_commutation (A B : Matrix2) (x y : Coord2 × Coord2) :
     comm4 (embedFactor1 A) (embedFactor2 B) x y = 0 := by
   rcases x with ⟨i1, j1⟩
@@ -94,21 +69,10 @@ theorem factor_commutation_rev (A B : Matrix2) (x y : Coord2 × Coord2) :
   rw [h]
   rfl
 
-/-- Embed a 2x2 matrix on the named factor. -/
 def embedFactor : FactorChoice → Matrix2 → Matrix4
   | .factor1, A => embedFactor1 A
   | .factor2, A => embedFactor2 A
 
-/- ===================================================================== -/
-/-  THE MAXIMAL ABELIAN SUBALGEBRA LAYER (reviewer repair, PR #233).      -/
-/-                                                                        -/
-/-  What stood here before: `isNonDegenerate` constrained a `factor`      -/
-/-  label that nothing related to `obs`, so the antichain obstruction     -/
-/-  was the pigeonhole principle on `Fin 3 → Bool` and no matrix          -/
-/-  appeared in its proof. The step that SHOULD do the work is that two   -/
-/-  commuting non-scalar Hermitian 2x2 matrices generate the same maximal -/
-/-  abelian subalgebra. That step is proved below rather than assumed.    -/
-/- ===================================================================== -/
 
 theorem id4_eq_tensor : id4 = tensorComp id2 id2 := by
   funext x y
@@ -117,19 +81,14 @@ theorem id4_eq_tensor : id4 = tensorComp id2 id2 := by
   cases i1 <;> cases j1 <;> cases i2 <;> cases j2 <;>
     dsimp [id4, tensorComp, id2] <;> decide
 
-/-- An exact integral dependence `γ • B = α • I + β • A` with `γ ≠ 0`.
-    Over `Int` the denominator is cleared rather than divided out. -/
 def MasaWitness2 (A B : Matrix2) : Prop :=
   ∃ γ α β : Int, γ ≠ 0 ∧ ∀ i j, γ * B i j = α * id2 i j + β * A i j
 
-/-- `span{I, A} = span{I, B}`, stated integrally in both directions. This is
-    what "generate the same maximal abelian subalgebra" means here. -/
 def sameMasa2 (A B : Matrix2) : Prop := MasaWitness2 A B ∧ MasaWitness2 B A
 
 def MasaWitness4 (M N : Matrix4) : Prop :=
   ∃ γ α β : Int, γ ≠ 0 ∧ ∀ x y, γ * N x y = α * id4 x y + β * M x y
 
-/-- Same MASA, at the carrier level. A condition on the MATRICES. -/
 def sameMasa4 (M N : Matrix4) : Prop := MasaWitness4 M N ∧ MasaWitness4 N M
 
 theorem sameMasa4_symm {M N : Matrix4} (h : sameMasa4 M N) : sameMasa4 N M :=
@@ -144,8 +103,6 @@ theorem scalar2_of_offdiag_zero_diag_eq
   cases i <;> cases j <;> simp [hb, hd]
   · exact (hsym .one .zero).trans hb
 
-/-- The one commutator equation for symmetric 2x2 matrices, in distributed
-    monomial form so `omega` sees matching atoms. -/
 theorem symm_comm_equation (A B : Matrix2) (h : isCommuting2 A B) :
     A .zero .zero * B .zero .one + A .zero .one * B .one .one
       = B .zero .zero * A .zero .one + B .zero .one * A .one .one := by
@@ -153,14 +110,7 @@ theorem symm_comm_equation (A B : Matrix2) (h : isCommuting2 A B) :
   dsimp [comm2, mul2] at h01
   omega
 
-/-- PROVED THEOREM (C1000-T977, reviewer repair). Two commuting symmetric 2x2
-    integer matrices, the first non-scalar, satisfy an exact integral
-    dependence `γ • B = α • I + β • A` with `γ ≠ 0`.
 
-    This is the step the old `isNonDegenerate` assumed by writing it into a
-    label. In M_2 a non-scalar matrix has commutant `span{I, A}`, so a
-    commuting partner lies in that span; over `Int` the denominator is carried
-    explicitly as `γ`. -/
 theorem masa_of_commuting_symmetric
     (A B : Matrix2) (hA : isSymmetric2 A) (hB : isSymmetric2 B)
     (hAns : ¬ isScalar2 A) (hcomm : isCommuting2 A B) :
@@ -169,8 +119,7 @@ theorem masa_of_commuting_symmetric
   have hA10 : A .one .zero = A .zero .one := hA .one .zero
   have hB10 : B .one .zero = B .zero .one := hB .one .zero
   by_cases hb0 : A .zero .one = 0
-  · -- A is diagonal. Non-scalarity forces distinct diagonal entries, and the
-    -- commutator then forces B's off-diagonal to vanish as well.
+  ·
     have hd : A .zero .zero ≠ A .one .one := fun heqd =>
       hAns (scalar2_of_offdiag_zero_diag_eq A hA hb0 heqd)
     rw [hb0] at heq
@@ -204,7 +153,7 @@ theorem masa_of_commuting_symmetric
       have m4 : B .one .one * A .one .one
           = A .one .one * B .one .one := Int.mul_comm _ _
       omega
-  · -- A has a nonzero off-diagonal entry b. Take γ = b, β = q, α = b*p - q*a.
+  ·
     refine ⟨A .zero .one,
             A .zero .one * B .zero .zero - B .zero .one * A .zero .zero,
             B .zero .one, hb0, ?_⟩
@@ -221,8 +170,6 @@ theorem masa_of_commuting_symmetric
     · dsimp [id2]; rw [hA10, hB10]; omega
     · dsimp [id2]; omega
 
-/-- If `γ • B = α • I + β • A` with `γ ≠ 0` and `B` non-scalar, then `β ≠ 0`;
-    otherwise `B` would be a rational multiple of the identity. -/
 theorem beta_ne_zero_of_not_scalar
     (A B : Matrix2) (γ α β : Int) (hγ : γ ≠ 0)
     (h : ∀ i j, γ * B i j = α * id2 i j + β * A i j)
@@ -242,7 +189,6 @@ theorem beta_ne_zero_of_not_scalar
   · exact Int.eq_of_mul_eq_mul_left hγ (by omega)
   · exact Int.eq_of_mul_eq_mul_left hγ (by omega)
 
-/-- Two commuting symmetric non-scalar 2x2 matrices generate the same MASA. -/
 theorem sameMasa2_of_commuting_symmetric
     (A B : Matrix2) (hA : isSymmetric2 A) (hB : isSymmetric2 B)
     (hAns : ¬ isScalar2 A) (hBns : ¬ isScalar2 B) (hcomm : isCommuting2 A B) :
@@ -255,7 +201,6 @@ theorem sameMasa2_of_commuting_symmetric
     simp only [Int.neg_mul]
     omega
 
-/- --- Transport between the 2x2 factor and the 4x4 carrier --- -/
 
 theorem comm4_embed1 (A B : Matrix2) (i1 j1 i2 j2 : Coord2) :
     comm4 (embedFactor1 A) (embedFactor1 B) (i1, j1) (i2, j2)
@@ -341,14 +286,8 @@ theorem sameMasa4_of_2_f2 (A B : Matrix2) (h : sameMasa2 A B) :
     sameMasa4 (embedFactor2 A) (embedFactor2 B) :=
   ⟨masaWitness4_of_2_f2 A B h.1, masaWitness4_of_2_f2 B A h.2⟩
 
-/- --- The assignment, with the factor label PINNED to the observable --- -/
 
-/-- Observable assignment over n events.
 
-    `factor` is retained because it is convenient for constructing witnesses,
-    but it is no longer free: `localized` ties it to `obs`, so a claim about
-    factors is now a claim about the observables. `sym` records that
-    observables are Hermitian, which over `Int` is symmetry. -/
 structure ObservableAssignment (n : Nat) where
   obs : Fin n → Matrix4
   factor : Fin n → FactorChoice
@@ -356,27 +295,17 @@ structure ObservableAssignment (n : Nat) where
   sym : ∀ x, isSymmetric2 (local2 x)
   localized : ∀ x, obs x = embedFactor (factor x) (local2 x)
 
-/-- Finite microcausality: observables at spacelike events commute. -/
 def satisfiesMicrocausality {n : Nat} (P : FiniteStrictPoset n) (assign : ObservableAssignment n) : Prop :=
   ∀ x y : Fin n, isSpacelike P x y → isCommuting4 (assign.obs x) (assign.obs y)
 
-/-- Non-degeneracy (Target C1000-T977).
-    1. No event is assigned a scalar multiple of the identity.
-    2. No two incomparable events generate the same maximal abelian
-       subalgebra.
 
-    Clause 2 is stated on `obs`. It previously read
-    `assign.factor x ≠ assign.factor y`, a condition on a label that nothing
-    connected to any matrix. -/
 def isNonDegenerate {n : Nat} (P : FiniteStrictPoset n) (assign : ObservableAssignment n) : Prop :=
   (∀ x : Fin n, ¬ isScalar4 (assign.obs x)) ∧
   (∀ x y : Fin n, isSpacelike P x y → ¬ sameMasa4 (assign.obs x) (assign.obs y))
 
-/-- Single-qubit Pauli X over Int. -/
 def pauliX : Matrix2 :=
   fun i j => if i ≠ j then 1 else 0
 
-/-- Single-qubit Pauli Z over Int. -/
 def pauliZ : Matrix2 :=
   fun i j => if i = j then (if i = .zero then 1 else -1) else 0
 
@@ -386,9 +315,6 @@ theorem pauliX_symm : isSymmetric2 pauliX := by
 theorem pauliZ_symm : isSymmetric2 pauliZ := by
   intro i j; cases i <;> cases j <;> rfl
 
-/-- The two observables of the C1/C2 spacelike pair do NOT generate the same
-    maximal abelian subalgebra. Reading the (0,0) and (0,1) diagonal entries of
-    any claimed dependence forces `γ = -γ`, hence `γ = 0`. -/
 theorem not_sameMasa_z1_z2 :
     ¬ sameMasa4 (embedFactor1 pauliZ) (embedFactor2 pauliZ) := by
   intro h
@@ -398,7 +324,6 @@ theorem not_sameMasa_z1_z2 :
   dsimp [embedFactor1, embedFactor2, tensorComp, id4, id2, pauliZ] at e1 e2
   omega
 
-/- --- Base Case C1 (Target C1000-T981 & T994) --- -/
 
 def c1_obs (x : Fin 3) : Matrix4 :=
   match x.val with
@@ -504,12 +429,10 @@ theorem c1_non_degenerate : isNonDegenerate C1 c1_assignment := by
       dsimp [c1_assignment, c1_obs]
       exact fun hs => not_sameMasa_z1_z2 (sameMasa4_symm hs)
 
-/-- PROVED THEOREM (C1000-T981 & T994): Base case C1 admits a non-degenerate commuting assignment. -/
 theorem c1_commuting_assignment_exists :
     ∃ a : ObservableAssignment 3, satisfiesMicrocausality C1 a ∧ isNonDegenerate C1 a :=
   ⟨c1_assignment, c1_microcausality, c1_non_degenerate⟩
 
-/- --- Structural Verdict C2 (Target C1000-T982 & T995) --- -/
 
 def c2_obs (x : Fin 4) : Matrix4 :=
   match x.val with
@@ -607,12 +530,10 @@ theorem c2_non_degenerate : isNonDegenerate C2 c2_assignment := by
       dsimp [c2_assignment, c2_obs]
       exact fun hs => not_sameMasa_z1_z2 (sameMasa4_symm hs)
 
-/-- PROVED THEOREM (C1000-T982 & T995): Structural verdict C2 (diamond) admits a non-degenerate commuting assignment. -/
 theorem c2_commuting_assignment_exists :
     ∃ a : ObservableAssignment 4, satisfiesMicrocausality C2 a ∧ isNonDegenerate C2 a :=
   ⟨c2_assignment, c2_microcausality, c2_non_degenerate⟩
 
-/- --- Target C1000-T984: Odd-cycle obstruction on the 3-element antichain --- -/
 
 def c3_antichain_rel (_ _ : Fin 3) : Prop := False
 
@@ -624,13 +545,10 @@ def C3_antichain : FiniteStrictPoset 3 where
   irrefl := by intro _ h; contradiction
   trans := by intro _ _ _ h; contradiction
 
-/-- All pairs in C3_antichain are spacelike. -/
 theorem c3_antichain_all_spacelike (x y : Fin 3) (hne : x ≠ y) : isSpacelike C3_antichain x y := by
   dsimp [isSpacelike, C3_antichain, c3_antichain_rel]
   exact ⟨hne, not_false, not_false⟩
 
-/-- Pigeonhole Principle on Fin 3 -> FactorChoice:
-    Any assignment of 3 elements into 2 factors must place at least two elements in the same factor. -/
 theorem pigeonhole_factor (f : Fin 3 → FactorChoice) :
     ∃ x y : Fin 3, x ≠ y ∧ f x = f y := by
   cases h0 : f ⟨0, by decide⟩ <;> cases h1 : f ⟨1, by decide⟩ <;> cases h2 : f ⟨2, by decide⟩
@@ -643,25 +561,8 @@ theorem pigeonhole_factor (f : Fin 3 → FactorChoice) :
   · exact ⟨⟨0, by decide⟩, ⟨1, by decide⟩, by decide, by rw [h0, h1]⟩
   · exact ⟨⟨0, by decide⟩, ⟨1, by decide⟩, by decide, by rw [h0, h1]⟩
 
-/-- PROVED THEOREM (C1000-T984, reviewer repair in PR #233): the 3-element
-    antichain admits NO assignment that is both microcausal and non-degenerate
-    over Q1's two tensor factors.
 
-    The argument, and what each step costs. Pigeonhole puts two of the three
-    events on the same tensor factor -- and because `localized` pins `factor`
-    to `obs`, that is now a statement about where the OBSERVABLES live, not
-    about a label. Every pair is spacelike in an antichain, so microcausality
-    makes those two observables commute; commutation transports down to the
-    2x2 factor. Both are non-scalar and Hermitian, so `masa_of_commuting_symmetric`
-    puts them in one another's span: they generate the same maximal abelian
-    subalgebra, which non-degeneracy forbids.
 
-    An earlier version of this theorem read `¬ isNonDegenerate C3_antichain a`
-    with no microcausality hypothesis, and its proof never mentioned a matrix:
-    non-degeneracy's second clause constrained the free `factor` field, so the
-    theorem was pigeonhole on `Fin 3 → Bool`. That version is WITHDRAWN. The
-    microcausality hypothesis is not a weakening -- it is what the claim always
-    needed, and it matches the shape of `c1_commuting_assignment_exists`. -/
 theorem sameMasa4_of_common_factor (f : FactorChoice) (A B : Matrix2)
     (hA : isSymmetric2 A) (hB : isSymmetric2 B)
     (hAns : ¬ isScalar4 (embedFactor f A)) (hBns : ¬ isScalar4 (embedFactor f B))
@@ -701,17 +602,8 @@ theorem c3_antichain_obstructed (a : ObservableAssignment 3) :
 #print axioms not_sameMasa_z1_z2
 #print axioms c1_non_degenerate
 #print axioms sameMasa4_of_common_factor
-/-- GATE (reviewer repair). These two hold by `rfl`-level projection and exist
-    to FAIL TO COMPILE if the repair is reverted.
 
-    `nondegeneracy_is_about_the_matrices` stops typechecking the moment
-    `isNonDegenerate`'s second clause goes back to `a.factor x ≠ a.factor y`,
-    because `sameMasa4` is a statement about `Matrix4` and a factor label
-    cannot be coerced into one.
 
-    `factor_label_is_pinned_to_the_observable` stops typechecking if the
-    `localized` field is dropped from `ObservableAssignment`, which is what
-    made the label free in the first place. -/
 theorem nondegeneracy_is_about_the_matrices
     (a : ObservableAssignment 3) (h : isNonDegenerate C3_antichain a)
     (x y : Fin 3) (hsp : isSpacelike C3_antichain x y) :
@@ -727,3 +619,6 @@ theorem factor_label_is_pinned_to_the_observable
 #print axioms c3_antichain_obstructed
 
 end CommutingObservables
+
+private def l5aProvenance : String :=
+  "Origin: lean4/CommutingObservables.lean Claim: comm4_skew AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

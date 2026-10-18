@@ -45,7 +45,7 @@ class CertifiedAuthority:
     fields are the enforced boundary.
     """
 
-    __sealed_key: Any = object()  # name-mangled; best-effort seal (M18)
+    __sealed_key: Any = object()
 
     def __init__(self, key: Any, terminal: AuthorityTerminal, witness: Any) -> None:
         if key is not CertifiedAuthority.__sealed_key:

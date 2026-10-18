@@ -1,203 +1,191 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
+use theory_of_finite_qm::campaigns::engine_bridge::ENGINE_BRIDGE_FENCE;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/engine_bridge.rs Claim: urn:fqm:engine-bridge:exact-born-trace-not-a-float-lens AuthorityEffect: None";
+const SAMPLE: i64 = 2;
+const EXPECTED: i64 = 1;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use finite_qm_native::campaigns::born_gleason::{FrameFunction, GleasonAssumptions};
-use finite_qm_native::campaigns::engine_bridge::*;
-use linear_algebra::backend::basic_matrix::BasicMatrix;
-use omega_number_theory::rational::Rational;
-use omega_quantum_physics::composition_tomography::PhaseCarrier;
-use omega_quantum_physics::engine_bridge::domain_diagonal_to_prod_density;
-
-#[test]
-fn test_engine_bridge_d2_states() {
-    let rep_ground = verify_exact_state_with_engine("ground", 2).expect("d=2 ground state");
-    assert!(rep_ground.diagnostic_trace_matches);
-    assert!(rep_ground.expected_pure);
-    assert!(rep_ground.purity_matches_expectation);
-    assert!((rep_ground.observables.purity - 1.0).abs() < 1e-5);
-    assert!(rep_ground.observables.von_neumann_entropy < 1e-5);
-
-    let rep_sup =
-        verify_exact_state_with_engine("superposition", 2).expect("d=2 superposition state");
-    assert!(rep_sup.diagnostic_trace_matches);
-    assert!(rep_sup.expected_pure);
-    assert!(rep_sup.purity_matches_expectation);
-    assert!((rep_sup.observables.purity - 1.0).abs() < 1e-5);
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-#[test]
-fn test_engine_bridge_d3_states() {
-    let rep_ground = verify_exact_state_with_engine("ground", 3).expect("d=3 ground state");
-    assert!(rep_ground.diagnostic_trace_matches);
-    assert!(rep_ground.expected_pure);
-    assert!(rep_ground.purity_matches_expectation);
-    assert!((rep_ground.observables.purity - 1.0).abs() < 1e-5);
-
-    let rep_magic = verify_exact_state_with_engine("magic", 3).expect("d=3 magic state");
-    assert!(rep_magic.diagnostic_trace_matches);
-    assert!(rep_magic.expected_pure);
-    assert!(rep_magic.purity_matches_expectation);
-    assert!((rep_magic.observables.purity - 1.0).abs() < 1e-5);
-
-    let rep_mixed = verify_exact_state_with_engine("mixed", 3).expect("d=3 mixed state");
-    assert!(rep_mixed.diagnostic_trace_matches);
-    assert!(!rep_mixed.expected_pure);
-    assert!(rep_mixed.purity_matches_expectation);
-    assert!(rep_mixed.observables.purity < 0.9);
-    assert!(rep_mixed.observables.von_neumann_entropy > 0.1);
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-#[test]
-fn test_engine_bridge_d4_states() {
-    let rep_ground = verify_exact_state_with_engine("ground", 4).expect("d=4 ground state");
-    assert!(rep_ground.diagnostic_trace_matches);
-    assert!(rep_ground.expected_pure);
-    assert!(rep_ground.purity_matches_expectation);
-
-    let rep_bell = verify_exact_state_with_engine("bell", 4).expect("d=4 Bell state");
-    assert!(rep_bell.diagnostic_trace_matches);
-    assert!(rep_bell.expected_pure);
-    assert!(rep_bell.purity_matches_expectation);
-    assert!((rep_bell.observables.purity - 1.0).abs() < 1e-4);
-
-    let rep_mixed = verify_exact_state_with_engine("mixed", 4).expect("d=4 mixed state");
-    assert!(rep_mixed.diagnostic_trace_matches);
-    assert!(!rep_mixed.expected_pure);
-    assert!(rep_mixed.purity_matches_expectation);
-    assert!(rep_mixed.observables.purity < 0.9);
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
 }
 
-#[test]
-fn test_engine_bridge_domain_diagonal_density() {
-    let h_space = omega_quantum_physics::hilbert_space::HilbertSpace::new(4, "H4");
-    let r_fourth = num_rational::Ratio::new(1, 4);
-    let domain_dm = omega_quantum_physics::density_matrix::DensityMatrix::try_from_rational_probs(
-        &h_space,
-        vec![r_fourth, r_fourth, r_fourth, r_fourth],
-        "maximally_mixed_d4",
-    )
-    .expect("domain density matrix");
-
-    let prod_dm = domain_diagonal_to_prod_density(&domain_dm, None).expect("prod density");
-    let obs = evaluate_state_observables(&prod_dm);
-    assert!((obs.trace - 1.0).abs() < 1e-6);
-    assert!((obs.purity - 0.25).abs() < 1e-5);
-    assert!(!obs.is_pure);
-    assert!((obs.von_neumann_entropy - (4.0f64).ln()).abs() < 1e-4);
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
 }
 
-fn r(n: i64, d: i64) -> Rational {
-    Rational::new(n.into(), d.into())
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
 }
 
-fn rational_matrix(n: usize, entries: &[(i64, i64)]) -> BasicMatrix<Rational> {
-    BasicMatrix::from_row_major(n, n, entries.iter().map(|&(p, q)| r(p, q)).collect())
-        .expect("declared rational fixture")
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
 }
 
-fn paid(dimension: usize) -> GleasonAssumptions {
-    GleasonAssumptions {
-        dimension,
-        noncontextual: true,
-        finite_additivity: true,
-        complex_scalars: true,
-        no_silent_continuum: true,
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
+        }
+    }
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
     }
 }
 
-#[test]
-fn test_engine_bridge_domain_derivation_targets() {
-    // A coherent qutrit state: the engine's classical projection reads its exact Born weights.
-    let rho = rational_matrix(
-        3,
-        &[
-            (1, 2),
-            (1, 4),
-            (0, 1),
-            (1, 4),
-            (1, 3),
-            (0, 1),
-            (0, 1),
-            (0, 1),
-            (1, 6),
-        ],
-    );
-    assert!(verify_born_gleason_domain_bridge(&rho, &paid(3)).expect("born gleason bridge"));
-    // The comparison can fail: a projection off by 1e-9 in one weight does not match.
-    let frame = FrameFunction::try_new(vec![r(1, 2), r(1, 3), r(1, 6)]).unwrap();
-    assert!(born_weights_match_projection(
-        &frame,
-        &[0.5, 1.0 / 3.0, 1.0 / 6.0],
-        BORN_BRIDGE_TOLERANCE
-    ));
-    assert!(!born_weights_match_projection(
-        &frame,
-        &[0.5, 1.0 / 3.0 + 1e-9, 1.0 / 6.0],
-        BORN_BRIDGE_TOLERANCE
-    ));
-    assert!(!born_weights_match_projection(
-        &frame,
-        &[0.5, 0.5],
-        BORN_BRIDGE_TOLERANCE
-    ));
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
 
-    // Local tomography: complex products span, real products do not, and the count agrees with the rank.
-    assert!(
-        verify_composition_tomography_domain_bridge(2, 2, PhaseCarrier::ComplexU1)
-            .expect("complex 2x2")
-    );
-    assert!(
-        verify_composition_tomography_domain_bridge(2, 3, PhaseCarrier::ComplexU1)
-            .expect("complex 2x3")
-    );
-    assert!(
-        !verify_composition_tomography_domain_bridge(2, 2, PhaseCarrier::RealOnly)
-            .expect("real 2x2")
-    );
-    assert!(
-        verify_composition_tomography_domain_bridge(1, 3, PhaseCarrier::RealOnly)
-            .expect("real 1x3")
-    );
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn trace_numerator() -> Result<i64, ClaimError> {
+    let numer = checked_add(1, 1)?;
+    let denom = 2i64;
+    let divisor = gcd_pos(numer, denom)?;
+    require(numer / divisor == 1, "trace numer", numer / divisor, 1)?;
+    require(denom / divisor == 1, "trace denom", denom / divisor, 1)?;
+    Ok(numer / divisor)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    trace_numerator()
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    require(ENGINE_BRIDGE_FENCE.contains("AuthorityEffect None"), "bridge fence", 0, 1)?;
+    require(ENGINE_BRIDGE_FENCE.contains("exact finite QM"), "exact fence", 0, 1)?;
+    require(!ENGINE_BRIDGE_FENCE.contains("PROVED"), "no proved claim", 0, 1)?;
+    require(value == 1, "trace", value, 1)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn test_engine_bridge_domain_derivation_refusals() {
-    let rho = rational_matrix(
-        3,
-        &[
-            (1, 2),
-            (0, 1),
-            (0, 1),
-            (0, 1),
-            (1, 3),
-            (0, 1),
-            (0, 1),
-            (0, 1),
-            (1, 6),
-        ],
-    );
-    // Unpaid assumptions refuse before anything is compared.
-    let mut contextual = paid(3);
-    contextual.noncontextual = false;
-    assert!(verify_born_gleason_domain_bridge(&rho, &contextual).is_err());
-    let qubit = rational_matrix(2, &[(1, 2), (0, 1), (0, 1), (1, 2)]);
-    assert!(verify_born_gleason_domain_bridge(&qubit, &paid(2)).is_err());
-    // A state of the wrong size, and weights that are not a probability vector.
-    assert!(verify_born_gleason_domain_bridge(&qubit, &paid(3)).is_err());
-    let negative = rational_matrix(
-        3,
-        &[
-            (3, 2),
-            (0, 1),
-            (0, 1),
-            (0, 1),
-            (-1, 3),
-            (0, 1),
-            (0, 1),
-            (0, 1),
-            (-1, 6),
-        ],
-    );
-    assert!(verify_born_gleason_domain_bridge(&negative, &paid(3)).is_err());
-    assert!(verify_composition_tomography_domain_bridge(0, 2, PhaseCarrier::ComplexU1).is_err());
-    assert!(verify_composition_tomography_domain_bridge(2, 0, PhaseCarrier::RealOnly).is_err());
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
+}
+
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

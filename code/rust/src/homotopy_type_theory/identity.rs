@@ -1,4 +1,3 @@
-//! Identity types and proof-relevant transport.
 
 use crate::difference::{DifferenceError, DifferenceTerm, ZeroDifferenceCertificate};
 use serde::{Deserialize, Serialize};
@@ -10,7 +9,6 @@ pub struct TypeId(pub String);
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub struct TermId(pub String);
 
-/// Identity type `Id_A(x,y)` inhabited by a zero-difference certificate.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct IdentityType {
     pub type_id: TypeId,
@@ -34,7 +32,6 @@ impl IdentityType {
     }
 }
 
-/// Transport along an identity/path into a dependent family.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Transport {
     pub path_ref: String,
@@ -58,7 +55,6 @@ impl Transport {
     }
 }
 
-/// HoTT reading of `chi_F`: certified transport of identity through a morphism.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TransportAuth {
     pub morphism_ref: String,

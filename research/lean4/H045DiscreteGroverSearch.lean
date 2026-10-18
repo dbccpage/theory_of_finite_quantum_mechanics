@@ -1,27 +1,7 @@
-/-
-  H045DiscreteGroverSearch.lean
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
 
-  Shows in this model under exact quadratic ring arithmetic Z[sqrt(3)] and integer matrix algebra that:
-  1. For database size N = 4, the Grover search operator G = D * R_omega consists of
-     oracle reflection R_omega and Householder diffusion reflection D = 2|s><s| - I.
-  2. Scaled by 2, the 4x4 integer diffusion matrix D_tilde = J_4 - 2*I_4 satisfies D_tilde^2 = 4*I_4.
-  3. In exactly 1 step (k = 1), G_tilde applied to the uniform superposition |s> = (1, 1, 1, 1)^T
-     concentrates 100% of amplitude on the target state |omega> = (1, 0, 0, 0)^T:
-       D_tilde * R_0 * |s> = (4, 0, 0, 0)^T = 4 * |omega>.
-  4. In the 2D invariant subspace over Z[sqrt(3)], the Grover step is an exact rotation by
-     2*theta = pi/3, with sin(theta) = 1/2 and cos(theta) = sqrt(3)/2.
-  5. The trigonometric recurrence s_{k+1} = s_k - s_{k-1} yields the exact sequence
-     s_0 = 1/2, s_1 = 1 (100% success at k = 1), with period 6.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace FableHilbertWalk20260819.H045
 
-/-- Quadratic ring element a + b * sqrt(3) in Z[sqrt(3)]. -/
 structure Quad3 where
   a : Int
   b : Int
@@ -49,7 +29,6 @@ instance : Add Quad3 := ⟨qadd⟩
 instance : Sub Quad3 := ⟨qsub⟩
 instance : Mul Quad3 := ⟨qmul⟩
 
--- 4D Exact Integer Matrix formulation for N = 4
 structure Vec4 where
   v0 : Int
   v1 : Int
@@ -70,48 +49,37 @@ def dot4 (u v : Vec4) : Int :=
 def mat4_mul_vec (M : Mat4) (v : Vec4) : Vec4 :=
   ⟨dot4 M.r0 v, dot4 M.r1 v, dot4 M.r2 v, dot4 M.r3 v⟩
 
-/-- Uniform superposition |s> = (1, 1, 1, 1)^T. -/
 def v_uniform : Vec4 := ⟨1, 1, 1, 1⟩
 
-/-- Target computational basis state |omega> = |0> = (1, 0, 0, 0)^T. -/
 def v_target : Vec4 := ⟨1, 0, 0, 0⟩
 
-/-- Oracle reflection R_0 = diag(-1, 1, 1, 1). -/
 def R_oracle : Mat4 :=
   ⟨⟨-1, 0, 0, 0⟩,
    ⟨0, 1, 0, 0⟩,
    ⟨0, 0, 1, 0⟩,
    ⟨0, 0, 0, 1⟩⟩
 
-/-- Scaled Householder diffusion operator D_tilde = J_4 - 2 * I_4. -/
 def D_tilde : Mat4 :=
   ⟨⟨-1, 1, 1, 1⟩,
    ⟨1, -1, 1, 1⟩,
    ⟨1, 1, -1, 1⟩,
    ⟨1, 1, 1, -1⟩⟩
 
-/-- Scaled Grover operator G_tilde = D_tilde * R_oracle. -/
 def grover_step (v : Vec4) : Vec4 :=
   mat4_mul_vec D_tilde (mat4_mul_vec R_oracle v)
 
-/-- Oracle marks the target state with a -1 phase:
-    R_0 |s> = (-1, 1, 1, 1)^T. -/
 theorem oracle_action :
     mat4_mul_vec R_oracle v_uniform = ⟨-1, 1, 1, 1⟩ := by rfl
 
-/-- Exact 1-step Grover search for N = 4:
-    A single Grover iteration maps |s> to 4 * |target>. -/
 theorem grover_one_step_exact :
     grover_step v_uniform = ⟨4, 0, 0, 0⟩ := by rfl
 
-/-- Target state amplitude is 4, all non-target amplitudes are exactly 0. -/
 theorem grover_target_isolation :
     (grover_step v_uniform).v0 = 4 ∧
     (grover_step v_uniform).v1 = 0 ∧
     (grover_step v_uniform).v2 = 0 ∧
     (grover_step v_uniform).v3 = 0 := by decide
 
-/-- Diffusion matrix is an involution up to factor 4: D_tilde^2 = 4 * I_4. -/
 def eye4 : Mat4 :=
   ⟨⟨1, 0, 0, 0⟩,
    ⟨0, 1, 0, 0⟩,
@@ -143,8 +111,6 @@ theorem diffusion_squared :
        ⟨0, 0, 4, 0⟩,
        ⟨0, 0, 0, 4⟩⟩ := by decide
 
--- 2D Invariant Subspace Rotation in Z[sqrt(3)]
--- Initial state scaled by 2: (cos(pi/6)*2, sin(pi/6)*2) = (sqrt(3), 1)
 structure Vec2Q where
   x : Quad3
   y : Quad3
@@ -156,13 +122,9 @@ def rot2d (v : Vec2Q) : Vec2Q :=
 
 def v0_state : Vec2Q := ⟨qsqrt3, qone⟩
 
-/-- In the 2D invariant subspace, rotation by 2*theta = pi/3 rotates (sqrt(3), 1) to (0, 4). -/
 theorem rotation_to_target :
     rot2d v0_state = ⟨⟨0, 0⟩, ⟨4, 0⟩⟩ := by decide
 
-/-- Exact trigonometric Chebyshev recursion for amplitudes:
-    s_{k+1} = s_k - s_{k-1} with s_0 = 1/2, s_1 = 1.
-    Scaled by 2: S_k = 2 * s_k, so S_{k+1} = S_k - S_{k-1}, S_0 = 1, S_1 = 2. -/
 def S_rec : Nat → Int
   | 0 => 1
   | 1 => 2
@@ -176,7 +138,6 @@ theorem S_rec_step4 : S_rec 4 = -2 := by rfl
 theorem S_rec_step5 : S_rec 5 = -1 := by rfl
 theorem S_rec_step6 : S_rec 6 = 1 := by rfl
 
-/-- Periodicity 6 of the discrete Grover rotation. -/
 theorem grover_periodicity_six : S_rec 6 = S_rec 0 := by decide
 
 #print axioms oracle_action
@@ -189,3 +150,6 @@ theorem grover_periodicity_six : S_rec 6 = S_rec 0 := by decide
 #print axioms grover_periodicity_six
 
 end FableHilbertWalk20260819.H045
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H045DiscreteGroverSearch.lean Claim: oracle_action AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

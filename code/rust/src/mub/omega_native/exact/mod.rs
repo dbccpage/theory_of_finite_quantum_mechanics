@@ -1,4 +1,3 @@
-//! exact modules for the omega-native MUB lane.
 #![allow(clippy::module_inception)]
 #[path = "../basis_gluing_gate.rs"]
 pub mod basis_gluing_gate;

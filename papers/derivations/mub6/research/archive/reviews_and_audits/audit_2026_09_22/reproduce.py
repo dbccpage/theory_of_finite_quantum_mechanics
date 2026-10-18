@@ -93,7 +93,6 @@ verdict = governor.step_cut(proposed_claims={})
 report["claim_erasure_cut"] = {"before": str(before), "after": str(governor.primary_obstruction()),
     "admitted": verdict.admitted, "status": verdict.status, "remaining_claims": len(governor.edge_claims)}
 
-# Deliberately hostile floating input: audit input only, never certifying data.
 def _probe_float_weight():
     float_graph = ConstraintGraph(vertices=graph.vertices,
         edges=(Edge("a", "b", 0.1), Edge("b", "c"), Edge("c", "a")))
@@ -105,7 +104,6 @@ step = DerivationStep(op="UNDECLARED", position=0, rule_id="missing", substituti
                      pre_state_hash="bad", post_state_hash="bad", content="UNDECLARED invalid")
 report["carrier_only_verify_step"] = vars(PacketFirewallHost().verify_step(step))
 
-# Independent sparse coefficient arithmetic (no finite point sampling).
 def add(*polys):
     result = {}
     for poly in polys:
@@ -202,7 +200,6 @@ for name in tracked:
             if re.search(r"\b(f32|f64|from_float|to_f64)\b", line) and not line.lstrip().startswith("//"):
                 rust_hits.append({"path": name, "line": i, "source": line.strip()[:220]})
     if path.suffix == ".lean":
-        # Nested Lean block comments, then line comments; retain line numbers.
         chars = list(text)
         depth = 0
         i = 0

@@ -1,18 +1,6 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveObstructionPipeline
-/-!
-Primitive repair witness kernel.
 
-This file separates exact-repair classification from repair witness data.
-A witness is relative to a supplied repair map on the pointed quotient.
--/
 
 namespace OmegaCore
 namespace PrimitiveRepairWitness
@@ -145,3 +133,6 @@ theorem bool_exact_without_identity_repair_witness :
 
 end PrimitiveRepairWitness
 end OmegaCore
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PrimitiveRepairWitness.lean Claim: repairWitness_implies_repaired_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

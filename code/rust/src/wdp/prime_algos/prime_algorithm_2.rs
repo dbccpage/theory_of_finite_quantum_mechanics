@@ -1,60 +1,3 @@
-//! PRIME-ALGORITHM-002 — `CanContinue_n`, the six anti-cheat halting laws, bounded
-//! stopping, and the terminalizer.
-//!
-//! Canonical source: `research/published/008_engine_runtime/000_oe_prime_algorithms/`
-//! §3.1 (`OE003-01`), §3.2 (`OE003-02`), §3.3 (`OE003-03`).
-//!
-//! **Prime 002 owns all three.** An earlier cut of this crate put `CanContinue_n`
-//! in a module named `prime_algorithm_1`; the canonical paper assigns 001 to intake and
-//! inter-carrier transport soundness ([`crate::prime_algos::prime_algorithm_1`]) and 002 to
-//! continuation, anti-cheat and budgeted stopping. That is corrected here.
-//!
-//! # What makes this different from a Rust-shaped assertion
-//!
-//! Every alleged fact enters as **sealed, scope-bound evidence**, never as a
-//! public `bool` the caller may set:
-//!
-//! | Fact | Evidence |
-//! |---|---|
-//! | detector adequate at degree n+1 | [`DetectorAdequacy`] |
-//! | an (n+1)-dimensional obligation exists | [`ObligationWitness`] |
-//! | no same-carrier repair remains | [`SameCarrierExhaustion`] |
-//! | the lift is licensed | [`BoundLiftAdmission`] |
-//! | certified data survived, or its loss is booked | [`crate::prime_algos::prime_algorithm_1::LossLedger`] |
-//! | Γ₂ = 0 | [`Gamma2Zero`] |
-//!
-//! Each has private fields, exactly one constructor which verifies, **no
-//! `Deserialize`** (a type you can deserialize is a type you can forge by
-//! writing JSON), and a [`ScopeBinding`] naming the run, carrier, residual and
-//! tape head it was produced for. Evidence for residual A cannot authorize
-//! residual B.
-//!
-//! # Terminals are unrepresentable on the ordinary path
-//!
-//! [`StepOp`] has **no terminalize variant**. `write_step` therefore cannot emit
-//! `T` — not "checks and refuses", but cannot express it. `T` exists only as the
-//! return of [`terminalize`], which demands a [`Gamma2Zero`] receipt *and*
-//! [`ObligationClosure`] *and* a clean law report.
-//!
-//! # Permits are single-use
-//!
-//! [`StepPermit`] is not `Clone` and not `Deserialize`, and both writers consume
-//! it **by value**. "Licenses exactly one step" is enforced by the move checker,
-//! not by a comment.
-//!
-//! # Authority status
-//!
-//! **These rules make authority claims legible, bound and committed. They do
-//! not make them unforgeable, and cannot.** Any code in this process can
-//! implement a trait and return what it likes; what sealing buys is that a
-//! counterfeit must commit to what it claims to be, and that commitment is
-//! checked against the site and folded into the tape head.
-//!
-//! Nine named holes remain open and are listed, with reproductions, in
-//! `_docs/authority_status.md` within the `omega_discrete_deformation_calculus` crate. Read it before treating any
-//! receipt here as proof of the fact it alleges.
-//!
-//! `AuthorityEffect: None` throughout.
 
 use crate::ddc::dda_alphabet::{DdaOp, DdaStep, TraceTerminal};
 use crate::prime_algos::prime_algorithm_1::LossLedger;
@@ -73,15 +16,7 @@ use std::fmt;
 
 pub use crate::prime_algos::prime_scope::{BoundCarrierManifest, CallerAttested};
 
-// ---------------------------------------------------------------------------
-// Sealed evidence. Private fields, verifying constructors, no Deserialize.
-// ---------------------------------------------------------------------------
 
-/// Γ₂ = 0, verified exactly over ℚ and bound to a scope.
-///
-/// The only constructor rejects a nonzero value, so this type cannot exist for a
-/// live obstruction. Exactness is the point: a terminal decided by
-/// `abs(g2) < 1e-6` is a terminal decided by rounding.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Gamma2Zero {
     scope: ScopeBinding,
@@ -105,41 +40,13 @@ impl Gamma2Zero {
     }
 }
 
-/// Detector adequacy, established **at a stated degree** on a stated carrier.
-///
-/// Adequacy does not travel: it is relative to the carrier it was established
-/// on, which is why the degree and the scope are both carried.
-/// A detector this crate can **run**.
-///
-/// The adequacy constructor executes the detector itself rather than accepting
-/// verdicts a caller reports. That is the whole difference between evidence and
-/// an assertion here: supplying two unequal byte strings is trivial, whereas
-/// producing a detector that genuinely answers differently on two inputs is the
-/// thing being claimed.
-/// What a detector **is**, declared rather than self-asserted.
-///
-/// Identity is *derived* from this descriptor, so a detector does not choose its
-/// own id. That does not prevent counterfeiting — any code in the
-/// process can declare a descriptor — but it changes what a counterfeit has to
-/// do: it must state, in committed form, which implementation and version it
-/// claims to be, which readout it performs, and **which carrier it is
-/// configured for**. The carrier is then checked against the site, so a fixture
-/// cannot be reused on a carrier it was never configured for.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DetectorDescriptor {
     implementation: String,
     version: String,
-    /// What the detector reads out — e.g. `"terminal"`, `"h1_class"`.
     readout: String,
-    /// The carrier this detector is configured for.
     carrier: Hash256,
-    /// The degrees this detector is built to answer at.
-    ///
-    /// Adequacy is degree-relative, so a detector that has not declared a degree
-    /// cannot establish adequacy there. Passing the number into code that
-    /// ignores it establishes nothing.
     supported_degrees: Vec<usize>,
-    /// Digest of any further configuration.
     config: Hash256,
 }
 
@@ -173,9 +80,6 @@ impl DetectorDescriptor {
         &self.supported_degrees
     }
 
-    /// Derived identity. Commits to every field, so two detectors differing in
-    /// implementation, version, readout, carrier or configuration cannot share
-    /// an id — and an id cannot be chosen independently of what it describes.
     pub fn id(&self) -> Hash256 {
         digest(
             DETECTOR_DOMAIN,
@@ -202,12 +106,6 @@ impl DetectorDescriptor {
     }
 }
 
-/// What a detector is asked about.
-///
-/// The degree and scope are passed **into** the run rather than attached after
-/// it. Previously they were stapled on afterwards, so one parity fixture could
-/// be presented as adequate at degrees 2, 3 and 9 without ever being told which
-/// degree it was answering for.
 #[derive(Debug, Clone, Copy)]
 pub struct RunSubject<'a> {
     pub input: &'a [u8],
@@ -215,34 +113,19 @@ pub struct RunSubject<'a> {
     pub scope: &'a ScopeBinding,
 }
 
-/// A detector this crate can **run**.
 pub trait Detector {
-    /// The declared descriptor. Identity is derived from it — there is no
-    /// `detector_id()` for an implementer to return.
     fn descriptor(&self) -> &DetectorDescriptor;
 
-    /// The verdict on a subject. Should be a pure function of the subject.
     fn verdict(&self, subject: &RunSubject<'_>) -> Vec<u8>;
 }
 
-/// Why adequacy was refused.
-///
-/// Typed rather than `Option::None`: several quite different failures were
-/// previously indistinguishable at the call site, and "the detector is broken"
-/// reads very differently from "this pair is genuinely inseparable".
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum AdequacyRefusal {
-    /// Separating an input from itself is vacuous whatever the detector says.
     IdenticalInputs,
-    /// The detector answered differently on a repeat evaluation.
     RepeatabilityFailure,
-    /// The detector could not tell the pair apart. This is inadequacy proper.
     CoincidentVerdicts,
-    /// The detector is configured for a different carrier than the site.
     CarrierMismatch { expected: String, declared: String },
-    /// The claim is not the residual this continuation is about.
     ClaimIsNotTheScopedResidual { expected: String, claim: String },
-    /// The detector has not declared that it answers at this degree.
     DegreeNotSupported {
         degree: usize,
         supported: Vec<usize>,
@@ -277,8 +160,6 @@ impl fmt::Display for AdequacyRefusal {
 
 impl std::error::Error for AdequacyRefusal {}
 
-/// Detector adequacy at a stated degree, bound to a scope, recording **which**
-/// detector separated **which** pair.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DetectorAdequacy {
     scope: ScopeBinding,
@@ -289,30 +170,6 @@ pub struct DetectorAdequacy {
 }
 
 impl DetectorAdequacy {
-    /// Establish adequacy by **running** the detector on the scoped residual and
-    /// a counterclaim, and observing that it answers differently.
-    ///
-    /// # What this establishes, precisely
-    ///
-    /// > This detector — declaring this implementation, version, readout and
-    /// > carrier — answered differently for the residual this continuation is
-    /// > about and the supplied counterclaim, at this degree and scope.
-    ///
-    /// Three earlier forms proved strictly less. `establish(bool)` proved
-    /// nothing. `from_separation(a, b)` proved only that the caller could
-    /// produce two unequal byte strings. The first `by_running` proved that
-    /// *some* caller-supplied function separated two strings — but the detector
-    /// chose its own id and never saw the degree or scope, so one fixture could
-    /// be presented as adequate on any carrier at any degree.
-    ///
-    /// # What it still does not prove
-    ///
-    /// That the detector is *honest*. Any code in the process may declare a
-    /// descriptor and return whatever it likes. What the descriptor buys is that
-    /// a counterfeit must **commit** to what it claims to be, and that its
-    /// declared carrier is checked against the site — so a fixture cannot travel
-    /// between carriers. Closing the remaining gap needs an out-of-process
-    /// attestation, which this crate cannot provide.
     pub fn by_running<D: Detector + ?Sized>(
         detector: &D,
         claim: &[u8],
@@ -338,10 +195,6 @@ impl DetectorAdequacy {
             });
         }
 
-        // The claim must BE the residual this continuation concerns. Otherwise
-        // an easy separable pair authorizes an unrelated subject -- which is
-        // exactly what separating logical X from logical Z and then binding the
-        // result to some other residual did.
         let claim_digest = digest(ADEQUACY_DOMAIN, &[claim]);
         if &claim_digest != scope.residual() {
             return Err(AdequacyRefusal::ClaimIsNotTheScopedResidual {
@@ -363,10 +216,6 @@ impl DetectorAdequacy {
 
         let a = detector.verdict(&claim_subject);
         let b = detector.verdict(&counter_subject);
-        // Sampled repeatability, NOT determinism: a second evaluation that
-        // agrees rules out a detector returning fresh bytes every call, but an
-        // A,B,A,B detector would pass this and change later. A cheap filter,
-        // not a proof.
         if a != detector.verdict(&claim_subject) || b != detector.verdict(&counter_subject) {
             return Err(AdequacyRefusal::RepeatabilityFailure);
         }
@@ -383,15 +232,12 @@ impl DetectorAdequacy {
         })
     }
 
-    /// Which detector established this.
     pub fn detector(&self) -> &Hash256 {
         &self.detector
     }
-    /// Digest of the claim it separated — equal to the scoped residual.
     pub fn claim(&self) -> &Hash256 {
         &self.claim
     }
-    /// Digest of the counterclaim it separated.
     pub fn counterclaim(&self) -> &Hash256 {
         &self.counterclaim
     }
@@ -402,7 +248,6 @@ impl DetectorAdequacy {
         &self.scope
     }
 
-    /// Commitment to the whole adequacy fact, for folding into a tape head.
     pub fn commit(&self) -> Hash256 {
         digest(
             ADEQUACY_DOMAIN,
@@ -417,10 +262,6 @@ impl DetectorAdequacy {
     }
 }
 
-/// An exhibited obligation at a stated dimension.
-///
-/// Canonical law 1: adding `C^{n+1}` requires an **exhibited**
-/// (n+1)-dimensional obligation — not the absence of a resolution below.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ObligationWitness {
     scope: ScopeBinding,
@@ -443,7 +284,6 @@ impl ObligationWitness {
         &self.scope
     }
 
-    /// Canonical commitment covering the scope, not only the value.
     pub fn commit(&self) -> Hash256 {
         digest(
             EVIDENCE_DOMAIN,
@@ -456,11 +296,6 @@ impl ObligationWitness {
     }
 }
 
-/// Proof that no same-carrier repair remains.
-///
-/// Canonical law 2: a representation extension must **prove no same-carrier
-/// repair exists**. Absence of an attempt is not such a proof, so the
-/// constructor requires the search to have been run to exhaustion.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SameCarrierExhaustion {
     scope: ScopeBinding,
@@ -468,16 +303,6 @@ pub struct SameCarrierExhaustion {
 }
 
 impl SameCarrierExhaustion {
-    /// Prove exhaustion by **running the search**.
-    ///
-    /// `candidates` is the declared same-carrier repair space; `repairs` decides
-    /// whether a candidate resolves the residual. Exhaustion holds exactly when
-    /// the iterator was consumed to the end and nothing repaired — which this
-    /// function determines, rather than accepting a caller's `true`.
-    ///
-    /// The earlier `prove(exhausted: bool, ..)` was the same defect as
-    /// `DetectorAdequacy::establish(bool, ..)`: a caller could assert the
-    /// search had been run.
     pub fn by_searching<I, F>(
         candidates: I,
         mut repairs: F,
@@ -512,13 +337,9 @@ impl SameCarrierExhaustion {
     }
 }
 
-/// Why a lift could not be licensed.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum LiftRefusal {
-    /// A same-carrier repair exists, so no representation extension is licensed.
-    /// CODA-3: a lift trigger is not a lift license.
     SameCarrierRepairExists { at_candidate: usize },
-    /// Nothing was searched. An empty space is not an exhausted one.
     EmptySearchSpace,
 }
 
@@ -538,19 +359,10 @@ impl fmt::Display for LiftRefusal {
 
 impl std::error::Error for LiftRefusal {}
 
-/// A licensed lift, bound to the residual and carrier it was licensed for.
-///
-/// Constructed only from a real
-/// [`LicensedLiftAdmission`](crate::prime_algos::licensed_lift_gate::LicensedLiftAdmission)
-/// whose nine up-lift bits all hold, **and** from a
-/// [`SameCarrierExhaustion`] for the same scope — CODA-3: a lift trigger is not
-/// a lift license.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BoundLiftAdmission {
     scope: ScopeBinding,
     generators: usize,
-    /// Digest of the admission this was bound from, so two different
-    /// certificates at one scope do not collide.
     admission_digest: Hash256,
 }
 
@@ -584,10 +396,6 @@ impl BoundLiftAdmission {
         &self.scope
     }
 
-    /// Canonical commitment covering scope AND provenance.
-    ///
-    /// Committing only the scope let two entirely different lift certificates
-    /// bound at the same scope share a commitment.
     pub fn commit(&self) -> Hash256 {
         digest(
             EVIDENCE_DOMAIN,
@@ -600,8 +408,6 @@ impl BoundLiftAdmission {
     }
 }
 
-/// Canonical digest of a `d₀`, so a measurement can name the carrier it was
-/// taken against.
 pub fn d0_commitment(d0: &[Vec<BigRational>]) -> Hash256 {
     d0_digest(d0)
 }
@@ -619,8 +425,6 @@ fn d0_digest(d0: &[Vec<BigRational>]) -> Hash256 {
     digest(RESIDUAL_DOMAIN, &refs)
 }
 
-/// A refusal issued by CODA_GTLA. Sealed: only a refusal that was actually issued
-/// can be represented, and its absence is `None` rather than `false`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CodaGtlaRefusal {
     reason: String,
@@ -642,45 +446,15 @@ impl CodaGtlaRefusal {
     }
 }
 
-/// Measured residual before and after the step, exact over ℚ.
-///
-/// `residual_aware_can_continue.md` §2 extends `CanContinue_n` with
-/// `ΔΦ_net ≤ 0`. The values are measured, not asserted: the constructor takes
-/// both endpoints so the delta cannot be reported independently of them.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ResidualDelta {
     scope: ScopeBinding,
     before: BigRational,
     after: BigRational,
-    /// Digest of the `d₀` both endpoints were measured against.
-    ///
-    /// Retained rather than discarded: `from_verified` used to prove only that
-    /// the two endpoints shared a `d₀`, never relating that `d₀` to the site.
-    /// A falling Φ₁ measured on carrier A could then authorize a continuation on
-    /// carrier B — and the Majorana test demonstrated exactly that, measuring on
-    /// a one-edge zero `d₀` while the detector ran on the torus.
     measured_on: Hash256,
 }
 
 impl ResidualDelta {
-    /// The only constructor. Both endpoints must be **verified** Φ₁ values.
-    ///
-    /// A `VerifiedExactPhi1` can be obtained only from
-    /// `Phi1Functional::verify_exact_certificate`, which replays the primal and
-    /// dual solves and rejects any certificate whose two sides disagree. So the
-    /// delta is a measurement, not a pair of numbers a caller typed.
-    ///
-    /// # Why `d₀` must match
-    ///
-    /// Φ₁ is a distance to `im(d₀)`. Two Φ₁ values computed against *different*
-    /// `d₀` are distances in different quotients and their difference is not a
-    /// quantity. Comparing them would be the same error as comparing residuals
-    /// across a carrier change, so it is refused rather than reported.
-    ///
-    /// A consequence worth stating: a step that repacketizes onto a new carrier
-    /// **cannot** discharge the residual-non-increase rule this way. It must go
-    /// through an audited loss ledger instead, which is the correct route for a
-    /// change that alters what the residual is measured against.
     pub fn from_verified(
         before: &VerifiedExactPhi1,
         after: &VerifiedExactPhi1,
@@ -704,12 +478,10 @@ impl ResidualDelta {
         })
     }
 
-    /// The `d₀` these endpoints were measured against.
     pub fn measured_on(&self) -> &Hash256 {
         &self.measured_on
     }
 
-    /// Canonical commitment: scope, endpoints **and** the carrier measured on.
     pub fn commit(&self) -> Hash256 {
         digest(
             RESIDUAL_DOMAIN,
@@ -721,7 +493,6 @@ impl ResidualDelta {
             ],
         )
     }
-    /// Endpoint values, for commitment purposes.
     pub fn before_string(&self) -> String {
         self.before.to_string()
     }
@@ -729,7 +500,6 @@ impl ResidualDelta {
         self.after.to_string()
     }
 
-    /// True when the step increased the residual.
     pub fn increases(&self) -> bool {
         self.after > self.before
     }
@@ -741,10 +511,6 @@ impl ResidualDelta {
     }
 }
 
-/// All obligations at or below the first unresolved degree are discharged.
-///
-/// Required for terminalization: Γ₂ = 0 alone says the *closure defect* vanished
-/// on this carrier, not that the run has nothing left to do.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ObligationClosure {
     scope: ScopeBinding,
@@ -752,8 +518,6 @@ pub struct ObligationClosure {
 }
 
 impl ObligationClosure {
-    /// `open` is the verifier's list of still-open obligation degrees. Closure
-    /// exists only when that list is empty.
     pub fn discharge(
         open_degrees: &[usize],
         highest_discharged: usize,
@@ -778,7 +542,6 @@ impl ObligationClosure {
     }
 }
 
-/// Authoritative registry of obligations for a run (Hole 6).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ObligationRegistry {
     scope: ScopeBinding,
@@ -848,9 +611,6 @@ impl ObligationRegistry {
     }
 }
 
-/// A single-use licence to terminalize a run (Hole 6).
-///
-/// **Not `Clone`, not `Deserialize`.** Consumed by value by `terminalize`.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TerminalPermit {
     scope: ScopeBinding,
@@ -872,15 +632,7 @@ impl TerminalPermit {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Budget — OE003-03, executable rather than a boolean.
-// ---------------------------------------------------------------------------
 
-/// `#ops ≤ ⌊B_tot / δ_control⌋`, enforced by decrementing.
-///
-/// The prototype carried budget as a caller-supplied `bool` that nothing ever
-/// decremented, so "budget available" was an opinion. Here the bound is computed
-/// from the declared total and cost floor, and every written step spends.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct Budget {
     total: String,
@@ -890,8 +642,6 @@ pub struct Budget {
 }
 
 impl Budget {
-    /// Declare a budget. A non-positive cost floor is refused: it would make the
-    /// operation bound infinite, which is the opposite of bounded stopping.
     pub fn declare(total: &BigRational, control_floor: &BigRational) -> Result<Self, LawRefusal> {
         if control_floor <= &BigRational::zero() || total < &BigRational::zero() {
             return Err(LawRefusal::Violations(vec![Violation {
@@ -936,38 +686,21 @@ impl Budget {
     }
 }
 
-// ---------------------------------------------------------------------------
-// The six anti-cheat halting laws (OE003-02), canonically named.
-// ---------------------------------------------------------------------------
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum AntiCheatLaw {
-    /// 1. Adding `C^{n+1}` requires an exhibited (n+1)-dimensional obligation.
     NoDegreeLaundering,
-    /// 2. A representation extension must prove no same-carrier repair exists.
     NoLiftLaundering,
-    /// 3. A **stable residual** cannot be perpetually **renamed** to avoid
-    ///    terminalization.
     NoAnomalonEvasion,
-    /// 4. A continuation must preserve certified data or emit a loss ledger.
     OldSkeletonPreservation,
-    /// 5. Repacketization must revalidate detector adequacy at degree n+1.
     DetectorRevalidation,
-    /// 6. If `n₀` is unresolved, claims above `n₀` are conditional.
     FirstUnresolvedDegreeHonesty,
-    /// OE003-03. Not one of the six, but the same kind of stop: the declared
-    /// operation bound is finite and is enforced.
     BoundedStopping,
-    /// `residual_aware_can_continue.md` §2: a continuation is strictly refused
-    /// if the step increases the residual measure Phi without an audited loss
-    /// ledger. Not one of the canonical six; a named extension of CanContinue_n.
     ResidualNonIncrease,
 }
 
 impl AntiCheatLaw {
-    /// The canonical six. `BoundedStopping` is OE003-03 and is deliberately not
-    /// in this list.
     pub const SIX: [AntiCheatLaw; 6] = [
         AntiCheatLaw::NoDegreeLaundering,
         AntiCheatLaw::NoLiftLaundering,
@@ -1003,15 +736,10 @@ impl fmt::Display for Violation {
     }
 }
 
-/// A step was refused.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum LawRefusal {
     Violations(Vec<Violation>),
     Scope(ScopeMismatch),
-    /// The permit does not license this claim under this evidence.
-    ///
-    /// Distinct from a law violation: nothing about the step is unlawful, it
-    /// was not the step that was authorized.
     PermitMismatch {
         licensed_claim: String,
         presented_claim: String,
@@ -1059,14 +787,7 @@ impl LawRefusal {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Steps. No terminalize variant exists.
-// ---------------------------------------------------------------------------
 
-/// What a step does.
-///
-/// There is **no `Terminalize`**. `T` is not something `write_step` refuses; it
-/// is something `write_step` cannot express. See [`terminalize`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[allow(clippy::large_enum_variant)]
 pub enum StepOp {
@@ -1074,11 +795,8 @@ pub enum StepOp {
     ResidualProjection,
     ContextExposure,
     Integration,
-    /// A lift, carrying the admission that licensed it. The admission is bound,
-    /// so it cannot be borrowed from another residual.
     Lift(BoundLiftAdmission),
     Descent,
-    /// Typed refusal — a lawful terminal.
     Refusal,
 }
 
@@ -1096,22 +814,10 @@ impl StepOp {
     }
 }
 
-/// A single-use licence to write one step.
-///
-/// **Not `Clone`, not `Deserialize`.** Both writers take it by value, so the
-/// move checker enforces single use.
 #[derive(Debug, PartialEq, Eq)]
 pub struct StepPermit {
     scope: ScopeBinding,
-    /// Commitment to the evidence that licensed this permit. Folded into the
-    /// tape head by [`write_step`], so the chain records *which authority*
-    /// admitted the step and not that one did.
     evidence: Hash256,
-    /// Commitment to the **claim** this permit was issued for.
-    ///
-    /// Without it a permit was a licence to write *something* at a scope. A
-    /// permit obtained with degree-1 evidence could then be spent on a degree-9
-    /// claim, because the writer only re-checked the scope.
     licensed_claim: Hash256,
 }
 
@@ -1124,13 +830,10 @@ impl StepPermit {
         }
     }
 
-    /// The claim this permit licenses.
     pub fn licensed_claim(&self) -> &Hash256 {
         &self.licensed_claim
     }
 
-    /// The binding a writer must reproduce: this permit licenses **this claim**
-    /// under **this evidence**, and nothing else.
     pub fn binding(&self, claim: &StepClaim) -> Hash256 {
         digest(
             PERMIT_DOMAIN,
@@ -1145,40 +848,24 @@ impl StepPermit {
     }
 }
 
-/// What a step asserts.
-///
-/// Deliberately carries **no** obligation or detector of its own. Those live in
-/// [`ContinuationEvidence`], which is what the permit commits to. Holding a
-/// second copy here allowed a permit obtained with degree-1 evidence to be spent
-/// on a degree-9 claim carrying its own unrelated witnesses.
 #[derive(Debug, Clone)]
 pub struct StepClaim {
     pub op: StepOp,
-    /// Content hash of the residual — its *identity*, independent of its label.
     pub residual_content: Hash256,
-    /// The label the engine is presenting this residual under.
     pub residual_label: Hash256,
-    /// Degree this step operates at.
     pub degree: usize,
-    /// Skeleton after the step.
     pub skeleton: Hash256,
-    /// Booked loss, required when the skeleton changes.
     pub loss_ledger: Option<LossLedger>,
-    /// True when this step repacketizes onto a different carrier.
     pub repacketized: bool,
-    /// Claims asserted above `n₀` must be marked conditional.
     pub claims_above_n0_are_conditional: bool,
 }
 
 impl StepClaim {
-    /// Canonical commitment to the claim. Every field the laws read is included.
     pub fn commit(&self) -> Hash256 {
         digest(
             CLAIM_DOMAIN,
             &[
                 &[self.op.letter() as u8],
-                // A Lift is not interchangeable with another Lift: commit the
-                // bound admission, or every StepOp::Lift reduces to one letter.
                 &match &self.op {
                     StepOp::Lift(a) => a.commit(),
                     _ => Hash256([0; 32]),
@@ -1202,16 +889,7 @@ impl StepClaim {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Control state.
-// ---------------------------------------------------------------------------
 
-/// An immutable record of a refused attempt.
-///
-/// A refused step must not move the mathematical state — but an anti-cheat
-/// system that forgets refusals cannot show a pattern of them, so refusals are
-/// appended here while `degree_window`, `skeleton` and the residual index stay
-/// untouched.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct RefusalReceipt {
     pub step_index: usize,
@@ -1219,27 +897,12 @@ pub struct RefusalReceipt {
     pub detail: String,
 }
 
-/// The authoritative run state.
-///
-/// **Not `Clone`, not `Deserialize`.** Both would reopen the rewind vector the
-/// anti-cheat laws exist to close: snapshot, attempt a step, take the refusal,
-/// restore, and re-attempt under a different framing until one passes. That
-/// erases the refusal receipts and the residual memory, which is anomalon
-/// evasion wearing a different hat. State moves forward only.
 pub type ControlState = OpenControlState;
 
-/// The authoritative run state.
-///
-/// **Not `Clone`, not `Deserialize`.** Both would reopen the rewind vector the
-/// anti-cheat laws exist to close: snapshot, attempt a step, take the refusal,
-/// restore, and re-attempt under a different framing until one passes. That
-/// erases the refusal receipts and the residual memory, which is anomalon
-/// evasion wearing a different hat. State moves forward only.
 #[derive(Debug, PartialEq, Eq)]
 pub struct OpenControlState {
     run: Hash256,
     manifest: BoundCarrierManifest,
-    /// residual content -> the label it was first written under.
     seen_residuals: BTreeMap<Vec<u8>, Hash256>,
     degree_window: usize,
     skeleton: Hash256,
@@ -1323,12 +986,10 @@ impl OpenControlState {
     pub fn carrier(&self) -> &Hash256 {
         self.manifest.carrier()
     }
-    /// The `d₀` residual measurements must be taken against.
     pub fn d0(&self) -> &Hash256 {
         self.manifest.d0()
     }
 
-    /// The scope a step at this point must be bound to.
     pub fn scope_for(&self, residual: Hash256) -> ScopeBinding {
         ScopeBinding::new(
             self.run.clone(),
@@ -1342,10 +1003,6 @@ impl OpenControlState {
 
 pub type TerminalState = TerminalControlState;
 
-/// Closed control state after successful terminalization (Hole 8).
-///
-/// Typestate invariant: can_continue_n accepts only OpenControlState,
-/// making calling can_continue_n after terminalization unrepresentable.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TerminalControlState {
     run: Hash256,
@@ -1382,32 +1039,17 @@ impl TerminalControlState {
     }
 }
 
-// ---------------------------------------------------------------------------
-// CanContinue_n (OE003-01) — evidence in, permit out.
-// ---------------------------------------------------------------------------
 
-/// The nine conjuncts, as canonical. Facts that have verifiable evidence are
-/// carried as evidence; the remainder are explicit and have no defaults.
 #[derive(Debug)]
 pub struct ContinuationEvidence {
     pub outstanding_obligation: ObligationWitness,
     pub higher_obligation_witness: ObligationWitness,
     pub next_carrier_manifest: BoundCarrierManifest,
-    /// Adapter soundness comes from Prime 001 as a booked ledger.
     pub adapter_ledger: LossLedger,
     pub detector: DetectorAdequacy,
-    /// `None` when the step performs no lift.
     pub lift: Option<BoundLiftAdmission>,
     pub skeleton_preserved: bool,
-    /// A CODA_GTLA continuation refusal, if one was issued.
-    ///
-    /// Was a bare `bool` whose `false` was trusted, which contradicted this
-    /// module's own "never a public bool" rule. `None` now means *no refusal
-    /// was issued*, which is a different statement from someone writing
-    /// `false`, and the option's absence is what the predicate reads.
     pub coda_gtla_refusal: Option<CodaGtlaRefusal>,
-    /// Measured Phi before and after. Required: a continuation that cannot say
-    /// what it did to the residual cannot be judged non-increasing.
     pub residual: ResidualDelta,
 }
 
@@ -1416,20 +1058,10 @@ impl ContinuationEvidence {
         self.next_carrier_manifest.carrier()
     }
 
-    /// Commitment to the **whole** evidence set that licensed a step.
-    ///
-    /// Without this the tape recorded at most the detector's *degree*, so two
-    /// steps authorized by different detectors separating different pairs
-    /// produced the same head — the chain could not distinguish the authority
-    /// behind them.
     pub fn commit(&self) -> Hash256 {
         digest(
             EVIDENCE_DOMAIN,
             &[
-                // Each witness commits its SCOPE as well as its value. Omitting
-                // the scope let evidence with foreign obligation or residual
-                // scopes but identical values share a commitment with the
-                // evidence a permit was actually issued for.
                 &self.outstanding_obligation.commit().0,
                 &self.higher_obligation_witness.commit().0,
                 &self.next_carrier_manifest.commit().0,
@@ -1451,7 +1083,6 @@ impl ContinuationEvidence {
     }
 }
 
-/// Names of the nine conjuncts. Coverage denominator.
 pub const CONTINUATION_CONJUNCTS: [&str; 9] = [
     "outstanding_obligation",
     "higher_obligation_witness",
@@ -1464,22 +1095,12 @@ pub const CONTINUATION_CONJUNCTS: [&str; 9] = [
     "gtla_continuation_refusal",
 ];
 
-/// `CanContinue_n`. On success issues one claim-bound [`StepPermit`] when
-/// budget remains. Issuance does not spend: [`write_step`] and [`terminalize`]
-/// charge one unit after their write-admission checks pass.
-///
-/// Every piece of evidence must be bound to `site`; evidence produced for
-/// another residual, carrier or tape head is refused by scope, not silently
-/// accepted.
 pub fn can_continue_n(
     state: &mut ControlState,
     site: &ScopeBinding,
     claim: &StepClaim,
     ev: &ContinuationEvidence,
 ) -> Result<StepPermit, LawRefusal> {
-    // The six laws are evaluated HERE, against the claim this permit will
-    // license. Deferring them to the writer let a permit be obtained under one
-    // claim and spent under another.
     let mut v = check_laws(state, claim, ev);
 
     require_same_scope(
@@ -1525,8 +1146,6 @@ pub fn can_continue_n(
         });
     }
     require_same_scope("residual delta", ev.residual.scope(), site).map_err(LawRefusal::Scope)?;
-    // The delta must have been measured on THIS run's d0. Sharing a d0 between
-    // its own two endpoints says nothing about which carrier that is.
     if ev.residual.measured_on() != state.d0() {
         return Err(LawRefusal::Violations(vec![Violation {
             law: AntiCheatLaw::ResidualNonIncrease,
@@ -1552,15 +1171,9 @@ pub fn can_continue_n(
             detail: format!("GTLA continuation refusal is present: {}", r.reason()),
         });
     }
-    // Refused continuation evidence must not change the operation budget.
-    // A successful write charges it after the writer rechecks admission.
     if !v.is_empty() {
         return Err(LawRefusal::Violations(v));
     }
-    // Budget is CHECKED here and SPENT at the write. Spending at issuance let
-    // an unwriteable step consume budget -- `admit_write` applies stricter
-    // checks than issuance does -- and let a caller drain the budget by
-    // obtaining and dropping permits without ever advancing the tape.
     if state.budget().remaining() == 0 {
         return Err(LawRefusal::Violations(vec![Violation {
             law: AntiCheatLaw::BoundedStopping,
@@ -1574,11 +1187,7 @@ pub fn can_continue_n(
     Ok(StepPermit::issue(site.clone(), ev.commit(), claim))
 }
 
-// ---------------------------------------------------------------------------
-// The law check.
-// ---------------------------------------------------------------------------
 
-/// Check the six laws against a claim. Returns **every** violation.
 pub fn check_laws(
     state: &ControlState,
     claim: &StepClaim,
@@ -1586,8 +1195,6 @@ pub fn check_laws(
 ) -> Vec<Violation> {
     let mut v = Vec::new();
 
-    // 1. No degree laundering — a rise requires an exhibited obligation AT the
-    //    new degree, bound to this scope.
     if claim.degree > state.degree_window {
         let w = &ev.higher_obligation_witness;
         if w.degree() < claim.degree {
@@ -1602,18 +1209,7 @@ pub fn check_laws(
         }
     }
 
-    // 2. No lift laundering. StepOp::Lift can only be built from a
-    //    BoundLiftAdmission, which requires a SameCarrierExhaustion produced by
-    //    an actual search (SameCarrierExhaustion::by_searching) and a
-    //    LicensedLiftAdmission that only step9_licensed_lift_gate can construct.
-    //    Both are sealed, so there is nothing left for this function to re-check
-    //    -- but note that is a statement about those two constructors, not a
-    //    claim that the law is self-enforcing.
 
-    // 3. No anomalon evasion — the SAME residual content under a DIFFERENT
-    //    label. This is renaming to avoid terminalization, which is the
-    //    canonical wording; re-presenting the identical label is replay and is
-    //    caught by the tape, not by this law.
     if let Some(first_label) = state
         .seen_residuals
         .get(claim.residual_content.0.as_slice())
@@ -1631,7 +1227,6 @@ pub fn check_laws(
         }
     }
 
-    // 4. Old-skeleton preservation — preserve certified data OR book the loss.
     if claim.skeleton != state.skeleton {
         match &claim.loss_ledger {
             Some(l) if l.is_sound() => {
@@ -1662,11 +1257,6 @@ pub fn check_laws(
         }
     }
 
-    // 5. Detector revalidation — required on repacketization OR any degree rise.
-    //    Keying on repacketization alone let a degree rise bypass it.
-    // Adequacy is degree-RELATIVE, so it is required at exactly the step's
-    // degree. Accepting `>=` treated it as upward-monotone, which nothing
-    // justifies: a detector adequate at degree 9 says nothing about degree 2.
     let needs_revalidation = claim.repacketized || claim.degree > state.degree_window;
     if needs_revalidation && ev.detector.degree() != claim.degree {
         v.push(Violation {
@@ -1680,7 +1270,6 @@ pub fn check_laws(
         });
     }
 
-    // 6. First-unresolved-degree honesty — claims above n₀ must be conditional.
     if claim.degree > state.first_unresolved_degree && !claim.claims_above_n0_are_conditional {
         v.push(Violation {
             law: AntiCheatLaw::FirstUnresolvedDegreeHonesty,
@@ -1694,9 +1283,6 @@ pub fn check_laws(
     v
 }
 
-// ---------------------------------------------------------------------------
-// Writing.
-// ---------------------------------------------------------------------------
 
 const EVENT_DOMAIN: &str = "oeprm.event.v1";
 const ADEQUACY_DOMAIN: &str = "oeprm.adequacy.v1";
@@ -1706,21 +1292,9 @@ const CLAIM_DOMAIN: &str = "oeprm.claim.v1";
 const RESIDUAL_DOMAIN: &str = "oeprm.residual.v1";
 const PERMIT_DOMAIN: &str = "oeprm.permit.v1";
 
-/// Commit to the **whole verified event**, not a subset of it.
-///
-/// Every field the laws examined is committed, so two accepted claims with
-/// different detector or obligation histories cannot share a tape head. All
-/// parts are fixed-width or length-prefixed by [`digest`], so the encoding is
-/// unambiguous.
-/// What kind of event a tape entry is. Committed, so a terminal and an
-/// ordinary write from identical states cannot share a head.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum EventKind {
     Step,
-    /// Carries the commitment of the terminal-only evidence: the Γ₂ receipt and
-    /// the obligation closure. Without it the chain could not prove
-    /// terminalization happened at all -- the returned enum is ephemeral, the
-    /// tape is what is authoritative.
     Terminal(Hash256),
 }
 
@@ -1737,15 +1311,8 @@ fn event_commit(
         &[
             prev.map_or(&empty[..], |h| &h.0[..]),
             &scope.commit().0,
-            // The whole evidence set that licensed the step: detector identity,
-            // separated pair, obligations, ledger, residual endpoints.
             &evidence.0,
-            // The whole claim, canonically. Every field the laws read.
             &claim.map_or(Hash256([0; 32]), |c| c.commit()).0,
-            // Step vs terminal, and for a terminal the receipts that licensed
-            // it. `write_step` and `terminalize` used to call this identically,
-            // so their heads collided and the tape recorded neither the `T` nor
-            // the Gamma_2 and closure evidence.
             &match &kind {
                 EventKind::Step => [0u8; 32],
                 EventKind::Terminal(h) => h.0,
@@ -1758,19 +1325,6 @@ fn event_commit(
     )
 }
 
-/// The gate **every** writer must pass.
-///
-/// This exists because there were two writers and one check. `write_step`
-/// recomputed the permit binding; `terminalize` did not, and also never
-/// re-checked the residual's carrier. A permit obtained legitimately for claim A
-/// under evidence A could therefore terminalize claim B under evidence bound to
-/// a foreign run, carrier, residual and tape head — the laws ran against B while
-/// the tape recorded A's commitment.
-///
-/// Found by an automated audit of every evidence surface, not by inspection:
-/// the divergence was invisible at each individual call site and only shows up
-/// when the two writers are compared. Keeping the check in one function is the
-/// point — a third writer cannot silently omit it.
 fn admit_write(
     state: &ControlState,
     permit: &StepPermit,
@@ -1789,8 +1343,6 @@ fn admit_write(
         });
     }
 
-    // Every scoped member of the evidence, re-checked at the write site. A
-    // permit is not a licence to present *different* evidence later.
     require_same_scope(
         "outstanding obligation",
         ev.outstanding_obligation.scope(),
@@ -1812,7 +1364,6 @@ fn admit_write(
         require_same_scope("lift admission", l.scope(), &site).map_err(LawRefusal::Scope)?;
     }
 
-    // The residual must still be measured on this run's carrier.
     if ev.residual.measured_on() != state.d0() {
         return Err(LawRefusal::Violations(vec![Violation {
             law: AntiCheatLaw::ResidualNonIncrease,
@@ -1824,10 +1375,6 @@ fn admit_write(
         }]));
     }
 
-    // A Lift step must carry the admission that licensed it, at THIS site.
-    // Nothing previously required `ev.lift` to be present for a Lift op, and no
-    // consumer scope-checked the admission inside `StepOp::Lift` — so the
-    // doc claiming it "cannot be borrowed from another residual" was false.
     if let StepOp::Lift(bound) = &claim.op {
         require_same_scope("bound lift admission", bound.scope(), &site)
             .map_err(LawRefusal::Scope)?;
@@ -1845,9 +1392,6 @@ fn admit_write(
     Ok(site)
 }
 
-/// Write one step. Consumes the permit.
-///
-/// `T` cannot be written here — [`StepOp`] has no terminalize variant.
 pub fn write_step(
     state: &mut ControlState,
     permit: StepPermit,
@@ -1858,7 +1402,6 @@ pub fn write_step(
 
     let violations = check_laws(state, claim, ev);
     if !violations.is_empty() {
-        // Refusals are recorded but move no mathematical state.
         state.refusals.push(RefusalReceipt {
             step_index: state.steps_written,
             laws: violations.iter().map(|x| x.law).collect(),
@@ -1903,9 +1446,6 @@ pub fn write_step(
     ))
 }
 
-// ---------------------------------------------------------------------------
-// Terminalization.
-// ---------------------------------------------------------------------------
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum TerminalRefusal {
@@ -1917,8 +1457,6 @@ pub enum TerminalRefusal {
         degrees: Vec<usize>,
     },
     Scope(ScopeMismatch),
-    /// The shared write gate refused. Terminalization is a write, so it must
-    /// clear exactly what `write_step` clears.
     Admission(LawRefusal),
 }
 
@@ -1945,7 +1483,6 @@ impl fmt::Display for TerminalRefusal {
 
 impl std::error::Error for TerminalRefusal {}
 
-/// Commitment to the terminal-only evidence.
 fn terminal_commit(g2: &Gamma2Zero, closure: &ObligationClosure) -> Hash256 {
     digest(
         EVENT_DOMAIN,
@@ -1958,20 +1495,6 @@ fn terminal_commit(g2: &Gamma2Zero, closure: &ObligationClosure) -> Hash256 {
     )
 }
 
-/// The only way to obtain [`TraceTerminal::Terminalized`].
-///
-/// Consumes the [`OpenControlState`], making post-terminal continuation
-/// unrepresentable at compile time:
-///
-/// ```compile_fail
-/// use crate::prime_algos::prime_algorithm_2::{
-///     can_continue_n, TerminalControlState,
-/// };
-/// fn cannot_continue_after_terminal(mut terminal: TerminalControlState) {
-///     // TerminalControlState is not OpenControlState; this will not compile.
-///     can_continue_n(&mut terminal, todo!(), todo!(), todo!());
-/// }
-/// ```
 pub fn terminalize(
     mut state: OpenControlState,
     permit: TerminalPermit,
@@ -2013,10 +1536,8 @@ pub fn terminalize(
     })
 }
 
-/// Authority effect of everything in this module.
 pub const AUTHORITY_EFFECT: AuthorityEffect = AuthorityEffect::None;
 
-/// Convenience for fixtures and integer-valued carriers.
 pub fn rational(n: i64) -> BigRational {
     BigRational::from_integer(BigInt::from(n))
 }
@@ -2030,11 +1551,6 @@ mod tests {
         Hash256([n; 32])
     }
 
-    /// A detector that actually computes something: the parity of its input.
-    ///
-    /// Deterministic, and genuinely unable to separate inputs of equal parity —
-    /// so the inadequacy tests below are about a real limitation rather than a
-    /// contrived one.
     struct ParityDetector(DetectorDescriptor);
 
     impl ParityDetector {
@@ -2044,8 +1560,6 @@ mod tests {
                 "v1",
                 "parity_bit",
                 carrier,
-                // Declares the degrees it answers at. Asking it at any other
-                // degree is now a typed refusal.
                 [1usize, 2, 3],
                 Hash256([0; 32]),
             ))
@@ -2061,7 +1575,6 @@ mod tests {
         }
     }
 
-    /// Two inputs of different parity, which ParityDetector separates.
     const ODD: &[u8] = &[1];
     const EVEN: &[u8] = &[0];
 
@@ -2076,19 +1589,14 @@ mod tests {
         )
     }
 
-    /// The residual identifier of the standard ODD claim.
     fn odd_residual() -> Hash256 {
         digest(ADEQUACY_DOMAIN, &[ODD])
     }
 
-    /// The scope a claim must be presented at: its residual IS the claim digest.
     fn scope_for_claim(s: &ControlState, claim: &[u8]) -> ScopeBinding {
         s.scope_for(digest(ADEQUACY_DOMAIN, &[claim]))
     }
 
-    /// A standard evidence set, for tests that exercise `check_laws` rather
-    /// than the permit path. `check_laws` reads the obligation and detector
-    /// from here now that `StepClaim` no longer duplicates them.
     fn std_ev(s: &ControlState, degree: usize) -> ContinuationEvidence {
         let site = scope_for_claim(s, ODD);
         ContinuationEvidence {
@@ -2108,8 +1616,6 @@ mod tests {
         }
     }
 
-    /// Evidence whose obligation and detector degrees are set independently,
-    /// so a test can under-declare one and see the corresponding law fire.
     fn ev_with(
         s: &ControlState,
         obligation_degree: usize,
@@ -2133,7 +1639,6 @@ mod tests {
         }
     }
 
-    /// Adequacy for the standard ODD-vs-EVEN pair at `degree`, on `state`.
     fn adequacy(s: &ControlState, degree: usize) -> DetectorAdequacy {
         DetectorAdequacy::by_running(
             &ParityDetector::on(h(2)),
@@ -2145,8 +1650,6 @@ mod tests {
         .expect("parity separates odd from even on carrier h(2)")
     }
 
-    /// The d0 the verified_phi1 fixture measures against -- a 1x1 zero matrix.
-    /// The run must declare it, or the delta cannot be presented here.
     fn fixture_d0() -> Hash256 {
         d0_digest(&[vec![rational(0)]])
     }
@@ -2159,10 +1662,6 @@ mod tests {
         ControlState::open(h(1), h(2), fixture_d0(), h(10), budget())
     }
 
-    /// The standard claim. Its residual IS the ODD claim's digest, so the claim,
-    /// the site and every piece of evidence agree -- which the shared write gate
-    /// now requires. Fixtures that disagreed used to pass because only some
-    /// members were scope-checked.
     fn clean_claim(s: &ControlState) -> StepClaim {
         StepClaim {
             op: StepOp::ResidualProjection,
@@ -2176,10 +1675,6 @@ mod tests {
         }
     }
 
-    /// A permit for a specific claim, carrying that claim's evidence.
-    ///
-    /// The permit now binds the claim it licenses, so a fixture helper has to
-    /// name one -- which is the point: there is no permit to write "something".
     fn permit_for_claim(s: &ControlState, claim: &StepClaim) -> StepPermit {
         StepPermit::issue(
             s.scope_for(claim.residual_content.clone()),
@@ -2194,11 +1689,6 @@ mod tests {
         StepPermit::issue(s.scope_for(residual), std_ev(s, c.degree).commit(), &c)
     }
 
-    /// A genuinely verified Phi_1 of value `v`, over a fixed one-edge d0.
-    ///
-    /// Built through `Phi1Functional::verify_exact_certificate`, so the test
-    /// exercises the real replay: primal residual, dual annihilator, dual norm
-    /// bound and both values must agree or this panics.
     fn verified_phi1(v: i64) -> VerifiedExactPhi1 {
         use omega_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
         Phi1Functional::verify_exact_certificate(ExactPhi1Certificate {
@@ -2218,7 +1708,6 @@ mod tests {
             .expect("same d0, so the endpoints are comparable")
     }
 
-    /// A genuinely admitted lift, via the real step-9 gate.
     fn admitted_lift() -> crate::prime_algos::licensed_lift_gate::LicensedLiftAdmission {
         crate::prime_algos::licensed_lift_gate::step9_licensed_lift_gate(
             vec!["resolve_delta_0".into()],
@@ -2228,11 +1717,7 @@ mod tests {
         .expect("the demo certificate admits")
     }
 
-    // --- P1-1: T is unrepresentable on the write path ----------------------
 
-    /// The review's first blocker. `StepOp` has no terminalize variant, so
-    /// `write_step` cannot emit `T` at all — this is a type-level guarantee, and
-    /// the test records that the enum is exhaustively non-terminal.
     #[test]
     fn write_step_cannot_express_a_terminal() {
         let s = state();
@@ -2254,8 +1739,6 @@ mod tests {
         let _ = s;
     }
 
-    /// A terminal requires a verified zero. The receipt cannot be built at all
-    /// for a live obstruction.
     #[test]
     fn gamma2_receipt_cannot_exist_for_a_live_obstruction() {
         let s = state();
@@ -2268,7 +1751,6 @@ mod tests {
         Gamma2Zero::verify(&rational(0), scope).expect("exact zero must yield a receipt");
     }
 
-    // --- P1-2: open state with unresolved obligations cannot terminalize ----
 
     #[test]
     fn an_open_run_with_unresolved_obligations_cannot_terminalize() {
@@ -2297,7 +1779,6 @@ mod tests {
         assert_eq!(t.steps_written(), 1);
     }
 
-    // --- P1-4: permits are bound and single-use ----------------------------
 
     #[test]
     fn a_permit_for_another_residual_is_refused() {
@@ -2309,7 +1790,6 @@ mod tests {
         assert!(matches!(err, LawRefusal::Scope(_)));
     }
 
-    /// A permit issued against an older tape head cannot be replayed later.
     #[test]
     fn a_permit_cannot_be_replayed_against_a_moved_tape_head() {
         let mut s = state();
@@ -2323,7 +1803,6 @@ mod tests {
         assert!(matches!(err, LawRefusal::Scope(_)));
     }
 
-    // --- P1-5: lift authority is bound -------------------------------------
 
     #[test]
     fn a_lift_admission_cannot_authorize_another_residual() {
@@ -2332,7 +1811,6 @@ mod tests {
         let scope_b = s.scope_for(h(77));
         let exhaustion =
             SameCarrierExhaustion::by_searching(0..12, |_| false, scope_a.clone()).unwrap();
-        // Exhaustion proved for residual A, presented at residual B.
         let err = BoundLiftAdmission::bind(&admitted_lift(), &exhaustion, scope_b)
             .expect_err("a lift licensed for residual A must not bind at residual B");
         assert!(matches!(err, LawRefusal::Scope(_)));
@@ -2341,21 +1819,17 @@ mod tests {
     #[test]
     fn a_lift_without_exhaustion_cannot_be_proved() {
         let s = state();
-        // A search that finds a repair is not an exhaustion.
         assert!(
             SameCarrierExhaustion::by_searching(0..5, |c| *c == 2, s.scope_for(h(3))).is_err(),
             "a same-carrier repair exists, so no lift is licensed"
         );
-        // Neither is an empty space.
         assert!(
             SameCarrierExhaustion::by_searching(0..0, |_: &i32| false, s.scope_for(h(3))).is_err(),
             "an empty space is not an exhausted one"
         );
-        // Anti-vacuity: a genuine exhaustion succeeds.
         assert!(SameCarrierExhaustion::by_searching(0..5, |_| false, s.scope_for(h(3))).is_ok());
     }
 
-    // --- P1-6: the canonical laws ------------------------------------------
 
     #[test]
     fn the_clean_claim_violates_no_law() {
@@ -2363,8 +1837,6 @@ mod tests {
         assert_eq!(check_laws(&s, &clean_claim(&s), &std_ev(&s, 1)), Vec::new());
     }
 
-    /// The review's bypass: skeleton changes while preservation is not
-    /// declared, and no loss is booked.
     #[test]
     fn skeleton_change_without_a_loss_ledger_refuses() {
         let s = state();
@@ -2376,8 +1848,6 @@ mod tests {
             .any(|x| x.law == AntiCheatLaw::OldSkeletonPreservation));
     }
 
-    /// …and booking the loss makes it lawful, so the law is not "never change
-    /// the skeleton".
     #[test]
     fn skeleton_change_with_a_sound_loss_ledger_is_lawful() {
         let s = state();
@@ -2387,16 +1857,13 @@ mod tests {
         assert_eq!(check_laws(&s, &c, &std_ev(&s, c.degree)), Vec::new());
     }
 
-    /// The review's second bypass: raise the degree while claiming the carrier
-    /// did not change, to dodge detector revalidation.
     #[test]
     fn degree_rise_without_detector_revalidation_refuses() {
         let s = state();
         let mut c = clean_claim(&s);
         c.degree = 2;
-        c.repacketized = false; // the bypass
+        c.repacketized = false;
         c.claims_above_n0_are_conditional = true;
-        // Detector established only at degree 1 while the step climbs to 2.
         let v = check_laws(&s, &c, &ev_with(&s, 2, 1));
         assert!(
             v.iter()
@@ -2411,14 +1878,10 @@ mod tests {
         let mut c = clean_claim(&s);
         c.degree = 2;
         c.claims_above_n0_are_conditional = true;
-        // Obligation exhibited only at degree 1 while the step climbs to 2.
         let v = check_laws(&s, &c, &ev_with(&s, 1, 2));
         assert!(v.iter().any(|x| x.law == AntiCheatLaw::NoDegreeLaundering));
     }
 
-    /// Canonical law 3 is about **renaming**: same residual content, new label.
-    /// The first cut checked the opposite (same label), which caught replay and
-    /// missed evasion entirely.
     #[test]
     fn renaming_a_stable_residual_is_evasion() {
         let mut s = state();
@@ -2427,8 +1890,8 @@ mod tests {
         write_step(&mut s, p, &c, &std_ev(&state(), c.degree)).expect("first write");
 
         let mut renamed = clean_claim(&s);
-        renamed.residual_content = odd_residual(); // SAME residual content
-        renamed.residual_label = h(88); // new name
+        renamed.residual_content = odd_residual();
+        renamed.residual_label = h(88);
         let v = check_laws(&s, &renamed, &std_ev(&s, renamed.degree));
         assert!(
             v.iter().any(|x| x.law == AntiCheatLaw::NoAnomalonEvasion),
@@ -2436,8 +1899,6 @@ mod tests {
         );
     }
 
-    /// Anti-vacuity for law 3: the same residual under the *same* label is not
-    /// evasion, or the law would block all legitimate revisits.
     #[test]
     fn the_same_residual_under_the_same_label_is_not_evasion() {
         let mut s = state();
@@ -2460,7 +1921,6 @@ mod tests {
             .any(|x| x.law == AntiCheatLaw::FirstUnresolvedDegreeHonesty));
     }
 
-    /// Every one of the canonical six must be violable on its own.
     #[test]
     fn all_six_laws_are_reachable() {
         let mut reached: Vec<AntiCheatLaw> = Vec::new();
@@ -2475,7 +1935,6 @@ mod tests {
                     c.claims_above_n0_are_conditional = true;
                 }
                 AntiCheatLaw::NoLiftLaundering => {
-                    // Enforced by construction; reached via the type, not the checker.
                     reached.push(law);
                     continue;
                 }
@@ -2491,7 +1950,6 @@ mod tests {
                 }
                 AntiCheatLaw::OldSkeletonPreservation => c.skeleton = h(201),
                 AntiCheatLaw::DetectorRevalidation => {
-                    // Detector established at 1 while the step climbs to 2.
                     c.degree = 2;
                     c.repacketized = true;
                     c.claims_above_n0_are_conditional = true;
@@ -2502,9 +1960,7 @@ mod tests {
                 AntiCheatLaw::BoundedStopping | AntiCheatLaw::ResidualNonIncrease => continue,
             }
             let ev = match law {
-                // obligation under-declared: exhibited at 1, step at 2
                 AntiCheatLaw::NoDegreeLaundering => ev_with(&s, 1, 3),
-                // detector under-declared: established at 1, step at 2+
                 AntiCheatLaw::DetectorRevalidation => ev_with(&s, 3, 1),
                 _ => std_ev(&s, c.degree.min(3)),
             };
@@ -2523,11 +1979,7 @@ mod tests {
         );
     }
 
-    // --- P1-7: the chain commits to the whole event ------------------------
 
-    /// Every semantic field the laws examined must move the head. Two accepted
-    /// claims with different detector or obligation histories must not share a
-    /// tape head.
     #[test]
     fn every_checked_field_changes_the_chain_head() {
         let s = state();
@@ -2583,7 +2035,6 @@ mod tests {
         );
     }
 
-    // --- refusals leave a receipt but no semantic movement ------------------
 
     #[test]
     fn a_refused_step_records_a_receipt_without_moving_state() {
@@ -2593,10 +2044,7 @@ mod tests {
         let before_skeleton = s.skeleton().clone();
 
         let mut c = clean_claim(&s);
-        c.skeleton = h(210); // no loss ledger
-                             // The permit must license THIS claim, or the write is refused on the
-                             // binding before the laws are ever consulted -- and no receipt is due
-                             // for a step the permit never authorized.
+        c.skeleton = h(210);
         let p = permit_for_claim(&s, &c);
         let ev = std_ev(&s, c.degree);
         write_step(&mut s, p, &c, &ev).expect_err("must refuse");
@@ -2611,16 +2059,12 @@ mod tests {
             .contains(&AntiCheatLaw::OldSkeletonPreservation));
     }
 
-    // --- budget is executable ----------------------------------------------
 
     #[test]
     fn the_operation_bound_is_computed_and_enforced() {
         let b = Budget::declare(&rational(10), &rational(3)).unwrap();
         assert_eq!(b.max_ops(), 3, "floor(10/3) = 3");
 
-        // Budget is consumed by WRITES, not by issuing permits. Spending at
-        // issuance let an unwriteable step consume budget, and let a caller
-        // drain it by obtaining and dropping permits without touching the tape.
         let mut s = ControlState::open(
             h(1),
             h(2),
@@ -2640,7 +2084,6 @@ mod tests {
         write_step(&mut s, p1, &claim, &ev).expect("first write");
         assert_eq!(s.budget().spent(), 1, "the write spends");
 
-        // The bound is now reached, so the next issuance refuses.
         let err = can_continue_n(&mut s, &site, &claim, &ev)
             .expect_err("the operation bound is exhausted");
         assert!(err
@@ -2657,7 +2100,7 @@ mod tests {
             outstanding_obligation: ObligationWitness::exhibit(h(5), 1, site.clone()),
             higher_obligation_witness: ObligationWitness::exhibit(h(6), 2, site.clone()),
             next_carrier_manifest: BoundCarrierManifest::new(h(2), fixture_d0()),
-            adapter_ledger: LossLedger::empty(site.clone()), // nothing booked
+            adapter_ledger: LossLedger::empty(site.clone()),
             detector: adequacy(&state(), 1),
             lift: None,
             skeleton_preserved: true,
@@ -2672,8 +2115,6 @@ mod tests {
             .any(|v| v.law == AntiCheatLaw::ResidualNonIncrease));
     }
 
-    /// Anti-vacuity: the same increase WITH an audited ledger is lawful, so the
-    /// rule is not "Phi may never rise".
     #[test]
     fn a_residual_increase_with_an_audited_ledger_is_lawful() {
         let mut s = state();
@@ -2693,7 +2134,6 @@ mod tests {
         can_continue_n(&mut s, &site, &cc, &ev).expect("an audited increase is permitted");
     }
 
-    /// A residual delta measured for another residual cannot license this one.
     #[test]
     fn a_residual_delta_from_another_scope_is_refused() {
         let mut s = state();
@@ -2715,8 +2155,6 @@ mod tests {
         assert!(matches!(err, LawRefusal::Scope(_)));
     }
 
-    /// The residual delta is a measurement, not two numbers a caller typed:
-    /// the endpoints can only come from the Phi_1 verifier.
     #[test]
     fn the_residual_delta_reports_the_verified_values() {
         let s = state();
@@ -2725,9 +2163,6 @@ mod tests {
         assert_eq!(d.delta(), rational(-5));
     }
 
-    /// Phi_1 is a distance to im(d0). Endpoints over different d0 live in
-    /// different quotients, so their difference is not a quantity and must be
-    /// refused rather than reported.
     #[test]
     fn phi1_endpoints_over_different_d0_are_not_comparable() {
         use omega_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
@@ -2751,8 +2186,6 @@ mod tests {
             .any(|v| v.law == AntiCheatLaw::ResidualNonIncrease));
     }
 
-    /// A detector that answers the same for both inputs cannot be adequate,
-    /// even though the inputs differ.
     #[test]
     fn a_constant_detector_cannot_establish_adequacy() {
         struct Constant(DetectorDescriptor);
@@ -2778,8 +2211,6 @@ mod tests {
         );
     }
 
-    /// The review's exact attack: two unequal byte strings no longer mint
-    /// adequacy, because the caller no longer supplies the verdicts.
     #[test]
     fn unequal_inputs_alone_do_not_mint_adequacy() {
         struct Constant(DetectorDescriptor);
@@ -2805,7 +2236,6 @@ mod tests {
         );
     }
 
-    /// Separating an input from itself is vacuous whatever the detector says.
     #[test]
     fn an_input_cannot_be_separated_from_itself() {
         let s = state();
@@ -2821,8 +2251,6 @@ mod tests {
         );
     }
 
-    /// A detector that answers differently on repeat is not reporting a
-    /// property of the input, and would otherwise "separate" everything.
     #[test]
     fn a_nondeterministic_detector_cannot_establish_adequacy() {
         use std::cell::Cell;
@@ -2851,8 +2279,6 @@ mod tests {
         );
     }
 
-    /// Anti-vacuity for all four refusals above: a real detector on a pair it
-    /// genuinely separates must succeed.
     #[test]
     fn a_real_detector_on_a_separable_pair_succeeds() {
         let s = state();
@@ -2866,12 +2292,6 @@ mod tests {
         );
     }
 
-    /// The review's falsifier: two steps authorized by **different** detectors,
-    /// or separating **different** pairs, must not share a tape head.
-    ///
-    /// Previously the chain committed at most the detector's *degree*, so the
-    /// authority behind a step was invisible to it — two runs licensed by
-    /// entirely different evidence produced identical heads.
     #[test]
     fn detector_identity_and_the_separated_pair_change_the_tape_head() {
         let s = state();
@@ -2897,8 +2317,6 @@ mod tests {
             EventKind::Step,
         );
 
-        // (a) a DIFFERENT detector, same pair: another implementation name
-        // yields a different derived id, so the head must move.
         let other_detector = DetectorAdequacy::by_running(
             &OtherParity(DetectorDescriptor::new(
                 "test.parity.other",
@@ -2930,7 +2348,6 @@ mod tests {
             "changing the detector must change the tape head"
         );
 
-        // (b) same detector, a DIFFERENT counterclaim.
         let other_pair =
             DetectorAdequacy::by_running(&ParityDetector::on(h(2)), ODD, &[0, 0], 1, site.clone())
                 .expect("odd vs a different even input still separates");
@@ -2950,7 +2367,6 @@ mod tests {
         );
     }
 
-    /// A second detector that is genuinely different only in its descriptor.
     struct OtherParity(DetectorDescriptor);
     impl Detector for OtherParity {
         fn descriptor(&self) -> &DetectorDescriptor {
@@ -2961,8 +2377,6 @@ mod tests {
         }
     }
 
-    /// `ContinuationEvidence` is not `Clone` (its sealed members deliberately
-    /// are not all copyable), so rebuild an equivalent one.
     fn clone_evidence(
         src: &ContinuationEvidence,
         site: &ScopeBinding,
@@ -2982,8 +2396,6 @@ mod tests {
         }
     }
 
-    /// Anti-vacuity for the falsifier: identical evidence commits identically,
-    /// or "any change moves the head" would hold for a random function.
     #[test]
     fn identical_evidence_commits_identically() {
         let s = state();
@@ -3011,13 +2423,11 @@ mod tests {
         assert_eq!(a.commit(), b.commit());
     }
 
-    /// A detector configured for one carrier cannot be presented at another.
-    /// This is what stops a fixture travelling between carriers.
     #[test]
     fn a_detector_configured_for_another_carrier_is_refused() {
         let s = state();
         let err = DetectorAdequacy::by_running(
-            &ParityDetector::on(h(99)), // configured elsewhere
+            &ParityDetector::on(h(99)),
             ODD,
             EVEN,
             1,
@@ -3027,8 +2437,6 @@ mod tests {
         assert!(matches!(err, AdequacyRefusal::CarrierMismatch { .. }));
     }
 
-    /// The claim must be the residual the continuation is about. Separating an
-    /// easy pair and binding it to an unrelated subject was the hole.
     #[test]
     fn adequacy_for_one_residual_cannot_authorize_another() {
         let s = state();
@@ -3037,7 +2445,7 @@ mod tests {
             ODD,
             EVEN,
             1,
-            s.scope_for(h(77)), // some other residual
+            s.scope_for(h(77)),
         )
         .expect_err("the claim must be the scoped residual");
         assert!(matches!(
@@ -3046,12 +2454,9 @@ mod tests {
         ));
     }
 
-    /// The review's degree attack: a detector that has not declared a degree
-    /// cannot establish adequacy there, however the number is passed in.
     #[test]
     fn a_detector_cannot_be_stamped_with_an_undeclared_degree() {
         let s = state();
-        // ParityDetector declares [1, 2, 3].
         let refusal = DetectorAdequacy::by_running(
             &ParityDetector::on(h(2)),
             ODD,
@@ -3066,8 +2471,6 @@ mod tests {
         ));
     }
 
-    /// Anti-vacuity: a declared degree still works, so the check is not "refuse
-    /// every degree".
     #[test]
     fn a_declared_degree_is_accepted() {
         let s = state();
@@ -3081,22 +2484,16 @@ mod tests {
         .is_ok());
     }
 
-    /// The review's permit attack: obtain a permit under a degree-1 claim, then
-    /// spend it on a degree-9 claim. The permit binds one claim, so the writer
-    /// refuses.
     #[test]
     fn a_permit_cannot_be_spent_on_a_different_claim() {
         let mut s = state();
         let site = scope_for_claim(&s, ODD);
-        // The claim's residual must match the site, so the SCOPE check passes
-        // and the claim-binding check is what fires.
         let mut licensed = clean_claim(&s);
         licensed.residual_content = digest(ADEQUACY_DOMAIN, &[ODD]);
         let ev = std_ev(&s, 1);
 
         let permit = can_continue_n(&mut s, &site, &licensed, &ev).expect("degree-1 claim admits");
 
-        // Same residual and scope, but a different step.
         let mut substituted = licensed.clone();
         substituted.degree = 9;
 
@@ -3109,7 +2506,6 @@ mod tests {
         assert_eq!(s.steps_written(), 0, "nothing may be written");
     }
 
-    /// …and the evidence half of the same binding.
     #[test]
     fn a_permit_cannot_be_spent_under_different_evidence() {
         let mut s = state();
@@ -3128,14 +2524,13 @@ mod tests {
         );
     }
 
-    /// A refused continuation must not charge the budget.
     #[test]
     fn a_refused_continuation_does_not_spend_budget() {
         let mut s = state();
         let site = scope_for_claim(&s, ODD);
         let claim = clean_claim(&s);
         let mut ev = std_ev(&s, 1);
-        ev.coda_gtla_refusal = Some(CodaGtlaRefusal::issued("fixture refusal", site.clone())); // guaranteed refusal
+        ev.coda_gtla_refusal = Some(CodaGtlaRefusal::issued("fixture refusal", site.clone()));
 
         let before = s.budget().spent();
         can_continue_n(&mut s, &site, &claim, &ev).expect_err("GTLA refusal blocks");
@@ -3146,29 +2541,18 @@ mod tests {
         );
     }
 
-    /// The attack an automated audit **executed green** against this crate.
-    ///
-    /// Obtain a real permit through the front door, then spend it on a different
-    /// claim under evidence bound to a foreign run, carrier, residual and tape
-    /// head. `write_step` refused; `terminalize` did not, because the permit
-    /// binding was checked in one writer and not the other. The laws then ran
-    /// against the substituted evidence while the tape recorded the original's
-    /// commitment.
-    ///
-    /// Both writers now share `admit_write`, so this cannot diverge again.
     #[test]
     fn a_permit_cannot_be_laundered_through_terminalize() {
         let s = state();
         let site = scope_for_claim(&s, ODD);
         let g2 = Gamma2Zero::verify(&rational(0), site.clone()).unwrap();
         let mut registry = ObligationRegistry::new(site.clone());
-        registry.register(1); // open obligation
+        registry.register(1);
         let err = registry
             .issue_terminal_permit(site.clone(), &g2)
             .expect_err("open obligation blocks permit");
         assert!(matches!(err, TerminalRefusal::ObligationsOpen { .. }));
 
-        // Also test that a permit issued for site A cannot terminalize at site B
         let clean_reg = ObligationRegistry::new(site.clone());
         let permit = clean_reg
             .issue_terminal_permit(site.clone(), &g2)
@@ -3179,8 +2563,6 @@ mod tests {
         assert!(matches!(err, TerminalRefusal::Scope(_)));
     }
 
-    /// Anti-vacuity: the matching pair still terminalizes, so the gate is not
-    /// "refuse every terminal".
     #[test]
     fn a_matching_permit_still_terminalizes() {
         let s = state();
@@ -3196,11 +2578,6 @@ mod tests {
         assert_eq!(t.steps_written(), 1);
     }
 
-    /// A `Lift` step must present, at this site, the very admission that
-    /// licensed it. Nothing previously required `ev.lift` to be present for a
-    /// Lift op, and no consumer scope-checked the admission inside
-    /// `StepOp::Lift` -- so an admission bound to a run never opened could ride
-    /// along on a real permit.
     #[test]
     fn a_lift_step_must_carry_its_own_admission() {
         let mut s = state();
@@ -3216,7 +2593,7 @@ mod tests {
         let mut claim = clean_claim(&s);
         claim.residual_content = digest(ADEQUACY_DOMAIN, &[ODD]);
         claim.op = StepOp::Lift(ghost_admission);
-        let ev = std_ev(&s, 1); // ev.lift is None
+        let ev = std_ev(&s, 1);
 
         let permit = StepPermit::issue(site.clone(), ev.commit(), &claim);
         let err = write_step(&mut s, permit, &claim, &ev)
@@ -3225,10 +2602,6 @@ mod tests {
         assert_eq!(s.steps_written(), 0);
     }
 
-    /// Falsifier 1: a terminal and an ordinary write from identical states must
-    /// not share a tape head. They did -- `event_commit` was called identically
-    /// by both writers, so the chain recorded neither the `T` nor the Γ₂ and
-    /// closure evidence, and could not prove terminalization happened.
     #[test]
     fn a_terminal_and_a_step_do_not_share_a_head() {
         let s = state();
@@ -3249,9 +2622,6 @@ mod tests {
         assert_ne!(step_head, terminal_head);
     }
 
-    /// Falsifier 2: changing the closure evidence changes the terminal
-    /// commitment, so the terminal-only receipts are genuinely bound into the
-    /// chain rather than checked and discarded.
     #[test]
     fn terminal_evidence_changes_the_terminal_commitment() {
         let s = state();
@@ -3269,9 +2639,6 @@ mod tests {
         assert_ne!(a, b, "highest_discharged must be committed");
     }
 
-    /// Falsifier 6: a permit that is issued and dropped must not consume
-    /// budget. Spending at issuance let a caller drain the bound without ever
-    /// advancing the tape, and let an unwriteable step charge for itself.
     #[test]
     fn a_dropped_permit_does_not_consume_budget() {
         let mut s = state();

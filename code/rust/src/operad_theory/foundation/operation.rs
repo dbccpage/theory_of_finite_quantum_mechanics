@@ -1,12 +1,8 @@
-//! Foundation: Operations, identifiers, and operation kinds.
-//!
-//! AuthorityEffect: None.
 
 use std::fmt;
 use serde::{Deserialize, Serialize};
 use super::colour::{OperadColour, OperadSignature};
 
-/// Classification of operation types.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum OperationKindType {
     Identity,
@@ -14,7 +10,6 @@ pub enum OperationKindType {
     Composite,
 }
 
-/// Explicit structural kind of an operation.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum OperationKind {
     Identity { colour: OperadColour },
@@ -46,7 +41,6 @@ impl OperationKind {
     }
 }
 
-/// Exact-type identifier for an operad operation.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct OperationId {
     value: String,
@@ -85,7 +79,6 @@ impl fmt::Display for OperationId {
     }
 }
 
-/// An operation f in O(c_1, ..., c_n; c) of a coloured operad.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Operation {
     pub op_id: OperationId,

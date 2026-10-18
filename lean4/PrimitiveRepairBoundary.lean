@@ -1,18 +1,6 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveRepairCertificate
-/-!
-Primitive repair boundary kernel.
 
-This file records the distinction between exact classifier status and the
-presence of a repair certificate.
--/
 
 namespace OmegaCore
 namespace PrimitiveRepairBoundary
@@ -52,24 +40,16 @@ theorem policy_failure_routes_refused
     (input : RepairBoundaryInput)
     (hPolicy : input.policyAllowed = false) :
     repairBoundaryDecision input = RepairBoundaryStatus.refused := by
-  cases input with
-  | mk hasRule withinBudget policyAllowed hasAdmissibleWitness =>
-      cases policyAllowed
-      · rfl
-      · cases hPolicy
+  cases input
+  simp_all [repairBoundaryDecision]
 
 theorem missing_rule_routes_noRule
     (input : RepairBoundaryInput)
     (hPolicy : input.policyAllowed = true)
     (hRule : input.hasRule = false) :
     repairBoundaryDecision input = RepairBoundaryStatus.noRule := by
-  cases input with
-  | mk hasRule withinBudget policyAllowed hasAdmissibleWitness =>
-      cases policyAllowed
-      · cases hPolicy
-      · cases hasRule
-        · rfl
-        · cases hRule
+  cases input
+  simp_all [repairBoundaryDecision]
 
 theorem budget_failure_routes_budgetUnknown
     (input : RepairBoundaryInput)
@@ -77,15 +57,8 @@ theorem budget_failure_routes_budgetUnknown
     (hRule : input.hasRule = true)
     (hBudget : input.withinBudget = false) :
     repairBoundaryDecision input = RepairBoundaryStatus.budgetUnknown := by
-  cases input with
-  | mk hasRule withinBudget policyAllowed hasAdmissibleWitness =>
-      cases policyAllowed
-      · cases hPolicy
-      · cases hasRule
-        · cases hRule
-        · cases withinBudget
-          · rfl
-          · cases hBudget
+  cases input
+  simp_all [repairBoundaryDecision]
 
 theorem admissible_witness_routes_repaired
     (input : RepairBoundaryInput)
@@ -94,17 +67,8 @@ theorem admissible_witness_routes_repaired
     (hBudget : input.withinBudget = true)
     (hWitness : input.hasAdmissibleWitness = true) :
     repairBoundaryDecision input = RepairBoundaryStatus.repaired := by
-  cases input with
-  | mk hasRule withinBudget policyAllowed hasAdmissibleWitness =>
-      cases policyAllowed
-      · cases hPolicy
-      · cases hasRule
-        · cases hRule
-        · cases withinBudget
-          · cases hBudget
-          · cases hasAdmissibleWitness
-            · cases hWitness
-            · rfl
+  cases input
+  simp_all [repairBoundaryDecision]
 
 theorem repaired_requires_policy_rule_budget_and_witness
     (input : RepairBoundaryInput)
@@ -116,15 +80,7 @@ theorem repaired_requires_policy_rule_budget_and_witness
       input.hasAdmissibleWitness = true := by
   cases input with
   | mk hasRule withinBudget policyAllowed hasAdmissibleWitness =>
-      cases policyAllowed
-      · cases hRepaired
-      · cases hasRule
-        · cases hRepaired
-        · cases withinBudget
-          · cases hRepaired
-          · cases hasAdmissibleWitness
-            · cases hRepaired
-            · exact ⟨rfl, rfl, rfl, rfl⟩
+    cases policyAllowed <;> cases hasRule <;> cases withinBudget <;> cases hasAdmissibleWitness <;> simp_all [repairBoundaryDecision]
 
 theorem repairBoundary_repaired_iff
     (input : RepairBoundaryInput) :
@@ -145,11 +101,7 @@ theorem repairBoundary_refused_iff
       input.policyAllowed = false := by
   cases input with
   | mk hasRule withinBudget policyAllowed hasAdmissibleWitness =>
-      cases policyAllowed <;>
-        cases hasRule <;>
-        cases withinBudget <;>
-        cases hasAdmissibleWitness <;>
-        decide
+    cases policyAllowed <;> cases hasRule <;> cases withinBudget <;> cases hasAdmissibleWitness <;> decide
 
 theorem repairBoundary_budgetUnknown_iff
     (input : RepairBoundaryInput) :
@@ -159,11 +111,7 @@ theorem repairBoundary_budgetUnknown_iff
       input.withinBudget = false := by
   cases input with
   | mk hasRule withinBudget policyAllowed hasAdmissibleWitness =>
-      cases policyAllowed <;>
-        cases hasRule <;>
-        cases withinBudget <;>
-        cases hasAdmissibleWitness <;>
-        decide
+    cases policyAllowed <;> cases hasRule <;> cases withinBudget <;> cases hasAdmissibleWitness <;> decide
 
 theorem repairBoundary_noRule_iff
     (input : RepairBoundaryInput) :
@@ -175,11 +123,7 @@ theorem repairBoundary_noRule_iff
         input.hasAdmissibleWitness = false) := by
   cases input with
   | mk hasRule withinBudget policyAllowed hasAdmissibleWitness =>
-      cases policyAllowed <;>
-        cases hasRule <;>
-        cases withinBudget <;>
-        cases hasAdmissibleWitness <;>
-        decide
+    cases policyAllowed <;> cases hasRule <;> cases withinBudget <;> cases hasAdmissibleWitness <;> decide
 
 theorem refused_not_repaired :
     RepairBoundaryStatus.refused ≠ RepairBoundaryStatus.repaired := by
@@ -245,3 +189,6 @@ theorem exact_status_without_certificate_under_empty_system
 
 end PrimitiveRepairBoundary
 end OmegaCore
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PrimitiveRepairBoundary.lean Claim: policy_failure_routes_refused AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

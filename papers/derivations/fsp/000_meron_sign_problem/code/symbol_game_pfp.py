@@ -22,20 +22,19 @@ import urllib.request
 from collections import defaultdict
 from pathlib import Path
 
-# Add current code directory to sys.path
 CODE_DIR = Path(__file__).resolve().parent
 if str(CODE_DIR) not in sys.path:
     sys.path.insert(0, str(CODE_DIR))
 
-from antibody_miner import AntibodyMiner  # noqa: E402
-from blind_problem import assert_lexical_hygiene  # noqa: E402
-from meron_exact_model import (  # noqa: E402
+from antibody_miner import AntibodyMiner
+from blind_problem import assert_lexical_hygiene
+from meron_exact_model import (
     meron_database,
     meron_summary,
     meron_transfer_trace,
     rational,
 )
-from oracle import BlindClusterOracle  # noqa: E402
+from oracle import BlindClusterOracle
 
 RESULTS_DIR = CODE_DIR / "results"
 
@@ -151,7 +150,6 @@ def verify_6site_scaling_gin() -> dict:
             detected_survivors.append((gid, k))
             exact_Z += rational(base_weight) * (1 << k)
 
-    # GIN Inverted Mode Posting Index & Involution matching on all 72 meron graphs
     total_cancelling_pairs = 0
     t0 = time.time()
     for gid, k, _ in detected_cancelling:
@@ -171,7 +169,6 @@ def verify_6site_scaling_gin() -> dict:
         sign_map = {m: s for m, s, _ in configs}
         weight_map = {m: w for m, _, w in configs}
 
-        # Build GIN Posting Index: cluster -> set of masks
         posting = {c: {m for m in range(2**k) if (m >> c) & 1} for c in range(k)}
 
         seen = set()
@@ -179,7 +176,6 @@ def verify_6site_scaling_gin() -> dict:
             if mask in seen:
                 continue
             partner = mask ^ (1 << flip_bit)
-            # Verify spectator invariance
             for c in range(k):
                 if c != flip_bit:
                     assert (mask in posting[c]) == (partner in posting[c])
@@ -311,7 +307,6 @@ def main() -> int:
             print(f"  {fb}")
         return 0 if eval_res["perfect"] else 1
 
-    # Default: replay offline
     print("=== Replaying Certified Symbol Game PFP Model Ladder Results Offline ===")
     report = replay_certified_ladder()
     print(f"Verified {report['models_tested']} certified models:")

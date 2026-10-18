@@ -16,11 +16,11 @@ from omega_engine.crates.quantum_physics.short_time_defect_numerical_certificate
 def test_second_derivative_certificate_pass():
     cert = SecondDerivativeBoundCertificate(g=0.5)
     res = cert.evaluate_assembly(
-        measured_one_site_first_a=1.0,   # <= 2*0.5 = 1.0
-        measured_one_site_first_b=1.0,   # <= 1.0
-        measured_one_site_second_a=2.0,  # <= 8*(0.5^2) = 2.0
-        measured_one_site_second_b=2.0,  # <= 2.0
-        measured_two_site_second=6.0,    # <= 24*(0.5^2) = 6.0
+        measured_one_site_first_a=1.0,
+        measured_one_site_first_b=1.0,
+        measured_one_site_second_a=2.0,
+        measured_one_site_second_b=2.0,
+        measured_two_site_second=6.0,
     )
     assert not res["second_deriv_bound_violated"]
     assert res["assembled_M"] == 12.0
@@ -32,7 +32,7 @@ def test_second_derivative_certificate_pass():
 def test_second_derivative_certificate_kill_hook():
     cert = SecondDerivativeBoundCertificate(g=0.5)
     res = cert.evaluate_assembly(
-        measured_one_site_first_a=1.5,   # > 1.0 Violation!
+        measured_one_site_first_a=1.5,
         measured_one_site_first_b=1.0,
         measured_one_site_second_a=2.0,
         measured_one_site_second_b=2.0,

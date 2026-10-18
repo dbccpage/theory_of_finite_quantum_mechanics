@@ -1,10 +1,3 @@
-//! Target 20 — Sealed finite-matrix recovery assembly (T01–T17 checklist).
-//!
-//! Assembles semantic constructors from prior targets, runs an independent
-//! falsifier, and issues a release receipt **only** when all tracked residuals
-//! close. Otherwise returns `NOT_RELEASE_CANDIDATE`.
-//!
-//! AuthorityEffect: None. Not GlobalGreen. Human promotion still required externally.
 
 use crate::qm::campaigns::born_gleason::{
     ConditionalUniqueness, FrameFunction, GleasonAssumptions, OPEN_RESIDUAL_DIM2,
@@ -24,11 +17,9 @@ use omega_quantum_physics::instruments::{
 };
 use omega_quantum_physics::separating_predictions::MerminPeresCochainBridge;
 
-/// Fence.
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; sealed recovery diagnostic; no auto GlobalGreen.";
 
-/// Tracked residual ids for the T01–T17 assembly (subset implemented in-crate).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum RecoveryTarget {
     T08FiniteClassicalShadow,
@@ -117,12 +108,10 @@ impl ReleaseReceipt {
     pub const DIAGNOSTIC_SEALED: &'static str = "DIAGNOSTIC_SEALED_NOT_PROMOTED";
 }
 
-/// Independent falsifier: re-check constructors without trusting prior pass flags.
 pub fn independent_falsifier() -> RecoveryFalsifierReport {
     let mut failures = Vec::new();
     let mut checks = 0;
 
-    // T15 spectral diagonal
     checks += 1;
     let diag = [ri(1), ri(2), ri(3)];
     match HermitianMatrix::try_diagonal_rational(&diag, ScalarCarrier::Rational)
@@ -133,7 +122,6 @@ pub fn independent_falsifier() -> RecoveryFalsifierReport {
         Err(e) => failures.push(format!("T15: {e:?}")),
     }
 
-    // T16 instruments
     checks += 1;
     match paid_computational_spectral(2)
         .and_then(|ev| {
@@ -148,15 +136,11 @@ pub fn independent_falsifier() -> RecoveryFalsifierReport {
         Err(e) => failures.push(format!("T16: {e:?}")),
     }
 
-    // T17 spanning + operational countermodel (cycle 10: a check that CAN fail;
-    // the complex_product check below is an arithmetic tautology and is retained
-    // only as a dimension-condition marker, not as evidence).
     checks += 1;
     if let Err(e) = t17_spanning_falsifier() {
         failures.push(e);
     }
 
-    // T17 tomography + rebit countermodel
     checks += 1;
     match LocalTomographyReport::complex_product(2, 2) {
         Ok(r) if r.identity_holds => {}
@@ -179,7 +163,6 @@ pub fn independent_falsifier() -> RecoveryFalsifierReport {
         failures.push("T17: monoidal tensor dim".into());
     }
 
-    // T18 Born/Gleason. The assumptions are declared, not computed.
     checks += 1;
     let assumptions = GleasonAssumptions {
         dimension: 3,
@@ -197,7 +180,6 @@ pub fn independent_falsifier() -> RecoveryFalsifierReport {
         Err(e) => failures.push(format!("T18: {e:?}")),
     }
 
-    // T19 separating
     checks += 1;
     if ChshExample::pr_box().class != ChshClass::BeyondTsirelson {
         failures.push("T19: PR box not beyond Tsirelson".into());
@@ -215,11 +197,6 @@ pub fn independent_falsifier() -> RecoveryFalsifierReport {
     }
 }
 
-/// What changed under this seal during cycles 4–9, and how each row was re-priced.
-///
-/// The seal is only as honest as its inputs' descriptions. Several rows below
-/// were written before those inputs changed meaning, so re-running the falsifier
-/// without re-reading the board would have re-certified stale text.
 pub const SEAL_INPUTS_REPRICED_CYCLES_4_TO_9: [(&str, &str); 5] = [
     (
         "T15_general_n_spectral",
@@ -253,13 +230,7 @@ pub const SEAL_INPUTS_REPRICED_CYCLES_4_TO_9: [(&str, &str); 5] = [
     ),
 ];
 
-/// Assemble the residual board for in-crate targets.
-///
-/// Re-priced in cycle 10 against everything cycles 4–9 changed; see
-/// [`SEAL_INPUTS_REPRICED_CYCLES_4_TO_9`].
 pub fn residual_board() -> Vec<TargetResidual> {
-    // Modules T08–T14 exist as prior work; this assembly treats them as
-    // structural presence checks via lib compilation, not re-run here.
     vec![
         TargetResidual {
             target: "T15_general_n_spectral",
@@ -290,32 +261,10 @@ pub fn residual_board() -> Vec<TargetResidual> {
             target: "T16_instruments_diagonal_face",
             status: ResidualStatus::Closed,
         },
-        // Cycle 4 split the former single T17 row. Keeping one row would have left
-        // the seal resting on a "Closed" that the complex half no longer supports.
         TargetResidual {
             target: "T17_real_rebit_countermodel",
             status: ResidualStatus::Closed,
         },
-        // R2-C5 (2026-08-04) CLOSES this row — the first time this loop has
-        // reduced the open-residual count rather than raised it.
-        //
-        // The cycle-4 demotion was correct: `complex_product` is an arithmetic
-        // tautology and says nothing about spanning. Round 2 took the rank.
-        // `local_tomography_spanning_complex` builds the d^2 Hermitian basis
-        // {E_ii, E_ij+E_ji, i(E_ij-E_ji)}, Kronecker-multiplies over Q(i), and
-        // realifies Re||Im so the EXISTING exact-rational row reduction applies
-        // unmodified — the "real-only machinery" objection dissolves rather than
-        // being worked around, because a Hermitian matrix over Q(i) is a rational
-        // vector of length 2n^2.
-        //
-        // Result: exact rank == joint dim at 2x2 (16=16), 2x3, 3x3 and 2x4.
-        // Complex local tomography SPANS.
-        //
-        // Anti-vacuity is why this is a close and not a claim: real and complex
-        // run through the SAME rank pipeline, and the real case still FAILS
-        // through it (rank 9 of 10) with deficiency exactly C(m,2)C(n,2).
-        // Deleting the imaginary half of the realification breaks both complex
-        // spanning tests, so the complex structure is load-bearing.
         TargetResidual {
             target: "T17_complex_local_tomography_spanning",
             status: ResidualStatus::Closed,
@@ -331,16 +280,6 @@ pub fn residual_board() -> Vec<TargetResidual> {
     ]
 }
 
-/// A falsifier check for T17 that **can fail**.
-///
-/// The original dimension-only T17 check computed
-/// `d_a^2 d_b^2 == (d_a d_b)^2`, an arithmetic identity. The current
-/// `LocalTomographyReport::complex_product` instead computes exact rank within
-/// its declared dimension budget.
-///
-/// This one exercises the real spanning computation: exact rank of the product
-/// effects inside the joint symmetric space, the skew–skew deficiency formula,
-/// and the operational state pair. Each has a way to be wrong.
 pub fn t17_spanning_falsifier() -> Result<(), String> {
     let r = local_tomography_spanning_real(2, 2).map_err(|e| format!("T17 spanning: {e:?}"))?;
     if r.product_rank != 9 || r.joint_dim != 10 || r.spans {
@@ -353,8 +292,6 @@ pub fn t17_spanning_falsifier() -> Result<(), String> {
     if r.joint_dim - r.product_rank != deficiency {
         return Err("T17: deficiency does not match C(m,2)*C(n,2)".into());
     }
-    // Operational half (cycle 4b): the state pair must be distinct and separated
-    // by an admissible joint projector.
     let (rp, rm) = rebit_state_pair().map_err(|e| format!("T17 state pair: {e:?}"))?;
     if rp == rm {
         return Err("T17: rho_+ and rho_- coincide — countermodel is vacuous".into());
@@ -366,9 +303,6 @@ pub fn t17_spanning_falsifier() -> Result<(), String> {
     Ok(())
 }
 
-/// Issue release receipt only when falsifier passes **and** no OPEN residuals.
-/// With current honest board (general-n OPEN, etc.), always NOT_RELEASE_CANDIDATE
-/// unless `allow_diagnostic_seal` closes only the falsifier path.
 pub fn issue_release_receipt(allow_diagnostic_seal: bool) -> ReleaseReceipt {
     let falsifier = independent_falsifier();
     let residuals = residual_board();
@@ -379,15 +313,12 @@ pub fn issue_release_receipt(allow_diagnostic_seal: bool) -> ReleaseReceipt {
     let release_status = if !falsifier.all_passed() {
         ReleaseReceipt::NOT_CANDIDATE
     } else if any_open {
-        // Honest: residuals remain → not a release candidate.
-        // Optional diagnostic seal records falsifier green without promotion.
         if allow_diagnostic_seal {
             ReleaseReceipt::DIAGNOSTIC_SEALED
         } else {
             ReleaseReceipt::NOT_CANDIDATE
         }
     } else {
-        // All residuals closed — still not GlobalGreen / not promoted.
         ReleaseReceipt::DIAGNOSTIC_SEALED
     };
 
@@ -411,14 +342,7 @@ pub fn issue_release_receipt(allow_diagnostic_seal: bool) -> ReleaseReceipt {
 mod tests {
     use super::*;
 
-    // --- Cycle 10: the re-seal --------------------------------------------
 
-    /// **The row that would have silently re-certified.** Cycle 4 demoted complex
-    /// local tomography to `[OPEN]`, but the board still carried a single
-    /// `T17_..._and_rebit_countermodel` row marked `Closed`. The seal would have
-    /// rested on a closure the complex half no longer supports.
-    ///
-    /// The row is now split: the real/rebit half closed, the complex half OPEN.
     #[test]
     fn recfull_t17_is_split_real_closed_complex_open() {
         let board = residual_board();
@@ -432,16 +356,12 @@ mod tests {
             .iter()
             .find(|r| r.target == "T17_complex_local_tomography_spanning")
             .expect("complex half must be present");
-        // R2-C5 CLOSED this half. The row must stay SPLIT: closing the complex
-        // half by merging it back into the real one would let the seal rest on a
-        // single "Closed" again, which is what cycle 4 split it to prevent.
         assert_eq!(
             complex.status,
             ResidualStatus::Closed,
             "R2-C5 measured exact rank == joint dim at 2x2, 2x3, 3x3, 2x4"
         );
 
-        // The old merged row must be gone, not merely shadowed.
         assert!(
             !board
                 .iter()
@@ -450,8 +370,6 @@ mod tests {
         );
     }
 
-    /// The T15 and T18 rows must carry their **re-priced** reasons, not the
-    /// pre-cycle-6/7 text.
     #[test]
     fn recfull_open_reasons_are_repriced() {
         let board = residual_board();
@@ -480,16 +398,10 @@ mod tests {
         );
     }
 
-    /// **The T17 falsifier can now fail.** The original check called
-    /// the dimension identity alone. The replacement exercises exact rank, the
-    /// deficiency formula, and the operational state pair. The current complex
-    /// constructor also checks rank and can refuse an oversized declaration.
     #[test]
     fn recfull_t17_falsifier_is_not_a_tautology() {
         assert!(t17_spanning_falsifier().is_ok());
 
-        // The historical dimension identity holds for every original pair;
-        // it does not establish that product effects span the joint space.
         for (a, b) in [(2usize, 2usize), (3, 5), (7, 11)] {
             assert_eq!((a * a) * (b * b), (a * b) * (a * b));
             if a * b <= 16 {
@@ -510,8 +422,6 @@ mod tests {
             }
         }
 
-        // A computed negative control: the real product effects have rank9 in
-        // the ten-dimensional joint symmetric space, although 3*3 is well-defined.
         let real = local_tomography_spanning_real(2, 2).unwrap();
         assert_eq!(real.product_rank, 9);
         assert_eq!(real.joint_dim, 10);
@@ -523,8 +433,6 @@ mod tests {
         );
     }
 
-    /// Re-pricing is recorded, so a later reader can see which rows were rewritten
-    /// and why rather than diffing history.
     #[test]
     fn recfull_repricing_is_recorded() {
         assert_eq!(SEAL_INPUTS_REPRICED_CYCLES_4_TO_9.len(), 5);
@@ -538,13 +446,6 @@ mod tests {
         assert!(targets.contains(&"T17_complex_local_tomography_spanning (R2-C5)"));
     }
 
-    /// **The seal remains NOT a release candidate.**
-    ///
-    /// R2-C5 closed `T17_complex_local_tomography_spanning`, taking the open count
-    /// 4 -> 3. That is the FIRST reduction this loop has produced: round 1 moved
-    /// the count only upward (3 -> 4), correctly, by splitting a row whose
-    /// "Closed" the complex half did not support. Closing one row does not make
-    /// the seal a candidate, and this test exists to keep that distinction.
     #[test]
     fn recfull_seal_is_still_not_a_release_candidate() {
         let receipt = issue_release_receipt(false);
@@ -568,7 +469,6 @@ mod tests {
         );
     }
 
-    /// Even the diagnostic seal never sets GlobalGreen or PROMOTED.
     #[test]
     fn recfull_diagnostic_seal_never_promotes() {
         let receipt = issue_release_receipt(true);
@@ -592,7 +492,6 @@ mod tests {
         assert_eq!(r.authority_effect, "None");
         assert_ne!(r.release_status, "PROMOTED");
         assert_ne!(r.release_status, "GlobalGreen");
-        // With OPEN residuals, diagnostic seal is the max honest status.
         assert!(
             r.release_status == ReleaseReceipt::DIAGNOSTIC_SEALED
                 || r.release_status == ReleaseReceipt::NOT_CANDIDATE

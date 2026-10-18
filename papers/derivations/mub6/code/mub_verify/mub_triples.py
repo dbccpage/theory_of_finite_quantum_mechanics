@@ -131,7 +131,6 @@ def product_y2_qa_columns(a: int) -> List[ExactVec]:
     return cols
 
 
-# Locked genuine Dita seed orbits
 GENUINE_Y2Q1_SEEDS = ((0, 8), (8, 0), (16, 16))
 GENUINE_Y2Q2_SEEDS = ((0, 16), (8, 8), (16, 0))
 

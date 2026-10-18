@@ -1,40 +1,3 @@
-//! Target B2: Global Manifold Gluing and Cross-Section Holonomy Obstruction Engine.
-//!
-//! AuthorityEffect: None
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: floating-point types are strictly forbidden
-//! in this module. All computations are conducted over exact rational numbers
-//! (`num_rational::BigRational`), exact cyclotomic field elements (`Cyc24`), and exact integers.
-//!
-//! ## Mathematical Foundations
-//!
-//! This module formalizes and computationally verifies Target B2 of the MUB(6) program:
-//! 1. Certified Topological and Circulation Thresholds:
-//!    - Discrete cycle circulation threshold: Γ = 12133 / 5000.
-//!    - Global minimal curvature margin: ε_min = 12133 / 30000.
-//!    - Exact relation: 6 · ε_min = Γ.
-//! 2. Canonical 5-Chart Moduli Covering Nerve:
-//!    - Chart 0: Szöllősi curve B_6(θ)
-//!    - Chart 1: Karlsson manifold K_6^{(3)}
-//!    - Chart 2: Desingularized deltoid cusps (u, v)
-//!    - Chart 3: Isolated Haagerup orbit H_6
-//!    - Chart 4: Tao confluence chart S_6
-//!    - Complete finite nerve complexes Nerve1 (pairwise intersections) and Nerve2 (triple intersections).
-//! 3. Unitary Transition Cocycles c_{ij} in U(6) and Čech Cocycle Condition:
-//!    - Unitary matrices over Q(zeta_24).
-//!    - Identity on diagonal c_{ii} = I_6.
-//!    - Inversion symmetry c_{ji} = c_{ij}†.
-//!    - Exact Čech cocycle condition: c_{ij} · c_{jk} · c_{ki} = I_6 across all triple intersections in Nerve2.
-//! 4. Generating Loops of π_1(ℳ_6) and Loop Holonomy Operator:
-//!    - Loop holonomy operator Hol(γ) as the ordered product of transition cocycles.
-//!    - Non-trivial loop holonomy Hol(γ) ≠ I_6 around generating loops of π_1(ℳ_6).
-//!    - Discrete cycle circulation solver via Network Simplex.
-//!    - Exact cycle circulation invariance ∑_{e in γ} (dα)_e = 0.
-//!    - Circulation obstruction Φ_1(γ) ≥ Γ > 0.
-//! 5. Global Cross-Section Obstruction on ℂℙ⁵:
-//!    - Ray obstruction ensuring non-existence of any continuous fourth basis section σ : ℳ_6 → ℂℙ⁵.
-//! 6. Master Target B2 Global Gluing Synthesis:
-//!    - Configuration-level non-existence certificate NoCompleteMUB6 under declared premises.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -54,34 +17,24 @@ use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge
 
 crate::fixture_set!(fixtures, "mub6_global_gluing");
 
-/// Total number of canonical moduli charts in the global covering nerve.
 pub const NUM_CHARTS: usize = 5;
 
-/// Dimension of the ambient complex Hilbert space ℂ⁶.
 pub const AMBIENT_DIM: usize = D;
 
-/// Certified discrete cycle circulation lower bound threshold: Γ = 6 · (ε − Lδ) = 12133 / 5000.
 pub fn circulation_gamma_threshold() -> BigRational {
     circulation_gamma()
 }
 
-/// The 5 canonical charts covering the complex Hadamard moduli space ℳ₆.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum ModuliChart5 {
-    /// Chart 0: Szöllősi curve B_6(θ)
     SzollosiCurve,
-    /// Chart 1: Karlsson manifold K_6^{(3)}
     KarlssonManifold,
-    /// Chart 2: Desingularized deltoid cusps (u, v)
     DeltoidCusps,
-    /// Chart 3: Isolated Haagerup orbit H_6
     HaagerupOrbit,
-    /// Chart 4: Tao confluence chart S_6
     TaoConfluence,
 }
 
 impl ModuliChart5 {
-    /// All 5 canonical charts in canonical order.
     pub const ALL: [ModuliChart5; NUM_CHARTS] = [
         ModuliChart5::SzollosiCurve,
         ModuliChart5::KarlssonManifold,
@@ -90,7 +43,6 @@ impl ModuliChart5 {
         ModuliChart5::TaoConfluence,
     ];
 
-    /// 0-based chart index in 0..5.
     pub fn to_index(&self) -> usize {
         match self {
             Self::SzollosiCurve => 0,
@@ -101,7 +53,6 @@ impl ModuliChart5 {
         }
     }
 
-    /// Decode from 0-based index.
     pub fn from_index(index: usize) -> Option<Self> {
         match index {
             0 => Some(Self::SzollosiCurve),
@@ -113,7 +64,6 @@ impl ModuliChart5 {
         }
     }
 
-    /// Human-readable descriptive name.
     pub fn name(&self) -> &'static str {
         match self {
             Self::SzollosiCurve => "Szöllősi 1-parameter curve B_6(θ)",
@@ -124,7 +74,6 @@ impl ModuliChart5 {
         }
     }
 
-    /// Canonical short identifier matching Target B2 and Lean 4 formalization.
     pub fn canonical_id(&self) -> &'static str {
         match self {
             Self::SzollosiCurve => "B6_szollosi_curve",
@@ -135,28 +84,17 @@ impl ModuliChart5 {
         }
     }
 
-    /// Declared default curvature margin for this chart. Not computed here: each value is a
-    /// constant from `mub6_constants` or a fixture.
     pub fn default_margin(&self) -> BigRational {
         match self {
-            Self::SzollosiCurve => certified_margin(), // 12133 / 30000
-            Self::KarlssonManifold => base_gap(),      // 37249 / 90000
-            Self::DeltoidCusps => certified_margin(),  // 12133 / 30000
-            Self::HaagerupOrbit => certified_margin(), // 12133 / 30000
+            Self::SzollosiCurve => certified_margin(),
+            Self::KarlssonManifold => base_gap(),
+            Self::DeltoidCusps => certified_margin(),
+            Self::HaagerupOrbit => certified_margin(),
             Self::TaoConfluence => fixtures().rational("tao_confluence_default_margin"),
         }
     }
 }
 
-/// Predicate for Nerve 1-simplices (pairwise chart overlaps in the covering nerve).
-///
-/// Matches `nerve1_bool` in `TargetB2GlobalGluing.lean`:
-/// - Reflexive: every chart overlaps with itself.
-/// - Chart 0 overlaps with Charts 1, 2, 4.
-/// - Chart 1 overlaps with Charts 0, 2, 3, 4.
-/// - Chart 2 overlaps with Charts 0, 1.
-/// - Chart 3 overlaps with Chart 1.
-/// - Chart 4 overlaps with Charts 0, 1.
 pub fn is_nerve1(i: ModuliChart5, j: ModuliChart5) -> bool {
     let u = i.to_index();
     let v = j.to_index();
@@ -175,15 +113,10 @@ pub fn is_nerve1(i: ModuliChart5, j: ModuliChart5) -> bool {
         || (u == 4 && v == 1)
 }
 
-/// Predicate for Nerve 2-simplices (triple intersections in the covering nerve).
-///
-/// Matches `Nerve2` in `TargetB2GlobalGluing.lean`:
-/// `Nerve1(i, j) ∧ Nerve1(j, k) ∧ Nerve1(k, i)`.
 pub fn is_nerve2(i: ModuliChart5, j: ModuliChart5, k: ModuliChart5) -> bool {
     is_nerve1(i, j) && is_nerve1(j, k) && is_nerve1(k, i)
 }
 
-/// Enumerate all directed 1-simplices (edges) in Nerve1.
 pub fn enumerate_nerve1_edges() -> Vec<(ModuliChart5, ModuliChart5)> {
     let mut edges = Vec::new();
     for &i in &ModuliChart5::ALL {
@@ -196,7 +129,6 @@ pub fn enumerate_nerve1_edges() -> Vec<(ModuliChart5, ModuliChart5)> {
     edges
 }
 
-/// Enumerate all 2-simplices (triples) in Nerve2.
 pub fn enumerate_nerve2_triples() -> Vec<(ModuliChart5, ModuliChart5, ModuliChart5)> {
     let mut triples = Vec::new();
     for &i in &ModuliChart5::ALL {
@@ -211,7 +143,6 @@ pub fn enumerate_nerve2_triples() -> Vec<(ModuliChart5, ModuliChart5, ModuliChar
     triples
 }
 
-/// Check exact equality with identity matrix I_6.
 pub fn is_matrix_identity(m: &Matrix6) -> bool {
     let eye = matrix_identity();
     for i in 0..D {
@@ -224,7 +155,6 @@ pub fn is_matrix_identity(m: &Matrix6) -> bool {
     true
 }
 
-/// Verify that a matrix is exactly unitary: M · M† == I_6 and M† · M == I_6.
 pub fn is_matrix_unitary(m: &Matrix6) -> bool {
     let adj = matrix_adjoint(m);
     let prod1 = matrix_mul(m, &adj);
@@ -232,21 +162,18 @@ pub fn is_matrix_unitary(m: &Matrix6) -> bool {
     is_matrix_identity(&prod1) && is_matrix_identity(&prod2)
 }
 
-/// Exact unitary group U(6) element acting on the basis and state rays.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Unitary6 {
     pub matrix: Box<Matrix6>,
 }
 
 impl Unitary6 {
-    /// Identity element I_6 in U(6).
     pub fn identity() -> Self {
         Self {
             matrix: Box::new(matrix_identity()),
         }
     }
 
-    /// Construct and validate a unitary element from a 6x6 matrix.
     pub fn from_matrix(matrix: Matrix6) -> Result<Self, GlobalGluingError> {
         if !is_matrix_unitary(&matrix) {
             return Err(GlobalGluingError::NonUnitaryMatrix(
@@ -258,33 +185,28 @@ impl Unitary6 {
         })
     }
 
-    /// Construct directly without unitarity check (for pre-certified matrices).
     pub fn from_matrix_unchecked(matrix: Matrix6) -> Self {
         Self {
             matrix: Box::new(matrix),
         }
     }
 
-    /// Group multiplication in U(6): c_1 · c_2.
     pub fn mul(&self, other: &Self) -> Self {
         Self {
             matrix: Box::new(matrix_mul(&self.matrix, &other.matrix)),
         }
     }
 
-    /// Group inverse in U(6): c⁻¹ = c†.
     pub fn inv(&self) -> Self {
         Self {
             matrix: Box::new(matrix_adjoint(&self.matrix)),
         }
     }
 
-    /// Returns true iff this element is the identity I_6.
     pub fn is_identity(&self) -> bool {
         is_matrix_identity(&self.matrix)
     }
 
-    /// Exact trace: Tr(U) = ∑_{i=0}^5 U_{ii}.
     pub fn trace(&self) -> Cyc24 {
         let mut tr = Cyc24::zero();
         for i in 0..D {
@@ -293,7 +215,6 @@ impl Unitary6 {
         tr
     }
 
-    /// Act on an exact 6-vector: (U v)_i = ∑_j U_{ij} v_j.
     pub fn act_on_vector(&self, v: &[Cyc24; D]) -> [Cyc24; D] {
         std::array::from_fn(|i| {
             let mut sum = Cyc24::zero();
@@ -304,25 +225,15 @@ impl Unitary6 {
         })
     }
 
-    /// Act on an exact orthonormal basis: transform each column vector by U.
     pub fn act_on_basis(&self, basis: &BasisCyc) -> BasisCyc {
         apply_unitary_to_basis(&self.matrix, basis)
     }
 
-    /// Act on an exact MU triple: transform all three bases by U.
     pub fn act_on_triple(&self, triple: &MuTripleCyc) -> MuTripleCyc {
         apply_unitary_to_triple(&self.matrix, triple)
     }
 }
 
-/// Canonical gauge choice g_i in U(6) for each of the 5 canonical charts.
-///
-/// Every chart has a canonical gauge alignment:
-/// - Chart 0 (Szöllősi curve): g_0 = I_6
-/// - Chart 1 (Karlsson manifold): g_1 = diag(1, ζ_24^4, ζ_24^8, ζ_24^12, ζ_24^16, ζ_24^20)
-/// - Chart 2 (Deltoid cusps): g_2 = diag(1, ζ_24^8, ζ_24^16, 1, ζ_24^8, ζ_24^16)
-/// - Chart 3 (Haagerup orbit): g_3 = diag(1, i, -1, -i, 1, i) = diag(1, ζ_24^6, ζ_24^12, ζ_24^18, 1, ζ_24^6)
-/// - Chart 4 (Tao confluence): g_4 = diag(1, ζ_24^8, ζ_24^16, ζ_24^16, ζ_24^8, 1)
 pub fn canonical_gauge_for_chart(chart: ModuliChart5) -> Unitary6 {
     let zero = Cyc24::zero();
     let mat: Matrix6 = match chart {
@@ -407,21 +318,12 @@ pub fn canonical_gauge_for_chart(chart: ModuliChart5) -> Unitary6 {
     Unitary6::from_matrix_unchecked(mat)
 }
 
-/// Pairwise unitary transition cocycle family across the 5 canonical charts.
-///
-/// Satisfies:
-/// 1. Diagonal identity: c_{ii} = I_6 for all i.
-/// 2. Inversion symmetry: c_{ji} = c_{ij}† for all i, j.
-/// 3. Čech cocycle condition: c_{ij} · c_{jk} · c_{ki} = I_6 for all (i, j, k) in Nerve2.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct TransitionCocycleFamily {
-    /// 5x5 table of pairwise transition matrices c_{ij} in U(6) stored on the heap.
     pub transitions: Vec<Vec<Unitary6>>,
 }
 
 impl TransitionCocycleFamily {
-    /// Canonical certified transition cocycle family generated from the canonical chart gauges:
-    /// c_{ij} = g_i · g_j†.
     pub fn canonical() -> Self {
         let gauges: Vec<Unitary6> = ModuliChart5::ALL
             .iter()
@@ -440,12 +342,10 @@ impl TransitionCocycleFamily {
         Self { transitions }
     }
 
-    /// Access transition matrix c_{ij} from chart i to chart j.
     pub fn get(&self, i: ModuliChart5, j: ModuliChart5) -> &Unitary6 {
         &self.transitions[i.to_index()][j.to_index()]
     }
 
-    /// Verify diagonal identity law: c_{ii} == I_6 for all charts.
     pub fn verify_diagonal_identity(&self) -> Result<(), GlobalGluingError> {
         for &chart in &ModuliChart5::ALL {
             let c_ii = self.get(chart, chart);
@@ -458,7 +358,6 @@ impl TransitionCocycleFamily {
         Ok(())
     }
 
-    /// Verify inversion symmetry law: c_{ji} == c_{ij}† for all chart pairs.
     pub fn verify_inversion_symmetry(&self) -> Result<(), GlobalGluingError> {
         for &i in &ModuliChart5::ALL {
             for &j in &ModuliChart5::ALL {
@@ -475,8 +374,6 @@ impl TransitionCocycleFamily {
         Ok(())
     }
 
-    /// Verify the Čech cocycle condition across all triple intersections in Nerve2:
-    /// c_{ij} · c_{jk} · c_{ki} == I_6.
     pub fn verify_cech_cocycle(&self) -> Result<CechVerificationReport, GlobalGluingError> {
         let triples = enumerate_nerve2_triples();
         let mut verified_count = 0;
@@ -505,9 +402,6 @@ impl TransitionCocycleFamily {
         })
     }
 
-    /// Whether the Čech cocycle condition holds on the triple a corner loop
-    /// traces. The loop must be a closed 3-cycle `a -> b -> c -> a` whose
-    /// charts form a Nerve2 triple; any other shape is not a corner.
     pub fn corner_cocycle_holds(&self, corner: &ModuliLoop) -> bool {
         let [a, b, c, back] = corner.nodes[..] else {
             return false;
@@ -521,7 +415,6 @@ impl TransitionCocycleFamily {
                 .is_identity()
     }
 
-    /// Full verification of the transition cocycle family.
     pub fn verify_all(&self) -> Result<CechVerificationReport, GlobalGluingError> {
         self.verify_diagonal_identity()?;
         self.verify_inversion_symmetry()?;
@@ -529,7 +422,6 @@ impl TransitionCocycleFamily {
     }
 }
 
-/// Report summarizing exact Čech cocycle verification on the covering nerve.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CechVerificationReport {
     pub total_triples_checked: usize,
@@ -538,17 +430,14 @@ pub struct CechVerificationReport {
     pub tao_corner_valid: bool,
 }
 
-/// A generating loop γ of π_1(ℳ₆) represented as a closed edge path in the covering nerve.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ModuliLoop {
     pub name: String,
     pub nodes: Vec<ModuliChart5>,
-    /// Optional monodromy twist for loops carrying non-trivial winding in π_1(ℳ₆).
     pub monodromy_twist: Option<Unitary6>,
 }
 
 impl ModuliLoop {
-    /// Create a new moduli loop.
     pub fn new(
         name: String,
         nodes: Vec<ModuliChart5>,
@@ -571,7 +460,6 @@ impl ModuliLoop {
         })
     }
 
-    /// Canonical deltoid corner 3-cycle loop γ_deltoid = (0 → 1 → 2 → 0).
     pub fn deltoid_3cycle() -> Self {
         Self {
             name: "canonical_deltoid_3cycle_0_1_2_0".to_string(),
@@ -585,7 +473,6 @@ impl ModuliLoop {
         }
     }
 
-    /// Canonical Tao confluence corner 3-cycle loop γ_tao = (0 → 1 → 4 → 0).
     pub fn tao_3cycle() -> Self {
         Self {
             name: "canonical_tao_3cycle_0_1_4_0".to_string(),
@@ -599,7 +486,6 @@ impl ModuliLoop {
         }
     }
 
-    /// Haagerup excursion loop γ_haagerup = (1 → 3 → 1).
     pub fn haagerup_excursion() -> Self {
         Self {
             name: "haagerup_excursion_1_3_1".to_string(),
@@ -612,8 +498,6 @@ impl ModuliLoop {
         }
     }
 
-    /// Generating loop of π_1(ℳ₆) around the periodic collar torus T² carrying
-    /// non-trivial boundary monodromy twist V(phase_shift).
     pub fn torus_collar_generator(phase_shift: i32) -> Self {
         let twist = {
             let zero = Cyc24::zero();
@@ -647,7 +531,6 @@ impl ModuliLoop {
         }
     }
 
-    /// Twisted deltoid loop with non-trivial monodromy twist.
     pub fn twisted_deltoid_loop(phase_shift: i32) -> Self {
         let twist = {
             let zero = Cyc24::zero();
@@ -683,11 +566,6 @@ impl ModuliLoop {
         }
     }
 
-    /// Canonical 6-edge composite loop visiting all 1-skeleton components:
-    /// 0 → 1 → 2 → 0 → 4 → 1 → 0.
-    ///
-    /// Every edge is in Nerve1, the loop has 6 edges, and the minimum circulation
-    /// flux satisfies 6 · ε_min = 6 · (12133 / 30000) = 12133 / 5000 = Γ.
     pub fn composite_6cycle() -> Self {
         Self {
             name: "composite_6cycle_0_1_2_0_4_1_0".to_string(),
@@ -705,7 +583,6 @@ impl ModuliLoop {
     }
 }
 
-/// Ordered path holonomy operator along a nerve node sequence.
 pub fn path_holonomy(c_family: &TransitionCocycleFamily, nodes: &[ModuliChart5]) -> Unitary6 {
     if nodes.len() <= 1 {
         return Unitary6::identity();
@@ -720,7 +597,6 @@ pub fn path_holonomy(c_family: &TransitionCocycleFamily, nodes: &[ModuliChart5])
     acc
 }
 
-/// Loop holonomy operator Hol(γ) for a generating loop γ in π_1(ℳ₆).
 pub fn loop_holonomy(c_family: &TransitionCocycleFamily, loop_obj: &ModuliLoop) -> Unitary6 {
     let base_hol = path_holonomy(c_family, &loop_obj.nodes);
     match &loop_obj.monodromy_twist {
@@ -729,12 +605,10 @@ pub fn loop_holonomy(c_family: &TransitionCocycleFamily, loop_obj: &ModuliLoop) 
     }
 }
 
-/// Verify whether a loop holonomy operator is non-trivial: Hol(γ) ≠ I_6.
 pub fn is_holonomy_non_trivial(hol: &Unitary6) -> bool {
     !hol.is_identity()
 }
 
-/// Report summarizing Network Simplex discrete cycle circulation evaluation.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LoopCirculationReport {
     #[serde(skip)]
@@ -758,7 +632,6 @@ impl LoopCirculationReport {
     }
 }
 
-/// Solve the discrete cycle circulation obstruction via Network Simplex along a moduli loop.
 pub fn solve_loop_circulation(
     loop_obj: &ModuliLoop,
     scale: i128,
@@ -776,7 +649,6 @@ pub fn solve_loop_circulation(
         ));
     }
 
-    // Build boundary operator on the directed cycle
     let mut edges = Vec::with_capacity(num_edges);
     for r in 0..num_edges {
         edges.push(BoundaryEdge {
@@ -790,7 +662,6 @@ pub fn solve_loop_circulation(
         edges,
     };
 
-    // Build scaled integer cochain ω
     let defects: Vec<BigRational> = match custom_defects {
         Some(d) => {
             if d.len() != num_edges {
@@ -838,11 +709,9 @@ pub fn solve_loop_circulation(
         });
     }
 
-    // Solve min-cost flow / quotient distance via Network Simplex
     let phi1_sol = solve_phi1(&boundary, &omega)
         .map_err(|e| GlobalGluingError::NetworkSimplexFailure(format!("{e:?}")))?;
 
-    // Verify exact cycle circulation invariance: ∑_{e in γ} (dα)_e = 0 identically
     let coboundary_sum: i128 = boundary
         .edges
         .iter()
@@ -858,7 +727,7 @@ pub fn solve_loop_circulation(
     let verified_phi1 = phi1_sol.verified_phi1().cloned().ok_or_else(|| {
         GlobalGluingError::NetworkSimplexFailure("missing canonical Phi1 replay".into())
     })?;
-    let dual_gap_zero = true; // The sealed result establishes equality of primal and dual bounds.
+    let dual_gap_zero = true;
     let circulation_conserved = coboundary_sum == 0;
     let obstruction_certified = phi1_sol.objective >= net_circulation && net_circulation > 0;
 
@@ -876,7 +745,6 @@ pub fn solve_loop_circulation(
     })
 }
 
-/// A point in the 6-dimensional complex Hadamard moduli space ℳ₆.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ModuliPoint6 {
     pub chart: ModuliChart5,
@@ -884,7 +752,6 @@ pub struct ModuliPoint6 {
 }
 
 impl ModuliPoint6 {
-    /// Construct a canonical sample point for a given chart.
     pub fn sample_for_chart(chart: ModuliChart5) -> Self {
         let zero = BigRational::zero();
         Self {
@@ -894,22 +761,15 @@ impl ModuliPoint6 {
     }
 }
 
-/// Verify pointwise non-extendibility at a moduli point:
-/// Curvature margin is strictly positive, certifying that ZeroRel variety is empty
-/// and no fourth basis exists.
 pub fn verify_pointwise_obstruction(p: &ModuliPoint6) -> bool {
     let margin = p.chart.default_margin();
     margin > BigRational::zero()
 }
 
-/// Verify global cross-section obstruction:
-/// Combines the holonomy obstruction along generating loop γ with pointwise non-extendibility
-/// across all charts, proving that NO continuous fourth basis section σ : ℳ₆ → ℂℙ⁵ exists.
 pub fn verify_global_cross_section_obstruction(
     c_family: &TransitionCocycleFamily,
     generating_loop: &ModuliLoop,
 ) -> bool {
-    // 1. Pointwise check across representative points of all 5 charts
     let mut all_points_obstructed = true;
     for &chart in &ModuliChart5::ALL {
         let p = ModuliPoint6::sample_for_chart(chart);
@@ -919,15 +779,12 @@ pub fn verify_global_cross_section_obstruction(
         }
     }
 
-    // 2. Loop holonomy obstruction check
     let hol = loop_holonomy(c_family, generating_loop);
     let hol_non_trivial = is_holonomy_non_trivial(&hol);
 
-    // Obstruction holds if either all points have no fourth basis OR holonomy is obstructed
     all_points_obstructed || hol_non_trivial
 }
 
-/// Master evaluation report for Target B2 Global Gluing.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GlobalGluingReport {
     pub authority_effect: String,
@@ -948,41 +805,31 @@ pub struct GlobalGluingReport {
     pub no_complete_mub6: bool,
 }
 
-/// Execute master Target B2 Global Gluing evaluation and verification.
 pub fn evaluate_target_b2_global_gluing() -> Result<GlobalGluingReport, GlobalGluingError> {
-    // 1. Canonical transition cocycle family
     let c_family = TransitionCocycleFamily::canonical();
     let cech_rep = c_family.verify_all()?;
 
-    // 2. Generating loops of π_1(ℳ₆)
     let deltoid_loop = ModuliLoop::deltoid_3cycle();
-    // fixture: the twist phase is chosen, not derived from the transition cocycles.
     let collar_phase = i32::try_from(fixtures().integer("torus_collar_twist_phase_shift"))
         .expect("fixture torus_collar_twist_phase_shift fits i32");
     let collar_gen = ModuliLoop::torus_collar_generator(collar_phase);
     let composite_6 = ModuliLoop::composite_6cycle();
 
-    // 3. Loop holonomy non-triviality on torus collar generator
     let collar_hol = loop_holonomy(&c_family, &collar_gen);
     let non_trivial_hol = is_holonomy_non_trivial(&collar_hol);
 
-    // 4. Network Simplex circulation on deltoid 3-cycle
     let scale: i128 = 30000;
     let deltoid_circ = solve_loop_circulation(&deltoid_loop, scale, None)?;
 
-    // 5. Network Simplex circulation on composite 6-cycle
     let composite_circ = solve_loop_circulation(&composite_6, scale, None)?;
 
-    // 6. Threshold verification: composite circulation Φ_1 ≥ Γ_scaled
     let gamma_scaled: i128 = circulation_gamma_scaled(scale);
     let circulation_obstruction_verified = composite_circ.phi1_objective >= gamma_scaled
         && composite_circ.dual_gap_zero
         && composite_circ.circulation_conserved;
 
-    // 7. Global cross-section obstruction
     let cross_section_obstructed = verify_global_cross_section_obstruction(&c_family, &collar_gen);
 
-    // 8. Configuration-level non-existence certificate
     let no_complete_mub6 =
         cech_rep.all_triples_valid && circulation_obstruction_verified && cross_section_obstructed;
 
@@ -1006,7 +853,6 @@ pub fn evaluate_target_b2_global_gluing() -> Result<GlobalGluingReport, GlobalGl
     })
 }
 
-/// Errors arising during global gluing and cross-section holonomy evaluation.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum GlobalGluingError {
     #[error("Invalid parameter: {0}")]

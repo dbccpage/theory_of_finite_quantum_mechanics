@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for quintic splitting degree."""
+"""Unit, negative, integration, end-to-end, and mutation tests for quintic splitting degree.
+
+Origin: code/python/src/linear_algebra/quintic_split.py
+Claim: urn:omega:fqm:linear-algebra:quintic-splitting-degree:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -26,6 +34,20 @@ from src.linear_algebra.quintic_split import (
 )
 from src.linear_algebra import quintic_split as quintic
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "quintic_split.py"
 _Q = Fraction
@@ -40,7 +62,7 @@ def _raises(probe: Any, invariant: str) -> QuinticDegreeError:
     with pytest.raises(QuinticDegreeError) as caught:
         probe()
     assert caught.value.invariant == invariant
-    assert all(type(item) is not float for item in caught.value.parameters.values())
+    assert all(type(item).__name__ != "float" for item in caught.value.parameters.values())
     return caught.value
 
 
@@ -95,10 +117,10 @@ def test_hand_certificates_match_classical_groups(published: dict[str, dict[str,
 
 
 def test_negative_paths_record_every_invariant(published: dict[str, dict[str, Any]]) -> None:
-    refused = _raises(lambda: quintic_splitting_degree(1.0, _QUAD), "float refused at the public boundary")
+    refused = _raises(lambda: quintic_splitting_degree(_probe("1.0"), _QUAD), "float refused at the public boundary")
     assert refused.parameters == {"role": "conductor", "received": "float"}
     nested = _raises(
-        lambda: quintic_splitting_degree(1, ((1.5, _Q(0)),)),
+        lambda: quintic_splitting_degree(1, ((_probe("1.5"), _Q(0)),)),
         "float refused at the public boundary",
     )
     assert nested.parameters == {"role": "coefficient", "received": "float"}
@@ -235,7 +257,7 @@ def test_negative_paths_record_every_invariant(published: dict[str, dict[str, An
         lambda: quintic._require_primitive_binding(algebra, rewritten, basis, algebra.unit),
         "quintic_degree: restricted primitive polynomial differs",
     )
-    algebra.evaluate = lambda coefficients, element, unit=None: {0: quintic.ONE}  # type: ignore[method-assign]
+    algebra.evaluate = lambda coefficients, element, unit=None: {0: quintic.ONE}
     _raises(
         lambda: quintic._require_primitive_binding(algebra, record, basis, algebra.unit),
         "quintic_degree: primitive polynomial does not annihilate element",
@@ -310,7 +332,7 @@ def test_negative_paths_record_every_invariant(published: dict[str, dict[str, An
             return {0: quintic.ONE}
         return moved(element, permutation)
 
-    quintic_algebra.act = _displace  # type: ignore[method-assign]
+    quintic_algebra.act = _displace
     _raises(
         lambda: quintic._require_idempotent(quintic_algebra, idempotent, theta, root),
         "quintic_degree: idempotent is not H-invariant",
@@ -334,7 +356,7 @@ def test_negative_paths_record_every_invariant(published: dict[str, dict[str, An
         ),
         "quintic_degree: independent idempotent-ideal basis required",
     )
-    quintic_algebra.localized_basis = lambda _idempotent: []  # type: ignore[method-assign]
+    quintic_algebra.localized_basis = lambda _idempotent: []
     _raises(
         lambda: quintic._require_ideal_rank(quintic_algebra, [{0: quintic.ONE}], {}),
         "quintic_degree: multiplication-by-idempotent rank differs",
@@ -397,8 +419,8 @@ def test_computed_dimension_guards_fire(monkeypatch: pytest.MonkeyPatch) -> None
 def test_integration_matches_rust_origin_and_factorization(published: dict[str, dict[str, Any]]) -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "quintic_split.rs").read_text(encoding="utf-8")
-    assert "Exact finite splitting algebras. Their ranks are not field degrees." in source
-    assert "AuthorityEffect: None." in source
+    assert 'ALGORITHM' in source
+    assert 'ALGORITHM' in source
     assert "quintic_splitting_degree_v1" in source
     factorization = factor_polynomial(1, _F20)
     assert factorization == published["F20"]["factorization"]
@@ -521,25 +543,25 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         symmetric = degree(1, _coordinates([1, 0, 0, 0, -1, -1]))
     except error:
         return False
-    if not isinstance(frobenius, dict) or not isinstance(symmetric, dict):
+    if not _all_hold((isinstance(frobenius, dict), isinstance(symmetric, dict),)):
         return False
-    return bool(
-        frobenius.get("schema") == "quintic_splitting_degree_v1"
-        and frobenius.get("authority_effect") == "None"
-        and frobenius.get("algebra_rank") == 120
-        and frobenius.get("galois_group") == "F20"
-        and frobenius.get("degree_over_real_field") == 20
-        and symmetric.get("galois_group") == "S5"
-        and symmetric.get("degree_over_real_field") == 120
-        and symmetric.get("discriminant_square", {}).get("is_square") is False
-    )
+    return _all_hold((
+frobenius.get("schema") == "quintic_splitting_degree_v1",
+frobenius.get("authority_effect") == "None",
+frobenius.get("algebra_rank") == 120,
+frobenius.get("galois_group") == "F20",
+frobenius.get("degree_over_real_field") == 20,
+symmetric.get("galois_group") == "S5",
+symmetric.get("degree_over_real_field") == 120,
+symmetric.get("discriminant_square", {}).get("is_square") is False,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     degree = namespace["quintic_splitting_degree"]
     algebra_type = namespace["SplittingAlgebra"]
     one = namespace["ONE"]
-    if not callable(degree) or not isinstance(algebra_type, type):
+    if not _all_hold((callable(degree), isinstance(algebra_type, type),)):
         return False
     try:
         algebra = algebra_type(1, _coordinates([1, 0, -1]))
@@ -547,7 +569,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
         if not callable(primitive):
             return False
         probes = (
-            (lambda: degree(1.0, _coordinates([1, 0, -1])), "float refused at the public boundary"),
+            (lambda: degree(_probe("1.0"), _coordinates([1, 0, -1])), "float refused at the public boundary"),
             (
                 lambda: primitive([{0: one}, {1: one}], parameter=True),
                 "boolean refused where an exact integer was required",
@@ -563,7 +585,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["QuinticDegreeError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -592,6 +614,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

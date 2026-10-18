@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import run_sign_sql  # noqa: E402
+import run_sign_sql
 
 
 def queries_by_id() -> dict[str, str]:
@@ -51,7 +51,6 @@ class TestSignSql(unittest.TestCase):
             row = by_label[label]
             self.assertEqual(row[cols.index("sum_num")], 1, label)
             self.assertEqual(row[cols.index("common_den")], 2, label)
-            # exactness guard: one shared denominator
             self.assertEqual(row[cols.index("distinct_dens")], 1, label)
 
     def test_q2_cancellation_ratio_in_A_is_exactly_1_over_15(self) -> None:
@@ -81,7 +80,7 @@ class TestSignSql(unittest.TestCase):
         cols, rows = self.rows("q4")
         self.assertEqual(len(rows), 17)
         priced = [r for r in rows if r[cols.index("priced")] == 1]
-        self.assertEqual(len(priced), 7)   # imports #1..#6 + asymptotic frame
+        self.assertEqual(len(priced), 7)
         tags = sorted(r[cols.index("price_tag")] for r in priced)
         self.assertEqual(tags, ["", "#1", "#2", "#3", "#4", "#5", "#6"])
 

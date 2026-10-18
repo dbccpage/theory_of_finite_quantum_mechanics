@@ -43,7 +43,6 @@ def test_adjoint_zero_n_ality_and_cochain_closure():
     """
     engine = SUNCAdjointEngine(n_c=3, n_f=2, string_tension_sigma=1.0, adjoint_mass_m=0.4, in_memory=True)
     try:
-        # Distance R = 1.5 > R_break = 0.8
         receipt = engine.audit_adjoint_flux_tube(tube_length_r=1.5)
 
         assert receipt.n_c == 3
@@ -52,7 +51,6 @@ def test_adjoint_zero_n_ality_and_cochain_closure():
         assert receipt.n_ality == 0
         assert receipt.string_breaking_occurred is True
 
-        # Core Discovery: Cochain curvature is strictly zero
         assert receipt.cochain_curvature_gamma_2 == pytest.approx(0.0, abs=1e-6)
     finally:
         engine.close()
@@ -67,11 +65,9 @@ def test_adjoint_gin_involution_pairing():
     try:
         receipt = engine.audit_adjoint_flux_tube(tube_length_r=1.5)
 
-        # 100% of negative paths paired with equal-weight positive partners
         assert receipt.involution_pairing_rate == pytest.approx(1.0)
         assert receipt.gin_quotiented_average_sign == pytest.approx(1.0)
 
-        # Deterministic routing to ExactRepair
         assert receipt.terminal_route == "ExactRepair"
     finally:
         engine.close()
@@ -90,11 +86,9 @@ def test_fundamental_n_ality_open_curvature_obstruction():
         assert receipt.n_ality == 1
         assert receipt.string_breaking_occurred is False
 
-        # Non-zero cochain curvature
         assert receipt.cochain_curvature_gamma_2 > 0.0
         assert receipt.cochain_curvature_gamma_2 == pytest.approx(2.0, rel=1e-4)
 
-        # Routes to OpenSignObstruction
         assert receipt.terminal_route == "OpenSignObstruction"
     finally:
         engine.close()
@@ -112,7 +106,6 @@ def test_multi_flavor_scaling_and_modes():
                 assert receipt.cochain_curvature_gamma_2 == pytest.approx(0.0, abs=1e-6)
                 assert receipt.terminal_route == "ExactRepair"
 
-                # Verify GIN mode count: 2 sites * (N_c^2 - 1) * N_f
                 expected_modes = 2 * (nc ** 2 - 1) * nf
                 c = engine.conn.cursor()
                 c.execute("SELECT COUNT(DISTINCT mode_id) FROM GinModePostingList;")

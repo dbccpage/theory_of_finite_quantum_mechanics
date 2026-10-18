@@ -1,4 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
 """
 Growth against refinement: continuous limit obstruction, fine-graining entropy, and field escalation rates.

@@ -1,15 +1,10 @@
-//! k_cell_projection.rs: Exact rational certifiers for higher-dimensional
 
-//! k-cell projection obstruction and simplicial coboundaries.
-//!
-//! AuthorityEffect: None.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 
-/// Exact rational certificate for short-time k-party trace defect lower bounds.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct KCellDefectCertificate {
     pub k: usize,
@@ -22,10 +17,6 @@ pub struct KCellDefectCertificate {
     pub authority_effect: String,
 }
 
-/// Compute exact rational short-time k-party defect lower bound:
-/// D_sigma(t) >= nu_sigma * t - 6 * k^2 * g^2 * t^2.
-///
-/// Regime of validity: 0 <= t <= t_* := nu_sigma / (12 * k^2 * g^2).
 pub fn eval_short_time_k_cell_bound(
     nu_sigma: &BigRational,
     k: usize,
@@ -49,13 +40,11 @@ pub fn eval_short_time_k_cell_bound(
     let c_k = BigRational::from(BigInt::from(6)) * BigRational::from(k_sq.clone());
     let denom_factor = BigRational::from(BigInt::from(12)) * BigRational::from(k_sq);
 
-    // t_* = nu_sigma / (12 * k^2 * g^2)
     let g_sq = g * g;
     let t_star = nu_sigma / (&denom_factor * &g_sq);
 
     let is_valid = t >= &BigRational::zero() && t <= &t_star;
 
-    // lower_bound = nu_sigma * t - c_k * g^2 * t^2
     let term1 = nu_sigma * t;
     let term2 = &c_k * &g_sq * (t * t);
     let lower_bound = term1 - term2;
@@ -72,7 +61,6 @@ pub fn eval_short_time_k_cell_bound(
     }
 }
 
-/// Exact integer matrix for simplicial boundary operator.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SimplicialBoundaryMatrix {
     pub rows: usize,
@@ -89,7 +77,6 @@ impl SimplicialBoundaryMatrix {
         }
     }
 
-    /// Multiply this matrix by another: A @ B.
     pub fn multiply(&self, other: &SimplicialBoundaryMatrix) -> Option<SimplicialBoundaryMatrix> {
         if self.cols != other.rows
             || self.data.len() != self.rows
@@ -112,38 +99,24 @@ impl SimplicialBoundaryMatrix {
         Some(result)
     }
 
-    /// Check if all entries are zero.
     pub fn is_zero(&self) -> bool {
         self.data.iter().all(|row| row.iter().all(|&x| x == 0))
     }
 }
 
-/// Construct boundary operators partial_1 and partial_2 for a 2-simplex (triangle (0, 1, 2)).
-/// Vertices: 0, 1, 2.
-/// Edges: e0=(1,2), e1=(0,2), e2=(0,1).
-/// Face: f0=(0,1,2).
 pub fn triangle_simplex_boundaries() -> (SimplicialBoundaryMatrix, SimplicialBoundaryMatrix) {
-    // partial_2: C_2 -> C_1 (3 edges, 1 face)
-    // partial_2(0,1,2) = (1,2) - (0,2) + (0,1) = e0 - e1 + e2
     let mut b2 = SimplicialBoundaryMatrix::new(3, 1);
-    b2.data[0][0] = 1; // e0
-    b2.data[1][0] = -1; // e1
-    b2.data[2][0] = 1; // e2
+    b2.data[0][0] = 1;
+    b2.data[1][0] = -1;
+    b2.data[2][0] = 1;
 
-    // partial_1: C_1 -> C_0 (3 vertices, 3 edges)
-    // partial_1(e0=(1,2)) = v2 - v1
-    // partial_1(e1=(0,2)) = v2 - v0
-    // partial_1(e2=(0,1)) = v1 - v0
     let mut b1 = SimplicialBoundaryMatrix::new(3, 3);
-    // e0: v2 - v1
     b1.data[1][0] = -1;
     b1.data[2][0] = 1;
 
-    // e1: v2 - v0
     b1.data[0][1] = -1;
     b1.data[2][1] = 1;
 
-    // e2: v1 - v0
     b1.data[0][2] = -1;
     b1.data[1][2] = 1;
 
@@ -156,24 +129,20 @@ mod tests {
 
     #[test]
     fn test_exact_rational_k_cell_defect_bound() {
-        let nu = BigRational::from(BigInt::from(2)); // nu_sigma = 2
-        let k = 3; // 3-simplex
-        let g = BigRational::from(BigInt::from(1)); // g = 1
+        let nu = BigRational::from(BigInt::from(2));
+        let k = 3;
+        let g = BigRational::from(BigInt::from(1));
 
-        // t = 1/200
         let t = BigRational::new(BigInt::from(1), BigInt::from(200));
 
         let cert = eval_short_time_k_cell_bound(&nu, k, &g, &t);
 
-        // t_* = 2 / (12 * 9 * 1) = 2 / 108 = 1 / 54
         assert_eq!(
             cert.t_star,
             BigRational::new(BigInt::from(1), BigInt::from(54))
         );
         assert!(cert.is_valid);
 
-        // lower_bound = 2 * (1/200) - (6 * 9) * 1 * (1/40000)
-        //             = 1/100 - 54/40000 = 400/40000 - 54/40000 = 346/40000 = 173/20000 > 0
         assert_eq!(
             cert.lower_bound,
             BigRational::new(BigInt::from(173), BigInt::from(20000))

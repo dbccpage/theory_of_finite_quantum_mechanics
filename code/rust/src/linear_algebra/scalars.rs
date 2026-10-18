@@ -1,7 +1,3 @@
-//! Exact scalars and algebraic structure traits for finite quantum mechanics.
-//!
-//! All arithmetic is exact rational (BigRational) or exact cyclotomic/algebraic.
-//! Zero floating-point approximations.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -22,7 +18,6 @@ pub fn qr(n: i64, d: i64) -> Q {
     BigRational::new(BigInt::from(n), BigInt::from(d))
 }
 
-/// Gaussian rational field Q(i) = { a + b*i | a, b in Q }.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct GaussianRational {
     pub real: Q,
@@ -110,7 +105,6 @@ impl Involution for GaussianRational {
     }
 }
 
-// Blake3 hashing for exact rationals
 pub fn hash_bigint(hasher: &mut blake3::Hasher, value: &BigInt) {
     let bytes = value.to_signed_bytes_le();
     hasher.update(&(bytes.len() as u64).to_le_bytes());

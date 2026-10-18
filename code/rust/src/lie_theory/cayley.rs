@@ -1,25 +1,3 @@
-//! Cayley charts: rational parametrisations of rotation and unit-phase groups.
-//!
-//! For a skew-symmetric rational matrix `X` and a rational `tau`, the Cayley transform
-//! `C_tau(X) = (I - tau X)(I + tau X)^(-1)` is an orthogonal matrix of determinant 1
-//! with rational entries, and every rotation without the eigenvalue `-1` arises this way:
-//! `X = (I - R)(I + R)^(-1) / tau`. The chart is exact, total on skew input, and misses
-//! exactly the rotations with eigenvalue `-1` (its cut locus), which are refused
-//! with [`CayleyError::EigenvalueMinusOne`].
-//!
-//! Two steps with one generator compose to one step of another generator:
-//! `C_s(X) C_t(X) = C_1(K)` with `K = (s + t) X (I + s t X^2)^(-1)` ([`compose_steps`]).
-//! For the plane generator `J`, `J^2 = -I`, this is the tangent addition law
-//! `(s + t) / (1 - s t)` of the unit-circle parameter (see [`compose_circle_parameters`]).
-//!
-//! The unit circle of the Gaussian rationals `Q(i)` has the same chart:
-//! `t -> ((1 - t^2) + 2 t i) / (1 + t^2)` hits every unit except `-1`
-//! ([`unit_from_parameter`], [`parameter_of_unit`]). Roots of unity in `Q(i)` are read
-//! from the cyclotomic degree bound `phi(n) <= 2` ([`gaussian_unit_order`]).
-//!
-//! Charts for unitary groups over `Q(i)` live in [`crate::cayley_unitary`].
-//!
-//! AuthorityEffect: None.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -32,12 +10,9 @@ use linear_algebra::exact_field::{elimination, matrix as mx, ExactFieldError};
 
 use crate::QMatrix;
 
-/// The largest dimension the matrix charts accept.
 pub const MAX_DIMENSION: usize = 32;
-/// The largest exponent [`unit_pow`] accepts (its output has `O(|k|)` bits).
 pub const MAX_UNIT_EXPONENT: u32 = 1 << 16;
 
-/// Refusals of the Cayley charts.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum CayleyError {
     #[error("a square matrix of dimension 1..={MAX_DIMENSION} is required, got {rows}x{cols}")]
@@ -72,8 +47,6 @@ fn check_shape(m: &QMatrix) -> Result<usize, CayleyError> {
     Ok(m.rows())
 }
 
-/// The first position `(i, j)`, `i < j` or `i = j`, with `x[i][j] != -x[j][i]`; `None` if `x`
-/// is skew-symmetric (which forces a zero diagonal).
 pub fn skew_defect(x: &QMatrix) -> Option<(usize, usize)> {
     let (rows, cols) = x.shape();
     if rows != cols {
@@ -91,7 +64,6 @@ pub fn skew_defect(x: &QMatrix) -> Option<(usize, usize)> {
     None
 }
 
-/// `R^T R = I`.
 pub fn is_orthogonal(m: &QMatrix) -> bool {
     mx::transpose(m)
         .and_then(|t| mx::multiply(&t, m))
@@ -99,17 +71,10 @@ pub fn is_orthogonal(m: &QMatrix) -> bool {
         .unwrap_or(false)
 }
 
-/// `R^T R = I` and `det R = 1`.
 pub fn is_special_orthogonal(m: &QMatrix) -> bool {
     is_orthogonal(m) && elimination::determinant(m).is_ok_and(|d| d.is_one())
 }
 
-/// `C_tau(X) = (I - tau X)(I + tau X)^(-1)` for a skew-symmetric rational `X`.
-///
-/// The result lies in `SO(n, Q)`. For skew `X` and rational `tau`, `I + tau X` is always
-/// invertible (its eigenvalues `1 + i tau y` have real part 1), so
-/// [`CayleyError::Singular`] is reported only if the elimination disagrees, which would be
-/// an internal inconsistency.
 pub fn cayley_transform(x: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyError> {
     let n = check_shape(x)?;
     if let Some((row, col)) = skew_defect(x) {
@@ -127,8 +92,6 @@ pub fn cayley_transform(x: &QMatrix, tau: &BigRational) -> Result<QMatrix, Cayle
     Ok(mx::multiply(&numerator, &inverse)?)
 }
 
-/// The skew `X` with `C_tau(X) = R`, that is `X = (I - R)(I + R)^(-1) / tau`, for an
-/// orthogonal `R` without the eigenvalue `-1`.
 pub fn cayley_inverse(r: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyError> {
     let n = check_shape(r)?;
     if tau.is_zero() {
@@ -148,9 +111,6 @@ pub fn cayley_inverse(r: &QMatrix, tau: &BigRational) -> Result<QMatrix, CayleyE
     Ok(mx::scale(&y, &(BigRational::one() / tau))?)
 }
 
-/// The generator `K` with `C_1(K) = C_s(X) C_t(X)`: `K = (s + t) X (I + s t X^2)^(-1)`.
-/// Refused with [`CayleyError::OutsideChart`] when `I + s t X^2` is singular, that is, when
-/// the composite has eigenvalue `-1`.
 pub fn compose_steps(
     x: &QMatrix,
     s: &BigRational,
@@ -171,7 +131,6 @@ pub fn compose_steps(
     Ok(mx::scale(&mx::multiply(x, &inverse)?, &(s + t))?)
 }
 
-/// The standard basis `E_ij - E_ji`, `i < j`, of `so(n)`, in row-major order of `(i, j)`.
 pub fn so_basis(n: usize) -> Result<Vec<QMatrix>, CayleyError> {
     if n == 0 || n > MAX_DIMENSION {
         return Err(CayleyError::Shape { rows: n, cols: n });
@@ -188,7 +147,6 @@ pub fn so_basis(n: usize) -> Result<Vec<QMatrix>, CayleyError> {
     Ok(basis)
 }
 
-/// The cross-product matrix `[v]_x` of `v = (a, b, c)`: `[v]_x w = v x w`.
 pub fn cross_product_matrix(v: &[BigRational; 3]) -> Result<QMatrix, CayleyError> {
     let rows = vec![
         vec![ri(0), -&v[2], v[1].clone()],
@@ -198,9 +156,6 @@ pub fn cross_product_matrix(v: &[BigRational; 3]) -> Result<QMatrix, CayleyError
     Ok(mx::from_rows(rows)?)
 }
 
-/// `(s + t) / (1 - s t)`, the parameter of the product of the circle points of `s` and `t`
-/// (the tangent addition law). Refused when `s t = 1`: the product is `-1`, the point at
-/// infinity of the chart.
 pub fn compose_circle_parameters(
     s: &BigRational,
     t: &BigRational,
@@ -212,13 +167,10 @@ pub fn compose_circle_parameters(
     Ok((s + t) / denominator)
 }
 
-/// `|z|^2 = 1`.
 pub fn is_unit(z: &GaussianRat) -> bool {
     z.norm_sq().is_one()
 }
 
-/// The rational point `((1 - t^2) + 2 t i) / (1 + t^2)` of the unit circle. Every unit
-/// Gaussian rational except `-1` arises from exactly one rational `t`.
 pub fn unit_from_parameter(t: &BigRational) -> GaussianRat {
     let t2 = t * t;
     let denominator = BigRational::one() + &t2;
@@ -228,8 +180,6 @@ pub fn unit_from_parameter(t: &BigRational) -> GaussianRat {
     }
 }
 
-/// The parameter `t = Im z / (1 + Re z)` of a unit `z`; `Ok(None)` for `z = -1`, the one
-/// point outside the chart. Refused for `z` off the unit circle.
 pub fn parameter_of_unit(z: &GaussianRat) -> Result<Option<BigRational>, CayleyError> {
     if !is_unit(z) {
         return Err(CayleyError::NotUnit(format!("{}+{}i", z.re, z.im)));
@@ -241,8 +191,6 @@ pub fn parameter_of_unit(z: &GaussianRat) -> Result<Option<BigRational>, CayleyE
     Ok(Some(&z.im / denominator))
 }
 
-/// `u^k` for a unit `u` and an integer `k` (negative powers use the conjugate), refused
-/// for a non-unit or `|k|` above [`MAX_UNIT_EXPONENT`].
 pub fn unit_pow(u: &GaussianRat, k: &BigInt) -> Result<GaussianRat, CayleyError> {
     if !is_unit(u) {
         return Err(CayleyError::NotUnit(format!("{}+{}i", u.re, u.im)));
@@ -270,12 +218,6 @@ pub fn unit_pow(u: &GaussianRat, k: &BigInt) -> Result<GaussianRat, CayleyError>
     Ok(acc)
 }
 
-/// The multiplicative order of a unit Gaussian rational, or `None` if it has infinite order.
-///
-/// A root of unity of order `n` generates a field of degree `phi(n)`, and `Q(i)` has degree
-/// 2, so only `n` with `phi(n) <= 2` can occur (`1, 2, 3, 4, 6`); `zeta_3` and `zeta_6`
-/// generate other quadratic fields, so the test of each candidate `u^n = 1` finds only
-/// `1, 2, 4`. The list is derived from the totient, not assumed.
 pub fn gaussian_unit_order(u: &GaussianRat) -> Result<Option<usize>, CayleyError> {
     if !is_unit(u) {
         return Err(CayleyError::NotUnit(format!("{}+{}i", u.re, u.im)));
@@ -297,7 +239,6 @@ mod tests {
     #[test]
     fn the_plane_cayley_transform_is_the_pythagorean_parametrisation() {
         let j = QMatrix::from_row_major(2, 2, vec![ri(0), ri(-1), ri(1), ri(0)]).unwrap();
-        // tau = 1/2 gives the triple 3-4-5, tau = 1/3 the triple 4-3-5 with swapped entries.
         let r = cayley_transform(&j, &rq(1, 2)).unwrap();
         let expected =
             mx::from_rows(vec![vec![rq(3, 5), rq(4, 5)], vec![rq(-4, 5), rq(3, 5)]]).unwrap();
@@ -317,9 +258,6 @@ mod tests {
     }
 }
 
-/// Multiplication on the rational circle including the missing point `-1`.
-/// `None` denotes the Cayley chart's point at infinity; finite coordinates
-/// compose by tangent addition. The returned infinity is exact, not a refusal.
 pub fn compactified_circle_composition(
     left: Option<&BigRational>,
     right: Option<&BigRational>,

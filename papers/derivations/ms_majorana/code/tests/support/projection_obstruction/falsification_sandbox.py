@@ -119,7 +119,6 @@ def break_short_time_outside_window(
     certify a positive defect density outside the near-zero window.
     """
     bound = short_time_lower_bound(nu_e, g, t)
-    # Residual = how far the "bound is always >= 0" claim fails.
     residual = max(0.0, -bound)
     return FalsificationResult(
         name="short_time_outside_window",

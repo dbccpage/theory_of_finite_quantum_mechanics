@@ -1,8 +1,3 @@
-//! Entrypoint: replay_review.
-//!
-//! Review a receipt of rational scalings. The folded product equals the
-//! product taken from the other end, and multiplying by the reversed inverses
-//! returns the unit.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;

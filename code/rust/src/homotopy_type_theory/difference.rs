@@ -2,21 +2,14 @@ use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use thiserror::Error;
 
-/// In CODA_GTLA HoTT foundation:
-/// "Difference is primitive; sameness is certified zero-difference."
-///
-/// This trait represents the primitive difference object between two entities.
 pub trait Difference<T> {
     type DiffObj: Debug;
 
-    /// Computes the primitive difference between `self` and `other`.
     fn primitive_difference(&self, other: &T) -> Self::DiffObj;
 
-    /// A certificate that the difference is strictly zero, constituting sameness.
     fn verify_zero_difference(diff: &Self::DiffObj) -> bool;
 }
 
-/// A finite primitive-difference packet.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DifferenceTerm {
     pub source_ref: String,
@@ -40,7 +33,6 @@ impl DifferenceTerm {
     }
 }
 
-/// Certificate that a declared difference has been checked to be zero.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ZeroDifferenceCertificate {
     pub difference_ref: String,
@@ -60,7 +52,6 @@ impl ZeroDifferenceCertificate {
     }
 }
 
-/// A proof-relevant contextual congruence witness.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContextualDifferenceWitness {
     pub left_ref: String,

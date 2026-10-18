@@ -1,29 +1,3 @@
-//! The Lorentz group `SO+(1, d; Q)` over the rationals: boosts, rotations, the polar
-//! decomposition and the Thomas-Wigner rotation, exactly.
-//!
-//! Coordinates are `(t, x_1, .., x_d)` with the form `eta = diag(1, -1, .., -1)`.
-//!
-//! - A boost is determined by a rational point `(gamma, w)` of the future hyperboloid
-//!   `gamma^2 - |w|^2 = 1`, `gamma >= 1`: `B = [[gamma, w^T], [w, I + w w^T / (gamma + 1)]]`.
-//!   It is symmetric, lies in `SO+(1, d; Q)`, and has first column `(gamma, w)`. The
-//!   boosts along a rational unit direction `n` with rapidity ratio `r = e^eta` in `Q_{>0}`
-//!   have `gamma = (r + 1/r)/2` and `w = (r - 1/r)/2 n`; collinear boosts compose by
-//!   `r_1 r_2` ([`boost`]). Rational points of the hyperbola are `gamma = (m^2 + n^2)/2mn`,
-//!   `gamma beta = (m^2 - n^2)/2mn` ([`rational_hyperbola_points`]).
-//! - Every `M` in `SO+(1, d; Q)` is uniquely `B R` with `B` a boost and `R` a spatial
-//!   rotation: `B` is the boost with the first column of `M`, and `R = B^(-1) M`
-//!   ([`polar_decompose`]). The spatial part of the product of two boosts is the Thomas-Wigner
-//!   rotation ([`thomas_wigner_rotation`]); for perpendicular boosts its cosine is
-//!   `(gamma_1 + gamma_2) / (1 + gamma_1 gamma_2)` and in general
-//!   `(1 + gamma + gamma_1 + gamma_2)^2 / ((1 + gamma)(1 + gamma_1)(1 + gamma_2)) - 1` with
-//!   `gamma = gamma_1 gamma_2 + w_1 . w_2` ([`wigner_cosine_closed_form`]).
-//! - Whether a rotation has finite order is decided exactly by its characteristic polynomial
-//!   ([`crate::finite_order::finite_order`]): no iteration bound is involved.
-//! - `SO+(1, 2; Q)` is the projective group `PGL(2, Q)` acting by conjugation on the
-//!   trace-zero `2 x 2` matrices ([`adjoint_of_gl2`]); the determinant class of `g` modulo
-//!   squares is the obstruction to lifting the element to `SL(2, Q)`.
-//!
-//! AuthorityEffect: None.
 
 use num_bigint::BigInt;
 use num_integer::Integer;
@@ -37,14 +11,10 @@ use linear_algebra::exact_field::{elimination, matrix as mx, ExactFieldError};
 
 use crate::QMatrix;
 
-/// The largest number of space dimensions `d` of `SO+(1, d)`.
 pub const MAX_SPACE_DIMENSION: usize = 5;
-/// The largest exponent of a matrix power (the entries grow like `r^k`).
 pub const MAX_POWER: u64 = 4096;
-/// The largest `m` of a rapidity census.
 pub const MAX_CENSUS_M: usize = 64;
 
-/// Refusals for Lorentz-group constructions.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum LorentzError {
     #[error("the number of space dimensions must be between 1 and {MAX_SPACE_DIMENSION}, got {0}")]
@@ -94,7 +64,6 @@ fn dot(u: &[BigRational], v: &[BigRational]) -> BigRational {
     u.iter().zip(v).fold(ri(0), |acc, (a, b)| acc + a * b)
 }
 
-/// `eta = diag(1, -1, .., -1)` on `1 + d` coordinates.
 pub fn minkowski_form(space_dim: usize) -> Result<QMatrix, LorentzError> {
     check_space_dimension(space_dim)?;
     Ok(QMatrix::try_from_fn(space_dim + 1, space_dim + 1, |r, c| {
@@ -109,7 +78,6 @@ pub fn minkowski_form(space_dim: usize) -> Result<QMatrix, LorentzError> {
     .map_err(ExactFieldError::from)?)
 }
 
-/// The number of space dimensions `d` of a square matrix of size `1 + d`.
 pub fn space_dimension(m: &QMatrix) -> Result<usize, LorentzError> {
     if m.rows() != m.cols() || m.rows() < 2 {
         return Err(LorentzError::Shape {
@@ -121,7 +89,6 @@ pub fn space_dimension(m: &QMatrix) -> Result<usize, LorentzError> {
     Ok(m.rows() - 1)
 }
 
-/// `M^T eta M = eta`.
 pub fn preserves_form(m: &QMatrix) -> Result<bool, LorentzError> {
     let d = space_dimension(m)?;
     let eta = minkowski_form(d)?;
@@ -129,12 +96,10 @@ pub fn preserves_form(m: &QMatrix) -> Result<bool, LorentzError> {
     Ok(product == eta)
 }
 
-/// `M_00 >= 1` (numeric order on the rationals).
 pub fn is_orthochronous(m: &QMatrix) -> bool {
     m.rows() > 0 && m.cols() > 0 && *element(m, 0, 0) >= ri(1)
 }
 
-/// Checks `M` is in `SO+(1, d; Q)` and returns `d`.
 pub fn check_proper_orthochronous(m: &QMatrix) -> Result<usize, LorentzError> {
     let d = space_dimension(m)?;
     if !preserves_form(m)? {
@@ -149,8 +114,6 @@ pub fn check_proper_orthochronous(m: &QMatrix) -> Result<usize, LorentzError> {
     Ok(d)
 }
 
-/// The boost of the future-hyperboloid point `(gamma, w)`:
-/// `[[gamma, w^T], [w, I + w w^T / (gamma + 1)]]`.
 pub fn boost_from_point(point: &[BigRational]) -> Result<QMatrix, LorentzError> {
     let d = point
         .len()
@@ -175,8 +138,6 @@ pub fn boost_from_point(point: &[BigRational]) -> Result<QMatrix, LorentzError> 
     .map_err(ExactFieldError::from)?)
 }
 
-/// The boost along a rational unit `direction` with rapidity ratio `ratio = e^eta > 0`:
-/// `gamma = (r + 1/r)/2`, `w = (r - 1/r)/2 n`.
 pub fn boost(
     space_dim: usize,
     ratio: &BigRational,
@@ -199,13 +160,11 @@ pub fn boost(
     boost_from_point(&point)
 }
 
-/// The first column `(gamma, w)` of an element of `SO+(1, d; Q)`.
 pub fn boost_point(m: &QMatrix) -> Result<Vec<BigRational>, LorentzError> {
     let d = check_proper_orthochronous(m)?;
     Ok((0..=d).map(|r| element(m, r, 0).clone()).collect())
 }
 
-/// `diag(1, R)` for a spatial rotation `R` in `SO(d; Q)`.
 pub fn spatial_rotation(rotation: &QMatrix) -> Result<QMatrix, LorentzError> {
     if rotation.rows() != rotation.cols() || !is_special_orthogonal(rotation) {
         return Err(LorentzError::NotRotation);
@@ -220,8 +179,6 @@ pub fn spatial_rotation(rotation: &QMatrix) -> Result<QMatrix, LorentzError> {
     .map_err(ExactFieldError::from)?)
 }
 
-/// The rational point `(gamma, gamma beta) = ((m^2 + n^2)/2mn, (m^2 - n^2)/2mn)` with
-/// `e^eta = m/n`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RapidityPoint {
     pub m: usize,
@@ -230,7 +187,6 @@ pub struct RapidityPoint {
     pub gamma_beta: BigRational,
 }
 
-/// The rapidity points `e^eta = m/n` with `1 <= n < m <= max_m` coprime, in increasing `(m, n)`.
 pub fn rational_hyperbola_points(max_m: usize) -> Vec<RapidityPoint> {
     let mut points = Vec::new();
     for m in 2..=max_m {
@@ -250,15 +206,12 @@ pub fn rational_hyperbola_points(max_m: usize) -> Vec<RapidityPoint> {
     points
 }
 
-/// The rational point `((1 - t^2)/(1 + t^2), 2 t/(1 + t^2))` of the unit circle.
 pub fn rational_unit_vector_2d(t: &BigRational) -> [BigRational; 2] {
     let t2 = t * t;
     let den = BigRational::one() + &t2;
     [(BigRational::one() - &t2) / &den, (t + t) / den]
 }
 
-/// The rational point `(2 s, 2 t, s^2 + t^2 - 1)/(s^2 + t^2 + 1)` of the unit sphere (every
-/// rational point except the north pole arises; the denominators are the Pythagorean quadruples).
 pub fn rational_unit_vector_3d(s: &BigRational, t: &BigRational) -> [BigRational; 3] {
     let q = s * s + t * t;
     let den = &q + BigRational::one();
@@ -269,20 +222,14 @@ pub fn rational_unit_vector_3d(s: &BigRational, t: &BigRational) -> [BigRational
     ]
 }
 
-/// `M = B R`: the boost, the same decomposition as a `(1 + d)`-matrix `diag(1, R)`, and `R`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PolarDecomposition {
     pub space_dim: usize,
-    /// The symmetric boost `B`.
     pub boost: QMatrix,
-    /// `diag(1, R)`.
     pub rotation: QMatrix,
-    /// The spatial rotation `R`, `d x d`.
     pub spatial_rotation: QMatrix,
 }
 
-/// The unique decomposition `M = B R` of an element of `SO+(1, d; Q)` into a boost and a
-/// spatial rotation: `B` is the boost with the first column of `M`, and `R = B^(-1) M`.
 pub fn polar_decompose(m: &QMatrix) -> Result<PolarDecomposition, LorentzError> {
     let d = check_proper_orthochronous(m)?;
     let point = boost_point(m)?;
@@ -293,7 +240,6 @@ pub fn polar_decompose(m: &QMatrix) -> Result<PolarDecomposition, LorentzError> 
     }
     let inverse = boost_from_point(&inverse_point)?;
     let rotation = mx::multiply(&inverse, m)?;
-    // B^(-1) M fixes the time axis, so it is diag(1, R).
     let block = (0..=d).all(|i| {
         let expected = if i == 0 { ri(1) } else { ri(0) };
         *element(&rotation, 0, i) == expected && *element(&rotation, i, 0) == expected
@@ -314,8 +260,6 @@ pub fn polar_decompose(m: &QMatrix) -> Result<PolarDecomposition, LorentzError> 
     })
 }
 
-/// The spatial rotation of the product `B_1 B_2` of two elements of `SO+(1, d; Q)`: the
-/// Thomas-Wigner rotation.
 pub fn thomas_wigner_rotation(b1: &QMatrix, b2: &QMatrix) -> Result<QMatrix, LorentzError> {
     check_proper_orthochronous(b1)?;
     check_proper_orthochronous(b2)?;
@@ -323,8 +267,6 @@ pub fn thomas_wigner_rotation(b1: &QMatrix, b2: &QMatrix) -> Result<QMatrix, Lor
     Ok(polar_decompose(&product)?.spatial_rotation)
 }
 
-/// `gamma_1 gamma_2 + w_1 . w_2`, the time-time entry of the product of the boosts of two
-/// hyperboloid points (their relative Lorentz factor).
 pub fn composed_gamma(p1: &[BigRational], p2: &[BigRational]) -> Result<BigRational, LorentzError> {
     if p1.len() != p2.len() || p1.len() < 2 {
         return Err(LorentzError::OffHyperboloid);
@@ -332,9 +274,6 @@ pub fn composed_gamma(p1: &[BigRational], p2: &[BigRational]) -> Result<BigRatio
     Ok(&p1[0] * &p2[0] + dot(&p1[1..], &p2[1..]))
 }
 
-/// `(1 + gamma + gamma_1 + gamma_2)^2 / ((1 + gamma)(1 + gamma_1)(1 + gamma_2)) - 1`, the
-/// cosine of the Thomas-Wigner rotation angle of two boosts with Lorentz factors `gamma_1`,
-/// `gamma_2` and composite Lorentz factor `gamma`.
 pub fn wigner_cosine_closed_form(
     gamma1: &BigRational,
     gamma2: &BigRational,
@@ -345,13 +284,10 @@ pub fn wigner_cosine_closed_form(
     &numerator * &numerator / ((&one + gamma) * (&one + gamma1) * (&one + gamma2)) - one
 }
 
-/// `(gamma_1 + gamma_2) / (1 + gamma_1 gamma_2)`, the cosine for perpendicular boosts.
 pub fn perpendicular_wigner_cosine(gamma1: &BigRational, gamma2: &BigRational) -> BigRational {
     (gamma1 + gamma2) / (BigRational::one() + gamma1 * gamma2)
 }
 
-/// The cosine of the rotation angle of a spatial rotation: `tr R / 2` in the plane and
-/// `(tr R - 1) / 2` in space.
 pub fn rotation_cosine(r: &QMatrix) -> Result<BigRational, LorentzError> {
     if !is_special_orthogonal(r) {
         return Err(LorentzError::NotRotation);
@@ -364,8 +300,6 @@ pub fn rotation_cosine(r: &QMatrix) -> Result<BigRational, LorentzError> {
     }
 }
 
-/// The entries `(cosh k eta, sinh k eta)` of the `k`-th power of a collinear boost of ratio `r`:
-/// `((r^k + r^-k)/2, (r^k - r^-k)/2)`.
 pub fn collinear_power_entries(
     ratio: &BigRational,
     k: u64,
@@ -389,7 +323,6 @@ pub fn collinear_power_entries(
     Ok(((&big + &small) / ri(2), (&big - &small) / ri(2)))
 }
 
-/// `M^k` for a Lorentz matrix, refused above [`MAX_POWER`].
 pub fn lorentz_power(m: &QMatrix, k: u64) -> Result<QMatrix, LorentzError> {
     if k > MAX_POWER {
         return Err(LorentzError::PowerTooLarge {
@@ -401,7 +334,6 @@ pub fn lorentz_power(m: &QMatrix, k: u64) -> Result<QMatrix, LorentzError> {
     Ok(mx::power(m, k)?)
 }
 
-/// The largest absolute numerator or denominator among the entries.
 pub fn height(m: &QMatrix) -> BigInt {
     m.as_slice()
         .iter()
@@ -410,20 +342,14 @@ pub fn height(m: &QMatrix) -> BigInt {
         .unwrap_or_else(BigInt::zero)
 }
 
-/// The conjugacy type of an element of `SO+(1, 2; Q)`, read from its trace.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ElementClass {
     Identity,
-    /// `-1 <= tr < 3`: conjugate to a rotation of the plane.
     Elliptic,
-    /// `tr = 3`, not the identity.
     Parabolic,
-    /// `tr > 3`: conjugate to a boost.
     Hyperbolic,
 }
 
-/// Classify an element of `SO+(1, 2; Q)` by `tr M` (the eigenvalues are `1, lambda, 1/lambda`,
-/// so `tr = 1 + 2 cosh eta` or `1 + 2 cos theta`).
 pub fn classify_so21(m: &QMatrix) -> Result<ElementClass, LorentzError> {
     if check_proper_orthochronous(m)? != 2 {
         return Err(LorentzError::Shape {
@@ -442,11 +368,6 @@ pub fn classify_so21(m: &QMatrix) -> Result<ElementClass, LorentzError> {
     })
 }
 
-/// The adjoint action of `g` in `GL(2, Q)` on the trace-zero matrices
-/// `X(t, x, y) = [[x, y + t], [y - t, -x]]`, whose determinant is `t^2 - x^2 - y^2`, as a
-/// `3 x 3` matrix in the coordinates `(t, x, y)`: `g X g^(-1) = X(A(g) (t, x, y))`.
-/// `A(g)` preserves the form, `A(g1 g2) = A(g1) A(g2)`, `A(c g) = A(g)`, and `A(g)` is
-/// orthochronous exactly when `det g > 0`.
 pub fn adjoint_of_gl2(g: &QMatrix) -> Result<QMatrix, LorentzError> {
     if g.shape() != (2, 2) {
         return Err(LorentzError::Shape {
@@ -459,7 +380,6 @@ pub fn adjoint_of_gl2(g: &QMatrix) -> Result<QMatrix, LorentzError> {
         Err(ExactFieldError::Singular { .. }) => return Err(LorentzError::Singular),
         Err(other) => return Err(other.into()),
     };
-    // X(1, 0, 0), X(0, 1, 0), X(0, 0, 1).
     let units = [[[0, 1], [-1, 0]], [[1, 0], [0, -1]], [[0, 1], [1, 0]]];
     let mut columns: Vec<[BigRational; 3]> = Vec::with_capacity(3);
     for unit in units {
@@ -471,15 +391,11 @@ pub fn adjoint_of_gl2(g: &QMatrix) -> Result<QMatrix, LorentzError> {
             element(&image, 0, 1).clone(),
             element(&image, 1, 0).clone(),
         );
-        // x' = e00; y' + t' = e01; y' - t' = e10.
         columns.push([(&e01 - &e10) / ri(2), e00, (&e01 + &e10) / ri(2)]);
     }
     Ok(QMatrix::try_from_fn(3, 3, |r, c| columns[c][r].clone()).map_err(ExactFieldError::from)?)
 }
 
-/// The squarefree class of `det g` modulo rational squares (with sign): the element `A(g)` of
-/// `SO(1, 2; Q)` lifts to `SL(2, Q)` exactly when it is 1; otherwise a lift needs the square
-/// root of the class.
 pub fn gl2_determinant_class(g: &QMatrix) -> Result<BigInt, LorentzError> {
     if g.shape() != (2, 2) {
         return Err(LorentzError::Shape {
@@ -495,27 +411,21 @@ pub fn gl2_determinant_class(g: &QMatrix) -> Result<BigInt, LorentzError> {
     Ok(class)
 }
 
-/// `m/n`, the rapidity ratio `e^eta` of a rapidity point.
 pub fn ratio_of(point: &RapidityPoint) -> BigRational {
     BigRational::new(BigInt::from(point.m), BigInt::from(point.n))
 }
 
-/// A census of Thomas-Wigner rotations over pairs of boosts.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ThomasWignerCensus {
     pub rapidity_count: usize,
     pub direction_count: usize,
     pub pairs: usize,
     pub collinear_pairs: usize,
-    /// Pairs whose Thomas-Wigner rotation has finite order (the identity counts).
     pub finite_order_pairs: usize,
     pub finite_order_collinear_pairs: usize,
     pub finite_order_noncollinear_pairs: usize,
 }
 
-/// Over every pair `(B_1, B_2)` of boosts in `SO+(1, 2; Q)` with `B_1` along `x` and `B_2` along a
-/// declared unit direction (collinear when the direction is parallel to `x`), both with ratios `m/n` of the rapidity points up to `max_m`: how many
-/// Thomas-Wigner rotations have finite order, decided exactly.
 pub fn thomas_wigner_census(
     max_m: usize,
     directions: &[[BigRational; 2]],
@@ -559,8 +469,6 @@ pub fn thomas_wigner_census(
     Ok(census)
 }
 
-/// The five rational unit directions of the plane used in census tests: along `x`, along `y`,
-/// and the Pythagorean directions 3-4-5, 5-12-13, 7-24-25.
 pub fn standard_plane_directions() -> [[BigRational; 2]; 5] {
     [
         [ri(1), ri(0)],
@@ -571,7 +479,6 @@ pub fn standard_plane_directions() -> [[BigRational; 2]; 5] {
     ]
 }
 
-/// `e^eta = gamma + |w|` of a hyperboloid point `(gamma, w)`, when the speed `|w|` is rational.
 pub fn rapidity_ratio(point: &[BigRational]) -> Option<BigRational> {
     let w = point.get(1..)?;
     Some(point.first()? + sqrt_exact(&dot(w, w))?)

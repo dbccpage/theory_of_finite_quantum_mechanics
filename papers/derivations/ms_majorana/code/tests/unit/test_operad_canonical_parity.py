@@ -53,9 +53,6 @@ _FIXTURE = (
     / "canonical_parity.json"
 )
 
-# Envelope shapes chosen to pin the encoder's decisions rather than its happy
-# path: key sorting, nesting, bool-vs-int distinction, negative integers, and
-# the null payload.
 _ENVELOPE_CASES = [
     ("null", "omega.test", None),
     ("empty-object", "omega.test", {}),
@@ -111,9 +108,6 @@ def _operand_ref() -> OperandRef:
     )
 
 
-# Observer declarations. An observer is the rule packet that makes a claim
-# evaluable, and two atlas entries are comparable only when their observer ids
-# agree -- so the id must be identical on both sides of the bridge.
 _OBSERVER_CASES = [
     (
         "finite-f2-gauge",
@@ -170,11 +164,6 @@ def _build_fixture() -> dict:
         try:
             spec = _operation_spec(skill_id, entry["source_colours"], entry["target_colour"])
         except ValueError as exc:
-            # A catalog entry that neither language can compile is recorded as a
-            # skip rather than dropped. Silently continuing here while the
-            # coverage test asserted a full count made that test unrepairable:
-            # regenerating produced the same short fixture, so the suite stayed
-            # red with no way forward.
             skipped.append({"operation_id": skill_id, "reason": str(exc)})
             continue
         operations.append(
@@ -242,7 +231,7 @@ def _write_fixture(fixture: dict) -> None:
     _FIXTURE.write_text(json.dumps(fixture, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-if os.environ.get("OMEGA_REGEN_PARITY") == "1":  # pragma: no cover - maintenance path
+if os.environ.get("OMEGA_REGEN_PARITY") == "1":
     _write_fixture(_build_fixture())
 
 

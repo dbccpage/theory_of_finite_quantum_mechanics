@@ -27,28 +27,22 @@ def build_wheel_disk(n_outer: int = 6) -> tuple[np.ndarray, np.ndarray]:
     n_edges = n_radial + n_boundary
     n_faces = n_outer
 
-    # d0: n_edges x n_verts
     d0 = np.zeros((n_edges, n_verts), dtype=float)
-    # Radial edges: e_i = (v0, v_i), i=0..n_outer-1
     for i in range(n_outer):
-        d0[i, 0] = -1  # source v0
-        d0[i, i + 1] = 1  # target v_{i+1}
+        d0[i, 0] = -1
+        d0[i, i + 1] = 1
 
-    # Boundary edges: e_{n+i} = (v_{i+1}, v_{(i+1) mod n + 1})
     for i in range(n_outer):
         src = i + 1
         tgt = (i + 1) % n_outer + 1
         d0[n_radial + i, src] = -1
         d0[n_radial + i, tgt] = 1
 
-    # d1: n_faces x n_edges
-    # Face f_i = (v0, v_{i+1}, v_{(i+1) mod n + 1})
-    # boundary: radial_i + boundary_i - radial_{(i+1) mod n}
     d1 = np.zeros((n_faces, n_edges), dtype=float)
     for i in range(n_outer):
-        d1[i, i] = 1  # radial edge i
-        d1[i, n_radial + i] = 1  # boundary edge i
-        d1[i, (i + 1) % n_outer] = -1  # radial edge (i+1) mod n
+        d1[i, i] = 1
+        d1[i, n_radial + i] = 1
+        d1[i, (i + 1) % n_outer] = -1
 
     return d0, d1
 
@@ -60,7 +54,6 @@ def absolute_h1_dimension(d0: np.ndarray, d1: np.ndarray) -> dict:
     rank_d0 = np.linalg.matrix_rank(d0)
     rank_d1 = np.linalg.matrix_rank(d1)
 
-    # dim H^1 = dim ker(d1) - rank(d0)
     dim_h1 = n_edges - rank_d0 - rank_d1
 
     return {
@@ -84,7 +77,6 @@ def boundary_capacity_triangle() -> dict:
     max_cap = 0.0
     max_alpha = None
 
-    # Exhaustive search over vertices of [-1, 1]^3
     for a0 in [-1, 1]:
         for a1 in [-1, 1]:
             for a2 in [-1, 1]:
@@ -97,7 +89,7 @@ def boundary_capacity_triangle() -> dict:
 
     return {
         "capacity": max_cap,
-        "claimed_2E": 2 * 3,  # 2|E| = 6
+        "claimed_2E": 2 * 3,
         "capacity_is_4_not_6": abs(max_cap - 4.0) < 1e-10,
         "maximizer": max_alpha.tolist() if max_alpha is not None else None,
     }
@@ -105,15 +97,12 @@ def boundary_capacity_triangle() -> dict:
 
 def verify_horizon_fence() -> dict:
     """Evaluate the wheel-disk and triangle-capacity fixtures."""
-    # Contractible 2-disk
     d0, d1 = build_wheel_disk(6)
 
-    # Verify nilpotency
     nilpotent = np.allclose(d1 @ d0, 0)
 
     absolute_h1 = absolute_h1_dimension(d0, d1)
 
-    # Boundary capacity on C3
     cap = boundary_capacity_triangle()
 
     return {

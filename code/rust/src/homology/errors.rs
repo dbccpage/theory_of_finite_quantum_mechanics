@@ -1,4 +1,3 @@
-//! Error types for homological algebra operations.
 
 use crate::linear_algebra::basic_matrix::MatrixError;
 use crate::linear_algebra::smith_form::SmithError;
@@ -53,9 +52,6 @@ pub enum HomologicalError {
 
     #[error("missing witness")]
     MissingWitness,
-    /// A Smith-normal-form rank exceeds the dimension it is subtracted from, which
-    /// would make a Betti number negative. Reported rather than clamped to zero:
-    /// clamping would emit a plausible Betti number for an inconsistent carrier.
     #[error(
         "Betti rank inconsistency at degree {degree}: rank sum {rank_sum} exceeds dimension {dimension}"
     )]
@@ -65,14 +61,6 @@ pub enum HomologicalError {
         degree: usize,
     },
 
-    /// A boundary map has a non-integer entry in the carrier's coordinate lattice,
-    /// so it has no Smith normal form over ℤ and no integral rank or torsion can be
-    /// reported for it.
-    ///
-    /// Typed rather than folded into [`Self::UnsupportedOperation`]: a caller must be
-    /// able to distinguish "this carrier is rational, not integral" — a fact about
-    /// the input that a different lattice could change — from "the SNF algorithm
-    /// failed", which is a fact about this implementation.
     #[error(
         "boundary map {map} is not integral in the carrier's coordinate lattice: \
          non-integer entry at row {row}, column {col}"
@@ -83,9 +71,6 @@ pub enum HomologicalError {
         col: usize,
     },
 
-    /// Smith normal form of a boundary map failed. The underlying [`SmithError`] is
-    /// preserved as the source rather than stringified, so a caller can match on
-    /// `Overflow` / `DivisibilityViolation` / `VerificationFailed` separately.
     #[error("Smith normal form of boundary map {map} failed")]
     SmithNormalFormFailed {
         map: &'static str,

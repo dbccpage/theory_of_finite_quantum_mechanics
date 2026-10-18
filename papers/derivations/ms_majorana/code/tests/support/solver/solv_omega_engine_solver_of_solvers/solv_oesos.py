@@ -28,7 +28,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 
-# Ensure code directory is in sys.path
 code_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path(".")
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -76,7 +75,6 @@ try:
 except ImportError:
     solve_phi1_dual_witness = None
 
-# FW-8 exact dual pricing adapter (rational zero-gap; not float LP)
 try:
     from omega_engine.crates.solver.solv_omega_engine_solver_of_solvers.solv_exact_dual_pricing import (
         ExactDualPricingError,
@@ -84,11 +82,10 @@ try:
         price_network_phi1_exact,
     )
 except ImportError:
-    ExactDualPricingError = None  # type: ignore
-    ExactDualPricingReceipt = None  # type: ignore
-    price_network_phi1_exact = None  # type: ignore
+    ExactDualPricingError = None
+    ExactDualPricingReceipt = None
+    price_network_phi1_exact = None
 
-# Gate-11 exact rational kernel (OESOS–DDA canonical)
 try:
     from omega_engine.crates.solver.solv_omega_engine_solver_of_solvers.solv_network_to_obstruction import (
         classify_network_residual,
@@ -99,16 +96,15 @@ try:
         ObstructionReceipt,
     )
 except ImportError:
-    classify_network_residual = None  # type: ignore
-    obstruction_class_to_terminal_status = None  # type: ignore
-    ObstructionClass = None  # type: ignore
-    ObstructionReceipt = None  # type: ignore
+    classify_network_residual = None
+    obstruction_class_to_terminal_status = None
+    ObstructionClass = None
+    ObstructionReceipt = None
 
-# OESOS–DDA evaluation-stage receipt (Gates 5/8/9 lifecycle)
 try:
     from omega_engine.crates.packet.oesos_dda_lifecycle import EvaluationReceipt
 except ImportError:
-    EvaluationReceipt = None  # type: ignore
+    EvaluationReceipt = None
 
 
 def _stable_sha256(payload: Dict[str, Any]) -> str:
@@ -136,20 +132,16 @@ class SolverCascadeReceipt:
     admitted_complex_verified: bool = True
     dual_witness_status: str = "unavailable"
     authority_effect: str = "None"
-    # Gate-11 forensic fields
     obstruction_class: Optional[str] = None
     evidence_sha256: Optional[str] = None
-    # Evaluation-stage lifecycle binding (wraps ObstructionReceipt)
-    evaluation_receipt: Optional[Any] = None  # EvaluationReceipt when Gate-11 ran
-    # FW-8 exact dual pricing (rational rail; distinct from diagnostic float mass)
+    evaluation_receipt: Optional[Any] = None
     arithmetic_mode: str = "diagnostic_float"
     exact_phi_k: Optional[str] = None
     exact_dual_value: Optional[str] = None
     exact_gap: Optional[str] = None
     exact_degree: Optional[int] = None
     diagnostic_residual_mass: Optional[float] = None
-    exact_dual_receipt: Optional[Any] = None  # ExactDualPricingReceipt when exact rail ran
-    # Dual zero-gap is certificate attainment only — never estate-wide quotient-norm.
+    exact_dual_receipt: Optional[Any] = None
     estate_wide_phi_k_theorem: str = "REFUSED"
     normhood_from_attainment_alone: str = "REFUSED"
 
@@ -214,23 +206,17 @@ class SolverCascadeReceipt:
             "admitted_complex_verified": self.admitted_complex_verified,
             "algebraic_class_id": self.algebraic_class_id,
             "authority_effect": self.authority_effect or "None",
-            # Live receipt fields (also mirrored under spine_fence for consumers).
             "estate_wide_phi_k_theorem": self.estate_wide_phi_k_theorem or "REFUSED",
             "normhood_from_attainment_alone": self.normhood_from_attainment_alone
             or "REFUSED",
             "spine_fence": {
                 "wdw_form": "Omega_hat Psi = r (residual-form only)",
                 "coda_cs_coda_q": "shared residual pricing language only; not object identity",
-                # Staged host programme lives in solv_pontryagin_residual_dual;
-                # not estate theorem; pi is dual normalization not Gate-11 output.
                 "pontryagin_dual_pi_programme": "STAGED_HOST",
-                # Scoped finite quotient-norm axioms: solv_finite_quotient_norm;
-                # estate-wide remains REFUSED.
                 "finite_declared_quotient_norm": "AVAILABLE",
                 "continuum_superspace_wdw": "REFUSED",
                 "float_as_exact": "REFUSED",
                 "holy_land_rec_full": "REFUSED_WITHOUT_EVIDENCE",
-                # Dual zero-gap is certificate attainment only (FW-8 / SoS v9).
                 "estate_wide_phi_k_theorem": self.estate_wide_phi_k_theorem or "REFUSED",
                 "normhood_from_attainment_alone": self.normhood_from_attainment_alone
                 or "REFUSED",
@@ -245,7 +231,7 @@ class DeformationReceipt:
     contraction_side_conditions_valid: bool
     perturbation_norm: float
     transferred_differential_norm: float
-    invertibility_status: str  # "INVERTIBLE" or "UNINVERTIBLE_PERTURBATION"
+    invertibility_status: str
     loss_ledger: Dict[str, Any] = field(default_factory=dict)
     authority_effect: str = "None"
 
@@ -260,7 +246,7 @@ class FiniteHilbertReceipt:
     projector_nonclosed_norm: float
     truncation_leakage_L_P: float
     is_leakage_free: bool
-    oracle_needed_status: str  # "SATISFIED" or "REFUSED_ORACLE_NEEDED"
+    oracle_needed_status: str
     authority_effect: str = "None"
 
 
@@ -277,11 +263,11 @@ class NormalizedContraction:
         5. h * h = 0
     """
 
-    i_map: np.ndarray  # (dim_C, dim_D)
-    r_map: np.ndarray  # (dim_D, dim_C)
-    h_map: np.ndarray  # (dim_C, dim_C)
-    d_C: np.ndarray    # (dim_C, dim_C)
-    d_D: np.ndarray    # (dim_D, dim_D)
+    i_map: np.ndarray
+    r_map: np.ndarray
+    h_map: np.ndarray
+    d_C: np.ndarray
+    d_D: np.ndarray
 
     def verify_side_conditions(self, tol: float = 1e-6) -> bool:
         dim_D = self.r_map.shape[0]
@@ -289,25 +275,20 @@ class NormalizedContraction:
         eye_D = np.eye(dim_D)
         eye_C = np.eye(dim_C)
 
-        # 1. r * i = 1_D
         if not np.allclose(self.r_map @ self.i_map, eye_D, atol=tol):
             return False
 
-        # 2. 1_C - i * r = d * h + h * d
         lhs = eye_C - (self.i_map @ self.r_map)
         rhs = (self.d_C @ self.h_map) + (self.h_map @ self.d_C)
         if not np.allclose(lhs, rhs, atol=tol):
             return False
 
-        # 3. h * i = 0
         if not np.allclose(self.h_map @ self.i_map, 0.0, atol=tol):
             return False
 
-        # 4. r * h = 0
         if not np.allclose(self.r_map @ self.h_map, 0.0, atol=tol):
             return False
 
-        # 5. h * h = 0
         if not np.allclose(self.h_map @ self.h_map, 0.0, atol=tol):
             return False
 
@@ -501,7 +482,6 @@ class CascadeSolver:
             d0_matrix[e_idx, node_map[u]] = -1
 
         if not faces:
-            # Honest: empty C^2 is a 0-row d1, not a fabricated zero row that always admits.
             return None
         d1_matrix = Matrix.zeros(len(faces), len(edges))
         for f_idx, (u, v, w) in enumerate(faces):
@@ -600,7 +580,6 @@ class CascadeSolver:
                     exact_rcpt,
                 )
             except Exception:
-                # Fall through to float diagnostic; never claim exact on failure
                 pass
 
         if solve_phi1_dual_witness is None:
@@ -612,7 +591,6 @@ class CascadeSolver:
             cochain_vec = np.array([cochain.get(e, 0.0) for e in edges], dtype=float)
 
             res = solve_phi1_dual_witness(nodes, edges, cochain_vec)
-            # Float dual is never is_certified for exact claims
             ok_float = bool(res.get("is_certified", False))
             status = "float_diagnostic_certified" if ok_float else "float_diagnostic_uncertified"
             return False, res.get("duality_gap"), status, None
@@ -642,7 +620,6 @@ class CascadeSolver:
             "dual_witness_status": dual_st,
             "diagnostic_residual_mass": float(diagnostic_mass),
             "exact_dual_receipt": exact_rcpt,
-            # Certificate attainment only — never estate-wide quotient-norm (FW-8 FC11).
             "estate_wide_phi_k_theorem": "REFUSED",
             "normhood_from_attainment_alone": "REFUSED",
         }
@@ -652,7 +629,6 @@ class CascadeSolver:
             fields["exact_dual_value"] = str(exact_rcpt.dual_value)
             fields["exact_gap"] = str(exact_rcpt.exact_gap)
             fields["exact_degree"] = int(exact_rcpt.degree)
-            # Prefer adapter cascade refuse stamps when present.
             if hasattr(exact_rcpt, "as_cascade_fields"):
                 casc = exact_rcpt.as_cascade_fields()
                 fields["estate_wide_phi_k_theorem"] = casc.get(
@@ -667,7 +643,6 @@ class CascadeSolver:
             fields["exact_dual_value"] = None
             fields["exact_gap"] = None
             fields["exact_degree"] = None
-            # Float path never promotes dual certification (belt-and-suspenders).
             fields["is_certified"] = False
         return fields
 
@@ -702,7 +677,6 @@ class CascadeSolver:
         AuthorityEffect remains None.
         """
         if classify_network_residual is None or obstruction_class_to_terminal_status is None:
-            # Fallback only if the Gate-11 surface is unavailable
             return "TYPED_OBSTRUCTION", None, None, False, None
         try:
             receipt = classify_network_residual(self.network, residual)
@@ -778,7 +752,6 @@ class CascadeSolver:
         attached_cells: List[Tuple[Any, ...]] = []
         lift_history: List[Dict[str, Any]] = []
 
-        # 1. Foundation
         foundation = self.dda_engine.run_foundation(edge_values)
         stages.append("Foundation")
         initial_size = foundation.phi1
@@ -790,7 +763,6 @@ class CascadeSolver:
         except Exception:
             admitted_ok = False
 
-        # Early exit candidates still go through Gate-11 for Exact claims
         if initial_size < tol and foundation.gamma2 < tol:
             dual_kw = self._dual_fields_for_receipt(
                 self.dda_engine.current_edge_values, initial_size
@@ -800,7 +772,6 @@ class CascadeSolver:
                 self.dda_engine.current_edge_values, candidate_digest=candidate_digest
             )
             if status != "Exact":
-                # Float near-zero did not rationalize to Exact; stay honest
                 status = status if status else "CLOSED_NONEXACT"
             return SolverCascadeReceipt(
                 carrier_nodes=len(self.network.nodes),
@@ -821,7 +792,6 @@ class CascadeSolver:
                 **dual_kw,
             )
 
-        # 2. Exact local gauge fix (float path)
         cert_gauge, (phi1_g, gamma2_g, chi_g) = self.dda_engine.step_dda(move_type="exact_d0")
         stages.append("ExactLocalGaugeFix")
 
@@ -854,7 +824,6 @@ class CascadeSolver:
                 **dual_kw,
             )
 
-        # 3. Multi-cycle L1 joint descent (float path)
         cert_multi, (phi1_m, gamma2_m, chi_m) = self.dda_engine.step_dda(move_type="multi_cycle_l1")
         stages.append("MultiCycleL1Descent")
 
@@ -887,7 +856,6 @@ class CascadeSolver:
                 **dual_kw,
             )
 
-        # 4. Opt-in cell attachment
         if enable_cell_attachment and (phi1_m > tol or gamma2_m > tol):
             attached, cell_added = self.attach_normal_cell(self.dda_engine.current_edge_values)
             if attached and cell_added:
@@ -902,7 +870,6 @@ class CascadeSolver:
                     status, oclass, evid, eval_receipt = self._classify_and_evaluate(
                         self.dda_engine.current_edge_values, candidate_digest=candidate_digest
                     )
-                    # Model changed; still require Gate-11 confirmation for Exact
                     if status == "Exact":
                         status = "MODEL_CHANGED_SOLVED"
                     else:
@@ -928,7 +895,6 @@ class CascadeSolver:
                 else:
                     phi1_m, gamma2_m, chi_m = phi1_post, gamma2_post, chi_post
 
-        # 5. Window lift / obstruction termination
         stages.append("WindowLiftEvaluation")
         term_cert = self.dda_engine.lift_or_terminate((phi1_m, gamma2_m, chi_m), tol=tol, max_lifts=max_lifts)
 
@@ -942,7 +908,6 @@ class CascadeSolver:
                     "trigger_curvature_mass": lift_cert.trigger_curvature_mass,
                 })
 
-        # Always force final classification through Gate-11 + exact dual pricing
         dual_kw = self._dual_fields_for_receipt(
             self.dda_engine.current_edge_values, float(phi1_m)
         )
@@ -953,12 +918,11 @@ class CascadeSolver:
 
         final_triple = (phi1_m, gamma2_m, chi_m)
         if hasattr(term_cert, "final_residual") and term_cert.final_residual is not None:
-            final_triple = tuple(term_cert.final_residual)  # type: ignore[assignment]
+            final_triple = tuple(term_cert.final_residual)
         elif hasattr(term_cert, "lifted_residuals") and term_cert.lifted_residuals is not None:
-            final_triple = tuple(term_cert.lifted_residuals)  # type: ignore[assignment]
+            final_triple = tuple(term_cert.lifted_residuals)
         final_size = float(final_triple[0])
 
-        # If Gate-11 says Exact but residual mass is still large, stay honest
         if status_str == "Exact" and final_size >= tol:
             status_str = "TYPED_OBSTRUCTION"
 
@@ -970,7 +934,7 @@ class CascadeSolver:
             stages_executed=stages,
             degree_window_reached=self.dda_engine.degree_window,
             terminal_status=status_str,
-            final_residual_triple=final_triple,  # type: ignore[arg-type]
+            final_residual_triple=final_triple,
             attached_cells=attached_cells,
             lift_history=lift_history,
             algebraic_class_id=getattr(term_cert, "algebraic_class_id", None),
@@ -1013,7 +977,6 @@ if __name__ == "__main__":
     print(f"Exact dual certified:  {receipt.is_exact_dual_certified()}")
     print(f"Attached Cells:        {receipt.attached_cells}")
     print(f"AuthorityEffect:       {receipt.authority_effect}")
-    # Spine fence (do not sell dual zero-gap as continuum / estate-wide theorem)
     fence = receipt.as_evidence_dict().get("spine_fence", {})
     print(f"Spine fence:           float_as_exact={fence.get('float_as_exact')}; "
           f"estate_wide_phi_k={fence.get('estate_wide_phi_k_theorem')}; "

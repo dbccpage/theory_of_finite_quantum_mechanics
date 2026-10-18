@@ -1,6 +1,3 @@
-//! C1000 exact Thomas-Wigner composition census. Finite order is decided from
-//! the rational characteristic polynomial, rather than an iteration cutoff.
-// AuthorityEffect: None.
 use crate::linear_algebra::matrix as mx;
 use num_bigint::BigInt;
 use omega_lie_theory::lorentz::{self, LorentzError};

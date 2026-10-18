@@ -1,10 +1,3 @@
-//! Rational Gaussian norms and their exact odd-prime obstruction classes.
-//!
-//! Factorisation and two-square construction belong to the existing native
-//! owners. Budgets below apply separately to each positive integer submitted to
-//! those owners, not to a claimed whole-program instruction count.
-//! Exhaustion is an error; it is never a non-norm certificate.
-//! AuthorityEffect: None.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -71,7 +64,6 @@ fn factors(
     ))
 }
 
-/// The finitely supported parity vector for Q-positive / N(Q(i)-nonzero).
 pub fn norm_class(
     value: &Rational,
     budget: FactorizationBudget,
@@ -105,7 +97,6 @@ pub fn propose_obstruction(
     Ok(None)
 }
 
-/// Independent replay of the submitted prime and signed valuation.
 pub fn verify_obstruction(
     original: &Rational,
     witness: &NormObstruction,
@@ -154,8 +145,6 @@ pub fn verify_norm(original: &Rational, candidate: &GaussianRat) -> Result<(), G
     Ok(())
 }
 
-/// Construct a norm witness, or prove that no such witness exists via two-squares.
-/// Consumers needing a retained negative certificate use `propose_obstruction`.
 pub fn realize_norm(
     value: &Rational,
     budget: NormBudget,
@@ -195,7 +184,6 @@ pub fn realize_norm(
     Ok(Some(result))
 }
 
-/// A useful total phase parametrization except for -1, with no square roots.
 pub fn rational_phase(parameter: &Rational) -> GaussianRat {
     let square = parameter * parameter;
     let denominator = Rational::one() + &square;

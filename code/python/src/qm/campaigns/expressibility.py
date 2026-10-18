@@ -257,7 +257,6 @@ def compute_wigner_table_z3(state: List[Cyclo3]) -> List[List[Q]]:
 
 @dataclass(frozen=True)
 class FiniteQmExpressibilityAndMeasurementReport:
-    # Part I: Three-Way Finite Expressibility & Strict Finite No-Go Theorems
     class_i_exact_finite_identity_count: int
     class_ii_rational_interval_enclosure_count: int
     class_iii_strict_finite_nogo_count: int
@@ -277,7 +276,6 @@ class FiniteQmExpressibilityAndMeasurementReport:
     closed_clock_unitary_power_n_is_identity: bool
     closed_clock_exact_poincare_recurrence_at_n: bool
 
-    # Part II: Kraus Measurement Decoherence & Multi-Observer Wigner's-Friend Obstruction
     premeasurement_cnot_is_unitary: bool
     joint_post_measurement_state_is_pure: bool
     joint_unitary_reversal_restores_initial_state: bool
@@ -297,7 +295,6 @@ class FiniteQmExpressibilityAndMeasurementReport:
     wf_respects_tsirelson_quantum_bound: bool
     wf_no_observer_independent_joint_distribution: bool
 
-    # Part III: Qutrit Stabilizer-vs-Magic Discrete Wigner Simulation Boundary
     qutrit_stabilizer_state_count: int
     qutrit_four_mubs_intrabasis_orthogonal: bool
     qutrit_four_mubs_interbasis_overlap_exact_one_third: bool

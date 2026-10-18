@@ -62,7 +62,6 @@ class LargeLatticeHubbardCluster:
 
     @property
     def total_modes(self) -> int:
-        # spin-up: 1..N, spin-down: N+1..2N
         return 2 * self.num_sites
 
     def site_to_coord(self, site: int) -> Tuple[int, int]:
@@ -84,11 +83,10 @@ class LargeLatticeHubbardCluster:
             for dy in range(size):
                 site = self.coord_to_site(x0 + dx, y0 + dy)
                 cluster_sites.add(site)
-        # Include both spin-up and spin-down modes for these sites
         cluster_modes = set()
         for s in cluster_sites:
-            cluster_modes.add(s)                     # spin-up
-            cluster_modes.add(self.num_sites + s)     # spin-down
+            cluster_modes.add(s)
+            cluster_modes.add(self.num_sites + s)
         return cluster_modes
 
 
@@ -97,14 +95,10 @@ class GinClusterPostingIndex:
 
     def __init__(self, total_modes: int):
         self.total_modes = total_modes
-        # Mode posting list: mode_id -> set of cfg_ids where mode is occupied
         self.posting_index: Dict[int, Set[int]] = defaultdict(set)
-        # Configuration store: cfg_id -> frozenset of occupied modes
         self.cfg_modes: Dict[int, frozenset[int]] = {}
-        # Configuration weights and signs: cfg_id -> (weight, sign)
         self.cfg_weights: Dict[int, float] = {}
         self.cfg_signs: Dict[int, int] = {}
-        # Pre-computed list for linear scan baseline
         self.all_cfg_ids: List[int] = []
 
     def index_configuration(
@@ -128,7 +122,6 @@ class GinClusterPostingIndex:
         if not required_modes:
             candidates = set(self.all_cfg_ids)
         else:
-            # Sort required modes by posting list cardinality for optimal pruning
             sorted_req = sorted(required_modes, key=lambda m: len(self.posting_index.get(m, ())))
             first_list = self.posting_index.get(sorted_req[0])
             if not first_list:
@@ -158,10 +151,7 @@ class GinClusterPostingIndex:
         if current is None:
             return None
 
-        # Spectators (outside cluster) must have identical occupation
         spectator_occupied = current - cluster_modes
-        # In GIN, pruning by all spectator occupied modes is extremely selective
-        # Target cluster modes must have inverted occupation on cluster_modes
         target_cluster_occupied = cluster_modes - current
         target_cluster_empty = cluster_modes & current
 
@@ -170,7 +160,6 @@ class GinClusterPostingIndex:
 
         candidates = self.query_by_modes(req, forb)
         candidates.discard(cfg_id)
-        # Select candidate whose full mode set exactly matches target
         expected_full_occ = (current - target_cluster_empty) | target_cluster_occupied
         for c_id in candidates:
             if self.cfg_modes[c_id] == expected_full_occ:
@@ -206,7 +195,7 @@ def generate_large_lattice_ensemble(
     seed: int = 42,
 ) -> Tuple[List[Tuple[int, Set[int], float, int]], List[Tuple[int, Set[int]]]]:
     """Generates an ensemble of configuration pairs differing by a cluster involution.
-    
+
     Each pair (C, C') satisfies:
     1. C and C' differ only on the chosen cluster modes.
     2. W(C) == W(C') > 0.
@@ -214,27 +203,23 @@ def generate_large_lattice_ensemble(
     """
     rng = random.Random(seed)
     configs: List[Tuple[int, Set[int], float, int]] = []
-    pair_queries: List[Tuple[int, Set[int]]] = []  # (cfg_id, cluster_modes)
+    pair_queries: List[Tuple[int, Set[int]]] = []
 
     cfg_id = 1
     total_modes = cluster.total_modes
     num_sites = cluster.num_sites
 
     for _ in range(num_pairs):
-        # Pick random cluster location
         top_left = rng.randint(1, num_sites)
         cluster_modes = cluster.get_plaquette_cluster(top_left, size=plaquette_size)
 
-        # Generate base occupied spectator modes (~half filling on spectators)
         spectators = list(set(range(1, total_modes + 1)) - cluster_modes)
-        num_occ_spectators = len(spectators) // 4  # moderate filling
+        num_occ_spectators = len(spectators) // 4
         occ_spectators = set(rng.sample(spectators, num_occ_spectators))
 
-        # Generate cluster occupation for config 1
         c_modes_list = list(cluster_modes)
         occ_cluster_1 = set(rng.sample(c_modes_list, len(c_modes_list) // 2))
 
-        # Config 2 is the exact cluster involution partner: cluster inverted, spectators identical
         occ_cluster_2 = cluster_modes - occ_cluster_1
 
         full_occ_1 = occ_spectators | occ_cluster_1
@@ -251,8 +236,6 @@ def generate_large_lattice_ensemble(
 
         pair_queries.append((c1_id, cluster_modes))
 
-    # Shuffle configs to distribute involution partners randomly throughout the ensemble,
-    # modeling realistic unordered Monte Carlo streams and relational table storage
     rng.shuffle(configs)
 
     return configs, pair_queries
@@ -268,12 +251,10 @@ def run_single_scaling_benchmark(
     cluster = LargeLatticeHubbardCluster(L=lattice_dim)
     num_pairs = num_configs // 2
 
-    # Generate configurations
     configs, queries = generate_large_lattice_ensemble(
         cluster, num_pairs=num_pairs, plaquette_size=2, seed=seed
     )
 
-    # Build GIN Index
     gc.collect()
     t0 = time.perf_counter()
     gin_index = GinClusterPostingIndex(total_modes=cluster.total_modes)
@@ -282,10 +263,8 @@ def run_single_scaling_benchmark(
     t1 = time.perf_counter()
     build_time = t1 - t0
 
-    # Limit query samples to requested benchmark queries
     test_queries = queries[:num_queries]
 
-    # Benchmark GIN Lookups
     max_cancellation_defect = 0.0
     all_exact = True
 
@@ -306,7 +285,6 @@ def run_single_scaling_benchmark(
     gin_query_total = t1_gin - t0_gin
     gin_us_per_query = (gin_query_total / len(test_queries)) * 1e6
 
-    # Benchmark Linear Scan Lookups
     t0_lin = time.perf_counter()
     for q_cid, c_modes in test_queries:
         partner_id = gin_index.find_involution_partner_linear(q_cid, c_modes)
@@ -318,7 +296,6 @@ def run_single_scaling_benchmark(
 
     speedup = lin_query_total / gin_query_total if gin_query_total > 0 else 1.0
 
-    # Approximate memory footprint in MB
     entry_bytes = sum(len(post) * 8 for post in gin_index.posting_index.values())
     cfg_bytes = sum(len(occ) * 8 for occ in gin_index.cfg_modes.values())
     memory_mb = (entry_bytes + cfg_bytes) / (1024 * 1024)

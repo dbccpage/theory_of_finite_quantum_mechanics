@@ -59,7 +59,6 @@ def test_wire_purity_and_ast_roundtrip():
         assert assert_wire_purity(t["expected_response_wire"]) is True
         assert assert_wire_purity(t["wire_prompt"]) is True
 
-    # Negative controls
     with pytest.raises(ValueError, match="Illegal non-Gamma38"):
         assert_wire_purity("op<<11>_illegal_character_>")
 
@@ -70,7 +69,6 @@ def test_wire_purity_and_ast_roundtrip():
 def test_wire_prompts_lexical_hygiene():
     """Verify that wire prompts pass strict substring lexical hygiene and contain zero English words."""
     for t in WIRE_TURNS:
-        # Purity and equivalence: wire_prompt and grammar_prompt are both input_wire
         assert t["wire_prompt"] == t["input_wire"]
         assert t["grammar_prompt"] == t["input_wire"]
         prompt = t["wire_prompt"]
@@ -94,15 +92,12 @@ def test_pure_symbolic_llm_turn_integration():
     assert len(receipt["turns"]) == 4
 
     for t in receipt["turns"]:
-        # 1. Artifact ID validation
         assert "run_root_id" in t and len(t["run_root_id"]) == 64
         assert "candidate_id" in t and len(t["candidate_id"]) == 64
         assert "content_id" in t and len(t["content_id"]) == 64
 
-        # 2. Terminal status validation: TransportValidated
         assert t["terminal_status"] == "TransportValidated"
 
-        # 3. Pure Gamma38 wire validation
         in_wire = t["input_wire"]
         out_wire = t["response_wire"]
         wire_prompt = t["wire_prompt"]
@@ -116,14 +111,12 @@ def test_pure_symbolic_llm_turn_integration():
         for ch in out_wire:
             assert ch in GAMMA_38
 
-        # 4. AST invertibility: parse_packet -> serialize_packet produces exact wire
         ast_in = parse_packet(in_wire)
         assert serialize_packet(ast_in) == in_wire
 
         ast_out = parse_packet(out_wire)
         assert serialize_packet(ast_out) == out_wire
 
-    # 5. Validate LlmTurnRunRootV1 domain models reconstructed via from_dict
     assert "run_roots" in receipt
     assert len(receipt["run_roots"]) == 4
 

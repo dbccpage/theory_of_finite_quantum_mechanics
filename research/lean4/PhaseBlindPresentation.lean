@@ -1,11 +1,3 @@
-/-
-  PhaseBlindPresentation.lean
-  Phase-blind projection and invariants for Paper 060.
-  AuthorityEffect: None
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import GaussIntKernel
 
@@ -26,3 +18,6 @@ theorem global_phase_blind {Q : Type} (v : Vec GaussInt Q) (q : Q) :
   exact Int.add_comm ((v q).im * (v q).im) ((v q).re * (v q).re)
 
 end SuperpositionQuotientFiber
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PhaseBlindPresentation.lean Claim: weight_nonneg AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

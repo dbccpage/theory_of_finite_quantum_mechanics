@@ -34,7 +34,7 @@ def test_proof_artifact_candidate_cannot_self_verify() -> None:
     assert candidate.authority_effect == "None"
     assert result.proof_artifact_candidates == (candidate,)
     with pytest.raises(TypeError):
-        ProofArtifactCandidate(  # type: ignore[call-arg]
+        ProofArtifactCandidate(
             "kind", "claim", "hash", "algorithm", verification_status="Verified"
         )
 
@@ -46,6 +46,6 @@ def test_diagnostics_are_defensively_snapshotted() -> None:
 
     assert result.diagnostics == {"iterations": 3}
     with pytest.raises(TypeError):
-        result.diagnostics["iterations"] = 4  # type: ignore[index]
+        result.diagnostics["iterations"] = 4
     with pytest.raises(FrozenInstanceError):
-        result.diagnostics = {}  # type: ignore[misc]
+        result.diagnostics = {}

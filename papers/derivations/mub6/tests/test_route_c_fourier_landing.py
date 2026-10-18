@@ -45,7 +45,6 @@ def test_discrete_pigeonhole_fourier_lower_bounds():
             fourier_pairs = comb(n_dita, 2)
             assert fourier_pairs >= 10, f"Expected fourier_pairs >= 10, got {fourier_pairs}"
 
-            # Total Fourier-landing edges: transitions from B_0 (n_dita) + internal pairs
             total_fourier_edges = n_dita + fourier_pairs
             assert total_fourier_edges >= 15, f"Expected >= 15 Fourier edges, got {total_fourier_edges}"
             assert total_fourier_edges > 0, "Fourier avoidance was unexpectedly possible"
@@ -56,8 +55,6 @@ def test_tensor_product_mub_lower_bound():
     p2 = 3
     dim = p1 * p2
     assert dim == 6
-    # Tensor products of complete prime-power MUB sets give a lower bound
-    # min(p1 + 1, p2 + 1) for d = p1 * p2. The upper bound is d + 1.
     lower_bound = min(p1 + 1, p2 + 1)
     upper_bound = dim + 1
     assert lower_bound == 3, f"Expected tensor-product lower bound 3, got {lower_bound}"
@@ -72,7 +69,6 @@ def test_lean4_route_c_formalization_integrity():
 
     content = lean_file.read_text(encoding="utf-8")
     import re
-    # Remove block comments /- ... -/ and line comments -- ...
     stripped = re.sub(r"/-\!?(.*?)-/", "", content, flags=re.DOTALL)
     stripped = re.sub(r"--.*", "", stripped)
     tokens = stripped.split()

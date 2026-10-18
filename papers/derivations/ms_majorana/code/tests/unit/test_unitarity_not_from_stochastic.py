@@ -73,7 +73,7 @@ def phase_family_shadow(_label: PhaseFamily) -> Kernel2:
 def test_reset_column_not_doubly():
     assert RESET.is_column_stochastic()
     assert not RESET.is_doubly_stochastic()
-    assert RESET.k00 + RESET.k01 == 2  # row0 fails doubly
+    assert RESET.k00 + RESET.k01 == 2
 
 
 def test_id_and_flip_doubly():
@@ -98,7 +98,6 @@ def test_ob_unitary_underivable_marked():
     assert underivable_from_stochastic is True
 
 
-# --- Residual: phase family + doubly class + orthogonal lift ---
 
 
 def test_phase_family_card_three_same_shadow():

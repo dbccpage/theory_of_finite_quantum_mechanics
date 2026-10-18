@@ -1,4 +1,3 @@
-//! Truncation, terminal outcomes, and authority/refusal dependent records.
 
 use crate::tower::OmegaLayer;
 use serde::{Deserialize, Serialize};
@@ -30,7 +29,6 @@ impl TerminalOutcome {
     }
 }
 
-/// `Authority(x) := Sigma(t:T_auth)(Pi(x)=inl(t))`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AuthorityType {
     pub subject_ref: String,
@@ -50,7 +48,6 @@ impl AuthorityType {
     }
 }
 
-/// `Refusal(x) := Sigma(f:F)(Pi(x)=inr(f))`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RefusalType {
     pub subject_ref: String,
@@ -75,8 +72,6 @@ impl RefusalType {
     }
 }
 
-/// Dependent packet spine:
-/// `Packet(s) = Sigma K, Sigma E, Sigma V, Sigma tau, LiftDiscipline`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DependentPacket {
     pub layer: OmegaLayer,

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 CS-Q Discretization Defect Operators and Bounded Continuum Recovery.
 
@@ -33,15 +32,15 @@ from interval_calculus import (
 @dataclass(frozen=True)
 class DiscretizationDefectCarrier:
     """Discrete solver outcome equipped with explicit discretization error bound.
-    
+
     Result(a) = ContinuousValue + E(a), with |E(a)| <= prefactor_c * a^order_p.
     """
 
     carrier_id: str
-    parameter_a: Fraction  # Lattice spacing a = 1/N or step tau > 0
-    discrete_value: RationalInterval  # Evaluated discrete observable at spacing a
-    order_p: int  # Discretization order p >= 1 (e.g. p=2 for central difference)
-    prefactor_c: Fraction  # Certified non-negative upper bound on C
+    parameter_a: Fraction
+    discrete_value: RationalInterval
+    order_p: int
+    prefactor_c: Fraction
     physical_observable: str = "energy"
 
     def __post_init__(self) -> None:
@@ -67,7 +66,7 @@ class DiscretizationDefectCarrier:
     @property
     def continuum_enclosure(self) -> RationalInterval:
         """Certified rational interval enclosing the true continuum value.
-        
+
         [discrete_value.lo - defect_bound, discrete_value.hi + defect_bound].
         """
         b = self.defect_bound
@@ -170,11 +169,10 @@ def verify_mesh_refinement(
     )
 
 
-# --- Example Solvers with Certified Discretization Error Operators ---
 
 class DiscreteTrapezoidalQuadratureSolver:
     """Computes definite integral int_0^1 f(x) dx via trapezoidal rule with exact defect bound.
-    
+
     By the Euler-Maclaurin formula:
         int_0^1 f(x) dx = h * [ (f(0) + f(1))/2 + sum_{i=1}^{N-1} f(i*h) ] - (h^2 / 12) f''(xi)
     where h = 1/N.
@@ -194,7 +192,6 @@ class DiscreteTrapezoidalQuadratureSolver:
             raise ValueError("n_intervals must be >= 1")
         h = Fraction(1, n)
 
-        # Trapezoidal sum in exact rational arithmetic
         y_ends = (self.f_eval(Fraction(0)) + self.f_eval(Fraction(1))) / 2
         y_inner = sum(self.f_eval(Fraction(i, n)) for i in range(1, n))
         trap_sum = h * (y_ends + y_inner)
@@ -212,7 +209,7 @@ class DiscreteTrapezoidalQuadratureSolver:
 
 class Discrete1DHamiltonianSolver:
     """Discrete 1D lattice model with exact central difference kinetic energy.
-    
+
     Continuous operator: H = -1/2 d^2/dx^2 + V(x).
     Central difference on grid with spacing a:
         -d^2 psi / dx^2 = (-psi(x+a) + 2 psi(x) - psi(x-a)) / a^2 - (a^2 / 12) psi^(4)(xi).
@@ -227,7 +224,6 @@ class Discrete1DHamiltonianSolver:
         self.omega = _validate_exact_rational(omega, "omega")
         if self.omega <= 0:
             raise ValueError("omega must be strictly positive")
-        # Leading kinetic truncation prefactor C = omega^3 / 48 (safe upper bound)
         self.prefactor_c = (self.omega ** 3) / 48
 
     def ground_state_energy_discrete(self, lattice_sites: int, total_length: Fraction = Fraction(8)) -> DiscretizationDefectCarrier:
@@ -236,14 +232,9 @@ class Discrete1DHamiltonianSolver:
             raise ValueError("lattice_sites must be >= 4")
         a = total_length / n
 
-        # For the discrete harmonic lattice, exact ground state energy has analytical form:
-        # E_0(a) = (1/a) * arcsin(omega * a / 2) ~ 1/2 omega [ 1 - (1/24) (omega * a)^2 ]
-        # In exact rational arithmetic, we take the leading polynomial Taylor truncation + remainder:
         omega_a = self.omega * a
-        # Rational approximation of E_0(a) = (omega / 2) * (1 - (omega_a**2) / 24)
         approx_e0 = (self.omega / 2) * (Fraction(1) - (omega_a ** 2) / 24)
-        
-        # Interval including higher-order terms O(a^4)
+
         rem_a4 = (self.omega / 2) * (omega_a ** 4) / 100
         discrete_int = RationalInterval(approx_e0 - rem_a4, approx_e0 + rem_a4)
 

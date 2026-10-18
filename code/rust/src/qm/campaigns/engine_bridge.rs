@@ -1,18 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-// Governing Rule: RULE[user_global] (Strict Zero-Float Law in Algebraic Core, Diagnostic Lens in Engine Bridge).
 
-//! Engine bridge linking the exact finite QM of `omega_quantum_physics` with the
-//! numerical observables of `omega_engines::quantum`. (It was the separate
-//! `omega_finite_qm` crate until 2026-09-28; that crate held nothing else.)
-//!
-//! Provides bidirectional conversions and diagnostic bridges between:
-//! 1. Exact algebraic finite QM states (`BasicMatrix<T>` over Rational, GaussianRat, Cyc24)
-//! 2. Domain diagonal density matrices (`omega_quantum_physics::density_matrix::DensityMatrix`)
-//! 3. Production numerical density matrices and quantum observables (`omega_engines::quantum::*`)
-//! 4. Derivation targets in `omega_quantum_physics` (Born-Gleason, composition tomography)
-//!
-//! Authority Fence: All floating-point engine observables are diagnostic evaluations
-//! and do not compromise the exact rational proofs of finite quantum mechanics.
 
 use num_traits::ToPrimitive;
 use serde::{Deserialize, Serialize};
@@ -24,7 +10,6 @@ use omega_quantum_physics::engine_bridge::{
 };
 use omega_quantum_physics::tomography;
 
-// Production engine imports
 use linear_algebra::linear_algebra::density::{DensityMatrix, DensityMatrixConfig};
 use omega_engines::quantum::density::{
     bures_angle_observable, bures_distance_observable, classical_projection_observable,
@@ -32,11 +17,9 @@ use omega_engines::quantum::density::{
     trace_observable, von_neumann_entropy_observable,
 };
 
-/// Authority fence string.
 pub const ENGINE_BRIDGE_FENCE: &str =
     "AuthorityEffect None; Diagnostics only; exact finite QM preserved; engine observables are computational lenses.";
 
-/// Diagnostic report containing engine-evaluated observables on a quantum state.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct EngineObservablesReport {
     pub dimension: usize,
@@ -47,7 +30,6 @@ pub struct EngineObservablesReport {
     pub is_pure: bool,
 }
 
-/// Comparison report cross-verifying an exact state against engine observables.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StateEngineComparisonReport {
     pub state_name: String,
@@ -58,11 +40,7 @@ pub struct StateEngineComparisonReport {
     pub purity_matches_expectation: bool,
 }
 
-// ============================================================================
-// 2. Observable Evaluation
-// ============================================================================
 
-/// Evaluate standard quantum engine observables on a production `DensityMatrix`.
 pub fn evaluate_state_observables(dm: &DensityMatrix) -> EngineObservablesReport {
     let trace = trace_observable(dm);
     let purity = purity_observable(dm);
@@ -80,7 +58,6 @@ pub fn evaluate_state_observables(dm: &DensityMatrix) -> EngineObservablesReport
     }
 }
 
-/// Cross-verify a named exact state from `finite_qm::tomography` against engine observables.
 pub fn verify_exact_state_with_engine(
     state_name: &str,
     dim: usize,
@@ -166,12 +143,10 @@ pub fn verify_exact_state_with_engine(
     })
 }
 
-/// Evaluate diagnostic Uhlmann / Jozsa fidelity between two production density matrices.
 pub fn evaluate_state_fidelity(rho: &DensityMatrix, sigma: &DensityMatrix) -> Result<f64, String> {
     fidelity_observable(rho, sigma)
 }
 
-/// Compute Bures metric distance and angle between two states.
 pub fn evaluate_bures_geometry(
     rho: &DensityMatrix,
     sigma: &DensityMatrix,
@@ -181,16 +156,9 @@ pub fn evaluate_bures_geometry(
     Ok((dist, angle))
 }
 
-// ============================================================================
-// 3. Domain Derivation Bridges (Born-Gleason & Local Tomography)
-// ============================================================================
 
-/// Largest gap the Born bridge tolerates between an exact Born weight and the
-/// engine's floating-point classical projection.
 pub const BORN_BRIDGE_TOLERANCE: f64 = 1e-12;
 
-/// Whether each engine weight lies within `tolerance` of the exact Born weight
-/// in the same position.
 pub fn born_weights_match_projection(
     exact: &crate::qm::campaigns::born_gleason::FrameFunction,
     projection: &[f64],
@@ -204,18 +172,6 @@ pub fn born_weights_match_projection(
             .all(|(p, q)| p.to_f64().is_some_and(|p| (p - q).abs() <= tolerance))
 }
 
-/// Bridge between the exact Born weights of a state and the engine's
-/// classical projection of it.
-///
-/// Exact side: the weights `p_i = rho_ii` become a
-/// `born_gleason::FrameFunction`, which refuses negative weights and weights
-/// that do not sum to one, and the declared Gleason assumptions must all be
-/// paid. Engine side: `rho` becomes the engine's density matrix (the engine
-/// validates it) and `classical_projection_observable` reads its diagonal. The
-/// bridge holds when every engine weight is within [`BORN_BRIDGE_TOLERANCE`] of
-/// the exact one. It checks the engine against exact values on one basis. The
-/// assumptions are declared, not computed, and nothing here proves Gleason's
-/// theorem.
 pub fn verify_born_gleason_domain_bridge(
     rho: &BasicMatrix<Rational>,
     assumptions: &crate::qm::campaigns::born_gleason::GleasonAssumptions,
@@ -251,16 +207,6 @@ pub fn verify_born_gleason_domain_bridge(
     ))
 }
 
-/// Bridge between the counted local-tomography identity and the computed span
-/// of product effects.
-///
-/// On `C^(d_A) (x) C^(d_B)` (`ComplexU1`) the count `d_A^2 d_B^2 = (d_A d_B)^2`
-/// holds for every pair of dimensions, so it decides nothing by itself; the
-/// exact rank of the product Hermitian effects in the joint Hermitian space
-/// does. On `R^(d_A) (x) R^(d_B)` (`RealOnly`) the same pipeline runs on real
-/// symmetric bases against `n(n+1)/2`. Returns whether the product effects
-/// span, and refuses when the computed rank and the parameter count disagree.
-/// The engine has no tomography observable, so both sides here are exact.
 pub fn verify_composition_tomography_domain_bridge(
     dim_a: usize,
     dim_b: usize,

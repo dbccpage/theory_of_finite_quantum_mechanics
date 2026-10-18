@@ -82,7 +82,6 @@ def check_manifest(manifest_path: Path) -> list[str]:
         for relative in sorted(recorded - expected):
             errors.append(f"Excluded file listed in manifest: {relative}")
 
-        # Check required structural files/patterns
         for pattern in REQUIRED_PATTERNS:
             if "/" in pattern:
                 target = ROOT / pattern

@@ -48,7 +48,6 @@ NUM_SUBMATRICES_225: int = 225
 
 DEFAULT_RECEIPT_PATH: str = "artifacts/mub_target_a11_orbit_exhaustiveness_receipt.json"
 
-# Canonical Orbit Class Identifiers
 ORBIT_F6_DITA: str = "F6_Fourier_Dita"
 ORBIT_B6_SZOLLOSI: str = "B6_Szollosi_Deltoid"
 ORBIT_S6_TAO: str = "S6_Tao_Confluence"
@@ -62,7 +61,6 @@ ALL_CATALOG_ORBITS: Tuple[str, ...] = (
     ORBIT_H6_HAAGERUP,
 )
 
-# Canonical mapping from Orbit Catalog to Target A10 Global Cover Regions
 ORBIT_TO_A10_REGION: Dict[str, str] = {
     ORBIT_F6_DITA: REGION_F6_DITA,
     ORBIT_B6_SZOLLOSI: REGION_B6_SZOLLOSI,
@@ -70,18 +68,14 @@ ORBIT_TO_A10_REGION: Dict[str, str] = {
     ORBIT_H6_HAAGERUP: REGION_H6_HAAGERUP,
 }
 
-# Regional certified obstruction margins corresponding to orbits
 ORBIT_CERTIFIED_MARGINS: Dict[str, Fraction] = {
-    ORBIT_F6_DITA: MARGIN_F6,        # 37249 / 90000
-    ORBIT_B6_SZOLLOSI: MARGIN_B6,    # 12133 / 30000
-    ORBIT_S6_TAO: MARGIN_S6,        # 527 / 576
-    ORBIT_H6_HAAGERUP: MARGIN_H6,    # 12133 / 30000
+    ORBIT_F6_DITA: MARGIN_F6,
+    ORBIT_B6_SZOLLOSI: MARGIN_B6,
+    ORBIT_S6_TAO: MARGIN_S6,
+    ORBIT_H6_HAAGERUP: MARGIN_H6,
 }
 
 
-# ==============================================================================
-# 1. Zero Floating-Point Type Auditor
-# ==============================================================================
 
 def assert_no_float(obj: Any, path: str = "root", seen: Optional[Set[int]] = None) -> None:
     """Recursively verify that no floating-point types exist in any data structure.
@@ -136,9 +130,6 @@ def assert_no_float(obj: Any, path: str = "root", seen: Optional[Set[int]] = Non
             assert_no_float(v, f"{path}.{k}", seen)
 
 
-# ==============================================================================
-# 2. Exact Matrix Arithmetic & Canonical Hadamard Constructions
-# ==============================================================================
 
 def matrix_adjoint(m: Sequence[Sequence[Cyc24]]) -> List[List[Cyc24]]:
     """Compute exact Hermitian adjoint (conjugate transpose) M†."""
@@ -179,14 +170,12 @@ def is_unitary_chm(m: Sequence[Sequence[Cyc24]]) -> Tuple[bool, str]:
     if len(m) != D or any(len(row) != D for row in m):
         return False, f"Matrix dimension {len(m)}x{len(m[0]) if m else 0} != 6x6"
 
-    # 1. Check unit modulus
     for r in range(D):
         for c in range(D):
             abs_sq = m[r][c].abs_sq()
             if abs_sq != Cyc24.one():
                 return False, f"Entry at ({r}, {c}) is not unit modulus: |z|^2 = {abs_sq}"
 
-    # 2. Check orthogonality: m * m† == 6 * I_6
     m_dag = matrix_adjoint(m)
     prod = matrix_mul(m, m_dag)
     six = Cyc24.rat(Fraction(6, 1))
@@ -226,7 +215,6 @@ def dephase_hadamard_matrix(m: Sequence[Sequence[Cyc24]]) -> List[List[Cyc24]]:
     return out
 
 
-# --- Canonical 4 Matrix Representatives ---
 
 def f6_fourier_matrix() -> List[List[Cyc24]]:
     """Construct standard Fourier CHM F_6 in Q(zeta_24).
@@ -269,12 +257,12 @@ def haagerup_h6_matrix() -> List[List[Cyc24]]:
       (a, b, c, d, e, f) = (1, 1, i, 1, 1, -1)
     where A = circ(1, 1, i), B = circ(1, 1, -1).
     """
-    a = Cyc24.zeta(0)   # 1
-    b = Cyc24.zeta(0)   # 1
-    c = Cyc24.zeta(6)   # i
-    d = Cyc24.zeta(0)   # 1
-    e = Cyc24.zeta(0)   # 1
-    f = Cyc24.zeta(12)  # -1
+    a = Cyc24.zeta(0)
+    b = Cyc24.zeta(0)
+    c = Cyc24.zeta(6)
+    d = Cyc24.zeta(0)
+    e = Cyc24.zeta(0)
+    f = Cyc24.zeta(12)
 
     return szollosi_b6_general(a, b, c, d, e, f)
 
@@ -348,9 +336,6 @@ def szollosi_b6_canonical() -> List[List[Cyc24]]:
     return mat
 
 
-# ==============================================================================
-# 3. Exact 225 Submatrix Cross-Ratio Invariant Evaluator
-# ==============================================================================
 
 def enumerate_225_submatrices() -> List[Tuple[int, int, int, int]]:
     """Enumerate all 225 submatrix coordinate quadruples (r0, r1, c0, c1)
@@ -439,9 +424,6 @@ def analyze_cross_ratio_spectrum(m: Sequence[Sequence[Cyc24]]) -> Dict[str, Any]
     return spectrum_report
 
 
-# ==============================================================================
-# 4. Deterministic Decision-Tree Orbit Classifier
-# ==============================================================================
 
 @dataclass(frozen=True)
 class OrbitClassificationReport:
@@ -506,7 +488,6 @@ def classify_orbit(m: Sequence[Sequence[Cyc24]]) -> OrbitClassificationReport:
     """
     assert_no_float(m, "classify_orbit.m")
 
-    # Step 0: Check CHM validity
     is_chm, chm_msg = is_unitary_chm(m)
     if not is_chm:
         return OrbitClassificationReport(
@@ -521,7 +502,6 @@ def classify_orbit(m: Sequence[Sequence[Cyc24]]) -> OrbitClassificationReport:
             details={"chm_error": chm_msg},
         )
 
-    # Step 1: Invariant cross-ratio spectral analysis
     spec = analyze_cross_ratio_spectrum(m)
     exps_set = set(spec["unique_exponents"])
     unique_exps_tuple = tuple(spec["unique_exponents"])
@@ -529,10 +509,8 @@ def classify_orbit(m: Sequence[Sequence[Cyc24]]) -> OrbitClassificationReport:
     cnt_minus_1 = spec["count_minus_1"]
     cnt_hist = spec["exponent_histogram"]
 
-    # Step 2: Decision Tree Branch Evaluation
     non_root24_count = spec.get("non_root24_count", 0)
 
-    # Branch A: Tao S_6 (strictly cubic roots: exponents in {0, 8, 16})
     if non_root24_count == 0 and exps_set.issubset({0, 8, 16}) and len(exps_set) > 0:
         return OrbitClassificationReport(
             is_chm=True,
@@ -546,7 +524,6 @@ def classify_orbit(m: Sequence[Sequence[Cyc24]]) -> OrbitClassificationReport:
             details={"spectrum_type": "cubic_mu3", "mapped_region": REGION_S6_TAO, "non_root24_count": 0},
         )
 
-    # Branch B: Haagerup H_6 (Gaussian 4th roots: exponents in {0, 6, 12, 18} with imaginary entries)
     if non_root24_count == 0 and exps_set.issubset({0, 6, 12, 18}) and cnt_imag == 120 and cnt_minus_1 == 75:
         return OrbitClassificationReport(
             is_chm=True,
@@ -560,7 +537,6 @@ def classify_orbit(m: Sequence[Sequence[Cyc24]]) -> OrbitClassificationReport:
             details={"spectrum_type": "quartic_mu4", "mapped_region": REGION_H6_HAAGERUP, "non_root24_count": 0},
         )
 
-    # Branch C: Fourier / Dita F_6 (6th roots: exponents in {0, 4, 8, 12, 16, 20} with 0 imaginary entries)
     if exps_set.issubset({0, 4, 8, 12, 16, 20}) and cnt_imag == 0 and len(exps_set) > 0:
         if non_root24_count == 0:
             notes_f6 = "Classified as Fourier / Dita F_6 orbit: cross-ratios strictly in sextic spectrum mu_6."
@@ -580,7 +556,6 @@ def classify_orbit(m: Sequence[Sequence[Cyc24]]) -> OrbitClassificationReport:
             details={"spectrum_type": spec_type, "mapped_region": REGION_F6_DITA, "non_root24_count": non_root24_count},
         )
 
-    # Branch D: Szollosi B_6 (contains odd multiples of 3, e.g. octic spectrum in mu_8)
     if bool(exps_set.intersection({3, 9, 15, 21})):
         return OrbitClassificationReport(
             is_chm=True,
@@ -594,7 +569,6 @@ def classify_orbit(m: Sequence[Sequence[Cyc24]]) -> OrbitClassificationReport:
             details={"spectrum_type": "szollosi_octic_mu8", "mapped_region": REGION_B6_SZOLLOSI},
         )
 
-    # Check 2-circulant structure directly for non-discrete B_6 points
     if _is_szollosi_2circulant(m):
         return OrbitClassificationReport(
             is_chm=True,
@@ -608,7 +582,6 @@ def classify_orbit(m: Sequence[Sequence[Cyc24]]) -> OrbitClassificationReport:
             details={"spectrum_type": "szollosi_2circulant_continuous", "mapped_region": REGION_B6_SZOLLOSI},
         )
 
-    # Branch E: Unclassified
     return OrbitClassificationReport(
         is_chm=True,
         orbit_id=ORBIT_UNCLASSIFIED,
@@ -632,19 +605,16 @@ def _is_szollosi_2circulant(m: Sequence[Sequence[Cyc24]]) -> bool:
         e = m[0][4]
         f = m[0][5]
 
-        # Check A = circ(a, b, c)
         if m[1][0] != c or m[1][1] != a or m[1][2] != b:
             return False
         if m[2][0] != b or m[2][1] != c or m[2][2] != a:
             return False
 
-        # Check B = circ(d, e, f)
         if m[1][3] != f or m[1][4] != d or m[1][5] != e:
             return False
         if m[2][3] != e or m[2][4] != f or m[2][5] != d:
             return False
 
-        # Check z1 + z2 == 0
         z1 = a.mul(c.conj()).add(b.mul(a.conj())).add(c.mul(b.conj()))
         z2 = d.mul(f.conj()).add(e.mul(d.conj())).add(f.mul(e.conj()))
         return z1.add(z2) == Cyc24.zero()
@@ -673,9 +643,6 @@ def verify_orbit_membership(
     return True, f"Matrix correctly verified and classified into orbit '{expected_orbit}'", report
 
 
-# ==============================================================================
-# 5. Orbit Reduction Certifier: Mapping Orbits to Target A10 Partition Cells
-# ==============================================================================
 
 @dataclass(frozen=True)
 class OrbitReductionCertificate:
@@ -745,10 +712,8 @@ def certify_orbit_reduction(
     if not cells:
         raise ValueError(f"Target A10 region '{region_id}' contains no partition cells")
 
-    # Select representative anchor cell for this orbit
     target_cell: RationalCell = cells[0]
     for c in cells:
-        # Prefer an arc cell or basepoint cell if named accordingly
         if "arc" in c.cell_id or "cell_0" in c.cell_id:
             target_cell = c
             break
@@ -792,7 +757,6 @@ def verify_all_canonical_orbits_reduction(
 
     certificates: Dict[str, OrbitReductionCertificate] = {}
     for label, (mat, expected_orbit) in canonical_matrices.items():
-        # Verify classification first
         ok, msg, rep = verify_orbit_membership(mat, expected_orbit)
         if not ok:
             raise ValueError(f"Canonical matrix '{label}' verification failed: {msg}")
@@ -804,9 +768,6 @@ def verify_all_canonical_orbits_reduction(
     return certificates
 
 
-# ==============================================================================
-# 6. Negative Control Audits & Epistemic Falsification Suite
-# ==============================================================================
 
 def audit_perturbed_matrix(
     m: Sequence[Sequence[Cyc24]],
@@ -874,9 +835,6 @@ def audit_float_injection_rejection() -> Tuple[bool, str]:
     return True, "Negative control passed: Strict assert_no_float rejected all float injections"
 
 
-# ==============================================================================
-# 7. Canonical Receipt Generator and Auditor
-# ==============================================================================
 
 def generate_target_a11_receipt(
     output_path: Optional[str] = None,
@@ -885,7 +843,6 @@ def generate_target_a11_receipt(
     tree = build_canonical_global_partition_tree()
     certs = verify_all_canonical_orbits_reduction(tree=tree)
 
-    # Run negative controls
     h6 = haagerup_h6_matrix()
     pert_ok, pert_msg = audit_perturbed_matrix(h6, Cyc24.rat(Fraction(1, 100)))
     if not pert_ok:
@@ -956,10 +913,8 @@ def audit_target_a11_receipt(
     else:
         raise TypeError(f"Expected path or dict, got {type(receipt_file_or_data)}")
 
-    # 1. Zero float verification
     assert_no_float(data, "audit_target_a11_receipt")
 
-    # 2. Schema, firewall, authority effect
     if data.get("schema_version") != SCHEMA_VERSION:
         raise ValueError(f"Invalid schema_version: {data.get('schema_version')} != {SCHEMA_VERSION}")
     if data.get("firewall") != FIREWALL_LINE:
@@ -967,14 +922,12 @@ def audit_target_a11_receipt(
     if data.get("authority_effect") != AUTHORITY_EFFECT:
         raise ValueError(f"Invalid authority_effect: {data.get('authority_effect')} != {AUTHORITY_EFFECT}")
 
-    # 3. Catalog coverage verification
     catalog_info = data.get("catalog_exhaustiveness", {})
     recorded_orbits = set(catalog_info.get("all_catalog_orbits", []))
     expected_orbits = set(ALL_CATALOG_ORBITS)
     if recorded_orbits != expected_orbits:
         raise ValueError(f"Catalog mismatch: {recorded_orbits} != {expected_orbits}")
 
-    # 4. Canonical reductions verification
     reductions = data.get("canonical_matrices_reduction", {})
     for expected_label in ("F6_Fourier", "S6_Tao", "H6_Haagerup", "B6_Szollosi"):
         if expected_label not in reductions:
@@ -1001,7 +954,6 @@ def audit_target_a11_receipt(
         if not w_data:
             raise ValueError(f"Missing witness_data for '{expected_label}'")
 
-    # 5. Negative controls
     neg_controls = data.get("negative_controls", {})
     required_neg = (
         "perturbed_non_chm_rejected",
@@ -1013,7 +965,6 @@ def audit_target_a11_receipt(
         if not neg_controls.get(ctrl):
             raise ValueError(f"Negative control '{ctrl}' not satisfied in receipt")
 
-    # 6. Overall verification flag
     if not data.get("verified"):
         raise ValueError("Receipt verified flag is False")
 

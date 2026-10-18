@@ -1,48 +1,3 @@
-//! `VerifiedContinuationContextV2` — one root evidence object.
-//!
-//! Implements ADR-008. v1 is quarantined `REJECTED_UNSOUND`; this is the
-//! replacement, built to the **Outer Boundary Closure Invariant**:
-//!
-//! > An evidence seal is incomplete until every downstream representation and
-//! > consumer — serialized products, adapters, caches, replay, execution terminals
-//! > — is unable to cross proposal into execution without the same root
-//! > verification authority.
-//!
-//! # The shape, and why it differs from v1
-//!
-//! ```text
-//!   RawEvidencePacket        <- fully public, fully forgeable. THAT IS FINE.
-//!         │                     Lying here is detected, never carried.
-//!      verify()              <- recomputes everything discriminating
-//!         │
-//!   VerifiedContinuationContextV2   <- sealed; one root digest binds every
-//!         │                            discriminating field exactly once
-//!      decide()             <- takes ONLY the context. No booleans.
-//!         │
-//!   ContinuationDecision    <- derived, never stored, never deserializable
-//! ```
-//!
-//! v1 failed four times by sealing one artefact and leaving the next one open.
-//! Two corollaries from ADR-008 are structural here:
-//!
-//! * **C1 — seal the product, not only the producer.** [`ContinuationDecision`]
-//!   stores no verdict and has no `Deserialize`; the verdict is derived from
-//!   blockers, so there is no field to forge.
-//! * **C2 — bind the discriminating field, not merely the bulk.** The root digest
-//!   binds the **whole adequacy report**, the declaration, the capacity evidence,
-//!   the global evaluator trace and the preservation witness — not just the corpus.
-//!   v1 hashed corpus and rows faithfully and still collided because adequacy sat
-//!   outside the hash.
-//!
-//! # What no public constructor accepts
-//!
-//! `detector_adequate` · `adapter_sound` · `residual_preservation_verified` ·
-//! `has_witness` where the intake receipt establishes it · caller-asserted
-//! `Exhibited` · a precomputed adequacy verdict or classification.
-//!
-//! Every one of those was an input in some v1 round. They are derived results.
-//!
-//! **AuthorityEffect: None.**
 
 use std::collections::BTreeMap;
 
@@ -63,12 +18,9 @@ use crate::bound_measurement::CanonicalHasher;
 use crate::ledger::EpkResidualLedger;
 use crate::verdict::{classify, EvaluatorProvenance, LggrVerdict};
 
-/// The only schema `verify` accepts. v1 packets are refused before recomputation.
 pub const V2_CONTEXT_SCHEMA: &str = "omega.epk.verified-continuation-context.v2";
 
-// ── typed refusals ───────────────────────────────────────────────────────────
 
-/// Every way verification can refuse. Refusals are typed, never downgrades.
 #[derive(Debug, Clone, PartialEq, thiserror::Error)]
 pub enum TypedRefusal {
     #[error("schema {found:?} refused; this verifier accepts only {expected}")]
@@ -98,8 +50,6 @@ pub enum TypedRefusal {
         ledger_left: Option<bool>,
         ledger_right: Option<bool>,
     },
-    /// `E_g` determines `Δ_E`. v1 never checked it; here its absence is fatal to
-    /// an `Exhibited` reading rather than silently downgraded.
     #[error("no global evaluator trace for {record_id}: E_g cannot be replayed, so Exhibited is refused")]
     GlobalTraceMissing { record_id: String },
     #[error(
@@ -110,41 +60,19 @@ pub enum TypedRefusal {
         declared: bool,
         replayed: bool,
     },
-    /// A caller cannot clear a refusal that was already recorded.
     #[error("prior refusal {0:?} cannot be cleared by a later packet")]
     PriorRefusalNotMonotone(ContinuationBlockerV2),
-    /// No trusted verifier is wired for a capability, so the fact cannot be
-    /// established. Refusing beats inventing it from the packet.
     #[error("no trusted verifier for {capability}: the fact cannot be established")]
     NoTrustedVerifier { capability: &'static str },
     #[error("a declaration is required before capacity can be solved")]
     DeclarationMissing,
-    /// The capacity solver ran and refused. Distinct from NoTrustedVerifier: a
-    /// solver IS wired, it just could not establish the capacity for this input.
     #[error("capacity solver refused: {detail}")]
     CapacitySolverRefused { detail: String },
     #[error(transparent)]
     Metrics(#[from] EpkError),
 }
 
-// ── intake ───────────────────────────────────────────────────────────────────
 
-/// Opaque proof that Prime 001-I / 000 admitted this candidate.
-///
-/// Bound to a run id, so a receipt from one run cannot license another. v1 left
-/// `has_witness` and `next_carrier_declared` as caller booleans; here they are
-/// established by admission.
-/// `Serialize`-only, deliberately. `Deserialize` WAS derived, which made
-/// `admit()`'s checks bypassable: private fields do not stop serde, so
-/// `serde_json::from_str::<AcceptedIntakeReceipt>(..)` minted a receipt with an
-/// EMPTY `witness_certificate` and `next_carrier` -- precisely the two conditions
-/// `admit()` exists to reject. The sibling evidence types were already pinned this
-/// way; this one was not.
-///
-/// ```compile_fail
-/// use omega_epk::v2::AcceptedIntakeReceipt;
-/// let _: AcceptedIntakeReceipt = serde_json::from_str("{}").unwrap();
-/// ```
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct AcceptedIntakeReceipt {
     run_id: String,
@@ -154,7 +82,6 @@ pub struct AcceptedIntakeReceipt {
 }
 
 impl AcceptedIntakeReceipt {
-    /// Minted only by a successful admission.
     pub fn admit(
         run_id: impl Into<String>,
         candidate_digest: impl Into<String>,
@@ -163,8 +90,6 @@ impl AcceptedIntakeReceipt {
     ) -> Option<Self> {
         let witness_certificate = witness_certificate.into();
         let next_carrier = next_carrier.into();
-        // Admission requires a witness and a declared next carrier; without them
-        // there is nothing to admit.
         if witness_certificate.is_empty() || next_carrier.is_empty() {
             return None;
         }
@@ -188,19 +113,15 @@ impl AcceptedIntakeReceipt {
     pub fn next_carrier(&self) -> &str {
         &self.next_carrier
     }
-    /// Establishes Prime 002's `has_witness` conjunct. Not a caller boolean.
     pub fn has_witness(&self) -> bool {
         !self.witness_certificate.is_empty()
     }
-    /// Establishes `next_carrier_declared`.
     pub fn next_carrier_declared(&self) -> bool {
         !self.next_carrier.is_empty()
     }
 }
 
-// ── transport / preservation ─────────────────────────────────────────────────
 
-/// What a caller *claims* about a transport. Verified, never trusted.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct TransportClaim {
     pub source_carrier: String,
@@ -208,7 +129,6 @@ pub struct TransportClaim {
     pub loss_ledger: Vec<String>,
 }
 
-/// Verifier-produced. Replaces v1's caller-supplied `residual_preservation_verified`.
 #[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct ResidualPreservationWitness {
     source_carrier: String,
@@ -220,15 +140,6 @@ pub struct ResidualPreservationWitness {
 }
 
 impl ResidualPreservationWitness {
-    /// Build from an **independently measured** target residual.
-    ///
-    /// The caller supplies neither side of this comparison: `source_ngd` is derived
-    /// from the corpus, `measured_target` comes from [`TransportVerifier`]. An
-    /// earlier revision compared against a caller-supplied `target_ngd`, so
-    /// echoing the source value minted `preserved = true`.
-    ///
-    /// A non-empty loss ledger also blocks preservation: an adapter that reports
-    /// loss has not preserved the residual, whatever the numbers say.
     fn from_measurement(claim: &TransportClaim, source_ngd: f64, measured_target: f64) -> Self {
         let preserved = measured_target.is_finite()
             && source_ngd.is_finite()
@@ -251,7 +162,6 @@ impl ResidualPreservationWitness {
         &self.target_carrier
     }
 
-    /// Establishes Prime 002's `adapter_sound` conjunct. Not a caller boolean.
     pub fn preserved(&self) -> bool {
         self.preserved
     }
@@ -266,19 +176,7 @@ impl ResidualPreservationWitness {
     }
 }
 
-// ── the raw packet ───────────────────────────────────────────────────────────
 
-/// Everything a caller supplies, entirely public and entirely forgeable.
-///
-/// **That is deliberate.** Under the Outer Boundary Closure Invariant the input
-/// surface does not need sealing — [`verify`] recomputes every discriminating
-/// field from it. A lie here is *detected*, never carried forward. v1 tried to
-/// seal inputs and leaked at each new layer; v2 seals only the verified product.
-///
-/// `Serialize` but not `Deserialize` — not for safety, but because its
-/// `DetectorDeploymentDeclaration` and `DetectorCapacityEvidence` components are
-/// themselves deliberately non-deserializable. A packet is assembled in-process
-/// from real objects; it is never parsed from attacker-controlled JSON.
 #[derive(Debug, Clone, Serialize)]
 pub struct RawEvidencePacket {
     pub schema: String,
@@ -289,8 +187,6 @@ pub struct RawEvidencePacket {
     pub boundary: BoundarySlice,
     pub declaration: Option<DetectorDeploymentDeclaration>,
     pub selected_row: usize,
-    /// What the caller *claims* about a transport. The target residual is measured
-    /// by [`TransportVerifier`], never taken from here.
     pub transport: Option<TransportClaim>,
     pub budget_remaining: f64,
     pub delta_control: f64,
@@ -299,30 +195,15 @@ pub struct RawEvidencePacket {
     pub coda_gtla_refusal: bool,
 }
 
-// ── trusted verifier dependencies ────────────────────────────────────────────
-//
-// `verify` cannot establish external facts from raw data. An earlier revision
-// tried: it compared `global_evaluator_trace[id]` against `record.global_pass`
-// (two caller-supplied copies of the same claim), compared a derived source `ngd`
-// against a caller-supplied `target_ngd`, and derived adequacy from a
-// caller-minted `DetectorCapacityEvidence`. Each was a consistency check dressed
-// as verification, and each was defeated by supplying both sides.
-//
-// The facts now come from dependencies, and the packet has no field through which
-// to supply them.
 
-/// Confirms an intake receipt was really issued by admission.
 pub trait AdmissionAuthority {
     fn confirm_admission(&self, receipt: &AcceptedIntakeReceipt) -> Result<(), TypedRefusal>;
 }
 
-/// Re-runs the global evaluator. The packet carries no copy of `E_g` to compare
-/// against — this is the only source.
 pub trait GlobalEvaluatorReplay {
     fn replay_global(&self, record: &CompositionRecord) -> Result<bool, TypedRefusal>;
 }
 
-/// Produces capacity evidence by **solving**, not by accepting a DTO.
 pub trait CapacitySolver {
     fn solve(
         &self,
@@ -333,18 +214,14 @@ pub trait CapacitySolver {
     ) -> Result<DetectorCapacityEvidence, TypedRefusal>;
 }
 
-/// Independently measures the residual at the target carrier.
 pub trait TransportVerifier {
     fn measure_target(&self, claim: &TransportClaim, source_ngd: f64) -> Result<f64, TypedRefusal>;
 }
 
-/// Append-only standing refusals for a run. The packet cannot omit them, which is
-/// what makes monotonicity real rather than voluntary.
 pub trait RefusalStore {
     fn standing_refusals(&self, run_id: &str) -> Vec<ContinuationBlockerV2>;
 }
 
-/// The full trusted surface `verify` requires.
 pub trait VerifierSuite {
     fn admission(&self) -> &dyn AdmissionAuthority;
     fn global_replay(&self) -> &dyn GlobalEvaluatorReplay;
@@ -353,11 +230,6 @@ pub trait VerifierSuite {
     fn refusals(&self) -> &dyn RefusalStore;
 }
 
-/// The honest default: refuses everything.
-///
-/// Where no trusted verifier is wired, verification **refuses** rather than
-/// fabricating a fact from the packet. Shipping this as the default is the point:
-/// a caller with no verifiers gets refusals, not green.
 #[derive(Debug, Clone, Copy, Default)]
 pub struct RefusingVerifierSuite;
 
@@ -397,7 +269,6 @@ impl TransportVerifier for RefusingVerifierSuite {
 }
 impl RefusalStore for RefusingVerifierSuite {
     fn standing_refusals(&self, _run_id: &str) -> Vec<ContinuationBlockerV2> {
-        // Unknown store: assume a refusal stands. Fail closed.
         vec![ContinuationBlockerV2::PriorRefusalStanding]
     }
 }
@@ -419,7 +290,6 @@ impl VerifierSuite for RefusingVerifierSuite {
     }
 }
 
-// ── blockers ─────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum ContinuationBlockerV2 {
@@ -435,19 +305,10 @@ pub enum ContinuationBlockerV2 {
     PriorRefusalStanding,
 }
 
-// ── the verified context ─────────────────────────────────────────────────────
 
-/// One root evidence object. Private fields, `Serialize`-only, no constructor
-/// other than [`verify`].
-///
-/// ```compile_fail
-/// use omega_epk::v2::VerifiedContinuationContextV2;
-/// let _: VerifiedContinuationContextV2 = serde_json::from_str("{}").unwrap();
-/// ```
 #[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct VerifiedContinuationContextV2 {
     schema: &'static str,
-    /// Binds **every** discriminating field exactly once.
     root_digest: String,
     run_id: String,
     metrics: EpkMetrics,
@@ -501,7 +362,6 @@ impl VerifiedContinuationContextV2 {
     pub fn preservation(&self) -> Option<&ResidualPreservationWitness> {
         self.preservation.as_ref()
     }
-    /// **Always** [`AuthorityEffect::None`].
     pub fn authority_effect(&self) -> AuthorityEffect {
         AuthorityEffect::None
     }
@@ -512,19 +372,7 @@ impl VerifiedContinuationContextV2 {
     }
 }
 
-// ── the decision ─────────────────────────────────────────────────────────────
 
-/// Derived, never stored, never deserializable (ADR-008 C1).
-///
-/// ```compile_fail
-/// use omega_epk::v2::ContinuationDecision;
-/// let _: ContinuationDecision = serde_json::from_str("{}").unwrap();
-/// ```
-///
-/// ```compile_fail
-/// use omega_epk::v2::ContinuationDecision;
-/// let _ = ContinuationDecision { blockers: vec![], root_digest: String::new() };
-/// ```
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ContinuationDecision {
     blockers: Vec<ContinuationBlockerV2>,
@@ -532,15 +380,12 @@ pub struct ContinuationDecision {
 }
 
 impl ContinuationDecision {
-    /// Derived from `blockers`. There is no stored verdict to forge.
     pub fn may_continue(&self) -> bool {
         self.blockers.is_empty()
     }
     pub fn blockers(&self) -> &[ContinuationBlockerV2] {
         &self.blockers
     }
-    /// The context this decision came from. A decision cannot be replayed against
-    /// a different root.
     pub fn root_digest(&self) -> &str {
         &self.root_digest
     }
@@ -556,17 +401,11 @@ impl ContinuationDecision {
     }
 }
 
-// ── verify ───────────────────────────────────────────────────────────────────
 
-/// The only way to obtain a [`VerifiedContinuationContextV2`].
-///
-/// Order is fail-closed: schema, then intake, then the corpus, then the traces,
-/// then adequacy, then transport — each refusing before the next is consulted.
 pub fn verify(
     packet: &RawEvidencePacket,
     suite: &dyn VerifierSuite,
 ) -> Result<VerifiedContinuationContextV2, TypedRefusal> {
-    // 1. Schema first. v1 and unknown schemas are refused before any recomputation.
     if packet.schema != V2_CONTEXT_SCHEMA {
         return Err(TypedRefusal::SchemaRefused {
             found: packet.schema.clone(),
@@ -574,8 +413,6 @@ pub fn verify(
         });
     }
 
-    // 2. Intake: present, run-bound, AND confirmed by the admission authority.
-    //    An earlier revision checked only the run id and trusted the receipt.
     let intake = packet
         .accepted_intake
         .as_ref()
@@ -588,7 +425,6 @@ pub fn verify(
     }
     suite.admission().confirm_admission(intake)?;
 
-    // 3. Corpus.
     if packet.records.is_empty() {
         return Err(TypedRefusal::EmptyCorpus);
     }
@@ -598,7 +434,6 @@ pub fn verify(
         len: packet.records.len(),
     })?;
 
-    // 4. Local traces must agree with the ledger.
     for r in &packet.records {
         let l = packet
             .trace_ledger
@@ -619,8 +454,6 @@ pub fn verify(
         }
     }
 
-    // 5. GLOBAL evaluator: REPLAYED by the verifier. The packet carries no copy to
-    //    compare against, so a caller cannot supply both sides of the check.
     let mut replayed_global: BTreeMap<String, bool> = BTreeMap::new();
     for r in &packet.records {
         let replayed = suite.global_replay().replay_global(r)?;
@@ -635,7 +468,6 @@ pub fn verify(
     }
     let provenance = EvaluatorProvenance::Exhibited;
 
-    // 6. Capacity evidence is SOLVED, not supplied.
     let declaration = packet
         .declaration
         .as_ref()
@@ -666,7 +498,6 @@ pub fn verify(
     let verdict = classify(&defect, Some(&adequacy), provenance)
         .expect("defects from evaluator_gluing_defect are well-formed");
 
-    // 7. Transport: the target residual is MEASURED by the verifier.
     let preservation = match packet.transport.as_ref() {
         Some(claim) => {
             let measured = suite.transport().measure_target(claim, ledger.ngd)?;
@@ -677,10 +508,8 @@ pub fn verify(
         None => None,
     };
 
-    // 8. Standing refusals come from the append-only store, not the packet.
     let standing = suite.refusals().standing_refusals(&packet.run_id);
 
-    // 9. ONE root digest binding every discriminating field exactly once.
     let mut h = CanonicalHasher::new(V2_CONTEXT_SCHEMA);
     h.str_field("run_id", &packet.run_id);
     h.str_field("intake_run", intake.run_id());
@@ -770,8 +599,6 @@ pub fn verify(
     })
 }
 
-/// Stable tag for a structural failure. Explicit so the canonical encoding never
-/// depends on `Debug`.
 fn structural_failure_tag(f: &crate::adequacy::DetectorStructuralFailure) -> &'static str {
     use crate::adequacy::DetectorStructuralFailure as F;
     match f {
@@ -789,7 +616,6 @@ fn structural_failure_tag(f: &crate::adequacy::DetectorStructuralFailure) -> &'s
     }
 }
 
-/// Stable tag for a blocker.
 fn blocker_tag(b: ContinuationBlockerV2) -> &'static str {
     match b {
         ContinuationBlockerV2::IntakeNotAccepted => "IntakeNotAccepted",
@@ -814,13 +640,7 @@ fn adequacy_kind_tag(k: DetectorAdequacyVerdictKind) -> &'static str {
     }
 }
 
-// ── decide ───────────────────────────────────────────────────────────────────
 
-/// Decide continuation from **only** the verified context.
-///
-/// There are no boolean parameters. Every conjunct is read off evidence that
-/// `verify` established: the witness from the intake receipt, adapter soundness
-/// from the preservation witness, detector adequacy from the adequacy report.
 pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {
     let mut blockers = Vec::new();
 
@@ -835,7 +655,6 @@ pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {
     }
     match &context.preservation {
         Some(w) if w.preserved() => {}
-        // No transport claimed is not the same as a verified preserving one.
         _ => blockers.push(ContinuationBlockerV2::AdapterNotPreserving),
     }
     if context.provenance != EvaluatorProvenance::Exhibited {

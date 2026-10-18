@@ -67,7 +67,6 @@ def prompt_civilization_presentation() -> tuple[
         repo_root / "omega_engine_pfp" / "domain" / "entities" / "packet_envelope.py"
     )
 
-    # Map digest sources to actual files
     digest_map = {
         "models": _file_digest(root / "models.py"),
         "review": _file_digest(root / "review.py"),

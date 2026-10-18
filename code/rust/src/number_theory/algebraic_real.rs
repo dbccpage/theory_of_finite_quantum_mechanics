@@ -1,10 +1,3 @@
-//! Exact real algebraic values, with canonical polynomial and quadratic carriers.
-//!
-//! Largest real roots of monic integer polynomials are recognized as rationals
-//! or quadratic values when certified, otherwise retained as isolated roots.
-//! Polynomial arithmetic and Sturm counts belong to `crate::polynomial`;
-//! squarefree radical normalization belongs to `crate::quadratic`.
-//! AuthorityEffect: None.
 use crate::polynomial::{Polynomial, PolynomialError, SturmSequence};
 use crate::quadratic::{QuadraticError, QuadraticNumber, Surd};
 use crate::rational::Rational;
@@ -44,7 +37,6 @@ fn check_width(width: &Q) -> Result<(), AlgebraicRealError> {
     }
     Ok(())
 }
-/// A canonical squarefree integer polynomial with exactly one root in `(lower, upper]`.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct IsolatedRoot {
     polynomial: Vec<BigInt>,
@@ -73,7 +65,6 @@ impl IsolatedRoot {
         Interval::try_new(lo, hi).map_err(|_| AlgebraicRealError::Invalid("ordered enclosure"))
     }
 }
-/// A real algebraic number in the strongest form certified by the constructor.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum RealAlgebraic {
     Rational(Q),
@@ -141,8 +132,6 @@ fn refine_interval(
         limit: MAX_REFINEMENT_STEPS,
     })
 }
-/// Largest real root of a monic integer polynomial, in ascending coefficient order.
-/// Invalid degree, coefficient growth and refinement work fail with typed errors.
 pub fn largest_real_root(monic: &[BigInt]) -> Result<RealAlgebraic, AlgebraicRealError> {
     if monic.last() != Some(&BigInt::one()) || monic.len() < 2 {
         return Err(AlgebraicRealError::Invalid(
@@ -212,8 +201,6 @@ pub fn largest_real_root(monic: &[BigInt]) -> Result<RealAlgebraic, AlgebraicRea
         upper: hi,
     }))
 }
-/// Bounded optional closed-form recognition. Exhaustion retains the already
-/// certified isolated root; it does not guess a radical or refuse a valid root.
 fn find_quadratic_factor(
     squarefree: &Polynomial<Q>,
     lo: &Q,
@@ -339,22 +326,18 @@ mod tests {
 
     #[test]
     fn characteristic_polynomial_matches_hand_computed_cases() {
-        // [[0,1],[1,1]] has x^2 - x - 1.
         assert_eq!(
             characteristic_polynomial(&matrix(&[&[0, 1], &[1, 1]])).unwrap(),
             ints(&[-1, -1, 1])
         );
-        // The Ising sigma fusion matrix has x^3 - 2x.
         assert_eq!(
             characteristic_polynomial(&matrix(&[&[0, 1, 0], &[1, 0, 1], &[0, 1, 0]])).unwrap(),
             ints(&[0, -2, 0, 1])
         );
-        // Identity 3x3: (x - 1)^3 = x^3 - 3x^2 + 3x - 1.
         assert_eq!(
             characteristic_polynomial(&matrix(&[&[1, 0, 0], &[0, 1, 0], &[0, 0, 1]])).unwrap(),
             ints(&[-1, 3, -3, 1])
         );
-        // A 1x1 matrix [7]: x - 7.
         assert_eq!(
             characteristic_polynomial(&matrix(&[&[7]])).unwrap(),
             ints(&[-7, 1])
@@ -369,15 +352,12 @@ mod tests {
 
     #[test]
     fn integer_largest_roots_are_recognised() {
-        // (x - 2)(x + 1)(x - 5) = x^3 - 6x^2 + 3x + 10.
         let root = largest_real_root(&ints(&[10, 3, -6, 1])).unwrap();
         assert_eq!(root, RealAlgebraic::Rational(rq(5, 1)));
-        // x^2 - 4: the largest root is 2.
         assert_eq!(
             largest_real_root(&ints(&[-4, 0, 1])).unwrap(),
             RealAlgebraic::Rational(rq(2, 1))
         );
-        // A repeated root: (x - 3)^2 (x + 1) = x^3 - 5x^2 + 3x + 9.
         assert_eq!(
             largest_real_root(&ints(&[9, 3, -5, 1])).unwrap(),
             RealAlgebraic::Rational(rq(3, 1))
@@ -386,7 +366,6 @@ mod tests {
 
     #[test]
     fn quadratic_largest_roots_are_exact_surds() {
-        // Golden ratio: x^2 - x - 1 -> 1/2 + (1/2) sqrt(5).
         let phi = largest_real_root(&ints(&[-1, -1, 1])).unwrap();
         let surd = phi
             .as_quadratic()
@@ -395,19 +374,15 @@ mod tests {
         assert_eq!(surd.sqrt_part(), &rq(1, 2));
         assert_eq!(surd.radicand(), &BigInt::from(5));
         assert_eq!(surd.minimal_polynomial(), ints(&[-1, -1, 1]));
-        // Ising sigma: x^3 - 2x -> sqrt(2) (non-radical factor x is irrelevant).
         let sigma = largest_real_root(&ints(&[0, -2, 0, 1])).unwrap();
         let surd = sigma.as_quadratic().unwrap();
         assert_eq!(surd.rational_part(), &rq(0, 1));
         assert_eq!(surd.sqrt_part(), &rq(1, 1));
         assert_eq!(surd.radicand(), &BigInt::from(2));
-        // x^2 - 12 -> 2 sqrt(3): the square factor moves into the coefficient.
         let root = largest_real_root(&ints(&[-12, 0, 1])).unwrap();
         let surd = root.as_quadratic().unwrap();
         assert_eq!(surd.sqrt_part(), &rq(2, 1));
         assert_eq!(surd.radicand(), &BigInt::from(3));
-        // Golden-ratio square: (x^2 - x - 1) shifted -> phi^2 = phi + 1 = 3/2 + sqrt(5)/2
-        // has minimal polynomial x^2 - 3x + 1.
         let phi_squared = largest_real_root(&ints(&[1, -3, 1])).unwrap();
         let surd = phi_squared.as_quadratic().unwrap();
         assert_eq!(surd.rational_part(), &rq(3, 2));
@@ -416,13 +391,11 @@ mod tests {
 
     #[test]
     fn higher_degree_roots_are_isolated_not_guessed() {
-        // x^3 - x - 1 (plastic number, irreducible cubic): not quadratic.
         let root = largest_real_root(&ints(&[-1, -1, 0, 1])).unwrap();
         let RealAlgebraic::Root(isolated) = &root else {
             panic!("the plastic number is not a rational or quadratic surd: {root:?}");
         };
         assert_eq!(isolated.polynomial(), ints(&[-1, -1, 0, 1]).as_slice());
-        // It is about 1.3247: the enclosure brackets it tightly and exactly.
         let width = rq(1, 1_000_000);
         let enclosure = root.enclosure(&width).unwrap();
         assert!(enclosure.diam() <= width);
@@ -439,13 +412,11 @@ mod tests {
         let width = rq(1, 1_000_000_000);
         let enclosure = phi.enclosure(&width).unwrap();
         assert!(enclosure.diam() <= width);
-        // phi^2 - phi - 1 changes sign across the enclosure.
         let f = |x: &Q| x * x - x - Q::one();
         assert!(f(enclosure.lo()).is_negative());
         assert!(f(enclosure.hi()).is_positive());
         assert!(enclosure.lo() > &rq(1_618_033_987, 1_000_000_000));
         assert!(enclosure.hi() < &rq(1_618_033_990, 1_000_000_000));
-        // Rational values enclose to a point.
         let five = RealAlgebraic::Rational(rq(5, 1));
         assert_eq!(
             five.enclosure(&rq(1, 10)).unwrap(),
@@ -455,11 +426,8 @@ mod tests {
 
     #[test]
     fn malformed_polynomials_are_refused() {
-        // Not monic.
         assert!(largest_real_root(&ints(&[1, 2])).is_err());
-        // Constant.
         assert!(largest_real_root(&ints(&[1])).is_err());
-        // No real root: x^2 + 1.
         assert!(largest_real_root(&ints(&[1, 0, 1])).is_err());
         assert!(RealAlgebraic::Rational(rq(1, 1))
             .enclosure(&rq(0, 1))

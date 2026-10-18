@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/witness_receipt_dag.rs
-# Rust sha256: a96f1ddbdb7415874724aead998b0a6894e14d0dc91af06c4e30ac19bb8adb43
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,67 +38,51 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 WITNESS_PACKET_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 WITNESS_RECEIPT_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 WITNESS_BUNDLE_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 WITNESS_VERIFICATION_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_FROZEN_BASE: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_PACKET_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_GOAL_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_HOST_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_HUMAN_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_OBSERVER_DOMAIN: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_STATE_DOMAIN: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_EVIDENCE_CEILING: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_UPSTREAM_PACKET_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_UPSTREAM_PACKET_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_UPSTREAM_RECEIPT_ARTIFACT_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_WRITE_SURFACE: Any = None
 
 
@@ -128,7 +108,6 @@ class FrozenWitnessSourceV1(_RustSurfaceObject):
             setattr(self, fld, value)
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S04_001_SOURCE_MANIFEST: Any = None
 
 
@@ -177,11 +156,9 @@ WitnessRoleV1 = Enum(
 WitnessRoleV1.__doc__ = "Structural mirror of Rust ``WitnessRoleV1`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
@@ -731,6 +708,5 @@ def terminal_route(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

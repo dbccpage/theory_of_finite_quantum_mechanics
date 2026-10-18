@@ -80,9 +80,6 @@ def make_vector(**overrides) -> FitnessVectorV1:
     return FitnessVectorV1(**fields)
 
 
-# --------------------------------------------------------------------------
-# Inconclusive is not a failure
-# --------------------------------------------------------------------------
 
 
 def test_the_outcome_vocabulary_is_four_valued():
@@ -198,9 +195,6 @@ def test_observed_may_not_exceed_total():
         dimension(observed=11, total=10)
 
 
-# --------------------------------------------------------------------------
-# A scalar needs its formula frozen first
-# --------------------------------------------------------------------------
 
 
 def test_a_scalar_without_a_preregistration_is_refused():
@@ -265,9 +259,6 @@ def test_a_tampered_preregistration_digest_is_refused():
         make_preregistration(preregistration_digest=digest("f"))
 
 
-# --------------------------------------------------------------------------
-# Comparison is only valid under identical conditions
-# --------------------------------------------------------------------------
 
 
 def test_two_vectors_measured_the_same_way_are_comparable():
@@ -302,9 +293,6 @@ def test_comparing_with_a_non_vector_is_refused():
         make_vector().comparable_with("not a vector")
 
 
-# --------------------------------------------------------------------------
-# Fitness cannot change lifecycle status
-# --------------------------------------------------------------------------
 
 
 def test_a_fitness_vector_has_no_status_field():

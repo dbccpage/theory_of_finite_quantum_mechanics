@@ -66,7 +66,6 @@ def test_tarball_exists_and_matches_digest():
 
     actual_digest = compute_sha256(TARBALL_PATH)
 
-    # Check manifest.json
     with open(RELEASE_MANIFEST_JSON_PATH, "r", encoding="utf-8") as f:
         manifest_data = json.load(f)
     assert "release_archive" in manifest_data, "Missing 'release_archive' key in release_manifest.json"
@@ -75,7 +74,6 @@ def test_tarball_exists_and_matches_digest():
         f"Tarball digest mismatch with manifest.json: actual {actual_digest} != expected {expected_digest_json}"
     )
 
-    # Check release_checklist.md
     checklist_text = RELEASE_CHECKLIST_PATH.read_text(encoding="utf-8")
     assert actual_digest in checklist_text, (
         f"Tarball digest {actual_digest} not found in {RELEASE_CHECKLIST_PATH}"
@@ -123,7 +121,6 @@ def test_release_manifest_sha256_integrity():
 
 def test_dry_run_unpack_and_exclusion_audit():
     """Verify that the tarball unpacks cleanly in dry-run with zero forbidden files and exact digest matching."""
-    # Parse release_manifest.sha256 for archive files
     lines = SHA256_MANIFEST_PATH.read_text(encoding="utf-8").splitlines()
     manifest_digests = {}
     for line in lines:

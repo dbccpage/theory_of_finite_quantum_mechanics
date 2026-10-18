@@ -246,7 +246,7 @@ def evaluate_quadratic_readout_control(conductor: int = 12) -> dict[str, Any]:
     """Run the QM-208 control exactly and return JSON-serializable results."""
     if conductor % 12 != 0:
         raise ReadoutControlRefusal("the control needs 12 | conductor")
-    z = lambda k: hbc.root_of_unity(conductor, k)  # noqa: E731
+    z = lambda k: hbc.root_of_unity(conductor, k)
     one = _rat(1, conductor)
     half = _rat(Fraction(1, 2), conductor)
     two = _rat(2, conductor)

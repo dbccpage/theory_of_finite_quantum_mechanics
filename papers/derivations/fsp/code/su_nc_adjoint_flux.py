@@ -92,26 +92,17 @@ class SUNCAdjointSimplicialComplex:
         self.dim_c1 = 5
         self.dim_c2 = 2
 
-        # d0: 5 x 4 matrix (C0 -> C1)
-        # Edge e = (u -> v): boundary is +v - u
         self.d0 = [
-            [-1.0,  1.0,  0.0,  0.0],  # e_0: x_1 -> s_1
-            [ 0.0, -1.0,  1.0,  0.0],  # e_1: s_1 -> s_2
-            [ 0.0,  0.0, -1.0,  1.0],  # e_2: s_2 -> x_2
-            [ 1.0, -1.0,  0.0,  0.0],  # e_3: s_1 -> x_1
-            [ 0.0,  0.0,  1.0, -1.0],  # e_4: x_2 -> s_2
+            [-1.0,  1.0,  0.0,  0.0],
+            [ 0.0, -1.0,  1.0,  0.0],
+            [ 0.0,  0.0, -1.0,  1.0],
+            [ 1.0, -1.0,  0.0,  0.0],
+            [ 0.0,  0.0,  1.0, -1.0],
         ]
 
-        # d1: 2 x 5 matrix (C1 -> C2)
-        # Face Delta_1: e_0 + e_1 + e_3 ...
-        # Let's configure exact boundary nilpotence d1 . d0 == 0:
-        # (Delta_1): e_0: (-1, 1, 0, 0); e_3: (1, -1, 0, 0) -> e_0 + e_3 = (0, 0, 0, 0)
-        # So boundary of closed loop 1 is +e_0 + e_3!
-        # Face Delta_1 = loop (x_1, s_1): d1_0 = [1.0, 0.0, 0.0, 1.0, 0.0]
-        # Face Delta_2 = loop (s_2, x_2): d1_1 = [0.0, 0.0, 1.0, 0.0, 1.0]
         self.d1 = [
-            [ 1.0,  0.0,  0.0,  1.0,  0.0],  # Delta_1: loop 1 (x_1 <-> s_1)
-            [ 0.0,  0.0,  1.0,  0.0,  1.0],  # Delta_2: loop 2 (s_2 <-> x_2)
+            [ 1.0,  0.0,  0.0,  1.0,  0.0],
+            [ 0.0,  0.0,  1.0,  0.0,  1.0],
         ]
 
         self.complex = CochainComplex(
@@ -166,7 +157,7 @@ class SUNCAdjointEngine:
         self.n_f = n_f
         self.sigma = string_tension_sigma
         self.m_adj = adjoint_mass_m
-        self.r_break = 2.0 * self.m_adj / self.sigma  # String breaking distance approx 0.8
+        self.r_break = 2.0 * self.m_adj / self.sigma
         self.simplicial = SUNCAdjointSimplicialComplex()
         self.evaluator = BQNFSignEvaluator(self.simplicial.complex)
         self.conn = sqlite3.connect(":memory:" if in_memory else "su_nc_adjoint_gin.db")
@@ -194,31 +185,23 @@ class SUNCAdjointEngine:
         Audits adjoint representation flux tube with string breaking (N-ality = 0)
         versus fundamental representation flux tube (N-ality = 1).
         """
-        # 1. Determine if string breaking occurs
         string_breaks = tube_length_r >= self.r_break
 
-        # 2. Cochain evaluation for adjoint representation (N-ality = 0)
         c1_adj, signs_adj = self.simplicial.build_adjoint_broken_cochain()
         adj_res = self.evaluator.evaluate_sign_packet(c1_adj, signs_adj)
         gamma_2_adj = adj_res["gamma_2_closure"]
         phi_1_adj = adj_res["phi_1_residual"]
 
-        # 3. GIN mode posting and involution pairing simulation
-        # Adjoint modes: N_sites (2) x N_adj_generators (N_c^2 - 1 = 8) x N_f (2) = 32 modes
-        # We index 16 sample Trotter paths with an exact reflection/charge involution Xi
         c = self.conn.cursor()
         total_modes = 2 * (self.n_c ** 2 - 1) * self.n_f
         paths = []
 
-        # Generate 8 symmetric involution pairs (16 paths total)
         for i in range(1, 9):
             weight = round(math.exp(- 0.5 * i), 6)
-            # Positive path
             cfg_pos = 2 * i - 1
             occ_pos = {i, i + 8}
-            # Negative partner path
             cfg_neg = 2 * i
-            occ_neg = {i, i + 8}  # Identical spectator mode configuration under Xi
+            occ_neg = {i, i + 8}
 
             paths.append((cfg_pos, weight, 1, occ_pos))
             paths.append((cfg_neg, weight, -1, occ_neg))
@@ -250,7 +233,6 @@ class SUNCAdjointEngine:
 
         self.conn.commit()
 
-        # Involution matching in GIN index
         matched_pairs = 0
         total_negatives = sum(len(l) for l in neg_weights.values())
         for w, neg_ids in neg_weights.items():

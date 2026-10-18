@@ -1,4 +1,3 @@
-# AuthorityEffect: None.
 """Verification tests for the self-contained Ravera DFM Finite-to-Continuum Dossier."""
 
 from __future__ import annotations
@@ -138,7 +137,6 @@ def test_master_dossier_replay_and_self_containment() -> None:
         desc_text = desc_file.read_text(encoding="utf-8")
         assert "descriptions.md" in desc_text
 
-    # Verify zero in-house ticket codes or external repository paths in dossier markdown files
     in_house_pattern = re.compile(r"\b(?:QM-\d+|M-\d+|DFM-NEXT|CODA|omega_engine|omega_quantum_physics)\b")
     for md_file in (
         REPO_ROOT / "research" / "ravera_dfm_dossier.md",

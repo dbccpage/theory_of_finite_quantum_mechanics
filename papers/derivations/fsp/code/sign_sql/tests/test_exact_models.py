@@ -46,7 +46,6 @@ def test_meron_cancellation_and_observable_are_nontrivial():
     assert summary["absolute_partition"]=="1296"
     assert summary["average_sign"]=="19/27"
     assert summary["staggered_square_numerator"]==summary["improved_staggered_square_numerator"]=="36864"
-    # Two-meron orbits have zero denominator but can have nonzero observable numerator.
     assert con.execute("SELECT COUNT(*) FROM meron_orbit o JOIN meron_squared_orbit a ON a.gid=o.gid WHERE o.merons=2 AND qsign(a.numerator)>0").fetchone()[0]>0
 
 
@@ -152,7 +151,6 @@ def test_hubbard_configuration_cycles_reconstruct_negative_gauge_holonomy(bonds,
     for source,target in zip(path,path[1:]):
         sign*=-con.execute("SELECT qsign(value) FROM hubbard_hamiltonian WHERE source=? AND target=?",(source,target)).fetchone()[0]
     assert sign==-1
-    # This is an interacting two-spin sector; both zero and nonzero U diagonals occur.
     assert {value for value, in con.execute("SELECT DISTINCT value FROM hubbard_hamiltonian WHERE source=target")}=={"0","4"}
 
 

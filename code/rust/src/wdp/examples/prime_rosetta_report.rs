@@ -1,22 +1,3 @@
-//! Print the Rosetta cross-domain letter-tape report.
-//!
-//! `rosetta.rs` computes finite statistics over several domain adapters under one
-//! DDA alphabet: which letters each domain emits, where it terminalises, and how
-//! similar the letter *sets* are pairwise. It answers "do these domains speak the
-//! same obstruction algebra?" with numbers instead of assertion.
-//!
-//! Run: `cargo run -p omega_discrete_deformation_calculus --example rosetta_report`
-//!
-//! **These numbers are declared, not measured — and the report says which.**
-//! Every built-in adapter returns its cochain justification, residual masses and
-//! lift bits as constants: their structure is real, their numbers are fixtures.
-//! The provenance banner below is derived from the receipts, never
-//! asserted here.
-//!
-//! Exits non-zero when any domain violates a decidable letter law, so this cannot
-//! be cited as a green run while reporting violations.
-//!
-//! AuthorityEffect: None. This establishes no standing.
 
 use omega_wdp::prime_algos::prime_algorithm_0_conformance::{
     check_builtin_roster, ReceiptViolation, UNDECIDABLE_WITHOUT_PER_STEP_STATE,
@@ -27,9 +8,6 @@ fn main() -> std::process::ExitCode {
     let r = rosetta_builtin_roster();
 
     println!("=== ROSETTA CROSS-DOMAIN REPORT ===");
-    // Printed from the report, not asserted here. This banner used to be a
-    // hard-coded "none of it is verifier-produced evidence", which silently became
-    // false the moment one adapter began computing its masses.
     match &r.provenance {
         RosterProvenance::AllFixtureDriven => {
             println!("  provenance: FIXTURE-DRIVEN STRUCTURAL DEMO -- every adapter declares");
@@ -111,7 +89,6 @@ fn main() -> std::process::ExitCode {
     for c in &checks {
         let v = c.violations();
         if v.is_empty() {
-            // Deliberately not the word "conforms": laws remain unevaluated.
             println!("  {:<12} no decidable violation (PARTIAL)", c.domain);
         } else {
             violating += 1;

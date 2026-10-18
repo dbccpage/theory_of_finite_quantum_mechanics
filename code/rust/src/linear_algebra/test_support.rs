@@ -1,23 +1,13 @@
-//! Test-only scalar types and deterministic generators for the exact-field tests.
-//!
-//! Nothing here is part of the library. The types are deliberately small and implement
-//! only the `linear_algebra::scalars` tower (plus `std::ops` where a test compares a
-//! tower algorithm against the pre-existing `BasicMatrix` operator routes), so the tests
-//! exercise the generic code, not a convenient concrete type.
-//!
-//! AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::scalars::{ExactRing, Field, Ring, Semiring};
 use num_bigint::BigInt;
 use num_rational::BigRational;
 
-/// `n/d` as a `BigRational`.
 pub(crate) fn q(n: i64, d: i64) -> BigRational {
     BigRational::new(BigInt::from(n), BigInt::from(d))
 }
 
-/// A rectangular integer matrix literal over `BigRational`.
 pub(crate) fn m(rows: &[&[i64]]) -> BasicMatrix<BigRational> {
     let cols = rows.first().map_or(0, |r| r.len());
     let data: Vec<BigRational> = rows
@@ -30,11 +20,7 @@ pub(crate) fn m(rows: &[&[i64]]) -> BasicMatrix<BigRational> {
     BasicMatrix::from_row_major(rows.len(), cols, data).expect("rectangular literal")
 }
 
-// ============================================================================
-// Deterministic generator
-// ============================================================================
 
-/// SplitMix64: deterministic, dependency-free, good enough to spread test inputs.
 #[derive(Debug, Clone)]
 pub(crate) struct Rng(u64);
 
@@ -51,7 +37,6 @@ impl Rng {
         z ^ (z >> 31)
     }
 
-    /// A value in `lo..=hi`.
     pub(crate) fn range(&mut self, lo: i64, hi: i64) -> i64 {
         assert!(lo <= hi);
         let span = (hi - lo + 1) as u64;
@@ -59,8 +44,6 @@ impl Rng {
     }
 }
 
-/// A random `rows × cols` rational matrix: numerators in `-max_abs..=max_abs`,
-/// denominators in `1..=4`.
 pub(crate) fn random_matrix(
     rng: &mut Rng,
     rows: usize,
@@ -73,7 +56,6 @@ pub(crate) fn random_matrix(
     BasicMatrix::from_row_major(rows, cols, data).expect("generated shape")
 }
 
-/// A random integer-valued matrix.
 pub(crate) fn random_integer_matrix(
     rng: &mut Rng,
     rows: usize,
@@ -86,12 +68,7 @@ pub(crate) fn random_integer_matrix(
     BasicMatrix::from_row_major(rows, cols, data).expect("generated shape")
 }
 
-// ============================================================================
-// GF(p)
-// ============================================================================
 
-/// The prime field `GF(P)`; `P` must be prime. Elements are kept reduced, so derived
-/// equality is mathematical equality.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) struct Fp<const P: u64>(u64);
 
@@ -180,13 +157,7 @@ impl<const P: u64> num_traits::Zero for Fp<P> {
     }
 }
 
-// ============================================================================
-// Z/6: a ring that is not a field
-// ============================================================================
 
-/// `Z/6`, which has zero divisors: `2`, `3` and `4` are nonzero without inverse. It
-/// implements the tower honestly (`try_inv` answers `None` for them), so it is exactly
-/// the kind of type the algorithms must refuse instead of miscomputing with.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) struct Z6(u8);
 
@@ -232,20 +203,13 @@ impl Field for Z6 {
 
 impl ExactRing for Z6 {}
 
-// ============================================================================
-// Q(i): the Gaussian rationals
-// ============================================================================
 
-/// `re + im·i` with rational parts. Complex conjugation is its involution; the
-/// fixed field is `Q`. Defined here (not in `omega_number_theory`, which depends on
-/// this crate) to test the Hermitian algorithms on a genuinely complex field.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct GaussianRational {
     pub(crate) re: BigRational,
     pub(crate) im: BigRational,
 }
 
-/// `re + im·i` from integers.
 pub(crate) fn gi(re: i64, im: i64) -> GaussianRational {
     GaussianRational {
         re: q(re, 1),
@@ -253,7 +217,6 @@ pub(crate) fn gi(re: i64, im: i64) -> GaussianRational {
     }
 }
 
-/// A Gaussian rational from two rationals.
 pub(crate) fn gq(re: BigRational, im: BigRational) -> GaussianRational {
     GaussianRational { re, im }
 }
@@ -334,29 +297,21 @@ impl crate::linear_algebra::involution::Involution for GaussianRational {
     }
 }
 
-// ============================================================================
-// Q(sqrt 2): a real quadratic field
-// ============================================================================
 
-/// `a + b·√2` with rational `a`, `b`, as a subfield of the reals: its involution is the
-/// identity (complex conjugation fixes real numbers) and it is totally ordered.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct QSqrt2 {
     pub(crate) a: BigRational,
     pub(crate) b: BigRational,
 }
 
-/// `a + b·√2` from two rationals.
 pub(crate) fn qs(a: BigRational, b: BigRational) -> QSqrt2 {
     QSqrt2 { a, b }
 }
 
-/// `a + b·√2` from integers.
 pub(crate) fn qsi(a: i64, b: i64) -> QSqrt2 {
     qs(q(a, 1), q(b, 1))
 }
 
-/// Sign of a rational as `-1`, `0`, `1` (independent of the library's own `signum`).
 pub(crate) fn sign_of_rational(x: &BigRational) -> i8 {
     match x.numer().sign() {
         num_bigint::Sign::Minus => -1,
@@ -366,8 +321,6 @@ pub(crate) fn sign_of_rational(x: &BigRational) -> i8 {
 }
 
 impl QSqrt2 {
-    /// The sign of `a + b√2` in the real ordering. `a² = 2b²` has no rational solution
-    /// other than `a = b = 0`, so the comparison of `a²` with `2b²` never ties.
     pub(crate) fn real_sign(&self) -> i8 {
         let (sa, sb) = (sign_of_rational(&self.a), sign_of_rational(&self.b));
         if sa == 0 {
@@ -484,25 +437,7 @@ impl crate::linear_algebra::ordered::HermitianOrdered for GaussianRational {
     }
 }
 
-// ============================================================================
-// Deliberately defective scalars
-// ============================================================================
 
-/// `Q` with a behaviour switch, for checking that the algorithms and the `laws` checkers
-/// refuse a scalar whose trait obligations fail. The tower itself is honest; only the
-/// trait named by `MODE` misbehaves.
-///
-/// | `MODE` | defect |
-/// |---|---|
-/// | 0 | none |
-/// | 1 | `signum` returns `2` for a positive element |
-/// | 2 | `signum` returns `0` for a positive element |
-/// | 3 | `conjugate(x) = x + 1` (not a ring homomorphism) |
-/// | 4 | `conjugate(x) = −x` (additive but not multiplicative) |
-/// | 5 | `fixed_field_sign` returns `None` for a positive element |
-/// | 6 | `fixed_field_sign` returns `2` for a positive element |
-/// | 7 | `signum` treats `0 < x` as negative (breaks closure of the positive cone) |
-/// | 8 | `try_inv` answers `Some(x)` (the element itself) for every nonzero `x`, a wrong inverse |
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct Shaky<const MODE: u8>(pub(crate) BigRational);
 

@@ -1,10 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Chapters 10 & 14: Layered observer architecture, legacy packet adapters,
-//! and functional observer relations audit with awareness firewall.
-//! These nominal adapters preserve declarations; they do not validate their semantics.
-//! Checked finite bridges live in `legacy_observer_adapters`,
-//! `functional_classification`, and `self_reference_adapter`.
-//! No awareness conclusion is inferred (WDP-CH14-N01).
 
 use crate::error::WdpError;
 use crate::retention::RetentionPacket;
@@ -12,7 +5,6 @@ use crate::types::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// Legacy quotient observer representation.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QuotientObserver {
     pub carrier: BTreeSet<String>,
@@ -64,15 +56,14 @@ impl QuotientObserver {
     }
 }
 
-/// Legacy operational observer packet representation.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OperationalObserverPacket {
     pub states: BTreeSet<String>,
     pub start_state: String,
     pub alphabet: BTreeSet<String>,
-    pub transitions: BTreeMap<(String, String), String>, // (state, symbol) -> next_state
-    pub reports: BTreeMap<String, String>,               // state -> report
-    pub profiles: BTreeMap<String, String>,              // state -> profile
+    pub transitions: BTreeMap<(String, String), String>,
+    pub reports: BTreeMap<String, String>,
+    pub profiles: BTreeMap<String, String>,
 }
 
 impl OperationalObserverPacket {
@@ -124,7 +115,6 @@ impl OperationalObserverPacket {
     }
 }
 
-/// Layered standard ObserverObject with full nominal interface.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ObserverObject {
     pub carrier_k: String,
@@ -139,7 +129,6 @@ pub struct ObserverObject {
     pub authority_effect: AuthorityEffect,
 }
 
-/// Explicit bridge for adapting legacy observer representations into an ObserverObject.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ObserverBridge {
     pub source_kind: String,
@@ -164,7 +153,6 @@ impl ObserverBridge {
     }
 }
 
-/// Adapts a QuotientObserver into an ObserverObject via an explicit bridge.
 pub fn adapt_quotient(
     observer: &QuotientObserver,
     bridge: Option<&ObserverBridge>,
@@ -204,7 +192,6 @@ pub fn adapt_quotient(
     })
 }
 
-/// Adapts an OperationalObserverPacket into an ObserverObject via an explicit bridge.
 pub fn adapt_operational(
     observer: &OperationalObserverPacket,
     bridge: Option<&ObserverBridge>,
@@ -244,7 +231,6 @@ pub fn adapt_operational(
     })
 }
 
-/// Adapts a RetentionPacket into an ObserverObject via an explicit bridge.
 pub fn adapt_retention(
     packet: &RetentionPacket,
     bridge: Option<&ObserverBridge>,
@@ -284,8 +270,6 @@ pub fn adapt_retention(
     })
 }
 
-/// Functional observer profile formalizing finite relations without phenomenology.
-/// WDP-CH14-N01: Strict awareness firewall prohibits asserting awareness.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FunctionalObserverProfile {
     pub presentation_map: BTreeMap<String, String>,
@@ -321,8 +305,6 @@ impl FunctionalObserverProfile {
     }
 }
 
-/// Audits finite functional relations among presentation, report, stability, and blind spots.
-/// Resolves WDP-CH14-O01 without phenomenology premises.
 pub fn audit_functional_observer_relations(
     carrier: &[String],
     presentation: &BTreeMap<String, String>,
@@ -376,7 +358,7 @@ pub fn audit_functional_observer_relations(
         blind_spots,
         is_stable,
         cal_err,
-        false, // strictly false per awareness firewall
+        false,
     )
 }
 
@@ -423,14 +405,13 @@ mod tests {
         assert!(!profile.demonstrates_awareness);
         assert_eq!(profile.blind_spot_fibers.len(), 1);
 
-        // Attempting to assert awareness must fail with typed error
         let illegal = FunctionalObserverProfile::new(
             pres,
             rep,
             BTreeMap::new(),
             true,
             0,
-            true, // VIOLATION
+            true,
         );
         assert!(matches!(illegal, Err(WdpError::AwarenessFirewallViolation)));
     }

@@ -209,7 +209,6 @@ def verify_dual_witness_bound(rho1: np.ndarray, rho2: np.ndarray) -> bool:
     t_norm = trace_norm(diff)
     W_opt = construct_dual_witness(diff)
     alignment = float(np.real(np.trace(W_opt.conj().T @ diff)))
-    # Duality gap zero: alignment == trace_norm
     return bool(np.isclose(alignment, t_norm, atol=1e-10))
 
 __all__ = ['amplitude_damping_kraus', 'apply_channel', 'apply_depolarizing_channel', 'choi_matrix', 'construct_dual_witness', 'dephasing_kraus', 'hadamard_kraus', 'is_completely_positive', 'is_covariant', 'is_trace_preserving', 'is_unital', 'solve_covariant_wigner_yanase_monotonicity', 'solve_cptp_wigner_yanase_monotonicity', 'solve_unital_wigner_yanase_monotonicity', 'trace_distance_contraction', 'trace_norm', 'verify_cptp_contractivity', 'verify_dual_witness_bound', 'wigner_yanase_skew_information']

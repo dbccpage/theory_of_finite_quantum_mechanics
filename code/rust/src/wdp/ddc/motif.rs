@@ -1,8 +1,3 @@
-//! DDC Word N-Gram Miner (U02).
-//!
-//! Mines exact integer counts of n-grams (up to n = 6) across DDC operational words.
-//! Example: "CIDET" -> 2-grams: ["CI", "ID", "DE", "ET"], 3-grams: ["CID", "IDE", "DET"].
-//! AuthorityEffect: None (const).
 
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;

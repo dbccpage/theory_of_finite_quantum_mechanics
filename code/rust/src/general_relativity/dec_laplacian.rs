@@ -1,59 +1,27 @@
-//! Discrete Exterior Calculus (DEC) Laplacians on Simplicial Manifolds.
-//!
-//! Implements canonical discrete differential forms, exterior derivatives,
-//! Hodge stars, and Hodge-de Rham / Laplace-Beltrami operators on finite
-//! simplicial complexes:
-//! - Coboundary operator $d_0: C^0 \to C^1$ (discrete gradient on edges)
-//! - Coboundary operator $d_1: C^1 \to C^2$ (discrete curl on triangles)
-//! - Exact nilpotency verification: $d_1 \circ d_0 = 0$
-//! - Discrete Hodge stars:
-//!   - $\star_0$: vertex dual cell volume (barycentric / Voronoi)
-//!   - $\star_1$: edge dual volume
-//! - Discrete Laplace-Beltrami operator on 0-forms:
-//!   $(\Delta_0 \psi)_v = \frac{1}{\star v} \sum_{w \sim v} W_{vw} (\psi_v - \psi_w)$
-//!   where $W_{vw} = \frac{\star e_{vw}}{l_{vw}}$.
-//! - DEC Invariants:
-//!   - Constant function in kernel: $\Delta_0 \mathbf{1} = 0$
-//!   - Self-adjointness: $\langle \phi, \Delta_0 \psi \rangle_{\star_0} = \langle \Delta_0 \phi, \psi \rangle_{\star_0}$
-//!   - Positive semi-definiteness: $\langle \psi, \Delta_0 \psi \rangle_{\star_0} \ge 0$.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
 pub const DEFAULT_DEC_TOL: f64 = 1e-12;
 
-/// Discrete Hodge star metrics for 0-forms and 1-forms.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct DecHodgeStar {
-    /// Dual cell volume for each vertex v (index 0..num_vertices).
     pub star0_vertex_volumes: Vec<f64>,
-    /// Dual volume for each edge e (index 0..num_edges).
     pub star1_edge_volumes: Vec<f64>,
-    /// Hodge ratio weights W_e = star1_e / length_e for each edge.
     pub hodge_edge_weights: Vec<f64>,
 }
 
-/// Discrete Exterior Calculus operator engine.
 #[derive(Debug, Clone, PartialEq)]
 pub struct DecOperators {
     pub num_vertices: usize,
-    /// Ordered edges (u, v) with u < v.
     pub edges: Vec<(usize, usize)>,
-    /// Edge lookup map: (u, v) -> edge_index
     pub edge_index: BTreeMap<(usize, usize), usize>,
-    /// Ordered triangles [u, v, w] with u < v < w.
     pub triangles: Vec<[usize; 3]>,
-    /// Primal edge lengths.
     pub edge_lengths: Vec<f64>,
-    /// Hodge star metrics.
     pub hodge: DecHodgeStar,
 }
 
 impl DecOperators {
-    /// Construct a new DEC operator environment from vertices, edges, triangles, edge lengths,
-    /// and dual cell volumes.
     pub fn new(
         num_vertices: usize,
         edges: Vec<(usize, usize)>,
@@ -138,7 +106,6 @@ impl DecOperators {
                     "Triangle vertex {w} exceeds num_vertices {num_vertices}"
                 ));
             }
-            // Check that all 3 edges exist in edge_index
             if !edge_index.contains_key(&(u, v)) {
                 return Err(format!(
                     "Missing boundary edge ({u}, {v}) for triangle {tri:?}"
@@ -179,7 +146,6 @@ impl DecOperators {
     }
 
     pub(crate) fn validate(&self) -> Result<(), String> {
-        // Public fields may have been modified after construction.
         let rebuilt = Self::new(
             self.num_vertices,
             self.edges.clone(),
@@ -196,9 +162,6 @@ impl DecOperators {
         Ok(())
     }
 
-    /// Discrete exterior derivative on 0-forms: d_0: C^0 -> C^1.
-    /// For oriented edge e = (u, v) with u < v:
-    /// (d_0 psi)_e = psi_v - psi_u.
     pub fn coboundary_d0(&self, psi: &[f64]) -> Result<Vec<f64>, String> {
         self.validate()?;
         if psi.iter().any(|x| !x.is_finite()) {
@@ -222,10 +185,6 @@ impl DecOperators {
         Ok(d_psi)
     }
 
-    /// Discrete exterior derivative on 1-forms: d_1: C^1 -> C^2.
-    /// For oriented triangle f = [u, v, w] with u < v < w:
-    /// partial [u, v, w] = [v, w] - [u, w] + [u, v].
-    /// (d_1 omega)_f = omega_{(v, w)} - omega_{(u, w)} + omega_{(u, v)}.
     pub fn coboundary_d1(&self, omega: &[f64]) -> Result<Vec<f64>, String> {
         self.validate()?;
         if omega.iter().any(|x| !x.is_finite()) {
@@ -255,8 +214,6 @@ impl DecOperators {
         Ok(d_omega)
     }
 
-    /// Check floating-point nilpotency within DEFAULT_DEC_TOL: d_1 o d_0 = 0.
-    /// Returns (is_nilpotent, max_absolute_residual).
     pub fn verify_nilpotency_d1_d0(&self, psi: &[f64]) -> Result<(bool, f64), String> {
         let d0_psi = self.coboundary_d0(psi)?;
         let d1_d0_psi = self.coboundary_d1(&d0_psi)?;
@@ -271,8 +228,6 @@ impl DecOperators {
         Ok((max_res < DEFAULT_DEC_TOL, max_res))
     }
 
-    /// Discrete 0-form Laplace-Beltrami operator Delta_0: C^0 -> C^0.
-    /// (Delta_0 psi)_v = (1 / star0_v) * sum_{w ~ v} W_{vw} * (psi_v - psi_w).
     pub fn laplacian_0form(&self, psi: &[f64]) -> Result<Vec<f64>, String> {
         self.validate()?;
         if psi.iter().any(|x| !x.is_finite()) {
@@ -292,9 +247,7 @@ impl DecOperators {
             let w_e = self.hodge.hodge_edge_weights[idx];
             let diff = psi[u] - psi[v];
 
-            // Contribution to vertex u: W_e * (psi_u - psi_v)
             delta_psi[u] += w_e * diff;
-            // Contribution to vertex v: W_e * (psi_v - psi_u) = -W_e * diff
             delta_psi[v] -= w_e * diff;
         }
 
@@ -309,8 +262,6 @@ impl DecOperators {
         Ok(delta_psi)
     }
 
-    /// Inner product on 0-forms with respect to the dual Hodge star star0:
-    /// <phi, psi>_{star0} = sum_{v} star0_v * phi_v * psi_v.
     pub fn inner_product_0form(&self, phi: &[f64], psi: &[f64]) -> Result<f64, String> {
         self.validate()?;
         if psi.iter().any(|x| !x.is_finite()) || phi.iter().any(|x| !x.is_finite()) {
@@ -330,8 +281,6 @@ impl DecOperators {
         Ok(sum)
     }
 
-    /// Dirichlet gradient energy of a 0-form:
-    /// E[psi] = <d_0 psi, d_0 psi>_{star1} = sum_e W_e * (psi_v - psi_u)^2.
     pub fn dirichlet_energy_0form(&self, psi: &[f64]) -> Result<f64, String> {
         let d_psi = self.coboundary_d0(psi)?;
         let mut energy = 0.0;
@@ -345,9 +294,6 @@ impl DecOperators {
         Ok(energy)
     }
 
-    /// Verifies self-adjointness of Delta_0:
-    /// <phi, Delta_0 psi>_{star0} == <Delta_0 phi, psi>_{star0}.
-    /// Returns (lhs, rhs, absolute_difference).
     pub fn verify_self_adjointness(
         &self,
         phi: &[f64],
@@ -370,7 +316,6 @@ mod tests {
 
     #[test]
     fn test_dec_triangle_nilpotency_and_kernel() {
-        // Simple triangle complex with 3 vertices, 3 edges, 1 triangle
         let edges = vec![(0, 1), (0, 2), (1, 2)];
         let triangles = vec![[0, 1, 2]];
         let lengths = vec![1.0, 1.0, 1.0];
@@ -379,20 +324,17 @@ mod tests {
 
         let dec = DecOperators::new(3, edges, triangles, lengths, star0, star1).unwrap();
 
-        // 1. Nilpotency on arbitrary 0-form
         let psi = vec![2.5, -1.0, 4.2];
         let (is_nilpotent, res) = dec.verify_nilpotency_d1_d0(&psi).unwrap();
         assert!(is_nilpotent);
         assert!(res < 1e-14);
 
-        // 2. Constant 0-form in kernel of Delta_0
         let const_psi = vec![3.14159; 3];
         let lap = dec.laplacian_0form(&const_psi).unwrap();
         for &val in &lap {
             assert!(val.abs() < 1e-14);
         }
 
-        // 3. Self-adjointness
         let phi = vec![1.0, 0.5, -2.0];
         let (lhs, rhs, diff) = dec.verify_self_adjointness(&phi, &psi).unwrap();
         assert!(diff < 1e-12, "Self-adjointness violation: {lhs} vs {rhs}");

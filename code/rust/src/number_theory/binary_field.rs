@@ -1,9 +1,3 @@
-//! `GF(2^k)` with elements packed as bit masks: bit `i` of an element is its
-//! coefficient of `x^i`, and arithmetic is carry-less modulo an irreducible
-//! polynomial. The symplectic trace form on `GF(2^k)^2` is included for the
-//! Weyl-board spread checks.
-//!
-//! AuthorityEffect: None.
 
 use crate::finite_field::checked_pow;
 
@@ -16,12 +10,6 @@ pub struct BinaryField {
 }
 
 impl BinaryField {
-    /// `GF(2^degree)` modulo `modulus`, a bit mask whose bit `i` is the
-    /// coefficient of `x^i`.
-    ///
-    /// Panics unless `modulus` is an irreducible polynomial of exactly
-    /// `degree`: any other modulus gives a ring with zero divisors, not a
-    /// field. [`find_irreducible_binary_polynomial`] returns a valid one.
     pub fn new(degree: usize, modulus: usize) -> Self {
         assert!(
             poly_degree(modulus) == Some(degree) && is_irreducible_binary(modulus),
@@ -40,7 +28,6 @@ impl BinaryField {
         self.degree
     }
 
-    /// The irreducible modulus as a bit mask: bit `i` is the coefficient of `x^i`.
     pub fn modulus(&self) -> usize {
         self.modulus
     }
@@ -138,17 +125,14 @@ pub fn binary_polynomial_coefficients(poly: usize, degree: usize) -> Vec<usize> 
     (0..=degree).map(|i| (poly >> i) & 1).collect()
 }
 
-/// A Weyl operator `i^phase X^x Z^z` on `C^{2^k}`, labelled over `GF(2^k)`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct BinaryPauli {
-    /// Phase exponent for `i^phase`.
     pub phase: u8,
     pub x: usize,
     pub z: usize,
 }
 
 impl BinaryPauli {
-    /// The identity operator.
     pub fn identity() -> Self {
         Self {
             phase: 0,
@@ -157,7 +141,6 @@ impl BinaryPauli {
         }
     }
 
-    /// The Hermitian representative of `X^x Z^z`.
     pub fn hermitian(field: &BinaryField, x: usize, z: usize) -> Self {
         Self {
             phase: field.trace(field.mul(x, z)) as u8,
@@ -189,7 +172,6 @@ impl BinaryPauli {
     }
 }
 
-/// Every product of a subset of `generators`, indexed by the subset's bit mask.
 pub fn build_line_group(field: &BinaryField, generators: &[BinaryPauli]) -> Vec<BinaryPauli> {
     let mut group = Vec::with_capacity(field.order());
     for mask in 0..field.order() {
@@ -219,13 +201,11 @@ mod tests {
 
     #[test]
     fn gf4_multiplication_and_trace_match_hand_computation() {
-        // GF(4) = F_2[x] / (x^2 + x + 1): x * x = x + 1, x * (x + 1) = 1.
         let field = BinaryField::new(2, 0b111);
         assert_eq!(field.order(), 4);
         assert_eq!(field.mul(0b10, 0b10), 0b11);
         assert_eq!(field.mul(0b10, 0b11), 0b01);
         assert_eq!(field.add(0b10, 0b11), 0b01);
-        // Tr(a) = a + a^2: Tr(0) = Tr(1) = 0, Tr(x) = Tr(x + 1) = 1.
         let traces: Vec<usize> = field.elements().iter().map(|a| field.trace(*a)).collect();
         assert_eq!(traces, vec![0, 0, 1, 1]);
     }
@@ -247,7 +227,6 @@ mod tests {
     #[test]
     #[should_panic(expected = "not an irreducible polynomial")]
     fn a_reducible_modulus_is_refused() {
-        // x^2 + 1 = (x + 1)^2 over F_2.
         BinaryField::new(2, 0b101);
     }
 

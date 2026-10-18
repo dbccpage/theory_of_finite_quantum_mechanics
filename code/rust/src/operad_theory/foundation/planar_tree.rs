@@ -1,6 +1,3 @@
-//! Foundation: Planar trees, open leaves, grafting, and term hashing.
-//!
-//! AuthorityEffect: None.
 
 use std::fmt;
 use sha2::{Digest, Sha256};
@@ -8,7 +5,6 @@ use serde::{Deserialize, Serialize};
 use super::colour::OperadColour;
 use super::operation::Operation;
 
-/// An open, un-grafted input leaf port typed by an OperadColour.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct OpenLeaf {
     pub colour: OperadColour,
@@ -26,7 +22,6 @@ impl fmt::Display for OpenLeaf {
     }
 }
 
-/// A child slot in a planar tree: either an open leaf or a composite subtree.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TreeChild {
     Leaf(OpenLeaf),
@@ -56,7 +51,6 @@ impl TreeChild {
     }
 }
 
-/// A rooted planar tree whose vertices are decorated by operadic operations.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PlanarTree {
     pub root: Operation,
@@ -64,7 +58,6 @@ pub struct PlanarTree {
 }
 
 impl PlanarTree {
-    /// Creates a planar tree with explicit children validation.
     pub fn new(root: Operation, children: Option<Vec<TreeChild>>) -> Result<Self, String> {
         let actual_children = match children {
             None => root
@@ -101,7 +94,6 @@ impl PlanarTree {
         })
     }
 
-    /// Constructs a basic corolla tree with OpenLeaf slots for all root inputs.
     pub fn corolla(operation: Operation) -> Self {
         let children: Vec<TreeChild> = operation
             .inputs()
@@ -114,17 +106,14 @@ impl PlanarTree {
         }
     }
 
-    /// Total number of open external leaves across the entire tree.
     pub fn arity(&self) -> usize {
         self.children.iter().map(|ch| ch.arity()).sum()
     }
 
-    /// Output colour of the tree root.
     pub fn output_colour(&self) -> &OperadColour {
         self.root.output()
     }
 
-    /// Computes deterministic content-addressed term hash: `tree_<sha256[:16]>`.
     pub fn term_hash(&self) -> String {
         let mut parts = vec![self.root.op_id.as_str().to_string()];
         for ch in &self.children {
@@ -136,7 +125,6 @@ impl PlanarTree {
         format!("tree_{}", &digest[..16])
     }
 
-    /// Grafts a subtree into the i-th immediate root slot (0-indexed).
     pub fn graft(&self, slot_index: usize, subtree: PlanarTree) -> Result<PlanarTree, String> {
         if slot_index >= self.children.len() {
             return Err(format!(

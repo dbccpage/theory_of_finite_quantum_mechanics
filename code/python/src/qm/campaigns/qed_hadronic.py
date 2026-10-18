@@ -57,9 +57,6 @@ class QedWeakHadronicRefusal(ValueError):
     """Typed refusal for inputs outside the declared rational domain."""
 
 
-# ============================================================================
-# Rational interval helpers: logarithm and square root enclosures
-# ============================================================================
 
 
 def atanh_series_interval(z: Fraction, terms: int) -> RationalInterval:
@@ -123,9 +120,6 @@ def sqrt_interval(iv: RationalInterval, digits: int = 12) -> RationalInterval:
     return RationalInterval(lo, hi)
 
 
-# ============================================================================
-# Q(i) helpers the shared module does not carry
-# ============================================================================
 
 
 def qi_norm_sq(z: Qi) -> Fraction:
@@ -173,9 +167,6 @@ def qi_mat3_inverse(a: QiMat) -> QiMat:
     return [[cof[c][r] * det_inv for c in range(3)] for r in range(3)]
 
 
-# ============================================================================
-# QM-226: Tree-level QED scattering ratios over Q
-# ============================================================================
 
 
 def klein_nishina_frequency_ratio(x: Fraction, u: Fraction) -> Fraction:
@@ -311,9 +302,6 @@ def build_qed_tree_level_audit() -> QedTreeLevelAudit:
     )
 
 
-# ============================================================================
-# QM-227 (a): Weyl-basis Dirac algebra and chiral projectors over Q(i)
-# ============================================================================
 
 
 MINKOWSKI_DIAGONAL: tuple[int, int, int, int] = (1, -1, -1, -1)
@@ -449,9 +437,6 @@ def build_chiral_projector_audit() -> ChiralProjectorAudit:
     return ChiralProjectorAudit(gammas=gammas, gamma5=g5, p_left=pl, p_right=pr, spinor=chiral_test_spinor())
 
 
-# ============================================================================
-# QM-227 (b): Muon decay phase space and the Fermi constant enclosure
-# ============================================================================
 
 
 @dataclass(frozen=True)
@@ -544,9 +529,6 @@ def build_muon_decay_audit(inputs: MuonDecayInputs | None = None) -> MuonDecayFe
     )
 
 
-# ============================================================================
-# QM-227 (c): Exact unitary CKM matrix over Q(i) by a Cayley transform
-# ============================================================================
 
 
 WOLFENSTEIN_LAMBDA = Fraction(9, 40)
@@ -656,9 +638,6 @@ def build_ckm_unitarity_audit() -> CkmUnitarityAudit:
     return CkmUnitarityAudit(generator=generator, ckm=v, jarlskog_ud_cs=jarlskog_invariant(v, (0, 1), (0, 1)))
 
 
-# ============================================================================
-# QM-228 (a): Adler-Bell-Jackiw pi^0 -> gamma gamma colour factor
-# ============================================================================
 
 
 @dataclass(frozen=True)
@@ -748,9 +727,6 @@ def build_abj_anomaly_audit(inputs: PionDecayInputs | None = None) -> AbjAnomaly
     )
 
 
-# ============================================================================
-# QM-228 (b): Gell-Mann-Okubo octet and decuplet relations over Q
-# ============================================================================
 
 
 MassCoefficients = tuple[Fraction, Fraction, Fraction]
@@ -859,9 +835,6 @@ def build_gell_mann_okubo_audit(inputs: BaryonMassInputs | None = None) -> GellM
     )
 
 
-# ============================================================================
-# Combined control report
-# ============================================================================
 
 
 @dataclass(frozen=True)

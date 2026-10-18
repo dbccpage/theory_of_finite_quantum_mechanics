@@ -11,7 +11,6 @@ import sys
 from pathlib import Path
 import pytest
 
-# Ensure ms_majorana/code is in sys.path
 code_dir = Path(__file__).resolve().parent.parent.parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -38,10 +37,8 @@ class TestLocalMajoranaNoise:
     def test_single_pair_noise(self):
         noise = LocalMajoranaNoise.single_pair(4, 1, 2, Fraction(1, 10))
         assert noise.dim == 4
-        # K[0][1] = 1/10, K[1][0] = -1/10
         assert noise.data[0][1] == Fraction(1, 10)
         assert noise.data[1][0] == Fraction(-1, 10)
-        # Mode 1 leakage: 2 * |1/10| = 1/5
         assert noise.leakage_on_mode(1) == Fraction(1, 5)
         assert noise.leakage_on_mode(3) == Fraction(0, 1)
         assert noise.max_leakage() == Fraction(1, 5)
@@ -119,11 +116,9 @@ class TestMultiQubitBraidCircuit:
         assert mat.is_orthogonal() is True
         assert mat.determinant() == Fraction(1, 1)
 
-        # Inverse phase
         c_inv = MultiQubitBraidCircuit(1)
         c_inv.append_phase(1, inverse=True)
         mat_inv = c_inv.evaluate_matrix()
-        # S * S^{-1} == I
         prod = mat.multiply(mat_inv)
         assert prod == ExactSignedPermutationMatrix.identity(4)
 
@@ -135,7 +130,6 @@ class TestMultiQubitBraidCircuit:
         assert mat.is_orthogonal() is True
         assert mat.determinant() == Fraction(1, 1)
 
-        # Inverse Hadamard
         c_inv = MultiQubitBraidCircuit(1)
         c_inv.append_hadamard(1, inverse=True)
         mat_inv = c_inv.evaluate_matrix()
@@ -165,7 +159,6 @@ class TestMultiQubitBraidCircuit:
         with pytest.raises(ValueError, match="Adjacent swap requires"):
             c3 = MultiQubitBraidCircuit(3)
             c3.append_swap(1, 3)
-        # Non-local CNOT is supported via topological SWAP routing
         c3.append_cnot(1, 3)
         mat3 = c3.evaluate_matrix()
         assert mat3.is_orthogonal() is True
@@ -241,7 +234,6 @@ class TestMultiQubitNoisyBraidReferee:
         assert "REFUSAL_UNKNOWN_OP" in receipt.status_reason
 
     def test_rejection_on_invalid_qubits(self):
-        # We can construct packet with 0 qubits by bypassing dataclass if needed, or pass 0
         packet = MultiQubitNoisyBraidProposalPacket(
             round_id="round_0q",
             proposer_id="agent_qubit_proposer",
@@ -262,12 +254,10 @@ class TestMultiQubitNoisyBraidReferee:
         mat = c.evaluate_matrix()
         assert mat.is_orthogonal() is True
 
-        # Test stray_couplings out of bounds
         with pytest.raises(ValueError, match="out of range"):
             LocalMajoranaNoise.stray_couplings(4, [(0, 1, Fraction(1, 1))])
 
         referee = MultiQubitNoisyBraidReferee()
-        # Circuit build exception
         bad_circuit_packet = MultiQubitNoisyBraidProposalPacket(
             round_id="round_bad_cnot",
             proposer_id="agent_qubit_proposer",
@@ -280,7 +270,6 @@ class TestMultiQubitNoisyBraidReferee:
         assert r1.is_accepted is False
         assert "REFUSAL_CIRCUIT_BUILD_FAILED" in r1.status_reason
 
-        # Invalid noise exception
         bad_noise_packet = MultiQubitNoisyBraidProposalPacket(
             round_id="round_bad_noise",
             proposer_id="agent_qubit_proposer",
@@ -301,7 +290,7 @@ class TestMultiQubitNoisyBraidReferee:
                 num_qubits=1,
                 operations=(),
                 noise_couplings=(),
-                tolerance_epsilon=0.1,  # Forbidden float
+                tolerance_epsilon=0.1,
             )
 
     def test_nonlocal_cnot_and_swap_4qubits(self):
@@ -317,7 +306,7 @@ class TestMultiQubitNoisyBraidReferee:
         couplings = LocalMajoranaNoise.correlated_cluster_couplings(
             num_qubits=4, lattice_l=8, budget=Fraction(1, 10), seed=42
         )
-        assert len(couplings) == 120  # 16 * 15 / 2
+        assert len(couplings) == 120
         noise = LocalMajoranaNoise.stray_couplings(16, couplings)
         assert noise.dim == 16
         assert noise.max_leakage() > Fraction(0, 1)

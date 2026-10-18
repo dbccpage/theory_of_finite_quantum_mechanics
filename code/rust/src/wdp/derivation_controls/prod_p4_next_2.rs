@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P4-NEXT-2 (Map CompletionTarget raw/quotient/both onto distinct_image targets).
 
 pub fn sharp_distinct_image_minima(dim_k: usize, dim_rk: usize, dim_kb: usize, dim_rkb: usize) -> (usize, usize, usize, usize) {
     let raw_min = dim_rk;

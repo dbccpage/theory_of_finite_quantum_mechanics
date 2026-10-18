@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/application_convergence.rs
-# Rust sha256: 5842fbaeb3d796efa89c26153d72a8f92d899dba5a991cffea693ca9dbfce1c6
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,15 +38,12 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 APPLICATION_CONVERGENCE_PACKET_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 APPLICATION_CONVERGENCE_RECEIPT_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 APPLICATION_CONVERGENCE_VERIFICATION_SCHEMA_V1: Any = None
 
 
@@ -74,11 +67,9 @@ ApplicationLaneV1 = Enum(
 ApplicationLaneV1.__doc__ = "Structural mirror of Rust ``ApplicationLaneV1`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
@@ -522,6 +513,5 @@ def verify_application_convergence_v1(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

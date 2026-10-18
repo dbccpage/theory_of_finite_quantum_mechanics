@@ -1,8 +1,3 @@
-//! Campaign module atomic_dirac.
-//!
-//! The finite Dirac operator `H = m γ0 + p γ1` on a two-component carrier
-//! squares to `(m² + p²) I`. The square is read from the matrix product and
-//! from the scalar, after the Clifford relations are checked.
 
 pub fn verify() -> Result<i64, &'static str> {
     let gamma0 = [[1i64, 0], [0, -1]];

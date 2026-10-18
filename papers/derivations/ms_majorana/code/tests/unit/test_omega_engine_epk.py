@@ -34,7 +34,6 @@ from omega_engine.crates.functional.fn_xi_witness import try_compute_xi_witness
 
 
 def test_engine_invariants_meta_escalation():
-    # Test valid meta escalation resolution
     step0 = EngineTraceStep(
         evaluator_verdict=EvaluationVerdict.Escalate(EscalationRoute.MetaAnalysis),
         decision=EngineDecision.Continue,
@@ -44,9 +43,8 @@ def test_engine_invariants_meta_escalation():
     step1 = EngineTraceStep(
         evaluator_verdict=None, decision=EngineDecision.Lift, phi=0.4, gamma2=0.1
     )
-    assert_meta_escalation_resolution([step0, step1])  # passes
+    assert_meta_escalation_resolution([step0, step1])
 
-    # Test invalid meta escalation resolution (escalated but followed by continue)
     step2 = EngineTraceStep(
         evaluator_verdict=None, decision=EngineDecision.Continue, phi=0.4, gamma2=0.1
     )
@@ -55,14 +53,12 @@ def test_engine_invariants_meta_escalation():
 
 
 def test_prompt_intake_engine():
-    # JSONL
     line = '{"id":"test_01","prompt":"hello world","solution":"ok"}'
     record = PromptIntakeEngine.parse_jsonl_record(line)
     assert record.id == "test_01"
     assert record.raw_prompt == "hello world"
     assert record.expected_answer == "ok"
 
-    # CSV
     csv_line = 'row_1,"What, exactly, is this?","answer, here"'
     record_csv = PromptIntakeEngine.parse_csv_record(csv_line)
     assert record_csv.id == "row_1"
@@ -71,7 +67,6 @@ def test_prompt_intake_engine():
 
 
 def test_operator_algebra_engine():
-    # Pauli Z
     pauli_z = np.array([[1.0, 0.0], [0.0, -1.0]], dtype=complex)
     pauli_x = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex)
 
@@ -79,17 +74,14 @@ def test_operator_algebra_engine():
     defect = algebra.cstar_identity_defect(pauli_x)
     assert defect < 1e-10
 
-    # Create state
     psi = np.array([1.0, 0.0], dtype=complex)
     state = AlgebraicState.vector_state(psi)
     exp_z = state.expectation(pauli_z)
     assert abs(exp_z - 1.0) < 1e-10
 
-    # GNS
     gns = GnsConstruction.from_state(state)
     assert gns.quotient_dimension() == 2
 
-    # Finite Von Neumann Algebra
     vna = FiniteVonNeumannAlgebra.generated_by(2, [pauli_x, pauli_z])
     diag = vna.double_commutant_diagnostic()
     assert diag.generated_dimension == 4
@@ -107,7 +99,6 @@ def test_everett_dag():
 
 
 def test_obstruction_runtime():
-    # Mock classes
     class MockFunctional:
         def compute(self, state):
             return state.metrics
@@ -144,8 +135,6 @@ def test_obstruction_runtime():
 
     step = runtime.step()
     assert len(step.evaluated) == 2
-    # child1 has phi_1 = 0.5 (descent from 1.0), should be accepted
-    # child2 has phi_1 = 1.2, should be rejected
     assert step.evaluated[0].verdict == "Accept"
     assert step.evaluated[1].verdict == "Reject"
     assert step.selected is not None
@@ -187,6 +176,5 @@ def test_cycle_aware_generator():
     gen = CycleAwareGenerator(config, MockDiagnosticFunctional())
 
     candidates = gen.generate(state)
-    # should generate 1 bulk + 2 single-edge = 3 candidates
     assert len(candidates) == 3
     assert candidates[0].operator_id.val == "cycle_aware.bulk_correction"

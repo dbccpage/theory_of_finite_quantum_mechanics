@@ -139,14 +139,12 @@ def verify_classification_manifest(filepath: Path) -> Dict[str, Any]:
     if data.get("schema") != "omega.mub.g1_classification_manifest.v1":
         raise ValueError(f"Invalid schema: {data.get('schema')!r}")
 
-    # 1. Authority and Firewall Checks
     if data.get("authority_effect") != "None":
         raise ValueError("AuthorityEffect must be strictly 'None'")
     firewall = data.get("firewall_line", "")
     if "stated region only" not in firewall:
         raise ValueError(f"Invalid or missing firewall line: {firewall!r}")
 
-    # 2. Moduli Components Validation
     components = data.get("moduli_components", [])
     if len(components) != 5:
         raise ValueError(f"Expected exactly 5 moduli components, got {len(components)}")
@@ -170,7 +168,6 @@ def verify_classification_manifest(filepath: Path) -> Dict[str, Any]:
             if c["chart_routing"] != "branch_regular_corner":
                 raise ValueError(f"{c['component_id']} must route to branch_regular_corner")
 
-    # 3. Eliminated Subvarieties Validation
     subvarieties = data.get("eliminated_subvarieties", [])
     if len(subvarieties) != 4:
         raise ValueError(f"Expected exactly 4 eliminated subvarieties, got {len(subvarieties)}")
@@ -179,7 +176,6 @@ def verify_classification_manifest(filepath: Path) -> Dict[str, Any]:
         if sub.get("status") != "DISCHARGED_EMPTY":
             raise ValueError(f"Subvariety {sub.get('subvariety_id')} status is not DISCHARGED_EMPTY")
 
-    # 4. Theorems Validation
     theorems = data.get("theorems", [])
     if len(theorems) < 4:
         raise ValueError(f"Expected at least 4 master theorems, got {len(theorems)}")
@@ -194,7 +190,6 @@ def verify_classification_manifest(filepath: Path) -> Dict[str, Any]:
                 f"Theorem {thm.get('name')} contains disallowed axioms: {set(axioms) - axiom_allowlist}"
             )
 
-    # 5. Verification Summary
     summary = data.get("verification_summary", {})
     if summary.get("unconditional_grand_synthesis_proved") or summary.get("unconditional_no_fourth_basis_proved"):
         raise ValueError("No audited discharge term is bound to this manifest")

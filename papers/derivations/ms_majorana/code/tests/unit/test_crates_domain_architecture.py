@@ -242,8 +242,6 @@ def test_relative_imports_are_resolved_before_dependency_checks() -> None:
         tree, "omega_engine.crates.domain.shared_kernel"
     )
     assert resolved == [
-        # resolve_name performs Python package resolution; it must not invent a
-        # semantic alias for a module name that is not registered by the package.
         (1, "omega_engine.crates.epk"),
         (2, "omega_engine.crates.domain.shared_kernel.id"),
         (3, "omega_engine.crates.domain.exceptions"),

@@ -1,4 +1,3 @@
-//! Finite cochain complex C^0 --d0--> C^1 --d1--> C^2 with d1 * d0 = 0.
 
 use crate::coboundary::CoboundaryMap;
 use crate::errors::HomologicalError;
@@ -12,20 +11,12 @@ use crate::linear_algebra::basic_matrix::BasicMatrix;
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 
-/// Provenance for a cochain complex construction.
-///
-/// Records the verification source that justified the coboundary law d^1 * d^0 = 0.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TheoremProvenance {
     verification_source: String,
 }
 
 impl TheoremProvenance {
-    /// Create a new theorem provenance.
-    ///
-    /// # Errors
-    /// Returns `HomologicalError::EmptyVerificationSource` if the source string is empty
-    /// or contains only whitespace.
     pub fn new(verification_source: String) -> Result<Self, HomologicalError> {
         if verification_source.trim().is_empty() {
             return Err(HomologicalError::EmptyVerificationSource);
@@ -35,53 +26,26 @@ impl TheoremProvenance {
         })
     }
 
-    /// Returns the verification source string.
     pub fn verification_source(&self) -> &str {
         &self.verification_source
     }
 
-    /// Computes the hash of this provenance.
     pub fn provenance_hash(&self) -> Hash256 {
         hash_provenance(&self.verification_source)
     }
 }
 
-/// A finite cochain complex with verified coboundary law.
-///
-/// C^0 --d0--> C^1 --d1--> C^2
-/// Invariant: d1 * d0 = 0
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CochainComplex {
-    /// Dimension of C^0.
     pub c0_dim: usize,
-    /// Dimension of C^1.
     pub c1_dim: usize,
-    /// Dimension of C^2.
     pub c2_dim: usize,
-    /// Coboundary map d0 : C^0 -> C^1 (matrix is c1_dim x c0_dim).
     pub d0: CoboundaryMap,
-    /// Coboundary map d1 : C^1 -> C^2 (matrix is c2_dim x c1_dim).
     pub d1: CoboundaryMap,
-    /// Witness proving d1 * d0 = 0.
     pub witness: CochainComplexWitness,
 }
 
 impl CochainComplex {
-    /// Construct a cochain complex, verifying d1 * d0 = 0.
-    ///
-    /// # Arguments
-    /// * `c0_dim` - Dimension of the degree-0 cochain group C^0.
-    /// * `c1_dim` - Dimension of the degree-1 cochain group C^1.
-    /// * `c2_dim` - Dimension of the degree-2 cochain group C^2.
-    /// * `d0_matrix` - Coboundary map d^0: C^0 -> C^1 as a c1_dim x c0_dim matrix.
-    /// * `d1_matrix` - Coboundary map d^1: C^1 -> C^2 as a c2_dim x c1_dim matrix.
-    /// * `provenance` - Provenance recording the verification source.
-    ///
-    /// # Errors
-    /// Returns `HomologicalError::DimensionMismatch` if matrix dimensions do not match
-    /// the specified cochain group dimensions.
-    /// Returns `HomologicalError::CoboundaryLawViolation` if d1 * d0 != 0.
-    /// Returns `HomologicalError::MatrixError` if matrix multiplication fails.
     pub fn new(
         c0_dim: usize,
         c1_dim: usize,
@@ -90,7 +54,6 @@ impl CochainComplex {
         d1_matrix: BasicMatrix<Q>,
         provenance: TheoremProvenance,
     ) -> Result<Self, HomologicalError> {
-        // Check d0 dimensions: c1_dim x c0_dim
         if d0_matrix.rows() != c1_dim || d0_matrix.cols() != c0_dim {
             return Err(HomologicalError::DimensionMismatch {
                 expected: c1_dim * c0_dim,
@@ -98,7 +61,6 @@ impl CochainComplex {
             });
         }
 
-        // Check d1 dimensions: c2_dim x c1_dim
         if d1_matrix.rows() != c2_dim || d1_matrix.cols() != c1_dim {
             return Err(HomologicalError::DimensionMismatch {
                 expected: c2_dim * c1_dim,
@@ -106,8 +68,6 @@ impl CochainComplex {
             });
         }
 
-        // Verify d1 * d0 = 0 (the fundamental coboundary law)
-        // Only check if both domains are non-trivial
         if c2_dim > 0 && c0_dim > 0 {
             let product = d1_matrix
                 .mul(&d0_matrix)
@@ -146,15 +106,10 @@ impl CochainComplex {
         })
     }
 
-    /// Hash identifying this cochain complex.
     pub fn complex_hash(&self) -> &Hash256 {
         &self.witness.complex_hash
     }
 
-    /// Returns the dimension of the cochain group at the given degree.
-    ///
-    /// # Errors
-    /// Returns `HomologicalError::InvalidDegree` for degrees outside [0, 2].
     pub fn dim(&self, degree: usize) -> Result<usize, HomologicalError> {
         match degree {
             0 => Ok(self.c0_dim),
@@ -184,8 +139,6 @@ mod tests {
 
     #[test]
     fn test_trivial_cochain_complex() {
-        // C^0 = R, C^1 = 0, C^2 = 0
-        // All coboundary maps are zero.
         let d0 = zero_matrix(0, 1);
         let d1 = zero_matrix(0, 0);
 
@@ -195,10 +148,6 @@ mod tests {
 
     #[test]
     fn test_coboundary_law_verified() {
-        // Simple cochain complex where d1 * d0 = 0 is satisfied.
-        // C^0 = R, C^1 = R^2, C^2 = R
-        // d0: [1; -1], d1: [1, 1]
-        // d1 * d0 = [1, 1] * [1; -1] = 1 + (-1) = 0
 
         let d0 = BasicMatrix::from_row_major(2, 1, vec![r(1), r(-1)]).expect("d0 creation");
         let d1 = BasicMatrix::from_row_major(1, 2, vec![r(1), r(1)]).expect("d1 creation");
@@ -209,9 +158,6 @@ mod tests {
 
     #[test]
     fn test_coboundary_law_violation_rejected() {
-        // d1 * d0 != 0 should fail.
-        // d0: [1; 1], d1: [1, 1]
-        // d1 * d0 = [1, 1] * [1; 1] = 2 != 0
 
         let d0 = BasicMatrix::from_row_major(2, 1, vec![r(1), r(1)]).expect("d0 creation");
         let d1 = BasicMatrix::from_row_major(1, 2, vec![r(1), r(1)]).expect("d1 creation");
@@ -225,7 +171,6 @@ mod tests {
 
     #[test]
     fn test_dimension_mismatch_d0() {
-        // d0 has wrong dimensions.
         let d0 = BasicMatrix::from_row_major(3, 1, vec![r(0); 3]).expect("d0 creation");
         let d1 = zero_matrix(1, 2);
 
@@ -238,7 +183,6 @@ mod tests {
 
     #[test]
     fn test_dimension_mismatch_d1() {
-        // d1 has wrong dimensions.
         let d0 = zero_matrix(2, 1);
         let d1 = BasicMatrix::from_row_major(2, 2, vec![r(0); 4]).expect("d1 creation");
 

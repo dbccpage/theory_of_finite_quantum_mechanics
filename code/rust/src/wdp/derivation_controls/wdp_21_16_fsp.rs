@@ -1,6 +1,3 @@
-//! Two finite carriers for WDP-21-16-FSP.
-//! Carrier A is the four-site star. Carrier B is one k=1 orbit.
-//! Their integers do not close section 21.16.
 
 #![forbid(unsafe_code)]
 
@@ -117,7 +114,6 @@ fn gauge_cycle(parities: &[u8; 6]) -> (i64, i64, i64) {
             let head = (assignment >> ((edge + 1) % 6)) & 1;
             extra += tail + head;
         }
-        // Each cycle vertex has degree two, so g_v is added twice.
         assert_eq!(extra & 1, 0, "diagonal gauge failed to cancel");
         let total = (base + extra) & 1;
         assert_eq!(total, base_f2, "gauge changed the cycle sum");
@@ -238,7 +234,6 @@ pub fn witness() -> Witness {
     }
 }
 
-/// `1` is the six-negative product, not the CAR product of this cycle.
 pub fn refuse_removed_holonomy(claimed_product: i64) -> Result<(), &'static str> {
     let found = witness();
     if claimed_product == found.hop_product {
@@ -250,7 +245,6 @@ pub fn refuse_removed_holonomy(claimed_product: i64) -> Result<(), &'static str>
     }
 }
 
-/// `912` and `36864` belong to a different fixture.
 pub fn refuse_foreign_fixture(value: i64) -> Result<(), &'static str> {
     let found = witness();
     if value == 912 || value == 36864 {

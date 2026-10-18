@@ -131,11 +131,9 @@ class FiniteQMEngine:
     def rung_3_cptp_shadow(kraus_ops: List[np.ndarray]) -> Rung3CPTPShadow:
         """Evaluates Rung 3: CPTP channel population shadow kernel K(y|x)."""
         dim = kraus_ops[0].shape[0]
-        # Sum_k A_k^dag A_k = I for CPTP
         completeness = np.sum([A.conj().T @ A for A in kraus_ops], axis=0)
         trace_preserving = bool(np.allclose(completeness, np.eye(dim)))
 
-        # K(y|x) = sum_k |<y|A_k|x>|^2
         kernel = np.zeros((dim, dim), dtype=float)
         for x in range(dim):
             for y in range(dim):
@@ -156,7 +154,6 @@ class FiniteQMEngine:
         M = np.asarray(step_matrix, dtype=float)
         Mn = np.linalg.matrix_power(M, steps)
 
-        # Verify M^(a+b) = M^a * M^b for split steps
         a = steps // 2
         b = steps - a
         Ma = np.linalg.matrix_power(M, a)

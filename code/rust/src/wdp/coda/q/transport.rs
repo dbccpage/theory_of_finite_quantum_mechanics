@@ -3,7 +3,6 @@ use serde::{Deserialize, Serialize};
 use super::errors::{QError, QPacketField};
 use super::packet::{has_text, option_has_text, QTerminal};
 
-/// Audit packet for representation transport candidates.
 #[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RepresentationTransportPacket {
     pub candidate_id: String,
@@ -71,7 +70,6 @@ impl RepresentationTransportPacket {
         self.with_terminal_status_request(terminal_status_request)
     }
 
-    /// Full transport validation for any representation transport candidate (including real/complex QM).
     pub fn validate_full_transport_packet(&self) -> Result<(), QError> {
         if !has_text(&self.carrier) {
             return Err(QError::MissingMandatoryField(QPacketField::Carrier));

@@ -53,33 +53,24 @@ class Cyc24:
     def zeta(cls, k: int) -> Cyc24:
         """zeta_24^k = e^{i k pi / 12} for arbitrary integer k."""
         k = k % 24
-        # We reduce x^k modulo x^8 - x^4 + 1.
-        # x^8 = x^4 - 1
-        # x^12 = -1
-        # x^24 = 1
         sign = 1
         if k >= 12:
             k -= 12
             sign = -1
 
-        # Now k in [0, 11]
         c = [Fraction(0, 1)] * 8
         if k < 8:
             c[k] = Fraction(sign, 1)
         elif k == 8:
-            # x^8 = x^4 - 1
             c[4] = Fraction(sign, 1)
             c[0] = Fraction(-sign, 1)
         elif k == 9:
-            # x^9 = x^5 - x
             c[5] = Fraction(sign, 1)
             c[1] = Fraction(-sign, 1)
         elif k == 10:
-            # x^10 = x^6 - x^2
             c[6] = Fraction(sign, 1)
             c[2] = Fraction(-sign, 1)
         elif k == 11:
-            # x^11 = x^7 - x^3
             c[7] = Fraction(sign, 1)
             c[3] = Fraction(-sign, 1)
 
@@ -102,7 +93,6 @@ class Cyc24:
         return Cyc24([c * frac for c in self.coeffs])
 
     def mul(self, other: Cyc24) -> Cyc24:
-        # Polynomial multiplication up to degree 14
         prod = [Fraction(0, 1)] * 15
         for i in range(8):
             ai = self.coeffs[i]
@@ -114,14 +104,11 @@ class Cyc24:
                     continue
                 prod[i + j] += ai * bj
 
-        # Reduce degree 8..14 using x^8 = x^4 - 1
         res = list(prod[:8])
         for deg in range(14, 7, -1):
             val = prod[deg]
             if val == 0:
                 continue
-            # x^deg = x^{deg-4} - x^{deg-8}
-            # Add to degree deg-4, subtract from deg-8
             d1 = deg - 4
             d0 = deg - 8
             if d1 < 8:
@@ -138,15 +125,6 @@ class Cyc24:
     def conj(self) -> Cyc24:
         """Complex conjugate over Q(zeta_24)."""
         a = self.coeffs
-        # conj(z):
-        # c0 = a0 + a4
-        # c1 = a3
-        # c2 = a2
-        # c3 = a1
-        # c4 = -a4
-        # c5 = -a3 - a7
-        # c6 = -a2 - a6
-        # c7 = -a1 - a5
         return Cyc24([
             a[0] + a[4],
             a[3],
@@ -205,8 +183,6 @@ class Cyc24:
 
         Returns ((R0, R2, R3, R6), (I0, I2, I3, I6)).
         """
-        # cos_coeffs[k] = (q0, q2, q3, q6) for cos(k pi / 12)
-        # sin_coeffs[k] = (q0, q2, q3, q6) for sin(k pi / 12)
         q0 = Fraction(0, 1)
         q1 = Fraction(1, 1)
         q1_2 = Fraction(1, 2)
@@ -214,25 +190,25 @@ class Cyc24:
         qm1_4 = Fraction(-1, 4)
 
         cos_table = [
-            (q1, q0, q0, q0),        # k=0: 1
-            (q0, q1_4, q0, q1_4),     # k=1: (sqrt6 + sqrt2)/4
-            (q0, q0, q1_2, q0),       # k=2: sqrt3/2
-            (q0, q1_2, q0, q0),       # k=3: sqrt2/2
-            (q1_2, q0, q0, q0),       # k=4: 1/2
-            (q0, qm1_4, q0, q1_4),    # k=5: (sqrt6 - sqrt2)/4
-            (q0, q0, q0, q0),         # k=6: 0
-            (q0, q1_4, q0, qm1_4),    # k=7: (sqrt2 - sqrt6)/4
+            (q1, q0, q0, q0),
+            (q0, q1_4, q0, q1_4),
+            (q0, q0, q1_2, q0),
+            (q0, q1_2, q0, q0),
+            (q1_2, q0, q0, q0),
+            (q0, qm1_4, q0, q1_4),
+            (q0, q0, q0, q0),
+            (q0, q1_4, q0, qm1_4),
         ]
 
         sin_table = [
-            (q0, q0, q0, q0),         # k=0: 0
-            (q0, qm1_4, q0, q1_4),    # k=1: (sqrt6 - sqrt2)/4
-            (q1_2, q0, q0, q0),       # k=2: 1/2
-            (q0, q1_2, q0, q0),       # k=3: sqrt2/2
-            (q0, q0, q1_2, q0),       # k=4: sqrt3/2
-            (q0, q1_4, q0, q1_4),     # k=5: (sqrt6 + sqrt2)/4
-            (q1, q0, q0, q0),         # k=6: 1
-            (q0, q1_4, q0, q1_4),     # k=7: (sqrt6 + sqrt2)/4
+            (q0, q0, q0, q0),
+            (q0, qm1_4, q0, q1_4),
+            (q1_2, q0, q0, q0),
+            (q0, q1_2, q0, q0),
+            (q0, q0, q1_2, q0),
+            (q0, q1_4, q0, q1_4),
+            (q1, q0, q0, q0),
+            (q0, q1_4, q0, q1_4),
         ]
 
         re = [Fraction(0, 1)] * 4

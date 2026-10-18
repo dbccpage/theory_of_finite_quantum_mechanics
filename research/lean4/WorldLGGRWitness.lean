@@ -1,30 +1,9 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 
-/-!
-# Reusable Local-Green / Global-Red witnesses
 
-This module wraps the shared-kernel pair-obstruction theorems in two
-proof-carrying type classes.  The exact class uses equality in the observer
-codomains.  The modulo class uses explicitly supplied setoids.
 
-Type-class resolution only assembles a result after a witness instance has
-already supplied two source points, their source `ZeroRel` proof, local
-congruence, and global separation.  This module provides no generic instance,
-enumerator, decision procedure, or search over arbitrary carriers.  Its only
-instances are the concrete Bool regressions below.
 
-The primitive-difference notation is not parsed or derived here; the module
-imports the typed `PrimitiveDifference` structure.  No authority transition is
-claimed.
--/
 
 namespace OmegaWorld
 namespace LGGRWitness
@@ -33,10 +12,6 @@ open OmegaCore
 
 universe u v w
 
-/--
-Exact LGGR evidence: the local observer respects the declared source
-`ZeroRel`, while one zero-related pair is separated by the global observer.
--/
 class ExactLGGRWitness
     {α : Type u} {β : Type v} {γ η : Type w}
     (P : PrimitiveDifference α β) (diagnostic : α → γ) (global : α → η) where
@@ -46,7 +21,6 @@ class ExactLGGRWitness
   localCongruent : P.InvariantCongruent diagnostic
   globalSeparated : global left ≠ global right
 
-/-- The complete exact witness and factorization obstruction. -/
 structure ExactLGGRResult
     {α : Type u} {β : Type v} {γ η : Type w}
     (P : PrimitiveDifference α β) (diagnostic : α → γ) (global : α → η) where
@@ -64,10 +38,6 @@ structure ExactLGGRResult
     ¬ (∃ F : P.ResidualQuotient → γ × η,
       ∀ x : α, F (P.classOf x) = (diagnostic x, global x))
 
-/--
-One-line exact proof surface: `by exact exactLGGRFromInstance` works whenever
-the surrounding scope contains an `ExactLGGRWitness` instance.
--/
 def exactLGGRFromInstance
     {α : Type u} {β : Type v} {γ η : Type w}
     (P : PrimitiveDifference α β) (diagnostic : α → γ) (global : α → η)
@@ -87,11 +57,6 @@ def exactLGGRFromInstance
       localFactor := obstruction.2.2.1
       pairDoesNotFactor := obstruction.2.2.2 }
 
-/--
-Classical proposition-level alternative: a locally congruent diagnostic either
-pairs with the global observer through the quotient, or a zero-related LGGR
-pair exists.  This is not an executable branch decision or witness search.
--/
 theorem exactPairFactorOrLGGRWitness
     {α : Type u} {β : Type v} {γ η : Type w}
     (P : PrimitiveDifference α β) (diagnostic : α → γ) (global : α → η)
@@ -119,10 +84,6 @@ theorem exactPairFactorOrLGGRWitness
         diagnosticCongruent left right sourceZeroRelated,
         globalSeparated⟩
 
-/--
-Setoid-modulo LGGR evidence.  Local agreement is measured by `S`; global
-separation is failure of the independently declared relation `T`.
--/
 class SetoidLGGRWitness
     {α : Type u} {β : Type v} {γ η : Type w}
     (P : PrimitiveDifference α β) (diagnostic : α → γ) (global : α → η)
@@ -133,7 +94,6 @@ class SetoidLGGRWitness
   localCongruent : P.InvariantCongruentMod diagnostic S
   globalSeparated : ¬ T.r (global left) (global right)
 
-/-- The complete setoid-modulo witness and quotient-factor obstruction. -/
 structure SetoidLGGRResult
     {α : Type u} {β : Type v} {γ η : Type w}
     (P : PrimitiveDifference α β) (diagnostic : α → γ) (global : α → η)
@@ -154,10 +114,6 @@ structure SetoidLGGRResult
           Quotient.mk (PrimitiveDifference.productSetoid S T)
             (diagnostic x, global x))
 
-/--
-One-line modulo proof surface: `by exact setoidLGGRFromInstance` works only
-after an explicit `SetoidLGGRWitness` instance has supplied the evidence.
--/
 def setoidLGGRFromInstance
     {α : Type u} {β : Type v} {γ η : Type w}
     (P : PrimitiveDifference α β) (diagnostic : α → γ) (global : α → η)
@@ -179,11 +135,6 @@ def setoidLGGRFromInstance
       localFactor := obstruction.1
       pairDoesNotFactor := obstruction.2 }
 
-/--
-Setoid-modulo factor-or-witness alternative.  As above, classical excluded
-middle proves the proposition but supplies no executable infinite-carrier
-search procedure and installs no type-class instance.
--/
 theorem setoidPairFactorOrLGGRWitness
     {α : Type u} {β : Type v} {γ η : Type w}
     (P : PrimitiveDifference α β) (diagnostic : α → γ) (global : α → η)
@@ -216,7 +167,6 @@ theorem setoidPairFactorOrLGGRWitness
         diagnosticCongruent left right sourceZeroRelated,
         globalSeparated⟩
 
-/-- Equality presented explicitly as a setoid for modulo regression tests. -/
 def equalitySetoid (α : Type u) : Setoid α where
   r := Eq
   iseqv := by
@@ -228,13 +178,10 @@ def equalitySetoid (α : Type u) : Setoid α where
     · intro x y z hxy hyz
       exact hxy.trans hyz
 
-/-- A local diagnostic that deliberately forgets its Bool input. -/
 def boolLocal (_input : Bool) : Bool := false
 
-/-- The globally visible Bool coordinate. -/
 def boolGlobal (input : Bool) : Bool := input
 
-/-- Concrete exact LGGR evidence on the shared-kernel Bool fixture. -/
 instance boolExactLGGRWitness :
     ExactLGGRWitness
       PrimitiveDifference.boolAllZeroNonconstant boolLocal boolGlobal where
@@ -247,13 +194,11 @@ instance boolExactLGGRWitness :
   globalSeparated := by
     decide
 
-/-- The exact Bool regression uses the one-line type-class proof surface. -/
 def boolExactLGGRRegression :
     ExactLGGRResult
       PrimitiveDifference.boolAllZeroNonconstant boolLocal boolGlobal := by
   exact exactLGGRFromInstance _ _ _
 
-/-- Concrete equality-setoid LGGR evidence on the same Bool fixture. -/
 instance boolSetoidLGGRWitness :
     SetoidLGGRWitness
       PrimitiveDifference.boolAllZeroNonconstant boolLocal boolGlobal
@@ -268,14 +213,12 @@ instance boolSetoidLGGRWitness :
     change true ≠ false
     decide
 
-/-- The modulo Bool regression also closes through one type-class-driven line. -/
 def boolSetoidLGGRRegression :
     SetoidLGGRResult
       PrimitiveDifference.boolAllZeroNonconstant boolLocal boolGlobal
       (equalitySetoid Bool) (equalitySetoid Bool) := by
   exact setoidLGGRFromInstance _ _ _ _ _
 
-/-- Local scope metadata; this is a checked snapshot, not non-derivability. -/
 inductive AuthorityEffect where
   | none
 deriving DecidableEq, Repr
@@ -319,3 +262,6 @@ theorem scope_boundary_snapshot :
 
 end LGGRWitness
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldLGGRWitness.lean Claim: exactPairFactorOrLGGRWitness AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

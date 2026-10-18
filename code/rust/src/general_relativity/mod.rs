@@ -1,16 +1,3 @@
-//! `omega_general_relativity` — domain dual-face GR crate.
-//!
-//! **Deepened (finite Regge / simplicial):**
-//! - [`discrete_spacetime`] — face-closed complex via `omega_homology::simplicial`
-//! - [`regge_calculus`] — edge lengths, vertex deficits, 2D Regge action
-//! - [`scalar_curvature`] — deficit carriers
-//! - [`einstein_hilbert_action`] — f64 face; not the exact proxy (the sum of area_squared times kappa)
-//!
-//! **No separate `omega_simplex` crate:** simplicial complexes already live in
-//! `omega_homology::simplicial` (`Simplex`, `OrientedSimplex`, `SimplicialComplex`).
-//!
-//! Remaining modules may still be shape scaffolds. AuthorityEffect: None.
-//! Not continuum GR. Not PROVED / GlobalGreen.
 
 pub mod bi_crossed_product;
 pub mod causal_dynamical_triangulation;
@@ -25,9 +12,6 @@ pub mod dihedral_angles;
 pub mod dirac_operator_discrete;
 pub mod discrete_spacetime;
 pub mod einstein_hilbert_action;
-/// Exact rational 4D Regge engine over `BigRational`.
-/// Does not call [`regge_4d`], [`regge_action`], [`regge_calculus`], or [`cayley_menger`].
-/// AuthorityEffect: None.
 pub mod exact_regge;
 pub mod field_equation;
 pub mod gauge_transformation;
@@ -58,7 +42,6 @@ pub mod simplicial_dynamics;
 
 use num_rational::Ratio;
 
-/// Validates simplicial Euler characteristic chi = V - E + F for a discrete 2D surface.
 pub fn verify_surface_euler_characteristic(vertices: usize, edges: usize, faces: usize, expected_chi: i64) -> bool {
     let chi = (vertices as i64) - (edges as i64) + (faces as i64);
     chi == expected_chi
@@ -70,7 +53,6 @@ mod gr_tests {
 
     #[test]
     fn test_tetrahedron_euler() {
-        // Tetrahedron: V=4, E=6, F=4 -> chi = 4 - 6 + 4 = 2 (sphere)
         assert!(verify_surface_euler_characteristic(4, 6, 4, 2));
     }
 }

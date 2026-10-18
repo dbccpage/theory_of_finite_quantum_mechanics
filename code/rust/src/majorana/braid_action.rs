@@ -1,26 +1,12 @@
-//! Exact adjoint braid action on a declared list of Majorana generators.
-//!
-//! This is the sparse signed-permutation representation from the Majorana
-//! paper's `majorana_braid_exact.py`. Row `a` represents the image of
-//! `gamma_a`: the positive elementary braid sends `gamma_j` to
-//! `gamma_(j+1)` and `gamma_(j+1)` to `-gamma_j`. A word is evaluated in
-//! written matrix order, `R_j1 R_j2 ...`; its spin representation and global
-//! phase are separate data, supplied by `FockCarrier::braid_unitary`.
-//!
-//! AuthorityEffect: None.
 
-/// Explicit resource bound for the sparse representation, independent of the
-/// much smaller exponentially sized Fock carrier bound.
 pub const MAX_BRAID_MODES: usize = 1_048_576;
 
-/// A signed, one-indexed image of one Majorana generator.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct SignedMajorana {
     pub mode: usize,
     pub sign: i8,
 }
 
-/// Invalid declarations are refused before an action can be constructed.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum BraidActionError {
     #[error("the braid action requires 2..={MAX_BRAID_MODES} modes, not {count}")]
@@ -39,8 +25,6 @@ pub enum BraidActionError {
     Allocation,
 }
 
-/// An admitted signed permutation. Its representation has linear storage and
-/// every admitted action is exactly orthogonal.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MajoranaBraidAction {
     images: Vec<SignedMajorana>,
@@ -64,8 +48,6 @@ fn reserve<T>(count: usize) -> Result<Vec<T>, BraidActionError> {
 }
 
 impl MajoranaBraidAction {
-    /// Admit an externally supplied signed permutation. Arbitrary rational
-    /// orthogonal matrices are not part of this representation.
     pub fn try_from_images(images: Vec<SignedMajorana>) -> Result<Self, BraidActionError> {
         let count = images.len();
         validate_count(count)?;
@@ -95,7 +77,6 @@ impl MajoranaBraidAction {
             determinant *= image.sign;
         }
         visited.fill(false);
-        // A cycle of length l contributes (-1)^(l-1) to the permutation sign.
         for start in 0..count {
             if !visited[start] {
                 let mut position = start;
@@ -136,8 +117,6 @@ impl MajoranaBraidAction {
         Ok(result)
     }
 
-    /// Evaluate a braid word in written matrix order using O(count) memory and
-    /// O(count + word length) work.
     pub fn from_word(count: usize, word: &[(usize, bool)]) -> Result<Self, BraidActionError> {
         let mut result = Self::identity(count)?;
         for &(index, inverse) in word {
@@ -146,8 +125,6 @@ impl MajoranaBraidAction {
         Ok(result)
     }
 
-    /// Right multiply the current row-action matrix by one elementary braid.
-    /// Invalid indices leave the action unchanged.
     pub fn append(&mut self, index: usize, inverse: bool) -> Result<(), BraidActionError> {
         if index == 0 || index >= self.images.len() {
             return Err(BraidActionError::BraidIndex {
@@ -186,13 +163,10 @@ impl MajoranaBraidAction {
         Ok(self.images[mode - 1])
     }
 
-    /// Exact determinant of the row-action matrix. The sign equals the action
-    /// on the product of all Majoranas; elementary braids preserve this parity.
     pub fn determinant_sign(&self) -> i8 {
         self.determinant
     }
 
-    /// Matrix product `self * other` in the declared row-image convention.
     pub fn compose(&self, other: &Self) -> Result<Self, BraidActionError> {
         if self.mode_count() != other.mode_count() {
             return Err(BraidActionError::Dimension {
@@ -355,7 +329,6 @@ mod tests {
         ));
         let mut action = MajoranaBraidAction::identity(4).unwrap();
         let before = action.clone();
-        // Kills: appending an out-of-range braid and still mutating the images.
         assert_eq!(
             action.append(4, false),
             Err(BraidActionError::BraidIndex { index: 4, count: 4 })

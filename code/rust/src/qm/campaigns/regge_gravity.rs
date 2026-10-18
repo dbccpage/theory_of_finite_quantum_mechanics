@@ -1,7 +1,3 @@
-//! Campaign module regge_gravity.
-//!
-//! A tetrahedral triangulation of the sphere has `V - E + F = 2`. The sum of
-//! vertex deficits `6 - degree` equals `6 χ`, which is also `6V - 2E`.
 
 pub fn verify() -> Result<i64, &'static str> {
     let vertices = 4i64;

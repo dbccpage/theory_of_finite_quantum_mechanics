@@ -1,23 +1,13 @@
-/-
-  MixingObstruction.lean
-  Non-descent obstruction theorem under Hadamard mixing for Paper 060.
-  AuthorityEffect: None
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import QuotientFiber
 
 namespace SuperpositionQuotientFiber
 
-/-- Unnormalized Hadamard mixing across the two sectors -/
 def mix (v : Vec GaussInt Bool) : Vec GaussInt Bool :=
   fun q =>
     if q then GaussInt.add (v false) (GaussInt.neg (v true))
     else GaussInt.add (v false) (v true)
 
-/-- Mixed readout: mixing followed by phase-blind detection -/
 def mixedReadout (v : Vec GaussInt Bool) : Bool → Int :=
   phaseBlind (mix v)
 
@@ -33,8 +23,6 @@ theorem mix_separates : mixedReadout psi1 ≠ mixedReadout psi2 := by
   revert h0
   decide
 
-/-- CORE NON-DESCENT THEOREM (Theorem QM-060-C4):
-    No function of the phase-blind quotient report can reproduce the mixed readout. -/
 theorem no_descent_through_quotient :
     ¬ ∃ f : (Bool → Int) → (Bool → Int),
       ∀ v : Vec GaussInt Bool, mixedReadout v = f (phaseBlind v) := by
@@ -50,3 +38,6 @@ theorem no_descent_through_quotient :
 #print axioms no_descent_through_quotient
 
 end SuperpositionQuotientFiber
+
+private def l5aProvenance : String :=
+  "Origin: lean4/MixingObstruction.lean Claim: mix_psi1 AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

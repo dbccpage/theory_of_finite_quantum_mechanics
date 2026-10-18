@@ -1,5 +1,3 @@
-//! Bounded replay of the existing finite belief certificates; never calls a producer.
-//! AuthorityEffect: None. Exact rationals and original model-derived transitions.
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
@@ -121,8 +119,6 @@ fn unsigned_sign(text: &str) -> (&str, &str) {
     }
 }
 fn decimal(text: &str) -> Checked<BigRational> {
-    // Match Fraction's ASCII lexical grammar before normalizing separators.
-    // In particular, an underscore separates digits and denominators have no sign.
     let source = text.trim();
     require(source.len() <= 4096, "rational resource bound")?;
     let (sign, unsigned) = unsigned_sign(source);
@@ -196,12 +192,7 @@ fn qtext(value: &BigRational) -> String {
         format!("{}/{}", value.numer(), value.denom())
     }
 }
-/// Named Python sorted-key, ASCII-escaped profile for Python-generated JSON.
-/// Integers retain arbitrary precision; non-ASCII strings use UTF-16 escapes.
 pub fn model_digest(value: &Value) -> Checked<String> {
-    // Preserve numeric lexemes from the Python-generated JSON wire (including
-    // invalid float witnesses, whose checker refusal still needs a bound digest).
-    // Sorting is by Unicode scalar keys, matching this named Python profile.
     fn ordered(value: &Value) -> Value {
         match value {
             Value::Object(fields) => Value::Object(
@@ -705,8 +696,6 @@ fn check(model: &Value, certificate: &Value) -> Checked<Value> {
         json!({"accepted":true,"claim":kind,"status":"Proved","initial_value":qtext(&values[&a.initial]),"model_digest":a.digest,"authority_effect":"None"}),
     )
 }
-/// Independent certificate replay. Exploration constructs model reachability only;
-/// no strategy, minimax optimum or replacement certificate is produced.
 pub fn check_certificate(model: &Value, certificate: &Value) -> Value {
     match check(model, certificate) {
         Ok(v) => v,

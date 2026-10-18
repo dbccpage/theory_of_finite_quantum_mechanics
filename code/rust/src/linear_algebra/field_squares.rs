@@ -1,6 +1,3 @@
-// AuthorityEffect: None.
-// Exact square and squareclass certificates in Q, Q(sqrt(2)), Q(sqrt(5)).
-// A coefficient-field primitive, not a spectral splitting/dependence result.
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
@@ -157,8 +154,6 @@ impl Element {
     }
 }
 
-// Integer Newton iteration, starting above sqrt(n), decreases to floor(sqrt(n)).
-// No machine-sized conversion, floating approximation, or factoring is used.
 fn integer_sqrt(n: &BigInt) -> Option<BigInt> {
     if n.is_negative() {
         return None;
@@ -275,8 +270,6 @@ fn equal(actual: &Value, expected: &Value, path: &str) -> Result<()> {
     Ok(())
 }
 
-// Negative certificate checking uses the exhaustive necessary-and-sufficient
-// cases directly. It does not call decide() or compare a producer's output.
 fn negative_obstruction(input: &Element, d: u64) -> Option<&'static str> {
     if d == 0 {
         return rational_sqrt(&input.a)

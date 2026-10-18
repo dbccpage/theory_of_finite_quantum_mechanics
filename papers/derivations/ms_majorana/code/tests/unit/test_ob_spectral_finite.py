@@ -26,7 +26,6 @@ from enum import Enum
 import pytest
 
 
-# --- Classical sector spectral calculus ---
 
 
 def char_at(obs: dict[str, int], lam: int, sector: str) -> int:
@@ -59,7 +58,6 @@ def test_tri_sector_spectral_reconstruct():
         assert recon == obs[sector]
 
 
-# --- Hermitian 2×2 toy ---
 
 
 @dataclass(frozen=True)
@@ -122,10 +120,8 @@ def test_sigma_x_spectral_scaled():
 
 
 def test_sigma_x_eigenvectors():
-    # λ=+1, v=[1,1]
     assert SIGMA_X.a00 * 1 + SIGMA_X.a01 * 1 == 1 * 1
     assert SIGMA_X.a10 * 1 + SIGMA_X.a11 * 1 == 1 * 1
-    # λ=-1, v=[1,-1]
     assert SIGMA_X.a00 * 1 + SIGMA_X.a01 * (-1) == (-1) * 1
     assert SIGMA_X.a10 * 1 + SIGMA_X.a11 * (-1) == (-1) * (-1)
 
@@ -153,7 +149,6 @@ def test_diag_herm_spectral_projectors():
     assert recon == DIAG_HERM
 
 
-# --- Spectral → instrument bind ---
 
 
 @dataclass(frozen=True)
@@ -194,12 +189,10 @@ def test_spectral_outcome_matches_diag_obs_sectors():
     """diagObs eigenvalues label the instrument sectors (binding receipt)."""
     obs = {"b0": 2, "b1": 3}
     assert obs["b0"] == 2 and obs["b1"] == 3
-    # measuring λ=3 supports only b1 — same as W6.12 update on o1
     prior = BitWeight(3, 1)
     assert spectral_update(prior, "lam3") == BitWeight(0, 1)
 
 
-# --- Declared spectral host interface ---
 
 
 @dataclass(frozen=True)
@@ -231,15 +224,14 @@ def test_general_n_nondiag_marked_open_residual():
     """Full general-n spectral theorem not discharged; classical n=3 is; 3×3 toy is."""
     n = 3
     assert n > 2
-    general_n_nondiag_spectral_open = True  # residual flag for full theorem
-    classical_tri_derived = True  # triObs / test_tri_sector_spectral_reconstruct
-    nondiag_3x3_toy = True  # nonDiag3 package
+    general_n_nondiag_spectral_open = True
+    classical_tri_derived = True
+    nondiag_3x3_toy = True
     assert general_n_nondiag_spectral_open is True
     assert classical_tri_derived is True
     assert nondiag_3x3_toy is True
 
 
-# --- Non-diagonal 3×3 real-symmetric toy (σ_x ⊕ 2) ---
 
 
 @dataclass(frozen=True)
@@ -338,7 +330,7 @@ def test_nondiag3_eigenvectors():
         )
 
     assert apply(NON_DIAG3, (1, 1, 0)) == (1, 1, 0)
-    assert apply(NON_DIAG3, (1, -1, 0)) == (-1, 1, 0)  # -1 * (1,-1,0)
+    assert apply(NON_DIAG3, (1, -1, 0)) == (-1, 1, 0)
     assert apply(NON_DIAG3, (0, 0, 1)) == (0, 0, 2)
 
 
@@ -355,7 +347,6 @@ def test_complex_tri_nondiag_host():
     assert host.dim == 3
 
 
-# --- Density Lüders under spectral projectors (TOY-MECH) ---
 
 
 def luders(p: Mat2, rho: Mat2) -> Mat2:
@@ -367,8 +358,8 @@ def diag_density(rho00: int, rho11: int) -> Mat2:
     return Mat2(rho00, 0, 0, rho11)
 
 
-RHO_PLUS = Mat2(1, 1, 1, 1)  # ∝ |+⟩⟨+| ; equals TWO_P_PLUS
-RHO_MINUS = Mat2(1, -1, -1, 1)  # ∝ |−⟩⟨−| ; equals TWO_P_MINUS
+RHO_PLUS = Mat2(1, 1, 1, 1)
+RHO_MINUS = Mat2(1, -1, -1, 1)
 
 
 def test_proj_luders_diag_sector_support():
@@ -397,8 +388,6 @@ def test_scaled_sigma_x_luders_on_coherent():
 
 def test_coherent_density_not_classical_diagonal():
     assert RHO_PLUS.a01 != 0
-    # Classical spectralUpdate on equal population erases off-diagonal structure
-    # (population-only carrier cannot store coherence).
     post = spectral_update(BitWeight(1, 1), "lam2")
     assert post == BitWeight(1, 0)
     assert post.w1 == 0
@@ -413,7 +402,6 @@ def test_density_luders_spectral_package():
     assert RHO_PLUS.a01 != 0
 
 
-# --- POVM / Kraus residual (TOY-MECH) ---
 
 SOFT_EFFECT0 = Mat2(2, 1, 1, 2)
 SOFT_EFFECT1 = Mat2(2, -1, -1, 2)
@@ -454,7 +442,7 @@ def test_kraus_completeness_and_dephase():
 def test_soft_povm_needs_lift():
     soft_povm_host = "complexHilbertLift"
     assert soft_povm_host == "complexHilbertLift"
-    assert SOFT_EFFECT0.a01 != 0  # not classical sector 0-1
+    assert SOFT_EFFECT0.a01 != 0
 
 
 def test_general_povm_kraus_catalogue_open():
@@ -473,11 +461,10 @@ def test_povm_kraus_residual_package():
     assert general_povm_kraus_catalogue_open is True
 
 
-# --- POVM / Kraus catalogue deepen (TOY-MECH residual) ---
 
 ID3 = Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)
-DAMP_KRAUS0 = Mat2(1, 0, 0, 0)  # |0><0|
-DAMP_KRAUS1 = Mat2(0, 1, 0, 0)  # |0><1|
+DAMP_KRAUS0 = Mat2(1, 0, 0, 0)
+DAMP_KRAUS1 = Mat2(0, 1, 0, 0)
 RHO1 = Mat2(0, 0, 0, 1)
 
 
@@ -540,7 +527,6 @@ def test_povm_kraus_catalogue_deepen_package():
     assert general_povm_kraus_catalogue_open is True
 
 
-# --- General-n residual deepen (classical n=4 + block σx⊕σx) ---
 
 
 class Sector4(str, Enum):
@@ -600,7 +586,6 @@ def test_block_sigma_x_spectral():
     left = TWO_P_PLUS.sub(TWO_P_MINUS)
     scaled = SIGMA_X.smul(2)
     assert left == scaled
-    # Both blocks share the same σx spectral identity
     block = BlockDiag2(SIGMA_X, SIGMA_X)
     assert block.b0 == SIGMA_X
     assert block.b1 == SIGMA_X
@@ -615,7 +600,6 @@ def test_general_n_spectral_deepen_package():
     assert QUAD_OBS[Sector4.S3] == 7
     assert TWO_P_PLUS.sub(TWO_P_MINUS) == SIGMA_X.smul(2)
     assert GENERAL_N_NONDIAG_ARBITRARY_OPEN is True
-    # Mutation trap: must not claim arbitrary non-diag closed
     assert GENERAL_N_NONDIAG_ARBITRARY_OPEN is not False
 
 

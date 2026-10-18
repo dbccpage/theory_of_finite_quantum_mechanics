@@ -1,7 +1,3 @@
-//! Writes the prompt 05 campaign receipt: the balanced table replay, its negative controls
-//! and the exact checks of the campaign's local lemmas.
-//!
-//! AuthorityEffect: None
 
 use omega_mub::omega_native::campaign::mub6_prompt05_campaign_checks::run_campaign_checks;
 use std::{error::Error, fs, io::Write, path::PathBuf};

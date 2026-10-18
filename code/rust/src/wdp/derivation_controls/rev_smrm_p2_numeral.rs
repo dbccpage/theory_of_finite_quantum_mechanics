@@ -1,4 +1,3 @@
-//! Numeral-Bearing Measurement & Replay Calculus (REV-SMRM-P2-NUMERAL) exact verifier.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MeasurementStep {

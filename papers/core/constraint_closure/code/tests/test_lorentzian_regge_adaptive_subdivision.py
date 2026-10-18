@@ -38,26 +38,20 @@ class TestLorentzianMinkowskiGeometry:
         """Verify that the canonical 4-simplex in R^{1,3} contains both timelike and spacelike edges."""
         c4 = build_canonical_lorentzian_4simplex(t_span=2.0, spatial_scale=1.0)
 
-        # Simplex has 5 vertices, 10 edges, 10 triangles, 5 tetrahedra, 1 4-simplex
         assert c4.num_vertices == 5
         assert c4.num_edges == 10
         assert c4.num_triangles == 10
         assert c4.num_tetrahedra == 5
         assert c4.num_four_simplices == 1
 
-        # Edge (0, 4) is purely along time axis: Delta t = 2, Delta x = 0
-        # s^2 = -4.0 < 0 (timelike)
         assert c4.is_timelike((0, 4)) is True
         assert c4.is_spacelike((0, 4)) is False
         assert c4.edge_squared_interval((0, 4)) == pytest.approx(-4.0, abs=1e-12)
 
-        # Edge (1, 2) is spatial: v1=(1, 1, 0, 0), v2=(1, 0, 1, 0) -> Delta t = 0, Delta x = (-1, 1, 0)
-        # s^2 = 0 + 1 + 1 = +2.0 > 0 (spacelike)
         assert c4.is_spacelike((1, 2)) is True
         assert c4.is_timelike((1, 2)) is False
         assert c4.edge_squared_interval((1, 2)) == pytest.approx(2.0, abs=1e-12)
 
-        # Check edge signature counts
         counts = c4.edge_signature_counts()
         assert counts["spacelike"] > 0
         assert counts["timelike"] > 0
@@ -67,7 +61,7 @@ class TestLorentzianMinkowskiGeometry:
         """Verify that lightlike (null) edges with s^2 = 0 are identified."""
         vertices = {
             0: np.array([0.0, 0.0, 0.0, 0.0]),
-            1: np.array([1.0, 1.0, 0.0, 0.0]),  # dt=1, dx=1 -> s^2 = 0
+            1: np.array([1.0, 1.0, 0.0, 0.0]),
             2: np.array([1.0, 0.0, 1.0, 0.0]),
             3: np.array([1.0, 0.0, 0.0, 1.0]),
             4: np.array([2.0, 0.0, 0.0, 0.0]),
@@ -83,32 +77,23 @@ class TestAdaptiveSubdivisionTopologicalInvariants:
     def test_stellar_subdivision_level1_counts_and_euler(self):
         """1-to-5 stellar subdivision on a single 4-simplex replaces 1 4-cell with 5 daughters."""
         c = build_canonical_lorentzian_4simplex()
-        assert c.euler_characteristic() == 1  # 4-ball chi = 1
+        assert c.euler_characteristic() == 1
 
         b_init = c.boundary_tetrahedra()
         assert len(b_init) == 5
 
-        # Perform Level 1 stellar subdivision
         new_v, daughters = c.stellar_subdivide(0)
         assert new_v == 5
         assert len(daughters) == 5
 
-        # Simplex counts:
-        # N0: 5 + 1 = 6
-        # N1: 10 + 5 = 15
-        # N2: 10 + 10 = 20
-        # N3: 5 + 10 = 15
-        # N4: 1 - 1 + 5 = 5
         assert c.num_vertices == 6
         assert c.num_edges == 15
         assert c.num_triangles == 20
         assert c.num_tetrahedra == 15
         assert c.num_four_simplices == 5
 
-        # Euler characteristic is preserved
         assert c.euler_characteristic() == 1
 
-        # Boundary tetrahedra must be strictly preserved
         b_after = c.boundary_tetrahedra()
         assert b_after == b_init
 
@@ -117,17 +102,13 @@ class TestAdaptiveSubdivisionTopologicalInvariants:
         c = build_canonical_lorentzian_4simplex()
         b_init = c.boundary_tetrahedra()
 
-        # Level 1
         c.stellar_subdivide(0)
         assert c.num_four_simplices == 5
 
-        # Level 2: Subdivide first daughter 4-simplex
         new_v2, daughters2 = c.stellar_subdivide(0)
         assert new_v2 == 6
         assert len(daughters2) == 5
 
-        # Simplex counts at Level 2:
-        # N4: 5 - 1 + 5 = 9
         assert c.num_vertices == 7
         assert c.num_edges == 20
         assert c.num_triangles == 30
@@ -141,16 +122,13 @@ class TestAdaptiveSubdivisionTopologicalInvariants:
         """Verify partial^2 = 0 and d^2 = 0 across Levels 0, 1, 2."""
         c = build_canonical_lorentzian_4simplex()
 
-        # Level 0
         for k in range(1, 5):
             assert c.verify_nilpotency(k) is True
 
-        # Level 1
         c.stellar_subdivide(0)
         for k in range(1, 5):
             assert c.verify_nilpotency(k) is True
 
-        # Level 2
         c.stellar_subdivide(0)
         for k in range(1, 5):
             assert c.verify_nilpotency(k) is True
@@ -160,12 +138,10 @@ class TestAdaptiveSubdivisionTopologicalInvariants:
         c = build_two_adjacent_lorentzian_4simplices()
         b_init = c.boundary_tetrahedra()
 
-        # Bisect shared edge (1, 2)
         assert (1, 2) in c.cells[1]
         new_v = c.bisect_edge((1, 2))
         assert new_v == 6
 
-        # Nilpotency preserved
         for k in range(1, 5):
             assert c.verify_nilpotency(k) is True
 
@@ -189,7 +165,7 @@ class TestSimplicialBianchiIdentityIn4D:
     def test_bianchi_identity_flux_vanishing_on_exact_curvature(self):
         """For any pure 1-gauge variation omega = d_1 beta, Bianchi flux d_2 omega == 0."""
         c = build_canonical_lorentzian_4simplex()
-        c.stellar_subdivide(0)  # Level 1
+        c.stellar_subdivide(0)
 
         d1 = c.coboundary_matrix(1)
         np.random.seed(42)
@@ -248,12 +224,11 @@ class TestDegree2DualCertifiedL1Solver:
     def test_gauge_invariance_under_arbitrary_shifts(self):
         """The degree-2 L1 quotient is strictly gauge invariant: Phi([omega + d_1 beta]) == Phi([omega])."""
         c = build_canonical_lorentzian_4simplex()
-        c.stellar_subdivide(0)  # Level 1
+        c.stellar_subdivide(0)
 
         d1 = c.coboundary_matrix(1)
         solver = Degree2DualCertifiedL1Solver(tol=1e-10)
 
-        # Non-trivial 2-cochain
         np.random.seed(7)
         omega_base = np.zeros(c.num_triangles)
         omega_base[0] = 3.2
@@ -263,7 +238,6 @@ class TestDegree2DualCertifiedL1Solver:
         assert base_res.is_closed is False
         assert base_res.primal_obj > 0.0
 
-        # Apply 5 random gauge shifts d_1 beta
         for _ in range(5):
             beta_shift = np.random.randn(c.num_edges) * 10.0
             omega_shifted = omega_base + d1 @ beta_shift
@@ -288,25 +262,21 @@ class TestDegree2DualCertifiedL1Solver:
         for lvl in range(3):
             d1 = c.coboundary_matrix(1)
 
-            # Introduce a persistent localized curvature defect on first triangle
             omega = np.zeros(c.num_triangles)
             omega[0] = 4.5
             omega[-1] = -2.5
 
             res = solver.solve(omega, d1)
 
-            # Verification of dual certificates
             assert res.is_closed is False
             assert res.primal_obj > 0.0
             assert res.duality_gap < 1e-10, f"Duality gap at level {lvl} exceeds 1e-10"
             assert res.dual_divergence_norm < 1e-10, f"Dual witness not a 2-cycle at level {lvl}"
             assert np.max(np.abs(res.dual_witness)) <= 1.0 + 1e-10
 
-            # Complementary slackness: <w*, residual> == ||residual||_1
             dot_val = float(np.dot(res.dual_witness, res.primal_residual))
             assert abs(dot_val - res.primal_obj) < 1e-10
 
-            # Subgradient condition: w*_h == sign(r*_h) for non-zero residuals
             for h_idx, r_val in enumerate(res.primal_residual):
                 if abs(r_val) > 1e-8:
                     assert np.sign(res.dual_witness[h_idx]) == np.sign(r_val)
@@ -319,7 +289,6 @@ class TestDegree2DualCertifiedL1Solver:
         c = build_two_adjacent_lorentzian_4simplices()
         solver = Degree2DualCertifiedL1Solver(tol=1e-10)
 
-        # Pre-bisection
         d1_pre = c.coboundary_matrix(1)
         omega_pre = np.zeros(c.num_triangles)
         omega_pre[0] = 1.8
@@ -327,7 +296,6 @@ class TestDegree2DualCertifiedL1Solver:
         assert res_pre.duality_gap < 1e-10
         assert res_pre.dual_divergence_norm < 1e-10
 
-        # Bisect shared edge
         c.bisect_edge((1, 2))
         d1_post = c.coboundary_matrix(1)
         omega_post = np.zeros(c.num_triangles)
@@ -359,20 +327,16 @@ class TestDegree2DualCertifiedL1Solver:
         c = build_canonical_lorentzian_4simplex()
         assert c.num_faces == c.num_triangles
 
-        # Dimension mismatch in solver
         solver = Degree2DualCertifiedL1Solver()
         d1 = c.coboundary_matrix(1)
         with pytest.raises(ValueError, match="Length of omega"):
             solver.solve(np.array([1.0, 2.0]), d1)
 
-        # Dimension mismatch in Bianchi flux
         with pytest.raises(ValueError, match="Curvature cochain length"):
             c.bianchi_flux(np.array([1.0]))
 
-        # Out of bounds stellar subdivision index
         with pytest.raises(IndexError, match="out of range"):
             c.stellar_subdivide(99)
 
-        # Non-existent edge in bisect_edge
         with pytest.raises(ValueError, match="Edge .* not present"):
             c.bisect_edge((0, 99))

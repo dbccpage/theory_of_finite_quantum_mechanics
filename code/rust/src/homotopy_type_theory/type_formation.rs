@@ -1,9 +1,7 @@
-//! Type formation records: which former built a type, at which universe.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Which type former produced a [`TypeRecord`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum FormationKind {
     Base,
@@ -17,7 +15,6 @@ pub enum FormationKind {
     Other,
 }
 
-/// Finite structural record of a formed type.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TypeRecord {
     pub id: String,
@@ -26,7 +23,6 @@ pub struct TypeRecord {
 }
 
 impl TypeRecord {
-    /// Validate structural well-formedness: id must be non-empty.
     pub fn validate(&self) -> Result<(), TypeFormationError> {
         if self.id.is_empty() {
             return Err(TypeFormationError::EmptyId);

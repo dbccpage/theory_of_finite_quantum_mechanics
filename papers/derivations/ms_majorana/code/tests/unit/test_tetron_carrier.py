@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026
 
 import unittest
 from omega_engine.crates.majorana.carriers.tetron_carrier import build_tetron_array_carrier
@@ -26,7 +24,6 @@ class TestTetronCarrier(unittest.TestCase):
         self.assertEqual(carrier.metadata["total_modes"], 12)
         self.assertEqual(carrier.metadata["num_bonds"], 10)
 
-        # Terminalize carrier with default parity defect on bond 0
         term_res = terminalize(carrier.D0, carrier.D1, carrier.residual)
         self.assertIn(term_res["terminal_status"], ["Exact", "ClosedResidual", "OpenObstruction"])
         self.assertEqual(carrier.metadata["authority_effect"], "None")

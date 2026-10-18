@@ -36,13 +36,11 @@ def test_omega_engine_has_no_coda_imports() -> None:
 def test_moved_kernel_paths_absent_from_coda() -> None:
     """No shims: deleted authority losers must not remain under coda/."""
     forbidden = {
-        # S1a
         "solver_of_solvers.py",
         "higher_simplex_assembly.py",
         "cochain_presentation.py",
         "exact.py",
         "cochain_complex.py",
-        # S1c DDA + majorana dual-homes
         "dda_engine.py",
         "dda_cascade_router.py",
         "degree_generic_residual.py",
@@ -65,9 +63,7 @@ def test_moved_kernel_paths_absent_from_coda() -> None:
         "microsoft_majorana_braiding_benchmark.py",
         "tetron_homology_benchmark.py",
         "tgp_demo.py",
-        # quarantined, must not sit at coda root
         "coda_engine.py",
-        # S1d A-class moves
         "covering_edge.py",
         "family_bound.py",
         "transfer.py",

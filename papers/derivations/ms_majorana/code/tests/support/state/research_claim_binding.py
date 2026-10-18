@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/research_claim_binding.rs
-# Rust sha256: 7ba6d5df75858dccb508cbe8620960c603b8e1b59ce93ef059519f2f2a191f60
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,11 +38,9 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 CLAIM_BINDING_PACKET_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 CLAIM_BINDING_VERIFICATION_SCHEMA_V1: Any = None
 
 
@@ -63,7 +57,6 @@ ClaimSourceKindV1 = Enum(
 ClaimSourceKindV1.__doc__ = "Structural mirror of Rust ``ClaimSourceKindV1`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
@@ -340,6 +333,5 @@ def verify_research_claim_binding_v1(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

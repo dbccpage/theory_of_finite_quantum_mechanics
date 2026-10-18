@@ -1,5 +1,3 @@
-//! Selected education-source six-tuple, not recovered original Genesis custody.
-//! Finite proof-carrying verifier domain; no total verifier or policy inferred.
 use crate::legacy_observer_adapters::{
     adapt_finite_quotient, AdaptedObserver, AdapterError, SourceCustody,
 };
@@ -19,8 +17,6 @@ pub struct SixObserverAdapter {
     terminalizer: Vec<usize>,
 }
 impl SixObserverAdapter {
-    /// W is im(d0), p is the receipt omega table; every declared comparison is
-    /// checked via an independent distance certificate for p(x)-p(y).
     pub fn try_new(
         carrier: Vec<String>,
         terms: Vec<String>,

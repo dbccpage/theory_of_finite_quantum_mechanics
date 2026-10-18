@@ -1,9 +1,3 @@
-//! Simplicial 4-complex with per-pentatope charts in `Q^4`.
-//!
-//! Vertex ids come from the charts and are not renumbered. Squared edge lengths
-//! are computed inside each chart and must agree where charts share an edge.
-//!
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 
@@ -78,7 +72,6 @@ impl SimplicialManifold4D {
                     let a = chart.vertices[i];
                     let b = chart.vertices[j];
                     let (lo, hi) = if a < b { (a, b) } else { (b, a) };
-                    // Coordinates are chart-local. Only the squared length is shared.
                     let len2 = squared_distance(&chart.coords[i], &chart.coords[j]);
                     if let Some(existing) = length_squared.get(&(lo, hi)) {
                         if existing != &len2 {
@@ -132,7 +125,6 @@ impl SimplicialManifold4D {
     }
 
     pub fn edge_length_squared(&self, a: u32, b: u32) -> Result<BigRational, ManifoldError> {
-        // The length map stores unordered pairs only. A diagonal is not an edge.
         if a == b {
             return Err(ManifoldError::Degenerate {
                 cell: "edge",
@@ -215,7 +207,6 @@ impl SimplicialManifold4D {
         self.length_squared.keys().copied().collect()
     }
 
-    /// Alternating face count `(V as i64) - E + T - Tet + P`.
     pub fn euler_characteristic(&self) -> i64 {
         let v = i64::from(self.vertex_count());
         let e = self.edges().len() as i64;
@@ -245,7 +236,6 @@ impl SimplicialManifold4D {
         Ok(())
     }
 
-    /// Leading block is symmetric with a zero diagonal. Entries past it stay zero.
     fn squared_length_block(
         &self,
         vertices: &[u32],
@@ -317,7 +307,6 @@ mod tests {
         [&p[0] + &q[0], &p[1] + &q[1], &p[2] + &q[2], &p[3] + &q[3]]
     }
 
-    /// `ids[0]` at `(shift,0,0,0)`, the other four one unit along each axis.
     fn orth(ids: [u32; 5], shift: i64) -> PentatopeChart {
         let origin = q4(shift, 0, 0, 0);
         let steps = [

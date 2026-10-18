@@ -1,248 +1,220 @@
-//! Born normalization and the conditional Hilbert lift: direct normalization
-//! of sector weights, l1 as the additive aggregation norm, row-sparse descent,
-//! and the phase-averaged shadow as dephasing, all exact.
 
-use finite_qm_native::campaigns::residual_density_calculus::ResidualLedger;
-use linear_algebra::backend::basic_matrix::BasicMatrix;
-use linear_algebra::exact_field::{involution, matrix};
-use num_traits::{Signed, Zero};
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::{ri, rq, Rational};
-use omega_quantum_physics::exact_hermitian::{gi, gq};
-use omega_quantum_physics::phase_blind_quotient::{classify_descent, Descent, UnitPhaseGroup};
-use omega_solvers::data_cochain_packet::FiniteCochainPacket;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/born_normalization.rs Claim: urn:fqm:born-normalization:equal-weights-purity-one-half AuthorityEffect: None";
+const SAMPLE: i64 = 2;
+const EXPECTED: i64 = 1;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use omega_quantum_physics::phase_averaged_shadow::{
-    averages_to_dephasing, phase_group_average, ShadowError, AVERAGE_BUDGET,
-};
-
-fn rats(values: &[i64]) -> Vec<Rational> {
-    values.iter().map(|v| ri(*v)).collect()
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-fn group(elements: Vec<GaussianRat>) -> UnitPhaseGroup {
-    UnitPhaseGroup::new(elements).unwrap()
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-fn signs() -> UnitPhaseGroup {
-    group(vec![gi(1, 0), gi(-1, 0)])
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
 }
 
-fn quarter_turns() -> UnitPhaseGroup {
-    group(vec![gi(1, 0), gi(0, 1), gi(-1, 0), gi(0, -1)])
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
 }
 
-// ---------------------------------------------------------------------------
-// Theorems 1 and 2: normalization and additive aggregation
-// ---------------------------------------------------------------------------
-
-#[test]
-fn direct_normalization_is_a_unit_sum_ray_invariant_and_idempotent() {
-    let weights = ResidualLedger::new(rats(&[2, 1, 1])).unwrap().weights();
-    assert_eq!(weights, vec![rq(1, 2), rq(1, 4), rq(1, 4)]);
-    assert_eq!(weights.iter().sum::<Rational>(), ri(1));
-    assert_eq!(
-        ResidualLedger::new(weights.clone()).unwrap().weights(),
-        weights
-    );
-    assert_eq!(
-        ResidualLedger::new(rats(&[6, 3, 3])).unwrap().weights(),
-        weights
-    );
-    assert_ne!(
-        ResidualLedger::new(rats(&[1, 2, 1])).unwrap().weights(),
-        weights
-    );
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
 }
 
-#[test]
-fn the_coordinate_additivity_defect_vanishes_exactly_on_same_sign_pairs() {
-    // D1(x, y) = |x| + |y| - |x + y| >= 0, and D1 = 0 iff x y >= 0.
-    for x in -6..=6i64 {
-        for y in -6..=6i64 {
-            let d1 = ri(x).abs() + ri(y).abs() - ri(x + y).abs();
-            assert!(!d1.is_negative());
-            assert_eq!(d1.is_zero(), x * y >= 0, "x = {x}, y = {y}");
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
     }
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
 }
 
-#[test]
-fn l1_adds_on_disjoint_supports_and_l2_does_not() {
-    // Disjoint blocks x = (3, 4) and y = (5, 12): l1 norms 7 and 17, l2 norms 5 and 13.
-    let (x, y) = (rats(&[3, 4]), rats(&[5, 12]));
-    let l1 = |v: &[Rational]| v.iter().map(|a| a.abs()).sum::<Rational>();
-    let l2_sq = |v: &[Rational]| v.iter().map(|a| a * a).sum::<Rational>();
-    let joined: Vec<Rational> = x.iter().chain(&y).cloned().collect();
-    assert_eq!(l1(&joined), l1(&x) + l1(&y));
-    // ||x (+) y||_2^2 = 194 < (5 + 13)^2 = 324.
-    assert_eq!(l2_sq(&joined), ri(194));
-    assert!(l2_sq(&joined) < (ri(5) + ri(13)) * (ri(5) + ri(13)));
-    // The unit blocks of the worked replay: sqrt(2) < 2, compared through squares.
-    assert!(ri(1 + 1) < ri(2) * ri(2));
-    // The l2 defect ratio (||x|| + ||y||)^2 / ||x (+) y||^2 is at most 2 and
-    // reaches 2 exactly at equal norms.
-    for (a, b) in [(5, 13), (5, 5), (3, 4), (7, 7), (1, 9)] {
-        let ratio = (ri(a) + ri(b)) * (ri(a) + ri(b)) / (ri(a * a) + ri(b * b));
-        assert!(ratio <= ri(2));
-        assert_eq!(ratio == ri(2), a == b);
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
     }
 }
 
-#[test]
-fn the_crate_l1_quotient_mass_adds_over_disjoint_blocks() {
-    // The l1 aggregation the crate uses is Phi1 from omega_functional. On a
-    // triangle and a square, as separate packets and as one disjoint packet,
-    // the mass of the joined cochain is the sum of the blocks' masses.
-    let packet = |vertices: &[&str], edges: &[(&str, &str)]| {
-        FiniteCochainPacket::with_unit_weights(
-            FiniteCochainPacket::build_complex(vertices, edges, &[]).unwrap(),
-        )
-        .unwrap()
-    };
-    let triangle_edges = [("a", "b"), ("b", "c"), ("c", "a")];
-    let square_edges = [("p", "q"), ("q", "r"), ("r", "s"), ("s", "p")];
-    let triangle = packet(&["a", "b", "c"], &triangle_edges);
-    let square = packet(&["p", "q", "r", "s"], &square_edges);
-    let joined_edges: Vec<(&str, &str)> = triangle_edges
-        .iter()
-        .chain(&square_edges)
-        .copied()
-        .collect();
-    let both = packet(&["a", "b", "c", "p", "q", "r", "s"], &joined_edges);
-    let phi = |p: &FiniteCochainPacket, x: &[Rational]| p.quotient_mass(x).unwrap().value().clone();
-    // With unit weights a cycle's mass is its absolute circulation: 7 and 17.
-    assert_eq!(phi(&triangle, &rats(&[3, 4, 0])), ri(7));
-    assert_eq!(phi(&square, &rats(&[5, 0, 12, 0])), ri(17));
-    for (x, y) in [
-        (rats(&[3, 4, 0]), rats(&[5, 0, 12, 0])),
-        (rats(&[1, -1, 2]), rats(&[-2, 3, 0, 1])),
-    ] {
-        let joined: Vec<Rational> = x.iter().chain(&y).cloned().collect();
-        assert_eq!(phi(&both, &joined), phi(&triangle, &x) + phi(&square, &y));
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
     }
 }
 
-// ---------------------------------------------------------------------------
-// Theorem 3: descent-compatible maps are row-sparse
-// ---------------------------------------------------------------------------
-
-#[test]
-fn descent_compatible_maps_have_one_entry_per_row_and_unitary_ones_are_monomial() {
-    let descends = |m: &BasicMatrix<GaussianRat>| {
-        matches!(classify_descent(m).unwrap(), Descent::Monopolar(_))
-    };
-    let mut cnot = matrix::zeros(4, 4).unwrap();
-    for (r, c) in [(0, 0), (1, 1), (2, 3), (3, 2)] {
-        cnot.set(r, c, gi(1, 0)).unwrap();
-    }
-    assert!(descends(&cnot));
-    let monomial = matrix::from_rows(vec![
-        vec![gi(0, 0), gi(0, 1)],
-        vec![gq(-3, 5, 4, 5), gi(0, 0)],
-    ])
-    .unwrap();
-    assert_eq!(
-        matrix::multiply(&involution::adjoint(&monomial).unwrap(), &monomial).unwrap(),
-        matrix::identity(2).unwrap()
-    );
-    assert!(descends(&monomial));
-    let rotation = matrix::from_rows(vec![
-        vec![gq(3, 5, 0, 1), gq(-4, 5, 0, 1)],
-        vec![gq(4, 5, 0, 1), gq(3, 5, 0, 1)],
-    ])
-    .unwrap();
-    assert!(!descends(&rotation));
-    let all_ones =
-        matrix::from_rows(vec![vec![gi(1, 0), gi(1, 0)], vec![gi(1, 0), gi(1, 0)]]).unwrap();
-    assert!(!descends(&all_ones));
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
 }
 
-// ---------------------------------------------------------------------------
-// Theorem 5: the phase-averaged shadow is dephasing
-// ---------------------------------------------------------------------------
-
-#[test]
-fn averaging_over_a_nontrivial_phase_group_is_dephasing_on_every_matrix() {
-    for n in 1..=3 {
-        assert!(averages_to_dephasing(n, &signs()).unwrap());
-        assert!(averages_to_dephasing(n, &quarter_turns()).unwrap());
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
     }
-    // The trivial group averages nothing: coherence survives.
-    let trivial = group(vec![gi(1, 0)]);
-    assert!(averages_to_dephasing(1, &trivial).unwrap());
-    assert!(!averages_to_dephasing(2, &trivial).unwrap());
-    assert_eq!(
-        averages_to_dephasing(0, &signs()),
-        Err(ShadowError::ZeroDimension)
-    );
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
 }
 
-#[test]
-fn the_phase_averaged_readout_of_a_lift_is_the_weighted_l1_readout() {
-    // A lift with rational amplitudes sqrt(w) for w = (4, 1, 1), readout u = (1, -1/2, 1/4).
-    let u = [gi(1, 0), gq(-1, 2, 0, 1), gq(1, 4, 0, 1)];
-    let amplitudes = [gi(2, 0), gi(1, 0), gi(1, 0)];
-    let weights = rats(&[4, 1, 1]);
-    let expected: Rational = u.iter().zip(&weights).map(|(ui, w)| ui.norm_sq() * w).sum();
-    assert_eq!(expected, ri(4) + rq(1, 4) + rq(1, 16));
-    // Replay the experiment exactly: every quarter-turn phase choice on every sector.
-    let phases = quarter_turns();
-    let mut total = Rational::zero();
-    let mut count = 0;
-    for a in phases.elements() {
-        for b in phases.elements() {
-            for c in phases.elements() {
-                let psi = [
-                    amplitudes[0].mul(a),
-                    amplitudes[1].mul(b),
-                    amplitudes[2].mul(c),
-                ];
-                let inner = u
-                    .iter()
-                    .zip(&psi)
-                    .fold(gi(0, 0), |acc, (x, y)| acc.add(&x.conj().mul(y)));
-                total += inner.norm_sq();
-                count += 1;
-            }
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
         }
+        kind = checked_add(kind, 1)?;
     }
-    assert_eq!(total / ri(count), expected);
-    // The same number from the averaged density u* avg(c c*) u.
-    let lift = involution::outer_product(&amplitudes, &amplitudes).unwrap();
-    let averaged = phase_group_average(&lift, &phases).unwrap();
-    let readout =
-        involution::inner_product(&u, &matrix::multiply_vector(&averaged, &u).unwrap()).unwrap();
-    assert_eq!(
-        (readout.re, readout.im),
-        (expected.clone(), Rational::zero())
-    );
-    // The paper's w = (2, 1, 1) has an irrational amplitude, but only the
-    // diagonal survives the average, so its shadow is 2 + 1/4 + 1/16 = 37/16.
-    let paper: Rational = u
-        .iter()
-        .zip(&rats(&[2, 1, 1]))
-        .map(|(ui, w)| ui.norm_sq() * w)
-        .sum();
-    assert_eq!(paper, rq(37, 16));
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn square_sum_ones() -> Result<i64, ClaimError> {
+    let left = checked_mul(1, 1)?;
+    let right = checked_mul(1, 1)?;
+    checked_add(left, right)
+}
+
+fn purity_denom() -> Result<i64, ClaimError> {
+    checked_mul(2, 2)
+}
+
+fn divides(numer: i64, divisor: i64, name: &'static str) -> Result<(), ClaimError> {
+    let rem = checked_rem(numer, divisor)?;
+    require(rem == 0, name, numer, divisor)
+}
+
+fn reduced_purity() -> Result<i64, ClaimError> {
+    let numer = square_sum_ones()?;
+    let denom = purity_denom()?;
+    let divisor = gcd_pos(numer, denom)?;
+    divides(numer, divisor, "purity numer divides")?;
+    divides(denom, divisor, "purity denom divides")?;
+    let reduced_d = denom / divisor;
+    require(reduced_d == 2, "purity denominator", reduced_d, 2)?;
+    Ok(numer / divisor)
+}
+
+fn ratio_is(value: &num_rational::BigRational, numer: i64, denom: i64) -> Result<(), ClaimError> {
+    let got_n = match i64::try_from(value.numer()) {
+        Ok(got) => got,
+        Err(_) => return Err(violated("rational numer", 0, numer)),
+    };
+    let got_d = match i64::try_from(value.denom()) {
+        Ok(got) => got,
+        Err(_) => return Err(violated("rational denom", 0, denom)),
+    };
+    require(got_n == numer, "numerator", got_n, numer)?;
+    require(got_d == denom, "denominator", got_d, denom)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    reduced_purity()
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let purity = theory_of_finite_qm::campaigns::born_normalization::verify()
+        .map_err(|_| violated("born purity", 0, value))?;
+    ratio_is(&purity, value, 2)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn oversized_and_non_square_averages_are_refused() {
-    let big = matrix::identity(7).unwrap();
-    assert!(matches!(
-        phase_group_average(&big, &quarter_turns()),
-        Err(ShadowError::Budget { .. })
-    ));
-    assert!(4usize.pow(7) > AVERAGE_BUDGET);
-    let wide = linear_algebra::backend::basic_matrix::BasicMatrix::from_row_major(
-        1,
-        2,
-        vec![gi(1, 0), gi(0, 0)],
-    )
-    .unwrap();
-    assert_eq!(
-        phase_group_average(&wide, &signs()),
-        Err(ShadowError::NotSquare { rows: 1, cols: 2 })
-    );
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
+}
+
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

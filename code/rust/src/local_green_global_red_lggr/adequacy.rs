@@ -1,9 +1,3 @@
-//! --- Math Contract:
-//! Object: structural and numerical classification of an EPK detector deployment.
-//! Preconditions: an optional declaration/evidence pair and a finite composed corpus.
-//! Postconditions: exact structural refusal or explicitly numerical evidence classification.
-//! Authority: None. No verdict is `Adequate`; exact BSC-CERT remains open.
-//! ---
 
 use crate::epk_engine::{BoundarySlice, CompositionRecord, TraceLedger, TraceRecord};
 use num_rational::BigRational;
@@ -19,12 +13,6 @@ pub use omega_types::{
     detector_capacity_residual_acceptance_tolerance_rational,
 };
 
-/// Exact rational representation of an untrusted IEEE-754 float from solver evidence.
-///
-/// AuthorityEffect: None.
-/// Zero-Float Law: Converts untrusted numerical solver float outputs into exact
-/// BigRational values so all downstream comparison and threshold calculations
-/// execute purely in Q without floating-point error accumulation.
 pub fn float_to_rational(value: f64) -> BigRational {
     BigRational::from_float(value).unwrap_or_else(BigRational::zero)
 }
@@ -248,13 +236,11 @@ impl DetectorCorpusCounts {
     pub fn global_failure_partition_holds(self) -> bool {
         self.global_failure_count == self.ngd_count + self.lrgr_count
     }
-    /// Finite-count form of `1 - GPR = NGD + LRGR`.
     pub fn one_minus_gpr_partition_holds(self) -> bool {
         self.sample_count == self.global_pass_count() + self.ngd_count + self.lrgr_count
     }
 }
 
-/// Exact corpus-level disclosure of global projection closure over local projections.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct DetectorCarrierClosureDisclosure {
     comparable_pair_count: usize,
@@ -269,7 +255,6 @@ impl DetectorCarrierClosureDisclosure {
     pub fn collision_pairs(&self) -> &[[String; 2]] {
         &self.collision_pairs
     }
-    /// Named Threat-8 disclosure only; even `true` cannot authorize full adequacy.
     pub fn global_carrier_closed_on_corpus(&self) -> bool {
         self.global_carrier_closed_on_corpus
     }
@@ -364,11 +349,6 @@ fn observed_record_encoding(record: &CompositionRecord, ledger: &TraceLedger) ->
     output
 }
 
-/// SHA-256 commitment to the exact observed trajectory used by the verdict.
-///
-/// The scope is deliberately limited to the boundary slice, sorted composition
-/// records, and the segment traces those records reference. Unreferenced ledger
-/// entries cannot change a verdict and are therefore outside this commitment.
 pub fn detector_observed_corpus_digest(
     records: &[CompositionRecord],
     ledger: &TraceLedger,
@@ -392,12 +372,6 @@ pub fn detector_observed_corpus_digest(
     format!("{:x}", Sha256::digest(input))
 }
 
-/// Validated, serialize-only detector verdict.
-///
-/// ```compile_fail
-/// use omega_epk::DetectorAdequacyVerdict;
-/// let _: DetectorAdequacyVerdict = serde_json::from_str("{}").unwrap();
-/// ```
 #[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct DetectorAdequacyVerdict {
     schema: &'static str,
@@ -964,8 +938,6 @@ fn evidence_unresolved_reason(
     None
 }
 
-/// Evaluate the exact structural guard and, only after it passes, classify the
-/// untrusted f64 capacity evidence. No return path means exact adequacy.
 pub fn evaluate_detector_adequacy(
     declaration: Option<&DetectorDeploymentDeclaration>,
     evidence: Option<&DetectorCapacityEvidence>,
@@ -1045,12 +1017,6 @@ pub fn evaluate_detector_adequacy(
 
 #[cfg(test)]
 mod tests {
-    //! --- Math Contract:
-    //! Object: DetectorAdequacy structural and numerical classification.
-    //! Preconditions: finite four-record and adversarial corpora.
-    //! Postconditions: all degeneracies refuse; only qualified numerical labels remain.
-    //! Authority: None.
-    //! ---
 
     use super::*;
     use num_traits::{One, Zero};
@@ -2323,8 +2289,6 @@ mod tests {
             );
             assert_eq!(report.authority_effect(), AuthorityEffect::None, "{case}");
         }
-        // Schema/scope mismatch branches are defensive only: their fields are
-        // private, constructor-pinned constants and the DTO has no Deserialize.
     }
 
     #[test]
@@ -2751,7 +2715,6 @@ mod tests {
         assert_eq!(report.capacity_value(), Some(0.2));
         assert_eq!(report.epsilon(), Some(0.5));
 
-        // Test Eq derivation on DetectorNumericalUnresolvedReason variants
         let r1 = DetectorNumericalUnresolvedReason::RankTolerancePolicyMismatch {
             expected: BigRational::from_float(1e-9).unwrap(),
             found: BigRational::from_float(1e-8).unwrap(),
@@ -2774,7 +2737,6 @@ mod tests {
         let b2 = b1.clone();
         assert_eq!(b1, b2);
 
-        // Serialize to JSON and verify pure serialization
         let serialized = serde_json::to_string(&r1).expect("serialization works");
         assert!(serialized.contains("expected"));
         assert!(serialized.contains("found"));

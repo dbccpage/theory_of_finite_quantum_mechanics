@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 
 from typing import Any, List
@@ -19,7 +18,7 @@ def build_tetron_array_carrier(
     if num_tetrons < 1:
         raise ValueError("num_tetrons must be >= 1")
 
-    modes_per_tetron = 6  
+    modes_per_tetron = 6
     total_modes = num_tetrons * modes_per_tetron
 
     d0_rows: List[List[int]] = []
@@ -94,7 +93,6 @@ def build_tetron_array_carrier(
     gf2_d0 = GF2Matrix(d0_rows)
     _, pivots = gf2_d0.rref()
     rank_f2 = len(pivots)
-    # Homology dimension is native classify dim_h1, not num_bonds - rank.
     betti_1_f2 = classify_native(d0_rows, d1_rows, residual_vec, budget=1)["dim_h1"]
     if isinstance(betti_1_f2, bool) or not isinstance(betti_1_f2, int):
         raise ValueError("native classify returned no dim_h1")

@@ -1,11 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Fixed three- and five-dimensional Weyl-Heisenberg operators.
-//!
-//! These conveniences instantiate the validated WeylHeisenberg construction.
-//! Matrices have the shared BasicMatrix representation; arithmetic lives in
-//! linear_algebra::exact_field. The convention is ZX = omega XZ and
-//! D(a,b) = omega^(ab/2) X^a Z^b. Labels are reduced before multiplication.
 
 use crate::heisenberg::WeylHeisenberg;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
@@ -19,42 +12,34 @@ fn system_d5() -> WeylHeisenberg<Cyc5> {
     WeylHeisenberg::new(5, Cyc5::zeta5(1)).expect("declared primitive fifth root")
 }
 
-/// X|j> = |j+1 mod 3>.
 pub fn weyl_x_d3() -> BasicMatrix<Cyc24> {
     system_d3().shift().expect("fixed 3 by 3 matrix")
 }
 
-/// Z|j> = zeta_3^j |j>.
 pub fn weyl_z_d3() -> BasicMatrix<Cyc24> {
     system_d3().clock().expect("fixed 3 by 3 matrix")
 }
 
-/// P|j> = |-j mod 3>.
 pub fn weyl_parity_d3() -> BasicMatrix<Cyc24> {
     system_d3().parity().expect("fixed 3 by 3 matrix")
 }
 
-/// D(a,b) = omega^(2ab) X^a Z^b in dimension three.
 pub fn weyl_displacement_d3(a: i64, b: i64) -> BasicMatrix<Cyc24> {
     system_d3().displacement(a, b).expect("fixed 3 by 3 matrix")
 }
 
-/// X|j> = |j+1 mod 5>.
 pub fn weyl_x_d5() -> BasicMatrix<Cyc5> {
     system_d5().shift().expect("fixed 5 by 5 matrix")
 }
 
-/// Z|j> = zeta_5^j |j>.
 pub fn weyl_z_d5() -> BasicMatrix<Cyc5> {
     system_d5().clock().expect("fixed 5 by 5 matrix")
 }
 
-/// P|j> = |-j mod 5>.
 pub fn weyl_parity_d5() -> BasicMatrix<Cyc5> {
     system_d5().parity().expect("fixed 5 by 5 matrix")
 }
 
-/// D(q,p) = omega^(3qp) X^q Z^p in dimension five.
 pub fn weyl_displacement_d5(q: i64, p: i64) -> BasicMatrix<Cyc5> {
     system_d5().displacement(q, p).expect("fixed 5 by 5 matrix")
 }

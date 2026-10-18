@@ -38,8 +38,6 @@ from omega_engine.crates.discrete_deformation_algebra.rabbit_intake import (
 from omega_engine.crates.discrete_deformation_algebra.receipt_emission import emit_gtla_receipt
 from omega_engine.crates.replay import GtlaReceipt
 
-# Computed ONCE from the live owner emission path (2026-07-29) and equal to
-# the replay_hash frozen in the flagship artifact rabbit_prompt_trace.json.
 GOLDEN_RABBIT_REPLAY_HASH = (
     "7d358e0ac309106ade2d6b6e83f125b2bfaec449d460c4ccae5b4f8e76712eec"
 )
@@ -117,8 +115,6 @@ class TestStepHygieneDecidedSemantics:
     def test_extra_step_keys_are_hash_bound_not_silently_dropped(self) -> None:
         bare = _receipt((_minimal_step(),))
         annotated = _receipt((_minimal_step(step_id="s1"),))
-        # The extra key must ride INSIDE the canonical bytes: same receipt
-        # with and without it must hash differently.
         assert annotated.replay_hash != bare.replay_hash
         assert b"step_id" in annotated.canonical_bytes()
 

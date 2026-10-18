@@ -104,7 +104,6 @@ def create_solver(name: str) -> BaseSolver:
     raise ValueError(f"Unknown solver: {name}. Available: {list_available_solvers()}")
 
 
-# Register the paper's regge_susy_saturation solver
 def _regge_susy_factory() -> BaseSolver:
     from regge_susy_saturation_solver import ReggeSUSYSaturationSolverAdapter
     return ReggeSUSYSaturationSolverAdapter()

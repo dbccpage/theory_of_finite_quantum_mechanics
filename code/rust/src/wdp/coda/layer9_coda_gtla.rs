@@ -1,4 +1,3 @@
-// AuthorityEffect: None.
 use num_rational::BigRational;
 use num_traits::One;
 use serde_json::json;
@@ -11,12 +10,6 @@ use crate::coda::types::{
 pub struct Layer9CodaGtla;
 
 impl Layer9CodaGtla {
-    /// Terminalizes the 9-stage pipeline execution into the definitive MasterNormalFormOutcome.
-    ///
-    /// Enforces the 3-way disjoint coproduct partition:
-    /// - TerminalKind::Authorized
-    /// - TerminalKind::ClosedResidual
-    /// - TerminalKind::Refused
     #[allow(clippy::too_many_arguments)]
     pub fn terminalize(
         problem: &ProblemInstance,

@@ -29,7 +29,6 @@ def test_conj2_szollosi_2circulant_all_permutations():
     b, c, e, f = sp.symbols("b c e f", nonzero=True)
     H, H_star = build_szollosi_2circulant(b, c, e, f)
 
-    # Clause (a): gamma_1
     perms_g1 = gamma_permutations(1)
     for p in perms_g1:
         prods_h = compute_column_monomials(H, p)
@@ -42,7 +41,6 @@ def test_conj2_szollosi_2circulant_all_permutations():
         matched_h_star, _ = verify_block_multiset_cancellation(prods_h_star)
         assert matched_h_star
 
-    # Clause (b): gamma_2
     perms_g2 = gamma_permutations(3)
     for p in perms_g2:
         prods_h = compute_column_monomials(H, p)
@@ -73,7 +71,6 @@ def test_conj2_tensor_product_cancellation():
     H = build_tensor(U, V)
     H_star = H.H
 
-    # Sample 4 diverse permutations for quick regression
     sample_perms_g1 = [
         (1, 1, 1, -1, -1, -1),
         (1, -1, 1, -1, 1, -1),
@@ -112,7 +109,6 @@ def test_conj2_tao_discriminating_negative_control():
 
     gamma_base = (1, 1, 1, -1, -1, -1)
     inner = compute_inner_sum(S6, gamma_base)
-    # Norm squared of 3(1 + w^2) is 9 != 0
     norm_sq = sp.simplify(inner * sp.conjugate(inner))
     assert norm_sq == 9
 
@@ -127,15 +123,12 @@ def test_conj2_karlsson_two_phase_affine_ansatz():
     x, y = sp.symbols("x y", nonzero=True)
     matrix = displayed_affine_ansatz(x, y)
 
-    # Clause (a): gamma_1
     failures_g1 = verify_magnitude(matrix, 1)
     assert len(failures_g1) == 0, f"Karlsson ansatz failed gamma_1: {failures_g1}"
 
-    # Clause (b): gamma_2
     failures_g2 = verify_magnitude(matrix, 3)
     assert len(failures_g2) == 0, f"Karlsson ansatz failed gamma_2: {failures_g2}"
 
-    # Broken pair negative control
     broken = matrix.copy()
     broken[1, 1] = 1
     assert verify_magnitude(broken, 1), "Discriminant failed to detect broken column pair"

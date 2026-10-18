@@ -41,7 +41,7 @@ class CellGrowthIterator:
         (No formal Wasserstein transport correspondence is claimed.)
         """
         num_ext = len(admissible)
-        c = np.ones(num_ext)  # Uniform L1 geometry extension cost
+        c = np.ones(num_ext)
 
         num_edges = len(poset.edges)
         A_eq = np.zeros((num_edges, num_ext))
@@ -49,9 +49,7 @@ class CellGrowthIterator:
 
         for idx, ext in enumerate(admissible):
             if ext.type == "subdivide":
-                # Find the source edge experiencing tension
                 e_idx = poset.edges.index(ext.source_edge)
-                # Setting this extension to 1.0 absorbs 100% of the local tension
                 A_eq[e_idx, idx] = b_eq[e_idx]
                 c[idx] = ext.cost
 
@@ -63,40 +61,32 @@ class CellGrowthIterator:
         Returns:
             (augmented_poset, new_section, new_l1_norm, applied_extensions)
         """
-        # 1. Compute current defect
         delta_s = poset.coboundary(section)
         l1_norm = float(np.sum(np.abs(delta_s)))
 
         if l1_norm < self.tolerance:
             return poset, section, l1_norm, []
 
-        # 2. Extract allowed topological extensions
         admissible = poset.get_admissible_extensions(delta_s, self.tolerance)
         if not admissible:
             return poset, section, l1_norm, []
 
-        # 3. Build LP matrices
         c, A_eq, b_eq = self._build_lp(poset, admissible, delta_s)
         num_ext = len(c)
         bounds = [(0, 1) for _ in range(num_ext)]
 
-        # Solve (Using method="highs" for modern solver)
         result = linprog(c, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method='highs')
 
-        # 4. Extract minimal mathematical extension
         if result.success:
             Lambda_star = [ext for i, ext in enumerate(admissible) if result.x[i] > 1e-3]
         else:
-            # Under constraint failure, geometry inherently defaults to full expansion across tension points
             Lambda_star = admissible
 
         if not Lambda_star:
             return poset, section, l1_norm, []
 
-        # 5. Augment poset geometry
         poset_new = poset.add_extensions(Lambda_star)
 
-        # 6. Smooth section scalar to new domain
         new_section = np.zeros(poset_new.num_vertices)
         new_section[:poset.num_vertices] = section
 
@@ -140,7 +130,6 @@ class CellGrowthIterator:
             all_augmentations.extend(aux)
 
             if not aux or poset.num_vertices >= 200 or (step > 0 and abs(new_norm - current_norm) < self.tolerance):
-                # Break if no geometry could be instantiated or topological equilibrium reached (linear subdivision preserves TV)
                 break
 
         final_norm = float(np.sum(np.abs(poset.coboundary(section))))
@@ -155,5 +144,4 @@ class CellGrowthIterator:
             steps=self.max_steps
         )
 
-# Backward compatibility alias
 AutopoeticIterator = CellGrowthIterator

@@ -1,49 +1,18 @@
-/-!
-# Born Redundancy and Conditional Hilbert Lift
 
-**Paper Reference:** Paper 020 (`020_born_normalization_and_conditional_hilbert_lift`)
-**Author:** Worker QF Lean 4 (Formal Math Prover & Lake Specialist)
-**Date:** 2026-09-21
-**AuthorityEffect:** None.
 
-## Epistemic Status & Demotion Fences
-This module mechanizes the core algebraic theorems of Paper 020:
-1. **Direct Normalization Idempotence:** The projection $P(w) = w / \sum_\gamma w_\gamma$
-   is idempotent on positive-total weight vectors: $P(P(w)) = P(w)$.
-2. **Scale Invariance of Ray Classes:** $P(c w) = P(w)$ for any non-zero scalar $c > 0$.
-3. **Exact $\ell^1$ Ray Quotient Classification:** Two positive-total vectors have identical
-   normalized profiles if and only if they belong to the same open positive ray:
-   $P(w) = P(w') \iff \exists c > 0,\; w' = c w$.
-4. **Local Coordinate Additivity Defect Decomposition:** The coordinate triangle defect
-   $D_{1,i}(x, y) = |x_i| + |y_i| - |x_i + y_i|$ vanishes if and only if $x_i y_i \ge 0$.
-5. **Row-Sparsity & Commutant Property:** A linear transformation descends through the
-   phase-blind quotient if and only if it is row-sparse (at most one non-zero entry per row,
-   the generalized monomial class).
 
-Foundational axioms: strictly within `{propext, Classical.choice, Quot.sound}`.
-Zero `sorry`, zero `admit`, zero synthetic axioms.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 namespace BornRedundancy
 
-/-! ============================================================================
-    PART 1: Direct Normalization, Scale Invariance, and Ray Quotient on Rat
-    ============================================================================ -/
 
-/-- Sum of a rational list. -/
 def listSum : List Rat → Rat
   | [] => 0
   | x :: xs => x + listSum xs
 
-/-- Scalar multiplication of a rational list. -/
 def smul (c : Rat) : List Rat → List Rat
   | [] => []
   | x :: xs => (c * x) :: smul c xs
 
-/-- Lemma: Total sum commutes with scalar multiplication. -/
 theorem listSum_smul (c : Rat) (w : List Rat) :
     listSum (smul c w) = c * listSum w := by
   induction w with
@@ -52,7 +21,6 @@ theorem listSum_smul (c : Rat) (w : List Rat) :
   | cons x xs ih =>
     simp [smul, listSum, ih, Rat.mul_add]
 
-/-- Lemma: Scalar multiplication associativity. -/
 theorem smul_smul (c1 c2 : Rat) (w : List Rat) :
     smul c1 (smul c2 w) = smul (c1 * c2) w := by
   induction w with
@@ -60,7 +28,6 @@ theorem smul_smul (c1 c2 : Rat) (w : List Rat) :
   | cons x xs ih =>
     simp [smul, ih, Rat.mul_assoc]
 
-/-- Lemma: Identity scalar multiplication. -/
 theorem smul_one (w : List Rat) :
     smul 1 w = w := by
   induction w with
@@ -68,42 +35,35 @@ theorem smul_one (w : List Rat) :
   | cons x xs ih =>
     simp [smul, ih, Rat.one_mul]
 
-/-- Lemma: Rational unit inverse. -/
 theorem one_inv : (1 : Rat)⁻¹ = 1 := by
   have h := Rat.mul_inv_cancel 1 (by decide)
   rw [Rat.one_mul] at h
   exact h
 
-/-- Direct normalization operator P(w) = w / sum(w). -/
 def normalize (w : List Rat) : List Rat :=
   smul (listSum w)⁻¹ w
 
-/-- Lemma: Normalized vector has unit sum. -/
 theorem listSum_normalize (w : List Rat) (hw : listSum w ≠ 0) :
     listSum (normalize w) = 1 := by
   unfold normalize
   rw [listSum_smul, Rat.mul_comm, Rat.mul_inv_cancel (listSum w) hw]
 
-/-- Theorem 1: Direct normalization idempotence P(P(w)) = P(w). -/
 theorem normalize_idempotent (w : List Rat) (hw : listSum w ≠ 0) :
     normalize (normalize w) = normalize w := by
   have h1 : listSum (normalize w) = 1 := listSum_normalize w hw
   show smul (listSum (normalize w))⁻¹ (normalize w) = normalize w
   rw [h1, one_inv, smul_one]
 
-/-- Cancellation lemma for rational multiplication on the left. -/
 theorem rat_mul_left_cancel (a b c : Rat) (hc : c ≠ 0) (h : c * a = c * b) : a = b := by
   have h1 : c⁻¹ * (c * a) = c⁻¹ * (c * b) := by rw [h]
   rw [← Rat.mul_assoc, ← Rat.mul_assoc, Rat.mul_comm c⁻¹ c, Rat.mul_inv_cancel c hc, Rat.one_mul, Rat.one_mul] at h1
   exact h1
 
-/-- Cancellation lemma for rational multiplication on the right. -/
 theorem rat_mul_right_cancel (a b c : Rat) (hc : c ≠ 0) (h : a * c = b * c) : a = b := by
   apply rat_mul_left_cancel a b c hc
   rw [Rat.mul_comm c a, Rat.mul_comm c b]
   exact h
 
-/-- Lemma: (c * d)⁻¹ * c = d⁻¹ for non-zero c and d. -/
 theorem rat_inv_mul_cancel_left (c d : Rat) (hc : c ≠ 0) (hd : d ≠ 0) :
     (c * d)⁻¹ * c = d⁻¹ := by
   have hcd : c * d ≠ 0 := by
@@ -116,25 +76,20 @@ theorem rat_inv_mul_cancel_left (c d : Rat) (hc : c ≠ 0) (hd : d ≠ 0) :
   rw [Rat.mul_assoc, Rat.mul_comm ((c * d)⁻¹) (c * d), Rat.mul_inv_cancel (c * d) hcd,
       Rat.mul_comm d⁻¹ d, Rat.mul_inv_cancel d hd]
 
-/-- Theorem 2: Scale invariance of direct normalization P(c w) = P(w). -/
 theorem normalize_smul (c : Rat) (w : List Rat) (hc : c ≠ 0) (hw : listSum w ≠ 0) :
     normalize (smul c w) = normalize w := by
   unfold normalize
   rw [listSum_smul, smul_smul, rat_inv_mul_cancel_left c (listSum w) hc hw]
 
-/-- Positivity implies non-zero for rationals. -/
 theorem ne_zero_of_pos {a : Rat} (ha : 0 < a) : a ≠ 0 := by
   intro h
   rw [h] at ha
   exact Rat.lt_irrefl ha
 
-/-- Inverting scalar multiplication. -/
 theorem smul_cancel_inv (c : Rat) (w : List Rat) (hc : c ≠ 0) :
     smul c (smul c⁻¹ w) = w := by
   rw [smul_smul, Rat.mul_inv_cancel c hc, smul_one]
 
-/-- Theorem 3: Exact L1 Ray Quotient Classification.
-    P(w1) = P(w2) iff w2 = c * w1 for some c > 0. -/
 theorem ray_quotient_classification (w1 w2 : List Rat)
     (hw1 : 0 < listSum w1) (hw2 : 0 < listSum w2) :
     normalize w1 = normalize w2 ↔ ∃ c : Rat, 0 < c ∧ w2 = smul c w1 := by
@@ -162,11 +117,7 @@ theorem ray_quotient_classification (w1 w2 : List Rat)
     exact (normalize_smul c w1 hc_ne hw1_ne).symm
 
 
-/-! ============================================================================
-    PART 2: Local Coordinate Additivity Defect Decomposition
-    ============================================================================ -/
 
-/-- Integer absolute value. -/
 def iabs (x : Int) : Int :=
   if x < 0 then -x else x
 
@@ -174,16 +125,13 @@ theorem iabs_nonneg (x : Int) : 0 ≤ iabs x := by
   unfold iabs
   split <;> omega
 
-/-- Local coordinate triangle / aggregation defect. -/
 def D1 (x y : Int) : Int :=
   iabs x + iabs y - iabs (x + y)
 
-/-- Local defect is always non-negative (triangle inequality). -/
 theorem D1_nonneg (x y : Int) : 0 ≤ D1 x y := by
   unfold D1 iabs
   split <;> split <;> split <;> omega
 
-/-- Defect vanishes if and only if signs agree. -/
 theorem D1_zero_iff_same_sign (x y : Int) :
     D1 x y = 0 ↔ (0 ≤ x ∧ 0 ≤ y) ∨ (x ≤ 0 ∧ y ≤ 0) := by
   unfold D1 iabs
@@ -194,7 +142,6 @@ theorem D1_zero_iff_same_sign (x y : Int) :
     · split <;> split <;> split <;> omega
     · split <;> split <;> split <;> omega
 
-/-- Product sign equivalence. -/
 theorem mul_nonneg_iff (a b : Int) :
     0 ≤ a * b ↔ (0 ≤ a ∧ 0 ≤ b) ∨ (a ≤ 0 ∧ b ≤ 0) := by
   constructor
@@ -220,18 +167,12 @@ theorem mul_nonneg_iff (a b : Int) :
     · exact Int.mul_nonneg ha hb
     · exact Int.mul_nonneg_of_nonpos_of_nonpos ha hb
 
-/-- Theorem 4: Local coordinate additivity defect decomposition.
-    D_{1,i}(x, y) = |x_i| + |y_i| - |x_i + y_i| = 0 ↔ x_i * y_i ≥ 0. -/
 theorem D1_zero_iff_mul_nonneg (x y : Int) :
     D1 x y = 0 ↔ 0 ≤ x * y := by
   rw [D1_zero_iff_same_sign, mul_nonneg_iff]
 
 
-/-! ============================================================================
-    PART 3: Row-Sparsity and Descent Compatibility (Monomial Classification)
-    ============================================================================ -/
 
-/-- Algebra helper: square of product. -/
 theorem sq_mul (a b : Int) : (a * b) * (a * b) = (a * a) * (b * b) := by
   calc
     (a * b) * (a * b) = a * (b * (a * b)) := by rw [Int.mul_assoc]
@@ -240,7 +181,6 @@ theorem sq_mul (a b : Int) : (a * b) * (a * b) = (a * a) * (b * b) := by
     _ = a * (a * (b * b)) := by rw [Int.mul_assoc a b b]
     _ = (a * a) * (b * b) := by rw [← Int.mul_assoc a a]
 
-/-- Algebra helper: difference of cross squares. -/
 theorem sq_diff_cross (a b : Int) :
     (a + b) * (a + b) - (a - b) * (a - b) = 4 * (a * b) := by
   have h1 : (a + b) * (a + b) = a * a + (a * b + b * a) + b * b := by
@@ -254,40 +194,32 @@ theorem sq_diff_cross (a b : Int) :
   rw [hab]
   omega
 
-/-- 2x2 integer matrix. -/
 structure Mat2 where
   a : Int
   b : Int
   c : Int
   d : Int
 
-/-- 2D integer vector. -/
 structure Vec2 where
   x : Int
   y : Int
 deriving DecidableEq
 
-/-- Matrix-vector multiplication. -/
 def applyMat2 (M : Mat2) (v : Vec2) : Vec2 :=
   ⟨M.a * v.x + M.b * v.y, M.c * v.x + M.d * v.y⟩
 
-/-- Coordinatewise squared modulus (phase-blind presentation). -/
 def sqNorm (v : Vec2) : Vec2 :=
   ⟨v.x * v.x, v.y * v.y⟩
 
-/-- Phase-blind equivalence: identical squared moduli. -/
 def PhaseEquiv (v1 v2 : Vec2) : Prop :=
   sqNorm v1 = sqNorm v2
 
-/-- Descent compatibility: the map factors through the phase-blind quotient. -/
 def DescentCompatible (M : Mat2) : Prop :=
   ∀ v1 v2 : Vec2, PhaseEquiv v1 v2 → PhaseEquiv (applyMat2 M v1) (applyMat2 M v2)
 
-/-- Row sparsity: at most one non-zero entry per row. -/
 def RowSparse (M : Mat2) : Prop :=
   (M.a = 0 ∨ M.b = 0) ∧ (M.c = 0 ∨ M.d = 0)
 
-/-- Row-sparse matrices are always descent-compatible. -/
 theorem row_sparse_implies_descent_compatible (M : Mat2) (hM : RowSparse M) :
     DescentCompatible M := by
   intro v1 v2 hpe
@@ -318,7 +250,6 @@ theorem row_sparse_implies_descent_compatible (M : Mat2) (hM : RowSparse M) :
     · rw [sq_mul, hx, ← sq_mul]
     · rw [sq_mul, hx, ← sq_mul]
 
-/-- A non-sparse first row breaks descent compatibility. -/
 theorem not_row_sparse_first_row (M : Mat2) (ha : M.a ≠ 0) (hb : M.b ≠ 0) :
     ¬ DescentCompatible M := by
   intro hdc
@@ -342,7 +273,6 @@ theorem not_row_sparse_first_row (M : Mat2) (ha : M.a ≠ 0) (hb : M.b ≠ 0) :
   | inl h1 => exact ha h1
   | inr h2 => exact hb h2
 
-/-- A non-sparse second row breaks descent compatibility. -/
 theorem not_row_sparse_second_row (M : Mat2) (hc : M.c ≠ 0) (hd : M.d ≠ 0) :
     ¬ DescentCompatible M := by
   intro hdc
@@ -366,8 +296,6 @@ theorem not_row_sparse_second_row (M : Mat2) (hc : M.c ≠ 0) (hd : M.d ≠ 0) :
   | inl h1 => exact hc h1
   | inr h2 => exact hd h2
 
-/-- Theorem 5: Row-Sparsity and Commutant Characterization.
-    A linear map is descent-compatible iff every row is sparse (monomial property). -/
 theorem descent_compatible_iff_row_sparse (M : Mat2) :
     DescentCompatible M ↔ RowSparse M := by
   constructor
@@ -387,3 +315,6 @@ theorem descent_compatible_iff_row_sparse (M : Mat2) :
   · exact row_sparse_implies_descent_compatible M
 
 end BornRedundancy
+
+private def l5aProvenance : String :=
+  "Origin: lean4/BornRedundancy.lean Claim: listSum_smul AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

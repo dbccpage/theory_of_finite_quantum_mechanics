@@ -36,7 +36,7 @@ class TestSeibergWittenResurgence(unittest.TestCase):
             coeff_holes=[hole0],
         )
         duality_bindings = {
-            "b_1_0": (Fraction(3, 4), Fraction(3, 4))  # Gap = 0 -> TRUE
+            "b_1_0": (Fraction(3, 4), Fraction(3, 4))
         }
 
         receipt = self.solver.solve_trans_series([sector1], duality_bindings, self.ctx)
@@ -59,7 +59,6 @@ class TestSeibergWittenResurgence(unittest.TestCase):
             coboundary_d_omega=Fraction(0, 1),
             coeff_holes=[hole0],
         )
-        # Dual value vs claimed value has small gap -> UNKNOWN -> Refused binding
         duality_bindings = {
             "b_1_0": (Fraction(3, 4), Fraction(3, 4) + Fraction(1, 2000))
         }
@@ -77,7 +76,7 @@ class TestSeibergWittenResurgence(unittest.TestCase):
             sector_k=2,
             instanton_action_S=Fraction(1, 1),
             stokes_residual_omega=Fraction(1, 10),
-            coboundary_d_omega=Fraction(1, 100),  # d * omega != 0 -> NONCLOSED
+            coboundary_d_omega=Fraction(1, 100),
             coeff_holes=[hole0],
         )
         duality_bindings = {"b_2_0": (Fraction(1, 1), Fraction(1, 1))}

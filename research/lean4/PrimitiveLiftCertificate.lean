@@ -1,18 +1,6 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveLiftCandidate
-/-!
-Primitive lift certificate kernel.
 
-This file separates a boolean lift checklist from structured evidence carrying
-the proof objects required by that checklist.
--/
 
 namespace OmegaCore
 namespace PrimitiveLiftCertificate
@@ -135,3 +123,6 @@ theorem no_lift_certificate_without_closure
 
 end PrimitiveLiftCertificate
 end OmegaCore
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PrimitiveLiftCertificate.lean Claim: liftCertificate_implies_source_obstruction AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

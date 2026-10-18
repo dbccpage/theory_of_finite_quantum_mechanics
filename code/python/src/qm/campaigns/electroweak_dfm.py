@@ -51,9 +51,6 @@ from dataclasses import dataclass
 from fractions import Fraction
 from typing import Tuple
 
-# ---------------------------------------------------------------------------
-# Exact Gaussian Rational Qi = Q[i] and 2x2 SU(2, Q[i]) Matrices
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -163,9 +160,6 @@ def su2_doublet_dressing_matrix(phi: Vec2Qi, radial_norm_r: Fraction) -> Mat2Qi:
     )
 
 
-# ---------------------------------------------------------------------------
-# Report Dataclasses
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -227,9 +221,6 @@ class ElectroweakDfmWeinbergControlReport:
     anomaly_audit: AnomalyCancellationAudit
 
 
-# ---------------------------------------------------------------------------
-# Builders & Evaluation Entry Point
-# ---------------------------------------------------------------------------
 
 
 def _mat2_q_mul(

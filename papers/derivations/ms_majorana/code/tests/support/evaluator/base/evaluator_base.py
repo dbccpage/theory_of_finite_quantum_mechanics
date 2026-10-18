@@ -149,7 +149,6 @@ class EvaluatorBase:
         """Fail-closed evaluation envelope."""
         input_hash = input_data.compute_hash()
 
-        # Check for missing required facts across policy clauses
         for clause in policy.clauses:
             missing = [k for k in clause.required_fact_keys if k not in input_data.facts]
             if missing:

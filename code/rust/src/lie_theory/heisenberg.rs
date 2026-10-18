@@ -1,19 +1,3 @@
-//! Finite Weyl-Heisenberg systems over an exact complex number field.
-//!
-//! The convention is `X|j> = |j+1>`, `Z|j> = omega^j |j>`, hence
-//! `ZX = omega XZ`. With `tau^2 = omega`, the symmetric displacement is
-//! `D(a,b) = tau^(ab) X^a Z^b`. Consequently
-//! `D(a,b) D(c,e) = tau^(bc-ae) D(a+c,b+e)` and `D(a,b)^dagger = D(-a,-b)`.
-//! For odd dimension `tau = omega^((d+1)/2)` and labels are periodic modulo d.
-//! For even dimension a primitive `2d`-th root must be declared, and labels
-//! are periodic modulo `2d`; reducing them modulo d would lose a sign.
-//!
-//! Matrices and contractions come from `linear_algebra::exact_field`. All
-//! coordinates are reduced before multiplication, including `i64::MIN`.
-//! A finite characteristic-zero CCR is refused by its nonzero exact trace;
-//! this is independent of whether the finite Weyl relation holds.
-//!
-//! AuthorityEffect: None.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
@@ -64,7 +48,6 @@ fn has_order<F: ComplexField>(x: &F, n: usize) -> bool {
             .all(|k| power(x, k) != F::one())
 }
 
-/// One irreducible finite Weyl system with a declared primitive central phase.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WeylHeisenberg<F> {
     dimension: usize,
@@ -74,7 +57,6 @@ pub struct WeylHeisenberg<F> {
 }
 
 impl<F: ComplexField> WeylHeisenberg<F> {
-    /// An odd-dimensional system over any exact field containing `omega`.
     pub fn new(dimension: usize, omega: F) -> Result<Self, HeisenbergError> {
         if dimension < 2 || dimension > MAX_DIMENSION {
             return Err(HeisenbergError::Dimension(dimension));
@@ -86,7 +68,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         Self::with_phase_root(dimension, omega, tau)
     }
 
-    /// A system in any dimension. In even dimension `tau` must have order `2d`.
     pub fn with_phase_root(dimension: usize, omega: F, tau: F) -> Result<Self, HeisenbergError> {
         if dimension < 2 || dimension > MAX_DIMENSION {
             return Err(HeisenbergError::Dimension(dimension));
@@ -120,7 +101,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         &self.tau
     }
 
-    /// Coordinates in the declared periodic label group, avoiding negation overflow.
     pub fn reduce(&self, a: i64, b: i64) -> (usize, usize) {
         let n = self.label_period as i64;
         (a.rem_euclid(n) as usize, b.rem_euclid(n) as usize)
@@ -149,7 +129,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         )?)
     }
 
-    /// A monomial matrix built directly, rather than by repeated dense powers.
     pub fn displacement(&self, a: i64, b: i64) -> Result<BasicMatrix<F>, HeisenbergError> {
         let (a, b) = self.reduce(a, b);
         let phase = power(&self.tau, a * b % self.label_period);
@@ -167,7 +146,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         )?)
     }
 
-    /// The scalar `tau^(bc-ae)` in the exact displacement product law.
     pub fn product_phase(&self, a: i64, b: i64, c: i64, e: i64) -> F {
         let (a, b) = self.reduce(a, b);
         let (c, e) = self.reduce(c, e);
@@ -175,7 +153,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         power(&self.tau, (b * c + n * n - a * e) % n)
     }
 
-    /// Hilbert-Schmidt coefficient `Tr(D(a,b)^dagger A)/d`.
     pub fn coefficient(
         &self,
         a: i64,
@@ -202,8 +179,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         Ok(trace.mul(&F::from_rational(&(ri(1) / ri(self.dimension as i64)))))
     }
 
-    /// Reconstruct every matrix from its displacement coefficients. This proves that
-    /// the d² Weyl operators span the full matrix algebra for the declared system.
     pub fn reconstruct_operator(
         &self,
         operator: &BasicMatrix<F>,
@@ -228,9 +203,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         Ok(result)
     }
 
-    /// Exact algebra checks, independent of coordinate-specific physics states.
-    /// Displaced parity D(q,p) P D(q,p)^*, with the central phase canceled.
-    /// Its monomial action sends j to 2q-j with coefficient omega^(2p(q-j)).
     pub fn displaced_parity(&self, q: i64, p: i64) -> Result<BasicMatrix<F>, HeisenbergError> {
         let d = self.dimension;
         let q = q.rem_euclid(d as i64) as usize;
@@ -245,7 +217,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         .map_err(ExactFieldError::from)?)
     }
 
-    /// Tr(A D(q,p) P D(q,p)^*) in d scalar contractions, without a dense product.
     pub fn parity_pairing(&self, a: &BasicMatrix<F>, q: i64, p: i64) -> Result<F, HeisenbergError> {
         let d = self.dimension;
         if a.shape() != (d, d) {
@@ -273,16 +244,6 @@ impl<F: ComplexField> WeylHeisenberg<F> {
             && mx::is_identity_matrix(&mx::power(&z, self.dimension as u64)?)?)
     }
 
-    /// Construct an exact equivalence to the canonical Weyl pair from a supplied
-    /// normalized clock eigenvector. The columns of U are v, X'v, ..., X'^(d-1)v.
-    /// Checks X', Z' unitary, Z'X'=omega X'Z', X'^d=I, Z'v=v and v* v=1,
-    /// then verifies U*U=UU*=I, X'U=UX and Z'U=UZ before returning U.
-    ///
-    /// Distinct clock eigenvalues make these columns orthogonal; cycling by X'
-    /// proves the intertwining equations. This is constructive uniqueness for a
-    /// d-dimensional pair with the supplied seed, including composite d. It does
-    /// not find an eigenvector or adjoin its normalization scalar to the field,
-    /// and is not a classification of representations of arbitrary dimension.
     pub fn intertwiner_from_clock_seed(
         &self,
         shift: &BasicMatrix<F>,
@@ -341,12 +302,10 @@ impl<F: ComplexField> WeylHeisenberg<F> {
     }
 }
 
-/// A dimension-independent trace obstruction and its Cauchy-Schwarz norm bound.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TraceObstruction<F> {
     pub dimension: usize,
     pub residual_trace: F,
-    /// `||[Q,P]-lambda I||_F^2/d >= |lambda|^2`.
     pub normalized_frobenius_square_lower_bound: F,
     pub obstructed: bool,
 }
@@ -367,8 +326,6 @@ pub fn trace_obstruction<F: ComplexField>(
     })
 }
 
-/// Irreducible dimension census of `H(F_p)`: p² linear irreps and p−1 p-dimensional
-/// irreps, one for each nontrivial central character. Their squared dimensions sum to p³.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct StoneVonNeumannCensus {
     pub prime: usize,
@@ -392,9 +349,6 @@ pub fn stone_von_neumann_census(prime: usize) -> Result<StoneVonNeumannCensus, H
     })
 }
 
-/// Odd-prime symplectic Heisenberg group. Coordinates use the cocycle
-/// (q r' - r q')/2, opposite to the displacement-label convention above;
-/// its monomial representation uses exp(c(z-rx-qr/2)).
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum FiniteHeisenbergError {
     #[error("modulus must be an odd prime at most 127")]
@@ -442,7 +396,6 @@ impl FiniteHeisenberg {
             Ok(())
         }
     }
-    /// Multiply two elements in H(F_p) with exact cocycle (1/2)*omega(v1, v2).
     pub fn multiply(
         &self,
         g1: HeisenbergElement,
@@ -453,7 +406,6 @@ impl FiniteHeisenberg {
         self.check(g2)?;
         let modulus = u128::from(p);
         let inv2 = u128::from(p.div_ceil(2));
-        // omega((q1, p1), (q2, p2)) = q1*p2 - p1*q2 mod p
         let q1_p2 = (u128::from(g1.q) * u128::from(g2.p_coord)) % modulus;
         let p1_q2 = (u128::from(g1.p_coord) * u128::from(g2.q)) % modulus;
         let omega = (q1_p2 + modulus - p1_q2) % modulus;
@@ -466,7 +418,6 @@ impl FiniteHeisenberg {
         })
     }
 
-    /// Exact monomial action U_c(q,r,z)|x> = zeta_p^(c(z-r*x-q*r/2)) |x+q>.
     pub fn basis_action(
         &self,
         g: HeisenbergElement,
@@ -518,10 +469,6 @@ impl FiniteHeisenberg {
     }
 }
 
-/// The truncated polynomial representation in characteristic p: derivative D
-/// and multiplication X on F_p[x]/(x^p) satisfy [D,X]=I. The last basis vector
-/// contributes -(p-1)=1, so the boundary term is exact. This is a separate
-/// characteristic-p representation, not a characteristic-zero limit.
 #[derive(Debug, Clone)]
 pub struct PrimeCharacteristicCcr {
     pub characteristic: usize,
@@ -532,7 +479,6 @@ pub struct PrimeCharacteristicCcr {
 }
 
 pub fn prime_characteristic_ccr(p: usize) -> Result<PrimeCharacteristicCcr, HeisenbergError> {
-    // Full p-by-p commutator contractions are bounded by 31^3 scalar products.
     if !(2..=31).contains(&p) {
         return Err(HeisenbergError::Dimension(p));
     }

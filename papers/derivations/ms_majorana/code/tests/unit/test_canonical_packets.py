@@ -321,7 +321,7 @@ def test_candidate_parser_refuses_coercion_invalid_claim_types_and_extras() -> N
         producer_id="strict-candidate-parser",
         payload={"candidate": 1},
         witness="invalid-claim-type",
-        claimed_valid="false",  # type: ignore[arg-type]
+        claimed_valid="false",
     ).to_dict()
     unknown_field = candidate.to_dict()
     unknown_field["uncommitted_hint"] = "ignore me"

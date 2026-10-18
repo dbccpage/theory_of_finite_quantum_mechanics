@@ -1,7 +1,3 @@
-//! Actual enabled changes of pinned Genesis Ongoing seed 25.
-//! The carrier is the source's unnamed writing 0..n, encoded as t0..t(n-1).
-//! Integer multiplicities are unbounded. Identification and term addition
-//! retain representatives; neither is asserted to descend to repair classes.
 use crate::genesis_ongoing_adapter::{GenesisBridgeError, GenesisOngoingPacket, MarkedTriple};
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::semiring_lumpability::push_forward_square;
@@ -18,9 +14,6 @@ pub enum SourceRelation {
     S,
 }
 
-/// Exactly the canonical event descriptors in twentyfifth.state.changes.
-/// Arbitrary Python objects accepted by an untyped function are not events
-/// of this declared integer transition system.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case", deny_unknown_fields)]
 pub enum Source25Change {
@@ -47,8 +40,6 @@ pub enum Source25Change {
 }
 
 impl Source25Change {
-    /// The source's two addition prices: terms and assertions. A filling is
-    /// an occurrence but adds neither a term nor an assertion.
     pub fn additions(self) -> (usize, usize) {
         match self {
             Self::AddTerm => (1, 0),
@@ -72,7 +63,6 @@ pub enum SourceExecutionError {
     Bridge(#[from] GenesisBridgeError),
 }
 
-/// Checked raw source state. No quotient is taken before future changes.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Source25State {
     packet: GenesisOngoingPacket,
@@ -160,7 +150,6 @@ impl Source25State {
             + self.packet.r.iter().chain(&self.packet.s).sum::<BigInt>()
     }
 
-    /// Source 22's declared plain-state cost; no quotient minimization is used.
     pub fn plain_state_cost(&self) -> BigInt {
         BigInt::from(self.packet.terms.len())
             + self
@@ -196,7 +185,6 @@ impl Source25State {
         }
     }
 
-    /// The four assertion-state change kinds shared with source 9.
     pub(crate) fn enabled_four_changes(&self) -> Vec<Source25Change> {
         let n = self.packet.terms.len();
         let mut out = Vec::new();
@@ -226,7 +214,6 @@ impl Source25State {
         out
     }
 
-    /// Complete source ordering: identify; remove r,s; fill; term; add r,s.
     pub fn enabled_changes(&self) -> Vec<Source25Change> {
         let n = self.packet.terms.len();
         let four = self.enabled_four_changes();
@@ -249,8 +236,6 @@ impl Source25State {
         out
     }
 
-    /// Execute an event from the source's enabled list. Failures leave this
-    /// immutable state intact; a refusal is not silently admitted as a no-op.
     pub fn perform_enabled(&self, change: Source25Change) -> Result<Self, SourceExecutionError> {
         if !self.is_enabled(change) {
             return Err(SourceExecutionError::DisabledChange);
@@ -314,8 +299,6 @@ impl Source25State {
         Self::try_new(out)
     }
 
-    /// Actual source 23 raising on raw assertions, used by seed 25's sameness.
-    /// Raising is not one of seed 25's five enabled change kinds.
     pub fn raise_terms(&self, counts: &[BigInt]) -> Result<Self, SourceExecutionError> {
         let n = self.packet.terms.len();
         if counts.len() != n || counts.iter().any(Signed::is_negative) {
@@ -334,7 +317,6 @@ impl Source25State {
     }
 }
 
-/// Immutable ordered run retaining every occurrence and complete raw state.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Source25Run {
     states: Vec<Source25State>,

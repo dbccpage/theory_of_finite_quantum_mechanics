@@ -47,15 +47,12 @@ def test_pure_wire_model_ladder_reproducibility():
         assert m["exact_partition_z"] == 912
         assert len(m["turns"]) == 4
 
-        # Verify wire purity of each turn
         for t in m["turns"]:
             assert t["gamma38_pure"] is True
             assert assert_wire_purity(t["emitted_wire"]) is True
 
-        # Turn 3 must be typed lift request
         assert m["turns"][2]["stage"] == "LIFT_REQUEST"
         assert m["turns"][2]["emitted_wire"] == "op<<1100><liftreq>>"
 
-        # Turn 4 must be exact repair binary 1110010000 = 912
         assert m["turns"][3]["stage"] == "EXACT_REPAIR"
         assert m["turns"][3]["emitted_wire"] == "op<<10010><0><1110010000><1>>"

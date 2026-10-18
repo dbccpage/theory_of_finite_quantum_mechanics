@@ -1,6 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 
 """Invariants for the end-to-end residual classifier.
 
@@ -32,7 +30,6 @@ def _random_residuals(count: int, length: int, seed: int) -> list[list[int]]:
     return [[rng.randint(0, 1) for _ in range(length)] for _ in range(count)]
 
 
-# --- no regression against the existing terminalizer --------------------------
 
 
 @pytest.mark.parametrize("topology", ["disk", "cylinder", "torus"])
@@ -48,7 +45,6 @@ def test_base_three_way_split_is_unchanged(topology: str) -> None:
             assert refined["terminal_status"] == base["terminal_status"]
 
 
-# --- a b1 = 0 carrier can never produce a logical class -----------------------
 
 
 def test_disk_never_yields_a_closed_or_typed_residual() -> None:
@@ -62,7 +58,6 @@ def test_disk_never_yields_a_closed_or_typed_residual() -> None:
     assert "ClosedResidual" not in seen and "TypedHarmonic" not in seen
 
 
-# --- all four terminals occur on a b1 = 2 carrier -----------------------------
 
 
 def test_torus_reaches_every_terminal() -> None:
@@ -70,21 +65,17 @@ def test_torus_reaches_every_terminal() -> None:
     d0 = GF2Matrix(carrier.D0)
     seen = set()
 
-    # Exact: a gauge residual.
     alpha = [0] * report.num_mzm
     alpha[0] = 1
     seen.add(classify(carrier.D0, carrier.D1, d0.mat_vec_mul(alpha))["terminal_status"])
 
-    # OpenObstruction: one faulty channel.
     single = [0] * report.num_channels
     single[0] = 1
     seen.add(classify(carrier.D0, carrier.D1, single)["terminal_status"])
 
-    # TypedHarmonic: a logical string, searched exactly.
     logical = logical_class_representative(report, axis="column", index=0)
     seen.add(classify(carrier.D0, carrier.D1, logical)["terminal_status"])
 
-    # ClosedResidual: the same logical string with the search capped.
     seen.add(
         classify(carrier.D0, carrier.D1, logical, budget=4)["terminal_status"]
     )
@@ -93,7 +84,6 @@ def test_torus_reaches_every_terminal() -> None:
     assert seen <= set(TERMINALS)
 
 
-# --- TypedHarmonic carries what it claims -------------------------------------
 
 
 @pytest.mark.parametrize("axis,index", [("column", 0), ("row", 0), ("column", 1)])
@@ -119,14 +109,12 @@ def test_capped_search_falls_back_and_never_claims_exactness() -> None:
     capped = classify(carrier.D0, carrier.D1, residual, budget=4)
     assert capped["terminal_status"] == "ClosedResidual"
     assert capped["phi1_exact"] is False
-    # the class is still known -- only the minimum weight is not certified
     assert any(capped["class_coordinates"])
     assert capped["phi1_weight"] >= classify(
         carrier.D0, carrier.D1, residual
     )["phi1_weight"]
 
 
-# --- per-status certificate shape ---------------------------------------------
 
 
 def test_exact_residual_has_zero_class_and_zero_phi1() -> None:
@@ -158,14 +146,13 @@ def test_open_obstruction_has_no_class_but_still_has_phi1() -> None:
 
 def test_representation_invalid_passes_through() -> None:
     d0 = [[1, 0], [0, 1]]
-    d1 = [[1, 0]]  # d1 . d0 != 0
+    d1 = [[1, 0]]
     cert = classify(d0, d1, [1, 0])
     assert cert["terminal_status"] == "RepresentationInvalid"
     assert cert["class_coordinates"] is None
     assert cert["authority_effect"] == "None"
 
 
-# --- the l1 minimum beats the RREF normal form --------------------------------
 
 
 def test_phi1_never_exceeds_the_rref_normal_form_weight() -> None:
@@ -220,7 +207,6 @@ def test_rref_already_attains_phi1_on_closed_residuals() -> None:
             )
 
 
-# --- authority fence and replay ------------------------------------------------
 
 
 @pytest.mark.parametrize("topology", ["disk", "cylinder", "torus"])

@@ -1,11 +1,3 @@
-//! Basis-gluing gate for the MUB(6) pinned-wall route.
-//!
-//! A fourth-vector obstruction for one pinned triple is not yet a no-go theorem
-//! for a complete seven-basis MUB(6). The missing theorem is a gluing step:
-//! every admissible complete configuration must land in a covered triple class,
-//! each class must transport to a wall-certified lane without losing ZeroRel or
-//! terminalizer information, and the classwise fourth-vector obstruction must
-//! imply no complete seven-basis set.
 
 use serde::Serialize;
 
@@ -121,16 +113,12 @@ pub fn verify_basis_gluing_gate(inputs: BasisGluingInputs) -> BasisGluingGateRep
     }
 }
 
-/// Honest inputs from the **current** T0+Dita atlas work: local covers exist, but
-/// exhaustive moduli cover, wall transport for every class, and the gluing theorem do not.
 pub fn current_atlas_basis_gluing_inputs(accepted_patch_count: usize) -> BasisGluingInputs {
     BasisGluingInputs {
         pinned_upper_replayed: true,
         exhaustive_triple_cover: false,
         accepted_patch_count,
         wall_transport_for_every_class: false,
-        // Pairwise recorded neighborhoods are ProvenDisjoint in mub6_atlas_c2 — separation,
-        // not positive overlap-compatibility of a connected cover of moduli.
         overlap_compatibility: false,
         zero_rel_preserved: false,
         terminalizer_preserved: false,

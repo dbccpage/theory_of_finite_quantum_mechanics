@@ -7,7 +7,6 @@ use omega_types::q_continuum::{
     AuthorityScope, DescentResult, ObstructionKind, QContinuumLedger, Residual,
 };
 
-/// What kind of Q candidate is being admitted.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum CandidateKind {
     Theory,
@@ -18,7 +17,6 @@ pub enum CandidateKind {
     ProbeRequest,
 }
 
-/// Admission request attached to one candidate.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QAdmissionRequest {
     pub candidate_id: String,
@@ -64,7 +62,6 @@ impl QAdmissionRequest {
     }
 }
 
-/// Classification result for a Q admission candidate.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AdmissionDecision {
     pub candidate_id: String,
@@ -75,7 +72,6 @@ pub struct AdmissionDecision {
 }
 
 impl AdmissionDecision {
-    /// Records the admission residual as an append-only Q ledger row.
     pub fn record_residual(&self, ledger: &mut QContinuumLedger, scope: AuthorityScope) {
         if let Some(residual) = self.residual.clone() {
             let result =
@@ -85,7 +81,6 @@ impl AdmissionDecision {
     }
 }
 
-/// Strict Q admission gate.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct QAdmissionGate;
 

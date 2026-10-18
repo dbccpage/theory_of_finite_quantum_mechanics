@@ -1,4 +1,3 @@
-//! P2 Provenance-Gated Output Layer (PROD-P2) exact verifier.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum GateVerdict {

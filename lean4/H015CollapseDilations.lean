@@ -1,21 +1,5 @@
-/-
-  H015CollapseDilations -- reversible dilations of collapse under
-  a declared ancilla-preparation convention.
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  FRONTIER R6b / obligation O-4. Convention (declared, not derived):
-  the ancilla is prepared in `false`. A reversible dilation of
-  collapse is a two-sided-invertible map on Bool × Bool whose
-  report coordinate, on the prepared slice, is the collapse map
-  (constantly false). There are exactly four. Not CPTP. Not an
-  isometry of the admitted form. Not a dilation of the identity
-  (that count is H015DilationCount).
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H003ReversibilityGate
@@ -25,10 +9,8 @@ namespace FableHilbertWalk20260819.H015CollapseDilations
 open FableHilbertWalk20260819.HWKernel
 open FableHilbertWalk20260819.H003 (collapse)
 
-/-- Declared convention: ancilla prepared at false. -/
 def prepared : Bool := false
 
-/-- Two-sided inverse, and prepared-slice reports collapse. -/
 structure CollapseDilation where
   map : Bool × Bool → Bool × Bool
   inv : Bool × Bool → Bool × Bool
@@ -36,9 +18,6 @@ structure CollapseDilation where
   right : ∀ x, map (inv x) = x
   reduces : ∀ q, (map (q, prepared)).1 = collapse q
 
-/-- swapP permutes the prepared source onto the false-report
-    fiber; swapU permutes the unprepared source onto the
-    true-report fiber. -/
 def colOf (swapP swapU : Bool) : Bool × Bool → Bool × Bool
   | (false, false) => (false, swapP)
   | (true, false) => (false, !swapP)
@@ -215,9 +194,6 @@ theorem eq_ofSwaps (D : CollapseDilation) :
 
 #print axioms eq_ofSwaps
 
-/-- Punchline: under prepared-ancilla-false, exactly four
-    reversible dilations of collapse. Not CPTP. Not identity
-    dilations. Convention is declared. -/
 theorem four_reversible_dilations_of_collapse :
     (dFF.map ≠ dFT.map ∧
       dFF.map ≠ dTF.map ∧
@@ -237,3 +213,6 @@ theorem four_reversible_dilations_of_collapse :
 #print axioms four_reversible_dilations_of_collapse
 
 end FableHilbertWalk20260819.H015CollapseDilations
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H015CollapseDilations.lean Claim: colOf_left AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -152,7 +152,6 @@ def price_continuous_generator_hypotheses() -> Dict[str, Any]:
 def generate_canonical_block06_receipt() -> Dict[str, Any]:
     """Generate the finite Pauli bound fixture and the open locality obligations."""
     t = Fraction(1, 2)
-    # For A=sigma_x, B=sigma_z, C* C=4I and both nested commutators square to 16I.
     comm_norm = Fraction(2, 1)
     a_double_comm = b_double_comm = Fraction(4, 1)
 

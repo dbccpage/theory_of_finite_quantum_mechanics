@@ -1,15 +1,6 @@
-//! MUB(6) Option B Master Synthesis and Moduli Exhaustion Assembly (Pilot 050)
-//!
-//! Formal compilation and proof tie-out evaluating whether the conjunction of the
-//! three research frontiers:
-//! 1. Frontier 1: Concrete Route C Fourier-triple landing (Pilot 048).
-//! 2. Frontier 2: 56-cell / 3-cusp rectangular coordinate exclusion (Pilots 036-040).
-//! 3. Frontier 3: Projector moment flatness and variety emptiness (Pilots 046-047).
-//! establishes complete moduli exhaustion or isolates an irreducible algebraic obstruction.
 
 use serde::{Deserialize, Serialize};
 
-/// Receipt for Option B master synthesis assembly.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OptionBMasterReceipt {
     pub status: String,
@@ -23,7 +14,6 @@ pub struct OptionBMasterReceipt {
     pub moduli_exhaustion_verdict: String,
 }
 
-/// Verify Option B master assembly across all three frontiers.
 pub fn verify_option_b_master_assembly() -> OptionBMasterReceipt {
     let f1_ok = true;
     let f2_ok = true;

@@ -1,23 +1,7 @@
-/-
-  H068WeylCcrResidual.lean
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
 
-  Campaign C500 Block 01: Finite Weyl Residual and Direct CCR Obstruction.
-  Scope: trace/CCR statements for 2x2 and 3x3 integer matrices,
-  one characteristic-2 countermodel, and explicit order/twisted-relation
-  checks for dimensions 2 and 3. No all-dimension or arbitrary-field
-  matrix theorem, analytic differentiation theorem, or Python/Rust
-  refinement is established by this file.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 namespace FableHilbertWalk20260819.H068
 
--- ===========================================================================
--- Section 1: 2x2 Matrix Algebra, Trace Cyclicity, and CCR Obstruction
--- ===========================================================================
 
 structure Mat2 where
   m00 : Int
@@ -45,7 +29,6 @@ def comm2 (A B : Mat2) : Mat2 := sub2 (mul2 A B) (mul2 B A)
 
 def eye2 : Mat2 := ⟨1, 0, 0, 1⟩
 
-/-- Trace cyclicity for 2x2 integer matrices: Tr(A B) = Tr(B A). -/
 theorem tr_mul_comm2 (A B : Mat2) : tr2 (mul2 A B) = tr2 (mul2 B A) := by
   dsimp [tr2, mul2]
   have h0 : A.m00 * B.m00 = B.m00 * A.m00 := by rw [Int.mul_comm]
@@ -54,20 +37,16 @@ theorem tr_mul_comm2 (A B : Mat2) : tr2 (mul2 A B) = tr2 (mul2 B A) := by
   have h3 : A.m10 * B.m01 = B.m01 * A.m10 := by rw [Int.mul_comm]
   omega
 
-/-- Commutator trace vanishing for 2x2 integer matrices: Tr([Q, P]) = 0. -/
 theorem tr_comm2_vanishes (Q P : Mat2) : tr2 (comm2 Q P) = 0 := by
   dsimp [comm2, sub2, tr2]
   have h := tr_mul_comm2 Q P
   dsimp [tr2] at h
   omega
 
-/-- Trace of 2x2 identity scaled by c is 2*c. -/
 theorem tr_smul_eye2 (c : Int) : tr2 (smul2 c eye2) = 2 * c := by
   dsimp [tr2, smul2, eye2]
   omega
 
-/-- Heisenberg-CCR trace obstruction in dimension 2:
-    No 2x2 integer matrices satisfy [Q, P] = c * I for c != 0. -/
 theorem ccr_obstruction_d2 (Q P : Mat2) (c : Int) (hc : c ≠ 0) :
     comm2 Q P ≠ smul2 c eye2 := by
   intro h
@@ -77,9 +56,6 @@ theorem ccr_obstruction_d2 (Q P : Mat2) (c : Int) (hc : c ≠ 0) :
   contradiction
 
 
--- ===========================================================================
--- Section 2: 3x3 Matrix Algebra, Trace Cyclicity, and CCR Obstruction
--- ===========================================================================
 
 structure Mat3 where
   m00 : Int
@@ -123,7 +99,6 @@ def eye3 : Mat3 :=
    0, 1, 0,
    0, 0, 1⟩
 
-/-- Trace cyclicity for 3x3 integer matrices: Tr(A B) = Tr(B A). -/
 theorem tr_mul_comm3 (A B : Mat3) : tr3 (mul3 A B) = tr3 (mul3 B A) := by
   dsimp [tr3, mul3]
   have h00 : A.m00 * B.m00 = B.m00 * A.m00 := by rw [Int.mul_comm]
@@ -137,20 +112,16 @@ theorem tr_mul_comm3 (A B : Mat3) : tr3 (mul3 A B) = tr3 (mul3 B A) := by
   have h21 : A.m21 * B.m12 = B.m12 * A.m21 := by rw [Int.mul_comm]
   omega
 
-/-- Commutator trace vanishing for 3x3 integer matrices: Tr([Q, P]) = 0. -/
 theorem tr_comm3_vanishes (Q P : Mat3) : tr3 (comm3 Q P) = 0 := by
   dsimp [comm3, sub3, tr3]
   have h := tr_mul_comm3 Q P
   dsimp [tr3] at h
   omega
 
-/-- Trace of 3x3 identity scaled by c is 3*c. -/
 theorem tr_smul_eye3 (c : Int) : tr3 (smul3 c eye3) = 3 * c := by
   dsimp [tr3, smul3, eye3]
   omega
 
-/-- Heisenberg-CCR trace obstruction in dimension 3:
-    No 3x3 integer matrices satisfy [Q, P] = c * I for c != 0. -/
 theorem ccr_obstruction_d3 (Q P : Mat3) (c : Int) (hc : c ≠ 0) :
     comm3 Q P ≠ smul3 c eye3 := by
   intro h
@@ -160,12 +131,7 @@ theorem ccr_obstruction_d3 (Q P : Mat3) (c : Int) (hc : c ≠ 0) :
   contradiction
 
 
--- ===========================================================================
--- Section 3: Characteristic p > 0 Countermodel (Target C500-T306)
--- ===========================================================================
 
-/-- In characteristic 2, [P, Q] = I_2 is satisfiable in M_2(Z/2Z).
-    Here tr(I_2) = 2 mod 2 = 0, so trace obstruction vanishes. -/
 structure Mat2Z2 where
   m00 : Bool
   m01 : Bool
@@ -173,8 +139,8 @@ structure Mat2Z2 where
   m11 : Bool
   deriving DecidableEq, Repr
 
-def badd (x y : Bool) : Bool := x != y  -- XOR is addition mod 2
-def bmul (x y : Bool) : Bool := x && y  -- AND is multiplication mod 2
+def badd (x y : Bool) : Bool := x != y
+def bmul (x y : Bool) : Bool := x && y
 
 def mul2Z2 (A B : Mat2Z2) : Mat2Z2 :=
   ⟨badd (bmul A.m00 B.m00) (bmul A.m01 B.m10),
@@ -190,39 +156,25 @@ def comm2Z2 (A B : Mat2Z2) : Mat2Z2 :=
 
 def eye2Z2 : Mat2Z2 := ⟨true, false, false, true⟩
 
-/-- Shift matrix P and multiplication matrix Q in characteristic 2:
-    P = [0 1; 0 0], Q = [0 0; 1 0]. -/
 def P_char2 : Mat2Z2 := ⟨false, true, false, false⟩
 def Q_char2 : Mat2Z2 := ⟨false, false, true, false⟩
 
-/-- In characteristic 2, [P, Q] = I_2 holds identically! -/
 theorem char2_ccr_countermodel : comm2Z2 P_char2 Q_char2 = eye2Z2 := by
   decide
 
 
--- ===========================================================================
--- Section 4: Discrete Weyl Commutation on Z/2Z with omega = -1
--- ===========================================================================
 
--- Shift X on Z/2Z: [0 1; 1 0]
 def X_shift2 : Mat2 := ⟨0, 1, 1, 0⟩
 
--- Clock Z on Z/2Z: [1 0; 0 -1]
 def Z_clock2 : Mat2 := ⟨1, 0, 0, -1⟩
 
-/-- X^2 = I_2 on Z/2Z. -/
 theorem x_order_2 : mul2 X_shift2 X_shift2 = eye2 := by decide
 
-/-- Z^2 = I_2 on Z/2Z. -/
 theorem z_order_2 : mul2 Z_clock2 Z_clock2 = eye2 := by decide
 
-/-- Twisted Weyl relation for d=2: Z X = (-1) * X Z. -/
 theorem weyl_relation_d2 : mul2 Z_clock2 X_shift2 = smul2 (-1) (mul2 X_shift2 Z_clock2) := by decide
 
 
--- ===========================================================================
--- Section 5: Discrete Weyl Commutation on Z/3Z over Eisenstein Ring Z[omega]
--- ===========================================================================
 
 structure Eisenstein where
   a : Int
@@ -279,35 +231,24 @@ def eye3E : Mat3E :=
    ez, eone, ez,
    ez, ez, eone⟩
 
--- Shift operator X on Z/3Z: |j> -> |j+1 mod 3>
 def X_shift3 : Mat3E :=
   ⟨ez, ez, eone,
    eone, ez, ez,
    ez, eone, ez⟩
 
--- Clock operator Z on Z/3Z: diag(1, omega, omega^2)
 def Z_clock3 : Mat3E :=
   ⟨eone, ez, ez,
    ez, eomega, ez,
    ez, ez, eomega2⟩
 
-/-- Shift operator order 3: X^3 = I_3. -/
 theorem x_order_3 : mul3E (mul3E X_shift3 X_shift3) X_shift3 = eye3E := by decide
 
-/-- Clock operator order 3: Z^3 = I_3. -/
 theorem z_order_3 : mul3E (mul3E Z_clock3 Z_clock3) Z_clock3 = eye3E := by decide
 
-/-- Discrete twisted Weyl relation for d=3: Z X = omega * X Z. -/
 theorem weyl_relation_d3 : mul3E Z_clock3 X_shift3 = smul3E eomega (mul3E X_shift3 Z_clock3) := by decide
 
 
--- ===========================================================================
--- Section 6: Formal Refusal (Target C500-T312)
--- ===========================================================================
 
-/-- Formal record that finite discrete Weyl commutation Z X = omega X Z does NOT
-    imply direct Lie-form CCR [Q, P] = c * I by differentiation.
-    Differentiating discrete groups of finite order is mathematically invalid. -/
 def finite_differentiation_refusal : Prop :=
   ∀ (Q P : Mat3) (c : Int), c ≠ 0 → comm3 Q P ≠ smul3 c eye3
 
@@ -315,9 +256,6 @@ theorem refuse_finite_differentiation_to_ccr : finite_differentiation_refusal :=
   ccr_obstruction_d3
 
 
--- ===========================================================================
--- Section 7: Axiom Census & Auditing
--- ===========================================================================
 
 #print axioms tr_mul_comm2
 #print axioms tr_comm2_vanishes
@@ -337,3 +275,6 @@ theorem refuse_finite_differentiation_to_ccr : finite_differentiation_refusal :=
 #print axioms refuse_finite_differentiation_to_ccr
 
 end FableHilbertWalk20260819.H068
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H068WeylCcrResidual.lean Claim: tr_mul_comm2 AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

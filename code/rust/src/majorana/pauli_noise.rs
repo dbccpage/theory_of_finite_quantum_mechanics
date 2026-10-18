@@ -1,9 +1,3 @@
-//! Exact local Majorana Hamiltonian noise and deterministic rational sampling.
-//!
-//! A skew matrix `K` represents the coefficients of `i gamma_a gamma_b`.
-//! Braid conjugation reuses [`MajoranaBraidAction`]; it never expands a dense
-//! signed permutation or performs floating-point threshold decisions.
-//! AuthorityEffect: None.
 
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use linear_algebra::exact_field::{matrix, ExactFieldError};
@@ -12,10 +6,8 @@ use omega_number_theory::{ri, rq, One, Rational, Zero};
 
 use crate::braid_action::MajoranaBraidAction;
 
-/// Dense storage bound; sparse braid actions have a separate, larger limit.
 pub const MAX_NOISE_MODES: usize = 1_024;
 
-/// Invalid exact noise inputs.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum NoiseError {
     #[error("dim must be integer >= 2 and <= {MAX_NOISE_MODES}")]
@@ -61,7 +53,6 @@ pub enum NoiseError {
     Field(#[from] ExactFieldError),
 }
 
-/// Exact rational skew-symmetric Hamiltonian coefficients.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LocalMajoranaNoise {
     data: Vec<Vec<Rational>>,
@@ -79,7 +70,6 @@ fn validate_scalar(value: &Rational) -> Result<(), NoiseError> {
 }
 
 impl LocalMajoranaNoise {
-    /// Admit a square skew-symmetric matrix, without silently repairing it.
     pub fn from_rows(data: Vec<Vec<Rational>>) -> Result<Self, NoiseError> {
         let dim = data.len();
         if !(2..=MAX_NOISE_MODES).contains(&dim) {
@@ -107,7 +97,6 @@ impl LocalMajoranaNoise {
         Ok(Self { data })
     }
 
-    /// A zero-noise Hamiltonian on at least two modes.
     pub fn zero(dim: usize) -> Result<Self, NoiseError> {
         if !(2..=MAX_NOISE_MODES).contains(&dim) {
             return Err(NoiseError::InvalidDimension);
@@ -126,7 +115,6 @@ impl LocalMajoranaNoise {
         Ok(Self { data })
     }
 
-    /// One oriented coupling, with one-indexed mode numbers.
     pub fn single_pair(
         dim: usize,
         a: usize,
@@ -136,7 +124,6 @@ impl LocalMajoranaNoise {
         Self::stray_couplings(dim, &[(a, b, epsilon)])
     }
 
-    /// Sum oriented couplings; repetitions and opposite orientations accumulate.
     pub fn stray_couplings(
         dim: usize,
         couplings: &[(usize, usize, Rational)],
@@ -176,7 +163,6 @@ impl LocalMajoranaNoise {
         }
     }
 
-    /// `2 sum_b |K_ab|`, the exact L1 commutator leakage on a mode.
     pub fn leakage_on_mode(&self, mode: usize) -> Result<Rational, NoiseError> {
         self.check_mode(mode)?;
         Ok(self.data[mode - 1]
@@ -184,7 +170,6 @@ impl LocalMajoranaNoise {
             .fold(Rational::zero(), |sum, value| sum + ri(2) * value.abs()))
     }
 
-    /// Largest mode leakage; no square root or floating-point norm is involved.
     pub fn max_leakage(&self) -> Rational {
         self.data
             .iter()
@@ -207,7 +192,6 @@ impl LocalMajoranaNoise {
         }
     }
 
-    /// `U K U^T` from the validated signed row images of `U`, in quadratic time.
     pub fn transform(&self, action: &MajoranaBraidAction) -> Result<Self, NoiseError> {
         self.check_action(action)?;
         let mut transformed = Self::zero(self.dim())?;
@@ -224,7 +208,6 @@ impl LocalMajoranaNoise {
         Ok(transformed)
     }
 
-    /// `max_ab |(U K U^T - K)_ab|`, with no transformed-matrix allocation.
     pub fn commutation_defect(&self, action: &MajoranaBraidAction) -> Result<Rational, NoiseError> {
         self.check_action(action)?;
         let mut defect = Rational::zero();
@@ -285,11 +268,6 @@ impl LocalMajoranaNoise {
         Ok(())
     }
 
-    /// General rational congruence `U K U^T`, including nonorthogonal matrices.
-    ///
-    /// The complete operation preflights `n²` elements per matrix and `4 n³`
-    /// scalar operations for the two products. The sparse [`Self::transform`]
-    /// remains available when the caller already has a signed permutation.
     pub fn transform_matrix(
         &self,
         transform: &BasicMatrix<Rational>,
@@ -305,8 +283,6 @@ impl LocalMajoranaNoise {
         Self::from_rows(matrix::to_rows(&transformed)?)
     }
 
-    /// Maximum-entry congruence defect for an arbitrary rational matrix.
-    /// The bound covers `4 n³ + 2 n²` scalar calls for products, subtraction and absolute values.
     pub fn commutation_defect_matrix(
         &self,
         transform: &BasicMatrix<Rational>,
@@ -325,7 +301,6 @@ impl LocalMajoranaNoise {
     }
 }
 
-/// Exact local lattice coefficients, in ascending mode-pair order.
 pub fn correlated_cluster_couplings(
     num_qubits: usize,
     lattice_side: usize,
@@ -373,7 +348,6 @@ pub fn correlated_cluster_couplings(
     Ok(couplings)
 }
 
-/// Numerical Recipes 32-bit LCG, preserving the paper's draw order exactly.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeterministicRationalNoiseGenerator {
     state: u32,
@@ -405,7 +379,6 @@ impl DeterministicRationalNoiseGenerator {
         i64::try_from(value).map_err(|_| NoiseError::InvalidRange)
     }
 
-    /// Sample a nonzero rational within a positive bound, or zero for a zero bound.
     pub fn next_fraction(
         &mut self,
         max_denominator: u32,
@@ -439,7 +412,6 @@ impl DeterministicRationalNoiseGenerator {
         Ok(value)
     }
 
-    /// Generate an exact skew matrix using the paper's `floor(1000 density)` gate.
     pub fn generate_skew_symmetric_matrix(
         &mut self,
         dim: usize,
@@ -475,7 +447,6 @@ impl DeterministicRationalNoiseGenerator {
     }
 }
 
-/// Exact numerical result; proposal IDs and cryptographic receipts belong to callers.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct NoiseEvaluation {
     pub max_noise_leakage: Rational,
@@ -494,7 +465,6 @@ impl NoiseEvaluation {
     }
 }
 
-/// Classify the maximum-entry transformation defect against an exact tolerance.
 pub fn evaluate_noise(
     noise: &LocalMajoranaNoise,
     action: &MajoranaBraidAction,
@@ -513,8 +483,6 @@ pub fn evaluate_noise(
     })
 }
 
-/// Exact threshold evaluation preserving general rational-matrix congruence.
-/// The aggregate bound includes both products, defect reduction and leakage.
 pub fn evaluate_noise_matrix(
     noise: &LocalMajoranaNoise,
     transform: &BasicMatrix<Rational>,
@@ -557,7 +525,6 @@ mod tests {
             LocalMajoranaNoise::from_rows(vec![vec![ri(0), ri(1)], vec![ri(1), ri(0)]]),
             Err(NoiseError::NotSkewSymmetric { .. })
         ));
-        // Kills: accepting mode 0, or treating a repeated mode as a skew pair.
         assert_eq!(
             LocalMajoranaNoise::single_pair(4, 0, 2, ri(1)),
             Err(NoiseError::InvalidMode { mode: 0, dim: 4 })
@@ -779,7 +746,6 @@ mod tests {
                 ..
             }))
         ));
-        // Kills: returning Ok of a nonzero matrix once the scalar-op budget is just large enough.
         assert_eq!(
             noise
                 .transform_matrix(
@@ -898,7 +864,6 @@ mod tests {
             generator.next_int_in_range(2, 1),
             Err(NoiseError::InvalidRange)
         );
-        // Kills: accepting a density above 1.
         assert_eq!(
             generator.generate_skew_symmetric_matrix(4, &ri(1), &rq(3, 2), 5),
             Err(NoiseError::InvalidDensity)

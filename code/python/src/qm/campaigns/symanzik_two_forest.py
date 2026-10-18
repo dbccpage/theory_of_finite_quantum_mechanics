@@ -301,9 +301,6 @@ def kirchhoff_schur_symanzik_f0(
     return u_kirchhoff * quad_sum
 
 
-# ---------------------------------------------------------------------------
-# Part (b): DFM Spanning-Tree Momentum Routing & Loop-Intersection Reduction
-# ---------------------------------------------------------------------------
 
 
 def tree_routed_edge_momenta(
@@ -326,7 +323,6 @@ def tree_routed_edge_momenta(
         assert len(comps) == 2
         u, v = graph.edges[e_idx]
         comp_v = comps[0] if v in comps[0] else comps[1]
-        # Net momentum inflow into comp_v along e=(u->v) must equal sum_{w in comp_v} q_w
         q_comp_v = zero_vec
         for w in comp_v:
             q_comp_v = vec_add(q_comp_v, external_momenta[w])
@@ -368,7 +364,6 @@ def fundamental_cycle_matrix(
     rows: list[list[Q]] = []
     for chord_idx in cotree_edges:
         u_c, v_c = graph.edges[chord_idx]
-        # Find tree path from v_c to u_c
         prev: dict[int, tuple[int, int, int]] = {}
         visited = {v_c}
         q = deque([v_c])
@@ -440,9 +435,6 @@ def dfm_loop_eliminated_f0(
     return u_from_cycles, f0_from_dfm
 
 
-# ---------------------------------------------------------------------------
-# Part (c): Zimmermann BPHZ Forest Formula & Connes-Kreimer Antipode
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -548,7 +540,6 @@ def bphz_two_loop_nested_sector_integrand(lam1: Q, lam2: Q, z_ext: Q) -> dict[st
 
 def evaluate_symanzik_two_forest_bphz_control() -> dict[str, object]:
     """Run all three parts of the QM-214 control and return an exact dictionary receipt."""
-    # Part (a): Symanzik F_0 and F_G on Bubble, Triangle, and Diamond graphs
     bub = bubble_graph()
     tri = triangle_graph()
     dia = diamond_graph()
@@ -580,7 +571,6 @@ def evaluate_symanzik_two_forest_bphz_control() -> dict[str, object]:
     dia_trees = enumerate_spanning_trees(dia)
     dia_two_forests = enumerate_spanning_two_forests(dia)
 
-    # Part (b): DFM spanning-tree momentum routing across all 8 spanning trees of the diamond graph
     all_trees_conserve_momentum = True
     all_trees_match_f0_and_u = True
     for tree in dia_trees:
@@ -594,7 +584,6 @@ def evaluate_symanzik_two_forest_bphz_control() -> dict[str, object]:
         if u_dfm != u_dia or f0_dfm != f0_dia_comb:
             all_trees_match_f0_and_u = False
 
-    # Tree-change difference p_{T_2} - p_{T_1} is a pure loop 1-cycle (divergence 0)
     t1 = dia_trees[0]
     t2 = dia_trees[-1]
     p_t1 = tree_routed_edge_momenta(dia, t1, q_dia)
@@ -603,26 +592,19 @@ def evaluate_symanzik_two_forest_bphz_control() -> dict[str, object]:
     diff_div = vertex_divergence_of_edge_flow(dia, diff_p)
     tree_change_is_cycle_cocycle = all(d == (Q(0), Q(0)) for d in diff_div) and (p_t1 != p_t2)
 
-    # Part (c): Zimmermann BPHZ forests & UV pole cancellation
-    # 1. Nested 2-loop graph: subgraphs gamma_1 = {0, 1} subset G_2 = {0, 1, 2, 3}
     g2_subgraphs = [
         DivergentSubgraph("gamma_1", frozenset({0, 1}), 0),
         DivergentSubgraph("G_2", frozenset({0, 1, 2, 3}), 0),
     ]
     g2_forests = enumerate_zimmermann_forests(g2_subgraphs)
 
-    # 2. Overlapping vs non-overlapping 2-loop sunset / diamond subgraphs:
-    # gamma_left = {0, 1, 2}, gamma_right = {2, 3, 4} overlap on edge 2 -> NOT compatible;
-    # G_dia = {0, 1, 2, 3, 4} contains both -> compatible with each individually.
     overlapping_subs = [
         DivergentSubgraph("gamma_L", frozenset({0, 1, 2}), 0),
         DivergentSubgraph("gamma_R", frozenset({2, 3, 4}), 0),
         DivergentSubgraph("G_all", frozenset({0, 1, 2, 3, 4}), 0),
     ]
     overlapping_forests = enumerate_zimmermann_forests(overlapping_subs)
-    # Valid forests: (), (gamma_L,), (gamma_R,), (G_all,), (gamma_L, G_all), (gamma_R, G_all) -> 6 forests (excludes {gamma_L, gamma_R} and {gamma_L, gamma_R, G_all})
 
-    # 3. Exact algebraic UV boundary-pole cancellation across sample points (lam1, lam2) -> 0
     bphz_pole_cancels_all = True
     for lam1 in [Q(1, 2), Q(1, 10), Q(1, 1000)]:
         for lam2 in [Q(1, 3), Q(1, 20), Q(1, 1000)]:
@@ -630,7 +612,6 @@ def evaluate_symanzik_two_forest_bphz_control() -> dict[str, object]:
             if res["r_sum"] != res["r_analytic_regular"]:
                 bphz_pole_cancels_all = False
 
-    # Value of the regularized integrand at the UV boundary (lam1, lam2) = (0, 0): z_ext^2 = (3/5)^2 = 9/25
     z_ext = Q(3, 5)
     uv_boundary_regular_value = (z_ext / (Q(1) + Q(0))) * (z_ext / (Q(1) + Q(0)))
 

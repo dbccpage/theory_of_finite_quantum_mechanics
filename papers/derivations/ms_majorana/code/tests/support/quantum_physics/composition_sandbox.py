@@ -38,7 +38,7 @@ class FiniteGraphCarrier:
 
 class CartesianCompositionSandbox:
     """Explores Cartesian sum composition P_A (+) P_B vs quantum tensor composition P_A (x) P_B.
-    
+
     AuthorityEffect: None.
     """
 
@@ -63,10 +63,10 @@ class CartesianCompositionSandbox:
         joint_state_matrix: np.ndarray
     ) -> Dict[str, Any]:
         """Evaluates whether a joint state matrix over H_A (x) H_B satisfies local tomography.
-        
+
         Local tomography requires that joint state statistics are fully determined by
         local observables and their products.
-        
+
         Returns status TENSOR_PRODUCT_NOT_DERIVED if non-factorizable entanglement exists
         that cannot be decomposed into Cartesian cochains C^1(A) (+) C^1(B).
         """
@@ -76,7 +76,6 @@ class CartesianCompositionSandbox:
         if joint_state_matrix.shape != (da * db, da * db):
             raise ValueError(f"Joint state shape must be ({da*db}, {da*db})")
 
-        # Compute partial traces (marginals)
         rho_a = np.einsum("ikjk->ij", joint_state_matrix.reshape(da, db, da, db))
         rho_b = np.einsum("kikj->ij", joint_state_matrix.reshape(da, db, da, db))
 

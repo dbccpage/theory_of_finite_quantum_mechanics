@@ -3,24 +3,12 @@ use crate::linear_algebra::scalars::CheckedExactField;
 use num_rational::Rational64;
 use thiserror::Error;
 
-/// Errors for exact rational row reduction.
 #[derive(Debug, Error, Clone, PartialEq, Eq)]
 pub enum ExactLinearAlgebraError {
     #[error("matrix error: {0}")]
     Matrix(#[from] MatrixError),
     #[error("dimension mismatch: expected {expected}, got {got}")]
     DimensionMismatch { expected: usize, got: usize },
-    /// The exact result exists mathematically but exceeds fixed-width capacity.
-    ///
-    /// This is a CEILING, not a wrong answer: reduction stops and says so.
-    /// Previously these operations used bare `*`/`-`/`/` on `Ratio<i64>`,
-    /// which wraps in release builds — so an overflow silently produced a
-    /// WRONG value that the surrounding API still described as "exact". A
-    /// wrapped rational is indistinguishable from a correct one downstream,
-    /// which is precisely why this must be typed rather than documented.
-    /// For arbitrary-precision arithmetic (no fixed-width ceiling), use
-    /// `BigRational`. Note: `BigRational` avoids fixed-width ceiling overflow
-    /// but remains subject to coefficient explosion, allocation failure, or budget limits.
     #[error(
         "exact arithmetic exceeded fixed-width representation during {operation} at row {row}, \
          column {col}: the exact result is not representable in i64 numerator/denominator \
@@ -32,14 +20,6 @@ pub enum ExactLinearAlgebraError {
         col: usize,
     },
 
-    /// Rank equality established `target ∈ im(A)`, but the exact replay
-    /// `A · potential = target` then disagreed.
-    ///
-    /// This is an **internal certificate inconsistency**, not a mathematical
-    /// statement about the target. It is typed separately from
-    /// [`ImageMembership::NotInImage`] because reporting non-membership here would
-    /// hand the caller a false negative derived from a contradiction, with no way
-    /// to distinguish it from a genuine one.
     #[error(
         "image-membership certificate is internally inconsistent: rank equality \
          (rank_a = {rank_a}, rank_augmented = {rank_augmented}) established membership, \
@@ -51,7 +31,6 @@ pub enum ExactLinearAlgebraError {
     },
 }
 
-/// Checked `a * b`, or the typed ceiling.
 fn mul_exact<T: CheckedExactField>(
     a: &T,
     b: &T,
@@ -66,7 +45,6 @@ fn mul_exact<T: CheckedExactField>(
         })
 }
 
-/// Checked `a - b`, or the typed ceiling.
 fn sub_exact<T: CheckedExactField>(
     a: &T,
     b: &T,
@@ -81,7 +59,6 @@ fn sub_exact<T: CheckedExactField>(
         })
 }
 
-/// Checked `a + b`, or the typed ceiling.
 fn add_exact<T: CheckedExactField>(
     a: &T,
     b: &T,
@@ -96,8 +73,6 @@ fn add_exact<T: CheckedExactField>(
         })
 }
 
-/// Checked `a / b`, or the typed ceiling. `b` is a verified-nonzero pivot at
-/// every call site, so `None` here means overflow rather than division by zero.
 fn div_exact<T: CheckedExactField>(
     a: &T,
     b: &T,
@@ -112,7 +87,6 @@ fn div_exact<T: CheckedExactField>(
         })
 }
 
-/// Checked unary negation.
 fn neg_exact<T: CheckedExactField>(
     a: &T,
     row: usize,
@@ -126,7 +100,6 @@ fn neg_exact<T: CheckedExactField>(
         })
 }
 
-/// Result of exact row reduction.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RankRref<T: CheckedExactField = Rational64> {
     rank: usize,
@@ -148,8 +121,6 @@ impl<T: CheckedExactField> RankRref<T> {
     }
 }
 
-/// A raw subspace basis extracted from an exact matrix.
-/// This carries NO topological or coordinate basis identity.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RawSubspaceBasis<T: CheckedExactField = Rational64> {
     vectors: Vec<Vec<T>>,
@@ -176,22 +147,6 @@ impl<T: CheckedExactField> RawSubspaceBasis<T> {
     }
 }
 
-/// Extension traits for exact rational matrix operations:
-/// rank, RREF, image basis, and kernel basis.
-///
-/// Sealed and generic over any [`CheckedExactField`] (such as [`Rational64`] or [`num_rational::BigRational`]).
-/// Integer primitives (such as `i64`) do NOT implement `CheckedExactField` and are refused at compile time.
-///
-/// Authority provenance: `one_oears.md` ruling 4.
-///
-/// ```compile_fail
-/// use crate::linear_algebra::basic_matrix::BasicMatrix;
-/// use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
-///
-/// // BasicMatrix<i64> fails to compile because i64 is not a CheckedExactField:
-/// let a = BasicMatrix::from_row_major(2, 2, vec![2_i64, 1, 1, 0]).unwrap();
-/// let _ = a.rank();
-/// ```
 pub trait ExactRowReduction<T: CheckedExactField = Rational64> {
     fn rank_and_rref(&self) -> Result<RankRref<T>, ExactLinearAlgebraError>;
 
@@ -320,12 +275,9 @@ impl<T: CheckedExactField> ExactRowReduction<T> for BasicMatrix<T> {
     }
 }
 
-/// Outcome of an exact image-membership solve `target ∈ im(A)`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ImageMembership<T> {
-    /// `target = A · potential`; the witness replays exactly.
     InImage(ImageMembershipWitness<T>),
-    /// `target ∉ im(A)`: the augmented rank strictly exceeds `rank(A)`.
     NotInImage {
         rank_a: usize,
         rank_augmented: usize,
@@ -338,14 +290,12 @@ impl<T> ImageMembership<T> {
     }
 }
 
-/// Exact witness that `target ∈ im(A)`: a particular `potential` with `A · potential = image = target`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ImageMembershipWitness<T> {
     pub potential: Vec<T>,
     pub image: Vec<T>,
 }
 
-/// Exact matrix-vector product over the declared coefficient domain.
 fn matvec<T: CheckedExactField>(
     a: &BasicMatrix<T>,
     x: &[T],
@@ -362,15 +312,6 @@ fn matvec<T: CheckedExactField>(
     Ok(out)
 }
 
-/// Exact image membership: decide `target ∈ im(d0)` over the declared coefficient domain and,
-/// when it holds, return a
-/// particular potential `pot` with `d0 · pot = target` (verified by exact replay). Decision rule:
-/// `target ∈ im(d0) ⟺ rank([d0 | target]) == rank(d0)`.
-///
-/// Generic over [`CheckedExactField`]. An overflow in a bounded domain is a typed
-/// [`ExactLinearAlgebraError::OverflowCeiling`] refusal, never a wrapped value; in an
-/// unbounded domain such as `BigRational` that refusal is unreachable. No `f64` anywhere.
-/// (EXACT-LA-001 follow-up: this completes the genericization begun in PR #1798.)
 pub fn solve_in_image<T: CheckedExactField>(
     d0: &BasicMatrix<T>,
     target: &[T],
@@ -386,7 +327,6 @@ pub fn solve_in_image<T: CheckedExactField>(
 
     let rank_a = d0.rank()?;
 
-    // Augmented matrix [d0 | target], shape rows x (cols + 1).
     let mut aug_data = Vec::with_capacity(rows * (cols + 1));
     for (row, t) in target.iter().enumerate().take(rows) {
         for col in 0..cols {
@@ -405,8 +345,6 @@ pub fn solve_in_image<T: CheckedExactField>(
         });
     }
 
-    // Consistent system: read a particular solution (free variables = 0) from the augmented RREF —
-    // each pivot variable takes the value in the last (target) column at its pivot row.
     let rref = aug_red.rref();
     let mut potential = vec![T::zero(); cols];
     for (pivot_row, &pcol) in aug_red.pivot_columns().iter().enumerate() {
@@ -415,14 +353,6 @@ pub fn solve_in_image<T: CheckedExactField>(
         }
     }
 
-    // Replay exactly: `d0 · potential` must equal `target`.
-    //
-    // Rank equality above ALREADY established `target ∈ im(d0)`. If the replay then
-    // disagrees, the two are inconsistent with each other — a defect in this
-    // routine or its inputs, not a mathematical fact about the target. Returning
-    // `NotInImage` here would report a false negative membership answer derived
-    // from an internal contradiction, and the caller could not tell the two apart.
-    // Fail closed with a typed error instead.
     let image = matvec(d0, &potential)?;
     if image.as_slice() != target {
         return Err(ExactLinearAlgebraError::MembershipReplayInconsistent {
@@ -451,15 +381,9 @@ mod tests {
         BigRational::new(BigInt::from(n), BigInt::from(d))
     }
 
-    // --- Exact Field Protection Test: Counterexample Matrix ------------
 
-    /// Prove that integer primitive matrices cannot use exact row reduction,
-    /// while Rational64 and BigRational correctly compute rank 2 for det = -1 matrix.
     #[test]
     fn integer_division_counterexample_matrix_has_rank_2() {
-        // det = -1 matrix:
-        // [2 1]
-        // [1 0]
         let m_r64 =
             BasicMatrix::from_row_major(2, 2, vec![r(2, 1), r(1, 1), r(1, 1), r(0, 1)]).unwrap();
         assert_eq!(m_r64.rank().unwrap(), 2);
@@ -469,13 +393,9 @@ mod tests {
         assert_eq!(m_big.rank().unwrap(), 2);
     }
 
-    // --- BigRational Exact Row Reduction & Replay Suite -------------------
 
     #[test]
     fn big_rational_rref_rank_nullity_and_replay() {
-        // 2x3 matrix:
-        // [1 2 3]
-        // [2 4 7]
         let m = BasicMatrix::from_row_major(
             2,
             3,
@@ -490,10 +410,8 @@ mod tests {
 
         let kernel = m.kernel_basis().expect("BigRational kernel basis");
 
-        // Rank-nullity theorem: rank + nullity = cols
         assert_eq!(reduction.rank() + kernel.len(), m.cols());
 
-        // Replay: A * v = 0 for every kernel vector v
         for k_vec in kernel.vectors() {
             let prod = matvec(&m, k_vec).expect("BigRational matvec");
             for val in prod {
@@ -545,7 +463,6 @@ mod tests {
         assert_eq!(red_r64.pivot_columns(), red_big.pivot_columns());
     }
 
-    // --- EXACT-LA-001: the i64 ceiling is enforced, not just documented ------
 
     #[test]
     fn test_rational_overflow_returns_ceiling_error() {
@@ -764,23 +681,8 @@ mod tests {
         );
     }
 
-    /// `NotInImage` is a mathematical answer, and it must be self-witnessing: the
-    /// ranks it carries have to establish the very condition it reports. There is
-    /// exactly one such condition — `rank([A|b]) > rank(A)`.
-    ///
-    /// This is the invariant the pre-review code broke. The exact-replay branch also
-    /// returned `NotInImage`, and it did so on the *opposite* rank relation
-    /// (`rank_augmented <= rank_a`, since it is only reached after the strict-growth
-    /// test already failed). A caller reading `NotInImage { rank_a: 1,
-    /// rank_augmented: 1 }` was being handed a non-membership verdict whose own
-    /// evidence says the target *is* in the image. That defect now returns
-    /// [`ExactLinearAlgebraError::MembershipReplayInconsistent`] instead, so this
-    /// sweep is falsifiable by any reversion that routes an internal contradiction
-    /// back into the `Ok` channel.
     #[test]
     fn not_in_image_always_witnesses_strict_rank_growth() {
-        // A corpus spanning full-rank, rank-deficient, wide, tall, and zero matrices,
-        // each probed with several targets — so the sweep sees both branches.
         let matrices: Vec<BasicMatrix<Rational64>> = vec![
             d0_edge(),
             BasicMatrix::from_row_major(2, 2, vec![r(1, 1), r(0, 1), r(0, 1), r(1, 1)]).unwrap(),
@@ -824,7 +726,6 @@ mod tests {
                 match solve_in_image(m, t).expect("no overflow in this corpus") {
                     ImageMembership::InImage(w) => {
                         saw_in += 1;
-                        // The witness must replay, or the Ok answer is unearned.
                         assert_eq!(matvec(m, &w.potential).unwrap(), *t);
                     }
                     ImageMembership::NotInImage {
@@ -842,21 +743,12 @@ mod tests {
                 }
             }
         }
-        // Guard the sweep itself: a corpus that only ever takes one branch would make
-        // the assertion above vacuous.
         assert!(
             saw_in > 0 && saw_out > 0,
             "sweep covered only one branch ({saw_in} in, {saw_out} out)"
         );
     }
 
-    /// The new variant must name both ranks, because its whole purpose is to hand the
-    /// caller the contradiction rather than a verdict.
-    ///
-    /// The branch that raises it is unreachable through this API while `rank` and
-    /// `rank_and_rref` agree, so it has no direct runtime test and is not claimed to
-    /// have one — it is a fail-closed guard on an internal invariant, and this test
-    /// covers only its rendering.
     #[test]
     fn replay_inconsistency_error_reports_the_contradicting_ranks() {
         let e: ExactLinearAlgebraError = ExactLinearAlgebraError::MembershipReplayInconsistent {

@@ -1,6 +1,5 @@
 use omega_types::q_continuum::{AuthorityScope, AuthorityTrace, DescentResult};
 
-/// Authority trace policy helpers.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct AuthorityPolicy;
 

@@ -1,10 +1,4 @@
-//! Canonical finite functional evaluations for the Omega Engine.
-//!
-//! Phi1, Gamma2 and Xi own their arithmetic here. Search proposes witnesses in
-//! omega_solvers; omega_policy compares evaluated evidence; terminalizers and
-//! execution governors retain authorization. This crate never licenses actions.
 
-/// Marker for the executable functional ownership boundary.
 extern crate self as omega_functional;
 pub struct FunctionalLayerBoundary;
 

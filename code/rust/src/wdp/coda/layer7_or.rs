@@ -1,4 +1,3 @@
-// AuthorityEffect: None.
 use num_rational::BigRational;
 use num_traits::Zero;
 use serde_json::json;
@@ -8,13 +7,6 @@ use crate::coda::types::{LayerExecutionRecord, LayerId, ProblemInstance};
 pub struct Layer7Or;
 
 impl Layer7Or {
-    /// Evaluates Layer 7: Omniversal Re-Presentation (CODA-OR).
-    ///
-    /// Enforces:
-    /// - Hard refusal sieve on empty candidate sieves (OR-T5)
-    /// - Incompatible boundary overlap detection (OR-T3)
-    /// - Anti-consensus discipline forbidding averaging incompatible derivations
-    /// - Cocycle gluing condition Gamma_2 == 0
     pub fn evaluate(
         problem: &ProblemInstance,
         gamma2: &BigRational,

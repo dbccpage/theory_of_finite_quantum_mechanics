@@ -1,7 +1,3 @@
-//! Declared finite dyadic cyclic presentations and their exact characters.
-//! Refinement is k -> 2k; restriction of character indices is reduction modulo
-//! 2^n. A coherent finite prefix does not select an infinite character or a
-//! topology. AuthorityEffect: None. No continuum or convergence is constructed.
 
 use crate::cyclotomic_field::{CyclotomicError, CyclotomicNumber};
 use crate::polynomial::MAX_CONDUCTOR;
@@ -40,7 +36,6 @@ pub struct DyadicLevel {
 }
 
 impl DyadicLevel {
-    /// Metadata only: no enumeration of the carrier or cyclotomic allocation.
     pub fn new(level: u32) -> Result<Self, DyadicError> {
         let order = 1usize
             .checked_shl(level)
@@ -67,7 +62,6 @@ impl DyadicLevel {
     pub fn add(self, left: usize, right: usize) -> Result<usize, DyadicError> {
         self.check(left)?;
         self.check(right)?;
-        // Two residues below 2^(usize::BITS-1) have a representable sum.
         Ok((left + right) % self.order)
     }
 
@@ -85,14 +79,11 @@ impl DyadicLevel {
         )))
     }
 
-    /// Integer inputs are reduced modulo the carrier, including negative inputs.
-    /// Arbitrary integer sizes have no bit-complexity budget in this API.
     pub fn character_turn(self, index: &BigInt, element: &BigInt) -> RationalTurn {
         RationalTurn::new(Rational::new(index * element, self.order.into()))
     }
 
     pub fn normalize_index(self, index: &BigInt) -> usize {
-        // The remainder is nonnegative and strictly below a native-sized order.
         index
             .mod_floor(&BigInt::from(self.order))
             .to_usize()
@@ -107,17 +98,12 @@ impl DyadicLevel {
         Ok(index % self.order)
     }
 
-    /// The two and only two adjacent extensions of a finite character index.
     pub fn extensions(self, index: usize) -> Result<[usize; 2], DyadicError> {
         self.check(index)?;
         Self::new(self.level + 1)?;
         Ok([index, index + self.order])
     }
 
-    /// Actually sums N exact roots of unity in one declared cyclotomic field;
-    /// the Kronecker delta is NOT assigned as the result. Limits are checked
-    /// before field-context/cache construction or scalar arithmetic. The
-    /// cyclotomic owner's cache and BigInt work are not counted as terms.
     pub fn normalized_inner_product(
         self,
         left: &BigInt,
@@ -155,10 +141,6 @@ impl Default for CharacterSumLimits {
     }
 }
 
-/// A checked prefix a_0,...,a_n, with a_{i+1} mod 2^i = a_i.
-/// This object certifies only its retained finite entries. The word-size cap
-/// is checked before cloning; no infinite extension, p-adic value or topology
-/// is inferred. A source index at each level must be a canonical residue.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteDualPrefix {
     indices: Vec<usize>,

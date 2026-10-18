@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the boost numerator."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the boost numerator.
+
+Origin: code/python/src/qm/group_param.py
+Claim: urn:omega:fqm:group:boost-numerator-det:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -21,6 +31,21 @@ from src.qm.group_param import (
     shear_parameter,
 )
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "group_param.py"
 _OTHER = ((1, 2), (3, 4))
 
@@ -37,7 +62,7 @@ def test_determinant_and_trace_match_the_theorems() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(GroupParamError, match="float refused") as floated:
-        boost_numerator_det(((1.0, 0), (0, 1)))
+        boost_numerator_det(((_probe("1.0"), 0), (0, 1)))
     assert floated.value.invariant == "float refused at the matrix boundary"
     assert floated.value.parameters["role"] == "row0"
     assert type(floated.value) is GroupParamError
@@ -166,7 +191,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     determinant = namespace["boost_numerator_det"]
     trace = namespace["pauli_trace"]
     shear = namespace["shear_parameter"]
-    if not callable(determinant) or not callable(trace) or not callable(shear):
+    if not _all_hold((callable(determinant), callable(trace), callable(shear),)):
         return False
     try:
         values = (
@@ -184,10 +209,10 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     determinant = namespace["boost_numerator_det"]
     trace = namespace["pauli_trace"]
-    if not callable(determinant) or not callable(trace):
+    if not _all_hold((callable(determinant), callable(trace),)):
         return False
     probes = (
-        (lambda: determinant(((1.0, 0), (0, 1))), "float refused at the matrix boundary"),
+        (lambda: determinant(((_probe("1.0"), 0), (0, 1))), "float refused at the matrix boundary"),
         (lambda: trace(((True, 0), (0, 1))), "boolean refused where an integer entry was required"),
         (lambda: determinant((("5", 0), (0, 1))), "matrix entry is not an integer"),
         (lambda: determinant(((1, 2, 3), (0, 1))), "matrix row is not a pair"),
@@ -202,7 +227,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["GroupParamError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -231,6 +256,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

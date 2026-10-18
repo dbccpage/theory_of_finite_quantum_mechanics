@@ -1,25 +1,3 @@
-//! Dense univariate polynomials over an exact field, and exact real-root machinery over `Q`.
-//!
-//! [`Polynomial<F>`] stores ascending coefficients and is always normalised: the last
-//! stored coefficient is nonzero, and the zero polynomial has no coefficients, so
-//! equality of values is equality of representations. It works over any `F` in the
-//! scalar tower of `linear_algebra::scalars` ([`ExactField`]): `Q`, the Gaussian and
-//! Eisenstein rationals, every cyclotomic field of this crate, and the quadratic fields.
-//!
-//! Generic operations: ring arithmetic, Horner evaluation, derivative, composition,
-//! Euclidean division with a typed refusal on a zero divisor, monic gcd, the extended
-//! gcd, resultant, discriminant, the squarefree part and Yun's squarefree decomposition.
-//! The squarefree operations assume characteristic zero (they use `gcd(f, f')`).
-//!
-//! Over `Q` this module adds what exact real algebra needs: the Gauss content and
-//! primitive part, cyclotomic polynomials computed by division, Sturm sequences, exact
-//! counts of real roots in `(a, b]`, Cauchy root bounds, isolation of every real root by
-//! rational intervals, and bisection refinement. A rational root is always reported
-//! exactly; an irrational root is reported by an interval whose endpoints are not roots.
-//!
-//! There is no floating point and no tolerance in this module.
-//!
-//! AuthorityEffect: None.
 
 use std::cmp::Ordering;
 
@@ -32,12 +10,8 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 use crate::rational::{r_one, r_zero, ri, Rational};
 
-/// The largest conductor `n` for which [`cyclotomic_polynomial`] (and the cyclotomic
-/// fields built on it) are available. It keeps the dense `phi(n)`-coefficient
-/// arithmetic tractable; raising it is a deliberate decision, not an accident.
 pub const MAX_CONDUCTOR: usize = 1024;
 
-/// Refusals of the polynomial operations.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum PolynomialError {
     #[error("interpolation requires at least one distinct node")]
@@ -73,8 +47,6 @@ pub enum PolynomialError {
     Inconsistent(&'static str),
 }
 
-/// Lagrange coefficients for evaluating the interpolating polynomial at `x0`.
-/// Big-rational products preserve arbitrary denominators and large nodes.
 pub fn lagrange_weights_at(
     x0: &Rational,
     nodes: &[Rational],
@@ -106,13 +78,9 @@ pub fn lagrange_weights_at(
         .collect())
 }
 
-/// Shorthand for the scalar bounds every polynomial operation needs: an exact field of
-/// the `linear_algebra` scalar tower.
 pub trait ExactField: Field + ExactRing {}
 impl<T: Field + ExactRing> ExactField for T {}
 
-/// A univariate polynomial with ascending coefficients, `c_0 + c_1 x + ... + c_d x^d`,
-/// normalised so that the leading stored coefficient is nonzero.
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub struct Polynomial<F> {
     coeffs: Vec<F>,
@@ -125,8 +93,6 @@ impl<F: Serialize> Serialize for Polynomial<F> {
 }
 
 impl<'de, F: Deserialize<'de> + ExactField> Deserialize<'de> for Polynomial<F> {
-    /// Deserialises the coefficient list and normalises it, so a wire form with trailing
-    /// zeros gives the same value as the trimmed form.
     fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
         Ok(Self::from_coefficients(Vec::<F>::deserialize(
             deserializer,
@@ -134,7 +100,6 @@ impl<'de, F: Deserialize<'de> + ExactField> Deserialize<'de> for Polynomial<F> {
     }
 }
 
-/// `k * c` by repeated doubling, for a natural number `k`.
 fn natural_multiple<F: ExactField>(c: &F, k: usize) -> F {
     let mut result = F::zero();
     let mut addend = c.clone();
@@ -151,7 +116,6 @@ fn natural_multiple<F: ExactField>(c: &F, k: usize) -> F {
     result
 }
 
-/// `c^k` by repeated squaring.
 fn field_pow<F: ExactField>(c: &F, k: usize) -> F {
     let mut result = F::one();
     let mut base = c.clone();
@@ -169,27 +133,22 @@ fn field_pow<F: ExactField>(c: &F, k: usize) -> F {
 }
 
 impl<F: ExactField> Polynomial<F> {
-    /// The zero polynomial.
     pub fn zero() -> Self {
         Self { coeffs: Vec::new() }
     }
 
-    /// The constant polynomial `1`.
     pub fn one() -> Self {
         Self::constant(F::one())
     }
 
-    /// The constant polynomial `c`.
     pub fn constant(c: F) -> Self {
         Self::from_coefficients(vec![c])
     }
 
-    /// The polynomial `x`.
     pub fn x() -> Self {
         Self::from_coefficients(vec![F::zero(), F::one()])
     }
 
-    /// `c x^degree`.
     pub fn monomial(c: F, degree: usize) -> Self {
         if c.is_zero() {
             return Self::zero();
@@ -199,7 +158,6 @@ impl<F: ExactField> Polynomial<F> {
         Self { coeffs }
     }
 
-    /// The polynomial with the given ascending coefficients; trailing zeros are dropped.
     pub fn from_coefficients(mut coeffs: Vec<F>) -> Self {
         while coeffs.last().is_some_and(|c| c.is_zero()) {
             coeffs.pop();
@@ -207,25 +165,20 @@ impl<F: ExactField> Polynomial<F> {
         Self { coeffs }
     }
 
-    /// `prod (x - r)` over the given roots (the monic polynomial with exactly these
-    /// roots, with multiplicity).
     pub fn from_roots(roots: &[F]) -> Self {
         roots.iter().fold(Self::one(), |acc, root| {
             acc.mul(&Self::from_coefficients(vec![root.neg(), F::one()]))
         })
     }
 
-    /// The ascending coefficients; empty for the zero polynomial.
     pub fn coefficients(&self) -> &[F] {
         &self.coeffs
     }
 
-    /// The coefficient of `x^i`, zero beyond the degree.
     pub fn coefficient(&self, i: usize) -> F {
         self.coeffs.get(i).cloned().unwrap_or_else(F::zero)
     }
 
-    /// The degree, or `None` for the zero polynomial.
     pub fn degree(&self) -> Option<usize> {
         self.coeffs.len().checked_sub(1)
     }
@@ -234,17 +187,14 @@ impl<F: ExactField> Polynomial<F> {
         self.coeffs.is_empty()
     }
 
-    /// Whether the polynomial is a constant (including zero).
     pub fn is_constant(&self) -> bool {
         self.coeffs.len() <= 1
     }
 
-    /// The leading coefficient, `None` for the zero polynomial.
     pub fn leading_coefficient(&self) -> Option<&F> {
         self.coeffs.last()
     }
 
-    /// `self + other`.
     pub fn add(&self, other: &Self) -> Self {
         let n = self.coeffs.len().max(other.coeffs.len());
         let coeffs = (0..n)
@@ -258,19 +208,16 @@ impl<F: ExactField> Polynomial<F> {
         Self::from_coefficients(coeffs)
     }
 
-    /// `-self`.
     pub fn neg(&self) -> Self {
         Self {
             coeffs: self.coeffs.iter().map(|c| c.neg()).collect(),
         }
     }
 
-    /// `self - other`.
     pub fn sub(&self, other: &Self) -> Self {
         self.add(&other.neg())
     }
 
-    /// `self * other` (schoolbook).
     pub fn mul(&self, other: &Self) -> Self {
         if self.is_zero() || other.is_zero() {
             return Self::zero();
@@ -287,12 +234,10 @@ impl<F: ExactField> Polynomial<F> {
         Self::from_coefficients(out)
     }
 
-    /// `c * self`.
     pub fn scale(&self, c: &F) -> Self {
         Self::from_coefficients(self.coeffs.iter().map(|a| a.mul(c)).collect())
     }
 
-    /// `self^k`.
     pub fn pow(&self, k: usize) -> Self {
         let mut result = Self::one();
         let mut base = self.clone();
@@ -309,7 +254,6 @@ impl<F: ExactField> Polynomial<F> {
         result
     }
 
-    /// Horner evaluation at `x`.
     pub fn eval(&self, x: &F) -> F {
         self.coeffs
             .iter()
@@ -317,19 +261,16 @@ impl<F: ExactField> Polynomial<F> {
             .fold(F::zero(), |acc, c| acc.mul(x).add(c))
     }
 
-    /// The composition `self(other(x))`.
     pub fn compose(&self, other: &Self) -> Self {
         self.coeffs.iter().rev().fold(Self::zero(), |acc, c| {
             acc.mul(other).add(&Self::constant(c.clone()))
         })
     }
 
-    /// `self(x + a)`.
     pub fn shift(&self, a: &F) -> Self {
         self.compose(&Self::from_coefficients(vec![a.clone(), F::one()]))
     }
 
-    /// The formal derivative.
     pub fn derivative(&self) -> Self {
         Self::from_coefficients(
             self.coeffs
@@ -341,14 +282,11 @@ impl<F: ExactField> Polynomial<F> {
         )
     }
 
-    /// `self / lc(self)`, or `None` for the zero polynomial.
     pub fn monic(&self) -> Option<Self> {
         let inverse = self.leading_coefficient()?.try_inv()?;
         Some(self.scale(&inverse))
     }
 
-    /// Euclidean division: `(q, r)` with `self = q * divisor + r` and
-    /// `deg r < deg divisor`. Refuses a zero divisor.
     pub fn div_rem(&self, divisor: &Self) -> Result<(Self, Self), PolynomialError> {
         let Some(lead) = divisor.leading_coefficient() else {
             return Err(PolynomialError::DivisionByZero);
@@ -380,16 +318,13 @@ impl<F: ExactField> Polynomial<F> {
         ))
     }
 
-    /// The remainder of Euclidean division.
     pub fn rem(&self, divisor: &Self) -> Result<Self, PolynomialError> {
         Ok(self.div_rem(divisor)?.1)
     }
 
-    /// The monic greatest common divisor; `gcd(0, 0) = 0`.
     pub fn gcd(&self, other: &Self) -> Self {
         let (mut a, mut b) = (self.clone(), other.clone());
         while !b.is_zero() {
-            // `b` is nonzero, so the division cannot refuse.
             let Ok(r) = a.rem(&b) else {
                 break;
             };
@@ -399,8 +334,6 @@ impl<F: ExactField> Polynomial<F> {
         a.monic().unwrap_or_else(Self::zero)
     }
 
-    /// The extended gcd: `(g, s, t)` with `s * self + t * other = g` and `g` monic (or
-    /// zero when both arguments are zero).
     pub fn xgcd(&self, other: &Self) -> (Self, Self, Self) {
         let (mut r0, mut r1) = (self.clone(), other.clone());
         let (mut s0, mut s1) = (Self::one(), Self::zero());
@@ -424,11 +357,6 @@ impl<F: ExactField> Polynomial<F> {
         }
     }
 
-    /// The resultant `Res(self, other)`, by the Euclidean recursion
-    /// `Res(f, g) = (-1)^{mn} lc(g)^{m - deg r} Res(g, r)` with `r = f mod g`.
-    ///
-    /// The resultant with the zero polynomial is zero. For monic `f` of degree `m`,
-    /// `Res(f, g) = prod g(alpha)` over the roots `alpha` of `f`.
     pub fn resultant(&self, other: &Self) -> F {
         let (mut f, mut g) = (self.clone(), other.clone());
         let mut scalar = F::one();
@@ -450,7 +378,6 @@ impl<F: ExactField> Polynomial<F> {
             };
             let lead_g = g.coeffs[n].clone();
             let mut factor = field_pow(&lead_g, m - k);
-            // (-1)^{mn}: the parity of a product is the product of the parities.
             if (m % 2) * (n % 2) == 1 {
                 factor = factor.neg();
             }
@@ -460,8 +387,6 @@ impl<F: ExactField> Polynomial<F> {
         }
     }
 
-    /// The discriminant `(-1)^{n(n-1)/2} Res(f, f') / lc(f)` of a polynomial of degree
-    /// `n >= 1`; it vanishes exactly when `f` has a repeated root.
     pub fn discriminant(&self) -> Result<F, PolynomialError> {
         let Some(n) = self.degree() else {
             return Err(PolynomialError::ZeroPolynomial);
@@ -476,14 +401,12 @@ impl<F: ExactField> Polynomial<F> {
             .try_inv()
             .ok_or(PolynomialError::NotInvertible)?;
         let mut value = self.resultant(&self.derivative()).mul(&lead_inverse);
-        // n(n-1)/2 is odd exactly when n = 2 or 3 (mod 4).
         if n % 4 >= 2 {
             value = value.neg();
         }
         Ok(value)
     }
 
-    /// The monic squarefree part `f / gcd(f, f')` (characteristic zero); zero for zero.
     pub fn squarefree_part(&self) -> Self {
         if self.is_constant() {
             return if self.is_zero() {
@@ -499,10 +422,6 @@ impl<F: ExactField> Polynomial<F> {
         }
     }
 
-    /// Yun's squarefree decomposition (characteristic zero): the monic pairwise-coprime
-    /// squarefree polynomials `q_i` and multiplicities `i` with
-    /// `self = lc(self) * prod q_i^i`, in increasing multiplicity. Constants give an
-    /// empty list; the zero polynomial is refused.
     pub fn squarefree_decomposition(&self) -> Result<Vec<(Self, usize)>, PolynomialError> {
         let Some(monic) = self.monic() else {
             return Err(PolynomialError::ZeroPolynomial);
@@ -555,12 +474,7 @@ impl<F: ExactField + std::fmt::Display> std::fmt::Display for Polynomial<F> {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Integer arithmetic on conductors
-// ---------------------------------------------------------------------------
 
-/// Euler's totient `phi(n)`: the number of `k` in `1..=n` coprime to `n`.
-/// By that definition `phi(0) = 0` and `phi(1) = 1`.
 pub fn euler_phi(n: usize) -> usize {
     let mut result = n;
     let mut remaining = n;
@@ -580,7 +494,6 @@ pub fn euler_phi(n: usize) -> usize {
     result
 }
 
-/// The distinct prime divisors of `n`, ascending (empty for `0` and `1`).
 pub fn distinct_prime_factors(n: usize) -> Vec<usize> {
     let mut primes = Vec::new();
     let mut remaining = n;
@@ -600,7 +513,6 @@ pub fn distinct_prime_factors(n: usize) -> Vec<usize> {
     primes
 }
 
-/// The Moebius function `mu(n)` for `n >= 1` (`0` for `n = 0`).
 pub fn mobius(n: usize) -> i8 {
     if n == 0 {
         return 0;
@@ -617,7 +529,6 @@ pub fn mobius(n: usize) -> i8 {
     sign
 }
 
-/// The divisors of `n` in ascending order (empty for `0`).
 pub fn divisors(n: usize) -> Vec<usize> {
     if n == 0 {
         return Vec::new();
@@ -639,18 +550,12 @@ pub fn divisors(n: usize) -> Vec<usize> {
     small
 }
 
-// ---------------------------------------------------------------------------
-// Polynomials over Q
-// ---------------------------------------------------------------------------
 
 impl Polynomial<Rational> {
-    /// The polynomial with the given ascending integer coefficients.
     pub fn from_i64s(coefficients: &[i64]) -> Self {
         Self::from_coefficients(coefficients.iter().map(|&c| ri(c)).collect())
     }
 
-    /// The smallest positive `D` with `D * self` in `Z[x]`, and those integer
-    /// coefficients. The zero polynomial gives `(1, [])`.
     pub fn integer_coefficients(&self) -> (BigInt, Vec<BigInt>) {
         let denominator = self
             .coeffs
@@ -664,8 +569,6 @@ impl Polynomial<Rational> {
         (denominator, integers)
     }
 
-    /// The Gauss content: `gcd` of the numerators over `lcm` of the denominators, a
-    /// nonnegative rational, zero only for the zero polynomial.
     pub fn content(&self) -> Rational {
         if self.is_zero() {
             return r_zero();
@@ -681,9 +584,6 @@ impl Polynomial<Rational> {
         Rational::new(numerator_gcd, denominator_lcm)
     }
 
-    /// `(c, p)` with `self = c * p`, where `p` has coprime integer coefficients and a
-    /// positive leading coefficient, so `c` carries the sign. The zero polynomial gives
-    /// `(0, 0)`.
     pub fn content_and_primitive_part(&self) -> (Rational, Self) {
         let Some(lead) = self.leading_coefficient() else {
             return (r_zero(), Self::zero());
@@ -696,14 +596,10 @@ impl Polynomial<Rational> {
         (content, primitive)
     }
 
-    /// The sign of `self(x)`.
     pub fn sign_at(&self, x: &Rational) -> Ordering {
         self.eval(x).cmp(&r_zero())
     }
 
-    /// An interval containing `{ self(t) : t in x }`, by Horner's rule in interval
-    /// arithmetic. It is an enclosure (possibly wider than the exact image) whose width
-    /// goes to zero with the width of `x`.
     pub fn eval_interval(&self, x: &Interval) -> Interval {
         self.coeffs
             .iter()
@@ -714,10 +610,6 @@ impl Polynomial<Rational> {
     }
 }
 
-/// The cyclotomic polynomial `Phi_n(x)` over `Q` (integer coefficients), computed by
-/// exact division: `Phi_n = (x^n - 1) / prod_{d | n, d < n} Phi_d`.
-///
-/// Refuses `n = 0` and `n > MAX_CONDUCTOR`.
 pub fn cyclotomic_polynomial(n: usize) -> Result<Polynomial<Rational>, PolynomialError> {
     if n == 0 {
         return Err(PolynomialError::ConductorZero);
@@ -744,18 +636,11 @@ pub fn cyclotomic_polynomial(n: usize) -> Result<Polynomial<Rational>, Polynomia
     ))
 }
 
-// ---------------------------------------------------------------------------
-// Sturm sequences and real roots
-// ---------------------------------------------------------------------------
 
-/// The sign of `p(x)` for a polynomial with integer coefficients `p` (ascending) at
-/// `x = a / b`, by homogeneous Horner: `b^d p(a/b) = sum c_i a^i b^{d-i}` needs only integer
-/// multiplications, no gcd. `b^d > 0`, so it has the sign of `p(x)`.
 fn integer_sign_at(coefficients: &[BigInt], x: &Rational) -> Ordering {
     let Some((last, rest)) = coefficients.split_last() else {
         return Ordering::Equal;
     };
-    // `Ratio` keeps a positive denominator; flip defensively if a raw value does not.
     let (a, b) = if x.denom().is_negative() {
         (-x.numer(), -x.denom())
     } else {
@@ -774,21 +659,9 @@ fn integer_sign_at(coefficients: &[BigInt], x: &Rational) -> Ordering {
     }
 }
 
-/// The Sturm chain of a polynomial over `Q`: `P_0 = squarefree part`, `P_1 = P_0'`,
-/// `P_{k+1} = -(P_{k-1} mod P_k)` up to a *positive* rational factor, ending in a nonzero
-/// constant.
-///
-/// Sturm's theorem only uses the signs of the chain, which a positive factor does not
-/// change, so each `P_k` with `k >= 2` is divided by its content to keep the coefficients
-/// small integers (this is what keeps the chain of a degree-16 polynomial cheap). `P_0` and
-/// `P_1` are exactly the squarefree part and its derivative.
-///
-/// Built from the squarefree part so that the counts are of *distinct* real roots.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct SturmSequence {
     chain: Vec<Polynomial<Rational>>,
-    /// The same chain with integer coefficients (each scaled by a positive integer), for
-    /// gcd-free sign evaluation.
     integer_chain: Vec<Vec<BigInt>>,
 }
 
@@ -801,7 +674,6 @@ impl SturmSequence {
         }
     }
 
-    /// The chain for `p`; refuses the zero polynomial.
     pub fn new(p: &Polynomial<Rational>) -> Result<Self, PolynomialError> {
         if p.is_zero() {
             return Err(PolynomialError::ZeroPolynomial);
@@ -817,7 +689,6 @@ impl SturmSequence {
             if remainder.is_zero() {
                 break;
             }
-            // Scale by a positive factor only: the sign pattern is what matters.
             let negated = remainder.neg();
             let content = negated.content();
             chain.push(negated.scale(&(r_one() / content)));
@@ -825,19 +696,16 @@ impl SturmSequence {
         Ok(Self::from_chain(chain))
     }
 
-    /// The chain polynomials, `P_0` first (positive multiples of the textbook chain).
     pub fn chain(&self) -> &[Polynomial<Rational>] {
         &self.chain
     }
 
-    /// The sign of the squarefree part `P_0` at `x`, without rational-arithmetic gcds.
     pub fn sign_of_squarefree_part_at(&self, x: &Rational) -> Ordering {
         self.integer_chain
             .first()
             .map_or(Ordering::Equal, |p| integer_sign_at(p, x))
     }
 
-    /// The number of sign changes of the chain at `x`, ignoring zeros.
     pub fn variations_at(&self, x: &Rational) -> usize {
         let mut previous = Ordering::Equal;
         let mut variations = 0;
@@ -854,8 +722,6 @@ impl SturmSequence {
         variations
     }
 
-    /// The number of distinct real roots of the polynomial in the half-open interval
-    /// `(a, b]` (Sturm's theorem). Refuses `a > b`; `a == b` is the empty interval.
     pub fn count_in(&self, a: &Rational, b: &Rational) -> Result<usize, PolynomialError> {
         if a > b {
             return Err(PolynomialError::ReversedInterval {
@@ -871,13 +737,10 @@ impl SturmSequence {
     }
 }
 
-/// The Sturm chain of `p`. See [`SturmSequence`].
 pub fn sturm_sequence(p: &Polynomial<Rational>) -> Result<SturmSequence, PolynomialError> {
     SturmSequence::new(p)
 }
 
-/// The number of distinct real roots of `p` in `(a, b]`. Refuses the zero polynomial
-/// and `a > b`.
 pub fn count_real_roots(
     p: &Polynomial<Rational>,
     a: &Rational,
@@ -886,7 +749,6 @@ pub fn count_real_roots(
     SturmSequence::new(p)?.count_in(a, b)
 }
 
-/// The number of distinct real roots of `p` on the whole line.
 pub fn count_all_real_roots(p: &Polynomial<Rational>) -> Result<usize, PolynomialError> {
     let sequence = SturmSequence::new(p)?;
     match real_root_bound(p) {
@@ -895,9 +757,6 @@ pub fn count_all_real_roots(p: &Polynomial<Rational>) -> Result<usize, Polynomia
     }
 }
 
-/// Cauchy's bound: every root (real or complex) `z` of `p` has `|z| < B` with
-/// `B = 1 + max_{i < n} |a_i / a_n|`. `None` for the zero polynomial and for constants,
-/// which have no roots to bound.
 pub fn real_root_bound(p: &Polynomial<Rational>) -> Option<Rational> {
     if p.is_constant() {
         return None;
@@ -913,18 +772,13 @@ pub fn real_root_bound(p: &Polynomial<Rational>) -> Option<Rational> {
     Some(r_one() + largest)
 }
 
-/// Where one real root is.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum RootLocation {
-    /// The root is exactly this rational number.
     Exact(Rational),
-    /// The root is irrational and is the only root of the polynomial in this closed
-    /// interval, whose endpoints are not roots.
     Isolated(Interval),
 }
 
 impl RootLocation {
-    /// A lower bound for the root.
     pub fn lower(&self) -> &Rational {
         match self {
             RootLocation::Exact(r) => r,
@@ -932,7 +786,6 @@ impl RootLocation {
         }
     }
 
-    /// An upper bound for the root.
     pub fn upper(&self) -> &Rational {
         match self {
             RootLocation::Exact(r) => r,
@@ -940,13 +793,11 @@ impl RootLocation {
         }
     }
 
-    /// `upper - lower`: zero exactly when the root is known exactly.
     pub fn width(&self) -> Rational {
         self.upper() - self.lower()
     }
 }
 
-/// One real root of a polynomial with its multiplicity.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct RealRoot {
     pub location: RootLocation,
@@ -961,7 +812,6 @@ fn midpoint(lo: &Rational, hi: &Rational) -> Rational {
     (lo + hi) * half()
 }
 
-/// Require that `squarefree` has nonzero values of opposite sign at `lo` and `hi`.
 fn require_sign_change(
     integer_polynomial: &[BigInt],
     lo: &Rational,
@@ -980,12 +830,6 @@ fn require_sign_change(
     Ok(())
 }
 
-/// Bisect the isolating interval `[lo, hi]` of the simple root of `squarefree` until its
-/// width is at most `tolerance`, or the root is found exactly.
-///
-/// `squarefree` must change sign over `[lo, hi]` with nonzero endpoint values, otherwise
-/// the interval is not isolating and [`PolynomialError::NotIsolating`] is returned.
-/// The tolerance must be positive.
 pub fn refine_simple_root(
     squarefree: &Polynomial<Rational>,
     interval: &Interval,
@@ -994,7 +838,6 @@ pub fn refine_simple_root(
     if !tolerance.is_positive() {
         return Err(PolynomialError::NonPositiveTolerance(tolerance.to_string()));
     }
-    // Integer coefficients (a positive multiple of the polynomial) give gcd-free signs.
     let integer_polynomial = squarefree.integer_coefficients().1;
     let (mut lo, mut hi) = (interval.lo().clone(), interval.hi().clone());
     require_sign_change(&integer_polynomial, &lo, &hi)?;
@@ -1013,10 +856,6 @@ pub fn refine_simple_root(
     Ok(RootLocation::Isolated(Interval::new(lo, hi)))
 }
 
-/// Refine a root found by [`isolate_real_roots`] to width at most `tolerance`.
-///
-/// An exact root is returned unchanged. The polynomial must be the one the root was
-/// isolated for, or at least share its radical. Multiplicity is preserved.
 pub fn refine_root(
     p: &Polynomial<Rational>,
     root: &RealRoot,
@@ -1037,9 +876,6 @@ pub fn refine_root(
     })
 }
 
-/// Isolate every distinct real root of `squarefree` (squarefree, degree `>= 1`) by
-/// ascending rational intervals `(lo, hi)` whose endpoints are not roots and that each
-/// contain exactly one root. Neighbouring intervals may share an endpoint.
 fn isolate_squarefree(
     squarefree: &Polynomial<Rational>,
 ) -> Result<Vec<(Rational, Rational)>, PolynomialError> {
@@ -1049,8 +885,6 @@ fn isolate_squarefree(
     let degree = squarefree.degree().ok_or(PolynomialError::ZeroPolynomial)?;
     let sequence = SturmSequence::new(squarefree)?;
     let (lo, hi) = (-bound.clone(), bound);
-    // Each pending interval carries the Sturm variation counts at both ends, so a split
-    // costs one chain evaluation: the roots in (lo, hi] number V(lo) - V(hi).
     let (v_lo, v_hi) = (sequence.variations_at(&lo), sequence.variations_at(&hi));
     let mut pending = vec![(lo, hi, v_lo, v_hi)];
     let mut isolated: Vec<(Rational, Rational)> = Vec::new();
@@ -1066,10 +900,6 @@ fn isolate_squarefree(
             }
             _ => {}
         }
-        // A split point that is not a root, taken from the dyadic fractions of the
-        // interval in the order 1/2, 1/4, 3/4, 1/8, ... so the intervals stay balanced and
-        // their endpoints stay short. The polynomial has at most `degree` roots, so one of
-        // `degree + 1` distinct interior points is not a root.
         let width = &hi - &lo;
         let split = dyadic_fractions()
             .take(degree + 1)
@@ -1086,8 +916,6 @@ fn isolate_squarefree(
     Ok(isolated)
 }
 
-/// The dyadic fractions strictly between 0 and 1 in the order `1/2, 1/4, 3/4, 1/8, 3/8,
-/// 5/8, 7/8, 1/16, ...`.
 fn dyadic_fractions() -> impl Iterator<Item = Rational> {
     (1u32..=62).flat_map(|level| {
         let denominator = 1u64 << level;
@@ -1097,13 +925,6 @@ fn dyadic_fractions() -> impl Iterator<Item = Rational> {
     })
 }
 
-/// Every distinct real root of `p`, ascending, with multiplicities.
-///
-/// Rational roots are reported as [`RootLocation::Exact`] (a complete test: a rational
-/// root of the primitive integer form with leading coefficient `A` lies on the lattice
-/// `(1/A) Z`, and an interval narrower than `1 / (2A)` holds at most one lattice point).
-/// Irrational roots are reported as disjoint isolating intervals with non-root endpoints.
-/// Refuses the zero polynomial; a nonzero constant has no roots.
 pub fn isolate_real_roots(p: &Polynomial<Rational>) -> Result<Vec<RealRoot>, PolynomialError> {
     if p.is_zero() {
         return Err(PolynomialError::ZeroPolynomial);
@@ -1123,7 +944,6 @@ pub fn isolate_real_roots(p: &Polynomial<Rational>) -> Result<Vec<RealRoot>, Pol
 
     let mut roots = Vec::new();
     for (lo, hi) in isolate_squarefree(&radical)? {
-        // Which squarefree factor owns this root: the one that changes sign here.
         let multiplicity = decomposition
             .iter()
             .find(|(factor, _)| {
@@ -1136,11 +956,6 @@ pub fn isolate_real_roots(p: &Polynomial<Rational>) -> Result<Vec<RealRoot>, Pol
             ))?;
         let mut location = refine_simple_root(&radical, &Interval::new(lo, hi), &resolution)?;
         if let RootLocation::Isolated(interval) = &location {
-            // Rational roots lie on the lattice (1/A) Z; the interval is narrower than
-            // half a lattice step, so at most one lattice point is near its midpoint.
-            // The candidate can lie up to half a lattice step from the midpoint, which is
-            // outside the interval, so it must be checked to lie inside before it can be
-            // the interval's root rather than a neighbouring one.
             let candidate = (&interval.mid() * &lattice).round() / &lattice;
             if interval.contains(&candidate) && radical.sign_at(&candidate) == Ordering::Equal {
                 location = RootLocation::Exact(candidate);
@@ -1151,9 +966,6 @@ pub fn isolate_real_roots(p: &Polynomial<Rational>) -> Result<Vec<RealRoot>, Pol
             multiplicity,
         });
     }
-    // Neighbouring isolating intervals can share an endpoint (a non-root split point).
-    // Tighten the left one until the closed intervals are strictly disjoint; the root is at
-    // a positive distance from the shared point, so this terminates.
     for i in 0..roots.len().saturating_sub(1) {
         loop {
             let RootLocation::Isolated(interval) = &roots[i].location else {
@@ -1170,7 +982,6 @@ pub fn isolate_real_roots(p: &Polynomial<Rational>) -> Result<Vec<RealRoot>, Pol
     Ok(roots)
 }
 
-/// The distinct rational roots of `p`, ascending. Complete, and needs no factoring.
 pub fn rational_roots(p: &Polynomial<Rational>) -> Result<Vec<Rational>, PolynomialError> {
     Ok(isolate_real_roots(p)?
         .into_iter()
@@ -1191,7 +1002,6 @@ mod tests {
         Polynomial::from_i64s(coefficients)
     }
 
-    /// A deterministic pseudo-random sequence (LCG), so the grids are reproducible.
     struct Lcg(u64);
     impl Lcg {
         fn next(&mut self) -> i64 {
@@ -1207,7 +1017,6 @@ mod tests {
         }
     }
 
-    // ----- normal form, ring laws -------------------------------------------------
 
     #[test]
     fn trailing_zeros_are_trimmed_so_equal_values_have_equal_representations() {
@@ -1261,7 +1070,6 @@ mod tests {
         assert_eq!(q(&[1, 1]).pow(0), Polynomial::one());
     }
 
-    // ----- division, gcd ----------------------------------------------------------
 
     #[test]
     fn euclidean_division_reconstructs_the_dividend_with_a_smaller_remainder() {
@@ -1304,11 +1112,9 @@ mod tests {
 
     #[test]
     fn gcd_is_monic_and_finds_the_common_factor() {
-        // (x-1)(x-2) and (x-2)(x-3) share x - 2.
         let f = q(&[2, -3, 1]);
         let g = q(&[6, -5, 1]);
         assert_eq!(f.gcd(&g), q(&[-2, 1]));
-        // scaling does not change the gcd
         assert_eq!(f.scale(&ri(5)).gcd(&g.scale(&rq(1, 3))), q(&[-2, 1]));
         assert_eq!(f.gcd(&Polynomial::zero()), f);
         assert_eq!(
@@ -1329,7 +1135,6 @@ mod tests {
         }
     }
 
-    // ----- derivative -------------------------------------------------------------
 
     #[test]
     fn derivative_obeys_the_product_rule_and_kills_constants() {
@@ -1350,13 +1155,10 @@ mod tests {
         );
     }
 
-    // ----- resultant, discriminant ------------------------------------------------
 
-    /// The Sylvester determinant, by an independent route (`bareiss_determinant`).
     fn sylvester_resultant(f: &Polynomial<Rational>, g: &Polynomial<Rational>) -> Rational {
         let (m, n) = (f.degree().unwrap(), g.degree().unwrap());
         let size = m + n;
-        // clear denominators: scale f and g to integer polynomials; Res(a f, b g) = a^n b^m Res
         let (df, fi) = f.integer_coefficients();
         let (dg, gi) = g.integer_coefficients();
         let mut matrix = vec![vec![BigInt::zero(); size]; size];
@@ -1371,7 +1173,6 @@ mod tests {
             }
         }
         let det = linear_algebra::determinant::bareiss_determinant(&matrix).unwrap();
-        // Res(f, g) = det / (df^n dg^m)
         Rational::from_integer(det)
             / (Rational::from_integer(df.pow(n as u32)) * Rational::from_integer(dg.pow(m as u32)))
     }
@@ -1386,7 +1187,6 @@ mod tests {
             }
             assert_eq!(f.resultant(&g), sylvester_resultant(&f, &g), "{f:?} {g:?}");
         }
-        // Product formula with rational roots: Res(prod(x-a_i), prod(x-b_j)) = prod(a_i-b_j).
         let a = [ri(1), ri(-2), rq(1, 2)];
         let b = [ri(3), ri(5)];
         let (f, g) = (Polynomial::from_roots(&a), Polynomial::from_roots(&b));
@@ -1399,7 +1199,6 @@ mod tests {
 
     #[test]
     fn resultant_is_antisymmetric_exactly_when_both_degrees_are_odd() {
-        // Res(g, f) = (-1)^{mn} Res(f, g)
         let mut rng = Lcg(29);
         let mut odd_pairs = 0;
         for _ in 0..80 {
@@ -1420,16 +1219,13 @@ mod tests {
             }
         }
         assert!(odd_pairs > 0, "the grid must exercise the odd-degree case");
-        // A concrete odd case. Res(x - 2, x^3 - 1) = f(2) = 7 (the value of x^3 - 1 at the
-        // root of x - 2), and Res(x^3 - 1, x - 2) = prod (alpha - 2) over the cube roots of
-        // unity = -(2^3 - 1) = -7.
         assert_eq!(q(&[-2, 1]).resultant(&q(&[-1, 0, 0, 1])), ri(7));
         assert_eq!(q(&[-1, 0, 0, 1]).resultant(&q(&[-2, 1])), ri(-7));
     }
 
     #[test]
     fn resultant_vanishes_exactly_on_a_common_root_and_with_the_zero_polynomial() {
-        let f = q(&[-2, 0, 1]); // x^2 - 2
+        let f = q(&[-2, 0, 1]);
         assert_eq!(
             f.resultant(&q(&[-1, 1])),
             ri(-1),
@@ -1441,16 +1237,13 @@ mod tests {
         );
         assert!(f.resultant(&Polynomial::zero()).is_zero());
         assert!(Polynomial::<Rational>::zero().resultant(&f).is_zero());
-        // constants: Res(f, c) = c^deg f
         assert_eq!(f.resultant(&q(&[3])), ri(9));
     }
 
     #[test]
     fn discriminant_of_the_quadratic_and_cubic_matches_the_closed_forms() {
-        // b^2 - 4ac
         assert_eq!(q(&[-2, 0, 1]).discriminant().unwrap(), ri(8));
         assert_eq!(q(&[1, 3, 2]).discriminant().unwrap(), ri(9 - 8));
-        // x^3 + p x + q has discriminant -4 p^3 - 27 q^2 (here 108 - 27 = 81)
         let (p, qq) = (ri(-3), ri(1));
         let cubic = q(&[1, -3, 0, 1]);
         assert_eq!(
@@ -1464,7 +1257,6 @@ mod tests {
     #[test]
     fn discriminant_vanishes_exactly_for_repeated_roots_and_equals_the_root_product() {
         assert!(q(&[1, -2, 1]).discriminant().unwrap().is_zero());
-        // prod_{i<j} (a_i - a_j)^2 for monic f with rational roots
         let roots = [ri(1), ri(4), ri(-2), rq(1, 3)];
         let f = Polynomial::from_roots(&roots);
         let mut expected = r_one();
@@ -1475,7 +1267,6 @@ mod tests {
             }
         }
         assert_eq!(f.discriminant().unwrap(), expected);
-        // and the discriminant scales with the leading coefficient as lc^(2n-2)
         assert_eq!(
             f.scale(&ri(3)).discriminant().unwrap(),
             expected * ri(3).pow(2 * 4 - 2)
@@ -1497,11 +1288,9 @@ mod tests {
         );
     }
 
-    // ----- squarefree -------------------------------------------------------------
 
     #[test]
     fn squarefree_part_drops_multiplicities_and_yun_reassembles_the_polynomial() {
-        // (x-1)^2 (x+2)^3 (x-5)
         let p = Polynomial::from_roots(&[ri(1), ri(1), ri(-2), ri(-2), ri(-2), ri(5)]);
         let expected = Polynomial::from_roots(&[ri(1), ri(-2), ri(5)]);
         assert_eq!(p.squarefree_part(), expected);
@@ -1518,7 +1307,6 @@ mod tests {
             .iter()
             .fold(Polynomial::one(), |acc, (f, m)| acc.mul(&f.pow(*m)));
         assert_eq!(rebuilt, p);
-        // the leading coefficient is stripped
         let scaled = p.scale(&ri(-7));
         assert_eq!(scaled.squarefree_decomposition().unwrap(), decomposition);
     }
@@ -1553,7 +1341,6 @@ mod tests {
         assert!(q(&[3]).squarefree_decomposition().unwrap().is_empty());
     }
 
-    // ----- genericity -------------------------------------------------------------
 
     #[test]
     fn polynomials_over_the_gaussian_rationals_factor_x_squared_plus_one() {
@@ -1573,7 +1360,6 @@ mod tests {
         assert_eq!(f.discriminant().unwrap(), GaussianRat::from_ints(-4, 0));
     }
 
-    // ----- Gauss content ----------------------------------------------------------
 
     #[test]
     fn content_and_primitive_part_split_a_polynomial_with_a_positive_lead() {
@@ -1588,7 +1374,6 @@ mod tests {
             "the primitive part has content 1"
         );
         assert!(content.is_positive());
-        // negative lead: the content carries the sign
         let (content, primitive) = p.neg().content_and_primitive_part();
         assert!(content.is_negative());
         assert!(primitive.leading_coefficient().unwrap().is_positive());
@@ -1628,7 +1413,6 @@ mod tests {
         );
     }
 
-    // ----- cyclotomic polynomials -------------------------------------------------
 
     #[test]
     fn euler_phi_matches_the_definition_and_the_divisor_sum() {
@@ -1675,7 +1459,6 @@ mod tests {
         assert_eq!(distinct_prime_factors(360), vec![2, 3, 5]);
         assert_eq!(distinct_prime_factors(97), vec![97]);
         assert!(distinct_prime_factors(1).is_empty());
-        // sum over d | n of mu(d) = [n = 1]
         for n in 1..=100usize {
             let sum: i32 = divisors(n).iter().map(|&d| i32::from(mobius(d))).sum();
             assert_eq!(sum, i32::from(n == 1));
@@ -1717,11 +1500,9 @@ mod tests {
         let x_n_minus_1 = |n: usize| Polynomial::monomial(r_one(), n).sub(&Polynomial::one());
         for n in 1..=40usize {
             let phi = cyclotomic_polynomial(n).unwrap();
-            // degree phi(n), monic, integer coefficients
             assert_eq!(phi.degree(), Some(euler_phi(n)), "deg Phi_{n}");
             assert_eq!(phi.leading_coefficient(), Some(&r_one()));
             assert!(phi.coefficients().iter().all(|c| c.is_integer()));
-            // the product over divisors is x^n - 1
             let product = divisors(n).iter().fold(Polynomial::one(), |acc, &d| {
                 acc.mul(&cyclotomic_polynomial(d).unwrap())
             });
@@ -1730,7 +1511,6 @@ mod tests {
                 x_n_minus_1(n),
                 "prod_(d|n) Phi_d = x^n - 1 for n = {n}"
             );
-            // palindromic (n > 1): x^deg Phi(1/x) = Phi(x)
             if n > 1 {
                 let reversed: Vec<Rational> = phi.coefficients().iter().rev().cloned().collect();
                 assert_eq!(
@@ -1739,7 +1519,6 @@ mod tests {
                     "Phi_{n} palindromic"
                 );
             }
-            // Phi_n(1) = p for a prime power p^k, 1 for two or more primes, 0 for n = 1
             let value = phi.eval(&r_one());
             let primes = distinct_prime_factors(n);
             let expected = match primes.len() {
@@ -1753,7 +1532,6 @@ mod tests {
 
     #[test]
     fn cyclotomic_polynomial_structure_lemmas() {
-        // Phi_{p^k}(x) = Phi_p(x^{p^{k-1}}); Phi_{2n}(x) = Phi_n(-x) for odd n > 1
         let phi3 = cyclotomic_polynomial(3).unwrap();
         assert_eq!(
             cyclotomic_polynomial(27).unwrap(),
@@ -1768,7 +1546,6 @@ mod tests {
                 "n = {n}"
             );
         }
-        // Phi_105 is the first with a coefficient other than 0, +-1
         let phi105 = cyclotomic_polynomial(105).unwrap();
         assert_eq!(phi105.degree(), Some(48));
         assert_eq!(phi105.coefficient(7), ri(-2));
@@ -1798,11 +1575,9 @@ mod tests {
         assert!(cyclotomic_polynomial(MAX_CONDUCTOR).is_ok());
     }
 
-    // ----- Sturm sequences and counts --------------------------------------------
 
     #[test]
     fn sturm_counts_distinct_real_roots_in_half_open_intervals() {
-        // x^3 - x has roots -1, 0, 1.
         let p = q(&[0, -1, 0, 1]);
         assert_eq!(count_real_roots(&p, &ri(-2), &ri(2)).unwrap(), 3);
         assert_eq!(
@@ -1821,7 +1596,6 @@ mod tests {
             "(1, 5] excludes the root 1"
         );
         assert_eq!(count_real_roots(&p, &rq(-1, 2), &rq(1, 2)).unwrap(), 1);
-        // x^2 - 2: two irrational roots; x^2 + 1: none
         assert_eq!(count_all_real_roots(&q(&[-2, 0, 1])).unwrap(), 2);
         assert_eq!(
             count_real_roots(&q(&[-2, 0, 1]), &ri(0), &ri(2)).unwrap(),
@@ -1833,7 +1607,6 @@ mod tests {
 
     #[test]
     fn sturm_counts_distinct_roots_even_when_roots_repeat() {
-        // (x-1)^2 (x-3): two distinct real roots
         let p = Polynomial::from_roots(&[ri(1), ri(1), ri(3)]);
         assert_eq!(count_all_real_roots(&p).unwrap(), 2);
         assert_eq!(count_real_roots(&p, &ri(0), &ri(2)).unwrap(), 1);
@@ -1893,7 +1666,6 @@ mod tests {
         assert_eq!(chain.chain()[1], q(&[0, 2]));
     }
 
-    // ----- root bounds ------------------------------------------------------------
 
     #[test]
     fn cauchy_bound_strictly_contains_every_real_root() {
@@ -1918,7 +1690,6 @@ mod tests {
         assert_eq!(real_root_bound(&Polynomial::zero()), None);
     }
 
-    // ----- isolation --------------------------------------------------------------
 
     #[test]
     fn isolation_of_x_squared_minus_two_gives_two_sign_changing_intervals() {
@@ -1938,7 +1709,6 @@ mod tests {
             assert_ne!(p.sign_at(interval.lo()), Ordering::Equal);
             assert_ne!(p.sign_at(interval.hi()), Ordering::Equal);
         }
-        // ordered and disjoint; one negative one positive
         let (first, second) = (&roots[0].location, &roots[1].location);
         assert!(first.upper() < second.lower());
         assert!(first.upper().is_negative() && second.lower().is_positive());
@@ -1946,7 +1716,6 @@ mod tests {
 
     #[test]
     fn isolation_reports_every_rational_root_exactly_with_its_multiplicity() {
-        // (2x - 1)(3x + 2)(x - 1)^2 x^3
         let p = q(&[-1, 2])
             .mul(&q(&[2, 3]))
             .mul(&q(&[-1, 1]).pow(2))
@@ -1971,7 +1740,6 @@ mod tests {
 
     #[test]
     fn isolation_mixes_exact_and_irrational_roots_in_order() {
-        // (x^2 - 2)(x - 1)^2
         let p = q(&[-2, 0, 1]).mul(&q(&[-1, 1]).pow(2));
         let roots = isolate_real_roots(&p).unwrap();
         assert_eq!(roots.len(), 3);
@@ -1991,7 +1759,6 @@ mod tests {
 
     #[test]
     fn isolation_separates_close_irrational_roots() {
-        // roots 1 +- sqrt(2) and 1 +- sqrt(2 + 10^-6)
         let shifted =
             |extra: Rational| q(&[-1, 1]).pow(2).sub(&Polynomial::constant(ri(2) + extra));
         let p = shifted(r_zero()).mul(&shifted(rq(1, 1_000_000)));
@@ -2014,7 +1781,6 @@ mod tests {
     #[test]
     fn isolation_handles_huge_coefficients_exactly() {
         let ten_20 = BigInt::from(10u8).pow(20);
-        // x^2 - 10^40: exact roots +-10^20
         let square = Polynomial::from_coefficients(vec![
             Rational::from_integer(-(&ten_20 * &ten_20)),
             r_zero(),
@@ -2028,7 +1794,6 @@ mod tests {
                 RootLocation::Exact(Rational::from_integer(ten_20.clone())),
             ]
         );
-        // x^2 - (10^40 + 1): two irrational roots just outside +-10^20
         let off = Polynomial::from_coefficients(vec![
             Rational::from_integer(-(&ten_20 * &ten_20 + BigInt::one())),
             r_zero(),
@@ -2068,7 +1833,6 @@ mod tests {
             for w in roots.windows(2) {
                 assert!(w[0].location.upper() < w[1].location.lower());
             }
-            // the sum of multiplicities never exceeds the degree
             let total: usize = roots.iter().map(|r| r.multiplicity).sum();
             assert!(total <= p.degree().unwrap());
         }
@@ -2076,7 +1840,6 @@ mod tests {
 
     #[test]
     fn rational_roots_agree_with_divisor_enumeration_on_integer_polynomials() {
-        // test-only oracle: enumerate p/q with p | a_0, q | a_n (small coefficients)
         let mut rng = Lcg(91);
         for _ in 0..30 {
             let roots: Vec<Rational> = (0..3)
@@ -2095,7 +1858,6 @@ mod tests {
 
     #[test]
     fn irrational_roots_are_never_reported_as_exact() {
-        // x^2 - 2, x^3 - 2, x^2 - x - 1
         for coefficients in [&[-2i64, 0, 1][..], &[-2, 0, 0, 1], &[-1, -1, 1]] {
             assert!(
                 rational_roots(&q(coefficients)).unwrap().is_empty(),
@@ -2104,7 +1866,6 @@ mod tests {
         }
     }
 
-    // ----- refinement -------------------------------------------------------------
 
     #[test]
     fn refinement_halves_the_interval_and_keeps_the_root_inside() {
@@ -2120,9 +1881,7 @@ mod tests {
                 refined.location.upper().clone(),
             );
             assert_ne!(p.sign_at(&lo), p.sign_at(&hi), "the root stays bracketed");
-            // the refinement is nested in the original interval
             assert!(lo >= *root.location.lower() && hi <= *root.location.upper());
-            // and it brackets sqrt 2: lo^2 < 2 < hi^2 on the positive side
             if lo.is_positive() {
                 assert!(&lo * &lo < ri(2) && &hi * &hi > ri(2));
             }
@@ -2131,7 +1890,6 @@ mod tests {
 
     #[test]
     fn refinement_works_on_a_double_root_through_the_radical() {
-        // (x^2 - 2)^2 has double roots at +-sqrt 2 where p itself does not change sign
         let p = q(&[-2, 0, 1]).pow(2);
         let roots = isolate_real_roots(&p).unwrap();
         assert!(roots.iter().all(|r| r.multiplicity == 2));
@@ -2152,12 +1910,10 @@ mod tests {
             refine_root(&p, &roots[0], &rq(-1, 2)),
             Err(PolynomialError::NonPositiveTolerance(_))
         ));
-        // [-3, 3] holds both roots: same sign at the endpoints
         assert!(matches!(
             refine_simple_root(&p, &Interval::new(ri(-3), ri(3)), &rq(1, 10)),
             Err(PolynomialError::NotIsolating { .. })
         ));
-        // an endpoint that is a root is not a valid isolating endpoint
         assert!(matches!(
             refine_simple_root(&q(&[-1, 1]), &Interval::new(ri(1), ri(3)), &rq(1, 10)),
             Err(PolynomialError::NotIsolating { .. })
@@ -2166,13 +1922,11 @@ mod tests {
 
     #[test]
     fn refinement_returns_an_exact_root_when_a_midpoint_hits_it() {
-        // root 1/2 of 2x - 1 inside [0, 1]: the first midpoint is the root
         let location =
             refine_simple_root(&q(&[-1, 2]), &Interval::new(ri(0), ri(1)), &rq(1, 100)).unwrap();
         assert_eq!(location, RootLocation::Exact(rq(1, 2)));
     }
 
-    // ----- interval evaluation ----------------------------------------------------
 
     #[test]
     fn interval_evaluation_encloses_every_sampled_value() {
@@ -2183,7 +1937,6 @@ mod tests {
             let x = interval.lo() + (interval.hi() - interval.lo()) * rq(k, 20);
             assert!(image.contains(&p.eval(&x)), "p({x}) in the enclosure");
         }
-        // a point interval gives the exact value
         let point = p.eval_interval(&Interval::point(rq(1, 3)));
         assert_eq!(point, Interval::point(p.eval(&rq(1, 3))));
     }
@@ -2196,21 +1949,17 @@ mod tests {
         assert!(narrow.diam() < wide.diam());
     }
 
-    // ----- serde ------------------------------------------------------------------
 
     #[test]
     fn deserialisation_normalises_trailing_zeros_and_roundtrips() {
-        // A wire form with trailing zero coefficients deserialises to the trimmed value.
         let padded = serde_json::to_string(&vec![ri(1), ri(2), ri(0), ri(0)]).unwrap();
         let parsed: Polynomial<Rational> = serde_json::from_str(&padded).unwrap();
         assert_eq!(parsed, q(&[1, 2]));
         assert_eq!(parsed.degree(), Some(1));
-        // A value survives a serialise / deserialise round trip unchanged.
         let p = Polynomial::from_coefficients(vec![rq(1, 3), ri(0), rq(-5, 7)]);
         let back: Polynomial<Rational> =
             serde_json::from_str(&serde_json::to_string(&p).unwrap()).unwrap();
         assert_eq!(back, p);
-        // The all-zero wire form is the zero polynomial.
         let zero: Polynomial<Rational> =
             serde_json::from_str(&serde_json::to_string(&vec![ri(0), ri(0)]).unwrap()).unwrap();
         assert!(zero.is_zero());

@@ -1,22 +1,5 @@
-/-
-  H015DilationCount -- count reversible dilations of the identity
-  on Bool × Bool.
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  FRONTIER R6a: sharpen H015.dilations_distinct into a count.
-  A report-identity dilation is a two-sided-invertible map on
-  Bool × Bool that is the identity on the report coordinate.
-  There are exactly four, classified by whether each report fiber
-  flips its ancilla. H015.dil1 and H015.dil2 are two of them.
-  Not a channel class. Not CPTP. Not a count of dilations of
-  collapse.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H015IrreversibleFork
@@ -26,7 +9,6 @@ namespace FableHilbertWalk20260819.H015DilationCount
 open FableHilbertWalk20260819.HWKernel
 open FableHilbertWalk20260819.H015
 
-/-- Two-sided inverse plus identity on the report coordinate. -/
 structure ReportIdDilation where
   map : Bool × Bool → Bool × Bool
   preserves_report : ∀ x, (map x).1 = x.1
@@ -34,8 +16,6 @@ structure ReportIdDilation where
   left : ∀ x, inv (map x) = x
   right : ∀ x, map (inv x) = x
 
-/-- Flip the ancilla on the false-report fiber, the true-report
-    fiber, neither, or both. -/
 def dilOf (flipF flipT : Bool) : Bool × Bool → Bool × Bool
   | (false, b) => (false, if flipF then !b else b)
   | (true, b) => (true, if flipT then !b else b)
@@ -100,7 +80,6 @@ theorem fiber_second_injective (D : ReportIdDilation) (a b1 b2 : Bool)
   rw [D.left (a, b1), D.left (a, b2)] at h2
   exact congrArg Prod.snd h2
 
-/-- On each report fiber the ancilla map is identity or negation. -/
 theorem fiber_is_id_or_not (D : ReportIdDilation) (a : Bool) :
     ((D.map (a, false)).2 = false ∧ (D.map (a, true)).2 = true) ∨
       ((D.map (a, false)).2 = true ∧ (D.map (a, true)).2 = false) := by
@@ -130,8 +109,6 @@ theorem map_eq_dilOf (D : ReportIdDilation) (a b : Bool) :
 
 #print axioms map_eq_dilOf
 
-/-- Every report-identity dilation equals one of the four flip-pair
-    maps. -/
 theorem eq_ofFlips (D : ReportIdDilation) :
     (∀ x, D.map x = dilFF.map x) ∨
       (∀ x, D.map x = dilFT.map x) ∨
@@ -155,9 +132,6 @@ theorem eq_ofFlips (D : ReportIdDilation) :
 
 #print axioms eq_ofFlips
 
-/-- Punchline: exactly four reversible dilations of the identity on
-    Bool × Bool, classified by two fiber flips. dil1 and dil2 are
-    two of them. Not CPTP. Not dilations of collapse. -/
 theorem four_reversible_dilations_of_report_identity :
     ((∀ x, dilFF.map x = dil1 x) ∧
       (∀ a b, dilTT.map (a, b) = dil2 (a, b))) ∧
@@ -177,3 +151,6 @@ theorem four_reversible_dilations_of_report_identity :
 #print axioms four_reversible_dilations_of_report_identity
 
 end FableHilbertWalk20260819.H015DilationCount
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H015DilationCount.lean Claim: dilOf_preserves AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

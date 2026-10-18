@@ -1,6 +1,3 @@
-//! Exact finite linear projection diagnostics; no interpretation of text.
-//! Projectors remain pure linear maps. Norms and residual measurement live here.
-//! AuthorityEffect: None.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_rational::BigRational;
@@ -24,7 +21,6 @@ pub struct NormalProjectionMeasurement {
     pub retained_observation: BigRational,
 }
 
-/// Measure n=(I-P)L and h=O(PL) only after exact P²=P admission.
 pub fn measure_normal_projection(
     projector: &[Vec<BigRational>],
     rate: &[BigRational],

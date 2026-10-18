@@ -1,5 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-# Reference: Campaign C250 Block 03, Steps 05-11, H060.
 
 """Real Embedding Relativity and Total Positivity over Cyclotomic Number Fields.
 
@@ -22,34 +20,18 @@ from dataclasses import dataclass
 from fractions import Fraction
 from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
-# ---------------------------------------------------------------------------
-# Section 1: Exact Rational Polynomials and Sturm Root Isolation
-# ---------------------------------------------------------------------------
-# Import shared exact rational polynomial and Sturm sequence tools from busch_effects
 from .busch_effects import (
     RationalPoly,
     count_roots_in_interval,
     sturm_sequence,
 )
 
-# ---------------------------------------------------------------------------
-# Section 2: Real Embeddings of Maximal Real Subfield F^+
-# ---------------------------------------------------------------------------
 
-# Minimal polynomials P_n(x) of alpha_n = 2*cos(2*pi/n) = zeta_n + zeta_n^{-1} over Q.
-# Note: For n=1, 2, degree is 1 (F^+ = Q).
-# For n=3: 2*cos(2*pi/3) = -1 (P_3(x) = x + 1).
-# For n=4: 2*cos(2*pi/4) = 0 (P_4(x) = x).
-# For n=5: x^2 + x - 1.
-# For n=8: x^2 - 2.
-# For n=12: x^2 - 3.
-# For n=24: x^4 - 4x^2 + 1.
-# For n=120: x^16 - 16x^14 + 105x^12 - 364x^10 + 714x^8 - 784x^6 + 440x^4 - 96x^2 + 1.
 CONDUCTOR_MINIMAL_POLYNOMIALS: Dict[int, RationalPoly] = {
-    1: RationalPoly([Fraction(-2), Fraction(1)]),   # x - 2 (2*cos(0) = 2)
-    2: RationalPoly([Fraction(2), Fraction(1)]),    # x + 2 (2*cos(pi) = -2)
-    3: RationalPoly([Fraction(1), Fraction(1)]),    # x + 1 (2*cos(2pi/3) = -1)
-    4: RationalPoly([Fraction(0), Fraction(1)]),    # x (2*cos(pi/2) = 0)
+    1: RationalPoly([Fraction(-2), Fraction(1)]),
+    2: RationalPoly([Fraction(2), Fraction(1)]),
+    3: RationalPoly([Fraction(1), Fraction(1)]),
+    4: RationalPoly([Fraction(0), Fraction(1)]),
     5: RationalPoly([Fraction(-1), Fraction(1), Fraction(1)]),
     8: RationalPoly([Fraction(-2), Fraction(0), Fraction(1)]),
     12: RationalPoly([Fraction(-3), Fraction(0), Fraction(1)]),
@@ -100,7 +82,6 @@ class RealEmbedding:
             self.a = mid
             self.b = mid
             return
-        # Count roots in (a, mid]
         if count_roots_in_interval(self.sturm, self.a, mid) == 1:
             self.b = mid
         else:
@@ -111,12 +92,10 @@ class RealEmbedding:
         if q_poly.is_zero():
             return 0
         if self.poly.degree <= 1:
-            # Degree 1, alpha is exact rational -poly.coeffs[0]/poly.coeffs[1]
             root_val = -self.poly.coeffs[0] / self.poly.coeffs[1]
             val = q_poly.eval(root_val)
             return 1 if val > 0 else (-1 if val < 0 else 0)
 
-        # Reduce modulo minimal polynomial
         _, rem = q_poly.div_rem(self.poly)
         if rem.is_zero():
             return 0
@@ -128,7 +107,6 @@ class RealEmbedding:
                 return 1 if val > 0 else (-1 if val < 0 else 0)
             val_a = rem.eval(self.a)
             val_b = rem.eval(self.b)
-            # If endpoints have identical signs and no root of rem is inside (a, b]
             if val_a > 0 and val_b > 0 and count_roots_in_interval(sturm_rem, self.a, self.b) == 0:
                 return 1
             if val_a < 0 and val_b < 0 and count_roots_in_interval(sturm_rem, self.a, self.b) == 0:
@@ -156,7 +134,6 @@ def isolate_all_real_roots(poly: RationalPoly, search_bound: Union[Fraction, int
     bound = Fraction(search_bound)
     total_roots = count_roots_in_interval(sturm, -bound, bound)
 
-    # Queue of intervals to bisect until each contains exactly one root
     intervals: List[Tuple[Fraction, Fraction]] = [(-bound, bound)]
     isolated: List[IsolatingInterval] = []
 
@@ -174,7 +151,6 @@ def isolate_all_real_roots(poly: RationalPoly, search_bound: Union[Fraction, int
 
     assert len(isolated) == total_roots, f"Expected {total_roots} isolated roots, found {len(isolated)}"
 
-    # Sort isolated intervals by lower bound
     isolated.sort(key=lambda it: it.a)
     return isolated
 
@@ -192,9 +168,6 @@ def compute_real_embeddings(conductor: int) -> List[RealEmbedding]:
     return embeddings
 
 
-# ---------------------------------------------------------------------------
-# Section 3: Exact Cyclotomic Field Elements and Matrices
-# ---------------------------------------------------------------------------
 
 class FieldElementFPlus:
     """Exact element of F^+ = Q(alpha_n) represented as polynomial in alpha_n."""
@@ -205,7 +178,6 @@ class FieldElementFPlus:
             self.poly = poly
         else:
             self.poly = RationalPoly(poly)
-        # Reduce modulo minimal polynomial
         if conductor in CONDUCTOR_MINIMAL_POLYNOMIALS:
             min_poly = CONDUCTOR_MINIMAL_POLYNOMIALS[conductor]
             _, self.poly = self.poly.div_rem(min_poly)
@@ -306,7 +278,6 @@ class CyclotomicElement:
     def __mul__(self, other: Union[CyclotomicElement, Fraction, int]) -> CyclotomicElement:
         if not isinstance(other, CyclotomicElement):
             other = CyclotomicElement.rational(self.conductor, other)
-        # (a + ib)(c + id) = (ac - bd) + i(ad + bc)
         r = self.real * other.real - self.imag * other.imag
         im = self.real * other.imag + self.imag * other.real
         return CyclotomicElement(self.conductor, r, im)
@@ -331,9 +302,6 @@ class CyclotomicElement:
         return f"({self.real} + i*{self.imag})"
 
 
-# ---------------------------------------------------------------------------
-# Section 4: Exact Hermitian Matrices, Minor Expansion, and Sylvester PSD
-# ---------------------------------------------------------------------------
 
 class ExactHermitianMatrix:
     """Exact d x d Hermitian matrix over F = Q(zeta_n)."""
@@ -342,10 +310,8 @@ class ExactHermitianMatrix:
         self.conductor = conductor
         self.dim = dim
         self.entries = [list(row) for row in entries]
-        # Verify dimension
         if len(self.entries) != dim or any(len(row) != dim for row in self.entries):
             raise ValueError(f"Matrix dimension mismatch: expected {dim}x{dim}")
-        # Verify Hermiticity
         for i in range(dim):
             if not self.entries[i][i].imag.is_zero():
                 raise ValueError(f"Diagonal element ({i},{i}) is not real: {self.entries[i][i]}")
@@ -361,7 +327,6 @@ class ExactHermitianMatrix:
         for i in range(d):
             row = []
             for j in range(d):
-                # |psi><psi|_{ij} = psi_i * conj(psi_j)
                 row.append(state_vector[i] * state_vector[j].conj())
             entries.append(row)
         return cls(conductor, d, entries)
@@ -395,7 +360,6 @@ class ExactHermitianMatrix:
             r0, r1 = rows[0], rows[1]
             c0, c1 = cols[0], cols[1]
             return self.entries[r0][c0] * self.entries[r1][c1] - self.entries[r0][c1] * self.entries[r1][c0]
-        # General expansion along first row
         det = CyclotomicElement.rational(self.conductor, 0)
         r0 = rows[0]
         sub_rows = rows[1:]
@@ -439,20 +403,12 @@ class ExactHermitianMatrix:
         return any(psd_flags) and not all(psd_flags)
 
 
-# ---------------------------------------------------------------------------
-# Section 5: Minimal Witnesses and Galois Covariance
-# ---------------------------------------------------------------------------
 
 def construct_conductor_5_witness() -> Tuple[ExactHermitianMatrix, List[RealEmbedding]]:
     """Construct minimal embedding-relative witness at conductor n=5."""
     embeddings = compute_real_embeddings(5)
-    # n=5 minimal polynomial: x^2 + x - 1 = 0
-    # alpha_5 = 2*cos(2*pi/5) = (sqrt(5) - 1)/2
-    # sqrt(5) = 2*alpha_5 + 1
-    # First diagonal element: sqrt(5) - 2 = (2*alpha_5 + 1) - 2 = 2*alpha_5 - 1
-    # Second diagonal element: 3 - sqrt(5) = 3 - (2*alpha_5 + 1) = 2 - 2*alpha_5
-    poly_d1 = RationalPoly([Fraction(-1), Fraction(2)])  # 2x - 1
-    poly_d2 = RationalPoly([Fraction(2), Fraction(-2)])  # 2 - 2x
+    poly_d1 = RationalPoly([Fraction(-1), Fraction(2)])
+    poly_d2 = RationalPoly([Fraction(2), Fraction(-2)])
     d1 = FieldElementFPlus(5, poly_d1)
     d2 = FieldElementFPlus(5, poly_d2)
     mat = ExactHermitianMatrix.diagonal(5, [d1, d2])
@@ -462,21 +418,14 @@ def construct_conductor_5_witness() -> Tuple[ExactHermitianMatrix, List[RealEmbe
 def construct_conductor_8_witness() -> Tuple[ExactHermitianMatrix, List[RealEmbedding]]:
     """Construct minimal embedding-relative witness at conductor n=8."""
     embeddings = compute_real_embeddings(8)
-    # n=8 minimal polynomial: x^2 - 2 = 0
-    # alpha_8 = sqrt(2)
-    # First element: sqrt(2) - 1 = alpha_8 - 1
-    # Second element: 2 - sqrt(2) = 2 - alpha_8
-    poly_d1 = RationalPoly([Fraction(-1), Fraction(1)])  # x - 1
-    poly_d2 = RationalPoly([Fraction(2), Fraction(-1)])  # 2 - x
+    poly_d1 = RationalPoly([Fraction(-1), Fraction(1)])
+    poly_d2 = RationalPoly([Fraction(2), Fraction(-1)])
     d1 = FieldElementFPlus(8, poly_d1)
     d2 = FieldElementFPlus(8, poly_d2)
     mat = ExactHermitianMatrix.diagonal(8, [d1, d2])
     return mat, embeddings
 
 
-# ---------------------------------------------------------------------------
-# Section 6: Census Engine across the 23 Targets
-# ---------------------------------------------------------------------------
 
 @dataclass(frozen=True)
 class TargetEmbeddingAudit:
@@ -492,7 +441,6 @@ class TargetEmbeddingAudit:
 
 def run_target_census() -> List[TargetEmbeddingAudit]:
     """Audit all 23 corpus targets for embedding-relative operators."""
-    # Target census inventory
     targets = [
         (1, "Primitive Difference D(x, y)", 1, True, "Rational vector field over Q"),
         (2, "Diamond 2-Complex Holonomy", 12, True, "Cyclotomic projectors in Z[zeta_12]"),
@@ -522,8 +470,6 @@ def run_target_census() -> List[TargetEmbeddingAudit]:
     audits = []
     for tid, name, cond, is_pure, desc in targets:
         emb_count = len(compute_real_embeddings(cond))
-        # Conductors with F^+ = Q (1, 2, 3, 4) have exactly 1 embedding -> no embedding relativity can exist.
-        # Conductors 5, 8, 12 in the corpus only construct pure state Gram matrices |psi><psi| which are totally positive.
         is_tp = True
         has_rel = False
         audits.append(TargetEmbeddingAudit(
@@ -540,18 +486,12 @@ def run_target_census() -> List[TargetEmbeddingAudit]:
     return audits
 
 
-# ---------------------------------------------------------------------------
-# Section 7: Verification and Self-Test Battery
-# ---------------------------------------------------------------------------
 
 def verify_all_block_03_invariants() -> Dict[str, Any]:
     """Execute complete battery of algebraic invariant checks for Block 03."""
-    # 1. Check conductor 120 embedding cardinality
     emb_120 = compute_real_embeddings(120)
     assert len(emb_120) == 16, f"Expected 16 embeddings for n=120, got {len(emb_120)}"
 
-    # 2. Pure states total positivity test across dimensions 2 and 3
-    # Test state over Q(zeta_5): |psi> = (1, alpha_5)^T
     alpha_poly = RationalPoly([Fraction(0), Fraction(1)])
     c0 = CyclotomicElement.rational(5, 1)
     c1 = CyclotomicElement(5, FieldElementFPlus(5, alpha_poly))
@@ -559,29 +499,24 @@ def verify_all_block_03_invariants() -> Dict[str, Any]:
     emb_5 = compute_real_embeddings(5)
     assert pure_mat_5.is_totally_positive(emb_5), "Pure state over Q(zeta_5) failed total positivity!"
 
-    # Test state over Q(zeta_8): |psi> = (1, alpha_8)^T
     c0_8 = CyclotomicElement.rational(8, 1)
     c1_8 = CyclotomicElement(8, FieldElementFPlus(8, alpha_poly))
     pure_mat_8 = ExactHermitianMatrix.pure_state_density_matrix(8, [c0_8, c1_8])
     emb_8 = compute_real_embeddings(8)
     assert pure_mat_8.is_totally_positive(emb_8), "Pure state over Q(zeta_8) failed total positivity!"
 
-    # 3. Conductor 5 minimal witness
     w5, emb5 = construct_conductor_5_witness()
     assert w5.trace() == FieldElementFPlus.rational(5, 1), "Witness W5 trace is not 1"
-    # Verify it is PSD under one and indefinite under the other
     psd_0 = w5.is_psd_under_embedding(emb5[0])
     psd_1 = w5.is_psd_under_embedding(emb5[1])
     assert (psd_0 and not psd_1) or (psd_1 and not psd_0), "Witness W5 is not embedding-relative!"
 
-    # 4. Conductor 8 witness
     w8, emb8 = construct_conductor_8_witness()
     assert w8.trace() == FieldElementFPlus.rational(8, 1), "Witness W8 trace is not 1"
     psd8_0 = w8.is_psd_under_embedding(emb8[0])
     psd8_1 = w8.is_psd_under_embedding(emb8[1])
     assert (psd8_0 and not psd8_1) or (psd8_1 and not psd8_0), "Witness W8 is not embedding-relative!"
 
-    # 5. Run target census
     census = run_target_census()
     rel_targets = [rec.target_id for rec in census if rec.has_embedding_relative_objects]
     assert len(rel_targets) == 0, f"Expected 0 targets with embedding-relative objects, got {rel_targets}"

@@ -3,7 +3,6 @@ use serde::{Deserialize, Serialize};
 use super::errors::QError;
 use super::packet::option_has_text;
 
-/// Continuum admission debt required before a candidate may be Q-held.
 #[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContinuumDebt {
     pub finite_shadow: Option<String>,

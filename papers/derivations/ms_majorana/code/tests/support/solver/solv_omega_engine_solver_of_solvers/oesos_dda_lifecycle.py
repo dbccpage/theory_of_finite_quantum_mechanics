@@ -151,7 +151,7 @@ class ActionLicense:
     write_set_digest: str
     policy_digest: str
     causal_head_hash: str
-    issued_for_class: ObstructionClass  # must be EXACT
+    issued_for_class: ObstructionClass
     verification_digest: str
     schema_version: str = SCHEMA_VERSION
     authority_effect: str = "None"
@@ -188,7 +188,7 @@ class ApplicationReceipt:
     application_id: str
     schema_version: str = SCHEMA_VERSION
     authority_effect: str = (
-        "None"  # conservative; engine/ owns true StateTransition record
+        "None"
     )
 
     def digest(self) -> str:

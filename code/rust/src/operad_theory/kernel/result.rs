@@ -1,6 +1,3 @@
-//! Immutable railway result and typed refusal values.
-//!
-//! Rust face of `omega_engine/kernel/higher_operad/result.py`.
 
 use std::collections::BTreeMap;
 use serde::{Deserialize, Serialize};
@@ -10,7 +7,6 @@ use thiserror::Error;
 use super::canonical::{canonical_id, require_identifier, require_text, CanonicalError};
 use super::model::ModelError;
 
-/// A structured refusal record when an operation or check cannot proceed.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Refusal {
     pub code: String,

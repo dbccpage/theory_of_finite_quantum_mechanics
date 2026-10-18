@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the bin ray."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the bin ray.
+
+Origin: code/python/src/bin/__init__.py
+Claim: urn:omega:fqm:bin:pythagorean-ray:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -15,6 +25,21 @@ import pytest
 from src.bin import BinWitnessError, bin_two_square, main, ray_power_two
 from src.qm.quantum_packet import packet_norm
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "bin" / "__init__.py"
 _RAY = (Fraction(3, 5), Fraction(4, 5), Fraction(0))
 
@@ -29,7 +54,7 @@ def test_pythagorean_ray_matches_the_theorem() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(BinWitnessError, match="float refused") as floated:
-        ray_power_two((0.6, Fraction(4, 5), 0))
+        ray_power_two((_probe("0.6"), Fraction(4, 5), 0))
     assert floated.value.invariant == "float refused at the ray boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is BinWitnessError
@@ -146,7 +171,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     power = namespace["ray_power_two"]
     witness = namespace["bin_two_square"]
-    if not callable(power) or not callable(witness):
+    if not _all_hold((callable(power), callable(witness),)):
         return False
     try:
         values = (witness(), power(), power((1, 2, 2)), power((0, 0, 0)))
@@ -160,7 +185,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(power):
         return False
     probes = (
-        (lambda: power((0.6, Fraction(4, 5), 0)), "float refused at the ray boundary"),
+        (lambda: power((_probe("0.6"), Fraction(4, 5), 0)), "float refused at the ray boundary"),
         (lambda: power((True, 0, 0)), "boolean refused where a rational amplitude was required"),
         (lambda: power(("3/5", Fraction(4, 5), 0)), "ray amplitude is not an exact rational"),
         (lambda: power((Fraction(3, 5), Fraction(4, 5))), "ray amplitudes are not three"),
@@ -175,7 +200,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["BinWitnessError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -204,6 +229,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

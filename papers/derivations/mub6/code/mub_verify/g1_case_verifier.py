@@ -319,7 +319,6 @@ def verify_case_ledger(ledger_path: Path) -> Dict[str, Any]:
     if any(not isinstance(key, str) for key in ids) or set(ids) != expected_ids:
         raise ValueError("Branch registry mismatch or duplicate")
 
-    # Fixed sample evaluations do not interpret the ledger's witness strings.
     test_points = [
         (Fraction(0), Fraction(0)),
         (Fraction(1), Fraction(0)),
@@ -339,7 +338,6 @@ def verify_case_ledger(ledger_path: Path) -> Dict[str, Any]:
         if rhs_lo != Fraction(-1) or s0_lo < Fraction(0) or s1_lo < Fraction(0):
             raise ValueError(f"Lower boundary positivstellensatz failed at ({px}, {py})")
 
-    # Test all-ones row
     test_5vec = [Fraction(1), Fraction(1), Fraction(1), Fraction(1), Fraction(1)]
     if eval_all_ones_nullstellensatz(test_5vec) != Fraction(1):
         raise ValueError("All-ones nullstellensatz failed")

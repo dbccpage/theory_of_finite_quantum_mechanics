@@ -1,29 +1,4 @@
-// AuthorityEffect: None.
 
-//! The generalized Gell-Mann basis of an independently declared label space `C^N`.
-//!
-//! For `N >= 2` the family is
-//!
-//! - `E_jk + E_kj` for `j < k`,
-//! - `-i E_jk + i E_kj` for `j < k`,
-//! - `sqrt(2 / (l (l + 1))) diag(1, ..., 1, -l, 0, ..., 0)` for `1 <= l <= N - 1`
-//!   (`l` ones before `-l`).
-//!
-//! The diagonal scales are irrational, so each generator is stored as
-//! `lambda_a = sqrt(r_a) M_a` with `M_a` exact over `Q(i)` and `r_a` rational
-//! (`r_a = 1` off the diagonal). Every identity is then an exact rational
-//! identity:
-//!
-//! - `Tr(lambda_a lambda_b) = 2 delta_ab`;
-//! - any traceless Hermitian `X` equals `sum_a (r_a / 2) Tr(X M_a) M_a`;
-//! - with `T_a = lambda_a / 2`, `[T_a, T_b] = i sum_c f_abc T_c`, where
-//!   `f_abc = sqrt(r_a r_b r_c) t_abc` and `t_abc = -(i/4) Tr([M_a, M_b] M_c)`
-//!   is rational;
-//! - the Jacobi identity, after the common factor `sqrt(r_a r_b r_c r_e)`
-//!   is removed, is `sum_d r_d (t_abd t_dce + t_bcd t_dae + t_cad t_dbe) = 0`.
-//!
-//! The label space is a separate declaration. Nothing here builds it from a
-//! graph, and attaching it to vertices or edges is a further modelling choice.
 
 use crate::scalar::is_hermitian;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
@@ -65,7 +40,6 @@ pub enum GeneratorKind {
     Diagonal { l: usize },
 }
 
-/// `lambda_a = sqrt(scale_squared) shape`; the shape has rational Gaussian entries.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GellMannGenerator {
     pub kind: GeneratorKind,
@@ -258,7 +232,6 @@ impl GellMannBasis {
                 * &self.generators[c].scale_squared),
         )?)
     }
-    /// Sparse trace projection; one commutator per pair, never per triple.
     fn structure_table(&self) -> Result<Vec<Vec<Vec<Rational>>>, GellMannError> {
         let n = self.len();
         let mut table = vec![vec![vec![ri(0); n]; n]; n];
@@ -266,7 +239,6 @@ impl GellMannBasis {
             for b in a + 1..n {
                 let comm = mx::commutator(&self.generators[a].shape, &self.generators[b].shape)?;
                 for c in 0..n {
-                    // Tr(C M) = sum_ij C_ij M_ji, without allocating C M.
                     let mut t = GaussianRat::zero();
                     for i in 0..self.n {
                         for j in 0..self.n {
@@ -357,7 +329,6 @@ impl GellMannBasis {
         }
         true
     }
-    /// Fundamental quadratic Casimir, `sum_a T_a T_a = (n^2-1)/(2n) I`.
     pub fn fundamental_casimir(&self) -> Result<GaussianMatrix, GellMannError> {
         let mut result = mx::zeros(self.n, self.n)?;
         for g in &self.generators {
@@ -372,7 +343,6 @@ impl GellMannBasis {
         }
         Ok(result)
     }
-    /// Exact Fierz completeness tensor in the fundamental representation.
     pub fn fierz_entry(
         &self,
         i: usize,
@@ -394,7 +364,6 @@ impl GellMannBasis {
         }
         Ok(value)
     }
-    /// `d_abc = Tr({lambda_a,lambda_b} lambda_c)/4` in exact surd form.
     pub fn symmetric_structure_constant(
         &self,
         a: usize,
@@ -414,7 +383,6 @@ impl GellMannBasis {
             &(&a.scale_squared * &b.scale_squared * &c.scale_squared),
         )?)
     }
-    /// Killing form on `T_a=lambda_a/2`, `2n Tr(T_a T_b)=n delta_ab`.
     pub fn killing_entry(&self, a: usize, b: usize) -> Result<Surd, GellMannError> {
         let gram = self.gram_entry(a, b)?;
         Ok(Surd::new(
@@ -422,7 +390,6 @@ impl GellMannBasis {
             &Rational::from_integer(gram.radicand().clone()),
         )?)
     }
-    /// The rational anti-Hermitian shapes form an exact Lie algebra with no square roots.
     pub fn shape_lie_algebra(
         &self,
     ) -> Result<

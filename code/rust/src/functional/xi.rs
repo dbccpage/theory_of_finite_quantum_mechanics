@@ -4,11 +4,6 @@ use num_traits::{Signed, Zero};
 use omega_kernel::Exact;
 use serde::{Deserialize, Serialize};
 
-/// Conditional density lift ρ(v) as a density matrix.
-///
-/// This is a scale-invariant representation of the vector v:
-/// - `ψ(v)_e = sign(v_e) · √(|v_e|/‖v‖₁)`
-/// - `ρ(v) = |ψ⟩⟨ψ|` (rank-1 density matrix)
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DensityLift {
     pub density_matrix: DMatrix<Complex64>,
@@ -25,16 +20,6 @@ pub enum XiValidity {
     FirewallNotChecked,
 }
 
-/// Evaluator-owned magnitude. A wire scalar cannot construct this result.
-///
-/// ```compile_fail
-/// use omega_functional::xi::XiResult;
-/// let forged: XiResult = serde_json::from_str("{}").unwrap();
-/// ```
-/// ```compile_fail
-/// use omega_functional::xi::XiResult;
-/// fn overwrite(result: &mut XiResult) { result.value = 4.0; }
-/// ```
 #[derive(Debug, Clone, Serialize)]
 pub struct XiResult {
     value: f64,
@@ -75,13 +60,6 @@ enum XiComputationKind {
     Invalid(XiValidity),
 }
 
-/// Outcome constructed only by the canonical evaluator. Serialization is a
-/// display projection; it cannot deserialize back into evaluated evidence.
-///
-/// ```compile_fail
-/// use omega_functional::xi::XiComputation;
-/// let forged: XiComputation = serde_json::from_str("\"ExactZero\"").unwrap();
-/// ```
 #[derive(Debug, Clone, Serialize)]
 #[serde(transparent)]
 pub struct XiComputation {
@@ -128,19 +106,13 @@ pub enum XiError {
     InvalidTolerance,
 }
 
-/// Ξ: Primal-dual density tie-breaker diagnostic.
-///
-/// Computes the trace distance between conditional density lifts.
 pub struct XiFunctional;
 
 impl XiFunctional {
-    /// Compute the conditional density lift ρ(v) for a vector v.
     pub fn compute_density_lift(
         vector: &DVector<f64>,
         tolerance: f64,
     ) -> Result<DensityLift, XiError> {
-        // A non-finite or negative tolerance makes `mass <= tolerance` false
-        // for a zero vector, and the following division then yields NaN.
         if !tolerance.is_finite() || tolerance < 0.0 {
             return Err(XiError::InvalidTolerance);
         }
@@ -148,18 +120,15 @@ impl XiFunctional {
             return Err(XiError::NonFiniteInput);
         }
 
-        // Compute total mass M(v) = ‖v‖₁
         let total_mass: f64 = vector.iter().map(|&x| x.abs()).sum();
         if !total_mass.is_finite() {
             return Err(XiError::NonFiniteInput);
         }
 
-        // If mass is zero, the lift is undefined
         if total_mass <= tolerance {
             return Err(XiError::ZeroMass);
         }
 
-        // Compute the conditional state vector: ψ_e = sign(v_e) · √(|v_e|/M)
         let n = vector.len();
         let mut state_vector = DVector::from_element(n, Complex64::new(0.0, 0.0));
 
@@ -173,7 +142,6 @@ impl XiFunctional {
             state_vector[i] = Complex64::new(sign * magnitude, 0.0);
         }
 
-        // Compute the density matrix: ρ = |ψ⟩⟨ψ|
         let mut density_matrix = DMatrix::from_element(n, n, Complex64::new(0.0, 0.0));
         for i in 0..n {
             for j in 0..n {
@@ -188,17 +156,6 @@ impl XiFunctional {
         })
     }
 
-    /// Compute the trace distance between two pure-state density vectors.
-    ///
-    /// For rank-1 pure-state density matrices `ρ_ψ = |ψ⟩⟨ψ|` and `ρ_φ = |φ⟩⟨φ|`,
-    /// the half-normalized trace distance is:
-    /// ```text
-    /// D(ρ_ψ, ρ_φ) = sqrt(1 - |⟨ψ|φ⟩|²)
-    /// ```
-    /// Unhalved trace norm is:
-    /// ```text
-    /// 2 * sqrt(1 - |⟨ψ|φ⟩|²)
-    /// ```
     pub fn pure_state_trace_distance(
         psi: &DVector<Complex64>,
         phi: &DVector<Complex64>,
@@ -209,15 +166,12 @@ impl XiFunctional {
                 .iter()
                 .all(|entry| entry.re.is_finite() && entry.im.is_finite())
         };
-        // Zip would drop the longer tail and report a distance for a different pair.
         if psi.len() != phi.len() || !finite_state(psi) || !finite_state(phi) {
             return f64::NAN;
         }
-        // Compute inner product ⟨ψ|φ⟩
         let inner_product: Complex64 = psi.iter().zip(phi.iter()).map(|(p, d)| p.conj() * d).sum();
-        let overlap = inner_product.norm_sqr(); // |⟨ψ|φ⟩|²
+        let overlap = inner_product.norm_sqr();
 
-        // Cap overlap to 1.0 to avoid floating point precision issues
         let overlap = overlap.clamp(0.0, 1.0);
         let dist = f64::sqrt(1.0 - overlap);
 
@@ -228,14 +182,6 @@ impl XiFunctional {
         }
     }
 
-    /// Compute Ξ(P,ω) = ‖ρ(h₁*) - ρ(φ*)‖_tr from exact inputs.
-    ///
-    /// Everything that gates admission is decided on ℚ: Φ₁ = 0, and the
-    /// primal-dual saturation ⟨φ*, h₁*⟩ = Φ₁. Only the returned magnitude is a
-    /// float, because Ξ is a trace distance `sqrt(1 - |⟨ψ|φ⟩|²)` over density
-    /// lifts whose entries are `√(|v_e|/M)` — a sum of surds, with no exact
-    /// rational form. It is typed [`XiState::UncertifiedFloat`] downstream and
-    /// may only separate candidates the exact functionals already tied.
     pub fn compute(
         primal_residual: &[Exact],
         dual_witness: &[Exact],
@@ -270,9 +216,6 @@ impl XiFunctional {
         {
             return XiComputationKind::Invalid(XiValidity::NonFiniteInput);
         }
-        // Φ₁ = 0 is exact repair, and it is decided on ℚ. Deciding it by
-        // `phi1 <= tolerance` reported a Φ₁ of 1/10^11 as an exact repair --
-        // the same defect class as a residual gate calling 1e-9 closed.
         if phi1_value.is_zero() {
             return XiComputationKind::ExactZero;
         }
@@ -281,7 +224,6 @@ impl XiFunctional {
             return XiComputationKind::Invalid(XiValidity::DensityLiftUndefined);
         }
 
-        // Saturation, decided on ℚ: ⟨φ*, h₁*⟩ = Φ₁ exactly, or Ξ is not admitted.
         let inner_product = primal_residual
             .iter()
             .zip(dual_witness.iter())
@@ -290,7 +232,6 @@ impl XiFunctional {
             return XiComputationKind::Invalid(XiValidity::SaturationFailed);
         }
 
-        // Past the exact gates. The lift itself needs reals.
         let to_float = |values: &[Exact]| -> Option<DVector<f64>> {
             values
                 .iter()
@@ -317,7 +258,6 @@ impl XiFunctional {
             }
         };
 
-        // Compute trace distance via pure-state formula
         let value = Self::pure_state_trace_distance(
             &primal_lift.state_vector,
             &dual_lift.state_vector,
@@ -332,7 +272,6 @@ impl XiFunctional {
             validity: XiValidity::Valid,
             primal_density: Some(primal_lift),
             dual_density: Some(dual_lift),
-            // Established exactly above, before any float was taken.
             saturation_verified: true,
             primal_residual: primal_residual.to_vec(),
             dual_witness: dual_witness.to_vec(),
@@ -411,7 +350,6 @@ mod tests {
         let lift1 = XiFunctional::compute_density_lift(&v, 1e-10).unwrap();
         let lift2 = XiFunctional::compute_density_lift(&v_scaled, 1e-10).unwrap();
 
-        // rho = |psi><psi| should be identical despite global phase factor of -1
         for i in 0..3 {
             for j in 0..3 {
                 assert_relative_eq!(
@@ -456,7 +394,6 @@ mod tests {
             &lift2.state_vector,
             false,
         );
-        // <psi1|psi2> = 1/sqrt(2) = ~0.707. overlap sqr = 0.5. 1 - 0.5 = 0.5. sqrt(0.5) = ~0.707
         assert_relative_eq!(dist_half, 0.5f64.sqrt(), epsilon = 1e-10);
         assert_relative_eq!(dist_full, 2.0 * 0.5f64.sqrt(), epsilon = 1e-10);
     }
@@ -488,8 +425,6 @@ mod tests {
 
     #[test]
     fn a_sub_tolerance_phi1_is_not_an_exact_repair() {
-        // Under the previous `phi1 <= tolerance` test, Phi1 = 1/10^11 returned
-        // ExactZero: an open obstruction reported as a repair.
         let tiny = omega_kernel::exact(1, 100_000_000_000);
         let primal = [ex(1), ex(0)];
         let dual = [ex(1), ex(0)];
@@ -506,8 +441,8 @@ mod tests {
     #[test]
     fn test_saturation_failure_blocks_xi_admission() {
         let primal = [ex(1), ex(0)];
-        let dual = [ex(0), ex(1)]; // inner prod = 0
-        let phi1 = ex(1); // mismatch
+        let dual = [ex(0), ex(1)];
+        let phi1 = ex(1);
         let tol = 1e-10;
 
         let comp = compute(&primal, &dual, &phi1, tol, true);

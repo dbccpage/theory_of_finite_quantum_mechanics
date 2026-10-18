@@ -1,18 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Campaign C1000 Block 09: Group parameter typing and transcendence dichotomy in Rust.
-//!
-//! Formalizes:
-//! - Parameter typing for one-parameter subgroups:
-//!   * Rotation angle theta in SO(3) / SO(2)
-//!   * Rapidity eta in SO(2,1) / SO(1,1)
-//!   * Unitary time parameter t in U(n)
-//! - Exact algebraicity testing and minimal polynomials
-//! - Total parameter verdict function with no default branch:
-//!   * CARRIED: parameter in base carrier field (identity cases)
-//!   * REFUSED_TRANSCENDENTAL: parameter refused as transcendental via Lindemann-Weierstrass
-//!   * EXTERNALLY_INTERFACED: certified rational interval approximation
-//! - Five mutation checks killed mirroring Python T1014
 
 use num_bigint::BigInt;
 use num_traits::{One, Signed, ToPrimitive, Zero};
@@ -20,10 +6,8 @@ use serde::{Deserialize, Serialize};
 
 use omega_number_theory::rational::{ri, rq, Rational};
 
-/// Series terms an interval computation may take before refusing.
 pub const MAX_SERIES_TERMS: usize = 256;
 
-/// Refusals for parameter intervals.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum GroupParameterError {
     #[error("{terms} series terms exceed the bound {max}")]
@@ -50,8 +34,6 @@ fn to_i128(n: &BigInt) -> Result<i128, GroupParameterError> {
     i128::try_from(n).map_err(|_| GroupParameterError::DoesNotFitI128)
 }
 
-/// The interval `[low, high]`, with its error bound `high - low`, in the `i128`
-/// fields of [`RationalInterval`]; refused when a bound does not fit.
 fn interval(low: Rational, high: Rational) -> Result<RationalInterval, GroupParameterError> {
     let err = &high - &low;
     Ok(RationalInterval {
@@ -118,17 +100,14 @@ pub struct RationalInterval {
 }
 
 impl RationalInterval {
-    /// `q_min_num / q_min_den`; the denominator must be nonzero.
     pub fn q_min(&self) -> Rational {
         Rational::new(BigInt::from(self.q_min_num), BigInt::from(self.q_min_den))
     }
 
-    /// `q_max_num / q_max_den`; the denominator must be nonzero.
     pub fn q_max(&self) -> Rational {
         Rational::new(BigInt::from(self.q_max_num), BigInt::from(self.q_max_den))
     }
 
-    /// `error_bound_num / error_bound_den`; the denominator must be nonzero.
     pub fn error_bound(&self) -> Rational {
         Rational::new(
             BigInt::from(self.error_bound_num),
@@ -136,8 +115,6 @@ impl RationalInterval {
         )
     }
 
-    /// A floating-point comparison for display, with a tolerance; the bounds
-    /// themselves are exact.
     pub fn contains_value(&self, val: f64, tol: f64) -> bool {
         match (self.q_min().to_f64(), self.q_max().to_f64()) {
             (Some(low), Some(high)) => low - tol <= val && val <= high + tol,
@@ -163,7 +140,6 @@ pub struct GroupParameterRecord {
     pub approximation_interval: Option<RationalInterval>,
 }
 
-/// Total parameter classification function with no default branch.
 #[allow(clippy::if_same_then_else)]
 pub fn classify_group_parameter(
     subgroup_type: SubgroupType,
@@ -191,9 +167,6 @@ pub fn classify_group_parameter(
     }
 }
 
-/// `ln((1 + x)/(1 - x)) = 2 sum_k x^(2k+1)/(2k+1)` for `0 <= x < 1`: the partial
-/// sum of `terms` terms, and the partial sum plus the tail bound
-/// `2 x^(2n+1) / ((2n+1)(1 - x^2))`.
 pub fn compute_ln_x_interval(
     x: Rational,
     terms: usize,
@@ -214,7 +187,6 @@ pub fn compute_ln_x_interval(
     Ok((s, high))
 }
 
-/// A certified interval around `ln n` for `n >= 1`.
 pub fn compute_ln_interval(n: i128, terms: usize) -> Result<RationalInterval, GroupParameterError> {
     if n < 1 {
         return Err(GroupParameterError::LogOfNonPositive(n));
@@ -240,8 +212,6 @@ pub fn compute_ln_interval(n: i128, terms: usize) -> Result<RationalInterval, Gr
     interval(low, high)
 }
 
-/// `arctan x = sum_k (-1)^k x^(2k+1)/(2k+1)` for `|x| <= 1`: an interval between
-/// consecutive partial sums, which bracket the value of the alternating series.
 pub fn compute_arctan_interval(
     x: Rational,
     terms: usize,
@@ -282,8 +252,6 @@ pub fn compute_arctan_interval(
     }
 }
 
-/// Machin's formula `pi = 4 (4 arctan(1/5) - arctan(1/239))`, with at most 8
-/// and 3 terms.
 pub fn compute_pi_interval(terms: usize) -> Result<RationalInterval, GroupParameterError> {
     let (l1, u1) = compute_arctan_interval(rq(1, 5), terms.min(8))?;
     let (l2, u2) = compute_arctan_interval(rq(1, 239), terms.min(3))?;
@@ -292,7 +260,6 @@ pub fn compute_pi_interval(terms: usize) -> Result<RationalInterval, GroupParame
     interval(pi_min, pi_max)
 }
 
-/// `theta = 2 arctan(tan(theta/2))` for a rational `tan(theta/2)` with `|t| <= 1`.
 pub fn compute_rotation_angle_pyth_interval(
     tan_half: Rational,
     terms: usize,
@@ -301,7 +268,6 @@ pub fn compute_rotation_angle_pyth_interval(
     interval(ri(2) * low, ri(2) * high)
 }
 
-/// Declared bounds for the composed rapidity, not computed here.
 pub fn compute_composed_rapidity_interval() -> RationalInterval {
     RationalInterval {
         q_min_num: 1016348,
@@ -668,7 +634,6 @@ mod tests {
 
     type Q5 = omega_number_theory::quadratic::Quadratic<5>;
 
-    /// Parse the entry forms of the inventory: `p`, `p/q`, and `(a+sqrt(5))/q` with either sign.
     fn parse_entry(text: &str) -> Q5 {
         if let Some(inner) = text.strip_prefix('(') {
             let (body, denominator) = inner.split_once(")/").unwrap();
@@ -731,9 +696,6 @@ mod tests {
             + c(0, 2) * (c(1, 0) * c(2, 1) - c(1, 1) * c(2, 0))
     }
 
-    /// Every rotation record must be a proper orthogonal matrix over Q(sqrt 5) whose trace is
-    /// `1 + 2 cos(theta)` for the cosine the record declares. Two of the original entries
-    /// (C6, and both icosahedral records) were not orthogonal.
     #[test]
     fn every_rotation_record_is_a_proper_orthogonal_matrix_with_the_declared_cosine() {
         let inventory = build_frozen_inventory().unwrap();
@@ -788,7 +750,6 @@ mod tests {
         let plus = matrix_of(&inventory, "ROT_I60_PLUS");
         let minus = matrix_of(&inventory, "ROT_I60_MINUS");
         assert_eq!(mul3(&plus, &plus), minus);
-        // order exactly five: R^5 = I, R != I
         let fifth = mul3(&mul3(&minus, &minus), &plus);
         assert_eq!(fifth, identity3());
         assert_ne!(plus, identity3());
@@ -858,9 +819,6 @@ mod tests {
         assert!(check(false, true).is_ok());
     }
 
-    /// The i128 rational this module used to carry wrapped silently past
-    /// `i128` (60 terms of arctan(1/2) do); the intervals are now exact, and
-    /// bad inputs are refused.
     #[test]
     fn long_series_are_exact_and_bad_inputs_refused() {
         let (low, high) = compute_arctan_interval(rq(1, 2), 60).unwrap();
@@ -877,13 +835,11 @@ mod tests {
             Err(GroupParameterError::LogOfNonPositive(0))
         );
         assert!(compute_ln_x_interval(ri(1), 8).is_err());
-        // ln 1 is the degenerate interval [0, 0].
         let ln1 = compute_ln_interval(1, 8).unwrap();
         assert_eq!(
             (ln1.q_min(), ln1.q_max()),
             (Rational::zero(), Rational::zero())
         );
-        // Bounds that do not fit the i128 fields are refused, not wrapped.
         assert_eq!(
             compute_rotation_angle_pyth_interval(rq(1, 2), 60),
             Err(GroupParameterError::DoesNotFitI128)

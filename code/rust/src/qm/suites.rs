@@ -1,8 +1,5 @@
-//! Shared, in-process computation for Rust and Python entrypoints.
 use serde_json::{json, Value};
 
-/// Admit every raw numeric token before duplicate object keys are resolved.
-/// Exact duplicate keys retain the legacy CLI's last-value semantics.
 pub fn parse_exact_json(raw: &str) -> Result<Value, String> {
     if raw.len() > 8 * 1024 * 1024 {
         return Err("INPUT_BUDGET_EXCEEDED".into());

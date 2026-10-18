@@ -1,7 +1,3 @@
-//! Metric-bound rational dihedral and deficit enclosures for finite hinge stars.
-//! Edge inputs are squared lengths. A shared edge table binds all neighboring
-//! simplex metrics; a distinct cyclic link supplies the closed hinge incidence.
-//! This local Regge calculation does not assert global manifold realizability.
 
 use linear_algebra::regge_exact::{determinant, solve};
 use num_rational::BigRational as Q;
@@ -24,7 +20,6 @@ pub enum GeometryError {
     LinearAlgebra,
 }
 
-// No new kernel dependency: number theory exposes the shared Interval type.
 pub use omega_number_theory::certified_angles::RationalInterval;
 
 #[derive(Debug, Clone)]
@@ -41,7 +36,6 @@ impl DihedralEnclosure {
     }
 }
 
-/// Nondegenerate Euclidean 4-simplex. Indices 0,1,2 specify its triangle hinge.
 pub fn dihedral_enclosure(
     squared: &[[Q; 5]; 5],
     eps: &Q,
@@ -93,7 +87,6 @@ pub fn dihedral_enclosure(
     if aa <= Q::zero() || bb <= Q::zero() || disc <= Q::zero() {
         return Err(GeometryError::NotEuclidean);
     }
-    // theta=atan2(sqrt(aa bb-ab^2),ab). atan is monotone and 1-Lipschitz.
     let bounds = if ab.is_zero() {
         pi_enclosure(eps)?.mul_scalar(&Q::new(1.into(), 2.into()))
     } else {
@@ -128,7 +121,6 @@ fn edge(a: usize, b: usize) -> (usize, usize) {
 }
 
 impl MetricHingeStar {
-    /// Exactly the edges used by consecutive 4-simplices, no missing/extra edge.
     pub fn new(
         hinge: [usize; 3],
         cycle: Vec<usize>,
@@ -177,7 +169,6 @@ impl MetricHingeStar {
     pub fn squared_edges(&self) -> &BTreeMap<(usize, usize), Q> {
         &self.squared_edges
     }
-    /// Metric of sector i in the declared cyclic hinge ordering.
     pub fn simplex(&self, i: usize) -> Result<[[Q; 5]; 5], GeometryError> {
         if i >= self.cycle.len() {
             return Err(GeometryError::Input);
@@ -227,7 +218,6 @@ impl DeficitEnclosure {
     pub fn bounds(&self) -> &RationalInterval {
         &self.bounds
     }
-    /// Separation is obtained from the computed bounds, never a caller promise.
     pub fn sign(&self) -> DeficitSign {
         if self.bounds.lo() > &Q::zero() {
             DeficitSign::Positive {
@@ -243,7 +233,6 @@ impl DeficitEnclosure {
     }
 }
 
-/// Width <=eps for delta=2 pi-sum(theta). Zero-containing output is permitted.
 pub fn deficit_enclosure(
     star: &MetricHingeStar,
     eps: &Q,

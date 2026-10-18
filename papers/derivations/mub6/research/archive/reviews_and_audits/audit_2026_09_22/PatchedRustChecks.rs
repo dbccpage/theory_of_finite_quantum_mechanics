@@ -1,4 +1,3 @@
-// Exercise proposed patches in scratch; does not modify the omega_mub dependency.
 pub use omega_mub::omega_native;
 #[path = "../../patched/omega_engine/crates_rs/omega_mub/src/omega_native/l1_discrete_solver/network_simplex.rs"]
 mod patched_network;

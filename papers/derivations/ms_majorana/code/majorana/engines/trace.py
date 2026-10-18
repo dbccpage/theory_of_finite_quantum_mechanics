@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 
 import argparse
@@ -50,7 +49,7 @@ def resolve_trace_residual(
     residual = [0] * num_checks
     for i in range(num_checks):
         shots_i = list(check_shots[i])
-        
+
         if declared_window is not None and len(declared_window) == 2:
             start, end = declared_window[0], declared_window[1]
             shots_i = shots_i[start:end]

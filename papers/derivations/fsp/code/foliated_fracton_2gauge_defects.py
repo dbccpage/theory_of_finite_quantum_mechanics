@@ -40,16 +40,16 @@ import numpy as np
 
 class FoliationDirection(Enum):
     """Spatial foliation orientation in 3D."""
-    XY = "xy"  # Leaves parallel to xy-plane (normal to z, z = const)
-    YZ = "yz"  # Leaves parallel to yz-plane (normal to x, x = const)
-    ZX = "zx"  # Leaves parallel to zx-plane (normal to y, y = const)
+    XY = "xy"
+    YZ = "yz"
+    ZX = "zx"
 
 
 class ExcitationMobility(Enum):
     """Mobility restriction category for fracton topological order."""
-    FRACTON = "fracton"  # 0D completely immobile
-    LINEON = "lineon"    # 1D mobile along leaf intersection line
-    PLANON = "planon"    # 2D mobile within a single leaf
+    FRACTON = "fracton"
+    LINEON = "lineon"
+    PLANON = "planon"
 
 
 class TerminalRoute(Enum):
@@ -66,8 +66,8 @@ class FractonDefect:
     """Individual excitation with mobility restriction."""
     defect_id: int
     mobility: ExcitationMobility
-    position: Tuple[int, int, int]  # (x, y, z)
-    charge: int                     # +1 or -1
+    position: Tuple[int, int, int]
+    charge: int
     leaf_direction: Optional[FoliationDirection] = None
 
 
@@ -135,7 +135,7 @@ class HingeJunction:
     """1D intersection line of two 2-gauge defect sheets."""
     sheet_xy: TwoGaugeDefectSheet
     sheet_yz: TwoGaugeDefectSheet
-    hinge_coords: Tuple[int, int]  # (x_0, z_0), line extends along y
+    hinge_coords: Tuple[int, int]
     commutator_matrix: np.ndarray
     trace: float
     has_corner_lineon: bool = False
@@ -147,8 +147,8 @@ class FoliatedFractonConfig:
     lx: int = 4
     ly: int = 4
     lz: int = 4
-    kappa_subsystem_penalty: float = 2.0  # Action penalty per uncompensated leaf
-    k_level: int = 2                       # SU(2)_k level (k=2: Ising, k=3: Fibonacci)
+    kappa_subsystem_penalty: float = 2.0
+    k_level: int = 2
     temperature: float = 1.0
 
 
@@ -180,7 +180,6 @@ class FoliatedFractonEngine:
         a single foliation leaf Σ_xy(z_leaf).
         """
         registry = SubsystemChargeRegistry(self.config.lx, self.config.ly, self.config.lz)
-        # Create planon dipole in leaf Σ_xy(z_leaf)
         p1 = FractonDefect(
             defect_id=1,
             mobility=ExcitationMobility.PLANON,
@@ -198,8 +197,6 @@ class FoliatedFractonEngine:
         registry.add_defect(p1)
         registry.add_defect(p2)
 
-        # Planon dipoles within the same leaf cancel their xy charge: Q_xy(z_leaf) = 1 - 1 = 0
-        # Exact leaf-preserving involution Ξ_fol(z) pairs positive and negative Trotter paths
         action_gap = 0.0
         phi1 = 0.0
         gamma2 = 0.0
@@ -229,7 +226,6 @@ class FoliatedFractonEngine:
         each traversed leaf acquires an uncompensated subsystem charge.
         """
         registry = SubsystemChargeRegistry(self.config.lx, self.config.ly, self.config.lz)
-        # Place isolated fracton at z=0 and anti-fracton at z=separation_z
         f1 = FractonDefect(
             defect_id=1,
             mobility=ExcitationMobility.FRACTON,
@@ -248,11 +244,9 @@ class FoliatedFractonEngine:
         active_leaves = registry.count_active_leaves()
         action_gap = registry.compute_subsystem_action_penalty(self.config.kappa_subsystem_penalty)
 
-        # Because ΔS > 0, positive and negative Trotter paths have disjoint supports
-        # supp(w+) ∩ supp(w-) = ∅, leaving uncancelled defect mass Φ₁ > 0 with Γ₂ = 0
         phi1 = action_gap
         gamma2 = 0.0
-        avg_sign = 0.0  # Completely cancelled / disjoint
+        avg_sign = 0.0
         route = TerminalRoute.SPLIT_BRAIN_REFUSAL
 
         return FoliatedAuditResult(
@@ -297,7 +291,6 @@ class FoliatedFractonEngine:
         )
 
         if not is_nonabelian:
-            # Abelian case: defect operators commute on hinge line
             comm_matrix = np.eye(2, dtype=complex)
             trace_val = 2.0
             phi1 = 0.0
@@ -305,10 +298,8 @@ class FoliatedFractonEngine:
             avg_sign = 1.0
             route = TerminalRoute.EXACT_REPAIR
         else:
-            # Non-abelian case at SU(2)_2 (Ising level):
-            # Commutator of orthogonal 2-gauge sheets yields -I
             comm_matrix = -np.eye(2, dtype=complex)
-            trace_val = float(np.real(np.trace(comm_matrix)))  # -2.0
+            trace_val = float(np.real(np.trace(comm_matrix)))
             phi1 = 2.0
             gamma2 = math.pi
             avg_sign = -1.0
@@ -352,19 +343,17 @@ class FoliatedFractonEngine:
           and curvature Γ₂ = π → OPEN_SIGN_OBSTRUCTION.
         """
         if not has_corner_lineon_turn:
-            # Decoupled leaves: foliated projection succeeds
             phi1 = 0.0
             gamma2 = 0.0
             avg_sign = 1.0
-            trace_proj = 4.0  # |-2.0|^2 or (2.0)^2 >= 0
+            trace_proj = 4.0
             route = TerminalRoute.EXACT_REPAIR
             proj_ok = True
         else:
-            # Corner turn obstruction: lineon scattering prevents factorization
             phi1 = 2.0
             gamma2 = math.pi
             avg_sign = -1.0
-            trace_proj = -2.0  # Uncancelled negative trace persists
+            trace_proj = -2.0
             route = TerminalRoute.OPEN_SIGN_OBSTRUCTION
             proj_ok = False
 

@@ -1,11 +1,3 @@
-/-
-AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
-C750 T568--T571. Natural real logarithm; arbitrary finite dimension.
-BakerCitedInput is a hypothesis, not an axiom declaration or a proved theorem.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.RingTheory.Algebraic.Integral
 import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
@@ -117,7 +109,6 @@ theorem entropy_linear_form {d : ℕ} (s : AlgebraicSpectrum d) :
   · simp [h]
   · rfl
 
-/-- Existence is proved for the original finite log list, even if dependent. -/
 theorem rational_log_basis_exists {d : ℕ} (q : Fin d → ℝ) :
     ∃ (κ : Type) (_ : Fintype κ) (a : κ → Fin d) (coordinates : Fin d → κ → ℚ),
       LinearIndependent ℚ (fun k => Real.log (q (a k))) ∧
@@ -150,7 +141,6 @@ theorem algebraic_finite_sum {ι : Type} (t : Finset ι) (f : ι → ℝ)
     exact (hf i (Finset.mem_insert_self i t)).add
       (ih (fun j hj => hf j (Finset.mem_insert_of_mem hj)))
 
-/-- Actual finite-sum transport, with no linear-independence assumption needed. -/
 theorem dependence_transport {d : ℕ} {κ : Type} [Fintype κ]
     (p q : Fin d → ℝ) (a : κ → Fin d) (c : Fin d → κ → ℚ)
     (hc : ∀ i, Real.log (q i) = ∑ k, (c i k : ℝ) * Real.log (q (a k))) :
@@ -171,7 +161,6 @@ theorem dependence_transport {d : ℕ} {κ : Type} [Fintype κ]
       intro i _
       ring
 
-/-- A1, imported as a theorem hypothesis. There is no proof of Baker here. -/
 def BakerCitedInput : Prop :=
   ∀ (ι : Type) [Fintype ι] (q c : ι → ℝ),
     (∀ i, 0 < q i) → (∀ i, IsAlgebraic ℚ (q i)) →
@@ -218,7 +207,6 @@ theorem entropy_algebraic_iff_pure (baker : BakerCitedInput)
     rw [(entropy_zero_iff_pure s).mpr hp]
     exact isAlgebraic_zero
 
-/-- A field-membership corollary for any specified algebraic carrier containing 0. -/
 theorem carrier_membership_iff_pure (baker : BakerCitedInput)
     (K : Set ℝ) (hzero : 0 ∈ K) (halg : ∀ x ∈ K, IsAlgebraic ℚ x)
     {d : ℕ} (s : AlgebraicSpectrum d) : entropy s ∈ K ↔ Pure s := by
@@ -258,3 +246,6 @@ theorem vanishing_log_control : Real.log 4 - 2 * Real.log 2 = 0 := by
 #print axioms vanishing_log_control
 
 end C750B01
+
+private def l5aProvenance : String :=
+  "Origin: lean4/EntropyDichotomy.lean Claim: probability_le_one AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

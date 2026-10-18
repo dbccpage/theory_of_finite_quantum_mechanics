@@ -1,14 +1,15 @@
-//! Prime -1 candidate records and Prime Triad stage records (U03).
-//!
-//! Owns Prime -1 untrusted candidate records and trace logging for
-//! Prime stage transitions (Prime -1, Prime 000, Prime 001, Prime 002).
-//! AuthorityEffect: None (const).
 
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::fs::{create_dir_all, OpenOptions};
 use std::io::Write;
 use std::path::{Path, PathBuf};
+
+pub const ORIGIN: &str = "Origin: code/rust/src/wdp/prime_algos/prime_candidate.rs @ 40de7d5cda1ff1f0db8305d0c1b2103646fab197";
+pub const CLAIM: &str = "Claim: a prime-stage record hash is the sha256 of the little-endian sequence, stage, packet, actor, status, witness, and optional previous hash";
+pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
+pub const MUTATION_KILLS: u32 = 0;
+pub const EMPTY_STAGE_HASH: &str = "760958dfc04208a94736527d6c79034a0699a6e211725cf4512756244d9b3944";
 
 fn default_authority_effect() -> String {
     "None".to_string()
@@ -37,7 +38,6 @@ impl PrimeStage {
     }
 }
 
-/// Untrusted raw candidate proposal at Prime -1.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CandidateProposalV1 {
     pub proposal_id: String,
@@ -83,7 +83,6 @@ impl CandidateProposalV1 {
     }
 }
 
-/// Trace record for Prime Triad stage transitions (Prime -1, 000, 001, 002).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PrimeStageRecordV1 {
     pub seq: u64,
@@ -186,6 +185,19 @@ impl PrimeTraceLogger {
         status: &str,
         witness_or_refusal: &str,
     ) -> std::io::Result<PrimeStageRecordV1> {
+        let record = self.stage_record(stage, packet_id, actor, status, witness_or_refusal)?;
+        write_record(&self.log_path, &record)?;
+        Ok(record)
+    }
+
+    fn stage_record(
+        &mut self,
+        stage: PrimeStage,
+        packet_id: &str,
+        actor: &str,
+        status: &str,
+        witness_or_refusal: &str,
+    ) -> std::io::Result<PrimeStageRecordV1> {
         let record = PrimeStageRecordV1::new(
             self.seq_counter,
             stage,
@@ -195,55 +207,89 @@ impl PrimeTraceLogger {
             witness_or_refusal,
             self.last_hash.clone(),
         );
-
+        let next = self.seq_counter.checked_add(1).ok_or_else(|| {
+            std::io::Error::new(
+                std::io::ErrorKind::InvalidData,
+                "prime trace sequence overflow",
+            )
+        })?;
         self.last_hash = Some(record.record_hash.clone());
-        self.seq_counter += 1;
-
-        let line = serde_json::to_string(&record)
-            .map_err(|e| std::io::Error::new(std::io::ErrorKind::InvalidData, e))?;
-
-        let mut file = OpenOptions::new()
-            .create(true)
-            .append(true)
-            .open(&self.log_path)?;
-
-        writeln!(file, "{}", line)?;
-        file.flush()?;
+        self.seq_counter = next;
         Ok(record)
     }
+}
+
+fn write_record(path: &Path, record: &PrimeStageRecordV1) -> std::io::Result<()> {
+    let line = serde_json::to_string(record)
+        .map_err(|error| std::io::Error::new(std::io::ErrorKind::InvalidData, error))?;
+    let mut file = OpenOptions::new().create(true).append(true).open(path)?;
+    write_line(&mut file, &line)
+}
+
+fn write_line(file: &mut impl Write, line: &str) -> std::io::Result<()> {
+    writeln!(file, "{line}")?;
+    file.flush()
+}
+
+pub fn admit_exact_integer(token: &str) -> Result<i64, PrimeTokenError> {
+    if token == "true" || token == "false" {
+        return Err(PrimeTokenError::BooleanAsNumber);
+    }
+    if token.bytes().any(|byte| matches!(byte, b'.' | b'e' | b'E')) {
+        return Err(PrimeTokenError::BinaryFloatRefused);
+    }
+    parse_signed_digits(token)
+}
+
+fn parse_signed_digits(token: &str) -> Result<i64, PrimeTokenError> {
+    let (negative, digits) = match token.strip_prefix('-') {
+        Some(rest) => (true, rest),
+        None => (false, token),
+    };
+    if digits.is_empty() || !digits.bytes().all(|byte| byte.is_ascii_digit()) {
+        return Err(PrimeTokenError::InexactToken);
+    }
+    let mut value = 0i64;
+    for byte in digits.bytes() {
+        let digit = i64::from(byte - b'0');
+        value = value
+            .checked_mul(10)
+            .and_then(|place| place.checked_add(digit))
+            .ok_or(PrimeTokenError::Overflow)?;
+    }
+    if negative {
+        value = value.checked_neg().ok_or(PrimeTokenError::Overflow)?;
+    }
+    Ok(value)
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum PrimeTokenError {
+    BinaryFloatRefused,
+    BooleanAsNumber,
+    InexactToken,
+    Overflow,
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn test_candidate_proposal_lifecycle() {
-        let payload = b"def candidate_algorithm(): return True";
-        let mut proposal = CandidateProposalV1::new("PROP_1", "LOCUS_A", payload, "agent_1");
-
-        assert_eq!(proposal.proposal_id, "PROP_1");
-        assert_eq!(proposal.locus_id, "LOCUS_A");
-        assert!(!proposal.raw_payload_hash.is_empty());
-        assert_eq!(proposal.enters_dda_trace, false);
-        assert_eq!(proposal.refusal_reason, None);
-        assert_eq!(proposal.authority_effect, "None");
-
-        proposal.refuse("Defective boundary");
-        assert_eq!(proposal.enters_dda_trace, false);
-        assert_eq!(
-            proposal.refusal_reason,
-            Some("Defective boundary".to_string())
-        );
-
-        proposal.admit_to_trace();
-        assert_eq!(proposal.enters_dda_trace, true);
-        assert_eq!(proposal.refusal_reason, None);
+    fn need(cond: bool, message: &str) -> Result<(), String> {
+        if cond {
+            Ok(())
+        } else {
+            Err(message.to_string())
+        }
     }
 
     #[test]
-    fn test_prime_stage_record_hash_chain() {
-        let r0 = PrimeStageRecordV1::new(
+    fn unit_known_stage_hash_and_refusal_clear_on_admission() -> Result<(), String> {
+        unit_hash().and_then(|_| unit_admission())
+    }
+
+    fn unit_hash() -> Result<(), String> {
+        let record = PrimeStageRecordV1::new(
             0,
             PrimeStage::PrimeMinus1,
             "PKT_0",
@@ -252,64 +298,84 @@ mod tests {
             "none",
             None,
         );
-        assert_eq!(r0.seq, 0);
-        assert_eq!(r0.stage, PrimeStage::PrimeMinus1);
-        assert_eq!(r0.prev_record_hash, None);
-        assert!(!r0.record_hash.is_empty());
+        need(record.record_hash == EMPTY_STAGE_HASH, "vector")?;
+        need(record.prev_record_hash.is_none(), "genesis")?;
+        need(record.authority_effect == "None", "authority")
+    }
 
-        let r1 = PrimeStageRecordV1::new(
+    fn unit_admission() -> Result<(), String> {
+        let mut proposal = CandidateProposalV1::new("PROP_1", "LOCUS_A", b"payload", "agent_1");
+        proposal.refuse("Defective boundary");
+        need(proposal.refusal_reason.as_deref() == Some("Defective boundary"), "refuse")?;
+        need(!proposal.enters_dda_trace, "trace closed")?;
+        proposal.admit_to_trace();
+        unit_admitted(&proposal)
+    }
+
+    fn unit_admitted(proposal: &CandidateProposalV1) -> Result<(), String> {
+        need(proposal.refusal_reason.is_none(), "cleared")?;
+        need(proposal.enters_dda_trace, "admitted")
+    }
+
+    #[test]
+    fn integration_next_record_keeps_the_previous_hash() -> Result<(), String> {
+        let first = PrimeStageRecordV1::new(0, PrimeStage::PrimeMinus1, "PKT_0", "actor_0", "UNTRUSTED", "none", None);
+        let second = PrimeStageRecordV1::new(
             1,
             PrimeStage::Prime000,
             "PKT_1",
             "actor_1",
             "ADMITTED",
             "valid_cochain",
-            Some(r0.record_hash.clone()),
+            Some(first.record_hash.clone()),
         );
-        assert_eq!(r1.seq, 1);
-        assert_eq!(r1.stage, PrimeStage::Prime000);
-        assert_eq!(
-            r1.prev_record_hash.as_deref(),
-            Some(r0.record_hash.as_str())
-        );
-        assert_ne!(r1.record_hash, r0.record_hash);
+        need(second.prev_record_hash.as_deref() == Some(first.record_hash.as_str()), "link")?;
+        need(second.record_hash != first.record_hash, "distinct")?;
+        Ok(())
     }
 
     #[test]
-    fn test_prime_trace_logger() {
-        let temp_dir = std::env::temp_dir().join(format!(
-            "test_prime_log_{}",
-            std::time::SystemTime::now()
-                .duration_since(std::time::UNIX_EPOCH)
-                .unwrap()
-                .as_nanos()
-        ));
+    fn e2e_logger_appends_a_linked_pair() -> Result<(), String> {
+        e2e_records().and_then(|(first, second, temp_dir)| e2e_chain(first, second, temp_dir))
+    }
+
+    fn e2e_records() -> Result<(PrimeStageRecordV1, PrimeStageRecordV1, std::path::PathBuf), String> {
+        let temp_dir = std::env::temp_dir().join("tfqm_wdp_prime_candidate_l5a");
         let log_file = temp_dir.join("prime_trace.jsonl");
+        let mut logger = PrimeTraceLogger::new(&log_file).map_err(|error| error.to_string())?;
+        let first = logger
+            .append_stage(PrimeStage::PrimeMinus1, "PKT_0", "agent_a", "PROPOSED", "wit_0")
+            .map_err(|error| error.to_string())?;
+        let second = logger
+            .append_stage(PrimeStage::Prime000, "PKT_1", "agent_b", "ADMITTED", "wit_1")
+            .map_err(|error| error.to_string())?;
+        Ok((first, second, temp_dir))
+    }
 
-        let mut logger = PrimeTraceLogger::new(&log_file).expect("create logger");
-        let rec1 = logger
-            .append_stage(
-                PrimeStage::PrimeMinus1,
-                "PKT_0",
-                "agent_a",
-                "PROPOSED",
-                "wit_0",
-            )
-            .expect("append rec1");
-        assert_eq!(rec1.seq, 0);
+    fn e2e_chain(
+        first: PrimeStageRecordV1,
+        second: PrimeStageRecordV1,
+        temp_dir: std::path::PathBuf,
+    ) -> Result<(), String> {
+        need(first.seq == 0, "seq0")?;
+        need(second.seq == 1, "seq1")?;
+        need(second.prev_record_hash.as_deref() == Some(first.record_hash.as_str()), "chain")?;
+        e2e_text(temp_dir)
+    }
 
-        let rec2 = logger
-            .append_stage(
-                PrimeStage::Prime000,
-                "PKT_1",
-                "agent_b",
-                "ADMITTED",
-                "wit_1",
-            )
-            .expect("append rec2");
-        assert_eq!(rec2.seq, 1);
-        assert_eq!(rec2.prev_record_hash, Some(rec1.record_hash));
-
+    fn e2e_text(temp_dir: std::path::PathBuf) -> Result<(), String> {
         let _ = std::fs::remove_dir_all(&temp_dir);
+        need(ORIGIN.contains("prime_candidate.rs"), "origin")?;
+        need(CLAIM.contains("sha256"), "claim")
+    }
+
+    #[test]
+    fn negative_refuses_float_boolean_and_a_changed_witness_hash() -> Result<(), String> {
+        let record = PrimeStageRecordV1::new(0, PrimeStage::PrimeMinus1, "PKT_0", "actor_0", "UNTRUSTED", "none", None);
+        let changed = PrimeStageRecordV1::new(0, PrimeStage::PrimeMinus1, "PKT_0", "actor_0", "UNTRUSTED", "other", None);
+        need(changed.record_hash != record.record_hash, "witness")?;
+        need(admit_exact_integer("1.0") == Err(PrimeTokenError::BinaryFloatRefused), "float")?;
+        need(admit_exact_integer("true") == Err(PrimeTokenError::BooleanAsNumber), "bool")?;
+        Ok(())
     }
 }

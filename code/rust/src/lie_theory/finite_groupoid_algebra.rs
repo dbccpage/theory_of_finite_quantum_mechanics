@@ -1,10 +1,3 @@
-//! Faithful finite-groupoid convolution over the exact subfield Q(i).
-//!
-//! The category owner validates identities, composition and inverses. This
-//! owner linearizes that declared structure; it does not quotient histories or
-//! select a character sector. Scalars and matrices retain their sovereign owners.
-//! The associated complex C*-algebra is a mathematical extension, not a native
-//! finite computation or an operational reconstruction. AuthorityEffect: None.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
@@ -31,7 +24,6 @@ pub enum GroupoidAlgebraError {
     Matrix(#[from] ExactFieldError),
 }
 
-/// Coordinates use the lexicographic order of the declared arrow names.
 #[derive(Debug, Clone)]
 pub struct FiniteGroupoidAlgebra {
     groupoid: ValidatedFiniteGroupoid,
@@ -71,7 +63,6 @@ impl FiniteGroupoidAlgebra {
                     .boundary_of(right)
                     .ok_or(GroupoidAlgebraError::MissingStructure)?;
                 if source == target {
-                    // Algebra product left * right means left AFTER right.
                     product[i][j] = Some(resolve(
                         c.compose(right, left)
                             .ok_or(GroupoidAlgebraError::MissingStructure)?,
@@ -155,7 +146,6 @@ impl FiniteGroupoidAlgebra {
         }
         Ok(result)
     }
-    /// Sum of identity coefficients, not the matrix trace of the regular action.
     pub fn trace(&self, a: &[GaussianRat]) -> Result<GaussianRat, GroupoidAlgebraError> {
         self.check(a)?;
         Ok(self
@@ -171,7 +161,6 @@ impl FiniteGroupoidAlgebra {
         Ok(a.iter().map(GaussianRat::norm_sq).sum())
     }
 
-    /// L_a on the full arrow space. No irreducible-sector projection is made.
     pub fn left_regular(
         &self,
         a: &[GaussianRat],
@@ -189,8 +178,6 @@ impl FiniteGroupoidAlgebra {
         Ok(mx::from_rows(rows)?)
     }
 
-    /// Central idempotent: average all loops at every object of one component.
-    /// It is proper within that component exactly when its isotropy is nontrivial.
     pub fn central_isotropy_average(
         &self,
         root: &str,

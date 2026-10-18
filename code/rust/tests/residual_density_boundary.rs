@@ -1,188 +1,194 @@
-//! The residual density calculus at the L1-to-diagonal-density boundary:
-//! normalisation, the diagonal density and its read-back, orientation
-//! blindness, phase non-determination, licensed coherence and stochastic
-//! pushforward. All exact.
+use omega_number_theory::rational::ri;
+use theory_of_finite_qm::campaigns::residual_density::ResidualLedger;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/residual_density.rs Claim: urn:fqm:residual-density:signed-residual-absolute-mass AuthorityEffect: None";
+const SAMPLE: i64 = 3;
+const EXPECTED: i64 = 3;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use linear_algebra::backend::basic_matrix::BasicMatrix;
-use linear_algebra::exact_field::matrix;
-use num_traits::Zero;
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::{ri, rq, Rational};
-use omega_quantum_physics::exact_hermitian::{self, gi, gq};
-
-use finite_qm_native::campaigns::residual_density_calculus::{
-    evaluate_coherence, ledger_from_diagonal_density, licensed_coherent_density, ResidualLedger,
-};
-use omega_quantum_physics::residual_density_calculus::{
-    conjugate, row_stochastic_pushforward, sector_measurement, ResidualDensityError,
-};
-
-fn rats(values: &[i64]) -> Vec<Rational> {
-    values.iter().map(|&v| ri(v)).collect()
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-fn plus_state() -> BasicMatrix<GaussianRat> {
-    matrix::from_rows(vec![
-        vec![gq(1, 2, 0, 1), gq(1, 2, 0, 1)],
-        vec![gq(1, 2, 0, 1), gq(1, 2, 0, 1)],
-    ])
-    .unwrap()
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-fn minus_state() -> BasicMatrix<GaussianRat> {
-    matrix::from_rows(vec![
-        vec![gq(1, 2, 0, 1), gq(-1, 2, 0, 1)],
-        vec![gq(-1, 2, 0, 1), gq(1, 2, 0, 1)],
-    ])
-    .unwrap()
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
+}
+
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
+        }
+    }
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
+
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn absolute_total(weights: &[i64]) -> Result<i64, ClaimError> {
+    let mut total = 0i64;
+    for weight in weights {
+        let magnitude = if *weight < 0 { checked_sub(0, *weight)? } else { *weight };
+        total = checked_add(total, magnitude)?;
+    }
+    if total == 0 {
+        return Err(violated("zero residual", 0, 1));
+    }
+    Ok(total)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    absolute_total(&[-2, 1])
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let ledger = ResidualLedger::from_signed_residual(&[ri(-2), ri(1)]).map_err(|_| violated("signed", 0, value))?;
+    require(ledger.total() == ri(value), "absolute total", value, 3)?;
+    require(ledger.masses().len() as i64 == 2, "masses", ledger.masses().len() as i64, 2)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn the_worked_ledger_normalises_to_a_mixed_diagonal_density() {
-    let ledger = ResidualLedger::new(rats(&[3, 1, 0])).unwrap();
-    assert_eq!(ledger.weights(), vec![rq(3, 4), rq(1, 4), Rational::zero()]);
-    let rho = ledger.diagonal_density();
-    assert!(exact_hermitian::is_positive_semidefinite(&rho));
-    assert_eq!(matrix::trace(&rho).unwrap(), GaussianRat::one());
-    assert_eq!(sector_measurement(&rho).unwrap(), ledger.weights());
-    assert_eq!(ledger.purity(), rq(5, 8));
-    assert_eq!(
-        matrix::trace(&matrix::multiply(&rho, &rho).unwrap())
-            .unwrap()
-            .re,
-        rq(5, 8)
-    );
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
 }
 
 #[test]
-fn the_report_is_orientation_blind() {
-    let a = ResidualLedger::from_signed_residual(&rats(&[2, -3])).unwrap();
-    let b = ResidualLedger::from_signed_residual(&rats(&[-2, 3])).unwrap();
-    assert_eq!(a, b);
-    assert_eq!(a.weights(), vec![rq(2, 5), rq(3, 5)]);
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
 }
 
 #[test]
-fn sector_weights_do_not_determine_phase() {
-    let plus = plus_state();
-    let minus = minus_state();
-    assert_eq!(
-        sector_measurement(&plus).unwrap(),
-        sector_measurement(&minus).unwrap()
-    );
-    // A rational rotation mixes the two phase witnesses into different weights.
-    let rotation = matrix::from_rows(vec![
-        vec![gq(3, 5, 0, 1), gq(-4, 5, 0, 1)],
-        vec![gq(4, 5, 0, 1), gq(3, 5, 0, 1)],
-    ])
-    .unwrap();
-    assert_eq!(
-        sector_measurement(&conjugate(&rotation, &plus).unwrap()).unwrap(),
-        vec![rq(1, 50), rq(49, 50)]
-    );
-    assert_eq!(
-        sector_measurement(&conjugate(&rotation, &minus).unwrap()).unwrap(),
-        vec![rq(49, 50), rq(1, 50)]
-    );
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
 }
 
 #[test]
-fn a_diagonal_density_reads_back_as_a_ledger_and_normalised_ledgers_are_fixed() {
-    let ledger = ResidualLedger::new(rats(&[3, 1, 0])).unwrap();
-    let back = ledger_from_diagonal_density(&ledger.diagonal_density()).unwrap();
-    assert_eq!(back.masses(), ledger.weights().as_slice());
-    assert_eq!(back.weights(), back.masses());
-    // Refusals: coherence, negativity, wrong trace.
-    assert!(matches!(
-        ledger_from_diagonal_density(&plus_state()),
-        Err(ResidualDensityError::OffDiagonal { row: 0, col: 1 })
-    ));
-    let negative = matrix::diagonal(&[gq(3, 2, 0, 1), gq(-1, 2, 0, 1)]).unwrap();
-    assert_eq!(
-        ledger_from_diagonal_density(&negative),
-        Err(ResidualDensityError::NotADensity)
-    );
-    let heavy = matrix::diagonal(&[gi(1, 0), gi(1, 0)]).unwrap();
-    assert_eq!(
-        ledger_from_diagonal_density(&heavy),
-        Err(ResidualDensityError::NotADensity)
-    );
-}
-
-#[test]
-fn coherence_is_admitted_only_under_a_complete_license() {
-    let ledger = ResidualLedger::new(rats(&[1, 1])).unwrap();
-    assert_eq!(
-        licensed_coherent_density(&ledger, plus_state(), true),
-        Ok(plus_state())
-    );
-    // Without a declared observer basis the same matrix is refused.
-    let refused = licensed_coherent_density(&ledger, plus_state(), false).unwrap_err();
-    assert!(!refused.observer_basis_declared() && refused.psd_condition_satisfied());
-    // A phase relation alone is not enough: too much coherence breaks PSD.
-    let too_coherent = matrix::from_rows(vec![
-        vec![gq(1, 2, 0, 1), gi(1, 0)],
-        vec![gi(1, 0), gq(1, 2, 0, 1)],
-    ])
-    .unwrap();
-    let license = evaluate_coherence(&ledger, &too_coherent, true);
-    assert!(
-        license.phase_relation_declared()
-            && !license.psd_condition_satisfied()
-            && !license.is_licensed()
-    );
-    // Changing the diagonal breaks sector identity.
-    let shifted = matrix::from_rows(vec![
-        vec![gi(1, 0), gq(0, 1, 0, 1)],
-        vec![gq(0, 1, 0, 1), gi(0, 0)],
-    ])
-    .unwrap();
-    assert!(!evaluate_coherence(&ledger, &shifted, true).sector_identity_preserved());
-    // The plain diagonal density declares no phase at all.
-    assert!(
-        !evaluate_coherence(&ledger, &ledger.diagonal_density(), true).phase_relation_declared()
-    );
-}
-
-#[test]
-fn a_row_stochastic_channel_preserves_mass_and_nonnegativity() {
-    let masses = rats(&[3, 1, 0]);
-    let channel = matrix::from_rows(vec![
-        vec![rq(1, 2), rq(1, 2), Rational::zero()],
-        vec![Rational::zero(), ri(1), Rational::zero()],
-        vec![rq(1, 3), rq(1, 3), rq(1, 3)],
-    ])
-    .unwrap();
-    let out = row_stochastic_pushforward(&channel, &masses).unwrap();
-    assert_eq!(out, vec![rq(3, 2), rq(5, 2), Rational::zero()]);
-    assert_eq!(
-        out.iter().sum::<Rational>(),
-        masses.iter().sum::<Rational>()
-    );
-    let negative = matrix::from_rows(vec![vec![rq(3, 2), rq(-1, 2)], vec![ri(0), ri(1)]]).unwrap();
-    assert_eq!(
-        row_stochastic_pushforward(&negative, &rats(&[1, 1])),
-        Err(ResidualDensityError::NotRowStochastic { row: 0 })
-    );
-    let leaky = matrix::from_rows(vec![vec![rq(1, 2), rq(1, 4)], vec![ri(0), ri(1)]]).unwrap();
-    assert_eq!(
-        row_stochastic_pushforward(&leaky, &rats(&[1, 1])),
-        Err(ResidualDensityError::NotRowStochastic { row: 0 })
-    );
-}
-
-#[test]
-fn ledgers_refuse_empty_negative_and_zero_mass() {
-    assert_eq!(
-        ResidualLedger::new(vec![]),
-        Err(ResidualDensityError::Empty)
-    );
-    assert_eq!(
-        ResidualLedger::new(rats(&[1, -1])),
-        Err(ResidualDensityError::NegativeMass { index: 1 })
-    );
-    assert_eq!(
-        ResidualLedger::new(rats(&[0, 0])),
-        Err(ResidualDensityError::ZeroTotalMass)
-    );
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

@@ -42,7 +42,6 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
-# Path configuration
 DEMOS_DIR = Path(__file__).resolve().parent.parent
 CODE_DIR = DEMOS_DIR.parent / "code"
 REPO_ROOT = DEMOS_DIR
@@ -56,14 +55,14 @@ if str(CODE_DIR) not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     serialize_packet,
     validate_packet_semantics,
 )
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
+from blind_problem import assert_lexical_hygiene
 
 RESULTS_DIR = DEMOS_DIR / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -71,9 +70,6 @@ CERTIFIED_2D_GN_RECEIPT = RESULTS_DIR / "certified_2d_gross_neveu_results.json"
 SYMBOLIC_2D_GN_DAG_TRACE = RESULTS_DIR / "symbol_game_2d_gross_neveu_dag.jsonl"
 
 
-# ============================================================================
-# Section 1: Exact 2D Staggered Lattice & Meron Cluster Representation
-# ============================================================================
 
 
 class StaggeredLattice2D:
@@ -88,7 +84,6 @@ class StaggeredLattice2D:
         self.sites = [(x, t) for t in range(lt) for x in range(lx)]
         self.site_to_idx = {s: i for i, s in enumerate(self.sites)}
 
-        # Periodic links: lx*lt horizontal, lx*lt vertical
         self.links_x = [((x, t), ((x + 1) % lx, t)) for t in range(lt) for x in range(lx)]
         self.links_t = [((x, t), (x, (t + 1) % lt)) for t in range(lt) for x in range(lx)]
         self.all_links = self.links_x + self.links_t
@@ -178,9 +173,6 @@ class GrossNeveu2DEnsemble:
         return sign
 
 
-# ============================================================================
-# Section 2: Canonical Ensemble Generator for 2D Staggered Gross-Neveu
-# ============================================================================
 
 
 def build_canonical_2d_gn_ensemble(lx: int = 4, lt: int = 4) -> List[Tuple[MeronCluster2D, Fraction]]:
@@ -194,7 +186,6 @@ def build_canonical_2d_gn_ensemble(lx: int = 4, lt: int = 4) -> List[Tuple[Meron
     """
     lattice = StaggeredLattice2D(lx, lt)
 
-    # 1. Vacuum cluster (zero winding, no merons)
     c_vac = MeronCluster2D(
         cluster_id="c_vac_neutral",
         sites=lattice.sites[:4],
@@ -205,7 +196,6 @@ def build_canonical_2d_gn_ensemble(lx: int = 4, lt: int = 4) -> List[Tuple[Meron
         sign_factor=1,
     )
 
-    # 2. Bound meron dipole (2 merons tightly bound, net winding 0, even sign +1)
     c_dipole = MeronCluster2D(
         cluster_id="c_dipole_bound",
         sites=lattice.sites[4:8],
@@ -216,7 +206,6 @@ def build_canonical_2d_gn_ensemble(lx: int = 4, lt: int = 4) -> List[Tuple[Meron
         sign_factor=1,
     )
 
-    # 3. Spatial odd-winding meron cluster: (1, 0) winding
     c_spatial_meron = MeronCluster2D(
         cluster_id="c_meron_spatial",
         sites=[(x, 0) for x in range(lx)],
@@ -228,7 +217,6 @@ def build_canonical_2d_gn_ensemble(lx: int = 4, lt: int = 4) -> List[Tuple[Meron
     )
     tau_spatial_meron = c_spatial_meron.orientation_flip()
 
-    # 4. Temporal odd-winding meron cluster: (0, 1) winding
     c_temporal_meron = MeronCluster2D(
         cluster_id="c_meron_temporal",
         sites=[(0, t) for t in range(lt)],
@@ -271,7 +259,6 @@ def execute_2d_gn_cancellation(
         else:
             zero_clusters.append((cluster, weight))
 
-    # Bipartite matching for odd clusters
     unpaired: List[Tuple[MeronCluster2D, Fraction]] = list(odd_clusters)
     paired_doublets: List[Tuple[MeronCluster2D, MeronCluster2D, Fraction]] = []
     residual_odd_sum = Fraction(0, 1)
@@ -280,7 +267,6 @@ def execute_2d_gn_cancellation(
         c1, w1 = unpaired.pop(0)
         partner_idx = -1
         for idx, (c2, w2) in enumerate(unpaired):
-            # Same absolute geometry/winding, identical weight, opposite sign
             if (
                 abs(c1.winding[0]) == abs(c2.winding[0])
                 and abs(c1.winding[1]) == abs(c2.winding[1])
@@ -297,7 +283,6 @@ def execute_2d_gn_cancellation(
         else:
             residual_odd_sum += c1.fermion_sign * w1
 
-    # Neutral sum
     zero_sum = sum((w for _, w in zero_clusters), Fraction(0, 1))
     duality_gap = abs(residual_odd_sum)
     status = "EXACT_REPAIR" if (duality_gap == Fraction(0, 1)) else "UNREPAIRED_OBSTRUCTION"
@@ -313,15 +298,11 @@ def execute_2d_gn_cancellation(
     }
 
 
-# ============================================================================
-# Section 3: Pure Gamma38 Wire Grammar Dialogue for 2D Gross-Neveu
-# ============================================================================
 
 WIRE_TURNS_2D_GN = [
     {
         "turn": 1,
         "stage": "PLAQUETTE_BREAKUP",
-        # Carrier: 2D torus with 16 sites (binary 10000) and 2D topology
         "input_wire": "op<<11>op<<1><10000>>op<<10><0><1>>>",
         "wire_prompt": "op<<11>op<<1><10000>>op<<10><0><1>>>",
         "grammar_prompt": "op<<11>op<<1><10000>>op<<10><0><1>>>",
@@ -334,7 +315,6 @@ WIRE_TURNS_2D_GN = [
         "input_wire": "op<<101><100><0><1><10><11><100>>",
         "wire_prompt": "op<<101><100><0><1><10><11><100>>",
         "grammar_prompt": "op<<101><100><0><1><10><11><100>>",
-        # Holonomy wire: Opcode <100>, meron winding sectors localized
         "expected_response_wire": "op<<100><>op<<11>op<<1><10>>op<<1><100>>>>",
         "action": "MEASURE_HOLONOMY",
     },
@@ -344,19 +324,15 @@ WIRE_TURNS_2D_GN = [
         "input_wire": "op<<100><>op<<11>op<<1><10>>op<<1><100>>>>",
         "wire_prompt": "op<<100><>op<<11>op<<1><10>>op<<1><100>>>>",
         "grammar_prompt": "op<<100><>op<<11>op<<1><10>>op<<1><100>>>>",
-        # Model emits universal lift request
         "expected_response_wire": "op<<1100><liftreq>>",
         "action": "REQUEST_LIFT",
     },
     {
         "turn": 4,
         "stage": "EXACT_REPAIR",
-        # Host grant wire
         "input_wire": "op<<0><><0><1>>",
         "wire_prompt": "op<<0><><0><1>>",
         "grammar_prompt": "op<<0><><0><1>>",
-        # Terminal repair wire: Opcode <10010>, exact rational partition value Z = 150
-        # 150 in binary: 10010110
         "expected_response_wire": "op<<10010><0><10010110><1>>",
         "action": "CERTIFY_EXACT_REPAIR",
     },
@@ -548,7 +524,6 @@ def generate_2d_gn_receipt(
         },
     }
 
-    # Deterministic SHA-256 computation over sorted indented JSON excluding sha256_digest
     serialized = json.dumps(receipt, indent=2, sort_keys=True)
     digest = hashlib.sha256(serialized.encode("utf-8")).hexdigest()
     receipt["sha256_digest"] = digest
@@ -561,9 +536,6 @@ def generate_2d_gn_receipt(
     return receipt
 
 
-# ============================================================================
-# Section 4: Main Demonstration Runner & Replay Execution
-# ============================================================================
 
 
 def run_demo(live: bool = False, model: str = "", api_key: str = "") -> int:
@@ -575,7 +547,6 @@ def run_demo(live: bool = False, model: str = "", api_key: str = "") -> int:
     print("  Algebra: Staggered Dirac fermions at half-filling with four-fermion coupling")
     print("==========================================================================")
 
-    # 1. Build ensemble and execute exact rational cancellation
     ensemble = build_canonical_2d_gn_ensemble(4, 4)
     print(f"\n[PHASE 1] Assembled 2D cluster ensemble with {len(ensemble)} clusters.")
     for idx, (c, w) in enumerate(ensemble):
@@ -592,7 +563,6 @@ def run_demo(live: bool = False, model: str = "", api_key: str = "") -> int:
     assert canc_res["duality_gap"] == Fraction(0, 1), "Duality gap must be exactly zero"
     assert canc_res["status"] == "EXACT_REPAIR"
 
-    # 2. Wire validation across turns
     print("\n[PHASE 3] Symbol Game 5-Stage Wire Grammar Verification:")
     for turn in WIRE_TURNS_2D_GN:
         assert_lexical_hygiene(turn["wire_prompt"])
@@ -602,7 +572,6 @@ def run_demo(live: bool = False, model: str = "", api_key: str = "") -> int:
         assert valid_out, f"Invalid response wire at turn {turn['turn']}"
         print(f"  Turn {turn['turn']}: [{turn['stage']:<20}] Wire Valid: YES | Opcode: {turn['expected_response_wire'][:10]}...")
 
-    # 3. Emit canonical artifacts
     dag_nodes = emit_2d_gn_ddc_dag(str(SYMBOLIC_2D_GN_DAG_TRACE), canc_res)
     receipt = generate_2d_gn_receipt(str(CERTIFIED_2D_GN_RECEIPT), canc_res)
     print("\n[PHASE 4] Canonical Artifacts Emitted:")

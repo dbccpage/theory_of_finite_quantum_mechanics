@@ -1,26 +1,9 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import Std
 
-/-!
-Overnight T7: where `pi` is allowed to sit, and where it is not.
 
-This file does not construct `Real` or `Complex`. It records the
-scope theorem that the finite N=3 pairing is the rational `1`,
-and that `pi` is not that pairing.
 
-The analytic localization (kernel of `t ↦ exp(i t)` is `2 pi Z`;
-Haar mass of `R/Z` is `1`) lives in the Python twin
-`dual_objects.py`. Lean here refuses the mint.
 
-AuthorityEffect: None.
--/
 
 namespace OvernightT7
 
@@ -61,9 +44,6 @@ theorem scope_boundary_refuses_kills :
 #print axioms finite_pairing_is_one
 #print axioms scope_boundary_refuses_kills
 
-/-- Finite N=3 clock. `phi1 = 3` counts the steps that close the pairing `1`.
-    No integer `k` satisfies `3 * k = 1`, so the pairing is not an integer
-    multiple of that step count, and it is not a value of `pi`. -/
 theorem three_turns_close :
     phi1 = (3 : Rat) ∧ periodPairing = (1 : Rat) := by
   constructor <;> rfl
@@ -78,3 +58,6 @@ theorem no_integer_multiple_of_phi1_is_the_pairing (k : Int) :
   omega
 
 end OvernightT7
+
+private def l5aProvenance : String :=
+  "Origin: lean4/T7PiLocalization.lean Claim: finite_pairing_is_one AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

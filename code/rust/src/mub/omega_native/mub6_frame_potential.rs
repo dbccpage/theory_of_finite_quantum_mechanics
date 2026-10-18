@@ -1,7 +1,3 @@
-//! Exact frame diagnostics for (I6, F6, chirp-F6(2), S6).
-//! The deformation example is eta=1/10, not a bound on arbitrary POVM changes.
-//! Evidence: tests/test_frame_potential_verifier.rs and artifacts/mub_frame_potential.json.
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -204,7 +200,6 @@ pub struct NonUnitaryPovmAnalysis {
 pub fn solve_frame_potential_certificate() -> FramePotentialCertificate {
     let bases = canonical_candidate_bases();
 
-    // 1. Verify vector normalization and internal orthonormality
     let mut vectors_normalized = true;
     let mut bases_internal_orthonormality = Vec::with_capacity(NUM_BASES_4);
 
@@ -229,7 +224,6 @@ pub fn solve_frame_potential_certificate() -> FramePotentialCertificate {
         bases_internal_orthonormality.push(basis_ortho);
     }
 
-    // 2. Compute block frame potentials
     let block_mat = compute_all_blocks(&bases);
     let mut diag_sum = BigRational::zero();
     let mut off_diag_sum = BigRational::zero();
@@ -257,13 +251,11 @@ pub fn solve_frame_potential_certificate() -> FramePotentialCertificate {
     let welch_bound = welch_bound_2(DIM_HILBERT, TOTAL_VECTORS_4);
     let welch_bound_satisfied = total_fp >= welch_bound;
 
-    // 3. ETF and POVM analysis
     let etf_c2 = etf_welch_coherence_sq(DIM_HILBERT, TOTAL_VECTORS_4);
     let mub_c2 = mub_coherence_sq(DIM_HILBERT);
     let coh_defect = etf_mub_coherence_defect(DIM_HILBERT, TOTAL_VECTORS_4);
     let etf_incompatible = coh_defect > BigRational::zero();
 
-    // Verify test POVM deformation (eta = 1/10 => penalty = 2 * (1/10)^2 = 1/50 > 0)
     let test_eta = BigRational::new(1.into(), 10.into());
     let test_penalty = non_unitary_povm_intra_penalty(test_eta);
     let povm_defect_pos = test_penalty > BigRational::zero();
@@ -312,8 +304,6 @@ pub fn solve_frame_potential_certificate() -> FramePotentialCertificate {
     }
 }
 pub fn verify_frame_potential_certificate(cert: &FramePotentialCertificate) -> bool {
-    // Compare every semantic field against an independent recomputation. The digest
-    // is transport metadata and is validated by the artifact-level verifier.
     let mut supplied = cert.clone();
     supplied.sha256_digest = None;
     supplied == solve_frame_potential_certificate()

@@ -1,23 +1,6 @@
-/-
-  H017Finish -- declared dispositions with theorem-bound host facts.
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  After drop-one (historical census at dba1434b: three classified
-  lost, five OPEN necessity), this file records a later finish
-  table. Each frozen extra receives a declared disposition paired
-  with the narrower host fact available here. This is not an
-  assumption-removal interface or a theorem that the dispositions
-  are necessary. SUSY and SU(3)×SU(2)×U(1) stay unassigned. This
-  is not M_n(C).
 
-  Historical H017ExtrasDropone.dropVerdict is untouched.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H003ReversibilityGate
@@ -40,9 +23,6 @@ open FableHilbertWalk20260819.HWKernel
 open FableHilbertWalk20260819.H017Extras
 open FableHilbertWalk20260819.H017ExtrasDropone
 
-/-- Later finish label. Not dropVerdict. Not an assumption-removal
-    interface. `dualOutsideLean` is a declared receipt that the
-    Python dual is tests, not a Lean theorem. -/
 inductive FinishFate
   | refused
   | imported
@@ -73,7 +53,6 @@ theorem finish_spectral_refused :
 
 #print axioms finish_spectral_refused
 
-/-- R7 stays imported. Cardinality failure on Bool is not Gleason. -/
 theorem finish_gleason_imported :
     finishFate FrozenExtra.gleasonUniqueness = FinishFate.imported ∧
       FableHilbertWalk20260819.H013.UniquenessDischarged
@@ -86,10 +65,6 @@ theorem finish_gleason_imported :
 
 #print axioms finish_gleason_imported
 
-/-- CPTP stays imported because this host defines no channel class.
-    Collapse is not reversible and has no same-basis isometry;
-    identity dilations exist as Bool×Bool bijections. Those are
-    narrower host facts, not obstructions to CPTP channels. -/
 theorem finish_cptp_imported :
     finishFate FrozenExtra.cptp = FinishFate.imported ∧
       ¬ Nonempty (FableHilbertWalk20260819.H003.Reversible
@@ -112,8 +87,6 @@ theorem finish_cptp_imported :
 
 #print axioms finish_cptp_imported
 
-/-- Hilbert-tensor uniqueness stays imported. The dumpRight rival
-    is a rival of CombiningEmbed, not uniqueness of Hilbert tensor. -/
 theorem finish_uniqueTensor_imported :
     finishFate FrozenExtra.uniqueTensor = FinishFate.imported ∧
       ¬ ∀ u v p,
@@ -149,7 +122,6 @@ theorem finish_pythonDual_outside_lean :
 
 #print axioms finish_pythonDual_outside_lean
 
-/-! ## Physics names. Declared assignment table, not a derivation. -/
 
 inductive PhysicsName
   | superposition
@@ -185,12 +157,6 @@ theorem assigned_leftovers_are_the_three :
 
 #print axioms assigned_leftovers_are_the_three
 
-/-- Punchline: each frozen extra has a declared finish fate paired
-    with a narrower host theorem or a dual-outside-Lean receipt.
-    This is not a requirements or necessity theorem. SUSY and the
-    Standard Model gauge group stay unassigned. This is not
-    ordinary M_n(C). Historical drop-one OPEN verdicts at dba1434b
-    are not rewritten. -/
 theorem remaining_import_list :
     (finishFate FrozenExtra.fieldC = FinishFate.refused ∧
       ¬ IsFieldPack gaussPack) ∧
@@ -249,8 +215,6 @@ theorem finish_is_not_ordinary_mnC :
 
 #print axioms finish_is_not_ordinary_mnC
 
-/-- Historical drop-one census is still the five OPEN necessity
-    verdicts at dba1434b. This finish table does not rewrite it. -/
 theorem dropone_open_verdicts_untouched :
     FableHilbertWalk20260819.H017ExtrasDropone.dropVerdict
         FrozenExtra.gleasonUniqueness =
@@ -272,3 +236,6 @@ theorem dropone_open_verdicts_untouched :
 #print axioms dropone_open_verdicts_untouched
 
 end FableHilbertWalk20260819.H017Finish
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H017Finish.lean Claim: finish_fieldC_refused AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

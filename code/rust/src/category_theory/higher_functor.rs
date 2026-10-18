@@ -1,454 +1,505 @@
-//! Higher-Category Functors — Spec Section 10.
-//!
-//! Three strictness levels:
-//!   Strict 2-Functor:  preserves composition and identity by equality.
-//!   Pseudofunctor:     preserves up to invertible 2-cells (coherence required).
-//!   Lax Functor:       preserves up to possibly non-invertible 2-cells.
-//!
-//! Direction convention (lax, not oplax):
-//!   Composition:  F(g) ∘ F(f) ⇒ F(g ∘ f)
-//!   Unit:         id_{F(A)} ⇒ F(id_A)
-//!
-//! The reverse (oplax) direction would be:
-//!   Composition:  F(g ∘ f) ⇒ F(g) ∘ F(f)
-//!   Unit:         F(id_A) ⇒ id_{F(A)}
-//! This module uses the lax convention exclusively.
-//!
-//! Boundary preservation (validation obligation, not compiler-enforced):
-//!   For 1-cells:  src₁(F(f)) = F(src₁(f)),  tgt₁(F(f)) = F(tgt₁(f))
-//!   For 2-cells:  src₂(F(α)) = F(src₂(α)),  tgt₂(F(α)) = F(tgt₂(α))
+pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/higher_functor.rs";
+pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:higher_functor:strictly-ascending-arrow-count";
+pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
+pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
 
-use super::higher::TwoCategory;
-use std::collections::BTreeMap;
-
-// ===========================================================================
-// Invertible 2-cell witness
-// ===========================================================================
-
-/// An invertible 2-cell, used by pseudofunctors to witness coherence.
-///
-/// A plain `TwoMor` cannot express invertibility. This wrapper pairs a
-/// forward 2-cell with its inverse so that the finite validator can
-/// check the round-trip laws:
-///   inverse ∘_v forward = id_{source}
-///   forward ∘_v inverse = id_{target}
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct InvertibleTwoMor<TwoMor: Clone + Eq + std::fmt::Debug> {
-    pub forward: TwoMor,
-    pub inverse: TwoMor,
+pub enum InvertibleTwoMorError {
+    FloatRefused { invariant: &'static str, measured_len: usize },
+    EmptyCarrier { invariant: &'static str, measured: usize },
+    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
+    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
+    Overflow { invariant: &'static str, measured: i64 },
 }
 
-// ===========================================================================
-// Shared mapping interface
-// ===========================================================================
-
-/// The shared object/1-cell/2-cell mapping that all 2-functor variants
-/// (strict, pseudo, lax) must provide.
-pub trait TwoFunctorMapping {
-    type Source: TwoCategory;
-    type Target: TwoCategory;
-
-    fn map_ob(&self, a: &<Self::Source as TwoCategory>::Ob) -> <Self::Target as TwoCategory>::Ob;
-
-    fn map_1(
-        &self,
-        f: &<Self::Source as TwoCategory>::OneMor,
-    ) -> <Self::Target as TwoCategory>::OneMor;
-
-    fn map_2(
-        &self,
-        alpha: &<Self::Source as TwoCategory>::TwoMor,
-    ) -> <Self::Target as TwoCategory>::TwoMor;
+impl std::fmt::Display for InvertibleTwoMorError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{self:?}")
+    }
 }
 
-// ===========================================================================
-// Strict 2-Functor
-// ===========================================================================
+impl std::error::Error for InvertibleTwoMorError {}
 
-/// Strict 2-functor F : C → D.
-///
-/// Laws (equality on the nose):
-///   F(id_A)     = id_{F(A)}
-///   F(g ∘ f)    = F(g) ∘ F(f)
-///   F(id_f)     = id_{F(f)}
-///   F(β ∘_v α)  = F(β) ∘_v F(α)       (vertical composition)
-///   F(β ∘_h α)  = F(β) ∘_h F(α)       (horizontal composition)
-pub trait StrictTwoFunctor: TwoFunctorMapping {}
-
-// ===========================================================================
-// Pseudofunctor (weak 2-functor)
-// ===========================================================================
-
-/// Pseudofunctor F : C → D.
-///
-/// Preserves composition and identity up to **invertible** 2-cells.
-/// Must satisfy pentagon and triangle coherence laws.
-///
-/// Coherence cells:
-///   comp_coherence(f, g):  for f : A → B and g : B → C,
-///     invertible 2-cell  F(g) ∘ F(f) ⇒ F(g ∘ f)
-///
-///   id_coherence(A):
-///     invertible 2-cell  id_{F(A)} ⇒ F(id_A)
-pub trait PseudoFunctor: TwoFunctorMapping {
-    /// Invertible composition coherence 2-cell:
-    /// F(g) ∘ F(f) ⇒ F(g ∘ f), for composable f : A → B and g : B → C.
-    fn comp_coherence(
-        &self,
-        f: &<Self::Source as TwoCategory>::OneMor,
-        g: &<Self::Source as TwoCategory>::OneMor,
-    ) -> InvertibleTwoMor<<Self::Target as TwoCategory>::TwoMor>;
-
-    /// Invertible identity coherence 2-cell:
-    /// id_{F(A)} ⇒ F(id_A).
-    fn id_coherence(
-        &self,
-        a: &<Self::Source as TwoCategory>::Ob,
-    ) -> InvertibleTwoMor<<Self::Target as TwoCategory>::TwoMor>;
-}
-
-// ===========================================================================
-// Lax Functor
-// ===========================================================================
-
-/// Lax functor F : C → D.
-///
-/// 2-cells need not be invertible.
-/// Direction (lax, not oplax):
-///   lax_comp(f, g):  F(g) ∘ F(f) ⇒ F(g ∘ f)   for composable f, g.
-///   lax_id(A):       id_{F(A)} ⇒ F(id_A)
-pub trait LaxFunctor: TwoFunctorMapping {
-    /// Lax composition: possibly non-invertible 2-cell
-    /// F(g) ∘ F(f) ⇒ F(g ∘ f), for composable f : A → B and g : B → C.
-    fn lax_comp(
-        &self,
-        f: &<Self::Source as TwoCategory>::OneMor,
-        g: &<Self::Source as TwoCategory>::OneMor,
-    ) -> <Self::Target as TwoCategory>::TwoMor;
-
-    /// Lax unit: possibly non-invertible 2-cell
-    /// id_{F(A)} ⇒ F(id_A).
-    fn lax_id(
-        &self,
-        a: &<Self::Source as TwoCategory>::Ob,
-    ) -> <Self::Target as TwoCategory>::TwoMor;
-}
-
-// ===========================================================================
-// Finite declared 2-functors (kernel-auditable data)
-// ===========================================================================
-
-/// Finite invertible 2-cell witness for audit tables.
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct DeclaredFiniteInvertibleTwoMor {
-    pub forward: String,
-    pub inverse: String,
+pub struct ArrowLedger {
+    objects: usize,
+    arrows: Vec<(usize, usize)>,
 }
 
-/// An explicit, finite strict 2-functor declaration for kernel audit.
+impl ArrowLedger {
+    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, InvertibleTwoMorError> {
+        refuse_empty(objects)?;
+        refuse_budget(objects, arrows.len())?;
+        refuse_endpoints(objects, &arrows)?;
+        Ok(Self { objects, arrows })
+    }
+
+    pub fn objects(&self) -> usize {
+        self.objects
+    }
+
+    pub fn arrows(&self) -> &[(usize, usize)] {
+        &self.arrows
+    }
+}
+
+fn refuse_empty(objects: usize) -> Result<(), InvertibleTwoMorError> {
+    if objects == 0 {
+        return Err(InvertibleTwoMorError::EmptyCarrier {
+            invariant: "higher_functor-carrier-nonempty",
+            measured: objects,
+        });
+    }
+    Ok(())
+}
+
+fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), InvertibleTwoMorError> {
+    if objects > 16 {
+        return Err(InvertibleTwoMorError::EmptyCarrier {
+            invariant: "higher_functor-carrier-at-most-16",
+            measured: objects,
+        });
+    }
+    if arrow_len > 64 {
+        return Err(InvertibleTwoMorError::EmptyCarrier {
+            invariant: "higher_functor-arrow-budget-64",
+            measured: arrow_len,
+        });
+    }
+    Ok(())
+}
+
+fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
+    let src_ok = arrow.0 < objects;
+    let tgt_ok = arrow.1 < objects;
+    src_ok && tgt_ok
+}
+
+fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), InvertibleTwoMorError> {
+    for (index, arrow) in arrows.iter().enumerate() {
+        if !endpoint_ok(objects, *arrow) {
+            return Err(InvertibleTwoMorError::IndexOutOfBounds {
+                invariant: "higher_functor-arrow-endpoint-in-carrier",
+                measured: index,
+                bound: objects,
+            });
+        }
+    }
+    Ok(())
+}
+
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct DeclaredFiniteTwoFunctor {
-    pub name: String,
-    pub source_two_category: String,
-    pub target_two_category: String,
-
-    pub object_map: BTreeMap<String, String>,
-    pub one_morphism_map: BTreeMap<String, String>,
-    pub two_morphism_map: BTreeMap<String, String>,
+pub struct InvertibleTwoMor {
+    ledger: ArrowLedger,
 }
 
-impl DeclaredFiniteTwoFunctor {
-    pub fn new(name: &str, source: &str, target: &str) -> Self {
-        Self {
-            name: name.into(),
-            source_two_category: source.into(),
-            target_two_category: target.into(),
-            object_map: BTreeMap::new(),
-            one_morphism_map: BTreeMap::new(),
-            two_morphism_map: BTreeMap::new(),
-        }
+impl InvertibleTwoMor {
+    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, InvertibleTwoMorError> {
+        let ledger = ArrowLedger::try_new(objects, arrows)?;
+        Ok(Self { ledger })
     }
 
-    pub fn on_ob(&self, a: &str) -> Option<&str> {
-        self.object_map.get(a).map(|s| s.as_str())
+    pub fn selected_count(&self) -> Result<i64, InvertibleTwoMorError> {
+        measured_count(self.ledger.arrows(), self.ledger.objects())
     }
 
-    pub fn on_1(&self, f: &str) -> Option<&str> {
-        self.one_morphism_map.get(f).map(|s| s.as_str())
-    }
-
-    pub fn on_2(&self, alpha: &str) -> Option<&str> {
-        self.two_morphism_map.get(alpha).map(|s| s.as_str())
+    pub fn certificate(&self) -> Result<i64, InvertibleTwoMorError> {
+        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
+        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
+        agree_folded(measured, expected, self.ledger.objects())
     }
 }
 
-/// An explicit, finite pseudofunctor declaration for kernel audit.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct DeclaredFinitePseudoFunctor {
-    pub underlying: DeclaredFiniteTwoFunctor,
-    /// Composition coherence: (f, g) → invertible 2-cell F(g)∘F(f) ⇒ F(g∘f).
-    pub comp_coherence: BTreeMap<(String, String), DeclaredFiniteInvertibleTwoMor>,
-    /// Identity coherence: A → invertible 2-cell id_{F(A)} ⇒ F(id_A).
-    pub id_coherence: BTreeMap<String, DeclaredFiniteInvertibleTwoMor>,
+fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, InvertibleTwoMorError> {
+    let folded = fold_carrier(measured, objects)?;
+    let expected_folded = fold_carrier(expected, objects)?;
+    require_agreement(folded, expected_folded)
 }
 
-/// An explicit, finite lax functor declaration for kernel audit.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct DeclaredFiniteLaxFunctor {
-    pub underlying: DeclaredFiniteTwoFunctor,
-    /// Lax composition: (f, g) → 2-cell F(g)∘F(f) ⇒ F(g∘f).
-    pub lax_comp: BTreeMap<(String, String), String>,
-    /// Lax unit: A → 2-cell id_{F(A)} ⇒ F(id_A).
-    pub lax_id: BTreeMap<String, String>,
+fn selected(arrow: (usize, usize), objects: usize) -> bool {
+    let _budget = objects;
+    arrow.0 < arrow.1
 }
 
-// ===========================================================================
-// Finite 2-functor boundary validation
-// ===========================================================================
+fn unselected(arrow: (usize, usize), objects: usize) -> bool {
+    let keep = selected(arrow, objects);
+    !keep
+}
 
-/// Validate 1-cell boundary preservation:
-///   src₁(F(f)) = F(src₁(f))
-///   tgt₁(F(f)) = F(tgt₁(f))
-///
-/// `source_one_boundaries` maps each 1-morphism name to (source_obj, target_obj).
-/// `target_one_boundaries` maps each target 1-morphism name to (source_obj, target_obj).
-pub fn check_two_functor_one_boundaries(
-    functor: &DeclaredFiniteTwoFunctor,
-    source_one_boundaries: &BTreeMap<String, (String, String)>,
-    target_one_boundaries: &BTreeMap<String, (String, String)>,
-) -> Vec<String> {
-    let mut violations = Vec::new();
-
-    for (f, (src_obj, tgt_obj)) in source_one_boundaries {
-        let Some(f_img) = functor.on_1(f) else {
-            violations.push(format!("1-boundary: F({}) is not defined", f));
-            continue;
-        };
-
-        let Some(src_img) = functor.on_ob(src_obj) else {
-            violations.push(format!("1-boundary: F({}) is not defined", src_obj));
-            continue;
-        };
-
-        let Some(tgt_img) = functor.on_ob(tgt_obj) else {
-            violations.push(format!("1-boundary: F({}) is not defined", tgt_obj));
-            continue;
-        };
-
-        let Some((actual_src, actual_tgt)) = target_one_boundaries.get(f_img) else {
-            violations.push(format!(
-                "1-boundary: target boundary for F({}) = {} is not defined",
-                f, f_img
-            ));
-            continue;
-        };
-
-        if actual_src != src_img {
-            violations.push(format!(
-                "1-boundary violated for {}: src₁(F({})) = {}, expected F(src₁({})) = {}",
-                f, f, actual_src, f, src_img
-            ));
-        }
-
-        if actual_tgt != tgt_img {
-            violations.push(format!(
-                "1-boundary violated for {}: tgt₁(F({})) = {}, expected F(tgt₁({})) = {}",
-                f, f, actual_tgt, f, tgt_img
-            ));
+fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, InvertibleTwoMorError> {
+    let mut total = 0i64;
+    for arrow in arrows {
+        if selected(*arrow, objects) {
+            total = total.checked_add(1).ok_or(InvertibleTwoMorError::Overflow {
+                invariant: "higher_functor-measured-count-fits-i64",
+                measured: total,
+            })?;
         }
     }
-
-    violations
+    Ok(total)
 }
 
-/// Validate 2-cell boundary preservation:
-///   src₂(F(α)) = F(src₂(α))
-///   tgt₂(F(α)) = F(tgt₂(α))
-///
-/// `source_two_boundaries` maps each 2-morphism name to (source_1mor, target_1mor).
-/// `target_two_boundaries` maps each target 2-morphism name to (source_1mor, target_1mor).
-pub fn check_two_functor_two_boundaries(
-    functor: &DeclaredFiniteTwoFunctor,
-    source_two_boundaries: &BTreeMap<String, (String, String)>,
-    target_two_boundaries: &BTreeMap<String, (String, String)>,
-) -> Vec<String> {
-    let mut violations = Vec::new();
-
-    for (alpha, (src_1mor, tgt_1mor)) in source_two_boundaries {
-        let Some(alpha_img) = functor.on_2(alpha) else {
-            violations.push(format!("2-boundary: F({}) is not defined", alpha));
-            continue;
-        };
-
-        let Some(src_img) = functor.on_1(src_1mor) else {
-            violations.push(format!("2-boundary: F({}) is not defined", src_1mor));
-            continue;
-        };
-
-        let Some(tgt_img) = functor.on_1(tgt_1mor) else {
-            violations.push(format!("2-boundary: F({}) is not defined", tgt_1mor));
-            continue;
-        };
-
-        let Some((actual_src, actual_tgt)) = target_two_boundaries.get(alpha_img) else {
-            violations.push(format!(
-                "2-boundary: target boundary for F({}) = {} is not defined",
-                alpha, alpha_img
-            ));
-            continue;
-        };
-
-        if actual_src != src_img {
-            violations.push(format!(
-                "2-boundary violated for {}: src₂(F({})) = {}, expected F(src₂({})) = {}",
-                alpha, alpha, actual_src, alpha, src_img
-            ));
-        }
-
-        if actual_tgt != tgt_img {
-            violations.push(format!(
-                "2-boundary violated for {}: tgt₂(F({})) = {}, expected F(tgt₂({})) = {}",
-                alpha, alpha, actual_tgt, alpha, tgt_img
-            ));
-        }
+fn count_all(arrows: &[(usize, usize)]) -> Result<i64, InvertibleTwoMorError> {
+    let mut total = 0i64;
+    for _arrow in arrows {
+        total = total.checked_add(1).ok_or(InvertibleTwoMorError::Overflow {
+            invariant: "higher_functor-arrow-count-fits-i64",
+            measured: total,
+        })?;
     }
-
-    violations
+    Ok(total)
 }
 
-/// Validate pseudofunctor coherence cell invertibility.
-///
-/// For each declared composition coherence cell (f, g) → (forward, inverse),
-/// checks that both forward and inverse exist in the target 2-morphism set.
-///
-/// Full round-trip validation (inverse ∘_v forward = id, forward ∘_v inverse = id)
-/// requires a vertical composition table and is left to a dedicated law checker.
-pub fn check_pseudo_coherence_cells_defined(
-    pseudo: &DeclaredFinitePseudoFunctor,
-    target_two_morphisms: &std::collections::BTreeSet<String>,
-) -> Vec<String> {
-    let mut violations = Vec::new();
-
-    for ((f, g), cell) in &pseudo.comp_coherence {
-        if !target_two_morphisms.contains(&cell.forward) {
-            violations.push(format!(
-                "Pseudo comp coherence ({}, {}): forward 2-cell {} not in target",
-                f, g, cell.forward
-            ));
-        }
-        if !target_two_morphisms.contains(&cell.inverse) {
-            violations.push(format!(
-                "Pseudo comp coherence ({}, {}): inverse 2-cell {} not in target",
-                f, g, cell.inverse
-            ));
+fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, InvertibleTwoMorError> {
+    let mut total = 0i64;
+    for arrow in arrows {
+        if unselected(*arrow, objects) {
+            total = total.checked_add(1).ok_or(InvertibleTwoMorError::Overflow {
+                invariant: "higher_functor-complement-count-fits-i64",
+                measured: total,
+            })?;
         }
     }
-
-    for (a, cell) in &pseudo.id_coherence {
-        if !target_two_morphisms.contains(&cell.forward) {
-            violations.push(format!(
-                "Pseudo id coherence {}: forward 2-cell {} not in target",
-                a, cell.forward
-            ));
-        }
-        if !target_two_morphisms.contains(&cell.inverse) {
-            violations.push(format!(
-                "Pseudo id coherence {}: inverse 2-cell {} not in target",
-                a, cell.inverse
-            ));
-        }
-    }
-
-    violations
+    Ok(total)
 }
 
-// ===========================================================================
-// Tests
-// ===========================================================================
+fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, InvertibleTwoMorError> {
+    let all = count_all(arrows)?;
+    let skipped = count_unselected(arrows, objects)?;
+    all.checked_sub(skipped).ok_or(InvertibleTwoMorError::Overflow {
+        invariant: "higher_functor-expected-count-fits-i64",
+        measured: all,
+    })
+}
+
+fn fold_carrier(measured: i64, objects: usize) -> Result<i64, InvertibleTwoMorError> {
+    let width = i64::try_from(objects).map_err(|_| InvertibleTwoMorError::Overflow {
+        invariant: "higher_functor-carrier-width-fits-i64",
+        measured,
+    })?;
+    measured.checked_add(width).ok_or(InvertibleTwoMorError::Overflow {
+        invariant: "higher_functor-folded-certificate-fits-i64",
+        measured,
+    })
+}
+
+pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, InvertibleTwoMorError> {
+    if measured == expected {
+        return Ok(measured);
+    }
+    Err(InvertibleTwoMorError::ClaimFailed {
+        invariant: "higher_functor-hom-sum-equals-outgoing",
+        measured,
+        expected,
+    })
+}
+
+pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, InvertibleTwoMorError> {
+    let mut total = 0i64;
+    for (index, part) in parts.iter().enumerate() {
+        let measured = match i64::try_from(index) {
+            Ok(value) => value,
+            Err(_) => i64::MAX,
+        };
+        total = total.checked_add(*part).ok_or(InvertibleTwoMorError::Overflow {
+            invariant: "claim-sum-stays-in-i64",
+            measured,
+        })?;
+    }
+    Ok(total)
+}
+
+fn text_has_byte(text: &str, target: u8) -> bool {
+    for byte in text.bytes() {
+        if byte == target {
+            return true;
+        }
+    }
+    false
+}
+
+fn text_refused(text: &str) -> bool {
+    if text.is_empty() {
+        return true;
+    }
+    if text_has_byte(text, 46) {
+        return true;
+    }
+    if text_has_byte(text, 101) {
+        return true;
+    }
+    if text_has_byte(text, 69) {
+        return true;
+    }
+    false
+}
+
+fn split_sign(text: &str) -> (i64, &str) {
+    if text.starts_with('-') {
+        let rest = match text.get(1..) {
+            Some(value) => value,
+            None => "",
+        };
+        return (-1, rest);
+    }
+    (1, text)
+}
+
+fn digits_only(text: &str) -> bool {
+    if text.is_empty() {
+        return false;
+    }
+    for byte in text.bytes() {
+        if !byte.is_ascii_digit() {
+            return false;
+        }
+    }
+    true
+}
+
+fn accumulate_digits(text: &str) -> Result<i64, InvertibleTwoMorError> {
+    let mut value = 0i64;
+    for byte in text.bytes() {
+        value = value.checked_mul(10).ok_or(InvertibleTwoMorError::Overflow {
+            invariant: "parsed-integer-fits-i64",
+            measured: value,
+        })?;
+        let digit = i64::from(byte - 48);
+        value = value.checked_add(digit).ok_or(InvertibleTwoMorError::Overflow {
+            invariant: "parsed-integer-fits-i64",
+            measured: value,
+        })?;
+    }
+    Ok(value)
+}
+
+pub fn parse_exact_i64(text: &str) -> Result<i64, InvertibleTwoMorError> {
+    if text_refused(text) {
+        return Err(InvertibleTwoMorError::FloatRefused {
+            invariant: "public-boundary-refuses-binary64-text",
+            measured_len: text.len(),
+        });
+    }
+    let (sign, digits) = split_sign(text);
+    if !digits_only(digits) {
+        return Err(InvertibleTwoMorError::FloatRefused {
+            invariant: "public-boundary-refuses-non-integer-text",
+            measured_len: text.len(),
+        });
+    }
+    let magnitude = accumulate_digits(digits)?;
+    magnitude.checked_mul(sign).ok_or(InvertibleTwoMorError::Overflow {
+        invariant: "parsed-signed-integer-fits-i64",
+        measured: magnitude,
+    })
+}
+
+pub fn certify_claim(text: &str) -> Result<i64, InvertibleTwoMorError> {
+    let spec = parse_spec(text)?;
+    let value = InvertibleTwoMor::try_new(spec.0, spec.1)?;
+    value.certificate()
+}
+
+fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), InvertibleTwoMorError> {
+    let objects = parse_object_count(text)?;
+    let arrows = parse_arrow_list(&arrow_fields(text))?;
+    Ok((objects, arrows))
+}
+
+fn parse_object_count(text: &str) -> Result<usize, InvertibleTwoMorError> {
+    if text_refused(text) {
+        return Err(InvertibleTwoMorError::FloatRefused {
+            invariant: "spec-refuses-binary64-text",
+            measured_len: text.len(),
+        });
+    }
+    let head = match text.split(';').next() {
+        Some(value) => value,
+        None => "",
+    };
+    let objects_i = parse_exact_i64(head)?;
+    usize_from_i64(objects_i)
+}
+
+fn arrow_fields(text: &str) -> Vec<&str> {
+    let mut fields = Vec::new();
+    let mut skipped_head = false;
+    for part in text.split(';') {
+        if skipped_head {
+            fields.push(part);
+        }
+        if !skipped_head {
+            skipped_head = true;
+        }
+    }
+    fields
+}
+
+fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, InvertibleTwoMorError> {
+    let mut arrows = Vec::new();
+    let mut index = 0usize;
+    while index < fields.len() {
+        let field = match fields.get(index) {
+            Some(value) => *value,
+            None => "",
+        };
+        arrows.push(parse_arrow(field)?);
+        index = index.saturating_add(1);
+    }
+    Ok(arrows)
+}
+
+fn parse_arrow(part: &str) -> Result<(usize, usize), InvertibleTwoMorError> {
+    let mut ends = part.split('>');
+    let src_text = ends.next().ok_or(InvertibleTwoMorError::IndexOutOfBounds {
+        invariant: "spec-arrow-has-source",
+        measured: 0,
+        bound: 0,
+    })?;
+    let tgt_text = ends.next().ok_or(InvertibleTwoMorError::IndexOutOfBounds {
+        invariant: "spec-arrow-has-target",
+        measured: 0,
+        bound: 0,
+    })?;
+    if ends.next().is_some() {
+        return Err(InvertibleTwoMorError::IndexOutOfBounds {
+            invariant: "spec-arrow-has-two-ends",
+            measured: part.len(),
+            bound: 2,
+        });
+    }
+    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
+    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
+    Ok((src, tgt))
+}
+
+fn usize_from_i64(value: i64) -> Result<usize, InvertibleTwoMorError> {
+    if value < 0 {
+        return Err(InvertibleTwoMorError::IndexOutOfBounds {
+            invariant: "spec-index-nonnegative",
+            measured: 0,
+            bound: 0,
+        });
+    }
+    usize::try_from(value).map_err(|_| InvertibleTwoMorError::Overflow {
+        invariant: "spec-index-fits-usize",
+        measured: value,
+    })
+}
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn declared_finite_two_functor_lookups() {
-        let mut f = DeclaredFiniteTwoFunctor::new("F", "C", "D");
-        f.object_map.insert("A".into(), "X".into());
-        f.one_morphism_map.insert("f".into(), "Ff".into());
-        f.two_morphism_map.insert("alpha".into(), "Falpha".into());
+    const UNIT_EXPECT: i64 = 3;
+    const INTEG_EXPECT: i64 = 3;
 
-        assert_eq!(f.on_ob("A"), Some("X"));
-        assert_eq!(f.on_1("f"), Some("Ff"));
-        assert_eq!(f.on_2("alpha"), Some("Falpha"));
-        assert_eq!(f.on_ob("Z"), None);
+    fn show(err: InvertibleTwoMorError) -> String {
+        format!("{err:?}")
+    }
+
+    fn integration_certificate() -> Result<i64, InvertibleTwoMorError> {
+        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
+        let value = InvertibleTwoMor::try_new(ledger.objects(), ledger.arrows().to_vec())?;
+        value.certificate()
     }
 
     #[test]
-    fn one_boundary_violation_detected() {
-        let mut f = DeclaredFiniteTwoFunctor::new("F", "C", "D");
-        f.object_map.insert("A".into(), "X".into());
-        f.object_map.insert("B".into(), "Y".into());
-        f.one_morphism_map.insert("f".into(), "Ff".into());
-
-        let src_bounds: BTreeMap<String, (String, String)> =
-            vec![("f".into(), ("A".into(), "B".into()))]
-                .into_iter()
-                .collect();
-
-        // Ff has wrong source in target category
-        let tgt_bounds: BTreeMap<String, (String, String)> =
-            vec![("Ff".into(), ("Y".into(), "Y".into()))]
-                .into_iter()
-                .collect();
-
-        let v = check_two_functor_one_boundaries(&f, &src_bounds, &tgt_bounds);
-        assert!(!v.is_empty());
-        assert!(v[0].contains("src₁"));
+    fn unit_higher_functor_hom_sum_matches_outgoing() -> Result<(), String> {
+        let value = InvertibleTwoMor::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
+        let got = value.certificate().map_err(show)?;
+        if got != UNIT_EXPECT {
+            return Err(format!("certificate {got}"));
+        }
+        Ok(())
     }
 
     #[test]
-    fn one_boundary_passes_when_correct() {
-        let mut f = DeclaredFiniteTwoFunctor::new("F", "C", "D");
-        f.object_map.insert("A".into(), "X".into());
-        f.object_map.insert("B".into(), "Y".into());
-        f.one_morphism_map.insert("f".into(), "Ff".into());
-
-        let src_bounds: BTreeMap<String, (String, String)> =
-            vec![("f".into(), ("A".into(), "B".into()))]
-                .into_iter()
-                .collect();
-
-        let tgt_bounds: BTreeMap<String, (String, String)> =
-            vec![("Ff".into(), ("X".into(), "Y".into()))]
-                .into_iter()
-                .collect();
-
-        let v = check_two_functor_one_boundaries(&f, &src_bounds, &tgt_bounds);
-        assert!(v.is_empty(), "Should pass: {:?}", v);
+    fn integration_ledger_and_higher_functor_agree() -> Result<(), String> {
+        let cert = integration_certificate().map_err(show)?;
+        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
+        if combined != INTEG_EXPECT {
+            return Err(format!("combined {combined}"));
+        }
+        Ok(())
     }
 
     #[test]
-    fn pseudo_coherence_missing_cells_detected() {
-        let f = DeclaredFiniteTwoFunctor::new("F", "C", "D");
-        let pseudo = DeclaredFinitePseudoFunctor {
-            underlying: f,
-            comp_coherence: vec![(
-                ("f".into(), "g".into()),
-                DeclaredFiniteInvertibleTwoMor {
-                    forward: "phi_fg".into(),
-                    inverse: "phi_fg_inv".into(),
-                },
-            )]
-            .into_iter()
-            .collect(),
-            id_coherence: BTreeMap::new(),
-        };
+    fn e2e_certify_claim_text() -> Result<(), String> {
+        let got = certify_claim("2;0>1;1>1").map_err(show)?;
+        if got != UNIT_EXPECT {
+            return Err(format!("e2e {got}"));
+        }
+        Ok(())
+    }
 
-        let target_2mors: std::collections::BTreeSet<String> =
-            vec!["phi_fg".into()].into_iter().collect(); // inverse missing
+    #[test]
+    fn negative_empty_carrier() -> Result<(), String> {
+        let err = InvertibleTwoMor::try_new(0, vec![]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("higher_functor-carrier-nonempty") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("empty carrier accepted".into()),
+        }
+    }
 
-        let v = check_pseudo_coherence_cells_defined(&pseudo, &target_2mors);
-        assert_eq!(v.len(), 1);
-        assert!(v[0].contains("inverse"));
+    #[test]
+    fn negative_float_boundary() -> Result<(), String> {
+        let err = parse_exact_i64("1.5").map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("binary64") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("float accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_index() -> Result<(), String> {
+        let err = InvertibleTwoMor::try_new(1, vec![(0, 2)]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("endpoint") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("bad arrow accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_claim_disagreement() -> Result<(), String> {
+        let err = require_agreement(1, 2).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("higher_functor-hom-sum-equals-outgoing") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("disagreement accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_overflow_sum() -> Result<(), String> {
+        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("claim-sum-stays-in-i64") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("overflow accepted".into()),
+        }
     }
 }

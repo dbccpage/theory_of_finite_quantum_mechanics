@@ -1,34 +1,17 @@
-//! Local-Green / Global-Red (LGGR) **diagnostic** witness on GF(2) schedules.
-//!
-//! LGGR shape (CODE_DEMO):
-//! - **Local green:** \(d_1 \omega = 0 \pmod 2\) (syndrome / face residual vanishes).
-//! - **Global red:** schedule class is `ClosedResidual` (closed but not Exact).
-//!
-//! This is evaluator incompleteness of the coboundary layer, **not** GlobalGreen
-//! authority and **not** FOC StabilizedSurvivor.
-//!
-//! AuthorityEffect: None on every witness receipt field.
 
 use crate::gf2_terminalizer::{
     GF2Matrix, GF2ScheduleStatus, Gf2CocycleClassifier, Gf2ScheduleReceipt,
 };
 
-/// LGGR diagnostic witness. Never mints authority.
 #[derive(Debug, Clone)]
 pub struct LggrWitness {
-    /// \(d_1 \omega = 0 \pmod 2\).
     pub local_green: bool,
-    /// Status is exactly `ClosedResidual` (not Exact, not Open).
     pub global_red: bool,
-    /// Full LGGR: local green AND global red.
     pub is_lggr: bool,
-    /// Face / higher residual of \(\omega\) (the local syndrome vector).
     pub d1_omega: Vec<u8>,
-    /// Underlying schedule receipt (authority_effect always `"None"`).
     pub certificate: Gf2ScheduleReceipt,
 }
 
-/// Compute \(d_1 \omega \pmod 2\).
 pub fn apply_d1(d1: &GF2Matrix, omega: &[u8]) -> Result<Vec<u8>, String> {
     if omega.len() != d1.cols {
         return Err(format!(
@@ -48,9 +31,6 @@ pub fn apply_d1(d1: &GF2Matrix, omega: &[u8]) -> Result<Vec<u8>, String> {
     Ok(out)
 }
 
-/// Detect LGGR on a declared complex and residual 1-cochain.
-///
-/// Requires a valid boundary (\(d_1 d_0 = 0\)); refuses otherwise via `terminalize`.
 pub fn detect_lggr(d0: &GF2Matrix, d1: &GF2Matrix, omega: &[u8]) -> Result<LggrWitness, String> {
     let certificate = Gf2CocycleClassifier::classify(d0, d1, omega)?;
     let d1_omega = apply_d1(d1, omega)?;
@@ -88,7 +68,6 @@ mod tests {
 
     #[test]
     fn exact_syndrome_is_not_lggr() {
-        // Kills: setting is_lggr from local_green alone, so every coboundary counts as LGGR.
         let c = triangle();
         let w = detect_lggr(&c.d0, &c.d1, &exact_syndrome_example()).unwrap();
         assert!(w.local_green);
@@ -100,7 +79,6 @@ mod tests {
 
     #[test]
     fn open_obstruction_is_not_lggr() {
-        // Kills: treating every non-Exact class as LGGR, or ignoring a nonzero face syndrome.
         let c = triangle();
         let w = detect_lggr(&c.d0, &c.d1, &open_syndrome_example()).unwrap();
         assert_eq!(w.d1_omega, vec![1]);
@@ -112,7 +90,6 @@ mod tests {
 
     #[test]
     fn length_mismatch_returns_err() {
-        // Kills: skipping the length check and returning Ok on a short residual.
         let c = triangle();
         let err = detect_lggr(&c.d0, &c.d1, &[1, 0]).unwrap_err();
         assert!(
@@ -128,7 +105,6 @@ mod tests {
 
     #[test]
     fn non_complex_is_refused() {
-        // Kills: classifying a pair with d1*d0 != 0 instead of refusing it.
         let c = triangle();
         let bad_d1 = GF2Matrix::from_data(vec![vec![1, 0, 0]]);
         let mut prod = vec![0u8; c.d0.cols];

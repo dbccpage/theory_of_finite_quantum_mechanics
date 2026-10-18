@@ -94,10 +94,9 @@ class RecoveryTarget(str, Enum):
     T15 = "T15"
     T16 = "T16"
     T17 = "T17"
-    T_HERM = "T_HERM"  # provisional B5 herm dynamics path
+    T_HERM = "T_HERM"
 
 
-# Sealed freeze pathway card T01–T17 (T_HERM provisional, not counted).
 REQUIRED_TARGETS = tuple(t for t in RecoveryTarget if t is not RecoveryTarget.T_HERM)
 OPTIONAL_HERM_TARGET = RecoveryTarget.T_HERM
 
@@ -129,7 +128,6 @@ DROP_LIFT = replace(FULL_OPS, lift_present=False)
 DROP_WAVE7 = replace(FULL_OPS, wave7_ops_present=False)
 DROP_HERM = replace(FULL_OPS, has_herm_import=False)
 
-# (dropped package, target that must lose cover)
 FULL_OPS_DROP_WITNESSES = (
     (DROP_FINL1, RecoveryTarget.T01),
     (DROP_SURPLUS, RecoveryTarget.T06),
@@ -194,7 +192,6 @@ def test_every_b4_slot_minimal():
     for s in WORKING_BASIS:
         assert FULL_B4.admits(s)
         assert not DROP_MAP[s].admits(s)
-        # other slots remain under drop-one
         for other in WORKING_BASIS:
             if other is not s:
                 assert DROP_MAP[s].admits(other)
@@ -224,14 +221,12 @@ def test_full_ops_covers_all_targets():
     assert len(REQUIRED_TARGETS) == 17
     for t in REQUIRED_TARGETS:
         assert full_ops_pathway(FULL_OPS, t)
-    # provisional herm path also covered when hasHermImport present
     assert full_ops_pathway(FULL_OPS, OPTIONAL_HERM_TARGET)
 
 
 def test_every_full_ops_flag_pathway_minimal():
     for pkg, t in FULL_OPS_DROP_WITNESSES:
         assert not full_ops_pathway(pkg, t)
-    # full still covers those same targets
     for _, t in FULL_OPS_DROP_WITNESSES:
         assert full_ops_pathway(FULL_OPS, t)
 
@@ -253,7 +248,6 @@ def test_drop_b4_loses_t12_t16_keeps_extended():
 def test_drop_herm_loses_t_herm():
     assert full_ops_pathway(FULL_OPS, RecoveryTarget.T_HERM)
     assert not full_ops_pathway(DROP_HERM, RecoveryTarget.T_HERM)
-    # sealed T12/T16 pathway rows stay covered under drop-herm
     assert full_ops_pathway(DROP_HERM, RecoveryTarget.T12)
     assert full_ops_pathway(DROP_HERM, RecoveryTarget.T16)
     assert full_ops_pathway(DROP_HERM, RecoveryTarget.T01)
@@ -268,9 +262,7 @@ FULL_OPS_FLAG_CARD = 10
 
 
 def test_full_ops_flag_card():
-    # 10 named flags of FullOpsPackage (9 + hasHermImport)
     assert FULL_OPS_FLAG_CARD == 10
-    # dataclass field count matches
     assert len(FULL_OPS.__dataclass_fields__) == 10
 
 

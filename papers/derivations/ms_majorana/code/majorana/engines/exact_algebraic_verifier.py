@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 from fractions import Fraction
 from typing import Any, Sequence, Union
@@ -200,13 +199,13 @@ def verify_ising_sigma_hexagon_specialization() -> bool:
       R^(psi sigma)_sigma = -i = -zeta^4
     """
     r_ss = [
-        Cyclotomic16([0, 0, 0, 0, 0, 0, 0, -1]),  
-        Cyclotomic16([0, 0, 0, 1, 0, 0, 0, 0])   
+        Cyclotomic16([0, 0, 0, 0, 0, 0, 0, -1]),
+        Cyclotomic16([0, 0, 0, 1, 0, 0, 0, 0])
     ]
 
     r_gs = [
-        ONE,                                      
-        Cyclotomic16([0, 0, 0, 0, -1, 0, 0, 0])  
+        ONE,
+        Cyclotomic16([0, 0, 0, 0, -1, 0, 0, 0])
     ]
 
     f_val = ONE_OVER_SQRT2

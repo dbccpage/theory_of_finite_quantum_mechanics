@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 
 import json
@@ -14,8 +13,8 @@ from omega_engine.crates.majorana.engines.exact_algebraic_verifier import (
 WARNING_LABEL = """======================================================================
                    EXPERIMENTAL ALGEBRAIC SEED WARNING
 ======================================================================
-This module executes exact rational cyclotomic field Q(zeta_16) 
-calculations to verify algebraic relations (associativity, braid 
+This module executes exact rational cyclotomic field Q(zeta_16)
+calculations to verify algebraic relations (associativity, braid
 relations, and hexagon equations) in a discrete mathematical model.
 
 This software does NOT claim:
@@ -24,8 +23,8 @@ This software does NOT claim:
   - Compatibility with physical intermediate-scale quantum devices
   - Room-temperature topological operation or quantum speedup
 
-All results represent purely algebraic consistency validations in a 
-simulated discrete space and do not constitute empirical evidence of 
+All results represent purely algebraic consistency validations in a
+simulated discrete space and do not constitute empirical evidence of
 physical anyon dynamics.
 ======================================================================"""
 

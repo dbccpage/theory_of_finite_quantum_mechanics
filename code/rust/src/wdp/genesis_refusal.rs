@@ -1,7 +1,3 @@
-//! Genesis refusal comparison and the separate 64-description constitution.
-//! These are distinct source models, not extra toggles of PassageState.
-//! Original `Refusal.stepR` is the projection forgetting forms/instances of the
-//! richer Python comparison. Meta markers live in the history only.
 
 use crate::genesis_passage::{separated, separates, Column, Pair};
 use serde::{Deserialize, Serialize};
@@ -98,8 +94,6 @@ impl Constitution {
         cert_refusal: true,
     };
 
-    /// Original Lean `allDescs` order: first field slowest, last fastest.
-    /// This is NOT the educational `Desc.to_index` (first field least bit).
     pub fn from_lean_index(index: usize) -> Result<Self, RefusalError> {
         if index >= 64 {
             return Err(RefusalError::InvalidDescription);
@@ -199,8 +193,6 @@ impl RepresentedWorld {
             })
     }
 
-    /// Exhausts the declared SAME-LEVEL response menu. Budget/license do not
-    /// enter this predicate; absence of fuel is not a proof of no repair.
     pub fn obstructed(&self, r: Pair) -> bool {
         self.violated(r)
             && self.views.iter().all(|v| {

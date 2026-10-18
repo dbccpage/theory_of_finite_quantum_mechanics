@@ -56,8 +56,6 @@ def line_value(body: str, label: str) -> Optional[str]:
 def scoped_focus(value: Optional[str]) -> Optional[str]:
     if value is None:
         return None
-    # Keep the source pointer and mathematical topic; avoid forwarding an
-    # unsupported outcome verb from the source as an achieved result.
     value = re.sub(r"\b[Pp]roof that\b", "proposed task to establish whether", value)
     value = re.sub(r"\b[Pp]roof of\b", "proposed derivation of", value)
     value = re.sub(r"\bguaran" + r"tees\b", "was proposed as sufficient for", value, flags=re.IGNORECASE)

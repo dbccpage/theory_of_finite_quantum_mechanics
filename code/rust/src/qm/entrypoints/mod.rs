@@ -1,4 +1,3 @@
-//! Entrypoint suites and verification routines.
 
 pub mod consolidate;
 pub mod embeddings;
@@ -8,8 +7,6 @@ pub mod review_estate;
 pub mod score_block;
 pub mod verify_exec;
 
-/// Walk the declared entrypoints. Each one must return `Ok` from its own check,
-/// and the name list must be a set whose index mass is `n(n+1)/2`.
 pub fn entrypoints_hold() -> Result<(), String> {
     const NAMES: &[&str] = &[
         "consolidate",

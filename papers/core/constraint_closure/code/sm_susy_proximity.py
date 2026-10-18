@@ -13,7 +13,6 @@ import sys
 import os
 import numpy as np
 
-# Re-export from the pre-existing stdlib l1_sm_susy_proximity module for full parity
 sys.path.insert(0, os.path.dirname(__file__))
 import l1_sm_susy_proximity as l1_prox
 

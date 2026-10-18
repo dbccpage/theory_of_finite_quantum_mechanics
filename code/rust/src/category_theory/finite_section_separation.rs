@@ -1,25 +1,3 @@
-//! Separation of finite section records with declared domains, and the
-//! quotient identity of an exact rational pseudometric.
-//!
-//! AuthorityEffect: None.
-//!
-//! A section record is `(id, D, v)` with a unique identity, an explicit finite
-//! coordinate set `D` and a total table `v: D -> Q`. Equal list lengths do not
-//! identify coordinate sets: records are compared only on a declared common
-//! domain, and a record on another domain is refused as incomparable.
-//!
-//! For an admitted finite pseudometric `d` on record identities and an
-//! admitted equivalence `E`, with `Z = {(s,t) : d(s,t) = 0}`:
-//!
-//! * the inherited distance on `S/E` is well defined exactly when `E ⊆ Z`
-//!   (otherwise `IdentificationNotZero`);
-//! * it separates classes exactly when `E = Z` (otherwise `ZeroCollision`);
-//! * with at least two classes, `Δ = min{d(s,t) : not E(s,t)}` is positive and
-//!   attained (otherwise `NoDistinctClasses` for one class).
-//!
-//! An ε-decoder bounds every report fiber by `2ε`; with `2ε < Δ` the
-//! class-valued query factors through the report, decided by the DP-1 owner
-//! [`crate::finite_report_query`]. All arithmetic is exact (`BigRational`).
 
 use crate::finite_report_query::{
     FactorizationCertificate, ReportQueryDecision, ReportQueryProblem, ReportQueryRefusal,
@@ -29,11 +7,8 @@ use num_traits::{Signed, Zero};
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt;
 
-/// Upper bound on the number of points admitted to a pseudometric. The
-/// triangle check is cubic; larger inputs are refused, never answered.
 pub const MAX_PSEUDOMETRIC_POINTS: usize = 512;
 
-/// Which pseudometric law failed, with the points that witness it.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PseudometricLaw<I> {
     Negative { left: I, right: I },
@@ -42,7 +17,6 @@ pub enum PseudometricLaw<I> {
     Triangle { left: I, middle: I, right: I },
 }
 
-/// Which equivalence law failed, with the witness.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum EquivalenceLaw<I> {
     UnknownPoint { point: I },
@@ -53,7 +27,6 @@ pub enum EquivalenceLaw<I> {
     UncoveredPoint { point: I },
 }
 
-/// Typed refusals. None of them is a separation verdict.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SeparationRefusal<I, P> {
     DuplicateSectionIdentity { id: I },
@@ -86,7 +59,6 @@ impl<I: fmt::Debug, P: fmt::Debug> fmt::Display for SeparationRefusal<I, P> {
 
 impl<I: fmt::Debug, P: fmt::Debug> std::error::Error for SeparationRefusal<I, P> {}
 
-/// A section record with an explicit coordinate set and a total value table.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SectionRecord<I, P> {
     id: I,
@@ -98,8 +70,6 @@ where
     I: Ord + Clone + fmt::Debug,
     P: Ord + Clone + fmt::Debug,
 {
-    /// Admits a record: `domain` enumerates `D` without repeats and `rows`
-    /// is exactly one value for every coordinate of `D`.
     pub fn new(
         id: I,
         domain: &[P],
@@ -151,9 +121,6 @@ where
     }
 }
 
-/// An admitted finite pseudometric: a complete exact rational table on all
-/// ordered pairs that passed nonnegativity, zero diagonal, symmetry and the
-/// triangle inequality.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FinitePseudometric<I> {
     points: BTreeSet<I>,
@@ -164,7 +131,6 @@ impl<I> FinitePseudometric<I>
 where
     I: Ord + Clone + fmt::Debug,
 {
-    /// Admits a complete ordered-pair table.
     pub fn new<P>(
         points: &[I],
         rows: &[((I, I), BigRational)],
@@ -220,7 +186,6 @@ where
             .unwrap_or_else(BigRational::zero)
     }
 
-    /// Re-checks every pseudometric law on the stored table.
     pub fn check_laws(&self) -> Result<(), PseudometricLaw<I>> {
         for l in &self.points {
             if !self.get(l, l).is_zero() {
@@ -263,12 +228,10 @@ where
         &self.points
     }
 
-    /// The distance between two admitted points, `None` for an unknown point.
     pub fn distance(&self, l: &I, r: &I) -> Option<&BigRational> {
         self.distance.get(&(l.clone(), r.clone()))
     }
 
-    /// Restriction to a subset of the points (a pseudometric again).
     pub fn restrict<P>(&self, subset: &BTreeSet<I>) -> Result<Self, SeparationRefusal<I, P>> {
         if let Some(p) = subset.iter().find(|p| !self.points.contains(*p)) {
             return Err(SeparationRefusal::UnknownPoint { point: p.clone() });
@@ -286,11 +249,6 @@ where
     }
 }
 
-/// The weighted coordinate pseudometric `d(s,t) = Σ_x w_x |v_s(x) − v_t(x)|`
-/// on a declared common domain. Every record must have exactly that domain
-/// (else `IncomparableDomains`); weights must be total on it and
-/// nonnegative (zero weights admit a pseudometric that does not separate
-/// functions); at least two records are required (else `NoComparablePairs`).
 pub fn weighted_coordinate_pseudometric<I, P>(
     records: &[SectionRecord<I, P>],
     common_domain: &[P],
@@ -352,7 +310,6 @@ where
     FinitePseudometric::new(&ids, &rows)
 }
 
-/// An admitted equivalence relation on a declared finite point set.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteEquivalence<I> {
     points: BTreeSet<I>,
@@ -363,8 +320,6 @@ impl<I> FiniteEquivalence<I>
 where
     I: Ord + Clone + fmt::Debug,
 {
-    /// Admits an explicit relation. It is never closed silently: missing
-    /// reflexive, symmetric or transitive pairs are refused with a witness.
     pub fn from_pairs<P>(
         points: &[I],
         pairs: &[(I, I)],
@@ -394,7 +349,6 @@ where
         Ok(e)
     }
 
-    /// Admits a partition: classes must be disjoint and cover the points.
     pub fn from_classes<P>(
         points: &[I],
         classes: &[Vec<I>],
@@ -427,7 +381,6 @@ where
         Self::from_pairs(points, &pairs)
     }
 
-    /// Re-checks reflexivity, symmetry and transitivity.
     pub fn check_laws(&self) -> Result<(), EquivalenceLaw<I>> {
         for p in &self.points {
             if !self.related(p, p) {
@@ -464,7 +417,6 @@ where
         &self.points
     }
 
-    /// The classes, each as an ordered set, ordered by least element.
     pub fn classes(&self) -> Vec<BTreeSet<I>> {
         let mut out: Vec<BTreeSet<I>> = Vec::new();
         let mut done = BTreeSet::new();
@@ -484,12 +436,10 @@ where
         out
     }
 
-    /// The least element of the class of `p`, if `p` is a point.
     pub fn class_representative(&self, p: &I) -> Option<I> {
         self.points.iter().find(|q| self.related(p, q)).cloned()
     }
 
-    /// Restriction to a subset (an equivalence again).
     pub fn restrict<P>(&self, subset: &BTreeSet<I>) -> Result<Self, SeparationRefusal<I, P>> {
         if let Some(p) = subset.iter().find(|p| !self.points.contains(*p)) {
             return Err(SeparationRefusal::UnknownPoint { point: p.clone() });
@@ -506,12 +456,9 @@ where
     }
 }
 
-/// The two separation verdicts on admitted input.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SeparationOutcome<I> {
-    /// `E ⊆ Z` holds, but `(left, right)` is at distance zero and not equivalent.
     ZeroCollision { left: I, right: I },
-    /// `E = Z`, at least two classes, gap `Δ > 0` attained at `attaining_pair`.
     Separated {
         classes: Vec<BTreeSet<I>>,
         pair_distances: BTreeMap<(I, I), BigRational>,
@@ -520,7 +467,6 @@ pub enum SeparationOutcome<I> {
     },
 }
 
-/// Decides separation of `S/E` under `d` over the complete pair set.
 pub fn decide_separation<I, P>(
     metric: &FinitePseudometric<I>,
     equivalence: &FiniteEquivalence<I>,
@@ -534,7 +480,6 @@ where
     if metric.points.len() < 2 {
         return Err(SeparationRefusal::NoComparablePairs);
     }
-    // E ⊆ Z, on every pair including the diagonal.
     for ((l, r), d) in &metric.distance {
         if equivalence.related(l, r) && !d.is_zero() {
             return Err(SeparationRefusal::IdentificationNotZero {
@@ -544,7 +489,6 @@ where
             });
         }
     }
-    // Z ⊆ E.
     for ((l, r), d) in &metric.distance {
         if l < r && d.is_zero() && !equivalence.related(l, r) {
             return Ok(SeparationOutcome::ZeroCollision {
@@ -586,7 +530,6 @@ where
     })
 }
 
-/// Why a separation verdict failed replay.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SeparationReplayFailure {
     VerdictDiffers,
@@ -601,8 +544,6 @@ pub enum SeparationReplayFailure {
     CollisionPointUnknown,
 }
 
-/// Replays a separation verdict against the admitted inputs without trusting
-/// the producer: each field is recomputed or checked against the table.
 pub fn verify_separation<I>(
     metric: &FinitePseudometric<I>,
     equivalence: &FiniteEquivalence<I>,
@@ -667,25 +608,14 @@ where
     }
 }
 
-/// Result of the ε-decoder threshold argument.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ClassFactorization<X, A, I> {
-    /// Largest output distance inside one report fiber (at most `2ε`).
     pub fiber_diameter: BigRational,
     pub twice_epsilon: BigRational,
     pub gap: BigRational,
-    /// DP-1 certificate for the class-valued query `x ↦ [q(x)]`, classes
-    /// named by their least element.
     pub certificate: FactorizationCertificate<X, A, I>,
 }
 
-/// The ε-decoder argument (S5–S6). `ambient` is an admitted pseudometric on
-/// output points with equivalence `equivalence`; `report_rows` and
-/// `query_rows` are total tables on `source`; `decoder_rows` is a total table
-/// on the realized report image into `ambient`. Checks `ε ≥ 0` and
-/// `d(q(x), D(p(x))) ≤ ε` for every `x`, computes the fiber diameter, decides
-/// separation on the family of outputs `q(X)`, requires `2ε < Δ`, and then
-/// decides the class-valued query with the DP-1 owner.
 #[allow(clippy::too_many_arguments)]
 pub fn epsilon_decoder_class_factorization<X, A, I>(
     ambient: &FinitePseudometric<I>,

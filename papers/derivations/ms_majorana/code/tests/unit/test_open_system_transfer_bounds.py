@@ -33,7 +33,6 @@ def test_non_adiabatic_fast_braiding_scaling():
     defect_fast = model.evaluate_defect(0.5)
     defect_moderate = model.evaluate_defect(5.0)
 
-    # Fast braiding causes higher leakage than moderate adiabatic braiding
     assert defect_fast > defect_moderate
     assert defect_fast >= 0.5
 
@@ -41,7 +40,6 @@ def test_non_adiabatic_fast_braiding_scaling():
 def test_quasiparticle_poisoning_slow_braiding_scaling():
     """Verifies that quasiparticle poisoning leakage grows with braiding duration T."""
     model = OpenSystemMajoranaBraidModel(delta=1.0, gamma_qp=0.05, length_over_xi=20.0)
-    # Beyond the optimal time, longer duration leads to more poisoning
     defect_sweet = model.evaluate_defect(3.0)
     defect_long = model.evaluate_defect(30.0)
 
@@ -59,7 +57,6 @@ def test_pareto_optimal_sweet_spot_and_positive_infimum():
     assert 0.5 < t_opt < 50.0
     assert min_def > 0.0
 
-    # Numerical verification that defect at T* is lower than at small or large extremes
     defect_opt = model.evaluate_defect(t_opt)
     defect_small = model.evaluate_defect(0.5)
     defect_large = model.evaluate_defect(50.0)
@@ -106,9 +103,6 @@ def test_transfer_bound_receipt_emission():
     assert receipt.minimum_defect > 0.0
 
 
-# ============================================================================
-# Non-Markovian Bosonic Bath Tests (Claim MAJ-C19)
-# ============================================================================
 
 def test_non_markovian_scaling_exponents_sub_vs_super_ohmic():
     """
@@ -131,7 +125,6 @@ def test_non_markovian_scaling_exponents_sub_vs_super_ohmic():
     assert abs(super_model.effective_power_p() - 3.0) < 1e-10
     assert abs(super_model.scaling_exponent_beta() - 0.40) < 1e-10
 
-    # The exponent is strictly altered across bath spectra
     assert sub_model.scaling_exponent_beta() < ohm_model.scaling_exponent_beta()
     assert super_model.scaling_exponent_beta() < ohm_model.scaling_exponent_beta()
 
@@ -163,7 +156,6 @@ def test_non_markovian_positive_infimum_across_all_spectra():
         assert t_opt > 0.0
         assert not math.isinf(t_opt)
         assert min_def > 0.0
-        # Check that defect at optimal time is lower than at short duration
         d_opt = model.evaluate_defect(t_opt)
         d_fast = model.evaluate_defect(0.01 * t_opt)
         assert d_opt < d_fast
@@ -191,7 +183,6 @@ def test_non_markovian_boundary_and_edge_cases():
     assert model.spectral_density(-1.0) == 0.0
     assert math.isinf(model.evaluate_defect(0.0))
 
-    # Zero-coupling idealized limit
     model_zero = NonMarkovianBosonicBathModel(spectral_index=1.0, coupling_alpha=0.0, c_lz=0.0)
     t_inf, def_zero = model_zero.optimal_braid_time()
     assert math.isinf(t_inf)
@@ -204,7 +195,6 @@ def test_multiterminal_cross_junction_transfer_bounds_and_disorder():
     electrostatic disorder. Demonstrates gap degradation, positive minimum defect,
     and topological phase collapse at critical disorder.
     """
-    # Clean 4-terminal cross-junction
     model_clean = ContinuumCrossJunctionFemModel(
         num_terminals=4,
         arm_lengths=[6.0, 6.0, 6.0, 6.0],
@@ -221,7 +211,6 @@ def test_multiterminal_cross_junction_transfer_bounds_and_disorder():
     assert rcpt_clean.status == "TRANSFER_OBSTRUCTED_MULTITERMINAL"
     assert rcpt_clean.minimum_defect > 0.0
 
-    # Disordered 4-terminal cross-junction
     model_disordered = ContinuumCrossJunctionFemModel(
         num_terminals=4,
         arm_lengths=[6.0, 6.0, 6.0, 6.0],
@@ -231,12 +220,10 @@ def test_multiterminal_cross_junction_transfer_bounds_and_disorder():
     )
     rcpt_disordered = model_disordered.audit_transfer()
 
-    # Gap decreases with disorder: Delta_eff(0.4) = 1.0 * (1 - 0.4/0.8) = 0.5
     assert abs(rcpt_disordered.effective_gap_delta_eff - 0.5) < 1e-10
     assert rcpt_disordered.minimum_defect > rcpt_clean.minimum_defect
     assert rcpt_disordered.total_crosstalk_rate > rcpt_clean.total_crosstalk_rate
 
-    # Critical disorder collapse: sigma_V = 0.85 >= 0.8
     model_collapsed = ContinuumCrossJunctionFemModel(
         num_terminals=4,
         disorder_strength=0.85,
@@ -252,14 +239,11 @@ def test_multiterminal_cross_junction_transfer_bounds_and_disorder():
 
 def test_multiterminal_crosstalk_channels_and_arm_lengths():
     """Verifies that terminal scaling M*(M-1)/2 and arm lengths govern cross-talk rates."""
-    # 4 terminals: 6 channels
     model_4 = ContinuumCrossJunctionFemModel(num_terminals=4, arm_lengths=[5.0] * 4)
-    # 6 terminals: 15 channels
     model_6 = ContinuumCrossJunctionFemModel(num_terminals=6, arm_lengths=[5.0] * 6)
 
     assert model_6.total_crosstalk_rate() > model_4.total_crosstalk_rate()
 
-    # Long vs short arms
     model_short = ContinuumCrossJunctionFemModel(num_terminals=4, arm_lengths=[3.0] * 4)
     model_long = ContinuumCrossJunctionFemModel(num_terminals=4, arm_lengths=[8.0] * 4)
     assert model_short.total_crosstalk_rate() > model_long.total_crosstalk_rate()
@@ -276,7 +260,6 @@ def test_multiterminal_validation_and_edge_cases():
     model = ContinuumCrossJunctionFemModel(num_terminals=4)
     assert math.isinf(model.evaluate_defect(0.0))
 
-    # Zero rate idealized limit
     model_ideal = ContinuumCrossJunctionFemModel(
         num_terminals=4,
         arm_lengths=[50.0] * 4,

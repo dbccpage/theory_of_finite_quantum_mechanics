@@ -1,4 +1,3 @@
-// AuthorityEffect: None.
 use num_rational::BigRational;
 use num_traits::Zero;
 use serde_json::json;
@@ -8,12 +7,6 @@ use crate::coda::types::{LayerExecutionRecord, LayerId, ProblemInstance};
 pub struct Layer6A;
 
 impl Layer6A {
-    /// Evaluates Layer 6: Anomalon (The Anomalon as a Typed Leftover).
-    ///
-    /// Classifies residuals:
-    /// - Phi_1 > 0, Gamma_2 == 0: Coherent residual (Anomalon), retained in cokernel V / im(C).
-    /// - Phi_1 > 0, Gamma_2 > 0: Incoherent residue (violates cocycle condition).
-    /// - Phi_1 == 0: Vanishing residue (no leftover class).
     pub fn evaluate(
         _problem: &ProblemInstance,
         phi1: &BigRational,

@@ -62,12 +62,9 @@ def simplicial_bianchi_boundary_flux(
       (b) Abelian or linearized gauge models (F = dA), or
       (c) Topological coboundary test fixtures.
     """
-    # The coboundary operator d_{hinge_dim} applied to the deficit cochain:
-    # d_k = (partial_{k+1})^T
     b_next = complex_.boundary_matrix(hinge_dim + 1)
     if b_next.shape[1] == 0:
         return 0.0
-    # Boundary flux across all (hinge_dim + 1)-cells
     fluxes = b_next.T @ deficit_cochain
     return float(np.linalg.norm(fluxes, ord=1))
 

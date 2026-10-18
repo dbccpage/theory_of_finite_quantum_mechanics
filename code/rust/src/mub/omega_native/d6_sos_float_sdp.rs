@@ -1,9 +1,3 @@
-//! Stage B (float SDP diagnostic) for the d=6 real SOS program.
-//!
-//! This module is deliberately not a verifier. It searches the Stage A affine Gram
-//! surface using floating-point projections between the exact moment constraints and
-//! the PSD cone. The output is useful scaffolding for Stage C exactification, but it
-//! never certifies MUB(6), a no-vector wall, or PSD authority by itself.
 
 use nalgebra::{DMatrix, SymmetricEigen};
 use num_rational::BigRational;
@@ -112,7 +106,6 @@ pub struct FloatSdpReport {
 #[derive(Clone, Debug, PartialEq)]
 pub struct FloatSdpState {
     pub report: FloatSdpReport,
-    /// The final affine-projected f64 Gram candidate. Stage C must exactify and re-verify it.
     pub gram: Vec<Vec<f64>>,
 }
 
@@ -273,8 +266,6 @@ pub fn run_float_margin_scan(margins: &[f64], mut config: FloatSdpConfig) -> Flo
     }
 }
 
-/// A bounded coarse Stage B scan. This is intentionally diagnostic: the returned
-/// margin is a candidate selector for Stage C, not a certificate.
 pub fn run_default_float_margin_scan() -> FloatMarginScan {
     let sanity = invariant_systems_sanity_margin();
     let margins = [
@@ -298,7 +289,6 @@ pub fn run_default_float_margin_scan() -> FloatMarginScan {
     )
 }
 
-/// Same coarse scan as `run_default_float_margin_scan`, using Dykstra projections.
 pub fn run_default_dykstra_float_margin_scan() -> FloatMarginScan {
     let sanity = invariant_systems_sanity_margin();
     let margins = [
@@ -322,7 +312,6 @@ pub fn run_default_dykstra_float_margin_scan() -> FloatMarginScan {
     )
 }
 
-/// Same coarse scan as `run_default_float_margin_scan`, using projected spectral ascent.
 pub fn run_default_spectral_float_margin_scan() -> FloatMarginScan {
     let sanity = invariant_systems_sanity_margin();
     let margins = [
@@ -346,7 +335,6 @@ pub fn run_default_spectral_float_margin_scan() -> FloatMarginScan {
     )
 }
 
-/// Same coarse scan as `run_default_float_margin_scan`, using PSD low-rank factors.
 pub fn run_default_low_rank_float_margin_scan() -> FloatMarginScan {
     let sanity = invariant_systems_sanity_margin();
     let margins = [

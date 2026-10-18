@@ -43,7 +43,7 @@ def test_complex_scalar_roundtrips_only_normalized_finite_float_hex() -> None:
     with pytest.raises(ValueError, match="finite"):
         ComplexScalarV1("inf", (0.0).hex())
     with pytest.raises(TypeError, match="exact complex"):
-        ComplexScalarV1.from_complex(1.0)  # type: ignore[arg-type]
+        ComplexScalarV1.from_complex(1.0)
 
 
 def test_airy_problem_strictly_binds_source_parent_and_fixed_carrier() -> None:

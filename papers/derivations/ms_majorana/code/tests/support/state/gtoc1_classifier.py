@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/gtoc1_classifier.rs
-# Rust sha256: de753b8664cd118f83f18399161c33887316f4e93702ff34f39ace8b9bcb46af
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,31 +38,24 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC1_ADMISSION_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC1_PACKET_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC1_CLASSIFICATION_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC1_RECEIPT_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC1_OBSERVER_DOMAIN: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC1_STATE_DOMAIN: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC1_EVIDENCE_CEILING: Any = None
 
 
@@ -364,7 +353,6 @@ Gtoc1RouteV1 = Enum(
 Gtoc1RouteV1.__doc__ = "Structural mirror of Rust ``Gtoc1RouteV1`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
@@ -793,10 +781,8 @@ Gtoc1Error = Enum(
 Gtoc1Error.__doc__ = "Structural mirror of Rust ``Gtoc1Error`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
-# END GENERATED RUST SURFACE
 
 

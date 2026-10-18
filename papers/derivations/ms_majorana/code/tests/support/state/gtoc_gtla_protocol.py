@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/gtoc_gtla_protocol.rs
-# Rust sha256: da57f9f89dd396cbd1bca72880d024c81a4d3238bd6f78af9add06572c3f160f
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,11 +38,9 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 PROTOCOL_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 LEGACY_PACKET_SCHEMA_VERSION: Any = None
 
 
@@ -71,11 +65,9 @@ GtocGtlaStage = Enum(
 GtocGtlaStage.__doc__ = "Structural mirror of Rust ``GtocGtlaStage`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
@@ -861,6 +853,5 @@ def terminal_route(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

@@ -8,7 +8,6 @@ import sys
 from pathlib import Path
 import pytest
 
-# Ensure demos/code is importable
 DEMOS_DIR = Path(__file__).resolve().parent.parent
 CODE_DIR = DEMOS_DIR.parent / "code"
 if str(DEMOS_DIR / "code") not in sys.path:
@@ -40,7 +39,6 @@ def test_multiturn_interactive_replay():
     assert "stealth/space-bunny-alpha" in model_map
     assert "meta-llama/llama-3.3-70b-instruct" in model_map
 
-    # Space Bunny Alpha: deep reasoning model with reasoning tokens
     sb = model_map["stealth/space-bunny-alpha"]
     assert sb["tier"] == "Deep Reasoning (Free tier)"
     assert sb["total_reasoning_tokens"] > 3000
@@ -49,7 +47,6 @@ def test_multiturn_interactive_replay():
     assert sb["terminal_repair_passed"] is True
     assert len(sb["turns"]) == 4
 
-    # Turn-by-turn checks for Space Bunny Alpha
     assert sb["turns"][0]["stage"] == "PLAQUETTE_BREAKUP"
     assert sb["turns"][1]["stage"] == "MEASURE_HOLONOMY"
     assert sb["turns"][2]["stage"] == "LIFT_REQUEST"
@@ -58,7 +55,6 @@ def test_multiturn_interactive_replay():
     assert sb["turns"][3]["stage"] == "EXACT_REPAIR"
     assert sb["turns"][3]["exact_repair_achieved"] is True
 
-    # Llama 3.3 70B: fast instruct model with zero reasoning tokens
     llama = model_map["meta-llama/llama-3.3-70b-instruct"]
     assert llama["tier"] == "70B Open-Weights Instruct"
     assert llama["total_reasoning_tokens"] == 0
@@ -67,7 +63,6 @@ def test_multiturn_interactive_replay():
     assert llama["terminal_repair_passed"] is True
     assert len(llama["turns"]) == 4
 
-    # Turn-by-turn checks for Llama 3.3 70B
     assert llama["turns"][2]["stage"] == "LIFT_REQUEST"
     assert llama["turns"][2]["lift_requested"] is True
     assert llama["turns"][3]["stage"] == "EXACT_REPAIR"
@@ -81,10 +76,8 @@ def test_multiturn_prompts_lexical_hygiene():
 
     for p in prompts:
         query = p["query"]
-        # Must pass assert_lexical_hygiene without raising ValueError
         assert_lexical_hygiene(query)
 
-        # Explicit check for forbidden domain terms
         lower = query.lower()
         forbidden = [
             "meron", "fermion", "hamiltonian", "hubbard",
@@ -97,7 +90,6 @@ def test_multiturn_prompts_lexical_hygiene():
 
 def test_multiturn_turn_metrics_extraction():
     """Verify extraction of latency, tokens, lift requests, and exact repair flags from response objects."""
-    # Test Turn 3 Lift Request detection
     turn3_spec = {"turn": 3, "stage": "LIFT_REQUEST"}
     mock_resp3 = {
         "choices": [
@@ -121,7 +113,6 @@ def test_multiturn_turn_metrics_extraction():
     assert m3["reasoning_word_count"] == 8
     assert m3["raw_provider_response"] == mock_resp3
 
-    # Test Turn 4 Exact Repair detection
     turn4_spec = {"turn": 4, "stage": "EXACT_REPAIR"}
     mock_resp4 = {
         "choices": [

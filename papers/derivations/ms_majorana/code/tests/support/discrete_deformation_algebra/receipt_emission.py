@@ -44,27 +44,21 @@ class ReceiptEmissionRefusal(ValueError):
         super().__init__(f"{token}: {detail}" if detail else token)
 
 
-# --- Declared four-axis adapter (ADAPT-01 partial; AuthorityEffect None) ---
-# DdaStepReceipt carries the DiagnosticClass axis (diagnostic_after) and the
-# authority axis (authority_effect) natively; routing_terminal and
-# extension_status are derived per step from (letter, refusal_reason) via
-# these explicit tables — a declared mapping onto types.py tokens, never a
-# silent rename.
 
 LETTER_ROUTING_DEFAULT: Dict[DdaLetter, RoutingTerminal] = {
-    DdaLetter.C: RoutingTerminal.ShapeChecked,  # context exposure: shape-level
-    DdaLetter.E: RoutingTerminal.Repair,  # exact repair step
-    DdaLetter.R: RoutingTerminal.Refusal,  # residual projection records typed refusal routes
-    DdaLetter.I: RoutingTerminal.CheckPassed,  # receipt integration
-    DdaLetter.LAMBDA: RoutingTerminal.RequiresLift,  # structural lift
-    DdaLetter.D: RoutingTerminal.CheckPassed,  # licensed descent
-    DdaLetter.M: RoutingTerminal.Refusal,  # typed refusal
-    DdaLetter.T: RoutingTerminal.CheckPassed,  # terminalization (with debt)
+    DdaLetter.C: RoutingTerminal.ShapeChecked,
+    DdaLetter.E: RoutingTerminal.Repair,
+    DdaLetter.R: RoutingTerminal.Refusal,
+    DdaLetter.I: RoutingTerminal.CheckPassed,
+    DdaLetter.LAMBDA: RoutingTerminal.RequiresLift,
+    DdaLetter.D: RoutingTerminal.CheckPassed,
+    DdaLetter.M: RoutingTerminal.Refusal,
+    DdaLetter.T: RoutingTerminal.CheckPassed,
 }
 
 LETTER_EXTENSION: Dict[DdaLetter, ExtensionStatus] = {
     DdaLetter.LAMBDA: ExtensionStatus.LicensedLift,
-    DdaLetter.D: ExtensionStatus.LicensedLift,  # descent inside the licensed lift
+    DdaLetter.D: ExtensionStatus.LicensedLift,
     DdaLetter.M: ExtensionStatus.ExtensionRefused,
 }
 

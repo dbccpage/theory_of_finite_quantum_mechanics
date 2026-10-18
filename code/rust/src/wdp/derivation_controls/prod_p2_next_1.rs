@@ -1,8 +1,3 @@
-//! Finite executable witness for `PROD-P2-NEXT-1`.
-//!
-//! Models the 12-step WDP Appendix G.5 `OutputGate` validator (`G5Step` order,
-//! single-step mutation isolation, and receipt-iff-pass invariant) with fixed
-//! `authority_effect = "None"`.
 
 #![forbid(unsafe_code)]
 

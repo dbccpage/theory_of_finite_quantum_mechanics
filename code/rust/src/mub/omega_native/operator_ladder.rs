@@ -1,8 +1,3 @@
-//! Omega-native operator ladder for attempting to escape coordinate-only MUB work.
-//!
-//! Each rung is a representation or comparison layer. A rung may refine the
-//! search space, but it can authorize a MUB theorem only when it carries the
-//! exact proof obligations needed by that layer.
 
 use serde::Serialize;
 

@@ -20,6 +20,6 @@ def test_quantum_correlation_smoke():
 
 def test_old_coda_quantum_import_deleted():
     with pytest.raises(ImportError):
-        import omega_engine.crates.coda.quantum_correlation  # type: ignore
+        import omega_engine.crates.coda.quantum_correlation
 
 

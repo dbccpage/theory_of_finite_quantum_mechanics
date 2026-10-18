@@ -1,10 +1,3 @@
-//! R1-S1 parametric cover **design scaffold**: family
-//! `T(x,y; a=1) = { I, F6(x,y), Y2⊗Q1 }`.
-//!
-//! This module declares chart domain, pilot tubes around genuine Y2Q1 seeds, and a
-//! cost/readiness report. It does **not** run a full continuous base×fiber cover farm.
-//!
-//! Design doc: `012_mutually_unbiased_bases/mub6_r1_parametric_cover_design.md`.
 
 use serde::Serialize;
 
@@ -12,28 +5,22 @@ use crate::omega_native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pai
 use crate::omega_native::exact::mub6_f6_chart::f6_point_is_exact_chm;
 use crate::omega_native::campaign::mub6_f6_external_b3::genuine_dita_y2q1_triple_seeds;
 
-/// Continuous base domain kind for R1-S1.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
 pub enum R1BaseDomainKind {
-    /// Positive-measure tubes around lattice seeds (pilot).
     SeedTubesLatticeStep,
-    /// Full \([0,2π)²` — explicitly out of v0 budget.
     FullTorusDeferred,
 }
 
-/// One pilot base tube in lattice coordinates (exact \(\zeta_{24}\) chart).
 #[derive(Debug, Clone, Serialize)]
 pub struct R1SeedTube {
     pub seed_dx: i64,
     pub seed_dy: i64,
-    /// Half-width in lattice steps (1 = one \(\zeta_{24}\) step each side, continuous lift).
     pub half_width_lattice_steps: u32,
     pub external_qa: i64,
     pub seed_is_exact_chm: bool,
     pub seed_triple_pairwise_mu: bool,
 }
 
-/// Cost model row (planning bounds, not a timing proof).
 #[derive(Debug, Clone, Serialize)]
 pub struct R1CostModelRow {
     pub scenario: &'static str,
@@ -42,7 +29,6 @@ pub struct R1CostModelRow {
     pub v0_allowed: bool,
 }
 
-/// Readiness / design report for R1-S1.
 #[derive(Debug, Clone, Serialize)]
 pub struct R1ParametricCoverDesignReport {
     pub schema_version: &'static str,
@@ -60,10 +46,8 @@ pub struct R1ParametricCoverDesignReport {
     pub firewall: &'static str,
 }
 
-/// Lattice half-width for pilot tubes (one \(\zeta_{24}\) step).
 pub const R1_PILOT_HALF_WIDTH_LATTICE_STEPS: u32 = 1;
 
-/// Build the R1-S1 design report (exact seed checks only; no cover farm).
 pub fn r1_s1_design_report() -> R1ParametricCoverDesignReport {
     let mut tubes = Vec::new();
     for &(dx, dy) in &genuine_dita_y2q1_triple_seeds() {
@@ -82,7 +66,7 @@ pub fn r1_s1_design_report() -> R1ParametricCoverDesignReport {
             scenario: "seed_spray_N_lattice_points",
             relative_to_one_point_cover: "N x C_pt",
             covers_positive_measure_base: false,
-            v0_allowed: false, // not the parametric design
+            v0_allowed: false,
         },
         R1CostModelRow {
             scenario: "three_seed_tubes_small_delta_base",
@@ -122,7 +106,6 @@ pub fn r1_s1_design_report() -> R1ParametricCoverDesignReport {
     }
 }
 
-/// Write design JSON under `artifacts/`.
 pub fn write_r1_design_artifact() -> Result<std::path::PathBuf, String> {
     let report = r1_s1_design_report();
     let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");

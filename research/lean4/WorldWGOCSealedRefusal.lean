@@ -1,42 +1,16 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import WorldReconstructionRetraction
 
-/-!
-# W8.2: finite refusal at the sealed REC-FULL/WGOC entry boundary
 
-The deferred Codebase-as-WGOC target requires a sealed REC-FULL premise
-surface before a WGOC binding may be promoted.  This file records the smallest
-typed refusal supported by the Q12 diagonal retraction.
 
-Eight dependency names are represented by a finite inductive type.  Their
-local status is read from the exact Q12 retraction, except for the separately
-declared general matrix-host slot.  The combined composition/local-tomography
-slot requires both corresponding Q12 flags.  Every status is false for this
-one exact package, so packaging the diagonal fixture cannot inhabit the sealed
-entry premise.
 
-`ActionLaws` and `GateSurface` below are deliberately abstract propositions.
-No external action, gate, repository, build-state, or WGOC semantics is
-inspected or asserted.  The result is not global nonexistence, not a WGOC
-theorem, and not REC-FULL.  It is only a finite refusal witness for the declared
-local package.
 
-Primitive-Difference promotion is false and AuthorityEffect is None.
--/
 
 namespace OmegaWorld
 namespace WGOCSealedRefusal
 
 open ReconstructionQ12
 
-/-- The eight ordered REC-FULL dependencies bound by the Q12 retraction. -/
 inductive RecFullDependency where
   | scalarQiC
   | obU1
@@ -48,7 +22,6 @@ inductive RecFullDependency where
   | obCptp
   deriving DecidableEq
 
-/-- Exact source identifier for each typed dependency. -/
 def dependencyId : RecFullDependency -> String
   | .scalarQiC => "SCALAR-QI-C"
   | .obU1 => "OB-U1"
@@ -63,11 +36,6 @@ theorem dependency_id_injective : Function.Injective dependencyId := by
   intro left right
   cases left <;> cases right <;> decide
 
-/-
-The Q12 retraction has explicit negative fields for seven of the eight typed
-dependency rows.  Its finite integer matrix is not a general finite-n complex
-matrix host, so that separate row is carried as an explicit local false flag.
--/
 structure LocalPremiseAudit where
   retraction : DiagonalReconstructionRetraction
   retractionIsExact : retraction = diagonalReconstructionRetraction
@@ -80,7 +48,6 @@ def exactFixtureAudit : LocalPremiseAudit where
   generalMatrixHostConstructed := false
   generalMatrixHostOpen := rfl
 
-/-- Read one declared dependency flag from a bounded local audit. -/
 def premiseClaim (audit : LocalPremiseAudit) : RecFullDependency -> Bool
   | .scalarQiC => audit.retraction.complexHostConstructed
   | .obU1 => audit.retraction.u1StructureConstructed
@@ -97,10 +64,6 @@ def PremiseFlagAsserted (audit : LocalPremiseAudit)
     (dependency : RecFullDependency) : Prop :=
   premiseClaim audit dependency = true
 
-/--
-A necessary declared flag surface has every row asserted.  This is only a
-negative entry check: even all-true flags would not construct sealed evidence.
--/
 def SealedRecFullSurface (audit : LocalPremiseAudit) : Prop :=
   forall dependency, PremiseFlagAsserted audit dependency
 
@@ -121,7 +84,6 @@ theorem exact_fixture_not_sealed :
 abbrev LocalPackage :=
   ConditionalPackage LocalPremiseAudit DiagonalReconstructionRetraction
 
-/-- The Q12 local package contains exactly the finite audit and retraction. -/
 def exactLocalPackage : LocalPackage :=
   packageConditional (exactFixtureAudit, diagonalReconstructionRetraction)
 
@@ -130,7 +92,6 @@ theorem exact_local_package_roundtrip :
       (exactFixtureAudit, diagonalReconstructionRetraction) := by
   exact expose_package_roundtrip _
 
-/-- Generic packaging preserves a supplied dependency status; it creates none. -/
 theorem package_preserves_premise_claim
     (audit : LocalPremiseAudit)
     (recovery : DiagonalReconstructionRetraction)
@@ -155,12 +116,6 @@ theorem exact_local_package_not_sealed :
   rw [refused] at claimed
   cases claimed
 
-/-
-This is only a necessary sealed-flag entry shape used by the refusal.  It is
-not a sufficient REC-FULL evidence type.  The two abstract propositions are
-not definitions of real WGOC action or gate semantics, and no inhabitant for
-either is constructed here.
--/
 structure WGOCSealedEntryPremises
     (ActionLaws GateSurface : Prop)
     (audit : LocalPremiseAudit) : Prop where
@@ -188,7 +143,6 @@ theorem exact_local_package_authority_none :
     exactLocalPackage.conditionalRecovery.authorityEffect = AuthorityEffect.none := by
   rfl
 
-/-- Bundled finite witness, retaining every negative scope fence as data. -/
 structure FiniteWGOCSealedRefusal where
   package : LocalPackage
   packageIsExact : package = exactLocalPackage
@@ -251,3 +205,6 @@ def finiteWGOCSealedRefusal : FiniteWGOCSealedRefusal where
 
 end WGOCSealedRefusal
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldWGOCSealedRefusal.lean Claim: dependency_id_injective AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

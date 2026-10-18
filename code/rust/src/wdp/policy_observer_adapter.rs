@@ -1,7 +1,3 @@
-//! Paper 031's compressed policy observer (C,D,G,R,T), not a Moore machine.
-//! Exact finite linear specialization; AuthorityEffect: None. Gauge actions,
-//! admissible repairs and the separately supplied norm are distinct inputs.
-//! Source metadata is retained, not authenticated by syntactic validation.
 
 use std::collections::BTreeSet;
 
@@ -31,7 +27,6 @@ pub enum PolicyAdapterError {
     Serialization,
 }
 
-/// C: the declared finite representation, including its actual coordinates.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PolicyCarrier {
     pub names: Vec<String>,
@@ -39,8 +34,6 @@ pub struct PolicyCarrier {
     pub values: Matrix,
 }
 
-/// D: declared comparisons on C. Delta_i = restriction_i(right_i) - left_i.
-/// Only these named pairs are admitted; no all-sections claim is inferred.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PolicyComparisonDomain {
     pub names: Vec<String>,
@@ -48,7 +41,6 @@ pub struct PolicyComparisonDomain {
     pub restrictions: Vec<Matrix>,
 }
 
-/// An exact signed coordinate permutation: e_i maps to sign_i e_image_i.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SignedPermutation {
     pub image: Vec<usize>,
@@ -77,7 +69,6 @@ impl SignedPermutation {
         }
         output
     }
-    /// First apply self, then next. Both actions have already been validated.
     fn then(&self, next: &Self) -> Self {
         Self {
             image: self.image.iter().map(|&i| next.image[i]).collect(),
@@ -91,9 +82,6 @@ impl SignedPermutation {
     }
 }
 
-/// G: one simultaneous action on the admitted states, comparisons, defects and
-/// repair coordinates. A declared finite group must contain identity and be
-/// closed under composition; valid finite permutations then supply inverses.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PolicyGaugeAction {
     pub states: Vec<usize>,
@@ -124,16 +112,12 @@ impl PolicyGaugeAction {
     }
 }
 
-/// R: all rational linear combinations of these explicit repair columns.
-/// The selected linear admissible class is part of the realization, not G.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PolicyRepairOperator {
     pub coordinates: Vec<String>,
     pub map: Matrix,
 }
 
-/// T: a declared mathematical status rule. Status spellings never grant action
-/// or institutional authority, even when a source calls one "Authorized".
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PolicyTerminalRules {
     pub permitted_statuses: BTreeSet<String>,
@@ -149,8 +133,6 @@ pub struct PolicyObserverProblem {
     pub gauge_group: Vec<PolicyGaugeAction>,
     pub repair: PolicyRepairOperator,
     pub terminal_rules: PolicyTerminalRules,
-    /// Supplied extra bridge J(h)=sum_i weights_i |h_i|. The five-tuple does
-    /// not infer a scalar gauge from its gauge group G.
     pub norm_weights: Vec<BigRational>,
     pub source: SourceCustody,
 }
@@ -164,8 +146,6 @@ fn permutation(values: &[usize], size: usize) -> bool {
     values.len() == size && values.iter().copied().collect::<BTreeSet<_>>() == (0..size).collect()
 }
 fn scalar_valid(value: &BigRational) -> bool {
-    // Public new_raw may construct invalid or unnormalized fractions. Refuse
-    // before comparisons/arithmetic, and bind one exact canonical spelling.
     if value.denom() <= &0.into() {
         return false;
     }
@@ -205,7 +185,6 @@ fn problem_digest(problem: &PolicyObserverProblem) -> Result<String, PolicyAdapt
     }))
 }
 
-/// A sealed actual-input specialization. Every field in C,D,G,R,T is retained.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct VerifiedPolicyObserver {
     problem: PolicyObserverProblem,
@@ -298,7 +277,6 @@ impl VerifiedPolicyObserver {
                     return Err(PolicyAdapterError::GaugeDoesNotPreserveProblem);
                 }
                 for j in 0..repairs {
-                    // P d0 = d0 A; A is bijective, hence P im(d0)=im(d0).
                     let lhs = &r.map[i][j] * BigRational::from_integer(g.defects.signs[i].into());
                     let rhs = &r.map[g.defects.image[i]][g.repairs.image[j]]
                         * BigRational::from_integer(g.repairs.signs[j].into());
@@ -341,8 +319,6 @@ impl VerifiedPolicyObserver {
             .defects
             .get(comparison)
             .ok_or(PolicyAdapterError::InvalidComparisonDomain)?;
-        // Independent replay rejects new_raw zero denominators before any
-        // BigRational comparison (which can otherwise divide by zero).
         let verified = Phi1Functional::verify_exact_certificate(certificate.clone())
             .map_err(|_| PolicyAdapterError::InvalidCertificate)?;
         if certificate.omega != *actual
@@ -373,7 +349,6 @@ impl VerifiedPolicyObserver {
     }
 }
 
-/// Public transport candidate. A refreshed digest is never a semantic proof.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PolicyEvaluationReceipt {
     pub problem_digest: String,
@@ -396,8 +371,6 @@ impl PolicyEvaluationReceipt {
     }
 }
 
-/// Replay against independently supplied actual C,D,G,R,T and norm bridge.
-/// All source metadata, problem fields and resulting status must agree.
 pub fn verify_policy_evaluation(
     actual: &PolicyObserverProblem,
     candidate: &PolicyEvaluationReceipt,

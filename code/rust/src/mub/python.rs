@@ -1,10 +1,3 @@
-//! Thin PyO3 face for Jupyter / reviewer notebooks.
-//!
-//! **SSOT of math remains Rust.** This module only serializes existing
-//! assessments and runtime receipts to Python dicts. It does not reimplement
-//! cyclotomic arithmetic, covers, SOS, or certificates in Python.
-//!
-//! Enable with features: `python` (and `extension-module` for a cdylib wheel).
 
 use pyo3::exceptions::PyRuntimeError;
 use pyo3::prelude::*;
@@ -35,13 +28,11 @@ fn to_py_dict(py: Python<'_>, value: &impl Serialize) -> PyResult<Py<PyAny>> {
         .map(|value| value.unbind())
 }
 
-/// Always `"None"` — this surface mints no authority.
 #[pyfunction]
 fn authority_effect() -> &'static str {
     "None"
 }
 
-/// Crate identity for notebooks.
 #[pyfunction]
 fn package_info(py: Python<'_>) -> PyResult<Py<PyAny>> {
     #[derive(Serialize)]
@@ -100,10 +91,6 @@ fn d10_wall_status_py(py: Python<'_>) -> PyResult<Py<PyAny>> {
     to_py_dict(py, &current_d10_wall_status())
 }
 
-/// Exact runtime adapter: JSON request string → receipt dict.
-///
-/// Example request:
-/// `{"evidence":{"kind":"fixed_t0","cover_discharged":false}}`
 #[pyfunction]
 fn evaluate_mub6_request_py(py: Python<'_>, request_json: &str) -> PyResult<Py<PyAny>> {
     match evaluate_mub6_json(request_json.as_bytes()) {
@@ -140,7 +127,6 @@ fn evaluate_mub6_request_py(py: Python<'_>, request_json: &str) -> PyResult<Py<P
     }
 }
 
-/// Root Python extension module (`import omega_mub`).
 #[pymodule]
 fn omega_mub(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_function(wrap_pyfunction!(authority_effect, module)?)?;
@@ -156,7 +142,6 @@ fn omega_mub(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_function(wrap_pyfunction!(d10_wall_status_py, module)?)?;
     module.add_function(wrap_pyfunction!(evaluate_mub6_request_py, module)?)?;
 
-    // Friendly aliases matching notebook docs (no `_py` suffix).
     module.add(
         "assess_general_mub_n",
         module.getattr("assess_general_mub_n_py")?,

@@ -1,8 +1,3 @@
-//! The regular Q-linear representation Q(i) -> M_2(Q).
-//!
-//! a+bi maps to [[a,-b],[b,a]]. Multiplication is composition of multiplication
-//! on the Q-basis (1,i); the image of i is a complex structure J²=-I.
-//! AuthorityEffect: None.
 use crate::cyclotomic::GaussianRat;
 use crate::rational::Rational;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
