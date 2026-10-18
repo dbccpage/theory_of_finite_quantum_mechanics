@@ -44,7 +44,6 @@ from .target_q3_degree6_sdp import (
     build_degree6_invariant_diagnostic_matrix,
 )
 
-# Constants & Epistemic Firewall
 SCHEMA_VERSION: str = "omega.mub.q-soundness.v1"
 FIREWALL_LINE: str = "stated region only; mints no authority"
 AUTHORITY_EFFECT: str = "None"
@@ -55,15 +54,12 @@ STATUS_MISSING_PROOF_OBLIGATION: str = "MISSING_PROOF_OBLIGATION"
 STATUS_DIAGNOSTIC_ONLY: str = "DIAGNOSTIC_ONLY"
 RECEIPT_TYPE: str = "Q_SOUNDNESS_OBLIGATIONS_CERTIFICATE"
 
-# R1 dimensions
-UNREDUCED_WORD_COUNT: int = 25   # 1 identity + 24 single projectors
-COMPLETENESS_RELATION_COUNT: int = 4  # 4 bases
-REDUCED_WORD_COUNT: int = 21     # 25 - 4 = 21
+UNREDUCED_WORD_COUNT: int = 25
+COMPLETENESS_RELATION_COUNT: int = 4
+REDUCED_WORD_COUNT: int = 21
 
-# R2 validated trace
 DEGREE_6_X0_EXACT_TRACE: Fraction = Fraction(-9071, 10800)
 
-# R3 constants
 QUADRATIC_MODULE_RADIUS_SQ: Fraction = Fraction(25, 1)
 QUADRATIC_MODULE_SUM_OF_SQUARES_COUNT: int = 21
 COMPLETENESS_IDEAL_TERMS_COUNT: int = 4
@@ -77,9 +73,6 @@ class MissingProofObligationError(RuntimeError, ValueError):
     pass
 
 
-# ==============================================================================
-# Exact Rational Typing & Zero Floating-Point Discipline
-# ==============================================================================
 
 def _require_exact(value: Any) -> Fraction:
     """Ensure value is an exact integer or Fraction, returning Fraction."""
@@ -138,9 +131,6 @@ def assert_no_float(obj: Any, path: str = "$", seen: Optional[Set[int]] = None) 
                 assert_no_float(getattr(obj, slot), f"{path}.{slot}", seen)
 
 
-# ==============================================================================
-# Exact Rational Linear Algebra Helpers
-# ==============================================================================
 
 def exact_matrix_rank_rational(matrix: Sequence[Sequence[Fraction]]) -> int:
     """Compute exact row rank of a matrix over Fraction using Gaussian elimination.
@@ -174,7 +164,6 @@ def exact_matrix_rank_rational(matrix: Sequence[Sequence[Fraction]]) -> int:
         if pivot_row is None:
             continue
 
-        # Swap pivot row to current rank position
         rows[rank], rows[pivot_row] = rows[pivot_row], rows[rank]
 
         pivot_val = rows[rank][col]
@@ -262,9 +251,6 @@ def ldlt_pivots_strictly_positive(
     return pivots
 
 
-# ==============================================================================
-# R1: Canonical Projector Word Basis & Rank-25 Dead End Refutation (T06_08)
-# ==============================================================================
 
 @dataclass(frozen=True)
 class WordBasisReceipt:
@@ -293,7 +279,7 @@ def build_relation_matrix_rational() -> List[List[Fraction]]:
     R = [[Fraction(0) for _ in range(UNREDUCED_WORD_COUNT)] for _ in range(COMPLETENESS_RELATION_COUNT)]
     for i in range(COMPLETENESS_RELATION_COUNT):
         R[i][0] = Fraction(-1)
-        for a in range(DIM_HILBERT):  # 6 outcomes
+        for a in range(DIM_HILBERT):
             col = 1 + i * DIM_HILBERT + a
             R[i][col] = Fraction(1)
     return R
@@ -317,7 +303,6 @@ def canonical_projector_word_basis(
             "force projector word space rank <= 21 (Finding 15, dead_ends.md)"
         )
 
-    # 1. Enumerate unreduced words (1 identity + 24 single projectors = 25)
     unreduced_words: List[str] = ["1"]
     for i in range(NUM_BASES):
         for a in range(DIM_HILBERT):
@@ -326,16 +311,14 @@ def canonical_projector_word_basis(
     if len(unreduced_words) != UNREDUCED_WORD_COUNT:
         raise ValueError(f"Expected {UNREDUCED_WORD_COUNT} unreduced words, got {len(unreduced_words)}")
 
-    # 2. Canonical reduced words: eliminate outcome a = 5 for each basis
     reduced_words: List[str] = ["1"]
     for i in range(NUM_BASES):
-        for a in range(DIM_HILBERT - 1):  # a in {0..4}
+        for a in range(DIM_HILBERT - 1):
             reduced_words.append(f"Pi_{i}_{a}")
 
     if len(reduced_words) != REDUCED_WORD_COUNT:
         raise ValueError(f"Expected {REDUCED_WORD_COUNT} reduced words, got {len(reduced_words)}")
 
-    # 3. Construct and verify relation matrix R in Q^{4 x 25}
     R = build_relation_matrix_rational()
     rank_R = exact_matrix_rank_rational(R)
 
@@ -361,9 +344,6 @@ def canonical_projector_word_basis(
     return receipt
 
 
-# ==============================================================================
-# R2: Fixed-Candidate Witness Replay at Degree 6 (T07_06)
-# ==============================================================================
 
 @dataclass(frozen=True)
 class WitnessReplayReceipt:
@@ -443,7 +423,6 @@ def replay_degree6_fixed_candidate_witness(
     m6 = build_degree6_fixed_candidate_m6()
     w6 = build_degree6_fixed_candidate_w6(strict=True)
 
-    # Optional negative control: zero out relation row in M_6
     if zero_relation_row is not None:
         idx = zero_relation_row
         if not (0 <= idx < DEG6_INVARIANT_DIM):
@@ -453,7 +432,6 @@ def replay_degree6_fixed_candidate_witness(
             m6[idx][col] = Fraction(0)
             m6[col][idx] = Fraction(0)
 
-    # Optional negative control: perturb witness entry to force a negative pivot
     if perturb_pivot_idx is not None:
         idx = perturb_pivot_idx
         if not (0 <= idx < DEG6_INVARIANT_DIM):
@@ -461,12 +439,10 @@ def replay_degree6_fixed_candidate_witness(
         w6 = [list(row) for row in w6]
         w6[idx][idx] = Fraction(-1)
 
-    # 1. Verify exact rational LDL^T decomposition and strictly positive pivots
     pivots = ldlt_pivots_strictly_positive(w6)
     if len(pivots) != DEG6_INVARIANT_DIM:
         raise ValueError(f"Expected {DEG6_INVARIANT_DIM} pivots, got {len(pivots)}")
 
-    # 2. Compute exact trace inner product Tr(W_6 * M_6) by independent multiplication
     trace = Fraction(0)
     for i in range(DEG6_INVARIANT_DIM):
         for j in range(DEG6_INVARIANT_DIM):
@@ -492,9 +468,6 @@ def replay_degree6_fixed_candidate_witness(
     return receipt
 
 
-# ==============================================================================
-# R3: Quadratic-Module Identity Verification (T08_03)
-# ==============================================================================
 
 @dataclass(frozen=True)
 class QuadraticIdentityReceipt:
@@ -582,19 +555,15 @@ def verify_quadratic_module_identity(
     """
     perturbation_exact = _require_exact(perturbation)
 
-    # 1. Construct LHS: 25 * 1 - sum_{i=0..3} sum_{a=0..5} Pi_{i, a}^2
     lhs = ExactProjectorPolynomial()
-    lhs.set("1", QUADRATIC_MODULE_RADIUS_SQ)  # 25
+    lhs.set("1", QUADRATIC_MODULE_RADIUS_SQ)
     for i in range(NUM_BASES):
         for a in range(DIM_HILBERT):
             lhs.set(f"Pi_{i}_{a}^2", Fraction(-1))
 
-    # 2. Construct RHS:
-    # (a) 21 identity squares: 21 * (1^* 1) = 21 * 1
     rhs = ExactProjectorPolynomial()
-    rhs.set("1", Fraction(QUADRATIC_MODULE_SUM_OF_SQUARES_COUNT))  # 21
+    rhs.set("1", Fraction(QUADRATIC_MODULE_SUM_OF_SQUARES_COUNT))
 
-    # (b) 4 basis completeness ideal relations: sum_{i=0..3} (1 - sum_{a=0..5} Pi_{i, a})
     for i in range(NUM_BASES):
         constant_val = Fraction(1)
         if perturb_basis_idx is not None and i == perturb_basis_idx:
@@ -604,19 +573,16 @@ def verify_quadratic_module_identity(
         for a in range(DIM_HILBERT):
             rhs.add_monomial(f"Pi_{i}_{a}", Fraction(-1))
 
-    # (c) 24 idempotency ideal relations: sum_{i=0..3} sum_{a=0..5} (Pi_{i, a} - Pi_{i, a}^2)
     for i in range(NUM_BASES):
         for a in range(DIM_HILBERT):
             rhs.add_monomial(f"Pi_{i}_{a}", Fraction(1))
             rhs.add_monomial(f"Pi_{i}_{a}^2", Fraction(-1))
 
-    # 3. Compare coefficient by coefficient over Fraction
     diff = lhs.sub(rhs)
 
     constant_lhs = lhs.get("1")
     constant_rhs = rhs.get("1")
 
-    # Check linear terms cancellation
     linear_ok = True
     for i in range(NUM_BASES):
         for a in range(DIM_HILBERT):
@@ -624,7 +590,6 @@ def verify_quadratic_module_identity(
                 linear_ok = False
                 break
 
-    # Check quadratic terms matching
     quadratic_ok = True
     for i in range(NUM_BASES):
         for a in range(DIM_HILBERT):
@@ -658,9 +623,6 @@ def verify_quadratic_module_identity(
     return receipt
 
 
-# ==============================================================================
-# Flat Extension Obstruction & Positivstellensatz Degree Bound Certification
-# ==============================================================================
 
 @dataclass(frozen=True)
 class FlatExtensionReceipt:
@@ -689,8 +651,8 @@ def certify_flat_extension_rank_gap(level: int = 1) -> FlatExtensionReceipt:
         raise NotImplementedError(f"Exact flat extension certified only for level 1 (got {level})")
 
     rank_0 = 1
-    rank_1 = REDUCED_WORD_COUNT  # 21
-    gap = rank_1 - rank_0        # 20
+    rank_1 = REDUCED_WORD_COUNT
+    gap = rank_1 - rank_0
     is_obstructed = gap > 0
 
     receipt = FlatExtensionReceipt(
@@ -747,12 +709,12 @@ def evaluate_archimedean_degree_bound(
             "candidate refutations on fixed completions (X=0) do not establish absence of all physical realizations"
         )
 
-    norm_bound = Fraction(1, 1)  # Projector eigenvalues bounded in [0, 1] via 1 - Pi = (1-Pi)^2 in Q
+    norm_bound = Fraction(1, 1)
     receipt = ArchimedeanDegreeBoundReceipt(
         degree_bound=degree_bound,
         operator_norm_bound=norm_bound,
         quadratic_module_archimedean_verified=True,
-        dual_witness_level=degree_bound * 2,  # e.g. 6 or 8
+        dual_witness_level=degree_bound * 2,
         witness_scope="CANDIDATE_SPECIFIC_REFUTATION",
         is_universal_emptiness_discharged=False,
         status=STATUS_CERTIFIED_CANDIDATE_REFUTATION,
@@ -768,9 +730,6 @@ def evaluate_archimedean_degree_bound(
     return receipt
 
 
-# ==============================================================================
-# Aggregate Typed Receipt & Epistemic Guardrails
-# ==============================================================================
 
 @dataclass(frozen=True)
 class QSoundnessReceipt:
@@ -819,7 +778,7 @@ def generate_q_soundness_receipt() -> QSoundnessReceipt:
         word_basis_receipt=r1,
         witness_replay_receipt=r2,
         quadratic_identity_receipt=r3,
-        all_obligations_satisfied=False,  # Unverified moment semantics prevents full candidate refutation
+        all_obligations_satisfied=False,
         summary=(
             "Q-Soundness diagnostic replay: R1 (canonical word basis dim <= 21), "
             "R2 (fixed-candidate witness trace Tr(W_6 * M_6) = -9071/10800), "
@@ -835,9 +794,6 @@ def generate_q_soundness_receipt() -> QSoundnessReceipt:
     return receipt
 
 
-# ==============================================================================
-# Fail-Closed Universal Non-Existence APIs
-# ==============================================================================
 
 def claim_universal_mub6_nonexistence(
     degree: Optional[int] = None, *args: Any, **kwargs: Any

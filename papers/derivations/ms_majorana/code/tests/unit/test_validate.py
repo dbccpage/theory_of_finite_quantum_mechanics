@@ -36,7 +36,6 @@ from omega_engine_governance.contracts.descriptor_validation import (
 )
 
 
-# ── fixtures ──────────────────────────────────────────────────────────────────
 
 
 def valid_constitution(
@@ -92,7 +91,6 @@ EXPECTED_FAMILY_LAYERS = [
 ]
 
 
-# ── constitutional block ──────────────────────────────────────────────────────
 
 
 def test_baseline_constitution_validates():
@@ -195,7 +193,6 @@ def test_empty_replay_certificates_rejected():
         c.validate()
 
 
-# ── lift license: the authority-promotion boundary ────────────────────────────
 
 
 def test_valid_lift_license_accepted():
@@ -211,8 +208,6 @@ def test_lift_license_without_constitution_rejected():
 
 def test_lift_license_emitting_wrong_family_rejected():
     d = valid_lift_license()
-    # Action also maps to the Action layer, so the constitution stays self-consistent
-    # and the failure is the family mismatch, not the layer.
     d.constitution.emits = ArtifactFamily.Action
     with pytest.raises(ValueError, match="contract must emit ActionLicense"):
         d.validate()
@@ -306,7 +301,6 @@ def test_lift_license_permitting_runtime_mutation_rejected():
         d.validate()
 
 
-# ── registry-level invariant ──────────────────────────────────────────────────
 
 
 def registry_member(contract_id: str) -> ContractDescriptor:
@@ -345,7 +339,6 @@ def test_validate_registry_reports_the_failing_member_by_id():
         validate_registry([bad])
 
 
-# ── deprecation gate ──────────────────────────────────────────────────────────
 
 
 def test_canonical_terminalizer_rejected():
@@ -362,7 +355,6 @@ def test_deprecated_terminalizer_accepted():
     assert d.validate() is None
 
 
-# ── Rust <-> Python divergence, pinned deliberately ───────────────────────────
 
 
 def test_unknown_family_raises_rather_than_defaulting():

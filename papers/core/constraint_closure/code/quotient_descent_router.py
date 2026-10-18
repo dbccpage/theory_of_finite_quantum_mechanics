@@ -58,7 +58,6 @@ class DdaCascadeRouter:
         if len(w_vec) != m:
             raise ValueError(f"Cochain dimension {len(w_vec)} does not match d0 rows {m}")
 
-        # Try graph specialized solver if carrier exists and package is present
         vertices, edges = self._carrier()
         if vertices is not None:
             try:
@@ -67,7 +66,6 @@ class DdaCascadeRouter:
             except ImportError:
                 pass
 
-        # General L1 quotient LP: min_{alpha, t} sum_i t_i s.t. -t <= w - d0 alpha <= t
         c = np.concatenate([np.zeros(n), np.ones(m)])
         i_m = np.eye(m)
         a_ub = np.vstack([np.hstack([self.d0, -i_m]), np.hstack([-self.d0, -i_m])])
@@ -102,18 +100,15 @@ class DdaCascadeRouter:
         exact, coexact, harmonic = self.compute_hodge_components(w)
         phi1 = self.phi1_exact(w)
 
-        # Level 0: Exact Repair
         if phi1 <= eps:
             self.tape.extend(["E", "I", "T"])
             return "LEVEL_0_REPAIR", self.tape, 0.0
 
-        self.tape.append("R")  # Audit residual
+        self.tape.append("R")
 
-        # Level 1: Fiber Pruning (If harmonic component != 0, prune fiber)
         if np.linalg.norm(harmonic) > eps:
-            self.tape.append("M")  # Mark refusal / fiber pruned
+            self.tape.append("M")
 
-        # Level 2: Context Extension (C^\bullet -> C'^\bullet)
         if d0_ext is not None:
             w_target = np.asarray(w_ext if w_ext is not None else w, dtype=float)
             u_ext, s_ext, _ = np.linalg.svd(d0_ext, full_matrices=False)

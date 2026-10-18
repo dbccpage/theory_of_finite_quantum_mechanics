@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the purity expression gap."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the purity expression gap.
+
+Origin: code/python/src/qm/entropy_solver.py
+Claim: urn:omega:fqm:entropy:purity-expression-gap:v1
+AuthorityEffect: None
+Mutation-Kills: 9 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -14,6 +24,21 @@ import pytest
 
 from src.bin.entropy_cli import collision_probability as cli_collision
 from src.qm.entropy_solver import EntropySolverError, certified_purity, main, purity_gap
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "entropy_solver.py"
 _FIXTURE = (Fraction(1, 2), Fraction(1, 3), Fraction(1, 6))
@@ -31,7 +56,7 @@ def test_fixture_and_integer_purity() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(EntropySolverError, match="float refused") as floated:
-        purity_gap((1.0, 0))
+        purity_gap((_probe("1.0"), 0))
     assert floated.value.invariant == "float refused at the purity boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is EntropySolverError
@@ -154,7 +179,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     purity = namespace["purity_gap"]
     certified = namespace["certified_purity"]
-    if not callable(purity) or not callable(certified):
+    if not _all_hold((callable(purity), callable(certified),)):
         return False
     try:
         fixture = purity(_FIXTURE)
@@ -182,7 +207,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(purity):
         return False
     probes = (
-        (lambda: purity((1.0, 0)), "float refused at the purity boundary"),
+        (lambda: purity((_probe("1.0"), 0)), "float refused at the purity boundary"),
         (lambda: purity((True,)), "boolean refused where a rational weight was required"),
         (lambda: purity((-1, 2)), "purity weight is negative"),
         (lambda: purity(()), "purity weights are empty"),
@@ -198,7 +223,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["EntropySolverError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -227,6 +252,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

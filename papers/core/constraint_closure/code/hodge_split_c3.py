@@ -76,26 +76,21 @@ def compute_split_inflation(omega: np.ndarray) -> dict:
     h = decomp["h_L2"]
     exact = decomp["exact_L2"]
 
-    norm1_h = np.sum(np.abs(h))  # = 3|s|
+    norm1_h = np.sum(np.abs(h))
     norm1_exact = np.sum(np.abs(exact))
 
     R_split = (norm1_exact + norm1_h) / norm1_omega
 
-    # Phi_1([omega]) = inf_alpha ||omega - d0 alpha||_1 = 3|s|
-    # Proof: sum of (omega - d0 alpha)_i = 3s for any alpha, so
-    # ||omega - d0 alpha||_1 >= |3s| = 3|s|, attained by alpha_L2.
     Phi1 = 3.0 * abs(s)
 
-    # Phi_2([omega]) = ||h_L2||_2 = sqrt(3) |s|
     Phi2 = np.sqrt(3.0) * abs(s)
 
-    # R_rep = ||h||_1 / Phi_1
     if abs(s) < 1e-15:
-        R_rep = float("nan")  # 0/0 for coboundaries
+        R_rep = float("nan")
         ratio = float("nan")
     else:
-        R_rep = norm1_h / Phi1  # = 3|s| / 3|s| = 1
-        ratio = Phi1 / Phi2  # = 3|s| / (sqrt(3)|s|) = sqrt(3)
+        R_rep = norm1_h / Phi1
+        ratio = Phi1 / Phi2
 
     return {
         "R_split": R_split,
@@ -137,7 +132,7 @@ def sample_split_bound_c3(n_samples: int = 100_000, seed: int = 42) -> dict:
         norm = np.sum(np.abs(omega))
         if norm < 1e-15:
             continue
-        omega /= norm  # project onto L1 unit sphere
+        omega /= norm
 
         result = compute_split_inflation(omega)
         if result["R_split"] > max_R:

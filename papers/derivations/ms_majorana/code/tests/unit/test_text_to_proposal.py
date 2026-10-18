@@ -74,14 +74,6 @@ def test_round_trip_extraction_is_accepted_at_the_solver_front_door(tmp_path: Pa
     assert len(proposal.claims) == 2
     parsed = parse_research_proposal(packet, proposal.canonical_payload())
     assert parsed.proposal_sha256 == proposal.proposal_sha256
-    # Structural, not raw dataclass, equality: `universal_solver.py` imports
-    # `research_packets` via the `omega_symbol_game` alias path (a second,
-    # independently-loaded module instance vs. the canonical
-    # `omega_engine.symbol_game.research_packets` path used here and by
-    # `research_pipeline.py`/`corpus.py`), so `parsed.claims` are instances
-    # of a different (structurally identical) `ResearchClaim` class -- a
-    # pre-existing repo quirk, out of scope here. `canonical_payload()` is
-    # the serialized form that actually crosses that boundary.
     assert [c.canonical_payload() for c in parsed.claims] == [
         c.canonical_payload() for c in proposal.claims
     ]

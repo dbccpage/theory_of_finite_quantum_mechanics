@@ -1,14 +1,3 @@
-//! Higher-dimensional operadic nerve functors mapping coloured operads to quasi-categories.
-//!
-//! Provides mathematically rigorous structures and exact solvers for:
-//! - Coloured Operads (multicategories) with colours, multi-ary operations, identities, and unary spine composition
-//! - Spine nerve realization: 0-simplices (colours), 1-simplices (unary operations), 2-simplices (commuting triangles)
-//! - Constructive inner horn filler `fill_inner_horn_2_1` matching outer faces d0 and d2 while computing the operadic composite on d1
-//! - Operadic nerve functor to Joyal Quasi-Categories verifying inner horn filling
-//! - Strict Soviet allocation bounds via `reserve_exact` and `OperationLimits`
-//! - Strictly zero floating-point arithmetic, deterministic canonical SHA-256 hashing
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{BTreeMap, HashMap};
 
@@ -19,7 +8,6 @@ use sha2::{Digest, Sha256};
 use crate::error::{reserve_exact, HigherCategoryError};
 use crate::simplicial_set::{Horn, QuasiCategoryValidator, SimplicialSet};
 
-/// A multi-ary operation in a coloured operad O.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct MultiAryOp {
     pub id: String,
@@ -28,33 +16,24 @@ pub struct MultiAryOp {
 }
 
 impl MultiAryOp {
-    /// Returns the arity of the operation (number of inputs).
     pub fn arity(&self) -> usize {
         self.inputs.len()
     }
 
-    /// Returns true if this is a unary operation (arity 1).
     pub fn is_unary(&self) -> bool {
         self.inputs.len() == 1
     }
 }
 
-/// A Coloured Operad (or Multicategory) with strict unary spine composition laws.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ColouredOperad {
-    /// Distinct colours (types)
     pub colours: Vec<String>,
-    /// All declared operations
     pub operations: Vec<MultiAryOp>,
-    /// Unary identity operations: colour -> identity operation ID
     pub id_ops: BTreeMap<String, String>,
-    /// Unary spine composition table: (g, f) -> g o_1 f
-    /// where f : [a] -> b and g : [b] -> c, so g o_1 f : [a] -> c
     pub comp1_table: BTreeMap<(String, String), String>,
 }
 
 impl ColouredOperad {
-    /// Constructs a new empty ColouredOperad under `OperationLimits`.
     pub fn new(limits: &OperationLimits) -> Result<Self, HigherCategoryError> {
         let mut colours = Vec::new();
         reserve_exact(&mut colours, 0, limits)?;
@@ -68,7 +47,6 @@ impl ColouredOperad {
         })
     }
 
-    /// Adds a colour to the operad under Soviet allocation caps.
     pub fn add_colour(
         &mut self,
         colour: impl Into<String>,
@@ -83,7 +61,6 @@ impl ColouredOperad {
         Ok(())
     }
 
-    /// Adds a unary operation f : [src] -> tgt under Soviet allocation caps.
     pub fn add_unary_operation(
         &mut self,
         id: impl Into<String>,
@@ -114,7 +91,6 @@ impl ColouredOperad {
         Ok(())
     }
 
-    /// Adds a general multi-ary operation op : [ins] -> out under Soviet allocation caps.
     pub fn add_multi_ary_operation(
         &mut self,
         id: impl Into<String>,
@@ -146,7 +122,6 @@ impl ColouredOperad {
         Ok(())
     }
 
-    /// Designates an existing unary operation as the identity on colour `c`.
     pub fn set_identity_operation(
         &mut self,
         colour: &str,
@@ -176,8 +151,6 @@ impl ColouredOperad {
         Ok(())
     }
 
-    /// Registers unary spine composition: g o_1 f = gf.
-    /// Requires f: [a] -> b and g: [b] -> c, with gf: [a] -> c.
     pub fn register_comp1(
         &mut self,
         g_id: &str,
@@ -239,13 +212,10 @@ impl ColouredOperad {
         Ok(())
     }
 
-    /// Validates strict associativity of unary spine composition:
-    /// (h o_1 g) o_1 f == h o_1 (g o_1 f).
     pub fn validate_spine_associativity(&self) -> Result<(), HigherCategoryError> {
         for ((g1, f1), gf1) in &self.comp1_table {
             for ((h2, g2), hg2) in &self.comp1_table {
                 if g1 == g2 {
-                    // We have f, g, h. Check if (h o_1 g) o_1 f and h o_1 (g o_1 f) are defined and equal.
                     let left = self.comp1_table.get(&(hg2.clone(), f1.clone()));
                     let right = self.comp1_table.get(&(h2.clone(), gf1.clone()));
 
@@ -284,8 +254,6 @@ impl ColouredOperad {
         Ok(())
     }
 
-    /// Validates strict left and right unitality of unary spine composition:
-    /// id_b o_1 f == f and f o_1 id_a == f for f : [a] -> b.
     pub fn validate_spine_unitality(&self) -> Result<(), HigherCategoryError> {
         for op in &self.operations {
             if op.is_unary() {
@@ -322,7 +290,6 @@ impl ColouredOperad {
         Ok(())
     }
 
-    /// Computes a deterministic canonical SHA-256 hash of this coloured operad.
     pub fn canonical_hash(&self) -> String {
         let mut hasher = Sha256::new();
         hasher.update(b"COLORED_OPERAD_V1:");
@@ -353,13 +320,11 @@ impl ColouredOperad {
     }
 }
 
-/// A 0-simplex of the operadic nerve: an object / colour.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OperadNerve0 {
     pub colour: String,
 }
 
-/// A 1-simplex of the operadic nerve: a unary operation f : [c0] -> c1.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OperadNerve1 {
     pub c0: String,
@@ -367,7 +332,6 @@ pub struct OperadNerve1 {
     pub f: String,
 }
 
-/// A 2-simplex of the operadic nerve: a commuting triangle of unary operations.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OperadNerve2 {
     pub c0: String,
@@ -378,9 +342,6 @@ pub struct OperadNerve2 {
     pub f02: String,
 }
 
-/// An inner horn Lambda^1_2 in the operadic nerve.
-/// Consists of face d0 (f12 : [c1] -> c2) and face d2 (f01 : [c0] -> c1)
-/// satisfying the compatibility condition d1(x0) == d0(x2) (i.e. x2.c1 == x0.c0).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct InnerHorn2_1 {
     pub x0: OperadNerve1,
@@ -388,7 +349,6 @@ pub struct InnerHorn2_1 {
 }
 
 impl InnerHorn2_1 {
-    /// Constructs and validates a 2-horn Lambda^1_2.
     pub fn new(x0: OperadNerve1, x2: OperadNerve1) -> Result<Self, HigherCategoryError> {
         if x2.c1 != x0.c0 {
             return Err(HigherCategoryError::OperadicNerveBoundaryMismatch {
@@ -402,13 +362,6 @@ impl InnerHorn2_1 {
     }
 }
 
-/// Constructively fills the inner horn Lambda^1_2 in the operadic nerve.
-///
-/// Computes the missing face d1 = f12 o_1 f01 using operadic composition,
-/// returns the filling 2-simplex, and formally certifies that:
-/// - face d0 of the filler equals x0
-/// - face d2 of the filler equals x2
-/// - face d1 of the filler equals the composite f02
 pub fn fill_inner_horn_2_1(
     operad: &ColouredOperad,
     horn: &InnerHorn2_1,
@@ -444,14 +397,12 @@ pub fn fill_inner_horn_2_1(
         f02: f02.clone(),
     };
 
-    // Certify d0 matches x0
     if filler.c1 != horn.x0.c0 || filler.c2 != horn.x0.c1 || filler.f12 != horn.x0.f {
         return Err(HigherCategoryError::OperadicNerveBoundaryMismatch {
             details: format!("Face d0 does not match x0: expected {:?}, actual d0", horn.x0),
         });
     }
 
-    // Certify d2 matches x2
     if filler.c0 != horn.x2.c0 || filler.c1 != horn.x2.c1 || filler.f01 != horn.x2.f {
         return Err(HigherCategoryError::OperadicNerveBoundaryMismatch {
             details: format!("Face d2 does not match x2: expected {:?}, actual d2", horn.x2),
@@ -461,7 +412,6 @@ pub fn fill_inner_horn_2_1(
     Ok(filler)
 }
 
-/// The Operadic Nerve Functor mapping a Coloured Operad to a Simplicial Set.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OperadicNerve {
     pub operad_hash: String,
@@ -470,7 +420,6 @@ pub struct OperadicNerve {
 }
 
 impl OperadicNerve {
-    /// Builds the Operadic Nerve simplicial set from a Coloured Operad up to max_dimension.
     pub fn from_coloured_operad(
         operad: &ColouredOperad,
         limits: &OperationLimits,
@@ -480,27 +429,22 @@ impl OperadicNerve {
 
         let mut sset = SimplicialSet::new(2, limits)?;
 
-        // 0-simplices: colours
         for c in &operad.colours {
             sset.add_simplex(0, c, limits)?;
         }
 
-        // 1-simplices: unary operations
         for op in &operad.operations {
             if op.is_unary() {
                 sset.add_simplex(1, &op.id, limits)?;
-                // d0 = target, d1 = source
                 sset.set_face(1, 0, &op.id, &op.output)?;
                 sset.set_face(1, 1, &op.id, &op.inputs[0])?;
             }
         }
 
-        // Degeneracy s0 on 0-simplices: identity unary operations
         for (c, id_op) in &operad.id_ops {
             sset.set_degeneracy(0, 0, c, id_op)?;
         }
 
-        // 2-simplices: composable pairs from comp1_table
         let mut horn_count = 0;
         for ((g_id, f_id), gf_id) in &operad.comp1_table {
             let f = operad.operations.iter().find(|op| &op.id == f_id).unwrap();
@@ -509,7 +453,6 @@ impl OperadicNerve {
             let tri_id = format!("tri_{}_{}", f_id, g_id);
             sset.add_simplex(2, &tri_id, limits)?;
 
-            // d0 = g, d1 = gf, d2 = f
             sset.set_face(2, 0, &tri_id, g_id)?;
             sset.set_face(2, 1, &tri_id, gf_id)?;
             sset.set_face(2, 2, &tri_id, f_id)?;
@@ -537,7 +480,6 @@ impl OperadicNerve {
         })
     }
 
-    /// Verifies that the operadic nerve satisfies the Joyal Quasi-Category inner horn filling condition.
     pub fn verify_quasi_category_property(&self) -> Result<bool, HigherCategoryError> {
         let mut horns = Vec::new();
         let one_simplices = &self.simplicial_set.simplices_by_dim[1];
@@ -563,7 +505,6 @@ impl OperadicNerve {
         Ok(true)
     }
 
-    /// Computes a deterministic canonical SHA-256 hash of this operadic nerve.
     pub fn canonical_hash(&self) -> String {
         let mut hasher = Sha256::new();
         hasher.update(b"OPERADIC_NERVE_V1:");

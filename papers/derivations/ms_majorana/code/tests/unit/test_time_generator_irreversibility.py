@@ -113,7 +113,6 @@ def test_time_generator_package():
     assert CONTINUOUS_UNDER_LIFT is ImportStatus.CONDITIONAL_IMPORT
 
 
-# --- Semigroup / contraction / discrete phase residual ---
 
 
 @dataclass(frozen=True)
@@ -175,7 +174,7 @@ def test_time_generator_semigroup_residual_package():
     assert apply_kernel(RESET, MIXED31) == BitWeight(4, 0)
     assert apply_kernel(FLIP, PURE0) == PURE1
     assert DiscretePhaseClock(2, 3).phase_at() == 6
-    assert 0 != 1  # continuous rate extra data
+    assert 0 != 1
     full_stone_continuous_open = True
     assert full_stone_continuous_open is True
     assert CONTINUOUS_UNDER_LIFT is ImportStatus.CONDITIONAL_IMPORT

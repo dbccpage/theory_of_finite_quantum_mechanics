@@ -27,13 +27,12 @@ import sys
 import time
 from pathlib import Path
 
-# Add canonical code directory
 DEMO_DIR = Path(__file__).resolve().parent
 CODE_DIR = DEMO_DIR.parents[1] / "code"
 if str(CODE_DIR) not in sys.path:
     sys.path.insert(0, str(CODE_DIR))
 
-from symbol_game_pfp import verify_6site_scaling_gin  # noqa: E402
+from symbol_game_pfp import verify_6site_scaling_gin
 
 
 def main() -> int:

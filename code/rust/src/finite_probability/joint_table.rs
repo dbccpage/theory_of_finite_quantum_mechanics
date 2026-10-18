@@ -1,35 +1,3 @@
-//! Finite bipartite weight tables: marginals, conditionals, independence and couplings.
-//!
-//! A [`JointTable`] is a declared nonnegative rational weight `w(a, b)` on a finite product
-//! `A x B` with positive total `W`; dividing by `W` gives a joint distribution. Computed
-//! exactly:
-//!
-//! - the marginals `w_A(a) = sum_b w(a, b)` and `w_B(b) = sum_a w(a, b)`, and the conditional
-//!   kernels `P(B | A)` and `P(A | B)` as stochastic maps;
-//! - the product defect `delta(a, b) = w(a, b) - w_A(a) w_B(b) / W` and its `l1` mass
-//!   `sum_(a,b) |delta(a, b)|`;
-//! - independence, decided by several independent computations that must agree: the
-//!   vanishing of every `2 x 2` minor, a row-proportionality scan, the rank of the dense
-//!   matrix, the vanishing of the Pearson statistic, and the vanishing of the covariance of
-//!   every pair of indicator functions;
-//! - the point-product decomposition `w / W = sum (w(a, b) / W) e_(a,b)`, convex mixtures,
-//!   `l1` distances, and the action `g_A (x) g_B` of two declared row-stochastic maps;
-//! - couplings of two marginals: the independent coupling, the north-west-corner coupling,
-//!   and the Frechet bounds every coupling satisfies.
-//!
-//! The product-defect mass is the raw `l1` norm of a nonlinear defect. It depends on the
-//! product basis in which the table was read and is not a distance to the set of product
-//! tables. The total variation between the joint distribution and the product of its
-//! marginals, [`JointTable::dependence_total_variation`], is the basis-free number, and no
-//! local stochastic map can increase it.
-//!
-//! Refused: empty or ragged tables, negative weights, a zero total, mixtures whose weights are
-//! negative or do not sum to one, conditionals of a zero-mass marginal state, and maps whose
-//! source size differs from the side of the table they act on. A
-//! [`crate::stochastic_map::StochasticMap`] is row-stochastic by construction, so it is not
-//! re-checked here.
-//!
-//! AuthorityEffect: None.
 
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError};
 use linear_algebra::linear_algebra::image_kernel::{ExactLinearAlgebraError, ExactRowReduction};
@@ -41,7 +9,6 @@ use crate::error::ClassicalShadowError;
 use crate::simplex::ProbabilitySimplex;
 use crate::stochastic_map::StochasticMap;
 
-/// Refusals for declaring and combining weight tables.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum WeightTableError {
     #[error("a table needs at least one row and one column")]
@@ -98,7 +65,6 @@ pub enum WeightTableError {
     LinearAlgebra(#[from] ExactLinearAlgebraError),
 }
 
-/// A declared nonnegative weight table on `A x B` with positive total.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct JointTable {
     rows: usize,
@@ -106,13 +72,9 @@ pub struct JointTable {
     weights: Vec<Rational>,
 }
 
-/// The pointwise Frechet bounds `[max(0, p_a + q_b - 1), min(p_a, q_b)]` on the joint mass of
-/// every cell, for any joint distribution with marginals `p` and `q`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FrechetBounds {
-    /// `lower[a][b] = max(0, p_a + q_b - 1)`.
     pub lower: Vec<Vec<Rational>>,
-    /// `upper[a][b] = min(p_a, q_b)`.
     pub upper: Vec<Vec<Rational>>,
 }
 
@@ -121,7 +83,6 @@ fn two() -> Rational {
 }
 
 impl JointTable {
-    /// Declare a table from its rows (row `a` lists `w(a, b)` over `b`).
     pub fn new(rows: Vec<Vec<Rational>>) -> Result<Self, WeightTableError> {
         let n_rows = rows.len();
         let n_cols = rows.first().map_or(0, Vec::len);
@@ -155,7 +116,6 @@ impl JointTable {
         Ok(table)
     }
 
-    /// The point table `e_(a,b)`: weight one at `(a, b)` and zero elsewhere.
     pub fn point(rows: usize, cols: usize, a: usize, b: usize) -> Result<Self, WeightTableError> {
         if rows == 0 || cols == 0 {
             return Err(WeightTableError::Empty);
@@ -171,7 +131,6 @@ impl JointTable {
         Ok(Self::point_inside(rows, cols, a, b))
     }
 
-    /// The point table, for a cell already known to lie inside a nonempty shape.
     fn point_inside(rows: usize, cols: usize, a: usize, b: usize) -> Self {
         let mut weights = vec![Rational::zero(); rows * cols];
         weights[a * cols + b] = Rational::one();
@@ -182,8 +141,6 @@ impl JointTable {
         }
     }
 
-    /// The table of the joint distribution `p_i M_ij` of a prior `p` on `A` and a kernel
-    /// `M : A -> B`.
     pub fn from_prior_and_kernel(
         prior: &ProbabilitySimplex,
         kernel: &StochasticMap,
@@ -208,7 +165,6 @@ impl JointTable {
         })
     }
 
-    /// The independent coupling `p_a q_b` of two marginals.
     pub fn independent_coupling(pa: &ProbabilitySimplex, pb: &ProbabilitySimplex) -> Self {
         let mut weights = Vec::with_capacity(pa.n() * pb.n());
         for p in pa.probs() {
@@ -223,11 +179,6 @@ impl JointTable {
         }
     }
 
-    /// The north-west-corner coupling of two marginals: fill cells in row-major order with
-    /// as much mass as both remaining marginals allow.
-    ///
-    /// Its marginals are exactly `pa` and `pb`, and at most `|A| + |B| - 1` cells carry
-    /// mass (it is a vertex of the transportation polytope).
     pub fn northwest_corner_coupling(pa: &ProbabilitySimplex, pb: &ProbabilitySimplex) -> Self {
         let (n, m) = (pa.n(), pb.n());
         let mut weights = vec![Rational::zero(); n * m];
@@ -263,7 +214,6 @@ impl JointTable {
         }
     }
 
-    /// The joint distribution on `Fin n x Fin m` (index `i * m + j`) as a table.
     pub fn from_product_simplex(
         rows: usize,
         cols: usize,
@@ -287,12 +237,10 @@ impl JointTable {
         })
     }
 
-    /// `(|A|, |B|)`.
     pub fn shape(&self) -> (usize, usize) {
         (self.rows, self.cols)
     }
 
-    /// `w(a, b)`, or `None` outside the table.
     pub fn weight(&self, a: usize, b: usize) -> Option<&Rational> {
         if a < self.rows && b < self.cols {
             Some(&self.weights[a * self.cols + b])
@@ -301,17 +249,14 @@ impl JointTable {
         }
     }
 
-    /// All weights, row-major: `w(a, b)` at index `a |B| + b`.
     pub fn weights(&self) -> &[Rational] {
         &self.weights
     }
 
-    /// `W = sum_(a,b) w(a, b)`.
     pub fn total(&self) -> Rational {
         self.weights.iter().sum()
     }
 
-    /// `w_A(a) = sum_b w(a, b)`.
     pub fn marginal_a(&self) -> Vec<Rational> {
         self.weights
             .chunks(self.cols)
@@ -319,7 +264,6 @@ impl JointTable {
             .collect()
     }
 
-    /// `w_B(b) = sum_a w(a, b)`.
     pub fn marginal_b(&self) -> Vec<Rational> {
         (0..self.cols)
             .map(|b| {
@@ -330,22 +274,18 @@ impl JointTable {
             .collect()
     }
 
-    /// The marginal distribution of `A`, `w_A / W`.
     pub fn marginal_distribution_a(&self) -> Result<ProbabilitySimplex, WeightTableError> {
         Ok(ProbabilitySimplex::try_from_weights(self.marginal_a())?)
     }
 
-    /// The marginal distribution of `B`, `w_B / W`.
     pub fn marginal_distribution_b(&self) -> Result<ProbabilitySimplex, WeightTableError> {
         Ok(ProbabilitySimplex::try_from_weights(self.marginal_b())?)
     }
 
-    /// The whole table as a distribution on `Fin(|A| |B|)`, index `a |B| + b`.
     pub fn to_simplex(&self) -> Result<ProbabilitySimplex, WeightTableError> {
         Ok(ProbabilitySimplex::try_from_weights(self.weights.clone())?)
     }
 
-    /// The table with the two sides exchanged, `w^T(b, a) = w(a, b)`.
     pub fn transpose(&self) -> Self {
         let mut weights = Vec::with_capacity(self.weights.len());
         for b in 0..self.cols {
@@ -360,9 +300,6 @@ impl JointTable {
         }
     }
 
-    /// The conditional kernel `P(B | A)`, row `a` being `w(a, .) / w_A(a)`.
-    ///
-    /// Refuses a state of `A` with zero marginal mass, whose conditional is undetermined.
     pub fn conditional_b_given_a(&self) -> Result<StochasticMap, WeightTableError> {
         let marginal = self.marginal_a();
         let mut rows = Vec::with_capacity(self.rows);
@@ -380,7 +317,6 @@ impl JointTable {
         )?)
     }
 
-    /// The conditional kernel `P(A | B)`, row `b` being `w(., b) / w_B(b)`.
     pub fn conditional_a_given_b(&self) -> Result<StochasticMap, WeightTableError> {
         self.transpose()
             .conditional_b_given_a()
@@ -392,7 +328,6 @@ impl JointTable {
             })
     }
 
-    /// `delta(a, b) = w(a, b) - w_A(a) w_B(b) / W`, row by row.
     pub fn product_defect(&self) -> Vec<Vec<Rational>> {
         let total = self.total();
         let (ma, mb) = (self.marginal_a(), self.marginal_b());
@@ -405,7 +340,6 @@ impl JointTable {
             .collect()
     }
 
-    /// `sum_(a,b) |delta(a, b)|`, zero exactly when the table factors.
     pub fn product_defect_mass(&self) -> Rational {
         self.product_defect()
             .iter()
@@ -414,19 +348,10 @@ impl JointTable {
             .sum()
     }
 
-    /// The total variation distance between the joint distribution `w / W` and the product
-    /// `(w_A / W) (x) (w_B / W)` of its marginals: `product_defect_mass / (2 W)`.
-    ///
-    /// Zero exactly when the table factors, in `[0, 1)`, and non-increasing under
-    /// [`JointTable::apply_local_maps`].
     pub fn dependence_total_variation(&self) -> Rational {
         self.product_defect_mass() / (two() * self.total())
     }
 
-    /// Every `2 x 2` minor `w(a,b) w(a',b') - w(a,b') w(a',b)` vanishes.
-    ///
-    /// For a nonnegative table with positive total this is rank one, which is factorization
-    /// through the marginals. It uses no marginal.
     pub fn has_vanishing_minors(&self) -> bool {
         let w = |a: usize, b: usize| &self.weights[a * self.cols + b];
         (0..self.rows).all(|a| {
@@ -438,11 +363,6 @@ impl JointTable {
         })
     }
 
-    /// The table has rank one, decided by one pass over the cells.
-    ///
-    /// Some cell `(r, c)` has positive weight (the total is positive). The table is rank one
-    /// exactly when every row is the multiple `w(a, c) / w(r, c)` of row `r`, which is
-    /// checked entry by entry in `O(|A| |B|)` exact operations.
     pub fn is_independent(&self) -> bool {
         let pivot = self
             .weights
@@ -450,8 +370,6 @@ impl JointTable {
             .position(|w| w.is_positive())
             .map(|k| (k / self.cols, k % self.cols));
         let Some((r, c)) = pivot else {
-            // Unreachable for a constructed table (the total is positive); an all-zero table
-            // has no rank-one factorization.
             return false;
         };
         let pivot_weight = &self.weights[r * self.cols + c];
@@ -463,14 +381,11 @@ impl JointTable {
         })
     }
 
-    /// The rank of the dense matrix of weights, by the exact elimination of
-    /// `omega_linear_algebra`. The table factors exactly when this is one.
     pub fn rank(&self) -> Result<usize, WeightTableError> {
         let matrix = BasicMatrix::from_row_major(self.rows, self.cols, self.weights.clone())?;
         Ok(matrix.rank()?)
     }
 
-    /// When the table factors, its two marginal distributions; else `None`.
     pub fn factor_marginals(
         &self,
     ) -> Result<Option<(ProbabilitySimplex, ProbabilitySimplex)>, WeightTableError> {
@@ -483,11 +398,6 @@ impl JointTable {
         )))
     }
 
-    /// Pearson's statistic `sum (w - e)^2 / e` with `e(a, b) = w_A(a) w_B(b) / W`, over the
-    /// cells whose marginals are both positive.
-    ///
-    /// Exact and rational; zero exactly when the table factors. A cell with a zero marginal
-    /// has `e = 0` and `w = 0`, contributes nothing, and is skipped.
     pub fn chi_square_statistic(&self) -> Rational {
         let total = self.total();
         let (ma, mb) = (self.marginal_a(), self.marginal_b());
@@ -505,8 +415,6 @@ impl JointTable {
         statistic
     }
 
-    /// `E[f(A) g(B)]` under the joint distribution `w / W`, for functions given by their
-    /// values on each side.
     pub fn expectation_of_product(
         &self,
         f: &[Rational],
@@ -523,11 +431,6 @@ impl JointTable {
         Ok(sum / total)
     }
 
-    /// `Cov(f(A), g(B)) = E[f g] - E[f] E[g]` under `w / W`.
-    ///
-    /// Independence forces every covariance to vanish; the covariance of the indicators of
-    /// `a` and `b` is `delta(a, b) / W`, so the converse holds when all indicator pairs are
-    /// tested.
     pub fn covariance(&self, f: &[Rational], g: &[Rational]) -> Result<Rational, WeightTableError> {
         self.check_function_lengths(f, g)?;
         let total = self.total();
@@ -570,7 +473,6 @@ impl JointTable {
         Ok(())
     }
 
-    /// The table rescaled to total one.
     pub fn normalized(&self) -> Self {
         let total = self.total();
         Self {
@@ -580,7 +482,6 @@ impl JointTable {
         }
     }
 
-    /// `w / W = sum (w(a, b) / W) e_(a,b)` over the cells of positive weight.
     pub fn point_product_decomposition(&self) -> Vec<(Rational, JointTable)> {
         let total = self.total();
         let mut parts = Vec::new();
@@ -595,7 +496,6 @@ impl JointTable {
         parts
     }
 
-    /// `sum_i q_i T_i` for tables of one shape and weights `q_i >= 0` summing to one.
     pub fn convex_mixture(parts: &[(Rational, JointTable)]) -> Result<Self, WeightTableError> {
         let shape = parts
             .first()
@@ -629,7 +529,6 @@ impl JointTable {
         })
     }
 
-    /// `sum_(a,b) |w(a, b) - v(a, b)|`.
     pub fn l1_distance(&self, other: &Self) -> Result<Rational, WeightTableError> {
         if self.shape() != other.shape() {
             return Err(WeightTableError::ShapeMismatch {
@@ -645,9 +544,6 @@ impl JointTable {
             .sum())
     }
 
-    /// `w'(a', b') = sum_(a,b) w(a, b) g_A(a' | a) g_B(b' | b)`.
-    ///
-    /// Row-stochastic maps preserve the total, so the result is a table.
     pub fn apply_local_maps(
         &self,
         g_a: &StochasticMap,
@@ -691,7 +587,6 @@ impl JointTable {
     }
 }
 
-/// The Frechet bounds of every joint distribution with marginals `pa` and `pb`.
 pub fn frechet_bounds(pa: &ProbabilitySimplex, pb: &ProbabilitySimplex) -> FrechetBounds {
     let one = Rational::one();
     let mut lower = Vec::with_capacity(pa.n());
@@ -730,7 +625,6 @@ mod tests {
         .unwrap()
     }
 
-    /// Every nonzero `r x c` table with integer weights in `0..=max`.
     fn all_tables(r: usize, c: usize, max: i64) -> Vec<JointTable> {
         let cells = r * c;
         let mut out = Vec::new();
@@ -758,7 +652,6 @@ mod tests {
         }
     }
 
-    // --- declaration ------------------------------------------------------------------
 
     #[test]
     fn a_table_is_refused_when_empty_ragged_negative_or_zero() {
@@ -801,7 +694,6 @@ mod tests {
         assert_eq!(e.weight(2, 0), None);
     }
 
-    // --- marginals, conditionals, Bayes ------------------------------------------------------
 
     #[test]
     fn marginals_and_total_have_their_hand_values() {
@@ -846,7 +738,6 @@ mod tests {
         assert_eq!(joint.total(), ri(1));
         assert_eq!(joint.marginal_distribution_a().unwrap(), prior);
         assert_eq!(joint.conditional_b_given_a().unwrap(), kernel);
-        // The posterior kernel is the Bayesian inverse, computed by a different route.
         let (marginal, posterior) = kernel.bayesian_inverse(&prior).unwrap();
         assert_eq!(joint.marginal_distribution_b().unwrap(), marginal);
         assert_eq!(joint.conditional_a_given_b().unwrap(), posterior);
@@ -903,9 +794,7 @@ mod tests {
         );
     }
 
-    // --- independence: independent routes must agree ----------------------------------------
 
-    /// Seven decisions of the same question, on every small table.
     fn independence_decisions(t: &JointTable) -> [bool; 7] {
         let indicator = |n: usize, k: usize| -> Vec<Rational> {
             (0..n).map(|i| if i == k { ri(1) } else { ri(0) }).collect()
@@ -948,7 +837,6 @@ mod tests {
                 }
             }
         }
-        // Both classes occur, so the agreement is not the agreement of constants.
         assert!(
             independent > 10 && dependent > 10,
             "{independent} / {dependent}"
@@ -969,7 +857,6 @@ mod tests {
 
     #[test]
     fn the_pearson_statistic_of_a_two_by_two_table_is_its_closed_form() {
-        // chi^2 = W (ad - bc)^2 / (r1 r2 c1 c2) when every marginal is positive.
         for t in all_tables(2, 2, 3) {
             let (ma, mb) = (t.marginal_a(), t.marginal_b());
             if ma.iter().chain(&mb).any(Zero::is_zero) {
@@ -980,7 +867,6 @@ mod tests {
             let closed = t.total() * &det * &det / (&ma[0] * &ma[1] * &mb[0] * &mb[1]);
             assert_eq!(t.chi_square_statistic(), closed, "{:?}", t.weights());
         }
-        // The hand value for [[2, 1], [1, 2]]: 6 * 9 / 81.
         assert_eq!(table(&[&[2, 1], &[1, 2]]).chi_square_statistic(), rq(2, 3));
     }
 
@@ -988,7 +874,6 @@ mod tests {
     fn a_zero_marginal_cell_does_not_enter_the_pearson_statistic() {
         let t = table(&[&[3, 0, 1], &[1, 0, 3]]);
         let statistic = t.chi_square_statistic();
-        // Dropping the all-zero column changes nothing.
         let trimmed = table(&[&[3, 1], &[1, 3]]);
         assert_eq!(statistic, trimmed.chi_square_statistic());
         assert!(statistic.is_positive());
@@ -1001,7 +886,6 @@ mod tests {
             assert!(d >= ri(0) && d < ri(1), "{d}");
             assert_eq!(d.is_zero(), t.is_independent());
         }
-        // The diagonal table is as dependent as a 2 x 2 table gets: TV = 1/2.
         assert_eq!(
             table(&[&[1, 0], &[0, 1]]).dependence_total_variation(),
             rq(1, 2)
@@ -1022,8 +906,6 @@ mod tests {
                 assert_eq!(product.covariance(f, g).unwrap(), ri(0));
             }
         }
-        // Zero covariance for one pair of functions does not give independence: the
-        // dependent diagonal table has zero covariance with the constant function.
         let diagonal = table(&[&[1, 0], &[0, 1]]);
         assert!(!diagonal.is_independent());
         assert_eq!(
@@ -1072,7 +954,6 @@ mod tests {
         }
     }
 
-    // --- mixtures, decomposition, distances ---------------------------------------------------
 
     #[test]
     fn the_point_product_decomposition_reassembles_the_normalised_table() {
@@ -1132,7 +1013,6 @@ mod tests {
         );
     }
 
-    // --- local maps -------------------------------------------------------------------------
 
     #[test]
     fn local_maps_preserve_the_total_and_the_identity_acts_trivially() {
@@ -1188,7 +1068,6 @@ mod tests {
                 }
             }
         }
-        // A constant local map destroys all dependence.
         let t = table(&[&[1, 0], &[0, 1]]);
         let constant = stochastic(&[&[(1, 2), (1, 2)], &[(1, 2), (1, 2)]]);
         let id = StochasticMap::identity(&FinN::try_new(2).unwrap(), "id").unwrap();
@@ -1200,7 +1079,6 @@ mod tests {
         );
     }
 
-    // --- couplings and Frechet bounds --------------------------------------------------------
 
     #[test]
     fn the_independent_coupling_has_the_given_marginals_and_zero_defect() {
@@ -1240,7 +1118,6 @@ mod tests {
                 );
             }
         }
-        // Hand value: marginals (1/2, 1/2) and (1/4, 3/4) give mass 1/4 at (0,0), 1/4 at (0,1), 1/2 at (1,1).
         let c = JointTable::northwest_corner_coupling(
             &simplex(&[(1, 2), (1, 2)]),
             &simplex(&[(1, 4), (3, 4)]),
@@ -1258,7 +1135,6 @@ mod tests {
                 let pb =
                     ProbabilitySimplex::try_new(y.iter().map(|&k| rq(k, 4)).collect()).unwrap();
                 let bounds = frechet_bounds(&pa, &pb);
-                // Every 2 x 2 table with these marginals: one free parameter t = P(0, 0).
                 let mut seen_lower = false;
                 let mut seen_upper = false;
                 for t in 0..=4i64 {

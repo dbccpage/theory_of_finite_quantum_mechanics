@@ -1,6 +1,3 @@
-//! Unresolved inventory of the original ten FQMC-1 clauses.
-//! Candidate labels are not verified evidence. No launch-class binding or
-//! dependency audit is implemented here. AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use serde_json::json;
@@ -36,7 +33,6 @@ pub struct Fqmc1ContractAudit {
 }
 
 impl Fqmc1ContractAudit {
-    /// Derive counts from this unresolved inventory. No clause is certified.
     pub fn evaluate() -> Self {
         Self {
             obligation_count: fqmc1_obligation_count(),
@@ -53,17 +49,14 @@ pub fn fqmc1_obligation_count() -> usize {
     FQMC1_CLAUSES.len()
 }
 
-/// The launch-frozen class identity has not been established.
 pub fn untyped_internal_obligation_count() -> usize {
     ["launch-frozen class identity"].len()
 }
 
-/// Every original clause needs a class-wide evidence audit.
 pub fn open_internal_obligation_count() -> usize {
     FQMC1_CLAUSES.len()
 }
 
-/// Bookkeeping rule conditional on independently audited counts.
 pub fn decide_terminal(untyped: usize, open: usize, global_refusal: bool) -> &'static str {
     if global_refusal {
         "FQMC1_REFUSED_AS_GLOBAL_FINITE_REPLACEMENT"
@@ -86,7 +79,6 @@ pub fn refusal_count() -> usize {
     REFUSAL_IDS.len()
 }
 
-/// This kernel does not parse or adjudicate the block scores.
 pub fn all_block_bets_scored() -> Option<bool> {
     None
 }

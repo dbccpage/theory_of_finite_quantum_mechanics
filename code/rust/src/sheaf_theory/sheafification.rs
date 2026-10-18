@@ -1,6 +1,3 @@
-//! Grothendieck plus-construction and sheafification functor F^# = (F^+)^+ (SH-09, SH-10, SH-11, SH-12).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::{OpenSet, PosetTopology};
 use crate::presheaf::Presheaf;
@@ -8,9 +5,6 @@ use crate::sheaf::compute_equalizer_kernel;
 use std::collections::BTreeMap;
 use std::fmt::Debug;
 
-/// Grothendieck's plus-construction F^+(U) = H^0_cech(U, F) (SH-09).
-///
-/// Sections over U are matching families over the canonical cover of minimal neighborhoods {U_x}_{x in U}.
 pub fn plus_construction<T: Clone + PartialEq + Debug + Send + Sync + 'static>(
     presheaf: &Presheaf<T>,
 ) -> Presheaf<Vec<T>> {
@@ -46,9 +40,6 @@ pub fn plus_construction<T: Clone + PartialEq + Debug + Send + Sync + 'static>(
     )
 }
 
-/// Grothendieck Sheafification Functor F^# = (F^+)^+ (SH-10).
-///
-/// Transforms any presheaf into an authentic sheaf while canonically preserving stalks.
 pub fn sheafify<T: Clone + PartialEq + Debug + Send + Sync + 'static>(
     presheaf: &Presheaf<T>,
 ) -> Presheaf<Vec<Vec<T>>> {
@@ -58,16 +49,12 @@ pub fn sheafify<T: Clone + PartialEq + Debug + Send + Sync + 'static>(
     f_sharp
 }
 
-/// Constant presheaf assigns the same single value to EVERY non-empty open set (SH-11).
-/// Fails S2 gluing on disconnected open sets U = U_1 uplus U_2.
 pub fn make_constant_presheaf(topology: &PosetTopology, val: &str) -> Presheaf<String> {
     let mut sections = BTreeMap::new();
-    // Add minimal open neighborhoods
     for p in &topology.base_elements {
         let u_p = topology.minimal_open_neighborhood(p);
         sections.insert(u_p, vec![val.to_string()]);
     }
-    // Add total space
     let total = OpenSet {
         elements: topology.base_elements.clone(),
     };
@@ -81,8 +68,6 @@ pub fn make_constant_presheaf(topology: &PosetTopology, val: &str) -> Presheaf<S
     )
 }
 
-/// Skyscraper sheaf i_{x*} A supported at point x (SH-12):
-/// F(U) = {stalk_value} if point in U else {zero_value}.
 pub fn make_skyscraper_sheaf(
     topology: &PosetTopology,
     point: &str,

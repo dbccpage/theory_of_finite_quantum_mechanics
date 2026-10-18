@@ -44,11 +44,11 @@ class Component(str, Enum):
 class RecoveryStage(str, Enum):
     """Five-stage reconstruction ladder (design outline; not sealed theorem)."""
 
-    CLASSICAL_SHADOW = "ClassicalShadow"  # T01–T05 / FinL1
-    SURPLUS = "Surplus"  # T06–T07 / Rung 5–6
-    LIFT_HOST = "LiftHost"  # T08 / W5.8 conditional
-    SPECTRAL_BORN_COMPOSE = "SpectralBornCompose"  # T09–T11, T13
-    OPS = "Ops"  # T12, T14–T17
+    CLASSICAL_SHADOW = "ClassicalShadow"
+    SURPLUS = "Surplus"
+    LIFT_HOST = "LiftHost"
+    SPECTRAL_BORN_COMPOSE = "SpectralBornCompose"
+    OPS = "Ops"
 
 
 ALL_COMPONENTS = tuple(Component)
@@ -56,7 +56,6 @@ ALL_COMPONENTS = tuple(Component)
 RECOVERED = set(ALL_COMPONENTS)
 OPEN_RESIDUAL: set[Component] = set()
 
-# Design seal flags (dual of Lean sealedRecoveryClosed / fullMatrixRecovery_closed).
 SEALED_RECOVERY_CLOSED: bool = False
 FULL_MATRIX_RECOVERY_CLOSED: bool = False
 GLEASON_ABS_CLOSED: bool = False
@@ -433,7 +432,6 @@ def test_stage_partition_card():
     n_ops = len(stage_components(RecoveryStage.OPS))
     assert (n_classical, n_surplus, n_lift, n_sbc, n_ops) == (5, 2, 1, 4, 5)
     assert n_classical + n_surplus + n_lift + n_sbc + n_ops == 17
-    # Every component is staged exactly once.
     staged = {c for s in RecoveryStage for c in stage_components(s)}
     assert staged == set(ALL_COMPONENTS)
 
@@ -502,7 +500,6 @@ def test_finite_matrix_recovery_partial_package():
     assert SEALED_RECOVERY_CLOSED is False
 
 
-# --- Sealed recovery design deepen (DAG + B8 ledger bind) ---
 
 
 class RecoveryImportSlot(str, Enum):
@@ -657,7 +654,6 @@ def test_spectral_born_compose_stage_discharge_package():
     assert SEALED_RECOVERY_CLOSED is False
 
 
-# --- REC-FULL-THEOREM residual deepen: all-stage pathway discharge ---
 
 
 def stage_pathway_discharged(pkg: RecoveryPackage, s: RecoveryStage) -> bool:

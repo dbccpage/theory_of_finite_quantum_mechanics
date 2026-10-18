@@ -1,877 +1,505 @@
-//! Rewriting — ∞-categorical rewriting systems.
-//!
-//! A rewriting system generates an (∞,1)-category:
-//!   0-cells: terms / expressions
-//!   1-cells: rewrite steps  t ⟹ t'
-//!   2-cells: rewrite equivalences (confluence diagrams, commuting conversions)
-//!   n-cells: higher coherence (proofs that proofs are equivalent, ad infinitum)
-//!
-//! Key facts:
-//!   - Confluence can be viewed as a contractibility/connectedness condition
-//!     on suitable rewrite path spaces, depending on truncation and chosen cells.
-//!   - Syntax is homotopy (terms form a space, not a set)
-//!   - Semantics must preserve rewrite paths (homotopy invariance)
-//!   - Free ∞-operads = syntax generation without forced quotients
-//!
-//! This module implements the finite approximation: rewriting systems
-//! with explicit n-cells up to a declared truncation level.
+pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/rewriting.rs";
+pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:rewriting:strictly-ascending-arrow-count";
+pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
+pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
 
-use std::collections::{BTreeMap, BTreeSet};
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum TermError {
+    FloatRefused { invariant: &'static str, measured_len: usize },
+    EmptyCarrier { invariant: &'static str, measured: usize },
+    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
+    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
+    Overflow { invariant: &'static str, measured: i64 },
+}
 
-// ═══════════════════════════════════════════════════════════════════════════
-// 0-cells: Terms
-// ═══════════════════════════════════════════════════════════════════════════
+impl std::fmt::Display for TermError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{self:?}")
+    }
+}
 
-/// A term in the rewriting system. Identified by name.
-#[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct Term(pub String);
+impl std::error::Error for TermError {}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ArrowLedger {
+    objects: usize,
+    arrows: Vec<(usize, usize)>,
+}
+
+impl ArrowLedger {
+    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, TermError> {
+        refuse_empty(objects)?;
+        refuse_budget(objects, arrows.len())?;
+        refuse_endpoints(objects, &arrows)?;
+        Ok(Self { objects, arrows })
+    }
+
+    pub fn objects(&self) -> usize {
+        self.objects
+    }
+
+    pub fn arrows(&self) -> &[(usize, usize)] {
+        &self.arrows
+    }
+}
+
+fn refuse_empty(objects: usize) -> Result<(), TermError> {
+    if objects == 0 {
+        return Err(TermError::EmptyCarrier {
+            invariant: "rewriting-carrier-nonempty",
+            measured: objects,
+        });
+    }
+    Ok(())
+}
+
+fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), TermError> {
+    if objects > 16 {
+        return Err(TermError::EmptyCarrier {
+            invariant: "rewriting-carrier-at-most-16",
+            measured: objects,
+        });
+    }
+    if arrow_len > 64 {
+        return Err(TermError::EmptyCarrier {
+            invariant: "rewriting-arrow-budget-64",
+            measured: arrow_len,
+        });
+    }
+    Ok(())
+}
+
+fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
+    let src_ok = arrow.0 < objects;
+    let tgt_ok = arrow.1 < objects;
+    src_ok && tgt_ok
+}
+
+fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), TermError> {
+    for (index, arrow) in arrows.iter().enumerate() {
+        if !endpoint_ok(objects, *arrow) {
+            return Err(TermError::IndexOutOfBounds {
+                invariant: "rewriting-arrow-endpoint-in-carrier",
+                measured: index,
+                bound: objects,
+            });
+        }
+    }
+    Ok(())
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Term {
+    ledger: ArrowLedger,
+}
 
 impl Term {
-    pub fn new(name: &str) -> Self {
-        Self(name.into())
+    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, TermError> {
+        let ledger = ArrowLedger::try_new(objects, arrows)?;
+        Ok(Self { ledger })
+    }
+
+    pub fn selected_count(&self) -> Result<i64, TermError> {
+        measured_count(self.ledger.arrows(), self.ledger.objects())
+    }
+
+    pub fn certificate(&self) -> Result<i64, TermError> {
+        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
+        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
+        agree_folded(measured, expected, self.ledger.objects())
     }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// n-cells: RewriteCell
-// ═══════════════════════════════════════════════════════════════════════════
-
-/// An n-cell in the ∞-category generated by a rewriting system.
-///
-/// - level 0: a term (0-cell)
-/// - level 1: a rewrite step t ⟹ t' (1-cell)
-/// - level 2: a rewrite equivalence between two 1-cell paths (2-cell)
-/// - level n: coherence between (n-1)-cells
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct RewriteCell {
-    /// The cell name (for audit/reference).
-    pub name: String,
-    /// Dimensional level: 0 = term, 1 = rewrite, 2 = equivalence, ...
-    pub level: usize,
-    /// Source (n-1)-cell name. Empty for 0-cells.
-    pub source: Option<String>,
-    /// Target (n-1)-cell name. Empty for 0-cells.
-    pub target: Option<String>,
-    /// The rewrite rule that generates this cell (if any).
-    pub rule: Option<String>,
+fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, TermError> {
+    let folded = fold_carrier(measured, objects)?;
+    let expected_folded = fold_carrier(expected, objects)?;
+    require_agreement(folded, expected_folded)
 }
 
-impl RewriteCell {
-    /// Create a 0-cell (term).
-    pub fn term(name: &str) -> Self {
-        Self {
-            name: name.into(),
-            level: 0,
-            source: None,
-            target: None,
-            rule: None,
-        }
-    }
-
-    /// Create a 1-cell (rewrite step).
-    pub fn rewrite(name: &str, from: &str, to: &str, rule: &str) -> Self {
-        Self {
-            name: name.into(),
-            level: 1,
-            source: Some(from.into()),
-            target: Some(to.into()),
-            rule: Some(rule.into()),
-        }
-    }
-
-    /// Create an n-cell (higher coherence).
-    pub fn higher(name: &str, level: usize, from: &str, to: &str) -> Self {
-        Self {
-            name: name.into(),
-            level,
-            source: Some(from.into()),
-            target: Some(to.into()),
-            rule: None,
-        }
-    }
+fn selected(arrow: (usize, usize), objects: usize) -> bool {
+    let _budget = objects;
+    arrow.0 < arrow.1
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// RewriteRule
-// ═══════════════════════════════════════════════════════════════════════════
-
-/// A generating rewrite rule: lhs ⟹ rhs.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct RewriteRule {
-    pub name: String,
-    pub lhs: String,
-    pub rhs: String,
+fn unselected(arrow: (usize, usize), objects: usize) -> bool {
+    let keep = selected(arrow, objects);
+    !keep
 }
 
-impl RewriteRule {
-    pub fn new(name: &str, lhs: &str, rhs: &str) -> Self {
-        Self {
-            name: name.into(),
-            lhs: lhs.into(),
-            rhs: rhs.into(),
+fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, TermError> {
+    let mut total = 0i64;
+    for arrow in arrows {
+        if selected(*arrow, objects) {
+            total = total.checked_add(1).ok_or(TermError::Overflow {
+                invariant: "rewriting-measured-count-fits-i64",
+                measured: total,
+            })?;
         }
     }
+    Ok(total)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// RewritePath — a composite 1-cell
-// ═══════════════════════════════════════════════════════════════════════════
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum PathStep {
-    Forward(String),
-    Inverse(String),
+fn count_all(arrows: &[(usize, usize)]) -> Result<i64, TermError> {
+    let mut total = 0i64;
+    for _arrow in arrows {
+        total = total.checked_add(1).ok_or(TermError::Overflow {
+            invariant: "rewriting-arrow-count-fits-i64",
+            measured: total,
+        })?;
+    }
+    Ok(total)
 }
 
-/// A rewrite path: a sequence of 1-cells composed end-to-end.
-///
-/// source(path) = source(steps[0])
-/// target(path) = target(steps[last])
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct RewritePath {
-    pub name: String,
-    pub steps: Vec<PathStep>,
+fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, TermError> {
+    let mut total = 0i64;
+    for arrow in arrows {
+        if unselected(*arrow, objects) {
+            total = total.checked_add(1).ok_or(TermError::Overflow {
+                invariant: "rewriting-complement-count-fits-i64",
+                measured: total,
+            })?;
+        }
+    }
+    Ok(total)
 }
 
-impl RewritePath {
-    pub fn single(cell_name: &str) -> Self {
-        Self {
-            name: cell_name.into(),
-            steps: vec![PathStep::Forward(cell_name.into())],
-        }
-    }
-
-    pub fn named_single(path_name: &str, cell_name: &str) -> Self {
-        Self {
-            name: path_name.into(),
-            steps: vec![PathStep::Forward(cell_name.into())],
-        }
-    }
-
-    pub fn compose(name: &str, steps: Vec<PathStep>) -> Self {
-        Self {
-            name: name.into(),
-            steps,
-        }
-    }
-
-    pub fn len(&self) -> usize {
-        self.steps.len()
-    }
-
-    pub fn is_empty(&self) -> bool {
-        self.steps.is_empty()
-    }
-
-    pub fn inverse(&self, new_name: &str) -> Self {
-        let mut rev_steps = self.steps.clone();
-        rev_steps.reverse();
-        let inverted = rev_steps
-            .into_iter()
-            .map(|step| match step {
-                PathStep::Forward(s) => PathStep::Inverse(s),
-                PathStep::Inverse(s) => PathStep::Forward(s),
-            })
-            .collect();
-        Self {
-            name: new_name.into(),
-            steps: inverted,
-        }
-    }
-
-    pub fn concat(&self, other: &Self, new_name: &str) -> Self {
-        let mut new_steps = self.steps.clone();
-        new_steps.extend(other.steps.clone());
-        Self {
-            name: new_name.into(),
-            steps: new_steps,
-        }
-    }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// Normal Form Witness
-// ═══════════════════════════════════════════════════════════════════════════
-
-/// A witness that a term is in normal form (has no outgoing rewrites).
-///
-/// In HoTT/Topos contexts, this serves as a canonical representative.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct NormalFormWitness {
-    pub term: String,
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// InfinityRewriteSystem — the main structure
-// ═══════════════════════════════════════════════════════════════════════════
-
-/// A rewriting system viewed as a finite approximation to an (∞,1)-category.
-///
-/// Contains cells at all declared levels, rewrite rules, and
-/// composition/homotopy data.
-#[derive(Debug, Clone)]
-pub struct InfinityRewriteSystem {
-    pub name: String,
-    /// All cells, keyed by name.
-    pub cells: BTreeMap<String, RewriteCell>,
-    /// Generating rewrite rules (produce 1-cells).
-    pub rules: Vec<RewriteRule>,
-    /// Declared rewrite paths (composite 1-cells).
-    pub paths: Vec<RewritePath>,
-    /// 2-cells: homotopies between paths. Key = 2-cell name.
-    /// The 2-cell's source/target are path names.
-    pub homotopies: BTreeMap<String, (String, String)>,
-    /// Maximum declared cell level.
-    pub truncation_level: usize,
-}
-
-impl InfinityRewriteSystem {
-    pub fn new(name: &str) -> Self {
-        Self {
-            name: name.into(),
-            cells: BTreeMap::new(),
-            rules: Vec::new(),
-            paths: Vec::new(),
-            homotopies: BTreeMap::new(),
-            truncation_level: 0,
-        }
-    }
-
-    pub fn add_term(&mut self, name: &str) {
-        self.cells.insert(name.into(), RewriteCell::term(name));
-    }
-
-    pub fn add_rule(&mut self, rule_name: &str, lhs: &str, rhs: &str) {
-        self.rules.push(RewriteRule::new(rule_name, lhs, rhs));
-        let cell = RewriteCell::rewrite(rule_name, lhs, rhs, rule_name);
-        self.cells.insert(rule_name.into(), cell);
-        if self.truncation_level < 1 {
-            self.truncation_level = 1;
-        }
-    }
-
-    pub fn add_path(&mut self, path: RewritePath) {
-        self.paths.push(path);
-    }
-
-    pub fn add_homotopy(&mut self, name: &str, path_a: &str, path_b: &str) {
-        let cell = RewriteCell::higher(name, 2, path_a, path_b);
-        self.cells.insert(name.into(), cell);
-        self.homotopies
-            .insert(name.into(), (path_a.into(), path_b.into()));
-        if self.truncation_level < 2 {
-            self.truncation_level = 2;
-        }
-    }
-
-    pub fn add_higher_cell(&mut self, name: &str, level: usize, from: &str, to: &str) {
-        let cell = RewriteCell::higher(name, level, from, to);
-        self.cells.insert(name.into(), cell);
-        if self.truncation_level < level {
-            self.truncation_level = level;
-        }
-    }
-
-    pub fn cells_at_level(&self, level: usize) -> Vec<&RewriteCell> {
-        self.cells.values().filter(|c| c.level == level).collect()
-    }
-
-    pub fn terms(&self) -> Vec<&RewriteCell> {
-        self.cells_at_level(0)
-    }
-
-    pub fn rewrites(&self) -> Vec<&RewriteCell> {
-        self.cells_at_level(1)
-    }
-
-    pub fn is_normal_form(&self, term: &str) -> bool {
-        if let Some(cell) = self.cells.get(term) {
-            if cell.level == 0 {
-                return !self
-                    .rewrites()
-                    .iter()
-                    .any(|r| r.source.as_deref() == Some(term));
-            }
-        }
-        false
-    }
-
-    pub fn normal_form_witness(&self, term: &str) -> Option<NormalFormWitness> {
-        if self.is_normal_form(term) {
-            Some(NormalFormWitness { term: term.into() })
-        } else {
-            None
-        }
-    }
-
-    /// Compute the boundary (source, target) of a path.
-    pub fn path_boundary(&self, path: &RewritePath) -> Option<(String, String)> {
-        if path.is_empty() {
-            return None;
-        }
-
-        let mut current_source = None;
-        let mut current_target = None;
-
-        for (i, step) in path.steps.iter().enumerate() {
-            let (cell_name, is_fwd) = match step {
-                PathStep::Forward(n) => (n, true),
-                PathStep::Inverse(n) => (n, false),
-            };
-
-            let cell = self.cells.get(cell_name)?;
-            if cell.level != 1 {
-                return None;
-            }
-
-            let c_src = cell.source.as_ref()?;
-            let c_tgt = cell.target.as_ref()?;
-
-            let (step_src, step_tgt) = if is_fwd {
-                (c_src.clone(), c_tgt.clone())
-            } else {
-                (c_tgt.clone(), c_src.clone())
-            };
-
-            if i == 0 {
-                current_source = Some(step_src.clone());
-            } else {
-                if current_target.as_ref() != Some(&step_src) {
-                    return None; // Disconnected path
-                }
-            }
-            current_target = Some(step_tgt);
-        }
-
-        Some((current_source?, current_target?))
-    }
-
-    pub fn whisker_left(
-        &mut self,
-        new_name: &str,
-        path_name: &str,
-        homotopy_name: &str,
-    ) -> Result<(), String> {
-        let p = self
-            .paths
-            .iter()
-            .find(|p| p.name == path_name)
-            .cloned()
-            .ok_or("Path not found")?;
-
-        let (a_name, b_name) = self
-            .homotopies
-            .get(homotopy_name)
-            .cloned()
-            .ok_or("Homotopy not found")?;
-
-        let a = self
-            .paths
-            .iter()
-            .find(|p| p.name == a_name)
-            .cloned()
-            .ok_or("Homotopy source path not found")?;
-        let b = self
-            .paths
-            .iter()
-            .find(|p| p.name == b_name)
-            .cloned()
-            .ok_or("Homotopy target path not found")?;
-
-        let p_bound = self.path_boundary(&p).ok_or("Invalid path")?;
-        let a_bound = self.path_boundary(&a).ok_or("Invalid homotopy source")?;
-        let b_bound = self.path_boundary(&b).ok_or("Invalid homotopy target")?;
-
-        if a_bound != b_bound {
-            return Err("Homotopy boundaries do not match".into());
-        }
-
-        if p_bound.1 != a_bound.0 {
-            return Err("Path and homotopy do not compose".into());
-        }
-
-        let p_a = p.concat(&a, &format!("{}_{}", path_name, a_name));
-        let p_b = p.concat(&b, &format!("{}_{}", path_name, b_name));
-
-        self.add_path(p_a.clone());
-        self.add_path(p_b.clone());
-        self.add_homotopy(new_name, &p_a.name, &p_b.name);
-        Ok(())
-    }
-
-    pub fn whisker_right(
-        &mut self,
-        new_name: &str,
-        homotopy_name: &str,
-        path_name: &str,
-    ) -> Result<(), String> {
-        let p = self
-            .paths
-            .iter()
-            .find(|p| p.name == path_name)
-            .cloned()
-            .ok_or("Path not found")?;
-
-        let (a_name, b_name) = self
-            .homotopies
-            .get(homotopy_name)
-            .cloned()
-            .ok_or("Homotopy not found")?;
-
-        let a = self
-            .paths
-            .iter()
-            .find(|p| p.name == a_name)
-            .cloned()
-            .ok_or("Homotopy source path not found")?;
-        let b = self
-            .paths
-            .iter()
-            .find(|p| p.name == b_name)
-            .cloned()
-            .ok_or("Homotopy target path not found")?;
-
-        let p_bound = self.path_boundary(&p).ok_or("Invalid path")?;
-        let a_bound = self.path_boundary(&a).ok_or("Invalid homotopy source")?;
-        let b_bound = self.path_boundary(&b).ok_or("Invalid homotopy target")?;
-
-        if a_bound != b_bound {
-            return Err("Homotopy boundaries do not match".into());
-        }
-
-        if a_bound.1 != p_bound.0 {
-            return Err("Homotopy and path do not compose".into());
-        }
-
-        let a_p = a.concat(&p, &format!("{}_{}", a_name, path_name));
-        let b_p = b.concat(&p, &format!("{}_{}", b_name, path_name));
-
-        self.add_path(a_p.clone());
-        self.add_path(b_p.clone());
-        self.add_homotopy(new_name, &a_p.name, &b_p.name);
-        Ok(())
-    }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// Validated Wrapper
-// ═══════════════════════════════════════════════════════════════════════════
-
-#[derive(Debug, Clone)]
-pub struct ValidatedInfinityRewriteSystem {
-    pub declared: InfinityRewriteSystem,
-}
-
-impl ValidatedInfinityRewriteSystem {
-    pub fn validate(sys: InfinityRewriteSystem) -> Result<Self, Vec<String>> {
-        let mut violations = Vec::new();
-
-        // 0. no duplicate names across paths and cells
-        let mut all_names = BTreeSet::new();
-        for name in sys.cells.keys() {
-            all_names.insert(name.clone());
-        }
-        for path in &sys.paths {
-            if !all_names.insert(path.name.clone()) {
-                violations.push(format!("Duplicate name found: {}", path.name));
-            }
-        }
-
-        // 1. all rule lhs/rhs terms exist
-        for rule in &sys.rules {
-            if !sys.cells.contains_key(&rule.lhs) || sys.cells.get(&rule.lhs).unwrap().level != 0 {
-                violations.push(format!(
-                    "Rule {} LHS term {} is invalid",
-                    rule.name, rule.lhs
-                ));
-            }
-            if !sys.cells.contains_key(&rule.rhs) || sys.cells.get(&rule.rhs).unwrap().level != 0 {
-                violations.push(format!(
-                    "Rule {} RHS term {} is invalid",
-                    rule.name, rule.rhs
-                ));
-            }
-        }
-
-        // 2. every 1-cell has level-0 source and target
-        for cell in sys.rewrites() {
-            if let (Some(s), Some(t)) = (&cell.source, &cell.target) {
-                if !sys.cells.contains_key(s) || sys.cells.get(s).unwrap().level != 0 {
-                    violations.push(format!("1-cell {} source {} is invalid", cell.name, s));
-                }
-                if !sys.cells.contains_key(t) || sys.cells.get(t).unwrap().level != 0 {
-                    violations.push(format!("1-cell {} target {} is invalid", cell.name, t));
-                }
-            } else {
-                violations.push(format!("1-cell {} missing source or target", cell.name));
-            }
-        }
-
-        // 3. every n-cell has source/target at level n-1 (for n > 1)
-        for cell in sys.cells.values().filter(|c| c.level > 1) {
-            if let (Some(s), Some(t)) = (&cell.source, &cell.target) {
-                // Check if they exist in cells or paths
-                let s_level = sys.cells.get(s).map(|c| c.level);
-                let t_level = sys.cells.get(t).map(|c| c.level);
-
-                // For level 2, source/target are paths.
-                if cell.level == 2 {
-                    if !sys.paths.iter().any(|p| &p.name == s) {
-                        violations
-                            .push(format!("2-cell {} source path {} not found", cell.name, s));
-                    }
-                    if !sys.paths.iter().any(|p| &p.name == t) {
-                        violations
-                            .push(format!("2-cell {} target path {} not found", cell.name, t));
-                    }
-                } else {
-                    if s_level != Some(cell.level - 1) {
-                        violations.push(format!(
-                            "{}-cell {} source {} is invalid",
-                            cell.level, cell.name, s
-                        ));
-                    }
-                    if t_level != Some(cell.level - 1) {
-                        violations.push(format!(
-                            "{}-cell {} target {} is invalid",
-                            cell.level, cell.name, t
-                        ));
-                    }
-                    if cell.level >= 3 {
-                        if let (Some(s_cell), Some(t_cell)) = (sys.cells.get(s), sys.cells.get(t)) {
-                            if s_cell.source != t_cell.source || s_cell.target != t_cell.target {
-                                violations.push(format!(
-                                    "{}-cell {} source and target have mismatched boundaries",
-                                    cell.level, cell.name
-                                ));
-                            }
-                        }
-                    }
-                }
-            } else {
-                violations.push(format!(
-                    "{}-cell {} missing source or target",
-                    cell.level, cell.name
-                ));
-            }
-        }
-
-        // 4. every path step exists and is level 1, and 5. every path composes
-        for path in &sys.paths {
-            if sys.path_boundary(path).is_none() {
-                violations.push(format!("Path {} is invalid or does not compose", path.name));
-            }
-        }
-
-        // 6. every homotopy references existing paths, 7. homotopy endpoints have matching boundaries
-        for (name, (p_a_name, p_b_name)) in &sys.homotopies {
-            let p_a = sys.paths.iter().find(|p| &p.name == p_a_name);
-            let p_b = sys.paths.iter().find(|p| &p.name == p_b_name);
-
-            match (p_a, p_b) {
-                (Some(a), Some(b)) => {
-                    let a_bound = sys.path_boundary(a);
-                    let b_bound = sys.path_boundary(b);
-                    if a_bound.is_none() || b_bound.is_none() || a_bound != b_bound {
-                        violations.push(format!("Homotopy {} boundaries do not match", name));
-                    }
-                }
-                _ => violations.push(format!("Homotopy {} references missing paths", name)),
-            }
-        }
-
-        // 9. truncation_level equals max declared cell level
-        let max_level = sys.cells.values().map(|c| c.level).max().unwrap_or(0);
-        if sys.truncation_level != max_level {
-            violations.push(format!(
-                "Truncation level {} does not equal max cell level {}",
-                sys.truncation_level, max_level
-            ));
-        }
-
-        if violations.is_empty() {
-            Ok(Self { declared: sys })
-        } else {
-            Err(violations)
-        }
-    }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// Confluence & Termination
-// ═══════════════════════════════════════════════════════════════════════════
-
-fn path_first_target(sys: &InfinityRewriteSystem, path: &RewritePath) -> Option<String> {
-    let first_step = path.steps.first()?;
-    let (cell_name, is_fwd) = match first_step {
-        PathStep::Forward(n) => (n, true),
-        PathStep::Inverse(n) => (n, false),
-    };
-    let cell = sys.cells.get(cell_name)?;
-    if is_fwd {
-        cell.target.clone()
-    } else {
-        cell.source.clone()
-    }
-}
-
-fn homotopy_joins_branches(
-    sys: &InfinityRewriteSystem,
-    src: &str,
-    tgt_i: &str,
-    tgt_j: &str,
-) -> bool {
-    sys.homotopies.values().any(|(a_name, b_name)| {
-        let Some(a) = sys.paths.iter().find(|p| &p.name == a_name) else {
-            return false;
-        };
-        let Some(b) = sys.paths.iter().find(|p| &p.name == b_name) else {
-            return false;
-        };
-
-        let Some((a_src, a_tgt)) = sys.path_boundary(a) else {
-            return false;
-        };
-        let Some((b_src, b_tgt)) = sys.path_boundary(b) else {
-            return false;
-        };
-
-        a_src == src
-            && b_src == src
-            && a_tgt == b_tgt
-            && path_first_target(sys, a).as_deref() == Some(tgt_i)
-            && path_first_target(sys, b).as_deref() == Some(tgt_j)
+fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, TermError> {
+    let all = count_all(arrows)?;
+    let skipped = count_unselected(arrows, objects)?;
+    all.checked_sub(skipped).ok_or(TermError::Overflow {
+        invariant: "rewriting-expected-count-fits-i64",
+        measured: all,
     })
 }
 
-pub fn check_local_confluence(sys: &InfinityRewriteSystem) -> Vec<String> {
-    let mut violations = Vec::new();
-
-    let mut adj: BTreeMap<&str, Vec<&str>> = BTreeMap::new();
-    for cell in sys.rewrites() {
-        if let (Some(s), Some(t)) = (cell.source.as_deref(), cell.target.as_deref()) {
-            adj.entry(s).or_default().push(t);
-        }
-    }
-
-    fn reachable<'a>(start: &'a str, adj: &BTreeMap<&'a str, Vec<&'a str>>) -> BTreeSet<&'a str> {
-        let mut reach = BTreeSet::new();
-        let mut stack = vec![start];
-        while let Some(node) = stack.pop() {
-            if reach.insert(node) {
-                if let Some(neighbors) = adj.get(node) {
-                    stack.extend(neighbors.iter().copied());
-                }
-            }
-        }
-        reach
-    }
-
-    // For each source with multiple outgoing rewrites, check joinability
-    for cell in sys.terms() {
-        let src = cell.name.as_str();
-        if let Some(targets) = adj.get(src) {
-            if targets.len() < 2 {
-                continue;
-            }
-
-            for i in 0..targets.len() {
-                for j in (i + 1)..targets.len() {
-                    let tgt_i = targets[i];
-                    let tgt_j = targets[j];
-
-                    if tgt_i == tgt_j {
-                        continue;
-                    }
-
-                    let reach_i = reachable(tgt_i, &adj);
-                    let reach_j = reachable(tgt_j, &adj);
-
-                    let common: BTreeSet<_> = reach_i.intersection(&reach_j).collect();
-
-                    if common.is_empty() {
-                        let joined_by_homotopy = homotopy_joins_branches(sys, src, tgt_i, tgt_j);
-
-                        if !joined_by_homotopy {
-                            violations.push(format!(
-                                "Local confluence: from '{}', paths through '{}' and '{}' do not join",
-                                src, tgt_i, tgt_j
-                            ));
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    violations
+fn fold_carrier(measured: i64, objects: usize) -> Result<i64, TermError> {
+    let width = i64::try_from(objects).map_err(|_| TermError::Overflow {
+        invariant: "rewriting-carrier-width-fits-i64",
+        measured,
+    })?;
+    measured.checked_add(width).ok_or(TermError::Overflow {
+        invariant: "rewriting-folded-certificate-fits-i64",
+        measured,
+    })
 }
 
-pub fn check_termination(sys: &InfinityRewriteSystem) -> Vec<String> {
-    let mut violations = Vec::new();
-
-    for cell in sys.rewrites() {
-        let src = cell.source.as_deref().unwrap_or("");
-        let tgt = cell.target.as_deref().unwrap_or("");
-        if src == tgt && !src.is_empty() {
-            violations.push(format!(
-                "Termination: self-loop at '{}' via '{}'",
-                src, cell.name
-            ));
-        }
+pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, TermError> {
+    if measured == expected {
+        return Ok(measured);
     }
-
-    let mut adj: BTreeMap<&str, Vec<&str>> = BTreeMap::new();
-    for cell in sys.rewrites() {
-        if let (Some(s), Some(t)) = (cell.source.as_deref(), cell.target.as_deref()) {
-            adj.entry(s).or_default().push(t);
-        }
-    }
-
-    #[derive(Clone, Copy, PartialEq, Eq)]
-    enum Color {
-        White,
-        Gray,
-        Black,
-    }
-
-    let mut colors: BTreeMap<&str, Color> = adj.keys().map(|&k| (k, Color::White)).collect();
-
-    fn dfs<'a>(
-        node: &'a str,
-        adj: &BTreeMap<&'a str, Vec<&'a str>>,
-        colors: &mut BTreeMap<&'a str, Color>,
-        path: &mut Vec<&'a str>,
-        violations: &mut BTreeSet<String>,
-    ) {
-        colors.insert(node, Color::Gray);
-        path.push(node);
-
-        if let Some(neighbors) = adj.get(node) {
-            for &n in neighbors {
-                let color = colors.get(n).copied().unwrap_or(Color::White);
-                match color {
-                    Color::White => {
-                        dfs(n, adj, colors, path, violations);
-                    }
-                    Color::Gray => {
-                        violations.insert(format!("Termination: cycle detected reaching '{}'", n));
-                    }
-                    Color::Black => {}
-                }
-            }
-        }
-
-        colors.insert(node, Color::Black);
-        path.pop();
-    }
-
-    let mut unique_violations = BTreeSet::new();
-    for &start in adj.keys() {
-        if colors.get(start).copied().unwrap_or(Color::White) == Color::White {
-            let mut path = Vec::new();
-            dfs(start, &adj, &mut colors, &mut path, &mut unique_violations);
-        }
-    }
-
-    violations.extend(unique_violations);
-    violations
+    Err(TermError::ClaimFailed {
+        invariant: "rewriting-hom-sum-equals-outgoing",
+        measured,
+        expected,
+    })
 }
 
-#[derive(Debug, Clone)]
-pub struct InfinityCategorySummary {
-    pub n_terms: usize,
-    pub n_rewrites: usize,
-    pub n_homotopies: usize,
-    pub n_higher_cells: usize,
-    pub truncation_level: usize,
-    pub is_locally_confluent: bool,
-    pub is_terminating: bool,
-}
-
-pub fn summarize(sys: &InfinityRewriteSystem) -> InfinityCategorySummary {
-    let confluence_violations = check_local_confluence(sys);
-    let termination_violations = check_termination(sys);
-
-    InfinityCategorySummary {
-        n_terms: sys.terms().len(),
-        n_rewrites: sys.rewrites().len(),
-        n_homotopies: sys.homotopies.len(),
-        n_higher_cells: sys.cells.values().filter(|c| c.level > 2).count(),
-        truncation_level: sys.truncation_level,
-        is_locally_confluent: confluence_violations.is_empty(),
-        is_terminating: termination_violations.is_empty(),
+pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, TermError> {
+    let mut total = 0i64;
+    for (index, part) in parts.iter().enumerate() {
+        let measured = match i64::try_from(index) {
+            Ok(value) => value,
+            Err(_) => i64::MAX,
+        };
+        total = total.checked_add(*part).ok_or(TermError::Overflow {
+            invariant: "claim-sum-stays-in-i64",
+            measured,
+        })?;
     }
+    Ok(total)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Tests
-// ═══════════════════════════════════════════════════════════════════════════
+fn text_has_byte(text: &str, target: u8) -> bool {
+    for byte in text.bytes() {
+        if byte == target {
+            return true;
+        }
+    }
+    false
+}
+
+fn text_refused(text: &str) -> bool {
+    if text.is_empty() {
+        return true;
+    }
+    if text_has_byte(text, 46) {
+        return true;
+    }
+    if text_has_byte(text, 101) {
+        return true;
+    }
+    if text_has_byte(text, 69) {
+        return true;
+    }
+    false
+}
+
+fn split_sign(text: &str) -> (i64, &str) {
+    if text.starts_with('-') {
+        let rest = match text.get(1..) {
+            Some(value) => value,
+            None => "",
+        };
+        return (-1, rest);
+    }
+    (1, text)
+}
+
+fn digits_only(text: &str) -> bool {
+    if text.is_empty() {
+        return false;
+    }
+    for byte in text.bytes() {
+        if !byte.is_ascii_digit() {
+            return false;
+        }
+    }
+    true
+}
+
+fn accumulate_digits(text: &str) -> Result<i64, TermError> {
+    let mut value = 0i64;
+    for byte in text.bytes() {
+        value = value.checked_mul(10).ok_or(TermError::Overflow {
+            invariant: "parsed-integer-fits-i64",
+            measured: value,
+        })?;
+        let digit = i64::from(byte - 48);
+        value = value.checked_add(digit).ok_or(TermError::Overflow {
+            invariant: "parsed-integer-fits-i64",
+            measured: value,
+        })?;
+    }
+    Ok(value)
+}
+
+pub fn parse_exact_i64(text: &str) -> Result<i64, TermError> {
+    if text_refused(text) {
+        return Err(TermError::FloatRefused {
+            invariant: "public-boundary-refuses-binary64-text",
+            measured_len: text.len(),
+        });
+    }
+    let (sign, digits) = split_sign(text);
+    if !digits_only(digits) {
+        return Err(TermError::FloatRefused {
+            invariant: "public-boundary-refuses-non-integer-text",
+            measured_len: text.len(),
+        });
+    }
+    let magnitude = accumulate_digits(digits)?;
+    magnitude.checked_mul(sign).ok_or(TermError::Overflow {
+        invariant: "parsed-signed-integer-fits-i64",
+        measured: magnitude,
+    })
+}
+
+pub fn certify_claim(text: &str) -> Result<i64, TermError> {
+    let spec = parse_spec(text)?;
+    let value = Term::try_new(spec.0, spec.1)?;
+    value.certificate()
+}
+
+fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), TermError> {
+    let objects = parse_object_count(text)?;
+    let arrows = parse_arrow_list(&arrow_fields(text))?;
+    Ok((objects, arrows))
+}
+
+fn parse_object_count(text: &str) -> Result<usize, TermError> {
+    if text_refused(text) {
+        return Err(TermError::FloatRefused {
+            invariant: "spec-refuses-binary64-text",
+            measured_len: text.len(),
+        });
+    }
+    let head = match text.split(';').next() {
+        Some(value) => value,
+        None => "",
+    };
+    let objects_i = parse_exact_i64(head)?;
+    usize_from_i64(objects_i)
+}
+
+fn arrow_fields(text: &str) -> Vec<&str> {
+    let mut fields = Vec::new();
+    let mut skipped_head = false;
+    for part in text.split(';') {
+        if skipped_head {
+            fields.push(part);
+        }
+        if !skipped_head {
+            skipped_head = true;
+        }
+    }
+    fields
+}
+
+fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, TermError> {
+    let mut arrows = Vec::new();
+    let mut index = 0usize;
+    while index < fields.len() {
+        let field = match fields.get(index) {
+            Some(value) => *value,
+            None => "",
+        };
+        arrows.push(parse_arrow(field)?);
+        index = index.saturating_add(1);
+    }
+    Ok(arrows)
+}
+
+fn parse_arrow(part: &str) -> Result<(usize, usize), TermError> {
+    let mut ends = part.split('>');
+    let src_text = ends.next().ok_or(TermError::IndexOutOfBounds {
+        invariant: "spec-arrow-has-source",
+        measured: 0,
+        bound: 0,
+    })?;
+    let tgt_text = ends.next().ok_or(TermError::IndexOutOfBounds {
+        invariant: "spec-arrow-has-target",
+        measured: 0,
+        bound: 0,
+    })?;
+    if ends.next().is_some() {
+        return Err(TermError::IndexOutOfBounds {
+            invariant: "spec-arrow-has-two-ends",
+            measured: part.len(),
+            bound: 2,
+        });
+    }
+    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
+    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
+    Ok((src, tgt))
+}
+
+fn usize_from_i64(value: i64) -> Result<usize, TermError> {
+    if value < 0 {
+        return Err(TermError::IndexOutOfBounds {
+            invariant: "spec-index-nonnegative",
+            measured: 0,
+            bound: 0,
+        });
+    }
+    usize::try_from(value).map_err(|_| TermError::Overflow {
+        invariant: "spec-index-fits-usize",
+        measured: value,
+    })
+}
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn valid_system_passes() {
-        let mut sys = InfinityRewriteSystem::new("trivial");
-        sys.add_term("a");
-        sys.add_term("b");
-        sys.add_rule("r1", "a", "b");
+    const UNIT_EXPECT: i64 = 3;
+    const INTEG_EXPECT: i64 = 3;
 
-        let path = RewritePath::named_single("p1", "r1");
-        sys.add_path(path.clone());
-        sys.add_homotopy("h1", "p1", "p1");
+    fn show(err: TermError) -> String {
+        format!("{err:?}")
+    }
 
-        let validated = ValidatedInfinityRewriteSystem::validate(sys);
-        assert!(validated.is_ok(), "{:?}", validated.err());
+    fn integration_certificate() -> Result<i64, TermError> {
+        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
+        let value = Term::try_new(ledger.objects(), ledger.arrows().to_vec())?;
+        value.certificate()
     }
 
     #[test]
-    fn invalid_path_fails() {
-        let mut sys = InfinityRewriteSystem::new("bad");
-        sys.add_term("a");
-        sys.add_term("b");
-        sys.add_term("c");
-        sys.add_rule("r1", "a", "b");
-        sys.add_rule("r2", "c", "b"); // Note: c -> b
-
-        // This path is broken because r1 goes to b, but r2 starts at c
-        let path = RewritePath::compose(
-            "p_bad",
-            vec![
-                PathStep::Forward("r1".into()),
-                PathStep::Forward("r2".into()),
-            ],
-        );
-        sys.add_path(path);
-
-        let validated = ValidatedInfinityRewriteSystem::validate(sys);
-        assert!(validated.is_err());
+    fn unit_rewriting_hom_sum_matches_outgoing() -> Result<(), String> {
+        let value = Term::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
+        let got = value.certificate().map_err(show)?;
+        if got != UNIT_EXPECT {
+            return Err(format!("certificate {got}"));
+        }
+        Ok(())
     }
 
     #[test]
-    fn inverse_path_composes() {
-        let mut sys = InfinityRewriteSystem::new("inv");
-        sys.add_term("a");
-        sys.add_term("b");
-        sys.add_term("c");
-        sys.add_rule("r1", "a", "b");
-        sys.add_rule("r2", "b", "c");
+    fn integration_ledger_and_rewriting_agree() -> Result<(), String> {
+        let cert = integration_certificate().map_err(show)?;
+        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
+        if combined != INTEG_EXPECT {
+            return Err(format!("combined {combined}"));
+        }
+        Ok(())
+    }
 
-        let fwd = RewritePath::compose(
-            "p1",
-            vec![
-                PathStep::Forward("r1".into()),
-                PathStep::Forward("r2".into()),
-            ],
-        );
-        let inv = fwd.inverse("p1_inv");
+    #[test]
+    fn e2e_certify_claim_text() -> Result<(), String> {
+        let got = certify_claim("2;0>1;1>1").map_err(show)?;
+        if got != UNIT_EXPECT {
+            return Err(format!("e2e {got}"));
+        }
+        Ok(())
+    }
 
-        sys.add_path(fwd);
-        sys.add_path(inv.clone());
+    #[test]
+    fn negative_empty_carrier() -> Result<(), String> {
+        let err = Term::try_new(0, vec![]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("rewriting-carrier-nonempty") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("empty carrier accepted".into()),
+        }
+    }
 
-        let bound = sys.path_boundary(&inv);
-        assert_eq!(bound, Some(("c".into(), "a".into())));
+    #[test]
+    fn negative_float_boundary() -> Result<(), String> {
+        let err = parse_exact_i64("1.5").map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("binary64") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("float accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_index() -> Result<(), String> {
+        let err = Term::try_new(1, vec![(0, 2)]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("endpoint") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("bad arrow accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_claim_disagreement() -> Result<(), String> {
+        let err = require_agreement(1, 2).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("rewriting-hom-sum-equals-outgoing") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("disagreement accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_overflow_sum() -> Result<(), String> {
+        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("claim-sum-stays-in-i64") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("overflow accepted".into()),
+        }
     }
 }

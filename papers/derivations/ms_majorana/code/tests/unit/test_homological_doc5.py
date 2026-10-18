@@ -23,12 +23,9 @@ def prov():
 
 
 def test_create_cochain_complex_refuses_on_coboundary_violation():
-    # Same inputs as the golden test_bad_coboundary_relation_rejected, where
-    # d1.d0 != 0. CochainComplex.new raises; the safe builder must NOT raise.
     d0 = QMatrix.from_row_major(2, 2, [q(1), q(0), q(0), q(1)])
     d1 = QMatrix.from_row_major(1, 2, [q(1), q(1)])
 
-    # Sanity: the raising constructor is preserved.
     raised = False
     try:
         CochainComplex.new(2, 2, 1, d0, d1, prov())
@@ -50,7 +47,6 @@ def test_create_cochain_complex_refuses_on_dimension_mismatch():
 
 
 def test_create_cochain_complex_returns_complex_on_valid_input():
-    # Identity d0 with a zero c2 group: d1.d0 trivially satisfied (c2_dim == 0).
     d0 = QMatrix.from_row_major(2, 2, [q(1), q(0), q(0), q(1)])
     d1 = QMatrix.zero(0, 2)
     result = create_cochain_complex(2, 2, 0, d0, d1, prov())

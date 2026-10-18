@@ -1,24 +1,6 @@
-/-
-  GR002.LinearEnergy
 
-  Formalization of scalar absolute-value homogeneity and fixed-carrier
-  quotient homogeneity used by the declared pure-linear energy fixture.
-  Along a fixed ray t * ω with fixed linear correction space and fixed weights,
-  the quotient energy satisfies Φ(t * ω) = |t| * Φ(ω), so it is V-shaped or
-  identically zero and cannot itself produce a Mexican-hat double well.
-  It does not derive a Higgs potential or continuum physics.
 
-  Theorems:
-    1. norm_scal_homogeneity: Absolute scalar homogeneity on non-negative norms.
-    2. linear_energy_scaling: Ray piecewise representation of scalar-scaled energy.
-    3. l1_3_homogeneity: Absolute homogeneity of the coordinate l1 norm on ℝ³.
-    4. residual_candidate_scaling: Equivariance of linear coboundary residual under scalar multiplication.
-    5. quotient_candidate_homogeneity: Absolute homogeneity of l1 residual on fixed carriers under linear correction.
-    6. fixed_carrier_quotient_homogeneity: Fixed-carrier quotient energy scaling Φ(t * ω) = |t| * Φ(ω).
-    7. linear_energy_has_origin_minimum: Strictly positive fixed-carrier ray energy has unique minimum at origin.
 
-  AuthorityEffect: None.
--/
 
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Ring

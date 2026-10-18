@@ -48,16 +48,13 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Sequence, Tuple
 
-# ROP Result Monad imports
 from omega_engine_operations.domain.rop.result import Err, Ok, Refusal, Result
 
-# Symbol Game Tower Parser and Gamma38 alphabet
 from omega_engine_pfp.domain.tower.parser import (
     parse_packet,
     validate_packet_semantics,
 )
 
-# 4D Topological Cluster Solver imports
 from topological_cluster_4d_solver import (
     TopologicalCluster4DSolver,
     assert_claim_hygiene,
@@ -68,7 +65,6 @@ from topological_cluster_4d_solver import (
     validate_gamma38_wire,
 )
 
-# 4D Half-Instantons & Second Chern Class imports
 from topological_half_instanton_4d import (
     HalfInstantonCluster4D,
 )
@@ -85,7 +81,6 @@ from topological_half_instanton_4d import (
     verify_zero_sum_doublet as verify_instanton_doublet,
 )
 
-# 3D Topological Meron Strings imports
 from topological_meron_3d import (
     Lattice3D,
     build_hopf_link_pair,
@@ -118,9 +113,6 @@ __all__ = [
     "export_canonical_dags",
 ]
 
-# ---------------------------------------------------------------------------
-# Woland Retinue Roster
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -208,9 +200,6 @@ WOLAND_RETINUE: Dict[str, RetinueCharacter] = {
 }
 
 
-# ---------------------------------------------------------------------------
-# Woland 7-Act Dialectical Prosecution Circuit
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -451,9 +440,6 @@ def execute_woland_7act_prosecution() -> WolandProsecutionResult:
     return prosecutor.execute_prosecution_circuit()
 
 
-# ---------------------------------------------------------------------------
-# Hostile Adversarial Mutation Suite
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -476,16 +462,12 @@ def mutate_fermion_sign_attack() -> Result[Dict[str, Any], Refusal]:
     solver = TopologicalCluster4DSolver()
     c = HalfInstantonCluster4D(n_plus=1, n_minus=0, volume=16, weight=Fraction(1, 1))
 
-    # Hostile injection: partner cluster has sign_factor=+1 instead of inverting to -1
-    # Both clusters have fermion_determinant_sign == -1
     c_forged = HalfInstantonCluster4D(
         n_plus=0, n_minus=1, volume=16, weight=Fraction(1, 1), sign_factor=1
     )
 
-    # 1. Feed into execute_involution_cancellation
     canc_res = execute_involution_cancellation([c, c_forged])
 
-    # 2. Feed c_forged individually into solver verify_doublet_rop
     rop_res = solver.verify_doublet_rop(c_forged)
 
     gap = canc_res.duality_gap if canc_res.duality_gap > Fraction(0, 1) else Fraction(2, 1)
@@ -530,10 +512,8 @@ def mutate_cluster_weight_attack() -> Result[Dict[str, Any], Refusal]:
     c = HalfInstantonCluster4D(n_plus=1, n_minus=0, weight=w_original)
     tau_c = instanton_orientation_flip(c)
 
-    # 1. Feed asymmetric weight directly into solver ROP doublet verification
     rop_res = solver.verify_doublet_rop(c, weight=w_mutated)
 
-    # 2. Feed into ensemble cancellation
     canc_res = execute_involution_cancellation([c, tau_c], weights=[w_original, w_mutated])
 
     if rop_res.is_err:
@@ -572,15 +552,12 @@ def mutate_loop_orientation_attack() -> Result[Dict[str, Any], Refusal]:
     solver = TopologicalCluster4DSolver()
     c0 = HalfInstantonCluster4D(n_plus=1, n_minus=1)
 
-    # 1. Query solver for doublet evaluation of neutral cluster
     doublet_dict = solver.verify_zero_sum_doublet(c0)
     s_orig = doublet_dict["s_orig"]
     s_flip = doublet_dict["s_flip"]
     is_odd = doublet_dict["is_odd_sector"]
     doublet_sum = (s_orig + s_flip)
 
-    # 2. Verify solver rejects odd-doublet cancellation on neutral vacuum
-    # In odd doublets (s_orig + s_flip) == 0; in neutral vacuum s_orig = s_flip = +1 so sum = 2 != 0.
     if not is_odd or doublet_sum != 0:
         return Err(
             Refusal(
@@ -612,7 +589,6 @@ def mutate_second_chern_charge_attack() -> Result[Dict[str, Any], Refusal]:
     invalid_charge = Fraction(1, 3)
     assert_no_floats(invalid_charge)
 
-    # Wire into solver topological charge validator interface
     if hasattr(solver, "validate_topological_charge_rop"):
         rop_res = solver.validate_topological_charge_rop(invalid_charge)
         if rop_res.is_err:
@@ -626,7 +602,6 @@ def mutate_second_chern_charge_attack() -> Result[Dict[str, Any], Refusal]:
                 )
             )
 
-    # Fail closed if charge denominator not in (1, 2)
     if invalid_charge.denominator not in (1, 2):
         return Err(
             Refusal(
@@ -668,7 +643,6 @@ def mutate_gamma38_wire_attack() -> Result[Dict[str, Any], Refusal]:
                 )
             )
 
-    # Parser level check
     try:
         pkt = parse_packet(corrupted_wires[0])
         validate_packet_semantics(pkt)
@@ -717,16 +691,10 @@ def execute_hostile_mutation_suite() -> MutationSuiteResult:
     )
 
 
-# ---------------------------------------------------------------------------
-# Master Receipt Generator (Target T3 & T5 Parity)
-# ---------------------------------------------------------------------------
 
 
 def build_master_receipt_dict() -> Dict[str, Any]:
     """Dynamically builds canonical master receipt dictionary from genuine solver executions."""
-    # ---------------------------------------------------------
-    # Target T3 Dynamic Execution (3D Strings & Pontryagin T^3)
-    # ---------------------------------------------------------
     lattice_3d = Lattice3D((4, 4, 4))
     lp_wind = build_winding_loop("x", lattice_dim=(4, 4, 4), loop_id="t3_wind_x")
     h1, h2 = build_hopf_link_pair()
@@ -778,9 +746,6 @@ def build_master_receipt_dict() -> Dict[str, Any]:
         },
     }
 
-    # ---------------------------------------------------------
-    # Target T5 Dynamic Execution (4D Half-Instantons & Chern)
-    # ---------------------------------------------------------
     solver_4d = TopologicalCluster4DSolver((2, 2, 2, 2))
     c_odd = HalfInstantonCluster4D(n_plus=1, n_minus=0, volume=16, weight=Fraction(1, 1))
     tau_c_odd = instanton_orientation_flip(c_odd)
@@ -834,7 +799,6 @@ def build_master_receipt_dict() -> Dict[str, Any]:
         },
     }
 
-    # Dynamic UTC Timestamp
     dynamic_timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     receipt_dict: Dict[str, Any] = {
@@ -899,7 +863,6 @@ def generate_master_receipt(output_path: str) -> Dict[str, Any]:
 
     receipt_data = build_master_receipt_dict()
 
-    # Exclude sha256_digest for digest computation
     receipt_data.pop("sha256_digest", None)
 
     serialized = json.dumps(receipt_data, indent=2, sort_keys=True)
@@ -965,10 +928,6 @@ def emit_ddc_dag_trace(
     out.parent.mkdir(parents=True, exist_ok=True)
 
     if ensemble is None:
-        # Canonical cluster ensemble:
-        # Doublet 1: (1, 0) and (0, 1)
-        # Doublet 2: (2, 1) and (1, 2)
-        # Zero-charge sector: (1, 1)
         c1 = HalfInstantonCluster4D(n_plus=1, n_minus=0, volume=16, weight=Fraction(1, 1))
         tau_c1 = instanton_orientation_flip(c1)
         c2 = HalfInstantonCluster4D(n_plus=2, n_minus=1, volume=16, weight=Fraction(1, 1))
@@ -987,7 +946,6 @@ def emit_ddc_dag_trace(
     canc_res = execute_involution_cancellation(clusters, w_list)
     live_timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # Count odd vs zero sectors
     odd_count = sum(
         1 for c in clusters
         if isinstance(c, HalfInstantonCluster4D) and (c.n_plus - c.n_minus) % 2 != 0

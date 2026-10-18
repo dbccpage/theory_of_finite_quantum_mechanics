@@ -7,8 +7,6 @@ contract_id: urn:omega:math:cohomology:v1.0.0
 """
 from __future__ import annotations
 
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 
 import argparse
 import json

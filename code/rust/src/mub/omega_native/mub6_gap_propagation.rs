@@ -1,9 +1,3 @@
-//! Target 4: Full Periodic Collar Uniform Lipschitz Gap Propagation & Gradient Bound Engine.
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: floating point types are strictly forbidden in this module.
-//! All coordinates, bounds, mesh steps, and margins are computed in exact rational arithmetic.
-//!
-//! AuthorityEffect: None.
 
 use crate::omega_native::exact::mub6_constants::{
     base_gap, certified_erosion, certified_margin, delta_certified, lipschitz_bound,
@@ -26,7 +20,6 @@ pub fn erosion_certified() -> BigRational {
     certified_erosion()
 }
 
-/// Errors arising during quantitative Lipschitz gap propagation and grid verification.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum GapPropagationError {
     #[error("Invalid parameter: {0}")]
@@ -55,7 +48,6 @@ pub enum GapPropagationError {
     CellPositivityFailure { index: usize, margin: BigRational },
 }
 
-/// Exact rational configuration parameters for uniform Lipschitz gap propagation.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LipschitzParameters {
     pub base_gap: BigRational,
@@ -64,10 +56,6 @@ pub struct LipschitzParameters {
 }
 
 impl LipschitzParameters {
-    /// Constructs and validates Lipschitz parameters.
-    /// Requires base_gap > 0, lipschitz_bound > 0, mesh_step > 0,
-    /// mesh_step < delta_crit = base_gap / lipschitz_bound,
-    /// and margin = base_gap - lipschitz_bound * mesh_step > 0.
     pub fn new(
         base_gap: BigRational,
         lipschitz_bound: BigRational,
@@ -115,7 +103,6 @@ impl LipschitzParameters {
         })
     }
 
-    /// Canonical parameter set matching the Lean 4 formalization.
     pub fn canonical() -> Self {
         Self {
             base_gap: base_gap(),
@@ -124,23 +111,19 @@ impl LipschitzParameters {
         }
     }
 
-    /// Theoretical critical threshold δ_crit = ε / L.
     pub fn critical_mesh_step(&self) -> BigRational {
         &self.base_gap / &self.lipschitz_bound
     }
 
-    /// Quantitative erosion L · δ.
     pub fn erosion(&self) -> BigRational {
         &self.lipschitz_bound * &self.mesh_step
     }
 
-    /// Propagated strictly positive lower margin ε - L · δ.
     pub fn propagated_margin(&self) -> BigRational {
         &self.base_gap - self.erosion()
     }
 }
 
-/// 2-dimensional rational coordinate point.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RationalPoint2D {
     pub coords: [BigRational; DIM_2D],
@@ -151,7 +134,6 @@ impl RationalPoint2D {
         Self { coords: [x, y] }
     }
 
-    /// Computes component-wise absolute difference from another point.
     pub fn component_diff(&self, other: &Self) -> [BigRational; DIM_2D] {
         [
             (&self.coords[0] - &other.coords[0]).abs(),
@@ -159,7 +141,6 @@ impl RationalPoint2D {
         ]
     }
 
-    /// Computes the Chebyshev (L_infinity) distance: max(|x0 - y0|, |x1 - y1|).
     pub fn l_inf_distance(&self, other: &Self) -> BigRational {
         let diff = self.component_diff(other);
         if diff[0] >= diff[1] {
@@ -169,14 +150,12 @@ impl RationalPoint2D {
         }
     }
 
-    /// Computes the Manhattan (L_1) distance: |x0 - y0| + |x1 - y1|.
     pub fn l_1_distance(&self, other: &Self) -> BigRational {
         let diff = self.component_diff(other);
         &diff[0] + &diff[1]
     }
 }
 
-/// Evaluation and verification record for a single 2D grid cell.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarGridCell {
     pub index: usize,
@@ -190,7 +169,6 @@ pub struct CollarGridCell {
 }
 
 impl CollarGridCell {
-    /// Checks if a rational point lies inside this closed cell.
     pub fn contains(&self, pt: &[BigRational; DIM_2D]) -> bool {
         pt[0] >= self.bounds[0].0
             && pt[0] <= self.bounds[0].1
@@ -198,9 +176,6 @@ impl CollarGridCell {
             && pt[1] <= self.bounds[1].1
     }
 
-    /// Evaluates the worst-case lower bound at any point in this cell
-    /// under the uniform Lipschitz derivative bound L:
-    /// f(p) >= f(center) - L * dist_inf(p, center) >= base_gap - L * half_width = margin.
     pub fn evaluate_point_bound(
         &self,
         pt: &RationalPoint2D,
@@ -212,7 +187,6 @@ impl CollarGridCell {
     }
 }
 
-/// Full 2D rational grid partition covering the periodic collar slice [0, 1)^2.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarGridPartition {
     pub divisions_per_axis: usize,
@@ -224,7 +198,6 @@ pub struct CollarGridPartition {
 }
 
 impl CollarGridPartition {
-    /// Verifies that every cell in the partition satisfies the positive margin requirement.
     pub fn verify_partition(&self) -> Result<(), GapPropagationError> {
         if !self.all_positive {
             return Err(GapPropagationError::CellPositivityFailure {
@@ -243,7 +216,6 @@ impl CollarGridPartition {
         Ok(())
     }
 
-    /// Finds the cell containing the query point.
     pub fn find_cell(
         &self,
         pt: &[BigRational; DIM_2D],
@@ -262,9 +234,6 @@ impl CollarGridPartition {
     }
 }
 
-/// Partitions the 2D periodic collar slice [0, 1)^2 into `divisions_per_axis x divisions_per_axis` cells.
-/// Each cell has interval length h = 1 / N, half-width h / 2 = 1 / (2N).
-/// The maximum distance from cell center to any point in the cell is h / 2.
 pub fn partition_2d_periodic_collar(
     divisions_per_axis: usize,
     params: &LipschitzParameters,
@@ -280,7 +249,6 @@ pub fn partition_2d_periodic_collar(
     let two = BigRational::from(BigInt::from(2));
     let half_width = &cell_width / &two;
 
-    // Check if the cell half-width exceeds the parameter mesh_step
     if half_width > params.mesh_step {
         return Err(GapPropagationError::OversizedMeshStep {
             delta: half_width,
@@ -340,7 +308,6 @@ pub fn partition_2d_periodic_collar(
     })
 }
 
-/// End-to-end receipt structure certifying uniform Lipschitz gap propagation.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarGridReceipt {
     pub schema_version: String,
@@ -357,7 +324,6 @@ pub struct CollarGridReceipt {
     pub verified: bool,
 }
 
-/// Generates and verifies a Target 4 certificate receipt.
 pub fn generate_target4_receipt(
     params: &LipschitzParameters,
     divisions: usize,
@@ -377,7 +343,6 @@ pub fn generate_target4_receipt(
         divisions_per_axis: divisions,
         total_cells: partition.total_cells,
         all_margins_positive: partition.all_positive,
-        // fixture: no gap function is evaluated here.
         verified: fixtures().flag("target4_verified"),
     })
 }

@@ -41,7 +41,6 @@ def test_callan_harvey_anomaly_inflow_conservation():
         assert pytest.approx(q_bulk + q_surf, abs=1e-9) == 0.0
         assert pytest.approx(q_net, abs=1e-9) == 0.0
 
-    # At full cycle theta = 2pi: 1 unit pumped from bulk, exactly counter-balanced by surface arc
     q_bulk_2pi, q_surf_2pi, q_net_2pi = lattice.compute_spectral_flow(2.0 * math.pi)
     assert pytest.approx(q_bulk_2pi, abs=1e-7) == 1.0
     assert pytest.approx(q_surf_2pi, abs=1e-7) == -1.0
@@ -63,12 +62,10 @@ def test_chiral_symmetric_limit_mu5_zero():
         assert receipt.chiral_weight_plus == pytest.approx(receipt.chiral_weight_minus, abs=1e-6)
         assert receipt.weight_gap_delta_w == pytest.approx(0.0, abs=1e-6)
 
-        # Holonomy is strictly contractible: exp(i * 0) = 1.0 + 0.0i
         assert receipt.cochain_holonomy_real == pytest.approx(1.0, abs=1e-6)
         assert receipt.cochain_holonomy_imag == pytest.approx(0.0, abs=1e-6)
         assert receipt.is_holonomy_contractible is True
 
-        # Exact cochain closure and defect mass vanishing
         assert receipt.uncancelled_defect_mass_phi_1 == pytest.approx(0.0, abs=1e-6)
         assert receipt.cochain_curvature_gamma_2 == pytest.approx(0.0, abs=1e-6)
         assert receipt.terminal_route == "ExactRepair"
@@ -81,7 +78,6 @@ def test_chiral_chemical_potential_broken_symmetry_mu5_positive():
     Validates that at mu_5 > 0, spectral flow induces exponential weight asymmetry,
     non-contractible cochain holonomy, and non-vanishing defect mass -> SplitBrainRefusal.
     """
-    # Set mu_5 = 0.25, omega_0 = 1.0 -> phase = 2pi * 0.25 = pi/2
     lattice = WeylSlabLattice(lattice_id="weyl_broken_mu5", mu_5=0.25, omega_0=1.0)
     engine = ChiralAnomalyInflowEngine(in_memory=True)
     try:
@@ -90,21 +86,17 @@ def test_chiral_chemical_potential_broken_symmetry_mu5_positive():
         assert receipt.mu_5 == 0.25
         assert receipt.spectral_flow_net_anomaly == 0
 
-        # Exponential weight asymmetry: w_+ / w_- = exp(2 * 2.0 * 0.25) = exp(1.0) approx 2.71828
         ratio = receipt.chiral_weight_plus / receipt.chiral_weight_minus
         assert ratio == pytest.approx(math.exp(1.0), rel=1e-4)
         assert receipt.weight_gap_delta_w > 0.0
 
-        # Holonomy is non-contractible: exp(i * pi/2) = 0.0 + 1.0i
         assert receipt.cochain_holonomy_real == pytest.approx(0.0, abs=1e-6)
         assert receipt.cochain_holonomy_imag == pytest.approx(1.0, abs=1e-6)
         assert receipt.is_holonomy_contractible is False
 
-        # Non-zero cochain curvature and defect mass
         assert receipt.uncancelled_defect_mass_phi_1 > 0.0
         assert receipt.cochain_curvature_gamma_2 == pytest.approx(0.5 * math.pi, rel=1e-4)
 
-        # Exact sign cancellation broken -> SplitBrainRefusal
         assert receipt.terminal_route == "SplitBrainRefusal"
     finally:
         engine.close()
@@ -141,16 +133,13 @@ def test_gin_mode_posting_list_chiral_resolution():
         cfg_count = c.fetchone()[0]
         assert cfg_count == 2
 
-        # 4 distinct modes: 1 (Node_R), 2 (Node_L), 3 (Arc_Top), 4 (Arc_Bottom)
         c.execute("SELECT COUNT(DISTINCT mode_id) FROM GinModePostingList;")
         distinct_modes = c.fetchone()[0]
         assert distinct_modes == 4
 
-        # Mode 1 occupied only by cfg 1 (positive chirality)
         assert 1 in engine.posting_index[1]
         assert 2 not in engine.posting_index[1]
 
-        # Mode 2 occupied only by cfg 2 (negative chirality)
         assert 2 in engine.posting_index[2]
         assert 1 not in engine.posting_index[2]
     finally:

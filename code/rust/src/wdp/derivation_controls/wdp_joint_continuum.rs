@@ -1,18 +1,3 @@
-//! Exact rational witness for `WDP-JOINT-CONTINUUM` (`derivation.md`).
-//!
-//! Verifies:
-//! 1. Three mesh nodes `x_i = 1 / L_i^2` for `L_i in {4, 6, 8}`, i.e. `(1/16, 1/36, 1/64)`.
-//! 2. Node-vanishing cubic `H(x) = (x - 1/16)(x - 1/36)(x - 1/64)` evaluates to `(0, 0, 0)` on the
-//!    three nodes while `H(0) = -1 / 36864 != 0`.
-//! 3. Neville weights `w = (4/15, -81/35, 64/21) = (28/105, -243/105, 320/105)` satisfy:
-//!    - `sum w_i = 1`
-//!    - `sum w_i x_i = 0`
-//!    - `sum w_i x_i^2 = 0`
-//!    - `sum w_i H(x_i) = 0 != H(0) = -1 / 36864`
-//! 4. Recorded occupation-basis checkerboard samples `(Z(4), Z(6), Z(8)) = (912, 33012, 973824)`
-//!    and quadratic Neville extrapolate `sum w_i Z(L_i) = 99562368 / 35`.
-//! 5. Refuses promoting `H(0) = -1/36864` to a supplied remainder bound or joint continuum value,
-//!    and refuses reusing `Z(4) = 912` as a 16-site 2D torus partition function.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Frac {

@@ -38,9 +38,6 @@ from dataclasses import dataclass, field
 from fractions import Fraction
 from typing import Any, Dict, List, Sequence, Tuple, Union
 
-# ---------------------------------------------------------------------------
-# Zero-Float Enforcement
-# ---------------------------------------------------------------------------
 
 
 def assert_no_floats(*values: Any) -> None:
@@ -56,9 +53,6 @@ def assert_no_floats(*values: Any) -> None:
                 assert_no_floats(k, v)
 
 
-# ---------------------------------------------------------------------------
-# Discrete 4-Torus T^4 Carrier
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -134,9 +128,6 @@ class DiscreteTorus4D:
         return dist_sq
 
 
-# ---------------------------------------------------------------------------
-# 4D Half-Instanton Center Representation
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -179,9 +170,6 @@ class HalfInstantonCenter4D:
         )
 
 
-# ---------------------------------------------------------------------------
-# Discrete Topological Charge Density & Operators
-# ---------------------------------------------------------------------------
 
 
 def compute_discrete_topological_density(
@@ -207,13 +195,11 @@ def compute_discrete_topological_density(
     for center in centers:
         assert_no_floats(center.coords, center.chirality)
         center_site = torus.wrap(center.coords)
-        c_charge = center.charge  # Fraction(1, 2) or Fraction(-1, 2)
+        c_charge = center.charge
 
         if not smeared:
             density[center_site] += c_charge
         else:
-            # Smeared partition: 1/2 on center site, 1/16 on each of 8 primary coordinate neighbors
-            # 1/2 + 8 * (1/16) = 1/2 + 1/2 = 1.0 (exact partition of unity over Q)
             density[center_site] += c_charge * Fraction(1, 2)
             neighbor_fraction = Fraction(1, 16)
             for mu in range(4):
@@ -240,9 +226,6 @@ def discrete_second_chern_integral(
     return total
 
 
-# ---------------------------------------------------------------------------
-# 4D Half-Instanton Cluster Representation
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -276,7 +259,6 @@ class HalfInstantonCluster4D:
         if self.sign_factor not in (1, -1):
             raise ValueError(f"sign_factor must be +1 or -1, got {self.sign_factor}")
 
-        # Normalize weight to exact Fraction if passed as int
         if type(self.weight) is int:
             object.__setattr__(self, "weight", Fraction(self.weight, 1))
         elif not isinstance(self.weight, Fraction):
@@ -284,7 +266,6 @@ class HalfInstantonCluster4D:
         if self.weight <= Fraction(0, 1):
             raise ValueError(f"weight must be strictly positive, got {self.weight}")
 
-        # Check centers consistency if provided
         if self.centers:
             count_plus = sum(1 for c in self.centers if c.chirality == 1)
             count_minus = sum(1 for c in self.centers if c.chirality == -1)
@@ -330,7 +311,6 @@ class HalfInstantonCluster4D:
         diff = self.n_plus - self.n_minus
         if diff % 2 == 0:
             return 1
-        # Odd half-instanton sector
         return -1 * self.sign_factor
 
     @property
@@ -358,9 +338,6 @@ class HalfInstantonCluster4D:
         return orientation_flip(self)
 
 
-# ---------------------------------------------------------------------------
-# Interface Contract Functions
-# ---------------------------------------------------------------------------
 
 
 def second_chern_number(cluster: HalfInstantonCluster4D) -> Fraction:
@@ -384,8 +361,6 @@ def orientation_flip(cluster: HalfInstantonCluster4D) -> HalfInstantonCluster4D:
     and preserves cluster weight w(tau(C)) = w(C).
     """
     diff = cluster.n_plus - cluster.n_minus
-    # On odd half-instanton sectors, the sign factor inverts under tau.
-    # On even/zero-charge sectors, the sign factor is preserved (+1).
     new_sign_factor = -cluster.sign_factor if (diff % 2 != 0) else cluster.sign_factor
 
     flipped_centers = tuple(c.flip() for c in cluster.centers) if cluster.centers else ()
@@ -400,9 +375,6 @@ def orientation_flip(cluster: HalfInstantonCluster4D) -> HalfInstantonCluster4D:
     )
 
 
-# ---------------------------------------------------------------------------
-# Involution Cancellation & Doublet Verification
-# ---------------------------------------------------------------------------
 
 
 def verify_zero_sum_doublet(cluster: HalfInstantonCluster4D) -> Dict[str, Any]:
@@ -416,7 +388,6 @@ def verify_zero_sum_doublet(cluster: HalfInstantonCluster4D) -> Dict[str, Any]:
     sign_orig = fermion_determinant_sign(cluster)
     sign_flip = fermion_determinant_sign(partner)
 
-    # Verify involutive property tau(tau(C)) == C
     partner_flipped_back = orientation_flip(partner)
     involution_intact = (
         partner_flipped_back.n_plus == cluster.n_plus
@@ -469,7 +440,6 @@ def verify_ensemble_cancellation(
         else:
             even_sectors.append(c)
 
-    # Evaluate zero-charge partition mass (strictly positive)
     z_zero = Fraction(0, 1)
     for c in zero_sector:
         s = fermion_determinant_sign(c)
@@ -477,13 +447,11 @@ def verify_ensemble_cancellation(
             raise ValueError(f"Zero charge cluster {c} violated strictly positive sign invariant")
         z_zero += c.weight * Fraction(s, 1)
 
-    # Evaluate odd half-instanton partition mass (must cancel to 0 when paired)
     z_odd = Fraction(0, 1)
     for c in odd_sectors:
         s = fermion_determinant_sign(c)
         z_odd += c.weight * Fraction(s, 1)
 
-    # Total partition mass
     z_total = z_zero + z_odd
 
     return {
@@ -500,9 +468,6 @@ def verify_ensemble_cancellation(
     }
 
 
-# ---------------------------------------------------------------------------
-# Certified Receipt Generator (Target T5 Parity)
-# ---------------------------------------------------------------------------
 
 
 def compute_t5_receipt() -> Dict[str, Any]:

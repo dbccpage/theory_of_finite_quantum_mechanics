@@ -16,7 +16,7 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from omega_engine_projects.fsp.demos.blind_cluster_recovery.oracle import (  # noqa: E402
+from omega_engine_projects.fsp.demos.blind_cluster_recovery.oracle import (
     BlindClusterOracle,
 )
 
@@ -87,7 +87,6 @@ def generate_blind_problem_packet() -> dict:
     oracle = BlindClusterOracle()
     samples = oracle.get_sample_subgraphs(limit=4)
 
-    # Format sample cases for prompting
     sample_text_blocks = []
     for s in samples:
         block = (

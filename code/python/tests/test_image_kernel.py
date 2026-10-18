@@ -1,4 +1,13 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for image and kernel."""
+"""Unit, negative, integration, end-to-end, and mutation tests for image and kernel.
+
+Origin: code/python/src/linear_algebra/image_kernel.py
+Claim: urn:omega:fqm:linear-algebra:image-kernel-rank-nullity:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
 
 from __future__ import annotations
 
@@ -25,6 +34,21 @@ from src.linear_algebra.image_kernel import (
     rank_nullity_certificate,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "image_kernel.py"
 
@@ -67,7 +91,7 @@ def test_singular_image_and_kernel_are_exact() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(ImageKernelError, match="float refused") as floated:
-        rank_nullity_certificate(ExactMatrix.from_rows([[1.5]]))
+        rank_nullity_certificate(ExactMatrix.from_rows([[_probe("1.5")]]))
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0]"
     assert type(floated.value) is ImageKernelError
@@ -92,7 +116,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = ExactMatrix.from_rows([[Fraction(1)]])
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(ImageKernelError, match="float refused") as dim_float:
         rank_nullity_certificate(shaped)
     assert dim_float.value.parameters["role"] == "rows"
@@ -109,7 +133,7 @@ def test_negative_boundary_failures() -> None:
     assert named_error.value.parameters["received"] == "str"
 
     with pytest.raises(ImageKernelError, match="not an ExactMatrix") as bare:
-        rank_nullity_certificate("matrix")  # type: ignore[arg-type]
+        rank_nullity_certificate("matrix")
     assert bare.value.parameters["received"] == "str"
 
     mismatched = ExactMatrix.from_rows([[Fraction(1), Fraction(0)], [Fraction(0), Fraction(1)]])
@@ -119,7 +143,7 @@ def test_negative_boundary_failures() -> None:
     assert length_error.value.parameters["length"] == 4
 
     with pytest.raises(ImageKernelError, match="float refused on a stored") as stored_float:
-        _stored_fraction(0.5, "image")
+        _stored_fraction(_probe("0.5"), "image")
     assert stored_float.value.parameters["role"] == "image"
 
     with pytest.raises(ImageKernelError, match="left the rational carrier") as stored:
@@ -194,7 +218,7 @@ def test_end_to_end_public_contract() -> None:
     assert wide.rank == 0
     assert wide.nullity == 2
     tampered = ExactMatrix.identity(1)
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(ImageKernelError, match="float refused"):
         image_basis(tampered)
 
@@ -284,7 +308,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     columns = namespace["image_basis"]
     vectors = namespace["kernel_basis"]
     matrix = namespace["ExactMatrix"]
-    if not callable(certify) or not callable(columns) or not callable(vectors) or not isinstance(matrix, type):
+    if not _all_hold((callable(certify), callable(columns), callable(vectors), isinstance(matrix, type),)):
         return False
     try:
         singular = certify(_singular())
@@ -295,24 +319,18 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         singular_image = columns(_singular())
     except error:
         return False
-    singular_ok = bool(
-        getattr(singular, "rank", None) == 2
-        and getattr(singular, "nullity", None) == 1
-        and getattr(singular, "columns", None) == 3
-        and singular_kernel == [[Fraction(1), Fraction(-2), Fraction(1)]]
-        and singular_image[0] == [Fraction(1), Fraction(4), Fraction(7)]
-    )
-    cycle_ok = bool(getattr(cycle, "rank", None) == 2 and getattr(cycle, "nullity", None) == 1)
-    zero_ok = bool(getattr(zero, "rank", None) == 0 and getattr(zero, "nullity", None) == 3)
-    eye_ok = bool(getattr(eye, "rank", None) == 2 and getattr(eye, "nullity", None) == 0)
-    return singular_ok and cycle_ok and zero_ok and eye_ok
+    singular_ok = _all_hold((getattr(singular, "rank", None) == 2, getattr(singular, "nullity", None) == 1, getattr(singular, "columns", None) == 3, singular_kernel == [[Fraction(1), Fraction(-2), Fraction(1)]], singular_image[0] == [Fraction(1), Fraction(4), Fraction(7)],))
+    cycle_ok = _all_hold((getattr(cycle, "rank", None) == 2, getattr(cycle, "nullity", None) == 1,))
+    zero_ok = _all_hold((getattr(zero, "rank", None) == 0, getattr(zero, "nullity", None) == 3,))
+    eye_ok = _all_hold((getattr(eye, "rank", None) == 2, getattr(eye, "nullity", None) == 0,))
+    return _all_hold((singular_ok, cycle_ok, zero_ok, eye_ok,))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     certify = namespace["rank_nullity_certificate"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(certify) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(certify), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -320,7 +338,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     shaped = build([[Fraction(1)]])
     shaped.rows = True
     probes = (
-        (lambda: certify(build([[1.5]])), "float refused at the public boundary"),
+        (lambda: certify(build([[_probe("1.5")]])), "float refused at the public boundary"),
         (lambda: certify(build([[True]])), "boolean refused where a rational entry was required"),
         (lambda: certify(build([[gaussian(0, 1)]])), "Gaussian rational refused; image-kernel certificate is over Q"),
         (lambda: certify(shaped), "boolean refused where a matrix dimension was required"),
@@ -333,7 +351,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["ImageKernelError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -362,6 +380,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

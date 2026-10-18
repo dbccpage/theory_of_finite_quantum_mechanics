@@ -18,7 +18,6 @@ from deposit_paths import read_manifest, safe_path
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "SHA256SUMS"
-# The dated archive name determines its fixed member timestamp.
 
 
 def default_archive_name() -> str:

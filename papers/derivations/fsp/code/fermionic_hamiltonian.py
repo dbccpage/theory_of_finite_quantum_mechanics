@@ -42,7 +42,7 @@ def exact_fraction(value: int | float | Fraction, name: str) -> Fraction:
 class FermionicLattice:
     """Finite graph defining lattice sites and hopping edges."""
     num_sites: int
-    edges: List[Tuple[int, int]]  # Undirected edges (i, j) with i < j
+    edges: List[Tuple[int, int]]
 
     def __post_init__(self) -> None:
         if not isinstance(self.num_sites, int) or self.num_sites <= 0:
@@ -174,16 +174,13 @@ class DiscreteFermionicHamiltonian:
         mat = [[Fraction(0) for _ in range(dim)] for _ in range(dim)]
 
         for i, state in enumerate(self.basis):
-            # 1. On-site interaction (diagonal)
             diag_e = Fraction(0)
             for s in range(self.lattice.num_sites):
                 if state.is_occupied(s, "up") and state.is_occupied(s, "down"):
                     diag_e += self.u
             mat[i][i] += diag_e
 
-            # 2. Hopping term (off-diagonal)
             for (u_site, v_site) in self.lattice.edges:
-                # Spin up hopping
                 for (src, dst) in [(u_site, v_site), (v_site, u_site)]:
                     if state.is_occupied(src, "up") and not state.is_occupied(dst, "up"):
                         sign = self._fermionic_sign(state.up_mask, src, dst)
@@ -192,7 +189,6 @@ class DiscreteFermionicHamiltonian:
                         j = self.basis_index[new_state]
                         mat[j][i] += -self.t * sign
 
-                    # Spin down hopping
                     if state.is_occupied(src, "down") and not state.is_occupied(dst, "down"):
                         sign = self._fermionic_sign(state.down_mask, src, dst)
                         new_down = (state.down_mask ^ (1 << src)) | (1 << dst)
@@ -212,7 +208,6 @@ class DiscreteFermionicHamiltonian:
         if not math.isfinite(beta) or beta <= 0:
             raise ValueError(f"beta must be a positive finite real number, got {beta}")
         h_arr = np.array(self.matrix, dtype=float)
-        # Symmetrize to eliminate machine precision asymmetries
         h_herm = (h_arr + h_arr.T) / 2.0
         eigvals = np.linalg.eigvalsh(h_herm)
         z_exact = float(np.sum(np.exp(-float(beta) * eigvals)))
@@ -235,7 +230,6 @@ class DiscreteFermionicHamiltonian:
         dtau = exact_fraction(beta, "beta") / trotter_steps
         dim = self.dim
 
-        # Transfer matrix T = I - dtau * H
         T_ferm = self.exact_transfer_matrix(beta, trotter_steps)
         T_bos = [[abs(T_ferm[i][j]) for j in range(dim)] for i in range(dim)]
 
@@ -243,7 +237,6 @@ class DiscreteFermionicHamiltonian:
             n = len(A)
             return [[sum(A[i][k] * B[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
 
-        # Exponentiate
         P_ferm = T_ferm
         P_bos = T_bos
         for _ in range(trotter_steps - 1):
@@ -254,11 +247,9 @@ class DiscreteFermionicHamiltonian:
         z_bos = sum(P_bos[i][i] for i in range(dim))
         avg_sign = z_ferm / z_bos if z_bos > 0 else Fraction(0)
 
-        # Numerical spectral comparison, independent of exact Euler arithmetic.
         z_exact = self.compute_exact_thermal_trace(beta)
         discretization_error = abs(z_ferm - z_exact) / z_exact if z_exact > 0 else 0.0
 
-        # Check Euler contraction condition: dtau * max|lambda| < 1
         h_arr = np.array(self.matrix, dtype=float)
         eigvals = np.linalg.eigvalsh((h_arr + h_arr.T) / 2.0)
         max_abs_eig = float(np.max(np.abs(eigvals))) if len(eigvals) > 0 else 0.0
@@ -367,8 +358,8 @@ class WheelerDeWittToyConstraint:
     H_perp(v) = (1 / sqrt(q_v)) * sum_{e, e' \supset v} G_ee' pi_e pi_e' - sqrt(q_v) R(v)
     """
     vertices: List[int]
-    momenta: Dict[int, float]  # edge momenta
-    curvatures: Dict[int, float]  # vertex scalar curvatures
+    momenta: Dict[int, float]
+    curvatures: Dict[int, float]
     dual_volumes: Dict[int, float]
 
     def evaluate_scalar_violations(self) -> Dict[int, float]:
@@ -377,7 +368,6 @@ class WheelerDeWittToyConstraint:
         for v in self.vertices:
             vol = self.dual_volumes.get(v, 1.0)
             curv = self.curvatures.get(v, 0.0)
-            # Toy momentum energy sum
             p_energy = sum(p**2 for p in self.momenta.values()) / max(len(self.momenta), 1)
             violations[v] = (p_energy / math.sqrt(vol)) - math.sqrt(vol) * curv
         return violations

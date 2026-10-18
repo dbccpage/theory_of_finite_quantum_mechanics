@@ -1,14 +1,11 @@
-//! Program branch-correlation fixtures. AuthorityEffect: None.
 use num_traits::One;
 use omega_number_theory::rational::{rq, Rational, Zero};
-/// s_quantum = 14/5 = 2.8, max_classical = 2.
 pub fn chsh_pythagorean_s() -> (Rational, i64, bool) {
     let a1 = (rq(0, 1), rq(1, 1));
     let a2 = (rq(1, 1), rq(0, 1));
     let b1 = (rq(-3, 5), rq(4, 5));
     let b2 = (rq(4, 5), rq(3, 5));
 
-    // Check orthonormality
     let dot = |u: &(Rational, Rational), v: &(Rational, Rational)| {
         crate::linear_algebra::matrix::dot(
             &[u.0.clone(), u.1.clone()],
@@ -23,11 +20,10 @@ pub fn chsh_pythagorean_s() -> (Rational, i64, bool) {
     assert!(dot(&a1, &a2) == Rational::zero());
     assert!(dot(&b1, &b2) == Rational::zero());
 
-    // Correlations E(a, b) = - <a, b>
-    let e11 = -dot(&a1, &b1); // -4/5
-    let e12 = -dot(&a1, &b2); // -3/5
-    let e21 = -dot(&a2, &b1); // +3/5
-    let e22 = -dot(&a2, &b2); // -4/5
+    let e11 = -dot(&a1, &b1);
+    let e12 = -dot(&a1, &b2);
+    let e21 = -dot(&a2, &b1);
+    let e22 = -dot(&a2, &b2);
 
     let s_raw = &e11 + &e12 - &e21 + &e22;
     let s_quantum = if s_raw < Rational::zero() {
@@ -56,15 +52,10 @@ pub fn chsh_pythagorean_s() -> (Rational, i64, bool) {
     (s_quantum, max_classical, violates)
 }
 
-/// Evaluates Cabello 18-ray contextuality parity obstruction (Target 6 / H020).
-///
-/// 18 rays in {-1, 0, 1}^4, 9 tetrads, degree 2 for every ray.
-/// Parity obstruction: 9 = 2k has no integer solution in Z.
 pub fn cabello_18_ray_parity_obstruction() -> bool {
     let rays = &omega_quantum_physics::kochen_specker::CABELLO_18_VECTORS;
     let tetrads = &omega_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
 
-    // Verify orthogonality
     for tet in tetrads {
         for i in 0..4 {
             for j in (i + 1)..4 {
@@ -76,7 +67,6 @@ pub fn cabello_18_ray_parity_obstruction() -> bool {
         }
     }
 
-    // Check ray degrees
     let mut degrees = [0usize; 18];
     for tet in tetrads {
         for &r in tet {
@@ -91,12 +81,9 @@ pub fn cabello_18_ray_parity_obstruction() -> bool {
     let total_incidence: usize = degrees.iter().sum();
     assert_eq!(total_incidence, 36);
 
-    // Every context selects one ray; every ray occurs twice. Odd contexts
-    // therefore contradict the even number of selected incidences.
     tetrads.len() % 2 == 1 && degrees.iter().all(|d| *d == 2)
 }
 
-/// Demonstrates non-signaling across Everett measurement branches via vanishing cross-branch transitions.
 pub fn verify_branch_non_signaling() -> bool {
     use omega_quantum_physics::exact_hermitian::{gi, partial_trace_first, partial_trace_second};
     use omega_quantum_physics::relative_state_branching::RelativeStatePacket;

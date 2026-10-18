@@ -1,6 +1,5 @@
 import circle_haar
 import finite_presentation
-/-! Axiom census for the Track 2 formal claims. AuthorityEffect: None. -/
 #print axioms FiniteToContinuum.cyclic_embedding_injective
 #print axioms FiniteToContinuum.circleCharacter_restriction
 #print axioms FiniteToContinuum.finiteCircleAverage_eq

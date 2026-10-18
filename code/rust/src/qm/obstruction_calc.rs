@@ -1,35 +1,4 @@
-// AuthorityEffect: None.
 
-//! Finite firewall statements of the General Obstruction Management Calculus,
-//! computed exactly.
-//!
-//! - Observer quotients: [`omega_types::observer_quotient::hidden_separation`] finds two states an observer
-//!   identifies while a hidden readout separates them, so the joint readout
-//!   cannot factor through the observer; [`omega_types::observer_quotient::pair_observer`] composes two
-//!   observers, and a hidden glue coordinate can still separate states the pair
-//!   identifies ("Local Green != Global Red absence").
-//! - [`omega_solvers::solver_cohomology_quotient_phi1::lggr_cochain_witness`]: two edge cochains with the same
-//!   orientation-blind edge masses whose quotient classes differ, decided by
-//!   `omega_functional`'s trichotomy.
-//! - [`omega_quantum_physics::pairing_audit::born_pairing`] versus [`omega_quantum_physics::pairing_audit::dephased_pairing`]: both are normalised on POVMs
-//!   and nonnegative on states and effects, they agree on all diagonal data, and
-//!   they differ off it, so `L1` simplex readouts do not select the Born pairing.
-//! - [`obstruction_branch_search`]: exact lexicographic descent on
-//!   `(Phi1, Gamma2, Xi)`; each strict proposal gets the positive improvement of
-//!   its first improving coordinate as mass, and the ranking orders strict
-//!   proposals by their own points, lexicographically. The masses are not
-//!   comparable across tiers, so the ranking does not follow them. Ranking a
-//!   branch accepts nothing.
-//! - [`terminalize_reconstruction`]: a missing import yields a packet-relative
-//!   obstruction naming it, never an impossibility verdict.
-//! - [`evaluate_lift_candidate`]: source obstruction, `Phi1` reduction and
-//!   closure preservation are computed from obstruction points; new carrier and
-//!   replay are declared. A complete coherence license does not supply them.
-//! - [`GomcReport`]: the composed diagnostics. Its authority tag is a
-//!   one-variant [`ReportAuthorityTag`], `None` on every path.
-//!
-//! The `f64` engine `omega_engines::obstruction_branch_search` remains the
-//! production diagnostic; this module is the exact face used for the claims.
 
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use num_traits::{Signed, Zero};
@@ -41,7 +10,6 @@ use omega_quantum_physics::residual_density_calculus::{
     row_stochastic_pushforward, ResidualDensityError,
 };
 
-/// Refusals for GOMC inputs.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum GomcError {
     #[error("{first} states in one readout, {second} in the other")]
@@ -60,7 +28,6 @@ pub enum GomcError {
     Packet(#[from] CochainPacketError),
 }
 
-/// An obstruction point `(Phi1, Gamma2, Xi)`; `Xi` may be undeclared.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ObstructionPoint {
     pub phi1: Rational,
@@ -82,7 +49,6 @@ impl ObstructionPoint {
     }
 }
 
-/// The first coordinate in which a candidate strictly improves.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum ImprovementTier {
     Phi1,
@@ -90,7 +56,6 @@ pub enum ImprovementTier {
     Xi,
 }
 
-/// One evaluated branch.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BranchProposal {
     pub label: String,
@@ -98,15 +63,10 @@ pub struct BranchProposal {
     pub mass: Rational,
 }
 
-/// The branch search report: proposals, normalised proposal probabilities and a
-/// ranking. There is no acceptance field.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BranchSearchReport {
     pub proposals: Vec<BranchProposal>,
     pub probabilities: Vec<Rational>,
-    /// Indices of strict proposals, lexicographically least point first:
-    /// `Phi1`, then `Gamma2`, then `Xi` (a declared `Xi` before an undeclared
-    /// one), then the label, then the input position. A strict total order.
     pub ranking: Vec<usize>,
 }
 
@@ -135,18 +95,6 @@ fn improvement(
     }
 }
 
-/// The strict total order behind [`BranchSearchReport::ranking`]: least `Phi1`,
-/// then least `Gamma2`, then a declared `Xi` before an undeclared one (and the
-/// least declared `Xi` first), then the label, then the input position.
-///
-/// `Xi` used to be compared only when both points declared it and treated as
-/// `Equal` otherwise, with the label breaking the tie. That relation is not
-/// transitive: at equal `(Phi1, Gamma2)`, labels z, m, a with `Xi` `Some(1)`,
-/// `None`, `Some(2)` gave z before m (label), m before a (label) and a before z
-/// (`Xi`). The resulting ranking depended on the input order, and
-/// `slice::sort_by` documents that it may panic on a non-total order. Ranking an
-/// undeclared `Xi` after every declared one is a convention of the tie-break
-/// only: it does not change which proposals are strict.
 fn rank_order(candidates: &[(String, ObstructionPoint)], a: usize, b: usize) -> std::cmp::Ordering {
     let ((label_a, point_a), (label_b, point_b)) = (&candidates[a], &candidates[b]);
     use omega_policy::evaluation_hierarchy::{compare_exact_ranking, ExactRankingKey};
@@ -168,7 +116,6 @@ fn rank_order(candidates: &[(String, ObstructionPoint)], a: usize, b: usize) -> 
     )
 }
 
-/// Exact lexicographic obstruction branch search.
 pub fn obstruction_branch_search(
     current: &ObstructionPoint,
     candidates: &[(String, ObstructionPoint)],
@@ -211,7 +158,6 @@ pub fn obstruction_branch_search(
     })
 }
 
-/// The imports a finite quantum reconstruction packet must declare.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum ReconstructionImport {
     FiniteHilbertCarrier,
@@ -221,7 +167,6 @@ pub enum ReconstructionImport {
     TensorComposition,
 }
 
-/// Every import the reconstruction needs.
 pub const RECONSTRUCTION_IMPORTS: [ReconstructionImport; 5] = [
     ReconstructionImport::FiniteHilbertCarrier,
     ReconstructionImport::ComplexScalars,
@@ -230,14 +175,12 @@ pub const RECONSTRUCTION_IMPORTS: [ReconstructionImport; 5] = [
     ReconstructionImport::TensorComposition,
 ];
 
-/// The terminal of a reconstruction packet. There is no impossibility variant.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ReconstructionTerminal {
     Hosted,
     PacketRelativeObstruction { missing: Vec<ReconstructionImport> },
 }
 
-/// `Hosted` when every import is declared; otherwise the missing ones, sorted.
 pub fn terminalize_reconstruction(declared: &[ReconstructionImport]) -> ReconstructionTerminal {
     let missing: Vec<ReconstructionImport> = RECONSTRUCTION_IMPORTS
         .iter()
@@ -251,9 +194,6 @@ pub fn terminalize_reconstruction(declared: &[ReconstructionImport]) -> Reconstr
     }
 }
 
-/// The primitive-lift checklist for a candidate move `before -> after`. The
-/// fields are private, so a checklist exists only as [`evaluate_lift_candidate`]
-/// computed it.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct LiftCandidateEvaluation {
     source_obstruction: bool,
@@ -264,27 +204,22 @@ pub struct LiftCandidateEvaluation {
 }
 
 impl LiftCandidateEvaluation {
-    /// Computed: `Phi1(before) > 0`.
     pub fn source_obstruction(&self) -> bool {
         self.source_obstruction
     }
 
-    /// Computed: `Phi1(after) < Phi1(before)`.
     pub fn reduces_phi(&self) -> bool {
         self.reduces_phi
     }
 
-    /// Computed: `Gamma2(after) <= Gamma2(before)`.
     pub fn preserves_closure(&self) -> bool {
         self.preserves_closure
     }
 
-    /// Declared by the caller.
     pub fn new_carrier_declared(&self) -> bool {
         self.new_carrier_declared
     }
 
-    /// Declared by the caller.
     pub fn replay_declared(&self) -> bool {
         self.replay_declared
     }
@@ -298,8 +233,6 @@ impl LiftCandidateEvaluation {
     }
 }
 
-/// Evaluate a lift candidate from its obstruction points, refusing negative
-/// coordinates as the branch search does.
 pub fn evaluate_lift_candidate(
     before: &ObstructionPoint,
     after: &ObstructionPoint,
@@ -317,7 +250,6 @@ pub fn evaluate_lift_candidate(
     })
 }
 
-/// A licensed coherence lift needs both a complete coherence license and a licensed lift.
 pub fn licensed_coherence_lift(
     coherence: &CoherenceLicense,
     lift: &LiftCandidateEvaluation,
@@ -325,16 +257,12 @@ pub fn licensed_coherence_lift(
     coherence.is_licensed() && lift.is_licensed_lift()
 }
 
-/// Authority tag of a GOMC report. It has exactly one variant, so a report
-/// cannot represent authority. Deliberately not `omega_types::AuthorityEffect`:
-/// that crate stays unnameable here (see `certified_authority_fence`).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub enum ReportAuthorityTag {
     #[default]
     None,
 }
 
-/// The composed GOMC diagnostics for one ledger.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GomcReport {
     global_weights: Vec<Rational>,
@@ -349,7 +277,6 @@ impl GomcReport {
         &self.global_weights
     }
 
-    /// Weights coarse-grained by the observer's classes.
     pub fn observed_weights(&self) -> &[Rational] {
         &self.observed_weights
     }
@@ -367,8 +294,6 @@ impl GomcReport {
     }
 }
 
-/// Compose the diagnostics: global weights, observer marginal, optional
-/// channel pushforward and optional branch search.
 pub fn gomc_report(
     ledger: &ResidualLedger,
     observer: &[usize],

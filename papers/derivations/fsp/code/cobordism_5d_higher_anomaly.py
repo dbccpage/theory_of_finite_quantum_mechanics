@@ -137,8 +137,6 @@ class FiveComplexLattice:
 
         p5 = np.zeros((len(s4_list), 1), dtype=float)
         for s_idx, (i, j, k, l, m) in enumerate(s4_list):
-            # Boundary of the unique 5-simplex (0, 1, 2, 3, 4, 5)
-            # omitting vertex idx in 0..5
             omitted = [v for v in s5 if v not in (i, j, k, l, m)][0]
             sign = (-1.0) ** omitted
             p5[s_idx, 0] = sign
@@ -171,7 +169,7 @@ class MappingTorusCobordismModel:
     """
     def __init__(
         self,
-        four_manifold_type: str = "K3",  # "T4", "K3", "CP2", "RP4"
+        four_manifold_type: str = "K3",
         is_spin: bool = True,
         is_orientable: bool = True,
         postnikov_eval: int = 1,
@@ -189,29 +187,25 @@ class MappingTorusCobordismModel:
         self.temperature = max(1e-4, temperature)
         self.energy_gap_orient = max(0.0, energy_gap_orient)
 
-        # Cobordism data based on 4-manifold type
         if self.four_manifold_type == "K3":
-            # K3 surface has signature sigma = -16, so sigma/16 = -1 == 1 (mod 2)
             self.k3_sig_div16 = 1
             self.cobordism = CobordismGroup5D(
                 has_postnikov_arf=True,
                 has_mixed_gravitational=True,
             )
         elif self.four_manifold_type == "T4":
-            # 4-torus has zero signature sigma = 0
             self.k3_sig_div16 = 0
             self.cobordism = CobordismGroup5D(
                 has_postnikov_arf=True,
                 has_mixed_gravitational=False,
             )
         elif self.four_manifold_type == "RP4":
-            # Real projective 4-space is non-orientable (Pin^- anomaly)
             self.k3_sig_div16 = 0
             self.cobordism = CobordismGroup5D(
                 has_postnikov_arf=False,
                 has_mixed_gravitational=False,
             )
-        else:  # CP2 or generic
+        else:
             self.k3_sig_div16 = 0
             self.cobordism = CobordismGroup5D(
                 has_postnikov_arf=False,
@@ -235,7 +229,6 @@ class MappingTorusCobordismModel:
         - For non-orientable Pin^- manifolds: exp(2pi i * nu_16 / 16).
         """
         if not self.is_orientable:
-            # Pin^- cobordism phase
             phase = 2.0 * math.pi * (self.pin_minus_nu16 % 16) / 16.0
             return cmath.exp(1.0j * phase)
 
@@ -263,7 +256,6 @@ class CobordismAnomalyEngine:
         nu5 = model.evaluate_5d_invariant()
         bare_hol = model.evaluate_mapping_torus_holonomy()
 
-        # Check orientation energy asymmetry first
         if model.energy_gap_orient > 1e-4:
             phi_1 = float(1.0 - math.exp(-model.energy_gap_orient / model.temperature))
             avg_sign = float(math.exp(-model.energy_gap_orient / model.temperature) * max(0.0, bare_hol.real))
@@ -285,7 +277,6 @@ class CobordismAnomalyEngine:
                 authority="None",
             )
 
-        # Check non-orientable Pin^- anomaly
         if not model.is_orientable and (model.pin_minus_nu16 % 16 != 0):
             gamma_2 = abs(cmath.phase(bare_hol))
             re_val = bare_hol.real
@@ -308,23 +299,16 @@ class CobordismAnomalyEngine:
                 authority="None",
             )
 
-        # Evaluate orientable spin 5-manifolds
         if nu5 == 0:
-            # Anomaly-free sector: higher 2-double succeeds cleanly
             gamma_2 = 0.0
             phi_1 = 0.0
             avg_sign = 1.0
             route = TerminalRoute.EXACT_REPAIR
             eff_hol = 1.0 + 0.0j
         else:
-            # Global gravitational anomaly nu_5 = 1:
-            # Mapping torus holonomy is -1. Under large diffeomorphism f, U(f) = -I.
-            # Even under higher 2-double projection, the mapping torus twists chiral and antichiral
-            # bundles by f, producing an uncancelled sign phase Tr(M_f) = -1.
             if use_higher_2double:
-                # The global anomaly OBSTRUCTS the higher 2-double repair!
                 gamma_2 = math.pi
-                phi_1 = 2.0  # 1 - (-1) = 2
+                phi_1 = 2.0
                 avg_sign = 0.0
                 route = TerminalRoute.OPEN_SIGN_OBSTRUCTION
                 eff_hol = -1.0 + 0.0j

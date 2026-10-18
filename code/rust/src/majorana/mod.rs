@@ -1,28 +1,3 @@
-//! `omega_majorana` — GF(2) Majorana parity **diagnostic** playground.
-//!
-//! # Authority fence (MANDATORY)
-//!
-//! - **AuthorityEffect: None** on every receipt.
-//! - Not a CODA_GTLA / CODA authority terminalizer; does not mint `CertifiedAuthority`.
-//! - Does not claim physical Majorana modes, topological qubits, or NISQ hardware.
-//! - Status labels `Exact` / `ClosedResidual` / `OpenObstruction` are **diagnostic
-//!   schedule classes**, not FOC `ExactRepair` / PROVED.
-//!
-//! # Ownership
-//!
-//! Canonical Rust home for GF(2) Majorana parity diagnostics (moved from root
-//! Python prototype `omega_engine_majorana` + engines quantum module).
-//! The old copy under `omega_engines::quantum` was removed on 2026-09-25.
-//!
-//! Python dual-face / demos: `omega_engine_py/omega_majorana` (relocated package).
-//!
-//! # Play
-//!
-//! ```text
-//! cargo test -j 1 -p omega_majorana
-//! cargo test -j 1 -p omega_majorana play_ -- --nocapture
-//! cargo test -j 1 -p omega_majorana torus_2x2 -- --nocapture
-//! ```
 
 #![forbid(unsafe_code)]
 
@@ -97,11 +72,8 @@ pub use repair_limit::{
     AUTHORITY_FENCE as REPAIR_LIMIT_AUTHORITY_FENCE,
 };
 
-/// Mandatory authority effect declaration.
 pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
 
-/// Crate-level fence string.
 pub const AUTHORITY_FENCE: &str = "AuthorityEffect None; not PROVED; not GlobalGreen; not physical Majorana; diagnostic GF(2) only.";
 
-/// Package tag for receipts.
 pub const RECEIPT_TAG: &str = "omega.majorana-gf2-receipt.v1";

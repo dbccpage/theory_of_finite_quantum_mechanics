@@ -75,14 +75,11 @@ def check_difference_antisymmetry(x: float, y: float, tol: float = 1e-12) -> boo
     return abs(primitive_difference(x, y) + primitive_difference(y, x)) <= tol
 
 
-# --------------------------------------------------------------------------- #
-# Rung 2: Finite Cochain Packet
-# --------------------------------------------------------------------------- #
 
 @dataclass(frozen=True)
 class CochainPacket:
     """Finite cochain packet over a declared 2-complex.
-    
+
     Wraps Complex and computes coboundaries, exactness, cohomology dimensions,
     and the Phi_1 / Gamma_2 diagnostic trichotomy.
     """
@@ -132,9 +129,6 @@ def build_triangle_packet(weights: tuple[float, ...] | None = None) -> CochainPa
     return CochainPacket(cochain.triangle(weights=weights))
 
 
-# --------------------------------------------------------------------------- #
-# Rung 3: Weights to Probabilities
-# --------------------------------------------------------------------------- #
 
 def weights_to_probabilities(weights: np.ndarray) -> np.ndarray:
     """Rung 3: L^1 normalization of positive residual weights into probabilities."""
@@ -210,9 +204,6 @@ def weights_to_born_density(weights: np.ndarray, phases: np.ndarray | None = Non
     return p_proj
 
 
-# --------------------------------------------------------------------------- #
-# Rung 4: Phase & Interference
-# --------------------------------------------------------------------------- #
 
 def compute_cycle_holonomy(edge_phases: np.ndarray, cycle_edges: list[tuple[int, int]]) -> float:
     """Rung 4: Computes U(1) holonomy phase around a directed closed cycle."""
@@ -224,7 +215,7 @@ def compute_cycle_holonomy(edge_phases: np.ndarray, cycle_edges: list[tuple[int,
 
 def two_path_interference(a1: complex, a2: complex) -> tuple[float, float]:
     """Rung 4: Evaluates two-path interference via canonical interference crate.
-    
+
     Returns:
         total_prob: |a1 + a2|^2
         interference_term: total_prob - (|a1|^2 + |a2|^2)
@@ -237,7 +228,7 @@ def two_path_interference(a1: complex, a2: complex) -> tuple[float, float]:
 
 def sorkin_3slit_parameter(a1: complex, a2: complex, a3: complex) -> float:
     """Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.
-    
+
     I_3 = P(1,2,3) - [P(1,2) + P(2,3) + P(3,1)] + [P(1) + P(2) + P(3)].
     Under standard quadratic Born rule quantum mechanics, I_3 == 0 identically.
     """
@@ -253,7 +244,7 @@ def sorkin_3slit_parameter(a1: complex, a2: complex, a3: complex) -> float:
 
 def superposition_quotient_fiber(target: int | np.ndarray) -> dict[str, Any]:
     """Rung 4: Analyzes superposition as the quotient fiber over classical probability.
-    
+
     If `target` is an integer n_sectors, delegates to the canonical interference crate.
     If `target` is an amplitude vector psi, projects |psi> to classical diagonal weights.
     The quotient map projects |psi> to classical diagonal weights p_i = |psi_i|^2 / ||psi||^2.
@@ -271,13 +262,11 @@ def superposition_quotient_fiber(target: int | np.ndarray) -> dict[str, Any]:
     probs = np.abs(psi_norm) ** 2
     active = np.where(probs > 1e-12)[0]
     is_superposition = len(active) > 1
-    # Interference capacity: sum_{j < k} 2 |psi_j| |psi_k|
     interference_capacity = 0.0
     n = len(psi_norm)
     for j in range(n):
         for k in range(j + 1, n):
             interference_capacity += 2.0 * float(np.abs(psi_norm[j]) * np.abs(psi_norm[k]))
-    # Relative phases with respect to first active component
     relative_phases = np.zeros(n, dtype=float)
     if len(active) > 0:
         ref_phase = float(np.angle(psi_norm[active[0]]))
@@ -299,7 +288,6 @@ def superposition_interference_test(c1: complex, c2: complex, phase_shift: float
     if norm <= 1e-15:
         raise ValueError("initial amplitudes cannot both be zero")
     psi_norm = psi_in / norm
-    # 50:50 beam splitter
     u_bs = (1.0 / math.sqrt(2.0)) * np.array([[1.0, 1.0], [1.0, -1.0]], dtype=complex)
     psi_out = u_bs @ psi_norm
     p_out = np.abs(psi_out) ** 2
@@ -311,9 +299,6 @@ def superposition_interference_test(c1: complex, c2: complex, phase_shift: float
     }
 
 
-# --------------------------------------------------------------------------- #
-# Rung 5: Composition & Entanglement
-# --------------------------------------------------------------------------- #
 
 def schmidt_decomposition(psi: np.ndarray, dim_a: int, dim_b: int) -> np.ndarray:
     """Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B."""
@@ -324,9 +309,7 @@ def schmidt_decomposition(psi: np.ndarray, dim_a: int, dim_b: int) -> np.ndarray
 def is_entangled_pure_state(psi: np.ndarray, dim_a: int, dim_b: int, tol: float = 1e-6) -> bool:
     """Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1)."""
     s = schmidt_decomposition(psi, dim_a, dim_b)
-    # Normalized Schmidt coefficients sum of squares = 1
     s_norm = s / np.linalg.norm(s)
-    # Pure product state has exactly one non-zero Schmidt coefficient
     rank = int(np.sum(s_norm > tol))
     return rank > 1
 
@@ -359,7 +342,7 @@ def bipartite_von_neumann_entropy(rho_ab: np.ndarray, dim_a: int, dim_b: int, ba
 
 def bell_state(index: int) -> np.ndarray:
     """Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).
-    
+
     0: |Phi+> = (|00> + |11>)/sqrt(2)
     1: |Phi-> = (|00> - |11>)/sqrt(2)
     2: |Psi+> = (|01> + |10>)/sqrt(2)
@@ -389,9 +372,6 @@ def verify_non_signaling(rho_ab: np.ndarray, dim_a: int, dim_b: int, u_b: np.nda
     return bool(np.allclose(rho_a_orig, rho_a_prime, atol=tol))
 
 
-# --------------------------------------------------------------------------- #
-# Rung 6: Dynamics
-# --------------------------------------------------------------------------- #
 
 def is_unitary(u: np.ndarray, tol: float = 1e-9) -> bool:
     """Rung 6: Verifies U^dagger U = I."""
@@ -406,17 +386,15 @@ def discrete_unitary_step(state: np.ndarray, u: np.ndarray) -> np.ndarray:
     if not is_unitary(u):
         raise ValueError("evolution operator must be unitary")
     if state.ndim == 1:
-        # State vector
         return u @ state
     elif state.ndim == 2:
-        # Density matrix
         return u @ state @ u.conj().T
     raise ValueError("state must be 1D vector or 2D density matrix")
 
 
 def continuous_generator_branch_count(u: np.ndarray, tol: float = 1e-9) -> int:
     """Rung 6: Exhibits the continuous-time generator obstruction.
-    
+
     A discrete unitary operator U has infinitely many Hamiltonian generators
     H_k = H_0 + 2 pi k I for integer k, since exp(-i H_k) = exp(-i H_0) exp(-2 pi i k I) = U.
     Returns the number of distinct branch cuts within |k| <= 2 (evaluating non-uniqueness).
@@ -439,9 +417,6 @@ def continuous_generator_branch_count(u: np.ndarray, tol: float = 1e-9) -> int:
     return valid_branches
 
 
-# --------------------------------------------------------------------------- #
-# Rung 7: Measurement & Open Systems
-# --------------------------------------------------------------------------- #
 
 def is_valid_povm(effects: list[np.ndarray], tol: float = 1e-9) -> bool:
     """Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I)."""
@@ -452,10 +427,8 @@ def is_valid_povm(effects: list[np.ndarray], tol: float = 1e-9) -> bool:
     for e in effects:
         if e.shape != (d, d):
             return False
-        # Hermitian
         if not np.allclose(e, e.conj().T, atol=tol):
             return False
-        # Positive semidefinite
         evals = np.linalg.eigvalsh(e)
         if np.any(evals < -tol):
             return False
@@ -484,14 +457,11 @@ def verify_cptp_contractivity(rho1: np.ndarray, rho2: np.ndarray, p: float) -> b
     return cptp_channel.verify_cptp_contractivity(rho1, rho2, p)
 
 
-# --------------------------------------------------------------------------- #
-# Rung 8: The Boundary (Exact Defended Statement)
-# --------------------------------------------------------------------------- #
 
 @dataclass(frozen=True)
 class BoundaryDefense:
     """Rung 8: Exact defended statement of where the finite presentation stops.
-    
+
     The finite programme closes across Rungs 1-7 in discrete dimension d < infty.
     The four continuum interfaces are defended non-claims and explicit obstructions.
     """
@@ -533,16 +503,13 @@ def get_boundary_defense(dimension: int) -> BoundaryDefense:
     """Rung 8: Constructs the boundary defense object for a given carrier dimension."""
     return BoundaryDefense(
         dimension=dimension,
-        has_continuous_observables=False,  # [X, P] = i hbar requires infinite dimension
+        has_continuous_observables=False,
         gleason_applies=(dimension >= 3),
         continuous_time_canonical=False,
         continuum_lift_refused=True,
     )
 
 
-# --------------------------------------------------------------------------- #
-# Gleason's Theorem & Dimension Obstruction
-# --------------------------------------------------------------------------- #
 
 def is_orthonormal_frame(frame: list[np.ndarray], tol: float = 1e-9) -> bool:
     """Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d."""
@@ -583,7 +550,7 @@ def verify_gleason_frame_additivity(rho: np.ndarray, frames: list[list[np.ndarra
 
 def gleason_dimension_2_counterexample() -> dict[str, Any]:
     """Exhibits the failure of Gleason's Theorem in dimension d = 2.
-    
+
     In d = 2, there exist non-Bornian (non-quadratic) frame functions that sum to 1
     on all orthogonal pairs in R^2 but take values only in {0, 1} and cannot be
     written as v^T rho v for any valid density matrix rho.
@@ -595,10 +562,8 @@ def gleason_dimension_2_counterexample() -> dict[str, Any]:
         """
         x, y = float(v[0]), float(v[1])
         angle = math.atan2(y, x) % math.pi
-        # If angle in [0, pi/2), return 1.0, else return 0.0
         return 1.0 if angle < (math.pi / 2.0) else 0.0
 
-    # Test on a continuum grid of orthogonal pairs in R^2
     test_angles = [0.0, math.pi / 6.0, math.pi / 4.0, math.pi / 3.0, 0.723, 1.15]
     all_pairs_sum_to_one = True
     for theta in test_angles:
@@ -627,15 +592,12 @@ def discrete_gleason_triads_d3() -> list[list[np.ndarray]]:
     e0 = np.array([1.0, 0.0, 0.0])
     e1 = np.array([0.0, 1.0, 0.0])
     e2 = np.array([0.0, 0.0, 1.0])
-    # Frame 1: Standard basis
     f1 = [e0, e1, e2]
-    # Frame 2: Rotated 45 degrees around z
     inv_s2 = 1.0 / math.sqrt(2.0)
     u0 = np.array([inv_s2, inv_s2, 0.0])
     u1 = np.array([-inv_s2, inv_s2, 0.0])
     u2 = e2
     f2 = [u0, u1, u2]
-    # Frame 3: Rotated 45 degrees around x
     w0 = e0
     w1 = np.array([0.0, inv_s2, inv_s2])
     w2 = np.array([0.0, -inv_s2, inv_s2])
@@ -643,21 +605,18 @@ def discrete_gleason_triads_d3() -> list[list[np.ndarray]]:
     return [f1, f2, f3]
 
 
-# --------------------------------------------------------------------------- #
-# Phase 1: Separating Experiment (Quartic Rival vs Frame Additivity in d = 2)
-# --------------------------------------------------------------------------- #
 
 def rational_pythagorean_frames_d2() -> list[list[tuple[Fraction, Fraction]]]:
     """Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.
-    
+
     Each frame is a pair [u1, u2] where u1, u2 in Q^2, <u1, u2> = 0, and ||u1||^2 = ||u2||^2 = 1.
     """
     triples = [
-        (0, 1, 1),      # Standard basis: (1, 0) and (0, 1)
-        (3, 4, 5),      # Triple (3, 4, 5): (3/5, 4/5) and (-4/5, 3/5)
-        (5, 12, 13),    # Triple (5, 12, 13): (5/13, 12/13) and (-12/13, 5/13)
-        (8, 15, 17),    # Triple (8, 15, 17): (8/17, 15/17) and (-15/17, 8/17)
-        (7, 24, 25),    # Triple (7, 24, 25): (7/25, 24/25) and (-24/25, 7/25)
+        (0, 1, 1),
+        (3, 4, 5),
+        (5, 12, 13),
+        (8, 15, 17),
+        (7, 24, 25),
     ]
     frames = []
     for a, b, c in triples:
@@ -667,7 +626,6 @@ def rational_pythagorean_frames_d2() -> list[list[tuple[Fraction, Fraction]]]:
         else:
             u1 = (Fraction(a, c), Fraction(b, c))
             u2 = (Fraction(-b, c), Fraction(a, c))
-        # Verify exact orthonormality
         dot = u1[0] * u2[0] + u1[1] * u2[1]
         norm1_sq = u1[0] ** 2 + u1[1] ** 2
         norm2_sq = u2[0] ** 2 + u2[1] ** 2

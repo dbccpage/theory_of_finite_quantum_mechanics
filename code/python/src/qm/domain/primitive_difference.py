@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from fractions import Fraction
-from itertools import combinations, permutations  # permutations canonicalizes graphs
+from itertools import combinations, permutations
 from typing import Dict, List, Tuple
 
 

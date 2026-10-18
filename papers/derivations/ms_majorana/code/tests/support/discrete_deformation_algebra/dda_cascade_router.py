@@ -83,18 +83,15 @@ class DdaCascadeRouter:
         exact, coexact, harmonic = self.compute_hodge_components(w)
         phi1 = self.phi1_exact(w)
 
-        # Level 0: Exact Repair
         if phi1 <= eps:
             self.tape.extend(["E", "I", "T"])
             return "LEVEL_0_REPAIR", self.tape, 0.0
 
-        self.tape.append("R")  # Audit residual
+        self.tape.append("R")
 
-        # Level 1: Fiber Pruning (If harmonic component != 0, prune fiber)
         if np.linalg.norm(harmonic) > eps:
-            self.tape.append("M")  # Mark refusal / fiber pruned
+            self.tape.append("M")
 
-        # Level 2: Context Extension (C^\bullet -> C'^\bullet)
         if d0_ext is not None:
             w_target = np.asarray(w_ext if w_ext is not None else w, dtype=float)
             u_ext, s_ext, _ = np.linalg.svd(d0_ext, full_matrices=False)

@@ -1,12 +1,3 @@
-//! Fixtures: one orthogonal pentatope, and the Kuhn triangulation of the
-//! boundary of the 5-cube (a closed combinatorial 4-sphere) with a `Q^4` chart
-//! on every facet.
-//!
-//! Charts are piecewise-flat and rational. The construction does not evaluate
-//! the Einstein-Hilbert action of the round metric. The Euler characteristic
-//! of this closed combinatorial 4-sphere is computed elsewhere.
-//!
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 
@@ -15,8 +6,6 @@ use super::permute::lex_permutations_4;
 use linear_algebra::regge_exact::q_i64;
 use num_rational::BigRational;
 
-/// Orthogonal corner pentatope on
-/// `(0,0,0,0), (1,0,0,0), (0,1,0,0), (0,0,1,0), (0,0,0,1)`.
 pub fn orthogonal_pentatope() -> Result<SimplicialManifold4D, ManifoldError> {
     let pentatope = [
         rational_point([0, 0, 0, 0]),
@@ -28,17 +17,6 @@ pub fn orthogonal_pentatope() -> Result<SimplicialManifold4D, ManifoldError> {
     SimplicialManifold4D::from_ambient_pentatopes(&[pentatope])
 }
 
-/// Combinatorial boundary of the 5-cube `{0,1}^5`.
-///
-/// Each of the 10 facets is Kuhn-triangulated into `4! = 24` pentatopes:
-/// 32 global vertices and 240 pentatopes. The id of a point is `Σ point[i] << i`
-/// and stays in `0..=31`; vertices are not renumbered.
-///
-/// Chart slot `j` is the value of the `j`-th free axis in ascending index order,
-/// not the order of the permutation. Values are `0` or `1`.
-///
-/// Charts are piecewise-flat and rational. This construction does not evaluate
-/// the Einstein-Hilbert action of the round metric.
 pub fn closed_s4_cube_boundary() -> Result<SimplicialManifold4D, ManifoldError> {
     let mut charts = Vec::with_capacity(240);
     for axis in 0..5 {

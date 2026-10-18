@@ -53,7 +53,6 @@ def test_lean4_susy_witten_theorems():
     assert "super_wdw_constraint_satisfied_unbroken" in content
     assert "SusyBreakingSignResurgenceObstruction" in content
 
-    # Test compilation
     result = subprocess.run(["lean", str(lean_file)], capture_output=True, text=True)
     assert result.returncode == 0, f"Lean compilation failed: {result.stderr}"
 
@@ -175,17 +174,13 @@ def test_boson_fermion_doublet_cancellation_at_positive_energy():
     evaluator = CdtSusyWittenEvaluator(in_memory=True)
     beta = 2.0
 
-    # Build doublet spectrum: 1 boson zero mode, 0 fermion zero modes, plus 5 positive doublets
     boson_evals = [0.0, 1.2, 2.5, 4.0, 5.7, 8.1]
     fermion_evals = [1.2, 2.5, 4.0, 5.7, 8.1]
 
-    # Compute trace sum
     boson_trace = sum(math.exp(-beta * e) for e in boson_evals)
     fermion_trace = sum(math.exp(-beta * e) for e in fermion_evals)
     witten_idx = boson_trace - fermion_trace
 
-    # Exact cancellation of positive energy states:
-    # boson_trace - fermion_trace = exp(-beta * 0) + sum(exp - exp) = 1.0 + 0 = 1.0
     assert abs(witten_idx - 1.0) < 1e-15, f"Doublet cancellation error: {witten_idx}"
 
     evaluator.close()
@@ -195,7 +190,6 @@ def test_sqlite_relational_schema_and_view_integrity():
     """Validates full relational persistence and SQL audit view across both regimes."""
     evaluator = CdtSusyWittenEvaluator(in_memory=True)
 
-    # Run both ensembles
     evaluator.evaluate_susy_cancellation_ensemble(
         ensemble_id="ens_susy_unbroken",
         susy_regime="EXACT_UNBROKEN_SUSY",
@@ -213,7 +207,6 @@ def test_sqlite_relational_schema_and_view_integrity():
         seed=2,
     )
 
-    # Check database counts
     evaluator.cur.execute("SELECT COUNT(*) FROM CdtSusyWittenTrajectory")
     row_count = evaluator.cur.fetchone()[0]
     assert row_count == 20
@@ -226,7 +219,6 @@ def test_sqlite_relational_schema_and_view_integrity():
     summary_count = evaluator.cur.fetchone()[0]
     assert summary_count == 2
 
-    # Query View
     evaluator.cur.execute("SELECT ensemble_id, susy_audit_verdict FROM ViewCdtSusyWittenAudit")
     rows = dict(evaluator.cur.fetchall())
     assert rows["ens_susy_unbroken"] == "SUPER_WDW_EXACT_CANCELLATION_CERTIFIED"

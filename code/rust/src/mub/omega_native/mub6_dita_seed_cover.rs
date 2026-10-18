@@ -1,19 +1,3 @@
-//! Cover readiness + finite-cover driver for **genuine Dita seed triples**
-//! `{I, F6(dx,dy), Y2⊗Q_a}` on the locked ζ₂₄ orbits:
-//! * `a=1`: `(dx,dy) ∈ {(0,8),(8,0),(16,16)}`
-//! * `a=2`: `(dx,dy) ∈ {(0,16),(8,8),(16,0)}` (dual lattice orbit)
-//!
-//! These seeds were locked by `mub6_f6_external_b3` (not T0 rediscovery: F6 is ray-distinct
-//! from product `X2⊗Q0`). This module:
-//!
-//! 1. materializes each seed as an exact 18-column fixed triple over `Cyc24`;
-//! 2. verifies pairwise mutual unbiasedness of the three bases;
-//! 3. runs the residual kernel on a smoke box (column near `e_0`);
-//! 4. runs the **branch-and-bound cover engine** (`cover_region` / prefiltered) against seed
-//!    enclosures on torus cells — complete finite covers of stated regions;
-//! 5. records readiness for the full gauge-fixed 5-torus cover (compute-heavy production run).
-//!
-//! moduli. Full 5-torus cover per seed is still a large finite computation. Mints no authority.
 
 use num_rational::BigRational;
 use num_traits::{ToPrimitive, Zero};
@@ -42,9 +26,6 @@ use omega_number_theory::cyclotomic::Cyc24;
 use omega_number_theory::rational::ri;
 use omega_number_theory::rational::rq;
 
-/// Resolve locked external-B3 index `a` for a genuine Dita seed `(dx,dy)`.
-///
-/// Returns `1` for the Y2⊗Q1 orbit, `2` for the Y2⊗Q2 dual orbit.
 pub fn resolve_genuine_dita_qa(dx: i64, dy: i64) -> Result<i64, String> {
     if genuine_dita_y2q1_triple_seeds()
         .iter()
@@ -66,7 +47,6 @@ pub fn resolve_genuine_dita_qa(dx: i64, dy: i64) -> Result<i64, String> {
     }
 }
 
-/// All locked genuine seeds as `(dx, dy, qa)`.
 pub fn all_genuine_dita_seeds() -> Vec<(i64, i64, i64)> {
     let mut out = Vec::new();
     for &(dx, dy) in &genuine_dita_y2q1_triple_seeds() {
@@ -78,16 +58,11 @@ pub fn all_genuine_dita_seeds() -> Vec<(i64, i64, i64)> {
     out
 }
 
-/// Exact 18 columns of the seed triple `{I, F6(dx,dy), Y2⊗Q_a}` for locked seeds.
-///
-/// Layout matches the canonical triple convention: B1 columns `0..6`, B2 `6..12`, B3 `12..18`.
-/// `a` is resolved from `(dx,dy)` via [`resolve_genuine_dita_qa`].
 pub fn dita_seed_triple_columns(dx: i64, dy: i64) -> Vec<ExactVec> {
     let qa = resolve_genuine_dita_qa(dx, dy).expect("locked genuine Dita seed");
     dita_seed_triple_columns_qa(dx, dy, qa)
 }
 
-/// Exact 18 columns with explicit external-B3 index `qa ∈ {1,2}`.
 pub fn dita_seed_triple_columns_qa(dx: i64, dy: i64, qa: i64) -> Vec<ExactVec> {
     assert!(
         f6_point_is_exact_chm(dx, dy),
@@ -95,26 +70,21 @@ pub fn dita_seed_triple_columns_qa(dx: i64, dy: i64, qa: i64) -> Vec<ExactVec> {
     );
     assert!(qa == 1 || qa == 2, "qa must be 1 or 2");
     let mut cols = Vec::with_capacity(3 * D);
-    // B1 = standard basis of C^6.
     for idx in 0..D {
         let mut v: ExactVec = std::array::from_fn(|_| Cyc24::zero());
         v[idx] = Cyc24::rat(ri(1));
         cols.push(v);
     }
-    // B2 = F6(dx,dy).
     cols.extend_from_slice(&f6_family_columns(dx, dy));
-    // B3 = Y2⊗Q_a.
     cols.extend_from_slice(&product_y2_qa_columns(qa));
     cols
 }
 
-/// Verify the three blocks are pairwise mutually unbiased (exact).
 pub fn dita_seed_triple_is_pairwise_mu(dx: i64, dy: i64) -> bool {
     let cols = dita_seed_triple_columns(dx, dy);
     let b1: [ExactVec; D] = std::array::from_fn(|i| cols[i].clone());
     let b2: [ExactVec; D] = std::array::from_fn(|i| cols[D + i].clone());
     let b3: [ExactVec; D] = std::array::from_fn(|i| cols[2 * D + i].clone());
-    // B1 is the standard basis: CHM check on B2/B3 is MU-to-I.
     basis_is_exact_chm(&b2)
         && basis_is_exact_chm(&b3)
         && bases_are_mutually_unbiased(&b1, &b2)
@@ -122,7 +92,6 @@ pub fn dita_seed_triple_is_pairwise_mu(dx: i64, dy: i64) -> bool {
         && bases_are_mutually_unbiased(&b2, &b3)
 }
 
-/// Smoke basis box: column 0 near `e_0`, other columns wide — cannot be a fourth MU basis.
 fn smoke_basis_box_col0_near_e0() -> BasisBox {
     let small = Interval::new(rq(-1, 20), rq(1, 20));
     let mut near_e0: VectorBox = std::array::from_fn(|_| small.clone());
@@ -135,7 +104,6 @@ fn smoke_basis_box_col0_near_e0() -> BasisBox {
     bbox
 }
 
-/// Per-seed cover readiness record.
 #[derive(Debug, Clone, Serialize)]
 pub struct DitaSeedCoverStatus {
     pub f6_dx: i64,
@@ -143,18 +111,15 @@ pub struct DitaSeedCoverStatus {
     pub triple_id: String,
     pub pairwise_mu: bool,
     pub column_count: usize,
-    /// Smoke: basis box with col0 near e0 is excluded by the residual kernel.
     pub smoke_basis_excluded: bool,
     pub smoke_psi_gap: Option<String>,
     pub smoke_excluded_column: Option<usize>,
-    /// Smoke: vector residual against the enclosed seed triple excludes the same col0 box.
     pub smoke_vector_excluded: bool,
     pub smoke_vector_gap: Option<String>,
     pub full_torus_cover: &'static str,
     pub firewall: &'static str,
 }
 
-/// Build cover-readiness status for one genuine Dita seed.
 pub fn dita_seed_cover_status(dx: i64, dy: i64) -> DitaSeedCoverStatus {
     let cols = dita_seed_triple_columns(dx, dy);
     let pairwise_mu = dita_seed_triple_is_pairwise_mu(dx, dy);
@@ -189,7 +154,6 @@ pub fn dita_seed_cover_status(dx: i64, dy: i64) -> DitaSeedCoverStatus {
     }
 }
 
-/// Cover-readiness report for all locked genuine Dita seeds.
 #[derive(Debug, Clone, Serialize)]
 pub struct DitaSeedCoverReadinessReport {
     pub seeds: Vec<DitaSeedCoverStatus>,
@@ -199,7 +163,6 @@ pub struct DitaSeedCoverReadinessReport {
     pub firewall: &'static str,
 }
 
-/// Run readiness on every genuine Dita seed (Y2⊗Q1 and Y2⊗Q2 orbits).
 pub fn dita_seed_cover_readiness_report() -> DitaSeedCoverReadinessReport {
     let seeds: Vec<_> = all_genuine_dita_seeds()
         .into_iter()
@@ -219,18 +182,13 @@ pub fn dita_seed_cover_readiness_report() -> DitaSeedCoverReadinessReport {
     }
 }
 
-/// Exact basis residual lower bound for a seed triple on the smoke box (diagnostic).
 pub fn dita_seed_smoke_psi_gap(dx: i64, dy: i64) -> BigRational {
     let cols = dita_seed_triple_columns(dx, dy);
     let sb = SqrtBox::standard();
     basis_residual_sq_lower(&cols, &smoke_basis_box_col0_near_e0(), &sb)
 }
 
-// ---------------------------------------------------------------------------
-// Finite cover driver (same branch-and-bound engine as T0)
-// ---------------------------------------------------------------------------
 
-/// Build exact + f64 enclosures for a seed triple.
 pub fn dita_seed_enclosed(dx: i64, dy: i64) -> (EnclosedTriple, EnclosedTripleF64) {
     let cols = dita_seed_triple_columns(dx, dy);
     (
@@ -239,11 +197,6 @@ pub fn dita_seed_enclosed(dx: i64, dy: i64) -> (EnclosedTriple, EnclosedTripleF6
     )
 }
 
-/// Build exact + f64 **moduli-neighborhood** enclosures: B2/B3 widened by `±delta`, B1 exact.
-///
-/// A complete cover against these enclosures is a neighborhood no-go for the seed center —
-/// every triple whose B2/B3 entries lie within entrywise `delta` of the seed. Sound superset
-/// test (widening can only loosen residuals). Not moduli exhaustion; not `MUB(6)=3`.
 pub fn dita_seed_neighborhood_enclosed(
     dx: i64,
     dy: i64,
@@ -257,12 +210,10 @@ pub fn dita_seed_neighborhood_enclosed(
     )
 }
 
-/// Canonical neighborhood radius used for T0 moduli patch (and seed pilot).
 pub fn neighborhood_delta_1_1000() -> BigRational {
     ri(1) / ri(1000)
 }
 
-/// Cover a stated candidate region against a **delta-neighborhood** of a seed triple.
 pub fn cover_seed_neighborhood_region(
     dx: i64,
     dy: i64,
@@ -277,8 +228,6 @@ pub fn cover_seed_neighborhood_region(
     ))
 }
 
-/// Complete-cover certificates for every genuine seed on narrow/wide torus cells under a
-/// moduli neighborhood enclosure (`delta = 1/1000` by default).
 #[derive(Debug, Clone, Serialize)]
 pub struct DitaSeedNeighborhoodCellCoverReport {
     pub delta: String,
@@ -290,10 +239,6 @@ pub struct DitaSeedNeighborhoodCellCoverReport {
     pub firewall: &'static str,
 }
 
-/// Run neighborhood cell covers (stated regions only) for all genuine seeds at `delta=1/1000`.
-///
-/// Proves the seed-centered widening API is live on the same cells the point-seed covers use.
-/// Full gauge-fixed 5-torus neighborhood covers remain production-scale (separate farm).
 pub fn dita_seed_neighborhood_cell_cover_report() -> DitaSeedNeighborhoodCellCoverReport {
     let delta = neighborhood_delta_1_1000();
     let mut narrow = Vec::new();
@@ -329,8 +274,6 @@ pub fn dita_seed_neighborhood_cell_cover_report() -> DitaSeedNeighborhoodCellCov
     }
 }
 
-/// Single-chunk unit of the full gauge-fixed 5-torus under seed neighborhood widening.
-/// Completeness is never fabricated: `complete` only when `uncertified == 0`.
 pub fn dita_seed_neighborhood_gauge_fixed_chunk_cover(
     dx: i64,
     dy: i64,
@@ -352,7 +295,6 @@ pub fn dita_seed_neighborhood_gauge_fixed_chunk_cover(
     ))
 }
 
-/// Parallel full gauge-fixed 5-torus cover against a seed neighborhood enclosure.
 pub fn dita_seed_neighborhood_gauge_fixed_cover_parallel(
     dx: i64,
     dy: i64,
@@ -377,7 +319,6 @@ pub fn dita_seed_neighborhood_gauge_fixed_cover_parallel(
     ))
 }
 
-/// Artifact filename stem for a neighborhood chunk (`delta` as `num_den`, e.g. `1_1000`).
 pub fn neighborhood_chunk_filename(
     dx: i64,
     dy: i64,
@@ -391,8 +332,6 @@ pub fn neighborhood_chunk_filename(
     )
 }
 
-/// Load and merge all on-disk neighborhood presplit-6 chunks for one seed at `delta_tag`
-/// (e.g. `"1_1000"`). Prefers depth32, else depth30.
 pub fn merge_on_disk_presplit6_neighborhood_chunks(
     dx: i64,
     dy: i64,
@@ -432,28 +371,24 @@ pub fn merge_on_disk_presplit6_neighborhood_chunks(
     )
 }
 
-/// Narrow torus cell used for end-to-end complete-cover validation (matches `mub6_cover` tests).
 pub fn narrow_torus_cell() -> VectorBox {
     let lo = ri(28) / ri(100) - ri(2) / ri(100);
     let hi = ri(28) / ri(100) + ri(2) / ri(100);
     std::array::from_fn(|_| Interval::new(lo.clone(), hi.clone()))
 }
 
-/// Wider torus cell that forces subdivision (matches `mub6_cover` wide-cell test).
 pub fn wide_torus_cell() -> VectorBox {
     let lo = ri(28) / ri(100) - ri(18) / ri(100);
     let hi = ri(28) / ri(100) + ri(18) / ri(100);
     std::array::from_fn(|_| Interval::new(lo.clone(), hi.clone()))
 }
 
-/// Run the exact cover engine on a stated region against a Dita seed triple.
 pub fn cover_seed_region(dx: i64, dy: i64, region: VectorBox, max_depth: u32) -> CoverCertificate {
     let (exact, _) = dita_seed_enclosed(dx, dy);
     let report = cover_region(&exact, region, max_depth);
     report.certificate(&format!("dita_seed_F6_{dx}_{dy}_region"))
 }
 
-/// Run the prefiltered (f64 guide + exact certify) cover on a stated region for a seed.
 pub fn cover_seed_region_prefiltered(
     dx: i64,
     dy: i64,
@@ -465,7 +400,6 @@ pub fn cover_seed_region_prefiltered(
     report.certificate(&format!("dita_seed_F6_{dx}_{dy}_prefiltered_region"))
 }
 
-/// Complete-cover certificates for every genuine seed on the narrow and wide torus cells.
 #[derive(Debug, Clone, Serialize)]
 pub struct DitaSeedCellCoverReport {
     pub narrow: Vec<CoverCertificate>,
@@ -476,11 +410,6 @@ pub struct DitaSeedCellCoverReport {
     pub firewall: &'static str,
 }
 
-/// Run complete finite covers of the standard narrow/wide torus cells for all genuine seeds.
-///
-/// These are **stated-region** certificates (not the full gauge-fixed 5-torus). They prove the
-/// seed triples are live inputs to the production cover engine with the same termination
-/// behavior as T0 on these cells.
 pub fn dita_seed_cell_cover_report() -> DitaSeedCellCoverReport {
     let mut narrow = Vec::new();
     let mut wide = Vec::new();
@@ -501,11 +430,6 @@ pub fn dita_seed_cell_cover_report() -> DitaSeedCellCoverReport {
     }
 }
 
-/// Depth-bounded pilot of the **full gauge-fixed 5-torus** against one seed.
-///
-/// Returns an honest certificate: may be incomplete if `max_depth` is too small. Never fabricates
-/// completeness. Used to exercise the production region on seed enclosures without claiming a
-/// finished cover.
 pub fn dita_seed_gauge_fixed_pilot(dx: i64, dy: i64, max_depth: u32) -> CoverCertificate {
     let (exact, fast) = dita_seed_enclosed(dx, dy);
     let report = cover_region_prefiltered(&exact, &fast, gauge_fixed_torus_region(), max_depth);
@@ -514,16 +438,6 @@ pub fn dita_seed_gauge_fixed_pilot(dx: i64, dy: i64, max_depth: u32) -> CoverCer
     ))
 }
 
-/// **Production entry:** parallel prefiltered cover of the full gauge-fixed 5-torus for one
-/// genuine Dita seed triple.
-///
-/// Parameters mirror the T0 production runner (`run_cover_parallel_with`):
-/// * `presplit_depth` — log2 of independent chunks (e.g. 4 → 16 chunks);
-/// * `max_depth` — subdivision budget per chunk (T0 used ~30);
-/// * `n_threads` — worker count (`0` = available parallelism).
-///
-/// Completeness is never fabricated: `certificate.complete` is true only when
-/// `uncertified == 0`.
 pub fn dita_seed_gauge_fixed_cover_parallel(
     dx: i64,
     dy: i64,
@@ -547,8 +461,6 @@ pub fn dita_seed_gauge_fixed_cover_parallel(
     ))
 }
 
-/// Write a cover certificate JSON under `artifacts/` (creates the directory if needed).
-/// Returns the path written.
 pub fn write_cover_certificate_artifact(
     cert: &CoverCertificate,
     filename: &str,
@@ -561,10 +473,6 @@ pub fn write_cover_certificate_artifact(
     Ok(path)
 }
 
-/// Merge disjoint chunk certificates into one full-region certificate.
-///
-/// All chunks must be `complete`; otherwise returns `Err` listing incomplete indices.
-/// Min-gap is the minimum of present chunk gaps; max_depth is the max of chunk depths.
 pub fn merge_chunk_certificates(
     region_label: &str,
     chunks: &[CoverCertificate],
@@ -588,7 +496,6 @@ pub fn merge_chunk_certificates(
         .iter()
         .filter_map(|c| c.min_gap.as_ref())
         .min_by(|a, b| {
-            // Compare as BigRational strings for exact min.
             use std::str::FromStr;
             let ar = BigRational::from_str(a).ok();
             let br = BigRational::from_str(b).ok();
@@ -609,8 +516,6 @@ pub fn merge_chunk_certificates(
     })
 }
 
-/// Extract chunk index from a certificate region label.
-/// Recognizes forms like `..._chunk42_...`, `..._chunk42`, or `...chunk42...`.
 pub fn parse_chunk_index_from_label(label: &str) -> Option<usize> {
     let pos = label.find("chunk")?;
     let after = &label[pos + 5..];
@@ -618,15 +523,6 @@ pub fn parse_chunk_index_from_label(label: &str) -> Option<usize> {
     digits.parse::<usize>().ok()
 }
 
-/// Formally validate strict chunk index bijection for an expected chunk count N.
-///
-/// Mathematical Invariant:
-/// The map from the chunk array to the finite ordinal {0, 1, ..., N-1} must be a BIJECTION:
-/// 1. Cardinality match: `chunks.len() == expected_count`.
-/// 2. Injection (no duplicates): every index in 0..N-1 appears at most once.
-/// 3. Surjection (no gaps): every index in 0..N-1 appears at least once.
-///
-/// If any chunk index is missing, duplicated, or corrupted, aborts with a clear descriptive error.
 pub fn validate_chunk_index_bijection(
     chunks: &[CoverCertificate],
     expected_count: usize,
@@ -684,18 +580,12 @@ pub fn validate_chunk_index_bijection(
     Ok(())
 }
 
-/// Compute SHA-256 digest of raw payload bytes as lower-case hex string.
 pub fn compute_payload_sha256(bytes: &[u8]) -> String {
     let mut hasher = Sha256::new();
     hasher.update(bytes);
     format!("{:x}", hasher.finalize())
 }
 
-/// Validate a chunk file payload for corruption and checksum integrity:
-/// 1. Payload must be non-empty.
-/// 2. Payload must parse cleanly into a CoverCertificate.
-/// 3. Certificate must have complete == true and uncertified == 0.
-/// 4. If expected_sha256 is Some, computed hash must match exactly.
 pub fn validate_chunk_payload(
     raw_bytes: &[u8],
     expected_sha256: Option<&str>,
@@ -722,9 +612,6 @@ pub fn validate_chunk_payload(
     Ok((cert, digest))
 }
 
-/// Strict on-disk merger for presplit-6 POINT cover chunks:
-/// Enforces strict chunk index bijection (chunks 0..63 present without duplicates)
-/// and chunk payload checksum validation.
 pub fn merge_on_disk_presplit6_chunks_strict(
     dx: i64,
     dy: i64,
@@ -766,9 +653,6 @@ pub fn merge_on_disk_presplit6_chunks_strict(
     Ok((merged_cert, checksums))
 }
 
-/// Strict on-disk merger for presplit-6 NEIGHBORHOOD cover chunks:
-/// Enforces strict chunk index bijection (chunks 0..63 present without duplicates)
-/// and chunk payload checksum validation.
 pub fn merge_on_disk_presplit6_neighborhood_chunks_strict(
     dx: i64,
     dy: i64,
@@ -809,10 +693,6 @@ pub fn merge_on_disk_presplit6_neighborhood_chunks_strict(
     Ok((merged_cert, checksums))
 }
 
-/// Load and merge all on-disk presplit chunk certificates for a seed (prefers depth32, else depth30).
-///
-/// Prefer a pre-merged summary receipt when present (repo-landed L1 artifacts are summaries only;
-/// full 64-chunk farms stay out of the main tree).
 pub fn merge_on_disk_presplit6_chunks(dx: i64, dy: i64) -> Result<CoverCertificate, String> {
     let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
     let merged = dir.join(format!(
@@ -848,17 +728,10 @@ pub fn merge_on_disk_presplit6_chunks(dx: i64, dy: i64) -> Result<CoverCertifica
     )
 }
 
-/// Refuse non-genuine `(dx,dy)` pairs for the production cover runner.
-/// Accept any locked genuine Dita seed (Y2⊗Q1 or Y2⊗Q2 orbit). Name retained for CLI stability.
 pub fn genuine_dita_y2q1_triple_seeds_check(dx: i64, dy: i64) -> Result<(), String> {
     resolve_genuine_dita_qa(dx, dy).map(|_| ())
 }
 
-/// Cover a **single** presplit chunk of the gauge-fixed 5-torus for one seed.
-///
-/// The full torus is the disjoint union of `2^presplit_depth` such chunks. Completing every
-/// chunk (possibly offline / across machines) yields a complete full-torus cover. This function
-/// is the unit of distributed production work.
 pub fn dita_seed_gauge_fixed_chunk_cover(
     dx: i64,
     dy: i64,
@@ -879,8 +752,6 @@ pub fn dita_seed_gauge_fixed_chunk_cover(
     ))
 }
 
-/// Cover **all** presplit chunks for one seed at a given depth; merge into one certificate.
-/// Same as `dita_seed_gauge_fixed_cover_parallel` but sequential (for small presplit tests).
 pub fn dita_seed_gauge_fixed_cover_sequential(
     dx: i64,
     dy: i64,
@@ -932,7 +803,6 @@ mod tests {
             let sb = SqrtBox::standard();
             let exact = basis_residual_sq_lower(&cols, &bbox, &sb);
             let enc = EnclosedTriple::from_exact_columns(&cols);
-            // Vector residual on col0 is positive; basis residual is at least that.
             let v0 = enc.residual_sq_lower(&bbox[0]);
             assert!(v0 > BigRational::zero());
             assert!(exact >= v0);
@@ -966,17 +836,12 @@ mod tests {
 
     #[test]
     fn gauge_fixed_pilot_is_honest_about_depth() {
-        // Shallow depth on the full gauge-fixed region: may leave uncertified residue.
-        // The certificate must not claim complete unless uncertified == 0.
         let (dx, dy) = genuine_dita_y2q1_triple_seeds()[0];
         let cert = dita_seed_gauge_fixed_pilot(dx, dy, 4);
         assert_eq!(cert.complete, cert.uncertified == 0);
-        // At depth 4 the full 5-torus almost surely has residue (or, if somehow complete, ok).
-        // Either way the report is self-consistent and non-fabricated.
         assert!(cert.region_label.contains("gauge_fixed"));
     }
 
-    /// Heavy: single gauge-fixed chunk at production depth. Run with `--ignored` on a long machine.
     #[test]
     #[ignore]
     fn single_presplit_chunk_can_complete_at_moderate_depth() {
@@ -993,7 +858,6 @@ mod tests {
     #[test]
     fn production_parallel_entry_is_honest_at_shallow_depth() {
         let (dx, dy) = genuine_dita_y2q1_triple_seeds()[0];
-        // Shallow production entry: must not claim complete unless residue is empty.
         let cert = dita_seed_gauge_fixed_cover_parallel(dx, dy, 2, 6, 2);
         assert_eq!(cert.complete, cert.uncertified == 0);
         assert!(cert.region_label.contains("gauge_fixed_5_torus"));
@@ -1002,15 +866,13 @@ mod tests {
     #[test]
     fn genuine_seed_check_accepts_locked_seeds_only() {
         assert!(genuine_dita_y2q1_triple_seeds_check(0, 8).is_ok());
-        assert!(genuine_dita_y2q1_triple_seeds_check(0, 16).is_ok()); // Y2Q2 dual
+        assert!(genuine_dita_y2q1_triple_seeds_check(0, 16).is_ok());
         assert!(genuine_dita_y2q1_triple_seeds_check(8, 8).is_ok());
         assert!(genuine_dita_y2q1_triple_seeds_check(3, 7).is_err());
     }
 
     #[test]
     fn on_disk_presplit6_chunks_merge_to_complete_full_torus_for_seed_0_8() {
-        // Production evidence: all 64 presplit-6 chunks for F6(0,8)+Y2⊗Q1 are complete;
-        // merge yields a full gauge-fixed 5-torus certificate with uncertified=0.
         let cert = merge_on_disk_presplit6_chunks(0, 8)
             .expect("all 64 chunk certificates must be present and complete");
         assert!(cert.complete);
@@ -1022,8 +884,6 @@ mod tests {
 
     #[test]
     fn on_disk_presplit6_chunks_merge_all_three_genuine_seeds_identical_counts() {
-        // Production evidence (2026-07-24k): all three genuine Dita seeds complete the full
-        // gauge-fixed 5-torus with identical certified/off_torus/min_gap statistics.
         let c08 = merge_on_disk_presplit6_chunks(0, 8).expect("seed (0,8)");
         let c80 = merge_on_disk_presplit6_chunks(8, 0).expect("seed (8,0)");
         let c1616 = merge_on_disk_presplit6_chunks(16, 16).expect("seed (16,16)");
@@ -1041,9 +901,6 @@ mod tests {
 
     #[test]
     fn on_disk_presplit6_chunks_merge_all_three_y2q2_seeds_identical_to_y2q1() {
-        // Production evidence (2026-07-24s): all three Y2⊗Q2 dual seeds complete the full
-        // gauge-fixed 5-torus with **identical** certified/off_torus/min_gap statistics
-        // as the three Y2⊗Q1 seeds (dual-orbit cover parity).
         let c016 = merge_on_disk_presplit6_chunks(0, 16).expect("seed (0,16)");
         let c88 = merge_on_disk_presplit6_chunks(8, 8).expect("seed (8,8)");
         let c160 = merge_on_disk_presplit6_chunks(16, 0).expect("seed (16,0)");
@@ -1074,7 +931,6 @@ mod tests {
                 w <= p,
                 "widened residual lower bound must be ≤ point residual"
             );
-            // Far-from-manifold smoke box stays excluded under neighborhood widening.
             assert!(
                 w > BigRational::zero(),
                 "smoke col0 near e0 must still certify under delta=1/1000 for F6({dx},{dy})"
@@ -1111,7 +967,6 @@ mod tests {
     #[test]
     fn neighborhood_gauge_fixed_chunk_pilot_is_honest() {
         let delta = neighborhood_delta_1_1000();
-        // Shallow pilot: self-consistent complete flag; may leave residue.
         let cert = dita_seed_neighborhood_gauge_fixed_chunk_cover(0, 8, &delta, 2, 0, 6);
         assert_eq!(cert.complete, cert.uncertified == 0);
         assert!(cert.region_label.contains("neigh_delta"));
@@ -1119,8 +974,6 @@ mod tests {
 
     #[test]
     fn on_disk_presplit6_neighborhood_merge_complete_for_seed_0_8() {
-        // Production evidence (2026-07-24m): all 64 neighborhood chunks for F6(0,8)
-        // at delta=1/1000 are complete.
         let cert = merge_on_disk_presplit6_neighborhood_chunks(0, 8, "1_1000")
             .expect("all 64 neighborhood chunk certificates must be present and complete");
         assert!(cert.complete);
@@ -1135,8 +988,6 @@ mod tests {
 
     #[test]
     fn on_disk_presplit6_neighborhood_merge_all_six_seeds_identical() {
-        // Dual-orbit parity locked: all six genuine Dita seeds share identical
-        // delta=1/1000 neighborhood cover statistics.
         let c08 = merge_on_disk_presplit6_neighborhood_chunks(0, 8, "1_1000").expect("(0,8)");
         let c80 = merge_on_disk_presplit6_neighborhood_chunks(8, 0, "1_1000").expect("(8,0)");
         let c1616 = merge_on_disk_presplit6_neighborhood_chunks(16, 16, "1_1000").expect("(16,16)");
@@ -1170,20 +1021,16 @@ mod tests {
             max_depth_used: 15,
         };
 
-        // Valid bijection for N = 4: chunks 0, 1, 2, 3
         let valid_chunks = vec![make_dummy(0), make_dummy(1), make_dummy(2), make_dummy(3)];
         assert!(validate_chunk_index_bijection(&valid_chunks, 4).is_ok());
 
-        // Permuted order still valid bijection:
         let permuted_chunks = vec![make_dummy(2), make_dummy(0), make_dummy(3), make_dummy(1)];
         assert!(validate_chunk_index_bijection(&permuted_chunks, 4).is_ok());
 
-        // Missing chunk 2: [0, 1, 3] (length 3, expected 4)
         let missing_chunks = vec![make_dummy(0), make_dummy(1), make_dummy(3)];
         let err_missing = validate_chunk_index_bijection(&missing_chunks, 4).unwrap_err();
         assert!(err_missing.contains("chunk count mismatch"));
 
-        // Duplicate chunk 1 instead of chunk 2: [0, 1, 1, 3]
         let dup_chunks = vec![make_dummy(0), make_dummy(1), make_dummy(1), make_dummy(3)];
         let err_dup = validate_chunk_index_bijection(&dup_chunks, 4).unwrap_err();
         assert!(
@@ -1191,12 +1038,10 @@ mod tests {
                 && err_dup.contains("missing chunk indices")
         );
 
-        // Out of bounds chunk index 5: [0, 1, 2, 5]
         let oob_chunks = vec![make_dummy(0), make_dummy(1), make_dummy(2), make_dummy(5)];
         let err_oob = validate_chunk_index_bijection(&oob_chunks, 4).unwrap_err();
         assert!(err_oob.contains("out of bounds"));
 
-        // Empty chunk list
         let empty_chunks: Vec<CoverCertificate> = Vec::new();
         assert!(validate_chunk_index_bijection(&empty_chunks, 4).is_err());
     }
@@ -1215,32 +1060,27 @@ mod tests {
         let valid_bytes = serde_json::to_vec_pretty(&valid_cert).unwrap();
         let expected_hash = compute_payload_sha256(&valid_bytes);
 
-        // Valid payload matches computed hash:
         let (parsed, hash) = validate_chunk_payload(&valid_bytes, Some(&expected_hash)).unwrap();
         assert_eq!(parsed, valid_cert);
         assert_eq!(hash, expected_hash);
 
-        // Corrupted hash fails:
         let bad_hash = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
         let err_hash = validate_chunk_payload(&valid_bytes, Some(bad_hash)).unwrap_err();
         assert!(err_hash.contains("checksum corruption"));
 
-        // Corrupted JSON fails:
         let corrupt_bytes = b"{ invalid json payload ...";
         let err_json = validate_chunk_payload(corrupt_bytes, None).unwrap_err();
         assert!(err_json.contains("invalid JSON syntax"));
 
-        // Empty payload fails:
         let empty_bytes = b"";
         let err_empty = validate_chunk_payload(empty_bytes, None).unwrap_err();
         assert!(err_empty.contains("file is empty"));
 
-        // Incomplete cert fails:
         let incomplete_cert = CoverCertificate {
             region_label: "incomplete_chunk".to_string(),
             certified: 100,
             off_torus: 50,
-            uncertified: 5, // residue!
+            uncertified: 5,
             complete: false,
             min_gap: None,
             max_depth_used: 10,
@@ -1252,8 +1092,6 @@ mod tests {
 
     #[test]
     fn strict_merge_on_disk_neighborhood_chunks_verifies_all_64_checksums() {
-        // Production validation: F6(8,8) delta=1/1000 has all 64 chunk files present on disk.
-        // Strict merge must verify all 64 checksums and strict index bijection 0..63.
         let (cert, checksums) = merge_on_disk_presplit6_neighborhood_chunks_strict(8, 8, "1_1000")
             .expect("F6(8,8) all 64 neighborhood chunk files must be present and verified");
         assert_eq!(checksums.len(), 64);
@@ -1262,7 +1100,6 @@ mod tests {
         assert_eq!(cert.certified, 1_138_055);
         assert_eq!(cert.off_torus, 954_386);
 
-        // Verify checksums are distinct 64-character hex strings:
         for (idx, (chunk_i, sha)) in checksums.iter().enumerate() {
             assert_eq!(*chunk_i, idx);
             assert_eq!(sha.len(), 64);

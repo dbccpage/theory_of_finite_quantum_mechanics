@@ -28,7 +28,6 @@ from omega_engine.crates.type.solver_evidence import (
 import omega_engine.crates.solver.solv_hodge_primal_dual as hodge
 
 
-# 1-2. finite graph rejects negative endpoints
 def test_finite_graph_rejects_negative_source():
     with pytest.raises(DirectedGraphError):
         FiniteDirectedGraph.from_pairs([(-1, 0)])
@@ -39,7 +38,6 @@ def test_finite_graph_rejects_negative_target():
         FiniteDirectedGraph.from_pairs([(0, -2)])
 
 
-# 3-4. incidence matrix rejects negative indices
 def test_incidence_rejects_negative_source():
     with pytest.raises(IncidenceMatrixError):
         incidence_matrix(2, [(-1, 1)])
@@ -52,12 +50,11 @@ def test_incidence_rejects_negative_target():
 
 def test_incidence_orientation_and_self_loop():
     m = incidence_matrix(2, [(0, 1)])
-    assert m[0, 0] == -1 and m[0, 1] == 1  # source -1, target +1
+    assert m[0, 0] == -1 and m[0, 1] == 1
     with pytest.raises(IncidenceMatrixError):
-        incidence_matrix(2, [(1, 1)])  # self-loop
+        incidence_matrix(2, [(1, 1)])
 
 
-# 5. fixpoint rejects non-positive budgets
 class _NeverConverges:
     def step(self, s):
         return s + 1
@@ -86,7 +83,7 @@ def test_fixpoint_rejects_zero_budget():
 
 def test_fixpoint_returns_after_budget_when_not_converged():
     out = fixpoint_bounded_recursion(_NeverConverges(), 0, 3)
-    assert out == 3  # stepped exactly the budget
+    assert out == 3
 
 
 def test_fixpoint_stops_on_convergence():
@@ -94,7 +91,6 @@ def test_fixpoint_stops_on_convergence():
     assert out == 7
 
 
-# 6-8. trust rejects non-finite / negative residuals
 def _res(**kw):
     return SolverResult(value=None, diagnostics=SolverDiagnostics(converged=True, **kw))
 
@@ -115,7 +111,6 @@ def test_trust_rejects_negative_gap():
 
 
 def test_trust_rejects_nan_even_without_max_residual():
-    # NaN must be caught even when no max_residual policy is set.
     d = decide_trust(_res(primal_residual=float("nan")), TrustPolicy())
     assert d.trusted is False
 
@@ -129,10 +124,9 @@ def test_enforce_raises_typed_refusal():
 
 def test_certificate_serializes_by_name():
     cert = Certificate(kind=CertificateKind.DualWitness, payload=b"abc")
-    assert cert.as_dict()["kind"] == "DualWitness"  # stable name, not auto() int
+    assert cert.as_dict()["kind"] == "DualWitness"
 
 
-# 9. deprecated Hodge solver terminalizes as a refusal (raises, not silent result)
 @pytest.mark.parametrize(
     "fn",
     [
@@ -143,7 +137,6 @@ def test_certificate_serializes_by_name():
 )
 def test_deprecated_hodge_refuses(fn):
     with pytest.raises(NotImplementedError):
-        # arg count varies; call with enough Nones
         try:
             fn(None, None)
         except TypeError:
@@ -155,12 +148,11 @@ def test_topology_independent_rejects_negative():
         hodge.Topology.independent(-1)
 
 
-# 10. edges() mutation cannot alter the validated graph
 def test_edges_mutation_does_not_corrupt_graph():
     g = FiniteDirectedGraph.from_pairs([(0, 1), (1, 2)])
     e = g.edges()
-    e.append((99, 99))  # mutate the returned list
-    assert g.num_edges() == 2  # internal structure unchanged
+    e.append((99, 99))
+    assert g.num_edges() == 2
     assert (99, 99) not in g.edges()
 
 

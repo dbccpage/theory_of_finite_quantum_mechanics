@@ -1,45 +1,18 @@
-//! Target 7 — Q/CODA product vertical slice (diagnostic / experimental).
-//!
-//! Pipeline:
-//! Proposal → PromptReview → ScopedResearch → DraftPaper →
-//! AdversarialReview → FullReview → ManifestBoundZip
-//!
-//! --- Product Contract:
-//! - `AuthorityEffect` is always `"None"`.
-//! - Human-only promotion firewall: this module **never** sets `PROMOTED`.
-//! - If Targets 1–7 are incomplete, Q/CODA product integration is exposed as
-//!   [`FeatureStatus::ExperimentalDisabled`] (or experimental only).
-//! - Silent PROD enablement is refused; hosts must not treat this surface as
-//!   launch-ready GlobalGreen.
-//! - Manifest-bound packages may still build with residual OPEN claims, but
-//!   then `release_status = "NOT_RELEASE_CANDIDATE"`.
 
 use std::collections::BTreeMap;
 use std::fmt;
 
 use serde::{Deserialize, Serialize};
 
-// ---------------------------------------------------------------------------
-// Feature / launch gates
-// ---------------------------------------------------------------------------
 
-/// Product feature surface status for Q/CODA integration.
-///
-/// Production enablement is intentionally a distinct variant so silent or
-/// accidental PROD mounts are type-checkable and refuse-able.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum FeatureStatus {
-    /// Integration is off for product consumers; diagnostic verticals may run.
     ExperimentalDisabled,
-    /// Explicit experimental opt-in at the host layer (not PROD).
     ExperimentalEnabled,
-    /// Production enablement — **never** constructed by this crate's constants
-    /// or automatic gates while Targets 1–7 remain incomplete.
     ProductionEnabled,
 }
 
 impl FeatureStatus {
-    /// Human-readable product banner.
     pub fn as_str(self) -> &'static str {
         match self {
             Self::ExperimentalDisabled => "experimental_disabled",
@@ -48,41 +21,27 @@ impl FeatureStatus {
         }
     }
 
-    /// Whether product HTTP/CLI may mount Q/CODA as a first-class integration.
     pub fn allows_product_mount(self) -> bool {
         matches!(self, Self::ExperimentalEnabled | Self::ProductionEnabled)
     }
 
-    /// Whether this status is production.
     pub fn is_production(self) -> bool {
         matches!(self, Self::ProductionEnabled)
     }
 }
 
-/// Standing product gate for Q/CODA integration.
-///
-/// Targets 1–7 are incomplete at this launch gate, so product surfaces must
-/// expose Q/CODA as disabled or experimental — never silent PROD.
 pub const Q_CODA_PRODUCT_INTEGRATION: FeatureStatus = FeatureStatus::ExperimentalDisabled;
 
-/// Universal product authority declaration for this vertical.
 pub const AUTHORITY_EFFECT: &str = "None";
 
-/// Package release status when residual OPEN claims remain (or anytime this
-/// vertical builds a package without human promotion).
 pub const RELEASE_NOT_CANDIDATE: &str = "NOT_RELEASE_CANDIDATE";
 
-/// Package release status when all claims are resolved inside the diagnostic
-/// pipeline but promotion still did not occur (human-only firewall).
 pub const RELEASE_DIAGNOSTIC_ONLY: &str = "DIAGNOSTIC_ONLY_NOT_PROMOTED";
 
-/// Explicit non-promotion stamp. Never rewritten to `PROMOTED` by this module.
 pub const PROMOTION_NOT_PROMOTED: &str = "NOT_PROMOTED";
 
-/// Forbidden auto-promotion label (documented for gate tests).
 pub const PROMOTION_PROMOTED: &str = "PROMOTED";
 
-/// Launch-gate targets required before product may even *consider* PROD enablement.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[repr(u8)]
 pub enum LaunchTarget {
@@ -92,7 +51,6 @@ pub enum LaunchTarget {
     Target4 = 4,
     Target5 = 5,
     Target6 = 6,
-    /// This vertical slice itself.
     Target7 = 7,
 }
 
@@ -112,10 +70,6 @@ impl LaunchTarget {
     }
 }
 
-/// Completeness board for Targets 1–7.
-///
-/// Honest default: all incomplete. Completing a target is an explicit host /
-/// human action recorded on the board; this module does not invent completion.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LaunchTargetBoard {
     complete: BTreeMap<u8, bool>,
@@ -140,7 +94,6 @@ impl LaunchTargetBoard {
         self.complete.get(&target.id()).copied().unwrap_or(false)
     }
 
-    /// Record completion. Does not enable PROD and does not mint authority.
     pub fn mark_complete(&mut self, target: LaunchTarget) {
         self.complete.insert(target.id(), true);
     }
@@ -149,7 +102,6 @@ impl LaunchTargetBoard {
         LaunchTarget::ALL.iter().all(|t| self.is_complete(*t))
     }
 
-    /// Incomplete target IDs (1–7), sorted.
     pub fn incomplete(&self) -> Vec<u8> {
         LaunchTarget::ALL
             .iter()
@@ -159,19 +111,14 @@ impl LaunchTargetBoard {
     }
 }
 
-/// Errors from product / promotion gates.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ProductGateError {
-    /// Targets 1–7 incomplete; product must stay disabled or experimental.
     TargetsIncomplete { incomplete: Vec<u8> },
-    /// Silent or automated PROD enablement is refused.
     SilentProdEnablementRefused {
         requested: FeatureStatus,
         standing: FeatureStatus,
     },
-    /// Promotion is human-only; agents/modules never set PROMOTED.
     HumanOnlyPromotionFirewall,
-    /// Product mount refused while integration is ExperimentalDisabled.
     ProductMountDisabled { standing: FeatureStatus },
 }
 
@@ -210,24 +157,14 @@ impl fmt::Display for ProductGateError {
 
 impl std::error::Error for ProductGateError {}
 
-/// Standing integration status, always honouring incompleteness of Targets 1–7.
-///
-/// When any target is incomplete, returns [`FeatureStatus::ExperimentalDisabled`].
-/// Even when all targets are complete, this function **does not** auto-enable
-/// PROD — it returns the standing constant (experimental/disabled) so a human
-/// host must still opt in explicitly.
 pub fn evaluate_q_coda_integration(board: &LaunchTargetBoard) -> FeatureStatus {
     if !board.all_complete() {
         FeatureStatus::ExperimentalDisabled
     } else {
-        // Completeness is necessary but not sufficient for PROD. Keep product
-        // from silently flipping to ProductionEnabled.
         Q_CODA_PRODUCT_INTEGRATION
     }
 }
 
-/// Refuse silent PROD enablement. Only a future human-operated host path may
-/// ever set ProductionEnabled; this crate always refuses automatic elevation.
 pub fn refuse_silent_prod_enablement(requested: FeatureStatus) -> Result<(), ProductGateError> {
     if requested.is_production() {
         return Err(ProductGateError::SilentProdEnablementRefused {
@@ -238,16 +175,10 @@ pub fn refuse_silent_prod_enablement(requested: FeatureStatus) -> Result<(), Pro
     Ok(())
 }
 
-/// Whether product surfaces may mount Q/CODA as a first-class integration.
-///
-/// With the standing constant [`Q_CODA_PRODUCT_INTEGRATION`] =
-/// [`FeatureStatus::ExperimentalDisabled`], this returns `false`.
 pub fn q_coda_product_mount_allowed() -> bool {
     Q_CODA_PRODUCT_INTEGRATION.allows_product_mount()
 }
 
-/// Gate a product mount attempt. Fails closed while ExperimentalDisabled or
-/// when Targets 1–7 are incomplete.
 pub fn gate_product_mount(board: &LaunchTargetBoard) -> Result<FeatureStatus, ProductGateError> {
     let status = evaluate_q_coda_integration(board);
     if !board.all_complete() {
@@ -262,16 +193,11 @@ pub fn gate_product_mount(board: &LaunchTargetBoard) -> Result<FeatureStatus, Pr
     Ok(status)
 }
 
-/// Human-only promotion firewall: always refuses. Never returns Ok with PROMOTED.
 pub fn try_auto_promote() -> Result<(), ProductGateError> {
     Err(ProductGateError::HumanOnlyPromotionFirewall)
 }
 
-// ---------------------------------------------------------------------------
-// Claims + proposal
-// ---------------------------------------------------------------------------
 
-/// Claim resolution inside the diagnostic vertical (not authority).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ClaimStatus {
     Open,
@@ -289,7 +215,6 @@ impl ClaimStatus {
     }
 }
 
-/// One claim tracked through the pipeline.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ClaimRecord {
     pub claim_id: String,
@@ -315,7 +240,6 @@ impl ClaimRecord {
     }
 }
 
-/// Input proposal for the vertical slice.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ProductProposal {
     pub proposal_id: String,
@@ -344,11 +268,7 @@ impl ProductProposal {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Pipeline stages + receipts
-// ---------------------------------------------------------------------------
 
-/// Ordered pipeline stages for Target 7.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum PipelineStage {
     Proposal,
@@ -384,7 +304,6 @@ impl PipelineStage {
     }
 }
 
-/// Per-stage terminal (diagnostic only; not authority).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum StageStatus {
     Passed,
@@ -402,7 +321,6 @@ impl StageStatus {
     }
 }
 
-/// Receipt produced by one pipeline stage.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StageReceipt {
     pub stage_id: PipelineStage,
@@ -432,11 +350,7 @@ impl StageReceipt {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Manifest-bound package (deterministic in-memory "ZIP")
-// ---------------------------------------------------------------------------
 
-/// Manifest listing claim IDs and residual OPEN claims.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PackageManifest {
     pub schema: String,
@@ -450,23 +364,14 @@ pub struct PackageManifest {
     pub package_note: String,
 }
 
-/// Deterministic in-memory archive bound to the claim manifest.
-///
-/// Entries are sorted by path. The byte payload is a stable, ZIP-shaped
-/// logical package (path + content records) without depending on a host ZIP
-/// library — suitable for diagnostic hashing and temp-dir materialization.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ManifestBoundZip {
     pub manifest: PackageManifest,
-    /// Sorted path → UTF-8 text payload.
     pub entries: BTreeMap<String, String>,
-    /// Deterministic hash of the serialized package payload.
     pub package_hash: String,
 }
 
 impl ManifestBoundZip {
-    /// Build a package. Unresolved claims force `NOT_RELEASE_CANDIDATE` but
-    /// still allow the package to build (no auto-promotion either way).
     pub fn build(
         proposal_id: &str,
         claims: &[ClaimRecord],
@@ -488,7 +393,6 @@ impl ManifestBoundZip {
         let release_status = if has_residuals {
             RELEASE_NOT_CANDIDATE.to_string()
         } else {
-            // Resolved claims still do not promote.
             RELEASE_DIAGNOSTIC_ONLY.to_string()
         };
 
@@ -563,7 +467,6 @@ impl ManifestBoundZip {
         }
     }
 
-    /// Deterministic byte payload of the logical package (for hashing / export).
     pub fn to_bytes(&self) -> Vec<u8> {
         serialize_package_bytes(&self.entries)
     }
@@ -576,7 +479,6 @@ impl ManifestBoundZip {
         &self.manifest.residual_open_claims
     }
 
-    /// Materialize into a temp-style directory map (path → bytes) without I/O.
     pub fn as_temp_dir_map(&self) -> BTreeMap<String, Vec<u8>> {
         self.entries
             .iter()
@@ -586,8 +488,6 @@ impl ManifestBoundZip {
 }
 
 fn serialize_package_bytes(entries: &BTreeMap<String, String>) -> Vec<u8> {
-    // Stable archive: for each path (BTreeMap order):
-    //   "FILE\n" + path + "\n" + decimal length + "\n" + content + "\n"
     let mut out = Vec::new();
     out.extend_from_slice(b"OMEGA_MANIFEST_BOUND_ZIP_V1\n");
     for (path, content) in entries {
@@ -643,9 +543,6 @@ fn json_string_array(items: &[String]) -> String {
     format!("[{inner}]")
 }
 
-/// Deterministic non-crypto hex digest (FNV-1a 64-bit) for diagnostic artifact hashes.
-///
-/// Not a security hash and not a release seal — only stability for receipts.
 fn hash_hex(bytes: impl AsRef<[u8]>) -> String {
     const FNV_OFFSET: u64 = 0xcbf29ce484222325;
     const FNV_PRIME: u64 = 0x100000001b3;
@@ -657,11 +554,7 @@ fn hash_hex(bytes: impl AsRef<[u8]>) -> String {
     format!("fnv1a64:{hash:016x}")
 }
 
-// ---------------------------------------------------------------------------
-// Orchestrator
-// ---------------------------------------------------------------------------
 
-/// Working state accumulated across stages (diagnostic only).
 #[derive(Clone, Debug, PartialEq, Eq)]
 struct PipelineState {
     proposal: ProductProposal,
@@ -673,7 +566,6 @@ struct PipelineState {
     blocked_reason: Option<String>,
 }
 
-/// Full vertical-slice run result.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct VerticalSliceRun {
     pub run_id: String,
@@ -688,18 +580,15 @@ pub struct VerticalSliceRun {
 }
 
 impl VerticalSliceRun {
-    /// Aggregate OPEN/BLOCKED claim ids still residual after the run.
     pub fn has_unresolved(&self) -> bool {
         !self.unresolved_claims.is_empty()
     }
 
-    /// Never true: this module does not promote.
     pub fn is_promoted(&self) -> bool {
         self.promotion == PROMOTION_PROMOTED
     }
 }
 
-/// Pure diagnostic orchestrator for the Target 7 product vertical.
 #[derive(Clone, Debug, Default)]
 pub struct ProductVerticalSlice;
 
@@ -708,9 +597,6 @@ impl ProductVerticalSlice {
         Self
     }
 
-    /// Run the full 7-stage pipeline. Always stamps AuthorityEffect None and
-    /// never sets PROMOTED. Unresolved claims remain explicit on receipts and
-    /// on the package manifest.
     pub fn run(&self, proposal: ProductProposal) -> VerticalSliceRun {
         let run_id = format!("pvs:{}", proposal.proposal_id);
         let mut state = PipelineState {
@@ -725,8 +611,6 @@ impl ProductVerticalSlice {
 
         for stage in PipelineStage::ALL {
             if state.blocked_reason.is_some() && stage != PipelineStage::ManifestBoundZip {
-                // Still emit a blocked receipt for remaining non-zip stages so
-                // the stage set is complete and residuals stay explicit.
                 let open = open_claim_ids(&state.claims);
                 state.receipts.push(
                     StageReceipt::new(stage, StageStatus::Blocked)
@@ -778,7 +662,6 @@ impl ProductVerticalSlice {
                 .with_unresolved(open_claim_ids(&state.claims))
                 .with_artifact_hash(hash_hex("proposal:blocked"));
         }
-        // Ensure every seed claim is present; do not silently drop OPEN.
         if state.claims.is_empty() {
             state.claims.push(ClaimRecord::open(
                 format!("claim:{}:implicit-scope", state.proposal.proposal_id),
@@ -885,7 +768,6 @@ impl ProductVerticalSlice {
     }
 
     fn stage_adversarial_review(&self, state: &mut PipelineState) -> StageReceipt {
-        // Adversarial pass: every OPEN claim is re-listed; empty drafts are blocked.
         if state.draft_paper.trim().is_empty() {
             state.blocked_reason = Some("adversarial review: empty draft".to_string());
             return StageReceipt::new(PipelineStage::AdversarialReview, StageStatus::Blocked)
@@ -906,14 +788,11 @@ impl ProductVerticalSlice {
 
     fn stage_full_review(&self, state: &mut PipelineState) -> StageReceipt {
         let open = open_claim_ids(&state.claims);
-        // Full review never promotes. Unresolved claims stay UnresolvedClaims;
-        // clean runs still only Pass as diagnostic.
         let status = if open.is_empty() {
             StageStatus::Passed
         } else {
             StageStatus::UnresolvedClaims
         };
-        // Human-only firewall: refuse any auto-promote attempt as part of review.
         let _ = try_auto_promote();
         StageReceipt::new(PipelineStage::FullReview, status)
             .with_unresolved(open.clone())
@@ -939,7 +818,6 @@ impl ProductVerticalSlice {
             StageStatus::Passed
         };
         let hash = package.package_hash.clone();
-        // Invariant: never PROMOTED
         debug_assert_ne!(package.manifest.promotion, PROMOTION_PROMOTED);
         debug_assert_eq!(package.manifest.authority_effect, AUTHORITY_EFFECT);
         state.package = Some(package);
@@ -960,9 +838,6 @@ fn open_claim_ids(claims: &[ClaimRecord]) -> Vec<String> {
     ids
 }
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 #[cfg(test)]
 mod tests {
@@ -1027,7 +902,6 @@ mod tests {
             board.mark_complete(t);
         }
         assert!(board.all_complete());
-        // Standing constant remains ExperimentalDisabled — no silent PROD.
         assert_eq!(
             evaluate_q_coda_integration(&board),
             FeatureStatus::ExperimentalDisabled
@@ -1036,8 +910,6 @@ mod tests {
             refuse_silent_prod_enablement(FeatureStatus::ProductionEnabled),
             Err(ProductGateError::SilentProdEnablementRefused { .. })
         ));
-        // Experimental opt-in request is not PROD; refuse_silent allows it
-        // (host still decides whether to flip the constant).
         assert!(refuse_silent_prod_enablement(FeatureStatus::ExperimentalEnabled).is_ok());
     }
 
@@ -1067,7 +939,6 @@ mod tests {
             .any(|c| c == "claim:coda-cs-bridge"));
         assert_eq!(run.feature_status, FeatureStatus::ExperimentalDisabled);
 
-        // Stages that see OPEN claims report UnresolvedClaims (not silent pass).
         let adv = run
             .receipts
             .iter()
@@ -1090,7 +961,6 @@ mod tests {
         assert!(pkg.entries.contains_key("claims.jsonl"));
         assert!(pkg.entries.contains_key("receipts.jsonl"));
         assert!(pkg.entries.contains_key("AUTHORITY"));
-        // Deterministic package hash + payload.
         assert_eq!(pkg.package_hash, hash_hex(pkg.to_bytes()));
         let again = ProductVerticalSlice::new().run(proposal_with_open_claim());
         assert_eq!(
@@ -1108,7 +978,6 @@ mod tests {
         assert_eq!(pkg.release_status(), RELEASE_DIAGNOSTIC_ONLY);
         assert_eq!(pkg.manifest.promotion, PROMOTION_NOT_PROMOTED);
         assert_ne!(pkg.manifest.promotion, PROMOTION_PROMOTED);
-        // Full review passed diagnostically but firewall holds.
         let full = run
             .receipts
             .iter()
@@ -1129,8 +998,6 @@ mod tests {
 
     #[test]
     fn product_disables_q_coda_when_targets_incomplete() {
-        // Product rule: If Targets 1–7 incomplete, expose Q/CODA as disabled
-        // or experimental — never PROD, never silent mount.
         let board = LaunchTargetBoard::default();
         assert!(!board.all_complete());
         assert_eq!(

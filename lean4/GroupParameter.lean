@@ -1,26 +1,7 @@
-/-
-  Campaign C1000 Block 09: Group Parameter Typing and Lindemann-Weierstrass Dichotomy.
-  AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
-  Formalizes:
-  - Subgroup typing: Rotation, Boost, TimeEvolution
-  - Parameter verdict typing: Carried, RefusedTranscendental, ExternallyInterfaced
-  - Field carrier membership vs parameter typing
-  - Lindemann-Weierstrass theorem as an explicit cited input hypothesis
-  - Rotation theorem: algebraic cos(theta) with theta != 0 forces transcendental theta
-  - Boost theorem: algebraic cosh(eta) with eta != 0 forces transcendental eta
-  - Time evolution theorem: algebraic unitary entries with t != 0 and non-zero generator forces transcendental t
-  - Unified parameter dichotomy: for any one-parameter subgroup element with algebraic matrix entries,
-    the element is carried by the carrier, but non-identity parameter is refused and transcendental
-  - Terminal outcome: PARAMETERS_REFUSED_ELEMENTS_CARRIED
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace GroupParameter
 
-/-! ### Target C1000-T1018: One-Parameter Subgroup and Parameter Verdict Enums -/
 
 inductive SubgroupType where
   | rotation : SubgroupType
@@ -34,8 +15,6 @@ inductive ParameterVerdict where
   | externallyInterfaced : ParameterVerdict
   deriving DecidableEq, Repr
 
-/-- Total parameter classification function with no default branch.
-    Every permissible branch is explicitly guarded and named. -/
 def classifyGroupParameter
     (st : SubgroupType)
     (isIdentity : Bool)
@@ -74,21 +53,17 @@ theorem classify_time_non_identity (alg nonz : Bool) (h_alg : alg = true) (h_non
   rw [h_alg, h_nonz]
   rfl
 
-/-! ### Concrete Matrix Generators and Elements -/
 
-/-- 2x2 integer matrix for Lorentz boost B1 numerator. -/
 def b1Numerator : Fin 2 → Fin 2 → Int :=
   fun i j =>
     match i, j with
     | 0, 0 => 5 | 0, 1 => 3
     | 1, 0 => 3 | 1, 1 => 5
 
-/-- Determinant of B1 numerator: 5*5 - 3*3 = 16 = 4^2. -/
 theorem b1_numerator_det :
     b1Numerator 0 0 * b1Numerator 1 1 - b1Numerator 0 1 * b1Numerator 1 0 = 16 := by
   rfl
 
-/-- 3x3 integer matrix for Pythagorean rotation numerator. -/
 def pythRotNumerator : Fin 3 → Fin 3 → Int :=
   fun i j =>
     match i, j with
@@ -96,14 +71,12 @@ def pythRotNumerator : Fin 3 → Fin 3 → Int :=
     | 1, 0 => 4  | 1, 1 => 3  | 1, 2 => 0
     | 2, 0 => 0  | 2, 1 => 0  | 2, 2 => 5
 
-/-- Determinant of Pythagorean rotation numerator: (3*3 - (-4)*4)*5 = (9+16)*5 = 125 = 5^3. -/
 theorem pyth_rot_numerator_det :
     pythRotNumerator 0 0 * (pythRotNumerator 1 1 * pythRotNumerator 2 2 - pythRotNumerator 1 2 * pythRotNumerator 2 1) -
     pythRotNumerator 0 1 * (pythRotNumerator 1 0 * pythRotNumerator 2 2 - pythRotNumerator 1 2 * pythRotNumerator 2 0) +
     pythRotNumerator 0 2 * (pythRotNumerator 1 0 * pythRotNumerator 2 1 - pythRotNumerator 1 1 * pythRotNumerator 2 0) = 125 := by
   rfl
 
-/-- Pauli Z generator matrix: diag(1, -1). -/
 def pauliZ : Fin 2 → Fin 2 → Int :=
   fun i j =>
     match i, j with
@@ -113,18 +86,12 @@ def pauliZ : Fin 2 → Fin 2 → Int :=
 theorem pauli_z_trace_zero : pauliZ 0 0 + pauliZ 1 1 = 0 := by
   rfl
 
-/-! ### Targets C1000-T1005 & C1000-T1019: Lindemann-Weierstrass Reduction for Rotations -/
 
-/-- Transcendental predicate defined constructively as negation of algebraicity. -/
 def IsTranscendental (IsAlg : α → Prop) (x : α) : Prop := ¬ IsAlg x
 
-/-- Lindemann-Weierstrass theorem stated as an explicit cited input hypothesis:
-    For any non-zero algebraic number alpha, exp(alpha) is transcendental. -/
 def LindemannWeierstrassHypothesis (α : Type) (IsAlg : α → Prop) (exp : α → α) (zero : α) : Prop :=
   ∀ (a : α), IsAlg a → a ≠ zero → IsTranscendental IsAlg (exp a)
 
-/-- Target C1000-T1006 & C1000-T1019: Rotation parameter transcendence theorem.
-    If cos(theta) is algebraic and theta != 0, then theta is transcendental. -/
 theorem rotation_parameter_transcendental
     {α : Type}
     {IsAlg : α → Prop}
@@ -148,11 +115,7 @@ theorem rotation_parameter_transcendental
   have h_alg_exp : IsAlg (exp (mul i_unit theta)) := h_rot_exp_alg h_cos_holds
   exact h_trans_exp h_alg_exp
 
-/-! ### Targets C1000-T1007, C1000-T1008, C1000-T1020: Boost and Time Evolution Cases -/
 
-/-- Target C1000-T1007 & C1000-T1020: Lorentz boost rapidity transcendence theorem.
-    If cosh(eta) is algebraic and eta != 0, then rapidity eta is transcendental.
-    Proof uses the quadratic polynomial x^2 - 2(cosh eta)x + 1 = 0 whose root x = exp(eta) is algebraic. -/
 theorem boost_parameter_transcendental
     {α : Type}
     {IsAlg : α → Prop}
@@ -170,9 +133,6 @@ theorem boost_parameter_transcendental
   have h_alg_exp : IsAlg (exp eta) := h_boost_exp_alg h_cosh_holds
   exact h_trans_exp h_alg_exp
 
-/-- Target C1000-T1008 & C1000-T1020: Unitary time evolution parameter transcendence theorem.
-    If U(t) has algebraic entries, t != 0, and Hamiltonian generator has non-zero algebraic
-    eigenvalue lambda, then time parameter t is transcendental. -/
 theorem time_parameter_transcendental
     {α : Type}
     {IsAlg : α → Prop}
@@ -197,7 +157,6 @@ theorem time_parameter_transcendental
   have h_alg_exp : IsAlg (exp (mul gen_eig t)) := h_time_exp_alg h_unitary_holds
   exact h_trans_exp h_alg_exp
 
-/-! ### Targets C1000-T1009 & C1000-T1020: Unified Group Parameter Dichotomy -/
 
 structure SubgroupElementRecord where
   subgroup : SubgroupType
@@ -207,11 +166,6 @@ structure SubgroupElementRecord where
   parameterIsZero : Bool
   parameterIsAlgebraic : Bool
 
-/-- The unified dichotomy statement covering rotation, boost, and time evolution:
-    If a subgroup element has algebraic matrix entries:
-    - Either it is the identity, in which case the parameter is zero (carried).
-    - Or it is non-identity, in which case the parameter is transcendental (refused).
-    The carrier holds elements; it never holds non-identity parameters. -/
 theorem unified_group_parameter_dichotomy
     (elem : SubgroupElementRecord)
     (_h_alg : elem.hasAlgebraicEntries = true)
@@ -228,14 +182,12 @@ theorem unified_group_parameter_dichotomy
     have h_alg_param := h_id_equiv.mp h_id
     exact ⟨rfl, h_alg_param⟩
 
-/-! ### Target C1000-T1025: Terminal Outcome Declaration -/
 
 def terminalOutcome : String := "PARAMETERS_REFUSED_ELEMENTS_CARRIED"
 
 theorem terminal_outcome_correct :
     terminalOutcome = "PARAMETERS_REFUSED_ELEMENTS_CARRIED" := rfl
 
-/-- Total inventory count: exactly 18 items. -/
 def inventoryTotalCount : Nat := 18
 def inventoryCarriedCount : Nat := 3
 def inventoryRefusedCount : Nat := 15
@@ -244,7 +196,6 @@ theorem inventory_partition :
     inventoryCarriedCount + inventoryRefusedCount = inventoryTotalCount := by
   rfl
 
-/-! ### Target C1000-T1021: Axiom Census -/
 
 #print axioms classify_identity_carried
 #print axioms classify_rotation_non_identity
@@ -261,3 +212,6 @@ theorem inventory_partition :
 #print axioms inventory_partition
 
 end GroupParameter
+
+private def l5aProvenance : String :=
+  "Origin: lean4/GroupParameter.lean Claim: classify_identity_carried AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

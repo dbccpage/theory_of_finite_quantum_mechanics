@@ -1,19 +1,7 @@
-/-
-  H058EffectFrameBusch.lean
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace FableHilbertWalk20260819.H058
-/- Review scope: The rational homogeneity theorem assumes a RationalHomogeneityWitness2; no witness constructor for every effect is proved here. The squeeze lemma ranges over Rat and may take r=s=lambda. It is not a density or completion theorem. State representation uniqueness is conditional on the stated test-coordinate equations; full positive representation remains a bridge obligation. -/
 
--- ==============================================================================
--- SECTION 0: EXACT RATIONAL CONSTANTS AND HELPER LEMMAS
--- ==============================================================================
 
-/-- Exact half rational scalar: 1/2 = 2⁻¹. -/
 def half : Rat := (2 : Rat)⁻¹
 
 theorem two_ne_zero : (2 : Rat) ≠ 0 := by decide
@@ -49,12 +37,7 @@ theorem rat_zero_add_six : (0 : Rat) + 0 + 0 + 0 + 0 + 0 = 0 := by
   have hz : (0 : Rat) + 0 = 0 := Rat.add_zero 0
   rw [hz, hz, hz, hz, hz]
 
--- ==============================================================================
--- PART 1: HERM_D AND EFF_D STRUCTURES (DIMENSIONS d = 2 AND d = 3)
--- ==============================================================================
 
-/-- Hermitian 2x2 matrix over the ordered rational carrier.
-    Entries: diagonal a (0,0), d (1,1) in Q; off-diagonal (0,1) = b_re + i * b_im. -/
 structure Herm2 where
   a : Rat
   b_re : Rat
@@ -79,15 +62,11 @@ def tr2 (A : Herm2) : Rat := A.a + A.d
 def tr_prod2 (A B : Herm2) : Rat :=
   A.a * B.a + A.d * B.d + 2 * (A.b_re * B.b_re + A.b_im * B.b_im)
 
-/-- Positive semidefiniteness condition for Herm2:
-    non-negative diagonal entries and non-negative determinant. -/
 def is_pos2 (A : Herm2) : Prop :=
   0 ≤ A.a ∧ 0 ≤ A.d ∧ 0 ≤ A.a * A.d - (A.b_re * A.b_re + A.b_im * A.b_im)
 
-/-- The effect partial order on Herm2: A ≤ B iff B - A ≥ 0. -/
 def le2 (A B : Herm2) : Prop := is_pos2 (sub2 B A)
 
-/-- An effect in dimension 2 satisfies 0 ≤ E ≤ I. -/
 def is_effect2 (E : Herm2) : Prop := is_pos2 E ∧ is_pos2 (sub2 id2 E)
 
 structure Eff2 where
@@ -95,13 +74,11 @@ structure Eff2 where
   h_pos : is_pos2 mat
   h_le_id : is_pos2 (sub2 id2 mat)
 
-/-- Canonical basis elements spanning Herm2. -/
 def D0_2 : Herm2 := ⟨1, 0, 0, 0⟩
 def D1_2 : Herm2 := ⟨0, 0, 0, 1⟩
 def S01_2 : Herm2 := ⟨0, 1, 0, 0⟩
 def T01_2 : Herm2 := ⟨0, 0, 1, 0⟩
 
-/-- Canonical superposition effects in Herm2. -/
 def P_plus_2 : Herm2 := ⟨half, half, 0, half⟩
 def P_R_2 : Herm2 := ⟨half, 0, half, half⟩
 
@@ -116,8 +93,6 @@ theorem herm2_basis_expansion (A : Herm2) :
   repeat rw [Rat.add_zero]
   repeat rw [Rat.zero_add]
 
-/-- Hermitian 3x3 matrix over the ordered rational carrier.
-    Entries: 3 diagonal elements and 3 complex off-diagonal elements. -/
 structure Herm3 where
   a00 : Rat
   a11 : Rat
@@ -159,8 +134,6 @@ def tr_prod3 (A B : Herm3) : Rat :=
        A.a02_re * B.a02_re + A.a02_im * B.a02_im +
        A.a12_re * B.a12_re + A.a12_im * B.a12_im)
 
-/-- The determinant includes the phase-sensitive cycle
-    `2 Re(A01 * A12 * conjugate A02)`. -/
 def det3 (A : Herm3) : Rat :=
   A.a00 * A.a11 * A.a22 -
   A.a00 * (A.a12_re * A.a12_re + A.a12_im * A.a12_im) -
@@ -169,25 +142,18 @@ def det3 (A : Herm3) : Rat :=
   2 * ((A.a01_re * A.a12_re - A.a01_im * A.a12_im) * A.a02_re +
        (A.a01_re * A.a12_im + A.a01_im * A.a12_re) * A.a02_im)
 
-/-- Only the principal minors of orders one and two; this is NOT positivity. -/
 def principal_minors_le_two3 (A : Herm3) : Prop :=
   0 ≤ A.a00 ∧ 0 ≤ A.a11 ∧ 0 ≤ A.a22 ∧
   0 ≤ A.a00 * A.a11 - (A.a01_re * A.a01_re + A.a01_im * A.a01_im) ∧
   0 ≤ A.a00 * A.a22 - (A.a02_re * A.a02_re + A.a02_im * A.a02_im) ∧
   0 ≤ A.a11 * A.a22 - (A.a12_re * A.a12_re + A.a12_im * A.a12_im)
 
-/-- The full Hermitian principal-minor criterion, including the determinant.
-    The general equivalence with spectral positive semidefiniteness is not
-    mechanized in this core-only module. -/
 def is_pos3 (A : Herm3) : Prop := principal_minors_le_two3 A ∧ 0 ≤ det3 A
 
-/-- The effect partial order on Herm3: A ≤ B iff B - A ≥ 0. -/
 def le3 (A B : Herm3) : Prop := is_pos3 (sub3 B A)
 
-/-- An effect in dimension 3 satisfies 0 ≤ E ≤ I. -/
 def is_effect3 (E : Herm3) : Prop := is_pos3 E ∧ is_pos3 (sub3 id3 E)
 
-/-- `(2I - J)/4`, where every entry of `J` is one. -/
 def negative_minor_control3 : Herm3 :=
   ⟨1/4, 1/4, 1/4, -1/4, 0, -1/4, 0, -1/4, 0⟩
 
@@ -207,7 +173,6 @@ theorem negative_minor_control_not_effect :
   dsimp [is_effect3, is_pos3, principal_minors_le_two3, det3, negative_minor_control3, sub3, id3]
   grind
 
-/-- The effect `u u* / 3` for `u=(1,i,1)`, exercising the complex cycle term. -/
 def phase_rank_one_control3 : Herm3 :=
   ⟨1/3, 1/3, 1/3, 0, -1/3, 1/3, 0, 0, 1/3⟩
 
@@ -225,7 +190,6 @@ structure Eff3 where
   h_pos : is_pos3 mat
   h_le_id : is_pos3 (sub3 id3 mat)
 
-/-- Canonical basis elements spanning Herm3. -/
 def D0_3 : Herm3 := ⟨1, 0, 0, 0, 0, 0, 0, 0, 0⟩
 def D1_3 : Herm3 := ⟨0, 1, 0, 0, 0, 0, 0, 0, 0⟩
 def D2_3 : Herm3 := ⟨0, 0, 1, 0, 0, 0, 0, 0, 0⟩
@@ -252,13 +216,7 @@ theorem herm3_basis_expansion (A : Herm3) :
   repeat rw [Rat.add_zero]
   repeat rw [Rat.zero_add]
 
--- ==============================================================================
--- PART 2: EFFECT FRAME FUNCTIONS
--- ==============================================================================
 
-/-- Effect frame function on dimension-2 effects:
-    normalized, non-negative, and additive on all positive pairs with sum <= I.
-    This is stronger than additivity on orthogonal projectors alone. -/
 structure EffectFrameFunction2 where
   eval : Herm2 → Rat
   h_norm : eval id2 = 1
@@ -267,7 +225,6 @@ structure EffectFrameFunction2 where
   h_add : ∀ E1 E2 : Herm2, is_pos2 E1 → is_pos2 E2 → is_pos2 (sub2 id2 (add2 E1 E2)) →
             eval (add2 E1 E2) = eval E1 + eval E2
 
-/-- Effect frame function on dimension-3 effects. -/
 structure EffectFrameFunction3 where
   eval : Herm3 → Rat
   h_norm : eval id3 = 1
@@ -276,19 +233,13 @@ structure EffectFrameFunction3 where
   h_add : ∀ E1 E2 : Herm3, is_pos3 E1 → is_pos3 E2 → is_pos3 (sub3 id3 (add3 E1 E2)) →
             eval (add3 E1 E2) = eval E1 + eval E2
 
--- ==============================================================================
--- PART 3: MONOTONICITY THEOREM
--- ==============================================================================
 
-/-- Decomposition identity: E2 = E1 + (E2 - E1) in Herm2. -/
 theorem herm2_add_sub_cancel (E1 E2 : Herm2) : add2 E1 (sub2 E2 E1) = E2 := by
   cases E1
   cases E2
   dsimp [add2, sub2]
   rw [rat_add_sub_cancel_alt, rat_add_sub_cancel_alt, rat_add_sub_cancel_alt, rat_add_sub_cancel_alt]
 
-/-- Monotonicity Theorem in dimension 2:
-    E1 ≤ E2 implies f(E1) ≤ f(E2), derived from orthogonal additivity and positivity. -/
 theorem monotonicity2 (f : EffectFrameFunction2) (E1 E2 : Herm2)
     (hE1 : is_pos2 E1) (_hE2 : is_pos2 E2) (hE2_le : is_pos2 (sub2 id2 E2))
     (hle : le2 E1 E2) :
@@ -307,7 +258,6 @@ theorem monotonicity2 (f : EffectFrameFunction2) (E1 E2 : Herm2)
   rw [← h_add] at h_le
   exact h_le
 
-/-- Decomposition identity: E2 = E1 + (E2 - E1) in Herm3. -/
 theorem herm3_add_sub_cancel (E1 E2 : Herm3) : add3 E1 (sub3 E2 E1) = E2 := by
   cases E1
   cases E2
@@ -316,8 +266,6 @@ theorem herm3_add_sub_cancel (E1 E2 : Herm3) : add3 E1 (sub3 E2 E1) = E2 := by
       rat_add_sub_cancel_alt, rat_add_sub_cancel_alt, rat_add_sub_cancel_alt,
       rat_add_sub_cancel_alt, rat_add_sub_cancel_alt, rat_add_sub_cancel_alt]
 
-/-- Monotonicity Theorem in dimension 3:
-    E1 ≤ E2 implies f(E1) ≤ f(E2), derived from orthogonal additivity and positivity. -/
 theorem monotonicity3 (f : EffectFrameFunction3) (E1 E2 : Herm3)
     (hE1 : is_pos3 E1) (_hE2 : is_pos3 E2) (hE2_le : is_pos3 (sub3 id3 E2))
     (hle : le3 E1 E2) :
@@ -336,17 +284,12 @@ theorem monotonicity3 (f : EffectFrameFunction3) (E1 E2 : Herm3)
   rw [← h_add] at h_le
   exact h_le
 
--- ==============================================================================
--- PART 4: RATIONAL HOMOGENEITY THEOREM
--- ==============================================================================
 
-/-- Natural scalar multiplication of effects in Herm2. -/
 def nat_smul2 (n : Nat) (A : Herm2) : Herm2 :=
   match n with
   | 0 => zero2
   | n + 1 => add2 (nat_smul2 n A) A
 
-/-- Additivity across n orthogonal copies in Herm2. -/
 theorem nat_smul2_eval (f : EffectFrameFunction2) (n : Nat) (A : Herm2)
     (_hA_pos : is_pos2 A)
     (h_step : ∀ k : Nat, k < n → is_pos2 (nat_smul2 k A) →
@@ -378,8 +321,6 @@ theorem nat_smul2_eval (f : EffectFrameFunction2) (n : Nat) (A : Herm2)
       Rat.add_mul (n : Rat) 1 (f.eval A)
     rw [h_dist, Rat.one_mul]
 
-/-- Rational scalar homogeneity relation:
-    For a rational r = m / n in [0, 1], scaling an effect E by r scales the frame value by r. -/
 structure RationalHomogeneityWitness2 (f : EffectFrameFunction2) (E : Herm2) where
   m : Nat
   n : Nat
@@ -392,8 +333,6 @@ structure RationalHomogeneityWitness2 (f : EffectFrameFunction2) (E : Herm2) whe
   h_f_n : f.eval (nat_smul2 n E_prime) = (n : Nat) * f.eval E_prime
   h_f_m : f.eval (nat_smul2 m E_prime) = (m : Nat) * f.eval E_prime
 
-/-- Conditional rational homogeneity: the witness supplies the subdivision
-    and both repeated-addition equalities. Their existence is not proved here. -/
 theorem rational_homogeneity2 (f : EffectFrameFunction2) (E : Herm2)
     (w : RationalHomogeneityWitness2 f E) :
     f.eval (smul2 ((w.m : Rat) / (w.n : Rat)) E) = ((w.m : Rat) / (w.n : Rat)) * f.eval E := by
@@ -412,14 +351,7 @@ theorem rational_homogeneity2 (f : EffectFrameFunction2) (E : Herm2)
     rw [Rat.mul_assoc]
   exact h_assoc
 
--- ==============================================================================
--- PART 5: DENSITY SQUEEZE THEOREM
--- ==============================================================================
 
-/-- Density squeeze bracket theorem:
-    For an algebraic scalar lambda in an ordered carrier bounded by rational intervals
-    r ≤ lambda ≤ s with 0 ≤ r and s ≤ 1, the effect evaluation is bracketed by
-    r * f(E) ≤ f(lambda * E) ≤ s * f(E). -/
 theorem density_squeeze_bracket
     (f_val_r f_val_lam f_val_s f_E : Rat)
     (r s : Rat)
@@ -434,10 +366,6 @@ theorem density_squeeze_bracket
   · rw [← h_hs]
     exact h_mon2
 
-/-- Squeeze forcing equality theorem:
-    If a real or algebraic value V is bracketed by [r * W, s * W] for all rational intervals
-    [r, s] containing lambda, and the bounds converge to lambda (infimum difference is zero),
-    then V = lambda * W. -/
 theorem density_squeeze_forces_equality (V W lambda : Rat)
     (h_bracket : ∀ r s : Rat, r ≤ lambda → lambda ≤ s → r * W ≤ V ∧ V ≤ s * W) :
     V = lambda * W := by
@@ -446,26 +374,18 @@ theorem density_squeeze_forces_equality (V W lambda : Rat)
   have h2 : V ≤ lambda * W := h_self.2
   exact Rat.le_antisymm h2 h1
 
--- ==============================================================================
--- PART 6: LINEAR EXTENSION AND TRACE REPRESENTATION (d = 2 AND d = 3)
--- ==============================================================================
 
 theorem D0_add_D1_eq_id2 : add2 D0_2 D1_2 = id2 := by
   dsimp [add2, D0_2, D1_2, id2]
   repeat rw [Rat.add_zero]
   repeat rw [Rat.zero_add]
 
-/-- Tomographic candidate from four effect values. Unit trace and finite
-    readout recovery are proved below; positivity and representation on every
-    effect still require proofs. This definition alone does not construct a density state. -/
 def recover_rho2 (f : EffectFrameFunction2) : Herm2 :=
   ⟨f.eval D0_2,
    f.eval P_plus_2 - half,
    f.eval P_R_2 - half,
    f.eval D1_2⟩
 
-/-- Unit trace theorem for recovered state in dimension 2:
-    Tr(rho) = rho_00 + rho_11 = f(D0) + f(D1) = f(D0 + D1) = f(I) = 1. -/
 theorem recover_rho2_unit_trace (f : EffectFrameFunction2)
     (h_pos_D0 : is_pos2 D0_2)
     (h_pos_D1 : is_pos2 D1_2)
@@ -478,7 +398,6 @@ theorem recover_rho2_unit_trace (f : EffectFrameFunction2)
   rw [f.h_norm] at h_add
   exact h_add.symm
 
-/-- Trace product pairing evaluates to coordinate readout on basis elements in d = 2. -/
 theorem tr_prod2_D0 (A : Herm2) : tr_prod2 A D0_2 = A.a := by
   unfold tr_prod2 D0_2
   have h1 : A.d * 0 = 0 := Rat.mul_zero A.d
@@ -509,8 +428,6 @@ theorem tr_prod2_D1 (A : Herm2) : tr_prod2 A D1_2 = A.d := by
   have ha1 : A.d + 0 = A.d := Rat.add_zero A.d
   exact ha1
 
-/-- Unique State Representation Theorem in dimension 2:
-    Two operators in Herm2 agreeing on the canonical effect basis are identical. -/
 theorem state_representation_unique2 (rho sigma : Herm2)
     (h_D0 : tr_prod2 rho D0_2 = tr_prod2 sigma D0_2)
     (h_D1 : tr_prod2 rho D1_2 = tr_prod2 sigma D1_2)
@@ -526,15 +443,12 @@ theorem state_representation_unique2 (rho sigma : Herm2)
   dsimp at h_D0 h_D1 h_re h_im
   rw [h_D0, h_D1, h_re, h_im]
 
-/-- All four tomographic probes really lie in the effect interval [0,I]. -/
 theorem four_tomographic_probes_are_effects :
     is_effect2 D0_2 ∧ is_effect2 D1_2 ∧
     is_effect2 P_plus_2 ∧ is_effect2 P_R_2 := by
   dsimp [is_effect2, is_pos2, sub2, id2, D0_2, D1_2, P_plus_2, P_R_2, half]
   grind
 
-/-- Equality of four actual effect readouts determines every matrix entry;
-    off-diagonal equality is a conclusion, not an extra input. -/
 theorem four_effect_readouts_determine_hermitian2 (rho sigma : Herm2)
     (h0 : tr_prod2 rho D0_2 = tr_prod2 sigma D0_2)
     (h1 : tr_prod2 rho D1_2 = tr_prod2 sigma D1_2)
@@ -545,8 +459,6 @@ theorem four_effect_readouts_determine_hermitian2 (rho sigma : Herm2)
     dsimp [tr_prod2, D0_2, D1_2, P_plus_2, P_R_2, half] at h0 h1 hplus hphase
     grind
 
-/-- The tomographic candidate reproduces the four measured effects.
-    Finite tomography does not itself imply positivity on unmeasured effects. -/
 theorem recover_rho2_matches_four_effects (f : EffectFrameFunction2) :
     tr_prod2 (recover_rho2 f) D0_2 = f.eval D0_2 ∧
     tr_prod2 (recover_rho2 f) D1_2 = f.eval D1_2 ∧
@@ -564,15 +476,11 @@ theorem D_sum_eq_id3 : add3 (add3 D0_3 D1_3) D2_3 = id3 := by
   repeat rw [Rat.add_zero]
   repeat rw [Rat.zero_add]
 
-/-- Tomographic candidate map for d = 3 (not a positivity certificate):
-    Reconstructs diagonal from the 3 orthogonal projections and off-diagonals from superpositions. -/
 def recover_rho3 (f : EffectFrameFunction3)
     (s01_re s01_im s02_re s02_im s12_re s12_im : Rat) : Herm3 :=
   ⟨f.eval D0_3, f.eval D1_3, f.eval D2_3,
    s01_re, s01_im, s02_re, s02_im, s12_re, s12_im⟩
 
-/-- Unit trace theorem for recovered state in dimension 3:
-    Tr(rho) = rho_00 + rho_11 + rho_22 = f(D0) + f(D1) + f(D2) = f(I) = 1. -/
 theorem recover_rho3_unit_trace (f : EffectFrameFunction3)
     (s01_re s01_im s02_re s02_im s12_re s12_im : Rat)
     (h_pos_D0 : is_pos3 D0_3)
@@ -591,7 +499,6 @@ theorem recover_rho3_unit_trace (f : EffectFrameFunction3)
   rw [h_add1] at h_add2
   exact h_add2.symm
 
-/-- Trace product pairing evaluates to coordinate readout on diagonal projectors in d = 3. -/
 theorem tr_prod3_D0 (A : Herm3) : tr_prod3 A D0_3 = A.a00 := by
   unfold tr_prod3 D0_3
   have h1 : A.a11 * 0 = 0 := Rat.mul_zero A.a11
@@ -649,8 +556,6 @@ theorem tr_prod3_D2 (A : Herm3) : tr_prod3 A D2_3 = A.a22 := by
     rw [Rat.zero_add, Rat.zero_add, Rat.add_zero]
   exact ha1
 
-/-- Unique State Representation Theorem in dimension 3:
-    Two operators in Herm3 agreeing on diagonal projectors and off-diagonal coordinates are identical. -/
 theorem state_representation_unique3 (rho sigma : Herm3)
     (h_D0 : tr_prod3 rho D0_3 = tr_prod3 sigma D0_3)
     (h_D1 : tr_prod3 rho D1_3 = tr_prod3 sigma D1_3)
@@ -670,13 +575,7 @@ theorem state_representation_unique3 (rho sigma : Herm3)
   dsimp at h_D0 h_D1 h_D2 h01_re h01_im h02_re h02_im h12_re h12_im
   rw [h_D0, h_D1, h_D2, h01_re, h01_im, h02_re, h02_im, h12_re, h12_im]
 
--- ==============================================================================
--- PART 7: d = 2 COROLLARY ON NON-EXTENSION
--- ==============================================================================
 
-/-- Conditional contradiction with a SUPPLIED midpoint identity. This file
-    does not derive that identity or a general Busch representation theorem
-    from projective frame additivity. Historical theorem name retained. -/
 theorem d2_binary_valuation_non_extension
     (f_eval_D0 f_eval_D1 f_eval_P_plus : Rat)
     (h_rho_rep : f_eval_P_plus = half * f_eval_D0 + half * f_eval_D1)
@@ -692,9 +591,6 @@ theorem d2_binary_valuation_non_extension
     rw [← h_rho_rep, h_v_P]
   exact half_ne_zero h_contra
 
--- ==============================================================================
--- PART 8: TRAILING AXIOM AUDIT PRINTS
--- ==============================================================================
 
 #print axioms two_mul_half
 #print axioms half_mul_two
@@ -735,3 +631,6 @@ theorem d2_binary_valuation_non_extension
 #print axioms d2_binary_valuation_non_extension
 
 end FableHilbertWalk20260819.H058
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H058EffectFrameBusch.lean Claim: two_ne_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

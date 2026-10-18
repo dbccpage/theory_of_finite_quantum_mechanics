@@ -1,8 +1,3 @@
-//! Executable deep-run terminalization report for the MUB target.
-//!
-//! This module composes the clean-room primitive ledger, the quarantined
-//! verifier lane, and the extension attempts into one report. It does not
-//! promote evidence into theorem authority.
 
 use std::{collections::BTreeSet, path::Path};
 
@@ -125,9 +120,6 @@ pub struct LowerBoundReplay {
     pub error: Option<String>,
 }
 
-/// A missing global-certificate artifact. Formerly a mub-free mirror of the
-/// Apache crate's `artifact_manifest::MissingArtifact`; that crate was deleted
-/// 2026-08-04 and this is now the only definition.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct MissingArtifact {
     pub relative_path: String,
@@ -247,7 +239,6 @@ pub fn run_deep_mub(crate_root: &Path) -> DeepRunReport {
     });
     let cochain_evidence = MubAtlasEvidence {
         pinned_upper_replayed: upper_replayed,
-        // The global atlas certificate's cover is the proof-carrying one.
         proof_carrying_classification: atlas.exhaustive_triple_cover,
         exhaustive_triple_cover: atlas.exhaustive_triple_cover,
         wall_certificate_for_every_class: atlas.wall_certificate_for_every_class,
@@ -405,8 +396,6 @@ pub fn run_deep_mub(crate_root: &Path) -> DeepRunReport {
     }
 }
 
-/// The Apache comparison crate was removed, so we do not check his manifest:
-/// the replay is honestly a missing proof obligation.
 fn manifest_replay(_crate_root: &Path) -> ManifestReplay {
     ManifestReplay {
         terminal: ReplayTerminal::MissingProofObligation,

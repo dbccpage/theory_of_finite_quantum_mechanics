@@ -1,5 +1,3 @@
-//! Native finite realizations of independently supplied Genesis packets.
-//! Source replay and permission remain separate from mathematical validation.
 use num_rational::BigRational;
 use num_traits::Zero;
 use omega_holonomy::signed_transport::{
@@ -76,10 +74,6 @@ struct MetricRequest {
 fn parse_request(input: &str) -> Result<NativeRequest, String> {
     let header: Value = serde_json::from_str(input).map_err(|e| e.to_string())?;
     if header.get("operation").and_then(Value::as_str) == Some("metric") {
-        // serde's internally tagged Content buffering conflicts with the
-        // workspace's arbitrary_precision feature for f64. Deserialize this
-        // typed wire directly from the original JSON, retaining duplicate-field
-        // rejection and avoiding any numeric coercion through Value.
         let wire: MetricRequest = serde_json::from_str(input).map_err(|e| e.to_string())?;
         if wire.operation != "metric" {
             return Err("metric operation discriminator changed".into());
@@ -94,7 +88,6 @@ fn parse_request(input: &str) -> Result<NativeRequest, String> {
 }
 
 fn rational(text: &str) -> Result<BigRational, String> {
-    // Reuse the checked native wire parser, including reduced form and sign.
     let graph = SignedCoefficientGraph::from_strings(&[vec![text.to_string()]])
         .map_err(|e| e.to_string())?;
     Ok(graph.coefficients()[0][0].clone())

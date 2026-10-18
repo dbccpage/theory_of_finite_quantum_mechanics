@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 
 import unittest
 from pathlib import Path
@@ -25,17 +23,13 @@ class TestTerminalizer(unittest.TestCase):
         self.assertTrue(validate_complex(D0_DEMO, D1_DEMO))
 
     def test_exact_polynomial_algorithms(self):
-        # solve_exact
         self.assertEqual(solve_exact(D0_DEMO, RESIDUALS_DEMO["exact"]), [1])
         self.assertIsNone(solve_exact(D0_DEMO, RESIDUALS_DEMO["closed"]))
 
-        # compute_coherence
         self.assertEqual(compute_coherence(D1_DEMO, RESIDUALS_DEMO["open"]), [1])
 
-        # normal_form_mod_image
         self.assertEqual(normal_form_mod_image(D0_DEMO, D1_DEMO, RESIDUALS_DEMO["closed"]), [0, 0, 1])
 
-        # terminalize
         exact_res = terminalize(D0_DEMO, D1_DEMO, RESIDUALS_DEMO["exact"])
         self.assertEqual(exact_res["terminal_status"], "Exact")
         self.assertEqual(exact_res["algebraic_class_id"], "exact")

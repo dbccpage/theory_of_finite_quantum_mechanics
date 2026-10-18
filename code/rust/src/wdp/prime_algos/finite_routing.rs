@@ -1,5 +1,3 @@
-//! Declared finite terminal, lift and closure-damage contracts; no authority effect.
-//! A commuting lift does not assert preservation of quotient norms or classes.
 use crate::coda::diagnostic_routing::{
     propose_value_edit, DiagnosticPacket, Proposal, ProposalPolicy,
 };
@@ -79,8 +77,6 @@ pub struct LiftContract {
     pub map: CochainMap<BigRational>,
     pub require_coordinate_inclusion: bool,
 }
-/// Replay both endpoints, bind all three cochain degrees, and require omega'=F1 omega.
-/// The target certificate is independent: commuting maps need not preserve Phi1.
 pub fn check_lift(
     source: &DiagnosticPacket,
     target: &DiagnosticPacket,
@@ -168,7 +164,6 @@ pub fn guarded_edit(
     }
     Ok(after)
 }
-/// Complete declared finite dynamics, independent of the context actions.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteDynamics {
     pub packets: Vec<DiagnosticPacket>,

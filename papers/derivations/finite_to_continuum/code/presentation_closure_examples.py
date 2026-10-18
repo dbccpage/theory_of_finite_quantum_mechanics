@@ -71,8 +71,6 @@ def profile_examples() -> dict:
     else:
         unused_refused = False
 
-    # On the four-node grid, distance to that grid and zero have identical
-    # samples. Each triangular cell has area (1/4)*(1/8)/2 = 1/64.
     samples = {"zero": (Fraction(0),) * 4, "tent": (Fraction(0),) * 4}
     integrals = {"zero": Fraction(0), "tent": 4 * Fraction(1, 4) * Fraction(1, 8) / 2}
     sampling = csq.CofinalShadowTower(
@@ -94,8 +92,6 @@ def profile_examples() -> dict:
 
 def enclosure_examples() -> dict:
     """Compute actual grid averages and retain the original flag countermodels."""
-    # Use the shared imports used by the original owner, avoiding duplicate
-    # RationalInterval classes loaded under two different module names.
     from coda_inductive_presentation import ContinuumEnclosure
     from continuous_haar_limit import LipschitzContinuumEnclosure, TrigPolynomial
     from interval_calculus import RationalInterval
@@ -106,7 +102,7 @@ def enclosure_examples() -> dict:
         nodes = [Fraction(k, order) for k in range(order)]
         averages.append(sum((min(x, 1 - x) for x in nodes), Fraction(0)) / order)
     positive = LipschitzContinuumEnclosure(1, averages).to_continuum_enclosure("actual-circle-tent")
-    integral = Fraction(1, 4)  # Sum of the two exact triangular areas.
+    integral = Fraction(1, 4)
 
     raw = [RationalInterval(-1, 1), RationalInterval(Fraction(1, 2), Fraction(3, 2)),
            RationalInterval(Fraction(5, 4), Fraction(7, 4))]

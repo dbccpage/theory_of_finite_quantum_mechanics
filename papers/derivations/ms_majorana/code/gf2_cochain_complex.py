@@ -1,6 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 """GF(2) cochain complex dual to GF2ChainComplex.
 
 Authority path: omega_engine.crates.homology_theory.gf2_cochain_complex
@@ -22,8 +20,8 @@ from omega_engine.crates.majorana.carriers.parity_carrier import (
 class GF2CochainComplex:
     """GF(2) cochain complex with coboundaries d0: C0->C1 and d1: C1->C2."""
 
-    d0: GF2Matrix  # C^0 -> C^1, shape |E| x |V|
-    d1: GF2Matrix  # C^1 -> C^2, shape |F| x |E|
+    d0: GF2Matrix
+    d1: GF2Matrix
     metadata: dict
 
     @classmethod

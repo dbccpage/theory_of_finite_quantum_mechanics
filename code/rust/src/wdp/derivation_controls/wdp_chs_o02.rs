@@ -1,8 +1,3 @@
-//! d=2 mandatory fixed-R1 arena on D={-1,0,1}, X0=D^2, with no fallback.
-//! Sol has count 1, winning strategies from the initial state number 0,
-//! and the restored two-transport arena has value 6. Witness (1, 0, 6).
-//! WDP-CHS-N03: this check does not prove A1 or A3 and does not close WDP-CHS-O02.
-//! No continuum limit is claimed.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 struct Rat {
@@ -537,7 +532,6 @@ fn ledger_total() -> Rat {
     spent
 }
 
-/// `(original solutions, no-fallback winning strategies, restored two-transport value)`.
 pub fn witness() -> (i64, i64, i64) {
     check_table();
     let solutions = solution_count(2);
@@ -549,7 +543,6 @@ pub fn witness() -> (i64, i64, i64) {
     (solutions, strategies, restored.n)
 }
 
-/// Refuse a claimed no-fallback strategy count taken from another menu or run.
 pub fn refuse_foreign_strategy_count(num: i64, den: i64) -> Result<(), &'static str> {
     let claimed = Rat::new(num, den);
     let strategies = Rat::new(witness().1, 1);
@@ -576,7 +569,6 @@ pub fn refuse_foreign_strategy_count(num: i64, den: i64) -> Result<(), &'static 
     }
 }
 
-/// A1-A3 stay assumptions. WDP-CHS-N03 forbids reading this check as their proof.
 pub fn refuse_assumption_discharge() -> Result<(), &'static str> {
     let (solutions, strategies, restored) = witness();
     let empty_emitted_omits_solution = solutions == 1 && strategies == 0;

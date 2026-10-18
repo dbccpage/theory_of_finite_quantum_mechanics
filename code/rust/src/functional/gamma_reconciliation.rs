@@ -1,48 +1,12 @@
-// AuthorityEffect: None.
 
-//! Raw versus second-repair quotient `Gamma`: certificate checkers.
-//!
-//! The data are a defect map `D : Q^n -> Q^m`, a second-repair map
-//! `A : Q^k -> Q^m` (both row-wise) and strictly positive weights `w` on
-//! `Q^m`. For `x` in `Q^n`:
-//!
-//! - `Gamma_raw(x) = sum_i w_i |(D x)_i|`;
-//! - `Gamma_quot(x) = min_u ||D x + A u||_{1,w}`.
-//!
-//! Taking `u = 0` shows `Gamma_quot <= Gamma_raw`. The two agree at every `x`
-//! exactly when the capacity-bounded annihilator condition holds:
-//! `D^T K_w = D^T B_w`, `B_w = {z : |z_i| <= w_i}`, `K_w = B_w ∩ ker A^T`.
-//! Since `D^T B_w` is the convex hull of the `2^m` points `D^T (w ⊙ σ)`,
-//! `σ` in `{-1, 1}^m`, the condition is the finite vertex condition: for every
-//! sign vector `σ` some `z_σ` has `A^T z_σ = 0`, `|z_σ| <= w` and
-//! `D^T z_σ = D^T (w ⊙ σ)`.
-//!
-//! This module checks, without trusting a producer:
-//!
-//! - a dual certificate of one value of `Gamma_quot` ([`RepairQuotientProblem::verify_quotient_certificate`]);
-//! - a complete vertex table, which gives agreement at every `x`
-//!   ([`RepairQuotientProblem::verify_vertex_table`]);
-//! - a Farkas certificate that one vertex fails, from which it builds an `x`
-//!   and a `u` with `Gamma_quot(x) < Gamma_raw(x)`
-//!   ([`RepairQuotientProblem::verify_vertex_farkas`]);
-//! - a direct value gap and a zero-test gap;
-//! - the two descent conditions for a declared first repair `d0 : Q^c -> Q^n`.
-//!
-//! The zero tests `Gamma_raw(x) = 0` and `Gamma_quot(x) = 0` agree for all `x`
-//! exactly when `im D ∩ im A = {0}`; that condition is weaker than value
-//! agreement. All carriers here are rational vector spaces with the weighted
-//! `l1` norm; a binary carrier with Hamming weight is a different problem and
-//! is not accepted by these types.
 
 use num_rational::BigRational as Q;
 use num_traits::{Signed, Zero};
 use std::collections::BTreeMap;
 use thiserror::Error;
 
-/// The largest number of rows for which a full vertex table is checked.
 pub const MAX_VERTEX_ROWS: usize = 16;
 
-/// Refusals and negative findings of the reconciliation contract.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum GammaReconciliationError {
     #[error("{what}: expected {expected} entries, found {actual}")]
@@ -150,7 +114,6 @@ fn dot(a: &[Q], b: &[Q]) -> Q {
     a.iter().zip(b).map(|(x, y)| x * y).sum()
 }
 
-/// A dual-certified value of `Gamma_quot(x)`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct QuotientGammaCertificate {
     pub x: Vec<Q>,
@@ -160,9 +123,6 @@ pub struct QuotientGammaCertificate {
     pub value: Q,
 }
 
-/// Multipliers that certify one vertex system infeasible:
-/// `upper, lower >= 0` and `upper - lower + A annihilator + D restriction = 0`
-/// with `w . (upper + lower) + restriction . D^T (w ⊙ sign) < 0`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct VertexFarkasCertificate {
     pub sign: Vec<i8>,
@@ -172,21 +132,18 @@ pub struct VertexFarkasCertificate {
     pub restriction: Vec<Q>,
 }
 
-/// `x` and `u` with `||D x + A u||_{1,w} < Gamma_raw(x)`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValueGapWitness {
     pub x: Vec<Q>,
     pub u: Vec<Q>,
 }
 
-/// A complete table of vertex extensions, one per sign vector.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct VertexExtensionTable {
     entries: BTreeMap<Vec<i8>, Vec<Q>>,
 }
 
 impl VertexExtensionTable {
-    /// Refuses a repeated sign vector instead of keeping either entry.
     pub fn try_from_entries(entries: Vec<(Vec<i8>, Vec<Q>)>) -> Result<Self> {
         let mut map = BTreeMap::new();
         for (sign, z) in entries {
@@ -203,7 +160,6 @@ impl VertexExtensionTable {
     }
 }
 
-/// All `2^m` sign vectors in lexicographic order of `{-1, 1}^m`.
 pub fn all_sign_vectors(m: usize) -> Result<Vec<Vec<i8>>> {
     if m > MAX_VERTEX_ROWS {
         return Err(GammaReconciliationError::CarrierTooLarge {
@@ -222,7 +178,6 @@ pub fn all_sign_vectors(m: usize) -> Result<Vec<Vec<i8>>> {
     Ok(out)
 }
 
-/// The finite data `(D, A, w)` of the comparison.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RepairQuotientProblem {
     n: usize,
@@ -233,7 +188,6 @@ pub struct RepairQuotientProblem {
 }
 
 impl RepairQuotientProblem {
-    /// `d` is `m x n`, `a` is `m x k`, `m = weights.len()`.
     pub fn try_new(
         n: usize,
         k: usize,
@@ -276,25 +230,21 @@ impl RepairQuotientProblem {
         &self.weights
     }
 
-    /// `||v||_{1,w}` for `v` in `Q^m`.
     pub fn weighted_norm(&self, v: &[Q]) -> Result<Q> {
         check_vector("vector in Q^m", v, self.rows())?;
         Ok(self.weights.iter().zip(v).map(|(w, x)| w * x.abs()).sum())
     }
 
-    /// `D x`.
     pub fn defect(&self, x: &[Q]) -> Result<Vec<Q>> {
         check_vector("x", x, self.n)?;
         Ok(apply(&self.d, x))
     }
 
-    /// `Gamma_raw(x)`.
     pub fn raw_gamma(&self, x: &[Q]) -> Result<Q> {
         let dx = self.defect(x)?;
         self.weighted_norm(&dx)
     }
 
-    /// `||D x + A u||_{1,w}`, an upper bound for `Gamma_quot(x)`.
     pub fn residual_norm(&self, x: &[Q], u: &[Q]) -> Result<Q> {
         let dx = self.defect(x)?;
         check_vector("u", u, self.k)?;
@@ -319,9 +269,6 @@ impl RepairQuotientProblem {
         Ok(())
     }
 
-    /// Checks residual, value and dual. A dual `z` in `K_w` gives, for every
-    /// `u'`, `||D x + A u'||_{1,w} >= z . (D x + A u') = z . D x`, so a value
-    /// equal to `z . D x` is the minimum.
     pub fn verify_quotient_certificate(&self, cert: &QuotientGammaCertificate) -> Result<Q> {
         let dx = self.defect(&cert.x)?;
         check_vector("u", &cert.u, self.k)?;
@@ -350,7 +297,6 @@ impl RepairQuotientProblem {
         Ok(())
     }
 
-    /// `D^T (w ⊙ sign)`.
     pub fn vertex_target(&self, sign: &[i8]) -> Result<Vec<Q>> {
         self.check_sign(sign)?;
         let ws: Vec<Q> = self
@@ -362,7 +308,6 @@ impl RepairQuotientProblem {
         Ok(apply_transpose(&self.d, &ws, self.n))
     }
 
-    /// Checks one vertex extension `z` for `sign`.
     pub fn verify_vertex_extension(&self, sign: &[i8], z: &[Q]) -> Result<()> {
         let target = self.vertex_target(sign)?;
         let defect = |reason| GammaReconciliationError::VertexDefect {
@@ -384,10 +329,6 @@ impl RepairQuotientProblem {
         Ok(())
     }
 
-    /// Checks that the table has exactly the `2^m` sign vectors and that every
-    /// entry is an extension. Success gives `Gamma_quot = Gamma_raw` at every
-    /// `x`: with `σ` a sign vector of `D x`, `Gamma_raw(x) = z_σ . D x`, and
-    /// `z_σ` in `K_w` bounds `Gamma_quot(x)` from below by the same number.
     pub fn verify_vertex_table(&self, table: &VertexExtensionTable) -> Result<()> {
         let signs = all_sign_vectors(self.rows())?;
         for sign in &signs {
@@ -409,11 +350,6 @@ impl RepairQuotientProblem {
         Ok(())
     }
 
-    /// Checks a Farkas certificate for one vertex and returns the separating
-    /// pair `x = -restriction`, `u = -annihilator`. Then
-    /// `D x = upper - lower + A annihilator`, so `D x + A u = upper - lower` and
-    /// `||D x + A u||_{1,w} <= w . (upper + lower) < -restriction . target
-    /// = x . target <= Gamma_raw(x)`. The gap is replayed before returning.
     pub fn verify_vertex_farkas(&self, cert: &VertexFarkasCertificate) -> Result<ValueGapWitness> {
         let target = self.vertex_target(&cert.sign)?;
         let m = self.rows();
@@ -454,7 +390,6 @@ impl RepairQuotientProblem {
         Ok(witness)
     }
 
-    /// Checks `||D x + A u||_{1,w} < Gamma_raw(x)`; returns `(raw, upper bound)`.
     pub fn verify_value_gap(&self, witness: &ValueGapWitness) -> Result<(Q, Q)> {
         let raw = self.raw_gamma(&witness.x)?;
         let bound = self.residual_norm(&witness.x, &witness.u)?;
@@ -465,7 +400,6 @@ impl RepairQuotientProblem {
         }
     }
 
-    /// Checks `D x + A u = 0` with `D x != 0`: `Gamma_quot(x) = 0 < Gamma_raw(x)`.
     pub fn verify_zero_test_gap(&self, witness: &ValueGapWitness) -> Result<Q> {
         let dx = self.defect(&witness.x)?;
         check_vector("u", &witness.u, self.k)?;
@@ -476,7 +410,6 @@ impl RepairQuotientProblem {
         self.weighted_norm(&dx)
     }
 
-    /// `D d0 = 0` (`d0` is `n x c`, row-wise): `Gamma_raw(x + d0 y) = Gamma_raw(x)`.
     pub fn verify_raw_descent(&self, d0: &[Vec<Q>], c: usize) -> Result<()> {
         check_matrix("d0", d0, self.n, c)?;
         for (row, d_row) in self.d.iter().enumerate() {
@@ -490,8 +423,6 @@ impl RepairQuotientProblem {
         Ok(())
     }
 
-    /// `D d0 = A g` (`g` is `k x c`): `D (x + d0 y) + A u = D x + A (u + g y)`,
-    /// so `Gamma_quot(x + d0 y) = Gamma_quot(x)`.
     pub fn verify_quotient_descent(&self, d0: &[Vec<Q>], g: &[Vec<Q>], c: usize) -> Result<()> {
         check_matrix("d0", d0, self.n, c)?;
         check_matrix("G", g, self.k, c)?;
@@ -520,7 +451,6 @@ mod tests {
         v.iter().map(|x| vec![q(*x)]).collect()
     }
 
-    /// D x = (x, x), A u = (u, 0), unit weights.
     fn duplicated() -> RepairQuotientProblem {
         RepairQuotientProblem::try_new(1, 1, col(&[1, 1]), col(&[1, 0]), vec![q(1), q(1)]).unwrap()
     }
@@ -537,14 +467,12 @@ mod tests {
             value: q(1),
         };
         assert_eq!(p.verify_quotient_certificate(&cert).unwrap(), q(1));
-        // Tamper: a dual that does not annihilate A.
         let mut bad = cert.clone();
         bad.dual = vec![q(1), q(1)];
         assert_eq!(
             p.verify_quotient_certificate(&bad),
             Err(GammaReconciliationError::DualNotAnnihilating { column: 0 })
         );
-        // Tamper: an understated value.
         let mut bad = cert.clone();
         bad.value = q(0);
         assert_eq!(
@@ -576,9 +504,6 @@ mod tests {
 
     #[test]
     fn farkas_certificate_for_failed_vertex_builds_the_gap() {
-        // Vertex (1, 1): z in K_w is (0, z2) with |z2| <= 1, and D^T z = z2
-        // cannot reach 2. Multipliers: (0, 1) - 0 + A (1) + D (-1) = 0 and
-        // w . (0, 1) + (-1) * 2 = -1 < 0.
         let p = duplicated();
         let cert = VertexFarkasCertificate {
             sign: vec![1, 1],
@@ -602,8 +527,6 @@ mod tests {
             p.verify_vertex_farkas(&bad),
             Err(GammaReconciliationError::NegativeMultiplier { .. })
         ));
-        // The vertex (1, -1) has target 0 and z = 0 extends it; no
-        // certificate for it can pass.
         let mut bad = cert;
         bad.sign = vec![1, -1];
         assert_eq!(
@@ -614,7 +537,6 @@ mod tests {
 
     #[test]
     fn opposite_repair_has_complete_vertex_table() {
-        // A u = (u, -u): K_w = {(t, t) : |t| <= 1}, D^T z = 2 t covers [-2, 2].
         let p =
             RepairQuotientProblem::try_new(1, 1, col(&[1, 1]), col(&[1, -1]), vec![q(1), q(1)])
                 .unwrap();
@@ -626,13 +548,11 @@ mod tests {
         ];
         let table = VertexExtensionTable::try_from_entries(entries.clone()).unwrap();
         assert!(p.verify_vertex_table(&table).is_ok());
-        // Missing vertex.
         let partial = VertexExtensionTable::try_from_entries(entries[..3].to_vec()).unwrap();
         assert_eq!(
             p.verify_vertex_table(&partial),
             Err(GammaReconciliationError::MissingVertex { sign: vec![1, 1] })
         );
-        // Tampered entry.
         let mut tampered = entries.clone();
         tampered[3].1 = vec![q(1), q(0)];
         let table = VertexExtensionTable::try_from_entries(tampered).unwrap();
@@ -640,7 +560,6 @@ mod tests {
             p.verify_vertex_table(&table),
             Err(GammaReconciliationError::VertexDefect { .. })
         ));
-        // Duplicate and stray signs.
         let mut dup = entries.clone();
         dup.push((vec![1, 1], vec![q(1), q(1)]));
         assert!(matches!(
@@ -658,7 +577,6 @@ mod tests {
 
     #[test]
     fn zero_test_gap_and_descent_conditions() {
-        // D = A = identity on Q^1: zero tests disagree at x = 1.
         let p = RepairQuotientProblem::try_new(1, 1, col(&[1]), col(&[1]), vec![q(1)]).unwrap();
         let w = ValueGapWitness {
             x: vec![q(1)],
@@ -673,7 +591,6 @@ mod tests {
             p.verify_zero_test_gap(&bad),
             Err(GammaReconciliationError::NoZeroTestGap)
         );
-        // Descent: d0 = (1) is quotient descent with G = (1), not raw descent.
         assert!(p.verify_quotient_descent(&col(&[1]), &col(&[1]), 1).is_ok());
         assert_eq!(
             p.verify_raw_descent(&col(&[1]), 1),

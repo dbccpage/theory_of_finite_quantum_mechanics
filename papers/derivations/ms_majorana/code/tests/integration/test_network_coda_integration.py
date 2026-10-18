@@ -33,7 +33,6 @@ def test_integration_net_01_incidence_and_gauge_fix():
     assert len(inc) == 3
     assert len(inc[0]) == 3
 
-    # Test residual after gauge fix
     w1 = {(0, 1): 1.0, (1, 2): 1.0, (2, 0): 1.0}
     res = network_residual.residual_after_gauge_fix(net, w1)
     assert res is not None
@@ -46,8 +45,8 @@ def test_integration_net_02_face_boundary_curl():
     faces = [(0, 1, 2)]
     net = network_residual.Network(nodes=[0, 1, 2], edges=edges, faces=faces)
     d2 = network_residual.build_face_boundary(net)
-    assert len(d2) == 3  # 3 edges
-    assert len(d2[0]) == 1  # 1 face
+    assert len(d2) == 3
+    assert len(d2[0]) == 1
 
     w1 = {(0, 1): 1.0, (1, 2): 2.0, (2, 0): 3.0}
     c = network_residual.curl(net, w1)

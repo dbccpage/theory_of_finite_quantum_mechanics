@@ -1,7 +1,3 @@
-//! Campaign module foundations.
-//!
-//! Addition on `Z/3Z` is a monoid: the operation is closed, `0` is an identity,
-//! and both parenthesizations of `a+b+c` agree for every triple.
 
 pub fn verify() -> Result<usize, &'static str> {
     let mut checked = 0usize;

@@ -1,22 +1,3 @@
-//! Exact tensor marginals and reference-dependent component projectors.
-//!
-//! Site coordinates use row-major tensor order; retained sites may be listed in
-//! any order. Each reference factor is square, nonempty, and has exact trace one.
-//! Positivity and Hermiticity are separate domain obligations.
-//!
-//! For `H_j = ker(Tr: M(d_j,F) -> F)`, normalization gives the direct sum
-//! `M(d_j,F) = F rho_j + H_j`. The homogeneous product differential selects the
-//! support-zero and support-one summands. Its complement selects all summands
-//! of support at least two. The distinct highest-order projector selects only
-//! `tensor_j H_j`. With `P_S` retaining sites `S` and inserting reference factors
-//! elsewhere, its formula is `R_k = sum_S (-1)^(k-|S|) P_S`, including the full
-//! subset. Consequently `id - sum_{proper S} (-1)^(k-|S|) P_S` has the wrong
-//! sign: on the normalized product reference it returns twice that reference.
-//!
-//! Limits bound tensor-sized and metadata allocations, and aggregate scalar
-//! calls before scalar work starts. Scalar-internal memory use and the scalar
-//! implementation's own arithmetic obligations follow `exact_field` conventions.
-//! AuthorityEffect: None.
 
 use super::{charge, element_count, matrix as mx, plus, reserve, times, ExactFieldError};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
@@ -52,7 +33,6 @@ impl From<MatrixError> for TensorProjectorError {
     }
 }
 
-/// Checked heterogeneous tensor dimensions and row-major strides.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TensorLayout {
     dimensions: Vec<usize>,
@@ -123,8 +103,6 @@ impl TensorLayout {
         Ok(dimension)
     }
 
-    /// Trace out omitted sites. Empty retention returns the total trace as `1x1`.
-    /// Output factors follow `retained_sites`, including arbitrary permutations.
     pub fn partial_trace_with_limits<F: Field + ExactRing>(
         &self,
         matrix: &BasicMatrix<F>,
@@ -147,7 +125,6 @@ impl TensorLayout {
         partial_trace(self, matrix, &plan, limits)
     }
 
-    /// Reorder every factor without tracing or performing scalar arithmetic.
     pub fn permute_with_limits<F: Field + ExactRing>(
         &self,
         matrix: &BasicMatrix<F>,
@@ -163,8 +140,6 @@ impl TensorLayout {
         self.partial_trace_with_limits(matrix, site_order, limits)
     }
 
-    /// Insert an operator with identity spectator factors in original site order.
-    /// The local matrix's coordinates follow `retained_sites`.
     pub fn embed_operator_with_limits<F: Field + ExactRing>(
         &self,
         local: &BasicMatrix<F>,
@@ -200,7 +175,6 @@ impl TensorLayout {
     }
 }
 
-/// Exact trace of a square matrix, with no temporary diagonal allocation.
 pub fn trace_with_limits<F: Field + ExactRing>(
     matrix: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -329,7 +303,6 @@ fn partial_trace<F: Field + ExactRing>(
     )?)
 }
 
-/// Normalized reference factors and their ordered product, independent of physics.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ProductReference<F> {
     layout: TensorLayout,
@@ -420,7 +393,6 @@ impl<F: Field + ExactRing> ProductReference<F> {
         &self.product
     }
 
-    /// Insert a local matrix and reference spectator factors in original order.
     pub fn inject_with_limits(
         &self,
         local: &BasicMatrix<F>,
@@ -466,7 +438,6 @@ impl<F: Field + ExactRing> ProductReference<F> {
         value
     }
 
-    /// `P_S`: retain the reduced matrix on `S`, filling all omitted sites by references.
     pub fn retained_component_with_limits(
         &self,
         matrix: &BasicMatrix<F>,
@@ -515,8 +486,6 @@ impl<F: Field + ExactRing> ProductReference<F> {
         )
     }
 
-    /// Full-space homogeneous extension: `sum_j i_j tau_j(Z) - (k-1) Tr(Z) rho`.
-    /// It preserves every single-site marginal and fixes the radial reference.
     pub fn product_differential_with_limits(
         &self,
         matrix: &BasicMatrix<F>,
@@ -558,7 +527,6 @@ impl<F: Field + ExactRing> ProductReference<F> {
         )?)
     }
 
-    /// `Q=I-P`, retaining all reference support sectors of order at least two.
     pub fn normal_projector_with_limits(
         &self,
         matrix: &BasicMatrix<F>,
@@ -574,8 +542,6 @@ impl<F: Field + ExactRing> ProductReference<F> {
         Ok(mx::sub(matrix, &projected)?)
     }
 
-    /// `R_k=product_j(I-E_j)`, where `E_j=P_{all sites except j}`.
-    /// This annihilates every proper reference support, including intermediate orders.
     pub fn highest_order_with_limits(
         &self,
         matrix: &BasicMatrix<F>,
@@ -601,8 +567,6 @@ impl<F: Field + ExactRing> ProductReference<F> {
         Ok(result)
     }
 
-    /// Independent inclusion-exclusion expansion, including the full retained subset.
-    /// Exponential scalar work is checked before enumeration; overflow is a refusal.
     pub fn inclusion_exclusion_with_limits(
         &self,
         matrix: &BasicMatrix<F>,

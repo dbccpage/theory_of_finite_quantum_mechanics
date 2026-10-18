@@ -131,7 +131,6 @@ class LaughlinStateAnyonModel:
                 row.append(inv_sqrt_m * cmath.exp(1j * phase))
             s_matrix.append(row)
 
-        # Evaluate unitarity error: S^dagger S - I
         max_err = 0.0
         for a in range(m):
             for c in range(m):
@@ -139,7 +138,6 @@ class LaughlinStateAnyonModel:
                 expected = 1.0 if a == c else 0.0
                 max_err = max(max_err, abs(val - expected))
 
-        # Monodromy M_11
         m11 = (s_matrix[1 % m][1 % m] * s_matrix[0][0]) / (s_matrix[0][1 % m] * s_matrix[1 % m][0])
         return s_matrix, max_err, m11
 
@@ -153,7 +151,6 @@ class LaughlinStateAnyonModel:
         hol_real = eta_braid.real
         hol_imag = eta_braid.imag
 
-        # Contractible iff Hol == 1.0 + 0.0i (mod 2pi)
         is_contractible = (abs(hol_real - 1.0) <= 1e-7 and abs(hol_imag) <= 1e-7)
         gamma_2 = 0.0 if is_contractible else abs(theta_braid)
 
@@ -170,9 +167,6 @@ class LaughlinStateAnyonModel:
         w_qe = math.exp(-beta * self.delta_qe)
         delta_w = abs(w_qh - w_qe)
 
-        # For m > 1 (fractional states), anyon braiding phase lies in Z_m (m >= 3).
-        # A Z_2 involution has eigenvalues +-1 and cannot generate or cancel exp(i 2pi/m).
-        # Furthermore, the Boltzmann weight gap delta_w > 0 prevents equal-weight pairing.
         is_obstructed = (self.m > 1) or (delta_w > 1e-6)
 
         return w_qh, w_qe, delta_w, is_obstructed
@@ -210,46 +204,35 @@ class FQHLaughlinBraidingEngine:
         Audits anyonic statistical phases, modular S-matrix unitarity,
         cochain holonomy, and BQNF terminal routing under GIN mode indexing.
         """
-        # 1. Anyonic phases
         theta_stat, _ = model.compute_statistical_phase()
         theta_braid, _ = model.compute_braiding_phase()
 
-        # 2. Modular S-matrix
         _, s_unitarity_err, _ = model.compute_modular_s_matrix()
 
-        # 3. 1-Cochain holonomy & curvature
         hol_real, hol_imag, is_contractible, gamma_2 = model.compute_cochain_holonomy()
 
-        # 4. Abelian involution attempt & defect mass
         w_qh, w_qe, delta_w, is_obstructed = model.evaluate_abelian_involution_attempt(beta=beta)
 
         if model.m == 1:
-            # Trivial integer / non-fractional control
             phi_1 = 0.0
             gamma_2 = 0.0
             terminal_route = TerminalRoute.EXACT_REPAIR.value
         else:
-            # Fractional anyon state (nu = 1/3, etc.)
             phi_1 = round(delta_w, 6)
-            # When holonomy is non-contractible (Gamma_2 > 0) and pairing is obstructed,
-            # BQNF routes deterministically to OpenSignObstruction
             terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
 
-        # 5. GIN mode indexing into relational SQLite database
         c = self.conn.cursor()
         c.execute("SELECT COALESCE(MAX(cfg_id), 0) FROM FermionConfigurations;")
         max_cfg = c.fetchone()[0]
         cfg_qh = max_cfg + 1
         cfg_qe = max_cfg + 2
 
-        # Insert configuration 1: Quasihole state
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
                VALUES (?, ?, 1, 4, ?, 1, 1);""",
             (cfg_qh, model.model_id, round(w_qh, 6)),
         )
-        # Insert configuration 2: Quasielectron partner state
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
@@ -257,11 +240,6 @@ class FQHLaughlinBraidingEngine:
             (cfg_qe, model.model_id, round(w_qe, 6)),
         )
 
-        # Modes:
-        # 1: Quasihole Locus (eta_1)
-        # 2: Quasihole Locus (eta_2)
-        # 3: Braiding Loop Boundary (gamma in Z_1)
-        # 4: Fractional Flux Core (Phi^* = Phi_0 / m)
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (1, ?, 1);", (cfg_qh,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (3, ?, 1);", (cfg_qh,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (2, ?, 1);", (cfg_qe,))

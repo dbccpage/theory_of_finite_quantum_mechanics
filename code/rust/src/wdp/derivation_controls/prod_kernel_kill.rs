@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-KERNEL-KILL (Evaluate kernel kill conditions on a pilot workflow).
 
 pub fn evaluate_kernel_kill(arena_declared: bool, initial_value: u64, usable_budget: u64, receipt_replayed: bool) -> (bool, bool, bool) {
     let kill_no_finite_arena = !(arena_declared && initial_value <= usable_budget);

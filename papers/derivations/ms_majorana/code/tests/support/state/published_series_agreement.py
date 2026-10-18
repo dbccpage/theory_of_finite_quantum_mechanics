@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/published_series_agreement.rs
-# Rust sha256: 727750cbf069a60b55e53fc603ee83b3f7efcdf2b857746fc0cc06908458f833
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,11 +38,9 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 PUBLISHED_SERIES_PACKET_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 PUBLISHED_SERIES_VERIFICATION_SCHEMA_V1: Any = None
 
 
@@ -72,7 +66,6 @@ PaperAgreementIdV1.__doc__ = (
 )
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
@@ -301,6 +294,5 @@ def verify_published_series_agreement_v1(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

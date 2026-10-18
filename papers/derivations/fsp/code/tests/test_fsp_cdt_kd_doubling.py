@@ -95,7 +95,7 @@ def test_spinor_projector_idempotence_and_rank():
     assert diff <= 1e-12
     assert abs(tr - 4.0) <= 1e-12
     assert algebra.dim == 16
-    assert algebra.dim // int(tr) == 4  # 16-to-4 quotient factor
+    assert algebra.dim // int(tr) == 4
 
 
 def test_orientifold_involution_properties():
@@ -134,13 +134,11 @@ def test_sqlite_relational_views():
     """8. Test SQLite ViewCdtKahlerDiracDoublingAudit produces certified audit verdicts."""
     evaluator = CdtKahlerDiracEvaluator()
 
-    # 1. Flat simplex
     s_flat = evaluator.build_flat_4simplex("sql_flat")
     r_flat = evaluator.record_complex_evaluation(s_flat)
     assert r_flat["audit_verdict"] == "EXACT_MINIMAL_SPINOR_RECOVERED"
     assert r_flat["classification"] == "MinimalSpinorRecovered"
 
-    # 2. Curved CDT cluster
     s_curved = evaluator.build_curved_cdt_cluster("sql_curved")
     r_curved = evaluator.record_complex_evaluation(s_curved)
     assert r_curved["audit_verdict"] == "BOUNDED_TOPOLOGICAL_SPIN_OBSTRUCTION"

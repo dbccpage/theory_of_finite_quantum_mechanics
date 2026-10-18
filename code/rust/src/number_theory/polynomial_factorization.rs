@@ -1,10 +1,3 @@
-//! Bounded Berlekamp-Zassenhaus factorisation over Q.
-//!
-//! Yun decomposition removes multiplicities. Primitive integer factors are
-//! monicised by x -> x/lc, factored modulo a good prime with Berlekamp kernels,
-//! pair-Hensel lifted past a Landau-Mignotte coefficient bound, and recombined
-//! exhaustively. Every candidate divides exactly; the final product replays.
-//! Budget or prime-search exhaustion never means irreducible. AuthorityEffect: None.
 use crate::polynomial::{Polynomial, PolynomialError};
 use crate::rational::Rational;
 use linear_algebra::exact_field::{elimination::kernel_basis, matrix, ExactFieldError};
@@ -48,12 +41,9 @@ pub enum PolynomialFactorError {
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct RationalFactorization {
     pub unit: Rational,
-    /// Monic irreducible Q-polynomials with positive multiplicities.
     pub factors: Vec<(Polynomial<Rational>, usize)>,
 }
 impl RationalFactorization {
-    /// Product replay checks an input binding; irreducibility is established by
-    /// the complete modular/recombination algorithm, not by this method alone.
     pub fn verify_product(
         &self,
         input: &Polynomial<Rational>,
@@ -101,8 +91,6 @@ impl Work {
     }
 }
 
-// Internal prime-field scalars are instantiated only at the listed proven
-// primes below. They are not an unchecked public field-constructor surface.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 struct Mod<const P: u64>(u64);
 impl<const P: u64> Mod<P> {
@@ -379,7 +367,6 @@ fn integer_factors(
         }
     }
 }
-/// Monic irreducible factorisation with exact multiplicities and a rational unit.
 pub fn factor_over_q(
     input: &Polynomial<Rational>,
     budget: PolynomialFactorBudget,

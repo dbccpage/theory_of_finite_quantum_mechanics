@@ -1,9 +1,3 @@
-//! Exact rational turns Q/Z and their declared root-of-unity character.
-//! AuthorityEffect: None. The symbolic group has arbitrary rational denominators;
-//! evaluation delegates to the existing cyclotomic owner with its conductor cap.
-//! The union of all cyclotomic roots is divisible: q/n is an n-th root of q.
-//! This periodic character is NOT an extension sending 1 to (3+4i)/5: it sends
-//! every integer to 1, whereas that Gaussian rational has infinite order.
 use crate::cyclotomic_field::{CyclotomicError, CyclotomicNumber};
 use crate::rational::Rational;
 use num_integer::Integer;
@@ -19,9 +13,6 @@ pub enum RationalTurnError {
     Cyclotomic(#[from] CyclotomicError),
 }
 
-/// Canonical representative of a rational number modulo integers, in [0,1).
-/// No floating-point angle, topology, real exponentiation, or scalar embedding
-/// choice is inferred from a witnessed difference.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RationalTurn {
     fraction: Rational,
@@ -50,7 +41,6 @@ impl RationalTurn {
     pub fn multiply_integer(&self, n: &num_bigint::BigInt) -> Self {
         Self::new(&self.fraction * Rational::from_integer(n.clone()))
     }
-    /// A chosen n-th root (one of n), not a canonical splitting homomorphism.
     pub fn root(&self, order: usize) -> Result<Self, RationalTurnError> {
         if order == 0 {
             return Err(RationalTurnError::ZeroRootOrder);
@@ -59,10 +49,7 @@ impl RationalTurn {
             &self.fraction / Rational::from_integer(order.into()),
         ))
     }
-    /// χ(q)=zeta_N^(Nq) in a DECLARED compatible cyclotomic field.
-    /// Shared-conductor evaluation makes multiplication/addition comparison exact.
     pub fn character_in(&self, conductor: usize) -> Result<CyclotomicNumber, RationalTurnError> {
-        // Validate the conductor through the sovereign owner before conversion.
         let one = CyclotomicNumber::one(conductor)?;
         let Some(denominator) = self.fraction.denom().to_usize() else {
             return Err(RationalTurnError::IncompatibleConductor);
@@ -81,7 +68,6 @@ impl RationalTurn {
         let exponent = numerator * (conductor / denominator);
         Ok(CyclotomicNumber::zeta(conductor, exponent as i64)?)
     }
-    /// Evaluate in the minimal denominator field when its conductor is supported.
     pub fn character(&self) -> Result<CyclotomicNumber, RationalTurnError> {
         let denominator = self
             .fraction

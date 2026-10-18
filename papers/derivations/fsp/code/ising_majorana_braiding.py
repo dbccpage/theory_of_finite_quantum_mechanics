@@ -91,13 +91,11 @@ class IsingMajoranaModel:
         self.d_sigma = math.sqrt(2.0)
         self.total_D = math.sqrt(self.d_1**2 + self.d_sigma**2 + self.d_psi**2)
 
-        # Standard Pauli matrices
         self.I = [[1.0 + 0.0j, 0.0 + 0.0j], [0.0 + 0.0j, 1.0 + 0.0j]]
         self.X = [[0.0 + 0.0j, 1.0 + 0.0j], [1.0 + 0.0j, 0.0 + 0.0j]]
         self.Y = [[0.0 + 0.0j, -1.0j], [1.0j, 0.0 + 0.0j]]
         self.Z = [[1.0 + 0.0j, 0.0 + 0.0j], [0.0 + 0.0j, -1.0 + 0.0j]]
 
-        # Clifford Generators: Phase gate S and Hadamard H
         self.S = [[1.0 + 0.0j, 0.0 + 0.0j], [0.0 + 0.0j, 1.0j]]
         inv_sqrt2 = 1.0 / math.sqrt(2.0)
         self.H = [
@@ -105,7 +103,6 @@ class IsingMajoranaModel:
             [inv_sqrt2 + 0.0j, -inv_sqrt2 + 0.0j],
         ]
 
-        # Non-Clifford T-gate (pi/8 phase gate)
         self.T = [
             [1.0 + 0.0j, 0.0 + 0.0j],
             [0.0 + 0.0j, cmath.exp(1j * math.pi / 4.0)],
@@ -144,7 +141,6 @@ class IsingMajoranaModel:
             gate_dag = self._dagger(gate)
             for p in paulis:
                 conj = self._matmul(self._matmul(gate, p), gate_dag)
-                # Find min distance to any Pauli with phase
                 min_p_dist = min(self._frob_dist(conj, target) for target in all_paulis_with_phases)
                 max_dist = max(max_dist, min_p_dist)
 
@@ -178,12 +174,10 @@ class IsingMajoranaModel:
         Returns (bloch_l1_norm, robustness_of_magic, wigner_negativity).
         """
         if not use_t_gate:
-            # Pure stabilizer state |+>
             bloch_l1 = 1.0
             robustness = 0.0
             wigner_neg = 0.0
         else:
-            # Magic state |T> = (1/sqrt(2)) * (|0> + exp(i pi/4)|1>)
             rx = 1.0 / math.sqrt(2.0)
             ry = 1.0 / math.sqrt(2.0)
             rz = 0.0
@@ -207,7 +201,6 @@ class IsingMajoranaModel:
         if not use_t_gate:
             s_dag = self._dagger(self.S)
             hol = self._matmul(self._matmul(self._matmul(self.S, self.H), s_dag), h_dag)
-            # In the stabilizer cochain complex, Clifford operations have exact zero defect
             dist = self._frob_dist(hol, self.I)
             is_contractible = True
             gamma_2 = 0.0
@@ -253,45 +246,36 @@ class IsingMajoranaBraidingEngine:
         Audits Ising quantum dimensions, Clifford closure, magic state defects,
         cochain holonomy, and BQNF terminal routing.
         """
-        # 1. Quantum dimensions
         _, _, d_sigma, total_d = model.compute_quantum_dimensions()
 
-        # 2. Clifford closure & Pauli violation
         is_clifford_closed, _ = model.verify_clifford_closure()
         pauli_dist = model.compute_t_gate_pauli_violation() if inject_t_gate else 0.0
 
-        # 3. Bloch norm, robustness of magic, and Wigner negativity
         bloch_l1, robustness, wigner_neg = model.compute_state_bloch_and_magic(use_t_gate=inject_t_gate)
 
-        # 4. Cochain holonomy and curvature
         hol_dist, is_contractible, gamma_2 = model.compute_cochain_holonomy(use_t_gate=inject_t_gate)
 
         if not inject_t_gate:
-            # Pure Clifford braiding: discrete stabilizer parity preserved
             phi_1 = 0.0
             is_stabilizer_preserved = True
             terminal_route = TerminalRoute.EXACT_REPAIR.value
         else:
-            # Non-Clifford T-gate injection: magic state defect + non-stabilizer cochain curvature
             phi_1 = round(wigner_neg + gamma_2, 6)
             is_stabilizer_preserved = False
             terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
 
-        # 5. GIN mode indexing into relational SQLite database
         c = self.conn.cursor()
         c.execute("SELECT COALESCE(MAX(cfg_id), 0) FROM FermionConfigurations;")
         max_cfg = c.fetchone()[0]
         cfg_0 = max_cfg + 1
         cfg_1 = max_cfg + 2
 
-        # Insert configuration 1: Parity +1 sector |0>
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
                VALUES (?, ?, 1, 5, 1.0, 1, 1);""",
             (cfg_0, model.model_id),
         )
-        # Insert configuration 2: Parity -1 sector |1>
         weight_1 = 1.0 if not inject_t_gate else round(wigner_neg, 6)
         c.execute(
             """INSERT INTO FermionConfigurations
@@ -300,12 +284,6 @@ class IsingMajoranaBraidingEngine:
             (cfg_1, model.model_id, weight_1),
         )
 
-        # Modes:
-        # 1: Vacuum Fermion Parity Channel P_{12} = +1
-        # 2: Occupied Fermion Parity Channel P_{12} = -1
-        # 3: Clifford Braid Loop tau_1 (Phase gate S)
-        # 4: Clifford Braid Loop tau_2 (Hadamard generator)
-        # 5: Non-Clifford T-Gate Injection Loop gamma_T
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (1, ?, 1);", (cfg_0,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (3, ?, 1);", (cfg_0,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (2, ?, 1);", (cfg_1,))

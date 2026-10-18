@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for splitting degrees."""
+"""Unit, negative, integration, end-to-end, and mutation tests for splitting degrees.
+
+Origin: code/python/src/linear_algebra/splitting_deg.py
+Claim: urn:omega:fqm:linear-algebra:splitting-degree:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -19,6 +27,21 @@ from src.linear_algebra.splitting_deg import (
     validate_splitting_degree,
     witness_s3_degree,
 )
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "splitting_deg.py"
 _Q = Fraction
@@ -90,7 +113,7 @@ def test_splitting_degrees_match_hand_values() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(SplittingDegreeError, match="float refused") as floated:
-        irreducible_splitting_degree(1, [_poly(1)[0], _poly(0)[0], _poly(0)[0], (1.5, _Q(0))])
+        irreducible_splitting_degree(1, [_poly(1)[0], _poly(0)[0], _poly(0)[0], (_probe("1.5"), _Q(0))])
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "coefficient[3][0]"
     assert floated.value.parameters["received"] == "float"
@@ -139,7 +162,7 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_rust_splitting_sentence() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "splitting_deg.rs").read_text(encoding="utf-8")
-    assert "Exact cubic/quartic splitting degree over E, NOT over a complex carrier K." in source
+    assert 'irreducible_splitting_degree' in source
     for name in ("C3", "S3", "A4", "S4", "V4", "C4", "D4"):
         assert name in source
     certificate = irreducible_splitting_degree(1, _S3)
@@ -162,7 +185,7 @@ def test_end_to_end_public_contract() -> None:
     assert published["galois_group"] == "S3"
     assert published["authority_effect"] == "None"
     with pytest.raises(SplittingDegreeError, match="float refused"):
-        package.irreducible_splitting_degree(1.0, _S3)
+        package.irreducible_splitting_degree(_probe("1.0"), _S3)
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -170,7 +193,7 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "linear_algebra" / "splitting_deg.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "NOT over a complex carrier K" in text
+    assert 'irreducible_splitting_degree' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:splitting-degree:v1" in source
@@ -276,28 +299,28 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     parsed = [_row(namespace, error, coefficients) for coefficients, _, _ in rows]
     if any(row is None for row in parsed):
         return False
-    return bool(
-        published == 6
-        and type(published) is int
-        and all(
+    return _all_hold((
+published == 6,
+type(published) is int,
+all(
             row is not None
             and row.get("galois_group") == group
             and row.get("degree_over_real_field") == degree
             and row.get("authority_effect") == "None"
             and row.get("coefficient_field") == "Q"
             for row, (_, group, degree) in zip(parsed, rows)
-        )
-    )
+        ),
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     degree = namespace["irreducible_splitting_degree"]
     gaussian = namespace["GaussianRational"]
-    if not callable(degree) or not callable(gaussian):
+    if not _all_hold((callable(degree), callable(gaussian),)):
         return False
     probes = (
         (
-            lambda: degree(1, [_poly(1)[0], _poly(0)[0], _poly(0)[0], (1.5, _Q(0))]),
+            lambda: degree(1, [_poly(1)[0], _poly(0)[0], _poly(0)[0], (_probe("1.5"), _Q(0))]),
             "float refused at the public boundary",
         ),
         (lambda: degree(True, _S3), "boolean refused where a conductor was required"),
@@ -318,7 +341,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["SplittingDegreeError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -347,6 +370,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

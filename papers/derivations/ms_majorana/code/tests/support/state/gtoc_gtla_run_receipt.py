@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/gtoc_gtla_run_receipt.rs
-# Rust sha256: cb3012dfcfc3ef6e16179bbed45795c88e46375234547a65bd4a4d1aa6a0e806
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any, TypeAlias
@@ -42,79 +38,60 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 RUN_PACKET_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 RUN_RECEIPT_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 RUN_NODE_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 RUN_VERIFICATION_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 RUN_RENDER_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_FROZEN_BASE: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_PACKET_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_GOAL_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_OBSERVER_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_RENDERER_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_EVIDENCE_CEILING: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 SOURCE_RECEIPT_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 DDA_RECEIPT_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 DEFECT_RECEIPT_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 RENDER_RECEIPT_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 TERMINAL_RECEIPT_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_WRITE_SURFACE: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_SOURCE_MANIFEST: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_001_INPUT_ARTIFACTS: Any = None
 
 
@@ -808,6 +785,5 @@ def terminal_route(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

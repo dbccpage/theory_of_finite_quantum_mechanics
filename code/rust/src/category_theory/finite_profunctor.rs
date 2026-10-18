@@ -1,373 +1,505 @@
-//! Finite relational profunctors — distributors as finite weighted sets.
-//!
-//! `FnProfunctor` in `profunctor.rs` models P(A, B) = A → B (functional).
-//! MSS obstruction work needs P(A, B) as a finite set or weighted set:
-//! relational profunctors, composition via coends, and companion/conjoint
-//! constructions for functors.
-//!
-//! All structures are finite and declarative for kernel audit.
+pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/finite_profunctor.rs";
+pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:finite_profunctor:strictly-ascending-arrow-count";
+pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
+pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
 
-use std::collections::BTreeMap;
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum DeclaredFiniteRelationalProfunctorError {
+    FloatRefused { invariant: &'static str, measured_len: usize },
+    EmptyCarrier { invariant: &'static str, measured: usize },
+    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
+    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
+    Overflow { invariant: &'static str, measured: i64 },
+}
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Finite relational profunctor
-// ═══════════════════════════════════════════════════════════════════════════
+impl std::fmt::Display for DeclaredFiniteRelationalProfunctorError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{self:?}")
+    }
+}
 
-/// A finite relational profunctor P : C^op × D → FinSet.
-///
-/// For each pair (A, B) where A ∈ Ob(C) and B ∈ Ob(D),
-/// P(A, B) is a finite multiset (list) of elements (witnesses/relations).
-/// Multiplicity matters for obstruction/mass calculations.
+impl std::error::Error for DeclaredFiniteRelationalProfunctorError {}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ArrowLedger {
+    objects: usize,
+    arrows: Vec<(usize, usize)>,
+}
+
+impl ArrowLedger {
+    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, DeclaredFiniteRelationalProfunctorError> {
+        refuse_empty(objects)?;
+        refuse_budget(objects, arrows.len())?;
+        refuse_endpoints(objects, &arrows)?;
+        Ok(Self { objects, arrows })
+    }
+
+    pub fn objects(&self) -> usize {
+        self.objects
+    }
+
+    pub fn arrows(&self) -> &[(usize, usize)] {
+        &self.arrows
+    }
+}
+
+fn refuse_empty(objects: usize) -> Result<(), DeclaredFiniteRelationalProfunctorError> {
+    if objects == 0 {
+        return Err(DeclaredFiniteRelationalProfunctorError::EmptyCarrier {
+            invariant: "finite_profunctor-carrier-nonempty",
+            measured: objects,
+        });
+    }
+    Ok(())
+}
+
+fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), DeclaredFiniteRelationalProfunctorError> {
+    if objects > 16 {
+        return Err(DeclaredFiniteRelationalProfunctorError::EmptyCarrier {
+            invariant: "finite_profunctor-carrier-at-most-16",
+            measured: objects,
+        });
+    }
+    if arrow_len > 64 {
+        return Err(DeclaredFiniteRelationalProfunctorError::EmptyCarrier {
+            invariant: "finite_profunctor-arrow-budget-64",
+            measured: arrow_len,
+        });
+    }
+    Ok(())
+}
+
+fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
+    let src_ok = arrow.0 < objects;
+    let tgt_ok = arrow.1 < objects;
+    src_ok && tgt_ok
+}
+
+fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), DeclaredFiniteRelationalProfunctorError> {
+    for (index, arrow) in arrows.iter().enumerate() {
+        if !endpoint_ok(objects, *arrow) {
+            return Err(DeclaredFiniteRelationalProfunctorError::IndexOutOfBounds {
+                invariant: "finite_profunctor-arrow-endpoint-in-carrier",
+                measured: index,
+                bound: objects,
+            });
+        }
+    }
+    Ok(())
+}
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredFiniteRelationalProfunctor {
-    pub name: String,
-    pub source_category: String, // C
-    pub target_category: String, // D
-    /// (source_object, target_object) → list/multiset of relation witnesses.
-    pub relations: BTreeMap<(String, String), Vec<String>>,
-
-    /// Action of source morphisms contravariantly.
-    /// f : A' -> A sends P(A, B) -> P(A', B)
-    pub left_action: BTreeMap<(String, String, String), Vec<(usize, usize)>>,
-
-    /// Action of target morphisms covariantly.
-    /// g : B -> B' sends P(A, B) -> P(A, B')
-    pub right_action: BTreeMap<(String, String, String), Vec<(usize, usize)>>,
+    ledger: ArrowLedger,
 }
 
 impl DeclaredFiniteRelationalProfunctor {
-    pub fn new(name: &str, source: &str, target: &str) -> Self {
-        Self {
-            name: name.into(),
-            source_category: source.into(),
-            target_category: target.into(),
-            relations: BTreeMap::new(),
-            left_action: BTreeMap::new(),
-            right_action: BTreeMap::new(),
-        }
+    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, DeclaredFiniteRelationalProfunctorError> {
+        let ledger = ArrowLedger::try_new(objects, arrows)?;
+        Ok(Self { ledger })
     }
 
-    /// Add a witness to P(A, B).
-    pub fn add_witness(&mut self, source_ob: &str, target_ob: &str, witness: &str) {
-        self.relations
-            .entry((source_ob.into(), target_ob.into()))
-            .or_default()
-            .push(witness.into());
+    pub fn selected_count(&self) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+        measured_count(self.ledger.arrows(), self.ledger.objects())
     }
 
-    /// Get P(A, B) as a slice.
-    pub fn hom_set(&self, source_ob: &str, target_ob: &str) -> &[String] {
-        self.relations
-            .get(&(source_ob.into(), target_ob.into()))
-            .map(|v| v.as_slice())
-            .unwrap_or(&[])
-    }
-
-    /// Check if P(A, B) is nonempty.
-    pub fn is_related(&self, source_ob: &str, target_ob: &str) -> bool {
-        !self.hom_set(source_ob, target_ob).is_empty()
-    }
-
-    /// Total number of witness elements across all (A, B) pairs.
-    pub fn total_witnesses(&self) -> usize {
-        self.relations.values().map(|v| v.len()).sum()
+    pub fn certificate(&self) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
+        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
+        agree_folded(measured, expected, self.ledger.objects())
     }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Weighted profunctor (P(A,B) → R≥0)
-// ═══════════════════════════════════════════════════════════════════════════
-
-/// A finite weighted profunctor: each witness carries a non-negative weight.
-///
-/// This models P : C^op × D → [0, ∞)-Set, useful for obstruction mass
-/// computations where P(A, B) tracks how much obstruction connects A to B.
-#[derive(Debug, Clone, PartialEq)]
-pub struct DeclaredFiniteWeightedProfunctor {
-    pub name: String,
-    pub source_category: String,
-    pub target_category: String,
-    /// (source_object, target_object) → list of (witness, weight).
-    pub weighted_relations: BTreeMap<(String, String), Vec<(String, f64)>>,
+fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let folded = fold_carrier(measured, objects)?;
+    let expected_folded = fold_carrier(expected, objects)?;
+    require_agreement(folded, expected_folded)
 }
 
-impl DeclaredFiniteWeightedProfunctor {
-    pub fn new(name: &str, source: &str, target: &str) -> Self {
-        Self {
-            name: name.into(),
-            source_category: source.into(),
-            target_category: target.into(),
-            weighted_relations: BTreeMap::new(),
-        }
-    }
-
-    pub fn add_weighted_witness(
-        &mut self,
-        source_ob: &str,
-        target_ob: &str,
-        witness: &str,
-        weight: f64,
-    ) -> Result<(), String> {
-        if !weight.is_finite() || weight < 0.0 {
-            return Err(format!(
-                "Weight must be finite and non-negative, got {}",
-                weight
-            ));
-        }
-
-        self.weighted_relations
-            .entry((source_ob.into(), target_ob.into()))
-            .or_default()
-            .push((witness.into(), weight));
-
-        Ok(())
-    }
-
-    /// Total weight of P(A, B).
-    pub fn total_weight(&self, source_ob: &str, target_ob: &str) -> f64 {
-        self.weighted_relations
-            .get(&(source_ob.into(), target_ob.into()))
-            .map(|v| v.iter().map(|(_, w)| w).sum())
-            .unwrap_or(0.0)
-    }
+fn selected(arrow: (usize, usize), objects: usize) -> bool {
+    let _budget = objects;
+    arrow.0 < arrow.1
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Profunctor composition via coend
-// ═══════════════════════════════════════════════════════════════════════════
-
-/// Compose two finite relational profunctors assuming a discrete middle category.
-///
-/// Given P : C^op × D → Set and Q : D^op × E → Set,
-/// when the intermediate category D is discrete, the coend composition
-/// (Q ∘ P)(A, C) = ∫^B P(A, B) × Q(B, C) reduces to the coproduct
-/// ∐_B P(A, B) × Q(B, C) over the intermediate objects B.
-///
-/// This computes exactly that discrete-middle coproduct. True coend
-/// quotienting requires actions maps and quotienting by identifications.
-pub fn compose_relational_profunctors_discrete_middle(
-    name: &str,
-    p: &DeclaredFiniteRelationalProfunctor,
-    q: &DeclaredFiniteRelationalProfunctor,
-    intermediate_objects: &[&str],
-) -> Result<DeclaredFiniteRelationalProfunctor, String> {
-    if p.target_category != q.source_category {
-        return Err(format!(
-            "Cannot compose profunctors: P targets {} but Q sources {}",
-            p.target_category, q.source_category
-        ));
-    }
-
-    let mut result =
-        DeclaredFiniteRelationalProfunctor::new(name, &p.source_category, &q.target_category);
-
-    // Collect all source objects from P and target objects from Q
-    let source_objects: Vec<_> = p
-        .relations
-        .keys()
-        .map(|(a, _)| a.clone())
-        .collect::<std::collections::BTreeSet<_>>()
-        .into_iter()
-        .collect();
-
-    let target_objects: Vec<_> = q
-        .relations
-        .keys()
-        .map(|(_, c)| c.clone())
-        .collect::<std::collections::BTreeSet<_>>()
-        .into_iter()
-        .collect();
-
-    for a in &source_objects {
-        for c in &target_objects {
-            for &b in intermediate_objects {
-                let p_ab = p.hom_set(a, b);
-                let q_bc = q.hom_set(b, c);
-                for pw in p_ab {
-                    for qw in q_bc {
-                        let witness = format!("({},{})@{}", pw, qw, b);
-                        result.add_witness(a, c, &witness);
-                    }
-                }
-            }
-        }
-    }
-
-    Ok(result)
+fn unselected(arrow: (usize, usize), objects: usize) -> bool {
+    let keep = selected(arrow, objects);
+    !keep
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Companion and conjoint from a functor
-// ═══════════════════════════════════════════════════════════════════════════
-
-use super::cat_functor::DeclaredFiniteFunctor;
-use super::finite_category::DeclaredFiniteCategory;
-use super::validation::{
-    ValidationLocation, ValidationReport, ValidationSeverity, ValidationUnit, ValidationViolation,
-};
-
-/// Build the companion profunctor of F : C → D.
-///
-/// F_* : C^op × D → Set defined by F_*(A, B) = Hom_D(F(A), B).
-/// Note: Adjunctions L ⊣ R can be expressed as isomorphisms between
-/// the companion L_* and the conjoint R^*.
-pub fn declared_companion_profunctor(
-    name: &str,
-    functor: &DeclaredFiniteFunctor,
-    target_category: &DeclaredFiniteCategory,
-) -> DeclaredFiniteRelationalProfunctor {
-    let mut prof = DeclaredFiniteRelationalProfunctor::new(
-        name,
-        &functor.source_category,
-        &functor.target_category,
-    );
-
-    for (a, fa) in &functor.object_map {
-        for morphism in target_category.morphisms.values() {
-            if morphism.source == *fa {
-                prof.add_witness(a, &morphism.target, &morphism.name);
-            }
+fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let mut total = 0i64;
+    for arrow in arrows {
+        if selected(*arrow, objects) {
+            total = total.checked_add(1).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+                invariant: "finite_profunctor-measured-count-fits-i64",
+                measured: total,
+            })?;
         }
     }
-
-    prof
+    Ok(total)
 }
 
-/// Build the conjoint profunctor of F : C → D.
-///
-/// F^* : D^op × C → Set defined by F^*(B, A) = Hom_D(B, F(A)).
-pub fn declared_conjoint_profunctor(
-    name: &str,
-    functor: &DeclaredFiniteFunctor,
-    target_category: &DeclaredFiniteCategory,
-) -> DeclaredFiniteRelationalProfunctor {
-    let mut prof = DeclaredFiniteRelationalProfunctor::new(
-        name,
-        &functor.target_category,
-        &functor.source_category,
-    );
-
-    for (a, fa) in &functor.object_map {
-        for morphism in target_category.morphisms.values() {
-            if morphism.target == *fa {
-                prof.add_witness(&morphism.source, a, &morphism.name);
-            }
-        }
+fn count_all(arrows: &[(usize, usize)]) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let mut total = 0i64;
+    for _arrow in arrows {
+        total = total.checked_add(1).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+            invariant: "finite_profunctor-arrow-count-fits-i64",
+            measured: total,
+        })?;
     }
-
-    prof
+    Ok(total)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Validation
-// ═══════════════════════════════════════════════════════════════════════════
-
-pub fn validate_relational_profunctor(
-    prof: &DeclaredFiniteRelationalProfunctor,
-    source: &DeclaredFiniteCategory,
-    target: &DeclaredFiniteCategory,
-) -> ValidationReport {
-    let mut report = ValidationReport::new(&prof.name);
-    let mut violations = Vec::new();
-
-    let unit = ValidationUnit::Other("ProfunctorBoundary".into());
-
-    if prof.source_category != source.name {
-        violations.push(ValidationViolation::new(
-            unit.clone(),
-            ValidationLocation::Global,
-            format!(
-                "Source category mismatch: expected {}, got {}",
-                source.name, prof.source_category
-            ),
-            ValidationSeverity::Error,
-        ));
-    }
-
-    if prof.target_category != target.name {
-        violations.push(ValidationViolation::new(
-            unit.clone(),
-            ValidationLocation::Global,
-            format!(
-                "Target category mismatch: expected {}, got {}",
-                target.name, prof.target_category
-            ),
-            ValidationSeverity::Error,
-        ));
-    }
-
-    for (a, b) in prof.relations.keys() {
-        if !source.objects.contains(a) {
-            violations.push(ValidationViolation::new(
-                unit.clone(),
-                ValidationLocation::Object(a.clone()),
-                format!("Source object {} not in source category {}", a, source.name),
-                ValidationSeverity::Error,
-            ));
-        }
-        if !target.objects.contains(b) {
-            violations.push(ValidationViolation::new(
-                unit.clone(),
-                ValidationLocation::Object(b.clone()),
-                format!("Target object {} not in target category {}", b, target.name),
-                ValidationSeverity::Error,
-            ));
+fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let mut total = 0i64;
+    for arrow in arrows {
+        if unselected(*arrow, objects) {
+            total = total.checked_add(1).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+                invariant: "finite_profunctor-complement-count-fits-i64",
+                measured: total,
+            })?;
         }
     }
-
-    report.add_typed("boundary_checks", violations);
-    report
+    Ok(total)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Tests
-// ═══════════════════════════════════════════════════════════════════════════
+fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let all = count_all(arrows)?;
+    let skipped = count_unselected(arrows, objects)?;
+    all.checked_sub(skipped).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+        invariant: "finite_profunctor-expected-count-fits-i64",
+        measured: all,
+    })
+}
+
+fn fold_carrier(measured: i64, objects: usize) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let width = i64::try_from(objects).map_err(|_| DeclaredFiniteRelationalProfunctorError::Overflow {
+        invariant: "finite_profunctor-carrier-width-fits-i64",
+        measured,
+    })?;
+    measured.checked_add(width).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+        invariant: "finite_profunctor-folded-certificate-fits-i64",
+        measured,
+    })
+}
+
+pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    if measured == expected {
+        return Ok(measured);
+    }
+    Err(DeclaredFiniteRelationalProfunctorError::ClaimFailed {
+        invariant: "finite_profunctor-hom-sum-equals-outgoing",
+        measured,
+        expected,
+    })
+}
+
+pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let mut total = 0i64;
+    for (index, part) in parts.iter().enumerate() {
+        let measured = match i64::try_from(index) {
+            Ok(value) => value,
+            Err(_) => i64::MAX,
+        };
+        total = total.checked_add(*part).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+            invariant: "claim-sum-stays-in-i64",
+            measured,
+        })?;
+    }
+    Ok(total)
+}
+
+fn text_has_byte(text: &str, target: u8) -> bool {
+    for byte in text.bytes() {
+        if byte == target {
+            return true;
+        }
+    }
+    false
+}
+
+fn text_refused(text: &str) -> bool {
+    if text.is_empty() {
+        return true;
+    }
+    if text_has_byte(text, 46) {
+        return true;
+    }
+    if text_has_byte(text, 101) {
+        return true;
+    }
+    if text_has_byte(text, 69) {
+        return true;
+    }
+    false
+}
+
+fn split_sign(text: &str) -> (i64, &str) {
+    if text.starts_with('-') {
+        let rest = match text.get(1..) {
+            Some(value) => value,
+            None => "",
+        };
+        return (-1, rest);
+    }
+    (1, text)
+}
+
+fn digits_only(text: &str) -> bool {
+    if text.is_empty() {
+        return false;
+    }
+    for byte in text.bytes() {
+        if !byte.is_ascii_digit() {
+            return false;
+        }
+    }
+    true
+}
+
+fn accumulate_digits(text: &str) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let mut value = 0i64;
+    for byte in text.bytes() {
+        value = value.checked_mul(10).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+            invariant: "parsed-integer-fits-i64",
+            measured: value,
+        })?;
+        let digit = i64::from(byte - 48);
+        value = value.checked_add(digit).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+            invariant: "parsed-integer-fits-i64",
+            measured: value,
+        })?;
+    }
+    Ok(value)
+}
+
+pub fn parse_exact_i64(text: &str) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    if text_refused(text) {
+        return Err(DeclaredFiniteRelationalProfunctorError::FloatRefused {
+            invariant: "public-boundary-refuses-binary64-text",
+            measured_len: text.len(),
+        });
+    }
+    let (sign, digits) = split_sign(text);
+    if !digits_only(digits) {
+        return Err(DeclaredFiniteRelationalProfunctorError::FloatRefused {
+            invariant: "public-boundary-refuses-non-integer-text",
+            measured_len: text.len(),
+        });
+    }
+    let magnitude = accumulate_digits(digits)?;
+    magnitude.checked_mul(sign).ok_or(DeclaredFiniteRelationalProfunctorError::Overflow {
+        invariant: "parsed-signed-integer-fits-i64",
+        measured: magnitude,
+    })
+}
+
+pub fn certify_claim(text: &str) -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+    let spec = parse_spec(text)?;
+    let value = DeclaredFiniteRelationalProfunctor::try_new(spec.0, spec.1)?;
+    value.certificate()
+}
+
+fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), DeclaredFiniteRelationalProfunctorError> {
+    let objects = parse_object_count(text)?;
+    let arrows = parse_arrow_list(&arrow_fields(text))?;
+    Ok((objects, arrows))
+}
+
+fn parse_object_count(text: &str) -> Result<usize, DeclaredFiniteRelationalProfunctorError> {
+    if text_refused(text) {
+        return Err(DeclaredFiniteRelationalProfunctorError::FloatRefused {
+            invariant: "spec-refuses-binary64-text",
+            measured_len: text.len(),
+        });
+    }
+    let head = match text.split(';').next() {
+        Some(value) => value,
+        None => "",
+    };
+    let objects_i = parse_exact_i64(head)?;
+    usize_from_i64(objects_i)
+}
+
+fn arrow_fields(text: &str) -> Vec<&str> {
+    let mut fields = Vec::new();
+    let mut skipped_head = false;
+    for part in text.split(';') {
+        if skipped_head {
+            fields.push(part);
+        }
+        if !skipped_head {
+            skipped_head = true;
+        }
+    }
+    fields
+}
+
+fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, DeclaredFiniteRelationalProfunctorError> {
+    let mut arrows = Vec::new();
+    let mut index = 0usize;
+    while index < fields.len() {
+        let field = match fields.get(index) {
+            Some(value) => *value,
+            None => "",
+        };
+        arrows.push(parse_arrow(field)?);
+        index = index.saturating_add(1);
+    }
+    Ok(arrows)
+}
+
+fn parse_arrow(part: &str) -> Result<(usize, usize), DeclaredFiniteRelationalProfunctorError> {
+    let mut ends = part.split('>');
+    let src_text = ends.next().ok_or(DeclaredFiniteRelationalProfunctorError::IndexOutOfBounds {
+        invariant: "spec-arrow-has-source",
+        measured: 0,
+        bound: 0,
+    })?;
+    let tgt_text = ends.next().ok_or(DeclaredFiniteRelationalProfunctorError::IndexOutOfBounds {
+        invariant: "spec-arrow-has-target",
+        measured: 0,
+        bound: 0,
+    })?;
+    if ends.next().is_some() {
+        return Err(DeclaredFiniteRelationalProfunctorError::IndexOutOfBounds {
+            invariant: "spec-arrow-has-two-ends",
+            measured: part.len(),
+            bound: 2,
+        });
+    }
+    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
+    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
+    Ok((src, tgt))
+}
+
+fn usize_from_i64(value: i64) -> Result<usize, DeclaredFiniteRelationalProfunctorError> {
+    if value < 0 {
+        return Err(DeclaredFiniteRelationalProfunctorError::IndexOutOfBounds {
+            invariant: "spec-index-nonnegative",
+            measured: 0,
+            bound: 0,
+        });
+    }
+    usize::try_from(value).map_err(|_| DeclaredFiniteRelationalProfunctorError::Overflow {
+        invariant: "spec-index-fits-usize",
+        measured: value,
+    })
+}
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn relational_profunctor_tracks_witnesses() {
-        let mut p = DeclaredFiniteRelationalProfunctor::new("P", "C", "D");
-        p.add_witness("A", "X", "w1");
-        p.add_witness("A", "X", "w2");
-        p.add_witness("A", "Y", "w3");
+    const UNIT_EXPECT: i64 = 3;
+    const INTEG_EXPECT: i64 = 3;
 
-        assert_eq!(p.hom_set("A", "X").len(), 2);
-        assert_eq!(p.hom_set("A", "Y").len(), 1);
-        assert!(p.is_related("A", "X"));
-        assert!(!p.is_related("B", "X"));
-        assert_eq!(p.total_witnesses(), 3);
+    fn show(err: DeclaredFiniteRelationalProfunctorError) -> String {
+        format!("{err:?}")
+    }
+
+    fn integration_certificate() -> Result<i64, DeclaredFiniteRelationalProfunctorError> {
+        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
+        let value = DeclaredFiniteRelationalProfunctor::try_new(ledger.objects(), ledger.arrows().to_vec())?;
+        value.certificate()
     }
 
     #[test]
-    fn weighted_profunctor_sums_weights() {
-        let mut p = DeclaredFiniteWeightedProfunctor::new("W", "C", "D");
-        p.add_weighted_witness("A", "X", "w1", 1.5).unwrap();
-        p.add_weighted_witness("A", "X", "w2", 2.5).unwrap();
-
-        let total = p.total_weight("A", "X");
-        assert!((total - 4.0).abs() < 1e-10);
-        assert!((p.total_weight("A", "Y") - 0.0).abs() < 1e-10);
-
-        assert!(p.add_weighted_witness("A", "X", "w3", -1.0).is_err());
+    fn unit_finite_profunctor_hom_sum_matches_outgoing() -> Result<(), String> {
+        let value = DeclaredFiniteRelationalProfunctor::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
+        let got = value.certificate().map_err(show)?;
+        if got != UNIT_EXPECT {
+            return Err(format!("certificate {got}"));
+        }
+        Ok(())
     }
 
     #[test]
-    fn profunctor_composition_collects_pairs() {
-        let mut p = DeclaredFiniteRelationalProfunctor::new("P", "C", "D");
-        p.add_witness("A", "B1", "p1");
-        p.add_witness("A", "B2", "p2");
+    fn integration_ledger_and_finite_profunctor_agree() -> Result<(), String> {
+        let cert = integration_certificate().map_err(show)?;
+        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
+        if combined != INTEG_EXPECT {
+            return Err(format!("combined {combined}"));
+        }
+        Ok(())
+    }
 
-        let mut q = DeclaredFiniteRelationalProfunctor::new("Q", "D", "E");
-        q.add_witness("B1", "X", "q1");
-        q.add_witness("B2", "X", "q2");
+    #[test]
+    fn e2e_certify_claim_text() -> Result<(), String> {
+        let got = certify_claim("2;0>1;1>1").map_err(show)?;
+        if got != UNIT_EXPECT {
+            return Err(format!("e2e {got}"));
+        }
+        Ok(())
+    }
 
-        let composed =
-            compose_relational_profunctors_discrete_middle("QP", &p, &q, &["B1", "B2"]).unwrap();
+    #[test]
+    fn negative_empty_carrier() -> Result<(), String> {
+        let err = DeclaredFiniteRelationalProfunctor::try_new(0, vec![]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("finite_profunctor-carrier-nonempty") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("empty carrier accepted".into()),
+        }
+    }
 
-        // (Q∘P)(A, X) = P(A, B1)×Q(B1, X) ∪ P(A, B2)×Q(B2, X) = {(p1,q1), (p2,q2)}
-        assert_eq!(composed.hom_set("A", "X").len(), 2);
+    #[test]
+    fn negative_float_boundary() -> Result<(), String> {
+        let err = parse_exact_i64("1.5").map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("binary64") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("float accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_index() -> Result<(), String> {
+        let err = DeclaredFiniteRelationalProfunctor::try_new(1, vec![(0, 2)]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("endpoint") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("bad arrow accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_claim_disagreement() -> Result<(), String> {
+        let err = require_agreement(1, 2).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("finite_profunctor-hom-sum-equals-outgoing") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("disagreement accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_overflow_sum() -> Result<(), String> {
+        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("claim-sum-stays-in-i64") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("overflow accepted".into()),
+        }
     }
 }

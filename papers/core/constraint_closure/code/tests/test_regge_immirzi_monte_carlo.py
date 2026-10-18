@@ -28,8 +28,6 @@ from solv_regge_monte_carlo import (
 
 def test_hinge_action_computation():
     """Verify single hinge action for flat vs deficit valencies."""
-    # Flat 4D valency is 2*pi / arccos(1/4) ~ 4.767
-    # k = 4 -> positive deficit angle; k = 5 -> small negative deficit angle
     action_k4 = compute_hinge_action(4)
     action_k5 = compute_hinge_action(5)
 
@@ -43,7 +41,7 @@ def test_regge_monte_carlo_simulation_convergence():
     res = run_regge_monte_carlo_simulation(
         n_hinges=40,
         n_steps=1500,
-        beta=2.0,  # Medium inverse temperature
+        beta=2.0,
         seed=123,
     )
 
@@ -58,11 +56,10 @@ def test_regge_monte_carlo_high_beta_cooling():
     res_cold = run_regge_monte_carlo_simulation(
         n_hinges=30,
         n_steps=2000,
-        beta=10.0,  # Cold limit
+        beta=10.0,
         seed=456,
     )
 
-    # In cold limit, system settles in low-energy valency state k=6
     counts = res_cold["valency_counts"]
     assert counts.get(6, 0) > counts.get(3, 0) + counts.get(8, 0)
     assert counts.get(6, 0) == 30

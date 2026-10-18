@@ -40,7 +40,7 @@ def _digest(character: str) -> str:
 
 
 def _canonical_documents(values: tuple[object, ...]) -> tuple[bytes, ...]:
-    return tuple(canonical_json_bytes(value.to_dict()) for value in values)  # type: ignore[attr-defined]
+    return tuple(canonical_json_bytes(value.to_dict()) for value in values)
 
 
 def _approved_registry():

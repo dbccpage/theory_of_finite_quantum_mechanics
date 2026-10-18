@@ -35,7 +35,7 @@ class TestFiniteQuotientNorm(unittest.TestCase):
         self.assertEqual(r.estate_wide_status, "REFUSED")
         self.assertEqual(r.normhood_from_attainment_alone, "REFUSED")
         self.assertEqual(r.authority_effect, "None")
-        self.assertEqual(r.phi_samples[0], "0")  # exact gradient
+        self.assertEqual(r.phi_samples[0], "0")
 
     def test_phi2_fixture_scoped_verified(self):
         d, omega_pos, omega_exact = tetra_face_d1_for_phi2()
@@ -47,7 +47,6 @@ class TestFiniteQuotientNorm(unittest.TestCase):
         )
         self.assertEqual(r.status, "COMPUTATIONALLY_VERIFIED_SCOPED")
         self.assertTrue(r.axioms.all_pass)
-        # positive sample should have positive Phi
         self.assertNotEqual(r.phi_samples[0], "0")
         self.assertEqual(r.phi_samples[1], "0")
 

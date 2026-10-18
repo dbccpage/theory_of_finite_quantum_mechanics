@@ -22,7 +22,6 @@ _code_dir = Path(__file__).resolve().parents[2] / "code"
 if str(_code_dir) not in sys.path:
     sys.path.insert(0, str(_code_dir))
 
-# Imports from package modules inside code/
 from omega_engine.crates.linear_algebra_theory.exact import (
     as_rational,
     exact_matrix,
@@ -71,7 +70,6 @@ import omega_engine.crates.projection_obstruction.claim_coverage as claim_covera
 import omega_engine.crates.projection_obstruction.inline_code_companion as inline_code_companion
 import omega_engine.crates.projection_obstruction.po000_replay as replay
 import omega_engine.crates.projection_obstruction.verify_certificate as verify_certificate
-# --- Section 1: Exact Module Invariants ---
 
 def test_exact_matrix_validation():
     """Verify exact_matrix handles empty input, ragged rows, and rational conversions."""
@@ -99,7 +97,7 @@ def test_exact_as_rational_types():
     with pytest.raises(TypeError):
         as_rational(3.14)
     with pytest.raises(TypeError):
-        as_rational([1, 2])  # type: ignore
+        as_rational([1, 2])
 
 
 def test_exact_matrix_from_matrix_and_column():
@@ -139,7 +137,6 @@ def test_expression_text():
     assert expression_text("custom_string") == "custom_string"
 
 
-# --- Section 2: Cochain Presentation ---
 
 def test_observation_map_exactness():
     """Verify ObservationMap creation and projection."""
@@ -198,7 +195,6 @@ def test_observation_presentation_and_complex():
         AdmittedComplexV1(Matrix([[1], [0]]), Matrix([[1, 0, 0]]))
 
 
-# --- Section 3: Covering Edge Diagrams ---
 
 def test_covering_edge_diagram_validation():
     """Verify CoveringEdgeDiagram fiber and edge invariants."""
@@ -230,7 +226,6 @@ def test_l1_operator_norm():
     assert l1_operator_norm(Matrix.zeros(0, 0)) == 0
 
 
-# --- Section 4: Evidence & Mechanization Records ---
 
 def test_evidence_models():
     """Verify ClaimEvidence and MechanizationRun pydantic validation."""
@@ -245,14 +240,12 @@ def test_evidence_models():
     assert ev.claim_ids == ("A2",)
     assert ev.authority_effect == "None"
 
-    # Use complete mechanization run to satisfy model validator
     run = replay.build_mechanization_run()
     assert run.paper_id == "PO-000"
     assert len(run.results) > 0
     assert run.execution_completed
 
 
-# --- Section 5: Falsification Sandbox & Worked Examples ---
 
 def test_falsification_sandbox_run():
     """Verify falsification sandbox functions and break panel."""
@@ -289,7 +282,6 @@ def test_inline_code_companion():
     assert abs(nu_e - 2.0) < 1e-10
 
 
-# --- Section 6: Artifact Bundle & Replay Run ---
 
 def test_artifact_bundle_and_replay():
     """Verify write_artifact_bundle, build_mechanization_run, and CLI main functions."""
@@ -323,7 +315,6 @@ def test_generate_figures():
     generate_figures.generate_fig3_observer_visibility_gap()
 
 
-# --- Section 7: Lattice Simulation & Extended Dynamics ---
 
 def test_lattice_simulation_trajectories():
     """Verify 1D TFIM, 2D TFIM, and Heisenberg lattice simulation trajectories."""
@@ -371,7 +362,6 @@ def test_lattice_simulation_trajectories():
     assert len(scaling.results) == 2
 
 
-# --- Section 8: Independent Verifier Module ---
 
 def test_independent_verifier_module():
     """Verify verify_certificate module logic."""
@@ -387,7 +377,6 @@ def test_independent_verifier_module():
         assert ret == 0
 
 
-# --- Section 9: Auxiliary Math & Quantum Lattice Modules ---
 
 def test_replica_and_retraction_geometry():
     """Verify replica_hierarchy, retraction_geometry, and transfer modules."""

@@ -1,7 +1,3 @@
-//! Lam-Leung lengths of vanishing sums of n-th roots with nonnegative integer
-//! multiplicities: W(n) is the numerical semigroup of n's distinct prime divisors.
-//! A witness is a sum of regular prime polygons. It is not a classification of
-//! irreducible vanishing sums or a guarantee of distinct roots. AuthorityEffect: None.
 use crate::integer_factorization::{factor_natural, FactorizationBudget, FactorizationError};
 use num_bigint::BigUint;
 use num_traits::{ToPrimitive, Zero};
@@ -25,7 +21,6 @@ pub enum VanishingLengthError {
 pub struct VanishingLengthWitness {
     pub conductor: u64,
     pub length: BigUint,
-    /// p -> number of translated regular p-gons (root repetition is allowed).
     pub prime_cycles: BTreeMap<u64, BigUint>,
 }
 impl VanishingLengthWitness {
@@ -48,9 +43,6 @@ impl VanishingLengthWitness {
     }
 }
 
-/// Complete length membership when the declared bounds suffice. Shortest paths
-/// on residues modulo the smallest prime find the least representable weight of
-/// each residue; adding that prime fills every greater weight in the residue.
 pub fn lam_leung_length(
     conductor: u64,
     length: &BigUint,
@@ -215,9 +207,6 @@ mod tests {
     }
 }
 
-/// The least odd prime polygon available in the conductor. It is an explicit
-/// unpairable irreducible sum: no proper subset of a regular prime p-gon sums
-/// to zero. This does not classify all irreducible composite-root sums.
 pub fn minimal_unpairable_polygon(
     conductor: u64,
     budget: FactorizationBudget,
@@ -271,10 +260,6 @@ impl RootConductorWitness {
             }))
     }
 }
-/// Uses the full root-of-unity group mu_lcm(2,m) of Q(zeta_m), then constructs
-/// and verifies the required root in that field. Earlier fields are excluded by
-/// the same complete root-group order; this is an embedding statement, not a
-/// formula checked against itself.
 pub fn minimal_root_conductor(
     order: usize,
     field_budget: usize,

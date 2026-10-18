@@ -68,17 +68,17 @@ def ms_p22_declaration() -> WindowDeclaration:
     truncations EXCEPT r_{L,M} = (1 1) and the long maps to L, which sum —
     that mismatch is what makes K_{(N,M,L)} nonzero.
     """
-    ones = lambda n: (tuple(F(1) for _ in range(n)),)  # noqa: E731
+    ones = lambda n: (tuple(F(1) for _ in range(n)),)
     return WindowDeclaration(
         windows=("L", "M", "N", "P"),
         dims={"L": 1, "M": 2, "N": 3, "P": 4},
         restrictions={
             ("N", "P"): _truncation(3, 4),
             ("M", "N"): _truncation(2, 3),
-            ("L", "M"): ones(2),          # (1 1)
+            ("L", "M"): ones(2),
             ("M", "P"): _truncation(2, 4),
-            ("L", "N"): ones(3),          # (1 1 1)
-            ("L", "P"): ones(4),          # (1 1 1 1)
+            ("L", "N"): ones(3),
+            ("L", "P"): ones(4),
         },
     )
 
@@ -106,9 +106,6 @@ def d0_P(alpha) -> tuple:
     return (a, F(0), F(0), F(0))
 
 
-# ---------------------------------------------------------------------------
-# FW5-FC3 — the MS-P22 positive fixture.
-# ---------------------------------------------------------------------------
 
 
 class TestMsP22Fixture:
@@ -161,9 +158,6 @@ class TestMsP22Fixture:
         )
 
 
-# ---------------------------------------------------------------------------
-# FW5-FC4 — the exact negative control (anti-vacuity guard).
-# ---------------------------------------------------------------------------
 
 
 class TestExactControl:
@@ -206,9 +200,6 @@ class TestExactControl:
         )
 
 
-# ---------------------------------------------------------------------------
-# FW5-FC2 — the F-COH-INHERIT kill.
-# ---------------------------------------------------------------------------
 
 
 class TestKillInherit:
@@ -252,9 +243,6 @@ class TestKillInherit:
         assert "transport-with-witness stays open" in msg
 
 
-# ---------------------------------------------------------------------------
-# FW5-FC1 — the F-COH-PROMOTE kill, and the one honest mint.
-# ---------------------------------------------------------------------------
 
 
 class TestKillPromote:
@@ -313,9 +301,6 @@ class TestKillPromote:
         )
 
 
-# ---------------------------------------------------------------------------
-# FW5-FC6 / FW5-FC7 — status separation and AE ceiling.
-# ---------------------------------------------------------------------------
 
 
 class TestStatusHygiene:
@@ -324,7 +309,7 @@ class TestStatusHygiene:
         assert not isinstance(CoherenceVerdict.INSTANCE_COHERENT, OperatorVerdict)
         assert not isinstance(OperatorVerdict.COCHAIN_COMPLEX_ESTABLISHED, CoherenceVerdict)
         names = {v.value for v in CoherenceVerdict} | {v.value for v in OperatorVerdict}
-        assert len(names) == 4  # no shared status string
+        assert len(names) == 4
 
     def test_receipt_cannot_express_the_operator_claim(self):
         """TripleReceipt has no operator field; storing an OperatorVerdict in
@@ -346,16 +331,13 @@ class TestStatusHygiene:
         assert e.value.authority_effect == "None"
 
 
-# ---------------------------------------------------------------------------
-# Fail-closed input handling.
-# ---------------------------------------------------------------------------
 
 
 class TestFailClosed:
     def test_misordered_triple_refuses_with_no_verdict(self):
         D = ms_p22_declaration()
         with pytest.raises(MalformedDeclaration):
-            verify_coherence_at(D, (0, 0, 1), ("M", "N", "L"))  # b above c
+            verify_coherence_at(D, (0, 0, 1), ("M", "N", "L"))
 
     def test_unknown_window_refuses(self):
         D = ms_p22_declaration()
@@ -365,7 +347,7 @@ class TestFailClosed:
     def test_wrong_state_dimension_refuses(self):
         D = ms_p22_declaration()
         with pytest.raises(MalformedDeclaration):
-            verify_coherence_at(D, (0, 0, 1), ("P", "N", "M"))  # 3-vector into P
+            verify_coherence_at(D, (0, 0, 1), ("P", "N", "M"))
 
     def test_undeclared_restriction_refuses(self):
         D = WindowDeclaration(
@@ -374,7 +356,6 @@ class TestFailClosed:
             restrictions={
                 ("B", "C"): _truncation(2, 3),
                 ("A", "B"): _truncation(1, 2),
-                # (A, C) deliberately missing
             },
         )
         with pytest.raises(MalformedDeclaration):
@@ -408,10 +389,9 @@ class TestFailClosed:
                 ("B", "C"): _truncation(2, 3),
                 ("A", "B"): _truncation(1, 2),
                 ("A", "C"): _truncation(1, 3),
-                ("C", "D"): _truncation(3, 4),  # (D,C,B) still lacks (B,D)
+                ("C", "D"): _truncation(3, 4),
             },
         )
-        # the complete sub-triple really is flat — that is what makes this a kill
         assert composition_defect(D, ("C", "B", "A")) == ((F(0), F(0), F(0)),)
         with pytest.raises(MalformedDeclaration) as e:
             verify_d1_d0_global(D)
@@ -427,7 +407,6 @@ class TestFailClosed:
             restrictions={
                 ("B", "C"): _truncation(2, 3),
                 ("A", "B"): _truncation(1, 2),
-                # (A, C) missing: the single comparable triple is incomplete
             },
         )
         try:
@@ -447,7 +426,6 @@ class TestFailClosed:
                 verdict=OperatorVerdict.COCHAIN_COMPLEX_ESTABLISHED,
             )
         assert "FW5-FC6" in str(e.value)
-        # and a receipt cannot carry a non-None AuthorityEffect (FW5-FC7)
         with pytest.raises(MalformedDeclaration):
             TripleReceipt(
                 triple=("P", "N", "M"),

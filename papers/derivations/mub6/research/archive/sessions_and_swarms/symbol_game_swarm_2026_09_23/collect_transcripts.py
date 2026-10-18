@@ -16,7 +16,6 @@ import re
 import shutil
 from pathlib import Path
 
-# === Configuration ===
 BRAIN_ROOT = Path(r"C:\Users\a343o\.gemini\antigravity\brain")
 COORDINATOR_ID = "2545a94c-04f3-4e18-8c55-d611cc85c6a4"
 OUTPUT_DIR = Path(r"C:\Users\a343o\source\repos\MUB6\research\symbol_game_swarm_2026_09_23")
@@ -43,27 +42,22 @@ def find_subagent_ids(transcript_path: Path) -> list[tuple[str, str]]:
                 entry = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            # Look in tool_calls for invoke_subagent results
             content = entry.get("content", "")
             if "conversationId" in content:
-                # Extract conversation IDs from content
                 for match in re.finditer(
                     r'"conversationId"\s*:\s*"([0-9a-f-]{36})"', content
                 ):
                     cid = match.group(1)
-                    # Try to find role nearby
                     role_match = re.search(
                         r'"role"\s*:\s*"([^"]+)"', content
                     )
                     role = role_match.group(1) if role_match else "unknown"
                     results.append((cid, role))
-            # Also check tool_calls array
             for tc in entry.get("tool_calls", []):
                 args = tc.get("arguments", {})
                 if isinstance(args, dict):
                     for sub in args.get("Subagents", []):
                         if isinstance(sub, dict) and "Role" in sub:
-                            # The conversation ID comes from the result
                             pass
                 result = tc.get("result", "")
                 if isinstance(result, str) and "conversationId" in result:
@@ -116,14 +110,12 @@ def collect_recursive(
             )
             print(f"  {'  ' * depth}[depth {depth}] {role} ({conv_id[:8]}) -> {dest_name}")
 
-    # Also copy any artifacts (non-system-generated files)
     for artifact in conv_dir.glob("*.md"):
         safe_role = sanitize(role)
         dest_name = f"depth{depth:02d}_{safe_role}_{conv_id[:8]}_{artifact.name}"
         dest = TRANSCRIPTS_DIR / dest_name
         shutil.copy2(artifact, dest)
 
-    # Find and recurse into subagents
     transcript_path = logs_dir / "transcript.jsonl"
     full_path = logs_dir / "transcript_full.jsonl"
     for path in [full_path, transcript_path]:
@@ -143,7 +135,6 @@ def main():
 
     manifest = collect_recursive(COORDINATOR_ID, "Swarm_Coordinator")
 
-    # Write manifest
     manifest_path = OUTPUT_DIR / "transcript_manifest.json"
     with open(manifest_path, "w", encoding="utf-8") as f:
         json.dump(

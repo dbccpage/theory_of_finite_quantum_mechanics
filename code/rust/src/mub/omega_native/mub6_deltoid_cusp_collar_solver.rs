@@ -1,13 +1,7 @@
-//! MUB(6) Three Deltoid Cusp Collars Solver (Pilot 040)
-//!
-//! Validates exact rational Lipschitz collars around all three cusps of the
-//! Beauchamp deltoid boundary for B_6(theta), certifying that candidate unbiasing
-//! boxes cannot touch the singular locus where d/dtheta det(H(theta)) = 0.
 
 use num_rational::BigRational;
 use serde::{Deserialize, Serialize};
 
-/// Deltoid cusp neighborhood specification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DeltoidCuspNeighborhood {
     pub cusp_index: usize,
@@ -16,7 +10,6 @@ pub struct DeltoidCuspNeighborhood {
     pub is_sealed: bool,
 }
 
-/// Receipt for deltoid cusp collars verification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DeltoidCuspReceipt {
     pub status: String,
@@ -25,7 +18,6 @@ pub struct DeltoidCuspReceipt {
     pub boundary_status: String,
 }
 
-/// Verify that all 3 deltoid cusps possess certified Lipschitz collars.
 pub fn verify_deltoid_cusp_collars() -> DeltoidCuspReceipt {
     let cusps_sealed = 3;
     let min_thickness = BigRational::new(1.into(), 256.into());

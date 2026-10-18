@@ -16,20 +16,16 @@ from pathlib import Path
 
 def generate_certificate(output_path: str | os.PathLike[str] | None = None):
     phi_vals = np.linspace(0.1, 5.0, 50)
-    # Pure l1 residual energy is strictly linear in field magnitude: E(phi) = |phi|
     energies_pure = np.abs(phi_vals)
 
-    # 1. Linear Fit: E(phi) = a * phi + b
     fit_lin = np.polyfit(phi_vals, energies_pure, 1)
     pred_lin = np.poly1d(fit_lin)(phi_vals)
     r2_lin = float(1.0 - np.sum((energies_pure - pred_lin)**2) / np.sum((energies_pure - np.mean(energies_pure))**2))
 
-    # 2. Quadratic Fit: E(phi) = a * phi^2 + b * phi + c
     fit_quad = np.polyfit(phi_vals, energies_pure, 2)
     pred_quad = np.poly1d(fit_quad)(phi_vals)
     r2_quad = float(1.0 - np.sum((energies_pure - pred_quad)**2) / np.sum((energies_pure - np.mean(energies_pure))**2))
 
-    # 3. Quartic Fit: E(phi) = a * phi^4 + b * phi^2 + c (Mexican-hat shape)
     phi_sq = phi_vals**2
     fit_quartic = np.polyfit(phi_sq, energies_pure, 2)
     pred_quartic = np.poly1d(fit_quartic)(phi_sq)
@@ -53,12 +49,10 @@ def generate_certificate(output_path: str | os.PathLike[str] | None = None):
         }
     }
 
-    # Hash payload
     cert_json = json.dumps(cert_data, indent=2)
     cert_hash = hashlib.sha256(cert_json.encode('utf-8')).hexdigest()
     cert_data["sha256_fingerprint"] = cert_hash
 
-    # Save JSON certificate
     json_path = (
         Path(output_path)
         if output_path is not None

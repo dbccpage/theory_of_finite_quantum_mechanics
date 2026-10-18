@@ -1,11 +1,3 @@
-//! Finite cochain complex and carrier manifest.
-//!
-//! Implements the core carrier structure from General Theory §1, §3:
-//!   C⁰ →d₀ C¹ →d₁ C², with d₁∘d₀ = 0.
-//!
-//! All matrices use exact rational arithmetic (`Q` = `BigRational`).
-//! The fundamental relation d₁∘d₀ = 0 is verified at construction time.
-//! Construction fails if the relation does not hold.
 
 use crate::linear_algebra::scalars::{hash_rational, q, Q};
 use crate::linear_algebra::basic_matrix::BasicMatrix;
@@ -13,7 +5,6 @@ use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 
-/// Compute the blake3 hash of the matrix data for carrier manifests.
 pub fn matrix_content_hash(m: &BasicMatrix<Q>) -> [u8; 32] {
     let mut hasher = blake3::Hasher::new();
     hasher.update(&(m.rows() as u64).to_le_bytes());
@@ -24,7 +15,6 @@ pub fn matrix_content_hash(m: &BasicMatrix<Q>) -> [u8; 32] {
     *hasher.finalize().as_bytes()
 }
 
-/// Error when constructing a cochain complex.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum CarrierError {
     CochainRelationViolated,
@@ -43,16 +33,6 @@ pub enum CarrierError {
     MatrixConstructionFailed,
 }
 
-/// A finite cochain complex C⁰ →d₀ C¹ →d₁ C² with d₁∘d₀ = 0.
-///
-/// This is the core carrier for the MSS-N obstruction calculus.
-/// All arithmetic is exact over the canonical coefficient domain
-/// `omega_homology::scalar::Q` = `BigRational` (ADR-001). The cochain
-/// relation is verified at construction time. Failed construction returns
-/// a typed error.
-///
-/// Satisfies BaseType contract: no execution logic, all fields explicit,
-/// serializable, no lazy computation.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Carrier {
     pub c0_dim: usize,
@@ -64,14 +44,6 @@ pub struct Carrier {
 }
 
 impl Carrier {
-    /// Construct a new cochain complex, verifying d₁∘d₀ = 0 and weight positivity.
-    ///
-    /// This is the only constructor. It enforces:
-    /// 1. d₀ is c1_dim × c0_dim
-    /// 2. d₁ is c2_dim × c1_dim
-    /// 3. d₁ * d₀ = 0 (exact check)
-    /// 4. weights has length c1_dim
-    /// 5. All weights are strictly positive
     pub fn new(
         c0_dim: usize,
         c1_dim: usize,
@@ -128,28 +100,22 @@ impl Carrier {
         })
     }
 
-    /// Rank of d₀ = dim(im(d₀)) = dim(B¹).
     pub fn rank_d0(&self) -> usize {
         self.d0
             .rank()
             .expect("rank is defined for finite Q matrices")
     }
 
-    /// Dimension of Q¹ = C¹/B¹ = c1_dim - rank(d₀).
     pub fn dim_q1(&self) -> usize {
         self.c1_dim - self.rank_d0()
     }
 
-    /// Rank of d₁.
     pub fn rank_d1(&self) -> usize {
         self.d1
             .rank()
             .expect("rank is defined for finite Q matrices")
     }
 
-    /// Dimension of H¹ = ker(d̄₁) ⊆ Q¹.
-    /// H¹ = ker(d₁) / im(d₀).
-    /// dim(H¹) = dim(ker(d₁)) - dim(im(d₀)).
     pub fn dim_h1(&self) -> usize {
         let ker_d1_dim = self.c1_dim - self.rank_d1();
         let im_d0_dim = self.rank_d0();
@@ -157,30 +123,20 @@ impl Carrier {
     }
 }
 
-/// A cryptographic manifest identifying a specific carrier configuration.
-///
-/// Used in checked packets, exhaustion certificates, and lift licenses to
-/// bind results to the exact carrier that produced them.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CarrierManifest {
-    /// Hash of the complete carrier (d₀, d₁, weights, dimensions).
     pub carrier_hash: [u8; 32],
-    /// Hash of d₀ alone.
     pub d0_hash: [u8; 32],
-    /// Hash of d₁ alone.
     pub d1_hash: [u8; 32],
-    /// Dimensions.
     pub c0_dim: usize,
     pub c1_dim: usize,
     pub c2_dim: usize,
-    /// Rank data.
     pub rank_d0: usize,
     pub dim_q1: usize,
     pub dim_h1: usize,
 }
 
 impl CarrierManifest {
-    /// Compute the manifest for a given carrier.
     pub fn from_carrier(carrier: &Carrier) -> Self {
         let d0_hash = matrix_content_hash(&carrier.d0);
         let d1_hash = matrix_content_hash(&carrier.d1);
@@ -210,15 +166,6 @@ impl CarrierManifest {
     }
 }
 
-/// Build a cochain complex from a directed graph.
-///
-/// - Nodes = C⁰ basis
-/// - Edges = C¹ basis
-/// - Triangles (3-cliques) = C² basis (optional)
-///
-/// d₀ is the signed incidence matrix: d₀(e) = target(e) - source(e)
-/// for edge e going from source to target. The matrix d₀ has dimensions
-/// |E| × |V| where (d₀)_{e,v} = +1 if v = target(e), -1 if v = source(e).
 pub fn graph_carrier(
     num_nodes: usize,
     edges: &[(usize, usize)],

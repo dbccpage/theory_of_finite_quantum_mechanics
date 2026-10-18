@@ -1,25 +1,3 @@
-//! Native Release-Mode Grand Verifier for MUB(6) Reconstruction Pipeline.
-//!
-//! Evaluates and certifies:
-//! 1. All partition covers:
-//!    - Deltoid cusp neighborhood desingularization and asymptotics (`mub6_deltoid_cusp`, `mub6_deltoid_cusp_asymptotics`)
-//!    - Collar solver partition cover and boundary overlap (`mub6_collar_cover`, `mub6_collar_solver`, `mub6_collar_boundary`)
-//!    - Haagerup orbit exact CHM, deltoid identity, and 225-submatrix orbit isolation (`mub6_haagerup`)
-//!    - Karlsson 3-parameter volume interval solver (`mub6_karlsson_volume_cover`)
-//! 2. Continuous Szöllősi chaining samples and manifold boundary residues:
-//!    - Continuous Szöllősi chaining samples across θ ∈ (0, π/3) (`mub6_continuous_chaining`, `mub6_manifold_integration`)
-//!    - Manifold boundary residues and genuine Diță seed neighborhoods (`mub6_continuous_manifold_residue`, `mub6_collar_boundary`)
-//! 3. Čech cocycle holonomies on the covering nerve:
-//!    - Exact Čech 2-cocycle condition across all 53 nerve triples (`mub6_manifold_integration`)
-//!    - Discrete 28-cell moduli obstruction and master unified obstruction disjunction (`mub6_manifold_integration`)
-//!    - Network Simplex cycle circulation on 2D boundary nerve triangles (`mub6_nerve_chaining`)
-//! 4. Exact rational moment SDP LDLᵀ factorizations:
-//!    - Degrees 2, 4, 6, 8 moment SDP certificates, strictly negative trace inner products, and strictly positive LDLᵀ pivots (`mub6_moment_ledger`)
-//!    - Cross-runtime canonical matrix fingerprints verification across all 21 fixtures (`mub6_moment_ledger`)
-//! 5. Pass bits use exact rational and cyclotomic arithmetic (`BigRational`, `Cyc24`).
-//!
-//! AuthorityEffect: None
-//! Negative claim boundary enforced: mints no affirmative global bound.
 
 use std::fs;
 use std::path::PathBuf;
@@ -105,12 +83,10 @@ pub struct GrandVerificationReceipt {
     pub execution_time_millis: u64,
 }
 
-/// Helper to format rational into string without float conversion
 fn rat_str(r: &BigRational) -> String {
     format!("{}/{}", r.numer(), r.denom())
 }
 
-/// 1. PARTITION COVERS VERIFICATION
 fn verify_all_partition_covers(
     steps: &mut Vec<VerificationStepReceipt>,
     verbose: bool,
@@ -119,7 +95,6 @@ fn verify_all_partition_covers(
         println!("--- [1/4] Verifying Partition Covers ---");
     }
 
-    // 1.1 Deltoid Cusp Neighborhood Desingularization
     let config = BisectionSolverConfig::canonical();
     for cusp in DeltoidCusp::all() {
         let report = solve_desingularized_cusp_bisection(cusp, &config)
@@ -152,7 +127,6 @@ fn verify_all_partition_covers(
         }
     }
 
-    // 1.2 Deltoid Cusp Asymptotics
     let asymp = solve_deltoid_cusp_asymptotics();
     let enclosure = &asymp.taylor_lagrange_enclosure;
     let ordered = |interval: &[String; 2]| match (
@@ -191,7 +165,6 @@ fn verify_all_partition_covers(
         println!("  [PASS] Deltoid cusp asymptotics verified");
     }
 
-    // 1.3 Collar Solver Partition Cover & Barrier Margin
     let unit = RationalBox2D::unit_square();
     let collar_depth = collar_certification_depth(16)
         .ok_or("No dyadic collar depth up to 16 certifies every cell margin")?;
@@ -217,7 +190,6 @@ fn verify_all_partition_covers(
         println!("  [PASS] Collar partition cover verified");
     }
 
-    // 1.4 Karlsson Collar Solver
     let k_collar = solve_karlsson_collar_cover(2);
     if k_collar.boxes.len() != 16 {
         return Err(format!(
@@ -239,7 +211,6 @@ fn verify_all_partition_covers(
         println!("  [PASS] Karlsson collar solver boxes verified");
     }
 
-    // 1.5 Collar Boundary Overlap & Circulation Chaining
     let boundary_receipt = certify_collar_boundary_overlap(10, 3, 90000)
         .map_err(|e| format!("Collar boundary overlap certification failed: {:?}", e))?;
     if !boundary_receipt.verified
@@ -261,7 +232,6 @@ fn verify_all_partition_covers(
         println!("  [PASS] Collar boundary overlap verified");
     }
 
-    // 1.6 Haagerup Orbit Exact CHM and Orbit Isolation
     let s6_mat = tao_s6_matrix();
     let s6_exps = extract_cross_ratio_exponents(&s6_mat)
         .map_err(|e| format!("S6 cross ratio extraction failed: {:?}", e))?;
@@ -316,7 +286,6 @@ fn verify_all_partition_covers(
         println!("  [PASS] Haagerup orbit isolation and CHM verified");
     }
 
-    // 1.7 Karlsson Volume Interval Cover
     let delta = BigRational::new(BigInt::from(1), BigInt::from(1000));
     let karlsson_report = solve_karlsson_volume_cover(2, &delta, 24);
     if !karlsson_report.complete || karlsson_report.uncertified_boxes != 0 {
@@ -357,7 +326,6 @@ fn verify_all_partition_covers(
     Ok(())
 }
 
-/// 2. CONTINUOUS SZÖLLŐSI CHAINING & MANIFOLD BOUNDARY RESIDUES VERIFICATION
 fn verify_continuous_chaining_and_boundary_residues(
     steps: &mut Vec<VerificationStepReceipt>,
     verbose: bool,
@@ -366,7 +334,6 @@ fn verify_continuous_chaining_and_boundary_residues(
         println!("--- [2/4] Verifying Continuous Chaining & Boundary Residues ---");
     }
 
-    // 2.1 Continuous Parameter Chaining Path
     let path = ContinuousChainingPath::generate_canonical()
         .map_err(|e| format!("Canonical chaining path generation failed: {:?}", e))?;
     if !path.all_certified || !path.no_gaps || path.min_margin < certified_margin() {
@@ -393,7 +360,6 @@ fn verify_continuous_chaining_and_boundary_residues(
         println!("  [PASS] Continuous Szöllősi chaining path verified");
     }
 
-    // 2.2 Representative Points & ZeroRel Variety Emptiness
     let rep_set = RepresentativePointSet::canonical();
     let engine = AdaptiveStepEngine::canonical();
     let evals = rep_set
@@ -429,7 +395,6 @@ fn verify_continuous_chaining_and_boundary_residues(
         println!("  [PASS] Representative points and ZeroRel variety verified");
     }
 
-    // 2.3 Continuous Szöllősi Adaptive Chaining Samples
     let chaining_rep = verify_continuous_szollosi_chaining(40)
         .map_err(|e| format!("Continuous Szöllősi chaining samples failed: {:?}", e))?;
     if !chaining_rep.all_samples_obstructed || !chaining_rep.gap_stability_certified {
@@ -448,7 +413,6 @@ fn verify_continuous_chaining_and_boundary_residues(
         println!("  [PASS] Continuous Szöllősi chaining samples verified");
     }
 
-    // 2.4 Manifold Boundary Residues
     let res_delta = BigRational::new(BigInt::from(1), BigInt::from(10));
     let residue_rep = solve_continuous_manifold_residue(4, &res_delta, 6);
     if residue_rep.total_boxes_explored == 0 || residue_rep.outside_boxes_certified == 0 {
@@ -471,7 +435,6 @@ fn verify_continuous_chaining_and_boundary_residues(
         println!("  [PASS] Manifold boundary residues verified");
     }
 
-    // 2.5 Unitary Gauge Integration to Karlsson Boundary
     let conn = KarlssonBoundaryConnection::at_boundary_depth();
     if !conn.is_unitary_certified || !conn.preserves_curvature_wall {
         return Err("Karlsson boundary connection failed unitary or curvature check".to_string());
@@ -492,7 +455,6 @@ fn verify_continuous_chaining_and_boundary_residues(
     Ok(())
 }
 
-/// 3. ČECH COCYCLE HOLONOMIES & COVERING NERVE INTEGRATION
 fn verify_cech_cocycles_and_nerve_chaining(
     steps: &mut Vec<VerificationStepReceipt>,
     verbose: bool,
@@ -501,7 +463,6 @@ fn verify_cech_cocycles_and_nerve_chaining(
         println!("--- [3/4] Verifying Čech Cocycles & Covering Nerve Holonomies ---");
     }
 
-    // 3.1 Čech 2-Cocycle Condition across All 53 Nerve Triples
     let cech = verify_cech_cocycles_all_53_triples()
         .map_err(|e| format!("Čech cocycle verification failed: {:?}", e))?;
     if !cech.all_triples_valid || cech.total_triples_verified != 53 {
@@ -523,7 +484,6 @@ fn verify_cech_cocycles_and_nerve_chaining(
         println!("  [PASS] Čech 2-cocycles on all 53 triples verified");
     }
 
-    // 3.2 Master Target B3 Manifold Integration
     let b3 = evaluate_target_b3_manifold_integration()
         .map_err(|e| format!("Master Target B3 manifold integration failed: {:?}", e))?;
     if !b3.discrete_28_cells_obstructed
@@ -551,7 +511,6 @@ fn verify_cech_cocycles_and_nerve_chaining(
         println!("  [PASS] Master Target B3 manifold integration verified");
     }
 
-    // 3.3 Full Unified Coverage Verifier
     let coverage = verify_full_unified_coverage()
         .map_err(|e| format!("Unified coverage verification failed: {:?}", e))?;
     if !coverage.all_samples_obstructed || !coverage.closure_certified {
@@ -573,7 +532,6 @@ fn verify_cech_cocycles_and_nerve_chaining(
         println!("  [PASS] Full unified moduli coverage closure verified");
     }
 
-    // 3.4 2D Nerve Boundary Chaining & Network Simplex Circulation
     let nerve = evaluate_nerve_chaining(2, INTEGER_SCALE)
         .map_err(|e| format!("Nerve chaining evaluation failed: {:?}", e))?;
     if !nerve.area_conserved
@@ -584,7 +542,6 @@ fn verify_cech_cocycles_and_nerve_chaining(
         return Err("Nerve chaining circulation or dual gap check failed".to_string());
     }
 
-    // Also verify individual boundary nerve triangles: Deltoid and Tao
     let tri_deltoid = BoundaryNerveTriangle::deltoid();
     let sol_deltoid = solve_triangular_circulation(&tri_deltoid, None, INTEGER_SCALE)
         .map_err(|e| format!("Deltoid triangular circulation failed: {:?}", e))?;
@@ -620,7 +577,6 @@ fn verify_cech_cocycles_and_nerve_chaining(
     Ok(())
 }
 
-/// 4. EXACT RATIONAL MOMENT SDP LDLᵀ FACTORIZATIONS (DEGREES 2, 4, 6, 8)
 fn verify_moment_sdp_ldlt_hierarchy(
     steps: &mut Vec<VerificationStepReceipt>,
     verbose: bool,
@@ -629,7 +585,6 @@ fn verify_moment_sdp_ldlt_hierarchy(
         println!("--- [4/4] Verifying Exact Moment SDP LDLᵀ Hierarchy (Deg 2, 4, 6, 8) ---");
     }
 
-    // 4.1 Degrees 2, 4, 6, 8 Benchmark Evaluations & LDLᵀ Pivots
     for &d in SUPPORTED_DEGREES {
         let bench = evaluate_degree_benchmark(d, None)
             .map_err(|e| format!("Degree {d} moment benchmark failed: {:?}", e))?;
@@ -673,7 +628,6 @@ fn verify_moment_sdp_ldlt_hierarchy(
         }
     }
 
-    // 4.2 Moment SDP Hierarchy Ledger Structure
     let ledger = evaluate_moment_sdp_hierarchy_ledger()
         .map_err(|e| format!("Ledger evaluation failed: {:?}", e))?;
     if ledger.degrees != vec![2, 4, 6, 8]
@@ -696,7 +650,6 @@ fn verify_moment_sdp_ldlt_hierarchy(
         println!("  [PASS] Moment SDP hierarchy ledger structure verified");
     }
 
-    // 4.3 Cross-Runtime Canonical Fixture Fingerprints Verification
     let canon_ok = verify_canonical_fixtures()
         .map_err(|e| format!("Canonical fixture verification failed: {:?}", e))?;
     if !canon_ok {
@@ -777,16 +730,12 @@ fn run() -> Result<i32, String> {
 
     let mut steps = Vec::new();
 
-    // 1. All partition covers
     verify_all_partition_covers(&mut steps, verbose && !json_mode)?;
 
-    // 2. Continuous Szöllősi chaining samples and manifold boundary residues
     verify_continuous_chaining_and_boundary_residues(&mut steps, verbose && !json_mode)?;
 
-    // 3. Čech cocycle holonomies on covering nerve
     verify_cech_cocycles_and_nerve_chaining(&mut steps, verbose && !json_mode)?;
 
-    // 4. Exact rational moment SDP LDLᵀ factorizations across degrees 2, 4, 6, 8
     verify_moment_sdp_ldlt_hierarchy(&mut steps, verbose && !json_mode)?;
 
     let elapsed = start_time.elapsed().as_millis() as u64;
@@ -802,7 +751,6 @@ fn run() -> Result<i32, String> {
         } else {
             "VERIFICATION_FAILED".to_string()
         },
-        // fixture: no zero-float check runs here.
         zero_float_discipline_verified: fixtures().flag("zero_float_discipline_verified"),
         partition_covers_verified: category_verified(&steps, "Partition Covers"),
         continuous_chaining_verified: category_verified(

@@ -53,7 +53,7 @@ def make_graph(num_nodes, edges):
 def test_zero_complex_works():
     d0 = QMatrix.zero(0, 0)
     d1 = QMatrix.zero(0, 0)
-    Carrier.new(0, 0, 0, d0, d1, [], prov())  # must not raise
+    Carrier.new(0, 0, 0, d0, d1, [], prov())
 
 
 def test_single_edge_tree_homology():
@@ -126,7 +126,7 @@ def test_cycle_checker_accepts_zero_chain():
     d2 = QMatrix.zero(3, 0)
     complex_ = ChainComplex.new(2, 3, 0, d1, d2)
     chain = Chain.zero(Degree.new(1), BasisId.new("test"), 3)
-    try_cycle(chain, complex_.boundary_1, complex_.complex_hash())  # ok
+    try_cycle(chain, complex_.boundary_1, complex_.complex_hash())
 
 
 def test_cycle_checker_rejects_non_cycle():
@@ -215,14 +215,13 @@ def test_triangle_subdivision_preserves_homology():
     chain_map = CertifiedChainMap.new_checked([phi_0, phi_1, phi_2], c, d)
 
     z = QMatrix.from_row_major(3, 1, [q(1), q(1), q(1)])
-    assert c.boundary_1.matrix.matmul(z).is_zero()  # z is a cycle in C
+    assert c.boundary_1.matrix.matmul(z).is_zero()
 
     phi_z = chain_map.maps()[1].matmul(z)
     assert phi_z.as_flat() == [q(1), q(1), q(1), q(1)]
-    assert d.boundary_1.matrix.matmul(phi_z).is_zero()  # image is a cycle in D
+    assert d.boundary_1.matrix.matmul(phi_z).is_zero()
 
 
-# --- PO-D1 discharge: d1 . d0 = 0 per carrier (construction is the proof) ---
 
 
 def test_pod1_filled_triangle():

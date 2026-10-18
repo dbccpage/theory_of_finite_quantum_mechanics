@@ -1,10 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Exact 1-cochain obstruction and simplicial L1 quotient solver via Sparse Revised Simplex.
-//!
-//! Replaces ad-hoc BFS spanning-tree unwinding with canonical simplex LP delegation
-//! to `omega_solvers::solver_lp_exact_simplex::solve_weighted_l1_projection` over `num_rational::BigRational`.
-//! Emits and verifies the Kirchhoff divergence-free dual annihilating witness y in C_1(K; Q)
-//! satisfying d_0^T y = 0, |y_e| <= w_e, and zero duality gap <h, y> = Phi_1(h).
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
@@ -15,7 +8,6 @@ use crate::cochains::FiniteComplex;
 use crate::error::WdpError;
 use omega_solvers::solver_lp_exact_simplex::solve_weighted_l1_projection;
 
-/// 0-cochain assigning rational potentials to named vertices.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Cochain0 {
     pub values: BTreeMap<String, BigRational>,
@@ -32,7 +24,6 @@ impl Cochain0 {
     }
 }
 
-/// 1-cochain assigning rational values to oriented edges (u, v).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Cochain1 {
     pub values: BTreeMap<(String, String), BigRational>,
@@ -47,20 +38,13 @@ impl Cochain1 {
     }
 }
 
-/// Quotient certificate carrying primal repair, residual, and Kirchhoff dual witness.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DualWitnessCertificate {
-    /// Exact quotient norm Phi_1(h) = ||r||_{1, w} over Q.
     pub phi1_value: BigRational,
-    /// Optimal vertex potential phi in C^0(K; Q).
     pub potential_c0: Cochain0,
-    /// Primal residual r = h - d_0 phi in C^1(K; Q).
     pub residual_c1: Cochain1,
-    /// Dual annihilating witness y in C_1(K; Q) satisfying d_0^T y = 0 and |y_e| <= w_e.
     pub dual_witness_c1: Cochain1,
-    /// Exact coboundary flag: true iff Phi_1(h) == 0.
     pub is_exact: bool,
-    /// Non-authoritative metadata tag.
     pub authority_effect: String,
 }
 
@@ -73,7 +57,6 @@ pub enum CertificateVerificationError {
 }
 
 impl DualWitnessCertificate {
-    /// Independent 5-point verification predicate certifying primal-dual optimality.
     pub fn verify(
         &self,
         complex: &FiniteComplex,
@@ -156,7 +139,6 @@ impl DualWitnessCertificate {
     }
 }
 
-/// Solves the exact weighted L1 potential and dual annihilating witness via Sparse Revised Simplex.
 pub fn solve_exact_potential_weighted(
     complex: &FiniteComplex,
     h: &Cochain1,
@@ -197,7 +179,6 @@ pub fn solve_exact_potential_weighted(
         return Ok(cert);
     }
 
-    // Map vertex names to indices 0..k
     let v_list: Vec<String> = complex.vertices.iter().cloned().collect();
     let v_idx: BTreeMap<String, usize> = v_list
         .iter()
@@ -205,7 +186,6 @@ pub fn solve_exact_potential_weighted(
         .map(|(i, v)| (v.clone(), i))
         .collect();
 
-    // Construct d_0 matrix (m rows x k cols)
     let mut map_rows: Vec<Vec<BigRational>> = Vec::with_capacity(m);
     let mut target: Vec<BigRational> = Vec::with_capacity(m);
     let mut weights: Vec<BigRational> = Vec::with_capacity(m);
@@ -251,14 +231,12 @@ pub fn solve_exact_potential_weighted(
             }
         })?;
 
-    // Primal potential Cochain0
     let mut pot_map = BTreeMap::new();
     for (i, v_name) in v_list.iter().enumerate() {
         pot_map.insert(v_name.clone(), solution.coefficients[i].clone());
     }
     let potential_c0 = Cochain0 { values: pot_map };
 
-    // Primal residual Cochain1
     let mut res_map = BTreeMap::new();
     for (i, edge) in complex.edges.iter().enumerate() {
         res_map.insert(
@@ -268,7 +246,6 @@ pub fn solve_exact_potential_weighted(
     }
     let residual_c1 = Cochain1 { values: res_map };
 
-    // Dual witness Cochain1
     let mut dual_map = BTreeMap::new();
     for (i, edge) in complex.edges.iter().enumerate() {
         dual_map.insert((edge.0.clone(), edge.1.clone()), solution.dual[i].clone());
@@ -286,7 +263,6 @@ pub fn solve_exact_potential_weighted(
         authority_effect: "None".to_string(),
     };
 
-    // Self-verify certificate before emission
     cert.verify(complex, h, edge_weights)
         .map_err(|e| WdpError::InvalidInput {
             detail: format!("Emitted certificate failed self-verification: {e}"),
@@ -295,7 +271,6 @@ pub fn solve_exact_potential_weighted(
     Ok(cert)
 }
 
-/// Backward-compatible unweighted entrypoint.
 pub fn solve_exact_potential(
     complex: &FiniteComplex,
     h: &Cochain1,
@@ -321,7 +296,6 @@ mod tests {
     #[test]
     fn test_exact_cochain_zero_dual() {
         let complex = triangle_complex();
-        // phi(v0)=0, phi(v1)=1, phi(v2)=3 => h(v0,v1)=1, h(v1,v2)=2, h(v0,v2)=3
         let mut h_vals = BTreeMap::new();
         h_vals.insert(
             ("v0".into(), "v1".into()),
@@ -357,7 +331,6 @@ mod tests {
         ];
         let complex = FiniteComplex::new(vertices, edges, vec![]).unwrap();
 
-        // Directed cycle: h = 1 on each edge. Total circulation = 3.
         let mut h_vals = BTreeMap::new();
         h_vals.insert(("v0".into(), "v1".into()), BigRational::one());
         h_vals.insert(("v1".into(), "v2".into()), BigRational::one());
@@ -368,7 +341,6 @@ mod tests {
         assert!(!cert.is_exact);
         assert_eq!(cert.phi1_value, BigRational::from_integer(3.into()));
 
-        // Check dual witness properties
         for (_, y) in &cert.dual_witness_c1.values {
             assert!(y.abs() <= BigRational::one());
         }
@@ -422,7 +394,6 @@ mod tests {
         let cert =
             solve_exact_potential_weighted(&complex, &h, Some(&weights)).expect("solve weighted");
 
-        // Simplex optimal cost is 2, whereas putting residual on chord would cost 10
         assert_eq!(cert.phi1_value, BigRational::from_integer(2.into()));
         cert.verify(&complex, &h, Some(&weights))
             .expect("passes 5-point verification");

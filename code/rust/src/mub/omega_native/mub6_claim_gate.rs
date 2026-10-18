@@ -1,14 +1,8 @@
-//! Admission gate for a stated-region MUB(6) report.
-//!
-//! A float estimate, a planted global-solution flag, and a file under `artifacts/`
-//! are visible to this function and then discarded. The only certificate bit is
-//! the exact `EnclosedTriple::certify` result from this call.
 
 use crate::omega_native::exact::mub6_cover::EnclosedTriple;
 use crate::omega_native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
 use crate::omega_native::exact::mub6_interval_cover::VectorBox;
 
-/// Stated-region seal. The global MUB(6) bits are always false.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct StatedRegionSeal {
     pub firewall: &'static str,
@@ -20,17 +14,10 @@ pub struct StatedRegionSeal {
     pub verified_certificate: bool,
 }
 
-/// Return the exact certificate unchanged.
-///
-/// `float_estimate` is an argument so a prefilter can hand its number over.
-/// It is not read. `None` stays `None` when the estimate is a large positive lie.
 pub fn certificate_from_exact_only<T>(exact: Option<T>, _float_estimate: f64) -> Option<T> {
     exact
 }
 
-/// True when the artifact text tries to mint a global MUB(6) claim or a solved bit.
-///
-/// The firewall sentence itself is not that claim. A parse failure is hostile.
 pub fn artifact_tries_to_mint_global(artifact_json: &str) -> bool {
     let stripped = artifact_json.replace(FIREWALL, "");
     if stripped.contains("MUB(6)=3")
@@ -63,7 +50,6 @@ fn flag_is_true(value: &serde_json::Value, key: &str) -> bool {
     }
 }
 
-/// Recompute the box certificate and refuse every hostile side channel.
 pub fn seal_vbox_certificate(
     exact: &EnclosedTriple,
     vbox: &VectorBox,

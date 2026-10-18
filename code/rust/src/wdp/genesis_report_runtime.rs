@@ -1,7 +1,3 @@
-//! Executable reports for a declared finite selection of deduplicating admission
-//! histories and continuations. This is not the nine-store passage model, a
-//! closure computation, a physical carrier, or an authorization mechanism.
-//! AuthorityEffect: None. See docs/native_report_runtime.md.
 
 use crate::genesis_construction::{ConstructionError, ConstructionLimits, GenesisConstruction};
 use crate::genesis_primitive_execution::{PrimitiveEvent, PrimitiveInstance};
@@ -25,7 +21,6 @@ use std::collections::BTreeSet;
 
 pub const REQUEST_SCHEMA: &str = "omega.genesis.report-request.v1";
 pub const RESULT_SCHEMA: &str = "omega.genesis.report-result.v1";
-// The binary pins the original executable source, not a caller-supplied digest.
 const SOURCE: &[u8] = include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"),
     "/fixtures/model.py"));
 const OBSERVATION_SOURCE: &[u8] = include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"),
@@ -48,8 +43,6 @@ pub struct NamedHistory {
     pub events: Vec<PrimitiveEvent>,
 }
 
-/// Local indices refer to the lexicographically ordered realized profiles in
-/// each proper context. At the full context they refer to original histories.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct GlobalRequest {
@@ -75,7 +68,6 @@ pub struct Request {
     pub source_sha256: String,
     pub histories: Vec<NamedHistory>,
     pub questions: Vec<ProtectedQuestion>,
-    /// First word must be empty. Only this supplied finite language is protected.
     pub continuations: Vec<NamedHistory>,
     pub report: Vec<String>,
     pub global: Option<GlobalRequest>,
@@ -126,9 +118,6 @@ fn decision<R, A>(value: ReportQueryDecision<usize, R, A>) -> Decision<R, A> {
 #[serde(deny_unknown_fields)]
 pub struct Operation {
     pub continuation: String,
-    /// For each u in L: [h] -> (availability(u), profile_L(h u)),
-    /// checked on every supplied h. Hence all u,v in L are replayed, even when
-    /// uv is not itself in L. This does not assert closure under arbitrary words.
     pub decision: Decision<usize, Option<Vec<Answer>>>,
 }
 
@@ -145,7 +134,6 @@ pub enum Fact {
 #[serde(deny_unknown_fields)]
 pub struct GlobalResult {
     pub profiles: Vec<(u64, Vec<Vec<Answer>>)>,
-    /// Complete fiber in the ORIGINAL declared history order, not quotient IDs.
     pub histories: Vec<usize>,
     pub fact: Fact,
 }
@@ -153,12 +141,9 @@ pub struct GlobalResult {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RepairResult {
-    /// Each triple is (first history, second history, separating column).
     pub steps: Vec<(usize, usize, usize)>,
     pub partitions: Vec<Vec<usize>>,
     pub ranks: Vec<usize>,
-    /// Original histories and global request replayed initially and after EACH
-    /// split. These results cannot acquire a source alternative by refinement.
     pub global_rechecks: Vec<Option<GlobalResult>>,
 }
 
@@ -170,7 +155,6 @@ pub struct ResultPacket {
     pub source_sha256: String,
     pub request_sha256: String,
     pub states: Vec<State>,
-    /// Columns, in continuation-major order: availability, then every question.
     pub answers: Vec<Vec<Answer>>,
     pub profiles: Vec<Vec<Answer>>,
     pub class_of: Vec<usize>,
@@ -212,7 +196,6 @@ fn native(event: &PrimitiveEvent) -> Event {
             Event::AdmitInst(*form, args.iter().copied().map(Mark).collect())
         }
         PrimitiveEvent::AdmitRuleAll { form } => Event::AdmitRuleAll(*form),
-        // Preserve order and malformed pairs. Pair::of would normalize/panic.
         PrimitiveEvent::Impose { i, j } => Event::Impose(Pair {
             i: Mark(*i),
             j: Mark(*j),
@@ -390,7 +373,6 @@ fn global(
     let site = observed
         .report_site(&request.contexts, request.work_limit)
         .map_err(|e| refuse("RESTRICTIONS", e))?;
-    // report_site's conservative work bound dominates this finite fiber scan.
     let full = (1u64 << columns.len()) - 1;
     let fiber = site
         .presheaf()
@@ -498,7 +480,6 @@ pub fn evaluate(request: &Request) -> Result<ResultPacket, Refusal> {
             let global_rechecks = partitions
                 .iter()
                 .map(|_| {
-                    // Replay the ORIGINAL source. No refined report is substituted for it.
                     let original = self::presentation(request)?;
                     requested_global(&self::family(&original, &words)?, request)
                 })
@@ -545,8 +526,6 @@ pub fn evaluate(request: &Request) -> Result<ResultPacket, Refusal> {
     })
 }
 
-/// Caller supplies the independently retained original request, not a request
-/// extracted from the candidate. All native histories and global tasks rerun.
 pub fn verify(expected: &Request, candidate: &ResultPacket) -> Result<(), Refusal> {
     if evaluate(expected)? != *candidate {
         return Err(refuse("CANDIDATE", "source-bound replay differs"));

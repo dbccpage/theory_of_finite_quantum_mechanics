@@ -2,18 +2,8 @@ import Mathlib.Analysis.Fourier.AddCircle
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Push
 
-/-!
-# Finite character sums
 
-Three lemmas about an additive character on a finite abelian group, with values
-in a field. If the character is not identically `1`, its sum is `0`. If it is
-identically `1`, its sum is the cardinality. When that cardinality is invertible,
-the normalized sum is `1` or `0` according as the character is identically `1`.
 
-This file formalizes algebraic lemmas for finite character sums over finite abelian groups
-in a field R under Lake package configuration. It does not construct ZMod dyadic colimits
-or a continuous measure integral directly in Lean 4 core.
--/
 
 namespace FiniteToContinuum
 
@@ -23,7 +13,6 @@ open scoped BigOperators
 
 variable {R : Type*} [CommRing R]
 
-/-- Kronecker delta in a commutative ring `R`. -/
 def delta (k : ℤ) : R :=
   if k = 0 then 1 else 0
 
@@ -35,7 +24,6 @@ theorem delta_zero : (delta (0 : ℤ) : R) = 1 := by
 theorem delta_ne_zero {k : ℤ} (hk : k ≠ 0) : (delta k : R) = 0 := by
   simp [delta, hk]
 
-/-- A character on a finite abelian group `G` is a multiplicative homomorphism `G → Rˣ`. -/
 structure AdditiveChar (G : Type*) [AddCommGroup G] (R : Type*) [CommRing R] where
   toFun : G → R
   map_zero' : toFun 0 = 1
@@ -45,7 +33,6 @@ instance {G : Type*} [AddCommGroup G] {R : Type*} [CommRing R] :
     CoeFun (AdditiveChar G R) (fun _ => G → R) where
   coe χ := χ.toFun
 
-/-- Cancellation of non-trivial character sum under translation by a non-trivial element. -/
 theorem char_sum_translation_cancel {G R : Type*} [AddCommGroup G] [Fintype G] [Field R]
     (χ : AdditiveChar G R) (y : G) (hy : χ y ≠ 1) :
     (∑ x : G, χ x) = 0 := by
@@ -71,7 +58,6 @@ theorem char_sum_translation_cancel {G R : Type*} [AddCommGroup G] [Fintype G] [
   have hne : χ y - 1 ≠ 0 := sub_ne_zero.mpr hy
   exact (mul_eq_zero.mp hsub).resolve_left hne
 
-/-- Trivial character sum equals the cardinality of the group. -/
 theorem trivial_char_sum {G R : Type*} [AddCommGroup G] [Fintype G] [Field R]
     (χ : AdditiveChar G R) (htriv : ∀ x, χ x = 1) :
     (∑ x : G, χ x) = Fintype.card G := by
@@ -83,7 +69,6 @@ theorem trivial_char_sum {G R : Type*} [AddCommGroup G] [Fintype G] [Field R]
     _ = Fintype.card G := by
       simp
 
-/-- Normalized character sum: `1` when `χ` is identically `1`, otherwise `0`. -/
 theorem normalized_character_sum {G R : Type*} [AddCommGroup G] [Fintype G] [Field R]
     (χ : AdditiveChar G R) (hcard_pos : (Fintype.card G : R) ≠ 0) :
     ((Fintype.card G : R)⁻¹ * (∑ x : G, χ x)) = (if (∀ x, χ x = 1) then (1 : R) else 0) := by

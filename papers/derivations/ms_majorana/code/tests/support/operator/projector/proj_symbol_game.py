@@ -5,15 +5,6 @@ from typing import Any, Protocol, runtime_checkable
 from omega_engine_pfp.domain.entities.packet_envelope import PacketEnvelopeV2
 
 
-# Resolved on call, not at import. At module scope these two closed a cycle:
-#   omega_engine_pfp.canonical
-#     -> .domain -> .value_objects -> .aggregates -> .learning_policy
-#     -> omega_engine.crates.operator.projector.proj_symbol_game
-#     -> omega_engine_pfp.canonical   (partially initialized)
-# Every module entering that graph through `canonical` failed to import,
-# including omega_engine/_tests_unit/test_coboundary_scoring.py, whose eight
-# tests could not be collected at all. Both names are used only inside methods,
-# so deferring costs one dict lookup per call and no call site changes.
 def domain_digest(*args: Any, **kwargs: Any) -> Any:
     from omega_engine_pfp.domain.shared_kernel.canonical import (
         domain_digest as _domain_digest,

@@ -170,7 +170,7 @@ def test_chain_break_is_detected():
     assert ok.ok, ok.as_dict()
 
     r0_edit = dict(r0)
-    r0_edit["phi1"] = 99.0  # content edit without rehash
+    r0_edit["phi1"] = 99.0
     broken = validate_dda_sprint_trajectory([r0_edit, r1])
     assert not broken.ok
     assert any(v.code == "CHAIN_BROKEN" for v in broken.violations)

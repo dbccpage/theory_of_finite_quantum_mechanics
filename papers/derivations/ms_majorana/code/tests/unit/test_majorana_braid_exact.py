@@ -11,7 +11,6 @@ from pathlib import Path
 import sys
 import pytest
 
-# Add ms_majorana/code to sys.path
 code_dir = Path(__file__).resolve().parent.parent.parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -45,7 +44,6 @@ class TestExactSignedPermutationMatrix:
         assert prod.is_orthogonal() is True
         assert prod.determinant() == Fraction(1, 1)
 
-        # M * M^T == I
         inv = prod.transpose()
         ident = prod.multiply(inv)
         assert ident == ExactSignedPermutationMatrix.identity(3)
@@ -69,7 +67,6 @@ class TestExactSignedPermutationMatrix:
             m1.multiply(m2)
 
     def test_singular_determinant(self):
-        # Zero matrix
         zero_data = ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)))
         mat = ExactSignedPermutationMatrix(2, zero_data)
         assert mat.determinant() == Fraction(0, 1)
@@ -81,7 +78,6 @@ class TestMajoranaBraidGeneratorAndCircuit:
     def test_generator_creation_and_inverse(self):
         gen = MajoranaBraidGenerator(4, 1)
         inv = MajoranaBraidGenerator(4, 1, inverse=True)
-        # R_1 * R_1^{-1} == I
         prod = gen.matrix.multiply(inv.matrix)
         assert prod == ExactSignedPermutationMatrix.identity(4)
 
@@ -95,9 +91,7 @@ class TestMajoranaBraidGeneratorAndCircuit:
 
     def test_yang_baxter_relation(self):
         circuit = MajoranaBraidCircuit(4)
-        # R_1 R_2 R_1 == R_2 R_1 R_2
         assert circuit.verify_yang_baxter(1) is True
-        # R_2 R_3 R_2 == R_3 R_2 R_3
         assert circuit.verify_yang_baxter(2) is True
 
     def test_yang_baxter_out_of_range(self):
@@ -109,7 +103,6 @@ class TestMajoranaBraidGeneratorAndCircuit:
 
     def test_far_commutativity(self):
         circuit = MajoranaBraidCircuit(4)
-        # |1 - 3| = 2 >= 2 => R_1 R_3 == R_3 R_1
         assert circuit.verify_far_commutativity(1, 3) is True
 
     def test_far_commutativity_invalid(self):

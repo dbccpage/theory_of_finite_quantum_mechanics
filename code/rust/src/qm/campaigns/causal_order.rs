@@ -1,5 +1,3 @@
-//! Declared small causal-order witnesses and bounded campaign census.
-//! AuthorityEffect: None.
 use omega_homology::finite_poset::{FinitePoset, PosetError};
 use omega_homology::poset_census::{canonical_relations, labelled_posets};
 use std::collections::BTreeMap;
@@ -76,7 +74,6 @@ mod tests {
         assert_eq!(with_sl, 15);
     }
 
-    // T817 Negative Controls / Mutation Tests
     #[test]
     fn test_t817_negative_1_scalar_as_causal() {
         let scalar_vals = [1, 2, 3];

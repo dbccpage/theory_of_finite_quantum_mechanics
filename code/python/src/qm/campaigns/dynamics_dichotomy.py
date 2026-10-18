@@ -142,21 +142,12 @@ def pythagorean_valuation_obstruction_step(k: int) -> dict[str, Any]:
     """
     if k < 1:
         raise ValueError("k must be at least 1")
-    # In Z[i], pi = 2 + i.
-    # Compute (2+i)^k and (2-i)^k
     p_plus = GaussianInteger(2, 1) ** k
     p_minus = GaussianInteger(2, -1) ** k
 
-    # Modulo pi = 2+i:
-    # A Gaussian integer a + b*i is divisible by 2+i iff
-    # (a + b*i)*(2 - i) / 5 has integer coordinates.
-    # (a + b*i)*(2 - i) = (2a + b) + (2b - a)*i.
-    # Divisible by 2+i iff 2a + b = 0 (mod 5).
-    # Check 2*re + im for p_plus:
     val_plus_mod5 = (2 * p_plus.re + p_plus.im) % 5
     val_minus_mod5 = (2 * p_minus.re + p_minus.im) % 5
 
-    # Also compute (3+4i)^k and 5^k
     lambda_num = GaussianInteger(3, 4) ** k
     pow5 = 5**k
 
@@ -164,12 +155,12 @@ def pythagorean_valuation_obstruction_step(k: int) -> dict[str, Any]:
 
     return {
         "k": k,
-        "p_plus_mod5": val_plus_mod5,  # Must be 0
-        "p_minus_mod5": val_minus_mod5,  # Must be != 0 (either 1 or 4)
-        "congruent_mod_pi": val_plus_mod5 == val_minus_mod5,  # Must be False
+        "p_plus_mod5": val_plus_mod5,
+        "p_minus_mod5": val_minus_mod5,
+        "congruent_mod_pi": val_plus_mod5 == val_minus_mod5,
         "lambda_num": str(lambda_num),
         "pow5": pow5,
-        "is_power_of_5": is_equal_num,  # Must be False
+        "is_power_of_5": is_equal_num,
     }
 
 
@@ -180,7 +171,6 @@ def verify_pythagorean_infinite_order(max_k: int = 100) -> bool:
     for k in range(1, max_k + 1):
         if curr.is_identity():
             return False
-        # Double check valuation step
         val = pythagorean_valuation_obstruction_step(k)
         if val["congruent_mod_pi"] or val["is_power_of_5"]:
             return False
@@ -190,9 +180,7 @@ def verify_pythagorean_infinite_order(max_k: int = 100) -> bool:
 
 def evaluate_dense_orbit_intervals(num_points: int = 500, num_bins: int = 20) -> dict[str, Any]:
     """Demonstrate orbit density on the unit circle U(1) via bin coverage."""
-    theta = math.acos(3.0 / 5.0)  # in radians
-    # theta is an irrational multiple of pi
-    # Check that bins across [0, 2*pi) are all covered
+    theta = math.acos(3.0 / 5.0)
     bins = [0] * num_bins
     bin_width = 2.0 * math.pi / num_bins
 

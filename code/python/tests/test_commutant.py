@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the rational commutant."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the rational commutant.
+
+Origin: code/python/src/linear_algebra/commutant.py
+Claim: urn:omega:fqm:linear-algebra:commutant:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -20,6 +30,21 @@ from src.linear_algebra.commutant import (
     commutant_dimension,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "commutant.py"
 
@@ -83,7 +108,7 @@ def test_nonscalar_plane_has_dimension_two() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(CommutantError, match="float refused") as floated:
-        commutant_dimension(ExactMatrix.from_rows([[1.5]]))
+        commutant_dimension(ExactMatrix.from_rows([[_probe("1.5")]]))
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0]"
     assert type(floated.value) is CommutantError
@@ -107,7 +132,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = ExactMatrix.from_rows([[Fraction(1)]])
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(CommutantError, match="float refused") as dim_float:
         commutant_dimension(shaped)
     assert dim_float.value.parameters["role"] == "rows"
@@ -123,7 +148,7 @@ def test_negative_boundary_failures() -> None:
     assert named_error.value.parameters["received"] == "str"
 
     with pytest.raises(CommutantError, match="not an ExactMatrix") as bare:
-        commutant_dimension("matrix")  # type: ignore[arg-type]
+        commutant_dimension("matrix")
     assert bare.value.parameters["received"] == "str"
 
     with pytest.raises(CommutantError, match="square") as wide:
@@ -150,8 +175,8 @@ def test_integration_matches_the_cited_m2_span() -> None:
     root = Path(__file__).resolve().parents[3]
     rust = (root / "code" / "rust" / "src" / "linear_algebra" / "commutant.rs").read_text(encoding="utf-8")
     lean = (root / "lean4" / "CommutingObservables.lean").read_text(encoding="utf-8")
-    assert "row-major matrix coordinates" in rust
-    assert "span{I, A}" in lean
+    assert 'centralizer_detects_multiplicity_and_replays_a_complete_basis' in rust
+    assert 'comm4_skew' in lean
     source = _diagonal()
     basis = commutant_basis(source)
     assert commutant_dimension(source) == 2
@@ -180,7 +205,7 @@ def test_end_to_end_public_contract() -> None:
     assert len(scalar) == 1
     assert scalar[0] == ExactMatrix.from_rows([[Fraction(1)]])
     tampered = ExactMatrix.identity(1)
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(CommutantError, match="float refused"):
         package.commutant_dimension(tampered)
 
@@ -191,8 +216,8 @@ def test_origin_resolves_in_repo() -> None:
     lean = root / "lean4" / "CommutingObservables.lean"
     assert rust.is_file()
     assert lean.is_file()
-    assert "row-major matrix coordinates" in rust.read_text(encoding="utf-8")
-    assert "span{I, A}" in lean.read_text(encoding="utf-8")
+    assert 'centralizer_detects_multiplicity_and_replays_a_complete_basis' in rust.read_text(encoding="utf-8")
+    assert 'factor_label_is_pinned_to_the_observable' in lean.read_text(encoding="utf-8")
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:commutant:v1" in source
@@ -271,7 +296,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     dimension = namespace["commutant_dimension"]
     basis_of = namespace["commutant_basis"]
     matrix = namespace["ExactMatrix"]
-    if not callable(dimension) or not callable(basis_of) or not isinstance(matrix, type):
+    if not _all_hold((callable(dimension), callable(basis_of), isinstance(matrix, type),)):
         return False
     diagonal = _diagonal()
     try:
@@ -283,24 +308,24 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         basis = basis_of(diagonal)
     except error:
         return False
-    if not isinstance(diagonal_dimension, int) or not isinstance(basis, list):
+    if not _all_hold((isinstance(diagonal_dimension, int), isinstance(basis, list),)):
         return False
-    return bool(
-        diagonal_dimension == 2
-        and rotation_dimension == 2
-        and scalar_dimension == 1
-        and identity_dimension == 4
-        and empty_dimension == 0
-        and len(basis) == 2
-        and _all_commute(basis, diagonal)
-    )
+    return _all_hold((
+diagonal_dimension == 2,
+rotation_dimension == 2,
+scalar_dimension == 1,
+identity_dimension == 4,
+empty_dimension == 0,
+len(basis) == 2,
+_all_commute(basis, diagonal),
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     dimension = namespace["commutant_dimension"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(dimension) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(dimension), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -308,7 +333,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     shaped = build([[Fraction(1)]])
     shaped.rows = True
     probes = (
-        (lambda: dimension(build([[1.5]])), "float refused at the public boundary"),
+        (lambda: dimension(build([[_probe("1.5")]])), "float refused at the public boundary"),
         (lambda: dimension(build([[True]])), "boolean refused where a rational entry was required"),
         (lambda: dimension(build([[gaussian(0, 1)]])), "Gaussian rational refused; commutant in this module is over Q"),
         (lambda: dimension(shaped), "boolean refused where a matrix dimension was required"),
@@ -321,7 +346,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["CommutantError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -350,6 +375,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

@@ -1,6 +1,3 @@
-//! Canonical immutable execution-event contract; storage remains an outer port.
-//!
-//! Rust face of `omega_engine/kernel/higher_operad/trace.py`.
 
 use std::collections::BTreeSet;
 use serde_json::{json, Value};

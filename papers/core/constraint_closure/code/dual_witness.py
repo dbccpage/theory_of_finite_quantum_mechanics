@@ -75,7 +75,6 @@ class DualCertifiedL1Solver:
         if len(omega) != m:
             raise ValueError(f"Length of omega ({len(omega)}) must match rows of d0 ({m})")
 
-        # Zero cochain case: reserve shortcut exclusively for exact numerical zero
         if np.all(omega == 0.0):
             zero_alpha = np.zeros(n, dtype=float)
             zero_w = np.zeros(m, dtype=float)
@@ -92,19 +91,11 @@ class DualCertifiedL1Solver:
                 solver_status="OPTIMAL_ZERO",
             )
 
-        # Solver options matching claimed precision (clamped to HiGHS minimum 1e-10)
         solver_opts = {
             "primal_feasibility_tolerance": max(1e-10, float(self.tol)),
             "dual_feasibility_tolerance": max(1e-10, float(self.tol)),
         }
 
-        # 1. Primal LP formulation:
-        # Variables: x = [alpha (n), u (m)]
-        # Minimize sum u_i
-        # s.t.
-        #   -d0 * alpha - u <= -omega
-        #    d0 * alpha - u <=  omega
-        #    u >= 0, alpha unconstrained
         c_primal = np.concatenate([np.zeros(n), np.ones(m)])
 
         A_ub1 = np.hstack([-d0, -np.eye(m)])
@@ -133,10 +124,6 @@ class DualCertifiedL1Solver:
         residual = omega - d0 @ alpha_opt
         primal_obj = float(np.sum(np.abs(residual)))
 
-        # 2. Dual LP formulation:
-        # Maximize w^T omega  <=>  Minimize -omega^T w
-        # s.t. d0^T w = 0 (boundary/divergence-free 1-cycle)
-        #      -1 <= w_i <= 1
         c_dual = -omega
         A_eq = d0.T
         b_eq = np.zeros(n)
@@ -157,14 +144,12 @@ class DualCertifiedL1Solver:
         w_opt = res_dual.x
         dual_obj = float(np.dot(w_opt, omega))
 
-        # Divergence of dual witness: d0^T w = partial_1 w
         div_w = d0.T @ w_opt
         dual_div_norm = float(np.linalg.norm(div_w, ord=np.inf))
 
         duality_gap = abs(primal_obj - dual_obj)
         is_closed = bool(primal_obj <= self.tol)
 
-        # Explicit certificate validation
         check_atol = max(1e-7, self.tol * 10)
         res_ok = np.allclose(residual, omega - d0 @ alpha_opt, atol=check_atol)
         div_ok = dual_div_norm <= check_atol
@@ -196,5 +181,4 @@ def compute_l1_quotient_with_dual_witness(
     return solver.solve(omega, d0)
 
 
-# Backward-compatible alias
 DualWitnessL1Solver = DualCertifiedL1Solver

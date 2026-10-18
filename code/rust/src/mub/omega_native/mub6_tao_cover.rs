@@ -1,25 +1,3 @@
-//! Branch-and-bound cover certification for Terence Tao's isolated spectral seed triple {I, F6, S6}.
-//!
-//! AuthorityEffect: None
-//! Restricted words: forced, minimal, free, canonical, equivalent, universal, complete
-//! require proof or explicit conditional scope. The `complete` flag denotes finite
-//! branch-and-bound partition termination over the declared stated region, nothing more.
-//!
-//! ## Overview
-//!
-//! This module implements exact rational and cyclotomic branch-and-bound box covers
-//! over the gauge-fixed 5-torus [0, 2π]^5 for the fixed triple:
-//! - B1: Standard basis I_6 of C^6.
-//! - B2: Normalized Fourier matrix F_6 / sqrt(6) (at dx=0, dy=0).
-//! - B3: Normalized Terence Tao isolated spectral matrix S_6 / sqrt(6) over Q(ζ₂₄) via Cyc24.
-//!
-//! The certification computes the exact rational lower bound on the squared curvature mass:
-//!   Ψ^sq(T, U) = ∑_{j=0}^5 ∑_{i=0}^{17} ω_{ij}(U)^2 = ∑_{j=0}^5 Φ^sq(T, U_j)
-//! where Φ^sq(T, v) = ∑_{i=0}^{17} (|⟨e_i, v⟩|² − 1/6)².
-//!
-//! For every certified box, residual_sq_lower(vbox) >= min_gap > 0 in exact rational arithmetic,
-//! rigorously proving that no vector in the covered box can be mutually unbiased to the triple.
-//! Zero floating-point arithmetic is permitted in the certificate verification chain.
 
 use num_rational::BigRational;
 use num_traits::Zero;
@@ -45,45 +23,24 @@ use omega_number_theory::rational::rq;
 
 pub use crate::omega_native::exact::mub6_field::inv_sqrt6;
 
-/// The 6 normalized columns of the Tao matrix S_6 / sqrt(6) in C^6 over `Q(ζ₂₄)`.
-///
-/// Each entry has modulus |[S_6]_{jk} / sqrt(6)| = 1/sqrt(6), so every column is
-/// mutually unbiased to the standard basis. The columns are mutually orthonormal:
-/// ⟨v_j, v_k⟩ = δ_{jk}.
 pub fn tao_s6_columns() -> [ExactVec; D] {
     let s6 = tao_s6_matrix();
     let s = inv_sqrt6();
     std::array::from_fn(|col| std::array::from_fn(|row| s6[row][col].mul(&s)))
 }
 
-/// Exact 18 columns of the Tao seed triple diagnostic {I_6, F_6, S_6}.
-///
-/// NOTE (R11 audit): F_6 and S_6 share the normalized all-ones first column,
-/// giving squared overlap 1 != 1/6 between column 0 of F_6 and column 0 of S_6.
-/// This configuration is an arbitrary-basis diagnostic fixture, NOT an MU triple.
-/// Residual exclusions against these bases do not constitute a fourth-basis extension certificate
-/// for a genuine MU triple.
-///
-/// Layout follows canonical triple convention:
-/// - Columns 0..6: Standard basis I_6
-/// - Columns 6..12: Fourier basis F_6 / sqrt(6) (at dx=0, dy=0)
-/// - Columns 12..18: Tao spectral basis S_6 / sqrt(6)
 pub fn tao_seed_triple_columns() -> Vec<ExactVec> {
     let mut cols = Vec::with_capacity(3 * D);
-    // B1: standard basis
     for idx in 0..D {
         let mut v: ExactVec = std::array::from_fn(|_| Cyc24::zero());
         v[idx] = Cyc24::rat(ri(1));
         cols.push(v);
     }
-    // B2: Fourier basis F6(0,0)
     cols.extend_from_slice(&f6_family_columns(0, 0));
-    // B3: Tao basis S6
     cols.extend_from_slice(&tao_s6_columns());
     cols
 }
 
-/// Build exact + f64 enclosures for the Tao seed triple {I_6, F_6, S_6}.
 pub fn tao_seed_enclosed() -> (EnclosedTriple, EnclosedTripleF64) {
     let cols = tao_seed_triple_columns();
     (
@@ -92,21 +49,18 @@ pub fn tao_seed_enclosed() -> (EnclosedTriple, EnclosedTripleF64) {
     )
 }
 
-/// Narrow torus cell used for end-to-end complete-cover validation (matches `mub6_cover` tests).
 pub fn narrow_torus_cell() -> VectorBox {
     let lo = ri(28) / ri(100) - ri(2) / ri(100);
     let hi = ri(28) / ri(100) + ri(2) / ri(100);
     std::array::from_fn(|_| Interval::new(lo.clone(), hi.clone()))
 }
 
-/// Wider torus cell that forces subdivision (matches `mub6_cover` wide-cell test).
 pub fn wide_torus_cell() -> VectorBox {
     let lo = ri(28) / ri(100) - ri(18) / ri(100);
     let hi = ri(28) / ri(100) + ri(18) / ri(100);
     std::array::from_fn(|_| Interval::new(lo.clone(), hi.clone()))
 }
 
-/// Smoke basis box: column 0 near `e_0`, other columns wide — cannot be a fourth MU basis.
 pub fn smoke_basis_box_col0_near_e0() -> BasisBox {
     let small = Interval::new(rq(-1, 20), rq(1, 20));
     let mut near_e0: VectorBox = std::array::from_fn(|_| small.clone());
@@ -119,7 +73,6 @@ pub fn smoke_basis_box_col0_near_e0() -> BasisBox {
     bbox
 }
 
-/// Smoke check for Tao seed triple: verifies that col0 near e0 is strictly excluded.
 pub fn tao_seed_smoke_check() -> (bool, Option<String>) {
     let cols = tao_seed_triple_columns();
     let bbox = smoke_basis_box_col0_near_e0();
@@ -137,31 +90,26 @@ pub fn tao_seed_smoke_check() -> (bool, Option<String>) {
     )
 }
 
-/// Run the exact cover engine on a stated region against the Tao seed triple.
 pub fn cover_tao_region(region: VectorBox, max_depth: u32) -> CoverCertificate {
     let (exact, _) = tao_seed_enclosed();
     let report = cover_region(&exact, region, max_depth);
     report.certificate("tao_seed_I_F6_S6_region")
 }
 
-/// Run the prefiltered (f64 guide + exact certify) cover on a stated region for Tao seed.
 pub fn cover_tao_region_prefiltered(region: VectorBox, max_depth: u32) -> CoverCertificate {
     let (exact, fast) = tao_seed_enclosed();
     let report = cover_region_prefiltered(&exact, &fast, region, max_depth);
     report.certificate("tao_seed_I_F6_S6_prefiltered_region")
 }
 
-/// Run complete finite cover of the standard narrow torus cell for Tao seed.
 pub fn cover_tao_narrow_cell(max_depth: u32) -> CoverCertificate {
     cover_tao_region(narrow_torus_cell(), max_depth)
 }
 
-/// Run complete finite cover of the standard wide torus cell for Tao seed.
 pub fn cover_tao_wide_cell(max_depth: u32) -> CoverCertificate {
     cover_tao_region_prefiltered(wide_torus_cell(), max_depth)
 }
 
-/// Single-chunk unit of the full gauge-fixed 5-torus under the Tao seed triple.
 pub fn tao_gauge_fixed_chunk_cover(
     presplit_depth: u32,
     chunk_index: usize,
@@ -180,7 +128,6 @@ pub fn tao_gauge_fixed_chunk_cover(
     ))
 }
 
-/// Parallel full gauge-fixed 5-torus cover against the Tao seed triple.
 pub fn tao_gauge_fixed_cover_parallel(
     presplit_depth: u32,
     max_depth: u32,
@@ -202,11 +149,7 @@ pub fn tao_gauge_fixed_cover_parallel(
     ))
 }
 
-// ---------------------------------------------------------------------------
-// Scaled Multi-Box Reflection Complex Schema for Lane V1d & Independent Verifiers
-// ---------------------------------------------------------------------------
 
-/// A single certified box record with exact rational bounds.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BoxRecord {
     pub index: usize,
@@ -215,7 +158,6 @@ pub struct BoxRecord {
     pub gap: String,
 }
 
-/// Metadata describing the multi-box complex geometry and coverage.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ComplexMetadata {
     pub region_label: String,
@@ -231,8 +173,6 @@ pub struct ComplexMetadata {
     pub max_depth_used: u32,
 }
 
-/// Scaled kernel reflection multi-box certificate artifact matching
-/// schema version `omega.mub.kernel-reflection-scaled.v1`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct KernelReflectionScaledArtifact {
     pub schema_version: String,
@@ -248,10 +188,6 @@ pub struct KernelReflectionScaledArtifact {
     pub boxes: Vec<BoxRecord>,
 }
 
-/// Build the scaled kernel reflection complex on `narrow_torus_cell()` at `presplit_depth`.
-///
-/// Evaluates every leaf box in exact rational interval arithmetic over Cyc24.
-/// Asserts that every leaf box satisfies `gap > 0`.
 pub fn build_kernel_reflection_tao_s6_complex(
     presplit_depth: u32,
 ) -> KernelReflectionScaledArtifact {
@@ -327,7 +263,6 @@ pub fn build_kernel_reflection_tao_s6_complex(
     }
 }
 
-/// Write the certified Tao S6 kernel reflection JSON artifact under `artifacts/`.
 pub fn write_kernel_reflection_tao_s6_artifact(presplit_depth: u32) -> Result<PathBuf, String> {
     let artifact = build_kernel_reflection_tao_s6_complex(presplit_depth);
     if !artifact.complex.complete || artifact.complex.uncertified != 0 {
@@ -356,14 +291,12 @@ mod tests {
         let sixth = Cyc24::rat(ri(1) / ri(6));
 
         for j in 0..D {
-            // Check norm 1
             let mut norm_sq = Cyc24::zero();
             for k in 0..D {
                 norm_sq = norm_sq.add(&cols[j][k].mul(&cols[j][k].conj()));
             }
             assert_eq!(norm_sq, one, "Column {j} must have norm 1");
 
-            // Check orthogonal to other columns
             for k in (j + 1)..D {
                 let mut ip = Cyc24::zero();
                 for r in 0..D {
@@ -372,7 +305,6 @@ mod tests {
                 assert_eq!(ip, Cyc24::zero(), "Columns {j} and {k} must be orthogonal");
             }
 
-            // Check mutually unbiased to standard basis
             for r in 0..D {
                 let entry_mod_sq = cols[j][r].mul(&cols[j][r].conj());
                 assert_eq!(

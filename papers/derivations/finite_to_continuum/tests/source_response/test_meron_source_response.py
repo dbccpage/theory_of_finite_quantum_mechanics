@@ -58,7 +58,6 @@ def test_zero_temperature_sample_encloses_known_actual_source_target():
     assert sample.finite_target_enclosure.contains_interval(sample.physical_density)
     assert sample.thermodynamic_target_enclosure == sample.finite_target_enclosure
     assert sample.authority_effect == "None"
-    # A tighter high-M nonzero field plan has the same declared target.
     fine = sample_source_plan(SourceFieldPlan(EulerTimePlan(4, 8, I(0)), I(2)), log_order=12)
     assert sample.thermodynamic_target_enclosure.intersects(fine.thermodynamic_target_enclosure)
 
@@ -67,7 +66,6 @@ def test_joint_volume_time_majorant_vanishes_along_m_equals_l_squared_prefix():
     bounds = [SourceFieldPlan(EulerTimePlan(l, l*l, I(Q(1, 4))), I(Q(1, 2))).thermodynamic_density_error
               for l in (4, 8, 16)]
     assert bounds[0] > bounds[1] > bounds[2]
-    # Finite prefix of a separately written infinite-family proof, not execution at infinite L.
 
 
 def test_finite_resolution_response_keeps_center_sign_and_error_amplification():

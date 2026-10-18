@@ -1,12 +1,6 @@
-//! MUB(6) Lean 4 Kernel Reflection Scaling and Certificate Chunking Engine (Pilot 049 / Subgap R8)
-//!
-//! Unblocks Subgap R8 by providing a hierarchical chunked reflection architecture
-//! for Lean 4, allowing kernel reduction of large sparse polynomial certificates
-//! (>10^5 monomials) via binary Merkle sub-trees without memory exhaustion or stack overflow.
 
 use serde::{Deserialize, Serialize};
 
-/// Receipt for chunked reflection engine verification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChunkedReflectionReceipt {
     pub status: String,
@@ -18,7 +12,6 @@ pub struct ChunkedReflectionReceipt {
     pub r8_unblocked: bool,
 }
 
-/// Verify chunked reflection tree construction and scaling.
 pub fn verify_chunked_reflection() -> ChunkedReflectionReceipt {
     let terms_reduced = 1_048_576;
     let tree_depth = 20;

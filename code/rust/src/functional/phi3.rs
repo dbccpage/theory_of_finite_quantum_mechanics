@@ -1,47 +1,9 @@
-//! # Phi3: Exact Degree-3 Quotient-Distance and 3-Cavity / Bianchi Obstruction Certificates
-//!
-//! Higher-degree finite obstruction calculus in the 3-dimensional chain/cochain complex:
-//!
-//! ```text
-//! C³  <───d₂───  C²  <───d₁───  C¹  <───d₀───  C⁰       (cochains)
-//! C₃  ───∂₃───>  C₂  ───∂₂───>  C₁  ───∂₁───>  C₀       (chains, ∂ₖ = dₖ₋₁ᵀ)
-//! ```
-//!
-//! With the dual nilpotence laws:
-//! - 1-skeleton nilpotence: `d₁ ∘ d₀ = 0` (or `∂₁ ∘ ∂₂ = 0`)
-//! - Bianchi identity nilpotence: `d₂ ∘ d₁ = 0` (or `∂₂ ∘ ∂₃ = 0`)
-//!
-//! ## Mathematical Definitions
-//!
-//! 1. **Bianchi Identity & Degree-2 Closure Defect Γ₃**:
-//!    For a 2-cochain field strength `B ∈ C²(K; ℚ)`, its Bianchi defect is:
-//!    ```text
-//!    Γ₃(B) = ‖d₂ B‖_{1, ν} = ∑_{c₃ ∈ C₃} ν_{c₃} |(d₂ B)_{c₃}|
-//!    ```
-//!    If `B = d₁ A`, then `d₂ B = (d₂ ∘ d₁) A = 0`, satisfying the Bianchi identity.
-//!
-//! 2. **Degree-3 Quotient Obstruction Φ₃**:
-//!    For a target 3-cochain flux `H ∈ C³(K; ℚ)` on a complex with 3-cavities (`b₃ ≥ 1`):
-//!    ```text
-//!    Φ₃([H]) = min_{B ∈ C²(K; ℚ)} ‖H - d₂ B‖_{1, ν}
-//!    ```
-//!    By exact linear programming weak duality over `ℚ`:
-//!    ```text
-//!    Φ₃([H]) ≥ max_{u ∈ C₃(K; ℚ)} ⟨H, u⟩
-//!    subject to:
-//!      d₂ᵀ u = 0       (u ∈ Z₃(K; ℚ), closed 3-cycle / cavity)
-//!      |u_{c₃}| ≤ ν_{c₃}   ∀ c₃ ∈ C₃
-//!    ```
-//!
-//! When primal and dual values match exactly, weak duality establishes optimality
-//! with zero duality gap in `ℚ`.
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use serde::{Deserialize, Serialize};
 use std::str::FromStr;
 
-/// Wire shape for string-encoded rational degree-3 certificate payloads.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ExactPhi3CertificateWire {
@@ -101,31 +63,20 @@ impl TryFrom<ExactPhi3CertificateWire> for ExactPhi3Certificate {
     }
 }
 
-/// Submitted exact finite rational witness for degree-3 quotient obstruction Φ₃([H]).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(try_from = "ExactPhi3CertificateWire")]
 pub struct ExactPhi3Certificate {
-    /// Target 3-cochain flux H ∈ C³ (length |C₃|)
     pub flux_h: Vec<BigRational>,
-    /// Coboundary matrix d₂: C² → C³ (|C₃| rows, |C₂| cols)
     pub d2: Vec<Vec<BigRational>>,
-    /// Optional coboundary matrix d₁: C¹ → C² (|C₂| rows, |C₁| cols) for Bianchi nilpotence d₂ d₁ = 0
     pub d1: Option<Vec<Vec<BigRational>>>,
-    /// Optional coboundary matrix d₀: C⁰ → C¹ (|C₁| rows, |C₀| cols) for 1-skeleton nilpotence d₁ d₀ = 0
     pub d0: Option<Vec<Vec<BigRational>>>,
-    /// Strictly positive 3-cell volume weights ν_{c₃} (length |C₃|)
     pub weights: Vec<BigRational>,
-    /// Gauge 2-cochain potential B ∈ C² (length |C₂|)
     pub potential_b: Vec<BigRational>,
-    /// Primal residual r = H - d₂ B (length |C₃|)
     pub primal_residual: Vec<BigRational>,
-    /// Dual 3-cycle witness u ∈ Z₃(K; ℚ) satisfying d₂ᵀ u = 0 (length |C₃|)
     pub dual_witness: Vec<BigRational>,
-    /// Certified optimal obstruction value in ℚ
     pub reported_value: BigRational,
 }
 
-/// Sealed result of replaying an [`ExactPhi3Certificate`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct VerifiedExactPhi3 {
     certificate: ExactPhi3Certificate,
@@ -224,14 +175,12 @@ pub enum ExactPhi3CertificateError {
 pub struct Phi3Functional;
 
 impl Phi3Functional {
-    /// Replay and verify an exact rational degree-3 quotient obstruction certificate.
     pub fn verify_exact_certificate(
         certificate: ExactPhi3Certificate,
     ) -> Result<VerifiedExactPhi3, ExactPhi3CertificateError> {
         let c3_count = certificate.flux_h.len();
         let c2_count = certificate.potential_b.len();
 
-        // 1. Zero denominator checks
         let mut all_vals = certificate
             .flux_h
             .iter()
@@ -256,13 +205,10 @@ impl Phi3Functional {
                 return Err(ExactPhi3CertificateError::ZeroRationalDenominator);
             }
         }
-        // `d0` is stored on the sealed certificate. Without `d1` its shape and
-        // the chain law are never checked, so an orphan `d0` must not verify.
         if certificate.d0.is_some() && certificate.d1.is_none() {
             return Err(ExactPhi3CertificateError::MissingD1ForD0);
         }
 
-        // 2. Dimension validations
         if certificate.primal_residual.len() != c3_count
             || certificate.dual_witness.len() != c3_count
             || certificate.weights.len() != c3_count
@@ -295,7 +241,6 @@ impl Phi3Functional {
             }
         }
 
-        // 3. Optional d1 and d0 verification & nilpotence laws
         if let Some(ref d1) = certificate.d1 {
             if d1.len() != c2_count {
                 return Err(ExactPhi3CertificateError::D1DimensionMismatch {
@@ -315,7 +260,6 @@ impl Phi3Functional {
                 }
             }
 
-            // Bianchi identity nilpotence: d2 * d1 == 0
             for c3 in 0..c3_count {
                 for c1 in 0..c1_count {
                     let mut sum = BigRational::zero();
@@ -332,7 +276,6 @@ impl Phi3Functional {
                 }
             }
 
-            // Optional 1-skeleton nilpotence: d1 * d0 == 0
             if let Some(ref d0) = certificate.d0 {
                 if d0.len() != c1_count {
                     return Err(ExactPhi3CertificateError::D0DimensionMismatch {
@@ -370,14 +313,12 @@ impl Phi3Functional {
             }
         }
 
-        // 4. Weight positivity
         for (i, w) in certificate.weights.iter().enumerate() {
             if *w <= BigRational::zero() {
                 return Err(ExactPhi3CertificateError::NonPositiveWeight { index: i });
             }
         }
 
-        // 5. Primal residual: r = H - d2 * B
         for c3 in 0..c3_count {
             let mut d2_b = BigRational::zero();
             for c2 in 0..c2_count {
@@ -393,7 +334,6 @@ impl Phi3Functional {
             }
         }
 
-        // 6. Dual 3-cycle closure: d2^T * u = 0
         for c2 in 0..c2_count {
             let mut col_sum = BigRational::zero();
             for c3 in 0..c3_count {
@@ -407,7 +347,6 @@ impl Phi3Functional {
             }
         }
 
-        // 7. Dual norm bound: |u_{c3}| <= nu_{c3}
         for c3 in 0..c3_count {
             if certificate.dual_witness[c3].abs() > certificate.weights[c3] {
                 return Err(ExactPhi3CertificateError::DualNormBoundViolation {
@@ -418,12 +357,10 @@ impl Phi3Functional {
             }
         }
 
-        // 8. Value non-negativity
         if certificate.reported_value < BigRational::zero() {
             return Err(ExactPhi3CertificateError::NegativeReportedValue);
         }
 
-        // 9. Primal objective: sum_{c3} nu_{c3} * |r_{c3}| == reported_value
         let mut primal_sum = BigRational::zero();
         for c3 in 0..c3_count {
             primal_sum += &certificate.weights[c3] * certificate.primal_residual[c3].abs();
@@ -432,7 +369,6 @@ impl Phi3Functional {
             return Err(ExactPhi3CertificateError::PrimalValueMismatch);
         }
 
-        // 10. Dual objective: sum_{c3} u_{c3} * H_{c3} == reported_value
         let mut dual_sum = BigRational::zero();
         for c3 in 0..c3_count {
             dual_sum += &certificate.dual_witness[c3] * &certificate.flux_h[c3];
@@ -444,7 +380,6 @@ impl Phi3Functional {
         Ok(VerifiedExactPhi3 { certificate })
     }
 
-    /// Evaluate the Bianchi closure defect Γ₃(B) = ‖d₂ B‖_{1, ν} for a candidate 2-cochain B.
     pub fn evaluate_bianchi_defect(
         d2: &[Vec<BigRational>],
         potential_b: &[BigRational],
@@ -495,47 +430,25 @@ mod tests {
         BigRational::new(BigInt::from(n), BigInt::from(d))
     }
 
-    /// Build hollow 4-simplex boundary cell complex (S^3).
-    /// |C0|=5, |C1|=10, |C2|=10, |C3|=5.
-    /// Euler characteristic: 5 - 10 + 10 - 5 = 0.
-    /// Betti numbers: b0 = 1, b1 = 0, b2 = 0, b3 = 1.
     fn simplex4_boundary_complex() -> (
-        Vec<Vec<BigRational>>, // d0: 10 x 5
-        Vec<Vec<BigRational>>, // d1: 10 x 10
-        Vec<Vec<BigRational>>, // d2: 5 x 10
+        Vec<Vec<BigRational>>,
+        Vec<Vec<BigRational>>,
+        Vec<Vec<BigRational>>,
     ) {
-        // 5 vertices: 0, 1, 2, 3, 4
-        // 10 edges (i < j):
-        // 0:(0,1), 1:(0,2), 2:(0,3), 3:(0,4),
-        // 4:(1,2), 5:(1,3), 6:(1,4),
-        // 7:(2,3), 8:(2,4),
-        // 9:(3,4)
 
-        // d0: 10 edges x 5 vertices
         let d0 = vec![
-            vec![q(-1, 1), q(1, 1), q(0, 1), q(0, 1), q(0, 1)], // e0 (0,1)
-            vec![q(-1, 1), q(0, 1), q(1, 1), q(0, 1), q(0, 1)], // e1 (0,2)
-            vec![q(-1, 1), q(0, 1), q(0, 1), q(1, 1), q(0, 1)], // e2 (0,3)
-            vec![q(-1, 1), q(0, 1), q(0, 1), q(0, 1), q(1, 1)], // e3 (0,4)
-            vec![q(0, 1), q(-1, 1), q(1, 1), q(0, 1), q(0, 1)], // e4 (1,2)
-            vec![q(0, 1), q(-1, 1), q(0, 1), q(1, 1), q(0, 1)], // e5 (1,3)
-            vec![q(0, 1), q(-1, 1), q(0, 1), q(0, 1), q(1, 1)], // e6 (1,4)
-            vec![q(0, 1), q(0, 1), q(-1, 1), q(1, 1), q(0, 1)], // e7 (2,3)
-            vec![q(0, 1), q(0, 1), q(-1, 1), q(0, 1), q(1, 1)], // e8 (2,4)
-            vec![q(0, 1), q(0, 1), q(0, 1), q(-1, 1), q(1, 1)], // e9 (3,4)
+            vec![q(-1, 1), q(1, 1), q(0, 1), q(0, 1), q(0, 1)],
+            vec![q(-1, 1), q(0, 1), q(1, 1), q(0, 1), q(0, 1)],
+            vec![q(-1, 1), q(0, 1), q(0, 1), q(1, 1), q(0, 1)],
+            vec![q(-1, 1), q(0, 1), q(0, 1), q(0, 1), q(1, 1)],
+            vec![q(0, 1), q(-1, 1), q(1, 1), q(0, 1), q(0, 1)],
+            vec![q(0, 1), q(-1, 1), q(0, 1), q(1, 1), q(0, 1)],
+            vec![q(0, 1), q(-1, 1), q(0, 1), q(0, 1), q(1, 1)],
+            vec![q(0, 1), q(0, 1), q(-1, 1), q(1, 1), q(0, 1)],
+            vec![q(0, 1), q(0, 1), q(-1, 1), q(0, 1), q(1, 1)],
+            vec![q(0, 1), q(0, 1), q(0, 1), q(-1, 1), q(1, 1)],
         ];
 
-        // 10 triangular faces (i < j < k):
-        // f0: (0,1,2) -> e4 - e1 + e0
-        // f1: (0,1,3) -> e5 - e2 + e0
-        // f2: (0,1,4) -> e6 - e3 + e0
-        // f3: (0,2,3) -> e7 - e2 + e1
-        // f4: (0,2,4) -> e8 - e3 + e1
-        // f5: (0,3,4) -> e9 - e3 + e2
-        // f6: (1,2,3) -> e7 - e5 + e4
-        // f7: (1,2,4) -> e8 - e6 + e4
-        // f8: (1,3,4) -> e9 - e6 + e5
-        // f9: (2,3,4) -> e9 - e8 + e7
         let d1 = vec![
             vec![
                 q(1, 1),
@@ -548,7 +461,7 @@ mod tests {
                 q(0, 1),
                 q(0, 1),
                 q(0, 1),
-            ], // f0
+            ],
             vec![
                 q(1, 1),
                 q(0, 1),
@@ -560,7 +473,7 @@ mod tests {
                 q(0, 1),
                 q(0, 1),
                 q(0, 1),
-            ], // f1
+            ],
             vec![
                 q(1, 1),
                 q(0, 1),
@@ -572,7 +485,7 @@ mod tests {
                 q(0, 1),
                 q(0, 1),
                 q(0, 1),
-            ], // f2
+            ],
             vec![
                 q(0, 1),
                 q(1, 1),
@@ -584,7 +497,7 @@ mod tests {
                 q(1, 1),
                 q(0, 1),
                 q(0, 1),
-            ], // f3
+            ],
             vec![
                 q(0, 1),
                 q(1, 1),
@@ -596,7 +509,7 @@ mod tests {
                 q(0, 1),
                 q(1, 1),
                 q(0, 1),
-            ], // f4
+            ],
             vec![
                 q(0, 1),
                 q(0, 1),
@@ -608,7 +521,7 @@ mod tests {
                 q(0, 1),
                 q(0, 1),
                 q(1, 1),
-            ], // f5
+            ],
             vec![
                 q(0, 1),
                 q(0, 1),
@@ -620,7 +533,7 @@ mod tests {
                 q(1, 1),
                 q(0, 1),
                 q(0, 1),
-            ], // f6
+            ],
             vec![
                 q(0, 1),
                 q(0, 1),
@@ -632,7 +545,7 @@ mod tests {
                 q(0, 1),
                 q(1, 1),
                 q(0, 1),
-            ], // f7
+            ],
             vec![
                 q(0, 1),
                 q(0, 1),
@@ -644,7 +557,7 @@ mod tests {
                 q(0, 1),
                 q(0, 1),
                 q(1, 1),
-            ], // f8
+            ],
             vec![
                 q(0, 1),
                 q(0, 1),
@@ -656,15 +569,9 @@ mod tests {
                 q(1, 1),
                 q(-1, 1),
                 q(1, 1),
-            ], // f9
+            ],
         ];
 
-        // 5 tetrahedra (i < j < k < l):
-        // c0: (0,1,2,3) -> f6 - f3 + f1 - f0
-        // c1: (0,1,2,4) -> f7 - f4 + f2 - f0
-        // c2: (0,1,3,4) -> f8 - f5 + f2 - f1
-        // c3: (0,2,3,4) -> f9 - f5 + f4 - f3
-        // c4: (1,2,3,4) -> f9 - f8 + f7 - f6
         let d2 = vec![
             vec![
                 q(-1, 1),
@@ -677,7 +584,7 @@ mod tests {
                 q(0, 1),
                 q(0, 1),
                 q(0, 1),
-            ], // c0
+            ],
             vec![
                 q(-1, 1),
                 q(0, 1),
@@ -689,7 +596,7 @@ mod tests {
                 q(1, 1),
                 q(0, 1),
                 q(0, 1),
-            ], // c1
+            ],
             vec![
                 q(0, 1),
                 q(-1, 1),
@@ -701,7 +608,7 @@ mod tests {
                 q(0, 1),
                 q(1, 1),
                 q(0, 1),
-            ], // c2
+            ],
             vec![
                 q(0, 1),
                 q(0, 1),
@@ -713,7 +620,7 @@ mod tests {
                 q(0, 1),
                 q(0, 1),
                 q(1, 1),
-            ], // c3
+            ],
             vec![
                 q(0, 1),
                 q(0, 1),
@@ -725,7 +632,7 @@ mod tests {
                 q(1, 1),
                 q(-1, 1),
                 q(1, 1),
-            ], // c4
+            ],
         ];
 
         (d0, d1, d2)
@@ -735,12 +642,10 @@ mod tests {
     fn test_simplex4_chain_laws_and_valid_b3_certificate() {
         let (d0, d1, d2) = simplex4_boundary_complex();
 
-        // Target flux: uniform 3-flux H = [1/5, -1/5, 1/5, -1/5, 1/5]^T
         let flux_h = vec![q(1, 5), q(-1, 5), q(1, 5), q(-1, 5), q(1, 5)];
         let weights = vec![q(1, 1); 5];
         let potential_b = vec![q(0, 1); 10];
         let primal_residual = flux_h.clone();
-        // Dual 3-cycle witness W = [1, -1, 1, -1, 1]^T
         let dual_witness = vec![q(1, 1), q(-1, 1), q(1, 1), q(-1, 1), q(1, 1)];
         let reported_value = q(1, 1);
 
@@ -765,7 +670,6 @@ mod tests {
     fn test_bianchi_identity_exact_flux_has_zero_defect() {
         let (_d0, d1, d2) = simplex4_boundary_complex();
 
-        // Any exact 2-flux B = d1 * A
         let potential_a = vec![q(1, 2), q(0, 1), q(-1, 3), q(1, 4), q(2, 5)];
         let mut exact_flux_b = vec![BigRational::zero(); 10];
         for f in 0..10 {
@@ -807,7 +711,6 @@ mod tests {
         let potential_b = vec![q(0, 1); 10];
         let primal_residual = flux_h.clone();
 
-        // Leaking 3-chain: not a closed 3-cycle
         let leaking_witness = vec![q(1, 1), q(-1, 1), q(1, 1), q(-1, 1), q(0, 1)];
         let reported_value = q(4, 5);
 

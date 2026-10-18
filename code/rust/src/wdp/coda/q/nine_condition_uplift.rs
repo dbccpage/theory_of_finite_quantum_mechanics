@@ -1,60 +1,23 @@
-//! Witnessed nine-condition up-lift certificate (schema binding only).
-//!
-//! --- Math Contract:
-//! - Purpose: replace bare boolean nine-condition checklists with typed
-//!   witness slots for the MSS / QMCODA up-lift certificate
-//!   `U_k : MSS-k → MSS-(k+1)`.
-//! - Lean anchors:
-//!   - `omega_engine/lean4/shared_kernel/qmcoda_uplift_certificate.lean`
-//!     (`SharedKernel.QMCODA.NineCertificateConditions`)
-//!   - `omega_engine/lean4/shared_kernel/primitive_difference.lean`
-//! - Outputs: [`UpliftEvaluation::AcceptDiagnostic`] only when all nine slots
-//!   carry satisfied, kind-matched witnesses; otherwise
-//!   [`UpliftEvaluation::RejectUntilPatched`] with failed/missing slot names.
-//! - Invariants: authority effect is always [`AuthorityEffect::None`]; a green
-//!   evaluation is a **diagnostic accept**, not a Lean proof closure and not
-//!   an authority mint.
-//! - Failure: any `Missing` residual, kind mismatch, or unsatisfied witness
-//!   payload fails closed.
-//! - Honesty: does **not** claim the Lean uplift proof is closed from Rust
-//!   flags. Host binding of receipts remains OPEN (same residual as Lean).
 
 use omega_types::authority::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 
-// ---------------------------------------------------------------------------
-// Nine named conditions (Lean `NineCertificateConditions` field order)
-// ---------------------------------------------------------------------------
 
-/// The nine up-lift certificate conditions.
-///
-/// Names match Lean `SharedKernel.QMCODA.NineCertificateConditions` fields
-/// and `receiptKind.*` labels in `qmcoda_uplift_certificate.lean`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum NineCondition {
-    /// (1) Exhaustion of same-level repairs — Lean `exhaustion` / `receiptKind.exhaustion`.
     Exhaustion,
-    /// (2) Refusal / non-contractibility — Lean `refusal` / `receiptKind.refusal`.
     Refusal,
-    /// (3) Generator traceability to obstruction — Lean `traceability`.
     Traceability,
-    /// (4) Preservation of prior stage judgments — Lean `preservation`.
     Preservation,
-    /// (5) Conservativity of MSS-(k+1) over MSS-k — Lean `conservativity`.
     Conservativity,
-    /// (6) Obstruction resolution / refinement — Lean `obstruction_resolution`.
     ObstructionResolution,
-    /// (7) Generator minimality — Lean `generator_minimality` / `receiptKind.minimality`.
     GeneratorMinimality,
-    /// (8) Replay / deterministic evaluation — Lean `replay` / `receiptKind.replay`.
     Replay,
-    /// (9) Authority fence remains None — Lean `authority_fence`.
     AuthorityFence,
 }
 
 impl NineCondition {
-    /// Canonical ordered list (Lean field order 1..=9).
     pub const ALL: [NineCondition; 9] = [
         NineCondition::Exhaustion,
         NineCondition::Refusal,
@@ -67,7 +30,6 @@ impl NineCondition {
         NineCondition::AuthorityFence,
     ];
 
-    /// Stable snake_case slot name (matches Lean field / receipt kind where applicable).
     pub const fn slot_name(self) -> &'static str {
         match self {
             NineCondition::Exhaustion => "exhaustion",
@@ -82,7 +44,6 @@ impl NineCondition {
         }
     }
 
-    /// Lean `receiptKind.*` label for the slot.
     pub const fn receipt_kind(self) -> &'static str {
         match self {
             NineCondition::Exhaustion => "exhaustion",
@@ -97,26 +58,16 @@ impl NineCondition {
         }
     }
 
-    /// Witness shape expected for this condition (paper / Lean role mapping).
     pub const fn expected_witness_kind(self) -> WitnessKind {
         match self {
-            // (1) exhaustion of same-level repairs → closed exhaustion trace
             NineCondition::Exhaustion => WitnessKind::ExhaustionTrace,
-            // (2) refusal / non-contractibility → primitive-difference witness
             NineCondition::Refusal => WitnessKind::PrimitiveDifference,
-            // (3) generator ↔ obstruction trace → primitive difference id chain
             NineCondition::Traceability => WitnessKind::PrimitiveDifference,
-            // (4) prior judgments preserved under embedding
             NineCondition::Preservation => WitnessKind::ConservativeEmbedding,
-            // (5) MSS-(k+1) conservative over MSS-k
             NineCondition::Conservativity => WitnessKind::ConservativeEmbedding,
-            // (6) obstruction resolved or refined → residual difference closed
             NineCondition::ObstructionResolution => WitnessKind::PrimitiveDifference,
-            // (7) generator minimality proof
             NineCondition::GeneratorMinimality => WitnessKind::MinimalityProof,
-            // (8) deterministic replay receipt
             NineCondition::Replay => WitnessKind::ReplayReceipt,
-            // (9) authority fence documented as a replay/audit receipt of None
             NineCondition::AuthorityFence => WitnessKind::ReplayReceipt,
         }
     }
@@ -142,7 +93,6 @@ impl std::fmt::Display for NineCondition {
     }
 }
 
-/// Discriminant of a satisfied (non-Missing) witness payload.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum WitnessKind {
@@ -153,47 +103,33 @@ pub enum WitnessKind {
     ReplayReceipt,
 }
 
-// ---------------------------------------------------------------------------
-// ConditionWitness — never a bare bool
-// ---------------------------------------------------------------------------
 
-/// Typed witness for one of the nine conditions.
-///
-/// Fail-closed: [`ConditionWitness::Missing`] never satisfies a slot.
-/// Boolean-only checklists are intentionally **not** representable here.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum ConditionWitness {
-    /// Closed exhaustion of same-level repairs (condition 1).
     ExhaustionTrace { steps: Vec<String>, closed: bool },
-    /// Non-contractible primitive difference (conditions 2, 3, 6).
     PrimitiveDifference {
         left: String,
         right: String,
         delta_id: String,
     },
-    /// Conservative embedding with loss ledger (conditions 4, 5).
     ConservativeEmbedding {
         source: String,
         target: String,
         loss_ledger_ref: String,
     },
-    /// Minimality of the admitted generator (condition 7).
     MinimalityProof {
         candidate: String,
         competitors_ruled_out: Vec<String>,
     },
-    /// Deterministic replay / authority-fence audit receipt (conditions 8, 9).
     ReplayReceipt {
         content_hash: String,
         replay_ok: bool,
     },
-    /// Explicit residual — fail-closed for the slot.
     Missing { residual: String },
 }
 
 impl ConditionWitness {
-    /// Payload kind when present; `None` for [`ConditionWitness::Missing`].
     pub fn kind(&self) -> Option<WitnessKind> {
         match self {
             ConditionWitness::ExhaustionTrace { .. } => Some(WitnessKind::ExhaustionTrace),
@@ -211,10 +147,6 @@ impl ConditionWitness {
         matches!(self, ConditionWitness::Missing { .. })
     }
 
-    /// Structural satisfaction of the witness payload (independent of slot kind).
-    ///
-    /// Does **not** check kind match against a condition; use
-    /// [`ConditionWitness::satisfies_condition`].
     pub fn payload_satisfied(&self) -> bool {
         match self {
             ConditionWitness::ExhaustionTrace { steps, closed } => {
@@ -249,7 +181,6 @@ impl ConditionWitness {
         }
     }
 
-    /// Slot-level check: kind matches the condition and payload is satisfied.
     pub fn satisfies_condition(&self, condition: NineCondition) -> bool {
         match self.kind() {
             Some(k) if k == condition.expected_witness_kind() => self.payload_satisfied(),
@@ -257,7 +188,6 @@ impl ConditionWitness {
         }
     }
 
-    /// Why this witness fails for `condition` (empty string if ok).
     pub fn failure_reason(&self, condition: NineCondition) -> Option<String> {
         if let ConditionWitness::Missing { residual } = self {
             return Some(format!(
@@ -289,11 +219,7 @@ impl ConditionWitness {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Packet + evaluation
-// ---------------------------------------------------------------------------
 
-/// One condition slot with its required witness.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ConditionSlot {
     pub condition: NineCondition,
@@ -314,13 +240,8 @@ impl ConditionSlot {
     }
 }
 
-/// Aggregate of the nine witnessed up-lift conditions.
-///
-/// Schema binding only — success is [`UpliftEvaluation::AcceptDiagnostic`],
-/// never a Lean proof claim and never an authority mint.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct NineConditionUpliftPacket {
-    /// Optional MSS stage ids (diagnostic labels only).
     pub source_stage_id: Option<String>,
     pub target_stage_id: Option<String>,
     pub exhaustion: ConditionWitness,
@@ -335,7 +256,6 @@ pub struct NineConditionUpliftPacket {
 }
 
 impl NineConditionUpliftPacket {
-    /// All nine slots start as [`ConditionWitness::Missing`] (fail-closed default).
     pub fn empty() -> Self {
         Self {
             source_stage_id: None,
@@ -354,10 +274,6 @@ impl NineConditionUpliftPacket {
         }
     }
 
-    /// Diagnostic fixture with nine satisfied, kind-matched witnesses.
-    ///
-    /// **Not** a production uplift proof. Digests are placeholders; host
-    /// binding remains OPEN. Authority effect remains None.
     pub fn diagnostic_fixture() -> Self {
         Self {
             source_stage_id: Some("fixture.mss.0".into()),
@@ -410,7 +326,6 @@ impl NineConditionUpliftPacket {
         }
     }
 
-    /// Ordered slots for evaluation / export.
     pub fn slots(&self) -> [ConditionSlot; 9] {
         [
             ConditionSlot::new(NineCondition::Exhaustion, self.exhaustion.clone()),
@@ -431,7 +346,6 @@ impl NineConditionUpliftPacket {
         ]
     }
 
-    /// Mutable access to a slot witness by condition (for mutation tests / patching).
     pub fn witness_mut(&mut self, condition: NineCondition) -> &mut ConditionWitness {
         match condition {
             NineCondition::Exhaustion => &mut self.exhaustion,
@@ -460,14 +374,10 @@ impl NineConditionUpliftPacket {
         }
     }
 
-    /// Authority effect is hard-wired to None — this packet never mints authority.
     pub fn authority_effect(&self) -> AuthorityEffect {
         AuthorityEffect::None
     }
 
-    /// Evaluate all nine witnessed slots.
-    ///
-    /// Accept is diagnostic only: it does **not** assert Lean proof closure.
     pub fn evaluate(&self) -> UpliftEvaluation {
         let mut failed: Vec<FailedSlot> = Vec::new();
         for slot in self.slots() {
@@ -481,7 +391,6 @@ impl NineConditionUpliftPacket {
             }
         }
 
-        // Hard fence: never promote authority even on full witness satisfaction.
         debug_assert_eq!(self.authority_effect(), AuthorityEffect::None);
 
         if failed.is_empty() {
@@ -503,7 +412,6 @@ impl NineConditionUpliftPacket {
         }
     }
 
-    /// Per-condition satisfaction matrix (name, expected kind, ok).
     pub fn evaluation_matrix(&self) -> Vec<ConditionMatrixRow> {
         self.slots()
             .into_iter()
@@ -519,7 +427,6 @@ impl NineConditionUpliftPacket {
     }
 }
 
-/// One row of the evaluation matrix (reporting surface).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ConditionMatrixRow {
     pub condition: NineCondition,
@@ -530,7 +437,6 @@ pub struct ConditionMatrixRow {
     pub missing: bool,
 }
 
-/// A slot that failed evaluation.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FailedSlot {
     pub condition: NineCondition,
@@ -539,9 +445,6 @@ pub struct FailedSlot {
     pub missing: bool,
 }
 
-/// Result of [`NineConditionUpliftPacket::evaluate`].
-///
-/// `AcceptDiagnostic` is **not** Lean proof closed and mints no authority.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "verdict", rename_all = "snake_case")]
 pub enum UpliftEvaluation {
@@ -586,16 +489,7 @@ impl UpliftEvaluation {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Legacy boolean path — intentionally non-accepting
-// ---------------------------------------------------------------------------
 
-/// Legacy nine-bit boolean checklist (DDA / ER003 style).
-///
-/// Present only so callers cannot silently promote bare flags: conversion
-/// into a packet fills every slot with [`ConditionWitness::Missing`] residuals
-/// that name the boolean bit. [`NineConditionUpliftPacket::evaluate`] therefore
-/// **always rejects** a boolean-only legacy path.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
 pub struct LegacyNineBooleans {
     pub exhaustion_trace: bool,
@@ -636,10 +530,6 @@ impl LegacyNineBooleans {
             && self.authority_preservation
     }
 
-    /// Map booleans to a packet that **cannot** auto-accept.
-    ///
-    /// Each true bit becomes an explicit Missing residual explaining that a
-    /// witness is still required; false bits become Missing with a failed-bit note.
     pub fn into_witnessed_packet(self) -> NineConditionUpliftPacket {
         fn bit_residual(name: &str, bit: bool) -> ConditionWitness {
             if bit {
@@ -674,9 +564,6 @@ impl LegacyNineBooleans {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 #[cfg(test)]
 mod tests {
@@ -794,7 +681,6 @@ mod tests {
     #[test]
     fn kind_mismatch_fails_closed() {
         let mut packet = NineConditionUpliftPacket::diagnostic_fixture();
-        // Exhaustion expects ExhaustionTrace; plant a ReplayReceipt instead.
         packet.exhaustion = ConditionWitness::ReplayReceipt {
             content_hash: "digest:wrong-kind".into(),
             replay_ok: true,
@@ -826,7 +712,6 @@ mod tests {
         assert_eq!(eval.failed_slot_names().len(), 9);
         assert_eq!(eval.authority_effect(), AuthorityEffect::None);
 
-        // Every residual must name the boolean-is-not-witness rule.
         for slot in packet.slots() {
             match slot.witness {
                 ConditionWitness::Missing { residual } => {
@@ -865,7 +750,6 @@ mod tests {
         let eval = packet.evaluate();
         assert!(eval.is_accept());
         assert_eq!(eval.authority_effect(), AuthorityEffect::None);
-        // Explicit: AcceptDiagnostic is not IsAuth / Certified.
         assert!(matches!(eval.authority_effect(), AuthorityEffect::None));
     }
 

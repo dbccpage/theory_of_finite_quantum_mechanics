@@ -54,9 +54,6 @@ def make_hit(**overrides) -> AntiSkillHitV1:
     return AntiSkillHitV1(**fields)
 
 
-# --------------------------------------------------------------------------
-# Bound to a hit
-# --------------------------------------------------------------------------
 
 
 def test_a_candidate_carries_the_hit_digest_it_is_bound_to():
@@ -98,9 +95,6 @@ def test_a_hit_id_that_is_not_a_digest_is_refused():
         )
 
 
-# --------------------------------------------------------------------------
-# Cannot alter the finding
-# --------------------------------------------------------------------------
 
 
 def test_targeting_a_protected_field_is_refused():
@@ -137,9 +131,6 @@ def test_targets_default_to_empty():
     assert candidate.targets == ()
 
 
-# --------------------------------------------------------------------------
-# Cannot approve itself or write
-# --------------------------------------------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -227,9 +218,6 @@ def test_the_forbidden_key_set_covers_the_families_the_spec_names():
         assert key in REPAIR_HINT_FORBIDDEN_KEYS
 
 
-# --------------------------------------------------------------------------
-# Authority and identity
-# --------------------------------------------------------------------------
 
 
 def test_authority_effect_is_none_and_anything_else_is_refused():

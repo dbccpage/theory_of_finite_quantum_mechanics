@@ -171,7 +171,7 @@ class BesselAction(AnalyticAction):
     def hessian(self, z: List[complex]) -> List[List[complex]]:
         z0 = z[0]
         if abs(z0) < 1e-14:
-            return [[complex(float("inf"), float("inf"))]]  
+            return [[complex(float("inf"), float("inf"))]]
         return [[1.0 + 2.0 * self.lam / (z0**3)]]
 
     def exact_critical_points(self) -> List[complex]:
@@ -415,7 +415,6 @@ def steepest_descent_flow_with_frame(
     max_im_dev = 0.0
 
     if initial_frame is None:
-        # Default initial frame J_0 = I_n
         J = np.eye(n, dtype=complex)
     else:
         J = np.array(initial_frame, dtype=complex)
@@ -429,12 +428,9 @@ def steepest_descent_flow_with_frame(
         g_vec = np.array(grad, dtype=complex)
         H_mat = np.array(hess, dtype=complex)
 
-        # Flow RHS: dz/dt = - conj(grad S(z))
         dz_dt = -np.conj(g_vec)
-        # Frame transport RHS: dJ/dt = - conj(H @ J)
         dJ_dt = -np.conj(H_mat @ J)
 
-        # Euler step for simultaneous integration
         z = [z[i] + dt * dz_dt[i] for i in range(n)]
         J = J + dt * dJ_dt
 
@@ -446,7 +442,6 @@ def steepest_descent_flow_with_frame(
         if dev > max_im_dev:
             max_im_dev = dev
 
-    # Final determinant and phase
     det_J = np.linalg.det(J)
     residual_phase = math.atan2(det_J.imag, det_J.real)
     jacobian_det = float(abs(det_J))
@@ -561,7 +556,6 @@ def sample_dual_flow_hits(
             grad = action.gradient(z)
             z = [z[i] + current_dt * grad[i].conjugate() for i in range(action.n_vars)]
 
-            # Check if trajectory escaped to infinity
             if any(
                 math.isinf(zi.real) or math.isinf(zi.imag) or abs(zi) > 1e5 for zi in z
             ):
@@ -695,7 +689,6 @@ def partition_function(
     return Z, contributions
 
 
-# --- Witten 1001.2933 Section 3.1 Airy Thimble & Stokes Extensions ---
 
 
 @dataclass

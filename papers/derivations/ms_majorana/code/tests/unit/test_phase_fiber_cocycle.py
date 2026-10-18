@@ -55,7 +55,7 @@ def additive_is_cocycle(t1: int, t2: int, t3: int) -> bool:
 
 def phase_mul(a: bool, b: bool) -> bool:
     """Lean phaseMul: Bool XOR monoid."""
-    return a != b  # xor
+    return a != b
 
 
 def and_cocycle(g: bool, h: bool) -> bool:
@@ -121,7 +121,6 @@ def test_additive_cocycle_not_identically_zero():
     """Lean additive_cocycle_not_identically_zero: σ(1,1)=1 ≠ 0."""
     assert additive_sigma(1, 1) == 1
     assert additive_sigma(1, 1) != 0
-    # mutation-sensitive concrete values (Lean additive_cocycle_values)
     assert additive_sigma(2, 3) == 6
     assert additive_sigma(0, 5) == 0
 
@@ -144,7 +143,6 @@ def test_and_cocycle_not_zero():
 
 def test_and_cocycle_not_coboundary():
     """Lean andCocycle_not_coboundary: AND is not δf for any f : Bool → Bool."""
-    # Exhaustive: 2^2 = 4 possible 0-cochains f
     for f_false, f_true in product([False, True], repeat=2):
         f = lambda b, ff=f_false, ft=f_true: ft if b else ff
         matches_all = all(
@@ -157,9 +155,7 @@ def test_and_cocycle_not_coboundary():
 def test_and_cocycle_nontrivial_package():
     """Lean andCocycle_nontrivial packaging: cocycle + not zero + not coboundary."""
     assert and_cocycle(True, True) is True
-    # at least one triple identity already covered; re-check witness triple
     assert bool_is_cocycle(and_cocycle, True, True, True) is True
-    # concrete cocycle table values (mutation-sensitive)
     table = {
         (False, False): False,
         (False, True): False,

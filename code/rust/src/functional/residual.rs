@@ -3,8 +3,6 @@ use omega_kernel::exact::{exact_wire, exact_wire_vec, to_canonical_string, Exact
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// The residual vector and its L1 diagnostic, carried together.
-/// Laws: `urn:omega:rust:omega_kernel:residual:v1.0.0`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(try_from = "ResidualWire", into = "ResidualWire")]
 pub struct Residual {

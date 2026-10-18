@@ -1,24 +1,3 @@
-//! Quadratic number fields `Q(sqrt d)`, exact.
-//!
-//! Three types, for three jobs:
-//!
-//! - [`Quadratic<D>`]: `a + b sqrt(D)` with the radicand `D` fixed at compile time. `D`
-//!   must be squarefree and not `0` or `1`; any other `D` is a compile error, not a
-//!   runtime surprise. It implements the full `linear_algebra::scalars` tower and the
-//!   `std::ops` operators, so matrices, polynomials and the exact solvers work over it.
-//!   For `D > 0` it carries an exact total order ([`Quadratic::sign`], [`Ord`]) decided by
-//!   comparing `a^2` with `D b^2`, never by approximating `sqrt(D)`. `D = -1` is the
-//!   Gaussian rationals and `D = -3` the Eisenstein rationals.
-//! - [`Surd`]: a one-term real surd `c sqrt(d)` with `d` squarefree and positive, closed
-//!   under multiplication and inversion; a sum is a surd only when the radicands agree.
-//! - [`QuadraticNumber`]: `a + b sqrt(d)` with the radicand chosen at run time. Operations
-//!   return `Result` and refuse to mix two different irrational fields; a rational lifts
-//!   into any field. Square roots inside the field are decided exactly.
-//!
-//! There is no floating point in this module. Every refusal is typed
-//! ([`QuadraticError`]); nothing panics on caller data.
-//!
-//! AuthorityEffect: None.
 
 use std::cmp::Ordering;
 use std::fmt;
@@ -29,7 +8,6 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 use crate::rational::{r_one, r_zero, ri, sqrt_exact, squarefree_part, ArithmeticError, Rational};
 
-/// Refusals of the quadratic-field types.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum QuadraticError {
     #[error("an enclosure needs a strictly positive width")]
@@ -62,11 +40,6 @@ pub enum QuadraticError {
     Arithmetic(#[from] ArithmeticError),
 }
 
-/// Whether `d` is a valid compile-time radicand: squarefree and not `0` or `1`.
-///
-/// `const` so that [`Quadratic`] can reject a bad radicand at compile time. The test is
-/// trial division up to `sqrt(|d|)`, so very large `|d|` (beyond about `10^11`) exceed the
-/// compiler's const-evaluation budget and are refused at compile time as well.
 pub const fn is_valid_radicand(d: i64) -> bool {
     if d == 0 || d == 1 {
         return false;
@@ -86,7 +59,6 @@ fn half() -> Rational {
     Rational::new(BigInt::one(), BigInt::from(2))
 }
 
-/// Check that `d` is a nonzero squarefree integer (`1` and `-1` included).
 fn check_radicand(d: &BigInt) -> Result<(), QuadraticError> {
     if d.is_zero() {
         return Err(QuadraticError::ZeroRadicand);
@@ -102,8 +74,6 @@ fn check_radicand(d: &BigInt) -> Result<(), QuadraticError> {
     Ok(())
 }
 
-/// The sign of `a + b sqrt(d)` for a positive non-square `d`, by comparing `a^2` with
-/// `d b^2` when `a` and `b` have opposite signs.
 fn real_sign(a: &Rational, b: &Rational, d: &Rational) -> Ordering {
     let zero = r_zero();
     match (a.cmp(&zero), b.cmp(&zero)) {
@@ -114,19 +84,12 @@ fn real_sign(a: &Rational, b: &Rational, d: &Rational) -> Ordering {
         (Ordering::Less, Ordering::Less)
         | (Ordering::Less, Ordering::Equal)
         | (Ordering::Equal, Ordering::Less) => Ordering::Less,
-        // a > 0 > b: the sign of a - |b| sqrt(d) is the sign of a^2 - d b^2.
         (Ordering::Greater, Ordering::Less) => (a * a).cmp(&(d * b * b)),
-        // a < 0 < b: the sign of b sqrt(d) - |a| is the sign of d b^2 - a^2.
         (Ordering::Less, Ordering::Greater) => (d * b * b).cmp(&(a * a)),
     }
 }
 
-// ---------------------------------------------------------------------------
-// Quadratic<D>: compile-time radicand
-// ---------------------------------------------------------------------------
 
-/// Zero-sized proof that `D` is a valid radicand. It can only be made by
-/// [`Radicand::checked`], which fails to compile for an invalid `D`.
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
 struct Radicand<const D: i64>;
 
@@ -142,17 +105,9 @@ impl<const D: i64> Radicand<D> {
     }
 }
 
-/// `a + b sqrt(D)` in the quadratic field `Q(sqrt D)`; `D` is squarefree, not `0` or `1`,
-/// and is checked at compile time.
-///
-/// The fields are public for reading and writing values; the struct cannot be built by
-/// a literal outside this module, so `Quadratic::new` is the only door and the
-/// radicand check cannot be bypassed.
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub struct Quadratic<const D: i64> {
-    /// The rational part.
     pub a: Rational,
-    /// The coefficient of `sqrt(D)`.
     pub b: Rational,
     radicand: Radicand<D>,
 }
@@ -193,10 +148,8 @@ impl<'de, const D: i64> Deserialize<'de> for Quadratic<D> {
 }
 
 impl<const D: i64> Quadratic<D> {
-    /// The radicand.
     pub const RADICAND: i64 = D;
 
-    /// `a + b sqrt(D)`.
     pub fn new(a: Rational, b: Rational) -> Self {
         Self {
             a,
@@ -205,12 +158,10 @@ impl<const D: i64> Quadratic<D> {
         }
     }
 
-    /// The rational `a`.
     pub fn from_rational(a: Rational) -> Self {
         Self::new(a, r_zero())
     }
 
-    /// `a + b sqrt(D)` for integers `a`, `b`.
     pub fn from_ints(a: i64, b: i64) -> Self {
         Self::new(ri(a), ri(b))
     }
@@ -223,7 +174,6 @@ impl<const D: i64> Quadratic<D> {
         Self::new(r_one(), r_zero())
     }
 
-    /// `sqrt(D)` itself.
     pub fn sqrt_d() -> Self {
         Self::new(r_zero(), r_one())
     }
@@ -232,7 +182,6 @@ impl<const D: i64> Quadratic<D> {
         self.a.is_zero() && self.b.is_zero()
     }
 
-    /// Whether the element lies in `Q`.
     pub fn is_rational(&self) -> bool {
         self.b.is_zero()
     }
@@ -249,7 +198,6 @@ impl<const D: i64> Quadratic<D> {
         Self::new(-&self.a, -&self.b)
     }
 
-    /// `(a + b sqrt D)(c + d sqrt D) = (ac + D bd) + (ad + bc) sqrt D`.
     pub fn mul(&self, other: &Self) -> Self {
         let d = ri(D);
         Self::new(
@@ -258,28 +206,22 @@ impl<const D: i64> Quadratic<D> {
         )
     }
 
-    /// `c * self` for a rational `c`.
     pub fn scale(&self, c: &Rational) -> Self {
         Self::new(&self.a * c, &self.b * c)
     }
 
-    /// The Galois conjugate `a - b sqrt D`.
     pub fn conjugate(&self) -> Self {
         Self::new(self.a.clone(), -&self.b)
     }
 
-    /// The field norm `a^2 - D b^2 = x * conjugate(x)`.
     pub fn norm(&self) -> Rational {
         &self.a * &self.a - ri(D) * &self.b * &self.b
     }
 
-    /// The field trace `2a = x + conjugate(x)`.
     pub fn trace(&self) -> Rational {
         &self.a + &self.a
     }
 
-    /// `1 / self`, or `None` for zero. Nonzero elements have a nonzero norm because
-    /// `D` is not a square.
     pub fn inverse(&self) -> Option<Self> {
         let norm = self.norm();
         if norm.is_zero() {
@@ -288,12 +230,10 @@ impl<const D: i64> Quadratic<D> {
         Some(Self::new(&self.a / &norm, -&self.b / &norm))
     }
 
-    /// `self / other`, or `None` when `other` is zero.
     pub fn checked_div(&self, other: &Self) -> Option<Self> {
         Some(self.mul(&other.inverse()?))
     }
 
-    /// `self^n`.
     pub fn pow(&self, n: u32) -> Self {
         let mut result = Self::one();
         let mut base = self.clone();
@@ -310,22 +250,16 @@ impl<const D: i64> Quadratic<D> {
         result
     }
 
-    /// One square root of `self` in this field, if there is one. The root returned has a
-    /// positive rational part, or, when that is zero, a positive coefficient of
-    /// `sqrt(D)`; its negative is the other root.
     pub fn sqrt(&self) -> Option<Self> {
         let number = self.to_number();
         let root = number.sqrt_in(&BigInt::from(D)).ok()??;
         Self::from_number(&root)
     }
 
-    /// The same number as a [`QuadraticNumber`] in normal form.
     pub fn to_number(&self) -> QuadraticNumber {
         QuadraticNumber::normalised(BigInt::from(D), self.a.clone(), self.b.clone())
     }
 
-    /// The element of this field equal to `n`, or `None` when `n` is irrational with a
-    /// different radicand.
     pub fn from_number(n: &QuadraticNumber) -> Option<Self> {
         if n.b.is_zero() {
             Some(Self::from_rational(n.a.clone()))
@@ -341,8 +275,6 @@ impl<const D: i64> Quadratic<D> {
         "the sign and order of Quadratic<D> need a real quadratic field, D > 0"
     );
 
-    /// The sign of the real number `a + b sqrt(D)` (`D > 0` only), decided exactly by
-    /// comparing `a^2` with `D b^2` when `a` and `b` differ in sign.
     pub fn sign(&self) -> Ordering {
         let () = Self::REAL;
         real_sign(&self.a, &self.b, &ri(D))
@@ -362,26 +294,22 @@ impl<const D: i64> Quadratic<D> {
 }
 
 impl Quadratic<5> {
-    /// The golden ratio `(1 + sqrt 5) / 2`, the root of `x^2 = x + 1`.
     pub fn golden_ratio() -> Self {
         Self::new(half(), half())
     }
 
-    /// The conjugate golden ratio `(1 - sqrt 5) / 2`, the other root of `x^2 = x + 1`.
     pub fn golden_ratio_conjugate() -> Self {
         Self::new(half(), -half())
     }
 }
 
 impl Quadratic<2> {
-    /// The silver ratio `1 + sqrt 2`, the root of `x^2 = 2x + 1`.
     pub fn silver_ratio() -> Self {
         Self::new(r_one(), r_one())
     }
 }
 
 impl<const D: i64> Ord for Quadratic<D> {
-    /// The order of the real numbers (`D > 0` only; using it for `D < 0` does not compile).
     fn cmp(&self, other: &Self) -> Ordering {
         self.sub(other).sign()
     }
@@ -489,8 +417,6 @@ impl<const D: i64> linear_algebra::scalars::Field for Quadratic<D> {
 
 impl<const D: i64> linear_algebra::scalars::ExactRing for Quadratic<D> {}
 
-/// Complex conjugation in the standard embedding. For a real quadratic
-/// field this is the identity; it differs from the named Galois conjugate.
 impl<const D: i64> linear_algebra::exact_field::involution::Involution for Quadratic<D> {
     fn conjugate(&self) -> Self {
         if D > 0 {
@@ -517,15 +443,7 @@ impl<const D: i64> linear_algebra::exact_field::ordered::HermitianOrdered for Qu
     }
 }
 
-// ---------------------------------------------------------------------------
-// Surd: one-term c sqrt(d)
-// ---------------------------------------------------------------------------
 
-/// The real number `c sqrt(d)` with `c` rational and `d` a positive squarefree integer.
-///
-/// Normal form: zero is `0 * sqrt(1)`; every other value has a unique pair
-/// `(c, d)` with `c != 0` and `d` squarefree, so equality and hashing are mathematical
-/// equality, and the order below is the order of the real numbers.
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub struct Surd {
     coefficient: Rational,
@@ -533,7 +451,6 @@ pub struct Surd {
 }
 
 impl Surd {
-    /// Zero.
     pub fn zero() -> Self {
         Self {
             coefficient: r_zero(),
@@ -541,12 +458,10 @@ impl Surd {
         }
     }
 
-    /// One.
     pub fn one() -> Self {
         Self::rational(r_one())
     }
 
-    /// The rational number `value`, as a surd with radicand `1`.
     pub fn rational(value: Rational) -> Self {
         if value.is_zero() {
             Self::zero()
@@ -558,9 +473,6 @@ impl Surd {
         }
     }
 
-    /// `coefficient * sqrt(square)`, normalised. A negative `square` is refused whatever
-    /// the coefficient; a radicand whose squarefree part cannot be decided within the
-    /// trial-division limit is refused with [`QuadraticError::Arithmetic`].
     pub fn new(coefficient: Rational, square: &Rational) -> Result<Self, QuadraticError> {
         let square = square.reduced();
         if square.is_negative() {
@@ -569,7 +481,6 @@ impl Surd {
         Self::from_fraction(coefficient, square.numer(), square.denom())
     }
 
-    /// `coefficient * sqrt(m)` for a natural number `m`.
     pub fn from_natural(coefficient: Rational, m: &BigInt) -> Result<Self, QuadraticError> {
         if m.is_negative() {
             return Err(QuadraticError::NegativeRadicand(Rational::from_integer(
@@ -579,7 +490,6 @@ impl Surd {
         Self::from_fraction(coefficient, m, &BigInt::one())
     }
 
-    /// `coefficient * sqrt(p / q)` for `p >= 0`, `q > 0`: `sqrt(p/q) = sqrt(pq) / q`.
     fn from_fraction(
         coefficient: Rational,
         p: &BigInt,
@@ -595,12 +505,10 @@ impl Surd {
         })
     }
 
-    /// The rational coefficient `c`.
     pub fn coefficient(&self) -> &Rational {
         &self.coefficient
     }
 
-    /// The squarefree positive radicand `d` (`1` for a rational and for zero).
     pub fn radicand(&self) -> &BigInt {
         &self.radicand
     }
@@ -609,12 +517,10 @@ impl Surd {
         self.coefficient.is_zero()
     }
 
-    /// Whether the value is a rational number.
     pub fn is_rational(&self) -> bool {
         self.radicand.is_one()
     }
 
-    /// `-self`.
     pub fn neg(&self) -> Self {
         Self {
             coefficient: -&self.coefficient,
@@ -622,8 +528,6 @@ impl Surd {
         }
     }
 
-    /// `(c1 sqrt d1)(c2 sqrt d2) = c1 c2 g sqrt((d1/g)(d2/g))` with `g = gcd(d1, d2)`;
-    /// `(d1/g)(d2/g)` is squarefree, so the product is again a surd in normal form.
     pub fn mul(&self, other: &Self) -> Self {
         if self.is_zero() || other.is_zero() {
             return Self::zero();
@@ -635,7 +539,6 @@ impl Surd {
         }
     }
 
-    /// `1 / (c sqrt d) = sqrt(d) / (c d)`, or `None` for zero.
     pub fn inverse(&self) -> Option<Self> {
         if self.is_zero() {
             return None;
@@ -647,19 +550,15 @@ impl Surd {
         })
     }
 
-    /// `self / other`, refusing a zero divisor.
     pub fn checked_div(&self, other: &Self) -> Result<Self, QuadraticError> {
         let inverse = other.inverse().ok_or(QuadraticError::DivisionByZero)?;
         Ok(self.mul(&inverse))
     }
 
-    /// The rational square `c^2 d` of the value.
     pub fn square(&self) -> Rational {
         &self.coefficient * &self.coefficient * Rational::from_integer(self.radicand.clone())
     }
 
-    /// `self + other` when the result is a single surd: either operand zero, or equal
-    /// radicands. Otherwise [`QuadraticError::SurdSumNotSingle`].
     pub fn checked_add(&self, other: &Self) -> Result<Self, QuadraticError> {
         if self.is_zero() {
             return Ok(other.clone());
@@ -683,25 +582,20 @@ impl Surd {
         })
     }
 
-    /// `self - other` when the result is a single surd.
     pub fn checked_sub(&self, other: &Self) -> Result<Self, QuadraticError> {
         self.checked_add(&other.neg())
     }
 
-    /// The sign of the real number.
     pub fn sign(&self) -> Ordering {
         self.coefficient.cmp(&r_zero())
     }
 
-    /// The same number as a [`QuadraticNumber`].
     pub fn to_number(&self) -> QuadraticNumber {
         QuadraticNumber::normalised(self.radicand.clone(), r_zero(), self.coefficient.clone())
     }
 }
 
 impl Ord for Surd {
-    /// The order of the real numbers: by sign, then by comparing squares
-    /// (reversed for negative values).
     fn cmp(&self, other: &Self) -> Ordering {
         let (left, right) = (self.sign(), other.sign());
         if left != right {
@@ -727,18 +621,7 @@ impl fmt::Display for Surd {
     }
 }
 
-// ---------------------------------------------------------------------------
-// QuadraticNumber: run-time radicand
-// ---------------------------------------------------------------------------
 
-/// `a + b sqrt(d)` with a run-time squarefree radicand `d`.
-///
-/// Normal form: an element with `b = 0` is a rational and carries radicand `1`; an
-/// irrational element carries its squarefree radicand `d != 0, 1` (negative allowed,
-/// giving an imaginary field). So equal numbers have equal representations. Operations
-/// take the radicand of whichever operand is irrational, treating rationals as members
-/// of every field, and return [`QuadraticError::RadicandMismatch`] only when two
-/// irrational operands come from different fields.
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub struct QuadraticNumber {
     radicand: BigInt,
@@ -747,11 +630,8 @@ pub struct QuadraticNumber {
 }
 
 impl QuadraticNumber {
-    /// The element in normal form, with no validation of the radicand. Internal: every
-    /// caller has already checked it.
     fn normalised(radicand: BigInt, a: Rational, b: Rational) -> Self {
         if b.is_zero() || radicand.is_one() {
-            // For radicand 1, sqrt(1) = 1 folds the irrational part into the rational.
             let a = if radicand.is_one() { a + b } else { a };
             return Self {
                 radicand: BigInt::one(),
@@ -762,30 +642,23 @@ impl QuadraticNumber {
         Self { radicand, a, b }
     }
 
-    /// `a + b sqrt(radicand)`. The radicand must be a nonzero squarefree integer; `1`
-    /// is allowed and means the rational field.
     pub fn new(radicand: BigInt, a: Rational, b: Rational) -> Result<Self, QuadraticError> {
         check_radicand(&radicand)?;
         Ok(Self::normalised(radicand, a, b))
     }
 
-    /// The rational `a`.
     pub fn from_rational(a: Rational) -> Self {
         Self::normalised(BigInt::one(), a, r_zero())
     }
 
-    /// The rational part `a`.
     pub fn rational_part(&self) -> &Rational {
         &self.a
     }
 
-    /// The coefficient `b` of `sqrt(d)` (zero for a rational).
     pub fn sqrt_part(&self) -> &Rational {
         &self.b
     }
 
-    /// Primitive integer minimal polynomial, in ascending degree order.
-    /// Rational values have degree one; irrational values have degree two.
     pub fn minimal_polynomial(&self) -> Vec<BigInt> {
         let coefficients = if self.is_rational() {
             vec![-self.a.clone(), r_one()]
@@ -799,8 +672,6 @@ impl QuadraticNumber {
             .1
     }
 
-    /// A certified real interval of width at most `width`. The integer square
-    /// root bounds `sqrt(d)` directly; this does not use floating point.
     pub fn enclosure(
         &self,
         width: &Rational,
@@ -849,7 +720,6 @@ impl QuadraticNumber {
         ))
     }
 
-    /// The squarefree radicand of an irrational element; `1` for a rational.
     pub fn radicand(&self) -> &BigInt {
         &self.radicand
     }
@@ -862,8 +732,6 @@ impl QuadraticNumber {
         self.b.is_zero()
     }
 
-    /// The radicand shared by `self` and `other`: the irrational one's, a rational lifts
-    /// into any field, and two different irrational radicands are refused.
     fn common_radicand(&self, other: &Self) -> Result<BigInt, QuadraticError> {
         if self.b.is_zero() {
             Ok(other.radicand.clone())
@@ -891,7 +759,6 @@ impl QuadraticNumber {
         Self::normalised(self.radicand.clone(), -&self.a, -&self.b)
     }
 
-    /// `(a + b sqrt d)(c + e sqrt d) = (ac + d b e) + (ae + bc) sqrt d`.
     pub fn mul(&self, other: &Self) -> Result<Self, QuadraticError> {
         let d = self.common_radicand(other)?;
         let d_rational = Rational::from_integer(d.clone());
@@ -902,23 +769,18 @@ impl QuadraticNumber {
         ))
     }
 
-    /// The Galois conjugate `a - b sqrt d`.
     pub fn conjugate(&self) -> Self {
         Self::normalised(self.radicand.clone(), self.a.clone(), -&self.b)
     }
 
-    /// The norm `a^2 - d b^2` from the quadratic field down to `Q` (a rational has norm
-    /// `a^2`).
     pub fn norm(&self) -> Rational {
         &self.a * &self.a - Rational::from_integer(self.radicand.clone()) * &self.b * &self.b
     }
 
-    /// The trace `2a`.
     pub fn trace(&self) -> Rational {
         &self.a + &self.a
     }
 
-    /// `1 / self`, or `None` for zero.
     pub fn inverse(&self) -> Option<Self> {
         let norm = self.norm();
         if norm.is_zero() {
@@ -931,20 +793,17 @@ impl QuadraticNumber {
         ))
     }
 
-    /// `self / other`; refuses a zero divisor and mixed irrational fields.
     pub fn checked_div(&self, other: &Self) -> Result<Self, QuadraticError> {
         let inverse = other.inverse().ok_or(QuadraticError::DivisionByZero)?;
         self.mul(&inverse)
     }
 
-    /// `self^n`.
     pub fn pow(&self, n: u32) -> Self {
         let mut result = Self::from_rational(r_one());
         let mut base = self.clone();
         let mut n = n;
         while n > 0 {
             if n & 1 == 1 {
-                // `result` and `base` share `self`'s field, so the product cannot mismatch.
                 result = Self::normalised(
                     self.radicand.clone(),
                     &result.a * &base.a
@@ -965,8 +824,6 @@ impl QuadraticNumber {
         result
     }
 
-    /// The sign of the real number. Refuses an irrational element of an imaginary field,
-    /// which has no sign ([`QuadraticError::NotReal`]).
     pub fn sign(&self) -> Result<Ordering, QuadraticError> {
         if self.b.is_zero() {
             return Ok(self.a.cmp(&r_zero()));
@@ -981,20 +838,10 @@ impl QuadraticNumber {
         ))
     }
 
-    /// Compare two real numbers exactly.
     pub fn cmp_real(&self, other: &Self) -> Result<Ordering, QuadraticError> {
         self.sub(other)?.sign()
     }
 
-    /// A square root of `self` inside the field `Q(sqrt(field))`, decided exactly:
-    /// `Ok(None)` means there is none there. `field` must be a nonzero squarefree
-    /// integer (`1` for `Q`); an irrational `self` from a different field is refused.
-    ///
-    /// For `x = a + b sqrt d` with `b != 0` a root `s + v sqrt d` exists iff the norm
-    /// `N = a^2 - d b^2` is a rational square `r^2` and one of `(a +- r)/2` is a
-    /// nonzero rational square `s^2`; then `v = b / (2 s)`. The returned root has `s > 0`;
-    /// its negative is the other root. A rational `a` has the root `sqrt a` when `a` is a
-    /// rational square, else `sqrt(a / d) sqrt d` when `a / d` is one.
     pub fn sqrt_in(&self, field: &BigInt) -> Result<Option<Self>, QuadraticError> {
         check_radicand(field)?;
         if !self.b.is_zero() && self.radicand != *field {
@@ -1032,7 +879,6 @@ impl QuadraticNumber {
         Ok(None)
     }
 
-    /// Whether `self` is a square in `Q(sqrt(field))`.
     pub fn is_square_in(&self, field: &BigInt) -> Result<bool, QuadraticError> {
         Ok(self.sqrt_in(field)?.is_some())
     }
@@ -1105,7 +951,6 @@ mod tests {
         ]
     }
 
-    // ----- compile-time radicand --------------------------------------------------
 
     #[test]
     fn the_radicand_predicate_accepts_exactly_the_squarefree_integers_other_than_0_and_1() {
@@ -1121,7 +966,6 @@ mod tests {
         for d in refused {
             assert!(!is_valid_radicand(d), "{d} is 0, 1 or has a square factor");
         }
-        // The const predicate agrees with the runtime squarefree decomposition.
         for d in -300i64..=300 {
             let runtime = d != 0
                 && d != 1
@@ -1132,7 +976,6 @@ mod tests {
         }
     }
 
-    // ----- field axioms and ring identities ---------------------------------------
 
     #[test]
     fn every_quadratic_field_satisfies_the_field_axioms() {
@@ -1153,7 +996,6 @@ mod tests {
             Quadratic::<-1>::sqrt_d().mul(&Quadratic::<-1>::sqrt_d()),
             Quadratic::<-1>::from_ints(-1, 0)
         );
-        // (1 + sqrt 3)(2 - sqrt 3) = 2 - sqrt 3 + 2 sqrt 3 - 3 = -1 + sqrt 3
         assert_eq!(
             Q3::from_ints(1, 1).mul(&Q3::from_ints(2, -1)),
             Q3::from_ints(-1, 1)
@@ -1176,7 +1018,6 @@ mod tests {
             assert_eq!(x.mul(&y).conjugate(), x.conjugate().mul(&y.conjugate()));
             assert_eq!(x.add(&y).conjugate(), x.conjugate().add(&y.conjugate()));
             assert_eq!(x.conjugate().conjugate(), x);
-            // x * conj(x) = N(x), x + conj(x) = Tr(x)
             assert_eq!(x.mul(&x.conjugate()), Q5::new(x.norm(), r_zero()));
             assert_eq!(x.add(&x.conjugate()), Q5::new(x.trace(), r_zero()));
         }
@@ -1213,7 +1054,6 @@ mod tests {
         assert_eq!(&a * &b, a.mul(&b));
     }
 
-    // ----- golden and silver ratio ------------------------------------------------
 
     #[test]
     fn the_golden_ratio_satisfies_its_defining_identities() {
@@ -1236,9 +1076,8 @@ mod tests {
 
     #[test]
     fn powers_of_phi_carry_the_fibonacci_numbers() {
-        // phi^n = F_n phi + F_{n-1}, with F computed by the integer recurrence.
         let phi = Q5::golden_ratio();
-        let (mut f_prev, mut f) = (BigInt::from(0), BigInt::from(1)); // F_0, F_1
+        let (mut f_prev, mut f) = (BigInt::from(0), BigInt::from(1));
         for n in 1..=60u32 {
             let expected = Q5::new(Rational::from_integer(f_prev.clone()), r_zero())
                 .add(&phi.scale(&Rational::from_integer(f.clone())));
@@ -1266,10 +1105,7 @@ mod tests {
         assert_eq!(delta.conjugate(), Q2::from_ints(1, -1));
     }
 
-    // ----- exact order ------------------------------------------------------------
 
-    /// An independent enclosure of sqrt(d) for the sign cross-check: floor(sqrt(d 10^2k)) / 10^k
-    /// and its successor, both exact rationals.
     fn sqrt_enclosure(d: i64, digits: u32) -> (Rational, Rational) {
         let scale = BigInt::from(10u8).pow(digits);
         let root = integer_sqrt(&(BigInt::from(d) * &scale * &scale));
@@ -1281,8 +1117,6 @@ mod tests {
 
     #[test]
     fn exact_sign_agrees_with_an_independent_rational_enclosure_of_the_root() {
-        // Test-only oracle: bracket sqrt(D) with 12 decimal digits and read the sign from
-        // a + b [lo, hi]; skip the (here nonexistent) cases whose bracket straddles zero.
         fn check<const D: i64>() {
             let (lo, hi) = sqrt_enclosure(D, 12);
             for a in -12..=12i64 {
@@ -1312,9 +1146,6 @@ mod tests {
 
     #[test]
     fn exact_sign_is_correct_where_floating_point_cannot_tell() {
-        // Pell solutions x^2 - 2 y^2 = 1 give t = x - y sqrt 2 = 1 / (x + y sqrt 2) > 0, and
-        // 1/(2x) < t < 1/(2x - 1). The gap between those bounds is about 1/(4 x^2), which for
-        // the later solutions (x near 10^38) is far below any floating-point resolution.
         let (mut x, mut y) = (BigInt::from(3), BigInt::from(2));
         for step in 0..60 {
             let t = Q2::new(
@@ -1344,7 +1175,6 @@ mod tests {
             x > BigInt::from(10u8).pow(40),
             "the loop reached 40-digit solutions"
         );
-        // Pell with -1: x^2 - 2 y^2 = -1 gives x - y sqrt 2 < 0 (here 1 - sqrt 2).
         assert!(Q2::from_ints(1, -1).is_negative());
         assert!(Q2::from_ints(7, -5).is_negative(), "49 - 50 = -1");
         assert!(Q2::from_ints(7, -5).neg().is_positive());
@@ -1383,11 +1213,9 @@ mod tests {
 
     #[test]
     fn the_order_of_known_real_numbers_is_correct() {
-        // sqrt 2 < 3/2 < sqrt 3 < 7/4 < 2 (1.414 < 1.5 < 1.732 < 1.75 < 2)
         assert!(Q2::sqrt_d() < Q2::new(rq(3, 2), r_zero()));
         assert!(Q3::new(rq(3, 2), r_zero()) < Q3::sqrt_d());
         assert!(Q3::sqrt_d() < Q3::new(rq(7, 4), r_zero()));
-        // 2cos(2 pi / 5) = (sqrt 5 - 1)/2 is positive, the conjugate is negative.
         let t = Q5::new(rq(-1, 2), rq(1, 2));
         assert!(t.is_positive());
         assert!(t.conjugate().is_negative());
@@ -1399,7 +1227,6 @@ mod tests {
         );
     }
 
-    // ----- cross-validation against the other implementations ----------------------
 
     #[test]
     fn quadratic_minus_one_agrees_with_the_gaussian_rationals() {
@@ -1434,7 +1261,6 @@ mod tests {
 
     #[test]
     fn quadratic_minus_three_agrees_with_the_eisenstein_rationals() {
-        // sqrt(-3) = 2 zeta_3 + 1, so a + b sqrt(-3) = (a + b) + 2b zeta_3.
         let to_eisenstein = |x: &Quadratic<-3>| EisensteinRat {
             a: &x.a + &x.b,
             b: &x.b + &x.b,
@@ -1461,7 +1287,6 @@ mod tests {
         }
     }
 
-    // ----- square roots -----------------------------------------------------------
 
     #[test]
     fn squares_of_elements_have_a_square_root_that_squares_back() {
@@ -1495,49 +1320,37 @@ mod tests {
 
     #[test]
     fn square_root_decisions_on_known_cases() {
-        // (1 + sqrt 2)^2 = 3 + 2 sqrt 2
         assert_eq!(Q2::from_ints(3, 2).sqrt(), Some(Q2::from_ints(1, 1)));
-        // phi^2 = (3 + sqrt 5)/2
         assert_eq!(Q5::new(rq(3, 2), rq(1, 2)).sqrt(), Some(Q5::golden_ratio()));
-        // 2 = (sqrt 2)^2 in Q(sqrt 2); 2 is not a square in Q(sqrt 3) or Q(sqrt 5)
         assert_eq!(Q2::from_ints(2, 0).sqrt(), Some(Q2::sqrt_d()));
         assert_eq!(Q3::from_ints(2, 0).sqrt(), None);
         assert_eq!(Q5::from_ints(2, 0).sqrt(), None);
-        // -1 is a square in Q(i) but not in Q(sqrt 5)
         assert_eq!(
             Quadratic::<-1>::from_ints(-1, 0).sqrt(),
             Some(Quadratic::<-1>::sqrt_d())
         );
         assert_eq!(Q5::from_ints(-1, 0).sqrt(), None);
-        // 3 + 4i = (2 + i)^2
         assert_eq!(
             Quadratic::<-1>::from_ints(3, 4).sqrt(),
             Some(Quadratic::<-1>::from_ints(2, 1))
         );
-        // 0 and 1 and 9/4
         assert_eq!(Q5::zero().sqrt(), Some(Q5::zero()));
         assert_eq!(Q5::one().sqrt(), Some(Q5::one()));
         assert_eq!(
             Q5::new(rq(9, 4), r_zero()).sqrt(),
             Some(Q5::new(rq(3, 2), r_zero()))
         );
-        // a non-square with a square norm: 1 + sqrt 2 has norm -1, not a rational square
         assert_eq!(Q2::from_ints(1, 1).sqrt(), None);
-        // norm a rational square but neither half-sum a square: 2 + sqrt 3 has norm 1,
-        // half-sums (2 +- 1)/2 = 3/2, 1/2, neither a square
         assert_eq!(Q3::from_ints(2, 1).sqrt(), None);
     }
 
     #[test]
     fn sqrt_returns_the_root_with_positive_rational_part() {
-        // (1 - sqrt 2)^2 = (sqrt 2 - 1)^2 = 3 - 2 sqrt 2: the roots are +-(1 - sqrt 2) and
-        // the returned one has positive rational part, 1 - sqrt 2.
         let root = Q2::from_ints(3, -2).sqrt().unwrap();
         assert_eq!(root, Q2::from_ints(1, -1));
         assert!(root.a.is_positive());
     }
 
-    // ----- mismatches and serde ---------------------------------------------------
 
     #[test]
     fn conversion_between_the_typed_and_runtime_forms_round_trips() {
@@ -1545,7 +1358,6 @@ mod tests {
         let n = x.to_number();
         assert_eq!(n.radicand(), &BigInt::from(5));
         assert_eq!(Q5::from_number(&n), Some(x.clone()));
-        // a number from another field is not an element of Q(sqrt 5), a rational is
         let other = QuadraticNumber::new(BigInt::from(3), ri(1), ri(1)).unwrap();
         assert_eq!(Q5::from_number(&other), None);
         let rational = QuadraticNumber::from_rational(rq(3, 4));
@@ -1553,7 +1365,6 @@ mod tests {
             Q5::from_number(&rational),
             Some(Q5::new(rq(3, 4), r_zero()))
         );
-        // rationals normalise to radicand 1 whatever field they were built in
         assert_eq!(
             Q5::from_ints(4, 0).to_number(),
             QuadraticNumber::from_rational(ri(4))
@@ -1568,7 +1379,6 @@ mod tests {
         assert_eq!(back, x);
     }
 
-    // ----- Surd ------------------------------------------------------------------
 
     fn surd(c: Rational, square: Rational) -> Surd {
         Surd::new(c, &square).unwrap()
@@ -1576,7 +1386,6 @@ mod tests {
 
     #[test]
     fn surd_normalisation_extracts_square_factors_and_denominators() {
-        // sqrt 8 = 2 sqrt 2; sqrt(1/2) = sqrt 2 / 2; sqrt(2/9) = sqrt 2 / 3
         let s = surd(ri(1), ri(8));
         assert_eq!((s.coefficient(), s.radicand()), (&ri(2), &BigInt::from(2)));
         let s = surd(ri(1), rq(1, 2));
@@ -1589,9 +1398,6 @@ mod tests {
             (s.coefficient(), s.radicand()),
             (&rq(1, 3), &BigInt::from(2))
         );
-        // the Gell-Mann diagonal scales sqrt(2 / (l (l + 1)))
-        // l = 1: 1; l = 2: sqrt(1/3) = sqrt 3 / 3; l = 3: sqrt 6 / 6; l = 4: sqrt 10 / 10;
-        // l = 7: sqrt(1/28) = sqrt 7 / 14 (a square factor 4 in the denominator).
         let scales: Vec<(i64, i64, i64)> = vec![
             (1, 1, 1),
             (2, 3, 3),
@@ -1641,7 +1447,6 @@ mod tests {
             Surd::from_natural(ri(1), &BigInt::from(-3)),
             Err(QuadraticError::NegativeRadicand(_))
         ));
-        // an unreduced negative radicand is still negative
         assert!(matches!(
             Surd::new(
                 ri(1),
@@ -1653,15 +1458,12 @@ mod tests {
 
     #[test]
     fn surds_multiply_and_invert_in_normal_form() {
-        let a = surd(ri(3), ri(2)); // 3 sqrt 2
-        let b = surd(ri(1), ri(6)); // sqrt 6
-                                    // 3 sqrt 2 * sqrt 6 = 3 sqrt 12 = 6 sqrt 3
+        let a = surd(ri(3), ri(2));
+        let b = surd(ri(1), ri(6));
         assert_eq!(a.mul(&b), surd(ri(6), ri(3)));
-        // sqrt 2 * sqrt 2 = 2 (rational)
         let r2 = surd(ri(1), ri(2));
         assert_eq!(r2.mul(&r2), Surd::rational(ri(2)));
         assert_eq!(a.square(), ri(18));
-        // inverse: 1 / (3 sqrt 2) = sqrt 2 / 6
         assert_eq!(a.inverse().unwrap(), surd(rq(1, 6), ri(2)));
         assert_eq!(a.mul(&a.inverse().unwrap()), Surd::one());
         assert_eq!(Surd::zero().inverse(), None);
@@ -1686,23 +1488,22 @@ mod tests {
                 right: BigInt::from(3)
             })
         );
-        // a rational plus an irrational is also not a single surd
         assert!(a.checked_add(&Surd::one()).is_err());
     }
 
     #[test]
     fn surd_order_is_the_order_of_the_real_numbers() {
         let values = [
-            surd(ri(-3), ri(2)), // -4.24
-            surd(ri(-1), ri(5)), // -2.236
+            surd(ri(-3), ri(2)),
+            surd(ri(-1), ri(5)),
             Surd::rational(ri(-2)),
-            surd(ri(-1), ri(2)), // -1.414
+            surd(ri(-1), ri(2)),
             Surd::zero(),
-            surd(rq(1, 2), ri(2)), // 0.707
-            surd(ri(1), ri(2)),    // 1.414
+            surd(rq(1, 2), ri(2)),
+            surd(ri(1), ri(2)),
             Surd::rational(ri(2)),
-            surd(ri(1), ri(5)), // 2.236
-            surd(ri(3), ri(2)), // 4.24
+            surd(ri(1), ri(5)),
+            surd(ri(3), ri(2)),
         ];
         for window in values.windows(2) {
             assert!(window[0] < window[1], "{} < {}", window[0], window[1]);
@@ -1729,7 +1530,6 @@ mod tests {
         );
     }
 
-    // ----- QuadraticNumber --------------------------------------------------------
 
     fn number(d: i64, a: Rational, b: Rational) -> QuadraticNumber {
         QuadraticNumber::new(BigInt::from(d), a, b).unwrap()
@@ -1762,19 +1562,17 @@ mod tests {
             QuadraticNumber::from_rational(ri(3))
         );
         assert_eq!(number(5, ri(3), ri(0)).radicand(), &BigInt::one());
-        // radicand 1: sqrt 1 = 1 folds b into a
         assert_eq!(
             number(1, ri(1), ri(2)),
             QuadraticNumber::from_rational(ri(3))
         );
-        // an irrational element keeps its radicand
         assert_eq!(number(5, ri(3), ri(1)).radicand(), &BigInt::from(5));
     }
 
     #[test]
     fn operations_lift_rationals_and_refuse_to_mix_irrational_fields() {
-        let x = number(2, ri(1), ri(1)); // 1 + sqrt 2
-        let y = number(3, ri(1), ri(1)); // 1 + sqrt 3
+        let x = number(2, ri(1), ri(1));
+        let y = number(3, ri(1), ri(1));
         let r = QuadraticNumber::from_rational(rq(1, 2));
         assert_eq!(x.add(&r).unwrap(), number(2, rq(3, 2), ri(1)));
         assert_eq!(r.mul(&x).unwrap(), number(2, rq(1, 2), rq(1, 2)));
@@ -1790,7 +1588,6 @@ mod tests {
         assert_eq!(x.sub(&y), mismatch());
         assert_eq!(x.checked_div(&y), mismatch());
         assert_eq!(x.cmp_real(&y), mismatch());
-        // the difference of a number and itself is the rational zero
         assert_eq!(x.sub(&x).unwrap(), QuadraticNumber::from_rational(ri(0)));
     }
 
@@ -1820,8 +1617,8 @@ mod tests {
 
     #[test]
     fn signs_of_quadratic_numbers_are_exact_and_imaginary_fields_refuse() {
-        assert_eq!(number(2, ri(-1), ri(1)).sign().unwrap(), Ordering::Greater); // sqrt 2 - 1
-        assert_eq!(number(2, ri(-3), ri(2)).sign().unwrap(), Ordering::Less); // 2 sqrt 2 - 3 < 0
+        assert_eq!(number(2, ri(-1), ri(1)).sign().unwrap(), Ordering::Greater);
+        assert_eq!(number(2, ri(-3), ri(2)).sign().unwrap(), Ordering::Less);
         assert_eq!(
             QuadraticNumber::from_rational(ri(-3)).sign().unwrap(),
             Ordering::Less
@@ -1830,7 +1627,6 @@ mod tests {
             number(-1, ri(0), ri(1)).sign(),
             Err(QuadraticError::NotReal(BigInt::from(-1)))
         );
-        // a rational is comparable even when built in an imaginary field
         assert_eq!(number(-3, ri(2), ri(0)).sign().unwrap(), Ordering::Greater);
         assert_eq!(
             number(2, ri(3), ri(0))
@@ -1844,22 +1640,18 @@ mod tests {
     #[test]
     fn sqrt_in_decides_squares_inside_a_named_field() {
         let field = BigInt::from(5);
-        // phi^2 = (3 + sqrt 5)/2 has the root (1 + sqrt 5)/2
         let phi_squared = number(5, rq(3, 2), rq(1, 2));
         let root = phi_squared.sqrt_in(&field).unwrap().unwrap();
         assert_eq!(root, number(5, rq(1, 2), rq(1, 2)));
         assert_eq!(root.mul(&root).unwrap(), phi_squared);
-        // 5 is the square of sqrt 5 inside Q(sqrt 5), and is not a rational square
         let five = QuadraticNumber::from_rational(ri(5));
         assert_eq!(five.sqrt_in(&field).unwrap(), Some(number(5, ri(0), ri(1))));
         assert_eq!(five.sqrt_in(&BigInt::one()).unwrap(), None);
-        // a rational square root needs no irrational part
         let four = QuadraticNumber::from_rational(ri(4));
         assert_eq!(
             four.sqrt_in(&field).unwrap(),
             Some(QuadraticNumber::from_rational(ri(2)))
         );
-        // 2 is not a square in Q(sqrt 5)
         assert_eq!(
             QuadraticNumber::from_rational(ri(2))
                 .sqrt_in(&field)
@@ -1890,13 +1682,11 @@ mod tests {
             x.sqrt_in(&BigInt::from(8)),
             Err(QuadraticError::RadicandNotSquarefree { .. })
         ));
-        // an irrational element asked about Q itself is a field mismatch
         assert!(x.sqrt_in(&BigInt::one()).is_err());
     }
 
     #[test]
     fn the_square_root_decision_is_sound_and_complete_on_a_grid() {
-        // Complete: every square has a root. Sound: whatever root is returned squares back.
         let field = BigInt::from(6);
         let mut roots_found = 0;
         for a in -8..=8i64 {
@@ -1909,7 +1699,6 @@ mod tests {
                     .expect("a square has a root");
                 assert_eq!(root.mul(&root).unwrap(), square);
                 roots_found += 1;
-                // a generic element is usually not a square; when a root is returned it is right
                 if let Some(root) = x.sqrt_in(&field).unwrap() {
                     assert_eq!(root.mul(&root).unwrap(), x);
                 }

@@ -1,8 +1,3 @@
-//! Campaign module vacuum_polarization.
-//!
-//! The transverse tensor `Π^{μν} = q² g^{μν} - q^μ q^ν` contracts to zero
-//! against `q`. The contraction is the matrix-vector product and the
-//! algebraic cancellation `q² q^ν - q^ν q²`.
 
 pub fn verify() -> Result<[i64; 2], &'static str> {
     let q = [2i64, 1];

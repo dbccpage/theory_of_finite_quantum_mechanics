@@ -1,5 +1,3 @@
-//! Source-25 carrier edits retain raw states alongside the exact gauge verdict.
-//! This assesses fixed-writing gradient classes, not permission or all futures.
 use crate::genesis_source_execution::{Source25Change, Source25State, SourceExecutionError};
 use crate::types::AuthorityEffect;
 use linear_algebra::backend::basic_matrix::BasicMatrix;

@@ -22,14 +22,11 @@ from enum import Enum
 from typing import Optional
 
 
-# ---------------------------------------------------------------------------
-# Toy concurrent-edit carrier (dual of Lean Edit / editAct / actSeq)
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
 class Edit:
-    kind: str  # "id" | "write"
+    kind: str
     expected_base: Optional[int] = None
 
     @staticmethod
@@ -82,9 +79,6 @@ def order_independence_law(edits: list[Edit], tips: list[int]) -> bool:
     return True
 
 
-# ---------------------------------------------------------------------------
-# Survival matrix dual
-# ---------------------------------------------------------------------------
 
 
 class SurvivalSlot(str, Enum):
@@ -108,15 +102,12 @@ SURVIVAL_MATRIX: dict[SurvivalSlot, SurvivalVerdict] = {
 }
 
 
-# ---------------------------------------------------------------------------
-# Partial core (dual of Lean corePartial / corePartial_inter)
-# ---------------------------------------------------------------------------
 
 
 def core_partial(
-    act,  # Callable[[C, X], Optional[X]]
+    act,
     contexts: list,
-    R,  # Callable[[X, X], bool]
+    R,
     x,
     y,
 ) -> bool:
@@ -141,9 +132,6 @@ def i_inter_rel(family: list):
     return lambda a, b: all(R(a, b) for R in family)
 
 
-# ---------------------------------------------------------------------------
-# Concrete concurrent toy: tip=0, both writes expect base 0
-# ---------------------------------------------------------------------------
 
 WRITE_A = Edit.write(0)
 WRITE_B = Edit.write(0)
@@ -185,7 +173,6 @@ def test_order_independence_fails_on_concurrent_write_toy():
     edits = [WRITE_A, WRITE_B, Edit.id(), Edit.write(1)]
     tips = [0, 1, 2]
     assert order_independence_law(edits, tips) is False
-    # Explicit counterexample facts
     assert edit_act(WRITE_A, TIP0) is not None
     assert edit_act(WRITE_B, TIP0) is not None
     assert act_seq(WRITE_A, WRITE_B, TIP0) is None
@@ -208,7 +195,7 @@ def test_core_partial_preserves_binary_meets():
     tips = [0, 1, 2, 3]
 
     def R(a: int, b: int) -> bool:
-        return a % 2 == b % 2  # same parity
+        return a % 2 == b % 2
 
     def S(a: int, b: int) -> bool:
         return a <= b

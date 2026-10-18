@@ -1,20 +1,3 @@
-//! Admission gate for Algorithm Prime 000.
-//!
-//! # Two-Phase Discipline
-//!
-//! Prime 000 has two distinct phases:
-//! 1. **Admission** (7-step declaration): carrier, primitive difference, ZeroRel,
-//!    cochain justification, observer, and witnesses.
-//! 2. **Execution** (12-step fill): residual projection, measurement of (Φ₁, Γ₂),
-//!    operator/lift search, survivor routing, terminalization, and post-terminal
-//!    literature comparison.
-//!
-//! The admission gate refuses before any Φ₁ or Γ₂ is computed when no observer,
-//! or no witness-or-refusal route, is declared. Because [`run_prime_algorithm_0`](crate::prime_algos::prime_algorithm_0::run_admitted)
-//! accepts only an [`AdmittedDeclaration`], typestate makes measuring before
-//! admission unrepresentable.
-//!
-//! AuthorityEffect: None.
 
 use crate::prime_algos::prime_algorithm_0::{
     CochainSlot, CochainWindow, DeclarationFill, DefectBranch, DomainAdapter, LiftSearch,
@@ -25,9 +8,6 @@ use omega_types::authority::AuthorityEffect;
 use serde::Serialize;
 use std::fmt;
 
-/// An admitted declaration whose 7 declaration steps have passed the gate.
-///
-/// Private fields and no public constructor: can only be constructed by [`admit`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct AdmittedDeclaration {
     carrier: String,
@@ -64,7 +44,6 @@ impl AdmittedDeclaration {
     }
 }
 
-/// A refusal during Prime 000 admission, occurring before any measurement.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct AdmissionRefusal {
     pub prime_step: u8,
@@ -85,11 +64,6 @@ impl fmt::Display for AdmissionRefusal {
 impl std::error::Error for AdmissionRefusal {}
 
 impl AdmissionRefusal {
-    /// Convert an admission refusal into a [`PrimeAlgorithm0Receipt`].
-    ///
-    /// The receipt records execution up to the point of refusal and terminalizes
-    /// with [`PrimeTerminal::Refusal`]. Crucially, `phi1` and `gamma2` are `None`:
-    /// no diagnostic measurement ever took place.
     pub fn to_receipt(&self, adapter: &dyn DomainAdapter) -> PrimeAlgorithm0Receipt {
         let decl = adapter.declaration();
         let family = adapter.residual_family_label();
@@ -113,7 +87,6 @@ impl AdmissionRefusal {
             });
         };
 
-        // Step 1: carrier
         if self.prime_step == 1 {
             emit(
                 1,
@@ -131,7 +104,6 @@ impl AdmissionRefusal {
             emit(1, DdaOp::Integration, true, "ledger open".into());
         }
 
-        // Step 2: primitive difference
         if self.prime_step > 1 {
             if self.prime_step == 2 {
                 emit(
@@ -153,7 +125,6 @@ impl AdmissionRefusal {
             }
         }
 
-        // Step 3: zero_rel
         if self.prime_step > 2 {
             if self.prime_step == 3 {
                 emit(
@@ -172,7 +143,6 @@ impl AdmissionRefusal {
             }
         }
 
-        // Step 4: cochain
         let cochain = if self.prime_step == 4 {
             emit(
                 4,
@@ -216,7 +186,6 @@ impl AdmissionRefusal {
             CochainSlot::BlockedEarly
         };
 
-        // Step 7: observer (if failed at step 7)
         let observer = if self.prime_step == 7 {
             emit(
                 7,
@@ -229,7 +198,6 @@ impl AdmissionRefusal {
             decl.observer.clone()
         };
 
-        // Step 8: witnesses (if failed at step 8)
         let witnesses = if self.prime_step == 8 {
             emit(
                 8,
@@ -242,7 +210,6 @@ impl AdmissionRefusal {
             decl.witnesses.clone()
         };
 
-        // Terminalize Refusal at step 11
         emit(
             11,
             DdaOp::Terminalize,
@@ -288,21 +255,11 @@ impl AdmissionRefusal {
     }
 }
 
-/// Run the 7-step admission gate on a declaration.
-///
-/// Refuses early before any measuring takes place:
-/// - Step 1: carrier declared and non-empty
-/// - Step 2: primitive difference declared and non-empty
-/// - Step 3: ZeroRel declared and non-empty
-/// - Step 4: cochain construction justified and window satisfies d₁∘d₀ = 0
-/// - Step 7: observer declared (no view-from-nowhere)
-/// - Step 8: witnesses non-empty (a difference is not its own evidence)
 pub fn admit(
     decl: &DeclarationFill,
     justify_cochain: bool,
     window: Option<&CochainWindow>,
 ) -> Result<AdmittedDeclaration, AdmissionRefusal> {
-    // Step 1 — carrier
     let carrier = match &decl.carrier {
         Some(c) if !c.trim().is_empty() => c.clone(),
         _ => {
@@ -314,7 +271,6 @@ pub fn admit(
         }
     };
 
-    // Step 2 — primitive difference δ
     let primitive_difference = match &decl.primitive_difference {
         Some(d) if !d.trim().is_empty() => d.clone(),
         _ => {
@@ -326,7 +282,6 @@ pub fn admit(
         }
     };
 
-    // Step 3 — ZeroRel
     let zero_rel = match &decl.zero_rel {
         Some(z) if !z.trim().is_empty() => z.clone(),
         _ => {
@@ -338,7 +293,6 @@ pub fn admit(
         }
     };
 
-    // Step 4 — C• cochain window
     if !justify_cochain {
         return Err(AdmissionRefusal {
             prime_step: 4,
@@ -369,7 +323,6 @@ pub fn admit(
         },
     };
 
-    // Step 7 — observer
     let observer = match &decl.observer {
         Some(o) if !o.trim().is_empty() && o != "MISSING_observer" => o.clone(),
         _ => {
@@ -381,7 +334,6 @@ pub fn admit(
         }
     };
 
-    // Step 8 — witnesses
     if decl.witnesses.is_empty() {
         return Err(AdmissionRefusal {
             prime_step: 8,

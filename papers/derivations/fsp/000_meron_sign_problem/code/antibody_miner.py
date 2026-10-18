@@ -42,13 +42,11 @@ class AntibodyMiner:
                 "scratchpad": "",
             }
 
-        # 1. Direct JSON parse
         try:
             return json.loads(raw_text.strip())
         except Exception:
             pass
 
-        # 2. Extract from markdown code fences ```json ... ```
         match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", raw_text, re.DOTALL)
         if match:
             try:
@@ -56,7 +54,6 @@ class AntibodyMiner:
             except Exception:
                 pass
 
-        # 3. Find outermost braces { ... }
         start = raw_text.find("{")
         end = raw_text.rfind("}")
         if start != -1 and end != -1 and end > start:
@@ -65,7 +62,6 @@ class AntibodyMiner:
             except Exception:
                 pass
 
-        # 4. Fallback unstructured dict
         return {
             "parse_error": True,
             "raw_text": (raw_text or "")[:500],
@@ -90,14 +86,12 @@ class AntibodyMiner:
         parity_found = bool(parsed.get("cycle_parity_invariant_found", False))
         zero_count = self._coerce_int(parsed.get("zero_odd_sector_subgraphs"))
 
-        # Check if cancellation mechanism was actually formulated
         mechanism = str(parsed.get("cancellation_mechanism", "")).lower()
         parity_proved = parity_found and any(
             kw in mechanism
             for kw in ["canc", "flip", "odd", "pairwise", "vanish", "zero", "1 + (-1)", "1+(-1)"]
         )
 
-        # Check if zero sector reduction was recognized (ground truth is 199 subgraphs)
         zero_sector_used = zero_count == 199
 
         eval_result = self.oracle.evaluate_proposer_claim(
@@ -107,11 +101,9 @@ class AntibodyMiner:
             zero_sector_reduction_used=zero_sector_used,
         )
 
-        # Mine antibodies for any failed rubric items
         new_antibodies = []
         existing_codes = {a["code"] for a in prior_antibodies}
 
-        # Defect 1: Value failure
         if claimed_z != 912:
             code = "ANTI_PARTITION_DRIFT"
             if code not in existing_codes:
@@ -123,7 +115,6 @@ class AntibodyMiner:
                     }
                 )
 
-        # Defect 2: Independence failure
         if not indep:
             code = "ANTI_COUPLED_CYCLE_HALLUCINATION"
             if code not in existing_codes:
@@ -135,7 +126,6 @@ class AntibodyMiner:
                     }
                 )
 
-        # Defect 3: Parity cancellation failure
         if not parity_proved:
             code = "ANTI_MISSING_PAIRWISE_CANCELLATION"
             if code not in existing_codes:
@@ -147,7 +137,6 @@ class AntibodyMiner:
                     }
                 )
 
-        # Defect 4: Zero sector failure
         if not zero_sector_used:
             code = "ANTI_NEGATIVE_CONTRIBUTION_LEAK"
             if code not in existing_codes:

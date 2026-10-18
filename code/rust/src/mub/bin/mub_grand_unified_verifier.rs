@@ -1,7 +1,3 @@
-//! Artifact integrity checks and exact replay of scoped frontier diagnostics.
-//! Default exit code 2 means the mathematical certification remains incomplete.
-//! --integrity-only explicitly asks for the narrower artifact/replay check.
-//! AuthorityEffect: None.
 
 use omega_mub::omega_native::{
     exact::mub6_collar_solver, exact::mub6_deltoid_cusp_asymptotics, exact::mub6_frame_potential, exact::mub6_hyper_gramian,
@@ -195,7 +191,6 @@ fn verify_artifacts(dir: &Path) -> Result<Receipt, String> {
 }
 
 fn run() -> Result<i32, String> {
-    // The frozen receipts live beside this crate.
     let artifacts = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
     let mut dir = artifacts.clone();
     let mut output = None;

@@ -1,9 +1,3 @@
-//! Constant-profile rational schedule on one finite carrier.
-//! L=4, Fock dimension 16, psi_x(tau)=1, theta=1/10, B=1, D=0.
-//! E_4=(80/79)^32 and E_16=(20/19)^32. The margin is m=79^32/(4*80^32).
-//! The numerator is A=4*(30*(theta+theta^2)*E_16+2*theta*E_4).
-//! Strict M_0 is max(1, floor(A/m)+1) on those rationals.
-//! The response matrix is not built. This is not a field-limit theorem.
 
 use std::cmp::Ordering;
 
@@ -357,14 +351,12 @@ fn div_exact_u32(value: &Nat, divisor: u32) -> Nat {
     quot
 }
 
-/// Compare factor * margin and numerator by cross multiplication.
 fn cmp_scaled(factor: u64, margin: &Rat, numerator: &Rat) -> Ordering {
     let left = Nat::from_u64(factor).mul(&margin.num).mul(&numerator.den);
     let right = numerator.num.mul(&margin.den);
     left.cmp(&right)
 }
 
-/// Smallest positive integer M with M*margin > numerator. Equal ratios round upward.
 fn strict_threshold(numerator: &Rat, margin: &Rat) -> u64 {
     assert!(!margin.num.is_zero(), "margin is not strictly positive");
     let mut hi = 1u64;
@@ -425,7 +417,6 @@ fn schedule() -> Schedule {
     Schedule { margin, numerator, strict_m0 }
 }
 
-/// Exact constant-profile threshold on this carrier. Fractions are reduced.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Witness {
     pub sites: u64,
@@ -458,7 +449,6 @@ pub fn witness() -> Witness {
     }
 }
 
-/// In-scope parameters return the rational threshold. Every other carrier is refused.
 pub fn constant_profile_threshold(
     sites: u64,
     theta_num: u64,
@@ -481,7 +471,6 @@ pub enum OpenClaim {
     GateEAtDepthOne,
 }
 
-/// An extinction or positivity claim other than the one-point record stays open.
 pub fn extinction_or_positivity(claim: OpenClaim) -> Result<(), &'static str> {
     Err(match claim {
         OpenClaim::PositivityOfGm => "refused: positivity of G_M is not this constant-profile schedule",
@@ -547,7 +536,6 @@ mod tests {
 
     #[test]
     fn refuses_matrix_positivity_and_the_one_point_record() {
-        // Rayleigh identity of the M=1 record. It is not added into the margin.
         assert_eq!(8 * 88_305, 706_440);
         assert_eq!(192u64 * 455_348_740, 87_426_958_080);
         let got = witness();

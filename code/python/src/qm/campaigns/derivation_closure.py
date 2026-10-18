@@ -50,9 +50,6 @@ from typing import Dict, List, Tuple
 
 from .dressed_qed import RationalInterval
 
-# ---------------------------------------------------------------------------
-# Cyclotomic ring Z[zeta_12] = Z[zeta]/(zeta^4 - zeta^2 + 1) over Q
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -97,23 +94,15 @@ class QZeta12:
         )
 
     def __mul__(self, other: "QZeta12") -> "QZeta12":
-        # Reduction rules modulo zeta^4 - zeta^2 + 1 = 0:
-        # zeta^4 = zeta^2 - 1
-        # zeta^5 = zeta^3 - zeta
-        # zeta^6 = -1
         a = [self.c0, self.c1, self.c2, self.c3]
         b = [other.c0, other.c1, other.c2, other.c3]
         prod = [Fraction(0)] * 7
         for i in range(4):
             for j in range(4):
                 prod[i + j] += a[i] * b[j]
-        # Reduce degree 6, 5, 4:
-        # zeta^6 = -1
         prod[0] -= prod[6]
-        # zeta^5 = zeta^3 - zeta
         prod[3] += prod[5]
         prod[1] -= prod[5]
-        # zeta^4 = zeta^2 - 1
         prod[2] += prod[4]
         prod[0] -= prod[4]
         return QZeta12(prod[0], prod[1], prod[2], prod[3])
@@ -179,9 +168,6 @@ def _readout_gram_leading_minors(
     return (m1, m2, m3, m4)
 
 
-# ---------------------------------------------------------------------------
-# Report Dataclasses
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -269,9 +255,6 @@ class FoundationalDerivationClosureReport:
     all_checks_passed: bool
 
 
-# ---------------------------------------------------------------------------
-# Part (a): FQM-COMPOSITION-IMPORT
-# ---------------------------------------------------------------------------
 
 
 def _verify_pr_box_no_signaling(pr_table: Dict[Tuple[int, int, int, int], Fraction]) -> bool:
@@ -375,9 +358,6 @@ def _build_bipartite_composition_audit() -> BipartiteCompositionAudit:
     )
 
 
-# ---------------------------------------------------------------------------
-# Part (b): FQM-IMPORT-INDEPENDENCE (5 Concrete Finite Countermodels)
-# ---------------------------------------------------------------------------
 
 
 def _matmul(left: List[List[Fraction]], right: List[List[Fraction]]) -> List[List[Fraction]]:
@@ -548,15 +528,8 @@ def _build_import_independence_audit() -> ImportIndependenceAudit:
         "M_drop_211_projective_contraction_step",
     )
 
-    # 1. M_{-207}: Real carrier over Q (no order-4 phase i, tau in {+1, -1} only).
-    # - Fails QM-207: No element z in Q satisfies z^2 = -1, and real symmetric
-    #   bipartite tomography for d_A = d_B = 2 has dim Sym_2(Q^4) - 1 = 9 != 2 + 2 + 2*2 = 8.
-    # - Satisfies QM-208: R(x) = x^2 has I_3(a,b,c) = (a+b+c)^2 - (a+b)^2 - (a+c)^2 - (b+c)^2 + a^2 + b^2 + c^2 = 0.
-    # - Satisfies QM-209: Real Pauli matrices X = [[0,1],[1,0]], Z = [[1,0],[0,-1]] have XZ - ZX = [[0,-2],[2,0]] != 0.
-    # - Satisfies QM-210: Real PSD trace pairing tr(rho E) >= 0 on Sym_2(Q^2)_+.
-    # - Satisfies QM-211: Orthogonal swap/quarter-turn rotation R = [[0,-1],[1,0]] has R^T R = I_2 and R^4 = I_2.
-    real_local_params = 2 + 2 + 2 * 2  # dim Sym_0(2) = 2
-    real_joint_params = (4 * 5) // 2 - 1  # dim Sym_0(4) = 9
+    real_local_params = 2 + 2 + 2 * 2
+    real_joint_params = (4 * 5) // 2 - 1
     m207_sorkin_i3 = (1 + 2 + 3) ** 2 - (1 + 2) ** 2 - (1 + 3) ** 2 - (2 + 3) ** 2 + 1 + 4 + 9
     pauli_commutator = _pauli_xz_commutator()
     row_207 = (
@@ -567,12 +540,6 @@ def _build_import_independence_audit() -> ImportIndependenceAudit:
         _quarter_turn_is_order_4(),
     )
 
-    # 2. M_{-208}: Quartic phase-blind readout R_4(c) = |c|^4 on Q(i)^4.
-    # - Satisfies QM-207: Complex phase i^2 = -1, |i * c|^4 = |c|^4.
-    # - Fails QM-208: I_3(1, 1, 1) = 3^4 - 3*(2^4) + 3*(1^4) = 81 - 48 + 3 = 36 != 0.
-    # - Satisfies QM-209: Noncommuting Weyl X, Z on Q(i)^4.
-    # - Satisfies QM-210: Standard basis projectors sum to 1 on basis states.
-    # - Satisfies QM-211: Unitary clock U = diag(1, i, -1, -i) satisfies U^dagger U = I_4, U^4 = I_4.
     quartic_i3 = Fraction(3**4 - 3 * (2**4) + 3 * (1**4))
     row_208 = (
         _gaussian_has_order4_phase(),
@@ -582,13 +549,6 @@ def _build_import_independence_audit() -> ImportIndependenceAudit:
         _diagonal_clock_unitary_order_4(),
     )
 
-    # 3. M_{-209}: Commutative diagonal subalgebra A_diag subset M_4(Q(i)).
-    # - Satisfies QM-207: Complex mu_4 phase fiber on diagonal amplitudes.
-    # - Satisfies QM-208: Quadratic L^2 readout |c|^2 with I_3 = 0.
-    # - Fails QM-209: Every pair D_1 = diag(1,-1,1,-1), D_2 = diag(1,1,-1,-1) commutes:
-    #   max_{i,j} |(D_1 D_2 - D_2 D_1)_{ij}| = 0.
-    # - Satisfies QM-210: Diagonal PSD density weights p_k >= 0, sum p_k = 1.
-    # - Satisfies QM-211: Diagonal unitary clock U = diag(1, i, -1, -i), U^4 = I_4.
     d1 = [Fraction(1), Fraction(-1), Fraction(1), Fraction(-1)]
     d2 = [Fraction(1), Fraction(1), Fraction(-1), Fraction(-1)]
     max_comm = _diagonal_commutator_norm(d1, d2)
@@ -600,16 +560,7 @@ def _build_import_independence_audit() -> ImportIndependenceAudit:
         _diagonal_clock_unitary_order_4(),
     )
 
-    # 4. M_{-210}: Indefinite trace-one Hermitian quasi-state rho_quasi on Q(i)^4.
-    # Take the 4x4 real-symmetric trace-1 matrix with diagonal (1/4, 1/4, 1/4, 1/4)
-    # and off-diagonal entry rho_{0,1} = rho_{1,0} = 3/8 (matching the Cabello/Peres
-    # frame-positive but non-PSD mechanism):
-    # - Non-negative on all 4 computational basis projectors <e_k | rho | e_k> = 1/4 >= 0,
-    #   and tr(rho) = 1.
-    # - Satisfies QM-207, QM-208, QM-209, QM-211.
-    # - Fails QM-210: On the ray |psi_-> = (1, -1, 0, 0)^T / sqrt(2),
-    #   <psi_- | rho | psi_-> = 1/4 - 3/8 = -1/8 < 0 (2x2 principal minor = 1/16 - 9/64 = -5/64 < 0).
-    quasi_ray_val = Fraction(1, 4) - Fraction(3, 8)  # -1/8 < 0
+    quasi_ray_val = Fraction(1, 4) - Fraction(3, 8)
     row_210 = (
         _gaussian_has_order4_phase(),
         _quadratic_sorkin_vanishes(),
@@ -618,10 +569,6 @@ def _build_import_independence_audit() -> ImportIndependenceAudit:
         _diagonal_clock_unitary_order_4(),
     )
 
-    # 5. M_{-211}: Projective rank-1 contraction step T = diag(1, 0, 0, 0) on Q(i)^4.
-    # - Satisfies static QM-207, QM-208, QM-209, QM-210.
-    # - Fails QM-211: det(T) = 0, T^dagger T != I_4, so T is irreversible and admits
-    #   zero unitary clock-refinement square roots.
     t_entries = (Fraction(1), Fraction(0), Fraction(0), Fraction(0))
     t_det = Fraction(1)
     for entry in t_entries:
@@ -640,9 +587,6 @@ def _build_import_independence_audit() -> ImportIndependenceAudit:
         matrix[i][j] for i in range(5) for j in range(5) if i != j
     )
 
-    # Cross-import coupling on Pythagorean superposition psi = (3/5, 4/5, 0, 0):
-    # Born trace Tr(rho E_0) = 9/25 vs quartic readout (3/5)^4 = 81/625,
-    # basis sum (3/5)^4 + (4/5)^4 = 337/625 != 1, renormalized 81/337 != 9/25.
     born_e0 = Fraction(3, 5) ** 2
     quartic_e0 = Fraction(3, 5) ** 4
     quartic_sum = (Fraction(3, 5) ** 4) + (Fraction(4, 5) ** 4)
@@ -657,12 +601,10 @@ def _build_import_independence_audit() -> ImportIndependenceAudit:
         and quartic_renorm != born_e0
     )
 
-    # 3-ray positivity proxy gap: rho_alt = [[1/2, -3/4], [-3/4, 1/2]] is >= 0 on
-    # (1,0), (0,1), and (1,-1) (values 1/2, 1/2, 5/2 >= 0), yet < 0 on (1,1) (-1/2 < 0).
     q_1_0 = Fraction(1, 2)
     q_0_1 = Fraction(1, 2)
-    q_1_neg1 = Fraction(1, 2) + Fraction(3, 2) + Fraction(1, 2)  # 5/2 >= 0
-    q_1_1 = Fraction(1, 2) - Fraction(3, 2) + Fraction(1, 2)  # -1/2 < 0
+    q_1_neg1 = Fraction(1, 2) + Fraction(3, 2) + Fraction(1, 2)
+    q_1_1 = Fraction(1, 2) - Fraction(3, 2) + Fraction(1, 2)
     three_ray_gap = (
         q_1_0 >= 0 and q_0_1 >= 0 and q_1_neg1 == Fraction(5, 2) and q_1_1 == Fraction(-1, 2) and q_1_1 < 0
     )
@@ -687,9 +629,6 @@ def _build_import_independence_audit() -> ImportIndependenceAudit:
     )
 
 
-# ---------------------------------------------------------------------------
-# Part (c): FQM-QM208-READOUT-CLASS on Z[zeta_12]
-# ---------------------------------------------------------------------------
 
 
 def _rational_rank_10x10(mat: List[List[Fraction]]) -> int:
@@ -878,9 +817,6 @@ def _build_z_zeta12_readout_class_audit() -> ZZeta12ReadoutClassAudit:
     )
 
 
-# ---------------------------------------------------------------------------
-# 12-Decimal RationalInterval Enclosures for sqrt(3) and 2 +- sqrt(3)
-# ---------------------------------------------------------------------------
 
 
 def _certified_sqrt3_interval() -> RationalInterval:

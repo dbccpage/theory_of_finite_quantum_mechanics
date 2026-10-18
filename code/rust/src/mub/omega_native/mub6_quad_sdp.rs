@@ -1,8 +1,3 @@
-//! Exact diagnostics for the single synthetic block matrix constructed below.
-//! The blocks are independently prescribed; they are not a parameterization of
-//! every MUB system. See research/mub6_frontier_synthesis.md and the matching
-//! test_*_verifier.rs for the scope and exact replay checks.
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -35,11 +30,10 @@ pub fn tao_s6_block() -> Vec<Vec<Cyc24>> {
     mat
 }
 pub fn canonical_quad_gramian() -> Vec<Vec<Cyc24>> {
-    let cols = canonical_triple_exact(); // 18 columns: 0..6 B0, 6..12 B1, 12..18 B2
+    let cols = canonical_triple_exact();
     let s6 = tao_s6_block();
     let mut g = vec![vec![Cyc24::zero(); GRAMIAN_DIM]; GRAMIAN_DIM];
 
-    // Blocks 0, 1, 2: pairwise Gramian from canonical triple T0
     for a in 0..3 {
         for b in 0..3 {
             for j in 0..DIM_HILBERT {
@@ -52,13 +46,11 @@ pub fn canonical_quad_gramian() -> Vec<Vec<Cyc24>> {
         }
     }
 
-    // Block 3: diagonal identity
     let one = Cyc24::rat(BigRational::one());
     for j in 0..DIM_HILBERT {
         g[3 * DIM_HILBERT + j][3 * DIM_HILBERT + j] = one.clone();
     }
 
-    // Off-diagonal Block 3: G_a3 = S6 and G_3a = S6^\dagger for a in {0, 1, 2}
     for a in 0..3 {
         for j in 0..DIM_HILBERT {
             for k in 0..DIM_HILBERT {
@@ -74,20 +66,16 @@ pub fn canonical_quad_gramian() -> Vec<Vec<Cyc24>> {
 pub fn dual_witness_vector() -> Vec<Cyc24> {
     let mut v = vec![Cyc24::zero(); GRAMIAN_DIM];
 
-    // Block 0: all 0
-    // Block 1:
     let v1_int = [-3i64, 1, -2, -2, 2, 1];
     for (i, &val) in v1_int.iter().enumerate() {
         v[DIM_HILBERT + i] = Cyc24::rat(ri(val));
     }
 
-    // Block 2:
     let v2_int = [-3i64, 1, 1, -1, 3, 3];
     for (i, &val) in v2_int.iter().enumerate() {
         v[2 * DIM_HILBERT + i] = Cyc24::rat(ri(val));
     }
 
-    // Block 3: sqrt(6) * u3
     let s6 = sqrt6();
     let v3_int = [-1i64, 1, 1, 1, 1, 1];
     for (i, &val) in v3_int.iter().enumerate() {
@@ -163,7 +151,6 @@ pub fn verify_gramian_structure(g: &[Vec<Cyc24>]) -> GramianStructureReport {
     let one = Cyc24::rat(BigRational::one());
     let zero = Cyc24::zero();
 
-    // 1. Diagonal blocks are identity
     let mut diag_ok = true;
     for a in 0..NUM_BASES {
         for i in 0..DIM_HILBERT {
@@ -181,7 +168,6 @@ pub fn verify_gramian_structure(g: &[Vec<Cyc24>]) -> GramianStructureReport {
         }
     }
 
-    // 2. Off-diagonal blocks have modulus squared = 1/6
     let mut modulus_ok = true;
     for a in 0..NUM_BASES {
         for b in 0..NUM_BASES {
@@ -202,7 +188,6 @@ pub fn verify_gramian_structure(g: &[Vec<Cyc24>]) -> GramianStructureReport {
         }
     }
 
-    // 3. Exactly Hermitian
     let mut herm_ok = true;
     for i in 0..GRAMIAN_DIM {
         for j in 0..GRAMIAN_DIM {
@@ -237,7 +222,6 @@ pub fn ldlt_pivots_rational(m: &[Vec<Cyc24>]) -> Result<Vec<BigRational>, String
 
     for k in 0..n {
         let piv_cyc = a[k][k].clone();
-        // Pivots of Hermitian matrices are real; for our certificates they are in Q.
         let piv_rat = exact_rational(&piv_cyc)?;
         pivots.push(piv_rat.clone());
 
@@ -246,7 +230,6 @@ pub fn ldlt_pivots_rational(m: &[Vec<Cyc24>]) -> Result<Vec<BigRational>, String
         }
 
         if piv_rat.is_zero() {
-            // Check rank-deficient direction: whole remaining row/col must vanish
             for i in (k + 1)..n {
                 if !a[k][i].is_zero() || !a[i][k].is_zero() {
                     return Err(format!("Indefinite 2x2 minor at step {}", k));
@@ -271,9 +254,6 @@ pub fn ldlt_pivots_rational(m: &[Vec<Cyc24>]) -> Result<Vec<BigRational>, String
     Ok(pivots)
 }
 
-/// Factored dual witness matrix W = L * D * L^\dagger over Q(zeta_24) with D in Q,
-/// corresponding to CandidateGramPositivity.lean's DualWitness representation and
-/// Python's DualWitnessCyc.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct DualWitnessCyc {
     pub n: usize,
@@ -295,7 +275,6 @@ impl DualWitnessCyc {
         Ok(Self { n, m, l, d_diag })
     }
 
-    /// Construct a multi-mode witness from column vectors and diagonal weights.
     pub fn from_cols(cols: Vec<Vec<Cyc24>>, weights: Vec<BigRational>) -> Result<Self, String> {
         let m = cols.len();
         if m == 0 {
@@ -322,12 +301,10 @@ impl DualWitnessCyc {
         })
     }
 
-    /// A dual witness W >= 0 is valid iff all diagonal pivots D_k >= 0.
     pub fn is_valid(&self) -> bool {
         self.d_diag.iter().all(|d| d >= &BigRational::zero())
     }
 
-    /// Strictly validate that all diagonal pivots D_k >= 0.
     pub fn validate_psd(&self) -> Result<(), String> {
         for (k, d) in self.d_diag.iter().enumerate() {
             if d < &BigRational::zero() {
@@ -337,7 +314,6 @@ impl DualWitnessCyc {
         Ok(())
     }
 
-    /// Construct full matrix W_ij = sum_k L_ik * D_k * conj(L_jk).
     pub fn to_full_matrix(&self) -> Vec<Vec<Cyc24>> {
         let mut w = vec![vec![Cyc24::zero(); self.n]; self.n];
         for i in 0..self.n {
@@ -354,7 +330,6 @@ impl DualWitnessCyc {
         w
     }
 
-    /// Compute factored trace inner product Tr(W * G) = sum_{k=0}^{m-1} D_k (L_{*,k}^\dagger G L_{*,k}).
     pub fn trace_inner(&self, g: &[Vec<Cyc24>]) -> Result<Cyc24, String> {
         if g.len() != self.n || g.iter().any(|row| row.len() != self.n) {
             return Err(format!(
@@ -377,8 +352,6 @@ impl DualWitnessCyc {
         Ok(total)
     }
 
-    /// Verify dual obstruction on a candidate Gramian G:
-    /// requires W >= 0 (validate_psd) and returns whether Tr(W * G) < 0.
     pub fn verify_dual_obstruction(&self, g: &[Vec<Cyc24>]) -> Result<bool, String> {
         self.validate_psd()?;
         let tr = self.trace_inner(g)?;
@@ -387,13 +360,11 @@ impl DualWitnessCyc {
     }
 }
 
-/// Construct canonical rank-1 dual witness W = v v^\dagger.
 pub fn canonical_dual_witness_rank1() -> DualWitnessCyc {
     let v = dual_witness_vector();
     DualWitnessCyc::from_cols(vec![v], vec![BigRational::one()]).expect("valid rank1 witness")
 }
 
-/// Construct canonical strict dual witness W = v v^\dagger + (1/24) I_24.
 pub fn canonical_dual_witness_strict() -> DualWitnessCyc {
     let v = dual_witness_vector();
     let mut cols = Vec::with_capacity(GRAMIAN_DIM + 1);
@@ -413,7 +384,6 @@ pub fn canonical_dual_witness_strict() -> DualWitnessCyc {
     DualWitnessCyc::from_cols(cols, weights).expect("valid strict witness")
 }
 
-/// Construct exact Gram matrix G_{ij} = <v_i, v_j> = sum_k v_i[k]^* v_j[k] from candidate vectors.
 pub fn compute_gram_matrix_cyc(vectors: &[Vec<Cyc24>]) -> Result<Vec<Vec<Cyc24>>, String> {
     let n = vectors.len();
     if n == 0 {
@@ -436,7 +406,6 @@ pub fn compute_gram_matrix_cyc(vectors: &[Vec<Cyc24>]) -> Result<Vec<Vec<Cyc24>>
     Ok(g)
 }
 
-/// Return true iff Hermitian matrix G over Q(zeta_24) is verified positive semidefinite via LDL^T.
 pub fn is_psd_cyc(g: &[Vec<Cyc24>]) -> bool {
     match ldlt_pivots_rational(g) {
         Ok(pivots) => pivots.iter().all(|p| p >= &BigRational::zero()),
@@ -484,14 +453,12 @@ pub fn solve_quad_sdp_certificate() -> MubQuadSdpCertificate {
     let inner_rank1 = trace_inner_product(&w_rank1, &g);
     let inner_strict = trace_inner_product(&w_strict, &g);
 
-    // Extract exact rational values (a[0] coefficient)
     let rat_rank1 = exact_rational(&inner_rank1).expect("fixed witness trace must be rational");
     let rat_strict = exact_rational(&inner_strict).expect("fixed witness trace must be rational");
 
     let rank1_neg = rat_rank1 < BigRational::zero();
     let strict_neg = rat_strict < BigRational::zero();
 
-    // Verify LDL^T pivots
     let rank1_pivots =
         ldlt_pivots_rational(&w_rank1).expect("LDL^T decomposition failed for W_rank1");
     let rank1_all_nonneg = rank1_pivots.iter().all(|p| p >= &BigRational::zero());
@@ -534,7 +501,6 @@ pub fn solve_quad_sdp_certificate() -> MubQuadSdpCertificate {
     }
 }
 
-/// Basis pairs `(a, b)` with `0 <= a < b < NUM_BASES`.
 pub fn get_basis_pairs() -> Vec<(usize, usize)> {
     let mut pairs = Vec::with_capacity(6);
     for a in 0..NUM_BASES {
@@ -545,7 +511,6 @@ pub fn get_basis_pairs() -> Vec<(usize, usize)> {
     pairs
 }
 
-/// Basis triples `(a, b, c)` with `0 <= a < b < c < NUM_BASES`.
 pub fn get_basis_triples() -> Vec<(usize, usize, usize)> {
     let mut triples = Vec::with_capacity(4);
     for a in 0..NUM_BASES {
@@ -558,7 +523,6 @@ pub fn get_basis_triples() -> Vec<(usize, usize, usize)> {
     triples
 }
 
-/// Basis quadruples `(a, b, c, d)` with `0 <= a < b < c < d < NUM_BASES`.
 pub fn get_basis_quadruples() -> Vec<(usize, usize, usize, usize)> {
     let mut quadruples = Vec::with_capacity(1);
     for a in 0..NUM_BASES {
@@ -573,7 +537,6 @@ pub fn get_basis_quadruples() -> Vec<(usize, usize, usize, usize)> {
     quadruples
 }
 
-/// Return `Re(z)` only when it lies in `Q`.
 pub fn cyc_real_rational(z: &Cyc24) -> Result<BigRational, String> {
     exact_rational(
         &z.add(&z.conj())
@@ -581,7 +544,6 @@ pub fn cyc_real_rational(z: &Cyc24) -> Result<BigRational, String> {
     )
 }
 
-/// Project `Re(z)` onto its constant power-basis coefficient.
 pub fn cyc_real_constant_coefficient(z: &Cyc24) -> BigRational {
     let re = z
         .add(&z.conj())
@@ -589,7 +551,6 @@ pub fn cyc_real_constant_coefficient(z: &Cyc24) -> BigRational {
     re.a[0].clone()
 }
 
-/// Refuse non-rational field elements rather than discarding their coefficients.
 pub fn exact_rational(value: &Cyc24) -> Result<BigRational, String> {
     if value.a[1..]
         .iter()

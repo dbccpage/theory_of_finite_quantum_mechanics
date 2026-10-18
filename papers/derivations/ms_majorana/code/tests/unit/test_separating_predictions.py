@@ -120,7 +120,6 @@ def test_prediction_table_rows():
     assert row(NamedLift.QUAT).single_qubit_params == 6
 
 
-# --- SEP-LP: ℓᵖ readout vs Born-ℓ² ---
 
 
 class ReadoutLaw(str, Enum):
@@ -166,7 +165,7 @@ def test_sep_lp_born_ne_ell1_on_amp21():
 
 
 def test_sep_lp_support_shared_weights_diverge():
-    assert AMP21.a0 > 0 and AMP21.a1 > 0  # full support
+    assert AMP21.a0 > 0 and AMP21.a1 > 0
     assert unnorm_weights(ReadoutLaw.BORN_L2, AMP21) != unnorm_weights(
         ReadoutLaw.ELL1, AMP21
     )
@@ -179,7 +178,6 @@ def test_equal_amp_readouts_agree_nonseparator():
     assert unnorm_weights(ReadoutLaw.ELL4, AMP11) == (1, 1)
 
 
-# --- SEP-CHSH classical non-separator ---
 
 
 def s(b: bool) -> int:
@@ -204,19 +202,18 @@ def test_classical_chsh_bound_lift_independent():
             assert chsh(a0, a1, b0, b1) <= 2
 
 
-# --- SEP-CHSH-Q: Tsirelson square exceedance (named numeric, not FinL1) ---
 
 CLASSICAL_CHSH_SQUARE_BOUND = 4
-TSIRELSON_CHSH_SQUARE = 8  # (2√2)²; declared, not derived from residual tables
+TSIRELSON_CHSH_SQUARE = 8
 
 
 def quantum_chsh_square_decl(lift: NamedLift) -> int | None:
     if lift is NamedLift.COMPLEX:
         return TSIRELSON_CHSH_SQUARE
     if lift is NamedLift.REAL:
-        return TSIRELSON_CHSH_SQUARE  # rebit also reaches Tsirelson for CHSH
+        return TSIRELSON_CHSH_SQUARE
     if lift is NamedLift.QUAT:
-        return None  # unclaimed
+        return None
     raise ValueError(lift)
 
 
@@ -230,7 +227,6 @@ def test_quantum_chsh_decl_complex_and_real_not_separator():
     assert quantum_chsh_square_decl(NamedLift.COMPLEX) == 8
     assert quantum_chsh_square_decl(NamedLift.REAL) == 8
     assert quantum_chsh_square_decl(NamedLift.QUAT) is None
-    # CHSH quantum exceedance is not a ℂ/ℝ field separator
     assert quantum_chsh_square_decl(NamedLift.COMPLEX) == quantum_chsh_square_decl(
         NamedLift.REAL
     )
@@ -252,7 +248,6 @@ def test_sep_chsh_quantum_package():
     )
 
 
-# --- SEP-CHSH-FIELD: multipartite LT proxy beyond bipartite CHSH ---
 
 
 def local_prod3(lift: NamedLift) -> int:
@@ -274,15 +269,14 @@ class FieldBellScenario(str, Enum):
 
 def is_complex_vs_real_field_separator(scenario: FieldBellScenario) -> bool:
     if scenario is FieldBellScenario.BIPARTITE_CHSH:
-        return False  # both declare Tsirelson square 8
+        return False
     if scenario is FieldBellScenario.MULTIPARTITE_LT_PROXY3:
-        return True  # rebit LT3 fails; complex holds
+        return True
     if scenario is FieldBellScenario.RENOU_TRIANGLE_NETWORK:
-        return True  # Renou-class network field fence (named)
+        return True
     raise ValueError(scenario)
 
 
-# --- SEP-NETWORK: triangle bilocal Mermin-chain ---
 
 NETWORK_LOCAL_MERMIN_UNNORM_BOUND = 8
 NETWORK_LOCAL_MERMIN_PHYSICAL_BOUND = 2
@@ -342,7 +336,6 @@ def test_quat_lt3_fails_216_ne_120():
 
 def test_bipartite_chsh_not_field_separator():
     assert is_complex_vs_real_field_separator(FieldBellScenario.BIPARTITE_CHSH) is False
-    # shared Tsirelson declarations
     assert quantum_chsh_square_decl(NamedLift.COMPLEX) == quantum_chsh_square_decl(
         NamedLift.REAL
     )

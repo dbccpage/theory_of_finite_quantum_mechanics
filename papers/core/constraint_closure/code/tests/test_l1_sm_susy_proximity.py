@@ -63,8 +63,6 @@ def test_opposite_signs_do_not_cancel() -> None:
 def test_phi_vanishes_on_exact_and_not_on_inexact() -> None:
     assert phi_triangle((1, 1, -2)) == 0
     assert phi_triangle((1, 0, 0)) == 1
-    # Regression: the former finite search missed exact cochains whose
-    # potential lay outside its hard-coded [-3, 3] box.
     assert phi_triangle((-100, 0, 100)) == 0
     assert phi_triangle((100, -40, -59)) == 1
     assert exact_implies_loop_sum_zero()
@@ -82,13 +80,12 @@ def test_321_uniqueness_is_false() -> None:
 
 
 def test_named_sm_is_not_in_the_finite_menu() -> None:
-    # Adjoint dimensions 8,3,1 as a Lie product are extras, not a menu group.
     assert not any(g.name == "SU(3)" for g in FINITE_MENU)
     assert not any(g.name == "SU(2)" for g in FINITE_MENU)
     assert not any(g.name == "U(1)" for g in FINITE_MENU)
     min_d, winners = min_sm_distance()
     assert min_d >= 1
-    assert SM_GAUGE_EXTRAS[6] == 1  # compact-connected Lie extra
+    assert SM_GAUGE_EXTRAS[6] == 1
     for a, b, c in winners:
         feat = features(group_by_name(a), group_by_name(b), group_by_name(c))
         assert feat[6] == 0

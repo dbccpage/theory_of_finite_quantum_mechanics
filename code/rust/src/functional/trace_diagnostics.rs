@@ -1,11 +1,4 @@
-//! Legacy reasoning-trace diagnostics kept separate from the canonical
-//! finite obstruction functionals in [`omega_functional::phi1`], [`omega_functional::gamma2`], and
-//! [`omega_functional::xi`]. These scalar features do not certify an obstruction class.
 
-/// Adjacent self-pairing of a finite trace, `sum_i a[i] * a[i + 1]`.
-///
-/// Earlier homology code called this a shift-Xi score. It is not the
-/// primal-dual density-distance Xi defined in [`omega_functional::xi`].
 pub fn shift_pairing_coherence(a: &[f64]) -> Result<f64, String> {
     if a.is_empty() {
         return Err("xi_shift_coherence: empty cochain".into());
@@ -13,19 +6,12 @@ pub fn shift_pairing_coherence(a: &[f64]) -> Result<f64, String> {
     Ok(a.windows(2).map(|pair| pair[0] * pair[1]).sum())
 }
 
-/// Shift pairing divided by squared trace energy plus `eps`.
-///
-/// This remains a trace-routing feature, not canonical Xi.
 pub fn normalized_shift_pairing_coherence(a: &[f64], eps: f64) -> Result<f64, String> {
     let raw = shift_pairing_coherence(a)?;
     let energy: f64 = a.iter().map(|x| x * x).sum();
     Ok(raw / (energy + eps))
 }
 
-/// Mean absolute adjacent variation of a finite trace.
-///
-/// Earlier homology code called this normalized Gamma2. It does not inspect
-/// a coboundary, and is not the closure-defect Gamma2 in [`omega_functional::gamma2`].
 pub fn mean_adjacent_variation(a: &[f64]) -> f64 {
     if a.len() < 2 {
         return 0.0;
@@ -34,8 +20,6 @@ pub fn mean_adjacent_variation(a: &[f64]) -> f64 {
     total / ((a.len() - 1) as f64)
 }
 
-/// Mean absolute magnitude of interior entropy deltas after excluding one
-/// boundary event, when supplied. This is a trace feature, not Gamma2.
 pub fn interior_delta_magnitude(a: &[f64], true_boundary_idx: Option<usize>) -> f64 {
     if a.is_empty() || (a.len() == 1 && true_boundary_idx.is_none()) {
         return 0.0;
@@ -55,7 +39,6 @@ pub fn interior_delta_magnitude(a: &[f64], true_boundary_idx: Option<usize>) -> 
     sum / count as f64
 }
 
-/// Mean absolute trace magnitude; empty traces have zero mass.
 pub fn mean_absolute_magnitude(a: &[f64]) -> f64 {
     if a.is_empty() {
         0.0
@@ -64,27 +47,19 @@ pub fn mean_absolute_magnitude(a: &[f64]) -> f64 {
     }
 }
 
-/// A single reasoning step (text content of one CoT step).
 #[derive(Debug, Clone)]
 pub struct ReasoningStep {
-    /// Raw text content of the step.
     pub text: String,
 }
 
-/// Per-channel scores for a single transition.
 #[derive(Debug, Clone, PartialEq)]
 pub struct TransitionChannels {
-    /// Semantic inconsistency: 1 - entailment(s_i â‡’ s_{i+1}).
     pub phi_sem: f64,
-    /// Structural break: normalized edit distance.
     pub phi_struct: f64,
-    /// Arithmetic instability: numeric token mismatch.
     pub phi_numeric: f64,
-    /// Anti-collapse entropy: distributional divergence.
     pub phi_entropy: f64,
 }
 
-/// Weights for combining Ï† channels.
 #[derive(Debug, Clone)]
 pub struct PhiWeights {
     pub w_sem: f64,
@@ -104,22 +79,13 @@ impl Default for PhiWeights {
     }
 }
 
-/// Combined transition score.
 #[derive(Debug, Clone, PartialEq)]
 pub struct TransitionScore {
     pub channels: TransitionChannels,
     pub combined: f64,
 }
 
-// ============================================================================
-// Channel implementations (structural, no ML dependencies)
-// ============================================================================
 
-/// Ï†_struct: normalized token overlap distance.
-///
-/// Measures syntactic change between steps via set overlap (NOT true
-/// edit distance â€” this ignores token order and repetition).
-/// High when the reasoning form jumps abruptly; low when steps share tokens.
 pub fn phi_struct(s_i: &str, s_next: &str) -> f64 {
     let a: Vec<&str> = s_i.split_whitespace().collect();
     let b: Vec<&str> = s_next.split_whitespace().collect();
@@ -127,32 +93,22 @@ pub fn phi_struct(s_i: &str, s_next: &str) -> f64 {
     if max_len == 0 {
         return 0.0;
     }
-    // Count tokens in a that also appear in b (order-insensitive set overlap)
     let common = a.iter().filter(|t| b.contains(t)).count();
     let dist = max_len - common;
     (dist as f64 / max_len as f64).clamp(0.0, 1.0)
 }
 
-/// Ï†_numeric: symmetric arithmetic token mismatch.
-///
-/// Extracts all numeric tokens from both steps and computes the
-/// symmetric minimum-cost matching error:
-///   Ï†_numeric(a,b) = 0.5 * (match(bâ†’a) + match(aâ†’b))
-///
-/// Symmetry ensures Ï†(s_i, s_{i+1}) = Ï†(s_{i+1}, s_i), which
-/// prevents directional artifacts in the cochain.
 pub fn phi_numeric(s_i: &str, s_next: &str) -> f64 {
     let nums_a = extract_numbers(s_i);
     let nums_b = extract_numbers(s_next);
 
     if nums_a.is_empty() && nums_b.is_empty() {
-        return 0.0; // no numbers â†’ no numeric inconsistency
+        return 0.0;
     }
     if nums_a.is_empty() || nums_b.is_empty() {
-        return 0.5; // one side has numbers, other doesn't
+        return 0.5;
     }
 
-    // Forward matching: each number in b finds closest in a
     let forward_error: f64 = nums_b
         .iter()
         .map(|nb| {
@@ -163,7 +119,6 @@ pub fn phi_numeric(s_i: &str, s_next: &str) -> f64 {
         })
         .sum();
 
-    // Backward matching: each number in a finds closest in b
     let backward_error: f64 = nums_a
         .iter()
         .map(|na| {
@@ -174,10 +129,8 @@ pub fn phi_numeric(s_i: &str, s_next: &str) -> f64 {
         })
         .sum();
 
-    // Symmetric average
     let total_error = 0.5 * (forward_error + backward_error);
 
-    // Normalize by sum of magnitudes
     let scale: f64 = nums_a
         .iter()
         .chain(nums_b.iter())
@@ -187,20 +140,13 @@ pub fn phi_numeric(s_i: &str, s_next: &str) -> f64 {
     (total_error / scale).clamp(0.0, 1.0)
 }
 
-/// Ï†_entropy: anti-collapse term.
-///
-/// Measures distributional change in token frequencies. Forces
-/// variation across steps â†’ prevents constant a[i] â†’ prevents
-/// degenerate Î“â‚‚ = 0.
 pub fn phi_entropy(s_i: &str, s_next: &str) -> f64 {
     let len_a = s_i.len() as f64;
     let len_b = s_next.len() as f64;
     let max_len = len_a.max(len_b).max(1.0);
 
-    // Length ratio component
     let length_change = (len_b - len_a).abs() / max_len;
 
-    // Unique token ratio component
     let uniq_a: std::collections::HashSet<&str> = s_i.split_whitespace().collect();
     let uniq_b: std::collections::HashSet<&str> = s_next.split_whitespace().collect();
     let union_size = uniq_a.union(&uniq_b).count() as f64;
@@ -214,10 +160,6 @@ pub fn phi_entropy(s_i: &str, s_next: &str) -> f64 {
     (0.5 * length_change + 0.5 * jaccard_dist).clamp(0.0, 1.0)
 }
 
-/// Ï†_sem: semantic inconsistency proxy (structural, no NLI model).
-///
-/// Uses negation/contradiction keyword detection as a cheap proxy.
-/// For production, replace with a frozen NLI model or embedding cosine.
 pub fn phi_sem(s_i: &str, s_next: &str) -> f64 {
     let contradiction_markers = [
         "but ",
@@ -241,7 +183,6 @@ pub fn phi_sem(s_i: &str, s_next: &str) -> f64 {
         .filter(|m| lower.contains(*m))
         .count();
 
-    // Also check if s_next explicitly negates something from s_i
     let negation_bonus = if !s_i.is_empty() {
         let words_a: Vec<&str> = s_i.split_whitespace().take(5).collect();
         let negated = words_a.iter().any(|w| {
@@ -260,11 +201,7 @@ pub fn phi_sem(s_i: &str, s_next: &str) -> f64 {
     ((hits as f64 * 0.2) + negation_bonus).clamp(0.0, 1.0)
 }
 
-// ============================================================================
-// Combined scorer
-// ============================================================================
 
-/// Compute the full Ï† score for a transition.
 pub fn score_transition(
     s_i: &ReasoningStep,
     s_next: &ReasoningStep,
@@ -288,7 +225,6 @@ pub fn score_transition(
     }
 }
 
-/// Score an entire trace into a Vec<f64> ready for scores_to_cochain1.
 pub fn score_trace(steps: &[ReasoningStep], weights: &PhiWeights) -> Vec<TransitionScore> {
     steps
         .windows(2)
@@ -296,9 +232,6 @@ pub fn score_trace(steps: &[ReasoningStep], weights: &PhiWeights) -> Vec<Transit
         .collect()
 }
 
-// ============================================================================
-// Helpers
-// ============================================================================
 
 fn extract_numbers(text: &str) -> Vec<f64> {
     text.split(|c: char| !c.is_ascii_digit() && c != '.' && c != '-')
@@ -306,37 +239,17 @@ fn extract_numbers(text: &str) -> Vec<f64> {
         .collect()
 }
 
-// ============================================================================
-// Signed Ï† â€” Centered obstruction coordinate
-// ============================================================================
 
-/// A transition score with both unsigned [0,1] and signed [-1,1] projections.
-///
-/// The signed projection centers the obstruction around 0.5:
-///   signed < 0  => locally smooth / low-inconsistency transition
-///   signed = 0  => neutral (combined = 0.5)
-///   signed > 0  => locally obstructed / high-inconsistency transition
-///
-/// ALGEBRAIC STATUS:
-///   - MODELING ASSUMPTION: centered Ï† corresponds to obstruction direction.
-///   - NOT PROVEN: signed Ï† reflects semantic improvement/degradation.
 #[derive(Debug, Clone, PartialEq)]
 pub struct SignedTransitionScore {
     pub unsigned: TransitionScore,
-    /// Centered obstruction: (2 * combined - 1), clamped to [-1, 1].
     pub signed: f64,
 }
 
-/// Project a transition score into the signed [-1, 1] obstruction coordinate.
-///
-/// Centers around neutral 0.5:
-///   low inconsistency  (combined < 0.5) â†’ negative (smooth)
-///   high inconsistency (combined > 0.5) â†’ positive (obstructed)
 pub fn signed_phi(score: &TransitionScore) -> f64 {
     (2.0 * score.combined - 1.0).clamp(-1.0, 1.0)
 }
 
-/// Score an entire trace into signed transition scores.
 pub fn score_trace_signed(
     steps: &[ReasoningStep],
     weights: &PhiWeights,
@@ -350,48 +263,21 @@ pub fn score_trace_signed(
         .collect()
 }
 
-/// Extract the signed cochain from signed scores.
 pub fn signed_scores_to_cochain(scores: &[SignedTransitionScore]) -> Vec<f64> {
     scores.iter().map(|s| s.signed).collect()
 }
 
-/// Complete structural descriptor of a reasoning trace.
-///
-/// Upgrades from scalar Î“â‚‚ to multi-axis geometry:
-/// - `gamma_var`: instability / oscillation (was Î“â‚‚)
-/// - `xi`: signed coherence (aligned vs oscillatory progression)
-/// - `max_jump`: magnitude of largest structural change
-/// - `jump_position`: normalized position of max jump [0, 1]
-/// - `sign_flips`: number of direction reversals in the cochain
-/// - `mean_abs`: average absolute obstruction level
-///
-/// Discriminative hypothesis:
-/// ```text
-/// good:  low gamma_var, positive xi, late jump_position, few sign_flips
-/// bad:   high gamma_var, negative xi, scattered jumps, many sign_flips
-/// ```
 #[derive(Debug, Clone)]
 pub struct TraceStructure {
-    /// Î“â‚‚ variation: average |a[i+1] - a[i]|
     pub gamma_var: f64,
-    /// Îž signed coherence: Î£ a[i]Â·a[i+1] / (||a||Â² + Îµ)
     pub xi: f64,
-    /// Magnitude of the largest structural change
     pub max_jump: f64,
-    /// Normalized position of max jump [0, 1]  (1.0 = final step)
     pub jump_position: f64,
-    /// Number of sign flips in the cochain
     pub sign_flips: usize,
-    /// Mean absolute obstruction level
     pub mean_abs: f64,
-    /// Trace length (number of cochain entries)
     pub length: usize,
 }
 
-/// Find the largest structural jump in the cochain and its position.
-///
-/// Returns (magnitude, index) where index is the position of the jump.
-/// A "jump" is |a[i+1] - a[i]|.
 pub fn max_jump(a: &[f64]) -> (f64, usize) {
     let mut max_val = 0.0;
     let mut idx = 0;
@@ -407,18 +293,12 @@ pub fn max_jump(a: &[f64]) -> (f64, usize) {
     (max_val, idx)
 }
 
-/// Count the number of sign flips in the cochain.
-///
-/// A sign flip at position i means a[i] and a[i+1] have different signs.
-/// Many flips â†’ oscillatory / contradictory reasoning.
-/// Few flips â†’ monotonic / stable progression.
 pub fn sign_flips(a: &[f64]) -> usize {
     a.windows(2)
         .filter(|w| w[0].signum() != w[1].signum() && w[0].abs() > 1e-12 && w[1].abs() > 1e-12)
         .count()
 }
 
-/// Compute complete trace structure from a cochain and its Îž value.
 pub fn trace_structure(a: &[f64], xi: f64) -> TraceStructure {
     let gamma_var = mean_adjacent_variation(a);
     let (mj, mj_idx) = max_jump(a);
@@ -440,12 +320,6 @@ pub fn trace_structure(a: &[f64], xi: f64) -> TraceStructure {
     }
 }
 
-/// Find the entry with the largest absolute value and its index.
-///
-/// For entropy_deltas, this identifies the transition with the biggest
-/// structural event (the boundary spike).
-///
-/// Distinct from `max_jump` which finds the largest *adjacent difference*.
 pub fn max_abs_entry(a: &[f64]) -> (f64, usize) {
     let mut max_val = 0.0f64;
     let mut idx = 0;
@@ -458,10 +332,6 @@ pub fn max_abs_entry(a: &[f64]) -> (f64, usize) {
     (max_val, idx)
 }
 
-/// Cosine similarity between two vectors.
-///
-/// Returns 1.0 for identical directions, 0.0 for orthogonal, -1.0 for opposite.
-/// Returns 0.0 if either vector has zero norm (degenerate case).
 pub fn cosine_similarity(a: &[f64], b: &[f64]) -> f64 {
     if a.len() != b.len() || a.is_empty() {
         return 0.0;
@@ -477,14 +347,6 @@ pub fn cosine_similarity(a: &[f64], b: &[f64]) -> f64 {
     (dot / (norm_a * norm_b)).clamp(-1.0, 1.0)
 }
 
-/// Build a normalized embedding vector from text (same byte-hashing as SBE pipeline).
-///
-/// This produces the probability distribution over `dim` bins, NOT the âˆšp amplitude.
-/// Cosine similarity on these distributions measures semantic overlap.
-///
-/// **WARNING:** This is just byte-hashing (lexical distribution continuity), NOT true
-/// semantic continuity. It is cheap and deterministic, suitable for smoke tests, but
-/// an attacker can easily bypass this by preserving distribution shape while altering meaning.
 pub fn text_to_embedding(text: &str, dim: usize) -> Vec<f64> {
     if dim == 0 {
         return Vec::new();
@@ -502,9 +364,6 @@ pub fn text_to_embedding(text: &str, dim: usize) -> Vec<f64> {
     embed
 }
 
-/// Compute pairwise cosine similarities between consecutive step embeddings.
-///
-/// Given N step texts, returns N-1 similarity values: sim(step_i, step_{i+1}).
 pub fn semantic_similarities(step_texts: &[String], dim: usize) -> Vec<f64> {
     if step_texts.len() < 2 {
         return vec![];
@@ -521,7 +380,6 @@ pub fn semantic_similarities(step_texts: &[String], dim: usize) -> Vec<f64> {
         .collect()
 }
 
-/// Coordinate distortion between two finite representations, with overflow refusal.
 pub fn coordinate_distortions(a: &[f64], b: &[f64]) -> Option<Vec<f64>> {
     if a.len() != b.len() || a.iter().chain(b).any(|x| !x.is_finite()) {
         return None;
@@ -574,7 +432,6 @@ pub fn shannon(probabilities: &[f64]) -> f64 {
         .sum()
 }
 
-/// Legacy lossy entropy observable. Prefer `shannon_checked` for evidence paths.
 
 pub fn shannon_checked(probabilities: &[f64]) -> Result<f64, EntropyError> {
     if probabilities.is_empty() {
@@ -626,8 +483,6 @@ pub fn magnitude_entropy(weights: &[f64]) -> f64 {
         .sum()
 }
 
-/// Legacy lossy magnitude entropy observable. Prefer checked callers where
-/// invalid inputs must fail closed.
 
 pub fn entropy_change_rate(history: &[f64]) -> f64 {
     if history.len() < 2 {
@@ -691,7 +546,6 @@ mod transition_tests {
         }
     }
 
-    // â”€â”€ Ï†_struct â”€â”€
 
     #[test]
     fn struct_identical_steps_zero() {
@@ -703,7 +557,6 @@ mod transition_tests {
         assert!((phi_struct("a b c", "x y z") - 1.0).abs() < 1e-12);
     }
 
-    // â”€â”€ Ï†_numeric â”€â”€
 
     #[test]
     fn numeric_consistent_is_low() {
@@ -722,7 +575,6 @@ mod transition_tests {
         assert!(phi_numeric("hello", "world") < 1e-12);
     }
 
-    // â”€â”€ Ï†_entropy â”€â”€
 
     #[test]
     fn entropy_identical_is_low() {
@@ -734,7 +586,6 @@ mod transition_tests {
         assert!(phi_entropy("a", "x y z w v u t s r q") > 0.3);
     }
 
-    // â”€â”€ Ï†_sem â”€â”€
 
     #[test]
     fn sem_no_contradiction_is_zero() {
@@ -746,7 +597,6 @@ mod transition_tests {
         assert!(phi_sem("the answer is 5", "Wait, actually that is wrong") > 0.1);
     }
 
-    // â”€â”€ Combined scoring â”€â”€
 
     #[test]
     fn smooth_trace_has_low_scores() {
@@ -772,16 +622,12 @@ mod transition_tests {
         assert!(scores[0].channels.phi_sem > 0.0, "contradiction detected");
     }
 
-    // â”€â”€ Anti-collapse â”€â”€
 
     #[test]
     fn constant_trace_has_zero_mc_residual() {
-        // If Ï† is constant â†’ da=0 â†’ Î“â‚‚=0
-        // This is the degenerate case Ï†_entropy prevents
         let steps = vec![step("x"); 5];
         let scores = score_trace(&steps, &PhiWeights::default());
         let cochain: Vec<f64> = scores.iter().map(|s| s.combined).collect();
-        // All identical â†’ differences should be zero
         for w in cochain.windows(2) {
             assert!((w[1] - w[0]).abs() < 1e-12);
         }
@@ -801,7 +647,6 @@ mod transition_tests {
         assert!(variation > 0.01, "varied trace should produce nonzero dÏ†");
     }
 
-    // â”€â”€ Ï†_numeric symmetry â”€â”€
 
     #[test]
     fn numeric_is_symmetric() {
@@ -815,7 +660,6 @@ mod transition_tests {
         );
     }
 
-    // â”€â”€ Signed Ï† â”€â”€
 
     #[test]
     fn signed_phi_centers_around_half() {
@@ -865,7 +709,6 @@ mod transition_tests {
         );
     }
 
-    // â”€â”€ Normalized Î“â‚‚ â”€â”€
 
     #[test]
     fn gamma2_normalized_constant_is_zero() {
@@ -875,7 +718,6 @@ mod transition_tests {
 
     #[test]
     fn gamma2_normalized_is_length_invariant() {
-        // Same variation pattern at different lengths
         let short = vec![0.0, 1.0, 0.0];
         let long = vec![0.0, 1.0, 0.0, 1.0, 0.0];
         assert!(
@@ -884,5 +726,4 @@ mod transition_tests {
         );
     }
 
-    // â”€â”€ Acceptance law â”€â”€
 }

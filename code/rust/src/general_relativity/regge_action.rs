@@ -1,12 +1,6 @@
-//! Classical Regge Action with Cosmological Constant (RQ-01).
-//!
-//! S_Regge = sum_{h in Hinges^(D-2)} V_{D-2}(h) * eps_h - Lambda * sum_{sigma in D-simplices} V_D(sigma).
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 
-/// Detailed breakdown of the Regge action evaluation.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct ReggeActionResult {
     pub curvature_term: f64,
@@ -16,9 +10,8 @@ pub struct ReggeActionResult {
     pub dimension: usize,
 }
 
-/// Compute Regge action from hinge deficits, hinge volumes, simplex volumes, and cosmological constant Lambda.
 pub fn compute_regge_action(
-    hinges: &[(f64, f64)], // (volume_of_hinge, deficit_angle)
+    hinges: &[(f64, f64)],
     simplex_volumes: &[f64],
     lambda_param: f64,
     dimension: usize,
@@ -47,7 +40,6 @@ mod tests {
 
     #[test]
     fn test_regge_action_with_lambda() {
-        // 3D Regge action on two edges with lengths 1.0, deficits pi/2, volume 0.5
         let hinges = vec![
             (1.0, std::f64::consts::FRAC_PI_2),
             (1.0, std::f64::consts::FRAC_PI_2),

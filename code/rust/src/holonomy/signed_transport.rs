@@ -1,6 +1,3 @@
-//! Exact finite signed transport certificates on COMPLETE supplied coefficients.
-//! AuthorityEffect: None. The only gauge class is diagonal +/-1. A Hamiltonian
-//! interpretation, path partition or sampler is not inferred from this graph.
 use num_rational::BigRational;
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
@@ -18,8 +15,6 @@ fn canonical(q: &BigRational) -> bool {
     normalized.numer() == q.numer() && normalized.denom() == q.denom()
 }
 
-/// Checked symmetric rational coefficients; diagonal is retained as input but
-/// never treated as a self-edge. Empty transport carrier is permitted.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SignedCoefficientGraph {
     coefficients: Vec<Vec<BigRational>>,
@@ -44,7 +39,6 @@ impl SignedCoefficientGraph {
         }
         Ok(Self { coefficients })
     }
-    /// Canonical wire rationals only: integer or reduced p/q, no float aliases.
     pub fn from_strings(rows: &[Vec<String>]) -> Result<Self, SignedTransportError> {
         let coefficients = rows
             .iter()
@@ -78,7 +72,6 @@ impl SignedCoefficientGraph {
             .map(|r| r.iter().map(ToString::to_string).collect())
             .collect()
     }
-    /// Bool parity of transport t=-sign(H): true for a positive H edge.
     pub fn edge_parity(&self, a: usize, b: usize) -> Option<bool> {
         if a >= self.dimension()
             || b >= self.dimension()
@@ -103,13 +96,10 @@ impl SignedCoefficientGraph {
     }
 }
 
-/// Public payloads are untrusted; every consumer must replay verify().
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ForestGauge {
     pub roots: Vec<usize>,
-    /// Includes both root and endpoint; root's own path is [root].
     pub paths: Vec<Vec<usize>>,
-    /// false means +1, true means -1.
     pub gauge_parities: Vec<bool>,
 }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -120,7 +110,6 @@ pub enum SignedTransportOutcome {
 }
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SignedTransportCertificate {
-    /// Binds magnitudes, zeros and arbitrary diagonal as well as edge signs.
     pub original_coefficients: Vec<Vec<String>>,
     pub outcome: SignedTransportOutcome,
 }
@@ -159,7 +148,6 @@ fn verify_forest(
             }
         }
     }
-    // Complete original edge population: never trust a caller's edge subset.
     for a in 0..n {
         for b in a + 1..n {
             if let Some(parity) = graph.edge_parity(a, b) {
@@ -214,7 +202,6 @@ fn conflict_cycle(left: &[usize], right: &[usize]) -> Vec<usize> {
     cycle
 }
 
-/// Deterministic spanning-forest search; generation and verification are separate.
 pub fn certify_signed_transport(graph: &SignedCoefficientGraph) -> SignedTransportCertificate {
     let n = graph.dimension();
     let mut forest = ForestGauge {
@@ -260,9 +247,6 @@ pub fn certify_signed_transport(graph: &SignedCoefficientGraph) -> SignedTranspo
     }
 }
 
-/// All realizing gauges differ by one independent parity per connected component.
-/// Returned pairs use the first forest's root labels. No preferred root sign is
-/// inferred: the generator chooses false merely as a presentation convention.
 pub fn compare_realizing_gauges(
     graph: &SignedCoefficientGraph,
     left: &ForestGauge,

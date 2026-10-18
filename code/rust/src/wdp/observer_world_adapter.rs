@@ -1,6 +1,3 @@
-//! The source observer-world five: (image(profile), contexts, histories, witnesses, grammar).
-//! A finite closed history restriction is declared explicitly. It supplies neither
-//! memory updates nor a grammar interpretation unless those maps are supplied.
 use std::collections::BTreeSet;
 
 use omega_category_theory::context_reflection::ContextSystem;
@@ -19,11 +16,9 @@ pub struct FiniteObserverWorldPacket {
     pub profiles: Vec<String>,
     pub presented_profiles: Vec<usize>,
     pub contexts: Vec<String>,
-    /// Context-major maps on the complete declared history carrier.
     pub context_actions: Vec<Vec<usize>>,
     pub witnesses: Vec<WorldWitness>,
     pub grammar: Vec<String>,
-    /// An optional explicit interpretation of every grammar expression.
     pub grammar_interpretation: Option<Vec<BTreeSet<usize>>>,
 }
 
@@ -133,8 +128,6 @@ impl ObserverWorldReceipt {
         &self.context_system
     }
 
-    /// Source facts require both declared grammar expressibility and forward
-    /// context stability. Noncongruent contexts are retained on histories.
     pub fn facts(&self) -> Result<BTreeSet<BTreeSet<usize>>, WorldAdapterError> {
         let interpretation = self
             .packet

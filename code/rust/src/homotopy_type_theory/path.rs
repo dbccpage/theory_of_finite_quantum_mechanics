@@ -1,13 +1,7 @@
-//! Synonym-level path records for the HoTT spine.
-//!
-//! A [`Path`] is a finite shape record for a path/identity inhabitant
-//! `p : Id_A(x, y)`. It does not mint authority and does not compute
-//! path algebra; validation is shape-only (non-empty references).
 
 use crate::identity::{IdentityError, IdentityType, TermId, TypeId};
 use serde::{Deserialize, Serialize};
 
-/// Synonym-level path record: `path_ref` witnesses `source = target` in `type_id`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Path {
     pub type_id: TypeId,
@@ -17,7 +11,6 @@ pub struct Path {
 }
 
 impl Path {
-    /// Shape-only validation: type, endpoints, and path carrier must be non-empty.
     pub fn validate(&self) -> Result<(), IdentityError> {
         if self.type_id.0.is_empty()
             || self.source.0.is_empty()
@@ -29,11 +22,6 @@ impl Path {
         Ok(())
     }
 
-    /// Build a synonym-level path from an identity type.
-    ///
-    /// Uses the identity's difference object ref as the path carrier.
-    /// Does not re-validate the identity's zero-certificate; callers that
-    /// need a validated identity should call [`IdentityType::validate`] first.
     pub fn from_identity(identity: &IdentityType) -> Self {
         Self {
             type_id: identity.type_id.clone(),

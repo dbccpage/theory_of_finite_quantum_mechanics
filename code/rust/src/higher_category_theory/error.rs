@@ -1,12 +1,8 @@
-//! Typed error domain and Soviet Builder allocation discipline.
-//!
-//! AuthorityEffect: None.
 
 use omega_kernel::resource_limits::OperationLimits;
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Strongly typed domain errors for higher category theory.
 #[derive(Debug, Clone, PartialEq, Eq, Error, Serialize, Deserialize)]
 pub enum HigherCategoryError {
     #[error("Object (0-cell) not found: {id}")]
@@ -238,10 +234,6 @@ pub enum HigherCategoryError {
     TreeCycleViolation { details: String },
 }
 
-/// Fallible buffer reservation under the canonical Kernel cell limit.
-///
-/// Retains the higher-category allocation error domain: exceeding `max_cells`
-/// reports the resulting length, while allocator refusal reports `additional`.
 pub fn reserve_exact<T>(
     vec: &mut Vec<T>,
     additional: usize,

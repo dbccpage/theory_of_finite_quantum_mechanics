@@ -50,7 +50,6 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
         self.assertEqual(receipt.exact_gap, Rational(0))
         self.assertTrue(receipt.is_certified)
 
-        # Same via SoS adapter with coboundary matrix
         cells_k = list(cx.cells[2])
         cells_km1 = list(cx.cells[1])
         from omega_engine.crates.functional.higher_simplex_assembly import (
@@ -85,7 +84,6 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
 
         Finite-scope only — does not mint an estate-wide degree-n theorem.
         """
-        # Φ₁: gradient on triangle → 0
         net = Network(nodes=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)])
         r1 = price_network_phi1_exact(net, {(0, 1): 2, (1, 2): 3, (0, 2): 5})
         self.assertEqual(r1.degree, 1)
@@ -94,7 +92,6 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
         self.assertEqual(r1.arithmetic_mode, "Q")
         self.assertEqual(r1.dual_witness_status, "certified_exact")
 
-        # Φ₂: tetra faces ω=(2,4,4,6) → 4 (positive control)
         verts4 = list(range(4))
         cx2 = SimplexComplex(
             vertices=verts4,
@@ -110,7 +107,6 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
         self.assertEqual(r2.exact_gap, Rational(0))
         self.assertEqual(r2.dual_witness_status, "certified_exact")
 
-        # Φ₂ same-carrier negative control: ω=(3,3,5,5) → 0 (exact cochain)
         r2z = price_exact_degree_k(
             d1, [3, 3, 5, 5], DegreeKPricingDeclaration.exact_l1(2), degree=2
         )
@@ -118,12 +114,10 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
         self.assertEqual(r2z.phi_k, Rational(0))
         self.assertEqual(r2z.exact_gap, Rational(0))
         self.assertEqual(r2z.dual_witness_status, "certified_exact")
-        # still certificate-only; not estate-wide quotient-norm
         self.assertEqual(
             r2z.as_cascade_fields()["estate_wide_phi_k_theorem"], "REFUSED"
         )
 
-        # Φ₃: 4-simplex boundary fundamental → 5
         verts5 = list(range(5))
         cx3 = SimplexComplex(
             vertices=verts5,
@@ -143,7 +137,6 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
         self.assertEqual(r3.dual_witness_status, "certified_exact")
         self.assertEqual(r3.y_star, ("1", "-1", "1", "-1", "1"))
 
-        # Kill: do not sell Φ₁ receipt as degree-2
         with self.assertRaises(ExactDualPricingError) as ctx:
             refuse_phi1_sold_as_phi2(declared_degree=2, computed_degree=r1.degree)
         self.assertEqual(ctx.exception.code, "DEGREE_MISMATCH")
@@ -161,7 +154,6 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
         self.assertEqual(receipt.phi_k, Rational(0))
         self.assertEqual(receipt.exact_gap, Rational(0))
         self.assertEqual(receipt.degree, 1)
-        # Live adapter attrs (not only as_cascade_fields) refuse estate theorem.
         self.assertEqual(receipt.estate_wide_phi_k_theorem, "REFUSED")
         self.assertEqual(receipt.normhood_from_attainment_alone, "REFUSED")
         self.assertEqual(receipt.authority_effect, "None")
@@ -185,7 +177,6 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
             edges=[(0, 1), (1, 2), (0, 2)],
             faces=[(0, 1, 2)],
         )
-        # exact gradient -> residual zero after gauge
         omega = {(0, 1): 2.0, (1, 2): 3.0, (0, 2): 5.0}
         solver = CascadeSolver(net)
         receipt = solver.solve(omega)
@@ -205,7 +196,7 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
             faces=[(0, 1, 2)],
         )
         solver = CascadeSolver(net)
-        solver.dda_engine.degree_window = 3  # post-lift window
+        solver.dda_engine.degree_window = 3
         cochain = {(0, 1): 1.0, (1, 2): 1.0, (0, 2): 0.0}
         ok, gap, status, exact_rcpt = solver._get_exact_dual_cert(cochain)
         self.assertFalse(ok)
@@ -232,7 +223,6 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
         )
         omega = {(0, 1): 2.0, (1, 2): 3.0, (0, 2): 5.0}
         receipt = CascadeSolver(net).solve(omega)
-        # Live receipt object (dual_kw path), not only as_evidence_dict.
         self.assertEqual(receipt.estate_wide_phi_k_theorem, "REFUSED")
         self.assertEqual(receipt.normhood_from_attainment_alone, "REFUSED")
         dual_kw = CascadeSolver(net)._dual_fields_for_receipt(omega, 0.0)
@@ -262,7 +252,7 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
     def test_nilpotency_gate_refuses_bad_pair(self):
         """Phi_k refused when supplied upper/lower maps fail nilpotency."""
         d_lower = Matrix([[1, 0], [0, 1], [1, 1]])
-        d_upper = Matrix([[1, 0, 0], [0, 1, 0]])  # not annihilating d_lower
+        d_upper = Matrix([[1, 0, 0], [0, 1, 0]])
         dec = DegreeKPricingDeclaration.exact_l1(1)
         with self.assertRaises(ExactDualPricingError) as ctx:
             price_degree_k_with_optional_nilpotency(
@@ -303,14 +293,11 @@ class TestSoSExactDualPricingGoldens(unittest.TestCase):
             self.assertEqual(dual_kw["arithmetic_mode"], "diagnostic_float")
             self.assertIsNone(dual_kw["exact_phi_k"])
             self.assertEqual(dual_kw["dual_witness_status"], "float_diagnostic_certified")
-            # Float path still stamps estate refuse (not only under certified_exact).
             self.assertEqual(dual_kw["estate_wide_phi_k_theorem"], "REFUSED")
             self.assertEqual(dual_kw["normhood_from_attainment_alone"], "REFUSED")
-            # Kill: selling float dual as exact-Q raises FLOAT_AS_EXACT
             with self.assertRaises(ExactDualPricingError) as ctx:
                 refuse_float_as_exact(True, dual_kw["arithmetic_mode"])
             self.assertEqual(ctx.exception.code, "FLOAT_AS_EXACT")
-            # Honest: is_certified False with diagnostic_float is allowed
             refuse_float_as_exact(False, dual_kw["arithmetic_mode"])
         finally:
             oesos.price_network_phi1_exact = saved_exact
@@ -327,18 +314,15 @@ class TestSoSExactDualPricingKills(unittest.TestCase):
         with self.assertRaises(ExactDualPricingError) as ctx:
             refuse_float_as_exact(True, "float_lp_dual_certificate_PROTO")
         self.assertEqual(ctx.exception.code, "FLOAT_AS_EXACT")
-        # Relabelling a float as Q does not bypass the kill.
         with self.assertRaises(ExactDualPricingError) as q_ctx:
             refuse_float_as_exact(True, "Q")
         self.assertEqual(q_ctx.exception.code, "FLOAT_AS_EXACT")
-        # An exact-origin Q receipt has no float provenance and is allowed.
         refuse_float_as_exact(False, "Q")
 
     def test_refuse_ls_as_canonical(self):
         with self.assertRaises(ExactDualPricingError) as ctx:
             refuse_ls_as_canonical("CANONICAL")
         self.assertEqual(ctx.exception.code, "LS_AS_CANONICAL")
-        # SURROGATE_ONLY is the honest label
         refuse_ls_as_canonical("SURROGATE_ONLY")
 
     def test_refuse_phi1_sold_as_phi2(self):
@@ -359,12 +343,10 @@ class TestSoSExactDualPricingKills(unittest.TestCase):
                 claim_normhood_from_attainment_alone=True,
             )
         self.assertEqual(ctx2.exception.code, "ATTAINMENT_AS_ESTATE_QUOTIENT_NORM")
-        # honest non-claim is allowed (no raise)
         refuse_attainment_as_estate_quotient_norm(
             claim_estate_wide_quotient_norm=False,
             claim_normhood_from_attainment_alone=False,
         )
-        # listed goldens still certify only as finite receipts
         net = Network(nodes=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)])
         r = price_network_phi1_exact(net, {(0, 1): 2, (1, 2): 3, (0, 2): 5})
         fields = r.as_cascade_fields()

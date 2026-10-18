@@ -1,29 +1,16 @@
-/-
-A binary frame function on the rational projective plane of vector dimension 2.
-The carrier is all nonzero vectors in Q^2 modulo nonzero rational rescaling.
-Rotation (x,y) -> (-y,x) complements its value, but no rational quadratic
-form represents its normalized ray values. No dimension >= 3 claim follows.
-AuthorityEffect: None. Lean core Rat is used, without numerical tolerance.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 namespace FiniteQm.GleasonRationalPlane
 
-/-- Select the first/third quadrants and the horizontal axis. -/
 def binaryRay (x y : Rat) : Rat :=
   if 0 < x*y then 1 else if x*y < 0 then 0 else if y = 0 then 1 else 0
 
 theorem binary_values (x y : Rat) : binaryRay x y = 0 ∨ binaryRay x y = 1 := by
   grind [binaryRay]
 
-/-- Every perpendicular pair of nonzero rays has total weight one. -/
 theorem perpendicular_complement (x y : Rat) (h : x ≠ 0 ∨ y ≠ 0) :
     binaryRay x y + binaryRay (-y) x = 1 := by
   have hz : x*y = 0 ↔ x=0 ∨ y=0 := Rat.mul_eq_zero
   grind [binaryRay]
 
-/-- Four rational rays already contradict a purported quadratic representation. -/
 theorem no_quadratic_representation : ¬ ∃ a b c : Rat, ∀ x y : Rat,
     x ≠ 0 ∨ y ≠ 0 → a*x*x + 2*b*x*y + c*y*y = binaryRay x y * (x*x + y*y) := by
   rintro ⟨a,b,c,h⟩
@@ -36,7 +23,6 @@ theorem no_quadratic_representation : ¬ ∃ a b c : Rat, ∀ x y : Rat,
   have e2 : binaryRay 1 1 = 1 := by grind [binaryRay]
   have e3 : binaryRay 1 2 = 1 := by grind [binaryRay]
   grind
-/-- The value depends only on the projective ray. -/
 theorem scale_invariant (x y k : Rat) (hk : k ≠ 0) :
     binaryRay (k*x) (k*y) = binaryRay x y := by
   have kk : 0 < k*k := by
@@ -51,7 +37,6 @@ theorem scale_invariant (x y k : Rat) (hk : k ≠ 0) :
   have zero : k*y = 0 ↔ y = 0 := by grind [Rat.mul_eq_zero]
   grind [binaryRay]
 
-/-- Any two nonzero orthogonal rational vectors have complementary values. -/
 theorem orthogonal_frame_sum (x y u v : Rat)
     (hxy : x ≠ 0 ∨ y ≠ 0) (huv : u ≠ 0 ∨ v ≠ 0)
     (horth : x*u + y*v = 0) : binaryRay x y + binaryRay u v = 1 := by
@@ -78,3 +63,6 @@ theorem orthogonal_frame_sum (x y u v : Rat)
 #print axioms no_quadratic_representation
 
 end FiniteQm.GleasonRationalPlane
+
+private def l5aProvenance : String :=
+  "Origin: lean4/GleasonRationalPlane.lean Claim: binary_values AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

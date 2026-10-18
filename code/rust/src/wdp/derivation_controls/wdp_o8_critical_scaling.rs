@@ -1,17 +1,3 @@
-//! Exact rational witness for `WDP-O8-CRITICAL-SCALING` (`derivation.md`).
-//!
-//! Verifies:
-//! 1. Two-site CAR bond matrix `4P` in occupation basis `|00>, |01>, |10>, |11>`:
-//!    `Tr(4P) = 4`, normalized trace `<P> = 1/4`, projector identity `(4P)^2 = 4(4P)`.
-//! 2. Staggered density insertions `2a_0 = diag(-1,-1,1,1)` and `2a_1 = diag(1,-1,1,-1)`:
-//!    `(2a_0)(2a_1) = diag(-1,1,1,-1)`, `4P * (2a_0)(2a_1) = 4P`, `<P a_0 a_1> = 1/16`,
-//!    `<(I/4 - P) a_0 a_1> = -1/16`.
-//! 3. Full `16x16` `L = 4` periodic CAR ring order-`theta^1` Euclidean kernel jet:
-//!    `Tr(K) = 0`, `C_{00}(0) = 1/4`, and `C_{0y}^{(1)}(u) = (0, 1/16, 0, 1/16)` for `y = 0,1,2,3`,
-//!    independent of `u`, with spatial zero-mode sum `0 + 1/16 + 0 + 1/16 = 1/8 = ZERO_MODE[1]`.
-//! 4. Single-bond mesh ratio across even rings `L = 6` and `L = 4`:
-//!    `C_{01}^{(1)}(L=6) / C_{01}^{(1)}(L=4) = (1/16)/(1/16) = 1`, giving mesh exponent `alpha = 0`.
-//! 5. Refuses promoting `alpha = 0`, `L^{-1/2}`, or `1/8` to a growing-`theta(L)` critical scaling theorem.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Frac {
@@ -115,7 +101,6 @@ pub fn witness() -> Witness {
         let diag_prod = TWO_A0[i] * TWO_A1[i];
         tr_16_p_a0_a1 += FOUR_P[i][i] * diag_prod;
     }
-    // Normalized over 4 states and divided by 16 gives tr_16_p_a0_a1 / 64 = 4 / 64 = 1/16
     let exp_p_a0_a1 = Frac::new(tr_16_p_a0_a1, 64);
     let exp_k_a0_a1 = Frac::new(0, 1).sub(exp_p_a0_a1);
 

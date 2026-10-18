@@ -1,27 +1,7 @@
-/-!
-# Q11: a finite exact prefix-exhaustion and modulus slice
 
-This dependency-free file formalizes five declared prefixes of a sixteen-point
-carrier.  Prefix sizes grow geometrically as 1, 2, 4, 8, 16.  Their observer
-prices, in sixteenths, are 0, 8, 12, 14, 15, with exact errors 16, 8, 4, 2, 1.
-The file proves conservative prefix inclusion, final finite coverage, exact
-geometric error halving, and explicit non-singleton finite Cauchy/error moduli.
 
-It also gives a separate finite negative witness.  Balanced and sparse
-sixteen-point prefixes of the same thirty-two-point carrier have the same
-cardinality but observer counts 8 and 16.  Both embed into the same full finite
-carrier.  This demonstrates prefix-observer dependence when compatibility is
-absent; it is not a theorem about two divergent infinite limits.
 
-No completion host, topology, compactness, coercivity, cofinal-equivalence
-comparison, or infinite limiting object is introduced.  The general F7/Q11
-finite-to-infinite and exhaustion-independence theorem remains OPEN.
 
-AuthorityEffect: None.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace OmegaWorld
 namespace FiniteToInfiniteQ11
@@ -164,7 +144,6 @@ inductive Precision where
   | eighth
   deriving DecidableEq
 
-/-- Tolerances are measured in the common denominator sixteen. -/
 def tolerance : Precision -> Nat
   | .half => 8
   | .quarter => 4
@@ -196,10 +175,6 @@ theorem finite_cauchy_modulus (precision : Precision)
     simp [WindowLE, windowRank, modulus, observerPrice, absDiff, tolerance]
       at leftTail rightTail ⊢
 
-/-
-The half-precision tail contains distinct windows and distinct prices.  Thus
-the first modulus theorem is not a singleton-tail identity.
--/
 theorem half_modulus_is_nontrivial :
     WindowLE (modulus .half) .two /\
       WindowLE (modulus .half) .sixteen /\
@@ -215,11 +190,6 @@ inductive Polarity where
 
 abbrev Point32 := Polarity × Atom16
 
-/-
-The balanced midpoint contains the first eight signal points and the first
-eight null points.  The sparse midpoint contains all sixteen signal points and
-no null points.  Each therefore has sixteen points.
--/
 def balancedMid (point : Point32) : Bool :=
   decide (atomIndex point.2 < 8)
 
@@ -282,10 +252,6 @@ theorem sparse_mid_embeds_full (point : Point32) :
   intro _membership
   rfl
 
-/-
-This is a finite matched-cardinality observer-dependence witness.  It is not
-promoted to an infinite exhaustion-dependent limit theorem.
--/
 theorem balanced_sparse_observer_dependence :
     pointCount balancedMid = pointCount sparseMid /\
       signalCount balancedMid ≠ signalCount sparseMid /\
@@ -411,3 +377,6 @@ def finiteToInfiniteSlice : FiniteToInfiniteSlice where
 
 end FiniteToInfiniteQ11
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldFiniteToInfinite.lean Claim: prefix_cardinality AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

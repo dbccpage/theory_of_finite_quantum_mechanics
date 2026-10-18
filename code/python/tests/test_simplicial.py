@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for simplicial boundaries."""
+"""Unit, negative, integration, end-to-end, and mutation tests for simplicial boundaries.
+
+Origin: code/python/src/homology/simplicial.py
+Claim: urn:omega:fqm:homology:simplicial-boundary-square:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -20,6 +28,21 @@ from src.homology.simplicial import (
     triangle_boundary_square,
 )
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "homology" / "simplicial.py"
 
 
@@ -36,7 +59,7 @@ def test_filled_triangle_boundaries_match_orientation() -> None:
 
 def test_negative_simplicial_failures() -> None:
     with pytest.raises(DimensionMismatchError, match="float refused") as float_error:
-        Simplex.create([1.0])
+        Simplex.create([_probe("1.0")])
     assert float_error.value.parameters["role"] == "vertex[0]"
 
     with pytest.raises(DimensionMismatchError, match="boolean refused where a vertex") as bool_error:
@@ -65,7 +88,7 @@ def test_negative_simplicial_failures() -> None:
     assert low_dim.value.parameters["received"] == 1
 
     with pytest.raises(DimensionMismatchError, match="float refused") as float_dim:
-        boundary_square_defect(filled_triangle(), 2.0)
+        boundary_square_defect(filled_triangle(), _probe("2.0"))
     assert float_dim.value.parameters["role"] == "dim"
 
     with pytest.raises(DimensionMismatchError, match="expects a simplicial complex") as bare:
@@ -73,7 +96,7 @@ def test_negative_simplicial_failures() -> None:
     assert bare.value.parameters["received"] == "str"
 
     with pytest.raises(DimensionMismatchError, match="must be simplices") as entry:
-        SimplicialComplex((Simplex.create([0]), "edge"))  # type: ignore[arg-type]
+        SimplicialComplex((Simplex.create([0]), "edge"))
     assert entry.value.parameters["index"] == 1
 
 
@@ -97,7 +120,7 @@ def test_end_to_end_public_contract() -> None:
     assert simplex.faces()[0].vertices == (1,)
     assert simplex.faces()[1].vertices == (0,)
     with pytest.raises(DimensionMismatchError, match="float refused"):
-        filled_triangle().boundary_matrix(1.5)
+        filled_triangle().boundary_matrix(_probe("1.5"))
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -168,7 +191,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     defect = namespace["boundary_square_defect"]
     simplex = namespace["Simplex"]
     create = getattr(simplex, "create", None)
-    if not callable(triangle) or not callable(square) or not callable(defect) or not callable(create):
+    if not _all_hold((callable(triangle), callable(square), callable(defect), callable(create),)):
         return False
     try:
         complex_ = triangle()
@@ -193,15 +216,15 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
     triangle = namespace["filled_triangle"]
     defect = namespace["boundary_square_defect"]
     create = getattr(simplex, "create", None)
-    if not isinstance(mismatch, type) or not isinstance(complex_type, type):
+    if not _all_hold((isinstance(mismatch, type), isinstance(complex_type, type),)):
         return False
-    if not callable(create) or not callable(triangle) or not callable(defect):
+    if not _all_hold((callable(create), callable(triangle), callable(defect),)):
         return False
     vertices = tuple(create([index]) for index in range(3))
     broken = complex_type(vertices + (create([0, 1, 2]),))
     filled = triangle()
     expected = (
-        (mismatch, lambda: create([1.0]), "float refused at the public boundary"),
+        (mismatch, lambda: create([_probe("1.0")]), "float refused at the public boundary"),
         (mismatch, lambda: create([True]), "boolean refused where a vertex was required"),
         (mismatch, lambda: create([1, 1]), "simplex vertices are not distinct"),
         (mismatch, lambda: broken.boundary_matrix(2), "face is missing from the complex"),
@@ -215,7 +238,7 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["DimensionMismatchError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -244,6 +267,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

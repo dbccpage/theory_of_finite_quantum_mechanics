@@ -1,19 +1,6 @@
-/-
-  HilbertWalkAll -- admitted root for fable_hilbert_walk_20260819.
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  Imports exactly the campaign's own modules (which themselves
-  import only the J011Admitted trunk surfaces Core/E003/E005/E011/
-  E012/E018 and Lean core). No cohomology (C/D), no Banach (F), no
-  observer (G), no quantum-branch (I) modules: G2 trunk separation
-  is visible in this import list.
 
-  A green build of this root proves elaboration of the campaign,
-  not the truth of any paper claim.
 
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 import HWKernel
 import H000FinitePresentedCarrier
@@ -59,7 +46,6 @@ import HWFullThread
 
 namespace FableHilbertWalk20260819
 
-/-- Root witness: the boundary theorem is reachable from the root. -/
 theorem walk_root_reaches_boundary :
     FableHilbertWalk20260819.H017.AllDischarged
       FableHilbertWalk20260819.H017.walkLedger = false :=
@@ -385,8 +371,6 @@ theorem walk_root_four_collapse_dilations :
 
 #print axioms walk_root_four_collapse_dilations
 
-/-- Root reachability aliases the entire finish-table punchline so
-    later edits cannot silently drop fates or accompanying facts. -/
 theorem walk_root_remaining_import_list :
     (H017Finish.finishFate H017ExtrasDropone.FrozenExtra.fieldC =
         H017Finish.FinishFate.refused ∧
@@ -428,3 +412,6 @@ theorem walk_root_remaining_import_list :
 #print axioms walk_root_remaining_import_list
 
 end FableHilbertWalk20260819
+
+private def l5aProvenance : String :=
+  "Origin: lean4/HilbertWalkAll.lean Claim: walk_root_reaches_boundary AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

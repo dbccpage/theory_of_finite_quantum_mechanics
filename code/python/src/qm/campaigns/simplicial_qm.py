@@ -125,12 +125,12 @@ def tetrahedron_3cell_boundary() -> dict[str, Any]:
     """
     d3_vec = np.array([1, -1, 1, -1], dtype=int)
     d2_mat = np.array([
-        [0,  0,  1,  1],  # e01: f2 + f3
-        [0,  1,  0, -1],  # e02: f1 - f3
-        [0, -1, -1,  0],  # e03: -f1 - f2
-        [1,  0,  0,  1],  # e12: f0 + f3
-        [-1, 0,  1,  0],  # e13: -f0 + f2
-        [1,  1,  0,  0],  # e23: f0 + f1
+        [0,  0,  1,  1],
+        [0,  1,  0, -1],
+        [0, -1, -1,  0],
+        [1,  0,  0,  1],
+        [-1, 0,  1,  0],
+        [1,  1,  0,  0],
     ], dtype=int)
 
     d2_d3 = d2_mat @ d3_vec
@@ -153,10 +153,10 @@ def build_tetrahedron_packet() -> CochainPacket:
     """
     edges = ((0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3))
     faces = (
-        ((3, 1), (5, 1), (4, -1)),  # f0: (1, 2, 3)
-        ((1, 1), (5, 1), (2, -1)),  # f1: (0, 2, 3)
-        ((0, 1), (4, 1), (2, -1)),  # f2: (0, 1, 3)
-        ((0, 1), (3, 1), (1, -1)),  # f3: (0, 1, 2)
+        ((3, 1), (5, 1), (4, -1)),
+        ((1, 1), (5, 1), (2, -1)),
+        ((0, 1), (4, 1), (2, -1)),
+        ((0, 1), (3, 1), (1, -1)),
     )
     return CochainPacket(cochain.Complex(n_vertices=4, edges=edges, faces=faces))
 
@@ -170,19 +170,19 @@ def build_octahedron_packet() -> CochainPacket:
     Euler characteristic: V - E + F = 6 - 12 + 8 = 2.
     """
     edges = (
-        (0, 1), (1, 2), (2, 3), (3, 0),  # e0..e3 (equator)
-        (0, 4), (1, 4), (2, 4), (3, 4),  # e4..e7 (to north pole)
-        (0, 5), (1, 5), (2, 5), (3, 5),  # e8..e11 (to south pole)
+        (0, 1), (1, 2), (2, 3), (3, 0),
+        (0, 4), (1, 4), (2, 4), (3, 4),
+        (0, 5), (1, 5), (2, 5), (3, 5),
     )
     faces = (
-        ((0, 1), (5, 1), (4, -1)),        # f0: (0, 1, 4)
-        ((1, 1), (6, 1), (5, -1)),        # f1: (1, 2, 4)
-        ((2, 1), (7, 1), (6, -1)),        # f2: (2, 3, 4)
-        ((3, 1), (4, 1), (7, -1)),        # f3: (3, 0, 4)
-        ((8, 1), (9, -1), (0, -1)),       # f4: (0, 5, 1)
-        ((9, 1), (10, -1), (1, -1)),      # f5: (1, 5, 2)
-        ((10, 1), (11, -1), (2, -1)),     # f6: (2, 5, 3)
-        ((11, 1), (8, -1), (3, -1)),      # f7: (3, 5, 0)
+        ((0, 1), (5, 1), (4, -1)),
+        ((1, 1), (6, 1), (5, -1)),
+        ((2, 1), (7, 1), (6, -1)),
+        ((3, 1), (4, 1), (7, -1)),
+        ((8, 1), (9, -1), (0, -1)),
+        ((9, 1), (10, -1), (1, -1)),
+        ((10, 1), (11, -1), (2, -1)),
+        ((11, 1), (8, -1), (3, -1)),
     )
     return CochainPacket(cochain.Complex(n_vertices=6, edges=edges, faces=faces))
 
@@ -415,18 +415,16 @@ def build_octahedron_graph_state_stabilizers() -> dict[str, Any]:
     n = 6
     adj = np.zeros((n, n), dtype=int)
     edges = [
-        (0, 1), (1, 2), (2, 3), (3, 0),  # equator
-        (0, 4), (1, 4), (2, 4), (3, 4),  # north
-        (0, 5), (1, 5), (2, 5), (3, 5),  # south
+        (0, 1), (1, 2), (2, 3), (3, 0),
+        (0, 4), (1, 4), (2, 4), (3, 4),
+        (0, 5), (1, 5), (2, 5), (3, 5),
     ]
     for u, v in edges:
         adj[u, v] = 1
         adj[v, u] = 1
 
-    # Check symmetry
     is_symmetric = bool(np.array_equal(adj, adj.T))
 
-    # Symplectic inner product matrix over F_2: S_uv = (A_uv - A_vu) mod 2 = 0
     commutation_matrix = np.zeros((n, n), dtype=int)
     for u in range(n):
         for v in range(n):
@@ -434,7 +432,6 @@ def build_octahedron_graph_state_stabilizers() -> dict[str, Any]:
 
     all_commute = bool(np.all(commutation_matrix == 0))
 
-    # Degree of each vertex: equator vertices have degree 4, poles have degree 4
     degrees = [int(np.sum(adj[u])) for u in range(n)]
 
     return {
@@ -447,9 +444,6 @@ def build_octahedron_graph_state_stabilizers() -> dict[str, Any]:
     }
 
 
-# --------------------------------------------------------------------------- #
-# Loop 3: Depolarizing Noise Threshold & Graph State Entanglement Entropy
-# --------------------------------------------------------------------------- #
 
 def evaluate_octahedral_depolarizing_noise_threshold() -> dict[str, Any]:
     """Loop 3: Computes the depolarizing noise threshold p* required to restore positive semidefiniteness.
@@ -494,16 +488,15 @@ def evaluate_octahedral_graph_state_entanglement(bipartition_A: list[int] | None
     n = 6
     adj = np.zeros((n, n), dtype=int)
     edges = [
-        (0, 1), (1, 2), (2, 3), (3, 0),  # equator
-        (0, 4), (1, 4), (2, 4), (3, 4),  # north
-        (0, 5), (1, 5), (2, 5), (3, 5),  # south
+        (0, 1), (1, 2), (2, 3), (3, 0),
+        (0, 4), (1, 4), (2, 4), (3, 4),
+        (0, 5), (1, 5), (2, 5), (3, 5),
     ]
     for u, v in edges:
         adj[u, v] = 1
         adj[v, u] = 1
 
     if bipartition_A is None:
-        # Default hemisphere cut: A = {0, 1, 4} (two equatorial + north pole)
         part_a = [0, 1, 4]
     else:
         part_a = sorted(list(bipartition_A))
@@ -514,7 +507,6 @@ def evaluate_octahedral_graph_state_entanglement(bipartition_A: list[int] | None
 
     sub_mat = adj[np.ix_(part_a, part_b)]
 
-    # Compute rank over F_2 by Gaussian elimination over GF(2)
     mat_f2 = [[int(sub_mat[r, c]) % 2 for c in range(len(part_b))] for r in range(len(part_a))]
     nrows = len(part_a)
     ncols = len(part_b)

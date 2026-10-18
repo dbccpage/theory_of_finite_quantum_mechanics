@@ -1,10 +1,3 @@
-//! Finite atomic moments of one staggered row-sum on a periodic CAR ring.
-//!
-//! Labelled carrier: even length L=4, full Fock dimension 16, infinite-temperature
-//! normalized trace. Integer matrices are K_4=4 K_L and A_2=sum_x 2 a_x.
-//! The moments 1/4, 0 and 1/2 also hold on the enumerated rings L=6 and L=8 by
-//! the edge trace, not by copying the L=4 integers. No Lebesgue density,
-//! theta>0 Gibbs law, section 20.12 Trotter covariance, or continuum limit.
 
 const LENGTH: usize = 4;
 const DIM: usize = 1 << LENGTH;
@@ -344,7 +337,6 @@ fn normalized(numer: i64, length: i64) -> Rat {
     Rat::new(numer, length * dim)
 }
 
-/// Unscaled traces Tr(A_L^2), Tr(A_L[K_L,A_L]), Tr([K_L,A_L]^T [K_L,A_L]).
 pub fn unscaled_traces(length: i64) -> Result<(i64, i64, i64), &'static str> {
     if !(1..=8).contains(&length) {
         return Err("edge enumeration stops at length 8 and does not take L to infinity");

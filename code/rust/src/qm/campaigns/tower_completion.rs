@@ -1,12 +1,3 @@
-//! Campaign C500 Block 05: Limit Semantics and Finite-State Convergence.
-//!
-//! AuthorityEffect: None.
-//! Citation: sealed-derivation-v1 (3100c4e)
-//!
-//! Implements:
-//! 1. Fuzzy sphere benchmark rate O(1/d).
-//! 2. Multi-topology convergence comparison countermodel.
-//! 3. Algebraic union vs analytic completion separation.
 
 use num_rational::Ratio;
 use serde::{Deserialize, Serialize};

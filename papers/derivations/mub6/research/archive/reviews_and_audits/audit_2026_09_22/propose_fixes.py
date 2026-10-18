@@ -24,7 +24,6 @@ def replace(path, old, new):
 PY = "omega_engine/crates/mub_verify/"
 RS = "omega_engine/crates_rs/omega_mub/src/omega_native/"
 
-# F08: reject the out-of-box custom center before forming a Jacobian enclosure.
 p = RS + "mub6_smale_sentry.rs"
 replace(p, "    ZeroPivotAt(usize),", "    ZeroPivotAt(usize),\n    CenterOutsideBox,")
 replace(p, '            Self::SingularMatrix => write!(f, "Matrix is singular over Q"),',
@@ -38,7 +37,6 @@ replace(p, "        let mut min_margin = BigRational::from_integer(BigInt::from(
     "        let mut min_margin = cells.first().map(|c| c.residual_margin.clone())\n"
     "            .unwrap_or_else(BigRational::zero);")
 
-# F12: only the uncapacitated API is implemented. More overflow sites remain.
 p = RS + "l1_discrete_solver/network_simplex.rs"
 replace(p, "        let sum: i128 = self.demand.iter().sum();",
     "        let sum = self.demand.iter().try_fold(0i128, |acc, &d|\n"
@@ -55,7 +53,6 @@ replace(p, "    pub fn solve(&mut self) -> Result<NetworkSimplexSolution, Networ
     '                message: "only zero lower bounds and unbounded upper capacities are supported".into(),\n'
     "            });\n        }\n")
 
-# F10/F11: reject inexact input; quarantine claim replacement until a semantic rule exists.
 p = PY + "l1_governor.py"
 replace(p, "@dataclass(frozen=True)\nclass Edge:",
     'def require_exact(value):\n'
@@ -75,7 +72,6 @@ replace(p, "        if proposed_claims is not None:\n            # 1. Diagonal",
     "                    details=\"Claim changes need a separate semantic certificate.\", step_id=sid)\n"
     "            # 1. Diagonal")
 
-# F06: adjacency radii and endpoints, not a critical step-size constant.
 p = PY + "target_b1_continuous_chaining.py"
 replace(p, "            if step > self.delta_crit:\n                return False, f\"Uncertified parameter gap between {t_curr} and {t_next}: step {step} > delta_crit {self.delta_crit}\"",
     "            if step > points[i].delta + points[i + 1].delta:\n"
@@ -85,7 +81,6 @@ replace(p, '        return True, f"Dense chain of {len(points)} points verified 
     '            return False, "Endpoint neighborhoods are not covered"\n'
     '        return True, f"Sample balls cover the declared interval; analytic witnesses still required"')
 
-# F07: require the expected registry, unique entries, and in-root receipt files.
 p = PY + "verify_all_receipts.py"
 manifest = json.loads((ROOT / "artifacts/manifest.json").read_text(encoding="utf-8"))
 expected = {(e["target"], e["filename"], e["schema_version"]) for e in manifest["receipts"]}
@@ -99,7 +94,6 @@ replace(p, "        receipt_file = resolved_artifacts / filename", "        rece
     "        if not receipt_file.is_relative_to(resolved_artifacts.resolve()):\n"
     '            errors.append(f"{entry_prefix}: receipt path outside artifacts root")\n            continue')
 
-# F09: source equality and an explicit tag, instead of self-supplied hash integrity.
 p = "lean4/012_mutually_unbiased_bases/MUB/CertificatePilot.lean"
 original = (ROOT / p).read_text(encoding="utf-8")
 start = original.index("def pilotSources : List Expr := [")
@@ -115,7 +109,6 @@ replace(p, source_definition, "def pilotSources : List Expr := expectedPilotSour
 replace(p, "    dsimp [sumProdExpr, pilotMultipliers, pilotSources, evalExpr]",
     "    dsimp [sumProdExpr, pilotMultipliers, pilotSources, expectedPilotSources, evalExpr]")
 
-# F13: a carrier-only call cannot authorize a derivation.
 p = PY + "packet_firewall.py"
 replace(p, "        return FirewallVerdict(admitted=True)\n\n    def evaluate_pipeline(",
     "        return FirewallVerdict(admitted=False,\n"

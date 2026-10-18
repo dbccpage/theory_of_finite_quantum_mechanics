@@ -1,9 +1,3 @@
-//! Named WDP adapters for sovereign finite component classifications.
-//!
-//! CH03 uses the existing property-vector meanings, adding active updates.
-//! CH14 distinguishes manuscript report stability from the legacy presentation
-//! stability flag. Missing context/target data are refused, not defaulted.
-//! Exact calibration means equality to caller-declared targets, not physical truth.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -30,7 +24,6 @@ pub struct RetentionClassification {
     pub authority_effect: AuthorityEffect,
 }
 
-/// Validate the legacy packet and comparison, then delegate finite mathematics.
 pub fn classify_retention_packet(
     packet: &RetentionPacket,
 ) -> Result<RetentionClassification, WdpError> {
@@ -153,7 +146,6 @@ pub fn construct_retention_witness(
     )
 }
 
-/// All maps must be total on exactly the nonempty, duplicate-free named carrier.
 pub fn classify_functional_maps(
     carrier: &[String],
     presentation: &BTreeMap<String, String>,
@@ -214,9 +206,6 @@ pub struct FunctionalClassification {
     pub authority_effect: AuthorityEffect,
 }
 
-/// Checked adapter to the legacy report-on-presentations API. Here linking is
-/// structural (s=hq), not an independent predicate. Supply complete context and
-/// targets; the legacy missing-data defaults are deliberately unavailable.
 pub fn classify_existing_functional_packet(
     carrier: &[String],
     presentation: &BTreeMap<String, String>,

@@ -35,17 +35,11 @@ from omega_engine_pfp.use_cases import score_cochain_proposal, score_discrete_pr
 
 DUAL = "a" * 64
 
-# One thousandth of the old 1e-9 threshold: comfortably "zero" to a tolerance,
-# unambiguously non-zero over Q.
 TINY = Fraction(1, 10**12)
 
-# The swept files are the real package's, wherever it is imported from.
 REPO_ROOT = Path(omega_engine_pfp.__file__).resolve().parents[1]
 
 
-# ---------------------------------------------------------------------------
-# STORY-001-001: carry an exact residual norm into the scoring decision
-# ---------------------------------------------------------------------------
 
 
 def test_a_residual_below_the_old_tolerance_is_not_exact() -> None:
@@ -119,9 +113,6 @@ def test_discrete_counts_are_carried_exactly_not_as_floats() -> None:
     assert res.post_residual_norm == 2
 
 
-# ---------------------------------------------------------------------------
-# STORY-001-002: refuse rather than approximate where exactness is unavailable
-# ---------------------------------------------------------------------------
 
 
 def test_a_float_in_the_cochain_is_refused_not_converted() -> None:
@@ -154,7 +145,7 @@ def test_an_exactness_claim_over_a_float_is_refused() -> None:
         CoboundaryScoreResult(
             proposal_id="float-claim",
             prior_residual_norm=Fraction(1),
-            post_residual_norm=0.0,  # a float that happens to equal zero
+            post_residual_norm=0.0,
             residual_drop=Fraction(1),
             structural_cost=0.0,
             normalized_efficiency=1.0,
@@ -220,7 +211,7 @@ def test_the_exact_wire_renderer_refuses_a_float() -> None:
     """The renderer is another boundary: accepting 0.1 here would preserve an
     upstream binary rounding error as a very large but misleading rational."""
     with pytest.raises(NotExactError, match="never float"):
-        to_canonical_string(0.1)  # type: ignore[arg-type]
+        to_canonical_string(0.1)
 
 
 def test_a_non_exact_score_is_refused_at_construction() -> None:
@@ -238,9 +229,6 @@ def test_a_non_exact_score_is_refused_at_construction() -> None:
         )
 
 
-# ---------------------------------------------------------------------------
-# STORY-001-003: evaluate the Gamma2 <= Phi1 bound exactly
-# ---------------------------------------------------------------------------
 
 
 def test_a_gamma2_excess_below_the_old_epsilon_is_a_violation() -> None:
@@ -296,9 +284,6 @@ def test_phi1_is_refused_where_only_a_bound_is_carried() -> None:
     assert projection["gamma2"] == 1
 
 
-# ---------------------------------------------------------------------------
-# STORY-001-004: record what could not be made exact
-# ---------------------------------------------------------------------------
 
 SWEPT_FILES = (
     "omega_engine_pfp/use_cases/scoring.py",
@@ -307,9 +292,6 @@ SWEPT_FILES = (
     "omega_engine_pfp/fixtures/gate11_residual_dual.py",
 )
 
-# The old threshold written as a literal, in any spelling. `#` comment lines
-# are exempt so that a note recording what the code used to do can name it;
-# nothing else in these files may, docstrings included.
 _EPSILON_LITERAL = re.compile(r"(?<![\w.])1e-0*9\b", re.IGNORECASE)
 
 

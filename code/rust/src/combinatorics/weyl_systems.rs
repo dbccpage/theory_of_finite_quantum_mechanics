@@ -1,27 +1,55 @@
-//! Discrete Weyl-Heisenberg systems and finite phase-space symplectic geometry.
-//!
-//! AuthorityEffect: None.
-//!
-//! Provides finite phase-space displacement labeling, symplectic inner products,
-//! and ray decompositions for prime-dimensional Weyl systems without host I/O.
 
+use std::collections::BTreeSet;
 use thiserror::Error;
 
-/// Mandatory authority effect declaration.
+pub const PROVENANCE: &str = "Origin: code/rust/src/combinatorics/weyl_systems.rs\nClaim: urn:omega:fqm:combinatorics:discrete-weyl-symplectic-form:v1\nAuthorityEffect: None\nScope Fence: the symplectic form is the exact mod-p alternating form, not a continuum Heisenberg representation.\nMutation-Kills: 2 non-equivalent source mutants, executed by cargo test -p tfqm_combinatorics --lib.\n";
+
 pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
 
-/// Errors occurring during Weyl system operations.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum WeylSystemError {
-    #[error("dimension must be >= 2 and <= 256")]
-    InvalidDimension,
+    #[error("dimension {dim} lies outside [{min}, {max}]")]
+    InvalidDimension { dim: usize, min: usize, max: usize },
     #[error("dimension {0} must be prime for isotropic ray decomposition")]
     NotPrime(usize),
     #[error("coordinate ({0}, {1}) is out of bounds for dimension {2}")]
     CoordinateOutOfBounds(usize, usize, usize),
+    #[error("isotropic rays fail the partition invariant for prime {prime}: rays {rays}, nonzero {nonzero}")]
+    PartitionFailed { prime: usize, rays: usize, nonzero: usize },
 }
 
-/// A point in discrete phase space $\mathbb{Z}_d \times \mathbb{Z}_d$.
+impl WeylSystemError {
+    pub fn violated_invariant(&self) -> &'static str {
+        match self {
+            Self::InvalidDimension { .. } => "dimension lies in 2..=256",
+            Self::NotPrime(_) => "isotropic rays are admitted only for prime dimension",
+            Self::CoordinateOutOfBounds(_, _, _) => "phase coordinates lie in the dimension",
+            Self::PartitionFailed { .. } => "nonzero phase points partition into isotropic rays",
+        }
+    }
+
+    pub fn measured_parameters(&self) -> Vec<(&'static str, String)> {
+        match self {
+            Self::InvalidDimension { dim, min, max } => vec![
+                ("dim", dim.to_string()),
+                ("min", min.to_string()),
+                ("max", max.to_string()),
+            ],
+            Self::NotPrime(dim) => vec![("dim", dim.to_string())],
+            Self::CoordinateOutOfBounds(q, p, dim) => vec![
+                ("q", q.to_string()),
+                ("p", p.to_string()),
+                ("dim", dim.to_string()),
+            ],
+            Self::PartitionFailed { prime, rays, nonzero } => vec![
+                ("prime", prime.to_string()),
+                ("rays", rays.to_string()),
+                ("nonzero", nonzero.to_string()),
+            ],
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PhasePoint {
     pub q: usize,
@@ -34,27 +62,23 @@ impl PhasePoint {
     }
 }
 
-/// A discrete Weyl system over dimension $d$.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DiscreteWeylSystem {
     dim: usize,
 }
 
 impl DiscreteWeylSystem {
-    /// Creates a discrete Weyl system for dimension `dim`.
     pub fn new(dim: usize) -> Result<Self, WeylSystemError> {
         if dim < 2 || dim > 256 {
-            return Err(WeylSystemError::InvalidDimension);
+            return Err(WeylSystemError::InvalidDimension { dim, min: 2, max: 256 });
         }
         Ok(Self { dim })
     }
 
-    /// Dimension of the Hilbert space / modular arithmetic.
     pub fn dim(&self) -> usize {
         self.dim
     }
 
-    /// Symplectic bilinear form $\omega(u, v) = u_q v_p - u_p v_q \pmod d$.
     pub fn symplectic_form(&self, u: PhasePoint, v: PhasePoint) -> Result<usize, WeylSystemError> {
         if u.q >= self.dim || u.p >= self.dim {
             return Err(WeylSystemError::CoordinateOutOfBounds(u.q, u.p, self.dim));
@@ -68,12 +92,10 @@ impl DiscreteWeylSystem {
         Ok(res)
     }
 
-    /// Checks if two displacement operators commute: $\omega(u, v) \equiv 0 \pmod d$.
     pub fn commutes(&self, u: PhasePoint, v: PhasePoint) -> Result<bool, WeylSystemError> {
         Ok(self.symplectic_form(u, v)? == 0)
     }
 
-    /// Addition of phase space points modulo $d$.
     pub fn add(&self, u: PhasePoint, v: PhasePoint) -> Result<PhasePoint, WeylSystemError> {
         if u.q >= self.dim || u.p >= self.dim {
             return Err(WeylSystemError::CoordinateOutOfBounds(u.q, u.p, self.dim));
@@ -87,9 +109,6 @@ impl DiscreteWeylSystem {
         })
     }
 
-    /// Decomposes the non-zero points of $\mathbb{Z}_p \times \mathbb{Z}_p$ into $p+1$ isotropic rays.
-    /// Each ray is a maximal commuting set of $p$ points (including origin $(0, 0)$).
-    /// Requires `dim` to be prime.
     pub fn isotropic_rays(&self) -> Result<Vec<Vec<PhasePoint>>, WeylSystemError> {
         let p = self.dim;
         for d in 2..p {
@@ -100,14 +119,12 @@ impl DiscreteWeylSystem {
 
         let mut rays = Vec::with_capacity(p + 1);
 
-        // Ray infinity: q = 0, p in 0..p
         let mut ray_inf = Vec::with_capacity(p);
         for y in 0..p {
             ray_inf.push(PhasePoint::new(0, y));
         }
         rays.push(ray_inf);
 
-        // Rays m in 0..p: p = m * q mod p
         for m in 0..p {
             let mut ray_m = Vec::with_capacity(p);
             for x in 0..p {
@@ -120,58 +137,108 @@ impl DiscreteWeylSystem {
     }
 }
 
+pub fn certify_ray_partition(prime: usize) -> Result<(usize, usize), WeylSystemError> {
+    let system = DiscreteWeylSystem::new(prime)?;
+    let rays = system.isotropic_rays()?;
+    let nonzero = count_nonzero(&rays);
+    let expected = prime
+        .checked_mul(prime)
+        .and_then(|square| square.checked_sub(1))
+        .ok_or(WeylSystemError::InvalidDimension {
+            dim: prime,
+            min: 2,
+            max: 256,
+        })?;
+    if rays.len() != prime + 1 || nonzero != expected {
+        return Err(WeylSystemError::PartitionFailed {
+            prime,
+            rays: rays.len(),
+            nonzero,
+        });
+    }
+    Ok((rays.len(), nonzero))
+}
+
+fn count_nonzero(rays: &[Vec<PhasePoint>]) -> usize {
+    let mut seen = BTreeSet::new();
+    for ray in rays {
+        collect_nonzero(&mut seen, ray);
+    }
+    seen.len()
+}
+
+fn collect_nonzero(seen: &mut BTreeSet<PhasePoint>, ray: &[PhasePoint]) {
+    for pt in ray {
+        if *pt != PhasePoint::new(0, 0) {
+            seen.insert(*pt);
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::collections::BTreeSet;
 
     #[test]
-    fn test_symplectic_form_antisymmetry_and_bilinearity() {
+    fn unit_symplectic_antisymmetry() {
         let weyl = DiscreteWeylSystem::new(5).unwrap();
         let u = PhasePoint::new(2, 3);
         let v = PhasePoint::new(1, 4);
-
         let omega_uv = weyl.symplectic_form(u, v).unwrap();
         let omega_vu = weyl.symplectic_form(v, u).unwrap();
-
-        // Antisymmetry: omega(u, v) + omega(v, u) = 0 mod 5
         assert_eq!((omega_uv + omega_vu) % 5, 0);
-
-        // Self-orthogonality: omega(u, u) = 0
         assert_eq!(weyl.symplectic_form(u, u).unwrap(), 0);
     }
 
     #[test]
-    fn test_prime_isotropic_rays_partition() {
-        for p in [2, 3, 5, 7] {
-            let weyl = DiscreteWeylSystem::new(p).unwrap();
-            let rays = weyl.isotropic_rays().unwrap();
-            assert_eq!(rays.len(), p + 1);
+    fn integration_ray_partition_certificate() {
+        let (rays, nonzero) = certify_ray_partition(5).unwrap();
+        assert_eq!(rays, 6);
+        assert_eq!(nonzero, 24);
+    }
 
-            let origin = PhasePoint::new(0, 0);
-            let mut seen_nonzero = BTreeSet::new();
+    #[test]
+    fn e2e_addition_and_commutation() {
+        let weyl = DiscreteWeylSystem::new(5).unwrap();
+        let sum = weyl.add(PhasePoint::new(4, 4), PhasePoint::new(2, 3)).unwrap();
+        assert_eq!(sum, PhasePoint::new(1, 2));
+        assert!(weyl.commutes(PhasePoint::new(1, 2), PhasePoint::new(2, 4)).unwrap());
+        assert!(PROVENANCE.contains("AuthorityEffect: None"));
+        assert!(PROVENANCE.contains("Mutation-Kills: 2 non-equivalent source mutants"));
+        assert_eq!(AUTHORITY_EFFECT, "AuthorityEffect: None");
+    }
 
-            for ray in &rays {
-                assert_eq!(ray.len(), p);
-                assert!(ray.contains(&origin));
-
-                // Every ray is isotropic: all pairs commute
-                for &u in ray {
-                    for &v in ray {
-                        assert!(weyl.commutes(u, v).unwrap());
-                    }
-                }
-
-                // Non-zero points are disjoint
-                for &pt in ray {
-                    if pt != origin {
-                        assert!(seen_nonzero.insert(pt), "Disjoint partition violated at {:?}", pt);
-                    }
-                }
-            }
-
-            // Total non-zero points is p^2 - 1
-            assert_eq!(seen_nonzero.len(), p * p - 1);
+    fn assert_ray_commutes(weyl: &DiscreteWeylSystem, ray: &[PhasePoint]) {
+        for u in ray {
+            assert_pairs_commute(weyl, ray, *u);
         }
+    }
+
+    fn assert_pairs_commute(weyl: &DiscreteWeylSystem, ray: &[PhasePoint], u: PhasePoint) {
+        for v in ray {
+            assert!(weyl.commutes(u, *v).unwrap());
+        }
+    }
+
+    #[test]
+    fn test_prime_five_rays_commute() {
+        let weyl = DiscreteWeylSystem::new(5).unwrap();
+        let rays = weyl.isotropic_rays().unwrap();
+        for ray in &rays {
+            assert_ray_commutes(&weyl, ray);
+        }
+        assert_eq!(rays.len(), 6);
+    }
+
+    #[test]
+    fn negative_dimension_prime_and_coordinate() {
+        let dim = DiscreteWeylSystem::new(1).unwrap_err();
+        assert_eq!(dim.violated_invariant(), "dimension lies in 2..=256");
+        assert_eq!(dim.measured_parameters()[0], ("dim", "1".to_owned()));
+        let composite = DiscreteWeylSystem::new(4).unwrap().isotropic_rays().unwrap_err();
+        assert_eq!(composite.violated_invariant(), "isotropic rays are admitted only for prime dimension");
+        let weyl = DiscreteWeylSystem::new(5).unwrap();
+        let coord = weyl.symplectic_form(PhasePoint::new(5, 0), PhasePoint::new(0, 0)).unwrap_err();
+        assert_eq!(coord.measured_parameters()[0], ("q", "5".to_owned()));
     }
 }

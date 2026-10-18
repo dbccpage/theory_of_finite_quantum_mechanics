@@ -23,8 +23,8 @@ from omega_engine.crates.type.witness import IdentityWitness
 @dataclass
 class DDAOperationRecord:
     operation_id: str
-    operation_type: str  # e.g., 'FOUNDATION', 'DDA_STEP', 'WINDOW_LIFT', 'TERMINATION'
-    tape_token: str       # e.g., 'E', 'R', 'C', 'I', 'L', 'Λ', 'D', 'M', 'T'
+    operation_type: str
+    tape_token: str
     residual_before: float
     residual_after: float
     delta_residual: float

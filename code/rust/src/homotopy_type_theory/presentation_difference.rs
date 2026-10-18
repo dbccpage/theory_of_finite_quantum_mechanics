@@ -1,8 +1,3 @@
-//! Finite presentation-to-Primitive-Difference reference model.
-//!
-//! Rust face of `omega_engine/kernel/presentation_difference.py`.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};

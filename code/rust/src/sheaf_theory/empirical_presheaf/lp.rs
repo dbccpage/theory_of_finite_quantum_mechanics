@@ -1,25 +1,16 @@
-//! Exact L1 distance from a point to the convex hull of rational generators.
 
 use num_traits::{One, Signed, Zero};
 use omega_solvers::solver_lp_standard_form::{StandardLp, StandardLpError, StandardLpSolution};
 
 use super::{EmpiricalError, MAX_LP_ENTRIES, Q};
 
-/// Receipt of `min ||G p - t||_1` over the probability simplex: the L1
-/// distance of `t` from the convex hull of the columns of `G`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct L1DefectReceipt {
     pub defect: Q,
     pub coefficients: Vec<Q>,
     pub residual: Vec<Q>,
-    /// `phi*` with `G^T phi* + y0 <= 0` coordinatewise, sup-norm at most one,
-    /// and `t . phi* + y0` equal to the defect: zero duality gap.
     pub dual_witness: Vec<Q>,
     pub dual_offset: Q,
-    /// The standard-form solution over `(p, u, v)`. Replay rebuilds the LP,
-    /// verifies `primal`, `dual` and `value` and binds `p` to `coefficients`
-    /// and the dual to `(dual_witness, dual_offset)`. `lp.pivots` is a trace
-    /// and is not bound by replay.
     pub lp: StandardLpSolution,
 }
 
@@ -33,8 +24,6 @@ pub(super) fn too_large() -> EmpiricalError {
     }
 }
 
-/// Refuse a dense rational matrix of more than [`MAX_LP_ENTRIES`] entries
-/// before it is allocated; the product itself is checked, never wrapped.
 pub(super) fn bound_dense(rows: usize, columns: usize) -> Result<(), EmpiricalError> {
     match rows.checked_mul(columns) {
         Some(entries) if entries <= MAX_LP_ENTRIES => Ok(()),
@@ -42,7 +31,6 @@ pub(super) fn bound_dense(rows: usize, columns: usize) -> Result<(), EmpiricalEr
     }
 }
 
-/// Variables `(p, u, v)`, rows `G p - u + v = t` and `sum p = 1`, cost `sum u + sum v`.
 fn standard_form_l1(generators: &[Vec<Q>], target: &[Q]) -> Result<StandardLp, EmpiricalError> {
     let (k, m) = (generators.len(), target.len());
     let width = m
@@ -73,10 +61,6 @@ fn standard_form_l1(generators: &[Vec<Q>], target: &[Q]) -> Result<StandardLp, E
     Ok(StandardLp::new(costs, rows, rhs)?)
 }
 
-/// Exact `min_p ||G p - t||_1` over the probability simplex, returning the
-/// primal minimiser and the dual witness with zero duality gap. This is the
-/// L1 distance from a convex hull, not the cochain quotient `Phi_1`, which
-/// [`EmpiricalModel::cech_quotient_defect`] delegates to its owner.
 pub fn l1_distance_to_convex_hull(
     generators: &[Vec<Q>],
     target: &[Q],
@@ -117,8 +101,6 @@ pub fn l1_distance_to_convex_hull(
     }
 }
 
-/// Independent replay: the LP certificate, the residual, the sup-norm bound,
-/// the kernel (or offset) condition and the zero duality gap are all re-checked.
 pub fn verify_l1_defect_receipt(
     generators: &[Vec<Q>],
     target: &[Q],

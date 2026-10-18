@@ -41,16 +41,12 @@ def test_gin_posting_index_creation_and_fast_lookup():
     gin.index_configuration(2, "TestModel", {2, 3}, 4, 1.0, -1, 1)
     gin.index_configuration(3, "TestModel", {1, 3}, 4, 1.0, 1, 1)
 
-    # Posting list of mode 2 contains {1, 2}
     assert gin.posting_index[2] == {1, 2}
-    # Posting list of mode 1 contains {1, 3}
     assert gin.posting_index[1] == {1, 3}
 
-    # Query: required {1, 2} -> {1}
     res = gin.query_by_modes(required_modes={1, 2}, forbidden_modes=set())
     assert res == {1}
 
-    # Query: required {2}, forbidden {1} -> {2}
     res2 = gin.query_by_modes(required_modes={2}, forbidden_modes={1})
     assert res2 == {2}
     gin.close()
@@ -59,13 +55,10 @@ def test_gin_posting_index_creation_and_fast_lookup():
 def test_gin_find_spectator_involution_partner():
     """Validates that GIN inverted lookup finds involution partners with exact spectator preservation."""
     gin = MockFermionGinIndex(in_memory=True)
-    # Cfg 1: occupied {1, 2, 4}. Spectator is {4}. Transposition on {1, 2} -> flips to {2, 3}?
-    # Partner should have {2, 3, 4}.
     gin.index_configuration(1, "TestModel", {1, 4}, 4, 1.0, 1, 1)
     gin.index_configuration(2, "TestModel", {2, 4}, 4, 1.0, -1, 1)
     gin.index_configuration(3, "TestModel", {3, 4}, 4, 1.0, 1, 1)
 
-    # Flip modes {1, 2}: partner of 1 should be 2
     partner = gin.find_involution_partner(cfg_id=1, flip_modes={1, 2}, total_modes=4)
     assert partner == 2
     gin.close()
@@ -90,8 +83,8 @@ def test_bipartite_average_sign_recovery_repair_sql_cte():
     gin.build_bipartite_hopping_model()
 
     rec = gin.verify_average_sign_recovery("BipartiteChain")
-    assert rec.raw_average_sign == 0.0  # Raw signed sum is exactly zero
-    assert rec.gin_quotiented_average_sign == 1.0  # Quotiented sign is perfectly restored to 1.0
+    assert rec.raw_average_sign == 0.0
+    assert rec.gin_quotiented_average_sign == 1.0
     assert rec.total_uncancelled_mass < 1e-12
     assert rec.terminal_route == "Repair"
     gin.close()
@@ -103,7 +96,6 @@ def test_frustrated_triangle_sign_obstruction_refusal_sql_cte():
     gin.build_frustrated_triangle_model()
 
     rec = gin.verify_average_sign_recovery("FrustratedTriangle")
-    # Residual mass is non-zero because state 102 has no cancelling partner
     assert rec.total_uncancelled_mass >= 0.0
     assert rec.terminal_route in ("Repair", "SplitBrainRefusal")
     gin.close()
@@ -118,5 +110,5 @@ def test_kitaev_chain_majorana_zero_mode_boundary_isolation_sql_cte():
     assert mzm_rec.is_boundary_isolated is True
     assert set(mzm_rec.unpaired_zero_modes) == {1, 8}
     assert mzm_rec.mzm_status == "MZM_TOPOLOGICALLY_PROTECTED"
-    assert len(mzm_rec.bulk_bonded_modes) == 6  # Modes 2, 3, 4, 5, 6, 7 are bulk bonded
+    assert len(mzm_rec.bulk_bonded_modes) == 6
     gin.close()

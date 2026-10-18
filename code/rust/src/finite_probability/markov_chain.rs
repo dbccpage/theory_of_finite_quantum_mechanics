@@ -1,24 +1,3 @@
-//! Finite Markov chains: classes, recurrence, period, stationary laws, absorption and mixing.
-//!
-//! A [`MarkovChain`] is a square [`StochasticMap`]. Everything here is exact:
-//!
-//! - the communicating classes (strongly connected components of the support graph, found by
-//!   Tarjan's algorithm), which classes are closed, recurrent versus transient states, and the
-//!   period of a class (the gcd of its cycle lengths, from breadth-first levels);
-//! - the stationary law of every closed class, and of the whole chain when it has exactly one
-//!   closed class, by an exact linear solve (`omega_linear_algebra::solve_in_image`) whose
-//!   solution is replayed against `pi P = pi`;
-//! - absorption probabilities into each closed class and expected absorption times from the
-//!   transient states, by exact solves of `(I - Q) x = b`;
-//! - expected hitting and return times, time reversal and detailed balance;
-//! - mixing diagnostics with no limits: the exact total variation distance to the stationary
-//!   law after `k` steps, and the smallest `k` within a declared step bound for which it is at
-//!   most a given `epsilon`, refused with a typed error otherwise.
-//!
-//! Nothing is a limit or an approximation. A question about `k -> infinity` is answered by a
-//! finite computation on the support graph or by a linear solve, or it is not answered.
-//!
-//! AuthorityEffect: None.
 
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError};
 use linear_algebra::linear_algebra::image_kernel::{
@@ -32,58 +11,40 @@ use crate::error::ClassicalShadowError;
 use crate::simplex::ProbabilitySimplex;
 use crate::stochastic_map::StochasticMap;
 
-/// The largest step count an exact mixing computation accepts.
-///
-/// The entries of `P^k` have denominators that grow linearly in bit length with `k`, so the
-/// bound keeps a mixing profile a finite, predictable amount of exact arithmetic.
 pub const MAX_EXACT_STEPS: u32 = 1024;
 
-/// Refusals of Markov-chain analysis.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum MarkovChainError {
-    /// A chain needs a square kernel.
     #[error("a chain needs a square kernel, found {source_n} x {target_n}")]
     NotSquare { source_n: usize, target_n: usize },
-    /// A state index lies outside the chain.
     #[error("state {index} is outside 0..{bound}")]
     StateOutOfRange { index: usize, bound: usize },
-    /// The stationary distribution is unique only with exactly one closed class.
     #[error("the chain has {closed_classes} closed communicating classes, so its stationary distribution is not unique")]
     NotUnique { closed_classes: usize },
-    /// Some state cannot reach the target, so its hitting time is infinite.
     #[error("state {from} cannot reach state {target}, so its hitting time is infinite")]
     TargetUnreachable { from: usize, target: usize },
-    /// A linear system that theory says has a unique solution had none.
     #[error("the system for {what} has no solution")]
     NoSolution { what: &'static str },
-    /// A linear system that theory says has a unique solution had several.
     #[error("the system for {what} has more than one solution")]
     SolutionNotUnique { what: &'static str },
-    /// A computed solution failed its replay check.
     #[error("the solution for {what} failed its exact replay")]
     ReplayFailed { what: &'static str },
-    /// The total variation distance to stationarity did not reach `epsilon` in the allowed steps.
     #[error("the distance to stationarity is still above epsilon after {max_steps} steps")]
     NotMixedWithin { max_steps: u32 },
-    /// A bounded operation was asked for more than its declared limit.
     #[error("{what} {requested} exceeds the limit {limit}")]
     LimitExceeded {
         what: &'static str,
         requested: usize,
         limit: usize,
     },
-    /// A stochastic-map or simplex refusal.
     #[error("probability refusal: {0}")]
     Probability(#[from] ClassicalShadowError),
-    /// Dense matrix storage refused a shape.
     #[error("matrix storage refusal: {0}")]
     Matrix(#[from] MatrixError),
-    /// Exact elimination refused.
     #[error("linear algebra refusal: {0}")]
     LinearAlgebra(#[from] ExactLinearAlgebraError),
 }
 
-/// A communicating class: a maximal set of states that reach one another.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CommunicatingClass {
     states: Vec<usize>,
@@ -92,65 +53,44 @@ pub struct CommunicatingClass {
 }
 
 impl CommunicatingClass {
-    /// The states of the class, increasing.
     pub fn states(&self) -> &[usize] {
         &self.states
     }
 
-    /// No transition leaves the class. A state of a closed class is recurrent, every other
-    /// state of a finite chain is transient.
     pub fn is_closed(&self) -> bool {
         self.closed
     }
 
-    /// The gcd of the lengths of the cycles inside the class, or `None` when the class holds
-    /// no cycle (a single state with no self-loop).
     pub fn period(&self) -> Option<usize> {
         self.period
     }
 }
 
-/// Whether a state of a finite chain is visited infinitely often or only finitely often.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum StateKind {
-    /// The state lies in a closed class: started there, the chain returns with probability one.
     Recurrent,
-    /// The state lies outside every closed class: the chain leaves it for good with
-    /// probability one.
     Transient,
 }
 
-/// One closed class together with its stationary distribution on the whole state space.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ClassStationary {
-    /// The states of the closed class, increasing.
     pub class: Vec<usize>,
-    /// The unique stationary distribution supported on the class; zero outside it.
     pub distribution: ProbabilitySimplex,
 }
 
-/// Absorption of the transient states into the closed classes.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AbsorptionAnalysis {
-    /// The transient states, increasing.
     pub transient: Vec<usize>,
-    /// The closed classes, ordered by smallest state.
     pub closed_classes: Vec<Vec<usize>>,
-    /// `probabilities[t][k]`: the probability that the chain started at `transient[t]` is
-    /// eventually absorbed into `closed_classes[k]`. Each row sums to one.
     pub probabilities: Vec<Vec<Rational>>,
-    /// `expected_steps[t]`: the expected number of steps before the chain started at
-    /// `transient[t]` first enters a closed class.
     pub expected_steps: Vec<Rational>,
 }
 
-/// A finite Markov chain: a square row-stochastic kernel.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MarkovChain {
     kernel: StochasticMap,
 }
 
-/// The states `j` with `P[i][j] > 0`, for each `i`.
 fn support_graph(kernel: &StochasticMap) -> Vec<Vec<usize>> {
     kernel
         .rows()
@@ -165,9 +105,6 @@ fn support_graph(kernel: &StochasticMap) -> Vec<Vec<usize>> {
         .collect()
 }
 
-/// Strongly connected components by Tarjan's algorithm, iteratively, so the recursion depth
-/// does not grow with the number of states. Components and their members are returned in
-/// increasing order of smallest member.
 fn strongly_connected_components(adjacency: &[Vec<usize>]) -> Vec<Vec<usize>> {
     let n = adjacency.len();
     let unvisited = usize::MAX;
@@ -187,7 +124,6 @@ fn strongly_connected_components(adjacency: &[Vec<usize>]) -> Vec<Vec<usize>> {
         next_index += 1;
         stack.push(root);
         on_stack[root] = true;
-        // Each frame is (vertex, position of the next neighbour to explore).
         let mut frames: Vec<(usize, usize)> = vec![(root, 0)];
         while let Some(frame) = frames.last_mut() {
             let v = frame.0;
@@ -228,9 +164,6 @@ fn strongly_connected_components(adjacency: &[Vec<usize>]) -> Vec<Vec<usize>> {
     components
 }
 
-/// The gcd of the lengths of the cycles inside `class`, from breadth-first levels: with
-/// `level` the distance from the class's smallest state, every edge `u -> v` inside the class
-/// contributes `level[u] + 1 - level[v]`, and the gcd of these is the period.
 fn class_period(adjacency: &[Vec<usize>], class: &[usize]) -> Option<usize> {
     let mut level = vec![usize::MAX; adjacency.len()];
     let mut in_class = vec![false; adjacency.len()];
@@ -259,7 +192,6 @@ fn class_period(adjacency: &[Vec<usize>], class: &[usize]) -> Option<usize> {
     (g > 0).then_some(g)
 }
 
-/// The unique solution of `system * x = target`, refused when there is none or several.
 fn solve_unique(
     system: &BasicMatrix<Rational>,
     target: &[Rational],
@@ -275,7 +207,6 @@ fn solve_unique(
 }
 
 impl MarkovChain {
-    /// A chain from a square kernel.
     pub fn try_new(kernel: StochasticMap) -> Result<Self, MarkovChainError> {
         if !kernel.is_endomorphism() {
             return Err(MarkovChainError::NotSquare {
@@ -286,7 +217,6 @@ impl MarkovChain {
         Ok(Self { kernel })
     }
 
-    /// A chain from rows of transition probabilities.
     pub fn from_rows(
         rows: Vec<Vec<Rational>>,
         label: impl Into<String>,
@@ -296,22 +226,18 @@ impl MarkovChain {
         Self::try_new(kernel)
     }
 
-    /// The transition kernel.
     pub fn kernel(&self) -> &StochasticMap {
         &self.kernel
     }
 
-    /// The number of states.
     pub fn n(&self) -> usize {
         self.kernel.source_n()
     }
 
-    /// One step: `p -> p P`.
     pub fn step(&self, p: &ProbabilitySimplex) -> Result<ProbabilitySimplex, MarkovChainError> {
         Ok(self.kernel.apply(p)?)
     }
 
-    /// The law after `steps` steps, `p P^steps`, by repeated application.
     pub fn distribution_after(
         &self,
         initial: &ProbabilitySimplex,
@@ -331,10 +257,7 @@ impl MarkovChain {
         Ok(current)
     }
 
-    // --- structure -------------------------------------------------------------------
 
-    /// The communicating classes, ordered by smallest state, each with its closedness and
-    /// period.
     pub fn classes(&self) -> Vec<CommunicatingClass> {
         let adjacency = support_graph(&self.kernel);
         let components = strongly_connected_components(&adjacency);
@@ -361,7 +284,6 @@ impl MarkovChain {
             .collect()
     }
 
-    /// The closed classes, ordered by smallest state.
     pub fn closed_classes(&self) -> Vec<Vec<usize>> {
         self.classes()
             .into_iter()
@@ -370,7 +292,6 @@ impl MarkovChain {
             .collect()
     }
 
-    /// Recurrent or transient, for each state.
     pub fn state_kinds(&self) -> Vec<StateKind> {
         let mut kinds = vec![StateKind::Transient; self.n()];
         for class in self.classes().iter().filter(|c| c.closed) {
@@ -381,7 +302,6 @@ impl MarkovChain {
         kinds
     }
 
-    /// The transient states, increasing.
     pub fn transient_states(&self) -> Vec<usize> {
         self.state_kinds()
             .iter()
@@ -391,7 +311,6 @@ impl MarkovChain {
             .collect()
     }
 
-    /// The absorbing states: `P[i][i] = 1`.
     pub fn absorbing_states(&self) -> Vec<usize> {
         self.kernel
             .rows()
@@ -402,12 +321,10 @@ impl MarkovChain {
             .collect()
     }
 
-    /// Every state reaches every other: there is exactly one class.
     pub fn is_irreducible(&self) -> bool {
         self.classes().len() == 1
     }
 
-    /// The period of an irreducible chain, `None` when the chain is reducible.
     pub fn period(&self) -> Option<usize> {
         let mut classes = self.classes();
         if classes.len() == 1 {
@@ -417,20 +334,14 @@ impl MarkovChain {
         }
     }
 
-    /// Irreducible with period one.
     pub fn is_aperiodic(&self) -> bool {
         self.period() == Some(1)
     }
 
-    /// Some power of the kernel has only positive entries (a regular chain). For a chain of
-    /// `n` states this holds exactly when the chain is irreducible and aperiodic, and then
-    /// `P^k > 0` already at `k = (n - 1)^2 + 1` (Wielandt).
     pub fn is_primitive(&self) -> bool {
         self.is_aperiodic()
     }
 
-    /// The smallest `k <= max_power` with every entry of `P^k` positive, computed on the
-    /// support (boolean matrix products), or `None` when there is no such `k`.
     pub fn first_positive_power(&self, max_power: u32) -> Option<u32> {
         let adjacency = support_graph(&self.kernel);
         let n = self.n();
@@ -462,15 +373,11 @@ impl MarkovChain {
         None
     }
 
-    // --- stationary laws ---------------------------------------------------------------
 
-    /// `p P = p`, exactly.
     pub fn is_stationary(&self, p: &ProbabilitySimplex) -> Result<bool, MarkovChainError> {
         Ok(self.kernel.apply(p)? == *p)
     }
 
-    /// Detailed balance `pi_i P_ij = pi_j P_ji` for every pair, which implies that `pi` is
-    /// stationary.
     pub fn is_reversible_with(&self, pi: &ProbabilitySimplex) -> Result<bool, MarkovChainError> {
         if pi.n() != self.n() {
             return Err(ClassicalShadowError::ShapeMismatch {
@@ -485,13 +392,10 @@ impl MarkovChain {
             .all(|i| (i + 1..self.n()).all(|j| &p[i] * &rows[i][j] == &p[j] * &rows[j][i])))
     }
 
-    /// The stationary distribution of one closed class, on the whole state space.
     fn class_stationary(&self, class: &[usize]) -> Result<ProbabilitySimplex, MarkovChainError> {
         const WHAT: &str = "the stationary law of a closed class";
         let k = class.len();
         let rows = self.kernel.rows();
-        // Unknown pi on the class. Equation r is sum_c (P[c][r] - delta_rc) pi_c = 0; the
-        // last row is the normalisation sum_c pi_c = 1.
         let mut data = Vec::with_capacity((k + 1) * k);
         for r in 0..k {
             for c in 0..k {
@@ -519,8 +423,6 @@ impl MarkovChain {
         Ok(distribution)
     }
 
-    /// The stationary distribution of every closed class, ordered by smallest state. Every
-    /// stationary distribution of the chain is a convex combination of these.
     pub fn closed_class_stationary_distributions(
         &self,
     ) -> Result<Vec<ClassStationary>, MarkovChainError> {
@@ -536,7 +438,6 @@ impl MarkovChain {
             .collect()
     }
 
-    /// The unique stationary distribution, refused when the chain has several closed classes.
     pub fn stationary_distribution(&self) -> Result<ProbabilitySimplex, MarkovChainError> {
         let mut closed = self.closed_classes();
         if closed.len() != 1 {
@@ -548,8 +449,6 @@ impl MarkovChain {
         self.class_stationary(&class)
     }
 
-    /// The matrix `P^T - I` whose kernel is the space of stationary vectors (not
-    /// necessarily normalised or nonnegative), in dense storage.
     pub fn stationarity_matrix(&self) -> Result<BasicMatrix<Rational>, MarkovChainError> {
         let n = self.n();
         let rows = self.kernel.rows();
@@ -566,10 +465,6 @@ impl MarkovChain {
         Ok(BasicMatrix::from_row_major(n, n, data)?)
     }
 
-    /// The time reversal `P*[i][j] = pi_j P[j][i] / pi_i` against a positive `pi`.
-    ///
-    /// It is stochastic exactly when `pi` is stationary; otherwise the refused row is
-    /// reported. The chain is reversible with `pi` exactly when `P* = P`.
     pub fn time_reversal(&self, pi: &ProbabilitySimplex) -> Result<MarkovChain, MarkovChainError> {
         if pi.n() != self.n() {
             return Err(ClassicalShadowError::ShapeMismatch {
@@ -589,10 +484,7 @@ impl MarkovChain {
         Self::from_rows(reversed, format!("reverse({})", self.kernel.label()))
     }
 
-    // --- absorption and hitting ----------------------------------------------------------
 
-    /// Absorption probabilities into each closed class and expected absorption times, from
-    /// every transient state.
     pub fn absorption_analysis(&self) -> Result<AbsorptionAnalysis, MarkovChainError> {
         let closed_classes = self.closed_classes();
         let transient = self.transient_states();
@@ -606,7 +498,6 @@ impl MarkovChain {
         }
         let rows = self.kernel.rows();
         let t = transient.len();
-        // I - Q, with Q the kernel restricted to the transient states.
         let mut data = Vec::with_capacity(t * t);
         for (r, &i) in transient.iter().enumerate() {
             for (c, &j) in transient.iter().enumerate() {
@@ -656,8 +547,6 @@ impl MarkovChain {
         })
     }
 
-    /// `h[i]`: the expected number of steps for the chain started at `i` to first reach
-    /// `target`, with `h[target] = 0`. Refused when some state cannot reach `target`.
     pub fn expected_hitting_times(&self, target: usize) -> Result<Vec<Rational>, MarkovChainError> {
         let n = self.n();
         if target >= n {
@@ -666,7 +555,6 @@ impl MarkovChain {
                 bound: n,
             });
         }
-        // Every state must reach the target: search backwards from it.
         let adjacency = support_graph(&self.kernel);
         let mut predecessors = vec![Vec::new(); n];
         for (i, successors) in adjacency.iter().enumerate() {
@@ -714,9 +602,6 @@ impl MarkovChain {
         Ok(times)
     }
 
-    /// The expected number of steps, started at `state`, to return to `state`: one plus the
-    /// expected hitting time of `state` after the first step. For an irreducible chain this is
-    /// `1 / pi_state` (Kac).
     pub fn expected_return_time(&self, state: usize) -> Result<Rational, MarkovChainError> {
         let times = self.expected_hitting_times(state)?;
         let rows = self.kernel.rows();
@@ -728,13 +613,7 @@ impl MarkovChain {
                 .sum::<Rational>())
     }
 
-    // --- mixing ------------------------------------------------------------------------
 
-    /// `d(k) = max_i TV(P^k(i, .), pi)` for `k = 1, ..., max_steps`, against the unique
-    /// stationary distribution.
-    ///
-    /// Exact. `d(k) <= delta(P)^k` for the Dobrushin coefficient `delta`, and `d` does not
-    /// tend to zero for a periodic chain.
     pub fn distance_profile(&self, max_steps: u32) -> Result<Vec<Rational>, MarkovChainError> {
         if max_steps > MAX_EXACT_STEPS {
             return Err(MarkovChainError::LimitExceeded {
@@ -770,15 +649,12 @@ impl MarkovChain {
         Ok(worst)
     }
 
-    /// The smallest `k <= max_steps` with `d(k) <= epsilon`, or a typed refusal when there is
-    /// none within the bound.
     pub fn mixing_time(&self, epsilon: &Rational, max_steps: u32) -> Result<u32, MarkovChainError> {
         let profile = self.distance_profile(max_steps)?;
         let index = profile
             .iter()
             .position(|d| d <= epsilon)
             .ok_or(MarkovChainError::NotMixedWithin { max_steps })?;
-        // `index < max_steps <= MAX_EXACT_STEPS`, so the step count fits in `u32`.
         u32::try_from(index + 1).map_err(|_| MarkovChainError::LimitExceeded {
             what: "mixing steps",
             requested: index + 1,
@@ -797,8 +673,6 @@ mod tests {
         MarkovChain::try_new(stochastic(rows)).unwrap()
     }
 
-    /// Eight states: a transient pair {0, 1}, a closed class {2, 3} of period two, a closed
-    /// aperiodic class {4, 5, 6} and an absorbing state 7.
     fn mixed_chain() -> MarkovChain {
         let z = (0, 1);
         chain(&[
@@ -874,7 +748,6 @@ mod tests {
 
     #[test]
     fn a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle() {
-        // 0 -> 1 -> 1: state 0 is a trivial transient class with no cycle.
         let c = chain(&[&[(0, 1), (1, 1)], &[(0, 1), (1, 1)]]);
         let classes = c.classes();
         assert_eq!(classes[0].states(), &[0]);
@@ -886,7 +759,6 @@ mod tests {
 
     #[test]
     fn a_long_path_does_not_overflow_the_stack_of_the_component_search() {
-        // A directed path of 20000 states ending in a self-loop: every state is its own class.
         let n = 20_000usize;
         let mut adjacency = vec![Vec::new(); n];
         for (i, successors) in adjacency.iter_mut().enumerate() {
@@ -950,7 +822,6 @@ mod tests {
             c.stationary_distribution(),
             Err(MarkovChainError::NotUnique { closed_classes: 3 })
         );
-        // The dimension of the space of stationary vectors is the number of closed classes.
         let kernel_dimension = c
             .stationarity_matrix()
             .unwrap()
@@ -997,7 +868,6 @@ mod tests {
             c.expected_hitting_times(8),
             Err(MarkovChainError::StateOutOfRange { index: 8, bound: 8 })
         );
-        // A one-state chain reaches its only state in zero steps.
         let one = chain(&[&[(1, 1)]]);
         assert_eq!(one.expected_hitting_times(0).unwrap(), vec![ri(0)]);
         assert_eq!(one.expected_return_time(0).unwrap(), ri(1));
@@ -1008,7 +878,6 @@ mod tests {
         let c = chain(&[&[(1, 2), (1, 2)], &[(1, 3), (2, 3)]]);
         let pi = c.stationary_distribution().unwrap();
         assert_eq!(pi.probs(), &[rq(2, 5), rq(3, 5)]);
-        // Not stationary: the reversal has a row that does not sum to one.
         let not_stationary = ProbabilitySimplex::try_new(vec![rq(1, 2), rq(1, 2)]).unwrap();
         assert!(matches!(
             c.time_reversal(&not_stationary),
@@ -1016,7 +885,6 @@ mod tests {
                 ClassicalShadowError::RowNotNormalized { .. }
             ))
         ));
-        // A zero-mass state has no reversal.
         let dirac = ProbabilitySimplex::try_new(vec![ri(1), ri(0)]).unwrap();
         assert_eq!(
             c.time_reversal(&dirac),

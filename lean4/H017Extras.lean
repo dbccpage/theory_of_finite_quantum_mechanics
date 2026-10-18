@@ -1,49 +1,8 @@
-/-
-  H017Extras -- host-obstruction evidence for ordinary M_n(C);
-  remaining extras stay open English imports.
-  AuthorityEffect: None. Candidate only. Not PROVEN.
 
-  QM_122 remaining job 7.2 / STACK. Ordinary M_n(C) is the
-  remaining object. This file records obstruction evidence on the
-  current host. It is not a requirements interface for ordinary
-  M_n(C): completeness of C, CPTP, Hilbert-tensor uniqueness,
-  the circle, continuous time, and Gleason at n ≥ 3 are not
-  typed hypotheses of the punchline. Not a Bool ledger and not
-  a drop-one count. The drop-one of the frozen extra list is
-  H017ExtrasDropone, not this file.
 
-  Already shown to work, so not remaining:
-    complexification (Pauli Y is not an integer matrix,
-    H017Matrix.pauliY_not_integer_matrix);
-    a general finite label set (H017Fin.finite_gauss_matrix_algebra
-    recovers M_n(Z[i]) for n = |Q|).
 
-  Remaining, named in English. The punchline cites only the
-  host obstructions that are theorems. The rest stay English:
-    the field C (completeness and density of Z[i] unavailable;
-      GaussInt is not even a field);
-    the spectral theorem for self-adjoint matrices over C
-      (this host has a self-adjoint Gauss-integer matrix with no
-      GaussInt eigenvalue);
-    Gleason uniqueness at n ≥ 3 (on the two-label host the
-      dimension extra already fails, H017Gleason; that does not
-      discharge uniqueness for ordinary M_n(C) with n ≥ 3);
-    CPTP channels (H015 prices collapse without a channel class);
-    unique Hilbert tensor (H014Interface has a same-host rival);
-    the circle group (H011Circle excludes the sign group under a
-      named extra and does not select the circle);
-    continuous time (H016: the toggle has no report-level square
-      root).
 
-  This is not M_n(C). The drop-one count lives in
-  H017ExtrasDropone. Do not write a Python dual here.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H003ReversibilityGate
@@ -64,12 +23,7 @@ open FableHilbertWalk20260819.HWKernel
 open FableHilbertWalk20260819.H004 (Vec)
 open FableHilbertWalk20260819.H017Fin
 
-/-! ## The field C. This host has Z[i], which is not a field. -/
 
-/-- Named extra: every nonzero scalar has a multiplicative inverse.
-    Ordinary M_n(C) uses a field. Completeness and density of
-    Z[i] in C remain unavailable on this host; they are not this
-    proposition. -/
 def IsFieldPack {K : Type} (P : StarRingPack K) : Prop :=
   ∀ a : K, a ≠ P.zero → ∃ b : K, P.mul a b = P.one
 
@@ -95,9 +49,6 @@ theorem gauss_not_a_field : ¬ IsFieldPack gaussPack := by
 
 #print axioms gauss_not_a_field
 
-/-! ## Spectral extra. A self-adjoint GaussInt matrix need not
-    have a GaussInt eigenvalue. Unitary diagonalization over C
-    remains the imported theorem. -/
 
 def notSpectral : Mat GaussInt Bool :=
   fun i j =>
@@ -326,8 +277,6 @@ theorem gneg_mul (a b : GaussInt) :
 
 #print axioms gneg_mul
 
-/-- Named extra, weaker than the spectral theorem over C: every
-    self-adjoint matrix on this host has a GaussInt eigenvalue. -/
 def SpectralEigenvalueExtra {Q : Type} [DecidableEq Q]
     (E : Enum Q) : Prop :=
   ∀ (A : Mat GaussInt Q),
@@ -444,20 +393,7 @@ theorem spectral_eigenvalue_extra_fails_on_two_label :
 
 #print axioms spectral_eigenvalue_extra_fails_on_two_label
 
-/-! ## Remaining extras assembled as standing facts, not a
-    drop-one count. Complexification is cited as already working. -/
 
-/-- Punchline: obstruction evidence on this host, not a
-    requirements interface for ordinary M_n(C). GaussInt is not a
-    field. A self-adjoint GaussInt matrix need not have a GaussInt
-    eigenvalue. The cardinality surrogate for Gleason dimension
-    fails on Bool. The toggle has no report-level square root.
-    The sign-exclusion extra does not select the circle. A
-    same-host combining interface has a rival. Pauli Y is not an
-    integer matrix, so complexification is already doing work.
-    Completeness of C, CPTP, Hilbert-tensor uniqueness, the
-    circle as a group, continuous time, and Gleason at n ≥ 3 are
-    not conjuncts. Not a drop-one count and not M_n(C). -/
 theorem remaining_extras_for_ordinary_mnC :
     ¬ IsFieldPack gaussPack ∧
       ¬ SpectralEigenvalueExtra enumBool ∧
@@ -488,3 +424,6 @@ theorem remaining_extras_for_ordinary_mnC :
 #print axioms remaining_extras_for_ordinary_mnC
 
 end FableHilbertWalk20260819.H017Extras
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H017Extras.lean Claim: one_plus_i_not_unit AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

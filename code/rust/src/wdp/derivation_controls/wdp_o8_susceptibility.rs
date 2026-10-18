@@ -1,8 +1,3 @@
-//! Outside-membership of one AR-1 parameter on a finite labelled carrier.
-//! Even periodic full-Fock ring L=4, dimension 16, checkerboard count M=2,
-//! source parameter q=3. The greatest admitted parameter is 385/384.
-//! The gap is 767/384. This is not a susceptibility, a sector ratio,
-//! a law for theta growing with L, or a continuum limit.
 
 const LENGTH: i64 = 4;
 const CHECKERBOARD: i64 = 2;
@@ -132,8 +127,6 @@ fn balanced_checkerboard(length: i64) -> bool {
     even == odd && even + odd == length
 }
 
-/// Admit r + rho <= 1/192 on the labelled carrier. The endpoint is admitted.
-/// Strictly above the ceiling is the temperature-domain refusal.
 pub fn temperature_domain(
     length: i64,
     checkerboard: i64,

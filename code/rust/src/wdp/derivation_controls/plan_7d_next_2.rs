@@ -22,9 +22,8 @@ pub fn check_lane_b_and_c_bindings(reset_budget: bool) -> Result<(usize, [usize;
     if counts != [2, 3, 2, 1] {
         return Err("Lane C solution count mismatch");
     }
-    // Lane B Appendix-S table: 15/4 < 4 < 6, original-class-only 7/2
     let disturbance_num = 15_i64;
-    let nondisturbing_num = 16_i64; // 16/4 == 4
+    let nondisturbing_num = 16_i64;
     if disturbance_num >= nondisturbing_num {
         return Err("Lane B disturbance optimum must be strictly below nondisturbing optimum");
     }

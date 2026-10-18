@@ -1,11 +1,3 @@
-/-
-  QuotientFiber.lean
-  Setoid, quotient lifting, and relative phase fiber for Paper 060.
-  AuthorityEffect: None
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PhaseBlindPresentation
 
@@ -45,7 +37,6 @@ theorem toBaseWeights_comm {Q : Type} (v : Vec GaussInt Q) :
 
 def Fiber {Q : Type} (w : Q → Int) := { v : Vec GaussInt Q // phaseBlind v = w }
 
-/-! ### The Named Witness: Relative Phase in the Fiber -/
 def psi1 : Vec GaussInt Bool := fun _ => GaussInt.one
 def psi2 : Vec GaussInt Bool := fun q => if q then GaussInt.neg GaussInt.one else GaussInt.one
 
@@ -71,3 +62,6 @@ theorem fiber_exceeds_global_gauge_orbit :
   omega
 
 end SuperpositionQuotientFiber
+
+private def l5aProvenance : String :=
+  "Origin: lean4/QuotientFiber.lean Claim: phaseRel_refl AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

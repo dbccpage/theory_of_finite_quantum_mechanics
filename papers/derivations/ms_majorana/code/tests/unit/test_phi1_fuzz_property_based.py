@@ -42,7 +42,6 @@ def test_property_weak_duality_random_sweeps():
     n_edges = len(edges)
 
     for i in range(50):
-        # Generate random cochains across normal, uniform, and exponential distributions
         cochain = np.random.randn(n_edges) * (10 ** np.random.uniform(-3, 3))
         weights = np.random.uniform(0.1, 10.0, size=n_edges)
 

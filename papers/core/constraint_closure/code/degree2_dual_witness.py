@@ -76,7 +76,6 @@ class Degree2DualCertifiedL1Solver:
         if len(omega) != n2:
             raise ValueError(f"Length of omega ({len(omega)}) must match rows of d1 ({n2})")
 
-        # Zero cochain case: reserve shortcut exclusively for exact numerical zero
         if np.all(omega == 0.0):
             zero_beta = np.zeros(n1, dtype=float)
             zero_w = np.zeros(n2, dtype=float)
@@ -93,23 +92,14 @@ class Degree2DualCertifiedL1Solver:
                 solver_status="OPTIMAL_ZERO",
             )
 
-        # Solver options matching claimed precision (clamped to HiGHS minimum 1e-10)
         solver_opts = {
             "primal_feasibility_tolerance": max(1e-10, float(self.tol)),
             "dual_feasibility_tolerance": max(1e-10, float(self.tol)),
         }
 
-        # 1. Primal LP formulation:
-        # Variables: x = [beta (n1), u (n2)]
-        # Minimize sum u_i
-        # s.t.
-        #   -d1 * beta - u <= -omega
-        #    d1 * beta - u <=  omega
-        # Bounds: beta free, u_i >= 0
         c_primal = np.zeros(n1 + n2, dtype=float)
         c_primal[n1:] = 1.0
 
-        # Constraints
         A_ub1 = np.hstack([-d1, -np.eye(n2)])
         b_ub1 = -omega
 
@@ -137,10 +127,6 @@ class Degree2DualCertifiedL1Solver:
         residual = omega - d1 @ beta_opt
         primal_obj = float(np.sum(np.abs(residual)))
 
-        # 2. Dual LP formulation:
-        # Maximize w^T omega  <=>  Minimize -omega^T w
-        # s.t. partial_2 w = d1^T w = 0 (boundary/divergence-free 2-cycle in Z_2)
-        #      -1 <= w_i <= 1
         c_dual = -omega
         A_eq = d1.T
         b_eq = np.zeros(n1)
@@ -161,14 +147,12 @@ class Degree2DualCertifiedL1Solver:
         w_opt = res_dual.x
         dual_obj = float(np.dot(w_opt, omega))
 
-        # Divergence on edges: partial_2 w = d1^T w
         div_w = d1.T @ w_opt
         dual_div_norm = float(np.linalg.norm(div_w, ord=np.inf))
 
         duality_gap = abs(primal_obj - dual_obj)
         is_closed = bool(primal_obj <= self.tol)
 
-        # Explicit certificate validation
         check_atol = max(1e-7, self.tol * 10)
         res_ok = np.allclose(residual, omega - d1 @ beta_opt, atol=check_atol)
         div_ok = dual_div_norm <= check_atol
@@ -200,5 +184,4 @@ def compute_degree2_l1_quotient_with_dual_witness(
     return solver.solve(omega, d1)
 
 
-# Backward-compatible alias
 Degree2DualWitnessSolver = Degree2DualCertifiedL1Solver

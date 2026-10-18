@@ -57,7 +57,7 @@ class TestMayerVietorisGluing(unittest.TestCase):
 
         delta_star = eye2
         delta_D_UV = np.array([[1.0, 0.0], [0.0, 1.0]])
-        delta_D_union = np.array([[0.0, 0.0], [0.0, 0.0]])  # Intertwining fails
+        delta_D_union = np.array([[0.0, 0.0], [0.0, 0.0]])
         constraint_A = zero2
 
         output = self.solver.glue_sheaves(

@@ -7,13 +7,13 @@ import numpy as np
 
 @dataclass
 class SmithNormalFormResult:
-    S: np.ndarray  
-    U: np.ndarray  
-    V: np.ndarray  
+    S: np.ndarray
+    U: np.ndarray
+    V: np.ndarray
 
 
 try:
-    import cypari  # type: ignore
+    import cypari
     _HAS_CYPARI = True
 except ImportError:
     _HAS_CYPARI = False
@@ -31,7 +31,7 @@ def _egcd(a: int, b: int) -> tuple[int, int, int]:
 
 def compute_smith_normal_form(matrix: np.ndarray) -> SmithNormalFormResult:
     """Computes exact integer Smith Normal Form S = U A V over Z.
-    
+
     Dispatches to PARI/GP (cypari matsnf) if installed, otherwise uses
     the exact list-of-lists Extended Euclidean reference solver.
     """
@@ -46,7 +46,7 @@ def compute_smith_normal_form(matrix: np.ndarray) -> SmithNormalFormResult:
     if _HAS_CYPARI and min(m, n) > 16:
         try:
             pari_m = cypari.pari.matrix(m, n, matrix.flatten().tolist())
-            res = pari_m.matsnf(1)  
+            res = pari_m.matsnf(1)
             U = np.array(res[0], dtype=int)
             V = np.array(res[1], dtype=int)
             S_diag = np.array(res[2], dtype=int)
@@ -56,7 +56,7 @@ def compute_smith_normal_form(matrix: np.ndarray) -> SmithNormalFormResult:
                     S[i, i] = val
             return SmithNormalFormResult(S=S, U=U, V=V)
         except Exception:
-            pass  
+            pass
 
     A = [[int(matrix[i, j]) for j in range(n)] for i in range(m)]
     U = [[1 if i == j else 0 for j in range(m)] for i in range(m)]
@@ -183,9 +183,9 @@ def compute_smith_normal_form(matrix: np.ndarray) -> SmithNormalFormResult:
 
 
 
-from dataclasses import dataclass  
-from enum import Enum  
-from typing import Any  
+from dataclasses import dataclass
+from enum import Enum
+from typing import Any
 
 
 class _RustSurfaceMeta(type):

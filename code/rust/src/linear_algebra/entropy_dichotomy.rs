@@ -1,5 +1,3 @@
-// AuthorityEffect: None.
-// C750-T565: independent exact arithmetic; no Python output is consumed.
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Signed, ToPrimitive, Zero};
@@ -101,9 +99,6 @@ fn matmul(a: &Matrix, b: &Matrix) -> Matrix {
         .collect()
 }
 
-// Congruence by an exact rational block elimination preserves positivity.
-// A zero diagonal of a PSD matrix has an identically zero row; otherwise its
-// 2x2 principal minor is negative. Positive pivots reduce to their Schur block.
 fn validate_psd(a: &Matrix) -> Result<()> {
     let mut block = a.clone();
     while !block.is_empty() {
@@ -130,11 +125,9 @@ fn validate_psd(a: &Matrix) -> Result<()> {
 }
 
 fn power_sum_two(a: &Matrix) -> Q {
-    // Symmetry was checked at admission, so Tr(A^2)=sum_ij A_ij^2.
     a.iter().flatten().map(|q| q * q).sum()
 }
 
-// Faddeev-LeVerrier over Q, returning descending monic coefficients.
 fn characteristic(a: &Matrix) -> Vec<Q> {
     let d = a.len();
     let mut b: Matrix = (0..d)
@@ -222,8 +215,6 @@ impl Default for RrtWorkBudget {
 }
 
 impl RrtWorkBudget {
-    // One shared limit for trial divisors, generated positive divisors
-    // (including 1), and divisor pairs, across this entire spectral extraction.
     fn charge(&mut self) -> Result<()> {
         if self.used >= self.limit {
             return Err(format!(
@@ -255,17 +246,12 @@ fn positive_divisors(n: &BigInt, budget: &mut RrtWorkBudget) -> Result<Vec<BigIn
 }
 
 fn find_rational_root(p: &[Q], budget: &mut RrtWorkBudget) -> Result<Option<Q>> {
-    // PSD and trace-one admission already puts every root in [0,1]. Zero and
-    // one are peeled separately. The rational-root theorem makes this finite
-    // candidate census exhaustive when its explicit budget has not refused.
     let integers = primitive_integer_coefficients(p);
     let numerators = positive_divisors(integers.last().expect("nonzero constant"), budget)?;
     let denominators = positive_divisors(&integers[0], budget)?;
     let mut seen = BTreeSet::new();
     for numerator in numerators {
         for denominator in &denominators {
-            // Count every attempted divisor pair, including non-reduced or
-            // out-of-domain pairs, across every residual of this extraction.
             budget.charge()?;
             if &numerator >= denominator {
                 continue;
@@ -292,8 +278,6 @@ fn squared_quadratic(p: &[Q]) -> Option<Vec<Q>> {
     (poly_mul(&quadratic, &quadratic) == p).then_some(quadratic)
 }
 
-// Bounded integer factorization for squareclass and valuation certificates.
-// Each trial division is counted; budget exhaustion is a refusal.
 fn factors(n: &BigInt) -> Result<BTreeMap<u64, i64>> {
     factor_with_budget(n, None)
 }
@@ -327,8 +311,6 @@ fn factor_with_budget(
         p = if p == 2 { 3 } else { p + 2 };
     }
     if n > BigInt::one() {
-        // At normal exit n < p^2 and p <= 200001 by the candidate budget.
-        // The conversion is proved bounded here, not an input-width ceiling.
         let residual = n
             .to_u64()
             .expect("trial-factor residual below 200001 squared");
@@ -349,7 +331,6 @@ fn valuation(q: &Q) -> Result<BTreeMap<u64, i64>> {
     Ok(f)
 }
 
-// sqrt(q) = coefficient * sqrt(squarefree positive radicand).
 fn squarefree_root(q: &Q) -> Result<(Q, BigInt)> {
     if q < &Q::zero() {
         return Err("NEGATIVE_QUADRATIC_DISCRIMINANT".into());
@@ -385,7 +366,6 @@ impl Eigenvalue {
         }
     }
 
-    // Exact sign of a + b sqrt(d), using rational squared comparisons.
     fn sign(&self) -> std::cmp::Ordering {
         use std::cmp::Ordering;
         if self.coefficient.is_zero() {
@@ -482,9 +462,6 @@ fn spectrum_with_budget(a: &Matrix, candidates: &mut RrtWorkBudget) -> Result<Ve
             product = poly_mul(&product, &[Q::one(), -&root]);
             values.push(Eigenvalue::rational(root));
         } else {
-            // For degree 3, lack of a rational root establishes irreducibility. At
-            // degrees 4/5 this is only an unsupported residual, not a claim
-            // that no factorization or splitting field exists.
             return Err(if residual.len() == 4 {
                 "REFUSED_UNSUPPORTED:irreducible_cubic_spectrum".into()
             } else {
@@ -536,8 +513,6 @@ fn spectrum_with_budget(a: &Matrix, candidates: &mut RrtWorkBudget) -> Result<Ve
 
 type EchelonRow = (usize, Vec<Q>, Vec<Q>);
 
-// Track elementary row operations against the greedily selected ORIGINAL rows.
-// This emits a checkable coordinate certificate, never an integer-relation guess.
 fn row_basis(rows: &[Vec<Q>]) -> (Vec<usize>, Vec<Vec<Q>>) {
     let mut basis = Vec::new();
     let mut echelon: Vec<EchelonRow> = Vec::new();
@@ -655,9 +630,6 @@ fn dependence(values: &[Eigenvalue]) -> Result<Value> {
         plus.coefficient = plus.coefficient.abs();
         let mut minus = plus.clone();
         minus.coefficient = -minus.coefficient;
-        // q+/q- > 1 and conjugation takes it to its inverse; hence its log
-        // is Q-independent of rational-prime logs by applying conjugation.
-        // The actual eigenvalue-log basis is then obtained by Q row operations.
         generators.push(
             json!({"kind":"quadratic_ratio", "numerator":plus.json(), "denominator":minus.json()}),
         );
@@ -722,8 +694,6 @@ fn splitting_field(values: &[Eigenvalue], conductor: u64) -> Result<Value> {
     }))
 }
 
-// Classification uses exact positivity and purity plus the named theorem.
-// It never numerically decides algebraicity or transcendence.
 fn entropy_verdict(pure: bool) -> Value {
     if pure {
         json!({"verdict":"CARRIED", "reason":"PURE_STATE_ZERO",
@@ -797,9 +767,6 @@ fn validated_input(input: &Value) -> Result<(Matrix, u64)> {
     Ok((a, conductor))
 }
 
-// This classification has no factorization or splitting-field dependency.
-// A rational symmetric matrix has algebraic spectrum via its characteristic
-// polynomial; positivity, trace one and Tr(A^2) decide the purity hypothesis.
 pub fn general_verdict(input: &Value) -> Result<Value> {
     if cyclotomic_density::has_coefficient_objects(input) {
         return cyclotomic_density::general_verdict(input);
@@ -890,9 +857,6 @@ pub fn verify_output(input: &Value, output: &Value) -> Result<()> {
     Ok(())
 }
 
-// For x in [1,2], z=(x-1)/(x+1) is in [0,1/3]. The first m positive
-// terms of 2*atanh(z) give a lower bound; the geometric tail majorant
-// 2*z^(2m+1)/((2m+1)*(1-z^2)) gives a proved upper bound.
 fn log_series_interval(x: &Q, tolerance: &Q) -> Result<(Q, Q, usize)> {
     if x < &Q::one() || x > &rat(2, 1) || tolerance <= &Q::zero() {
         return Err("LOG_SERIES_DOMAIN_ERROR".into());
@@ -1032,8 +996,6 @@ fn sturm_sequence(p: &[Q]) -> Result<Vec<Vec<Q>>> {
         if remainder.iter().all(Zero::is_zero) {
             return Err("STURM_FACTOR_NOT_SQUAREFREE".into());
         }
-        // Positive scaling ONLY: multiplying a negative-leading remainder by
-        // -1 to make it monic would invalidate the variation counts.
         let scale = remainder[0].abs();
         sequence.push(remainder.into_iter().map(|q| -q / &scale).collect());
     }
@@ -1056,8 +1018,6 @@ fn sturm_variations(sequence: &[Vec<Q>], endpoint: &Q) -> usize {
     changes
 }
 
-// V(a)-V(b) counts (a,b]. Subtract the exact root at b, when present,
-// to obtain a strict-open count. Midpoint roots are recorded separately once.
 fn sturm_open_count(sequence: &[Vec<Q>], lo: &Q, hi: &Q) -> Result<usize> {
     let count = sturm_variations(sequence, lo) as isize
         - sturm_variations(sequence, hi) as isize
@@ -1065,9 +1025,6 @@ fn sturm_open_count(sequence: &[Vec<Q>], lo: &Q, hi: &Q) -> Result<usize> {
     usize::try_from(count).map_err(|_| "STURM_NEGATIVE_ROOT_COUNT".into())
 }
 
-// The uniform continuity modulus avoids any root-separation assumption.
-// B=k+12, delta=2^-B: |h(x)-h(q)| <= delta*(B+2) for |x-q|<=delta.
-// These are proved upper bounds, not changes to either production ceiling.
 struct ClusterBounds {
     bits: u64,
     delta: Q,
@@ -1184,8 +1141,6 @@ fn sturm_entropy_enclosures_with_limit(
             if count == 0 {
                 continue;
             }
-            // A bin may retain multiple distinct roots. Endpoints are excluded
-            // from its count and handled separately, even when they are roots.
             if &hi - &lo <= bounds.delta {
                 let (entropy_lo, entropy_hi, terms) = cluster_entropy_interval(&lo, &hi, bounds)?;
                 max_terms = max_terms.max(terms);
@@ -1200,9 +1155,6 @@ fn sturm_entropy_enclosures_with_limit(
                 });
                 continue;
             }
-            // This is an added operational subdivision limit, not the frozen
-            // logarithm-series term budget. It is shared by all factors and
-            // all subsequent refinements, and exhaustion is an honest refusal.
             if bisections >= subdivision_limit {
                 return Err(format!(
                     "REFUSED_IMPLEMENTATION_RESOURCE_LIMIT:sturm_subdivisions:{bisections}/{subdivision_limit}"
@@ -1253,9 +1205,6 @@ fn sturm_entropy_enclosures_with_limit(
     Ok((enclosures, bisections, max_terms))
 }
 
-// The external verdict requires an interval whose exact width meets its error
-// obligation. Admission/characteristic/Sturm calculations cover rational real-
-// symmetric PSD inputs independently of any splitting or dependence routine.
 pub fn evaluate_external(input: &Value, k: u64) -> Result<Value> {
     if cyclotomic_density::has_coefficient_objects(input) {
         return cyclotomic_density::evaluate_external(input, k);
@@ -1367,8 +1316,6 @@ pub fn verify_external_output(input: &Value, k: u64, output: &Value) -> Result<(
     Ok(())
 }
 
-// Test-only dependency injection lowers an operational resource limit without
-// mutating global state or exposing a production CLI/API budget override.
 #[cfg(test)]
 pub fn test_spectrum_with_rrt_limit(input: &Value, limit: usize) -> Result<()> {
     if limit >= 100000 {
@@ -1391,8 +1338,6 @@ pub fn test_external_with_sturm_limit(input: &Value, k: u64, limit: usize) -> Re
     sturm_entropy_enclosures_with_limit(&characteristic(&matrix), &bounds, limit).map(|_| ())
 }
 
-// Explicitly scoped local faults exercise the analytic and proof-bound gates;
-// no production override, shared mutable state, or receipt-writing path exists.
 #[cfg(test)]
 pub fn test_cluster_modulus(k: u64, omit_radius: bool) -> Result<Value> {
     let mut bounds = ClusterBounds::new(k, 5)?;

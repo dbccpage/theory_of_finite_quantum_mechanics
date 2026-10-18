@@ -48,7 +48,6 @@ def test_lean4_zolotarev_theorems():
     assert "deflation_restores_convergence" in content
     assert "ZolotarevSpectralStiffeningObstruction" in content
 
-    # Test compilation
     result = subprocess.run(["lean", str(lean_file)], capture_output=True, text=True)
     assert result.returncode == 0, f"Lean compilation failed: {result.stderr}"
 
@@ -77,7 +76,6 @@ def test_zolotarev_minimax_error_and_gw_bound():
     assert len(zolo.zeros) == degree_m
     assert len(zolo.residues) == degree_m
 
-    # Error on sample grid in [eps, 1]
     x_test = np.linspace(eps, 1.0, 200)
     errors = [abs(1.0 - ZolotarevRationalApproximation.evaluate_scalar(x, zolo)) for x in x_test]
     max_err = max(errors)
@@ -85,7 +83,6 @@ def test_zolotarev_minimax_error_and_gw_bound():
     assert max_err <= zolo.max_theoretical_error
     assert max_err <= 1e-9
 
-    # GW residual bound: (2 * delta + delta^2) / a <= 1e-8 for a = 1.0
     gw_bound = 2.0 * max_err + max_err**2
     assert gw_bound <= 1e-8
 
@@ -110,7 +107,6 @@ def test_multishift_cg_simultaneous_convergence():
     np.random.seed(42)
     n = 24
     m_shifts = 6
-    # Create Hermitian positive definite matrix A = H^2
     M = np.random.randn(n, n) + 1j * np.random.randn(n, n)
     A = M.conj().T @ M + 0.1 * np.eye(n)
     shifts = list(np.linspace(0.01, 2.0, m_shifts))
@@ -121,7 +117,6 @@ def test_multishift_cg_simultaneous_convergence():
     assert iters <= 50
     assert max_res <= 1e-8
 
-    # Compare with exact np.linalg.solve for each shift
     I = np.eye(n, dtype=complex)
     for l, s in enumerate(shifts):
         exact_x = np.linalg.solve(A + s * I, b)
@@ -137,15 +132,13 @@ def test_lanczos_sign_approximation_convergence():
     H = 0.5 * (M + M.conj().T) + 0.5 * np.eye(n)
     v = np.random.randn(n) + 1j * np.random.randn(n)
 
-    # Exact sign
     evals, evecs = np.linalg.eigh(H)
     sgn_exact = evecs @ np.diag(np.sign(evals)) @ evecs.conj().T
     target = sgn_exact @ v
 
-    # Lanczos approximation
     approx = LanczosSignApproximation.apply(H, v, k_steps=20)
     err = np.linalg.norm(approx - target) / np.linalg.norm(target)
-    assert err <= 0.20  # Krylov subspace bounds direction
+    assert err <= 0.20
 
 
 def test_spectral_stiffening_and_low_mode_deflation():
@@ -153,7 +146,6 @@ def test_spectral_stiffening_and_low_mode_deflation():
     evaluator = CdtZolotarevOverlapEvaluator()
     stiff_graph = evaluator.build_stiffened_singular_complex("cdt_stiff_test", num_vertices=6)
 
-    # 1. Undeflated with small degree m=3: stiffening obstruction
     rec_stiff = evaluator.record_complex_evaluation(
         stiff_graph, m0=0.50, r=1.0, degree_m=3, deflate=False
     )
@@ -161,7 +153,6 @@ def test_spectral_stiffening_and_low_mode_deflation():
     assert rec_stiff["classification"] == "ZolotarevSpectralStiffeningObstruction"
     assert rec_stiff["verdict"] == "SPECTRAL_STIFFENING_OBSTRUCTION_DETECTED"
 
-    # 2. Deflated with degree m=10: restores sub-cubic convergence and GW tolerance <= 1e-8
     rec_defl = evaluator.record_complex_evaluation(
         stiff_graph, m0=0.50, r=1.0, degree_m=10, deflate=True
     )

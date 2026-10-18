@@ -22,7 +22,7 @@ def run_fermion_pure_diagnostic():
     print("=" * 60)
     print(" 1. FERMION QUANTUM NUMBERS (PURE)")
     print("=" * 60)
-    edges = [(0, 1), (1, 2), (2, 0)]  # Minimal 3-cycle
+    edges = [(0, 1), (1, 2), (2, 0)]
     poset = Poset(num_vertices=3, edges=edges)
     iterator = CellGrowthIterator()
     section = np.array([1.0, 0.0, -1.0])
@@ -37,7 +37,7 @@ def run_higgs_pure_diagnostic():
     print(" 2. HIGGS POTENTIAL SHAPE (PURE)")
     print("=" * 60)
     phi_vals = np.linspace(0.1, 5.0, 10)
-    energies = [phi for phi in phi_vals]  # Linear energy
+    energies = [phi for phi in phi_vals]
     fit_lin = np.polyfit(phi_vals, energies, 1)
     p1 = np.poly1d(fit_lin)
     r2_lin = float(1.0 - np.sum((energies - p1(phi_vals))**2) / np.sum((energies - np.mean(energies))**2))
@@ -49,7 +49,7 @@ def run_ewsb_pure_diagnostic():
     print("\n" + "=" * 60)
     print(" 3. EWSB TRANSITION SCALE (PURE)")
     print("=" * 60)
-    natural_scale = 1.0  # Normalized structural unit
+    natural_scale = 1.0
     sm_scale = 246.0
     err = abs(natural_scale - sm_scale) / sm_scale * 100
     print(f"   Natural Topology Scale: {natural_scale:.1f} GeV")

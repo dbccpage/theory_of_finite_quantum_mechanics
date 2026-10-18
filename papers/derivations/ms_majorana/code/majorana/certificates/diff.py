@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 
 import argparse
@@ -15,7 +14,7 @@ def load_certificate(path: Path) -> dict[str, Any]:
         content = f.read().strip()
     if not content:
         raise ValueError(f"File {path} is empty")
-    
+
     try:
         return json.loads(content)
     except json.JSONDecodeError:

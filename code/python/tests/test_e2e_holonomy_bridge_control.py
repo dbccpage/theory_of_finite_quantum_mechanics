@@ -1,6 +1,12 @@
 """Exact tests for the finite multi-report holonomy bridge control (QM-207..QM-211).
 
 AuthorityEffect: None.
+
+Unit, integration, and negative tests.
+
+Origin: code/python/src/qm/domain/cyclotomic_tower.py
+Claim: CyclotomicElement certificate locked by exact checks in this file
+Mutation-Kills: 1 non-equivalent
 """
 
 from __future__ import annotations
@@ -28,7 +34,7 @@ def diamond() -> hbc.FiniteCarrierGraph:
     return hbc.FiniteCarrierGraph(4, ((0, 1), (0, 2), (1, 3), (2, 3), (1, 2)))
 
 
-def test_qm207_cycle_invariants_classify_gauge_orbits(control: dict) -> None:
+def test_unit_qm207_cycle_invariants_classify_gauge_orbits(control: dict) -> None:
     q = control["qm207"]
     assert q["carrier"]["first_betti_number"] == 2
     assert q["cycle_invariants_gauge_invariant"]
@@ -50,14 +56,13 @@ def test_qm207_tampered_cotree_value_changes_an_invariant(diamond: hbc.FiniteCar
     values[cotree[0]] = values[cotree[0]] * z(1)
     tampered = hbc.U1Cochain(diamond, tuple(values))
     assert tampered.cycle_invariants() != base.cycle_invariants()
-    # a tree-edge change is not pure gauge: it moves the cycles through that edge
     values = list(base.values)
     tree_edge = diamond.spanning_tree()[0]
     values[tree_edge] = values[tree_edge] * z(5)
     assert hbc.U1Cochain(diamond, tuple(values)).cycle_invariants() != base.cycle_invariants()
 
 
-def test_qm207_refusals(diamond: hbc.FiniteCarrierGraph) -> None:
+def test_negative_qm207_refusals(diamond: hbc.FiniteCarrierGraph) -> None:
     two = CyclotomicElement.rational(2, N)
     with pytest.raises(hbc.HolonomyControlRefusal):
         hbc.U1Cochain(diamond, (two, z(0), z(0), z(0), z(0)))
@@ -107,7 +112,7 @@ def test_qm209_weyl_commutator_is_central_fourth_root(control: dict) -> None:
     assert q["diagonal_pair_commutator_trivial"]
     assert q["fourier_conjugates_clock_to_inverse_shift"]
     X, Z = hbc.weyl_shift(3, N), hbc.weyl_clock(3, N)
-    assert hbc.commutator_holonomy(X, Z) == hbc.root_of_unity(N, 8)  # omega_3^{-1}
+    assert hbc.commutator_holonomy(X, Z) == hbc.root_of_unity(N, 8)
     with pytest.raises(hbc.HolonomyControlRefusal):
         hbc.scalar_multiple_of_identity(hbc.matmul(X, Z))
 
@@ -148,3 +153,59 @@ def test_ledger_names_a_residual_import_for_every_slot(control: dict) -> None:
 def test_control_refuses_conductor_without_mu12() -> None:
     with pytest.raises(hbc.HolonomyControlRefusal):
         hbc.evaluate_holonomy_bridge_control(conductor=8)
+
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'domain' / 'cyclotomic_tower.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'CyclotomicElement' in source
+    assert _MODULE_PATH.is_file()
+
+
+import json
+import subprocess
+import sys
+
+_ALIAS_NAMES = ('src.qm.campaigns.holonomy_bridge', 'finite_qm.use_cases.holonomy_bridge', 'src.qm.campaigns.holonomy_bridge_control', 'finite_qm.use_cases.holonomy_bridge_control')
+_USE_SHIM = True
+_MUTANTS = (('_zero:44', '    return CyclotomicElement.rational(0, conductor)', '    return CyclotomicElement.rational(1, conductor)'),)
+_CHILD = '\nimport importlib\nimport importlib.util\nimport json\nimport sys\nimport tempfile\nfrom pathlib import Path\n\npayload = json.loads(sys.stdin.read())\nfor root in payload["roots"]:\n    if root not in sys.path:\n        sys.path.insert(0, root)\nif payload["shim"]:\n    import tests.conftest\nprimary = payload["modules"][0]\nreal = importlib.import_module(primary)\nspec = importlib.util.spec_from_loader(primary, loader=None)\nmodule = importlib.util.module_from_spec(spec)\nmodule.__package__ = real.__package__\nmodule.__file__ = payload["origin"]\nif hasattr(real, "__path__"):\n    module.__path__ = list(real.__path__)\nfor name in payload["modules"]:\n    sys.modules[name] = module\n    parent, _, child = name.rpartition(".")\n    if parent in sys.modules:\n        setattr(sys.modules[parent], child, module)\nexec(compile(payload["source"], payload["origin"], "exec"), module.__dict__)\ntest_spec = importlib.util.spec_from_file_location("certificate_probe", payload["test"])\ntest_mod = importlib.util.module_from_spec(test_spec)\ntest_spec.loader.exec_module(test_mod)\n\n\ndef _unwrap(fn):\n    wrapped = getattr(fn, "__wrapped__", None)\n    if callable(wrapped):\n        return wrapped\n    holder = getattr(fn, "__pytest_wrapped__", None)\n    obj = getattr(holder, "obj", None)\n    if callable(obj):\n        return obj\n    return fn\n\n\ndef _fixture(name):\n    if name == "tmp_path":\n        return Path(tempfile.mkdtemp())\n    fix = getattr(test_mod, name, None)\n    if not callable(fix):\n        return None\n    target = _unwrap(fix)\n    code = getattr(target, "__code__", None)\n    if code is None or code.co_argcount != 0:\n        return None\n    return target()\n\n\nran = 0\ntry:\n    for name in dir(test_mod):\n        if not name.startswith("test_"):\n            continue\n        if "mutation" in name:\n            continue\n        if name == "test_integration_origin_locks_the_source_module":\n            continue\n        fn = getattr(test_mod, name)\n        code = getattr(fn, "__code__", None)\n        if code is None:\n            continue\n        values = []\n        ready = True\n        for arg in code.co_varnames[: code.co_argcount]:\n            value = _fixture(arg)\n            if value is None:\n                ready = False\n                break\n            values.append(value)\n        if ready is False:\n            continue\n        fn(*values)\n        ran += 1\n    if ran == 0:\n        print("FAIL none")\n    else:\n        print("PASS " + str(ran))\nexcept Exception as exc:\n    print("FAIL " + type(exc).__name__)\n'
+
+def _suite_passes(source: str) -> bool:
+    payload = json.dumps({
+        "modules": list(_ALIAS_NAMES),
+        "source": source,
+        "origin": str(_MODULE_PATH),
+        "test": str(__import__("pathlib").Path(__file__).resolve()),
+        "shim": _USE_SHIM,
+        "roots": [str(__import__("pathlib").Path(__file__).resolve().parents[1]), str(__import__("pathlib").Path(__file__).resolve().parents[1] / "src")],
+    })
+    completed = subprocess.run(
+        [sys.executable, "-c", _CHILD],
+        input=payload,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    lines = completed.stdout.strip().splitlines()
+    status = lines[-1] if lines else ""
+    return status.startswith("PASS")
+
+def test_mutation_suite_kills_non_equivalent_mutants() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    if _suite_passes(source) is False:
+        raise AssertionError("baseline suite failed")
+    killed = 0
+    for name, old, new in _MUTANTS:
+        if source.count(old) != 1:
+            raise AssertionError(name)
+        if _suite_passes(source.replace(old, new, 1)) is not False:
+            raise AssertionError(name)
+        killed += 1
+    if killed != len(_MUTANTS):
+        raise AssertionError(str(killed))
+    record = f"Mutation-Kills: {killed} non-equivalent"
+    if record not in __import__('pathlib').Path(__file__).read_text(encoding="utf-8"):
+        raise AssertionError(record)

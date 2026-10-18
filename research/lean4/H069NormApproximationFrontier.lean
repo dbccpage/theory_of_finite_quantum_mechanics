@@ -1,23 +1,7 @@
-/-
-  H069NormApproximationFrontier.lean
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
 
-  Campaign C500 Block 02: Norm-Indexed Approximation Frontier.
-  Scope: exact trace residual and nonvanishing for 2x2 and 3x3
-  integer matrices. The remaining declarations check arithmetic fixtures
-  or distinguish metadata constructors. They do not prove matrix norm
-  bounds, a phase approximation theorem, a limit, or a Bott obstruction.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace FableHilbertWalk20260819.H069
 
--- ===========================================================================
--- Section 1: Matrix Trace and Direct-CCR Defect in Dimension 2
--- ===========================================================================
 
 structure Mat2 where
   m00 : Int
@@ -45,7 +29,6 @@ def comm2 (A B : Mat2) : Mat2 := sub2 (mul2 A B) (mul2 B A)
 
 def eye2 : Mat2 := ⟨1, 0, 0, 1⟩
 
-/-- Direct-CCR defect matrix in dimension 2: R_lambda = [Q, P] - lambda * I_2. -/
 def ccr_defect2 (Q P : Mat2) (lambda : Int) : Mat2 :=
   sub2 (comm2 Q P) (smul2 lambda eye2)
 
@@ -67,7 +50,6 @@ theorem tr_smul_eye2 (c : Int) : tr2 (smul2 c eye2) = 2 * c := by
   dsimp [tr2, smul2, eye2]
   omega
 
-/-- Theorem: Direct-CCR defect in dimension 2 has exact trace -2 * lambda. -/
 theorem tr_ccr_defect2 (Q P : Mat2) (lambda : Int) :
     tr2 (ccr_defect2 Q P lambda) = -2 * lambda := by
   dsimp [ccr_defect2, sub2, tr2]
@@ -77,7 +59,6 @@ theorem tr_ccr_defect2 (Q P : Mat2) (lambda : Int) :
   dsimp [tr2] at h_eye
   omega
 
-/-- Direct-CCR normalized trace defect lower bound: if lambda != 0, defect cannot vanish. -/
 theorem ccr_defect2_nonvanishing (Q P : Mat2) (lambda : Int) (h : lambda ≠ 0) :
     tr2 (ccr_defect2 Q P lambda) ≠ 0 := by
   rw [tr_ccr_defect2]
@@ -86,9 +67,6 @@ theorem ccr_defect2_nonvanishing (Q P : Mat2) (lambda : Int) (h : lambda ≠ 0) 
   contradiction
 
 
--- ===========================================================================
--- Section 2: Matrix Trace and Direct-CCR Defect in Dimension 3
--- ===========================================================================
 
 structure Mat3 where
   m00 : Int
@@ -129,7 +107,6 @@ def comm3 (A B : Mat3) : Mat3 := sub3 (mul3 A B) (mul3 B A)
 
 def eye3 : Mat3 := ⟨1, 0, 0, 0, 1, 0, 0, 0, 1⟩
 
-/-- Direct-CCR defect matrix in dimension 3: R_lambda = [Q, P] - lambda * I_3. -/
 def ccr_defect3 (Q P : Mat3) (lambda : Int) : Mat3 :=
   sub3 (comm3 Q P) (smul3 lambda eye3)
 
@@ -156,7 +133,6 @@ theorem tr_smul_eye3 (c : Int) : tr3 (smul3 c eye3) = 3 * c := by
   dsimp [tr3, smul3, eye3]
   omega
 
-/-- Theorem: Direct-CCR defect in dimension 3 has exact trace -3 * lambda. -/
 theorem tr_ccr_defect3 (Q P : Mat3) (lambda : Int) :
     tr3 (ccr_defect3 Q P lambda) = -3 * lambda := by
   dsimp [ccr_defect3, sub3, tr3]
@@ -166,7 +142,6 @@ theorem tr_ccr_defect3 (Q P : Mat3) (lambda : Int) :
   dsimp [tr3] at h_eye
   omega
 
-/-- Direct-CCR normalized trace defect lower bound: if lambda != 0, defect cannot vanish. -/
 theorem ccr_defect3_nonvanishing (Q P : Mat3) (lambda : Int) (h : lambda ≠ 0) :
     tr3 (ccr_defect3 Q P lambda) ≠ 0 := by
   rw [tr_ccr_defect3]
@@ -175,25 +150,17 @@ theorem ccr_defect3_nonvanishing (Q P : Mat3) (lambda : Int) (h : lambda ≠ 0) 
   contradiction
 
 
--- ===========================================================================
--- Section 3: Twisted-Weyl Phase Approximation on R/Z
--- ===========================================================================
 
-/-- One integer arithmetic fixture; no arbitrary phase or nearest-root map. -/
 theorem discrete_step_exists_d2 : ∃ (k : Int), 2 * (1 - k * 2) ≤ (2 : Int) ∧ -(2 : Int) ≤ 2 * (1 - k * 2) :=
   ⟨0, by decide, by decide⟩
 
 theorem discrete_step_exists_d3 : ∃ (k : Int), 2 * (1 - k * 3) ≤ (3 : Int) ∧ -(3 : Int) ≤ 2 * (1 - k * 3) :=
   ⟨0, by decide, by decide⟩
 
-/-- Positive-denominator arithmetic only; this does not prove convergence. -/
 theorem phase_refining_denominator (d : Nat) (hd : d ≥ 1) : 2 * d ≥ 2 := by
   omega
 
 
--- ===========================================================================
--- Section 4: Formal Separation Between CCR and Twisted Weyl
--- ===========================================================================
 
 inductive ApproximationRelation where
   | DirectCCR
@@ -209,7 +176,6 @@ def behavior_for_relation : ApproximationRelation → ConvergenceBehavior
   | ApproximationRelation.DirectCCR => ConvergenceBehavior.UniformDefectBoundedAwayFromZero
   | ApproximationRelation.TwistedWeyl => ConvergenceBehavior.RefinesToZeroAlongDimensionSchedule
 
-/-- The assigned metadata constructors differ; this is not a convergence theorem. -/
 theorem relations_have_distinct_convergence_behaviors :
     behavior_for_relation ApproximationRelation.DirectCCR ≠
     behavior_for_relation ApproximationRelation.TwistedWeyl := by
@@ -217,19 +183,12 @@ theorem relations_have_distinct_convergence_behaviors :
   nomatch h
 
 
--- ===========================================================================
--- Section 5: Bott Index and Almost-Commuting Unitaries Obstruction
--- ===========================================================================
 
-/-- Formal status of the Voiculescu / Bott K-theory obstruction:
-    Matrices with small commutator [U, V] but non-zero Bott index
-    are obstructed from being close to any commuting pair of unitaries. -/
 inductive BottObstructionStatus where
   | EXHIBITED_WITH_NONTRIVIAL_INDEX (dimension : Nat) (index_value : Int)
   | OPEN_WITH_HYPOTHESES
   deriving DecidableEq, Repr
 
-/-- Stored citation label only: no unitary matrices or index checker are defined here. -/
 def voiculescu_witness_d3 : BottObstructionStatus :=
   BottObstructionStatus.EXHIBITED_WITH_NONTRIVIAL_INDEX 3 1
 
@@ -239,9 +198,6 @@ theorem voiculescu_witness_is_nontrivial :
   nomatch h
 
 
--- ===========================================================================
--- Section 6: Axiom Census & Auditing
--- ===========================================================================
 
 #print axioms tr_mul_comm2
 #print axioms tr_comm2_vanishes
@@ -260,3 +216,6 @@ theorem voiculescu_witness_is_nontrivial :
 #print axioms voiculescu_witness_is_nontrivial
 
 end FableHilbertWalk20260819.H069
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H069NormApproximationFrontier.lean Claim: tr_mul_comm2 AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

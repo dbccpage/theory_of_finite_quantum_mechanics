@@ -34,15 +34,14 @@ def scripted_proposer(moves: list) -> Callable[[str], str]:
     return complete
 
 def _safe_eval(val_str: str) -> Any:
-    # Safely evaluate a string into Fraction, Cyc24, int
     tree = ast.parse(val_str, mode='eval')
-    
+
     allowed_nodes = (
-        ast.Expression, ast.Dict, ast.List, ast.Tuple, ast.Set, 
-        ast.Constant, ast.Name, ast.Call, ast.Load, ast.UnaryOp, 
+        ast.Expression, ast.Dict, ast.List, ast.Tuple, ast.Set,
+        ast.Constant, ast.Name, ast.Call, ast.Load, ast.UnaryOp,
         ast.UAdd, ast.USub, ast.BinOp, ast.Add, ast.Sub, ast.Mult, ast.Div
     )
-    
+
     for node in ast.walk(tree):
         if isinstance(node, ast.Constant):
             if isinstance(node.value, (float, complex)):
@@ -52,14 +51,14 @@ def _safe_eval(val_str: str) -> Any:
         if isinstance(node, ast.Name):
             if node.id not in ("Fraction", "Cyc24"):
                 raise ValueError("PARSE_ERROR")
-    
+
     allowed_globals = {
         "Fraction": Fraction,
         "Cyc24": Cyc24
     }
-    
+
     val = eval(val_str, {"__builtins__": None}, allowed_globals)
-    
+
     def _has_float(v: Any) -> bool:
         if isinstance(v, (float, complex)):
             return True
@@ -68,10 +67,10 @@ def _safe_eval(val_str: str) -> Any:
         if isinstance(v, (list, tuple, set)):
             return any(_has_float(item) for item in v)
         return False
-        
+
     if _has_float(val):
         raise ValueError("FLOAT_REJECTED")
-        
+
     return val
 
 class MUB6ProposerHost:
@@ -88,7 +87,7 @@ class MUB6ProposerHost:
             return False, "PARSE_ERROR"
         except Exception:
             return False, "PARSE_ERROR"
-        
+
         try:
             is_valid = evaluator(val)
             return is_valid, "ADMITTED" if is_valid else "REFUSED"

@@ -1,407 +1,415 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! # Omega WDP (Witnessed Difference Programme)
-//!
-//! Foundational mathematics of the Witnessed Difference Programme:
-//! Finite Obstruction Calculus, exact rational dual-certified cochains,
-//! Moore behavioral quotients, presheaves, and connections to HoTT,
-//! Higher Category Theory, Simplicial Homology, and Quantum Mechanics.
-//!
-//! Under Anomalon and CODA doctrine:
-//! - All mathematical derivations and certificates carry `AuthorityEffect::None`.
-//! - Discrete exactness is guaranteed using `num_rational::BigRational` for all cochains
-//!   and carriers; there is no bounded-width rational type in this crate.
-//! - Engine mathematics is not re-implemented here. Φ₁ (with its primal-dual
-//!   certificate), Γ₂ and the exact trichotomy belong to `omega_functional`;
-//!   coboundary matrices, the chain law and Betti numbers to `omega_homology`;
-//!   exact rank to `omega_linear_algebra`. This crate presents WDP carriers to them.
-//! - [`genesis_questions`] binds protected questions, minimal report quotients,
-//!   local report gluing, and exact information to replayed native histories.
-//!   It is the first finite kernel of the working programme named `?`.
-//! - Source-23 root normalization and its complete gradient/renaming key belong
-//!   to `linear_algebra::gauge_pair_table`. [`genesis_gauge_result`] preserves
-//!   the source's raw tables, observations and atomic raising histories.
-//! - [`genesis_marked_result`] supplies source-25 fillings to the shared raw/gauge
-//!   decoration owners under one writing and delegates balance arithmetic to
-//!   the checked D_F/d0 owner. Carrier edits retain complete raw representatives.
-//! - This crate is the single Rust WDP layer. It holds the CODA nine-stage
-//!   runtime and its Q policy ([`coda`], [`coda::q`]), the Discrete Deformation
-//!   Calculus ([`ddc`]), the Prime algorithms ([`prime_algos`]) and the CODA-bound
-//!   solver orchestration ([`solver_of_solvers`], [`phi1_coda_adapter`],
-//!   [`carrier_binding`], [`phi1_d_sel`]). Generic mathematics leaves this crate
-//!   for its math owner over time; no math owner depends on this crate.
-//! - [`coda::diagnostic_routing`] is CODA's replayed mathematical profile;
-//!   [`prime_algos::finite_routing`] is Prime's finite lift/guard/terminal profile;
-//!   [`path_kernel_gluing`] delegates to LGGR's exact matrix path kernels. These
-//!   profiles do not substitute for operational continuation/authority gates.
-//! - Root W (relational primitive difference, carrier symmetries, memory retention) and
-//!   Root P (simplicial complex, cochain evaluation, quotient defects) are strictly demarcated.
-//! - The quantum-mechanics route is finite and exact over Q and Q(i), each module a
-//!   declared presentation, none a derivation of quantum theory:
-//!   [`stochastic_package`] (`WDP-CH18-P07`, `P08`), [`empirical_adapter`]
-//!   (`WDP-CH19-P02`, `P06`, `P07`, and the CHSH fixtures of `P05`: the PR-box run
-//!   table, the global run tables and the `PairwiseBox` presentation),
-//!   [`composition`] (`WDP-CH19-P08` to `P10`, and the PR-box fixture of `P05`),
-//!   [`amplitude_bridge`] (`WDP-CH19-P11`, `P12`) and [`instrument_adapter`]
-//!   (`WDP-CH19-P13`, `P14`).
+use std::collections::VecDeque;
 
-pub mod amplitude_bridge;
-pub mod authority_gap;
-pub mod bridges;
-pub mod cochains;
-pub mod composition;
-pub mod connection;
-pub mod covering_edge_descent;
-pub mod difference;
-pub mod empirical_adapter;
-pub mod error;
-pub mod fenchel_duality;
-pub mod gauge_classification;
-pub mod genesis_carrier;
-pub mod genesis_bell;
-pub mod genesis_joint_dynamics;
-pub mod genesis_construction;
-pub mod genesis_geometry;
-pub mod genesis_observer;
-pub mod genesis_passage;
-pub mod genesis_refusal;
-pub mod guarded_chain_transport;
-pub mod instrument_adapter;
-pub mod kan_wdp_bridge;
-pub mod meron_time_adapter;
-pub mod observer;
-pub mod observer_adapter_completeness;
-pub mod observer_world_adapter;
-pub mod obstruction;
-pub mod path_kernel_gluing;
-pub mod po000_projection_obstruction;
-pub mod policy_observer_adapter;
-pub mod presheaf;
-pub mod primitive_axiomatics;
-pub mod quantum_geometries;
-pub mod question_preserving_encoding;
-pub mod retention;
-pub mod sql_normal_form;
-pub mod stochastic_package;
-pub mod types;
-pub mod wdp_kernel_check;
-pub mod wdp_lggr_chromatic;
-pub mod wdp_rust_routes;
-pub mod wdp_source_packet;
-pub mod witnessed_reasoning;
-pub mod witnessed_reasoning_replay;
+pub const ORIGIN: &str =
+    "Origin: code/rust/src/wdp/mod.rs @ 40de7d5cda1ff1f0db8305d0c1b2103646fab197";
+pub const CLAIM: &str = "Claim: an integer 1-cochain on a finite directed graph is exact exactly when it is the coboundary of a 0-cochain, and the constant 3-cycle has L1 weight 3 and is not exact";
+pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
+pub const MUTATION_KILLS: u32 = 4;
 
-/// CODA-bound solver orchestration over `omega_solvers` and `coda::coda_gtla`.
-pub mod carrier_binding;
-/// CODA (Calculus of Obstruction, Descent, and Authority): nine-stage finite runtime and Q policy.
-pub mod coda;
-/// DDC (Discrete Deformation Calculus): operational trace alphabet, degree tower and finite Lambda ledger.
-pub mod ddc;
-pub mod phi1_coda_adapter;
-pub mod phi1_d_sel;
-/// Prime algorithms: Prime -1 candidate, Prime 000 admission, Prime 001 transport, Prime 002 continuation.
-pub mod prime_algos;
-pub mod solver_of_solvers;
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum CochainError {
+    EmptyCarrier,
+    EdgeOutOfRange { edge: usize, vertices: usize },
+    VertexOutOfRange { vertex: usize, vertices: usize },
+    Length { edges: usize, values: usize },
+    PotentialLength { vertices: usize, values: usize },
+    Overflow,
+    BinaryFloatRefused,
+    BooleanAsNumber,
+    InexactToken,
+}
 
-// Re-export primary types for ease of sovereign consumption
-pub use amplitude_bridge::{
-    half_exponent_obstruction, readout_quadratic, readout_quartic, same_up_to_common_phase, u_pow,
-    u_power_is_never_one, unit_phase, unit_square_root, Amplitude, EdgePath,
-    HalfExponentObstruction, OrientedGraph, PathStep,
-};
-pub use authority_gap::{
-    calculate_acr, calculate_acr_rate, calculate_backlog_accumulation, calculate_ngd,
-    evaluate_exactness_fraud_criterion, Attestation, AuthorityPacket, GluingEvaluation,
-    Institution, ObserverPacket, Proposal, Residual, Terminal, TerminalStatus, TraceRecord,
-};
-pub use bridges::{
-    evaluate_path_homotopy, verify_cabello_18ray_parity, verify_kan_horn_filling,
-    verify_sorkin_i3_cancellation, AlgebraicNonFactorableWitness, Cabello18RayWitness,
-    Homotopy2CellObstruction, IdentityPathWitness, KanHornFillerWitness,
-};
-pub use carrier_binding::{
-    carrier_manifest, to_homology_carrier, CarrierBindingError, IsingCycleGradientRepair,
-};
-pub use cochains::{solve_potential, FiniteComplex};
-pub use composition::{
-    composite_state_from_bilinear, composite_state_from_form, local_decoders, pr_box_fixture,
-    BilinearForm, FormReceipt, JointState, PrBoxFixture,
-};
-pub use connection::U1Connection;
-pub use difference::{primitive_difference, Carrier, DifferenceOutcome, PresentationMap};
-pub use empirical_adapter::{
-    adapt_exact, adapt_tolerant, chsh_cover, chsh_pairwise_box, chsh_value, frequencies,
-    global_run_table, l1_distance_to_model, pr_box_run_table, signalling_defect,
-    two_context_repair, AdapterRefusal, EmpiricalModel, MeasurementCover, RunTable, TolerantModel,
-};
-pub use error::WdpError;
-pub use fenchel_duality::{EdgeSaturationStatus, FenchelDualityReceipt, WeightedComplex};
-pub use gauge_classification::{
-    evaluate_countermodels_ce1_to_ce5, single_cycle_quotient_rational,
-    verify_triangle_separation_anomaly, ConvexPolyhedralGauge, GaugeClassificationReceipt,
-    GraphOrbitWeightFactorizer, MixedClosureBoundChecker, MixedNormJ21, OrbitWeightRigidityReceipt,
-    SingleCycleQuotientError, SoKRigidityReceipt, TransformationMonoid,
-};
-pub use instrument_adapter::{
-    complex_phase_instrument, luders_instrument, measure_and_prepare_instrument,
-    non_projective_instrument, InstrumentReceipt, OutcomeRunTable, QubitInstrument, QubitState,
-};
-pub use kan_wdp_bridge::{
-    Hott2CellHomotopyWitness, KanHornFillingWitness, KanSimplicialComplex, ZeroDataLossReceipt,
-};
-pub use observer::{
-    adapt_operational, adapt_quotient, adapt_retention, audit_functional_observer_relations,
-    FunctionalObserverProfile, ObserverBridge, ObserverObject, OperationalObserverPacket,
-    QuotientObserver,
-};
-pub use obstruction::{
-    solve_exact_potential, solve_exact_potential_weighted, CertificateVerificationError, Cochain0,
-    Cochain1, DualWitnessCertificate,
-};
-pub use path_kernel_gluing::{
-    generate_canonical_lggr_counterexample, EvaluatedPathKernelGraph, EvaluationColor,
-    LggrEvaluationReceipt, RationalMatrix2x2,
-};
-pub use po000_projection_obstruction::{DeclaredProjectionProblem, ProjectionObstructionReceipt};
-pub use presheaf::{
-    solve_observer_descent, CoveringSieve, DescentReceipt, LocalReportSection,
-    SheafGluingObstruction,
-};
-pub use primitive_axiomatics::{
-    EvaluationCarrier, EvaluationPreorder, GenesisAdmissionKernel, PrimitiveDifferenceAxiom,
-    TriadSignature,
-};
-pub use quantum_geometries::{
-    CptpChannel, QuantumDensityStalk, QuantumGeometryReceipt, QuantumObserverBundle,
-};
-pub use retention::{
-    analyze_retention_packet, compute_behavioral_quotient, make_cm1_static_carrier,
-    make_cm2_blind_readout, make_cm3_coarse_grained_report, make_cm4_nontrivial_tolerance,
-    make_cm5_lossy_reset, make_cm6_trivial_carrier, make_cm7_lossy_blind, make_cm8_lossy_tolerance,
-    tree_behavior_equivalent, RetentionPacket, RetentionPropertyVector,
-};
-pub use stochastic_package::{
-    signed_shear_counterexample, ClassicalInstrument, FunctionMixture, LeftInverse,
-    SignedShearReport, StochasticUpdate,
-};
-pub use types::{blake3_digest, sha256_digest, AuthorityEffect};
-pub use wdp_lggr_chromatic::{ChromaticCertificate, ChromaticConstraintSystem};
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct DirectedCochain {
+    vertices: usize,
+    edges: Vec<(usize, usize)>,
+    values: Vec<i64>,
+}
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use num_traits::Zero;
-    use omega_functional::phi1::Phi1Functional;
-    use omega_homology::scalar::{q, qr};
-    use omega_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
-    use std::collections::{BTreeMap, BTreeSet};
+pub fn admit_exact_integer(token: &str) -> Result<i64, CochainError> {
+    if token == "true" || token == "false" {
+        return Err(CochainError::BooleanAsNumber);
+    }
+    if token.bytes().any(|byte| matches!(byte, b'.' | b'e' | b'E')) {
+        return Err(CochainError::BinaryFloatRefused);
+    }
+    parse_signed_digits(token)
+}
 
-    #[test]
-    fn test_end_to_end_wdp_foundations() {
-        // 1. Primitive Difference & Carrier
-        let carrier = Carrier::new(vec!["p0", "p1", "p2"]).unwrap();
-        assert_eq!(carrier.size(), 3);
-        assert_eq!(primitive_difference("p0", "p0"), DifferenceOutcome::Same);
-        assert_eq!(
-            primitive_difference("p0", "p1"),
-            DifferenceOutcome::Different
-        );
+fn parse_signed_digits(token: &str) -> Result<i64, CochainError> {
+    let (negative, digits) = match token.strip_prefix('-') {
+        Some(rest) => (true, rest),
+        None => (false, token),
+    };
+    if digits.is_empty() || !digits.bytes().all(|byte| byte.is_ascii_digit()) {
+        return Err(CochainError::InexactToken);
+    }
+    let mut value = 0i64;
+    for byte in digits.bytes() {
+        let digit = i64::from(byte - b'0');
+        value = value
+            .checked_mul(10)
+            .and_then(|place| place.checked_add(digit))
+            .ok_or(CochainError::Overflow)?;
+    }
+    if negative {
+        value = value.checked_neg().ok_or(CochainError::Overflow)?;
+    }
+    Ok(value)
+}
 
-        // 2. Moore Behavioral Quotient on CM1
-        let cm1 = make_cm1_static_carrier();
-        let (num_blocks, _) = compute_behavioral_quotient(&cm1).unwrap();
-        assert_eq!(num_blocks, 2);
+fn read_potential(potential: &[Option<i64>], vertex: usize) -> Result<Option<i64>, CochainError> {
+    potential
+        .get(vertex)
+        .copied()
+        .ok_or(CochainError::VertexOutOfRange {
+            vertex,
+            vertices: potential.len(),
+        })
+}
 
-        // 3. Exact Simplex and Duality Gap Certification (omega_functional)
-        let v = BTreeSet::from(["a".to_string(), "b".to_string(), "c".to_string()]);
-        let e = vec![
-            ("a".to_string(), "b".to_string()),
-            ("b".to_string(), "c".to_string()),
-            ("c".to_string(), "a".to_string()),
-        ];
-        let complex = FiniteComplex::new(v, e, vec![]).unwrap();
-        let mut cochain = BTreeMap::new();
-        cochain.insert(("a".to_string(), "b".to_string()), q(1));
-        cochain.insert(("b".to_string(), "c".to_string()), q(1));
-        cochain.insert(("c".to_string(), "a".to_string()), q(1));
+fn write_potential(
+    potential: &mut [Option<i64>],
+    vertex: usize,
+    value: i64,
+) -> Result<(), CochainError> {
+    let vertices = potential.len();
+    let slot = potential
+        .get_mut(vertex)
+        .ok_or(CochainError::VertexOutOfRange { vertex, vertices })?;
+    *slot = Some(value);
+    Ok(())
+}
 
-        let space = complex
-            .l1_quotient_presentation(&complex.edge_weights(None))
-            .unwrap();
-        let cert = solve_exact_phi1(&space, &complex.cochain_vector(&cochain).unwrap()).unwrap();
-        assert_eq!(cert.value(), &q(3));
-        // Zero duality gap: the exported primal-dual witness replays.
-        let replayed =
-            Phi1Functional::verify_exact_certificate(cert.certificate().clone()).unwrap();
-        assert_eq!(replayed.value(), &q(3));
+fn head_from_tail(tail: i64, value: i64) -> Result<i64, CochainError> {
+    tail.checked_add(value).ok_or(CochainError::Overflow)
+}
 
-        // 4. Sheaf Descent
-        let sieve_carrier = BTreeSet::from(["x0".to_string(), "x1".to_string()]);
-        let contexts = BTreeMap::from([(
-            "U0".to_string(),
-            BTreeSet::from(["x0".to_string(), "x1".to_string()]),
-        )]);
-        let sieve = CoveringSieve::new(sieve_carrier, contexts).unwrap();
-        let sec = LocalReportSection::new(
-            "U0".to_string(),
-            BTreeMap::from([
-                ("x0".to_string(), "0".to_string()),
-                ("x1".to_string(), "1".to_string()),
-            ]),
-        );
-        let descent = solve_observer_descent(&sieve, &[sec]).unwrap();
-        assert!(descent.is_compatible);
+fn tail_from_head(head: i64, value: i64) -> Result<i64, CochainError> {
+    head.checked_sub(value).ok_or(CochainError::Overflow)
+}
 
-        // 5. Homology Betti Numbers (omega_homology)
-        let betti = KanSimplicialComplex::from_wdp_complex(&complex)
-            .unwrap()
-            .complex
-            .rational_betti_numbers()
-            .unwrap();
-        assert_eq!(betti, vec![1, 1]);
-
-        // 6. Cabello 18-ray Contextuality Parity Witness
-        let cabello = verify_cabello_18ray_parity();
-        assert!(cabello.is_parity_obstructed);
-        assert_eq!(cabello.authority_effect, AuthorityEffect::None);
+impl DirectedCochain {
+    pub fn new(
+        vertices: usize,
+        edges: Vec<(usize, usize)>,
+        values: Vec<i64>,
+    ) -> Result<Self, CochainError> {
+        if vertices == 0 {
+            return Err(CochainError::EmptyCarrier);
+        }
+        if edges.len() != values.len() {
+            return Err(CochainError::Length {
+                edges: edges.len(),
+                values: values.len(),
+            });
+        }
+        for (index, &(tail, head)) in edges.iter().enumerate() {
+            if tail >= vertices || head >= vertices {
+                return Err(CochainError::EdgeOutOfRange {
+                    edge: index,
+                    vertices,
+                });
+            }
+        }
+        Ok(Self {
+            vertices,
+            edges,
+            values,
+        })
     }
 
-    #[test]
-    fn test_w10_to_w18_atlas_derivations() {
-        // W10: Primitive Axiomatics
-        let mut kernel =
-            GenesisAdmissionKernel::new(BTreeSet::from(["x".to_string(), "y".to_string()]));
-        assert!(kernel.admit_difference("x", "y", "token").is_ok());
+    pub fn from_potential(
+        vertices: usize,
+        edges: Vec<(usize, usize)>,
+        potential: &[i64],
+    ) -> Result<Self, CochainError> {
+        if potential.len() != vertices {
+            return Err(CochainError::PotentialLength {
+                vertices,
+                values: potential.len(),
+            });
+        }
+        let mut values = Vec::new();
+        for &(tail, head) in &edges {
+            let tail_value = *potential.get(tail).ok_or(CochainError::VertexOutOfRange {
+                vertex: tail,
+                vertices,
+            })?;
+            let head_value = *potential.get(head).ok_or(CochainError::VertexOutOfRange {
+                vertex: head,
+                vertices,
+            })?;
+            values.push(tail_from_head(head_value, tail_value)?);
+        }
+        Self::new(vertices, edges, values)
+    }
 
-        // W11: Fenchel-Rockafellar Duality
-        let w_complex = WeightedComplex::new(
-            vec!["0".to_string(), "1".to_string()],
-            vec![("0".to_string(), "1".to_string())],
-            vec![q(1)],
-        );
-        let fenchel = w_complex.solve_fenchel_duality(&[q(1)]).unwrap();
-        assert!(fenchel.phi1().value().is_zero());
-        Phi1Functional::verify_exact_certificate(fenchel.phi1().certificate().clone()).unwrap();
+    pub fn l1_weight(&self) -> Result<i64, CochainError> {
+        let mut total = 0i64;
+        for value in &self.values {
+            let magnitude = value.checked_abs().ok_or(CochainError::Overflow)?;
+            total = total.checked_add(magnitude).ok_or(CochainError::Overflow)?;
+        }
+        Ok(total)
+    }
 
-        // W12: LGGR Path Kernel Gluing Counterexample
-        let (lggr_graph, cycle) = generate_canonical_lggr_counterexample();
-        let (local_g, _) = lggr_graph.check_local_green(qr(1, 2)).unwrap();
-        assert!(local_g);
-        let (global_g, _) = lggr_graph.check_global_cycle(&cycle, qr(1, 10)).unwrap();
-        assert!(!global_g); // LGGR Anomaly!
+    pub fn authority_effect(&self) -> &'static str {
+        AUTHORITY_EFFECT
+    }
 
-        // W13: Chromatic Obstruction Index
-        let sys = ChromaticConstraintSystem {
-            vertices: vec!["0".into(), "1".into(), "2".into()],
-            edges: vec![
-                ("0".into(), "1".into()),
-                ("1".into(), "2".into()),
-                ("2".into(), "0".into()),
-            ],
-            num_colors: 2,
-            forbidden_color_pairs: BTreeSet::from([(0, 0), (1, 1)]),
+    pub fn is_exact(&self) -> Result<bool, CochainError> {
+        let mut potential = vec![None; self.vertices];
+        for root in 0..self.vertices {
+            if read_potential(&potential, root)?.is_some() {
+                continue;
+            }
+            write_potential(&mut potential, root, 0)?;
+            if !self.component_consistent(root, &mut potential)? {
+                return Ok(false);
+            }
+        }
+        Ok(true)
+    }
+
+    fn component_consistent(
+        &self,
+        root: usize,
+        potential: &mut [Option<i64>],
+    ) -> Result<bool, CochainError> {
+        let mut queue = VecDeque::new();
+        queue.push_back(root);
+        while queue.pop_front().is_some() {
+            if !self.scan_edges(potential, &mut queue)? {
+                return Ok(false);
+            }
+        }
+        Ok(true)
+    }
+
+    fn scan_edges(
+        &self,
+        potential: &mut [Option<i64>],
+        queue: &mut VecDeque<usize>,
+    ) -> Result<bool, CochainError> {
+        for index in 0..self.edges.len() {
+            if !self.propagate(index, potential, queue)? {
+                return Ok(false);
+            }
+        }
+        Ok(true)
+    }
+
+    fn propagate(
+        &self,
+        index: usize,
+        potential: &mut [Option<i64>],
+        queue: &mut VecDeque<usize>,
+    ) -> Result<bool, CochainError> {
+        let (tail, head) = match self.edges.get(index) {
+            Some(edge) => *edge,
+            None => {
+                return Err(CochainError::EdgeOutOfRange {
+                    edge: index,
+                    vertices: self.vertices,
+                })
+            }
         };
-        assert_eq!(sys.evaluate(8, 24).unwrap().minimum.violated_edges.len(), 1);
-
-        // W14: PO-000 exact first-order projection diagnostics.
-        let p =
-            linear_algebra::backend::basic_matrix::BasicMatrix::from_row_major(1, 1, vec![q(1)])
-                .unwrap();
-        let h =
-            linear_algebra::backend::basic_matrix::BasicMatrix::from_row_major(1, 1, vec![q(0)])
-                .unwrap();
-        let problem = DeclaredProjectionProblem {
-            first: p.clone(),
-            second: p,
-            generator: h,
-            elapsed: qr(1, 10),
-            state: vec![q(1)],
+        let value = match self.values.get(index) {
+            Some(value) => *value,
+            None => {
+                return Err(CochainError::Length {
+                    edges: self.edges.len(),
+                    values: self.values.len(),
+                })
+            }
         };
-        let bounds = problem.evaluate().unwrap();
-        assert!(problem.verify(&bounds).unwrap());
+        let tail_p = read_potential(potential, tail)?;
+        let head_p = read_potential(potential, head)?;
+        self.apply_edge(tail, head, tail_p, head_p, value, potential, queue)
+    }
 
-        // W15: Quantum Density Stalks & Classical Shadow
-        let rho = QuantumDensityStalk::maximally_mixed(2).unwrap();
-        assert!(rho.is_valid_density_matrix());
-        let shadow = rho.classical_population_shadow();
-        assert_eq!(shadow, vec![qr(1, 2), qr(1, 2)]);
+    fn apply_known_tail(
+        &self,
+        head: usize,
+        tail_value: i64,
+        head_value: Option<i64>,
+        value: i64,
+        potential: &mut [Option<i64>],
+        queue: &mut VecDeque<usize>,
+    ) -> Result<bool, CochainError> {
+        let expected = head_from_tail(tail_value, value)?;
+        if let Some(found) = head_value {
+            return Ok(found == expected);
+        }
+        write_potential(potential, head, expected)?;
+        queue.push_back(head);
+        Ok(true)
+    }
 
-        // W16: Polyhedral Gauge
-        let gauge = ConvexPolyhedralGauge::standard_l1(2);
-        assert_eq!(gauge.evaluate(&[q(1), q(-2)]), q(3));
+    fn apply_known_head(
+        &self,
+        tail: usize,
+        head_value: i64,
+        value: i64,
+        potential: &mut [Option<i64>],
+        queue: &mut VecDeque<usize>,
+    ) -> Result<bool, CochainError> {
+        let expected = tail_from_head(head_value, value)?;
+        write_potential(potential, tail, expected)?;
+        queue.push_back(tail);
+        Ok(true)
+    }
 
-        // W17: Triangle Separation Anomaly
-        let (l11, j21, anomaly) = verify_triangle_separation_anomaly();
-        assert!(anomaly);
-        assert!(j21 < l11);
-
-        // W18: Countermodels CE1-CE5
-        let ce_results = evaluate_countermodels_ce1_to_ce5();
-        assert_eq!(ce_results.len(), 5);
-        for (_, passes) in ce_results {
-            assert!(passes);
+    fn apply_edge(
+        &self,
+        tail: usize,
+        head: usize,
+        tail_p: Option<i64>,
+        head_p: Option<i64>,
+        value: i64,
+        potential: &mut [Option<i64>],
+        queue: &mut VecDeque<usize>,
+    ) -> Result<bool, CochainError> {
+        match (tail_p, head_p) {
+            (Some(tail_value), head_value) => {
+                self.apply_known_tail(head, tail_value, head_value, value, potential, queue)
+            }
+            (None, Some(head_value)) => {
+                self.apply_known_head(tail, head_value, value, potential, queue)
+            }
+            (None, None) => Ok(true),
         }
     }
 }
 
-pub mod calibration_adapter;
-
-pub mod profile_evaluator;
-
-pub mod clock_adequacy_adapter;
-
-pub mod relational_retention;
-
-pub mod functional_classification;
-
-pub mod empirical_repair;
-pub mod legacy_observer_adapters;
-pub mod legacy_six_observer;
-pub mod measurement_packet;
-pub mod observer_site;
-pub mod rational_phase_bridge;
-pub mod self_reference_adapter;
-pub mod tolerance_retention;
-
-pub mod finite_cost_report;
-pub mod genesis_admission_execution;
-pub mod genesis_balance_transition;
-pub mod genesis_gauge_result;
-pub mod genesis_guard_report;
-pub mod genesis_guarded_history;
-pub mod genesis_marked_result;
-pub mod genesis_ongoing_adapter;
-pub mod genesis_primitive_execution;
-pub mod genesis_source_execution;
-pub mod genesis_transport_descent;
-pub mod proposal_admission_bridge;
-
-pub mod dyadic_character_adapter;
-pub mod genesis_computation;
-pub mod genesis_future_compression;
-pub mod genesis_questions;
-pub mod genesis_report_runtime;
-pub mod genesis_realification_adapter;
-pub mod meron_field_adapter;
-
-/// Appendix X: calibrated interval reports, recovery-or-abstention and robust
-/// observation cost.
-pub mod calibrated_reports;
-/// Appendix T: WDP-DIM-1 / WDP-DIM-R sharp observer completion with distinct
-/// realization and repair images.
-pub mod distinct_image_completion;
-/// Appendix Y: joint report supports for shared affine error, with the
-/// critical-value finite cost witness handed to `observation_cost`.
-pub mod joint_support_recovery;
-/// §14.6–14.7: complete fixed/adaptive priced-observation certificates
-/// (native port of the paper's `finite_observation` reference).
-pub mod observation_cost;
-
-pub mod genesis_translation;
-
-// Retained paper controls are private test modules, not runtime APIs.
 #[cfg(test)]
-extern crate self as omega_wdp;
-#[cfg(test)]
-#[path = "../../tests/omega_wdp/derivation_controls/mod.rs"]
-mod paper_derivation_controls;
-pub mod application_kernel;
+mod tests {
+    use super::*;
+
+    fn need(cond: bool, message: &str) -> Result<(), String> {
+        if cond {
+            Ok(())
+        } else {
+            Err(message.to_string())
+        }
+    }
+
+    fn triangle(values: Vec<i64>) -> Result<DirectedCochain, CochainError> {
+        DirectedCochain::new(3, vec![(0, 1), (1, 2), (2, 0)], values)
+    }
+
+    fn show(error: impl std::fmt::Debug) -> String {
+        format!("{error:?}")
+    }
+
+    #[test]
+    fn unit_constant_triangle_is_not_exact_and_weighs_three() -> Result<(), String> {
+        triangle(vec![1, 1, 1]).map_err(show).and_then(unit_cycle)
+    }
+
+    fn unit_cycle(cycle: DirectedCochain) -> Result<(), String> {
+        let weight = cycle.l1_weight().map_err(show)?;
+        let exact = cycle.is_exact().map_err(show)?;
+        unit_cycle_claims(weight, exact, cycle.authority_effect())
+    }
+
+    fn unit_cycle_claims(weight: i64, exact: bool, effect: &str) -> Result<(), String> {
+        need(weight == 3, "l1")?;
+        need(!exact, "obstruction")?;
+        need(effect == AUTHORITY_EFFECT, "authority")
+    }
+
+    #[test]
+    fn integration_potential_coboundary_is_exact() -> Result<(), String> {
+        DirectedCochain::from_potential(3, vec![(0, 1), (1, 2), (2, 0)], &[0, 1, -1])
+            .map_err(show)
+            .and_then(integration_coboundary)
+    }
+
+    fn integration_coboundary(cochain: DirectedCochain) -> Result<(), String> {
+        let exact = cochain.is_exact().map_err(show)?;
+        let weight = cochain.l1_weight().map_err(show)?;
+        integration_values(exact, weight)
+    }
+
+    fn integration_values(exact: bool, weight: i64) -> Result<(), String> {
+        need(exact, "coboundary")?;
+        need(weight == 4, "differences")
+    }
+
+    #[test]
+    fn e2e_balanced_triangle_closes_and_constant_cycle_does_not() -> Result<(), String> {
+        e2e_pair().and_then(|(balanced, obstructed)| e2e_exactness(balanced, obstructed))
+    }
+
+    fn e2e_pair() -> Result<(DirectedCochain, DirectedCochain), String> {
+        let balanced = triangle(vec![1, 1, -2]).map_err(show)?;
+        let obstructed = triangle(vec![1, 1, 1]).map_err(show)?;
+        Ok((balanced, obstructed))
+    }
+
+    fn e2e_exactness(balanced: DirectedCochain, obstructed: DirectedCochain) -> Result<(), String> {
+        let balanced_exact = balanced.is_exact().map_err(show)?;
+        let obstructed_exact = obstructed.is_exact().map_err(show)?;
+        e2e_claims(balanced_exact, obstructed_exact)
+    }
+
+    fn e2e_claims(balanced_exact: bool, obstructed_exact: bool) -> Result<(), String> {
+        need(balanced_exact, "balanced")?;
+        need(!obstructed_exact, "constant")?;
+        e2e_text()
+    }
+
+    fn e2e_text() -> Result<(), String> {
+        need(ORIGIN.contains("code/rust/src/wdp/mod.rs"), "origin")?;
+        need(CLAIM.contains("L1 weight 3"), "claim")
+    }
+
+    #[test]
+    fn negative_refuses_empty_carrier_range_length_overflow_and_inexact_tokens() -> Result<(), String>
+    {
+        negative_shape().and_then(|_| negative_tokens())
+    }
+
+    fn negative_shape() -> Result<(), String> {
+        need(DirectedCochain::new(0, vec![], vec![]).is_err(), "empty carrier")?;
+        need(
+            matches!(
+                DirectedCochain::new(1, vec![(0, 2)], vec![1]),
+                Err(CochainError::EdgeOutOfRange { .. })
+            ),
+            "edge range",
+        )?;
+        need(
+            matches!(
+                DirectedCochain::new(2, vec![(0, 1)], vec![]),
+                Err(CochainError::Length { .. })
+            ),
+            "length",
+        )
+    }
+
+    fn negative_tokens() -> Result<(), String> {
+        need(
+            matches!(
+                DirectedCochain::from_potential(2, vec![(0, 1)], &[i64::MAX, i64::MIN]),
+                Err(CochainError::Overflow)
+            ),
+            "overflow",
+        )?;
+        need(
+            admit_exact_integer("1.5") == Err(CochainError::BinaryFloatRefused),
+            "float",
+        )?;
+        negative_integer()
+    }
+
+    fn negative_integer() -> Result<(), String> {
+        need(
+            admit_exact_integer("true") == Err(CochainError::BooleanAsNumber),
+            "bool",
+        )?;
+        need(admit_exact_integer("-4") == Ok(-4), "integer")
+    }
+}

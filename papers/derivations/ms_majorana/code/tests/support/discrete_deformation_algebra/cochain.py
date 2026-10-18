@@ -12,8 +12,8 @@ class CoboundaryComplex:
     dim_c0: int
     dim_c1: int
     dim_c2: int
-    d0: Tuple[Tuple[int, ...], ...]  # dim_c1 × dim_c0
-    d1: Tuple[Tuple[int, ...], ...]  # dim_c2 × dim_c1
+    d0: Tuple[Tuple[int, ...], ...]
+    d1: Tuple[Tuple[int, ...], ...]
 
     def __post_init__(self) -> None:
         if len(self.d0) != self.dim_c1:
@@ -52,13 +52,12 @@ class CoboundaryComplex:
         A 1-cochain that is locally edge-consistent but globally non-closed
         yields Γ₂ > 0.
         """
-        # edges: 0→1, 1→2, 2→0
         d0 = (
             (-1, 1, 0),
             (0, -1, 1),
             (1, 0, -1),
         )
-        d1 = ((1, 1, 1),)  # holonomy around the triangle
+        d1 = ((1, 1, 1),)
         return CoboundaryComplex(dim_c0=3, dim_c1=3, dim_c2=1, d0=d0, d1=d1)
 
     @staticmethod
@@ -71,24 +70,24 @@ class CoboundaryComplex:
         Used for testing high-dimensional integer co-exact CVP / ILP cochain solvers.
         """
         d0 = (
-            (-1, 1, 0, 0, 0, 0, 0, 0, 0),  # e0: 0->1
-            (0, -1, 1, 0, 0, 0, 0, 0, 0),  # e1: 1->2
-            (0, 0, 0, -1, 1, 0, 0, 0, 0),  # e2: 3->4
-            (0, 0, 0, 0, -1, 1, 0, 0, 0),  # e3: 4->5
-            (0, 0, 0, 0, 0, 0, -1, 1, 0),  # e4: 6->7
-            (0, 0, 0, 0, 0, 0, 0, -1, 1),  # e5: 7->8
-            (-1, 0, 0, 1, 0, 0, 0, 0, 0),  # e6: 0->3
-            (0, -1, 0, 0, 1, 0, 0, 0, 0),  # e7: 1->4
-            (0, 0, -1, 0, 0, 1, 0, 0, 0),  # e8: 2->5
-            (0, 0, 0, -1, 0, 0, 1, 0, 0),  # e9: 3->6
-            (0, 0, 0, 0, -1, 0, 0, 1, 0),  # e10: 4->7
-            (0, 0, 0, 0, 0, -1, 0, 0, 1),  # e11: 5->8
+            (-1, 1, 0, 0, 0, 0, 0, 0, 0),
+            (0, -1, 1, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, -1, 1, 0, 0, 0, 0),
+            (0, 0, 0, 0, -1, 1, 0, 0, 0),
+            (0, 0, 0, 0, 0, 0, -1, 1, 0),
+            (0, 0, 0, 0, 0, 0, 0, -1, 1),
+            (-1, 0, 0, 1, 0, 0, 0, 0, 0),
+            (0, -1, 0, 0, 1, 0, 0, 0, 0),
+            (0, 0, -1, 0, 0, 1, 0, 0, 0),
+            (0, 0, 0, -1, 0, 0, 1, 0, 0),
+            (0, 0, 0, 0, -1, 0, 0, 1, 0),
+            (0, 0, 0, 0, 0, -1, 0, 0, 1),
         )
         d1 = (
-            (1, 0, -1, 0, 0, 0, -1, 1, 0, 0, 0, 0),  # f0
-            (0, 1, 0, -1, 0, 0, 0, -1, 1, 0, 0, 0),  # f1
-            (0, 0, 1, 0, -1, 0, 0, 0, 0, -1, 1, 0),  # f2
-            (0, 0, 0, 1, 0, -1, 0, 0, 0, 0, -1, 1),  # f3
+            (1, 0, -1, 0, 0, 0, -1, 1, 0, 0, 0, 0),
+            (0, 1, 0, -1, 0, 0, 0, -1, 1, 0, 0, 0),
+            (0, 0, 1, 0, -1, 0, 0, 0, 0, -1, 1, 0),
+            (0, 0, 0, 1, 0, -1, 0, 0, 0, 0, -1, 1),
         )
         return CoboundaryComplex(dim_c0=9, dim_c1=12, dim_c2=4, d0=d0, d1=d1)
 
@@ -99,26 +98,26 @@ class CoboundaryComplex:
         Demonstrates exact HNF rank reduction savings in integer co-exact solver.
         """
         d0 = (
-            (-1, 1, 0, 0, 0, 0, 0, 0),  # e0: 0->1
-            (0, -1, 1, 0, 0, 0, 0, 0),  # e1: 1->2
-            (0, 0, -1, 1, 0, 0, 0, 0),  # e2: 2->3
-            (1, 0, 0, -1, 0, 0, 0, 0),  # e3: 3->0
-            (0, 0, 0, 0, -1, 1, 0, 0),  # e4: 4->5
-            (0, 0, 0, 0, 0, -1, 1, 0),  # e5: 5->6
-            (0, 0, 0, 0, 0, 0, -1, 1),  # e6: 6->7
-            (0, 0, 0, 0, 1, 0, 0, -1),  # e7: 7->4
-            (-1, 0, 0, 0, 1, 0, 0, 0),  # e8: 0->4
-            (0, -1, 0, 0, 0, 1, 0, 0),  # e9: 1->5
-            (0, 0, -1, 0, 0, 0, 1, 0),  # e10: 2->6
-            (0, 0, 0, -1, 0, 0, 0, 1),  # e11: 3->7
+            (-1, 1, 0, 0, 0, 0, 0, 0),
+            (0, -1, 1, 0, 0, 0, 0, 0),
+            (0, 0, -1, 1, 0, 0, 0, 0),
+            (1, 0, 0, -1, 0, 0, 0, 0),
+            (0, 0, 0, 0, -1, 1, 0, 0),
+            (0, 0, 0, 0, 0, -1, 1, 0),
+            (0, 0, 0, 0, 0, 0, -1, 1),
+            (0, 0, 0, 0, 1, 0, 0, -1),
+            (-1, 0, 0, 0, 1, 0, 0, 0),
+            (0, -1, 0, 0, 0, 1, 0, 0),
+            (0, 0, -1, 0, 0, 0, 1, 0),
+            (0, 0, 0, -1, 0, 0, 0, 1),
         )
         d1 = (
-            (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0),  # f0
-            (0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0),  # f1
-            (1, 0, 0, 0, -1, 0, 0, 0, -1, 1, 0, 0),  # f2
-            (0, 1, 0, 0, 0, -1, 0, 0, 0, -1, 1, 0),  # f3
-            (0, 0, 1, 0, 0, 0, -1, 0, 0, 0, -1, 1),  # f4
-            (0, 0, 0, 1, 0, 0, 0, -1, 1, 0, 0, -1),  # f5
+            (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+            (0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0),
+            (1, 0, 0, 0, -1, 0, 0, 0, -1, 1, 0, 0),
+            (0, 1, 0, 0, 0, -1, 0, 0, 0, -1, 1, 0),
+            (0, 0, 1, 0, 0, 0, -1, 0, 0, 0, -1, 1),
+            (0, 0, 0, 1, 0, 0, 0, -1, 1, 0, 0, -1),
         )
         return CoboundaryComplex(dim_c0=8, dim_c1=12, dim_c2=6, d0=d0, d1=d1)
 
@@ -182,7 +181,6 @@ def phi1_brute(cx: CoboundaryComplex, c1: Sequence[int], c0_radius: int = 3) -> 
     if cx.dim_c0 == 0:
         return sum(abs(x) for x in c1)
     best = sum(abs(x) for x in c1)
-    # search α in [-radius, radius]^dim_c0
     from itertools import product
 
     ranges = [range(-c0_radius, c0_radius + 1) for _ in range(cx.dim_c0)]
@@ -206,7 +204,6 @@ def brute_integer_coexact_closure(
     if cx.dim_c2 == 0 or cx.dim_c1 == 0:
         return tuple([0] * cx.dim_c1), (), gamma2_of(cx, c1=list(omega))
 
-    # Transpose of d1: (d1)^T is dim_c1 x dim_c2
     d1t = tuple(tuple(cx.d1[r][c] for r in range(cx.dim_c2)) for c in range(cx.dim_c1))
 
     best_y = tuple(0 for _ in range(cx.dim_c2))
@@ -214,7 +211,6 @@ def brute_integer_coexact_closure(
     best_gamma = gamma2_of(cx, list(omega))
 
     for y in product(range(-radius, radius + 1), repeat=cx.dim_c2):
-        # (d1)^T y
         delta = tuple(
             sum(d1t[c][r] * y[r] for r in range(cx.dim_c2)) for c in range(cx.dim_c1)
         )

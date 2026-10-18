@@ -1,9 +1,3 @@
-//! Exact rational and cyclotomic checks for two fixed candidate fixtures.
-//! The projector basis (1, Pi_i) has quadratic entries; it does not implement
-//! a full order-2 Lasserre hierarchy or a global quadruple search.
-//! and dual certificate checker for MUB(6) Target Q1.
-//!
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -22,13 +16,9 @@ use omega_number_theory::rational::ri;
 
 pub const SCHEMA_VERSION: &str = "omega.mub.degree2-sdp.v1";
 pub const SCOPE_STRING: &str = "degree2_moment_relaxation_quadruple_sdp";
-pub const MOMENT_DIM: usize = 1 + GRAMIAN_DIM; // 25
+pub const MOMENT_DIM: usize = 1 + GRAMIAN_DIM;
 
-// ==============================================================================
-// Pairwise Cross-Ratio Constraints
-// ==============================================================================
 
-/// Enumerate all 225 combinations of 2x2 submatrices (r0 < r1, c0 < c1) for a d x d block.
 pub fn enumerate_225_submatrices(d: usize) -> Vec<(usize, usize, usize, usize)> {
     let mut submatrices = Vec::with_capacity(225);
     for r0 in 0..d {
@@ -43,7 +33,6 @@ pub fn enumerate_225_submatrices(d: usize) -> Vec<(usize, usize, usize, usize)> 
     submatrices
 }
 
-/// Evaluate the submatrix cross-ratio: M[r0, c0] * M[r1, c1] * M[r0, c1]^* * M[r1, c0]^*.
 pub fn cross_ratio_at(m: &[Vec<Cyc24>], r0: usize, r1: usize, c0: usize, c1: usize) -> Cyc24 {
     let a = &m[r0][c0];
     let b = &m[r0][c1];
@@ -52,7 +41,6 @@ pub fn cross_ratio_at(m: &[Vec<Cyc24>], r0: usize, r1: usize, c0: usize, c1: usi
     a.mul(d).mul(&b.conj()).mul(&c.conj())
 }
 
-/// Evaluate all 225 submatrix cross-ratios for a 6x6 block m.
 pub fn evaluate_block_cross_ratios(m: &[Vec<Cyc24>]) -> Vec<Cyc24> {
     let submatrices = enumerate_225_submatrices(DIM_HILBERT);
     submatrices
@@ -61,7 +49,6 @@ pub fn evaluate_block_cross_ratios(m: &[Vec<Cyc24>]) -> Vec<Cyc24> {
         .collect()
 }
 
-/// Extract 6x6 block G_{a, b} from the 24x24 Gramian matrix.
 pub fn extract_block_from_gramian(
     g: &[Vec<Cyc24>],
     basis_a: usize,
@@ -94,7 +81,6 @@ pub struct CrossRatioVerificationReport {
     pub pair_summaries: Vec<PairwiseCrossRatioSummary>,
 }
 
-/// Verify pairwise cross-ratio constraints for all pairs of distinct bases.
 pub fn verify_pairwise_cross_ratios(g: &[Vec<Cyc24>]) -> CrossRatioVerificationReport {
     let one_thirty_sixth_sq = BigRational::new(1.into(), 1296.into());
     let mut pair_summaries = Vec::new();
@@ -148,11 +134,7 @@ pub fn verify_pairwise_cross_ratios(g: &[Vec<Cyc24>]) -> CrossRatioVerificationR
     }
 }
 
-// ==============================================================================
-// Degree-2 Projector Moment Matrix M_2(G)
-// ==============================================================================
 
-/// Construct the 25x25 Degree-2 Projector Moment Matrix M_2(G) over BigRational.
 pub fn build_degree2_projector_moment_matrix(
     g: &[Vec<Cyc24>],
 ) -> Result<Vec<Vec<BigRational>>, String> {
@@ -166,14 +148,12 @@ pub fn build_degree2_projector_moment_matrix(
     let sixth = BigRational::new(1.into(), 6.into());
     let mut m2 = vec![vec![BigRational::zero(); MOMENT_DIM]; MOMENT_DIM];
 
-    // Row/Col 0: Identity
     m2[0][0] = BigRational::one();
     for idx in 0..GRAMIAN_DIM {
         m2[0][idx + 1] = sixth.clone();
         m2[idx + 1][0] = sixth.clone();
     }
 
-    // Blocks across bases
     for a in 0..NUM_BASES {
         for b in 0..NUM_BASES {
             for i in 0..DIM_HILBERT {
@@ -202,14 +182,13 @@ pub fn build_degree2_projector_moment_matrix(
 pub use crate::omega_native::exact::dual_witness::DualWitnessRational;
 
 
-/// Construct the exact rational dual witness W_2 refuting the block-diagonal completion X = 0.
 pub fn build_block_diag_dual_witness(strict: bool) -> DualWitnessRational {
     let mut z = vec![BigRational::zero(); MOMENT_DIM];
     z[0] = BigRational::from_integer((-2).into());
-    z[1] = BigRational::one(); // Basis 0, vector 0
+    z[1] = BigRational::one();
     let two = BigRational::from_integer(2.into());
     for j in 0..DIM_HILBERT {
-        z[3 * DIM_HILBERT + j + 1] = two.clone(); // Basis 3 vectors
+        z[3 * DIM_HILBERT + j + 1] = two.clone();
     }
 
     let mut vectors = vec![z];
@@ -233,12 +212,10 @@ pub fn build_block_diag_dual_witness(strict: bool) -> DualWitnessRational {
     }
 }
 
-/// Construct the block-diagonal Gramian G_diag = diag(G_triple, I_6) with X = 0.
 pub fn build_block_diagonal_gramian() -> Vec<Vec<Cyc24>> {
     let cols = canonical_triple_exact();
     let mut g = vec![vec![Cyc24::zero(); GRAMIAN_DIM]; GRAMIAN_DIM];
 
-    // Top-left 18x18 from canonical triple
     for a in 0..3 {
         for b in 0..3 {
             for i in 0..DIM_HILBERT {
@@ -251,19 +228,14 @@ pub fn build_block_diagonal_gramian() -> Vec<Vec<Cyc24>> {
         }
     }
 
-    // Block (3, 3) identity
     let one = Cyc24::rat(ri(1));
     for j in 0..DIM_HILBERT {
         g[3 * DIM_HILBERT + j][3 * DIM_HILBERT + j] = one.clone();
     }
 
-    // Off-diagonal blocks involving basis 3 remain zero (X = 0)
     g
 }
 
-// ==============================================================================
-// Master Degree-2 SDP Report & Certificate
-// ==============================================================================
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DualWitnessReceipt {
@@ -303,14 +275,11 @@ pub struct MubDegree2Certificate {
     pub complete: bool,
 }
 
-/// Execute the full Degree-2 SDP Dual Witness Solver and generate certified receipt.
 pub fn solve_target_q1_degree2_certificate() -> MubDegree2Certificate {
-    // 1. Candidate A: Block-diagonal completion X = 0
     let g_diag = build_block_diagonal_gramian();
     let m2_diag =
         build_degree2_projector_moment_matrix(&g_diag).expect("M_2(G_diag) construction failed");
 
-    // Construct strict dual witness W_2 for M_2(G_diag)
     let w2_strict = build_block_diag_dual_witness(true);
     let tr_w2 = w2_strict
         .trace_inner(&m2_diag)
@@ -332,7 +301,6 @@ pub fn solve_target_q1_degree2_certificate() -> MubDegree2Certificate {
         pivots: w2_pivots.iter().map(|p| p.to_string()).collect(),
     };
 
-    // 2. Candidate B: Synthetic S6 completion (satisfying modulus, violating PSD)
     let g_synth = canonical_quad_gramian();
     let w_gram_strict = dual_certificate_matrix(true);
     let inner_synth = trace_inner_product(&w_gram_strict, &g_synth);
@@ -352,7 +320,6 @@ pub fn solve_target_q1_degree2_certificate() -> MubDegree2Certificate {
         pivots: gram_pivots.iter().map(|p| p.to_string()).collect(),
     };
 
-    // Cross-ratio evaluation on G_synth
     let cr_report_synth = verify_pairwise_cross_ratios(&g_synth);
 
     let moment_report = Degree2MomentReport {

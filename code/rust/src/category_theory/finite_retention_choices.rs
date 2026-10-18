@@ -1,6 +1,3 @@
-//! Typed finite retention data form a Cartesian product of update, readout,
-//! and comparison choices. Forward compatibility is an *additional* law.
-//! Arbitrary comparison refinement produces a relation, not a partition.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum RetentionChoiceError {
@@ -80,8 +77,6 @@ impl RetentionSignature {
         })
     }
 
-    /// Every code triple in its independent ranges constructs one typed
-    /// packet. Mixed-radix digits enumerate all choices without selection.
     pub fn from_codes(
         &self,
         mut update: u128,
@@ -236,9 +231,6 @@ impl FiniteRetentionData {
                     .all(|y| r[x][y] == r[y][x] && (0..n).all(|z| !r[x][y] || !r[y][z] || r[x][z]))
         })
     }
-    /// A state quotient is admissible iff its actual relation is an
-    /// equivalence. A literal report map descends iff reports are additionally
-    /// constant on its classes. Tolerance alone supplies no such equality.
     pub fn raw_report_quotient_admissible(&self, receipt: &ForwardRelationReceipt) -> bool {
         self.relation_is_equivalence(receipt)
             && (0..self.reports.len()).all(|x| {

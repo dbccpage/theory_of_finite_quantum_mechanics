@@ -1,7 +1,3 @@
-//! Five-belief alternating parity carrier `parity_alt_osc` only.
-//! A play wins when the highest priority seen infinitely often is even.
-//! WDP-CHS-N04: a reachability attractor is not this certificate.
-//! The count is the size of {hi, lo} on this table, not a continuum limit.
 
 const HI: usize = 0;
 const LO: usize = 1;
@@ -150,7 +146,6 @@ fn controller_wins(start: usize) -> bool {
     }
 }
 
-/// Cardinality of the controller winning set on `parity_alt_osc`.
 pub fn witness() -> i64 {
     let mut cardinality = 0i64;
     for belief in 0..BELIEFS {
@@ -190,7 +185,6 @@ fn attractor_size(targets: &[usize]) -> i64 {
     size
 }
 
-/// Reject a reachability or priority-sum stand-in for the parity cardinality.
 pub fn refuse_non_parity_count(claimed: i64) -> Result<(), &'static str> {
     let parity = witness();
     let empty_target = attractor_size(&[]);

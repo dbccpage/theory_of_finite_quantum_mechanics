@@ -1,14 +1,3 @@
-//! Dual observation maps on one declared complex (Rovelli kill-criterion).
-//!
-//! # Declared data only
-//!
-//! - Complex \(S = (d_0, d_1)\) (shared carrier).
-//! - Observer \(O\): residual map \(r_O = M_O \omega\) (rows of \(M_O\) are linear functionals on edges).
-//! - Two observers \(O_1, O_2\) can **agree or disagree** on residual weight / zero-ness
-//!   for the **same** edge vector \(\omega\).
-//!
-//! This is still GF(2) linear algebra: the second “system” is a **declared observation
-//! matrix**, not a Hilbert space. AuthorityEffect: None.
 
 use crate::complexes::ChainComplexGf2;
 use crate::gf2_terminalizer::GF2Matrix;
@@ -16,11 +5,9 @@ use serde::{Deserialize, Serialize};
 
 pub const DUAL_OBS_RECEIPT_TAG: &str = "omega.majorana-dual-observer-receipt.v1";
 
-/// Linear observation map: residual bits = \(M \omega \pmod 2\).
 #[derive(Debug, Clone)]
 pub struct ObservationMap {
     pub name: &'static str,
-    /// Matrix shape: `out_bits` × `num_edges`.
     pub matrix: GF2Matrix,
 }
 
@@ -49,7 +36,6 @@ impl ObservationMap {
     }
 }
 
-/// Face-syndrome observer: \(M = d_1\) (full plaquette checks).
 pub fn observer_face_syndrome(complex: &ChainComplexGf2) -> ObservationMap {
     ObservationMap {
         name: "O_face_d1",
@@ -57,7 +43,6 @@ pub fn observer_face_syndrome(complex: &ChainComplexGf2) -> ObservationMap {
     }
 }
 
-/// Single-face observer: only the first face row of \(d_1\) (partial apparatus).
 pub fn observer_first_face_only(complex: &ChainComplexGf2) -> Result<ObservationMap, String> {
     if complex.d1.rows == 0 {
         return Err("no faces".into());
@@ -68,7 +53,6 @@ pub fn observer_first_face_only(complex: &ChainComplexGf2) -> Result<Observation
     })
 }
 
-/// Even-index edge sample: one bit = XOR of even-indexed edges (toy alternate readout).
 pub fn observer_even_edge_parity(num_edges: usize) -> ObservationMap {
     let mut row = vec![0u8; num_edges];
     for j in (0..num_edges).step_by(2) {
@@ -93,15 +77,12 @@ pub struct DualObserverReceipt {
     pub weight_b: usize,
     pub zero_a: bool,
     pub zero_b: bool,
-    /// True if residual zero-ness differs between observers.
     pub zero_disagreement: bool,
-    /// True if residual weights differ.
     pub weight_disagreement: bool,
     pub authority_effect: String,
     pub notes: String,
 }
 
-/// Compare two observation maps on the same \(\omega\).
 pub fn dual_observe(
     complex: &ChainComplexGf2,
     omega: &[u8],
@@ -160,8 +141,6 @@ mod tests {
 
     #[test]
     fn edge_off_face_zero_disagrees_with_the_full_syndrome() {
-        // Kills: copying one observer onto the other, or returning a tautological weight comparison.
-        // Edge 1 of the 2x2 torus meets faces 1 and 3 and misses face 0.
         let c = surface_grid_2x2_torus();
         let o_all = observer_face_syndrome(&c);
         let o_one = observer_first_face_only(&c).unwrap();
@@ -191,15 +170,12 @@ mod tests {
         let c = plaquette();
         let o_face = observer_face_syndrome(&c);
         let o_even = observer_even_edge_parity(c.num_edges);
-        // single edge 0: face residual 1; even xor = 1 (edge 0 is even)
         let omega = vec![1, 0, 0, 0];
         let r = dual_observe(&c, &omega, &o_face, &o_even).unwrap();
-        // Kills: dropping the even-index mask, which would report residual 0 on edge 0.
         assert_eq!(r.residual_a, vec![1]);
         assert_eq!(r.residual_b, vec![1]);
         assert!(!r.zero_disagreement);
         assert!(!r.weight_disagreement);
-        // edge 1 only: face residual 1; even xor = 0 (odd index)
         let omega2 = vec![0, 1, 0, 0];
         let r2 = dual_observe(&c, &omega2, &o_face, &o_even).unwrap();
         assert_eq!(r2.residual_a, vec![1]);

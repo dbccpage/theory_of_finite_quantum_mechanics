@@ -1,16 +1,3 @@
-//! Quillen Model Category implementation and exact verification.
-//!
-//! Models Quillen model categories satisfying axioms MC1-MC5:
-//! - Complete and cocomplete category
-//! - Three distinguished classes of morphisms: Weak Equivalences (W), Fibrations (F), Cofibrations (C)
-//! - Two-out-of-three property for W
-//! - Retract closure
-//! - Lifting properties: (W ∩ C) ⋔ F and C ⋔ (W ∩ F)
-//! - Functorial factorizations: f = p ∘ i (i ∈ W ∩ C, p ∈ F) and f = q ∘ j (j ∈ C, q ∈ W ∩ F)
-//!
-//! Zero floats. Soviet Builder allocation bounded by `OperationLimits`.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{HashMap, HashSet};
 
@@ -19,7 +6,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// Morphism in a model category.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ModelMorphism {
     pub id: String,
@@ -27,12 +13,6 @@ pub struct ModelMorphism {
     pub target: String,
 }
 
-/// A commutative square representing a lifting problem:
-///   A -- u --> X
-///   |          |
-///   i          p
-///   v          v
-///   B -- v_map -> Y
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CommutativeSquare {
     pub i_map: String,
@@ -41,9 +21,6 @@ pub struct CommutativeSquare {
     pub v_map: String,
 }
 
-/// A pair of factorizations for a morphism f:
-/// 1. f = p_map ∘ i_map with i_map ∈ W ∩ C (acyclic cofibration), p_map ∈ F (fibration)
-/// 2. f = q_map ∘ j_map with j_map ∈ C (cofibration), q_map ∈ W ∩ F (acyclic fibration)
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MorphismFactorizations {
     pub morphism: String,
@@ -53,27 +30,19 @@ pub struct MorphismFactorizations {
     pub q_map: String,
 }
 
-/// Finite Quillen Model Category.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ModelCategory {
     pub objects: Vec<String>,
     pub morphisms: Vec<ModelMorphism>,
-    /// Composition table: (f, g) -> g ∘ f (where f: X -> Y, g: Y -> Z)
     pub compositions: HashMap<(String, String), String>,
-    /// Identity map per object: object -> id_morphism
     pub identities: HashMap<String, String>,
-    /// Weak equivalences W
     pub weak_equivalences: HashSet<String>,
-    /// Fibrations F
     pub fibrations: HashSet<String>,
-    /// Cofibrations C
     pub cofibrations: HashSet<String>,
-    /// Factorization witnesses
     pub factorizations: HashMap<String, MorphismFactorizations>,
 }
 
 impl ModelCategory {
-    /// Constructs an empty model category with preallocated capacities under `OperationLimits`.
     pub fn new(limits: &OperationLimits) -> Result<Self, HigherCategoryError> {
         let mut objects = Vec::new();
         reserve_exact(&mut objects, 8, limits)?;
@@ -92,7 +61,6 @@ impl ModelCategory {
         })
     }
 
-    /// Adds an object to the category.
     pub fn add_object(&mut self, object_id: impl Into<String>, limits: &OperationLimits) -> Result<(), HigherCategoryError> {
         let obj = object_id.into();
         if self.objects.contains(&obj) {
@@ -103,7 +71,6 @@ impl ModelCategory {
         Ok(())
     }
 
-    /// Adds a morphism to the category.
     pub fn add_morphism(
         &mut self,
         id: impl Into<String>,
@@ -134,7 +101,6 @@ impl ModelCategory {
         Ok(())
     }
 
-    /// Declares the identity morphism for an object.
     pub fn set_identity(&mut self, object: &str, id_morphism: &str) -> Result<(), HigherCategoryError> {
         if !self.objects.contains(&object.to_string()) {
             return Err(HigherCategoryError::ZeroCellNotFound { id: object.to_string() });
@@ -143,14 +109,12 @@ impl ModelCategory {
             return Err(HigherCategoryError::OneCellNotFound { id: id_morphism.to_string() });
         }
         self.identities.insert(object.to_string(), id_morphism.to_string());
-        // In any model category, identities are trivial cofibrations and trivial fibrations:
         self.weak_equivalences.insert(id_morphism.to_string());
         self.fibrations.insert(id_morphism.to_string());
         self.cofibrations.insert(id_morphism.to_string());
         Ok(())
     }
 
-    /// Declares composition g ∘ f = h (where f: X -> Y, g: Y -> Z, h: X -> Z).
     pub fn add_composition(
         &mut self,
         f: &str,
@@ -180,7 +144,6 @@ impl ModelCategory {
         Ok(())
     }
 
-    /// Retrieves a morphism reference by ID.
     pub fn get_morphism(&self, id: &str) -> Result<&ModelMorphism, HigherCategoryError> {
         self.morphisms
             .iter()
@@ -188,7 +151,6 @@ impl ModelCategory {
             .ok_or_else(|| HigherCategoryError::OneCellNotFound { id: id.to_string() })
     }
 
-    /// Evaluates composition g ∘ f if defined.
     pub fn compose(&self, f: &str, g: &str) -> Result<&str, HigherCategoryError> {
         self.compositions
             .get(&(f.to_string(), g.to_string()))
@@ -201,25 +163,20 @@ impl ModelCategory {
             })
     }
 
-    /// Returns true if morphism is an acyclic cofibration (W ∩ C).
     pub fn is_acyclic_cofibration(&self, id: &str) -> bool {
         self.weak_equivalences.contains(id) && self.cofibrations.contains(id)
     }
 
-    /// Returns true if morphism is an acyclic fibration (W ∩ F).
     pub fn is_acyclic_fibration(&self, id: &str) -> bool {
         self.weak_equivalences.contains(id) && self.fibrations.contains(id)
     }
 
-    /// Verifies the two-out-of-three axiom for all composable pairs:
-    /// If two of {f, g, g ∘ f} are in W, then so is the third.
     pub fn verify_two_out_of_three(&self) -> Result<(), HigherCategoryError> {
         for ((f, g), h) in &self.compositions {
             let f_in = self.weak_equivalences.contains(f);
             let g_in = self.weak_equivalences.contains(g);
             let h_in = self.weak_equivalences.contains(h);
 
-            // Case 1: f ∈ W, g ∈ W => h ∈ W
             if f_in && g_in && !h_in {
                 return Err(HigherCategoryError::TwoOutOfThreeViolation {
                     f: f.clone(),
@@ -227,7 +184,6 @@ impl ModelCategory {
                     details: format!("f and g in W, but composite g ∘ f ('{}') not in W", h),
                 });
             }
-            // Case 2: f ∈ W, h ∈ W => g ∈ W
             if f_in && h_in && !g_in {
                 return Err(HigherCategoryError::TwoOutOfThreeViolation {
                     f: f.clone(),
@@ -235,7 +191,6 @@ impl ModelCategory {
                     details: format!("f and g ∘ f in W, but g ('{}') not in W", g),
                 });
             }
-            // Case 3: g ∈ W, h ∈ W => f ∈ W
             if g_in && h_in && !f_in {
                 return Err(HigherCategoryError::TwoOutOfThreeViolation {
                     f: f.clone(),
@@ -247,17 +202,6 @@ impl ModelCategory {
         Ok(())
     }
 
-    /// Verifies a diagonal lift h for a commutative square:
-    ///   A -- u --> X
-    ///   |          |
-    ///   i          p
-    ///   v          v
-    ///   B -- v_map -> Y
-    ///
-    /// Must satisfy:
-    /// 1. Commutativity of outer square: p ∘ u = v_map ∘ i
-    /// 2. Top triangle: h ∘ i = u
-    /// 3. Bottom triangle: p ∘ h = v_map
     pub fn verify_lift(
         &self,
         square: &CommutativeSquare,
@@ -276,7 +220,6 @@ impl ModelCategory {
             });
         }
 
-        // Top triangle: h ∘ i = u
         let i_comp_h = self.compose(&square.i_map, h_lift)?;
         if i_comp_h != square.u_map {
             return Err(HigherCategoryError::LiftingPropertyViolation {
@@ -289,7 +232,6 @@ impl ModelCategory {
             });
         }
 
-        // Bottom triangle: p ∘ h = v
         let h_comp_p = self.compose(h_lift, &square.p_map)?;
         if h_comp_p != square.v_map {
             return Err(HigherCategoryError::LiftingPropertyViolation {
@@ -305,7 +247,6 @@ impl ModelCategory {
         Ok(())
     }
 
-    /// Verifies functorial factorizations for all declared morphisms.
     pub fn verify_factorizations(&self) -> Result<(), HigherCategoryError> {
         if self.morphisms.is_empty() {
             return Ok(());
@@ -319,7 +260,6 @@ impl ModelCategory {
                 }
             })?;
 
-            // Factorization 1: f = p ∘ i with i ∈ W ∩ C, p ∈ F
             let i_comp_p = self.compose(&facts.i_map, &facts.p_map)?;
             if i_comp_p != *m_id {
                 return Err(HigherCategoryError::FactorizationViolation {
@@ -340,7 +280,6 @@ impl ModelCategory {
                 });
             }
 
-            // Factorization 2: f = q ∘ j with j ∈ C, q ∈ W ∩ F
             let j_comp_q = self.compose(&facts.j_map, &facts.q_map)?;
             if j_comp_q != *m_id {
                 return Err(HigherCategoryError::FactorizationViolation {
@@ -364,9 +303,7 @@ impl ModelCategory {
         Ok(())
     }
 
-    /// Master validation: validates Quillen model category axioms on declared structure.
     pub fn validate(&self) -> Result<(), HigherCategoryError> {
-        // Axiom M1/Identity: every object has an identity morphism
         for obj in &self.objects {
             let id_m = self.identities.get(obj).ok_or_else(|| {
                 HigherCategoryError::FactorizationViolation {
@@ -374,7 +311,6 @@ impl ModelCategory {
                     details: format!("Object '{}' missing identity morphism", obj),
                 }
             })?;
-            // Retract closure: identity morphisms are weak equivalences, fibrations, and cofibrations
             if !self.weak_equivalences.contains(id_m) {
                 return Err(HigherCategoryError::FactorizationViolation {
                     morphism: id_m.clone(),

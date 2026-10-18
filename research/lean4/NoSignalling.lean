@@ -1,18 +1,4 @@
-/-
-  Campaign C1000 Block 02: No-Signalling, Marginal Uniqueness, and Admitted Composition.
-  AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
-  Formalizes:
-  - 2x2 and 4x4 matrix representations over Int
-  - Admitted tensor composition rule on local observables
-  - Trace and partial traces Tr_B, Tr_A
-  - Theorem: Marginal identity (local statistics reproduction)
-  - Theorem: Uniqueness of partial trace from local statistics reproduction
-  - Theorem: No-signalling under admitted composition with composition rule as explicit hypothesis
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace NoSignalling
 
@@ -58,17 +44,13 @@ def partialTraceB (ρ : Matrix4) : Matrix2 :=
 def partialTraceA (ρ : Matrix4) : Matrix2 :=
   fun j1 j2 => ρ (.zero, j1) (.zero, j2) + ρ (.one, j1) (.one, j2)
 
-/-! ### Target C1000-T831 & T843: Marginal Identity -/
 
-/-- Target C1000-T843: The marginal identity:
-    Tr[(A ⊗ I) ρ] = Tr[A · Tr_B(ρ)] identically over the finite carrier. -/
 theorem marginal_identity (A : Matrix2) (ρ : Matrix4) :
     tr4 (mul4 (tensorComp A id2) ρ) = tr2 (mul2 A (partialTraceB ρ)) := by
   dsimp [tr4, mul4, tensorComp, id2, tr2, mul2, partialTraceB]
   simp only [Int.mul_add, Int.mul_one, Int.mul_zero, Int.zero_mul]
   omega
 
-/-! ### Elementary matrix duality and algebra helpers -/
 
 theorem mul_reorder (u r v : Int) : (u * r) * v = (v * u) * r := by
   rw [Int.mul_comm (u * r) v, ← Int.mul_assoc]
@@ -94,12 +76,7 @@ theorem elementary_trace_eval (M : Matrix2) (r c : Coord2) :
   dsimp [tr2, mul2, elementary2]
   cases r <;> cases c <;> (dsimp; omega)
 
-/-! ### Target C1000-T831 & T844: Uniqueness of Partial Trace -/
 
-/-- Target C1000-T844: Prove that the partial trace is the UNIQUE linear map
-    satisfying the local statistics identity.
-    If M : Matrix4 → Matrix2 satisfies Tr[A · M(ρ)] = Tr[(A ⊗ I) ρ] for all A,
-    then M(ρ) = Tr_B(ρ) identically. -/
 theorem partial_trace_uniqueness
     (M : Matrix4 → Matrix2)
     (h_local_stats : ∀ (A : Matrix2) (ρ : Matrix4), tr2 (mul2 A (M ρ)) = tr4 (mul4 (tensorComp A id2) ρ))
@@ -113,23 +90,15 @@ theorem partial_trace_uniqueness
   rw [marginal_identity (elementary2 c r) ρ]
   exact hPT
 
-/-! ### Target C1000-T832 & T845: No-Signalling with Admitted Composition Hypothesis -/
 
-/-- Property that a bilinear composition rule coincides with the admitted tensor product. -/
 def IsAdmittedTensorComp (comp : Matrix2 → Matrix2 → Matrix4) : Prop :=
   ∀ (A B : Matrix2) (i1 j1 i2 j2 : Coord2),
     comp A B (i1, j1) (i2, j2) = A i1 i2 * B j1 j2
 
-/-- Composite state after local operation U on Alice under composition rule comp. -/
 def aliceLocalOp (comp : Matrix2 → Matrix2 → Matrix4) (U U_dag : Matrix2) (ρ : Matrix4) : Matrix4 :=
   mul4 (mul4 (comp U id2) ρ) (comp U_dag id2)
 
-/-- Target C1000-T845: Prove no-signalling under admitted composition.
-    The composition rule 'comp' and its admitted assumption 'h_comp' appear
-    as EXPLICIT HYPOTHESES in the theorem statement type.
-    
-    Statement: Bob's marginal state Tr_A(ρ') after any local operation on Alice
-    is identical to Bob's unperturbed marginal state Tr_A(ρ). -/
+
 theorem no_signalling_under_admitted_composition
     (comp : Matrix2 → Matrix2 → Matrix4)
     (h_comp : IsAdmittedTensorComp comp)
@@ -201,3 +170,6 @@ theorem no_signalling_under_admitted_composition
 #print axioms no_signalling_under_admitted_composition
 
 end NoSignalling
+
+private def l5aProvenance : String :=
+  "Origin: lean4/NoSignalling.lean Claim: marginal_identity AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

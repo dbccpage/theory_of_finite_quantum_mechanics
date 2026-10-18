@@ -11,9 +11,8 @@ from omega_engine.crates.carrier import (
 
 
 def test_carrier_contract_conformance():
-    # Valid cochain complex d1 d0 = 0 (1-simplex boundary d0, 2-simplex face boundary d1)
-    d0 = [[-1.0, 0.0], [1.0, -1.0], [0.0, 1.0]]  # 3 edges, 2 vertices
-    d1 = [[1.0, 1.0, 1.0]]  # 1 face, 3 edges (triangle loop: -1+1 + 1-1 + 0 = 0)
+    d0 = [[-1.0, 0.0], [1.0, -1.0], [0.0, 1.0]]
+    d1 = [[1.0, 1.0, 1.0]]
 
     carrier = Carrier(
         c0_dim=2,
@@ -46,7 +45,6 @@ def test_carrier_contract_conformance():
 
 
 def test_invalid_chain_law_rejection():
-    # Invalid cochain complex d1 d0 != 0
     d0 = [[1.0, 0.0], [0.0, 1.0]]
     d1 = [[1.0, 1.0]]
 

@@ -1,17 +1,3 @@
-//! Enriched Categories.
-//!
-//! Provides $\mathcal{V}$-enriched categories over a base monoidal category $\mathcal{V}$:
-//! hom-objects $\mathcal{C}(A, B) \in \text{Ob}(\mathcal{V})$, composition morphisms
-//! $c_{A,B,C}: \mathcal{C}(B, C) \otimes \mathcal{C}(A, B) \to \mathcal{C}(A, C)$,
-//! unit morphisms $j_A: I \to \mathcal{C}(A, A)$, and enriched unit/associativity coherence.
-//!
-//! Invariants:
-//! - Zero floating-point arithmetic.
-//! - Exact diagrammatic commutativity checks in base category $\mathcal{V}$.
-//! - Soviet Builder allocation limits via `OperationLimits` and `reserve_exact`.
-//! - Content-addressed SHA-256 state hashing.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -21,7 +7,6 @@ use sha2::{Digest, Sha256};
 
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// Hom-object assignment $(A, B) \mapsto \mathcal{C}(A, B) \in \text{Ob}(\mathcal{V})$.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct HomObject {
     pub src: String,
@@ -29,7 +14,6 @@ pub struct HomObject {
     pub v_object: String,
 }
 
-/// Enriched composition morphism $c_{A,B,C}: \mathcal{C}(B, C) \otimes \mathcal{C}(A, B) \to \mathcal{C}(A, C)$ in $\mathcal{V}$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EnrichedComposition {
     pub a: String,
@@ -38,17 +22,14 @@ pub struct EnrichedComposition {
     pub morphism_id: String,
 }
 
-/// Enriched unit morphism $j_A: I \to \mathcal{C}(A, A)$ in $\mathcal{V}$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EnrichedUnit {
     pub object_id: String,
     pub morphism_id: String,
 }
 
-/// Type alias for EnrichedUnit matching contract nomenclature.
 pub type EnrichedUnitMorphism = EnrichedUnit;
 
-/// Category $\mathcal{C}$ enriched over monoidal base $\mathcal{V}$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EnrichedCategory {
     pub name: String,
@@ -58,15 +39,14 @@ pub struct EnrichedCategory {
     pub hom_objects: BTreeMap<(String, String), HomObject>,
     pub compositions: BTreeMap<(String, String, String), EnrichedComposition>,
     pub units: BTreeMap<String, EnrichedUnit>,
-    // Base monoidal category structures
-    pub v_morphisms: BTreeMap<String, (String, String)>, // f -> (src, tgt)
-    pub v_compose: BTreeMap<(String, String), String>,   // (g, f) -> g ∘ f
-    pub v_tensor_obj: BTreeMap<(String, String), String>,// (X, Y) -> X ⊗ Y
-    pub v_tensor_mor: BTreeMap<(String, String), String>,// (f, g) -> f ⊗ g
-    pub v_identities: BTreeMap<String, String>,          // X -> id_X
-    pub left_unitors: BTreeMap<String, String>,          // X -> lambda_X: I ⊗ X -> X
-    pub right_unitors: BTreeMap<String, String>,         // X -> rho_X: X ⊗ I -> X
-    pub associators: BTreeMap<(String, String, String), String>, // (X,Y,Z) -> alpha
+    pub v_morphisms: BTreeMap<String, (String, String)>,
+    pub v_compose: BTreeMap<(String, String), String>,
+    pub v_tensor_obj: BTreeMap<(String, String), String>,
+    pub v_tensor_mor: BTreeMap<(String, String), String>,
+    pub v_identities: BTreeMap<String, String>,
+    pub left_unitors: BTreeMap<String, String>,
+    pub right_unitors: BTreeMap<String, String>,
+    pub associators: BTreeMap<(String, String, String), String>,
     pub limits: OperationLimits,
 }
 
@@ -257,9 +237,6 @@ impl EnrichedCategory {
         Ok(())
     }
 
-    /// Verifies enriched unitality diagrams for pair $(A, B)$:
-    /// - Left unit: $c_{A,B,B} \circ (j_B \otimes \text{id}_{\mathcal{C}(A,B)}) = \lambda_{\mathcal{C}(A,B)}$
-    /// - Right unit: $c_{A,A,B} \circ (\text{id}_{\mathcal{C}(A,B)} \otimes j_A) = \rho_{\mathcal{C}(A,B)}$
     pub fn check_unitality(&self, a: &str, b: &str) -> Result<(), HigherCategoryError> {
         let hom_ab = self.get_hom_object(a, b)?;
         let id_hom_ab = self
@@ -268,7 +245,6 @@ impl EnrichedCategory {
             .cloned()
             .unwrap_or_else(|| format!("id_{hom_ab}"));
 
-        // 1. Left unit check
         let j_b = self
             .units
             .get(b)
@@ -307,7 +283,6 @@ impl EnrichedCategory {
             });
         }
 
-        // 2. Right unit check
         let j_a = self
             .units
             .get(a)
@@ -349,8 +324,6 @@ impl EnrichedCategory {
         Ok(())
     }
 
-    /// Verifies enriched associativity diagram for quadruple $(A, B, C, D)$:
-    /// $$c_{A,B,D} \circ (c_{B,C,D} \otimes \text{id}_{\mathcal{C}(A,B)}) \circ \alpha = c_{A,C,D} \circ (\text{id}_{\mathcal{C}(C,D)} \otimes c_{A,B,C})$$
     pub fn check_associativity(
         &self,
         a: &str,
@@ -381,13 +354,11 @@ impl EnrichedCategory {
             HigherCategoryError::OneCellNotFound { id: format!("c({a}, {c}, {d})") }
         })?.morphism_id;
 
-        // Path 1: c_{A,B,D} ∘ (c_{B,C,D} ⊗ id_{A,B}) ∘ alpha
         let t1 = self.v_tensor_mor.get(&(c_bcd.clone(), id_ab)).cloned().unwrap_or_else(|| format!("{c_bcd} tensor id"));
         let p1_comp = self.v_compose.get(&(c_abd.clone(), t1.clone())).cloned().unwrap_or_else(|| format!("{c_abd} . {t1}"));
         let alpha = self.associators.get(&(hom_cd, hom_bc, hom_ab)).cloned().unwrap_or_else(|| "alpha".to_string());
         let lhs = self.v_compose.get(&(p1_comp.clone(), alpha.clone())).cloned().unwrap_or_else(|| format!("{p1_comp} . {alpha}"));
 
-        // Path 2: c_{A,C,D} ∘ (id_{C,D} ⊗ c_{A,B,C})
         let t2 = self.v_tensor_mor.get(&(id_cd, c_abc.clone())).cloned().unwrap_or_else(|| format!("id tensor {c_abc}"));
         let rhs = self.v_compose.get(&(c_acd.clone(), t2.clone())).cloned().unwrap_or_else(|| format!("{c_acd} . {t2}"));
 

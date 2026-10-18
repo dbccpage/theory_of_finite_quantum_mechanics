@@ -58,9 +58,6 @@ def test_extension_status_mirror_is_byte_identical_to_the_canonical_enum() -> No
 
 
 def test_mirrored_axes_cover_exactly_the_three_non_authority_axes() -> None:
-    # AuthorityStatus is deliberately NOT mirrored: _checked_layer_path
-    # requires the literal 'None' on every step rather than accepting the
-    # full AuthorityStatus token set (the receipt mints no authority).
     assert set(omega_replay._AXIS_TOKEN_SETS.keys()) == {
         "diagnostic_class",
         "routing_terminal",

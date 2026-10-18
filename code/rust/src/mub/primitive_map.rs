@@ -1,8 +1,3 @@
-//! Omega-native PrimitiveDifference map for MUB targets.
-//!
-//! This module is intentionally declarative. It binds the MUB work to the
-//! Omega Engine carrier / ZeroRel / Phi1 / Gamma2 vocabulary without importing
-//! construction code or serialized witnesses from the public artifact bundle.
 
 use omega_policy::trichotomy::ObstructionDiagnosticClass;
 use omega_types::{EvidenceCeiling, FactLabel};
@@ -206,10 +201,6 @@ pub struct MubClaimAssessment {
     pub reason: &'static str,
 }
 
-/// First-run A-F deliverable as required by `unified_mub_prompt.md`.
-///
-/// This is a primitive map and obstruction ledger only. It is not a terminal
-/// verdict and it deliberately makes no general MUB(N) claim.
 pub fn first_run_primitive_map() -> MubPrimitiveMap {
     MubPrimitiveMap {
         formulation: MubFormulation::PinnedTripleWall,
@@ -393,7 +384,6 @@ pub fn first_run_primitive_map() -> MubPrimitiveMap {
     }
 }
 
-/// Scope assessment for the user-requested general MUB(N) theorem.
 pub fn assess_general_mub_n() -> MubClaimAssessment {
     MubClaimAssessment {
         target: "general MUB(N)",
@@ -405,7 +395,6 @@ pub fn assess_general_mub_n() -> MubClaimAssessment {
     }
 }
 
-/// Scope assessment for the implemented d=6 pinned canonical triple wall.
 pub fn assess_d6_pinned_wall(global_certificate_replayed: bool) -> MubClaimAssessment {
     if global_certificate_replayed {
         MubClaimAssessment {

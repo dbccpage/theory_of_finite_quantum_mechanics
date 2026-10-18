@@ -1,300 +1,402 @@
-"""Weak 2-categories (Bicategories) and coherence isomorphisms.
+"""Strict finite 2-category composition and the identity-associator pentagon.
 
-Mac Lane pentagon and triangle coherence verification for finite bicategories.
-AuthorityEffect: None.
+Origin: papers/core/finite_quantum_mechanics_source_notes.md section on the
+source pentagon (the implemented relation is strict composition, not a
+Biedenharn-Elliott or 6j-symbol theorem).
+Claim: urn:omega:fqm:bicategory:strict-association-witness:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/higher_category_theory/test_bicategory_control.py.
+Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 5; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 6.
+Scope Fence: strict_association_witness checks that parenthesizations of four
+generating 1-cells name the same composite. The pentagon and triangle checks
+use identity 2-cells of a strict 2-category. This file does not prove Mac
+Lane coherence for a weak bicategory.
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple, Set
+from typing import Mapping
 
 
-class HigherCategoryError(Exception):
-    """Base error for higher category operations."""
-    pass
+class HigherCategoryError(ValueError):
+    """One violated higher-category invariant, with the measured parameters."""
+
+    def __init__(self, invariant: str, parameters: Mapping[str, object] | None = None) -> None:
+        self.invariant = invariant
+        self.parameters = {} if parameters is None else dict(parameters)
+        rendered = ", ".join(f"{key}={value}" for key, value in self.parameters.items())
+        message = invariant if rendered == "" else f"{invariant} ({rendered})"
+        super().__init__(message)
 
 
 class PentagonCoherenceViolation(HigherCategoryError):
-    def __init__(self, step: str, path_a: str, path_b: str):
-        super().__init__(f"Pentagon coherence failed for {step}: {path_a} != {path_b}")
+    """The two strict pentagon paths named different 2-cells."""
+
+    def __init__(self, step: str, path_a: str, path_b: str) -> None:
         self.step = step
         self.path_a = path_a
         self.path_b = path_b
+        super().__init__("pentagon coherence failed", {"step": step, "path_a": path_a, "path_b": path_b})
 
 
 class TriangleCoherenceViolation(HigherCategoryError):
-    def __init__(self, details: str, left: str, right: str):
-        super().__init__(f"Triangle coherence violation: {details} ({left} != {right})")
+    """The two strict triangle paths named different 2-cells."""
+
+    def __init__(self, details: str, left: str, right: str) -> None:
         self.details = details
         self.left = left
         self.right = right
+        super().__init__("triangle coherence failed", {"details": details, "left": left, "right": right})
+
+
+def _fail(invariant: str, **parameters: object) -> HigherCategoryError:
+    return HigherCategoryError(invariant, parameters)
+
+
+def _require_name(value: object, role: str) -> str:
+    if isinstance(value, str) and value != "":
+        return value
+    raise _fail("cell name is not a non-empty string", role=role, received=type(value).__name__)
+
+
+def _require_int(value: object, role: str) -> int:
+    if isinstance(value, float):
+        raise _fail("float refused at the bicategory boundary", role=role, received="float")
+    if isinstance(value, bool):
+        raise _fail("boolean refused where an integer was required", role=role)
+    if isinstance(value, int):
+        return value
+    raise _fail("value is not an integer", role=role, received=type(value).__name__)
+
+
+def checked_count(value: object) -> int:
+    """Return one integer after refusing float and bool."""
+    return _require_int(value, "count")
 
 
 @dataclass(frozen=True)
 class Invertible2Cell:
-    """An invertible 2-cell (2-isomorphism) witnessing weak equivalence."""
+    """A named invertible 2-cell."""
+
     forward: str
     inverse: str
 
 
 @dataclass
 class Strict2Category:
-    """Finite strict 2-category with categorical identity laws."""
-    objects: Set[str] = field(default_factory=set)
-    # 1-cells: id -> (src, tgt)
-    one_cells: Dict[str, Tuple[str, str]] = field(default_factory=dict)
-    # 2-cells: id -> (src_1cell, tgt_1cell)
-    two_cells: Dict[str, Tuple[str, str]] = field(default_factory=dict)
-    # Composition tables
-    comp_1: Dict[Tuple[str, str], str] = field(default_factory=dict)
-    comp_2_v: Dict[Tuple[str, str], str] = field(default_factory=dict)
-    comp_2_h: Dict[Tuple[str, str], str] = field(default_factory=dict)
+    """Strict 2-category presented by named generators and cached composites."""
 
-    def add_object(self, obj: str):
-        self.objects.add(obj)
+    objects: set[str] = field(default_factory=set)
+    one_cells: dict[str, tuple[str, str]] = field(default_factory=dict)
+    two_cells: dict[str, tuple[str, str]] = field(default_factory=dict)
+    comp_1: dict[tuple[str, str], str] = field(default_factory=dict)
+    comp_2_v: dict[tuple[str, str], str] = field(default_factory=dict)
+    comp_2_h: dict[tuple[str, str], str] = field(default_factory=dict)
 
-    def add_1cell(self, name: str, src: str, tgt: str):
-        if src not in self.objects or tgt not in self.objects:
-            raise HigherCategoryError(f"Endpoints {src}, {tgt} not in objects")
-        self.one_cells[name] = (src, tgt)
+    def add_object(self, obj: object) -> None:
+        self.objects.add(_require_name(obj, "object"))
 
-    def add_2cell(self, name: str, src_1: str, tgt_1: str):
-        if src_1 not in self.one_cells or tgt_1 not in self.one_cells:
-            raise HigherCategoryError(f"1-cell endpoints {src_1}, {tgt_1} not registered")
-        s_src, s_tgt = self.one_cells[src_1]
-        t_src, t_tgt = self.one_cells[tgt_1]
-        if s_src != t_src or s_tgt != t_tgt:
-            raise HigherCategoryError("2-cell parallel boundary mismatch")
-        self.two_cells[name] = (src_1, tgt_1)
+    def add_1cell(self, name: object, source: object, target: object) -> None:
+        cell = _require_name(name, "1-cell")
+        start = _require_known_object(self, source, "source")
+        end = _require_known_object(self, target, "target")
+        self.one_cells[cell] = (start, end)
 
-    def id_1(self, obj: str) -> str:
-        name = f"id_{obj}"
+    def add_2cell(self, name: object, source_1: object, target_1: object) -> None:
+        cell = _require_name(name, "2-cell")
+        source = _require_known_1cell(self, source_1, "source")
+        target = _require_known_1cell(self, target_1, "target")
+        if self.one_cells[source] != self.one_cells[target]:
+            raise _fail("2-cell boundary is not parallel", source=source, target=target)
+        self.two_cells[cell] = (source, target)
+
+    def id_1(self, obj: object) -> str:
+        name = f"id_{_require_known_object(self, obj, 'object')}"
         if name not in self.one_cells:
-            self.add_1cell(name, obj, obj)
+            self.add_1cell(name, name[3:], name[3:])
             self.comp_1[(name, name)] = name
         return name
 
-    def id_2(self, one_cell: str) -> str:
-        name = f"id_{one_cell}"
+    def id_2(self, one_cell: object) -> str:
+        cell = _require_known_1cell(self, one_cell, "1-cell")
+        name = f"id_{cell}"
         if name not in self.two_cells:
-            self.add_2cell(name, one_cell, one_cell)
+            self.add_2cell(name, cell, cell)
             self.comp_2_v[(name, name)] = name
         return name
 
-    def is_id_1(self, one_cell: str) -> bool:
-        return one_cell.startswith("id_") and one_cell[3:] in self.objects
+    def is_id_1(self, one_cell: object) -> bool:
+        cell = _require_name(one_cell, "1-cell")
+        return cell.startswith("id_") and cell[3:] in self.objects
 
-    def is_id_2(self, two_cell: str) -> bool:
-        return two_cell.startswith("id_") and two_cell[3:] in self.one_cells
+    def is_id_2(self, two_cell: object) -> bool:
+        cell = _require_name(two_cell, "2-cell")
+        return cell.startswith("id_") and cell[3:] in self.one_cells
 
-    def compose_1(self, f: str, g: str) -> str:
-        if (f, g) in self.comp_1:
-            return self.comp_1[(f, g)]
-        s_f, t_f = self.one_cells[f]
-        s_g, t_g = self.one_cells[g]
-        if t_f != s_g:
-            raise HigherCategoryError(f"Cannot compose 1-cells: target({f})={t_f} != source({g})={s_g}")
-        # Unital laws
-        if self.is_id_1(f):
-            return g
-        if self.is_id_1(g):
-            return f
+    def compose_1(self, left: object, right: object) -> str:
+        first = _require_known_1cell(self, left, "left")
+        second = _require_known_1cell(self, right, "right")
+        cached = self.comp_1.get((first, second))
+        if cached is not None:
+            return cached
+        return self._compose_1_new(first, second)
 
-        # Canonical associativity normalization
-        parts_f = f.split("_circ_")
-        parts_g = g.split("_circ_")
-        comp = "_circ_".join(parts_g + parts_f)
-        if comp not in self.one_cells:
-            self.add_1cell(comp, s_f, t_g)
-        self.comp_1[(f, g)] = comp
-        return comp
+    def _compose_1_new(self, first: str, second: str) -> str:
+        source, middle_left = self.one_cells[first]
+        middle_right, target = self.one_cells[second]
+        if middle_left != middle_right:
+            raise _fail("1-cells are not composable", left=first, right=second, middle_left=middle_left, middle_right=middle_right)
+        if self.is_id_1(first):
+            self.comp_1[(first, second)] = second
+            return second
+        if self.is_id_1(second):
+            self.comp_1[(first, second)] = first
+            return first
+        composite = _circ_name(first, second)
+        if composite not in self.one_cells:
+            self.add_1cell(composite, source, target)
+        self.comp_1[(first, second)] = composite
+        return composite
 
-    def compose_2_vertical(self, alpha: str, beta: str) -> str:
-        if (alpha, beta) in self.comp_2_v:
-            return self.comp_2_v[(alpha, beta)]
-        s_a, t_a = self.two_cells[alpha]
-        s_b, t_b = self.two_cells[beta]
-        if t_a != s_b:
-            raise HigherCategoryError(f"Cannot compose 2-cells vertically: target({alpha})={t_a} != source({beta})={s_b}")
+    def compose_2_vertical(self, left: object, right: object) -> str:
+        first = _require_known_2cell(self, left, "left")
+        second = _require_known_2cell(self, right, "right")
+        cached = self.comp_2_v.get((first, second))
+        if cached is not None:
+            return cached
+        return self._compose_2_vertical_new(first, second)
 
-        # Vertical identity laws
-        if self.is_id_2(alpha):
-            return beta
-        if self.is_id_2(beta):
-            return alpha
+    def _compose_2_vertical_new(self, first: str, second: str) -> str:
+        source, middle_left = self.two_cells[first]
+        middle_right, target = self.two_cells[second]
+        if middle_left != middle_right:
+            raise _fail("2-cells are not vertically composable", left=first, right=second)
+        if self.is_id_2(first):
+            self.comp_2_v[(first, second)] = second
+            return second
+        if self.is_id_2(second):
+            self.comp_2_v[(first, second)] = first
+            return first
+        composite = f"{second}_o_{first}"
+        if composite not in self.two_cells:
+            self.add_2cell(composite, source, target)
+        self.comp_2_v[(first, second)] = composite
+        return composite
 
-        comp = f"{beta}_o_{alpha}"
-        if comp not in self.two_cells:
-            self.add_2cell(comp, s_a, t_b)
-        self.comp_2_v[(alpha, beta)] = comp
-        return comp
+    def compose_2_horizontal(self, left: object, right: object) -> str:
+        first = _require_known_2cell(self, left, "left")
+        second = _require_known_2cell(self, right, "right")
+        cached = self.comp_2_h.get((first, second))
+        if cached is not None:
+            return cached
+        return self._compose_2_horizontal_new(first, second)
 
-    def compose_2_horizontal(self, alpha: str, beta: str) -> str:
-        """Horizontal composition: beta *_h alpha where alpha: f => f' (A -> B), beta: g => g' (B -> C)."""
-        if (alpha, beta) in self.comp_2_h:
-            return self.comp_2_h[(alpha, beta)]
-        s_a, t_a = self.two_cells[alpha]
-        s_b, t_b = self.two_cells[beta]
-        src_1 = self.compose_1(s_a, s_b)
-        tgt_1 = self.compose_1(t_a, t_b)
+    def _compose_2_horizontal_new(self, first: str, second: str) -> str:
+        source_left, target_left = self.two_cells[first]
+        source_right, target_right = self.two_cells[second]
+        source = self.compose_1(source_left, source_right)
+        target = self.compose_1(target_left, target_right)
+        if self.is_id_2(first) and self.is_id_2(second):
+            identity = self.id_2(source)
+            self.comp_2_h[(first, second)] = identity
+            return identity
+        composite = f"{second}_star_{first}"
+        if composite not in self.two_cells:
+            self.add_2cell(composite, source, target)
+        self.comp_2_h[(first, second)] = composite
+        return composite
 
-        # Functoriality of identity 2-cell: 1_g *_h 1_f = 1_{g circ f}
-        if self.is_id_2(alpha) and self.is_id_2(beta):
-            id_comp = self.id_2(src_1)
-            self.comp_2_h[(alpha, beta)] = id_comp
-            return id_comp
 
-        comp = f"{beta}_star_{alpha}"
-        if comp not in self.two_cells:
-            self.add_2cell(comp, src_1, tgt_1)
-        self.comp_2_h[(alpha, beta)] = comp
-        return comp
+def _require_known_object(category: Strict2Category, value: object, role: str) -> str:
+    name = _require_name(value, role)
+    if name not in category.objects:
+        raise _fail("object is not declared", role=role, object=name)
+    return name
+
+
+def _require_known_1cell(category: Strict2Category, value: object, role: str) -> str:
+    name = _require_name(value, role)
+    if name not in category.one_cells:
+        raise _fail("1-cell is not declared", role=role, cell=name)
+    return name
+
+
+def _require_known_2cell(category: Strict2Category, value: object, role: str) -> str:
+    name = _require_name(value, role)
+    if name not in category.two_cells:
+        raise _fail("2-cell is not declared", role=role, cell=name)
+    return name
+
+
+def _circ_name(left: str, right: str) -> str:
+    return "_circ_".join(right.split("_circ_") + left.split("_circ_"))
 
 
 @dataclass
-class CoherenceReport:
-    pentagons_verified: int
-    triangles_verified: int
-
-
 class FiniteBicategory:
-    """Finite bicategory with explicit associators and unitors."""
+    """Strict bicategory whose associators and unitors default to identity 2-cells."""
 
-    def __init__(self, base_strict: Strict2Category):
-        self.base_strict = base_strict
-        self.associator_table: Dict[Tuple[str, str, str], Invertible2Cell] = {}
-        self.left_unitor_table: Dict[str, Invertible2Cell] = {}
-        self.right_unitor_table: Dict[str, Invertible2Cell] = {}
+    base_strict: Strict2Category
+    associator_table: dict[tuple[str, str, str], Invertible2Cell] = field(default_factory=dict)
+    left_unitor_table: dict[str, Invertible2Cell] = field(default_factory=dict)
+    right_unitor_table: dict[str, Invertible2Cell] = field(default_factory=dict)
 
-    def set_associator(self, f: str, g: str, h: str, forward: str, inverse: str):
-        hg = self.base_strict.compose_1(g, h)
-        hgf_left = self.base_strict.compose_1(f, hg)
-        gf = self.base_strict.compose_1(f, g)
-        hgf_right = self.base_strict.compose_1(gf, h)
+    def set_associator(self, left: object, middle: object, right: object, forward: object, inverse: object) -> None:
+        first = _require_name(left, "left")
+        second = _require_name(middle, "middle")
+        third = _require_name(right, "right")
+        forward_name = _require_name(forward, "forward")
+        inverse_name = _require_name(inverse, "inverse")
+        right_composite = self.base_strict.compose_1(second, third)
+        left_composite = self.base_strict.compose_1(first, second)
+        left_boundary = self.base_strict.compose_1(first, right_composite)
+        right_boundary = self.base_strict.compose_1(left_composite, third)
+        _declare_2cell(self.base_strict, forward_name, left_boundary, right_boundary)
+        _declare_2cell(self.base_strict, inverse_name, right_boundary, left_boundary)
+        self.associator_table[(first, second, third)] = Invertible2Cell(forward_name, inverse_name)
 
-        if forward not in self.base_strict.two_cells:
-            self.base_strict.add_2cell(forward, hgf_left, hgf_right)
-        if inverse not in self.base_strict.two_cells:
-            self.base_strict.add_2cell(inverse, hgf_right, hgf_left)
+    def set_left_unitor(self, cell: object, forward: object, inverse: object) -> None:
+        name = _require_known_1cell(self.base_strict, cell, "1-cell")
+        _target = self.base_strict.one_cells[name][1]
+        identity = self.base_strict.id_1(_target)
+        composite = self.base_strict.compose_1(name, identity)
+        forward_name = _require_name(forward, "forward")
+        inverse_name = _require_name(inverse, "inverse")
+        _declare_2cell(self.base_strict, forward_name, composite, name)
+        _declare_2cell(self.base_strict, inverse_name, name, composite)
+        self.left_unitor_table[name] = Invertible2Cell(forward_name, inverse_name)
 
-        self.associator_table[(f, g, h)] = Invertible2Cell(forward, inverse)
+    def set_right_unitor(self, cell: object, forward: object, inverse: object) -> None:
+        name = _require_known_1cell(self.base_strict, cell, "1-cell")
+        identity = self.base_strict.id_1(self.base_strict.one_cells[name][0])
+        composite = self.base_strict.compose_1(identity, name)
+        forward_name = _require_name(forward, "forward")
+        inverse_name = _require_name(inverse, "inverse")
+        _declare_2cell(self.base_strict, forward_name, composite, name)
+        _declare_2cell(self.base_strict, inverse_name, name, composite)
+        self.right_unitor_table[name] = Invertible2Cell(forward_name, inverse_name)
 
-    def set_left_unitor(self, f: str, forward: str, inverse: str):
-        _, tgt = self.base_strict.one_cells[f]
-        id_b = self.base_strict.id_1(tgt)
-        id_b_f = self.base_strict.compose_1(f, id_b)
+    def associator(self, left: object, middle: object, right: object) -> Invertible2Cell:
+        first = _require_name(left, "left")
+        second = _require_name(middle, "middle")
+        third = _require_name(right, "right")
+        cached = self.associator_table.get((first, second, third))
+        if cached is not None:
+            return cached
+        composite = self.base_strict.compose_1(first, self.base_strict.compose_1(second, third))
+        identity = self.base_strict.id_2(composite)
+        return Invertible2Cell(identity, identity)
 
-        if forward not in self.base_strict.two_cells:
-            self.base_strict.add_2cell(forward, id_b_f, f)
-        if inverse not in self.base_strict.two_cells:
-            self.base_strict.add_2cell(inverse, f, id_b_f)
+    def left_unitor(self, cell: object) -> Invertible2Cell:
+        name = _require_known_1cell(self.base_strict, cell, "1-cell")
+        cached = self.left_unitor_table.get(name)
+        if cached is not None:
+            return cached
+        identity = self.base_strict.id_2(name)
+        return Invertible2Cell(identity, identity)
 
-        self.left_unitor_table[f] = Invertible2Cell(forward, inverse)
-
-    def set_right_unitor(self, f: str, forward: str, inverse: str):
-        src, _ = self.base_strict.one_cells[f]
-        id_a = self.base_strict.id_1(src)
-        f_id_a = self.base_strict.compose_1(id_a, f)
-
-        if forward not in self.base_strict.two_cells:
-            self.base_strict.add_2cell(forward, f_id_a, f)
-        if inverse not in self.base_strict.two_cells:
-            self.base_strict.add_2cell(inverse, f, f_id_a)
-
-        self.right_unitor_table[f] = Invertible2Cell(forward, inverse)
-
-    def associator(self, f: str, g: str, h: str) -> Invertible2Cell:
-        if (f, g, h) in self.associator_table:
-            return self.associator_table[(f, g, h)]
-        # Default identity associator if strict
-        hg = self.base_strict.compose_1(g, h)
-        left = self.base_strict.compose_1(f, hg)
-        id2 = self.base_strict.id_2(left)
-        return Invertible2Cell(id2, id2)
-
-    def left_unitor(self, f: str) -> Invertible2Cell:
-        if f in self.left_unitor_table:
-            return self.left_unitor_table[f]
-        id2 = self.base_strict.id_2(f)
-        return Invertible2Cell(id2, id2)
-
-    def right_unitor(self, f: str) -> Invertible2Cell:
-        if f in self.right_unitor_table:
-            return self.right_unitor_table[f]
-        id2 = self.base_strict.id_2(f)
-        return Invertible2Cell(id2, id2)
+    def right_unitor(self, cell: object) -> Invertible2Cell:
+        name = _require_known_1cell(self.base_strict, cell, "1-cell")
+        cached = self.right_unitor_table.get(name)
+        if cached is not None:
+            return cached
+        identity = self.base_strict.id_2(name)
+        return Invertible2Cell(identity, identity)
 
 
-def check_pentagon_coherence(
-    bicat: FiniteBicategory,
-    f: str,
-    g: str,
-    h: str,
-    k: str,
-) -> bool:
-    """Evaluates the Mac Lane pentagon diagram for 4 composable 1-cells: f, g, h, k."""
-    bs = bicat.base_strict
-    id_f_2 = bs.id_2(f)
-    id_k_2 = bs.id_2(k)
+def _declare_2cell(category: Strict2Category, name: str, source: str, target: str) -> None:
+    if name not in category.two_cells:
+        category.add_2cell(name, source, target)
 
-    alpha_k_h_g = bicat.associator(g, h, k).forward
-    alpha_h_g_f = bicat.associator(f, g, h).forward
 
-    h_circ_g = bs.compose_1(g, h)
-    g_circ_f = bs.compose_1(f, g)
-    k_circ_h = bs.compose_1(h, k)
-
-    alpha_k_hg_f = bicat.associator(f, h_circ_g, k).forward
-    alpha_kh_g_f = bicat.associator(f, g, k_circ_h).forward
-    alpha_k_h_gf = bicat.associator(g_circ_f, h, k).forward
-
-    # Path A (3 steps)
-    step_a1 = bs.compose_2_horizontal(id_f_2, alpha_k_h_g)
-    step_a2 = alpha_k_hg_f
-    step_a3 = bs.compose_2_horizontal(alpha_h_g_f, id_k_2)
-
-    path_a_12 = bs.compose_2_vertical(step_a1, step_a2)
-    path_a = bs.compose_2_vertical(path_a_12, step_a3)
-
-    # Path B (2 steps)
-    step_b1 = alpha_kh_g_f
-    step_b2 = alpha_k_h_gf
-    path_b = bs.compose_2_vertical(step_b1, step_b2)
-
+def check_pentagon_coherence(bicategory: FiniteBicategory, left: object, middle: object, third: object, fourth: object) -> bool:
+    """Return True when the strict pentagon paths are the same 2-cell name."""
+    if not isinstance(bicategory, FiniteBicategory):
+        raise _fail("pentagon requires a finite bicategory", received=type(bicategory).__name__)
+    base = bicategory.base_strict
+    first = _require_name(left, "left")
+    second = _require_name(middle, "middle")
+    third_name = _require_name(third, "third")
+    fourth_name = _require_name(fourth, "fourth")
+    path_a = _pentagon_path_a(bicategory, first, second, third_name, fourth_name)
+    path_b = _pentagon_path_b(bicategory, first, second, third_name, fourth_name)
     if path_a == path_b:
         return True
-    else:
-        raise PentagonCoherenceViolation(
-            f"({f}, {g}, {h}, {k})", path_a, path_b
-        )
+    raise PentagonCoherenceViolation(f"({first}, {second}, {third_name}, {fourth_name})", path_a, path_b)
 
 
-def check_triangle_coherence(
-    bicat: FiniteBicategory,
-    f: str,
-    g: str,
-) -> bool:
-    """Evaluates the triangle coherence diagram for two composable 1-cells: f, g."""
-    bs = bicat.base_strict
-    _, tgt_f = bs.one_cells[f]
-    id_b_1 = bs.id_1(tgt_f)
-    id_g_2 = bs.id_2(g)
-    id_f_2 = bs.id_2(f)
+def _pentagon_path_a(bicategory: FiniteBicategory, first: str, second: str, third: str, fourth: str) -> str:
+    base = bicategory.base_strict
+    step_1 = base.compose_2_horizontal(base.id_2(first), bicategory.associator(second, third, fourth).forward)
+    step_2 = bicategory.associator(first, base.compose_1(second, third), fourth).forward
+    step_3 = base.compose_2_horizontal(bicategory.associator(first, second, third).forward, base.id_2(fourth))
+    return base.compose_2_vertical(base.compose_2_vertical(step_1, step_2), step_3)
 
-    assoc = bicat.associator(f, id_b_1, g).forward
-    l_f = bicat.left_unitor(f).forward
-    r_g = bicat.right_unitor(g).forward
 
-    # LHS: (1_g * l_f) circ_v alpha
-    id_g_star_l_f = bs.compose_2_horizontal(l_f, id_g_2)
-    lhs = bs.compose_2_vertical(assoc, id_g_star_l_f)
+def _pentagon_path_b(bicategory: FiniteBicategory, first: str, second: str, third: str, fourth: str) -> str:
+    base = bicategory.base_strict
+    step_1 = bicategory.associator(first, second, base.compose_1(third, fourth)).forward
+    step_2 = bicategory.associator(base.compose_1(first, second), third, fourth).forward
+    return base.compose_2_vertical(step_1, step_2)
 
-    # RHS: r_g * 1_f
-    rhs = bs.compose_2_horizontal(id_f_2, r_g)
 
-    if lhs == rhs:
+def check_triangle_coherence(bicategory: FiniteBicategory, left: object, right: object) -> bool:
+    """Return True when the strict triangle paths are the same 2-cell name."""
+    if not isinstance(bicategory, FiniteBicategory):
+        raise _fail("triangle requires a finite bicategory", received=type(bicategory).__name__)
+    base = bicategory.base_strict
+    first = _require_name(left, "left")
+    second = _require_name(right, "right")
+    identity = base.id_1(base.one_cells[first][1])
+    associator = bicategory.associator(first, identity, second).forward
+    left_path = base.compose_2_vertical(associator, base.compose_2_horizontal(bicategory.left_unitor(first).forward, base.id_2(second)))
+    right_path = base.compose_2_horizontal(base.id_2(first), bicategory.right_unitor(second).forward)
+    if left_path == right_path:
         return True
-    else:
-        raise TriangleCoherenceViolation(
-            f"Pair ({f}, {g})", lhs, rhs
-        )
+    raise TriangleCoherenceViolation(f"Pair ({first}, {second})", left_path, right_path)
+
+
+def _four_composite(category: Strict2Category) -> str:
+    return category.compose_1(category.compose_1(category.compose_1("f", "g"), "h"), "k")
+
+
+def _four_composite_other(category: Strict2Category) -> str:
+    return category.compose_1("f", category.compose_1("g", category.compose_1("h", "k")))
+
+
+def strict_association_witness() -> int:
+    """Return 1 when both four-fold parenthesizations and the strict pentagon agree."""
+    category = Strict2Category()
+    for name in ("A", "B", "C", "D", "E"):
+        category.add_object(name)
+    category.add_1cell("f", "A", "B")
+    category.add_1cell("g", "B", "C")
+    category.add_1cell("h", "C", "D")
+    category.add_1cell("k", "D", "E")
+    left = _four_composite(category)
+    right = _four_composite_other(category)
+    if left != right:
+        raise _fail("strict composites disagree", left=left, right=right)
+    if left != "k_circ_h_circ_g_circ_f":
+        raise _fail("strict composite has the wrong name", composite=left)
+    if check_pentagon_coherence(FiniteBicategory(category), "f", "g", "h", "k") is not True:
+        raise _fail("strict pentagon did not hold")
+    count = checked_count(1)
+    if count != 1:
+        raise _fail("association count drifted", count=count)
+    return count
+
+
+def main() -> int:
+    """Print the strict association certificate."""
+    try:
+        print(strict_association_witness())
+    except HigherCategoryError as error:
+        print(error.invariant)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

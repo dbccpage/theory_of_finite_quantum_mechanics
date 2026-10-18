@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the CLI trace."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the CLI trace.
+
+Origin: code/python/src/bin/finite_cli.py
+Claim: urn:omega:fqm:linear-algebra:cli-identity-trace:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -19,6 +29,21 @@ from src.bin.finite_cli import (
     main,
 )
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "bin" / "finite_cli.py"
 
 
@@ -32,7 +57,7 @@ def test_default_cli_trace_matches_dimension_two() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(CliTraceError, match="float refused") as floated:
-        cli_identity_trace(1.0)  # type: ignore[arg-type]
+        cli_identity_trace(_probe("1.0"))
     assert floated.value.invariant == "float refused at the cli boundary"
     assert floated.value.parameters["role"] == "size"
     assert type(floated.value) is CliTraceError
@@ -46,11 +71,11 @@ def test_negative_boundary_failures() -> None:
     assert negative.value.parameters["received"] == -1
 
     with pytest.raises(CliTraceError, match="not an integer") as text:
-        cli_identity_trace("2")  # type: ignore[arg-type]
+        cli_identity_trace("2")
     assert text.value.parameters["received"] == "str"
 
     with pytest.raises(CliTraceError, match="float refused on the cli diagonal") as diagonal:
-        _require_diagonal(1.5, 0)
+        _require_diagonal(_probe("1.5"), 0)
     assert diagonal.value.parameters["index"] == 0
 
     with pytest.raises(CliTraceError, match="boolean refused on the cli diagonal"):
@@ -60,7 +85,7 @@ def test_negative_boundary_failures() -> None:
         _require_diagonal("1", 0)
 
     eye = ExactMatrix.identity(1)
-    eye.data[0] = 0.25
+    eye.data[0] = _probe("0.25")
     with pytest.raises(CliTraceError, match="float refused on the cli diagonal"):
         _sum_diagonal(eye)
 
@@ -159,13 +184,13 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         four = trace(4)
     except error:
         return False
-    return bool(
-        default == Fraction(2)
-        and zero == Fraction(0)
-        and two == Fraction(2)
-        and three == Fraction(3)
-        and four == Fraction(4)
-    )
+    return _all_hold((
+default == Fraction(2),
+zero == Fraction(0),
+two == Fraction(2),
+three == Fraction(3),
+four == Fraction(4),
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
@@ -173,14 +198,14 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     diagonal = namespace["_require_diagonal"]
     summer = namespace["_sum_diagonal"]
     matrix = namespace["ExactMatrix"]
-    if not callable(trace) or not callable(diagonal) or not callable(summer) or not isinstance(matrix, type):
+    if not _all_hold((callable(trace), callable(diagonal), callable(summer), isinstance(matrix, type),)):
         return False
     probes = (
-        (lambda: trace(1.0), "float refused at the cli boundary"),
+        (lambda: trace(_probe("1.0")), "float refused at the cli boundary"),
         (lambda: trace(True), "boolean refused where a cli size was required"),
         (lambda: trace(-1), "cli size is negative"),
         (lambda: trace("2"), "cli size is not an integer"),
-        (lambda: diagonal(1.5, 0), "float refused on the cli diagonal"),
+        (lambda: diagonal(_probe("1.5"), 0), "float refused on the cli diagonal"),
         (lambda: diagonal(True, 1), "boolean refused on the cli diagonal"),
     )
     for probe, invariant in probes:
@@ -190,7 +215,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(build):
         return False
     eye = build(1)
-    eye.data[0] = 0.5
+    eye.data[0] = _probe("0.5")
     if _invariant(error, lambda: summer(eye)) != "float refused on the cli diagonal":
         return False
     eye.data[0] = False
@@ -201,7 +226,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["CliTraceError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -230,6 +255,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

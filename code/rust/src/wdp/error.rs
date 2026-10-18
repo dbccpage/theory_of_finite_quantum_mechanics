@@ -1,9 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Typed error enumerations for the Witnessed Difference Programme crate.
-//!
-//! Refusals from the sovereign crates this crate delegates to are carried
-//! intact, never flattened into strings, so a caller can tell a presentation
-//! defect from a solver refusal from a chain-law violation.
 
 use linear_algebra::linear_algebra::image_kernel::ExactLinearAlgebraError;
 use omega_finite_probability::error::ClassicalShadowError;
@@ -32,7 +26,6 @@ impl From<omega_epk::matrix_path_kernel::MatrixPathError> for WdpError {
     }
 }
 
-/// Core error type for WDP mathematical structures and certified solvers.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum WdpError {
     #[error("Invalid input: {detail}")]
@@ -86,8 +79,6 @@ pub enum WdpError {
     #[error("Trichotomy refusal: {0:?}")]
     Trichotomy(TrichotomyRefusal),
 
-    /// An empirical-adapter refusal other than plain invalid input, carried intact.
-    /// [`AdapterRefusal::InvalidInput`] converts to [`WdpError::InvalidInput`] and back.
     #[error("Empirical adapter refusal: {0}")]
     Adapter(#[source] Box<AdapterRefusal>),
 
@@ -106,8 +97,6 @@ pub enum WdpError {
     #[error("CHSH correlation refusal: {0}")]
     Correlation(#[from] CorrelationError),
 
-    /// The message prints the refusal with `Debug`, which names the variant; the payload
-    /// stays typed.
     #[error("Classical shadow refusal: {0:?}")]
     ClassicalShadow(ClassicalShadowError),
 
@@ -128,8 +117,6 @@ impl From<ClassicalShadowError> for WdpError {
 }
 
 impl From<AdapterRefusal> for WdpError {
-    /// Plain invalid input keeps its shape; a wrapped crate error is unwrapped; every
-    /// other refusal is carried whole in [`WdpError::Adapter`].
     fn from(refusal: AdapterRefusal) -> Self {
         match refusal {
             AdapterRefusal::InvalidInput { detail } => WdpError::InvalidInput { detail },

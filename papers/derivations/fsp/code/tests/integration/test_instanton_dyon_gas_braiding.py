@@ -55,15 +55,12 @@ def test_kvbll_fractional_topological_charge_and_action_conservation(default_con
     assert math.isclose(p_m.topological_charge, 0.5, abs_tol=1e-12)
     assert math.isclose(p_l.topological_charge, 0.5, abs_tol=1e-12)
 
-    # Fractional topological charge sum equals unit instanton Q = 1
     total_q = p_m.topological_charge + p_l.topological_charge
     assert math.isclose(total_q, 1.0, abs_tol=1e-12)
 
-    # Action conservation: S_M + S_L = S_0 = 8π² / g²
     s_0 = (8.0 * math.pi ** 2) / (default_config.g_coupling ** 2)
     assert math.isclose(p_m.core_action + p_l.core_action, s_0, abs_tol=1e-12)
 
-    # Anti-dyons
     p_m_bar = DyonGasBuilder.create_dyon(3, DyonType.M_BAR, (0, 0, 0), default_config)
     p_l_bar = DyonGasBuilder.create_dyon(4, DyonType.L_BAR, (0, 0, 0), default_config)
     assert p_m_bar.magnetic_charge == -1
@@ -128,14 +125,12 @@ def test_ionized_plasma_action_gap_and_split_brain_refusal(engine: InstantonDyon
 
 def test_monopole_loop_gauss_linking_and_unlinking():
     """Calculates Gauss linking integral for linked vs unlinked loops."""
-    # Unlinked loops
     u1, u2 = MonopoleLoopBraiding.build_unlinked_loops(radius=1.0, num_points=64)
     lk_unlinked = MonopoleLoopBraiding.compute_gauss_linking(u1, u2)
     assert abs(lk_unlinked) < 0.05, f"Unlinked loops should have Lk ≈ 0, got {lk_unlinked}"
     phase_unlinked = MonopoleLoopBraiding.compute_dirac_aharonov_bohm_phase(lk_unlinked)
     assert phase_unlinked == 1.0
 
-    # Linked Hopf loops
     h1, h2 = MonopoleLoopBraiding.build_hopf_link(radius=1.0, num_points=64)
     lk_linked = MonopoleLoopBraiding.compute_gauss_linking(h1, h2)
     assert abs(abs(lk_linked) - 1.0) < 0.05, f"Hopf link should have |Lk| ≈ 1, got {lk_linked}"

@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
 
 from .ledger import ledger_row, verify_ledger, carrier_payload
 from .diff import run_diff

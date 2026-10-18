@@ -51,23 +51,15 @@ class TestFiniteCochainObstructionSolver:
 
     def test_exact_repair_classification(self):
         """When omega is in im(d0), solver classifies verdict as EXACT_REPAIR."""
-        # 3 vertices, 3 edges (0->1, 1->2, 0->2)
-        # d0 coboundary matrix (edges x vertices):
-        # e0: -v0 + v1
-        # e1: -v1 + v2
-        # e2: -v0 + v2
-        # d1: e0 + e1 - e2 = 0
         filled = FiniteCochainComplex.from_rows(
             (3, 3, 1),
             ((-1, 1, 0), (0, -1, 1), (-1, 0, 1)),
             ((1, 1, -1),),
         )
 
-        # Exact coboundary: alpha = (1, 2, 4) -> d0 alpha = (1, 2, 3)
         res = analyze_finite_cochain(filled, (1, 2, 3))
         assert res.verdict == Verdict.EXACT_REPAIR
         assert res.primitive_witness is not None
-        # Verify the witness exactly reconstructs beta = (1, 2, 3)
         reconstructed = _matvec(filled.d0, res.primitive_witness)
         assert reconstructed == (Fraction(1), Fraction(2), Fraction(3))
         assert res.authority_effect == "None"
@@ -80,7 +72,6 @@ class TestFiniteCochainObstructionSolver:
             ((1, 1, -1),),
         )
 
-        # Nonzero curvature: (1, 2, 4) gives d1 * (1, 2, 4) = 1 + 2 - 4 = -1 != 0
         res = analyze_finite_cochain(filled, (1, 2, 4))
         assert res.verdict == Verdict.CURVATURE
         assert res.closure_defect == (Fraction(-1),)
@@ -91,7 +82,6 @@ class TestPhiL1LPSolver:
 
     def test_solve_phi_exact_and_dual_certificate(self):
         """Solve min_f ||omega - B f||_1 and verify strong duality and dual certificate."""
-        # Cycle on 3 vertices
         B = np.array([
             [-1.0, 1.0, 0.0],
             [0.0, -1.0, 1.0],
@@ -101,11 +91,9 @@ class TestPhiL1LPSolver:
 
         f_star, h1, cert = solve_phi(B, omega)
 
-        # Duality gap must be zero
         assert cert.duality_gap == pytest.approx(0.0, abs=1e-7)
         assert cert.phi1 == pytest.approx(3.0, abs=1e-7)
 
-        # Verify dual certificate
         assert cert.verify() is True
         assert np.max(np.abs(cert.dual.values)) <= 1.0 + 1e-7
 
@@ -128,7 +116,6 @@ class TestPhi1IntegerBoundarySolver:
 
     def test_integer_l1_boundary_cycle(self):
         """Solve integer L1 boundary for a balanced demand vector."""
-        # 3 vertices, edges: 0->1, 1->2, 2->0
         boundary = Boundary1(
             num_vertices=3,
             edges=[
@@ -137,7 +124,6 @@ class TestPhi1IntegerBoundarySolver:
                 BoundaryEdge(tail=2, head=0, weight=1),
             ],
         )
-        # Balanced demand vector summing to 0 (flow conservation)
         x = [1, -1, 0]
         solution = solve_l1_boundary(boundary, x)
 

@@ -1,6 +1,3 @@
-//! Orbits of checked partial functions on finite carriers. Periodic indices are
-//! reduced modulo the cycle before lookup, even for usize::MAX.
-//! AuthorityEffect: None.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum TransportOrbitError {
     #[error("partial-function carrier exceeds the finite budget")]
@@ -14,12 +11,9 @@ pub enum TransportOrbitError {
         vertices: usize,
     },
 }
-/// How the orbit of a partial step ends.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TransportOrbit {
-    /// The value after `at_step` steps is `None`, the first such index.
     Refused { at_step: usize },
-    /// The vertex reached after `entry` steps recurs every `period` steps.
     Periodic { entry: usize, period: usize },
 }
 
@@ -45,7 +39,6 @@ fn check(step: &[Option<usize>], start: usize) -> Result<(), TransportOrbitError
     Ok(())
 }
 
-/// Classify the orbit of `start` under the partial step.
 pub fn transport_orbit(
     step: &[Option<usize>],
     start: usize,
@@ -70,7 +63,6 @@ pub fn transport_orbit(
     }
 }
 
-/// The vertex after `k` steps from `start`, or `None` once transport refused.
 pub fn orbit_value(
     step: &[Option<usize>],
     start: usize,

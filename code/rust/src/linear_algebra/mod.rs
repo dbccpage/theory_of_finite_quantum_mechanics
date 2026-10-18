@@ -1,4 +1,3 @@
-//! Exact linear algebra, scalar fields, polynomial algebra and exact solvers.
 
 use crate::linear_algebra::scalars::{ExactRing, Field, Involution};
 use serde::{Deserialize, Serialize};
@@ -41,7 +40,6 @@ pub mod test_support;
 pub use basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 pub use scalars::{GaussianRational, Q, q, Semiring};
 
-/// Exact matrix carrier wrapping `BasicMatrix<F>` for homology and quantum state operators.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExactMatrix<F>(pub BasicMatrix<F>);
 

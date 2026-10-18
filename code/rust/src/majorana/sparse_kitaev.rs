@@ -1,20 +1,8 @@
-//! Sparse exact open Kitaev wire in the Majorana paper's coefficient convention.
-//!
-//! `H = -N mu/2 I + sum_(a<b) h_ab i gamma_a gamma_b`, with
-//! `h_(2j-1,2j) = -mu/2`, `h_(2j,2j+1) = -(t+delta)/2`, and
-//! `h_(2j-1,2j+2) = (t-delta)/2`. These are precisely the coefficients of
-//! `kitaev_chain_exact.py`. Relative to the existing Fock carrier this is
-//! `FockCarrier::kitaev_chain(-t, -delta, mu) - N mu/2 I`.
-//!
-//! No Fock matrix is allocated. Isolated coordinate Majoranas are reported;
-//! arbitrary linear combinations in the quadratic kernel and a bulk
-//! topological phase require separate checks. AuthorityEffect: None.
 
 use num_traits::{Signed, Zero};
 use omega_number_theory::rational::Rational;
 use std::collections::{BTreeMap, BTreeSet};
 
-/// Bound on a declared sparse wire's number of fermionic sites.
 pub const MAX_WIRE_SITES: usize = 65_536;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -27,7 +15,6 @@ pub enum KitaevWireError {
     Mode { mode: usize, count: usize },
 }
 
-/// An admitted Hermitian basis term `i gamma_a gamma_b` with one-indexed `a<b`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub struct MajoranaBilinear {
     a: usize,
@@ -50,8 +37,6 @@ impl MajoranaBilinear {
         self.b
     }
 
-    /// The real coefficient and target in `i[i gamma_a gamma_b, gamma_mode]`.
-    /// The explicit outer `i` matters: the commutator itself is imaginary.
     pub fn generator_on_mode(&self, mode: usize) -> Option<(i8, usize)> {
         if mode == self.a {
             Some((2, self.b))
@@ -63,7 +48,6 @@ impl MajoranaBilinear {
     }
 }
 
-/// Exact sparse coefficients of a declared open wire, with no zero terms.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct KitaevWire {
     sites: usize,
@@ -74,7 +58,6 @@ pub struct KitaevWire {
     terms: BTreeMap<MajoranaBilinear, Rational>,
 }
 
-/// Boundary isolation is a finite algebraic property of the declared wire.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BoundaryIsolation {
     pub boundary_modes: (usize, usize),
@@ -194,8 +177,6 @@ impl KitaevWire {
             .collect()
     }
 
-    /// Coordinate Majoranas absent from every term. This is distinct from
-    /// computing the full nullspace of the quadratic coefficient matrix.
     pub fn isolated_modes(&self) -> BTreeSet<usize> {
         let active = self.active_modes();
         (1..=self.mode_count())
@@ -203,8 +184,6 @@ impl KitaevWire {
             .collect()
     }
 
-    /// Compute `i[H, gamma_mode]` exactly in the Majorana basis. This is the
-    /// real generator represented by the paper's `commutator_with_mode` API.
     pub fn generator_on_mode(
         &self,
         mode: usize,
@@ -365,7 +344,6 @@ mod tests {
             );
         }
         let wire = KitaevWire::new(2, ri(1), ri(0), ri(1)).unwrap();
-        // Kills: returning an empty generator for a mode outside 1..=4.
         assert_eq!(
             wire.generator_on_mode(0),
             Err(KitaevWireError::Mode { mode: 0, count: 4 })

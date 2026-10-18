@@ -1,41 +1,9 @@
-//! # Phi2: Exact Degree-2 Quotient-Distance and 2-Flux Obstruction Certificates
-//!
-//! Higher-degree finite obstruction calculus in the chain/cochain complex:
-//!
-//! ```text
-//! C²  <───d₁───  C¹  <───d₀───  C⁰       (cochains)
-//! C₂  ───∂₂───>  C₁  ───∂₁───>  C₀       (chains, ∂₂ = d₁ᵀ, ∂₁ = d₀ᵀ)
-//! ```
-//!
-//! With the cochain nilpotence law `d₁ ∘ d₀ = 0` (or `∂₁ ∘ ∂₂ = 0`).
-//!
-//! ## Mathematical Definition
-//!
-//! For a 2-cochain target flux `B ∈ C²(K; ℚ)` (field strength / curvature) on a
-//! cell complex with non-trivial 2-cavities (`b₂ ≥ 1`):
-//!
-//! ```text
-//! Φ₂([B]) = min_{A ∈ C¹(K; ℚ)} ‖B - d₁ A‖_{1, w}
-//! ```
-//!
-//! By exact linear programming weak duality over `ℚ`:
-//!
-//! ```text
-//! Φ₂([B]) ≥ max_{y ∈ C₂(K; ℚ)} ⟨B, y⟩
-//! subject to:
-//!   d₁ᵀ y = 0       (y ∈ Z₂(K; ℚ), closed 2-cycle / cavity)
-//!   |y_f| ≤ w_f     ∀ f ∈ F
-//! ```
-//!
-//! When primal and dual values match exactly, weak duality establishes optimality
-//! with zero duality gap in `ℚ`.
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use serde::{Deserialize, Serialize};
 use std::str::FromStr;
 
-/// Wire shape for string-encoded rational certificate payloads.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ExactPhi2CertificateWire {
@@ -89,29 +57,19 @@ impl TryFrom<ExactPhi2CertificateWire> for ExactPhi2Certificate {
     }
 }
 
-/// Submitted exact finite rational witness for degree-2 quotient obstruction Φ₂([B]).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(try_from = "ExactPhi2CertificateWire")]
 pub struct ExactPhi2Certificate {
-    /// Target 2-cochain flux B ∈ C² (length |F|)
     pub flux_b: Vec<BigRational>,
-    /// Coboundary matrix d₁: C¹ → C² (|F| rows, |E| cols)
     pub d1: Vec<Vec<BigRational>>,
-    /// Optional coboundary matrix d₀: C⁰ → C¹ (|E| rows, |V| cols)
     pub d0: Option<Vec<Vec<BigRational>>>,
-    /// Strictly positive face weights w_f (length |F|)
     pub weights: Vec<BigRational>,
-    /// Gauge 1-cochain potential A ∈ C¹ (length |E|)
     pub potential_a: Vec<BigRational>,
-    /// Primal residual r = B - d₁ A (length |F|)
     pub primal_residual: Vec<BigRational>,
-    /// Dual 2-cycle witness y ∈ Z₂(K; ℚ) satisfying d₁ᵀ y = 0 (length |F|)
     pub dual_witness: Vec<BigRational>,
-    /// Certified optimal obstruction value in ℚ
     pub reported_value: BigRational,
 }
 
-/// Sealed result of replaying an [`ExactPhi2Certificate`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct VerifiedExactPhi2 {
     certificate: ExactPhi2Certificate,
@@ -194,14 +152,12 @@ pub enum ExactPhi2CertificateError {
 pub struct Phi2Functional;
 
 impl Phi2Functional {
-    /// Replay and verify an exact rational degree-2 quotient obstruction certificate.
     pub fn verify_exact_certificate(
         certificate: ExactPhi2Certificate,
     ) -> Result<VerifiedExactPhi2, ExactPhi2CertificateError> {
         let f_count = certificate.flux_b.len();
         let e_count = certificate.potential_a.len();
 
-        // 1. Zero denominator checks
         let mut all_vals = certificate
             .flux_b
             .iter()
@@ -222,7 +178,6 @@ impl Phi2Functional {
             }
         }
 
-        // 2. Dimension validations
         if certificate.primal_residual.len() != f_count
             || certificate.dual_witness.len() != f_count
             || certificate.weights.len() != f_count
@@ -255,7 +210,6 @@ impl Phi2Functional {
             }
         }
 
-        // 3. Optional d0 verification & nilpotence d1 * d0 = 0
         if let Some(ref d0) = certificate.d0 {
             if d0.len() != e_count {
                 return Err(ExactPhi2CertificateError::D0DimensionMismatch {
@@ -275,7 +229,6 @@ impl Phi2Functional {
                 }
             }
 
-            // Check d1 * d0 == 0
             for f in 0..f_count {
                 for v in 0..v_count {
                     let mut sum = BigRational::zero();
@@ -293,14 +246,12 @@ impl Phi2Functional {
             }
         }
 
-        // 4. Weight positivity
         for (i, w) in certificate.weights.iter().enumerate() {
             if *w <= BigRational::zero() {
                 return Err(ExactPhi2CertificateError::NonPositiveWeight { index: i });
             }
         }
 
-        // 5. Primal residual: r = B - d1 * A
         for f in 0..f_count {
             let mut d1_a = BigRational::zero();
             for e in 0..e_count {
@@ -316,7 +267,6 @@ impl Phi2Functional {
             }
         }
 
-        // 6. Dual 2-cycle closure: d1^T * y = 0
         for e in 0..e_count {
             let mut col_sum = BigRational::zero();
             for f in 0..f_count {
@@ -330,7 +280,6 @@ impl Phi2Functional {
             }
         }
 
-        // 7. Dual norm bound: |y_f| <= w_f
         for f in 0..f_count {
             if certificate.dual_witness[f].abs() > certificate.weights[f] {
                 return Err(ExactPhi2CertificateError::DualNormBoundViolation {
@@ -341,12 +290,10 @@ impl Phi2Functional {
             }
         }
 
-        // 8. Value non-negativity
         if certificate.reported_value < BigRational::zero() {
             return Err(ExactPhi2CertificateError::NegativeReportedValue);
         }
 
-        // 9. Primal objective: sum_f w_f * |r_f| == reported_value
         let mut primal_sum = BigRational::zero();
         for f in 0..f_count {
             primal_sum += &certificate.weights[f] * certificate.primal_residual[f].abs();
@@ -355,7 +302,6 @@ impl Phi2Functional {
             return Err(ExactPhi2CertificateError::PrimalValueMismatch);
         }
 
-        // 10. Dual objective: sum_f y_f * B_f == reported_value
         let mut dual_sum = BigRational::zero();
         for f in 0..f_count {
             dual_sum += &certificate.dual_witness[f] * &certificate.flux_b[f];
@@ -377,25 +323,21 @@ mod tests {
         BigRational::new(BigInt::from(n), BigInt::from(d))
     }
 
-    /// Build the standard hollow tetrahedron cell complex (b2 = 1).
-    /// |V|=4, |E|=6, |F|=4.
     fn tetrahedron_complex() -> (Vec<Vec<BigRational>>, Vec<Vec<BigRational>>) {
-        // d0: 6 edges x 4 vertices
         let d0 = vec![
-            vec![q(-1, 1), q(1, 1), q(0, 1), q(0, 1)], // e0 (0,1)
-            vec![q(-1, 1), q(0, 1), q(1, 1), q(0, 1)], // e1 (0,2)
-            vec![q(-1, 1), q(0, 1), q(0, 1), q(1, 1)], // e2 (0,3)
-            vec![q(0, 1), q(-1, 1), q(1, 1), q(0, 1)], // e3 (1,2)
-            vec![q(0, 1), q(-1, 1), q(0, 1), q(1, 1)], // e4 (1,3)
-            vec![q(0, 1), q(0, 1), q(-1, 1), q(1, 1)], // e5 (2,3)
+            vec![q(-1, 1), q(1, 1), q(0, 1), q(0, 1)],
+            vec![q(-1, 1), q(0, 1), q(1, 1), q(0, 1)],
+            vec![q(-1, 1), q(0, 1), q(0, 1), q(1, 1)],
+            vec![q(0, 1), q(-1, 1), q(1, 1), q(0, 1)],
+            vec![q(0, 1), q(-1, 1), q(0, 1), q(1, 1)],
+            vec![q(0, 1), q(0, 1), q(-1, 1), q(1, 1)],
         ];
 
-        // d1: 4 faces x 6 edges
         let d1 = vec![
-            vec![q(1, 1), q(-1, 1), q(0, 1), q(1, 1), q(0, 1), q(0, 1)], // f0 (0,1,2)
-            vec![q(1, 1), q(0, 1), q(-1, 1), q(0, 1), q(1, 1), q(0, 1)], // f1 (0,1,3)
-            vec![q(0, 1), q(1, 1), q(-1, 1), q(0, 1), q(0, 1), q(1, 1)], // f2 (0,2,3)
-            vec![q(0, 1), q(0, 1), q(0, 1), q(1, 1), q(-1, 1), q(1, 1)], // f3 (1,2,3)
+            vec![q(1, 1), q(-1, 1), q(0, 1), q(1, 1), q(0, 1), q(0, 1)],
+            vec![q(1, 1), q(0, 1), q(-1, 1), q(0, 1), q(1, 1), q(0, 1)],
+            vec![q(0, 1), q(1, 1), q(-1, 1), q(0, 1), q(0, 1), q(1, 1)],
+            vec![q(0, 1), q(0, 1), q(0, 1), q(1, 1), q(-1, 1), q(1, 1)],
         ];
 
         (d0, d1)
@@ -405,12 +347,10 @@ mod tests {
     fn test_tetrahedron_chain_law_and_valid_b2_certificate() {
         let (d0, d1) = tetrahedron_complex();
 
-        // Target flux: uniform 2-flux B = [1/4, -1/4, 1/4, -1/4]^T
         let flux_b = vec![q(1, 4), q(-1, 4), q(1, 4), q(-1, 4)];
         let weights = vec![q(1, 1), q(1, 1), q(1, 1), q(1, 1)];
         let potential_a = vec![q(0, 1); 6];
         let primal_residual = flux_b.clone();
-        // Dual 2-cycle witness Z = [1, -1, 1, -1]^T
         let dual_witness = vec![q(1, 1), q(-1, 1), q(1, 1), q(-1, 1)];
         let reported_value = q(1, 1);
 
@@ -438,7 +378,6 @@ mod tests {
         let potential_a = vec![q(0, 1); 6];
         let primal_residual = flux_b.clone();
 
-        // Leaking 2-chain: dual is not a closed cycle
         let leaking_witness = vec![q(1, 1), q(-1, 1), q(1, 1), q(0, 1)];
         let reported_value = q(3, 4);
 
@@ -455,7 +394,7 @@ mod tests {
 
         match Phi2Functional::verify_exact_certificate(cert) {
             Err(ExactPhi2CertificateError::DualNotClosed2Cycle { edge, residual }) => {
-                assert_eq!(edge, 3); // edge e3 = (1,2)
+                assert_eq!(edge, 3);
                 assert_eq!(residual, q(1, 1));
             }
             other => panic!("Expected DualNotClosed2Cycle, got {:?}", other),
@@ -470,7 +409,6 @@ mod tests {
         let potential_a = vec![q(0, 1); 6];
         let primal_residual = flux_b.clone();
 
-        // Scaled 2-cycle violating unit bound |y_f| <= 1
         let dual_witness = vec![q(2, 1), q(-2, 1), q(2, 1), q(-2, 1)];
         let reported_value = q(2, 1);
 
@@ -503,9 +441,8 @@ mod tests {
         let potential_a = vec![q(0, 1); 6];
         let primal_residual = flux_b.clone();
 
-        // Scaled down 2-cycle: valid cycle, norm <= 1, but gap is 1 - 1/2 = 1/2 != 0
         let dual_witness = vec![q(1, 2), q(-1, 2), q(1, 2), q(-1, 2)];
-        let reported_value = q(1, 1); // primal reported value
+        let reported_value = q(1, 1);
 
         let cert = ExactPhi2Certificate {
             flux_b,

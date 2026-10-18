@@ -29,43 +29,43 @@ class BlindClusterOracle:
     @property
     def independent_transfer_trace(self) -> str:
         """Occupation-basis transfer-matrix trace, computed without clusters."""
-        return self._independent_trace  # "912"
+        return self._independent_trace
 
     @property
     def total_subgraphs(self) -> int:
-        return self._summary["graphs"]  # 256
+        return self._summary["graphs"]
 
     @property
     def total_configurations(self) -> int:
-        return self._summary["configurations"]  # 1296
+        return self._summary["configurations"]
 
     @property
     def negative_configurations(self) -> int:
-        return self._summary["negative_configurations"]  # 192
+        return self._summary["negative_configurations"]
 
     @property
     def signed_partition(self) -> str:
-        return self._summary["signed_partition"]  # "912"
+        return self._summary["signed_partition"]
 
     @property
     def absolute_partition(self) -> str:
-        return self._summary["absolute_partition"]  # "1296"
+        return self._summary["absolute_partition"]
 
     @property
     def average_sign(self) -> str:
-        return self._summary["average_sign"]  # "19/27"
+        return self._summary["average_sign"]
 
     @property
     def zero_charge_subgraphs(self) -> int:
-        return self._summary["zero_meron_graphs"]  # 199
+        return self._summary["zero_meron_graphs"]
 
     @property
     def cancelling_subgraphs(self) -> int:
-        return self.total_subgraphs - self.zero_charge_subgraphs  # 57
+        return self.total_subgraphs - self.zero_charge_subgraphs
 
     @property
     def reduced_partition(self) -> str:
-        return self._summary["reduced_partition"]  # "912"
+        return self._summary["reduced_partition"]
 
     def get_sample_subgraphs(self, limit: int = 5) -> list[dict]:
         """Return sample subgraphs with cycle decomposition for prompt inclusion."""
@@ -130,7 +130,6 @@ class BlindClusterOracle:
         score = 0
         feedback = []
 
-        # Rubric item 1: Exact target Z
         z_match = False
         if claimed_z is not None:
             try:
@@ -144,7 +143,6 @@ class BlindClusterOracle:
         else:
             feedback.append(f"FAIL: Claimed Z={claimed_z} does not match exact ground-truth 912.")
 
-        # Rubric item 2: Cycle/cluster independence
         if cycle_independence_recognized:
             score += 1
             feedback.append(
@@ -153,7 +151,6 @@ class BlindClusterOracle:
         else:
             feedback.append("FAIL: Failed to recognize factorized cycle independence.")
 
-        # Rubric item 3: Parity cancellation
         if parity_cancellation_proved:
             score += 1
             feedback.append(
@@ -162,7 +159,6 @@ class BlindClusterOracle:
         else:
             feedback.append("FAIL: Did not prove that single cycle flips invert the global sign.")
 
-        # Rubric item 4: Zero-charge reduction
         if zero_sector_reduction_used:
             score += 1
             feedback.append(

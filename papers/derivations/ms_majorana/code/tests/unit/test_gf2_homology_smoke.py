@@ -16,8 +16,8 @@ def test_gf2_matrix_and_homology_smoke():
 
 def test_old_coda_homology_import_deleted():
     with pytest.raises(ImportError):
-        import omega_engine.crates.coda.homology  # type: ignore
+        import omega_engine.crates.coda.homology
     with pytest.raises(ImportError):
-        import omega_engine.crates.coda.gf2_matrix  # type: ignore
+        import omega_engine.crates.coda.gf2_matrix
 
 

@@ -1,9 +1,3 @@
-//! Trusted finite-DDA JSON contract, verifier, and canonical Rust renderer.
-//!
-//! This is a no-authority surface. It checks packet bytes, the F2 cochain
-//! identity, every operation law, every defect, and the terminal state.
-//! Carrier-changing operations and imports route to OracleNeeded because the
-//! current verifier does not establish lift licensing.
 
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;

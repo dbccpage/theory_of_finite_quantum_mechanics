@@ -26,18 +26,15 @@ from omega_engine.crates.projection_obstruction.falsification_sandbox import run
 
 def test_full_pipeline_integration():
     """Verify end-to-end integration across replay, artifact bundle, and verifier."""
-    # 1. Run aggregate claim replay
     run = replay.build_mechanization_run()
     assert run.execution_completed
     assert run.executable_checks_passed
     assert run.paper_id == "PO-000"
 
-    # 2. Run falsification sandbox
     breaks = run_all_breaks()
     assert len(breaks) == 4
     assert_all_breaks_trip(breaks)
 
-    # 3. Write artifact bundle and verify certificate
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_path = Path(tmpdir)
         cert_file = tmp_path / "cert.json"

@@ -1,4 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 """Foundational walk, discrete walk engines, and simplicial complex quantum mechanics.
 
 This module serves as the primary backwards-compatible public facade for the
@@ -22,7 +21,6 @@ AuthorityEffect: None.
 
 from __future__ import annotations
 
-# 1. Primitives and Operator Constants
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.domain.primitives import (
     I2,
     SIGMA_I,
@@ -47,7 +45,6 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.domain.primi
     ket00,
 )
 
-# 2. Canonical Math Crates
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.domain.primitive_difference import PrimitiveDifference
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.born_normalization import (
     l1_to_l2_amplitude_lift,
@@ -89,7 +86,6 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.fi
     evaluate_6rung_ladder,
 )
 
-# 3. Rungs 1-8 Domain Implementation
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.rungs import (
     primitive_difference,
     is_same,
@@ -134,7 +130,6 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.ru
     rational_pythagorean_frames_d2,
 )
 
-# 4. Phase 1 Separating Experiment & Phase 2 Discrete Walk Engines
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.discrete_walk_engines import (
     CABELLO_18_VECTORS,
     CABELLO_9_BASES,
@@ -152,7 +147,6 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.di
     monotone_admission_from_packet,
 )
 
-# 5. Simplicial Complex Quantum Mechanics (Loops 1-3)
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.simplicial_complex_qm import (
     arbitrary_degree_polynomial_reduction,
     polynomial_reduce_mod_circle,
@@ -168,7 +162,6 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.si
     evaluate_octahedral_graph_state_entanglement,
 )
 
-# 6. Quantum Information Protocols & Nonlocality (Loops 4-7, 11-12)
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.quantum_protocols import (
     evaluate_discrete_pythagorean_bell_chsh,
     derive_bell_singlet_correlation,
@@ -181,14 +174,12 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.qu
     simulate_discrete_superdense_coding,
 )
 
-# 7. Stabilizer and Topological Codes (Loops 8-10)
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.stabilizer_codes import (
     build_three_qubit_bitflip_code,
     build_four_qubit_css_surface_code,
     build_steane_seven_qubit_code,
 )
 
-# 8. Advanced Targets (Loops 4, 5, 13-22)
 from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.advanced_targets import (
     verify_target4_rational_cayley_so8, verify_target5_pentagon_identity_q5,
     build_prime_p_phase_point_operators, evaluate_prime_p_discrete_wigner, verify_gross_stabilizer_covariance,
@@ -205,7 +196,6 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases.ad
 )
 
 __all__ = [
-    # Constants
     "I2",
     "SIGMA_I",
     "SIGMA_X",
@@ -227,7 +217,6 @@ __all__ = [
     "marginals",
     "pure_state",
     "ket00",
-    # Crates
     "PrimitiveDifference",
     "l1_to_l2_amplitude_lift",
     "verify_born_normalization",
@@ -258,7 +247,6 @@ __all__ = [
     "Rung5SuperpositionFiber",
     "Rung6InterferenceCrossTerm",
     "evaluate_6rung_ladder",
-    # Rungs 1-8
     "primitive_difference",
     "is_same",
     "check_difference_cocycle",
@@ -300,7 +288,6 @@ __all__ = [
     "gleason_dimension_2_counterexample",
     "discrete_gleason_triads_d3",
     "rational_pythagorean_frames_d2",
-    # Discrete walk engines
     "CABELLO_18_VECTORS",
     "CABELLO_9_BASES",
     "evaluate_quartic_frame_sum_rational",
@@ -315,7 +302,6 @@ __all__ = [
     "build_glued_simplex_packet",
     "cabello_interface_from_packet",
     "monotone_admission_from_packet",
-    # Simplicial complex QM
     "arbitrary_degree_polynomial_reduction",
     "polynomial_reduce_mod_circle",
     "solve_frame_additive_homogeneous_polynomial",
@@ -328,7 +314,6 @@ __all__ = [
     "build_octahedron_graph_state_stabilizers",
     "evaluate_octahedral_depolarizing_noise_threshold",
     "evaluate_octahedral_graph_state_entanglement",
-    # Quantum protocols
     "evaluate_discrete_pythagorean_bell_chsh",
     "derive_bell_singlet_correlation",
     "evaluate_pell_pythagorean_tsirelson_convergence",
@@ -338,11 +323,9 @@ __all__ = [
     "evaluate_qutrit_discrete_wigner",
     "simulate_discrete_quantum_teleportation",
     "simulate_discrete_superdense_coding",
-    # Stabilizer codes
     "build_three_qubit_bitflip_code",
     "build_four_qubit_css_surface_code",
     "build_steane_seven_qubit_code",
-    # Advanced Targets (Loops 4, 5, 13-22)
     "verify_target4_rational_cayley_so8", "verify_target5_pentagon_identity_q5",
     "build_prime_p_phase_point_operators", "evaluate_prime_p_discrete_wigner", "verify_gross_stabilizer_covariance",
     "build_shor_nine_qubit_code", "extract_shor_syndrome", "decode_and_recover_shor", "simulate_shor_error_recovery", "verify_all_single_qubit_errors_recovery",

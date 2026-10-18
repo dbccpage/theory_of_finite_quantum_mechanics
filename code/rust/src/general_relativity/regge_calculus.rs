@@ -1,31 +1,14 @@
-//! Finite **2D Regge calculus** on a simplicial complex.
-//!
-//! Combinatorial complex: [`omega_homology::simplicial`] (no separate
-//! `omega_simplex` crate — homology already owns face-closed complexes).
-//!
-//! Metric: positive edge lengths with triangle inequalities.
-//! Curvature: hinge deficits at vertices (2-dimensional Regge).
-//! Action: `S = Σ_v ε_v` (2D Einstein–Hilbert / Regge; Gauss–Bonnet discrete).
-//!
-//! **Not** continuum GR, **not** 3+1 dihedral Regge (future), **not** PROVED.
-//! AuthorityEffect: None.
-//!
-//! PROD / research pointers: discrete GR programme papers; engines remain
-//! diagnostic-only elsewhere.
 
 use crate::discrete_spacetime::DiscreteSpacetime;
 use omega_homology::errors::HomologicalError;
 use omega_homology::simplicial::{OrientedSimplex, Simplex, SimplicialComplex};
 use std::collections::BTreeMap;
 
-/// Fence string (proposal).
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; finite 2D Regge face.";
 
-/// Default length / angle tolerance.
 pub const DEFAULT_TOL: f64 = 1e-9;
 
-/// Regge construction / validation errors.
 #[derive(Debug, Clone, PartialEq)]
 pub enum ReggeError {
     Homology(String),
@@ -45,7 +28,6 @@ pub enum ReggeError {
     UnknownVertex {
         vertex: usize,
     },
-    /// A cyclic fan of two triangles is one simplex: `{0,1,2}` twice.
     DegenerateFan {
         n_triangles: usize,
     },
@@ -66,7 +48,6 @@ impl From<HomologicalError> for ReggeError {
     }
 }
 
-/// Positive edge-length assignment on 1-simplices (keys ordered u < v).
 #[derive(Debug, Clone, PartialEq)]
 pub struct EdgeLengthMetric {
     lengths: BTreeMap<(usize, usize), f64>,
@@ -79,7 +60,6 @@ impl EdgeLengthMetric {
         }
     }
 
-    /// Insert length for unordered edge {u,v}.
     pub fn set(&mut self, u: usize, v: usize, length: f64) -> Result<(), ReggeError> {
         if !length.is_finite() {
             return Err(ReggeError::NonFinite);
@@ -114,24 +94,16 @@ impl Default for EdgeLengthMetric {
     }
 }
 
-/// Finite 2D Regge geometry: triangulation + edge lengths.
 #[derive(Debug, Clone, PartialEq)]
 pub struct ReggeCalculus {
-    /// Combinatorial complex (must include 2-simplices for curvature).
     pub complex: SimplicialComplex,
-    /// Edge lengths.
     pub metric: EdgeLengthMetric,
-    /// Label.
     pub label: String,
 }
 
 impl ReggeCalculus {
-    /// Scaffold: unit-edge standard 2-simplex (one equilateral-ready triangle
-    /// with edge lengths 1 — angles π/3 after build).
     pub fn new(degree: usize, label: impl Into<String>) -> Self {
         let n = degree.max(2);
-        // Use triangle (dim 2) as minimal Regge face; higher n → standard simplex
-        // with unit edges (may violate embedding in R^n; still a formal metric).
         let complex = SimplicialComplex::standard_n_simplex(n.min(2)).expect("standard simplex");
         let mut metric = EdgeLengthMetric::new();
         for e in complex.simplices(1) {
@@ -145,7 +117,6 @@ impl ReggeCalculus {
         }
     }
 
-    /// Build 2D Regge data from a discrete spacetime + metric.
     pub fn try_from_spacetime(
         spacetime: &DiscreteSpacetime,
         metric: EdgeLengthMetric,
@@ -154,7 +125,6 @@ impl ReggeCalculus {
         Self::try_new(spacetime.complex.clone(), metric, label)
     }
 
-    /// Build and validate triangle inequalities on all 2-simplices.
     pub fn try_new(
         complex: SimplicialComplex,
         metric: EdgeLengthMetric,
@@ -168,7 +138,6 @@ impl ReggeCalculus {
                 max_dim: complex.max_dimension(),
             });
         }
-        // Every edge must have a length
         for e in complex.simplices(1) {
             let v = e.vertices();
             let _ = metric.get(v[0], v[1])?;
@@ -182,12 +151,6 @@ impl ReggeCalculus {
         Ok(geo)
     }
 
-    /// Equilateral triangulation: fan of `n_triangles` equilateral triangles
-    /// around a center vertex (curvature cone), or a single freestanding triangle.
-    ///
-    /// - `n_triangles == 1`: one triangle on vertices {0,1,2}.
-    /// - `n_triangles >= 3`: center 0, boundary 1..=n, triangles (0,i,i+1) cyclic.
-    /// - `n_triangles == 2` is refused: both cyclic triangles are the simplex {0,1,2}.
     pub fn equilateral_fan(n_triangles: usize, edge_len: f64) -> Result<Self, ReggeError> {
         if n_triangles < 1 {
             return Err(ReggeError::EmptyComplex);
@@ -232,7 +195,6 @@ impl ReggeCalculus {
         Ok(())
     }
 
-    /// Interior angle of triangle at `vertex` via cosine law (radians).
     pub fn angle_at(&self, triangle: &Simplex, vertex: usize) -> Result<f64, ReggeError> {
         let verts = triangle.vertices();
         if verts.len() != 3 {
@@ -241,7 +203,6 @@ impl ReggeCalculus {
             });
         }
         let (i, j, k) = (verts[0], verts[1], verts[2]);
-        // Vertex v; adjacent edge endpoints p,q; opposite edge length = side facing v
         let (p, q, opp) = if vertex == i {
             (j, k, self.metric.get(j, k)?)
         } else if vertex == j {
@@ -257,7 +218,6 @@ impl ReggeCalculus {
         let a = self.metric.get(vertex, p)?;
         let b = self.metric.get(vertex, q)?;
         let c = opp;
-        // cos C = (a² + b² - c²) / (2ab)
         let denom = 2.0 * a * b;
         if denom.abs() < DEFAULT_TOL {
             return Err(ReggeError::DegenerateAngle {
@@ -274,7 +234,6 @@ impl ReggeCalculus {
         Ok(ang)
     }
 
-    /// Sum of triangle angles at vertex `v`.
     pub fn angle_sum_at_vertex(&self, v: usize) -> Result<f64, ReggeError> {
         self.ensure_vertex(v)?;
         let mut sum = 0.0;
@@ -286,18 +245,10 @@ impl ReggeCalculus {
         Ok(sum)
     }
 
-    /// Interior deficit ε_v = 2π − Σ angles (2D Regge hinge at vertex).
-    ///
-    /// Positive → conical positive curvature; zero → locally flat;
-    /// negative → hyperbolic-type deficit.
     pub fn deficit_at_vertex(&self, v: usize) -> Result<f64, ReggeError> {
         Ok(std::f64::consts::TAU - self.angle_sum_at_vertex(v)?)
     }
 
-    /// Deficits of the 0-simplices, in ascending vertex-id order.
-    ///
-    /// `SimplicialComplex::num_vertices` is `max_id + 1`. A gap in the labels
-    /// is not a vertex; treating it as angle-sum 0 would add a fake `2π`.
     pub fn vertex_deficits(&self) -> Result<Vec<f64>, ReggeError> {
         self.complex
             .simplices(0)
@@ -315,15 +266,10 @@ impl ReggeCalculus {
         }
     }
 
-    /// 2D Regge action S = Σ_v ε_v.
-    ///
-    /// On a closed combinatorial 2-manifold this is 2π χ (discrete Gauss–Bonnet);
-    /// on complexes with boundary the sum still records total deficit mass.
     pub fn regge_action_2d(&self) -> Result<f64, ReggeError> {
         Ok(self.vertex_deficits()?.into_iter().sum())
     }
 
-    /// Degree proxy = max simplex dimension.
     pub fn degree(&self) -> usize {
         self.complex.max_dimension()
     }
@@ -332,15 +278,12 @@ impl ReggeCalculus {
         AUTHORITY_FENCE
     }
 
-    /// Volume of any simplex in the complex via Cayley-Menger determinant.
     pub fn simplex_volume(&self, simplex: &Simplex) -> Result<f64, ReggeError> {
         let verts = simplex.vertices();
         crate::cayley_menger::simplex_volume_cayley_menger(verts, |u, v| self.metric.get(u, v).ok())
             .map_err(ReggeError::Computation)
     }
 
-    /// Interior deficit angle at an edge (1-simplex hinge) in 3D:
-    /// ε_e = 2π − Σ_{tetrahedra ∋ e} θ_tet(e).
     pub fn deficit_at_edge(&self, u: usize, v: usize) -> Result<f64, ReggeError> {
         let (e1, e2) = if u < v { (u, v) } else { (v, u) };
         let mut angle_sum = 0.0;
@@ -370,8 +313,6 @@ impl ReggeCalculus {
         Ok(std::f64::consts::TAU - angle_sum)
     }
 
-    /// Classical Regge action with cosmological constant Λ across 2D, 3D, or 4D:
-    /// S_Regge = Σ_{hinges} V_{D-2}(h) ε_h − Λ Σ_{simplices} V_D(σ).
     pub fn regge_action_with_lambda(
         &self,
         lambda_param: f64,
@@ -381,7 +322,6 @@ impl ReggeCalculus {
         let mut simplex_volumes = Vec::new();
 
         if dim == 2 {
-            // Hinges are vertices (0-simplices)
             for v_simplex in self.complex.simplices(0) {
                 let v = v_simplex.vertices()[0];
                 let eps = self.deficit_at_vertex(v)?;
@@ -392,7 +332,6 @@ impl ReggeCalculus {
                 simplex_volumes.push(vol);
             }
         } else if dim == 3 {
-            // Hinges are edges (1-simplices)
             for e_simplex in self.complex.simplices(1) {
                 let v = e_simplex.vertices();
                 let len = self.metric.get(v[0], v[1])?;
@@ -425,7 +364,6 @@ mod tests {
     #[test]
     fn equilateral_triangle_angles() {
         let g = ReggeCalculus::equilateral_fan(1, 1.0).unwrap();
-        // Single triangle vertices 0,1,2 — each angle π/3
         let t = &g.complex.simplices(2)[0];
         for &v in t.vertices() {
             let a = g.angle_at(t, v).unwrap();
@@ -435,7 +373,6 @@ mod tests {
 
     #[test]
     fn six_equilateral_flat_at_center() {
-        // Six equilateral triangles around center → angle sum 2π → deficit 0
         let g = ReggeCalculus::equilateral_fan(6, 1.0).unwrap();
         let d0 = g.deficit_at_vertex(0).unwrap();
         assert!(d0.abs() < 1e-8, "expected flat center, deficit={d0}");
@@ -443,7 +380,6 @@ mod tests {
 
     #[test]
     fn three_equilateral_positive_curvature_cone() {
-        // Three equilateral → angle sum π → deficit π at center
         let g = ReggeCalculus::equilateral_fan(3, 1.0).unwrap();
         let d0 = g.deficit_at_vertex(0).unwrap();
         assert!(
@@ -458,7 +394,7 @@ mod tests {
         let mut metric = EdgeLengthMetric::new();
         metric.set(0, 1, 1.0).unwrap();
         metric.set(1, 2, 1.0).unwrap();
-        metric.set(0, 2, 3.0).unwrap(); // 1+1 < 3
+        metric.set(0, 2, 3.0).unwrap();
         let err = ReggeCalculus::try_new(complex, metric, "bad");
         assert!(matches!(err, Err(ReggeError::TriangleInequality { .. })));
     }

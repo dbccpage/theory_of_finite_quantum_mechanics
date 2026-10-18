@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/software_change_profile.rs
-# Rust sha256: edbd32a5ee993290f042f2cc5f703bb5db17478334e206cd9890d9b8851a45f5
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,7 +38,6 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 SOFTWARE_PROFILE_SCHEMA_V1: Any = None
 
 
@@ -61,7 +56,6 @@ SoftwareProfileKindV1.__doc__ = (
 )
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
@@ -301,10 +295,8 @@ SoftwareChangeError.__doc__ = (
 )
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
-# END GENERATED RUST SURFACE
 
 

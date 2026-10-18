@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 symbol_game_coda_meron_ladder.py: Top 5 Symbol Game Candidate Targets Walking CODA & Meron to 4D.
 
@@ -30,7 +29,6 @@ from pathlib import Path
 import sys
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
-# Ensure local code directory and repo root are in sys.path
 CODE_DIR = Path(__file__).resolve().parent
 REPO_ROOT = CODE_DIR.parents[2]
 if str(CODE_DIR) not in sys.path:
@@ -52,9 +50,6 @@ from omega_engine_pfp.domain.tower.parser import (
 RESULTS_DIR = CODE_DIR.parent / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-# ---------------------------------------------------------------------------
-# Lexical and Claim Hygiene Fences
-# ---------------------------------------------------------------------------
 
 FORBIDDEN_CLAIM_WORDS = (
     "proves",
@@ -109,9 +104,6 @@ def assert_blind_hygiene(text: str) -> None:
             )
 
 
-# ---------------------------------------------------------------------------
-# Data Models for the Top 5 Ladder Targets
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -138,9 +130,6 @@ class TargetSpec:
         return asdict(self)
 
 
-# ---------------------------------------------------------------------------
-# Constructive Mathematical Engines for Each Target
-# ---------------------------------------------------------------------------
 
 
 def compute_t1_receipt() -> Dict[str, Any]:
@@ -148,10 +137,8 @@ def compute_t1_receipt() -> Dict[str, Any]:
 
     Evaluates transfer trace, cluster winding parity, and Wilsonian log partition density.
     """
-    # 2D torus 4x4 spatial lattice with 16 sites, transfer trace from certified Z(4)=912
     exact_Z = 912
     log_z_interval = RationalInterval(Fraction(68156, 10000), Fraction(68157, 10000))
-    # Wilsonian f_inf interval from meron_wilsonian_bridge
     f_inf_lo = Fraction(16941183355060717208883, 10000000000000000000000)
     f_inf_hi = Fraction(16941183355060717208910, 10000000000000000000000)
     f_inf_interval = RationalInterval(f_inf_lo, f_inf_hi)
@@ -186,20 +173,10 @@ def compute_t2_receipt() -> Dict[str, Any]:
     Computes Cayley-Menger nondegeneracy, exact apex angle cosine 1/2 (pi/3),
     deficit angle 2pi - 5(pi/3) = pi/3, and encloses it in a certified rational interval.
     """
-    # 5 equilateral triangles meeting at a vertex in 2D Regge calculus
-    # Apex angle is pi/3. Full turn is 2pi.
-    # Deficit angle epsilon = 2*pi - 5*(pi/3) = pi/3.
     pi_int = certified_pi_enclosure(terms=15)
     one_third = RationalInterval(Fraction(1, 3), Fraction(1, 3))
     deficit_angle_int = pi_int * one_third
 
-    # Cayley-Menger determinant of unit equilateral triangle with squared lengths = 1
-    # CM matrix:
-    # [0, 1, 1, 1]
-    # [1, 0, 1, 1]
-    # [1, 1, 0, 1]
-    # [1, 1, 1, 0]
-    # det(CM) = 3 > 0, (-1)^3 * det(CM) = -3, positive 2-volume
     cm_det_2simplex = Fraction(3)
 
     return {
@@ -227,9 +204,7 @@ def compute_t3_receipt() -> Dict[str, Any]:
 
     Computes character orthogonality norm on 3-torus and 1D string linking parity.
     """
-    # 3D torus Z_4 x Z_4 x Z_4 -> T^3
-    v_3d = 4 * 4 * 4  # 64 lattice sites
-    # Character orthogonality bound over Q: sum_x chi_k(x) = 0 for k != 0
+    v_3d = 4 * 4 * 4
     pi_int = certified_pi_enclosure(terms=15)
     ortho_bound = RationalInterval(Fraction(0), Fraction(1, 10**25))
 
@@ -253,9 +228,6 @@ def compute_t4_receipt() -> Dict[str, Any]:
     Computes Barrett-Crane simplicity of area bivectors, exact Bianchi identities
     in ^2 Q^4, and deficit curvature holonomy.
     """
-    # Area bivectors for a 4D simplex: Sigma_h = (1/2) (r2 - r1) ^ (r3 - r1) in ^2 Q^4
-    # Simplicity constraint: Sigma_h ^ Sigma_h = 0
-    # Contracted Bianchi identity: sum_{h in d tau} D_h * Sigma_h = 0
     simplicity_defect = Fraction(0)
     bianchi_defect = Fraction(0)
 
@@ -285,7 +257,7 @@ def compute_t5_receipt() -> Dict[str, Any]:
     and exact sign cancellation under half-instanton orientation reversal.
     """
     c2_half_instanton = Fraction(1, 2)
-    meron_sign_parity = (-1) ** int(2 * c2_half_instanton)  # -1
+    meron_sign_parity = (-1) ** int(2 * c2_half_instanton)
 
     return {
         "dimension": 4,
@@ -301,14 +273,10 @@ def compute_t5_receipt() -> Dict[str, Any]:
     }
 
 
-# ---------------------------------------------------------------------------
-# Target Ladder Assembly
-# ---------------------------------------------------------------------------
 
 
 def build_top_five_targets() -> List[TargetSpec]:
     """Constructs the list of top 5 candidate targets walking CODA & Meron to 4D."""
-    # Wire strings: strictly conform to Gamma38 alphabet and parser semantics
     wire_t1 = (
         "op<<11>"
         "op<<101><10><0><1><10>>"
@@ -518,9 +486,6 @@ def build_top_five_targets() -> List[TargetSpec]:
     return [t1, t2, t3, t4, t5]
 
 
-# ---------------------------------------------------------------------------
-# Verification Suite
-# ---------------------------------------------------------------------------
 
 
 def verify_target_gamma38(target: TargetSpec) -> bool:
@@ -538,14 +503,12 @@ def verify_target_gamma38(target: TargetSpec) -> bool:
 
 def verify_target_hygiene(target: TargetSpec) -> bool:
     """Verifies claim hygiene and blind declaration hygiene for the target."""
-    # Check claim hygiene across all narrative fields
     assert_claim_hygiene(target.title)
     assert_claim_hygiene(target.what_it_supports)
     assert_claim_hygiene(target.what_it_does_not_support)
     assert_claim_hygiene(target.narrowest_defensible_claim)
     assert_claim_hygiene(target.next_test_needed)
 
-    # Check blind hygiene on the blind declaration
     assert_blind_hygiene(target.blind_problem_declaration)
     assert_claim_hygiene(target.blind_problem_declaration)
     return True

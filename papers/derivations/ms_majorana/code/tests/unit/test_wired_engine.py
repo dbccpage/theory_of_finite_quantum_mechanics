@@ -16,7 +16,6 @@ from omega_engine.crates.runtime.rt_wired import WE
 from omega_engine.crates.type.wired import CC, AC, AX, V, TP, BG, LG, L
 
 
-# --- CanContinue_n (OE003-01) ---
 
 class TestCC:
     def test_all_true(self):
@@ -56,7 +55,6 @@ class TestCC:
         assert not c.v()
 
 
-# --- AdapterContract (OE002-02) ---
 
 class TestAC:
     def test_clean_adapter(self):
@@ -73,7 +71,6 @@ class TestAC:
         assert not a.ok
 
 
-# --- Anti-cheat (OE003-02) ---
 
 class TestAX:
     def test_no_violations_on_same_degree(self):
@@ -141,7 +138,6 @@ class TestAX:
         assert V.FUDH in vv
 
 
-# --- DDA Tape FSM (OE010-16) ---
 
 class TestTP:
     def test_write_and_done(self):
@@ -161,7 +157,6 @@ class TestTP:
         assert h2 != h1
 
 
-# --- Budget (OE003-03) ---
 
 class TestBG:
     def test_bounded_ops(self):
@@ -177,7 +172,6 @@ class TestBG:
         assert not bg.ok
 
 
-# --- LGGR closure gate ---
 
 class TestLG:
     def test_all_pass(self):
@@ -201,7 +195,6 @@ class TestLG:
         assert not lg.el
 
 
-# --- Wired Engine integration ---
 
 class TestWE:
     def test_happy_path_solve(self):
@@ -226,7 +219,7 @@ class TestWE:
         w.fnd(p1=5.0, g2=1.0)
         w.stp(letter="E", dp1=-1.0, dg2=0.0, r_hash="r1", sk_hash="sk0")
         s, _ = w.stp(letter="E", dp1=-1.0, dg2=0.0, r_hash="r2", sk_hash="sk0")
-        assert s == "HALT_CC"  # budget exhaustion fires via CC.b=False
+        assert s == "HALT_CC"
 
     def test_anticheats_fire(self):
         """Degree laundering without n+1 obligation halts."""
@@ -286,9 +279,9 @@ class TestWE:
     def test_full_autopoietic_tape(self):
         """Full C·R·E·I·T tape sequence."""
         w = WE(bt=100.0, dc=1.0)
-        w.fnd(p1=1.0, g2=0.0)  # writes C, R
-        w.stp(letter="E", dp1=-1.0, dg2=0.0, r_hash="r1", sk_hash="sk0")  # E
-        w.trm()  # -> SOLVED writes T
+        w.fnd(p1=1.0, g2=0.0)
+        w.stp(letter="E", dp1=-1.0, dg2=0.0, r_hash="r1", sk_hash="sk0")
+        w.trm()
         assert w.tape[0] == "C"
         assert w.tape[1] == "R"
         assert "E" in w.tape

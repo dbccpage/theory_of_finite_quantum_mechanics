@@ -46,9 +46,6 @@ from omega_engine_operating_system.adapters.rust_host.majorana_math import (
     decode_rational,
 )
 
-# ---------------------------------------------------------------------------
-# Exact matrix substrate with explicit shape (handles 0-row / 0-col correctly)
-# ---------------------------------------------------------------------------
 
 Scalar = Fraction
 COEFFICIENT_DOMAIN = "Q"
@@ -67,7 +64,7 @@ class ExactMatrix:
 
     rows: int
     cols: int
-    data: Tuple[Tuple[Fraction, ...], ...]  # length == rows; each row length == cols
+    data: Tuple[Tuple[Fraction, ...], ...]
 
     def __post_init__(self) -> None:
         if any(
@@ -190,7 +187,6 @@ class ExactMatrix:
         return hashlib.sha256(raw).hexdigest()
 
 
-# Convenience aliases matching older style
 def zero_matrix(rows: int, cols: int) -> ExactMatrix:
     return ExactMatrix.zero(rows, cols)
 
@@ -207,9 +203,6 @@ def is_zero_matrix(m: ExactMatrix) -> bool:
     return m.is_zero()
 
 
-# ---------------------------------------------------------------------------
-# Normalized contraction data (degree window 0-1-2)
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -250,18 +243,18 @@ class NormalizedContraction:
 
     C: DegreeDimensions
     D: DegreeDimensions
-    dC0: ExactMatrix  # C1 ← C0
-    dC1: ExactMatrix  # C2 ← C1
-    dD0: ExactMatrix  # D1 ← D0
-    dD1: ExactMatrix  # D2 ← D1
+    dC0: ExactMatrix
+    dC1: ExactMatrix
+    dD0: ExactMatrix
+    dD1: ExactMatrix
     i0: ExactMatrix
     i1: ExactMatrix
     i2: ExactMatrix
     r0: ExactMatrix
     r1: ExactMatrix
     r2: ExactMatrix
-    h1: ExactMatrix  # C0 ← C1
-    h2: ExactMatrix  # C1 ← C2
+    h1: ExactMatrix
+    h2: ExactMatrix
 
     @classmethod
     def from_matrices(
@@ -370,17 +363,14 @@ def verify_normalized(contraction: NormalizedContraction) -> SideConditionReport
     return _side_condition_report(report)
 
 
-# ---------------------------------------------------------------------------
-# Perturbation data and DeformationReceipt
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
 class DifferentialPerturbation:
     """Degree-+1 endomorphism δ of C (blocks δ0 : C0→C1, δ1 : C1→C2)."""
 
-    delta0: ExactMatrix  # C1 ← C0
-    delta1: ExactMatrix  # C2 ← C1
+    delta0: ExactMatrix
+    delta1: ExactMatrix
 
     @classmethod
     def from_matrices(

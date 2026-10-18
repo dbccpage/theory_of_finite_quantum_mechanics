@@ -29,7 +29,6 @@ def unfilled_cycle(n: int) -> FiniteGraph:
     return FiniteGraph(vertices=list(range(n)), edges=[(i, (i + 1) % n) for i in range(n)])
 
 
-# --------------------------------------------------------------------------- Phi_1
 
 
 def test_phi1_vanishes_on_a_tree():
@@ -103,7 +102,6 @@ def test_constant_gauge_sweep_provably_finds_nothing():
     assert rep["residual_missed_by_sweep"] > 7.0
 
 
-# ------------------------------------------------------------------ trace-norm quotient
 
 
 def test_trace_norm_quotient_is_zero_on_an_exact_coboundary():
@@ -139,15 +137,14 @@ def test_the_two_dual_ball_conventions_differ_by_exactly_two():
 
     Kills a 'fix' that silently rescales one convention into the other.
     """
-    m = SIGMA_X.astype(complex)  # eigenvalues +-1
-    assert tnq.dual_ball_slack(m) == pytest.approx(0.0)          # ||M||_op = 1
-    assert tnq.trace_distance_dual_ball_slack(m) == pytest.approx(-1.0)  # diam = 2
+    m = SIGMA_X.astype(complex)
+    assert tnq.dual_ball_slack(m) == pytest.approx(0.0)
+    assert tnq.trace_distance_dual_ball_slack(m) == pytest.approx(-1.0)
     ident = tnq.dual_ball_diameter_identity(m)
     assert ident["identity_holds"] is True
     assert ident["diameter"] == pytest.approx(2.0 * ident["op_norm_at_optimal_shift"])
 
 
-# ------------------------------------------------------------------------ SNF / Betti
 
 
 def test_betti_of_a_filled_triangle_is_contractible():
@@ -185,11 +182,10 @@ def test_snf_recovers_invariant_factors_exactly():
     mat = np.array([[2, 4], [6, 8]], dtype=float)
     factors = sb.smith_normal_form_diagonal(mat)
 
-    assert factors == [2, 4]                                   # exact, not "one of these"
-    assert abs(np.prod(factors)) == pytest.approx(abs(np.linalg.det(mat)))  # d1*d2 = |det|
-    assert factors[1] % factors[0] == 0                        # divisibility chain
+    assert factors == [2, 4]
+    assert abs(np.prod(factors)) == pytest.approx(abs(np.linalg.det(mat)))
+    assert factors[1] % factors[0] == 0
 
-    # The broken implementation would return rounded singular values (10.93, 0.73).
     sv = np.sort(np.linalg.svd(mat, compute_uv=False))
     assert not np.allclose(np.sort(np.abs(factors)), sv, atol=1e-6)
     assert not np.allclose(np.sort(np.abs(factors)), np.rint(sv), atol=1e-6)
@@ -201,11 +197,10 @@ def test_torsion_is_reported_not_silently_dropped():
     mat = np.array([[2, 0], [0, 3]], dtype=float)
     factors = sb.smith_normal_form_diagonal(mat)
     assert factors == [1, 6]
-    assert factors != [2, 3]  # the naive "it's already diagonal" answer
+    assert factors != [2, 3]
     assert abs(np.prod(factors)) == pytest.approx(abs(np.linalg.det(mat)))
 
 
-# ---------------------------------------------------------------------- l1 / l2 boundary
 
 
 def test_prop_e2_bounds_hold_and_both_are_attained():
@@ -268,7 +263,6 @@ def test_snf_refuses_non_integral_input_instead_of_rounding():
     with pytest.raises(ValueError, match="integral"):
         sb.betti_numbers.__globals__["_integer_matrix_rank"](np.array([[0.5]]))
 
-    # Integral-valued floats are still fine -- incidence matrices are built as float.
     assert sb.smith_normal_form_diagonal(np.array([[2.0, 4.0], [6.0, 8.0]])) == [2, 4]
 
 
@@ -303,8 +297,8 @@ def test_phi1_does_not_certify_off_a_failed_solve():
 
     assert res["primal_solved"] is False
     assert res["used_fallback"] is True
-    assert res["duality_gap"] == pytest.approx(0.0, abs=1e-9)  # gap alone looks fine...
-    assert res["is_certified"] is False                        # ...but this must not
+    assert res["duality_gap"] == pytest.approx(0.0, abs=1e-9)
+    assert res["is_certified"] is False
 
 
 def test_phi1_surfaces_a_weak_duality_violation_instead_of_clamping():

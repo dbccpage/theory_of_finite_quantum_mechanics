@@ -209,7 +209,6 @@ def test_engine_module_source_has_no_diy_phi1_sum_abs() -> None:
     tree = ast.parse(src_path.read_text(encoding="utf-8"))
     text = src_path.read_text(encoding="utf-8")
     assert "sum(abs" not in text
-    # No Call to residual_l1/phi1 inside engine module (Engine must not compute Φ)
     assert "residual_l1" not in text
     assert "from omega_engine.crates.functional" not in text
     assert isinstance(tree, ast.Module)

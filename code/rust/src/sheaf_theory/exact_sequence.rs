@@ -1,6 +1,3 @@
-//! Long exact sequence, flasque sheaves, partitions of unity, and spectral sequences (SH-20, SH-21, SH-22, SH-25).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::OpenSet;
 use crate::presheaf::Presheaf;
@@ -10,7 +7,6 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt::Debug;
 
-/// Result of evaluating the connecting homomorphism delta^*: H^0(H) -> H^1(F) (SH-20).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ConnectingHomomorphismResult {
     pub h0_target_val: Ratio<i64>,
@@ -18,7 +14,6 @@ pub struct ConnectingHomomorphismResult {
     pub is_exact_at_boundary: bool,
 }
 
-/// Compute connecting coboundary delta^*: H^0(H) -> H^1(F) for short exact sequence 0 -> F -> G -> H -> 0.
 pub fn connecting_homomorphism_delta_star(
     section_h: Ratio<i64>,
     lift_to_g: Ratio<i64>,
@@ -35,7 +30,6 @@ pub fn connecting_homomorphism_delta_star(
     }
 }
 
-/// A sheaf F is flasque (injective) if all restriction maps rho_{V,U}: F(U) -> F(V) are surjective (SH-21).
 pub fn is_flasque_sheaf<T: Clone + PartialEq + Debug>(
     presheaf: &Presheaf<T>,
     all_open_pairs: &[(OpenSet, OpenSet)],
@@ -61,11 +55,9 @@ pub fn is_flasque_sheaf<T: Clone + PartialEq + Debug>(
     true
 }
 
-/// A discrete partition of unity subordinate to cover {U_i}: sum_i phi_i(x) = 1 (SH-22).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PartitionOfUnity {
     pub cover: Vec<OpenSet>,
-    /// Weights mapped from (cover_index, point_id) -> Rational weight
     pub weights: BTreeMap<(usize, String), Ratio<i64>>,
 }
 
@@ -84,7 +76,6 @@ impl PartitionOfUnity {
         }
     }
 
-    /// Verify that weights sum to exactly 1 at all points in base set.
     pub fn verify_sum_to_one(&self, points: &BTreeSet<String>) -> bool {
         let one = Ratio::from_integer(1);
         let zero = Ratio::from_integer(0);
@@ -102,11 +93,9 @@ impl PartitionOfUnity {
     }
 }
 
-/// Page E_2^{p,q} of the local-to-global spectral sequence (SH-25):
-/// E_2^{p,q} = H^p(U, H^q(F)) => H^{p+q}(X, F).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LocalToGlobalSpectralSequencePage {
-    pub e2_table: BTreeMap<(usize, usize), usize>, // (p, q) -> dimension
+    pub e2_table: BTreeMap<(usize, usize), usize>,
 }
 
 impl LocalToGlobalSpectralSequencePage {
@@ -116,7 +105,6 @@ impl LocalToGlobalSpectralSequencePage {
         }
     }
 
-    /// Bound on total cohomology dimension dim H^{deg}(X, F) <= sum_{p+q = deg} dim E_2^{p,q}.
     pub fn total_cohomology_bound(&self, degree: usize) -> usize {
         self.e2_table
             .iter()

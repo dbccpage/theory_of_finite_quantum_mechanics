@@ -27,7 +27,6 @@ def test_golden_density_matrix_receipt():
     assert receipt["purity"] >= 0.25
     assert receipt["authority_effect"] == "None"
 
-    # Verify JSON serializability
     receipt_str = json.dumps(receipt)
     assert '"dimension": 4' in receipt_str
 

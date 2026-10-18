@@ -1,24 +1,3 @@
-//! Gauss–Jordan elimination over an exact field.
-//!
-//! Reduced row echelon form, rank, right and left kernels, column-space bases, the
-//! linear system `A x = b` with a replayable refusal certificate, the inverse, and the
-//! determinant, for any `F: Field + ExactRing`. Pivots are the first nonzero entry in
-//! the column; because the reduced row echelon form of a matrix is unique, the result
-//! does not depend on that choice, and `rref`, the pivot columns, the kernel basis and
-//! the image basis agree entry for entry with the `BigRational` / `Rational64`
-//! elimination in [`crate::linear_algebra::image_kernel`].
-//!
-//! Every division is a multiplication by `Field::try_inv` of a nonzero pivot. A nonzero
-//! pivot with no inverse means the scalar type is not a field; that is refused as
-//! [`ExactFieldError::ScalarContract`] rather than worked around.
-//!
-//! Cost model used by the budget checks (worst case, scalar calls): reduction of an
-//! `m × n` grid costs at most `min(m, n)·(2mn + n + 1)`; the determinant at most
-//! `2n³ + n² + n`; the inverse is a reduction of the `n × 2n` grid `[A | I]`; a solve is
-//! a reduction of `[A | b]`, one `2mn` replay and, for a refusal, the reduction of the dual
-//! system `[Aᵀ; bᵀ] y = e`.
-//!
-//! AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
 use crate::linear_algebra::matrix::{column, dot, multiply_vector, transpose};
@@ -27,13 +6,7 @@ use crate::linear_algebra::{
 };
 use crate::linear_algebra::scalars::{ExactRing, Field};
 
-// ============================================================================
-// Reduction
-// ============================================================================
 
-/// Gauss–Jordan reduction of `grid` in place; returns the pivot columns in increasing
-/// order. Afterwards the grid is the reduced row echelon form: each pivot is `1`, is the
-/// only nonzero entry of its column, and the zero rows come last.
 pub(crate) fn reduce_to_rref<F: Field + ExactRing>(
     grid: &mut Grid<F>,
 ) -> Result<Vec<usize>, ExactFieldError> {
@@ -49,7 +22,6 @@ pub(crate) fn reduce_to_rref<F: Field + ExactRing>(
         };
         grid.swap_rows(pivot_row, found);
         let inv = inverse_of("rref", grid.at(pivot_row, col))?;
-        // Entries of the pivot row left of `col` are already zero, so start at `col`.
         grid.scale_row(pivot_row, &inv, col);
         for r in 0..rows {
             if r != pivot_row {
@@ -65,15 +37,11 @@ pub(crate) fn reduce_to_rref<F: Field + ExactRing>(
     Ok(pivots)
 }
 
-/// Worst-case scalar calls of [`reduce_to_rref`] on a `rows × cols` grid.
 pub(crate) fn reduction_cost(rows: usize, cols: usize) -> Result<usize, ExactFieldError> {
     let per_pivot = plus(plus(times(2, element_count(rows, cols)?)?, cols)?, 1)?;
     Ok(times(rows.min(cols), per_pivot)?)
 }
 
-/// The free columns' kernel vectors read off a reduced grid: for each non-pivot column
-/// `f < width` the vector with `1` at `f`, `−R[i][f]` at each pivot column `pᵢ`, and `0`
-/// elsewhere. Pivots at or beyond `width` (an augmented column) are ignored.
 fn kernel_vectors<F: Field + ExactRing>(
     grid: &Grid<F>,
     pivots: &[usize],
@@ -98,7 +66,6 @@ fn kernel_vectors<F: Field + ExactRing>(
     Ok(basis)
 }
 
-/// The reduced row echelon form of a matrix with its pivot columns.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RowReduced<F> {
     matrix: BasicMatrix<F>,
@@ -106,33 +73,27 @@ pub struct RowReduced<F> {
 }
 
 impl<F> RowReduced<F> {
-    /// The reduced row echelon form (same shape as the input).
     pub fn matrix(&self) -> &BasicMatrix<F> {
         &self.matrix
     }
 
-    /// The pivot columns, strictly increasing.
     pub fn pivot_columns(&self) -> &[usize] {
         &self.pivot_columns
     }
 
-    /// The rank: the number of pivots.
     pub fn rank(&self) -> usize {
         self.pivot_columns.len()
     }
 
-    /// The matrix and the pivot columns.
     pub fn into_parts(self) -> (BasicMatrix<F>, Vec<usize>) {
         (self.matrix, self.pivot_columns)
     }
 }
 
-/// The reduced row echelon form of `a`.
 pub fn rref<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<RowReduced<F>, ExactFieldError> {
     rref_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`rref`] under a budget: `m·n` elements and `min(m, n)·(2mn + n + 1)` scalar calls.
 pub fn rref_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -151,12 +112,10 @@ pub fn rref_with_limits<F: Field + ExactRing>(
     })
 }
 
-/// The rank of `a`.
 pub fn rank<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<usize, ExactFieldError> {
     rank_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`rank`] under the budget of [`rref_with_limits`].
 pub fn rank_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -164,21 +123,13 @@ pub fn rank_with_limits<F: Field + ExactRing>(
     Ok(rref_with_limits(a, limits)?.rank())
 }
 
-// ============================================================================
-// Subspaces
-// ============================================================================
 
-/// A basis of the right kernel `{x : A x = 0}`: one vector per free column, in column
-/// order, with `1` at its own free column and `0` at the other free columns.
-/// `rank(A) + kernel_basis(A).len() = cols(A)`.
 pub fn kernel_basis<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<Vec<Vec<F>>, ExactFieldError> {
     kernel_basis_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`kernel_basis`] under a budget. The output can have `n²` elements (a zero matrix),
-/// so `max(m·n, n²)` elements are charged.
 pub fn kernel_basis_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -191,15 +142,12 @@ pub fn kernel_basis_with_limits<F: Field + ExactRing>(
     kernel_vectors(&grid, &pivots, cols)
 }
 
-/// A basis of the left kernel `{y : yᵀA = 0}`, that is the right kernel of `Aᵀ`.
 pub fn left_kernel_basis<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<Vec<Vec<F>>, ExactFieldError> {
     left_kernel_basis_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`left_kernel_basis`] under a budget: the budget of [`kernel_basis_with_limits`] on `Aᵀ`
-/// (`max(m·n, m²)` elements), charged before the transpose is allocated.
 pub fn left_kernel_basis_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -210,14 +158,12 @@ pub fn left_kernel_basis_with_limits<F: Field + ExactRing>(
     kernel_basis_with_limits(&transpose(a)?, OperationLimits::UNLIMITED)
 }
 
-/// A basis of the column space: the columns of `a` at the pivot columns, in order.
 pub fn image_basis<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<Vec<Vec<F>>, ExactFieldError> {
     image_basis_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`image_basis`] under the budget of [`rref_with_limits`].
 pub fn image_basis_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -230,27 +176,19 @@ pub fn image_basis_with_limits<F: Field + ExactRing>(
     Ok(basis)
 }
 
-// ============================================================================
-// Linear systems
-// ============================================================================
 
-/// Proof that `A x = b` has no solution: a combination `y` of the rows with `yᵀA = 0`
-/// and `yᵀb ≠ 0` (summing the equations with weights `y` gives `0 = yᵀb ≠ 0`).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct InconsistencyCertificate<F> {
     combination: Vec<F>,
 }
 
 impl<F> InconsistencyCertificate<F> {
-    /// The row weights `y`.
     pub fn combination(&self) -> &[F] {
         &self.combination
     }
 }
 
 impl<F: Field + ExactRing> InconsistencyCertificate<F> {
-    /// Replays the certificate against `a` and `b` without trusting the solver:
-    /// `yᵀA = 0` column by column and `yᵀb ≠ 0`.
     pub fn verify(&self, a: &BasicMatrix<F>, b: &[F]) -> Result<(), ExactFieldError> {
         if self.combination.len() != a.rows() {
             return Err(ExactFieldError::VectorLength {
@@ -282,30 +220,23 @@ impl<F: Field + ExactRing> InconsistencyCertificate<F> {
     }
 }
 
-/// The answer to `A x = b`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum LinearSolution<F> {
-    /// `A x = b` has solutions. `particular` is the one with every free variable `0`;
-    /// the solutions are exactly `particular + Σ tᵢ·kernel_basis[i]`.
     Consistent {
         particular: Vec<F>,
         kernel_basis: Vec<Vec<F>>,
     },
-    /// `A x = b` has no solution; the certificate replays with
-    /// [`InconsistencyCertificate::verify`].
     Inconsistent {
         certificate: InconsistencyCertificate<F>,
     },
 }
 
 impl<F> LinearSolution<F> {
-    /// `true` for [`LinearSolution::Consistent`].
     pub fn is_consistent(&self) -> bool {
         matches!(self, LinearSolution::Consistent { .. })
     }
 }
 
-/// Solves `A x = b`. The vector `b` must have `a.rows()` entries.
 pub fn solve<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &[F],
@@ -313,10 +244,6 @@ pub fn solve<F: Field + ExactRing>(
     solve_with_limits(a, b, OperationLimits::UNLIMITED)
 }
 
-/// [`solve`] under a budget covering the worse of its two paths. Both start with the reduction
-/// of `[A | b]`. A consistent system then replays `A x = b` (`2mn` calls) and returns a kernel
-/// basis of at most `n²` elements; an inconsistent one reduces the dual system `[Aᵀ; bᵀ] y = e`
-/// (an `(n+1) × (m+1)` grid) and replays the certificate (`2m(n+1)` calls).
 pub fn solve_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &[F],
@@ -357,7 +284,6 @@ pub fn solve_with_limits<F: Field + ExactRing>(
     let pivots = reduce_to_rref(&mut grid)?;
 
     if pivots.last() == Some(&cols) {
-        // A pivot in the right-hand-side column: a row `0 = c ≠ 0`.
         return Ok(LinearSolution::Inconsistent {
             certificate: refusal_certificate(a, b)?,
         });
@@ -378,12 +304,6 @@ pub fn solve_with_limits<F: Field + ExactRing>(
     })
 }
 
-/// A certificate that `A x = b` has no solution, from the dual system `Aᵀ y = 0`, `bᵀ y = 1`.
-///
-/// By the Fredholm alternative (`im A = (ker Aᵀ)⊥` over any field) that system is solvable
-/// exactly when `b ∉ im A`, and a solution `y` has `yᵀA = 0` and `yᵀb = 1 ≠ 0`. Free variables
-/// are taken to be zero, so no kernel basis is built. The certificate is replayed before it
-/// is returned.
 fn refusal_certificate<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &[F],
@@ -420,18 +340,13 @@ fn refusal_certificate<F: Field + ExactRing>(
     Ok(certificate)
 }
 
-// ============================================================================
-// Square matrices
-// ============================================================================
 
-/// The inverse of a square matrix, or [`ExactFieldError::Singular`] with its rank.
 pub fn inverse<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
     inverse_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`inverse`] under a budget: the `n × 2n` grid `[A | I]` and its reduction.
 pub fn inverse_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -449,7 +364,6 @@ pub fn inverse_with_limits<F: Field + ExactRing>(
         })
     })?;
     let pivots = reduce_to_rref(&mut grid)?;
-    // The pivots left of column `n` are exactly the pivots of `A` itself.
     let rank = pivots.iter().take_while(|&&p| p < n).count();
     if rank < n {
         return Err(ExactFieldError::Singular { rank, size: n });
@@ -457,13 +371,10 @@ pub fn inverse_with_limits<F: Field + ExactRing>(
     BasicMatrix::try_from_fn_result(n, n, |r, c| Ok(grid.at(r, n + c).clone()))
 }
 
-/// The determinant of a square matrix (`1` for the empty matrix).
 pub fn determinant<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<F, ExactFieldError> {
     determinant_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`determinant`] under a budget: `n²` elements and at most `2n³ + n² + n` scalar calls.
-/// Forward elimination; each row swap negates the running product of pivots.
 pub fn determinant_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -495,7 +406,6 @@ pub fn determinant_with_limits<F: Field + ExactRing>(
     Ok(det)
 }
 
-/// `true` when the square matrix `a` has full rank. Refuses a non-square matrix.
 pub fn is_invertible<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     let n = require_square("is_invertible", a)?;
     Ok(rank(a)? == n)
@@ -519,7 +429,6 @@ mod tests {
         m(v)
     }
 
-    /// `A v = 0` for every vector.
     fn assert_annihilates(a: &BasicMatrix<Q>, vectors: &[Vec<Q>]) {
         for v in vectors {
             let image = multiply_vector(a, v).unwrap();
@@ -527,10 +436,7 @@ mod tests {
         }
     }
 
-    // ------------------------------------------------------------------ rref
 
-    /// Invariant: hand-computed reduced forms. The first needs a row swap (leading
-    /// zero), the second has a free column between two pivots and a fractional pivot.
     #[test]
     fn rref_matches_hand_computed_reduced_forms() {
         let a = rat(&[&[0, 1, 2], &[1, 2, 3], &[2, 3, 4]]);
@@ -545,14 +451,11 @@ mod tests {
         assert_eq!(r.pivot_columns(), &[0, 2]);
     }
 
-    /// Invariant: each pivot column of the reduced form is a standard basis vector, the
-    /// reduction is idempotent, and the zero rows come last.
     #[test]
     fn rref_is_idempotent_with_unit_pivot_columns_and_trailing_zero_rows() {
         let mut rng = Rng::new(101);
         for trial in 0..20 {
             let (rows, cols) = (3 + trial % 3, 2 + (trial / 3) % 4);
-            // Force a dependency: last row = first row + 2·second row (needs >= 3 rows).
             let base = random_integer_matrix(&mut rng, rows, cols, 4);
             let mut data = base.as_slice().to_vec();
             for c in 0..cols {
@@ -588,13 +491,11 @@ mod tests {
         assert_eq!(rank(&rat(&[&[1], &[2], &[3]])).unwrap(), 1);
     }
 
-    /// Invariants: `rank A = rank Aᵀ`, `rank(AB) ≤ min(rank A, rank B)`, and
-    /// `rank(A ⊗ B) = rank A · rank B`.
     #[test]
     fn rank_laws_transpose_product_and_kronecker() {
         use crate::linear_algebra::matrix::kronecker;
-        let a = rat(&[&[1, 2, 3], &[2, 4, 6], &[1, 0, 1]]); // rank 2
-        let b = rat(&[&[1, 1], &[1, 1], &[0, 0]]); // rank 1
+        let a = rat(&[&[1, 2, 3], &[2, 4, 6], &[1, 0, 1]]);
+        let b = rat(&[&[1, 1], &[1, 1], &[0, 0]]);
         assert_eq!(rank(&a).unwrap(), 2);
         assert_eq!(rank(&transpose(&a).unwrap()).unwrap(), 2);
         assert!(rank(&multiply(&a, &b).unwrap()).unwrap() <= 1);
@@ -602,19 +503,15 @@ mod tests {
         assert_eq!(rank(&k).unwrap(), 2, "rank(A ⊗ B) = rank(A)·rank(B) = 2·1");
     }
 
-    // ------------------------------------------------------------------ kernels
 
-    /// Invariants: rank–nullity, `A v = 0` for each kernel vector, the kernel vectors are
-    /// independent, and each has `1` at its own free column and `0` at the other free ones.
     #[test]
     fn kernel_basis_satisfies_rank_nullity_replay_and_the_free_column_pattern() {
-        let a = rat(&[&[1, 2, 0, 3], &[0, 0, 1, 4], &[1, 2, 1, 7]]); // rank 2, free cols 1 and 3
+        let a = rat(&[&[1, 2, 0, 3], &[0, 0, 1, 4], &[1, 2, 1, 7]]);
         let reduced = rref(&a).unwrap();
         assert_eq!(reduced.pivot_columns(), &[0, 2]);
         let kernel = kernel_basis(&a).unwrap();
         assert_eq!(reduced.rank() + kernel.len(), a.cols());
         assert_annihilates(&a, &kernel);
-        // free columns are 1 and 3
         assert_eq!(kernel[0], vec![q(-2, 1), q(1, 1), q(0, 1), q(0, 1)]);
         assert_eq!(kernel[1], vec![q(-3, 1), q(0, 1), q(-4, 1), q(1, 1)]);
         let as_matrix = crate::linear_algebra::matrix::from_rows(kernel.clone()).unwrap();
@@ -634,7 +531,7 @@ mod tests {
 
     #[test]
     fn left_kernel_annihilates_from_the_left_and_has_dimension_rows_minus_rank() {
-        let a = rat(&[&[1, 2], &[2, 4], &[3, 6], &[0, 1]]); // rank 2, 4 rows
+        let a = rat(&[&[1, 2], &[2, 4], &[3, 6], &[0, 1]]);
         let left = left_kernel_basis(&a).unwrap();
         assert_eq!(left.len(), 4 - 2);
         for y in &left {
@@ -644,8 +541,6 @@ mod tests {
         }
     }
 
-    /// Invariant: the image basis is made of columns of `A` itself (the pivot columns), it
-    /// has `rank` vectors, and every column of `A` lies in its span (checked through `solve`).
     #[test]
     fn image_basis_is_the_pivot_columns_of_the_original_matrix() {
         let a = rat(&[&[1, 2, 3, 1], &[2, 4, 6, 0], &[1, 2, 4, 1]]);
@@ -664,10 +559,7 @@ mod tests {
         }
     }
 
-    // ------------------------------------------------------------------ solve
 
-    /// Determined, under-determined and consistent over-determined systems: the returned
-    /// particular solution solves, and adding any multiple of a kernel vector still solves.
     #[test]
     fn solve_returns_a_particular_solution_and_the_whole_kernel() {
         let cases: Vec<(BasicMatrix<Q>, Vec<Q>)> = vec![
@@ -708,8 +600,6 @@ mod tests {
         assert_eq!(particular, vec![q(6, 1), q(0, 1), q(0, 1)]);
     }
 
-    /// Invariant: an inconsistent system yields a certificate `y` with `yᵀA = 0`,
-    /// `yᵀb ≠ 0`; `verify` accepts it and rejects tampered ones.
     #[test]
     fn solve_inconsistent_yields_a_replayable_certificate() {
         let a = rat(&[&[1, 1], &[1, 1], &[2, 2]]);
@@ -718,13 +608,11 @@ mod tests {
             panic!("system is inconsistent");
         };
         certificate.verify(&a, &b).unwrap();
-        // independent replay, not through `verify`
         let y = certificate.combination();
         assert!(dot(y, &column(&a, 0).unwrap()).unwrap().is_zero());
         assert!(dot(y, &column(&a, 1).unwrap()).unwrap().is_zero());
         assert!(!dot(y, &b).unwrap().is_zero());
 
-        // tampering: zero vector has yᵀb = 0; a vector that does not annihilate A fails
         let zero_weights = InconsistencyCertificate {
             combination: vec![q(0, 1); 3],
         };
@@ -743,17 +631,13 @@ mod tests {
                 reason: "the combination does not annihilate every column (yᵀA ≠ 0)"
             })
         );
-        // the same certificate is rejected for a consistent right-hand side
         assert!(certificate
             .verify(&a, &[q(1, 1), q(1, 1), q(2, 1)])
             .is_err());
     }
 
-    /// `verify` checks every column: a weight vector that annihilates column 1 but not column 0
-    /// (and the converse) is rejected, although its `yᵀb` is nonzero.
     #[test]
     fn a_certificate_failing_in_a_single_column_is_rejected() {
-        // yᵀA = (3, 0) for A = [[1,1],[2,-1]] and y = (1,1): only column 0 fails
         let a = rat(&[&[1, 1], &[2, -1]]);
         let b = vec![q(1, 1), q(1, 1)];
         let first_column = InconsistencyCertificate {
@@ -765,7 +649,6 @@ mod tests {
                 reason: "the combination does not annihilate every column (yᵀA ≠ 0)"
             })
         );
-        // yᵀA = (0, 3) for A = [[1,1],[-1,2]] and y = (1,1): only column 1 fails
         let a = rat(&[&[1, 1], &[-1, 2]]);
         assert_eq!(
             first_column.verify(&a, &b),
@@ -773,7 +656,6 @@ mod tests {
                 reason: "the combination does not annihilate every column (yᵀA ≠ 0)"
             })
         );
-        // a length mismatch is refused with both lengths
         let short = InconsistencyCertificate {
             combination: vec![q(1, 1)],
         };
@@ -795,7 +677,6 @@ mod tests {
             panic!("0 x = b with b != 0 has no solution");
         };
         certificate.verify(&a, &b).unwrap();
-        // zero matrix, zero rhs: every vector solves, the kernel is everything
         let LinearSolution::Consistent {
             particular,
             kernel_basis,
@@ -809,13 +690,11 @@ mod tests {
 
     #[test]
     fn solve_handles_empty_shapes_and_refuses_wrong_length() {
-        // no equations: consistent, everything is a solution
         let none = zeros::<Q>(0, 2).unwrap();
         let LinearSolution::Consistent { kernel_basis, .. } = solve(&none, &[]).unwrap() else {
             panic!("consistent")
         };
         assert_eq!(kernel_basis.len(), 2);
-        // no unknowns: consistent iff b = 0
         let no_unknowns = zeros::<Q>(2, 0).unwrap();
         assert!(solve(&no_unknowns, &[q(0, 1), q(0, 1)])
             .unwrap()
@@ -836,7 +715,6 @@ mod tests {
         );
     }
 
-    // ------------------------------------------------------------------ inverse
 
     #[test]
     fn inverse_of_known_matrices() {
@@ -847,7 +725,6 @@ mod tests {
         ])
         .unwrap();
         assert_eq!(inverse(&a).unwrap(), expected);
-        // a permutation matrix exercises the pivot swap on the augmented block: P⁻¹ = Pᵀ
         let p = rat(&[&[0, 1, 0], &[0, 0, 1], &[1, 0, 0]]);
         assert_eq!(inverse(&p).unwrap(), transpose(&p).unwrap());
         assert_eq!(inverse(&zeros::<Q>(0, 0).unwrap()).unwrap().shape(), (0, 0));
@@ -857,8 +734,6 @@ mod tests {
         );
     }
 
-    /// Invariant: `A A⁻¹ = I = A⁻¹ A` and `(A⁻¹)⁻¹ = A` for random invertible matrices
-    /// (unit-triangular products have determinant 1, so invertibility is by construction).
     #[test]
     fn inverse_round_trips_on_random_invertible_matrices() {
         let mut rng = Rng::new(131);
@@ -904,7 +779,6 @@ mod tests {
             inverse(&zeros::<Q>(3, 3).unwrap()),
             Err(ExactFieldError::Singular { rank: 0, size: 3 })
         );
-        // rank deficiency hidden behind a nonzero leading minor
         assert_eq!(
             inverse(&rat(&[&[1, 0, 0], &[0, 1, 1], &[0, 1, 1]])),
             Err(ExactFieldError::Singular { rank: 2, size: 3 })
@@ -919,9 +793,6 @@ mod tests {
         );
     }
 
-    /// A singular refusal is replayable: the reported rank is `n − |kernel|`, the kernel holds a
-    /// nonzero vector with `A x = 0`, and the determinant is zero. Random singular matrices are
-    /// built with a forced dependency (last row = sum of the others).
     #[test]
     fn a_singular_refusal_is_certified_by_a_kernel_vector_and_a_zero_determinant() {
         let mut rng = Rng::new(139);
@@ -959,10 +830,7 @@ mod tests {
         }
     }
 
-    // ------------------------------------------------------------------ determinant
 
-    /// Sign tracking: a single transposition has determinant −1, a 3-cycle +1, two
-    /// disjoint transpositions +1, in every pivot order.
     #[test]
     fn determinant_tracks_the_sign_of_row_swaps() {
         assert_eq!(determinant(&rat(&[&[0, 1], &[1, 0]])).unwrap(), q(-1, 1));
@@ -990,16 +858,12 @@ mod tests {
             .unwrap(),
             q(-1, 1)
         );
-        // A swap after a nonzero first pivot: the second pivot is 0 until rows 1 and 2 are
-        // exchanged. Cofactor expansion: 2·(2·3 − 1·1) − 1·(4·3 − 1·0) = 10 − 12 = −2.
         assert_eq!(
             determinant(&rat(&[&[2, 1, 0], &[4, 2, 1], &[0, 1, 3]])).unwrap(),
             q(-2, 1)
         );
     }
 
-    /// Invariants: `det(AB) = det A · det B`, `det Aᵀ = det A`, `det(cA) = cⁿ det A`,
-    /// singular ⇒ 0, empty ⇒ 1.
     #[test]
     fn determinant_is_multiplicative_transpose_invariant_and_homogeneous() {
         let mut rng = Rng::new(151);
@@ -1052,9 +916,7 @@ mod tests {
         ));
     }
 
-    // ------------------------------------------------------------------ other fields
 
-    /// GF(5): inverse of [[1,2],[3,4]] is [[3,1],[4,2]]; determinant −2 ≡ 3.
     #[test]
     fn elimination_over_gf5() {
         type F5 = Fp<5>;
@@ -1069,8 +931,6 @@ mod tests {
         assert!(is_identity_matrix(&multiply(&a, &expected).unwrap()).unwrap());
     }
 
-    /// GF(2): [[1,1],[1,1]] has rank 1 and the kernel vector (1,1) because −1 = 1; a bad
-    /// sign (`+R` instead of `−R`) would still pass here, which is why GF(3) follows.
     #[test]
     fn elimination_over_gf2_and_gf3_kernel_signs() {
         type F2 = Fp<2>;
@@ -1087,15 +947,12 @@ mod tests {
 
         type F3 = Fp<3>;
         let a = crate::linear_algebra::matrix::from_rows(vec![vec![F3::new(1), F3::new(1)]]).unwrap();
-        // kernel of (1 1) over GF(3) is spanned by (−1, 1) = (2, 1)
         assert_eq!(
             kernel_basis(&a).unwrap(),
             vec![vec![F3::new(2), F3::new(1)]]
         );
     }
 
-    /// Z/6 pretends to be a field but 2, 3, 4 have no inverse. Elimination must refuse with a
-    /// typed contract error, not panic and not return a wrong rank.
     #[test]
     fn a_non_field_scalar_is_refused_not_miscomputed() {
         let a = crate::linear_algebra::matrix::from_rows(vec![
@@ -1118,10 +975,7 @@ mod tests {
         ));
     }
 
-    // ------------------------------------------------------------------ budgets
 
-    /// Boundary: the documented worst-case cost of reducing a 2×2 matrix is
-    /// `min(2,2)·(2·4 + 2 + 1) = 22` scalar calls, and `m·n = 4` elements.
     #[test]
     fn reduction_budget_boundaries_are_inclusive() {
         let a = rat(&[&[1, 2], &[3, 4]]);
@@ -1164,7 +1018,6 @@ mod tests {
 
     #[test]
     fn the_kernel_budget_charges_the_output_not_just_the_input() {
-        // a 1×5 zero matrix has a 5-vector kernel basis of 25 elements, more than its 5 entries
         let a = zeros::<Q>(1, 5).unwrap();
         let limits = OperationLimits {
             max_elements: 24,
@@ -1217,11 +1070,6 @@ mod tests {
         );
     }
 
-    /// The `solve` preflight covers the refusal-certificate path even when the system turns out
-    /// consistent. For a 2×2 system: reduction of `[A | b]` (3·… = 2·(2·6 + 3 + 1) = 32) plus the
-    /// worse path: consistent replay 2·2·2 = 8, or refusal = reduction of the 3×3 dual system
-    /// (3·(2·9 + 3 + 1) = 66) + certificate replay (2·2·3 = 12) = 78. Total 110 calls; the largest
-    /// grid is the 3×3 dual system, 9 elements.
     #[test]
     fn solve_budget_covers_the_certificate_path() {
         let a = rat(&[&[2, 1], &[1, 3]]);
@@ -1258,8 +1106,6 @@ mod tests {
         .is_err());
     }
 
-    /// A tall consistent system is not charged for an `m²` left kernel: 1000 equations in 2
-    /// unknowns need only `max(1000·3, 2², 3·1001)` elements.
     #[test]
     fn a_tall_system_is_charged_linear_not_quadratic_elements() {
         let rows = 1000usize;
@@ -1272,11 +1118,9 @@ mod tests {
         assert!(solve_with_limits(&a, &b, limits).unwrap().is_consistent());
     }
 
-    /// The left kernel of a tall matrix has up to `m²` elements; the budget refuses before
-    /// the transpose is built.
     #[test]
     fn left_kernel_budget_charges_the_output_size() {
-        let tall = rat(&[&[1], &[2], &[3]]); // 3×1: left kernel has 2 vectors of length 3
+        let tall = rat(&[&[1], &[2], &[3]]);
         let limits = OperationLimits {
             max_elements: 8,
             max_scalar_ops: usize::MAX,
@@ -1306,7 +1150,6 @@ mod tests {
 
     #[test]
     fn additive_structure_is_consistent_with_solving() {
-        // x solves A x = b1, y solves A y = b2  =>  x + y solves A z = b1 + b2
         let a = rat(&[&[2, 1], &[1, 3]]);
         let (b1, b2) = (vec![q(1, 1), q(0, 1)], vec![q(0, 1), q(1, 1)]);
         let x = match solve(&a, &b1).unwrap() {
@@ -1326,9 +1169,6 @@ mod tests {
     }
 }
 
-/// All nonempty principal minors in increasing subset-bitmask order. The
-/// exponential enumeration is admitted only through dimension twelve (4095
-/// minors); determinant arithmetic uses the canonical exact elimination.
 pub fn principal_minors<F: Field + ExactRing>(
     matrix: &BasicMatrix<F>,
 ) -> Result<Vec<F>, ExactFieldError> {

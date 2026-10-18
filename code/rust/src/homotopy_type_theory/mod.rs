@@ -1,15 +1,3 @@
-//! HoTT-facing spine for the Omega tower.
-//!
-//! This crate encodes the type-theoretic reading of the tower:
-//! difference is primitive, sameness is certified zero-difference, authority is
-//! an inhabited dependent type, and terminalization is an eliminator into
-//! authority/refusal outcomes. It is a finite record layer, not a proof
-//! assistant kernel.
-//!
-//! `primitive_difference` (the finite PD quotient/descent kernel) and the type
-//! formers (Π, Σ, sum, unit, empty, path, universe, univalence witness) are
-//! shape records validated here. The former `omega_engine_native_hott` crate
-//! was a partial copy of this one and was merged into it on 2026-09-25.
 
 pub mod contractible_type;
 pub mod difference;

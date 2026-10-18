@@ -1,20 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import WorldPresentation
 
-/-!
-# HL9A: arithmetic composition lemma for a finite CHSH square certificate
 
-This theorem proves that supplied natural-number inequalities compose to
-S^2 <= 8.  It is intentionally not a serialization bridge to the separate
-exact-rational Python receipt.
--/
 
 namespace OmegaWorld
 
@@ -38,3 +25,6 @@ theorem chsh_square_le_eight (certificate : CHSHSquareCertificate) :
 #print axioms chsh_square_le_eight
 
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldCHSH.lean Claim: chsh_square_le_eight AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -43,21 +43,18 @@ from omega_engine.crates.functional.dual_witness import from_verified as dual_wi
 
 
 class TestOmegaFunctionalAudit(unittest.TestCase):
-    # 1. test_aggregation_2d_odd_grid_refuses_or_ledgers_loss
     def test_aggregation_2d_odd_grid_refuses_or_ledgers_loss(self):
         grid = np.ones((3, 3))
         with self.assertRaises(ValueError) as ctx:
             AggregationMonotonicity.coarse_grain_2d(grid, block_size=2)
         self.assertIn("COARSE_GRID_LEFTOVER_REFUSED", str(ctx.exception))
 
-    # 2. test_aggregation_1d_requires_divisible_block_size
     def test_aggregation_1d_requires_divisible_block_size(self):
         with self.assertRaises(ValueError):
             AggregationMonotonicity.coarse_grain_1d([1.0] * 5, [(0, 1)], block_size=2)
         with self.assertRaises(ValueError):
             AggregationMonotonicity.coarse_grain_1d([1.0] * 4, [(0, 1)], block_size=0)
 
-    # 3. test_aggregation_monotonicity_is_empirical_not_theorem
     def test_aggregation_monotonicity_is_empirical_not_theorem(self):
         res = AggregationMonotonicity.verify_monotonicity(
             [1.0, 2.0], [(0, 1)], block_size=2
@@ -67,14 +64,12 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         self.assertIn("monotone", res)
         self.assertNotIn("authority_effect", res)
 
-    # 4. test_born_rule_is_declared_map_not_derivation
     def test_born_rule_is_declared_map_not_derivation(self):
         probs = born_rule([1.0 + 0j, 0.0 + 1j])
         self.assertAlmostEqual(sum(probs), 1.0, places=5)
         with self.assertRaises(ValueError):
             born_rule([0.0, 0.0])
 
-    # 5. test_l1_probability_refuses_negative_zero_or_multidimensional
     def test_l1_probability_refuses_negative_zero_or_multidimensional(self):
         with self.assertRaises(ValueError):
             l1_probability([-1.0, 2.0])
@@ -85,15 +80,13 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         probs = l1_probability([1.0, 3.0])
         self.assertAlmostEqual(sum(probs), 1.0, places=5)
 
-    # 6. test_density_from_h1_negative_node_index_refuses
     def test_density_from_h1_negative_node_index_refuses(self):
         with self.assertRaises(ValueError):
             incidence_sector_decomposition(3, [(-1, 1)], [1.0])
 
-    # 7. test_density_from_sectors_diagonal_refuses_malformed_probabilities
     def test_density_from_sectors_diagonal_refuses_malformed_probabilities(self):
         s1 = H1Sector(0, [0], 1.0, 0.4)
-        s2 = H1Sector(1, [1], 1.0, 0.4)  # sum = 0.8 != 1.0
+        s2 = H1Sector(1, [1], 1.0, 0.4)
         cert = SectorMassCertificate(2.0, 2.0, 0.0)
         decomp = H1SectorDecomposition([s1, s2], cert)
         with self.assertRaises(ValueError):
@@ -104,7 +97,6 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         with self.assertRaises(ValueError):
             density_from_sectors_diagonal(decomp_neg)
 
-    # 8. test_density_phase_witness_refuses_nonfinite_phase
     def test_density_phase_witness_refuses_nonfinite_phase(self):
         s1 = H1Sector(0, [0], 1.0, 1.0)
         cert = SectorMassCertificate(1.0, 1.0, 0.0)
@@ -113,7 +105,6 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         with self.assertRaises(ValueError):
             density_from_sectors_with_phase(decomp, witness)
 
-    # 9. test_density_lift_xi_zero_conventions
     def test_density_lift_xi_zero_conventions(self):
         self.assertEqual(compute_xi([0, 0], [0, 0]), 0.0)
         self.assertIsNone(compute_xi([1, 0], [0, 0]))
@@ -121,19 +112,16 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         with self.assertRaises(ValueError):
             compute_xi([1, 0], [1, 0, 0])
 
-    # 10. test_density_lift_rho_l1_refuses_bool_or_nonreal
     def test_density_lift_rho_l1_refuses_bool_or_nonreal(self):
         with self.assertRaises(TypeError):
             rho_l1([True, False])
         with self.assertRaises(ValueError):
             rho_l1([1.0, math.nan])
 
-    # 11. test_l1_norm_matches_l1_seminorm_on_valid_scalars
     def test_l1_norm_matches_l1_seminorm_on_valid_scalars(self):
         vec = [1.0, -2.0, 3.0]
         self.assertEqual(compute_l1_norm(vec), EdgeCochain(vec).phi1())
 
-    # 12. test_l1_norm_rejects_bool_strings_complex_like_l1_seminorm
     def test_l1_norm_rejects_bool_strings_complex_like_l1_seminorm(self):
         with self.assertRaises(TypeError):
             compute_l1_norm([True, False])
@@ -144,7 +132,6 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         with self.assertRaises(ValueError):
             compute_l1_norm([math.nan])
 
-    # 13. test_cohomology_l2_rejects_complex_vector_values
     def test_cohomology_l2_rejects_complex_vector_values(self):
         with self.assertRaises(TypeError):
             compute_l2_norm({"a": 1 + 2j})
@@ -153,13 +140,11 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         with self.assertRaises(ValueError):
             compute_l2_norm({"a": math.nan})
 
-    # 14. test_norm_gap_nonnegative_for_real_vectors
     def test_norm_gap_nonnegative_for_real_vectors(self):
         self.assertEqual(norm_gap([]), 0.0)
         self.assertEqual(norm_gap([1.0]), 0.0)
         self.assertGreater(norm_gap([1.0, 1.0]), 0.0)
 
-    # 15. test_gamma2_closed_near_open_trichotomy
     def test_gamma2_closed_near_open_trichotomy(self):
         d1 = np.array([[1.0]])
         h_zero = np.array([0.0])
@@ -170,7 +155,6 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         res_open = gamma2(d1, h_open, tolerance=1e-9)
         self.assertFalse(res_open.is_closed)
 
-    # 16. test_gamma2_verify_exactness_refuses_nonfinite_and_negative_tolerance
     def test_gamma2_verify_exactness_refuses_nonfinite_and_negative_tolerance(self):
         d1 = np.array([[1.0, 0.0]])
         d0 = np.array([[0.0], [1.0]])
@@ -181,18 +165,16 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         with self.assertRaises(ValueError):
             verify_exactness(d1, d0, tolerance=-1.0)
         with self.assertRaises(ValueError):
-            verify_exactness(np.array([[1.0]]), d0)  # shape mismatch
+            verify_exactness(np.array([[1.0]]), d0)
 
-    # 17. test_cycle_coboundary_rejects_bad_edge_or_orientation
     def test_cycle_coboundary_rejects_bad_edge_or_orientation(self):
         with self.assertRaises(ValueError):
             cycle_coboundary(-1, [])
         with self.assertRaises(ValueError):
-            cycle_coboundary(2, [[(5, 1)]])  # out of range
+            cycle_coboundary(2, [[(5, 1)]])
         with self.assertRaises(ValueError):
-            cycle_coboundary(2, [[(0, 2)]])  # bad orientation
+            cycle_coboundary(2, [[(0, 2)]])
 
-    # 18. test_dual_verification_certificate_components
     def test_dual_verification_certificate_components(self):
         B = np.array([[-1.0, 1.0]])
         phi_star = np.array([0.0])
@@ -200,30 +182,23 @@ class TestOmegaFunctionalAudit(unittest.TestCase):
         cert = verify_dual_witness(B, phi_star, h, Phi=0.0)
         self.assertTrue(cert["certified"])
 
-    # 19. test_phi_xi_acceptance_law
     def test_phi_xi_acceptance_law(self):
         c_base = {"Phi1": 2.0, "Xi": 1.0}
 
-        # Phi1 decreases -> accept
         c_dec = {"Phi1": 1.0, "Xi": 1.0}
         self.assertTrue(accept(c_base, c_dec))
 
-        # Phi1 unchanged & Xi decreases -> accept
         c_xi_dec = {"Phi1": 2.0, "Xi": 0.5}
         self.assertTrue(accept(c_base, c_xi_dec))
 
-        # Phi1 increases -> reject
         c_inc = {"Phi1": 3.0, "Xi": 0.1}
         self.assertFalse(accept(c_base, c_inc))
 
-        # Phi1 unchanged & Xi unchanged -> reject
         self.assertFalse(accept(c_base, c_base))
 
-        # Missing key -> KeyError
         with self.assertRaises(KeyError):
             accept({"Phi1": 1.0}, c_base)
 
-    # 20. test_structural_rust_mirrors_fail_closed
     def test_structural_rust_mirrors_fail_closed(self):
         with self.assertRaises(NotImplementedError):
             closure_defect_try_from_verified()

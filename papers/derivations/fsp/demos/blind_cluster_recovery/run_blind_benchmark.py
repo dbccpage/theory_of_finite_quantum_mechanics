@@ -27,17 +27,17 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from omega_engine_projects.fsp.demos.blind_cluster_recovery.antibody_miner import (  # noqa: E402
+from omega_engine_projects.fsp.demos.blind_cluster_recovery.antibody_miner import (
     AntibodyMiner,
 )
-from omega_engine_projects.fsp.demos.blind_cluster_recovery.blind_problem import (  # noqa: E402
+from omega_engine_projects.fsp.demos.blind_cluster_recovery.blind_problem import (
     assert_lexical_hygiene,
     generate_blind_problem_packet,
 )
-from omega_engine_projects.fsp.demos.blind_cluster_recovery.oracle import (  # noqa: E402
+from omega_engine_projects.fsp.demos.blind_cluster_recovery.oracle import (
     BlindClusterOracle,
 )
-from omega_engine_projects.fsp.demos.blind_cluster_recovery.prompt_builder import (  # noqa: E402
+from omega_engine_projects.fsp.demos.blind_cluster_recovery.prompt_builder import (
     JSON_SCHEMA_ARM1,
     build_prompt_arm1_constrained_decoding,
     build_prompt_arm2_attention_masking,
@@ -46,7 +46,6 @@ from omega_engine_projects.fsp.demos.blind_cluster_recovery.prompt_builder impor
     build_prompt_arm5_hybrid,
 )
 
-# Pricing per million tokens (input / output) in USD
 MODEL_PRICING = {
     "meta-llama/llama-3.3-70b-instruct": (0.12, 0.30),
     "deepseek/deepseek-v4-flash-0731": (0.04, 0.10),
@@ -540,7 +539,6 @@ def main() -> None:
     print("  Lexical Hygiene: VERIFIED (0 domain keywords leaked)")
     print("=" * 70)
 
-    # Core models to test across arms
     models_tier1_2 = [
         "meta-llama/llama-3.3-70b-instruct",
         "deepseek/deepseek-v4-flash-0731",
@@ -565,25 +563,21 @@ def main() -> None:
         "arms": {},
     }
 
-    # Phase 1: Arm 1 (Constrained JSON Decoding)
     print("\n--- PHASE 1: ARM 1 (Constrained JSON Decoding) ---")
     master_report["arms"]["arm1_constrained"] = run_arm1_baseline(
         models_tier1_2, packet, miner, api_key, budget, args.dry_run
     )
 
-    # Phase 2: Arm 2 (Attention Distractor Masking)
     print("\n--- PHASE 2: ARM 2 (Attention Distractor-Key Masking) ---")
     master_report["arms"]["arm2_attention_masking"] = run_arm2_attention_masking(
         models_tier1_2, packet, miner, api_key, budget, args.dry_run
     )
 
-    # Phase 3: Arm 3 (DDC Hieroglyphic Factorization)
     print("\n--- PHASE 3: ARM 3 (DDC Hieroglyphic Factorization) ---")
     master_report["arms"]["arm3_hieroglyphics"] = run_arm3_hieroglyphics(
         models_tier1_2, packet, miner, api_key, budget, args.dry_run
     )
 
-    # Phase 4: Arm 4 (Multi-Round Immune Mining)
     print("\n--- PHASE 4: ARM 4 (Multi-Round Immune Mining) ---")
     arm4_results = {}
     for m in [
@@ -602,20 +596,17 @@ def main() -> None:
         )
     master_report["arms"]["arm4_immune_mining"] = arm4_results
 
-    # Harvest all antibodies mined across Arm 4 runs
     accumulated_abs = []
     for r in arm4_results.values():
         for ab in r.get("final_antibodies", []):
             if ab["code"] not in {a["code"] for a in accumulated_abs}:
                 accumulated_abs.append(ab)
 
-    # Phase 5: Arm 5 (Full Hybrid on Frontier Models)
     print("\n--- PHASE 5: ARM 5 (Full Hybrid on Frontier Models) ---")
     master_report["arms"]["arm5_hybrid"] = run_arm5_hybrid(
         frontier_models, packet, miner, api_key, budget, args.dry_run, accumulated_abs
     )
 
-    # Finalize financial and performance receipt
     master_report["budget_summary"] = {
         "total_calls": len(budget.call_history),
         "total_spent_usd": budget.total_spent,
@@ -633,7 +624,6 @@ def main() -> None:
         "runtime_errors": runtime_errors,
     }
 
-    # Save master report
     report_path = args.output_dir / "master_evaluation_report.json"
     summary_path = args.output_dir / "summary.json"
     receipt_path = args.output_dir / "receipt.json"

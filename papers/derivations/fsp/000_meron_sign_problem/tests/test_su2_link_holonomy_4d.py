@@ -43,24 +43,19 @@ def test_rational_su2_group_laws():
     assert id_u.is_center()
     assert neg_id.is_center()
 
-    # Generators
     ui = RationalSU2.from_generators(1)
     uj = RationalSU2.from_generators(2)
     uk = RationalSU2.from_generators(3)
 
-    # Quaternion multiplication: i^2 = j^2 = k^2 = -1
     assert ui * ui == neg_id
     assert uj * uj == neg_id
     assert uk * uk == neg_id
 
-    # Non-abelian algebra: i*j = k, j*i = -k
     assert ui * uj == uk
     assert uj * ui == RationalSU2.from_generators(3, sign=-1)
 
-    # Commutator [i, j] != 0
     assert ui * uj != uj * ui
 
-    # Inverses / Daggers
     assert ui * ui.dagger() == id_u
     assert uj * uj.dagger() == id_u
     assert uk * uk.dagger() == id_u
@@ -75,11 +70,9 @@ def test_rational_su2_stereographic_projection():
     assert isinstance(u1.a2, Fraction)
     assert isinstance(u1.a3, Fraction)
 
-    # Origin maps to identity
     u_origin = RationalSU2.from_stereographic(0, 0, 0)
     assert u_origin == RationalSU2.identity()
 
-    # Tetrahedral group elements
     u_tet = RationalSU2.from_tetrahedral(1, 1, 1, 1)
     assert u_tet * u_tet.dagger() == RationalSU2.identity()
     assert u_tet.trace() == Fraction(1, 1)
@@ -87,16 +80,14 @@ def test_rational_su2_stereographic_projection():
 
 def test_lattice_gauge_field_dimensions_validation():
     """Validates that lattice requires max dimension >= 8 and 4-tuple of lengths."""
-    # L < 8 must raise ValueError
     with pytest.raises(ValueError, match="At least one lattice dimension must be >= 8"):
         LatticeGaugeField4D((4, 4, 4, 4))
 
-    # L >= 8 valid
     field_8844 = LatticeGaugeField4D((8, 8, 4, 4))
-    assert field_8844.volume == 8 * 8 * 4 * 4  # 1024
+    assert field_8844.volume == 8 * 8 * 4 * 4
 
     field_8888 = LatticeGaugeField4D((8, 8, 8, 8))
-    assert field_8888.volume == 8 * 8 * 8 * 8  # 4096
+    assert field_8888.volume == 8 * 8 * 8 * 8
 
 
 def test_cold_start_wilson_action():
@@ -115,7 +106,6 @@ def test_local_gauge_invariance():
     """Validates that random non-abelian local gauge transformations leave action strictly invariant."""
     field = LatticeGaugeField4D((8, 8, 4, 4))
 
-    # Set several non-trivial link holonomies
     u_rot = RationalSU2.from_stereographic(Fraction(1, 2), Fraction(0, 1), Fraction(1, 3))
     field.set_link((1, 1, 1, 1), 0, u_rot)
     field.set_link((1, 2, 1, 1), 1, RationalSU2.from_generators(2))
@@ -123,18 +113,15 @@ def test_local_gauge_invariance():
     action_before = field.total_wilson_action()
     assert action_before > Fraction(0, 1)
 
-    # Define site gauge transformations Omega(x)
     omega_map = {
         (1, 1, 1, 1): RationalSU2.from_generators(1),
         (2, 1, 1, 1): RationalSU2.from_stereographic(Fraction(1, 4), Fraction(1, 2), Fraction(0, 1)),
         (1, 2, 1, 1): RationalSU2.from_tetrahedral(1, -1, 1, -1),
     }
 
-    # Apply local gauge transformation
     field.local_gauge_transform(omega_map)
 
     action_after = field.total_wilson_action()
-    # Gauge invariance: S_W[U'] == S_W[U]
     assert action_after == action_before
 
 
@@ -144,7 +131,6 @@ def test_link_holonomy_update_delta_action():
     action_initial = field.total_wilson_action()
     assert action_initial == Fraction(0, 1)
 
-    # Propose rotation on link ((2, 3, 1, 0), 2)
     x_target = (2, 3, 1, 0)
     mu_target = 2
     rotation = RationalSU2.from_stereographic(Fraction(1, 3), Fraction(1, 3), Fraction(0, 1))
@@ -160,17 +146,14 @@ def test_topological_charge_density_and_involution_tau():
     """Validates discrete topological charge density and orientation reversal tau."""
     field = LatticeGaugeField4D((8, 8, 4, 4))
 
-    # Insert localized half-instanton
     c_p = HalfInstantonCenter4D(coords=(2, 2, 1, 1), chirality=1)
     field.insert_localized_half_instanton(c_p)
 
     q_total = field.total_second_chern_number()
     assert q_total == Fraction(1, 2)
 
-    # Orientation flip tau
     field_flipped = field.orientation_flip()
     q_flipped = field_flipped.total_second_chern_number()
-    # Orientation flip must invert topological charge sign
     assert q_flipped == -Fraction(1, 2)
 
 
@@ -179,7 +162,6 @@ def test_topological_cluster_solver_coupling_on_8x8x4x4():
     field = LatticeGaugeField4D((8, 8, 4, 4))
     coupler = SU2TopologicalClusterCoupler(field)
 
-    # Construct paired centers: 3 odd pairs + 3 neutral clusters
     c1 = HalfInstantonCenter4D((0, 0, 0, 0), 1)
     pair1 = coupler.create_paired_odd_cluster(c1, Fraction(100, 1))
 
@@ -189,7 +171,6 @@ def test_topological_cluster_solver_coupling_on_8x8x4x4():
     c3 = HalfInstantonCenter4D((2, 0, 1, 0), 1)
     pair3 = coupler.create_paired_odd_cluster(c3, Fraction(40, 1))
 
-    # Neutral clusters
     c4 = HalfInstantonCluster4D(n_plus=1, n_minus=1, weight=Fraction(180, 1), centers=())
     c5 = HalfInstantonCluster4D(n_plus=2, n_minus=2, weight=Fraction(120, 1), centers=())
     c6 = HalfInstantonCluster4D(n_plus=0, n_minus=0, weight=Fraction(150, 1), centers=())

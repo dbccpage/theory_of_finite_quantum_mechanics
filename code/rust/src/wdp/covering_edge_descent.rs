@@ -1,17 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! # Covering-Edge Descent Complexes, Functorial Presheaves, and Coherence Defects
-//!
-//! Sovereign Rust implementation of the mathematical definitions, theorems,
-//! boundary relations, and algebraic certifiers established in Paper PO-001:
-//! - §2 Path A: Strict Functorial Completion, Covering-Edge Diagrams, and Diamond Commutativity.
-//! - §3 Path B: Composition Curvature Operator, Coboundary-Curvature Identity `d_1 d_0 = K`,
-//!   Flat Locus Equivalence, Degree-3 `d_2 K` Boundary, and Unconditional Operator Cocycle `δ_2 K = 0`.
-//! - §4 Extensions: Operator Commutator `[K, T]`, 4-Term Operator Comparison,
-//!   Primal-Dual Distance-to-Image LP Certificate, Additive Normal Form `r = r̂ + A`,
-//!   DDC Lattice Commutator `⟦Λ, D⟧`, Distinction Collapse Loss Ledger,
-//!   and Exact 4D Simplicial Gauge Holonomy over Q(ζ_8).
-//!   The Bell gluing distance stays in the paper package solver
-//!   `quantum_sheaf_contextuality.py`; this module does not restate it as a constant.
 
 use std::collections::BTreeMap;
 use num_bigint::BigInt;
@@ -23,12 +9,7 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use omega_number_theory::cyclotomic::Cyc8;
 use crate::types::AuthorityEffect;
 
-// ---------------------------------------------------------------------------
-// 1. Exact Rational Matrix Support for Arbitrary Finite Fibers
-// ---------------------------------------------------------------------------
 
-/// Exact rectangular matrix over Q with arbitrary dimensions, backed by
-/// `linear_algebra::backend::basic_matrix::BasicMatrix`.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExactMatrix {
     pub rows: usize,
@@ -37,13 +18,11 @@ pub struct ExactMatrix {
 }
 
 impl ExactMatrix {
-    /// Zero matrix of size `rows × cols` via `BasicMatrix::zero`.
     pub fn zero(rows: usize, cols: usize) -> Self {
         let matrix = BasicMatrix::zero(rows, cols).expect("zero matrix allocation failed");
         Self { rows, cols, matrix }
     }
 
-    /// Square identity matrix of size `n × n` via `BasicMatrix::try_from_fn`.
     pub fn eye(n: usize) -> Self {
         let matrix = BasicMatrix::try_from_fn(n, n, |r, c| {
             if r == c {
@@ -56,7 +35,6 @@ impl ExactMatrix {
         Self { rows: n, cols: n, matrix }
     }
 
-    /// Construct from integer literal 2D slice via `BasicMatrix::from_row_major`.
     pub fn from_i64(slice: &[&[i64]]) -> Self {
         let rows = slice.len();
         let cols = if rows > 0 { slice[0].len() } else { 0 };
@@ -72,7 +50,6 @@ impl ExactMatrix {
         Self { rows, cols, matrix }
     }
 
-    /// Construct column vector from integer 1D slice via `BasicMatrix::from_row_major`.
     pub fn col_vector(slice: &[i64]) -> Self {
         let rows = slice.len();
         let data = slice.iter().map(|&x| BigRational::from(BigInt::from(x))).collect();
@@ -81,7 +58,6 @@ impl ExactMatrix {
         Self { rows, cols: 1, matrix }
     }
 
-    /// Construct from a sovereign `BasicMatrix<BigRational>`.
     pub fn from_basic_matrix(matrix: BasicMatrix<BigRational>) -> Self {
         Self {
             rows: matrix.rows(),
@@ -90,17 +66,14 @@ impl ExactMatrix {
         }
     }
 
-    /// Borrow the underlying sovereign `BasicMatrix<BigRational>`.
     pub fn as_basic_matrix(&self) -> &BasicMatrix<BigRational> {
         &self.matrix
     }
 
-    /// Consume into the underlying sovereign `BasicMatrix<BigRational>`.
     pub fn into_basic_matrix(self) -> BasicMatrix<BigRational> {
         self.matrix
     }
 
-    /// Matrix addition `A + B` delegated to `BasicMatrix::add`.
     pub fn add(&self, other: &Self) -> Self {
         Self::from_basic_matrix(
             self.matrix
@@ -109,7 +82,6 @@ impl ExactMatrix {
         )
     }
 
-    /// Matrix subtraction `A - B` delegated to `BasicMatrix::sub`.
     pub fn sub(&self, other: &Self) -> Self {
         Self::from_basic_matrix(
             self.matrix
@@ -118,7 +90,6 @@ impl ExactMatrix {
         )
     }
 
-    /// Matrix multiplication `A * B` delegated to `BasicMatrix::mul`.
     pub fn mul(&self, other: &Self) -> Self {
         Self::from_basic_matrix(
             self.matrix
@@ -127,7 +98,6 @@ impl ExactMatrix {
         )
     }
 
-    /// Transpose `A^T` delegated to `BasicMatrix::try_transpose`.
     pub fn transpose(&self) -> Self {
         Self::from_basic_matrix(
             self.matrix
@@ -136,7 +106,6 @@ impl ExactMatrix {
         )
     }
 
-    /// Whether all entries are zero via sovereign `BasicMatrix::as_slice`.
     pub fn is_zero(&self) -> bool {
         self.matrix.as_slice().iter().all(|x| x.is_zero())
     }
@@ -162,21 +131,15 @@ impl From<ExactMatrix> for BasicMatrix<BigRational> {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 2. Definition 2.1 & Proposition 2.1a: Covering-Edge Diagram & Strict Presheaf
-// ---------------------------------------------------------------------------
 
-/// Finite Covering-Edge Diagram with arbitrary fiber dimensions and declared restrictions.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CoveringEdgeDiagramCED {
     pub elements: Vec<String>,
     pub fiber_dimensions: BTreeMap<String, usize>,
-    /// Restrictions `r_{upper, lower}` mapping from `upper` to `lower`.
     pub restrictions: BTreeMap<(String, String), ExactMatrix>,
 }
 
 impl CoveringEdgeDiagramCED {
-    /// Construct a new validated diagram.
     pub fn new(
         elements: Vec<String>,
         fiber_dimensions: BTreeMap<String, usize>,
@@ -195,13 +158,10 @@ impl CoveringEdgeDiagramCED {
         Ok(Self { elements, fiber_dimensions, restrictions })
     }
 
-    /// Retrieve restriction `r_{upper, lower}`.
     pub fn get_restriction(&self, upper: &str, lower: &str) -> Option<&ExactMatrix> {
         self.restrictions.get(&(upper.to_string(), lower.to_string()))
     }
 
-    /// Lemma 2.2: Check Diamond Path-Independence around `a <= {b1, b2} <= c`.
-    /// Returns `(is_independent, defect)` where `defect = r_{b1, a} r_{c, b1} - r_{b2, a} r_{c, b2}`.
     pub fn check_diamond_path_independence(
         &self,
         a: &str,
@@ -221,7 +181,6 @@ impl CoveringEdgeDiagramCED {
         Ok((is_indep, defect))
     }
 
-    /// Proposition 2.1a: Complete covering edges to a strict functorial presheaf along saturated chains.
     pub fn build_path_a_completion(
         elements: Vec<String>,
         fiber_dimensions: BTreeMap<String, usize>,
@@ -230,13 +189,11 @@ impl CoveringEdgeDiagramCED {
     ) -> Result<Self, String> {
         let mut full_restrictions = covering_restrictions.clone();
 
-        // Add identity restrictions r_{x, x} = I
         for el in &elements {
             let dim = *fiber_dimensions.get(el).ok_or_else(|| format!("Unknown element {el}"))?;
             full_restrictions.insert((el.clone(), el.clone()), ExactMatrix::eye(dim));
         }
 
-        // Composite along declared saturated chains
         for ((c, a), chain) in saturated_chains {
             if full_restrictions.contains_key(&(c.clone(), a.clone())) {
                 continue;
@@ -260,11 +217,7 @@ impl CoveringEdgeDiagramCED {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 3. Definition 3.1 & Corollary 3.3: Composition Curvature Operator
-// ---------------------------------------------------------------------------
 
-/// Curvature operator `K_{c,b,a} = r_{b,a} r_{c,b} - r_{c,a}`.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CurvatureOperatorCED {
     pub diagram: CoveringEdgeDiagramCED,
@@ -275,7 +228,6 @@ impl CurvatureOperatorCED {
         Self { diagram }
     }
 
-    /// Definition 3.1: Compute curvature operator `K_{c,b,a}` for comparable triple `a <= b <= c`.
     pub fn compute_curvature(&self, a: &str, b: &str, c: &str) -> Result<ExactMatrix, String> {
         let r_cb = self.diagram.get_restriction(c, b).ok_or_else(|| format!("Missing restriction {c}->{b}"))?;
         let r_ba = self.diagram.get_restriction(b, a).ok_or_else(|| format!("Missing restriction {b}->{a}"))?;
@@ -285,7 +237,6 @@ impl CurvatureOperatorCED {
         Ok(composite.sub(r_ca))
     }
 
-    /// Corollary 3.3: Check whether diagram is flat (all comparable triples have K == 0).
     pub fn is_flat(&self, comparable_triples: &[(&str, &str, &str)]) -> Result<bool, String> {
         for &(a, b, c) in comparable_triples {
             let k = self.compute_curvature(a, b, c)?;
@@ -297,14 +248,9 @@ impl CurvatureOperatorCED {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 4. Theorem 3.2 & Theorem 3.4: Coboundary-Curvature Cochain Complex
-// ---------------------------------------------------------------------------
 
-/// Section assigning a column vector `s(x) in Q^{d_x}` to each element `x`.
 pub type SectionCED = BTreeMap<String, ExactMatrix>;
 
-/// Finite Cochain Complex and Coboundaries d0, d1, d2.
 #[derive(Clone, Debug)]
 pub struct CochainComplexCED {
     pub diagram: CoveringEdgeDiagramCED,
@@ -315,7 +261,6 @@ impl CochainComplexCED {
         Self { diagram }
     }
 
-    /// Coboundary `(d_0 s)(a, b) = r_{b,a} s(b) - s(a)` for `a <= b`.
     pub fn d0(&self, s: &SectionCED, a: &str, b: &str) -> Result<ExactMatrix, String> {
         let s_b = s.get(b).ok_or_else(|| format!("Missing section value at {b}"))?;
         let s_a = s.get(a).ok_or_else(|| format!("Missing section value at {a}"))?;
@@ -323,7 +268,6 @@ impl CochainComplexCED {
         Ok(r_ba.mul(s_b).sub(s_a))
     }
 
-    /// Coboundary `(d_1 ω)(a, b, c) = r_{b,a} ω(b, c) - ω(a, c) + ω(a, b)`.
     pub fn d1(
         &self,
         omega: &BTreeMap<(String, String), ExactMatrix>,
@@ -341,7 +285,6 @@ impl CochainComplexCED {
         Ok(term2.add(w_ab))
     }
 
-    /// Theorem 3.2: Verify pointwise identity `(d_1 (d_0 s))(a,b,c) = K_{c,b,a}(s(c))`.
     pub fn verify_theorem_3_2(
         &self,
         s: &SectionCED,
@@ -368,7 +311,6 @@ impl CochainComplexCED {
         Ok((matches, d1_d0, k_sc))
     }
 
-    /// Theorem 3.4: Evaluate Degree-3 Boundary `(d_2 K(s))(a,b,c,d) = K_{c,b,a}(r_{d,c} s_d) - K_{c,b,a}(s_c)`.
     pub fn evaluate_d2_boundary(
         &self,
         a: &str,
@@ -387,7 +329,6 @@ impl CochainComplexCED {
         let k_sc = k_cba.mul(s_c);
         let lower_diff = k_r_dc_sd.sub(&k_sc);
 
-        // Standard 4-term d2 definition on section values:
         let r_ba = self.diagram.get_restriction(b, a).ok_or("Missing restriction b->a")?;
         let k_dcb = curv_op.compute_curvature(b, c, d)?;
         let k_dca = curv_op.compute_curvature(a, c, d)?;
@@ -403,11 +344,7 @@ impl CochainComplexCED {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 5. Theorem 3.6, Theorem 4.1 & Theorem 4.2: Operator Coboundary & Cocycle
-// ---------------------------------------------------------------------------
 
-/// Operator Cochains and Coboundaries δ1 and δ2 on Hom-bundles.
 #[derive(Clone, Debug)]
 pub struct OperatorCochainCED {
     pub diagram: CoveringEdgeDiagramCED,
@@ -418,8 +355,6 @@ impl OperatorCochainCED {
         Self { diagram }
     }
 
-    /// Theorem 3.6: Unconditional Operator Cocycle Identity `(δ_2 K)_{d,c,b,a} = 0`.
-    /// `δ_2 K = r_{b,a} K_{d,c,b} - K_{d,c,a} + K_{d,b,a} - K_{c,b,a} r_{d,c} = 0`.
     pub fn evaluate_operator_delta2_k(
         &self,
         a: &str,
@@ -445,8 +380,6 @@ impl OperatorCochainCED {
         Ok(delta2_k)
     }
 
-    /// Theorem 4.2: Four-Term Operator Comparison.
-    /// `r_{b,a} K_{d,c,b} + K_{d,b,a} = K_{d,c,a} + K_{c,b,a} r_{d,c}`.
     pub fn verify_four_term_comparison(
         &self,
         a: &str,
@@ -469,8 +402,6 @@ impl OperatorCochainCED {
         Ok((matches, lhs, rhs))
     }
 
-    /// Theorem 4.1: Curved Differential Derivation Identity `(δ_2 δ_1 T)_{d,c,b,a} = [K, T]_{d,c,b,a}`.
-    /// `[K, T]_{d,c,b,a} = K_{c,b,a} T_{d,c} - T_{b,a} K_{d,c,b}`.
     pub fn evaluate_curved_derivation(
         &self,
         t_dc: &ExactMatrix,
@@ -490,11 +421,7 @@ impl OperatorCochainCED {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 6. Theorem 4.4: Additive Normal Form Decomposition `r = r̂ + A`
-// ---------------------------------------------------------------------------
 
-/// Additive Normal Form decomposition of restriction maps.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct AdditiveNormalFormCED {
     pub strict_hat: CoveringEdgeDiagramCED,
@@ -502,7 +429,6 @@ pub struct AdditiveNormalFormCED {
 }
 
 impl AdditiveNormalFormCED {
-    /// Decompose arbitrary restrictions `r` against strict completion `r̂`.
     pub fn decompose(
         full: &CoveringEdgeDiagramCED,
         strict_hat: &CoveringEdgeDiagramCED,
@@ -518,7 +444,6 @@ impl AdditiveNormalFormCED {
         Ok(Self { strict_hat: strict_hat.clone(), perturbation_a })
     }
 
-    /// Theorem 4.4: Verify that A vanishes on covering edges, and `K_{c,b,a} = -A_{c,a}` for covering legs.
     pub fn verify_covering_leg_curvature(
         &self,
         a: &str,
@@ -532,11 +457,7 @@ impl AdditiveNormalFormCED {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 7. Theorem 4.6 & Statement 4.7: DDC Commutator & Distinction Collapse Ledger
-// ---------------------------------------------------------------------------
 
-/// DDC Diamond Operational Commutator `⟦Λ, D⟧ = K_{c, b1, a} - K_{c, b2, a}`.
 pub fn evaluate_ddc_diamond_commutator(
     curv_op: &CurvatureOperatorCED,
     a: &str,
@@ -549,7 +470,6 @@ pub fn evaluate_ddc_diamond_commutator(
     Ok(k1.sub(&k2))
 }
 
-/// Statement 4.7: Declared Cost-Two Ledger for Collapsed Distinctions.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DistinctionCollapseLedgerCED {
     pub collapsed_count: usize,
@@ -567,11 +487,7 @@ impl DistinctionCollapseLedgerCED {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 8. Theorem 4.11 & Corollary 4.11a: Exact 4D Simplicial Holonomy over Q(ζ_8)
-// ---------------------------------------------------------------------------
 
-/// Exact 2x2 unitary link variable over `Cyc8`.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Cyc8Matrix2x2 {
     pub data: [[Cyc8; 2]; 2],
@@ -599,7 +515,6 @@ impl Cyc8Matrix2x2 {
         Self { data: out }
     }
 
-    /// Conjugate transpose `U^†`.
     pub fn dagger(&self) -> Self {
         Self {
             data: [
@@ -609,14 +524,11 @@ impl Cyc8Matrix2x2 {
         }
     }
 
-    /// Discrete Bianchi check: is this matrix equal to the identity?
     pub fn is_identity(&self) -> bool {
         self == &Self::eye()
     }
 }
 
-/// Theorem 4.11 & Corollary 4.11a: Wilson loop holonomy on a triangle `(i, j, k)`.
-/// `W(i, j, k) = U_{ki} * U_{jk} * U_{ij}`.
 pub fn compute_wilson_triangle_holonomy(
     u_ij: &Cyc8Matrix2x2,
     u_jk: &Cyc8Matrix2x2,
@@ -626,14 +538,11 @@ pub fn compute_wilson_triangle_holonomy(
     u_ki.mul(&u_jk.mul(u_ij))
 }
 
-/// Corollary 4.11a: Discrete Bianchi identity for an ordered tetrahedron.
-/// Returns product of face holonomies around the 4 boundary faces.
 pub fn verify_tetrahedral_bianchi(
     w_012: &Cyc8Matrix2x2,
     w_023: &Cyc8Matrix2x2,
     w_013: &Cyc8Matrix2x2,
     w_123: &Cyc8Matrix2x2,
 ) -> Cyc8Matrix2x2 {
-    // Oriented tetrahedral closure: W_{012} * W_{023} * W_{013}^† * W_{123}^†
     w_012.mul(w_023).mul(&w_013.dagger()).mul(&w_123.dagger())
 }

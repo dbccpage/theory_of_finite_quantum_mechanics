@@ -168,14 +168,14 @@ def check_claim_ledger(root: Path) -> list:
         return ["claim_ledger.yaml missing"]
     if not cm.exists():
         return ["the_problem_of_the_fermion_sign_claim_ledger.md missing"]
-    
+
     with open(cm, "r", encoding="utf-8") as f:
         md_text = f.read()
-    
+
     import yaml
     with open(cy, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
-    
+
     errors = []
     lean_dir = root / "lean4"
     lean_decls = {}
@@ -194,7 +194,6 @@ def check_claim_ledger(root: Path) -> list:
         if cid not in md_text:
             errors.append(f"Claim {cid} in claim_ledger.yaml not found in markdown ledger")
 
-        # Semantic Lean formalization resolution
         lf = claim.get("lean4_formalization")
         if lf:
             mod = lf.get("module")
@@ -206,7 +205,6 @@ def check_claim_ledger(root: Path) -> list:
                     if thm not in mod_content:
                         errors.append(f"[{cid}] Lean theorem '{thm}' not found in lean4/{mod}.lean")
 
-        # Semantic code evidence resolution
         ce = claim.get("code_evidence", {})
         for t in ce.get("tests", []):
             if "::" in t:

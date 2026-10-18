@@ -1,9 +1,3 @@
-//! Finite event-effect quotient and replay-congruence reference kernel.
-//!
-//! Events are compared by their complete transition tables on one declared finite
-//! state carrier. Raw semantic equality is kept separate from governed equality:
-//! two events with the same state action are not interchangeable when their owner
-//! or effect kind differs. This is a bounded DDA precursor, not a universal trace calculus.
 
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};

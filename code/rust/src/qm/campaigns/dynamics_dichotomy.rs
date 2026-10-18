@@ -1,17 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-// Reference: Campaign C250 Block 04, Steps 136-138, H061.
 
-//! Dynamics Dichotomy: Periodic vs. Aperiodic Sectors in Finite Quantum Mechanics.
-//!
-//! Phase R3 Rust Parity Core for Campaign C250 Block 04 (Global Steps 126-150).
-//! Implements:
-//!   - Exact 2x2 rational matrices and matrix powers over BigRational.
-//!   - The Pythagorean rotation matrix R_theta in SO(2, Q).
-//!   - Exact Gaussian integer valuation obstruction proving infinite cyclic order in Z[i] using BigInt.
-//!   - Kronecker's theorem citation and verification for integral unitaries.
-//!   - Exhaustive target census across all 23 corpus targets.
-//!
-//! Zero floating-point comparisons in algebraic decisions.
 
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 #[cfg(test)]
@@ -23,14 +10,11 @@ use omega_number_theory::cyclotomic_integer::CyclotomicInteger;
 use omega_number_theory::rational::{rq, Rational};
 use serde::{Deserialize, Serialize};
 
-/// The declared Pythagorean campaign step, on the canonical rational matrix carrier.
 fn pythagorean_rotation() -> BasicMatrix<Rational> {
     BasicMatrix::from_row_major(2, 2, vec![rq(3, 5), rq(-4, 5), rq(4, 5), rq(3, 5)])
         .expect("fixed shape")
 }
 
-/// Evaluates valuation obstruction for (2+i)^k != (2-i)^k in Z[i].
-/// Returns true if (2+i)^k is divisible by 2+i and (2-i)^k is NOT divisible by 2+i.
 pub fn pythagorean_valuation_step(k: u32) -> bool {
     if k == 0 {
         return false;
@@ -54,7 +38,6 @@ pub fn pythagorean_valuation_step(k: u32) -> bool {
     val_plus_mod5.is_zero() && !val_minus_mod5.is_zero()
 }
 
-/// Verifies that R_theta^k != I for all 1 <= k <= max_k.
 pub fn verify_pythagorean_infinite_order(max_k: u32) -> bool {
     let r = pythagorean_rotation();
     let mut curr = r.clone();
@@ -70,8 +53,6 @@ pub fn verify_pythagorean_infinite_order(max_k: u32) -> bool {
     true
 }
 
-/// Declared corpus labels for 23 targets; these rows do not contain their operators.
-/// `total_targets_evaluated` is therefore zero, while the label inventory is preserved.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct TargetCensusReport {
     pub total_targets_evaluated: usize,
@@ -90,7 +71,6 @@ pub fn run_target_unitary_census() -> TargetCensusReport {
     }
 }
 
-/// Full execution report for Block 04.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct DynamicsDichotomyReport {
     pub authority_effect: String,
@@ -181,14 +161,12 @@ mod tests {
 
     #[test]
     fn test_integral_matrices_finite_period() {
-        // Pauli X
         let px = BasicMatrix::from_row_major(2, 2, vec![rq(0, 1), rq(1, 1), rq(1, 1), rq(0, 1)])
             .unwrap();
         assert!(px.as_slice().iter().all(Rational::is_integer));
         assert!(!mx::is_identity_matrix(&px).unwrap());
         assert!(mx::is_identity_matrix(&mx::power(&px, 2).unwrap()).unwrap());
 
-        // Pauli Z
         let pz = BasicMatrix::from_row_major(2, 2, vec![rq(1, 1), rq(0, 1), rq(0, 1), rq(-1, 1)])
             .unwrap();
         assert!(pz.as_slice().iter().all(Rational::is_integer));

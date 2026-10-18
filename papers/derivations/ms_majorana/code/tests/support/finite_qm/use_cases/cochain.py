@@ -66,7 +66,6 @@ class Complex:
 
     n_vertices: int
     edges: tuple[tuple[int, int], ...]
-    # each 2-cell is a tuple of (edge_index, orientation in {+1, -1})
     faces: tuple[tuple[tuple[int, int], ...], ...] = ()
     weights: tuple[float, ...] | None = None
 
@@ -135,11 +134,8 @@ def phi_1(cx: Complex, x: np.ndarray) -> float:
 
     x_scaled = x / scale
 
-    # unknowns: alpha (n_v), t (n_e)
     c = np.concatenate([np.zeros(n_v), cx.weight_vector])
-    # x_scaled - d0 alpha - t <= 0   ->   -d0 alpha - t <= -x_scaled
     upper = np.hstack([-a, -np.eye(n_e)])
-    # -(x_scaled - d0 alpha) - t <= 0 ->    d0 alpha - t <=  x_scaled
     lower = np.hstack([a, -np.eye(n_e)])
     a_ub = np.vstack([upper, lower])
     b_ub = np.concatenate([-x_scaled, x_scaled])

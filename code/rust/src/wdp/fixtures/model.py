@@ -133,7 +133,6 @@ def step(r: Regime, e: Event) -> Regime:
         if not (0 <= e.form < len(r.forms)):
             raise AdmissionError(f"unknown form {e.form}")
         return Regime(r.data, r.forms, r.insts, r.rules | {e.form}, r.reqs)
-    # Impose
     if not (0 <= e.i < e.j < len(r.data)):
         raise AdmissionError(f"requirement out of range: ({e.i}, {e.j})")
     return Regime(r.data, r.forms, r.insts, r.rules, r.reqs | {(e.i, e.j)})

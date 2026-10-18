@@ -152,7 +152,6 @@ def compute(
             kind=XiComputationKind.Invalid, validity=XiValidity.NonFiniteInput
         )
 
-    # ExactZero: finite phi1_value <= tolerance (Rust XiFunctional::compute; incl. negative)
     if float(phi1_value) <= float(tolerance):
         return XiComputation(kind=XiComputationKind.ExactZero)
 
@@ -186,7 +185,6 @@ def compute(
         half_normalized=half_normalized,
     )
 
-    # Saturation: ⟨primal_residual, dual_witness⟩ ≈ phi1_value
     inner = sum(p * d for p, d in zip(p_vec, d_vec))
     saturation_verified = abs(inner - float(phi1_value)) <= float(tolerance)
     if not saturation_verified:

@@ -1,12 +1,8 @@
-//! Sheaf of rings and structure sheaf O_X (SH-15, Derived Scheme Contract Foundation).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::{OpenSet, PosetTopology};
 use num_rational::Ratio;
 use serde::{Deserialize, Serialize};
 
-/// Structure sheaf O_X assigning rings of rational piecewise-constant functions.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StructureSheaf {
     pub topology: PosetTopology,
@@ -17,7 +13,6 @@ impl StructureSheaf {
         Self { topology }
     }
 
-    /// Sections over U are rational coordinate vectors on the simplices in U.
     pub fn sections(&self, u: &OpenSet) -> Vec<Vec<Ratio<i64>>> {
         let k = u.elements.len();
         if k == 0 {
@@ -34,7 +29,6 @@ impl StructureSheaf {
         basis
     }
 
-    /// Dimension of the ring of sections over U.
     pub fn section_rank(&self, u: &OpenSet) -> usize {
         u.elements.len()
     }
@@ -50,6 +44,6 @@ mod tests {
         let str_sheaf = StructureSheaf::new(top);
         let u = OpenSet::new(vec!["0", "1"]);
         let basis = str_sheaf.sections(&u);
-        assert_eq!(basis.len(), 3); // zero vector + 2 standard basis vectors
+        assert_eq!(basis.len(), 3);
     }
 }

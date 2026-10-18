@@ -47,9 +47,9 @@ from fermion_gin_index import (
 @dataclass(frozen=True)
 class SU2PlaquetteState:
     """Represents a discrete basis state for the SU(2) plaquette with link spins and vertex fermions."""
-    link_spins: Tuple[float, float, float, float]  # j_1, j_2, j_3, j_4 in {0.0, 0.5}
-    topological_flux_sector: int                  # Q in {0, 1}
-    fermion_occupations: Tuple[int, ...]           # Occupied modes (1..8)
+    link_spins: Tuple[float, float, float, float]
+    topological_flux_sector: int
+    fermion_occupations: Tuple[int, ...]
 
 
 @dataclass(frozen=True)
@@ -114,41 +114,34 @@ class SU2LatticePlaquetteModel:
         paths = []
         path_id = 1
 
-        # Base configurations: Q in {0, 1}
-        # For each flux sector, link spins can be in unexcited j=(0,0,0,0) or excited j=(1/2, 1/2, 1/2, 1/2)
         link_configs = [
             (0.0, 0.0, 0.0, 0.0),
             (0.5, 0.5, 0.0, 0.0),
             (0.5, 0.5, 0.5, 0.5),
         ]
 
-        # Matter states: 2 fermions on 4 vertices across both colors (modes 1..4 color 1, modes 5..8 color 2)
         fermion_configs = [
-            (1, 2),  # Color-1 localized pair
-            (3, 4),  # Color-1 pair
-            (5, 6),  # Color-2 localized pair
-            (7, 8),  # Color-2 pair
-            (1, 6),  # Color-singlet meson (site 1 color 1, site 2 color 2)
-            (2, 7),  # Color-singlet meson
-            (3, 8),  # Color-singlet meson
-            (4, 5),  # Color-singlet meson
+            (1, 2),
+            (3, 4),
+            (5, 6),
+            (7, 8),
+            (1, 6),
+            (2, 7),
+            (3, 8),
+            (4, 5),
         ]
 
         for q in (0, 1):
             e_mag = self.evaluate_magnetic_flux_energy(q)
-            # Topological phase: at theta = pi, (-1)^Q
             topological_sign = 1 if (q == 0 or abs(self.theta) < 1e-6) else -1
 
             for links in link_configs:
                 e_elec = sum(self.evaluate_link_electric_energy(j) for j in links)
 
                 for occ in fermion_configs:
-                    # Fermion exchange sign along plaquette loop
                     fermion_sign = 1
-                    # Total energy of the gauge-matter state
                     e_total = e_elec + e_mag + self.m * len(occ)
 
-                    # Imaginary-time path weight
                     weight = math.exp(- beta * e_total)
                     net_sign = fermion_sign * topological_sign
 
@@ -200,7 +193,7 @@ class SU2GinBridge:
         the spectral overlap between positive and negative weight supports.
         """
         paths = model.generate_gauge_matter_paths(beta=beta)
-        total_modes = 8  # 4 vertices x 2 color states
+        total_modes = 8
 
         c = self.conn.cursor()
         pos_weights: Set[float] = set()
@@ -240,22 +233,18 @@ class SU2GinBridge:
 
         self.conn.commit()
 
-        # Spectral analysis: supp(W_+) vs supp(W_-)
         overlap = sorted(list(pos_weights.intersection(neg_weights)))
         is_disjoint = len(overlap) == 0
 
-        # Magnetic action gap between flux sectors Q=1 and Q=0
         e_q0 = model.evaluate_magnetic_flux_energy(0)
         e_q1 = model.evaluate_magnetic_flux_energy(1)
         delta_s = abs(e_q1 - e_q0)
 
-        # Attempt pairing via GIN index
         matched_pairs = 0
         total_negatives = sum(len(l) for l in neg_by_weight.values())
         total_positives = sum(len(l) for l in pos_by_weight.values())
 
         if not is_disjoint:
-            # Match identical weights
             for w in overlap:
                 pairs = min(len(pos_by_weight[w]), len(neg_by_weight[w]))
                 matched_pairs += pairs

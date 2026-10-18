@@ -1,37 +1,9 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Calibrated interval reports, certified recovery and robust observation cost
-//! (monograph Appendix X).
-//!
-//! * Proposition X.1 — [`transported_radius`]: a raw bound `η` and a calibration
-//!   bound `κ` give the calibrated enclosure radius `ε = |a|η + κ`. No
-//!   independence assumption is used.
-//! * Proposition X.2 — [`CalibratedModel::evaluate`]: the compatible set
-//!   `C(h)` of a history either certifies one answer (`VERIFIED`), contains two
-//!   answers (`ABSTAIN`), is empty (`INCONSISTENT`, never vacuous acceptance),
-//!   or the proposal disagrees with its single answer (`INVALID_PROPOSAL`).
-//! * Theorem X.3 — [`CalibratedModel::alphabet`] retains every nonempty
-//!   membership signature (endpoint singletons and open gaps, at most
-//!   `4|X|-1`); [`CalibratedModel::finite_lift`] builds the finite deterministic
-//!   model consumed by [`crate::observation_cost`].
-//! * Corollary X.4 — [`CalibratedModel::fixed_robust_cost`] is the weighted
-//!   hitting set on strictly separating channels, and
-//!   [`CalibratedModel::adaptive_robust_cost`] evaluates the recursion
-//!   `W(C,R)` directly on candidate sets with the remaining channel set, so it
-//!   terminates even when a reading leaves `C` unchanged.
-//!
-//! The supplied intervals are premises. Costs describe the ideal interval
-//! product (`ideal_calibrated_interval_product`): they are physical optima only
-//! under full report realizability, and only upper bounds under outer-bound
-//! validity alone. Nothing here authenticates a calibration source or grants
-//! authority to act on a certified answer.
 use crate::observation_cost::{Instrument, ObservationCostError, ObservationInstance, MAX_STATES};
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// Scope tag carried by every cost produced from this model.
 pub const COST_DOMAIN: &str = "ideal_calibrated_interval_product";
-/// Reference caps, matching the paper package.
 pub const MAX_CANDIDATES: usize = 10;
 pub const MAX_CHANNELS: usize = 12;
 
@@ -59,7 +31,6 @@ pub enum CalibratedError {
     Instance(#[from] ObservationCostError),
 }
 
-/// Proposition X.1: `ε = |a|η + κ` in calibrated units.
 pub fn transported_radius(
     gain: &BigRational,
     raw_bound: &BigRational,
@@ -71,8 +42,6 @@ pub fn transported_radius(
     Ok(gain.abs() * raw_bound + calibration_bound)
 }
 
-/// One priced channel with its nominal conversion `z = gain·r + offset` and a
-/// closed calibrated interval `J_i(x)` for every candidate.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Channel {
     pub name: String,
@@ -94,14 +63,12 @@ impl Channel {
             .collect()
     }
 
-    /// Corollary X.4 separation: `J_i(x) ∩ J_i(y) = ∅`.
     pub fn separates(&self, x: usize, y: usize) -> bool {
         let (a, b) = (&self.intervals[x], &self.intervals[y]);
         a.1 < b.0 || b.1 < a.0
     }
 }
 
-/// A raw reading named by channel, with its declared raw unit.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RawReading {
     pub channel: String,
@@ -118,14 +85,12 @@ pub enum RecoveryStatus {
     InvalidProposal,
 }
 
-/// Result of Proposition X.2 with the compatible candidate labels.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RecoveryEvaluation {
     pub status: RecoveryStatus,
     pub compatible: Vec<String>,
 }
 
-/// A validated calibrated interval model.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CalibratedModel {
     states: Vec<String>,
@@ -182,8 +147,6 @@ impl CalibratedModel {
         &self.channels
     }
 
-    /// Proposition X.2. Unknown channels, repeated channels and wrong raw
-    /// units are `INVALID_REPORT`; an empty `C(h)` is `INCONSISTENT`.
     pub fn evaluate(
         &self,
         visible: &str,
@@ -229,8 +192,6 @@ impl CalibratedModel {
         }
     }
 
-    /// Theorem X.3: every nonempty membership signature of one channel,
-    /// sampled at each endpoint and at each gap midpoint.
     pub fn alphabet(&self, channel: usize) -> Vec<BTreeSet<usize>> {
         let c = &self.channels[channel];
         let endpoints: BTreeSet<BigRational> = c
@@ -252,8 +213,6 @@ impl CalibratedModel {
         signatures.into_iter().collect()
     }
 
-    /// Theorem X.3 finite lift of the full rectangular report model, refused
-    /// before exceeding the reference solver cap.
     pub fn finite_lift(&self) -> Result<ObservationInstance, CalibratedError> {
         let alphabets: Vec<Vec<BTreeSet<usize>>> =
             (0..self.channels.len()).map(|i| self.alphabet(i)).collect();
@@ -316,8 +275,6 @@ impl CalibratedModel {
             .collect()
     }
 
-    /// Corollary X.4: minimum-price channel suite that strictly separates every
-    /// unresolved pair, with its mask. `None` is infeasibility (`+∞`).
     pub fn fixed_robust_cost(&self) -> Option<(BigRational, u32)> {
         let pairs = self.unresolved_pairs();
         (0..(1u32 << self.channels.len()))
@@ -341,8 +298,6 @@ impl CalibratedModel {
             .min()
     }
 
-    /// Corollary X.4 adaptive recursion, maximised over nonempty free-report
-    /// fibers. `None` is infeasibility (`+∞`).
     pub fn adaptive_robust_cost(&self) -> Option<BigRational> {
         let alphabets: Vec<Vec<BTreeSet<usize>>> =
             (0..self.channels.len()).map(|i| self.alphabet(i)).collect();

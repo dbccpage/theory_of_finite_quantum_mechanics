@@ -34,7 +34,6 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Sequence, Tuple
 
-# Path setup for operations and symbol game imports
 DEMOS_DIR = Path(__file__).resolve().parent.parent
 CODE_DIR = DEMOS_DIR.parent / "code"
 REPO_ROOT = DEMOS_DIR
@@ -50,15 +49,15 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from blind_problem import assert_lexical_hygiene
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     serialize_packet,
     validate_packet_semantics,
 )
-from topological_cluster_4d_solver import TopologicalCluster4DSolver  # noqa: E402
-from topological_half_instanton_4d import (  # noqa: E402
+from topological_cluster_4d_solver import TopologicalCluster4DSolver
+from topological_half_instanton_4d import (
     DiscreteTorus4D,
     HalfInstantonCenter4D,
     HalfInstantonCluster4D,
@@ -73,9 +72,6 @@ SYMBOLIC_4D_INSTANTON_DAG_TRACE = RESULTS_DIR / "symbol_game_4d_half_instanton_d
 CERTIFIED_4D_INSTANTON_RECEIPT = RESULTS_DIR / "certified_4d_half_instanton_results.json"
 
 
-# ============================================================================
-# Section 1: Canonical 4D Half-Instanton Ensemble
-# ============================================================================
 
 
 def build_canonical_4d_half_instanton_ensemble(
@@ -97,7 +93,6 @@ def build_canonical_4d_half_instanton_ensemble(
     Total partition sum Z = 180 + 120 + 150 = 450.
     Exact cancellation of 3 odd pairs: (100-100) + (60-60) + (40-40) = 0.
     """
-    # Localized center representations for concrete density checks
     c_p1 = HalfInstantonCenter4D((0, 0, 0, 0), chirality=1)
     c_m1 = HalfInstantonCenter4D((1, 1, 1, 1), chirality=-1)
 
@@ -137,9 +132,6 @@ def build_canonical_4d_half_instanton_ensemble(
     return [c1, c1_tau, c2, c2_tau, c3, c3_tau, c4, c5, c6]
 
 
-# ============================================================================
-# Section 2: Exact Rational Cancellation via Solver
-# ============================================================================
 
 
 def execute_4d_half_instanton_cancellation(
@@ -166,9 +158,6 @@ def execute_4d_half_instanton_cancellation(
     }
 
 
-# ============================================================================
-# Section 3: 5-Stage Symbol Game Wire Protocol & DDC DAG
-# ============================================================================
 
 CANONICAL_4D_WIRE_TURNS: List[Dict[str, Any]] = [
     {
@@ -177,7 +166,6 @@ CANONICAL_4D_WIRE_TURNS: List[Dict[str, Any]] = [
         "input_wire": "op<<11>op<<1><100000000>>op<<10><0><1>>>",
         "wire_prompt": "op<<11>op<<1><100000000>>op<<10><0><1>>>",
         "grammar_prompt": "op<<11>op<<1><100000000>>op<<10><0><1>>>",
-        # Breakup wire: Opcode <101>
         "expected_response_wire": "op<<101><100><0><1><10><11><100>>",
         "action": "DECOMPOSE_4D_CLUSTERS",
     },
@@ -187,7 +175,6 @@ CANONICAL_4D_WIRE_TURNS: List[Dict[str, Any]] = [
         "input_wire": "op<<101><100><0><1><10><11><100>>",
         "wire_prompt": "op<<101><100><0><1><10><11><100>>",
         "grammar_prompt": "op<<101><100><0><1><10><11><100>>",
-        # Holonomy wire: Opcode <100>, measuring second Chern number c_2 in (1/2)Z
         "expected_response_wire": "op<<100><>op<<11>op<<1><100>>op<<1><1000>>>>",
         "action": "MEASURE_SECOND_CHERN",
     },
@@ -197,19 +184,15 @@ CANONICAL_4D_WIRE_TURNS: List[Dict[str, Any]] = [
         "input_wire": "op<<100><>op<<11>op<<1><100>>op<<1><1000>>>>",
         "wire_prompt": "op<<100><>op<<11>op<<1><100>>op<<1><1000>>>>",
         "grammar_prompt": "op<<100><>op<<11>op<<1><100>>op<<1><1000>>>>",
-        # Universal lift request
         "expected_response_wire": "op<<1100><liftreq>>",
         "action": "REQUEST_LIFT",
     },
     {
         "turn": 4,
         "stage": "EXACT_REPAIR",
-        # Host grant wire
         "input_wire": "op<<0><><0><1>>",
         "wire_prompt": "op<<0><><0><1>>",
         "grammar_prompt": "op<<0><><0><1>>",
-        # Terminal repair wire: Opcode <10010>, exact rational partition value Z = 450
-        # 450 in binary: 111000010
         "expected_response_wire": "op<<10010><0><111000010><1>>",
         "action": "CERTIFY_EXACT_REPAIR",
     },
@@ -351,23 +334,19 @@ def run_4d_half_instanton_demo(
     ensemble = build_canonical_4d_half_instanton_ensemble()
     canc_res = execute_4d_half_instanton_cancellation(ensemble)
 
-    # Validate wire turns
     for turn in CANONICAL_4D_WIRE_TURNS:
         assert validate_wire_string(turn["input_wire"]), f"Turn {turn['turn']} input wire invalid"
         assert validate_wire_string(turn["expected_response_wire"]), f"Turn {turn['turn']} response wire invalid"
 
-    # Discrete topological density validation
     torus = DiscreteTorus4D(dimensions=(4, 4, 4, 4))
     sample_cluster = ensemble[0]
     density = compute_discrete_topological_density(sample_cluster.centers, torus, smeared=True)
     chern_integral = discrete_second_chern_integral(density)
     assert chern_integral == sample_cluster.second_chern_number, "Topological density integral mismatch"
 
-    # Emit DDC DAG trace
     dag_path = output_dag or str(SYMBOLIC_4D_INSTANTON_DAG_TRACE)
     nodes = emit_4d_instanton_ddc_dag(dag_path, canc_res)
 
-    # Master receipt
     receipt_data = {
         "demo_id": "DEMO_4D_HALF_INSTANTON_SECOND_CHERN_CANCELLATION",
         "authority_effect": "None",
@@ -407,7 +386,6 @@ def run_4d_half_instanton_demo(
         },
     }
 
-    # Digest
     ser = json.dumps(receipt_data, indent=2, sort_keys=True)
     digest = hashlib.sha256(ser.encode("utf-8")).hexdigest()
     receipt_data["sha256_digest"] = digest

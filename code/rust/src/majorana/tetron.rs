@@ -1,49 +1,15 @@
-//! Homology-correct tetron-array carriers on a surface.
-//!
-//! A tetron **is a 2-cell**: one superconducting island, four MZMs on its
-//! boundary, total fermion parity pinned by charging energy. An `R x C` array
-//! of tetrons therefore tiles a surface, and the array's cohomology is the
-//! surface's.
-//!
-//! - `C^0` = MZMs. A 0-cochain is a per-MZM reference-frame bit.
-//! - `C^1` = parity-measurement channels. A channel on MZMs `a, b` measures
-//!   `i * gamma_a * gamma_b`; a 1-cochain is the per-channel parity residual.
-//! - `C^2` = islands. The product of the four channel parities around an island
-//!   has every gamma twice, so it is a fixed scalar: a constraint.
-//!
-//! Three topologies, three Betti numbers:
-//!
-//! ```text
-//! disk      chi = 1   dim H^1 = 0    open linear array (control)
-//! cylinder  chi = 0   dim H^1 = 1    tetron ring / H-junction ladder
-//! torus     chi = 0   dim H^1 = 2    periodic array (class typing possible)
-//! ```
-//!
-//! Adjacent islands share the boundary MZM their coupler acts through. That is
-//! an idealization of a coupled tetron array, and it is what makes the array a
-//! clean cell complex.
-//!
-//! Python dual face: `omega_engine/omega_engine_majorana/carriers/surface_carrier.py`.
-//! The golden fixtures in [`crate::harmonic`] pin the two surfaces together.
-//!
-//! AuthorityEffect: None. Nothing here asserts physical Majorana modes.
 
 use crate::complexes::ChainComplexGf2;
 use crate::gf2_terminalizer::{GF2Matrix, Gf2CocycleClassifier};
 
-/// Surface the tetron array is laid out on.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Topology {
-    /// Open in both directions. `dim H^1 = 0`.
     Disk,
-    /// Periodic in columns, open in rows. `dim H^1 = 1`.
     Cylinder,
-    /// Periodic in both directions. `dim H^1 = 2`.
     Torus,
 }
 
 impl Topology {
-    /// `dim H^1` predicted by the Euler characteristic.
     pub fn expected_dim_h1(self) -> usize {
         match self {
             Topology::Disk => 0,
@@ -60,7 +26,6 @@ impl Topology {
         }
     }
 
-    /// Hardware reading, carried into receipts.
     pub fn hardware_reading(self) -> &'static str {
         match self {
             Topology::Disk => "open tetron array; no protected logical parity error",
@@ -78,18 +43,12 @@ impl Topology {
     }
 }
 
-/// Which family of logical string to build.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Axis {
-    /// Every horizontal channel in one column slot. Non-exact on cylinder and torus.
     Column,
-    /// Every vertical channel in one row slot. Non-exact on the torus only.
     Row,
 }
 
-/// Measured structure of a tetron-array carrier.
-///
-/// Every field except `expected_dim_h1` is computed from the built matrices.
 #[derive(Debug, Clone)]
 pub struct TetronReport {
     pub topology: Topology,
@@ -104,9 +63,7 @@ pub struct TetronReport {
     pub graph_b1: usize,
     pub dim_h1: usize,
     pub expected_dim_h1: usize,
-    /// Horizontal channel index by `(vertex_row, column_slot)`.
     pub horizontal: Vec<Vec<usize>>,
-    /// Vertical channel index by `(row_slot, vertex_col)`.
     pub vertical: Vec<Vec<usize>>,
     pub authority_effect: &'static str,
 }
@@ -117,14 +74,6 @@ impl TetronReport {
     }
 }
 
-/// Build an `rows x cols` tetron array on `topology`.
-///
-/// Returns the complex and a report whose `dim_h1` is *measured*, not asserted.
-///
-/// # Errors
-///
-/// A periodic direction of extent 1 identifies a channel's two endpoints and
-/// would emit a self-loop with zero boundary; that is refused rather than built.
 pub fn build_tetron_array(
     rows: usize,
     cols: usize,
@@ -161,7 +110,6 @@ pub fn build_tetron_array(
         sink.len() - 1
     };
 
-    // Horizontal channel H(i, j) joins MZM (i, j) to (i, j+1).
     let h_span = if wrap_c { vcols } else { vcols - 1 };
     let mut horizontal = vec![vec![usize::MAX; h_span]; vrows];
     for (i, slots) in horizontal.iter_mut().enumerate() {
@@ -170,7 +118,6 @@ pub fn build_tetron_array(
         }
     }
 
-    // Vertical channel V(i, j) joins MZM (i, j) to (i+1, j).
     let v_span = if wrap_r { vrows } else { vrows - 1 };
     let mut vertical = vec![vec![usize::MAX; vcols]; v_span];
     for (i, slots) in vertical.iter_mut().enumerate() {
@@ -181,8 +128,6 @@ pub fn build_tetron_array(
 
     let num_channels = d0_rows.len();
 
-    // Island 2-cells: island (i, j) is bounded by H(i,j), V(i,j+1), H(i+1,j),
-    // V(i,j) -- a 4-cycle, so d1 . d0 = 0 holds by construction.
     let mut d1_rows: Vec<Vec<u8>> = Vec::new();
     for i in 0..rows {
         for j in 0..cols {
@@ -236,17 +181,6 @@ pub fn build_tetron_array(
     Ok((complex, report))
 }
 
-/// An explicit closed 1-cochain generating a logical parity class.
-///
-/// [`Axis::Column`]: every horizontal channel in column slot `index`. Closed
-/// because island `(i, index)` contains exactly `H(i, index)` and
-/// `H(i+1, index)`. Non-exact on a torus and a cylinder.
-///
-/// [`Axis::Row`]: every vertical channel in row slot `index`. Non-exact on a
-/// torus only -- on a cylinder it equals `d0 alpha` for `alpha = 1` on lattice
-/// rows `<= index`.
-///
-/// Physically: a string of faulty channels crossing the array.
 pub fn logical_class_representative(report: &TetronReport, axis: Axis, index: usize) -> Vec<u8> {
     let mut residual = vec![0u8; report.num_channels];
     match axis {
@@ -334,7 +268,6 @@ mod tests {
 
     #[test]
     fn degenerate_periodic_extents_are_refused() {
-        // Kills: accepting a 1-row torus, and accepting a 1x1 disk without checking its cells.
         assert!(build_tetron_array(1, 1, Topology::Torus)
             .unwrap_err()
             .contains("columns"));

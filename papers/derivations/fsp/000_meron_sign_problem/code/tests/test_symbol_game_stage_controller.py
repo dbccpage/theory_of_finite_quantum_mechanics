@@ -27,12 +27,10 @@ def test_stage_controller_4site_dag_and_hygiene(tmp_path: Path):
     nodes = controller.run_pipeline()
     assert len(nodes) == 6
 
-    # Test lexical hygiene on all payloads and actions
     for n in nodes:
         raw_text = json.dumps(n)
         assert_lexical_hygiene(raw_text)
 
-    # Validate Gamma38 wire purity
     for n in nodes:
         wire = n["gamma38_wire"]
         assert all(ch in GAMMA_38 for ch in wire)
@@ -40,7 +38,6 @@ def test_stage_controller_4site_dag_and_hygiene(tmp_path: Path):
         validate_packet_semantics(ast)
         assert serialize_packet(ast) == wire
 
-    # Verify terminal status and partition function Z
     term = nodes[-1]
     assert term["action"] == "CERTIFY_EXACT_REPAIR"
     assert term["payload"]["status"] == "EXACT_REPAIR"

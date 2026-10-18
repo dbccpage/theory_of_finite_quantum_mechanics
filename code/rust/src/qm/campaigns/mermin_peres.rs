@@ -1,9 +1,3 @@
-//! Campaign module mermin_peres.
-//!
-//! Pauli operators on two qubits, with phase `i^k`. The three rows of the
-//! square multiply to `+I`. Two columns multiply to `+I` and the third to
-//! `-I`, so the product of the column products is not the product of the row
-//! products. The same sign pattern has no noncontextual `F_2` assignment.
 
 pub fn verify() -> Result<i8, &'static str> {
     let rows = [

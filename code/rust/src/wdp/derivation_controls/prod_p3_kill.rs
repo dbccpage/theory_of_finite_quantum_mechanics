@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P3-KILL (Evaluate P3 kill conditions on pilot workloads).
 
 pub fn evaluate_p3_kill(saving_num: i64, transfer_sound: bool) -> (bool, bool, bool) {
     let kill_no_benefit = saving_num <= 0;

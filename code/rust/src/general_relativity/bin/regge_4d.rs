@@ -1,8 +1,3 @@
-//! CLI receipt for the exact rational 4D Regge checks.
-//!
-//! AuthorityEffect: None.
-//! The tests check rational Cayley-Menger data, simplicity via the pfaffian, chartwise closure, SO(4,Q) holonomy, Freudenthal volume conservation, and the rational defect predicate.
-//! They do not evaluate Σ A_h ε_h and they do not claim the round 4-sphere Einstein-Hilbert action was computed. The flat comparison value is the rational 0.
 
 #![forbid(unsafe_code)]
 
@@ -31,8 +26,6 @@ fn build_receipt() -> (Value, bool) {
     let orthogonal = orthogonal_receipt();
     let refinement = refinement_receipt(&flat);
     let closed = closed_s4_receipt();
-    // Identity of the Pythagorean pair, zero Frobenius defect, and rejection of
-    // the zero frame and of diag(1, 1, 1, -1).
     let holonomy_ok = holonomy_identity();
     let bound_accepts = manufactured_bound_accepts();
     let bound_rejects = manufactured_bound_rejects();
@@ -55,7 +48,6 @@ fn build_receipt() -> (Value, bool) {
         && closed.euler_characteristic == 2
         && !orthogonal.signed_volume.is_empty();
 
-    // `float_arithmetic` records that this receipt does not perform floating-point arithmetic.
     let value = json!({
         "authority_effect": "None",
         "scalar": "BigRational",
@@ -239,7 +231,6 @@ fn manufactured_bound_accepts() -> bool {
     defect_bound_holds(&s_regge, &s_eh, &q_i64(2), &a_squared)
 }
 
-/// True when the violating witness is rejected, that is, when `defect_bound_holds` returns false.
 fn manufactured_bound_rejects() -> bool {
     let Ok(a_squared) = q_ratio(1, 4) else {
         return false;
@@ -267,8 +258,6 @@ fn persist_receipt(value: &Value) -> bool {
     std::fs::write(path, pretty).is_ok()
 }
 
-/// Squared Euclidean distances of five points, packed into a symmetric 5×5 block.
-/// The diagonal is zero. Only `BigRational` operations are used.
 fn squared_edge_block(points: &[[BigRational; 4]; 5]) -> [[BigRational; 5]; 5] {
     std::array::from_fn(|i| {
         std::array::from_fn(|j| {

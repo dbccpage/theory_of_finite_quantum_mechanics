@@ -1,17 +1,3 @@
-//! Triangulated Categories and Verdier Axioms.
-//!
-//! Provides additive triangulated structures, shift autoequivalence $T = [1]$,
-//! distinguished triangles $X \xrightarrow{u} Y \xrightarrow{v} Z \xrightarrow{w} X[1]$,
-//! TR2 rotation axiom validator asserting the exact $-u[1]$ sign, and TR4 octahedral
-//! braid commutativity verification.
-//!
-//! Invariants:
-//! - Zero floating-point arithmetic.
-//! - Exact sign arithmetic for translation autoequivalence $(-u[1])$.
-//! - Soviet Builder allocation limits via `OperationLimits` and `reserve_exact`.
-//! - Content-addressed SHA-256 state hashing.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -21,7 +7,6 @@ use sha2::{Digest, Sha256};
 
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// Shift / Translation autoequivalence functor $T = [1]$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TranslationFunctor {
     pub object_shifts: BTreeMap<String, String>,
@@ -67,18 +52,17 @@ impl TranslationFunctor {
     }
 }
 
-/// Distinguished triangle $X \xrightarrow{u} Y \xrightarrow{v} Z \xrightarrow{w} X[1]$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DistinguishedTriangle {
     pub id: String,
     pub x: String,
     pub y: String,
     pub z: String,
-    pub u: String,         // u: X -> Y
-    pub v: String,         // v: Y -> Z
-    pub w: String,         // w: Z -> X[1]
-    pub shifted_x: String, // X[1]
-    pub w_sign: i8,        // +1 normally, -1 for rotated -u[1]
+    pub u: String,
+    pub v: String,
+    pub w: String,
+    pub shifted_x: String,
+    pub w_sign: i8,
 }
 
 impl DistinguishedTriangle {
@@ -130,19 +114,9 @@ impl DistinguishedTriangle {
     }
 }
 
-/// Rotation axiom TR2 validator checking exact sign and morphism orientation.
 pub struct RotationValidator;
 
 impl RotationValidator {
-    /// Validates TR2 rotation axiom:
-    /// $X \xrightarrow{u} Y \xrightarrow{v} Z \xrightarrow{w} X[1]$ is distinguished
-    /// $\iff$
-    /// $Y \xrightarrow{v} Z \xrightarrow{w} X[1] \xrightarrow{-u[1]} Y[1]$ is distinguished.
-    ///
-    /// Fails closed if:
-    /// - The objects do not match cyclic shift $(Y, Z, X[1], Y[1])$.
-    /// - The morphisms do not match $(v, w, -u[1])$.
-    /// - The sign of the third morphism is inverted from $-1$ to $+1$.
     pub fn validate_rotation(
         orig: &DistinguishedTriangle,
         rotated: &DistinguishedTriangle,
@@ -152,7 +126,6 @@ impl RotationValidator {
         let expected_shifted_y = shift.shift_object(&orig.y);
         let expected_shifted_u = shift.shift_morphism(&orig.u);
 
-        // Object checks
         if rotated.x != orig.y {
             return Err(HigherCategoryError::RotationAxiomViolation {
                 details: format!(
@@ -186,7 +159,6 @@ impl RotationValidator {
             });
         }
 
-        // Morphism checks
         if rotated.u != orig.v {
             return Err(HigherCategoryError::RotationAxiomViolation {
                 details: format!(
@@ -212,7 +184,6 @@ impl RotationValidator {
             });
         }
 
-        // Exact sign check: the third morphism MUST have sign -1 (i.e. -u[1])!
         if rotated.w_sign != -1 {
             return Err(HigherCategoryError::RotationAxiomViolation {
                 details: format!(
@@ -227,26 +198,24 @@ impl RotationValidator {
     }
 }
 
-/// Octahedral diagram structure encoding TR4 Verdier axiom.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OctahedralDiagram {
     pub id: String,
     pub x: String,
     pub y: String,
     pub z: String,
-    pub u: String,         // u: X -> Y
-    pub v: String,         // v: Y -> Z
-    pub vu: String,        // vu = v ∘ u: X -> Z
-    pub tri_u: DistinguishedTriangle,   // X -> Y -> C(u) -> X[1]
-    pub tri_v: DistinguishedTriangle,   // Y -> Z -> C(v) -> Y[1]
-    pub tri_vu: DistinguishedTriangle,  // X -> Z -> C(vu) -> X[1]
-    pub tri_cone: DistinguishedTriangle,// C(u) -> C(vu) -> C(v) -> C(u)[1]
-    pub f: String,         // f: C(u) -> C(vu)
-    pub g: String,         // g: C(vu) -> C(v)
-    pub h: String,         // h: C(v) -> C(u)[1]
+    pub u: String,
+    pub v: String,
+    pub vu: String,
+    pub tri_u: DistinguishedTriangle,
+    pub tri_v: DistinguishedTriangle,
+    pub tri_vu: DistinguishedTriangle,
+    pub tri_cone: DistinguishedTriangle,
+    pub f: String,
+    pub g: String,
+    pub h: String,
 }
 
-/// Octahedral braid TR4 validator checking commutativity of faces and distinguished triangles.
 pub struct OctahedralBraidValidator;
 
 impl OctahedralBraidValidator {
@@ -254,7 +223,6 @@ impl OctahedralBraidValidator {
         cat: &TriangulatedCategory,
         oct: &OctahedralDiagram,
     ) -> Result<(), HigherCategoryError> {
-        // 1. Verify that all 4 triangles are registered distinguished triangles in the category
         if !cat.distinguished_triangles.contains_key(&oct.tri_u.id) {
             return Err(HigherCategoryError::OctahedralAxiomViolation {
                 details: format!("tri_u '{}' is not distinguished", oct.tri_u.id),
@@ -276,7 +244,6 @@ impl OctahedralBraidValidator {
             });
         }
 
-        // 2. Verify objects consistency
         if oct.tri_u.x != oct.x || oct.tri_u.y != oct.y {
             return Err(HigherCategoryError::OctahedralAxiomViolation {
                 details: "tri_u objects do not match (X, Y)".to_string(),
@@ -293,7 +260,6 @@ impl OctahedralBraidValidator {
             });
         }
 
-        // 3. Verify cone triangle boundaries
         let cu = &oct.tri_u.z;
         let cv = &oct.tri_v.z;
         let cvu = &oct.tri_vu.z;
@@ -306,8 +272,6 @@ impl OctahedralBraidValidator {
             });
         }
 
-        // 4. Verify commutativity of octahedral faces:
-        // Face 1: f ∘ i == m ∘ v (where i: Y -> C(u), f: C(u) -> C(vu), v: Y -> Z, m: Z -> C(vu))
         let i = &oct.tri_u.v;
         let v = &oct.v;
         let m = &oct.tri_vu.v;
@@ -321,7 +285,6 @@ impl OctahedralBraidValidator {
             }
         }
 
-        // Face 2: g ∘ m == k (where m: Z -> C(vu), g: C(vu) -> C(v), k: Z -> C(v))
         let comp_gm = cat.compose(m, &oct.g);
         let k = &oct.tri_v.v;
         if let Ok(gm) = comp_gm {
@@ -336,7 +299,6 @@ impl OctahedralBraidValidator {
     }
 }
 
-/// Additive Triangulated Category.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TriangulatedCategory {
     pub name: String,
@@ -475,8 +437,6 @@ impl TriangulatedCategory {
         Ok(())
     }
 
-    /// Constructs the rotated triangle under TR2:
-    /// $Y \xrightarrow{v} Z \xrightarrow{w} X[1] \xrightarrow{-u[1]} Y[1]$.
     pub fn rotate_triangle(
         &self,
         tri_id: &str,
@@ -500,7 +460,7 @@ impl TriangulatedCategory {
             v: orig.w.clone(),
             w: shifted_u,
             shifted_x: shifted_y,
-            w_sign: -1, // Crucial: sign is -1 for -u[1]!
+            w_sign: -1,
         })
     }
 
@@ -528,8 +488,6 @@ impl TriangulatedCategory {
         OctahedralBraidValidator::validate(self, oct)
     }
 
-    /// Returns all registered distinguished triangles.
-    /// Employs Soviet Builder allocation discipline (`reserve_exact`).
     pub fn all_triangles(&self) -> Result<Vec<DistinguishedTriangle>, HigherCategoryError> {
         let mut list = Vec::new();
         for tri in self.distinguished_triangles.values() {

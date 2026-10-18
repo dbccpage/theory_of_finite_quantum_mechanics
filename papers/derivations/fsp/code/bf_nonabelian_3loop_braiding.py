@@ -107,10 +107,7 @@ class SU2LevelKCategory:
         h_zero = self.conformal_weight(0)
         h_one = self.conformal_weight(2)
 
-        # R^{j_1, j_2}_j = (-1)^{j_1 + j_2 - j} exp(i pi (h_j - h_1 - h_2))
-        # For j=0: (-1)^1 exp(i pi (0 - 2 h_half)) = - exp(-2 pi i h_half)
         r0 = -cmath.exp(-2.0j * math.pi * h_half)
-        # For j=1: (-1)^0 exp(i pi (h_one - 2 h_half))
         r1 = cmath.exp(1.0j * math.pi * (h_one - 2.0 * h_half))
 
         return np.diag([r0, r1])
@@ -164,18 +161,13 @@ class WangLevin3LoopBraidingModel:
         if self.is_abelian:
             return np.array([[1.0 + 0.0j]], dtype=complex)
 
-        # Non-abelian fundamental case:
         F = self.category.f_matrix_fundamental()
         R = self.category.r_matrix_fundamental()
 
-        # Monodromies B1 and B2
         B1 = R @ R
         F_inv = np.linalg.inv(F)
         B2 = F @ B1 @ F_inv
 
-        # Wang-Levin Borromean 3-loop braiding commutator:
-        # Loop 3 winds around loop 1 (B1), around loop 2 (B2),
-        # around loop 1 backwards (B1^-1), and around loop 2 backwards (B2^-1).
         B1_inv = np.linalg.inv(B1)
         B2_inv = np.linalg.inv(B2)
         M_WL = B1 @ B2 @ B1_inv @ B2_inv
@@ -209,10 +201,8 @@ class NonAbelianBfEngine:
         if use_quantum_double:
             M_eff = model.compute_quantum_double_projection(M)
             tr_val = np.trace(M_eff)
-            # Normalized trace
             norm_factor = dim_v**2
             norm_tr = tr_val / norm_factor
-            # Quantum double trace is strictly positive real
             gamma_2 = 0.0
             phi_1 = 0.0
             avg_sign = 1.0
@@ -222,7 +212,6 @@ class NonAbelianBfEngine:
             tr_val = np.trace(M_eff)
             norm_tr = tr_val / dim_v
 
-            # Cochain curvature: phase angle of normalized trace
             gamma_2 = abs(cmath.phase(norm_tr))
 
             if model.is_abelian:
@@ -230,17 +219,13 @@ class NonAbelianBfEngine:
                 avg_sign = 1.0
                 route = TerminalRoute.EXACT_REPAIR
             else:
-                # Check orientation energy gap
                 if model.energy_gap_orient > 1e-4:
-                    # Thermal weight asymmetry: w+ / w- = exp(-Delta E / T) != 1
                     phi_1 = float(1.0 - math.exp(-model.energy_gap_orient / model.temperature))
                     avg_sign = float(math.exp(-model.energy_gap_orient / model.temperature) * max(0.0, norm_tr.real))
                     route = TerminalRoute.REFUSED
                 else:
-                    # Symmetric orientation weights, but non-abelian trace has non-real / non-cancelling phase
                     re_part = float(norm_tr.real)
                     im_part = float(norm_tr.imag)
-                    # Non-abelian obstruction: uncancelled defect mass
                     phi_1 = float(max(0.0, 1.0 - re_part) + abs(im_part))
                     avg_sign = float(max(0.0, min(1.0, re_part)))
                     route = TerminalRoute.OPEN_SIGN_OBSTRUCTION

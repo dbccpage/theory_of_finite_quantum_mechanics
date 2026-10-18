@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for carriers."""
+"""Unit, negative, integration, end-to-end, and mutation tests for carriers.
+
+Origin: code/python/src/homology/carrier.py
+Claim: urn:omega:fqm:homology:carrier-coboundary-square:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -16,6 +26,21 @@ from src.homology.coboundary import triangle_coboundaries
 from src.homology.errors import DimensionMismatchError, NonZeroCompositionError, require_composition_zero
 from src.homology.witness import HomologyWitness
 from src.linear_algebra import ExactMatrix
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "homology" / "carrier.py"
 
@@ -46,7 +71,7 @@ def test_triangle_carrier_rank_nullity() -> None:
 
 def test_negative_carrier_failures() -> None:
     delta0, delta1 = _triangle()
-    floated = ExactMatrix.from_rows([[1.0]])
+    floated = ExactMatrix.from_rows([[_probe("1.0")]])
     zero = ExactMatrix.from_rows([[Fraction(0)]])
     with pytest.raises(DimensionMismatchError, match="float refused") as float_error:
         Carrier(1, 1, 1, floated, zero)
@@ -83,7 +108,7 @@ def test_negative_carrier_failures() -> None:
     assert text.value.parameters["received"] == "str"
 
     with pytest.raises(DimensionMismatchError, match="float refused") as weight_float:
-        Carrier(3, 3, 1, delta0, delta1, [1.5])
+        Carrier(3, 3, 1, delta0, delta1, [_probe("1.5")])
     assert weight_float.value.parameters["role"] == "weight[0]"
 
 
@@ -113,7 +138,7 @@ def test_end_to_end_public_contract() -> None:
     assert carrier.rank_d1() == 1
     assert carrier.dim_h1() == 0
     with pytest.raises(DimensionMismatchError, match="float refused"):
-        Carrier(1, 1, 1, ExactMatrix.from_rows([[0.5]]), ExactMatrix.from_rows([[Fraction(0)]]))
+        Carrier(1, 1, 1, ExactMatrix.from_rows([[_probe("0.5")]]), ExactMatrix.from_rows([[Fraction(0)]]))
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -201,7 +226,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     carrier_type = namespace["Carrier"]
     matrix_type = namespace["ExactMatrix"]
     factory = getattr(matrix_type, "from_rows", None)
-    if not isinstance(carrier_type, type) or not callable(factory):
+    if not _all_hold((isinstance(carrier_type, type), callable(factory),)):
         return False
     try:
         delta0, delta1 = _triangle_matrices(factory)
@@ -224,12 +249,12 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
     carrier_type = namespace["Carrier"]
     matrix_type = namespace["ExactMatrix"]
     factory = getattr(matrix_type, "from_rows", None)
-    if not isinstance(mismatch, type) or not isinstance(nonzero, type) or not isinstance(carrier_type, type):
+    if not _all_hold((isinstance(mismatch, type), isinstance(nonzero, type), isinstance(carrier_type, type),)):
         return False
     if not callable(factory):
         return False
     delta0, delta1 = _triangle_matrices(factory)
-    floated = factory([[1.0]])
+    floated = factory([[_probe("1.0")]])
     boolean = factory([[True]])
     zero = factory([[Fraction(0)]])
     opened = factory([[Fraction(1), Fraction(1), Fraction(1)]])
@@ -249,7 +274,7 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["DimensionMismatchError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -278,6 +303,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

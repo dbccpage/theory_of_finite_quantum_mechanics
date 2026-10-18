@@ -1,4 +1,3 @@
-//! Chain: a finite formal linear combination of basis elements in degree n.
 
 use crate::errors::HomologicalError;
 use crate::hashing::{hash_vector, Hash256};
@@ -7,7 +6,6 @@ use crate::linear_algebra::scalars::Q;
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 
-/// A chain element: a vector of coefficients in a given degree.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Chain {
     pub degree: Degree,
@@ -16,7 +14,6 @@ pub struct Chain {
 }
 
 impl Chain {
-    /// Create a new chain with the given coefficients.
     pub fn new(degree: Degree, basis_id: BasisId, coefficients: Vec<Q>) -> Self {
         Self {
             degree,
@@ -25,7 +22,6 @@ impl Chain {
         }
     }
 
-    /// Create a zero chain of given dimension.
     pub fn zero(degree: Degree, basis_id: BasisId, dim: usize) -> Self {
         Self {
             degree,
@@ -34,22 +30,18 @@ impl Chain {
         }
     }
 
-    /// Dimension of the chain (number of coefficients).
     pub fn dimension(&self) -> usize {
         self.coefficients.len()
     }
 
-    /// Check if all coefficients are zero.
     pub fn is_zero(&self) -> bool {
         self.coefficients.iter().all(|c| c.is_zero())
     }
 
-    /// Compute a deterministic hash of this chain.
     pub fn hash(&self) -> Hash256 {
         hash_vector(&self.coefficients)
     }
 
-    /// Add two chains of the same degree and basis.
     pub fn add(&self, other: &Chain) -> Result<Chain, HomologicalError> {
         if self.degree != other.degree {
             return Err(HomologicalError::DimensionMismatch {
@@ -76,7 +68,6 @@ impl Chain {
         })
     }
 
-    /// Subtract another chain.
     pub fn sub(&self, other: &Chain) -> Result<Chain, HomologicalError> {
         if self.degree != other.degree {
             return Err(HomologicalError::DimensionMismatch {
@@ -103,7 +94,6 @@ impl Chain {
         })
     }
 
-    /// Scalar multiplication.
     pub fn scalar_mul(&self, scalar: &Q) -> Chain {
         let coefficients = self.coefficients.iter().map(|c| c * scalar).collect();
         Chain {

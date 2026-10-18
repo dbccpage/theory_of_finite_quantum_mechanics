@@ -1,22 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import OntologyBasic
 import PrimitiveTerminalPacket
-/-!
-Bridge from the PaperFOC000c ontology boundary to the existing primitive FOC spine.
 
-The ontology layer says that a claim earns authority only through descent to
-Primitive Difference, Structure, or typed refusal.  The primitive spine already
-has terminal packets with classifier status, repair-boundary status, and
-certificate readiness.  This file connects those layers without promoting a
-representation-only packet.
--/
 
 namespace OmegaCosmology
 namespace Ontology
@@ -30,7 +15,6 @@ open OmegaCore.PrimitiveTerminalPacket
 
 variable {Q : Type u}
 
-/-- Stable cross-domain evidence id for the PaperFOC000c claim-packet boundary. -/
 def paper000cClaimPacketEvidenceId : String :=
   "PAPER000C-CLAIM-PACKET-AUTHORITY-BOUNDARY"
 
@@ -39,14 +23,7 @@ theorem paper000cClaimPacketEvidenceId_eq :
       "PAPER000C-CLAIM-PACKET-AUTHORITY-BOUNDARY" :=
   rfl
 
-/--
-Translate a primitive terminal packet into an ontology terminal status.
 
-The mapping is conservative: repair needs a repair boundary and certificate;
-refusal/budget/no-rule boundaries remain non-authoritative; a stabilized
-survivor becomes a positive stabilized status only when the primitive classifier
-has already terminalized it as such.
--/
 def statusFromPrimitiveTerminal
     {C : ObstructionClassifier Q} {q : Q}
     (packet : TerminalPacket C q) : TerminalStatus :=
@@ -63,10 +40,6 @@ def statusFromPrimitiveTerminal
           if packet.hasCertificate then TerminalStatus.stabilized else TerminalStatus.noRule
       | ObstructionStatus.openObstruction => TerminalStatus.noRule
 
-/--
-A primitive terminal packet becomes a claim packet only after the caller declares
-which root descent channels have been witnessed.
--/
 def claimPacketFromPrimitiveTerminal
     {C : ObstructionClassifier Q} {q : Q}
     (packet : TerminalPacket C q)
@@ -165,3 +138,6 @@ theorem open_no_rule_packet_has_no_authority
 end PrimitiveBridge
 end Ontology
 end OmegaCosmology
+
+private def l5aProvenance : String :=
+  "Origin: lean4/OntologyPrimitiveBridge.lean Claim: paper000cClaimPacketEvidenceId_eq AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

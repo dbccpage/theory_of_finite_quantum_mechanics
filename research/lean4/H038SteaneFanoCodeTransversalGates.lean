@@ -1,19 +1,4 @@
-/-
-  H038SteaneFanoCodeTransversalGates.lean
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
 
-  Shows in this model under exact integer arithmetic that:
-  1. The Steane [[7, 1, 3]] code on the Fano plane has 3 check vectors of weight 4.
-  2. The check vectors pairwise overlap in exactly 2 positions ((-1)^2 = 1),
-     establishing that all 6 stabilizers commute.
-  3. The transversal logical operators X_L = X^7 and Z_L = Z^7 commute with all
-     stabilizers because their overlap with each check is 4 ((-1)^4 = 1).
-  4. The logical operators anticommute because their total length is 7 ((-1)^7 = -1).
-  5. The binary syndromes for all 7 single-qubit error locations are non-zero and pairwise distinct.
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 namespace FableHilbertWalk20260819.H038
 
@@ -39,11 +24,9 @@ theorem h1_h3_overlap : inner_prod h1 h3 = 2 := by decide
 
 theorem h2_h3_overlap : inner_prod h2 h3 = 2 := by decide
 
-/-- Commutation phase from an overlap count: even overlap commutes. -/
 def commutePhase (overlap : Int) : Int :=
   if overlap % 2 = 0 then 1 else -1
 
-/-- Transversal logical `X` and `Z`, supported on all seven Fano points. -/
 def logicalAll : List Int := [1, 1, 1, 1, 1, 1, 1]
 
 theorem stabilizers_commute_h1_h2 :
@@ -89,7 +72,6 @@ def basisAt : QubitPos → List Int
   | .q5 => [0, 0, 0, 0, 0, 1, 0]
   | .q6 => [0, 0, 0, 0, 0, 0, 1]
 
-/-- Syndrome read from the three Fano checks, not from a separate table. -/
 def checkSyndrome (err : List Int) : Syndrome3 :=
   ⟨inner_prod h1 err, inner_prod h2 err, inner_prod h3 err⟩
 
@@ -146,6 +128,8 @@ theorem syndromes_pairwise_distinct :
 end FableHilbertWalk20260819.H038
 
 
-/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
 theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
   decide
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H038SteaneFanoCodeTransversalGates.lean Claim: h1_weight AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -1,7 +1,3 @@
-//! Dagger structures on explicit finite categories: identity on objects,
-//! contravariant on arrows, involutive and composition-reversing. Validation
-//! checks every declared arrow and composite, after the canonical finite
-//! category checker. AuthorityEffect: None.
 use crate::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
 use crate::validation::ValidationReport;
 use std::collections::BTreeMap;
@@ -30,8 +26,6 @@ pub struct DaggerStructure {
     dagger: BTreeMap<String, String>,
 }
 impl DaggerStructure {
-    /// A total involutive contravariant dagger. The arrow bound protects the
-    /// cubic associativity validation; there is no unchecked declaration mode.
     pub fn try_new(
         category: DeclaredFiniteCategory,
         dagger: BTreeMap<String, String>,
@@ -98,8 +92,6 @@ impl DaggerStructure {
     pub fn dagger(&self, morphism: &str) -> Option<&str> {
         self.dagger.get(morphism).map(String::as_str)
     }
-    /// A unitary arrow has both inverse equations with its dagger. Unknown
-    /// arrows return None, so absence cannot be mistaken for nonunitarity.
     pub fn is_unitary(&self, morphism: &str) -> Option<bool> {
         let c = self.category.declared();
         let (source, target) = c.boundary_of(morphism)?;
@@ -116,7 +108,6 @@ mod tests {
     use super::*;
     #[test]
     fn group_groupoid_and_relations_are_dagger_categories() {
-        // The one-object S3 category; composition applies first then second.
         let permutations = [
             [0, 1, 2],
             [0, 2, 1],
@@ -166,7 +157,6 @@ mod tests {
             .is_unitary("0>1")
             .unwrap());
 
-        // All binary relations on a two-point set, not only invertible arrows.
         let mut relations = DeclaredFiniteCategory::new("Rel(2)");
         let mut dagger = BTreeMap::new();
         for a in 0..16usize {

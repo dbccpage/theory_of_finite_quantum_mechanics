@@ -70,7 +70,6 @@ class Simplicial4DManifold:
 
     def __init__(self, four_simplices: Optional[Set[Tuple[int, ...]]] = None):
         if four_simplices is None:
-            # Seed: standard 4-sphere S^4 as boundary of a 5-simplex
             self.four_simplices: Set[Tuple[int, ...]] = {
                 tuple(sorted(c)) for c in itertools.combinations(range(6), 5)
             }
@@ -167,7 +166,6 @@ class Simplicial4DManifold:
                         v = next(iter(v_set))
                         transverse_edge = tuple(sorted((u, v)))
                         if transverse_edge not in self.edges:
-                            # Perform surgery: remove s1, s2 and insert 4 new 4-simplices
                             self.four_simplices.remove(s1)
                             self.four_simplices.remove(s2)
                             for face in itertools.combinations(tet, 3):
@@ -198,13 +196,11 @@ class Simplicial4DManifold:
                     diff = set(s) - set(tri)
                     if len(diff) == 2:
                         pass
-                # Check for 3 distinct opposite vertices
                 all_v = set().union(*simplices)
                 opp = all_v - set(tri)
                 if len(opp) == 3:
                     dual_tri = tuple(sorted(opp))
                     if dual_tri not in self.triangles:
-                        # Surgery: replace 3 simplices sharing tri with 3 sharing dual_tri
                         for s in list(simplices):
                             self.four_simplices.remove(s)
                         for edge in itertools.combinations(tri, 2):
@@ -259,7 +255,6 @@ class ReggeWheelerDeWittEngine:
         n_v = len(verts)
         n_e = len(edges)
 
-        # Assemble d_0 matrix (n_e x n_v)
         d0 = np.zeros((n_e, n_v), dtype=float)
         for e, e_idx in e_map.items():
             u, v = e
@@ -267,14 +262,11 @@ class ReggeWheelerDeWittEngine:
             d0[e_idx, v_map[v]] = 1.0
 
         if curvature_regime == "Flat":
-            # Flat geometry: exact gauge coboundary p = d0 alpha_exact, H_perp = 0
             alpha_exact = np.ones(n_v, dtype=float) * 0.5
             p_vec = d0 @ alpha_exact
             h_vec = np.zeros(n_v, dtype=float)
         else:
-            # Curved geometry: non-zero deficit angles yield irreducible vertex scalar curvatures
             p_vec = np.ones(n_e, dtype=float) * 0.5
-            # Non-zero scalar curvature R(v) from deficit angle concentration
             deg_v = {v: 0 for v in verts}
             for u, v in edges:
                 deg_v[u] += 1
@@ -285,7 +277,6 @@ class ReggeWheelerDeWittEngine:
         D_joint = np.vstack([d0, np.zeros((n_v, n_v), dtype=float)])
         n_rows, n_cols = D_joint.shape
 
-        # Primal LP: min sum u_i s.t. -u <= omega - D_joint alpha <= u
         c_primal = np.concatenate([np.zeros(n_cols), np.ones(n_rows)])
         A_ub = np.vstack([
             np.hstack([-D_joint, -np.eye(n_rows)]),
@@ -295,7 +286,6 @@ class ReggeWheelerDeWittEngine:
         bounds_primal = [(None, None)] * n_cols + [(0, None)] * n_rows
         p_res = linprog(c_primal, A_ub=A_ub, b_ub=b_ub, bounds=bounds_primal, method="highs")
 
-        # Dual LP: max <w, omega> s.t. D_joint^T w = 0, -1 <= w_i <= 1
         d_res = linprog(-omega, A_eq=D_joint.T, b_eq=np.zeros(n_cols), bounds=[(-1, 1)] * n_rows, method="highs")
 
         primal_obj = float(p_res.fun) if p_res.success else 0.0
@@ -325,27 +315,22 @@ class ReggeWheelerDeWittEngine:
         moves_done = []
 
         if apply_pachner_moves:
-            # Subdivide first so candidate interior tetrahedra and triangles exist
             if manifold.apply_1_to_5_move():
                 moves_done.append("1->5")
-            # Apply 2->4 growth move
             if manifold.apply_2_to_4_move(auto_subdivide=False):
                 moves_done.append("2->4")
-            # Apply 3->3 topological flip
             if manifold.apply_3_to_3_move():
                 moves_done.append("3->3")
 
         final_n4 = manifold.num_four_simplices
         chi = manifold.euler_characteristic
 
-        # Solve direct-sum WDW constraint LP
         lp_res = self.solve_direct_sum_wdw_lp(manifold, curvature_regime=curvature_regime)
         defect_mass = lp_res["primal_obj"]
         dual_obj = lp_res["dual_obj"]
         gap = lp_res["duality_gap"]
         is_closed = lp_res["is_closed"]
 
-        # GIN indexing of constraint channels
         c = self.conn.cursor()
         total_modes = manifold.num_vertices
         c.execute(

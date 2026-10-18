@@ -1,6 +1,3 @@
-//! Actual source-23 result key, raising and obstruction observations.
-//! Raw nonnegative assertion tables remain distinct from their result key.
-//! All arithmetic, gauge normalization and orbit transport use exact owners.
 use crate::genesis_ongoing_adapter::{GenesisBridgeError, GenesisOngoingPacket};
 use crate::genesis_source_execution::{move_counts, Source25State, SourceExecutionError};
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError};
@@ -188,7 +185,6 @@ impl Source23State {
                 .collect(),
         )
     }
-    /// Source-22 plain-state cost used by source 23; NOT a source-23 result invariant.
     pub fn plain_cost(&self) -> BigInt {
         self.raw.plain_state_cost()
     }
@@ -259,9 +255,6 @@ impl Source23State {
     }
 }
 
-/// Atomic source raising events. Bulk counts are a separate exact utility.
-/// The source's one-term raising may leave raw state unchanged, but still
-/// contributes a retained occurrence. Every atomic intermediate is included.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Source23Run {
     states: Vec<Source23State>,

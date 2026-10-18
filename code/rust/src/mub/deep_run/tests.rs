@@ -32,11 +32,6 @@ use omega_quantum_physics::mub::spectral_lift::SpectralLiftStatus;
         REPORT.get_or_init(|| run_deep_mub(crate_root()))
     }
 
-    /// With the Apache compare crate deleted (2026-08-04) there is no lane that can
-    /// replay his manifest or either bound. All three must terminalize as honest
-    /// missing proof obligations — never `Replayed` (which would claim a
-    /// verification we cannot perform) and never `VerificationFailed` (which would
-    /// claim we ran a check and it failed).
     #[test]
     fn deep_run_replays_are_missing_obligations_without_apache_crate() {
         let report = deep_run_report();
@@ -105,8 +100,6 @@ use omega_quantum_physics::mub::spectral_lift::SpectralLiftStatus;
             .missing_obligations
             .iter()
             .any(|obligation| obligation.contains("exhaustive atlas")));
-        // A candidate receipt that is not on disk is audited as missing, never
-        // as cover evidence.
         let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
         for source in &report.global_atlas.candidate_sources {
             if !root.join(source.relative_path).exists() {
@@ -148,8 +141,6 @@ use omega_quantum_physics::mub::spectral_lift::SpectralLiftStatus;
         match &report.mub6_cochain_obstruction {
             DeepRunMubCochainObstruction::Completed(cochain) => {
                 assert_eq!(cochain.status, "executed");
-                // No global atlas certificate exists yet, so deep_run passes
-                // no atlas evidence and the cochain search asserts none.
                 assert_eq!(cochain.evidence, MubAtlasEvidence::default());
                 assert_eq!(
                     cochain.higher_cn.next_layer,

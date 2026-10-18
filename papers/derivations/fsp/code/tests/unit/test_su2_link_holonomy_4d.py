@@ -11,7 +11,6 @@ import sys
 from pathlib import Path
 import pytest
 
-# Ensure code directory is in sys.path
 code_dir = Path(__file__).resolve().parent.parent.parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -39,7 +38,6 @@ class TestExactRationalSU2:
         assert ident.is_unitary() is True
 
     def test_from_pythagorean_quadruple(self):
-        # 1^2 + 2^2 + 2^2 + 0^2 = 9 = 3^2
         u = ExactRationalSU2.from_pythagorean_quadruple(1, 2, 2, 0)
         assert u.a0 == Fraction(1, 3)
         assert u.a1 == Fraction(2, 3)
@@ -55,7 +53,6 @@ class TestExactRationalSU2:
         assert prod.is_unitary() is True
         assert prod.determinant() == Fraction(1, 1)
 
-        # U * U^dagger == I
         inv = u1.dagger()
         ident = u1.multiply(inv)
         assert ident.a0 == Fraction(1, 1)
@@ -91,7 +88,7 @@ class TestExactRationalSU2:
             ExactRationalSU2.from_pythagorean_quadruple(0, 0, 0, 0)
 
         with pytest.raises(ValueError, match="not a perfect square"):
-            ExactRationalSU2.from_pythagorean_quadruple(1, 1, 0, 0)  # 1+1=2 not a square
+            ExactRationalSU2.from_pythagorean_quadruple(1, 1, 0, 0)
 
     def test_multiply_invalid_type(self):
         u = ExactRationalSU2.identity()
@@ -108,14 +105,13 @@ class TestLattice4DCoord:
         assert shifted.x0 == 1
         assert shifted.x1 == 1
 
-        # Periodic wrap-around
         wrapped = shifted.shift(0, 1)
         assert wrapped.x0 == 0
 
     def test_involution_reflection(self):
         coord = Lattice4DCoord(1, 0, 1, 0, (3, 2, 2, 2))
         refl = coord.involution_reflection()
-        assert refl.x0 == (-1) % 3  # = 2
+        assert refl.x0 == (-1) % 3
         assert refl.x1 == 0
         assert refl.x2 == 1
         assert refl.x3 == 0
@@ -151,17 +147,14 @@ class TestLattice4DSU2:
         lattice = Lattice4DSU2((2, 2, 2, 2))
         coord = Lattice4DCoord(0, 0, 0, 0, (2, 2, 2, 2))
 
-        # Identity links give identity plaquettes
         plaq = lattice.plaquette(coord, 0, 1)
         assert plaq == ExactRationalSU2.identity()
         assert lattice.plaquette_action(coord, 0, 1) == Fraction(0, 1)
 
-        # Perturb one link with non-trivial SU(2) element
         u_pert = ExactRationalSU2.from_pythagorean_quadruple(1, 2, 2, 0)
         lattice.set_link(coord, 0, u_pert)
         assert lattice.get_link(coord, 0) == u_pert
 
-        # Plaquette in (0, 1) plane now has non-zero action
         action_01 = lattice.plaquette_action(coord, 0, 1)
         assert action_01 > Fraction(0, 1)
         assert lattice.total_wilson_action() > Fraction(0, 1)
@@ -197,24 +190,19 @@ class TestLattice4DSU2:
         coord = Lattice4DCoord(0, 0, 0, 0, (2, 2, 2, 2))
         u_pert = ExactRationalSU2.from_pythagorean_quadruple(1, 2, 2, 0)
 
-        # First, set to perturbed link
         lattice.set_link(coord, 0, u_pert)
-        # Action descending move: proposing Identity link back (Delta S < 0)
         accepted, delta_s = lattice.rational_metropolis_step(
             coord, 0, ExactRationalSU2.identity(), Fraction(9, 10)
         )
         assert accepted is True
         assert delta_s < Fraction(0, 1)
 
-        # Action ascending move: proposing u_pert from identity (Delta S > 0)
-        # Random threshold higher than alpha -> rejected
         accepted, delta_s = lattice.rational_metropolis_step(
             coord, 0, u_pert, Fraction(1, 1)
         )
         assert accepted is False
         assert delta_s > Fraction(0, 1)
 
-        # Random threshold lower than alpha -> accepted
         accepted, delta_s = lattice.rational_metropolis_step(
             coord, 0, u_pert, Fraction(0, 1)
         )
@@ -311,7 +299,6 @@ class TestPfpFspBridge:
     def test_pfp_refusal_unitarity_or_determinant(self):
         lattice = Lattice4DSU2((2, 2, 2, 2))
         referee = FspPfpReferee(lattice)
-        # Mock an object that fails is_unitary or determinant
         class NonUnitarySU2:
             a0 = Fraction(1, 1)
             a1 = Fraction(0, 1)
@@ -349,7 +336,6 @@ class TestPfpFspBridge:
             declared_initial_action=Fraction(0, 1),
             declared_delta_action=Fraction(0, 1),
         )
-        # Monkeypatch verify_involution_sign_balance to simulate a breach
         monkeypatch.setattr(
             lattice,
             "verify_involution_sign_balance",
@@ -362,7 +348,6 @@ class TestPfpFspBridge:
     def test_local_staple_action_all_directions(self):
         lattice = Lattice4DSU2((2, 2, 2, 2))
         coord = Lattice4DCoord(0, 0, 0, 0, (2, 2, 2, 2))
-        # Call for mu=0, 1, 2, 3 to exercise all forward and backward plaquette branches
         for mu in range(4):
             staple = lattice.local_staple_action(coord, mu)
             assert staple == Fraction(0, 1)

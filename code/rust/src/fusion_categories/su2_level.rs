@@ -1,16 +1,3 @@
-//! Exact SU(2)_k associators and braidings in an algebraic Racah gauge.
-//!
-//! Simple labels `a=0..k` are twice the spins. Set `q=exp(pi i/(k+2))` and
-//! `[n]=(q^n-q^-n)/(q-q^-1)`. The usual unitary q-6j expression is transformed
-//! by the vertex gauge `u^{ab}_c=sqrt([c+1]) Delta(a,b,c)`. The resulting
-//! F-symbols are `(-1)^((a+b+c+d)/2) [e+1] Delta(a,b,e)^2
-//! Delta(e,c,d)^2` times the Racah sum. They need no square roots and lie in
-//! `Q(zeta_(8(k+2)))`. This gauge is generally not orthonormal: its F-matrices
-//! must not be advertised as unitary in the ordinary coordinate inner product.
-//!
-//! Every returned category has replayed the unit laws, pentagon, both hexagons,
-//! quantum dimensions, twists and ribbon balance. Level and coefficient-field
-//! refusals are explicit. AuthorityEffect: None.
 
 use crate::braided::{BraidedFusionCategory, RSymbols, RibbonFusionCategory};
 use crate::error::FusionError;
@@ -20,9 +7,6 @@ use crate::scalar::{root_of_unity, FusionScalar};
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{involution, matrix};
 
-/// The general formula is evaluated only through this bounded level. The bound
-/// controls the rank-dependent exhaustive pentagon replay, not the mathematics
-/// of the SU(2) family.
 pub const MAX_LEVEL: usize = 6;
 
 fn checked_level(level: usize) -> Result<(), FusionError> {
@@ -36,8 +20,6 @@ fn checked_level(level: usize) -> Result<(), FusionError> {
     Ok(())
 }
 
-/// The exact q-integer at level `k`. An index above `2(k+2)` is refused to
-/// bound an independently requested coefficient evaluation.
 pub fn quantum_integer<K: FusionScalar>(level: usize, n: usize) -> Result<K, FusionError> {
     checked_level(level)?;
     if n > 2 * (level + 2) {
@@ -94,8 +76,6 @@ fn associator<K: FusionScalar>(
     let start = *lower.iter().max().ok_or(FusionError::Inconsistent {
         context: "Racah lower limit",
     })?;
-    // Terms z>k have [z+1]!=0. All denominator factorials of admissible
-    // labels have indices <=k, so omitting those zero terms is exact.
     let end = level.min(*upper.iter().min().ok_or(FusionError::Inconsistent {
         context: "Racah upper limit",
     })?);
@@ -169,9 +149,6 @@ fn tree_metrics<K: FusionScalar>(
     ))
 }
 
-/// Exact positive diagonal metrics on the two association-tree coordinate
-/// bases, in the same channel order as FSymbols. They make the Racah F-block
-/// an isometry: `F^dag G_left F = G_right`, without adjoining square roots.
 pub fn associator_metrics<K: FusionScalar>(
     level: usize,
     labels: [usize; 4],
@@ -188,14 +165,9 @@ pub fn associator_metrics<K: FusionScalar>(
     tree_metrics(&ring, labels, &dimensions, &factorials)
 }
 
-/// Construct the actual F/R data for SU(2)_k, for `1 <= k <= MAX_LEVEL`.
-/// `K` must contain the primitive `8(k+2)`-th roots of unity. Its F-symbols
-/// use the algebraic gauge above; a physical orthonormal basis requires a
-/// compatible metric or a further square-root field extension.
 pub fn su2_level<K: FusionScalar>(level: usize) -> Result<RibbonFusionCategory<K>, FusionError> {
     checked_level(level)?;
     let root_order = (8 * (level + 2)) as u32;
-    // A field refusal precedes any table allocation or partial symbol carrier.
     let braiding_root = root_of_unity::<K>(root_order, 1)?;
     let ring = FusionRing::su2_level(level)?;
     let (dimensions, factorials) = coefficient_data::<K>(level)?;
@@ -264,8 +236,6 @@ mod tests {
             .category()
             .verify_dimensions(model.dimensions())
             .unwrap();
-        // This includes an independently computed Verlinde replay, S^2 and
-        // (ST)^3, rather than relying on a family-name assertion.
         let modular = ModularData::verified(&model).unwrap();
         assert_eq!(
             modular.central_charge_mod_4().unwrap(),

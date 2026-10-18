@@ -1,7 +1,3 @@
-//! Finite operation terms and an associativity-erasing rooted-tree normal form.
-//!
-//! The concrete ordered-tree model is formalized in `lean4/research_programs/woland`.
-//! Its proofs do not yet verify this implementation or canonical serialization.
 
 use serde_json::{json, Value};
 use std::collections::BTreeMap;
@@ -10,7 +6,6 @@ use super::canonical::{canonical_id, CanonicalError};
 use super::model::{BoundarySignature, OperationSpec, OperationSpecInput, PortSpec};
 use super::result::Refusal;
 
-/// Syntax variants for inert operation terms.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum OperationTerm {
     Identity(PortSpec),
@@ -136,7 +131,6 @@ impl TreeNode {
     }
 }
 
-/// Associativity-erased, fully normalized rooted-tree operation term.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct NormalizedTerm {
     pub tree: TreeNode,

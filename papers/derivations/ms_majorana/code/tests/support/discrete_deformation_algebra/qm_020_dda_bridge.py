@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 import numpy as np
 
-# Ensure code paths are in sys.path
 code_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path(".")
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -75,7 +74,6 @@ def dda_residuals_to_qm020_lift(
 
     total_mass = float(np.sum(weights_arr))
     if total_mass <= 0:
-        # Trivial zero residual profile
         norm_dict = {s: 0.0 for s in sectors}
         amp_dict = {s: 0.0 + 0.0j for s in sectors}
         return DDASectorWeightResult(
@@ -86,11 +84,9 @@ def dda_residuals_to_qm020_lift(
             born_normalization_verified=True,
         )
 
-    # 1. Free L1 Normalization (QM_020 Theorem 1)
     norm_profile = weights_arr / total_mass
     norm_dict = {s: float(p) for s, p in zip(sectors, norm_profile)}
 
-    # 2. Optional Hilbert Lift (QM_020 Theorem 4)
     phases_arr = (
         np.array([phases.get(s, 0.0) for s in sectors], dtype=float)
         if phases is not None else None
@@ -98,7 +94,6 @@ def dda_residuals_to_qm020_lift(
     amplitudes = l1_to_l2_amplitude_lift(weights_arr, phases=phases_arr)
     amp_dict = {s: complex(c) for s, c in zip(sectors, amplitudes)}
 
-    # 3. Born Rule Verification
     born_pass = verify_born_normalization(amplitudes)
 
     return DDASectorWeightResult(
@@ -111,7 +106,6 @@ def dda_residuals_to_qm020_lift(
 
 
 if __name__ == "__main__":
-    # Test run: 3-cell boundary residual sector weights
     sample_weights = {(0, 1, 2): 3.0, (1, 2, 3): 1.0, (0, 2, 3): 4.0}
     res = dda_residuals_to_qm020_lift(sample_weights)
 

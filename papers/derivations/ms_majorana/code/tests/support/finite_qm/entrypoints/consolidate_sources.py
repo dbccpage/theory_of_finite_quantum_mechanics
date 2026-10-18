@@ -36,13 +36,8 @@ APP_ROOT = (_Path(__file__).resolve().parents[4] / "apps" / "finite_qm")
 REPO_ROOT = APP_ROOT.parents[1]
 QF = REPO_ROOT / "coda_atlas/F004_papers/003_quantum_foundations"
 
-# Every paper directory in 003_quantum_foundations. `None` means "take them all";
-# the consolidation is no longer a prefix of the corpus, it is the corpus.
 SOURCE_KEYS = None
 
-# Papers in 003_quantum_foundations with a public Zenodo deposit. A published
-# source is not free to rewrite: a rewrite forks from the public record rather
-# than replacing it.
 PUBLISHED = {
     "020_born_normalization_and_conditional_hilbert_lift": "https://zenodo.org/records/20683775",
     "080_cptp_trace_norm_geometry_and_quantum_dual_witnesses": "https://zenodo.org/records/20550459",
@@ -129,8 +124,6 @@ TYPE_MEANING = {
 }
 
 
-# --------------------------------------------------------------------------- #
-# table parsing
 
 
 def _is_rule(line: str) -> bool:
@@ -279,8 +272,6 @@ def retype(source_status: str, mapped_evidence: str | None = None) -> tuple[str,
     return "UNTYPED", "none"
 
 
-# --------------------------------------------------------------------------- #
-# collection
 
 
 def source_dirs() -> list[pathlib.Path]:
@@ -473,14 +464,8 @@ def build_claims() -> tuple[list[dict], list[dict], list[dict]]:
             if not cid or not statement:
                 dropped.append({"source": d.name, "row": rec})
                 continue
-            # A map keys on the bare id ("C1"); ledgers spell it "QM-020-C1".
             mapped = code_map.get(cid) or code_map.get(cid.rsplit("-", 1)[-1])
             ctype, evidence = retype(status, mapped)
-            # The 2026-08-19 adversarial audit outranks a ledger's self-report:
-            # it was independently verified and it read the Lean. It never
-            # promotes past LEAN SOURCE (UNREPLAYED).
-            # A `Where` tag naming this source's own receipted Lean is the
-            # strongest evidence available anywhere in the corpus.
             where = (rec.get("where") or "").strip("` ")
             stem = where.split(".")[0].strip("` ")
             if stem and any(s.startswith(stem) for s in receipted):
@@ -518,8 +503,6 @@ def build_claims() -> tuple[list[dict], list[dict], list[dict]]:
                     "source_status": status,
                 }
             )
-        # Audit rows no ledger lists are still findings. Carry them in as claims
-        # of their own rather than letting them vanish -- 31 of them are refutations.
         for cid, arec in AUDIT.get(key3, {}).items():
             if cid in audit_used:
                 continue
@@ -550,8 +533,6 @@ def build_claims() -> tuple[list[dict], list[dict], list[dict]]:
     return claims, upgrades, dropped
 
 
-# --------------------------------------------------------------------------- #
-# emission
 
 EVIDENCED_CLAIMS = [
     (
@@ -943,7 +924,6 @@ def emit_markdown(
         "",
         "`AuthorityEffect: None.`",
     ]
-    # Keep empty table cells in the same compact style as nonempty cells.
     return re.sub(r" {2,}(?=\|)", " ", "\n".join(out)) + "\n"
 
 
@@ -990,9 +970,6 @@ def main(argv: list[str] | None = None) -> int:
         ]
         for p in stale:
             print(f"STALE: {p.relative_to(APP_ROOT)}", file=sys.stderr)
-            # A bare "STALE" tells you nothing about why, which is useless when
-            # the check passes on one platform and fails on another. Show the
-            # first divergence and a bounded diff.
             if not p.is_file():
                 print("  file is absent entirely", file=sys.stderr)
                 continue

@@ -15,25 +15,20 @@ import omega_engine.crates.type.refusal as canonical_refusal
 
 
 def test_hott_refusal_is_canonical():
-    # The Refusal exported by HoTT types is the canonical class, so isinstance
-    # checks at omega_types.refusal boundaries recognize a HoTT-produced refusal.
     assert Refusal is canonical_refusal.Refusal
     r = Refusal("x")
     assert isinstance(r, canonical_refusal.Refusal)
 
 
 def test_success_and_result_remain_local():
-    # Success is HoTT-local (canonical refusal has no Success wrapper); dependents
-    # like fibration.py / invariants.py rely on this Success-wrapped Result.
     s = Success(42)
     assert s.value == 42
 
 
 def test_safe_trans_refuses_on_mismatched_endpoints():
     p = Path("a", "b")
-    other = Path("c", "d")  # other.source != p.target
+    other = Path("c", "d")
 
-    # Sanity: the raising concatenation is preserved (utility level).
     raised = False
     try:
         p.trans(other)

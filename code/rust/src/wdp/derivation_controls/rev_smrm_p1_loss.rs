@@ -1,4 +1,3 @@
-//! Companion Rust witness for REV-SMRM-P1-LOSS (Governor refuses LOSS certificates lacking b_0).
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AbstentionLabel {

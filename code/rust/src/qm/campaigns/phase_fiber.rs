@@ -1,106 +1,52 @@
-//! Phase-fiber boundary (Target 11).
-//!
-//! # Discrete toy fence (retained)
-//!
-//! The only **constructed** phase fiber in this module is
-//! [`CyclicPhaseGroup`]: the finite cyclic group \(\mathbb{Z}/n\) as a
-//! discrete stand-in for \(U(1)\). Exact arithmetic uses residues mod \(n\)
-//! and optional circle fractions \(k/n \in \mathbb{Q}/\mathbb{Z}\).
-//!
-//! # General-E interface
-//!
-//! [`U1PhaseFiberE`] holds a general-E claim about a \(U(1)\) phase fiber
-//! together with an explicit evidence tag ([`U1PhaseFiberEvidence`]):
-//!
-//! - `ConstructedDiscrete { n }` — built here as \(\mathbb{Z}/n\)
-//! - `ImportRegistered { import_id, source_ref }` — formal import, **not**
-//!   a construction (does not mint continuum structure)
-//! - `OpenResidual { reason }` — honest open residual (e.g. continuum \(U(1)\))
-//!
-//! Continuum \(U(1)\) is **never** constructed. Claiming continuum without
-//! import/residual evidence **fails closed**.
-//!
-//! # Cohomology-ish diagnostic
-//!
-//! A 1-cochain assigns discrete phases to directed edges of a small graph.
-//! Coboundary of a 0-cochain \(\alpha\) is
-//! \((\delta\alpha)(u \to v) = \alpha(v) - \alpha(u) \pmod n\).
-//! Exactness (trivial class) is decided by consistent gauge-fixing.
-//!
-//! **AuthorityEffect:** None. Not PROVED. Not GlobalGreen. No continuum promotion.
 
 use omega_homology::cyclic_phase::{CyclicPhaseError, CyclicPhaseGroup};
 
-/// Fence string — never mints PROVED / GlobalGreen / continuum \(U(1)\).
 pub const AUTHORITY_FENCE: &str = "AuthorityEffect None; not PROVED; not GlobalGreen; \
      discrete Z/n toy fence retained; continuum U(1) not constructed; no continuum promotion.";
 
-/// Errors for phase-fiber boundary operations (fail-closed).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PhaseFiberError {
     Cyclic(CyclicPhaseError),
-    /// Continuum \(U(1)\) claimed without import or residual evidence.
     ContinuumU1WithoutEvidence,
-    /// Import registration requires nonempty import_id and source_ref.
     EmptyImportRegistration,
-    /// Open residual requires a nonempty reason.
     EmptyOpenResidualReason,
 }
 
-/// Evidence tag for a general-E \(U(1)\) phase-fiber claim.
-///
-/// Distinguishes actual discrete construction from formal import and from
-/// honest open residuals. Import registration **must not** be treated as
-/// construction of continuum \(U(1)\).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum U1PhaseFiberEvidence {
-    /// Constructed in-crate as discrete \(\mathbb{Z}/n\).
     ConstructedDiscrete { n: usize },
-    /// Formally registered import — **not** a construction.
     ImportRegistered {
         import_id: String,
         source_ref: String,
     },
-    /// Honest open residual (e.g. continuum \(U(1)\) exactness OPEN).
     OpenResidual { reason: String },
 }
 
 impl U1PhaseFiberEvidence {
-    /// True only for the discrete construction path.
     pub fn is_constructed(&self) -> bool {
         matches!(self, Self::ConstructedDiscrete { .. })
     }
 
-    /// True only for formal import (never pretends construction).
     pub fn is_import_registered(&self) -> bool {
         matches!(self, Self::ImportRegistered { .. })
     }
 
-    /// True only for open residual packaging.
     pub fn is_open_residual(&self) -> bool {
         matches!(self, Self::OpenResidual { .. })
     }
 
-    /// Continuum \(U(1)\) is never evidenced as constructed here.
     pub fn claims_continuum_construction(&self) -> bool {
         false
     }
 }
 
-/// General-E carrier for \(U(1)\) phase fibers with associated evidence.
-///
-/// Does **not** store continuum manifold data. Continuum claims route only
-/// through `ImportRegistered` or `OpenResidual`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct U1PhaseFiberE {
-    /// Evidence for the fiber status.
     pub evidence: U1PhaseFiberEvidence,
-    /// Stable label / claim id.
     pub label: String,
 }
 
 impl U1PhaseFiberE {
-    /// Construct discrete \(\mathbb{Z}/n\) evidence (\(n \ge 2\)).
     pub fn construct_discrete(n: usize, label: impl Into<String>) -> Result<Self, PhaseFiberError> {
         let fiber = CyclicPhaseGroup::try_new(n).map_err(PhaseFiberError::Cyclic)?;
         Ok(Self {
@@ -109,9 +55,6 @@ impl U1PhaseFiberE {
         })
     }
 
-    /// Register a formal import of continuum / external \(U(1)\) structure.
-    ///
-    /// This does **not** construct \(U(1)\); it only records import linkage.
     pub fn register_import(
         import_id: impl Into<String>,
         source_ref: impl Into<String>,
@@ -131,7 +74,6 @@ impl U1PhaseFiberE {
         })
     }
 
-    /// Package an open residual (e.g. continuum exactness OPEN).
     pub fn open_residual(
         reason: impl Into<String>,
         label: impl Into<String>,
@@ -146,11 +88,6 @@ impl U1PhaseFiberE {
         })
     }
 
-    /// Fail-closed gate for continuum \(U(1)\) claims.
-    ///
-    /// Without explicit import or residual evidence, continuum \(U(1)\) is
-    /// refused. Providing an import or residual is allowed and does **not**
-    /// promote the claim to constructed continuum structure.
     pub fn claim_continuum_u1(
         evidence: ContinuumU1ClaimEvidence,
         label: impl Into<String>,
@@ -165,35 +102,26 @@ impl U1PhaseFiberE {
         }
     }
 
-    /// Whether this carrier was constructed as discrete \(\mathbb{Z}/n\).
     pub fn is_constructed(&self) -> bool {
         self.evidence.is_constructed()
     }
 
-    /// Whether this is a formal import only (never construction).
     pub fn is_import_only(&self) -> bool {
         self.evidence.is_import_registered()
     }
 
-    /// Authority fence (never mints PROVED/GlobalGreen/continuum).
     pub fn authority_fence() -> &'static str {
         AUTHORITY_FENCE
     }
 }
 
-/// Explicit evidence choices when claiming continuum \(U(1)\).
-///
-/// `None` fails closed. Import and residual are formal / residual only.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ContinuumU1ClaimEvidence {
-    /// No evidence — must fail closed.
     None,
-    /// Formal import registration (not construction).
     Import {
         import_id: String,
         source_ref: String,
     },
-    /// Honest open residual.
     OpenResidual { reason: String },
 }
 
@@ -211,7 +139,6 @@ mod tests {
         assert_eq!(fiber.identity().residue(), 0);
         let p = fiber.phase(1).unwrap();
         assert_eq!(p.as_circle_rational(), rq(1, 2));
-        // Z/2: 1+1 = 0
         assert_eq!(p.add(p).unwrap().residue(), 0);
 
         let e = U1PhaseFiberE::construct_discrete(2, "toy-n2").unwrap();
@@ -277,7 +204,6 @@ mod tests {
             }
             other => panic!("expected ImportRegistered, got {other:?}"),
         }
-        // Must not be ConstructedDiscrete
         assert!(!matches!(
             e.evidence,
             U1PhaseFiberEvidence::ConstructedDiscrete { .. }
@@ -331,10 +257,8 @@ mod tests {
             },
         )
         .unwrap();
-        // α = (0, 1, 0) on Z/2
         let alpha = vec![0usize, 1, 0];
         let theta = coboundary(&fiber, &g, &alpha).unwrap();
-        // edges: 0→1: 1-0=1, 1→2: 0-1=1, 2→0: 0-0=0
         assert_eq!(theta.edge_phases, vec![1, 1, 0]);
 
         let check = check_coboundary_triviality(&fiber, &g, &theta).unwrap();
@@ -353,7 +277,6 @@ mod tests {
             },
         )
         .unwrap();
-        // Uniform phase 1 on each edge ⇒ holonomy 3 ≢ 0 mod 4
         let theta = PhaseOneCochain::try_new(&fiber, &g, vec![1, 1, 1]).unwrap();
         assert_eq!(
             theta.as_circle_rationals(),

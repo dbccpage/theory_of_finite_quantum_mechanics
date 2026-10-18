@@ -1,7 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Finite Quantum Mechanics CLI tool.
-//! Emits exact rational and algebraic receipts for finite QM targets 1 through 22.
 
 use crate::qm::campaigns::branch_finegraining::*;
 use crate::qm::campaigns::busch_effects::*;
@@ -222,7 +219,6 @@ pub fn run_legacy_target_with_args(
             serde_json::to_value(&receipt).map_err(|e| e.to_string())
         }
         "--all" => {
-            // Full receipt across all 22 targets with genuine discrete computations
             let t1 = verify_target1_primitive_difference();
             let t2 = verify_target2_diamond_complex();
             let t3 = verify_target3_sorkin_interference();
@@ -270,8 +266,6 @@ pub fn run_legacy_target_with_args(
                 .iter()
                 .any(|&sign| sign < 0);
 
-            // Keep the actual reports inspectable. Enum labels and inventory
-            // counts do not certify the campaign's terminal mathematical claim.
             let b5 = run_block_05_report();
             let b5_status = b5.status();
             let campaign_reports = json!({

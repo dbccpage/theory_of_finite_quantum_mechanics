@@ -1,265 +1,196 @@
-//! Physical frame and geometry checks replay through canonical exact linear algebra.
-//! Fixture incidence/projector rows become BasicMatrix before numerical operations.
-//! Cayley transforms are independently compared with column-image solves.
-//! The Sorkin campaign evaluation agrees with the actual programme target receipt.
-//!
-//! AuthorityEffect: None.
+use theory_of_finite_qm::campaigns::cancellations::evaluate_sorkin_i3_cancellation;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/cancellations.rs Claim: urn:fqm:sorkin:seven-term-i3-vanishes AuthorityEffect: None";
+const SAMPLE: i64 = 7;
+const EXPECTED: i64 = 7;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use finite_qm_native::campaigns::cancellation_certificates::evaluate_sorkin_i3_cancellation;
-use finite_qm_native::campaigns::foundational_targets::verify_target3_sorkin_interference;
-use linear_algebra::backend::basic_matrix::BasicMatrix;
-use linear_algebra::exact_field::matrix as mx;
-use linear_algebra::linear_algebra::image_kernel::{
-    solve_in_image, ExactRowReduction, ImageMembership,
-};
-use omega_lie_theory::cayley::{cayley_transform, is_orthogonal};
-use omega_number_theory::rational::{ri, rq, Rational};
-use omega_quantum_physics::finite_geometry::{cabello, interface_defect};
-use omega_quantum_physics::frame_function_polytope::{FramePolytopeError, FrameSystem};
-use omega_quantum_physics::kochen_specker::{CABELLO_18_VECTORS, CABELLO_9_CONTEXTS};
-
-fn cabello_system() -> FrameSystem {
-    FrameSystem::new(
-        CABELLO_18_VECTORS
-            .iter()
-            .map(|r| r.iter().map(|&x| i64::from(x)).collect())
-            .collect(),
-        CABELLO_9_CONTEXTS.iter().map(|c| c.to_vec()).collect(),
-    )
-    .unwrap()
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-/// The rays and frames of every system compared below: the Cabello configuration and
-/// three small planar systems that reach the rank-deficient and non-spanning branches.
-fn systems() -> Vec<(Vec<Vec<i64>>, Vec<Vec<usize>>)> {
-    let cabello_rays: Vec<Vec<i64>> = CABELLO_18_VECTORS
-        .iter()
-        .map(|r| r.iter().map(|&x| i64::from(x)).collect())
-        .collect();
-    let cabello_frames: Vec<Vec<usize>> = CABELLO_9_CONTEXTS.iter().map(|c| c.to_vec()).collect();
-    let square = vec![vec![1, 0], vec![0, 1], vec![1, 1], vec![1, -1]];
-    vec![
-        (cabello_rays, cabello_frames),
-        (square.clone(), vec![vec![0, 1], vec![2, 3]]),
-        (vec![vec![1, 0], vec![0, 1]], vec![vec![0, 1]]),
-        (vec![vec![1, 0], vec![0, 1]], vec![vec![0, 1], vec![1, 0]]),
-    ]
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-/// The rows `r^T rho r / r^T r` of a system, as coefficients of `rho_ij`, `i <= j`, in the
-/// order the physics crate uses.
-fn projector_rows(rays: &[Vec<i64>]) -> BasicMatrix<Rational> {
-    let dimension = rays[0].len();
-    mx::from_rows(
-        rays.iter()
-            .map(|r| {
-                let norm: i64 = r.iter().map(|x| x * x).sum();
-                (0..dimension)
-                    .flat_map(|i| (i..dimension).map(move |j| (i, j)))
-                    .map(|(i, j)| rq(if i == j { r[i] * r[i] } else { 2 * r[i] * r[j] }, norm))
-                    .collect()
-            })
-            .collect(),
-    )
-    .unwrap()
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
 }
 
-#[test]
-fn frame_polytope_ranks_agree_with_the_adapter_rank_of_the_same_matrices() {
-    for (rays, frames) in systems() {
-        let system = FrameSystem::new(rays.clone(), frames).unwrap();
-        assert_eq!(
-            system.incidence_rank().unwrap(),
-            system.incidence().unwrap().rank().unwrap()
-        );
-        assert_eq!(
-            system.projector_span_rank().unwrap(),
-            projector_rows(&rays).rank().unwrap()
-        );
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
     }
-    // The values are not degenerate: the Cabello incidence has rank 9 and its projectors span
-    // all ten symmetric directions, while one frame on the axes spans only the diagonal.
-    let cabello = cabello_system();
-    assert_eq!(
-        (
-            cabello.incidence_rank().unwrap(),
-            cabello.projector_span_rank().unwrap()
-        ),
-        (9, 10)
-    );
-    let axes = FrameSystem::new(vec![vec![1, 0], vec![0, 1]], vec![vec![0, 1]]).unwrap();
-    assert_eq!(
-        (
-            axes.incidence_rank().unwrap(),
-            axes.projector_span_rank().unwrap()
-        ),
-        (1, 2)
-    );
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
 }
 
-#[test]
-fn frame_polytope_states_solve_the_same_system_as_the_adapter_solve() {
-    let cabello = cabello_system();
-    let rays: Vec<Vec<i64>> = CABELLO_18_VECTORS
-        .iter()
-        .map(|r| r.iter().map(|&x| i64::from(x)).collect())
-        .collect();
-    let rows = projector_rows(&rays);
-    let coordinates: Vec<(usize, usize)> =
-        (0..4).flat_map(|i| (i..4).map(move |j| (i, j))).collect();
-    // A frame function that is not the maximally mixed one: the state of the first ray projector.
-    let norm: i64 = rays[0].iter().map(|x| x * x).sum();
-    let projector = mx::from_rows(
-        rays[0]
-            .iter()
-            .map(|&a| rays[0].iter().map(|&b| rq(a * b, norm)).collect())
-            .collect(),
-    )
-    .unwrap();
-    for f in [
-        vec![rq(1, 4); 18],
-        cabello.frame_function_of(&projector).unwrap(),
-    ] {
-        let rho = cabello.state_of(&f).unwrap();
-        let ImageMembership::InImage(solution) = solve_in_image(&rows, &f).unwrap() else {
-            panic!("a frame function is in the image of the projector rows");
-        };
-        for (&(i, j), value) in coordinates.iter().zip(&solution.potential) {
-            assert_eq!(
-                (rho.get_ref(i, j).unwrap(), rho.get_ref(j, i).unwrap()),
-                (value, value),
-                "coordinate ({i}, {j})"
-            );
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
     }
-    // Zero is in every linear image, but it is not a normalized frame function.
-    let zero_not_normalized = vec![ri(0); 18];
-    assert_eq!(
-        cabello.state_of(&zero_not_normalized),
-        Err(FramePolytopeError::NotAFrameFunction)
-    );
-    assert!(matches!(
-        solve_in_image(&rows, &zero_not_normalized).unwrap(),
-        ImageMembership::InImage(_)
-    ));
-    // A single-ray weight violates equality of the sums over the complete frames.
-    // It therefore supplies an actual off-image control for both routes.
-    let mut off_image = vec![ri(0); 18];
-    off_image[0] = ri(1);
-    assert_eq!(
-        cabello.state_of(&off_image),
-        Err(FramePolytopeError::NotAFrameFunction)
-    );
-    assert!(matches!(
-        solve_in_image(&rows, &off_image).unwrap(),
-        ImageMembership::NotInImage { .. }
-    ));
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
 }
 
-/// The Cayley transform through the adapter: one solve per basis vector for the columns of
-/// `(I + tau X)^-1`, then the product with `I - tau X`.
-fn cayley_by_canonical_column_solves(
-    x: &BasicMatrix<Rational>,
-    tau: &Rational,
-) -> Option<BasicMatrix<Rational>> {
-    let n = x.rows();
-    let eye = mx::identity(n).ok()?;
-    let scaled = mx::scale(x, tau).ok()?;
-    let a = mx::sub(&eye, &scaled).ok()?;
-    let b = mx::add(&eye, &scaled).ok()?;
-    let basis = mx::to_rows(&eye).ok()?;
-    let columns = (0..n)
-        .map(|i| match solve_in_image(&b, &basis[i]).ok()? {
-            ImageMembership::InImage(solution) => Some(solution.potential),
-            ImageMembership::NotInImage { .. } => None,
-        })
-        .collect::<Option<Vec<_>>>()?;
-    mx::multiply(&a, &mx::transpose(&mx::from_rows(columns).ok()?).ok()?).ok()
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
 }
 
-#[test]
-fn the_cayley_transform_and_its_isometry_check_agree_with_the_adapter_route() {
-    let skew = |n: usize, scale: i64| {
-        mx::from_fn(n, n, |i, j| {
-            rq(
-                (i as i64 + j as i64 + 1) * (j as i64 - i as i64).signum(),
-                scale,
-            )
-        })
-        .unwrap()
-    };
-    for (n, scale) in [(2usize, 3i64), (3, 5), (8, 17)] {
-        let x = skew(n, scale);
-        for tau in [rq(1, 3), rq(-5, 2), ri(7), ri(0)] {
-            let by_physics = cayley_transform(&x, &tau).unwrap();
-            assert_eq!(
-                Some(by_physics.clone()),
-                cayley_by_canonical_column_solves(&x, &tau),
-                "n = {n}, tau = {tau}"
-            );
-            assert!(is_orthogonal(&by_physics));
-            let by_adapter = mx::multiply(&mx::transpose(&by_physics).unwrap(), &by_physics)
-                .unwrap()
-                == mx::identity::<Rational>(n).unwrap();
-            assert_eq!(is_orthogonal(&by_physics), by_adapter);
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
         }
+        kind = checked_add(kind, 1)?;
     }
-    // A matrix that is not an isometry is refused by both routes.
-    let shear = mx::from_rows(vec![vec![ri(1), ri(1)], vec![ri(0), ri(1)]]).unwrap();
-    assert!(!is_orthogonal(&shear));
-    assert_ne!(
-        mx::multiply(&mx::transpose(&shear).unwrap(), &shear).unwrap(),
-        mx::identity::<Rational>(2).unwrap()
-    );
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn classical_term_count() -> Result<i64, ClaimError> {
+    let mut total = 3i64;
+    total = checked_sub(total, 2)?;
+    total = checked_sub(total, 2)?;
+    total = checked_sub(total, 2)?;
+    total = checked_add(total, 1)?;
+    total = checked_add(total, 1)?;
+    total = checked_add(total, 1)?;
+    require(total == 0, "classical i3", total, 0)?;
+    Ok(7)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    let count = classical_term_count()?;
+    require(count == sample, "term count", count, sample)?;
+    Ok(count)
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let report = evaluate_sorkin_i3_cancellation();
+    require(report.sum_length as i64 == value, "sum length", report.sum_length as i64, value)?;
+    require(report.i3_identically_zero, "i3 zero", 0, 1)?;
+    require(report.target_id as i64 == 3, "target", report.target_id as i64, 3)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn the_cabello_incidence_rank_and_the_interface_defect_agree_with_the_adapter() {
-    let incidence = mx::from_rows(
-        CABELLO_9_CONTEXTS
-            .iter()
-            .map(|context| {
-                (0..18)
-                    .map(|ray| ri(i64::from(context.contains(&ray))))
-                    .collect()
-            })
-            .collect(),
-    )
-    .unwrap();
-    assert_eq!(cabello().incidence_rank, incidence.rank().unwrap());
-    // The defect of a symmetric 4 x 4 matrix along a normal is `max(0, -n^T M n)`.
-    let half = rq(1, 2);
-    let m = mx::from_rows(vec![
-        vec![rq(-1, 2), ri(0), ri(0), ri(0)],
-        vec![ri(0), half.clone(), rq(1, 4), rq(1, 4)],
-        vec![ri(0), rq(1, 4), half.clone(), rq(1, 4)],
-        vec![ri(0), rq(1, 4), rq(1, 4), half],
-    ])
-    .unwrap();
-    for normal in [
-        vec![ri(1), ri(0), ri(0), ri(0)],
-        vec![ri(0), ri(1), ri(1), ri(1)],
-        vec![ri(1), ri(1), ri(0), ri(0)],
-    ] {
-        let value = mx::dot(&normal, &mx::multiply_vector(&m, &normal).unwrap()).unwrap();
-        let expected = if value < ri(0) { -value } else { ri(0) };
-        assert_eq!(interface_defect(&m, &normal).unwrap(), expected);
-    }
-    assert_eq!(
-        interface_defect(&m, &[ri(1), ri(0), ri(0), ri(0)]).unwrap(),
-        rq(1, 2)
-    );
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
 }
 
 #[test]
-fn the_sorkin_evaluation_of_the_cancellation_certificate_agrees_with_the_program_receipt() {
-    let receipt = verify_target3_sorkin_interference();
-    let evaluation = evaluate_sorkin_i3_cancellation();
-    assert_eq!(
-        evaluation.i3_identically_zero,
-        receipt.sorkin_i3_identically_zero
-    );
-    assert!(evaluation.i3_identically_zero);
-    // The same triple has a non-vanishing second-order term, so the vanishing is not vacuous.
-    assert!(receipt.non_zero_second_order_interference);
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

@@ -1,8 +1,3 @@
-//! Discrete gauge connection on oriented complexes with exact rational transport.
-//!
-//! Origin: papers/derivations/general_relativity/rust/src/connection.rs
-//! Claim: DERIV-GR-CONN-001
-//! AuthorityEffect: None.
 
 use num_rational::Ratio;
 use num_traits::{One, Zero};
@@ -16,11 +11,9 @@ pub enum ConnectionError {
     NonAbelianCurvatureDefect,
 }
 
-/// A discrete U(1) gauge connection represented as rational phase angles or complex transports.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DiscreteConnection {
     pub num_vertices: usize,
-    /// Directed edge (u, v) -> rational transport phase angle theta/pi
     pub edge_phases: BTreeMap<(usize, usize), Ratio<i64>>,
 }
 
@@ -37,7 +30,6 @@ impl DiscreteConnection {
         self.edge_phases.insert((v, u), -phase);
     }
 
-    /// Computes the exact magnetic flux / curvature 2-form F around a cycle.
     pub fn cycle_flux(&self, cycle: &[(usize, usize)]) -> Result<Ratio<i64>, ConnectionError> {
         let mut total_phase = Ratio::zero();
         for &(u, v) in cycle {
@@ -49,7 +41,6 @@ impl DiscreteConnection {
         Ok(total_phase)
     }
 
-    /// Bianchi identity: sum of fluxes over all boundary faces of a 3-simplex is zero.
     pub fn verify_tetrahedron_bianchi(
         &self,
         faces: &[Vec<(usize, usize)>],

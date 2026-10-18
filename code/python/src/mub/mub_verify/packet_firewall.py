@@ -20,7 +20,6 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-# Closed-set operator vocabulary
 DECLARED_OPERATORS: Set[str] = {
     "ASSERT",
     "CUT",
@@ -44,7 +43,7 @@ def is_valid_carrier_codepoint(cp: int) -> bool:
         return True
     if 0x03B1 <= cp <= 0x03C9:
         return True
-    if cp in {0x2192, 0x22A2, 0x22A5, 0x2261, 0x03B4, 0x03A6}:  # ->, |-, bottom, ==, delta, Phi
+    if cp in {0x2192, 0x22A2, 0x22A5, 0x2261, 0x03B4, 0x03A6}:
         return True
     return False
 
@@ -185,10 +184,8 @@ class PacketFirewallHost:
                 reason=f"Pre-state hash mismatch: computed {computed_pre_hash[:8]} != claimed {step.pre_state_hash[:8]}",
             )
 
-        # Execute host deterministic application
         next_state_str = apply_fn(current_state_str, step.position, step.rule_id, step.substitution)
 
-        # Ensure the resulting state is also on-carrier
         v_post_carrier = self.check_fw_carrier(next_state_str)
         if not v_post_carrier.admitted:
             return v_post_carrier

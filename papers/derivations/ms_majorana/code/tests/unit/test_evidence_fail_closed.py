@@ -47,8 +47,6 @@ class TestUnknownTokensRefuseInEveryGate:
             allowed_evidence(EvidenceCeiling.SHAPE_ONLY, "GarbageCeiling")
 
     def test_assert_no_ceiling_raise_refuses_unknown_ceiling_object(self) -> None:
-        # Construction of an unregistered EvidenceCeiling is permitted (for
-        # display/serialization); the GATE is where it must refuse.
         unknown = EvidenceCeiling("NotARealRung")
         with pytest.raises(ValueError, match="UNKNOWN_EVIDENCE_TOKEN_REFUSED"):
             assert_no_ceiling_raise(unknown, EvidenceCeiling.SHAPE_ONLY)
@@ -75,7 +73,6 @@ class TestRegisteredLatticeStillWorks:
             assert_no_ceiling_raise(
                 EvidenceCeiling.LOCAL_REPLAY, EvidenceCeiling.BOUNDARY_CHECKED
             )
-        # Holding and lowering return None (no raise).
         assert (
             assert_no_ceiling_raise(
                 EvidenceCeiling.LOCAL_REPLAY, EvidenceCeiling.LOCAL_REPLAY
@@ -95,7 +92,6 @@ class TestRegisteredLatticeStillWorks:
         assert evidence_rank(ceiling) == 3
 
     def test_registry_is_the_declared_five_rung_lattice(self) -> None:
-        # Census tripwire: ranks 0..5 with the declared synonyms only.
         assert sorted(set(EVIDENCE_RANK.values())) == [0, 1, 2, 3, 4, 5]
         assert set(EVIDENCE_RANK) == {
             "GrammarOnly",

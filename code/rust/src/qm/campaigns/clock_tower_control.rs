@@ -1,8 +1,3 @@
-//! Campaign module clock_tower_control.
-//!
-//! A 4-cycle clock returns to the identity at step 4, which is also the length
-//! of its only cycle. The controlled clock acts as that cycle when the control
-//! bit is 1 and as the identity when the control bit is 0.
 
 pub fn verify() -> Result<usize, &'static str> {
     let clock = [1usize, 2, 3, 0];

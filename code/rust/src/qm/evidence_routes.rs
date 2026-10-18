@@ -1,29 +1,8 @@
-// AuthorityEffect: None.
 
-//! Evidence routes for finite quantum packets: exact replay versus scoped
-//! tolerance, as disjoint classes.
-//!
-//! [`route_evidence`] takes the certified obstruction values `(Phi_Q, Gamma_Q)`
-//! of a packet residual and an optional declared tolerance:
-//!
-//! - no tolerance (exact symbolic replay) and `Phi_Q = Gamma_Q = 0`:
-//!   `ExactQuantumReplay`, the only member of the exact class here;
-//! - a declared tolerance with both values inside it: `ApproxQuantumReplay`;
-//! - `Gamma_Q = 0` with `Phi_Q` outside the (possibly zero) tolerance:
-//!   `QuantumSurvivor`, a closed but non-exact residual;
-//! - otherwise the route is refused as an open obstruction: either `Gamma_Q`
-//!   is outside the envelope, or it is inside but nonzero while `Phi_Q` is
-//!   outside, so the residual is neither within tolerance nor closed.
-//!
-//! The approximate and survivor routes form the scoped class. Every input gets
-//! exactly one route, so the classes cannot overlap. A packet that declares a
-//! tolerance never reaches the exact class, even at zero error: empirical
-//! evidence stays scoped. No route is an authority terminal.
 
 use num_traits::{Signed, Zero};
 use omega_number_theory::rational::Rational;
 
-/// A declared tolerance envelope `(eps_Phi, eps_Gamma)`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredTolerance {
     phi: Rational,
@@ -45,14 +24,12 @@ impl DeclaredTolerance {
     }
 }
 
-/// Exact closure and witnessed nonzero obstruction are distinct even inside tolerance.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ClosureStatus {
     ExactClosed,
     WitnessedNonzeroGamma,
 }
 
-/// The evidence route of one replay.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum EvidenceRoute {
     ExactQuantumReplay,
@@ -67,7 +44,6 @@ pub enum EvidenceRoute {
     },
 }
 
-/// The two historical classes.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EvidenceClass {
     Exact,
@@ -85,7 +61,6 @@ impl EvidenceRoute {
     }
 }
 
-/// Why no route was granted.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum RouteRefusal {
     #[error("obstruction values must be nonnegative")]
@@ -104,7 +79,6 @@ pub enum RouteRefusal {
     },
 }
 
-/// Route a replay by its certified `(Phi_Q, Gamma_Q)` and declared tolerance.
 pub fn route_evidence(
     phi: &Rational,
     gamma: &Rational,

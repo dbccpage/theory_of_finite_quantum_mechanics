@@ -1,7 +1,3 @@
-//! Campaign module discrete_dynamics.
-//!
-//! The affine map `x ↦ 2x + 1` on `Z/7Z` is a bijection. The closed-form
-//! inverse `4(x - 1)` undoes it, and the orbit census is three cycles.
 
 pub fn verify() -> Result<usize, &'static str> {
     let modulus = 7i64;

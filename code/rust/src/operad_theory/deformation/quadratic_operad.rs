@@ -1,12 +1,8 @@
-//! Deformation: Quadratic Operads and Relations.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use crate::foundation::Operation;
 
-/// A weight-two relation in Free(E)(2) expressing an algebraic identity.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QuadraticRelation {
     pub relation_id: String,
@@ -15,7 +11,6 @@ pub struct QuadraticRelation {
     pub description: String,
 }
 
-/// A quadratic operad P presented by generators E and quadratic relations R.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct QuadraticOperad {
     pub name: String,

@@ -67,7 +67,6 @@ def test_haar_flag_requires_observed_stabilized_levels():
 
 
 def test_integer_character_is_separated_by_a_dyadic_compact_test_set():
-    # Every nonzero j is odd * 2^v, so j/2^(v+1) has turn 1/2.
     for j in range(-32, 33):
         if j:
             v = (abs(j) & -abs(j)).bit_length() - 1
@@ -83,8 +82,6 @@ def test_alternating_2adic_prefixes_separate_circle_uniformity():
 
 
 def test_source_lipschitz_control_is_lost_by_profile_compression():
-    # X has the discrete metric. Its 1-Lipschitz query is not continuous
-    # in the compressed image S={0} union {1/n:n>=1} at zero.
     domain = [0, *range(1, 17)]
     p = lambda x: Fraction(1, x) if x else Fraction(0)
     q = lambda x: Fraction(1) if x else Fraction(0)

@@ -1,10 +1,3 @@
-/-!
-Finite Boolean flip-orbit cancellation for one orbit with unit weight.
-`orbitSigns flags` lists the signs of all 2^k orientation assignments when
-each cluster contributes an independent factor: a cluster flagged `true`
-reverses the sign when flipped, a cluster flagged `false` does not. This
-independence is assumed by the definition; it is not derived from a model.
--/
 namespace MeronCharacter
 
 def orbitSigns : List Bool → List Int
@@ -52,11 +45,9 @@ theorem compression_preserves_partition (flags : List Bool) :
   next h => exact meron_orbit_cancels flags h
   next h => exact zero_meron_orbit_positive flags h
 
-/-- Equal total signed mass does not require equal-magnitude pairing. -/
 theorem unequal_three_term_cancellation : ([2, -1, -1] : List Int).sum = 0 := by
   decide
 
-/-- A cancelling denominator doublet can carry a nonzero observable numerator. -/
 theorem observable_doublet_counterexample :
     (1 : Int) + (-1) = 0 ∧ (1 : Int) * 1 + (-1) * (-1) = 2 := by
   decide

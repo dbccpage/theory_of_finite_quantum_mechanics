@@ -1,25 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import ExactRat
 import ShadowBoundary
 
-/-!
-Three distinct carrier tests. No Mathlib, custom axioms, or native_decide.
-1. The existing general report-factorization theorem, instantiated with exact
-   real qubit amplitudes and an available rational orthogonal control.
-2. CHSH for arbitrary finite nonnegative rational joint weights, represented
-   by natural numerators and a common denominator; a positive table violates it.
-3. An all-ancilla central obstruction conditional on pure composite states
-   occupying one central block. This premise is NOT derived from matrix
-   extremality here. No universal operational reconstruction is mechanized.
-AuthorityEffect: None.
--/
 namespace QuantumCarrierTests
 open ExactRat
 
@@ -79,8 +61,6 @@ def score : List (Nat × Assignment) → Int
   | [] => 0
   | (w,a) :: xs => (w : Int) * chsh a + score xs
 
-/-- Clearing a common positive denominator represents every finite rational
-nonnegative joint distribution in this form. No bounded weight enumeration. -/
 theorem weighted_chsh_bound (xs : List (Nat × Assignment)) :
     -2 * mass xs ≤ score xs ∧ score xs ≤ 2 * mass xs := by
   induction xs with
@@ -94,8 +74,6 @@ theorem weighted_chsh_bound (xs : List (Nat × Assignment)) :
     · simp only [mass, score, hn]
       omega
 
-/-- Entries of our rational Bell table, with denominator 20 and context order
-00,01,10,11; outcome order ++,+-,-+,--. Every entry is strictly positive. -/
 def bellNumerators : List (List Nat) :=
   [[9,1,1,9],[9,1,1,9],[8,2,2,8],[2,8,8,2]]
 def correlate (row : List Nat) : Int :=
@@ -108,9 +86,6 @@ theorem bell_table_positive_normalized :
     bellNumerators.all (fun r => r.all (fun n => n > 0) && r.foldl (· + ·) 0 == 20) = true := by decide
 theorem bell_score_exact : bellScore = 56 := by decide
 
-/-- A positive joint extension would necessarily reproduce this CHSH value.
-The marginal-to-score implication is not a hidden locality assumption: the
-model being tested is explicitly one positive table of all four assignments. -/
 theorem bell_has_no_positive_joint_score (xs : List (Nat × Assignment))
     (positiveMass : 0 < mass xs) : 20 * score xs ≠ bellScore * mass xs := by
   have bound := (weighted_chsh_bound xs).2
@@ -158,8 +133,6 @@ def bellNumerator (x y u v : Bool) : Int :=
   if x then (if y then (if u = v then 2 else 8) else (if u = v then 8 else 2))
   else (if u = v then 9 else 1)
 
-/-- Actual marginal matching, after clearing the joint table's positive mass
-and the fixture's denominator 20. The numerators agree with bellNumerators. -/
 def ExtendsBell (xs : List (Nat × Assignment)) : Prop :=
   ∀ x y u v : Bool, 20 * marginal (alice x) (bob y) u v xs =
     bellNumerator x y u v * mass xs
@@ -187,9 +160,6 @@ theorem bell_has_no_positive_joint_extension (xs : List (Nat × Assignment))
   have bound := (weighted_chsh_bound xs).2
   omega
 
-/-- A pure state in the standard direct-sum tensor model occupies one joint
-block. Internal quantum data may be arbitrary and the ancilla type arbitrary.
-The structure records that model premise, not a proof of matrix extremality. -/
 structure PureBlock (Sector Ancilla Internal : Type) where
   sector : Sector
   ancillaSector : Ancilla
@@ -205,8 +175,6 @@ theorem pure_marginal_central_endpoint {S A I : Type} [DecidableEq S]
   unfold centralMass
   split <;> simp_all
 
-/-- A genuinely mixed central weight excludes every ancilla sector type and
-every internal pure-block payload; no finite ancilla enumeration is used. -/
 theorem central_mixture_has_no_pure_extension {S A I : Type} [DecidableEq S]
     (k : S) (numerator denominator : Nat)
     (hpos : 0 < numerator) (hmix : numerator < denominator) :
@@ -243,3 +211,6 @@ theorem pure_sector_control :
 #print axioms fair_sector_mixture_obstructed
 #print axioms pure_sector_control
 end QuantumCarrierTests
+
+private def l5aProvenance : String :=
+  "Origin: lean4/CarrierTests.lean Claim: states_normalized AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

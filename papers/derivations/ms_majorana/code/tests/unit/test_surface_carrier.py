@@ -1,6 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 
 """Invariants for the homology-correct tetron array carrier.
 
@@ -21,7 +19,6 @@ from omega_engine.crates.majorana.core.gf2_matrix import GF2Matrix
 from omega_engine.crates.majorana.engines.terminalizer import terminalize, validate_complex
 
 
-# --- d1 . d0 = 0 --------------------------------------------------------------
 
 
 @pytest.mark.parametrize("topology", TOPOLOGIES)
@@ -33,7 +30,6 @@ def test_cochain_relation_holds(topology: str, rows: int, cols: int) -> None:
     assert validate_complex(d0, d1), f"d1 . d0 != 0 for {topology} {rows}x{cols}"
 
 
-# --- the cell counts are the ones the design predicts --------------------------
 
 
 @pytest.mark.parametrize(
@@ -55,7 +51,6 @@ def test_cell_counts(
     )
 
 
-# --- THE invariant: dim H^1 is 0 / 1 / 2 by topology --------------------------
 
 
 @pytest.mark.parametrize("rows,cols", [(2, 2), (2, 3), (3, 3), (3, 4), (4, 4)])
@@ -101,7 +96,6 @@ def test_the_old_carrier_is_homologically_trivial() -> None:
         assert dim_h1 == 0, "tetron_carrier grew homology; reconcile the builders"
 
 
-# --- carrier is a valid MajoranaParityCarrier ---------------------------------
 
 
 @pytest.mark.parametrize("topology", TOPOLOGIES)
@@ -129,7 +123,6 @@ def test_rejects_unknown_topology() -> None:
         build_tetron_array(2, 2, "klein_bottle")
 
 
-# --- explicit logical generators are closed and non-exact ---------------------
 
 
 @pytest.mark.parametrize("rows,cols", [(2, 3), (3, 3), (3, 4)])
@@ -171,7 +164,6 @@ def test_both_generators_are_exact_on_disk(axis: str) -> None:
     assert terminalize(carrier.D0, carrier.D1, r)["terminal_status"] == "Exact"
 
 
-# --- the three terminals all occur on a torus carrier -------------------------
 
 
 def test_single_channel_error_is_an_open_obstruction() -> None:

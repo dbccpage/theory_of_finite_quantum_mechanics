@@ -34,9 +34,9 @@ import numpy as np
 @dataclass(frozen=True)
 class CtAuxVertex:
     """An auxiliary interaction vertex in continuous imaginary time."""
-    site: int          # 1-indexed spatial lattice site (1 .. N)
-    tau: float         # Continuous imaginary time in [0, beta)
-    spin: int          # Auxiliary Ising spin in {-1, +1}
+    site: int
+    tau: float
+    spin: int
 
     def mode_id(self, num_sites: int, num_time_bins: int, beta: float) -> int:
         """Discretizes the vertex into an orbital mode key for GIN indexing."""
@@ -49,14 +49,14 @@ class CtAuxVertex:
 class CtAuxConfiguration:
     """A full perturbation configuration in the CT-AUX expansion."""
     cfg_id: int
-    order: int                                  # Perturbation order k
-    vertices: Tuple[CtAuxVertex, ...]           # k auxiliary vertices
-    active_modes: frozenset[int]                # Discretized GIN orbital modes
-    log_weight: float                           # Exact log weight: k*ln(K/2beta) + logdet_up + logdet_down
-    weight: float                               # Normalized weight for live statistics
-    sign: int                                   # Fermion sign in {-1, +1}
-    logdet_up: float                            # Spin-up log determinant
-    logdet_down: float                          # Spin-down log determinant
+    order: int
+    vertices: Tuple[CtAuxVertex, ...]
+    active_modes: frozenset[int]
+    log_weight: float
+    weight: float
+    sign: int
+    logdet_up: float
+    logdet_down: float
 
 
 @dataclass(frozen=True)
@@ -100,14 +100,11 @@ class CtAuxMarkovChainSampler:
         self.rng = random.Random(seed)
         self.np_rng = np.random.default_rng(seed)
 
-        # Auxiliary field coupling parameter gamma: cosh(gamma) = 1 + (U * beta) / (2 * K)
         arg = 1.0 + (self.u * self.beta) / (2.0 * self.k_shift)
         self.gamma = math.acosh(arg)
 
-        # Precompute non-interacting single-particle Hamiltonian H0 and Green's function
         self._build_free_greens_function()
 
-        # State tracking
         self.step_count = 0
         self.current_vertices: List[CtAuxVertex] = []
         self.current_logdet_up = 0.0
@@ -115,7 +112,6 @@ class CtAuxMarkovChainSampler:
         self.current_sign = 1
         self.running_baseline_log_w = 0.0
 
-        # Rank-1 fast inverse matrices: M = N^{-1} of shape (k, k)
         self.M_up: np.ndarray = np.zeros((0, 0), dtype=float)
         self.M_down: np.ndarray = np.zeros((0, 0), dtype=float)
         self.accepted_since_refresh = 0
@@ -125,7 +121,6 @@ class CtAuxMarkovChainSampler:
         """Constructs tight-binding H0 and diagonalizes it to compute g0(x, y, tau)."""
         N = self.num_sites
         H0 = np.zeros((N, N), dtype=float)
-        # 1D ring periodic boundary
         for i in range(N):
             j = (i + 1) % N
             H0[i, j] -= self.t
@@ -205,7 +200,6 @@ class CtAuxMarkovChainSampler:
 
     def g0(self, x: int, y: int, tau: float) -> float:
         """Evaluates non-interacting Green's function g0(x, y, tau) for tau in [-beta, beta]."""
-        # Periodic imaginary time folding
         if tau < 0.0:
             return -self.g0(x, y, tau + self.beta)
         if tau >= self.beta:
@@ -216,7 +210,6 @@ class CtAuxMarkovChainSampler:
         y_idx = y - 1
         for m in range(self.num_sites):
             eps = self.evals[m]
-            # Numerically stable Fermi-Dirac and exponential evaluation
             if eps > 0:
                 fermi = math.exp(-self.beta * eps) / (1.0 + math.exp(-self.beta * eps))
                 g_tau = math.exp(-tau * eps) * (1.0 - fermi)
@@ -303,9 +296,6 @@ class CtAuxMarkovChainSampler:
             logdet_down=self.current_logdet_down,
         )
 
-    # ------------------------------------------------------------------------
-    # Rank-1 Fast Updates: O(k^2) Birth, O(1)/O(k^2) Death, O(k)/O(k^2) Flip
-    # ------------------------------------------------------------------------
 
     def propose_birth_fast(self) -> Tuple[bool, Optional[CtAuxConfiguration]]:
         """O(k^2) rank-1 birth move using Schur complement bordered block matrix inversion."""
@@ -344,21 +334,18 @@ class CtAuxMarkovChainSampler:
 
         g0_diag = self.g0(site, site, 0.0)
 
-        # Spin up couplings
         e_up_exist = np.exp(self.gamma * spins_exist)
         e_up_new = math.exp(self.gamma * spin)
         u_up = -(e_up_exist - 1.0) * g0_to_new
         v_up = -(e_up_new - 1.0) * g0_from_new
         d_up = e_up_new - (e_up_new - 1.0) * g0_diag
 
-        # Spin down couplings
         e_down_exist = np.exp(-self.gamma * spins_exist)
         e_down_new = math.exp(-self.gamma * spin)
         u_down = -(e_down_exist - 1.0) * g0_to_new
         v_down = -(e_down_new - 1.0) * g0_from_new
         d_down = e_down_new - (e_down_new - 1.0) * g0_diag
 
-        # Matrix-vector products in O(k^2)
         u_tilde_up = self.M_up @ u_up
         v_tilde_up = v_up @ self.M_up
         S_up = d_up - float(v_up @ u_tilde_up)
@@ -374,7 +361,6 @@ class CtAuxMarkovChainSampler:
         prob = min(1.0, (self.k_shift * self.beta / (k + 1)) * abs_ratio)
 
         if self.rng.random() < prob:
-            # Block matrix inverse update in O(k^2)
             M_up_new = np.empty((k + 1, k + 1), dtype=float)
             inv_S_up = 1.0 / S_up
             M_up_new[:k, :k] = self.M_up + inv_S_up * np.outer(u_tilde_up, v_tilde_up)
@@ -472,7 +458,6 @@ class CtAuxMarkovChainSampler:
         g0_row = self.g0_vector(v_old.site, sites, v_old.tau - taus)
         g0_diag = self.g0(v_old.site, v_old.site, 0.0)
 
-        # Exact rank-1 row perturbation: N' = N + e_p delta_r^T
         delta_e_up = math.exp(self.gamma * new_spin) - math.exp(self.gamma * v_old.spin)
         delta_r_up = -delta_e_up * g0_row
         delta_r_up[p] += delta_e_up
@@ -482,7 +467,6 @@ class CtAuxMarkovChainSampler:
         delta_r_down[p] += delta_e_down
 
 
-        # Sherman-Morrison ratio in O(k): lambda = 1 + delta_r @ M[:, p]
         lambda_up = 1.0 + float(delta_r_up @ self.M_up[:, p])
         lambda_down = 1.0 + float(delta_r_down @ self.M_down[:, p])
 
@@ -493,7 +477,6 @@ class CtAuxMarkovChainSampler:
         prob = min(1.0, abs_ratio)
 
         if self.rng.random() < prob:
-            # Sherman-Morrison inverse update in O(k^2)
             w_up = delta_r_up @ self.M_up
             self.M_up -= (1.0 / lambda_up) * np.outer(self.M_up[:, p], w_up)
 
@@ -514,9 +497,6 @@ class CtAuxMarkovChainSampler:
             return True, self._create_configuration()
         return False, None
 
-    # ------------------------------------------------------------------------
-    # Baseline Full LU Updates (O(k^3)) for Validation and Fallback
-    # ------------------------------------------------------------------------
 
     def propose_birth(self) -> Tuple[bool, Optional[CtAuxConfiguration]]:
         """Proposes inserting a new auxiliary vertex (order k -> k+1) via full O(k^3) evaluation."""
@@ -624,20 +604,15 @@ class StreamingGinPostingIndex:
 
     def __init__(self, max_window_size: int = 500):
         self.max_window_size = max_window_size
-        # Inverted index: mode_id -> set of active cfg_ids
         self.posting_index: Dict[int, Set[int]] = collections.defaultdict(set)
-        # Configuration repository: cfg_id -> CtAuxConfiguration
         self.cfg_store: Dict[int, CtAuxConfiguration] = {}
-        # Sliding window FIFO queue
         self.window_queue: collections.deque[int] = collections.deque()
 
-        # Telemetry & metrics
         self.total_insertions = 0
         self.total_deletions = 0
         self.paired_partners_count = 0
         self.max_cancellation_defect = 0.0
 
-        # Real-time accumulators
         self.raw_signed_sum = 0.0
         self.raw_unsigned_mass = 0.0
         self.quotiented_signed_sum = 0.0
@@ -651,7 +626,7 @@ class StreamingGinPostingIndex:
 
     def insert_configuration(self, cfg: CtAuxConfiguration) -> Dict[str, Any]:
         """Dynamically inserts a configuration into the streaming GIN index.
-        
+
         If current window exceeds capacity, automatically evicts the oldest configuration.
         """
         evicted_id = None
@@ -666,7 +641,6 @@ class StreamingGinPostingIndex:
 
         self.total_insertions += 1
 
-        # Track raw stream statistics
         self.raw_signed_sum += cfg.weight * cfg.sign
         self.raw_unsigned_mass += cfg.weight
         if cfg.sign < 0:
@@ -674,7 +648,6 @@ class StreamingGinPostingIndex:
         else:
             self.raw_positive_count += 1
 
-        # By default, add to quotiented accumulator (updated if paired)
         self.quotiented_signed_sum += cfg.weight * cfg.sign
         self.quotiented_unsigned_mass += cfg.weight
 
@@ -768,8 +741,6 @@ class StreamingGinPostingIndex:
         if defect > self.max_cancellation_defect:
             self.max_cancellation_defect = defect
 
-        # In the quotiented ensemble, the pair cancels destructively:
-        # Subtract the pair's signed contribution from quotient accumulator
         self.quotiented_signed_sum -= signed_pair
         self.paired_partners_count += 1
         return defect
@@ -835,13 +806,11 @@ def run_streaming_ct_aux_simulation(
     for step_idx in range(num_steps):
         accepted, cfg = sampler.step()
         if accepted and cfg is not None:
-            # Benchmark dynamic insertion
             t_ins_0 = time.perf_counter()
             streaming_gin.insert_configuration(cfg)
             t_ins_1 = time.perf_counter()
             insert_latencies.append((t_ins_1 - t_ins_0) * 1e6)
 
-            # If negative sign, attempt live partner pairing
             if cfg.sign < 0 and cfg.order > 0:
                 t_q_0 = time.perf_counter()
                 v0 = cfg.vertices[0]

@@ -118,14 +118,12 @@ def validate_diagnostic_packet(
         "authority_effect",
     }
 
-    # Gate 1: Reject unknown / ad-hoc fields
     extra_keys = set(packet_dict.keys()) - allowed_keys
     if extra_keys:
         raise ValueError(
             f"Diagnostic validation failed: unknown fields detected {sorted(list(extra_keys))}"
         )
 
-    # Gate 2: Closed family enum
     family_id = packet_dict.get("family_id")
     valid_families = {f.value for f in DiagnosticFamily}
     if not family_id or family_id not in valid_families:
@@ -133,7 +131,6 @@ def validate_diagnostic_packet(
             f"Diagnostic validation failed: family_id '{family_id}' not in closed registry {sorted(list(valid_families))}"
         )
 
-    # Gate 3: Source locus required
     locus_raw = packet_dict.get("source_locus")
     if not locus_raw or not isinstance(locus_raw, dict):
         raise ValueError(
@@ -145,7 +142,6 @@ def validate_diagnostic_packet(
             "Diagnostic validation failed: source_locus missing required artifact_hash or source_text_hash"
         )
 
-    # Gate 4: Observer & ZeroRel required
     if not packet_dict.get("observer"):
         raise ValueError(
             "Diagnostic validation failed: observer identification is required"
@@ -155,7 +151,6 @@ def validate_diagnostic_packet(
             "Diagnostic validation failed: zero_rel specification is required"
         )
 
-    # Gate 5: Fixed support grade & authority effect
     if packet_dict.get("support_grade", "DiagnosticOnly") != "DiagnosticOnly":
         raise ValueError(
             f"Diagnostic validation failed: support_grade must be 'DiagnosticOnly', got '{packet_dict.get('support_grade')}'"
@@ -166,7 +161,6 @@ def validate_diagnostic_packet(
             f"Diagnostic validation failed: authority_effect must be 'None', got '{packet_dict.get('authority_effect')}'"
         )
 
-    # Optional Gate 6: Content-addressed fingerprint verification
     if verify_fingerprint:
         verify_content_addressed_fingerprint(packet_dict)
 
@@ -192,7 +186,6 @@ def validate_diagnostic_packet(
     )
 
 
-# --- 2. Loss Ledger Invariant ---
 
 
 @dataclass
@@ -200,8 +193,8 @@ class LossEntry:
     loss_id: str
     source_anchor: str
     original_carrier: str
-    current_carrier_status: str  # "active", "projected_away", "merged"
-    discharge_status: str  # "unresolved", "discharged"
+    current_carrier_status: str
+    discharge_status: str
     discharge_receipt: Optional[str] = None
     authority_effect: str = "None"
 
@@ -233,7 +226,6 @@ class LossLedger:
         """
         new_ledger = LossLedger()
 
-        # Transport existing entries
         for loss_id, entry in self.entries.items():
             new_status = entry.current_carrier_status
             if entry.source_anchor in projected_away_loci:
@@ -250,16 +242,13 @@ class LossLedger:
             )
             new_ledger.add_entry(transported_entry)
 
-        # Add new adapter losses
         if new_losses:
             for nl in new_losses:
                 new_ledger.add_entry(nl)
 
-        # Add coherence loss if present
         if coherence_loss:
             new_ledger.add_entry(coherence_loss)
 
-        # MONOTONICITY FENCE: Check all unresolved source loss IDs exist in target
         source_unresolved = {
             lid for lid, e in self.entries.items() if e.discharge_status == "unresolved"
         }
@@ -292,7 +281,6 @@ class LossLedger:
         )
 
 
-# --- 3. CODA Re-entry & Global Run Envelope ---
 
 
 class ReentryLaunderingError(Exception):
@@ -359,7 +347,6 @@ def execute_coda_reentry(
     child_trace_id = f"trace_{child_carrier}_{envelope.reentry_depth + 1}"
     new_remaining_budget = envelope.global_budget_remaining - delta_control
 
-    # Build updated envelope
     new_fingerprint_history = list(envelope.residual_fingerprint_history) + [
         residual_fingerprint
     ]

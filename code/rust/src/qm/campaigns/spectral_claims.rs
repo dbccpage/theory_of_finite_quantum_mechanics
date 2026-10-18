@@ -1,6 +1,3 @@
-//! Historical finite-QM spectral scope and import-price claim records.
-//! These strings are program provenance; physics validates spectra independently.
-//! AuthorityEffect: None.
 
 pub const OPEN_RESIDUAL_GENERAL_N: &str =
     "OPEN residual: general-n exact Hermitian spectral algorithm \
@@ -36,7 +33,6 @@ mod tests {
         assert!(scope.contains("SQUARE CLASS"));
         assert!(scope.contains("AuthorityEffect None"));
         assert!(scope.contains("Do not quote this as a universal theorem"));
-        // The executed range in the receipt must match the range the tests run.
         for n in 2..=8 {
             assert!(
                 leading_block_structure(n).is_ok(),

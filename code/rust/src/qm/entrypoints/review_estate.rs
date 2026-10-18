@@ -1,8 +1,3 @@
-//! Entrypoint: review_estate.
-//!
-//! An estate is a finite set of integer claims. The accepted part plus the
-//! rejected part equals the estate total, whether the parts are summed
-//! separately or the claims are summed once.
 
 pub fn run_review_estate() -> Result<(), String> {
     let claims = [8i64, 5, 13, 2, 1, 7];

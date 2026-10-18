@@ -1,26 +1,4 @@
-// AuthorityEffect: None.
 
-//! Finite polynomial and parity models of QM_122's H023-H027 over `Z[zeta_12]`,
-//! in the two versions the repository holds.
-//!
-//! - [`ModelVersion::Published`] follows the paper's Lean, retained in
-//!   `omega_engine_projects/finite_qm/sources/122_finite_hilbert_boundary_from_primitive_difference/lean4/`
-//!   (`H025_spinfoam_boundary_unitarity.lean`, `H027_pachner_master_constraint_finiteness.lean`).
-//!   Every pair of admissible boundaries has transition `a(W)`, the 10j amplitude
-//!   of the bulk, and the Pachner partition multiplies an amplitude by itself.
-//!   The ledger rows QM-122-C57 to C64 describe this version.
-//! - [`ModelVersion::Corrected`] follows `lean4/quantum_mechanics/H025SpinfoamBoundaryUnitarity.lean`
-//!   and `H027PachnerMasterConstraintFiniteness.lean`: the transition is `a(W)`
-//!   only from an admissible boundary to itself (the identity channel for the
-//!   vacuum bulk), and the partition is `conj(a) (P a)`.
-//!
-//! On the eight admissible binary boundaries ([`ADMISSIBLE_BASIS`]) the published
-//! transition matrix is `a(W)` times the all-ones matrix and is never unitary; the
-//! corrected one is `a(W) I`, unitary exactly when `a(W)` is a unit.
-//! [`adjoint_bulk`] is the Lean's orientation reversal, which realizes the
-//! adjoint matrix. The corrected partition is a Hermitian norm: [`real_value`]
-//! reads a real element of `Q(zeta_12)` as `x + y sqrt(3)`, so its sign is decided
-//! exactly. These are finite models, not general spin-foam unitarity theorems.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{involution as iv, matrix as mx, ExactFieldError};
@@ -58,17 +36,12 @@ const SIMPLEX: [[usize; 4]; 5] = [
     [0, 1, 3, 6],
 ];
 
-/// Which version of the H025 and H027 definitions a computation follows.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum ModelVersion {
-    /// The paper's Lean as published; the version the ledger rows describe.
     Published,
-    /// The corrected Lean in `lean4/quantum_mechanics/`.
     Corrected,
 }
 
-/// The eight admissible binary four-spin boundaries, in the order of the
-/// corrected Lean's `admissibleBasis8`.
 pub const ADMISSIBLE_BASIS: [[u32; 4]; 8] = [
     [0, 0, 0, 0],
     [1, 1, 0, 0],
@@ -101,7 +74,6 @@ fn amplitude<const N: usize>(s: &[u32], faces: &[[usize; N]]) -> C {
 pub fn tetrahedron(s: &[u32; 6]) -> C {
     amplitude(s, &TET)
 }
-/// The 10j vertex amplitude `a(W)` of a bulk 4-simplex, the Lean's `amplitude10j`.
 pub fn simplex4(s: &[u32; 10]) -> C {
     amplitude(s, &SIMPLEX)
 }
@@ -109,8 +81,6 @@ pub fn admissible(s: &[u32]) -> bool {
     s.iter().fold(0u32, |parity, s| parity ^ (s & 1)) == 0
 }
 
-/// The orientation-reversed bulk, the Lean's `orientReverse4`: faces `012, 013,
-/// 014` and `234` stay, and `023, 024, 034` trade places with `123, 124, 134`.
 pub fn adjoint_bulk(bulk: &[u32; 10]) -> [u32; 10] {
     [
         bulk[0], bulk[1], bulk[2], bulk[6], bulk[7], bulk[8], bulk[3], bulk[4], bulk[5], bulk[9],
@@ -150,8 +120,6 @@ impl BoundaryState {
             },
         }
     }
-    /// The diagonal evolution `<s| W |s> a` of the Lean's `evolveState`. The
-    /// diagonal is the same in both versions.
     pub fn evolve(&self, bulk: &[u32; 10]) -> Result<Self, SpinFoamModelError> {
         Ok(Self {
             spins: self.spins,
@@ -161,8 +129,6 @@ impl BoundaryState {
     }
 }
 
-/// Whether a version lets `input` reach `output`: published, whenever both are
-/// admissible; corrected, only an admissible boundary to itself.
 fn connected(version: ModelVersion, input: &[u32; 4], output: &[u32; 4]) -> bool {
     match version {
         ModelVersion::Published => admissible(input) && admissible(output),
@@ -170,8 +136,6 @@ fn connected(version: ModelVersion, input: &[u32; 4], output: &[u32; 4]) -> bool
     }
 }
 
-/// `<output| W |input>` for the bulk `W`: `a(W)` when the version connects the
-/// two boundaries, and zero otherwise.
 pub fn transition(
     version: ModelVersion,
     input: &[u32; 4],
@@ -185,9 +149,6 @@ pub fn transition(
     }
 }
 
-/// The fixed admissible boundary matrix, on the canonical static Q(zeta_12)
-/// field. Runtime integral amplitudes cross the model boundary by coefficient
-/// conversion only; matrix arithmetic belongs to linear algebra.
 pub fn transition_matrix(version: ModelVersion, bulk: &[u32; 10]) -> BasicMatrix<Cyc12> {
     let amplitude = simplex4(bulk);
     let a = Cyc12 {
@@ -209,7 +170,6 @@ pub fn transition_matrix(version: ModelVersion, bulk: &[u32; 10]) -> BasicMatrix
     .expect("fixed eight-boundary carrier")
 }
 
-/// and `c1 = -2 c3`, and then it is `c0 + (c1/2) sqrt(3)`.
 pub fn real_value(z: &C) -> Result<Option<Quadratic<3>>, SpinFoamModelError> {
     if z.conductor() != 12 {
         return Err("CONDUCTOR_12_REQUIRED".into());
@@ -246,9 +206,6 @@ impl PachnerState {
             amplitude: self.amplitude.clone(),
         })
     }
-    /// The H027 partition `Z(psi)`. Published: `a (P a)`, a bilinear product
-    /// without conjugation, so amplitude `i` gives `-1` and it is not a norm.
-    /// Corrected: `conj(a) (P a)`, the Hermitian norm of the projected state.
     pub fn partition(&self, version: ModelVersion) -> Result<C, SpinFoamModelError> {
         let projected = self.projector().amplitude;
         Ok(match version {
@@ -277,7 +234,6 @@ pub fn sphere_partition(spins: &[u32; 20]) -> C {
     )
 }
 
-/// Alternating face count of the boundary of a 5-simplex, the declared sphere.
 pub fn sphere_euler() -> i64 {
     (1..=5)
         .map(|k| {
@@ -291,7 +247,6 @@ pub fn sphere_euler() -> i64 {
         .sum()
 }
 
-/// Exact census of the declared binary spin-foam model at `level` in `2..=3`.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct SpinFoamCensus {
     pub level: usize,
@@ -388,7 +343,6 @@ pub fn census(level: usize) -> Result<SpinFoamCensus, SpinFoamModelError> {
         pachner &= b.two_to_three()?.projector() == b.projector().two_to_three()?
             && b.partition(ModelVersion::Published)?
                 == b.two_to_three()?.partition(ModelVersion::Published)?;
-        // A unit amplitude has norm one on an admissible state and none otherwise.
         let norm = b.partition(ModelVersion::Corrected)?;
         corrected_pachner &= norm
             == C::scalar(12, i64::from(admissible(&b.external))).expect("fixed valid conductor")
@@ -458,7 +412,6 @@ mod tests {
     #[test]
     fn real_values_of_q_zeta_12_are_read_exactly() {
         let z = C::zeta(12).unwrap();
-        // |1 + zeta|^2 = 2 + sqrt(3).
         let one_plus = C::scalar(12, 1)
             .expect("fixed valid conductor")
             .add(&z)
@@ -468,7 +421,6 @@ mod tests {
             real_value(&norm).unwrap(),
             Some(Quadratic::<3>::new(ri(2), ri(1)))
         );
-        // zeta itself is not real; 2 - sqrt(3) > 0 > 1 - sqrt(3).
         assert_eq!(real_value(&z).unwrap(), None);
         assert!(Quadratic::<3>::new(ri(2), ri(-1)).is_nonnegative());
         assert!(!Quadratic::<3>::new(ri(1), ri(-1)).is_nonnegative());

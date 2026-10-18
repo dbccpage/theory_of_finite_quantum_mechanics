@@ -1,6 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 
 """Invariants for the GF(2) l1 harmonic projection.
 
@@ -40,7 +38,6 @@ def _brute_force_min_weight(d0_rows: list[list[int]], residual: list[int]) -> in
     return best
 
 
-# --- agreement with an independent oracle -------------------------------------
 
 
 @pytest.mark.parametrize("topology", ["disk", "cylinder", "torus"])
@@ -54,7 +51,6 @@ def test_matches_brute_force_over_all_alpha(topology: str) -> None:
         assert projection.weight == _brute_force_min_weight(carrier.D0, residual)
 
 
-# --- the representative really is in the coset --------------------------------
 
 
 @pytest.mark.parametrize("topology", ["cylinder", "torus"])
@@ -66,18 +62,14 @@ def test_representative_lies_in_the_coset(topology: str) -> None:
         residual = [rng.randint(0, 1) for _ in range(report.num_channels)]
         projection = l1_harmonic_projection(carrier.D0, residual)
 
-        # weight is the weight of the representative it reports
         assert projection.weight == sum(projection.representative)
-        # representative = residual + d0 alpha, with the alpha it reports
         image = d0.mat_vec_mul(projection.alpha)
         assert [a ^ b for a, b in zip(residual, image)] == projection.representative
-        # and the difference is genuinely a coboundary
         assert d0.solve(
             [a ^ b for a, b in zip(residual, projection.representative)]
         ) is not None
 
 
-# --- Phi_1 is a class invariant ------------------------------------------------
 
 
 @pytest.mark.parametrize("topology", ["disk", "cylinder", "torus"])
@@ -95,7 +87,6 @@ def test_phi1_is_constant_on_a_cohomology_class(topology: str) -> None:
         ]
         moved = l1_harmonic_projection(carrier.D0, shifted)
         assert moved.weight == baseline.weight
-        # canonical representative, so the witness is identical too
         assert moved.representative == baseline.representative
 
 
@@ -111,7 +102,6 @@ def test_exact_residual_has_zero_phi1() -> None:
     assert projection.representative == [0] * report.num_channels
 
 
-# --- budget honesty ------------------------------------------------------------
 
 
 def test_budget_exhaustion_reports_an_upper_bound_not_a_lie() -> None:
@@ -131,12 +121,11 @@ def test_budget_exhaustion_reports_an_upper_bound_not_a_lie() -> None:
 def test_budget_is_recorded_against_the_coset_size() -> None:
     carrier, _ = build_tetron_array(3, 3, "torus")
     projection = l1_harmonic_projection(carrier.D0, [0] * carrier.C1_dim)
-    assert projection.coset_size == 2 ** 8  # rank d0 = V - 1 = 8
+    assert projection.coset_size == 2 ** 8
     assert projection.searched == projection.coset_size
     assert projection.authority_effect == "None"
 
 
-# --- minimum weights are the topological ones ---------------------------------
 
 
 @pytest.mark.parametrize("rows,cols", [(2, 3), (3, 3), (3, 4), (4, 3)])
@@ -178,7 +167,6 @@ def test_disk_has_no_code_distance() -> None:
     assert exact
 
 
-# --- H^1 basis and class coordinates ------------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -263,7 +251,7 @@ def test_projection_dataclass_is_frozen() -> None:
     projection = l1_harmonic_projection(carrier.D0, [0] * carrier.C1_dim)
     assert isinstance(projection, L1HarmonicProjection)
     with pytest.raises(Exception):
-        projection.weight = 99  # type: ignore[misc]
+        projection.weight = 99
 
 
 

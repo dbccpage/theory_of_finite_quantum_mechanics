@@ -217,7 +217,6 @@ class IndependentMubVerifier:
         near_off_torus: List[CertifiedBox] = []
         enc = self.get_enclosed_triple(dx, dy)
 
-        # Explore requested presplit-6 chunks of the wide torus cell
         wide_cell = wide_torus_cell()
         presplit_chunks = presplit_region(wide_cell, depth=6)
         stack: List[Tuple[VectorBox, int]] = []
@@ -255,11 +254,9 @@ class IndependentMubVerifier:
             stack.append((a, depth + 1))
             stack.append((b, depth + 1))
 
-        # 1. Minimum gap stratum: sort by gap ascending
         sorted_by_gap = sorted(all_certified, key=lambda cb: cb.gap)
         min_gap_sample = sorted_by_gap[:target_per_stratum]
         for cb in min_gap_sample:
-            # Independent re-verification of the lower bound
             recomputed = enc.f_gap(cb.box)
             diff = recomputed - cb.gap
             stratified_results.append(
@@ -276,7 +273,6 @@ class IndependentMubVerifier:
                 )
             )
 
-        # 2. Deepest boxes stratum: sort by depth descending
         sorted_by_depth = sorted(all_certified, key=lambda cb: cb.depth, reverse=True)
         deepest_sample = sorted_by_depth[:target_per_stratum]
         for cb in deepest_sample:
@@ -296,7 +292,6 @@ class IndependentMubVerifier:
                 )
             )
 
-        # 3. Near off-torus stratum (explicit: does not fall back to ordinary certified boxes)
         near_off_sample = near_off_torus[:target_per_stratum]
         for cb in near_off_sample:
             recomputed = enc.f_gap(cb.box)
@@ -315,7 +310,6 @@ class IndependentMubVerifier:
                 )
             )
 
-        # 4. Random sample stratum
         if len(all_certified) > target_per_stratum:
             rand_sample = rng.sample(all_certified, target_per_stratum)
         else:

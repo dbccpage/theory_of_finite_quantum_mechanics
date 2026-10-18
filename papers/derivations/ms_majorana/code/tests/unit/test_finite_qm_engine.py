@@ -37,7 +37,6 @@ def test_rung_2_density_purity():
 
 
 def test_rung_3_cptp_shadow():
-    # Bit flip and identity Kraus operators
     p = 0.1
     K0 = np.sqrt(1 - p) * np.eye(2)
     K1 = np.sqrt(p) * np.array([[0, 1], [1, 0]])
@@ -66,7 +65,6 @@ def test_rung_5_superposition_fiber():
 
 
 def test_rung_6_interference_cross_term():
-    # Constructive interference amplitudes [1, 1] vs destructive [1, -1]
     amps_const = np.array([1.0, 1.0])
     r6 = FiniteQMEngine.rung_6_interference_cross_term(amps_const)
 
@@ -100,7 +98,6 @@ def test_b8_countermodels_and_crosswalk():
     assert res["status"] == "DROP_ONE_NECESSITY_VERIFIED"
     assert res["qm_121_to_qm_211_crosswalk"]["all_8_slots_mapped"] is True
 
-    # Audit that all 8 slots are mapped in QM_121_TO_QM_211
     mapped_slots = set()
     for slots in QM_121_TO_QM_211.values():
         mapped_slots.update(slots)
@@ -126,8 +123,7 @@ def test_paper_registry_qm_000_to_qm_010():
     for p_id in qm_papers:
         p_entry = next((p for p in PAPERS if p["paper_id"] == p_id), None)
         assert p_entry is not None, f"Paper {p_id} missing from registry"
-        
-        # Run paper evaluation by module key
+
         eval_res = run_paper(p_entry["module"])
         assert "math_objects" in eval_res or "residual_metrics" in eval_res or "skeleton" in eval_res
 

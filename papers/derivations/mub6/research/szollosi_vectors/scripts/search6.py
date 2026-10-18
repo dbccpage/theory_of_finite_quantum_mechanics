@@ -39,7 +39,6 @@ for x,u in itertools.product(pts,repeat=2):
         if y[0]**2+y[1]**2!=1: continue
         tr=[x,y,conj(mul(x,y))]
         d=sc(-1,add(*tr))
-        # remaining quadratic for v, w: t^2+(u-d)t+(u^2-du+conj d)
         if any(z in units for z in tr+[u]): continue
         if any(tr[i]==sc(-1,tr[j]) or tr[i]==tr[j] for i in range(3) for j in range(3) if i!=j): continue
         q1=add(u,sc(-1,d)); q0=add(mul(u,u),sc(-1,mul(d,u)),conj(d))

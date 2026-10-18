@@ -5,10 +5,6 @@ fail closed where behavior has not been implemented.
 """
 
 from __future__ import annotations
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/unknown_status.rs
-# Rust sha256: 7866decf7aa2cfe4e9c0fbd86f226e285defe6d1b2c08ac1e3e9ebe1c2201f10
-# Structural parity only; no behavioral or authority claim.
 from enum import Enum
 from typing import Any
 
@@ -74,4 +70,3 @@ def is_continuable(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE

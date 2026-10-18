@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tests for the finite cyclic presentation, character sums, and interval enclosures."""
 
 import hashlib
@@ -29,23 +28,20 @@ def test_cyclic_presentation_basic() -> None:
     assert g2.order == 4
     assert g2.elements == (0, 1, 2, 3)
 
-    # Dyadic coordinates
     assert g2.dyadic_coordinate(0) == Fraction(0, 1)
     assert g2.dyadic_coordinate(1) == Fraction(1, 4)
     assert g2.dyadic_coordinate(2) == Fraction(1, 2)
     assert g2.dyadic_coordinate(3) == Fraction(3, 4)
 
-    # Inclusions i_2: G_2 -> G_3 (k |-> 2k)
     g3 = CyclicPresentation(3)
     for el in g2.elements:
         next_el = g2.inclusion_to_next(el)
         assert g2.dyadic_coordinate(el) == g3.dyadic_coordinate(next_el)
 
-    # Strict type safety: reject float and bool
     with pytest.raises(TypeError):
-        CyclicPresentation(2.5)  # type: ignore
+        CyclicPresentation(2.5)
     with pytest.raises(TypeError):
-        CyclicPresentation(True)  # type: ignore
+        CyclicPresentation(True)
     with pytest.raises(ValueError):
         CyclicPresentation(-1)
 
@@ -57,28 +53,22 @@ def test_pontryagin_character_duality() -> None:
     c2 = PontryaginCharacter(3, 2)
     c7 = PontryaginCharacter(3, 7)
 
-    # Group law on characters
     c3 = c1.multiply(c2)
     assert c3.index == 3
     assert c3.level == 3
 
-    # Conjugate
     c1_conj = c1.conjugate()
-    assert c1_conj.index == 7  # -1 mod 8 == 7
+    assert c1_conj.index == 7
 
-    # Exact cardinal angles
     re0, im0 = c0.eval_interval(0)
     assert re0.lo == re0.hi == Fraction(1)
     assert im0.lo == im0.hi == Fraction(0)
 
-    # Turn angles for c2 on G_3 (order 8):
-    # c2(2) => turn = (2*2 mod 8)/8 = 4/8 = 1/2 (angle pi)
     re_pi, im_pi = c2.eval_interval(2)
     assert re_pi.lo == re_pi.hi == Fraction(-1)
     assert im_pi.lo == im_pi.hi == Fraction(0)
 
-    # Pullback from higher character
-    c_high = PontryaginCharacter(4, 9)  # level 4, index 9
+    c_high = PontryaginCharacter(4, 9)
     c_low = c0.dual_pullback_from_next(c_high)
     assert c_low.level == 3
     assert c_low.index == 9 % 8 == 1
@@ -86,49 +76,40 @@ def test_pontryagin_character_duality() -> None:
 
 def test_character_orthogonality_haar() -> None:
     """The finite normalized character sum equals the algebraic delta."""
-    # Diagonal: k == j (normalized inner product is 1)
     rec_diag = verify_character_orthogonality(level=2, k=1, j=1)
     assert rec_diag.is_orthogonal
     assert rec_diag.sum_exact_delta == Fraction(1)
     assert rec_diag.real_interval.lo <= Fraction(1) <= rec_diag.real_interval.hi
 
-    # Off-diagonal: k != j (normalized inner product is 0)
     rec_off = verify_character_orthogonality(level=2, k=1, j=2)
     assert rec_off.is_orthogonal
     assert rec_off.sum_exact_delta == Fraction(0)
     assert rec_off.real_interval.lo <= Fraction(0) <= rec_off.real_interval.hi
 
-    # Verify AuthorityEffect: None
     assert rec_diag.authority_effect == "None"
     assert rec_off.authority_effect == "None"
 
 
 def test_continuum_enclosures() -> None:
     """Verifies constructive Cauchy contraction for fundamental constants."""
-    # 1. Pi
     pi_enc = pi_enclosure_sequence(max_terms=6)
     assert pi_enc.is_cauchy_contractive()
-    # Contractive width
     assert pi_enc.final_width < Fraction(1, 1000)
-    # 3.1415 < pi < 3.1416
     assert pi_enc.final_interval.lo < Fraction(31416, 10000)
     assert pi_enc.final_interval.hi > Fraction(31415, 10000)
 
-    # 2. e
     e_enc = e_enclosure_sequence(max_order=6)
     assert e_enc.is_cauchy_contractive()
     assert e_enc.final_width < Fraction(1, 100)
     assert e_enc.final_interval.lo < Fraction(272, 100)
     assert e_enc.final_interval.hi > Fraction(271, 100)
 
-    # 3. sqrt(2)
     sqrt2_enc = sqrt2_enclosure_sequence(max_steps=5)
     assert sqrt2_enc.is_cauchy_contractive()
     assert sqrt2_enc.final_width < Fraction(1, 1000)
     assert sqrt2_enc.final_interval.lo < Fraction(1415, 1000)
     assert sqrt2_enc.final_interval.hi > Fraction(1414, 1000)
 
-    # 4. ln(2)
     ln2_enc = ln2_enclosure_sequence(max_order=6)
     assert ln2_enc.is_cauchy_contractive()
     assert ln2_enc.final_width < Fraction(1, 100)
@@ -144,14 +125,12 @@ def test_mark_to_domain_lift() -> None:
     assert elem.is_witness_verified
     assert elem.authority_effect == "None"
 
-    # Rejection of empty mark
     with pytest.raises(ValueError):
         lift_mark_to_continuum("", pi_enc)
 
-    # Rejection of non-contractive sequence
     bad_ivs = [
         RationalInterval(Fraction(0), Fraction(1)),
-        RationalInterval(Fraction(0), Fraction(2)),  # expanding!
+        RationalInterval(Fraction(0), Fraction(2)),
     ]
     bad_enc = ContinuumEnclosure("bad", bad_ivs)
     with pytest.raises(ValueError, match="failed Cauchy"):
@@ -193,7 +172,6 @@ def test_edge_cases_and_error_paths() -> None:
     """Tests out-of-bounds, type mismatches, and contractive checks for 100% coverage."""
     from coda_inductive_presentation import _contains_float, constructive_cauchy_completion
 
-    # 1. CyclicPresentation bounds
     g = CyclicPresentation(2)
     with pytest.raises(ValueError, match="out of bounds"):
         g.inclusion_to_next(-1)
@@ -204,7 +182,6 @@ def test_edge_cases_and_error_paths() -> None:
     with pytest.raises(ValueError, match="out of bounds"):
         g.dyadic_coordinate(4)
 
-    # 2. PontryaginCharacter level mismatches
     c1 = PontryaginCharacter(2, 1)
     c2 = PontryaginCharacter(3, 1)
     with pytest.raises(ValueError, match="Cannot multiply characters of different levels"):
@@ -212,13 +189,11 @@ def test_edge_cases_and_error_paths() -> None:
     with pytest.raises(ValueError, match="Higher character must be at level 3"):
         c1.dual_pullback_from_next(c1)
 
-    # 3. ContinuumEnclosure validation
     with pytest.raises(ValueError, match="requires at least one interval"):
         ContinuumEnclosure("empty", [])
     with pytest.raises(TypeError, match="must be RationalInterval"):
-        ContinuumEnclosure("bad_type", [Fraction(1, 2)])  # type: ignore
+        ContinuumEnclosure("bad_type", [Fraction(1, 2)])
 
-    # Disjoint intervals in is_cauchy_contractive
     disjoint = ContinuumEnclosure(
         "disjoint",
         [
@@ -228,11 +203,9 @@ def test_edge_cases_and_error_paths() -> None:
     )
     assert not disjoint.is_cauchy_contractive()
 
-    # 4. constructive_cauchy_completion
     with pytest.raises(ValueError, match="Steps must be >= 1"):
         constructive_cauchy_completion("zero_steps", lambda n: RationalInterval(Fraction(0), Fraction(1)), steps=0)
 
-    # Normal completion
     comp = constructive_cauchy_completion(
         "half_seq",
         lambda n: RationalInterval(Fraction(0), Fraction(1, 2**n)),
@@ -241,7 +214,6 @@ def test_edge_cases_and_error_paths() -> None:
     assert comp.steps == 4
     assert comp.final_width == Fraction(1, 8)
 
-    # Completion with non-overlapping raw interval triggering fallback branch
     comp_jump = constructive_cauchy_completion(
         "jump_seq",
         lambda n: RationalInterval(Fraction(n * 10), Fraction(n * 10 + 1)),
@@ -249,7 +221,6 @@ def test_edge_cases_and_error_paths() -> None:
     )
     assert comp_jump.steps == 2
 
-    # 5. _contains_float coverage
     assert _contains_float(3.14)
     assert _contains_float({"key": 2.71})
     assert _contains_float([Fraction(1, 2), 1.41])

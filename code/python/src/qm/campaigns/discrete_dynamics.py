@@ -1,5 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-# Reference: Paper 122 §3.3, §7.1 item 6, H016, BET-D, GAP-F001-S000-008.
 
 """
 Discrete Dynamics, Generator Ambiguity, and Stone's Theorem (Band D: Steps 31-38).
@@ -37,8 +35,6 @@ class DiscreteDynamics:
         2. Determinant obstruction: det(X) = -1. det(M^2) = det(M)^2 = -1 has no real solution.
         3. Complex square root in Q(i): M = [[(1+i)/2, (1-i)/2], [(1-i)/2, (1+i)/2]] satisfies M^2 = X.
         """
-        # 1. Exhaustive check of all 4 endomaps on Bool: {False, True}
-        # An endomap sigma can be represented by its image pair (sigma(False), sigma(True))
         endomap_candidates = [
             (False, False),
             (False, True),
@@ -54,23 +50,17 @@ class DiscreteDynamics:
                 has_bool_sqrt = True
                 break
 
-        # 2. Determinant obstruction in R
         det_X = -1
-        has_real_det_solution = False  # x^2 = -1 has no real root
+        has_real_det_solution = False
 
-        # 3. Exact verification in Z[i] at scale 4 with zero floating-point operations:
-        # M_scaled = [[1+i, 1-i], [1-i, 1+i]]
-        # (1+i)^2 + (1-i)^2 = 2i + (-2i) = 0 (diagonal)
-        # (1+i)(1-i) + (1-i)(1+i) = 2 + 2 = 4 (off-diagonal)
-        # So M_scaled^2 = [[0, 4], [4, 0]] = 4 * X!
         def z_i_mul(z1: Tuple[int, int], z2: Tuple[int, int]) -> Tuple[int, int]:
             return (z1[0] * z2[0] - z1[1] * z2[1], z1[0] * z2[1] + z1[1] * z2[0])
 
         def z_i_add(z1: Tuple[int, int], z2: Tuple[int, int]) -> Tuple[int, int]:
             return (z1[0] + z2[0], z1[1] + z2[1])
 
-        elem_a = (1, 1)   # 1 + i
-        elem_b = (1, -1)  # 1 - i
+        elem_a = (1, 1)
+        elem_b = (1, -1)
         diag_val = z_i_add(z_i_mul(elem_a, elem_a), z_i_mul(elem_b, elem_b))
         offdiag_val = z_i_add(z_i_mul(elem_a, elem_b), z_i_mul(elem_b, elem_a))
         m_scaled_squares_to_4X = (diag_val == (0, 0) and offdiag_val == (4, 0))
@@ -92,28 +82,22 @@ class DiscreteDynamics:
         log(1) = 2*pi*i*k1, log(-1) = i*pi*(2*k2 + 1).
         H_{k1, k2} generates discrete step X at t = 1, but diverges at t = 1/2.
         """
-        # Branches k in {-2, -1, 0, 1, 2} for k1 = 0:
         branches = []
         for k in [-2, -1, 0, 1, 2]:
-            # eigenvalue of H_k on |->: theta = pi * (2k + 1)
             theta = math.pi * (2 * k + 1)
-            # unitary at t = 1: exp(-i * theta * 1) = exp(-i * pi * (2k+1)) = -1
             u_t1 = math.cos(theta) - 1j * math.sin(theta)
-            # unitary at t = 1/2: exp(-i * theta * 0.5) = exp(-i * pi/2 * (2k+1))
             theta_half = theta * 0.5
             u_thalf = math.cos(theta_half) - 1j * math.sin(theta_half)
             branches.append({
                 "k": k,
-                "theta": theta / math.pi,  # in units of pi
+                "theta": theta / math.pi,
                 "U_at_t1_real": round(u_t1.real),
                 "U_at_t1_imag": round(u_t1.imag),
                 "U_at_thalf": (round(u_thalf.real, 4), round(u_thalf.imag, 4)),
             })
 
-        # All branches yield -1 on |-> at t = 1 (matching X |-> = -|->)
         all_match_at_t1 = all(b["U_at_t1_real"] == -1 and b["U_at_t1_imag"] == 0 for b in branches)
 
-        # Distinct mid-step phases at t = 1/2
         midstep_phases = set(b["U_at_thalf"] for b in branches)
         diverges_at_midstep = len(midstep_phases) > 1
 
@@ -144,8 +128,8 @@ class DiscreteDynamics:
 
         for tau in test_taus:
             denom = 1 + tau * tau
-            a = (1 - tau * tau) / denom  # diagonal real part
-            b = (-2 * tau) / denom        # off-diagonal imag part (with -i)
+            a = (1 - tau * tau) / denom
+            b = (-2 * tau) / denom
             norm_sq = a * a + b * b
             if norm_sq != Fraction(1):
                 all_exact_unitary = False
@@ -156,8 +140,6 @@ class DiscreteDynamics:
                 "norm_sq": str(norm_sq),
             })
 
-        # Check group homomorphism on abelian parameter:
-        # tau1 = 1/2, tau2 = 1/3 => tau_comp = (1/2 + 1/3)/(1 - 1/6) = (5/6)/(5/6) = 1
         t1 = Fraction(1, 2)
         t2 = Fraction(1, 3)
         t_comp = (t1 + t2) / (1 - t1 * t2)

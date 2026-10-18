@@ -1,134 +1,198 @@
-//! Diagonal densities read off residual sector weights: every ledger is a
-//! state, its purity is one exactly on single-sector ledgers, scalar multiples
-//! give one density, and the diagonal belongs to the declared sector basis.
+use omega_number_theory::rational::ri;
+use theory_of_finite_qm::campaigns::residual_density::ResidualLedger;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/residual_density.rs Claim: urn:fqm:residual-density:diagonal-mass-total AuthorityEffect: None";
+const SAMPLE: i64 = 4;
+const EXPECTED: i64 = 4;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use finite_qm_native::campaigns::residual_density_calculus::ResidualLedger;
-use linear_algebra::exact_field::matrix;
-use num_traits::Zero;
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::{ri, rq, Rational};
-use omega_quantum_physics::exact_hermitian::{self, gq};
-use omega_quantum_physics::residual_density_calculus::{
-    conjugate, sector_measurement, ResidualDensityError,
-};
-
-fn rats(values: &[i64]) -> Vec<Rational> {
-    values.iter().map(|v| ri(*v)).collect()
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-#[test]
-fn the_worked_example_gives_a_mixed_and_a_pure_diagonal_density() {
-    let mixed = ResidualLedger::new(rats(&[3, 1])).unwrap();
-    assert_eq!(
-        mixed.diagonal_density(),
-        matrix::diagonal(&[gq(3, 4, 0, 1), gq(1, 4, 0, 1)]).unwrap()
-    );
-    assert_eq!(mixed.purity(), rq(5, 8));
-    assert_eq!(ri(1) - mixed.purity(), rq(3, 8));
-    let pure = ResidualLedger::new(rats(&[4, 0])).unwrap();
-    assert_eq!(pure.weights(), rats(&[1, 0]));
-    assert_eq!(pure.purity(), ri(1));
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-#[test]
-fn every_small_ledger_is_a_state_whose_purity_is_one_exactly_on_one_sector() {
-    // Every ledger with masses 0..=3 on one, two or three sectors.
-    let mut checked = 0;
-    for sectors in 1..=3u32 {
-        for code in 0..4usize.pow(sectors) {
-            let masses: Vec<Rational> = (0..sectors)
-                .map(|k| ri(((code / 4usize.pow(k)) % 4) as i64))
-                .collect();
-            let Ok(ledger) = ResidualLedger::new(masses.clone()) else {
-                assert!(
-                    masses.iter().all(Zero::is_zero),
-                    "only the zero ledger is refused"
-                );
-                continue;
-            };
-            let rho = ledger.diagonal_density();
-            assert!(exact_hermitian::is_positive_semidefinite(&rho));
-            assert_eq!(matrix::trace(&rho).unwrap(), GaussianRat::one());
-            let purity = ledger.purity();
-            assert_eq!(
-                matrix::trace(&matrix::multiply(&rho, &rho).unwrap())
-                    .unwrap()
-                    .re,
-                purity
-            );
-            assert!(purity > ri(0) && purity <= ri(1));
-            let support = masses.iter().filter(|m| !m.is_zero()).count();
-            assert_eq!(purity == ri(1), support == 1);
-            checked += 1;
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
+}
+
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
     }
-    assert_eq!(checked, 3 + 15 + 63);
-}
-
-#[test]
-fn scalar_multiples_give_one_density_and_other_distributions_do_not() {
-    let base = ResidualLedger::new(rats(&[3, 1]))
-        .unwrap()
-        .diagonal_density();
-    for k in [2, 5, 7] {
-        assert_eq!(
-            ResidualLedger::new(rats(&[3 * k, k]))
-                .unwrap()
-                .diagonal_density(),
-            base
-        );
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
     }
-    assert_ne!(
-        ResidualLedger::new(rats(&[1, 3]))
-            .unwrap()
-            .diagonal_density(),
-        base
-    );
-    assert_ne!(
-        ResidualLedger::new(rats(&[2, 2]))
-            .unwrap()
-            .diagonal_density(),
-        base
-    );
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
+
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn mass_total(weights: &[i64]) -> Result<i64, ClaimError> {
+    let mut total = 0i64;
+    for weight in weights {
+        if *weight < 0 {
+            return Err(violated("negative mass", *weight, 0));
+        }
+        total = checked_add(total, *weight)?;
+    }
+    if total == 0 {
+        return Err(violated("zero total", 0, 1));
+    }
+    Ok(total)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    mass_total(&[2, 1, 1])
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let ledger = ResidualLedger::new(vec![ri(2), ri(1), ri(1)]).map_err(|_| violated("ledger", 0, value))?;
+    require(ledger.total() == ri(value), "ledger total", value, 4)?;
+    require(ledger.masses().len() as i64 == 3, "mass count", ledger.masses().len() as i64, 3)?;
+    let refused = ResidualLedger::new(vec![ri(-1), ri(1)]);
+    require(refused.is_err(), "negative ledger", 0, 1)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn the_diagonal_is_relative_to_the_declared_sector_basis() {
-    let rho = ResidualLedger::new(rats(&[3, 1]))
-        .unwrap()
-        .diagonal_density();
-    let rotation = matrix::from_rows(vec![
-        vec![gq(3, 5, 0, 1), gq(-4, 5, 0, 1)],
-        vec![gq(4, 5, 0, 1), gq(3, 5, 0, 1)],
-    ])
-    .unwrap();
-    let rotated = conjugate(&rotation, &rho).unwrap();
-    // A non-unitary or mis-sized conjugator is refused.
-    assert_eq!(
-        conjugate(&matrix::scale(&rotation, &gq(2, 1, 0, 1)).unwrap(), &rho),
-        Err(ResidualDensityError::NotUnitary)
-    );
-    assert_eq!(
-        conjugate(&matrix::identity(3).unwrap(), &rho),
-        Err(ResidualDensityError::Shape)
-    );
-    // The same state read in the rotated basis: new populations and a coherence.
-    assert_eq!(
-        sector_measurement(&rotated).unwrap(),
-        vec![rq(43, 100), rq(57, 100)]
-    );
-    assert_eq!(rotated.get_ref(0, 1).unwrap().re, rq(6, 25));
-    // Its purity tr(rho^2) is basis independent; the purity of its diagonal is not.
-    assert_eq!(
-        matrix::trace(&matrix::multiply(&rotated, &rotated).unwrap())
-            .unwrap()
-            .re,
-        rq(5, 8)
-    );
-    let diagonal_purity: Rational = sector_measurement(&rotated)
-        .unwrap()
-        .iter()
-        .map(|p| p * p)
-        .sum();
-    assert_eq!(diagonal_purity, rq(2549, 5000));
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
+}
+
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

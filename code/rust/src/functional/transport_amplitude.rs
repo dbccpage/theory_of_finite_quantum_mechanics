@@ -1,9 +1,3 @@
-//! Exact finite weighted cyclic transport amplitudes.
-//!
-//! This module evaluates a declared finite cycle with exact rational edge
-//! amplitudes. It does not implement arbitrary path networks or cochain
-//! transport, certify a physical interpretation, or emit an acceptance,
-//! terminal, or authority result.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -30,21 +24,11 @@ pub enum TransportAmplitudeError {
     ZeroDenominator { edge: usize },
 }
 
-/// An immutable finite directed cycle with one exact weight on each edge.
-///
-/// Edge `i` is the directed edge `i -> (i + 1) mod dimension`. The matrix
-/// representation returned by [`Self::shift_operator`] uses the column-vector
-/// convention `matrix[destination][source]`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MinimalCyclicTransport {
     edge_amplitudes: Vec<BigRational>,
 }
 
-/// The exact value of one bounded path query on a declared cyclic carrier.
-///
-/// This value records only the supplied finite cycle, endpoints, length, and
-/// exact product. It is not a proof certificate or an interpretation of the
-/// carrier as a physical transport process.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TransportAmplitude {
     dimension: usize,
@@ -68,7 +52,6 @@ fn canonical_edge_amplitude(
 }
 
 impl MinimalCyclicTransport {
-    /// Construct a unit-weight directed cycle with the declared finite size.
     pub fn unit(dimension: usize) -> Result<Self, TransportAmplitudeError> {
         if dimension == 0 {
             return Err(TransportAmplitudeError::EmptyCycle);
@@ -84,10 +67,6 @@ impl MinimalCyclicTransport {
         })
     }
 
-    /// Construct a cycle from its consecutive edge amplitudes.
-    ///
-    /// Valid unreduced or signed rational encodings are canonicalized before
-    /// they can enter the immutable cycle. A raw zero denominator is refused.
     pub fn from_edge_amplitudes(
         edge_amplitudes: &[BigRational],
     ) -> Result<Self, TransportAmplitudeError> {
@@ -118,7 +97,6 @@ impl MinimalCyclicTransport {
         &self.edge_amplitudes
     }
 
-    /// Return the exact weighted one-step cyclic shift in column-vector form.
     pub fn shift_operator(&self) -> Vec<Vec<BigRational>> {
         let dimension = self.dimension();
         let mut matrix = vec![vec![BigRational::zero(); dimension]; dimension];
@@ -129,8 +107,6 @@ impl MinimalCyclicTransport {
         matrix
     }
 
-    /// Evaluate the unique directed path of the given length when it reaches
-    /// `target`; otherwise return the exact zero amplitude.
     pub fn amplitude(
         &self,
         source: usize,

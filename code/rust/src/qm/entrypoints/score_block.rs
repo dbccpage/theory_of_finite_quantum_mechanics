@@ -1,8 +1,3 @@
-//! Entrypoint: score_block.
-//!
-//! Score one block by two readings of the same 2 by 2 determinant: the
-//! Leibniz formula over the integers, and Gaussian elimination over the
-//! rationals. The block passes only when both scores agree.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -34,7 +29,6 @@ fn gauss_det(matrix: &[[i64; 2]; 2]) -> Result<BigRational, String> {
     if a == BigRational::from_integer(BigInt::from(0)) {
         return Err("score pivot vanished".into());
     }
-    // Schur complement d - c * a^{-1} * b, then det = a * schur.
     let schur = &d - &(&c * &b / &a);
     Ok(&a * &schur)
 }

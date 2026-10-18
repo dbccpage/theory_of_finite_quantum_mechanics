@@ -1,10 +1,3 @@
-//! Complex-structure balancing on doubled finite free modules.
-//!
-//! Coordinates of each doubled module are `(real coordinates, imaginary
-//! coordinates)`. The ordinary real tensor has dimension `4mn`; `T` maps it
-//! to the `2mn` coordinates of the declared complex tensor. This module owns
-//! the coefficient algebra, not positivity, density admission or scalar selection.
-//! AuthorityEffect: None.
 
 use super::{charge, element_count, inverse_of, matrix as mx, plus, times, ExactFieldError};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
@@ -71,8 +64,6 @@ fn coordinate(index: usize, left: usize, right: usize) -> (usize, usize, usize, 
     )
 }
 
-/// `R(P+iQ)=[[P,-Q],[Q,P]]`, including rectangular and empty shapes.
-/// Preflight bounds every allocation by `4mn` and all scalar calls by `mn`.
 pub fn realify_parts_with_limits<F: Field + ExactRing>(
     real: &BasicMatrix<F>,
     imaginary: &BasicMatrix<F>,
@@ -93,8 +84,6 @@ pub fn realify_parts_with_limits<F: Field + ExactRing>(
     })?)
 }
 
-/// `T(rr,ri,ir,ii)=(rr-ii,ri+ir)` on each pair of basis indices.
-/// Output shape is `2mn x 4mn`. One negation is charged, including empty maps.
 pub fn balance_map_with_limits<F: Field + ExactRing>(
     left: usize,
     right: usize,
@@ -119,8 +108,6 @@ pub fn balance_map_with_limits<F: Field + ExactRing>(
     })?)
 }
 
-/// The balanced projector `P=T^t T/2=(I-J_left tensor J_right)/2`.
-/// Preflight: `16(mn)^2` elements and four scalar calls. Requires `2 != 0`.
 pub fn balance_projector_with_limits<F: Field + ExactRing>(
     left: usize,
     right: usize,
@@ -180,8 +167,6 @@ fn require_image<F: Field + ExactRing>(
     Ok(())
 }
 
-/// `T_out (left tensor right) T_in^t / 2` for doubled rectangular operators.
-/// Checks the actual local complex-structure intertwiners. No positivity is inferred.
 pub fn normalized_tensor_with_limits<F: Field + ExactRing>(
     left: &BasicMatrix<F>,
     right: &BasicMatrix<F>,
@@ -190,9 +175,6 @@ pub fn normalized_tensor_with_limits<F: Field + ExactRing>(
     tensor(left, right, true, limits)
 }
 
-/// `T_out (left tensor right) T_in^t`, with the same image checks.
-/// For local density inputs `R(rho)/2` this is `R(rho_left tensor rho_right)/2`.
-/// The density assertion needs independently admitted local density states.
 pub fn unscaled_tensor_with_limits<F: Field + ExactRing>(
     left: &BasicMatrix<F>,
     right: &BasicMatrix<F>,
@@ -201,9 +183,6 @@ pub fn unscaled_tensor_with_limits<F: Field + ExactRing>(
     tensor(left, right, false, limits)
 }
 
-/// Worst-case per-allocation element count and aggregate scalar-call bound.
-/// Shapes are doubled real shapes. `normalized` selects the final factor `1/2`.
-/// Domain adapters can include this bound in their complete conversion preflight.
 pub fn tensor_work_bound(
     left: (usize, usize),
     right: (usize, usize),
@@ -253,9 +232,6 @@ fn tensor<F: Field + ExactRing>(
     })
 }
 
-/// Lift a `2mn x 2mn` complex-structure view to `T^t view T / 2`.
-/// The result is supported on the balanced subspace. State semantics are external.
-/// Preflight: `16(mn)^2` elements; `96(mn)^3+17(mn)^2+4` scalar calls.
 pub fn balanced_lift_with_limits<F: Field + ExactRing>(
     view: &BasicMatrix<F>,
     left: usize,

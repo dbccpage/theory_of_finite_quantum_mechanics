@@ -69,7 +69,6 @@ class BanachPresheaf:
             if r is None:
                 raise ValueError(f"edge {(a, b)!r} has no restriction map")
             mat = np.asarray(r.matrix)
-            # r: F(b) -> F(a), so matrix is (dim(a) x dim(b)).
             expected = (self.stalks[a].dim, self.stalks[b].dim)
             if mat.shape != expected:
                 raise ValueError(

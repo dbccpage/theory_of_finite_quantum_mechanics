@@ -1,6 +1,3 @@
-// AuthorityEffect: None.
-// Exact ordered root identities, not minimal polynomials or splitting degrees.
-// Independent Rust arithmetic; shared fixture files supply inputs only.
 use super::{
     characteristic, embedding, eval, multiply, qstr, quotient, rat, reject_float, root_count,
     squarefree, sturm, validate, Element, Polynomial, Result, Q,
@@ -59,9 +56,6 @@ struct Root {
     upper: Q,
 }
 
-// Isolate the radical once, including roots from different Yun factors in the
-// same tree. Endpoint roots are removed first and midpoint roots counted once.
-// A singleton is rational; an open root identity is not asserted irrational.
 fn isolate(radical: &[Element], limit: usize) -> Result<(Vec<Root>, usize)> {
     let n = radical[0].n;
     let mut interior = radical.to_vec();
@@ -201,9 +195,6 @@ fn count(value: &Value, path: &str) -> Result<usize> {
         .ok_or_else(|| format!("SPECTRAL_UNSIGNED_INTEGER_REQUIRED:{path}"))
 }
 
-// This parses certificate arithmetic, NOT original matrix entries. Derived
-// endpoints may exceed the input height limit; canonical rational form remains
-// mandatory and floats/booleans are never lifted into the exact domain.
 fn rational(value: &Value, path: &str) -> Result<Q> {
     let text = value
         .as_str()
@@ -227,11 +218,6 @@ fn rational(value: &Value, path: &str) -> Result<Q> {
     Ok(q)
 }
 
-// This validator does not compare the supplied spectrum with output(input).
-// It independently checks each proposed identity by exact evaluation/Sturm,
-// polynomial binding, factor assignment, disjointness and complete census.
-// Only the actual work counter is replayed using the declared deterministic
-// producer traversal; arbitrary valid alternative rational isolators can pass.
 pub fn verify_output(input: &Value, proposed: &Value) -> Result<()> {
     reject_float(proposed, "spectral_output")?;
     let data = AlgebraicData::from_input(input)?;
@@ -346,8 +332,6 @@ pub fn verify_output(input: &Value, proposed: &Value) -> Result<()> {
             }
         }
         if let Some(old) = &previous {
-            // Shared endpoints are allowed because open intervals exclude
-            // boundaries. Duplicate singleton roots are never allowed.
             if old.upper > root.lower
                 || (old.lower == old.upper && singleton && old.lower == root.lower)
             {

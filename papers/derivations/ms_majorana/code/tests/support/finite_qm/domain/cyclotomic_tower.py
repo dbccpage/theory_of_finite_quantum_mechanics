@@ -17,28 +17,24 @@ def cyclotomic_polynomial_coeffs(n: int) -> List[int]:
     if type(n) is not int or n < 1:
         raise ValueError("conductor must be a positive integer")
     if n == 1:
-        return [-1, 1]  # x - 1
+        return [-1, 1]
     elif n == 2:
-        return [1, 1]   # x + 1
+        return [1, 1]
     elif n == 3:
-        return [1, 1, 1] # x^2 + x + 1
+        return [1, 1, 1]
     elif n == 4:
-        return [1, 0, 1] # x^2 + 1
+        return [1, 0, 1]
     elif n == 5:
-        return [1, 1, 1, 1, 1] # x^4 + x^3 + x^2 + x + 1
+        return [1, 1, 1, 1, 1]
     elif n == 6:
-        return [1, -1, 1] # x^2 - x + 1
+        return [1, -1, 1]
     elif n == 8:
-        return [1, 0, 0, 0, 1] # x^4 + 1
+        return [1, 0, 0, 0, 1]
     elif n == 12:
-        return [1, 0, -1, 0, 1] # x^4 - x^2 + 1
+        return [1, 0, -1, 0, 1]
     elif n == 24:
-        return [1, 0, 0, 0, -1, 0, 0, 0, 1] # x^8 - x^4 + 1
+        return [1, 0, 0, 0, -1, 0, 0, 0, 1]
     else:
-        # General exact division algorithm for cyclotomic polynomial
-        # x^n - 1 = prod_{d|n} Phi_d(x)
-        # For our targets, n in {1, 2, 3, 4, 5, 6, 8, 12, 24, 120}
-        # We can use standard poly division
         poly = [0] * (n + 1)
         poly[0] = -1
         poly[n] = 1
@@ -79,8 +75,7 @@ class CyclotomicElement:
         self.conductor = conductor
         phi = cyclotomic_polynomial_coeffs(conductor)
         deg = len(phi) - 1
-        
-        # Handle dict or list
+
         c_list = [Fraction(0)] * deg
         if isinstance(coeffs, dict):
             for k, v in coeffs.items():
@@ -115,7 +110,6 @@ class CyclotomicElement:
         if deg > 1:
             c[1] = Fraction(1)
         else:
-            # For n=1, zeta_1 = 1; for n=2, zeta_2 = -1
             if conductor == 1:
                 c[0] = Fraction(1)
             elif conductor == 2:
@@ -132,7 +126,6 @@ class CyclotomicElement:
             return False
         if self.conductor == other.conductor:
             return self.coeffs == other.coeffs
-        # Compare via common conductor
         l = (self.conductor * other.conductor) // math.gcd(self.conductor, other.conductor)
         s_lift = self.lift_to(l)
         o_lift = other.lift_to(l)
@@ -146,12 +139,10 @@ class CyclotomicElement:
             return self
         assert n % m == 0, f"Cannot lift from conductor {m} to non-multiple {n}"
         step = n // m
-        
-        # Evaluate sum_k c_k (zeta_n^step)^k in Q(zeta_n)
+
         target_phi = cyclotomic_polynomial_coeffs(n)
         target_deg = len(target_phi) - 1
-        
-        # Power reduction table for zeta_n^k
+
         res = [Fraction(0)] * target_deg
         for k, c in enumerate(self.coeffs):
             if c == 0:
@@ -171,7 +162,6 @@ class CyclotomicElement:
         for k, c in enumerate(self.coeffs):
             if c == 0:
                 continue
-            # zeta_n^k -> zeta_n^(-k) == zeta_n^(n - (k % n))
             inv_power = (n - (k % n)) % n
             term = _reduce_power(inv_power, n, phi)
             for i in range(deg):
@@ -212,11 +202,11 @@ class CyclotomicElement:
         if self.conductor != other.conductor:
             l = (self.conductor * other.conductor) // math.gcd(self.conductor, other.conductor)
             return self.lift_to(l) * other.lift_to(l)
-        
+
         n = self.conductor
         phi = cyclotomic_polynomial_coeffs(n)
         deg = len(phi) - 1
-        
+
         raw = [Fraction(0)] * (2 * deg)
         for i in range(deg):
             if self.coeffs[i] == 0:
@@ -225,8 +215,7 @@ class CyclotomicElement:
                 if other.coeffs[j] == 0:
                     continue
                 raw[i + j] += self.coeffs[i] * other.coeffs[j]
-        
-        # Reduce raw polynomial by Phi_n(x)
+
         res = [Fraction(0)] * deg
         for k in range(len(raw)):
             if raw[k] == 0:
@@ -429,9 +418,7 @@ def _reduce_power(power: int, conductor: int, phi: List[int]) -> List[Fraction]:
         res[power] = Fraction(1)
         _REDUCE_POWER_CACHE[key] = res
         return res
-    
-    # Polynomial remainder of x^power divided by phi
-    # Since phi is monic (leading coeff 1):
+
     rem = [Fraction(0)] * (power + 1)
     rem[power] = Fraction(1)
     for i in range(power, deg - 1, -1):

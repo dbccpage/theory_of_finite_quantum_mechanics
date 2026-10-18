@@ -1,5 +1,3 @@
-//! Supplied finite geometry interpretations of Genesis incidence packets.
-//! Calls native mathematical owners; admission alone supplies none of these laws.
 use num_rational::BigRational;
 use omega_category_theory::finite_report_descent::{CoverClassification, FiniteReportPresheaf};
 use omega_general_relativity::regge_calculus::{EdgeLengthMetric, ReggeCalculus};
@@ -10,7 +8,6 @@ use omega_homology::simplicial::SimplicialComplex;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// Exact rational interval for certified metric deficit and geometry bounds.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RationalInterval {
     pub lo: BigRational,
@@ -88,10 +85,6 @@ pub struct MetricReport {
 }
 
 impl MetricReport {
-    /// Float image of one numeric deficit, widened by a non-negative rational epsilon.
-    ///
-    /// `from_float` records the f64 value. This is not a certified enclosure.
-    /// A negative epsilon returns `None` instead of an inverted interval.
     pub fn deficit_interval(&self, vertex: usize, epsilon: BigRational) -> Option<RationalInterval> {
         if epsilon < BigRational::from_integer(0.into()) {
             return None;
@@ -117,7 +110,6 @@ fn owner(e: impl std::fmt::Debug) -> GeometryError {
     GeometryError::Owner(format!("{e:?}"))
 }
 
-/// Refuse a packet outside the declared incidence domain. Faces are not filled in.
 pub fn checked_complex(packet: &ComplexPacket) -> Result<SimplicialComplex, GeometryError> {
     encode_declared(&packet.cells).map_err(|error| match error {
         DeclaredIncidenceError::MissingFace { .. } => GeometryError::MissingFace,
@@ -136,7 +128,6 @@ impl From<DeclaredChainReport> for ChainReport {
     }
 }
 
-/// Signed rational chains from `omega_homology`. Rank stays on exact linear algebra.
 pub fn chain_report(packet: &ComplexPacket) -> Result<ChainReport, GeometryError> {
     let complex = checked_complex(packet)?;
     declared_chain_report(&complex)
@@ -181,8 +172,6 @@ pub fn verify_sheaf_report(
     }
     Ok(())
 }
-/// Native Regge owner provides angles/triangle checks. This adapter additionally checks
-/// pure manifold links and uses pi (rather than 2pi) at a boundary vertex.
 pub fn metric_report(packet: &MetricPacket) -> Result<MetricReport, GeometryError> {
     let complex = checked_complex(&packet.complex)?;
     if complex.max_dimension() != 2 || complex.simplices(2).is_empty() {
@@ -269,7 +258,6 @@ pub fn metric_report(packet: &MetricPacket) -> Result<MetricReport, GeometryErro
         boundary_vertices,
     })
 }
-/// Replay exact floating result; this is a numeric diagnostic, not interval certification.
 pub fn verify_metric_report(
     packet: &MetricPacket,
     claimed: &MetricReport,
@@ -280,8 +268,6 @@ pub fn verify_metric_report(
     Ok(())
 }
 
-/// Actual Genesis regime projection. Replay/custody verification is a separate
-/// precondition; this decoder checks every admitted incidence without auto-fills.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SourceIncidenceState {
     pub data: Vec<String>,
@@ -334,8 +320,6 @@ pub fn verify_source_incidence(
     Ok(())
 }
 
-/// JSON object keys are strings even when a tagged enclosing enum buffers them.
-/// Parse canonical decimal masks explicitly, refusing aliases and duplicates.
 fn deserialize_context_counts<'de, D>(deserializer: D) -> Result<BTreeMap<u64, usize>, D::Error>
 where
     D: serde::Deserializer<'de>,

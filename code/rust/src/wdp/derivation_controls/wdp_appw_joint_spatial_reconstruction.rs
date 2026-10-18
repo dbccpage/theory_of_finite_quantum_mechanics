@@ -1,8 +1,3 @@
-//! Fixed Appendix W carrier: L=4 periodic sites, Fock dimension 16, M=1, N=2.
-//! The section 5 cell prefactor equals 1/16 and reproduces q_M only.
-//! Each site of cos(8 pi xi) is reduced on its own turn. The four samples
-//! collide with the constant profile, while cos(pi) is -1.
-//! Not a joint (L, M) limit and not a reconstruction of K.
 
 const SITES: i64 = 4;
 const M_LABEL: i64 = 1;
@@ -46,8 +41,6 @@ fn mod_one(num: i64, den: i64) -> Option<(i64, i64)> {
     Some((reduced.num.rem_euclid(reduced.den), reduced.den))
 }
 
-/// exp(2 pi i * num/den) when the value lies in Q.
-/// Integer turns are 1. Half-integer turns are -1. No other value is claimed.
 fn exp_two_pi_i(num: i64, den: i64) -> Option<(i64, i64)> {
     let (n, d) = mod_one(num, den)?;
     if n == 0 {
@@ -68,7 +61,6 @@ fn response_order(sites: i64, n: i64) -> i64 {
     sites.checked_mul(n).expect("LN")
 }
 
-/// L/(LN)^2 and 1/(L N^2). The cross-multiplication is the cell identity.
 fn prefactors(sites: i64, n: i64) -> (Rat, Rat) {
     let order = response_order(sites, n);
     let order_sq = order.checked_mul(order).expect("(LN)^2");
@@ -82,7 +74,6 @@ fn prefactors(sites: i64, n: i64) -> (Rat, Rat) {
     (Rat::new(sites, order_sq), Rat::new(1, quad_den))
 }
 
-/// Sample f(xi)=cos(2 pi L xi) at xi=x/L. Turns are the integer x, evaluated per site.
 fn grid_sample() -> [(i64, i64); 4] {
     let mut sample = [(0i64, 0i64); 4];
     for x in 0..4 {
@@ -100,7 +91,6 @@ fn constant_profile() -> [i64; 4] {
     profile
 }
 
-/// Off the nodes xi=x/4. xi=1/8 has turn count 1/2, so the value is cos(pi).
 fn off_grid_sample() -> (i64, i64) {
     let turns = SITES.checked_mul(1).expect("L*xi");
     exp_two_pi_i(turns, 8).expect("half-integer turn")

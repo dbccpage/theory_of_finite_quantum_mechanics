@@ -1,9 +1,3 @@
-//! A bounded, task-bound encoding experiment. AuthorityEffect: None.
-//!
-//! Candidates are integer quadratics with each coefficient in [-2, 2].
-//! The question is f' = b0 + b1*x and f(0) = v in Z[x]. Cochain closure
-//! checks representation consistency; only the direct checker checks this
-//! question. Gamma2 arithmetic is delegated to its canonical functional.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -17,8 +11,6 @@ pub const DOMAIN: &str = "integer_quadratic_antiderivative_at_zero_v1";
 pub const BOUND: i64 = 2;
 pub const MAX_REPORT_BYTES: usize = 2048;
 
-/// Detect a stale local build when replaying the pinned source snapshot.
-/// This is build provenance under a trusted compiler/executable, not authentication.
 pub fn compiled_source_sha256() -> BTreeMap<&'static str, String> {
     let inputs: &[(&str, &[u8])] = &[
         (
@@ -92,7 +84,6 @@ pub struct CochainReport {
     pub domain: String,
     pub task: Task,
     pub anchor: i64,
-    /// Fixed orientations 0->1, 1->2, 2->0 on the declared filled triangle.
     pub edges: [i64; 3],
 }
 
@@ -117,8 +108,6 @@ fn validate_candidate(candidate: [i64; 3]) -> Result<(), Refusal> {
     Ok(())
 }
 
-/// The sole semantic checker in this profile: equality of derivative
-/// coefficients and the value at zero. Bounds precede arithmetic.
 pub fn check(task: Task, candidate: [i64; 3]) -> Result<bool, Refusal> {
     validate_task(task)?;
     validate_candidate(candidate)?;
@@ -141,7 +130,6 @@ pub fn encode_direct(task: Task, candidate: [i64; 3]) -> Result<DirectReport, Re
     })
 }
 
-/// Representation map, not a defect functional or a correctness decision.
 pub fn encode_cochain(task: Task, candidate: [i64; 3]) -> Result<CochainReport, Refusal> {
     validate_task(task)?;
     validate_candidate(candidate)?;
@@ -210,8 +198,6 @@ pub fn verify_cochain(expected: Task, wire: &str) -> Result<bool, Refusal> {
     check(expected, parse_cochain(expected, wire)?)
 }
 
-/// Algebraic proposal using the supplied derivative equations. This is not
-/// acceptance; every returned proposal is passed to the independent checker.
 pub fn direct_proposal(task: Task) -> Result<Option<[i64; 3]>, Refusal> {
     validate_task(task)?;
     if task.derivative[1] % 2 != 0 {
@@ -224,8 +210,6 @@ pub fn direct_proposal(task: Task) -> Result<Option<[i64; 3]>, Refusal> {
     ]))
 }
 
-/// The same equations solved in anchored edge coordinates. No invocation of
-/// the direct proposal routine, checker, or search result constructs this.
 pub fn cochain_proposal(task: Task) -> Result<Option<CochainReport>, Refusal> {
     validate_task(task)?;
     if task.derivative[1] % 2 != 0 {
@@ -303,8 +287,6 @@ fn enumerate_then_check(
     Ok((None, calls))
 }
 
-/// Exhaustive reproducible experiment, including unsuccessful tasks. The
-/// exhaustive audit is accounted separately from each strategy's workload.
 pub fn experiment() -> Result<Value, Refusal> {
     let carrier = candidates();
     let mut rows = Vec::new();

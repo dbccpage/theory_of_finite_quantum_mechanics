@@ -1,29 +1,3 @@
-//! Stage A (real-variable lift): the **manifest** real SOS Gram of the MUB(6) obstruction, and
-//! the experiment of whether subtracting the rank-1 `‖v‖⁴` form keeps it PSD with a positive
-//! margin — a certificate of the wall that needs no SDP.
-//!
-//! Write `v_j = x_j + i y_j` and `z = (x_0,y_0,…,x_5,y_5) ∈ ℝ¹²`. Each curvature form value
-//! `ω_i(v) = v† A_i v` is a **real quadratic** in `z`, so `ω_i = c_i · μ` where `μ` is the vector
-//! of the 78 real degree-2 monomials `z_p z_q` (`p ≤ q`) and `c_i ∈ K⁷⁸` its coefficients. Then
-//!
-//! ```text
-//!   P(v) = Σ_i ω_i² = Σ_i (c_i · μ)² = μ^T (Σ_i c_i c_i^T) μ = μ^T Q_P μ,   Q_P = Σ_i c_i c_i^T ⪰ 0
-//! ```
-//!
-//! is a **manifestly PSD** Gram (sum of rank-1s), and `‖v‖⁴ = (z^T z)² = μ^T (d d^T) μ` with
-//! `d` the coefficients of `z^T z`. The wall with margin `c` is certified by
-//! `Q_P − c·d d^T ⪰ 0` (then `P − c‖v‖⁴ = μ^T(Q_P − c d d^T)μ ≥ 0`). Since `Q_P ⪰ 0` and `d d^T` is
-//! rank-1, `Q_P − c d d^T ⪰ 0` for some `c > 0` **iff `d ∈ range(Q_P)`** (i.e. `‖v‖²` lies in the
-//! span of the `ω_i`).
-//!
-//! **RESULT (verified, `real_base_gram_needs_the_moment_kernel`): NO.** `Q_P` is PSD (the manifest
-//! SOS of `P`), but `Q_P − c·Q_4` is **not** PSD for any `c > 0` — `d ∉ range(Q_P)`, so a kernel
-//! direction `w` of `Q_P` has `d^T w ≠ 0`, giving `w^T(Q_P − c Q_4)w = −c(d^T w)² < 0`. So the
-//! natural base Gram cannot certify the wall; the **moment-kernel freedom + an SDP** (search over
-//! `{Q_P + Δ : μ^T Δ μ ≡ 0}` for a PSD `Q_P + Δ − c Q_4`) is **required** — exactly the Codex brief
-//! Stage A/B. Both cheap paths (holomorphic lift, real base Gram) are now ruled out *exactly*; the
-//! SDP over the moment kernel is the confirmed, unavoidable bottleneck.
-//!
 
 use std::collections::BTreeMap;
 
@@ -32,10 +6,8 @@ use crate::omega_native::exact::d6_exact_sos::{canonical_forms, quad_form, Form}
 use omega_number_theory::cyclotomic::Cyc24;
 use omega_number_theory::rational::ri;
 
-/// Number of real coordinates `z = (x_0,y_0,…,x_5,y_5)`.
-pub const RDIM: usize = 2 * D; // 12
+pub const RDIM: usize = 2 * D;
 
-/// A sparse symmetric-matrix entry in the real moment-map kernel.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct MomentKernelTerm {
     pub row: usize,
@@ -43,14 +15,11 @@ pub struct MomentKernelTerm {
     pub value: Cyc24,
 }
 
-/// One sparse generator `Delta` with `mu^T Delta mu == 0`.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct MomentKernelElement {
     pub terms: Vec<MomentKernelTerm>,
 }
 
-/// Stage A search surface:
-/// `Q = base_gram + sum(lambda_k * moment_kernel_basis[k]) - c * norm4_gram`.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct RealSosAffineSpace {
     pub base_gram: Vec<Vec<Cyc24>>,
@@ -58,7 +27,6 @@ pub struct RealSosAffineSpace {
     pub moment_kernel_basis: Vec<MomentKernelElement>,
 }
 
-/// The 78 real degree-2 monomials `(p, q)` with `p ≤ q`, `p,q ∈ 0..12`.
 pub fn real_monomials() -> Vec<(usize, usize)> {
     let mut m = Vec::new();
     for p in 0..RDIM {
@@ -69,13 +37,11 @@ pub fn real_monomials() -> Vec<(usize, usize)> {
     m
 }
 
-/// Index of `{p, q}` in `real_monomials()`.
 pub fn rmon_index(p: usize, q: usize) -> usize {
     let (a, b) = if p <= q { (p, q) } else { (q, p) };
     (0..a).map(|i| RDIM - i).sum::<usize>() + (b - a)
 }
 
-/// Exponent vectors for the 78 real degree-2 monomials.
 pub fn real_degree2_exponents() -> Vec<[u8; RDIM]> {
     real_monomials()
         .iter()
@@ -88,8 +54,6 @@ pub fn real_degree2_exponents() -> Vec<[u8; RDIM]> {
         .collect()
 }
 
-/// Fibers of the symmetric Gram moment map:
-/// symmetric entries `(a,b)`, `a <= b`, grouped by the degree-4 exponent of `mu_a * mu_b`.
 pub fn real_moment_fibers() -> BTreeMap<[u8; RDIM], Vec<(usize, usize)>> {
     let exps = real_degree2_exponents();
     let mut fibers: BTreeMap<[u8; RDIM], Vec<(usize, usize)>> = BTreeMap::new();
@@ -113,11 +77,6 @@ fn symmetric_entry_weight(row: usize, col: usize) -> i64 {
     }
 }
 
-/// A sparse basis for the kernel of the real degree-2 moment map.
-///
-/// For each degree-4 monomial fiber, the contribution of a symmetric entry `(a,b)` is weighted
-/// by `1` on the diagonal and `2` off-diagonal in `mu^T Q mu`. The generators are weighted fiber
-/// differences, so they evaluate to the zero polynomial exactly.
 pub fn real_moment_kernel_basis() -> Vec<MomentKernelElement> {
     let mut basis = Vec::new();
     for pairs in real_moment_fibers().values() {
@@ -146,7 +105,6 @@ pub fn real_moment_kernel_basis() -> Vec<MomentKernelElement> {
     basis
 }
 
-/// Reconstruct `v ∈ ℂ⁶` from real coords `z`: `v_j = z[2j] + i·z[2j+1]`.
 fn v_of_z(z: &[Cyc24; RDIM]) -> [Cyc24; D] {
     let i = Cyc24::zeta24(6);
     std::array::from_fn(|j| z[2 * j].add(&i.mul(&z[2 * j + 1])))
@@ -158,9 +116,6 @@ fn unit(p: usize) -> [Cyc24; RDIM] {
     z
 }
 
-/// The coefficient vector `c_i ∈ K⁷⁸` of `ω_i(z) = v† A_i v` in the real degree-2 monomial basis,
-/// extracted by polarization: `c_i[idx(p,p)] = ω_i(e_p)`,
-/// `c_i[idx(p,q)] = ω_i(e_p+e_q) − ω_i(e_p) − ω_i(e_q)` (`p < q`) — all via `quad_form`.
 pub fn omega_coeff_vector(a: &Form) -> Vec<Cyc24> {
     let mons = real_monomials();
     let omega = |z: &[Cyc24; RDIM]| quad_form(a, &v_of_z(z));
@@ -171,14 +126,13 @@ pub fn omega_coeff_vector(a: &Form) -> Vec<Cyc24> {
                 diag[p].clone()
             } else {
                 let mut z = unit(p);
-                z[q] = Cyc24::rat(ri(1)); // e_p + e_q
+                z[q] = Cyc24::rat(ri(1));
                 omega(&z).sub(&diag[p]).sub(&diag[q])
             }
         })
         .collect()
 }
 
-/// Coefficient vector `d` of `‖v‖² = z^T z = Σ_m z_m²` in the real monomial basis.
 pub fn norm_sq_coeff() -> Vec<Cyc24> {
     let n = real_monomials().len();
     let mut d = vec![Cyc24::zero(); n];
@@ -203,7 +157,6 @@ fn add_into(acc: &mut [Vec<Cyc24>], m: &[Vec<Cyc24>]) {
     }
 }
 
-/// `Q_P = Σ_i c_i c_i^T` — the manifest real PSD Gram of `P` (sum of rank-1s).
 pub fn real_obstruction_gram() -> Vec<Vec<Cyc24>> {
     let n = real_monomials().len();
     let mut q = vec![vec![Cyc24::zero(); n]; n];
@@ -214,12 +167,10 @@ pub fn real_obstruction_gram() -> Vec<Vec<Cyc24>> {
     q
 }
 
-/// `Q_4 = d d^T` — the rank-1 Gram of `‖v‖⁴`.
 pub fn real_norm4_gram() -> Vec<Vec<Cyc24>> {
     outer(&norm_sq_coeff())
 }
 
-/// Values of the real degree-2 monomial vector `mu(z)`.
 pub fn real_monomial_values(z: &[Cyc24; RDIM]) -> Vec<Cyc24> {
     real_monomials()
         .iter()
@@ -227,7 +178,6 @@ pub fn real_monomial_values(z: &[Cyc24; RDIM]) -> Vec<Cyc24> {
         .collect()
 }
 
-/// Evaluate `mu(z)^T G mu(z)` exactly.
 pub fn eval_real_gram(g: &[Vec<Cyc24>], z: &[Cyc24; RDIM]) -> Cyc24 {
     let mv = real_monomial_values(z);
     let mut acc = Cyc24::zero();
@@ -239,7 +189,6 @@ pub fn eval_real_gram(g: &[Vec<Cyc24>], z: &[Cyc24; RDIM]) -> Cyc24 {
     acc
 }
 
-/// Evaluate a sparse moment-kernel generator exactly.
 pub fn eval_moment_kernel_element(delta: &MomentKernelElement, z: &[Cyc24; RDIM]) -> Cyc24 {
     let mv = real_monomial_values(z);
     let two = Cyc24::rat(ri(2));
@@ -255,7 +204,6 @@ pub fn eval_moment_kernel_element(delta: &MomentKernelElement, z: &[Cyc24; RDIM]
     acc
 }
 
-/// Add `scale * delta` to a dense symmetric Gram matrix.
 pub fn add_moment_kernel_scaled(
     gram: &mut [Vec<Cyc24>],
     delta: &MomentKernelElement,
@@ -271,7 +219,6 @@ pub fn add_moment_kernel_scaled(
     }
 }
 
-/// The exact Stage A affine search surface for the real SOS program.
 pub fn real_sos_affine_space() -> RealSosAffineSpace {
     RealSosAffineSpace {
         base_gram: real_obstruction_gram(),
@@ -280,7 +227,6 @@ pub fn real_sos_affine_space() -> RealSosAffineSpace {
     }
 }
 
-/// `Q_P − c·Q_4`.
 pub fn real_gram_minus_c(
     q_p: &[Vec<Cyc24>],
     q4: &[Vec<Cyc24>],
@@ -308,7 +254,6 @@ mod tests {
 
     fn sample_z() -> Vec<[Cyc24; RDIM]> {
         let mut out = Vec::new();
-        // a couple of rational z vectors
         let mut z1: [Cyc24; RDIM] = std::array::from_fn(|_| Cyc24::zero());
         z1[0] = Cyc24::rat(rq(1, 2));
         z1[3] = Cyc24::rat(rq(1, 3));
@@ -334,7 +279,6 @@ mod tests {
 
     #[test]
     fn omega_coeff_vector_reproduces_omega() {
-        // c_i · μ(z) == ω_i(z) = v† A_i v at sample z (validates the polarization extraction).
         for a in &canonical_forms() {
             let c = omega_coeff_vector(a);
             for z in sample_z() {
@@ -348,7 +292,6 @@ mod tests {
     #[test]
     #[allow(non_snake_case)]
     fn real_gram_reproduces_P_and_norm4() {
-        // μ^T Q_P μ == P(v(z))  and  μ^T Q_4 μ == ‖v‖⁴.
         let forms = canonical_forms();
         let q_p = real_obstruction_gram();
         let q4 = real_norm4_gram();
@@ -423,17 +366,12 @@ mod tests {
 
     #[test]
     fn real_obstruction_gram_is_psd_at_c0() {
-        // Q_P = Σ c_i c_i^T is a sum of rank-1s ⟹ PSD. (Sanity that the manifest SOS is real.)
         assert!(
             is_psd_cyc24(&real_obstruction_gram()),
             "Q_P is PSD (manifest SOS of P)"
         );
     }
 
-    /// THE decisive experiment (fast: ~1s for the 78×78 exact LDL^T over `Cyc24`): `Q_P` is PSD
-    /// (manifest SOS of `P`), but `Q_P − c·Q_4` is NOT PSD for any `c > 0` — `d ∉ range(Q_P)`,
-    /// `‖v‖²` is not in the span of the `ω_i`. So the natural base Gram cannot certify the wall;
-    /// the moment-kernel freedom + an SDP is required. (Both cheap paths now ruled out exactly.)
     #[test]
     fn real_base_gram_needs_the_moment_kernel() {
         let q_p = real_obstruction_gram();

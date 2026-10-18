@@ -1,13 +1,4 @@
-/-
-  C500 B10: original FQMC-1 obligation labels and a conditional decision rule.
-  AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
-  No evidence predicate or launch-frozen class is formalized here. In particular,
-  the label counts and decision-rule theorems do not establish clause closure,
-  source/hash bindings, theorem adequacy, or bet-scoring correctness.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 namespace FableHilbertWalk20260819.H077
 
 inductive FQMC1Clause where
@@ -41,13 +32,11 @@ inductive CampaignTerminal where
   | FQMC1_REFUSED_AS_GLOBAL_FINITE_REPLACEMENT
   deriving DecidableEq, Repr
 
-/-- Counts and a refusal decision are inputs, not evidence established here. -/
 def decide_terminal (untyped_count open_count : Nat) (global_refusal : Bool) : CampaignTerminal :=
   if global_refusal then .FQMC1_REFUSED_AS_GLOBAL_FINITE_REPLACEMENT
   else if untyped_count > 0 ∨ open_count > 0 then .FQMC1_OPEN_INTERNAL_GAPS
   else .FQMC1_CLOSED_AT_DECLARED_CLASS
 
-/-- Unresolved evidence is open; it is not itself a theorem of global impossibility. -/
 theorem unresolved_counts_yield_open (untyped_count open_count : Nat)
     (h : untyped_count > 0 ∨ open_count > 0) :
     decide_terminal untyped_count open_count false = .FQMC1_OPEN_INTERNAL_GAPS := by
@@ -76,3 +65,6 @@ theorem has_four_refusal_labels : refusalLabels.length = 4 := by decide
 #print axioms explicit_global_refusal
 #print axioms has_four_refusal_labels
 end FableHilbertWalk20260819.H077
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H077FiniteOperationalClosureContract.lean Claim: fqmc1_has_ten_clause_labels AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

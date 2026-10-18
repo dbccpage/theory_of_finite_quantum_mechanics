@@ -17,7 +17,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 
-# Ensure code directory is in sys.path
 code_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path(".")
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -164,14 +163,11 @@ class CascadeSolver:
         active_edges.sort(key=lambda item: abs(item[1]), reverse=True)
         existing_faces = set(self.network.faces) if self.network.faces else set()
 
-        # Measure baseline residual before candidate cell attachment
         res_before = multi_cycle_l1_joint(self.network, residual_edges)
         phi_before = float(res_before["residual_size"])
 
-        # Candidate cell generation strategy
         candidates: List[Tuple[Any, ...]] = []
 
-        # 1. 3+ active nodes cycle candidate
         edge_nodes = set()
         for (u, v), _ in active_edges:
             edge_nodes.add(u)
@@ -181,7 +177,6 @@ class CascadeSolver:
             cycle_nodes = sorted(list(edge_nodes))[:3]
             candidates.append((cycle_nodes[0], cycle_nodes[1], cycle_nodes[2]))
 
-        # 2. 2 active nodes + 3rd node completion candidates
         for (u, v), _ in active_edges:
             for w in self.network.nodes:
                 if w != u and w != v:
@@ -196,10 +191,8 @@ class CascadeSolver:
             if self.network.faces is None:
                 self.network.faces = []
 
-            # Propose candidate cell
             self.network.faces.append(face_candidate)
 
-            # Check 1: Admitted complex nilpotency d1 * d0 = 0
             try:
                 admitted = self.build_admitted_complex()
                 if admitted is None:
@@ -209,15 +202,12 @@ class CascadeSolver:
                 self.network.faces.pop()
                 continue
 
-            # Check 2: Re-solve multi-cycle joint L1 to verify strict residual reduction
             res_after = multi_cycle_l1_joint(self.network, residual_edges)
             phi_after = float(res_after["residual_size"])
             if phi_after >= phi_before and phi_before > 1e-6:
-                # Did not reduce quotient mass; roll back candidate cell
                 self.network.faces.pop()
                 continue
 
-            # Verified homological cell attachment!
             return True, face_candidate
 
         return False, None
@@ -251,12 +241,10 @@ class CascadeSolver:
         attached_cells: List[Tuple[Any, ...]] = []
         lift_history: List[Dict[str, Any]] = []
 
-        # 1. Foundation: Declare carrier and initial residual
         foundation = self.dda_engine.run_foundation(edge_values)
         stages.append("Foundation")
         initial_size = foundation.phi1
 
-        # Check admitted complex initialization
         admitted_ok = True
         try:
             adm = self.build_admitted_complex()
@@ -283,7 +271,6 @@ class CascadeSolver:
                 authority_effect="None",
             )
 
-        # 2. Fast Local Gauge Fix (Exact d0*alpha projection)
         cert_gauge, (phi1_g, gamma2_g, chi_g) = self.dda_engine.step_dda(move_type="exact_d0")
         stages.append("ExactLocalGaugeFix")
 
@@ -306,7 +293,6 @@ class CascadeSolver:
                 authority_effect="None",
             )
 
-        # 3. Multi-Cycle L1 Joint Descent (Coexact d1*beta removal)
         cert_multi, (phi1_m, gamma2_m, chi_m) = self.dda_engine.step_dda(move_type="multi_cycle_l1")
         stages.append("MultiCycleL1Descent")
 
@@ -329,7 +315,6 @@ class CascadeSolver:
                 authority_effect="None",
             )
 
-        # 4. Opt-in Homological Cell Attachment
         if enable_cell_attachment and (phi1_m > tol or gamma2_m > tol):
             attached, cell_added = self.attach_normal_cell(self.dda_engine.current_edge_values)
             if attached and cell_added:
@@ -357,7 +342,6 @@ class CascadeSolver:
                 else:
                     phi1_m, gamma2_m, chi_m = phi1_post, gamma2_post, chi_post
 
-        # 5. Window Lift / Obstruction Termination
         stages.append("WindowLiftEvaluation")
         term_cert = self.dda_engine.lift_or_terminate((phi1_m, gamma2_m, chi_m), tol=tol, max_lifts=max_lifts)
 
@@ -371,7 +355,6 @@ class CascadeSolver:
                     "trigger_curvature_mass": lift_cert.trigger_curvature_mass,
                 })
 
-        # Map terminal status directly from TerminationStatus
         status_map = {
             TerminationStatus.SOLVED: "Exact",
             TerminationStatus.TYPED_OBSTRUCTION: "TYPED_OBSTRUCTION",
@@ -404,14 +387,12 @@ class CascadeSolver:
 
 
 if __name__ == "__main__":
-    # Demo cascade solver on a 2-triangle network sharing an edge
     net = Network(
         nodes=[0, 1, 2, 3],
         edges=[(0, 1), (1, 2), (2, 0), (1, 3), (3, 0)],
         faces=[(0, 1, 2), (0, 1, 3)],
     )
 
-    # Cochain with potential noise + circulating cycle field
     omega = {(0, 1): 3.0, (1, 2): 2.0, (2, 0): 2.0, (1, 3): 1.0, (3, 0): 1.0}
     solver = CascadeSolver(net)
     receipt = solver.solve(omega)

@@ -1,7 +1,3 @@
-//! Discrete oriented cell complex representation for cell complexes and graphs.
-//!
-//! AuthorityEffect: None.
-//! Governing Rule: RULE[user_global] (canonical ordered adjacency, deterministic SHA-256).
 
 use crate::error::HolonomyError;
 use omega_kernel::resource_limits::{check_and_reserve, OperationLimits};
@@ -9,14 +5,12 @@ use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;
 
-/// 0-cell (vertex) in the cell complex.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct Vertex {
     pub id: String,
     pub index: usize,
 }
 
-/// Oriented 1-cell (directed edge) in the cell complex.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct Edge {
     pub index: usize,
@@ -24,14 +18,12 @@ pub struct Edge {
     pub target: String,
 }
 
-/// Directed step along an edge in a path or boundary cycle.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OrientedStep {
     pub edge_index: usize,
-    pub direction: i8, // +1 for source->target, -1 for target->source
+    pub direction: i8,
 }
 
-/// 2-cell (plaquette / face) in the cell complex.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Face {
     pub id: String,
@@ -40,7 +32,6 @@ pub struct Face {
     pub boundary_edges: Vec<OrientedStep>,
 }
 
-/// Discrete cell complex carrier representing vertices, oriented edges, and 2-cells.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CellComplex {
     pub limits: OperationLimits,
@@ -53,7 +44,6 @@ pub struct CellComplex {
 }
 
 impl CellComplex {
-    /// Constructs a new cell complex bounded by OperationLimits.
     pub fn new(limits: OperationLimits) -> Self {
         Self {
             limits,
@@ -66,7 +56,6 @@ impl CellComplex {
         }
     }
 
-    /// Adds a 0-cell (vertex) to the complex under Soviet allocation discipline.
     pub fn add_vertex(&mut self, id: impl Into<String>) -> Result<usize, HolonomyError> {
         let id_str = id.into();
         if self.vertex_map.contains_key(&id_str) {
@@ -83,7 +72,6 @@ impl CellComplex {
         Ok(index)
     }
 
-    /// Adds a directed 1-cell (edge) between existing vertices.
     pub fn add_edge(&mut self, source: &str, target: &str) -> Result<usize, HolonomyError> {
         if !self.vertex_map.contains_key(source) {
             return Err(HolonomyError::VertexNotFound {
@@ -114,7 +102,6 @@ impl CellComplex {
         Ok(index)
     }
 
-    /// Adds an oriented 2-cell (plaquette) defined by a closed cycle of vertex IDs.
     pub fn add_face(
         &mut self,
         id: impl Into<String>,
@@ -133,7 +120,6 @@ impl CellComplex {
                 ),
             });
         }
-        // Ensure cycle is closed
         let closed_cycle: Vec<String> = if vertex_cycle.first() == vertex_cycle.last() {
             vertex_cycle.to_vec()
         } else {
@@ -177,7 +163,6 @@ impl CellComplex {
         Ok(index)
     }
 
-    /// Computes the degree of a vertex (incoming + outgoing edges).
     pub fn degree(&self, vertex_id: &str) -> Result<usize, HolonomyError> {
         if !self.vertex_map.contains_key(vertex_id) {
             return Err(HolonomyError::VertexNotFound {
@@ -192,7 +177,6 @@ impl CellComplex {
         Ok(deg)
     }
 
-    /// Returns all incident directed edges connected to `vertex_id`.
     pub fn incident_edges(&self, vertex_id: &str) -> Result<Vec<(String, String)>, HolonomyError> {
         if !self.vertex_map.contains_key(vertex_id) {
             return Err(HolonomyError::VertexNotFound {
@@ -210,7 +194,6 @@ impl CellComplex {
         Ok(list)
     }
 
-    /// Returns canonical neighbors of `vertex_id` in lexicographical order.
     pub fn neighbors(&self, vertex_id: &str) -> Result<Vec<String>, HolonomyError> {
         if !self.vertex_map.contains_key(vertex_id) {
             return Err(HolonomyError::VertexNotFound {
@@ -230,14 +213,10 @@ impl CellComplex {
         Ok(nbrs)
     }
 
-    /// Computes a deterministic SHA-256 content hash of the cell complex state.
-    ///
-    /// Invariant under insertion order: canonicalizes vertices, edges, and faces by sorting keys.
     pub fn content_hash(&self) -> String {
         let mut hasher = Sha256::new();
         hasher.update(b"CellComplex:V1\n");
 
-        // Canonical vertices: sorted by ID
         let mut sorted_v: Vec<&String> = self.vertex_map.keys().collect();
         sorted_v.sort();
         hasher.update(format!("Vertices:{}\n", sorted_v.len()).as_bytes());
@@ -245,7 +224,6 @@ impl CellComplex {
             hasher.update(format!("{v}\n").as_bytes());
         }
 
-        // Canonical edges: sorted by (source, target)
         let mut sorted_e: Vec<&(String, String)> = self.edge_map.keys().collect();
         sorted_e.sort();
         hasher.update(format!("Edges:{}\n", sorted_e.len()).as_bytes());
@@ -253,7 +231,6 @@ impl CellComplex {
             hasher.update(format!("{s}->{t}\n").as_bytes());
         }
 
-        // Canonical faces: sorted by face ID
         let mut sorted_f: Vec<&Face> = self.faces.iter().collect();
         sorted_f.sort_by(|a, b| a.id.cmp(&b.id));
         hasher.update(format!("Faces:{}\n", sorted_f.len()).as_bytes());
@@ -266,9 +243,6 @@ impl CellComplex {
 }
 
 impl CellComplex {
-    /// Checked rational coboundaries. Public/deserialized cell fields are
-    /// reconstructed with the normal builders before any index is trusted.
-    /// Dense storage and nilpotence replay have independent finite budgets.
     pub fn cochain_matrices(
         &self,
     ) -> Result<

@@ -1,39 +1,8 @@
-/-
-  HWFullThread -- one PresentedCarrier through H000-H016, or a
-  precise obstruction. AuthorityEffect: None. Candidate only.
 
-  STACK item: one presented carrier through the whole walk, not
-  only through mixing leftover. Re-architecture.
 
-  What this module does
-    A typed implication about one H000 PresentedCarrier: the
-    parametric rungs (mass along the presentation, free module,
-    admitted form, permutation isometry, phase-blind equivariance,
-    along-presentation amplitudes) hold of that carrier. On the
-    H000 fixture the Bool witnesses for mixing leftover, operators,
-    Born pairing, collapse, dilations, and the missing half-step
-    are restated about that same carrier. H017 remains a
-    conjunction of fixtures; this is the implication about one
-    object.
 
-  Precise obstruction
-    H014's correlation vector is not a report of this carrier: it
-    splits a same-report fiber, so it is not an along-presentation
-    lift of any report-level integer vector. The report end has
-    two labels; the tensor host has four. The missing extra is a
-    second presented carrier whose presentation is the identity on
-    the product of two report sets. Complexification (H007) and
-    the circle selector (H011) do not consume a PresentedCarrier;
-    they stay pack-level and selector-pack imports.
 
-  Nonclaim boundary
-    Not combining-system uniqueness. Not Gleason. Not M_n(C).
-    Not a replacement of H017 by a derivation of quantum mechanics.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 import HWKernel
 import H000FinitePresentedCarrier
@@ -70,14 +39,7 @@ open FableHilbertWalk20260819.H010 (readout mix_separates no_descent_through_fib
 open FableHilbertWalk20260819.HWCarrierThread
   (alongPres same_report_same_amplitude)
 
-/-! ## General implication: one presented carrier, parametric rungs. -/
 
-/-- Pushing carrier weights along the presentation preserves mass;
-    the free module, admitted form, permutation isometry, and
-    phase-blind equivariance live on the report end; amplitudes
-    lifted along the presentation are constant on same-report
-    fibers. This is an implication about C, not a conjunction of
-    separate fixtures. -/
 theorem parametric_thread {X Q : Type} [DecidableEq Q]
     (C : PresentedCarrier X Q) {τ : Q → Q} (R : Reversible τ) :
     (∀ w : X → Int,
@@ -107,10 +69,7 @@ theorem parametric_thread {X Q : Type} [DecidableEq Q]
 
 #print axioms parametric_thread
 
-/-! ## Obstruction: a fiber-splitting function is not a report. -/
 
-/-- Report-level integer data, pulled back along the presentation,
-    cannot separate same-report points. -/
 theorem along_report_constant {X Q : Type}
     (C : PresentedCarrier X Q) (v : Q → Int) {x y : X}
     (h : sameReport C x y) :
@@ -120,8 +79,6 @@ theorem along_report_constant {X Q : Type}
 
 #print axioms along_report_constant
 
-/-- If a carrier function splits a same-report fiber, it is not
-    an along-presentation lift of any report-level vector. -/
 theorem not_along_if_fiber_splits {X Q : Type}
     (C : PresentedCarrier X Q) (f : X → Int) {x y : X}
     (hsame : sameReport C x y) (hsplit : f x ≠ f y) :
@@ -145,8 +102,6 @@ theorem bell_splits_a_fiber :
 
 #print axioms bell_splits_a_fiber
 
-/-- The H014 correlation vector is not a report of the H000
-    presented carrier. -/
 theorem bell_not_along_presentation :
     ¬ ∃ v : Bool → Int, ∀ p : Bool × Bool,
       v (boolFixture.pres p) = FableHilbertWalk20260819.H014.bell p :=
@@ -168,15 +123,12 @@ theorem tensor_host_has_four_labels :
 
 #print axioms tensor_host_has_four_labels
 
-/-- Two labels are not four: this report end is not the tensor host. -/
 theorem this_report_end_is_not_the_tensor_host :
     boolFixture.enumQ.elems.length ≠ enumBoolProd.elems.length := by
   decide
 
 #print axioms this_report_end_is_not_the_tensor_host
 
-/-- The missing extra that would make the correlation vector a
-    report: identity presentation on the product of two report sets. -/
 def productHost : PresentedCarrier (Bool × Bool) (Bool × Bool) where
   pres := id
   enumX := enumBoolProd
@@ -189,7 +141,6 @@ theorem bell_is_a_report_of_the_product_host (p : Bool × Bool) :
 
 #print axioms bell_is_a_report_of_the_product_host
 
-/-! ## H015 dilations live on this carrier and preserve presentation. -/
 
 theorem dilations_preserve_this_presentation (x : Bool × Bool) :
     boolFixture.pres (FableHilbertWalk20260819.H015.dil1 x) =
@@ -200,11 +151,7 @@ theorem dilations_preserve_this_presentation (x : Bool × Bool) :
 
 #print axioms dilations_preserve_this_presentation
 
-/-! ## Typed implication: from this presented carrier, the walk. -/
 
-/-- From one presented carrier equal to the H000 fixture, the
-    report-end walk through H016, and the H014 obstruction.
-    H007 and H011 are not conjuncts: they do not consume C. -/
 theorem from_one_presented_carrier
     (C : PresentedCarrier (Bool × Bool) Bool)
     (hC : C = boolFixture) :
@@ -288,9 +235,6 @@ theorem from_one_presented_carrier
 
 #print axioms from_one_presented_carrier
 
-/-- Punchline: the H000 fixture carries the report-end walk
-    through H016, and H014's leftover is not a report of that
-    fixture. -/
 theorem one_carrier_through_H000_H016 :
     sameReport boolFixture (false, false) (false, true) ∧
       (¬ ∃ v : Bool → Int, ∀ p : Bool × Bool,
@@ -305,3 +249,6 @@ theorem one_carrier_through_H000_H016 :
 #print axioms one_carrier_through_H000_H016
 
 end FableHilbertWalk20260819.HWFullThread
+
+private def l5aProvenance : String :=
+  "Origin: lean4/HWFullThread.lean Claim: parametric_thread AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

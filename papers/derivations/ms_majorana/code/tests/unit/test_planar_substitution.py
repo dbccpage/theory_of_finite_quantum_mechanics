@@ -50,9 +50,6 @@ def garden():
     return load_garden()
 
 
-# --------------------------------------------------------------------------
-# The garden is consistent, and that is asserted rather than assumed
-# --------------------------------------------------------------------------
 
 
 def test_the_garden_loads_every_skill():
@@ -114,8 +111,6 @@ def test_the_garden_admits_the_substitutions_it_admits(garden):
     same size and a declared colour drifted, which is the case this test exists
     for; find the skill whose operad triple changed before touching this line.
     """
-    # 2026-08-31: (115, 3709) -> (128, 4392). Thirteen skills admitted.
-    # 2026-09-07: (128, 4392) -> (133, 4688). Five operadic skills admitted.
     pinned = (133, 4688)
     measured = (len(garden), len(admissible_substitutions(garden)))
     assert measured == pinned, (
@@ -124,9 +119,6 @@ def test_the_garden_admits_the_substitutions_it_admits(garden):
     )
 
 
-# --------------------------------------------------------------------------
-# Substitution
-# --------------------------------------------------------------------------
 
 
 def test_a_matching_colour_composes():
@@ -207,9 +199,6 @@ def test_is_admissible_agrees_with_substitute():
     assert is_admissible(theta, 0, bad) is False
 
 
-# --------------------------------------------------------------------------
-# Associativity -- deliverable 2's witness
-# --------------------------------------------------------------------------
 
 
 def test_the_two_nestings_agree_and_the_witness_is_the_composite():
@@ -265,9 +254,6 @@ def test_associativity_holds_across_the_real_garden(garden):
     assert checked > 100, f"only {checked} triples exercised; the sample is thin"
 
 
-# --------------------------------------------------------------------------
-# Refusals in the loader
-# --------------------------------------------------------------------------
 
 
 def test_a_missing_garden_is_refused(tmp_path):
@@ -329,9 +315,6 @@ def test_a_well_formed_skill_loads(tmp_path):
     assert loaded[0].arity == 1
 
 
-# --------------------------------------------------------------------------
-# Deliverable 3 has no data
-# --------------------------------------------------------------------------
 
 
 def test_no_skill_declares_a_grade_or_layer():

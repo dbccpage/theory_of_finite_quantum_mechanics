@@ -1,6 +1,3 @@
-//! Realization: Structural associativity and unit witnesses.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use crate::foundation::{Operation, PlanarColoredOperad};
@@ -29,7 +26,6 @@ pub enum EvidenceKind {
     ShapeOnly,
 }
 
-/// Witness certificate proving structural operadic composition compliance.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct StructuralAssociativityWitness {
     pub law_id: String,

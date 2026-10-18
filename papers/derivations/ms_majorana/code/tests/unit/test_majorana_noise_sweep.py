@@ -11,7 +11,6 @@ import sys
 from pathlib import Path
 import pytest
 
-# Ensure ms_majorana/code is in sys.path
 code_dir = Path(__file__).resolve().parent.parent.parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -106,7 +105,7 @@ class TestNoiseSweepDataPointAndReceipt:
                 point_id="pt_bad",
                 num_qubits=1,
                 num_modes=4,
-                noise_scale=0.1,  # float forbidden
+                noise_scale=0.1,
                 tolerance_epsilon=Fraction(1, 10),
                 commutation_defect=Fraction(0, 1),
                 max_leakage=Fraction(0, 1),
@@ -136,7 +135,7 @@ class TestMultiQubitNoiseSweepRunner:
     def test_runner_qubit_3_execution(self):
         runner = MultiQubitNoiseSweepRunner(seed=99)
         receipt = runner.run_sweep(
-            qubit_counts=(3,),  # 12 modes
+            qubit_counts=(3,),
             noise_scales=(Fraction(1, 50),),
             tolerances=(Fraction(1, 20),),
             trials_per_config=1,

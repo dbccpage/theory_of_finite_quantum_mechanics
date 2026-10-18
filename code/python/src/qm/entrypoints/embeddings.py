@@ -1,4 +1,3 @@
-# AuthorityEffect: None.
 """Block 03 compatibility entrypoint for central embedding calculations."""
 
 from fractions import Fraction

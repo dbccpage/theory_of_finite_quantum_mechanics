@@ -1,26 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Joint report supports for shared affine error (monograph Appendix Y.5–Y.8).
-//!
-//! Each segment owns one candidate state and one latent parameter
-//! `e ∈ [lower, upper]` shared by every coordinate: `z_i = a_i e + b_i` with
-//! every slope nonzero. The joint support of a state is the union of its
-//! segments. Compatibility is checked against one common parameter in one
-//! segment, never coordinate by coordinate against marginal intervals.
-//!
-//! [`sample_worlds`] ports the paper reference's critical-value construction
-//! (Theorem Y.4): segment endpoint worlds, plus the complete first-reading
-//! fiber at every critical value and cell midpoint whose compatible answers
-//! differ. A complete-vector collision with equal free report and unequal
-//! answers short-circuits to the two conflicting worlds (Proposition Y.1).
-//! The witness is handed to the existing finite solver in
-//! [`crate::observation_cost`]; a witness above that solver's state cap is
-//! refused, never truncated. World order matches the Python reference, so its
-//! stored finite certificates replay here.
-//!
-//! The finite-witness equalities `F_W = F_Ω`, `A_W = A_Ω` are written proofs
-//! in the monograph, not Lean theorems and not established by these tests.
-//! Independent per-coordinate residuals thicken the support and fall outside
-//! this reduction. Acceptance grants no action authority.
 use crate::observation_cost::{
     rational_text, Instrument, ObservationCostError, ObservationInstance, MAX_INSTRUMENTS,
     MAX_STATES,
@@ -29,7 +6,6 @@ use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// Bit cap on input numerators and denominators, matching the reference.
 pub const MAX_INPUT_BITS: u64 = 256;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -64,7 +40,6 @@ pub enum JointSupportError {
     EmptyBehavior,
 }
 
-/// A priced instrument with a declared raw conversion `z = gain * raw + offset`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Channel {
     pub name: String,
@@ -73,7 +48,6 @@ pub struct Channel {
     pub price: BigRational,
 }
 
-/// One affine segment of a state's joint support.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Segment {
     pub state: String,
@@ -85,17 +59,14 @@ pub struct Segment {
     pub offsets: Vec<BigRational>,
 }
 
-/// A validated union-of-segments joint support model.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct JointModel {
     channels: Vec<Channel>,
     segments: Vec<Segment>,
 }
 
-/// A complete world: owning state and calibrated full report vector.
 pub type World = (String, Vec<BigRational>);
 
-/// Answer-check verdict over a partial calibrated history.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum JointStatus {
     Verified(Vec<String>),
@@ -188,8 +159,6 @@ fn parameter_at(segment: &Segment, i: usize, value: &BigRational) -> BigRational
     (value - &segment.offsets[i]) / &segment.slopes[i]
 }
 
-/// Complete first-reading fiber at calibrated value `value` on channel `i`,
-/// deduplicated in segment order.
 fn fiber(segments: &[&Segment], i: usize, value: &BigRational) -> Vec<World> {
     let mut worlds: Vec<World> = Vec::new();
     for segment in segments {
@@ -214,7 +183,6 @@ fn image(segment: &Segment, i: usize) -> (BigRational, BigRational) {
     }
 }
 
-/// Predicted coordinate `j` as an affine function of the reading on `i`.
 fn prediction(segment: &Segment, i: usize, j: usize) -> (BigRational, BigRational) {
     let slope = &segment.slopes[j] / &segment.slopes[i];
     let intercept = &segment.offsets[j] - &slope * &segment.offsets[i];
@@ -229,8 +197,6 @@ fn overlap(left: &Segment, right: &Segment, i: usize) -> Option<(BigRational, Bi
     (low <= high).then_some((low, high))
 }
 
-/// A genuine two-world obstruction: equal free report, unequal answers and
-/// one shared complete report vector (Proposition Y.1 early exit).
 pub fn collision(model: &JointModel) -> Option<(World, World)> {
     let segments = &model.segments;
     for (index, left) in segments.iter().enumerate() {
@@ -303,7 +269,6 @@ fn critical_values(segments: &[&Segment], i: usize, width: usize) -> Vec<BigRati
     points.into_iter().collect()
 }
 
-/// Construct the complete critical-cell cost witness (Theorem Y.4).
 pub fn sample_worlds(model: &JointModel) -> Result<Vec<World>, JointSupportError> {
     if let Some((left, right)) = collision(model) {
         return Ok(vec![left, right]);
@@ -370,14 +335,12 @@ fn instance(
     Ok(ObservationInstance::new(states, visible, query, instruments)?)
 }
 
-/// The finite priced-observation instance on the critical witness.
 pub fn finite_instance(model: &JointModel) -> Result<ObservationInstance, JointSupportError> {
     let worlds = sample_worlds(model)?;
     let all: Vec<usize> = (0..model.channels.len()).collect();
     instance(model, &worlds, &all)
 }
 
-/// Exact remaining problem after a calibrated first reading on channel `i`.
 pub fn conditional_instance(
     model: &JointModel,
     i: usize,
@@ -396,7 +359,6 @@ pub fn conditional_instance(
     instance(model, &worlds, &remaining)
 }
 
-/// Calibrate a raw reading through the channel's declared conversion.
 pub fn calibrate(channel: &Channel, raw: &BigRational) -> BigRational {
     &channel.raw_gain * raw + &channel.raw_offset
 }
@@ -413,8 +375,6 @@ fn matches(segment: &Segment, readings: &[(usize, BigRational)]) -> bool {
             .all(|(j, observed)| &segment.slopes[*j] * &parameter + &segment.offsets[*j] == *observed)
 }
 
-/// Check a proposed answer against a calibrated partial history using one
-/// common latent parameter per segment (Y.1 certification rule).
 pub fn evaluate(
     model: &JointModel,
     visible: &str,
@@ -449,14 +409,6 @@ pub fn evaluate(
     JointStatus::Verified(labels)
 }
 
-/// A discrete bipartite behavior table with exact rational probabilities P(a, b | x, y).
-///
-/// Indexed by:
-/// `table[x][y][a][b]` where
-/// - `x ∈ 0..num_alice_settings`
-/// - `y ∈ 0..num_bob_settings`
-/// - `a ∈ 0..num_alice_outcomes`
-/// - `b ∈ 0..num_bob_outcomes`
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BipartiteBehavior {
     pub num_alice_settings: usize,
@@ -467,7 +419,6 @@ pub struct BipartiteBehavior {
 }
 
 impl BipartiteBehavior {
-    /// Construct a new bipartite behavior and validate dimensions, non-negativity, and normalization.
     pub fn new(table: Vec<Vec<Vec<Vec<BigRational>>>>) -> Result<Self, JointSupportError> {
         let num_alice_settings = table.len();
         if num_alice_settings == 0 {
@@ -523,7 +474,6 @@ impl BipartiteBehavior {
         })
     }
 
-    /// Construct a factorized product behavior P(a, b | x, y) = P_A(a | x) * P_B(b | y).
     pub fn from_product(
         pa: &[Vec<BigRational>],
         pb: &[Vec<BigRational>],
@@ -540,7 +490,6 @@ impl BipartiteBehavior {
         }
 
         let one = BigRational::from_integer(1.into());
-        // Verify PA normalization
         for row in pa {
             if row.len() != num_alice_outcomes {
                 return Err(JointSupportError::ShapeMismatch);
@@ -556,7 +505,6 @@ impl BipartiteBehavior {
                 return Err(JointSupportError::UnnormalizedBehavior);
             }
         }
-        // Verify PB normalization
         for row in pb {
             if row.len() != num_bob_outcomes {
                 return Err(JointSupportError::ShapeMismatch);
@@ -599,7 +547,6 @@ impl BipartiteBehavior {
         })
     }
 
-    /// Compute Alice's marginal P_A(a | x, y) = ∑_b P(a, b | x, y).
     pub fn alice_marginal(&self, x: usize, y: usize, a: usize) -> BigRational {
         let mut sum = BigRational::zero();
         for b in 0..self.num_bob_outcomes {
@@ -608,7 +555,6 @@ impl BipartiteBehavior {
         sum
     }
 
-    /// Compute Bob's marginal P_B(b | x, y) = ∑_a P(a, b | x, y).
     pub fn bob_marginal(&self, x: usize, y: usize, b: usize) -> BigRational {
         let mut sum = BigRational::zero();
         for a in 0..self.num_alice_outcomes {
@@ -617,15 +563,7 @@ impl BipartiteBehavior {
         sum
     }
 
-    /// Verify exact no-signalling in both directions (A→B and B→A).
-    ///
-    /// Corresponds to Cycle 007's `QM.NoSignalling.NoSignallingBA` and `NoSignallingAB`:
-    /// - Alice's marginal must not depend on Bob's setting y:
-    ///   ∀ x, a, y, y': ∑_b P(a, b | x, y) == ∑_b P(a, b | x, y')
-    /// - Bob's marginal must not depend on Alice's setting x:
-    ///   ∀ y, b, x, x': ∑_a P(a, b | x, y) == ∑_a P(a, b | x', y)
     pub fn verify_no_signalling(&self) -> Result<(), JointSupportError> {
-        // Check B -> A no-signalling (Alice's marginal invariant under Bob's setting)
         for x in 0..self.num_alice_settings {
             for a in 0..self.num_alice_outcomes {
                 let baseline = self.alice_marginal(x, 0, a);
@@ -636,7 +574,6 @@ impl BipartiteBehavior {
                 }
             }
         }
-        // Check A -> B no-signalling (Bob's marginal invariant under Alice's setting)
         for y in 0..self.num_bob_settings {
             for b in 0..self.num_bob_outcomes {
                 let baseline = self.bob_marginal(0, y, b);

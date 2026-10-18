@@ -1,67 +1,3 @@
-//! Gauge fixing on a spanning forest, pure-gauge decisions, holonomy verdicts
-//! and the count of flat gauge classes with values in a finite cyclic group.
-//!
-//! # Conventions
-//!
-//! A connection assigns to every oriented edge `e = (s, t)` an invertible
-//! matrix `U_e`, the transport along `e` from `s` to `t`; traversing `e`
-//! backwards transports by `U_e^{-1}`. The transport along a walk is the
-//! path-ordered product `M_k ... M_1` of its step matrices, as in
-//! [`crate::holonomy::compute_path_holonomy`]. A vertex gauge
-//! `g : V -> GL(d)` acts by `U'_e = g(t) U_e g(s)^{-1}`, as in
-//! [`DiscreteConnection::apply_gauge_transformation`]. Every entry point is
-//! generic over an [`ExactScalar`] field, so one algorithm serves `Q`,
-//! `Q(i)` with `1 x 1` matrices (`U(1)`), and non-abelian fibres such as
-//! quaternion or permutation matrices.
-//!
-//! # Edge-indexed connections
-//!
-//! [`DiscreteConnection`] is keyed by `(source, target)` and treats the
-//! opposite pair as the inverse, so two edges joining the same vertices in
-//! opposite directions (legal in a [`CellComplex`], and unavoidable on a
-//! periodic lattice with two sites in one direction) cannot carry independent
-//! values in it. [`EdgeConnection`] is keyed by edge index and can. The
-//! `DiscreteConnection` entry points refuse such complexes with
-//! [`HolonomyError::AntiparallelEdges`] rather than guess.
-//!
-//! # Tree gauge
-//!
-//! [`tree_gauge_indexed`] (and [`tree_gauge`] for a `DiscreteConnection`)
-//! fixes the gauge on a breadth-first spanning forest: roots in vertex order
-//! with `g(root) = 1`, vertices discovered along edges in increasing edge
-//! order, and `g(v) = T(v)^{-1}` where `T(v)` is the transport from the root
-//! of the component of `v` to `v` along the tree. The gauge transform then
-//! equals `1` on every tree edge, and on any other edge `e = (s, t)` it is
-//!
-//! ```text
-//! R_e = g(t) U_e g(s)^{-1} = T(t)^{-1} U_e T(s),
-//! ```
-//!
-//! the holonomy of the fundamental cycle of `e` based at the root: up the tree
-//! to `s`, along `e`, back down the tree from `t`. This is the edge value
-//! conjugated by the transports along the tree paths, so it is correct for
-//! non-abelian fibres; based at another vertex the same loop has the holonomy
-//! `T(s) R_e T(s)^{-1}`. The connection is pure gauge exactly when every `R_e`
-//! is the identity, and then `h(v) = T(v)` satisfies `U_e = h(t) h(s)^{-1}`.
-//!
-//! Two connections with equal residuals are gauge equivalent with the gauge
-//! `T_b(v) g_a(v)`. For a fibre of dimension `> 1` a difference of residuals
-//! does not settle the question, because a gauge that is constant on a
-//! component also conjugates the residuals; [`gauge_equivalence`] reports a
-//! proved inequivalence only when a conjugation invariant (trace or
-//! determinant of a residual) differs, and otherwise says it is undetermined.
-//!
-//! # Flat classes with cyclic values
-//!
-//! With values in the cyclic group `Z_n` (written additively), gauge classes of
-//! flat connections are `H^1(X; Z_n) = Hom(H_1(X; Z), Z_n)`. Fixing the tree
-//! gauge identifies a class with its values `phi` on the `z` edges off the
-//! tree, where `z` is the cycle rank, and flatness is `M phi = 0 (mod n)` for
-//! the integer matrix `M` of face boundaries in those coordinates. With
-//! invariant factors `d_1, .., d_r` of `M` (Smith normal form) the count is
-//! `n^(z - r) prod gcd(d_i, n)`; without faces it is `n^z`.
-//!
-//! AuthorityEffect: None.
 
 use crate::connection::DiscreteConnection;
 use crate::error::HolonomyError;
@@ -74,7 +10,6 @@ use num_traits::{ToPrimitive, Zero};
 use omega_kernel::resource_limits::check_and_reserve;
 use std::collections::{BTreeMap, VecDeque};
 
-/// `(source index, target index)` of every edge, in edge order.
 fn edge_endpoints(complex: &CellComplex) -> Result<Vec<(usize, usize)>, HolonomyError> {
     let mut endpoints = Vec::new();
     check_and_reserve(
@@ -121,22 +56,18 @@ fn check_vertex(index: usize, vertex_count: usize) -> Result<(), HolonomyError> 
     }
 }
 
-/// The edge `e` of the tree that discovered a vertex, seen from its parent.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 struct Link {
     edge: usize,
-    /// `+1` when the edge points from the parent to the vertex, else `-1`.
     direction_from_parent: i8,
     parent: usize,
 }
 
-/// A breadth-first spanning forest of the edge graph.
 #[derive(Debug, Clone, PartialEq, Eq)]
 struct Forest {
     tree_edge: Vec<bool>,
     parent: Vec<Option<Link>>,
     root: Vec<usize>,
-    /// Vertices in discovery order: a parent always precedes its children.
     discovery: Vec<usize>,
 }
 
@@ -184,17 +115,12 @@ fn spanning_forest(vertex_count: usize, endpoints: &[(usize, usize)]) -> Forest 
     }
 }
 
-/// The number of independent cycles of the edge graph: edges minus vertices
-/// plus connected components (the number of edges off a spanning forest).
-/// It is the rank of the free abelian group `H_1` of the graph.
 pub fn cycle_rank(complex: &CellComplex) -> Result<usize, HolonomyError> {
     let endpoints = edge_endpoints(complex)?;
     let forest = spanning_forest(complex.vertices.len(), &endpoints);
     Ok(forest.tree_edge.iter().filter(|&&on_tree| !on_tree).count())
 }
 
-/// A connection on a [`CellComplex`] keyed by edge index: one invertible
-/// `dim x dim` matrix per edge, the transport from its source to its target.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EdgeConnection<T: ExactScalar> {
     dim: usize,
@@ -203,11 +129,6 @@ pub struct EdgeConnection<T: ExactScalar> {
 }
 
 impl<T: ExactScalar> EdgeConnection<T> {
-    /// One matrix per edge of `complex`, in edge order.
-    ///
-    /// Refused: fibre dimension 0 or above the complex's limit; a number of
-    /// values other than the number of edges; a value that is not
-    /// `dim x dim`; a singular value.
     pub fn new(
         complex: &CellComplex,
         dim: usize,
@@ -259,8 +180,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         })
     }
 
-    /// A one-dimensional connection: one scalar per edge (`U(1)` when the
-    /// scalars are unit Gaussian rationals).
     pub fn from_scalars(complex: &CellComplex, scalars: Vec<T>) -> Result<Self, HolonomyError> {
         let values = scalars
             .into_iter()
@@ -269,7 +188,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Self::new(complex, 1, values)
     }
 
-    /// The trivial connection: the identity on every edge.
     pub fn trivial(complex: &CellComplex, dim: usize) -> Result<Self, HolonomyError> {
         let values = (0..complex.edges.len())
             .map(|_| ExactMatrix::try_identity(dim))
@@ -277,8 +195,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Self::new(complex, dim, values)
     }
 
-    /// The pure-gauge connection `U_e = h(t) h(s)^{-1}` of the potentials `h`
-    /// (one invertible matrix per vertex, in vertex order).
     pub fn pure_gauge(
         complex: &CellComplex,
         potentials: &[ExactMatrix<T>],
@@ -287,12 +203,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Self::trivial(complex, dim)?.gauge_transform(complex, potentials)
     }
 
-    /// Read a string-keyed connection on `complex`: the value on edge
-    /// `(s, t)` is `connection.get_step(s, t)`.
-    ///
-    /// Refused with [`HolonomyError::AntiparallelEdges`] when two edges join
-    /// the same vertices in opposite directions, because a string-keyed
-    /// connection stores a single matrix for such a pair.
     pub fn from_discrete_connection(
         complex: &CellComplex,
         connection: &DiscreteConnection<T>,
@@ -306,8 +216,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Self::new(complex, connection.dim, values)
     }
 
-    /// The same data as a string-keyed connection with `U(s -> t) = U_e`.
-    /// Refused for antiparallel edges, like [`Self::from_discrete_connection`].
     pub fn to_discrete_connection(
         &self,
         complex: &CellComplex,
@@ -321,12 +229,10 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Ok(connection)
     }
 
-    /// The fibre dimension.
     pub fn dim(&self) -> usize {
         self.dim
     }
 
-    /// The number of edge values.
     pub fn edge_count(&self) -> usize {
         self.values.len()
     }
@@ -342,15 +248,11 @@ impl<T: ExactScalar> EdgeConnection<T> {
         }
     }
 
-    /// `U_e`, the transport along edge `edge` from its source to its target.
     pub fn value(&self, edge: usize) -> Result<&ExactMatrix<T>, HolonomyError> {
         check_edge(edge, self.values.len())?;
         Ok(&self.values[edge])
     }
 
-    /// The transport of one step: `U_e` for direction `+1`, `U_e^{-1}` for `-1`.
-    /// A direction other than `+-1` is refused as
-    /// [`HolonomyError::InvalidStepDirection`] naming step 0, the only step.
     pub fn step(&self, step: OrientedStep) -> Result<&ExactMatrix<T>, HolonomyError> {
         check_edge(step.edge_index, self.values.len())?;
         match step.direction {
@@ -360,13 +262,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         }
     }
 
-    /// The transport along a walk: the path-ordered product of its step
-    /// matrices, together with the index of the vertex where it ends.
-    ///
-    /// Every step must leave the vertex the previous one reached. Refused:
-    /// an unknown start vertex, a step that does not start where the walk is
-    /// (`BrokenWalk`), a direction other than `+-1`, a walk longer than the
-    /// complex's path limit.
     pub fn walk(
         &self,
         complex: &CellComplex,
@@ -421,8 +316,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Ok((transport, here))
     }
 
-    /// The transport along a closed walk; refused when the walk does not end
-    /// where it starts.
     pub fn loop_holonomy(
         &self,
         complex: &CellComplex,
@@ -439,8 +332,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Ok(transport)
     }
 
-    /// The gauge transform `U'_e = g(t) U_e g(s)^{-1}` by one invertible
-    /// `dim x dim` matrix per vertex, in vertex order.
     pub fn gauge_transform(
         &self,
         complex: &CellComplex,
@@ -489,8 +380,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         })
     }
 
-    /// Covariant incidence matrix: edge row `psi(t)-U_e psi(s)`. Edge indexing
-    /// keeps parallel edges and opposite orientations distinct.
     pub fn covariant_difference_matrix(
         &self,
         complex: &CellComplex,
@@ -537,8 +426,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Ok(out)
     }
 
-    /// `D* W D`, using declared scalar weights (one per edge). Positivity is
-    /// conditional on a conjugation-compatible field and positive real weights.
     pub fn connection_laplacian(
         &self,
         complex: &CellComplex,
@@ -580,8 +467,6 @@ impl<T: ExactScalar> EdgeConnection<T> {
         Ok(out)
     }
 
-    /// The holonomy of the boundary of one face, based at its first boundary
-    /// vertex. Refused when the boundary steps are not a closed walk.
     pub fn face_holonomy(
         &self,
         complex: &CellComplex,
@@ -647,21 +532,14 @@ fn refuse_antiparallel_edges(complex: &CellComplex) -> Result<(), HolonomyError>
     Ok(())
 }
 
-/// The closed walk that an edge closes with the spanning forest: from the root
-/// of its component down the tree to the source, along the edge, and back up
-/// the tree from the target. Its holonomy is the residual of the tree gauge on
-/// that edge. For a tree edge the walk backtracks and its holonomy is trivial.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FundamentalCycle {
     pub edge: usize,
-    /// The root vertex the loop is based at.
     pub base: String,
-    /// The vertices of the closed walk, from the base back to the base.
     pub vertices: Vec<String>,
     pub steps: Vec<OrientedStep>,
 }
 
-/// A closed walk whose holonomy is not the identity, with that holonomy.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct HolonomyWitness<T: ExactScalar> {
     pub edge: usize,
@@ -669,20 +547,12 @@ pub struct HolonomyWitness<T: ExactScalar> {
     pub holonomy: ExactMatrix<T>,
 }
 
-/// Whether a connection is pure gauge, with the gauge or a witness.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PureGaugeVerdict<T: ExactScalar> {
-    /// `potentials[v] = T(v)`, the transport from the root of the component
-    /// of `v`: `U_e = potentials[t] potentials[s]^{-1}` on every edge, with the
-    /// identity at every root.
     PureGauge { potentials: Vec<ExactMatrix<T>> },
-    /// The first edge off the tree whose fundamental cycle has holonomy other
-    /// than the identity; the walk can be replayed with
-    /// [`EdgeConnection::loop_holonomy`].
     NotPureGauge { witness: Box<HolonomyWitness<T>> },
 }
 
-/// A connection moved to the identity on a spanning forest.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TreeGauge<T: ExactScalar> {
     dim: usize,
@@ -695,20 +565,14 @@ pub struct TreeGauge<T: ExactScalar> {
 }
 
 impl<T: ExactScalar> TreeGauge<T> {
-    /// The fibre dimension.
     pub fn dim(&self) -> usize {
         self.dim
     }
 
-    /// `g(v) = T(v)^{-1}`, one matrix per vertex in vertex order, with the
-    /// identity at every root. `U'_e = g(t) U_e g(s)^{-1}` is the identity on
-    /// every tree edge.
     pub fn gauge(&self) -> &[ExactMatrix<T>] {
         &self.gauge
     }
 
-    /// The gauge keyed by vertex id, the form
-    /// [`DiscreteConnection::apply_gauge_transformation`] takes.
     pub fn gauge_map(&self) -> BTreeMap<String, ExactMatrix<T>> {
         self.vertex_ids
             .iter()
@@ -717,44 +581,35 @@ impl<T: ExactScalar> TreeGauge<T> {
             .collect()
     }
 
-    /// `T(v)`: the transport from the root of the component of `v` to `v`
-    /// along the spanning forest.
     pub fn transport_from_root(&self, vertex: usize) -> Result<&ExactMatrix<T>, HolonomyError> {
         check_vertex(vertex, self.vertex_ids.len())?;
         Ok(&self.transport_from_root[vertex])
     }
 
-    /// The gauge-transformed connection: the identity on every tree edge.
     pub fn residual(&self) -> &EdgeConnection<T> {
         &self.residual
     }
 
-    /// `R_e`, the gauge-transformed value on edge `edge`.
     pub fn residual_value(&self, edge: usize) -> Result<&ExactMatrix<T>, HolonomyError> {
         self.residual.value(edge)
     }
 
-    /// Whether `edge` lies on the spanning forest.
     pub fn is_tree_edge(&self, edge: usize) -> Result<bool, HolonomyError> {
         check_edge(edge, self.forest.tree_edge.len())?;
         Ok(self.forest.tree_edge[edge])
     }
 
-    /// The edges on the spanning forest, ascending.
     pub fn tree_edges(&self) -> Vec<usize> {
         (0..self.forest.tree_edge.len())
             .filter(|&e| self.forest.tree_edge[e])
             .collect()
     }
 
-    /// The root of the component of `vertex`.
     pub fn root_of(&self, vertex: usize) -> Result<usize, HolonomyError> {
         check_vertex(vertex, self.vertex_ids.len())?;
         Ok(self.forest.root[vertex])
     }
 
-    /// `(e, R_e)` for every edge `e` off the forest: the holonomy of the
-    /// fundamental cycle of `e`, in edge order.
     pub fn cycle_holonomies(&self) -> Vec<(usize, ExactMatrix<T>)> {
         (0..self.forest.tree_edge.len())
             .filter(|&e| !self.forest.tree_edge[e])
@@ -762,8 +617,6 @@ impl<T: ExactScalar> TreeGauge<T> {
             .collect()
     }
 
-    /// Whether every residual is the identity, that is, whether the connection
-    /// is a gauge transform of the trivial one.
     pub fn is_gauge_trivial(&self) -> bool {
         match ExactMatrix::<T>::try_identity(self.dim) {
             Ok(identity) => self.residual.values.iter().all(|value| *value == identity),
@@ -771,7 +624,6 @@ impl<T: ExactScalar> TreeGauge<T> {
         }
     }
 
-    /// Steps from the root of the component down the tree to `vertex`.
     fn steps_down_to(&self, vertex: usize) -> Vec<OrientedStep> {
         let mut steps = Vec::new();
         let mut here = vertex;
@@ -786,8 +638,6 @@ impl<T: ExactScalar> TreeGauge<T> {
         steps
     }
 
-    /// The closed walk that `edge` closes with the forest, based at the root
-    /// of its component. Its holonomy is [`Self::residual_value`] of `edge`.
     pub fn fundamental_cycle(&self, edge: usize) -> Result<FundamentalCycle, HolonomyError> {
         check_edge(edge, self.endpoints.len())?;
         let (source, target) = self.endpoints[edge];
@@ -824,9 +674,6 @@ impl<T: ExactScalar> TreeGauge<T> {
         })
     }
 
-    /// Decide whether the connection is pure gauge: either the potentials
-    /// `h` with `U_e = h(t) h(s)^{-1}`, or the first fundamental cycle whose
-    /// holonomy is not the identity.
     pub fn pure_gauge_verdict(&self) -> Result<PureGaugeVerdict<T>, HolonomyError> {
         let identity = ExactMatrix::<T>::try_identity(self.dim)?;
         for (edge, value) in self.cycle_holonomies() {
@@ -846,11 +693,6 @@ impl<T: ExactScalar> TreeGauge<T> {
     }
 }
 
-/// Fix the tree gauge of a string-keyed connection.
-///
-/// Refused with [`HolonomyError::AntiparallelEdges`] for a complex with two
-/// edges joining the same vertices in opposite directions; use
-/// [`EdgeConnection`] and [`tree_gauge_indexed`] there.
 pub fn tree_gauge<T: ExactScalar>(
     complex: &CellComplex,
     connection: &DiscreteConnection<T>,
@@ -861,7 +703,6 @@ pub fn tree_gauge<T: ExactScalar>(
     )
 }
 
-/// Fix the tree gauge of an edge-indexed connection (see the module docs).
 pub fn tree_gauge_indexed<T: ExactScalar>(
     complex: &CellComplex,
     connection: &EdgeConnection<T>,
@@ -895,7 +736,6 @@ pub fn tree_gauge_indexed<T: ExactScalar>(
                 edge_index: link.edge,
                 direction: -link.direction_from_parent,
             };
-            // T(v) = M T(p) and g(v) = T(v)^{-1} = g(p) M^{-1}.
             transport_from_root[vertex] = connection
                 .step(forward)?
                 .matmul(&transport_from_root[link.parent])?;
@@ -908,7 +748,6 @@ pub fn tree_gauge_indexed<T: ExactScalar>(
     check_and_reserve(&mut values, endpoints.len(), complex.limits.max_edges)?;
     check_and_reserve(&mut inverses, endpoints.len(), complex.limits.max_edges)?;
     for (edge, &(s, t)) in endpoints.iter().enumerate() {
-        // R_e = g(t) U_e T(s), and R_e^{-1} = g(s) U_e^{-1} T(t).
         values.push(
             gauge[t]
                 .matmul(&connection.values[edge])?
@@ -935,26 +774,13 @@ pub fn tree_gauge_indexed<T: ExactScalar>(
     })
 }
 
-/// Whether `a` and `b` are related by a vertex gauge.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum GaugeEquivalence<T: ExactScalar> {
-    /// The tree-gauge residuals agree, and `gauge` (one matrix per vertex)
-    /// carries `a` to `b`: `B_e = gauge(t) A_e gauge(s)^{-1}` on every edge.
     Equivalent { gauge: Vec<ExactMatrix<T>> },
-    /// Proved not equivalent: on `edge` the residuals differ in a conjugation
-    /// invariant (determinant or trace), which no gauge can change. For a
-    /// one-dimensional fibre this is every difference of residuals.
     Inequivalent { edge: usize },
-    /// The fibre has dimension above 1, the residuals differ first on `edge`,
-    /// and every determinant and trace agrees. A gauge that is constant on a
-    /// component conjugates all residuals of the component at once, so the
-    /// connections may still be equivalent; this routine does not search for
-    /// that conjugating matrix.
     Undetermined { edge: usize },
 }
 
-/// Decide gauge equivalence of two connections on one complex by their tree
-/// gauge residuals (see the module docs for what is and is not decided).
 pub fn gauge_equivalence<T: ExactScalar>(
     complex: &CellComplex,
     a: &EdgeConnection<T>,
@@ -984,8 +810,6 @@ pub fn gauge_equivalence<T: ExactScalar>(
     if let Some(edge) = first_difference {
         return Ok(GaugeEquivalence::Undetermined { edge });
     }
-    // residuals equal: a' = b', so B_e = (g_b^{-1} g_a)(t) A_e (g_b^{-1} g_a)(s)^{-1}
-    // and g_b^{-1} = T_b.
     let gauge = fixed_b
         .transport_from_root
         .iter()
@@ -995,8 +819,6 @@ pub fn gauge_equivalence<T: ExactScalar>(
     Ok(GaugeEquivalence::Equivalent { gauge })
 }
 
-/// The holonomy around every face boundary, in face order, each based at the
-/// first boundary vertex of its face.
 pub fn face_holonomies<T: ExactScalar>(
     complex: &CellComplex,
     connection: &EdgeConnection<T>,
@@ -1008,28 +830,18 @@ pub fn face_holonomies<T: ExactScalar>(
         .collect()
 }
 
-/// Where the gauge-invariant content of a connection sits.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum HolonomyVerdict<T: ExactScalar> {
-    /// Some face holonomy differs from the identity: the holonomies of all
-    /// faces in face order, and the first face that is not flat.
     Curved {
         face_holonomies: Vec<ExactMatrix<T>>,
         first_curved_face: usize,
     },
-    /// Every face is flat, yet some fundamental cycle has holonomy other than
-    /// the identity: `(edge, R_e)` for every edge off the forest.
     FlatNontrivial {
         cycle_holonomies: Vec<(usize, ExactMatrix<T>)>,
     },
-    /// Every fundamental cycle has trivial holonomy: the connection is a
-    /// vertex gauge transform of the trivial one. On a complex with no faces
-    /// this is the only alternative to `FlatNontrivial`.
     GaugeTrivial,
 }
 
-/// Classify a connection by its face holonomies and its tree-gauge residuals.
-/// A complex with no faces has no curvature, so its verdict is never `Curved`.
 pub fn holonomy_verdict<T: ExactScalar>(
     complex: &CellComplex,
     connection: &EdgeConnection<T>,
@@ -1059,16 +871,6 @@ fn gcd(mut a: u64, mut b: u64) -> u64 {
     a
 }
 
-/// The number of gauge classes of flat connections with values in the cyclic
-/// group `Z_order`: `|H^1(X; Z_order)| = |Hom(H_1(X; Z), Z_order)|` for the
-/// complex `X` made of the edges and faces of `complex`.
-///
-/// Computed from the spanning forest and the Smith normal form of the face
-/// boundaries in the coordinates of the `z = cycle_rank` edges off the forest:
-/// with invariant factors `d_1, .., d_r` the count is
-/// `order^(z - r) prod gcd(d_i, order)`. Without faces it is `order^z`.
-///
-/// Refused: `order = 0`; a face whose boundary steps are not a closed walk.
 pub fn flat_cyclic_gauge_classes(
     complex: &CellComplex,
     order: u64,
@@ -1088,8 +890,6 @@ pub fn flat_cyclic_gauge_classes(
         .map(|(column, &edge)| (edge, column))
         .collect();
 
-    // Validate every face boundary as a closed walk, and accumulate its
-    // signed edge multiplicities in the off-tree coordinates.
     let faces = complex.faces.len();
     let mut data = vec![BigInt::zero(); faces * z];
     for (face_index, face) in complex.faces.iter().enumerate() {
@@ -1151,8 +951,6 @@ pub fn flat_cyclic_gauge_classes(
         })?;
         Ok(num_traits::pow::Pow::pow(BigUint::from(order), exponent))
     };
-    // No faces, no off-tree edges, or faces whose boundaries cancel in these
-    // coordinates: nothing constrains the values on the off-tree edges.
     if faces == 0 || z == 0 || data.iter().all(Zero::is_zero) {
         return power(z);
     }

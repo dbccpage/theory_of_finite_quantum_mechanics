@@ -17,7 +17,6 @@ class TestDegreeGenericResidual(unittest.TestCase):
         edges = [(u, v) for u in nodes for v in nodes if u < v]
         net = Network(nodes=nodes, edges=edges)
 
-        # All-1 cochain on 10 edges
         cochain1 = {e: 1.0 for e in edges}
         report = evaluate_residual_on_network(net, degree=1, cochain_values=cochain1, method="l1_gauge")
 
@@ -32,8 +31,6 @@ class TestDegreeGenericResidual(unittest.TestCase):
         net = Network(nodes=nodes, edges=edges)
         complex_obj = assemble_from_network(net, max_dim=3)
 
-        # Face cochain from edge values
-        # e.g. face_curl = edge(u,v) + edge(v,w) - edge(u,w)
         edge_vals = {(0, 1): 1.0, (1, 2): 2.0, (0, 2): 3.0, (0, 3): 1.0, (1, 3): 2.0, (2, 3): -1.0}
         face_cochain = {}
         for f in complex_obj.cells[2]:
@@ -52,7 +49,6 @@ class TestDegreeGenericResidual(unittest.TestCase):
         edges = [(0, 1), (1, 2), (0, 2)]
         net = Network(nodes=nodes, edges=edges)
 
-        # Circulating 1-cochain on triangle (0,1,2)
         cochain_cycle = {(0, 1): 1.0, (1, 2): 1.0, (0, 2): -1.0}
         report_joint = evaluate_residual_on_network(net, degree=1, cochain_values=cochain_cycle, method="l1_joint")
 

@@ -1,6 +1,3 @@
-//! Question-specific Source-25 bridge to the minimal bounded-counter report.
-//! Only add/remove events on one existing fixed cell are in this context.
-//! This does not quotient all Source-25 events or recover raw multiplicities.
 use crate::genesis_source_execution::{Source25Change, Source25State, SourceRelation};
 use num_bigint::BigInt;
 use num_traits::ToPrimitive;
@@ -41,7 +38,6 @@ impl Source25CellGuard {
             SourceRelation::R => &packet.r,
             SourceRelation::S => &packet.s,
         };
-        // The native constructor validated the square shape and nonnegativity.
         let count = &counts[x * packet.terms.len() + y];
         let clipped = if count >= &BigInt::from(remaining) {
             remaining

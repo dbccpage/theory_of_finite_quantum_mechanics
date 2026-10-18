@@ -160,7 +160,6 @@ def test_stone_theorem_marked_open():
     assert stone_theorem_open is True
 
 
-# --- Hermitian algebra residual ---
 
 
 def pauli_combo(alpha: int, beta: int) -> Mat2:

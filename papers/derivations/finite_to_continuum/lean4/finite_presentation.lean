@@ -2,8 +2,6 @@ import Mathlib.Algebra.Module.Equiv.Basic
 import Mathlib.Algebra.Module.Pi
 import Mathlib.Algebra.Field.Rat
 
-/-! Finite rational cochain presentations and observable equivariance.
-These are model statements and give no Genesis extension authority. -/
 
 namespace FiniteToContinuum
 

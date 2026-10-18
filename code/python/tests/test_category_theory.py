@@ -1,4 +1,10 @@
-"""Tests for finite categories and report-query factorization."""
+"""Tests for finite categories and report-query factorization.
+Unit, integration, and negative tests.
+
+Origin: code/python/src/category_theory/finite_category.py
+Claim: urn:omega:fqm:category:finite-arrow-factorization:v1
+AuthorityEffect: None
+"""
 
 from src.category_theory.finite_category import (
     FiniteCategory,
@@ -6,7 +12,7 @@ from src.category_theory.finite_category import (
 )
 
 
-def test_finite_arrow_category_axioms() -> None:
+def test_unit_finite_arrow_category_axioms() -> None:
     cat = FiniteCategory(
         objects=frozenset({"A", "B"}),
         morphisms={"id_A": ("A", "A"), "id_B": ("B", "B"), "f": ("A", "B")},
@@ -32,3 +38,12 @@ def test_report_query_factorization_and_collision_obstruction() -> None:
 
     ok_bad, _ = verify_report_query_factorization(report, obstructed_query)
     assert ok_bad is False
+
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'category_theory' / 'finite_category.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'FiniteCategory' in source
+    assert _MODULE_PATH.is_file()

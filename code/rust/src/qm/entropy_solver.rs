@@ -1,13 +1,3 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-//! Exact Rational Solver, Multiplicative Dependence Reduction, and Parity Core.
-//!
-//! Target C750-T565 (Rust Native Reimplementation):
-//! 1. Exact Gaussian elimination and RREF over `num_rational::BigRational`.
-//! 2. Integer prime factorization and basis reduction to Q-linearly independent log basis {log p_i}.
-//! 3. Removable singularity 0 log 0 = 0 for pure and mixed density matrices.
-//! 4. Exact rational interval enclosure for linear forms in logarithms.
-//! 5. Strict rejection of floats.
-//! 6. Canonical kernel SHA-256 byte-deterministic evidence generator.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -17,9 +7,6 @@ use std::collections::BTreeMap;
 
 pub type Rational = BigRational;
 
-// ============================================================================
-// Section 1: Exact Rational Constructors & Parsers (Zero Floats)
-// ============================================================================
 
 pub fn r_int(n: i64) -> Rational {
     Rational::from_integer(BigInt::from(n))
@@ -65,13 +52,8 @@ pub fn format_rational(r: &Rational) -> String {
     format!("{}/{}", r.numer(), r.denom())
 }
 
-// ============================================================================
-// Section 3: Exact Integer & Rational Prime Factorization
-// ============================================================================
 
-// Factorization is imported directly from number theory by physical spectrum and campaign consumers.
 
-// Canonical JSON evidence string formatter matching Python json.dumps(..., sort_keys=True)
 fn canonical_evidence_json(
     eigenvalues: &[String],
     multiplicities: &[usize],
@@ -138,9 +120,6 @@ fn canonical_evidence_json(
     }
 }
 
-// ============================================================================
-// Section 5: Multiplicative Dependence Reduction Algorithm (C750-T565)
-// ============================================================================
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MultiplicativeReductionResult {
@@ -235,9 +214,6 @@ pub fn reduce_multiplicative_dependence(
     })
 }
 
-// ============================================================================
-// Section 6: Power Traces and Renyi-2 Invariant
-// ============================================================================
 
 pub fn exact_power_trace(
     eigenvalues: &[Rational],
@@ -257,9 +233,6 @@ pub fn exact_power_trace(
     .map_err(|error| error.to_string())
 }
 
-// ============================================================================
-// Section 7: Rational Interval Enclosures for log(p) and S(rho) (T563)
-// ============================================================================
 
 pub fn rational_log_bounds(p: u64, precision_bits: usize) -> Result<(Rational, Rational), String> {
     if p <= 1 {
@@ -307,9 +280,6 @@ pub fn approximate_entropy_rational_bounds(
     Ok((interval.lo().clone(), interval.hi().clone()))
 }
 
-// ============================================================================
-// Section 8: Negative Controls & Five Named Mutations (T560, T564, T567)
-// ============================================================================
 
 pub fn verify_negative_control_vanishing_linear_form() -> BTreeMap<String, serde_json::Value> {
     let args = vec![r_int(2), r_int(3), r_int(6)];
@@ -391,9 +361,6 @@ pub fn verify_negative_control_renyi_vs_von_neumann(
     Ok(map)
 }
 
-// ============================================================================
-// Section 9: FQMI-1 Eight Systems Evaluation & Parity Receipt (T566)
-// ============================================================================
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SystemParityRecord {
@@ -547,7 +514,6 @@ pub fn evaluate_fqmi1_system(system_id: &str) -> Result<SystemParityRecord, Stri
     Ok(record)
 }
 
-/// Compare computed record data against a separately pinned reference, ignoring its claim flag.
 pub fn parity_against_reference(
     computed: &SystemParityRecord,
     reference: &SystemParityRecord,
@@ -597,9 +563,6 @@ pub fn generate_c750_b01_parity_receipt() -> Result<ParityReceipt, String> {
     })
 }
 
-// ============================================================================
-// Section 10: Unit Tests
-// ============================================================================
 
 #[cfg(test)]
 mod tests {

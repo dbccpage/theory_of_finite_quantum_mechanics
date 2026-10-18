@@ -68,7 +68,7 @@ def _payload(**overrides: object) -> CodeChangeProposalPayloadV1:
         "parent_packet_id": FABLE_V1_PACKET_ID,
     }
     fields.update(overrides)
-    return CodeChangeProposalPayloadV1(**fields)  # type: ignore[arg-type]
+    return CodeChangeProposalPayloadV1(**fields)
 
 
 def _envelope(payload: CodeChangeProposalPayloadV1 | None = None):
@@ -124,7 +124,7 @@ def _pass_gates(envelope, candidate_id: str) -> tuple[GateReceiptV1, ...]:
             candidate_id=candidate_id,
             evaluator_id=f"host-{gate_id}",
             disposition="PASS",
-            model_claimed_passed=True,  # retained; never controlling alone
+            model_claimed_passed=True,
             evidence_sha256=evidence,
             evidence_byte_count=14,
             refusal_codes=(),
@@ -243,7 +243,7 @@ def test_attach_and_evaluate_happy_path_declared_unverified() -> None:
     candidate = attach_candidate(
         envelope,
         patch,
-        claimed_valid=True,  # model-authored; ignored for disposition
+        claimed_valid=True,
         claimed_terminal="LabExactCandidate",
     )
     gates = _pass_gates(envelope, candidate.candidate_id)
@@ -263,7 +263,6 @@ def test_attach_and_evaluate_happy_path_declared_unverified() -> None:
         gate_receipts=gates,
     )
 
-    # Declared gate PASS is not independent verification.
     assert verified.terminal_status == "DeclaredUnverified"
     assert OBSTRUCTION_VERIFIER_RECEIPT_REQUIRED in verified.open_obstruction_ids
     assert "BUDGET_HOST_STATE_ABSENT" in verified.open_obstruction_ids
@@ -271,7 +270,7 @@ def test_attach_and_evaluate_happy_path_declared_unverified() -> None:
     assert verified.refusals == ()
     assert verified.authority_effect == "None"
     assert verified.task_packet_id == envelope.packet_id
-    assert candidate.claimed_valid is True  # retained only
+    assert candidate.claimed_valid is True
 
 
 def test_candidate_patch_substitution_is_refused() -> None:
@@ -367,7 +366,6 @@ def test_declared_touched_paths_must_match_host_derived_from_bytes() -> None:
             ).source_revision,
             patch_encoding="unified-diff-utf8-lf-v1",
             patch_bytes=body,
-            # Lie: claim only owned while diff could be anything; mismatch vs derived
             touched_paths=(PROTECTED_PATH,),
         )
     derived = derive_touched_paths_from_patch_bytes("unified-diff-utf8-lf-v1", body)
@@ -529,7 +527,7 @@ def test_gate_fail_disposition_controls_outcome_not_model_passed() -> None:
             candidate_id=candidate.candidate_id,
             evaluator_id="host-lint",
             disposition="FAIL",
-            model_claimed_passed=True,  # model lies
+            model_claimed_passed=True,
             evidence_sha256=evidence,
             evidence_byte_count=1,
             refusal_codes=("LINT_ERROR",),

@@ -1,4 +1,3 @@
-//! Ergonomic builder for declared finite categories.
 
 use super::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
 use super::validation::ValidationReport;
@@ -61,20 +60,16 @@ impl DeclaredFiniteCategoryBuilder {
         self
     }
 
-    /// Adds composition second ∘ first = composite.
     pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self {
         self.category.set_composition(first, second, composite);
         self
     }
 
-    /// Alias for `composition`, emphasizing that `(f, g)` means `g` after `f`.
     pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self {
         self.category.set_composition(f, g, composite);
         self
     }
 
-    /// Adds the identity compositions forced by the currently declared
-    /// identities and morphism boundaries.
     pub fn identity_compositions(mut self) -> Self {
         let morphisms = self
             .category

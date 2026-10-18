@@ -93,25 +93,19 @@ class SU3SimplicialYJunction:
         self.dim_c1 = 6
         self.dim_c2 = 3
 
-        # d0: 6 x 4 matrix (C0 -> C1)
-        # Edge e = (u -> v): boundary is +v - u
         self.d0 = [
-            [-1.0,  1.0,  0.0,  0.0],  # e_0: J -> x_1
-            [-1.0,  0.0,  1.0,  0.0],  # e_1: J -> x_2
-            [-1.0,  0.0,  0.0,  1.0],  # e_2: J -> x_3
-            [ 0.0, -1.0,  1.0,  0.0],  # e_3: x_1 -> x_2
-            [ 0.0,  0.0, -1.0,  1.0],  # e_4: x_2 -> x_3
-            [ 0.0,  1.0,  0.0, -1.0],  # e_5: x_3 -> x_1
+            [-1.0,  1.0,  0.0,  0.0],
+            [-1.0,  0.0,  1.0,  0.0],
+            [-1.0,  0.0,  0.0,  1.0],
+            [ 0.0, -1.0,  1.0,  0.0],
+            [ 0.0,  0.0, -1.0,  1.0],
+            [ 0.0,  1.0,  0.0, -1.0],
         ]
 
-        # d1: 3 x 6 matrix (C1 -> C2)
-        # Face Delta_1 = (J, x_1, x_2): d1 = +e_0 + e_3 - e_1
-        # Face Delta_2 = (J, x_2, x_3): d1 = +e_1 + e_4 - e_2
-        # Face Delta_3 = (J, x_3, x_1): d1 = +e_2 + e_5 - e_0
         self.d1 = [
-            [ 1.0, -1.0,  0.0,  1.0,  0.0,  0.0],  # Delta_1
-            [ 0.0,  1.0, -1.0,  0.0,  1.0,  0.0],  # Delta_2
-            [-1.0,  0.0,  1.0,  0.0,  0.0,  1.0],  # Delta_3
+            [ 1.0, -1.0,  0.0,  1.0,  0.0,  0.0],
+            [ 0.0,  1.0, -1.0,  0.0,  1.0,  0.0],
+            [-1.0,  0.0,  1.0,  0.0,  0.0,  1.0],
         ]
 
         self.complex = CochainComplex(
@@ -123,10 +117,6 @@ class SU3SimplicialYJunction:
         )
         assert self.complex.check_nilpotence(), "Nilpotence d1 . d0 == 0 failed on Y-junction complex."
 
-        # SU(3) Cartan weight coordinates in R^2
-        # mu_R = (1/2, 1/(2*sqrt(3)))
-        # mu_G = (-1/2, 1/(2*sqrt(3)))
-        # mu_B = (0, -1/sqrt(3))
         sq3 = math.sqrt(3.0)
         self.weights = {
             "R": (0.5, 0.5 / sq3),
@@ -151,15 +141,11 @@ class SU3SimplicialYJunction:
         Spoke 2 (Blue).
         Perimeter links are bare (0.0).
         """
-        # Spoke color projections
-        r_g = self.evaluate_cartan_root_diff("R", "G")  # 1.0
-        g_b = self.evaluate_cartan_root_diff("G", "B")  # 1.0
-        b_r = self.evaluate_cartan_root_diff("B", "R")  # 1.0
+        r_g = self.evaluate_cartan_root_diff("R", "G")
+        g_b = self.evaluate_cartan_root_diff("G", "B")
+        b_r = self.evaluate_cartan_root_diff("B", "R")
 
-        # Non-abelian color flux on links:
-        # e_0 = 1.0, e_1 = 0.5, e_2 = -1.5 (net sum 0 at junction)
         c1 = [1.0, 0.5, -1.5, 0.0, 0.0, 0.0]
-        # Alternate signs from Levi-Civita epsilon_abc
         signs = [1, -1, 1, 1, 1, 1]
         return c1, signs
 
@@ -169,8 +155,6 @@ class SU3SimplicialYJunction:
         Flux flows from x_1 to x_2 and back along perimeter:
         e_3 (x_1 -> x_2) = 1.0, opposite flux on boundary gives closed cycle.
         """
-        # A closed meson 1-cycle has d1 . c1 == 0
-        # e_0 = 1.0, e_1 = 1.0, e_3 = 0.0 (boundary Delta_1: e_0 + e_3 - e_1 = 1 + 0 - 1 = 0)
         c1 = [1.0, 1.0, 1.0, 0.0, 0.0, 0.0]
         signs = [1, 1, 1, 1, 1, 1]
         return c1, signs
@@ -204,21 +188,16 @@ class SU3BaryonGinEngine:
         """
         Audits meson vs baryon cochain curvature under SU(3) triality and BQNF evaluation.
         """
-        # 1. Meson evaluation
         c1_meson, signs_meson = self.junction.build_meson_cochain()
         meson_res = self.evaluator.evaluate_sign_packet(c1_meson, signs_meson)
         gamma_2_meson = meson_res["gamma_2_closure"]
 
-        # 2. Baryon evaluation
         c1_baryon, signs_baryon = self.junction.build_baryon_cochain()
         baryon_res = self.evaluator.evaluate_sign_packet(c1_baryon, signs_baryon)
         gamma_2_baryon = baryon_res["gamma_2_closure"]
         phi_1_baryon = baryon_res["phi_1_residual"]
 
-        # 3. GIN posting index registration
-        # 9 modes: 3 spatial loci x 3 colors (R, G, B)
         c = self.conn.cursor()
-        # Baryon state has 3 quarks with 3 distinct colors (R on 1, G on 2, B on 3) -> modes {1, 5, 9}
         baryon_modes = {1, 5, 9}
         c.execute(
             """INSERT INTO FermionConfigurations

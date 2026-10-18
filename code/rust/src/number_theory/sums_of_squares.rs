@@ -1,6 +1,3 @@
-//! Constructive two-square norm certificates from complete prime factorisation.
-//! Arbitrary-precision inputs have caller budgets, rather than an integer ceiling.
-//! None is the exact obstruction: a prime congruent to 3 mod 4 has odd valuation.
 use crate::integer_factorization::{factor_natural, FactorizationBudget, FactorizationError};
 use num_bigint::{BigInt, BigUint};
 use num_traits::{One, Signed, Zero};
@@ -69,7 +66,6 @@ fn prime_norm(p: &BigUint, fuel: &mut u64) -> Result<(BigInt, BigInt), TwoSquare
     }
     Err(TwoSquaresError::Replay)
 }
-/// Return a<=b, both nonnegative, with a²+b²=n, and independently replay it.
 pub fn two_squares(
     n: &BigInt,
     factor_budget: FactorizationBudget,

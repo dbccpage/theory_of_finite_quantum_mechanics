@@ -1,27 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Guarded Source-25 causal histories: the legal schedules of a declared
-//! tagged event family, their swap 2-complex, and constructive coherence from
-//! a star base (follow-up to Appendix P.18 of the WDP manuscript).
-//!
-//! Admission and token translation reproduce `admit_problem`, `schedules`
-//! and `descriptors` of `scripts/check_causal_execution.py`. An order is
-//! *legal* exactly when [`Source25Run::replay`] accepts its descriptors; a
-//! refusal keeps the native error text. No Python execution is involved.
-//!
-//! The 2-complex `X_L` has the legal orders as vertices, legal adjacent swaps
-//! as edges, and as faces the distant squares and braid hexagons all of whose
-//! orders are legal. `H1(X_L; Q)` is computed exactly: a spanning tree is
-//! contracted, faces with a single remaining non-tree edge are collapsed (a
-//! unit-triangular block, no arithmetic), and the residual block is handed to
-//! the BigRational elimination of `linear_algebra::exact_field`. Small
-//! components are cross-checked against `homology_basis`.
-//!
-//! The star-base theorem stated in the manuscript (every lower cover of every
-//! legal order is legal, relative to a legal `e0`, implies `Γ` connected and
-//! `X_L` simply connected) is not proved by this module. The module supplies
-//! executable evidence: it searches for a star base, builds coherence
-//! witnesses from the canonical leftmost descent, and replays every
-//! intermediate swap word against the legal set.
 use crate::genesis_ongoing_adapter::{GenesisOngoingPacket, MarkedTriple};
 use crate::genesis_source_execution::{
     Source25Change, Source25Run, Source25State, SourceExecutionError, SourceRelation,
@@ -39,13 +15,9 @@ use sha2::{Digest, Sha256};
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use std::fmt;
 
-/// Event bound of the Python admission (`event bound: at most eight`).
 pub const MAX_EVENTS: usize = 8;
-/// Schedule bound of the Python enumeration.
 pub const MAX_SCHEDULES: usize = 10_000;
-/// Largest component whose `H1` is computed; larger components are refused.
 pub const MAX_H1_COMPONENT: usize = 720;
-/// Largest replacement list a coherence witness may contain.
 pub const MAX_REPLACEMENTS: usize = 250_000;
 pub const CERTIFICATE_SCHEMA: &str = "wdp-guarded-coherence-v1";
 pub const PROBLEM_SCHEMA: &str = "wdp-causal-problem-v1";
@@ -56,17 +28,10 @@ const PRICES: [&str; 5] = [
     "plain_cost_delta",
     "assertion_source_size_fee",
 ];
-/// Components at most this large are also replayed through `homology_basis`.
 const CROSS_CHECK_VERTICES: usize = 40;
 const CROSS_CHECK_CELLS: usize = 64;
 
-// ============================================================================
-// Strict JSON
-// ============================================================================
 
-/// JSON value with Python `read_json` admission: duplicate keys and
-/// nonintegral numbers are refused. Objects keep sorted keys, so the
-/// canonical writer matches `json.dumps(sort_keys=True, separators=(",", ":"))`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Json {
     Null,
@@ -106,12 +71,10 @@ impl Json {
         }
     }
 
-    /// Strict parse of UTF-8 JSON bytes.
     pub fn parse(bytes: &[u8]) -> Result<Self, AdmissionRefusal> {
         serde_json::from_slice::<Json>(bytes).map_err(|e| AdmissionRefusal::Json(e.to_string()))
     }
 
-    /// Compact, key-sorted, ASCII-only text.
     pub fn to_canonical(&self) -> String {
         let mut out = String::new();
         write_json(self, &mut out);
@@ -234,11 +197,7 @@ impl<'de> Deserialize<'de> for Json {
     }
 }
 
-// ============================================================================
-// Errors
-// ============================================================================
 
-/// Problem refusals, worded as `check_causal_execution.py` words them.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum AdmissionRefusal {
     #[error("{0}")]
@@ -303,7 +262,6 @@ pub enum AdmissionRefusal {
     NoSchedule,
 }
 
-/// Refusals of a submitted swap word or replacement list.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ReplayRefusal {
     #[error("source order is not a legal order")]
@@ -358,9 +316,6 @@ fn linear<E: fmt::Display>(error: E) -> GuardedHistoryError {
     GuardedHistoryError::Linear(error.to_string())
 }
 
-// ============================================================================
-// Admission
-// ============================================================================
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum EventKind {
@@ -372,8 +327,6 @@ pub enum EventKind {
 }
 
 impl EventKind {
-    /// The corollary's kind rank: term additions, then assertions and
-    /// fillings, then identifications, then removals.
     pub fn rank(self) -> u8 {
         match self {
             Self::AddTerm => 0,
@@ -415,7 +368,6 @@ pub struct CausalEvent {
     pub predecessors: Vec<String>,
 }
 
-/// An admitted `wdp-causal-problem-v1` family.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CausalProblem {
     initial: Source25State,
@@ -435,7 +387,6 @@ impl CausalProblem {
     pub fn events(&self) -> &[CausalEvent] {
         &self.events
     }
-    /// Transitive strict-predecessor bit masks, as `admit_problem` returns.
     pub fn before(&self) -> &[u32] {
         &self.before
     }
@@ -481,8 +432,6 @@ fn canonical_integer(text: &str) -> bool {
         && text != "-0"
 }
 
-/// Approximates the strings Python `int()` accepts, so a noncanonical spelling
-/// and an unparsable one receive the two Python refusal texts.
 fn python_integer_syntax(text: &str) -> bool {
     let trimmed = text.trim();
     let body = trimmed
@@ -521,9 +470,6 @@ fn natural_index(value: &Json) -> Option<usize> {
     }
 }
 
-/// `admit_problem` of `check_causal_execution.py`, followed by the native
-/// admission of the initial raw state that the Python owner performs at its
-/// first replay.
 pub fn admit_problem(value: &Json) -> Result<CausalProblem, AdmissionRefusal> {
     use AdmissionRefusal as R;
     let problem = fields(
@@ -785,13 +731,10 @@ pub fn admit_problem(value: &Json) -> Result<CausalProblem, AdmissionRefusal> {
     })
 }
 
-/// Strict JSON parse followed by [`admit_problem`].
 pub fn parse_problem(bytes: &[u8]) -> Result<CausalProblem, AdmissionRefusal> {
     admit_problem(&Json::parse(bytes)?)
 }
 
-/// All linear extensions in the Python DFS order (lexicographic), at most
-/// [`MAX_SCHEDULES`].
 pub fn schedules(before: &[u32]) -> Result<Vec<Vec<usize>>, AdmissionRefusal> {
     fn visit(
         before: &[u32],
@@ -828,8 +771,6 @@ pub fn schedules(before: &[u32]) -> Result<Vec<Vec<usize>>, AdmissionRefusal> {
     Ok(out)
 }
 
-/// Token-to-native label frame of one execution prefix (the label
-/// bookkeeping of `descriptors` in `check_causal_execution.py`).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TokenFrame {
     labels: BTreeMap<String, usize>,
@@ -853,7 +794,6 @@ impl TokenFrame {
         self.labels.get(token).copied()
     }
 
-    /// The native descriptor of `event` at this frame; advances the frame.
     pub fn step(&mut self, event: &CausalEvent) -> Result<Source25Change, GuardedHistoryError> {
         let values = event
             .tokens
@@ -921,7 +861,6 @@ impl TokenFrame {
     }
 }
 
-/// Token-to-label translation of `descriptors` in `check_causal_execution.py`.
 pub fn descriptors(
     problem: &CausalProblem,
     order: &[usize],
@@ -939,9 +878,6 @@ pub fn descriptors(
         .collect()
 }
 
-/// Legal linear extensions by depth-first native execution. Each step is
-/// `Source25State::perform_enabled`, the transition `Source25Run::replay`
-/// iterates, so a refused prefix refuses every completion and is pruned.
 pub fn legal_extensions(
     problem: &CausalProblem,
 ) -> Result<BTreeSet<Vec<usize>>, GuardedHistoryError> {
@@ -993,7 +929,6 @@ pub fn legal_extensions(
     Ok(out)
 }
 
-/// `true` when `order` lists every event once, after all its predecessors.
 pub fn respects(before: &[u32], order: &[usize]) -> bool {
     if order.len() != before.len() || before.len() > MAX_EVENTS {
         return false;
@@ -1008,8 +943,6 @@ pub fn respects(before: &[u32], order: &[usize]) -> bool {
     true
 }
 
-/// Greedy lexicographically least nondecreasing-rank linear extension; it
-/// exists exactly when the family is kind compatible.
 pub fn kind_sorted_order(problem: &CausalProblem) -> Option<Vec<usize>> {
     let m = problem.events.len();
     let mut ideal = 0u32;
@@ -1030,7 +963,6 @@ pub fn kind_sorted_order(problem: &CausalProblem) -> Option<Vec<usize>> {
     Some(order)
 }
 
-/// `None` when the native owner accepts the order, otherwise its refusal text.
 pub fn native_refusal(
     problem: &CausalProblem,
     order: &[usize],
@@ -1041,7 +973,6 @@ pub fn native_refusal(
         .map(|e| e.to_string()))
 }
 
-/// No transitive precedence puts a higher-ranked kind before a lower one.
 pub fn kind_compatible(problem: &CausalProblem) -> bool {
     problem.before.iter().enumerate().all(|(e, mask)| {
         (0..problem.events.len()).all(|p| {
@@ -1051,7 +982,6 @@ pub fn kind_compatible(problem: &CausalProblem) -> bool {
     })
 }
 
-/// Lexicographically least linear extension with nondecreasing kind rank.
 pub fn kind_sorted_extension(
     problem: &CausalProblem,
     schedules: &[Vec<usize>],
@@ -1066,9 +996,6 @@ pub fn kind_sorted_extension(
         .cloned()
 }
 
-// ============================================================================
-// Swap 2-complex
-// ============================================================================
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum FaceKind {
@@ -1076,9 +1003,6 @@ pub enum FaceKind {
     Hexagon,
 }
 
-/// A legal square or braid hexagon. `boundary` lists `(edge, sign)` along the
-/// word `[i, j, i, j]` or `[i, i+1, i, i+1, i, i+1]` from `base`, the least
-/// vertex; the sign is `+1` when the step runs from tail to head.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Face {
     pub kind: FaceKind,
@@ -1088,7 +1012,6 @@ pub struct Face {
     pub boundary: Vec<(usize, i8)>,
 }
 
-/// Legal orders (lexicographic), legal swaps and legal faces.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SwapComplex {
     event_count: usize,
@@ -1172,8 +1095,6 @@ impl SwapComplex {
     pub fn index_of(&self, order: &[usize]) -> Option<usize> {
         self.index.get(order).copied()
     }
-    /// Edges as `(tail, position)`; the head is `tail·s_position`, the tail is
-    /// the lexicographically smaller order.
     pub fn edges(&self) -> &[(usize, usize)] {
         &self.edges
     }
@@ -1202,7 +1123,6 @@ impl SwapComplex {
         self.event_count.saturating_sub(1)
     }
 
-    /// The legal order `v·s_p`, if any.
     pub fn neighbor(&self, v: usize, p: usize) -> Option<usize> {
         self.neighbors.get(v)?.get(p).copied().flatten()
     }
@@ -1212,7 +1132,6 @@ impl SwapComplex {
         self.neighbor(tail, p)
     }
 
-    /// The edge crossed by the step `u -> u·s_p` and the step's sign.
     pub fn step_edge(&self, u: usize, p: usize) -> Option<(usize, i8)> {
         let w = self.neighbor(u, p)?;
         if u < w {
@@ -1351,7 +1270,6 @@ impl SwapComplex {
         Some(pos)
     }
 
-    /// Every lower cover (relative to `base`) of every legal order is legal.
     pub fn lower_covers_closed(&self, base: &[usize]) -> bool {
         let Some(pos) = self.inverse_positions(base) else {
             return false;
@@ -1365,8 +1283,6 @@ impl SwapComplex {
         })
     }
 
-    /// `preferred` when it is a legal star base, otherwise the
-    /// lexicographically least legal star base.
     pub fn star_base(&self, preferred: Option<&[usize]>) -> Option<Vec<usize>> {
         if let Some(p) = preferred {
             if self.lower_covers_closed(p) {
@@ -1404,7 +1320,6 @@ impl SwapComplex {
         Ok(parent)
     }
 
-    /// Exact `H1(X_L; Q)` of one component; see [`ComponentReduction`].
     pub fn reduce_component(&self, c: usize) -> Result<ComponentReduction, GuardedHistoryError> {
         let comp = self
             .components
@@ -1515,8 +1430,6 @@ impl SwapComplex {
         Ok(reduction)
     }
 
-    /// Replays small components through `linear_algebra::homology_basis`
-    /// on the full `∂1`, `∂2` (checked `Rational64`; overflow is refused).
     fn cross_check_homology(&self, c: usize, h1: usize) -> Result<(), GuardedHistoryError> {
         let comp = &self.components[c];
         let edges = self.component_edges(c);
@@ -1584,7 +1497,6 @@ impl SwapComplex {
         Ok(word)
     }
 
-    /// Value of a 1-cochain along a swap word from `start`.
     pub fn cochain_along(
         &self,
         values: &BTreeMap<usize, BigRational>,
@@ -1611,7 +1523,6 @@ impl SwapComplex {
         Ok(total)
     }
 
-    /// `true` when the cochain sums to zero around every legal face.
     pub fn cochain_closed(&self, values: &BTreeMap<usize, BigRational>) -> bool {
         self.faces.iter().all(|face| {
             face.boundary
@@ -1625,8 +1536,6 @@ impl SwapComplex {
         })
     }
 
-    /// A closed rational 1-cochain separating two words with common ends,
-    /// for the first component with positive `H1`.
     pub fn separating_cocycle(&self) -> Result<Option<SeparatingCocycle>, GuardedHistoryError> {
         for c in 0..self.components.len() {
             let reduction = self.reduce_component(c)?;
@@ -1689,7 +1598,6 @@ impl SwapComplex {
         Ok(None)
     }
 
-    /// Replay a swap word from `start`; returns the reached vertex.
     pub fn replay_word(&self, start: usize, word: &[usize]) -> Result<usize, ReplayRefusal> {
         let mut u = start;
         for &p in word {
@@ -1703,8 +1611,6 @@ impl SwapComplex {
         Ok(u)
     }
 
-    /// Replays a 3-certificate: every intermediate word must stay inside the
-    /// legal orders and keep both boundary orders.
     pub fn replay_replacements(
         &self,
         source_order: &[usize],
@@ -1746,9 +1652,6 @@ impl SwapComplex {
         Ok(())
     }
 
-    /// Up to `limit` pairs of distinct parallel words in component `c`:
-    /// first the lexicographically least and greatest geodesic words between
-    /// the farthest pairs, then geodesic-versus-backtrack pairs.
     pub fn witness_pairs(
         &self,
         c: usize,
@@ -1852,14 +1755,6 @@ impl SwapComplex {
     }
 }
 
-/// Exact `H1` of one component. A breadth-first spanning tree from the least
-/// order is contracted; then a face whose boundary has exactly one remaining
-/// non-tree edge kills that edge. Collapsed faces and killed edges form a
-/// unit-triangular block of `∂2` restricted to non-tree edges, and no
-/// collapsed face meets a surviving edge, so
-/// `rank ∂2 = #collapsed + rank(residual)` and
-/// `H1 = #surviving − rank(residual)`, with `residual` reduced exactly over
-/// `BigRational`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ComponentReduction {
     pub component: usize,
@@ -1874,14 +1769,12 @@ pub struct ComponentReduction {
 }
 
 impl ComponentReduction {
-    /// Surviving non-tree edges (rows of the residual block).
     pub fn surviving_edges(&self) -> &[usize] {
         &self.nontree_edges
     }
     pub fn residual_faces(&self) -> &[usize] {
         &self.residual_faces
     }
-    /// `(face, edge)` collapse pairs in kill order.
     pub fn collapsed(&self) -> &[(usize, usize)] {
         &self.collapsed
     }
@@ -1897,7 +1790,6 @@ pub struct SeparatingCocycle {
     pub target: usize,
     pub word_a: Vec<usize>,
     pub word_b: Vec<usize>,
-    /// Nonzero values on edges oriented from the lexicographically smaller order.
     pub values: BTreeMap<usize, BigRational>,
     pub value_a: BigRational,
     pub value_b: BigRational,
@@ -1919,9 +1811,6 @@ pub fn rational_text(value: &BigRational) -> String {
     }
 }
 
-// ============================================================================
-// Local replacements and constructive coherence
-// ============================================================================
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum ReplacementKind {
@@ -1940,7 +1829,6 @@ impl ReplacementKind {
     }
 }
 
-/// `replacement_kind` of `check_causal_three_cells.py`.
 pub fn replacement_kind(before: &[usize], after: &[usize]) -> Option<ReplacementKind> {
     let (short, long) = if before.len() <= after.len() {
         (before, after)
@@ -2012,8 +1900,6 @@ fn reversed(moves: &[Replacement]) -> Vec<Replacement> {
     moves.iter().rev().map(Replacement::inverse).collect()
 }
 
-/// Constructive coherence from a star base `e0`: canonical leftmost descent
-/// words `D(h)` and the recursive edge lemma.
 pub struct StarCoherence<'a> {
     complex: &'a SwapComplex,
     base: usize,
@@ -2064,7 +1950,6 @@ impl<'a> StarCoherence<'a> {
             .ok_or(GuardedHistoryError::IllegalIntermediate)
     }
 
-    /// `D(v)`: repeatedly swap the leftmost inverted adjacent pair.
     pub fn descent(&self, v: usize) -> Result<Vec<usize>, GuardedHistoryError> {
         let mut word = Vec::new();
         let mut u = v;
@@ -2078,7 +1963,6 @@ impl<'a> StarCoherence<'a> {
         Ok(word)
     }
 
-    /// Moves turning `[i] ++ D(x·s_i)` into `D(x)` for an inverted position `i`.
     pub fn edge_lemma(
         &mut self,
         x: usize,
@@ -2130,7 +2014,6 @@ impl<'a> StarCoherence<'a> {
         Ok(moves)
     }
 
-    /// Moves turning `D(y)` into `path ++ D(z)` along a downward path `y -> z`.
     fn descend_path(
         &mut self,
         y: usize,
@@ -2149,7 +2032,6 @@ impl<'a> StarCoherence<'a> {
         Ok(moves)
     }
 
-    /// Moves turning a legal word from `source` into `D(source) ++ reverse(D(target))`.
     pub fn normalize(
         &mut self,
         source: usize,
@@ -2193,7 +2075,6 @@ impl<'a> StarCoherence<'a> {
         Ok(moves)
     }
 
-    /// A replayed 3-certificate between two parallel words from `source`.
     pub fn witness(
         &mut self,
         source: usize,
@@ -2217,11 +2098,7 @@ impl<'a> StarCoherence<'a> {
     }
 }
 
-// ============================================================================
-// Analysis and certificate
-// ============================================================================
 
-/// Pure analysis of an explicit legal-order set.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LegalSetAnalysis {
     pub complex: SwapComplex,
@@ -2246,7 +2123,6 @@ pub fn analyze_legal_set(
     })
 }
 
-/// Everything the certificate reports about one admitted problem.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GuardedEvaluation {
     pub problem: CausalProblem,
@@ -2281,7 +2157,6 @@ pub fn evaluate_problem(problem: CausalProblem) -> Result<GuardedEvaluation, Gua
     })
 }
 
-/// Certificate `wdp-guarded-coherence-v1` for the exact bytes of a problem file.
 pub fn guarded_certificate(bytes: &[u8], pairs: usize) -> Result<Json, GuardedHistoryError> {
     let digest = hex::encode(Sha256::digest(bytes));
     let evaluation = evaluate_problem(parse_problem(bytes)?)?;

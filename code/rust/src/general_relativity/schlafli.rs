@@ -1,12 +1,3 @@
-//! Schläfli differential identity and Regge field equations of motion (RQ-02).
-//!
-//! For any flat Euclidean n-simplex:
-//! sum_{h in hinges of sigma} V_{n-2}(h) * d theta_sigma(h) = 0.
-//!
-//! This discrete Bianchi identity guarantees that edge length variations of angles
-//! cancel out identically in the variation of the Regge action.
-//!
-//! AuthorityEffect: None.
 
 use crate::dihedral_angles::triangle_angle_at;
 use serde::{Deserialize, Serialize};
@@ -18,8 +9,6 @@ pub struct SchlafliCheckResult {
     pub is_vanishing: bool,
 }
 
-/// Verify the Schläfli identity for a 2-simplex (triangle):
-/// d(theta_0 + theta_1 + theta_2) = 0 because sum(theta_i) = pi identically!
 pub fn verify_schlafli_identity_2d(
     triangle: &[usize; 3],
     get_length: impl Fn(usize, usize) -> Option<f64>,
@@ -38,7 +27,6 @@ pub fn verify_schlafli_identity_2d(
     })
 }
 
-/// Numerical gradient of the Regge action dS / d ell_e with respect to edge length ell_e.
 pub fn compute_regge_action_gradient_at_edge(
     _edge: (usize, usize),
     current_length: f64,

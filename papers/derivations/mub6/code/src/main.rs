@@ -1,8 +1,3 @@
-//! MUB(6) exact certificate evaluator and Smale invariant verification runner.
-//!
-//! Origin: papers/derivations/mub6/code/src/main.rs
-//! Claim: DERIV-MUB6-CLI-001
-//! AuthorityEffect: None.
 
 use num_rational::Ratio;
 use num_traits::Zero;
@@ -11,14 +6,12 @@ fn main() -> Result<(), String> {
     println!("=== MUB(6) Exact Invariant Evaluator ===");
     println!("AuthorityEffect: None");
 
-    // Exact verification of Euler-Poincaré characteristic and dimension bounds
     let dim = 6usize;
     let num_pairs = dim * (dim - 1) / 2;
     if num_pairs != 15 {
         return Err(format!("Dimension 6 pair count mismatch: expected 15, got {num_pairs}"));
     }
 
-    // Exact Smale alpha threshold check alpha_0 = 157 / 1000
     let smale_alpha = Ratio::new(157i64, 1000i64);
     if smale_alpha <= Ratio::zero() {
         return Err("Smale alpha threshold must be strictly positive".to_string());

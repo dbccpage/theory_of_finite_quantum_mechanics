@@ -1,6 +1,3 @@
-//! C500 exact Weyl and direct-CCR receipts. Matrix algebra, fields and
-//! characteristic-p countermodels are supplied by their canonical math owners.
-// AuthorityEffect: None.
 use crate::linear_algebra::{matrix as mx, ExactFieldError};
 use omega_lie_theory::heisenberg::{
     prime_characteristic_ccr, trace_obstruction, HeisenbergError, WeylHeisenberg,

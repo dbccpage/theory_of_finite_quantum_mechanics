@@ -16,7 +16,6 @@ import math
 import os
 import sys
 
-# Ensure anomalon root is on sys.path
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 for p in [
@@ -60,13 +59,11 @@ def test_primitive_difference_quotient_on_triangle():
     """Verify L1 repair distance and dual witness on 2-simplex."""
     d0 = np.array([[-1.0, 1.0, 0.0], [0.0, -1.0, 1.0], [1.0, 0.0, -1.0]])
 
-    # 1. Exact coboundary omega_exact = d0 * [1, 2, 0]^T = [1, -2, 1]^T -> Phi1 = 0
     cochain_exact = [1.0, -2.0, 1.0]
     res_exact = compute_primitive_difference_quotient(cochain_exact, d0)
     assert res_exact["solved"] is True
     assert abs(res_exact["min_l1"]) < 1e-6
 
-    # 2. Non-zero residual class / circulation loop omega_loop = [1, 1, 1]^T -> Phi1 = 3.0
     cochain_loop = [1.0, 1.0, 1.0]
     res_loop = compute_primitive_difference_quotient(cochain_loop, d0)
     assert res_loop["solved"] is True
@@ -78,11 +75,9 @@ def test_susy_saturation_scale_derivation():
     """Verify SUSY saturation scale calculation (85.6 TeV - 88.56 TeV)."""
     res = compute_susy_saturation_scale(v_ew=246.0, angular_factor=360.0)
 
-    # 246.0 * 360 = 88560 GeV = 88.56 TeV
     assert abs(res["e_sat_gev"] - 88560.0) < 1e-6
     assert abs(res["e_sat_tev"] - 88.56) < 1e-6
 
-    # Baseline 237.8 * 360 = 85608 GeV = 85.608 TeV
     assert abs(res["e_sat_alt_tev"] - 85.608) < 1e-3
     assert "85.6 TeV - 88.56 TeV" in res["target_band_tev"]
     assert res["authority_effect"] == "None"

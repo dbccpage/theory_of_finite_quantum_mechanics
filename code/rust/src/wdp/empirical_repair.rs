@@ -1,9 +1,3 @@
-//! Exact repair and protocol-dependent sampling for arbitrary finite covers.
-//!
-//! Probability geometry belongs to `omega_finite_probability`; simplex and
-//! independent primal/dual replay belong to `omega_solvers`. These named WDP
-//! receipts bind those results to the actual cover and recorded experiment.
-//! The iid and compatible-population premises are declared, not inferred.
 
 use num_rational::BigRational as Q;
 use num_traits::Zero;
@@ -54,8 +48,6 @@ fn table_model(
     Ok((scenario, source))
 }
 
-/// All public fields are untrusted until `verify_repair` succeeds against the
-/// actual experiment. A self-consistent substituted source is insufficient.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EmpiricalRepairReceipt {
     pub cover: MeasurementCover,
@@ -91,7 +83,6 @@ pub fn repair(
     Ok(receipt)
 }
 
-/// Reconstruction and weak-duality checking do not call the proposal solver.
 pub fn verify_repair(
     cover: &MeasurementCover,
     table: &RunTable,
@@ -129,10 +120,6 @@ pub fn verify_repair(
     Ok(())
 }
 
-/// Conditional finite statistical conclusion. On the simultaneous good event,
-/// pair (i,j) marginal L1 defect is at most r_i+r_j by contraction and triangle
-/// inequality. The true context distributions must be compatible, and trials
-/// within each context iid; cross-context independence is unnecessary.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SamplingTolerance {
     pub context_bounds: Vec<SamplingBound>,
@@ -198,7 +185,6 @@ mod tests {
         assert_eq!(receipt.radius, q(4, 3));
         assert_eq!(receipt.repaired, vec![vec![q(1, 3); 3]; 3]);
         verify_repair(&cover, &table, &receipt, 20).unwrap();
-        // Every pair has L1 defect 2, while half the maximum is only 1.
         assert!(receipt.radius > q(1, 1));
     }
 

@@ -4,6 +4,11 @@ rho_EW = 1 Identity, Gell-Mann-Nishijima Charge Operator, and Cubic U(1)_Y^3
 Anomaly Cancellation over Q.
 
 AuthorityEffect: None.
+
+Unit, integration, and negative tests.
+
+Origin: code/python/src/qm/campaigns/electroweak_dfm.py
+Claim: evaluate_electroweak_dfm_weinberg_control certificate locked by exact checks in this file
 """
 
 from __future__ import annotations
@@ -18,7 +23,7 @@ from finite_qm.use_cases.electroweak_dfm_weinberg_control import (
 )
 
 
-def test_part_a_su2_doublet_dfm_dressing_and_goldstone_elimination() -> None:
+def test_unit_part_a_su2_doublet_dfm_dressing_and_goldstone_elimination() -> None:
     report = evaluate_electroweak_dfm_weinberg_control()
     a = report.dfm_audit
     assert a.doublet_witness_count == 4
@@ -125,3 +130,12 @@ def test_part_e_lean4_part3_and_fable_receipt_parity() -> None:
     assert receipt["mcts_summary"]["needs_backtrack"] is False
     expected_lean_sha = "sha256:" + hashlib.sha256(canonical_lean.read_bytes()).hexdigest()
     assert receipt["sovereign_verification_artifacts"]["lean4_sha256"] == expected_lean_sha
+
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'electroweak_dfm.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'evaluate_electroweak_dfm_weinberg_control' in source
+    assert _MODULE_PATH.is_file()

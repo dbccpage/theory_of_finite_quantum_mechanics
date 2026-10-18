@@ -23,13 +23,6 @@ _FOUR_AXES = (
     "authority_status",
 )
 
-# Registry token sets for the three non-authority axes, mirrored from the
-# live four-axis owner ``omega_discrete_deformation_algebra.types``
-# (DiagnosticClass / RoutingTerminal / ExtensionStatus). Mirrored — not
-# imported — so omega_replay stays a leaf package with no intra-repo
-# dependencies; any change to types.py MUST be mirrored here (the replay
-# and DDA test suites bind both sides). Unknown or wrong-axis tokens are
-# refused fail-closed (Inspector finding OD-5/M3).
 _DIAGNOSTIC_CLASS_TOKENS = frozenset(
     {
         "ExactClass",
@@ -253,7 +246,7 @@ class DescentWitness:
     unforgeability guarantee.
     """
 
-    __sealed_key = object()  # name-mangled; best-effort seal, see class docstring
+    __sealed_key = object()
 
     def __init__(
         self,

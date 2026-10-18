@@ -33,9 +33,6 @@ VECTORS_PATH = (
     / "omega_engine_governance/contracts/fixtures/nomos_urn_golden_vectors_v1.json"
 )
 
-# Every error kind the grammar declares. Pinned as a set so adding a variant to
-# one language without the other, or renaming one, is reported rather than
-# absorbed -- the two enums agree today and nothing was keeping them that way.
 DECLARED_ERROR_KINDS = frozenset({
     "Empty",
     "MissingPrefix",
@@ -172,9 +169,6 @@ def test_the_corpus_names_its_owner(corpus):
     assert corpus["owner"] == "omega_engine/crates/contract_core/nomos_urn.py"
 
 
-# --------------------------------------------------------------------------
-# EPIC-OE-GOV-001's stated deliverables, checked against the tree
-# --------------------------------------------------------------------------
 
 EPIC = (
     REPO_ROOT

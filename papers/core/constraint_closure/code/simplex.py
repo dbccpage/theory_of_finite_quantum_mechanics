@@ -103,15 +103,12 @@ def tetrahedron_dihedral_angle(
         raise ValueError(f"Hinge edge {hinge_edge} must leave exactly 2 vertices in tetrahedron")
     w1, w2 = remaining
 
-    # Helper to get squared length
     def sq(i: int, j: int) -> float:
         key = (min(i, j), max(i, j))
         if key not in s:
             raise KeyError(f"Missing edge {key} in squared length dictionary")
         return s[key]
 
-    # 3D embedding check or formula via edge lengths:
-    # Area squared of face (u, v, w):
     def face_area_sq(a: int, b: int, c: int) -> float:
         d_mat = np.array([
             [0.0, sq(a, b), sq(a, c)],
@@ -132,7 +129,6 @@ def tetrahedron_dihedral_angle(
     if A1_sq <= 1e-15 or A2_sq <= 1e-15:
         return 0.0
 
-    # Total volume of tetrahedron
     full_mat = np.zeros((4, 4), dtype=float)
     for i in range(4):
         for j in range(4):
@@ -156,12 +152,10 @@ def tetrahedron_dihedral_angle(
             return 0.0
         e_hat = edge / edge_len
 
-        # Normal to face 1:
         n1 = np.cross(p1 - p0, pw1 - p0)
         n1_proj = n1 - np.dot(n1, e_hat) * e_hat
         n1_norm = np.linalg.norm(n1_proj)
 
-        # Normal to face 2:
         n2 = np.cross(p1 - p0, pw2 - p0)
         n2_proj = n2 - np.dot(n2, e_hat) * e_hat
         n2_norm = np.linalg.norm(n2_proj)
@@ -172,7 +166,6 @@ def tetrahedron_dihedral_angle(
         cos_theta = np.clip(np.dot(n1_proj, n2_proj) / (n1_norm * n2_norm), -1.0, 1.0)
         return float(math.acos(cos_theta))
 
-    # If coordinates cannot be reconstructed, check if all edges are equal (regular)
     edge_vals = list(s.values())
     if len(edge_vals) == 6 and np.allclose(edge_vals, edge_vals[0], atol=1e-12) and edge_vals[0] > 0:
         return regular_simplex_dihedral_angle(3)
@@ -199,12 +192,10 @@ def compute_simplex_dihedral_angles(
     if len(vertices) != n:
         raise ValueError(f"Simplex of dimension {dim} must have {n} vertices, got {len(vertices)}")
 
-    # Validate edge lengths are positive and finite
     for k, length in edge_lengths.items():
         if not (isinstance(length, (int, float)) and math.isfinite(length) and length > 0):
             raise ValueError(f"Edge length for {k} must be positive and finite, got {length}")
 
-    # Scale normalization for scale invariance
     max_len = max(float(l) for l in edge_lengths.values())
     if max_len <= 0 or not math.isfinite(max_len):
         raise ValueError("Simplex must have positive finite maximum edge length")
@@ -255,7 +246,6 @@ def compute_simplex_dihedral_angles(
                     "Cannot compute interior dihedral angle."
                 )
             cos_n = np.clip(normals_cov[i, j] / denom, -1.0, 1.0)
-            # Inward normal dot product cos_n; interior dihedral angle is arccos(-cos_n)
             theta = math.acos(-cos_n)
             dihedrals[hinge] = float(theta)
 
@@ -285,7 +275,6 @@ def four_simplex_dihedral_angle(
     if hinge is not None:
         can_hinge = tuple(sorted(hinge))
         return dihedrals[can_hinge]
-    # Return first or mean
     return next(iter(dihedrals.values()))
 
 
@@ -324,10 +313,8 @@ def reconstruct_simplex_coordinates(
 
     max_s = float(np.max(squared_distances))
     if max_s <= 1e-15:
-        # Trivial all-zero / coincident vertices
         return np.zeros((n, dim), dtype=float)
 
-    # Scale-normalized Classical MDS centering
     s_norm = squared_distances / max_s
     H = np.eye(n) - np.ones((n, n)) / n
     B = -0.5 * H @ s_norm @ H
@@ -337,16 +324,12 @@ def reconstruct_simplex_coordinates(
     eigvals = eigvals[idx]
     eigvecs = eigvecs[:, idx]
 
-    # The centered Gram matrix B has at least one zero eigenvalue from centering.
-    # If ANY eigenvalue is significantly negative (< -1e-10 relative to scale), the metric space cannot be
-    # isometrically embedded in Euclidean space R^dim.
     if np.any(eigvals < -1e-10):
         return None
 
     pos_eigs = np.maximum(0.0, eigvals[:dim])
     coords = eigvecs[:, :dim] * np.sqrt(pos_eigs * max_s)
 
-    # Validate reconstructed squared distances against input (relative error)
     diffs = coords[:, np.newaxis, :] - coords[np.newaxis, :, :]
     recon_sq_dist = np.sum(diffs ** 2, axis=-1)
     max_rel_err = float(np.max(np.abs(recon_sq_dist - squared_distances))) / max_s

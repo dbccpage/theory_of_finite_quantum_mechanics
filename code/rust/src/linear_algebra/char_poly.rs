@@ -1,30 +1,3 @@
-//! The characteristic polynomial by the Berkowitz algorithm.
-//!
-//! The polynomial `det(xI − A)` is computed without a single division, so it is valid in
-//! every characteristic (including `GF(2)` and `GF(3)` at dimensions where the
-//! Faddeev–LeVerrier recurrence would divide by `0`) and over rings of any kind, and it
-//! needs only `add`, `mul` and `neg` from the scalar.
-//!
-//! Write the trailing principal submatrix `S = A[k.., k..]` of size `s` as
-//! `[[a, R], [C, M]]` with `M` the trailing `(s−1) × (s−1)` block. Then
-//! `charpoly(S) = T · charpoly(M)` where `T` is the `(s+1) × s` lower-triangular
-//! Toeplitz matrix with first column `(1, −a, −R·C, −R·M·C, …, −R·M^{s−2}·C)`.
-//! Starting from the empty submatrix (`charpoly = 1`) and peeling one row and column at
-//! a time gives `charpoly(A)` in `O(n⁴)` scalar operations.
-//!
-//! Coefficient order: the returned vector lists the coefficients in **ascending** powers,
-//! entry `i` is the coefficient of `xⁱ`, the last entry is `1`, and the length is `n + 1`.
-//! Consequently `entry[0] = (−1)ⁿ det(A)` and `entry[n−1] = −tr(A)`.
-//!
-//! The minimal polynomial is the monic polynomial of least degree annihilating `A`. It is
-//! found by the smallest `k` for which `vec(A^k)` lies in the span of `vec(I), …, vec(A^{k−1})`,
-//! one reduction of an `n² × (k+1)` grid per step (at most `n` steps by Cayley–Hamilton).
-//! For the multiplication matrix of a field element `α` it is the minimal polynomial of `α`.
-//!
-//! Cost model used by the budget checks (worst case, scalar calls): characteristic polynomial
-//! `2n⁴ + 4n³`; minimal polynomial `2n⁴ + Σₖ₌₁ⁿ min(n², k+1)·(2n²(k+1) + k + 2)`, which is `O(n⁵)`.
-//!
-//! AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use crate::linear_algebra::elimination::{reduce_to_rref, reduction_cost};
@@ -36,15 +9,12 @@ use crate::linear_algebra::{
 };
 use crate::linear_algebra::scalars::{ExactRing, Field};
 
-/// The characteristic polynomial `det(xI − A)` as ascending coefficients (see the module
-/// documentation).
 pub fn characteristic_polynomial<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<Vec<F>, ExactFieldError> {
     characteristic_polynomial_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`characteristic_polynomial`] under a budget: `n²` elements and `2n⁴ + 4n³` scalar calls.
 pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -56,10 +26,8 @@ pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
     charge(limits, square, ops)?;
 
     let data = a.as_slice();
-    // Entry (r, c) of `a`; every call below has r, c < n by its loop bounds.
     let at = |r: usize, c: usize| &data[r * n + c];
 
-    // Descending coefficients of the characteristic polynomial of A[k+1.., k+1..].
     let mut poly: Vec<F> = reserve(1)?;
     poly.push(F::one());
     for k in (0..n).rev() {
@@ -67,13 +35,11 @@ pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
         let mut toeplitz: Vec<F> = reserve(s + 1)?;
         toeplitz.push(F::one());
         toeplitz.push(at(k, k).neg());
-        // v = M^j C, starting at C = A[k+1.., k].
         let mut v: Vec<F> = reserve(s - 1)?;
         for i in 0..(s - 1) {
             v.push(at(k + 1 + i, k).clone());
         }
         for j in 0..(s - 1) {
-            // t_{j+2} = −R · M^j C with R = A[k, k+1..]
             let mut acc = F::zero();
             for (idx, vi) in v.iter().enumerate() {
                 acc = acc.add(&at(k, k + 1 + idx).mul(vi));
@@ -91,7 +57,6 @@ pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
                 v = next;
             }
         }
-        // poly ← T · poly, with T[i][j] = toeplitz[i − j] for j ≤ i.
         let mut next_poly: Vec<F> = reserve(s + 1)?;
         for i in 0..=s {
             let mut acc = F::zero();
@@ -106,8 +71,6 @@ pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
     Ok(poly)
 }
 
-/// `p(A)` for the polynomial with ascending `coefficients` (Horner's rule on matrices).
-/// The empty coefficient list is the zero polynomial and gives the zero matrix.
 pub fn evaluate_polynomial_at_matrix<F: Field + ExactRing>(
     coefficients: &[F],
     a: &BasicMatrix<F>,
@@ -115,8 +78,6 @@ pub fn evaluate_polynomial_at_matrix<F: Field + ExactRing>(
     evaluate_polynomial_at_matrix_with_limits(coefficients, a, OperationLimits::UNLIMITED)
 }
 
-/// [`evaluate_polynomial_at_matrix`] under a budget: `n²` elements, at most
-/// `terms − 1` products of `2n³` calls and `2n²` calls per term for the diagonal update.
 pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(
     coefficients: &[F],
     a: &BasicMatrix<F>,
@@ -144,20 +105,12 @@ pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(
     Ok(acc)
 }
 
-/// The minimal polynomial of `a`: the monic polynomial of least degree `d` with `p(A) = 0`, as
-/// `d + 1` ascending coefficients (so the last entry is `1`). The zero matrix gives `x`, a
-/// scalar matrix `cI` gives `x − c`, and the empty matrix gives the constant `1`.
-///
-/// It divides the characteristic polynomial and has the same roots, and `d ≤ n`.
 pub fn minimal_polynomial<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<Vec<F>, ExactFieldError> {
     minimal_polynomial_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`minimal_polynomial`] under a budget: `n²·(n+1)` elements (the largest grid) and the
-/// worst-case scalar calls of the `n` products and `n` reductions given in the module
-/// documentation.
 pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -175,7 +128,6 @@ pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
     }
     charge(limits, element_count(square, plus(n, 1)?)?, ops)?;
 
-    // columns[i] = vec(A^i), row-major
     let mut columns: Vec<Vec<F>> = reserve(n)?;
     let mut power = identity::<F>(n)?;
     let mut first: Vec<F> = reserve(square)?;
@@ -192,8 +144,6 @@ pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
         })?;
         let pivots = reduce_to_rref(&mut grid)?;
         if pivots.last() != Some(&k) {
-            // vec(A^k) is a combination of the k independent earlier powers; the pivots are
-            // exactly the columns 0..k in rows 0..k, so the coefficients are in the last column.
             let mut coefficients: Vec<F> = reserve(k + 1)?;
             for i in 0..k {
                 coefficients.push(grid.at(i, k).neg());
@@ -205,29 +155,22 @@ pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
         next.extend_from_slice(power.as_slice());
         columns.push(next);
     }
-    // Cayley–Hamilton makes vec(Aⁿ) dependent on the lower powers, so this is unreachable
-    // for a field; a scalar that is not a field can land here.
     Err(ExactFieldError::ReplayFailed {
         operation: "minimal_polynomial",
     })
 }
 
-/// `true` when some power of `a` is zero. For an `n × n` matrix that is `aⁿ = 0`, which
-/// over any field is equivalent to the characteristic polynomial being `xⁿ`.
 pub fn is_nilpotent<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     let n = require_square("is_nilpotent", a)?;
     let exponent = u64::try_from(n).map_err(|_| MatrixError::OperationCountOverflow)?;
     Ok(is_zero_matrix(&power(a, exponent)?))
 }
 
-/// `true` when `a² = a`. Refuses a non-square matrix.
 pub fn is_idempotent<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     require_square("is_idempotent", a)?;
     Ok(&multiply(a, a)? == a)
 }
 
-/// `true` when `a² = I` (a matrix involution; not to be confused with the field
-/// involution of `involution::Involution`). Refuses a non-square matrix.
 pub fn is_involution<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     require_square("is_involution", a)?;
     is_identity_matrix(&multiply(a, a)?)
@@ -251,45 +194,35 @@ mod tests {
         v.iter().map(|&x| q(x, 1)).collect()
     }
 
-    // ------------------------------------------------------------------ known polynomials
 
-    /// Hand-computed polynomials, ascending coefficients.
     #[test]
     fn known_characteristic_polynomials() {
-        // [[a]] -> x - a
         assert_eq!(
             characteristic_polynomial(&rat(&[&[7]])).unwrap(),
             ints(&[-7, 1])
         );
-        // [[1,2],[3,4]] -> x^2 - 5x - 2
         assert_eq!(
             characteristic_polynomial(&rat(&[&[1, 2], &[3, 4]])).unwrap(),
             ints(&[-2, -5, 1])
         );
-        // I_4 -> (x-1)^4 = x^4 - 4x^3 + 6x^2 - 4x + 1
         assert_eq!(
             characteristic_polynomial(&identity::<Q>(4).unwrap()).unwrap(),
             ints(&[1, -4, 6, -4, 1])
         );
-        // zero 3x3 -> x^3
         assert_eq!(
             characteristic_polynomial(&zeros::<Q>(3, 3).unwrap()).unwrap(),
             ints(&[0, 0, 0, 1])
         );
-        // diag(1,2,3) -> (x-1)(x-2)(x-3) = x^3 - 6x^2 + 11x - 6
         assert_eq!(
             characteristic_polynomial(&rat(&[&[1, 0, 0], &[0, 2, 0], &[0, 0, 3]])).unwrap(),
             ints(&[-6, 11, -6, 1])
         );
-        // empty matrix -> 1
         assert_eq!(
             characteristic_polynomial(&zeros::<Q>(0, 0).unwrap()).unwrap(),
             ints(&[1])
         );
     }
 
-    /// The companion matrix of a monic polynomial has that polynomial as characteristic
-    /// polynomial: `x³ − 2x + 5` here. Nonzero entries in every Toeplitz position.
     #[test]
     fn companion_matrix_reproduces_its_polynomial() {
         let companion = rat(&[&[0, 0, -5], &[1, 0, 2], &[0, 1, 0]]);
@@ -297,7 +230,6 @@ mod tests {
             characteristic_polynomial(&companion).unwrap(),
             ints(&[5, -2, 0, 1])
         );
-        // x^4 + 3x^3 - x^2 + 4x - 7
         let c4 = rat(&[&[0, 0, 0, 7], &[1, 0, 0, -4], &[0, 1, 0, 1], &[0, 0, 1, -3]]);
         assert_eq!(
             characteristic_polynomial(&c4).unwrap(),
@@ -305,12 +237,9 @@ mod tests {
         );
     }
 
-    /// A triangular matrix has its diagonal as eigenvalues; the off-diagonal entries must
-    /// not change the polynomial (this exercises the R·M^j·C terms, which vanish here).
     #[test]
     fn triangular_matrices_have_the_diagonal_polynomial_and_nilpotent_blocks_give_x_to_the_n() {
         let upper = rat(&[&[1, 5, 7, 9], &[0, 2, 4, 6], &[0, 0, 3, 8], &[0, 0, 0, 4]]);
-        // (x-1)(x-2)(x-3)(x-4) = x^4 - 10x^3 + 35x^2 - 50x + 24
         assert_eq!(
             characteristic_polynomial(&upper).unwrap(),
             ints(&[24, -50, 35, -10, 1])
@@ -322,10 +251,7 @@ mod tests {
         );
     }
 
-    // ------------------------------------------------------------------ Cayley–Hamilton
 
-    /// Invariant: `p(A) = 0` for random matrices of every size from 1 to 6. Any wrong sign,
-    /// Toeplitz offset or truncated power of `M` breaks this for some size.
     #[test]
     fn cayley_hamilton_holds_for_random_matrices_of_size_one_to_six() {
         let mut rng = Rng::new(201);
@@ -341,8 +267,6 @@ mod tests {
         }
     }
 
-    /// Invariants: `c_{n-1} = −tr A` and `c_0 = (−1)ⁿ det A` (the determinant is computed
-    /// by elimination, an independent route).
     #[test]
     fn the_extreme_coefficients_are_the_trace_and_the_determinant() {
         let mut rng = Rng::new(211);
@@ -356,7 +280,6 @@ mod tests {
         }
     }
 
-    /// Invariant: similar matrices share the polynomial, `p(S A S⁻¹) = p(A)`.
     #[test]
     fn the_polynomial_is_a_similarity_invariant() {
         let mut rng = Rng::new(221);
@@ -375,7 +298,6 @@ mod tests {
                     s.set(r, c, v).unwrap();
                 }
             }
-            // unit lower triangular => invertible
             let similar = multiply(&multiply(&s, &a).unwrap(), &inverse(&s).unwrap()).unwrap();
             assert_eq!(
                 characteristic_polynomial(&similar).unwrap(),
@@ -385,8 +307,6 @@ mod tests {
         }
     }
 
-    /// Invariant: `p_{Aᵀ} = p_A`, and `p_{cA}(x) = cⁿ p_A(x / c)` checked on the trace/det
-    /// coefficients.
     #[test]
     fn transpose_and_scaling_behave() {
         let mut rng = Rng::new(223);
@@ -398,7 +318,6 @@ mod tests {
         let c = q(3, 2);
         let scaled = characteristic_polynomial(&scale(&a, &c).unwrap()).unwrap();
         let base = characteristic_polynomial(&a).unwrap();
-        // coefficient of x^i scales by c^(n-i)
         let mut power_of_c = q(1, 1);
         for i in (0..=4usize).rev() {
             assert_eq!(
@@ -410,10 +329,7 @@ mod tests {
         }
     }
 
-    // ------------------------------------------------------------------ other fields
 
-    /// Division-free: Cayley–Hamilton over GF(2), GF(3) and GF(5) at sizes up to 6, where a
-    /// recurrence that divides by `k` (Faddeev–LeVerrier) would divide by zero.
     #[test]
     fn the_algorithm_is_valid_in_small_characteristic() {
         fn check<const P: u64>(seed: u64) {
@@ -439,8 +355,6 @@ mod tests {
         check::<5>(303);
     }
 
-    /// The algorithm needs only `add`, `mul` and `neg`: Cayley–Hamilton holds over `Z/6`, a ring
-    /// with zero divisors in which a division-based recurrence has no meaning.
     #[test]
     fn the_characteristic_polynomial_needs_no_division_even_over_a_ring_with_zero_divisors() {
         use crate::linear_algebra::test_support::Z6;
@@ -461,7 +375,6 @@ mod tests {
         }
     }
 
-    /// Over GF(2) the Fibonacci matrix has `x² + x + 1`: `−(1+0) = 1` and `0·1 − 1·1 = 1`.
     #[test]
     fn a_hand_computed_polynomial_over_gf2() {
         type F2 = Fp<2>;
@@ -476,12 +389,10 @@ mod tests {
         );
     }
 
-    // ------------------------------------------------------------------ polynomial evaluation
 
     #[test]
     fn evaluating_a_polynomial_at_a_matrix_matches_the_expanded_expression() {
         let a = rat(&[&[1, 2], &[3, 4]]);
-        // x^2 - 3x + 2 at A = A^2 - 3A + 2I
         let p = ints(&[2, -3, 1]);
         let expected = crate::linear_algebra::matrix::add(
             &sub(&multiply(&a, &a).unwrap(), &scale(&a, &q(3, 1)).unwrap()).unwrap(),
@@ -498,12 +409,7 @@ mod tests {
         );
     }
 
-    // ------------------------------------------------------------------ minimal polynomial
 
-    /// Known minimal polynomials, including the two cases where it differs from the
-    /// characteristic polynomial: a repeated eigenvalue with a diagonalisable matrix
-    /// (`diag(2, 2)`: `x − 2` against `(x − 2)²`) and a defective one (`[[1,1],[0,1]]`:
-    /// `(x − 1)²` for both).
     #[test]
     fn known_minimal_polynomials() {
         assert_eq!(
@@ -522,12 +428,10 @@ mod tests {
             minimal_polynomial(&rat(&[&[1, 1], &[0, 1]])).unwrap(),
             ints(&[1, -2, 1])
         );
-        // diag(1,1,2): (x-1)(x-2) = x^2 - 3x + 2, although the characteristic polynomial has degree 3
         assert_eq!(
             minimal_polynomial(&rat(&[&[1, 0, 0], &[0, 1, 0], &[0, 0, 2]])).unwrap(),
             ints(&[2, -3, 1])
         );
-        // a nilpotent Jordan block of size 3: x^3; of size 2 inside a size-3 matrix: x^2
         assert_eq!(
             minimal_polynomial(&rat(&[&[0, 1, 0], &[0, 0, 1], &[0, 0, 0]])).unwrap(),
             ints(&[0, 0, 0, 1])
@@ -541,7 +445,6 @@ mod tests {
             minimal_polynomial(&zeros::<Q>(0, 0).unwrap()).unwrap(),
             ints(&[1])
         );
-        // the companion matrix of x^3 - 2x + 5 is cyclic: minimal = characteristic
         let companion = rat(&[&[0, 0, -5], &[1, 0, 2], &[0, 1, 0]]);
         assert_eq!(
             minimal_polynomial(&companion).unwrap(),
@@ -549,8 +452,6 @@ mod tests {
         );
     }
 
-    /// Polynomial `f mod g` over `Q` (ascending coefficients, `g` monic): the remainder of the
-    /// long division, used to check `minimal | characteristic` independently.
     fn remainder(mut f: Vec<Q>, g: &[Q]) -> Vec<Q> {
         while f.len() >= g.len() {
             let lead = f[f.len() - 1].clone();
@@ -563,8 +464,6 @@ mod tests {
         f
     }
 
-    /// Invariants on random matrices: `p_min(A) = 0`, `p_min` divides `p_char`, the degree
-    /// equals the rank of the Krylov matrix of powers (independent route), and it is at most `n`.
     #[test]
     fn the_minimal_polynomial_annihilates_divides_the_characteristic_polynomial_and_is_minimal() {
         use crate::linear_algebra::elimination::rank;
@@ -574,7 +473,6 @@ mod tests {
                 let a = if trial % 2 == 0 {
                     random_matrix(&mut rng, n, n, 3)
                 } else {
-                    // a matrix with repeated structure: block diagonal of a small block and a scalar
                     let block = random_matrix(&mut rng, n.max(2) - 1, n.max(2) - 1, 2);
                     crate::linear_algebra::matrix::direct_sum(&block, &rat(&[&[3]])).unwrap()
                 };
@@ -590,7 +488,6 @@ mod tests {
                     remainder(chi, &min).iter().all(|c| *c == q(0, 1)),
                     "min must divide char"
                 );
-                // independent: degree = rank of {vec(I), vec(A), ..., vec(A^n)}
                 let mut rows = Vec::new();
                 for k in 0..=n_actual as u64 {
                     rows.push(power(&a, k).unwrap().as_slice().to_vec());
@@ -605,10 +502,6 @@ mod tests {
         }
     }
 
-    /// The minimal polynomial of a field element is that of its multiplication matrix. In
-    /// `Q(√2)` with basis `(1, √2)`: `1 + √2` acts by `[[1,2],[1,1]]` (columns are the images of
-    /// `1` and `√2`), with minimal polynomial `x² − 2x − 1`; the rational `3` acts by `3I`, with
-    /// minimal polynomial `x − 3` although its characteristic polynomial is `(x − 3)²`.
     #[test]
     fn the_minimal_polynomial_of_a_field_element_is_that_of_its_multiplication_matrix() {
         let one_plus_sqrt2 = rat(&[&[1, 2], &[1, 1]]);
@@ -628,8 +521,6 @@ mod tests {
         );
     }
 
-    /// Over GF(2) the transvection `[[1,1],[0,1]]` has minimal polynomial `(x+1)² = x² + 1`,
-    /// and the identity `x + 1`.
     #[test]
     fn minimal_polynomials_over_gf2() {
         type F2 = Fp<2>;
@@ -652,9 +543,6 @@ mod tests {
                 ..
             })
         ));
-        // n = 2: 2 products of 2·2³ = 16 calls (32) + reductions of the 4×2 grid
-        // (2·(2·8 + 2 + 1) = 38) and the 4×3 grid (3·(2·12 + 3 + 1) = 84) = 154 calls; the
-        // largest grid has 4·3 = 12 elements.
         let a = rat(&[&[1, 2], &[3, 4]]);
         let exact = OperationLimits {
             max_elements: 12,
@@ -686,7 +574,6 @@ mod tests {
         .is_err());
     }
 
-    // ------------------------------------------------------------------ predicates
 
     #[test]
     fn nilpotent_idempotent_and_involution_predicates() {
@@ -703,18 +590,15 @@ mod tests {
         let swap = rat(&[&[0, 1], &[1, 0]]);
         assert!(is_involution(&swap).unwrap());
         assert!(!is_involution(&rat(&[&[1, 1], &[0, 1]])).unwrap());
-        // an idempotent that is not an involution and vice versa
         assert!(!is_involution(&projector).unwrap());
         assert!(!is_idempotent(&swap).unwrap());
     }
 
-    /// Two independent criteria for nilpotency agree: `Aⁿ = 0` and `p_A = xⁿ`.
     #[test]
     fn nilpotency_agrees_with_the_characteristic_polynomial_criterion() {
         let mut rng = Rng::new(241);
         for n in 1..=5usize {
             for trial in 0..4 {
-                // a conjugate of a strictly upper triangular matrix, or a random matrix
                 let raw = random_matrix(&mut rng, n, n, 3);
                 let candidate = if trial % 2 == 0 {
                     let mut upper = raw.clone();
@@ -766,8 +650,6 @@ mod tests {
         ));
     }
 
-    /// Boundary: the documented cost for `n = 2` is `2·16 + 4·8 = 64` scalar calls and
-    /// `4` elements.
     #[test]
     fn charpoly_budget_boundary_is_inclusive() {
         let a = rat(&[&[1, 2], &[3, 4]]);

@@ -8,7 +8,6 @@ use crate::omega_native::exact::mub6_constants::{
 };
 use omega_number_theory::rational::rq;
 
-/// Dimension of the ambient Hilbert space C^6.
 pub const AMBIENT_DIM: usize = D;
 
 pub const KARLSSON_BOUNDARY_Z_NUM: i64 = 1;
@@ -21,42 +20,34 @@ pub const GAP_PROBE_T_NUM: i64 = 1;
 pub const GAP_PROBE_T_DEN: i64 = 122;
 pub const NUM_ANCHORS_MIN: usize = 80;
 
-/// Interface depth coordinate connecting to the Karlsson boundary manifold: z = 1/1000.
 pub fn karlsson_boundary_z() -> BigRational {
     rq(KARLSSON_BOUNDARY_Z_NUM, KARLSSON_BOUNDARY_Z_DEN)
 }
 
-/// Domain lower bound for normalized angle t = θ / (2π): 0.
 pub fn theta_interval_lower() -> BigRational {
     BigRational::zero()
 }
 
-/// Domain upper bound for normalized angle t = θ / (2π): 1 / 6 (corresponding to θ = π/3).
 pub fn theta_interval_upper() -> BigRational {
     rq(1, 6)
 }
 
-/// Canonical multi-anchor domain lower bound: T_MIN = 1/180.
 pub fn t_min_multi_anchor() -> BigRational {
     rq(T_MIN_MULTI_ANCHOR_NUM, T_MIN_MULTI_ANCHOR_DEN)
 }
 
-/// Canonical multi-anchor domain upper bound: T_MAX = 59/180.
 pub fn t_max_multi_anchor() -> BigRational {
     rq(T_MAX_MULTI_ANCHOR_NUM, T_MAX_MULTI_ANCHOR_DEN)
 }
 
-/// Critical gap probe point: t = 1/122.
 pub fn gap_probe_t() -> BigRational {
     rq(GAP_PROBE_T_NUM, GAP_PROBE_T_DEN)
 }
 
-/// Minimum number of certified anchor points required for multi-anchor covering: 80.
 pub fn num_anchors_min() -> usize {
     NUM_ANCHORS_MIN
 }
 
-/// Errors arising during continuous parameter chaining and verification.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum ContinuousChainingError {
     #[error("Invalid parameter: {0}")]
@@ -134,24 +125,18 @@ pub enum ContinuousChainingError {
     GapProbeNotCovered { probe_t: BigRational },
 }
 
-/// Parameter regimes along the 1-parameter curve θ ∈ (0, π/3).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum CurveRegime {
-    /// Cusp neighborhood θ -> 0 (normalized t in (0, 1/1000]).
     NearCusp,
-    /// Intermediate curve segment (normalized t in (1/1000, 1/6 - 1/1000)).
     Intermediate,
-    /// Boundary interface neighborhood θ -> π/3 (normalized t in [1/6 - 1/1000, 1/6)).
     NearBoundary,
 }
 
-/// Cusp and boundary collar neighborhood radius: 1/500 (corresponding to 2 * delta_certified).
 pub fn cusp_neighborhood_radius() -> BigRational {
     rq(1, 500)
 }
 
 impl CurveRegime {
-    /// Classify a normalized coordinate t = θ / (2π) into its curve regime.
     pub fn classify(t: &BigRational) -> Self {
         let radius = cusp_neighborhood_radius();
         let upper_bound = theta_interval_upper();
@@ -166,7 +151,6 @@ impl CurveRegime {
         }
     }
 
-    /// Descriptive name of the regime.
     pub fn name(&self) -> &'static str {
         match self {
             Self::NearCusp => "near_cusp_theta_to_zero",
@@ -176,7 +160,6 @@ impl CurveRegime {
     }
 }
 
-/// Certified rational step-size adaptivity engine.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AdaptiveStepEngine {
     pub base_gap: BigRational,
@@ -187,7 +170,6 @@ pub struct AdaptiveStepEngine {
 }
 
 impl AdaptiveStepEngine {
-    /// Canonical step-size adaptivity engine matching the certified constants.
     pub fn canonical() -> Self {
         Self {
             base_gap: base_gap(),
@@ -198,7 +180,6 @@ impl AdaptiveStepEngine {
         }
     }
 
-    /// Constructs and validates a custom step-size adaptivity engine.
     pub fn new(
         base_gap: BigRational,
         lipschitz_bound: BigRational,
@@ -237,23 +218,18 @@ impl AdaptiveStepEngine {
         })
     }
 
-    /// Computes quantitative erosion L · step.
     pub fn compute_erosion(&self, step: &BigRational) -> BigRational {
         &self.lipschitz_bound * step
     }
 
-    /// Computes lower margin ε - L · step.
     pub fn compute_margin(&self, step: &BigRational) -> BigRational {
         &self.base_gap - self.compute_erosion(step)
     }
 
-    /// Checks if a step size is strictly admissible: 0 < step < δ_crit.
     pub fn is_admissible_step(&self, step: &BigRational) -> bool {
         step > &BigRational::zero() && step < &self.delta_crit
     }
 
-    /// Validates a step size against critical threshold and positivity requirements.
-    /// Returns the verified certified margin if admissible.
     pub fn validate_step(
         &self,
         step: &BigRational,
@@ -283,13 +259,10 @@ impl AdaptiveStepEngine {
         Ok(margin)
     }
 
-    /// Computes the ratio of proposed step to the critical threshold: step / δ_crit.
     pub fn critical_ratio(&self, step: &BigRational) -> BigRational {
         step / &self.delta_crit
     }
 
-    /// Dynamically adapts step size given an estimated local curvature scale factor.
-    /// Clamps output to at most max_certified_step (1/1000).
     pub fn adapt_step(&self, curvature_factor: &BigRational) -> BigRational {
         if curvature_factor <= &BigRational::one() {
             self.max_certified_step.clone()
@@ -304,7 +277,6 @@ impl AdaptiveStepEngine {
     }
 }
 
-/// Exact rational parameter interval [lo, hi].
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ParameterInterval {
     pub lo: BigRational,
@@ -314,7 +286,6 @@ pub struct ParameterInterval {
 }
 
 impl ParameterInterval {
-    /// Create and validate a closed rational interval.
     pub fn new(lo: BigRational, hi: BigRational) -> Result<Self, ContinuousChainingError> {
         if lo > hi {
             return Err(ContinuousChainingError::InvalidParameter(format!(
@@ -332,23 +303,19 @@ impl ParameterInterval {
         })
     }
 
-    /// Interval width: hi - lo.
     pub fn width(&self) -> BigRational {
         &self.hi - &self.lo
     }
 
-    /// Check if a rational point lies within this closed interval.
     pub fn contains(&self, pt: &BigRational) -> bool {
         pt >= &self.lo && pt <= &self.hi
     }
 
-    /// Check if this interval overlaps with another interval (closed intersection non-empty).
     pub fn overlaps(&self, other: &Self) -> bool {
         self.lo <= other.hi && other.lo <= self.hi
     }
 }
 
-/// A certified discrete node along the continuous parameter curve.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ChainingNode {
     pub index: usize,
@@ -363,8 +330,6 @@ pub struct ChainingNode {
 }
 
 impl ChainingNode {
-    /// Evaluates the worst-case lower bound at any point query_t within this node's cell:
-    /// bound(query_t) = local_base_gap - local_lipschitz * |query_t - t|.
     pub fn evaluate_point_bound(&self, query_t: &BigRational) -> BigRational {
         let dist = (query_t - &self.t).abs();
         let erosion = &self.local_lipschitz * &dist;
@@ -372,7 +337,6 @@ impl ChainingNode {
     }
 }
 
-/// Certificate of complete interval coverage without gaps.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct IntervalCoverageCertificate {
     pub total_nodes: usize,
@@ -383,7 +347,6 @@ pub struct IntervalCoverageCertificate {
     pub all_nodes_certified: bool,
 }
 
-/// Continuous parameter chaining path covering θ ∈ (0, π/3).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContinuousChainingPath {
     pub domain_lo: BigRational,
@@ -397,7 +360,6 @@ pub struct ContinuousChainingPath {
 }
 
 impl ContinuousChainingPath {
-    /// Generate a uniform chaining path covering [domain_lo, domain_hi] with step size step.
     pub fn generate_uniform(
         domain_lo: BigRational,
         domain_hi: BigRational,
@@ -455,7 +417,6 @@ impl ContinuousChainingPath {
             current_t += &step;
         }
 
-        // Add boundary endpoint node to enclose domain_hi
         let boundary_lo = &domain_hi - &half_step;
         let boundary_hi = &domain_hi + &half_step;
         let boundary_interval = ParameterInterval::new(boundary_lo, boundary_hi)?;
@@ -487,7 +448,6 @@ impl ContinuousChainingPath {
         Ok(path)
     }
 
-    /// Generate the canonical continuous chaining path using certified step δ = 1/1000.
     pub fn generate_canonical() -> Result<Self, ContinuousChainingError> {
         Self::generate_uniform(
             theta_interval_lower(),
@@ -496,7 +456,6 @@ impl ContinuousChainingPath {
         )
     }
 
-    /// Verifies that adjacent nodes overlap with zero gaps and full domain coverage.
     pub fn verify_coverage(
         &mut self,
     ) -> Result<IntervalCoverageCertificate, ContinuousChainingError> {
@@ -506,7 +465,6 @@ impl ContinuousChainingPath {
             ));
         }
 
-        // 1. Check lower boundary coverage
         if self.nodes[0].interval.lo > self.domain_lo {
             return Err(ContinuousChainingError::PointOutOfBounds {
                 point: self.domain_lo.clone(),
@@ -515,7 +473,6 @@ impl ContinuousChainingPath {
             });
         }
 
-        // 2. Check upper boundary coverage
         let last_idx = self.nodes.len() - 1;
         if self.nodes[last_idx].interval.hi < self.domain_hi {
             return Err(ContinuousChainingError::PointOutOfBounds {
@@ -525,7 +482,6 @@ impl ContinuousChainingPath {
             });
         }
 
-        // 3. Check adjacent overlap (no-leakage contract: next.lo <= prev.hi)
         for i in 0..last_idx {
             let prev_hi = &self.nodes[i].interval.hi;
             let next_lo = &self.nodes[i + 1].interval.lo;
@@ -539,7 +495,6 @@ impl ContinuousChainingPath {
         }
         self.no_gaps = true;
 
-        // 4. Verify all node margins are positive
         let zero = BigRational::zero();
         for node in &self.nodes {
             if node.certified_margin <= zero || !node.is_certified {
@@ -566,14 +521,12 @@ impl ContinuousChainingPath {
         })
     }
 
-    /// Finds the first chaining node whose interval contains the query point.
     pub fn find_covering_node(&self, query_t: &BigRational) -> Option<&ChainingNode> {
         self.nodes
             .iter()
             .find(|node| node.interval.contains(query_t))
     }
 
-    /// Evaluates the certified lower bound at an arbitrary rational point query_t.
     pub fn eval_margin_at_point(
         &self,
         query_t: &BigRational,

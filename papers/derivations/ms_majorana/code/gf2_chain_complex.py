@@ -7,8 +7,6 @@ contract_id: urn:omega:math:chain_complex:v1.0.0
 """
 from __future__ import annotations
 
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 
 from dataclasses import dataclass
 from typing import TYPE_CHECKING

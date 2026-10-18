@@ -1,10 +1,3 @@
-//! Exact Moore-Penrose inverses from a full-rank factorization C=A B.
-//!
-//! A contains the original pivot columns, and B their exact coordinates from
-//! row reduction. Over a field with a positive Hermitian norm,
-//! C^+=B†(BB†)^-1(A†A)^-1A†. All four Penrose identities replay independently;
-//! no eigenvalues, square roots, or floating point are required.
-//! AuthorityEffect: None.
 
 use super::elimination::{inverse_with_limits, rref_with_limits};
 use super::involution::adjoint;
@@ -13,15 +6,12 @@ use super::ordered::HermitianOrdered;
 use super::{charge, element_count, plus, times, ExactFieldError};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
 
-/// Moore-Penrose inverse over the same exact coefficient field.
 pub fn pseudoinverse<F: HermitianOrdered>(
     c: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
     pseudoinverse_with_limits(c, OperationLimits::UNLIMITED)
 }
 
-/// Budgeted construction: each temporary has at most (m+n)^2 entries;
-/// 100(m+n)^3 bounds the row reduction, two inverses and exact replay.
 pub fn pseudoinverse_with_limits<F: HermitianOrdered>(
     c: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -62,7 +52,6 @@ pub fn pseudoinverse_with_limits<F: HermitianOrdered>(
     Ok(inverse)
 }
 
-/// Verify all four Penrose identities against the intact declared operator.
 pub fn verify_penrose<F: HermitianOrdered>(
     c: &BasicMatrix<F>,
     inverse: &BasicMatrix<F>,

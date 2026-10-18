@@ -1,13 +1,3 @@
-//! Campaign C500 Block 04: Refinement Arrows and Coherent Finite Towers.
-//!
-//! AuthorityEffect: None.
-//! Citation: sealed-derivation-v1 (3100c4e)
-//!
-//! Implements:
-//! 1. Divisibility criterion for unital *-homomorphisms.
-//! 2. Generator commutation phase mismatch obstruction.
-//! 3. Identity and composition laws for directed tower arrows.
-//! 4. Arrow class distinctions.
 
 use crate::linear_algebra::matrix as mx;
 use omega_number_theory::cyclotomic::GaussianRat;
@@ -31,8 +21,6 @@ pub fn check_divisibility_star_embedding(d1: u64, d2: u64) -> bool {
     ObservableEmbedding::new(a, b).is_ok()
 }
 
-/// Replays the actual star embedding on every source matrix unit in the
-/// declared small campaign carrier; no generator-preserving claim is added.
 pub fn verify_tower_composition(d1: u64, d2: u64, d3: u64) -> bool {
     let (Ok(a), Ok(b), Ok(c)) = (
         usize::try_from(d1),

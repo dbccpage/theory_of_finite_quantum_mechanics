@@ -1,4 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 """Branch Fine-Graining, Rational Sector Boundaries, and the Irrational Wall.
 
 Campaign C250 Block 02 (Global Steps 76-100).
@@ -46,7 +45,7 @@ class FineGrainedTree:
     branches: List[FineGrainedBranch]
     total_multiplicity: int
     is_exact_match: bool
-    sector: str  # "RATIONAL" or "IRRATIONAL"
+    sector: str
     refusal_reason: Optional[str] = None
 
 
@@ -188,7 +187,6 @@ def finegrain_cyclotomic_state(
 
     all_rational = all(w.is_rational() for w in norm_weights)
     if not all_rational:
-        # IRRATIONAL SECTOR: Refused by the irrational wall
         irrational_indices = [i for i, w in enumerate(norm_weights) if not w.is_rational()]
         return FineGrainedTree(
             branches=[],
@@ -216,11 +214,6 @@ def search_smallest_irrational_conductor(
     witness_info: Optional[Dict[str, Any]] = None
 
     for n in conductors:
-        # Check real subfield degree [Q(zeta_n)^+ : Q]
-        # For n=1,2: deg 1, real deg 1
-        # For n=3: deg 2, real deg 1 (Q(zeta_3)^+ = Q)
-        # For n=4: deg 2, real deg 1 (Q(i)^+ = Q)
-        # For n=5: deg 4, real deg 2 (Q(zeta_5)^+ = Q(sqrt(5)))
         phi = cyclotomic_polynomial_coeffs(n)
         totient = len(phi) - 1
         real_deg = 1 if n in (1, 2) else totient // 2
@@ -241,10 +234,9 @@ def search_smallest_irrational_conductor(
             record["status"] = "ADMITS_IRRATIONAL_WEIGHT"
             if found_conductor is None:
                 found_conductor = n
-                # Construct canonical witness state at conductor n=5
                 if n == 5:
                     z5 = CyclotomicElement.zeta(5)
-                    alpha = z5 + (z5 ** 4)  # 2 cos(2 pi / 5) = (sqrt(5) - 1) / 2
+                    alpha = z5 + (z5 ** 4)
                     c0 = CyclotomicElement.rational(1, 5)
                     c1 = alpha
 
@@ -255,7 +247,6 @@ def search_smallest_irrational_conductor(
                     w1 = b1 / tot
                     assert (w0 + w1).is_one(), "Born weights must sum to 1"
 
-                    # Verify minimal polynomial of w1: 5 x^2 - 5 x + 1 = 0
                     poly_eval = (
                         CyclotomicElement.rational(5, 5) * (w1 ** 2)
                         - CyclotomicElement.rational(5, 5) * w1
@@ -576,7 +567,6 @@ def census_all_targets() -> Dict[str, Any]:
     irrational_count = sum(1 for r in records if r.sector == "IRRATIONAL")
     irrational_ids = [r.target_id for r in records if r.sector == "IRRATIONAL"]
 
-    # Target 8 (CHSH)
     t8 = next(r for r in records if r.target_id == 8)
     min_chsh = t8.minimal_N
     assert min_chsh == 25, f"Target 8 minimal N must be 25, got {min_chsh}"
@@ -611,8 +601,6 @@ def envariance_deutsch_wallace_symmetry_audit() -> Dict[str, Any]:
     Evaluates where the argument succeeds on the rational sector (via fine-graining)
     and where it fails on the irrational sector (due to refusal of continuous limits).
     """
-    # Rational Case Demonstration
-    # Bipartite state with rational weights (9/25, 16/25)
     w_rat = [Fraction(9, 25), Fraction(16, 25)]
     n_star, sub_counts = compute_minimal_finegraining(w_rat)
 
@@ -626,8 +614,6 @@ def envariance_deutsch_wallace_symmetry_audit() -> Dict[str, Any]:
         "argument_status": "DERIVED_VIA_COUNTING",
     }
 
-    # Irrational Case Demonstration
-    # Witness state at conductor 5 with weight w1 = (5 - sqrt(5)) / 10
     irrational_audit = {
         "state_type": "IRRATIONAL_SECTOR",
         "conductor": 5,
@@ -649,7 +635,6 @@ def run_negative_controls() -> Dict[str, bool]:
     """Runs negative control assertions ensuring invalid fine-grainings are rejected."""
     controls_passed = True
 
-    # Negative Control 1: Attempting to finegrain an irrational cyclotomic state
     z5 = CyclotomicElement.zeta(5)
     alpha = z5 + (z5 ** 4)
     wit_amps = [CyclotomicElement.rational(1, 5), alpha]
@@ -657,8 +642,6 @@ def run_negative_controls() -> Dict[str, bool]:
     if tree_irrational.is_exact_match or tree_irrational.sector != "IRRATIONAL":
         controls_passed = False
 
-    # Negative Control 2: Rational weights with wrong multiplicity (not multiple of N*)
-    # Weights 9/25, 16/25 requires N in 25*Z. Test with N=10 and N=24.
     w_rat = [Fraction(9, 25), Fraction(16, 25)]
     tree_wrong_n = finegrain_state_rationals(w_rat, multiplicity=10)
     if tree_wrong_n.is_exact_match:
@@ -668,8 +651,7 @@ def run_negative_controls() -> Dict[str, bool]:
     if tree_wrong_n2.is_exact_match:
         controls_passed = False
 
-    # Negative Control 3: Verifier called directly with incorrect counts
-    bad_verify = verify_finegraining(w_rat, 25, [10, 15])  # 10/25 != 9/25
+    bad_verify = verify_finegraining(w_rat, 25, [10, 15])
     if bad_verify:
         controls_passed = False
 

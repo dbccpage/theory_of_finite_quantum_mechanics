@@ -1,6 +1,3 @@
-//! Foundation: Planar & Symmetric Coloured Operads.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};
@@ -13,7 +10,6 @@ pub enum OperadVariant {
     Symmetric,
 }
 
-/// A planar multi-coloured operad with strictly ordered input slots.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PlanarColoredOperad {
     pub name: String,
@@ -148,7 +144,6 @@ impl PlanarColoredOperad {
     }
 }
 
-/// A symmetric multi-coloured operad supporting lawful Sigma_n input permutations.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SymmetricColoredOperad {
     pub planar: PlanarColoredOperad,

@@ -1,11 +1,3 @@
-//! Exact witness for the four finite carriers in `derivation.md` for `WDP-21-16-MUB6`.
-//!
-//! Computes:
-//! 1. Recorded Tao `phaseTable` column sums, mod-3 residues, counts `(3,0,3)`, and Eisenstein norm `9`.
-//! 2. Partition index `m in 0..4` with `alpha_2(m) = 6m - 9` and `1 + (-1)^{alpha_2(m)} = 0`.
-//! 3. Synthetic nerve weights `4045 + 4044 + 4044 = 12133` and coboundary telescoping `0`.
-//! 4. Five-constructor row-count lookup vs external Haagerup minus-one row count `5`.
-//! Refuses treating any of these four carriers as a WDP `Phi_1` coverage certificate on `CHM(6)`.
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Witness {

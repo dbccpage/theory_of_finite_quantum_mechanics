@@ -1,10 +1,3 @@
-//! Exact finite graph aggregation under an explicitly declared partition.
-//!
-//! This is an observed comparison, not a universal monotonicity theorem.
-//! Averaging may increase edge defect. Fine values, edges and every edge defect
-//! remain available; collapsed edges and surviving multiplicities are explicit.
-//! These diagnostics are not primary obstruction values, scores, workload
-//! verdicts or authority. Ingress byte/bit limits belong to the owning host.
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
@@ -46,7 +39,6 @@ pub enum AggregationError {
     },
 }
 
-/// Pure comparison of these two exact scalars, not an acceptance decision.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum DefectComparison {
     Decreased,
@@ -65,7 +57,6 @@ pub enum AggregationAuthorityEffect {
     None,
 }
 
-/// Preserve the declared construction, even when resulting values coincide.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum AggregationOrigin {
     PartitionedGraph,
@@ -80,13 +71,6 @@ pub enum AggregationOrigin {
     },
 }
 
-/// Immutable declared fine multigraph and onto, densely labelled partition.
-/// Parallel edges and orientation are retained; self loops are legitimate.
-///
-/// ~~~compile_fail
-/// use omega_functional::aggregation::AggregationMonotonicity;
-/// let forged: AggregationMonotonicity = serde_json::from_str("{}").unwrap();
-/// ~~~
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct AggregationMonotonicity {
     origin: AggregationOrigin,
@@ -95,7 +79,6 @@ pub struct AggregationMonotonicity {
     block_sizes: Vec<usize>,
 }
 
-/// A surviving edge is traceable to its original edge, including multiplicity.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct CoarseEdge {
     fine_edge_index: usize,
@@ -111,13 +94,6 @@ impl CoarseEdge {
     }
 }
 
-/// Exact calculation retaining both the fine evidence and the lossy projection.
-/// No public constructor, deserializer or authority-promotion API.
-///
-/// ~~~compile_fail
-/// use omega_functional::aggregation::AggregationEvidence;
-/// let forged: AggregationEvidence = serde_json::from_str("{}").unwrap();
-/// ~~~
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct AggregationEvidence {
     authority_effect: AggregationAuthorityEffect,
@@ -175,7 +151,6 @@ impl AggregationMonotonicity {
         partition: Vec<usize>,
     ) -> Result<Self, AggregationError> {
         let vertices = partition.len();
-        // Bound every label by stored vertices before allocating by the label.
         for (vertex, &label) in partition.iter().enumerate() {
             if label >= vertices {
                 return Err(AggregationError::BlockLabel {
@@ -291,7 +266,6 @@ impl AggregationMonotonicity {
         })
     }
 
-    /// Contiguous equal-size blocks; preserve the actual supplied multigraph.
     pub fn blocks_1d(
         values: &[BigRational],
         edges: &[[usize; 2]],
@@ -314,10 +288,6 @@ impl AggregationMonotonicity {
         presentation.compute(values)
     }
 
-    /// Row-major square block averaging on a declared fine grid. The coarse
-    /// graph is its quotient MULTIGRAPH, not an invented simple coarse grid.
-    /// For periodic boundaries each fine cell contributes one right and one
-    /// down edge, including loops when a dimension is one.
     pub fn grid_2d(
         values: &[BigRational],
         rows: usize,
@@ -328,8 +298,6 @@ impl AggregationMonotonicity {
         if block_size == 0 {
             return Err(AggregationError::ZeroBlockSize);
         }
-        // Only 0 x 0 is the admitted empty grid. Refusing a lone empty axis
-        // avoids iterating unstored rows in shapes such as a million by zero.
         if (rows == 0) != (columns == 0) {
             return Err(AggregationError::GridEmptyAxis { rows, columns });
         }
@@ -402,8 +370,6 @@ mod tests {
 
     #[test]
     fn arbitrary_averaging_has_a_decisive_monotonicity_counterexample() {
-        // Supplied edge 0->2 has zero fine defect. The unrelated vertex 1
-        // changes its block average, producing coarse defect five.
         let result =
             AggregationMonotonicity::blocks_1d(&[q(0), q(10), q(0), q(0)], &[[0, 2]], 2).unwrap();
         assert_eq!(result.fine_defect(), &q(0));
@@ -455,8 +421,6 @@ mod tests {
 
     #[test]
     fn invalid_labels_and_edge_endpoints_are_typed_refusals_before_indexing() {
-        // The small invalid label comes first so a guard-bypass mutation fails
-        // before it can reach the large sentinel's allocation-sensitive path.
         for label in [1, usize::MAX] {
             assert_eq!(
                 AggregationMonotonicity::new(vec![], vec![label]),

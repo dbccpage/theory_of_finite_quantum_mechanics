@@ -1,14 +1,3 @@
-//! IID bit-flip Monte Carlo on growing planar grids (Deutsch kill-criterion toy).
-//!
-//! # Declared data only
-//!
-//! - Complex: planar \(m\times m\) plaquette grid (`surface_grid(m,m,false)`).
-//! - Noise: each edge independently 1 with probability \(p\) (Bernoulli), seedable LCG.
-//! - Metric: empirical fractions of schedule classes under `Gf2CocycleClassifier::classify`.
-//!
-//! **Not** a physical threshold theorem. **Not** decoder latency. Shows how Open
-//! fraction grows with \(p\) and how class mix changes with grid size under the
-//! **declared** face-syndrome map. AuthorityEffect: None.
 
 use crate::complexes::surface_grid;
 use crate::gf2_terminalizer::{GF2ScheduleStatus, Gf2CocycleClassifier};
@@ -16,7 +5,6 @@ use serde::{Deserialize, Serialize};
 
 pub const NOISE_MC_RECEIPT_TAG: &str = "omega.majorana-noise-mc-receipt.v1";
 
-/// Tiny seedable LCG (no rand crate dep).
 #[derive(Debug, Clone)]
 pub struct Lcg {
     state: u64,
@@ -25,17 +13,15 @@ pub struct Lcg {
 impl Lcg {
     pub fn new(seed: u64) -> Self {
         Self {
-            state: seed | 1, // avoid zero lock
+            state: seed | 1,
         }
     }
 
     pub fn next_u64(&mut self) -> u64 {
-        // Numerical Recipes LCG
         self.state = self.state.wrapping_mul(1664525).wrapping_add(1013904223);
         self.state
     }
 
-    /// Bernoulli(p) with p in [0,1] via 2^32 fixed-point.
     pub fn bernoulli(&mut self, p: f64) -> bool {
         if p <= 0.0 {
             return false;
@@ -68,7 +54,6 @@ pub struct NoiseMcReceipt {
     pub notes: String,
 }
 
-/// Run IID edge noise Monte Carlo on planar \(m\times m\) plaquette grid.
 pub fn noise_mc_planar_grid(
     m: usize,
     p: f64,
@@ -130,7 +115,6 @@ pub fn noise_mc_planar_grid(
     })
 }
 
-/// Sweep grids m=1..max_m at fixed p (small trial counts for unit tests).
 pub fn noise_mc_size_sweep(
     max_m: usize,
     p: f64,
@@ -155,7 +139,6 @@ mod tests {
 
     #[test]
     fn p_zero_all_exact() {
-        // Kills: flipping edges when p is 0, or charging their weight anyway.
         let r = noise_mc_planar_grid(2, 0.0, 50, 7).unwrap();
         assert_eq!(r.num_edges, 12);
         assert_eq!(r.num_faces, 4);
@@ -168,12 +151,9 @@ mod tests {
 
     #[test]
     fn p_one_mostly_open_on_planar() {
-        // All edges flipped: on planar disk H1=0, all-ones may still be Exact or Open
-        // depending on whether all-ones is a coboundary. Prefer high p partial.
         let r = noise_mc_planar_grid(2, 0.5, 200, 42).unwrap();
         assert_eq!(r.trials, 200);
         assert!(r.count_open + r.count_exact + r.count_closed_residual == 200);
-        // With p=0.5 expect substantial open fraction on multi-face grid
         assert!(r.frac_open > 0.1, "expected open mass, got {}", r.frac_open);
         assert_eq!(r.authority_effect, "None");
     }
@@ -192,7 +172,6 @@ mod tests {
 
     #[test]
     fn size_sweep_grows_the_planar_grids() {
-        // Kills: repeating one grid, or storing the base seed on every row.
         assert!(noise_mc_planar_grid(0, 0.0, 1, 1).unwrap_err().contains("m"));
         assert!(noise_mc_planar_grid(1, 0.0, 0, 1)
             .unwrap_err()
@@ -218,7 +197,6 @@ mod tests {
 
     #[test]
     fn p_one_flips_every_edge_and_stays_exact_on_the_disk() {
-        // Kills: bernoulli(1) returning false, and counting the even all-ones vector as open.
         let r = noise_mc_planar_grid(2, 1.0, 5, 7).unwrap();
         assert_eq!(r.num_edges, 12);
         assert_eq!(r.mean_error_weight, 12.0);

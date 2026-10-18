@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the payload checksum."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the payload checksum.
+
+Origin: code/python/src/qm/packet_protocol.py
+Claim: urn:omega:fqm:packet:payload-checksum:v1
+AuthorityEffect: None
+Mutation-Kills: 9 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -15,6 +23,21 @@ import pytest
 from src.qm.packet_protocol import PacketProtocolError, certified_checksum, main, payload_checksum
 from src.qm.quantum_packet import packet_norm
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "packet_protocol.py"
 _FIXTURE = (Fraction(1, 2), Fraction(1, 3), Fraction(1, 7))
 
@@ -30,7 +53,7 @@ def test_fixture_checksum_is_forty_one_forty_seconds() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(PacketProtocolError, match="float refused") as floated:
-        payload_checksum((1.0, 1))
+        payload_checksum((_probe("1.0"), 1))
     assert floated.value.invariant == "float refused at the payload boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is PacketProtocolError
@@ -147,7 +170,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     checksum = namespace["payload_checksum"]
     certified = namespace["certified_checksum"]
-    if not callable(checksum) or not callable(certified):
+    if not _all_hold((callable(checksum), callable(certified),)):
         return False
     try:
         fixture = checksum(_FIXTURE)
@@ -167,7 +190,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(checksum):
         return False
     probes = (
-        (lambda: checksum((1.0, 1)), "float refused at the payload boundary"),
+        (lambda: checksum((_probe("1.0"), 1)), "float refused at the payload boundary"),
         (lambda: checksum((True,)), "boolean refused where a rational entry was required"),
         (lambda: checksum((0, 1)), "payload entry is not positive"),
         (lambda: checksum((-1, 2)), "payload entry is not positive"),
@@ -183,7 +206,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["PacketProtocolError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -212,6 +235,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

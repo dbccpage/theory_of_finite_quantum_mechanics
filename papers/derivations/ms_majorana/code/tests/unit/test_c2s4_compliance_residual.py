@@ -136,7 +136,7 @@ def test_main_exit_0_with_open_residuals(tmp_path: Path) -> None:
             str(md_path),
         ]
     )
-    assert code == 0  # honesty report
+    assert code == 0
     assert report_path.is_file()
     assert "OPEN" in report_path.read_text(encoding="utf-8")
     lines = [ln for ln in ndjson_path.read_text(encoding="utf-8").splitlines() if ln]

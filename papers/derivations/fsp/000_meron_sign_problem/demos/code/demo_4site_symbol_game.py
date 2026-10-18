@@ -20,15 +20,14 @@ import os
 import sys
 from pathlib import Path
 
-# Add canonical code directory
 DEMO_DIR = Path(__file__).resolve().parent
 CODE_DIR = DEMO_DIR.parents[1] / "code"
 if str(CODE_DIR) not in sys.path:
     sys.path.insert(0, str(CODE_DIR))
 
-from antibody_miner import AntibodyMiner  # noqa: E402
-from oracle import BlindClusterOracle  # noqa: E402
-from symbol_game_pfp import (  # noqa: E402
+from antibody_miner import AntibodyMiner
+from oracle import BlindClusterOracle
+from symbol_game_pfp import (
     RESULTS_DIR,
     STRUCTURAL_GUARDS,
     build_pfp_prompt_4site,
@@ -86,7 +85,6 @@ def main() -> int:
             print(f"  {text_to_eval[:300]}...")
         return 0 if eval_res["perfect"] else 1
 
-    # Offline replay
     results_path = DEMO_RESULTS_DIR if DEMO_RESULTS_DIR.exists() else RESULTS_DIR
     print(f"\n[REPLAY MODE] Verifying certified model ladder results offline from:\n  {results_path}\n")
     report = replay_certified_ladder(results_path)

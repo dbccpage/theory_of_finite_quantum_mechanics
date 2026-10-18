@@ -1,5 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-# Reference: Campaign C500 Block 02, Targets C500-T326 through C500-T350.
 
 """Campaign C500 Block 02: Norm-Indexed Approximation Frontier.
 
@@ -29,9 +27,6 @@ from typing import Any, Dict, List, Sequence, Tuple, Union
 
 from ..domain.gaussian_rational import Gaussian
 
-# ---------------------------------------------------------------------------
-# Section 1: Exact Rational Norms & Matrix Utilities
-# ---------------------------------------------------------------------------
 
 class ExactRationalMatrix:
     """d x d square matrix with Gaussian rational entries."""
@@ -113,9 +108,6 @@ class ExactRationalMatrix:
         return ExactRationalMatrix(new_rows)
 
 
-# ---------------------------------------------------------------------------
-# Section 2: Direct-CCR Defect and Exact Lower Bounds (Targets C500-T328, T329)
-# ---------------------------------------------------------------------------
 
 def ccr_residual_exact(Q: ExactRationalMatrix, P: ExactRationalMatrix, scalar_lambda: Fraction) -> ExactRationalMatrix:
     """Compute exact residual R_lambda(Q, P) = QP - PQ - lambda * I."""
@@ -153,9 +145,6 @@ def verify_ccr_defect_lower_bounds(d: int, scalar_lambda: Fraction) -> Dict[str,
     }
 
 
-# ---------------------------------------------------------------------------
-# Section 3: Phase Distance & Continued Fractions (Targets C500-T330..T334)
-# ---------------------------------------------------------------------------
 
 def phase_distance_on_circle(theta1: Fraction, theta2: Fraction) -> Fraction:
     """Compute geodesic distance on R/Z: dist_{S^1}(theta1, theta2) = min_{k in Z} |theta1 - theta2 - k|."""
@@ -245,9 +234,6 @@ def compute_weyl_phase_approximation_schedule(
     return results
 
 
-# ---------------------------------------------------------------------------
-# Section 4: Almost-Commuting vs. Commuting Obstruction (Bott Index) (T336..T338)
-# ---------------------------------------------------------------------------
 
 def compute_bott_index_witness(d: int) -> Dict[str, Any]:
     """Principal-log winding index for the fixed clock/shift pair.
@@ -277,9 +263,6 @@ def compute_bott_index_witness(d: int) -> Dict[str, Any]:
     }
 
 
-# ---------------------------------------------------------------------------
-# Section 5: Cross-Norm Promotion Failure (Rank Normalization) (Target C500-T339)
-# ---------------------------------------------------------------------------
 
 def cross_norm_promotion_counterexample_table() -> List[Dict[str, Any]]:
     """Demonstrate how rank normalization changes apparent convergence:
@@ -310,9 +293,6 @@ def cross_norm_promotion_counterexample_table() -> List[Dict[str, Any]]:
     return rows
 
 
-# ---------------------------------------------------------------------------
-# Section 6: Canonical Block 02 Receipt Generator (Target C500-T350)
-# ---------------------------------------------------------------------------
 
 FROZEN_DIMENSION_SCHEDULE = [2, 3, 5, 8, 13, 21, 34, 55, 89]
 GOLDEN_RATIO_CONJUGATE_CONVERGENTS = [
@@ -331,25 +311,21 @@ GOLDEN_RATIO_CONJUGATE_CONVERGENTS = [
 def generate_canonical_block02_receipt() -> Dict[str, Any]:
     """Generate the deterministic canonical receipt for Campaign C500 Block 02."""
 
-    # 1. Direct CCR lower bounds across dimensions
     ccr_bounds = [
         verify_ccr_defect_lower_bounds(d, Fraction(1, 1))
         for d in [2, 3, 5, 8, 13, 21, 34, 55, 89]
     ]
 
-    # 2. Finite rational phase 5/8 table; this is not an irrational convergent schedule
     weyl_rational_schedule = compute_weyl_phase_approximation_schedule(
         Fraction(5, 8),
         FROZEN_DIMENSION_SCHEDULE,
     )
 
-    # 3. Voiculescu / Bott index obstruction across dimensions
     bott_results = [
         compute_bott_index_witness(d)
         for d in [2, 3, 5, 8, 13, 21, 34, 55, 89]
     ]
 
-    # 4. Cross-norm rank counterexample table
     rank_table = cross_norm_promotion_counterexample_table()
 
     receipt = {

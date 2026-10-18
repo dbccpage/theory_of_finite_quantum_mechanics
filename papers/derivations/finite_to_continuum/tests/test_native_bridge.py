@@ -148,7 +148,7 @@ def test_cochain_and_difference_operator_symmetry():
     assert outcome(bad)["success"] is False
     assert outcome(dict(request, difference_operator=["1", "0", "0", "2"]))["success"] is False
     bad = dict(request, dimensions=[2, 1, 1], d1=["1"])
-    assert outcome(bad)["success"] is False  # d1*d0 != 0, before any symmetry claim.
+    assert outcome(bad)["success"] is False
 
 
 def test_no_caller_supplied_authority_or_unknown_attestation():

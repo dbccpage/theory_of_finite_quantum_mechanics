@@ -1,13 +1,8 @@
-//! Deterministic BLAKE3 hashing with domain-separated tags.
-//!
-//! All hashing functions use domain separation to prevent hash collisions
-//! between different mathematical objects that might have the same raw data.
 
 use crate::linear_algebra::scalars::{hash_bigint, hash_rational, Q};
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use num_bigint::BigInt;
 
-/// A 256-bit hash value.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, serde::Serialize, serde::Deserialize)]
 pub struct Hash256(pub [u8; 32]);
 
@@ -32,7 +27,6 @@ impl std::fmt::Display for Hash256 {
     }
 }
 
-/// Domain-separated hash for a BasicMatrix<Q>.
 pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"MSSN.BasicMatrix<BigRational>.v2");
@@ -44,14 +38,6 @@ pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Domain-separated hash for an integer matrix — the ℤ-lattice representation of a
-/// boundary map, as fed to Smith normal form.
-///
-/// Distinct from [`hash_matrix`] by tag: a `BasicMatrix<BigInt>` and the
-/// `BasicMatrix<Q>` it was extracted from denote different objects (one is a map of
-/// lattices, the other a map of ℚ-vector spaces) even when they carry equal values.
-/// Entries are length-prefixed via [`hash_bigint`], since `BigInt` has no fixed
-/// width and bare concatenation is not injective.
 pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"MSSN.BasicMatrix<BigInt>.lattice.v1");
@@ -63,7 +49,6 @@ pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Domain-separated hash for a vector of Q values.
 pub fn hash_vector(v: &[Q]) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"OMEGA.Vector<BigRational>.v2");
@@ -74,7 +59,6 @@ pub fn hash_vector(v: &[Q]) -> Hash256 {
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Domain-separated hash for a chain complex manifest.
 pub fn hash_chain_complex_manifest(
     c0_dim: usize,
     c1_dim: usize,
@@ -92,7 +76,6 @@ pub fn hash_chain_complex_manifest(
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Domain-separated hash for a cochain complex manifest.
 pub fn hash_cochain_complex_manifest(
     c0_dim: usize,
     c1_dim: usize,
@@ -110,7 +93,6 @@ pub fn hash_cochain_complex_manifest(
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Domain-separated hash for carrier manifest.
 pub fn hash_carrier_manifest(
     c0_dim: usize,
     c1_dim: usize,
@@ -120,10 +102,6 @@ pub fn hash_carrier_manifest(
     weights_hash: &Hash256,
 ) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
-    // v2 (ADR-001). v1 hashed the literal `1u32` while its payload already named
-    // BigRational — the version, the tag and the declared domain disagreed. The
-    // version fed here is now the same constant the manifest struct emits, so the
-    // three cannot drift apart again.
     hasher.update(b"OMEGA.CarrierManifest.v2");
     hasher.update(&crate::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());
     hasher.update(d0_hash.as_bytes());
@@ -132,15 +110,11 @@ pub fn hash_carrier_manifest(
     hasher.update(&(c0_dim as u64).to_le_bytes());
     hasher.update(&(c1_dim as u64).to_le_bytes());
     hasher.update(&(c2_dim as u64).to_le_bytes());
-    // Domain and representation are hashed separately, matching the split in the
-    // manifest struct. A representation change must move the hash; recording only
-    // one of the two is what made the v1 receipt false.
     hasher.update(crate::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());
     hasher.update(crate::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Domain-separated hash for weights vector.
 pub fn hash_weights(weights: &[Q]) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"MSSN.CarrierWeights<BigRational>.v2");
@@ -151,7 +125,6 @@ pub fn hash_weights(weights: &[Q]) -> Hash256 {
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Domain-separated hash for witness provenance.
 pub fn hash_provenance(verification_source: &str) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"MSSN.TheoremProvenance.v1");
@@ -159,7 +132,6 @@ pub fn hash_provenance(verification_source: &str) -> Hash256 {
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Domain-separated hash for cochain complex witness.
 pub fn hash_cochain_witness(
     d0_shape: (usize, usize),
     d1_shape: (usize, usize),
@@ -184,7 +156,6 @@ mod tests {
     fn test_hash256_display() {
         let h = Hash256([0u8; 32]);
         let s = format!("{}", h);
-        // Should show first 4 bytes and last 4 bytes in hex
         assert!(s.contains(".."));
         assert_eq!(s, "00000000..00000000");
     }

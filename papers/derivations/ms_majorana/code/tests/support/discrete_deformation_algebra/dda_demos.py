@@ -11,7 +11,7 @@ from omega_engine.crates.type.runtime_axes import DdaLetter, CohomologicalStatus
 def demo1_boundary_cancellation() -> Dict[str, Any]:
     """Two-edge path: exact cochain → C · R · E · T or residual path."""
     cx = CoboundaryComplex.path_graph_exact(2)
-    c1 = (0,)  # exact after zero residual
+    c1 = (0,)
     v = residual_verdict(cx, c1)
     trace = DdaTraceEngine("DDA_DEMO1")
     trace.emit_step(
@@ -49,7 +49,7 @@ def demo2_lggr_triangle() -> Dict[str, Any]:
     """Local-green / global-red triangle: edges unit, face holonomy Γ₂ ≠ 0."""
     cx = CoboundaryComplex.triangle_lggr_z2()
     assert square_zero_check(cx)["ok"]
-    c1 = (1, 1, 1)  # each edge "locally ok" unit; global d1 sum = 3
+    c1 = (1, 1, 1)
     v = residual_verdict(cx, c1, c0_radius=2)
     trace = DdaTraceEngine("DDA_DEMO2")
     trace.emit_step(
@@ -91,9 +91,6 @@ def demo2_lggr_triangle() -> Dict[str, Any]:
 
 def demo3_stabilized_survivor() -> Dict[str, Any]:
     """Closed non-exact: Φ₁ > 0, Γ₂ = 0 → RequiresLift path C · R · Λ · T."""
-    # Path graph has dim_c2=0 so Γ₂=0 always; nonzero c1 not in im d0 if we use bad length?
-    # Use triangle with c1 that is a coboundary of unbalanced?
-    # For path n=3, d0 has rank 2, ker/coker: take c1=(1,0) — may have phi>0, gamma=0.
     cx = CoboundaryComplex.path_graph_exact(3)
     c1 = (1, 0)
     v = residual_verdict(cx, c1, c0_radius=4)
@@ -222,10 +219,8 @@ def demo6_diagnostic_schema_validation() -> Dict[str, Any]:
         "authority_effect": "None",
     }
 
-    # Valid packet passes
     parsed = validate_diagnostic_packet(valid_pkt)
 
-    # Rejection 1: Unknown key
     invalid_key_pkt = dict(valid_pkt)
     invalid_key_pkt["speculative_model"] = "LotkaVolterra"
     rejected_unknown = False
@@ -234,7 +229,6 @@ def demo6_diagnostic_schema_validation() -> Dict[str, Any]:
     except ValueError as e:
         rejected_unknown = "unknown fields detected" in str(e)
 
-    # Rejection 2: Missing source_locus
     invalid_locus_pkt = dict(valid_pkt)
     invalid_locus_pkt["source_locus"] = None
     rejected_locus = False
@@ -267,19 +261,17 @@ def demo7_monotone_loss_ledger_descent() -> Dict[str, Any]:
     ledger_a = LossLedger()
     ledger_a.add_entry(l1)
 
-    # Adapter A -> S projects span[120:138] away
     ledger_s = ledger_a.pushforward(
         adapter_name="f_A_to_S",
         target_carrier="SemanticFrame",
         projected_away_loci={"span[120:138]"},
     )
-    status_s = ledger_s.entries["L001"].current_carrier_status  # "projected_away"
+    status_s = ledger_s.entries["L001"].current_carrier_status
     retained_in_s = (
         "L001" in ledger_s.entries
         and ledger_s.entries["L001"].discharge_status == "unresolved"
     )
 
-    # Adapter S -> K builds ODE packet
     ledger_k = ledger_s.pushforward(
         adapter_name="g_S_to_K",
         target_carrier="OdePacket",
@@ -290,11 +282,9 @@ def demo7_monotone_loss_ledger_descent() -> Dict[str, Any]:
         and ledger_k.entries["L001"].discharge_status == "unresolved"
     )
 
-    # Demonstrate rejection when an adapter attempts to drop unresolved L001
     bad_ledger_dict = LossLedger()
     rejection_on_drop = False
     try:
-        # Pushing ledger_a forward into bad_ledger_dict (which dropped L001)
         ledger_a.pushforward(
             adapter_name="malicious_drop_adapter",
             target_carrier="OdePacket",
@@ -304,11 +294,9 @@ def demo7_monotone_loss_ledger_descent() -> Dict[str, Any]:
     except Exception:
         pass
 
-    # Forced drop test: ledger_s without L001
     empty_ledger = LossLedger()
     monotonicity_verified = False
     try:
-        # Check source unresolved missing in target manually
         source_unresolved = {
             lid
             for lid, e in ledger_s.entries.items()
@@ -349,7 +337,6 @@ def demo8_coda_reentry_multistage() -> Dict[str, Any]:
         trace_roots=["trace_K1_0"],
     )
 
-    # Stage 1: K1 -> K2 re-entry
     env_k2, receipt1 = execute_coda_reentry(
         envelope=initial_env,
         parent_trace_id="trace_K1_0",
@@ -359,7 +346,6 @@ def demo8_coda_reentry_multistage() -> Dict[str, Any]:
         delta_control=1.5,
     )
 
-    # Stage 2: K2 -> K3 re-entry
     env_k3, receipt2 = execute_coda_reentry(
         envelope=env_k2,
         parent_trace_id="trace_K2_1",
@@ -369,7 +355,6 @@ def demo8_coda_reentry_multistage() -> Dict[str, Any]:
         delta_control=2.0,
     )
 
-    # Verify budget decay: 10.0 - 1.5 - 2.0 = 6.5
     budget_decay_ok = env_k3.global_budget_remaining == 6.5
     trace_containment_ok = env_k3.trace_roots == [
         "trace_K1_0",
@@ -382,7 +367,6 @@ def demo8_coda_reentry_multistage() -> Dict[str, Any]:
         "fp_k3_residual",
     ]
 
-    # Verify anti-laundering rejection when parent trace is ungrounded / forged
     laundering_rejected = False
     try:
         execute_coda_reentry(
@@ -416,7 +400,6 @@ def demo9_rabbit_intake_pipeline() -> Dict[str, Any]:
     packets = pipeline.build_diagnostic_packet_bundle()
     engine, tape = pipeline.execute_admitted_dda_trace()
 
-    # Pre-admission refusal test
     intake = IntakeTrace()
     bad_cand = {
         "candidate_id": "c1",

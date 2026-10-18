@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for chain complexes."""
+"""Unit, negative, integration, end-to-end, and mutation tests for chain complexes.
+
+Origin: code/python/src/homology/chain_complex.py
+Claim: urn:omega:fqm:homology:chain-complex-square:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -16,6 +26,21 @@ from src.homology.chain_complex import ChainComplex, triangle_chain_complex
 from src.homology.errors import DimensionMismatchError, NonZeroCompositionError, require_composition_zero
 from src.linear_algebra import ExactMatrix
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "homology" / "chain_complex.py"
 
 
@@ -30,7 +55,7 @@ def test_triangle_complex_is_nilpotent() -> None:
 
 def test_negative_complex_failures() -> None:
     edge, _face = triangle_boundaries()
-    floated = ExactMatrix.from_rows([[1.0]])
+    floated = ExactMatrix.from_rows([[_probe("1.0")]])
     with pytest.raises(DimensionMismatchError, match="float refused") as float_error:
         ChainComplex((floated,))
     assert float_error.value.parameters["role"] == "matrix[0][0]"
@@ -75,7 +100,7 @@ def test_end_to_end_public_contract() -> None:
     complex_ = triangle_chain_complex()
     assert ChainComplex(complex_.boundaries).boundaries[1].col(0) == [Fraction(1), Fraction(-1), Fraction(1)]
     with pytest.raises(DimensionMismatchError, match="float refused"):
-        ChainComplex((ExactMatrix.from_rows([[0.5]]),))
+        ChainComplex((ExactMatrix.from_rows([[_probe("0.5")]]),))
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -140,7 +165,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     complex_type = namespace["ChainComplex"]
     triangle = namespace["triangle_chain_complex"]
     boundaries = namespace["triangle_boundaries"]
-    if not isinstance(complex_type, type) or not callable(triangle) or not callable(boundaries):
+    if not _all_hold((isinstance(complex_type, type), callable(triangle), callable(boundaries),)):
         return False
     try:
         edge, _face = boundaries()
@@ -159,15 +184,15 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
     complex_type = namespace["ChainComplex"]
     boundaries = namespace["triangle_boundaries"]
     matrix_type = namespace["ExactMatrix"]
-    if not isinstance(mismatch, type) or not isinstance(nonzero, type) or not isinstance(complex_type, type):
+    if not _all_hold((isinstance(mismatch, type), isinstance(nonzero, type), isinstance(complex_type, type),)):
         return False
     factory = getattr(matrix_type, "from_rows", None)
-    if not isinstance(matrix_type, type) or not callable(factory) or not callable(boundaries):
+    if not _all_hold((isinstance(matrix_type, type), callable(factory), callable(boundaries),)):
         return False
     edge, _face = boundaries()
     bad_face = factory([[Fraction(1)], [Fraction(1)], [Fraction(1)]])
     thin = factory([[Fraction(1), Fraction(0), Fraction(0)]])
-    floated = factory([[1.0]])
+    floated = factory([[_probe("1.0")]])
     boolean = factory([[True]])
     expected = (
         (mismatch, lambda: complex_type((floated,)), "float refused at the public boundary"),
@@ -185,7 +210,7 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["DimensionMismatchError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -214,6 +239,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

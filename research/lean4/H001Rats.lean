@@ -1,39 +1,9 @@
-/-
-  H001Rats -- choice-free exact fractional weights.
-  AuthorityEffect: None. Candidate only. Not PROVEN. Kind: LIFT RUNG.
 
-  Claim identifier: HW-H001-RATS
-  Source-paper contact: QM_122 §7.1 item 6, FRONTIER R5, STACK rationals.
 
-  Target proposition
-    There is a commutative *-ring pack of exact fractions, built as
-    the quotient of integer pairs with positive denominator by
-    cross-multiplication, whose law fields are proved from Int
-    lemmas plus Quot.sound. Nonnegative half-weights on Bool sum
-    to one. The stock Lean.Rat pack is not used.
 
-  Imports added at this rung
-    Quotient of PreQ (Int × Int with 0 < den) by cross-multiplication.
-    Quot.sound is the campaign-allowed quotient axiom. No Rat.
-    No Classical.choice in the assembled pack.
 
-  Theorem or counterexample
-    fracPack inhabits StarRingPack Frac. The Bool vector (1/2, 1/2)
-    has total mass one. half is neither 0 nor 1. Stock ratPack
-    remains the priced obstruction (HWKernel receipts): those
-    selected proofs use Classical.choice; this construction does not.
 
-  Nonclaim boundary
-    Not a theorem that Lean.Rat is impossible without choice.
-    Not an isomorphism with Lean.Rat. Not density in a real field
-    (this host has no R). Not uniqueness of this mass carrier.
-    The walk's working masses remain the H001 integer grid unless
-    a later rung imports this pack.
 
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 
@@ -41,7 +11,6 @@ namespace FableHilbertWalk20260819.H001Rats
 
 open FableHilbertWalk20260819.HWKernel
 
-/-! ## Unreduced integer pairs with positive denominator. -/
 
 structure PreQ where
   num : Int
@@ -86,7 +55,6 @@ instance preQSetoid : Setoid PreQ where
   r := qrel
   iseqv := qrel_equivalence
 
-/-- Exact fractions: integer pairs modulo cross-multiplication. -/
 def Frac : Type := Quotient preQSetoid
 
 def mkQ (x : PreQ) : Frac := Quotient.mk preQSetoid x
@@ -101,7 +69,6 @@ def fzero : Frac := ofInt 0
 def fone : Frac := ofInt 1
 def half : Frac := mkQ ⟨1, 2, two_pos⟩
 
-/-! ## Representative arithmetic. -/
 
 def padd (x y : PreQ) : PreQ :=
   ⟨x.num * y.den + y.num * x.den, x.den * y.den,
@@ -231,9 +198,7 @@ theorem pmul_zero (a : PreQ) : qrel (pmul a pzero) pzero := by
   unfold qrel pmul pzero
   rw [Int.mul_zero, Int.zero_mul, Int.zero_mul]
 
-/-! ## Lifted operations on the quotient.
 
-`Quot.lift` is a primitive and reduces on `Quot.mk`. -/
 
 def addPre (a : PreQ) (y : Frac) : Frac :=
   Quot.lift
@@ -371,8 +336,6 @@ theorem fmul_zero (x : Frac) : fmul x fzero = fzero := by
   rw [fzero, ofInt, fmul_mk]
   exact Quotient.sound (pmul_zero a)
 
-/-- Choice-free exact-fraction coefficient pack. Conjugation is
-    trivial, matching the stock rational pack's involution. -/
 def fracPack : StarRingPack Frac where
   add := fadd
   mul := fmul
@@ -397,8 +360,6 @@ def fracPack : StarRingPack Frac where
 
 #print axioms fracPack
 
-/-! ## Half-weights: a genuine (1/2, 1/2) simplex the integer grid
-    at scale 1 cannot name. -/
 
 theorem half_add_half : fadd half half = fone := by
   have h : qrel (padd phalf phalf) pone := by
@@ -438,14 +399,8 @@ theorem half_ne_one : half ≠ fone := by
   unfold qrel phalf pone at hr
   cases hr
 
-/-- Representative nonnegativity of the half weight: numerator 1,
-    denominator 2. Lifted order on the quotient is not required
-    for this witness. -/
 theorem half_rep_nonneg : 0 ≤ phalf.num := by decide
 
-/-- Exact fractional simplex on Bool: two nonnegative halves,
-    total mass one. This is not an H001 ScaledProb (those are
-    integer weights). -/
 theorem fractional_half_simplex :
     rsum fracPack (enumBool.elems.map uniformHalf) = fone ∧
       half ≠ fzero ∧
@@ -455,10 +410,6 @@ theorem fractional_half_simplex :
 
 #print axioms fractional_half_simplex
 
-/-- Punchline: a choice-free exact-fraction pack exists, and it
-    carries the (1/2, 1/2) weights that scale-1 integer masses
-    cannot. Stock Lean.Rat remains the priced obstruction in
-    HWKernel; this pack does not use it. -/
 theorem choice_free_fractional_weights :
     (∀ a b : Frac, fracPack.add a b = fracPack.add b a) ∧
       rsum fracPack [half, half] = fone ∧
@@ -480,3 +431,6 @@ theorem ofInt_add (m n : Int) :
 #print axioms ofInt_add
 
 end FableHilbertWalk20260819.H001Rats
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H001Rats.lean Claim: PreQ AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

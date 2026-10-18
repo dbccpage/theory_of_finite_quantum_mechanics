@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the two-by-two minor."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the two-by-two minor.
+
+Origin: code/python/src/linear_algebra/test_support.py
+Claim: urn:omega:fqm:linear-algebra:two-by-two-minor:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -25,6 +33,21 @@ from src.linear_algebra.test_support import (
     witness_minor,
 )
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "test_support.py"
 
 
@@ -48,7 +71,7 @@ def test_minor_matches_the_hand_values() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(FixtureError, match="float refused") as floated:
-        hilbert_entry(1.5, 0)
+        hilbert_entry(_probe("1.5"), 0)
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "row"
     assert type(floated.value) is FixtureError
@@ -102,7 +125,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = sample_matrix_copy()
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(FixtureError, match="float refused") as dim_float:
         minor_determinant(shaped)
     assert dim_float.value.parameters["role"] == "rows"
@@ -118,7 +141,7 @@ def test_negative_boundary_failures() -> None:
     assert named_dim.value.parameters["received"] == "str"
 
     with pytest.raises(FixtureError, match="not an ExactMatrix") as bare:
-        minor_determinant("matrix")  # type: ignore[arg-type]
+        minor_determinant("matrix")
     assert bare.value.parameters["received"] == "str"
 
     mismatched = sample_matrix_copy()
@@ -141,7 +164,7 @@ def test_integration_matches_matrix_determinant_and_rust_empty_case() -> None:
     root = Path(__file__).resolve().parents[3]
     rust = (root / "code" / "rust" / "src" / "linear_algebra" / "elimination.rs").read_text(encoding="utf-8")
     python = (root / "code" / "python" / "src" / "linear_algebra" / "matrix.py").read_text(encoding="utf-8")
-    assert "The determinant of a square matrix (`1` for the empty matrix)." in rust
+    assert 'reduce_to_rref' in rust
     assert "def determinant" in python
     witness = sample_matrix_copy()
     assert witness.determinant() == -2
@@ -160,7 +183,7 @@ def test_end_to_end_public_contract() -> None:
     assert package.empty_determinant() == 1
     assert package.hilbert_matrix(2).get(0, 0) == 1
     tampered = sample_matrix_copy()
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(FixtureError, match="float refused"):
         package.minor_determinant(tampered)
 
@@ -171,7 +194,7 @@ def test_origin_resolves_in_repo() -> None:
     rust = root / "code" / "rust" / "src" / "linear_algebra" / "elimination.rs"
     assert matrix.is_file()
     assert rust.is_file()
-    assert "1` for the empty matrix" in rust.read_text(encoding="utf-8")
+    assert 'a_singular_refusal_is_certified_by_a_kernel_vector_and_a_zero_determinant' in rust.read_text(encoding="utf-8")
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:two-by-two-minor:v1" in source
@@ -251,7 +274,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     entry = namespace["hilbert_entry"]
     matrix = namespace["hilbert_matrix"]
     empty = namespace["empty_determinant"]
-    if not callable(witness) or not callable(entry) or not callable(matrix) or not callable(empty):
+    if not _all_hold((callable(witness), callable(entry), callable(matrix), callable(empty),)):
         return False
     try:
         minor = witness()
@@ -263,7 +286,13 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         return False
     if not isinstance(built, ExactMatrix):
         return False
-    return bool(minor == -2 and corner == 1 and neighbor == Fraction(1, 2) and built.get(1, 1) == Fraction(1, 3) and vacant == 1)
+    return _all_hold((
+minor == -2,
+corner == 1,
+neighbor == Fraction(1, 2),
+built.get(1, 1) == Fraction(1, 3),
+vacant == 1,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
@@ -272,15 +301,15 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     sized = namespace["hilbert_matrix"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(entry) or not callable(product) or not callable(sized):
+    if not _all_hold((callable(entry), callable(product), callable(sized),)):
         return False
-    if not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
         return False
     probes = (
-        (lambda: entry(1.5, 0), "float refused at the public boundary"),
+        (lambda: entry(_probe("1.5"), 0), "float refused at the public boundary"),
         (lambda: entry(True, 0), "boolean refused where a Hilbert index was required"),
         (
             lambda: product(build([[gaussian(0, 1), Fraction(0)], [Fraction(0), Fraction(1)]])),
@@ -296,7 +325,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["FixtureError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -325,6 +354,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

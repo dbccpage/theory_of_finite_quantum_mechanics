@@ -1,46 +1,12 @@
-/-
-  HWKernel -- shared coefficient packs and finite sum calculus for
-  fable_hilbert_walk_20260819. AuthorityEffect: None. Candidate only.
-  Not PROVEN. Kind: SUPPORT.
 
-  Claim identifier: HW-KERNEL
-  Source-paper contact: none (infrastructure); coefficient carriers
-  feed H004 (free linearization) and H005 (inner-product admission).
 
-  Target proposition
-    One support module supplies (i) a commutative *-ring law pack
-    whose laws are supplied theorem fields, not typeclass imports;
-    (ii) pack instances for Int, Rat, GaussInt = Z[i], and F2 = Bool;
-    (iii) finite enumeration carriers Enum with complete + nodup;
-    (iv) a list-sum calculus rsum invariant under permutation and
-    under precomposition with a bijection of the enumerated carrier.
 
-  Imports added at this rung
-    L0: Type, Prop, Eq, List, Bool, Nat, Int, Rat.
-    Core list lemmas (choice-free ones only; see below), Int/Rat
-    arithmetic lemmas from Lean core. NO mathlib. NO
-    Classical.choice EXCEPT the single disclosed ratPack boundary
-    receipt (see the comment at ratPack). The real field R and
-    complex field C are NOT available in this host; every
-    appearance of a coefficient carrier below is an explicit import
-    of that carrier.
 
-  Theorem or counterexample
-    rsum_perm, rsum_reindex (bijective reindexing of a complete
-    nodup enumeration), pack instances with proved law fields.
 
-  Nonclaim boundary
-    No claim that Int, Rat, GaussInt, or F2 is a canonical or forced
-    coefficient choice. The pack interface itself demonstrates the
-    opposite: F2 satisfies every field of the same interface.
 
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 
 namespace FableHilbertWalk20260819.HWKernel
 
-/-! ## Commutative *-ring law pack. Laws are supplied theorems. -/
 
 structure StarRingPack (K : Type) where
   add : K → K → K
@@ -87,14 +53,12 @@ theorem add_mul (a b c : K) :
 
 end StarRingPack
 
-/-! ## Finite enumeration carrier: an explicit, declared finiteness import. -/
 
 structure Enum (X : Type) where
   elems : List X
   complete : ∀ x : X, x ∈ elems
   nodup : elems.Nodup
 
-/-! ## List-sum calculus over a pack -/
 
 def rsum {K : Type} (P : StarRingPack K) : List K → K
   | [] => P.zero
@@ -138,7 +102,6 @@ theorem rsum_map_mul_left {K X : Type} (P : StarRingPack K)
       simp only [List.map_cons, rsum]
       rw [ih, P.mul_add]
 
-/-! ## Nodup and permutation helpers -/
 
 theorem nodup_map_of_injective {X Y : Type} {f : X → Y}
     (hinj : ∀ a b : X, f a = f b → a = b) :
@@ -148,8 +111,6 @@ theorem nodup_map_of_injective {X Y : Type} {f : X → Y}
   rw [List.pairwise_map]
   exact h.imp (fun hne heq => hne (hinj _ _ heq))
 
-/-- `a` does not survive its own erasure from a nodup list.
-    Own proof: core's count/perm route drags in Classical.choice. -/
 theorem nodup_not_mem_erase {X : Type} [DecidableEq X] {a : X} :
     ∀ {l : List X}, l.Nodup → a ∉ l.erase a := by
   intro l
@@ -168,7 +129,6 @@ theorem nodup_not_mem_erase {X : Type} [DecidableEq X] {a : X} :
         · exact hba rfl
         · exact ih hnt hin
 
-/-- Erasure preserves nodup. Own proof, choice-free. -/
 theorem nodup_erase {X : Type} [DecidableEq X] {a : X} :
     ∀ {l : List X}, l.Nodup → (l.erase a).Nodup := by
   intro l
@@ -185,8 +145,6 @@ theorem nodup_erase {X : Type} [DecidableEq X] {a : X} :
         exact List.nodup_cons.mpr
           ⟨fun h => hbt (List.mem_of_mem_erase h), ih hnt⟩
 
-/-- Membership survives erasing a different element. Own proof:
-    core's List.mem_erase_of_ne depends on Classical.choice. -/
 theorem mem_erase_of_ne_of_mem {X : Type} [DecidableEq X] {x a : X} :
     ∀ {l : List X}, x ≠ a → x ∈ l → x ∈ l.erase a := by
   intro l
@@ -206,7 +164,6 @@ theorem mem_erase_of_ne_of_mem {X : Type} [DecidableEq X] {x a : X} :
         · exact List.mem_cons_self
         · exact List.mem_cons_of_mem b (ih hxa hxt)
 
-/-- Pull one named member out of a mapped sum over a nodup list. -/
 theorem rsum_map_erase {K X : Type} (P : StarRingPack K) [DecidableEq X]
     (f : X → K) :
     ∀ {l : List X} {a : X}, a ∈ l → l.Nodup →
@@ -228,9 +185,6 @@ theorem rsum_map_erase {K X : Type} (P : StarRingPack K) [DecidableEq X]
         · simp only [List.map_cons, rsum_cons]
           rw [ih hat hnt, P.add_left_comm]
 
-/-- Mapped sums agree on nodup lists with identical membership.
-    This replaces the List.Perm route (whose core lemmas depend on
-    Classical.choice) with a fully choice-free argument. -/
 theorem rsum_eq_of_nodup_mem_iff {K X : Type} (P : StarRingPack K)
     [DecidableEq X] (f : X → K) :
     ∀ {l₁ l₂ : List X}, l₁.Nodup → l₂.Nodup →
@@ -262,9 +216,6 @@ theorem rsum_eq_of_nodup_mem_iff {K X : Type} (P : StarRingPack K)
           · exact hxt
       rw [ih hnt (nodup_erase h₂) hmem]
 
-/-- Sum of `f` over a complete nodup enumeration is invariant under
-    precomposition with a bijection given by an explicit two-sided
-    inverse. No choice principle: the inverse is supplied data. -/
 theorem rsum_reindex {K X : Type} (P : StarRingPack K) [DecidableEq X]
     (E : Enum X) {π σ : X → X}
     (hσπ : ∀ x, σ (π x) = x) (hπσ : ∀ x, π (σ x) = x) (f : X → K) :
@@ -283,7 +234,6 @@ theorem rsum_reindex {K X : Type} (P : StarRingPack K) [DecidableEq X]
     (fun y => ⟨fun _ => E.complete y,
       fun _ => List.mem_map.mpr ⟨σ y, E.complete (σ y), hπσ y⟩⟩)
 
-/-! ## Fiber-partition calculus: summing over report fibers. -/
 
 theorem rsum_map_zero {K X : Type} (P : StarRingPack K) (l : List X) :
     rsum P (l.map (fun _ => P.zero)) = P.zero := by
@@ -362,10 +312,6 @@ theorem rsum_map_if_single {K Q : Type} (P : StarRingPack K)
         · exact absurd rfl hab
         · rw [ih hat hnt, P.add_left_comm]
 
-/-- Finite Fubini: grouping a mapped sum by the fibers of a report
-    map over a complete nodup enumeration of report values preserves
-    the total. This is the exact content of "pushforward preserves
-    total mass". -/
 theorem rsum_fiber_partition {K X Q : Type} (P : StarRingPack K)
     [DecidableEq Q] (EQ : Enum Q) (τ : X → Q) (w : X → K) :
     ∀ l : List X,
@@ -403,8 +349,6 @@ theorem rsum_fiber_partition {K X Q : Type} (P : StarRingPack K)
         ih]
       rfl
 
-/-- A delta-supported sum over a nodup list collapses to its value
-    at the support point. -/
 theorem rsum_map_delta {K Q : Type} (P : StarRingPack K) [DecidableEq Q]
     (c : K) {l : List Q} {a : Q} (ha : a ∈ l) (hnd : l.Nodup) :
     rsum P (l.map (fun q => if (a == q) = true then c else P.zero)) = c := by
@@ -418,7 +362,6 @@ theorem rsum_map_delta {K Q : Type} (P : StarRingPack K) [DecidableEq Q]
   rw [h, rsum_map_if_single P c (fun _ => P.zero) ha hnd,
     rsum_map_zero, P.add_zero]
 
-/-- Filtering a nodup list for one key sums to that key's value. -/
 theorem rsum_filter_key {K X : Type} (P : StarRingPack K)
     [DecidableEq X] (w : X → K) :
     ∀ {l : List X} {a : X}, a ∈ l → l.Nodup →
@@ -440,9 +383,7 @@ theorem rsum_filter_key {K X : Type} (P : StarRingPack K)
         · exact absurd rfl hba
         · exact ih hat hnt
 
-/-! ## Coefficient carrier imports. Each pack is a declared import. -/
 
-/-- Integer coefficients with trivial conjugation. -/
 def intPack : StarRingPack Int where
   add := (· + ·)
   mul := (· * ·)
@@ -465,20 +406,7 @@ def intPack : StarRingPack Int where
   conj_zero := rfl
   conj_one := rfl
 
-/-- Rational coefficients with trivial conjugation.
 
-    BOUNDARY RECEIPT: each of the nine Rat arithmetic laws this
-    pack requires has a selected shipped proof that depends on
-    Classical.choice (per-law receipts printed below), and concrete
-    Rat arithmetic does not kernel-reduce, so `decide` fails here.
-    Receipted claim only: these selected proof terms pull in choice.
-    NOT claimed: every Rat lemma is tainted (Rat.neg_zero is not),
-    or no alternative proof or implementation could avoid choice.
-    `#print axioms` reports proof dependencies, not necessity.
-    Under the campaign policy ({propext, Quot.sound}), ratPack as
-    implemented below is unavailable without Classical.choice, so
-    the walk uses Int fixtures at a declared positive scale instead.
-    A choice-free Q remains a separate reproof/import work item. -/
 def ratPack : StarRingPack Rat where
   add := (· + ·)
   mul := (· * ·)
@@ -501,8 +429,6 @@ def ratPack : StarRingPack Rat where
   conj_zero := rfl
   conj_one := rfl
 
-/-! ## Gaussian integers Z[i]: the cheapest complex-like carrier the
-    host supports. Choosing it is an import, not a derivation. -/
 
 structure GaussInt where
   re : Int
@@ -527,8 +453,6 @@ def gzero : GaussInt := ⟨0, 0⟩
 
 def gone : GaussInt := ⟨1, 0⟩
 
-/-- The imaginary unit. Its availability is a property of the chosen
-    carrier, not of any earlier rung. -/
 def gi : GaussInt := ⟨0, 1⟩
 
 theorem gi_sq : gmul gi gi = gneg gone := by decide
@@ -595,8 +519,6 @@ theorem gconj_conj (a : GaussInt) : gconj (gconj a) = a := by
   cases a
   simp [gconj]
 
-/-- Twisting both slots by i cancels in conjugate-product position:
-    conj(i a) * (i b) = conj(a) * b. -/
 theorem gconj_gi_mul (a b : GaussInt) :
     gmul (gconj (gmul gi a)) (gmul gi b) = gmul (gconj a) b := by
   cases a with
@@ -611,7 +533,6 @@ theorem gconj_gi_mul (a b : GaussInt) :
 
 end GaussInt
 
-/-- Gaussian-integer coefficients with genuine conjugation. -/
 def gaussPack : StarRingPack GaussInt where
   add := GaussInt.gadd
   mul := GaussInt.gmul
@@ -634,9 +555,6 @@ def gaussPack : StarRingPack GaussInt where
   conj_zero := by decide
   conj_one := by decide
 
-/-- F2 = Bool with xor/and and trivial conjugation. Same interface,
-    radically different geometry: the finite-field countermodel that
-    keeps the coefficient choice honest. -/
 def f2Pack : StarRingPack Bool where
   add := xor
   mul := and
@@ -659,7 +577,6 @@ def f2Pack : StarRingPack Bool where
   conj_zero := rfl
   conj_one := rfl
 
-/-! ## Enumerations for the fixture carriers -/
 
 def enumBool : Enum Bool where
   elems := [false, true]
@@ -683,7 +600,6 @@ def enumBoolProd : Enum (Bool × Bool) where
           (List.mem_cons_of_mem _ List.mem_cons_self))
   nodup := by decide
 
-/-! ## Positive finite witnesses -/
 
 theorem rsum_int_fixture : rsum intPack [1, 2, 3] = 6 := by decide
 
@@ -699,9 +615,6 @@ theorem f2_one_plus_one :
 #print axioms f2Pack
 #print axioms intPack
 #print axioms rsum_int_fixture
-/- Boundary receipt: the Rat pack imports Classical.choice via the
-   core Rat lemma family. Printed, not hidden — aggregate first,
-   then the per-law receipts for all nine law fields it requires. -/
 #print axioms ratPack
 #print axioms Rat.add_comm
 #print axioms Rat.add_assoc
@@ -714,3 +627,6 @@ theorem f2_one_plus_one :
 #print axioms Rat.mul_zero
 
 end FableHilbertWalk20260819.HWKernel
+
+private def l5aProvenance : String :=
+  "Origin: lean4/HWKernel.lean Claim: add_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

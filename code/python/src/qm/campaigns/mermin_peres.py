@@ -1,9 +1,7 @@
-# AuthorityEffect: None.
 from __future__ import annotations
 
 import numpy as np
 
-# Pauli matrices
 I2 = np.eye(2, dtype=complex)
 SIGMA_X = np.array([[0, 1], [1, 0]], dtype=complex)
 SIGMA_Y = np.array([[0, -1j], [1j, 0]], dtype=complex)
@@ -59,9 +57,6 @@ def verify_mermin_peres_parity() -> bool:
     xz = (0, (1, 0), (0, 1))
     zx = (0, (0, 1), (1, 0))
     yy = (2, (1, 1), (1, 1))
-    # Y ⊗ Y = (iXZ) ⊗ (iXZ) = i^2 (X⊗X)(Z⊗Z) = - (X⊗X)(Z⊗Z).
-    # (X⊗X)(Z⊗Z) has phase 2 * (z·x of the second on the first): z=(1,1), x=(1,1), sum 2, times 2 = 4 ≡ 0, bits cancel to I? 
-    # Recompute Y⊗Y from the factors instead of storing the phase.
     y = (1, (1,), (1,))
     del yy
     grid = (

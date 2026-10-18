@@ -1,4 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 """Advanced Targets 13 through 22 for finite quantum mechanics.
 
 This module implements:
@@ -117,16 +116,13 @@ class ExactRationalMatrix:
         return ExactRationalMatrix(self.cols, self.rows, out)
 
 
-# =========================================================================== #
-# Target 4 (Loop 4): Rational Cayley Transform over so(8, Q)
-# =========================================================================== #
 
 def verify_target4_rational_cayley_so8(
     dim: int = 8,
     tau_list: list[Fraction] | None = None,
 ) -> dict[str, Any]:
     """Verifies rational Cayley transform flow over so(dim, Q) isometries across rational parameters.
-    
+
     Given block-skew generator X in so(dim, Q):
         X = direct_sum_{k=0}^{dim/2 - 1} [[0, k+1], [-(k+1), 0]]
     The exact rational Cayley transform is:
@@ -147,7 +143,6 @@ def verify_target4_rational_cayley_so8(
             Fraction(-1, 4),
         ]
 
-    # Build skew generator X
     x_mat = ExactRationalMatrix.zeros(dim)
     for i in range(0, dim, 2):
         val = Fraction(i + 1, 1)
@@ -170,7 +165,6 @@ def verify_target4_rational_cayley_so8(
             d = num_diag / denom
             cay = cay.set(i, i, a).set(i, i + 1, b).set(i + 1, i, c).set(i + 1, i + 1, d)
 
-        # M_+ = I + tau X, M_- = I - tau X
         m_plus = ExactRationalMatrix.identity(dim)
         m_minus = ExactRationalMatrix.identity(dim)
         for r in range(dim):
@@ -183,11 +177,9 @@ def verify_target4_rational_cayley_so8(
                     m_plus = m_plus.set(r, c, tau_x)
                     m_minus = m_minus.set(r, c, -tau_x)
 
-        # Matrix inversion equation: (I + tau X) @ cay == (I - tau X)
         m_plus_cay = m_plus.matmul(cay)
         inv_satisfied = (m_plus_cay == m_minus)
 
-        # Orthogonality: cay^T @ cay == I_dim
         cay_t_cay = cay.transpose().matmul(cay)
         is_isometry = inv_satisfied and (cay_t_cay == id_dim)
         if not is_isometry:
@@ -203,31 +195,28 @@ def verify_target4_rational_cayley_so8(
     }
 
 
-# =========================================================================== #
-# Target 5 (Loop 5): Combinatorial Recoupling / Pentagon Identity in Q^5
-# =========================================================================== #
 
 def verify_target5_pentagon_identity_q5() -> dict[str, Any]:
     """Verifies the Biedenharn-Elliott pentagon associator identity in Q^5.
-    
+
     The 5 binary parenthesizations of 4 leaves [0, 1, 2, 3] correspond to standard basis vectors in Q^5:
         T1: (((0, 1), 2), 3) -> e0 = [1, 0, 0, 0, 0]^T
         T2: ((0, (1, 2)), 3) -> e1 = [0, 1, 0, 0, 0]^T
         T3: (0, ((1, 2), 3)) -> e2 = [0, 0, 1, 0, 0]^T
         T4: (0, (1, (2, 3))) -> e3 = [0, 0, 0, 1, 0]^T
         T5: ((0, 1), (2, 3)) -> e4 = [0, 0, 0, 0, 1]^T
-        
+
     Elementary associator transpositions in GL(5, Q) / O(5, Q):
         F1: swaps (0, 1) -> T1 <-> T2
         F2: swaps (1, 2) -> T2 <-> T3
         F3: swaps (2, 3) -> T3 <-> T4
         F4: swaps (0, 4) -> T1 <-> T5
         F5: swaps (4, 3) -> T5 <-> T4
-        
+
     Composite paths:
         Path 1: P1 = F3 @ F2 @ F1
         Path 2: P2 = F5 @ F4
-        
+
     Invariants:
         P1 e0 = e3
         P2 e0 = e3
@@ -272,13 +261,10 @@ def verify_target5_pentagon_identity_q5() -> dict[str, Any]:
     }
 
 
-# =========================================================================== #
-# Target 13 (Loop 13): Prime-p Discrete Wigner Phase Space (p=5)
-# =========================================================================== #
 
 def build_prime_p_phase_point_operators(p: int = 5) -> dict[str, Any]:
     """Constructs the p^2 discrete Gross phase-point operators on F_p x F_p for odd prime p.
-    
+
     Dimension d = p (odd prime).
     Let omega = exp(2 pi i / p).
     Shift operator: X |k> = |k + 1 mod p>.
@@ -288,7 +274,7 @@ def build_prime_p_phase_point_operators(p: int = 5) -> dict[str, Any]:
         D(q, p_idx) = omega^(- 2^(-1) * q * p_idx mod p) * X^q * Z^p_idx.
     Phase-point operators:
         A(q, p_idx) = D(q, p_idx) P D(q, p_idx)^dagger.
-        
+
     Properties:
         Tr(A(u)) = 1
         Tr(A(u) A(v)) = p * delta_{u, v}
@@ -301,15 +287,12 @@ def build_prime_p_phase_point_operators(p: int = 5) -> dict[str, Any]:
     omega = np.exp(2j * np.pi / p)
     inv2 = (p + 1) // 2
 
-    # Shift operator X
     X = np.zeros((p, p), dtype=complex)
     for k in range(p):
         X[(k + 1) % p, k] = 1.0
 
-    # Clock operator Z
     Z = np.diag([omega**k for k in range(p)])
 
-    # Parity operator P
     P = np.zeros((p, p), dtype=complex)
     for k in range(p):
         P[(-k) % p, k] = 1.0
@@ -324,11 +307,6 @@ def build_prime_p_phase_point_operators(p: int = 5) -> dict[str, Any]:
             d_op = weyl_d(q, p_idx)
             operators[(q, p_idx)] = d_op @ P @ d_op.conj().T
 
-    # Exact algebraic structural invariants:
-    # 1. Tr(P) = sum_{k=0}^{p-1} delta_{k, -k mod p} = 1 (k=0 is the unique solution in F_p for odd prime p).
-    # 2. Tr(A(q, p)) = Tr(D P D^\dagger) = Tr(P) = 1 identically by trace cyclicity.
-    # 3. P^\dagger = P => A(q, p)^\dagger = A(q, p) identically.
-    # 4. sum_{q, p} A(q, p) = p * I_p identically by group character orthogonality.
     traces_one_exact = True
     is_hermitian_exact = True
     traces_one = True
@@ -355,9 +333,9 @@ def evaluate_prime_p_discrete_wigner(
     custom_state: np.ndarray | None = None,
 ) -> dict[str, Any]:
     """Evaluates the discrete Gross Wigner function for a given state in dimension p.
-    
+
     W_rho(q, p_idx) = (1 / p) * Tr(rho * A(q, p_idx)).
-    
+
     Stabilizer states (e.g. computational basis states, Fourier states) have
     non-negative Wigner functions under Gross's theorem.
     Magic states exhibit strict point negativity (W(q, p_idx) < 0).
@@ -374,8 +352,6 @@ def evaluate_prime_p_discrete_wigner(
         psi = np.ones(p, dtype=complex) / np.sqrt(p)
         rho = np.outer(psi, psi.conj())
     elif state_type == "magic":
-        # Exact odd-parity magic state |M> = (|1> - |p-1>) / sqrt(2) matching wigner.rs
-        # Since P |M> = -|M>, this produces an exact negative Wigner value W(0, 0) = -1/p.
         psi = np.zeros(p, dtype=complex)
         psi[1] = 1.0 / np.sqrt(2.0)
         psi[p - 1] = -1.0 / np.sqrt(2.0)
@@ -429,7 +405,7 @@ def evaluate_prime_p_discrete_wigner(
 
 def verify_gross_stabilizer_covariance(p: int = 5) -> dict[str, Any]:
     """Verifies Gross stabilizer covariance under Clifford generators (Fourier rotation and Phase shear).
-    
+
     Under discrete Fourier transform F:
         F A(q, p_idx) F^dagger = A(-p_idx mod p, q mod p).
     Under quadratic phase gate S:
@@ -440,23 +416,19 @@ def verify_gross_stabilizer_covariance(p: int = 5) -> dict[str, Any]:
     omega = np.exp(2j * np.pi / p)
     inv2 = (p + 1) // 2
 
-    # Discrete Fourier transform F
     F = np.array([[omega ** (j * k) / np.sqrt(p) for k in range(p)] for j in range(p)], dtype=complex)
-    # Phase shear gate S
     S_gate = np.diag([omega ** ((inv2 * (k ** 2)) % p) for k in range(p)])
 
     fourier_cov = True
     shear_cov = True
 
     for (q, p_idx), a_op in operators.items():
-        # Check Fourier action: (q, p_idx) -> (-p_idx mod p, q mod p)
         fa = F @ a_op @ F.conj().T
         target_f = ((-p_idx) % p, q % p)
         if not np.allclose(fa, operators[target_f]):
             fourier_cov = False
             break
 
-        # Check shear action: (q, p_idx) -> (q, (p_idx + q) mod p)
         sa = S_gate @ a_op @ S_gate.conj().T
         target_s = (q, (p_idx + q) % p)
         if not np.allclose(sa, operators[target_s]):
@@ -471,9 +443,6 @@ def verify_gross_stabilizer_covariance(p: int = 5) -> dict[str, Any]:
     }
 
 
-# =========================================================================== #
-# Target 14 (Loop 14): Shor [[9, 1, 3]] Concatenated Code
-# =========================================================================== #
 
 def _paulis_anticommute(p1: str, p2: str) -> bool:
     """Returns True if Pauli strings p1 and p2 anticommute."""
@@ -486,15 +455,15 @@ def _paulis_anticommute(p1: str, p2: str) -> bool:
 
 def build_shor_nine_qubit_code() -> dict[str, Any]:
     """Constructs the Shor [[9, 1, 3]] quantum error-correcting code.
-    
+
     Encodes 1 logical qubit into 9 physical qubits using concatenation:
       - Inner 3-qubit bit-flip code: |0> -> |000>, |1> -> |111>
       - Outer 3-qubit phase-flip code on the 3 blocks.
-      
+
     Logical states:
       |0_L> = (1 / 2 sqrt(2)) (|000> + |111>)(|000> + |111>)(|000> + |111>)
       |1_L> = (1 / 2 sqrt(2)) (|000> - |111>)(|000> - |111>)(|000> - |111>)
-      
+
     Stabilizer generators (8 total):
       Bit-flip detectors:
         g1 = Z0 Z1, g2 = Z1 Z2
@@ -515,7 +484,6 @@ def build_shor_nine_qubit_code() -> dict[str, Any]:
         "IIIXXXXXX",
     ]
 
-    # Verify that all 8 stabilizers pairwise commute
     pairwise_commute = True
     for i in range(len(stabilizers)):
         for j in range(i + 1, len(stabilizers)):
@@ -526,12 +494,10 @@ def build_shor_nine_qubit_code() -> dict[str, Any]:
     logical_x = "XXXXXXXXX"
     logical_z = "ZIIZIIZII"
 
-    # Verify that logical operators commute with all stabilizers
     logical_commutes_stabs = all(
         (not _paulis_anticommute(logical_x, s)) and (not _paulis_anticommute(logical_z, s))
         for s in stabilizers
     )
-    # Verify that logical X and logical Z anticommute
     logicals_anticommute = _paulis_anticommute(logical_x, logical_z)
 
     return {
@@ -566,7 +532,6 @@ def decode_and_recover_shor(syndrome: tuple[int, ...]) -> str:
 
     rec = list("I" * 9)
 
-    # Decode bit flip in each block of 3 qubits
     for b in range(3):
         b_syn = bit_syn[2 * b : 2 * b + 2]
         if b_syn == (1, 0):
@@ -580,7 +545,6 @@ def decode_and_recover_shor(syndrome: tuple[int, ...]) -> str:
         if q_in_b is not None:
             rec[3 * b + q_in_b] = "X"
 
-    # Decode phase flip across blocks
     if phase_syn == (1, 0):
         p_block = 0
     elif phase_syn == (1, 1):
@@ -618,7 +582,6 @@ def simulate_shor_error_recovery(
     syndrome = extract_shor_syndrome(error_pauli)
     recovery_pauli = decode_and_recover_shor(syndrome)
 
-    # Compute residual operator: rec * err
     residual = []
     for r_p, e_p in zip(recovery_pauli, error_pauli):
         if r_p == "I":
@@ -673,7 +636,6 @@ def verify_all_single_qubit_errors_recovery() -> dict[str, Any]:
             if not res["is_fully_corrected"]:
                 all_success = False
 
-    # Identity error check
     id_res = simulate_shor_error_recovery(error_qubit=0, error_type="I")
     tested_count += 1
     if not id_res["is_fully_corrected"]:
@@ -686,9 +648,6 @@ def verify_all_single_qubit_errors_recovery() -> dict[str, Any]:
     }
 
 
-# =========================================================================== #
-# Target 15 (Loop 15): Discrete Phase Estimation over Cyclotomic Ring
-# =========================================================================== #
 
 def discrete_qft(m: int, inverse: bool = False) -> np.ndarray:
     """Constructs the discrete Quantum Fourier Transform unitary on m qubits (dimension 2^m)."""
@@ -707,7 +666,7 @@ def discrete_phase_estimation(
     target_gate: str = "phase",
 ) -> dict[str, Any]:
     """Simulates discrete quantum phase estimation for an exact dyadic rational phase theta = k / 2^m.
-    
+
     When theta = k / 2^m, the eigenvalue exp(2 pi i k / 2^m) lies in the cyclotomic ring
     Z[zeta_{2^m}], and the inverse QFT produces a deterministic projection onto |k>
     with probability 1.0 via exact geometric sum cancellation:
@@ -720,14 +679,11 @@ def discrete_phase_estimation(
 
     dim = 1 << m
 
-    # Exact cyclotomic cancellation in Q(zeta_{2^m}):
-    # sum_{l=0}^{dim-1} zeta^{(k - j)*l} evaluates to dim for j == k and 0 for j != k.
     exact_probs_rational = [Fraction(1, 1) if j == k else Fraction(0, 1) for j in range(dim)]
     peak_prob = 1.0
     sum_prob = 1.0
     is_exact_projection = bool(exact_probs_rational[k] == Fraction(1, 1))
 
-    # Numerical array for downstream numpy compatibility
     probabilities = np.array([float(p) for p in exact_probs_rational])
 
     return {
@@ -763,9 +719,6 @@ def verify_cyclotomic_dyadic_projection(m: int = 3) -> dict[str, Any]:
     }
 
 
-# =========================================================================== #
-# Target 16 (Loop 16): Surface Code Toric Topology & Anyon Defect Algebra
-# =========================================================================== #
 
 def _f2_rank(matrix: list[list[int]] | np.ndarray) -> int:
     """Computes matrix rank over GF(2)."""
@@ -789,12 +742,12 @@ def _f2_rank(matrix: list[list[int]] | np.ndarray) -> int:
 
 def build_toric_code_2x2() -> dict[str, Any]:
     """Constructs the Kitaev Toric Code on a 2x2 periodic square lattice.
-    
+
     Vertices V = 4: (x, y) for x, y in {0, 1}.
     Edges E = 8: 4 horizontal edges, 4 vertical edges.
     Faces F = 4 plaquettes.
     Euler characteristic chi = V - E + F = 4 - 8 + 4 = 0 (2-torus T^2).
-    
+
     Star operators A_s = prod_{e in star(s)} X_e.
     Plaquette operators B_p = prod_{e in bound(p)} Z_e.
     """
@@ -804,7 +757,6 @@ def build_toric_code_2x2() -> dict[str, Any]:
     def edge_vertical(x: int, y: int) -> int:
         return 4 + (y % 2) * 2 + (x % 2)
 
-    # 4 Star operators
     stars = []
     for y in range(2):
         for x in range(2):
@@ -819,7 +771,6 @@ def build_toric_code_2x2() -> dict[str, Any]:
                 v[e] = (v[e] + 1) % 2
             stars.append(v.tolist())
 
-    # 4 Plaquette operators
     plaquettes = []
     for y in range(2):
         for x in range(2):
@@ -834,14 +785,11 @@ def build_toric_code_2x2() -> dict[str, Any]:
                 v[e] = (v[e] + 1) % 2
             plaquettes.append(v.tolist())
 
-    # Homology over GF(2)
     rank_stars = _f2_rank(stars)
     rank_plaquettes = _f2_rank(plaquettes)
     n_physical = 8
     k_logical = n_physical - rank_stars - rank_plaquettes
 
-    # Commutation check between stars and plaquettes:
-    # A_s and B_p commute iff dot(s, p) mod 2 == 0
     all_commute = True
     for s in stars:
         for p in plaquettes:
@@ -882,7 +830,7 @@ def verify_toric_homology_and_degeneracy() -> dict[str, Any]:
 
 def evaluate_anyon_defect_algebra() -> dict[str, Any]:
     """Evaluates the anyon defect sectors {1, e, m, epsilon} in Z_2 toric code.
-    
+
     Fusion rules:
       e x e = 1
       m x m = 1
@@ -911,7 +859,7 @@ def evaluate_anyon_defect_algebra() -> dict[str, Any]:
 def simulate_anyon_braiding_phase() -> dict[str, Any]:
     """Simulates the topological mutual braiding phase between electric charge (e) and magnetic vortex (m)
     on the 2x2 toric code lattice with 8 physical edge qubits.
-    
+
     A primal Wilson loop string operator W_X along horizontal cycle C_X = {e_0, e_1}
     and dual Wilson loop string operator W_Z along vertical dual cycle C_Z = {e_0, e_2}
     intersect at exactly one edge (|C_X \\cap C_Z| = 1).
@@ -920,32 +868,25 @@ def simulate_anyon_braiding_phase() -> dict[str, Any]:
     Thus the mutual braiding phase factor is exactly -1 (phase angle pi).
     """
     n_qubits = 8
-    # Primal logical Wilson loop W_X on edges {0, 2} (Pauli X)
-    # Dual logical Wilson loop W_Z on edges {0, 1} (Pauli Z)
-    # Both are non-trivial homology cycles commuting with all star and plaquette stabilizers
     wx_x = [1 if e in (0, 2) else 0 for e in range(n_qubits)]
     wx_z = [0 for _ in range(n_qubits)]
 
     wz_x = [0 for _ in range(n_qubits)]
     wz_z = [1 if e in (0, 1) else 0 for e in range(n_qubits)]
 
-    # Verify that W_X and W_Z commute with all stabilizers
     toric = build_toric_code_2x2()
     stars = toric["stars"]
     plaquettes = toric["plaquettes"]
     wx_commutes_all_plaq = all(sum(wx_x[i] * p[i] for i in range(n_qubits)) % 2 == 0 for p in plaquettes)
     wz_commutes_all_stars = all(sum(wz_z[i] * s[i] for i in range(n_qubits)) % 2 == 0 for s in stars)
 
-    # Symplectic intersection form: [W_X, W_Z]_sp = sum_i (x1_i * z2_i - z1_i * x2_i) mod 2
     sp_inner = sum(wx_x[i] * wz_z[i] - wx_z[i] * wz_x[i] for i in range(n_qubits)) % 2
     braiding_phase_factor = -1 if sp_inner == 1 else 1
 
-    # Disjoint dual loop W_Z2 on edges {4, 6} for comparison (|C_X \cap C_Z2| = 0)
     wz2_x = [0 for _ in range(n_qubits)]
     wz2_z = [1 if e in (4, 6) else 0 for e in range(n_qubits)]
     sp_inner2 = sum(wx_x[i] * wz2_z[i] - wx_z[i] * wz2_x[i] for i in range(n_qubits)) % 2
 
-    # Star and Plaquette stabilizers
     star0_x = stars[0]
     plaq0_z = plaquettes[0]
     star_plaq_commute = (sum(star0_x[i] * plaq0_z[i] for i in range(n_qubits)) % 2 == 0)
@@ -972,13 +913,10 @@ def simulate_anyon_braiding_phase() -> dict[str, Any]:
     }
 
 
-# =========================================================================== #
-# Target 17 (Loop 17): Discrete Grover Search via Householder Reflections
-# =========================================================================== #
 
 def discrete_grover_step(N: int, target_idx: int, steps: int = 1) -> dict[str, Any]:
     """Simulates discrete Grover search via Householder reflections in Q(sqrt(N)).
-    
+
     Oracle reflection: R_w = I - 2 |w><w|.
     Diffusion reflection: R_s = 2 |s><s| - I, where |s> = (1/sqrt(N)) sum |x>.
     Grover operator: G = R_s R_w.
@@ -1017,7 +955,7 @@ def discrete_grover_step(N: int, target_idx: int, steps: int = 1) -> dict[str, A
 
 def grover_exact_trigonometric_orbit(N: int, steps: int) -> dict[str, Any]:
     """Computes exact algebraic Grover state amplitudes in Q(sqrt(N)):
-    
+
     sin(theta / 2) = 1 / sqrt(N).
     cos(theta) = 1 - 2 / N (exact rational in Q).
     Target amplitude: a_k = sin((2k + 1) * theta / 2) = c_k / sqrt(N),
@@ -1079,13 +1017,10 @@ def verify_grover_n4_exact_one_step() -> dict[str, Any]:
     }
 
 
-# =========================================================================== #
-# Target 18 (Loop 18): Discrete Clifford Group Structure & Eastin-Knill Limit
-# =========================================================================== #
 
 def compute_symplectic_group_order(n: int) -> int:
     """Computes the exact order of Sp(2n, F_2):
-    
+
     |Sp(2n, F_2)| = 2^(n^2) * prod_{j=1}^n (2^(2j) - 1).
     """
     if n < 1:
@@ -1098,7 +1033,7 @@ def compute_symplectic_group_order(n: int) -> int:
 
 def build_sp2_f2_generators_and_elements() -> dict[str, Any]:
     """Generates the 6 elements of Sp(2, F_2) ~= S_3 via symplectic generators for H and S:
-    
+
     H generator: [[0, 1], [1, 0]]
     S generator: [[1, 0], [1, 1]]
     """
@@ -1129,7 +1064,7 @@ def build_sp2_f2_generators_and_elements() -> dict[str, Any]:
 
 def build_sp4_f2_generators_and_elements() -> dict[str, Any]:
     """Generates Sp(4, F_2) ~= S_6 via symplectic transvections and 2-qubit Clifford operations.
-    
+
     Standard symplectic form in dimension 4 (2 qubits):
         J_2 = [[0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 1, 0, 0]].
     A 4x4 binary matrix M belongs to Sp(4, F_2) iff M^T J_2 M == J_2 (mod 2).
@@ -1145,8 +1080,6 @@ def build_sp4_f2_generators_and_elements() -> dict[str, Any]:
         prod = (m.T @ J2 @ m) % 2
         return bool(np.array_equal(prod, J2))
 
-    # Symplectic generators for 2-qubit Clifford operations in phase space (x1, x2, z1, z2):
-    # H1, S1, H2, S2, CNOT_12
     h1 = np.array([[0, 0, 1, 0], [0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1]], dtype=int)
     s1 = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [1, 0, 1, 0], [0, 0, 0, 1]], dtype=int)
     h2 = np.array([[1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0], [0, 1, 0, 0]], dtype=int)
@@ -1171,7 +1104,7 @@ def build_sp4_f2_generators_and_elements() -> dict[str, Any]:
                 queue.append(nxt)
 
     order = len(group)
-    expected_order = compute_symplectic_group_order(2)  # 720
+    expected_order = compute_symplectic_group_order(2)
 
     return {
         "n": 2,
@@ -1204,7 +1137,7 @@ def verify_clifford_symplectic_isomorphism_n1() -> dict[str, Any]:
 
 def evaluate_eastin_knill_obstruction() -> dict[str, Any]:
     """Evaluates the Eastin-Knill transversal gate obstruction.
-    
+
     Eastin-Knill Theorem: No quantum error-correcting code can implement
     a set of transversal gates that is both non-trivial for error correction
     and forms a dense gate set. Transversal stabilizer gates are restricted
@@ -1221,13 +1154,10 @@ def evaluate_eastin_knill_obstruction() -> dict[str, Any]:
     }
 
 
-# =========================================================================== #
-# Target 19 (Loop 19): Finite Stone-von Neumann Obstruction on Z/NZ
-# =========================================================================== #
 
 def evaluate_finite_commutator_trace_obstruction(N: int = 5) -> dict[str, Any]:
     """Demonstrates the finite-dimensional commutator trace obstruction using exact integer arithmetic:
-    
+
     For any finite N x N matrices Q and P:
         Tr([Q, P]) = Tr(QP - PQ) = sum_{i,j} Q_ij P_ji - sum_{i,j} P_ij Q_ji = 0.
     However, the continuous Heisenberg commutation relation (CCR)
@@ -1238,9 +1168,6 @@ def evaluate_finite_commutator_trace_obstruction(N: int = 5) -> dict[str, Any]:
     if N < 2:
         raise ValueError(f"N must be >= 2, got {N}")
 
-    # Discrete coordinate position operator Q = diag(0, 1, ..., N-1) over Z
-    # Discrete symmetric difference momentum operator P over Z on Z/N:
-    # P_{j, k} = delta_{j, (k+1)%N} - delta_{j, (k-1)%N}
     Q_int = np.diag(np.arange(N, dtype=int))
     P_int = np.zeros((N, N), dtype=int)
     for k in range(N):
@@ -1252,7 +1179,7 @@ def evaluate_finite_commutator_trace_obstruction(N: int = 5) -> dict[str, Any]:
     assert exact_int_trace == 0
 
     trace_commutator = complex(exact_int_trace)
-    expected_continuous_trace = complex(1j * N)  # hbar = 1
+    expected_continuous_trace = complex(1j * N)
     deficit = float(N)
 
     return {
@@ -1268,13 +1195,13 @@ def evaluate_finite_commutator_trace_obstruction(N: int = 5) -> dict[str, Any]:
 
 def evaluate_discrete_weyl_commutation(N: int = 5) -> dict[str, Any]:
     """Evaluates the discrete Weyl commutation relation on Z/NZ:
-    
+
     Shift operator X |k> = |(k+1) mod N>.
     Clock operator Z |k> = omega^k |k>.
     Weyl relation:
         Z X = omega * X Z.
     This replaces the continuous generator CCR and holds exactly in finite dimension N.
-    
+
     Algebraic verification:
     The action on any standard basis state |k> gives:
         Z X |k> = Z |(k+1) mod N> = omega^{(k+1) mod N} |(k+1) mod N>
@@ -1285,8 +1212,6 @@ def evaluate_discrete_weyl_commutation(N: int = 5) -> dict[str, Any]:
     if N < 2:
         raise ValueError(f"N must be >= 2, got {N}")
 
-    # Full exact operator matrix algebra over group ring Z[C_N] = Z[x]/(x^N - 1):
-    # An element of Z[x]/(x^N - 1) is represented as a tuple of N integer coefficients.
     def poly_zero() -> tuple[int, ...]:
         return (0,) * N
 
@@ -1310,19 +1235,14 @@ def evaluate_discrete_weyl_commutation(N: int = 5) -> dict[str, Any]:
     def poly_scale_x(p: tuple[int, ...]) -> tuple[int, ...]:
         return poly_mul(poly_monomial(1), p)
 
-    # 1. Shift operator matrix X in (Z[x]/(x^N - 1))^(N x N):
-    # X |k> = |k+1 mod N>, so X_{(k+1)%N, k} = 1
     mat_x = [[poly_zero() for _ in range(N)] for _ in range(N)]
     for k in range(N):
         mat_x[(k + 1) % N][k] = poly_monomial(0)
 
-    # 2. Clock operator matrix Z in (Z[x]/(x^N - 1))^(N x N):
-    # Z |k> = omega^k |k>, so Z_{k, k} = x^k
     mat_z = [[poly_zero() for _ in range(N)] for _ in range(N)]
     for k in range(N):
         mat_z[k][k] = poly_monomial(k)
 
-    # 3. Explicit N x N matrix multiplication: M_ZX = Z @ X
     mat_zx = [[poly_zero() for _ in range(N)] for _ in range(N)]
     for i in range(N):
         for j in range(N):
@@ -1332,7 +1252,6 @@ def evaluate_discrete_weyl_commutation(N: int = 5) -> dict[str, Any]:
                 s = poly_add(s, term)
             mat_zx[i][j] = s
 
-    # 4. Explicit N x N matrix multiplication: M_XZ = X @ Z
     mat_xz = [[poly_zero() for _ in range(N)] for _ in range(N)]
     for i in range(N):
         for j in range(N):
@@ -1342,10 +1261,8 @@ def evaluate_discrete_weyl_commutation(N: int = 5) -> dict[str, Any]:
                 s = poly_add(s, term)
             mat_xz[i][j] = s
 
-    # 5. Scalar phase multiplication: M_omega_xz = omega * (X @ Z) = x * (X @ Z)
     mat_omega_xz = [[poly_scale_x(mat_xz[i][j]) for j in range(N)] for i in range(N)]
 
-    # 6. Full N x N operator matrix equality: Z @ X == omega * (X @ Z) across all N^2 entries
     matrix_operator_equality = True
     for i in range(N):
         for j in range(N):
@@ -1355,7 +1272,6 @@ def evaluate_discrete_weyl_commutation(N: int = 5) -> dict[str, Any]:
         if not matrix_operator_equality:
             break
 
-    # Complex representation provided for logging/interop:
     omega_complex = complex(np.exp(2j * np.pi / N))
 
     return {
@@ -1381,15 +1297,12 @@ def stone_von_neumann_finite_cyclic_report(N: int = 5) -> dict[str, Any]:
     }
 
 
-# =========================================================================== #
-# Target 20 (Loop 20): Quantum Error Mitigation via Richardson ZNE
-# =========================================================================== #
 
 def compute_richardson_weights(noise_scales: list[int] | list[float]) -> list[Fraction]:
     """Computes exact rational Richardson extrapolation weights for given discrete noise scales.
-    
+
     gamma_j = prod_{k != j} [ lambda_k / (lambda_k - lambda_j) ].
-    
+
     Properties:
         sum_j gamma_j = 1
         sum_j gamma_j * lambda_j^k = 0 for k = 1, ..., M.
@@ -1398,7 +1311,6 @@ def compute_richardson_weights(noise_scales: list[int] | list[float]) -> list[Fr
     if n < 2:
         raise ValueError(f"Need at least 2 noise scales for extrapolation, got {n}")
 
-    # Convert scales to Fractions
     frac_scales = [Fraction(s).limit_denominator(1000000) for s in noise_scales]
     weights = []
 
@@ -1426,7 +1338,6 @@ def richardson_zero_noise_extrapolate(
     weights = compute_richardson_weights(noise_scales)
     extrapolated_value = float(sum(float(w) * val for w, val in zip(weights, noisy_values)))
 
-    # Verify moment conditions
     sum_weights = sum(weights)
     linear_moment = sum(w * Fraction(s).limit_denominator(1000000) for w, s in zip(weights, noise_scales))
 
@@ -1449,7 +1360,6 @@ def simulate_mitigated_quantum_expectation(
     if noise_scales is None:
         noise_scales = [1, 3, 5]
 
-    # Model noise: E(lambda) = E_0 + c1 * lambda + c2 * lambda^2
     c1 = - noise_rate
     c2 = 0.05 * (noise_rate ** 2)
 
@@ -1473,9 +1383,6 @@ def simulate_mitigated_quantum_expectation(
     }
 
 
-# =========================================================================== #
-# Target 21 (Loop 21): Discrete Quantum Walk on Cayley Graphs
-# =========================================================================== #
 
 def _build_cayley_graph_sn(n: int) -> dict[str, Any]:
     """Internal helper constructing the Cayley graph Cay(S_n, S) with Coxeter generators S = {(i, i+1)}."""
@@ -1536,7 +1443,7 @@ def simulate_discrete_quantum_walk_cayley(
     steps: int = 5,
 ) -> dict[str, Any]:
     """Simulates a discrete-time quantum walk on Cay(S_3) or Cay(S_4).
-    
+
     Coin operator: Grover coin C = (2 / d_c) * J - I.
     Shift operator: S = sum_c |c><c| (x) sum_g |g * s_c><g|.
     Step operator: U = S (C (x) I_G).
@@ -1552,14 +1459,11 @@ def simulate_discrete_quantum_walk_cayley(
     n_pos = cayley["order"]
     dim_tot = d_c * n_pos
 
-    # Coin operator: Hadamard coin for d_c = 2 (to avoid Grover swap degeneracy on symmetric initial state);
-    # Grover diffusion coin for d_c > 2.
     if d_c == 2:
         coin_mat = np.array([[1.0, 1.0], [1.0, -1.0]], dtype=complex) / np.sqrt(2.0)
     else:
         coin_mat = (2.0 / d_c) * np.ones((d_c, d_c), dtype=complex) - np.eye(d_c, dtype=complex)
 
-    # Shift operator
     s_op = np.zeros((dim_tot, dim_tot), dtype=complex)
     for c in range(d_c):
         for pos in range(n_pos):
@@ -1568,11 +1472,9 @@ def simulate_discrete_quantum_walk_cayley(
             out_idx = c * n_pos + next_pos
             s_op[out_idx, in_idx] = 1.0
 
-    # Total unitary step operator
     step_op = s_op @ np.kron(coin_mat, np.eye(n_pos, dtype=complex))
     is_step_unitary = bool(np.allclose(step_op.conj().T @ step_op, np.eye(dim_tot, dtype=complex), atol=1e-12))
 
-    # Initial state localized at identity permutation with symmetric coin superposition
     state = np.zeros(dim_tot, dtype=complex)
     for c in range(d_c):
         state[c * n_pos + 0] = 1.0 / np.sqrt(d_c)
@@ -1625,7 +1527,7 @@ def compute_cayley_distances_from_identity(cayley: dict[str, Any]) -> np.ndarray
 
 def evaluate_ballistic_propagation(group_name: str = "S3", steps: int = 6) -> dict[str, Any]:
     """Evaluates wavepacket spreading of the discrete quantum walk across time steps.
-    
+
     Computes graph distance variance sigma^2(t) and ballistic ratio sigma^2(t) / t^2.
     """
     if steps < 1:
@@ -1645,7 +1547,6 @@ def evaluate_ballistic_propagation(group_name: str = "S3", steps: int = 6) -> di
     t = float(steps)
     ballistic_ratio = float(variance / (t ** 2))
 
-    # Compute Shannon entropy of position distribution
     non_zero = probs[probs > 1e-12]
     entropy = - float(np.sum(non_zero * np.log2(non_zero)))
 
@@ -1672,28 +1573,24 @@ def evaluate_ballistic_propagation(group_name: str = "S3", steps: int = 6) -> di
     }
 
 
-# =========================================================================== #
-# Target 22 (Loop 22): Discrete MUB State Tomography in Dimension d=3
-# =========================================================================== #
 
 def build_d3_mub_projectors() -> dict[str, Any]:
     """Constructs the d+1 = 4 Mutually Unbiased Bases (MUBs) in dimension d=3.
-    
+
     Bases 0, 1, 2:
       |v_{b, k}> = (1 / sqrt(3)) sum_{j=0}^2 omega^(j * k + b * j^2 * 2^(-1)) |j>,
       with 2^(-1) = 2 mod 3.
     Basis 3:
       Standard computational basis {|0>, |1>, |2>}.
-      
+
     Total of 12 rank-1 projectors Pi_{b, k} = |v_{b, k}><v_{b, k}|.
     Mutual unbiasedness: |<v_{b, k} | v_{b', k'}>|^2 = 1/3 for b != b'.
     """
     d = 3
     omega = np.exp(2j * np.pi / d)
-    inv2 = 2  # 2 * 2 = 4 = 1 mod 3
+    inv2 = 2
 
     bases: list[list[np.ndarray]] = []
-    # Bases 0, 1, 2
     for b in range(d):
         basis_b = []
         for k in range(d):
@@ -1704,22 +1601,14 @@ def build_d3_mub_projectors() -> dict[str, Any]:
             basis_b.append(vec)
         bases.append(basis_b)
 
-    # Basis 3: Computational basis
     basis_std = [np.eye(d, dtype=complex)[k] for k in range(d)]
     bases.append(basis_std)
 
-    # Build rank-1 projectors
     projectors: list[list[np.ndarray]] = []
     for b in range(4):
         b_projs = [np.outer(bases[b][k], bases[b][k].conj()) for k in range(d)]
         projectors.append(b_projs)
 
-    # Exact algebraic mutual unbiasedness check in Z[omega] (zero float comparisons):
-    # For distinct bases b1 != b2:
-    # - If b2 == 3 (computational basis e_{k2}): |<v_{b1, k1}|e_{k2}>|^2 = (1/sqrt(3))^2 * |omega^phase|^2 = 1/3.
-    # - If b1, b2 in {0, 1, 2}: <v_{b1, k1}|v_{b2, k2}> = (1/3) sum_{j=0}^2 omega^{Delta(j)}.
-    #   The sum S = c0 + c1*omega + c2*omega^2 = (c0 - c2) + (c1 - c2)*omega in Z[omega].
-    #   Its algebraic norm is N(a + b*omega) = a^2 - a*b + b^2, yielding exact overlap (a^2 - a*b + b^2) / 9.
     overlap_exact_rational = Fraction(1, d)
     is_mub = True
     for b1 in range(4):
@@ -1762,7 +1651,7 @@ def reconstruct_state_from_mub_probabilities(
     dimension: int,
 ) -> np.ndarray:
     """Reconstructs a d x d density matrix via exact linear inversion:
-    
+
     rho = sum_{b=0}^d sum_{j=0}^{d-1} p_{b, j} Pi_{b, j} - I_d.
     Requires a complete MUB system with exactly d + 1 bases.
     """
@@ -1785,7 +1674,7 @@ def reconstruct_d3_state_from_mub_probabilities(
     probabilities: list[list[float]] | np.ndarray,
 ) -> np.ndarray:
     """Reconstructs the 3x3 density matrix via the exact linear inversion formula:
-    
+
     rho = sum_{b=0}^3 sum_{j=0}^2 p_{b, j} Pi_{b, j} - I_3.
     """
     pkg = build_d3_mub_projectors()
@@ -1878,17 +1767,13 @@ def verify_mub_inversion_all_tested_states() -> dict[str, Any]:
     }
 
 
-# Backward-compatibility alias
 verify_mub_inversion_completeness = verify_mub_inversion_all_tested_states
 
 
-# =========================================================================== #
-# Target 22 Extension: Galois Field F_4 and 5 MUBs in Dimension d=4
-# =========================================================================== #
 
 def build_d4_mub_projectors() -> dict[str, Any]:
     """Constructs the maximal set of d + 1 = 5 MUBs in dimension d = 4 (2 qubits).
-    
+
     The 15 non-identity 2-qubit Pauli operators are partitioned into 5 maximal abelian
     subalgebras (MASAs), corresponding to the 5 isotropic lines of the F_4 symplectic spread:
         MASA 0: {ZI, IZ, ZZ}  (computational basis)
@@ -1896,10 +1781,10 @@ def build_d4_mub_projectors() -> dict[str, Any]:
         MASA 2: {YI, IY, YY}  (phase basis)
         MASA 3: {XY, YZ, ZX}  (entangled cyclic MASA A)
         MASA 4: {XZ, YX, ZY}  (entangled cyclic MASA B)
-        
+
     Each MASA has 4 simultaneous rank-1 orthogonal projectors, giving 20 projectors total:
         Pi(s0, s1) = 1/4 * (I + s0 * M0) * (I + s1 * M1)  for s0, s1 in {+1, -1}.
-        
+
     Properties verified:
         - Rank 1: Tr(Pi_{b, j}) = 1
         - Idempotence & Hermiticity: Pi_{b, j}^2 = Pi_{b, j} = Pi_{b, j}^dagger
@@ -1946,7 +1831,7 @@ def build_d4_mub_projectors() -> dict[str, Any]:
 
 def reconstruct_d4_state_from_mub_probabilities(probs: list[list[float]] | np.ndarray) -> np.ndarray:
     """Reconstructs 4x4 density matrix rho via exact rational linear inversion from 5 MUBs in d=4.
-    
+
     Formula:
         rho = sum_{b=0}^4 sum_{j=0}^3 p_{b, j} Pi_{b, j} - I_4.
     """
@@ -1995,11 +1880,11 @@ def simulate_d4_mub_tomography(
 
 def evaluate_d4_clifton_kent_deficit() -> dict[str, Any]:
     """Evaluates the Clifton-Kent contextuality deficit across all 4^5 = 1,024 classical valuations on d=4 MUBs.
-    
+
     In a non-contextual hidden variable valuation, each basis b in {0..4} assigns exactly one 1 and three 0s.
     Reconstructing the state operator:
         rho(v) = sum_{b=0}^4 Pi_{b, v(b)} - I_4.
-        
+
     Properties:
         - Tr(rho(v)) = 1 identically across all 1,024 valuations.
         - Purity Tr(rho(v)^2) = 4 > 1 identically across all 1,024 valuations (quantum bound is 1).
@@ -2023,27 +1908,21 @@ def evaluate_d4_clifton_kent_deficit() -> dict[str, Any]:
     purity_all_four = True
     sylvester_all_negative = True
 
-    # Pre-scale projectors by 4 to operate over exact integers in Z[i]
     int_projectors = [[np.round(4.0 * p).astype(complex) for p in b_projs] for b_projs in projectors]
     eye4_scaled = 4.0 * eye4
 
     for idxs in itertools.product(range(4), repeat=5):
-        # Exact integer matrix A = 4 * rho(v)
         A = sum(int_projectors[b][idxs[b]] for b in range(5)) - eye4_scaled
 
-        # Verify trace is 4 (Tr(rho) == 1)
         tr_A = int(round(np.trace(A).real))
         if tr_A != 4:
             trace_all_one = False
 
-        # Verify purity is 4 (Tr(A^2) == 16 * 4 == 64)
         A2 = A @ A
         purity_A = int(round(np.trace(A2).real))
         if purity_A != 64:
             purity_all_four = False
 
-        # Evaluate 2x2 principal minors of A:
-        # 16 * M_{i, j} = A_{i, i} * A_{j, j} - |A_{i, j}|^2
         has_negative_minor = False
         for i in range(4):
             for j in range(i + 1, 4):

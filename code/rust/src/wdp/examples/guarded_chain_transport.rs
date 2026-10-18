@@ -1,4 +1,3 @@
-//! Bounded proposal and independent verification commands. No authorization.
 use omega_wdp::guarded_chain_transport::{
     propose_transport, verify_transport, TransportProposal, MAX_CERTIFICATE_BYTES,
 };
@@ -58,8 +57,6 @@ fn run() -> Result<serde_json::Value> {
             }
             let digest = hex::encode(Sha256::digest(&bytes));
             if args.len() == 5 {
-                // Never truncate an existing file, including a hard link or
-                // symlink to an input/source file. The caller chooses a new path.
                 let mut output = OpenOptions::new()
                     .write(true)
                     .create_new(true)
@@ -80,8 +77,6 @@ fn run() -> Result<serde_json::Value> {
             }
             let bytes = read_certificate(Path::new(&args[4]))?;
             let digest = hex::encode(Sha256::digest(&bytes));
-            // Serde rejects booleans/floats in integer fields and rejects
-            // duplicate or unknown structure fields via the typed schema.
             let proposal: TransportProposal = serde_json::from_slice(&bytes)?;
             let started = Instant::now();
             let report = verify_transport(pairs, capacity, &proposal)?;

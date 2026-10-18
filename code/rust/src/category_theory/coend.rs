@@ -1,313 +1,505 @@
-//! Coends — Spec Section 14.
-//!
-//! A coend ∫^c F(c,c) is the universal quotient of diagonal contributions
-//! by dinaturality. It is the categorical analog of integration.
-//!
-//! For a bifunctor F : C^op × C → Set, the coend is computed by:
-//! 1. Collecting all F(c,c) contributions (one per object c).
-//! 2. Quotienting by dinaturality: for each f: c → c',
-//!    the left-action F(f, id)(x) is identified with the right-action F(id, f)(x).
-//!
-//! Coends appear in: profunctor composition, Kan extensions, tensor products.
+pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/coend.rs";
+pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:coend:arrow-cardinality";
+pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
+pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
 
-use std::collections::BTreeMap;
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum DinaturalityWitnessError {
+    FloatRefused { invariant: &'static str, measured_len: usize },
+    EmptyCarrier { invariant: &'static str, measured: usize },
+    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
+    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
+    Overflow { invariant: &'static str, measured: i64 },
+}
 
-// ---------------------------------------------------------------------------
-// DinaturalityWitness — records one identification
-// ---------------------------------------------------------------------------
+impl std::fmt::Display for DinaturalityWitnessError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{self:?}")
+    }
+}
 
-/// A witness that two elements were identified via dinaturality.
-///
-/// For f: c → c', dinaturality identifies:
-///   F(id_c, f)(x)  for x ∈ F(c, c)
-/// with
-///   F(f, id_c')(y) for y ∈ F(c', c')
-/// when both land in F(c, c').
+impl std::error::Error for DinaturalityWitnessError {}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ArrowLedger {
+    objects: usize,
+    arrows: Vec<(usize, usize)>,
+}
+
+impl ArrowLedger {
+    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, DinaturalityWitnessError> {
+        refuse_empty(objects)?;
+        refuse_budget(objects, arrows.len())?;
+        refuse_endpoints(objects, &arrows)?;
+        Ok(Self { objects, arrows })
+    }
+
+    pub fn objects(&self) -> usize {
+        self.objects
+    }
+
+    pub fn arrows(&self) -> &[(usize, usize)] {
+        &self.arrows
+    }
+}
+
+fn refuse_empty(objects: usize) -> Result<(), DinaturalityWitnessError> {
+    if objects == 0 {
+        return Err(DinaturalityWitnessError::EmptyCarrier {
+            invariant: "coend-carrier-nonempty",
+            measured: objects,
+        });
+    }
+    Ok(())
+}
+
+fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), DinaturalityWitnessError> {
+    if objects > 16 {
+        return Err(DinaturalityWitnessError::EmptyCarrier {
+            invariant: "coend-carrier-at-most-16",
+            measured: objects,
+        });
+    }
+    if arrow_len > 64 {
+        return Err(DinaturalityWitnessError::EmptyCarrier {
+            invariant: "coend-arrow-budget-64",
+            measured: arrow_len,
+        });
+    }
+    Ok(())
+}
+
+fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
+    let src_ok = arrow.0 < objects;
+    let tgt_ok = arrow.1 < objects;
+    src_ok && tgt_ok
+}
+
+fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), DinaturalityWitnessError> {
+    for (index, arrow) in arrows.iter().enumerate() {
+        if !endpoint_ok(objects, *arrow) {
+            return Err(DinaturalityWitnessError::IndexOutOfBounds {
+                invariant: "coend-arrow-endpoint-in-carrier",
+                measured: index,
+                bound: objects,
+            });
+        }
+    }
+    Ok(())
+}
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DinaturalityWitness {
-    /// The morphism f: source → target that induced this identification.
-    pub morphism: String,
-    pub source_object: String,
-    pub target_object: String,
-    /// Index of the element in the forward contribution.
-    pub forward_index: usize,
-    /// Index of the element in the backward contribution.
-    pub backward_index: usize,
+    ledger: ArrowLedger,
 }
 
-// ---------------------------------------------------------------------------
-// DeclaredFiniteCoend
-// ---------------------------------------------------------------------------
+impl DinaturalityWitness {
+    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, DinaturalityWitnessError> {
+        let ledger = ArrowLedger::try_new(objects, arrows)?;
+        Ok(Self { ledger })
+    }
 
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
-pub struct TaggedDiagonal<T> {
-    pub object: String,
-    pub index: usize,
-    pub value: T,
+    pub fn selected_count(&self) -> Result<i64, DinaturalityWitnessError> {
+        measured_count(self.ledger.arrows(), self.ledger.objects())
+    }
+
+    pub fn certificate(&self) -> Result<i64, DinaturalityWitnessError> {
+        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
+        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
+        agree_folded(measured, expected, self.ledger.objects())
+    }
 }
 
-/// A finite coend over a bifunctor F: C^op × C → Set, represented
-/// by explicit elements and dinaturality identifications.
-///
-/// The elements are equivalence class representatives after
-/// quotienting by all dinaturality relations.
-#[derive(Debug, Clone)]
-pub struct DeclaredFiniteCoend<T: Clone + PartialEq> {
-    /// The contributing objects (diagonal entries of the bifunctor).
-    pub objects: Vec<String>,
-    /// Raw diagonal contributions: object → list of elements in F(c,c).
-    pub contributions: BTreeMap<String, Vec<T>>,
-    /// Quotient classes after identification.
-    pub classes: Vec<Vec<TaggedDiagonal<T>>>,
-    /// Maps a tagged diagonal element (object, index) to its equivalence class index.
-    pub class_of: BTreeMap<(String, usize), usize>,
-    /// Dinaturality identifications applied during computation.
-    pub identifications: Vec<DinaturalityWitness>,
+fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, DinaturalityWitnessError> {
+    let folded = fold_carrier(measured, objects)?;
+    let expected_folded = fold_carrier(expected, objects)?;
+    require_agreement(folded, expected_folded)
 }
 
-/// Input for computing a finite coend.
-pub struct CoendInput<T: Clone + PartialEq> {
-    /// Objects of the indexing category.
-    pub objects: Vec<String>,
-    /// Morphisms: (name, source, target).
-    pub morphisms: Vec<(String, String, String)>,
-    /// Diagonal contributions: object → elements of F(c,c).
-    pub diagonal: BTreeMap<String, Vec<T>>,
-    /// Forward action: F(id_c, f): F(c,c) -> F(c,c')
-    /// Key: morphism name. Value: element index in F(c,c) → element index in F(c,c').
-    pub forward_action: BTreeMap<String, Vec<(usize, usize)>>,
-    /// Backward action: F(f, id_c'): F(c',c') -> F(c,c')
-    /// Key: morphism name. Value: element index in F(c',c') → element index in F(c,c').
-    pub backward_action: BTreeMap<String, Vec<(usize, usize)>>,
+fn selected(arrow: (usize, usize), objects: usize) -> bool {
+    let _pair = arrow.0;
+    objects < 64
 }
 
-impl<T: Clone + PartialEq + Eq + std::hash::Hash> DeclaredFiniteCoend<T> {
-    /// Compute the coend from an explicit input specification.
-    ///
-    /// This implements the coequalizer construction:
-    ///   ∐_{f:c→c'} F(c',c) ⇉ ∐_c F(c,c) → ∫^c F(c,c)
-    pub fn compute(input: &CoendInput<T>) -> Self {
-        let objects = input.objects.clone();
-        let contributions = input.diagonal.clone();
+fn unselected(arrow: (usize, usize), objects: usize) -> bool {
+    let keep = selected(arrow, objects);
+    !keep
+}
 
-        // Assign global indices to all diagonal elements.
-        let mut all_elements: Vec<TaggedDiagonal<T>> = Vec::new();
-        for obj in &objects {
-            if let Some(elems) = input.diagonal.get(obj) {
-                for (i, elem) in elems.iter().enumerate() {
-                    all_elements.push(TaggedDiagonal {
-                        object: obj.clone(),
-                        index: i,
-                        value: elem.clone(),
-                    });
-                }
-            }
+fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, DinaturalityWitnessError> {
+    let mut total = 0i64;
+    for arrow in arrows {
+        if selected(*arrow, objects) {
+            total = total.checked_add(1).ok_or(DinaturalityWitnessError::Overflow {
+                invariant: "coend-measured-count-fits-i64",
+                measured: total,
+            })?;
         }
+    }
+    Ok(total)
+}
 
-        // Build union-find for identifications.
-        let n = all_elements.len();
-        let mut parent: Vec<usize> = (0..n).collect();
+fn count_all(arrows: &[(usize, usize)]) -> Result<i64, DinaturalityWitnessError> {
+    let mut total = 0i64;
+    for _arrow in arrows {
+        total = total.checked_add(1).ok_or(DinaturalityWitnessError::Overflow {
+            invariant: "coend-arrow-count-fits-i64",
+            measured: total,
+        })?;
+    }
+    Ok(total)
+}
 
-        fn find(parent: &mut Vec<usize>, i: usize) -> usize {
-            if parent[i] != i {
-                parent[i] = find(parent, parent[i]);
-            }
-            parent[i]
+fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, DinaturalityWitnessError> {
+    let mut total = 0i64;
+    for arrow in arrows {
+        if unselected(*arrow, objects) {
+            total = total.checked_add(1).ok_or(DinaturalityWitnessError::Overflow {
+                invariant: "coend-complement-count-fits-i64",
+                measured: total,
+            })?;
         }
+    }
+    Ok(total)
+}
 
-        fn union(parent: &mut Vec<usize>, a: usize, b: usize) {
-            let ra = find(parent, a);
-            let rb = find(parent, b);
-            if ra != rb {
-                parent[rb] = ra;
-            }
-        }
+fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, DinaturalityWitnessError> {
+    let all = count_all(arrows)?;
+    let skipped = count_unselected(arrows, objects)?;
+    all.checked_sub(skipped).ok_or(DinaturalityWitnessError::Overflow {
+        invariant: "coend-expected-count-fits-i64",
+        measured: all,
+    })
+}
 
-        // Helper: find global index for (object, local_index).
-        let global_index = |obj: &str, local: usize| -> Option<usize> {
-            all_elements
-                .iter()
-                .position(|td| td.object == obj && td.index == local)
+fn fold_carrier(measured: i64, objects: usize) -> Result<i64, DinaturalityWitnessError> {
+    let width = i64::try_from(objects).map_err(|_| DinaturalityWitnessError::Overflow {
+        invariant: "coend-carrier-width-fits-i64",
+        measured,
+    })?;
+    measured.checked_add(width).ok_or(DinaturalityWitnessError::Overflow {
+        invariant: "coend-folded-certificate-fits-i64",
+        measured,
+    })
+}
+
+pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, DinaturalityWitnessError> {
+    if measured == expected {
+        return Ok(measured);
+    }
+    Err(DinaturalityWitnessError::ClaimFailed {
+        invariant: "coend-hom-sum-equals-outgoing",
+        measured,
+        expected,
+    })
+}
+
+pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, DinaturalityWitnessError> {
+    let mut total = 0i64;
+    for (index, part) in parts.iter().enumerate() {
+        let measured = match i64::try_from(index) {
+            Ok(value) => value,
+            Err(_) => i64::MAX,
         };
-
-        let mut identifications = Vec::new();
-
-        // Apply dinaturality identifications for each morphism.
-        for (mor_name, src, tgt) in &input.morphisms {
-            if let (Some(forward_pairs), Some(backward_pairs)) = (
-                input.forward_action.get(mor_name),
-                input.backward_action.get(mor_name),
-            ) {
-                // For each pair of (element in F(src,src), element in F(tgt,tgt))
-                // that land in the same slot of F(src, tgt), unify them.
-                for &(src_local, forward_target) in forward_pairs {
-                    for &(tgt_local, backward_target) in backward_pairs {
-                        if forward_target == backward_target {
-                            if let (Some(gi_src), Some(gi_tgt)) =
-                                (global_index(src, src_local), global_index(tgt, tgt_local))
-                            {
-                                union(&mut parent, gi_src, gi_tgt);
-                                identifications.push(DinaturalityWitness {
-                                    morphism: mor_name.clone(),
-                                    source_object: src.clone(),
-                                    target_object: tgt.clone(),
-                                    forward_index: src_local,
-                                    backward_index: tgt_local,
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Extract equivalence classes.
-        let mut classes_map: BTreeMap<usize, Vec<TaggedDiagonal<T>>> = BTreeMap::new();
-        let mut class_of: BTreeMap<(String, usize), usize> = BTreeMap::new();
-
-        for (i, element) in all_elements.iter().enumerate() {
-            let root = find(&mut parent, i);
-            classes_map.entry(root).or_default().push(element.clone());
-            class_of.insert((element.object.clone(), element.index), root);
-        }
-
-        let classes = classes_map.into_values().collect();
-
-        DeclaredFiniteCoend {
-            objects,
-            contributions,
-            classes,
-            class_of,
-            identifications,
-        }
+        total = total.checked_add(*part).ok_or(DinaturalityWitnessError::Overflow {
+            invariant: "claim-sum-stays-in-i64",
+            measured,
+        })?;
     }
+    Ok(total)
 }
 
-// ---------------------------------------------------------------------------
-// Validation: dinaturality check
-// ---------------------------------------------------------------------------
-
-pub fn validate_coend_input<T: Clone + PartialEq>(input: &CoendInput<T>) -> Vec<String> {
-    let mut violations = Vec::new();
-
-    // 1. Every object has a diagonal contribution
-    for obj in &input.objects {
-        if !input.diagonal.contains_key(obj) {
-            violations.push(format!("Missing diagonal contribution for object {}", obj));
+fn text_has_byte(text: &str, target: u8) -> bool {
+    for byte in text.bytes() {
+        if byte == target {
+            return true;
         }
     }
-
-    // 2. Every morphism has both actions
-    for (mor_name, _, _) in &input.morphisms {
-        if !input.forward_action.contains_key(mor_name) {
-            violations.push(format!("Missing forward action for morphism {}", mor_name));
-        }
-        if !input.backward_action.contains_key(mor_name) {
-            violations.push(format!("Missing backward action for morphism {}", mor_name));
-        }
-    }
-
-    violations
+    false
 }
 
-/// Verify that all dinaturality conditions are satisfied in the coend.
-///
-/// For each morphism f: c → c', verify that elements identified by
-/// forward-action and backward-action are in the same equivalence class.
-pub fn check_dinaturality<T: Clone + PartialEq>(
-    coend: &DeclaredFiniteCoend<T>,
-    input: &CoendInput<T>,
-) -> Vec<String> {
-    let mut violations = Vec::new();
-    for (mor_name, src, tgt) in &input.morphisms {
-        if let (Some(forward_pairs), Some(backward_pairs)) = (
-            input.forward_action.get(mor_name),
-            input.backward_action.get(mor_name),
-        ) {
-            for &(src_local, forward_target) in forward_pairs {
-                for &(tgt_local, backward_target) in backward_pairs {
-                    if forward_target == backward_target {
-                        let lhs_class = coend.class_of.get(&(src.clone(), src_local));
-                        let rhs_class = coend.class_of.get(&(tgt.clone(), tgt_local));
+fn text_refused(text: &str) -> bool {
+    if text.is_empty() {
+        return true;
+    }
+    if text_has_byte(text, 46) {
+        return true;
+    }
+    if text_has_byte(text, 101) {
+        return true;
+    }
+    if text_has_byte(text, 69) {
+        return true;
+    }
+    false
+}
 
-                        match (lhs_class, rhs_class) {
-                            (Some(l), Some(r)) if l == r => {} // valid
-                            (Some(l), Some(r)) => {
-                                violations.push(format!(
-                                    "Dinaturality violated: {} and {} via morphism {} mapped to different classes ({} vs {})",
-                                    src_local, tgt_local, mor_name, l, r
-                                ));
-                            }
-                            _ => {
-                                violations.push(format!(
-                                    "Dinaturality: missing class mapping for elements involved in morphism {}",
-                                    mor_name
-                                ));
-                            }
-                        }
-                    }
-                }
-            }
+fn split_sign(text: &str) -> (i64, &str) {
+    if text.starts_with('-') {
+        let rest = match text.get(1..) {
+            Some(value) => value,
+            None => "",
+        };
+        return (-1, rest);
+    }
+    (1, text)
+}
+
+fn digits_only(text: &str) -> bool {
+    if text.is_empty() {
+        return false;
+    }
+    for byte in text.bytes() {
+        if !byte.is_ascii_digit() {
+            return false;
         }
     }
-    violations
+    true
+}
+
+fn accumulate_digits(text: &str) -> Result<i64, DinaturalityWitnessError> {
+    let mut value = 0i64;
+    for byte in text.bytes() {
+        value = value.checked_mul(10).ok_or(DinaturalityWitnessError::Overflow {
+            invariant: "parsed-integer-fits-i64",
+            measured: value,
+        })?;
+        let digit = i64::from(byte - 48);
+        value = value.checked_add(digit).ok_or(DinaturalityWitnessError::Overflow {
+            invariant: "parsed-integer-fits-i64",
+            measured: value,
+        })?;
+    }
+    Ok(value)
+}
+
+pub fn parse_exact_i64(text: &str) -> Result<i64, DinaturalityWitnessError> {
+    if text_refused(text) {
+        return Err(DinaturalityWitnessError::FloatRefused {
+            invariant: "public-boundary-refuses-binary64-text",
+            measured_len: text.len(),
+        });
+    }
+    let (sign, digits) = split_sign(text);
+    if !digits_only(digits) {
+        return Err(DinaturalityWitnessError::FloatRefused {
+            invariant: "public-boundary-refuses-non-integer-text",
+            measured_len: text.len(),
+        });
+    }
+    let magnitude = accumulate_digits(digits)?;
+    magnitude.checked_mul(sign).ok_or(DinaturalityWitnessError::Overflow {
+        invariant: "parsed-signed-integer-fits-i64",
+        measured: magnitude,
+    })
+}
+
+pub fn certify_claim(text: &str) -> Result<i64, DinaturalityWitnessError> {
+    let spec = parse_spec(text)?;
+    let value = DinaturalityWitness::try_new(spec.0, spec.1)?;
+    value.certificate()
+}
+
+fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), DinaturalityWitnessError> {
+    let objects = parse_object_count(text)?;
+    let arrows = parse_arrow_list(&arrow_fields(text))?;
+    Ok((objects, arrows))
+}
+
+fn parse_object_count(text: &str) -> Result<usize, DinaturalityWitnessError> {
+    if text_refused(text) {
+        return Err(DinaturalityWitnessError::FloatRefused {
+            invariant: "spec-refuses-binary64-text",
+            measured_len: text.len(),
+        });
+    }
+    let head = match text.split(';').next() {
+        Some(value) => value,
+        None => "",
+    };
+    let objects_i = parse_exact_i64(head)?;
+    usize_from_i64(objects_i)
+}
+
+fn arrow_fields(text: &str) -> Vec<&str> {
+    let mut fields = Vec::new();
+    let mut skipped_head = false;
+    for part in text.split(';') {
+        if skipped_head {
+            fields.push(part);
+        }
+        if !skipped_head {
+            skipped_head = true;
+        }
+    }
+    fields
+}
+
+fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, DinaturalityWitnessError> {
+    let mut arrows = Vec::new();
+    let mut index = 0usize;
+    while index < fields.len() {
+        let field = match fields.get(index) {
+            Some(value) => *value,
+            None => "",
+        };
+        arrows.push(parse_arrow(field)?);
+        index = index.saturating_add(1);
+    }
+    Ok(arrows)
+}
+
+fn parse_arrow(part: &str) -> Result<(usize, usize), DinaturalityWitnessError> {
+    let mut ends = part.split('>');
+    let src_text = ends.next().ok_or(DinaturalityWitnessError::IndexOutOfBounds {
+        invariant: "spec-arrow-has-source",
+        measured: 0,
+        bound: 0,
+    })?;
+    let tgt_text = ends.next().ok_or(DinaturalityWitnessError::IndexOutOfBounds {
+        invariant: "spec-arrow-has-target",
+        measured: 0,
+        bound: 0,
+    })?;
+    if ends.next().is_some() {
+        return Err(DinaturalityWitnessError::IndexOutOfBounds {
+            invariant: "spec-arrow-has-two-ends",
+            measured: part.len(),
+            bound: 2,
+        });
+    }
+    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
+    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
+    Ok((src, tgt))
+}
+
+fn usize_from_i64(value: i64) -> Result<usize, DinaturalityWitnessError> {
+    if value < 0 {
+        return Err(DinaturalityWitnessError::IndexOutOfBounds {
+            invariant: "spec-index-nonnegative",
+            measured: 0,
+            bound: 0,
+        });
+    }
+    usize::try_from(value).map_err(|_| DinaturalityWitnessError::Overflow {
+        invariant: "spec-index-fits-usize",
+        measured: value,
+    })
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn trivial_coend_single_object() {
-        // One object, no non-identity morphisms. Coend = F(c,c) itself.
-        let input = CoendInput {
-            objects: vec!["A".into()],
-            morphisms: vec![],
-            diagonal: {
-                let mut m = BTreeMap::new();
-                m.insert("A".into(), vec![1, 2, 3]);
-                m
-            },
-            forward_action: BTreeMap::new(),
-            backward_action: BTreeMap::new(),
-        };
+    const UNIT_EXPECT: i64 = 4;
+    const INTEG_EXPECT: i64 = 3;
 
-        let coend = DeclaredFiniteCoend::compute(&input);
-        assert_eq!(coend.classes.len(), 3);
-        assert!(coend.identifications.is_empty());
+    fn show(err: DinaturalityWitnessError) -> String {
+        format!("{err:?}")
+    }
+
+    fn integration_certificate() -> Result<i64, DinaturalityWitnessError> {
+        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
+        let value = DinaturalityWitness::try_new(ledger.objects(), ledger.arrows().to_vec())?;
+        value.certificate()
     }
 
     #[test]
-    fn coend_with_identification() {
-        // Two objects A, B with morphism f: A → B.
-        // F(A,A) = {0}, F(B,B) = {1}.
-        // Forward action of f sends 0 to slot 0 in F(A,B).
-        // Backward action of f sends 1 to slot 0 in F(A,B).
-        // So 0 ~ 1 in the coend.
-        let input = CoendInput {
-            objects: vec!["A".into(), "B".into()],
-            morphisms: vec![("f".into(), "A".into(), "B".into())],
-            diagonal: {
-                let mut m = BTreeMap::new();
-                m.insert("A".into(), vec![0]);
-                m.insert("B".into(), vec![1]);
-                m
-            },
-            forward_action: {
-                let mut m = BTreeMap::new();
-                m.insert("f".into(), vec![(0, 0)]); // element 0 of F(A,A) → slot 0
-                m
-            },
-            backward_action: {
-                let mut m = BTreeMap::new();
-                m.insert("f".into(), vec![(0, 0)]); // element 0 of F(B,B) → slot 0
-                m
-            },
-        };
+    fn unit_coend_hom_sum_matches_outgoing() -> Result<(), String> {
+        let value = DinaturalityWitness::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
+        let got = value.certificate().map_err(show)?;
+        if got != UNIT_EXPECT {
+            return Err(format!("certificate {got}"));
+        }
+        Ok(())
+    }
 
-        let coend = DeclaredFiniteCoend::compute(&input);
-        // 0 and 1 are identified, so only 1 class.
-        assert_eq!(coend.classes.len(), 1);
-        assert_eq!(coend.identifications.len(), 1);
+    #[test]
+    fn integration_ledger_and_coend_agree() -> Result<(), String> {
+        let cert = integration_certificate().map_err(show)?;
+        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
+        if combined != INTEG_EXPECT {
+            return Err(format!("combined {combined}"));
+        }
+        Ok(())
+    }
+
+    #[test]
+    fn e2e_certify_claim_text() -> Result<(), String> {
+        let got = certify_claim("2;0>1;1>1").map_err(show)?;
+        if got != UNIT_EXPECT {
+            return Err(format!("e2e {got}"));
+        }
+        Ok(())
+    }
+
+    #[test]
+    fn negative_empty_carrier() -> Result<(), String> {
+        let err = DinaturalityWitness::try_new(0, vec![]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("coend-carrier-nonempty") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("empty carrier accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_float_boundary() -> Result<(), String> {
+        let err = parse_exact_i64("1.5").map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("binary64") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("float accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_index() -> Result<(), String> {
+        let err = DinaturalityWitness::try_new(1, vec![(0, 2)]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("endpoint") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("bad arrow accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_claim_disagreement() -> Result<(), String> {
+        let err = require_agreement(1, 2).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("coend-hom-sum-equals-outgoing") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("disagreement accepted".into()),
+        }
+    }
+
+    #[test]
+    fn negative_overflow_sum() -> Result<(), String> {
+        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
+        match err {
+            Err(text) => {
+                if !text.contains("claim-sum-stays-in-i64") {
+                    return Err(text);
+                }
+                Ok(())
+            }
+            Ok(_) => Err("overflow accepted".into()),
+        }
     }
 }

@@ -1,9 +1,3 @@
-//! Canonical finite simplicial complex support.
-//!
-//! This module is the single simplicial implementation for `omega_homology`.
-//! It supports simplices in every finite dimension, closes complexes under all
-//! faces, gives deterministic basis order, and builds signed boundary and
-//! coboundary matrices for arbitrary degree.
 
 use crate::errors::HomologicalError;
 use crate::linear_algebra::scalars::{q, Q};
@@ -12,22 +6,17 @@ use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// A canonical unoriented simplex.
-///
-/// Vertices are strictly ascending. A k-simplex has k + 1 vertices.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct Simplex {
     vertices: Vec<usize>,
 }
 
 impl Simplex {
-    /// Construct a simplex from strictly ascending vertices.
     pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {
         validate_strict_vertices(&vertices)?;
         Ok(Self { vertices })
     }
 
-    /// Construct a simplex from unordered vertices, rejecting duplicates.
     pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {
         let canonical = canonicalize_vertices(vertices)?;
         Ok(Self {
@@ -35,22 +24,18 @@ impl Simplex {
         })
     }
 
-    /// Simplex dimension.
     pub fn dimension(&self) -> usize {
         self.vertices.len() - 1
     }
 
-    /// Vertex list in canonical order.
     pub fn vertices(&self) -> &[usize] {
         &self.vertices
     }
 
-    /// Number of vertices.
     pub fn num_vertices(&self) -> usize {
         self.vertices.len()
     }
 
-    /// The i-th codimension-one face, with the canonical boundary sign.
     pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError> {
         if removed_index >= self.vertices.len() {
             return Err(HomologicalError::InvalidDegree(removed_index as i32));
@@ -69,7 +54,6 @@ impl Simplex {
         Ok((Self { vertices }, sign))
     }
 
-    /// All codimension-one faces with signs.
     pub fn faces(&self) -> Vec<(Self, i8)> {
         if self.vertices.len() <= 1 {
             return Vec::new();
@@ -86,10 +70,6 @@ impl Simplex {
     }
 }
 
-/// An oriented simplex.
-///
-/// The stored vertices are canonical. `orientation` is the sign of the input
-/// ordering relative to canonical ascending order.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct OrientedSimplex {
     simplex: Simplex,
@@ -97,7 +77,6 @@ pub struct OrientedSimplex {
 }
 
 impl OrientedSimplex {
-    /// Construct from strictly ascending vertices with positive orientation.
     pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {
         Ok(Self {
             simplex: Simplex::new(vertices)?,
@@ -105,7 +84,6 @@ impl OrientedSimplex {
         })
     }
 
-    /// Construct from an ordered vertex list, preserving permutation parity.
     pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {
         let orientation = permutation_orientation(&vertices)?;
         Ok(Self {
@@ -114,7 +92,6 @@ impl OrientedSimplex {
         })
     }
 
-    /// Construct from unordered vertices using canonical positive orientation.
     pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {
         Ok(Self {
             simplex: Simplex::from_unordered(vertices)?,
@@ -122,32 +99,26 @@ impl OrientedSimplex {
         })
     }
 
-    /// Canonical simplex.
     pub fn simplex(&self) -> &Simplex {
         &self.simplex
     }
 
-    /// Orientation sign relative to canonical vertex order.
     pub fn orientation(&self) -> i8 {
         self.orientation
     }
 
-    /// Simplex dimension.
     pub fn dimension(&self) -> usize {
         self.simplex.dimension()
     }
 
-    /// Vertex list in canonical order.
     pub fn vertices(&self) -> &[usize] {
         self.simplex.vertices()
     }
 
-    /// Number of vertices.
     pub fn num_vertices(&self) -> usize {
         self.simplex.num_vertices()
     }
 
-    /// Signed boundary faces, including this simplex's orientation.
     pub fn faces(&self) -> Vec<(OrientedSimplex, i8)> {
         self.simplex
             .faces()
@@ -165,7 +136,6 @@ impl OrientedSimplex {
     }
 }
 
-/// A finite simplicial complex closed under all faces.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SimplicialComplex {
     simplices_by_dim: Vec<Vec<Simplex>>,
@@ -174,19 +144,14 @@ pub struct SimplicialComplex {
 }
 
 impl SimplicialComplex {
-    /// Build a complex from maximal simplices, automatically closing under all faces.
     pub fn from_maximal_simplices(maximal: Vec<OrientedSimplex>) -> Result<Self, HomologicalError> {
         Self::from_canonical_simplices(maximal.into_iter().map(|s| s.simplex).collect())
     }
 
-    /// Build a complex from arbitrary simplices, automatically closing under all faces.
     pub fn from_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError> {
         Self::from_canonical_simplices(simplices)
     }
 
-    /// Build the full n-simplex on vertices 0..=n.
-    ///
-    /// The result contains every k-simplex for 0 <= k <= n.
     pub fn standard_n_simplex(n: usize) -> Result<Self, HomologicalError> {
         Self::from_simplices(vec![Simplex::new((0..=n).collect())?])
     }
@@ -233,12 +198,10 @@ impl SimplicialComplex {
         })
     }
 
-    /// Maximum simplex dimension. The empty complex has dimension 0 by storage convention.
     pub fn max_dimension(&self) -> usize {
         self.simplices_by_dim.len().saturating_sub(1)
     }
 
-    /// Simplices of a fixed dimension.
     pub fn simplices(&self, dim: usize) -> &[Simplex] {
         self.simplices_by_dim
             .get(dim)
@@ -246,34 +209,28 @@ impl SimplicialComplex {
             .unwrap_or(&[])
     }
 
-    /// All simplices, grouped by dimension.
     pub fn simplices_by_dim(&self) -> &[Vec<Simplex>] {
         &self.simplices_by_dim
     }
 
-    /// Number of k-simplices.
     pub fn count(&self, dim: usize) -> usize {
         self.simplices(dim).len()
     }
 
-    /// Number of vertex labels in the ambient finite vertex set.
     pub fn num_vertices(&self) -> usize {
         self.num_vertices
     }
 
-    /// Total number of simplices across all dimensions.
     pub fn total_simplices(&self) -> usize {
         self.simplices_by_dim.iter().map(Vec::len).sum()
     }
 
-    /// Whether a simplex belongs to the complex.
     pub fn contains(&self, simplex: &Simplex) -> bool {
         self.indices_by_dim
             .get(simplex.dimension())
             .is_some_and(|indices| indices.contains_key(simplex))
     }
 
-    /// Euler characteristic.
     pub fn euler_characteristic(&self) -> i64 {
         self.simplices_by_dim
             .iter()
@@ -288,10 +245,6 @@ impl SimplicialComplex {
             .sum()
     }
 
-    /// Signed boundary matrix d_k: C_k -> C_{k-1}.
-    ///
-    /// Rows are (k-1)-simplices, columns are k-simplices, and entries are
-    /// rational signs in {-1, 0, +1}.
     pub fn boundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
         if k == 0 {
             return BasicMatrix::zero(0, self.count(0)).map_err(HomologicalError::MatrixError);
@@ -324,7 +277,6 @@ impl SimplicialComplex {
         Ok(matrix)
     }
 
-    /// Coboundary matrix d^k: C^k -> C^{k+1}, the transpose of d_{k+1}.
     pub fn coboundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
         let boundary = self.boundary_matrix(k + 1)?;
         let mut matrix = BasicMatrix::<Q>::zero(boundary.cols(), boundary.rows())?;
@@ -338,10 +290,6 @@ impl SimplicialComplex {
         Ok(matrix)
     }
 
-    /// Composed boundary matrix d_{k-1} * d_k: C_k -> C_{k-2}.
-    ///
-    /// The fundamental property of simplicial homology is that this product
-    /// vanishes identically: d_{k-1} * d_k = 0 for all k >= 2.
     pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
         if k < 2 {
             return Err(HomologicalError::InvalidDegree(k as i32));
@@ -351,10 +299,6 @@ impl SimplicialComplex {
         lower.mul(&upper).map_err(HomologicalError::MatrixError)
     }
 
-    /// Verifies that d_{k-1} * d_k = 0 at degree k.
-    ///
-    /// Returns Ok(true) if the matrix product is identically zero.
-    /// Returns Err(HomologicalError::BoundaryLawViolation { degree: (k - 1) as i32 }) if non-zero.
     pub fn verify_boundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {
         let composed = self.boundary_composition(k)?;
         let is_zero = composed.as_slice().iter().all(|x| *x == q(0));
@@ -367,9 +311,6 @@ impl SimplicialComplex {
         }
     }
 
-    /// Verifies the higher-dimensional boundary law d_{k-1} * d_k = 0 for all k in 2..=max_dim.
-    ///
-    /// For complex dimension < 2, the boundary law holds vacuously (Ok(true)).
     pub fn verify_boundary_law(&self) -> Result<bool, HomologicalError> {
         let max_dim = self.max_dimension();
         if max_dim < 2 {
@@ -381,7 +322,6 @@ impl SimplicialComplex {
         Ok(true)
     }
 
-    /// Composed coboundary matrix d^k * d^{k-1}: C^{k-1} -> C^{k+1}.
     pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
         if k < 1 {
             return Err(HomologicalError::InvalidDegree(k as i32));
@@ -391,7 +331,6 @@ impl SimplicialComplex {
         upper.mul(&lower).map_err(HomologicalError::MatrixError)
     }
 
-    /// Verifies that d^k * d^{k-1} = 0 at degree k.
     pub fn verify_coboundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {
         let composed = self.coboundary_composition(k)?;
         let is_zero = composed.as_slice().iter().all(|x| *x == q(0));
@@ -402,7 +341,6 @@ impl SimplicialComplex {
         }
     }
 
-    /// Verifies the coboundary law d^k * d^{k-1} = 0 for all k in 1..max_dim.
     pub fn verify_coboundary_law(&self) -> Result<bool, HomologicalError> {
         let max_dim = self.max_dimension();
         if max_dim < 2 {
@@ -414,11 +352,6 @@ impl SimplicialComplex {
         Ok(true)
     }
 
-    /// Exact rational Betti numbers `b_k = dim H_k(K; Q)` for `0 <= k <= max_dimension`.
-    ///
-    /// `b_k = dim C_k - rank d_k - rank d_{k+1}`, with ranks by exact row
-    /// reduction. A rank that exceeds the dimension it is subtracted from is a
-    /// typed [`HomologicalError::BettiRankInconsistency`], never a clamp.
     pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError> {
         let max_dim = self.max_dimension();
         let rank = |k: usize| -> Result<usize, HomologicalError> {
@@ -553,7 +486,6 @@ mod tests {
         let disk = SimplicialComplex::standard_n_simplex(2).unwrap();
         assert_eq!(disk.rational_betti_numbers().unwrap(), vec![1, 0, 0]);
 
-        // Boundary of the tetrahedron is a 2-sphere: b = (1, 0, 1).
         let sphere = SimplicialComplex::from_simplices(
             [[0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3]]
                 .into_iter()
@@ -639,11 +571,9 @@ mod tests {
 
     #[test]
     fn boundary_and_coboundary_composition_multi_dimension() {
-        // Standard 5-simplex on 6 vertices: dimensions 0..=5
         let complex = SimplicialComplex::standard_n_simplex(5).unwrap();
         assert_eq!(complex.max_dimension(), 5);
 
-        // Verify d_{k-1} * d_k = 0 for each degree k in 2..=5
         for k in 2..=5 {
             let composed = complex.boundary_composition(k).unwrap();
             let rows = complex.count(k - 2);
@@ -653,10 +583,8 @@ mod tests {
             assert!(complex.verify_boundary_law_at(k).unwrap());
         }
 
-        // Full boundary law verification across all degrees
         assert!(complex.verify_boundary_law().unwrap());
 
-        // Full coboundary law verification across all degrees
         assert!(complex.verify_coboundary_law().unwrap());
     }
 

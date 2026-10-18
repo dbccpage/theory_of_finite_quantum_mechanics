@@ -1,9 +1,3 @@
-//! HARD invariant battery for repair-capacity / LGGR / packet-wall demos.
-//!
-//! These tests are deliberately intolerant of soft ORs and false greens.
-//! If any of the eight invariants is broken, this module must fail the suite.
-//!
-//! AuthorityEffect: None (diagnostic only).
 
 #[cfg(test)]
 mod hard {
@@ -30,9 +24,6 @@ mod hard {
         ]
     }
 
-    // -------------------------------------------------------------------------
-    // 1. d1 d0 = 0 still required
-    // -------------------------------------------------------------------------
 
     #[test]
     fn inv1_all_stock_complexes_satisfy_d1_d0_zero() {
@@ -69,9 +60,6 @@ mod hard {
         );
     }
 
-    // -------------------------------------------------------------------------
-    // 2. On surface_grid_2x2_torus: exists ClosedResidual with authority_effect None
-    // -------------------------------------------------------------------------
 
     #[test]
     fn inv2_torus_exhibits_closed_residual_auth_none() {
@@ -84,7 +72,6 @@ mod hard {
         ] {
             let cert = Gf2CocycleClassifier::classify(&c.d0, &c.d1, &omega)
                 .unwrap_or_else(|e| panic!("INV2 FAIL: terminalize {label}: {e}"));
-            // HARD: exact status, no soft OR with Exact
             assert_eq!(
                 cert.status,
                 GF2ScheduleStatus::ClosedResidual,
@@ -103,13 +90,9 @@ mod hard {
         assert_eq!(wall.authority_effect, "None");
     }
 
-    // -------------------------------------------------------------------------
-    // 3. If homology distance d is computed: t = floor((d-1)/2) and t < d/2
-    // -------------------------------------------------------------------------
 
     #[test]
     fn inv3_repair_capacity_matches_a_hand_table() {
-        // Kills: t = d/2 and t = d.saturating_sub(1) with the division removed.
         for (d, t) in [
             (0usize, 0usize),
             (1, 0),
@@ -130,16 +113,12 @@ mod hard {
             homology_distance(&c).unwrap_or_else(|e| panic!("INV3 FAIL: homology_distance: {e}"));
         let d = rec.d.expect("INV3 FAIL: torus must compute a finite d");
         let t = rec.t.expect("INV3 FAIL: t must be present when d is");
-        // Known CODE_DEMO: d=2 ⇒ t=0 on this toy. Not recomputed as floor((d-1)/2).
         assert_eq!(d, 2);
         assert_eq!(t, 0);
         let rep = rec.min_weight_representative.expect("a weight-2 class");
         assert_eq!(rep.iter().filter(|&&b| b == 1).count(), 2);
     }
 
-    // -------------------------------------------------------------------------
-    // 4. LGGR: syndrome all-zero (d1 ω = 0) AND status ClosedResidual
-    // -------------------------------------------------------------------------
 
     #[test]
     fn inv4_lggr_local_green_global_red_on_torus() {
@@ -160,7 +139,6 @@ mod hard {
                 "INV4 FAIL: {label} face syndrome not all-zero"
             );
 
-            // HARD: exact ClosedResidual — not Exact, not Open, no soft OR
             assert_eq!(
                 w.schedule_status,
                 GF2ScheduleStatus::ClosedResidual,
@@ -191,9 +169,6 @@ mod hard {
         );
     }
 
-    // -------------------------------------------------------------------------
-    // 5. Weight-0 always Exact
-    // -------------------------------------------------------------------------
 
     #[test]
     fn inv5_weight_zero_always_exact_on_all_stock() {
@@ -220,9 +195,6 @@ mod hard {
         }
     }
 
-    // -------------------------------------------------------------------------
-    // 6. Single-edge on torus/planar is OpenObstruction (detectable)
-    // -------------------------------------------------------------------------
 
     #[test]
     fn inv6_single_edge_open_on_torus_and_planar() {
@@ -250,13 +222,9 @@ mod hard {
         }
     }
 
-    // -------------------------------------------------------------------------
-    // 7. Receipt never has authority_effect other than "None"
-    // -------------------------------------------------------------------------
 
     #[test]
     fn inv7_every_receipt_authority_effect_is_exactly_none() {
-        // Kills: swapping Exact, ClosedResidual, and OpenObstruction while authority stays None.
         let planar = surface_grid_2x2_planar();
         let torus = surface_grid_2x2_torus();
         let cases: Vec<(
@@ -393,9 +361,6 @@ mod hard {
         );
     }
 
-    // -------------------------------------------------------------------------
-    // 8. Incomplete packet refuses
-    // -------------------------------------------------------------------------
 
     #[test]
     fn inv8_incomplete_packet_refuses() {
@@ -435,7 +400,6 @@ mod hard {
         assert_eq!(r3.terminal, PacketWallTerminal::IncompleteRefusal);
         assert_eq!(r3.authority_effect, "None");
 
-        // Complete admits with Auth=None (positive control)
         let ok = terminalize_packet(&ToyRepairPacket::complete(
             triangle(),
             exact_syndrome_example(),

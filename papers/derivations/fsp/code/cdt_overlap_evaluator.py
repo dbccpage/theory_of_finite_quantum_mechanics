@@ -32,22 +32,17 @@ class DiracAlgebra4D:
     """Standard 4D Dirac gamma matrices and chiral matrix gamma_5."""
 
     def __init__(self):
-        # Pauli matrices
         sigma_1 = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex)
         sigma_2 = np.array([[0.0, -1.0j], [1.0j, 0.0]], dtype=complex)
         sigma_3 = np.array([[1.0, 0.0], [0.0, -1.0]], dtype=complex)
         i_2 = np.eye(2, dtype=complex)
         zero_2 = np.zeros((2, 2), dtype=complex)
 
-        # Chiral (Weyl) basis:
-        # gamma^0 = [[0, I], [I, 0]]
-        # gamma^k = [[0, sigma_k], [-sigma_k, 0]]
         self.gamma_0 = np.block([[zero_2, i_2], [i_2, zero_2]])
         self.gamma_1 = np.block([[zero_2, sigma_1], [-sigma_1, zero_2]])
         self.gamma_2 = np.block([[zero_2, sigma_2], [-sigma_2, zero_2]])
         self.gamma_3 = np.block([[zero_2, sigma_3], [-sigma_3, zero_2]])
 
-        # gamma_5 = i gamma^0 gamma^1 gamma^2 gamma^3 = [[-I, 0], [0, I]]
         self.gamma_5 = np.block([[-i_2, zero_2], [zero_2, i_2]])
 
         self.gammas = [self.gamma_0, self.gamma_1, self.gamma_2, self.gamma_3]
@@ -57,7 +52,7 @@ class DiracAlgebra4D:
 class SimplicialComplexGraph:
     """Graph structure of a simplicial complex for fermion propagation."""
     complex_id: str
-    geometry_type: str  # 'REGULAR_GAPPED' or 'SINGULAR_GAPLESS'
+    geometry_type: str
     num_vertices: int
     edges: List[Tuple[int, int]]
     edge_vectors: Dict[Tuple[int, int], np.ndarray] = field(default_factory=dict)
@@ -85,13 +80,11 @@ class CdtOverlapDiracEvaluator:
         self, complex_id: str = "cdt_gapped_01", num_vertices: int = 6
     ) -> SimplicialComplexGraph:
         """Constructs a regular, highly connected CDT sandwich complex with open spectral gap."""
-        # Hexagonal prism / regular 4D cross-polytope sub-complex
         edges = []
         edge_vecs = {}
         for i in range(num_vertices):
             for j in range(i + 1, num_vertices):
                 edges.append((i, j))
-                # Normalized directional unit vector in 4D
                 vec = np.zeros(4, dtype=float)
                 vec[(j - i) % 4] = 1.0
                 edge_vecs[(i, j)] = vec
@@ -110,10 +103,8 @@ class CdtOverlapDiracEvaluator:
         self, complex_id: str = "cdt_singular_01", num_vertices: int = 8
     ) -> SimplicialComplexGraph:
         """Constructs a singular CDT complex with bottleneck geometry causing spectral gap closing."""
-        # Two clusters connected by a single bottleneck link
         edges = []
         edge_vecs = {}
-        # Cluster A: 0..3
         for i in range(4):
             for j in range(i + 1, 4):
                 edges.append((i, j))
@@ -122,7 +113,6 @@ class CdtOverlapDiracEvaluator:
                 edge_vecs[(i, j)] = vec
                 edge_vecs[(j, i)] = -vec
 
-        # Cluster B: 4..7
         for i in range(4, 8):
             for j in range(i + 1, 8):
                 edges.append((i, j))
@@ -131,7 +121,6 @@ class CdtOverlapDiracEvaluator:
                 edge_vecs[(i, j)] = vec
                 edge_vecs[(j, i)] = -vec
 
-        # Weak bottleneck connection between vertex 3 and vertex 4
         edges.append((3, 4))
         vec_neck = np.array([0.0, 0.0, 0.0, 1.0], dtype=float)
         edge_vecs[(3, 4)] = vec_neck
@@ -153,7 +142,7 @@ class CdtOverlapDiracEvaluator:
         r: float = 1.0,
     ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """Constructs discrete Wilson-Dirac operator D_w and global Gamma_5.
-        
+
         Returns:
             (D_w, Gamma_5, H_w)
         """
@@ -165,43 +154,35 @@ class CdtOverlapDiracEvaluator:
         W = np.zeros((n_dof, n_dof), dtype=complex)
         Gamma_5 = np.zeros((n_dof, n_dof), dtype=complex)
 
-        # Global Gamma_5 = I_nv \otimes gamma_5
         for v in range(nv):
             idx = slice(4 * v, 4 * (v + 1))
             Gamma_5[idx, idx] = self.algebra.gamma_5
 
-        # Build D_naive and Wilson term W
         degrees = {v: 0 for v in range(nv)}
         for u, v in graph.edges:
             degrees[u] += 1
             degrees[v] += 1
             n_uv = graph.edge_vectors.get((u, v), np.array([1.0, 0.0, 0.0, 0.0]))
-            # sum_mu n_uv^mu gamma^mu
             gamma_n = sum(n_uv[mu] * self.algebra.gammas[mu] for mu in range(4))
 
             idx_u = slice(4 * u, 4 * (u + 1))
             idx_v = slice(4 * v, 4 * (v + 1))
 
-            # Anti-Hermitian naive hopping
             hop_forward = (1.0 / (2.0 * a)) * gamma_n
             D_naive[idx_u, idx_v] += hop_forward
             D_naive[idx_v, idx_u] -= hop_forward.conj().T
 
-            # Wilson laplacian hopping: -(r / 2a) I_4
             wilson_hop = -(r / (2.0 * a)) * np.eye(4, dtype=complex)
             W[idx_u, idx_v] += wilson_hop
             W[idx_v, idx_u] += wilson_hop
 
-        # Wilson diagonal: (r / 2a) deg(v) I_4
         for v in range(nv):
             idx = slice(4 * v, 4 * (v + 1))
             W[idx, idx] += (r / (2.0 * a)) * float(degrees[v]) * np.eye(4, dtype=complex)
 
         D_w = D_naive + W
 
-        # Hermitian Wilson Hamiltonian: H_w = Gamma_5 (D_w - m0 * I)
         H_w = Gamma_5 @ (D_w - m0 * np.eye(n_dof, dtype=complex))
-        # Enforce exact Hermiticity against floating-point roundoff
         H_w = 0.5 * (H_w + H_w.conj().T)
 
         return D_w, Gamma_5, H_w
@@ -213,24 +194,20 @@ class CdtOverlapDiracEvaluator:
         r: float = 1.0,
     ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, float]:
         """Constructs Neuberger overlap Dirac operator D_ov = (1/a)(I + Gamma_5 sgn(H_w)).
-        
+
         Returns:
             (D_ov, Gamma_5, sgn_Hw, spectral_gap)
         """
         D_w, Gamma_5, H_w = self.build_wilson_dirac_operator(graph, m0, r)
         a = graph.lattice_spacing_a
 
-        # Spectral decomposition of H_w
         eigenvals, eigenvecs = np.linalg.eigh(H_w)
         spectral_gap = float(np.min(np.abs(eigenvals)))
 
-        # Matrix sign function sgn(H_w)
-        # Avoid division by zero if gap is tiny
         eps = 1e-14
         sgn_vals = np.where(np.abs(eigenvals) > eps, np.sign(eigenvals), 1.0)
         sgn_Hw = eigenvecs @ np.diag(sgn_vals) @ eigenvecs.conj().T
 
-        # Overlap Dirac operator: D_ov = (1/a) * (I + Gamma_5 @ sgn(H_w))
         n_dof = 4 * graph.num_vertices
         D_ov = (1.0 / a) * (np.eye(n_dof, dtype=complex) + Gamma_5 @ sgn_Hw)
 
@@ -249,7 +226,6 @@ class CdtOverlapDiracEvaluator:
         self, D_ov: np.ndarray, Gamma_5: np.ndarray, a: float = 1.0
     ) -> float:
         """Evaluates exact invariance of fermion bilinear under Lüscher chiral variation."""
-        # For arbitrary test spinor psi, delta S = psi^dagger (Gamma_5 D_ov + D_ov Gamma_5 - a D_ov Gamma_5 D_ov) psi
         operator_defect = (D_ov @ Gamma_5 + Gamma_5 @ D_ov) - (a * D_ov @ Gamma_5 @ D_ov)
         return float(np.max(np.abs(operator_defect)))
 
@@ -260,12 +236,10 @@ class CdtOverlapDiracEvaluator:
         trace_val = float(np.real(np.trace(Gamma_5 @ (a * D_ov))))
         index_val = 0.5 * trace_val
 
-        # Spectral zero modes of D_ov
         eigenvals = np.linalg.eigvals(D_ov)
         zero_threshold = 1e-6
         zero_indices = [i for i, val in enumerate(eigenvals) if abs(val) < zero_threshold]
-        
-        # Count positive and negative chirality
+
         n_pos = sum(1 for idx in zero_indices if idx % 2 == 0)
         n_neg = sum(1 for idx in zero_indices if idx % 2 == 1)
 
@@ -275,12 +249,11 @@ class CdtOverlapDiracEvaluator:
         self, D_ov: np.ndarray, graph: SimplicialComplexGraph
     ) -> Tuple[float, float, bool]:
         """Evaluates spatial localization length xi of overlap kernel ||D_ov(u, v)|| <= C exp(-d(u,v)/xi).
-        
+
         Returns:
             (decay_length_xi, max_nonlocal_tail, is_exponentially_local)
         """
         nv = graph.num_vertices
-        # Measure coupling between distant vertices
         distant_couplings = []
         for u in range(nv):
             for v in range(nv):
@@ -295,7 +268,7 @@ class CdtOverlapDiracEvaluator:
             decay_xi = 0.85
             is_local = True
         else:
-            decay_xi = 999.0  # Diverging localization length
+            decay_xi = 999.0
             is_local = False
 
         return decay_xi, max_tail, is_local
@@ -327,7 +300,6 @@ class CdtOverlapDiracEvaluator:
 
         cur = self.conn.cursor()
 
-        # Insert CdtOverlapDiracTrajectory
         cur.execute(
             """
             INSERT OR REPLACE INTO CdtOverlapDiracTrajectory (
@@ -357,7 +329,6 @@ class CdtOverlapDiracEvaluator:
             ),
         )
 
-        # Insert CdtOverlapIndexAudit
         topological_charge = int(round(index_val))
         index_residual = abs(index_val - topological_charge)
         cur.execute(
@@ -380,7 +351,6 @@ class CdtOverlapDiracEvaluator:
             ),
         )
 
-        # Insert CdtOverlapLocalitySummary
         cur.execute(
             """
             INSERT OR REPLACE INTO CdtOverlapLocalitySummary (
@@ -402,7 +372,6 @@ class CdtOverlapDiracEvaluator:
 
         self.conn.commit()
 
-        # Query ViewCdtOverlapDiracAudit
         cur.execute(
             """
             SELECT overlap_audit_verdict FROM ViewCdtOverlapDiracAudit

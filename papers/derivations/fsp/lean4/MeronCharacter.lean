@@ -1,8 +1,3 @@
-/-!
-Finite Boolean flip-orbit cancellation. The admitted independence of cluster
-signs is explicit in `orbitSigns`; no Hamiltonian decomposition is inferred.
-AuthorityEffect: None.
--/
 namespace MeronCharacter
 
 def orbitSigns : List Bool → List Int
@@ -50,11 +45,9 @@ theorem compression_preserves_partition (flags : List Bool) :
   next h => exact meron_orbit_cancels flags h
   next h => exact zero_meron_orbit_positive flags h
 
-/-- Equal total signed mass need not admit equal-magnitude pairing. -/
 theorem unequal_three_term_cancellation : ([2, -1, -1] : List Int).sum = 0 := by
   decide
 
-/-- A cancelling denominator doublet can carry a nonzero observable numerator. -/
 theorem observable_doublet_counterexample :
     (1 : Int) + (-1) = 0 ∧ (1 : Int) * 1 + (-1) * (-1) = 2 := by
   decide

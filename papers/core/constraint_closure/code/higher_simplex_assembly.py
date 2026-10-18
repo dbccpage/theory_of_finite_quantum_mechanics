@@ -38,7 +38,6 @@ def filter_simplices_by_skeleton(
     valid_cells = []
     for cell in candidates:
         all_faces_present = True
-        # A k-simplex has (k+1) faces obtained by omitting vertex i
         for i in range(len(cell)):
             face = cell[:i] + cell[i + 1 :]
             if face not in existing_lower_cells:
@@ -67,7 +66,6 @@ def boundary_sum(cell: Tuple[Any, ...], lower_cochain_values: Dict[Tuple[Any, ..
         sign = (-1) ** i
         val = lower_cochain_values.get(face)
         if val is None:
-            # Check if sorted face with permutation sign is present
             sorted_face = tuple(sorted(face))
             if sorted_face in lower_cochain_values:
                 inv = sum(1 for a in range(len(face)) for b in range(a + 1, len(face)) if face[a] > face[b])
@@ -121,10 +119,8 @@ def assemble_from_network(network: Any, max_dim: int = 4) -> SimplexComplex:
     nodes = sorted(list(network.nodes))
     complex_obj = SimplexComplex(vertices=nodes, max_dim=max_dim)
 
-    # 0-cells
     complex_obj.cells[0] = [(v,) for v in nodes]
 
-    # 1-cells (edges normalized to (u, v) with u < v)
     edges = set()
     for u, v in network.edges:
         edges.add((min(u, v), max(u, v)))
@@ -133,13 +129,11 @@ def assemble_from_network(network: Any, max_dim: int = 4) -> SimplexComplex:
     if max_dim < 2:
         return complex_obj
 
-    # 2-cells (faces)
     faces = set()
     if hasattr(network, "faces") and network.faces is not None:
         for f in network.faces:
             faces.add(tuple(sorted(f)))
     else:
-        # Detect triangles from edges only if faces not explicitly specified
         triangles = detect_simplices(nodes, edges, dim=2)
         faces.update(triangles)
     complex_obj.cells[2] = sorted(list(faces))
@@ -147,8 +141,6 @@ def assemble_from_network(network: Any, max_dim: int = 4) -> SimplexComplex:
     if max_dim < 3:
         return complex_obj
 
-    # Higher k-cells for k >= 3
-    # Check if 3-cells (tetrahedra) are explicitly declared on network
     if hasattr(network, "tetrahedra") and network.tetrahedra is not None:
         complex_obj.cells[3] = sorted([tuple(sorted(t)) for t in network.tetrahedra])
     else:
@@ -227,9 +219,8 @@ def exact_quotient_l1_distance(
     cells_k = complex_obj.cells.get(dim, [])
     cells_km1 = complex_obj.cells.get(dim - 1, [])
 
-    # Boundary matrix d_k: C^k -> C^{k-1} transpose is coboundary d_{k-1}^\top: C^{k-1} -> C^k
     d_k_mat = rational_boundary_matrix(cells_k, cells_km1)
-    coboundary_mat = d_k_mat.T  # shape (n_k, n_km1)
+    coboundary_mat = d_k_mat.T
 
     problem = LinearRepairProblem(coboundary_mat)
     cochain_mat = Matrix(cochain_raw)

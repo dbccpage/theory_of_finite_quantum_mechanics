@@ -1,11 +1,3 @@
-//! Faithful regular path algebra and its concrete matrix star completion.
-//!
-//! Scalars Q(i), orthonormal path vectors and matrix adjoints are supplied
-//! mathematical structure. They are not native reverse-history operations.
-//! For a complete finite acyclic free path category the generated star algebra
-//! is exactly the origin-block diagonal algebra, with block sizes counting
-//! paths from each origin. The general proof lives in the consuming research
-//! note; this owner builds exact witnesses with canonical matrix operations.
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use linear_algebra::exact_field::{ExactFieldError, involution as star, matrix as mx};
 use omega_category_theory::finite_path::{FinitePathCategory, PathError};
@@ -53,9 +45,6 @@ impl FinitePathAlgebra {
     pub fn completion_dimension(&self) -> usize {
         self.block_sizes().iter().map(|n| n * n).sum()
     }
-    /// Restriction is faithful on the original path algebra exactly when this
-    /// origin reaches every vertex. This is weaker than faithfulness on the
-    /// whole star completion, which has a separate block for every origin.
     pub fn origin_is_path_faithful(&self, vertex: usize) -> Result<bool, PathAlgebraError> {
         if vertex >= self.paths.vertices() {
             return Err(PathAlgebraError::UnknownOrigin);
@@ -73,8 +62,6 @@ impl FinitePathAlgebra {
         }
         Ok(())
     }
-    /// The scalar operation bound is applied per canonical matrix operation.
-    /// Path enumeration has its separate hard cap; no bit-complexity bound is claimed.
     pub fn basis_left(
         &self,
         p: usize,
@@ -97,8 +84,6 @@ impl FinitePathAlgebra {
         if a.len() != self.dimension() {
             return Err(PathAlgebraError::CoefficientLength);
         }
-        // Distinct p cannot produce the same pq from the same q in a free path
-        // category. No coefficient addition or private matrix solver is needed.
         let mut result = mx::zeros_with_limits(self.dimension(), self.dimension(), limits)?;
         for (p, value) in a.iter().enumerate() {
             for q in 0..self.dimension() {
@@ -109,8 +94,6 @@ impl FinitePathAlgebra {
         }
         Ok(result)
     }
-    /// Recover all coefficients from identity columns, then verify the whole
-    /// matrix. Adjoints outside the path image are explicitly refused.
     pub fn recover_coefficients(
         &self,
         a: &BasicMatrix<GaussianRat>,
@@ -129,8 +112,6 @@ impl FinitePathAlgebra {
         }
         Ok(values)
     }
-    /// P_x = L_id(x) - sum_(edge ending at x) L_edge L_edge*.
-    /// Unique last-edge factorization leaves only the identity-path vector.
     pub fn identity_path_projection(
         &self,
         vertex: usize,
@@ -151,7 +132,6 @@ impl FinitePathAlgebra {
         }
         Ok(result)
     }
-    /// Exact word in the generators and their adjoints giving |p><q|.
     pub fn matrix_unit(
         &self,
         p: usize,
@@ -187,7 +167,6 @@ impl FinitePathAlgebra {
         }
         Ok(result)
     }
-    /// Uses the proved completion description, not a numerical closure heuristic.
     pub fn is_in_completion(&self, a: &BasicMatrix<GaussianRat>) -> Result<bool, PathAlgebraError> {
         self.shape(a)?;
         for (i, p) in self.paths.paths().iter().enumerate() {
@@ -199,8 +178,6 @@ impl FinitePathAlgebra {
         }
         Ok(true)
     }
-    /// A surjective block projection; it loses every other origin sector.
-    /// On states it is not a trace-preserving unconditioned sector selection.
     pub fn restrict_origin(
         &self,
         a: &BasicMatrix<GaussianRat>,

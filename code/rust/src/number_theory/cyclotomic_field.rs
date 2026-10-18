@@ -1,26 +1,3 @@
-//! Cyclotomic number fields `Q(zeta_n)` of any conductor `1 <= n <= MAX_CONDUCTOR`, exact.
-//!
-//! An element is stored in the power basis `1, zeta, ..., zeta^{phi(n) - 1}` modulo the
-//! cyclotomic polynomial `Phi_n`, with `zeta = e^{2 pi i / n}` under the canonical
-//! embedding. Two types share one arithmetic:
-//!
-//! - [`CyclotomicNumber`]: the conductor is a run-time value; operations are checked and
-//!   return [`CyclotomicError::ConductorMismatch`] for operands from different fields.
-//! - [`Cyclotomic<N>`]: the conductor is a compile-time constant (a bad `N` does not
-//!   compile); it implements the `linear_algebra::scalars` tower and the `std::ops`
-//!   operators, so matrices, polynomials and the exact solvers work over it.
-//!
-//! Beyond field arithmetic the module provides the structure the physics needs:
-//! conjugation and every Galois automorphism `sigma_k`, the exact trace and norm to `Q`,
-//! the real subfield through `t = zeta + zeta^{-1}` and the minimal polynomial of
-//! `2 cos(2 pi / n)` computed from `Phi_n`, quantum integers `[k]_q` at `q = zeta_n`,
-//! Gauss sums and the exact position of `sqrt(d)` inside `Q(zeta_n)` when it lies there,
-//! and conversions to and from the fixed-conductor types of [`crate::cyclotomic`].
-//!
-//! Per-conductor data (the modulus, the reduced powers of `zeta`) is computed once and
-//! shared; sharing affects speed only, never a result.
-//!
-//! There is no floating point in this module. AuthorityEffect: None.
 
 use std::collections::BTreeMap;
 use std::hash::{Hash, Hasher};
@@ -42,10 +19,8 @@ use crate::polynomial::{
 };
 use crate::rational::{r_one, r_zero, squarefree_part, ArithmeticError, Rational};
 
-/// The largest index `k` accepted by [`quantum_integer`].
 pub const MAX_QUANTUM_INDEX: u64 = 1 << 20;
 
-/// Refusals of the cyclotomic-field types.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum CyclotomicError {
     #[error("conductor 0 does not define a cyclotomic field")]
@@ -102,17 +77,11 @@ fn check_conductor(conductor: usize) -> Result<(), CyclotomicError> {
     Ok(())
 }
 
-// ---------------------------------------------------------------------------
-// Per-conductor context
-// ---------------------------------------------------------------------------
 
-/// Everything derived from the conductor alone: `Phi_n`, the reduced powers of `zeta`,
-/// the minimal polynomial of `zeta + zeta^{-1}`.
 struct CyclotomicContext {
     conductor: usize,
     degree: usize,
     modulus: Polynomial<Rational>,
-    /// `Phi_n = x^degree + sum m_i x^i`: the nonzero `(i, m_i)` with `i < degree`.
     modulus_low: Vec<(usize, Rational)>,
     powers: OnceLock<Vec<Vec<Rational>>>,
     min_poly: OnceLock<Polynomial<Rational>>,
@@ -143,7 +112,6 @@ impl CyclotomicContext {
         })
     }
 
-    /// Reduce a polynomial of any length modulo `Phi_n` to exactly `degree` coefficients.
     fn reduce(&self, mut poly: Vec<Rational>) -> Vec<Rational> {
         let d = self.degree;
         while poly.len() > d {
@@ -153,7 +121,6 @@ impl CyclotomicContext {
             if top.is_zero() {
                 continue;
             }
-            // x^k = x^{k-d} x^d and x^d = -sum m_i x^i.
             let shift = poly.len() - d;
             for (i, m) in &self.modulus_low {
                 poly[shift + i] -= &top * m;
@@ -181,7 +148,6 @@ impl CyclotomicContext {
         self.reduce(product)
     }
 
-    /// `zeta^0, zeta^1, ..., zeta^{n-1}` as reduced coefficient vectors.
     fn powers(&self) -> &[Vec<Rational>] {
         self.powers.get_or_init(|| {
             let mut table = Vec::with_capacity(self.conductor);
@@ -191,8 +157,6 @@ impl CyclotomicContext {
             }
             for _ in 0..self.conductor {
                 table.push(current.clone());
-                // Multiply by zeta: shift up, and fold the overflowing top coefficient
-                // back with zeta^d = -sum m_i zeta^i.
                 let carry = current.pop().unwrap_or_else(r_zero);
                 current.insert(0, r_zero());
                 if !carry.is_zero() {
@@ -205,9 +169,7 @@ impl CyclotomicContext {
         })
     }
 
-    /// The reduced coefficients of `zeta^k` for any integer `k`.
     fn zeta(&self, k: i64) -> Vec<Rational> {
-        // The conductor is at most MAX_CONDUCTOR, so the conversions below are lossless.
         let index = k.rem_euclid(self.conductor as i64) as usize;
         self.powers()
             .get(index)
@@ -215,7 +177,6 @@ impl CyclotomicContext {
             .unwrap_or_else(|| vec![r_zero(); self.degree])
     }
 
-    /// `sigma_k(x) = sum c_i zeta^{ik}` for `k` coprime to the conductor.
     fn galois(&self, coefficients: &[Rational], k: usize) -> Vec<Rational> {
         let table = self.powers();
         let mut out = vec![r_zero(); self.degree];
@@ -223,7 +184,6 @@ impl CyclotomicContext {
             if c.is_zero() {
                 continue;
             }
-            // i < degree and k < conductor, both at most MAX_CONDUCTOR: no overflow.
             let index = (i * k) % self.conductor;
             if let Some(power) = table.get(index) {
                 for (slot, p) in out.iter_mut().zip(power) {
@@ -236,7 +196,6 @@ impl CyclotomicContext {
         out
     }
 
-    /// The minimal polynomial of `zeta + zeta^{-1}`, computed from `Phi_n`.
     fn min_poly(&self) -> &Polynomial<Rational> {
         self.min_poly
             .get_or_init(|| min_poly_from_cyclotomic(self.conductor, &self.modulus))
@@ -273,8 +232,6 @@ fn context(conductor: usize) -> Result<Arc<CyclotomicContext>, CyclotomicError> 
     Ok(Arc::clone(cache.entry(conductor).or_insert(built)))
 }
 
-/// The Dickson polynomials `D_0, ..., D_k` with `D_j(x + 1/x) = x^j + x^{-j}`:
-/// `D_0 = 2`, `D_1 = t`, `D_{j+1} = t D_j - D_{j-1}`.
 fn dickson_polynomials(k: usize) -> Vec<Polynomial<Rational>> {
     let t = Polynomial::from_i64s(&[0, 1]);
     let mut all = vec![Polynomial::from_i64s(&[2])];
@@ -288,8 +245,6 @@ fn dickson_polynomials(k: usize) -> Vec<Polynomial<Rational>> {
     all
 }
 
-/// `Psi_n(t)` with `Phi_n(x) = x^m Psi_n(x + 1/x)`, `m = phi(n) / 2`, from the palindromic
-/// `Phi_n = sum c_i x^i`: `Psi_n = c_m + sum_{j >= 1} c_{m+j} D_j(t)`.
 fn min_poly_from_cyclotomic(conductor: usize, phi: &Polynomial<Rational>) -> Polynomial<Rational> {
     match conductor {
         1 => return Polynomial::from_i64s(&[-2, 1]),
@@ -305,21 +260,15 @@ fn min_poly_from_cyclotomic(conductor: usize, phi: &Polynomial<Rational>) -> Pol
     psi
 }
 
-/// The minimal polynomial `Psi_n` of `2 cos(2 pi / n) = zeta_n + zeta_n^{-1}` over `Q`,
-/// computed from `Phi_n` (not tabulated). It is monic of degree `phi(n)/2` for `n >= 3`,
-/// `t - 2` for `n = 1` and `t + 2` for `n = 2`.
 pub fn min_poly_of_2cos(conductor: usize) -> Result<Polynomial<Rational>, CyclotomicError> {
     Ok(context(conductor)?.min_poly().clone())
 }
 
-/// Least conductor of Q(zeta_n), accounting for Q(zeta_(2r))=Q(zeta_r)
-/// when r is odd. This normalization also identifies Q(zeta_1)=Q(zeta_2).
 pub fn normalized_conductor(n: usize) -> Result<usize, CyclotomicError> {
     check_conductor(n)?;
     Ok(if n % 4 == 2 { n / 2 } else { n })
 }
 
-/// Exact inclusion of full cyclotomic fields (not just divisibility of labels).
 pub fn contains_cyclotomic_field(source: usize, target: usize) -> Result<bool, CyclotomicError> {
     Ok(normalized_conductor(target)? % normalized_conductor(source)? == 0)
 }
@@ -344,9 +293,6 @@ pub fn real_subfield_degree(n: usize) -> Result<usize, CyclotomicError> {
     Ok(euler_phi(n).max(2) / 2)
 }
 
-/// The canonical inclusion, evaluated in the common complex embedding. The
-/// source generator is replaced by its exact power of the target generator,
-/// including the sign needed for conductors congruent to two modulo four.
 pub fn embed_cyclotomic(
     x: &CyclotomicNumber,
     target: usize,
@@ -376,15 +322,7 @@ pub fn embed_cyclotomic(
     Ok(out)
 }
 
-// ---------------------------------------------------------------------------
-// CyclotomicNumber
-// ---------------------------------------------------------------------------
 
-/// An element of `Q(zeta_n)` with a run-time conductor `n`, in the power basis modulo
-/// `Phi_n`: exactly `phi(n)` rational coefficients.
-///
-/// Equality and hashing are those of the pair (conductor, coefficients); the shared
-/// per-conductor data it carries is not part of the value.
 #[derive(Clone)]
 pub struct CyclotomicNumber {
     context: Arc<CyclotomicContext>,
@@ -442,8 +380,6 @@ impl Serialize for CyclotomicNumber {
 }
 
 impl<'de> Deserialize<'de> for CyclotomicNumber {
-    /// Validates the conductor and the coefficient count, so a wire form cannot smuggle
-    /// in an element that is not in its claimed field.
     fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
         let wire = CyclotomicNumberWire::deserialize(deserializer)?;
         Self::from_coefficients(wire.conductor, wire.coefficients).map_err(serde::de::Error::custom)
@@ -458,8 +394,6 @@ impl CyclotomicNumber {
         }
     }
 
-    /// The element with these power-basis coefficients. There must be exactly
-    /// `phi(conductor)` of them.
     pub fn from_coefficients(
         conductor: usize,
         coefficients: Vec<Rational>,
@@ -478,7 +412,6 @@ impl CyclotomicNumber {
         })
     }
 
-    /// The element `p(zeta)` for a polynomial `p` of any degree (reduced modulo `Phi_n`).
     pub fn from_polynomial(
         conductor: usize,
         p: &Polynomial<Rational>,
@@ -491,7 +424,6 @@ impl CyclotomicNumber {
         })
     }
 
-    /// The polynomial in `zeta` of degree below `phi(n)` that represents the element.
     pub fn to_polynomial(&self) -> Polynomial<Rational> {
         Polynomial::from_coefficients(self.coefficients.clone())
     }
@@ -504,7 +436,6 @@ impl CyclotomicNumber {
         Self::from_rational(conductor, r_one())
     }
 
-    /// The rational number `q` as an element of `Q(zeta_n)`.
     pub fn from_rational(conductor: usize, q: Rational) -> Result<Self, CyclotomicError> {
         let context = context(conductor)?;
         let mut coefficients = vec![r_zero(); context.degree];
@@ -517,7 +448,6 @@ impl CyclotomicNumber {
         })
     }
 
-    /// `zeta_n^k` for any integer `k` (taken modulo `n`).
     pub fn zeta(conductor: usize, k: i64) -> Result<Self, CyclotomicError> {
         let context = context(conductor)?;
         let coefficients = context.zeta(k);
@@ -531,7 +461,6 @@ impl CyclotomicNumber {
         self.context.conductor
     }
 
-    /// `phi(n)`, the number of coefficients.
     pub fn degree(&self) -> usize {
         self.coefficients.len()
     }
@@ -544,7 +473,6 @@ impl CyclotomicNumber {
         self.coefficients.iter().all(|c| c.is_zero())
     }
 
-    /// Whether the element lies in `Q` (every coefficient of `zeta^i`, `i > 0`, vanishes).
     pub fn is_rational(&self) -> bool {
         self.coefficients.iter().skip(1).all(|c| c.is_zero())
     }
@@ -571,8 +499,6 @@ impl CyclotomicNumber {
         Self::in_context(&self.context, coefficients)
     }
 
-    /// Coefficientwise combination of two elements of the same field. Internal: callers
-    /// have established (or know by type) that the conductors agree.
     fn zip_same_field(&self, other: &Self, f: impl Fn(&Rational, &Rational) -> Rational) -> Self {
         self.with(
             self.coefficients
@@ -597,7 +523,6 @@ impl CyclotomicNumber {
         self.with(self.coefficients.iter().map(|c| -c).collect())
     }
 
-    /// `c * self` for a rational `c`.
     pub fn scale(&self, c: &Rational) -> Self {
         self.with(self.coefficients.iter().map(|a| a * c).collect())
     }
@@ -614,7 +539,6 @@ impl CyclotomicNumber {
         )
     }
 
-    /// `self^n`.
     pub fn pow(&self, n: u32) -> Self {
         let mut result = Self::in_context(&self.context, {
             let mut one = vec![r_zero(); self.context.degree];
@@ -637,31 +561,24 @@ impl CyclotomicNumber {
         result
     }
 
-    /// `1 / self`, or `None` for zero.
     pub fn inverse(&self) -> Option<Self> {
         Some(self.with(self.context.inverse(&self.coefficients)?))
     }
 
-    /// `self / other`; refuses a zero divisor and different conductors.
     pub fn checked_div(&self, other: &Self) -> Result<Self, CyclotomicError> {
         self.same_field(other)?;
         let inverse = other.inverse().ok_or(CyclotomicError::DivisionByZero)?;
         Ok(self.mul_same_field(&inverse))
     }
 
-    /// Complex conjugation, `zeta -> zeta^{-1}`.
     pub fn conjugate(&self) -> Self {
-        // sigma_{n-1} is sigma_{-1}; for n <= 2 conjugation is the identity, sigma_1.
         let k = self.conductor().saturating_sub(1).max(1);
         self.with(self.context.galois(&self.coefficients, k))
     }
 
-    /// The Galois automorphism `sigma_k: zeta -> zeta^k`, for `k` coprime to `n`
-    /// (negative `k` allowed, taken modulo `n`).
     pub fn galois(&self, k: i64) -> Result<Self, CyclotomicError> {
         let n = self.conductor();
         let not_coprime = || CyclotomicError::NotCoprime { k, conductor: n };
-        // n <= MAX_CONDUCTOR, so it fits i64; the residue is nonnegative and below n.
         let residue = usize::try_from(k.rem_euclid(n as i64)).map_err(|_| not_coprime())?;
         if residue.gcd(&n) != 1 {
             return Err(not_coprime());
@@ -669,19 +586,15 @@ impl CyclotomicNumber {
         Ok(self.with(self.context.galois(&self.coefficients, residue)))
     }
 
-    /// Whether complex conjugation fixes the element, i.e. it lies in `Q(zeta_n)^+`.
     pub fn is_real(&self) -> bool {
         self.conjugate() == *self
     }
 
-    /// The real part `(x + conj x) / 2`, itself an element of `Q(zeta_n)^+`.
     pub fn real_part(&self) -> Self {
         let sum = self.zip_same_field(&self.conjugate(), |a, b| a + b);
         sum.scale(&Rational::new(BigInt::one(), BigInt::from(2)))
     }
 
-    /// The trace `Tr_{K/Q}(x) = sum_sigma sigma(x)`, exactly, by the Ramanujan sums
-    /// `Tr(zeta^j) = mu(n/g) phi(n) / phi(n/g)` with `g = gcd(j, n)`.
     pub fn trace(&self) -> Rational {
         let n = self.conductor();
         let phi = euler_phi(n);
@@ -691,7 +604,6 @@ impl CyclotomicNumber {
                 continue;
             }
             let quotient = n / j.gcd(&n);
-            // phi(n/g) divides phi(n), so the integer division is exact.
             let ramanujan =
                 BigInt::from(mobius(quotient)) * BigInt::from(phi / euler_phi(quotient));
             total += c * Rational::from_integer(ramanujan);
@@ -699,16 +611,10 @@ impl CyclotomicNumber {
         total
     }
 
-    /// The norm `N_{K/Q}(x) = prod_sigma sigma(x)`, exactly, as the resultant
-    /// `Res(Phi_n, x(t))`.
     pub fn norm(&self) -> Rational {
         self.context.modulus.resultant(&self.to_polynomial())
     }
 
-    /// The real part as a polynomial in `t = zeta + zeta^{-1}` of degree below `phi(n)/2`
-    /// (reduced modulo the minimal polynomial `Psi_n` of `t`):
-    /// `Re(x) = c_0 + sum_{i >= 1} (c_i / 2) D_i(t)`. For a real element this is the
-    /// element itself, written in the power basis of the real subfield.
     pub fn real_part_polynomial(&self) -> Polynomial<Rational> {
         let dickson = dickson_polynomials(self.coefficients.len().saturating_sub(1));
         let half = Rational::new(BigInt::one(), BigInt::from(2));
@@ -716,12 +622,9 @@ impl CyclotomicNumber {
         for (c, d) in self.coefficients.iter().zip(&dickson).skip(1) {
             g = g.add(&d.scale(&(c * &half)));
         }
-        // Psi_n is monic, so the division cannot refuse; a refusal would leave `g` as is.
         g.rem(self.context.min_poly()).unwrap_or(g)
     }
 
-    /// `g(t)` with `t = zeta + zeta^{-1}`: the element of `Q(zeta_n)^+` with these
-    /// coordinates in the power basis of the real subfield.
     pub fn from_real_polynomial(
         conductor: usize,
         g: &Polynomial<Rational>,
@@ -731,7 +634,6 @@ impl CyclotomicNumber {
         Ok(t.eval_polynomial(g))
     }
 
-    /// `p(self)` for a polynomial `p` over `Q`, by Horner's rule in the field.
     pub fn eval_polynomial(&self, p: &Polynomial<Rational>) -> Self {
         let mut acc = Self::in_context(&self.context, vec![r_zero(); self.context.degree]);
         for c in p.coefficients().iter().rev() {
@@ -744,14 +646,12 @@ impl CyclotomicNumber {
         acc
     }
 
-    /// The image of `self` in `Q(zeta_m)` under `zeta_n -> zeta_m^{m/n}`, for `n | m`.
     pub fn lift(&self, m: usize) -> Result<Self, CyclotomicError> {
         let target = context(m)?;
         let n = self.conductor();
         if m % n != 0 {
             return Err(CyclotomicError::ConductorMismatch { left: n, right: m });
         }
-        // m <= MAX_CONDUCTOR: the conversions are lossless.
         let step = (m / n) as i64;
         let mut coefficients = vec![r_zero(); target.degree];
         for (i, c) in self.coefficients.iter().enumerate() {
@@ -771,13 +671,7 @@ impl CyclotomicNumber {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Quantum integers, Gauss sums, square roots
-// ---------------------------------------------------------------------------
 
-/// The quantum integer `[k]_q = q^{k-1} + q^{k-3} + ... + q^{-(k-1)}` at `q = zeta_n`,
-/// with `[0] = 0` and `[-k] = -[k]`. It equals `(q^k - q^{-k}) / (q - q^{-1})` whenever
-/// `q != +-1`, and is defined (as `k` and `(-1)^{k-1} k`) when `q = +-1`.
 pub fn quantum_integer(conductor: usize, k: i64) -> Result<CyclotomicNumber, CyclotomicError> {
     let magnitude = k.unsigned_abs();
     if magnitude > MAX_QUANTUM_INDEX {
@@ -788,7 +682,6 @@ pub fn quantum_integer(conductor: usize, k: i64) -> Result<CyclotomicNumber, Cyc
     }
     let context = context(conductor)?;
     let mut total = vec![r_zero(); context.degree];
-    // magnitude <= MAX_QUANTUM_INDEX: lossless.
     let top = magnitude as i64;
     for j in 0..top {
         for (slot, p) in total.iter_mut().zip(context.zeta(top - 1 - 2 * j)) {
@@ -799,11 +692,6 @@ pub fn quantum_integer(conductor: usize, k: i64) -> Result<CyclotomicNumber, Cyc
     Ok(if k < 0 { number.neg() } else { number })
 }
 
-/// The quadratic Gauss sum `g_p = sum_{x = 0}^{p-1} zeta_p^{x^2}` for an odd prime `p`
-/// dividing `n`, inside `Q(zeta_n)`, where `zeta_p = zeta_n^{n/p}`.
-///
-/// Gauss's theorem fixes its value under the canonical embedding: `g_p = sqrt(p)` for
-/// `p = 1 (mod 4)` and `g_p = i sqrt(p)` for `p = 3 (mod 4)`.
 pub fn gauss_sum(conductor: usize, p: usize) -> Result<CyclotomicNumber, CyclotomicError> {
     let context = context(conductor)?;
     let odd_prime = p >= 3 && distinct_prime_factors(p) == vec![p];
@@ -816,7 +704,6 @@ pub fn gauss_sum(conductor: usize, p: usize) -> Result<CyclotomicNumber, Cycloto
     let step = conductor / p;
     let mut total = vec![r_zero(); context.degree];
     for x in 0..p {
-        // x < p <= conductor and step <= conductor: the product is below 2^20.
         let exponent = (((x * x) % p) * step) as i64;
         for (slot, power) in total.iter_mut().zip(context.zeta(exponent)) {
             *slot += power;
@@ -825,8 +712,6 @@ pub fn gauss_sum(conductor: usize, p: usize) -> Result<CyclotomicNumber, Cycloto
     Ok(CyclotomicNumber::in_context(&context, total))
 }
 
-/// The conductor of the quadratic field `Q(sqrt f)` for a squarefree integer `f`:
-/// `|f|` when `f = 1 (mod 4)`, else `4 |f|` (and `1` for `f = 1`).
 pub fn quadratic_field_conductor(squarefree: &BigInt) -> BigInt {
     if squarefree.is_one() {
         return BigInt::one();
@@ -838,16 +723,6 @@ pub fn quadratic_field_conductor(squarefree: &BigInt) -> BigInt {
     }
 }
 
-/// The canonical square root of the nonzero integer `d` inside `Q(zeta_n)`: for `d > 0`
-/// the element that is the positive real `sqrt(d)` under `zeta_n = e^{2 pi i/n}`, and for
-/// `d < 0` the element `i sqrt(|d|)` with positive imaginary part. It exists exactly when
-/// the conductor of `Q(sqrt d)` divides `n` (Kronecker-Weber); otherwise
-/// [`CyclotomicError::NoSquareRoot`].
-///
-/// For `d = f s^2` with `f` squarefree, `sqrt(d) = s sqrt(f)`, and `sqrt(f)` is the product
-/// of `zeta_8 + zeta_8^{-1}` (for the prime 2) and the Gauss sums `g_p` of the odd primes
-/// of `f`, times the power of `i` that removes the `i` carried by each `p = 3 (mod 4)`
-/// and adds the one of a negative `f`. The result is checked to square to `d`.
 pub fn sqrt_of_integer(conductor: usize, d: &BigInt) -> Result<CyclotomicNumber, CyclotomicError> {
     check_conductor(conductor)?;
     if d.is_zero() {
@@ -867,12 +742,10 @@ pub fn sqrt_of_integer(conductor: usize, d: &BigInt) -> Result<CyclotomicNumber,
     let context = context(conductor)?;
     let mut root = CyclotomicNumber::one(conductor)?;
     let mut odd_primes_3_mod_4 = 0i64;
-    // |f| divides the conductor (it divides `required`, which divides n), so it is small.
     let f_magnitude = usize::try_from(f.abs())
         .map_err(|_| CyclotomicError::Inconsistent("a squarefree part dividing n is small"))?;
     for p in distinct_prime_factors(f_magnitude) {
         let factor = if p == 2 {
-            // sqrt 2 = zeta_8 + zeta_8^{-1}; 8 | n because f is even, so 4|f| divides n.
             let zeta8 =
                 CyclotomicNumber::in_context(&context, context.zeta((conductor / 8) as i64));
             zeta8.zip_same_field(&zeta8.conjugate(), |a, b| a + b)
@@ -884,7 +757,6 @@ pub fn sqrt_of_integer(conductor: usize, d: &BigInt) -> Result<CyclotomicNumber,
         };
         root = root.mul_same_field(&factor);
     }
-    // Each p = 3 (mod 4) contributes an i; a negative f contributes one more.
     let i_exponent = (i64::from(f.is_negative()) - odd_primes_3_mod_4).rem_euclid(4);
     match i_exponent {
         0 => {}
@@ -908,13 +780,7 @@ pub fn sqrt_of_integer(conductor: usize, d: &BigInt) -> Result<CyclotomicNumber,
     Ok(root)
 }
 
-// ---------------------------------------------------------------------------
-// Cyclotomic<N>: compile-time conductor, scalar tower
-// ---------------------------------------------------------------------------
 
-/// An element of `Q(zeta_N)` with the conductor fixed at compile time. `N` must satisfy
-/// `1 <= N <= MAX_CONDUCTOR`; any other `N` does not compile. Implements the
-/// `linear_algebra::scalars` tower, the `std::ops` operators, `Zero` and `One`.
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub struct Cyclotomic<const N: usize>(CyclotomicNumber);
 
@@ -969,7 +835,6 @@ impl<const N: usize> Cyclotomic<N> {
         "Cyclotomic<N> needs a conductor 1 <= N <= MAX_CONDUCTOR"
     );
 
-    /// The conductor.
     pub const CONDUCTOR: usize = N;
 
     fn ctx() -> Arc<CyclotomicContext> {
@@ -977,7 +842,6 @@ impl<const N: usize> Cyclotomic<N> {
         context(N).expect("N is validated by Self::VALID in this function")
     }
 
-    /// The underlying run-time element.
     pub fn as_number(&self) -> &CyclotomicNumber {
         &self.0
     }
@@ -992,7 +856,6 @@ impl<const N: usize> Cyclotomic<N> {
         Self::rational(r_one())
     }
 
-    /// The rational `q`.
     pub fn rational(q: Rational) -> Self {
         let context = Self::ctx();
         let mut coefficients = vec![r_zero(); context.degree];
@@ -1002,7 +865,6 @@ impl<const N: usize> Cyclotomic<N> {
         Self(CyclotomicNumber::in_context(&context, coefficients))
     }
 
-    /// `zeta_N^k` for any integer `k`.
     pub fn zeta(k: i64) -> Self {
         let context = Self::ctx();
         let coefficients = context.zeta(k);
@@ -1049,17 +911,14 @@ impl<const N: usize> Cyclotomic<N> {
         Self(self.0.pow(n))
     }
 
-    /// `1 / self`, or `None` for zero.
     pub fn inverse(&self) -> Option<Self> {
         Some(Self(self.0.inverse()?))
     }
 
-    /// Complex conjugation, `zeta -> zeta^{-1}`.
     pub fn conjugate(&self) -> Self {
         Self(self.0.conjugate())
     }
 
-    /// The Galois automorphism `sigma_k`, for `k` coprime to `N`.
     pub fn galois(&self, k: i64) -> Result<Self, CyclotomicError> {
         Ok(Self(self.0.galois(k)?))
     }
@@ -1173,11 +1032,7 @@ impl<const N: usize> linear_algebra::scalars::Field for Cyclotomic<N> {
 
 impl<const N: usize> linear_algebra::scalars::ExactRing for Cyclotomic<N> {}
 
-// ---------------------------------------------------------------------------
-// Conversions with the fixed-conductor types
-// ---------------------------------------------------------------------------
 
-/// The shared context of a fixed conductor that is known to be within `MAX_CONDUCTOR`.
 fn fixed_context(conductor: usize) -> Arc<CyclotomicContext> {
     context(conductor).expect("fixed conductors are literals within MAX_CONDUCTOR")
 }
@@ -1226,7 +1081,6 @@ fixed_conductor_conversions!(Cyc52, 52, 24);
 fixed_conductor_conversions!(Cyc120, 120, 32);
 
 impl From<&GaussianRat> for CyclotomicNumber {
-    /// `a + b i` is `a + b zeta_4`.
     fn from(value: &GaussianRat) -> Self {
         CyclotomicNumber::in_context(&fixed_context(4), vec![value.re.clone(), value.im.clone()])
     }
@@ -1250,7 +1104,6 @@ impl TryFrom<&CyclotomicNumber> for GaussianRat {
 }
 
 impl From<&EisensteinRat> for CyclotomicNumber {
-    /// `a + b zeta_3`.
     fn from(value: &EisensteinRat) -> Self {
         CyclotomicNumber::in_context(&fixed_context(3), vec![value.a.clone(), value.b.clone()])
     }
@@ -1289,7 +1142,6 @@ mod tests {
         CyclotomicNumber::from_coefficients(n, c).unwrap()
     }
 
-    /// A deterministic grid element of Q(zeta_n) with small rational coefficients.
     fn grid_element(n: usize, rng: &mut Lcg) -> CyclotomicNumber {
         let degree = euler_phi(n);
         let coefficients = (0..degree)
@@ -1310,7 +1162,6 @@ mod tests {
         CyclotomicNumber::zeta(n, k).unwrap()
     }
 
-    // ----- Psi_n: the minimal polynomial of 2cos(2 pi / n) ---------------------
 
     #[test]
     fn min_poly_of_2cos_matches_the_known_table() {
@@ -1340,7 +1191,6 @@ mod tests {
             min_poly_of_2cos(15).unwrap(),
             Polynomial::from_i64s(&[1, 4, -4, -1, 1])
         );
-        // The degree-16 polynomial of conductor 120 that an old table hard-coded.
         assert_eq!(
             min_poly_of_2cos(120).unwrap(),
             Polynomial::from_i64s(&[
@@ -1367,7 +1217,6 @@ mod tests {
 
     #[test]
     fn psi_is_the_palindromic_reduction_of_phi() {
-        // Phi_n(x) = x^m Psi_n(x + 1/x): check by evaluating both sides at rational x.
         for n in [5usize, 7, 8, 9, 12, 15, 24, 30] {
             let phi = cyclotomic_polynomial(n).unwrap();
             let psi = min_poly_of_2cos(n).unwrap();
@@ -1380,7 +1229,6 @@ mod tests {
         }
     }
 
-    // ----- field structure -------------------------------------------------------
 
     #[test]
     fn zeta_has_exact_order_n_and_the_roots_sum_to_zero() {
@@ -1459,7 +1307,6 @@ mod tests {
 
     #[test]
     fn inverse_agrees_with_the_shared_multiplication_matrix_solver() {
-        // Independent route: power_basis::invert_by_multiplication_matrix solves M_x y = e_0.
         let mut rng = Lcg::new(31);
         for n in [5usize, 7, 8, 12, 15, 24] {
             for _ in 0..4 {
@@ -1503,7 +1350,6 @@ mod tests {
         assert_eq!(a.add(&b), Err(mismatch.clone()));
         assert_eq!(a.sub(&b), Err(mismatch.clone()));
         assert_eq!(a.mul(&b), Err(mismatch));
-        // equal values in equal fields compare equal; the same coefficients in different
         assert_ne!(num(5, &[1, 2]), num(8, &[1, 2]));
         let a_same = num(5, &[1, 2]);
         assert_eq!(a, a_same);
@@ -1535,7 +1381,6 @@ mod tests {
 
     #[test]
     fn polynomials_reduce_modulo_phi_and_round_trip() {
-        // zeta_5^4 = -1 - zeta - zeta^2 - zeta^3
         let p = Polynomial::from_i64s(&[0, 0, 0, 0, 1]);
         assert_eq!(
             CyclotomicNumber::from_polynomial(5, &p).unwrap(),
@@ -1552,7 +1397,6 @@ mod tests {
         );
     }
 
-    // ----- conjugation and Galois ------------------------------------------------
 
     #[test]
     fn conjugation_is_an_involutive_ring_automorphism_fixing_the_real_subfield() {
@@ -1642,10 +1486,7 @@ mod tests {
         }
     }
 
-    // ----- trace and norm --------------------------------------------------------
 
-    /// The multiplication-by-x matrix in the power basis, as integers scaled by a common
-    /// denominator (test-only independent route for trace and norm).
     fn scaled_multiplication_matrix(x: &CyclotomicNumber) -> (BigInt, Vec<Vec<BigInt>>) {
         let n = x.conductor();
         let d = x.degree();
@@ -1737,25 +1578,21 @@ mod tests {
             let (x, y) = (grid_element(n, &mut rng), grid_element(n, &mut rng));
             assert_eq!(x.mul(&y).unwrap().norm(), x.norm() * y.norm());
         }
-        // N(c) = c^phi(n)
         assert_eq!(
             CyclotomicNumber::from_rational(8, ri(3)).unwrap().norm(),
             ri(81)
         );
-        // N(1 - zeta_n) = p for n = p^k, and 1 when n has two distinct prime factors
         let one_minus_zeta = |n: usize| one(n).sub(&zeta(n, 1)).unwrap();
         assert_eq!(one_minus_zeta(5).norm(), ri(5));
         assert_eq!(one_minus_zeta(8).norm(), ri(2));
         assert_eq!(one_minus_zeta(9).norm(), ri(3));
         assert_eq!(one_minus_zeta(12).norm(), ri(1));
         assert_eq!(one_minus_zeta(15).norm(), ri(1));
-        // N(zeta) = 1 and N(a + b i) = a^2 + b^2 in Q(i)
         assert_eq!(zeta(7, 1).norm(), ri(1));
         assert_eq!(num(4, &[3, 4]).norm(), ri(25));
         assert!(CyclotomicNumber::zero(5).unwrap().norm().is_zero());
     }
 
-    // ----- the real subfield -----------------------------------------------------
 
     #[test]
     fn real_part_polynomial_and_from_real_polynomial_are_inverse_on_real_elements() {
@@ -1782,7 +1619,6 @@ mod tests {
                 );
             }
         }
-        // n = 8: t = sqrt 2, and the real part of zeta_8 is sqrt2/2 = t/2
         assert_eq!(
             zeta(8, 1).real_part_polynomial(),
             Polynomial::from_coefficients(vec![r_zero(), rq(1, 2)])
@@ -1795,16 +1631,13 @@ mod tests {
         assert!(!z.is_real());
         assert_ne!(z.real_part(), z);
         assert!(z.real_part().is_real());
-        // Re(zeta) + Re(zeta^2) = -1/2 for n = 5 (2 sum of the four real parts is -1)
         let sum = z.real_part().add(&zeta(5, 2).real_part()).unwrap();
         assert_eq!(sum.as_rational(), Some(rq(-1, 2)));
     }
 
-    // ----- quantum integers ------------------------------------------------------
 
     #[test]
     fn quantum_integers_satisfy_the_q_difference_identity() {
-        // [k](q - q^-1) = q^k - q^-k whenever q != +-1.
         for n in [3usize, 4, 5, 8, 12, 24] {
             let q_minus_inverse = zeta(n, 1).sub(&zeta(n, -1)).unwrap();
             for k in -8i64..=8 {
@@ -1820,7 +1653,6 @@ mod tests {
 
     #[test]
     fn quantum_integers_at_zeta_12_are_two_sin_k_pi_over_six() {
-        // [k] = sin(k pi/6)/sin(pi/6) = 2 sin(k pi/6): 1, sqrt3, 2, sqrt3, 1, 0, -1, ...
         let sqrt3 = sqrt_of_integer(12, &BigInt::from(3)).unwrap();
         let expected = [
             one(12),
@@ -1842,7 +1674,6 @@ mod tests {
             assert_eq!(&quantum_integer(12, -k).unwrap(), &value.neg(), "[-{k}]");
         }
         assert!(quantum_integer(12, 0).unwrap().is_zero());
-        // The form q^9 (q^k - q^-k) used by the finite spin-foam model agrees.
         let q9 = zeta(12, 9);
         for k in 0..=12i64 {
             let formula = q9.mul(&zeta(12, k).sub(&zeta(12, -k)).unwrap()).unwrap();
@@ -1852,7 +1683,6 @@ mod tests {
 
     #[test]
     fn quantum_integers_are_defined_at_q_equal_plus_or_minus_one() {
-        // [k]_1 = k, [k]_{-1} = (-1)^{k-1} k
         for k in 0..=8i64 {
             assert_eq!(quantum_integer(1, k).unwrap().as_rational(), Some(ri(k)));
             let sign = if k % 2 == 1 { 1 } else { -1 };
@@ -1886,11 +1716,9 @@ mod tests {
         );
     }
 
-    // ----- Gauss sums and square roots -------------------------------------------
 
     #[test]
     fn gauss_sums_square_to_plus_or_minus_p() {
-        // g_p^2 = p for p = 1 (mod 4) and -p for p = 3 (mod 4); |g_p|^2 = p always.
         for p in [3usize, 5, 7, 11, 13] {
             let g = gauss_sum(p, p).unwrap();
             let p_i64 = i64::try_from(p).unwrap();
@@ -1931,7 +1759,6 @@ mod tests {
 
     #[test]
     fn square_roots_of_integers_appear_exactly_when_the_quadratic_conductor_divides_n() {
-        // (d, conductor of Q(sqrt d))
         let cases: [(i64, usize); 14] = [
             (2, 8),
             (3, 12),
@@ -2024,7 +1851,6 @@ mod tests {
                 required: BigInt::from(8)
             }
         );
-        // sqrt 3 needs 12, not 6, although sqrt(-3) lives in Q(zeta_3)
         assert!(sqrt_of_integer(6, &BigInt::from(3)).is_err());
         assert!(sqrt_of_integer(3, &BigInt::from(-3)).is_ok());
         assert_eq!(
@@ -2035,8 +1861,6 @@ mod tests {
 
     #[test]
     fn the_constructed_roots_match_the_hand_built_legacy_constants() {
-        // Cyc8::sqrt2, Cyc24::sqrt2, Cyc24::sqrt3 and Cyc28's sqrt7 are built by other
-        // formulas; the Gauss-sum construction must give the same elements.
         assert_eq!(
             sqrt_of_integer(8, &BigInt::from(2)).unwrap(),
             CyclotomicNumber::from(&Cyc8::sqrt2())
@@ -2055,10 +1879,7 @@ mod tests {
         );
     }
 
-    // ----- conversions and cross-validation against the fixed-conductor types -----
 
-    /// Every fixed-conductor type must agree with the generic field on a deterministic grid:
-    /// the conversion commutes with add, sub, mul, conj and scaling, and round-trips.
     fn cross_validate<T>(n: usize, make: impl Fn(&[Rational]) -> T)
     where
         T: RationalEmbedding + Involution + std::fmt::Debug,
@@ -2199,7 +2020,6 @@ mod tests {
 
     #[test]
     fn lifting_into_a_larger_field_is_a_ring_embedding_that_matches_the_fixed_types() {
-        // Q(zeta_8) inside Q(zeta_24): zeta_8 -> zeta_24^3.
         let s8 = CyclotomicNumber::from(&Cyc8::sqrt2());
         assert_eq!(
             s8.lift(24).unwrap(),
@@ -2210,10 +2030,8 @@ mod tests {
             z8.lift(24).unwrap(),
             CyclotomicNumber::from(&Cyc24::zeta24(9))
         );
-        // Q(zeta_3) inside Q(zeta_12): zeta_3 = zeta_12^4
         let w = CyclotomicNumber::from(&EisensteinRat::zeta3());
         assert_eq!(w.lift(12).unwrap(), zeta(12, 4));
-        // ring embedding, and the norm to Q squares: N_24(x) = N_8(x)^[24:8 degree ratio]
         let mut rng = Lcg::new(88);
         let (x, y) = (grid_element(8, &mut rng), grid_element(8, &mut rng));
         assert_eq!(
@@ -2270,7 +2088,6 @@ mod tests {
         assert!(z.galois(2).is_err());
     }
 
-    // ----- serde ---------------------------------------------------------------
 
     #[test]
     fn wire_form_round_trips_and_rejects_a_forged_field() {
@@ -2278,17 +2095,14 @@ mod tests {
         let text = serde_json::to_string(&x).unwrap();
         let back: CyclotomicNumber = serde_json::from_str(&text).unwrap();
         assert_eq!(back, x);
-        // a wire form claiming conductor 7 (degree 6) with 4 coefficients is refused
         let forged = text.replace("\"conductor\":12", "\"conductor\":7");
         assert_ne!(forged, text, "the replacement must have applied");
         assert!(serde_json::from_str::<CyclotomicNumber>(&forged).is_err());
-        // and the typed wrapper refuses a wire form of the wrong conductor
         assert!(serde_json::from_str::<Cyclotomic<8>>(&text).is_err());
         let typed: Cyclotomic<12> = serde_json::from_str(&text).unwrap();
         assert_eq!(typed.as_number(), &x);
     }
 
-    // ----- scale ---------------------------------------------------------------
 
     #[test]
     fn a_conductor_120_element_multiplies_and_inverts_exactly() {
@@ -2298,12 +2112,10 @@ mod tests {
         let inverse = x.inverse().unwrap();
         assert_eq!(x.mul(&inverse).unwrap(), one(120));
         assert_eq!(x.degree(), 32);
-        // N(3 + zeta) = prod (3 + zeta_sigma) = Phi_120(-3), since phi(120) is even.
         assert_eq!(x.norm(), cyclotomic_polynomial(120).unwrap().eval(&ri(-3)));
     }
 }
 
-/// Refusals for the bounded quadratic-conductor obstruction search.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum QuadraticPrimeSearchError {
     #[error("a positive conductor is required")]
@@ -2313,10 +2125,6 @@ pub enum QuadraticPrimeSearchError {
     #[error(transparent)]
     Factorization(#[from] crate::integer_factorization::FactorizationError),
 }
-/// The least prime p for which Q(sqrt(p)) is not a subfield of Q(zeta_n).
-/// Every preceding candidate is checked with canonical deterministic primality;
-/// the quadratic field conductor owns the embedding criterion. This function
-/// does not construct the ambient field and so supports any usize conductor.
 pub fn first_missing_quadratic_prime(
     conductor: usize,
     candidate_budget: usize,
@@ -2331,7 +2139,7 @@ pub fn first_missing_quadratic_prime(
             u64::try_from(p).map_err(|_| QuadraticPrimeSearchError::CandidateBudget)?,
             crate::integer_factorization::FactorizationBudget::default(),
         )?;
-        if primality && (&n % quadratic_field_conductor(&BigInt::from(p))).is_zero() { /* present */
+        if primality && (&n % quadratic_field_conductor(&BigInt::from(p))).is_zero() {
         } else if primality {
             return Ok(p);
         }

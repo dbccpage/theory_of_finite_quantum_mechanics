@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the homology export."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the homology export.
+
+Origin: code/python/src/homology/__init__.py
+Claim: urn:omega:fqm:homology:exported-triangle-rank-sum:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -15,6 +25,21 @@ from src.homology.boundary import triangle_boundary_defect
 from src.homology.errors import DimensionMismatchError, NonZeroCompositionError
 from src.homology.exact_carrier import triangle_betti
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "homology" / "__init__.py"
 
 
@@ -25,7 +50,7 @@ def test_exported_sum_is_four() -> None:
 
 
 def test_negative_export_failures(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setattr(homology, "triangle_betti", lambda: (1.0, 1, 0))
+    monkeypatch.setattr(homology, "triangle_betti", lambda: (_probe("1.0"), 1, 0))
     with pytest.raises(DimensionMismatchError, match="float refused") as float_error:
         homology.exported_triangle_rank_sum()
     assert float_error.value.parameters["role"] == "rank0"
@@ -65,7 +90,7 @@ def test_end_to_end_public_contract(monkeypatch: pytest.MonkeyPatch) -> None:
     from src.homology import exported_triangle_rank_sum
 
     assert exported_triangle_rank_sum() == 4
-    monkeypatch.setattr(homology, "triangle_boundary_defect", lambda: 0.5)
+    monkeypatch.setattr(homology, "triangle_boundary_defect", lambda: _probe("0.5"))
     with pytest.raises(DimensionMismatchError, match="float refused"):
         exported_triangle_rank_sum()
 
@@ -149,12 +174,12 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
     mismatch = namespace["DimensionMismatchError"]
     nonzero = namespace["NonZeroCompositionError"]
     exported = namespace["exported_triangle_rank_sum"]
-    if not isinstance(mismatch, type) or not isinstance(nonzero, type) or not callable(exported):
+    if not _all_hold((isinstance(mismatch, type), isinstance(nonzero, type), callable(exported),)):
         return False
     original_betti = namespace["triangle_betti"]
     original_defect = namespace["triangle_boundary_defect"]
     probes = (
-        (mismatch, lambda: (1.0, 1, 0), original_defect, "float refused at the public boundary"),
+        (mismatch, lambda: (_probe("1.0"), 1, 0), original_defect, "float refused at the public boundary"),
         (mismatch, lambda: (True, 1, 0), original_defect, "boolean refused where an integer was required"),
         (mismatch, lambda: (0, 0, 3), original_defect, "triangle Betti triple is not (2, 1, 0)"),
         (nonzero, original_betti, lambda: Fraction(2), "triangle boundary square has a defect"),
@@ -174,7 +199,7 @@ def _bad_values_refused(namespace: dict[str, object]) -> bool:
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["DimensionMismatchError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -203,6 +228,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

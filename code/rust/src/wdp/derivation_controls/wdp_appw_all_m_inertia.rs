@@ -1,15 +1,9 @@
-//! Exact Sylvester inertias of the Appendix W response on one finite carrier.
-//! L=4, Fock dimension 16, theta=1/10, and M=1,2,3,4 only.
-//! Each triple is the sign count of that depth's own matrix. It is not an all-M formula
-//! and not a continuum limit.
 
 use std::sync::OnceLock;
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, ToPrimitive, Zero};
 
-// Fixture notation only: arithmetic is the same BigRational dependency used
-// by the canonical exact owners. No private bignum implementation is retained.
 #[derive(Clone, Debug, PartialEq, Eq)]
 struct Rat(BigRational);
 impl Rat {
@@ -168,7 +162,6 @@ fn response(m: u32) -> (Mat, Rat, Rat) {
             &add_mat(&identity, &scale_mat(&bonds[right], &r)),
         )
     };
-    // T0 = (I+r P0)(I+r P2), T1 = (I+r P1)(I+r P3), K_j = T_(j mod 2).
     let k = [layer(0, 2), layer(1, 3)];
     let steps = 2 * m as usize;
     let mut segments: Vec<Vec<Mat>> = Vec::with_capacity(steps + 1);
@@ -236,7 +229,6 @@ fn response(m: u32) -> (Mat, Rat, Rat) {
     for (coord, image) in v.iter().zip(gv.iter()) {
         quad = quad.add(&coord.mul(image));
     }
-    // lambda = v^T G v / (L N), and N = 2M, so the denominator is 8M.
     let lambda = quad.div(&Rat::new(8 * m as i128, 1));
     for (coord, image) in v.iter().zip(gv.iter()) {
         assert_eq!(image, &lambda.mul(coord), "staggered vector is not an eigenvector");
@@ -250,7 +242,6 @@ fn response(m: u32) -> (Mat, Rat, Rat) {
     (g, partition, lambda)
 }
 
-/// Congruence diagonalization. A zero-diagonal pair uses e_i <- e_i + e_j, which adds 2 G_ij on that diagonal.
 fn sylvester(mut a: Mat) -> (u32, u32, u32) {
     let n = a.len();
     let mut active: Vec<usize> = (0..n).collect();
@@ -387,7 +378,6 @@ fn observation(m: u32) -> Observation {
     assert_eq!(g.len(), dimension as usize);
     let (positive, negative, zero) = sylvester(g);
     assert_eq!(positive + negative + zero, dimension);
-    // Recorded on this depth only. The arithmetic 4M is not applied at any other M.
     assert_eq!(positive, 4 * m, "positive count");
     assert_eq!(negative, 1, "negative count");
     assert_eq!(zero, 4 * m - 1, "zero count");
@@ -412,13 +402,11 @@ fn observation(m: u32) -> Observation {
     }
 }
 
-/// The four computed rows at theta = 1/10. Depths outside 1..=4 are not evaluated.
 pub fn witness() -> [Observation; 4] {
     static CACHE: OnceLock<[Observation; 4]> = OnceLock::new();
     *CACHE.get_or_init(|| [observation(1), observation(2), observation(3), observation(4)])
 }
 
-/// In-scope rows return the computed inertia. Every other carrier or depth is refused.
 pub fn inertia_claim(m: i64, theta_num: i64, theta_den: i64, sites: i64) -> Result<(i64, i64, i64), &'static str> {
     if sites != 4 || theta_num != 1 || theta_den != 10 || !(1..=4).contains(&m) {
         return Err(REFUSED);

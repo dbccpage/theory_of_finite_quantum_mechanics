@@ -1,8 +1,3 @@
-//! Distinct admission meanings of pinned Genesis Ongoing seeds 15 and 16.
-//! Seed 15 C-A1 keeps admission outside its assertion state; the source also
-//! retains Tagged (unchosen C-A2). Seed 16's chosen COUNT reading carries a
-//! third table, feeding assertions when a leftover is admitted. SET and DROP
-//! remain explicit alternatives with different mass/potential laws.
 use crate::genesis_ongoing_adapter::{GenesisBridgeError, GenesisOngoingPacket};
 use crate::genesis_source_execution::{
     move_counts, Source25Change, Source25State, SourceExecutionError, SourceRelation,
@@ -189,8 +184,6 @@ fn joint_canonical(
     ))
 }
 
-/// Admission is not a source-9 assertion, does not name r or s, and is not
-/// one of its four changes. C-A1 records this separately from the state.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Source15Admission {
     pub admitted: bool,
@@ -204,7 +197,6 @@ impl Source15Admission {
     }
 }
 
-/// Exactly the source's retained, unchosen C-A2 Tagged reading.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Source15Tagged {
     state: Source9State,
@@ -223,8 +215,6 @@ impl Source15Tagged {
     pub fn admit(&self) -> Self {
         Self::new(self.state.clone(), Source15Admission::admitted())
     }
-    /// The actual tagged source function canonicalizes the whole r/s pair
-    /// and resets admission. Budget refusal is separate from disabled change.
     pub fn perform_enabled(
         &self,
         event: Source9Change,
@@ -399,11 +389,6 @@ impl Source16State {
         Self::try_new(Source9State::try_new(packet)?, leftovers)
     }
 
-    /// A counted description of a shortest COUNT run from the empty state.
-    /// Multiplicities remain BigInt; no event word is allocated here. For
-    /// each pair, add r+leftover copies in r, add s, then remove leftover
-    /// copies of r. Its length is n+sum(r+s)+2*sum(leftovers).
-    /// This minimum formula does not apply to SET or DROP.
     pub fn count_minimum_recipe(&self) -> Source16CountRecipe {
         let n = self.state.packet().terms.len();
         let p = self.state.packet();
@@ -483,8 +468,6 @@ impl Source16CountRecipe {
         }
         price
     }
-    /// Refuse before allocation when the whole word exceeds the caller's
-    /// limit; the compact recipe is still available for arbitrary counts.
     pub fn expand(&self, max_changes: usize) -> Result<Source16Run, AdmissionExecutionError> {
         let length = self.length();
         if length > BigInt::from(max_changes) {
@@ -510,8 +493,6 @@ impl Source16CountRecipe {
     }
 }
 
-/// Whole ordered native run; the record reading and complete raw boundary
-/// state are part of composition, independently of the addition prices.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Source16Run {
     reading: Source16Reading,

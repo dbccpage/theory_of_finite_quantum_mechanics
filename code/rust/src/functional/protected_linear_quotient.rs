@@ -1,7 +1,3 @@
-//! The minimal report for a declared finite family of rational linear questions.
-//! Qx=Qy iff their canonical row-space reports agree. An operator T descends
-//! precisely when it transports the source question kernel into the target
-//! kernel. This concerns declared linear answers, not ultimate physical substance.
 
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use linear_algebra::exact_field::elimination::rref_with_limits;
@@ -124,7 +120,6 @@ impl ReportQuotient {
         self.report.rows()
     }
 
-    /// Exact iff criterion, with a unique report map recomputed from T.
     pub fn descend(&self, target: &Self, operator: &Matrix) -> Result<Matrix, QuotientError> {
         valid(operator)?;
         if operator.shape() != (target.state_dimension(), self.state_dimension()) {

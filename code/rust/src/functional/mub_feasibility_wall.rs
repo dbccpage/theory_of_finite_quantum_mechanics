@@ -1,8 +1,3 @@
-//! Diagnostic normalized squared residual functional for MUB feasibility walls.
-//!
-//! This is not an exact rational Phi1 proof path. It owns the exact cyclotomic and f64 wall scalars
-//! and evidence classification used by numerical MUB cross-validation lanes so
-//! solver crates do not define their own obstruction functional.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
@@ -117,7 +112,6 @@ pub enum MubFeasibilityWallError {
 pub struct MubFeasibilityWallFunctional;
 
 impl MubFeasibilityWallFunctional {
-    /// Squared modulus sum of declared Q(zeta_24) coordinates.
     pub fn cyclotomic_squared_norm(
         values: &[omega_number_theory::cyclotomic::Cyc24],
     ) -> omega_number_theory::cyclotomic::Cyc24 {
@@ -127,7 +121,6 @@ impl MubFeasibilityWallFunctional {
         })
     }
 
-    /// Exact normalized wall value for the eighteen declared d=6 residuals.
     pub fn exact_d6_wall(
         residuals: &[omega_number_theory::cyclotomic::Cyc24],
     ) -> Result<omega_number_theory::cyclotomic::Cyc24, &'static str> {
@@ -142,8 +135,6 @@ impl MubFeasibilityWallFunctional {
             .sub(&Self::cyclotomic_squared_norm(residuals).mul(&Cyc24::rat(rq(6, 5)))))
     }
 
-    /// Power-basis coefficient energy; it shares the residual zero-locus but
-    /// is not the physical squared modulus or its margin.
     pub fn cyclotomic_coefficient_energy(
         values: &[omega_number_theory::cyclotomic::Cyc24],
     ) -> num_rational::BigRational {
@@ -156,8 +147,6 @@ impl MubFeasibilityWallFunctional {
             })
     }
 
-    /// Diagnostic curvature magnitudes in the declared wall normalization.
-    /// The target is supplied evidence; this does not prove a global minimum.
     pub fn curvature_floors(
         value: &MubFeasibilityWallValue,
         target_wall: f64,

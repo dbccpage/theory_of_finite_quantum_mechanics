@@ -32,13 +32,11 @@ def test_up_down_functor_round_trip_idempotency():
 
 def test_row_sparsity_classification():
     """Verify check_row_sparsity for sparse vs dense transformation matrices."""
-    # Permutation matrix (row-sparse: 1 non-zero per row)
     perm_matrix = np.array([[0, 1, 0], [0, 0, 1], [1, 0, 0]], dtype=float)
     report_perm = check_row_sparsity(perm_matrix)
     assert report_perm.is_row_sparse is True
     assert report_perm.interference_detected is False
 
-    # Hadamard-like dense matrix (not row-sparse: 2 non-zeros per row)
     dense_matrix = np.array([[1, 1], [1, -1]], dtype=float) / np.sqrt(2)
     report_dense = check_row_sparsity(dense_matrix)
     assert report_dense.is_row_sparse is False
@@ -47,11 +45,10 @@ def test_row_sparsity_classification():
 
 def test_phase_interference_contradiction_dense_matrix():
     """Verify Lean 4 theorem phase_interference_exists: dense unitary creates phase-dependent L1 output density."""
-    # Hadamard unitary (dense, non-row-sparse)
     h_matrix = np.array([[1, 1], [1, -1]], dtype=float) / np.sqrt(2)
     p = [0.5, 0.5]
-    ph1 = [0.0, 0.0]        # Constructive interference on row 0
-    ph2 = [0.0, np.pi]      # Destructive interference on row 0
+    ph1 = [0.0, 0.0]
+    ph2 = [0.0, np.pi]
 
     has_interference = verify_phase_interference_contradiction(h_matrix, p, ph1, ph2)
     assert has_interference is True

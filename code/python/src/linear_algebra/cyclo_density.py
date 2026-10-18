@@ -23,7 +23,6 @@ from typing import Any, Mapping, Sequence, cast
 from . import entropy_dichotomy as kernel
 
 
-# Ascending coefficients, including the monic leading coefficient.
 MODULI = {1: (-1, 1), 3: (1, 1, 1), 4: (1, 0, 1),
           5: (1, 1, 1, 1, 1), 8: (1, 0, 0, 0, 1)}
 ROOT_ISOLATION = "EXACT_CYCLOTOMIC_REAL_STURM_SPECTRAL_CLUSTERS"
@@ -111,15 +110,21 @@ def _exponent(value: object) -> int:
     raise _fail("cyclotomic exponent must be an integer", received=type(value).__name__)
 
 
+def _basis_bit(index: int, column: int) -> Q:
+    if index == column:
+        return Q(1)
+    return Q(0)
+
+
 def _basis_vector(conductor: int, degree: int, column: int) -> Cyclotomic:
-    return Cyclotomic(conductor, tuple(Q(i == column) for i in range(degree)))
+    return Cyclotomic(conductor, tuple(_basis_bit(i, column) for i in range(degree)))
 
 
 def _inverse_rows(value: Cyclotomic) -> list[list[Q]]:
     degree = len(value.coefficients)
     basis = [_basis_vector(value.conductor, degree, column) for column in range(degree)]
     columns = [(value * item).coefficients for item in basis]
-    return [[columns[j][i] for j in range(degree)] + [Q(i == 0)] for i in range(degree)]
+    return [[columns[j][i] for j in range(degree)] + [_basis_bit(i, 0)] for i in range(degree)]
 
 
 def _scale_inverse_row(rows: list[list[Q]], column: int) -> None:
@@ -283,7 +288,6 @@ def _require_self_conjugate_coefficients(polynomial: Sequence[Cyclotomic]) -> No
 
 
 def _charpoly(matrix: list[list[Cyclotomic]]) -> list[Any]:
-    # The entropy kernel's Faddeev-LeVerrier loop is duck-typed over this ring.
     return kernel.charpoly(cast(list[list[Q]], matrix))
 
 

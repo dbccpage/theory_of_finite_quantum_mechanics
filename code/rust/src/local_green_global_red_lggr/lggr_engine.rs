@@ -1,28 +1,3 @@
-//! # lggr_engine — Evaluated Path Kernel (exact rational math)
-//!
-//! **Placement in OE:**
-//! - **Pipelines** orchestrate engines, trace, solvers, search, replay, eval,
-//!   functionals (when needed), terminalizers.
-//! - **Engines** orchestrate 1-/2-morphisms (reducer / transformer / λ / generator / constructor / …)
-//!   that act without increasing Φ.
-//! - This file is the **evaluator** face of LGGR I-III path composition: map declared
-//!   finite trajectories → diagnostic mass / defects with **Auth = 0**.
-//! - It is **not** a functional crate (Φ₁/Γ₂ live in `omega_functional`), not a host ledger,
-//!   not an auth terminalizer, and not a new package.
-//!
-//! **Math (paper 019 / LGGR I):** Feynman-style path bookkeeping with finite
-//! exact rational weights — no continuum integrals, no phase, no Born rule, zero floats, zero `exp`:
-//!
-//! \[
-//! Z(S_b\mid S_a)=\sum_{\gamma:a\to b} E(\gamma)\,w[\gamma]
-//! \]
-//!
-//! \[
-//! \Delta_E = E_g - E_1 E_2 \in \{-1,0,1\}
-//! \]
-//!
-//! Host overlays (Auth=0 residual ledger, detector adequacy) live in sister modules of `omega_epk`.
-//! **AuthorityEffect: None.** Mints nothing.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -33,7 +8,6 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use thiserror::Error;
 
-// ── errors ──────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Error, Clone, PartialEq, Eq)]
 pub enum LggrError {
@@ -81,13 +55,7 @@ fn require_nonempty(value: &str, field: &'static str) -> Result<(), LggrError> {
     Ok(())
 }
 
-// ── formal exponent kernels ─────────────────────────────────────────────────
 
-/// A formal exponent monomial term `c · e^{-β A}` represented without evaluating `exp`.
-///
-/// In the group ring / polynomial representation over ℚ, multiplication of two terms
-/// multiplies their rational coefficients and adds their rational exponents:
-/// `(c₁ e^{-A₁}) · (c₂ e^{-A₂}) = (c₁ c₂) e^{-(A₁ + A₂)}`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FormalExponent {
     pub coefficient: BigRational,
@@ -125,11 +93,6 @@ impl FormalExponent {
     }
 }
 
-/// Exact sum of formal monomials `c · e^{-exponent}`.
-///
-/// Terms that share an exponent combine by adding coefficients. A coefficient
-/// that cancels is dropped, so opposite defects cancel only when their actions
-/// agree. The exponent is the positive quantity inside `e^{-·}`; it is not evaluated.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Default)]
 pub struct FormalSeries {
     terms: Vec<FormalExponent>,
@@ -144,7 +107,6 @@ impl FormalSeries {
         &self.terms
     }
 
-    /// Coefficient of `e^{-exponent}`, or zero if that exponent is absent.
     pub fn coefficient(&self, exponent: &BigRational) -> BigRational {
         self.terms
             .iter()
@@ -173,9 +135,7 @@ impl FormalSeries {
     }
 }
 
-// ── carriers ────────────────────────────────────────────────────────────────
 
-/// One evaluated step γ: content-hash states, path action A[γ], gate E(γ).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TraceRecord {
     pub trace_id: String,
@@ -231,7 +191,6 @@ pub struct EvaluatorEvent {
     pub stage: Option<String>,
 }
 
-/// Fold E(γ) as AND of events; `None` if no event for `trace_id`.
 pub fn fold_evaluator_events(trace_id: &str, events: &[EvaluatorEvent]) -> Option<bool> {
     let mut seen = false;
     let mut all_pass = true;
@@ -244,7 +203,6 @@ pub fn fold_evaluator_events(trace_id: &str, events: &[EvaluatorEvent]) -> Optio
     seen.then_some(all_pass)
 }
 
-/// Declared boundary slice B ⊆ S for kernel composition.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BoundarySlice {
     pub name: String,
@@ -264,7 +222,6 @@ impl BoundarySlice {
     }
 }
 
-/// Two-segment composition: (E₁, E₂, E_g) + optional composed cost.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CompositionRecord {
     pub composed_trace_id: String,
@@ -312,7 +269,6 @@ impl CompositionRecord {
     }
 }
 
-/// Index of segments by trace_id.
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct TraceLedger {
     records: BTreeMap<String, TraceRecord>,
@@ -365,7 +321,6 @@ impl TraceLedger {
     }
 }
 
-// ── defects ─────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GluingDefect {
@@ -374,7 +329,6 @@ pub struct GluingDefect {
     pub global_pass: bool,
 }
 
-/// Δ_E = E_g − E₁·E₂ ∈ {-1, 0, 1}. −1 is local-green / global-red.
 pub fn evaluator_gluing_defect(comp: &CompositionRecord) -> GluingDefect {
     let local_product = comp.local_product();
     let global_pass = comp.global_pass;
@@ -386,7 +340,6 @@ pub fn evaluator_gluing_defect(comp: &CompositionRecord) -> GluingDefect {
     }
 }
 
-/// Δ_A = composed_cost − (left.cost + right.cost); None if uncheckable.
 pub fn action_gluing_defect(comp: &CompositionRecord, ledger: &TraceLedger) -> Option<BigRational> {
     let composed = comp.composed_cost.as_ref()?;
     let left = ledger.get(&comp.left_trace_id)?;
@@ -394,13 +347,10 @@ pub fn action_gluing_defect(comp: &CompositionRecord, ledger: &TraceLedger) -> O
     Some(composed - (&left.cost + &right.cost))
 }
 
-// ── kernels (finite Riemann path mass) ──────────────────────────────────────
 
 pub type KernelKey = (String, String);
 pub type Kernel = BTreeMap<KernelKey, BigRational>;
 
-/// Exact formal exponent path weight: returns formal monomial `1 · e^{-β·A[γ]}` when gate passes,
-/// or formal zero when the gate fails.
 pub fn path_weight(eval_pass: bool, cost: &BigRational, beta: &BigRational) -> FormalExponent {
     if eval_pass {
         FormalExponent {
@@ -412,7 +362,6 @@ pub fn path_weight(eval_pass: bool, cost: &BigRational, beta: &BigRational) -> F
     }
 }
 
-/// Exact path weight directly on ℚ: returns `weight` if gate passes, or 0 if gate fails.
 pub fn exact_path_weight(eval_pass: bool, weight: &BigRational) -> BigRational {
     if eval_pass {
         weight.clone()
@@ -421,7 +370,6 @@ pub fn exact_path_weight(eval_pass: bool, weight: &BigRational) -> BigRational {
     }
 }
 
-/// Z(b|a) = Σ_{γ:a→b} E(γ) with exact rational weights. When unweighted, each passing path has weight 1.
 pub fn segment_kernel(segments: &[TraceRecord]) -> Kernel {
     let mut kernel = Kernel::new();
     for seg in segments {
@@ -434,7 +382,6 @@ pub fn segment_kernel(segments: &[TraceRecord]) -> Kernel {
     kernel
 }
 
-/// Segment kernel with explicit exact rational path weights.
 pub fn weighted_segment_kernel(
     segments: &[TraceRecord],
     weights: &[BigRational],
@@ -457,7 +404,6 @@ pub fn weighted_segment_kernel(
     Ok(kernel)
 }
 
-/// Composed kernel keyed (source, target) using E_g and glued segments.
 pub fn composed_kernel(
     comps: &[CompositionRecord],
     ledger: &TraceLedger,
@@ -480,7 +426,6 @@ pub fn composed_kernel(
     Ok(kernel)
 }
 
-/// Ẑ(c|a) = Σ_{b∈B} Z(c|b)·Z(b|a) in exact rational arithmetic.
 pub fn compose_kernels(left: &Kernel, right: &Kernel, boundary: &BoundarySlice) -> Kernel {
     let mut result = Kernel::new();
     for ((b1, c), z_cb) in left {
@@ -499,7 +444,6 @@ pub fn compose_kernels(left: &Kernel, right: &Kernel, boundary: &BoundarySlice) 
     result
 }
 
-// ── composition conditions G1–G3 (G4 is proposal-side, not decidable here) ─
 
 pub fn g2_action_additive(
     comp: &CompositionRecord,
@@ -529,11 +473,6 @@ pub fn boundary_in_slice(
     Ok(slice.contains(&boundary))
 }
 
-/// R_Eval = Σ Δ_E · e^{-β(A[γ₁]+A[γ₂])}, kept as an exact formal series.
-///
-/// The Boltzmann factor is not evaluated. A positive defect and a negative
-/// defect therefore cancel only when `β(A₁+A₂)` agrees; summing the bare
-/// defects would report that cancellation for every action.
 pub fn evaluator_residual(
     comps: &[CompositionRecord],
     ledger: &TraceLedger,
@@ -614,7 +553,6 @@ pub fn analyze_composition(
     })
 }
 
-// ── metrics ─────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LggrMetrics {
@@ -712,10 +650,6 @@ pub fn calculate_metrics(
     Ok(metrics)
 }
 
-/// Exact algebraic verification of the three metric identities:
-/// 1. GPR - LPR == avg_delta_eval
-/// 2. NGD + PGD + ZDR == 1
-/// 3. EGD == NGD + PGD
 pub fn validate_metric_identity(metrics: &LggrMetrics) -> Result<(), LggrError> {
     let id1 = &metrics.gpr - &metrics.lpr;
     if id1 != metrics.avg_delta_eval {
@@ -740,7 +674,6 @@ pub fn validate_metric_identity(metrics: &LggrMetrics) -> Result<(), LggrError> 
     Ok(())
 }
 
-// ── residual kernel error (path-mass mismatch — not FOC Φ₁) ─────────────────
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ResidualKernelReport {
@@ -808,7 +741,6 @@ pub fn residual_kernel_error(
     })
 }
 
-// ── tests ───────────────────────────────────────────────────────────────────
 
 #[cfg(test)]
 mod tests {
@@ -826,7 +758,6 @@ mod tests {
 
     #[test]
     fn delta_e_lggr_and_metrics_phone_test() {
-        // LGGR I phone fixture: LPR=3/5, GPR=1/5, E[Δ_E]=−2/5, NGD=2/5
         let m = calculate_metrics(
             &comps(&[
                 (true, true, true),
@@ -927,8 +858,6 @@ mod tests {
 
     #[test]
     fn evaluator_residual_keeps_distinct_actions_from_cancelling() {
-        // Δ = +1 on action 0 and Δ = −1 on action 5. The bare sum is 0.
-        // The weighted residual is e^{0} − e^{-5}, which is not zero.
         let mut ledger = TraceLedger::new();
         ledger.insert(segment("l0", "s", "m0", 0));
         ledger.insert(segment("r0", "m0", "t", 0));
@@ -947,7 +876,6 @@ mod tests {
             BigRational::from_integer((-1).into())
         );
 
-        // Equal actions do cancel.
         let mut same = TraceLedger::new();
         same.insert(segment("l0", "s", "m0", 2));
         same.insert(segment("r0", "m0", "t", 3));

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 End-to-End Demonstration: Finite to Continuum Bridging Pipeline.
 
@@ -23,7 +22,6 @@ from pathlib import Path
 import sys
 from typing import Any, Dict
 
-# Ensure project code/ is importable
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CODE_DIR = str(PROJECT_ROOT / "code")
 if CODE_DIR not in sys.path:
@@ -61,9 +59,6 @@ def run_full_pipeline_demo() -> Dict[str, Any]:
     print("  AuthorityEffect: None | Zero-Float Exact Rational Arithmetic")
     print("=" * 76)
 
-    # ---------------------------------------------------------
-    # STEP 1: CODA-Q Rational Interval Calculus
-    # ---------------------------------------------------------
     print("\n[Step 1] Certified Rational Interval Arithmetic (CODA-Q)")
     lo_sqrt2, hi_sqrt2 = rational_heron_sqrt_bounds(Fraction(2), steps=8)
     sqrt2_int = RationalInterval(lo_sqrt2, hi_sqrt2)
@@ -82,11 +77,7 @@ def run_full_pipeline_demo() -> Dict[str, Any]:
         "zero_float_certified": True,
     }
 
-    # ---------------------------------------------------------
-    # STEP 2: CS-Q Discretization Defect Operators (1D & 2D)
-    # ---------------------------------------------------------
     print("\n[Step 2] CS-Q Discretization Defect Operators (1D & 2D)")
-    # 1D Quadrature: int_0^1 x^2 dx = 1/3
     quad_solver = DiscreteTrapezoidalQuadratureSolver(lambda x: x * x, m2_bound=Fraction(2))
     c1d_coarse = quad_solver.solve(8)
     c1d_fine = quad_solver.solve(16)
@@ -94,7 +85,6 @@ def run_full_pipeline_demo() -> Dict[str, Any]:
     print(f"  1D Refinement (N=8 -> N=16): Contractive={rec_1d.is_contractive} | Overlapping={rec_1d.is_overlapping}")
     print(f"  1D Refined Enclosure of 1/3: [{rec_1d.refined_enclosure.lo}, {rec_1d.refined_enclosure.hi}]")
 
-    # 2D Cubature: iint_[0,1]^2 (x^2 * y^2) dx dy = 1/9
     cub_solver = Discrete2DCubatureSolver(lambda x, y: (x * x) * (y * y), m_xx_bound=Fraction(2), m_yy_bound=Fraction(2))
     c2d_coarse = cub_solver.solve(4, 4)
     c2d_fine = cub_solver.solve(8, 8)
@@ -109,9 +99,6 @@ def run_full_pipeline_demo() -> Dict[str, Any]:
         "2d_encloses_1_9": rec_2d.refined_enclosure.contains(Fraction(1, 9)),
     }
 
-    # ---------------------------------------------------------
-    # STEP 3: Wilsonian Finite-Size Scaling Extrapolation
-    # ---------------------------------------------------------
     print("\n[Step 3] Wilsonian Extrapolation on L=4, 6, 8, 12 Chains")
     true_f_infty = Fraction(7, 13)
     c1 = Fraction(5, 3)
@@ -126,16 +113,12 @@ def run_full_pipeline_demo() -> Dict[str, Any]:
 
     step3_data = scaling_receipt.to_dict()
 
-    # ---------------------------------------------------------
-    # PONTRYAGIN DUALITY: 1D CYCLIC AND 2D TORUS
-    # ---------------------------------------------------------
     print("\n[Pontryagin Bridge] 1D and 2D Duality Programmes")
     pont_1d = run_pontryagin_staged_programme(lattice_size=6)
     pont_2d = run_pontryagin_2d_staged_programme(lx=4, ly=4)
     print(f"  1D Programme: 7 Stages | Stage 5 a=sinc(pi/6)=3/pi: {pont_1d.stage('CONTINUOUS_HOST_EVAL').status}")
     print(f"  2D Programme: 6 Stages | Stage 5 a_2d=sinc(pi/6)^2: {pont_2d.stage('CONTINUOUS_HOST_EVAL_2D').status}")
 
-    # Character orthogonality checks
     fourier_1d = DiscreteLatticeFourier(6)
     fourier_2d = Discrete2DTorusFourier(4, 4)
     ortho_1d = fourier_1d.character_matrix_exact_orthogonality()
@@ -150,9 +133,6 @@ def run_full_pipeline_demo() -> Dict[str, Any]:
         "orthogonality_2d": ortho_2d["orthogonality_verified"],
     }
 
-    # ---------------------------------------------------------
-    # MERON-CLUSTER FERMION CHAIN WILSONIAN EXTRAPOLATION
-    # ---------------------------------------------------------
     print("\n[Meron Wilsonian Bridge] Extrapolating Fermion Chain Transfer Traces")
     meron_bridge = MeronWilsonianBridge()
     meron_rec, meron_scaling = meron_bridge.extrapolate_meron_continuum(chain_lengths=(4, 6, 8))
@@ -161,9 +141,6 @@ def run_full_pipeline_demo() -> Dict[str, Any]:
     print(f"  Thermodynamic Limit f_infty: {meron_rec.thermodynamic_limit['float_midpoint']} (certified interval width: {meron_rec.thermodynamic_limit['width']})")
     print(f"  Meron Thermodynamic SHA256: {meron_rec.receipt_sha256}")
 
-    # ---------------------------------------------------------
-    # ASSEMBLE MASTER EXECUTION RECEIPT
-    # ---------------------------------------------------------
     master_receipt = {
         "title": "Finite to Continuum Recovery & Meron Bridge Execution Receipt",
         "authority_effect": "None",

@@ -57,7 +57,6 @@ def test_tracked_release_outputs_cannot_enter_catalog_cycle(tmp_path: Path) -> N
     }
     original_catalog = catalog.read_bytes()
 
-    # Rebuilding and staging a release cannot change its own embedded catalog.
     for path in outputs:
         path.write_bytes(b"Rebuilt release bytes.\n")
     subprocess.run(["git", "-C", str(root), "add", "."], check=True)
@@ -65,14 +64,12 @@ def test_tracked_release_outputs_cannot_enter_catalog_cycle(tmp_path: Path) -> N
     assert checked.returncode == 0, checked.stdout + checked.stderr
     assert catalog.read_bytes() == original_catalog
 
-    # Nested historical ZIPs are evidence inputs, not release outputs.
     historical_archive.write_bytes(b"Altered historical evidence.\n")
     checked = run("--check")
     assert checked.returncode != 0
     assert "Paper file manifest differs" in checked.stderr
     historical_archive.write_bytes(b"Historical evidence bytes.\n")
 
-    # Source drift still fails: excluding publication outputs is no blanket bypass.
     (paper / "README.md").write_text("Unreviewed changed source.\n")
     checked = run("--check")
     assert checked.returncode != 0

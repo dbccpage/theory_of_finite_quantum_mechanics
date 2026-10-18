@@ -1,23 +1,8 @@
-//! Tullio Regge's Quantum Gravity & Path Integral Formulations (RQ-04 through RQ-10).
-//!
-//! Foundations for quantum Regge calculus:
-//! - Ponzano–Regge 6j-symbol asymptotics (RQ-06)
-//! - Discrete simplicial path integral propagator with DeWitt measure (RQ-04)
-//! - Simplicial Wheeler–DeWitt Hamiltonian constraint operator (RQ-05)
-//! - Quantum tetrahedron area/volume spectrum (RQ-07)
-//! - Discrete diffeomorphism zero modes (RQ-08)
-//! - Curvature-bounded path integrals (RQ-09)
-//! - Regge–Čech quantum contextuality bridge (RQ-10)
-//!
-//! AuthorityEffect: None.
 
 use crate::cayley_menger::simplex_volume_cayley_menger;
 use crate::dihedral_angles::tetrahedron_dihedral_angle_at_edge;
 use serde::{Deserialize, Serialize};
 
-// ============================================================================
-// 1. Ponzano-Regge Semiclassical Amplitude ({6j} Asymptotics) (RQ-06)
-// ============================================================================
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct PonzanoReggeAsymptotics {
     pub regge_action: f64,
@@ -26,10 +11,8 @@ pub struct PonzanoReggeAsymptotics {
     pub phase_factor: f64,
 }
 
-/// Compute Ponzano-Regge semiclassical amplitude for a tetrahedron with 6 edge lengths:
-/// {6j} ~ (1 / sqrt(12 * pi * V)) * cos( sum_{e=1}^6 j_e * theta_e + pi/4 ).
 pub fn compute_ponzano_regge_amplitude(
-    edge_lengths: &[f64; 6], // (01, 02, 03, 12, 13, 23)
+    edge_lengths: &[f64; 6],
 ) -> Result<PonzanoReggeAsymptotics, String> {
     let tet = [0, 1, 2, 3];
     let edges = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)];
@@ -68,9 +51,6 @@ pub fn compute_ponzano_regge_amplitude(
     })
 }
 
-// ============================================================================
-// 2. Discrete Quantum Path Integral Propagator (RQ-04)
-// ============================================================================
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct QuantumReggePropagatorResult {
     pub real_amplitude: f64,
@@ -79,8 +59,6 @@ pub struct QuantumReggePropagatorResult {
     pub admissible_configs: usize,
 }
 
-/// Compute 1D discrete path integral over edge length ell with DeWitt measure mu(ell) = ell:
-/// Z = int d ell * ell * exp(i S_Regge[ell] / hbar).
 pub fn compute_quantum_regge_path_integral_1d(
     length_range: (f64, f64),
     steps: usize,
@@ -113,9 +91,6 @@ pub fn compute_quantum_regge_path_integral_1d(
     }
 }
 
-// ============================================================================
-// 3. Simplicial Wheeler-DeWitt Constraint Operator (RQ-05)
-// ============================================================================
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct WheelerDeWittConstraintResult {
     pub vertex: usize,
@@ -124,11 +99,9 @@ pub struct WheelerDeWittConstraintResult {
     pub total_constraint_residual: f64,
 }
 
-/// Evaluate simplicial Wheeler-DeWitt constraint H_v Psi = 0:
-/// H_v = -hbar^2 * kinetic_term - 2 * sum_{e \ni v} ell_e * eps_e.
 pub fn evaluate_simplicial_wheeler_dewitt(
     vertex: usize,
-    incident_edge_deficits: &[(f64, f64)], // (length, deficit)
+    incident_edge_deficits: &[(f64, f64)],
     psi_val: f64,
     psi_hessian_trace: f64,
 ) -> WheelerDeWittConstraintResult {
@@ -147,9 +120,6 @@ pub fn evaluate_simplicial_wheeler_dewitt(
     }
 }
 
-// ============================================================================
-// 4. Quantum Tetrahedron Area & Volume Spectrum (RQ-07)
-// ============================================================================
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct QuantumTetrahedronSpectrum {
     pub spins: [f64; 4],
@@ -157,12 +127,10 @@ pub struct QuantumTetrahedronSpectrum {
     pub volume_eigenvalue_estimate: f64,
 }
 
-/// Compute loop quantum area spectrum A_i = 8 pi gamma l_P^2 sqrt(j_i (j_i + 1))
-/// and semiclassical Barrett-Crane volume estimate.
 pub fn compute_quantum_tetrahedron_spectrum(
     spins: [f64; 4],
-    gamma: f64, // Barbero-Immirzi parameter
-    l_p: f64,   // Planck length
+    gamma: f64,
+    l_p: f64,
 ) -> QuantumTetrahedronSpectrum {
     let mut areas = [0.0; 4];
     for i in 0..4 {
@@ -179,18 +147,13 @@ pub fn compute_quantum_tetrahedron_spectrum(
     }
 }
 
-// ============================================================================
-// 5. Discrete Diffeomorphism Zero Modes (RQ-08)
-// ============================================================================
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct ZeroModeAnalysis {
     pub diagonal_hessian: Vec<f64>,
     pub near_zero_diagonal_count: usize,
-    /// Unknown: a diagonal alone determines neither kernel nor gauge symmetry.
     pub is_diffeo_invariant: Option<bool>,
 }
 
-/// Count near-zero diagonal entries; no zero-mode or symmetry inference follows.
 pub fn analyze_flat_triangulation_zero_modes(
     diagonal_second_derivatives: &[f64],
     threshold: f64,
@@ -208,9 +171,6 @@ pub fn analyze_flat_triangulation_zero_modes(
     }
 }
 
-// ============================================================================
-// 6. Regge-Čech Quantum Contextuality Bridge (RQ-10)
-// ============================================================================
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct ReggeCechQuantumBridge {
     pub deficit_angle: f64,
@@ -219,8 +179,6 @@ pub struct ReggeCechQuantumBridge {
     pub is_contextual: Option<bool>,
 }
 
-/// Record an angle without asserting an unimplemented measurement/gluing bridge.
-/// No empirical model, contexts, or correlations are supplied to this API.
 pub fn bridge_regge_to_quantum_cech(deficit_angle: f64) -> ReggeCechQuantumBridge {
     ReggeCechQuantumBridge {
         deficit_angle,
@@ -230,14 +188,9 @@ pub fn bridge_regge_to_quantum_cech(deficit_angle: f64) -> ReggeCechQuantumBridg
     }
 }
 
-// ============================================================================
-// 7. Simplicial Wheeler-DeWitt Constraint Operator Evaluated Against DEC Laplacians
-// ============================================================================
 use crate::dec_laplacian::DecOperators;
 use crate::regge_4d::ReggeTriangulation4D;
 
-/// Per-vertex evaluation of the Wheeler-DeWitt constraint operator against DEC Laplacians:
-/// H_v Psi = - (hbar^2 / (2 * M_v)) * (Delta_DEC Psi)_v + U_v * Psi_v.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct WheelerDeWittDecVertexResult {
     pub vertex: usize,
@@ -252,9 +205,6 @@ pub struct WheelerDeWittDecVertexResult {
     pub residual: f64,
 }
 
-/// Finite DEC diagnostic report on a declared 4D triangulation.
-/// Satisfaction means only that the reported discrete residual meets the tolerance.
-/// It does not establish a continuum Wheeler-DeWitt solution. AuthorityEffect: None.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct WheelerDeWittDecReport {
     pub hbar: f64,
@@ -265,8 +215,6 @@ pub struct WheelerDeWittDecReport {
     pub is_constraint_satisfied: bool,
 }
 
-/// Evaluates the Wheeler-DeWitt Hamiltonian constraint operator across all vertices
-/// of a 4D Regge triangulation against the Discrete Exterior Calculus (DEC) Laplace-Beltrami operator.
 pub fn evaluate_wheeler_dewitt_against_dec_laplacian(
     triangulation: &ReggeTriangulation4D,
     dec: &DecOperators,
@@ -294,12 +242,8 @@ pub fn evaluate_wheeler_dewitt_against_dec_laplacian(
         ));
     }
 
-    // Evaluate DEC Laplacian Delta_0 Psi
     let dec_lap = dec.laplacian_0form(psi)?;
 
-    // Compute local scalar curvature potential for each vertex v:
-    // Bulk interior potential: sum_{f in interior hinges, v in f} A_f * eps_f
-    // Boundary potential: sum_{f in boundary hinges, v in f} A_f * eps_f
     let mut interior_curv_pot = vec![0.0; n];
     let mut boundary_curv_pot = vec![0.0; n];
     for h in &triangulation.hinges {
@@ -334,16 +278,13 @@ pub fn evaluate_wheeler_dewitt_against_dec_laplacian(
         let m_v = dec.hodge.star0_vertex_volumes[v];
         let lap_val = dec_lap[v];
 
-        // Kinetic term: - (hbar^2 / (2 * M_v)) * (Delta_0 Psi)_v
         let kinetic = -(hbar * hbar) / (2.0 * m_v) * lap_val;
 
-        // Potentials: Bulk WDW Hamiltonian constraint is governed by interior scalar curvature
         let c_pot = interior_curv_pot[v];
         let b_pot = boundary_curv_pot[v];
         let cosmo_pot = -lambda_param * m_v;
         let total_pot = c_pot + cosmo_pot;
 
-        // Constraint operator H_v Psi = kinetic + total_pot * Psi_v
         let res = kinetic + total_pot * psi[v];
 
         if !res.is_finite() || !b_pot.is_finite() {

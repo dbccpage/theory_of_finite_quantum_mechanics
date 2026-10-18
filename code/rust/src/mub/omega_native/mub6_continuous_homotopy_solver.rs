@@ -1,63 +1,23 @@
-//! Target B4: Continuous Boundary Homotopy Solver across Real Algebraic Moduli Variety.
-//!
-//! AuthorityEffect: None
-//!
-//! Coordinates, parameters, convex weights, certificates, and margins are exact
-//! rationals. `min_margin_val` and `boundary_circulation_val` are lossy printouts
-//! and are not pass bits.
-//!
-//! ## Mathematical Foundations
-//!
-//! 1. **Convex Homotopy of Positivstellensatz Certificates**:
-//!    For two discrete slice certificates S_A, S_B ∈ Q(I_55) with margins μ_A, μ_B > 0,
-//!    the 1-parameter continuous homotopy is defined by:
-//!      S(t) = (1 - t) S_A + t S_B,  t ∈ [0, 1] ∩ Q
-//!    Because Q(I_55) is a convex cone, S(t) ∈ Q(I_55) for all t ∈ [0, 1].
-//!
-//! 2. **Uniform Quantitative Positivity Margin**:
-//!    The net certified margin along the path satisfies:
-//!      μ(t) = (1 - t) μ_A + t μ_B ≥ min(μ_A, μ_B) > 0.
-//!
-//! 3. **The 6 Canonical Boundary Interfaces**:
-//!    - Interface 0: Szöllősi B_6(θ) <-> Karlsson K_6^{(3)}
-//!    - Interface 1: Karlsson K_6^{(3)} <-> Desingularized Deltoid Cusps
-//!    - Interface 2: Deltoid Cusps <-> Szöllősi B_6(θ)
-//!    - Interface 3: Karlsson K_6^{(3)} <-> Haagerup H_6
-//!    - Interface 4: Szöllősi B_6(θ) <-> Tao S_6
-//!    - Interface 5: Karlsson K_6^{(3)} <-> Tao S_6
-//!
-//! 4. **Closed Boundary Cycle Circulation**:
-//!    Across the closed 1-cycle of interfaces, the net cycle circulation satisfies:
-//!      Φ_1 ≥ Γ = 12133 / 5000 = 2.4266 > 0.
-//!
-//! 5. **Real Spectrum Continuous Gluing**:
-//!    No uncatalogued real prime cone can branch off or cross the continuous boundary
-//!    of the known catalog components on Sper(R[X] / I_55).
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Signed};
 use serde::{Deserialize, Serialize};
 
-/// The mandatory firewall line.
 pub const FIREWALL: &str = "stated region only; mints no authority";
 
-/// Base global minimum margin: 12133 / 30000.
 pub fn global_min_margin() -> BigRational {
     BigRational::new(BigInt::from(12133), BigInt::from(30000))
 }
 
-/// Boundary circulation threshold: Γ = 12133 / 5000.
 pub fn boundary_circulation_gamma() -> BigRational {
     BigRational::new(BigInt::from(12133), BigInt::from(5000))
 }
 
-/// Archimedean radius bound squared R^2 = 25.
 pub fn archimedean_radius_sq() -> BigRational {
     BigRational::new(BigInt::from(25), BigInt::from(1))
 }
 
-/// Certified slice certificate for a regional moduli chart.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SliceCertificate {
     pub chart_id: usize,
@@ -87,7 +47,6 @@ impl SliceCertificate {
     }
 }
 
-/// Get the 5 canonical chart certificates.
 pub fn canonical_chart_certificates() -> [SliceCertificate; 5] {
     [
         SliceCertificate {
@@ -143,7 +102,6 @@ pub fn canonical_chart_certificates() -> [SliceCertificate; 5] {
     ]
 }
 
-/// An interface boundary homotopy connecting two charts.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InterfaceHomotopy {
     pub interface_index: usize,
@@ -153,7 +111,6 @@ pub struct InterfaceHomotopy {
 }
 
 impl InterfaceHomotopy {
-    /// Evaluate the convex margin at parameter t = n / d with 0 <= n <= d.
     pub fn evaluate_margin(&self, t: &BigRational) -> BigRational {
         let one_minus_t = BigRational::one() - t;
         let margin_a = self.cert_a.margin();
@@ -161,7 +118,6 @@ impl InterfaceHomotopy {
         one_minus_t * margin_a + t * margin_b
     }
 
-    /// Verify that the margin remains strictly positive on a dense grid of steps.
     pub fn verify_grid(&self, num_subdivisions: usize) -> (bool, BigRational) {
         let mut min_margin = self.cert_a.margin();
         for k in 0..=num_subdivisions {
@@ -178,7 +134,6 @@ impl InterfaceHomotopy {
     }
 }
 
-/// Build the 6 canonical boundary interface homotopies.
 pub fn canonical_interface_homotopies() -> Vec<InterfaceHomotopy> {
     let certs = canonical_chart_certificates();
     vec![
@@ -221,7 +176,6 @@ pub fn canonical_interface_homotopies() -> Vec<InterfaceHomotopy> {
     ]
 }
 
-/// Full verification report of the continuous boundary homotopy solver.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct HomotopyVerificationReport {
     pub firewall: String,
@@ -241,7 +195,6 @@ pub struct HomotopyVerificationReport {
     pub real_spectrum_gluing_passed: bool,
 }
 
-/// Execute the comprehensive boundary homotopy verification.
 pub fn run_continuous_boundary_homotopy_solver(
     subdivisions: usize,
 ) -> HomotopyVerificationReport {

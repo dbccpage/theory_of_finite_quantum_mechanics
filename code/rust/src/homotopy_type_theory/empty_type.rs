@@ -1,18 +1,13 @@
-//! Empty type former `0` / `⊥`.
-//!
-//! Structural record only: a named empty type id.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Empty type `0` (no constructors).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EmptyType {
     pub id: String,
 }
 
 impl EmptyType {
-    /// Validate that id is non-empty.
     pub fn validate(&self) -> Result<(), EmptyTypeError> {
         if self.id.is_empty() {
             return Err(EmptyTypeError::EmptyId);

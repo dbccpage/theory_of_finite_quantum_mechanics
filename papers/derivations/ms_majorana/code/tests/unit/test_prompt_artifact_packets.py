@@ -116,7 +116,6 @@ def _sample_artifact(**overrides: object) -> PromptArtifactV1:
     return compile_prompt_artifact(**kwargs)
 
 
-# 1. Compile Open residual + dual_witness_ref set -> refuse
 def test_1_open_residual_with_dual_witness_ref_is_refused() -> None:
     with pytest.raises(CanonicalizationError, match=REFUSAL_OPEN_WITH_DUAL_WITNESS):
         _sample_artifact(
@@ -131,7 +130,6 @@ def test_1_open_residual_with_dual_witness_ref_is_refused() -> None:
         )
 
 
-# 2. Compile Exact without dual_witness_ref -> refuse
 def test_2_exact_residual_without_dual_witness_is_refused() -> None:
     with pytest.raises(CanonicalizationError, match=REFUSAL_EXACT_WITHOUT_DUAL_WITNESS):
         _sample_artifact(
@@ -139,7 +137,6 @@ def test_2_exact_residual_without_dual_witness_is_refused() -> None:
             dual_witness_ref=None,
         )
 
-    # Valid Exact with dual witness passes
     artifact = _sample_artifact(
         residual_colour=ResidualColour.EXACT,
         dual_witness_required=True,
@@ -150,7 +147,6 @@ def test_2_exact_residual_without_dual_witness_is_refused() -> None:
     assert artifact.dual_witness_ref == SAMPLE_HEX64_A
 
 
-# 3. from_dict with forbidden authority fields -> refuse
 @pytest.mark.parametrize(
     "forbidden_key",
     ["passed", "verified", "promotion_eligible", "trusted"],
@@ -163,23 +159,19 @@ def test_3_from_dict_with_forbidden_authority_field_is_refused(forbidden_key: st
         PromptArtifactV1.from_dict(wire)
 
 
-# 4. Unsorted arrays on verify -> refuse (REFUSAL_ARRAY_NOT_SORTED)
 def test_4_unsorted_arrays_on_verify_are_refused() -> None:
     artifact = _sample_artifact()
 
-    # Unsorted kill_conditions
     wire = artifact.to_dict()
     wire["kill_conditions"] = ["F-02_syntax_implies_semantic", "F-01_inherited_meaning"]
     with pytest.raises(CanonicalizationError, match=REFUSAL_ARRAY_NOT_SORTED):
         PromptArtifactV1.from_dict(wire)
 
-    # Unsorted admitted_constructors
     wire = artifact.to_dict()
     wire["admitted_constructors"] = ["ctor_b", "ctor_a"]
     with pytest.raises(CanonicalizationError, match=REFUSAL_ARRAY_NOT_SORTED):
         PromptArtifactV1.from_dict(wire)
 
-    # Unsorted open_obstructions by obstruction_id
     wire = artifact.to_dict()
     obs_b = ObstructionHintV1(
         obstruction_id="OBS-02", family="synthetic_curve", residual_colour="Open"
@@ -191,7 +183,6 @@ def test_4_unsorted_arrays_on_verify_are_refused() -> None:
     with pytest.raises(CanonicalizationError, match=REFUSAL_ARRAY_NOT_SORTED):
         PromptArtifactV1.from_dict(wire)
 
-    # Unsorted demand_set by demand_id
     wire = artifact.to_dict()
     dem_b = DemandItemV1(demand_id="DEM-02", kind="verify").to_dict()
     dem_a = DemandItemV1(demand_id="DEM-01", kind="verify").to_dict()
@@ -200,7 +191,6 @@ def test_4_unsorted_arrays_on_verify_are_refused() -> None:
         PromptArtifactV1.from_dict(wire)
 
 
-# 5. Body bytes mismatch -> refuse (REFUSAL_BODY_DIGEST_MISMATCH)
 def test_5_body_bytes_mismatch_is_refused() -> None:
     artifact = _sample_artifact()
     artifact.verify_prompt_body(
@@ -218,7 +208,6 @@ def test_5_body_bytes_mismatch_is_refused() -> None:
         artifact.verify_prompt_body(b"tampered prompt body bytes\n")
 
 
-# 6. Round-trip: compile -> to_dict -> from_dict -> same prompt_artifact_id
 def test_6_compile_to_dict_from_dict_round_trip() -> None:
     artifact = _sample_artifact()
     wire = artifact.to_dict()
@@ -226,13 +215,11 @@ def test_6_compile_to_dict_from_dict_round_trip() -> None:
     assert reparsed.prompt_artifact_id == artifact.prompt_artifact_id
     assert reparsed.to_dict() == wire
 
-    # Tampering with ID fails verification
     wire["prompt_artifact_id"] = "f" * 64
     with pytest.raises(CanonicalizationError, match=REFUSAL_ID_MISMATCH):
         PromptArtifactV1.from_dict(wire)
 
 
-# 7. Bridge: artifact -> LlmTurnPayloadV1.content_sha256 equals prompt_body_sha256
 def test_7_llm_turn_bridge_content_binding() -> None:
     artifact = _sample_artifact()
     content_sha256, content_byte_count = prompt_artifact_to_turn_content_binding(artifact)
@@ -246,7 +233,6 @@ def test_7_llm_turn_bridge_content_binding() -> None:
     assert str(payload.authority_effect.value if hasattr(payload.authority_effect, 'value') else payload.authority_effect) == "None"
 
 
-# 8. Machine block with RESIDUAL_COLOUR=Exact without dual-witness context -> refuse
 def test_8_machine_block_exact_residual_without_dual_witness_refused() -> None:
     reply = (
         "Here is my solution.\n"
@@ -264,12 +250,10 @@ def test_8_machine_block_exact_residual_without_dual_witness_refused() -> None:
     assert fields["RESIDUAL_COLOUR"] == "Exact"
     assert fields["AUTHORITY_EFFECT"] == "None"
 
-    # Without dual witness host digest -> refused, falls back to Open
     colour, refusals = validate_reply_residual(fields, dual_witness_digest=None)
     assert REFUSAL_EXACT_WITHOUT_DUAL_WITNESS in refusals
     assert colour == "Open"
 
-    # With dual witness host digest -> accepted as Exact
     colour_ok, refusals_ok = validate_reply_residual(fields, dual_witness_digest=SAMPLE_HEX64_A)
     assert refusals_ok == []
     assert colour_ok == "Exact"
@@ -314,14 +298,12 @@ def test_cli_compile_verify_and_create_task(tmp_path: pytest.TempPathFactory) ->
     assert code == 0
     assert artifact_out.exists()
 
-    # Verify prompt CLI
     code_verify = main([
         "verify-prompt",
         "--artifact", str(artifact_out),
     ])
     assert code_verify == 0
 
-    # Create task from prompt CLI
     task_out = tmp_path / "task.json"
     code_task = main([
         "create-task-from-prompt",
@@ -344,14 +326,11 @@ def test_layer_a_identity_differs_from_layer_b_content() -> None:
     body_sha, body_len = prompt_artifact_to_content_binding(art)
     assert body_sha == art.prompt_body_sha256
     assert body_len == art.prompt_body_byte_count
-    # Layer A (identity) != Layer B (raw content)
     assert art.prompt_artifact_id != art.prompt_body_sha256
 
-    # raw_content_sha256 type checks
     with pytest.raises(TypeError):
-        raw_content_sha256("not bytes")  # type: ignore[arg-type]
+        raw_content_sha256("not bytes")
 
-    # normalize_utf8_lf converts CRLF and CR to LF
     crlf_data = b"Line 1\r\nLine 2\rLine 3\n"
     normalized = normalize_utf8_lf(crlf_data)
     assert normalized == b"Line 1\nLine 2\nLine 3\n"
@@ -364,7 +343,6 @@ def test_content_addressed_disk_writing(tmp_path: pytest.TempPathFactory) -> Non
     assert art_path.name.startswith("prompt-artifact_")
     assert art_path.name.endswith(".json")
 
-    # Re-writing same artifact succeeds
     art_path_2 = write_prompt_artifact(tmp_path, art)
     assert art_path_2 == art_path
 
@@ -374,16 +352,13 @@ def test_content_addressed_disk_writing(tmp_path: pytest.TempPathFactory) -> Non
     assert body_path.name.startswith("prompt-body_")
     assert body_path.name.endswith(".bin")
 
-    # Collision with different bytes fails closed
     fake_body_path = tmp_path / body_path.name
     with pytest.raises(CanonicalizationError, match="different bytes"):
-        # Attempt to write different bytes to the same filename
         digest, _ = raw_content_sha256(body)
         clash_path = tmp_path / f"prompt-body_{digest}.bin"
         clash_path.write_bytes(b"corrupted bytes")
         write_prompt_body(tmp_path, body)
 
-    # Regime loading
     regime_file = tmp_path / "test_regime.v1.txt"
     regime_file.write_bytes(b"REGIME: custom_bound\r\nAUTHORITY_EFFECT: None\r\n")
     regime_id, norm_bytes = load_regime_id(regime_file)
@@ -413,7 +388,7 @@ def test_elimination_receipt_creation_and_round_trip() -> None:
         prior_residual_colour="Open",
         new_residual_colour="Closed",
         evidence_root=SAMPLE_HEX64_B,
-        eliminated_obstruction_ids=("OBS-02", "OBS-01"),  # should sort to OBS-01, OBS-02
+        eliminated_obstruction_ids=("OBS-02", "OBS-01"),
     )
     assert receipt.eliminated_obstruction_ids == ("OBS-01", "OBS-02")
     assert receipt.prior_residual_colour == "Open"
@@ -427,7 +402,6 @@ def test_elimination_receipt_creation_and_round_trip() -> None:
     assert reparsed.elimination_receipt_id == receipt.elimination_receipt_id
     assert reparsed == receipt
 
-    # Tampered id fails closed
     wire["elimination_receipt_id"] = "f" * 64
     with pytest.raises(CanonicalizationError, match=REFUSAL_ID_MISMATCH):
         EliminationReceiptV1.from_dict(wire)
@@ -438,7 +412,6 @@ def test_elimination_receipt_residual_honesty() -> None:
         create_elimination_receipt,
     )
 
-    # Exact without dual witness -> refuse
     with pytest.raises(CanonicalizationError, match=REFUSAL_EXACT_WITHOUT_DUAL_WITNESS):
         create_elimination_receipt(
             packet_id=SAMPLE_HEX64_A,
@@ -448,7 +421,6 @@ def test_elimination_receipt_residual_honesty() -> None:
             dual_witness_ref=None,
         )
 
-    # Open with dual witness -> refuse
     with pytest.raises(CanonicalizationError, match=REFUSAL_OPEN_WITH_DUAL_WITNESS):
         create_elimination_receipt(
             packet_id=SAMPLE_HEX64_A,
@@ -458,7 +430,6 @@ def test_elimination_receipt_residual_honesty() -> None:
             dual_witness_ref=SAMPLE_HEX64_A,
         )
 
-    # Valid Exact with dual witness
     exact_receipt = create_elimination_receipt(
         packet_id=SAMPLE_HEX64_A,
         prior_residual_colour="Closed",
@@ -500,7 +471,6 @@ def test_elimination_receipt_render_parse_and_disk_write(tmp_path: pytest.TempPa
     assert parsed["EVIDENCE_ROOT"] == SAMPLE_HEX64_B
     assert parsed["AUTHORITY_EFFECT"] == "None"
 
-    # Disk writing
     receipt_path = write_elimination_receipt(tmp_path, receipt)
     assert receipt_path.exists()
     assert receipt_path.name.startswith("elimination-receipt_")

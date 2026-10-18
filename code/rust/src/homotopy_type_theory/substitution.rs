@@ -1,10 +1,7 @@
 #![cfg(any())]
-// TODO: Fix imports from legacy arithmos
-//! Capture-avoiding substitution via De Bruijn indices.
 
 use super::term::Term;
 
-/// Shifts all free variables in `t` by `amount`, starting at binding depth `cutoff`.
 pub fn shift(t: &mut Term, amount: isize, cutoff: usize) {
     match t {
         Term::Var(idx) => {
@@ -82,7 +79,6 @@ pub fn shift(t: &mut Term, amount: isize, cutoff: usize) {
     }
 }
 
-/// Substitutes `repl` for the variable at `index` in `t`.
 pub fn substitute(t: &mut Term, index: usize, repl: &Term) {
     match t {
         Term::Var(idx) => {
@@ -168,7 +164,6 @@ pub fn substitute(t: &mut Term, index: usize, repl: &Term) {
     }
 }
 
-/// Replace the bound variable 0 in `scope` with `arg`, shifting indices down.
 pub fn instantiate(scope: &mut Term, arg: &Term) {
     let arg_shifted = arg.clone();
     substitute(scope, 0, &arg_shifted);

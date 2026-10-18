@@ -1,11 +1,7 @@
-//! Deformation: Bar-Cobar adjunction and Koszul minimal model evaluation.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use super::quadratic_operad::QuadraticOperad;
 
-/// Resolution of an operad P via bar construction B(P) and cobar construction Omega(C).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BarCobarResolution {
     pub operad_name: String,

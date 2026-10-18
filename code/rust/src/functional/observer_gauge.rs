@@ -1,6 +1,3 @@
-//! § Observer Gauge Trait
-//! Defines the geometry for Scalar, Vector, and Trace state observations.
-//! Implements CODA papers 002-005.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
@@ -13,15 +10,10 @@ pub enum GaugeError {
     InvalidWeight(f64),
 }
 
-/// The general observer gauge trait.
-///
-/// Measures a representative gauge; this does not establish a Phi1 quotient minimum.
 pub trait ObserverGauge<T> {
     fn evaluate(&self, x: &[T]) -> Result<f64, GaugeError>;
 }
 
-/// Scalar Gauge (L1)
-/// Implements Coordinate-Wise Additivity (Paper 004).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ScalarGauge {
     pub weights: Vec<f64>,
@@ -55,8 +47,6 @@ impl ObserverGauge<f64> for ScalarGauge {
     }
 }
 
-/// Vector Gauge (L1(E; L2) for SO(k) invariants)
-/// Implements SO(k) invariant gauge classification (Paper 003).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct VectorGauge {
     pub weights: Vec<f64>,
@@ -82,16 +72,12 @@ impl ObserverGauge<Vec<f64>> for VectorGauge {
     }
 }
 
-/// Trace Gauge (L1(E; Trace) for quantum states)
-/// Implements CPTP-invariant trace distance geometry (Paper 005).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TraceGauge {
     pub weights: Vec<f64>,
 }
 
 impl ObserverGauge<Vec<f64>> for TraceGauge {
-    /// Expects `x` to contain vectors of singular values for the difference
-    /// operators on each edge. Computes 1/2 ||X||_1 for each edge.
     fn evaluate(&self, x: &[Vec<f64>]) -> Result<f64, GaugeError> {
         if x.len() != self.weights.len() {
             return Err(GaugeError::DimensionMismatch {
@@ -112,7 +98,6 @@ impl ObserverGauge<Vec<f64>> for TraceGauge {
     }
 }
 
-/// Rational polyhedral representative gauge `max |facet dot x|`.
 pub fn polyhedral_gauge(
     facets: &[Vec<num_rational::BigRational>],
     x: &[num_rational::BigRational],
@@ -142,17 +127,14 @@ pub fn polyhedral_gauge(
     )
 }
 
-/// Exact squared Euclidean magnitude.
 pub fn rational_squared_l2(x: &[num_rational::BigRational]) -> num_rational::BigRational {
     x.iter().map(|x| x * x).sum()
 }
 
-/// Declared rounded rational magnitude, not a certified bound.
 pub fn rational_l2_approx(x: &[num_rational::BigRational]) -> num_rational::BigRational {
     rational_sqrt_approx(rational_squared_l2(x))
 }
 
-/// Weighted outer L1 of stalk L2 diagnostics or stalk L1 magnitudes.
 pub fn mixed_rational_gauge(
     weights: &[num_rational::BigRational],
     values: &[Vec<num_rational::BigRational>],
@@ -184,10 +166,6 @@ use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 
-/// `sqrt(r)`: exact when `r` is the square of a rational, otherwise the nearest
-/// multiple of 1/10000. An exact absolute-error tie keeps the lower multiple.
-/// A non-positive input yields zero. The comparison uses integer arithmetic and
-/// is not a certified enclosure.
 fn rational_sqrt_approx(r: BigRational) -> BigRational {
     if !r.is_positive() {
         return BigRational::zero();
@@ -197,7 +175,6 @@ fn rational_sqrt_approx(r: BigRational) -> BigRational {
     if &(&n_root * &n_root) == num && &(&d_root * &d_root) == den {
         return BigRational::new(n_root, d_root);
     }
-    // k = floor(scale * sqrt(r)). Choose k + 1 only when it is strictly nearer.
     let scale = BigInt::from(10_000_i64);
     let scale_sq = &scale * &scale;
     let scaled = &scale_sq * num;

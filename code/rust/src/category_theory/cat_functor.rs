@@ -1,30 +1,8 @@
-//! CatFunctor, ContravariantFunctor, and DeclaredFiniteFunctor.
-//!
-//! Spec references: Sections 1A, 1B, 1D, 3, 4.
-//!
-//! Laws (CatFunctor):
-//!   F(id_A) = id_{F(A)}
-//!   F(g ∘ f) = F(g) ∘ F(f)
-//!   source(F(f)) = F(source(f))
-//!   target(F(f)) = F(target(f))
-//!
-//! Laws (ContravariantFunctor):
-//!   F(id_A) = id_{F(A)}
-//!   F(g ∘ f) = F(f) ∘ F(g)   ← reversed
 
 use std::collections::BTreeMap;
 
-/// Composition table convention:
-/// compositions[(f, g)] = g ∘ f
 pub type CompositionTable = BTreeMap<(String, String), String>;
-// ---------------------------------------------------------------------------
-// Trait: CatFunctor (covariant)
-// ---------------------------------------------------------------------------
 
-/// A covariant functor F : C → D between categories.
-///
-/// This is the mathematical functor. It maps objects to objects and
-/// morphisms to morphisms, preserving identity and composition.
 pub trait CatFunctor {
     type Source: Category;
     type Target: Category;
@@ -38,14 +16,7 @@ pub trait CatFunctor {
     ) -> <Self::Target as Category>::Mor;
 }
 
-// ---------------------------------------------------------------------------
-// Trait: ContravariantFunctor
-// ---------------------------------------------------------------------------
 
-/// A contravariant functor F : C^op → D.
-///
-/// Maps f: A → B to F(f): F(B) → F(A).
-/// Composition is reversed: F(g ∘ f) = F(f) ∘ F(g).
 pub trait ContravariantFunctor {
     type Source: Category;
     type Target: Category;
@@ -53,20 +24,13 @@ pub trait ContravariantFunctor {
     fn map_object(&self, object: &<Self::Source as Category>::Ob)
         -> <Self::Target as Category>::Ob;
 
-    /// Maps f: A → B to F(f): F(B) → F(A).
     fn map_morphism(
         &self,
         morphism: &<Self::Source as Category>::Mor,
     ) -> <Self::Target as Category>::Mor;
 }
 
-// ---------------------------------------------------------------------------
-// Data: DeclaredFiniteFunctor (kernel-auditable record)
-// ---------------------------------------------------------------------------
 
-/// An explicit, finite functor declaration for kernel audit.
-///
-/// This is data, not behavior. Missing mappings are violations (spec §3).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredFiniteFunctor {
     pub name: String,
@@ -104,12 +68,7 @@ impl DeclaredFiniteFunctor {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Category trait (re-stated here for self-containment; canonical is
-// algebra/category/category.rs)
-// ---------------------------------------------------------------------------
 
-/// A category: objects, morphisms, identity, source, target, composition.
 pub trait Category {
     type Ob: Clone + Eq + std::fmt::Debug;
     type Mor: Clone + Eq + std::fmt::Debug;
@@ -120,13 +79,7 @@ pub trait Category {
     fn compose(&self, f: &Self::Mor, g: &Self::Mor) -> Option<Self::Mor>;
 }
 
-// ---------------------------------------------------------------------------
-// Validation: finite functor law checkers (spec §3, §4)
-// ---------------------------------------------------------------------------
 
-/// Check identity law: F(id_A) = id_{F(A)} for all mapped objects.
-///
-/// Missing identity mappings produce violations, not silent skips (spec §3).
 pub fn check_identity_law(functor: &DeclaredFiniteFunctor) -> Vec<String> {
     let mut violations = Vec::new();
     for (src_obj, tgt_obj) in &functor.object_map {
@@ -148,13 +101,10 @@ pub fn check_identity_law(functor: &DeclaredFiniteFunctor) -> Vec<String> {
     violations
 }
 
-/// Check composition law: F(g∘f) = F(g) ∘ F(f).
-///
-/// Missing morphism mappings produce violations, not silent skips (spec §3).
 pub fn check_composition_law(
     functor: &DeclaredFiniteFunctor,
-    source_compositions: &[(&str, &str, &str)], // (f, g, g∘f) in source
-    target_compositions: &CompositionTable,     // (f, g) → g∘f in target
+    source_compositions: &[(&str, &str, &str)],
+    target_compositions: &CompositionTable,
 ) -> Vec<String> {
     let mut violations = Vec::new();
     for &(f, g, gf) in source_compositions {
@@ -191,7 +141,6 @@ pub fn check_composition_law(
     violations
 }
 
-/// Check object totality: every object in the declared source set is mapped.
 pub fn check_object_totality(
     functor: &DeclaredFiniteFunctor,
     source_objects: &[&str],
@@ -208,7 +157,6 @@ pub fn check_object_totality(
     violations
 }
 
-/// Check morphism totality: every morphism in the declared source set is mapped.
 pub fn check_morphism_totality(
     functor: &DeclaredFiniteFunctor,
     source_morphisms: &[&str],
@@ -225,11 +173,10 @@ pub fn check_morphism_totality(
     violations
 }
 
-/// Check boundary preservation: source(F(f)) = F(source(f)) and target(F(f)) = F(target(f)).
 pub fn check_boundary_preservation(
     functor: &DeclaredFiniteFunctor,
-    source_boundaries: &[(&str, &str, &str)], // (morphism, source_obj, target_obj) in source cat
-    target_boundaries: &BTreeMap<String, (String, String)>, // F(f) -> (src, tgt)
+    source_boundaries: &[(&str, &str, &str)],
+    target_boundaries: &BTreeMap<String, (String, String)>,
 ) -> Vec<String> {
     let mut violations = Vec::new();
 
@@ -305,7 +252,6 @@ mod tests {
     fn declared_finite_functor_missing_mapping_is_violation() {
         let mut f = DeclaredFiniteFunctor::new("F", "C", "D");
         f.map_object("A", "X");
-        // id_A is not mapped — this must be a violation, not silent skip
         let violations = check_identity_law(&f);
         assert_eq!(violations.len(), 1);
         assert!(violations[0].contains("not defined"));
@@ -315,7 +261,6 @@ mod tests {
     fn composition_law_missing_mapping_is_violation() {
         let mut f = DeclaredFiniteFunctor::new("F", "C", "D");
         f.map_morphism("f", "Ff");
-        // g is not mapped
         f.map_morphism("gf", "Fgf");
 
         let target_comp: BTreeMap<(String, String), String> = BTreeMap::new();

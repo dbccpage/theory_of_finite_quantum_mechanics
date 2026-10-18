@@ -81,8 +81,6 @@ class ChartGaugeAdapter:
                 obs_map = self.presentation.maps[edge_id]
                 x_val = point[0]
                 dx = gen[0]
-                # For GraphRetraction z = x^2, n_Pi(x, y) = (0, 0, -x - 2x^3)^T
-                # dn_Pi / dx = (0, 0, -1 - 6x^2)^T
                 dn_dn = Matrix([0, 0, (-1 - 6 * x_val**2) * dx])
                 obs_vector = obs_map.observe(dn_dn)
                 col_blocks.append(obs_vector)
@@ -144,11 +142,9 @@ class HigherOrderChartGaugeAdapter(ChartGaugeAdapter):
         include_lie_brackets: bool = False,
     ) -> Matrix:
         """Build d0 matrix incorporating 1st-order, weighted polynomial fields, 2nd jets, and Lie brackets."""
-        # 1. Start with 1st-order columns
         d0_1st = self.build_repair_matrix(sample_points, first_order_generators)
         extra_columns: list[Matrix] = [d0_1st]
 
-        # 2. Weighted / polynomial vector fields (e.g. X3 = x*partial_x)
         if weighted_polynomial_generators:
             for field_expr in weighted_polynomial_generators:
                 col_blocks: list[Matrix] = []
@@ -156,14 +152,12 @@ class HigherOrderChartGaugeAdapter(ChartGaugeAdapter):
                     obs_map = self.presentation.maps[edge_id]
                     x_val = point[0]
                     y_val = point[1]
-                    # Evaluate polynomial field components (a(x,y), b(x,y))
                     dx_expr, dy_expr = field_expr
                     dx_val = as_rational(dx_expr.subs({symbols("x", real=True): x_val, symbols("y", real=True): y_val})) if hasattr(dx_expr, "subs") else as_rational(dx_expr(x_val, y_val))
                     dn_val = Matrix([0, 0, (-1 - 6 * x_val**2) * dx_val])
                     col_blocks.append(obs_map.observe(dn_val))
                 extra_columns.append(Matrix.vstack(*col_blocks))
 
-        # 3. Second-order jets (d^2 n / dx^2 = (0, 0, -12x))
         if include_second_jets:
             col_blocks_jet2: list[Matrix] = []
             for edge_id, point in zip(self.presentation.edge_order, sample_points, strict=False):
@@ -239,8 +233,8 @@ def run_parabola_retraction_experiment() -> CochainAdapterReceipt:
     p2 = Matrix([Rational(2), Rational(0), Rational(4)])
     sample_points = [p1, p2]
 
-    gen1 = Matrix([Rational(1), Rational(0)])  # partial_x
-    gen2 = Matrix([Rational(1), Rational(1)])  # diagonal correction
+    gen1 = Matrix([Rational(1), Rational(0)])
+    gen2 = Matrix([Rational(1), Rational(1)])
     generators = [gen1, gen2]
 
     return adapter.run_experiment(sample_points, generators)

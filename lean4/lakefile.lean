@@ -1,16 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import Lake
 open Lake DSL
 
--- C750 block 01 real logarithm and algebraic-number reductions.
--- AuthorityEffect: None. Baker remains an explicit cited hypothesis.
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git" @ "0df444a360eaa60ab8c11dca51a86af692955474"
 
@@ -182,7 +173,6 @@ lean_lib «FiniteQuantum» where
     `H075TensorCommutingCorrelationFrontier,
     `H076LatticeGaugeManybodyBenchmark,
     `H077FiniteOperationalClosureContract,
-    -- Superposition quotient fiber and interference (retired papers QM_060, QM_061).
     `GaussIntKernel,
     `PhaseBlindPresentation,
     `QuotientFiber,
@@ -190,10 +180,8 @@ lean_lib «FiniteQuantum» where
     `InterferenceDeficit,
     `CoboundaryHolonomy,
     `BuildabilitySetS,
-    -- Born normalization redundancy (retired paper QM_020).
     `BornRedundancy,
     `BornRedundancyAxioms,
-    -- Trace-zero duality core (retired paper QM_080).
     `TraceZeroDuality,
     `TraceZeroDualityAxioms,
     `H000FinitePresentedCarrier,
@@ -213,3 +201,6 @@ lean_lib «FiniteQuantum» where
     `LggrFiniteResults,
     `CofiberBanachQuotient
   ]
+
+private def l5aProvenance : String :=
+  "Origin: lean4/lakefile.lean Claim: package configuration AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

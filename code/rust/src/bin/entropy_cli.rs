@@ -1,4 +1,3 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 use theory_of_finite_qm::entropy_solver::{generate_c750_b01_parity_receipt, ParityReceipt};
 
 fn main() {
@@ -22,9 +21,6 @@ fn main() {
     }
 }
 
-/// The receipt's verified count is the number of systems whose byte parity
-/// matched, and each purity string `n/d` lies in `(0, 1]` with `is_pure` iff
-/// the reduced value is 1. Dimensions are summed from both ends.
 fn audit_receipt(receipt: &ParityReceipt) -> Result<(), String> {
     if receipt.systems.len() != 8 {
         return Err(format!(

@@ -1,17 +1,3 @@
-//! Probability simplices over `Fin n` with exact rational masses.
-//!
-//! A [`ProbabilitySimplex`] is a vector of nonnegative rationals that sum to exactly one. The
-//! fields are private: a value exists only after a constructor has checked non-negativity and
-//! the exact sum, so a consumer never re-validates it. Everything computed from a simplex
-//! (total variation, events, expectations, products, mixtures, power sums) is exact in
-//! `BigRational`; there is no tolerance and no floating point.
-//!
-//! Equality is equality of the mass vectors. The label is provenance only and does not take
-//! part in it.
-//!
-//! This is classical finite probability. It makes no claim about a quantum Born rule.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::BTreeSet;
 
@@ -22,7 +8,6 @@ use omega_number_theory::rational::Rational;
 use crate::error::ClassicalShadowError;
 use crate::finite_set::{checked_size_product, FinN};
 
-/// `base^exponent` by square-and-multiply, with `base^0 = 1`.
 pub(crate) fn rational_pow(base: &Rational, exponent: u32) -> Rational {
     let mut result = Rational::one();
     let mut square = base.clone();
@@ -39,15 +24,9 @@ pub(crate) fn rational_pow(base: &Rational, exponent: u32) -> Rational {
     result
 }
 
-/// Nonnegative rational masses on `Fin n` summing exactly to one.
-///
-/// Fields are private; [`ProbabilitySimplex::try_from_probs`], [`ProbabilitySimplex::try_new`]
-/// and [`ProbabilitySimplex::try_from_weights`] are the ways in.
 #[derive(Debug, Clone)]
 pub struct ProbabilitySimplex {
-    /// Exact rational masses, length `n >= 1`, each `>= 0`, sum exactly `1`.
     probs: Vec<Rational>,
-    /// Provenance label. Not part of equality.
     label: String,
 }
 
@@ -59,7 +38,6 @@ impl PartialEq for ProbabilitySimplex {
 
 impl Eq for ProbabilitySimplex {}
 
-/// Refuse an empty vector, malformed rational, negative entry, or nonunit sum.
 fn check_masses(probs: &[Rational]) -> Result<(), ClassicalShadowError> {
     if probs.is_empty() {
         return Err(ClassicalShadowError::Empty);
@@ -81,7 +59,6 @@ fn check_masses(probs: &[Rational]) -> Result<(), ClassicalShadowError> {
 }
 
 impl ProbabilitySimplex {
-    /// Validated simplex on `carrier` from exact rational masses.
     pub fn try_from_probs(
         carrier: &FinN,
         probs: Vec<Rational>,
@@ -103,7 +80,6 @@ impl ProbabilitySimplex {
         })
     }
 
-    /// Validated simplex whose carrier is the length of `probs`.
     pub fn try_new(probs: Vec<Rational>) -> Result<Self, ClassicalShadowError> {
         check_masses(&probs)?;
         Ok(Self {
@@ -112,10 +88,6 @@ impl ProbabilitySimplex {
         })
     }
 
-    /// The simplex proportional to nonnegative `weights`: each weight divided by the total.
-    ///
-    /// Refuses an empty list, a nonpositive denominator, a negative weight,
-    /// and a zero total. Raw malformed fractions are not normalized here.
     pub fn try_from_weights(weights: Vec<Rational>) -> Result<Self, ClassicalShadowError> {
         if weights.is_empty() {
             return Err(ClassicalShadowError::Empty);
@@ -140,7 +112,6 @@ impl ProbabilitySimplex {
         })
     }
 
-    /// Dirac mass at `index`.
     pub fn dirac(
         carrier: &FinN,
         index: usize,
@@ -157,38 +128,31 @@ impl ProbabilitySimplex {
         Self::try_from_probs(carrier, probs, label)
     }
 
-    /// Uniform distribution, mass `1/n` on each point.
     pub fn uniform(carrier: &FinN, label: impl Into<String>) -> Result<Self, ClassicalShadowError> {
         let mass = Rational::new(BigInt::one(), BigInt::from(carrier.cardinality()));
         Self::try_from_probs(carrier, vec![mass; carrier.cardinality()], label)
     }
 
-    /// Support size `n >= 1`.
     pub fn n(&self) -> usize {
         self.probs.len()
     }
 
-    /// Exact masses, length `n`.
     pub fn probs(&self) -> &[Rational] {
         &self.probs
     }
 
-    /// Mass at `index`, or `None` outside the carrier.
     pub fn get(&self, index: usize) -> Option<&Rational> {
         self.probs.get(index)
     }
 
-    /// Provenance label.
     pub fn label(&self) -> &str {
         &self.label
     }
 
-    /// Number of points of strictly positive mass.
     pub fn support_size(&self) -> usize {
         self.probs.iter().filter(|p| p.is_positive()).count()
     }
 
-    /// The points of strictly positive mass, in increasing order.
     pub fn support(&self) -> Vec<usize> {
         self.probs
             .iter()
@@ -198,7 +162,6 @@ impl ProbabilitySimplex {
             .collect()
     }
 
-    /// The largest mass. Masses are nonnegative, so folding from zero is the maximum.
     pub fn max_probability(&self) -> Rational {
         self.probs.iter().fold(
             Rational::zero(),
@@ -212,18 +175,14 @@ impl ProbabilitySimplex {
         )
     }
 
-    /// A single point carries all the mass.
     pub fn is_dirac(&self) -> bool {
         self.support_size() == 1
     }
 
-    /// Every point carries the same mass.
     pub fn is_uniform(&self) -> bool {
         self.probs.windows(2).all(|pair| pair[0] == pair[1])
     }
 
-    /// `P(A) = sum_(i in A) p_i` for an event given as a list of points; repeated points count
-    /// once. Refuses a point outside the carrier.
     pub fn probability_of(&self, event: &[usize]) -> Result<Rational, ClassicalShadowError> {
         let mut members = BTreeSet::new();
         for &index in event {
@@ -238,7 +197,6 @@ impl ProbabilitySimplex {
         Ok(members.iter().map(|&i| &self.probs[i]).sum())
     }
 
-    /// `E[f] = sum_i p_i f_i` for a function given by its values on each point.
     pub fn expectation(&self, values: &[Rational]) -> Result<Rational, ClassicalShadowError> {
         if values.len() != self.probs.len() {
             return Err(ClassicalShadowError::DimensionMismatch {
@@ -252,8 +210,6 @@ impl ProbabilitySimplex {
         Ok(self.probs.iter().zip(values).map(|(p, f)| p * f).sum())
     }
 
-    /// Total variation distance `1/2 sum_i |p_i - q_i|`, which equals
-    /// `max_A |p(A) - q(A)|` and lies in `[0, 1]`.
     pub fn total_variation(&self, other: &Self) -> Result<Rational, ClassicalShadowError> {
         if self.probs.len() != other.probs.len() {
             return Err(ClassicalShadowError::ShapeMismatch {
@@ -270,7 +226,6 @@ impl ProbabilitySimplex {
         Ok(l1 / Rational::from_integer(BigInt::from(2)))
     }
 
-    /// The product distribution on `Fin n x Fin m`: mass `p_i q_j` at index `i * m + j`.
     pub fn product(&self, other: &Self) -> Result<Self, ClassicalShadowError> {
         let size = checked_size_product(self.probs.len(), other.probs.len())?;
         let mut probs = Vec::with_capacity(size);
@@ -285,8 +240,6 @@ impl ProbabilitySimplex {
         })
     }
 
-    /// The mixture `sum_k w_k p^(k)` of simplices on one carrier, for weights `w_k >= 0`
-    /// summing to one.
     pub fn convex_combination(
         parts: &[(Rational, ProbabilitySimplex)],
     ) -> Result<Self, ClassicalShadowError> {
@@ -321,10 +274,6 @@ impl ProbabilitySimplex {
         })
     }
 
-    /// `sum_(p_i > 0) p_i^alpha`, rational for every integer `alpha`.
-    ///
-    /// `alpha = 0` is the support size, `alpha = 1` is `1`, and `alpha = 2` is the purity
-    /// (collision probability) `sum_i p_i^2`.
     pub fn power_sum(&self, alpha: u32) -> Rational {
         self.probs
             .iter()
@@ -406,7 +355,6 @@ mod tests {
                 Err(ClassicalShadowError::InvalidDenominator { index: 1 })
             );
         }
-        // The canonical rational constructor has already normalized this sign.
         let canonical = Rational::new((-1).into(), (-1).into());
         assert_eq!(
             ProbabilitySimplex::try_new(vec![canonical]).unwrap().probs(),
@@ -488,7 +436,6 @@ mod tests {
         let p = simplex(&[(1, 2), (1, 3), (1, 6)]);
         let f = vec![ri(2), ri(-3), ri(6)];
         let g = vec![ri(1), ri(1), ri(1)];
-        // 1/2 * 2 + 1/3 * (-3) + 1/6 * 6 = 1 - 1 + 1
         assert_eq!(p.expectation(&f).unwrap(), ri(1));
         assert_eq!(p.expectation(&g).unwrap(), ri(1));
         let combo: Vec<Rational> = f
@@ -509,7 +456,6 @@ mod tests {
         );
     }
 
-    /// Two independent computations of one number: the l1 formula and the largest event gap.
     #[test]
     fn total_variation_is_the_largest_event_gap_on_every_grid_pair() {
         let all = grid_simplices(4, 4);
@@ -582,7 +528,6 @@ mod tests {
                 );
             }
         }
-        // Marginals: summing over j recovers p, summing over i recovers q.
         for i in 0..2 {
             let row: Rational = (0..3).map(|j| pq.get(i * 3 + j).unwrap()).sum();
             assert_eq!(&row, p.get(i).unwrap());
@@ -628,15 +573,11 @@ mod tests {
         let p = simplex(&[(1, 2), (1, 3), (1, 6)]);
         assert_eq!(p.power_sum(0), ri(3));
         assert_eq!(p.power_sum(1), ri(1));
-        // 1/4 + 1/9 + 1/36 = 14/36
         assert_eq!(p.power_sum(2), rq(7, 18));
-        // 1/8 + 1/27 + 1/216 = (27 + 8 + 1)/216
         assert_eq!(p.power_sum(3), rq(1, 6));
-        // The zero mass contributes nothing, so alpha = 0 counts the support only.
         let q = simplex(&[(1, 2), (1, 2), (0, 1)]);
         assert_eq!(q.power_sum(0), ri(2));
         assert_eq!(q.power_sum(2), rq(1, 2));
-        // The uniform distribution on n points has purity 1/n.
         for n in 1..=7usize {
             let u = ProbabilitySimplex::uniform(&carrier(n), "u").unwrap();
             assert_eq!(

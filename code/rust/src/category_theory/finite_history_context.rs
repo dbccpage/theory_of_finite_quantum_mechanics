@@ -1,9 +1,6 @@
-//! Unbounded finite-word contexts and their exact finite-state descent test.
-//! This owner never replaces an arbitrary action on D* by a sampled word table.
 use crate::finite_moore::FiniteMoore;
 use std::collections::{BTreeMap, VecDeque};
 
-/// Two input histories whose equal source profiles have unequal output profiles.
 pub type ProfileNoncongruenceWitness = (Vec<usize>, Vec<usize>);
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -16,9 +13,6 @@ pub enum HistoryError {
     UnavailableContext,
 }
 
-/// Executable original history action. Arbitrary implementations retain their
-/// own semantics; callers check every output word. Only FiniteWordTransducer
-/// below supplies a checked total finite-state realization and global descent test.
 pub trait HistoryContext {
     fn apply(&self, word: &[usize]) -> Result<Vec<usize>, HistoryError>;
 }
@@ -101,9 +95,6 @@ impl FiniteWordTransducer {
         )
     }
 
-    /// Finite product graph includes (original memory, transducer state,
-    /// transformed-word memory). Its reachable vertices represent ALL words,
-    /// not a cutoff. Final emissions are applied before comparing state images.
     pub fn descend(
         &self,
         memory: &FiniteMoore,
@@ -162,7 +153,6 @@ impl FiniteWordTransducer {
             reachable_product_states: histories.len(),
         }))
     }
-    /// Exact O2 profile-kernel noncongruence witness over all input histories.
     pub fn profile_noncongruence(
         &self,
         memory: &FiniteMoore,
@@ -270,9 +260,6 @@ pub enum HistoryDescent {
     Obstructed(HistoryCollision),
 }
 
-/// Reachable-state context lifts to an action on every finite history iff all
-/// context images of reachable states are reachable. The chosen representative
-/// history is explicit; no chronology or report equality is used to invent it.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct StateContextLift {
     memory: FiniteMoore,

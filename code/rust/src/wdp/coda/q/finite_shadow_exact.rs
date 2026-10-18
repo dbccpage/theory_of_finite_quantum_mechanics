@@ -1,89 +1,36 @@
-//! Exact-arithmetic finite shadow system dual (Target 10 — reusable PROD path).
-//!
-//! --- Math Contract:
-//! - Purpose: carry **exact** Fin-`n` residual masses and a CODA-CS-Q style
-//!   finite-shadow system through a diagnostic terminalization that mirrors the
-//!   Python TEST_ONLY dual (`FiniteShadowSystem.terminalize`) without floating
-//!   point and without minting authority.
-//! - Inputs: finite support size `n`, non-negative integer masses, named shadow
-//!   family / refinement edges, topology label, cofinality flag, exact
-//!   non-negative rational error budget, optional convergence witness.
-//! - Outputs: [`TerminalizationDiagnostic`] with status/terminal labels only;
-//!   exact product / marginals for Fin-`n` distributions.
-//! - Invariants: no `f64` arithmetic; masses and budgets are exact integers /
-//!   rationals; AuthorityEffect is always [`AUTHORITY_EFFECT_NONE`]; continuum
-//!   requests without a convergence witness never upgrade past
-//!   `OracleNeeded(Convergence)`.
-//! - Failure: empty support, zero denominator, mass/support length mismatch.
-//! - Numerical status: exact integer / rational only.
-//! - Authority: diagnostic dual only. **Not** a continuum theorem. **Not**
-//!   GlobalGreen. Python duals remain TEST_ONLY prototypes.
-//!
-//! Cross-ref: field-name constants align with `FiniteQMContractV1`
-//! (`urn:omega:math:finite_qm:v1.0.0`) for fixture/schema glue. This module does
-//! **not** implement the full schema shell (that is `finite_qm_types` / Target 3).
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-// ---------------------------------------------------------------------------
-// FiniteQMContractV1 field-name cross-ref (string constants only)
-// ---------------------------------------------------------------------------
 
-/// JSON schema tag for FiniteQMContractV1 (`json_schema.schema_version`).
 pub const FINITE_QM_CONTRACT_SCHEMA_VERSION: &str = "FiniteQMContractV1";
 
-/// Contract URN alias for FiniteQMContractV1.
 pub const FINITE_QM_CONTRACT_URN: &str = "urn:omega:math:finite_qm:v1.0.0";
 
-/// `json_schema.fields.schema_version`
 pub const FIELD_SCHEMA_VERSION: &str = "schema_version";
-/// `json_schema.fields.contract_urn`
 pub const FIELD_CONTRACT_URN: &str = "contract_urn";
-/// `json_schema.fields.authority_effect`
 pub const FIELD_AUTHORITY_EFFECT: &str = "authority_effect";
-/// `json_schema.fields.carrier` (FiniteCarrier fence)
 pub const FIELD_CARRIER: &str = "carrier";
-/// Nested: `carrier.carrier_id`
 pub const FIELD_CARRIER_ID: &str = "carrier_id";
-/// Nested: `carrier.support_cardinality`
 pub const FIELD_SUPPORT_CARDINALITY: &str = "support_cardinality";
-/// `json_schema.fields.dimension` (FiniteDimension fence)
 pub const FIELD_DIMENSION: &str = "dimension";
-/// Nested: `dimension.dimension_id`
 pub const FIELD_DIMENSION_ID: &str = "dimension_id";
-/// Nested: `dimension.rank`
 pub const FIELD_RANK: &str = "rank";
-/// `json_schema.fields.certificate` (FiniteCertificate fence)
 pub const FIELD_CERTIFICATE: &str = "certificate";
-/// Nested: `certificate.certificate_id`
 pub const FIELD_CERTIFICATE_ID: &str = "certificate_id";
-/// Nested: `certificate.kind`
 pub const FIELD_CERTIFICATE_KIND: &str = "kind";
-/// Nested: `certificate.payload_digest_sha256`
 pub const FIELD_PAYLOAD_DIGEST_SHA256: &str = "payload_digest_sha256";
-/// `json_schema.fields.continuum_debt` (Finite-QM sense, not omega_q admission)
 pub const FIELD_CONTINUUM_DEBT: &str = "continuum_debt";
-/// Nested: `continuum_debt.scalars`
 pub const FIELD_SCALARS: &str = "scalars";
-/// Nested: `continuum_debt.notes`
 pub const FIELD_NOTES: &str = "notes";
-/// `json_schema.fields.import_ledger`
 pub const FIELD_IMPORT_LEDGER: &str = "import_ledger";
-/// Nested: `import_ledger.slots`
 pub const FIELD_SLOTS: &str = "slots";
 
-/// Standing authority declaration for this dual. Never rewritten.
 pub const AUTHORITY_EFFECT_NONE: &str = "None";
 
-/// Layer label shared with the Python CODA-CS-Q dual.
 pub const LAYER_CODA_CS_Q: &str = "CODA-CS-Q";
 
-// ---------------------------------------------------------------------------
-// Exact non-negative rational (error budget)
-// ---------------------------------------------------------------------------
 
-/// Exact non-negative rational `numer / denom` in lowest terms (denom > 0).
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct ExactNonNegRational {
     numer: u64,
@@ -91,7 +38,6 @@ pub struct ExactNonNegRational {
 }
 
 impl ExactNonNegRational {
-    /// Constructs `numer / denom` with `denom > 0`, reduced by gcd.
     pub fn new(numer: u64, denom: u64) -> Result<Self, FiniteShadowExactError> {
         if denom == 0 {
             return Err(FiniteShadowExactError::ZeroDenominator);
@@ -103,7 +49,6 @@ impl ExactNonNegRational {
         })
     }
 
-    /// Exact zero budget.
     pub fn zero() -> Self {
         Self { numer: 0, denom: 1 }
     }
@@ -116,14 +61,11 @@ impl ExactNonNegRational {
         self.denom
     }
 
-    /// True iff this rational is strictly negative — impossible for this type.
     pub fn is_negative(&self) -> bool {
         false
     }
 
-    /// Cross-multiply compare: self < other.
     pub fn lt(&self, other: &Self) -> bool {
-        // a/b < c/d ⇔ a*d < c*b  (all non-negative; use u128 to avoid overflow)
         (self.numer as u128) * (other.denom as u128) < (other.numer as u128) * (self.denom as u128)
     }
 }
@@ -137,24 +79,14 @@ fn gcd_u64(mut a: u64, mut b: u64) -> u64 {
     a.max(1)
 }
 
-// ---------------------------------------------------------------------------
-// Fin n distribution (exact integer masses)
-// ---------------------------------------------------------------------------
 
-/// Exact non-negative integer mass distribution on `Fin n = {0, …, n-1}`.
-///
-/// Masses are absolute residual weights (not required to sum to 1). Normalization
-/// is an optional exact rational projection; never performed with floats.
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct FinDistribution {
-    /// Support cardinality `n` (FiniteCarrier.support_cardinality sense).
     n: usize,
-    /// Exact non-negative integer mass on each point of Fin n.
     masses: Vec<u64>,
 }
 
 impl FinDistribution {
-    /// Builds a distribution; `masses.len()` must equal `n`, and `n ≥ 1`.
     pub fn new(n: usize, masses: Vec<u64>) -> Result<Self, FiniteShadowExactError> {
         if n == 0 {
             return Err(FiniteShadowExactError::EmptySupport);
@@ -168,7 +100,6 @@ impl FinDistribution {
         Ok(Self { n, masses })
     }
 
-    /// Fin-2 bit residual weight `(w0, w1)`.
     pub fn bit(w0: u64, w1: u64) -> Self {
         Self {
             n: 2,
@@ -188,19 +119,14 @@ impl FinDistribution {
         self.masses.iter().copied().sum()
     }
 
-    /// Pure iff exactly one positive mass cell.
     pub fn is_pure(&self) -> bool {
         self.masses.iter().filter(|&&m| m > 0).count() == 1
     }
 
-    /// Mixed iff at least two positive mass cells.
     pub fn is_mixed(&self) -> bool {
         self.masses.iter().filter(|&&m| m > 0).count() >= 2
     }
 
-    /// Independent classical product on Fin (n_a * n_b).
-    ///
-    /// Cell index is row-major: `i * n_b + j` holds `mass_a[i] * mass_b[j]`.
     pub fn product(&self, other: &Self) -> Result<Self, FiniteShadowExactError> {
         let n = self
             .n
@@ -218,8 +144,6 @@ impl FinDistribution {
         Self::new(n, masses)
     }
 
-    /// A-marginal of a Fin(n_a * n_b) joint under the product indexing of
-    /// [`Self::product`], with sector size `n_b`.
     pub fn marginal_a(&self, n_b: usize) -> Result<Self, FiniteShadowExactError> {
         if n_b == 0 || self.n % n_b != 0 {
             return Err(FiniteShadowExactError::InvalidMarginalShape {
@@ -241,7 +165,6 @@ impl FinDistribution {
         Self::new(n_a, masses)
     }
 
-    /// B-marginal under the same product indexing.
     pub fn marginal_b(&self, n_b: usize) -> Result<Self, FiniteShadowExactError> {
         if n_b == 0 || self.n % n_b != 0 {
             return Err(FiniteShadowExactError::InvalidMarginalShape {
@@ -263,7 +186,6 @@ impl FinDistribution {
         Self::new(n_b, masses)
     }
 
-    /// Exact probability of cell `i` as a reduced rational, if total mass > 0.
     pub fn probability(&self, i: usize) -> Result<ExactNonNegRational, FiniteShadowExactError> {
         if i >= self.n {
             return Err(FiniteShadowExactError::IndexOutOfRange {
@@ -279,24 +201,16 @@ impl FinDistribution {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Finite shadow system (exact dual of Python FiniteShadowSystem)
-// ---------------------------------------------------------------------------
 
-/// Diagnostic terminal labels for finite-shadow terminalization.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum ShadowTerminalLabel {
-    /// Missing shadow/refinement/topology or non-cofinal / negative budget.
     ShadowRefusal,
-    /// Continuum requested without a convergence witness.
     OracleNeededConvergence,
-    /// Finite query replay admitted (not continuum authority).
     FiniteShadowReplay,
 }
 
 impl ShadowTerminalLabel {
-    /// Wire label matching the Python dual terminal strings.
     pub fn as_python_dual_str(self) -> &'static str {
         match self {
             Self::ShadowRefusal => "ShadowRefusal",
@@ -306,7 +220,6 @@ impl ShadowTerminalLabel {
     }
 }
 
-/// Status label aligned with the Python dual (`pass` / `refused` / `conditional`).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum ShadowStatus {
@@ -325,7 +238,6 @@ impl ShadowStatus {
     }
 }
 
-/// Exact CODA-CS-Q finite shadow system (PROD-path dual of the Python prototype).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiniteShadowSystemExact {
     shadows: Vec<String>,
@@ -337,8 +249,6 @@ pub struct FiniteShadowSystemExact {
 }
 
 impl FiniteShadowSystemExact {
-    /// Constructs a system. Empty strings in shadow/refinement names are kept
-    /// as data; emptiness of the *collections* drives refusal.
     pub fn new(
         shadows: Vec<String>,
         refinements: Vec<(String, String)>,
@@ -381,7 +291,6 @@ impl FiniteShadowSystemExact {
         self.convergence_witness.as_deref()
     }
 
-    /// Attach or replace the named convergence witness route (diagnostic only).
     pub fn with_convergence_witness(mut self, witness: impl Into<String>) -> Self {
         self.convergence_witness = Some(witness.into());
         self
@@ -394,14 +303,6 @@ impl FiniteShadowSystemExact {
         }
     }
 
-    /// Terminalization diagnostic dual of Python `FiniteShadowSystem.terminalize`.
-    ///
-    /// Rules (exact; AuthorityEffect None):
-    /// 1. Empty shadows, empty refinements, or missing topology → ShadowRefusal.
-    /// 2. Not cofinal for the declared query, or negative error budget → ShadowRefusal
-    ///    (negative budget is uninhabited for [`ExactNonNegRational`]).
-    /// 3. Continuum required and no convergence witness → OracleNeeded(Convergence).
-    /// 4. Otherwise → FiniteShadowReplay (finite scope only).
     pub fn terminalize(&self, require_continuum: bool) -> TerminalizationDiagnostic {
         let topology_ok = match &self.topology {
             Some(t) => !t.trim().is_empty(),
@@ -439,7 +340,6 @@ impl FiniteShadowSystemExact {
     }
 }
 
-/// Diagnostic result of [`FiniteShadowSystemExact::terminalize`].
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TerminalizationDiagnostic {
     pub layer: String,
@@ -452,24 +352,17 @@ pub struct TerminalizationDiagnostic {
     pub error_budget: ExactNonNegRational,
     pub continuum_requested: bool,
     pub convergence_witness: Option<String>,
-    /// Always `"None"`.
     pub authority_effect: String,
-    /// Cross-ref to FiniteQMContractV1 schema tag (fixture glue only).
     pub finite_qm_schema_version: String,
-    /// Cross-ref to FiniteQMContractV1 URN (fixture glue only).
     pub finite_qm_contract_urn: String,
 }
 
 impl TerminalizationDiagnostic {
-    /// Python-dual wire string for the terminal field.
     pub fn terminal_wire(&self) -> &'static str {
         self.terminal.as_python_dual_str()
     }
 }
 
-// ---------------------------------------------------------------------------
-// Errors
-// ---------------------------------------------------------------------------
 
 #[derive(Clone, Debug, PartialEq, Eq, Error)]
 pub enum FiniteShadowExactError {
@@ -491,18 +384,13 @@ pub enum FiniteShadowExactError {
     ZeroTotalMass,
 }
 
-// ---------------------------------------------------------------------------
-// Fixture DTO (shared JSON under fixtures/finite_shadow/)
-// ---------------------------------------------------------------------------
 
-/// Shared fixture schema for exact finite-shadow cases.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiniteShadowFixture {
     pub fixture_id: String,
     pub kind: String,
     pub authority_effect: String,
     pub global_green: bool,
-    /// FiniteQMContractV1 field-name cross-ref block (optional glue).
     #[serde(default)]
     pub finite_qm_contract_field_refs: FiniteQmFieldRefs,
     pub system: FixtureSystem,
@@ -565,7 +453,6 @@ pub struct FixtureDist {
 }
 
 impl FiniteShadowFixture {
-    /// Materialize the exact system from fixture data.
     pub fn system_exact(&self) -> Result<FiniteShadowSystemExact, FiniteShadowExactError> {
         let budget = ExactNonNegRational::new(
             self.system.error_budget.numer,
@@ -587,7 +474,6 @@ impl FiniteShadowFixture {
         ))
     }
 
-    /// Replay all terminalization cases; returns the first mismatch description.
     pub fn replay_terminalization(&self) -> Result<(), String> {
         if self.authority_effect != AUTHORITY_EFFECT_NONE {
             return Err(format!(
@@ -634,7 +520,6 @@ impl FiniteShadowFixture {
         Ok(())
     }
 
-    /// Replay distribution product / marginal cases.
     pub fn replay_distributions(&self) -> Result<(), String> {
         for case in &self.distributions {
             let a = FinDistribution::new(case.a.n, case.a.masses.clone())
@@ -695,9 +580,6 @@ impl FiniteShadowFixture {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 #[cfg(test)]
 mod tests {
@@ -799,7 +681,6 @@ mod tests {
         let j = a.product(&b).expect("product");
         assert_eq!(j.masses(), &[2, 0, 3, 0]);
         let marg_a = j.marginal_a(2).expect("marg_a");
-        // marg_a scaled by total_b = 1 → (2, 3)
         assert_eq!(marg_a.masses(), &[2, 3]);
         let marg_b = j.marginal_b(2).expect("marg_b");
         assert_eq!(marg_b.masses(), &[5, 0]);

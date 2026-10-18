@@ -1,19 +1,3 @@
-//! The Nine-Layer CODA Stack (Rust Trait and Type Architecture).
-//!
-//! Grounded in the Calculus of Obstruction, Descent, and Authority (CODA)
-//! monographs in `research/omega_engine_coda/papers/`:
-//!
-//! - Layer 1: FOC (Finite Obstruction Calculus) — exact L1 quotient Phi_1, Gamma_2, and dual witness.
-//! - Layer 2: MUR (Meta & Universal Re-Presentation) — transport certificates and loss ledgers.
-//! - Layer 3: CS (Continuum Shadow) — downward shadow projections and fiber constancy.
-//! - Layer 4: CS-Q (Continuum Shadow to Continuum Bridge) — metric separation and 2*eps collision bounds.
-//! - Layer 5: Q (The Continuum) — convex interval enclosures [lo, hi], midpoint bounds, completions. NEVER 'Quantum Enclosure'.
-//! - Layer 6: A (Anomalon) — persistent register for surviving quotient classes (Phi_1 > 0).
-//! - Layer 7: OR (Omniversal Re-Presentation) — overlap gluing on shared slots and anti-consensus rejection.
-//! - Layer 8: FDA (Finite Descent Authority) — 5-field packet evaluated by Seven Halt Guards (proposer != authorizer).
-//! - Layer 9: CODA_GTLA (General Theory of Layered Authority) — master normal form factorization.
-//!
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
@@ -25,11 +9,7 @@ use omega_types::{
     AuthorityTerminal, ObstructionDiagnosticClass, Outcome, RefusalSource, ResidualTerminal,
 };
 
-// ============================================================================
-// Layer 1: FOC — Finite Obstruction Calculus
-// ============================================================================
 
-/// Dual witness y* in ker(d_0^T) providing exact lower bound certificate.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DualWitness {
     pub witness_id: String,
@@ -37,7 +17,6 @@ pub struct DualWitness {
     pub certificate_hash: String,
 }
 
-/// Layer 1 FOC Signature for an obstruction state.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FocSignature {
     pub phi_1: BigRational,
@@ -78,7 +57,6 @@ impl FocSignature {
     }
 }
 
-/// Trait for domain carriers to expose their cochain complexes to CODA without private math solvers.
 pub trait IntoCochainComplex {
     fn carrier_locus(&self) -> String;
     fn coboundary_0(&self, c0: &[BigRational]) -> Vec<BigRational>;
@@ -86,11 +64,7 @@ pub trait IntoCochainComplex {
     fn evaluate_foc(&self, c1: &[BigRational]) -> Result<FocSignature, CodaError>;
 }
 
-// ============================================================================
-// Layer 2: MUR — Meta & Universal Re-Presentation
-// ============================================================================
 
-/// Single entry in a loss ledger recording dropped representation distinctions.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LossEntry {
     pub slot: String,
@@ -98,7 +72,6 @@ pub struct LossEntry {
     pub rationale: String,
 }
 
-/// Mandatory loss ledger for irreversible forgetting during representation transport.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LossLedger {
     pub entries: Vec<LossEntry>,
@@ -123,7 +96,6 @@ impl LossLedger {
     }
 }
 
-/// Transport certificate certifying diagram commutation up to an explicit loss ledger.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TransportCertificate {
     pub source_locus: String,
@@ -133,11 +105,7 @@ pub struct TransportCertificate {
     pub is_retraction: bool,
 }
 
-// ============================================================================
-// Layer 3: CS — Continuum Shadow
-// ============================================================================
 
-/// Continuum shadow mapping from a declared continuum concept to a finite observation profile.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContinuumShadow<XCont, XFin> {
     pub continuum_concept_id: String,
@@ -146,11 +114,7 @@ pub struct ContinuumShadow<XCont, XFin> {
     pub _marker: std::marker::PhantomData<XCont>,
 }
 
-// ============================================================================
-// Layer 4: CS-Q — Continuum Shadow to Continuum Bridge
-// ============================================================================
 
-/// Metric separation certificate enforcing 2*epsilon collision bounds.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MetricSeparation {
     pub epsilon_mesh: BigRational,
@@ -178,13 +142,7 @@ impl MetricSeparation {
     }
 }
 
-// ============================================================================
-// Layer 5: Q — The Continuum (Enclosures and Completions)
-// CRITICAL: NEVER "Quantum Enclosure"
-// ============================================================================
 
-/// Convex interval enclosure [lo, hi] for continuum representations.
-/// Layer 5 is strictly "The Continuum", never "Quantum Enclosure".
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Enclosure<G> {
     pub lo: G,
@@ -205,7 +163,6 @@ impl<G: PartialOrd + Sub<Output = G> + Clone> Enclosure<G> {
 }
 
 impl Enclosure<BigRational> {
-    /// Invariant: |x - mid| <= width / 2. Midpoint is an enclosure coordinate, NOT the exact continuum state.
     pub fn midpoint(&self) -> BigRational {
         (&self.lo + &self.hi) / BigRational::from_integer(2.into())
     }
@@ -218,11 +175,7 @@ impl Enclosure<BigRational> {
     }
 }
 
-// ============================================================================
-// Layer 6: A — Anomalon (The Anomalon as a Typed Leftover)
-// ============================================================================
 
-/// Persistent anomalon record for surviving quotient classes (Phi_1 > 0, Gamma_2 = 0).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AnomalonRecord {
     pub anomalon_id: String,
@@ -233,7 +186,6 @@ pub struct AnomalonRecord {
     pub created_at: String,
 }
 
-/// Append-only register for persistent anomalons.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AnomalonRegister {
     pub records: Vec<AnomalonRecord>,
@@ -249,12 +201,7 @@ impl AnomalonRegister {
     }
 }
 
-// ============================================================================
-// Layer 7: OR — Omniversal Re-Presentation (Overlap Gluing & Refusal Sieve)
-// ============================================================================
 
-/// Overlap gluing: two representation segments (a, b) and (b', c) glue iff b == b'.
-/// Rejects un-witnessed consensus averaging.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct OverlapGluing<T> {
     pub left_slot: T,
@@ -275,11 +222,7 @@ impl<T: Clone> OverlapGluing<T> {
     }
 }
 
-// ============================================================================
-// Layer 8: FDA — Finite Descent Authority
-// ============================================================================
 
-/// 5-field FDA packet: (K: Carrier, E: Evidence, V: Dual Witness, tau: Transport Trace, Lambda: Lift License).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FdaPacket<T> {
     pub carrier: String,
@@ -292,48 +235,36 @@ pub struct FdaPacket<T> {
     pub budget_remaining: u64,
 }
 
-/// The Seven Halt Guards for Finite Descent Authority.
 pub struct SevenHaltGuards;
 
 impl SevenHaltGuards {
     pub fn verify<T>(packet: &FdaPacket<T>) -> Result<(), CodaError> {
-        // Guard 1: Valid carrier structure
         if packet.carrier.is_empty() {
             return Err(CodaError::HaltGuardFailed("Empty carrier".into()));
         }
-        // Guard 2: Dual witness validity
         if packet.dual_witness.witness_id.is_empty() {
             return Err(CodaError::HaltGuardFailed("Invalid dual witness".into()));
         }
-        // Guard 3: Lift license
         if packet.lift_license.is_empty() {
             return Err(CodaError::HaltGuardFailed("Missing lift license".into()));
         }
-        // Guard 4: Transport trace
         if packet.transport_trace.is_empty() {
             return Err(CodaError::HaltGuardFailed("Empty transport trace".into()));
         }
-        // Guard 5: Finite budget
         if packet.budget_remaining == 0 {
             return Err(CodaError::HaltGuardFailed("Budget exhausted".into()));
         }
-        // Guard 6: Proposer is NOT authorizer
         if packet.proposer_id == packet.authorizer_id {
             return Err(CodaError::RoleSplitViolation(format!(
                 "proposer '{}' cannot self-authorize",
                 packet.proposer_id
             )));
         }
-        // Guard 7: Authority effect remains None at packet evaluation
         Ok(())
     }
 }
 
-// ============================================================================
-// Layer 9: CODA_GTLA — General Theory of Layered Authority
-// ============================================================================
 
-/// Cryptographic grant required for authorized outcomes.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CryptographicGrant {
     pub key_id: String,
@@ -341,26 +272,20 @@ pub struct CryptographicGrant {
     pub timestamp: String,
 }
 
-/// Terminal refusal payload.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TerminalRefusal {
     pub code: String,
     pub reason: String,
 }
 
-/// Master normal form outcome of the Nine-Layer CODA Stack.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum CodaGtlaOutcome<T> {
-    /// Authorized outcome requiring external cryptographic grant.
     Authorized(T, CryptographicGrant),
-    /// Unresolved obstruction permanently trapped in the anomalon register.
     ResidualTrapped(AnomalonRecord),
-    /// Refusal emitted by the authority firewall.
     Refused(TerminalRefusal),
 }
 
 impl<T> CodaGtlaOutcome<T> {
-    /// Map the three-way CODA outcome to the canonical `Outcome`.
     pub fn to_outcome(&self) -> Outcome {
         match self {
             CodaGtlaOutcome::Authorized(_, _) => Outcome::Terminal(AuthorityTerminal::ExactRuleDerived),
@@ -370,9 +295,6 @@ impl<T> CodaGtlaOutcome<T> {
     }
 }
 
-// ============================================================================
-// Errors
-// ============================================================================
 
 #[derive(Debug, Error, PartialEq, Eq)]
 pub enum CodaError {

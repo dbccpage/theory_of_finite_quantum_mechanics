@@ -1,7 +1,3 @@
-//! Campaign module continuum_lift.
-//!
-//! The quadratic samples `0, 1, 4, 9` have constant second difference 2.
-//! Newton's binomial series from those differences reproduces the last sample.
 
 pub fn verify() -> Result<i64, &'static str> {
     let samples = [0i64, 1, 4, 9];

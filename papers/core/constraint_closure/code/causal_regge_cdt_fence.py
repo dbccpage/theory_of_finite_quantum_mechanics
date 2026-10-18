@@ -18,7 +18,7 @@ import math
 import numpy as np
 
 
-THETA_4D = math.acos(0.25)  # ≈ 1.318116 rad
+THETA_4D = math.acos(0.25)
 GAMMA_BI = 0.274066
 
 
@@ -55,8 +55,8 @@ def compare_action_profiles(k_max: int = 20, lambda_causal: float = 1.5) -> dict
         "ks": ks,
         "bare_actions": bare,
         "causal_actions": causal,
-        "bare_minimum_k": min_bare_k,  # = 20 (plunging to infinity)
-        "causal_minimum_k": min_causal_k,  # = 6 (stable)
+        "bare_minimum_k": min_bare_k,
+        "causal_minimum_k": min_causal_k,
         "bare_plunges": bare[-1] < bare[3],
         "causal_stabilized": min_causal_k == 6,
     }

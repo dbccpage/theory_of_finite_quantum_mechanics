@@ -1,12 +1,3 @@
-//! Bounded rational contractions and fraction-free integer elimination.
-//!
-//! Each row of `[A | b]` is cleared by the product of its denominators;
-//! Bareiss elimination then uses checked exact integer divisions. Free variables
-//! are zero. Singular consistent systems are supported; inconsistent systems
-//! return a typed refusal. This returns a proposal, not an inconsistency proof.
-//! Fuel counts scalar arithmetic calls (including rational normalization), not
-//! CPU instructions or bit operations. Every intermediate integer is bit-bounded;
-//! each matrix/vector allocation is element-bounded. AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError};
 use num_bigint::BigInt;
@@ -44,7 +35,6 @@ pub enum RationalError {
     Matrix(#[from] MatrixError),
 }
 
-/// One caller-owned budget, shared by construction and certificate replay.
 #[derive(Clone, Debug)]
 pub struct RationalBudget {
     limits: RationalLimits,
@@ -92,7 +82,7 @@ impl RationalBudget {
         }
         self.integer(x.numer())?;
         self.integer(x.denom())?;
-        self.charge(1)?; // normalization includes a gcd, counted as one scalar call
+        self.charge(1)?;
         let normalized = BigRational::new(x.numer().clone(), x.denom().clone());
         if x.numer() != normalized.numer() || x.denom() != normalized.denom() {
             return Err(RationalError::InvalidRational);
@@ -212,9 +202,6 @@ pub fn multiply(
     Ok(BasicMatrix::from_row_major(a.rows(), b.cols(), out)?)
 }
 
-/// Gaussian-rational contraction on separate real and imaginary parts. All
-/// four rational contractions and both combinations consume the caller's one
-/// budget; no complex scalar or domain-crate dependency is needed here.
 pub fn multiply_complex_parts(
     a_re: &BasicMatrix<BigRational>,
     a_im: &BasicMatrix<BigRational>,
@@ -234,7 +221,6 @@ pub fn multiply_complex_parts(
     ))
 }
 
-/// Conjugate transpose with bit checks and the same shared scalar budget.
 pub fn adjoint_complex_parts(
     re: &BasicMatrix<BigRational>,
     im: &BasicMatrix<BigRational>,
@@ -259,7 +245,6 @@ pub fn adjoint_complex_parts(
     ))
 }
 
-/// Entrywise addition on a shared rational budget.
 pub fn add_matrix(
     left: &BasicMatrix<BigRational>,
     right: &BasicMatrix<BigRational>,
@@ -268,7 +253,6 @@ pub fn add_matrix(
     combine_parts(left, right, false, fuel)
 }
 
-/// Entrywise rational scaling on a shared rational budget.
 pub fn scale_matrix(
     matrix: &BasicMatrix<BigRational>,
     scalar: &BigRational,
@@ -334,9 +318,6 @@ pub fn multiply_vector(
     Ok(out)
 }
 
-/// Overwrite caller-owned storage without allocating a temporary collection in
-/// the contraction. Scalar BigRational arithmetic still allocates internally.
-/// On fuel/bit exhaustion the destination may be partial and must be discarded.
 pub fn multiply_vector_into(
     a: &BasicMatrix<BigRational>,
     x: &[BigRational],
@@ -365,8 +346,6 @@ pub fn multiply_vector_into(
     Ok(())
 }
 
-/// A deterministic particular solution. Free columns are zero; no uniqueness
-/// of the potential is asserted when the matrix has a kernel.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct RationalSolution {
     pub particular: Vec<BigRational>,
@@ -439,7 +418,6 @@ pub fn solve(
             &BigRational::from_integer(grid[r * width + col].clone()),
         )?;
     }
-    // Replay against the original rational problem, independently of row clearing.
     if multiply_vector(a, &x, fuel)? != b {
         return Err(RationalError::Inconsistent);
     }

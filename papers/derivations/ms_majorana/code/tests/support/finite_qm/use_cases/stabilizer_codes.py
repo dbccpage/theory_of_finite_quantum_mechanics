@@ -26,20 +26,20 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.domain.primi
 
 def build_three_qubit_bitflip_code() -> dict[str, Any]:
     r"""Loop 8: Constructs the 3-qubit bit-flip stabilizer code on a discrete triangular cell.
-    
+
     Stabilizer generators:
         S1 = Z \otimes Z \otimes I
         S2 = I \otimes Z \otimes Z
     Logical operators:
         Z_L = Z \otimes Z \otimes Z
         X_L = X \otimes X \otimes X
-    
+
     Single-qubit errors:
         E0 = I \otimes I \otimes I  -> Syndrome (s1, s2) = (+1, +1)
         E1 = X \otimes I \otimes I  -> Syndrome (s1, s2) = (-1, +1)
         E2 = I \otimes X \otimes I  -> Syndrome (s1, s2) = (-1, -1)
         E3 = I \otimes I \otimes X  -> Syndrome (s1, s2) = (+1, -1)
-    
+
     All 4 syndromes are mutually distinct, enabling deterministic error recovery.
     """
     s1 = kron_all(SIGMA_Z, SIGMA_Z, SIGMA_I)
@@ -47,7 +47,6 @@ def build_three_qubit_bitflip_code() -> dict[str, Any]:
     z_l = kron_all(SIGMA_Z, SIGMA_Z, SIGMA_Z)
     x_l = kron_all(SIGMA_X, SIGMA_X, SIGMA_X)
 
-    # Commutation checks
     comm_s1_s2 = np.allclose(s1 @ s2, s2 @ s1)
     comm_s1_zl = np.allclose(s1 @ z_l, z_l @ s1)
     comm_s1_xl = np.allclose(s1 @ x_l, x_l @ s1)
@@ -55,7 +54,6 @@ def build_three_qubit_bitflip_code() -> dict[str, Any]:
     comm_s2_xl = np.allclose(s2 @ x_l, x_l @ s2)
     anti_xl_zl = np.allclose(x_l @ z_l, -z_l @ x_l)
 
-    # Syndrome extraction for single bit-flip errors
     errors = {
         "I": kron_all(SIGMA_I, SIGMA_I, SIGMA_I),
         "X0": kron_all(SIGMA_X, SIGMA_I, SIGMA_I),
@@ -66,12 +64,10 @@ def build_three_qubit_bitflip_code() -> dict[str, Any]:
     syndromes = {}
     recovered_correctly = True
     for name, E in errors.items():
-        # Under error E, stabilizer measurement yields eigenvalue of E^\dagger S E = +/- S
         val1 = 1 if np.allclose(E @ s1 @ E, s1) else -1
         val2 = 1 if np.allclose(E @ s2 @ E, s2) else -1
         syndromes[name] = (val1, val2)
 
-        # Recovery operator R = E restores the state
         R = E
         restored = R @ E
         if not np.allclose(restored, kron_all(SIGMA_I, SIGMA_I, SIGMA_I)):
@@ -98,17 +94,14 @@ def build_three_qubit_bitflip_code() -> dict[str, Any]:
     }
 
 
-# --------------------------------------------------------------------------- #
-# Loop 9: [[4, 2, 2]] CSS Surface Code & Distance-2 Single-Error Detection
-# --------------------------------------------------------------------------- #
 
 def build_four_qubit_css_surface_code() -> dict[str, Any]:
     r"""Loop 9: Constructs the [[4, 2, 2]] CSS surface code on a 2-torus.
-    
+
     4 physical qubits, 2 stabilizer generators:
         S_Z = Z \otimes Z \otimes Z \otimes Z
         S_X = X \otimes X \otimes X \otimes X
-    
+
     2 encoded logical qubits:
         Logical Qubit 1:
             Z_L1 = Z \otimes Z \otimes I \otimes I
@@ -116,7 +109,7 @@ def build_four_qubit_css_surface_code() -> dict[str, Any]:
         Logical Qubit 2:
             Z_L2 = Z \otimes I \otimes Z \otimes I
             X_L2 = X \otimes X \otimes I \otimes I
-    
+
     Code properties:
         - Stabilizers commute: [S_Z, S_X] = 0 because they overlap on 4 qubits ((-1)^4 = +1).
         - All 4 logical operators commute with both stabilizers.
@@ -134,7 +127,6 @@ def build_four_qubit_css_surface_code() -> dict[str, Any]:
     z_l2 = kron_all(SIGMA_Z, SIGMA_I, SIGMA_Z, SIGMA_I)
     x_l2 = kron_all(SIGMA_X, SIGMA_X, SIGMA_I, SIGMA_I)
 
-    # Commutation checks
     comm_sz_sx = np.allclose(s_z @ s_x, s_x @ s_z)
 
     logicals = [z_l1, x_l1, z_l2, x_l2]
@@ -152,7 +144,6 @@ def build_four_qubit_css_surface_code() -> dict[str, Any]:
         np.allclose(x_l1 @ x_l2, x_l2 @ x_l1)
     )
 
-    # Single-qubit error detection test
     pauli_ops = [("X", SIGMA_X), ("Y", SIGMA_Y), ("Z", SIGMA_Z)]
     detected_errors = []
     all_single_errors_detected = True
@@ -167,7 +158,6 @@ def build_four_qubit_css_surface_code() -> dict[str, Any]:
             val_x = 1 if np.allclose(E @ s_x @ E.conj().T, s_x) else -1
             syndrome = (val_z, val_x)
 
-            # Non-trivial syndrome means detected
             if syndrome == (1, 1):
                 all_single_errors_detected = False
             detected_errors.append((f"{name}{qubit_idx}", syndrome))
@@ -186,27 +176,24 @@ def build_four_qubit_css_surface_code() -> dict[str, Any]:
     }
 
 
-# --------------------------------------------------------------------------- #
-# Loop 10: Steane [[7, 1, 3]] CSS Color Code on Fano Plane
-# --------------------------------------------------------------------------- #
 
 def build_steane_seven_qubit_code() -> dict[str, Any]:
     r"""Loop 10: Constructs the Steane [[7, 1, 3]] CSS code on the Fano plane PG(2, 2).
-    
+
     7 physical qubits corresponding to the 7 points of the Fano plane.
     6 stabilizer generators from the 3 dual Fano lines / [7, 4, 3] Hamming parity checks:
         h1 = {0, 2, 4, 6} (weight 4)
         h2 = {1, 2, 5, 6} (weight 4)
         h3 = {3, 4, 5, 6} (weight 4)
-    
+
     Stabilizers:
         S_X^(i) = \bigotimes_{k \in h_i} X_k,  for i \in {1, 2, 3}
         S_Z^(i) = \bigotimes_{k \in h_i} Z_k,  for i \in {1, 2, 3}
-    
+
     1 encoded logical qubit:
         X_L = X^{\otimes 7}
         Z_L = Z^{\otimes 7}
-    
+
     Code properties:
         - Fano line intersection: |h_i \cap h_j| = 2 \equiv 0 mod 2 for all i \neq j,
           ensuring all 6 stabilizers commute pairwise ((-1)^2 = +1).
@@ -217,14 +204,12 @@ def build_steane_seven_qubit_code() -> dict[str, Any]:
         - Transversal Hadamard: H^{\otimes 7} maps S_X <-> S_Z, preserving the codespace
           and implementing logical Hadamard H_L.
     """
-    # Parity check rows of Hamming [7, 4, 3] code (0-indexed)
     h_rows = [
         [0, 2, 4, 6],
         [1, 2, 5, 6],
         [3, 4, 5, 6],
     ]
 
-    # Verify Fano intersections
     fano_intersections_even = True
     for i in range(len(h_rows)):
         for j in range(i + 1, len(h_rows)):
@@ -242,7 +227,6 @@ def build_steane_seven_qubit_code() -> dict[str, Any]:
     sz_gens = [make_pauli_string(h, SIGMA_Z) for h in h_rows]
     all_stabilizers = sx_gens + sz_gens
 
-    # Check stabilizer commutations
     all_stabilizers_commute = True
     for i in range(len(all_stabilizers)):
         for j in range(i + 1, len(all_stabilizers)):
@@ -250,23 +234,18 @@ def build_steane_seven_qubit_code() -> dict[str, Any]:
                 all_stabilizers_commute = False
                 break
 
-    # Logical operators
     x_l = kron_all(*([SIGMA_X] * 7))
     z_l = kron_all(*([SIGMA_Z] * 7))
 
-    # Check logical operators commute with all stabilizers
     logicals_commute_with_stabilizers = all(
         np.allclose(x_l @ S, S @ x_l) and np.allclose(z_l @ S, S @ z_l)
         for S in all_stabilizers
     )
 
-    # Check logical operators anticommute
     logical_anticommutes = bool(np.allclose(x_l @ z_l, -z_l @ x_l))
 
-    # Transversal Hadamard H^{\otimes 7}
     h_transversal = kron_all(*([HADAMARD_2] * 7))
 
-    # Transversal Hadamard preserves stabilizer group by interchanging SX and SZ
     hadamard_preserves_stabilizers = True
     for sx, sz in zip(sx_gens, sz_gens):
         h_sx_h = h_transversal @ sx @ h_transversal.conj().T
@@ -274,13 +253,11 @@ def build_steane_seven_qubit_code() -> dict[str, Any]:
         if not np.allclose(h_sx_h, sz) or not np.allclose(h_sz_h, sx):
             hadamard_preserves_stabilizers = False
 
-    # Logical Hadamard operation
     hadamard_implements_logical_h = (
         np.allclose(h_transversal @ x_l @ h_transversal.conj().T, z_l) and
         np.allclose(h_transversal @ z_l @ h_transversal.conj().T, x_l)
     )
 
-    # Single-qubit error detection and syndrome recovery
     pauli_errors = [("X", SIGMA_X), ("Y", SIGMA_Y), ("Z", SIGMA_Z)]
     unique_syndromes = set()
     all_single_qubit_errors_correctable = True

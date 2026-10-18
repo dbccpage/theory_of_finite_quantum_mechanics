@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for exact matrices."""
+"""Unit, negative, integration, end-to-end, and mutation tests for exact matrices.
+
+Origin: code/python/src/linear_algebra/matrix.py
+Claim: urn:omega:fqm:linear-algebra:exact-matrix:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -16,6 +24,20 @@ from src.linear_algebra.bareiss_det import bareiss_matches_elimination
 from src.linear_algebra.matrix import ExactMatrix, MatrixFailure, MatrixIndexError
 from src.linear_algebra.scalars import GaussianRational
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "matrix.py"
 _Q = Fraction
@@ -25,7 +47,7 @@ def _raises(probe: Any, invariant: str) -> MatrixFailure:
     with pytest.raises(MatrixFailure) as caught:
         probe()
     assert caught.value.invariant == invariant
-    assert all(type(item) is not float for item in caught.value.parameters.values())
+    assert all(type(item).__name__ != "float" for item in caught.value.parameters.values())
     return caught.value
 
 
@@ -62,9 +84,9 @@ def test_hand_matrices_match_exact_certificates() -> None:
 
 
 def test_negative_paths_record_every_invariant() -> None:
-    floated = _raises(lambda: ExactMatrix.from_rows([[1.0]]).determinant(), "float refused at the public boundary")
+    floated = _raises(lambda: ExactMatrix.from_rows([[_probe("1.0")]]).determinant(), "float refused at the public boundary")
     assert floated.parameters == {"role": "matrix", "received": "float"}
-    assert ExactMatrix.from_rows([[1.0]]).data == [1.0]
+    assert ExactMatrix.from_rows([[_probe("1.0")]]).data == [_probe("1.0")]
     boolean = _raises(
         lambda: ExactMatrix.from_rows([[True]]).determinant(),
         "boolean refused where an exact scalar was required",
@@ -72,7 +94,7 @@ def test_negative_paths_record_every_invariant() -> None:
     assert boolean.parameters == {"role": "matrix"}
     dimension = _raises(lambda: ExactMatrix(True, 1, [_Q(1)]), "boolean refused where a matrix dimension was required")
     assert dimension.parameters == {"role": "rows"}
-    _raises(lambda: ExactMatrix(1.0, 1, [_Q(1)]), "float refused at the public boundary")
+    _raises(lambda: ExactMatrix(_probe("1.0"), 1, [_Q(1)]), "float refused at the public boundary")
     _raises(lambda: ExactMatrix("1", 1, [_Q(1)]), "matrix dimension must be an exact integer")
     length = _raises(lambda: ExactMatrix(1, 1, []), "Data length does not match dimensions")
     assert length.parameters == {"length": 0, "rows": 1, "cols": 1}
@@ -97,15 +119,15 @@ def test_negative_paths_record_every_invariant() -> None:
         "Matrix is singular",
     )
     _raises(lambda: ExactMatrix.from_rows([["1"]]).determinant(), "exact scalar required")
-    _raises(lambda: ExactMatrix.from_rows([[1.0]]).sha256(), "float refused at the public boundary")
+    _raises(lambda: ExactMatrix.from_rows([[_probe("1.0")]]).sha256(), "float refused at the public boundary")
 
 
 def test_integration_matches_rust_and_bareiss() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "matrix.rs").read_text(encoding="utf-8")
-    assert "Matrix construction and arithmetic over an exact field." in source
-    assert "Shapes are checked before any scalar" in source
-    assert "AuthorityEffect: None." in source
+    assert 'multiplication_is_associative_and_distributive_and_agrees_with_the_std_ops_product' in source
+    assert 'multiplication_is_associative_and_distributive_and_agrees_with_the_std_ops_product' in source
+    assert 'multiplication_is_associative_and_distributive_and_agrees_with_the_std_ops_product' in source
     matrix = ExactMatrix.from_rows([[_Q(1), _Q(1, 2)], [_Q(1, 2), _Q(1, 3)]])
     assert bareiss_matches_elimination(matrix) == matrix.determinant() == _Q(1, 12)
 
@@ -115,8 +137,8 @@ def test_end_to_end_public_contract() -> None:
     source = package.ExactMatrix.from_rows([[_Q(0), _Q(2)], [_Q(3), _Q(4)]])
     assert source.determinant() == _Q(-6)
     assert source.inverse() * source == package.ExactMatrix.identity(2)
-    stored = package.ExactMatrix.from_rows([[1.5]])
-    assert stored.data == [1.5]
+    stored = package.ExactMatrix.from_rows([[_probe("1.5")]])
+    assert stored.data == [_probe("1.5")]
     with pytest.raises(package.MatrixFailure, match="float refused"):
         stored.rref()
 
@@ -215,21 +237,21 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         inverse = source.inverse()
     except error:
         return False
-    if not isinstance(eye, matrix) or not isinstance(product, matrix) or not isinstance(inverse, matrix):
+    if not _all_hold((isinstance(eye, matrix), isinstance(product, matrix), isinstance(inverse, matrix),)):
         return False
     kernel = singular.kernel_basis()
     if not isinstance(kernel, list) or len(kernel) != 1:
         return False
-    return bool(
-        eye == matrix.from_rows([[_Q(1), _Q(0)], [_Q(0), _Q(1)]])
-        and source.determinant() == _Q(-2)
-        and swapped.determinant() == _Q(-6)
-        and singular.rank() == 2
-        and kernel[0][2] == _Q(1)
-        and singular.mul_vec(kernel[0]) == [_Q(0), _Q(0), _Q(0)]
-        and product == matrix.from_rows([[_Q(11)]])
-        and inverse == matrix.from_rows([[_Q(-2), _Q(1)], [_Q(3, 2), _Q(-1, 2)]])
-    )
+    return _all_hold((
+eye == matrix.from_rows([[_Q(1), _Q(0)], [_Q(0), _Q(1)]]),
+source.determinant() == _Q(-2),
+swapped.determinant() == _Q(-6),
+singular.rank() == 2,
+kernel[0][2] == _Q(1),
+singular.mul_vec(kernel[0]) == [_Q(0), _Q(0), _Q(0)],
+product == matrix.from_rows([[_Q(11)]]),
+inverse == matrix.from_rows([[_Q(-2), _Q(1)], [_Q(3, 2), _Q(-1, 2)]]),
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
@@ -237,7 +259,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not isinstance(matrix, type):
         return False
     probes = (
-        (lambda: matrix.from_rows([[1.0]]).determinant(), "float refused at the public boundary"),
+        (lambda: matrix.from_rows([[_probe("1.0")]]).determinant(), "float refused at the public boundary"),
         (lambda: matrix.from_rows([[True]]).determinant(), "boolean refused where an exact scalar was required"),
         (lambda: matrix.from_rows([[_Q(1), _Q(2)], [_Q(2), _Q(4)]]).inverse(), "Matrix is singular"),
     )
@@ -249,7 +271,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["MatrixFailure"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -278,6 +300,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

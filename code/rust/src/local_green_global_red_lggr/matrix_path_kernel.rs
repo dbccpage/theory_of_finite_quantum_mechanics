@@ -1,10 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Exact two-dimensional matrix path kernels and declared overlap/trace checks.
-//!
-//! Grounded in FOC-012 ("Local Green, Global Red Foundational Series"):
-//! - LGGR I (Evaluated Path Kernels): Path composition K(P) = T_{e_m} ... T_{e_1}. Canonical 3-cycle: Local Green !=> Global Green.
-//! - LGGR II (Organizational Gluing): Covering sieves U = {U_i} and Cech gluing defect Delta_{glue}(s) = ||delta^0 s||_1.
-//! - LGGR III (CODA_GTLA Traces): Game-Theoretic Trace Verification contracting evaluation residuals under finite budgets.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -14,7 +7,6 @@ use serde::{Deserialize, Serialize};
 use omega_holonomy::matrix::ExactMatrix;
 use omega_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
 
-/// Typed malformed-presentation and native-owner refusals.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum MatrixPathError {
     #[error("Invalid input: {detail}")]
@@ -25,14 +17,12 @@ pub enum MatrixPathError {
     Holonomy(#[from] omega_holonomy::HolonomyError),
 }
 
-/// Evaluation status for local edges and global cycles.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum EvaluationColor {
     Green,
     Red,
 }
 
-/// 2x2 BigRational Matrix for transition and path evaluation kernels.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RationalMatrix2x2 {
     pub m00: BigRational,
@@ -78,7 +68,6 @@ impl RationalMatrix2x2 {
         }
     }
 
-    /// Product arithmetic is owned by the exact holonomy matrix backend.
     pub fn multiply(&self, other: &Self) -> Result<Self, MatrixPathError> {
         Ok(Self::from_native(
             &self.to_native()?.matmul(&other.to_native()?)?,
@@ -89,7 +78,6 @@ impl RationalMatrix2x2 {
         Ok(self.to_native()?.determinant()?)
     }
 
-    /// L1 matrix norm: max absolute column sum.
     pub fn l1_norm(&self) -> Result<BigRational, MatrixPathError> {
         let native = self.to_native()?;
         let rows = (0..2)
@@ -104,7 +92,6 @@ impl RationalMatrix2x2 {
         })
     }
 
-    /// Deviation from identity: ||M - I||_1.
     pub fn deviation_from_identity(&self) -> Result<BigRational, MatrixPathError> {
         let native = self.to_native()?;
         let diff = Self {
@@ -117,7 +104,6 @@ impl RationalMatrix2x2 {
     }
 }
 
-/// Evaluated Path Kernel system over a directed graph.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EvaluatedPathKernelGraph {
     pub vertices: Vec<String>,
@@ -174,8 +160,6 @@ impl EvaluatedPathKernelGraph {
         Ok(value)
     }
 
-    /// Checked declared edge walk, in full, with no malformed steps omitted.
-    /// Products T_last...T_first delegate to the native exact matrix owner.
     pub fn evaluate_path(
         &self,
         edge_indices: &[usize],
@@ -241,9 +225,6 @@ impl EvaluatedPathKernelGraph {
         Ok((product.deviation_from_identity()? <= threshold, product))
     }
 
-    /// Sum matrix differences on the caller's declared comparisons. Zero means
-    /// agreement on precisely those pairs; no coverage, transport, Cech H1 or
-    /// global gluing property follows from an arbitrary comparison list.
     pub fn compute_cech_gluing_defect(
         &self,
         patch_evaluations: &[RationalMatrix2x2],
@@ -282,9 +263,6 @@ impl EvaluatedPathKernelGraph {
         Ok((total, vanishes))
     }
 
-    /// Check the declared exact nonnegative residual sequence: every positive
-    /// residual strictly decreases; zero is absorbing. This is a conditional
-    /// sequence check, not recomputation of residuals from an actual graph run.
     pub fn verify_coda_gtla_trace(&self, residual_sequence: &[BigRational]) -> bool {
         if residual_sequence.is_empty() || residual_sequence.iter().any(|q| q.denom().is_zero()) {
             return false;
@@ -303,7 +281,6 @@ impl EvaluatedPathKernelGraph {
     }
 }
 
-/// Generates the canonical 3-cycle LGGR counterexample: Local Green !=> Global Green.
 pub fn generate_canonical_lggr_counterexample() -> (EvaluatedPathKernelGraph, Vec<usize>) {
     let vertices = vec!["v0".to_string(), "v1".to_string(), "v2".to_string()];
     let edges = vec![
@@ -312,10 +289,6 @@ pub fn generate_canonical_lggr_counterexample() -> (EvaluatedPathKernelGraph, Ve
         ("v2".to_string(), "v0".to_string()),
     ];
 
-    // Three upper-triangular shears each with ||T - I|| = 1/2 (Local Green <= 1/2)
-    // T1 = [[1, 1/2], [0, 1]]
-    // T2 = [[1, 0], [1/2, 1]]
-    // T3 = [[1, 1/2], [0, 1]]
     let half = || BigRational::new(BigInt::from(1), BigInt::from(2));
     let t1 = RationalMatrix2x2::new(
         BigRational::one(),
@@ -362,7 +335,7 @@ mod tests {
         );
 
         let (global_green, cycle_prod) = graph.check_global_cycle(&cycle, qr(1, 10)).unwrap();
-        assert!(!global_green); // Global Red!
+        assert!(!global_green);
         assert!(!cycle_prod.deviation_from_identity().unwrap().is_zero());
     }
 
@@ -375,7 +348,7 @@ mod tests {
         let non_contractive = vec![
             q(1),
             qr(1, 2),
-            qr(3, 4), // increased!
+            qr(3, 4),
         ];
         assert!(!graph.verify_coda_gtla_trace(&non_contractive));
     }

@@ -1,11 +1,6 @@
-//! Contract alignment module for Homotopy Type Theory.
-//!
-//! Provides formal mapping and verification between Rust HoTT record types
-//! and canonical `urn:omega:math:*` contract URNs.
 
 use serde::{Deserialize, Serialize};
 
-/// Canonical URNs for HoTT math contracts.
 pub const CONTRACT_IDENTITY_TYPE: &str = "urn:omega:math:identity_type:v0.1.0";
 pub const CONTRACT_PI_TYPE: &str = "urn:omega:math:pi_type:v0.1.0";
 pub const CONTRACT_SIGMA_TYPE: &str = "urn:omega:math:sigma_type:v0.1.0";
@@ -13,7 +8,6 @@ pub const CONTRACT_TRUNCATION_LEVEL: &str = "urn:omega:math:truncation_level:v0.
 pub const CONTRACT_UNIVALENCE_WITNESS: &str = "urn:omega:math:univalence_witness:v0.1.0";
 pub const CONTRACT_HIGHER_INDUCTIVE_TYPE: &str = "urn:omega:math:higher_inductive_type:v0.1.0";
 
-/// Record mapping a Rust HoTT concept to a contract URN.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct HottContractBinding {
     pub hott_concept: String,

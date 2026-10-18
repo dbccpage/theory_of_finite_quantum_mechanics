@@ -1,18 +1,5 @@
-/-
-  H018Channel -- integer mixing conjugation vs its diagonal shadow.
-  AuthorityEffect: None. Candidate only.
 
-  QM_082: a stochastic kernel on the computational diagonal does
-  not determine a channel. This module exhibits that on GaussInt,
-  using the integer mix matrix of H010. CPTP remains imported
-  (H017Finish.finish_cptp_imported). No uniqueness, no continuum.
 
-  AuthorityEffect: None
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H004FreeLinearization
@@ -26,7 +13,6 @@ open FableHilbertWalk20260819.H004 (delta)
 open FableHilbertWalk20260819.H017Matrix
 open FableHilbertWalk20260819.H018Density
 
-/-- Integer mix matrix: rows (1,1) and (1,-1). -/
 def mixMat : Mat GaussInt :=
   fun i j =>
     if i == false then GaussInt.gone
@@ -74,9 +60,6 @@ theorem conjMix_e00_tt : conjMix e00 true true = GaussInt.gone := by
 
 #print axioms conjMix_e00_tt
 
-/-- Reading only the output diagonal of conjMix e00 recovers I.
-    The full matrix is not I. Two maps that agree on that diagonal
-    need not be the same channel. -/
 theorem diagonal_shadow_does_not_fix_channel :
     dephase (conjMix e00) = ident gaussPack ∧
       conjMix e00 false true ≠ ident gaussPack false true := by
@@ -94,3 +77,6 @@ theorem diagonal_shadow_does_not_fix_channel :
 #print axioms diagonal_shadow_does_not_fix_channel
 
 end FableHilbertWalk20260819.H018Channel
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H018Channel.lean Claim: mixMat_adj AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

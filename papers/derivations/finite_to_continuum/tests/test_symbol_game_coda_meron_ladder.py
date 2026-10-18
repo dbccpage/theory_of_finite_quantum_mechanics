@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 test_symbol_game_coda_meron_ladder.py: Tests for Symbol Game CODA & Meron 4D Ladder.
 
@@ -72,18 +71,14 @@ class TestSymbolGameCodaMeronLadder(unittest.TestCase):
         """Assert all wire strings use only Gamma38 glyphs and pass parser validation."""
         for t in self.targets:
             wire = t.gamma38_wire
-            # 1. Wire alphabet containment
             for ch in wire:
                 self.assertIn(ch, GAMMA_38, f"Target {t.target_id} contains illegal character {ch!r}")
 
-            # 2. Structural parsing
             parsed = parse_packet(wire)
             self.assertIsNotNone(parsed)
 
-            # 3. Semantic validation
             validate_packet_semantics(parsed)
 
-            # 4. Helper validator
             self.assertTrue(verify_target_gamma38(t))
 
     def test_all_targets_claim_hygiene(self) -> None:
@@ -91,7 +86,6 @@ class TestSymbolGameCodaMeronLadder(unittest.TestCase):
         for t in self.targets:
             self.assertTrue(verify_target_hygiene(t))
 
-        # Test firewall triggers on forbidden words
         for bad_word in FORBIDDEN_CLAIM_WORDS:
             with self.assertRaises(ValueError):
                 assert_claim_hygiene(f"This result {bad_word} the theorem.")
@@ -101,7 +95,6 @@ class TestSymbolGameCodaMeronLadder(unittest.TestCase):
         for t in self.targets:
             assert_blind_hygiene(t.blind_problem_declaration)
 
-        # Test firewall triggers on forbidden domain words
         for bad_keyword in BLIND_FORBIDDEN_KEYWORDS:
             with self.assertRaises(ValueError):
                 assert_blind_hygiene(f"Consider the {bad_keyword} system.")
@@ -123,7 +116,6 @@ class TestSymbolGameCodaMeronLadder(unittest.TestCase):
         self.assertTrue(r2["nondegenerate"])
         self.assertEqual(r2["cayley_menger_det_2simplex"], "3")
 
-        # Check interval enclosure width is strictly positive and < 10^-20
         lo_str, hi_str = r2["deficit_angle_interval_radians"]
         lo = Fraction(lo_str)
         hi = Fraction(hi_str)

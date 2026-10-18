@@ -33,9 +33,6 @@ from .l1_governor import (
 from .mechanism_proposer import CarrierGrammar
 
 
-# =============================================================================
-# 1. Logit Bias & Steering Utilities
-# =============================================================================
 
 def build_logit_bias(
     force_tokens: Sequence[Union[int, str]],
@@ -103,9 +100,6 @@ def compute_logprob_confidence(logprobs: Sequence[float]) -> float:
     return max(0.0, min(1.0, score))
 
 
-# =============================================================================
-# 2. Proposal Response Dataclass
-# =============================================================================
 
 @dataclass
 class ProposalResponse:
@@ -121,9 +115,6 @@ class ProposalResponse:
     raw_json: Optional[Dict[str, Any]] = None
 
 
-# =============================================================================
-# 3. OpenRouter Proposer Adapter
-# =============================================================================
 
 class OpenRouterProposer:
     """
@@ -176,7 +167,6 @@ class OpenRouterProposer:
             "max_tokens": self.max_tokens,
         }
 
-        # Format logit bias
         merged_bias: Dict[str, int] = {}
         if self.logit_bias:
             for k, v in self.logit_bias.items():
@@ -187,7 +177,6 @@ class OpenRouterProposer:
         if merged_bias:
             data["logit_bias"] = merged_bias
 
-        # Format logprobs
         if request_logprobs or self.logprobs:
             data["logprobs"] = True
             top_k = top_logprobs or self.top_logprobs or 5
@@ -316,9 +305,6 @@ class OpenRouterProposer:
         return self.complete(prompt, logit_bias=bias)
 
 
-# =============================================================================
-# 4. Fallback Scripted Proposers
-# =============================================================================
 
 def scripted_fallback_proposer(
     moves: Sequence[Union[str, ProposalResponse]]
@@ -351,9 +337,6 @@ def scripted_logprob_proposer(
     return complete
 
 
-# =============================================================================
-# 5. Closed-Loop L1 Governor Integration
-# =============================================================================
 
 def parse_candidate_proposal(content: str) -> Any:
     """
@@ -365,7 +348,6 @@ def parse_candidate_proposal(content: str) -> Any:
         lines = clean.split("\n")
         clean = "\n".join(line for line in lines if not line.strip().startswith("```")).strip()
 
-    # Try list of integers or fractions: e.g. "-2 1 1"
     space_tokens = clean.split()
     if space_tokens and all(re.fullmatch(r"-?\d+(/\d+)?", tok) for tok in space_tokens):
         return [Fraction(tok) for tok in space_tokens]
@@ -378,7 +360,7 @@ class GovernedProposer:
     """
     Closed-loop proposer governor that wires language model proposals directly
     to the exact discrete L1 projection governor (L1SymbolGameGovernor).
-    
+
     Enforces:
     1. Pure-Python carrier grammar and token-level validation.
     2. Strict zero-float AST discipline (FLOAT_REJECTED).
@@ -412,7 +394,6 @@ class GovernedProposer:
         sid = step_id or f"step_{len(self.governor.history) + 1:03d}"
         defect_before = self.governor.section_defect()
 
-        # 1. Obtain proposer response
         if isinstance(self.proposer, OpenRouterProposer):
             if self.proposer.logprobs:
                 response = self.proposer.complete_with_logprobs(prompt)
@@ -439,7 +420,6 @@ class GovernedProposer:
                 response,
             )
 
-        # 2. Validate carrier grammar
         is_carrier, char_reason = self.carrier_grammar.validate_string(response.content)
         if not is_carrier:
             return (
@@ -454,7 +434,6 @@ class GovernedProposer:
                 response,
             )
 
-        # 3. Parse proposal safely
         try:
             if parse_fn is not None:
                 parsed = parse_fn(response.content)
@@ -487,9 +466,7 @@ class GovernedProposer:
                 response,
             )
 
-        # 4. Dispatch to governor step_cut
         if isinstance(parsed, dict):
-            # Check if dict represents edge claims or vertex potentials
             is_edge_claims = any(
                 (isinstance(k, tuple) and len(k) == 2)
                 or (isinstance(k, str) and ("->" in k or "," in k))
@@ -508,7 +485,6 @@ class GovernedProposer:
                         normalized_claims[k] = Fraction(v)
                 verdict = self.governor.step_cut(proposed_claims=normalized_claims, step_id=sid)
             else:
-                # Vertex potential section
                 normalized_section: Dict[str, Fraction] = {
                     str(k): Fraction(v) for k, v in parsed.items()
                 }
@@ -598,7 +574,6 @@ class GovernedProposer:
         final_defect = self.governor.section_defect()
         final_phi1 = self.governor.primary_obstruction()
 
-        # Fail-closed invariant check: final defect cannot exceed initial defect
         assert final_defect <= initial_defect or final_phi1 <= initial_phi1, (
             "Fail-closed invariant violation: defect increased in repair loop"
         )

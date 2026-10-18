@@ -1,4 +1,3 @@
-// AuthorityEffect: None.
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
 use serde_json::json;
@@ -8,9 +7,6 @@ use crate::coda::types::{LayerExecutionRecord, LayerId, ProblemInstance};
 pub struct Layer2Mur;
 
 impl Layer2Mur {
-    /// Evaluates Layer 2: Meta & Universal Re-Presentation (CODA-MUR).
-    ///
-    /// Checks declared overlap compatibility, shape agreement, and exact coordinate loss.
     pub fn evaluate(problem: &ProblemInstance) -> (LayerExecutionRecord, BigRational) {
         let mut loss = BigRational::zero();
         let mut incompatible = Vec::new();

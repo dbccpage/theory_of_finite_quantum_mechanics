@@ -25,7 +25,6 @@ class CauchySlice3D:
     vertex_coords: Optional[Dict[int, np.ndarray]] = None
 
     def __post_init__(self) -> None:
-        # Default momenta to zero if not provided
         for edge in self.complex_.cells.get(1, []):
             can_e = tuple(sorted(edge))
             if can_e not in self.conjugate_momenta:
@@ -102,7 +101,6 @@ class DiscreteWDWConstraintSystem:
             r_v = compute_discrete_scalar_curvature(
                 v, incident, self.slice_.edge_lengths, self.deficit_angles
             )
-            # Kinetic energy from conjugate momenta
             kinetic = sum(
                 (self.slice_.conjugate_momenta.get(tuple(sorted(e)), 0.0) ** 2)
                 for e in incident
@@ -126,7 +124,6 @@ class DiscreteWDWConstraintSystem:
         h_perp = self.build_hamiltonian_constraint_cochain()
         diff = self.build_momentum_constraint_cochain()
 
-        # Total violation cochain omega = diff + d0 * h_perp
         return diff + d0 @ h_perp
 
     def build_joint_constraint_system(self) -> Tuple[np.ndarray, np.ndarray, float]:
@@ -292,8 +289,6 @@ def solve_joint_wdw_constraints(
     solver = DualCertifiedL1Solver(tol=tol)
     res = solver.solve(omega_joint, D_joint)
 
-    # Compute certification from verified mathematical conditions rather than manufacturing
-    # a flag or raising AttributeError on older solver interfaces
     check_atol = max(1e-7, tol * 10)
     alpha = getattr(res, "primal_alpha", None)
     w = getattr(res, "dual_witness", None)

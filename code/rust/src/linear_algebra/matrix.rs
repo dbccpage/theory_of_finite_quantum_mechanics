@@ -1,15 +1,3 @@
-//! Matrix construction and arithmetic over an exact field.
-//!
-//! Every function takes `BasicMatrix<F>` with `F: Field + ExactRing` and uses only the
-//! tower methods of the scalar, never `std::ops`. Shapes are checked before any scalar
-//! work. Functions whose cost is not linear in their inputs have a `*_with_limits`
-//! twin; see the module-level conventions in [`crate::linear_algebra`].
-//!
-//! Cost model used by the budget checks (worst case, scalar `add`/`mul` calls):
-//! `multiply` `2·m·k·n`; `multiply_vector` `2·m·k`; `kronecker` one `mul` per output
-//! entry; `power` `2·2·⌈log₂(e+1)⌉·n³`.
-//!
-//! AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use crate::linear_algebra::{
@@ -21,16 +9,11 @@ use num_bigint::BigInt;
 use num_rational::{BigRational, Rational64};
 use num_traits::ToPrimitive;
 
-// ============================================================================
-// Construction
-// ============================================================================
 
-/// The `n × n` identity matrix.
 pub fn identity<F: Field + ExactRing>(n: usize) -> Result<BasicMatrix<F>, ExactFieldError> {
     identity_with_limits(n, OperationLimits::UNLIMITED)
 }
 
-/// [`identity`] under a budget: `n²` elements.
 pub fn identity_with_limits<F: Field + ExactRing>(
     n: usize,
     limits: OperationLimits,
@@ -44,7 +27,6 @@ pub fn identity_with_limits<F: Field + ExactRing>(
     )?)
 }
 
-/// The `rows × cols` zero matrix.
 pub fn zeros<F: Field + ExactRing>(
     rows: usize,
     cols: usize,
@@ -52,7 +34,6 @@ pub fn zeros<F: Field + ExactRing>(
     zeros_with_limits(rows, cols, OperationLimits::UNLIMITED)
 }
 
-/// [`zeros`] under a budget: `rows·cols` elements.
 pub fn zeros_with_limits<F: Field + ExactRing>(
     rows: usize,
     cols: usize,
@@ -67,7 +48,6 @@ pub fn zeros_with_limits<F: Field + ExactRing>(
     )?)
 }
 
-/// The square matrix with `entries` on its diagonal and zeros elsewhere.
 pub fn diagonal<F: Field + ExactRing>(entries: &[F]) -> Result<BasicMatrix<F>, ExactFieldError> {
     let n = entries.len();
     let mut data: Vec<F> = reserve(element_count(n, n)?)?;
@@ -82,8 +62,6 @@ pub fn diagonal<F: Field + ExactRing>(entries: &[F]) -> Result<BasicMatrix<F>, E
     Ok(BasicMatrix::from_row_major(n, n, data)?)
 }
 
-/// A matrix from a list of rows. The empty list is the `0 × 0` matrix; `k` empty rows
-/// are the `k × 0` matrix. A row whose length differs from row 0 is refused.
 pub fn from_rows<F: Field + ExactRing>(
     rows: Vec<Vec<F>>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
@@ -103,7 +81,6 @@ pub fn from_rows<F: Field + ExactRing>(
     Ok(BasicMatrix::from_row_major(row_count, cols, data)?)
 }
 
-/// The rows of `m` as owned vectors (the inverse of [`from_rows`]).
 pub fn to_rows<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<Vec<Vec<F>>, ExactFieldError> {
     let mut rows = reserve(m.rows())?;
     for r in 0..m.rows() {
@@ -112,7 +89,6 @@ pub fn to_rows<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<Vec<Vec<F>>, 
     Ok(rows)
 }
 
-/// A matrix from a generator called once per entry in row-major order.
 pub fn from_fn<F, G>(rows: usize, cols: usize, f: G) -> Result<BasicMatrix<F>, ExactFieldError>
 where
     F: Field + ExactRing,
@@ -121,7 +97,6 @@ where
     from_fn_with_limits(rows, cols, OperationLimits::UNLIMITED, f)
 }
 
-/// [`from_fn`] under a budget. The generator is not called when the budget refuses.
 pub fn from_fn_with_limits<F, G>(
     rows: usize,
     cols: usize,
@@ -141,7 +116,6 @@ where
     )?)
 }
 
-/// Row `r` of `m`.
 pub fn row<F: Field + ExactRing>(m: &BasicMatrix<F>, r: usize) -> Result<Vec<F>, ExactFieldError> {
     let mut out = reserve(m.cols())?;
     for c in 0..m.cols() {
@@ -150,7 +124,6 @@ pub fn row<F: Field + ExactRing>(m: &BasicMatrix<F>, r: usize) -> Result<Vec<F>,
     Ok(out)
 }
 
-/// Column `c` of `m`.
 pub fn column<F: Field + ExactRing>(
     m: &BasicMatrix<F>,
     c: usize,
@@ -162,8 +135,6 @@ pub fn column<F: Field + ExactRing>(
     Ok(out)
 }
 
-/// The exact embedding of a `Rational64` matrix into `BigRational` (every entry is widened
-/// before any arithmetic, so nothing can overflow afterwards).
 pub fn widen_rational64(
     a: &BasicMatrix<Rational64>,
 ) -> Result<BasicMatrix<BigRational>, ExactFieldError> {
@@ -177,8 +148,6 @@ pub fn widen_rational64(
     Ok(BasicMatrix::from_row_major(a.rows(), a.cols(), data)?)
 }
 
-/// The inverse of [`widen_rational64`]: refuses, naming the first entry, when a reduced
-/// numerator or denominator does not fit in `i64`.
 pub fn narrow_to_rational64(
     a: &BasicMatrix<BigRational>,
 ) -> Result<BasicMatrix<Rational64>, ExactFieldError> {
@@ -186,7 +155,6 @@ pub fn narrow_to_rational64(
     let mut data = reserve(a.as_slice().len())?;
     for (index, x) in a.as_slice().iter().enumerate() {
         match (x.numer().to_i64(), x.denom().to_i64()) {
-            // A `BigRational` is reduced with a positive denominator, so the pair is canonical.
             (Some(n), Some(d)) => data.push(Rational64::new_raw(n, d)),
             _ => {
                 return Err(ExactFieldError::NotRepresentable {
@@ -199,9 +167,6 @@ pub fn narrow_to_rational64(
     Ok(BasicMatrix::from_row_major(a.rows(), a.cols(), data)?)
 }
 
-// ============================================================================
-// Entrywise operations
-// ============================================================================
 
 fn zip_entries<F, G>(
     a: &BasicMatrix<F>,
@@ -219,7 +184,6 @@ where
     Ok(BasicMatrix::from_row_major(a.rows(), a.cols(), data)?)
 }
 
-/// `a + b`; the shapes must be equal.
 pub fn add<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -228,7 +192,6 @@ pub fn add<F: Field + ExactRing>(
     zip_entries(a, b, |x, y| x.add(y))
 }
 
-/// `a − b`; the shapes must be equal.
 pub fn sub<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -237,7 +200,6 @@ pub fn sub<F: Field + ExactRing>(
     zip_entries(a, b, |x, y| x.sub(y))
 }
 
-/// `−m`.
 pub fn neg<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, ExactFieldError> {
     let mut data = reserve(m.as_slice().len())?;
     for x in m.as_slice() {
@@ -246,7 +208,6 @@ pub fn neg<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<BasicMatrix<F>, E
     Ok(BasicMatrix::from_row_major(m.rows(), m.cols(), data)?)
 }
 
-/// `s · m`.
 pub fn scale<F: Field + ExactRing>(
     m: &BasicMatrix<F>,
     s: &F,
@@ -258,14 +219,12 @@ pub fn scale<F: Field + ExactRing>(
     Ok(BasicMatrix::from_row_major(m.rows(), m.cols(), data)?)
 }
 
-/// The transpose `mᵀ` (no conjugation; see `involution::adjoint` for `m†`).
 pub fn transpose<F: Field + ExactRing>(
     m: &BasicMatrix<F>,
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
     Ok(m.try_transpose()?)
 }
 
-/// The trace of a square matrix.
 pub fn trace<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<F, ExactFieldError> {
     let n = require_square("trace", m)?;
     let mut acc = F::zero();
@@ -275,7 +234,6 @@ pub fn trace<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<F, ExactFieldEr
     Ok(acc)
 }
 
-/// The bilinear sum `Σ uᵢ vᵢ` (no conjugation; see `involution::inner_product`).
 pub fn dot<F: Field + ExactRing>(u: &[F], v: &[F]) -> Result<F, ExactFieldError> {
     if u.len() != v.len() {
         return Err(ExactFieldError::VectorLength {
@@ -291,14 +249,7 @@ pub fn dot<F: Field + ExactRing>(u: &[F], v: &[F]) -> Result<F, ExactFieldError>
     Ok(acc)
 }
 
-// ============================================================================
-// Products
-// ============================================================================
 
-/// `a · b` for row-major slices of shapes `m × k` and `k × n`. Zero entries of `a`
-/// are skipped, which changes no result (`0·x = 0` in a ring) and keeps sparse
-/// operators such as Pauli matrices cheap. The slices must have exactly `m·k` and
-/// `k·n` entries, which `BasicMatrix` guarantees for every caller here.
 fn multiply_slices<F: Field + ExactRing>(
     a: &[F],
     m: usize,
@@ -325,7 +276,6 @@ fn multiply_slices<F: Field + ExactRing>(
     Ok(out)
 }
 
-/// `a · b`; `a.cols()` must equal `b.rows()`.
 pub fn multiply<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -333,7 +283,6 @@ pub fn multiply<F: Field + ExactRing>(
     multiply_with_limits(a, b, OperationLimits::UNLIMITED)
 }
 
-/// [`multiply`] under a budget: `m·n` elements and `2·m·k·n` scalar operations.
 pub fn multiply_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -352,7 +301,6 @@ pub fn multiply_with_limits<F: Field + ExactRing>(
     Ok(BasicMatrix::from_row_major(a.rows(), b.cols(), data)?)
 }
 
-/// `a · v` for a column vector `v` of length `a.cols()`.
 pub fn multiply_vector<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     v: &[F],
@@ -360,7 +308,6 @@ pub fn multiply_vector<F: Field + ExactRing>(
     multiply_vector_with_limits(a, v, OperationLimits::UNLIMITED)
 }
 
-/// [`multiply_vector`] under a budget: `m` elements and `2·m·k` scalar operations.
 pub fn multiply_vector_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     v: &[F],
@@ -377,8 +324,6 @@ pub fn multiply_vector_with_limits<F: Field + ExactRing>(
     multiply_slices(a.as_slice(), a.rows(), a.cols(), v, 1)
 }
 
-/// The Kronecker product `a ⊗ b`: entry `(i·p + k, j·q + l)` is `a[i][j]·b[k][l]` for
-/// `a` of shape `m × n` and `b` of shape `p × q` (block `(i, j)` is `a[i][j]·b`).
 pub fn kronecker<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -386,7 +331,6 @@ pub fn kronecker<F: Field + ExactRing>(
     kronecker_with_limits(a, b, OperationLimits::UNLIMITED)
 }
 
-/// [`kronecker`] under a budget: `m·p·n·q` elements and one `mul` per entry.
 pub fn kronecker_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -402,7 +346,6 @@ pub fn kronecker_with_limits<F: Field + ExactRing>(
         .ok_or(MatrixError::DimensionOverflow { rows: n, cols: q })?;
     let elements = element_count(out_rows, out_cols)?;
     charge(limits, elements, elements)?;
-    // A nonempty output has p > 0 and q > 0, so the divisions below are defined.
     BasicMatrix::try_from_fn_result_with_limit(out_rows, out_cols, limits.max_elements, |r, c| {
         let (i, k) = (r / p, r % p);
         let (j, l) = (c / q, c % q);
@@ -410,7 +353,6 @@ pub fn kronecker_with_limits<F: Field + ExactRing>(
     })
 }
 
-/// The commutator `[a, b] = ab − ba` of two square matrices of the same size.
 pub fn commutator<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -419,7 +361,6 @@ pub fn commutator<F: Field + ExactRing>(
     sub(&multiply(a, b)?, &multiply(b, a)?)
 }
 
-/// The anticommutator `{a, b} = ab + ba` of two square matrices of the same size.
 pub fn anticommutator<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -428,7 +369,6 @@ pub fn anticommutator<F: Field + ExactRing>(
     add(&multiply(a, b)?, &multiply(b, a)?)
 }
 
-/// `true` when `ab = ba`; both matrices must be square of the same size.
 pub fn commutes<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -447,8 +387,6 @@ fn require_operator_pair<F>(
     require_same_shape(operation, a, b)
 }
 
-/// `aᵉ` by square-and-multiply; `a⁰` is the identity for every square `a`, the zero
-/// matrix included.
 pub fn power<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     exponent: u64,
@@ -456,8 +394,6 @@ pub fn power<F: Field + ExactRing>(
     power_with_limits(a, exponent, OperationLimits::UNLIMITED)
 }
 
-/// [`power`] under a budget: `n²` elements and at most `2·bits(e)` products of `2n³`
-/// scalar operations each.
 pub fn power_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     exponent: u64,
@@ -491,19 +427,13 @@ pub fn power_with_limits<F: Field + ExactRing>(
     Ok(BasicMatrix::from_row_major(n, n, result)?)
 }
 
-// ============================================================================
-// Block forms
-// ============================================================================
 
-/// The block-diagonal matrix `diag(blocks…)` of arbitrary (not necessarily square)
-/// blocks: shape `(Σ rows) × (Σ cols)`, everything off the blocks zero.
 pub fn block_diagonal<F: Field + ExactRing>(
     blocks: &[BasicMatrix<F>],
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
     block_diagonal_with_limits(blocks, OperationLimits::UNLIMITED)
 }
 
-/// [`block_diagonal`] under a budget on the output element count.
 pub fn block_diagonal_with_limits<F: Field + ExactRing>(
     blocks: &[BasicMatrix<F>],
     limits: OperationLimits,
@@ -542,7 +472,6 @@ pub fn block_diagonal_with_limits<F: Field + ExactRing>(
     Ok(BasicMatrix::from_row_major(rows, cols, out)?)
 }
 
-/// The direct sum `a ⊕ b = diag(a, b)`.
 pub fn direct_sum<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -550,7 +479,6 @@ pub fn direct_sum<F: Field + ExactRing>(
     block_diagonal(&[a.clone(), b.clone()])
 }
 
-/// `[a | b]`: the columns of `a` followed by the columns of `b`; equal row counts.
 pub fn hstack<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -572,7 +500,6 @@ pub fn hstack<F: Field + ExactRing>(
     })
 }
 
-/// `[a; b]`: the rows of `a` followed by the rows of `b`; equal column counts.
 pub fn vstack<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &BasicMatrix<F>,
@@ -598,17 +525,11 @@ fn plus_dimension(a: usize, b: usize) -> Result<usize, ExactFieldError> {
     plus(a, b).map_err(|_| MatrixError::DimensionOverflow { rows: a, cols: b }.into())
 }
 
-// ============================================================================
-// Predicates
-// ============================================================================
 
-/// `true` when every entry is zero (the empty matrix included).
 pub fn is_zero_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> bool {
     m.as_slice().iter().all(|x| x.is_zero())
 }
 
-/// `true` when `m = c I` for some scalar `c`. A rectangular carrier is refused;
-/// the empty square carrier is vacuously scalar.
 pub fn is_scalar_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     let n = require_square("is_scalar_matrix", m)?;
     if n == 0 {
@@ -627,8 +548,6 @@ pub fn is_scalar_matrix<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool
     Ok(true)
 }
 
-/// `true` when `m` is the identity matrix. Refuses a non-square matrix, for which the
-/// question has no answer.
 pub fn is_identity_matrix<F: Field + ExactRing>(
     m: &BasicMatrix<F>,
 ) -> Result<bool, ExactFieldError> {
@@ -645,7 +564,6 @@ pub fn is_identity_matrix<F: Field + ExactRing>(
     Ok(true)
 }
 
-/// `true` when `m = mᵀ`. Refuses a non-square matrix.
 pub fn is_symmetric<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
     let n = require_square("is_symmetric", m)?;
     for r in 0..n {
@@ -690,10 +608,7 @@ mod tests {
         assert!(!is_scalar_matrix(&changed).unwrap());
     }
 
-    // ------------------------------------------------------------------ construction
 
-    /// Invariant: `I_m · A = A = A · I_n`. Mutations killed: an off-diagonal one, a
-    /// zero diagonal entry, a transposed index in the diagonal test.
     #[test]
     fn identity_is_the_two_sided_unit_of_multiplication() {
         let mut rng = Rng::new(11);
@@ -714,7 +629,6 @@ mod tests {
         assert!(is_zero_matrix(&zeros::<Q>(2, 3).unwrap()));
     }
 
-    /// Invariant: `diagonal` puts entry `i` at `(i, i)` and nowhere else.
     #[test]
     fn diagonal_places_each_entry_at_its_own_position_only() {
         let d = diagonal(&[q(2, 1), q(-3, 1), q(5, 7)]).unwrap();
@@ -728,7 +642,6 @@ mod tests {
         assert_eq!(diagonal::<Q>(&[]).unwrap().shape(), (0, 0));
     }
 
-    /// Invariant: a ragged row list is refused and names the offending row.
     #[test]
     fn from_rows_refuses_ragged_input_and_names_the_row() {
         let ragged = vec![vec![q(1, 1), q(2, 1)], vec![q(3, 1)]];
@@ -768,8 +681,6 @@ mod tests {
         );
     }
 
-    /// Invariant: the generator is visited in row-major order, once per entry, and is
-    /// never called when the budget refuses.
     #[test]
     fn from_fn_is_row_major_and_respects_the_budget() {
         let a = from_fn(2, 3, |r, c| q((10 * r + c) as i64, 1)).unwrap();
@@ -800,7 +711,6 @@ mod tests {
         assert_eq!(calls, 0);
     }
 
-    /// Boundary: exactly `limit` elements is allowed, `limit + 1` is refused.
     #[test]
     fn element_budget_boundary_is_inclusive() {
         let at_limit = OperationLimits {
@@ -850,8 +760,6 @@ mod tests {
         ));
     }
 
-    /// `widen` then `narrow` is the identity; a value that needs more than 64 bits is refused
-    /// with its position rather than wrapped.
     #[test]
     fn rational64_conversions_round_trip_and_refuse_overflow() {
         let small = BasicMatrix::from_row_major(
@@ -878,8 +786,6 @@ mod tests {
             narrow_to_rational64(&too_big),
             Err(ExactFieldError::NotRepresentable { row: 1, col: 1 })
         );
-        // the reported position is row-major (row = index / cols, col = index % cols) on a
-        // non-square matrix, where a swapped formula would land elsewhere
         let huge = BigRational::from_integer(BigInt::from(i64::MAX) + BigInt::from(1));
         let wide = from_rows(vec![
             vec![q(1, 1), q(2, 1), q(3, 1)],
@@ -899,7 +805,6 @@ mod tests {
             narrow_to_rational64(&wide_last),
             Err(ExactFieldError::NotRepresentable { row: 0, col: 2 })
         );
-        // a denominator beyond i64 is refused too
         let tiny = BigRational::new(BigInt::from(1), BigInt::from(i64::MAX) + BigInt::from(2));
         assert_eq!(
             narrow_to_rational64(&from_rows(vec![vec![tiny]]).unwrap()),
@@ -913,9 +818,7 @@ mod tests {
         );
     }
 
-    // ------------------------------------------------------------------ entrywise
 
-    /// Invariant: `a − b` subtracts in that order. A hand-computed case pins the sign.
     #[test]
     fn subtraction_has_the_documented_orientation() {
         let a = rat(&[&[1, 2], &[3, 4]]);
@@ -959,9 +862,7 @@ mod tests {
         ));
     }
 
-    // ------------------------------------------------------------------ products
 
-    /// Invariant: hand-computed product, rectangular factors, and non-commutativity.
     #[test]
     fn multiplication_matches_hand_computed_products() {
         let a = rat(&[&[1, 2], &[3, 4]]);
@@ -988,7 +889,6 @@ mod tests {
             multiply(&a, &add(&b, &d).unwrap()).unwrap(),
             add(&multiply(&a, &b).unwrap(), &multiply(&a, &d).unwrap()).unwrap()
         );
-        // Independent route: `BasicMatrix::mul` uses the std operators, not the tower.
         assert_eq!(multiply(&a, &b).unwrap(), a.mul(&b).unwrap());
     }
 
@@ -1006,8 +906,6 @@ mod tests {
         );
     }
 
-    /// Boundary: the documented cost is `2·m·k·n`; the budget must accept it exactly and
-    /// refuse one below it.
     #[test]
     fn multiply_budget_charges_two_ops_per_inner_product_term() {
         let a = rat(&[&[1, 2], &[3, 4]]);
@@ -1031,8 +929,6 @@ mod tests {
         );
     }
 
-    /// Boundary: a `2×3` matrix-vector product costs `2·2·3 = 12` calls on `2` elements; the
-    /// Kronecker product `3×3 ⊗ 3×3` costs one `mul` per each of its `81` entries.
     #[test]
     fn matrix_vector_and_kronecker_budgets_charge_their_documented_costs() {
         let a = rat(&[&[1, 2, 3], &[4, 5, 6]]);
@@ -1123,7 +1019,6 @@ mod tests {
         );
     }
 
-    /// Invariant: `(AB)ᵀ = BᵀAᵀ` (the order reverses).
     #[test]
     fn transpose_reverses_the_order_of_a_product() {
         let mut rng = Rng::new(17);
@@ -1135,8 +1030,6 @@ mod tests {
         assert_eq!(transpose(&transpose(&a).unwrap()).unwrap(), a);
     }
 
-    /// Invariant: `tr(AB) = tr(BA)` even for rectangular `A`, `B` (so `AB` and `BA` have
-    /// different sizes), and the trace of a non-square matrix is refused.
     #[test]
     fn trace_is_cyclic_and_needs_a_square_matrix() {
         let mut rng = Rng::new(23);
@@ -1171,10 +1064,7 @@ mod tests {
         ));
     }
 
-    // ------------------------------------------------------------------ kronecker
 
-    /// Invariant: entry `(i·p + k, j·q + l)` of `A ⊗ B` is `A[i][j]·B[k][l]`. Rectangular
-    /// factors with distinct dimensions make a transposed block order visible.
     #[test]
     fn kronecker_entries_follow_the_block_definition() {
         let mut rng = Rng::new(31);
@@ -1194,7 +1084,6 @@ mod tests {
         }
     }
 
-    /// Invariant: the mixed-product law `(A ⊗ B)(C ⊗ D) = AC ⊗ BD`.
     #[test]
     fn kronecker_satisfies_the_mixed_product_law() {
         let mut rng = Rng::new(37);
@@ -1205,7 +1094,6 @@ mod tests {
         let lhs = multiply(&kronecker(&a, &b).unwrap(), &kronecker(&c, &d).unwrap()).unwrap();
         let rhs = kronecker(&multiply(&a, &c).unwrap(), &multiply(&b, &d).unwrap()).unwrap();
         assert_eq!(lhs, rhs);
-        // tr(A ⊗ B) = tr(A) tr(B)
         let s = random_matrix(&mut rng, 3, 3, 4);
         let t = random_matrix(&mut rng, 2, 2, 4);
         assert_eq!(
@@ -1214,7 +1102,6 @@ mod tests {
         );
     }
 
-    /// Independent route: the pre-existing `tensor::kronecker_matrices` (std operators).
     #[test]
     fn kronecker_agrees_with_the_tensor_module_product() {
         let mut rng = Rng::new(41);
@@ -1251,10 +1138,8 @@ mod tests {
         );
     }
 
-    /// `usize::MAX`-scale factor shapes overflow the output dimension: a typed error.
     #[test]
     fn kronecker_output_dimension_overflow_is_refused() {
-        // Shapes whose product overflows but whose storage is empty are constructible.
         let wide = zeros::<Q>(0, usize::MAX).unwrap();
         let two = zeros::<Q>(0, 2).unwrap();
         assert_eq!(
@@ -1266,10 +1151,7 @@ mod tests {
         );
     }
 
-    // ------------------------------------------------------------------ commutators
 
-    /// Invariant: `[E12, E21] = E11 − E22` (pins the sign and the order of the two
-    /// products), antisymmetry, tracelessness and the Jacobi identity.
     #[test]
     fn commutator_has_the_lie_bracket_properties() {
         let e12 = rat(&[&[0, 1], &[0, 0]]);
@@ -1306,7 +1188,6 @@ mod tests {
             anticommutator(&a, &b).unwrap(),
             anticommutator(&b, &a).unwrap()
         );
-        // [a,b] + {a,b} = 2ab
         let two_ab = scale(&multiply(&a, &b).unwrap(), &q(2, 1)).unwrap();
         assert_eq!(
             add(
@@ -1332,8 +1213,6 @@ mod tests {
         ));
     }
 
-    /// `commutes` is exactly `[a, b] = 0`: diagonal matrices commute, `E12` and `E21` do not,
-    /// and every matrix commutes with itself and with the identity.
     #[test]
     fn commutes_decides_the_vanishing_of_the_commutator() {
         let d1 = rat(&[&[1, 0], &[0, 2]]);
@@ -1355,10 +1234,7 @@ mod tests {
         ));
     }
 
-    // ------------------------------------------------------------------ power
 
-    /// Invariant: `power` equals repeated multiplication for every small exponent, so a
-    /// wrong bit order or a dropped accumulate is caught at some exponent.
     #[test]
     fn power_equals_repeated_multiplication_for_small_exponents() {
         let mut rng = Rng::new(53);
@@ -1383,8 +1259,6 @@ mod tests {
         );
     }
 
-    /// Exact big-number witness: `[[1,1],[1,0]]^90 = [[F91,F90],[F90,F89]]` with the
-    /// Fibonacci numbers below (they exceed `2^61`, so any `f64` or wrapping path fails).
     #[test]
     fn power_reproduces_fibonacci_numbers_beyond_f64_precision() {
         let fib = rat(&[&[1, 1], &[1, 0]]);
@@ -1396,8 +1270,6 @@ mod tests {
         assert_eq!(p.get(1, 1).unwrap(), big("1779979416004714189"));
     }
 
-    /// A permutation matrix of order 3 has `P^e = P^(e mod 3)`: an exponent of `u64::MAX`
-    /// is cheap and checks the loop termination and the top bit.
     #[test]
     fn power_handles_the_largest_exponent_by_periodicity() {
         let p = rat(&[&[0, 1, 0], &[0, 0, 1], &[1, 0, 0]]);
@@ -1416,7 +1288,6 @@ mod tests {
             })
         ));
         let a = identity::<Q>(4).unwrap();
-        // exponent 5 has 3 bits: at most 6 products of 2·4³ = 128 operations.
         let exact = OperationLimits {
             max_elements: 16,
             max_scalar_ops: 6 * 128,
@@ -1434,7 +1305,6 @@ mod tests {
         ));
     }
 
-    // ------------------------------------------------------------------ blocks
 
     #[test]
     fn block_diagonal_places_rectangular_blocks_and_zero_fills_the_rest() {
@@ -1510,9 +1380,7 @@ mod tests {
         ));
     }
 
-    // ------------------------------------------------------------------ other fields
 
-    /// Over GF(5) arithmetic wraps: `[[2,3],[4,1]]² = [[16,9],[12,13]] = [[1,4],[2,3]]`.
     #[test]
     fn multiplication_reduces_modulo_p_over_a_prime_field() {
         type F5 = Fp<5>;
@@ -1528,12 +1396,9 @@ mod tests {
         .unwrap();
         assert_eq!(multiply(&a, &a).unwrap(), expected);
         assert_eq!(power(&a, 2).unwrap(), expected);
-        // The std-operator product agrees (independent route).
         assert_eq!(a.mul(&a).unwrap(), expected);
     }
 
-    /// In characteristic 2 the transvection `[[1,1],[0,1]]` squares to the identity; a
-    /// missing reduction would leave a `2`.
     #[test]
     fn a_transvection_is_an_involution_in_characteristic_two() {
         type F2 = Fp<2>;

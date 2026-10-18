@@ -1,6 +1,3 @@
-//! Frozen agent licenses and mechanical capability-closure checks.
-//!
-//! Rust face of `omega_engine/kernel/higher_operad/capability.py`.
 
 use std::collections::BTreeSet;
 use serde_json::{json, Value};
@@ -70,7 +67,6 @@ impl AgentLicense {
     }
 }
 
-/// One-shot execution license evidence.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ActionLicense {
     pub license_id: String,

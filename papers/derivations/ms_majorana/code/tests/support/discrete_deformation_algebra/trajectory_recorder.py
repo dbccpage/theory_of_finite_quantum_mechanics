@@ -116,8 +116,6 @@ class RealWorldDdaTrajectoryRecorder:
         if self.cochain_complex is None:
             return SQUARE_ZERO_NOT_COMPUTED
         if self.cochain_complex.c2_dimension == 0:
-            # No 2-cochains means no composite exists to check. "All zero" over an
-            # empty family is true but says nothing; VERIFIED here would overclaim.
             return SQUARE_ZERO_VACUOUS
         defect = self.cochain_complex.complex_defect()
         is_zero = all(entry == 0 for row in defect for entry in row)
@@ -139,8 +137,6 @@ class RealWorldDdaTrajectoryRecorder:
         projection_label: Optional[str] = None,
     ) -> Dict[str, Any]:
         """Record a single real-world reasoning or system step."""
-        # Reported as supplied at both ends: the recorder does not measure energy,
-        # and deriving the exit value from the letter would make it unfalsifiable.
         diagnostic = f"Energy={residual_obstruction_energy:.2f}"
 
         receipt = self.engine.emit_step(

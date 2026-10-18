@@ -1,4 +1,3 @@
-//! Exact rational witness for `WDP-O12-XLM-COMPARISON` (`derivation.md`).
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Frac {

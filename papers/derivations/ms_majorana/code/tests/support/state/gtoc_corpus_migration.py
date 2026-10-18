@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/gtoc_corpus_migration.rs
-# Rust sha256: a720cf8874d2bfc890c67b9c565f1662af556ce06657c2e102b55d475e89d839
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,27 +38,21 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC_CORPUS_MIGRATION_PACKET_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC_CORPUS_MIGRATION_VERIFICATION_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC_CORPUS_SOURCE_ROOT_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC_CORPUS_DESTINATION_ROOT_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC_CORPUS_SOURCE_FILE_COUNT_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC_CORPUS_REFERENCE_FILE_COUNT_V1: Any = None
 
 
@@ -242,6 +232,5 @@ def verify_gtoc_corpus_migration_v1(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

@@ -1,9 +1,3 @@
-//! Exact witness for the five-triangle metric and deficit-angle carrier in `derivation.md`.
-//!
-//! Computes the 4x4 Cayley-Menger determinant `det(M) = -3` (and `(-1)^3 det(M) = +3`),
-//! squared triangle area `3/16`, apex cosine `1/2`, squared sine `3/4`, turn deficit `1/6`,
-//! and rational interval enclosure for `pi/3`. Refuses the pinned determinant sign `+3`
-//! and uncomputed continuum Ricci error strings.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Witness {

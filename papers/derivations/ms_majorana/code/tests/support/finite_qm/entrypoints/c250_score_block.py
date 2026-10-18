@@ -156,8 +156,6 @@ def parse_clause_expr(expr: str) -> tuple[str, str, Any]:
         field, rest = expr.split(" between ", 1)
         a_str, b_str = rest.split(" and ", 1)
         return "between", field.strip(), (json.loads(a_str.strip()), json.loads(b_str.strip()))
-    # Comparison forms. Longest operator first: " >= " must be tried before " > "
-    # or the shorter token matches and the operand keeps a stray "=".
     for token, op_type in ((" != ", "ne"), (" >= ", "ge"), (" <= ", "le"),
                            (" > ", "gt"), (" < ", "lt")):
         if token in expr:
@@ -258,7 +256,6 @@ def run_self_tests() -> int:
     """Run comprehensive self-tests on schema validation and rejection of planted false clauses."""
     print("Running score_block self-tests...")
 
-    # Valid template instance
     valid_instance: dict[str, Any] = {
         "authority_effect": "None",
         "block_id": "block_01",
@@ -300,7 +297,6 @@ def run_self_tests() -> int:
         },
     }
 
-    # Test 1: Valid instance passes
     try:
         notes = validate_block_result(valid_instance, expected_block=1)
         assert len(notes) >= 1
@@ -309,7 +305,6 @@ def run_self_tests() -> int:
         print(f"  [FAIL] Valid instance raised unexpected exception: {exc}")
         return 1
 
-    # Negative test suite: planted false clauses
     cases: list[tuple[str, dict[str, Any]]] = [
         (
             "Missing authority_effect",
@@ -388,7 +383,6 @@ def run_self_tests() -> int:
             print(f"  [FAIL] Unexpected exception type for '{label}': {type(exc).__name__}: {exc}")
             return 1
 
-    # Negative test with simulated disk content digest mismatch
     import tempfile
     with tempfile.TemporaryDirectory() as tmpdir:
         tmppath = Path(tmpdir)
@@ -399,7 +393,7 @@ def run_self_tests() -> int:
             "evidence_receipts": [
                 {
                     "path": "receipt.json",
-                    "sha256": "0" * 64,  # wrong digest
+                    "sha256": "0" * 64,
                 }
             ],
         }
@@ -410,7 +404,6 @@ def run_self_tests() -> int:
         except BlockValidationError as exc:
             print(f"  [PASS] Planted disk digest mismatch rejected: {exc}")
 
-    # Machine clause scoring self-tests
     sample_result = {
         "busch_ports": True,
         "choice_free": False,
@@ -418,35 +411,30 @@ def run_self_tests() -> int:
         "residual_declaration_count": 2,
     }
 
-    # Planted false clause must score MISS
     planted_miss = parse_and_score_clause("M1", "NOT FORCED", "busch_ports == false", sample_result)
     if planted_miss["status"] != "MISS":
         print(f"  [FAIL] Expected planted false clause to score MISS, got {planted_miss['status']}")
         return 1
     print("  [PASS] Planted false clause scored MISS.")
 
-    # Planted true clause must score HIT
     planted_hit = parse_and_score_clause("M2", "NOT FORCED", "busch_ports == true", sample_result)
     if planted_hit["status"] != "HIT":
         print(f"  [FAIL] Expected true clause to score HIT, got {planted_hit['status']}")
         return 1
     print("  [PASS] True clause scored HIT.")
 
-    # Membership clause test
     planted_in = parse_and_score_clause("M3", "NOT FORCED", "2 in lean_dimensions_proved", sample_result)
     if planted_in["status"] != "HIT":
         print(f"  [FAIL] Expected membership clause to score HIT, got {planted_in['status']}")
         return 1
     print("  [PASS] Membership clause scored HIT.")
 
-    # Between clause test
     planted_between = parse_and_score_clause("M4", "NOT FORCED", "residual_declaration_count between 1 and 3", sample_result)
     if planted_between["status"] != "HIT":
         print(f"  [FAIL] Expected range clause to score HIT, got {planted_between['status']}")
         return 1
     print("  [PASS] Range clause scored HIT.")
 
-    # Missing field must score OPEN
     planted_open = parse_and_score_clause("M5", "NOT FORCED", "nonexistent == 42", sample_result)
     if planted_open["status"] != "OPEN":
         print(f"  [FAIL] Expected missing field to score OPEN, got {planted_open['status']}")

@@ -83,7 +83,6 @@ class TestPontryaginResidualDual(unittest.TestCase):
         with self.assertRaises(PontryaginProgrammeError) as ctx:
             refuse_finite_zn_sold_as_free_u1("Z/3Z", "U(1)", False)
         self.assertEqual(ctx.exception.code, "ZN_SOLD_AS_U1")
-        # with free-Z declaration, U(1) is allowed as dual claim label
         refuse_finite_zn_sold_as_free_u1("Z/3Z", "U(1)", True)
 
     def test_kill_alpha_as_exact(self):

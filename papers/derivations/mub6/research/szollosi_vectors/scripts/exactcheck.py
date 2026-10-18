@@ -16,11 +16,11 @@ log("equations",len(eqs),"total degrees",[e.total_degree() for e in eqs])
 L=1
 for _,c in nums: L=L*c//flint.fmpz.gcd(flint.fmpz(L),flint.fmpz(c)) if False else sp.ilcm(L,int(c))
 L=flint.fmpz(int(L))
-Y=[(-n*(L//flint.fmpz(int(c))))%elim for n,c in nums]   # x_i = Y_i/T
+Y=[(-n*(L//flint.fmpz(int(c))))%elim for n,c in nums]
 T=(L*der)%elim
 cache={}
 D=max(q.total_degree() for q in eqs)
-def mono(e):  # product of Y_i^e_i * T^(D-deg) mod elim (equation homogenized to degree D)
+def mono(e):
     if e in cache: return cache[e]
     p=flint.fmpz_poly([1]); d=sum(e)
     for i,k in enumerate(e):

@@ -3,6 +3,11 @@ Theorems, Kraus Measurement Decoherence, Multi-Observer Wigner's-Friend Obstruct
 and Qutrit Stabilizer-vs-Magic Discrete Wigner Simulation Boundary.
 
 AuthorityEffect: None.
+
+Unit, integration, and negative tests.
+
+Origin: code/python/src/qm/campaigns/expressibility.py
+Claim: evaluate_finite_qm_expressibility_and_measurement_control certificate locked by exact checks in this file
 """
 
 from __future__ import annotations
@@ -16,7 +21,7 @@ from finite_qm.use_cases.finite_qm_expressibility_and_measurement_control import
 )
 
 
-def test_part_1_three_way_expressibility_and_strict_finite_nogo_theorems() -> None:
+def test_unit_part_1_three_way_expressibility_and_strict_finite_nogo_theorems() -> None:
     r = evaluate_finite_qm_expressibility_and_measurement_control()
     assert r.class_i_exact_finite_identity_count == 11
     assert r.class_ii_rational_interval_enclosure_count == 4
@@ -113,3 +118,12 @@ def test_part_4_lean4_part8_parity() -> None:
         "theorem qutrit_stabilizer_wigner_nonnegative_vs_magic_negative",
     ):
         assert thm_name in text, f"Missing Lean 4 theorem {thm_name}"
+
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'expressibility.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'evaluate_finite_qm_expressibility_and_measurement_control' in source
+    assert _MODULE_PATH.is_file()

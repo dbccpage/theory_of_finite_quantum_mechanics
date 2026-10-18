@@ -1,10 +1,3 @@
-//! Shared CODA/CODA_GTLA adapter for the exact integer Phi1 solver.
-//!
-//! `solve_phi1` owns candidate construction. This module converts its exact
-//! primal/dual result into the canonical rational certificate, validates a
-//! finite primitive-difference carrier, runs `crate::coda::coda_gtla`, and
-//! registers only stabilized survivor families. It does not define another
-//! obstruction classifier or authority path.
 
 use crate::coda::coda_gtla::{
     bind_domain_evidence, evaluate_exact, validate_primitive_difference, CodaExactInput,
@@ -59,7 +52,6 @@ impl PrimitiveDifference for PotentialDifference {
     }
 }
 
-/// Failure in the solver-to-shared-runtime conversion.
 #[derive(Debug, thiserror::Error)]
 pub enum Phi1CodaAdapterError {
     #[error(transparent)]
@@ -86,7 +78,6 @@ pub enum Phi1CodaAdapterError {
     Family(#[from] FamilyCollision),
 }
 
-/// Solver output bound to the sole shared exact obstruction evaluation.
 #[derive(Debug)]
 pub struct Phi1CodaSolution {
     solution: Phi1Solution,
@@ -103,7 +94,6 @@ impl Phi1CodaSolution {
         &self.evaluation
     }
 
-    /// Present only for a shared `ClosedResidual` classification.
     pub fn residual_family(&self) -> Option<&FamilyResolution> {
         self.residual_family.as_ref()
     }
@@ -128,10 +118,6 @@ fn validate_endpoints(boundary: &Boundary1) -> Result<(), Phi1CodaAdapterError> 
     Ok(())
 }
 
-/// Pack an exact `solve_phi1` solution into the canonical rational
-/// [`ExactPhi1Certificate`] (incidence `d₀`, the minimizing `α*`, primal
-/// residual, and dual witness). Shared with the [`super::emitter`] so the
-/// constructive Φ₁ path does not re-derive the packing.
 pub fn exact_certificate(
     boundary: &Boundary1,
     omega: &[i128],
@@ -168,9 +154,6 @@ pub fn exact_certificate(
     }
 }
 
-/// Solve one boundary problem and run its exact evidence through the shared
-/// CODA/CODA_GTLA runtime. The family registry is consulted before exact replay;
-/// only a verified stabilized survivor is reconciled into it.
 pub fn solve_phi1_coda(
     boundary: &Boundary1,
     omega: &[i128],

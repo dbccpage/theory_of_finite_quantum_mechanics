@@ -1,38 +1,3 @@
-//! Bounded, deterministic search over a declared finite menu of guarded
-//! Source-25 causal families (follow-up to Appendix P.18). AuthorityEffect: None.
-//!
-//! Every family is a `wdp-causal-problem-v1` problem admitted by the same
-//! code as `wdp_guarded_history`; legality is native Source-25 execution.
-//!
-//! MENU. A *letter* is a tagged native edit on named tokens; a family is a
-//! multiset of letters (3 to `max` events), an initial count table, and 0, 1
-//! or 2 extra precedence edges between distinct events. Families are
-//! enumerated exhaustively and deduplicated up to transitive closure and
-//! relabelling of equal letters; cyclic edge sets are skipped.
-//!
-//! * Tier A (one term, tokens `u0`): counts `R(0,0)`, `S(0,0)` in {0,1,2};
-//!   letters add/remove on `R(u0,u0)` and on `S(u0,u0)`; 3-6 events.
-//! * Tier B (two terms, `u0,u1`): counts `R(0,1)`, `R(0,0)` in {0,1,2};
-//!   letters add/remove on `R(u0,u1)` and `R(u0,u0)`, at most one
-//!   `Identify(u0,u1)`; 3-`max` events.
-//! * Tier C (three terms, `u0,u1,u2`): count `R(0,1)` in {0,1,2}; letters
-//!   add/remove on `R(u0,u1)`, at most one each of `Identify(u0,u1)`,
-//!   `Identify(u1,u2)`, `Identify(u0,u2)`, `Fill(u0,u1,u2)`,
-//!   `Fill(u0,u2,u1)`; 3-`max` events.
-//! * Tier D (one term plus a birth `b`): count `R(0,0)` in {0,1,2};
-//!   exactly one `AddTerm(b)`, at least one user of `b` among
-//!   `Identify(u0,b)` (at most one), add/remove on `R(b,b)`, plus
-//!   add/remove on `R(u0,u0)`; each user of `b` has the birth as a declared
-//!   predecessor; 3-6 events.
-//!
-//! * Tier E (supplement beyond the 0-2 edge menu): one term, letters
-//!   add/remove on `R(u0,u0)` only, count `R(0,0)` in {0,1,2}, 4-6 events and
-//!   exactly 3 extra precedence edges.
-//!
-//! A count above the number of removals that can read it is replaced by
-//! that number (it cannot change any guard), and counts with no removal in
-//! the family are fixed at zero. `--max-events N` caps tiers B and C
-//! (default 5); `--tiers ABCDE` selects tiers.
 use omega_wdp::genesis_guarded_history::{
     admit_problem, guarded_certificate, kind_compatible, kind_sorted_order, legal_extensions,
     respects, CausalProblem, GuardedHistoryError, Json, StarCoherence, SwapComplex,
@@ -50,7 +15,6 @@ struct Letter {
     tokens: &'static [&'static str],
     birth: bool,
     cap: usize,
-    /// Count-table key `(table, entry)` read by a removal, `table` 0 = r, 1 = s.
     key: Option<(usize, usize)>,
 }
 
@@ -227,7 +191,6 @@ fn uses_birth(l: &Letter) -> bool {
     l.tokens.contains(&"b")
 }
 
-/// Initial count assignments, canonicalized as the module doc states.
 fn count_tables(tier: &Tier, multiset: &[usize]) -> Vec<Vec<usize>> {
     let removals: Vec<&Letter> = multiset
         .iter()
@@ -384,7 +347,6 @@ fn closure(masks: &mut [u32]) -> bool {
     masks.iter().enumerate().all(|(e, m)| m & (1 << e) == 0)
 }
 
-/// Least relabelled closure over permutations preserving letters.
 fn canonical_key(multiset: &[usize], masks: &[u32]) -> Vec<(u8, u8)> {
     let k = multiset.len();
     let pairs: Vec<(usize, usize)> = (0..k)

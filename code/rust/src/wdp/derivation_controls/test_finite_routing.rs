@@ -59,7 +59,6 @@ fn actual_lift_squares_transport_and_inclusion_are_independent_checks() {
         require_coordinate_inclusion: true,
     };
     assert_eq!(check_lift(&source, &source, Some(&inclusion)), Ok(()));
-    // A lift doubled the defect norm; commuting maps alone promise no norm invariance.
     assert!(target.phi1().value() > source.phi1().value());
 }
 #[test]

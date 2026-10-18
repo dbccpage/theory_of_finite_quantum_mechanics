@@ -50,7 +50,6 @@ def _po014_six_cycle() -> PO014MinimaxProblem:
     )
     witnesses = []
     for edge, weight in enumerate(weights):
-        # weighted residual = weight * (1 - (f(v+1)-f(v)))
         coefficients = [0] * 6
         coefficients[edge] = 1
         coefficients[(edge + 1) % 6] = -1
@@ -132,7 +131,6 @@ def test_exact_degree_k_refuses_floats_missing_capability_and_degeneracy() -> No
 
 
 def test_epic006_b1_two_fixture_separates_l1_l2_and_raw_mass() -> None:
-    # Controlling Epic-006 section 6.1 carrier: two independent cycles.
     edges = ((0, 1), (1, 2), (0, 2), (2, 3), (0, 3))
     repair_map = Matrix.zeros(len(edges), 4)
     for row, (source, target) in enumerate(edges):
@@ -143,7 +141,6 @@ def test_epic006_b1_two_fixture_separates_l1_l2_and_raw_mass() -> None:
     exact_l1 = solve_degree_k_phi_exact(
         repair_map, omega, DegreeKPricingDeclaration.exact_l1(1)
     )
-    # This rational vector is an exact least-squares optimizer: D^T r_2 = 0.
     l2_alpha = Matrix([0, Rational(-1, 2), -1, Rational(-1, 2)])
     l2_residual = omega - repair_map * l2_alpha
     l2_surrogate_mass = sum(Abs(value) for value in l2_residual)
@@ -153,8 +150,6 @@ def test_epic006_b1_two_fixture_separates_l1_l2_and_raw_mass() -> None:
     assert l2_residual == Matrix(
         [Rational(-3, 2), Rational(-3, 2), 3, Rational(3, 2), Rational(-3, 2)]
     )
-    # The solver fixes a different additive gauge constant than this sparse
-    # representative, but both have the same coboundary and exact residual.
     stated_l1_alpha = Matrix([0, -2, -4, -2])
     assert repair_map * exact_l1.alpha == repair_map * stated_l1_alpha
     assert exact_l1.residual == Matrix([0, 0, 6, 0, 0])
@@ -225,7 +220,7 @@ def test_po014_least_squares_is_unmistakably_surrogate_only() -> None:
     assert not surrogate.is_certified
     assert "status" not in {field.name for field in fields(surrogate)}
     with pytest.raises(FrozenInstanceError):
-        surrogate.max_abs_residual = 0.0  # type: ignore[misc]
+        surrogate.max_abs_residual = 0.0
 
 
 def test_po014_exact_input_and_nondegeneracy_gate_refuses() -> None:

@@ -1,7 +1,3 @@
-//! Exact discrete algebraic topology and cochain complex carriers.
-//!
-//! Implements finite cochain complexes C^0 --d0--> C^1 --d1--> C^2 with verified
-//! coboundary relation d1 * d0 = 0 and exact Betti numbers over Q = BigRational.
 
 use crate::linear_algebra::{ExactMatrix, MatrixError, Q};
 use crate::linear_algebra::scalars::{hash_rational, q};
@@ -44,9 +40,6 @@ pub enum HomologicalError {
     Matrix(#[from] MatrixError),
 }
 
-/// A finite cochain complex C^0 --d0--> C^1 --d1--> C^2 with positive weights on C^1.
-///
-/// Invariant: d1 * d0 = 0 is verified at construction time.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Carrier {
     pub c0_dim: usize,
@@ -92,7 +85,6 @@ impl Carrier {
             }
         }
 
-        // Verify fundamental coboundary relation d1 * d0 = 0
         let comp = d1.mul(&d0)?;
         let zero = ExactMatrix::zeros(c2_dim, c0_dim);
         if comp != zero {
@@ -122,12 +114,10 @@ impl Carrier {
         self.d1.rank()
     }
 
-    /// Dimension of Q^1 = C^1 / B^1 = c1_dim - rank(d0).
     pub fn dim_q1(&self) -> usize {
         self.c1_dim - self.rank_d0()
     }
 
-    /// Dimension of H^1 = ker(d1) / im(d0) = (c1_dim - rank(d1)) - rank(d0).
     pub fn dim_h1(&self) -> Result<usize, HomologicalError> {
         let ker_d1 = self.c1_dim - self.rank_d1();
         let im_d0 = self.rank_d0();
@@ -146,18 +136,12 @@ mod tests {
 
     #[test]
     fn test_triangle_carrier_homology() {
-        // Triangle 1-skeleton (cycle of 3 vertices, 3 edges)
-        // d0: C0 (3 vertices) -> C1 (3 edges)
-        // e0 = (0, 1): v1 - v0
-        // e1 = (1, 2): v2 - v1
-        // e2 = (2, 0): v0 - v2
         let d0_rows = vec![
             vec![q(-1), q(1), q(0)],
             vec![q(0), q(-1), q(1)],
             vec![q(1), q(0), q(-1)],
         ];
         let d0 = ExactMatrix::from_rows(d0_rows).unwrap();
-        // d1: C1 -> C2 (single 2-simplex face with boundary e0 + e1 + e2)
         let d1_rows = vec![vec![q(1), q(1), q(1)]];
         let d1 = ExactMatrix::from_rows(d1_rows).unwrap();
         let weights = vec![q(1), q(1), q(1)];
@@ -166,7 +150,6 @@ mod tests {
         assert_eq!(carrier.rank_d0(), 2);
         assert_eq!(carrier.rank_d1(), 1);
         assert_eq!(carrier.dim_q1(), 1);
-        // H^1 = ker(d1) - im(d0) = (3 - 1) - 2 = 0
         assert_eq!(carrier.dim_h1().unwrap(), 0);
     }
 }

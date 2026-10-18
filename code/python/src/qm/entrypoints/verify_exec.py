@@ -17,12 +17,7 @@ from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[4] / "apps/finite_qm/campaigns/c500_execution"
 APP_ROOT = ROOT.parents[1]
-# Withdrawn evidence is retrieved from the repository that holds this record, which
-# is where the pinned blobs live. ROOT and APP_ROOT are redirected by the fixtures
-# to a synthetic tree; that tree is not a git repository and never holds the blobs.
 GIT_ROOT = Path(__file__).resolve().parents[4]
-# The executable core has one home. These logical roots are declared in the
-# replay manifest; paths cannot select any other repository or filesystem root.
 EVIDENCE_ROOTS = {
     "app": "apps/finite_qm",
     "rust_workspace": "omega_engine/crates_rs",
@@ -45,8 +40,6 @@ DIGEST_RULE = "sha256(utf8_text_with_LF_line_endings)"
 REVIEW_STATUS = "SCOPED_COMPUTATIONS_WITH_OPEN_TARGETS"
 CLAUSE = re.compile(r"^([MJ]\d+) \[(NOT FORCED|FORCED)\]: (.*)$")
 TARGET = re.compile(r"^\| (C500-T\d{3}) \| (.*?) \| (.*?) \|$")
-# Original target statements at reviewed base bdf9be242892317131d1290d8dde305ad2227772.
-# Rehashing a weakened plan and its review must not create a new target contract.
 FROZEN_PLAN_SHA256 = {
     "block_01": "9490911869d18169ce584a398530a55eadf6abfe4acd37173762bdf3a2be99c5",
     "block_02": "4b4188065551b95bcfeba943915f18703a5c85203fc61f1917828c7d78099fca",
@@ -155,7 +148,6 @@ def checked_reference(relative):
 
 
 def digest(path):
-    # The declared rule survives Git's Windows checkout line-ending conversion.
     data = path.read_text(encoding="utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
     return hashlib.sha256(data.encode("utf-8")).hexdigest()
 
@@ -198,7 +190,6 @@ def verify_scores(rows, frozen):
     for actual, expected in zip(rows, frozen):
         if {key: actual.get(key) for key in expected} != expected:
             raise AssertionError(f"frozen clause changed: {expected['id']}")
-        # No original-scope HIT is earned by an attempt with unmet launch custody.
         if actual.get("resolution") not in {"OPEN", "SCOPED_EVIDENCE", "INVALID"}:
             raise AssertionError(f"unsupported original-scope score: {expected['id']}")
         if not isinstance(actual.get("reason"), str) or not actual["reason"].strip():
@@ -273,9 +264,6 @@ def evidence_paths():
     }
     for block, (module, lean) in enumerate(BLOCK_MODULES, start=1):
         paths.update({
-            # `code/{module}.py` was the facade for this block's kernel module. It is
-            # withdrawn; the canonical source below is the same bytes at its real name,
-            # and the withdrawn row is carried by replay_manifest_supersession.json.
             f"rust_workspace/omega_finite_qm/src/{module}.rs", f"lean4/{lean}.lean",
             f"python_crate/use_cases/{module}.py",
             f"code/tests/unit/test_{module}.py", f"evidence/{module}.json",
@@ -345,13 +333,6 @@ def verify_manifest():
         if actual != row["recorded_sha256"]:
             raise AssertionError(f"withdrawn evidence does not match its recorded digest: {relative}")
 
-    # Files that still exist but whose bytes changed because their imports named a
-    # withdrawn facade. Two digests are checked, and both are load-bearing: the one
-    # the manifest froze must still be retrievable from git, and the one the record
-    # claims the file carries now must equal what the file actually carries. Without
-    # that second check these rows would be exempt from the manifest's change
-    # detection entirely, because the comparison below substitutes their frozen
-    # digest -- and one of them is this verifier.
     for relative, row in adapted_evidence().items():
         blob = subprocess.run(
             ["git", "cat-file", "blob", row["git_blob_oid_of_recorded_bytes"]],
@@ -373,8 +354,6 @@ def verify_manifest():
 
 def replay_block(block, module):
     source = checked_path(f"python_crate/use_cases/{module}.py")
-    # A separate interpreter prevents an earlier import from another checkout
-    # from satisfying a replay of the selected source path and its dependencies.
     script = """
 import importlib.util, json, pathlib, sys
 sys.dont_write_bytecode = True
@@ -405,7 +384,6 @@ print(json.dumps(result, sort_keys=True, separators=(',', ':'), allow_nan=False)
 
 
 def verify_ledgers(reviews):
-    # The older application test only checks the historical `claims` collection.
     import yaml
 
     ledger = yaml.safe_load((APP_ROOT / "claims/claim_ledger.yaml").read_text(encoding="utf-8"))
@@ -436,7 +414,6 @@ def verify_ledgers(reviews):
 
 def verify(*, replay=True):
     verify_manifest()
-    # Preserve the pre-existing immutable-bet and planning/execution boundary gate.
     source = APP_ROOT / "campaigns/c500/tools/verify_campaign.py"
     spec = importlib.util.spec_from_file_location("c500_execution_planning_custody", source)
     planning = importlib.util.module_from_spec(spec)
@@ -469,10 +446,6 @@ def main():
     action.add_argument("--write-manifest", action="store_true", help="record current files after review; does not validate claims")
     args = parser.parse_args()
     if args.write_manifest:
-        # Refresh the current digest of every adapted row first, then write the
-        # manifest in the same shape --check compares against. Writing manifest()
-        # here would drop the withdrawn rows and leave a file --check rejects
-        # immediately, which is the round-trip this option documents.
         record_path = ROOT / "replay_manifest_supersession.json"
         if record_path.is_file():
             record = read_json(record_path)

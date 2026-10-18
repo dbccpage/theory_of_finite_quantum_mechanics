@@ -99,7 +99,6 @@ class TestWalkStage1TrichotomyAndAuthorityGate:
             assert pkt.support_grade == "DiagnosticOnly"
 
     def test_open_residual_families_classify_open_not_exact(self, walk) -> None:
-        # The Rabbit residuals are undischarged: missing fields => Open.
         for pkt in walk["packets"]:
             cls = classify_gtfoc_trichotomy(
                 pkt.family_id, is_repaired=False, is_missing_fields=True
@@ -127,8 +126,6 @@ class TestWalkStage2CompressionConservation:
             for pkt in walk["packets"]
             if isinstance(pkt.witness_or_refusal.get("refusal_route"), str)
         )
-        # Set form (legacy callers) and multiset form (M11 owner) both hold
-        # on the identity compression of the real bundle.
         validate_gtla_summary_compression(
             set(fingerprints), set(routes), set(fingerprints), set(routes)
         )

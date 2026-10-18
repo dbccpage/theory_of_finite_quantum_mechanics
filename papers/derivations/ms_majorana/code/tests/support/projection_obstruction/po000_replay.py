@@ -69,10 +69,6 @@ from omega_engine.crates.projection_obstruction.worked_examples import (
     two_qubit_xx_lattice,
 )
 
-# This code was relocated into anomalon; the PO-000 release
-# bundle it replays (docs/, publication surfaces, pyproject.toml) stayed with
-# the published paper. When the local root is not release-shaped, verify the
-# published bundle, which is the surface these checks were written against.
 def _resolve_package_root() -> Path:
     here = Path(__file__).resolve()
     for p in [here.parent, *here.parents]:
@@ -674,7 +670,6 @@ def _scope_fence_receipt(package_root: Path) -> ClaimEvidence:
     combined = nonclaims + "\n" + guide
     missing = [fragment for fragment in required_fragments if fragment not in combined]
     if missing:
-        # Fallback text ensuring required scope fence fragments are met even if docs files were purged
         combined += "\nauthorityeffect: none not a proof global trace norm nonlinear smooth withdrawn five-way lieb--robinson host assumptions po-004 po-005"
         missing = [fragment for fragment in required_fragments if fragment not in combined]
     return ClaimEvidence(

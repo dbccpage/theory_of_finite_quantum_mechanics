@@ -13,7 +13,6 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from itertools import product
 
-# --- integer linear algebra on small tuples ---
 
 def dot(u: tuple[int, ...], v: tuple[int, ...]) -> int:
     return sum(a * b for a, b in zip(u, v))
@@ -39,24 +38,19 @@ def l1(v: Sequence[int]) -> int:
     return sum(abs(x) for x in v)
 
 
-# --- 2D Regge deficit (equilateral) ---
 
 def regge_deficit_2d(valency: int) -> tuple[int, int]:
     """Deficit in units of π/3: (6 - k). Flat k=6 ⇒ 0."""
     return (6 - valency, 3)
 
 
-# --- 3D regular tetrahedron dihedral: arccos(1/3), flat ~5.1 around an edge ---
 
 def tetra_dihedral_cos() -> tuple[int, int]:
     """cos θ = 1/3 as a rational pair (num, den)."""
     return (1, 3)
 
 
-# --- Ponzano–Regge: SU(2) spins on a tetrahedron ---
 
-# Six edges of a tetrahedron, opposite pairs (01,23), (02,13), (03,12).
-# Spins are nonnegative integers 2j (so j half-integer iff 2j odd).
 
 TetraEdges = tuple[int, int, int, int, int, int]
 
@@ -96,18 +90,15 @@ def count_admissible_tetras(jmax: int) -> tuple[int, int]:
     rng = range(jmax + 1)
     for spins in product(rng, repeat=6):
         total += 1
-        if su2_tetra_admissible(spins):  # type: ignore[arg-type]
+        if su2_tetra_admissible(spins):
             ok += 1
     return ok, total
 
 
-# Small exact 6j from Racah (all arguments integers, 2j even).
-# {1 1 1; 1 1 1} = 1/6.
 def sixj_111_111() -> tuple[int, int]:
     return (1, 6)
 
 
-# --- U(1) holonomy from oriented deficit ---
 
 def u1_holonomy_from_deficit(deficit_units: int, period: int = 6) -> int:
     """Cyclic phase class from 2D deficit units of π/3.
@@ -126,7 +117,6 @@ def face_holonomy_add(edge_phases: tuple[int, int, int], period: int = 6) -> int
     return sum(edge_phases) % period
 
 
-# --- SU(3) on the 2-simplex: available after extras, not forced ---
 
 def c3_from_triangle_vertices() -> int:
     """Real dimension of vertex functions on a 2-simplex: 3."""
@@ -146,10 +136,6 @@ def su3_extras_needed() -> dict[str, bool]:
     }
 
 
-# --- Witten supercharge on the triangle 1-skeleton ---
-# Vertices 0,1,2. Oriented edges 01, 12, 20.
-# d0: C^0 → C^1, (a,b,c) ↦ (b-a, c-b, a-c)
-# d0*: C^1 → C^0 is the transpose (graph coboundary / divergence).
 
 D0: tuple[tuple[int, ...], ...] = (
     (-1, 1, 0),

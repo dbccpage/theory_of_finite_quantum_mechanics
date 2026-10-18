@@ -62,7 +62,6 @@ class TestHPLHilbertCascade(unittest.TestCase):
             i_map=i_map, r_map=r_map, h_map=h_map, d_C=d_C, d_D=d_D
         )
 
-        # Small perturbation delta
         delta = np.array([[0.1, 0.2, 0.0], [0.3, 0.4, 0.1], [0.0, 0.1, 0.2]])
 
         delta_D, receipt = self.solver.stage_hpl_deformation(contraction, delta)
@@ -88,7 +87,6 @@ class TestHPLHilbertCascade(unittest.TestCase):
             i_map=i_map, r_map=r_map, h_map=h_map, d_C=d_C, d_D=d_D
         )
 
-        # Large perturbation forcing spectral radius >= 1.0
         delta = np.array([[1.0, 1.0, 1.0], [1.0, 1.0, 1.0], [1.0, 1.0, 1.0]])
 
         delta_D, receipt = self.solver.stage_hpl_deformation(contraction, delta)
@@ -101,10 +99,8 @@ class TestHPLHilbertCascade(unittest.TestCase):
     def test_finite_hilbert_gate11_projectors_and_leakage(self):
         """Verify Hilbert residual lift decomposes state into Gate-11 projectors and computes L_P leakage."""
         dim = 3
-        # Nilpotent Q (Q^2 = 0)
         Q = np.array([[0.0, 1.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]])
 
-        # Constraint operator A
         constraint_A = np.array([[0.5, 0.0, 0.0], [0.0, 0.2, 0.0], [0.0, 0.0, 0.8]])
 
         state_psi = np.array([1.0, 1.0, 1.0])
@@ -130,7 +126,7 @@ class TestHPLHilbertCascade(unittest.TestCase):
         oracle_packet = {
             "claims_born_uniqueness": True,
             "claims_continuum_limit": False,
-            "import_witness_certified": False,  # Missing witness!
+            "import_witness_certified": False,
         }
 
         lift_res, receipt = self.solver.stage_hilbert_residual_lift(

@@ -22,8 +22,6 @@ from sympy import (
 )
 
 
-# Keep the cube root algebraic so simplification uses ETA**2 + ETA + 1 = 0
-# instead of introducing principal-branch fractional powers of -1.
 ETA = -Rational(1, 2) + I * sqrt(3) / 2
 
 

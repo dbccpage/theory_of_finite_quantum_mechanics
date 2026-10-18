@@ -1,4 +1,3 @@
-# AuthorityEffect: None.
 """QM-218 Relational Page-Wootters Clock Dressing, Cyclotomic Q(zeta_8) Tsirelson Bound, and Discrete Weyl-Wigner Control.
 
 Establishes a finite-to-continuum bridge for three foundational pillars of
@@ -61,9 +60,6 @@ from fractions import Fraction
 
 from .dressed_qed import RationalInterval
 
-# ---------------------------------------------------------------------------
-# 1. Exact Q(i) arithmetic for Part (a) Page-Wootters Clock Dressing
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -208,9 +204,6 @@ def qi_inner(u: QiVec, v: QiVec) -> Qi:
     return acc
 
 
-# ---------------------------------------------------------------------------
-# 2. Exact Q(zeta_8) = Q[z]/(z^4 + 1) arithmetic for Part (b) Tsirelson SOS
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -380,9 +373,6 @@ def z8_inner(u: Z8Vec, v: Z8Vec) -> QZeta8:
     return acc
 
 
-# ---------------------------------------------------------------------------
-# 3. Exact Q(zeta_3) = Q[w]/(w^2 + w + 1) arithmetic for Part (c) Wigner
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -419,7 +409,6 @@ class QZeta3:
         return QZeta3(self.a - other.a, self.b - other.b)
 
     def __mul__(self, other: QZeta3) -> QZeta3:
-        # (a1 + b1 w)(a2 + b2 w) = a1 a2 + (a1 b2 + b1 a2) w + b1 b2 (-1 - w)
         return QZeta3(
             self.a * other.a - self.b * other.b,
             self.a * other.b + self.b * other.a - self.b * other.b,
@@ -526,9 +515,6 @@ def compute_wigner_table_z3(state: Z3Vec) -> list[list[Fraction]]:
     return table
 
 
-# ---------------------------------------------------------------------------
-# 4. Certified sqrt(2) rational interval and QM-218 Report
-# ---------------------------------------------------------------------------
 
 
 def certified_sqrt2_interval() -> RationalInterval:
@@ -552,7 +538,6 @@ def _format_certified_12(iv: RationalInterval) -> str:
 class PageWoottersTsirelsonWignerReport:
     """Complete finite-to-continuum report for QM-218."""
 
-    # Part (a): Page-Wootters Relational Clock Dressing over Q(i)
     pw_history_shift_unitary_and_order_4: bool
     pw_constraint_projector_idempotent_hermitian: bool
     pw_constraint_projector_trace: int
@@ -565,7 +550,6 @@ class PageWoottersTsirelsonWignerReport:
     pw_static_state_sigma_x_ticks: tuple[Fraction, ...]
     pw_static_state_sigma_y_ticks: tuple[Fraction, ...]
 
-    # Part (b): Cyclotomic Q(zeta_8) Tsirelson Bound & SOS Certificate
     chsh_classical_polytope_vertex_count: int
     chsh_classical_polytope_max: Fraction
     chsh_cyclotomic_sqrt2_squares_to_2: bool
@@ -577,7 +561,6 @@ class PageWoottersTsirelsonWignerReport:
     chsh_bell_state_eigenvalue_is_2_sqrt2: bool
     chsh_separable_state_expectation_is_sqrt2: bool
 
-    # Part (c): Discrete Weyl-Wigner on (Z_3)^2 & 12-Decimal Enclosures
     wigner_phase_point_hermitian_involutory_unit_trace: bool
     wigner_phase_point_orthogonality_and_completeness: bool
     wigner_line_marginals_match_projectors: bool
@@ -601,17 +584,14 @@ def _evaluate_page_wootters_relational_dressing():
     i2 = qi_eye(2)
     i8 = qi_eye(8)
 
-    # Cyclic clock shift S_C on Q(i)^4: S_C |t> = |t + 1 mod 4>
     s_c = qi_zeros(4)
     for t in range(4):
         s_c[(t + 1) % 4][t] = Qi.from_int(1)
 
-    # System unitary U_S = diag(1, i) on Q(i)^2 of order 4
     u_s = qi_zeros(2)
     u_s[0][0] = Qi.from_int(1)
     u_s[1][1] = Qi.i()
 
-    # Joint history shift W = S_C (x) U_S on Q(i)^8
     w_hist = qi_kron(s_c, u_s)
     w2 = qi_matmul(w_hist, w_hist)
     w3 = qi_matmul(w2, w_hist)
@@ -620,7 +600,6 @@ def _evaluate_page_wootters_relational_dressing():
 
     unitary_order4_ok = qi_mat_eq(qi_matmul(qi_dagger(w_hist), w_hist), i8) and qi_mat_eq(w4, i8)
 
-    # Page-Wootters constraint C_PW = I_8 - W and group-averaging projector Pi_PW
     c_pw = qi_sub(i8, w_hist)
     pi_pw = qi_scale(Fraction(1, 4), qi_add(qi_add(i8, w_hist), qi_add(w2, w3)))
     proj_idem_herm_ok = qi_mat_eq(qi_matmul(pi_pw, pi_pw), pi_pw) and qi_mat_eq(qi_dagger(pi_pw), pi_pw)
@@ -629,7 +608,6 @@ def _evaluate_page_wootters_relational_dressing():
     proj_trace = int(tr_pi.re)
     annihilates_ok = qi_is_zero(qi_matmul(c_pw, pi_pw)) and qi_is_zero(qi_matmul(pi_pw, c_pw))
 
-    # Clock-controlled dressing operator D = sum_{t=0}^3 |t><t| (x) U_S^t
     u_s_pows = [i2, u_s, qi_matmul(u_s, u_s), qi_matmul(qi_matmul(u_s, u_s), u_s)]
     d_dress = qi_zeros(8)
     for t in range(4):
@@ -640,20 +618,16 @@ def _evaluate_page_wootters_relational_dressing():
     d_dag = qi_dagger(d_dress)
     intertwine_ok = qi_mat_eq(qi_matmul(d_dag, qi_matmul(w_hist, d_dress)), qi_kron(s_c, i2))
 
-    # Static clock zero-mode projector Pi_{C,0} = (1/4) sum_{k=0}^3 S_C^k
     sc2 = qi_matmul(s_c, s_c)
     sc3 = qi_matmul(sc2, s_c)
     pi_c0 = qi_scale(Fraction(1, 4), qi_add(qi_add(i4, s_c), qi_add(sc2, sc3)))
     decouple_ok = qi_mat_eq(qi_matmul(d_dag, qi_matmul(pi_pw, d_dress)), qi_kron(pi_c0, i2))
 
-    # Pauli sigma_x and sigma_y on H_S = Q(i)^2
     sigma_x = [[Qi.from_int(0), Qi.from_int(1)], [Qi.from_int(1), Qi.from_int(0)]]
     sigma_y = [[Qi.from_int(0), -Qi.i()], [Qi.i(), Qi.from_int(0)]]
 
-    # Negative control: bare observable I_4 (x) sigma_x does NOT commute with W
     bare_breaks_ok = not qi_is_zero(qi_comm(qi_kron(i4, sigma_x), w_hist))
 
-    # Relational dressed observable O_rel(tau; O_S) = 4 * sum_{k=0}^3 (W^dagger)^k (|tau><tau| (x) O_S) W^k
     def relational_observable(tau: int, obs_s: QiMat) -> QiMat:
         proj_tau = qi_zeros(4)
         proj_tau[tau][tau] = Qi.from_int(1)
@@ -665,12 +639,10 @@ def _evaluate_page_wootters_relational_dressing():
             acc = qi_add(acc, qi_matmul(wk_dag, qi_matmul(seed, wk)))
         return acc
 
-    # Static history state |Psi_hist> = 2 * Pi_PW (|0> (x) |psi_0>) with |psi_0> = (1, 1)^T
     psi0_hist = [Qi.from_int(0) for _ in range(8)]
     psi0_hist[0] = Qi.from_int(1)
     psi0_hist[1] = Qi.from_int(1)
     psi_hist = [c.scale(Fraction(2)) for c in qi_matvec(pi_pw, psi0_hist)]
-    # Confirm C_PW |Psi_hist> = 0
     assert all(c.is_zero() for c in qi_matvec(c_pw, psi_hist))
     norm_hist = qi_inner(psi_hist, psi_hist)
     assert norm_hist == Qi.from_int(2)
@@ -771,7 +743,6 @@ def _evaluate_cyclotomic_tsirelson_bound():
     sos_equiv_rhs = z8_scale(inv_s2, sos_sum)
     sos_ok = z8_mat_eq(sos_lhs, sos_sum) and z8_mat_eq(sos_equiv_lhs, sos_equiv_rhs)
 
-    # Bell state |Phi^+> = (1, 0, 0, 1)^T
     phi_plus: Z8Vec = [one_z8, zero_z8, zero_z8, one_z8]
     w1_phi = z8_matvec(w1_sos, phi_plus)
     w2_phi = z8_matvec(w2_sos, phi_plus)
@@ -781,7 +752,6 @@ def _evaluate_cyclotomic_tsirelson_bound():
     two_s2 = QZeta8.from_int(2) * s2
     bell_eigen_ok = all(b_phi[k] == two_s2 * phi_plus[k] for k in range(4))
 
-    # Separable state |00> = (1, 0, 0, 0)^T
     sep_00: Z8Vec = [one_z8, zero_z8, zero_z8, zero_z8]
     sep_exp = z8_inner(sep_00, z8_matvec(b_chsh, sep_00))
     sep_ok = sep_exp == s2
@@ -861,14 +831,12 @@ def _evaluate_discrete_weyl_wigner_and_enclosures():
     herm_inv_tr_ok, ortho_comp_ok, all_aqp = _check_phase_point_operators()
     line_marginals_ok = _check_line_marginals(all_aqp)
 
-    # Stabilizer state |0> = (1, 0, 0)^T
     psi_stab: Z3Vec = [QZeta3.from_int(1), QZeta3.from_int(0), QZeta3.from_int(0)]
     w_stab = compute_wigner_table_z3(psi_stab)
     stab_flat = [val for row in w_stab for val in row]
     stab_nonneg_norm_ok = all(v >= 0 for v in stab_flat) and sum(stab_flat) == Fraction(1)
     stab_negativity = sum((abs(v) for v in stab_flat), start=Fraction(0)) - Fraction(1)
 
-    # Non-stabilizer superposition |psi_neg> = |0> - |1> = (1, -1, 0)^T
     psi_neg: Z3Vec = [QZeta3.from_int(1), QZeta3.from_int(-1), QZeta3.from_int(0)]
     w_neg = compute_wigner_table_z3(psi_neg)
     neg_flat = [val for row in w_neg for val in row]
@@ -883,7 +851,6 @@ def _evaluate_discrete_weyl_wigner_and_enclosures():
     super_min = min(neg_flat)
     super_negativity = sum((abs(v) for v in neg_flat), start=Fraction(0)) - Fraction(1)
 
-    # Certified 12-decimal enclosures
     sqrt2_iv = certified_sqrt2_interval()
     sqrt2_bounds_ok = sqrt2_iv.lo * sqrt2_iv.lo <= Fraction(2) <= sqrt2_iv.hi * sqrt2_iv.hi
     two_iv = RationalInterval.exact(Fraction(2))

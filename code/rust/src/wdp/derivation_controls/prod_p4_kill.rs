@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P4-KILL (Evaluate P4 kill conditions on pilot instrument menus).
 
 pub fn evaluate_p4_kill(solver_finished: bool, planned_cost_num: u64, planned_cost_den: u64, buyer_cost_num: u64, buyer_cost_den: u64) -> (bool, bool, bool) {
     let kill_exceeds_solver = !solver_finished;

@@ -1,9 +1,3 @@
-//! Strict Q-continuum policy layer.
-//!
-//! This module owns the Q policy implementation; `omega_q` re-exports it.
-//! It does not move Q DTOs out of `omega_types`. It validates the
-//! mandatory Q packet, gates Q admission, routes finite descent obligations, and
-//! records residuals without minting authority.
 
 #![forbid(unsafe_code)]
 #![deny(unused_must_use)]
@@ -12,26 +6,16 @@ pub mod admission;
 pub mod authority;
 pub mod bridge_admission;
 pub mod bridge_packet;
-/// CODA-CS → Q adapter (experimental). Present in `src/` but undeclared until
-/// 2026-08-04, so no consumer could resolve it.
 pub mod coda_cs_adapter;
-/// The Nine-Layer CODA Stack (FOC, MUR, CS, CS-Q, Q = The Continuum, A, OR, FDA, CODA_GTLA).
 pub mod coda_stack;
 pub mod continuum;
 pub mod descent;
 pub mod errors;
-/// Target 10 — exact-arithmetic finite-shadow carrier and shared fixture types.
-///
-/// Present in `src/` but undeclared until 2026-08-04, so `rustc` never saw it and
-/// `tests/finite_shadow_exact_fixtures.rs` could not resolve its imports.
 pub mod finite_qm_types;
 pub mod finite_shadow_exact;
 pub mod ledger;
 pub mod packet;
 pub mod probe;
-/// Q/CODA product vertical slice — launch board, claim ledger, staged receipts,
-/// and the fail-closed promotion gates. Present in `src/` but undeclared until
-/// 2026-08-04.
 pub mod product_vertical_slice;
 pub mod spectral_layer_binding;
 pub mod spectral_membrane;

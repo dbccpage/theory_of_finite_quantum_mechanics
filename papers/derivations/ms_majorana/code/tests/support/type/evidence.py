@@ -57,8 +57,6 @@ class EvidenceCeiling(str):
     def __init__(self, val_or_level: Any) -> None:
         if isinstance(val_or_level, EvidenceLevel):
             self.max_level = val_or_level
-            # An explicitly typed numeric level is a deliberate API use,
-            # not an unrecognized token: the gates below honor it.
             self._explicit_level = True
         elif isinstance(val_or_level, EvidenceCeiling):
             self.max_level = val_or_level.max_level
@@ -67,9 +65,6 @@ class EvidenceCeiling(str):
             token = str(val_or_level)
             rank = EVIDENCE_RANK.get(token, 0)
             self.max_level = EvidenceLevel(rank, token)
-            # Construction from an unregistered token is permitted (the
-            # object can be displayed/serialized) but the three gate
-            # functions below refuse it fail-closed (Inspector OD-6/M13).
             self._explicit_level = token in EVIDENCE_RANK
 
     @property
@@ -85,7 +80,6 @@ class EvidenceCeiling(str):
         )
 
 
-# Total order on the evidence route (spine §1.6 Lemma: this is a total order).
 EVIDENCE_RANK: Dict[str, int] = {
     "GrammarOnly": 0,
     "ShapeOnly": 0,
@@ -97,7 +91,6 @@ EVIDENCE_RANK: Dict[str, int] = {
     "EmpiricalOracleRequired": 5,
 }
 
-# Attach members as class attributes to mimic Enum
 EvidenceCeiling.GRAMMAR_ONLY = EvidenceCeiling("GrammarOnly")
 EvidenceCeiling.SHAPE_ONLY = EvidenceCeiling("ShapeOnly")
 EvidenceCeiling.SCHEMA_CHECKED = EvidenceCeiling("SchemaChecked")
@@ -123,9 +116,6 @@ def evidence_rank(e: Any) -> int:
     if isinstance(e, EvidenceLevel):
         return e.level
     if isinstance(e, EvidenceCeiling):
-        # _explicit_level is True for registered tokens (whose max_level
-        # equals the table rank by construction) and for deliberately
-        # typed EvidenceLevel constructions — both are grounded.
         if getattr(e, "_explicit_level", False):
             return e.max_level.level
     else:

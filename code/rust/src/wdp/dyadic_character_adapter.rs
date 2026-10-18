@@ -1,5 +1,3 @@
-//! Retains declared finite character data; all arithmetic has a math owner.
-//! No finite prefix is promoted to a continuum, topology or physical model.
 
 use crate::types::AuthorityEffect;
 use omega_number_theory::cyclotomic_field::CyclotomicNumber;

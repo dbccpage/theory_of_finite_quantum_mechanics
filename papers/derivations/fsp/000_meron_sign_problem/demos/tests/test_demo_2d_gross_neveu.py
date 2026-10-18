@@ -40,7 +40,7 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from demo_2d_gross_neveu_meron import (  # noqa: E402
+from demo_2d_gross_neveu_meron import (
     WIRE_TURNS_2D_GN,
     MeronCluster2D,
     StaggeredLattice2D,
@@ -51,18 +51,15 @@ from demo_2d_gross_neveu_meron import (  # noqa: E402
     run_demo,
     validate_wire_string,
 )
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     serialize_packet,
     validate_packet_semantics,
 )
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
+from blind_problem import assert_lexical_hygiene
 
-# ============================================================================
-# Test Suite 1: 2D Staggered Lattice Geometry & Dirac Phases
-# ============================================================================
 
 
 class TestStaggeredLattice2DGeometry:
@@ -82,27 +79,22 @@ class TestStaggeredLattice2DGeometry:
     def test_staggered_dirac_phase_signs(self) -> None:
         """Spatial links have phase +1; temporal links have phase (-1)^x."""
         lat = StaggeredLattice2D(4, 4)
-        # Spatial link
         assert lat.staggered_phase((0, 0), (1, 0)) == 1
         assert lat.staggered_phase((1, 0), (2, 0)) == 1
 
-        # Temporal links: (-1)^x
-        assert lat.staggered_phase((0, 0), (0, 1)) == 1   # x=0 -> +1
-        assert lat.staggered_phase((1, 0), (1, 1)) == -1  # x=1 -> -1
-        assert lat.staggered_phase((2, 0), (2, 1)) == 1   # x=2 -> +1
-        assert lat.staggered_phase((3, 0), (3, 1)) == -1  # x=3 -> -1
+        assert lat.staggered_phase((0, 0), (0, 1)) == 1
+        assert lat.staggered_phase((1, 0), (1, 1)) == -1
+        assert lat.staggered_phase((2, 0), (2, 1)) == 1
+        assert lat.staggered_phase((3, 0), (3, 1)) == -1
 
     def test_rejects_non_integer_dimensions(self) -> None:
         """Constructor rejects float dimensions fail-closed."""
         with pytest.raises(TypeError):
-            StaggeredLattice2D(4.0, 4)  # type: ignore
+            StaggeredLattice2D(4.0, 4)
         with pytest.raises(TypeError):
-            StaggeredLattice2D(4, 4.5)  # type: ignore
+            StaggeredLattice2D(4, 4.5)
 
 
-# ============================================================================
-# Test Suite 2: Meron Cluster Topology & Involution Tau
-# ============================================================================
 
 
 class TestMeronCluster2DTopology:
@@ -136,7 +128,6 @@ class TestMeronCluster2DTopology:
         assert tau_c.weight == c.weight
         assert tau_c.winding == (0, -1)
 
-        # Idempotency
         tau2_c = tau_c.orientation_flip()
         assert tau2_c.fermion_sign == c.fermion_sign
         assert tau2_c.winding == c.winding
@@ -144,12 +135,9 @@ class TestMeronCluster2DTopology:
     def test_rejects_float_weights(self) -> None:
         """Constructor rejects float weights fail-closed."""
         with pytest.raises(TypeError, match="Weight must be an exact fractions.Fraction"):
-            MeronCluster2D("c_float", [], [], weight=1.5)  # type: ignore
+            MeronCluster2D("c_float", [], [], weight=1.5)
 
 
-# ============================================================================
-# Test Suite 3: Exact Involution Solver & Doublet Cancellation
-# ============================================================================
 
 
 class TestGrossNeveu2DSolverCancellation:
@@ -171,7 +159,7 @@ class TestGrossNeveu2DSolverCancellation:
         """When an odd doublet has asymmetric weights, solver detects non-zero duality gap."""
         c = MeronCluster2D("c_odd", [(0, 0)], [], winding=(1, 0), meron_count=1, weight=Fraction(10, 1))
         tau_c = c.orientation_flip()
-        tau_c.weight = Fraction(11, 1)  # Perturbed weight
+        tau_c.weight = Fraction(11, 1)
 
         res = execute_2d_gn_cancellation([(c, c.weight), (tau_c, tau_c.weight)])
         assert res["status"] == "UNREPAIRED_OBSTRUCTION"
@@ -189,9 +177,6 @@ class TestGrossNeveu2DSolverCancellation:
         assert res["pairs_cancelled"] == 0
 
 
-# ============================================================================
-# Test Suite 4: Pure Gamma38 Wire Grammar Dialogue
-# ============================================================================
 
 
 class TestSymbolGameWireGrammar2DGN:
@@ -226,9 +211,6 @@ class TestSymbolGameWireGrammar2DGN:
         assert validate_wire_string(malformed_syntax) is False
 
 
-# ============================================================================
-# Test Suite 5: DDC DAG & Cryptographic Master Receipt Integrity
-# ============================================================================
 
 
 class TestArtifactEmissionAndIntegrity:
@@ -258,7 +240,6 @@ class TestArtifactEmissionAndIntegrity:
             pkt = parse_packet(wire)
             validate_packet_semantics(pkt)
 
-        # Terminal certification
         assert nodes[-1]["action"] == "CERTIFY_EXACT_REPAIR"
         assert nodes[-1]["payload"]["status"] == "EXACT_REPAIR"
         assert nodes[-1]["payload"]["duality_gap"] == "0"
@@ -288,9 +269,6 @@ class TestArtifactEmissionAndIntegrity:
         assert embedded == recomp
 
 
-# ============================================================================
-# Test Suite 6: Zero Floats AST Audit & Lexical Hygiene
-# ============================================================================
 
 
 class TestZeroFloatsAndLexicalHygiene:

@@ -1,6 +1,3 @@
-//! Exact value/first/second derivative products of square matrix curves.
-//! Components are derivatives at zero, not Taylor coefficients.
-//! AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
 use crate::linear_algebra::{
@@ -34,8 +31,6 @@ impl<F: Field + ExactRing> MatrixJet2<F> {
         self.product_with_limits(right, OperationLimits::UNLIMITED)
     }
 
-    /// Whole-product preflight: six matrix products, three additions, one scale.
-    /// Each matrix allocation has n^2 elements; scalar calls <=12n^3+4n^2+1.
     pub fn product_with_limits(
         &self,
         right: &Self,

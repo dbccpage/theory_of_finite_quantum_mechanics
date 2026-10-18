@@ -60,9 +60,6 @@ from topological_meron_3d import (
     build_winding_loop,
 )
 
-# ============================================================================
-# Test Suite 1: Solver Initialization and Architecture
-# ============================================================================
 
 
 class TestTopologicalCluster4DSolverArchitecture:
@@ -87,14 +84,11 @@ class TestTopologicalCluster4DSolverArchitecture:
     def test_solver_rejects_float_dimensions(self) -> None:
         """Solver rejects floating-point dimensions fail-closed."""
         with pytest.raises(TypeError):
-            TopologicalCluster4DSolver(torus_dim=(2.0, 2, 2, 2))  # type: ignore
+            TopologicalCluster4DSolver(torus_dim=(2.0, 2, 2, 2))
         with pytest.raises(TypeError):
-            TopologicalCluster4DSolver(lattice_dim_3d=(4.5, 4, 4))  # type: ignore
+            TopologicalCluster4DSolver(lattice_dim_3d=(4.5, 4, 4))
 
 
-# ============================================================================
-# Test Suite 2: Combined Cluster and Topological Invariants
-# ============================================================================
 
 
 class TestCombinedClusterAndTopologicalInvariants:
@@ -146,9 +140,6 @@ class TestCombinedClusterAndTopologicalInvariants:
         assert cluster.fermion_determinant_sign == -1
 
 
-# ============================================================================
-# Test Suite 3: Cluster Involution Tau and Exact Zero-Sum Doublet
-# ============================================================================
 
 
 class TestClusterInvolutionTauAndZeroSumDoublet:
@@ -244,9 +235,6 @@ class TestClusterInvolutionTauAndZeroSumDoublet:
         assert rop_res.unwrap()["exact_zero_sum_doublet"] is True
 
 
-# ============================================================================
-# Test Suite 4: Ensemble Partition Function Cancellation
-# ============================================================================
 
 
 class TestEnsemblePartitionFunctionCancellation:
@@ -279,7 +267,7 @@ class TestEnsemblePartitionFunctionCancellation:
         res = solver.solve(ensemble)
 
         assert res.odd_sum == Fraction(0, 1)
-        assert res.zero_sum == Fraction(2, 1)  # l_even (1) + c_zero (1)
+        assert res.zero_sum == Fraction(2, 1)
         assert res.total_partition_sum == Fraction(2, 1)
         assert res.zero_sectors_positive is True
 
@@ -292,9 +280,6 @@ class TestEnsemblePartitionFunctionCancellation:
         assert res.duality_gap == Fraction(0, 1)
 
 
-# ============================================================================
-# Test Suite 5: Pure Gamma38 Wire Grammar Integration
-# ============================================================================
 
 
 class TestGamma38WireGrammarIntegration:
@@ -320,25 +305,21 @@ class TestGamma38WireGrammarIntegration:
 
     def test_fraction_to_gamma38_canonical_rational_encoding(self) -> None:
         """fraction_to_gamma38 produces valid opcode <10010> RationalValue in binary."""
-        # Canonical zero: +0/1
         w_zero = fraction_to_gamma38(Fraction(0, 1))
         assert w_zero == "op<<10010><0><0><1>>"
         pkt_zero = parse_packet(w_zero)
         validate_packet_semantics(pkt_zero)
 
-        # Positive half: +1/2 -> num=1 ("1"), den=2 ("10")
         w_half = fraction_to_gamma38(Fraction(1, 2))
         assert w_half == "op<<10010><0><1><10>>"
         pkt_half = parse_packet(w_half)
         validate_packet_semantics(pkt_half)
 
-        # Negative half: -1/2 -> sign=<1>, num=1 ("1"), den=2 ("10")
         w_neg = fraction_to_gamma38(Fraction(-1, 2))
         assert w_neg == "op<<10010><1><1><10>>"
         pkt_neg = parse_packet(w_neg)
         validate_packet_semantics(pkt_neg)
 
-        # Coprime fraction: +5/3 -> num=5 ("101"), den=3 ("11")
         w_five_thirds = fraction_to_gamma38(Fraction(5, 3))
         assert w_five_thirds == "op<<10010><0><101><11>>"
         pkt_ft = parse_packet(w_five_thirds)
@@ -358,9 +339,6 @@ class TestGamma38WireGrammarIntegration:
         assert validate_gamma38_wire(malformed_brackets) is False
 
 
-# ============================================================================
-# Test Suite 6: Lexical and Claim Hygiene Verification
-# ============================================================================
 
 
 class TestLexicalAndClaimHygiene:
@@ -411,9 +389,6 @@ class TestLexicalAndClaimHygiene:
             assert word not in wire_lower
 
 
-# ============================================================================
-# Test Suite 7: DDC DAG Trace Emission (5-Stage Causal Chain)
-# ============================================================================
 
 
 class TestDdcDagTraceEmission:
@@ -499,9 +474,6 @@ class TestDdcDagTraceEmission:
             assert f1.read() == f2.read()
 
 
-# ============================================================================
-# Test Suite 8: Zero Floats Enforcement & AST Static Analysis Audit
-# ============================================================================
 
 
 class TestZeroFloatsAndAstStaticAudit:
@@ -537,11 +509,9 @@ class TestZeroFloatsAndAstStaticAudit:
         with pytest.raises(TypeError, match="Floating-point value forbidden"):
             assert_no_floats([1, Fraction(1, 1), 2.5])
 
-        # Cluster weight rejection
         with pytest.raises(TypeError, match="Floating-point value forbidden"):
-            CombinedTopologicalCluster(cluster_id="c_float", weight=1.5)  # type: ignore
+            CombinedTopologicalCluster(cluster_id="c_float", weight=1.5)
 
-        # Cancellation weights rejection
         c = [HalfInstantonCluster4D(1, 0)]
         with pytest.raises(TypeError, match="Floats forbidden in cluster weights"):
-            execute_involution_cancellation(c, weights=[1.0])  # type: ignore
+            execute_involution_cancellation(c, weights=[1.0])

@@ -1,9 +1,3 @@
-//! Sparse evaluation of explicitly selected carrier maps, without enumerating K or T.
-//!
-//! Requests recurse only to required boundaries and carrier contractions. A
-//! result is a proposal. The separate filling checker tests the supplied
-//! integral boundary equation using only its supplied chains. It makes no
-//! assertion about closure of an arbitrary cochain on unexamined cells.
 
 use super::{event_order, event_task_order, task_order, CellImages, OrderKey, TransportError};
 use omega_homology::finite_poset::{FinitePoset, MAX_POSET_ELEMENTS};
@@ -40,12 +34,6 @@ pub enum SparseTransportError {
 }
 type Result<T> = std::result::Result<T, SparseTransportError>;
 
-/// Aggregate limits for one evaluator's lifetime. The homology owner's
-/// `ContractionLimits` additionally bounds every sparse intermediate and each
-/// carrier cache. The maximum retained carrier-cache entries is therefore at
-/// most `max_carriers * contraction.max_cells`, and each cached image has at
-/// most `contraction.max_terms` terms. These are bounds, not a polynomial-time
-/// guarantee. Requests may return a typed refusal before constructing a result.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SparseTransportLimits {
@@ -80,9 +68,6 @@ pub struct SparseTransportStats {
     pub requests: usize,
 }
 
-/// A proposal constructor for a fixed paired-event presentation. A failed
-/// request can leave already completed, valid columns in its private cache;
-/// no partially constructed column is published or retained as a result.
 #[derive(Debug)]
 pub struct SparseTransport {
     method: ContractionMethod,
@@ -99,9 +84,6 @@ pub struct SparseTransport {
     requests: usize,
 }
 
-/// The method is explicit because the two valid contractions can produce
-/// different individual chains. Only MinimumSweepV2 has the stated polynomial
-/// basis-image support bound; V1 remains available for existing certificates.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ContractionMethod {
     FirstDescentV1,
@@ -175,8 +157,6 @@ fn limit(value: usize, maximum: usize, resource: &'static str) -> Result<()> {
     Ok(())
 }
 
-/// Strict event precedence and worst internal ordering are both checked.
-/// This function examines one supplied cell, not an enumerated complex.
 pub fn validate_event_cell(
     pairs: usize,
     capacity: usize,
@@ -190,8 +170,6 @@ pub fn validate_event_cell(
     for block in cell {
         let mut starts = 0usize;
         let mut finishes = 0usize;
-        // Check against the state before this entire block: a remove and its
-        // own restoration in the same block are never admitted.
         for &event in block {
             if event % 2 == 0 {
                 if states[event / 2] != 0 {
@@ -244,8 +222,6 @@ fn validate_chain(
     let labels = checked_parameters(pairs, capacity, limits)?;
     limit(chain.len(), limits.max_terms, "input chain terms")?;
     let labels = if events { labels } else { pairs };
-    // Empty chains are the zero element of any degree. Nonempty chains must
-    // have exactly the claimed homogeneous degree, with no explicit zero terms.
     for (cell, coefficient) in chain {
         if *coefficient == 0 {
             return Err(PermutohedralError::ZeroCoefficient.into());
@@ -341,7 +317,6 @@ impl SparseTransport {
         }
     }
 
-    /// Propose p(z) by visiting only required columns and their boundaries.
     pub fn project(&mut self, chain: &CellChain, degree: usize) -> Result<CellChain> {
         validate_chain(
             self.pairs,
@@ -354,7 +329,6 @@ impl SparseTransport {
         self.apply(Operation::Project, chain, degree, 0)
     }
 
-    /// Propose i(z) by visiting only required columns and their boundaries.
     pub fn include(&mut self, chain: &CellChain, degree: usize) -> Result<CellChain> {
         validate_chain(
             self.pairs,
@@ -367,7 +341,6 @@ impl SparseTransport {
         self.apply(Operation::Include, chain, degree, 0)
     }
 
-    /// Propose H(z), with the convention ip-id = dH+Hd.
     pub fn homotopy(&mut self, chain: &CellChain, degree: usize) -> Result<CellChain> {
         validate_chain(
             self.pairs,
@@ -464,8 +437,6 @@ impl SparseTransport {
         if let Some(image) = self.retained(operation).get(cell) {
             return Ok(image.clone());
         }
-        // Reserve against the currently retained columns before expanding; the
-        // same bound is rechecked on return after all recursive insertions.
         self.check_new_column(0)?;
         let image = match operation {
             Operation::Project => {
@@ -589,8 +560,6 @@ impl SparseTransport {
     }
 }
 
-/// A checked equation bound by immutable references to the supplied chains.
-/// It certifies this one filling, without constructing or asserting full maps.
 #[derive(Debug)]
 pub struct CheckedSparseFilling<'a> {
     pairs: usize,
@@ -617,9 +586,6 @@ impl<'a> CheckedSparseFilling<'a> {
     }
 }
 
-/// Check d(b)=z directly on supplied native event cells, including all block
-/// refinements through the exact capacity criterion. Neither enumeration nor
-/// a transport proposal constructor is called by this verification path.
 pub fn verify_sparse_event_filling<'a>(
     pairs: usize,
     capacity: usize,

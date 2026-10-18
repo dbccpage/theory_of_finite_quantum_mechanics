@@ -1,8 +1,3 @@
-//! Lexicographic permutations of a 4-tuple.
-//!
-//! Shared by the 5-cube facet charts and the Freudenthal path enumeration.
-//!
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 

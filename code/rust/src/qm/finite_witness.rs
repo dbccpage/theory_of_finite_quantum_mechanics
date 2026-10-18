@@ -1,4 +1,3 @@
-//! Executable, source-bound finite witnesses. Formal results retain their source scope.
 use num_bigint::BigInt;
 use num_traits::Zero;
 use omega_number_theory::rational::Rational as Q;

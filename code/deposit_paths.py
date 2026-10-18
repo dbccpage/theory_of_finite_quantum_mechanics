@@ -123,10 +123,6 @@ def walk_files(
             and not name.endswith(".egg-info")
         ]
         if parent.relative_to(root).as_posix() == "sources":
-            # Historical package snapshots remain in repository custody. The
-            # public archive carries the current original manuscripts. Complete
-            # companion papers cited by the reader-facing edition live in the
-            # separate top-level companion_papers/ directory.
             dirs[:] = [name for name in dirs if name == "original_papers"]
         for name in names:
             path = parent / name

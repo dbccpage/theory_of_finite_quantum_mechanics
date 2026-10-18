@@ -26,12 +26,10 @@ def test_invariant_i_violates_when_factors_false_no_class():
 
 def test_invariant_ii_violates_on_invalid_cochain():
     row = ReconciliationRow.sample_good()
-    # F2 boundary matrix: d0 = [[1]], d1 = [[1]] -> d1 . d0 = [[1]] -> computed False (not TriState.True_)
     row.cochain_validity.d0 = [[1]]
     row.cochain_validity.d1 = [[1]]
     row.cochain_validity.d1_d0_zero = TriState.True_
     findings = validate_row(row)
-    # This should fail: computed != declared, and computed == False but terminal status is not RepresentationMalformed/CochainInvalid
     assert any("invariant-II" in f for f in findings)
 
 
@@ -51,19 +49,17 @@ def test_counterfeit_authority_basis_rejected():
 
 def test_authority_ceiling_drift_rejected():
     row = ReconciliationRow.sample_good()
-    row.declared_authority_effect = AuthorityEffect.StateTransition  # rank 6
-    row.role_pinned_ceiling = AuthorityEffect.FactOnly  # rank 2
+    row.declared_authority_effect = AuthorityEffect.StateTransition
+    row.role_pinned_ceiling = AuthorityEffect.FactOnly
     findings = validate_row(row)
     assert any("ceiling drift" in f for f in findings)
 
 
 def test_strict_governance_checks():
-    # 1. Self certification is refused
     change = GovChange.council_self_certify()
     findings = check_governance_strict(change)
     assert any("self-certification refused" in f for f in findings)
 
-    # 2. Complete lift succeeds
     change2 = GovChange.licensed_lift_full_10_fields()
     findings2 = check_governance_strict(change2)
     assert not findings2

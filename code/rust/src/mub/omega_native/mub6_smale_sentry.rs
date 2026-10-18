@@ -1,28 +1,3 @@
-//! Target A12: Rust Native Exact Smale Root Sentry.
-//!
-//! AuthorityEffect: None
-//! Both Branch A and Branch B must be rigorously supported and verified without bias.
-//!
-//! This module formalizes and executes Target A12 of the MUB(6) research program:
-//! 1. Exact rational evaluation of the 108 MUB polynomial relations over `BigRational` and `Cyc24`:
-//!    System F(T, U) = 0: |< (B_a)_i, U_j >|^2 - 1/6 = 0 for a in {0, 1, 2}, i, j in {0, ..., 5}.
-//! 2. Exact rational Jacobian computation DF(x_0) and linear system solving via LU decomposition
-//!    with partial pivoting over Q (`BigRational`).
-//! 3. Exact rational calculation of Smale invariants:
-//!    - Newton step bound: beta(F, x_0) = ||DF(x_0)^(-1) F(x_0)||
-//!    - Higher derivative bound: gamma(F, x_0) = sup_{k >= 2} ||DF(x_0)^(-1) D^k F(x_0) / k!||^(1/(k-1))
-//!      (exact for quadratic polynomial systems where D^k F = 0 for k >= 3)
-//!    - Smale parameter: alpha(F, x_0) = beta(F, x_0) * gamma(F, x_0)
-//!    - Validation against rational threshold alpha_0 = 157 / 1000.
-//! 4. Interval Krawczyk contractor over rational interval boxes X = prod [u_k, v_k]:
-//!    - K(X) = x_0 - Y F(x_0) + (I - Y * [DF](X)) (X - x_0) with Y = DF(x_0)^(-1)
-//!    - Strict coordinate contraction check: K(X)_k \subset int(X_k) for all k.
-//! 5. Sentry monitor:
-//!    - Scans bisection leaf candidates to verify that every certified cell has strictly positive
-//!      residual lower bound (eps_C > 0).
-//!    - Detects synthetic root injections (validating that approximate zeros produce alpha < 157/1000
-//!      and Krawczyk contraction).
-//! 6. Strict zero-float discipline: pure Cyc24 and BigRational exact arithmetic; zero float types.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -37,24 +12,16 @@ use omega_kernel::interval::{Interval, IntervalBox};
 use omega_number_theory::cyclotomic::Cyc24;
 use omega_number_theory::rational::rq;
 
-/// Total number of scalar polynomial equations for an MU triple against a 4th basis:
-/// 3 bases * 6 rows * 6 columns = 108.
 pub const TOTAL_MUB_RELATIONS: usize = 108;
 
-/// Certified Smale alpha_0 rational threshold: 157 / 1000 = 0.157 < (13 - 3*sqrt(17))/4 ~ 0.15767078.
 pub const SMALE_ALPHA_THRESHOLD_NUM: i64 = 157;
 pub const SMALE_ALPHA_THRESHOLD_DEN: i64 = 1000;
 
-/// Certified Smale alpha threshold value: 157 / 1000.
 pub fn smale_alpha_threshold() -> BigRational {
     rq(SMALE_ALPHA_THRESHOLD_NUM, SMALE_ALPHA_THRESHOLD_DEN)
 }
 
-// ============================================================================
-// 1. EXACT RATIONAL LINEAR ALGEBRA (VECTOR, MATRIX, LU DECOMPOSITION)
-// ============================================================================
 
-/// Errors arising during rational linear algebra operations.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum LuError {
     SingularMatrix,
@@ -82,7 +49,6 @@ impl fmt::Display for LuError {
 
 impl std::error::Error for LuError {}
 
-/// Exact rational matrix over Q (`BigRational`). Row-major: `data[row][col]`.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RationalMatrix {
     pub rows: usize,
@@ -91,13 +57,11 @@ pub struct RationalMatrix {
 }
 
 impl RationalMatrix {
-    /// Create a zero matrix of size `rows x cols`.
     pub fn zeros(rows: usize, cols: usize) -> Self {
         let data = vec![vec![BigRational::zero(); cols]; rows];
         Self { rows, cols, data }
     }
 
-    /// Create an identity matrix of size `n x n`.
     pub fn identity(n: usize) -> Self {
         let mut mat = Self::zeros(n, n);
         let one = BigRational::one();
@@ -107,7 +71,6 @@ impl RationalMatrix {
         mat
     }
 
-    /// Create a matrix from row vectors.
     pub fn from_rows(rows_data: Vec<Vec<BigRational>>) -> Self {
         let rows = rows_data.len();
         let cols = if rows > 0 { rows_data[0].len() } else { 0 };
@@ -121,7 +84,6 @@ impl RationalMatrix {
         }
     }
 
-    /// Exact matrix-vector multiplication: y = A * x.
     pub fn mul_vec(&self, x: &[BigRational]) -> Result<Vec<BigRational>, LuError> {
         if x.len() != self.cols {
             return Err(LuError::DimensionMismatch {
@@ -140,7 +102,6 @@ impl RationalMatrix {
         Ok(y)
     }
 
-    /// Exact matrix-matrix multiplication: C = A * B.
     pub fn mul_mat(&self, b: &RationalMatrix) -> Result<RationalMatrix, LuError> {
         if self.cols != b.rows {
             return Err(LuError::DimensionMismatch {
@@ -161,7 +122,6 @@ impl RationalMatrix {
         Ok(res)
     }
 
-    /// Transpose of the matrix.
     pub fn transpose(&self) -> RationalMatrix {
         let mut res = RationalMatrix::zeros(self.cols, self.rows);
         for r in 0..self.rows {
@@ -172,7 +132,6 @@ impl RationalMatrix {
         res
     }
 
-    /// Matrix induced infinity norm: max row sum of absolute values.
     pub fn norm_inf(&self) -> BigRational {
         let mut max_sum = BigRational::zero();
         for r in 0..self.rows {
@@ -192,7 +151,6 @@ impl RationalMatrix {
         max_sum
     }
 
-    /// Matrix induced 1-norm: max column sum of absolute values.
     pub fn norm_1(&self) -> BigRational {
         let mut max_sum = BigRational::zero();
         for c in 0..self.cols {
@@ -213,7 +171,6 @@ impl RationalMatrix {
     }
 }
 
-/// Exact vector infinity norm: max_i |x_i|.
 pub fn vec_norm_inf(x: &[BigRational]) -> BigRational {
     let mut max_val = BigRational::zero();
     for v in x {
@@ -229,7 +186,6 @@ pub fn vec_norm_inf(x: &[BigRational]) -> BigRational {
     max_val
 }
 
-/// Exact vector 1-norm: sum_i |x_i|.
 pub fn vec_norm_1(x: &[BigRational]) -> BigRational {
     let mut sum = BigRational::zero();
     for v in x {
@@ -242,8 +198,6 @@ pub fn vec_norm_1(x: &[BigRational]) -> BigRational {
     sum
 }
 
-/// Exact LU factorization with partial row pivoting of an `n x n` matrix:
-/// P * A = L * U, where P is a row permutation vector.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExactRationalLu {
     pub n: usize,
@@ -253,7 +207,6 @@ pub struct ExactRationalLu {
 }
 
 impl ExactRationalLu {
-    /// Factorize square matrix A into LU with partial row pivoting.
     pub fn factorize(mat: &RationalMatrix) -> Result<Self, LuError> {
         if mat.rows != mat.cols {
             return Err(LuError::DimensionMismatch {
@@ -267,7 +220,6 @@ impl ExactRationalLu {
         let mut num_swaps = 0;
 
         for k in 0..n {
-            // Find pivot with first non-zero element or max absolute value in column k from row k to n-1
             let mut pivot_row = None;
             let mut max_pivot_abs = BigRational::zero();
 
@@ -314,7 +266,6 @@ impl ExactRationalLu {
         })
     }
 
-    /// Solve linear system A * x = b via forward and back substitution.
     pub fn solve(&self, b: &[BigRational]) -> Result<Vec<BigRational>, LuError> {
         if b.len() != self.n {
             return Err(LuError::DimensionMismatch {
@@ -323,13 +274,11 @@ impl ExactRationalLu {
             });
         }
 
-        // Apply permutation y = P * b
         let mut y = Vec::with_capacity(self.n);
         for i in 0..self.n {
             y.push(b[self.p[i]].clone());
         }
 
-        // Forward substitution L * y = P * b (L has ones on diagonal)
         for i in 0..self.n {
             for j in 0..i {
                 if !self.lu[i][j].is_zero() {
@@ -339,7 +288,6 @@ impl ExactRationalLu {
             }
         }
 
-        // Back substitution U * x = y
         let mut x = vec![BigRational::zero(); self.n];
         for i in (0..self.n).rev() {
             let mut sum = y[i].clone();
@@ -357,7 +305,6 @@ impl ExactRationalLu {
         Ok(x)
     }
 
-    /// Exact inverse matrix A^(-1).
     pub fn inverse(&self) -> Result<RationalMatrix, LuError> {
         let mut inv_cols = Vec::with_capacity(self.n);
         for col in 0..self.n {
@@ -367,7 +314,6 @@ impl ExactRationalLu {
             inv_cols.push(x);
         }
 
-        // Transpose column-vectors to row-major format
         let mut inv_data = vec![vec![BigRational::zero(); self.n]; self.n];
         for (col_idx, col) in inv_cols.into_iter().enumerate() {
             for row_idx in 0..self.n {
@@ -382,7 +328,6 @@ impl ExactRationalLu {
         })
     }
 
-    /// Exact determinant det(A).
     pub fn determinant(&self) -> BigRational {
         let mut det = BigRational::one();
         for i in 0..self.n {
@@ -396,17 +341,8 @@ impl ExactRationalLu {
     }
 }
 
-// ============================================================================
-// 2. EXACT RATIONAL INTERVAL ARITHMETIC & INTERVAL BOX
-// ============================================================================
 
-// ============================================================================
-// 3. EXACT QUADRATIC POLYNOMIAL SYSTEM REPRESENTATION
-// ============================================================================
 
-/// A quadratic polynomial component over Q:
-/// F_i(x) = c + a^T x + (1/2) x^T H x
-/// where H is a symmetric rational matrix.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QuadraticComponent {
     pub constant: BigRational,
@@ -415,10 +351,6 @@ pub struct QuadraticComponent {
 }
 
 impl QuadraticComponent {
-    /// Construct a quadratic polynomial component.
-    ///
-    /// NOTE (R16 audit): Enforces square dimension and symmetric Hessian precondition
-    /// so that grad F_i(x) = a + H x matches the exact gradient of (1/2) x^T H x.
     pub fn new(constant: BigRational, linear: Vec<BigRational>, hessian: RationalMatrix) -> Self {
         assert_eq!(linear.len(), hessian.rows);
         assert_eq!(hessian.rows, hessian.cols);
@@ -438,17 +370,14 @@ impl QuadraticComponent {
         }
     }
 
-    /// Evaluate scalar F_i(x) at point x.
     pub fn eval(&self, x: &[BigRational]) -> BigRational {
         let n = x.len();
         let mut res = self.constant.clone();
 
-        // Linear term: a^T x
         for j in 0..n {
             res += &self.linear[j] * &x[j];
         }
 
-        // Quadratic term: (1/2) x^T H x
         let mut quad = BigRational::zero();
         for r in 0..n {
             for c in 0..n {
@@ -462,7 +391,6 @@ impl QuadraticComponent {
         res
     }
 
-    /// Exact gradient vector: grad F_i(x) = a + H x.
     pub fn grad(&self, x: &[BigRational]) -> Vec<BigRational> {
         let n = x.len();
         let mut g = self.linear.clone();
@@ -476,7 +404,6 @@ impl QuadraticComponent {
         g
     }
 
-    /// Evaluate interval gradient over an interval box: [grad F_i](X) = a + H X.
     pub fn grad_interval(&self, x_box: &IntervalBox) -> Vec<Interval> {
         let n = x_box.dim();
         let mut grad_iv = Vec::with_capacity(n);
@@ -497,7 +424,6 @@ impl QuadraticComponent {
     }
 }
 
-/// A square polynomial system F: Q^n -> Q^n composed of quadratic equations.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SquarePolynomialSystem {
     pub dim: usize,
@@ -505,7 +431,6 @@ pub struct SquarePolynomialSystem {
 }
 
 impl SquarePolynomialSystem {
-    /// Construct a square system from n quadratic components.
     pub fn new(components: Vec<QuadraticComponent>) -> Self {
         let dim = components.len();
         for c in &components {
@@ -516,18 +441,15 @@ impl SquarePolynomialSystem {
         Self { dim, components }
     }
 
-    /// Evaluate F(x) in Q^n.
     pub fn eval(&self, x: &[BigRational]) -> Vec<BigRational> {
         self.components.iter().map(|comp| comp.eval(x)).collect()
     }
 
-    /// Compute exact Jacobian matrix DF(x) in Q^(n x n).
     pub fn jacobian(&self, x: &[BigRational]) -> RationalMatrix {
         let rows = self.components.iter().map(|comp| comp.grad(x)).collect();
         RationalMatrix::from_rows(rows)
     }
 
-    /// Compute interval Jacobian matrix [DF](X) over interval box X.
     pub fn jacobian_interval(&self, x_box: &IntervalBox) -> Vec<Vec<Interval>> {
         self.components
             .iter()
@@ -536,12 +458,7 @@ impl SquarePolynomialSystem {
     }
 }
 
-// ============================================================================
-// 4. EXACT 108 MUB POLYNOMIAL RELATIONS OVER BIGRATIONAL AND CYC24
-// ============================================================================
 
-/// Coordinate index for the 108 MUB polynomial relations:
-/// basis a in {0, 1, 2}, row i in {0, ..., 5}, column j in {0, ..., 5}.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MubRelIndex {
     pub basis: usize,
@@ -549,10 +466,6 @@ pub struct MubRelIndex {
     pub col: usize,
 }
 
-/// Evaluate all 108 exact cyclotomic MUB defects in Q(zeta_24):
-/// r_{a, i, j}(T, U) = |< (B_a)_i, U_j >|^2 - 1/6 in Q(zeta_24).
-///
-/// NOTE (R10 audit): Retains all power-basis cyclotomic coefficients, preventing false zeros.
 pub fn eval_108_mub_defects_cyc(
     triple: &MuTripleCyc,
     cand_u: &BasisCyc,
@@ -587,8 +500,6 @@ pub fn eval_108_mub_defects_cyc(
     results
 }
 
-/// Evaluate all 108 MUB polynomial relations as rational values when rational:
-/// r_{a, i, j}(T, U) = |< (B_a)_i, U_j >|^2 - 1/6.
 pub fn eval_108_mub_relations(
     triple: &MuTripleCyc,
     cand_u: &BasisCyc,
@@ -625,22 +536,18 @@ pub fn eval_108_mub_relations(
     results
 }
 
-/// Try evaluating a single MUB relation |< v, u >|^2 - 1/6 for two vectors in C^6 over Cyc24,
-/// returning Err if the inner product norm-squared is not rational.
 pub fn try_eval_single_mub_relation(v: &ExactVec, u: &ExactVec) -> Result<BigRational, String> {
     let ip = inner(v, u);
     let norm_sq = exact_norm_sq_rat(&ip)?;
     Ok(norm_sq - rq(1, 6))
 }
 
-/// Evaluate exact cyclotomic defect |< v, u >|^2 - 1/6 in Q(zeta_24), preserving all coefficients.
 pub fn eval_single_mub_defect_cyc(v: &ExactVec, u: &ExactVec) -> Cyc24 {
     let ip = inner(v, u);
     let sixth = Cyc24::rat(rq(1, 6));
     squared_norm(&ip).sub(&sixth)
 }
 
-/// Evaluate a single MUB relation |< v, u >|^2 - 1/6 for two vectors in C^6 over Cyc24.
 pub fn eval_single_mub_relation(v: &ExactVec, u: &ExactVec) -> BigRational {
     try_eval_single_mub_relation(v, u).unwrap_or_else(|_| {
         let ip = inner(v, u);
@@ -648,49 +555,20 @@ pub fn eval_single_mub_relation(v: &ExactVec, u: &ExactVec) -> BigRational {
     })
 }
 
-/// Helper explicitly referencing Cyc24 carrier array.
 pub fn eval_single_mub_relation_cyc24(v: &[Cyc24; D], u: &[Cyc24; D]) -> BigRational {
     eval_single_mub_relation(v, u)
 }
 
-// ============================================================================
-// 5. EXACT RATIONAL SMALE INVARIANTS (BETA, GAMMA, ALPHA)
-// ============================================================================
 
-/// The exact rational Smale invariants for an approximate zero x_0 of F(x) = 0.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SmaleInvariants {
-    /// Newton step bound: beta(F, x_0) = ||DF(x_0)^(-1) F(x_0)||
     pub beta: BigRational,
-    /// Higher derivative bound: gamma(F, x_0) = ||DF(x_0)^(-1) (1/2) D^2 F(x_0)|| (conservative upper bound)
     pub gamma: BigRational,
-    /// Smale parameter: alpha(F, x_0) = beta * gamma
     pub alpha: BigRational,
-    /// Comparison threshold: alpha_0 = 157 / 1000
     pub threshold: BigRational,
-    /// Whether alpha < 157 / 1000 holds strictly.
     pub is_certified_approx_zero: bool,
 }
 
-/// Compute exact Smale invariants beta, gamma, and alpha for a square quadratic system F.
-///
-/// NOTE (R16 audit): The entrywise absolute sum computed for:
-///   gamma(F, x_0) = max_{i=0}^{n-1} sum_{j, k=0}^{n-1} |(Q_i)_{jk}|
-/// is a proved conservative UPPER BOUND on the induced bilinear operator norm ||Y (1/2) D^2 F(x_0)||_inf.
-/// Overestimating gamma is sound for conservative approximate zero admission (alpha = beta * gamma <= alpha_0).
-///
-/// Because F is quadratic:
-/// D^k F = 0 for all k >= 3.
-/// Therefore, the supremum in Smale's definition:
-/// gamma(F, x_0) = sup_{k >= 2} ||DF(x_0)^(-1) D^k F(x_0) / k!||^(1/(k-1))
-/// collapses to the single term k = 2:
-/// gamma(F, x_0) = ||DF(x_0)^(-1) (1/2) D^2 F(x_0)||.
-///
-/// Under the induced infinity norm:
-/// For Y = DF(x_0)^(-1), coordinate i has quadratic form:
-/// Q_i = (1/2) sum_{p=0}^{n-1} Y_{ip} H_p
-/// where H_p is the constant Hessian of component F_p.
-/// Then ||Y (1/2) D^2 F(x_0)||_inf = max_{i=0}^{n-1} sum_{j, k=0}^{n-1} |(Q_i)_{jk}|.
 pub fn compute_smale_invariants(
     system: &SquarePolynomialSystem,
     x_0: &[BigRational],
@@ -703,28 +581,21 @@ pub fn compute_smale_invariants(
         });
     }
 
-    // 1. Evaluate F(x_0)
     let fx = system.eval(x_0);
 
-    // 2. Evaluate Jacobian DF(x_0)
     let df = system.jacobian(x_0);
 
-    // 3. LU factorize DF(x_0)
     let lu = ExactRationalLu::factorize(&df)?;
 
-    // 4. Compute Newton step delta_x = DF(x_0)^(-1) F(x_0)
     let delta_x = lu.solve(&fx)?;
     let beta = vec_norm_inf(&delta_x);
 
-    // 5. Compute inverse Y = DF(x_0)^(-1)
     let y_mat = lu.inverse()?;
 
-    // 6. Compute higher derivative bound gamma = ||Y (1/2) D^2 F(x_0)||_inf
     let mut gamma = BigRational::zero();
     let half = rq(1, 2);
 
     for i in 0..n {
-        // Accumulate Q_i = (1/2) sum_p Y_{ip} H_p
         let mut row_abs_sum = BigRational::zero();
 
         for j in 0..n {
@@ -752,7 +623,6 @@ pub fn compute_smale_invariants(
         }
     }
 
-    // 7. Compute Smale alpha = beta * gamma
     let alpha = &beta * &gamma;
     let threshold = smale_alpha_threshold();
     let is_certified_approx_zero = alpha < threshold;
@@ -766,28 +636,14 @@ pub fn compute_smale_invariants(
     })
 }
 
-// ============================================================================
-// 6. EXACT INTERVAL KRAWCZYK CONTRACTOR
-// ============================================================================
 
-/// Result of evaluating the interval Krawczyk contractor K(X).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct KrawczykResult {
-    /// The computed Krawczyk interval box K(X).
     pub krawczyk_box: IntervalBox,
-    /// Strict coordinate contraction: K(X)_k \subset int(X_k) for all k.
     pub is_strictly_contracted: bool,
-    /// Empty intersection check: K(X) \cap X = \emptyset.
     pub is_disjoint: bool,
 }
 
-/// Evaluate the interval Krawczyk contractor on an interval box X:
-/// K(X) = x_0 - Y F(x_0) + (I - Y * [DF](X)) (X - x_0)
-/// where Y = DF(x_0)^(-1).
-///
-/// By the Krawczyk Theorem:
-/// - If K(X) \subset int(X), then F has a unique root x* in X, and Newton iteration converges to x*.
-/// - If K(X) \cap X = \emptyset, then F has no roots in X.
 pub fn krawczyk_contractor(
     system: &SquarePolynomialSystem,
     x_box: &IntervalBox,
@@ -801,7 +657,6 @@ pub fn krawczyk_contractor(
         });
     }
 
-    // Evaluation point x_0 (midpoint by default)
     let x_0 = match custom_x0 {
         Some(pt) => {
             if pt.len() != n {
@@ -819,26 +674,20 @@ pub fn krawczyk_contractor(
         return Err(LuError::CenterOutsideBox);
     }
 
-    // 1. Evaluate F(x_0) and Jacobian DF(x_0)
     let fx = system.eval(&x_0);
     let df = system.jacobian(&x_0);
 
-    // 2. LU factorize and compute inverse Y = DF(x_0)^(-1)
     let lu = ExactRationalLu::factorize(&df)?;
     let y_mat = lu.inverse()?;
 
-    // 3. Newton step from x_0: x_newton = x_0 - Y F(x_0)
     let newton_step = lu.solve(&fx)?;
     let mut x_newton = Vec::with_capacity(n);
     for i in 0..n {
         x_newton.push(&x_0[i] - &newton_step[i]);
     }
 
-    // 4. Interval Jacobian [DF](X)
     let df_iv = system.jacobian_interval(x_box);
 
-    // 5. Evaluate interval matrix M = I - Y * [DF](X)
-    // M_{ik} = delta_{ik} - sum_j Y_{ij} * [DF](X)_{jk}
     let mut m_matrix = vec![vec![Interval::point(BigRational::zero()); n]; n];
 
     for (i, m_row) in m_matrix.iter_mut().enumerate().take(n) {
@@ -862,14 +711,12 @@ pub fn krawczyk_contractor(
         }
     }
 
-    // 6. Compute interval displacement: delta_X = X - x_0
     let mut delta_x_iv = Vec::with_capacity(n);
     for (k, x0_k) in x_0.iter().enumerate().take(n) {
         let x0_pt = Interval::point(x0_k.clone());
         delta_x_iv.push(x_box.intervals[k].sub(&x0_pt));
     }
 
-    // 7. Compute K(X)_i = x_newton_i + sum_k M_{ik} * delta_X_k
     let mut k_intervals = Vec::with_capacity(n);
     for (i, m_row) in m_matrix.iter().enumerate().take(n) {
         let mut coord_iv = Interval::point(x_newton[i].clone());
@@ -891,7 +738,6 @@ pub fn krawczyk_contractor(
     })
 }
 
-/// Evaluate the interval Krawczyk contractor with a specified custom expansion center.
 pub fn krawczyk_contractor_custom_center(
     system: &SquarePolynomialSystem,
     x_box: &IntervalBox,
@@ -900,37 +746,25 @@ pub fn krawczyk_contractor_custom_center(
     krawczyk_contractor(system, x_box, Some(center))
 }
 
-// ============================================================================
-// 7. SENTRY MONITOR: BISECTION LEAVES & SYNTHETIC ROOT INJECTIONS
-// ============================================================================
 
-/// A certified bisection leaf cell carrying a verified residual lower bound.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CertifiedLeafCell {
     pub cell_id: String,
     pub center: Vec<BigRational>,
     pub radius: BigRational,
-    /// Certified residual lower bound: eps_C > 0 certifies that no root exists in the cell.
     pub residual_margin: BigRational,
 }
 
-/// Summary report from scanning bisection leaf candidates.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SentryScanSummary {
-    /// True if all scanned cells have strictly positive residual lower bounds.
     pub all_positive: bool,
-    /// Total number of scanned cells.
     pub scanned_count: usize,
-    /// Minimum observed margin across all certified cells.
     pub min_margin: BigRational,
-    /// IDs of any cells failing the positive margin threshold (eps_C <= 0).
     pub zero_or_negative_margin_cells: Vec<String>,
 }
 
-/// Sentry inspection result on a candidate root.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum SentryRootInspection {
-    /// Smale alpha < 157/1000 and Krawczyk strictly contracts: exact isolated root certified!
     RootCertified {
         alpha: BigRational,
         beta: BigRational,
@@ -938,17 +772,12 @@ pub enum SentryRootInspection {
         isolating_box: IntervalBox,
         krawczyk_box: IntervalBox,
     },
-    /// Candidate root fails Smale alpha threshold or Krawczyk contraction.
     RootUncertified { alpha: BigRational, reason: String },
 }
 
-/// The Smale Sentry Monitor for MUB(6) root surveillance.
 pub struct SmaleSentry;
 
 impl SmaleSentry {
-    /// Scan bisection leaf candidates to verify that every certified cell has strictly
-    /// positive residual lower bound (eps_C > 0). The scan reads `residual_margin` as the caller
-    /// supplies it and does not evaluate any residual.
     pub fn scan_bisection_leaves(cells: &[CertifiedLeafCell]) -> SentryScanSummary {
         let mut all_positive = !cells.is_empty();
         let mut min_margin = cells
@@ -975,10 +804,6 @@ impl SmaleSentry {
         }
     }
 
-    /// Inspect a candidate root x_0 for a square polynomial system:
-    /// 1. Computes Smale invariants (beta, gamma, alpha).
-    /// 2. Verifies alpha < 157 / 1000.
-    /// 3. Forms isolating box X around x_0 and checks Krawczyk contraction K(X) \subset int(X).
     pub fn inspect_candidate_root(
         system: &SquarePolynomialSystem,
         x_0: &[BigRational],
@@ -1016,10 +841,6 @@ impl SmaleSentry {
         }
     }
 
-    /// Synthetic root injection detector:
-    /// Injects an approximate zero (target root + rational perturbation) into the sentry,
-    /// certifying that genuine approximate zeros are accurately detected, while overly
-    /// perturbed points are flagged.
     pub fn test_synthetic_root_injection(
         system: &SquarePolynomialSystem,
         exact_root: &[BigRational],

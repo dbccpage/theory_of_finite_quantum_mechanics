@@ -68,9 +68,6 @@ def site(symbol: str, colours: frozenset[str]) -> VocabularySite:
 ALL_TEN = frozenset(CANONICAL_ORDER)
 
 
-# --------------------------------------------------------------------------
-# The finding
-# --------------------------------------------------------------------------
 
 
 def test_the_vocabulary_is_declared_five_times(ledger):
@@ -202,9 +199,6 @@ def test_the_report_states_that_no_owner_is_selected(ledger):
     assert "none selected" in ledger.render()
 
 
-# --------------------------------------------------------------------------
-# The epic's provenance claim -- correct in all seven assertions
-# --------------------------------------------------------------------------
 
 
 def test_the_memo_matches_its_declared_digest():
@@ -254,9 +248,6 @@ def test_the_five_named_rust_crates_all_exist():
         assert (crates / name / "Cargo.toml").is_file(), name
 
 
-# --------------------------------------------------------------------------
-# Drift is detected
-# --------------------------------------------------------------------------
 
 
 def test_a_dropped_colour_is_named():
@@ -310,9 +301,6 @@ def test_a_consumer_may_be_empty():
     )
 
 
-# --------------------------------------------------------------------------
-# Reading the sources
-# --------------------------------------------------------------------------
 
 
 def test_an_annotated_assignment_is_found(tmp_path):

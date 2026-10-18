@@ -20,9 +20,6 @@ from omega_engine.crates.homology_theory.qmatrix import QMatrix
 from omega_engine.crates.type.refusal import Refusal
 
 
-# ---------------------------------------------------------------------------
-# Test Helpers
-# ---------------------------------------------------------------------------
 
 
 def _create_test_path(
@@ -81,14 +78,9 @@ def _create_test_path(
     )
 
 
-# ===========================================================================
-# 1. Generalized Path Weight Tests
-# ===========================================================================
 
 
 def test_path_weight_generalized_valid():
-    # E=True, C=1.5, R=0.5, P=0.8, lambda=2.0, mu=3.0
-    # w = 0.8 * exp(-2.0*1.5 - 3.0*0.5) = 0.8 * exp(-3.0 - 1.5) = 0.8 * exp(-4.5)
     w = path_weight_generalized(
         eval_pass=True,
         cost=1.5,
@@ -119,20 +111,14 @@ def test_path_weight_generalized_invalid_prob_rejected():
         path_weight_generalized(True, 1.0, 0.0, -0.1)
 
 
-# ===========================================================================
-# 2. Log-Space Defect Tests
-# ===========================================================================
 
 
 def test_proposal_gluing_defect_zero_default():
-    # If global probability is omitted, it defaults to G4 boundary sufficiency (delta_p = 0.0)
     cp = _create_test_path(1.0, 1.0, first_prob=0.8, second_prob=0.9, global_prob=None)
     assert proposal_gluing_defect(cp) == pytest.approx(0.0)
 
 
 def test_proposal_gluing_defect_with_mismatch():
-    # P(1) = 0.8, P(2) = 0.9. P(global) = 0.5
-    # delta_p = -log(0.5) + log(0.8) + log(0.9) = log(0.8 * 0.9 / 0.5) = log(1.44)
     cp = _create_test_path(1.0, 1.0, first_prob=0.8, second_prob=0.9, global_prob=0.5)
     expected = -math.log(0.5) + math.log(0.8) + math.log(0.9)
     assert proposal_gluing_defect(cp) == pytest.approx(expected)
@@ -145,7 +131,6 @@ def test_residual_risk_gluing_defect_zero_default():
 
 def test_residual_risk_gluing_defect_with_mismatch():
     cp = _create_test_path(1.0, 1.0, first_risk=0.2, second_risk=0.3, global_risk=0.8)
-    # delta_r = 0.8 - 0.2 - 0.3 = 0.3
     assert residual_risk_gluing_defect(cp) == pytest.approx(0.3)
 
 
@@ -158,10 +143,6 @@ def test_cost_gluing_defect():
 
 
 def test_total_gluing_defect():
-    # Set up mismatch on all three defects:
-    # C1=1.0, C2=2.0, Cg=3.5 => delta_c = 0.5
-    # P1=0.8, P2=0.9, Pg=0.5 => delta_p = log(1.44)
-    # R1=0.2, R2=0.3, Rg=0.8 => delta_r = 0.3
     cp = _create_test_path(
         first_cost=1.0,
         second_cost=2.0,
@@ -182,9 +163,6 @@ def test_total_gluing_defect():
     )
 
 
-# ===========================================================================
-# 3. Transport Axis Discipline Tests
-# ===========================================================================
 
 
 def test_verify_transport_axis_clean():
@@ -210,9 +188,6 @@ def test_verify_transport_axis_mixed_with_certificate():
     assert verify_epk_transport_axis(cp) is True
 
 
-# ===========================================================================
-# 4. Cech Contextual Diagnostics Tests
-# ===========================================================================
 
 
 def test_attach_cech_diagnostic_consistent():
@@ -239,16 +214,13 @@ def test_attach_cech_diagnostic_obstruction():
     ]
     d0 = QMatrix.from_row_major(3, 3, [-1, 1, 0, 0, -1, 1, 1, 0, -1])
     d1 = QMatrix.zero(0, 3)
-    z = [1, 1, 1]  # sum is 3 != 0 => not in image, nonzero Čech class
+    z = [1, 1, 1]
 
     res = attach_cech_diagnostic(cp, secs, d0, d1, z)
     assert isinstance(res, Refusal)
     assert res.reason == "ContextualObstruction"
 
 
-# ===========================================================================
-# 5. Generalized Composed Kernel Tests
-# ===========================================================================
 
 
 def test_composed_kernel_generalized_aggregation():
@@ -274,9 +246,6 @@ def test_composed_kernel_generalized_aggregation():
         second_risk=0.2,
         global_risk=0.3,
     )
-    # Aggregated mass for S_a -> S_c:
-    # w1 = 0.5 * exp(-2.0*3.0 - 3.0*0.4) = 0.5 * exp(-6.0 - 1.2) = 0.5 * exp(-7.2)
-    # w2 = 0.4 * exp(-2.0*2.0 - 3.0*0.3) = 0.4 * exp(-4.0 - 0.9) = 0.4 * exp(-4.9)
     z = composed_kernel_generalized([p1, p2], lambda_=2.0, mu_=3.0)
     expected = 0.5 * math.exp(-7.2) + 0.4 * math.exp(-4.9)
     assert z[("S_a", "S_c")] == pytest.approx(expected)

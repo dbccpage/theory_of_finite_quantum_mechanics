@@ -1,13 +1,9 @@
-//! Foundation: Monoidal Operads and parallel tensor products.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use super::colour::{OperadColour, OperadSignature};
 use super::colored_operad::PlanarColoredOperad;
 use super::operation::{Operation, OperationId};
 
-/// Monoidal Operad supporting concurrent parallel tensor executions f otimes g.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MonoidalOperad {
     pub base: PlanarColoredOperad,

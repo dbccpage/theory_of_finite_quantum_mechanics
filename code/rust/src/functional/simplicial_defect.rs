@@ -1,6 +1,3 @@
-//! Exact successive closure measurements on an explicitly oriented finite carrier.
-//! Cell labels are supplied as indices. Missing faces refuse; no partial boundary
-//! is silently interpreted as a zero defect. Results confer no authorization.
 
 use crate::gamma2::{ExactGamma2Error, Gamma2Functional};
 use num_rational::BigRational;

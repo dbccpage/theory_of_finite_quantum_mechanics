@@ -1,15 +1,4 @@
-/-
-  H033PythagoreanPellTsirelsonConvergence.lean
-  AuthorityEffect: None.
 
-  Finite claim only. The Pell convergent (119, 120, 169) gives an integer
-  CHSH witness: orthonormal measurement vectors, a value above the classical
-  bound `2 * 169`, and a square strictly below `8 * 169^2`. No real square
-  root and no continuum Tsirelson theorem are used.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace FableHilbertWalk20260819.H033
 
@@ -28,11 +17,9 @@ def pellX : Int := 119
 def pellY : Int := 120
 def pellZ : Int := 169
 
-/-- Bob's scaled vectors `(-119, 120)` and `(120, 119)`. -/
 def bob1 : Vec2 := ⟨-pellX, pellY⟩
 def bob2 : Vec2 := ⟨pellY, pellX⟩
 
-/-- Sum of the four absolute components, the integer CHSH numerator. -/
 def bellSum (b1 b2 : Vec2) : Int :=
   iabs b1.y + iabs b1.x + iabs b2.x + iabs b2.y
 
@@ -66,3 +53,6 @@ theorem pell_strictly_below_tsirelson :
 #print axioms pell_strictly_below_tsirelson
 
 end FableHilbertWalk20260819.H033
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H033PythagoreanPellTsirelsonConvergence.lean Claim: pell_triple_pythagorean AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -1,12 +1,3 @@
-//! Campaign C500 Block 09: Finite Many-Body and Lattice-Gauge Bridge.
-//!
-//! Mechanizes:
-//! 1. Exact spectrum of 2-site TFIM with open boundary conditions.
-//! 2. Gauge invariance of Z_2 plaquette Hamiltonian and physical subspace preservation.
-//! 3. Separation of 3 continuum scaling obligations (volume, truncation, spacing).
-//!
-//! AuthorityEffect: None.
-//! Citation: sealed-derivation-v1 (3100c4e).
 
 use crate::linear_algebra::matrix as mx;
 use num_bigint::BigInt;
@@ -32,8 +23,6 @@ fn tfim_root(j: i64, h: i64) -> (BigInt, BigInt, bool, String) {
     (radicand, root, is_square, expression)
 }
 
-/// Exact eigenvalues of -j Z1 Z2 - h (X1 + X2), in ascending order.
-/// Strings encode signed principal square roots; no numerical rounding occurs.
 pub fn tfim_l2_eigenvalues(j: i64, h: i64) -> Vec<String> {
     let (radicand, _, _, root) = tfim_root(j, h);
     let magnitude = BigInt::from(j).abs();
@@ -50,7 +39,6 @@ pub fn tfim_l2_eigenvalues(j: i64, h: i64) -> Vec<String> {
     ]
 }
 
-/// Characteristic polynomial det(lambda I-H), descending integer coefficients.
 pub fn tfim_characteristic_polynomial(j: i64, h: i64) -> Vec<String> {
     let j = BigInt::from(j);
     let h = BigInt::from(h);
@@ -65,7 +53,6 @@ pub fn tfim_characteristic_polynomial(j: i64, h: i64) -> Vec<String> {
     ]
 }
 
-/// Gap to the next distinct energy; zero for the zero Hamiltonian.
 pub fn tfim_l2_gap(j: i64, h: i64) -> String {
     let magnitude = BigInt::from(j).abs();
     let (_, root, is_square, expression) = tfim_root(j, h);
@@ -80,8 +67,6 @@ pub fn tfim_l2_gap(j: i64, h: i64) -> String {
     }
 }
 
-/// The declared square plaquette is a cellular chain complex, so Gauss
-/// labels are computed by the reusable physical cohomology carrier.
 fn square_plaquette() -> Z2LatticeGauge {
     let incidence = F2Matrix::from_rows(&[
         vec![1, 0, 0, 1],
@@ -98,9 +83,6 @@ fn square_plaquette() -> Z2LatticeGauge {
     )
     .expect("fixed square gauge carrier")
 }
-/// Actual sixteen-dimensional Pauli operator replay of the declared square
-/// Hamiltonian, together with its physical X-basis label action.
-/// Returns (flux_commutes, electric_commutes, physical_subspace_preserved).
 pub fn z2_plaquette_invariance() -> (bool, bool, bool) {
     use Pauli::{Identity as I, X, Z};
     let gauss = [[X, I, I, X], [X, X, I, I], [I, X, X, I], [I, I, X, X]]
@@ -143,8 +125,6 @@ pub fn z2_plaquette_invariance() -> (bool, bool, bool) {
             });
     (flux_commutes, electric_commutes, preserved)
 }
-/// Simultaneous +1 Gauss eigenstates in the X basis, computed by the shared
-/// cohomological physical carrier rather than a second bit-mask enumeration.
 pub fn z2_physical_x_basis_labels() -> Vec<u32> {
     square_plaquette()
         .physical_labels(16)
@@ -159,12 +139,10 @@ pub fn z2_physical_x_basis_labels() -> Vec<u32> {
         .collect()
 }
 
-/// Catalog continuum scaling obligations: returns (obligation_count, all_proved).
 pub fn separate_continuum_obligations() -> (usize, bool) {
     (3, false)
 }
 
-/// Generate canonical Block 09 receipt.
 pub fn generate_canonical_block09_rust_receipt() -> serde_json::Value {
     let evals = tfim_l2_eigenvalues(1, 1);
     let (flux, electric, preserved) = z2_plaquette_invariance();

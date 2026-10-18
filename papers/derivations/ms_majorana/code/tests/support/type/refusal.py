@@ -21,7 +21,6 @@ class Refusal:
         return f"Refusal(reason={self.reason!r})"
 
 
-# Result type: either a value of type T or a Refusal
 Result = Union[T, Refusal]
 
 

@@ -1,15 +1,3 @@
-//! JSON host of the exact finite configurations of the QM_122 paper.
-//!
-//! `run` assembles one report from the configurations computed in
-//! `omega_quantum_physics::finite_geometry` (Peres, Cabello, the 24-cell and E8 as
-//! orthogonality hypergraphs, the Sorkin polynomials, the Cayley transform and its
-//! isometry check, the character orthogonality of a generated group) and from the
-//! declared checks that are the paper's own: the two-triangle diamond complex, the
-//! so(8) basis, the positive-semidefinite interface of the Cabello projectors, the
-//! recoupling matrices and the signed permutations. Enumerations have explicit
-//! finite bounds.
-//!
-//! AuthorityEffect: None.
 use crate::qm::finite_witness::{field_q, qstr, qvec};
 use crate::linear_algebra::{elimination, matrix as mx, ordered};
 use num_traits::{Signed, Zero};
@@ -155,8 +143,6 @@ fn evaluate(input: &Value) -> Result<Value, GeometryHostError> {
     let s12 = mx::from_rows(vec![vec![ri(1), ri(0)], vec![ri(0), ri(-1)]]).expect("fixed shape");
     let s23 =
         mx::from_rows(vec![vec![rq(-1, 2), ri(1)], vec![rq(3, 4), rq(1, 2)]]).expect("fixed shape");
-    // The braid relation s23 s12 s23 = s12 s23 s12. The source calls it a
-    // pentagon; no 6j symbols exist here, so no Biedenharn-Elliott identity is checked.
     let braid = mx::multiply(&s23, &mx::multiply(&s12, &s23)?)?
         == mx::multiply(&s12, &mx::multiply(&s23, &s12)?)?;
     let group = FiniteGroup::generated(
@@ -232,10 +218,6 @@ mod tests {
         );
     }
 
-    /// The characters are read off the generated group: the rational
-    /// recoupling matrices give S3 and orthogonal rows; a single reflection
-    /// generates a group of two classes, and three characters cannot then be
-    /// orthogonal class functions.
     #[test]
     fn character_orthogonality_is_computed_from_the_matrices() {
         let s12 = mx::from_rows(vec![vec![ri(-1), ri(0)], vec![ri(0), ri(1)]]).unwrap();

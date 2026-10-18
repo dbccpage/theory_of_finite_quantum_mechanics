@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the phase fiber."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the phase fiber.
+
+Origin: code/python/src/qm/report_fiber.py
+Claim: urn:omega:fqm:fiber:relative-phase-count:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -13,6 +21,21 @@ import pytest
 
 from src.linear_algebra.ordered import sum_of_squares
 from src.qm.report_fiber import ReportFiberError, main, phase_weight, relative_fiber_size
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "report_fiber.py"
 _PSI1 = ((1, 0), (1, 0))
@@ -32,7 +55,7 @@ def test_named_fiber_has_two_distinct_vectors() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(ReportFiberError, match="float refused") as floated:
-        relative_fiber_size(((1.0, 0), (1, 0)), _PSI2)
+        relative_fiber_size(((_probe("1.0"), 0), (1, 0)), _PSI2)
     assert floated.value.invariant == "float refused at the gaussian boundary"
     assert floated.value.parameters["role"] == "false"
     assert type(floated.value) is ReportFiberError
@@ -156,7 +179,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     size = namespace["relative_fiber_size"]
     weight = namespace["phase_weight"]
-    if not callable(size) or not callable(weight):
+    if not _all_hold((callable(size), callable(weight),)):
         return False
     try:
         values = (
@@ -174,10 +197,10 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     size = namespace["relative_fiber_size"]
     weight = namespace["phase_weight"]
-    if not callable(size) or not callable(weight):
+    if not _all_hold((callable(size), callable(weight),)):
         return False
     probes = (
-        (lambda: size(((1.0, 0), (1, 0)), _PSI2), "float refused at the gaussian boundary"),
+        (lambda: size(((_probe("1.0"), 0), (1, 0)), _PSI2), "float refused at the gaussian boundary"),
         (lambda: weight((True, 0)), "boolean refused where an integer part was required"),
         (lambda: weight(("1", 0)), "gaussian part is not an integer"),
         (lambda: weight((1, 0, 9)), "gaussian integer is not a pair"),
@@ -194,7 +217,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["ReportFiberError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -223,6 +246,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

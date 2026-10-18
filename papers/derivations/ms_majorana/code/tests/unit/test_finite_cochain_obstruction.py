@@ -25,7 +25,7 @@ from omega_engine.crates.operator.transforms.trans_presentation_axis import (
 class TestFiniteCochainObstruction(unittest.TestCase):
     def test_po_015_subcomplex_projection(self):
         d = np.array([[0.0, 1.0], [0.0, 0.0]])
-        P = np.array([[1.0, 0.0], [0.0, 1.0]])  # Identity projector -> Obs = 0
+        P = np.array([[1.0, 0.0], [0.0, 1.0]])
 
         is_sub, norm_val = compute_po_015_projection_obstruction(d, P)
         self.assertTrue(is_sub)
@@ -33,8 +33,8 @@ class TestFiniteCochainObstruction(unittest.TestCase):
 
     def test_endomorphism_cohomology_classification(self):
         d = np.array([[0.0, 1.0], [0.0, 0.0]])
-        eps_closed = np.array([[1.0, 0.0], [0.0, 1.0]])  # Commutes with d -> P_CLOSED_NONEXACT
-        eps_nonclosed = np.array([[0.0, 0.0], [1.0, 0.0]])  # Does not commute -> P_NONCLOSED
+        eps_closed = np.array([[1.0, 0.0], [0.0, 1.0]])
+        eps_nonclosed = np.array([[0.0, 0.0], [1.0, 0.0]])
 
         self.assertEqual(evaluate_endomorphism_cohomology(d, eps_closed), "P_CLOSED_NONEXACT")
         self.assertEqual(evaluate_endomorphism_cohomology(d, eps_nonclosed), "P_NONCLOSED")

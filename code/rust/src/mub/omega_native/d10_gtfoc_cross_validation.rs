@@ -1,9 +1,3 @@
-//! CODA-FOC/DDA cross-validation for the d=10 canonical-triple wall.
-//!
-//! This module rebuilds the d=10 carrier directly in Rust from the defining
-//! formulas. It does not read the Python output artifacts. The result is typed
-//! as cross-validation evidence: it can match or mismatch the independent
-//! numerical/Clifford-census lane, but it does not mint MUB(10) authority.
 
 use linear_algebra::linear_algebra::complex_matrix::{CVector, ComplexMatrix, C64};
 use omega_functional::{
@@ -142,10 +136,6 @@ struct CliffordElement {
     word: String,
 }
 
-/// The cross-validation report, computed once per process.
-///
-/// The Clifford census visits every element of Cl(2) tensor Cl(5), so callers
-/// that only read the report share one evaluation.
 pub fn d10_gtfoc_cross_validation_report() -> &'static D10GtfocCrossValidationReport {
     static REPORT: OnceLock<D10GtfocCrossValidationReport> = OnceLock::new();
     REPORT.get_or_init(run_d10_gtfoc_cross_validation)
@@ -371,13 +361,6 @@ fn quint_q_basis(a: i32) -> Vec<Vector> {
 }
 
 fn optimize_wall_candidate(columns: &[Vector]) -> Vector {
-    // Objective invariant: this minimizes residual_square_sum = sum_j p_j^2, which
-    // is equivalent to MAXIMIZING the wall functional f = 1 - sum_j (p_j - 1/D)^2 /
-    // (1 - 1/D) ONLY because sum_j p_j = BASIS_COUNT (= 3) is constant on the unit
-    // sphere (each of the 3 orthonormal bases contributes sum |<c_j,v>|^2 = |v|^2 =
-    // 1). Then sum (p_j - 1/D)^2 = sum p_j^2 - (2/D) sum_j p_j + COLUMN_COUNT/D^2
-    // differs from sum p_j^2 only by a constant. Changing the column set (e.g.
-    // unequal basis weights) would BREAK this equivalence -- keep it in mind.
     let mut best = zero_vec(D);
     let mut best_s = f64::INFINITY;
     for seed in 0..96_u64 {
@@ -1121,14 +1104,6 @@ mod tests {
         assert_eq!(report.clifford_elements_scanned, 24 * 3000);
         assert_eq!(report.unitary_fixers.computed, 0);
         assert_eq!(report.antiunitary_fixers.computed, 1);
-        // The exact derived/transport WORD strings are NOT platform-stable
-        // invariants: they depend on which (equally valid) basin the f64 optimizer
-        // lands in and on the deterministic-but-float-sensitive order in which the
-        // Clifford census encounters "the" antiunitary fixer. A different valid
-        // maximizer or tie-break flips the words with no real regression, so we
-        // record them as a diagnostic rather than asserting them. Reference-run
-        // values (x86-64 Linux build of the carrier): derived_qubit "F2 S2 F2",
-        // derived_quint "F5 S5 S5 F5 F5 F5 Z5".
         eprintln!(
             "d10 reference-run words (diagnostic, not asserted): derived_qubit={:?} derived_quint={:?} qubit_transport={:?} quint_transport={:?}",
             report.derived_qubit_word,
@@ -1136,8 +1111,6 @@ mod tests {
             report.named_antiunitary_transport.qubit_transport,
             report.named_antiunitary_transport.quint_transport
         );
-        // Robust invariants: the Match/Mismatch comparison verdicts (not the exact
-        // strings) ARE stable and are asserted.
         assert_eq!(
             report.named_antiunitary_word_match.status,
             MatchStatus::Mismatch

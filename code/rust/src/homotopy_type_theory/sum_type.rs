@@ -1,11 +1,7 @@
-//! Coproduct type former `A + B`.
-//!
-//! Structural record only: left and right are opaque string refs.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Binary sum (coproduct) type `left + right`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SumType {
     pub left_type_ref: String,
@@ -13,7 +9,6 @@ pub struct SumType {
 }
 
 impl SumType {
-    /// Validate that left and right type references are non-empty.
     pub fn validate(&self) -> Result<(), SumTypeError> {
         if self.left_type_ref.is_empty() {
             return Err(SumTypeError::EmptyLeftTypeRef);

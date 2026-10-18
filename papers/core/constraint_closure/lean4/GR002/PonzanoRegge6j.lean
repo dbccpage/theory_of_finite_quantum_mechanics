@@ -1,17 +1,6 @@
-/-
-  GR002.PonzanoRegge6j
 
-  Formalization of the final exact arithmetic in the regular spin-1 Racah
-  fixture.  The four triangle factors and two summands are supplied here; this
-  module does not derive the general Racah formula.
 
-  Theorems:
-    1. spin1_triangle_admissible: (1, 1, 1) satisfies CG triangle inequality |1-1| ≤ 1 ≤ 1+1 and integer perimeter.
-    2. racah_sum_evaluation: Two non-vanishing terms at z=3 (-24) and z=4 (+120) sum to 96.
-    3. racah_recoupling: (1/576) * 96 = 1/6.
 
-  AuthorityEffect: None.
--/
 
 import Mathlib.Data.Rat.Defs
 import Mathlib.Tactic.NormNum

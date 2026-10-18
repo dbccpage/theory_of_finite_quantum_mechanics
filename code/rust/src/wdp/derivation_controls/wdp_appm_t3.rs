@@ -1,4 +1,3 @@
-//! Exact witness for the 3D winding, linking, and character-orthogonality carrier in `derivation.md`.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Witness {
@@ -38,21 +37,18 @@ pub fn plaquettes_3d() -> Vec<[Edge3; 4]> {
                 let xp = (x + 1) % 4;
                 let yp = (y + 1) % 4;
                 let zp = (z + 1) % 4;
-                // xy plaquette
                 out.push(sorted4([
                     edge((x, y, z), (xp, y, z)),
                     edge((xp, y, z), (xp, yp, z)),
                     edge((xp, yp, z), (x, yp, z)),
                     edge((x, yp, z), (x, y, z)),
                 ]));
-                // yz plaquette
                 out.push(sorted4([
                     edge((x, y, z), (x, yp, z)),
                     edge((x, yp, z), (x, yp, zp)),
                     edge((x, yp, zp), (x, y, zp)),
                     edge((x, y, zp), (x, y, z)),
                 ]));
-                // zx plaquette
                 out.push(sorted4([
                     edge((x, y, z), (x, y, zp)),
                     edge((x, y, zp), (xp, y, zp)),

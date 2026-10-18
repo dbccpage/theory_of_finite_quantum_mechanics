@@ -36,7 +36,7 @@ class TestAlphaResidualPath(unittest.TestCase):
         self.assertAlmostEqual(dual["bare_alpha_uv_inv_pure"], 4.0 * math.pi / expected_D, places=4)
 
     def test_sm_rg_flow(self):
-        alpha_uv_inv = 4.0 * math.pi / (1.0 - 9.0 / (math.pi**2))  # ~142.62
+        alpha_uv_inv = 4.0 * math.pi / (1.0 - 9.0 / (math.pi**2))
         alpha_mz_inv = run_sm_rg_flow(alpha_uv_inv=alpha_uv_inv)
         self.assertAlmostEqual(alpha_mz_inv, 137.036, delta=0.5)
 

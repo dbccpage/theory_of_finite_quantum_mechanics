@@ -26,7 +26,6 @@ TRUTH = DOCS / "dual_home_truth_table.md"
 ENGINE_INV = DOCS / "engine_role_inventory.md"
 BASE_POLICY = DOCS / "base_contract_version_policy.md"
 
-# Required symbol rows must appear as markdown table cells containing these names.
 REQUIRED_SYMBOLS = (
     "residual_l1",
     "phi1",
@@ -37,8 +36,6 @@ REQUIRED_SYMBOLS = (
     "solve_phi",
 )
 
-# Wave A baseline: STUB counts must not be under-reported as zero while mirrors exist.
-# Upper bounds are soft honesty ceilings (files with NotImplemented/mirrors).
 STUB_MIN = {
     "functional": 10,
     "linear_algebra": 15,

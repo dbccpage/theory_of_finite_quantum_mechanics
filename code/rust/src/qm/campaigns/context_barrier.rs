@@ -1,9 +1,5 @@
-//! Historical contextuality campaign receipts. Exact decisions come from physics.
 use omega_quantum_physics::contextuality_obstruction::*;
 use serde::{Deserialize, Serialize};
-// ==============================================================================
-// RECEIPT STRUCTS & EVALUATION
-// ==============================================================================
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AnchorBinding {

@@ -1,14 +1,7 @@
-//! Mathematical witnesses: evidence structs for verified computations.
-//!
-//! Witnesses are created during construction-time verification.
-//! They record that a mathematical property was checked, but do not
-//! re-verify themselves after creation.
 
 use crate::hashing::Hash256;
 use serde::{Deserialize, Serialize};
 
-/// Witness that boundary_1 * boundary_2 = 0 in a chain complex.
-// Sealed witness (PO-AUTH-NC): `_private: ()` blocks external literal construction.
 #[allow(clippy::manual_non_exhaustive)]
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ChainComplexWitness {
@@ -42,8 +35,6 @@ impl ChainComplexWitness {
     }
 }
 
-/// Witness that d1 * d0 = 0 in a cochain complex.
-// Sealed witness (PO-AUTH-NC): `_private: ()` blocks external literal construction.
 #[allow(clippy::manual_non_exhaustive)]
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CochainComplexWitness {
@@ -84,8 +75,6 @@ impl CochainComplexWitness {
     }
 }
 
-/// Witness that boundary(z) = 0, proving z is a cycle.
-// Sealed witness (PO-AUTH-NC): `_private: ()` blocks external literal construction.
 #[allow(clippy::manual_non_exhaustive)]
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BoundaryZeroWitness {
@@ -113,8 +102,6 @@ impl BoundaryZeroWitness {
     }
 }
 
-/// Witness that coboundary(alpha) = 0, proving alpha is a cocycle.
-// Sealed witness (PO-AUTH-NC): `_private: ()` blocks external literal construction.
 #[allow(clippy::manual_non_exhaustive)]
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CoboundaryZeroWitness {
@@ -142,19 +129,16 @@ impl CoboundaryZeroWitness {
     }
 }
 
-/// Witness for cycle membership.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CycleWitness {
     pub boundary_zero: BoundaryZeroWitness,
 }
 
-/// Witness for cocycle membership.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CocycleWitness {
     pub coboundary_zero: CoboundaryZeroWitness,
 }
 
-/// Witness for homology computation results.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct HomologyWitness {
     pub complex_hash: Hash256,
@@ -164,7 +148,6 @@ pub struct HomologyWitness {
     pub homology_dim: usize,
 }
 
-/// Witness for cohomology computation results.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CohomologyWitness {
     pub complex_hash: Hash256,

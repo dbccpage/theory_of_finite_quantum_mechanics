@@ -28,13 +28,11 @@ def test_wire_purity_and_ast_roundtrip_6site():
         assert assert_wire_purity(in_wire) is True
         assert assert_wire_purity(out_wire) is True
 
-        # Assert no illegal characters
         for ch in in_wire:
             assert ch in GAMMA_38
         for ch in out_wire:
             assert ch in GAMMA_38
 
-        # Roundtrip
         in_parsed = parse_packet(in_wire)
         validate_packet_semantics(in_parsed)
         assert serialize_packet(in_parsed) == in_wire
@@ -48,7 +46,6 @@ def test_lexical_hygiene_prompts_6site():
     """Verify that all prompts in 6-site wire turns contain zero forbidden domain words and pass wire purity."""
     for turn_info in WIRE_TURNS_6SITE:
         prompt = turn_info["grammar_prompt"]
-        # Must not raise ValueError
         assert_lexical_hygiene(prompt)
         assert assert_wire_purity(prompt) is True
         assert assert_wire_purity(turn_info["wire_prompt"]) is True

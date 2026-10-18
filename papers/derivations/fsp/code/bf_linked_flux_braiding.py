@@ -109,7 +109,6 @@ def discrete_gauss_linking_integral(
             dr2 = (p2_b[0] - p2_a[0], p2_b[1] - p2_a[1], p2_b[2] - p2_a[2])
             m2 = ((p2_a[0] + p2_b[0]) * 0.5, (p2_a[1] + p2_b[1]) * 0.5, (p2_a[2] + p2_b[2]) * 0.5)
 
-            # R = m1 - m2
             rx = m1[0] - m2[0]
             ry = m1[1] - m2[1]
             rz = m1[2] - m2[2]
@@ -117,12 +116,10 @@ def discrete_gauss_linking_integral(
             if dist < 1e-12:
                 continue
 
-            # dr1 x dr2
             cx = dr1[1] * dr2[2] - dr1[2] * dr2[1]
             cy = dr1[2] * dr2[0] - dr1[0] * dr2[2]
             cz = dr1[0] * dr2[1] - dr1[1] * dr2[0]
 
-            # R . (dr1 x dr2)
             dot = rx * cx + ry * cy + rz * cz
             total_sum += dot / (dist * dist * dist)
 
@@ -140,14 +137,12 @@ def generate_polygonal_loop(
     direction = -1.0 if reversed_orientation else 1.0
 
     if link_type == "unlinked":
-        # Two separated non-interlocking circles in parallel planes
         offset = 0.0 if loop_index == 1 else 3.5
         for i in range(num_points):
             t = direction * 2.0 * math.pi * i / num_points
             points.append((math.cos(t) + offset, math.sin(t), 0.0))
 
     elif link_type == "hopf":
-        # Standard Hopf link: circle in xy-plane centered at (0,0,0) and circle in yz-plane centered at (0,1,0)
         if loop_index == 1:
             for i in range(num_points):
                 t = direction * 2.0 * math.pi * i / num_points
@@ -158,7 +153,6 @@ def generate_polygonal_loop(
                 points.append((0.0, 1.0 + math.cos(t), -math.sin(t)))
 
     elif link_type == "double_hopf":
-        # Double Hopf link: loop 1 once, loop 2 encircles loop 1 twice
         if loop_index == 1:
             for i in range(num_points):
                 t = direction * 2.0 * math.pi * i / num_points
@@ -166,11 +160,9 @@ def generate_polygonal_loop(
         else:
             for i in range(num_points):
                 t = direction * 2.0 * math.pi * i / num_points
-                # Frequency 2 winding around the torus enclosing loop 1
                 points.append((0.2 * math.cos(2.0 * t), 1.0 + math.cos(t), math.sin(t)))
 
     elif link_type == "whitehead":
-        # Whitehead-type link: figure-eight clasp loop with zero net Gauss linking (Lk = 0)
         if loop_index == 1:
             for i in range(num_points):
                 t = direction * 2.0 * math.pi * i / num_points
@@ -229,7 +221,6 @@ class BFLinkedFluxBraidingModel:
             theta_BF = (2pi / k) * q * p * Lk (mod 2pi)
         """
         raw_phase = (2.0 * math.pi / self.k) * self.q * self.p * lk_int
-        # Wrap into [-pi, pi]
         wrapped_phase = math.atan2(math.sin(raw_phase), math.cos(raw_phase))
         phase_factor = cmath.exp(1j * wrapped_phase)
         return wrapped_phase, phase_factor
@@ -243,7 +234,6 @@ class BFLinkedFluxBraidingModel:
         hol_real = factor.real
         hol_imag = factor.imag
 
-        # Contractible iff Hol == 1.0 + 0.0i
         is_contractible = (abs(hol_real - 1.0) <= 1e-6 and abs(hol_imag) <= 1e-6)
         gamma_2 = 0.0 if is_contractible else abs(phase)
         return hol_real, hol_imag, is_contractible, gamma_2
@@ -256,7 +246,6 @@ class BFLinkedFluxBraidingModel:
         Evaluates whether orientation reversal tau: gamma_2 -> -gamma_2 achieves exact pairing.
         Returns: (w_plus, w_minus, delta_w, is_exact_repair).
         """
-        # Baseline ground state energy E0 = 0.5
         e_plus = 0.5
         e_minus = 0.5 + self.delta_e_orient
 
@@ -264,9 +253,6 @@ class BFLinkedFluxBraidingModel:
         w_minus = math.exp(-beta * e_minus)
         delta_w = abs(w_plus - w_minus)
 
-        # Exact repair is achieved if:
-        # 1. k == 2 (real sign factor +-1)
-        # 2. Delta w <= 1e-6 (weights are equal across orientation doublet)
         is_exact_repair = (self.k == 2 and delta_w <= 1e-6)
         return w_plus, w_minus, delta_w, is_exact_repair
 
@@ -302,55 +288,42 @@ class BFLinkedFluxBraidingEngine:
         Audits 3D BF theory loop linking, topological monodromy, cochain curvature,
         and BQNF terminal routing under GIN mode indexing.
         """
-        # 1. Linking number calculation
         lk_float, lk_int = model.compute_linking_number()
 
-        # 2. Braiding phase and 2-cochain holonomy
         phase, _ = model.compute_braiding_phase(lk_int)
         hol_real, hol_imag, is_contractible, gamma_2 = model.compute_cochain_holonomy(lk_int)
 
-        # 3. Orientation doublet evaluation
         w_plus, w_minus, delta_w, is_exact_repair = model.evaluate_orientation_pairing(beta=beta)
 
-        # 4. BQNF Terminal Routing:
-        # Case A: Unlinked loops (Lk == 0) -> Contractible, Gamma_2 = 0, ExactRepair
         if lk_int == 0 or (model.q * model.p == 0):
             phi_1 = 0.0
             gamma_2 = 0.0
             terminal_route = TerminalRoute.EXACT_REPAIR.value
-        # Case B: k == 2 and symmetric weights (delta_w == 0) -> ExactRepair via Z_2 involution
         elif model.k == 2 and delta_w <= 1e-6:
             phi_1 = 0.0
             terminal_route = TerminalRoute.EXACT_REPAIR.value
-        # Case C: Orientation energy gap delta_w > 0 -> SplitBrainRefusal
         elif delta_w > 1e-4:
             phi_1 = round(delta_w + gamma_2, 6)
             terminal_route = "SplitBrainRefusal"
-        # Case D: k >= 3 (fractional BF, complex phase) -> OpenSignObstruction
         else:
-            # Defect mass reflects distance from real +1 sign: |1 - cos(theta)| + curvature
             phi_1 = round(abs(1.0 - math.cos(phase)) + gamma_2, 6)
             terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
 
-        # 5. GIN mode indexing into relational SQLite database
         c = self.conn.cursor()
         c.execute("SELECT COALESCE(MAX(cfg_id), 0) FROM FermionConfigurations;")
         max_cfg = c.fetchone()[0]
         cfg1 = max_cfg + 1
         cfg2 = max_cfg + 2
 
-        # Sign of configuration from real part of holonomy
         jw_sign_1 = 1 if hol_real >= 0.0 else -1
         jw_sign_2 = 1 if math.cos(-phase) >= 0.0 else -1
 
-        # Insert configuration 1: Positive orientation loop pair
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
                VALUES (?, ?, 2, 4, ?, ?, 1);""",
             (cfg1, model.model_id, round(w_plus, 6), jw_sign_1),
         )
-        # Insert configuration 2: Reversed orientation loop pair
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
@@ -358,11 +331,6 @@ class BFLinkedFluxBraidingEngine:
             (cfg2, model.model_id, round(w_minus, 6), jw_sign_2),
         )
 
-        # Modes:
-        # 1: Loop gamma_1 cycle perimeter (C^1 cycle)
-        # 2: Loop gamma_2 cycle perimeter (C^1 cycle)
-        # 3: Seifert surface Sigma_1 (C^2 chain with d Sigma_1 = gamma_1)
-        # 4: 2-form flux core B (C^2 cocycle with flux 2pi p / k)
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (1, ?, 1);", (cfg1,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (3, ?, 1);", (cfg1,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (2, ?, 1);", (cfg2,))

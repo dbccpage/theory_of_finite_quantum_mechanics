@@ -1,12 +1,6 @@
 import CharacterOrthogonality
 import Mathlib.Analysis.SpecificLimits.Basic
 
-/-!
-Exact finite-to-continuum character bridge. Imports Mathlib's actual normalized
-Haar measure, rather than assigning an integral a delta by definition.
-The dyadic direct limit is not asserted to equal the completed circle.
-No floating-point computation, `sorry`, or new axiom occurs here.
--/
 
 namespace FiniteToContinuum
 
@@ -17,12 +11,10 @@ open MeasureTheory Filter
 
 instance : Fact (0 < (1 : ℝ)) := ⟨zero_lt_one⟩
 
-/-- The cyclic inclusion in R/Z is an injective group homomorphism. -/
 theorem cyclic_embedding_injective (N : ℕ) [NeZero N] :
     Function.Injective (ZMod.toAddCircle : ZMod N → UnitAddCircle) :=
   ZMod.toAddCircle_injective N
 
-/-- Integer circle characters restricted along the exact cyclic inclusion. -/
 noncomputable def circleCharacter (N : ℕ) [NeZero N] (k : ℤ) :
     AdditiveChar (ZMod N) ℂ where
   toFun x := (AddCircle.toCircle (ZMod.toAddCircle ((k : ZMod N) * x)) : ℂ)
@@ -30,7 +22,6 @@ noncomputable def circleCharacter (N : ℕ) [NeZero N] (k : ℤ) :
   map_add' x y := by
     simp only [mul_add, map_add, AddCircle.toCircle_add, Circle.coe_mul]
 
-/-- The finite character is the restriction of the continuous integer character. -/
 theorem circleCharacter_restriction (N : ℕ) [NeZero N] (k : ℤ) (x : ZMod N) :
     circleCharacter N k x = fourier k (ZMod.toAddCircle x) := by
   simp [circleCharacter, fourier_apply, ← map_zsmul, zsmul_eq_mul]
@@ -50,7 +41,6 @@ theorem circleCharacter_trivial_iff (N : ℕ) [NeZero N] (k : ℤ) :
   · intro h x
     simp [circleCharacter, h, AddCircle.toCircle_zero]
 
-/-- An executed finite character sum, normalized by the nonzero cardinality. -/
 noncomputable def finiteCircleAverage (N : ℕ) [NeZero N] (k : ℤ) : ℂ :=
   (N : ℂ)⁻¹ * ∑ x : ZMod N, circleCharacter N k x
 
@@ -60,7 +50,6 @@ theorem finiteCircleAverage_eq (N : ℕ) [NeZero N] (k : ℤ) :
     (by simpa using (Nat.cast_ne_zero.mpr (NeZero.ne N) : (N : ℂ) ≠ 0))
   simpa [finiteCircleAverage, ZMod.card, circleCharacter_trivial_iff] using h
 
-/-- Integral with respect to Mathlib's normalized continuous Haar measure. -/
 noncomputable def circleHaar (k : ℤ) : ℂ :=
   ∫ x : UnitAddCircle, fourier k x ∂AddCircle.haarAddCircle
 
@@ -69,7 +58,6 @@ theorem circleHaar_eq (k : ℤ) : circleHaar k = if k = 0 then 1 else 0 := by
   simpa [circleHaar, fourierCoeff, fourier_zero,
     Pi.single_apply, eq_comm] using h
 
-/-- Every alias-free finite level already equals the actual continuous integral. -/
 theorem finiteCircleAverage_eq_haar (N : ℕ) [NeZero N] (k : ℤ)
     (hbound : k.natAbs < N) : finiteCircleAverage N k = circleHaar k := by
   rw [finiteCircleAverage_eq, circleHaar_eq]
@@ -80,7 +68,6 @@ theorem finiteCircleAverage_eq_haar (N : ℕ) [NeZero N] (k : ℤ)
       exact hk (Int.eq_zero_of_dvd_of_natAbs_lt_natAbs hdvd (by simpa using hbound))
     simp [hk, hnot]
 
-/-- The dyadic finite Haar averages converge to continuous Haar on each character. -/
 theorem dyadic_character_haar_limit (k : ℤ) :
     Tendsto (fun n : ℕ => finiteCircleAverage (2 ^ n) k) atTop (𝓝 (circleHaar k)) := by
   apply tendsto_const_nhds.congr'
@@ -88,13 +75,11 @@ theorem dyadic_character_haar_limit (k : ℤ) :
   exact (finiteCircleAverage_eq_haar (2 ^ n) k
     (lt_of_le_of_lt hn Nat.lt_two_pow_self)).symm
 
-/-- Linearity upgrades character convergence to every finite Laurent polynomial. -/
 theorem polynomial_haar_limit (s : Finset ℤ) (c : ℤ → ℂ) :
     Tendsto (fun n : ℕ => ∑ k ∈ s, c k * finiteCircleAverage (2 ^ n) k)
       atTop (𝓝 (∑ k ∈ s, c k * circleHaar k)) := by
   exact tendsto_finsetSum s (fun k _ => tendsto_const_nhds.mul (dyadic_character_haar_limit k))
 
-/-- The sum of Haar character integrals is the actual polynomial integral. -/
 theorem polynomial_haar_integral (s : Finset ℤ) (c : ℤ → ℂ) :
     (∫ x : UnitAddCircle, ∑ k ∈ s, c k * fourier k x ∂AddCircle.haarAddCircle) =
       ∑ k ∈ s, c k * circleHaar k := by

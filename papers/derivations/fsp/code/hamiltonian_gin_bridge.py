@@ -86,9 +86,6 @@ class HamiltonianGinBridge:
     def close(self) -> None:
         self.conn.close()
 
-    # ------------------------------------------------------------------------
-    # Indexing Hamiltonian Paths
-    # ------------------------------------------------------------------------
 
     def index_hamiltonian_paths(
         self,
@@ -102,7 +99,7 @@ class HamiltonianGinBridge:
         ensemble_id = self._next_ensemble_id
         self._next_ensemble_id += 1
         num_sites = hamiltonian.lattice.num_sites
-        total_modes = 2 * num_sites  # spin-up (1..N) and spin-down (N+1..2N)
+        total_modes = 2 * num_sites
 
         c = self.conn.cursor()
         c.execute("SELECT COALESCE(MAX(cfg_id), 0) FROM FermionConfigurations;")
@@ -122,7 +119,6 @@ class HamiltonianGinBridge:
                 raise ValueError("Path amplitude disagrees with its sign and magnitude")
             path_indices = tuple(p["path_indices"])
 
-            # Aggregate all modes occupied along the cyclic path
             occupied_modes: Set[int] = set()
             for idx in path_indices:
                 fock = hamiltonian.basis[idx]
@@ -174,9 +170,6 @@ class HamiltonianGinBridge:
 
         self.conn.commit()
 
-        # --------------------------------------------------------------------
-        # Automatic Discovery of Exact Involution Partners
-        # --------------------------------------------------------------------
         c.execute("SELECT COALESCE(MAX(pair_id), 0) FROM GinInvolutionPairs;")
         pair_id = c.fetchone()[0] + 1
         matched_pos: Set[int] = set()
@@ -215,9 +208,6 @@ class HamiltonianGinBridge:
             "arithmetic": "Fraction; finite floats retain exact binary value",
         }
 
-    # ------------------------------------------------------------------------
-    # Auditing Sign Resolution
-    # ------------------------------------------------------------------------
 
     def audit_sign_resolution(self, model_name: str) -> ExactHamiltonianCancellationReceipt:
         """Independently check the proposed involution and its exact residual.
@@ -242,7 +232,6 @@ class HamiltonianGinBridge:
             rec, row, exact_row = records.get(cid), configurations.get(cid), exact_rows.get(cid)
             if rec is None:
                 errors.add(f"configuration {cid}: missing retained exact record")
-                # Diagnostics for old REAL-only callers, never certificate inputs.
                 if row is not None:
                     try:
                         magnitudes[cid] = exact_fraction(row["weight"], "SQL weight")
@@ -331,9 +320,6 @@ class HamiltonianGinBridge:
             integrity_errors=tuple(sorted(errors)),
         )
 
-    # ------------------------------------------------------------------------
-    # Kitaev Chain Majorana Zero Mode Bridge
-    # ------------------------------------------------------------------------
 
     def index_kitaev_chain_majorana(self, L: int = 4, model_name: str = "KitaevChain") -> MajoranaZeroModeReceipt:
         """Indexes sweet-spot Kitaev chain bulk bonds and audits topological boundary isolation."""
@@ -346,7 +332,6 @@ class HamiltonianGinBridge:
         )
 
         bond_id = 1
-        # Sweet spot bulk bonds h_j = (2j, 2j+1) for 1 <= j < L
         for j in range(1, L):
             u = 2 * j
             v = 2 * j + 1
@@ -356,7 +341,6 @@ class HamiltonianGinBridge:
             )
             bond_id += 1
 
-        # Dummy boundary registration for audit query
         c.execute(
             "INSERT INTO GinMajoranaBonds (bond_id, cfg_id, u, v, is_bulk_bond) VALUES (?, 9999, 1, ?, 0);",
             (bond_id, 2 * L),

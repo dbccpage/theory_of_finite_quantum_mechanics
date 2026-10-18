@@ -1,5 +1,3 @@
-//! Bounded finite-poset assignment census for the declared two-factor model.
-//! AuthorityEffect: None.
 use crate::qm::campaigns::causal_order::census_unlabeled;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::{
@@ -14,10 +12,6 @@ use omega_quantum_physics::commuting_observables::*;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeSet, HashMap};
 
-/// Construct C1 witness assignment:
-/// Event 0: sigma_x (x) I (factor 1)
-/// Event 1: sigma_z (x) I (factor 1)
-/// Event 2: I (x) sigma_z (factor 2)
 pub fn construct_c1_assignment() -> Result<
     (
         HashMap<usize, BasicMatrix<GaussianRat>>,
@@ -56,11 +50,6 @@ pub fn construct_c1_assignment() -> Result<
     Ok((obs, factors))
 }
 
-/// Construct C2 witness assignment:
-/// Event 0: sigma_x (x) I (factor 1)
-/// Event 1: sigma_z (x) I (factor 1)
-/// Event 2: I (x) sigma_z (factor 2)
-/// Event 3: I (x) sigma_x (factor 2)
 pub fn construct_c2_assignment() -> Result<
     (
         HashMap<usize, BasicMatrix<GaussianRat>>,
@@ -107,7 +96,6 @@ pub fn construct_c2_assignment() -> Result<
     Ok((obs, factors))
 }
 
-/// Construct 3-element antichain (0 relations).
 pub fn construct_c3_antichain() -> FinitePoset {
     FinitePoset::new(3, BTreeSet::new()).unwrap()
 }
@@ -124,7 +112,6 @@ pub struct PosetSearchResult {
     pub degenerate_assignments_rejected: usize,
 }
 
-/// Search for a commuting assignment on a single poset.
 pub fn search_poset_assignment(
     poset: &FinitePoset,
     non_degeneracy_enforced: bool,
@@ -142,8 +129,6 @@ pub fn search_poset_assignment(
     let mut degenerate_rejected = 0;
 
     if has_odd {
-        // Every two-factor labelling violates an odd-cycle edge. Count only
-        // when the bounded integer count is representable; refuse larger census inputs.
         let total_combos = 1usize << poset.size();
         for mask in 0..total_combos {
             let mut f_map = HashMap::new();
@@ -170,7 +155,6 @@ pub fn search_poset_assignment(
         });
     }
 
-    // Bipartite: construct assignment
     let f1_ops = [
         embed_factor_1(
             &pauli::<GaussianRat>(Pauli::X).expect("the exact Gaussian Pauli fixture is admitted"),
@@ -249,7 +233,6 @@ pub struct CensusSearchResult {
     pub degenerate_assignments_rejected: usize,
 }
 
-/// Exhaustive search over census of posets on 3 and 4 elements.
 pub fn search_census_at_declared_bound(
     non_degeneracy_enforced: bool,
 ) -> Result<CensusSearchResult, String> {
@@ -306,7 +289,6 @@ pub fn search_census_at_declared_bound(
     })
 }
 
-/// Independent checker for C1 and C2 witness assignments.
 pub fn verify_witness_independent(
     n: usize,
     strict_relations: &[(usize, usize)],
@@ -331,7 +313,6 @@ pub fn verify_witness_independent(
         }
     }
 
-    // 1. Hermiticity
     for u in 0..n {
         let m = observables
             .get(&u)
@@ -341,7 +322,6 @@ pub fn verify_witness_independent(
         }
     }
 
-    // 2. Non-scalar
     if non_degeneracy_enforced {
         for u in 0..n {
             let m = observables.get(&u).unwrap();
@@ -351,7 +331,6 @@ pub fn verify_witness_independent(
         }
     }
 
-    // 3. Commutation on spacelike pairs
     for &(u, v) in &spacelike {
         let m_u = observables.get(&u).unwrap();
         let m_v = observables.get(&v).unwrap();

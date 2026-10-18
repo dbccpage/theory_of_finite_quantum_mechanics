@@ -90,13 +90,9 @@ def main() -> None:
             if path in (manifest, project / "SHA256SUMS") or path.is_symlink() or not path.is_file():
                 continue
             key = path.relative_to(project).as_posix()
-            # A release archive contains this catalog. Indexing the archive
-            # after it is staged would create an impossible checksum cycle.
             if key.split("/", 1)[0] == "dist" or ("/" not in key and path.suffix.lower() == ".zip"):
                 continue
             paths[key] = path
-        # Keep the established order so refreshing hashes does not churn the
-        # whole publication index. Append newly tracked paths deterministically.
         ordered = [key for key in old if key in paths] + sorted(paths.keys() - old.keys())
         rows = []
         for key in ordered:

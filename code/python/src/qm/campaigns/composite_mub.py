@@ -117,7 +117,6 @@ def verify_mub_d6_unbiasedness(bases: list) -> dict:
     one = CyclotomicElement.rational(1, 24)
     zero = CyclotomicElement.rational(0, 24)
 
-    # Check internal orthonormality (rank-one trace and same-basis orthogonality)
     for b_idx, basis in enumerate(bases):
         assert len(basis) == dim
         for i in range(dim):
@@ -129,7 +128,6 @@ def verify_mub_d6_unbiasedness(bases: list) -> dict:
                 expected_tr = one if i == j else zero
                 assert prod_tr == expected_tr, f"Same-basis orthogonality defect in basis {b_idx} between {i} and {j}"
 
-    # Check mutual unbiasedness: Tr(Pi * Pj) == 1/6 for different bases
     for b1 in range(len(bases)):
         for b2 in range(b1 + 1, len(bases)):
             for u in bases[b1]:
@@ -158,26 +156,21 @@ def build_exact_composite_mub_d6() -> list[list[list[list[CyclotomicElement]]]]:
     neg_half = CyclotomicElement.rational(Fraction(-1, 2), 24)
     third = CyclotomicElement.rational(Fraction(1, 3), 24)
 
-    # d=2 bases: B0 (Z), B1 (X), B2 (Y)
     d2_bases = [
-        # B0
         [
             [[one, zero], [zero, zero]],
             [[zero, zero], [zero, one]],
         ],
-        # B1
         [
             [[half, half], [half, half]],
             [[half, neg_half], [neg_half, half]],
         ],
-        # B2
         [
             [[half, neg_half * i_elem], [half * i_elem, half]],
             [[half, half * i_elem], [neg_half * i_elem, half]],
         ],
     ]
 
-    # d=3 bases: C0 (diag), C1 (s=0), C2 (s=1)
     C0 = []
     for k in range(3):
         mat = [[zero] * 3 for _ in range(3)]
@@ -202,7 +195,6 @@ def build_exact_composite_mub_d6() -> list[list[list[list[CyclotomicElement]]]]:
     C2 = make_d3_basis(1)
     d3_bases = [C0, C1, C2]
 
-    # Composite d=6 bases (paired Kronecker product)
     bases_d6 = []
     for b in range(3):
         basis = []
@@ -239,7 +231,6 @@ def search_fourth_mub_d6(
     seed_offset = seed - 42
 
     for cand_idx in range(max_candidates):
-        # Deterministic algebraic candidate generation with exact parity to Rust crate
         eff_idx = cand_idx + seed_offset
         k1 = (eff_idx * 7 + 1) % cond
         k2 = (eff_idx * 11 + 3) % cond
@@ -256,8 +247,6 @@ def search_fourth_mub_d6(
         ]
         candidates_tested += 1
 
-        # Mutual unbiasedness with all 18 projectors Pi in exact Cyc24 arithmetic:
-        # Tr(M/6 * Pi) == 1/6 <=> Tr(M * Pi) == 1
         all_unbiased = True
         for basis in exact_bases:
             for pi in basis:
@@ -291,8 +280,6 @@ def evaluate_gkp_conductor_scaling(max_n: int = 20) -> dict:
     unbounded = True
 
     for n in range(2, max_n + 1):
-        # Grid commutator phase is zeta_N or zeta_{4N}
-        # In Q(zeta_n), representing zeta_N requires N | n (or N/2 | n if N = 2 mod 4)
         if n % 4 == 2:
             min_conductor = n // 2
         else:
@@ -303,7 +290,6 @@ def evaluate_gkp_conductor_scaling(max_n: int = 20) -> dict:
             "min_cyclotomic_conductor": min_conductor,
         })
 
-    # Check monotonicity and divergence
     conductors = [item["min_cyclotomic_conductor"] for item in scaling_data]
     max_conductor = max(conductors)
 
@@ -319,7 +305,6 @@ def evaluate_gkp_conductor_scaling(max_n: int = 20) -> dict:
 
 def run_block_05_execution(output_path: pathlib.Path | None = None) -> dict:
     """Execute all Block 05 computational components and assemble the receipt."""
-    # 1. Tensor product uniqueness and rival test
     tp_bilinear = check_bilinearity(tensor_product)
     tp_covariant = check_local_unitary_covariance(tensor_product)
     tp_marginals = check_product_marginal_consistency(tensor_product)
@@ -340,14 +325,11 @@ def run_block_05_execution(output_path: pathlib.Path | None = None) -> dict:
         "rival_fails_covariance": (not dump_covariant),
     }
 
-    # 2. Dimension 6 MUB construction
     bases_d6 = build_mub_d6_product_bases()
     unbiasedness_d6 = verify_mub_d6_unbiasedness(bases_d6)
 
-    # 3. Fourth MUB bounded search
     search_d6 = search_fourth_mub_d6(bases_d6, conductor_ceiling=24, max_candidates=1000, seed=42)
 
-    # 4. GKP conductor scaling
     gkp_scaling = evaluate_gkp_conductor_scaling(max_n=20)
 
     receipt = {

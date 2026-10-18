@@ -1,11 +1,3 @@
-//! Finite executable witness for `PROD-KERNEL-STUB-1`.
-//!
-//! Models `CheckReceipt` replay on the 3-state `cheaper_route` arena (`s --direct(5)--> t`,
-//! `s --step(1)--> u --finish(1)--> t`) and on stalled/trapped `LOSS` arenas:
-//! - Accepts `WIN_OPTIMAL` with `initial_value = 2/1`.
-//! - Accepts `WIN_FEASIBLE` with suboptimal `initial_value = 5/1` without substituting `2/1`.
-//! - Rejects forged `WIN_OPTIMAL` claiming `5/1` is optimal.
-//! - Distinguishes `LOSS` with `initial_stalled = true` vs `initial_stalled = false`.
 
 #![forbid(unsafe_code)]
 
@@ -27,9 +19,6 @@ pub struct CheckReceipt {
     pub authority_effect: &'static str,
 }
 
-/// Replay a submitted strategy certificate on the `cheaper_route` arena:
-/// `s --direct(5)--> t`, `s --step(1)--> u --finish(1)--> t`.
-/// Never calls a solver and never substitutes the optimal value `2` for a suboptimal or bad certificate.
 pub fn replay_cheaper_route_certificate(
     claim: CertificateClaim,
     action_at_s: &str,

@@ -1,8 +1,3 @@
-//! Exact Network Simplex min-cost flow solver over rationals.
-//!
-//! Origin: papers/derivations/mub6/rust/network_simplex.rs
-//! Claim: DERIV-MUB6-SIMPLEX-001
-//! AuthorityEffect: None.
 
 use num_rational::Ratio;
 use num_traits::{One, Zero};
@@ -25,7 +20,6 @@ pub struct NetworkEdge {
     pub flow: Ratio<i64>,
 }
 
-/// Exact network simplex min-cost flow solver on a directed graph.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExactNetworkSimplex {
     pub num_nodes: usize,
@@ -56,13 +50,10 @@ impl ExactNetworkSimplex {
         });
     }
 
-    /// Computes the exact total cost of the current flow: sum_e flow(e) * cost(e).
     pub fn total_cost(&self) -> Ratio<i64> {
         self.edges.iter().map(|e| e.flow * e.cost).sum()
     }
 
-    /// Verifies flow conservation at every node:
-    /// sum_{out} flow - sum_{in} flow = supply.
     pub fn verify_conservation(&self) -> bool {
         for node in 0..self.num_nodes {
             let mut balance = Ratio::zero();

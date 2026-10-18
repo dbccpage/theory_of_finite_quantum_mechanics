@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Unit tests for the Meron-Cluster to Continuum Wilsonian Bridge."""
 
 from __future__ import annotations
@@ -25,7 +24,6 @@ class TestMeronWilsonianBridge(unittest.TestCase):
     def test_log_density_interval(self) -> None:
         bridge = MeronWilsonianBridge()
         g4 = bridge.compute_log_density(4)
-        # g(4) = ln(912)/4 approx 1.70390999...
         self.assertTrue(Fraction(17039, 10000) <= g4.lo <= g4.hi <= Fraction(17040, 10000))
         self.assertTrue(g4.width < Fraction(1, 10**18))
 
@@ -35,11 +33,9 @@ class TestMeronWilsonianBridge(unittest.TestCase):
         self.assertEqual(meron_rec.authority_effect, "None")
         self.assertEqual(len(meron_rec.chain_lengths), 3)
 
-        # Check thermodynamic limit enclosure: approx 1.69411
         f_mid = float(meron_rec.thermodynamic_limit["float_midpoint"])
         self.assertAlmostEqual(f_mid, 1.69411, places=4)
 
-        # Check finite-size residuals Delta(L)
         res = meron_rec.finite_size_residuals
         self.assertTrue(4 in res and 6 in res and 8 in res)
 

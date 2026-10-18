@@ -57,7 +57,6 @@ class NecessityModel:
         return not self.admits(slot)
 
 
-# Pure FinL1: classical residual bookkeeping only — all B4 imports absent.
 PURE_FINL1 = NecessityModel(
     noncomm=False, unitary=False, no_clone=False, cont_time=False
 )

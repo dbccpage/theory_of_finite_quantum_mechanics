@@ -1,7 +1,3 @@
-//! Exact 6x6 and 3x3 matrices over Q(ζ24) shared by the MUB(6) chart,
-//! gluing and orbit modules.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 
@@ -9,15 +5,12 @@ use crate::omega_native::exact::d6_exact_curvature_cochain::D;
 use omega_number_theory::cyclotomic::Cyc24;
 use omega_number_theory::rational::ri;
 
-/// Exact 6x6 matrix over Q(ζ24). Row-major: `m[row][col]`.
 pub type Matrix6 = [[Cyc24; D]; D];
 
-/// Zero 6x6 matrix.
 pub fn matrix_zero() -> Matrix6 {
     std::array::from_fn(|_| std::array::from_fn(|_| Cyc24::zero()))
 }
 
-/// Identity 6x6 matrix I_6.
 pub fn matrix_identity() -> Matrix6 {
     let one = Cyc24::rat(ri(1));
     let zero = Cyc24::zero();
@@ -26,7 +19,6 @@ pub fn matrix_identity() -> Matrix6 {
     })
 }
 
-/// Exact product `a · b` of two 6x6 matrices.
 pub fn matrix_mul(a: &Matrix6, b: &Matrix6) -> Matrix6 {
     std::array::from_fn(|i| {
         std::array::from_fn(|j| {
@@ -39,12 +31,10 @@ pub fn matrix_mul(a: &Matrix6, b: &Matrix6) -> Matrix6 {
     })
 }
 
-/// Conjugate transpose `m^†`.
 pub fn matrix_adjoint(m: &Matrix6) -> Matrix6 {
     std::array::from_fn(|i| std::array::from_fn(|j| m[j][i].conj()))
 }
 
-/// 3x3 identity matrix.
 pub fn eye3() -> [[Cyc24; 3]; 3] {
     let zero = Cyc24::zero();
     let one = Cyc24::rat(ri(1));
@@ -55,7 +45,6 @@ pub fn eye3() -> [[Cyc24; 3]; 3] {
     ]
 }
 
-/// Exact product `a · b` of two 3x3 matrices.
 pub fn mul_mat3(a: &[[Cyc24; 3]; 3], b: &[[Cyc24; 3]; 3]) -> [[Cyc24; 3]; 3] {
     std::array::from_fn(|i| {
         std::array::from_fn(|j| {
@@ -68,10 +57,8 @@ pub fn mul_mat3(a: &[[Cyc24; 3]; 3], b: &[[Cyc24; 3]; 3]) -> [[Cyc24; 3]; 3] {
     })
 }
 
-/// Total number of 2x2 submatrices: C(6, 2) * C(6, 2) = 225.
 pub const NUM_SUBMATRICES_225: usize = 225;
 
-/// Index of one 2x2 submatrix. Rows satisfy `r0 < r1` and columns satisfy `c0 < c1`.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct Submatrix2Index {
     pub r0: usize,
@@ -88,7 +75,6 @@ impl Submatrix2Index {
     }
 }
 
-/// All 225 submatrix indices in lexicographic order.
 pub fn enumerate_225_submatrices() -> Vec<Submatrix2Index> {
     let mut indices = Vec::with_capacity(NUM_SUBMATRICES_225);
     for r0 in 0..D {
@@ -103,11 +89,6 @@ pub fn enumerate_225_submatrices() -> Vec<Submatrix2Index> {
     indices
 }
 
-/// Conjugate cross-ratio `a * d * conj(b) * conj(c)`.
-///
-/// Haagerup and Tao use this form. On a unimodular entry it agrees with the
-/// quotient `(a * d) / (b * c)`. On an entry scaled by `1/√6` the two differ by 36.
-/// The orbit classifier keeps the quotient.
 pub fn cross_ratio_at(m: &Matrix6, idx: &Submatrix2Index) -> Cyc24 {
     let a = &m[idx.r0][idx.c0];
     let b = &m[idx.r0][idx.c1];
@@ -116,7 +97,6 @@ pub fn cross_ratio_at(m: &Matrix6, idx: &Submatrix2Index) -> Cyc24 {
     a.mul(d).mul(&b.conj()).mul(&c.conj())
 }
 
-/// Conjugate cross-ratio of every 2x2 submatrix.
 pub fn evaluate_all_225_cross_ratios(m: &Matrix6) -> Vec<Cyc24> {
     enumerate_225_submatrices()
         .iter()
@@ -124,7 +104,6 @@ pub fn evaluate_all_225_cross_ratios(m: &Matrix6) -> Vec<Cyc24> {
         .collect()
 }
 
-/// Exponent `e` in `0..24` such that `z == zeta_24^e`, if `z` is a 24th root of unity.
 pub fn root24_exponent(z: &Cyc24) -> Option<i64> {
     (0..24).find(|&k| z == &Cyc24::zeta24(k)).map(|k| k as i64)
 }

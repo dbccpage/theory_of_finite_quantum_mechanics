@@ -1,20 +1,5 @@
-/-!
-# Q9: a declared finite rebit hidden-direction witness
 
-This file defines one exact integer-scaled 2 x 2 / 4 x 4 matrix fixture.  It
-proves that the nonzero symmetric matrix `J kron J` is orthogonal to all nine
-products of the declared local symmetric basis and that the two scaled rho
-matrices have identical statistics on those products.
 
-It does not import or identify the repository's separate quantum host, prove
-Mathlib `Matrix.PosDef`, derive tensor or operational semantics from Primitive
-Difference, or state a general local-tomography theorem.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace OmegaWorld
 namespace RebitQ9
@@ -126,7 +111,6 @@ def pPlusScaled : Matrix4 := fun row column =>
 def pMinusScaled : Matrix4 := fun row column =>
   identityEntry row column - deltaEntry row column
 
-/-- `16 * rhoPlus` and `16 * rhoMinus` from the declared rational fixture. -/
 def rhoPlusScaled : Matrix4 := fun row column =>
   4 * identityEntry row column + 2 * deltaEntry row column
 
@@ -268,3 +252,6 @@ def rhoPairWitness : RhoPairWitness where
 
 end RebitQ9
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldRebitHiddenDirection.lean Claim: delta_symmetric AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

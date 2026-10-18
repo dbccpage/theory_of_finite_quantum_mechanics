@@ -22,10 +22,6 @@ import sys
 from pathlib import Path
 import pytest
 
-# sweep_feed.py lives outside the `anomalon` package (it is a
-# campaign artifact under proof_packets/), so it is not import-able as a
-# package submodule. Add its directory to sys.path and import it directly,
-# the same way sweep_feed.py itself locates `anomalon`.
 _WITTEN_DIR = (
     Path(__file__).resolve().parents[2]
     / "proof_packets"
@@ -36,7 +32,7 @@ if str(_WITTEN_DIR) not in sys.path:
     sys.path.insert(0, str(_WITTEN_DIR))
 
 try:
-    import sweep_feed as sf  # noqa: E402
+    import sweep_feed as sf
 except ImportError:
     pytestmark = pytest.mark.skip(reason="sweep_feed not present")
 
@@ -52,11 +48,6 @@ def _neutral_page(page_num: int, n_clauses: int) -> str:
 
 
 def test_descent_terminates_and_no_final_window_exceeds_budget() -> None:
-    # 20 synthetic pages x 6 clauses = 120 clauses total: the whole-paper
-    # window is both over the clause cap (120 > 48) and, even after
-    # capping, over the density budget (47 edges > 32). Each individual
-    # page (6 clauses, 5 edges) is comfortably under both limits, so
-    # descent must terminate with every final window passing.
     pages = [_neutral_page(p, 6) for p in range(1, 21)]
     engine = sf.PromptDiagnosisEngine()
 
@@ -68,14 +59,12 @@ def test_descent_terminates_and_no_final_window_exceeds_budget() -> None:
     )
     assert log["accepted_window_count"] >= 2, "the whole-paper window must have split"
 
-    # Termination + coverage: leaves partition [1, 20] with no gaps/overlaps.
     covered: list[int] = []
     for leaf in log["leaves"]:
         lo, hi = leaf["page_range"]
         covered.extend(range(lo, hi + 1))
     assert covered == list(range(1, 21)), "leaves must exactly tile the page range"
 
-    # No final (accepted) window exceeds the engine's own budget.
     for window in log["accepted_windows"]:
         assert window["budget_status"] == "OK"
         assert window["c1_dim"] <= sf.DENSITY_BUDGET_DEFAULT
@@ -83,10 +72,6 @@ def test_descent_terminates_and_no_final_window_exceeds_budget() -> None:
 
 
 def test_single_page_over_budget_alone_is_irreducible_saturation() -> None:
-    # One page, 40 clauses -> 39 sequence edges: over the density budget
-    # (32) on its own, but under the 48-clause split cap, isolating the
-    # budget-only saturation path (not the cap path -- see the cap test
-    # below for that one).
     page = "\n".join(f"Neutral clause number {i} on the only page." for i in range(40))
     pages = [page]
     engine = sf.PromptDiagnosisEngine()
@@ -112,10 +97,6 @@ def test_single_page_over_budget_alone_is_irreducible_saturation() -> None:
 
 
 def test_loss_ledger_names_exact_boundary_edges() -> None:
-    # Hot boundary: left window's last clause trips the "do not" trigger,
-    # right window's first clause trips "always"/"must" -- this must fire
-    # the same contradiction_witness heuristic prompt_diagnosis_engine's
-    # _build_cohomology would fire on the same clause pair in one pass.
     hot_pages = [
         "Alpha clause one.\nAlpha clause two.\nDo not skip validation.",
         "You must always verify the outcome.\nBeta clause two.",
@@ -130,8 +111,6 @@ def test_loss_ledger_names_exact_boundary_edges() -> None:
     assert hot_row["dropped_edges"] == ["sequence", "contradiction_witness"]
     assert len(hot_row["clause_pair_sha256s"]) == 2
 
-    # Bland boundary: no trigger words on either side of the cut -> only
-    # the sequence edge is lost, nothing else.
     bland_pages = [
         "The quick brown fox jumps.\nAnother neutral clause here.",
         "A totally unrelated sentence follows.\nAnd one more after that.",
@@ -145,9 +124,6 @@ def test_loss_ledger_names_exact_boundary_edges() -> None:
     assert bland_row["boundary"] == [1, 2]
     assert bland_row["dropped_edges"] == ["sequence"]
 
-    # Sanity: edge_kinds() alone agrees with the engine's own inline
-    # condition (replicated, not imported -- the engine does not export a
-    # standalone edge-kind function).
     assert sf.edge_kinds("Do not skip validation", "You must always verify") == [
         "sequence",
         "contradiction_witness",
@@ -156,16 +132,6 @@ def test_loss_ledger_names_exact_boundary_edges() -> None:
 
 
 def test_cap_hit_forces_descent_independent_of_budget_status() -> None:
-    # A window with 60 clauses is truncated to the engine's hardcoded
-    # 48-clause cap (c0_dim == 48). At that cap the *minimum* possible edge
-    # count is 47 (one sequence edge per consecutive clause pair, n - 1),
-    # which is already over the DEFAULT budget of 32 -- so under default
-    # settings a capped window always also reads BUDGET_EXCEEDED. To prove
-    # the driver's cap detection is a genuine, independent failure signal
-    # (not just a side effect of the budget check), this test raises the
-    # engine's own budget parameter to 1000: budget_status reads "OK", yet
-    # window_verdict() must still report failed=True on cap_hit alone, and
-    # sweep_windows() must still refuse to accept a 48-clause window.
     page = "\n".join(f"Neutral clause number {i} on a long page." for i in range(60))
     pages = [page]
     engine = sf.PromptDiagnosisEngine(density_budget=1000)
@@ -192,20 +158,9 @@ def test_cap_hit_forces_descent_independent_of_budget_status() -> None:
     assert cap_event["clauses_lost_to_cap"] == 12
 
 
-# --------------------------------------------------------------------------
-# A2: sub-page clause-window descent
-# --------------------------------------------------------------------------
 
 
 def test_subpage_descent_resolves_a_saturating_page_without_exceeding_budget() -> None:
-    # Same 40-clause page as test_single_page_over_budget_alone_is_
-    # irreducible_saturation -- confirmed above to be IRREDUCIBLE_PAGE_
-    # SATURATION at page granularity. A2's job is to descend INTO it: with
-    # SUBPAGE_INITIAL_CHUNK=33, that splits into chunks [0,33) (33 clauses,
-    # 32 pure-sequence edges = exactly at budget = OK) and [33,40) (7
-    # clauses, 6 edges = OK) -- both pass on the FIRST try, no recursive
-    # halving needed, and the split produces exactly one intra-page
-    # boundary keyed by clause index.
     page = "\n".join(f"Neutral clause number {i} on the only page." for i in range(40))
     pages = [page]
     engine = sf.PromptDiagnosisEngine()
@@ -246,21 +201,12 @@ def test_subpage_descent_resolves_a_saturating_page_without_exceeding_budget() -
 
 
 def test_uncapped_splitter_matches_capped_splitter_under_the_cap() -> None:
-    # split_clauses_uncapped() must agree with the engine's own capped
-    # splitter (`_split_clauses(text)[:CLAUSE_CAP]`) whenever the true
-    # clause count is already under the cap -- this is the regression guard
-    # against drift between sub-page descent's clause source and what the
-    # engine itself would diagnose, called out explicitly in the campaign
-    # directive ("guards drift between your replica and the engine").
     text = "\n".join(f"Clause {i} of a short text." for i in range(40))
     uncapped = sf.split_clauses_uncapped(text)
     capped = sf._split_clauses(text)[: sf.CLAUSE_CAP]
     assert uncapped == capped
     assert len(uncapped) == 40
 
-    # And over the cap: split_clauses_uncapped() must NOT truncate (that is
-    # the entire point of using it for sub-page windowing), while the
-    # engine's own capped form does.
     long_text = "\n".join(f"Clause {i} of a long text." for i in range(60))
     uncapped_long = sf.split_clauses_uncapped(long_text)
     capped_long = sf._split_clauses(long_text)[: sf.CLAUSE_CAP]

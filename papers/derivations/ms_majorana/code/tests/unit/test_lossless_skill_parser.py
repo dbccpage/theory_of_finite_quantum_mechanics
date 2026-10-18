@@ -65,9 +65,6 @@ def all_host_markdown() -> list[pathlib.Path]:
     return found
 
 
-# --------------------------------------------------------------------------
-# The corpus vectors -- deliverable 4
-# --------------------------------------------------------------------------
 
 
 def test_the_estate_has_skills_to_test_against():
@@ -144,9 +141,6 @@ def test_a_reference_document_without_frontmatter_is_refused_not_defaulted():
     assert "defaulted" in str(excinfo.value)
 
 
-# --------------------------------------------------------------------------
-# Line endings are recorded, never normalised
-# --------------------------------------------------------------------------
 
 
 def test_a_crlf_document_round_trips_as_crlf():
@@ -178,9 +172,6 @@ def test_trailing_whitespace_in_the_body_survives():
     assert parse_bytes(raw).render() == raw
 
 
-# --------------------------------------------------------------------------
-# Frontmatter detail the mapping view discards
-# --------------------------------------------------------------------------
 
 
 def test_comments_in_frontmatter_survive_the_round_trip():
@@ -227,9 +218,6 @@ def test_malformed_yaml_refuses_only_when_the_mapping_is_asked_for():
         document.frontmatter_mapping()
 
 
-# --------------------------------------------------------------------------
-# Refusals
-# --------------------------------------------------------------------------
 
 
 def test_an_unterminated_frontmatter_block_is_refused():
@@ -265,9 +253,6 @@ def test_an_empty_frontmatter_block_round_trips():
     assert document.frontmatter == b""
 
 
-# --------------------------------------------------------------------------
-# The lossy parser is still the reading path, and still lossy
-# --------------------------------------------------------------------------
 
 
 def test_the_existing_reader_discards_what_this_parser_keeps():

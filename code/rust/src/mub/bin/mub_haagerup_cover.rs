@@ -1,25 +1,3 @@
-//! Production runner: branch-and-bound cover driver for Haagerup / Szöllősi H6 triple (I6, F6, H6).
-//!
-//! Point cover (fixed triple, delta=0):
-//! ```text
-//! cargo run -j 1 -p omega_mub --release --bin mub_haagerup_cover -- \
-//!   --presplit 6 --depth 32 --chunk 0 --chunk-end 8
-//! ```
-//!
-//! Neighborhood cover (widened by ±delta, default 1/1000):
-//! ```text
-//! cargo run -j 1 -p omega_mub --release --bin mub_haagerup_cover -- \
-//!   --neighborhood --delta-den 1000 --presplit 6 --depth 32
-//! ```
-//!
-//! Emit Lean 4 kernel reflection artifact:
-//! ```text
-//! cargo run -j 1 -p omega_mub --release --bin mub_haagerup_cover -- --emit-reflection
-//! ```
-//!
-//! Writes under `artifacts/`. Completeness is never fabricated.
-//!
-//! AuthorityEffect: None
 
 use omega_mub::omega_native::exact::mub6_cover_run::CoverCertificate;
 use omega_mub::omega_native::campaign::mub6_dita_seed_cover::narrow_torus_cell;

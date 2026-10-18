@@ -166,7 +166,6 @@ def test_reruns_are_distinguishable_in_the_jsonl(tmp_path):
     assert rows[0]["step_id"] == rows[1]["step_id"] == "DDA_STEP_001"
     assert rows[0]["run_id"] != rows[1]["run_id"]
 
-    # A consumer must be able to recover a single coherent run.
     only_second = [r for r in rows if r["run_id"] == second.run_id]
     ok, detail = verify_trajectory_chain(only_second)
     assert ok, detail

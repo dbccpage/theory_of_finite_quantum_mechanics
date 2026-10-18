@@ -181,7 +181,6 @@ def call_openrouter(model_id: str, prompt: str, api_key: str) -> dict:
             content = (msg.get("content") or "").strip()
             reasoning = (msg.get("reasoning") or "").strip()
 
-            # Rule: NEVER substitute reasoning trace for message content
             is_truncated = (finish_reason == "length") or (not content)
             success = (finish_reason != "length") and bool(content)
 
@@ -270,17 +269,14 @@ def main():
         for future in concurrent.futures.as_completed(futures):
             results.append(future.result())
 
-    # Sort results by gap_id, model_name
     results.sort(key=lambda x: (x["gap_id"], x["model_name"]))
 
-    # Prepare timestamped output filenames (never overwrite prior evidence)
     ts_slug = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     report_path = ARTIFACTS_DIR / f"s2_gaps_superbunny_glm_evaluation_{ts_slug}.json"
     if report_path.exists():
         print(f"REFUSAL: Target report path already exists: {report_path}")
         sys.exit(1)
 
-    # Save JSON report
     report_data = {
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "firewall": FIREWALL,
@@ -297,7 +293,6 @@ def main():
         json.dump(report_data, f, indent=2)
     print(f"\n[OK] Raw JSON report saved to: {report_path}")
 
-    # Generate Markdown Synthesis
     md_lines = [
         "# MUB(6) Subgraph S2 Gap Evaluation Synthesis",
         "",
@@ -360,7 +355,6 @@ def main():
         f.write("\n".join(md_lines))
     print(f"[OK] Markdown synthesis report saved to: {md_path}")
 
-    # Exit non-zero if any call failed or was truncated
     any_failed_or_truncated = any(
         (not r["result"].get("success")) or r["result"].get("is_truncated")
         for r in results

@@ -27,7 +27,6 @@ def test_package_importable() -> None:
 
 
 def test_corpus_paths_nonempty() -> None:
-    # Governance is authoritative; no alternate corpus may conceal empty scope.
     paths = contract_corpus.corpus_paths()
     assert paths and all(path.is_relative_to(PKG) for path in paths)
 

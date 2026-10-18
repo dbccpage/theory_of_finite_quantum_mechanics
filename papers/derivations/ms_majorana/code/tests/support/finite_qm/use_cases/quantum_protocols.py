@@ -28,27 +28,27 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.domain.primi
 
 def evaluate_discrete_pythagorean_bell_chsh() -> dict[str, Any]:
     """Loop 4: Refutes local realism using exact rational Pythagorean measurement bases.
-    
+
     Singlet state |psi^-> has correlation E(a, b) = - <a, b>.
     Alice measures along standard basis:
         a1 = (0, 1), a2 = (1, 0)
     Bob measures along Pythagorean (3, 4, 5) basis:
         b1 = (-3/5, 4/5), b2 = (4/5, 3/5)
-    
+
     Both bases are strictly orthonormal in Q^2:
         ||a1||^2 = ||a2||^2 = ||b1||^2 = ||b2||^2 = 1,
         <a1, a2> = 0, <b1, b2> = (-12 + 12)/25 = 0.
-    
+
     Correlations:
         E(a1, b1) = -4/5
         E(a1, b2) = -3/5
         E(a2, b1) = +3/5
         E(a2, b2) = -4/5
-    
+
     CHSH Bell operator value:
         S = |E(a1, b1) + E(a1, b2) - E(a2, b1) + E(a2, b2)|
           = |-4/5 - 3/5 - 3/5 - 4/5| = |-14/5| = 14/5 = 2.8.
-    
+
     Since 2.8 > 2.0 (local realism bound), this refutes local realism in exact rational arithmetic.
     """
     a1 = (Fraction(0), Fraction(1))
@@ -56,7 +56,6 @@ def evaluate_discrete_pythagorean_bell_chsh() -> dict[str, Any]:
     b1 = (Fraction(-3, 5), Fraction(4, 5))
     b2 = (Fraction(4, 5), Fraction(3, 5))
 
-    # Check orthonormality
     norm_sq_a1 = a1[0]**2 + a1[1]**2
     norm_sq_a2 = a2[0]**2 + a2[1]**2
     norm_sq_b1 = b1[0]**2 + b1[1]**2
@@ -67,16 +66,14 @@ def evaluate_discrete_pythagorean_bell_chsh() -> dict[str, Any]:
     assert norm_sq_a1 == norm_sq_a2 == norm_sq_b1 == norm_sq_b2 == 1
     assert dot_a == dot_b == 0
 
-    # Correlations E(a, b) = - dot(a, b)
-    e11 = -(a1[0] * b1[0] + a1[1] * b1[1])  # -4/5
-    e12 = -(a1[0] * b2[0] + a1[1] * b2[1])  # -3/5
-    e21 = -(a2[0] * b1[0] + a2[1] * b1[1])  # +3/5
-    e22 = -(a2[0] * b2[0] + a2[1] * b2[1])  # -4/5
+    e11 = -(a1[0] * b1[0] + a1[1] * b1[1])
+    e12 = -(a1[0] * b2[0] + a1[1] * b2[1])
+    e21 = -(a2[0] * b1[0] + a2[1] * b1[1])
+    e22 = -(a2[0] * b2[0] + a2[1] * b2[1])
 
     s_frac = abs(e11 + e12 - e21 + e22)
     assert s_frac == Fraction(14, 5)
 
-    # Check all 16 local hidden variable deterministic assignments in {-1, +1}^4
     classical_values = []
     all_classical_bounded = True
     for a1_val in (-1, 1):
@@ -109,7 +106,7 @@ def derive_bell_singlet_correlation(
     v: tuple[float | Fraction, float | Fraction] | np.ndarray,
 ) -> dict[str, Any]:
     """Loop 4: Derives Bell correlation from singlet state vector and Pauli observables.
-    
+
     Singlet state: |psi^-> = 1/sqrt(2) (|01> - |10>).
     Density matrix: rho = |psi^-> <psi^-|.
     Observables: A(u) = u_x * sigma_x + u_z * sigma_z
@@ -141,32 +138,29 @@ def derive_bell_singlet_correlation(
     }
 
 
-# --------------------------------------------------------------------------- #
-# Loop 5: Pell-Pythagorean Triple Hierarchy & Tsirelson Rational Deficit
-# --------------------------------------------------------------------------- #
 
 def evaluate_pell_pythagorean_tsirelson_convergence() -> dict[str, Any]:
     """Loop 5: Evaluates the sequence of primitive Pythagorean triples converging to the Tsirelson bound.
-    
+
     The optimal continuous CHSH angle theta = pi/8 satisfies tan(pi/8) = sqrt(2) - 1.
     Pell number convergent n / m = 5 / 12 yields the primitive Pythagorean triple:
         (m^2 - n^2, 2mn, m^2 + n^2) = (144 - 25, 120, 144 + 25) = (119, 120, 169).
-    
+
     Orthonormal measurement vectors in Q^2 at scale 169:
         b1 = (-119/169, 120/169), b2 = (120/169, 119/169)
         <b1, b2> = (-119*120 + 120*119)/169^2 = 0.
         ||b1||^2 = (119^2 + 120^2)/169^2 = 28561/28561 = 1.
-    
+
     Singlet correlations with standard basis a1 = (0, 1), a2 = (1, 0):
         E(a1, b1) = -120/169
         E(a1, b2) = -119/169
         E(a2, b1) = +119/169
         E(a2, b2) = -120/169
-    
+
     Bell-CHSH value:
         S = |E(a1, b1) + E(a1, b2) - E(a2, b1) + E(a2, b2)|
           = 478 / 169 ~ 2.82840236686.
-    
+
     Comparison with bounds:
       - Classical bound: 2 (exceeded by 478/169 - 2 = 140/169 ~ 0.8284).
       - Tsirelson bound: 2 sqrt(2) ~ 2.82842712475.
@@ -179,7 +173,6 @@ def evaluate_pell_pythagorean_tsirelson_convergence() -> dict[str, Any]:
     c_sq = scale**2
     assert a_sq + b_sq == c_sq == 28561
 
-    # Exact correlations
     e11 = Fraction(-120, scale)
     e12 = Fraction(-119, scale)
     e21 = Fraction(119, scale)
@@ -208,13 +201,10 @@ def evaluate_pell_pythagorean_tsirelson_convergence() -> dict[str, Any]:
     }
 
 
-# --------------------------------------------------------------------------- #
-# Loop 6: Discrete Clifford Group Normalizer & T-Gate Orbit Departure
-# --------------------------------------------------------------------------- #
 
 def evaluate_clifford_pauli_conjugations() -> dict[str, Any]:
     """Loop 6: Verifies exact Clifford group normalizer action on the single-qubit Pauli group.
-    
+
     Generators:
         H = 1/sqrt(2) [[1, 1], [1, -1]]
         S = [[1, 0], [0, i]]
@@ -222,7 +212,7 @@ def evaluate_clifford_pauli_conjugations() -> dict[str, Any]:
         X = [[0, 1], [1, 0]]
         Y = [[0, -i], [i, 0]]
         Z = [[1, 0], [0, -1]]
-    
+
     Conjugation laws:
         H X H^dagger = Z
         H Z H^dagger = X
@@ -238,11 +228,9 @@ def evaluate_clifford_pauli_conjugations() -> dict[str, Any]:
     h_mat = HADAMARD_2
     s_mat = PHASE_S
 
-    # Unitary checks
     assert np.allclose(h_mat @ h_mat.conj().T, eye)
     assert np.allclose(s_mat @ s_mat.conj().T, eye)
 
-    # Conjugations by H
     h_x_h = h_mat @ sigma_x @ h_mat.conj().T
     h_z_h = h_mat @ sigma_z @ h_mat.conj().T
     h_y_h = h_mat @ sigma_y @ h_mat.conj().T
@@ -253,7 +241,6 @@ def evaluate_clifford_pauli_conjugations() -> dict[str, Any]:
         np.allclose(h_y_h, -sigma_y)
     )
 
-    # Conjugations by S
     s_x_s = s_mat @ sigma_x @ s_mat.conj().T
     s_y_s = s_mat @ sigma_y @ s_mat.conj().T
     s_z_s = s_mat @ sigma_z @ s_mat.conj().T
@@ -264,7 +251,6 @@ def evaluate_clifford_pauli_conjugations() -> dict[str, Any]:
         np.allclose(s_z_s, sigma_z)
     )
 
-    # Group orders
     h_squared_is_eye = bool(np.allclose(h_mat @ h_mat, eye))
     s_fourth_is_eye = bool(np.allclose(np.linalg.matrix_power(s_mat, 4), eye))
 
@@ -279,7 +265,7 @@ def evaluate_clifford_pauli_conjugations() -> dict[str, Any]:
 
 def evaluate_t_gate_orbit_departure() -> dict[str, Any]:
     """Loop 6: Demonstrates that the non-Clifford T-gate strictly departs from the Pauli group.
-    
+
     T = [[1, 0], [0, e^(i pi / 4)]].
     Conjugating X by T yields:
         T X T^dagger = 1/sqrt(2) (X + Y).
@@ -294,12 +280,10 @@ def evaluate_t_gate_orbit_departure() -> dict[str, Any]:
     zeta8 = np.exp(1j * np.pi / 4.0)
     t_mat = np.array([[1.0, 0.0], [0.0, zeta8]], dtype=complex)
 
-    # Conjugate X by T
     t_x_t = t_mat @ sigma_x @ t_mat.conj().T
     expected_superposition = (sigma_x + sigma_y) / np.sqrt(2.0)
     is_equal_superposition = bool(np.allclose(t_x_t, expected_superposition))
 
-    # Test overlap with all 16 generalized single-qubit Pauli elements {+/- I, +/- iI, +/- X, ...}
     pauli_basis = [eye, sigma_x, sigma_y, sigma_z]
     phases = [1.0, -1.0, 1.0j, -1.0j]
 
@@ -322,20 +306,17 @@ def evaluate_t_gate_orbit_departure() -> dict[str, Any]:
     }
 
 
-# --------------------------------------------------------------------------- #
-# Loop 7: Qutrit Discrete Wigner Distribution & Magic State Negativity
-# --------------------------------------------------------------------------- #
 
 def build_qutrit_phase_point_operators() -> dict[str, Any]:
     """Loop 7: Constructs the 9 discrete Gross phase-point operators on qutrit phase space F_3 x F_3.
-    
+
     Dimension d = 3.
     Shift operator: X |j> = |j + 1 mod 3>.
     Clock operator: Z |j> = omega^j |j> where omega = exp(2 pi i / 3).
     Parity operator: P |j> = |-j mod 3>.
     Phase-point operators:
         A(p, q) = X^p Z^q P Z^(-q) X^(-p).
-    
+
     Properties:
         Tr(A(p, q)) = 1
         Tr(A(p, q) A(p', q')) = 3 delta_{p p'} delta_{q q'}
@@ -353,7 +334,6 @@ def build_qutrit_phase_point_operators() -> dict[str, Any]:
         for q in range(3):
             xp = np.linalg.matrix_power(X, p)
             zq = np.linalg.matrix_power(Z, q)
-            # D(p, q) = tau^(-pq) X^p Z^q, but A(p, q) = X^p Z^q P Z^(-q) X^(-p)
             apq = xp @ zq @ P @ zq.conj().T @ xp.conj().T
             assert np.allclose(apq, apq.conj().T)
             assert np.isclose(np.trace(apq), 1.0)
@@ -372,11 +352,11 @@ def build_qutrit_phase_point_operators() -> dict[str, Any]:
 
 def evaluate_qutrit_discrete_wigner(state_type: str = "magic") -> dict[str, Any]:
     """Loop 7: Evaluates the discrete Wigner distribution of a qutrit state.
-    
+
     Supported states:
       - 'stabilizer': |0> = (1, 0, 0)^T.
       - 'magic': |M> = 1/sqrt(2) (0, 1, -1)^T (eigenstate of P with eigenvalue -1).
-    
+
     Wigner formula: W(p, q) = 1/3 Tr(rho A(p, q)).
     For |0>, W(p, q) >= 0 for all (p, q).
     For |M>, W(0, 0) = 1/3 <M| P |M> = 1/3 (-1) = -1/3 < 0,
@@ -421,38 +401,33 @@ def simulate_discrete_quantum_teleportation(
     beta: complex = 4.0 / 5.0,
 ) -> dict[str, Any]:
     r"""Loop 11: Simulates the standard 3-qubit quantum teleportation protocol with exact recovery.
-    
+
     Qubit 0 (Alice): Input state |\psi> = \alpha |0> + \beta |1>.
     Qubits 1 (Alice) & 2 (Bob): Shared Bell pair |\Phi^+> = 1/\sqrt{2} (|00> + |11>).
-    
+
     Protocol:
       1. Entangled resource preparation: CNOT(1 -> 2) (H_1 |0> \otimes |0>).
       2. Alice's Bell measurement: CNOT(0 -> 1) followed by H_0.
       3. Alice measures qubits 0 and 1, obtaining classical bits (m0, m1) \in {0, 1}^2.
       4. Bob receives (m0, m1) via classical communication channel (2 cbits).
       5. Bob applies recovery gate R(m0, m1) = Z^(m0) X^(m1) to qubit 2.
-    
+
     In all 4 measurement branches:
       - Branch (0, 0): Bob has |\psi>, R = I -> |\psi>.
       - Branch (0, 1): Bob has X|\psi>, R = X -> X^2 |\psi> = |\psi>.
       - Branch (1, 0): Bob has Z|\psi>, R = Z -> Z^2 |\psi> = |\psi>.
       - Branch (1, 1): Bob has XZ|\psi>, R = ZX -> ZX(XZ|\psi>) = |\psi>.
-    
+
     All 4 branches achieve exact fidelity F = |\langle\psi|\psi_{rec}\rangle|^2 = 1.0.
     """
-    # Normalize input state
     norm = np.sqrt(abs(alpha)**2 + abs(beta)**2)
     a = alpha / norm
     b = beta / norm
     psi_target = np.array([a, b], dtype=complex)
 
-    # Initial state |psi> \otimes |0> \otimes |0> in 3-qubit Hilbert space (dim 8)
     psi_init = np.kron(psi_target, np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
 
-    # Bell pair preparation on qubits 1 and 2
-    # H on qubit 1
     h1 = kron_all(SIGMA_I, HADAMARD_2, SIGMA_I)
-    # CNOT on qubits 1 and 2
     cnot12 = np.zeros((8, 8), dtype=complex)
     for q0 in range(2):
         for q1 in range(2):
@@ -463,8 +438,6 @@ def simulate_discrete_quantum_teleportation(
 
     state_after_bell = cnot12 @ (h1 @ psi_init)
 
-    # Alice's Bell analysis on qubits 0 and 1
-    # CNOT(0 -> 1)
     cnot01 = np.zeros((8, 8), dtype=complex)
     for q0 in range(2):
         for q1 in range(2):
@@ -473,17 +446,14 @@ def simulate_discrete_quantum_teleportation(
                 out_idx = (q0 << 2) | ((q1 ^ q0) << 1) | q2
                 cnot01[out_idx, in_idx] = 1.0
 
-    # H on qubit 0
     h0 = kron_all(HADAMARD_2, SIGMA_I, SIGMA_I)
     state_before_meas = h0 @ (cnot01 @ state_after_bell)
 
-    # Measurement projections on qubits 0 and 1
     branch_results = {}
     all_branches_fid_one = True
 
     for m0 in (0, 1):
         for m1 in (0, 1):
-            # Projector on qubits 0 and 1
             proj_01 = np.zeros((4, 4), dtype=complex)
             proj_idx = (m0 << 1) | m1
             proj_01[proj_idx, proj_idx] = 1.0
@@ -525,13 +495,10 @@ def simulate_discrete_quantum_teleportation(
     }
 
 
-# --------------------------------------------------------------------------- #
-# Loop 12: Superdense Coding & Dense Channel Capacity over Z[i]
-# --------------------------------------------------------------------------- #
 
 def simulate_discrete_superdense_coding(b1: int = 0, b0: int = 0) -> dict[str, Any]:
     r"""Loop 12: Simulates the superdense coding protocol transmitting 2 classical bits via 1 qubit.
-    
+
     Setup:
       - Alice and Bob share Bell pair |\Phi^+> = 1/\sqrt{2} (|00> + |11>).
       - Alice applies local Pauli gate U(b1, b0) = Z^(b1) X^(b0) to qubit 0:
@@ -542,17 +509,15 @@ def simulate_discrete_superdense_coding(b1: int = 0, b0: int = 0) -> dict[str, A
       - Alice sends qubit 0 to Bob.
       - Bob performs Bell basis measurement (CNOT(0 -> 1) then H_0) and measures in computational basis.
       - Decoded bits (m1, m0) match (b1, b0) with probability 1.0.
-    
+
     Orthogonality:
       The 4 unnormalized Bell state vectors in Z^4 have Gram matrix exactly 2 * I_4.
     """
     if b1 not in (0, 1) or b0 not in (0, 1):
         raise ValueError("Classical bits b1 and b0 must be in {0, 1}")
 
-    # Initial Bell pair |\Phi^+>
     phi_plus = np.array([1.0, 0.0, 0.0, 1.0], dtype=complex) / np.sqrt(2.0)
 
-    # Alice's local encoding U = Z^b1 X^b0 on qubit 0
     u_alice = np.eye(2, dtype=complex)
     if b0 == 1:
         u_alice = SIGMA_X @ u_alice
@@ -562,7 +527,6 @@ def simulate_discrete_superdense_coding(b1: int = 0, b0: int = 0) -> dict[str, A
     u_full = np.kron(u_alice, SIGMA_I)
     encoded_state = u_full @ phi_plus
 
-    # Bob's decoding circuit: CNOT(0 -> 1) followed by H_0
     cnot01 = np.array([
         [1, 0, 0, 0],
         [0, 1, 0, 0],
@@ -573,12 +537,10 @@ def simulate_discrete_superdense_coding(b1: int = 0, b0: int = 0) -> dict[str, A
     h0 = np.kron(HADAMARD_2, SIGMA_I)
     bob_state = h0 @ (cnot01 @ encoded_state)
 
-    # Probabilities in computational basis {|00>, |01>, |10>, |11>}
     probs = [float(abs(bob_state[i])**2) for i in range(4)]
     expected_idx = (b1 << 1) | b0
     success = bool(np.isclose(probs[expected_idx], 1.0, atol=1e-9))
 
-    # All 4 Bell states Gram matrix verification
     bell_vectors = {
         (0, 0): np.kron(SIGMA_I, SIGMA_I) @ phi_plus,
         (0, 1): np.kron(SIGMA_X, SIGMA_I) @ phi_plus,

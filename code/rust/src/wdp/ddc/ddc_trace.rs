@@ -66,18 +66,6 @@ pub struct StateMetrics {
     pub refusal: Option<RefusalReason>,
 }
 
-/// Host letter assignment (U03).
-///
-/// Invariants:
-/// - E requires residual == 0 AND phi1 == 0 AND gamma2 == 0.
-///   (Witness dominance: gamma2 > 0 strictly forbids E).
-/// - D requires descent with non-empty LossLedger.
-/// - M emitted on refusal or invalid witness.
-/// - C on carrier/window declared.
-/// - R on residual carried forward with phi1 unchanged.
-/// - I on integration.
-/// - Λ on licensed structural lift.
-/// - T on terminalization.
 pub fn assign_letter(before: &StateMetrics, after: &StateMetrics) -> DdcOp {
     if after.is_terminal {
         return DdcOp::Terminalize;
@@ -94,12 +82,9 @@ pub fn assign_letter(before: &StateMetrics, after: &StateMetrics) -> DdcOp {
     if after.has_loss_ledger && (after.phi1 < before.phi1 || after.gamma2 < before.gamma2) {
         return DdcOp::Descent;
     }
-    // Exact repair check: residual == 0, phi1 == 0, gamma2 == 0
     if after.residual == 0 && after.phi1 == 0 && after.gamma2 == 0 {
         return DdcOp::ExactRepair;
     }
-    // Witness dominance: if gamma2 > 0 or phi1 > 0 when residual == 0,
-    // exact repair is strictly FORBIDDEN -> emits Refusal (M)
     if after.residual == 0 && (after.gamma2 > 0 || after.phi1 > 0) {
         return DdcOp::Refusal;
     }
@@ -131,7 +116,6 @@ pub struct DdcTraceStep {
     pub step_hash: String,
 }
 
-/// Backward compatibility alias for [`DdcTraceStep`].
 pub type DdaTraceStep = DdcTraceStep;
 
 pub struct TraceLogger {

@@ -1,42 +1,16 @@
-/-
-  LggrFiniteResults.lean
-  Finite results behind FOC-035 (LGGR and the quantum observer presheaf), Mathlib-free.
-  AuthorityEffect: None.
 
-  Companion of ContextualityObstruction.lean (parity cochains, Cabello witness).
-  Proved here:
-  - B1  marginalisation is functorial: identity, composition, mass preserved, marginal weight formula
-  - B2' a global section restricts to a matching family (marginals agree on every overlap)
-  - B11 parity n-cycle: a deterministic global section exists iff the Z2 holonomy is 0
-  - B11' holonomy 1 forbids any joint measure of positive mass whose marginals are supported on
-         the parity-satisfying outcomes
-  Not proved here (still open): LP / non-contextual-fraction equivalences, Vorob'ev sufficiency
-  for acyclic covers, delta_0 = 0 iff no-signalling, rational normalisation of weights.
-  Weights are natural numbers (unnormalised counts).
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace LggrFiniteResults
 
--- ==============================================================================
--- PART 1: MARGINALISATION AS PUSHFORWARD OF FINITELY SUPPORTED MEASURES
--- ==============================================================================
 
-/-- A finitely supported measure: a list of (point, weight) entries. -/
 abbrev Meas (A : Type) := List (A × Nat)
 
-/-- Marginalisation along a restriction map f : A → B. -/
 def push {A B : Type} (f : A → B) (p : Meas A) : Meas B :=
   p.map (fun e => (f e.1, e.2))
 
-/-- Total mass. -/
 def mass {A : Type} (p : Meas A) : Nat :=
   p.foldr (fun e acc => e.2 + acc) 0
 
-/-- Weight of the outcome b: the sum of the entries whose point is b. -/
 def weightAt {B : Type} [DecidableEq B] (p : Meas B) (b : B) : Nat :=
   mass (p.filter (fun e => decide (e.1 = b)))
 
@@ -56,7 +30,6 @@ theorem mass_push {A B : Type} (f : A → B) (p : Meas A) : mass (push f p) = ma
   | nil => rfl
   | cons e t ih => simp [push, mass] at ih ⊢; exact ih
 
-/-- The marginal weight at b is the sum of the weights of the points restricting to b. -/
 theorem weightAt_push {A B : Type} [DecidableEq B] (f : A → B) (p : Meas A) (b : B) :
     weightAt (push f p) b = mass (p.filter (fun e => decide (f e.1 = b))) := by
   induction p with
@@ -65,12 +38,7 @@ theorem weightAt_push {A B : Type} [DecidableEq B] (f : A → B) (p : Meas A) (b
     unfold weightAt at ih ⊢
     by_cases h : f e.1 = b <;> simp [push, mass, h] at ih ⊢ <;> omega
 
--- ==============================================================================
--- PART 2: A GLOBAL SECTION RESTRICTS TO A MATCHING FAMILY
--- ==============================================================================
 
-/-- If two contexts restrict to the same overlap through the global carrier G, their marginals
-    agree on the overlap as measures, and in particular outcome by outcome. -/
 theorem matching_on_overlap {G AC AC' AW : Type}
     (rC : G → AC) (rC' : G → AC') (ρ : AC → AW) (ρ' : AC' → AW)
     (h : ∀ g, ρ (rC g) = ρ' (rC' g)) (q : Meas G) :
@@ -86,15 +54,10 @@ theorem matching_weights_on_overlap {G AC AC' AW : Type} [DecidableEq AW]
     weightAt (push ρ (push rC q)) w = weightAt (push ρ' (push rC' q)) w := by
   rw [matching_on_overlap rC rC' ρ ρ' h q]
 
--- ==============================================================================
--- PART 3: PARITY n-CYCLES
--- ==============================================================================
 
-/-- g satisfies the parity constraint of every context {x_i, x_{i+1 mod n}}, i < n. -/
 def IsSection (n : Nat) (b : Nat → Bool) (g : Nat → Bool) : Prop :=
   ∀ i, i < n → xor (g i) (g ((i + 1) % n)) = b i
 
-/-- Z2 holonomy: the parity of the first k targets. -/
 def holonomy (b : Nat → Bool) : Nat → Bool
   | 0 => false
   | k + 1 => xor (holonomy b k) (b k)
@@ -102,7 +65,6 @@ def holonomy (b : Nat → Bool) : Nat → Bool
 private theorem xor3 (a c d : Bool) : xor (xor a c) (xor c d) = xor a d := by
   cases a <;> cases c <;> cases d <;> rfl
 
-/-- Along a section, the prefix holonomy telescopes. -/
 private theorem holonomy_prefix (n : Nat) (b : Nat → Bool) (g : Nat → Bool)
     (hg : IsSection n b g) : ∀ k, k < n → holonomy b k = xor (g 0) (g k) := by
   intro k
@@ -118,7 +80,6 @@ private theorem holonomy_prefix (n : Nat) (b : Nat → Bool) (g : Nat → Bool)
     rw [ih hk', ← hb]
     exact xor3 (g 0) (g k) (g (k + 1))
 
-/-- PROVED THEOREM (B11): a parity n-cycle has a global section iff its holonomy is 0. -/
 theorem section_exists_iff_holonomy_zero (n : Nat) (hn : 0 < n) (b : Nat → Bool) :
     (∃ g, IsSection n b g) ↔ holonomy b n = false := by
   constructor
@@ -145,11 +106,7 @@ theorem section_exists_iff_holonomy_zero (n : Nat) (hn : 0 < n) (b : Nat → Boo
       simp only [holonomy] at h2 ⊢
       cases hh : holonomy b i <;> cases hb : b i <;> simp [hh, hb] at h2 ⊢
 
--- ==============================================================================
--- PART 4: NO POSITIVE JOINT MEASURE WHEN THE HOLONOMY IS 1
--- ==============================================================================
 
-/-- Restriction of a global assignment to context i. -/
 def restrictCtx (n : Nat) (i : Nat) (g : Nat → Bool) : Bool × Bool :=
   (g i, g ((i + 1) % n))
 
@@ -181,8 +138,6 @@ theorem exists_positive_entry {A : Type} (q : Meas A) (h : 0 < mass q) : ∃ e �
       obtain ⟨e, he, hp⟩ := ih this
       exact ⟨e, List.mem_cons_of_mem _ he, hp⟩
 
-/-- PROVED THEOREM (B11'): if the holonomy of the n-cycle is 1, no joint measure of positive mass
-    has every context marginal supported on the parity-satisfying outcomes. -/
 theorem no_joint_measure_when_holonomy_one (n : Nat) (hn : 0 < n) (b : Nat → Bool)
     (hh : holonomy b n = true) (q : Meas (Nat → Bool)) (hpos : 0 < mass q)
     (hsupp : ∀ i, i < n → ∀ w : Bool × Bool, xor w.1 w.2 ≠ b i →
@@ -202,50 +157,33 @@ theorem no_joint_measure_when_holonomy_one (n : Nat) (hn : 0 < n) (b : Nat → B
   rw [hh] at this
   exact Bool.noConfusion this
 
--- ==============================================================================
--- PART 5: INSTANCES AND AXIOM REPORT
--- ==============================================================================
 
-/-- The odd three-cycle (targets 1, 1, 1; the PR-box shape on three contexts) has holonomy 1. -/
 theorem odd_triangle_holonomy : holonomy (fun _ => true) 3 = true := by decide
 
-/-- Hence it has no deterministic global section. -/
 theorem odd_triangle_has_no_section : ¬ ∃ g, IsSection 3 (fun _ => true) g := by
   intro h
   have := (section_exists_iff_holonomy_zero 3 (by decide) (fun _ => true)).mp h
   rw [odd_triangle_holonomy] at this
   exact Bool.noConfusion this
 
-/-- The even three-cycle (targets 1, 1, 0) has holonomy 0, hence a global section. -/
 theorem even_triangle_has_section : ∃ g, IsSection 3 (fun i => decide (i < 2)) g :=
   (section_exists_iff_holonomy_zero 3 (by decide) _).mpr (by decide)
 
--- ==============================================================================
--- PART 6: FINITE LP DUAL CERTIFICATE AND RUST GATE ALIGNMENT ON THE 3-CYCLE
--- ==============================================================================
 
-/-- A deterministic global assignment on the 3-cycle. -/
 abbrev TriVertex := Bool × Bool × Bool
 
-/-- Number of odd-triangle parity equations (out of 3) satisfied by a deterministic vertex. -/
 def satCount3 (g : TriVertex) : Nat :=
   (if xor g.1 g.2.1 then 1 else 0) +
   (if xor g.2.1 g.2.2 then 1 else 0) +
   (if xor g.2.2 g.1 then 1 else 0)
 
-/-- Dual LP witness inequality on the 3-cycle: every deterministic global section satisfies
-    at most 2 of the 3 odd-parity context equations. -/
 theorem satCount3_le_two (g : TriVertex) : satCount3 g ≤ 2 := by
   rcases g with ⟨g0, g1, g2⟩
   cases g0 <;> cases g1 <;> cases g2 <;> decide
 
-/-- Weighted sum of satisfied parity equations across a finitely supported global measure `q`. -/
 def totalSatWeight3 (q : Meas TriVertex) : Nat :=
   q.foldr (fun e acc => e.2 * satCount3 e.1 + acc) 0
 
-/-- Fundamental LP duality bound on the 3-cycle: for any non-negative measure `q` over global
-    deterministic sections, the total weight on the three odd-parity context events is at most
-    `2 * mass q` (so the non-contextual fraction is bounded above by `2/3`). -/
 theorem totalSatWeight3_le_two_mul_mass (q : Meas TriVertex) :
     totalSatWeight3 q ≤ 2 * mass q := by
   induction q with
@@ -256,15 +194,11 @@ theorem totalSatWeight3_le_two_mul_mass (q : Meas TriVertex) :
     have hmul : e.2 * satCount3 e.1 ≤ e.2 * 2 := Nat.mul_le_mul_left e.2 hsat
     omega
 
-/-- Consequently, when `mass q > 0`, the odd-triangle target sum `3 * mass q` strictly exceeds
-    `totalSatWeight3 q` by at least `mass q` (the unnormalised L1 LP dual defect). -/
 theorem odd_triangle_lp_dual_defect_pos (q : Meas TriVertex) (hpos : 0 < mass q) :
     totalSatWeight3 q + mass q ≤ 3 * mass q ∧ totalSatWeight3 q < 3 * mass q := by
   have hbound := totalSatWeight3_le_two_mul_mass q
   omega
 
-/-- Deterministic LGGR gate verdict mirroring the Rust `omega_quantum_physics::lggr_presheaf`
-    and `omega_wdp::presheaf_defect` gate on a parity n-cycle with positive mass `M`. -/
 def lggrCycleGateAdmits (n : Nat) (b : Nat → Bool) (M : Nat) : Bool :=
   decide (M = 0) || !holonomy b n
 
@@ -292,3 +226,6 @@ end LggrFiniteResults
 #print axioms LggrFiniteResults.odd_triangle_lp_dual_defect_pos
 #print axioms LggrFiniteResults.lggrCycleGateAdmits_iff_section_or_zero_mass
 
+
+private def l5aProvenance : String :=
+  "Origin: lean4/LggrFiniteResults.lean Claim: push_id AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

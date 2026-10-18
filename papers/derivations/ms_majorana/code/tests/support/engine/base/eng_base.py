@@ -270,8 +270,6 @@ class PassThroughLicenseVerifier:
         if not request.license_ref or not str(request.license_ref).strip():
             return LicenseRefusal("MissingActionLicense")
 
-        # ``strict`` is retained only for source compatibility.  P3-01 makes
-        # both legacy modes registry-only; it must not be consumed or mutated.
         if request.license_ref not in self._registered_licenses:
             return LicenseRefusal("InvalidActionLicense")
         bound = self._registered_licenses[request.license_ref]

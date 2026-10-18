@@ -1,7 +1,3 @@
-//! Exact rational matrix arithmetic and field abstractions over Q and Q(i).
-//!
-//! AuthorityEffect: None.
-//! Governing Rule: RULE[user_global] (Strict Zero-Float Law).
 
 use crate::error::HolonomyError;
 use num_bigint::BigInt;
@@ -12,7 +8,6 @@ use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::fmt::{Debug, Display};
 
-/// Exact scalar trait enforcing the Zero-Float Law.
 pub trait ExactScalar:
     Clone
     + PartialEq
@@ -66,7 +61,6 @@ impl ExactScalar for Rational64 {
     }
 }
 
-/// Gaussian rational field Q(i) = { re + im * i }.
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct GaussianRational<T: ExactScalar> {
     pub re: T,
@@ -215,7 +209,6 @@ impl<T: ExactScalar> ExactScalar for GaussianRational<T> {
     }
 }
 
-/// Fallible row-major exact matrix container.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExactMatrix<T: ExactScalar> {
     pub rows: usize,
@@ -224,7 +217,6 @@ pub struct ExactMatrix<T: ExactScalar> {
 }
 
 impl<T: ExactScalar> ExactMatrix<T> {
-    /// Construct matrix with pre-allocated vector.
     pub fn try_new(rows: usize, cols: usize, data: Vec<T>) -> Result<Self, HolonomyError> {
         let expected = rows
             .checked_mul(cols)
@@ -241,7 +233,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         Ok(Self { rows, cols, data })
     }
 
-    /// Construct an n x n identity matrix under Soviet allocation discipline.
     pub fn try_identity(n: usize) -> Result<Self, HolonomyError> {
         let total = n.checked_mul(n).ok_or(HolonomyError::AllocationFailure {
             requested: usize::MAX,
@@ -261,7 +252,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         })
     }
 
-    /// Construct an identity matrix bounded by OperationLimits.
     pub fn identity(n: usize, limits: &OperationLimits) -> Result<Self, HolonomyError> {
         if n > limits.max_dimension {
             return Err(HolonomyError::AllocationFailure {
@@ -275,7 +265,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         Self::try_identity(n)
     }
 
-    /// Construct a rows x cols zero matrix under Soviet allocation discipline.
     pub fn try_zero(rows: usize, cols: usize) -> Result<Self, HolonomyError> {
         let total = rows
             .checked_mul(cols)
@@ -291,7 +280,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         Ok(Self { rows, cols, data })
     }
 
-    /// Construct a matrix from flat vector under OperationLimits.
     pub fn from_vec(
         rows: usize,
         cols: usize,
@@ -320,7 +308,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         &mut self.data[r * self.cols + c]
     }
 
-    /// Fallible matrix multiplication.
     pub fn matmul(&self, other: &Self) -> Result<Self, HolonomyError> {
         if self.cols != other.rows {
             return Err(HolonomyError::DimensionMismatch {
@@ -354,7 +341,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         })
     }
 
-    /// Matmul bounded by OperationLimits.
     pub fn matmul_with_limits(
         &self,
         other: &Self,
@@ -372,7 +358,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         self.matmul(other)
     }
 
-    /// Matrix transpose.
     pub fn transpose(&self) -> Result<Self, HolonomyError> {
         let total = self
             .rows
@@ -395,7 +380,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         })
     }
 
-    /// Conjugate transpose (Hermitian adjoint).
     pub fn conjugate_transpose(&self) -> Result<Self, HolonomyError> {
         let total = self
             .rows
@@ -418,7 +402,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         })
     }
 
-    /// Matrix trace.
     pub fn trace(&self) -> Result<T, HolonomyError> {
         if self.rows != self.cols {
             return Err(HolonomyError::DimensionMismatch {
@@ -433,7 +416,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         Ok(tr)
     }
 
-    /// Exact determinant via Gaussian elimination with pivoting.
     pub fn determinant(&self) -> Result<T, HolonomyError> {
         if self.rows != self.cols {
             return Err(HolonomyError::DimensionMismatch {
@@ -454,7 +436,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
                 return Ok(T::zero());
             }
             if pivot != i {
-                // Row swap changes sign of determinant
                 for c in 0..n {
                     mat.data.swap(i * n + c, pivot * n + c);
                 }
@@ -478,7 +459,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         Ok(det)
     }
 
-    /// Exact matrix inversion using Gauss-Jordan elimination with full pivoting.
     pub fn inverse(&self) -> Result<Self, HolonomyError> {
         if self.rows != self.cols {
             return Err(HolonomyError::DimensionMismatch {
@@ -555,7 +535,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         })
     }
 
-    /// Checks if matrix is symmetric: M = M^T.
     pub fn is_symmetric(&self) -> bool {
         if self.rows != self.cols {
             return false;
@@ -570,7 +549,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         true
     }
 
-    /// Checks if matrix is Hermitian: M = M^\dagger.
     pub fn is_hermitian(&self) -> bool {
         if self.rows != self.cols {
             return false;
@@ -585,7 +563,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         true
     }
 
-    /// Computes the exact rank via Gaussian elimination row reduction.
     pub fn rank(&self) -> usize {
         let mut mat = self.clone();
         let rows = mat.rows;
@@ -633,7 +610,6 @@ impl<T: ExactScalar> ExactMatrix<T> {
         r_lead
     }
 
-    /// Canonical SHA-256 digest of matrix entries.
     pub fn sha256_digest(&self) -> String {
         let mut hasher = Sha256::new();
         hasher.update(format!("Matrix:{}x{}:", self.rows, self.cols).as_bytes());
@@ -654,5 +630,4 @@ mod hex {
     }
 }
 
-/// Type alias for exact BigRational matrix.
 pub type RationalMatrix = ExactMatrix<BigRational>;

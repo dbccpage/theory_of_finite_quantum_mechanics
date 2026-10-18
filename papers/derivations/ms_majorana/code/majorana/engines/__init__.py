@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
 
 from .terminalizer import terminalize
 from .exact_algebraic_verifier import (

@@ -1,21 +1,9 @@
-//! # Authority Gap, Counterfeit Descent, and Process Provenance (FOC-005)
-//!
-//! Sovereign Rust mathematical and architectural implementation of Paper 005:
-//! *The Authority Gap: Counterfeit Descent, Layered Control, and Process Provenance in Agentic AI*.
-//!
-//! Under Anomalon and CODA doctrine:
-//! - All mathematical derivations and checks carry `AuthorityEffect::None`.
-//! - Discrete exactness is guaranteed using `num_rational::BigRational`.
-//! - Implements the Seven-Layer AI Authority Control Stack, length-delimited byte encodings,
-//!   exact rational Negative Gluing Defect (NGD), Authority Coverage Ratio (ACR),
-//!   Rate Asymmetry Backlog accumulation, and the Exactness Fraud Criterion.
 
 use num_rational::BigRational;
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 
-/// Permitted terminal statuses under a declared observer.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum TerminalStatus {
     ProposalOnly,
@@ -37,7 +25,6 @@ impl TerminalStatus {
     }
 }
 
-/// Length-delimited byte encoding for a single string: `<len>:<utf8_bytes>`.
 pub fn canonical_encode_string(s: &str) -> Vec<u8> {
     let raw = s.as_bytes();
     let mut out = format!("{}:", raw.len()).into_bytes();
@@ -45,7 +32,6 @@ pub fn canonical_encode_string(s: &str) -> Vec<u8> {
     out
 }
 
-/// Length-delimited byte encoding for a sequence of strings: `<tag>[<count>]:<item1><item2>...;`.
 pub fn canonical_encode_sequence(tag: &str, items: &[String]) -> Vec<u8> {
     let mut out = format!("{}[{}]:", tag, items.len()).into_bytes();
     for item in items {
@@ -55,7 +41,6 @@ pub fn canonical_encode_sequence(tag: &str, items: &[String]) -> Vec<u8> {
     out
 }
 
-/// Layer 1: Generated option, plan, or candidate output. Carries zero authority.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Proposal {
     pub proposal_id: String,
@@ -64,7 +49,6 @@ pub struct Proposal {
     pub context: String,
 }
 
-/// Layer 2: Tamper-evident custody record of actions, sources, and tool calls.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TraceRecord {
     pub trace_id: String,
@@ -177,7 +161,6 @@ impl TraceRecord {
     }
 }
 
-/// Layer 3: Declared finite evaluation specification.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ObserverPacket {
     pub carrier: String,
@@ -189,7 +172,6 @@ pub struct ObserverPacket {
     pub closure_diagnostics: Vec<String>,
 }
 
-/// Layer 4: Explicit ledger of unresolved defects, unverified scope, and losses.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Residual {
     pub defect_mass: BigRational,
@@ -205,7 +187,6 @@ impl Residual {
     }
 }
 
-/// Layer 5: Accountable decision made by a designated institutional decider.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Terminal {
     pub status: TerminalStatus,
@@ -218,7 +199,6 @@ pub struct Terminal {
     pub tolerated_refusal_reasons: Vec<String>,
 }
 
-/// Layer 6: Proof that declared descent was executed across layers 1-5.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Attestation {
     pub descent_executed: bool,
@@ -226,7 +206,6 @@ pub struct Attestation {
     pub replay_receipt: Option<String>,
 }
 
-/// Layer 7: Legal, organizational, and regulatory standing.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Institution {
     pub entity_id: String,
@@ -235,7 +214,6 @@ pub struct Institution {
     pub appeal_path: String,
 }
 
-/// Encapsulation of the complete seven-layer authority descent pipeline.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AuthorityPacket {
     pub proposal: Proposal,
@@ -251,18 +229,15 @@ impl AuthorityPacket {
     pub fn compute_canonical_binding_record(&self) -> Vec<u8> {
         let mut out = Vec::new();
         out.extend_from_slice(b"authority_packet_binding_v1;");
-        // Layer 1: Proposal
         out.extend(canonical_encode_string(&self.proposal.proposal_id));
         out.extend(canonical_encode_string(&self.proposal.generator_id));
         out.extend(canonical_encode_string(&self.proposal.payload));
         out.extend(canonical_encode_string(&self.proposal.context));
-        // Layer 2: Trace
         out.extend(canonical_encode_string(&self.trace.trace_id));
         out.extend(canonical_encode_sequence("actions", &self.trace.actions));
         out.extend(canonical_encode_sequence("tool_calls", &self.trace.tool_calls));
         out.extend(canonical_encode_sequence("sources", &self.trace.sources));
         out.extend(canonical_encode_string(&self.trace.content_hash));
-        // Layer 3: Observer
         out.extend(canonical_encode_string(&self.observer.carrier));
         out.extend(canonical_encode_string(&self.observer.gauge));
         out.extend(canonical_encode_sequence("local_states", &self.observer.local_states));
@@ -270,11 +245,9 @@ impl AuthorityPacket {
         out.extend(canonical_encode_sequence("defects", &self.observer.defects));
         out.extend(canonical_encode_sequence("admissible_repairs", &self.observer.admissible_repairs));
         out.extend(canonical_encode_sequence("closure_diagnostics", &self.observer.closure_diagnostics));
-        // Layer 4: Residual
         out.extend(canonical_encode_string(&self.residual.defect_mass.to_string()));
         out.extend(canonical_encode_sequence("unverified_scope", &self.residual.unverified_scope));
         out.extend(canonical_encode_sequence("refusal_reasons", &self.residual.refusal_reasons));
-        // Layer 5: Terminal
         out.extend(canonical_encode_string(self.terminal.status.as_str()));
         out.extend(canonical_encode_string(&self.terminal.decider_id));
         out.extend(canonical_encode_string(if self.terminal.is_human_or_delegated_body { "human" } else { "model" }));
@@ -283,10 +256,8 @@ impl AuthorityPacket {
         out.extend(canonical_encode_string(&self.terminal.tolerated_defect_mass.to_string()));
         out.extend(canonical_encode_sequence("tolerated_unverified_scope", &self.terminal.tolerated_unverified_scope));
         out.extend(canonical_encode_sequence("tolerated_refusal_reasons", &self.terminal.tolerated_refusal_reasons));
-        // Layer 6: Attestation
         out.extend(canonical_encode_string(if self.attestation.descent_executed { "descent_executed" } else { "descent_not_executed" }));
         out.extend(canonical_encode_string(self.attestation.replay_receipt.as_deref().unwrap_or("")));
-        // Layer 7: Institution
         out.extend(canonical_encode_string(&self.institution.entity_id));
         out.extend(canonical_encode_string(&self.institution.governing_jurisdiction));
         out.extend(canonical_encode_string(&self.institution.accountable_officer));
@@ -304,22 +275,18 @@ impl AuthorityPacket {
     pub fn validate_layers(&self) -> Result<(), Vec<String>> {
         let mut errors = Vec::new();
 
-        // Invariant 1: Proposal generator cannot be the terminal decider (Self-Critique Non-Authority)
         if self.proposal.generator_id == self.terminal.decider_id {
             errors.push("Proposal generator cannot be the terminal decider (Self-Critique Non-Authority Violation).".to_string());
         }
 
-        // Invariant 2: Terminal authority requires accountable decider
         if !self.terminal.is_human_or_delegated_body {
             errors.push("Terminal decision must be governed by an accountable human or institutional body.".to_string());
         }
 
-        // Invariant 3: Trace custody and proposal binding integrity
         if !self.trace.verify_content_hash(Some(&self.proposal)) {
             errors.push("Trace custody failure: Trace content_hash does not match canonical length-delimited record bound to proposal.".to_string());
         }
 
-        // Invariant 4: Exactness Fraud Criterion & Authorized Status checks
         if self.terminal.status == TerminalStatus::AuthorizedUnderObserver {
             if !self.attestation.descent_executed {
                 errors.push("Counterfeit descent: Authorized status claimed without executed descent attestation.".to_string());
@@ -391,7 +358,6 @@ impl AuthorityPacket {
     }
 }
 
-/// Evaluate structural consistency constraints across the authority packet (Exactness Fraud Criterion).
 pub fn evaluate_exactness_fraud_criterion(packet: &AuthorityPacket) -> (bool, String) {
     match packet.validate_layers() {
         Ok(()) => (
@@ -403,16 +369,12 @@ pub fn evaluate_exactness_fraud_criterion(packet: &AuthorityPacket) -> (bool, St
     }
 }
 
-/// Evaluation outcome along a compositional path.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GluingEvaluation {
     pub local_green: bool,
     pub global_red: bool,
 }
 
-/// Calculate the Negative Gluing Defect (NGD):
-/// `NGD = N(local_green and global_red) / N(local_green)`
-/// Returns exact `BigRational`, or `None` when local_green count is zero.
 pub fn calculate_ngd(path_evaluations: &[GluingEvaluation]) -> Option<BigRational> {
     let mut local_green_count = 0u64;
     let mut defect_count = 0u64;
@@ -433,9 +395,6 @@ pub fn calculate_ngd(path_evaluations: &[GluingEvaluation]) -> Option<BigRationa
     }
 }
 
-/// Calculate the Authority Coverage Ratio (ACR) over a discrete cohort/window W:
-/// `ACR = N_W(verified_packets) / N_W(proposals_generated)`
-/// Returns `Ok(None)` when `proposal_count == 0`.
 pub fn calculate_acr(verified_count: u64, proposal_count: u64) -> Result<Option<BigRational>, String> {
     if verified_count > proposal_count {
         return Err(format!(
@@ -453,8 +412,6 @@ pub fn calculate_acr(verified_count: u64, proposal_count: u64) -> Result<Option<
     }
 }
 
-/// Calculate instantaneous Authority Coverage Ratio from rates:
-/// `ACR_rate = r_V / r_G`
 pub fn calculate_acr_rate(
     rate_verification: BigRational,
     rate_generation: BigRational,
@@ -468,8 +425,6 @@ pub fn calculate_acr_rate(
     Ok(rate_verification / rate_generation)
 }
 
-/// Calculate authority backlog accumulation over a given time duration:
-/// `Delta U = (r_G - r_V) * Delta t`
 pub fn calculate_backlog_accumulation(
     rate_generation: BigRational,
     rate_verification: BigRational,

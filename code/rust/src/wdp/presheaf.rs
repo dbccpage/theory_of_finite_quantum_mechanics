@@ -1,11 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Chapter 11: Covering sieves, local report sections, restriction maps,
-//! sheaf descent solver, and certified SheafGluingObstruction.
-//! Implements WDP-CH11-D01 for the function sheaf on a finite discrete space.
-//! Objects are subsets of the carrier, arrows are inclusions, covers have union
-//! equal to their target, and restriction is ordinary function restriction.
-//! This does not settle WDP-CH11-O01 for general observer presentations with
-//! partial transport maps or constrained reports.
 
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
@@ -15,11 +7,10 @@ use omega_category_theory::finite_report_descent::{
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// A finite covering sieve U = {U_i} of a finite carrier X.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CoveringSieve {
     pub carrier: BTreeSet<String>,
-    pub contexts: BTreeMap<String, BTreeSet<String>>, // context_id -> points in U_i
+    pub contexts: BTreeMap<String, BTreeSet<String>>,
 }
 
 impl CoveringSieve {
@@ -53,11 +44,10 @@ impl CoveringSieve {
     }
 }
 
-/// A local observation report section s_i: U_i -> Report.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LocalReportSection {
     pub context_id: String,
-    pub assignments: BTreeMap<String, String>, // point -> value
+    pub assignments: BTreeMap<String, String>,
 }
 
 impl LocalReportSection {
@@ -77,7 +67,6 @@ impl LocalReportSection {
     }
 }
 
-/// Typed witness of local incompatibility or gluing obstruction across covering overlaps.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SheafGluingObstruction {
     pub context_i: String,
@@ -88,7 +77,6 @@ pub struct SheafGluingObstruction {
     pub reason: String,
 }
 
-/// WDP-CH11-D01: Observer descent receipt certifying global sheaf gluing or typed obstruction.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DescentReceipt {
     pub sieve: CoveringSieve,
@@ -99,17 +87,10 @@ pub struct DescentReceipt {
     pub authority_effect: AuthorityEffect,
 }
 
-/// Evaluates local report compatibility across covering overlaps.
-///
-/// If all local report sections agree on all overlaps U_i cap U_j, constructs the unique
-/// global report section s : X -> Report (the sheaf condition).
-/// If any pairwise overlap disagrees, certifies the exact SheafGluingObstruction.
 pub fn solve_observer_descent(
     sieve: &CoveringSieve,
     local_sections: &[LocalReportSection],
 ) -> Result<DescentReceipt, WdpError> {
-    // Public fields and serde allow construction without `new`; recheck the
-    // coverage at the boundary before accepting an executable receipt.
     CoveringSieve::new(sieve.carrier.clone(), sieve.contexts.clone())?;
     let mut sec_map: BTreeMap<String, &LocalReportSection> = BTreeMap::new();
     for sec in local_sections {
@@ -126,7 +107,6 @@ pub fn solve_observer_descent(
         sec_map.insert(sec.context_id.clone(), sec);
     }
 
-    // Verify all sieve contexts are covered with matching domains
     for (cid, pts) in &sieve.contexts {
         let sec = sec_map.get(cid).ok_or_else(|| WdpError::InvalidInput {
             detail: format!("missing section for context {cid}"),
@@ -140,7 +120,6 @@ pub fn solve_observer_descent(
         }
     }
 
-    // Pairwise overlap compatibility check
     let contexts: Vec<String> = sieve.contexts.keys().cloned().collect();
     for i in 0..contexts.len() {
         for j in (i + 1)..contexts.len() {
@@ -176,7 +155,6 @@ pub fn solve_observer_descent(
         }
     }
 
-    // Glued unique global section
     let mut global_dict: BTreeMap<String, String> = BTreeMap::new();
     for (cid, _) in &sieve.contexts {
         let sec = sec_map[cid];
@@ -195,9 +173,6 @@ pub fn solve_observer_descent(
     })
 }
 
-/// Ordinary function restriction on the finite subset site. Identity and
-/// composition follow from selecting precisely the keys in the target subset.
-/// Missing keys are rejected instead of producing a partial report.
 pub fn restrict_report(
     report: &BTreeMap<String, String>,
     subset: &BTreeSet<String>,
@@ -216,17 +191,11 @@ pub fn restrict_report(
         .collect()
 }
 
-/// Verify a claimed global section directly against all supplied restrictions.
-/// The domain must be exactly X and the local family must have one correctly
-/// typed section per covering context. With a valid cover, any two accepted
-/// candidates agree at each point of X (choose a context containing that point),
-/// which is the uniqueness half of the finite function-sheaf gluing law.
 pub fn verify_global_report(
     sieve: &CoveringSieve,
     local_sections: &[LocalReportSection],
     candidate: &BTreeMap<String, String>,
 ) -> Result<bool, WdpError> {
-    // Replay input typing and compatibility independently of receipt flags.
     let checked = solve_observer_descent(sieve, local_sections)?;
     if !checked.is_compatible || candidate.keys().cloned().collect::<BTreeSet<_>>() != sieve.carrier
     {
@@ -241,9 +210,6 @@ pub fn verify_global_report(
     Ok(true)
 }
 
-/// Replay all mathematical fields of an untrusted descent receipt. Failure is
-/// a false verification result; malformed cover or section data is a typed error.
-/// No receipt can acquire an authority effect through this verifier.
 pub fn verify_descent_receipt(receipt: &DescentReceipt) -> Result<bool, WdpError> {
     let checked = solve_observer_descent(&receipt.sieve, &receipt.local_sections)?;
     Ok(receipt.authority_effect == AuthorityEffect::None
@@ -252,13 +218,6 @@ pub fn verify_descent_receipt(receipt: &DescentReceipt) -> Result<bool, WdpError
         && receipt.obstruction == checked.obstruction)
 }
 
-/// General finite presheaves are a different decision problem from the
-/// function sheaf above: after the category owner
-/// `omega_category_theory::finite_report_descent::FiniteReportPresheaf` has
-/// checked the functor laws, the global sections restricting to a matching
-/// family can number zero, one or many, and empty intersections are compared
-/// like any other overlap. This returns the owner's outcome unchanged; an
-/// incompatible family or a malformed cover is the owner's typed refusal.
 pub fn general_presheaf_descent(
     presheaf: &FiniteReportPresheaf,
     target: u64,
@@ -326,7 +285,6 @@ mod tests {
         );
         let sieve = CoveringSieve::new(carrier, contexts).unwrap();
 
-        // Overlap disagreement on x1: "A" vs "B"
         let s0 = LocalReportSection::new(
             "U0".to_string(),
             BTreeMap::from([

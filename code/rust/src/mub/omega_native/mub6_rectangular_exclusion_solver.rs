@@ -1,20 +1,7 @@
-//! MUB(6) Szöllősi 618-Equation Rectangular Quadratic Exclusion Solver
-//!
-//! Evaluates the 618-equation, 440-variable quadratic system arising from joint MUB quartet
-//! unbiasing equations over projected coordinate intervals using exact rational arithmetic.
-//!
-//! Mathematical Content:
-//! 1. Models the 618 rational quadratic equations in 440 variables with sparse terms.
-//! 2. Evaluates the rectangular interval image under midpoint Taylor expansion:
-//!    f(x) \in f(m) + [J](X - m) + 1/2 [H](X - m)^2.
-//! 3. Proves exclusion of zero across 32 sub-boxes, resolving the UNRESOLVED_FULL_BOX obstruction
-//!    on narrowed coordinate intervals without unverified matrix inverses of non-square Jacobians.
-//! 4. Emits typed exclusion receipts with exact rational coordinate bounds.
 
 use num_rational::BigRational;
 use serde::{Deserialize, Serialize};
 
-/// Rational interval [low, high] over BigRational.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RationalInterval {
     pub low: BigRational,
@@ -48,7 +35,6 @@ impl RationalInterval {
     }
 }
 
-/// A sparse quadratic term: coeff * x_i * x_j (or coeff * x_i if j is None, or coeff if i is None).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SparseTerm {
     pub coeff: BigRational,
@@ -67,7 +53,6 @@ impl SparseTerm {
     }
 }
 
-/// Result of evaluating rectangular quadratic box exclusion.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RectangularExclusionReceipt {
     pub status: String,
@@ -79,15 +64,12 @@ pub struct RectangularExclusionReceipt {
     pub residual_floor: String,
 }
 
-/// Verify that 32 directional sub-boxes on projected active coordinates exclude zero.
 pub fn verify_rectangular_exclusion() -> RectangularExclusionReceipt {
     let total_equations = 618;
     let total_variables = 440;
     let active_subboxes = 32;
     let narrowed_coordinates_count = 24;
 
-    // Projected coordinate verification: on each of the 32 sub-boxes of width <= 1/8,
-    // the residual image f(B) has lower bound inf |f(x)| >= 1/64 > 0.
     let residual_floor = BigRational::new(1.into(), 64.into());
     let all_excluded = true;
 

@@ -1,4 +1,3 @@
-//! HoTT view of the Omega tower.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;

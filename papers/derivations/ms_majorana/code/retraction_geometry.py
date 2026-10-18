@@ -335,7 +335,6 @@ def higher_order_chart_gauge_instance(
     n_symbolic = normal_residual_field_symbolic(generator)
     dn_symbolic = normal_residual_jacobian_symbolic(generator)
 
-    # Induce cochain:
     cochain_blocks = []
     for pt in pts:
         x_q = pt[0]
@@ -343,10 +342,9 @@ def higher_order_chart_gauge_instance(
         cochain_blocks.append(n_pt[2:3, :])
     observed_cochain = Matrix.vstack(*cochain_blocks)
 
-    # 1st order columns: dn/dx, dn/dy evaluated at pts
     col_x_blocks = []
     col_y_blocks = []
-    col_x3_blocks = [] # weighted field x*partial_x
+    col_x3_blocks = []
     for pt in pts:
         x_q = pt[0]
         col_x = Matrix([0, 0, -1 - 6 * x_q**2])

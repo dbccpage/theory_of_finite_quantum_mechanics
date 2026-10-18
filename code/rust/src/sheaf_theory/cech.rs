@@ -1,6 +1,3 @@
-//! Čech cochain complex and Čech cohomology H^p(U, F) (SH-16, SH-17, SH-18, SH-24).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::OpenSet;
 use num_rational::Ratio;
@@ -8,11 +5,9 @@ use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
-/// A Čech p-cochain assigning rational values to (p+1)-fold intersections of cover elements.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CechCochain {
     pub degree: usize,
-    /// Keys are sorted tuples of cover indices, e.g. (0,) for 0-cochain, (0, 1) for 1-cochain.
     pub data: BTreeMap<Vec<usize>, Ratio<i64>>,
 }
 
@@ -33,15 +28,12 @@ impl CechCochain {
     }
 }
 
-/// Compute Čech coboundary delta: C^p -> C^{p+1} over rational scalar sections (SH-16):
-/// (delta omega)(i_0, ..., i_{p+1}) = sum_{k=0}^{p+1} (-1)^k omega(i_0, ..., \hat{i}_k, ..., i_{p+1}).
 pub fn cech_coboundary_rational(cochain: &CechCochain, cover: &[OpenSet]) -> CechCochain {
     let p = cochain.degree;
     let p_next = p + 1;
     let n = cover.len();
     let mut next_data = BTreeMap::new();
 
-    // Helper to generate all combinations of size (p_next + 1)
     fn combinations(n: usize, k: usize) -> Vec<Vec<usize>> {
         if k == 0 {
             return vec![vec![]];
@@ -63,7 +55,6 @@ pub fn cech_coboundary_rational(cochain: &CechCochain, cover: &[OpenSet]) -> Cec
     for mut indices in all_combos {
         indices.sort();
 
-        // Check if multi-intersection is non-empty
         let mut inter = cover[indices[0]].clone();
         for &idx in &indices[1..] {
             inter = inter.intersection(&cover[idx]);
@@ -72,7 +63,6 @@ pub fn cech_coboundary_rational(cochain: &CechCochain, cover: &[OpenSet]) -> Cec
             continue;
         }
 
-        // Alternating sum over faces
         let mut val = Ratio::from_integer(0);
         for k in 0..=p_next {
             let mut face_indices = indices.clone();
@@ -91,7 +81,6 @@ pub fn cech_coboundary_rational(cochain: &CechCochain, cover: &[OpenSet]) -> Cec
     CechCochain::new(p_next, next_data)
 }
 
-/// Compute Čech zeroth cohomology H^0(U, F) = ker(delta^0) (SH-17).
 pub fn compute_cech_h0(cover: &[OpenSet], constant_val: Ratio<i64>) -> Option<CechCochain> {
     let mut data = BTreeMap::new();
     for i in 0..cover.len() {
@@ -106,18 +95,13 @@ pub fn compute_cech_h0(cover: &[OpenSet], constant_val: Ratio<i64>) -> Option<Ce
     }
 }
 
-/// Result of evaluating Čech first cohomology as a gluing obstruction space (SH-18).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CechH1Result {
-    /// Dimension of the nerve's H1 over Q, independently of the supplied class.
     pub dim_h1: usize,
-    /// Whether the supplied cocycle represents the zero class.
     pub is_trivial: bool,
     pub representative_obstruction: Option<CechCochain>,
 }
 
-/// Evaluate whether a 1-cocycle g_{ij} is a coboundary h_j - h_i.
-/// If not, H^1 is non-trivial, witnessing a genuine topological gluing obstruction!
 pub fn compute_cech_h1_obstruction(
     cover: &[OpenSet],
     transition_1_cocycle: BTreeMap<Vec<usize>, Ratio<i64>>,
@@ -128,7 +112,6 @@ pub fn compute_cech_h1_obstruction(
 
     let n = cover.len();
     let mut simplices = Vec::new();
-    // H1 depends only on the nerve's two-skeleton, with constant Q coefficients.
     for i in 0..n {
         if cover[i].is_empty() {
             continue;
@@ -173,8 +156,6 @@ pub fn compute_cech_h1_obstruction(
     })
 }
 
-/// Ask the supplied H1 oracle about every nonempty finite intersection.
-/// H1 vanishing alone does not establish the full Leray acyclicity condition.
 pub fn check_h1_vanishing_on_intersections(
     cover: &[OpenSet],
     h1_vanishing_oracle: impl Fn(&OpenSet) -> bool,
@@ -210,16 +191,13 @@ mod tests {
         let u2 = OpenSet::new(vec!["2", "0"]);
         let cover = vec![u0, u1, u2];
 
-        // 0-cochain
         let mut data0 = BTreeMap::new();
         data0.insert(vec![0], Ratio::from_integer(1));
         data0.insert(vec![1], Ratio::from_integer(2));
         data0.insert(vec![2], Ratio::from_integer(5));
         let c0 = CechCochain::new(0, data0);
 
-        // delta^0
         let c1 = cech_coboundary_rational(&c0, &cover);
-        // delta^1 (must be 0 identically: delta^2 = 0!)
         let c2 = cech_coboundary_rational(&c1, &cover);
         assert!(c2.is_zero());
     }
@@ -231,11 +209,10 @@ mod tests {
         let u2 = OpenSet::new(vec!["2", "0"]);
         let cover = vec![u0, u1, u2];
 
-        // Non-trivial 1-cocycle with non-zero cycle sum around triangle
         let mut data1 = BTreeMap::new();
         data1.insert(vec![0, 1], Ratio::from_integer(1));
         data1.insert(vec![1, 2], Ratio::from_integer(1));
-        data1.insert(vec![0, 2], Ratio::from_integer(0)); // so (2, 0) gives -0
+        data1.insert(vec![0, 2], Ratio::from_integer(0));
 
         let res = compute_cech_h1_obstruction(&cover, data1).unwrap();
         assert!(!res.is_trivial);

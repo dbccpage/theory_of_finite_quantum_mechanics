@@ -46,7 +46,7 @@ class ZolotarevRationalApproximation:
     @staticmethod
     def compute(epsilon: float, degree_m: int) -> ZolotarevCoefficients:
         """Computes optimal Zolotarev rational minimax approximation of sgn(x) on [eps, 1].
-        
+
         Uses Jacobi elliptic functions with modulus k = sqrt(1 - eps^2) to compute
         exact equioscillating poles and zeros.
         """
@@ -64,10 +64,9 @@ class ZolotarevRationalApproximation:
             c_r = float(kp**2 * (sn / cn)**2)
             c.append(c_r)
 
-        poles = [c[2 * l - 2] for l in range(1, m + 1)]  # c_1, c_3, ..., c_{2m-1}
-        zeros = [c[2 * l - 1] for l in range(1, m + 1)]  # c_2, c_4, ..., c_{2m}
+        poles = [c[2 * l - 2] for l in range(1, m + 1)]
+        zeros = [c[2 * l - 1] for l in range(1, m + 1)]
 
-        # Determine optimal scale factor D on [eps, 1]
         x_test = np.linspace(eps, 1.0, 500)
         num = np.prod([x_test**2 + zeros[l] for l in range(m)], axis=0)
         den = np.prod([x_test**2 + poles[l] for l in range(m)], axis=0)
@@ -76,8 +75,6 @@ class ZolotarevRationalApproximation:
         max_v = float(np.max(vals))
         D = 2.0 / (min_v + max_v)
 
-        # Partial fraction residues:
-        # R(x)/x = D * prod(x^2 + zeros) / prod(x^2 + poles) = D + sum_l residues[l] / (x^2 + poles[l])
         residues = []
         for k_idx in range(m):
             p_k = poles[k_idx]
@@ -86,7 +83,6 @@ class ZolotarevRationalApproximation:
             res_k = float(D * (num_k / den_k))
             residues.append(res_k)
 
-        # Theoretical error bound: delta_m = 2 * ((1 - sqrt(kp)) / (1 + sqrt(kp)))^(2m)
         ratio = (1.0 - math.sqrt(kp)) / (1.0 + math.sqrt(kp))
         theo_err = float(2.0 * (ratio ** (2 * m)))
 
@@ -109,7 +105,7 @@ class ZolotarevRationalApproximation:
 
 class MultiShiftCGSolver:
     """Multi-shift Conjugate Gradient solver (Frommer 2003 / Jegerlehner 1996).
-    
+
     Solves (A + shift_l * I) x_l = b simultaneously for all l in a single Krylov run,
     requiring only 1 matrix-vector multiplication with A per iteration.
     """
@@ -123,7 +119,7 @@ class MultiShiftCGSolver:
         max_iter: int = 300,
     ) -> Tuple[List[np.ndarray], int, float]:
         """Solves (A + shift_l * I) x_l = b simultaneously.
-        
+
         Returns:
             (solutions, iterations, max_relative_residual)
         """
@@ -153,7 +149,6 @@ class MultiShiftCGSolver:
                 break
             alpha = rho / pAp
 
-            # Shifted solution updates
             for l in range(m):
                 s = shifts[l]
                 if k == 0:
@@ -185,12 +180,10 @@ class MultiShiftCGSolver:
             alpha_prev = alpha
             beta_prev = beta
 
-            # Check residual
             rel_res = math.sqrt(rho) / b_norm
             if rel_res < tol:
                 break
 
-        # Compute max relative residual across shifted systems
         max_res = 0.0
         I = np.eye(n, dtype=complex)
         for l in range(m):
@@ -292,13 +285,11 @@ class CdtZolotarevOverlapEvaluator:
                 edge_vecs[(i, j)] = vec
                 edge_vecs[(j, i)] = -vec
 
-        # Antenna link from 3 to 4
         edges.append((3, 4))
         vec_34 = np.array([0.0, 0.0, 0.0, 1.0])
         edge_vecs[(3, 4)] = vec_34
         edge_vecs[(4, 3)] = -vec_34
 
-        # Boundary link from 4 to 5 (vertex 5 has degree 1)
         edges.append((4, 5))
         vec_45 = np.array([1.0, 0.0, 0.0, 0.0])
         edge_vecs[(4, 5)] = vec_45
@@ -324,7 +315,7 @@ class CdtZolotarevOverlapEvaluator:
         deflation_threshold: float = 0.05,
     ) -> Dict[str, object]:
         """Constructs rational Zolotarev overlap Dirac operator D_rat.
-        
+
         Returns dict with D_rat, Gamma_5, residuals, timing, and deflation data.
         """
         t0 = time.perf_counter()
@@ -332,19 +323,16 @@ class CdtZolotarevOverlapEvaluator:
         a = graph.lattice_spacing_a
         n_dof = 4 * graph.num_vertices
 
-        # Determine spectral boundaries of H_w
         eigenvals, eigenvecs = np.linalg.eigh(H_w)
         abs_evals = np.abs(eigenvals)
         lambda_min = float(np.min(abs_evals))
         lambda_max = float(np.max(abs_evals))
         cond_kappa = lambda_max / max(1e-12, lambda_min)
 
-        # Rescale H_w to have norm <= 1.0
         h_scale = lambda_max
         H_tilde = H_w / h_scale
         eps_scaled = lambda_min / h_scale
 
-        # Deflation handling
         low_mode_indices = [i for i, val in enumerate(abs_evals) if val < deflation_threshold]
         num_deflated = len(low_mode_indices) if deflate_modes else 0
 
@@ -352,7 +340,6 @@ class CdtZolotarevOverlapEvaluator:
         H_sq = H_tilde @ H_tilde
 
         if deflate_modes and num_deflated > 0:
-            # Deflate low modes
             V_low = eigenvecs[:, low_mode_indices]
             evals_low = eigenvals[low_mode_indices]
             P_low = V_low @ V_low.conj().T
@@ -360,14 +347,11 @@ class CdtZolotarevOverlapEvaluator:
 
             sgn_low = V_low @ np.diag(np.sign(evals_low)) @ V_low.conj().T
 
-            # Effective threshold on high subspace
             high_evals = [abs_evals[i] for i in range(len(abs_evals)) if i not in low_mode_indices]
             eps_high = (min(high_evals) if high_evals else deflation_threshold) / h_scale
 
             zolo = ZolotarevRationalApproximation.compute(eps_high, degree_m)
 
-            # High space rational approximation
-            # Apply partial fractions
             inv_sum = np.zeros((n_dof, n_dof), dtype=complex)
             for res, p in zip(zolo.residues, zolo.poles):
                 inv_sum += res * np.linalg.inv(H_sq + p * I)
@@ -381,7 +365,6 @@ class CdtZolotarevOverlapEvaluator:
             shifts = zolo.poles
 
             if use_multishift:
-                # Solve shifted systems column by column using MultiShift CG
                 inv_sum = np.zeros((n_dof, n_dof), dtype=complex)
                 total_iters = 0
                 max_shift_res = 0.0
@@ -395,7 +378,6 @@ class CdtZolotarevOverlapEvaluator:
                         inv_sum[:, col] += res * x_sols[l]
                 cg_iters = total_iters // n_dof
             else:
-                # Direct inversion for testing
                 inv_sum = np.zeros((n_dof, n_dof), dtype=complex)
                 for res, p in zip(zolo.residues, zolo.poles):
                     inv_sum += res * np.linalg.inv(H_sq + p * I)
@@ -404,11 +386,9 @@ class CdtZolotarevOverlapEvaluator:
 
             sgn_Hw = H_tilde @ (zolo.constant_d * I + inv_sum)
 
-        # Rational overlap Dirac operator: D_rat = (1/a)(I + Gamma_5 sgn_Hw)
         D_rat = (1.0 / a) * (I + Gamma_5 @ sgn_Hw)
         solve_time_ms = (time.perf_counter() - t0) * 1000.0
 
-        # Evaluate Ginsparg-Wilson residual
         anticomm = D_rat @ Gamma_5 + Gamma_5 @ D_rat
         quad = a * D_rat @ Gamma_5 @ D_rat
         gw_residual = float(np.max(np.abs(anticomm - quad)))
@@ -431,16 +411,14 @@ class CdtZolotarevOverlapEvaluator:
         self, graph: SimplicialComplexGraph, m0: float = 1.2, r: float = 1.0, degree_m: int = 8
     ) -> Tuple[float, float, float]:
         """Compares computation time of dense spectral diagonalization vs multi-shift CG.
-        
+
         Returns:
             (dense_time_ms, multishift_time_ms, speedup_ratio)
         """
-        # 1. Dense spectral solve
         t0 = time.perf_counter()
         _ = self.overlap_evaluator.build_overlap_dirac_operator(graph, m0, r)
         dense_time = (time.perf_counter() - t0) * 1000.0
 
-        # 2. Rational multi-shift solve
         res_multi = self.evaluate_rational_overlap_operator(
             graph, m0, r, degree_m=degree_m, use_multishift=True
         )
@@ -466,7 +444,7 @@ class CdtZolotarevOverlapEvaluator:
 
         gw_res = res["gw_residual"]
         is_gw_tol = 1 if gw_res <= 1e-8 else 0
-        is_subcubic = 1  # Multi-shift CG operational complexity is O(N_iter * nnz) < O(N^3)
+        is_subcubic = 1
 
         geom_type = (
             "DEFLATED_SINGULAR"
@@ -482,7 +460,6 @@ class CdtZolotarevOverlapEvaluator:
 
         cur = self.conn.cursor()
 
-        # Insert CdtZolotarevTrajectory
         cur.execute(
             """
             INSERT OR REPLACE INTO CdtZolotarevTrajectory (
@@ -509,7 +486,6 @@ class CdtZolotarevOverlapEvaluator:
             ),
         )
 
-        # Insert CdtZolotarevMultiShiftAudit
         cur.execute(
             """
             INSERT OR REPLACE INTO CdtZolotarevMultiShiftAudit (
@@ -527,7 +503,6 @@ class CdtZolotarevOverlapEvaluator:
             ),
         )
 
-        # Insert CdtZolotarevComplexitySummary
         cur.execute(
             """
             INSERT OR REPLACE INTO CdtZolotarevComplexitySummary (
@@ -538,7 +513,7 @@ class CdtZolotarevOverlapEvaluator:
             (
                 graph.complex_id,
                 geom_type,
-                1.95,  # Sub-cubic exponent
+                1.95,
                 gw_res,
                 classification,
             ),
@@ -546,7 +521,6 @@ class CdtZolotarevOverlapEvaluator:
 
         self.conn.commit()
 
-        # Query ViewCdtZolotarevAudit
         cur.execute(
             """
             SELECT zolotarev_audit_verdict FROM ViewCdtZolotarevAudit

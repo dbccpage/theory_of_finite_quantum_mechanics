@@ -76,9 +76,6 @@ def _make_projection(
 
 
 def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
-    # -----------------------------------------------------------------------
-    # Step 1: Initialize Host ObstructionLedger with 3 active obstructions
-    # -----------------------------------------------------------------------
     ledger = ObstructionLedger()
     proj_0 = _make_projection({"OBS-01": 1.0, "OBS-02": 2.0, "OBS-03": 1.5}, step=0)
     ledger.reconcile(proj_0, step=0, witness="initial_projection")
@@ -86,9 +83,6 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
     assert ledger.active_ids == ("OBS-01", "OBS-02", "OBS-03")
     assert len(ledger.events) == 3
 
-    # -----------------------------------------------------------------------
-    # Step 2: Compile Turn 1 PromptArtifact presenting open obstructions
-    # -----------------------------------------------------------------------
     obj_turn1 = ObjectiveTypedV1(
         kind="obstruction_refine",
         summary="eliminate open cochain obstructions",
@@ -132,28 +126,21 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
     assert artifact_turn1.authority_effect == "None"
     assert artifact_turn1.residual_colour == "Open"
 
-    # Persist prompt artifact & body to content-addressed storage
     art_path_1 = write_prompt_artifact(tmp_path, artifact_turn1)
     body_path_1 = write_prompt_body(tmp_path, body_bytes_1)
     assert art_path_1.exists()
     assert body_path_1.exists()
 
-    # -----------------------------------------------------------------------
-    # Step 3: Model emits Candidate Proposals; Host scores & ranks them
-    # -----------------------------------------------------------------------
-    # alpha_1: eliminates OBS-01 and OBS-02 with structural cost 0.5
     prop_1 = CandidateProposal(
         proposal_id="proposal-turn1-alpha1",
         repaired_obstruction_ids=("OBS-01", "OBS-02"),
         structural_cost=0.5,
     )
-    # alpha_2: eliminates OBS-01 with cost 0.0
     prop_2 = CandidateProposal(
         proposal_id="proposal-turn1-alpha2",
         repaired_obstruction_ids=("OBS-01",),
         structural_cost=0.0,
     )
-    # alpha_3: illegal proposal triggering kill condition
     prop_3 = CandidateProposal(
         proposal_id="proposal-turn1-alpha3",
         kill_triggers=("MODEL_OUTPUT_IMPLIES_EXECUTION",),
@@ -164,27 +151,19 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
         [prop_2, prop_3, prop_1],
     )
     assert len(ranked_props) == 3
-    # prop_1: delta = 2.0, efficiency = 2.0 / 1.5 = 1.333
-    # prop_2: delta = 1.0, efficiency = 1.0 / 1.0 = 1.0
-    # prop_3: illegal (-inf)
     assert ranked_props[0].proposal_id == "proposal-turn1-alpha1"
     assert ranked_props[1].proposal_id == "proposal-turn1-alpha2"
     assert not ranked_props[2].is_legal
 
     winning_prop = ranked_props[0]
 
-    # -----------------------------------------------------------------------
-    # Step 4: Host adopts winning proposal, reconciles ledger, emits EliminationReceipt
-    # -----------------------------------------------------------------------
     before_ledger_active = dict(ledger._active)
 
-    # Reconcile ledger: only OBS-03 remains
     proj_1 = _make_projection({"OBS-03": 1.5}, step=1)
     ledger.reconcile(proj_1, step=1, witness="host_accepted_alpha1")
 
     assert ledger.active_ids == ("OBS-03",)
 
-    # Compute residual drop metrics from ledger maps
     drop_turn1 = residual_drop_from_ledger_maps(
         before_ledger_active,
         ledger._active,
@@ -196,7 +175,6 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
     assert drop_turn1.eliminated_ids == ("OBS-01", "OBS-02")
     assert drop_turn1.residual_colour == "Open"
 
-    # Host emits EliminationReceiptV1
     receipt_turn1 = create_elimination_receipt(
         packet_id=artifact_turn1.prompt_artifact_id,
         prior_residual_colour="Open",
@@ -208,13 +186,9 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
     assert receipt_turn1.new_residual_colour == "Open"
     assert receipt_turn1.dual_witness_ref is None
 
-    # Persist receipt
     receipt_path_1 = write_elimination_receipt(tmp_path, receipt_turn1)
     assert receipt_path_1.exists()
 
-    # -----------------------------------------------------------------------
-    # Step 5: Turn 2 — Compile PromptArtifact for surviving OBS-03
-    # -----------------------------------------------------------------------
     obj_turn2 = ObjectiveTypedV1(
         kind="terminal_closure",
         summary="discharge final obstruction with dual witness",
@@ -251,9 +225,6 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
     assert art_path_2.exists()
     assert body_path_2.exists()
 
-    # -----------------------------------------------------------------------
-    # Step 6: Model emits Candidate Proposal with Dual-Witness certificate
-    # -----------------------------------------------------------------------
     prop_turn2 = CandidateProposal(
         proposal_id="proposal-turn2-final-exact",
         repaired_obstruction_ids=("OBS-03",),
@@ -267,10 +238,7 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
     assert res_turn2.is_exact_candidate
     assert res_turn2.dual_witness_ref == SAMPLE_HEX64_WITNESS
 
-    # -----------------------------------------------------------------------
-    # Step 7: Host verifies, reconciles ledger to empty, and emits Exact receipt
-    # -----------------------------------------------------------------------
-    proj_2 = _make_projection({}, step=2)  # empty obstructions
+    proj_2 = _make_projection({}, step=2)
     ledger.reconcile(proj_2, step=2, witness="dual_witness_verified")
     assert ledger.active_ids == ()
 
@@ -287,11 +255,9 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
     assert receipt_turn2.dual_witness_ref == SAMPLE_HEX64_WITNESS
     assert receipt_turn2.authority_effect == "None"
 
-    # Persist receipt
     receipt_path_2 = write_elimination_receipt(tmp_path, receipt_turn2)
     assert receipt_path_2.exists()
 
-    # Render machine block + host elimination block and parse
     rendered_block = render_elimination_receipt_block(receipt_turn2)
     parsed_block = parse_elimination_receipt_block(rendered_block)
     assert parsed_block is not None
@@ -300,10 +266,6 @@ def test_symbol_game_e2e_iterative_loop(tmp_path: Path) -> None:
     assert parsed_block["DUAL_WITNESS_REF"] == SAMPLE_HEX64_WITNESS
     assert parsed_block["AUTHORITY_EFFECT"] == "None"
 
-    # -----------------------------------------------------------------------
-    # Step 8: Verify wire round-trip of all saved artifacts on disk
-    # -----------------------------------------------------------------------
-    # Check that reading back saved JSON matches Layer A identity digests
     import json
     loaded_art1 = PromptArtifactV1.from_dict(json.loads(art_path_1.read_text("utf-8")))
     assert loaded_art1.prompt_artifact_id == artifact_turn1.prompt_artifact_id

@@ -1,6 +1,3 @@
-//! Grothendieck sites, covering sieves, and sheaves on sites (SH-23, Site & SheafOnSite Contracts).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::{OpenSet, PosetTopology};
 use crate::presheaf::Presheaf;
@@ -8,14 +5,10 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt::Debug;
 
-/// A Grothendieck Site (C, J) conforming to `urn:omega:math:site:v0.1.0` (SH-23).
-///
-/// Models a site where the underlying category is the poset category and J is a Grothendieck pretopology.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GrothendieckSite {
     pub site_id: String,
     pub topology: PosetTopology,
-    /// Covering sieves assigned to each open set
     pub covering_sieves: BTreeMap<OpenSet, Vec<Vec<OpenSet>>>,
 }
 
@@ -28,7 +21,6 @@ impl GrothendieckSite {
         }
     }
 
-    /// Add a covering sieve/family {U_i} covering U.
     pub fn add_covering_family(&mut self, u: OpenSet, family: Vec<OpenSet>) -> Result<(), String> {
         if !self.is_valid_covering(&u, &family) {
             return Err(
@@ -39,9 +31,6 @@ impl GrothendieckSite {
         Ok(())
     }
 
-    /// Check pretopology axioms for family {U_i} covering U:
-    /// 1. Each U_i is a subset of U.
-    /// 2. The union of U_i equals U.
     pub fn is_valid_covering(&self, u: &OpenSet, family: &[OpenSet]) -> bool {
         let mut union_elems = BTreeSet::new();
         for f in family {
@@ -53,9 +42,6 @@ impl GrothendieckSite {
         union_elems == u.elements
     }
 
-    /// Validate the site axioms:
-    /// 1. Maximality: {U} is a covering of U for all U.
-    /// 2. Stability: If {U_i} covers U and V subset U, then {U_i cap V} covers V.
     pub fn validate_site_axioms(&self) -> bool {
         for (u, families) in &self.covering_sieves {
             for fam in families {
@@ -68,10 +54,6 @@ impl GrothendieckSite {
     }
 }
 
-/// A Sheaf on a Site conforming to `urn:omega:math:sheaf_on_site:v0.1.0`.
-///
-/// Validates that for every object U and every covering sieve {U_i} in J(U),
-/// matching families on overlaps glue to a unique section in F(U).
 pub fn validate_sheaf_on_site<T: Clone + PartialEq + Debug>(
     site: &GrothendieckSite,
     presheaf: &Presheaf<T>,

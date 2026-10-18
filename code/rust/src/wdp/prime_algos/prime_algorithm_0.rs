@@ -1,13 +1,3 @@
-//! Algorithm Prime 000 — binding twelve-step obstruction packet fill order.
-//!
-//! Canonical protocol:
-//! `omega_engine/research/omega_engine_theory_wip/07_algorithm_prime_000_protocol.md`
-//!
-//! This module is the **PROD Rust face** of the paper-022b toys under
-//! `research/published/008_engine_runtime/005_the_omega_engine/_code/`.
-//!
-//! Every run emits a [`crate::prime_algos::dda_alphabet::DdaTrace`] (letter tape).  
-//! AuthorityEffect is always [`AuthorityEffect::None`].
 
 use crate::prime_algos::licensed_lift_gate::{
     step9_licensed_lift_gate, LicensedLiftAdmission, NineUpLiftBits, PaperEr003LiftCertificate,
@@ -20,22 +10,12 @@ use std::fmt;
 
 pub use crate::prime_algos::prime_algorithm_0_admission::{admit, AdmissionRefusal, AdmittedDeclaration};
 
-/// How a receipt's inputs were obtained.
-///
-/// The distinction is not cosmetic. An adapter that returns constant masses and
-/// `NineUpLiftBits::all_true()` produces a receipt whose *structure* is real and
-/// whose *numbers* are fixtures. Publishing the second as though it were the first
-/// is the failure this enum exists to prevent, so every receipt states which it is
-/// rather than leaving it to be inferred from the adapter's source.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum EvidenceProvenance {
-    /// Adapter-declared constants. Structure real, numbers fixtures.
     FixtureDrivenStructuralDemo,
-    /// Masses computed by a verifier in this crate from an actual finite object.
     VerifierProduced,
 }
 
-/// Declared domain labels (schema enum + Symbol Game).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum PrimeDomain {
@@ -64,7 +44,6 @@ impl fmt::Display for PrimeDomain {
     }
 }
 
-/// Defect trichotomy (DDA Rosetta branch).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum DefectBranch {
     Closed,
@@ -94,7 +73,6 @@ impl DefectBranch {
     }
 }
 
-/// Step-11 terminal kinds (protocol + engine face).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum PrimeTerminal {
     ExactClass,
@@ -122,30 +100,23 @@ impl PrimeTerminal {
     }
 }
 
-/// Step-4 cochain slot.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum CochainSlot {
-    /// Steps 1–3 incomplete.
     BlockedEarly,
-    /// Not justified by δ / ZeroRel.
     MissingUnjustified,
-    /// Justified and square-zero holds.
     Constructed {
         dim_c0: usize,
         dim_c1: usize,
         dim_c2: usize,
         square_zero: bool,
     },
-    /// Justified but d₁∘d₀ ≠ 0.
     RefusedNotSquareZero { l1_defect_mass: u64 },
 }
 
-/// Result of step-9 operator / lift search (post gate).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum LiftSearch {
     SkippedClosed,
     SameLevelRepairAttempted,
-    /// Admitted only after H-O3 nine-bit ↔ PaperER003.LicensedLiftCertificate gate.
     LiftAdmitted {
         generators: Vec<String>,
         nine_bits: NineUpLiftBits,
@@ -159,7 +130,6 @@ pub enum LiftSearch {
     },
 }
 
-/// Pre-gate proposal from a domain adapter (step 9 input).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum LiftProposal {
     SkipClosed,
@@ -167,7 +137,6 @@ pub enum LiftProposal {
     OracleGap {
         note: String,
     },
-    /// Candidate must pass [`step9_licensed_lift_gate`].
     Candidate {
         generators: Vec<String>,
         nine_bits: NineUpLiftBits,
@@ -175,7 +144,6 @@ pub enum LiftProposal {
     },
 }
 
-/// Run the H-O3 step-9 gate on a proposal.
 pub fn evaluate_lift_proposal(proposal: LiftProposal) -> LiftSearch {
     match proposal {
         LiftProposal::SkipClosed => LiftSearch::SkippedClosed,
@@ -198,7 +166,6 @@ pub fn evaluate_lift_proposal(proposal: LiftProposal) -> LiftSearch {
     }
 }
 
-/// Declaration fill from a domain adapter (steps 1–3, 7–8 seeds).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DeclarationFill {
     pub carrier: Option<String>,
@@ -208,51 +175,36 @@ pub struct DeclarationFill {
     pub witnesses: Vec<String>,
 }
 
-/// Optional cochain window when the domain justifies construction.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CochainWindow {
     pub dim_c0: usize,
     pub dim_c1: usize,
     pub dim_c2: usize,
-    /// True iff d₁∘d₀ = 0 on the declared window.
     pub square_zero: bool,
-    /// ℓ¹ mass of d₁∘d₀ when not square-zero.
     pub l1_defect_mass: u64,
 }
 
-/// Domain adapter: fills Prime 000 slots; runner emits DDA letter tape.
 pub trait DomainAdapter {
     fn domain(&self) -> PrimeDomain;
     fn declaration(&self) -> DeclarationFill;
-    /// Whether δ + ZeroRel justify a FOC cochain packet.
     fn justify_cochain(&self) -> bool;
     fn cochain_window(&self) -> Option<CochainWindow>;
-    /// (Φ₁, Γ₂) diagnostic masses — stored separately, never merged.
     fn residual_masses(&self) -> (u64, u64);
-    /// Pre-gate lift proposal; runner applies H-O3 step-9 gate.
     fn lift_proposal(&self, branch: DefectBranch) -> LiftProposal;
     fn literature_note(&self) -> Option<String>;
-    /// Where this adapter's masses come from.
-    ///
-    /// Defaults to [`EvidenceProvenance::FixtureDrivenStructuralDemo`], which is
-    /// the honest answer for an adapter returning constants. Override it only
-    /// when `residual_masses` is genuinely computed from a finite object.
     fn evidence_provenance(&self) -> EvidenceProvenance {
         EvidenceProvenance::FixtureDrivenStructuralDemo
     }
 
-    /// Optional residual-family label for Rosetta stats (not authority).
     fn residual_family_label(&self) -> String {
         format!("{}:default", self.domain())
     }
 
-    /// Deprecated path name: routes through [`Self::lift_proposal`] + gate.
     fn lift_search(&self, branch: DefectBranch) -> LiftSearch {
         evaluate_lift_proposal(self.lift_proposal(branch))
     }
 }
 
-/// Full receipt of one Prime 000 run.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct PrimeAlgorithm0Receipt {
     pub domain: PrimeDomain,
@@ -266,21 +218,17 @@ pub struct PrimeAlgorithm0Receipt {
     pub observer: Option<String>,
     pub witnesses: Vec<String>,
     pub structure_search: LiftSearch,
-    /// Present when step-9 admitted a lift under PaperER003 gate.
     pub licensed_lift: Option<LicensedLiftAdmission>,
     pub routing: String,
     pub literature_compare: Option<String>,
     pub branch: DefectBranch,
     pub terminal: PrimeTerminal,
-    /// Compact letter tape, e.g. `"CIRIRT"` (no spaces) for Rosetta compare.
     pub letter_tape: String,
-    /// Spaced spine letters from [`DdaTrace::letters`].
     pub letters_spaced: String,
     pub trace_terminal: String,
     pub residual_family_label: String,
     pub authority_effect: AuthorityEffect,
     pub steps: Vec<PrimeStepRecord>,
-    /// Whether this run's masses were computed or declared. See [`EvidenceProvenance`].
     pub evidence_provenance: EvidenceProvenance,
 }
 
@@ -290,53 +238,20 @@ pub struct PrimeStepRecord {
     pub op: String,
     pub executed: bool,
     pub message: String,
-    /// Residual state **as of the end of this step**.
-    ///
-    /// `None` before step 6 (the masses do not exist yet) and on any run that
-    /// refused before reaching it. Recording this is what makes the `R` law
-    /// ("a residual projection must not move Φ₁") decidable from a receipt: the
-    /// checker compares consecutive records instead of declaring the law
-    /// unevaluable. See `prime_algorithm_0_conformance`.
     pub phi1_after: Option<u64>,
     pub gamma2_after: Option<u64>,
-    /// What this step discarded, keyed by what it was.
-    ///
-    /// `None` for every step the current runner emits — nothing here performs a
-    /// lossy descent. The field exists so that `D` cannot be emitted without
-    /// accounting for its loss: `prime_algorithm_0_conformance` refuses a `D` step whose
-    /// ledger is absent or empty.
-    ///
-    /// The shape mirrors `DDAStepCert.loss_ledger` in
-    /// `research/ooutwire_docs/universe_anomalonica/code/dda_engine.py`, which
-    /// populates entries such as `gauge_potentials_removed` and
-    /// `curl_mass_canceled` from real gauge fixing.
     pub loss_ledger: Option<BTreeMap<String, u64>>,
 }
 
 impl PrimeAlgorithm0Receipt {
-    /// The recorded authority effect.
-    ///
-    /// This used to `return AuthorityEffect::None` unconditionally, ignoring the
-    /// public `authority_effect` field — so the accessor agreed with the invariant
-    /// even when the struct did not, and any test calling it asserted a literal.
-    /// It now reads the field; [`Self::authority_is_none`] is the invariant check.
     pub fn authority_effect(&self) -> &AuthorityEffect {
         &self.authority_effect
     }
 
-    /// CODA-5 invariant: an algorithm receipt never carries authority.
-    ///
-    /// Separated from the accessor so a violation is *detectable* rather than
-    /// definitionally impossible.
     pub fn authority_is_none(&self) -> bool {
         self.authority_effect == AuthorityEffect::None
     }
 
-    /// Write `letter_tape.txt` + the receipt JSON under `run_dir`.
-    ///
-    /// The receipt is written under `prime_algorithm_0_receipt.json`, as well as
-    /// the backward-compatible `oeprmalg0_receipt.json` and `prime000_receipt.json`,
-    /// with identical bytes, per ADR-009.
     pub fn write_files(&self, run_dir: &std::path::Path) -> std::io::Result<()> {
         std::fs::create_dir_all(run_dir)?;
         std::fs::write(
@@ -360,25 +275,6 @@ impl PrimeAlgorithm0Receipt {
 
 pub type Oeprmalg0Receipt = PrimeAlgorithm0Receipt;
 
-/// Run Algorithm Prime 000 for one domain adapter; emit DDA letter tape.
-/// Run Algorithm Prime 000 for one admitted declaration and domain adapter.
-///
-/// Measuring before admission is unrepresentable: this function requires
-/// an [`AdmittedDeclaration`], which can only be obtained through [`admit`](crate::prime_algos::prime_algorithm_0_admission::admit).
-///
-/// ```compile_fail
-/// use crate::prime_algos::prime_algorithm_0::{run_admitted, DeclarationFill};
-/// use crate::ddc::domain_adapters::GenericMss0Adapter;
-///
-/// let unadmitted = DeclarationFill {
-///     carrier: Some("torus".into()),
-///     primitive_difference: Some("d0".into()),
-///     zero_rel: Some("z0".into()),
-///     observer: Some("obs".into()),
-///     witnesses: vec!["w".into()],
-/// };
-/// run_admitted(&unadmitted, &GenericMss0Adapter);
-/// ```
 pub fn run_admitted(
     admitted: &AdmittedDeclaration,
     adapter: &dyn DomainAdapter,
@@ -404,7 +300,6 @@ pub fn run_admitted(
         });
     };
 
-    // Step 1 — carrier (already admitted)
     emit(
         1,
         DdaOp::ContextExposure,
@@ -413,7 +308,6 @@ pub fn run_admitted(
     );
     emit(1, DdaOp::Integration, true, "ledger open".into());
 
-    // Step 2 — δ (already admitted)
     emit(
         2,
         DdaOp::Integration,
@@ -421,7 +315,6 @@ pub fn run_admitted(
         format!("declare δ={}", admitted.primitive_difference()),
     );
 
-    // Step 3 — ZeroRel (already admitted)
     emit(
         3,
         DdaOp::Integration,
@@ -429,7 +322,6 @@ pub fn run_admitted(
         format!("declare ZeroRel={}", admitted.zero_rel()),
     );
 
-    // Step 4 — C• (already admitted)
     let cochain = admitted.cochain().clone();
     if let CochainSlot::Constructed {
         dim_c0,
@@ -449,7 +341,6 @@ pub fn run_admitted(
         );
     }
 
-    // Step 5 — Q¹
     let delta = admitted.primitive_difference();
     let q1 = Some(format!("Q1[{delta}]"));
     emit(
@@ -459,7 +350,6 @@ pub fn run_admitted(
         format!("compute Q¹ residual core=[{delta}]"),
     );
 
-    // Step 6 — separate Φ₁ from Γ₂ (MEASUREMENT: occurs strictly after admission!)
     let (p, g) = adapter.residual_masses();
     let phi1 = Some(p);
     let gamma2 = Some(g);
@@ -471,7 +361,6 @@ pub fn run_admitted(
         format!("separate Φ₁={p} from Γ₂={g}; branch={}", branch.as_str()),
     );
 
-    // Step 7 — observer (already admitted)
     let observer = Some(admitted.observer().to_string());
     emit(
         7,
@@ -480,7 +369,6 @@ pub fn run_admitted(
         format!("declare observer/profile={}", admitted.observer()),
     );
 
-    // Step 8 — witnesses (already admitted)
     let witnesses = admitted.witnesses().to_vec();
     emit(
         8,
@@ -489,7 +377,6 @@ pub fn run_admitted(
         format!("identify witnesses={witnesses:?}"),
     );
 
-    // Step 9 — operator / lift search under H-O3 PaperER003 nine-bit gate
     let proposal = adapter.lift_proposal(branch);
     let mut licensed_lift: Option<LicensedLiftAdmission> = None;
     let structure_search = match proposal.clone() {
@@ -554,7 +441,6 @@ pub fn run_admitted(
         }
     }
 
-    // Step 10 — route survivors
     let routing = format!(
         "branch={}; survivors={:?}; lift={:?}",
         branch.as_str(),
@@ -568,7 +454,6 @@ pub fn run_admitted(
         format!("route survivors branch={}", branch.as_str()),
     );
 
-    // Step 11 — terminalize
     let term = match (&branch, &structure_search) {
         (DefectBranch::Closed, _) => PrimeTerminal::Certificate,
         (_, LiftSearch::LiftAdmitted { .. }) => PrimeTerminal::Repair,
@@ -584,7 +469,6 @@ pub fn run_admitted(
     );
     let terminal = term;
 
-    // Step 12 — literature only after terminal
     let literature_compare = if let Some(note) = adapter.literature_note() {
         emit(
             12,
@@ -609,7 +493,6 @@ pub fn run_admitted(
         None
     };
 
-    // Backfill per-step residual state
     for record in steps.iter_mut() {
         if record.prime_step >= 6 {
             record.phi1_after = phi1;
@@ -656,10 +539,6 @@ pub fn run_admitted(
     }
 }
 
-/// Run Algorithm Prime 000 for one domain adapter; emit DDA letter tape.
-///
-/// Phase 1 evaluates the 7-step admission gate without measuring residual masses.
-/// If admission succeeds, Phase 2 executes the full 12-step fill order.
 pub fn run_prime_algorithm_0(adapter: &dyn DomainAdapter) -> PrimeAlgorithm0Receipt {
     let decl = adapter.declaration();
     match crate::prime_algos::prime_algorithm_0_admission::admit(
@@ -693,12 +572,10 @@ mod tests {
             r.terminal,
             PrimeTerminal::Repair | PrimeTerminal::OracleNeeded
         ));
-        // H-O3: step-9 admission carries PaperER003 binding
         let lift = r.licensed_lift.expect("generic MSS-0 should admit lift");
         assert!(lift.nine_bits().all_satisfied());
         assert_eq!(lift.lean_module(), "PaperER003.LicensedLiftCertificate");
         assert!(lift.checklist().lift_checklist_complete());
-        // literature is last prime step
         let last_lit = r.steps.iter().filter(|s| s.prime_step == 12).count();
         assert!(last_lit >= 1);
         let first_t = r.steps.iter().position(|s| s.op == "T").unwrap();
@@ -773,7 +650,6 @@ mod tests {
         let _ = std::fs::remove_dir_all(&dir);
     }
 
-    /// ADR-009: the pre-rename artifact name is still emitted, byte-identical.
     #[test]
     fn write_files_still_emits_the_pre_rename_receipt_name() {
         let r = run_prime_algorithm_0(&GenericMss0Adapter);

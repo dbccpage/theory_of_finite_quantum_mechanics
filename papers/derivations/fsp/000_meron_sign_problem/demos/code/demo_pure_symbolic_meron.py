@@ -40,7 +40,7 @@ WIRE_TURNS = [
     {
         "turn": 1,
         "stage": "PLAQUETTE_BREAKUP",
-        "input_wire": "op<<11>op<<1><10000>>op<<10><0><1>>>",  # Carrier (16 nodes, 0-cell, 1-cell)
+        "input_wire": "op<<11>op<<1><10000>>op<<10><0><1>>>",
         "wire_prompt": "op<<11>op<<1><10000>>op<<10><0><1>>>",
         "grammar_prompt": "op<<11>op<<1><10000>>op<<10><0><1>>>",
         "expected_response_wire": "op<<101><10><0><1><10>>",
@@ -67,7 +67,7 @@ WIRE_TURNS = [
     {
         "turn": 4,
         "stage": "EXACT_REPAIR",
-        "input_wire": "op<<0><><0><1>>",  # Host GRANT_LIFT packet
+        "input_wire": "op<<0><><0><1>>",
         "wire_prompt": "op<<0><><0><1>>",
         "grammar_prompt": "op<<0><><0><1>>",
         "expected_response_wire": "op<<10010><0><1110010000><1>>",

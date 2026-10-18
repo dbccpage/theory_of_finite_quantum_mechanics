@@ -1,9 +1,3 @@
-// AuthorityEffect: None.
-// Exact small-factor Galois intersections over E, not an unconditional K-degree.
-// Irreducible quintics and multiplicative dependence remain unsupported here.
-// Frozen standalone APIs privately include their own dependencies. Keep those
-// modules unchanged; this new adapter crosses their boundaries through Value,
-// and intentionally also imports the factor/square APIs for independent checks.
 #[allow(dead_code, clippy::duplicate_mod)]
 #[path = "field_factors.rs"]
 mod factors;

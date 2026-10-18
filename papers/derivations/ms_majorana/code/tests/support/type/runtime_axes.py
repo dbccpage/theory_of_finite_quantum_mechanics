@@ -46,14 +46,14 @@ class AuthorityStatus(str, enum.Enum):
 class DdaLetter(str, enum.Enum):
     """OE-010 operational alphabet A_DDA = {E,R,C,I,Λ,D,M,T}."""
 
-    E = "E"  # Exact Repair
-    R = "R"  # Residual Projection
-    C = "C"  # Context Exposure
-    I = "I"  # noqa: E741  # Integration
-    LAMBDA = "Λ"  # Structural Lift
-    D = "D"  # Descent
-    M = "M"  # Typed Refusal
-    T = "T"  # Terminalization
+    E = "E"
+    R = "R"
+    C = "C"
+    I = "I"
+    LAMBDA = "Λ"
+    D = "D"
+    M = "M"
+    T = "T"
 
 
 class DdaDialect(str, enum.Enum):

@@ -1,8 +1,3 @@
-//! Campaign module audit_map.
-//!
-//! The affine map `i ↦ 3i + 1` on `Z/8Z` is a bijection because `3` is a unit.
-//! The image is the whole ring, the element sum is preserved, and multiplying
-//! by the inverse unit `3` recovers every residue.
 
 pub fn verify() -> Result<i64, &'static str> {
     let modulus = 8i64;

@@ -4,27 +4,19 @@ use super::admission::{AdmissionDecision, QAdmissionGate, QAdmissionRequest};
 use super::packet::{QPacket, QTerminal};
 use omega_types::q_continuum::{ObstructionKind, Residual};
 
-/// Zeta/RH claim family under the Q firewall.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ZetaRhClaimKind {
-    /// Ihara-zeta / graph-Weil analog: finite regular graph shadow and Ramanujan locus.
     IharaGraphRhAnalog,
-    /// Classical Riemann Hypothesis for the Riemann zeta function zeta(s).
     ClassicalRiemannHypothesis,
 }
 
-/// Direction of the proposed transport between source and finite shadow.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ZetaTransportDirection {
-    /// Continuum/source material projects to a declared finite graph/Ihara shadow.
     SourceToShadow,
-    /// A finite shadow is claimed to decode or prove its continuum/classical source.
     ShadowDecodesSource,
-    /// Source claim appears without a declared finite bridge.
     SourceOnly,
 }
 
-/// One zeta/RH candidate routed through Q admission.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ZetaRhCandidate {
     pub claim_kind: ZetaRhClaimKind,
@@ -49,14 +41,12 @@ impl ZetaRhCandidate {
     }
 }
 
-/// Zeta/RH firewall decision.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ZetaRhDecision {
     pub admission: AdmissionDecision,
     pub crosses_to_gttc: bool,
 }
 
-/// Q firewall for graph/Ihara RH analogs versus classical RH claims.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct ZetaRhFirewall;
 

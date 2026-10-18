@@ -5,7 +5,6 @@ use omega_types::q_continuum::{
 
 use super::packet::ValidatedQPacket;
 
-/// Adapter over `omega_types::q_continuum::DescentGate`.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct QDescentGate {
     inner: DescentGate,
@@ -59,7 +58,6 @@ impl QDescentGate {
         self.inner.accept_results(ledger, about, results);
     }
 
-    /// The first real finite-descent artifact mapped into Q without terminal overclaim.
     pub fn holonomy_ladder_ledger() -> QContinuumLedger {
         holonomy_ladder_descent_ledger()
     }

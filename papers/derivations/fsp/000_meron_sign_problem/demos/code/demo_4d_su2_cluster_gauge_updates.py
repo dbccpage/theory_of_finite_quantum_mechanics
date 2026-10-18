@@ -31,7 +31,6 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Sequence, Tuple
 
-# Path setup for operations and symbol game imports
 DEMOS_DIR = Path(__file__).resolve().parent.parent
 CODE_DIR = DEMOS_DIR.parent / "code"
 REPO_ROOT = DEMOS_DIR
@@ -47,20 +46,20 @@ if str(DEMOS_DIR / "code") not in sys.path:
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from blind_problem import assert_lexical_hygiene  # noqa: E402
-from omega_engine_pfp.domain.tower.parser import (  # noqa: E402
+from blind_problem import assert_lexical_hygiene
+from omega_engine_pfp.domain.tower.parser import (
     GAMMA_38,
     parse_packet,
     serialize_packet,
     validate_packet_semantics,
 )
-from su2_link_holonomy_4d import (  # noqa: E402
+from su2_link_holonomy_4d import (
     LatticeGaugeField4D,
     RationalSU2,
     SU2TopologicalClusterCoupler,
     assert_no_floats,
 )
-from topological_half_instanton_4d import (  # noqa: E402
+from topological_half_instanton_4d import (
     HalfInstantonCenter4D,
     HalfInstantonCluster4D,
 )
@@ -71,9 +70,6 @@ SYMBOLIC_4D_SU2_CLUSTER_DAG_TRACE = RESULTS_DIR / "symbol_game_4d_su2_cluster_da
 CERTIFIED_4D_SU2_CLUSTER_RECEIPT = RESULTS_DIR / "certified_4d_su2_cluster_results.json"
 
 
-# ============================================================================
-# Section 1: Non-Abelian SU(2) Gauge Dynamics on L >= 8 Lattice
-# ============================================================================
 
 
 def run_su2_gauge_update_cycle(
@@ -90,7 +86,6 @@ def run_su2_gauge_update_cycle(
     initial_action = field.total_wilson_action()
     assert initial_action == Fraction(0, 1), "Cold start action must be 0"
 
-    # Step 1: Perform link updates with non-abelian generators
     r_i = RationalSU2.generator_i()
     r_j = RationalSU2.generator_j()
     r_k = RationalSU2.generator_k()
@@ -105,7 +100,6 @@ def run_su2_gauge_update_cycle(
     sum_delta = delta_s1 + delta_s2 + delta_s3 + delta_s4
     assert action_after_updates == sum_delta, "Wilson action update discrepancy"
 
-    # Step 2: Apply local gauge transformation and verify exact invariance
     omega_map = {
         (0, 0, 0, 0): RationalSU2.generator_j(),
         (1, 0, 0, 0): RationalSU2.generator_k(),
@@ -127,9 +121,6 @@ def run_su2_gauge_update_cycle(
     }
 
 
-# ============================================================================
-# Section 2: Half-Instanton Gauge Coupling & Exact Cancellation
-# ============================================================================
 
 
 def build_gauge_coupled_ensemble(
@@ -158,14 +149,12 @@ def build_gauge_coupled_ensemble(
     c3 = HalfInstantonCenter4D((4, 4, 1, 1), chirality=1)
     pair3 = coupler.create_paired_odd_cluster(c3, Fraction(40, 1))
 
-    # Neutral clusters
     c4 = HalfInstantonCluster4D(n_plus=1, n_minus=1, weight=Fraction(180, 1), centers=())
     c5 = HalfInstantonCluster4D(n_plus=2, n_minus=2, weight=Fraction(120, 1), centers=())
     c6 = HalfInstantonCluster4D(n_plus=0, n_minus=0, weight=Fraction(150, 1), centers=())
 
     ensemble = [pair1[0], pair1[1], pair2[0], pair2[1], pair3[0], pair3[1], c4, c5, c6]
 
-    # Verify topological second Chern charge density on gauge field
     c2_gauge = coupler.gauge_field.total_second_chern_number()
     tau_field = coupler.gauge_field.orientation_flip()
     c2_tau = tau_field.total_second_chern_number()
@@ -182,15 +171,11 @@ def build_gauge_coupled_ensemble(
     return ensemble, metrics
 
 
-# ============================================================================
-# Section 3: Pure Gamma_38 Wire Protocol & DDC DAG Trace
-# ============================================================================
 
 CANONICAL_4D_SU2_WIRE_TURNS: List[Dict[str, Any]] = [
     {
         "turn": 1,
         "stage": "CARRIER_DECLARATION",
-        # Carrier wire: 1024 sites in binary (10000000000)
         "input_wire": "op<<11>op<<1><10000000000>>op<<10><0><1>>>",
         "wire_prompt": "op<<11>op<<1><10000000000>>op<<10><0><1>>>",
         "grammar_prompt": "op<<11>op<<1><10000000000>>op<<10><0><1>>>",
@@ -221,7 +206,6 @@ CANONICAL_4D_SU2_WIRE_TURNS: List[Dict[str, Any]] = [
         "input_wire": "op<<0><><0><1>>",
         "wire_prompt": "op<<0><><0><1>>",
         "grammar_prompt": "op<<0><><0><1>>",
-        # 450 in binary: 111000010
         "expected_response_wire": "op<<10010><0><111000010><1>>",
         "action": "CERTIFY_EXACT_REPAIR",
     },
@@ -358,9 +342,6 @@ def emit_4d_su2_cluster_ddc_dag(
     return nodes
 
 
-# ============================================================================
-# Section 4: Main Demo Runner
-# ============================================================================
 
 
 def run_4d_su2_cluster_gauge_updates_demo(
@@ -369,25 +350,20 @@ def run_4d_su2_cluster_gauge_updates_demo(
     dim: Tuple[int, int, int, int] = (8, 8, 4, 4),
 ) -> Dict[str, Any]:
     """Runs the 4D SU(2) Gauge-Coupled Topological Cluster Updates demo."""
-    # Section 1: SU(2) gauge update cycle
     gauge_cycle_metrics = run_su2_gauge_update_cycle(dim=dim)
 
-    # Section 2: Half-instanton gauge field coupling
     field = LatticeGaugeField4D(dimensions=dim)
     coupler = SU2TopologicalClusterCoupler(field)
     ensemble, cluster_metrics = build_gauge_coupled_ensemble(coupler)
     canc_res = cluster_metrics["solver_results"]
 
-    # Section 3: Wire turns validation
     for turn in CANONICAL_4D_SU2_WIRE_TURNS:
         assert validate_wire_string(turn["input_wire"]), f"Turn {turn['turn']} input wire invalid"
         assert validate_wire_string(turn["expected_response_wire"]), f"Turn {turn['turn']} response wire invalid"
 
-    # Section 4: Emit DDC DAG trace
     dag_path = output_dag or str(SYMBOLIC_4D_SU2_CLUSTER_DAG_TRACE)
     nodes = emit_4d_su2_cluster_ddc_dag(dag_path, gauge_cycle_metrics, canc_res)
 
-    # Section 5: Master certified receipt
     receipt_data = {
         "demo_id": "DEMO_4D_SU2_CLUSTER_GAUGE_UPDATES",
         "authority_effect": "None",

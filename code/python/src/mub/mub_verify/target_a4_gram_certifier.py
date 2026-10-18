@@ -38,10 +38,9 @@ from .mub_triples import (
     standard_basis_b1,
 )
 
-# Constants & Epistemic Firewall
 DIM_HILBERT: int = 6
 NUM_BASES: int = 4
-GRAMIAN_DIM: int = NUM_BASES * DIM_HILBERT  # 24
+GRAMIAN_DIM: int = NUM_BASES * DIM_HILBERT
 SCHEMA_VERSION: str = "omega.mub.quad-sdp.v2"
 FIREWALL_LINE: str = "stated region only; mints no authority"
 AUTHORITY_EFFECT: str = "None"
@@ -57,13 +56,10 @@ TAO_PHASES: Tuple[Tuple[int, ...], ...] = (
 )
 
 
-# ==============================================================================
-# Zero Floating-Point Type Auditor
-# ==============================================================================
 
 def assert_no_float(obj: Any, path: str = "root") -> None:
     """Recursively verify that no float types exist in any certifier data structure.
-    
+
     Raises TypeError if float or complex built-in types are detected.
     """
     if isinstance(obj, (float, complex)):
@@ -82,13 +78,10 @@ def assert_no_float(obj: Any, path: str = "root") -> None:
             assert_no_float(getattr(obj, f_name), f"{path}.{f_name}")
 
 
-# ==============================================================================
-# Exact Arithmetic Helpers & Field Projections
-# ==============================================================================
 
 def exact_rational(value: Cyc24) -> Fraction:
     """Extract exact rational value from Cyc24 element, ensuring it lies in Q.
-    
+
     Raises ValueError if any cyclotomic coefficient a_1..a_7 is non-zero.
     """
     if any(c != 0 for c in value.coeffs[1:]):
@@ -108,9 +101,6 @@ def omega3_pow(exp: int) -> Cyc24:
     return Cyc24.zeta((8 * (exp % 3)) % 24)
 
 
-# ==============================================================================
-# Canonical Basis Columns & 24x24 Gramian Construction
-# ==============================================================================
 
 def qubit_x_columns() -> Tuple[Tuple[Cyc24, Cyc24], Tuple[Cyc24, Cyc24]]:
     """Qubit basis X2: columns are (1/sqrt2)[1, 1]^T and (1/sqrt2)[1, -1]^T."""
@@ -122,17 +112,15 @@ def qubit_x_columns() -> Tuple[Tuple[Cyc24, Cyc24], Tuple[Cyc24, Cyc24]]:
 
 def canonical_triple_exact() -> List[Tuple[Cyc24, ...]]:
     """The 18 exact column vectors of canonical triple T0 = {Z2(x)Z3, X2(x)Q0, Y2(x)Q1} in C^6.
-    
+
     Returns:
     - Columns 0..5: B0 (Standard basis Z2 (x) Z3)
     - Columns 6..11: B1 (X2 (x) Q0)
     - Columns 12..17: B2 (Y2 (x) Q1)
     """
     cols: List[Tuple[Cyc24, ...]] = []
-    # B0: Standard basis
     cols.extend(standard_basis_b1())
 
-    # B1: X2 (x) Q0
     x2 = qubit_x_columns()
     q0 = qutrit_q_columns(0)
     for qb in x2:
@@ -143,7 +131,6 @@ def canonical_triple_exact() -> List[Tuple[Cyc24, ...]]:
                     v[a_idx * 3 + b_idx] = qb[a_idx].mul(qt[b_idx])
             cols.append(tuple(v))
 
-    # B2: Y2 (x) Q1
     cols.extend(product_y2_qa_columns(1))
     return cols
 
@@ -164,7 +151,7 @@ def tao_s6_block() -> List[List[Cyc24]]:
 
 def canonical_quad_gramian() -> List[List[Cyc24]]:
     """Construct the 24x24 Gramian overlap matrix G for the candidate 4-basis configuration.
-    
+
     Structure:
     - Blocks (a, b) for a, b in {0, 1, 2}: exact inner products of canonical triple T0.
     - Block (3, 3): 6x6 identity matrix I_6.
@@ -175,7 +162,6 @@ def canonical_quad_gramian() -> List[List[Cyc24]]:
     s6 = tao_s6_block()
     g = [[Cyc24.zero() for _ in range(GRAMIAN_DIM)] for _ in range(GRAMIAN_DIM)]
 
-    # Blocks 0, 1, 2: pairwise Gramian from canonical triple T0
     for a in range(3):
         for b in range(3):
             for j in range(DIM_HILBERT):
@@ -184,12 +170,10 @@ def canonical_quad_gramian() -> List[List[Cyc24]]:
                     v = cols[b * DIM_HILBERT + k]
                     g[a * DIM_HILBERT + j][b * DIM_HILBERT + k] = cyc_inner_product(u, v)
 
-    # Block 3: diagonal identity I_6
     one = Cyc24.one()
     for j in range(DIM_HILBERT):
         g[3 * DIM_HILBERT + j][3 * DIM_HILBERT + j] = one
 
-    # Off-diagonal Block 3: G_{a, 3} = S6 and G_{3, a} = S6^dagger for a in {0, 1, 2}
     for a in range(3):
         for j in range(DIM_HILBERT):
             for k in range(DIM_HILBERT):
@@ -210,9 +194,6 @@ def compute_gram_matrix_cyc(vectors: Sequence[Sequence[Cyc24]]) -> List[List[Cyc
     return G
 
 
-# ==============================================================================
-# Exact Block Structure Verifier
-# ==============================================================================
 
 @dataclass(frozen=True)
 class GramianStructureReport:
@@ -228,7 +209,7 @@ class GramianStructureReport:
 
 def verify_gramian_structure(g: Sequence[Sequence[Cyc24]]) -> GramianStructureReport:
     """Verify that a 24x24 matrix has the exact structure of a 4-MUB Gramian:
-    
+
     1. Diagonal blocks are exactly I_6.
     2. Off-diagonal blocks satisfy |G_{ij}|^2 = 1/6.
     3. The matrix is strictly Hermitian: G_{ji} = G_{ij}^*.
@@ -247,7 +228,6 @@ def verify_gramian_structure(g: Sequence[Sequence[Cyc24]]) -> GramianStructureRe
     one = Cyc24.one()
     zero = Cyc24.zero()
 
-    # 1. Diagonal blocks are identity
     diag_ok = True
     diag_errors: List[str] = []
     for a in range(NUM_BASES):
@@ -264,7 +244,6 @@ def verify_gramian_structure(g: Sequence[Sequence[Cyc24]]) -> GramianStructureRe
                         diag_ok = False
                         diag_errors.append(f"G[{idx_i},{idx_j}] != 0")
 
-    # 2. Off-diagonal blocks have modulus squared = 1/6
     modulus_ok = True
     modulus_errors: List[str] = []
     for a in range(NUM_BASES):
@@ -281,7 +260,6 @@ def verify_gramian_structure(g: Sequence[Sequence[Cyc24]]) -> GramianStructureRe
                         modulus_ok = False
                         modulus_errors.append(f"|G[{idx_i},{idx_j}]|^2 = {mod_sq} != 1/6")
 
-    # 3. Exactly Hermitian
     herm_ok = True
     herm_errors: List[str] = []
     for i in range(GRAMIAN_DIM):
@@ -310,13 +288,10 @@ def verify_gramian_structure(g: Sequence[Sequence[Cyc24]]) -> GramianStructureRe
     )
 
 
-# ==============================================================================
-# Exact LDL^T Decomposition & PSD Verification
-# ==============================================================================
 
 def ldlt_pivots_rational(m: Sequence[Sequence[Cyc24]]) -> List[Fraction]:
     """Exact rational LDL^T pivots of a Hermitian matrix over Q(zeta_24).
-    
+
     Replicates the exact semantics of `omega_native::mub6_quad_sdp::ldlt_pivots_rational`:
     - Checks matrix is square, non-empty, and Hermitian.
     - Requires all diagonal pivots to be in Q (via `exact_rational`).
@@ -345,7 +320,6 @@ def ldlt_pivots_rational(m: Sequence[Sequence[Cyc24]]) -> List[Fraction]:
             raise ValueError(f"Negative pivot at step {k}: {piv_rat}")
 
         if piv_rat == 0:
-            # Check rank-deficient direction: whole remaining row/col must vanish
             for i in range(k + 1, n):
                 if not a[k][i].is_zero() or not a[i][k].is_zero():
                     raise ValueError(f"Indefinite 2x2 minor at step {k}")
@@ -367,12 +341,12 @@ def ldlt_decomposition_cyc(
     A: Sequence[Sequence[Cyc24]],
 ) -> Tuple[List[List[Cyc24]], List[Fraction], bool]:
     """Exact rational LDL^dagger decomposition of a Hermitian matrix over Q(zeta_24).
-    
+
     Returns (L, D, is_psd) where:
     - L is unit lower triangular matrix over Q(zeta_24).
     - D is list of rational pivots in Q.
     - is_psd is True iff all d_k >= 0.
-    
+
     Satisfies A = L * D * L^dagger exactly.
     """
     n = len(A)
@@ -423,9 +397,6 @@ def is_psd_cyc(G: Sequence[Sequence[Cyc24]]) -> bool:
     return psd
 
 
-# ==============================================================================
-# Dual Witness Matrix W = L D L^dagger & Trace Inner Product
-# ==============================================================================
 
 class DualWitnessCyc:
     """Factored dual witness matrix W = L * D * L^dagger over Q(zeta_24) with D in Q."""
@@ -457,7 +428,7 @@ class DualWitnessCyc:
 
     def trace_inner(self, G: Sequence[Sequence[Cyc24]]) -> Cyc24:
         """Compute Tr(W * G) = sum_k D_k * (L[:, k]^dagger * G * L[:, k]).
-        
+
         Factored computation directly matching Lean 4 CandidateGramPositivity:
         Tr(W · G) = ∑_k D_k ‖∑_i L_{ik} v_i‖² ≥ 0 for any valid Gramian.
         """
@@ -466,7 +437,6 @@ class DualWitnessCyc:
         acc = Cyc24.zero()
         for k in range(self.m):
             col_k = [self.L[i][k] for i in range(self.n)]
-            # Quadratic form: col_k^dagger * G * col_k
             q = Cyc24.zero()
             for i in range(self.n):
                 for j in range(self.n):
@@ -489,28 +459,25 @@ def trace_inner_product(w: Sequence[Sequence[Cyc24]], g: Sequence[Sequence[Cyc24
 
 def dual_witness_vector() -> List[Cyc24]:
     """Construct the canonical 24-dimensional dual witness vector v from mub6_quad_sdp.rs.
-    
+
     Structure:
     - Block 0 (indices 0..5): all 0
     - Block 1 (indices 6..11): [-3, 1, -2, -2, 2, 1]
     - Block 2 (indices 12..17): [-3, 1, 1, -1, 3, 3]
     - Block 3 (indices 18..23): sqrt(6) * [-1, 1, 1, 1, 1, 1]
-    
+
     Exact squared norm ||v||^2 = 0 + 23 + 30 + 36 = 89.
     """
     v = [Cyc24.zero() for _ in range(GRAMIAN_DIM)]
 
-    # Block 1
     v1_int = (-3, 1, -2, -2, 2, 1)
     for i, val in enumerate(v1_int):
         v[DIM_HILBERT + i] = Cyc24.rat(val)
 
-    # Block 2
     v2_int = (-3, 1, 1, -1, 3, 3)
     for i, val in enumerate(v2_int):
         v[2 * DIM_HILBERT + i] = Cyc24.rat(val)
 
-    # Block 3: sqrt(6) * u3
     s6 = sqrt6_cyc()
     v3_int = (-1, 1, 1, 1, 1, 1)
     for i, val in enumerate(v3_int):
@@ -521,7 +488,7 @@ def dual_witness_vector() -> List[Cyc24]:
 
 def dual_certificate_matrix(strict: bool = False) -> List[List[Cyc24]]:
     """Construct the canonical dual witness matrix W = v * v^dagger (+ eps * I if strict).
-    
+
     - If strict=False: Rank-1 PSD witness W = v * v^dagger with Tr(W * G) = -7.
     - If strict=True: Strictly positive definite witness W = v * v^dagger + (1/24) * I_24
       with Tr(W * G) = -7 + (1/24)*24 = -6.
@@ -537,14 +504,11 @@ def dual_certificate_matrix(strict: bool = False) -> List[List[Cyc24]]:
     return w
 
 
-# ==============================================================================
-# Full MubQuadSdpCertificate & Solver
-# ==============================================================================
 
 @dataclass(frozen=True)
 class MubQuadSdpCertificate:
     """Full exact verification certificate for the 24x24 Gramian matrix.
-    
+
     Matches schema 'omega.mub.quad-sdp.v2' from omega_native::mub6_quad_sdp.
     """
     schema_version: str
@@ -578,7 +542,7 @@ class MubQuadSdpCertificate:
 
 def solve_quad_sdp_certificate() -> MubQuadSdpCertificate:
     """Generate the full exact rational/cyclotomic certificate solving the quad SDP problem.
-    
+
     Verifies:
     1. Exact 24x24 Gramian structure (diagonal identity, off-diagonal modulus 1/6, Hermitian).
     2. Rank-1 dual witness PSD certification and Tr(W_rank1 * G) = -7 < 0.
@@ -600,7 +564,6 @@ def solve_quad_sdp_certificate() -> MubQuadSdpCertificate:
     rank1_neg = rat_rank1 < Fraction(0)
     strict_neg = rat_strict < Fraction(0)
 
-    # Verify LDL^T pivots
     rank1_pivots = ldlt_pivots_rational(w_rank1)
     rank1_all_nonneg = all(p >= Fraction(0) for p in rank1_pivots)
 
@@ -648,7 +611,7 @@ def verify_dual_obstruction_cyc(
     candidate_evals: Sequence[List[List[Cyc24]]],
 ) -> Tuple[bool, str]:
     """Verify regional dual obstruction Tr(W * G) < 0 on a set of candidate Gram matrices.
-    
+
     Strictly requires witness.is_valid() (D >= 0).
     """
     if not witness.is_valid():

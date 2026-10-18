@@ -74,7 +74,6 @@ def reconstruct(hints_path: Path) -> dict:
     matrix = fmpq_mat([[str(rows[i][j]) for i in selected_rows] for j in selected_columns])
     target = fmpq_mat([[int(monomials[j] == CONSTANT)] for j in selected_columns])
     coefficients = matrix.solve(target, algorithm="dixon")
-    # No rank conclusion or acceptance derives from the supplied pivot hints.
     if matrix * coefficients != target:
         raise ArithmeticError("rational linear-system replay failed")
     multipliers = [{} for _ in canonical]

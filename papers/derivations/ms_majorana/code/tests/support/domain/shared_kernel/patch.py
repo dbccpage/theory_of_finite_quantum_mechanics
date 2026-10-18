@@ -10,7 +10,7 @@ from ..exceptions import InvariantViolationError
 from .bytes import ByteCount
 from .content_digest import ContentDigest
 
-MAX_PATCH_BYTES: int = 16 * 1024 * 1024  # 16 MB maximum single diff patch
+MAX_PATCH_BYTES: int = 16 * 1024 * 1024
 
 
 @dataclass(frozen=True, slots=True, eq=False)

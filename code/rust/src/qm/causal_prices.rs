@@ -1,13 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Campaign C1000 Block 10: Causal price list and field extension census in Rust.
-//!
-//! Formalizes:
-//! - Field extension census with degrees and conductors (T1041)
-//! - Cross-language parity against Python extension census (T1042)
-//! - Price list schema, totality checks, and admission tracking (T1033, T1034)
-//! - Five mutation tests mirrored in Rust (T1043)
-//! - Ten FQMR-1 clause adjudications and structural sentence assembly
 
 use serde::{Deserialize, Serialize};
 
@@ -108,7 +99,6 @@ pub struct TotalityReport {
 pub fn build_full_price_list() -> Vec<PriceListRow> {
     let mut rows = Vec::new();
 
-    // 2 Admissions (T1034)
     rows.push(PriceListRow {
         item_id: "ADM_CAUSAL_ORDER".to_string(),
         item_kind: "DECLARED_ASSUMPTION".to_string(),
@@ -130,7 +120,6 @@ pub fn build_full_price_list() -> Vec<PriceListRow> {
         carrier: "Q(i) tensor products (Herm_4(Q(i)))".to_string(),
     });
 
-    // 13 Imported Structures (T1030)
     let imports = vec![
         (
             "IMP_B01_INCIDENCE_ALGEBRA",
@@ -263,7 +252,6 @@ pub fn build_full_price_list() -> Vec<PriceListRow> {
         });
     }
 
-    // 7 Field Extensions (T1032)
     for ext in build_field_extension_census() {
         rows.push(PriceListRow {
             item_id: ext.id,
@@ -277,7 +265,6 @@ pub fn build_full_price_list() -> Vec<PriceListRow> {
         });
     }
 
-    // 18 External Parameters (T1031)
     let params = vec![
         (
             "PARAM_ROT_ID",
@@ -437,7 +424,6 @@ pub fn build_full_price_list() -> Vec<PriceListRow> {
         });
     }
 
-    // 7 Declared Search Bounds (T1031)
     let bounds = vec![
         (
             "BOUND_B01_POSET_CARDINALITY",

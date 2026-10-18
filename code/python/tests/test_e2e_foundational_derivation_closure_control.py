@@ -1,5 +1,10 @@
-# AuthorityEffect: None.
-"""End-to-end tests for QM-219 Foundational Derivation Closure (FQM-COMPOSITION-IMPORT, FQM-IMPORT-INDEPENDENCE, FQM-QM208-READOUT-CLASS)."""
+"""End-to-end tests for QM-219 Foundational Derivation Closure (FQM-COMPOSITION-IMPORT, FQM-IMPORT-INDEPENDENCE, FQM-QM208-READOUT-CLASS).
+Unit, integration, and negative tests.
+
+Origin: code/python/src/qm/campaigns/derivation_closure.py
+Claim: QZeta12 certificate locked by exact checks in this file
+AuthorityEffect: None
+"""
 
 from __future__ import annotations
 
@@ -205,3 +210,12 @@ def test_part_e_derivation_dag_dual_home_parity() -> None:
 
 
 
+
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'derivation_closure.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'QZeta12' in source
+    assert _MODULE_PATH.is_file()

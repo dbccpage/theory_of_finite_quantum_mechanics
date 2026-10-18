@@ -1,6 +1,3 @@
-//! Thin PyO3 bridge exposing the Rust operad kernel to Python.
-//!
-//! AuthorityEffect: None.
 
 #[cfg(feature = "python")]
 use pyo3::exceptions::{PyRuntimeError, PyValueError};

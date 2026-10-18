@@ -137,7 +137,6 @@ def smith_normal_form(
     while progress:
         progress = False
 
-        # 1. Row and Column Elimination to Diagonal Form
         for k in range(min_dim):
             while True:
                 min_val = None
@@ -190,7 +189,6 @@ def smith_normal_form(
                 ):
                     break
 
-        # 2. Enforce Canonical Divisibility: S[i][i] | S[i+1][i+1]
         for i in range(min_dim - 1):
             if S[i][i] != 0 and S[i + 1][i + 1] != 0 and S[i + 1][i + 1] % S[i][i] != 0:
                 for r in range(m):
@@ -200,7 +198,6 @@ def smith_normal_form(
                 progress = True
                 break
 
-    # Fix signs to be positive
     for k in range(min_dim):
         if S[k][k] < 0:
             S[k][k] = -S[k][k]
@@ -310,11 +307,11 @@ def solve_integer_coexact_cvp(
 @dataclass(frozen=True)
 class H1CohomologyClass:
     is_closed: bool
-    torsion_coords: Tuple[Tuple[int, int], ...]  # (q_i mod s_i, s_i) for s_i > 1
-    free_coords: Tuple[int, ...]  # q_i for s_i == 0
+    torsion_coords: Tuple[Tuple[int, int], ...]
+    free_coords: Tuple[int, ...]
     is_torsion_residual: bool
     h1_free_betti: int
-    h1_torsion_factors: Tuple[int, ...]  # s_i > 1
+    h1_torsion_factors: Tuple[int, ...]
 
 
 def classify_h1_cohomology(
@@ -352,7 +349,6 @@ def classify_h1_cohomology(
             h1_torsion_factors=(),
         )
 
-    # Compute kernel basis K1 of d1
     if cx.dim_c2 > 0:
         H_d1, U_k = hermite_normal_form([list(r) for r in cx.d1])
         k_cols = [
@@ -377,7 +373,6 @@ def classify_h1_cohomology(
     k_dim = len(k_cols)
     K1 = [[U_k[r][col] for col in k_cols] for r in range(cx.dim_c1)]
 
-    # Solve K1 * u = omega over Z
     H_k1, U_solve = hermite_normal_form(K1)
     z = [0] * k_dim
     rem_w = list(omega)
@@ -392,7 +387,6 @@ def classify_h1_cohomology(
 
     u = tuple(sum(U_solve[r][c] * z[c] for c in range(k_dim)) for r in range(k_dim))
 
-    # Express d0 in K1 basis: d0 = K1 * B
     if cx.dim_c0 > 0:
         d0_mat = [list(r) for r in cx.d0]
         B = [[0] * cx.dim_c0 for _ in range(k_dim)]
@@ -416,7 +410,6 @@ def classify_h1_cohomology(
     else:
         B = [[0] for _ in range(k_dim)]
 
-    # Compute SNF of B: S = U_b * B * V_b
     S, U_b, V_b = smith_normal_form(B)
 
     q = tuple(sum(U_b[r][c] * u[c] for c in range(k_dim)) for r in range(k_dim))

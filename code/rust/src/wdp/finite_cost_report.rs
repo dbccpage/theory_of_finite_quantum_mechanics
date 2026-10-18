@@ -1,9 +1,3 @@
-//! Optimal finite reports for the integer cost window `0..=N`.
-//!
-//! With at most K nonempty fibers, one contains at least ceil((N+1)/K)
-//! distinct integers and hence has that size minus one as a lower bound on
-//! its diameter. Consecutive blocks attain the bound; their midpoint is the
-//! exact minimax decoder. This is a static report, not a history congruence.
 use num_bigint::{BigInt, BigUint};
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -18,8 +12,6 @@ pub enum CostReportError {
     UnknownLabel,
 }
 
-/// A checked optimal report, using arbitrary-precision integer arithmetic.
-/// No list proportional to the window or the label budget is allocated.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteCostReport {
     maximum: BigUint,
@@ -32,7 +24,6 @@ impl FiniteCostReport {
         if label_budget.is_zero() {
             return Err(CostReportError::NoLabels);
         }
-        // ceil((N+1)/K) = floor(N/K)+1 for nonnegative integer N.
         let width = &maximum / label_budget + BigUint::one();
         let used_labels = &maximum / &width + BigUint::one();
         Ok(Self {
@@ -67,8 +58,6 @@ impl FiniteCostReport {
         Ok(BigRational::new(BigInt::from(lo + hi), 2.into()))
     }
 
-    /// Sharp over every map into at most the supplied number of labels and
-    /// every real decoder; proof is in the native-history-cost research note.
     pub fn optimal_error(&self) -> BigRational {
         BigRational::new(BigInt::from(&self.width - BigUint::one()), 2.into())
     }

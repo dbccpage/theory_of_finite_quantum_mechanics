@@ -28,7 +28,6 @@ from omega_engine.crates.type.engine_io import (
 CONTRACT_ID: Final[str] = "urn:omega:execution:engine:v1.0.0"
 SCHEMA_VERSION: Final[str] = "omega.contract.v1"
 
-# Engine v1 forbids residual geometry computation in this module.
 _FORBIDDEN_ENGINE_MATH = frozenset({"phi1", "gamma2", "compute_phi", "compute_gamma"})
 
 
@@ -62,7 +61,7 @@ class Engine(ABC):
         Historical smoke used execute_step for residual mass. That is DomainWorker
         territory. Engine must not compute Φ₁ here.
         """
-        del input_data  # unused; refuse path
+        del input_data
         raise PermissionError(
             "Engine v1 refuses residual/cochain execute_step; "
             "use DomainWorker (urn:omega:execution:domain_worker:v1.0.0) "
@@ -91,7 +90,6 @@ class Engine(ABC):
                 ),
             )
 
-        # Engine does not recompute phi1_mass; DomainWorker/functional owns that invariant.
         v_hash = hashlib.sha256(
             f"verify:{output.output_hash}".encode("utf-8")
         ).hexdigest()

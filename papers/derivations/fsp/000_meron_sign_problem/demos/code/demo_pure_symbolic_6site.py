@@ -33,7 +33,6 @@ import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-# Path configuration
 DEMOS_DIR = Path(__file__).resolve().parent.parent
 CODE_DIR = DEMOS_DIR.parent / "code"
 REPO_ROOT = DEMOS_DIR
@@ -69,7 +68,7 @@ WIRE_TURNS_6SITE = [
     {
         "turn": 1,
         "stage": "PLAQUETTE_BREAKUP",
-        "input_wire": "op<<11>op<<1><11000>>op<<10><0><1>>>",  # 24 nodes (binary 11000)
+        "input_wire": "op<<11>op<<1><11000>>op<<10><0><1>>>",
         "wire_prompt": "op<<11>op<<1><11000>>op<<10><0><1>>>",
         "grammar_prompt": "op<<11>op<<1><11000>>op<<10><0><1>>>",
         "expected_response_wire": "op<<101><11><0><1><10><11>>",
@@ -96,7 +95,7 @@ WIRE_TURNS_6SITE = [
     {
         "turn": 4,
         "stage": "EXACT_REPAIR",
-        "input_wire": "op<<0><><0><1>>",  # Host GRANT_LIFT packet
+        "input_wire": "op<<0><><0><1>>",
         "wire_prompt": "op<<0><><0><1>>",
         "grammar_prompt": "op<<0><><0><1>>",
         "expected_response_wire": "op<<10010><0><1000000011110100><1>>",
@@ -151,12 +150,10 @@ def run_pure_symbolic_6site(
         raise ValueError("live mode requires a provider key")
     if write_receipt and output_dir is None:
         raise ValueError("writing receipts requires an explicit output_dir")
-    # Step 0: Execute exact mathematical verifier
     t_math_0 = time.time()
     math_res = verify_6site_scaling_gin()
     t_math = time.time() - t_math_0
 
-    # Step 1: Lexical hygiene audit across all prompts
     for t in WIRE_TURNS_6SITE:
         assert_lexical_hygiene(t["grammar_prompt"])
         assert_wire_purity(t["input_wire"])
@@ -169,7 +166,6 @@ def run_pure_symbolic_6site(
 
     ts = fixed_timestamp if not (live and api_key) else datetime.datetime.now(datetime.timezone.utc).isoformat()
 
-    # Initialize DAG
     dag_nodes.append({
         "node_id": "CARRIER_INIT_6SITE",
         "turn": 0,
@@ -213,7 +209,6 @@ def run_pure_symbolic_6site(
             validation_error = str(error)
         exact_match = resp_wire == expected_wire
 
-        # Domain use-case turn execution
         run_root = create_turn_uc.execute(
             task_id=f"fsp-meron-6site-turn-{turn_num}",
             objective=f"Symbolic Meron 6-site turn {turn_num} stage {stage}",
@@ -261,7 +256,6 @@ def run_pure_symbolic_6site(
             "timestamp": ts,
         })
 
-    # Terminal node
     dag_nodes.append({
         "node_id": "TERMINAL_EXACT_REPAIR_6SITE",
         "turn": 5,
@@ -277,7 +271,6 @@ def run_pure_symbolic_6site(
     })
 
     all_passed = all(t["host_stage_passed"] for t in turns_executed)
-    # Write DAG trace only when requested
     if write_receipt:
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)

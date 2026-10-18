@@ -39,7 +39,6 @@ pub enum SmithError {
     },
 }
 
-/// Certified diagonal invariants of Smith normal form over Z.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SmithDiagonal {
     invariants: Vec<BigInt>,
@@ -75,10 +74,6 @@ impl SmithDiagonal {
     }
 }
 
-/// Result of Smith normal form computation.
-///
-/// Certified: U * A * V = D, where U and V are unimodular (products of
-/// elementary row/column operations).
 pub struct SmithNormalForm {
     diagonal: SmithDiagonal,
     diagonal_matrix: BasicMatrix<BigInt>,
@@ -123,13 +118,6 @@ fn bigint_abs(x: &BigInt) -> BigInt {
     }
 }
 
-// Smith normal form is pivot-selection elimination over Z: row/column index loops
-// co-index `d`, `u_rows`, and `v_cols` and ARE the algorithm; iterator rewrites
-// need split-borrow contortions that obscure the elimination steps.
-//
-// This is a resource policy rather than a proof that the algorithm terminates for
-// every integer matrix. It bounds repeated repair of one pivot, where a malformed
-// or incomplete reduction must return a typed refusal instead of looping forever.
 const DEFAULT_SNF_PIVOT_ITERATION_LIMIT: usize = 10_000;
 
 #[allow(clippy::needless_range_loop)]
@@ -197,7 +185,6 @@ fn smith_normal_form_checked_with_iteration_limit(
     for k in 0..r {
         let mut iterations = 0;
         loop {
-            // Find pivot with smallest absolute non-zero value in d[k..m][k..n]
             let mut pivot = None;
             let mut pivot_abs: Option<BigInt> = None;
             for i in k..m {
@@ -245,12 +232,9 @@ fn smith_normal_form_checked_with_iteration_limit(
 
             let mut changed = false;
 
-            // Clear column k below k using egcd
             for i in (k + 1)..m {
                 if d[i][k] != zero {
                     if &d[i][k] % &d[k][k] == zero {
-                        // Row_i <- Row_i - q * Row_k is unimodular and clears
-                        // an exactly divisible entry without replacing the pivot.
                         let q = &d[i][k] / &d[k][k];
                         let row_k = d[k].clone();
                         for j in 0..n {
@@ -284,12 +268,9 @@ fn smith_normal_form_checked_with_iteration_limit(
                 }
             }
 
-            // Clear row k right of k using egcd
             for j in (k + 1)..n {
                 if d[k][j] != zero {
                     if &d[k][j] % &d[k][k] == zero {
-                        // Col_j <- Col_j - q * Col_k is unimodular and clears
-                        // an exactly divisible entry without replacing the pivot.
                         let q = &d[k][j] / &d[k][k];
                         for i in 0..m {
                             let val_k = d[i][k].clone();
@@ -323,7 +304,6 @@ fn smith_normal_form_checked_with_iteration_limit(
                 }
             }
 
-            // Check if d[k][k] divides all remaining entries
             let mut divides_all = true;
             'outer: for i in (k + 1)..m {
                 for j in (k + 1)..n {
@@ -368,7 +348,6 @@ fn smith_normal_form_checked_with_iteration_limit(
         SmithDiagonal::new_checked(invariants)?
     };
 
-    // Build result matrices
     let d_mat = BasicMatrix::<BigInt>::try_from_fn(m, n, |i, j| {
         if i == j && i < rank {
             d[i][i].clone()
@@ -384,7 +363,6 @@ fn smith_normal_form_checked_with_iteration_limit(
     let v_mat = BasicMatrix::<BigInt>::try_from_fn(n, n, |i, j| v_cols[j][i].clone())
         .map_err(SmithError::Matrix)?;
 
-    // Certification: verify U * A * V == D
     let ua = u_mat.mul(matrix).map_err(SmithError::Matrix)?;
     let uav = ua.mul(&v_mat).map_err(SmithError::Matrix)?;
     if uav.as_slice() != d_mat.as_slice() {
@@ -399,9 +377,6 @@ fn smith_normal_form_checked_with_iteration_limit(
     })
 }
 
-/// Integer numerator after reduction. `4/2`, `2/-1`, and `0/5` count; a zero
-/// denominator is refused without calling [`num_rational::Ratio::reduced`],
-/// which panics on it.
 fn integer_numerator_i64(val: &Rational64) -> Option<i64> {
     use num_traits::{One, Zero};
     if val.denom().is_zero() {
@@ -426,11 +401,6 @@ fn integer_numerator_big(val: &num_rational::BigRational) -> Option<BigInt> {
     Some(reduced.numer().clone())
 }
 
-/// Convert a `BasicMatrix<Rational64>` to `BasicMatrix<BigInt>`.
-///
-/// An entry is an integer when its reduced denominator is 1. Unreduced
-/// integers (`4/2`, `2/-1`) are accepted. A non-integer or a zero denominator
-/// is [`SmithError::NonIntegerEntry`], not a panic.
 pub fn from_rational64_integer_matrix(
     m: &BasicMatrix<Rational64>,
 ) -> Result<BasicMatrix<BigInt>, SmithError> {
@@ -442,11 +412,6 @@ pub fn from_rational64_integer_matrix(
     })
 }
 
-/// Convert a `BasicMatrix<BigRational>` to `BasicMatrix<BigInt>`.
-///
-/// The ADR-001 counterpart of [`from_rational64_integer_matrix`]. The numerator
-/// is already a `BigInt`. Integrality is the reduced denominator, so `4/2` is
-/// the integer 2 rather than a second spelling that is refused or copied raw.
 pub fn from_bigrational_integer_matrix(
     m: &BasicMatrix<num_rational::BigRational>,
 ) -> Result<BasicMatrix<BigInt>, SmithError> {
@@ -600,8 +565,6 @@ fn egcd(a: BigInt, b: BigInt) -> (BigInt, BigInt, BigInt) {
     }
 }
 
-/// A heuristic that computes some gcds of sparse columns.
-/// WARNING: This does NOT compute the Smith normal form. It is not invariant under unimodular operations.
 pub fn sparse_column_gcd_heuristic(matrix: &SparseColMatrix) -> SparseColumnGcdProfile {
     let mut cols = matrix.columns.to_vec();
     let mut invariants = Vec::new();
@@ -784,7 +747,6 @@ mod tests {
         );
     }
 
-    // STORY-101-003: Smith Normal Form algorithm tests
 
     fn verify_snf(matrix: &BasicMatrix<BigInt>, snf: &SmithNormalForm) {
         let ua = snf.u().mul(matrix).expect("U*A");
@@ -797,8 +759,6 @@ mod tests {
     }
 
     fn triangle_incidence_matrix() -> BasicMatrix<BigInt> {
-        // Signed incidence matrix of triangle graph (3 nodes, 3 edges).
-        // Edge (0,1): [-1, 1, 0], Edge (1,2): [0, -1, 1], Edge (0,2): [-1, 0, 1].
         BasicMatrix::from_row_major(
             3,
             3,
@@ -827,7 +787,6 @@ mod tests {
 
     #[test]
     fn snf_non_divisible_2x2() {
-        // [[2, 0], [0, 3]] -> SNF diag(1, 6)
         let m = BasicMatrix::from_row_major(
             2,
             2,
@@ -888,8 +847,6 @@ mod tests {
 
     #[test]
     fn snf_2x4_6x8() {
-        // [[2, 4], [6, 8]] -> SNF diag(2, 4)
-        // det = 16 - 24 = -8, gcd(2,4,6,8) = 2, |det|/gcd = 4
         let m = BasicMatrix::from_row_major(
             2,
             2,
@@ -912,7 +869,6 @@ mod tests {
 
     #[test]
     fn snf_rectangular_2x3() {
-        // [[1, 2, 3], [4, 5, 6]]
         let m = BasicMatrix::from_row_major(
             2,
             3,
@@ -929,7 +885,6 @@ mod tests {
         let snf = smith_normal_form_checked(&m).unwrap();
         assert_eq!(snf.diagonal().rank(), 2);
         verify_snf(&m, &snf);
-        // d1 | d2
         let invs = snf.diagonal().invariants();
         assert_eq!(&invs[1] % &invs[0], BigInt::from(0));
     }
@@ -1006,8 +961,6 @@ mod tests {
 
     #[test]
     fn snf_iteration_limit_counts_repeated_pivot_repairs() {
-        // The first pass clears the upper-right unit; the second confirms that
-        // the pivot is complete. This exercises a positive budget exhaustion.
         let m = BasicMatrix::from_row_major(
             2,
             2,
@@ -1058,7 +1011,6 @@ mod tests {
         assert_eq!(snf.diagonal().rank(), 0);
     }
 
-    // STORY-101-002: SparseColMatrix operations tests
 
     #[test]
     fn sparse_col_mul_vec_identity_2x2() {
@@ -1071,7 +1023,6 @@ mod tests {
 
     #[test]
     fn sparse_col_mul_vec_known_values() {
-        // [[2, 0], [0, 3]] * [4, 5] = [8, 15]
         let columns = vec![vec![(0, BigInt::from(2))], vec![(1, BigInt::from(3))]];
         let m = SparseColMatrix::new_checked(2, 2, columns).unwrap();
         let v = vec![BigInt::from(4), BigInt::from(5)];
@@ -1081,7 +1032,6 @@ mod tests {
 
     #[test]
     fn sparse_col_mul_vec_rectangular() {
-        // [[1, 0, 2], [0, 3, 0]] * [1, 2, 3] = [7, 6]
         let columns = vec![
             vec![(0, BigInt::from(1))],
             vec![(1, BigInt::from(3))],

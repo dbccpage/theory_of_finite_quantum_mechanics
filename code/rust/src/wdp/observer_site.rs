@@ -1,11 +1,3 @@
-//! Constrained finite observer presentations with coherent report transports.
-//!
-//! A context carries admissible pointwise reports and an injective decoding into
-//! shared report values. Transport is decode, restrict, then uniquely identify
-//! the target chart's admissible report. Restriction closure is checked before
-//! delegating identity/composition and finite descent classification to
-//! `omega_category_theory::finite_report_descent`. Global constraints can prevent
-//! compatible local reports from gluing; their absence is not presumed.
 
 use std::collections::{BTreeMap, BTreeSet};
 

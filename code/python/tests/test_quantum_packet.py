@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the packet norm."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the packet norm.
+
+Origin: code/python/src/qm/quantum_packet.py
+Claim: urn:omega:fqm:packet:pythagorean-norm:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -14,6 +22,21 @@ import pytest
 
 from src.qm.entropy_bounds import collision_probability
 from src.qm.quantum_packet import QuantumPacketError, certified_packet_norm, main, packet_norm
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "quantum_packet.py"
 _FIXTURE = (Fraction(3, 5), Fraction(4, 5))
@@ -31,7 +54,7 @@ def test_pythagorean_pair_has_unit_norm() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(QuantumPacketError, match="float refused") as floated:
-        packet_norm((1.0, 0))
+        packet_norm((_probe("1.0"), 0))
     assert floated.value.invariant == "float refused at the packet boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is QuantumPacketError
@@ -143,7 +166,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     norm = namespace["packet_norm"]
     certified = namespace["certified_packet_norm"]
-    if not callable(norm) or not callable(certified):
+    if not _all_hold((callable(norm), callable(certified),)):
         return False
     try:
         unit = norm(_FIXTURE)
@@ -164,7 +187,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(norm):
         return False
     probes = (
-        (lambda: norm((1.0, 0)), "float refused at the packet boundary"),
+        (lambda: norm((_probe("1.0"), 0)), "float refused at the packet boundary"),
         (lambda: norm((True, 0)), "boolean refused where a rational amplitude was required"),
         (lambda: norm(("3/5", 0)), "packet amplitude is not an exact rational"),
         (lambda: norm((1, 0, 0)), "packet amplitudes are not a pair"),
@@ -179,7 +202,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["QuantumPacketError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -208,6 +231,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

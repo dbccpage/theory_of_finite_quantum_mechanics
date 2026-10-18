@@ -1,39 +1,4 @@
-// AuthorityEffect: None.
 
-//! The Gell-Mann–Hartle decoherence functional of declared histories over `Q(i)`.
-//!
-//! Declared: an operator `rho` on `C^d` and class operators `C_1, ..., C_m`
-//! (`d x d`), or unitary steps and projective partitions from which the class
-//! operators are built. Computed exactly:
-//!
-//! - [`DecoherenceFunctional::matrix`]: `D_jk = Tr(C_j rho C_k*)`. When `rho`
-//!   is positive semidefinite, `D` is the Gram matrix of the `C_j rho^(1/2)`;
-//!   whether a given `D` is Hermitian or positive semidefinite is decided by
-//!   `exact_hermitian`, not assumed.
-//! - [`DecoherenceFunctional::coarse_grain`]: the functional of the class
-//!   operators `C_A = sum_(j in A) C_j` of a partition of the histories.
-//! - [`DecoherenceFunctional::sum_rule_residual`]: `P(j u k) - D_jj - D_kk`,
-//!   where `P(j u k) = Tr((C_j + C_k) rho (C_j + C_k)*)` is computed from the
-//!   summed class operator; it equals `D_jk + D_kj`, which is `2 Re D_jk` for a
-//!   Hermitian `rho`.
-//! - [`DecoherenceFunctional::medium_decoherence_witness`]: the first pair with
-//!   `D_jk != 0`, and [`DecoherenceFunctional::weak_decoherence_witness`]: the
-//!   first pair whose union breaks the sum rule. Vanishing off-diagonal entries
-//!   imply every sum rule; the converse fails.
-//! - [`DecoherenceFunctional::is_complete`]: `sum_j C_j* C_j = I`, under which
-//!   `sum_j D_jj = Tr(rho)`.
-//! - History proposals (owned by `omega_quantum_physics::chain_histories`): the class operators `C_a = P^n_(a_n)(t_n) ... P^1_(a_1)(t_1)`
-//!   of every history through declared projective partitions, with the
-//!   Heisenberg-picture projectors `P(t_k) = W_k* P W_k`, `W_k = U_k ... U_1`,
-//!   from the physics Heisenberg adapter.
-//!
-//! Refused: an empty history family or partition, operators of the wrong
-//! shape, a coarse-graining that is not a partition of the histories, a
-//! partition whose members are not Hermitian idempotents that are pairwise
-//! orthogonal and sum to `I`, non-unitary steps, and more than
-//! `graded_path_sum::HISTORY_BUDGET` histories. No probability is assigned to a
-//! history family that breaks a sum rule; the sum rules are computed, not
-//! assumed.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use omega_number_theory::cyclotomic::GaussianRat;
@@ -52,7 +17,6 @@ fn check_well_formed(matrix: &BasicMatrix<GaussianRat>) -> Result<(), Decoherenc
         .map_err(|error| DecoherenceError::Algebra(error.to_string()))
 }
 
-/// Refusals for decoherence functionals and chain histories.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum DecoherenceError {
     #[error(transparent)]
@@ -99,7 +63,6 @@ pub enum DecoherenceError {
     Heisenberg(String),
 }
 
-/// `D_jk = Tr(C_j rho C_k*)` for a declared state and class operators.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DecoherenceFunctional {
     state: BasicMatrix<GaussianRat>,
@@ -161,7 +124,6 @@ impl DecoherenceFunctional {
         .expect("validated finite matrix shape and budget");
         for (j, c_rho) in weighted.iter().enumerate() {
             for (k, c) in class_operators.iter().enumerate() {
-                // Tr(C_j rho C_k*) = Tr(C_k* (C_j rho)), the Hilbert–Schmidt pairing of C_k with C_j rho.
                 let entry = linear_algebra::exact_field::involution::hs_inner(c, c_rho)
                     .map_err(linear_algebra::exact_field::ExactFieldError::from)
                     .expect("class operators share one shape");
@@ -177,12 +139,10 @@ impl DecoherenceFunctional {
         })
     }
 
-    /// The `m x m` matrix `D`.
     pub fn matrix(&self) -> &BasicMatrix<GaussianRat> {
         &self.matrix
     }
 
-    /// `sum_j C_j* C_j = I`.
     pub fn is_complete(&self) -> bool {
         let d = self.state.rows();
         let total = self.class_operators.iter().fold(
@@ -231,7 +191,6 @@ impl DecoherenceFunctional {
         Ok(())
     }
 
-    /// The functional of the coarse-grained class operators `C_A = sum_(j in A) C_j`.
     pub fn coarse_grain(&self, classes: &[Vec<usize>]) -> Result<Self, DecoherenceError> {
         let count = self.class_operators.len();
         let mut membership = vec![0usize; count];
@@ -271,7 +230,6 @@ impl DecoherenceFunctional {
         Self::new(self.state.clone(), coarse)
     }
 
-    /// `Tr((C_j + C_k) rho (C_j + C_k)*) - D_jj - D_kk` for two distinct histories.
     pub fn sum_rule_residual(&self, j: usize, k: usize) -> Result<GaussianRat, DecoherenceError> {
         self.check_index(j)?;
         self.check_index(k)?;
@@ -317,7 +275,6 @@ impl DecoherenceFunctional {
             ))
     }
 
-    /// The first pair `j < k` with `D_jk != 0`, or `None` when `D` is diagonal.
     pub fn medium_decoherence_witness(&self) -> Option<(usize, usize)> {
         let m = self.class_operators.len();
         (0..m)
@@ -334,7 +291,6 @@ impl DecoherenceFunctional {
             })
     }
 
-    /// The first pair `j < k` whose union breaks the sum rule, or `None`.
     pub fn weak_decoherence_witness(&self) -> Option<(usize, usize)> {
         let m = self.class_operators.len();
         (0..m)
@@ -349,9 +305,6 @@ impl DecoherenceFunctional {
 }
 
 impl DecoherenceFunctional {
-    /// Tensor product of two independent history families and states. The
-    /// computed functional is D tensor D', so medium decoherence is stable
-    /// under composition; weak decoherence need not be.
     pub fn tensor(&self, other: &Self) -> Result<Self, DecoherenceError> {
         use linear_algebra::exact_field::matrix::kronecker;
         if self

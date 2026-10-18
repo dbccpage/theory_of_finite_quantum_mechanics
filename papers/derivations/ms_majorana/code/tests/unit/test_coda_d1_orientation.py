@@ -26,7 +26,6 @@ from omega_engine.crates.residuals.network_residual import (
 MASTER = Network(nodes=[0, 1, 2], edges=[(0, 1), (1, 2), (2, 0)], faces=[(0, 1, 2)])
 MASTER_H1 = {(0, 1): 1.0, (1, 2): 0.5, (2, 0): -0.8}
 
-# Two faces sharing edge (1, 2), stored reversed as (2, 1); (2, 0) also reversed.
 MIXED = Network(
     nodes=[0, 1, 2, 3],
     edges=[(0, 1), (2, 1), (2, 0), (1, 3), (3, 2)],
@@ -36,7 +35,7 @@ MIXED = Network(
 
 def _matrix_d1(c, h_1):
     """Coboundary via the incidence matrix: (d1 h)_f = (B^T h)_f, B = face boundary."""
-    boundary = build_face_boundary(c)  # (n_edges, n_faces): +1 stored, -1 reversed
+    boundary = build_face_boundary(c)
     h_vec = np.zeros(len(c.edges))
     for idx, e in enumerate(c.edges):
         h_vec[idx] = h_1.get(e, 0.0)
@@ -50,7 +49,6 @@ def test_dict_d1_matches_matrix_d1_on_master_fixture():
     assert set(dict_d1) == set(matrix_d1)
     for face in matrix_d1:
         assert dict_d1[face] == pytest.approx(matrix_d1[face])
-    # h(1,2) - h(0,2) + h(0,1) = 0.5 - 0.8 + 1.0
     assert dict_d1[(0, 1, 2)] == pytest.approx(0.7)
 
 
@@ -65,7 +63,6 @@ def test_dict_d1_matches_matrix_d1_on_mixed_orientation_carrier():
 
 def test_reversed_key_reads_as_negated_value():
     dict_d1 = curl(MASTER, {(2, 0): -0.8})
-    # (d1 h)(0,1,2) = h(0,1) + h(1,2) + h(2,0) = 0 + 0 + (-0.8)
     assert dict_d1[(0, 1, 2)] == pytest.approx(-0.8)
 
 

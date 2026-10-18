@@ -28,7 +28,7 @@ RESULTS = Path(__file__).resolve().parents[1] / "results"
 LLAMA = "meta-llama/llama-3.3-70b-instruct"
 DEEPSEEK = "deepseek/deepseek-v4-flash-0731"
 GLM = "z-ai/glm-5.3-flash"
-RUN_ORDER = (LLAMA, DEEPSEEK, GLM)  # Arm 4 order in the harness; the report sorts keys.
+RUN_ORDER = (LLAMA, DEEPSEEK, GLM)
 
 
 @pytest.fixture(scope="module")

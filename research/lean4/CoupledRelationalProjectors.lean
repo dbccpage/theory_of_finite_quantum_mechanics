@@ -1,59 +1,8 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import Std
-/-!
-# Pure Relational Operad Chain (`P_REL_01`–`P_REL_07`): Single, Bipartite, and Tripartite Projectors
 
-Formalizes the exact integer-scaled projector decompositions, graph holonomy obstructions,
-commutator identities, and Schur-Weyl / Levi-Civita localization theorems for all 7 stages
-(`P_REL_01` through `P_REL_07`) of the pure relational Genesis operad workflow:
 
-1. **Stage 1 (`S(0..6)` survivor tower and `D_2` retraction):**
-   - Active obstruction survivor vector `(0, 1, 1, 1, 0, 1, 1)`, binary germ `D_2` support
-     floor `2`, retraction left-inverse defect `0`, and cumulative history ledger
-     `(0, 1, 2, 3, 3, 4, 5)`.
-2. **Stage 2 (`D_2` collision tagging and swap quotient):**
-   - Scaled symmetric and antisymmetric projectors `2 P_+ = ((1, 1), (1, 1))` and
-     `2 P_- = ((1, -1), (-1, 1))`, zero idempotence and orthogonality defect, and
-     difference kernel rank `1`.
-3. **Stage 3 (`G = (4, 5)` diamond cut coboundary vs cycle chord holonomy):**
-   - Diamond graph invariants `(V, E, b_1) = (4, 5, 2)`, spanning tree count `8`,
-     exact vertex-potential cycle sum defect `0`, and fundamental cycle holonomies `(1, -1)`.
-4. **Stage 4 (`D_3` noncommuting swap commutator and cyclotomic `W_0` kernel):**
-   - Skew-symmetric commutator `K = [T_{01}, T_{12}] = ((0, -1, 1), (1, 0, -1), (-1, 1, 0))`
-     with `Tr(K) = 0`, cubic identity `K^3 + 3 K = 0`, and cyclotomic difference identity
-     `(R^2 + R + I)|_{W_0} = 0` and `(K^2 + 3 I)|_{W_0} = 0`.
-5. **Stage 5 (`D_2 × D_3`, 6 elements):**
-   - Scaled 4-sector projectors `(6 Π_{+,mean}, 6 Π_{-,mean}, 6 Π_{+,W_0}, 6 Π_{-,W_0})`
-     have exact traces `(6, 6, 12, 12)` (ranks `(1, 1, 2, 2)`), zero idempotence /
-     orthogonality / completeness defect, and coupled swap-commutator `J_{23} = σ ⊗ K`
-     satisfying `J_{23}^3 + 3 J_{23} = 0` and `(J_{23}^2 + 3 I_6)(6 Π_{-,W_0}) = 0`.
-6. **Stage 6 (`D_3 × D_3`, 9 elements):**
-   - Scaled 5-sector projectors `(18 Π_{++}, 18 Π_{+0}, 18 Π_{0+}, 18 Π_{00}^{sym}, 18 Π_{00}^{alt})`
-     under factor swap `τ(a,b) = (b,a)` have exact traces `(18, 36, 36, 54, 18)`
-     (ranks `(1, 2, 2, 3, 1)`), compound commutator `K_{33} = K ⊗ K` satisfies
-     `(K_{33}^2 - 9 I_9)(9 Π_{00}) = 0`, diagonal 3-cycle `R_{33} = R ⊗ R` has scaled
-     traces `(0, 18, 0)` (ranks `(0, 1, 0)`), and the antisymmetric singlet `ψ_alt`
-     has `2 × 2` minor `1 ≠ 0` vs `0` for separable vectors.
-7. **Stage 7 (`D_3 × D_3 × D_3`, 27 elements):**
-   - Scaled binomial projectors `(27 Π^{(3,0)}, 27 Π^{(2,1)}, 27 Π^{(1,2)}, 27 Π_{000})`
-     have exact traces `(27, 162, 324, 216)` (ranks `(1, 6, 12, 8)`).
-   - Restricted to `W_{000} = W_0^{\otimes 3}`, the `S_3^{fac}` projectors have scaled
-     traces `(648, 648, 0)` (`162 × (4, 4, 0)`), certifying `Λ^3(W_0) = 0`.
-   - The unique 1D Levi-Civita alternating line `6 P_{alt}^{(3)}` has scaled trace `6`
-     (rank `1`), is supported entirely inside `27 Π^{(1,2)}` (`Λ^1(L_+) ⊗ Λ^2(W_0)`),
-     and has `(R^{\otimes 3}, T_{01}^{\otimes 3})` parities `(+1, -1)`.
-   - Inside `W_{000}`, the `R^{\otimes 3}`-invariant subspace has rank `2`, splits into
-     `(1, 1)` under `T_{01}^{\otimes 3}`, and satisfies `((K^{\otimes 3})^2 + 27 I_{27}) Π_{000} = 0`.
 
-AuthorityEffect: None.
--/
 
 namespace CoupledRelationalProjectors
 
@@ -113,7 +62,6 @@ def scaledProjectorFamilyDefect (n : Nat) (scale : Int) (projectors : List MatZ)
   let compOk := matEqB n sumMat (matIdent scale)
   if idemOk && orthoOk && compOk then 0 else 1
 
--- Base D_2 (scale 2) and D_3 (scale 3) operators
 def pPlus2 : MatZ := fun _ _ => 1
 
 def pMinus2 : MatZ := fun i j => if i == j then 1 else -1
@@ -146,9 +94,6 @@ def kComm3 : MatZ := fun i j =>
   | 2, 1 => 1
   | _, _ => 0
 
--- ============================================================================
--- Stage 1: Genesis S(0..6) Survivor Tower, D_2 Support Floor, and Retraction
--- ============================================================================
 
 def stage1Summary :
     (Int × Int × Int × Int × Int × Int × Int) ×
@@ -185,9 +130,6 @@ theorem stage1_survivor_tower_and_retraction_eq :
     stage1Summary = ((0, 1, 1, 1, 0, 1, 1), 2, 0, (0, 1, 2, 3, 3, 4, 5)) := by
   rfl
 
--- ============================================================================
--- Stage 2: D_2 Collision Tagging and Swap Involution Projectors (scale 2)
--- ============================================================================
 
 def stage2Summary :
     ((Int × Int) × (Int × Int)) ×
@@ -208,23 +150,17 @@ theorem stage2_d2_collision_tagging_and_swap_projectors_eq :
     stage2Summary = (((1, 1), (1, 1)), ((1, -1), (-1, 1)), 0, 0, 1) := by
   decide
 
--- ============================================================================
--- Stage 3: Diamond Graph G=(4,5) Cut Coboundary vs Cycle Holonomy
--- ============================================================================
 
 def stage3Summary : (Int × Int × Int) × Int × Int × (Int × Int) :=
   let v : Int := 4
   let e : Int := 5
   let b1 : Int := e - v + 1
-  -- Two triangles sharing one chord: 3 * 3 - 1 = 8 spanning trees
   let diamondTrees : Int := 3 * 3 - 1
-  -- Vertex potential g = (1, 0, 0, 0) and g' = (0, 8, -6, 15) coboundary cycle sums
   let d0CycleSum (g0 g1 g2 g3 : Int) : Int :=
     let c1 := (g1 - g0) + (g2 - g1) - (g2 - g0)
     let c2 := (g3 - g1) - (g3 - g2) - (g2 - g1)
     Int.ofNat (Int.natAbs c1 + Int.natAbs c2)
   let coboundaryDefect := d0CycleSum 1 0 0 0 + d0CycleSum 0 8 (-6) 15
-  -- Non-exact 1-cochain omega = (0, 0, -1, 0, 1) on (e01, e12, e02, e13, e23)
   let c1Hol : Int := 0 + 0 - (-1)
   let c2Hol : Int := 0 - 1 - 0
   ((v, e, b1), diamondTrees, coboundaryDefect, (c1Hol, c2Hol))
@@ -233,9 +169,6 @@ theorem stage3_diamond_coboundary_vs_chord_holonomy_eq :
     stage3Summary = ((4, 5, 2), 8, 0, (1, -1)) := by
   decide
 
--- ============================================================================
--- Stage 4: D_3 Noncommuting Swap Commutator K and Cyclotomic W_0 Kernel
--- ============================================================================
 
 def stage4Summary :
     ((Int × Int × Int) × (Int × Int × Int) × (Int × Int × Int)) ×
@@ -264,9 +197,6 @@ theorem stage4_d3_swap_commutator_and_cyclotomic_w0_eq :
     stage4Summary = (((0, -1, 1), (1, 0, -1), (-1, 1, 0)), 0, 0, 0) := by
   decide
 
--- ============================================================================
--- Stage 5: Coupled Bipartite D_2 × D_3 (6 elements, scale 6)
--- ============================================================================
 
 def stage5GraphAndHolonomyPin : (Int × Int × Int × Int) × ((Int × Int) × (Int × Int) × Int) :=
   let v : Int := 6
@@ -323,9 +253,6 @@ theorem stage5_d2_x_d3_four_sector_ranks_and_j23_cubic :
   unfold stage5Summary
   rw [stage5_graph_and_holonomy_eq, stage5_projector_and_commutator_eq]
 
--- ============================================================================
--- Stage 6: Coupled Bipartite D_3 × D_3 (9 elements, scale 18)
--- ============================================================================
 
 def tau9 : MatZ := fun i j =>
   if i == 3 * (j % 3) + (j / 3) then 1 else 0
@@ -364,9 +291,6 @@ theorem stage6_d3_x_d3_five_sector_ranks_and_rational_involution :
     stage6Summary = ((1, 2, 2, 3, 1), 0, 0, (0, 1, 0), (1, 0)) := by
   decide
 
--- ============================================================================
--- Stage 7: Tripartite D_3 × D_3 × D_3 (27 elements)
--- ============================================================================
 
 def pi30_27 : MatZ := fun _ _ => 1
 
@@ -576,3 +500,6 @@ theorem coupled_bipartite_and_tripartite_relational_master_certificate :
 
 end CoupledRelationalProjectors
 
+
+private def l5aProvenance : String :=
+  "Origin: lean4/CoupledRelationalProjectors.lean Claim: stage1_survivor_tower_and_retraction_eq AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

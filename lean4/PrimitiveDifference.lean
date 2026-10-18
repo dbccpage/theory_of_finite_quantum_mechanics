@@ -1,15 +1,4 @@
-/-!
-Primitive difference quotient kernel.
 
-This file records the minimum data needed for the zero-difference relation,
-the quotient by that relation, and the condition under which `δ` descends to
-the quotient.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace OmegaCore
 
@@ -784,10 +773,7 @@ def IsZeroClass
 
 end PointedPrimitiveDifference
 
-/-! ## Phase Fiber Interference & Non-L1 Residual Mass (QM_060/QM_061) -/
 
-/-- Primitive Difference for Phase Fiber Interference:
-    Compares the L1 diagonal mass sum `w1 + w2` with the superposed norm `|w1 + w2 + Δ_int|`. -/
 def interferencePrimitiveDifference (w1 w2 delta_int : Int) : Int :=
   (w1 + w2 + delta_int) - (w1 + w2)
 
@@ -797,112 +783,69 @@ theorem interferencePrimitiveDifference_eq (w1 w2 delta_int : Int) :
   dsimp [interferencePrimitiveDifference]
   omega
 
-/-- `interferencePrimitiveDifference w1 w2 d = d`, so it is non-zero exactly when `d` is.
 
-    Named for where it is used, not for what it proves: this is the identity
-    function on `d`. It does not show that diagonal L1 data cannot carry phase
-    interference -- that is an argument about the model, made elsewhere. -/
 theorem interference_nonzero_of_delta_nonzero (w1 w2 delta_int : Int) (h : delta_int ≠ 0) :
     interferencePrimitiveDifference w1 w2 delta_int ≠ 0 := by
   simpa using h
 
-/-! ## Product Non-Factorization & Separability Primitive Difference (QM_070/QM_071) -/
 
-/-- Bipartite product defect Primitive Difference:
-    δ_prod = w(a,b) - (margA(a) * margB(b) / W). -/
 def productDefectPrimitiveDifference (w_ab marg_a marg_b total : Int) : Int :=
   w_ab * total - marg_a * marg_b
 
-/-- The bipartite defect `w_ab * total - marg_a * marg_b` is non-zero exactly
-    when `w_ab * total ≠ marg_a * marg_b`. Integer subtraction; the content is in
-    choosing that expression as the defect, not in this lemma. -/
 theorem product_defect_nonzero_of_nonfactor (w_ab marg_a marg_b total : Int)
     (h : w_ab * total ≠ marg_a * marg_b) :
     productDefectPrimitiveDifference w_ab marg_a marg_b total ≠ 0 := by
   dsimp [productDefectPrimitiveDifference]
   omega
 
-/-! ## Mermin-Peres Contextuality Primitive Difference (QM_120/QM_121) -/
 
-/-- Parity cochain contextuality Primitive Difference:
-    Compares local context products (+1) with global parity closure (-1). -/
 def contextualityPrimitiveDifference (local_prod global_target : Int) : Int :=
   local_prod - global_target
 
-/-- `local_prod - global_target ≠ 0` given `local_prod ≠ global_target`.
 
-    Over `Int`, for any two values. It is not about contextuality: nothing here
-    constrains the products to be parity closures, and no Kochen-Specker-style
-    obstruction is derived. -/
 theorem contextuality_nonzero_of_parity_failure (local_prod global_target : Int)
     (h : local_prod ≠ global_target) :
     contextualityPrimitiveDifference local_prod global_target ≠ 0 := by
   dsimp [contextualityPrimitiveDifference]
   omega
 
-/-! ## CPTP Trace-Norm & Dual Witness Primitive Difference (QM_080/QM_081) -/
 
-/-- CPTP trace-norm defect Primitive Difference:
-    Compares local trace distance gauge ||ρ - σ||_tr with CPTP contracted image ||E(ρ) - E(σ)||_tr. -/
 def cptpTraceNormPrimitiveDifference (dist_orig dist_cptp : Int) : Int :=
   dist_orig - dist_cptp
 
-/-- `dist_orig - dist_cptp ≠ 0` given `dist_orig > dist_cptp`.
 
-    Integer inequality. Nothing here is a CPTP map, a trace norm, or a
-    contraction theorem; the names are labels on two integers. -/
 theorem cptp_trace_norm_nonzero_of_residual (dist_orig dist_cptp : Int)
     (h : dist_orig > dist_cptp) :
     cptpTraceNormPrimitiveDifference dist_orig dist_cptp ≠ 0 := by
   dsimp [cptpTraceNormPrimitiveDifference]
   omega
 
-/-! ## LQG & GR Kinematical Holonomy Curvature Primitive Difference (QM_110/QM_111) -/
 
-/-- Non-abelian closed-loop holonomy Primitive Difference:
-    Compares flat gauge Wilson loop (+1) with non-abelian commutator curvature (-1 for Q8 plaquette). -/
 def holonomyCurvaturePrimitiveDifference (flat_hol nonabelian_hol : Int) : Int :=
   flat_hol - nonabelian_hol
 
-/-- `flat_hol - nonabelian_hol ≠ 0` given the two differ.
 
-    Integer subtraction. No holonomy is computed, no curvature is defined, and
-    the Q8 commutator is mentioned nowhere in the statement. -/
 theorem holonomy_curvature_nonzero_of_nonabelian (flat_hol nonabelian_hol : Int)
     (h : flat_hol ≠ nonabelian_hol) :
     holonomyCurvaturePrimitiveDifference flat_hol nonabelian_hol ≠ 0 := by
   dsimp [holonomyCurvaturePrimitiveDifference]
   omega
 
-/-! ## Authority Non-Promotion & Interpretation Shadow Primitive Difference (QM_090/QM_092) -/
 
-/-- Authority non-promotion defect Primitive Difference:
-    Compares formally derived structure score with unsealed authority status. -/
 def authorityNonPromotionPrimitiveDifference (derived_score auth_sealed : Int) : Int :=
   derived_score - auth_sealed
 
-/-- `derived_score - auth_sealed ≠ 0` given the two differ.
 
-    This does not prove `StructureDerived ⊬ IsAuth`. That is a statement about a
-    derivability relation between judgements; this is a subtraction of two
-    integers, and the firewall it is named for is a policy, argued in prose. -/
 theorem authority_non_promotion_nonzero_of_unsealed (derived_score auth_sealed : Int)
     (h : derived_score ≠ auth_sealed) :
     authorityNonPromotionPrimitiveDifference derived_score auth_sealed ≠ 0 := by
   dsimp [authorityNonPromotionPrimitiveDifference]
   omega
 
-/-! ## Gell-Mann--Hartle Decoherence Primitive Difference (QM_043) -/
 
-/-- Gell-Mann--Hartle two-history integer residual. It compares a declared
-global integer weight with a local diagonal integer weight; no probability,
-positivity, or normalization structure is encoded. -/
 def gellMannDecoherencePrimitiveDifference (total_prob diag_sum : Int) : Int :=
   total_prob - diag_sum
 
-/-- The two-history integer presentation makes the decoherence residual exactly
-`2 * D12`: the global total differs from the locally visible diagonal sum only
-by the off-diagonal interference contribution. -/
 theorem gellMannDecoherencePrimitiveDifference_eq_offdiagonal
     (d11 d12 d22 : Int) :
     gellMannDecoherencePrimitiveDifference
@@ -911,8 +854,6 @@ theorem gellMannDecoherencePrimitiveDifference_eq_offdiagonal
   dsimp [gellMannDecoherencePrimitiveDifference]
   omega
 
-/-- The two-history residual vanishes exactly when the off-diagonal integer
-coordinate vanishes. -/
 theorem gellMannDecoherencePrimitiveDifference_eq_zero_iff
     (d11 d12 d22 : Int) :
     gellMannDecoherencePrimitiveDifference
@@ -926,8 +867,6 @@ theorem gellMannDecoherencePrimitiveDifference_eq_zero_iff
     rw [gellMannDecoherencePrimitiveDifference_eq_offdiagonal]
     omega
 
-/-- The two-history residual is nonzero exactly when the off-diagonal integer
-coordinate is nonzero. -/
 theorem gellMannDecoherencePrimitiveDifference_ne_zero_iff
     (d11 d12 d22 : Int) :
     gellMannDecoherencePrimitiveDifference
@@ -941,16 +880,12 @@ theorem gellMannDecoherencePrimitiveDifference_ne_zero_iff
     apply hd12
     exact (gellMannDecoherencePrimitiveDifference_eq_zero_iff d11 d12 d22).1 hres
 
-/-- Generic nonzero residual theorem. When global and local integer weights
-differ, their Primitive Difference is nonzero. -/
 theorem decoherence_nonzero_of_offdiagonal (total_prob diag_sum : Int)
     (h : total_prob ≠ diag_sum) :
     gellMannDecoherencePrimitiveDifference total_prob diag_sum ≠ 0 := by
   dsimp [gellMannDecoherencePrimitiveDifference]
   omega
 
-/-- A nonzero off-diagonal coordinate makes the two-history integer Primitive
-Difference nonzero. -/
 theorem decoherence_nonzero_of_offdiagonal_weight
     (d11 d12 d22 : Int) (h : d12 ≠ 0) :
     gellMannDecoherencePrimitiveDifference
@@ -958,34 +893,22 @@ theorem decoherence_nonzero_of_offdiagonal_weight
   dsimp [gellMannDecoherencePrimitiveDifference]
   omega
 
-/-! ## Fault-Tolerance Threshold Repair Capacity Primitive Difference (QM_100/QM_101/QM_102) -/
 
-/-- Threshold repair capacity defect Primitive Difference:
-    Compares physical defect error count with unabsorbed logical pairing residual. -/
 def thresholdRepairCapacityPrimitiveDifference (physical_defects repair_absorbed : Int) : Int :=
   physical_defects - repair_absorbed
 
-/-- `physical_defects - repair_absorbed ≠ 0` given the first exceeds the second.
 
-    Integer inequality. No syndrome, no repair image `B^1`, and no threshold
-    result appears in the statement; those live in the prose that names it. -/
 theorem threshold_repair_nonzero_of_unabsorbed (physical_defects repair_absorbed : Int)
     (h : physical_defects > repair_absorbed) :
     thresholdRepairCapacityPrimitiveDifference physical_defects repair_absorbed ≠ 0 := by
   dsimp [thresholdRepairCapacityPrimitiveDifference]
   omega
 
-/-! ## Classical Limit Cochain Projection Primitive Difference (QM_112) -/
 
-/-- Classical limit cochain projection defect Primitive Difference:
-    Compares full U(1) phase fiber 1-cochain state with classical stationary 0-cochain projection. -/
 def classicalLimitPrimitiveDifference (phase_state classical_proj : Int) : Int :=
   phase_state - classical_proj
 
-/-- `phase_state - classical_proj ≠ 0` given the two differ.
 
-    Integer subtraction. It is not a classical-limit theorem: no limit is taken,
-    and neither argument is constrained to be a phase or a projection. -/
 theorem classical_limit_nonzero_of_unprojected (phase_state classical_proj : Int)
     (h : phase_state ≠ classical_proj) :
     classicalLimitPrimitiveDifference phase_state classical_proj ≠ 0 := by
@@ -994,30 +917,20 @@ theorem classical_limit_nonzero_of_unprojected (phase_state classical_proj : Int
 
 end OmegaCore
 
-/- ------------------------------------------------------------------
-   Merged from derive_genesis_foundational_docs (PR #203).
-   These six declarations are disjoint from the OmegaCore /
-   PointedPrimitiveDifference material above; the merge keeps both.
-   ------------------------------------------------------------------ -/
 
--- Primitive Difference for Finite Quantum Carriers in Lean 4
 
 namespace PrimitiveDifference
 
-/-- Primitive difference operator D(x, y) := y - x on discrete integer coordinates. -/
 def diff (x y : Int) : Int :=
   y - x
 
-/-- Sameness relation certified by vanishing primitive difference. -/
 def isSame (x y : Int) : Prop :=
   diff x y = 0
 
-/-- Sameness is reflexive: identical coordinates yield zero primitive difference. -/
 theorem diff_self (x : Int) : diff x x = 0 := by
   dsimp [diff]
   omega
 
-/-- Primitive difference certifies sameness: zero difference holds if and only if coordinates are equal. -/
 theorem same_iff_eq (x y : Int) : isSame x y ↔ x = y := by
   dsimp [isSame, diff]
   constructor
@@ -1026,12 +939,10 @@ theorem same_iff_eq (x y : Int) : isSame x y ↔ x = y := by
   · intro h
     omega
 
-/-- Primitive difference is strictly antisymmetric: D(x, y) = - D(y, x). -/
 theorem diff_antisymm (x y : Int) : diff x y = - diff y x := by
   dsimp [diff]
   omega
 
-/-- 1-cocycle identity on discrete 0-simplexes: D(x, y) + D(y, z) = D(x, z). -/
 theorem diff_cocycle (x y z : Int) : diff x y + diff y z = diff x z := by
   dsimp [diff]
   omega
@@ -1042,3 +953,6 @@ theorem diff_cocycle (x y z : Int) : diff x y + diff y z = diff x z := by
 #print axioms diff_cocycle
 
 end PrimitiveDifference
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PrimitiveDifference.lean Claim: zeroRel_refl AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -1,5 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-# Reference: Campaign C500 Block 01, Targets C500-T301 through C500-T325.
 
 """Campaign C500 Block 01: Finite Weyl Residual and Direct CCR Obstruction.
 
@@ -20,9 +18,6 @@ import math
 from fractions import Fraction
 from typing import Any, Dict, List, Sequence, Tuple, Union
 
-# ---------------------------------------------------------------------------
-# Section 1: Exact Rational Polynomials and Cyclotomic Fields
-# ---------------------------------------------------------------------------
 
 class RationalPoly:
     """Exact univariate polynomial with Fraction coefficients: sum_{k=0}^deg c_k x^k."""
@@ -168,7 +163,6 @@ def cyclotomic_polynomial(n: int) -> RationalPoly:
     if n == 24:
         return RationalPoly([1, 0, 0, 0, -1, 0, 0, 0, 1])
 
-    # General division: x^n - 1 = prod_{d|n} Phi_d(x)
     poly_coeffs = [0] * (n + 1)
     poly_coeffs[0] = -1
     poly_coeffs[n] = 1
@@ -214,9 +208,6 @@ def cyclotomic_conductor(d: int) -> int:
     return d
 
 
-# ---------------------------------------------------------------------------
-# Section 2: Exact Cyclotomic Number Class (Q(zeta_d))
-# ---------------------------------------------------------------------------
 
 class CycNum:
     """Exact element of cyclotomic field Q(zeta_d) = Q[x] / (Phi_d(x)).
@@ -306,8 +297,6 @@ class CycNum:
         """Compute algebraic inverse via extended Euclidean algorithm in Q[x]."""
         if self.is_zero():
             raise ZeroDivisionError("Cannot invert zero cyclotomic element")
-        # Extended Euclidean algorithm for poly and modulus
-        # a * s + b * t = gcd(a, b) = constant
         a = self.poly
         b = self.modulus
         s0, s1 = RationalPoly([1]), RationalPoly(())
@@ -319,7 +308,7 @@ class CycNum:
             s0, s1 = s1, s0 - q * s1
             t0, t1 = t1, t0 - q * t1
 
-        lead_c = a.coeffs[0]  # gcd is a constant in Q[x]
+        lead_c = a.coeffs[0]
         inv_poly = s0 * (Fraction(1) / lead_c)
         return CycNum(self.d, inv_poly)
 
@@ -363,9 +352,6 @@ class CycNum:
         }
 
 
-# ---------------------------------------------------------------------------
-# Section 3: Exact Matrix Class over CycNum
-# ---------------------------------------------------------------------------
 
 class ExactMatrix:
     """Square matrix over CycNum (or Rational) with exact operations."""
@@ -511,9 +497,6 @@ class ExactMatrix:
         }
 
 
-# ---------------------------------------------------------------------------
-# Section 4: Finite Weyl Shift and Clock Constructions (T308, T309)
-# ---------------------------------------------------------------------------
 
 def construct_shift_operator(d: int) -> ExactMatrix:
     """Construct dimension-d cyclic shift operator X.
@@ -548,7 +531,6 @@ def verify_weyl_algebra_properties(d: int) -> Dict[str, Any]:
     Z = construct_clock_operator(d)
     omega = CycNum.primitive_root(d)
 
-    # 1. Unitarity
     X_dag_X = X.dagger() @ X
     X_X_dag = X @ X.dagger()
     Z_dag_Z = Z.dagger() @ Z
@@ -557,25 +539,21 @@ def verify_weyl_algebra_properties(d: int) -> Dict[str, Any]:
     is_X_unitary = X_dag_X.is_identity() and X_X_dag.is_identity()
     is_Z_unitary = Z_dag_Z.is_identity() and Z_Z_dag.is_identity()
 
-    # 2. Exact finite orders X^d = I, Z^d = I
     X_pow_d = X ** d
     Z_pow_d = Z ** d
     has_exact_order_d = X_pow_d.is_identity() and Z_pow_d.is_identity()
 
-    # Strictly lesser powers do NOT equal identity
     has_minimal_order = True
     for k in range(1, d):
         if (X ** k).is_identity() or (Z ** k).is_identity():
             has_minimal_order = False
             break
 
-    # 3. Twisted Weyl relation ZX = omega * XZ
     ZX = Z @ X
     XZ = X @ Z
     omega_XZ = XZ * omega
     twisted_commutation_holds = (ZX == omega_XZ)
 
-    # Alternate relation: XZ = omega^(-1) * ZX
     omega_inv = omega.inverse()
     omega_inv_ZX = ZX * omega_inv
     dual_twisted_holds = (XZ == omega_inv_ZX)
@@ -592,9 +570,6 @@ def verify_weyl_algebra_properties(d: int) -> Dict[str, Any]:
     }
 
 
-# ---------------------------------------------------------------------------
-# Section 5: Direct CCR Residual Operator & Obstruction (T303, T305, T307)
-# ---------------------------------------------------------------------------
 
 def ccr_residual(Q: ExactMatrix, P: ExactMatrix, lambda_val: Union[CycNum, Fraction, int]) -> ExactMatrix:
     """Compute the direct CCR residual operator R_lambda(Q, P) = QP - PQ - lambda * I."""
@@ -618,21 +593,15 @@ def verify_trace_obstruction(d: int, lambda_num: int = 1, lambda_den: int = 1) -
     if lam == 0:
         raise ValueError("lambda must be nonzero for the obstruction")
 
-    # Tr([Q, P]) = 0 for shift and clock
     X = construct_shift_operator(d)
     Z = construct_clock_operator(d)
     comm_XZ = (X @ Z) - (Z @ X)
     tr_comm = comm_XZ.trace()
     tr_target = lam * d
 
-    # Construct R_lambda
     R = ccr_residual(X, Z, lam)
     tr_R = R.trace()
 
-    # Compute lower bounds
-    # ||R_lambda||_1 >= |lambda| * d
-    # ||R_lambda||_F >= |lambda| * sqrt(d)
-    # ||R_lambda||_{F, norm} >= |lambda|
     abs_lam = abs(lam)
     trace_norm_lower_bound = abs_lam * d
     frobenius_norm_sq_lower_bound = (abs_lam ** 2) * d
@@ -654,9 +623,6 @@ def verify_trace_obstruction(d: int, lambda_num: int = 1, lambda_den: int = 1) -
     }
 
 
-# ---------------------------------------------------------------------------
-# Section 6: Characteristic Partition & Positive-Characteristic Countermodel (T306)
-# ---------------------------------------------------------------------------
 
 def char_p_weyl_representation(p: int) -> Dict[str, Any]:
     """Demonstrate that in characteristic p > 0 with p | d, [P, Q] = I_p IS satisfiable.
@@ -671,18 +637,13 @@ def char_p_weyl_representation(p: int) -> Dict[str, Any]:
     """
     if type(p) is not int or p < 2 or any(p % q == 0 for q in range(2, math.isqrt(p) + 1)):
         raise ValueError("The F_p countermodel requires prime characteristic")
-    # Verify in F_p matrix form
-    # Basis: e_j = x^j for j = 0 .. p-1
-    # Q e_j = e_{j+1} for j < p-1, Q e_{p-1} = 0
-    # P e_j = j e_{j-1} for j >= 1, P e_0 = 0
     Q = [[0 for _ in range(p)] for _ in range(p)]
     P = [[0 for _ in range(p)] for _ in range(p)]
     for j in range(p - 1):
-        Q[j + 1][j] = 1  # Q_{j+1, j} = 1
+        Q[j + 1][j] = 1
     for j in range(1, p):
-        P[j - 1][j] = j % p  # P_{j-1, j} = j
+        P[j - 1][j] = j % p
 
-    # Compute [P, Q] = P @ Q - Q @ P mod p
     PQ = [[0 for _ in range(p)] for _ in range(p)]
     QP = [[0 for _ in range(p)] for _ in range(p)]
     for i in range(p):
@@ -695,7 +656,7 @@ def char_p_weyl_representation(p: int) -> Dict[str, Any]:
     is_identity_mod_p = all(
         comm[i][j] == (1 if i == j else 0) for i in range(p) for j in range(p)
     )
-    tr_I_mod_p = sum(comm[i][i] for i in range(p)) % p  # p mod p = 0
+    tr_I_mod_p = sum(comm[i][i] for i in range(p)) % p
 
     return {
         "characteristic": p,
@@ -707,9 +668,6 @@ def char_p_weyl_representation(p: int) -> Dict[str, Any]:
     }
 
 
-# ---------------------------------------------------------------------------
-# Section 7: Conductor Accounting and Dimension Partition (T313, T314)
-# ---------------------------------------------------------------------------
 
 TESTED_DIMENSIONS = [2, 3, 4, 5, 6, 7, 8, 12, 24]
 
@@ -742,9 +700,6 @@ def compute_dimension_table() -> List[Dict[str, Any]]:
     return rows
 
 
-# ---------------------------------------------------------------------------
-# Section 8: Canonical Receipt Generation for Block 01 (C500-T325)
-# ---------------------------------------------------------------------------
 
 def generate_canonical_block01_receipt() -> Dict[str, Any]:
     """Generate canonical execution receipt for Campaign C500 Block 01."""

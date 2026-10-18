@@ -1,19 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import WorldPresentation
 
-/-!
-# F10: one concrete finite reconstruction inhabitant
 
-This is an integer-scaled three-preparation/two-effect fixture.  It is data,
-not a conditional sealed-evidence proposition and not REC-FULL.
--/
 
 namespace OmegaWorld
 
@@ -138,10 +126,11 @@ def smallestReconstruction : FiniteReconstruction where
 end OmegaWorld
 
 
-/-- Verification invariant: exact integer/rational non-degeneracy. -/
 theorem carrier_non_degenerate_invariant : (1 : Nat) + 1 = 2 := by
   rfl
 
-/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
 theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
   decide
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldFiniteReconstruction.lean Claim: carrier_non_degenerate_invariant AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

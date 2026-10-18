@@ -1,6 +1,3 @@
-//! Adjacent energy-spacing diagnostics from canonical checked Hermitian eigenpairs.
-//! Multiplicity, zero spacing and the absence of spacing for singleton spectra
-//! remain explicit. AuthorityEffect: None.
 use linear_algebra::hermitian_eigen::{
     hermitian_eigen_checked, HermitianSpectrum, SpectrumError, SpectrumPolicy,
 };
@@ -12,20 +9,11 @@ pub enum SpectrumAuthorityEffect {
     None,
 }
 
-/// Computation owner for finite Hermitian energy-spacing diagnostics.
 #[derive(Debug, Clone, Copy, PartialEq, Serialize)]
 pub struct QuantumGapFunctional {
     policy: SpectrumPolicy,
 }
 
-/// Private checked calculation, not a constructor from caller-asserted fields.
-/// All adjacent spacings retain multiplicity, including zero spacing. For a
-/// singleton spectrum there is no spacing; it is not replaced by zero.
-///
-/// ~~~compile_fail
-/// use omega_functional::quantum_gaps::QuantumGaps;
-/// let forged: QuantumGaps = serde_json::from_str("{}").unwrap();
-/// ~~~
 #[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct QuantumGaps {
     authority_effect: SpectrumAuthorityEffect,
@@ -43,8 +31,6 @@ impl QuantumGaps {
     pub fn adjacent_spacings(&self) -> &[f64] {
         &self.adjacent_spacings
     }
-    /// The first adjacent spacing, including zero when the lowest level repeats.
-    /// This does not skip a degenerate level to manufacture a positive gap.
     pub fn lowest_adjacent_spacing(&self) -> Option<f64> {
         self.adjacent_spacings.first().copied()
     }
@@ -177,7 +163,6 @@ mod tests {
     fn genuinely_complex_off_diagonals_determine_the_spectrum() {
         let matrix =
             DMatrix::from_row_slice(2, 2, &[c(2.0, 0.0), c(1.0, 1.0), c(1.0, -1.0), c(3.0, 0.0)]);
-        // Characteristic polynomial lambda^2 - 5 lambda + 4 gives 1 and 4.
         let result = QuantumGapFunctional::new(policy())
             .evaluate(&matrix)
             .unwrap();

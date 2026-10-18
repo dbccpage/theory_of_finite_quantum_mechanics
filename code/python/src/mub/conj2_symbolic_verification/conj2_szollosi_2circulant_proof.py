@@ -46,10 +46,6 @@ def gamma_permutations(magnitude: int) -> list[tuple[int, ...]]:
 
 def build_szollosi_2circulant(b: Any, c: Any, e: Any, f: Any) -> tuple[sp.Matrix, sp.Matrix]:
     """Construct generic 2-circulant matrix H and its adjoint H* over Q(b, c, e, f)."""
-    # A = circ(1, b, c)
-    # B = circ(1, e, f)
-    # B_dag = circ(1, 1/f, 1/e) for unit variables (conj(z) = 1/z)
-    # -A_dag = -circ(1, 1/c, 1/b)
     H = sp.Matrix([
         [1, b, c, 1, e, f],
         [c, 1, b, f, 1, e],
@@ -59,11 +55,6 @@ def build_szollosi_2circulant(b: Any, c: Any, e: Any, f: Any) -> tuple[sp.Matrix
         [1 / f, 1 / e, 1, -1 / c, -1 / b, -1],
     ])
 
-    # H* is conjugate transpose:
-    # A_dag = circ(1, 1/c, 1/b)
-    # B = circ(1, e, f)
-    # B_dag = circ(1, 1/f, 1/e)
-    # -A = -circ(1, b, c)
     H_star = sp.Matrix([
         [1, 1 / c, 1 / b, 1, e, f],
         [1 / b, 1, 1 / c, f, 1, e],
@@ -114,19 +105,16 @@ def run_verification() -> int:
     b, c, e, f = sp.symbols("b c e f", nonzero=True)
     H, H_star = build_szollosi_2circulant(b, c, e, f)
 
-    # 1. Verify Clause (a) on gamma_1 (magnitude 1)
     perms_g1 = gamma_permutations(1)
     print(f"\n--- Verifying Clause (a): gamma_1 (magnitude 1, {len(perms_g1)} permutations) ---")
     g1_h_all_zero = True
     g1_h_star_all_zero = True
 
     for i, p in enumerate(perms_g1):
-        # On H
         prods_h = compute_column_monomials(H, p)
         sum_h = sp.simplify(sum(prods_h))
         matched_h, detail_h = verify_block_multiset_cancellation(prods_h)
 
-        # On H*
         prods_h_star = compute_column_monomials(H_star, p)
         sum_h_star = sp.simplify(sum(prods_h_star))
         matched_h_star, detail_h_star = verify_block_multiset_cancellation(prods_h_star)
@@ -141,19 +129,16 @@ def run_verification() -> int:
         if (i + 1) % 5 == 0 or i == 0:
             print(f"  Perm {i+1:2d}/20 {p}: H sum=0 ({detail_h}), H* sum=0 ({detail_h_star})")
 
-    # 2. Verify Clause (b) on gamma_2 (magnitude 3)
     perms_g2 = gamma_permutations(3)
     print(f"\n--- Verifying Clause (b): gamma_2 (magnitude 3, {len(perms_g2)} permutations) ---")
     g2_h_all_zero = True
     g2_h_star_all_zero = True
 
     for i, p in enumerate(perms_g2):
-        # On H
         prods_h = compute_column_monomials(H, p)
         sum_h = sp.simplify(sum(prods_h))
         matched_h, detail_h = verify_block_multiset_cancellation(prods_h)
 
-        # On H*
         prods_h_star = compute_column_monomials(H_star, p)
         sum_h_star = sp.simplify(sum(prods_h_star))
         matched_h_star, detail_h_star = verify_block_multiset_cancellation(prods_h_star)

@@ -105,11 +105,8 @@ class SU3PolyakovLoopModel:
         S_eff(k) = S_gauge + S_fermion(k)
         S_fermion(k) = - 12 * h * |P| * cos(2pi * k / 3)
         """
-        # Base gauge action for background plaquette configuration
         s_gauge = self.beta * 0.5
-        # Center phase angle
         phi_k = 2.0 * math.pi * center_sector_k / 3.0
-        # Fermion contribution: antiperiodic temporal boundary coupled to center holonomy
         s_fermion = - 12.0 * self.h * polyakov_mag * math.cos(phi_k)
         return s_gauge + s_fermion
 
@@ -122,26 +119,22 @@ class SU3PolyakovLoopModel:
         paths = []
         path_id = 1
 
-        # 6 color-spatial modes: 2 sites x 3 colors (R, G, B)
-        # Spatial fermion occupations:
         fermion_modes = [
-            (1, 2),  # Site 1 R, G
-            (2, 3),  # Site 1 G, B
-            (3, 1),  # Site 1 B, R
-            (4, 5),  # Site 2 R, G
-            (5, 6),  # Site 2 G, B
-            (1, 4),  # Meson link R-R
-            (2, 5),  # Meson link G-G
-            (3, 6),  # Meson link B-B
+            (1, 2),
+            (2, 3),
+            (3, 1),
+            (4, 5),
+            (5, 6),
+            (1, 4),
+            (2, 5),
+            (3, 6),
         ]
 
         for k in (0, 1, 2):
             s_eff = self.evaluate_effective_action(k, p_mag)
-            # Sector 0 is positive parity (+1); sectors 1 and 2 (center-rotated) carry negative parity (-1)
             parity = 1 if k == 0 else -1
 
             for occ in fermion_modes:
-                # Add small spatial kinetic excitation
                 e_tot = s_eff + 0.1 * len(occ)
                 weight = math.exp(- e_tot)
 
@@ -192,7 +185,7 @@ class SU3PolyakovGinBridge:
         whether positive and negative weight spectra exhibit spectral overlap.
         """
         paths = model.generate_polyakov_paths()
-        total_modes = 6  # 2 spatial sites x 3 colors
+        total_modes = 6
 
         c = self.conn.cursor()
         pos_weights: Set[float] = set()
@@ -232,11 +225,9 @@ class SU3PolyakovGinBridge:
 
         self.conn.commit()
 
-        # Spectral analysis
         overlap = sorted(list(pos_weights.intersection(neg_weights)))
         is_disjoint = len(overlap) == 0
 
-        # Action gap between center-rotated sectors (k=1,2) and trivial vacuum sector (k=0)
         p_mag = model.evaluate_polyakov_order_parameter()
         s_k0 = model.evaluate_effective_action(0, p_mag)
         s_k1 = model.evaluate_effective_action(1, p_mag)

@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/gtla_t26_glue.rs
-# Rust sha256: 7c73aefdce5f12e35d78e895fa8f68e3e5eef0c8f26910bef0e76d82bf9eca4c
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,11 +38,9 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 T26_GLUE_PACKET_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 T26_GLUE_VERIFICATION_SCHEMA_V1: Any = None
 
 
@@ -65,7 +59,6 @@ T26HypothesisIdV1 = Enum(
 T26HypothesisIdV1.__doc__ = "Structural mirror of Rust ``T26HypothesisIdV1`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
@@ -306,6 +299,5 @@ def verify_t26_glue_v1(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

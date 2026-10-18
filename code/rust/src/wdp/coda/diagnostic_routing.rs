@@ -1,8 +1,3 @@
-//! CH04 mathematical diagnostic-to-proposal routing under explicit policies.
-//! AuthorityEffect: None. These are finite mathematical proposals, not CODA
-//! operational terminalization, licenses, or authority. Diagnostic certificates
-//! never choose policy. Context data and cochain data are separately declared;
-//! there is no claim that a Phi1 value implies a context witness.
 use num_rational::BigRational;
 use omega_category_theory::context_reflection::{
     CongruenceReflection, ContextError, ContextSystem, ContextWitness,
@@ -88,9 +83,6 @@ impl DiagnosticPacket {
     }
 }
 
-/// Diagnostic packet for curved presentations (`K = d1 d0 != 0`) backed by
-/// [`VerifiedCurvedConstrainedPhi1`] and [`RawClosureDefectResult`] without
-/// constructing [`ExactCochainComplexQ`] or [`CertifiedExactTrichotomy`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CurvedDiagnosticPacket {
     system: ContextSystem,
@@ -191,10 +183,6 @@ pub fn propose_preserving_completion(packet: &DiagnosticPacket) -> Proposal {
     }
 }
 
-/// Guarded value-edit contract: same declared context system, d0, d1 and weights;
-/// only omega may change, both optimal certificates are replayed, and the exact
-/// quotient defect must strictly decrease. Pure changes of repair alpha cannot
-/// satisfy this guard because Phi1 is a property of the fixed problem.
 pub fn propose_value_edit(
     before: &DiagnosticPacket,
     policy: ProposalPolicy,
@@ -220,12 +208,6 @@ pub fn propose_value_edit(
     })
 }
 
-/// Guarded value-edit contract on curved presentations (`K = d1 d0 != 0`):
-/// replays both [`CurvedConstrainedPhi1Certificate`] instances on the same
-/// `(d0, d1, K, weights)` presentation, verifies that the candidate's repaired
-/// raw closure defect (`||d1(omega' - d0 f*')||_1`) does not exceed the
-/// before-packet's repaired raw closure defect plus `candidate.tau`, and requires
-/// strict descent on the constrained repair norm `||omega' - d0 f*'||_{1,w}`.
 pub fn propose_curved_value_edit(
     before: &CurvedDiagnosticPacket,
     policy: ProposalPolicy,
@@ -258,7 +240,6 @@ pub fn propose_curved_value_edit(
     })
 }
 
-/// A declared request, separate from the mathematical diagnostic class.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum RoutingRequest {
     Hold,
@@ -267,8 +248,6 @@ pub enum RoutingRequest {
     ValueEdit(ExactPhi1Certificate),
 }
 
-/// Bound finite routing receipt. All inputs and the unique proposal/refusal are
-/// retained, and replay recomputes the exact diagnostic and policy guards.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RoutingReceipt {
     packet: DiagnosticPacket,
@@ -290,7 +269,6 @@ impl RoutingReceipt {
         &self.proposal
     }
     pub fn replay(&self) -> Result<bool, RoutingError> {
-        // Recheck even the sealed diagnostic instead of trusting stored enums.
         let packet = DiagnosticPacket::replay(
             self.packet.system.clone(),
             self.packet.phi1.certificate().clone(),

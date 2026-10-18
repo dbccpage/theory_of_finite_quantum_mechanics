@@ -1,5 +1,3 @@
-//! Embedding-relative operator positivity census for the C250 campaign.
-//! AuthorityEffect: None.
 use omega_number_theory::cyclotomic_field::Cyclotomic;
 use omega_number_theory::rational::rq;
 use omega_number_theory::real_embedding::RealEmbeddings;
@@ -16,7 +14,6 @@ pub struct Block03VerificationReceipt {
     pub embedding_relative_witness_matrix: String,
     pub conductor_5_positive_classes: Vec<usize>,
     pub conductor_8_positive_classes: Vec<usize>,
-    /// Finite fixture check, not a universal covariance certificate.
     pub galois_covariance_of_born_probabilities: bool,
     pub galois_covariance_fixture_conductor: usize,
     pub galois_automorphisms_checked: usize,
@@ -27,8 +24,6 @@ pub fn run_block_03_verification() -> Result<Block03VerificationReceipt, Positiv
     let e = RealEmbeddings::new(120)?;
     let p5 = positivity_under_embeddings(&conductor_5_witness()?)?;
     let p8 = positivity_under_embeddings(&conductor_8_witness()?)?;
-    // ((1+zeta)/2,(1-zeta)/2) has unit norm, with nonrational Born probabilities.
-    // The +/- representatives exhaust the Galois unit classes at conductor 120.
     let zeta = Cyclotomic::<120>::zeta(1);
     let amplitudes = [
         Cyclotomic::<120>::one().add(&zeta).scale(&rq(1, 2)),

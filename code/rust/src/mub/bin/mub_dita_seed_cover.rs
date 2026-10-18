@@ -1,19 +1,3 @@
-//! Production runner: gauge-fixed 5-torus cover for genuine Dita seed triples.
-//!
-//! Point cover (fixed triple, delta=0):
-//! ```text
-//! cargo run -j 1 -p omega_mub --release --bin mub_dita_seed_cover -- \
-//!   --dx 0 --dy 8 --presplit 6 --depth 32 --chunk 0 --chunk-end 8
-//! ```
-//!
-//! Neighborhood cover (B2/B3 widened by ±delta, default 1/1000):
-//! ```text
-//! cargo run -j 1 -p omega_mub --release --bin mub_dita_seed_cover -- \
-//!   --dx 0 --dy 8 --neighborhood --delta-den 1000 --presplit 6 --depth 32 \
-//!   --chunk 0 --chunk-end 8
-//! ```
-//!
-//! Writes under `artifacts/`. Completeness is never fabricated.
 
 use num_rational::BigRational;
 use omega_mub::omega_native::campaign::mub6_dita_seed_cover::{
@@ -168,7 +152,6 @@ fn main() {
         match write_cover_certificate_artifact(&cert, &fname) {
             Ok(path) => {
                 println!("{}", path.display());
-                // Write chunk checksum manifest alongside the merged complete certificate
                 let manifest_fname = format!("{fname}.chunks.sha256");
                 let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
                 let manifest_path = dir.join(manifest_fname);
@@ -200,7 +183,7 @@ fn main() {
         }
         ri(1) / ri(delta_den)
     } else {
-        neighborhood_delta_1_1000() // unused in point mode
+        neighborhood_delta_1_1000()
     };
     let delta_tag = format!("1_{delta_den}");
 

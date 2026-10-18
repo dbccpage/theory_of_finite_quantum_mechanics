@@ -46,7 +46,7 @@ RECEIPT_PATH = ARTIFACTS_DIR / "mub_r7_singular_segre_exhaustion_receipt.json"
 
 sys.path.insert(0, str(MUB6_ROOT / "code"))
 
-from mub_verify.g1_case_verifier import (  # noqa: E402
+from mub_verify.g1_case_verifier import (
     assert_no_float,
     eval_singular_segre_positivstellensatz,
     singular_segre_identity_is_minus_one,

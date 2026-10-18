@@ -1,21 +1,3 @@
-//! Omega Higher Category Theory crate.
-//!
-//! Provides mathematically rigorous foundations for higher category theory:
-//! - Strict 2-categories (`two_category`)
-//! - Weak 2-categories / Bicategories (`bicategory`)
-//! - Middle-four exchange / interchange law (`exchange`)
-//! - Mac Lane pentagon & triangle coherence verification (`coherence`)
-//! - Differential Graded categories (`dg_category`)
-//! - Triangulated categories and Verdier axioms (`triangulated`)
-//! - Derived categories and mapping cones (`derived`)
-//! - Bounded derived categories (`bounded_derived`)
-//! - Unbounded derived categories (`unbounded_derived`)
-//! - Strict double categories (`double_category`)
-//! - Enriched categories (`enriched`)
-//! - Typed error domain and Soviet Builder allocation (`error`), using
-//!   `omega_kernel::resource_limits::OperationLimits` directly
-//!
-//! AuthorityEffect: None.
 
 extern crate self as omega_higher_category_theory;
 pub mod bicategory;

@@ -1,16 +1,7 @@
-//! Contractible-type shape records (isContr).
-//!
-//! A type is contractible when it has a center and a contraction of every
-//! point to that center. This module records those references only; it does
-//! not prove contractibility and mints no authority.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Shape record for `isContr(A)`: center plus contraction family reference.
-///
-/// `type_ref` names `A`, `center_ref` names the center point, and
-/// `contraction_ref` names a path family from each point to the center.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContractibleType {
     pub type_ref: String,
@@ -19,7 +10,6 @@ pub struct ContractibleType {
 }
 
 impl ContractibleType {
-    /// Shape-only validation: type, center, and contraction refs must be non-empty.
     pub fn validate(&self) -> Result<(), ContractibleError> {
         if self.type_ref.is_empty() || self.center_ref.is_empty() || self.contraction_ref.is_empty()
         {

@@ -31,7 +31,6 @@ from prompt_builder import (
 
 RESULT = Path(__file__).resolve().parents[1] / "results" / "space_bunny_arm5_result.json"
 PROBE_MODEL = "stealth/space-bunny-alpha"
-# Guard strings exactly as listed in the committed probe script (key renamed).
 PROBE_GUARDS = [
     {
         "code": "ANTI_PARTITION_DRIFT",

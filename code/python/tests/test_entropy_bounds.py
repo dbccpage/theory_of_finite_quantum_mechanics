@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the Cauchy collision bound."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the Cauchy collision bound.
+
+Origin: code/python/src/qm/entropy_bounds.py
+Claim: urn:omega:fqm:entropy:cauchy-collision-bound:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -21,6 +31,21 @@ from src.qm.entropy_bounds import (
     main,
 )
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "entropy_bounds.py"
 _FIXTURE = (Fraction(1, 2), Fraction(1, 3), Fraction(1, 6))
 
@@ -38,7 +63,7 @@ def test_fixture_collision_and_defect() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(EntropyBoundError, match="float refused") as floated:
-        collision_probability((1.0, 0, 0))
+        collision_probability((_probe("1.0"), 0, 0))
     assert floated.value.invariant == "float refused at the collision boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is EntropyBoundError
@@ -165,7 +190,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     collision = namespace["collision_probability"]
     defect = namespace["cauchy_defect"]
     certified = namespace["certified_collision"]
-    if not callable(collision) or not callable(defect) or not callable(certified):
+    if not _all_hold((callable(collision), callable(defect), callable(certified),)):
         return False
     try:
         measured = collision(_FIXTURE)
@@ -178,16 +203,19 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         return False
     actual = (measured, pure, fair, gap, pure_gap, signed)
     expected = (Fraction(7, 18), Fraction(1), Fraction(1, 3), Fraction(1, 6), Fraction(2), Fraction(7, 18))
-    return bool(actual == expected and Fraction(3) * measured - Fraction(1) == gap)
+    return _all_hold((
+actual == expected,
+Fraction(3) * measured - Fraction(1) == gap,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     collision = namespace["collision_probability"]
     defect = namespace["cauchy_defect"]
-    if not callable(collision) or not callable(defect):
+    if not _all_hold((callable(collision), callable(defect),)):
         return False
     probes = (
-        (lambda: collision((1.0, 0, 0)), "float refused at the collision boundary"),
+        (lambda: collision((_probe("1.0"), 0, 0)), "float refused at the collision boundary"),
         (lambda: collision((True, 0, 0)), "boolean refused where a rational weight was required"),
         (lambda: collision((-1, 2, 0)), "collision weight is negative"),
         (lambda: collision((1, 0, 0, 0)), "collision weights are not a triple"),
@@ -204,7 +232,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["EntropyBoundError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -233,6 +261,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

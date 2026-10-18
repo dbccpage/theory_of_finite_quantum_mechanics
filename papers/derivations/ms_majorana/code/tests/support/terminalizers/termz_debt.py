@@ -28,13 +28,9 @@ from typing import Any, Optional, Tuple
 
 from .termz_refusals import TerminalizerRefusal
 
-#: Ground (a): a budget that was committed BEFORE the run was exhausted.
 DEBT_GROUND_PRECOMMITTED_BUDGET = "precommitted_budget_exhausted"
-#: Ground (b): every attempted shadow completed but the declared search
-#: family is not proven cofinal (CODA-A SS2.5/SS11.6).
 DEBT_GROUND_COFINALITY = "undischarged_cofinality_obligation"
 
-#: The closed two-ground registry. Exactly these; anything else refuses.
 DEBT_GROUNDS: Tuple[str, str] = (
     DEBT_GROUND_PRECOMMITTED_BUDGET,
     DEBT_GROUND_COFINALITY,
@@ -116,8 +112,8 @@ class BudgetUnknownTerminal:
     """
 
     debt: DebtRecord
-    diagnostic: Any  # DiagnosticClass.NotComputed (four-axis registry)
-    routing: Any  # RoutingTerminal.BudgetUnknown (four-axis registry)
+    diagnostic: Any
+    routing: Any
     authority_effect: str = "None"
 
     def __post_init__(self) -> None:
@@ -173,10 +169,6 @@ def emit_budget_unknown(
             "BudgetUnknown is legal only with a valid two-ground DebtRecord "
             f"(got {type(debt).__name__})",
         )
-    # Lazy import: omega_discrete_deformation_algebra.cochain imports this
-    # package at module load; importing its types at OUR module load would
-    # cycle. Function scope breaks the cycle (same pattern as
-    # foc_terminalizer.classify_phi_gamma).
     from omega_engine.crates.type.runtime_axes import (
         DiagnosticClass,
         RoutingTerminal,

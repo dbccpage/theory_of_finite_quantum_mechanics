@@ -1,4 +1,3 @@
-//! Run the literal-root construction; print the actual events and owner results.
 use omega_ooutwire_primitives::{event::Event, mark::Mark};
 use omega_wdp::genesis_construction::{
     cycle_construction, verify_history_report, GenesisConstruction,

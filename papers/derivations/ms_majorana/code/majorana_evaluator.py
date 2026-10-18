@@ -29,7 +29,6 @@ from majorana.core import gf2_matrix as gf2_native
 import majorana_gf2_diagnostic as gf2_diagnostic
 
 
-# The host wire refuses a count above 1_000_000. 2**20 does not cross it.
 _CLASSIFY_BUDGET = 1_000_000
 
 
@@ -326,15 +325,12 @@ class KitaevSweetSpotChain:
     length: int
 
     def bulk_pairs(self) -> List[Tuple[int, int]]:
-        # Sweet spot pairings: (2j, 2j+1) for j in 1..L-1
-        # Indexing 0..2L-1: pairs are (2*j - 1, 2*j) for j=1..L-1
         pairs = []
         for j in range(1, self.length):
             pairs.append((2 * j - 1, 2 * j))
         return pairs
 
     def boundary_modes(self) -> Tuple[int, int]:
-        # Unpaired Majorana boundary zero modes: gamma_0 and gamma_{2L-1}
         return (0, 2 * self.length - 1)
 
     def is_boundary_isolated(self) -> bool:
@@ -403,23 +399,17 @@ class OpenSystemMajoranaBraidModel:
         delta_e = self.overlap_splitting
         p_leak = min(1.0, self.c_lz * (1.0 / (self.delta * T)) ** 2)
 
-        # Liouvillian generator matrix for Bloch vector r = (r_x, r_y, r_z)
-        # H = (omega / 2) X + (delta_e / 2) Z
-        # Dissipators: gamma_qp (X, Z parity jumps), gamma_phi (Z pure dephasing)
         A = np.array([
             [-(self.gamma_qp + 2.0 * self.gamma_phi), -delta_e, 0.0],
             [delta_e, -(2.0 * self.gamma_qp + 2.0 * self.gamma_phi), -omega],
             [0.0, omega, -self.gamma_qp]
         ], dtype=float)
 
-        # Initial state |0_L>: r0 = (0, 0, 1)
         r0 = np.array([0.0, 0.0, 1.0], dtype=float)
         r_T = expm(A * T) @ r0
 
-        # Ideal state: rotation by pi/2 around X: r_ideal = (0, -1, 0)
         r_ideal = np.array([0.0, -1.0, 0.0], dtype=float)
 
-        # Difference density matrix
         diff_r = (1.0 - p_leak) * r_T - r_ideal
         mat_diff = 0.5 * np.array([
             [diff_r[2] - p_leak, diff_r[0] - 1j * diff_r[1]],
@@ -448,11 +438,9 @@ class OpenSystemMajoranaBraidModel:
         """
         effective_drag = self.gamma_qp + self.delta * np.exp(-self.length_over_xi)
         if effective_drag <= 1e-15:
-            # Idealized dissipation-free limit
             return float("inf"), 0.0
 
         t_star = (2.0 * self.c_lz / (self.delta ** 2 * effective_drag)) ** (1.0 / 3.0)
-        # Minimum defect via scaling relation f(T*)
         e_lz = self.c_lz * (1.0 / (self.delta * t_star)) ** 2
         e_drag = effective_drag * t_star
         min_defect = float(e_lz + e_drag)
@@ -485,9 +473,6 @@ class OpenSystemMajoranaBraidModel:
         )
 
 
-# ============================================================================
-# 9. Detector Adequacy & Projection Kernel Audit (Claims MAJ-C1, MAJ-C10)
-# ============================================================================
 
 @dataclass(frozen=True)
 class DetectorAdequacyReceipt:
@@ -553,9 +538,6 @@ class DetectorAdequacyAudit:
         )
 
 
-# ============================================================================
-# 10. Non-Abelian Ising Anyon Algebra & Braiding (Claim MAJ-C7)
-# ============================================================================
 
 class IsingFusionAlgebra:
     """
@@ -607,9 +589,6 @@ class IsingFusionAlgebra:
         return bool(np.allclose(lhs, rhs, atol=1e-12))
 
 
-# ============================================================================
-# 11. Parity Observable Algebra & Sector Splitting (Claim MAJ-C8)
-# ============================================================================
 
 class ParityAlgebraModel:
     """
@@ -651,9 +630,6 @@ class ParityAlgebraModel:
         return H_even, H_odd
 
 
-# ============================================================================
-# 12. Pfaffian Topological Sign Invariant (Claim MAJ-C9)
-# ============================================================================
 
 def compute_skew_pfaffian(A: np.ndarray) -> float:
     """
@@ -719,7 +695,6 @@ def pfaffian_z2_invariant(mu: float, t: float = 1.0, delta: float = 1.0, L: int 
                 B[2 * j, 2 * j + 3] = -(t - delta)
                 B[2 * j + 3, 2 * j] = (t - delta)
         sign = -1.0 if antiperiodic else 1.0
-        # Connect boundary site L-1 to site 0 on the ring
         B[2 * (L - 1) + 1, 0] = sign * -(t + delta)
         B[0, 2 * (L - 1) + 1] = sign * (t + delta)
         B[2 * (L - 1), 1] = sign * -(t - delta)
@@ -732,9 +707,6 @@ def pfaffian_z2_invariant(mu: float, t: float = 1.0, delta: float = 1.0, L: int 
     return 1 if prod > 0 else -1
 
 
-# ============================================================================
-# 13. Audit and Retraction of Legacy Carrier (Claim MAJ-C13)
-# ============================================================================
 
 def audit_legacy_carrier() -> Dict[str, object]:
     """
@@ -753,9 +725,6 @@ def audit_legacy_carrier() -> Dict[str, object]:
     }
 
 
-# ============================================================================
-# 14. Non-Markovian Memory-Kernel Transfer Bounds (Claim MAJ-C19)
-# ============================================================================
 
 @dataclass(frozen=True)
 class NonMarkovianTransferReceipt:
@@ -823,13 +792,10 @@ class NonMarkovianBosonicBathModel:
         if self._custom_p is not None:
             return float(self._custom_p)
         if self.s < 1.0:
-            # Sub-Ohmic 1/f noise: anomalous dephasing accumulates as T^(2 - s)
             return float(2.0 - self.s)
         elif self.s == 1.0:
-            # Ohmic limit: linear Markovian dephasing ~ T
             return 1.0
         else:
-            # Super-Ohmic transient memory regime: p = 1 + s
             return float(1.0 + self.s)
 
     def scaling_exponent_beta(self) -> float:
@@ -869,7 +835,6 @@ class NonMarkovianBosonicBathModel:
         thermal_enhancement = 1.0 + 2.0 * self.temperature / max(self.delta, 1e-4)
 
         a_s = (j_bulk + j_splitting) * thermal_enhancement
-        # Ensure non-zero lower bound for any alpha > 0
         min_floor = 1e-8 * self.alpha
         return float(max(a_s, min_floor))
 
@@ -932,9 +897,6 @@ class NonMarkovianBosonicBathModel:
         )
 
 
-# ============================================================================
-# 15. Multi-Terminal Cross-Junction FEM Transfer Bounds (Claim MAJ-C20)
-# ============================================================================
 
 @dataclass(frozen=True)
 class MultiTerminalTransferReceipt:
@@ -1039,7 +1001,6 @@ class ContinuumCrossJunctionFemModel:
         mat = [[0.0] * m for _ in range(m)]
 
         if eff_gap <= 1e-12:
-            # Complete hybridization when gap closes
             for i in range(m):
                 for j in range(m):
                     if i != j:
@@ -1079,7 +1040,7 @@ class ContinuumCrossJunctionFemModel:
             return float("inf")
         eff_gap = self.effective_gap()
         if eff_gap <= 1e-12:
-            return 1.0  # Phase collapse defect
+            return 1.0
         c_term = self.c_lz * (1.0 / (eff_gap * T)) ** 2
         rate_term = (self.total_crosstalk_rate() + self.gamma_qp) * T
         return float(c_term + rate_term)

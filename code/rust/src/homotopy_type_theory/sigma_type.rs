@@ -1,11 +1,7 @@
-//! Dependent pair type former `Σ(x:A). B(x)`.
-//!
-//! Structural record only: base and family are opaque string refs.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Dependent sum (pair) type `Σ(x : base). family(x)`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SigmaType {
     pub base_type_ref: String,
@@ -13,7 +9,6 @@ pub struct SigmaType {
 }
 
 impl SigmaType {
-    /// Validate that base and family references are non-empty.
     pub fn validate(&self) -> Result<(), SigmaTypeError> {
         if self.base_type_ref.is_empty() {
             return Err(SigmaTypeError::EmptyBaseTypeRef);

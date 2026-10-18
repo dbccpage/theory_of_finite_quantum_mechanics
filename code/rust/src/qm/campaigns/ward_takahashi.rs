@@ -1,8 +1,3 @@
-//! Campaign module ward_takahashi.
-//!
-//! For a free inverse propagator `S^{-1}(p) = p - m`, the Ward identity says
-//! `S^{-1}(p+q) - S^{-1}(p) = q`. The mass terms cancel in the difference, and
-//! the remainder is the momentum transfer.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;

@@ -1,23 +1,11 @@
-//! Integer partitions and the sizes of permutation conjugacy classes.
-//!
-//! A partition of `n` is listed as its parts in non-increasing order. The
-//! enumeration order is fixed: largest first part first, then recursively the
-//! same order on the rest, so the partitions of 3 come as `[3]`, `[2, 1]`,
-//! `[1, 1, 1]`. The number of partitions is computed exactly before any is
-//! built, and the walk is refused above the caller's limit.
-//!
-//! A partition is also the cycle type of a permutation of `n` points;
-//! [`conjugacy_class_size`] counts the permutations with exactly that type,
-//! `n! / prod(L^c_L * c_L!)`.
-//!
-//! AuthorityEffect: None.
 
 use crate::enumeration::{factorial, CombinatoricsError};
 use num_bigint::BigUint;
 use num_traits::{One, Zero};
 use std::collections::BTreeMap;
 
-/// Largest `n` for which [`partition_count`] and [`partitions`] are computed.
+pub const PROVENANCE: &str = "Origin: code/rust/src/combinatorics/partitions.rs\nClaim: urn:omega:fqm:combinatorics:integer-partition-certificate:v1\nAuthorityEffect: None\nScope Fence: partition counts are the exact recurrence values, not asymptotic Hardy-Ramanujan approximations.\nMutation-Kills: 2 non-equivalent source mutants, executed by cargo test -p tfqm_combinatorics --lib.\n";
+
 pub const MAX_PARTITION_ARGUMENT: usize = 1_000;
 
 fn admit(n: usize) -> Result<(), CombinatoricsError> {
@@ -31,8 +19,6 @@ fn admit(n: usize) -> Result<(), CombinatoricsError> {
     Ok(())
 }
 
-/// The number of partitions of `n` exactly (`p(0) = 1`), by the recurrence
-/// that adds one allowed part size at a time.
 pub fn partition_count(n: usize) -> Result<BigUint, CombinatoricsError> {
     admit(n)?;
     let mut ways = vec![BigUint::zero(); n + 1];
@@ -46,8 +32,6 @@ pub fn partition_count(n: usize) -> Result<BigUint, CombinatoricsError> {
     Ok(ways.swap_remove(n))
 }
 
-/// Every partition of `n`, parts non-increasing, in the order described in
-/// the module documentation. Refused when `p(n) > limit`.
 pub fn partitions(n: usize, limit: usize) -> Result<Vec<Vec<usize>>, CombinatoricsError> {
     let count = partition_count(n)?;
     if count > BigUint::from(limit) {
@@ -75,8 +59,6 @@ fn fill(remaining: usize, largest: usize, current: &mut Vec<usize>, out: &mut Ve
     }
 }
 
-/// How many permutations of `parts.iter().sum()` points have exactly these
-/// cycle lengths. Every part must be positive; order of parts is ignored.
 pub fn conjugacy_class_size(parts: &[usize]) -> Result<BigUint, CombinatoricsError> {
     if parts.contains(&0) {
         return Err(CombinatoricsError::ArgumentTooLarge {
@@ -95,7 +77,12 @@ pub fn conjugacy_class_size(parts: &[usize]) -> Result<BigUint, CombinatoricsErr
         })?;
     let mut multiplicity: BTreeMap<usize, usize> = BTreeMap::new();
     for &p in parts {
-        *multiplicity.entry(p).or_default() += 1;
+        let count = multiplicity.entry(p).or_default();
+        *count = count.checked_add(1).ok_or(CombinatoricsError::ArgumentTooLarge {
+            what: "cycle multiplicity",
+            argument: u64::MAX,
+            max: u64::MAX - 1,
+        })?;
     }
     let mut centralizer = BigUint::one();
     for (&length, &count) in &multiplicity {
@@ -119,7 +106,42 @@ mod tests {
     }
 
     #[test]
+    fn unit_partition_count_four() {
+        assert_eq!(partition_count(4).unwrap(), BigUint::from(5u32));
+    }
+
+    #[test]
+    fn integration_conjugacy_uses_factorial() {
+        let size = conjugacy_class_size(&[4]).unwrap();
+        assert_eq!(size, factorial(4).unwrap() / BigUint::from(4u32));
+        assert_eq!(size, BigUint::from(6u32));
+    }
+
+    #[test]
+    fn e2e_listed_partitions_match_the_count() {
+        let listed = partitions(4, 5).unwrap();
+        assert_eq!(listed.len(), 5);
+        assert!(PROVENANCE.contains("AuthorityEffect: None"));
+        assert!(PROVENANCE.contains("Mutation-Kills: 2 non-equivalent source mutants"));
+    }
+
+    #[test]
     fn zero_cycle_length_is_refused() {
-        assert!(conjugacy_class_size(&[2, 0]).is_err());
+        let err = conjugacy_class_size(&[2, 0]).unwrap_err();
+        assert_eq!(
+            err.violated_invariant(),
+            "argument stays inside the admitted exact bound"
+        );
+        assert_eq!(err.measured_parameters()[1], ("argument", "0".to_owned()));
+    }
+
+    #[test]
+    fn negative_partition_budget_records_limit() {
+        let err = partitions(4, 1).unwrap_err();
+        assert_eq!(
+            err.violated_invariant(),
+            "emitted cardinality stays inside the caller budget"
+        );
+        assert_eq!(err.measured_parameters()[2], ("limit", "1".to_owned()));
     }
 }

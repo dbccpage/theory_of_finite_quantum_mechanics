@@ -1,10 +1,6 @@
-//! Geometric: Little n-Disks Operad D_n.
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 
-/// A rectilinear disk embedding in R^n given by center and radius.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct RectilinearDisk {
     pub dimension: usize,
@@ -50,7 +46,6 @@ impl RectilinearDisk {
     }
 }
 
-/// A valid point in the topological operad space D_n(k).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct LittleDisksConfiguration {
     pub dimension: usize,

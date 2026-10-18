@@ -1,19 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 
-/-!
-Pointed quotient obstruction classifier kernel.
 
-This file gives a Nat-valued three-way classifier over a pointed quotient.
-It assumes only two raw scores on the quotient carrier: `Phi` and `Gamma`.
--/
 
 namespace OmegaCore
 
@@ -156,3 +144,6 @@ theorem zeroClass_exact_if_phi_zeroClass_zero
 
 end ObstructionClassifier
 end OmegaCore
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PointedObstructionClassifier.lean Claim: exact_or_positive_phi AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

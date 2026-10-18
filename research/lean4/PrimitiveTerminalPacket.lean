@@ -1,18 +1,6 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveRepairBoundary
-/-!
-Primitive terminal packet kernel.
 
-This file stores classifier terminal status together with repair-boundary and
-certificate-readiness data.
--/
 
 namespace OmegaCore
 namespace PrimitiveTerminalPacket
@@ -226,3 +214,6 @@ theorem packet_blocked_not_repaired
 
 end PrimitiveTerminalPacket
 end OmegaCore
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PrimitiveTerminalPacket.lean Claim: packet_status_matches_terminalize AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

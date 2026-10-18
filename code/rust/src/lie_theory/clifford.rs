@@ -1,13 +1,3 @@
-//! Exact Clifford families, Jordan-Wigner representations and their spin action.
-//!
-//! Declared matrices are admitted against every anticommutator
-//! {gamma_mu,gamma_nu}=2 eta_mu delta_mu_nu I. Canonical constructors use the
-//! Pauli owner and minimal complex representations of dimension 2^floor(n/2).
-//! The volume element has square (-1)^(n(n-1)/2) product eta; even families
-//! yield a normalized chirality involution. Matrix elimination belongs to
-//! `linear_algebra::exact_field`; no bit mask is used to form chirality.
-//!
-//! AuthorityEffect: None.
 use crate::pauli_symplectic::{pauli_word, Pauli, PauliError};
 use crate::scalar::ComplexField;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
@@ -189,7 +179,6 @@ impl<F: ComplexField> CliffordFamily<F> {
         )?;
         Ok(mx::add(&scalar, &bivector)?)
     }
-    /// `S^-1 gamma_mu S=sum_nu L_mu_nu gamma_nu`, verified by reconstruction.
     pub fn vector_action(&self, s: &BasicMatrix<F>) -> Result<BasicMatrix<F>, CliffordError> {
         if s.shape() != (self.size(), self.size()) {
             return Err(CliffordError::SpinShape);

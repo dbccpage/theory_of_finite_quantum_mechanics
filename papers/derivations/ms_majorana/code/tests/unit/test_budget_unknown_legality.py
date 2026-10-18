@@ -119,8 +119,6 @@ class TestEmitBudgetUnknownLegalityGate:
     def test_any_witnessed_mass_refuses_even_zero(
         self, witnessed_phi1, witnessed_gamma2
     ) -> None:
-        # Supplying a mass — even 0 — means classification ran; BudgetUnknown
-        # may not replace it (the SVIII falsifier, from the other side).
         with pytest.raises(
             TerminalizerRefusal, match="WITNESS_DOMINANCE_REFUSAL"
         ) as excinfo:
@@ -179,16 +177,11 @@ class TestBudgetUnknownTerminalDirectConstructionBypass:
         assert excinfo.value.token == "DEBT_AUTHORITY_WIDENING_REFUSED"
 
     def test_legitimate_construction_via_emit_budget_unknown_still_works(self) -> None:
-        # The __post_init__ defense must not disturb the sole intended
-        # constructor's happy path.
         terminal = emit_budget_unknown(_valid_debt())
         assert isinstance(terminal, BudgetUnknownTerminal)
         assert terminal.authority_effect == "None"
 
     def test_direct_construction_with_a_real_debt_record_still_works(self) -> None:
-        # Direct construction is not itself forbidden (this is a Python
-        # dataclass, not a sealed class) — only construction with a
-        # malformed debt or widened authority is refused.
         terminal = BudgetUnknownTerminal(
             debt=_valid_debt(),
             diagnostic=DiagnosticClass.NotComputed,

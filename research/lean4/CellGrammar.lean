@@ -1,39 +1,19 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import CochainWindow
 
-/-!
-# Cell-boundary grammar constructs the cochain law
 
-The executable finite checker constructs incidence matrices from oriented
-vertices, edges, and closed face boundaries.  This module states the abstract
-reason that construction works without importing matrix arithmetic: a chain
-boundary with `boundary1 (boundary2 face) = 0`, together with declared dual
-pairings and their adjoint coboundaries, forces `d1 (d0 alpha) = 0`.
 
-The carrier, cells, boundary maps, dual pairings, and additive laws remain
-declarations.  The chain law is derived from those lower-level declarations;
-topology, homology, and structure-lift authority are not derived.
--/
 
 namespace OmegaCore.CellGrammar
 
 open OmegaCore.CochainWindow
 
-/-- A degree-two cell boundary presentation. -/
 structure ChainGrammar (C0 C1 C2 : Type) where
   zero0 : C0
   boundary1 : C1 → C0
   boundary2 : C2 → C1
   boundarySquare : ∀ face, boundary1 (boundary2 face) = zero0
 
-/-- Declared dual pairings and adjoint coboundaries for a chain grammar. -/
 structure Dualization
     (C0 C1 C2 D0 D1 D2 : Type)
     (chain : ChainGrammar C0 C1 C2) where
@@ -72,7 +52,6 @@ theorem boundarySquare_implies_cochain
   rw [dual.adjoint1, dual.adjoint0, chain.boundarySquare]
   rw [dual.pairing0_zero_right, dual.pairing2_zero_left]
 
-/-- Lower-level cell and duality data constructs an admitted cochain window. -/
 def toWindow
     (chain : ChainGrammar C0 C1 C2)
     (dual : Dualization C0 C1 C2 D0 D1 D2 chain) :
@@ -100,3 +79,6 @@ theorem constructed_window_chain
 #print axioms constructed_window_chain
 
 end OmegaCore.CellGrammar
+
+private def l5aProvenance : String :=
+  "Origin: lean4/CellGrammar.lean Claim: boundarySquare_implies_cochain AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

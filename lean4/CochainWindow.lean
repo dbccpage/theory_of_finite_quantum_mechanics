@@ -1,29 +1,10 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 
-/-!
-# Admitted finite additive cochain window after presentation obstruction
 
-This module marks the precise point where additive structure is imported.
-The additive commutative groups, maps, and their laws are fields of an admitted
-window; they are not derived from a pair difference or from a question
-profile. Once the chain law is supplied, closure is invariant under declared
-exact repairs and the exact / active-closure / closed-residual split is
-exhaustive.
--/
 
 namespace OmegaCore.CochainWindow
 
-/-- An explicit additive commutative group presentation. Keeping the laws in
-the value prevents a carrier with only a right identity from being mislabeled
-as a cochain carrier. -/
 structure AddCommGroupCarrier (C : Type) where
   zero : C
   add : C → C → C
@@ -38,7 +19,6 @@ theorem AddCommGroupCarrier.add_zero
     carrier.add x carrier.zero = x := by
   rw [carrier.add_comm, carrier.zero_add]
 
-/-- A declared 2-truncated additive cochain window. -/
 structure Window (C0 C1 C2 : Type) where
   c0 : AddCommGroupCarrier C0
   c1 : AddCommGroupCarrier C1
@@ -116,3 +96,6 @@ theorem active_closure_survives_every_repair
 #print axioms active_closure_survives_every_repair
 
 end OmegaCore.CochainWindow
+
+private def l5aProvenance : String :=
+  "Origin: lean4/CochainWindow.lean Claim: AddCommGroupCarrier AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

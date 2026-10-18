@@ -22,7 +22,7 @@ import tarfile
 from pathlib import Path
 from typing import Dict, List, Set, Tuple
 
-FIXED_MTIME = 1790188813  # Git commit timestamp: 2026-09-22/23
+FIXED_MTIME = 1790188813
 TARBALL_PATH = Path("zenodo/mub6_formal_archive_v1.0.tar.gz")
 SHA256_MANIFEST_PATH = Path("zenodo/release_manifest.sha256")
 RELEASE_MANIFEST_JSON_PATH = Path("zenodo/release_manifest.json")
@@ -115,7 +115,6 @@ def collect_archive_files() -> List[str]:
 
     for d in scan_dirs:
         for root, dirs, filenames in os.walk(d):
-            # Prune excluded directories in-place
             dirs[:] = [
                 sub for sub in dirs
                 if not is_excluded(Path(os.path.join(root, sub)).as_posix())
@@ -126,14 +125,12 @@ def collect_archive_files() -> List[str]:
                 if not is_excluded(rel):
                     collected.append(rel)
 
-    # 10 canonical receipts + manifest.json in artifacts/
     for r in sorted(CANONICAL_RECEIPTS):
         p = f"artifacts/{r}"
         if not os.path.exists(p):
             raise FileNotFoundError(f"Missing canonical receipt in artifacts/: {p}")
         collected.append(p)
 
-    # Essential Python root package init files for omega_engine
     extra_package_inits = [
         "omega_engine/__init__.py",
         "omega_engine/crates/__init__.py",
@@ -144,7 +141,6 @@ def collect_archive_files() -> List[str]:
 
     collected = sorted(set(collected))
 
-    # Audit all collected files against exclusions
     for f in collected:
         parts = Path(f).parts
         for p in parts[:-1]:
@@ -175,7 +171,6 @@ def build_hermetic_tarball(files: List[str], output_path: Path) -> str:
     """Construct a bit-for-bit reproducible, hermetic tar.gz archive."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Collect unique parent directories in sorted order
     dir_entries: Set[str] = set()
     for f in files:
         parts = Path(f).parts
@@ -185,10 +180,8 @@ def build_hermetic_tarball(files: List[str], output_path: Path) -> str:
 
     buf = io.BytesIO()
 
-    # gzip with mtime=0 for reproducible header
     with gzip.GzipFile(fileobj=buf, mode="wb", mtime=0.0) as gz:
         with tarfile.open(fileobj=gz, mode="w") as tar:
-            # 1. Add directories with normalized metadata
             for d in sorted_dirs:
                 ti_dir = tarfile.TarInfo(name=d)
                 ti_dir.type = tarfile.DIRTYPE
@@ -200,7 +193,6 @@ def build_hermetic_tarball(files: List[str], output_path: Path) -> str:
                 ti_dir.gname = "root"
                 tar.addfile(ti_dir)
 
-            # 2. Add files with normalized metadata
             for f in files:
                 p = Path(f)
                 content = p.read_bytes()
@@ -237,7 +229,6 @@ def verify_dry_run_unpack(tarball_path: Path, archive_files: List[str], digests:
         with tarfile.open(tarball_path, "r:gz") as tar:
             tar.extractall(path=scratch_dir)
 
-        # Audit all extracted files
         extracted_files: List[str] = []
         for root, dirs, filenames in os.walk(scratch_dir):
             for fn in filenames:
@@ -369,13 +360,11 @@ def generate_sha256_manifest(archive_files: List[str], tarball_path: Path) -> No
     """Generate zenodo/release_manifest.sha256 covering all archive files and release artifacts."""
     manifest_entries: List[Tuple[str, str]] = []
 
-    # 1. Hashes for all files in archive
     for rel_path in archive_files:
         p = Path(rel_path)
         digest = compute_sha256(p)
         manifest_entries.append((digest, rel_path))
 
-    # 2. Hashes for release artifacts in zenodo/
     release_artifacts = [
         tarball_path.as_posix(),
         RELEASE_MANIFEST_JSON_PATH.as_posix(),
@@ -386,7 +375,6 @@ def generate_sha256_manifest(archive_files: List[str], tarball_path: Path) -> No
         digest = compute_sha256(p)
         manifest_entries.append((digest, rel_path))
 
-    # Sort entries by filepath
     manifest_entries.sort(key=lambda item: item[1])
 
     with open(SHA256_MANIFEST_PATH, "w", encoding="utf-8", newline="\n") as f:
@@ -432,34 +420,27 @@ def main() -> None:
     print("AuthorityEffect: None")
     print("=" * 80)
 
-    # 1. Collect files
     print("\n[Step 1] Collecting and auditing archive files...")
     archive_files = collect_archive_files()
     print(f"Total archive files verified: {len(archive_files)}")
 
-    # Precompute digests for files in archive
     file_digests: Dict[str, str] = {}
     for f in archive_files:
         file_digests[f] = compute_sha256(Path(f))
 
-    # 2. Build hermetic tarball
     print("\n[Step 2] Building hermetic tarball...")
     tarball_digest = build_hermetic_tarball(archive_files, TARBALL_PATH)
 
-    # 3. Dry-run unpack and verify
     print("\n[Step 3] Running dry-run unpack and verification...")
     verify_dry_run_unpack(TARBALL_PATH, archive_files, file_digests)
 
-    # 4. Update manifest and checklist
     print("\n[Step 4] Updating release manifest and checklist...")
     update_release_manifest_json(tarball_digest, archive_files)
     update_release_checklist(tarball_digest, len(archive_files))
 
-    # 5. Generate release_manifest.sha256
     print("\n[Step 5] Generating release_manifest.sha256...")
     generate_sha256_manifest(archive_files, TARBALL_PATH)
 
-    # 6. Verify release_manifest.sha256
     print("\n[Step 6] Verifying release_manifest.sha256 against on-disk artifacts...")
     verify_sha256_manifest()
 

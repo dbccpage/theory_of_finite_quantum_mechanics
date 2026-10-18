@@ -41,31 +41,31 @@ def build_det_cycle(gov_mod):
 
 def verify_witness(a, b, c, d, gov_mod):
     """Verify a witness (a,b,c,d) using the full L1SymbolGameGovernor.
-    
+
     Returns (det, phi1, governor) tuple.
     """
     prod_diff = a * d - b * c
     lin_corr = (a - b) + (d - c)
     det = prod_diff - lin_corr
-    
+
     graph = build_det_cycle(gov_mod)
     gov = gov_mod.L1SymbolGameGovernor(graph)
-    
+
     gov.step_assert("origin", "mid", prod_diff, step_id="assert_prod")
     gov.step_assert("mid", "end", -lin_corr, step_id="assert_lin")
     gov.step_assert("end", "origin", Fraction(0), step_id="assert_close")
-    
+
     projected = gov.project(gov.section)
     gov.step_cut(proposed_section=projected, step_id="cut")
     gov.step_verify("ZERO_OBSTRUCTION", step_id="verify")
-    
+
     phi1 = gov.primary_obstruction()
     return det, phi1, gov
 
 
 class A2WitnessSearch:
     """Search for exact rational witnesses on the det=0 surface using an LLM."""
-    
+
     def __init__(self, proposer, max_turns=50):
         self.proposer = proposer
         self.max_turns = max_turns
@@ -73,13 +73,12 @@ class A2WitnessSearch:
         self.refused = []
         self.phi1_trajectory = []
         self.gov_mod = load_governor_module()
-    
+
     def run(self):
         """Run the witness search loop."""
         last_failure = ""
-        
+
         for turn in range(self.max_turns):
-            # Build the prompt with Gamma_2 feedback
             admitted_summary = ""
             if self.admitted:
                 examples = []
@@ -89,7 +88,7 @@ class A2WitnessSearch:
                         f"(det={w['det']})"
                     )
                 admitted_summary = "Already admitted:\n" + "\n".join(examples) + "\n"
-            
+
             prompt = (
                 "Return ONLY a Python dict on one line, no markdown:\n"
                 "{'a': Fraction(p,q), 'b': Fraction(r,s), "
@@ -106,44 +105,42 @@ class A2WitnessSearch:
             )
             if last_failure:
                 prompt += f"Last failure: {last_failure}\n"
-            
+
             response = self.proposer(prompt)
             if not response or not response.strip():
                 continue
-            
+
             response = _clean_response(response)
             if not response:
                 continue
-            
+
             try:
                 witness = _safe_eval(response)
                 if not isinstance(witness, dict):
                     last_failure = "Response must be a dict with keys a, b, c, d"
                     continue
-                
+
                 a = witness.get("a")
                 b = witness.get("b")
                 c = witness.get("c")
                 d = witness.get("d")
-                
+
                 if any(x is None for x in [a, b, c, d]):
                     last_failure = "Dict must have keys 'a', 'b', 'c', 'd'"
                     continue
-                
+
                 if not all(isinstance(x, Fraction) for x in [a, b, c, d]):
                     last_failure = "All values must be Fraction(num, den)"
                     continue
-                
-                # Check for duplicates
+
                 witness_tuple = (a, b, c, d)
                 if witness_tuple in {(w["a"], w["b"], w["c"], w["d"]) for w in self.admitted}:
                     last_failure = f"Duplicate witness (a={a}, b={b}, c={c}, d={d})"
                     continue
-                
-                # Run through the full governor
+
                 det, phi1, gov = verify_witness(a, b, c, d, self.gov_mod)
                 self.phi1_trajectory.append(phi1)
-                
+
                 record = {
                     "turn": turn,
                     "a": a, "b": b, "c": c, "d": d,
@@ -152,7 +149,7 @@ class A2WitnessSearch:
                     "prod_diff": a * d - b * c,
                     "lin_corr": (a - b) + (d - c),
                 }
-                
+
                 if phi1 == 0:
                     record["verdict"] = "ADMITTED"
                     self.admitted.append(record)
@@ -170,12 +167,12 @@ class A2WitnessSearch:
                     )
                     print(f"  Turn {turn}: REFUSED a={a}, b={b}, c={c}, d={d} "
                           f"(det={det}, Phi_1={phi1})")
-                    
+
             except ValueError as e:
                 last_failure = f"Rejected: {str(e)}"
             except Exception as e:
                 last_failure = f"Parse error: {type(e).__name__}: {str(e)}"
-        
+
         return {
             "target": "A2 (det=0 singularity surface)",
             "protocol": "PO-032 L1SymbolGameGovernor (cycle encoding)",
@@ -188,11 +185,10 @@ class A2WitnessSearch:
             "refused": self.refused[:10],
             "phi1_trajectory": self.phi1_trajectory,
         }
-    
+
     def save_receipt(self, path):
         """Save session receipt as JSON."""
         result = self.run.__wrapped__ if hasattr(self.run, '__wrapped__') else None
-        # Use last run result
         receipt = {
             "admitted": [
                 {"a": str(w["a"]), "b": str(w["b"]),
@@ -214,12 +210,11 @@ def main():
         proposer = OpenRouterProposer(
             api_key=api_key,
             model="deepseek/deepseek-chat",
-            temperature=0.3,  # slightly higher for diversity
+            temperature=0.3,
             max_tokens=256,
         ).complete
         print("Using OpenRouter (DeepSeek V3)")
     else:
-        # Scripted fallback with mix of good and bad witnesses
         moves = [
             "{'a': Fraction(1, 2), 'b': Fraction(1, 3), 'c': Fraction(1, 3), 'd': Fraction(1, 9)}",
             "{'a': Fraction(2, 1), 'b': Fraction(3, 1), 'c': Fraction(1, 1), 'd': Fraction(2, 1)}",
@@ -230,12 +225,12 @@ def main():
         ]
         proposer = scripted_fallback_proposer(moves)
         print("Using scripted fallback (no API key)")
-    
+
     search = A2WitnessSearch(proposer, max_turns=50)
     result = search.run()
-    
+
     search.save_receipt("research/a2_witness_search_receipt.json")
-    
+
     print(f"\n=== A2 Witness Search Results ===")
     print(f"Admitted: {result['admitted_count']}")
     print(f"Refused: {result['refused_count']}")

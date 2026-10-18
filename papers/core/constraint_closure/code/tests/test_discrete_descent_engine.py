@@ -19,7 +19,6 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-# Ensure local code directory is in sys.path
 code_dir = Path(__file__).resolve().parents[1]
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -96,21 +95,18 @@ def test_cascade_solver_lift_preserves_prior_degree_obligations():
 
     are preserved and is_solved() refuses to declare success.
     """
-    # Create a triangle with non-trivial circulation (H1 obstruction)
     nodes = [0, 1, 2]
     edges = [(0, 1), (1, 2), (2, 0)]
-    faces = []  # Hollow triangle: H1 is non-trivial
+    faces = []
     net = Network(nodes=nodes, edges=edges, faces=faces)
 
     solver = CascadeSolver(network=net)
-    # Circulation of 3.0 on the 3-cycle
     edge_vals = {(0, 1): 1.0, (1, 2): 1.0, (2, 0): 1.0}
     receipt = solver.solve(edge_values=edge_vals, max_lifts=1)
 
     assert isinstance(receipt, SolverCascadeReceipt)
     assert receipt.initial_residual_size == pytest.approx(3.0)
 
-    # The receipt must NOT report is_solved() == True when residual remains or obligations exist
     if receipt.terminal_status != "Exact":
         assert not receipt.is_solved()
 

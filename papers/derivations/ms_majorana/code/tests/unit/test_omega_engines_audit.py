@@ -38,7 +38,6 @@ from omega_engine.crates.operator.generator.gen_everett import ManyWorldsDAG
 class TestOmegaEnginesAudit(unittest.TestCase):
     def test_complex_entropy_not_double_count_real_block_spectrum(self):
         """P0: Verify von Neumann entropy on (2x2) maximally mixed state equals ln(2), not 2*ln(2)."""
-        # Maximally mixed state I/2
         rho = np.eye(2, dtype=complex) / 2.0
         cfg = DensityMatrixConfig.default()
         dm = NumericalDensityMatrix.from_validated(2, rho.flatten().tolist(), cfg)
@@ -52,7 +51,6 @@ class TestOmegaEnginesAudit(unittest.TestCase):
         with self.assertRaises(LossyEntropyAuthorityPathRefusal):
             assert_admitted_entropy_path(lossy=True, authority_admitted=True)
 
-        # Checked entropy passes closed
         val = shannon_checked([0.5, 0.5])
         self.assertAlmostEqual(val, math.log(2.0), places=5)
 
@@ -88,7 +86,6 @@ class TestOmegaEnginesAudit(unittest.TestCase):
         async def run_test():
             engine = AsyncHomologicalEngine(num_workers=1)
             await engine.start()
-            # None prompt triggers exception in text metrics
             evt = await engine.submit("q1", None, topology_type="cycle")
 
             await evt.wait()

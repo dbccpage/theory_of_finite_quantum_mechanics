@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 """Homology-correct tetron array benchmark.
 
@@ -40,20 +39,20 @@ _PACKAGE_PARENT = Path(__file__).resolve().parents[2]
 if str(_PACKAGE_PARENT) not in sys.path:
     sys.path.insert(0, str(_PACKAGE_PARENT))
 
-from omega_engine.crates.majorana.carriers.surface_carrier import (  
+from omega_engine.crates.majorana.carriers.surface_carrier import (
     CarrierReport,
     build_tetron_array,
     logical_class_representative,
 )
-from omega_engine.crates.majorana.core.gf2_matrix import GF2Matrix  
-from omega_engine.crates.majorana.engines.classifier import classify  
-from omega_engine.crates.majorana.engines.harmonic import (  
+from omega_engine.crates.majorana.core.gf2_matrix import GF2Matrix
+from omega_engine.crates.majorana.engines.classifier import classify
+from omega_engine.crates.majorana.engines.harmonic import (
     DEFAULT_BUDGET,
     class_representative,
     code_distance,
     h1_basis,
 )
-from omega_engine.crates.majorana.engines.terminalizer import terminalize  
+from omega_engine.crates.majorana.engines.terminalizer import terminalize
 
 INSTANCES: tuple[tuple[str, int, int], ...] = (
     ("disk", 3, 3),

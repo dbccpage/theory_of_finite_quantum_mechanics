@@ -12,7 +12,6 @@ import pytest
 import sys
 import pathlib
 
-# Ensure code/ is on path
 _code_dir = str(pathlib.Path(__file__).resolve().parents[2] / "code")
 if _code_dir not in sys.path:
     sys.path.insert(0, _code_dir)
@@ -23,7 +22,6 @@ except ImportError:
     from omega_engine.residuals.network_residual import Network, build_incidence, curl, gradient
 
 
-# --- Fable fixture: two triangles sharing edge (1,2) ---
 FIXTURE_NODES = [0, 1, 2, 3]
 FIXTURE_EDGES = [(0, 1), (1, 2), (0, 2), (1, 3), (2, 3)]
 FIXTURE_FACES = [(0, 1, 2)]
@@ -48,7 +46,6 @@ class TestD1Impl:
     def test_d1_d0_nilpotency(self):
         """d1 ∘ d0 = 0: gradient of any potential must have zero curl."""
         net = _make_fixture_network(with_faces=True)
-        # Arbitrary potential on vertices
         potentials = {0: 1.0, 1: -3.0, 2: 2.5, 3: 0.0}
         grad = gradient(net, potentials)
         curls = curl(net, grad)
@@ -61,24 +58,21 @@ class TestD1Impl:
         """Edge stored as (2,0) must be found when face cycles through (0,2)."""
         net = Network(
             nodes=[0, 1, 2],
-            edges=[(0, 1), (1, 2), (2, 0)],  # (2,0) NOT (0,2)
+            edges=[(0, 1), (1, 2), (2, 0)],
             faces=[(0, 1, 2)],
         )
-        # d0 alpha for alpha = {0: a, 1: b, 2: c}
         alpha = {0: 1.0, 1: 3.0, 2: -1.0}
         grad = gradient(net, alpha)
         curls = curl(net, grad)
-        # d1 d0 must be zero
         assert abs(curls[(0, 1, 2)]) < 1e-12
 
     def test_reversed_storage_nonzero_curl(self):
         """Non-gradient 1-cochain with reversed edges must give nonzero curl."""
         net = Network(
             nodes=[0, 1, 2],
-            edges=[(0, 1), (1, 2), (2, 0)],  # (2,0) stored
+            edges=[(0, 1), (1, 2), (2, 0)],
             faces=[(0, 1, 2)],
         )
-        # NOT a gradient: h(0,1) + h(1,2) + h(2,0) = 1 + 1 + 1 = 3 ≠ 0
         h = {(0, 1): 1.0, (1, 2): 1.0, (2, 0): 1.0}
         curls = curl(net, h)
         assert abs(curls[(0, 1, 2)] - 3.0) < 1e-12
@@ -88,13 +82,11 @@ class TestD1Impl:
         The fix must look up -(0,2) = negated value."""
         net = Network(
             nodes=[0, 1, 2],
-            edges=[(0, 1), (1, 2), (0, 2)],  # (0,2) not (2,0)
+            edges=[(0, 1), (1, 2), (0, 2)],
             faces=[(0, 1, 2)],
         )
         h = {(0, 1): 1.0, (1, 2): 0.5, (0, 2): -0.8}
         curls = curl(net, h)
-        # curl = h(0,1) + h(1,2) + h(2,0) = 1.0 + 0.5 + -(-0.8) = 1.0 + 0.5 + 0.8 = 2.3
-        # h(2,0) = -h(0,2) = -(-0.8) = 0.8
         assert abs(curls[(0, 1, 2)] - 2.3) < 1e-12, f"got {curls[(0, 1, 2)]}"
 
 
@@ -110,16 +102,11 @@ class TestGamma2L1:
             edges=[(0, 1), (1, 2), (0, 2)],
             faces=[(0, 1, 2)],
         )
-        # h = [1.0, 0.5, -0.8] on the paper's triangle
         h = {(0, 1): 1.0, (1, 2): 0.5, (0, 2): -0.8}
         curls = curl(net, h)
-        # curl = h(0,1) + h(1,2) + h(2,0) = 1.0 + 0.5 + 0.8 = 2.3
         gamma2_l1 = sum(abs(v) for v in curls.values())
         gamma2_l2 = float(np.sqrt(sum(v**2 for v in curls.values())))
-        # They happen to be equal for a single face, but the principle stands:
-        # the computation MUST be sum-of-abs, not sqrt-of-squares
         assert gamma2_l1 == pytest.approx(2.3, abs=1e-12)
-        # For a single face they're equal; test multi-face to show difference
         net2 = Network(
             nodes=[0, 1, 2, 3],
             edges=[(0, 1), (1, 2), (0, 2), (1, 3), (2, 3)],
@@ -129,7 +116,6 @@ class TestGamma2L1:
         curls2 = curl(net2, h2)
         gamma2_l1_multi = sum(abs(v) for v in curls2.values())
         gamma2_l2_multi = float(np.sqrt(sum(v**2 for v in curls2.values())))
-        # l1 >= l2 in general; verify l1 is what we compute
         assert gamma2_l1_multi >= gamma2_l2_multi or abs(gamma2_l1_multi - gamma2_l2_multi) < 1e-12
 
     def test_gamma2_nonvacuous_assertion(self):
@@ -171,13 +157,10 @@ class TestSNFCounterexample:
 
         M = np.array([[2, 0], [0, 3]], dtype=int)
         res = mod.compute_smith_normal_form(M)
-        # S must be diag(1,6) with divisibility 1|6
         assert res.S[0, 0] == 1
         assert res.S[1, 1] == 6
-        # UAV must equal S
         UAV = res.U @ M @ res.V
         np.testing.assert_array_equal(res.S, UAV)
-        # det(U), det(V) must be ±1
         assert abs(int(round(np.linalg.det(res.U)))) == 1
         assert abs(int(round(np.linalg.det(res.V)))) == 1
 
@@ -194,7 +177,6 @@ class TestH1ObstructionClass:
         d0, _ = build_incidence(net)
         w = np.array([-2.0, -2.0, 2.0, 2.0, -2.0])
 
-        # Optimal residual from LP: r = w - d0 @ alpha_opt
         from scipy.optimize import linprog
         n_v, n_e = len(net.nodes), len(net.edges)
         c = np.concatenate([np.zeros(n_v), np.ones(n_e)])
@@ -207,11 +189,9 @@ class TestH1ObstructionClass:
         alpha_opt = res.x[:n_v]
         r = w - d0 @ alpha_opt
 
-        # Phi1 = ||r||_1 = 6
         phi1 = float(np.sum(np.abs(r)))
         assert abs(phi1 - 6.0) < 1e-6
 
-        # r must NOT be in im(d0) — projection error must be nonzero
         proj = d0 @ np.linalg.lstsq(d0, r, rcond=None)[0]
         proj_error = float(np.linalg.norm(r - proj))
         assert proj_error > 1e-6, (
@@ -225,14 +205,7 @@ class TestH1ObstructionClass:
         net = Network(nodes=[0, 1], edges=[(0, 1)], faces=[])
         d0, _ = build_incidence(net)
         w = np.array([3.0])
-        # On a tree: rank(d0) = n_e, so im(d0) = C1
-        # Projection onto im(d0) gives exactly w back
         proj = d0 @ np.linalg.lstsq(d0, w, rcond=None)[0]
-        # After projection, residual is zero — this IS the false negative
         assert float(np.linalg.norm(w - proj)) < 1e-12
-        # But the quotient Q1 = C1/B1 has dim 0 (b1=0 on a tree)
-        # so the signal genuinely vanishes in the quotient — not a bug here
-        # The bug is using this projection on b1 >= 1 carriers where it
-        # annihilates real signals
 
 

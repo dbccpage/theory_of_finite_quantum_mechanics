@@ -213,11 +213,11 @@ def test_direct_constructor_owns_repeated_fields() -> None:
         name="owned-fields",
         failure_code="MUTABLE_INPUT",
         proposed_invariant="Repeated fields become immutable owned tuples.",
-        episode_ids=episode_ids,  # type: ignore[arg-type]
-        context_keys=context_keys,  # type: ignore[arg-type]
-        evidence_refs=evidence_refs,  # type: ignore[arg-type]
-        counterexamples=counterexamples,  # type: ignore[arg-type]
-        protected_fields=protected_fields,  # type: ignore[arg-type]
+        episode_ids=episode_ids,
+        context_keys=context_keys,
+        evidence_refs=evidence_refs,
+        counterexamples=counterexamples,
+        protected_fields=protected_fields,
     )
     before = candidate.to_dict()
     episode_ids.append(_digest("2"))

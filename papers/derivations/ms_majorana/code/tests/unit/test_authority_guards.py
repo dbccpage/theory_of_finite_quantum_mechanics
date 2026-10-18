@@ -179,8 +179,6 @@ class TestT39CertificateNeverParentsAuthority:
             CertifiedAuthority.certify(_terminal(), witness, state)
 
     def test_all_guards_true_still_ends_at_the_host_permission_wall(self) -> None:
-        # Even the fully-guarded authority terminal cannot certify locally;
-        # authority_from_outcome absorbs the PermissionError into None.
         witness = _witness()
         state = _all_true_state(replay_hash=witness.replay_hash)
         assert is_auth(_terminal(), state) is True
@@ -196,10 +194,8 @@ class TestCertifiedAuthoritySealedConstruction:
     """
 
     def test_old_unmangled_secret_key_attribute_no_longer_exists(self) -> None:
-        # The forgery path the reviewer used: reading the plain class
-        # attribute to smuggle in the sentinel. It must not resolve.
         with pytest.raises(AttributeError):
-            CertifiedAuthority._secret_key  # type: ignore[attr-defined]
+            CertifiedAuthority._secret_key
 
     def test_direct_construction_with_forged_sentinel_is_refused(self) -> None:
         with pytest.raises(TypeError, match="sealed"):
@@ -210,12 +206,6 @@ class TestCertifiedAuthoritySealedConstruction:
             CertifiedAuthority(None, "FAKE_TERMINAL", "FAKE_WITNESS")
 
     def test_mangled_key_path_is_the_documented_best_effort_boundary(self) -> None:
-        # The technically-still-reachable path (Python has no private
-        # fields): a determined caller can dig out the name-mangled
-        # attribute directly. This is the SAME honesty level as GtlaNf and
-        # DescentWitness (Inspector M18) — best-effort, not cryptographic.
-        # It is exercised here only to document the boundary, not to
-        # endorse it as a legitimate construction route.
         mangled_key = CertifiedAuthority._CertifiedAuthority__sealed_key
         forged = CertifiedAuthority(mangled_key, "FAKE_TERMINAL", "FAKE_WITNESS")
         assert forged.terminal == "FAKE_TERMINAL"

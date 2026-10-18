@@ -23,7 +23,6 @@ from pathlib import Path
 
 import pytest
 
-# Ensure code directory and repo root are on path
 _CODE_DIR = Path(__file__).resolve().parent.parent
 _REPO_ROOT = _CODE_DIR
 for p in Path(__file__).resolve().parents:
@@ -36,9 +35,9 @@ if str(_CODE_DIR) not in sys.path:
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from omega_engine_operations.domain.rop.result import Refusal  # noqa: E402
+from omega_engine_operations.domain.rop.result import Refusal
 
-from adversarial_topological_audit import (  # noqa: E402
+from adversarial_topological_audit import (
     WOLAND_RETINUE,
     MutationSuiteResult,
     RetinueCharacter,
@@ -57,11 +56,8 @@ from adversarial_topological_audit import (  # noqa: E402
     mutate_second_chern_charge_attack,
     verify_master_receipt_digest,
 )
-from topological_half_instanton_4d import HalfInstantonCluster4D  # noqa: E402
+from topological_half_instanton_4d import HalfInstantonCluster4D
 
-# ============================================================================
-# Test Suite 1: Woland Retinue Character Roster
-# ============================================================================
 
 
 class TestWolandRetinueRoster:
@@ -104,9 +100,6 @@ class TestWolandRetinueRoster:
         assert "Manuscripts don't burn" in woland.maxim
 
 
-# ============================================================================
-# Test Suite 2: Woland 7-Act Dialectical Prosecution Circuit
-# ============================================================================
 
 
 class TestWolandDialecticalProsecutionCircuit:
@@ -210,7 +203,6 @@ class TestWolandDialecticalProsecutionCircuit:
     def test_act_7_terminal_adjudication(self) -> None:
         """Act VII: Presided by Woland, confirms all prior acts passed and issues PASS_TO_MASTER."""
         prosecutor = WolandDialecticalProsecutor()
-        # Mock 6 passing acts
         acts = [
             WolandActRecord(i, f"Act {i}", ("Actor",), "PASS", {})
             for i in range(1, 7)
@@ -242,9 +234,6 @@ class TestWolandDialecticalProsecutionCircuit:
             assert act.verdict == "PASS"
 
 
-# ============================================================================
-# Test Suite 3: Hostile Adversarial Mutation Suite
-# ============================================================================
 
 
 class TestHostileAdversarialMutationSuite:
@@ -314,9 +303,6 @@ class TestHostileAdversarialMutationSuite:
         assert len(mut_res.refusal_objects) == 5
 
 
-# ============================================================================
-# Test Suite 4: Master Receipt Generator & SHA-256 Hashing
-# ============================================================================
 
 
 class TestMasterReceiptGenerator:
@@ -380,7 +366,6 @@ class TestMasterReceiptGenerator:
         assert verify_master_receipt_digest(data) is True
         assert verify_master_receipt_digest(receipt_path) is True
 
-        # Tamper with receipt and assert failure
         data_tampered = dict(data)
         data_tampered["title"] = "Tampered Title"
         assert verify_master_receipt_digest(data_tampered) is False
@@ -397,9 +382,6 @@ class TestMasterReceiptGenerator:
         assert verify_master_receipt_digest(p2) is True
 
 
-# ============================================================================
-# Test Suite 5: Zero-Float Static AST Audit & Runtime Type Barriers
-# ============================================================================
 
 
 class TestZeroFloatDisciplineAndAstAudit:
@@ -427,13 +409,10 @@ class TestZeroFloatDisciplineAndAstAudit:
         with pytest.raises(TypeError, match="Floating-point value forbidden"):
             prosecutor.solver.verify_zero_sum_doublet(
                 HalfInstantonCluster4D(1, 0),
-                weight=1.0,  # type: ignore
+                weight=1.0,
             )
 
 
-# ============================================================================
-# Test Suite 6: Claim & Lexical Hygiene Discipline
-# ============================================================================
 
 
 class TestClaimAndLexicalHygieneDiscipline:
@@ -450,9 +429,6 @@ class TestClaimAndLexicalHygieneDiscipline:
                 assert word not in claim.lower(), f"Forbidden hype verb '{word}' found in claim: {claim}"
 
 
-# ============================================================================
-# Test Suite 7: UTF-8 BOM Cleanliness
-# ============================================================================
 
 
 class TestUtf8BomCleanliness:

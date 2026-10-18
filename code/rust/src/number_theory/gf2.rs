@@ -1,34 +1,12 @@
-//! Linear algebra over GF(2): bit-packed vectors and matrices with exact
-//! rank, reduced row echelon form, nullspace, column and row space bases,
-//! and solution sets of linear systems.
-//!
-//! Vectors and matrices pack 64 entries per word. Every operation is exact
-//! and deterministic; there are no floats and no randomness. Sizes are
-//! bounded by [`MAX_F2_ENTRIES`], and a shape that does not fit, a ragged
-//! input, an entry that is not `0` or `1` and an index outside a vector are
-//! typed [`F2Error`]s, never panics.
-//!
-//! Homology and stabilizer consumers use this shared bit-packed carrier;
-//! geometric cohomology and lattice structure remain in their domain owners.
-//!
-//! The solution set of `A x = b` is an affine space: a particular solution
-//! plus the kernel of `A` ([`F2AffineSpace`]). It is empty exactly when `b`
-//! is outside the column space, and otherwise a torsor over the kernel: any
-//! two solutions differ by a kernel vector, and each kernel vector moves one
-//! solution to another.
-//!
-//! AuthorityEffect: None.
 
 use num_bigint::BigUint;
 use num_traits::One;
 use std::fmt;
 
-/// Largest number of entries (`rows * cols`, or the length of a vector).
 pub const MAX_F2_ENTRIES: usize = 1 << 28;
 
 const WORD_BITS: usize = 64;
 
-/// Refusals of the GF(2) routines.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum F2Error {
     #[error("a {rows} x {cols} GF(2) matrix exceeds the bound of {limit} entries")]
@@ -75,7 +53,6 @@ fn check_entries(rows: usize, cols: usize) -> Result<(), F2Error> {
     }
 }
 
-/// A vector over GF(2). Bits past `len` in the last word are always zero.
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub struct F2Vector {
     len: usize,
@@ -108,7 +85,6 @@ impl F2Vector {
         }
     }
 
-    /// The zero vector of length `len`.
     pub fn zeros(len: usize) -> Result<Self, F2Error> {
         check_entries(1, len)?;
         Ok(Self {
@@ -117,14 +93,12 @@ impl F2Vector {
         })
     }
 
-    /// The unit vector with a single `1` at `index`.
     pub fn unit(len: usize, index: usize) -> Result<Self, F2Error> {
         let mut v = Self::zeros(len)?;
         v.set(index, true)?;
         Ok(v)
     }
 
-    /// From entries that must each be `0` or `1`.
     pub fn from_bits(bits: &[u8]) -> Result<Self, F2Error> {
         let mut v = Self::zeros(bits.len())?;
         for (index, &bit) in bits.iter().enumerate() {
@@ -143,8 +117,6 @@ impl F2Vector {
         Ok(v)
     }
 
-    /// The vector of length `len` with a `1` at each listed index (an index
-    /// listed twice cancels, as addition in GF(2) does).
     pub fn from_indices(len: usize, indices: &[usize]) -> Result<Self, F2Error> {
         let mut v = Self::zeros(len)?;
         for &index in indices {
@@ -161,7 +133,6 @@ impl F2Vector {
         self.len == 0
     }
 
-    /// Entry `index`.
     pub fn get(&self, index: usize) -> Result<bool, F2Error> {
         self.check(index)?;
         Ok(self.bit(index))
@@ -184,7 +155,6 @@ impl F2Vector {
         Ok(())
     }
 
-    /// The number of `1` entries (Hamming weight).
     pub fn weight(&self) -> usize {
         self.words.iter().map(|w| w.count_ones() as usize).sum()
     }
@@ -193,7 +163,6 @@ impl F2Vector {
         self.words.iter().all(|&w| w == 0)
     }
 
-    /// Indices of the `1` entries, ascending.
     pub fn support(&self) -> Vec<usize> {
         let mut out = Vec::new();
         for (word_index, &word) in self.words.iter().enumerate() {
@@ -206,7 +175,6 @@ impl F2Vector {
         out
     }
 
-    /// The entries as `0`/`1` bytes.
     pub fn to_bits(&self) -> Vec<u8> {
         (0..self.len).map(|i| u8::from(self.bit(i))).collect()
     }
@@ -222,7 +190,6 @@ impl F2Vector {
         }
     }
 
-    /// `self + other` (bitwise XOR).
     pub fn add(&self, other: &Self) -> Result<Self, F2Error> {
         let mut out = self.clone();
         out.add_assign(other)?;
@@ -237,7 +204,6 @@ impl F2Vector {
         Ok(())
     }
 
-    /// The parity of the number of positions where both vectors are `1`.
     pub fn dot(&self, other: &Self) -> Result<bool, F2Error> {
         self.check_same_length(other)?;
         let ones: u32 = self
@@ -250,7 +216,6 @@ impl F2Vector {
     }
 }
 
-/// A row-major matrix over GF(2).
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub struct F2Matrix {
     rows: usize,
@@ -272,11 +237,9 @@ impl fmt::Debug for F2Matrix {
     }
 }
 
-/// The reduced row echelon form of a matrix and its pivot columns.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct F2Rref {
     pub matrix: F2Matrix,
-    /// Pivot column of each leading row, ascending.
     pub pivot_columns: Vec<usize>,
 }
 
@@ -286,8 +249,6 @@ impl F2Rref {
     }
 }
 
-/// The solutions of `A x = b`: `particular + span(direction)`, where
-/// `direction` is a basis of the kernel of `A`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct F2AffineSpace {
     particular: F2Vector,
@@ -295,27 +256,22 @@ pub struct F2AffineSpace {
 }
 
 impl F2AffineSpace {
-    /// One solution.
     pub fn particular(&self) -> &F2Vector {
         &self.particular
     }
 
-    /// A basis of the kernel: the differences of solutions.
     pub fn direction(&self) -> &[F2Vector] {
         &self.direction
     }
 
-    /// The dimension of the kernel.
     pub fn dimension(&self) -> usize {
         self.direction.len()
     }
 
-    /// The number of solutions, `2^dimension`.
     pub fn count(&self) -> BigUint {
         BigUint::one() << self.direction.len()
     }
 
-    /// Whether `x` is in `particular + span(direction)`.
     pub fn contains(&self, x: &F2Vector) -> Result<bool, F2Error> {
         let difference = x.add(&self.particular)?;
         if self.direction.is_empty() {
@@ -325,8 +281,6 @@ impl F2AffineSpace {
         Ok(basis.solve(&difference)?.is_some())
     }
 
-    /// Every solution, in the order of the binary counter over `direction`
-    /// (the first is `particular`). Refused beyond `limit` solutions.
     pub fn enumerate(&self, limit: usize) -> Result<Vec<F2Vector>, F2Error> {
         if self.direction.len() >= usize::BITS as usize || (1usize << self.direction.len()) > limit
         {
@@ -381,7 +335,6 @@ impl F2Matrix {
         }
     }
 
-    /// The zero matrix.
     pub fn zeros(rows: usize, cols: usize) -> Result<Self, F2Error> {
         check_entries(rows, cols)?;
         let words_per_row = words_for(cols);
@@ -393,7 +346,6 @@ impl F2Matrix {
         })
     }
 
-    /// The `n x n` identity.
     pub fn identity(n: usize) -> Result<Self, F2Error> {
         let mut m = Self::zeros(n, n)?;
         for i in 0..n {
@@ -402,7 +354,6 @@ impl F2Matrix {
         Ok(m)
     }
 
-    /// From rows of `0`/`1` entries; every row must have the same length.
     pub fn from_rows(rows: &[Vec<u8>]) -> Result<Self, F2Error> {
         let cols = rows.first().map_or(0, Vec::len);
         let mut m = Self::zeros(rows.len(), cols)?;
@@ -431,7 +382,6 @@ impl F2Matrix {
         Ok(m)
     }
 
-    /// From integer rows reduced modulo 2 (an odd entry is `1`).
     pub fn from_integer_rows(rows: &[Vec<i64>]) -> Result<Self, F2Error> {
         let cols = rows.first().map_or(0, Vec::len);
         let mut m = Self::zeros(rows.len(), cols)?;
@@ -452,7 +402,6 @@ impl F2Matrix {
         Ok(m)
     }
 
-    /// The matrix whose columns are the given vectors (each of length `rows`).
     pub fn from_columns(rows: usize, columns: &[F2Vector]) -> Result<Self, F2Error> {
         let mut m = Self::zeros(rows, columns.len())?;
         for (c, column) in columns.iter().enumerate() {
@@ -469,7 +418,6 @@ impl F2Matrix {
         Ok(m)
     }
 
-    /// The matrix whose rows are the given vectors (each of length `cols`).
     pub fn from_row_vectors(cols: usize, rows: &[F2Vector]) -> Result<Self, F2Error> {
         let mut m = Self::zeros(rows.len(), cols)?;
         for (r, row) in rows.iter().enumerate() {
@@ -494,7 +442,6 @@ impl F2Matrix {
         self.cols
     }
 
-    /// Entry `(r, c)`.
     pub fn get(&self, r: usize, c: usize) -> Result<bool, F2Error> {
         self.check_row(r)?;
         self.check_col(c)?;
@@ -514,7 +461,6 @@ impl F2Matrix {
         Ok(())
     }
 
-    /// Row `r` as a vector of length `cols`.
     pub fn row(&self, r: usize) -> Result<F2Vector, F2Error> {
         self.check_row(r)?;
         Ok(F2Vector {
@@ -523,7 +469,6 @@ impl F2Matrix {
         })
     }
 
-    /// Column `c` as a vector of length `rows`.
     pub fn column(&self, c: usize) -> Result<F2Vector, F2Error> {
         self.check_col(c)?;
         let mut v = F2Vector::zeros(self.rows)?;
@@ -535,7 +480,6 @@ impl F2Matrix {
         Ok(v)
     }
 
-    /// The entries as rows of `0`/`1` bytes.
     pub fn to_rows(&self) -> Vec<Vec<u8>> {
         (0..self.rows)
             .map(|r| (0..self.cols).map(|c| u8::from(self.bit(r, c))).collect())
@@ -563,7 +507,6 @@ impl F2Matrix {
         t
     }
 
-    /// `self + other`.
     pub fn add(&self, other: &Self) -> Result<Self, F2Error> {
         if (self.rows, self.cols) != (other.rows, other.cols) {
             return Err(F2Error::ShapeMismatch {
@@ -578,7 +521,6 @@ impl F2Matrix {
         Ok(out)
     }
 
-    /// The product `self * other`.
     pub fn mul(&self, other: &Self) -> Result<Self, F2Error> {
         if self.cols != other.rows {
             return Err(F2Error::ShapeMismatch {
@@ -600,7 +542,6 @@ impl F2Matrix {
         Ok(out)
     }
 
-    /// `self * v` for a column vector `v` of length `cols`.
     pub fn mul_vec(&self, v: &F2Vector) -> Result<F2Vector, F2Error> {
         if v.len != self.cols {
             return Err(F2Error::LengthMismatch {
@@ -623,7 +564,6 @@ impl F2Matrix {
         Ok(out)
     }
 
-    /// `v * self` for a row vector `v` of length `rows`.
     pub fn vec_mul(&self, v: &F2Vector) -> Result<F2Vector, F2Error> {
         if v.len != self.rows {
             return Err(F2Error::LengthMismatch {
@@ -650,7 +590,6 @@ impl F2Matrix {
         }
     }
 
-    /// `row[dst] ^= row[src]` for `dst != src`.
     fn xor_row_into(&mut self, dst: usize, src: usize) {
         let w = self.words_per_row;
         if dst == src || w == 0 {
@@ -669,7 +608,6 @@ impl F2Matrix {
         }
     }
 
-    /// The reduced row echelon form.
     pub fn rref(&self) -> F2Rref {
         let mut m = self.clone();
         let mut pivot_columns = Vec::new();
@@ -696,16 +634,10 @@ impl F2Matrix {
         }
     }
 
-    /// The rank.
     pub fn rank(&self) -> usize {
         self.rref().rank()
     }
 
-    /// The inverse of a square matrix, or `None` when it is singular.
-    ///
-    /// Reduces the single augmented matrix `[self | I]` using [`Self::rref`].
-    /// The empty matrix is its own inverse. The augmented allocation obeys
-    /// [`MAX_F2_ENTRIES`], including its extra identity columns.
     pub fn inverse(&self) -> Result<Option<Self>, F2Error> {
         if self.rows != self.cols {
             return Err(F2Error::NotSquare {
@@ -748,8 +680,6 @@ impl F2Matrix {
         Ok(Some(inverse))
     }
 
-    /// A basis of the kernel `{ x : self * x = 0 }`, as vectors of length
-    /// `cols`, one per free column.
     pub fn nullspace(&self) -> Vec<F2Vector> {
         let reduced = self.rref();
         let mut is_pivot = vec![false; self.cols];
@@ -773,13 +703,10 @@ impl F2Matrix {
         basis
     }
 
-    /// A basis of `{ y : y * self = 0 }`, as vectors of length `rows`.
     pub fn left_nullspace(&self) -> Vec<F2Vector> {
         self.transpose().nullspace()
     }
 
-    /// A basis of the column space (the image of `x -> self * x`): the pivot
-    /// columns of the matrix itself, as vectors of length `rows`.
     pub fn column_space_basis(&self) -> Vec<F2Vector> {
         self.rref()
             .pivot_columns
@@ -788,7 +715,6 @@ impl F2Matrix {
             .collect()
     }
 
-    /// A basis of the row space: the nonzero rows of the reduced form.
     pub fn row_space_basis(&self) -> Vec<F2Vector> {
         let reduced = self.rref();
         (0..reduced.rank())
@@ -796,8 +722,6 @@ impl F2Matrix {
             .collect()
     }
 
-    /// The solutions of `self * x = b`, or `None` when `b` is outside the
-    /// column space. `b` has length `rows`.
     pub fn solve(&self, b: &F2Vector) -> Result<Option<F2AffineSpace>, F2Error> {
         if b.len != self.rows {
             return Err(F2Error::LengthMismatch {
@@ -832,24 +756,18 @@ impl F2Matrix {
         }))
     }
 
-    /// Whether `b` lies in the column space.
     pub fn in_column_space(&self, b: &F2Vector) -> Result<bool, F2Error> {
         Ok(self.solve(b)?.is_some())
     }
 }
 
-/// An incrementally built row-echelon span of vectors of one length, for
-/// reducing vectors modulo the span and testing independence.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct F2Span {
     len: usize,
-    /// `(pivot, vector)`: the vector's lowest set index is `pivot`, and no
-    /// other stored vector has a `1` at that index.
     echelon: Vec<(usize, F2Vector)>,
 }
 
 impl F2Span {
-    /// The zero subspace of vectors of length `len`.
     pub fn new(len: usize) -> Self {
         Self {
             len,
@@ -861,8 +779,6 @@ impl F2Span {
         self.echelon.len()
     }
 
-    /// `v` with the span's pivot positions cleared: zero exactly when `v` is
-    /// in the span, and canonical for the coset `v + span`.
     pub fn reduce(&self, v: &F2Vector) -> Result<F2Vector, F2Error> {
         if v.len != self.len {
             return Err(F2Error::LengthMismatch {
@@ -883,13 +799,11 @@ impl F2Span {
         Ok(self.reduce(v)?.is_zero())
     }
 
-    /// Add `v` to the span; `false` when it was already in it.
     pub fn insert(&mut self, v: &F2Vector) -> Result<bool, F2Error> {
         let reduced = self.reduce(v)?;
         let Some(&pivot) = reduced.support().first() else {
             return Ok(false);
         };
-        // Keep the invariant: the new pivot is cleared from every stored vector.
         for (_, basis) in &mut self.echelon {
             if basis.bit(pivot) {
                 basis.add_assign(&reduced)?;
@@ -931,7 +845,6 @@ mod inverse_tests {
     #[test]
     fn inverse_refuses_oversized_augmentation_before_allocating() {
         let n = 1 << 14;
-        // This input fits the owner ceiling exactly; [A | I] would not.
         let matrix = F2Matrix::zeros(n, n).unwrap();
         assert!(matches!(matrix.inverse(), Err(F2Error::TooLarge { .. })));
     }

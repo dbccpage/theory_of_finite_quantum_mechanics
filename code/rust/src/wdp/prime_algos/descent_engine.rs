@@ -1,8 +1,3 @@
-//! Exact solver diagnostics for a finite carrier.
-//!
-//! Prime 002 permit/terminalization integration is not implemented here.
-//! A diagnostic never claims the anti-cheat laws passed or emits a terminal T.
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use crate::coda::types::ExternalAuthorityGrant;
@@ -49,7 +44,6 @@ impl PrimeDescentCoordinator {
         self.execute_descent_with_grant(carrier, omega, None)
     }
 
-    /// Measure exact defects; refuse grant requests until a verifier is wired.
     pub fn execute_descent_with_grant(
         &mut self,
         carrier: &FiniteCarrier2,

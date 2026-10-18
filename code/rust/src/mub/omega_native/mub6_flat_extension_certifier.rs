@@ -1,13 +1,3 @@
-//! Target Q6 / Step 3.1: Curto-Fialkow Flat Extension Rank Tester Engine.
-//!
-//! AuthorityEffect: None.
-//!
-//!
-//! This module evaluates exact rational row-echelon rank of truncated moment matrices
-//! M_1 and M_2 across candidate pseudo-expectations over `num_rational::BigRational`.
-//! If rank(M_2) = rank(M_1), the Curto-Fialkow flat extension condition holds.
-//! If rank(M_2) > rank(M_1), flat extension is strictly obstructed, proving that
-//! degree-2 pseudo-expectation refutations fail rank-loop closure.
 
 use num_rational::BigRational;
 use num_traits::Zero;
@@ -17,7 +7,6 @@ use sha2::{Digest, Sha256};
 pub const SCHEMA_VERSION: &str = "omega.mub.flat-extension-certifier.v1";
 pub const SCOPE_STRING: &str = "curto_fialkow_flat_extension_rank_testing";
 
-/// Result of evaluating flat extension rank loop over moment blocks M1 and M2.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FlatExtensionRankReport {
     pub schema_version: String,
@@ -33,7 +22,6 @@ pub struct FlatExtensionRankReport {
     pub status: String,
 }
 
-/// Compute exact rational row-echelon rank of a dense BigRational matrix.
 pub fn compute_exact_rational_rank(matrix: &[Vec<BigRational>]) -> usize {
     if matrix.is_empty() || matrix[0].is_empty() {
         return 0;
@@ -47,7 +35,6 @@ pub fn compute_exact_rational_rank(matrix: &[Vec<BigRational>]) -> usize {
         if pivot_row >= rows {
             break;
         }
-        // Find non-zero pivot in this column
         let mut selected = None;
         for r in pivot_row..rows {
             if !mat[r][col].is_zero() {
@@ -60,16 +47,13 @@ pub fn compute_exact_rational_rank(matrix: &[Vec<BigRational>]) -> usize {
             None => continue,
         };
 
-        // Swap selected row to pivot_row
         mat.swap(pivot_row, r);
 
-        // Normalize pivot row
         let pivot_val = mat[pivot_row][col].clone();
         for c in col..cols {
             mat[pivot_row][c] = &mat[pivot_row][c] / &pivot_val;
         }
 
-        // Eliminate column entries in lower rows
         for r_below in (pivot_row + 1)..rows {
             let factor = mat[r_below][col].clone();
             if !factor.is_zero() {
@@ -85,7 +69,6 @@ pub fn compute_exact_rational_rank(matrix: &[Vec<BigRational>]) -> usize {
     pivot_row
 }
 
-/// Compute SHA-256 fingerprint for a rational matrix.
 pub fn matrix_fingerprint(m: &[Vec<BigRational>]) -> String {
     let mut hasher = Sha256::new();
     for row in m {
@@ -96,7 +79,6 @@ pub fn matrix_fingerprint(m: &[Vec<BigRational>]) -> String {
     format!("{:x}", hasher.finalize())
 }
 
-/// Evaluate Curto-Fialkow flat extension rank condition on moment matrix blocks M1 and M2.
 pub fn evaluate_flat_extension_rank(
     candidate_id: &str,
     m1: &[Vec<BigRational>],

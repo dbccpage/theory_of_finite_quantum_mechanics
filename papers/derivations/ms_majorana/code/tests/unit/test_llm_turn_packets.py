@@ -59,7 +59,7 @@ def _payload(**overrides: object) -> LlmTurnPayloadV1:
         "conversation_root_id": None,
     }
     fields.update(overrides)
-    return LlmTurnPayloadV1(**fields)  # type: ignore[arg-type]
+    return LlmTurnPayloadV1(**fields)
 
 
 def _envelope(payload: LlmTurnPayloadV1 | None = None):
@@ -269,7 +269,6 @@ def test_consequential_turn_without_machine_block_is_prose_prompt_refused() -> N
     payload = _payload(turn_kind="code_change")
     envelope = _envelope(payload)
     content = _content(envelope)
-    # Bound reply without a machine field block.
     candidate = attach_llm_turn_candidate(
         envelope, content, reply_text="no machine header\n"
     )
@@ -300,15 +299,13 @@ def test_consequential_payload_cannot_weaken_required_reply_fields() -> None:
                 "OPEN_OBSTRUCTIONS",
                 "PACKET_ID",
                 "PARENT",
-            ),  # missing RUN_ROOT
+            ),
         )
-    # Full canonical set accepted for consequential.
     payload = _payload(
         turn_kind="code_change",
         required_reply_fields=DEFAULT_REQUIRED_REPLY_FIELDS,
     )
     assert payload.required_reply_fields.fields == DEFAULT_REQUIRED_REPLY_FIELDS
-    # Non-consequential prose may relax the set intentionally.
     relaxed = _payload(
         turn_kind="prose",
         required_reply_fields=("AUTHORITY_EFFECT", "PACKET_ID"),

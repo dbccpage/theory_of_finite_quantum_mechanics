@@ -1,8 +1,6 @@
 import MasterClassification
 import CertificatePilot
 
-/- Audit witnesses only. AuthorityEffect: None.
-NOT MUB(6)=3, NOT MUB(6)<=3; stated region only; mints no authority -/
 namespace Audit20260922
 open MUB.CertificatePilot
 
@@ -28,8 +26,6 @@ def substitutedSourceCertificate : Certificate :=
 
 #eval checkCertificate substitutedSourceCertificate
 
--- These inputs express valid identities for their own sources. The failure is
--- binding those sources to the claimed pilot problem, not a contradiction in Lean.
 #print MUB.MasterClassification.comprehensive_moduli_exhaustiveness
 #print MUB.CertificatePilot.check_certificate_soundness
 #print axioms MUB.MasterClassification.master_classification_theorem
