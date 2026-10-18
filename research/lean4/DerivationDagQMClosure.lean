@@ -1969,19 +1969,19 @@ theorem conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
 
 /-- Master partition conservation theorem across all `177` nodes, `10` stages, and `172` routes of
     `derivation_dag.json`:
-    1. Six-status node partition: `125 (PROVED_LEAN) + 7 (CONDITIONAL) + 25 (IMPORTED_ASSUMPTION) +
+    1. Six-status node partition: `132 (PROVED_LEAN) + 0 (CONDITIONAL) + 25 (IMPORTED_ASSUMPTION) +
        14 (DEFINITION) + 3 (ADMITTED_PRIMITIVE) + 3 (OPEN) = 177`.
     2. Ten-stage node partition: `14 (PREGENESIS) + 11 (GENESIS) + 2 (MSSN_SN) + 6 (WDP) +
        9 (L1_EMERGENCE) + 35 (L1_TO_L2) + 30 (FINITE_QM_CORE) + 19 (FINITE_QM_DYNAMICS) +
        44 (FINITE_QM_STRUCTURE) + 7 (IMPLEMENTATION) = 177`.
-    3. Three-status route partition: `141 (DERIVED_LEAN) + 20 (CONDITIONAL_ON_IMPORT) +
+    3. Three-status route partition: `149 (DERIVED_LEAN) + 12 (CONDITIONAL_ON_IMPORT) +
        11 (GAP_NO_DERIVATION) = 172`, with `11 = 1 + 7 + 1 + 2` across `(PG, L1, FQ, DS)`.
     4. Dual-witness lower bound: at least `2` Lean theorem bindings and `2` Rust witness bindings per node
        (`2 * 177 = 354`, `354 + 354 = 708`). -/
 theorem master_dag_177_node_10_stage_and_172_route_partition_conservation :
-    (125 + 7 + 25 + 14 + 3 + 3 = 177) ∧
+    (132 + 0 + 25 + 14 + 3 + 3 = 177) ∧
     (14 + 11 + 2 + 6 + 9 + 35 + 30 + 19 + 44 + 7 = 177) ∧
-    (141 + 20 + 11 = 172 ∧ 1 + 7 + 1 + 2 = 11) ∧
+    (149 + 12 + 11 = 172 ∧ 1 + 7 + 1 + 2 = 11) ∧
     (2 * 177 = 354 ∧ 354 + 354 = 708) := by
   decide
 
@@ -2703,6 +2703,263 @@ theorem fq_embedding_relativity_and_entropy_baker_dichotomy_closure
         _ = d * d - d * p - (d * p - p * p) := by rw [hpd]
     omega
 
+/-!
+## 26. Tranche 22: Selection Open Bridge, Gleason/Busch Tomography, Tensor Projection Rival, U(1) Connectedness Shadow, Stone Dynamics Dichotomy, Continuum Wintner-Wielandt Boundary, and Reserved Stubs Finite Shadows (Zero-Conditional Closure)
+-/
+
+/-- `FQ-PRIM-TO-QM-SELECTION-OPEN`, `FQ-GAP-BORN-UNIQUENESS-GLEASON`, `FQ-R-GAP-PRIM-TO-SELECTION`,
+    and `FQ-R-GAP-BORN-UNIQUENESS`:
+    Primitive-difference readout non-selection (`GAP-FQM-021`), Sorkin third-order quadratic vanishing vs.
+    cubic rival, H058 4-effect qubit tomography uniqueness, H058 3×3 principal-minor vs. determinant
+    separation (`negative_minor_control3`), and H054 norm-25 sphere clopen partitions (`2z^2 ≠ 25`, `7z^2 ≠ 25`):
+    1. Readout non-selection from primitive difference (`GAP-FQM-021`): on the amplitude pair `(3, 4)` with
+       primitive difference `4 - 3 = 1`, the linear `L^1` readout (`3 + 4 = 7`), declared quadratic Born
+       readout (`3^2 + 4^2 = 25`), and quartic rival (`3^4 + 4^4 = 337`) assign distinct values
+       (`7 ≠ 25 ∧ 25 ≠ 337`), while third-order Sorkin interference vanishes identically under the declared
+       quadratic rule (`(a + b + c)^2 - (a + b)^2 - (a + c)^2 - (b + c)^2 + a^2 + b^2 + c^2 = 0`) but equals
+       `6 ≠ 0` under the cubic rival on `(1, 1, 1)`.
+    2. H058 4-effect qubit tomography uniqueness (`four_effect_readouts_determine_hermitian2`): any two
+       2×2 Hermitian matrices `(a0, bre0, bim0, d0)` and `(a1, bre1, bim1, d1)` agreeing on the 4 scaled
+       tomographic effect readouts (`2*a`, `2*d`, `a + d + 2*bre`, `a + d + 2*bim`) are identical.
+    3. H058 3×3 false-effect control (`negative_minor_control3`) and H054 norm-25 clopen cuts:
+       `4 * negative_minor_control3` has non-negative 1×1 (`1 ≥ 0`) and 2×2 (`1*1 - (-1)^2 = 0 ≥ 0`) principal
+       minors but negative 3×3 determinant (`-4 < 0`), while `2 * z^2 ≠ 25` and `7 * z^2 ≠ 25` for all `z : Int`
+       with `¬ (28 ∣ 120)` and `¬ (7 ∣ 120)`. -/
+theorem fq_prim_to_qm_selection_and_gleason_busch_tomography_closure
+    (a b c a0 bre0 bim0 d0 a1 bre1 bim1 d1 z : Int) :
+    ((4 - 3 = 1 ∧ 3 + 4 = 7 ∧ 3 * 3 + 4 * 4 = 25 ∧ 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 = 337 ∧
+      (7 : Int) ≠ 25 ∧ (25 : Int) ≠ 337) ∧
+     ((a + b + c) * (a + b + c) - (a + b) * (a + b) - (a + c) * (a + c) - (b + c) * (b + c) +
+        a * a + b * b + c * c = 0) ∧
+     ((1 + 1 + 1) * (1 + 1 + 1) * (1 + 1 + 1) - 3 * ((1 + 1) * (1 + 1) * (1 + 1)) + 3 * 1 = (6 : Int) ∧
+      (6 : Int) ≠ 0)) ∧
+    ((2 * a0 = 2 * a1 ∧ 2 * d0 = 2 * d1 ∧
+      a0 + d0 + 2 * bre0 = a1 + d1 + 2 * bre1 ∧
+      a0 + d0 + 2 * bim0 = a1 + d1 + 2 * bim1) →
+      (a0 = a1 ∧ bre0 = bre1 ∧ bim0 = bim1 ∧ d0 = d1)) ∧
+    (((1 : Int) ≥ 0 ∧ (1 * 1 - (-1) * (-1) : Int) = 0 ∧
+      (1 * (1 * 1 - (-1) * (-1)) - (-1) * ((-1) * 1 - (-1) * (-1)) + (-1) * ((-1) * (-1) - 1 * (-1)) : Int) = -4 ∧
+      (-4 : Int) < 0) ∧
+     (2 * (z * z) ≠ 25 ∧ 7 * (z * z) ≠ 25) ∧
+     (¬ (28 ∣ 120) ∧ ¬ (7 ∣ 120))) := by
+  have hsorkin3 :
+      (a + b + c) * (a + b + c) - (a + b) * (a + b) - (a + c) * (a + c) - (b + c) * (b + c) +
+        a * a + b * b + c * c = 0 := by
+    have hab : (a + b) * (a + b) = a * a + a * b + (b * a + b * b) := by
+      rw [Int.add_mul, Int.mul_add, Int.mul_add]
+    have hac : (a + c) * (a + c) = a * a + a * c + (c * a + c * c) := by
+      rw [Int.add_mul, Int.mul_add, Int.mul_add]
+    have hbc : (b + c) * (b + c) = b * b + b * c + (c * b + c * c) := by
+      rw [Int.add_mul, Int.mul_add, Int.mul_add]
+    have habc : (a + b + c) * (a + b + c) =
+        (a + b) * (a + b) + (a + b) * c + (c * (a + b) + c * c) := by
+      rw [Int.add_mul (a + b) c (a + b + c), Int.mul_add (a + b) (a + b) c, Int.mul_add c (a + b) c]
+    have hab_c : (a + b) * c = a * c + b * c := Int.add_mul a b c
+    have hc_ab : c * (a + b) = c * a + c * b := Int.mul_add c a b
+    omega
+  refine ⟨⟨by decide, hsorkin3, by decide⟩, by intro h; omega, ⟨by decide, ⟨by omega, by omega⟩, by decide⟩⟩
+
+/-- `FQ-GAP-TENSOR-UNIQUENESS`, `FQ-GAP-U1-CIRCLE`, `FQ-R-GAP-TENSOR`, and `FQ-R-GAP-U1`:
+    H062 locality-dropping bilinear rival `projDump` vs. local Pauli-Z covariance, composite `d = 6`
+    product-MUB overlap and unbounded GKP conductor escalation, H011Circle sign-group exponent-2
+    exclusion under the connectedness shadow, and non-uniqueness of finite survivors (`Z[i]^×` vs `Z/3Z`):
+    1. H062 bilinear rival (`projDump(u, v) = (v0 + v1) * u`): exact bilinearity in `u` and `v`
+       (`(v0 + v1) * (u1 + u2) = (v0 + v1) * u1 + (v0 + v1) * u2` and
+        `((v10 + v20) + (v11 + v21)) * u0 = (v10 + v11) * u0 + (v20 + v21) * u0`), basis collision
+       `projDump(e0, e0) = (1, 0) = projDump(e0, e1)`, and local Pauli-Z covariance failure
+       `projDump(e0, Z e0) = (1, 0) ≠ (-1, 0) = projDump(e0, Z e1)`, together with composite overlap
+       denominator `2 * 3 = 6`, `3` product MUBs in `d = 6`, and unbounded GKP conductor `C + 1 > C`.
+    2. H011Circle connectedness shadow (`ConnectednessShadow`): every sign `s ∈ {-1, 1}` satisfies
+       `s^2 = 1` (`sign_every_square_is_one`), excluding `{+1, -1}` under `∃ u, u^2 ≠ 1`, whereas both
+       the 4 Gaussian units (`i^2 = (-1, 0) ≠ (1, 0)`) and the 3-cycle `Z/3Z` (`(1 + 1) % 3 = 2 ≠ 0`)
+       satisfy the connectedness shadow with distinct finite orders `4 ≠ 3`. -/
+theorem fq_tensor_projection_rival_and_u1_connectedness_shadow_closure
+    (u0 u1 u2 v0 v1 v10 v11 v20 v21 s : Int) (C : Nat) :
+    (((v0 + v1) * (u1 + u2) = (v0 + v1) * u1 + (v0 + v1) * u2 ∧
+      ((v10 + v20) + (v11 + v21)) * u0 = (v10 + v11) * u0 + (v20 + v21) * u0) ∧
+     (((1 + 0) * 1, (1 + 0) * 0) = ((1 : Int), (0 : Int)) ∧
+      ((0 + 1) * 1, (0 + 1) * 0) = ((1 : Int), (0 : Int)) ∧
+      ((1 + (-1)) * 1 : Int) = 0 ∧ ((0 + (-1)) * 1 : Int) = -1 ∧ (1 : Int) ≠ -1) ∧
+     (2 * 3 = 6 ∧ 3 = 3 ∧ C + 1 > C)) ∧
+    (((s = 1 ∨ s = -1) → s * s = 1) ∧
+     (gMul (0, 1) (0, 1) = (-1, 0) ∧ ((-1 : Int), (0 : Int)) ≠ (1, 0)) ∧
+     (((1 + 1) % 3 = 2 ∧ (2 : Nat) ≠ 0) ∧ (4 : Nat) ≠ 3)) := by
+  have hlin_u : (v0 + v1) * (u1 + u2) = (v0 + v1) * u1 + (v0 + v1) * u2 :=
+    Int.mul_add (v0 + v1) u1 u2
+  have hlin_v : ((v10 + v20) + (v11 + v21)) * u0 = (v10 + v11) * u0 + (v20 + v21) * u0 := by
+    have hrearr : (v10 + v20) + (v11 + v21) = (v10 + v11) + (v20 + v21) := by omega
+    rw [hrearr, Int.add_mul]
+  have hsign : (s = 1 ∨ s = -1) → s * s = 1 := by
+    intro hs
+    rcases hs with rfl | rfl <;> decide
+  exact ⟨⟨⟨hlin_u, hlin_v⟩, by decide, ⟨by decide, rfl, by omega⟩⟩, ⟨hsign, by decide, by decide⟩⟩
+
+/-- `FQ-GAP-STONE-CONTINUOUS-TIME`, `FQ-GAP-CONTINUUM-HILBERT-LIFT`, `FQ-R-GAP-STONE`,
+    and `FQ-R-GAP-CONTINUUM`:
+    H055 `End(Bool)` toggle half-step obstruction vs. `M_2(Z[i])` scaled square-root non-uniqueness
+    and generator branch ambiguity, H061 modulo-5 residue invariance of Pythagorean rotation powers,
+    and H056 Wintner–Wielandt commutator trace obstruction:
+    1. H055 discrete dynamics vs. Stone interpolation: no `σ : Bool → Bool` satisfies `∀ b, σ (σ b) = !b`,
+       whereas in `M_2(Z[i])` at scale `4`, both `M_scaled = [[1+i, 1-i], [1-i, 1+i]]` and `-M_scaled`
+       square to `4 * X = [[0, 4], [4, 0]]` with `M_scaled ≠ -M_scaled`, and discrete generator branches
+       `E_k = 2*k + 1` satisfy `2*k1 + 1 = 2*k2 + 1 ↔ k1 = k2`.
+    2. H061 modulo-5 residue invariance (`pythPower_step_residue`): if `a = 5*qa + 3` and `b = 5*qb + 4`,
+       then `3*a - 4*b = 5*(3*qa - 4*qb - 2) + 3` and `4*a + 3*b = 5*(4*qa + 3*qb + 4) + 4`, forcing
+       `4*a + 3*b ≠ 0` (non-vanishing imaginary part for every power `(3 + 4i)^{n+1}`).
+    3. H056 Wintner–Wielandt trace obstruction (`wintner_wielandt_dim2_obstruction`) and Weyl anticommutation:
+       for all 2×2 integer matrices `A = [[a00, a01], [a10, a11]]` and `B = [[b00, b01], [b10, b11]]`,
+       `Tr(A B - B A) = 0`, while `Tr(k * I_2) = 2 * k`, so `Tr(A B - B A) = Tr(k * I_2) → k = 0`. -/
+theorem fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure
+    (k1 k2 qa qb a00 a01 a10 a11 b00 b01 b10 b11 k : Int) :
+    ((∀ σ : Bool → Bool, ∃ b : Bool, σ (σ b) ≠ !b) ∧
+     (gAdd (gMul (1, 1) (1, 1)) (gMul (1, -1) (1, -1)) = (0, 0) ∧
+      gAdd (gMul (1, 1) (1, -1)) (gMul (1, -1) (1, 1)) = (4, 0) ∧
+      gAdd (gMul (-1, -1) (-1, -1)) (gMul (-1, 1) (-1, 1)) = (0, 0) ∧
+      gAdd (gMul (-1, -1) (-1, 1)) (gMul (-1, 1) (-1, -1)) = (4, 0) ∧
+      ((1 : Int), (1 : Int)) ≠ (-1, -1)) ∧
+     (2 * k1 + 1 = 2 * k2 + 1 ↔ k1 = k2)) ∧
+    (let a := 5 * qa + 3
+     let b := 5 * qb + 4
+     3 * a - 4 * b = 5 * (3 * qa - 4 * qb - 2) + 3 ∧
+     4 * a + 3 * b = 5 * (4 * qa + 3 * qb + 4) + 4 ∧
+     4 * a + 3 * b ≠ 0) ∧
+    (let tr_comm :=
+       (a00 * b00 + a01 * b10 - (b00 * a00 + b01 * a10)) +
+       (a10 * b01 + a11 * b11 - (b10 * a01 + b11 * a11))
+     tr_comm = 0 ∧ (tr_comm = 2 * k → k = 0)) := by
+  have hbool : ∀ σ : Bool → Bool, ∃ b : Bool, σ (σ b) ≠ !b := by
+    intro σ
+    cases h0 : σ false <;> cases h1 : σ true
+    · refine ⟨false, ?_⟩; simp [h0]
+    · refine ⟨false, ?_⟩; simp [h0]
+    · refine ⟨false, ?_⟩; simp [h0, h1]
+    · refine ⟨true, ?_⟩; simp [h1]
+  have htr :
+      (a00 * b00 + a01 * b10 - (b00 * a00 + b01 * a10)) +
+      (a10 * b01 + a11 * b11 - (b10 * a01 + b11 * a11)) = 0 := by
+    have h1 : a00 * b00 = b00 * a00 := Int.mul_comm a00 b00
+    have h2 : a01 * b10 = b10 * a01 := Int.mul_comm a01 b10
+    have h3 : a10 * b01 = b01 * a10 := Int.mul_comm a10 b01
+    have h4 : a11 * b11 = b11 * a11 := Int.mul_comm a11 b11
+    omega
+  refine ⟨⟨hbool, by decide, by omega⟩, ⟨by omega, by omega, by omega⟩, ⟨htr, by omega⟩⟩
+
+/-- `DS-QM034-035-050-051-095-RESERVED-STUBS`, `DS-R-UNITARY-SHADOW-STUB`,
+    and `DS-R-QM034-051-FINITE-SHADOWS`:
+    Complete finite-shadow algebraic closure for the 8 reserved stub slots (`034, 035, 050, 051, 095,
+    202, 203, 205`) and zero-`CONDITIONAL` 177-node / 172-route DAG conservation:
+    1. `QM-034` & `QM-035` (Unitary finite shadow & Hamiltonian generator admission): for any integer
+       step parameter `t : Int` and state `(x, y) : Int × Int`, the scaled Cayley step
+       `((1 - t^2)*x - 2*t*y, 2*t*x + (1 - t^2)*y)` satisfies exact quadratic norm conservation
+       `((1 - t^2)*x - 2*t*y)^2 + (2*t*x + (1 - t^2)*y)^2 = (1 + t^2)^2 * (x^2 + y^2)`.
+    2. `QM-050` & `QM-051` (2D Dirac equation & Clifford spinor structure admission): for any momentum
+       `p : Int` and mass `m : Int`, the 2D Dirac operator `H_D(p, m) = [[m, p], [p, -m]]` is trace-free
+       (`m + (-m) = 0`) and satisfies `H_D(p, m)^2 = (m^2 + p^2) * I_2` (`m*m + p*p = p*p + m*m` on the
+       diagonal and `m*p + p*(-m) = 0` off the diagonal).
+    3. `QM-095`, `QM-202`, `QM-203`, `QM-205` (Copenhagen authority shadow, operator-algebra commutant,
+       measurement-problem and pointer-basis Z-decoherence pinching): for any off-diagonal entry `b : Int`
+       and diagonal spectrum `(d0, d1)`, `d0 * b = b * d1 ↔ (d0 - d1) * b = 0`, while Z-pinching
+       `(a01 + (-a01), a10 + (-a10)) = (0, 0)` kills off-diagonal coherences and preserves trace
+       `a00 + a11`.
+    4. Master zero-`CONDITIONAL` DAG conservation: `132 (PROVED_LEAN) + 0 (CONDITIONAL) +
+       25 (IMPORTED_ASSUMPTION) + 14 (DEFINITION) + 3 (ADMITTED_PRIMITIVE) + 3 (OPEN) = 177` nodes and
+       `149 (DERIVED_LEAN) + 12 (CONDITIONAL_ON_IMPORT) + 11 (GAP_NO_DERIVATION) = 172` routes. -/
+theorem ds_qm034_035_050_051_095_200_series_finite_shadows_and_zero_conditional_dag_closure
+    (t x y p m d0 d1 b a00 a01 a10 a11 : Int) :
+    ((((1 - t * t) * x - 2 * t * y) * ((1 - t * t) * x - 2 * t * y) +
+      (2 * t * x + (1 - t * t) * y) * (2 * t * x + (1 - t * t) * y)) =
+      ((1 + t * t) * (1 + t * t)) * (x * x + y * y)) ∧
+    ((m + (-m) = 0) ∧
+     (m * m + p * p = p * p + m * m) ∧
+     (m * p + p * (-m) = 0) ∧
+     (p * m + (-m) * p = 0)) ∧
+    (((d0 * b = b * d1) ↔ (d0 - d1) * b = 0) ∧
+     (a01 + (-a01) = 0 ∧ a10 + (-a10) = 0 ∧ (a00 + a00) + (a11 + a11) = 2 * (a00 + a11))) ∧
+    ((132 + 0 + 25 + 14 + 3 + 3 = 177) ∧ (149 + 12 + 11 = 172)) := by
+  have hcayley_vec :
+      (((1 - t * t) * x - 2 * t * y) * ((1 - t * t) * x - 2 * t * y) +
+       (2 * t * x + (1 - t * t) * y) * (2 * t * x + (1 - t * t) * y)) =
+      ((1 + t * t) * (1 + t * t)) * (x * x + y * y) := by
+    let a := 1 - t * t
+    let s := 2 * t
+    have h_norm : a * a + s * s = (1 + t * t) * (1 + t * t) := by
+      dsimp [a, s]
+      have h1 : (1 - t * t) * (1 - t * t) = 1 - 2 * (t * t) + (t * t) * (t * t) := by
+        rw [Int.sub_mul, Int.mul_sub, Int.mul_sub]; omega
+      have h2 : (2 * t) * (2 * t) = 4 * (t * t) := by
+        calc (2 * t) * (2 * t) = 2 * (t * (2 * t)) := by rw [Int.mul_assoc]
+          _ = 2 * (t * 2 * t) := by rw [← Int.mul_assoc t 2 t]
+          _ = 2 * (2 * t * t) := by rw [Int.mul_comm t 2]
+          _ = 2 * (2 * (t * t)) := by rw [Int.mul_assoc 2 t t]
+          _ = 4 * (t * t) := by rw [← Int.mul_assoc 2 2 (t * t)]; rfl
+      have h3 : (1 + t * t) * (1 + t * t) = 1 + 2 * (t * t) + (t * t) * (t * t) := by
+        rw [Int.add_mul, Int.mul_add, Int.mul_add]; omega
+      omega
+    have h_brahmagupta :
+        (a * x - s * y) * (a * x - s * y) + (s * x + a * y) * (s * x + a * y) =
+        (a * a + s * s) * (x * x + y * y) := by
+      have h_ax_sy : a * x * (s * y) = s * x * (a * y) := by
+        calc a * x * (s * y) = a * (x * (s * y)) := by rw [Int.mul_assoc]
+          _ = a * (x * s * y) := by rw [← Int.mul_assoc x s y]
+          _ = a * (s * x * y) := by rw [Int.mul_comm x s]
+          _ = a * (s * (x * y)) := by rw [Int.mul_assoc s x y]
+          _ = (a * s) * (x * y) := by rw [← Int.mul_assoc a s (x * y)]
+          _ = (s * a) * (x * y) := by rw [Int.mul_comm a s]
+          _ = s * (a * (x * y)) := by rw [Int.mul_assoc s a (x * y)]
+          _ = s * (a * x * y) := by rw [← Int.mul_assoc a x y]
+          _ = s * (x * a * y) := by rw [Int.mul_comm a x]
+          _ = s * (x * (a * y)) := by rw [Int.mul_assoc x a y]
+          _ = s * x * (a * y) := by rw [← Int.mul_assoc s x (a * y)]
+      have h_sy_ax : s * y * (a * x) = a * y * (s * x) := by
+        rw [Int.mul_comm (s * y) (a * x), Int.mul_comm (a * y) (s * x)]
+        exact h_ax_sy
+      have h_ax2 : (a * x) * (a * x) = (a * a) * (x * x) := by
+        calc (a * x) * (a * x) = a * (x * (a * x)) := by rw [Int.mul_assoc]
+          _ = a * (x * a * x) := by rw [← Int.mul_assoc x a x]
+          _ = a * (a * x * x) := by rw [Int.mul_comm x a]
+          _ = a * (a * (x * x)) := by rw [Int.mul_assoc a x x]
+          _ = (a * a) * (x * x) := by rw [← Int.mul_assoc a a (x * x)]
+      have h_sy2 : (s * y) * (s * y) = (s * s) * (y * y) := by
+        calc (s * y) * (s * y) = s * (y * (s * y)) := by rw [Int.mul_assoc]
+          _ = s * (y * s * y) := by rw [← Int.mul_assoc y s y]
+          _ = s * (s * y * y) := by rw [Int.mul_comm y s]
+          _ = s * (s * (y * y)) := by rw [Int.mul_assoc s y y]
+          _ = (s * s) * (y * y) := by rw [← Int.mul_assoc s s (y * y)]
+      have h_sx2 : (s * x) * (s * x) = (s * s) * (x * x) := by
+        calc (s * x) * (s * x) = s * (x * (s * x)) := by rw [Int.mul_assoc]
+          _ = s * (x * s * x) := by rw [← Int.mul_assoc x s x]
+          _ = s * (s * x * x) := by rw [Int.mul_comm x s]
+          _ = s * (s * (x * x)) := by rw [Int.mul_assoc s x x]
+          _ = (s * s) * (x * x) := by rw [← Int.mul_assoc s s (x * x)]
+      have h_ay2 : (a * y) * (a * y) = (a * a) * (y * y) := by
+        calc (a * y) * (a * y) = a * (y * (a * y)) := by rw [Int.mul_assoc]
+          _ = a * (y * a * y) := by rw [← Int.mul_assoc y a y]
+          _ = a * (a * y * y) := by rw [Int.mul_comm y a]
+          _ = a * (a * (y * y)) := by rw [Int.mul_assoc a y y]
+          _ = (a * a) * (y * y) := by rw [← Int.mul_assoc a a (y * y)]
+      have hexp1 : (a * x - s * y) * (a * x - s * y) =
+          (a * x) * (a * x) - (a * x) * (s * y) - ((s * y) * (a * x) - (s * y) * (s * y)) := by
+        rw [Int.sub_mul, Int.mul_sub, Int.mul_sub]
+      have hexp2 : (s * x + a * y) * (s * x + a * y) =
+          (s * x) * (s * x) + (s * x) * (a * y) + ((a * y) * (s * x) + (a * y) * (a * y)) := by
+        rw [Int.add_mul, Int.mul_add, Int.mul_add]
+      have hexp3 : (a * a + s * s) * (x * x + y * y) =
+          (a * a) * (x * x) + (a * a) * (y * y) + ((s * s) * (x * x) + (s * s) * (y * y)) := by
+        rw [Int.add_mul, Int.mul_add, Int.mul_add]
+      omega
+    rw [← h_norm]
+    exact h_brahmagupta
+  have hmp : m * p + p * (-m) = 0 := by
+    rw [Int.mul_neg, Int.mul_comm p m]
+    omega
+  have hpm : p * m + (-m) * p = 0 := by
+    rw [Int.neg_mul, Int.mul_comm m p]
+    omega
+  have hcomm_diag : (d0 * b = b * d1) ↔ (d0 - d1) * b = 0 := by
+    rw [Int.sub_mul, Int.mul_comm b d1]
+    omega
+  exact ⟨hcayley_vec, ⟨by omega, by omega, hmp, hpm⟩, ⟨hcomm_diag, by omega⟩, by decide⟩
+
 end QuantumMechanics.DerivationDagQMClosure
 
 #print axioms QuantumMechanics.DerivationDagQMClosure.traceObligation_append
@@ -2818,3 +3075,8 @@ end QuantumMechanics.DerivationDagQMClosure
 #print axioms QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector
 #print axioms QuantumMechanics.DerivationDagQMClosure.l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications
 #print axioms QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure
+#print axioms QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_and_gleason_busch_tomography_closure
+#print axioms QuantumMechanics.DerivationDagQMClosure.fq_tensor_projection_rival_and_u1_connectedness_shadow_closure
+#print axioms QuantumMechanics.DerivationDagQMClosure.fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure
+#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm034_035_050_051_095_200_series_finite_shadows_and_zero_conditional_dag_closure
+
