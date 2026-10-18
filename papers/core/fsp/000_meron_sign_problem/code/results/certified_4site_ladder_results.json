@@ -1,0 +1,200 @@
+{
+  "protocol": "The Symbol Game Proposal Fidelity Protocol (PFP)",
+  "benchmark": "1D Meron-Cluster Sign Problem (4-site periodic chain, q=3)",
+  "date": "2026-10-02",
+  "ground_truth": {
+    "subgraphs": 256,
+    "configurations": 1296,
+    "negative_configurations": 192,
+    "signed_partition_z": 912,
+    "cancelling_odd_subgraphs": 57,
+    "surviving_zero_odd_subgraphs": 199,
+    "average_sign": "19/27"
+  },
+  "model_results": [
+    {
+      "model": "stealth/space-bunny-alpha",
+      "architecture_tier": "Deep Reasoning (Free tier)",
+      "client_latency_seconds": 14.71854019165039,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 904,
+        "completion_tokens": 1380,
+        "total_tokens": 2284,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 149,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "score": 4,
+      "perfect": true,
+      "parsed_output": {
+        "cycle_independence": true,
+        "cycle_parity_invariant_found": true,
+        "cancellation_mechanism": "For every configuration in an odd-winding subgraph, flipping the sign variable associated with any cycle having I(c_i)=1 pairs it with a distinct configuration of equal algebraic weight and opposite parity sign. This exact pairwise involution gives 1+(-1)=0 for every such subgraph. Across the 57 odd-winding subgraphs, 192 negative states cancel against 192 positive states, so their net contribution is zero.",
+        "zero_odd_sector_subgraphs": 199,
+        "exact_partition_z": 912,
+        "scratchpad": "Step 1: For a subgraph G with k cycles, sum all 2^k flip states: Z_G = \u03a3_{(s_1,...,s_k)\u2208{+1,-1}^k} w_G \u220f_{i=1}^k s_i^{I(c_i)}.\nStep 2: The total parity sign factorizes into independent cycle characters: \u03c3(C) = \u220f_{i=1}^k s_i^{I(c_i)}, so Z_G = w_G \u220f_{i=1}^k (\u03a3_{s_i=+1,-1} s_i^{I(c_i)}).\nStep 3: If any I(c_i)=1, then its factor is \u03a3_{s_i=+1,-1} s_i = 1+(-1)=0. Hence Z_G = w_G(1+(-1))\u220f_{j\u2260i}(\u03a3_{s_j=+1,-1}s_j^{I(c_j)})=0. Therefore all 57 odd-winding subgraphs contribute exactly zero; their 192 negative states pair with 192 positive states.\nStep 4: There are 1296 total states, of which 192 are negative. Thus Z = 1104-192 = 912, equivalently Z = 912+0 from the zero-odd and odd sectors. Also, 912/1296 = 19/27. The zero-odd sector contains 256-57 = 199 subgraphs."
+      },
+      "cancellation_mechanism": "For every configuration in an odd-winding subgraph, flipping the sign variable associated with any cycle having I(c_i)=1 pairs it with a distinct configuration of equal algebraic weight and opposite parity sign. This exact pairwise involution gives 1+(-1)=0 for every such subgraph. Across the 57 odd-winding subgraphs, 192 negative states cancel against 192 positive states, so their net contribution is zero.",
+      "rubric_breakdown": {
+        "exact_partition_z": true,
+        "cycle_independence": true,
+        "parity_cancellation_proved": true,
+        "zero_odd_sector_used": true
+      }
+    },
+    {
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "architecture_tier": "70B Open-Weights Instruct",
+      "client_latency_seconds": 3.874182939529419,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 787,
+        "completion_tokens": 345,
+        "total_tokens": 1132,
+        "cost": 0.00034564,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00034564,
+          "upstream_inference_prompt_cost": 0.00017314,
+          "upstream_inference_completions_cost": 0.0001725
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "score": 4,
+      "perfect": true,
+      "parsed_output": {
+        "cycle_independence": true,
+        "cycle_parity_invariant_found": true,
+        "cancellation_mechanism": "Pairwise cancellation across 2^k configurations occurs due to the factorization of the sign sigma(C) into independent cycle signs. When any I(c_i) = 1, the sum factors as (1 + (-1)) * prod_{j != i} (...) = 0, causing all 57 odd-winding subgraphs to cancel identically to zero.",
+        "zero_odd_sector_subgraphs": 199,
+        "exact_partition_z": 912,
+        "scratchpad": "Step 1: The sum over 2^k flip states for a subgraph with k cycles can be written as \u03a3 = \u2211_{s_1, ..., s_k} s_1^{I(c_1)} * ... * s_k^{I(c_k)}. Step 2: Factorize the sign sigma(C) into the product of independent cycle signs: sigma(C) = prod_i s_i^{I(c_i)}. Step 3: When any I(c_i) = 1, the sum factors as (1 + (-1)) * prod_{j != i} (...) = 0, so all 57 odd-winding subgraphs cancel identically to zero. Step 4: Using <sigma> = 19/27 and 192 negative states, we find that the exact integer value of the signed partition function Z is 912, since 192 negative states cancel pairwise against 192 positive states across the 57 odd-winding subgraphs, leaving 199 zero-odd-sector subgraphs with a total weight of 912."
+      },
+      "cancellation_mechanism": "Pairwise cancellation across 2^k configurations occurs due to the factorization of the sign sigma(C) into independent cycle signs. When any I(c_i) = 1, the sum factors as (1 + (-1)) * prod_{j != i} (...) = 0, causing all 57 odd-winding subgraphs to cancel identically to zero.",
+      "rubric_breakdown": {
+        "exact_partition_z": true,
+        "cycle_independence": true,
+        "parity_cancellation_proved": true,
+        "zero_odd_sector_used": true
+      }
+    },
+    {
+      "model": "meta-llama/llama-3.1-8b-instruct",
+      "architecture_tier": "8B Lightweight Open-Weights",
+      "client_latency_seconds": 58.147998094558716,
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 762,
+        "completion_tokens": 2048,
+        "total_tokens": 2810,
+        "cost": 9.716e-05,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 9.716e-05,
+          "upstream_inference_prompt_cost": 1.524e-05,
+          "upstream_inference_completions_cost": 8.192e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "score": 4,
+      "perfect": true,
+      "parsed_output": {
+        "cycle_independence": true,
+        "cycle_parity_invariant_found": true,
+        "cancellation_mechanism": "Pairwise cancellation across 2^k configurations is achieved through the factorization of the sign \u03c3(C) into independent cycle signs \u03c3(C) = \u220f_i s_i^(I(c_i)) and the vanishing of the sum over s_i in {+1, -1} when I(c_i) = 1, resulting in (1 + (-1)) = 0.",
+        "zero_odd_sector_subgraphs": 199,
+        "exact_partition_z": 912,
+        "scratchpad": "Step 1: The sum over 2^k flip states for a subgraph with k cycles is given by \u2211_{s_1,...,s_k} \u03c3(C) = \u220f_i s_i^(I(c_i)) * \u220f_j \u220f_{s_j} (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))^(I(c_j)) = \u220f_i s_i^(I(c_i)) * \u220f_j (1 + (-1))"
+      },
+      "cancellation_mechanism": "Pairwise cancellation across 2^k configurations is achieved through the factorization of the sign \u03c3(C) into independent cycle signs \u03c3(C) = \u220f_i s_i^(I(c_i)) and the vanishing of the sum over s_i in {+1, -1} when I(c_i) = 1, resulting in (1 + (-1)) = 0.",
+      "rubric_breakdown": {
+        "exact_partition_z": true,
+        "cycle_independence": true,
+        "parity_cancellation_proved": true,
+        "zero_odd_sector_used": true
+      }
+    },
+    {
+      "model": "z-ai/glm-5.3-flash",
+      "architecture_tier": "Frontier Deep Reasoning",
+      "client_latency_seconds": 91.98520970344543,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 766,
+        "completion_tokens": 6028,
+        "total_tokens": 6794,
+        "cost": 0.0017490551,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0017490551,
+          "upstream_inference_prompt_cost": 6.42291e-05,
+          "upstream_inference_completions_cost": 0.001684826
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 5161,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "score": 4,
+      "perfect": true,
+      "parsed_output": {
+        "cycle_independence": true,
+        "cycle_parity_invariant_found": true,
+        "cancellation_mechanism": "Exact pairwise sign-flip cancellation: within each of the 57 odd-winding subgraphs, flipping any single cycle with I(c_i)=1 maps every orientation state to a distinct mirror state of opposite sign (s_i -> -s_i sends sigma -> -sigma). Hence the 192 negative states pair one-to-one with 192 positive states, each pair contributing sigma + (-sigma) = 0, so the entire odd sector sums to exactly 0 over all 2^k configurations. Equivalently, the flip sum factorizes as (sum over s_i of s_i) * prod_{j!=i} (sum over s_j of s_j^{I(c_j)}) = (1 + (-1)) * (...) = 0, identically, for every odd-winding subgraph regardless of cycle lengths.",
+        "zero_odd_sector_subgraphs": 199,
+        "exact_partition_z": 912,
+        "scratchpad": "Step 1 (flip-state sum): For a subgraph Sigma with k independent cycles {c_1,...,c_k}, the signed partition contribution is Z_Sigma = Sum_{s_1=+-1} ... Sum_{s_k=+-1} sigma(C), an exact integer sum over 2^k orientation states. Samples: G_0 (k=4) -> 16 states; G_1, G_2 (k=3) -> 8 states; G_3 (k=2) -> 4 states.\nStep 2 (factorization): Cycle independence gives sigma(C) = prod_i s_i^{I(c_i)}, where I(c_i) in {0,1} is the odd-winding indicator of cycle c_i. The sign of each orientation state is the product of independent per-cycle characters; no cross-terms couple distinct cycles.\nStep 3 (identical vanishing): If any I(c_i) = 1, then Z_Sigma = prod_j (Sum_{s_j=+-1} s_j^{I(c_j)}) = (Sum_{s_i=+-1} s_i) * prod_{j!=i} (Sum_{s_j=+-1} s_j^{I(c_j)}) = (1 + (-1)) * prod_{j!=i} (...) = 0 * (...) = 0. Concretely, every configuration (s_1,...,s_k) pairs with its s_i-flipped mirror carrying sigma -> -sigma, and each pair sums to zero. Therefore each of the 57 odd-winding subgraphs contributes exactly 0 to Z, for any k >= 1 and any cycle lengths.\nStep 4 (global exact count): Total orientation states = 1296. Odd sector (57 subgraphs): contains 192 negative states, which pair one-to-one with 192 positive states via a single I=1 cycle flip -> 192 pairs * 0 = 0; these 384 states cancel out entirely. Even sector: 256 - 57 = 199 subgraphs, all cycles I(c_i) = 0, so sigma = prod_i s_i^0 = +1 identically; remaining states = 1296 - 384 = 912, all positive. Z = 912 * (+1) = 912. Cross-check A (average sign): Z = 1296 * <sigma> = 1296 * 19/27 = 48 * 19 = 912. Cross-check B (negative count): Z = (1296 - 192) - 192 = 1104 - 192 = 912. All three routes agree exactly. Guard 1: Z = 912 is an exact integer from discrete state cancellation. Guard 2: sigma factorized as prod_i s_i^{I(c_i)}. Guard 3: every I(c_i)=1 cycle forces the vanishing factor (1 + (-1)) = 0. Final: Z = 912, zero-odd-sector subgraphs = 199."
+      },
+      "cancellation_mechanism": "Exact pairwise sign-flip cancellation: within each of the 57 odd-winding subgraphs, flipping any single cycle with I(c_i)=1 maps every orientation state to a distinct mirror state of opposite sign (s_i -> -s_i sends sigma -> -sigma). Hence the 192 negative states pair one-to-one with 192 positive states, each pair contributing sigma + (-sigma) = 0, so the entire odd sector sums to exactly 0 over all 2^k configurations. Equivalently, the flip sum factorizes as (sum over s_i of s_i) * prod_{j!=i} (sum over s_j of s_j^{I(c_j)}) = (1 + (-1)) * (...) = 0, identically, for every odd-winding subgraph regardless of cycle lengths.",
+      "rubric_breakdown": {
+        "exact_partition_z": true,
+        "cycle_independence": true,
+        "parity_cancellation_proved": true,
+        "zero_odd_sector_used": true
+      }
+    }
+  ]
+}

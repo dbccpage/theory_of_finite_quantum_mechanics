@@ -1,0 +1,491 @@
+paper_id: "010_mub6"
+title: "Exact reductions and quantitative bounds for mutually unbiased bases in dimension six"
+authority_effect: "None"
+date: "2026-10-12"
+version: "1.1.0"
+lean4_root: "../../../../lean4/research_programs/mub6"
+
+claims:
+  - id: "MUB6-C01"
+    name: "Orbit Configuration Fourier Count Lower Bound"
+    statement: "Orbit configuration lower bound on Fourier count (n_dita >= 5) in MUB6OrbitConfiguration."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "RouteCFourierLandingBypass"
+      theorems:
+        - "fourier_count_ge_five"
+
+  - id: "MUB6-C02"
+    name: "Orbit Configuration Fourier Transition Pairs Lower Bound"
+    statement: "Orbit configuration Fourier transition pairs lower bound (pairCombinations n_dita >= 10)."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "RouteCFourierLandingBypass"
+      theorems:
+        - "fourier_pairs_ge_ten"
+
+  - id: "MUB6-C03"
+    name: "Orbit Configuration Fourier Landing Edges Lower Bound"
+    statement: "Lower bound of at least 15 Fourier transition edges in orbit configuration."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "RouteCFourierLandingBypass"
+      theorems:
+        - "fourier_landing_edges_lower_bound"
+
+  - id: "MUB6-C04"
+    name: "Conditional Non-Existence of Complete MUB(6) via Route C"
+    statement: "Conditional non-existence of complete MUB(6) via Route C given landing hypothesis h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily."
+    claim_type: "FormalLeanTheoremConditional"
+    lean4:
+      module: "RouteCFourierLandingBypass"
+      theorems:
+        - "no_complete_mub6_via_route_c"
+
+  - id: "MUB6-C05"
+    name: "Non-Existence under Fourier Triple Landing Bypass"
+    statement: "Non-existence of complete MUB(6) under the supplied premise FourierTripleLandingPremise (a constituent triple in InFourierDitaChart), without orbit-count fields."
+    claim_type: "FormalLeanTheoremConditional"
+    lean4:
+      module: "RouteCFourierLandingBypass"
+      theorems:
+        - "no_complete_mub6_of_fourier_triple_landing"
+
+  - id: "MUB6-C06"
+    name: "Analytic Cube Slice Certificate for Conjecture 2"
+    statement: "Analytic cube slice certificate supplying row bounds, integer parity, and class/table compatibility."
+    claim_type: "LeanDefinition"
+    lean4:
+      module: "Conjecture2GeneralMechanization"
+      theorems:
+        - "AnalyticCubeSliceCertificate"
+    code_evidence:
+      tests:
+        - "tests/test_conj2_all_slice_configurations.py"
+
+  - id: "MUB6-C07"
+    name: "Tao Phase-Table All-Slice Evaluation"
+    statement: "Kernel-checked evaluation of the Tao phase table across all 20 balanced three-positive/three-negative sign patterns, each with Eisenstein norm 9."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "Conjecture2GeneralMechanization"
+      theorems:
+        - "balanced_mask_count"
+        - "tao_all_balanced_masks"
+
+  - id: "MUB6-C08"
+    name: "R6 Moduli Classification Receipt Status"
+    statement: "R6 classification receipt with SHA-256 cf8442d8fe1397226d669fcea7bc038ef8d984a9bae741772b9d742fbe62eb59 retains NOT_A_CERTIFICATE status."
+    claim_type: "CustodyVerification"
+    code_evidence:
+      tests:
+        - "tests/test_option_b_premises.py"
+
+  - id: "MUB6-C09"
+    name: "Matolcsi Moduli Receipt Verification"
+    statement: "Matolcsi receipt verification with internal digest separation and custody verification."
+    claim_type: "CustodyVerification"
+    code_evidence:
+      tests:
+        - "tests/test_option_b_premises.py"
+
+  - id: "MUB6-C10"
+    name: "Cauchy-Binet Invertible Minor Quantitative Bound"
+    statement: "Every raw 6x6 complex Hadamard has a minor with squared determinant >= 54/5 and inverse-entry squared moduli <= 10/27."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "MubMinorChart"
+      theorems:
+        - "exists_minor_norm_ge"
+        - "inverse_entry_normSq_le"
+        - "exists_bounded_inverse_minor"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C11"
+    name: "Complete Block Reconstruction Chart"
+    statement: "Bounded minor supplies complete block reconstruction chart for quartet existence."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "MubBoundedBlockChart"
+      theorems:
+        - "chart_hadamard"
+        - "chart_hasRawQuartet_iff"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C12"
+    name: "Division-Free Quartet Matrix Equations"
+    statement: "Clearing nonzero determinant denominator yields explicit division-free matrix equations equivalent to quartet existence."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "MubBoundedQuartetEquations"
+      theorems:
+        - "exists_quartet_iff_equations"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C13"
+    name: "Standard-Basis Unbiasedness Coordinate Bounds"
+    statement: "Standard-basis unbiasedness bounds all real candidate coordinates by 1/2 in absolute value."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiQuartetSystem"
+      theorems:
+        - "mu_identity_coordinates_bounded"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C14"
+    name: "Rational Affine Completion System"
+    statement: "Checked affine completion of balanced transition matrices gives an equivalent system of rational polynomial equations."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "MubBalancedCompletion"
+      theorems:
+        - "complete_restrict"
+        - "restrict_complete"
+        - "complete_row_sum"
+        - "complete_column_sum"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C15"
+    name: "Balanced Quadratic System Degree and Equivalence"
+    statement: "648 rational polynomial equations of degree at most two in 320 bounded real coordinates whose common zeros are equivalent to quartet existence. The counts are equation and coordinate counts, not dimension or independence claims."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "MubBalancedQuadraticPolynomials"
+      theorems:
+        - "equation_degree"
+        - "exists_quartet_iff_balanced_polynomials"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C16"
+    name: "Quadratic Lift Equivalence"
+    statement: "Quadratic lifting yields equivalent quadratic equations preserving all candidate solutions."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiQuadraticSystem"
+      theorems:
+        - "exists_solution_iff_quartet"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C17"
+    name: "Rational Containing Box Radius Bounds"
+    statement: "Rational containing box has radius 1 for phase/raw-basis coordinates and 3 for cross-product coordinates."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiQuadraticSystem"
+      theorems:
+        - "solution_in_full_box"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C18"
+    name: "Bounded Solution Quartet Equivalence"
+    statement: "Bounded solution existence in full box is equivalent to actual quartet existence."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiQuadraticSystem"
+      theorems:
+        - "exists_bounded_solution_iff_quartet"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C19"
+    name: "Deltoid Cover Standard-Basis Margin Disjointness"
+    statement: "Deltoid candidate box residual margin 37249/90000 separates standard-basis residual outside unbiased candidate box (|U[0,0]|^2 = 1/6)."
+    claim_type: "ExactComputation"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C20"
+    name: "Augmented 666-Equation System Parameter Equivalence"
+    statement: "Quartet existence is equivalent to augmented 666-equation solution at each admissible family parameter."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiGaugedExecutable"
+      theorems:
+        - "augmented_exists_with_parameters_iff"
+    code_evidence:
+      tests:
+        - "tests/test_gauged_reflection_wire.py"
+
+  - id: "MUB6-C21"
+    name: "Native Six-Chart Candidate Cover Equivalence"
+    statement: "Quartet existence is equivalent to an augmented-system solution in at least one of six overlapping native candidate charts."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiGaugedReflection"
+      theorems:
+        - "native_chart_quartet_iff"
+    code_evidence:
+      tests:
+        - "tests/test_gauged_reflection_wire.py"
+
+  - id: "MUB6-C22"
+    name: "Szöllősi Continuous Two-Circulant Construction"
+    statement: "Unit phases and complex compatibility equation yield Gram identity, normalized unitarity, and 1/6 entry moduli."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiTwoCirculant"
+      theorems:
+        - "rawSix_gram"
+        - "normalized_unitary"
+        - "normalized_entry_modulus"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C23"
+    name: "Szöllősi Quartet Equivalence with Arbitrary Additional Bases"
+    statement: "Quartet existence with identity and family matrix equivalent to candidate equations with 144 retained coordinates."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiQuartetSystem"
+      theorems:
+        - "quartet_iff_candidate_equations"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C24"
+    name: "618 Rational Equations Degree at Most Two"
+    statement: "618 rational equations in 440 real variables have total degree at most two, with solutions corresponding to actual quartets."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiQuadraticSystem"
+      theorems:
+        - "equation_degree"
+        - "exists_solution_with_parameters_iff"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_b1_b11.py"
+
+  - id: "MUB6-C25"
+    name: "Midpoint Secant Identity and Exclusion Soundness"
+    statement: "Exact midpoint secant identity and derivative intervals enclose zeros; strict coordinate separation excludes roots."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "RectangularQuadraticExclusion"
+      theorems:
+        - "list_secant_identity"
+        - "exclusion_sound"
+    code_evidence:
+      tests:
+        - "tests/test_rectangular_reflection_wire.py"
+
+  - id: "MUB6-C26"
+    name: "Column-Gauge Reduction First-Row Equality"
+    statement: "24 real wire coordinates prescribed with ordered IDs and values checked by kernel reduction (by rfl)."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiColumnGauge"
+      theorems:
+        - "gaugePointCodes_checked"
+        - "gauge_box_firstRow"
+    code_evidence:
+      tests:
+        - "tests/test_gauged_reflection_wire.py"
+
+  - id: "MUB6-C27"
+    name: "Native Sparse Jacobian Row Reflection"
+    statement: "All 618 sparse Jacobian rows (9,000 entries) and 440 images match sound actual-system semantics."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiRectangularReflection"
+      theorems:
+        - "native_jacobian_eq"
+        - "native_images_eq"
+    code_evidence:
+      tests:
+        - "tests/test_rectangular_reflection_wire.py::test_formatter_reproduces_the_kernel_checked_source"
+
+  - id: "MUB6-C28"
+    name: "Native Candidate Box Exclusion on Coordinate 368"
+    statement: "Native box exclusion excludes recorded candidate box via row balance coordinate 368 without global quartet absence."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiGaugedReflection"
+      theorems:
+        - "native_box_exclusion"
+        - "native_box_has_admissible_phase_point"
+    code_evidence:
+      tests:
+        - "tests/test_gauged_reflection_wire.py::test_formatter_reproduces_checked_candidate_box_source"
+
+  - id: "MUB6-C29"
+    name: "Concrete Complex Rank-One Projector Matrix Construction"
+    statement: "Construction of complex rank-one projector matrices from FiniteComplexMubFamily with self-adjointness and trace one."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "ConcreteMubProjectors"
+      theorems:
+        - "concreteProjector_self_adjoint"
+        - "concreteProjector_trace_one"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C30"
+    name: "Concrete MUB Word Moment Flatness"
+    statement: "Degree-one and two word Gram moment matrices are PSD with rank equality to coordinate cardinality."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "ConcreteMubMoments"
+      theorems:
+        - "concrete_mub_moment_flatness"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C31"
+    name: "Concrete MUB Orthonormality and Overlap Polynomials"
+    statement: "108 MU residuals in 72 real coordinates agree with projector cross-trace minus 1/6; 72 further residuals encode candidate orthonormality U*U = I."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "ConcreteMubPolynomials"
+      theorems:
+        - "muPolynomial_eval_projector_trace"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C32"
+    name: "Finite Reverse Word Projector Extraction"
+    statement: "Extraction of Gram factor, common range, normalized state, and complex linear idempotents from positive flat data."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "FlatMomentProjectorExtraction"
+      theorems:
+        - "extract_word_projectors"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C33"
+    name: "Contextual Basis Word Relations Extraction"
+    statement: "Extraction of orthogonal basis actions and normalized degree-two representation from contextual same-basis data."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "FlatMomentBasisRelations"
+      theorems:
+        - "extract_word_basis"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C34"
+    name: "Zero-Action Interface Countermodel Inhabitation"
+    statement: "Unconstrained projector interface admits trivial countermodel lacking completeness and cross-basis constraints."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "MomentPositivityObligation"
+      theorems:
+        - "not_universal_interface_exclusion"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C35"
+    name: "Commutative Flat Real Moments Zero Extraction"
+    statement: "Construction of common real point from normalized positive flat real coordinate moments via commuting operators."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "CommutativeFlatMoments"
+      theorems:
+        - "real_point_of_positive_flat"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C36"
+    name: "Fourth-Basis Existence Equivalence to Positive Flat Moments"
+    statement: "Existence of unitary fourth-basis candidate is equivalent to normalized positive flat compatible coordinate moments."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "ConcreteMubFlatExtension"
+      theorems:
+        - "fourth_basis_iff_positive_flat_moments"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C37"
+    name: "Moment Functional Nonpositivity from Empty Variety"
+    statement: "Fixed-variety emptiness and finite relation compatibility imply failure of positive semidefiniteness for moment functional."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "ConcreteMubFlatExtension"
+      theorems:
+        - "moment_nonpositive_of_empty_variety"
+    code_evidence:
+      tests:
+        - "tests/test_remediation_m1_m4.py"
+
+  - id: "MUB6-C38"
+    name: "Balanced Table Regeneration, Negative Controls and Centre Jacobian"
+    statement: "The 648-row, 320-coordinate balanced table equals its regeneration from the definitions over Q; a third basis equal to the first or second makes exactly 36 transition-modulus rows nonzero; the Jacobian at the box centre has exact rank 184 of 320. Not the Lean equivalence exists_quartet_iff_table, which is not elaborated."
+    claim_type: "ExactComputation"
+    code_evidence:
+      rust:
+        crate: "omega_mub"
+        modules:
+          - "omega_native::mub6_balanced_table_replay"
+          - "omega_native::mub6_prompt05_campaign_checks"
+      tests:
+        - "omega_engine/crates_rs/tests/omega_mub/test_mub6_prompt05_campaign_checks.rs"
+      artifacts:
+        - "artifacts/mub6_prompt05_campaign_receipt.json"
+
+  - id: "MUB6-C39"
+    name: "Prompt 05 Fixed-Triple Local Lemma Checks"
+    statement: "Fixed-triple checks D1, D2, D3, D9, E.1, F.2 and G at the values the receipt records. D9 refutes its stated premise (138 of 180 rows independent, no row-unitarity rows); E.1 covers multipliers of degree at most one; F.2 is a commutative trace model. No quartet exclusion."
+    claim_type: "ExactComputation"
+    code_evidence:
+      rust:
+        crate: "omega_mub"
+        modules:
+          - "omega_native::mub6_prompt05_campaign_checks"
+      tests:
+        - "omega_engine/crates_rs/tests/omega_mub/test_mub6_prompt05_campaign_checks.rs"
+      artifacts:
+        - "artifacts/mub6_prompt05_campaign_receipt.json"
+
+  - id: "MUB6-C40"
+    name: "Szöllősi Common-Ray Reduction"
+    statement: "For a raw complex Hadamard H, H lies in a quartet with I iff two orthonormal bases of common rays of I and H are mutually unbiased; so if no two common rays are unbiased, H is in no quartet. Owner build of 2026-10-15 recorded lake exit 0 and axioms propext, Classical.choice, Quot.sound; the source digest is unchanged on main; not rebuilt on 2026-10-16."
+    claim_type: "FormalLeanTheorem"
+    lean4:
+      module: "SzollosiCommonRays"
+      theorems:
+        - "quartet_iff_ray_bases"
+        - "no_quartet_of_no_unbiased_ray_pair"
+    code_evidence:
+      artifacts:
+        - "research/five_derivations_20261015/execution_receipt.json"
+
+  - id: "MUB6-C41"
+    name: "Pair Exclusion at the Special Szöllősi Point, Represented Rays"
+    statement: "At (x, y, u, v) = (1, -1, 1, i), the 120 real rays represented by the rational parametrization are nonsingular, and all 7,140 pairs satisfy ||z*w|^2 - 6| > 47/100. Status PASS_FOR_REPRESENTED_SOLUTIONS; completeness of the ray set needs an independent bound on the number of complex solutions. Not replayed on 2026-10-16."
+    claim_type: "ExactComputation"
+    code_evidence:
+      python:
+        - "research/five_derivations_20261015/replay_rur.py"
+      tests:
+        - "research/five_derivations_20261015/test_rur.py"
+      artifacts:
+        - "research/five_derivations_20261015/special_replay.json"

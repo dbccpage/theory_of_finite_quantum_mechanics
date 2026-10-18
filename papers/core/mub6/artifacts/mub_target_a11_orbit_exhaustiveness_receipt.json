@@ -1,0 +1,87 @@
+{
+  "schema_version": "omega.mub.target-a11-orbit-exhaustiveness.v1",
+  "firewall": "stated region only; mints no authority",
+  "authority_effect": "None",
+  "catalog_exhaustiveness": {
+    "all_catalog_orbits": [
+      "F6_Fourier_Dita",
+      "B6_Szollosi_Deltoid",
+      "S6_Tao_Confluence",
+      "H6_Haagerup_Isolated"
+    ],
+    "catalog_cardinality": 4,
+    "orbit_to_a10_region_mapping": {
+      "F6_Fourier_Dita": "F6_Affine_Dita",
+      "B6_Szollosi_Deltoid": "B6_Szollosi_Deltoid",
+      "S6_Tao_Confluence": "S6_Tao_Confluence",
+      "H6_Haagerup_Isolated": "H6_Haagerup_Isolated"
+    },
+    "all_orbits_mapped_to_certified_regions": true,
+    "global_min_margin": "12133/30000"
+  },
+  "canonical_matrices_reduction": {
+    "F6_Fourier": {
+      "matrix_label": "F6_Fourier",
+      "orbit_id": "F6_Fourier_Dita",
+      "target_a10_region": "F6_Affine_Dita",
+      "target_a10_cell_id": "F6_cell_0_0",
+      "obstruction_margin": "37249/90000",
+      "witness_type": "SDP_Dual_Witness_Cyc",
+      "reduction_valid": true,
+      "witness_data": {
+        "trace_inner_product": "-12133/30000",
+        "psd_verified": true
+      }
+    },
+    "S6_Tao": {
+      "matrix_label": "S6_Tao",
+      "orbit_id": "S6_Tao_Confluence",
+      "target_a10_region": "S6_Tao_Confluence",
+      "target_a10_cell_id": "S6_cell_0",
+      "obstruction_margin": "527/576",
+      "witness_type": "TaoSpectralCrossRatio_Cubic",
+      "reduction_valid": true,
+      "witness_data": {
+        "cross_ratios_evaluated": 225,
+        "cubic_spectrum": true
+      }
+    },
+    "H6_Haagerup": {
+      "matrix_label": "H6_Haagerup",
+      "orbit_id": "H6_Haagerup_Isolated",
+      "target_a10_region": "H6_Haagerup_Isolated",
+      "target_a10_cell_id": "H6_cell_0",
+      "obstruction_margin": "12133/30000",
+      "witness_type": "HaagerupDiscreteOrbit_Isolation",
+      "reduction_valid": true,
+      "witness_data": {
+        "cross_ratios_evaluated": 225,
+        "imaginary_count": 120
+      }
+    },
+    "B6_Szollosi": {
+      "matrix_label": "B6_Szollosi",
+      "orbit_id": "B6_Szollosi_Deltoid",
+      "target_a10_region": "B6_Szollosi_Deltoid",
+      "target_a10_cell_id": "B6_cusp0_cell_0",
+      "obstruction_margin": "12133/30000",
+      "witness_type": "ProjectiveBlowup_Cusp0",
+      "reduction_valid": true,
+      "witness_data": {
+        "theta": "0",
+        "z0": "3"
+      }
+    }
+  },
+  "negative_controls": {
+    "perturbed_non_chm_rejected": true,
+    "misclassified_orbit_rejected": true,
+    "incomplete_catalog_proposal_rejected": true,
+    "float_injection_rejected": true
+  },
+  "epistemic_notes": {
+    "claim_hygiene": "Stated region and catalog only; mints no authority; under NO circumstances claims MUB(6)=3 or MUB(6)<=3",
+    "exact_arithmetic": "100% exact rational and cyclotomic arithmetic over fractions.Fraction and Cyc24"
+  },
+  "verified": true
+}
