@@ -1,0 +1,74 @@
+{
+  "task_id": "FQ-BELL-CLASSICAL-JOINT-EXTENSION",
+  "stage_id": "P1_DERIVE",
+  "attempt_id": "p1",
+  "input_sha256": "a13948bc03251d3f40f8dafdbcdd79548eb73e5ca7718b11488053a01b3cad71",
+  "candidate_certificate": "candidate.json",
+  "construction": [
+    {
+      "path": "dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p1/construction/code/python/src/qm/bell_joint_extension.py",
+      "sha256": "a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8",
+      "working_source": "code/python/src/qm/bell_joint_extension.py"
+    },
+    {
+      "path": "dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p1/construction/code/python/tests/test_bell_joint_extension.py",
+      "sha256": "64d8c58395f068e08b5c9a267f8bd0dd2f5101b82757204f8b50d9ffef222b55",
+      "working_source": "code/python/tests/test_bell_joint_extension.py"
+    },
+    {
+      "path": "dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p1/construction/code/rust/src/finite_probability/bell_joint_extension.rs",
+      "sha256": "7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75",
+      "working_source": "code/rust/src/finite_probability/bell_joint_extension.rs"
+    },
+    {
+      "path": "dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p1/construction/lean4/BellOperad.lean",
+      "sha256": "351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a",
+      "working_source": "lean4/BellOperad.lean"
+    },
+    {
+      "path": "dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p1/construction/lean4/lakefile.lean",
+      "sha256": "3ce5fe50bd134bba66d8a83d5c31ed1fc3f6e2e07a4df99776e5f246c539d028",
+      "working_source": "lean4/lakefile.lean"
+    }
+  ],
+  "remaining_obligations": [
+    "P2 native compilation and independent certificate checking",
+    "P4 adversarial tests",
+    "Fine converse and symmetric/quotient presentation remain open"
+  ],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "joint_expectation",
+        "change": "generic exact rational response-table API in Rust and Python; arbitrary integral response-table operation in Lean common-denominator representation"
+      },
+      {
+        "id": "endomorphism_substitute",
+        "change": "dependent typed simultaneous substitution, identities, associativity under explicit index reassociation"
+      },
+      {
+        "id": "certificate_verify",
+        "change": "consumer checks every scalar and correlator against supplied law using a route separate from producer"
+      }
+    ],
+    "add_or_refine_relations": [
+      "generic expectation/CHSH linearity",
+      "typed simultaneous substitution units and associativity",
+      "semantic equality stable under substitution"
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "P2 native compilation and independent certificate checking",
+      "P4 adversarial tests",
+      "Fine converse and symmetric/quotient presentation remain open"
+    ]
+  },
+  "claim_boundary": {
+    "supports": "submitted exact certificates and proof source constructions",
+    "does_not_support": "acceptance before P2, Fine converse, symmetric quotient operad",
+    "narrowest_claim": "Common nonnegative normalized rational joint law implies the standard CHSH bound; reusable exact expectation and substitution laws. No Fine converse or physical inference.",
+    "next_test": "compile proof and run independently selected native gates"
+  }
+}

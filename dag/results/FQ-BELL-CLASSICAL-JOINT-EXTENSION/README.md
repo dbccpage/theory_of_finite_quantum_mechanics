@@ -1,3 +1,7 @@
+> **Audited verification:** [Bell claim and checker review](reviews/20261018_claim_audit/README.md). Use the hardened review checker; historical run bytes are preserved.
+
+> **Latest staged run:** [20261018 expectation/operad run](runs/20261018T225117Z_operad_expectation/README.md). P0/P1/P2/P4/P5 completed; stopped for review. Fine converse remains open.
+
 > **Historical pilot; contract superseded.** The old 18-field response and C4 arithmetic are not the staged execution contract. See `pilot_status.yaml` and `../../pfp/README.md`. The native Bell implication remains a scoped reusable result; no Fine-theorem equivalence or completed formal operad is claimed.
 
 # FQ-BELL-CLASSICAL-JOINT-EXTENSION

@@ -200,6 +200,7 @@ lean_lib «FiniteQuantum» where
     `CoupledRelationalProjectors,
     `DerivationDagQMClosure,
     `BellClassicalJointExtension,
+    `BellOperad,
     `LggrFiniteResults,
     `CofiberBanachQuotient,
     -- Pre-existing foundational modules
