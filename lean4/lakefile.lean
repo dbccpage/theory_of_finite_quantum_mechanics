@@ -199,6 +199,7 @@ lean_lib «FiniteQuantum» where
     `T7PiLocalization,
     `CoupledRelationalProjectors,
     `DerivationDagQMClosure,
+    `BellClassicalJointExtension,
     `LggrFiniteResults,
     `CofiberBanachQuotient,
     -- Pre-existing foundational modules

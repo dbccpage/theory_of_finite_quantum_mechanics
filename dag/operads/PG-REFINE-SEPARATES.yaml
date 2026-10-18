@@ -1,0 +1,181 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-REFINE-SEPARATES
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: A supplied binary tag separates one collapsed pair while retaining the old report. Finding
+    tags and satisfying many conflicts at once are separate, unaddressed questions.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - Supplied tag (assumption)
+  source_bottleneck: Tag supply is an input; no derivation of which tag to supply.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:300-319
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md:10
+  paper_refs:
+  - dag/derivations/01_pregenesis/TFQ-0370_supplied-binary-refinement.md
+  - dag/derivations/05_mssn_sn/TFQ-0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/01_pregenesis/TFQ-0370_supplied-binary-refinement.md
+  - papers/derivations/05_mssn_sn/TFQ-0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md
+  paper_relocations:
+  - from: papers/derivations/01_pregenesis/TFQ-0370_supplied-binary-refinement.md
+    to: dag/derivations/01_pregenesis/TFQ-0370_supplied-binary-refinement.md
+  - from: papers/derivations/05_mssn_sn/TFQ-0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md
+    to: dag/derivations/05_mssn_sn/TFQ-0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/01_pregenesis/TFQ-0370_supplied-binary-refinement.md
+    sha256: c7b97e6a3df2cf679bb045a28afae9320eb0f0d226a231dc55d8334e1f90a677
+  - path: dag/derivations/05_mssn_sn/TFQ-0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md
+    sha256: 2fba63e23446b67dfda9005c8c8164e4ab53edd23784bc1fb20b239924c1f057
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/PREGENESIS__PG-REFINE-SEPARATES__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: refineReport
+  line: 59
+  signature_excerpt: 'def refineReport {A O T : Type} (q : A → O) (t : A → T) (a : A)'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+  repository: the_symbol_game
+  source_sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: refine_separates
+  line: 64
+  signature_excerpt: "theorem refine_separates {A O T : Type} (q : A → O) (t : A → T)\n    (a b : A) (different\
+    \ : t a ≠ t b) : refineReport q t a ≠ refineReport q t b"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+  repository: the_symbol_game
+  source_sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: supplied_tag_separates
+  line: 96
+  signature_excerpt: "theorem supplied_tag_separates {A O : Type} (q : A → O) (t : A → Fin 2)\n    (a b : A) (ht\
+    \ : t a ≠ t b) :\n    (q a, t a) ≠ (q b, t b) ∧ (q a, t a).1 = q a ∧ (q b, t b).1 = q b"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+  repository: the_symbol_game
+  source_sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+- kind: theorem
+  name: pg_to_sn_and_wdp_route_chain_composition
+  line: 1257
+  signature_excerpt: "theorem pg_to_sn_and_wdp_route_chain_composition\n    (c0 c1 c2 d : Nat) :\n    ((1 + 1\
+    \ = 2 ∧ 2 > 1) ∧ (0 + 2 = 2)) ∧\n    ((c0 < c1 ∧ c1 < c2 → c0 ≠ c2) ∧ (∀ x y : Fin 3, x.val = y.val → x =\
+    \ y)) ∧\n    (([0, 1] ≠ [1, 0]) ∧ ((1 + 0, 0 + 1) = (0 + 1, 1 + 0))) ∧\n    ((d == 0) = true ↔ d = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::refine_separates
+  availability: external
+  symbol: refine_separates
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+  repository: the_symbol_game
+  sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::supplied_tag_separates
+  availability: external
+  symbol: supplied_tag_separates
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+  repository: the_symbol_game
+  sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  declaration_status: declaration_found_not_proof_checked
+  line: 96
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1257
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness
+  availability: external
+  symbol: verify_tranche5_full_dag_177_node_coverage_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 768
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  availability: external
+  symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1415
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

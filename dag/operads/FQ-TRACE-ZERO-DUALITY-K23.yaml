@@ -1,0 +1,287 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-TRACE-ZERO-DUALITY-K23
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For Hermitian trace-zero edge defects the polar of (1/2)||.||_1 is the observable class modulo
+    scalar identity with norm lambda_max - lambda_min. On K_{2,3} with D_k = 3E_kk - I the trace-zero repair value
+    is 6 (zero repair plus witnesses D_k/3) and the all-Hermitian value is 9/2.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - Hermitian trace-zero defects on a declared graph (assumption)
+  source_bottleneck: 'GAP-F001-S000-001: Lean DualWitness is a candidate mirror, not a duality certificate for
+    QM_080 Theorems 5-6; the K_{2,3} certificates are exact computations in Rust/Python, no Lean theorem for them.
+    Zenodo 20550459 carries a wrong centered trace-zero dual awaiting erratum.'
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:579
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:146
+  paper_refs:
+  - dag/derivations/22_implementation_sibling/TFQ-0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k__2_3_quotients.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/22_implementation_sibling/TFQ-0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k__2_3_quotients.md
+  paper_relocations:
+  - from: papers/derivations/22_implementation_sibling/TFQ-0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k__2_3_quotients.md
+    to: dag/derivations/22_implementation_sibling/TFQ-0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k__2_3_quotients.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/22_implementation_sibling/TFQ-0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k__2_3_quotients.md
+    sha256: e04c595fbe3d017b919df5e0d0544c3f9354bd6d1b913c7a198eed321716ed02
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_CORE__FQ-TRACE-ZERO-DUALITY-K23__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: pairing
+  line: 41
+  signature_excerpt: 'def pairing (L : Eig2) (x : TraceZeroVec2) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TraceZeroVec2
+  line: 28
+  signature_excerpt: structure TraceZeroVec2
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: iabs
+  line: 8
+  signature_excerpt: 'def iabs (x : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Eig2
+  line: 17
+  signature_excerpt: structure Eig2
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: optimalVec2
+  line: 56
+  signature_excerpt: 'def optimalVec2 (L : Eig2) : TraceZeroVec2'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: optimalShift
+  line: 70
+  signature_excerpt: 'def optimalShift (L : Eig2) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: opNorm
+  line: 67
+  signature_excerpt: 'def opNorm (L : Eig2) (c : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: max2
+  line: 11
+  signature_excerpt: 'def max2 (a b : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dual_pairing
+  line: 18
+  signature_excerpt: 'def dual_pairing (w : DiscreteWitness) (d : StateDifference) : Int'
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: StateDifference
+  line: 11
+  signature_excerpt: structure StateDifference
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: DiscreteWitness
+  line: 5
+  signature_excerpt: structure DiscreteWitness
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: trace_norm
+  line: 15
+  signature_excerpt: 'def trace_norm (d : StateDifference) : Nat'
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: k23PrimalAlt
+  line: 263
+  signature_excerpt: 'def k23PrimalAlt (u0 u1 v0 v1 v2 : Int) : Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: k23PrimalCenteredScaled2
+  line: 275
+  signature_excerpt: 'def k23PrimalCenteredScaled2 (u0 u1 v0 v1 v2 : Int) : Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: trace_zero_duality_gap_zero
+  line: 83
+  signature_excerpt: "theorem trace_zero_duality_gap_zero (L : Eig2) :\n    pairing L (optimalVec2 L) = opNorm\
+    \ L (optimalShift L)"
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: dual_witness_certifies_trace_distance
+  line: 21
+  signature_excerpt: "theorem dual_witness_certifies_trace_distance (w : DiscreteWitness) (d : StateDifference)\
+    \ :\n    (dual_pairing w d).natAbs ≤ trace_norm d"
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: k23_uncentered_zero_duality_gap
+  line: 268
+  signature_excerpt: "theorem k23_uncentered_zero_duality_gap (u0 u1 v0 v1 v2 : Int) :\n    k23PrimalAlt 0 2 1\
+    \ 1 1 = 4 ∧\n    4 ≤ k23PrimalAlt u0 u1 v0 v1 v2"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: k23_centered_scaled2_zero_duality_gap
+  line: 280
+  signature_excerpt: "theorem k23_centered_scaled2_zero_duality_gap (u0 u1 v0 v1 v2 : Int) :\n    k23PrimalCenteredScaled2\
+    \ 0 6 3 3 3 = 12 ∧\n    12 ≤ k23PrimalCenteredScaled2 u0 u1 v0 v1 v2"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/TraceZeroDuality.lean::trace_zero_duality_gap_zero
+  availability: local
+  symbol: trace_zero_duality_gap_zero
+  path: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DualWitness.lean::dual_witness_certifies_trace_distance
+  availability: local
+  symbol: dual_witness_certifies_trace_distance
+  path: lean4/DualWitness.lean
+  repository: this_repository
+  sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 268
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 280
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs::PrimalCertificate
+  availability: external
+  symbol: PrimalCertificate
+  path: omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs
+  repository: the_symbol_game
+  sha256: 5515983219eada1ee89ace1edbd0e1cb85e2550555e04c3b14d139aca38b3582
+  declaration_status: declaration_found_not_executed
+  line: 120
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness
+  availability: external
+  symbol: verify_fq_core_and_k23_duality_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 338
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []
