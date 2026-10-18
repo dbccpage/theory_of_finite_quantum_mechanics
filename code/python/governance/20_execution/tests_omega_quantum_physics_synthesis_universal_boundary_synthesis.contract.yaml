@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_synthesis_universal_boundary_synthesis:v1.0.0
+title: 'QM_206: the "universal exact sequence" `0 -> C^0 -> C^1 -> C^2 -> Obs -> 0`
+  and the pointer-basis identification with...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/synthesis/universal_boundary_synthesis.rs
+module: omega_quantum_physics::synthesis::universal_boundary_synthesis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::synthesis::universal_boundary_synthesis
+  file: crates_rs/tests/omega_quantum_physics/synthesis/universal_boundary_synthesis.rs
+symbols: []
+owns:
+- omega_quantum_physics_synthesis_universal_boundary_synthesis
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

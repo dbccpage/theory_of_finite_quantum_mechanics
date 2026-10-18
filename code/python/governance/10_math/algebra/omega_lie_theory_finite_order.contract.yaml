@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:finite_order:v1.0.0
+title: Exact decision of whether a rational matrix has finite order.  A matrix `M`
+  over `Q` has finite order exactly when it...
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/finite_order.rs
+module: finite_order
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: finite_order
+  file: crates_rs/omega_lie_theory/src/finite_order.rs
+symbols:
+- FiniteOrderError
+- cyclotomic_factorisation
+- finite_order
+- rational_cosines_of_finite_order_rotations
+- gaussian_finite_order
+owns:
+- finite_order_error
+- cyclotomic_factorisation
+- finite_order
+- rational_cosines_of_finite_order_rotations
+- gaussian_finite_order
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_prod_p4_kill:v1.0.0
+title: Companion Rust witness for PROD-P4-KILL (Evaluate P4 kill conditions on pilot
+  instrument menus).
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/prod_p4_kill.rs
+module: omega_wdp::derivation_controls::prod_p4_kill
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::prod_p4_kill
+  file: crates_rs/tests/omega_wdp/derivation_controls/prod_p4_kill.rs
+symbols:
+- evaluate_p4_kill
+owns:
+- evaluate_p4_kill
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

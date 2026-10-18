@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_epistemic_immune_system:signal_gate:v1.0.0
+title: Severity-aware signal law over checked evidence projections. Independence is
+  established before disposition, includin...
+kind: rust_file_contract
+status: active
+crate: omega_epistemic_immune_system
+file: crates_rs/omega_epistemic_immune_system/src/signal_gate.rs
+module: signal_gate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_epistemic_immune_system
+  module: signal_gate
+  file: crates_rs/omega_epistemic_immune_system/src/signal_gate.rs
+symbols:
+- DangerSeverity
+- DangerDecision
+- CategorizedDangerEvidence
+- new
+- from_bytes
+- from_json
+- DangerEvaluationResult
+- decision
+- is_suppressed
+- evaluate_signals
+- evaluate_independent
+owns:
+- danger_severity
+- danger_decision
+- categorized_danger_evidence
+- new
+- from_bytes
+- from_json
+- danger_evaluation_result
+- decision
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

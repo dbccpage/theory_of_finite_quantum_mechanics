@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:bin_omega_mub_verify_all:v1.0.0
+title: 'Native Release-Mode Grand Verifier for MUB(6) Reconstruction Pipeline.  Evaluates
+  and certifies: 1. All partition cov...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/bin/omega_mub_verify_all.rs
+module: bin::omega_mub_verify_all
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: bin::omega_mub_verify_all
+  file: crates_rs/omega_mub/src/bin/omega_mub_verify_all.rs
+symbols:
+- VerificationStepReceipt
+- GrandVerificationReceipt
+owns:
+- verification_step_receipt
+- grand_verification_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

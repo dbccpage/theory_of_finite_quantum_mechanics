@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:cochain_primitive_difference:v1.0.0
+title: The finite cochain complex realized as a `PrimitiveDifference` on its degree-1
+  cochains.  Rust mirror of the Lean `Om...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/cochain_primitive_difference.rs
+module: cochain_primitive_difference
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: cochain_primitive_difference
+  file: crates_rs/omega_homology/src/cochain_primitive_difference.rs
+symbols:
+- CochainPrimitiveDifference
+- new
+- cochain_dims
+- shape_fingerprint
+owns:
+- cochain_primitive_difference
+- new
+- cochain_dims
+- shape_fingerprint
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:quotient:v1.0.0
+title: Canonical Quotient & Congruence Core types for the Omega Engine.
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/quotient.rs
+module: quotient
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: quotient
+  file: crates_rs/omega_types/src/quotient.rs
+symbols:
+- CongruenceCoreQuotient
+owns:
+- congruence_core_quotient
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

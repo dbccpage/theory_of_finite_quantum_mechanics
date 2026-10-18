@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lifts:cycle_lift_spec:v1.0.0
+title: Cycle Lift Spec Module
+kind: rust_file_contract
+status: active
+crate: omega_lifts
+file: crates_rs/omega_lifts/src/cycle_lift_spec.rs
+module: cycle_lift_spec
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lifts
+  module: cycle_lift_spec
+  file: crates_rs/omega_lifts/src/cycle_lift_spec.rs
+symbols:
+- CycleLiftSpec
+- CycleLiftSpecError
+- new
+- cycle_node_indices
+- lift_scale
+owns:
+- cycle_lift_spec
+- cycle_lift_spec_error
+- new
+- cycle_node_indices
+- lift_scale
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

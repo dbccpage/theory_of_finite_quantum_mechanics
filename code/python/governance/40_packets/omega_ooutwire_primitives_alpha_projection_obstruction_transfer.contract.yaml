@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:alpha_projection_obstruction_transfer:v1.0.0
+title: §5.6 — the reverse-triangle transfer certificate, premise-gated.  With `C_P(x)
+  = ‖x − P(x)‖₁` and a *checked* pairwis...
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/transfer.rs
+module: alpha_projection_obstruction::transfer
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: alpha_projection_obstruction::transfer
+  file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/transfer.rs
+symbols:
+- ReverseTriangleCertificate
+- TransferRefusalReason
+- refusal_reason
+- verify
+- certificate
+- StatePairBundle
+- new
+- reverse_triangle_certificate_for_bundle
+- reverse_triangle_certificate
+- linear_projection_transfer_certificate
+owns:
+- reverse_triangle_certificate
+- transfer_refusal_reason
+- refusal_reason
+- verify
+- certificate
+- state_pair_bundle
+- new
+- reverse_triangle_certificate_for_bundle
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

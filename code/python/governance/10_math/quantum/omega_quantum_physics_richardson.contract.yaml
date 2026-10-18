@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:richardson:v1.0.0
+title: Exact rational Richardson zero-noise extrapolation.  Evaluates Vandermonde/Lagrange
+  weights in exact rational arithme...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/richardson.rs
+module: richardson
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: richardson
+  file: crates_rs/omega_quantum_physics/src/richardson.rs
+symbols:
+- RichardsonError
+- RichardsonPlan
+- new
+- weights
+- nodes
+- target
+- extrapolate
+- RichardsonExtrapolation
+owns:
+- richardson_error
+- richardson_plan
+- new
+- weights
+- nodes
+- target
+- extrapolate
+- richardson_extrapolation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

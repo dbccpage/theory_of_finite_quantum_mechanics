@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:process_matrix:v1.0.0
+title: Bipartite process matrices, Choi representations, causal witnesses, and the
+  Quantum Switch.  Grounded in higher-order...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/process_matrix.rs
+module: process_matrix
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: process_matrix
+  file: crates_rs/omega_quantum_physics/src/process_matrix.rs
+symbols:
+- ProcessMatrixError
+- LabIoDim
+- new
+- total_dim
+- ChoiMatrix
+- from_kraus
+- identity
+- transpose
+- ProcessMatrix
+- with_tolerance
+- evaluate_probability
+- causal_mixture
+- CausalWitness
+- evaluate
+- witnesses_indefinite_order
+- kronecker_product
+owns:
+- process_matrix_error
+- lab_io_dim
+- new
+- total_dim
+- choi_matrix
+- from_kraus
+- identity
+- transpose
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

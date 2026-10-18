@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_homology_golden_carrier_manifest_v2:v1.0.0
+title: New CODA carrier-manifest v2 hashing fixture shared with the Python test.  Both
+  readers use `omega_engine/tests/golde...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_homology/golden_carrier_manifest_v2.rs
+module: omega_homology::golden_carrier_manifest_v2
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_homology::golden_carrier_manifest_v2
+  file: crates_rs/tests/omega_homology/golden_carrier_manifest_v2.rs
+symbols: []
+owns:
+- omega_homology_golden_carrier_manifest_v2
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

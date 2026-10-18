@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_layer7_or:v1.0.0
+title: Layer7 Or Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/layer7_or.rs
+module: coda::layer7_or
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::layer7_or
+  file: crates_rs/omega_wdp/src/coda/layer7_or.rs
+symbols:
+- Layer7Or
+- evaluate
+owns:
+- layer7_or
+- evaluate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

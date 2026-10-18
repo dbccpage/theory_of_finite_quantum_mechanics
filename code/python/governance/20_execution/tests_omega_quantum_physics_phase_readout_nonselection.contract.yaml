@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_phase_readout_nonselection:v1.0.0
+title: Phase Readout Nonselection Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/phase_readout_nonselection.rs
+module: omega_quantum_physics::phase_readout_nonselection
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::phase_readout_nonselection
+  file: crates_rs/tests/omega_quantum_physics/phase_readout_nonselection.rs
+symbols: []
+owns:
+- omega_quantum_physics_phase_readout_nonselection
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

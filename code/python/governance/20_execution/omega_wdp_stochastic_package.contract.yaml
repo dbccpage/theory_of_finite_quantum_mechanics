@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:stochastic_package:v1.0.0
+title: 'Chapter 18: the strengthened stochastic package S, outcome (a) of `WDP-CH18-O01`.
+  Executable finite evidence for `WDP...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/stochastic_package.rs
+module: stochastic_package
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: stochastic_package
+  file: crates_rs/omega_wdp/src/stochastic_package.rs
+symbols:
+- Matrix
+- FunctionMixture
+- mass
+- matrix_shape
+- matrix_apply
+- bounded_power
+- preserves_basis_mass
+- is_permutation_matrix
+- LeftInverse
+- StochasticUpdate
+- new
+- identity
+- from_function
+- n_out
+- n_in
+- entries
+- get
+- apply
+- compose
+- is_deterministic
+- as_function
+- is_permutation
+- mixture_of_functions
+- mixture_of_functions_with_limit
+- recompose
+- stochastic_left_inverse
+- to_stochastic_map
+- from_stochastic_map
+- ClassicalInstrument
+- outcomes
+owns:
+- matrix
+- function_mixture
+- mass
+- matrix_shape
+- matrix_apply
+- bounded_power
+- preserves_basis_mass
+- is_permutation_matrix
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

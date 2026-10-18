@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_majorana:complexes:v1.0.0
+title: Finite cell complexes for Majorana GF(2) play (triangle, plaquette, prism).  Built
+  so that \(d_1 \circ d_0 = 0 \pmod ...
+kind: rust_file_contract
+status: active
+crate: omega_majorana
+file: crates_rs/omega_majorana/src/complexes.rs
+module: complexes
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_majorana
+  module: complexes
+  file: crates_rs/omega_majorana/src/complexes.rs
+symbols:
+- ChainComplexGf2
+- verify_boundary
+- triangle
+- plaquette
+- prism
+- exact_syndrome_example
+- open_syndrome_example
+- closed_residual_syndrome_example
+- surface_grid_2x2_planar
+- surface_grid_2x2_torus
+- surface_grid
+- torus_logical_x_example
+- torus_logical_z_example
+- surface_open_single_edge_example
+- surface_exact_from_vertex0
+owns:
+- chain_complex_gf2
+- verify_boundary
+- triangle
+- plaquette
+- prism
+- exact_syndrome_example
+- open_syndrome_example
+- closed_residual_syndrome_example
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

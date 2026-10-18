@@ -1,0 +1,80 @@
+{
+  "target_id": "TARGET_G1",
+  "name": "50_variable_hadamard_variety_h6_decomposition",
+  "authority_effect": "None",
+  "firewall_line": "stated region only; mints no authority",
+  "dimension": 6,
+  "ambient_space": {
+    "field": "Real",
+    "real_variables_count": 50,
+    "dephased_matrix_shape": [6, 6],
+    "free_complex_entries": 25,
+    "variable_names": [
+      "x_1_1", "y_1_1", "x_1_2", "y_1_2", "x_1_3", "y_1_3", "x_1_4", "y_1_4", "x_1_5", "y_1_5",
+      "x_2_1", "y_2_1", "x_2_2", "y_2_2", "x_2_3", "y_2_3", "x_2_4", "y_2_4", "x_2_5", "y_2_5",
+      "x_3_1", "y_3_1", "x_3_2", "y_3_2", "x_3_3", "y_3_3", "x_3_4", "y_3_4", "x_3_5", "y_3_5",
+      "x_4_1", "y_4_1", "x_4_2", "y_4_2", "x_4_3", "y_4_3", "x_4_4", "y_4_4", "x_4_5", "y_4_5",
+      "x_5_1", "y_5_1", "x_5_2", "y_5_2", "x_5_3", "y_5_3", "x_5_4", "y_5_4", "x_5_5", "y_5_5"
+    ]
+  },
+  "polynomial_system": {
+    "unit_modulus_constraints_count": 25,
+    "unit_modulus_form": "x_{j,k}^2 + y_{j,k}^2 - 1 = 0 for j, k in 1..5",
+    "orthogonality_constraints_count": 30,
+    "orthogonality_real_part_count": 15,
+    "orthogonality_imag_part_count": 15,
+    "total_polynomial_equations": 55,
+    "ideal_name": "I(H_6)"
+  },
+  "known_irreducible_components": [
+    {
+      "orbit_name": "Fourier_F6",
+      "nature": "Confluent affine point",
+      "dimension": 0,
+      "defect": 4,
+      "field": "Q(zeta_6)"
+    },
+    {
+      "orbit_name": "Dita_D6",
+      "nature": "Affine continuous family",
+      "dimension": 2,
+      "defect": 4,
+      "parameters": ["alpha", "beta"],
+      "field": "Q(zeta_24)"
+    },
+    {
+      "orbit_name": "Tao_S6",
+      "nature": "Isolated point",
+      "dimension": 0,
+      "defect": 0,
+      "field": "Q(zeta_3)"
+    },
+    {
+      "orbit_name": "Szollosi_B6",
+      "nature": "Non-affine continuous family",
+      "dimension": 1,
+      "defect": 1,
+      "special_points": ["Haagerup_H6"],
+      "field": "Algebraic over Q"
+    },
+    {
+      "orbit_name": "Karlsson_K6_3",
+      "nature": "Degenerate continuous manifold",
+      "dimension": 3,
+      "defect": 3,
+      "field": "Algebraic over Q"
+    }
+  ],
+  "open_proof_obligations": [
+    {
+      "obligation_id": "G1_OBLIGATION_EXHAUSTIVENESS",
+      "statement": "Prove that the real algebraic variety H_6 contains no irreducible components or isolated orbits other than F_6, D_6, S_6, B_6, and K_6.",
+      "lean4_target": "MUB6.Gluing.OrbitCatalogExhaustive"
+    },
+    {
+      "obligation_id": "G1_OBLIGATION_TRIAD_OBSTRUCTION",
+      "statement": "Prove that any mutually unbiased triple (I_6, H_1, H_2) requires H_1^dag H_2 in H_6, and that no pair in (S_6, B_6) satisfies this condition, forcing any 7-MUB configuration to contain at least 5 Dita/Fourier bases.",
+      "lean4_target": "MUB6.Gluing.TriadModuliPigeonhole"
+    }
+  ]
+}

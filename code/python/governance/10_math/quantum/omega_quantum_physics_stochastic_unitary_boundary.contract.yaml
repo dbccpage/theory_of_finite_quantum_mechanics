@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:stochastic_unitary_boundary:v1.0.0
+title: Stochastic steps against unitary steps on a finite carrier.  A step on `n`
+  sites is a square row-stochastic rational ...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/stochastic_unitary_boundary.rs
+module: stochastic_unitary_boundary
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: stochastic_unitary_boundary
+  file: crates_rs/omega_quantum_physics/src/stochastic_unitary_boundary.rs
+symbols:
+- StochasticStepError
+- isometric_permutation
+- TwoStateGenerator
+- new
+- rates
+- step
+- TwoStateEmbedding
+- two_state_embedding
+- MarkovKernel
+- matrix
+- evolve
+- is_stationary
+- detailed_balance
+- dobrushin_coefficient
+owns:
+- stochastic_step_error
+- isometric_permutation
+- two_state_generator
+- new
+- rates
+- step
+- two_state_embedding
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

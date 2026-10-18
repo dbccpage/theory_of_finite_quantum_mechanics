@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:coherence_world:v1.0.0
+title: Coherence World Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/coherence_world.rs
+module: coherence_world
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: coherence_world
+  file: crates_rs/omega_types/src/coherence_world.rs
+symbols:
+- LogicalValue
+- conflicts_with
+- World
+- new
+- preview
+- extract_logical_assertions
+owns:
+- logical_value
+- conflicts_with
+- world
+- new
+- preview
+- extract_logical_assertions
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

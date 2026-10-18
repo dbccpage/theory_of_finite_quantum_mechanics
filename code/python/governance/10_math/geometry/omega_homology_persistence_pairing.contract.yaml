@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:persistence_pairing:v1.0.0
+title: 'Creator/destroyer pairing of filtration indices.  AuthorityEffect: None. Shell
+  / best-effort computational topology. ...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/persistence_pairing.rs
+module: persistence_pairing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: persistence_pairing
+  file: crates_rs/omega_homology/src/persistence_pairing.rs
+symbols:
+- PersistencePairing
+- new
+- set_pair
+- destroyer_of
+- essential_creators
+owns:
+- persistence_pairing
+- new
+- set_pair
+- destroyer_of
+- essential_creators
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

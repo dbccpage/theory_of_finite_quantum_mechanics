@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:refinement_tower:v1.0.0
+title: 'Structured finite-shadow refinement data for the Q/CODA-CS membrane.  ---
+  Math Contract: - Purpose: bind a declared s...'
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/refinement_tower.rs
+module: refinement_tower
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: refinement_tower
+  file: crates_rs/omega_types/src/refinement_tower.rs
+symbols:
+- SpectralTopology
+- ShadowKind
+- RefinementRelation
+- MeshVariable
+- UniformD1ReceiptKind
+- LeanAxiom
+- PositiveRational
+- new
+- from_u64
+- value
+- numerator
+- denominator
+- RefinementLevel
+- resolution
+- maximum_gap
+- ShadowFamily
+- id
+- kind
+- topology
+- declared_object
+- RefinementTower
+- family
+- relation
+- levels
+- digest_sha256
+- SymbolicRateBound
+- mode_index
+- rational_coefficient
+- pi_power
+- mode_power
+owns:
+- spectral_topology
+- shadow_kind
+- refinement_relation
+- mesh_variable
+- uniform_d1_receipt_kind
+- lean_axiom
+- positive_rational
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

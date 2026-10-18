@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:prime_algos_rosetta:v1.0.0
+title: 'Rosetta empirical layer: cross-domain residual-family stats under one alphabet.  H-O2:
+  if Algorithm Prime 000 + DDA i...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/prime_algos/rosetta.rs
+module: prime_algos::rosetta
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: prime_algos::rosetta
+  file: crates_rs/omega_wdp/src/prime_algos/rosetta.rs
+symbols:
+- DomainTapeSummary
+- from_receipt
+- RosterProvenance
+- RosettaReport
+- rosetta_from_receipts
+- rosetta_run
+- rosetta_builtin_roster
+- builtin_receipts
+- ResidualFamilyStat
+- residual_family_table
+owns:
+- domain_tape_summary
+- from_receipt
+- roster_provenance
+- rosetta_report
+- rosetta_from_receipts
+- rosetta_run
+- rosetta_builtin_roster
+- builtin_receipts
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,57 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_diagnostic_routing:v1.0.0
+title: 'CH04 mathematical diagnostic-to-proposal routing under explicit policies.
+  AuthorityEffect: None. These are finite mat...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/diagnostic_routing.rs
+module: coda::diagnostic_routing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::diagnostic_routing
+  file: crates_rs/omega_wdp/src/coda/diagnostic_routing.rs
+symbols:
+- RoutingError
+- DiagnosticPacket
+- replay
+- closure_map
+- system
+- phi1
+- classification
+- CurvedDiagnosticPacket
+- constrained_phi1
+- baseline_raw_gamma2
+- repaired_raw_gamma2
+- ProposalPolicy
+- Refusal
+- Proposal
+- CurvedProposal
+- propose_relation_completion
+- propose_preserving_completion
+- propose_value_edit
+- propose_curved_value_edit
+- RoutingRequest
+- RoutingReceipt
+- packet
+- policy
+- request
+- proposal
+- route_request
+owns:
+- routing_error
+- diagnostic_packet
+- replay
+- closure_map
+- system
+- phi1
+- classification
+- curved_diagnostic_packet
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

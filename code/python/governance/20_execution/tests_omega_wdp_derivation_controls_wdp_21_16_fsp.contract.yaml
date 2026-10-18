@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_21_16_fsp:v1.0.0
+title: Two finite carriers for WDP-21-16-FSP. Carrier A is the four-site star. Carrier
+  B is one k=1 orbit. Their integers do...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_21_16_fsp.rs
+module: omega_wdp::derivation_controls::wdp_21_16_fsp
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_21_16_fsp
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_21_16_fsp.rs
+symbols:
+- Witness
+- witness
+- refuse_removed_holonomy
+- refuse_foreign_fixture
+owns:
+- witness
+- refuse_removed_holonomy
+- refuse_foreign_fixture
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

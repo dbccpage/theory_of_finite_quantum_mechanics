@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:research_loop_canonical:v1.0.0
+title: Canonical JSON bytes and `sha256:` digests for loop artifacts.  The byte form
+  matches the pack's Python oracle, `json...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/research_loop/canonical.rs
+module: research_loop::canonical
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: research_loop::canonical
+  file: crates_rs/omega_woland/src/research_loop/canonical.rs
+symbols:
+- canonical_bytes
+- digest
+- digest_bytes
+- is_digest
+owns:
+- canonical_bytes
+- digest
+- digest_bytes
+- is_digest
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

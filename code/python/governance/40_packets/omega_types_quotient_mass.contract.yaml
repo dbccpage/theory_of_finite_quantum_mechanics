@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:quotient_mass:v1.0.0
+title: '§ 3 Definition 16.2: Quotient Obstruction Mass  The **quotient obstruction
+  Mass** is $Q^1 := C^1 / B^1$. Elements of ...'
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/quotient_mass.rs
+module: quotient_mass
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: quotient_mass
+  file: crates_rs/omega_types/src/quotient_mass.rs
+symbols:
+- QuotientBindings
+- QuotientMassError
+- QuotientMass
+- induced_from_verified_phi1
+- try_new
+- try_induced
+owns:
+- quotient_bindings
+- quotient_mass_error
+- quotient_mass
+- induced_from_verified_phi1
+- try_new
+- try_induced
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

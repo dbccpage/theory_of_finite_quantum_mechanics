@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hubbard_sign_problem"
+version = "0.1.0"
+description = "Exact Relational Mechanics and Certified Sign Boundaries of the Fermi-Hubbard Model"
+authors = [{ name = "Jeremy H. Carroll" }]
+license = { text = "CC-BY-4.0" }
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+python_files = ["test_*.py"]

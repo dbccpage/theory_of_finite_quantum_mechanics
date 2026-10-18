@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_state_coda_foundations_registry:v1.0.0
+title: Synthetic schema/validator fixtures; no historical run or receipt is replayed.
+  Missing upstream packet custody is rec...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_state/coda_foundations_registry.rs
+module: omega_state::coda_foundations_registry
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_state::coda_foundations_registry
+  file: crates_rs/tests/omega_state/coda_foundations_registry.rs
+symbols: []
+owns:
+- omega_state_coda_foundations_registry
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

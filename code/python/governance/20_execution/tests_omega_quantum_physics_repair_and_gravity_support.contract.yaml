@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_repair_and_gravity_support:v1.0.0
+title: 'Shared construction helpers for the holonomy tests: `omega_holonomy` complexes
+  and connections with `2 x 2` Gaussian-...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/repair_and_gravity/support.rs
+module: omega_quantum_physics::repair_and_gravity::support
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::repair_and_gravity::support
+  file: crates_rs/tests/omega_quantum_physics/repair_and_gravity/support.rs
+symbols:
+- quaternion_group
+- Scalar
+- Holonomy
+- Connection
+- q8
+- field
+- identity
+- path
+- cell_complex
+- connection
+- quaternion_plaquette
+owns:
+- quaternion_group
+- scalar
+- holonomy
+- connection
+- q8
+- field
+- identity
+- path
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

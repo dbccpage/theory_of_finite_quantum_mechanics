@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:persistence_diagram:v1.0.0
+title: 'Birth/death pairs for persistent homology (finite and infinite bars).  AuthorityEffect:
+  None. Shell / best-effort com...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/persistence_diagram.rs
+module: persistence_diagram
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: persistence_diagram
+  file: crates_rs/omega_homology/src/persistence_diagram.rs
+symbols:
+- PersistencePoint
+- finite
+- infinite
+- persistence
+- is_infinite
+- PersistenceDiagram
+- new
+- in_dimension
+- finite_only
+owns:
+- persistence_point
+- finite
+- infinite
+- persistence
+- is_infinite
+- persistence_diagram
+- new
+- in_dimension
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:stinespring_dilation:v1.0.0
+title: Stinespring dilation and complementary channels for `omega_quantum_physics`.  By
+  Stinespring's dilation theorem, ever...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/stinespring_dilation.rs
+module: stinespring_dilation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: stinespring_dilation
+  file: crates_rs/omega_quantum_physics/src/stinespring_dilation.rs
+symbols:
+- StinespringError
+- StinespringDilation
+- new
+- from_quantum_channel
+- validate
+- isometry_defect
+- dilate_matrix
+- apply_channel
+- complementary_channel
+- verify_channel_reconstruction
+- degree
+- authority_fence
+owns:
+- stinespring_error
+- stinespring_dilation
+- new
+- from_quantum_channel
+- validate
+- isometry_defect
+- dilate_matrix
+- apply_channel
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_contracts_v1_rust_binding_conformance:v1.0.0
+title: AST declaration checks for each explicitly named Rust module.  This is static
+  binding evidence, not type checking, cf...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_contracts/v1_rust_binding_conformance.rs
+module: omega_contracts::v1_rust_binding_conformance
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_contracts::v1_rust_binding_conformance
+  file: crates_rs/tests/omega_contracts/v1_rust_binding_conformance.rs
+symbols: []
+owns:
+- omega_contracts_v1_rust_binding_conformance
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

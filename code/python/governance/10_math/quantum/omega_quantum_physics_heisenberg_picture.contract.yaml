@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:heisenberg_picture:v1.0.0
+title: The Heisenberg picture of declared unitary steps over `Q(i)`, and the exact
+  derivative of the Cayley path.  Declared:...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/heisenberg_picture.rs
+module: heisenberg_picture
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: heisenberg_picture
+  file: crates_rs/omega_quantum_physics/src/heisenberg_picture.rs
+symbols:
+- HeisenbergError
+- schrodinger_state
+- heisenberg_observable
+- MatrixJet
+- value
+- tangent
+- cayley_jet
+- heisenberg_jet
+- cayley_rate_generator
+- ehrenfest_derivative
+- heisenberg_taylor
+owns:
+- heisenberg_error
+- schrodinger_state
+- heisenberg_observable
+- matrix_jet
+- value
+- tangent
+- cayley_jet
+- heisenberg_jet
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

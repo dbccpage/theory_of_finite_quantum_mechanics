@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:dyadic_presentation:v1.0.0
+title: Declared finite dyadic cyclic presentations and their exact characters. Refinement
+  is k -> 2k; restriction of charact...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/dyadic_presentation.rs
+module: dyadic_presentation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: dyadic_presentation
+  file: crates_rs/omega_number_theory/src/dyadic_presentation.rs
+symbols:
+- DyadicError
+- DyadicLevel
+- new
+- level
+- order
+- add
+- include
+- coordinate
+- character_turn
+- normalize_index
+- restrict
+- extensions
+- normalized_inner_product
+- CharacterSumLimits
+- FiniteDualPrefix
+- indices
+- next_indices
+owns:
+- dyadic_error
+- dyadic_level
+- new
+- level
+- order
+- add
+- include
+- coordinate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

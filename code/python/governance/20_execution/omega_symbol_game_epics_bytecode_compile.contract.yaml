@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:epics_bytecode_compile:v1.0.0
+title: Compile Module
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/epics/bytecode/compile.rs
+module: epics::bytecode::compile
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: epics::bytecode::compile
+  file: crates_rs/omega_symbol_game/src/epics/bytecode/compile.rs
+symbols:
+- SymbolicOpcode
+- name
+- RegisterValue
+- is_empty
+- kind
+- Instruction
+- opcode
+- BytecodeBundle
+- new
+- instructions
+- digest
+- len
+- BytecodeRefusal
+- CompileError
+- RelationRule
+- BoundaryRule
+- FibrationRule
+- GrammarSpec
+- compile_problem_grammar
+owns:
+- symbolic_opcode
+- name
+- register_value
+- is_empty
+- kind
+- instruction
+- opcode
+- bytecode_bundle
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

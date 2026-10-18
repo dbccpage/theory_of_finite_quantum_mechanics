@@ -91,8 +91,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 62c4999f1004a22da10c55f9c3f7047137d1e7d034ebf2f0587324f13d1e2928`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)

@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:finite_bell_extension:v1.0.0
+title: 'Exact positive extension for finite bipartite experimental tables. Premises:
+  one normalized nonnegative setting-indep...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/finite_bell_extension.rs
+module: finite_bell_extension
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: finite_bell_extension
+  file: crates_rs/omega_quantum_physics/src/finite_bell_extension.rs
+symbols:
+- BellExtensionError
+- BellLimits
+- LocalResponse
+- FiniteBellProblem
+- new
+- system
+- decide
+- verify
+- local_model
+- supported_assignments
+owns:
+- bell_extension_error
+- bell_limits
+- local_response
+- finite_bell_problem
+- new
+- system
+- decide
+- verify
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

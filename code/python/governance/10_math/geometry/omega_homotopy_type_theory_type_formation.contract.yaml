@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homotopy_type_theory:type_formation:v1.0.0
+title: 'Type formation records: which former built a type, at which universe.'
+kind: rust_file_contract
+status: active
+crate: omega_homotopy_type_theory
+file: crates_rs/omega_homotopy_type_theory/src/type_formation.rs
+module: type_formation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homotopy_type_theory
+  module: type_formation
+  file: crates_rs/omega_homotopy_type_theory/src/type_formation.rs
+symbols:
+- FormationKind
+- TypeRecord
+- validate
+- TypeFormationError
+owns:
+- formation_kind
+- type_record
+- validate
+- type_formation_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

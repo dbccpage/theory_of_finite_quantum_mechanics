@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:cohomology:v1.0.0
+title: 'Cohomology computation: H^n = ker(d^n) / im(d^{n-1}).  For a cochain complex
+  C^0 --d0--> C^1 --d1--> C^2: - H^0 = ker...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/cohomology.rs
+module: cohomology
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: cohomology
+  file: crates_rs/omega_homology/src/cohomology.rs
+symbols:
+- CohomologyReport
+- rank_coboundary
+- dim_kernel
+- dim_cohomology
+- cohomology_report
+owns:
+- cohomology_report
+- rank_coboundary
+- dim_kernel
+- dim_cohomology
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:policy_observer_adapter:v1.0.0
+title: Paper 031's compressed policy observer (C,D,G,R,T), not a Moore machine. Exact
+  finite linear specialization; Authorit...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/policy_observer_adapter.rs
+module: policy_observer_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: policy_observer_adapter
+  file: crates_rs/omega_wdp/src/policy_observer_adapter.rs
+symbols:
+- PolicyAdapterError
+- PolicyCarrier
+- PolicyComparisonDomain
+- SignedPermutation
+- identity
+- PolicyGaugeAction
+- PolicyRepairOperator
+- PolicyTerminalRules
+- PolicyObserverProblem
+- VerifiedPolicyObserver
+- try_new
+- problem
+- defects
+- evaluate
+- PolicyEvaluationReceipt
+- refresh_digest
+- verify_policy_evaluation
+owns:
+- policy_adapter_error
+- policy_carrier
+- policy_comparison_domain
+- signed_permutation
+- identity
+- policy_gauge_action
+- policy_repair_operator
+- policy_terminal_rules
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

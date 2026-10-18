@@ -1,0 +1,38 @@
+{
+  "schema_version": "omega.mub6.route_c_fourier_landing_receipt.v1",
+  "project": "MUB(6)",
+  "authority_effect": "None",
+  "phase": 5,
+  "name": "Route C: The Fourier Landing Bypass and Discrete Graph Non-Extension",
+  "status": "CERTIFICATE",
+  "verified": true,
+  "arithmetic": "exact rational / discrete graph combinatorics",
+  "total_mub6_bases": 7,
+  "total_pairwise_transitions": 21,
+  "fourier_landing_lower_bound": 15,
+  "fourier_avoidance_possible": false,
+  "lean4_module": "lean4/research_programs/mub6/RouteCFourierLandingBypass.lean",
+  "theorems_proved": [
+    "dim6_composite_factorization",
+    "wootters_fields_character_mub_bound_eq_three",
+    "total_pairwise_transitions_eq_21",
+    "fourier_count_ge_five",
+    "fourier_pairs_ge_ten",
+    "fourier_triads_ge_ten",
+    "fourier_landing_edges_lower_bound",
+    "fourier_landing_edges_strictly_positive",
+    "fourier_avoidance_impossible",
+    "fourier_dita_no_fourth_basis",
+    "fourier_dita_precludes_fourth_basis",
+    "route_c_complete_mub_family_impossible",
+    "no_complete_mub6_via_route_c",
+    "g1_of_route_c_fourier_landing",
+    "route_c_grand_synthesis"
+  ],
+  "claim_hygiene": {
+    "what_it_supports": "Supports the mathematical proposition that in dimension 6, any complete set of 7 mutually unbiased bases forces at least 15 of its 21 pairwise transition matrices into the 2-parameter affine Fourier family F_6(a, b), which by Jaming et al. (2009) and the certified global partition cover admits no fourth-basis extension, unconditionally precluding complete MUB(6).",
+    "what_it_does_not_support": "Does not support physical quantum gravity claims or empirical statements about physical quantum devices.",
+    "narrowest_defensible_claim": "The discrete transition graph K_7 with 21 edges cannot avoid the affine Fourier orbit; because at least 15 edges land in F_6(a, b) where extension is blocked by positive curvature margin Psi^2 >= 37249/90000 > 0, no complete 7-basis MUB system exists in dimension 6.",
+    "next_test_needed": "None; formal derivation discharged in Lean 4 kernel with 0 sorry and standard axioms."
+  }
+}

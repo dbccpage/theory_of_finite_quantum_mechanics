@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_local_transport:v1.0.0
+title: Checked receipt for the pinned d=6 transport-closure subcertificate.  This
+  module validates the shape and key termina...
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/local_transport.rs
+module: omega_native::local_transport
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::local_transport
+  file: crates_rs/omega_mub/src/omega_native/local_transport.rs
+symbols:
+- LocalTransportStatus
+- LocalTransportSubcertificate
+- check_pinned_transport_receipt
+owns:
+- local_transport_status
+- local_transport_subcertificate
+- check_pinned_transport_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

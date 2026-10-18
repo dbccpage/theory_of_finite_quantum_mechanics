@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:finite_poset:v1.0.0
+title: 'Finite strict partial orders on `{0, .., n-1}`: validated construction, order-theoretic
+  queries, the zeta and Mobius ...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/finite_poset.rs
+module: finite_poset
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: finite_poset
+  file: crates_rs/omega_homology/src/finite_poset.rs
+symbols:
+- PosetError
+- FinitePoset
+- BoundedCompletion
+- WidthCertificate
+- verified_width
+- MobiusFunction
+- size
+- get
+- is_inverse_of_zeta
+- new
+- from_generating_relations
+- chain
+- antichain
+- boolean_lattice
+- is_empty
+- less
+- less_or_equal
+- comparable
+- incomparable
+- strict_relations
+- relation_count
+- predecessors
+- successors
+- down_set
+- up_set
+- interval
+- open_interval
+- is_cover
+- covers
+- upper_covers
+owns:
+- poset_error
+- finite_poset
+- bounded_completion
+- width_certificate
+- verified_width
+- mobius_function
+- size
+- get
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

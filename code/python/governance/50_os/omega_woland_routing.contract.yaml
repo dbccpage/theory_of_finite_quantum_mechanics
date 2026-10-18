@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:routing:v1.0.0
+title: Routing Module
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/routing.rs
+module: routing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: routing
+  file: crates_rs/omega_woland/src/routing.rs
+symbols:
+- RouteLeg
+- vendor
+- cost_microusd
+- SeatRoute
+- calls_model
+- BudgetPolicy
+- tier_cap
+- RoutingTable
+- canonical_seat_key
+- seat
+- cheap_share
+- validate_table
+- admit_spend
+- parse_routing
+- load_routing
+owns:
+- route_leg
+- vendor
+- cost_microusd
+- seat_route
+- calls_model
+- budget_policy
+- tier_cap
+- routing_table
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

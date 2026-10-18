@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wf_research_bind_oeeis:v1.0.0
+title: Bounded finite control for WF-RESEARCH-BIND-OEEIS.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wf_research_bind_oeeis.rs
+module: omega_wdp::derivation_controls::wf_research_bind_oeeis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wf_research_bind_oeeis
+  file: crates_rs/tests/omega_wdp/derivation_controls/wf_research_bind_oeeis.rs
+symbols:
+- Witness
+- reject_inert_candidate_self_activation
+- witness
+owns:
+- witness
+- reject_inert_candidate_self_activation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

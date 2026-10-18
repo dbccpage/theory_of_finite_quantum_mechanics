@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:contextuality_obstruction:v1.0.0
+title: 'Finite parity contextuality via an exact cochain complex and Cech cohomology
+  over Z_2.  Reimplementation of: - Measur...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+module: contextuality_obstruction
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: contextuality_obstruction
+  file: crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+symbols:
+- MeasurementScenario
+- validate
+- construct_cabello_scenario
+- construct_product_scenario
+- CochainComplex
+- checked_complex
+- build_cochain_complex
+- CohomologyResult
+- compute_obstruction_class
+- verify_global_section
+- BinaryEmpiricalModel
+- EmpiricalModelError
+- ContextualFractionCertificate
+- supported_global_assignments
+- is_logically_contextual
+- contextual_fraction
+- verify_contextual_fraction
+owns:
+- measurement_scenario
+- validate
+- construct_cabello_scenario
+- construct_product_scenario
+- cochain_complex
+- checked_complex
+- build_cochain_complex
+- cohomology_result
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

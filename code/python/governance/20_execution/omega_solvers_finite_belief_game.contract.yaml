@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:finite_belief_game:v1.0.0
+title: Exact finite reachability games over declared belief states (WDP Appendix S).  The
+  controller chooses an enabled acti...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/finite_belief_game.rs
+module: finite_belief_game
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: finite_belief_game
+  file: crates_rs/omega_solvers/src/finite_belief_game.rs
+symbols:
+- GameError
+- Action
+- Arena
+- Certificate
+- new
+- initial
+- states
+- solve
+- verify
+- verify_feasible
+- verify_loss
+- refine
+- quotient
+owns:
+- game_error
+- action
+- arena
+- certificate
+- new
+- initial
+- states
+- solve
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

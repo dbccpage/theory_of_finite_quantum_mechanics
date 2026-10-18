@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:directed_multigraph:v1.0.0
+title: Finite edge-indexed directed multigraphs and their bounded path category. Parallel
+  edges are distinct generators; sel...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/directed_multigraph.rs
+module: directed_multigraph
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: directed_multigraph
+  file: crates_rs/omega_homology/src/directed_multigraph.rs
+symbols:
+- DirectedMultigraphError
+- DirectedMultigraph
+- new
+- topological_order
+- shortest_distances
+- all_paths
+owns:
+- directed_multigraph_error
+- directed_multigraph
+- new
+- topological_order
+- shortest_distances
+- all_paths
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_search:deterministic_sampling:v1.0.0
+title: Deterministic Sampling Module
+kind: rust_file_contract
+status: active
+crate: omega_search
+file: crates_rs/omega_search/src/deterministic_sampling.rs
+module: deterministic_sampling
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_search
+  module: deterministic_sampling
+  file: crates_rs/omega_search/src/deterministic_sampling.rs
+symbols:
+- lcg_next
+- gamma_sample
+- standard_normal
+owns:
+- lcg_next
+- gamma_sample
+- standard_normal
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

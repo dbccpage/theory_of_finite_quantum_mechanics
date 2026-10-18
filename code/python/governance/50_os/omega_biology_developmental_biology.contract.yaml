@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_biology:developmental_biology:v1.0.0
+title: '`developmental_biology` — finite dual-face object for `omega_biology`.  AUTHORING_QUALITY:
+  human_llm_best_effort_slop...'
+kind: rust_file_contract
+status: active
+crate: omega_biology
+file: crates_rs/omega_biology/src/developmental_biology.rs
+module: developmental_biology
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_biology
+  module: developmental_biology
+  file: crates_rs/omega_biology/src/developmental_biology.rs
+symbols:
+- DevelopmentalBiology
+- new
+- authority_fence
+owns:
+- developmental_biology
+- new
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

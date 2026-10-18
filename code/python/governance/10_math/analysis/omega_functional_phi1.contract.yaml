@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:phi1:v1.0.0
+title: '# Phi1: exact quotient-distance certificates  The exact Phi1 path is certificate-gated:  ```text
+  Phi1([omega]) = min_...'
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/phi1.rs
+module: phi1
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: phi1
+  file: crates_rs/omega_functional/src/phi1.rs
+symbols:
+- ExactPhi1Certificate
+- VerifiedExactPhi1
+- certificate
+- value
+- primal_residual
+- d0
+- alpha
+- dual_witness
+- ExactPhi1CertificateError
+- Phi1Functional
+- evaluate_exact_witness
+- evaluate_representative
+- unweighted_l1_rational
+- binary_representative_mass
+- verify_exact_dual_bound
+- scaled_verified_value
+- verify_exact_certificate
+- l1_mass
+- dot
+- Phi1FormReplayError
+- unweighted_l1_diagnostic
+- replay_form
+- weighted_l1_i128
+- weighted_l1_rational
+- binary
+- PrimalDualDiagnostic
+- PrimalDualDiagnosticError
+- diagnose_primal_dual
+- DualWitnessError
+- verify_display_dual_pairing
+owns:
+- exact_phi1_certificate
+- verified_exact_phi1
+- certificate
+- value
+- primal_residual
+- d0
+- alpha
+- dual_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

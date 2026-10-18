@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:qddc:v1.0.0
+title: Finite operator-valued Euclidean cochains and exact open-system dynamics. Cochains
+  are Hermitian operators, not densi...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/qddc.rs
+module: qddc
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: qddc
+  file: crates_rs/omega_quantum_physics/src/qddc.rs
+symbols:
+- QddcError
+- check_scalar
+- check_operator
+- QddcState
+- OperatorHodge
+- ExactHodge
+- try_new
+- cochain
+- repair_projector
+- deform
+- ExactGenerator
+- Lindbladian
+- RetractionChannel
+- ExactDensityStep
+- outside_weight
+- weighted_kraus
+- probe
+owns:
+- qddc_error
+- check_scalar
+- check_operator
+- qddc_state
+- operator_hodge
+- exact_hodge
+- try_new
+- cochain
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

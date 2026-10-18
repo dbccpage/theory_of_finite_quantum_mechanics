@@ -1,0 +1,23 @@
+# Team 08 — Archimedean norm bound and SOS bridge
+
+**AuthorityEffect:** None.  
+**Firewall Line:** `stated region only; mints no authority`
+
+## Source and focus
+
+The 25 Round 1 sessions span [`SESSION_PROMPT_T08_01`](../../round1_sessions/team_08_prompt_01.md) through [`SESSION_PROMPT_T08_25`](../../round1_sessions/team_08_prompt_25.md). The [Round 1 manifest](../../round1_manifest_500.json) (`SYMBOL_GAME_ROUND_1_MANIFEST_V1`, SHA-256 `4ff7e82c98c92251f5aac24dd14534880a0e3b4a717d7c2dbcf5829ba69f93c4`) has 50 Team 08 entries: 25 scored 100, 25 scored 99, and 14 with zero local graph defect. The team investigates the projector quadratic module, a norm bound, asymptotic SOS arguments, receipt formats, and Lean interfaces (Round 1 prompts [03](../../round1_sessions/team_08_prompt_03.md), [08](../../round1_sessions/team_08_prompt_08.md), [16](../../round1_sessions/team_08_prompt_16.md), [19](../../round1_sessions/team_08_prompt_19.md)).
+
+## Best vectors and gaps
+
+| Vector and source | What it supports | What it does not support; narrowest claim | Next test |
+|---|---|---|---|
+| Exact norm-bound identity ([`SESSION_R2_PROMPT_T08_03`](../../round2_sessions/team_08_prompt_03.md)). | From `Pi^2=Pi` and `sum_a Pi_(i,a)=1`, the displayed quotient calculation gives `sum_(i,a) Pi_(i,a)^2=4I`, hence `25I-sum Pi^2=21I`; the session displays 21 identity squares plus ideal terms. | This algebraic identity alone does not reject any finite moment matrix. Narrowest claim: a candidate Archimedean witness is available at the level of formal projector relations. | Encode actual noncommutative polynomials, the star ideal, and equality of both sides; replay the rational identity in Lean and an independent checker. |
+| Generator interval identity ([`SESSION_R2_PROMPT_T08_05`](../../round2_sessions/team_08_prompt_05.md)). | Modulo self-adjoint idempotency, `1-Pi=(1-Pi)^*(1-Pi)` and `Pi=Pi^*Pi`. | It does not establish the rank-one or mutual-unbiasedness semantics of a concrete representation. Narrowest claim: formal self-adjoint idempotents are positive contractions in any matching star representation. | Link formal generators to operators and separately encode rank, dimension, completeness, and trace conditions. |
+| Asymptotic hierarchy route ([`SESSION_R2_PROMPT_T08_08`](../../round2_sessions/team_08_prompt_08.md)). | A research plan for applying an Archimedean Positivstellensatz after all hypotheses are made explicit. | Asymptotic convergence does not convert a dual trace against one fixed candidate into a finite-degree refutation of every candidate. Narrowest claim: the session proposes a conditional route to a hierarchy limit. | State the precise theorem and cone, check its hypotheses for the projector/tracial model, then find a certificate excluding the full feasible set if one exists. |
+| Receipt and Lean bridge ([`SESSION_R2_PROMPT_T08_16`](../../round2_sessions/team_08_prompt_16.md), [`SESSION_R2_PROMPT_T08_19`](../../round2_sessions/team_08_prompt_19.md)). | A proposed serialization shape and a conditional exclusion interface. | The named receipt file is absent from the campaign inventory. The current [`InProjectorQuadraticModule`](../../../../lean4/sdp/TargetQArchimedeanPositivstellensatz.lean) checks a nonnegative constant and positive count, not the polynomial identity. The [Lean exclusion theorem](../../../../lean4/sdp/MomentPositivityObligation.lean) requires caller-supplied `h_exhaust`, which asserts every realization matches the refuted candidate on the test space. Narrowest claim: the source has an interface and metadata, with the coverage hypothesis still open. | Generate an actual receipt, verify polynomial equality definitionally or with a sound reflection checker, and discharge the coverage hypothesis from stated physical assumptions. |
+
+The repeated Round 2 graph witness `(1/4,-1/4,1/4,-1/4)` has nonzero divergence at `q_proj_v1` despite the session's zero-divergence label ([`SESSION_R2_PROMPT_T08_03`](../../round2_sessions/team_08_prompt_03.md)). This four-vertex defect is separate from quadratic-module membership.
+
+## Claim boundary
+
+**Supports:** an explicit formal norm-bound identity worth certifying. **Does not support:** finite-level infeasibility of all projector moments or a discharged physical soundness theorem. **Narrowest claim:** the bound is an algebraic candidate modulo the listed relations; the Lean file currently records counts rather than its polynomial equality. **Next test:** formalize and replay the identity in the real quotient, then derive a certificate or exhaustion result that applies to the entire admissible moment set.

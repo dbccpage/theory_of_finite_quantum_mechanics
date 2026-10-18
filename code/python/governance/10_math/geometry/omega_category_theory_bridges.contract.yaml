@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:bridges:v1.0.0
+title: Bridges — Spec Section 8.  The StructurePreservingMap base trait enables cross-discipline
+  functor-like maps without r...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/bridges.rs
+module: bridges
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: bridges
+  file: crates_rs/omega_category_theory/src/bridges.rs
+symbols:
+- StructurePreservingMap
+- BridgeEvidence
+- new
+- preserve_law
+owns:
+- structure_preserving_map
+- bridge_evidence
+- new
+- preserve_law
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

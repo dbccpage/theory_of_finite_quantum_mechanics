@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_holonomy:graph:v1.0.0
+title: 'Discrete oriented cell complex representation for cell complexes and graphs.  AuthorityEffect:
+  None. Governing Rule: ...'
+kind: rust_file_contract
+status: active
+crate: omega_holonomy
+file: crates_rs/omega_holonomy/src/graph.rs
+module: graph
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_holonomy
+  module: graph
+  file: crates_rs/omega_holonomy/src/graph.rs
+symbols:
+- Vertex
+- Edge
+- OrientedStep
+- Face
+- CellComplex
+- new
+- add_vertex
+- add_edge
+- add_face
+- degree
+- incident_edges
+- neighbors
+- content_hash
+- cochain_matrices
+owns:
+- vertex
+- edge
+- oriented_step
+- face
+- cell_complex
+- new
+- add_vertex
+- add_edge
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

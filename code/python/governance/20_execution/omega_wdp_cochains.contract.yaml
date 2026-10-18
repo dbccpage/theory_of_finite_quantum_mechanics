@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:cochains:v1.0.0
+title: 'Root P: finite graph and 2-complex cochain carriers.  This module owns the
+  WDP presentation of a finite 2-complex (na...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/cochains.rs
+module: cochains
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: cochains
+  file: crates_rs/omega_wdp/src/cochains.rs
+symbols:
+- Vertex
+- Edge
+- Face
+- FiniteComplex
+- new
+- validate
+- validate_simplicial_admission
+- edge_value
+- edge_weights
+- cochain_vector
+- one_skeleton_carrier
+- l1_quotient_presentation
+- named_graph_carrier
+- coboundary_rows
+- solve_potential
+owns:
+- vertex
+- edge
+- face
+- finite_complex
+- new
+- validate
+- validate_simplicial_admission
+- edge_value
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

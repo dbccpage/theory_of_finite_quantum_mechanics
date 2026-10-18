@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:nerve:v1.0.0
+title: 'The Nerve of a Category — Simplicial Sets.  The nerve functor N : Cat → sSet
+  sends a small category C to a simplicial...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/nerve.rs
+module: nerve
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: nerve
+  file: crates_rs/omega_category_theory/src/nerve.rs
+symbols:
+- Simplex
+- dimension
+- DeclaredNerve
+- new
+- n_simplices
+- face
+- degeneracy
+- is_degenerate
+- nondegenerate_n_simplices
+- FiniteNerveRefusal
+- ValidatedFiniteNerve
+- validate_simplex
+- all_faces
+- all_degeneracies
+- map_simplex
+- paths
+owns:
+- simplex
+- dimension
+- declared_nerve
+- new
+- n_simplices
+- face
+- degeneracy
+- is_degenerate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

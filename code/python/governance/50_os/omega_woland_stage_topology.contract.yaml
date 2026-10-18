@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:stage_topology:v1.0.0
+title: Immutable topology records. Deserialization checks content before binding identity.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/stage/topology.rs
+module: stage::topology
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: stage::topology
+  file: crates_rs/omega_woland/src/stage/topology.rs
+symbols: []
+owns:
+- stage_topology
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

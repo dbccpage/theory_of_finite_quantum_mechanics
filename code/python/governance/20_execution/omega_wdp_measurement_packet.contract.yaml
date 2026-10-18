@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:measurement_packet:v1.0.0
+title: Problem-bound declared quantum measurement through the full WDP ladder.  This
+  connects the exact instrument owner, a ...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/measurement_packet.rs
+module: measurement_packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: measurement_packet
+  file: crates_rs/omega_wdp/src/measurement_packet.rs
+symbols:
+- MeasurementPacketError
+- MeasurandSpecification
+- NumericMeasurementScale
+- IndicationValueMap
+- ObservationStatus
+- InstrumentObservationContext
+- InstrumentMark
+- InstrumentRegistration
+- InstrumentWitness
+- AcceptedInstrumentObservation
+- QuantumMeasurementProblem
+- DeclaredMeasurementResult
+- QuantumMeasurementReceipt
+- register_instrument_problem
+- witness_instrument_registration
+- accept_instrument_observation
+- refresh_digest
+- evaluate_quantum_measurement
+- verify_quantum_measurement
+owns:
+- measurement_packet_error
+- measurand_specification
+- numeric_measurement_scale
+- indication_value_map
+- observation_status
+- instrument_observation_context
+- instrument_mark
+- instrument_registration
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

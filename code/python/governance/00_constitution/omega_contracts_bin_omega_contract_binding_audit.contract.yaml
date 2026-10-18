@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:bin_omega_contract_binding_audit:v1.0.0
+title: Bounded stdin/stdout adapter for the strict static source-binding checker.
+  It reads supplied bytes, never source path...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/bin/omega_contract_binding_audit.rs
+module: bin::omega_contract_binding_audit
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: bin::omega_contract_binding_audit
+  file: crates_rs/omega_contracts/src/bin/omega_contract_binding_audit.rs
+symbols: []
+owns:
+- bin_omega_contract_binding_audit
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

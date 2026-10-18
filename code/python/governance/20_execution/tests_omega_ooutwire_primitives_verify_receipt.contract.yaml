@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_ooutwire_primitives_verify_receipt:v1.0.0
+title: Integration tests for pinned PO-000 receipt conformance.  Compares `RECEIPT.txt`
+  to the compiled-in reference and tes...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_ooutwire_primitives/verify_receipt.rs
+module: omega_ooutwire_primitives::verify_receipt
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_ooutwire_primitives::verify_receipt
+  file: crates_rs/tests/omega_ooutwire_primitives/verify_receipt.rs
+symbols: []
+owns:
+- omega_ooutwire_primitives_verify_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

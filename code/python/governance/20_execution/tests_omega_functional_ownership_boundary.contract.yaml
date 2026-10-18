@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_functional_ownership_boundary:v1.0.0
+title: Source ownership regression gate. This checks syntax across the Rust estate,
+  including disabled modules and paper pac...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_functional/ownership_boundary.rs
+module: omega_functional::ownership_boundary
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_functional::ownership_boundary
+  file: crates_rs/tests/omega_functional/ownership_boundary.rs
+symbols: []
+owns:
+- omega_functional_ownership_boundary
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

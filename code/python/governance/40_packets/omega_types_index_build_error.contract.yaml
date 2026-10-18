@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:index_build_error:v1.0.0
+title: Index Build Error Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/index_build_error.rs
+module: index_build_error
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: index_build_error
+  file: crates_rs/omega_types/src/index_build_error.rs
+symbols:
+- IndexBuildError
+owns:
+- index_build_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

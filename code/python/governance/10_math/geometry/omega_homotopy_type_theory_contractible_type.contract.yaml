@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homotopy_type_theory:contractible_type:v1.0.0
+title: Contractible-type shape records (isContr).  A type is contractible when it
+  has a center and a contraction of every po...
+kind: rust_file_contract
+status: active
+crate: omega_homotopy_type_theory
+file: crates_rs/omega_homotopy_type_theory/src/contractible_type.rs
+module: contractible_type
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homotopy_type_theory
+  module: contractible_type
+  file: crates_rs/omega_homotopy_type_theory/src/contractible_type.rs
+symbols:
+- ContractibleType
+- validate
+- ContractibleError
+owns:
+- contractible_type
+- validate
+- contractible_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

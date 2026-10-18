@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:gaussian_frame_readout:v1.0.0
+title: Readouts along orthogonal frames of the Gaussian-integer plane.  A vector `v`
+  of `Z[i]^2` has scale `s` when `<v, v> ...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/gaussian_frame_readout.rs
+module: gaussian_frame_readout
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: gaussian_frame_readout
+  file: crates_rs/omega_quantum_physics/src/gaussian_frame_readout.rs
+symbols:
+- Plane
+- Frame
+- FrameError
+- AdditivityViolation
+- scale_vectors
+- orthogonal_frames
+- readout
+- frame_total
+- frame_operator
+- square_is_frame_additive
+- frame_additivity_violation
+- report_basis_law
+owns:
+- plane
+- frame
+- frame_error
+- additivity_violation
+- scale_vectors
+- orthogonal_frames
+- readout
+- frame_total
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

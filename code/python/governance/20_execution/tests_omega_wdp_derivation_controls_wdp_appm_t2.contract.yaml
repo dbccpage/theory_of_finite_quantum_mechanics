@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_appm_t2:v1.0.0
+title: Exact witness for the five-triangle metric and deficit-angle carrier in `derivation.md`.  Computes
+  the 4x4 Cayley-Men...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appm_t2.rs
+module: omega_wdp::derivation_controls::wdp_appm_t2
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_appm_t2
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appm_t2.rs
+symbols:
+- Witness
+- cayley_menger_det_2simplex
+- witness
+- reject_pinned_cm_determinant
+- reject_unproved_continuum_bound
+owns:
+- witness
+- cayley_menger_det_2simplex
+- reject_pinned_cm_determinant
+- reject_unproved_continuum_bound
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

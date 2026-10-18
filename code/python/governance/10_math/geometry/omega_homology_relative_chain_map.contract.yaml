@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:relative_chain_map:v1.0.0
+title: 'Chain maps of pairs.  AuthorityEffect: None. Best-effort shell for computational
+  topology. Not PROVED; not GlobalGree...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/relative_chain_map.rs
+module: relative_chain_map
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: relative_chain_map
+  file: crates_rs/omega_homology/src/relative_chain_map.rs
+symbols:
+- RelativeChainMap
+- new
+- with_note
+- validate_shell
+owns:
+- relative_chain_map
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

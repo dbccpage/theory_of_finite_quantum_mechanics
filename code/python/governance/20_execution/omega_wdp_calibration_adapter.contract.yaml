@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:calibration_adapter:v1.0.0
+title: Named WDP calibration packets and problem-bound exact replay receipts.  Numerical
+  composition/enclosure mathematics i...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/calibration_adapter.rs
+module: calibration_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: calibration_adapter
+  file: crates_rs/omega_wdp/src/calibration_adapter.rs
+symbols:
+- CalibrationPacketError
+- NamedCalibrationStage
+- new
+- CalibrationPacket
+- CalibrationReceipt
+- evaluate_calibration_packet
+- verify_calibration_receipt
+- CalibrationUpdateReceipt
+- evaluate_calibration_update
+- verify_calibration_update
+owns:
+- calibration_packet_error
+- named_calibration_stage
+- new
+- calibration_packet
+- calibration_receipt
+- evaluate_calibration_packet
+- verify_calibration_receipt
+- calibration_update_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

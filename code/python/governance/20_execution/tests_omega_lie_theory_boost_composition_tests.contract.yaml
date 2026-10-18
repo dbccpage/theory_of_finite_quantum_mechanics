@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_lie_theory_boost_composition_tests:v1.0.0
+title: Exact polar decomposition and Thomas-Wigner rotation regression controls.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_lie_theory/boost_composition_tests.rs
+module: omega_lie_theory::boost_composition_tests
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_lie_theory::boost_composition_tests
+  file: crates_rs/tests/omega_lie_theory/boost_composition_tests.rs
+symbols: []
+owns:
+- omega_lie_theory_boost_composition_tests
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

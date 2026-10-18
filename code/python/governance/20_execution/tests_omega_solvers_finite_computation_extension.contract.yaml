@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_solvers_finite_computation_extension:v1.0.0
+title: Finite Computation Extension Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_solvers/finite_computation_extension.rs
+module: omega_solvers::finite_computation_extension
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_solvers::finite_computation_extension
+  file: crates_rs/tests/omega_solvers/finite_computation_extension.rs
+symbols: []
+owns:
+- omega_solvers_finite_computation_extension
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

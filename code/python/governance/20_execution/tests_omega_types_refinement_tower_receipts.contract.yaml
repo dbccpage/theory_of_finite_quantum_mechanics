@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_types_refinement_tower_receipts:v1.0.0
+title: Adversarial receipt-binding tests for uniform D1 convergence certificates.  Commit
+  81717ee7d removed `lean4/original_...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_types/refinement_tower_receipts.rs
+module: omega_types::refinement_tower_receipts
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_types::refinement_tower_receipts
+  file: crates_rs/tests/omega_types/refinement_tower_receipts.rs
+symbols: []
+owns:
+- omega_types_refinement_tower_receipts
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

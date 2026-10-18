@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:category_opposite:v1.0.0
+title: 'opposite category shell for omega_category_theory. AuthorityEffect: None.
+  Not PROVED / GlobalGreen.  C^op has the sam...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/category/opposite.rs
+module: category::opposite
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: category::opposite
+  file: crates_rs/omega_category_theory/src/category/opposite.rs
+symbols:
+- OppositeCategoryShell
+- new
+- reverse_of
+- validate_shell
+owns:
+- opposite_category_shell
+- new
+- reverse_of
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

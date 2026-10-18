@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:gamma_reconciliation:v1.0.0
+title: 'Raw versus second-repair quotient `Gamma`: certificate checkers.  The data
+  are a defect map `D : Q^n -> Q^m`, a secon...'
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/gamma_reconciliation.rs
+module: gamma_reconciliation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: gamma_reconciliation
+  file: crates_rs/omega_functional/src/gamma_reconciliation.rs
+symbols:
+- GammaReconciliationError
+- QuotientGammaCertificate
+- VertexFarkasCertificate
+- ValueGapWitness
+- VertexExtensionTable
+- try_from_entries
+- entries
+- all_sign_vectors
+- RepairQuotientProblem
+- try_new
+- rows
+- defect_dimension
+- repair_dimension
+- d
+- a
+- weights
+- weighted_norm
+- defect
+- raw_gamma
+- residual_norm
+- verify_quotient_certificate
+- vertex_target
+- verify_vertex_extension
+- verify_vertex_table
+- verify_vertex_farkas
+- verify_value_gap
+- verify_zero_test_gap
+- verify_raw_descent
+- verify_quotient_descent
+owns:
+- gamma_reconciliation_error
+- quotient_gamma_certificate
+- vertex_farkas_certificate
+- value_gap_witness
+- vertex_extension_table
+- try_from_entries
+- entries
+- all_sign_vectors
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:descent_packet:v1.0.0
+title: Finite descent packet and the packet-field-necessity firewall (PO-D8).  A descent
+  packet is the dependent record `Pac...
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/descent_packet.rs
+module: descent_packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: descent_packet
+  file: crates_rs/omega_types/src/descent_packet.rs
+symbols:
+- DescentPacketRefusal
+- DescentPacket
+- assemble
+- carrier
+- candidate_family
+- verifier
+- terminalizer
+- lift_discipline
+owns:
+- descent_packet_refusal
+- descent_packet
+- assemble
+- carrier
+- candidate_family
+- verifier
+- terminalizer
+- lift_discipline
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:polynomial:v1.0.0
+title: Dense univariate polynomials over an exact field, and exact real-root machinery
+  over `Q`.  [`Polynomial<F>`] stores a...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/polynomial.rs
+module: polynomial
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: polynomial
+  file: crates_rs/omega_number_theory/src/polynomial.rs
+symbols:
+- PolynomialError
+- lagrange_weights_at
+- ExactField
+- Polynomial
+- zero
+- one
+- constant
+- x
+- monomial
+- from_coefficients
+- from_roots
+- coefficients
+- coefficient
+- degree
+- is_zero
+- is_constant
+- leading_coefficient
+- add
+- neg
+- sub
+- mul
+- scale
+- pow
+- eval
+- compose
+- shift
+- derivative
+- monic
+- div_rem
+- rem
+owns:
+- polynomial_error
+- lagrange_weights_at
+- exact_field
+- polynomial
+- zero
+- one
+- constant
+- x
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

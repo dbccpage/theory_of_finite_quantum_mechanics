@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_sandbox_hostile_scripts:v1.0.0
+title: Hostile script tests for omega_sandbox (U09).
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_sandbox/hostile_scripts.rs
+module: omega_sandbox::hostile_scripts
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_sandbox::hostile_scripts
+  file: crates_rs/tests/omega_sandbox/hostile_scripts.rs
+symbols: []
+owns:
+- omega_sandbox_hostile_scripts
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:xi_diagnostic:v1.0.0
+title: '§ 12.3: Xi Diagnostic  $$\Xi = \|\rho(h_1^*) - \rho(\varphi^*)\|_1$$  $\Xi$
+  is not a new obstruction norm, not a quan...'
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/xi_diagnostic.rs
+module: xi_diagnostic
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: xi_diagnostic
+  file: crates_rs/omega_types/src/xi_diagnostic.rs
+symbols:
+- AuthorityCeiling
+- XiDiagnostic
+- XiDiagnosticRef
+- XiDiagnosticError
+- new
+owns:
+- authority_ceiling
+- xi_diagnostic
+- xi_diagnostic_ref
+- xi_diagnostic_error
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

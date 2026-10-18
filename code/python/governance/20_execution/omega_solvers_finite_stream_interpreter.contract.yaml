@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:finite_stream_interpreter:v1.0.0
+title: Compile finite partial dynamics to the existing deterministic tape interpreter.
+  Event a is tape symbol a+1; 0 is blan...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/finite_stream_interpreter.rs
+module: finite_stream_interpreter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: finite_stream_interpreter
+  file: crates_rs/omega_solvers/src/finite_stream_interpreter.rs
+symbols:
+- StreamError
+- StreamOutcome
+- StreamCertificate
+- StreamLimits
+- CompiledStream
+- new
+- machine
+- verify_program
+- execute
+- verify
+owns:
+- stream_error
+- stream_outcome
+- stream_certificate
+- stream_limits
+- compiled_stream
+- new
+- machine
+- verify_program
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

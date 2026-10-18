@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_prompt_civilization_prompt_ecology:v1.0.0
+title: Prompt Ecology Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_prompt_civilization/prompt_ecology.rs
+module: omega_prompt_civilization::prompt_ecology
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_prompt_civilization::prompt_ecology
+  file: crates_rs/tests/omega_prompt_civilization/prompt_ecology.rs
+symbols: []
+owns:
+- omega_prompt_civilization_prompt_ecology
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

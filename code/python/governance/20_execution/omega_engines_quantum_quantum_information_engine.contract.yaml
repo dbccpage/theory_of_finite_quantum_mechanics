@@ -1,0 +1,58 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:quantum_quantum_information_engine:v1.0.0
+title: Operational quantum-information tools that sit above density matrices.  This
+  module is computational infrastructure o...
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/quantum/quantum_information_engine.rs
+module: quantum::quantum_information_engine
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: quantum::quantum_information_engine
+  file: crates_rs/omega_engines/src/quantum/quantum_information_engine.rs
+symbols:
+- QuantumInfoError
+- Povm
+- new
+- with_tolerance
+- computational_basis
+- qubit_unsharp_z
+- dim
+- len
+- is_empty
+- elements
+- apply_lossy
+- apply_checked
+- apply_matrix_lossy
+- apply_matrix_checked
+- WignerGrid
+- negativity_volume
+- wigner
+- wigner_matrix
+- wigner_qp_point_diagnostic
+- wigner_qp_point_checked
+- QuantumJumpEvent
+- QuantumJumpConfig
+- QuantumTrajectory
+- final_state
+- density_at
+- QuantumTrajectorySimulator
+- quantum_jump
+owns:
+- quantum_info_error
+- povm
+- new
+- with_tolerance
+- computational_basis
+- qubit_unsharp_z
+- dim
+- len
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

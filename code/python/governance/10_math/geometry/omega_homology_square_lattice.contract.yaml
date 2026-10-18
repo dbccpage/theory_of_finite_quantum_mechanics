@@ -1,0 +1,54 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:square_lattice:v1.0.0
+title: 'Cell complexes of square lattices: the periodic `l1 x l2` torus, the open
+  disk and the cylinder, with boundary maps o...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/square_lattice.rs
+module: square_lattice
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: square_lattice
+  file: crates_rs/omega_homology/src/square_lattice.rs
+symbols:
+- LatticeError
+- Boundary
+- SquareLattice
+- periodic_square_complex
+- open_square_complex
+- cylinder_square_complex
+- new
+- rows
+- cols
+- row_boundary
+- col_boundary
+- vertex_count
+- edge_count
+- face_count
+- vertex_index
+- horizontal_edge
+- vertical_edge
+- edge_endpoints
+- face_boundary
+- integral_complex
+- f2_complex
+- horizontal_loop
+- vertical_loop
+owns:
+- lattice_error
+- boundary
+- square_lattice
+- periodic_square_complex
+- open_square_complex
+- cylinder_square_complex
+- new
+- rows
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

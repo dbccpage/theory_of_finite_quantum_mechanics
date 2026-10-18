@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_state_coda1_classifier:v1.0.0
+title: Coda1 Classifier Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_state/coda1_classifier.rs
+module: omega_state::coda1_classifier
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_state::coda1_classifier
+  file: crates_rs/tests/omega_state/coda1_classifier.rs
+symbols: []
+owns:
+- omega_state_coda1_classifier
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

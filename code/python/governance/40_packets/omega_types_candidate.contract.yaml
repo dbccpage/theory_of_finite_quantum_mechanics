@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:candidate:v1.0.0
+title: Candidate Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/candidate.rs
+module: candidate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: candidate
+  file: crates_rs/omega_types/src/candidate.rs
+symbols:
+- CandidateGenerator
+owns:
+- candidate_generator
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:cert_cohomology_admission:v1.0.0
+title: Cohomology admission for a declared finite cochain complex.  A residual enters
+  `C^1` only through a declared adapter....
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/cert_cohomology_admission.rs
+module: cert_cohomology_admission
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: cert_cohomology_admission
+  file: crates_rs/omega_solvers/src/cert_cohomology_admission.rs
+symbols:
+- AdmissionRefusal
+- Admission
+- diagnostic_class
+- CohomologyDimensions
+- complex_of_packet
+- cohomology_dimensions
+- image_preimage
+- admit
+- verify_admission
+owns:
+- admission_refusal
+- admission
+- diagnostic_class
+- cohomology_dimensions
+- complex_of_packet
+- image_preimage
+- admit
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

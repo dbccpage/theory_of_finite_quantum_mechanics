@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_sheaf_theory:torsor:v1.0.0
+title: 'Torsors and principal G-sheaves (SH-19).  AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_sheaf_theory
+file: crates_rs/omega_sheaf_theory/src/torsor.rs
+module: torsor
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_sheaf_theory
+  module: torsor
+  file: crates_rs/omega_sheaf_theory/src/torsor.rs
+symbols:
+- PrincipalBundleZ2
+- new
+- holonomy_around_loop
+- is_trivial_bundle
+owns:
+- principal_bundle_z2
+- new
+- holonomy_around_loop
+- is_trivial_bundle
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

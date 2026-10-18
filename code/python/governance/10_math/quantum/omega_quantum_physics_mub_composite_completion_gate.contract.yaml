@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_composite_completion_gate:v1.0.0
+title: Composite complete-target gate for MUB(6), MUB(10), and similar dimensions.  Tensor
+  products of complete prime-power ...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/composite_completion_gate.rs
+module: mub::composite_completion_gate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::composite_completion_gate
+  file: crates_rs/omega_quantum_physics/src/mub/composite_completion_gate.rs
+symbols:
+- CompositeCompletionTarget
+- CompositeCompletionStatus
+- CompositeCompletionGateReport
+- CompositeCompletionInputs
+- verify_current_composite_completion_gates
+- verify_composite_completion_gate
+owns:
+- composite_completion_target
+- composite_completion_status
+- composite_completion_gate_report
+- composite_completion_inputs
+- verify_current_composite_completion_gates
+- verify_composite_completion_gate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

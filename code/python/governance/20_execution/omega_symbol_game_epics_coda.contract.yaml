@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:epics_coda:v1.0.0
+title: CODA layer bridges and the quarantine for speculative adapters.  `EPIC-OE-SYMGAM-014`
+  states one invariant that does ...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/epics/coda.rs
+module: epics::coda
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: epics::coda
+  file: crates_rs/omega_symbol_game/src/epics/coda.rs
+symbols:
+- LayerRefusal
+- QuarantineRefusal
+- Layer
+- name
+- all
+- Evidence
+- kind
+- admissible_layer
+- witness_from_verdict
+- LayeredClaim
+- new
+- layer
+- statement
+- evidence
+- AdmittedClaim
+- claim
+- admit
+- bridge
+- FormalCertificate
+- QuarantinedAdapter
+- propose
+- hypothesis
+- is_certified
+- certificate
+- admit_certificate
+- author_receipt
+- AdapterReceiptV1
+- CanaryReport
+- is_sound
+- canary_sweep
+owns:
+- layer_refusal
+- quarantine_refusal
+- layer
+- name
+- all
+- evidence
+- kind
+- admissible_layer
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

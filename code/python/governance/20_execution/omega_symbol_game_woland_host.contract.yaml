@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:woland_host:v1.0.0
+title: Native Woland composition root. Domain execution stays behind its owned ports.
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/woland_host.rs
+module: woland_host
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: woland_host
+  file: crates_rs/omega_symbol_game/src/woland_host.rs
+symbols:
+- execute_with_transport
+- dispatch
+owns:
+- execute_with_transport
+- dispatch
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

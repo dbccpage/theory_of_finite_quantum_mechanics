@@ -1,0 +1,36 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:exact_regge_action:v1.0.0
+title: Rational Regge proxy and the exact defect predicate.  The proxy is `Σ_h A_h²
+  κ_h`, not `Σ_h A_h ε_h`. Deficit angles ...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/exact_regge/action.rs
+module: exact_regge::action
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: exact_regge::action
+  file: crates_rs/omega_general_relativity/src/exact_regge/action.rs
+symbols:
+- RationalReggeProxy
+- area_squared_in_pentatope
+- rational_regge_proxy
+- flat_einstein_hilbert
+- einstein_hilbert_fence
+- flat_chart_admitted
+- defect_bound_holds
+owns:
+- rational_regge_proxy
+- area_squared_in_pentatope
+- flat_einstein_hilbert
+- einstein_hilbert_fence
+- flat_chart_admitted
+- defect_bound_holds
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:trace_norm_certificate:v1.0.0
+title: Exact trace-norm, operator-norm and dual-ball certificates for Hermitian matrices
+  over `Q(i)` (QM_080).  Trace norms ...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+module: trace_norm_certificate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: trace_norm_certificate
+  file: crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+symbols:
+- TraceNormError
+- TraceNormCertificate
+- try_new
+- operator
+- positive_part
+- negative_part
+- witness
+- trace_norm
+- helstrom_effect
+- authority_fence
+- sign_from_spectrum
+- trace_distance
+- SignCertificate
+- new
+- matrix
+- sign
+- trace_norm_certificate
+- absolute
+- schatten_power
+- sign_certificate_from_spectrum
+- within_operator_ball
+- qubit_polar_pairing
+- SumZeroDualPair
+- sum_zero_dual_pair
+- plan_pairing
+- verify
+- dual_ball_value
+- eigenvalue_ranges
+- trace_norm_enclosure
+- trace_distance_enclosure
+owns:
+- trace_norm_error
+- trace_norm_certificate
+- try_new
+- operator
+- positive_part
+- negative_part
+- witness
+- trace_norm
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

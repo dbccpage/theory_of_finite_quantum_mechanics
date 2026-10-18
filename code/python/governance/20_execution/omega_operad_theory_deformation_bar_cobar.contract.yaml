@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_operad_theory:deformation_bar_cobar:v1.0.0
+title: 'Deformation: Bar-Cobar adjunction and Koszul minimal model evaluation.  AuthorityEffect:
+  None.'
+kind: rust_file_contract
+status: active
+crate: omega_operad_theory
+file: crates_rs/omega_operad_theory/src/deformation/bar_cobar.rs
+module: deformation::bar_cobar
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_operad_theory
+  module: deformation::bar_cobar
+  file: crates_rs/omega_operad_theory/src/deformation/bar_cobar.rs
+symbols:
+- BarCobarResolution
+- evaluate_koszul_resolution
+owns:
+- bar_cobar_resolution
+- evaluate_koszul_resolution
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

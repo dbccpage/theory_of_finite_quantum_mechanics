@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_sg_48:v1.0.0
+title: Sg 48 Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/sg_48.rs
+module: omega_wdp::derivation_controls::sg_48
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::sg_48
+  file: crates_rs/tests/omega_wdp/derivation_controls/sg_48.rs
+symbols:
+- run_sg_48_episodes
+owns:
+- run_sg_48_episodes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

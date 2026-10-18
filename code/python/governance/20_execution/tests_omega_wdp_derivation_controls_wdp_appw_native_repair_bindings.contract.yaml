@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_appw_native_repair_bindings:v1.0.0
+title: Wdp Appw Native Repair Bindings Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appw_native_repair_bindings.rs
+module: omega_wdp::derivation_controls::wdp_appw_native_repair_bindings
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_appw_native_repair_bindings
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appw_native_repair_bindings.rs
+symbols:
+- ControlReceipt
+- evaluate_wdp_appw_native_repair_bindings
+owns:
+- control_receipt
+- evaluate_wdp_appw_native_repair_bindings
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

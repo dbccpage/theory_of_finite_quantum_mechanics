@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_test_genesis_gauge_result:v1.0.0
+title: Test Genesis Gauge Result Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/test_genesis_gauge_result.rs
+module: omega_wdp::test_genesis_gauge_result
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::test_genesis_gauge_result
+  file: crates_rs/tests/omega_wdp/test_genesis_gauge_result.rs
+symbols: []
+owns:
+- omega_wdp_test_genesis_gauge_result
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

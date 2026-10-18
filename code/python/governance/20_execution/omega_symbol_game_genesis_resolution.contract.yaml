@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:genesis_resolution:v1.0.0
+title: Bounded, input-bound Genesis potential certificates from the existing exact
+  solver.  The native simplex proposes one ...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/genesis_resolution.rs
+module: genesis_resolution
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: genesis_resolution
+  file: crates_rs/omega_symbol_game/src/genesis_resolution.rs
+symbols:
+- resolve
+owns:
+- resolve
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

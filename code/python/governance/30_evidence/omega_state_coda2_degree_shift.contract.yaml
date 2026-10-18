@@ -1,0 +1,55 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:coda2_degree_shift:v1.0.0
+title: Bounded CODA-2 degree-label transport for admitted CODA-1 windows.  This module
+  proves an executable bijection only f...
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/coda2_degree_shift.rs
+module: coda2_degree_shift
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: coda2_degree_shift
+  file: crates_rs/omega_state/src/coda2_degree_shift.rs
+symbols:
+- DegreeShiftV1
+- validate
+- original_degrees
+- to_original
+- to_local
+- witness
+- DegreeBijectionWitnessV1
+- Coda2PacketV1
+- Coda2AdmissionV1
+- Coda2ClassificationV1
+- Coda2ProducerReceiptV1
+- Coda2EvaluationReceiptV1
+- Coda2AuthorityWitnessAttestationV1
+- Coda2ReplayReceiptV1
+- Coda2TerminalReceiptV1
+- Coda2ReceiptBundleV1
+- Coda2ExecutionV1
+- classify_coda2_v1
+- execute_and_evaluate_coda2_v1
+- evaluate_coda2_v1
+- coda2_sha256_json_v1
+- coda2_packet_sha256_v1
+- coda2_observer_sha256_v1
+- Coda2Error
+owns:
+- degree_shift_v1
+- validate
+- original_degrees
+- to_original
+- to_local
+- witness
+- degree_bijection_witness_v1
+- coda2_packet_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

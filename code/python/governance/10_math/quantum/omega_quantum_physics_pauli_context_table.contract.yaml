@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:pauli_context_table:v1.0.0
+title: Exact two-qubit Pauli operators on a 3 x 3 context table, and the sign table
+  they induce.  A table declares nine two-...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/pauli_context_table.rs
+module: pauli_context_table
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: pauli_context_table
+  file: crates_rs/omega_quantum_physics/src/pauli_context_table.rs
+symbols:
+- PauliTableError
+- pauli_word
+- context_members
+- PauliContextTable
+- new
+- mermin
+- words
+- observable
+- observables_are_hermitian_involutions
+- commute
+- context_sign
+- sign_table
+- packet
+owns:
+- pauli_table_error
+- pauli_word
+- context_members
+- pauli_context_table
+- new
+- mermin
+- words
+- observable
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

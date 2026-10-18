@@ -90,8 +90,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 0792ec8456cc7ac2b8647859c7410e1e5cb867f76c9e242099cb1aa7478f78c6`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -105,8 +103,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 5c8524efabc0c7508c5938c6125653dac11b1547d5ad4fae6a2ce8153215e408`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-BUSCH-EFFECT-FRAME`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -119,3 +115,48 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ee337aecf2c6a1fcaf1dd832d1e9e6384c5d861854ab0f72d97382c34cb16302`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GAP-BORN-UNIQUENESS-GLEASON`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-GAP-BORN-UNIQUENESS-GLEASON` (`FINITE_QM_CORE` / `CONDITIONAL`)
+- **Mined Operad Family (`M2`)**: `OP-FQ-SORKIN-GLEASON-BUSCH`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [20, -40, 30]`, `chord_potential = 30`, `holonomy_gamma2 = 40`
+- **Finite Shadow Exact Witness (`M4`)**: `cabello_18_9_ray_sum == 18*2 and quartic_vs_born_frame_gap == 25^2 - (9 + 16)^2 + 288` ($\text{value} = 324$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `d2_unit_effect_two_pairings_disagree: l1_sum(3,4)=7 != l2_sq_sum(3,4)=25 (25 - 7 = 18)` ($\text{value} = 18$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `3` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 6d40469bbfc2d3d2b3b767b3d0ef508bddb0b142c6c691c175557fdc62c670d2`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-IMPORT-GLEASON`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-IMPORT-GLEASON` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-GP-GLEASON-FRAME-IMPORT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [250, -500, 375]`, `chord_potential = 375`, `holonomy_gamma2 = 500`
+- **Finite Shadow Exact Witness (`M4`)**: `sorkin_i3_quadratic_vanishing: I_3^(2)(1,1,1) = 3^2 - (2^2+2^2+2^2) + (1^2+1^2+1^2) == 0` ($\text{value} = 0$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `sorkin_i3_cubic_rival_nonzero: I_3^(3)(1,1,1) = 3^3 - 3*(2^3) + 3*(1^3) = 27 - 24 + 3 == 6` ($\text{value} = 6$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 340be3c3eed8b31920e6de8dde740d023fe82c7ea5d952f59c5c7bf02573d0d3`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-QM020-THM6-P2-GLEASON`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `L1-QM020-THM6-P2-GLEASON` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-L1-GLEASON-BORN-UNIQUENESS`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [350, -700, 525]`, `chord_potential = 525`, `holonomy_gamma2 = 700`
+- **Finite Shadow Exact Witness (`M4`)**: `gleason_firewall_premise_count == 7 and min_hilbert_dim == 3 (sum 10)` ($\text{value} = 10$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `d2_bloch_hemisphere_noncontextual_defect: d_min(3) - d_qubit(2) == 1 (dim 2 admits Kochen-Specker noncontextual dispersion-free countermodels without POVM)` ($\text{value} = 1$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `4` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/H017Gleason.lean::gleason_pack_uniqueness_still_imported`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 7a5387ea551a1209b938051f7c7367aad747053e4ef2bb74cb7f7382d3ed6355`

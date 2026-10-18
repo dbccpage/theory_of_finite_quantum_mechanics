@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:graph_coloring:v1.0.0
+title: 'Exact bipartition or replayable odd-cycle certificates for finite undirected
+  graphs. AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/graph_coloring.rs
+module: graph_coloring
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: graph_coloring
+  file: crates_rs/omega_homology/src/graph_coloring.rs
+symbols:
+- GraphColoringError
+- TwoColoring
+- verify_odd_cycle
+- verify_bipartition
+- two_coloring
+owns:
+- graph_coloring_error
+- two_coloring
+- verify_odd_cycle
+- verify_bipartition
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

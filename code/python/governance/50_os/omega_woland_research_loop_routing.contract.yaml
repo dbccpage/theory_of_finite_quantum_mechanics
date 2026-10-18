@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:research_loop_routing:v1.0.0
+title: 'Host routing: the disposition of a completed round.  The model''s stage 8
+  output is an advisory evidence plan; nothing...'
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/research_loop/routing.rs
+module: research_loop::routing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: research_loop::routing
+  file: crates_rs/omega_woland/src/research_loop/routing.rs
+symbols:
+- Disposition
+- is_terminal
+- may_halt
+- routing_terminal
+- projection_is_lossy
+- RouteObservation
+- RouteFacts
+- budget_exhausted
+- route
+- stall_key
+owns:
+- disposition
+- is_terminal
+- may_halt
+- routing_terminal
+- projection_is_lossy
+- route_observation
+- route_facts
+- budget_exhausted
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:arrow:v1.0.0
+title: Arrow Module
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/arrow.rs
+module: arrow
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: arrow
+  file: crates_rs/omega_category_theory/src/arrow.rs
+symbols:
+- Ctx
+- St
+- Violation
+- Writer
+- ArrowResult
+- Arrow
+- Either
+- arr
+- compose
+- tell
+- map_input
+- fanout
+- split
+- choice
+owns:
+- ctx
+- st
+- violation
+- writer
+- arrow_result
+- arrow
+- either
+- arr
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:simplicial_hott_bridge:v1.0.0
+title: Bridge finite nerves and rewrite paths to HoTT path witnesses.
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/simplicial_hott_bridge.rs
+module: simplicial_hott_bridge
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: simplicial_hott_bridge
+  file: crates_rs/omega_category_theory/src/simplicial_hott_bridge.rs
+symbols:
+- SimplicialPathWitness
+- new
+- is_coherent_at_level
+owns:
+- simplicial_path_witness
+- new
+- is_coherent_at_level
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

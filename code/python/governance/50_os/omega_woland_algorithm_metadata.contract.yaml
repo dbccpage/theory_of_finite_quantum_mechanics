@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:algorithm_metadata:v1.0.0
+title: Scoped exact cochain metadata validation; no claim about a global cover.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/algorithm_metadata.rs
+module: algorithm_metadata
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: algorithm_metadata
+  file: crates_rs/omega_woland/src/algorithm_metadata.rs
+symbols:
+- AlgorithmMetadataInput
+- validate_algorithm_metadata
+owns:
+- algorithm_metadata_input
+- validate_algorithm_metadata
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

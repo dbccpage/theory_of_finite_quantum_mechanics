@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:certificate:v1.0.0
+title: 'Sort 10 — **Certificate**: evidence of a specific kind, never of another.  Crate
+  boundary: coda-cert.  Source: crosst...'
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/certificate.rs
+module: certificate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: certificate
+  file: crates_rs/omega_ooutwire_primitives/src/certificate.rs
+symbols:
+- SpaceId
+- Bound
+- ObjectId
+- CheckId
+- ProofId
+- Certificate
+- CertKind
+- kind
+- glyph
+- TestResult
+owns:
+- space_id
+- bound
+- object_id
+- check_id
+- proof_id
+- certificate
+- cert_kind
+- kind
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

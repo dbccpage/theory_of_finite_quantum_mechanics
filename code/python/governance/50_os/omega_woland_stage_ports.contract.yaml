@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:stage_ports:v1.0.0
+title: Ports Module
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/stage/ports.rs
+module: stage::ports
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: stage::ports
+  file: crates_rs/omega_woland/src/stage/ports.rs
+symbols:
+- SeatTurnRequest
+- request_digest
+- SeatTurnReply
+- provenance
+- validate
+- SeatPort
+- ContinueDecisionKind
+- ContinueDecision
+- ModelPort
+- ValuatorPort
+- ContinuationPort
+- SchedulerPort
+- ExecutionInterruption
+owns:
+- seat_turn_request
+- request_digest
+- seat_turn_reply
+- provenance
+- validate
+- seat_port
+- continue_decision_kind
+- continue_decision
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

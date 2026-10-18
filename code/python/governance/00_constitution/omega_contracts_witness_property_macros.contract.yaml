@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:witness_property_macros:v1.0.0
+title: Generates test-time lambda property checks.  This macro does not emit persisted
+  `ValidationWitness` artifacts. Persis...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/witness/property_macros.rs
+module: witness::property_macros
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: witness::property_macros
+  file: crates_rs/omega_contracts/src/witness/property_macros.rs
+symbols: []
+owns:
+- witness_property_macros
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -26,10 +26,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Formalization
-*Formalization active. Proof obligations tracked under zero-sorry regime.*
+- **Primary Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates` (zero-axiom, zero-sorry kernel verification in `lean/DerivationDagQMClosure.lean`).
 
 ### Sovereign Rust Certifiers
-*Computational witness tracked under `theory_of_finite_qm` crate.*
+- **Primary Rust Witness**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness` (`code/rust/src/dag_witnesses.rs`, exact `i64`/`BigRational` arithmetic).
+- **Python PFP Gate Engine**: `omega_engine_pfp/tests/demo_004/finite_qm_derivation_pfp/gates/gate_engine.py::verify_dag_prompt_node_reply` (`G0`..`G6`).
 
 ---
 
@@ -45,3 +46,18 @@ In accordance with strict constructive principles:
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/shelf.yaml`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-POSITIVE-WEIGHTS-ADMITTED`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-POSITIVE-WEIGHTS-ADMITTED` (`FINITE_QM_CORE` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-FQ-POSITIVE-L1-WEIGHT-ADMISSION`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [90, -180, 135]`, `chord_potential = 135`, `holonomy_gamma2 = 180`
+- **Finite Shadow Exact Witness (`M4`)**: `sector_weight_partition_sum: w_A(17) + w_B(23) == Phi_1(40)` ($\text{value} = 40$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `even_cycle_C4_minimizer_nonuniqueness: two gauge-equivalent minimizers give sector weights (1,0) vs (0,1) with L1 difference |1-0| + |0-1| == 2` ($\text{value} = 2$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 321911a5814f23a096749af4f70a5fce75f686b981581fab5dd614958375d545`

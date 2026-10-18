@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:invariant_packet:v1.0.0
+title: Invariant atlas packets.  `InvariantPacket` makes the invariant atlas first-class
+  without granting authority. It name...
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/invariant_packet.rs
+module: invariant_packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: invariant_packet
+  file: crates_rs/omega_types/src/invariant_packet.rs
+symbols:
+- InvariantLayer
+- InvariantPacketError
+- InvariantPacket
+- new
+- layer
+- invariant_id
+- carrier
+- carrier_type
+- value_object
+- invariant_map
+- preservation_law
+- operator_sensitivity
+- witness_protocol
+- witness_protocol_id
+- certificate_required
+- refusal_condition
+owns:
+- invariant_layer
+- invariant_packet_error
+- invariant_packet
+- new
+- layer
+- invariant_id
+- carrier
+- carrier_type
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:jcs:v1.0.0
+title: 'RFC 8785 subset: sorted objects, no insignificant whitespace, no IEEE numbers.
+  AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/jcs.rs
+module: jcs
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: jcs
+  file: crates_rs/omega_woland/src/jcs.rs
+symbols: []
+owns:
+- jcs
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

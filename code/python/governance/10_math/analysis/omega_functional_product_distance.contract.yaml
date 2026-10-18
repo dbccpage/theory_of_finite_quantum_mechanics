@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:product_distance:v1.0.0
+title: Product-moment defects and their finite distance-from-product lower bound.
+  Measurement provenance, support admission ...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/product_distance.rs
+module: product_distance
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: product_distance
+  file: crates_rs/omega_functional/src/product_distance.rs
+symbols:
+- ProductDistanceError
+- ProductDistanceValue
+- corrected
+- quotient
+- lower_bound
+- arity
+- evaluate_product_distance
+owns:
+- product_distance_error
+- product_distance_value
+- corrected
+- quotient
+- lower_bound
+- arity
+- evaluate_product_distance
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

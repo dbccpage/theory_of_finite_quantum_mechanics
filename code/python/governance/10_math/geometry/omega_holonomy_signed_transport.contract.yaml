@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_holonomy:signed_transport:v1.0.0
+title: 'Exact finite signed transport certificates on COMPLETE supplied coefficients.
+  AuthorityEffect: None. The only gauge c...'
+kind: rust_file_contract
+status: active
+crate: omega_holonomy
+file: crates_rs/omega_holonomy/src/signed_transport.rs
+module: signed_transport
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_holonomy
+  module: signed_transport
+  file: crates_rs/omega_holonomy/src/signed_transport.rs
+symbols:
+- SignedTransportError
+- SignedCoefficientGraph
+- try_new
+- from_strings
+- dimension
+- coefficients
+- canonical_coefficients
+- edge_parity
+- walk_parity
+- ForestGauge
+- SignedTransportOutcome
+- SignedTransportCertificate
+- verify
+- certify_signed_transport
+- compare_realizing_gauges
+owns:
+- signed_transport_error
+- signed_coefficient_graph
+- try_new
+- from_strings
+- dimension
+- coefficients
+- canonical_coefficients
+- edge_parity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

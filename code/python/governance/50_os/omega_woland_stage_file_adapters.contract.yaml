@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:stage_file_adapters:v1.0.0
+title: Concrete single-process history and lossless cemetery storage. Failure counts
+  are observations; they do not admit imm...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/stage/file_adapters.rs
+module: stage::file_adapters
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: stage::file_adapters
+  file: crates_rs/omega_woland/src/stage/file_adapters.rs
+symbols:
+- MemoryUts
+- MemoryUns
+- FilePackets
+- FileCemetery
+- load_headstones
+- FileFailureHistory
+- FileGenealogy
+owns:
+- memory_uts
+- memory_uns
+- file_packets
+- file_cemetery
+- load_headstones
+- file_failure_history
+- file_genealogy
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

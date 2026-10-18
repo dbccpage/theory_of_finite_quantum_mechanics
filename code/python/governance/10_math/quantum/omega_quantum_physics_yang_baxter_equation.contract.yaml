@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:yang_baxter_equation:v1.0.0
+title: 'Checkable exact Yang-Baxter identities, retaining the residual matrix. AuthorityEffect:
+  None. Not PROVED. Not GlobalG...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/yang_baxter_equation.rs
+module: yang_baxter_equation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: yang_baxter_equation
+  file: crates_rs/omega_quantum_physics/src/yang_baxter_equation.rs
+symbols:
+- YangBaxterEquation
+- braid
+- spectral
+- multiplicative
+- residual
+- holds
+- first_failing_entry
+- authority_fence
+owns:
+- yang_baxter_equation
+- braid
+- spectral
+- multiplicative
+- residual
+- holds
+- first_failing_entry
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

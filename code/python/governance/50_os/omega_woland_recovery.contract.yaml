@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:recovery:v1.0.0
+title: Startup closure through a domain port; no cause or cost is inferred.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/recovery.rs
+module: recovery
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: recovery
+  file: crates_rs/omega_woland/src/recovery.rs
+symbols:
+- reconcile_crashed_bouts
+owns:
+- reconcile_crashed_bouts
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

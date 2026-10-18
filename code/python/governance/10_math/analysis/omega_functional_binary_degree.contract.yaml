@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:binary_degree:v1.0.0
+title: Binary chain-law defect measurement and shared shape admission.  Binary quotient
+  distance is owned by `phi1`; binary ...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/binary_degree.rs
+module: binary_degree
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: binary_degree
+  file: crates_rs/omega_functional/src/binary_degree.rs
+symbols:
+- BinaryDegreeError
+- BinaryDegreeFunctional
+- chain_composite_weight
+- is_in_image
+- check_shape
+- check_input_length
+- image_membership_unchecked
+- hamming_weight
+owns:
+- binary_degree_error
+- binary_degree_functional
+- chain_composite_weight
+- is_in_image
+- check_shape
+- check_input_length
+- image_membership_unchecked
+- hamming_weight
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:quantum_import_finite_maps_vacuum_polarization_lamb_shift:v1.0.0
+title: QM-216 vacuum polarization, running coupling, and Uehling Lamb shift. Re-exported
+  from `quantum_import_finite_maps`.
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/vacuum_polarization_lamb_shift.rs
+module: quantum_import_finite_maps::vacuum_polarization_lamb_shift
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: quantum_import_finite_maps::vacuum_polarization_lamb_shift
+  file: crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/vacuum_polarization_lamb_shift.rs
+symbols:
+- Mat4Q
+- mat4_qi_trace
+- transverse_tensor_t
+- transverse_projector
+- check_transverse_projector_identities
+- fermion_bubble_numerator_clifford_trace
+- fermion_bubble_numerator_analytic
+- feynman_parameter_moment_polynomial
+- feynman_parameter_moment_beta_closed
+- Qm216VacuumPolarizationLambShiftReport
+- evaluate_qm216_vacuum_polarization_lamb_shift
+owns:
+- mat4_q
+- mat4_qi_trace
+- transverse_tensor_t
+- transverse_projector
+- check_transverse_projector_identities
+- fermion_bubble_numerator_clifford_trace
+- fermion_bubble_numerator_analytic
+- feynman_parameter_moment_polynomial
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

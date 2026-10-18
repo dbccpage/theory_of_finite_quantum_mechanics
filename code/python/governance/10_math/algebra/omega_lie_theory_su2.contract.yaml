@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:su2:v1.0.0
+title: '`SU(2)`, `SO(3)` and the spin double cover, exactly.  - [`Quaternion`]: the
+  quaternion algebra over an exact field, w...'
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/su2.rs
+module: su2
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: su2
+  file: crates_rs/omega_lie_theory/src/su2.rs
+symbols:
+- Su2Error
+- Quaternion
+- new
+- identity
+- is_zero
+- add
+- neg
+- scale
+- mul
+- conjugate
+- norm_squared
+- inverse
+- rational_quaternion
+- integer_quaternion
+- rotation_of_quaternion
+- RodriguesQuaternion
+- square_class
+- rodrigues_quaternion
+- spinor_norm_class
+- spin_lift
+- SpinRepresentation
+- twice_spin
+- dimension
+- generators
+- bracket_defects
+- casimir
+- commutant_dimension
+- ClebschGordan
+- clebsch_gordan
+- quaternion_group
+owns:
+- su2_error
+- quaternion
+- new
+- identity
+- is_zero
+- add
+- neg
+- scale
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

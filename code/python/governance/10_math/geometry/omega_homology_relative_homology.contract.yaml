@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:relative_homology:v1.0.0
+title: 'Relative homology H(C, D).  AuthorityEffect: None. Best-effort shell for computational
+  topology. Not PROVED; not Glob...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/relative_homology.rs
+module: relative_homology
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: relative_homology
+  file: crates_rs/omega_homology/src/relative_homology.rs
+symbols:
+- RelativeHomology
+- new
+- with_note
+- validate_shell
+owns:
+- relative_homology
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

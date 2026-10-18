@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:hom_adjunction:v1.0.0
+title: Hom-set bijection witnesses for adjunctions.  An adjunction L ⊣ R induces a
+  natural bijection Hom_D(L(A), B) ≅ Hom_C(...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/hom_adjunction.rs
+module: hom_adjunction
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: hom_adjunction
+  file: crates_rs/omega_category_theory/src/hom_adjunction.rs
+symbols:
+- HomBijectionWitness
+- new
+- add_mate_pair
+- DeclaredHomAdjunction
+- add_witness
+- validate_hom_adjunction
+owns:
+- hom_bijection_witness
+- new
+- add_mate_pair
+- declared_hom_adjunction
+- add_witness
+- validate_hom_adjunction
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

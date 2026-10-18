@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_representation_support:v1.0.0
+title: Declared finite data shared by the representation tests.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/representation/support.rs
+module: omega_quantum_physics::representation::support
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::representation::support
+  file: crates_rs/tests/omega_quantum_physics/representation/support.rs
+symbols:
+- rotation
+- complex_mixer
+- basis_projector
+- basis_partition
+- pauli
+owns:
+- rotation
+- complex_mixer
+- basis_projector
+- basis_partition
+- pauli
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

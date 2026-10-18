@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:tensor_partial_transpose:v1.0.0
+title: Partial transpose on the right tensor factor with declared lexicographic basis.
+  (a,b;c,d) maps to (a,d;c,b), so the o...
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/tensor/partial_transpose.rs
+module: tensor::partial_transpose
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: tensor::partial_transpose
+  file: crates_rs/omega_linear_algebra/src/tensor/partial_transpose.rs
+symbols:
+- partial_transpose_right
+- partial_transpose_right_with_limits
+owns:
+- partial_transpose_right
+- partial_transpose_right_with_limits
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

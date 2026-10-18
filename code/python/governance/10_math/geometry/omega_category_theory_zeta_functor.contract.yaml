@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:zeta_functor:v1.0.0
+title: Functor-shaped witness from primitive orbit data to finite Euler products.
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/zeta_functor.rs
+module: zeta_functor
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: zeta_functor
+  file: crates_rs/omega_category_theory/src/zeta_functor.rs
+symbols:
+- ZetaFunctorWitness
+- new
+owns:
+- zeta_functor_witness
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

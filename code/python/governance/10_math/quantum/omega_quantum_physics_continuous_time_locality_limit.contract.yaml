@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:continuous_time_locality_limit:v1.0.0
+title: Exact finite product-formula estimates and declared interaction cones. Matrix
+  estimates compute their commutators. Su...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/continuous_time_locality_limit.rs
+module: continuous_time_locality_limit
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: continuous_time_locality_limit
+  file: crates_rs/omega_quantum_physics/src/continuous_time_locality_limit.rs
+symbols:
+- trotter_first_order_error_bound
+- trotter_second_order_error_bound
+- DeclaredInteractionGraph
+- new
+- outside_cone
+- ProductFormulaCertificate
+- ProductFormulaError
+- product_formula_bounds
+owns:
+- trotter_first_order_error_bound
+- trotter_second_order_error_bound
+- declared_interaction_graph
+- new
+- outside_cone
+- product_formula_certificate
+- product_formula_error
+- product_formula_bounds
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

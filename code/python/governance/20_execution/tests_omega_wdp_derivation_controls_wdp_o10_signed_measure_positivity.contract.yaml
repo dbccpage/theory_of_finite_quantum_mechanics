@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_o10_signed_measure_positivity:v1.0.0
+title: Charges on one L=4, M=1 all-horizontal checkerboard breakup. The two opposite
+  staggered masks are negative, so this f...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_o10_signed_measure_positivity.rs
+module: omega_wdp::derivation_controls::wdp_o10_signed_measure_positivity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_o10_signed_measure_positivity
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_o10_signed_measure_positivity.rs
+symbols:
+- Ratio
+- Charge
+- Witness
+- try_scope
+- witness
+- admit_opposite_charge
+owns:
+- ratio
+- charge
+- witness
+- try_scope
+- admit_opposite_charge
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

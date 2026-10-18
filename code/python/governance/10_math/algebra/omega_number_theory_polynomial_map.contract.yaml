@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:polynomial_map:v1.0.0
+title: Sparse rational polynomials and exact Jacobians of declared polynomial maps.
+  Coordinates have explicit arity. Missing...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/polynomial_map.rs
+module: polynomial_map
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: polynomial_map
+  file: crates_rs/omega_number_theory/src/polynomial_map.rs
+symbols:
+- PolynomialMapError
+- SparseRationalPolynomial
+- new
+- zero
+- variables
+- terms
+- evaluate
+- derivative
+- PolynomialMap
+- jacobian
+- witnesses_non_affinity
+owns:
+- polynomial_map_error
+- sparse_rational_polynomial
+- new
+- zero
+- variables
+- terms
+- evaluate
+- derivative
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

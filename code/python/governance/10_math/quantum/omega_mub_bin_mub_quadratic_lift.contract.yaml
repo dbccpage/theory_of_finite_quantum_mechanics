@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:bin_mub_quadratic_lift:v1.0.0
+title: Mub Quadratic Lift Module
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/bin/mub_quadratic_lift.rs
+module: bin::mub_quadratic_lift
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: bin::mub_quadratic_lift
+  file: crates_rs/omega_mub/src/bin/mub_quadratic_lift.rs
+symbols: []
+owns:
+- bin_mub_quadratic_lift
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

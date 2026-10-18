@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_char_two_weyl_board:v1.0.0
+title: Characteristic-two Weyl-board spread schema.  Odd-characteristic quadratic-basis
+  formulas use division by two. This m...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/char_two_weyl_board.rs
+module: mub::char_two_weyl_board
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::char_two_weyl_board
+  file: crates_rs/omega_quantum_physics/src/mub/char_two_weyl_board.rs
+symbols:
+- CharTwoWeylBoardStatus
+- CharTwoWeylBoardReport
+- verify_current_char_two_weyl_board_schemas
+- verify_char_two_weyl_board_schema
+owns:
+- char_two_weyl_board_status
+- char_two_weyl_board_report
+- verify_current_char_two_weyl_board_schemas
+- verify_char_two_weyl_board_schema
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

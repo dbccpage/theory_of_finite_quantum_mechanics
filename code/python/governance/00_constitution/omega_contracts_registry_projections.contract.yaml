@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:registry_projections:v1.0.0
+title: Reviewed governance-to-Rust projections, enforced by the real build consumer.  Every
+  local YAML input is accounted fo...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/registry/projections.rs
+module: registry::projections
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: registry::projections
+  file: crates_rs/omega_contracts/src/registry/projections.rs
+symbols:
+- ProjectionError
+- ProjectionManifest
+- ProjectionReport
+- require_complete
+- parse_manifest
+- verify_projected_corpus
+owns:
+- projection_error
+- projection_manifest
+- projection_report
+- require_complete
+- parse_manifest
+- verify_projected_corpus
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

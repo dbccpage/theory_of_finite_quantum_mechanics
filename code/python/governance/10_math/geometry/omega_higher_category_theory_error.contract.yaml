@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:error:v1.0.0
+title: 'Typed error domain and Soviet Builder allocation discipline.  AuthorityEffect:
+  None.'
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/error.rs
+module: error
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: error
+  file: crates_rs/omega_higher_category_theory/src/error.rs
+symbols:
+- HigherCategoryError
+- reserve_exact
+owns:
+- higher_category_error
+- reserve_exact
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

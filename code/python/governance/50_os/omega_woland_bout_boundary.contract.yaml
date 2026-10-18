@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:bout_boundary:v1.0.0
+title: Journal/custody boundary around injected acts. This is not the seven-act runner.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/bout_boundary.rs
+module: bout_boundary
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: bout_boundary
+  file: crates_rs/omega_woland/src/bout_boundary.rs
+symbols:
+- BoutRunSpec
+- RefusalBundlePort
+- BoutAbort
+- BoundaryOutcome
+- execute_bout_boundary
+- execute_captured_bout_boundary
+owns:
+- bout_run_spec
+- refusal_bundle_port
+- bout_abort
+- boundary_outcome
+- execute_bout_boundary
+- execute_captured_bout_boundary
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:improvement_types:v1.0.0
+title: Canonical improvement / maintenance contract types (V1).  All fields that carry
+  hashes are lowercase hex SHA-256 (64 ...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/improvement/types.rs
+module: improvement::types
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: improvement::types
+  file: crates_rs/omega_contracts/src/improvement/types.rs
+symbols:
+- MaintenanceTerminalV1
+- may_render_promotion_ready
+- FindingSeverityV1
+- ProposedRouteV1
+- SourceRoleV1
+- MaintenancePolicyV1
+- SourceRoleBindingV1
+- DetectorVersionPinV1
+- MaintenanceLimitsV1
+- AgentsAdapterConfigV1
+- control_plane_defaults_v1
+- default_protected_surfaces_v1
+- default_detector_versions_v1
+- ImprovementRunV1
+- SourceArtifactV1
+- SourceSpanV1
+- validate_against
+- SpanValidationError
+- ImprovementFindingV1
+- RunLearningReceiptV1
+- ExactEditV1
+- OperatorImprovementCandidateV1
+- ImprovementEvaluationV1
+- HardGateResultV1
+- NamedIntegerMetricV1
+- ProposalBundleV1
+- AdversaryHandoffV1
+- PendingMaintenanceRunV1
+- PendingStatusV1
+- serialize
+owns:
+- maintenance_terminal_v1
+- may_render_promotion_ready
+- finding_severity_v1
+- proposed_route_v1
+- source_role_v1
+- maintenance_policy_v1
+- source_role_binding_v1
+- detector_version_pin_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

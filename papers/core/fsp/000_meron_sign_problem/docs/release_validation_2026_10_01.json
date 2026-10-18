@@ -1,0 +1,94 @@
+{
+  "schema": "symbol-game.preprint-local-validation.v1",
+  "date": "2026-10-01",
+  "release_version": "0.1.0",
+  "source_baseline": "3f3399766",
+  "scope": "Local finite checks, package isolation, and proof replay; no live provider experiments or publication authorization",
+  "python": "3.12.14",
+  "tests": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "code/tests/test_meron_cluster_solution.py",
+        "-q",
+        "--override-ini=addopts="
+      ],
+      "cwd": "package root",
+      "exit_code": 0,
+      "summary": "12 passed in 1.09s",
+      "test_source_sha256": "04a07c88f83f366b8985eea939939733d3d604a53015e883af5574fbe06f084d",
+      "stdout": "............                                                             [100%]\n12 passed in 1.09s\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "code/tests/test_pilot_evidence.py",
+        "-q",
+        "--override-ini=addopts="
+      ],
+      "cwd": "package root",
+      "exit_code": 0,
+      "summary": "10 passed in 1.06s",
+      "test_source_sha256": "c892745229201729ca76a1bf874be41e0d2b879390b38f319a482c86f8743756",
+      "stdout": "..........                                                               [100%]\n10 passed in 1.06s\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "code/tests/test_space_bunny.py",
+        "-q",
+        "--override-ini=addopts="
+      ],
+      "cwd": "package root",
+      "exit_code": 0,
+      "summary": "4 passed, 1 skipped in 0.77s",
+      "test_source_sha256": "0551bbf91b8db6173b225be10f99466a8a8f56c0ddd3121a41e406bc57f09dc6",
+      "stdout": "....s                                                                    [100%]\n4 passed, 1 skipped in 0.77s\n"
+    }
+  ],
+  "lean": [
+    {
+      "command": [
+        "lake",
+        "build"
+      ],
+      "exit_code": 0,
+      "stdout": "\u2139 [2/4] Built MeronCharacter (248ms)\ninfo: MeronCharacter.lean:64:0: 'MeronCharacter.meron_orbit_cancels' depends on axioms: [propext, Quot.sound]\ninfo: MeronCharacter.lean:65:0: 'MeronCharacter.zero_meron_orbit_positive' depends on axioms: [propext, Quot.sound]\ninfo: MeronCharacter.lean:66:0: 'MeronCharacter.compression_preserves_partition' depends on axioms: [propext, Quot.sound]\ninfo: MeronCharacter.lean:67:0: 'MeronCharacter.unequal_three_term_cancellation' does not depend on any axioms\ninfo: MeronCharacter.lean:68:0: 'MeronCharacter.observable_doublet_counterexample' does not depend on any axioms\n\u2714 [3/4] Built MeronClusterInvolution (263ms)\nBuild completed successfully (4 jobs).\n"
+    },
+    {
+      "command": [
+        "python",
+        "tools/replay_lean_axiom_census.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "OK meron_sign_problem: generated Census.lean\n"
+    },
+    {
+      "command": [
+        "python",
+        "tools/replay_lean_axiom_census.py",
+        "--replay"
+      ],
+      "exit_code": 0,
+      "stdout": "OK meron_sign_problem: replayed census successfully\n"
+    },
+    {
+      "command": [
+        "python",
+        "tools/replay_full_axiom_census.py"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: 94 package-local declarations; 2 modules; approved axioms only\n"
+    }
+  ],
+  "notebooks": [],
+  "external_deposit": false,
+  "rust": []
+}

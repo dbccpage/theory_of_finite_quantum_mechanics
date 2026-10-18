@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:three_role_authority:v1.0.0
+title: Three-role authority verification for the companion note `WDP-DOC-EPIS-NOGO-001`
+  (Pillar IV).  An authorization attem...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/three_role_authority.rs
+module: three_role_authority
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: three_role_authority
+  file: crates_rs/omega_contracts/src/three_role_authority.rs
+symbols:
+- Principal
+- new
+- StandingBasis
+- ProvenancePacket
+- RolePolicy
+- strict
+- RoleCoincidence
+- ThreeRoleRefusal
+- ThreeRoleReceipt
+- verify_three_role_authority
+- compose_attempts
+owns:
+- principal
+- new
+- standing_basis
+- provenance_packet
+- role_policy
+- strict
+- role_coincidence
+- three_role_refusal
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

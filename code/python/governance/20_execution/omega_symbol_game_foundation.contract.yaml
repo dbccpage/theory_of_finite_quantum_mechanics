@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:foundation:v1.0.0
+title: Primitive-first, exact finite foundation for the Symbol Game.  This module
+  is deliberately additive. It does not part...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/foundation.rs
+module: foundation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: foundation
+  file: crates_rs/omega_symbol_game/src/foundation.rs
+symbols:
+- PrimitiveDifference
+- FoundationErrorCode
+- FoundationError
+- code
+- message
+- require_name
+- require_digest
+- require_nonnegative
+- canonical_json_bytes
+owns:
+- primitive_difference
+- foundation_error_code
+- foundation_error
+- code
+- message
+- require_name
+- require_digest
+- require_nonnegative
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

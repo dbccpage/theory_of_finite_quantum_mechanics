@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_test_meron_field_adapter:v1.0.0
+title: Test Meron Field Adapter Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/test_meron_field_adapter.rs
+module: omega_wdp::test_meron_field_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::test_meron_field_adapter
+  file: crates_rs/tests/omega_wdp/test_meron_field_adapter.rs
+symbols: []
+owns:
+- omega_wdp_test_meron_field_adapter
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

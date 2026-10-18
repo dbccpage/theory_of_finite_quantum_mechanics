@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:quantum_walk:v1.0.0
+title: Discrete Quantum Walk on permutation group Cayley graphs in exact algebraic
+  arithmetic.  Evaluates discrete-time quan...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/quantum_walk.rs
+module: quantum_walk
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: quantum_walk
+  file: crates_rs/omega_quantum_physics/src/quantum_walk.rs
+symbols:
+- QuantumWalkError
+- PermutationCayleyGraph
+- try_build_sn
+- build_s3
+- build_s4
+- ExactQuantumWalkResult
+- simulate_walk_s3_exact
+- simulate_walk_s4_exact
+- CoinedWalk
+- new
+- evolve
+- position_probabilities
+- HadamardLineDistribution
+- hadamard_line
+owns:
+- quantum_walk_error
+- permutation_cayley_graph
+- try_build_sn
+- build_s3
+- build_s4
+- exact_quantum_walk_result
+- simulate_walk_s3_exact
+- simulate_walk_s4_exact
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

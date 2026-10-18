@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_prod_p2_next_1:v1.0.0
+title: Finite executable witness for `PROD-P2-NEXT-1`.  Models the 12-step WDP Appendix
+  G.5 `OutputGate` validator (`G5Step`...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/prod_p2_next_1.rs
+module: omega_wdp::derivation_controls::prod_p2_next_1
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::prod_p2_next_1
+  file: crates_rs/tests/omega_wdp/derivation_controls/prod_p2_next_1.rs
+symbols:
+- G5Step
+- CandidateRecord
+- valid
+- mutate_for_step
+- ValidationReport
+- emitted
+- gate_candidate
+owns:
+- g5_step
+- candidate_record
+- valid
+- mutate_for_step
+- validation_report
+- emitted
+- gate_candidate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

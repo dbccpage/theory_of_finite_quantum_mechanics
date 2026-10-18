@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_layer8_fda:v1.0.0
+title: Layer8 Fda Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/layer8_fda.rs
+module: coda::layer8_fda
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::layer8_fda
+  file: crates_rs/omega_wdp/src/coda/layer8_fda.rs
+symbols:
+- Layer8Fda
+- evaluate
+- evaluate_with_grant
+owns:
+- layer8_fda
+- evaluate
+- evaluate_with_grant
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

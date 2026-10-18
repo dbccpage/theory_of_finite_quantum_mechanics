@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:pauli_symplectic:v1.0.0
+title: Pauli tensors and the exact binary symplectic action of Clifford unitaries.  Hermitian
+  Pauli words use `Y = i X Z` an...
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/pauli_symplectic.rs
+module: pauli_symplectic
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: pauli_symplectic
+  file: crates_rs/omega_lie_theory/src/pauli_symplectic.rs
+symbols:
+- Pauli
+- PauliError
+- generate_sp2_f2
+- generate_sp4_f2
+- pauli
+- pauli_word
+- hadamard
+- phase_gate
+- SymplecticF2
+- new
+- identity
+- qubits
+- entries
+- preserves_form
+- apply
+- multiply
+- symplectic_order
+- clifford_order_mod_phases
+- stabilizer_state_count
+- clifford_to_symplectic
+owns:
+- pauli
+- pauli_error
+- generate_sp2_f2
+- generate_sp4_f2
+- pauli_word
+- hadamard
+- phase_gate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

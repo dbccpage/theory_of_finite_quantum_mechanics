@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:ddc_transition_effects:v1.0.0
+title: Finite event-effect quotient and replay-congruence reference kernel.  Events
+  are compared by their complete transitio...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/ddc/transition_effects.rs
+module: ddc::transition_effects
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: ddc::transition_effects
+  file: crates_rs/omega_wdp/src/ddc/transition_effects.rs
+symbols:
+- EffectOwner
+- as_str
+- EffectKind
+- Refusal
+- new
+- TransitionEffectsError
+- canonical_id
+- EventV1
+- to_canonical_value
+- FiniteTransitionSystemV1
+- event
+- step
+- replay
+- EffectReceiptV1
+- effect_receipt
+- semantic_effect_classes
+- events_commute
+- trace_rewrite_equivalent
+- solver_trace_allowed
+owns:
+- effect_owner
+- as_str
+- effect_kind
+- refusal
+- new
+- transition_effects_error
+- canonical_id
+- event_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

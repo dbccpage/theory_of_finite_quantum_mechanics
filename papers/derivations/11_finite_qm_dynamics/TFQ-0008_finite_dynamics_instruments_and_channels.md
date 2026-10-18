@@ -64,8 +64,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 066ad4e28c5ee9350875bc6cce43e1cb158e91cce9ef47d0d68cd7dc5fa14048`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GAP-REAL-EMBEDDING-CHOICE`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -78,3 +76,16 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
 - **Sovereign Rust Witness Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 5f2bdf4ba14eb041f6bea2a2a95b148ec9fbc346700e043286ae168bf946a9ca`
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-CONTINUOUS-TIME-EXP-GENERATOR`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-CONTINUOUS-TIME-EXP-GENERATOR` (`FINITE_QM_DYNAMICS` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-DS-EXP-GENERATOR-BOUNDARY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [110, -220, 165]`, `chord_potential = 165`, `holonomy_gamma2 = 220`
+- **Finite Shadow Exact Witness (`M4`)**: `cayley_norm_conservation_t1: (1 - 1^2)^2 + (2*1)^2 == (1 + 1^2)^2 == 4` ($\text{value} = 4$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `euler_step_norm_inflation_t2: (1 + 2^2) - 1 == 4 > 0 (first-order generator step inflates norm by 4)` ($\text{value} = 4$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `3` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = b93f8b82fe847096cc1fd6eb7dfd11ff508b46c64b140907593065bb9ffdf4c6`

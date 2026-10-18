@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_pipelines:coda_gtlanf:v1.0.0
+title: Finite CODA_GTLANF normalization interface (STORY-110-004).  Compatibility
+  symbols `L`, `I`, and `T` name normalizati...
+kind: rust_file_contract
+status: active
+crate: omega_pipelines
+file: crates_rs/omega_pipelines/src/coda_gtlanf.rs
+module: coda_gtlanf
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_pipelines
+  module: coda_gtlanf
+  file: crates_rs/omega_pipelines/src/coda_gtlanf.rs
+symbols:
+- Normalize
+- FinClaim
+- new
+- CodaGtlaNf
+- terminal
+- payload
+- normalize_l
+- include_i
+- t
+- is_fixed
+owns:
+- normalize
+- fin_claim
+- new
+- coda_gtla_nf
+- terminal
+- payload
+- normalize_l
+- include_i
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

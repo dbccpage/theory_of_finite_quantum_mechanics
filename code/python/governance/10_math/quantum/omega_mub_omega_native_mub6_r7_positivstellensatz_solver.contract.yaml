@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_r7_positivstellensatz_solver:v1.0.0
+title: 'Subgap R7: Full 55-Generator Positivstellensatz Solver & Exact Rational Certificate
+  Verifier.  AuthorityEffect: None....'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_r7_positivstellensatz_solver.rs
+module: omega_native::mub6_r7_positivstellensatz_solver
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_r7_positivstellensatz_solver
+  file: crates_rs/omega_mub/src/omega_native/mub6_r7_positivstellensatz_solver.rs
+symbols:
+- DephasedMatrixCoords50
+- zero
+- karlsson_boundary_slice_zero
+- I55EvaluationReport
+- evaluate_i55_generators
+- evaluate_separation_polynomial
+- R7PositivstellensatzReceipt
+- solve_and_certify_r7_karlsson_boundary
+- SingularSegrePointEvaluation
+- evaluate_singular_segre_point
+- verify_singular_segre_5x5x5x5_grid
+- verify_singular_segre_variety_points
+- solve_and_certify_r7_singular_segre_sos
+owns:
+- dephased_matrix_coords50
+- zero
+- karlsson_boundary_slice_zero
+- i55_evaluation_report
+- evaluate_i55_generators
+- evaluate_separation_polynomial
+- r7_positivstellensatz_receipt
+- solve_and_certify_r7_karlsson_boundary
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

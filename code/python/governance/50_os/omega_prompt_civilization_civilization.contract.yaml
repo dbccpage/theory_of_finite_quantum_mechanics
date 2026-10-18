@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_prompt_civilization:civilization:v1.0.0
+title: Demographic state and text interrogation. Untrusted native requests cannot
+  grant admission; authenticated prompt cust...
+kind: rust_file_contract
+status: active
+crate: omega_prompt_civilization
+file: crates_rs/omega_prompt_civilization/src/civilization.rs
+module: civilization
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_prompt_civilization
+  module: civilization
+  file: crates_rs/omega_prompt_civilization/src/civilization.rs
+symbols:
+- Refusal
+- rational
+- canonical
+- interrogate
+- execute
+owns:
+- refusal
+- rational
+- canonical
+- interrogate
+- execute
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

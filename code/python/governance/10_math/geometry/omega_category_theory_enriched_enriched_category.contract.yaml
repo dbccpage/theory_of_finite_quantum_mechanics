@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:enriched_enriched_category:v1.0.0
+title: 'enriched_category shell for omega_category_theory. AuthorityEffect: None.
+  Not PROVED / GlobalGreen.'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/enriched/enriched_category.rs
+module: enriched::enriched_category
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: enriched::enriched_category
+  file: crates_rs/omega_category_theory/src/enriched/enriched_category.rs
+symbols:
+- HomObjectEntry
+- EnrichedCategory
+- new
+- over_v
+- with_hom
+- validate_shell
+owns:
+- hom_object_entry
+- enriched_category
+- new
+- over_v
+- with_hom
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

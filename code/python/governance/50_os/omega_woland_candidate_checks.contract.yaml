@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:candidate_checks:v1.0.0
+title: Ordered candidate-check application flow and exact audit-step emission.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/candidate_checks.rs
+module: candidate_checks
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: candidate_checks
+  file: crates_rs/omega_woland/src/candidate_checks.rs
+symbols:
+- CandidateChecksInput
+- execute_candidate_checks
+owns:
+- candidate_checks_input
+- execute_candidate_checks
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

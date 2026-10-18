@@ -93,3 +93,61 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = e9a9850b2b30b962bf646b391c520c727300be672a4b6c618df4854da95267fe`
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-CONTINUOUS-TIME-EXP-GENERATOR`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-CONTINUOUS-TIME-EXP-GENERATOR` (`FINITE_QM_DYNAMICS` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-DS-EXP-GENERATOR-BOUNDARY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [110, -220, 165]`, `chord_potential = 165`, `holonomy_gamma2 = 220`
+- **Finite Shadow Exact Witness (`M4`)**: `cayley_norm_conservation_t1: (1 - 1^2)^2 + (2*1)^2 == (1 + 1^2)^2 == 4` ($\text{value} = 4$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `euler_step_norm_inflation_t2: (1 + 2^2) - 1 == 4 > 0 (first-order generator step inflates norm by 4)` ($\text{value} = 4$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `3` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = b93f8b82fe847096cc1fd6eb7dfd11ff508b46c64b140907593065bb9ffdf4c6`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM034-035-050-051-095-RESERVED-STUBS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM034-035-050-051-095-RESERVED-STUBS` (`FINITE_QM_DYNAMICS` / `CONDITIONAL`)
+- **Mined Operad Family (`M2`)**: `OP-DS-CAYLEY-DIRAC-FINITE-SHADOW`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [130, -260, 195]`, `chord_potential = 195`, `holonomy_gamma2 = 260`
+- **Finite Shadow Exact Witness (`M4`)**: `dirac_klein_gordon_square_diag: m^2 + p^2 = 12^2 + 5^2 == 169` ($\text{value} = 169$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `reserved_stub_slots_count(034,035,050,051,095,200,202,203,205) == 9` ($\text{value} = 9$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `3` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 0ee8ee5615cfcf9f4316ca30580a604e6a03865737143e4fd8e4fd6a2bf4d908`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GAP-STONE-CONTINUOUS-TIME`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-GAP-STONE-CONTINUOUS-TIME` (`FINITE_QM_DYNAMICS` / `CONDITIONAL`)
+- **Mined Operad Family (`M2`)**: `OP-DS-STONE-PYTHAGOREAN-ALIASING`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [150, -300, 225]`, `chord_potential = 225`, `holonomy_gamma2 = 300`
+- **Finite Shadow Exact Witness (`M4`)**: `pythagorean_square_norm: |(3+4i)^2|^2 = (-7)^2 + 24^2 == 625` ($\text{value} = 625$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `generator_sign_branch_ambiguity: M_scaled^2 == (-M_scaled)^2 == 4*I gives 2 distinct square-root branches` ($\text{value} = 2$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 210aa1d9caefdf7edcf9517d4ceb730fbb852894e76da17ce5877c40fac20d3c`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-IMPORT-CONTINUOUS-TIME`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-IMPORT-CONTINUOUS-TIME` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-GP-CONTINUOUS-TIME-TOGGLE-GAP`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [220, -440, 330]`, `chord_potential = 330`, `holonomy_gamma2 = 440`
+- **Finite Shadow Exact Witness (`M4`)**: `complex_scaled_sqrt_toggle_trace: Tr([[1+i, 1-i],[1-i, 1+i]]^2) == Tr(4*X) == 0, off-diag sum == 8` ($\text{value} = 8$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `boolean_endomorphism_square_fixed_points: all 4 maps f:{0,1}->{0,1} satisfy f(f(0))==0 and f(f(1))==1 -> 0 solutions to f^2 = toggle` ($\text{value} = 0$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `4` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ded07484ac0fab036e374301b78046365f54da4d1e5fe458607efd09752d486b`

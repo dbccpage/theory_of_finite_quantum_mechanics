@@ -1,0 +1,48 @@
+schema_version: omega.contract.v2
+contract_id: urn:omega:packet:symbol_game:source_intake_bundle_v1:v1.0.0
+title: Source Intake Bundle v1
+kind: packet_contract
+layer: 40_packets
+role: PacketSpecification
+status: active
+council_owner: L3_logos_techne
+descriptor:
+  authority_effect: None
+  evidence_ceiling: LocalReplay
+  runtime_enforcement: true
+  clean_architecture_layer: domain
+  refusals:
+    may_emit:
+    - FW-UNKNOWN-FIELD
+    - FW-DUPLICATE-KEY
+doctrine:
+  summary: SourceIntakeBundleV1, a wire type on the Symbol Game research_evidence
+    surface.
+  invariants:
+  - The shape declared here is the shape in research_evidence.rs, enforced at compile
+    time by an exhaustive destructure.
+  - This type does NOT declare deny_unknown_fields, so an undeclared field on the
+    wire is silently dropped. Recorded here as a known gap rather than implied to
+    be closed.
+  non_roles:
+  - authority_source
+  - promotion_granter
+  required_negative_capabilities:
+  - no_self_certification
+  - no_implicit_authority_upgrade
+structure:
+  rust_crate: omega_symbol_game_runtime
+  rust_module: research_evidence
+  rust_type: SourceIntakeBundleV1
+  form: struct
+  serde:
+    deny_unknown_fields: true
+  fields:
+  - name: schema_version
+  - name: packet_id
+  - name: source_manifest_root
+  - name: receipts
+  - name: authority_effect
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0

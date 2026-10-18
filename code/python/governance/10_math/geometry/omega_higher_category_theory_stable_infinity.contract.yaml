@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:stable_infinity:v1.0.0
+title: 'Stable ∞-Categories and Spectra.  Provides mathematically rigorous foundations
+  for stable homotopy theory: - Pointed ...'
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/stable_infinity.rs
+module: stable_infinity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: stable_infinity
+  file: crates_rs/omega_higher_category_theory/src/stable_infinity.rs
+symbols:
+- PointedObject
+- PointedMorphism
+- FiberSequence
+- SpectrumLevel
+- StableInfinityCategory
+- new
+- add_object
+- add_morphism
+- set_suspension_loop_pair
+- set_unit_equivalence
+- set_counit_equivalence
+- get_morphism
+- has_object
+- verify_loop_suspension_equivalence
+- add_spectrum
+- verify_spectrum
+owns:
+- pointed_object
+- pointed_morphism
+- fiber_sequence
+- spectrum_level
+- stable_infinity_category
+- new
+- add_object
+- add_morphism
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -75,3 +75,16 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_thm5_thm7_and_qm121_ladder_rungs_2_to_6_separation`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 3d5a0f9699dd28e2deafe7005f514777057ae3dd3f72038b4bdb2a7d955ab1be`
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-IMP-HAAR-INDEPENDENT-PHASES`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `L1-IMP-HAAR-INDEPENDENT-PHASES` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-L1-HAAR-VS-FINITE-Z4-AVERAGE`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [280, -560, 420]`, `chord_potential = 420`, `holonomy_gamma2 = 560`
+- **Finite Shadow Exact Witness (`M4`)**: `z4_squared_16_pair_diagonal_sum: 16 * (|3|^2 + |4|^2) == 16 * 25 == 400` ($\text{value} = 400$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `correlated_equal_phase_subgroup_cross_term: 4 * (2 * 3 * 4) == 96 != 0 (without independent phases, cross term 96 survives)` ($\text{value} = 96$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 089e8e01b9ef4087dd2f6c07d6b319d7719553d03d545793b0c9c3ebd81ce890`

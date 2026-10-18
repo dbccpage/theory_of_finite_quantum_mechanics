@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:witness_witness:v1.0.0
+title: Witness module for law enforcement.  Canonical witness types live in `crate::witness::evidence`.
+  Test-time property m...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/witness/witness.rs
+module: witness::witness
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: witness::witness
+  file: crates_rs/omega_contracts/src/witness/witness.rs
+symbols: []
+owns:
+- witness_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

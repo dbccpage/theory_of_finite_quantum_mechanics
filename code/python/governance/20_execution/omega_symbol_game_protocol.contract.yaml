@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:protocol:v1.0.0
+title: Protocol Module
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/protocol.rs
+module: protocol
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: protocol
+  file: crates_rs/omega_symbol_game/src/protocol.rs
+symbols:
+- PacketEnvelopeWireV2
+- CandidateBindingV1
+- SourceBindingsV1
+- CarrierEdgeWireV1
+- CarrierDeclarationV1
+- CarrierInputV1
+- ResidualInputV1
+- PrimeProfilesV1
+- Prime002ProfileV1
+- HostBudgetsV1
+- HostRequestV1
+- ExactRationalWireV1
+- from_rational
+- zero
+- CommitmentCheckV1
+- CarrierManifestSummaryV1
+- SourceBindingChecksV1
+- Prime001SummaryV1
+- ExactStageSummaryV1
+- CandidateRelationV1
+- OesosSummaryV1
+- Prime000ConformanceV1
+- Prime000SummaryV1
+- BudgetSummaryV1
+- Prime002SummaryV1
+- AdmissionSummaryV1
+- RefusalSummaryV1
+- HostOutcomeV1
+- HostDescriptionV1
+- hex
+owns:
+- packet_envelope_wire_v2
+- candidate_binding_v1
+- source_bindings_v1
+- carrier_edge_wire_v1
+- carrier_declaration_v1
+- carrier_input_v1
+- residual_input_v1
+- prime_profiles_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

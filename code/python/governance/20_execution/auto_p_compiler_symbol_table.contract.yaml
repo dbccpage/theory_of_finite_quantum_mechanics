@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_symbol_table:v1.0.0
+title: '--- yaml title: symbol_table file_name: symbol_table.rs file_location: omega_core/src/compiler/symbol_table.rs
+  status...'
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/symbol_table.rs
+module: compiler::symbol_table
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::symbol_table
+  file: crates_rs/auto_p/src/compiler/symbol_table.rs
+symbols:
+- SymbolId
+- is_known
+- SymbolNamespace
+- SymbolTable
+- new
+- intern
+- intern_user
+- intern_witness
+- lookup
+- lookup_user
+- resolve
+- namespace
+- len
+- is_empty
+- iter
+- from_module
+- SymbolIdMap
+owns:
+- symbol_id
+- is_known
+- symbol_namespace
+- symbol_table
+- new
+- intern
+- intern_user
+- intern_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

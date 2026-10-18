@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_mub_test_target_a2_deltoid_cusp:v1.0.0
+title: 'Integration and unit tests for Target A2 Phase 2: Deltoid Cusp Desingularization.  AuthorityEffect:
+  None.'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_mub/test_target_a2_deltoid_cusp.rs
+module: omega_mub::test_target_a2_deltoid_cusp
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_mub::test_target_a2_deltoid_cusp
+  file: crates_rs/tests/omega_mub/test_target_a2_deltoid_cusp.rs
+symbols: []
+owns:
+- omega_mub_test_target_a2_deltoid_cusp
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

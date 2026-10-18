@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:coherence_structures:v1.0.0
+title: Coherence Structures Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/coherence_structures.rs
+module: coherence_structures
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: coherence_structures
+  file: crates_rs/omega_types/src/coherence_structures.rs
+symbols:
+- Term
+- unbound
+- is_zombie
+- is_wellformed
+- Path
+- new
+- with_dimension
+- is_reflexive
+- has_witness
+- is_connected
+- is_loop
+- type_arity
+- Boundary
+- StructuralCandidate
+- summary
+- shape_signature
+- GenerationContext
+- with_max_dim
+- TypeSystem
+owns:
+- term
+- unbound
+- is_zombie
+- is_wellformed
+- path
+- new
+- with_dimension
+- is_reflexive
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

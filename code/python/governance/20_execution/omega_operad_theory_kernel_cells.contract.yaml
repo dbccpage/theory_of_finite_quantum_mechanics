@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_operad_theory:kernel_cells:v1.0.0
+title: Replay-bound finite 2-cells; no univalence or infinite-coherence claim.  Rust
+  face of `omega_engine/kernel/higher_ope...
+kind: rust_file_contract
+status: active
+crate: omega_operad_theory
+file: crates_rs/omega_operad_theory/src/kernel/cells.rs
+module: kernel::cells
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_operad_theory
+  module: kernel::cells
+  file: crates_rs/omega_operad_theory/src/kernel/cells.rs
+symbols:
+- ComparisonVerdict
+- as_str
+- EquivalenceGrade
+- pair_subject_digest
+- ComparisonEvidence
+- new
+- to_canonical
+- canonical_id
+- Attestation
+- ReplayVerifiedAttestation
+- seal
+- inner
+- AttestationKind
+- raw
+- is_sealed
+- CertifiedPair
+- relation_id
+- scope_digest
+- admit_certified_pair
+- AtomicPath2
+- source
+- target
+- admit_atomic_path2
+- admit_equivalence
+- IdentityPath2
+- identity_path2
+- VerticalPath2
+- HorizontalPath2
+- InversePath2
+- WhiskerPath2
+owns:
+- comparison_verdict
+- as_str
+- equivalence_grade
+- pair_subject_digest
+- comparison_evidence
+- new
+- to_canonical
+- canonical_id
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

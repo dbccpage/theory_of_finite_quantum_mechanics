@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:cyclotomic28:v1.0.0
+title: Clean-room exact arithmetic in `Q(zeta_28)`.  This field supports the d=7 odd-prime
+  Weyl control. It contains seventh...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/cyclotomic28.rs
+module: cyclotomic28
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: cyclotomic28
+  file: crates_rs/omega_number_theory/src/cyclotomic28.rs
+symbols:
+- Cyc28
+- zero
+- rat
+- zeta
+- add
+- sub
+- neg
+- mul
+- conj
+- inv
+- is_zero
+- c1_28
+- icyc_28
+- sqrt7_28
+- scale_rat
+owns:
+- cyc28
+- zero
+- rat
+- zeta
+- add
+- sub
+- neg
+- mul
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

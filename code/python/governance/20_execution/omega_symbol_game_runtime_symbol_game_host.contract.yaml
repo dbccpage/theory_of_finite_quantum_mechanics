@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:symbol_game_host:v1.0.0
+title: Symbol Game Minimal Host & Three-Layer Verification Protocol.  Provides the
+  trusted host interface for the Symbol Gam...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/symbol_game_host.rs
+module: symbol_game_host
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: symbol_game_host
+  file: crates_rs/omega_symbol_game_runtime/src/symbol_game_host.rs
+symbols:
+- ProblemEdge
+- SymbolGameProblem
+- new
+- calculate_problem_digest
+- compute_digest
+- HostMoveOp
+- UntrustedProposal
+- HostRefusalCode
+- VerifiedEvent
+- calculate_event_digest
+- HostVerdict
+- SymbolGameHost
+- try_new
+- calculate_state_digest
+- compute_defect
+- section_defect
+- compute_residuals
+- verify_dual_witness
+- process_proposal
+- build_mub6_det_cycle
+owns:
+- problem_edge
+- symbol_game_problem
+- new
+- calculate_problem_digest
+- compute_digest
+- host_move_op
+- untrusted_proposal
+- host_refusal_code
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

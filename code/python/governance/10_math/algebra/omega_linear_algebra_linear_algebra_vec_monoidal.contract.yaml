@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:linear_algebra_vec_monoidal:v1.0.0
+title: Vec Monoidal Module
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/linear_algebra/vec_monoidal.rs
+module: linear_algebra::vec_monoidal
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: linear_algebra::vec_monoidal
+  file: crates_rs/omega_linear_algebra/src/linear_algebra/vec_monoidal.rs
+symbols:
+- VecMonoidalError
+- tensor_ob_checked
+- tensor_mor_checked
+- associator_checked
+- left_unitor_checked
+- right_unitor_checked
+- braiding_checked
+- FallibleSymbolicMonoidal
+- VecMonoidalBoundary
+owns:
+- vec_monoidal_error
+- tensor_ob_checked
+- tensor_mor_checked
+- associator_checked
+- left_unitor_checked
+- right_unitor_checked
+- braiding_checked
+- fallible_symbolic_monoidal
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

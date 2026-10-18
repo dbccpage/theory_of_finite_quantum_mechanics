@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_operad_theory:foundation_span_operand:v1.0.0
+title: 'Foundation: Exact UTF-8 Span Operands as Multicategory Objects.  Enforces:
+  1. Exact UTF-8 byte span boundaries withou...'
+kind: rust_file_contract
+status: active
+crate: omega_operad_theory
+file: crates_rs/omega_operad_theory/src/foundation/span_operand.rs
+module: foundation::span_operand
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_operad_theory
+  module: foundation::span_operand
+  file: crates_rs/omega_operad_theory/src/foundation/span_operand.rs
+symbols:
+- SpanOperand
+- new
+- from_raw_text
+- verify_integrity
+owns:
+- span_operand
+- new
+- from_raw_text
+- verify_integrity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

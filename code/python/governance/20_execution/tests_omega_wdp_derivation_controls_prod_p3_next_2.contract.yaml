@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_prod_p3_next_2:v1.0.0
+title: Companion Rust witness for PROD-P3-NEXT-2 (Appendix Q.4 13-hit break-even example).
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/prod_p3_next_2.rs
+module: omega_wdp::derivation_controls::prod_p3_next_2
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::prod_p3_next_2
+  file: crates_rs/tests/omega_wdp/derivation_controls/prod_p3_next_2.rs
+symbols:
+- q4_saving_milli
+- q4_strict_benefit
+owns:
+- q4_saving_milli
+- q4_strict_benefit
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:prime_algos_prime_algorithm_0_admission:v1.0.0
+title: 'Admission gate for Algorithm Prime 000.  # Two-Phase Discipline  Prime 000
+  has two distinct phases: 1. **Admission** ...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0_admission.rs
+module: prime_algos::prime_algorithm_0_admission
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: prime_algos::prime_algorithm_0_admission
+  file: crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0_admission.rs
+symbols:
+- AdmittedDeclaration
+- carrier
+- primitive_difference
+- zero_rel
+- cochain
+- observer
+- witnesses
+- AdmissionRefusal
+- to_receipt
+- admit
+owns:
+- admitted_declaration
+- carrier
+- primitive_difference
+- zero_rel
+- cochain
+- observer
+- witnesses
+- admission_refusal
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

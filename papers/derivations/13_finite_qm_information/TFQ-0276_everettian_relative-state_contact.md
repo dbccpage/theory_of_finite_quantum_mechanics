@@ -88,3 +88,16 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4-flash` | `status = PASS` | `receipt_sha256 = 837688b6f190b4ab3311dc92d3aa75b5bf71102babb56f3259b2fd37dc3912e0`
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM094-EVERETT-RELATIVE-STATE-CONTACT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT` (`FINITE_QM_STRUCTURE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_STRUCTURE-DS-QM094-EVERETT-RELATIVE-STATE-CONTACT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1660, -3320, 2490]`, `chord_potential = 2490`, `holonomy_gamma2 = 3320`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(DS-QM094-EVERETT-RELATIVE-STATE-CONTACT): 4*idx(166) + 3*stage_rank(8) + route_degree(2) == 690` ($\text{value} = 690$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM094-EVERETT-RELATIVE-STATE-CONTACT): R_raw(372) - G_cob(182) - S_decoy(8) == 182 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 182$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm094_everett_reduced_state_overlap_isometric_refinement_and_collapse_refutation`
+- **Sovereign Rust Witness Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = a0bec14432230e650115558090dbdc31bc8bef3d68734d9428d686bb797b555f`

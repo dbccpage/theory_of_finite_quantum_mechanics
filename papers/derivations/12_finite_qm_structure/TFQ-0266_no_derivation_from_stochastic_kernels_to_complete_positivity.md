@@ -61,3 +61,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-CPTP-COMPLETE-POSITIVITY-IMPORT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` (`FINITE_QM_STRUCTURE` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-DS-CPTP-CHOI-PARTIAL-TRANSPOSE`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [160, -320, 240]`, `chord_potential = 240`, `holonomy_gamma2 = 320`
+- **Finite Shadow Exact Witness (`M4`)**: `choi_transpose_trace: Tr(C_T) = 1 + 0 + 0 + 1 == 2` ($\text{value} = 2$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `partial_transpose_negative_minor_det: det([[0,1],[1,0]]) == -1 (positive map T fails complete positivity)` ($\text{value} = -1$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `3` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ade1abc854da8d288b94131d3cd96e2457d8b706841217d4cac6917d5336c5dd`

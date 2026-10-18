@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_local_green_global_red_lggr:adequacy:v1.0.0
+title: '--- Math Contract: Object: structural and numerical classification of an EPK
+  detector deployment. Preconditions: an o...'
+kind: rust_file_contract
+status: active
+crate: omega_local_green_global_red_lggr
+file: crates_rs/omega_local_green_global_red_lggr/src/adequacy.rs
+module: adequacy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_local_green_global_red_lggr
+  module: adequacy
+  file: crates_rs/omega_local_green_global_red_lggr/src/adequacy.rs
+symbols:
+- float_to_rational
+- DetectorAdequacyVerdictKind
+- DetectorUndeclaredReason
+- DetectorLocalSide
+- DetectorStructuralFailure
+- DetectorNumericalUnresolvedReason
+- DetectorCorpusCounts
+- from_records
+- sample_count
+- global_pass_count
+- global_failure_count
+- ngd_count
+- lrgr_count
+- global_failure_partition_holds
+- one_minus_gpr_partition_holds
+- DetectorCarrierClosureDisclosure
+- comparable_pair_count
+- collision_pairs
+- global_carrier_closed_on_corpus
+- detector_observed_corpus_digest
+- DetectorAdequacyVerdict
+- kind
+- authority_effect
+- counts
+- carrier_closure
+- threat_8_disclosure
+- declaration_digest
+- observed_corpus_digest
+- observed_corpus_digest_scope
+- undeclared_reason
+owns:
+- float_to_rational
+- detector_adequacy_verdict_kind
+- detector_undeclared_reason
+- detector_local_side
+- detector_structural_failure
+- detector_numerical_unresolved_reason
+- detector_corpus_counts
+- from_records
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

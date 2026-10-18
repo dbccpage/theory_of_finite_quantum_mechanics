@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_number_theory_finite_field_character_sums:v1.0.0
+title: GF(p^k) arithmetic and the two character-sum identities behind the Weyl MUB
+  proof, on every field the MUB controls use.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_number_theory/finite_field_character_sums.rs
+module: omega_number_theory::finite_field_character_sums
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_number_theory::finite_field_character_sums
+  file: crates_rs/tests/omega_number_theory/finite_field_character_sums.rs
+symbols: []
+owns:
+- omega_number_theory_finite_field_character_sums
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

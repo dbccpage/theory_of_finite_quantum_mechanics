@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_szollosi_t5_cover:v1.0.0
+title: 'Derivation 2 / MUB6-SZ-T5-COVER: Certified exact-rational cover of the Szöllősi
+  ray torus $\mathbb{T}^5$.  AuthorityE...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_szollosi_t5_cover.rs
+module: omega_native::mub6_szollosi_t5_cover
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_szollosi_t5_cover
+  file: crates_rs/omega_mub/src/omega_native/mub6_szollosi_t5_cover.rs
+symbols:
+- epsilon_tolerance
+- certified_pair_gap_bound
+- RayBox10D
+- new
+- to_interval_box
+- max_width
+- special_point_p0_system
+- eval_quad_comp_interval
+- LeafDisposition
+- evaluate_box_disposition
+- SzollosiT5CoverReceipt
+- SzollosiGenericCoverReceipt
+- SzollosiRadiusCoverReceipt
+- certified_parameter_radius_delta
+- certified_inv_jacobian_norm_bound
+- certified_parameter_sensitivity_bound
+- load_generic_replay
+- generic_sample_system
+- verify_dim3_f3_unbiased_ray_pair_exists
+owns:
+- epsilon_tolerance
+- certified_pair_gap_bound
+- ray_box10_d
+- new
+- to_interval_box
+- max_width
+- special_point_p0_system
+- eval_quad_comp_interval
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

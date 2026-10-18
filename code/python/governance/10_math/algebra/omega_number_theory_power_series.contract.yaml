@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:power_series:v1.0.0
+title: Formal exact power series modulo x^(N+1). Coefficients use the estate's exact
+  scalar tower; calculus refuses fields w...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/power_series.rs
+module: power_series
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: power_series
+  file: crates_rs/omega_number_theory/src/power_series.rs
+symbols:
+- SeriesError
+- TruncatedSeries
+- from_coefficients
+- constant
+- order
+- coefficients
+- coefficient
+- add
+- sub
+- scale
+- mul
+- inverse
+- derivative
+- integral
+- log
+- exp
+- compose
+- pow
+owns:
+- series_error
+- truncated_series
+- from_coefficients
+- constant
+- order
+- coefficients
+- coefficient
+- add
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

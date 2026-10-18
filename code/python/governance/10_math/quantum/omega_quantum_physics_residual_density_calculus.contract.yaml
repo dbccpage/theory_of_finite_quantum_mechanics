@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:residual_density_calculus:v1.0.0
+title: Exact pointer states, nonselective sector measurements, stochastic mass transport
+  and unitary conjugation. Programme ...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+module: residual_density_calculus
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: residual_density_calculus
+  file: crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+symbols:
+- ResidualDensityError
+- sector_measurement
+- row_stochastic_pushforward
+- conjugate
+- diagonal_density_from_masses
+- pointer_pinching
+owns:
+- residual_density_error
+- sector_measurement
+- row_stochastic_pushforward
+- conjugate
+- diagonal_density_from_masses
+- pointer_pinching
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

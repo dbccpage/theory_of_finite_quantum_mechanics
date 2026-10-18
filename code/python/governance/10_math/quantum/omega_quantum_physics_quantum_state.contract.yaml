@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:quantum_state:v1.0.0
+title: 'Pure states `|psi>` of a finite carrier `C^n`: an exact ray over `Q(i)` and
+  an `f64` diagnostic face.  **Exact.** [`R...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/quantum_state.rs
+module: quantum_state
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: quantum_state
+  file: crates_rs/omega_quantum_physics/src/quantum_state.rs
+symbols:
+- RayError
+- RayVector
+- try_new
+- from_ints
+- basis
+- entries
+- len
+- is_empty
+- norm_sq
+- inner
+- transition_probability
+- same_ray
+- scale
+- kron
+- apply
+- apply_ray
+- expectation
+- expectation_hermitian
+- projector
+- bloch_vector
+- born_probabilities
+- to_f64_amplitudes
+- QuantumStateError
+- QuantumState
+- try_normalized_with_norm
+- try_normalized
+- try_unit
+- from_cvector
+- to_cvector
+- computational_basis
+owns:
+- ray_error
+- ray_vector
+- try_new
+- from_ints
+- basis
+- entries
+- len
+- is_empty
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

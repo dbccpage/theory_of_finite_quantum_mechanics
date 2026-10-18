@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_d10_gtfoc_cross_validation:v1.0.0
+title: CODA-FOC/DDA cross-validation for the d=10 canonical-triple wall.  This module
+  rebuilds the d=10 carrier directly in ...
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/d10_gtfoc_cross_validation.rs
+module: omega_native::d10_gtfoc_cross_validation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::d10_gtfoc_cross_validation
+  file: crates_rs/omega_mub/src/omega_native/d10_gtfoc_cross_validation.rs
+symbols:
+- MatchStatus
+- D10GtfocTrichotomyClass
+- D10GtfocMatchItem
+- D10GtfocResidualCochain
+- D10NamedAntiunitaryTransport
+- D10GtfocTerminalVerdictKind
+- D10GtfocTerminalVerdict
+- D10GtfocCrossValidationReport
+- d10_gtfoc_cross_validation_report
+- run_d10_gtfoc_cross_validation
+owns:
+- match_status
+- d10_gtfoc_trichotomy_class
+- d10_gtfoc_match_item
+- d10_gtfoc_residual_cochain
+- d10_named_antiunitary_transport
+- d10_gtfoc_terminal_verdict_kind
+- d10_gtfoc_terminal_verdict
+- d10_gtfoc_cross_validation_report
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

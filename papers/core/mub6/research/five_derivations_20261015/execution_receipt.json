@@ -1,0 +1,62 @@
+{
+  "status": "PARTIAL_RESEARCH_RESULTS",
+  "base_commit": "470f2039beb4880a569bf63f7d9f3e75b36b5d7e",
+  "lean_toolchain": "leanprover/lean4:v4.33.1",
+  "lean_build": {
+    "command": "lake --no-cache build SzollosiCommonRays SzollosiLaurentPairing",
+    "exit_code": 0,
+    "axioms": {
+      "MUB.SzollosiLaurentPairing.balanced_monomial_pairing": [
+        "propext",
+        "Quot.sound"
+      ],
+      "MUB.SzollosiLaurentPairing.bottom_exponent_odd": [
+        "propext"
+      ],
+      "MUB.SzollosiLaurentPairing.balanced_mask_count": [],
+      "MUB.SzollosiLaurentPairing.uniform_orientation": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "MUB.SzollosiCommonRays.quartet_iff_ray_bases": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "MUB.SzollosiCommonRays.no_quartet_of_no_unbiased_ray_pair": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "python_tests": {
+    "command": "python -m unittest test_symbolic test_rur -v",
+    "tests": 14,
+    "exit_code": 0
+  },
+  "lint": {
+    "command": "ruff check --select F401,F841,I .",
+    "exit_code": 0
+  },
+  "symbolic_receipt_sha256": "fefa26b68e0b13badf0304ce124408e39a9ba5c921e5cb8d7ad7889c7bc2d17e",
+  "special_replay_sha256": "d0d09e056d2b8f5647168caa62c7a261cb67d5c8dae58a1b13658535109bc253",
+  "special_pair_gap_strict_lower_bound": "47/100",
+  "special_nonsingular_represented_real_roots": 120,
+  "source_sha256": {
+    "omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research/five_derivations_20261015/verify_symbolic.py": "99fbbe53afb24df19d0d4db5993e7e7a21c2531b0027f7d0383eff2da5e016c3",
+    "omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research/five_derivations_20261015/test_symbolic.py": "d3c2cd9405fbb70545b3aac53b24ba9f9ccb3dac51424ba9e85c73cc375ba3e1",
+    "omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research/five_derivations_20261015/replay_rur.py": "cb9c8ac2bfa524dcb7667ba3cccb0edc1db8098b78e80882e5216150d6a53094",
+    "omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research/five_derivations_20261015/test_rur.py": "dde7a515f22c4d1fa692f4b27ec99f348f5204ac53d853f2d0d78718448a20f1",
+    "lean4/research_programs/mub6/SzollosiCommonRays.lean": "830f5016cbab23811de1d03fb02c7eef5846e5af3ae91ada2830ea2fdbf1298c",
+    "lean4/research_programs/mub6/SzollosiLaurentPairing.lean": "22367d7620f0626513d5be96cebfb2a3337a1907a4577be3003b3f615f18350b"
+  },
+  "preexisting_files_preserved": 183,
+  "remaining_mathematical_targets": [
+    "Independent exhaustiveness certificate for sample systems and explicit parameter-neighborhood radius",
+    "Complete Szollosi-family quartet exclusion, including exceptional common-ray strata",
+    "Four real polynomial identities on arbitrary actual MUB triples",
+    "Upper-bound assembly consuming the two global results"
+  ]
+}

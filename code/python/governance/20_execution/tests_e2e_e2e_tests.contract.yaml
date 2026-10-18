@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:e2e_e2e_tests:v1.0.0
+title: End-to-end integration tests for omega_engine workspace.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/e2e/e2e_tests.rs
+module: e2e::e2e_tests
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: e2e::e2e_tests
+  file: crates_rs/tests/e2e/e2e_tests.rs
+symbols: []
+owns:
+- e2e_e2e_tests
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

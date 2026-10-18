@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:polynomial_factorization:v1.0.0
+title: Bounded Berlekamp-Zassenhaus factorisation over Q.  Yun decomposition removes
+  multiplicities. Primitive integer facto...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/polynomial_factorization.rs
+module: polynomial_factorization
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: polynomial_factorization
+  file: crates_rs/omega_number_theory/src/polynomial_factorization.rs
+symbols:
+- PolynomialFactorBudget
+- PolynomialFactorError
+- RationalFactorization
+- verify_product
+- factor_over_q
+owns:
+- polynomial_factor_budget
+- polynomial_factor_error
+- rational_factorization
+- verify_product
+- factor_over_q
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

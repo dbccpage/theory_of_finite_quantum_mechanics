@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_pipelines_loop_step_terminalize:v1.0.0
+title: 'S8 of the omega_certifier_loop sprint: round-trip a loop-step output row through
+  `omega_sweep_kernel::terminalize_row...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_pipelines/loop_step_terminalize.rs
+module: omega_pipelines::loop_step_terminalize
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_pipelines::loop_step_terminalize
+  file: crates_rs/tests/omega_pipelines/loop_step_terminalize.rs
+symbols: []
+owns:
+- omega_pipelines_loop_step_terminalize
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

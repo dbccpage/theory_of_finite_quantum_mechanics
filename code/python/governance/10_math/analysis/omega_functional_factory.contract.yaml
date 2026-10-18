@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:factory:v1.0.0
+title: Explicit, stateless dispatch of checked finite functional measurements.  This
+  layer emits no workload verdict, termin...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/factory.rs
+module: factory
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: factory
+  file: crates_rs/omega_functional/src/factory.rs
+symbols:
+- FunctionalContentHash
+- FunctionalInput
+- FunctionalRange
+- FunctionalAuthorityEffect
+- UntrustedFunctionalRecord
+- FunctionalEvidence
+- value
+- FunctionalOutput
+- record
+- evidence
+- FunctionalError
+- Kernel
+- BaseFunctionalKernel
+- ConfiguredFunctional
+- phi1
+- gamma2
+- evaluate_functional
+- replay_functional_record
+owns:
+- functional_content_hash
+- functional_input
+- functional_range
+- functional_authority_effect
+- untrusted_functional_record
+- functional_evidence
+- value
+- functional_output
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

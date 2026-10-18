@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:finite_relational:v1.0.0
+title: 'Finite labelled relational systems: strong report-respecting bisimulation.  Labels
+  index declared successor sets, whi...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/finite_relational.rs
+module: finite_relational
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: finite_relational
+  file: crates_rs/omega_category_theory/src/finite_relational.rs
+symbols:
+- RelationalError
+- FinitePreorder
+- from_edges
+- relation
+- leq
+- is_partial_order
+- FiniteRelational
+- RelationalQuotient
+- SuccessionClassification
+- new
+- reports
+- successors
+- label_count
+- state_count
+- is_report_bisimulation_partition
+- bisimulation_quotient
+- verify_quotient
+- same_behavior_set
+- factor_through_bounded_quotient
+- succession_classification
+owns:
+- relational_error
+- finite_preorder
+- from_edges
+- relation
+- leq
+- is_partial_order
+- finite_relational
+- relational_quotient
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

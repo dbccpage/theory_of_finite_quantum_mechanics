@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_replay:t3_authority:v1.0.0
+title: '--- Math Contract: AUTH-023 — T3 / primal-dual identity replay → authority
+  ---  Family-local adapter wiring an **Admi...'
+kind: rust_file_contract
+status: active
+crate: omega_replay
+file: crates_rs/omega_replay/src/t3_authority.rs
+module: t3_authority
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_replay
+  module: t3_authority
+  file: crates_rs/omega_replay/src/t3_authority.rs
+symbols:
+- witness_from_t3_replay
+- T3Authority
+owns:
+- witness_from_t3_replay
+- t3_authority
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

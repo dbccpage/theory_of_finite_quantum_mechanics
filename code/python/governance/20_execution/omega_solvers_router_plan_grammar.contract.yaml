@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:router_plan_grammar:v1.0.0
+title: Finite declared plan-frontier semantics and cost-order routing for solver of
+  solvers.  Rust face of `omega_engine/ker...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/router_plan_grammar.rs
+module: router_plan_grammar
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: router_plan_grammar
+  file: crates_rs/omega_solvers/src/router_plan_grammar.rs
+symbols:
+- PlanGrammarError
+- canonical_sha256
+- PlanKind
+- CostOrder
+- EvaluationStatus
+- FrontierTerminal
+- SearchDeclarationV1
+- new
+- to_canonical
+- canonical_id
+- FinitePlanGrammarV1
+- DeclaredPlanEvaluationV1
+- FrontierClassV1
+- PlanFrontierV1
+- route_declared_finite_grammar
+owns:
+- plan_grammar_error
+- canonical_sha256
+- plan_kind
+- cost_order
+- evaluation_status
+- frontier_terminal
+- search_declaration_v1
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

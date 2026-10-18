@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:multipath_iterator:v1.0.0
+title: Finite, typed, obstruction-directed iteration for Paper 070.  The iterator
+  is a bounded orchestration shell. Domain a...
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/multipath_iterator.rs
+module: multipath_iterator
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: multipath_iterator
+  file: crates_rs/omega_engines/src/multipath_iterator.rs
+symbols:
+- CarrierKind
+- CarrierCell
+- FiniteCarrier
+- canonicalized
+- validate
+- DetectorRequirement
+- ProblemPacket
+- sha256
+- ObserverDeclaration
+- ComparisonDeclaration
+- ProjectedDatum
+- CoverageDisposition
+- ProjectionLossReceipt
+- CoverageAssessment
+- ExactBinaryCochainProbe
+- VisibleDefect
+- HigherDegreeNeed
+- Inspection
+- CochainDiagnosticReceipt
+- DefectReceipt
+- ObstructionMeasure
+- ObstructionSignature
+- InspectionReceipt
+- TerminalKind
+- TerminalReceipt
+- RegisteredOperator
+- OperatorRegistry
+- new
+- operators
+- get
+owns:
+- carrier_kind
+- carrier_cell
+- finite_carrier
+- canonicalized
+- validate
+- detector_requirement
+- problem_packet
+- sha256
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

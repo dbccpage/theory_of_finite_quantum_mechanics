@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:functor_free_functor:v1.0.0
+title: 'free_functor shell for omega_category_theory. AuthorityEffect: None. Not PROVED
+  / GlobalGreen.  Free functor F : D → ...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/functor/free_functor.rs
+module: functor::free_functor
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: functor::free_functor
+  file: crates_rs/omega_category_theory/src/functor/free_functor.rs
+symbols:
+- FreeFunctor
+- new
+- between
+- validate_shell
+owns:
+- free_functor
+- new
+- between
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:foundations_function:v1.0.0
+title: 'function shell for omega_category_theory. AuthorityEffect: None. Not PROVED
+  / GlobalGreen.'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/foundations/function.rs
+module: foundations::function
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: foundations::function
+  file: crates_rs/omega_category_theory/src/foundations/function.rs
+symbols:
+- MappingPair
+- Function
+- new
+- between
+- with_pair
+- validate_shell
+owns:
+- mapping_pair
+- function
+- new
+- between
+- with_pair
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

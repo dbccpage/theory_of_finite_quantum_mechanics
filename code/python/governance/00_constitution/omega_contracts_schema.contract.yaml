@@ -1,0 +1,59 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:schema:v1.0.0
+title: Schema Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/schema.rs
+module: schema
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: schema
+  file: crates_rs/omega_contracts/src/schema.rs
+symbols:
+- ArtifactFamily
+- OperatorClass
+- UrosSystem
+- RegistryKind
+- ExpressivityCoordinate
+- UrosBlock
+- AuthorityLayer
+- ConstitutionalBlock
+- SignatureBlock
+- RequiresBlock
+- ValidationBlock
+- WitnessesBlock
+- ReplayBlock
+- LawRequirementsBlock
+- PhiLawDecl
+- StructureLawDecl
+- EffectLawDecl
+- LawPresence
+- is_required
+- as_option
+- LawBlock
+- ConstraintBlock
+- ProofObligationRef
+- as_str
+- TerminalPolicy
+- RefusalPolicy
+- OperatorClassPolicy
+- RustBinding
+- ContractDescriptor
+owns:
+- artifact_family
+- operator_class
+- uros_system
+- registry_kind
+- expressivity_coordinate
+- uros_block
+- authority_layer
+- constitutional_block
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

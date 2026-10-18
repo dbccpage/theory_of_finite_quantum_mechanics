@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:morphism:v1.0.0
+title: 'Morphism abstraction in Category Theory (omega_category_theory).  Aligned
+  with URN contract: `urn:omega:math:morphism...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/morphism.rs
+module: morphism
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: morphism
+  file: crates_rs/omega_category_theory/src/morphism.rs
+symbols:
+- MorphismTrait
+- SkillMorphism
+- new
+- compose
+owns:
+- morphism_trait
+- skill_morphism
+- new
+- compose
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

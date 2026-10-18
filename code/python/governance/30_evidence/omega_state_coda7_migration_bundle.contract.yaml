@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:coda7_migration_bundle:v1.0.0
+title: 'Finite CODA-7 migration-bundle preservation for S03-002.  The carrier is deliberately
+  closed: three heterogeneous mem...'
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/coda7_migration_bundle.rs
+module: coda7_migration_bundle
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: coda7_migration_bundle
+  file: crates_rs/omega_state/src/coda7_migration_bundle.rs
+symbols:
+- Coda7ArtifactMapV1
+- FrozenCoda7SourceV1
+- Coda7ReplayArtifactsV1
+- Coda7ArtifactBindingV1
+- FrozenCoda7ObserverV1
+- Coda7ArtifactKindV1
+- Coda7MigrationOperationV1
+- Coda7MemberStorageV1
+- Coda7PathPairV1
+- Coda7PathPolicyV1
+- Coda7MemberSpecV1
+- Coda7BudgetsV1
+- Coda7MigrationPacketV1
+- Coda7MemberReceiptV1
+- Coda7SurvivorRouteV1
+- Coda7ResidualLedgerEntryV1
+- Coda7MigrationReceiptV1
+- Coda7MemberVerificationV1
+- Coda7MigrationVerificationV1
+- Coda7Error
+- terminal_route
+- canonical_s03_002_source_manifest_v1
+- canonical_s03_002_packet_v1
+- canonical_s03_002_receipt_v1
+- canonical_s03_002_replay_artifacts_v1
+- canonical_s03_002_verification_v1
+- validate_coda7_packet_v1
+- verify_coda7_migration_bundle_v1
+- coda7_packet_sha256_v1
+- coda7_receipt_sha256_v1
+owns:
+- coda7_artifact_map_v1
+- frozen_coda7_source_v1
+- coda7_replay_artifacts_v1
+- coda7_artifact_binding_v1
+- frozen_coda7_observer_v1
+- coda7_artifact_kind_v1
+- coda7_migration_operation_v1
+- coda7_member_storage_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

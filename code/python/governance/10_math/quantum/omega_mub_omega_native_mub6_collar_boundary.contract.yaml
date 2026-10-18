@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_collar_boundary:v1.0.0
+title: 'Target A8: Collar-Boundary Overlap & Circulation Chaining Engine.  STRICT
+  ZERO-FLOAT DISCIPLINE: floating point types...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_collar_boundary.rs
+module: omega_native::mub6_collar_boundary
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_collar_boundary
+  file: crates_rs/omega_mub/src/omega_native/mub6_collar_boundary.rs
+symbols:
+- collar_margin
+- karlsson_volume_margin
+- interface_margin
+- critical_mesh_step
+- CollarBoundaryError
+- CollarBoundaryBox3D
+- volume
+- is_overlap
+- contains_point
+- CollarBoundaryConfig
+- canonical
+- overlapping
+- BoundaryOverlapPartition
+- verify_partition
+- find_box
+- evaluate_boundary_overlap
+- InterfaceTransition
+- new
+- phase_transition
+- permutation_transition
+- identity
+- InterfaceCycle
+- twisted
+- chained_holonomy
+- is_cocycle_trivial
+- build_boundary_and_cochain
+- verify_circulation
+- InterfaceCycleCirculationCert
+- InterfaceCycleChain
+- canonical_chain
+owns:
+- collar_margin
+- karlsson_volume_margin
+- interface_margin
+- critical_mesh_step
+- collar_boundary_error
+- collar_boundary_box3_d
+- volume
+- is_overlap
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

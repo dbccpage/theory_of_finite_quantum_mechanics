@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:code_change_commands:v1.0.0
+title: Sequential create, submit and candidate-bound gate evaluation commands.
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/code_change/commands.rs
+module: code_change::commands
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: code_change::commands
+  file: crates_rs/omega_symbol_game_runtime/src/code_change/commands.rs
+symbols:
+- CreateCodeChangeProposalUseCase
+- execute
+- SubmitPatchCandidateUseCase
+- EvaluatePatchGatesUseCase
+owns:
+- create_code_change_proposal_use_case
+- execute
+- submit_patch_candidate_use_case
+- evaluate_patch_gates_use_case
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

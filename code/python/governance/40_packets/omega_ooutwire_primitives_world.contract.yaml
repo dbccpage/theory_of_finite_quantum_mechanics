@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:world:v1.0.0
+title: 'Primitive — the **represented world**: the sealed carrier plus the two gates
+  and the refusal record, with a total ste...'
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/world.rs
+module: world
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: world
+  file: crates_rs/omega_ooutwire_primitives/src/world.rs
+symbols:
+- World
+- WorldEvent
+- Verdict
+- genesis
+- from_regime
+- replay
+- violated
+- quiescent
+- refused
+- step_world
+owns:
+- world
+- world_event
+- verdict
+- genesis
+- from_regime
+- replay
+- violated
+- quiescent
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_q_probe:v1.0.0
+title: Probe Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/q/probe.rs
+module: coda::q::probe
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::q::probe
+  file: crates_rs/omega_wdp/src/coda/q/probe.rs
+symbols:
+- probe_plan_for_packet
+owns:
+- probe_plan_for_packet
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

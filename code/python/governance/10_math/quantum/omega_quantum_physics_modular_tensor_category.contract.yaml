@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:modular_tensor_category:v1.0.0
+title: Topological order from a nondegenerate ribbon model. Modular data live in `omega_fusion_categories::modular`.
+  Authori...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/modular_tensor_category.rs
+module: modular_tensor_category
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: modular_tensor_category
+  file: crates_rs/omega_quantum_physics/src/modular_tensor_category.rs
+symbols:
+- ModularTensorCategory
+- try_new
+- model
+- data
+- ground_state_degeneracy
+- topological_entropy_dimension_squared
+- authority_fence
+owns:
+- modular_tensor_category
+- try_new
+- model
+- data
+- ground_state_degeneracy
+- topological_entropy_dimension_squared
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

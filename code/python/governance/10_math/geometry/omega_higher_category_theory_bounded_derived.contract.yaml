@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:bounded_derived:v1.0.0
+title: Bounded Derived Category $\mathcal{D}^b(\mathcal{A})$.  Provides bounded chain
+  complexes, cohomology bound validators...
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/bounded_derived.rs
+module: bounded_derived
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: bounded_derived
+  file: crates_rs/omega_higher_category_theory/src/bounded_derived.rs
+symbols:
+- BoundedComplex
+- new
+- CohomologyBoundValidator
+- validate
+- BoundedDerivedCategory
+- with_limits
+- add_bounded_complex
+- truncate_above
+- content_hash
+owns:
+- bounded_complex
+- new
+- cohomology_bound_validator
+- validate
+- bounded_derived_category
+- with_limits
+- add_bounded_complex
+- truncate_above
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

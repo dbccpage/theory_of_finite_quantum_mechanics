@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:examples_balance_preserving_edits:v1.0.0
+title: Native finite fixtures for lesson 720.24. No input parser or Python solver.
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/examples/balance_preserving_edits.rs
+module: examples::balance_preserving_edits
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: examples::balance_preserving_edits
+  file: crates_rs/omega_wdp/src/examples/balance_preserving_edits.rs
+symbols: []
+owns:
+- examples_balance_preserving_edits
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

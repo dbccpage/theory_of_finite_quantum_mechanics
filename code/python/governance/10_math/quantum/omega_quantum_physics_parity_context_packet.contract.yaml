@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:parity_context_packet:v1.0.0
+title: Finite parity-context packets over `F_2`.  A packet declares `n` variables,
+  `m` contexts (each a nonempty set of dist...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+module: parity_context_packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: parity_context_packet
+  file: crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+symbols:
+- SignedContextFamily
+- ParityPacketError
+- ImageCertificate
+- ParityAdmission
+- diagnostic_class
+- ParityContextPacket
+- new
+- from_square
+- variable_count
+- context_count
+- targets
+- all_contexts
+- incidence_counts
+- d0
+- transpose_d0
+- violations
+- rank_d0
+- quotient_dimension
+- in_image
+- certificate
+- verify_certificate
+- violation_histogram
+- satisfiable
+- is_minimally_unsatisfiable
+- context_graph
+- measurement_scenario
+- h1_dimension
+- admit_with_d1
+- verify_admission
+owns:
+- signed_context_family
+- parity_packet_error
+- image_certificate
+- parity_admission
+- diagnostic_class
+- parity_context_packet
+- new
+- from_square
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

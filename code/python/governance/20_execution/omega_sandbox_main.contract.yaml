@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_sandbox:main:v1.0.0
+title: omega-sandbox-run CLI binary (U09).  Takes SandboxConfig JSON over stdin and
+  prints SandboxOutcome JSON to stdout.
+kind: rust_file_contract
+status: active
+crate: omega_sandbox
+file: crates_rs/omega_sandbox/src/main.rs
+module: main
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_sandbox
+  module: main
+  file: crates_rs/omega_sandbox/src/main.rs
+symbols: []
+owns:
+- main
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

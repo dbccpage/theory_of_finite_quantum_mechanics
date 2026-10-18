@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_intelligence:port:v1.0.0
+title: JSON DTO entrypoint for supervised hosts.
+kind: rust_file_contract
+status: active
+crate: omega_intelligence
+file: crates_rs/omega_intelligence/src/port.rs
+module: port
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_intelligence
+  module: port
+  file: crates_rs/omega_intelligence/src/port.rs
+symbols:
+- execute
+- contract
+owns:
+- execute
+- contract
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

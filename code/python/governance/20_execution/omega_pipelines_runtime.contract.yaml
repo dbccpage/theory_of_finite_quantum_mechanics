@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_pipelines:runtime:v1.0.0
+title: '--- Math Contract: a bounded proposal/evaluation metabolism totalizes every
+  admitted problem.  This module is the pur...'
+kind: rust_file_contract
+status: active
+crate: omega_pipelines
+file: crates_rs/omega_pipelines/src/runtime.rs
+module: runtime
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_pipelines
+  module: runtime
+  file: crates_rs/omega_pipelines/src/runtime.rs
+symbols:
+- ContentHash
+- domain_separated
+- PromptIdentity
+- from_prompt
+- new
+- as_str
+- OmegaBudgets
+- RequestedEffect
+- OmegaTerminal
+- OmegaRole
+- RegistryStatus
+- ExecutionStatus
+- EvidenceStatus
+- AuthorityStatus
+- EffectStatus
+- ProblemPacket
+- ProblemPacketSpec
+- carrier
+- regime
+- assumptions
+- constraints
+- observer
+- context_refs
+- permitted_operators
+- SeparationMode
+- IndependenceError
+- SeparationClaim
+- try_new
+- producer
+- evaluator
+owns:
+- content_hash
+- domain_separated
+- prompt_identity
+- from_prompt
+- new
+- as_str
+- omega_budgets
+- requested_effect
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

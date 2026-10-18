@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:exact:v1.0.0
+title: Exact wire integers and quoted rationals; no floating-point money path.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/exact.rs
+module: exact
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: exact
+  file: crates_rs/omega_woland/src/exact.rs
+symbols:
+- Integer
+- integer
+owns:
+- integer
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

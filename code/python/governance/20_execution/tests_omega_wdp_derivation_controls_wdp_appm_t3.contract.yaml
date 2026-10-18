@@ -1,0 +1,38 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_appm_t3:v1.0.0
+title: Exact witness for the 3D winding, linking, and character-orthogonality carrier
+  in `derivation.md`.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appm_t3.rs
+module: omega_wdp::derivation_controls::wdp_appm_t3
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_appm_t3
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appm_t3.rs
+symbols:
+- Witness
+- plaquettes_3d
+- generators_3d
+- linking_with_square_patch
+- hopf_loop
+- parity_character_sum
+- witness
+- reject_pinned_t3_string_only_claim
+owns:
+- witness
+- plaquettes_3d
+- generators_3d
+- linking_with_square_patch
+- hopf_loop
+- parity_character_sum
+- reject_pinned_t3_string_only_claim
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

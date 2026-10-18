@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:loop_quantum_gravity:v1.0.0
+title: Exact flux closure and volume of finite oriented tetrahedra. This finite geometric
+  face does not construct a continuu...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/loop_quantum_gravity.rs
+module: loop_quantum_gravity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: loop_quantum_gravity
+  file: crates_rs/omega_general_relativity/src/loop_quantum_gravity.rs
+symbols:
+- FluxGeometryError
+- FluxTetrahedron
+- new
+- closure_defect
+- area_squared
+- LoopQuantumGravity
+- from_tetrahedra
+- authority_fence
+- satisfies_gauss_closure
+- ExactFourSimplex
+- triangle_bivector
+owns:
+- flux_geometry_error
+- flux_tetrahedron
+- new
+- closure_defect
+- area_squared
+- loop_quantum_gravity
+- from_tetrahedra
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

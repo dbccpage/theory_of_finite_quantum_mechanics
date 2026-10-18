@@ -1,0 +1,29 @@
+{
+  "finish_reason": "stop",
+  "content_len": 1159,
+  "reasoning_len": 9683,
+  "content": "{\n  \"cycle_independence\": \"Independent cycle characters factor as sigma(C) = product_i s_i^(I(c_i)), and the 2^k flip sum factorizes over cycles as product_i (1 + s_i^(I(c_i))).\",\n  \"cycle_parity_invariant_found\": true,\n  \"cancellation_mechanism\": \"If any cycle has odd winding, its independent flip character contributes 1 + (-1) = 0, so the entire odd-winding subgraph sector cancels pairwise.\",\n  \"zero_odd_sector_subgraphs\": 199,\n  \"exact_partition_z\": 912,\n  \"scratchpad\": [\n    \"Step 1: For k cycles, Z(C) = sum over epsilon_i in {+1,-1} of product_i s_i^(I(c_i) epsilon_i) = product_i (1 + s_i^(I(c_i))).\",\n    \"Step 2: The sign factorizes independently as sigma(C) = product_i s_i^(I(c_i)), with s_i = -1 for an odd-winding cycle and s_i = +1 for an even-winding cycle.\",\n    \"Step 3: If I(c_i) = 1, then Z(C) contains (1 + (-1)) times product over j not equal to i of (1 + s_j^(I(c_j))) = 0.\",\n    \"Step 4: The 57 odd-winding subgraphs have 192 negative and 192 matched positive states, so all 384 states cancel. The zero-odd sector contains 256 - 57 = 199 subgraphs and Z = 1296 - 384 = sum over the 199 surviving subgraphs of 2^(k(C)) = 912.\"\n  ]\n}",
+  "usage": {
+    "prompt_tokens": 731,
+    "completion_tokens": 2914,
+    "total_tokens": 3645,
+    "cost": 0,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 149,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0,
+      "upstream_inference_prompt_cost": 0,
+      "upstream_inference_completions_cost": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

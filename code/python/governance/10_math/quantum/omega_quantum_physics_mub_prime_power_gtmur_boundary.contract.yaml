@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_prime_power_gtmur_boundary:v1.0.0
+title: Prime-power CODA-MUR boundary ledger.  This ledger separates the part of the
+  all-N request that can be organized by f...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/prime_power_gtmur_boundary.rs
+module: mub::prime_power_gtmur_boundary
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::prime_power_gtmur_boundary
+  file: crates_rs/omega_quantum_physics/src/mub/prime_power_gtmur_boundary.rs
+symbols:
+- PrimePowerGtmurBoundaryStatus
+- CompositeAuthorityGap
+- PrimePowerGtmurBoundaryReport
+- extract_composite_authority_gaps
+- verify_prime_power_gtmur_boundary
+- verify_prime_power_gtmur_boundary_with_reports
+owns:
+- prime_power_gtmur_boundary_status
+- composite_authority_gap
+- prime_power_gtmur_boundary_report
+- extract_composite_authority_gaps
+- verify_prime_power_gtmur_boundary
+- verify_prime_power_gtmur_boundary_with_reports
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

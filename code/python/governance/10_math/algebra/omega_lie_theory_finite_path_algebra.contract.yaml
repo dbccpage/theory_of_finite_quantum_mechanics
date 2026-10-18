@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:finite_path_algebra:v1.0.0
+title: Faithful regular path algebra and its concrete matrix star completion.  Scalars
+  Q(i), orthonormal path vectors and ma...
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/finite_path_algebra.rs
+module: finite_path_algebra
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: finite_path_algebra
+  file: crates_rs/omega_lie_theory/src/finite_path_algebra.rs
+symbols:
+- PathAlgebraError
+- FinitePathAlgebra
+- new
+- paths
+- dimension
+- block_sizes
+- completion_dimension
+- origin_is_path_faithful
+- basis_left
+- left_regular
+- recover_coefficients
+- identity_path_projection
+- matrix_unit
+- central_origin_projection
+- is_in_completion
+- restrict_origin
+owns:
+- path_algebra_error
+- finite_path_algebra
+- new
+- paths
+- dimension
+- block_sizes
+- completion_dimension
+- origin_is_path_faithful
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

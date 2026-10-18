@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:self_adjoint:v1.0.0
+title: 'Inner product spaces and self-adjoint operators.  This module provides certified
+  constructions for: - real inner prod...'
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/self_adjoint.rs
+module: self_adjoint
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: self_adjoint
+  file: crates_rs/omega_linear_algebra/src/self_adjoint.rs
+symbols:
+- InnerProductError
+- RealPositiveDefiniteCheck
+- RealInnerProductSpace
+- new_checked
+- new_unchecked
+- basis
+- gram
+- symmetric_witness
+- positive_definite_witness
+- provenance
+- SelfAdjointError
+- SelfAdjointWitness
+- operator_shape
+- gram_shape
+- SelfAdjoint
+- operator
+- inner_product
+- witness
+- from_witness
+owns:
+- inner_product_error
+- real_positive_definite_check
+- real_inner_product_space
+- new_checked
+- new_unchecked
+- basis
+- gram
+- symmetric_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

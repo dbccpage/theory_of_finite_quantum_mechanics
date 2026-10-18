@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_pipelines_coda_gtlanf_parity:v1.0.0
+title: 'M10 — F7 Rust replay against a retained historical Python/Rust fixture.  Fixture:
+  `tests/fixtures/coda_gtlanf_parity_...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_pipelines/coda_gtlanf_parity.rs
+module: omega_pipelines::coda_gtlanf_parity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_pipelines::coda_gtlanf_parity
+  file: crates_rs/tests/omega_pipelines/coda_gtlanf_parity.rs
+symbols: []
+owns:
+- omega_pipelines_coda_gtlanf_parity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

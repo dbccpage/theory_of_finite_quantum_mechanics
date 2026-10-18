@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:tests:v1.0.0
+title: Integration tests for omega_homology.
+kind: rust_test_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/tests/mod.rs
+module: tests
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: tests
+  file: crates_rs/omega_homology/src/tests/mod.rs
+symbols: []
+owns:
+- tests
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,58 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:bipartite_operator:v1.0.0
+title: Exact operators on a declared bipartite carrier `C^(d_A) (x) C^(d_B)` over
+  `Q(i)`.  Operators are `BasicMatrix<Gaussi...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/bipartite_operator.rs
+module: bipartite_operator
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: bipartite_operator
+  file: crates_rs/omega_quantum_physics/src/bipartite_operator.rs
+symbols:
+- BipartiteError
+- partial_trace_b
+- partial_trace_a
+- partial_transpose_b
+- is_ppt
+- DecomposableWitness
+- new
+- operator
+- value
+- certifies_entanglement
+- ProductDecomposition
+- verify
+- descend_to_table
+- hermitian_coordinates
+- pure_state
+- in_separable_ball
+- realignment
+- operator_schmidt_rank
+- reduction_criterion
+- range_kernel
+- UnextendibleProductBasis
+- try_new
+- dimensions
+- factors
+- complement_state
+- realignment_norm_enclosure
+- negativity_enclosure
+owns:
+- bipartite_error
+- partial_trace_b
+- partial_trace_a
+- partial_transpose_b
+- is_ppt
+- decomposable_witness
+- new
+- operator
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

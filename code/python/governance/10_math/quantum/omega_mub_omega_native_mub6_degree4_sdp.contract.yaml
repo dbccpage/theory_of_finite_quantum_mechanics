@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_degree4_sdp:v1.0.0
+title: Target Q2 Degree-4 / Symmetry-Reduced Moment SDP Solver.  Evaluates exact rational
+  degree-4 moment relaxations and sy...
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_degree4_sdp.rs
+module: omega_native::mub6_degree4_sdp
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_degree4_sdp
+  file: crates_rs/omega_mub/src/omega_native/mub6_degree4_sdp.rs
+symbols:
+- build_degree4_invariant_moment_matrix
+- build_degree4_extended_moment_matrix
+- build_invariant_dual_witness_x0
+- build_extended_dual_witness_s6
+- DualWitnessReceipt
+- Degree4MomentReport
+- MubDegree4Certificate
+- solve_target_q2_degree4_certificate
+owns:
+- build_degree4_invariant_moment_matrix
+- build_degree4_extended_moment_matrix
+- build_invariant_dual_witness_x0
+- build_extended_dual_witness_s6
+- dual_witness_receipt
+- degree4_moment_report
+- mub_degree4_certificate
+- solve_target_q2_degree4_certificate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

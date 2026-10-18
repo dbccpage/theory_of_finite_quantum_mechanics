@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_mub_finite_core_adapter:v1.0.0
+title: 'Exact verifier behavior for the finite MUB core used by omega_mub. AuthorityEffect:
+  None.'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_mub/finite_core_adapter.rs
+module: omega_mub::finite_core_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_mub::finite_core_adapter
+  file: crates_rs/tests/omega_mub/finite_core_adapter.rs
+symbols: []
+owns:
+- omega_mub_finite_core_adapter
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

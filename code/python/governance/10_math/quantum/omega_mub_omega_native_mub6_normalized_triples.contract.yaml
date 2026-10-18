@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_normalized_triples:v1.0.0
+title: 'Target 3: Normalized Triples Chart & Regular Corner Reconstruction.  STRICT
+  ZERO-FLOAT DISCIPLINE: floating point typ...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_normalized_triples.rs
+module: omega_native::mub6_normalized_triples
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_normalized_triples
+  file: crates_rs/omega_mub/src/omega_native/mub6_normalized_triples.rs
+symbols:
+- verify_transition_scaling_cross_mult
+- CornerParamCyc
+- extract_leading_corner_3x3
+- extract_corner_param_3x3
+- corner_det_poly_cyc
+- corner_det_poly_rat
+- is_regular_corner_cyc
+- is_singular_corner_cyc
+- is_unscaled_hadamard
+- eval_transition_matrix
+- is_transition_modulus_six
+- sample_normalized_fourier_triple
+- NormalizedTripleReport
+- generate_normalized_triple_report
+owns:
+- verify_transition_scaling_cross_mult
+- corner_param_cyc
+- extract_leading_corner_3x3
+- extract_corner_param_3x3
+- corner_det_poly_cyc
+- corner_det_poly_rat
+- is_regular_corner_cyc
+- is_singular_corner_cyc
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

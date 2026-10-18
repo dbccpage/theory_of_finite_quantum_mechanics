@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:circle_piecewise_linear:v1.0.0
+title: Exact continuous periodic test functions, with derived bounds and integrals.
+  Knots include both 0 and 1, with equal e...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/circle_piecewise_linear.rs
+module: circle_piecewise_linear
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: circle_piecewise_linear
+  file: crates_rs/omega_functional/src/circle_piecewise_linear.rs
+symbols:
+- CircleProfileError
+- CirclePiecewiseLinear
+- new
+- knots
+- norm
+- lipschitz
+- square_integral
+- evaluate
+- uniform_samples
+owns:
+- circle_profile_error
+- circle_piecewise_linear
+- new
+- knots
+- norm
+- lipschitz
+- square_integral
+- evaluate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

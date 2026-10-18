@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:norm_approximation_frontier:v1.0.0
+title: Exact CCR trace defects and the principal winding of a finite clock-shift pair.
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/norm_approximation_frontier.rs
+module: norm_approximation_frontier
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: norm_approximation_frontier
+  file: crates_rs/omega_quantum_physics/src/norm_approximation_frontier.rs
+symbols:
+- NormFrontierError
+- CcrDefectCertificate
+- certify_ccr_defect
+- ClockShiftWinding
+- clock_shift_winding
+owns:
+- norm_frontier_error
+- ccr_defect_certificate
+- certify_ccr_defect
+- clock_shift_winding
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

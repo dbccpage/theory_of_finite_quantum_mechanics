@@ -1,0 +1,769 @@
+{
+  "arms": {
+    "arm1_constrained": {
+      "deepseek/deepseek-v4-flash-0731": {
+        "feedback": [
+          "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+          "FAIL: Failed to recognize factorized cycle independence.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.00036876,
+          "in_tokens": 1719,
+          "latency": 73.60835433006287,
+          "out_tokens": 3000
+        },
+        "parsed": {
+          "cancellation_mechanism": "Unparseable output",
+          "cycle_independence": false,
+          "cycle_parity_invariant_found": false,
+          "exact_partition_z": null,
+          "parse_error": true,
+          "raw_text": "We need answer JSON. Need solve. Need understand problem. We have oriented multigraph system 16 nodes and 256 admissible decomposition subgraphs. Each subgraph decomposes into k disjoint connected cycle components. Configurations orientations. Given representative samples all signs +1 weights 1. But global counts: 1104 +, 192 -, total 1296 configs. Across 256 subgraphs total configs = sum 2^k = 1296. Need infer structure? We need compute exact partition Z, zero_odd_sector_subgraphs, etc. Need di",
+          "scratchpad": "",
+          "zero_odd_sector_subgraphs": 0
+        },
+        "perfect": false,
+        "score": 0
+      },
+      "meta-llama/llama-3.3-70b-instruct": {
+        "feedback": [
+          "FAIL: Claimed Z=128 does not match exact ground-truth 912.",
+          "PASS: Recognized that configurations factorize into independent cycle components.",
+          "PASS: Proved that odd-parity cycle flips invert the global sign, causing identical pairwise cancellation.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.00028542000000000004,
+          "in_tokens": 1351,
+          "latency": 48.918596506118774,
+          "out_tokens": 411
+        },
+        "parsed": {
+          "cancellation_mechanism": "The sum over all 2^k orientation configurations on G_k vanishes identically whenever a subgraph G_k contains at least one cycle with I(c) = 1, due to the exact structural decomposition showing how cycle orientations interact with the global sign sigma(C).",
+          "cycle_independence": true,
+          "cycle_parity_invariant_found": true,
+          "exact_partition_z": 128,
+          "scratchpad": "Let I(c) be the discrete parity invariant for an individual cycle component c. For a subgraph G_k with k disjoint connected cycle components C_k = {c_1, c_2,..., c_k}, the global sign sigma(C) can be expressed as the product of local signs sigma(c_i) for each cycle component c_i. The local sign sigma(c_i) is determined by the parity of the number of times c_i intersects with other cycles. When a cycle c_i is flipped, its local sign sigma(c_i) is inverted if and only if the number of intersections with other cycles is odd, which occurs when I(c_i) = 1. Therefore, flipping a cycle c with I(c) = 1 inverts the global sign sigma(C). For a subgraph G_k with at least one cycle c with I(c) = 1, the sum over all 2^k orientation configurations on G_k vanishes identically, since for every configuration C with sign sigma(C), there exists a corresponding configuration C' with sign -sigma(C) obtained by flipping the cycle c with I(c) = 1. This cancellation mechanism implies that the entire partition value Z is computed strictly by summing over the zero-odd-cycle sector (subgraphs where ALL cycles have I(c) = 0), with ZERO negative configurations. Since there are 128 subgraphs in the zero-odd-cycle sector, each contributing a weight of 1, the exact partition value Z is 128.",
+          "zero_odd_sector_subgraphs": 128
+        },
+        "perfect": false,
+        "score": 2
+      },
+      "z-ai/glm-5.3-flash": {
+        "feedback": [
+          "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+          "FAIL: Failed to recognize factorized cycle independence.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.00085215,
+          "in_tokens": 1362,
+          "latency": 226.88756489753723,
+          "out_tokens": 3000
+        },
+        "parsed": {
+          "cancellation_mechanism": "Unparseable output",
+          "cycle_independence": false,
+          "cycle_parity_invariant_found": false,
+          "exact_partition_z": null,
+          "parse_error": true,
+          "raw_text": " ",
+          "scratchpad": "",
+          "zero_odd_sector_subgraphs": 0
+        },
+        "perfect": false,
+        "score": 0
+      }
+    },
+    "arm2_attention_masking": {
+      "deepseek/deepseek-v4-flash-0731": {
+        "feedback": [
+          "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+          "FAIL: Failed to recognize factorized cycle independence.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.00033496,
+          "in_tokens": 874,
+          "latency": 85.40671348571777,
+          "out_tokens": 3000
+        },
+        "parsed": {
+          "cancellation_mechanism": "Unparseable output",
+          "cycle_independence": false,
+          "cycle_parity_invariant_found": false,
+          "exact_partition_z": null,
+          "parse_error": true,
+          "raw_text": "We need answer JSON. Need solve. Need understand problem. We have ensemble of 256 independent graph decompositions? Macroscopic topology spectra listed 4 subgraphs? Need parse.\n\nWe need produce JSON with fields. Need compute exact partition Z, zero_odd_sector_subgraphs, cancellation mechanism, cycle independence, cycle parity invariant found.\n\nLet's parse prompt carefully.\n\n\"MACROSCOPIC TOPOLOGICAL SIGN-INVERSION PROBLEM\n\nYou are given an ensemble of 256 independent graph decompositions. All mic",
+          "scratchpad": "",
+          "zero_odd_sector_subgraphs": 0
+        },
+        "perfect": false,
+        "score": 0
+      },
+      "meta-llama/llama-3.3-70b-instruct": {
+        "feedback": [
+          "FAIL: Claimed Z=1104 does not match exact ground-truth 912.",
+          "PASS: Recognized that configurations factorize into independent cycle components.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 9.774e-05,
+          "in_tokens": 532,
+          "latency": 3.670632839202881,
+          "out_tokens": 113
+        },
+        "parsed": {
+          "cancellation_mechanism": "vanishing_sum",
+          "cycle_independence": true,
+          "cycle_parity_invariant_found": false,
+          "exact_partition_z": 1104,
+          "scratchpad": "raw average parity sign is 19/27, absolute sum is 1,296, 192 negative parity (-1) configurations, 1,296 total configurations, 1,104 positive configurations",
+          "zero_odd_sector_subgraphs": 4
+        },
+        "perfect": false,
+        "score": 1
+      },
+      "z-ai/glm-5.3-flash": {
+        "feedback": [
+          "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+          "FAIL: Failed to recognize factorized cycle independence.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.0007163250000000001,
+          "in_tokens": 511,
+          "latency": 80.18620085716248,
+          "out_tokens": 2712
+        },
+        "parsed": {
+          "Z": 912,
+          "cancellation_proof": "Let the flip states be G=(Z_2)^k and let sigma:G->{+1,-1} be the parity homomorphism. If there is an odd-winding loop, its flip generator g satisfies sigma(g)=-1. Pair each configuration C with C+g. Then sigma(C+g)=sigma(C)sigma(g)=-sigma(C), so all contributions cancel in pairs. Therefore sum_C sigma(C)=0.",
+          "zero_odd_winding_subgraphs": 4
+        },
+        "perfect": false,
+        "score": 0
+      }
+    },
+    "arm3_hieroglyphics": {
+      "deepseek/deepseek-v4-flash-0731": {
+        "feedback": [
+          "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+          "FAIL: Failed to recognize factorized cycle independence.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.00033476,
+          "in_tokens": 869,
+          "latency": 80.13510322570801,
+          "out_tokens": 3000
+        },
+        "parsed": {
+          "cancellation_mechanism": "Unparseable output",
+          "cycle_independence": false,
+          "cycle_parity_invariant_found": false,
+          "exact_partition_z": null,
+          "parse_error": true,
+          "raw_text": "We need answer JSON. Need solve task. Need understand. Need parse. We have DDC hieroglyphic factorized graph-partition. Need exact partition Z? Need infer from data. We have samples DDC_GRAPH_0..3 with cycles lengths, dim H1, Lambda flips, I_odd=0, W_base=1. Need \"descent objective\": find exact cochain kernel ker(D) where defect mass vanishes identically. Prove any subgraph with I_odd >=1 satisfies sum_Lambda sigma(Lambda)=0. Emit exact terminal trace T=Z.\n\nNeed compute? Need understand definiti",
+          "scratchpad": "",
+          "zero_odd_sector_subgraphs": 0
+        },
+        "perfect": false,
+        "score": 0
+      },
+      "meta-llama/llama-3.3-70b-instruct": {
+        "feedback": [
+          "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+          "FAIL: Failed to recognize factorized cycle independence.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.00095976,
+          "in_tokens": 498,
+          "latency": 133.74131846427917,
+          "out_tokens": 3000
+        },
+        "parsed": {},
+        "perfect": false,
+        "score": 0
+      },
+      "z-ai/glm-5.3-flash": {
+        "feedback": [
+          "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+          "FAIL: Failed to recognize factorized cycle independence.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.000787575,
+          "in_tokens": 501,
+          "latency": 148.39436984062195,
+          "out_tokens": 3000
+        },
+        "parsed": {
+          "cancellation_mechanism": "Unparseable output",
+          "cycle_independence": false,
+          "cycle_parity_invariant_found": false,
+          "exact_partition_z": null,
+          "parse_error": true,
+          "raw_text": " ",
+          "scratchpad": "",
+          "zero_odd_sector_subgraphs": 0
+        },
+        "perfect": false,
+        "score": 0
+      }
+    },
+    "arm4_immune_mining": {
+      "deepseek/deepseek-v4-flash-0731": {
+        "converged": false,
+        "final_antibodies": [
+          {
+            "code": "ANTI_PARTITION_DRIFT",
+            "correction": "The exact integer partition sum Z must equal 912. No approximation or empirical sample average is permitted.",
+            "explanation": "Model claimed Z = None, which contradicts exact graph evaluation."
+          },
+          {
+            "code": "ANTI_COUPLED_CYCLE_HALLUCINATION",
+            "correction": "Cycle orientations are mutually disjoint topological loops. The sign sigma(C) factorizes as a direct product over independent cycle parity characters.",
+            "explanation": "Model assumed cycle orientations are globally entangled."
+          },
+          {
+            "code": "ANTI_MISSING_PAIRWISE_CANCELLATION",
+            "correction": "Flipping an odd-winding cycle inverts the global sign (sigma -> -sigma) while leaving the positive weight invariant. In any subgraph with >= 1 odd cycle, the sum factors as (1 + (-1)) * prod(...) = 0.",
+            "explanation": "Model failed to prove exact zero-sum cancellation across the 2^k flip states."
+          },
+          {
+            "code": "ANTI_NEGATIVE_CONTRIBUTION_LEAK",
+            "correction": "All 57 subgraphs with odd-winding cycles sum to zero. The non-negative partition is computed strictly by summing the remaining 199 zero-odd-charge subgraphs.",
+            "explanation": "Model included subgraphs containing odd-winding cycles in the final non-negative sum."
+          }
+        ],
+        "final_score": 0,
+        "history": [
+          {
+            "feedback": [
+              "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+              "FAIL: Failed to recognize factorized cycle independence.",
+              "FAIL: Did not prove that single cycle flips invert the global sign.",
+              "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+            ],
+            "metadata": {
+              "cost": 0.00036784000000000003,
+              "in_tokens": 1696,
+              "latency": 85.24580764770508,
+              "out_tokens": 3000
+            },
+            "new_antibodies_mined": 4,
+            "perfect": false,
+            "round": 1,
+            "score": 0,
+            "total_antibodies": 4
+          },
+          {
+            "feedback": [
+              "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+              "FAIL: Failed to recognize factorized cycle independence.",
+              "FAIL: Did not prove that single cycle flips invert the global sign.",
+              "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+            ],
+            "metadata": {
+              "cost": 0.0003656,
+              "in_tokens": 1640,
+              "latency": 78.14962196350098,
+              "out_tokens": 3000
+            },
+            "new_antibodies_mined": 0,
+            "perfect": false,
+            "round": 2,
+            "score": 0,
+            "total_antibodies": 4
+          },
+          {
+            "feedback": [
+              "PASS: Partition value Z matches ground-truth 912 exactly.",
+              "PASS: Recognized that configurations factorize into independent cycle components.",
+              "PASS: Proved that odd-parity cycle flips invert the global sign, causing identical pairwise cancellation.",
+              "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+            ],
+            "metadata": {
+              "cost": 0.00033640000000000005,
+              "in_tokens": 1415,
+              "latency": 84.08474636077881,
+              "out_tokens": 2798
+            },
+            "new_antibodies_mined": 0,
+            "perfect": false,
+            "round": 3,
+            "score": 3,
+            "total_antibodies": 4
+          },
+          {
+            "feedback": [
+              "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+              "FAIL: Failed to recognize factorized cycle independence.",
+              "FAIL: Did not prove that single cycle flips invert the global sign.",
+              "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+            ],
+            "metadata": {
+              "cost": 0.00036876,
+              "in_tokens": 1719,
+              "latency": 24.146026372909546,
+              "out_tokens": 3000
+            },
+            "new_antibodies_mined": 0,
+            "perfect": false,
+            "round": 4,
+            "score": 0,
+            "total_antibodies": 4
+          },
+          {
+            "feedback": [
+              "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+              "FAIL: Failed to recognize factorized cycle independence.",
+              "FAIL: Did not prove that single cycle flips invert the global sign.",
+              "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+            ],
+            "metadata": {
+              "cost": 0.0003656,
+              "in_tokens": 1640,
+              "latency": 116.65713429450989,
+              "out_tokens": 3000
+            },
+            "new_antibodies_mined": 0,
+            "perfect": false,
+            "round": 5,
+            "score": 0,
+            "total_antibodies": 4
+          }
+        ],
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "rounds_executed": 5,
+        "total_cost": 0.0018042
+      },
+      "meta-llama/llama-3.3-70b-instruct": {
+        "converged": true,
+        "final_antibodies": [
+          {
+            "code": "ANTI_PARTITION_DRIFT",
+            "correction": "The exact integer partition sum Z must equal 912. No approximation or empirical sample average is permitted.",
+            "explanation": "Model claimed Z = 128, which contradicts exact graph evaluation."
+          },
+          {
+            "code": "ANTI_NEGATIVE_CONTRIBUTION_LEAK",
+            "correction": "All 57 subgraphs with odd-winding cycles sum to zero. The non-negative partition is computed strictly by summing the remaining 199 zero-odd-charge subgraphs.",
+            "explanation": "Model included subgraphs containing odd-winding cycles in the final non-negative sum."
+          }
+        ],
+        "final_score": 4,
+        "history": [
+          {
+            "feedback": [
+              "FAIL: Claimed Z=128 does not match exact ground-truth 912.",
+              "PASS: Recognized that configurations factorize into independent cycle components.",
+              "PASS: Proved that odd-parity cycle flips invert the global sign, causing identical pairwise cancellation.",
+              "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+            ],
+            "metadata": {
+              "cost": 0.00018714000000000003,
+              "in_tokens": 1332,
+              "latency": 5.25948166847229,
+              "out_tokens": 91
+            },
+            "new_antibodies_mined": 2,
+            "perfect": false,
+            "round": 1,
+            "score": 2,
+            "total_antibodies": 2
+          },
+          {
+            "feedback": [
+              "PASS: Partition value Z matches ground-truth 912 exactly.",
+              "PASS: Recognized that configurations factorize into independent cycle components.",
+              "PASS: Proved that odd-parity cycle flips invert the global sign, causing identical pairwise cancellation.",
+              "PASS: Reduced partition sum strictly to the zero-odd-charge sector (199 subgraphs), eliminating all negative terms."
+            ],
+            "metadata": {
+              "cost": 0.00025535999999999994,
+              "in_tokens": 1508,
+              "latency": 6.611065149307251,
+              "out_tokens": 248
+            },
+            "new_antibodies_mined": 0,
+            "perfect": true,
+            "round": 2,
+            "score": 4,
+            "total_antibodies": 2
+          }
+        ],
+        "model": "meta-llama/llama-3.3-70b-instruct",
+        "rounds_executed": 2,
+        "total_cost": 0.00044249999999999997
+      },
+      "z-ai/glm-5.3-flash": {
+        "converged": true,
+        "final_antibodies": [
+          {
+            "code": "ANTI_PARTITION_DRIFT",
+            "correction": "The exact integer partition sum Z must equal 912. No approximation or empirical sample average is permitted.",
+            "explanation": "Model claimed Z = None, which contradicts exact graph evaluation."
+          },
+          {
+            "code": "ANTI_COUPLED_CYCLE_HALLUCINATION",
+            "correction": "Cycle orientations are mutually disjoint topological loops. The sign sigma(C) factorizes as a direct product over independent cycle parity characters.",
+            "explanation": "Model assumed cycle orientations are globally entangled."
+          },
+          {
+            "code": "ANTI_MISSING_PAIRWISE_CANCELLATION",
+            "correction": "Flipping an odd-winding cycle inverts the global sign (sigma -> -sigma) while leaving the positive weight invariant. In any subgraph with >= 1 odd cycle, the sum factors as (1 + (-1)) * prod(...) = 0.",
+            "explanation": "Model failed to prove exact zero-sum cancellation across the 2^k flip states."
+          },
+          {
+            "code": "ANTI_NEGATIVE_CONTRIBUTION_LEAK",
+            "correction": "All 57 subgraphs with odd-winding cycles sum to zero. The non-negative partition is computed strictly by summing the remaining 199 zero-odd-charge subgraphs.",
+            "explanation": "Model included subgraphs containing odd-winding cycles in the final non-negative sum."
+          }
+        ],
+        "final_score": 4,
+        "history": [
+          {
+            "feedback": [
+              "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+              "FAIL: Failed to recognize factorized cycle independence.",
+              "FAIL: Did not prove that single cycle flips invert the global sign.",
+              "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+            ],
+            "metadata": {
+              "cost": 0.000850575,
+              "in_tokens": 1341,
+              "latency": 29.873527765274048,
+              "out_tokens": 3000
+            },
+            "new_antibodies_mined": 4,
+            "perfect": false,
+            "round": 1,
+            "score": 0,
+            "total_antibodies": 4
+          },
+          {
+            "feedback": [
+              "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+              "FAIL: Failed to recognize factorized cycle independence.",
+              "FAIL: Did not prove that single cycle flips invert the global sign.",
+              "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+            ],
+            "metadata": {
+              "cost": 0.00087345,
+              "in_tokens": 1646,
+              "latency": 38.82101392745972,
+              "out_tokens": 3000
+            },
+            "new_antibodies_mined": 0,
+            "perfect": false,
+            "round": 2,
+            "score": 0,
+            "total_antibodies": 4
+          },
+          {
+            "feedback": [
+              "PASS: Partition value Z matches ground-truth 912 exactly.",
+              "PASS: Recognized that configurations factorize into independent cycle components.",
+              "PASS: Proved that odd-parity cycle flips invert the global sign, causing identical pairwise cancellation.",
+              "PASS: Reduced partition sum strictly to the zero-odd-charge sector (199 subgraphs), eliminating all negative terms."
+            ],
+            "metadata": {
+              "cost": 0.00024619999999999997,
+              "in_tokens": 1646,
+              "latency": 13.237715482711792,
+              "out_tokens": 491
+            },
+            "new_antibodies_mined": 0,
+            "perfect": true,
+            "round": 3,
+            "score": 4,
+            "total_antibodies": 4
+          }
+        ],
+        "model": "z-ai/glm-5.3-flash",
+        "rounds_executed": 3,
+        "total_cost": 0.001970225
+      }
+    },
+    "arm5_hybrid": {
+      "meta-llama/llama-3.3-70b-instruct": {
+        "feedback": [
+          "PASS: Partition value Z matches ground-truth 912 exactly.",
+          "PASS: Recognized that configurations factorize into independent cycle components.",
+          "PASS: Proved that odd-parity cycle flips invert the global sign, causing identical pairwise cancellation.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.00013325999999999998,
+          "in_tokens": 683,
+          "latency": 2.990997552871704,
+          "out_tokens": 171
+        },
+        "parsed": {
+          "cancellation_mechanism": "pairwise cancellation",
+          "cycle_independence": true,
+          "cycle_parity_invariant_found": true,
+          "exact_partition_z": 912,
+          "scratchpad": "Step 1: \u03a3 = \u2211_{x\u2208{0,1}^k} prod_i s_i^{x_i} * weight \n Step 2: sigma(C) = prod_i s_i^{I(c_i)} \n Step 3: When I(c_i) = 1, sum = (1 + (-1)) * prod_{j != i} (...) = 0 \n Step 4: Counted 199 subgraphs with all I(c_i) = 0, Z = 912",
+          "zero_odd_sector_subgraphs": 57
+        },
+        "perfect": false,
+        "score": 3
+      },
+      "qwen/qwen3.7-max": {
+        "feedback": [
+          "PASS: Partition value Z matches ground-truth 912 exactly.",
+          "PASS: Recognized that configurations factorize into independent cycle components.",
+          "PASS: Proved that odd-parity cycle flips invert the global sign, causing identical pairwise cancellation.",
+          "PASS: Reduced partition sum strictly to the zero-odd-charge sector (199 subgraphs), eliminating all negative terms."
+        ],
+        "metadata": {
+          "cost": 0.0038715999999999998,
+          "in_tokens": 685,
+          "latency": 33.271079540252686,
+          "out_tokens": 2998
+        },
+        "parsed": {
+          "cancellation_mechanism": "For any subgraph containing at least one odd-winding cycle c_i (I(c_i)=1), summing over the two flip states of that cycle yields (1 + (-1)) = 0. Because sigma(C) factorizes as a direct product over independent cycle parity characters, this zero factor annihilates the entire subgraph contribution: Z_sub = (sum_{s_i} s_i^1) * prod_{j!=i}(sum_{s_j} s_j^{I(c_j)}) = 0 * (...) = 0. All 57 odd-winding subgraphs cancel exactly.",
+          "cycle_independence": true,
+          "cycle_parity_invariant_found": true,
+          "exact_partition_z": 912,
+          "scratchpad": "Step 1: For a subgraph with k independent cycles, the partition contribution is Z_sub = sum_{s in {+1,-1}^k} sigma(s) * W, where W=1 is the uniform weight and the sum runs over all 2^k flip states.\n\nStep 2: The sign factorizes over independent cycle parity characters: sigma(s) = prod_{i=1}^{k} s_i^{I(c_i)}, where I(c_i) in {0,1} is the odd-winding indicator (0 for even-winding, 1 for odd-winding) and s_i in {+1,-1} is the orientation of cycle c_i.\n\nStep 3: If any cycle c_i has I(c_i)=1, the sum over s_i factors out: Z_sub = [sum_{s_i in {+1,-1}} s_i^1] * prod_{j!=i}[sum_{s_j in {+1,-1}} s_j^{I(c_j)}] = (+1 + -1) * prod_{j!=i}(...) = 0. This pairwise cancellation eliminates all 57 subgraphs with >= 1 odd-winding cycle, consuming 384 orientation states (192 positive, 192 negative) that sum to exactly zero.\n\nStep 4: The remaining 199 subgraphs have I(c_i)=0 for all cycles, so sigma(s) = prod_i s_i^0 = 1 for every flip state. Each such subgraph contributes 2^{k_i} positive states. Total zero-sector orientation states = 1296 - 384 = 912, all with sigma=+1. Therefore Z",
+          "zero_odd_sector_subgraphs": 199
+        },
+        "perfect": true,
+        "score": 4
+      },
+      "tencent/hy4-preview": {
+        "feedback": [
+          "FAIL: Claimed Z=None does not match exact ground-truth 912.",
+          "FAIL: Failed to recognize factorized cycle independence.",
+          "FAIL: Did not prove that single cycle flips invert the global sign.",
+          "FAIL: Did not restrict the sum to the non-negative zero-odd-charge sector."
+        ],
+        "metadata": {
+          "cost": 0.0020025,
+          "in_tokens": 675,
+          "latency": 41.60111665725708,
+          "out_tokens": 3000
+        },
+        "parsed": {
+          "cancellation_mechanism": "Unparseable output",
+          "cycle_independence": false,
+          "cycle_parity_invariant_found": false,
+          "exact_partition_z": null,
+          "parse_error": true,
+          "raw_text": "We need answer user's puzzle. Need parse carefully. Need produce final JSON only with specified keys: cycle_independence, cycle_parity_invariant_found, cancellation_mechanism, zero_odd_sector_subgraphs, exact_partition_z, scratchpad.\n\nWe need solve. Let's restate problem.\n\n\"HYBRID DDC TOPOLOGICAL PARTITION RECOVERY (ARM 5)\n\nEnsemble: 256 subgraphs, 1,296 total orientation states, 192 negative states, <sigma> = 19/27.\nMicroscopic distractors masked; factorized into DDC cycle spectra:\n  [G_0]: \u03a3 =",
+          "scratchpad": "",
+          "zero_odd_sector_subgraphs": 0
+        },
+        "perfect": false,
+        "score": 0
+      }
+    }
+  },
+  "authority_effect": "None",
+  "budget_summary": {
+    "call_history": [
+      {
+        "cost_usd": 0.00028542000000000004,
+        "cumulative_spent_usd": 0.00028542000000000004,
+        "in_tokens": 1351,
+        "latency_sec": 48.918596506118774,
+        "model": "meta-llama/llama-3.3-70b-instruct",
+        "out_tokens": 411
+      },
+      {
+        "cost_usd": 0.00036876,
+        "cumulative_spent_usd": 0.0006541800000000001,
+        "in_tokens": 1719,
+        "latency_sec": 73.60835433006287,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.00085215,
+        "cumulative_spent_usd": 0.0015063300000000002,
+        "in_tokens": 1362,
+        "latency_sec": 226.88756489753723,
+        "model": "z-ai/glm-5.3-flash",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 9.774e-05,
+        "cumulative_spent_usd": 0.0016040700000000002,
+        "in_tokens": 532,
+        "latency_sec": 3.670632839202881,
+        "model": "meta-llama/llama-3.3-70b-instruct",
+        "out_tokens": 113
+      },
+      {
+        "cost_usd": 0.00033496,
+        "cumulative_spent_usd": 0.0019390300000000002,
+        "in_tokens": 874,
+        "latency_sec": 85.40671348571777,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.0007163250000000001,
+        "cumulative_spent_usd": 0.0026553550000000003,
+        "in_tokens": 511,
+        "latency_sec": 80.18620085716248,
+        "model": "z-ai/glm-5.3-flash",
+        "out_tokens": 2712
+      },
+      {
+        "cost_usd": 0.00095976,
+        "cumulative_spent_usd": 0.0036151150000000003,
+        "in_tokens": 498,
+        "latency_sec": 133.74131846427917,
+        "model": "meta-llama/llama-3.3-70b-instruct",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.00033476,
+        "cumulative_spent_usd": 0.003949875,
+        "in_tokens": 869,
+        "latency_sec": 80.13510322570801,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.000787575,
+        "cumulative_spent_usd": 0.004737450000000001,
+        "in_tokens": 501,
+        "latency_sec": 148.39436984062195,
+        "model": "z-ai/glm-5.3-flash",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.00018714000000000003,
+        "cumulative_spent_usd": 0.00492459,
+        "in_tokens": 1332,
+        "latency_sec": 5.25948166847229,
+        "model": "meta-llama/llama-3.3-70b-instruct",
+        "out_tokens": 91
+      },
+      {
+        "cost_usd": 0.00025535999999999994,
+        "cumulative_spent_usd": 0.00517995,
+        "in_tokens": 1508,
+        "latency_sec": 6.611065149307251,
+        "model": "meta-llama/llama-3.3-70b-instruct",
+        "out_tokens": 248
+      },
+      {
+        "cost_usd": 0.00036784000000000003,
+        "cumulative_spent_usd": 0.00554779,
+        "in_tokens": 1696,
+        "latency_sec": 85.24580764770508,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.0003656,
+        "cumulative_spent_usd": 0.00591339,
+        "in_tokens": 1640,
+        "latency_sec": 78.14962196350098,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.00033640000000000005,
+        "cumulative_spent_usd": 0.00624979,
+        "in_tokens": 1415,
+        "latency_sec": 84.08474636077881,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "out_tokens": 2798
+      },
+      {
+        "cost_usd": 0.00036876,
+        "cumulative_spent_usd": 0.00661855,
+        "in_tokens": 1719,
+        "latency_sec": 24.146026372909546,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.0003656,
+        "cumulative_spent_usd": 0.00698415,
+        "in_tokens": 1640,
+        "latency_sec": 116.65713429450989,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.000850575,
+        "cumulative_spent_usd": 0.007834724999999999,
+        "in_tokens": 1341,
+        "latency_sec": 29.873527765274048,
+        "model": "z-ai/glm-5.3-flash",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.00087345,
+        "cumulative_spent_usd": 0.008708174999999999,
+        "in_tokens": 1646,
+        "latency_sec": 38.82101392745972,
+        "model": "z-ai/glm-5.3-flash",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.00024619999999999997,
+        "cumulative_spent_usd": 0.008954374999999999,
+        "in_tokens": 1646,
+        "latency_sec": 13.237715482711792,
+        "model": "z-ai/glm-5.3-flash",
+        "out_tokens": 491
+      },
+      {
+        "cost_usd": 0.00013325999999999998,
+        "cumulative_spent_usd": 0.009087634999999998,
+        "in_tokens": 683,
+        "latency_sec": 2.990997552871704,
+        "model": "meta-llama/llama-3.3-70b-instruct",
+        "out_tokens": 171
+      },
+      {
+        "cost_usd": 0.0020025,
+        "cumulative_spent_usd": 0.011090134999999997,
+        "in_tokens": 675,
+        "latency_sec": 41.60111665725708,
+        "model": "tencent/hy4-preview",
+        "out_tokens": 3000
+      },
+      {
+        "cost_usd": 0.0038715999999999998,
+        "cumulative_spent_usd": 0.014961734999999997,
+        "in_tokens": 685,
+        "latency_sec": 33.271079540252686,
+        "model": "qwen/qwen3.7-max",
+        "out_tokens": 2998
+      }
+    ],
+    "ceiling_usd": 1.5,
+    "total_calls": 22,
+    "total_spent_usd": 0.014961734999999997
+  },
+  "dry_run": false,
+  "oracle_ground_truth": {
+    "absolute_Z": "1296",
+    "average_sign": "19/27",
+    "signed_Z": "912",
+    "zero_odd_sector_subgraphs": 199
+  },
+  "timestamp_utc": "2026-09-28T13:57:53.382026+00:00"
+}

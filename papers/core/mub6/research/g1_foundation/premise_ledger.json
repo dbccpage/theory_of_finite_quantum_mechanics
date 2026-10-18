@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MUB6 Premise Ledger — Prompt 01",
+  "metadata": {
+    "git_head": "b2f5b318d0a1a793e47429f6b53a13e429ae1941",
+    "timestamp": "2026-09-22T08:06:30Z",
+    "auditor": "worker_prompt01",
+    "authority_effect": "None",
+    "firewall_line": "stated region only; mints no authority",
+    "claim_hygiene_standard": "strict"
+  },
+  "premises": [
+    {
+      "obligation_id": "TYPE_PHASE_ANGLE",
+      "operator": "PIN",
+      "claim_type": "DECLARED",
+      "exact_type": "structure PhaseAngle where val : Nat",
+      "provider": "lean4/gluing/G1_Orbits.lean:25",
+      "caller": "ComplexMatrix6, PhaseGauge6, D6_family, Szollosi_B6_family",
+      "status": "DECLARED",
+      "evidence": "Source inspection of G1_Orbits.lean:25-27. Unreduced natural number wrapper.",
+      "unresolved_dependencies": ["continuous phase group U(1)", "quotient modulo 2pi"]
+    },
+    {
+      "obligation_id": "LAW_PHASE_NEGATION",
+      "operator": "REFUSE",
+      "claim_type": "FALSE",
+      "exact_type": "def PhaseAngle.neg (a : PhaseAngle) : PhaseAngle := ⟨a.val⟩",
+      "provider": "lean4/gluing/G1_Orbits.lean:36",
+      "caller": "Abstract phase inversion",
+      "status": "FALSE",
+      "evidence": "Equation a + (-a) = 2a ≠ 0 in Nat for all a.val > 0. Inverse group law fails.",
+      "unresolved_dependencies": ["abelian group structure on PhaseAngle"]
+    },
+    {
+      "obligation_id": "TYPE_COMPLEX_MATRIX6",
+      "operator": "PIN",
+      "claim_type": "DECLARED",
+      "exact_type": "structure ComplexMatrix6 where entry : Fin 6 -> Fin 6 -> PhaseAngle",
+      "provider": "lean4/gluing/G1_Orbits.lean:39",
+      "caller": "is_complex_hadamard, applyHadamardGauge, HadamardEquivalent, InKnownHadamardModuli",
+      "status": "DECLARED",
+      "evidence": "Source inspection of G1_Orbits.lean:39-42. Array of Nat phase wrappers.",
+      "unresolved_dependencies": ["grounding in Matrix (Fin 6) (Fin 6) Complex"]
+    },
+    {
+      "obligation_id": "PROP_IS_COMPLEX_HADAMARD",
+      "operator": "OPEN",
+      "claim_type": "UNLICENSED",
+      "exact_type": "opaque is_complex_hadamard : ComplexMatrix6 -> Prop",
+      "provider": "lean4/gluing/G1_Orbits.lean:45",
+      "caller": "ClassificationExhaustivenessPremise, OrbitCatalogExhaustive, TransitionHadamardProperty",
+      "status": "OPEN",
+      "evidence": "Opaque constant declaration with no definitional body or mathematical axioms.",
+      "unresolved_dependencies": ["complex entry modulus condition", "unitarity H * Hᴴ = 6 I"]
+    },
+    {
+      "obligation_id": "LAW_HADAMARD_EQUIV_SYMMETRY",
+      "operator": "REFUSE",
+      "claim_type": "FALSE",
+      "exact_type": "variable (hadamard_equiv_symm : ∀ {H1 H2 : ComplexMatrix6}, HadamardEquivalent H1 H2 -> HadamardEquivalent H2 H1)",
+      "provider": "lean4/gluing/G1_Orbits.lean:99",
+      "caller": "fourier_in_dita_family, haagerup_orbit_in_known_moduli",
+      "status": "FALSE",
+      "evidence": "Under applyHadamardGauge in Nat, non-negative phase addition cannot invert positive shifts.",
+      "unresolved_dependencies": ["group inverse in phase gauge action"]
+    },
+    {
+      "obligation_id": "INHABITATION_IS_HADAMARD_RAT",
+      "operator": "REFUSE",
+      "claim_type": "FALSE",
+      "exact_type": "structure IsHadamard (H : Matrix (Fin 6) (Fin 6) ℂ) : Prop where entry_mod : ∀ j k, (H j k).normSq = 1 / 6",
+      "provider": "lean4/gluing/G1_Orbits.lean:504",
+      "caller": "mu_triple_hadamard_transition",
+      "status": "FALSE",
+      "evidence": "Equation x^2 + y^2 = 1/6 has no rational solutions by 3-adic valuation. Predicate is empty.",
+      "unresolved_dependencies": ["extension of Rat to real/cyclotomic field containing sqrt(6)"]
+    },
+    {
+      "obligation_id": "PREMISE_ORBIT_CATALOG_EXHAUSTIVE",
+      "operator": "OPEN",
+      "claim_type": "CONJECTURE",
+      "exact_type": "def OrbitCatalogExhaustive : Prop := ∀ (H : ComplexMatrix6), is_complex_hadamard H → InKnownHadamardModuli H",
+      "provider": "lean4/gluing/ModuliReduction.lean:34",
+      "caller": "pair_moduli_coverage_of_orbit_catalog, moduli_reduction_theorem",
+      "status": "OPEN",
+      "evidence": "Unproved hypothesis parameter in moduli reduction theorem.",
+      "unresolved_dependencies": ["6x6 complex Hadamard classification", "inclusion of X6 and K6 families"]
+    },
+    {
+      "obligation_id": "PREMISE_TRANSITION_HADAMARD",
+      "operator": "OPEN",
+      "claim_type": "DECLARED",
+      "exact_type": "def TransitionHadamardProperty : Prop := ∀ (T : MUTriple), is_complex_hadamard (triple_transition_hadamard T)",
+      "provider": "lean4/gluing/ModuliReduction.lean:39",
+      "caller": "pair_moduli_coverage_of_orbit_catalog, target_a11_grand_synthesis",
+      "status": "OPEN",
+      "evidence": "Unproved hypothesis parameter; triple_transition_hadamard is opaque.",
+      "unresolved_dependencies": ["concrete complex basis inner-product representation"]
+    },
+    {
+      "obligation_id": "PREMISE_ATLAS_COVERS_KNOWN_MODULI",
+      "operator": "OPEN",
+      "claim_type": "DECLARED",
+      "exact_type": "def AtlasCoversKnownModuli : Prop := ∀ (T : MUTriple), InKnownHadamardModuli (triple_transition_hadamard T) → ∃ c, CoveredClasses c ∧ belongs_to_class T c",
+      "provider": "lean4/gluing/G1_Orbits.lean:278",
+      "caller": "g1_of_moduli_coverage, moduli_reduction_theorem",
+      "status": "OPEN",
+      "evidence": "Unproved hypothesis parameter connecting pairwise moduli to triple atlas classes.",
+      "unresolved_dependencies": ["atlas partition cover over continuous families D6 and B6"]
+    },
+    {
+      "obligation_id": "PREMISE_GAUGE_INVARIANT_CLASS_MEMBERSHIP",
+      "operator": "OPEN",
+      "claim_type": "DECLARED",
+      "exact_type": "def GaugeInvariantClassMembership : Prop := ∀ T T' c, UnitaryEquivTriple T T' → belongs_to_class T' c → belongs_to_class T c",
+      "provider": "lean4/gluing/ModuliReduction.lean:59",
+      "caller": "g1_of_orbit_catalog, moduli_reduction_theorem",
+      "status": "OPEN",
+      "evidence": "Unproved hypothesis parameter in moduli reduction.",
+      "unresolved_dependencies": ["well-definedness of belongs_to_class under U(6) gauge action"]
+    },
+    {
+      "obligation_id": "PREMISE_G1_CONFIGURATION_LANDING",
+      "operator": "LAND",
+      "claim_type": "CONDITIONAL",
+      "exact_type": "def G1 : Prop := ∀ (B : Fin 7 → Basis), PairwiseMU B → ∃ T, InConfig T B ∧ ∃ c, CoveredClasses c ∧ belongs_to_class T c",
+      "provider": "lean4/gluing/Gluing.lean:88",
+      "caller": "gluing_assembly, gluing_reduction_G1_G2",
+      "status": "CONDITIONAL",
+      "evidence": "Deduced in g1_of_moduli_coverage conditioned on ModuliCoverageConjecture, AtlasCoversKnownModuli, and GaugeInvariantClassMembership.",
+      "unresolved_dependencies": ["ModuliCoverageConjecture", "AtlasCoversKnownModuli", "GaugeInvariantClassMembership"]
+    },
+    {
+      "obligation_id": "PREMISE_G2_EXTENSION_OBSTRUCTION",
+      "operator": "OPEN",
+      "claim_type": "DECLARED",
+      "exact_type": "def G2 : Prop := ∀ c, CoveredClasses c → ∀ T, belongs_to_class T c → ¬ HasFourthBasis T",
+      "provider": "lean4/gluing/Gluing.lean:97",
+      "caller": "gluing_assembly, gluing_reduction_G1_G2",
+      "status": "OPEN",
+      "evidence": "Unproved hypothesis parameter in primary assembly theorem.",
+      "unresolved_dependencies": ["global curvature certificate across all continuous atlas classes"]
+    },
+    {
+      "obligation_id": "LEMMA_G3_COMBINATORIAL_BASIS_GLUING",
+      "operator": "PROVE",
+      "claim_type": "PROVED",
+      "exact_type": "theorem g3_theorem : G3",
+      "provider": "lean4/gluing/Gluing.lean:160",
+      "caller": "gluing_reduction_G1_G2",
+      "status": "PROVED",
+      "evidence": "Formally verified in Lean 4 kernel with standard axiom propext. Combinatorial choice on Fin 7.",
+      "unresolved_dependencies": []
+    },
+    {
+      "obligation_id": "BRIDGE_GLOBAL_COVER_TRANSITION",
+      "operator": "OPEN",
+      "claim_type": "DECLARED",
+      "exact_type": "def TransitionMatrixGlobalCoverBridge (tree : GlobalUnifiedPartitionTree) : Prop := ∀ T, InKnownHadamardModuli (triple_transition_hadamard T) → ∃ pt : GlobalPoint, pt.triple = T ∧ PointInGlobalDomain pt tree",
+      "provider": "lean4/gluing/TargetA11OrbitExhaustiveness.lean:238",
+      "caller": "g1_bridge_to_global_cover, no_complete_mub6_of_global_cover_bridge",
+      "status": "OPEN",
+      "evidence": "Unproved hypothesis parameter. Internally bundles has_cert : HasCurvatureCertificate triple.",
+      "unresolved_dependencies": ["HasCurvatureCertificate T for all T in known moduli"]
+    },
+    {
+      "obligation_id": "THEOREM_GLUING_REDUCTION",
+      "operator": "REDUCE",
+      "claim_type": "PROVED",
+      "exact_type": "theorem gluing_reduction_G1_G2 (h : G1 ∧ G2) : NoCompleteMUB6",
+      "provider": "lean4/gluing/Gluing.lean:182",
+      "caller": "moduli_reduction_theorem, moduli_coverage_gluing_assembly",
+      "status": "PROVED",
+      "evidence": "Formally verified in Lean 4 kernel from hypotheses G1 and G2 using g3_theorem.",
+      "unresolved_dependencies": ["G1", "G2"]
+    }
+  ]
+}

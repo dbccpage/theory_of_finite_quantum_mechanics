@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:su2_matrix:v1.0.0
+title: The Pauli matrix representation of unit quaternions and its adjoint action.  `U(a,b,c,d)=a
+  I-i(b X+c Y+d Z)` is a rep...
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/su2_matrix.rs
+module: su2_matrix
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: su2_matrix
+  file: crates_rs/omega_lie_theory/src/su2_matrix.rs
+symbols:
+- SpinLiftError
+- unit_quaternion_matrix
+- adjoint_su2
+- matrix_spin_lift
+- quaternion_group_matrices
+owns:
+- spin_lift_error
+- unit_quaternion_matrix
+- adjoint_su2
+- matrix_spin_lift
+- quaternion_group_matrices
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

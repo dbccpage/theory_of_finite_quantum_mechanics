@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_atlas_reconciliation:congruence_core:v1.0.0
+title: 'Partition-refinement algorithm and minimal adequate congruence-core quotient
+  engine.  Formal Lean 4 backing: `004_pcc...'
+kind: rust_file_contract
+status: active
+crate: omega_atlas_reconciliation
+file: crates_rs/omega_atlas_reconciliation/src/congruence_core.rs
+module: congruence_core
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_atlas_reconciliation
+  module: congruence_core
+  file: crates_rs/omega_atlas_reconciliation/src/congruence_core.rs
+symbols:
+- QuotientPartition
+- compute_congruence_core
+- is_congruence_equivalent
+owns:
+- quotient_partition
+- compute_congruence_core
+- is_congruence_equivalent
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

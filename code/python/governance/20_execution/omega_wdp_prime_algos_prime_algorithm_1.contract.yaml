@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:prime_algos_prime_algorithm_1:v1.0.0
+title: 'PRIME-ALGORITHM-001 — intake and inter-carrier transport soundness.  Canonical
+  source: `research/omega_engine_prime_a...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/prime_algos/prime_algorithm_1.rs
+module: prime_algos::prime_algorithm_1
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: prime_algos::prime_algorithm_1
+  file: crates_rs/omega_wdp/src/prime_algos/prime_algorithm_1.rs
+symbols:
+- LossLedger
+- empty
+- booked
+- scope
+- is_sound
+- is_empty
+- total_lost
+- entries
+- commit
+- TransportStatus
+- TransportRefusal
+- TransportedPacket
+- from_carrier
+- to_carrier
+- payload
+- ledger
+- status
+- transport
+owns:
+- loss_ledger
+- empty
+- booked
+- scope
+- is_sound
+- is_empty
+- total_lost
+- entries
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:wdp_kernel:v1.0.0
+title: Existing host seam for the bounded WDP application certificate checker.
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/wdp_kernel.rs
+module: wdp_kernel
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: wdp_kernel
+  file: crates_rs/omega_symbol_game/src/wdp_kernel.rs
+symbols:
+- execute
+owns:
+- execute
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

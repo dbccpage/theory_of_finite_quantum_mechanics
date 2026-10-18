@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:exact_operator:v1.0.0
+title: Exact operators on finite carriers over the Gaussian rationals `Q(i)`, with
+  checked arithmetic, and the exact real sp...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/exact_operator.rs
+module: exact_operator
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: exact_operator
+  file: crates_rs/omega_quantum_physics/src/exact_operator.rs
+symbols:
+- OperatorError
+- ExactOperator
+- try_new
+- from_rows
+- identity
+- zeros
+- diagonal
+- rows
+- cols
+- shape
+- get
+- as_matrix
+- into_matrix
+- add
+- sub
+- mul
+- scale
+- scale_rat
+- dagger
+- kron
+- trace
+- commutator
+- anticommutator
+- apply
+- apply_adjoint
+- is_zero
+- check_hermitian
+- is_hermitian
+- is_unitary
+- is_idempotent
+owns:
+- operator_error
+- exact_operator
+- try_new
+- from_rows
+- identity
+- zeros
+- diagonal
+- rows
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

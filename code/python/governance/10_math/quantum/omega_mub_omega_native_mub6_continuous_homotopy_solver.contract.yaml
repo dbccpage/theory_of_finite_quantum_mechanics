@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_continuous_homotopy_solver:v1.0.0
+title: 'Target B4: Continuous Boundary Homotopy Solver across Real Algebraic Moduli
+  Variety.  AuthorityEffect: None  Coordina...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_continuous_homotopy_solver.rs
+module: omega_native::mub6_continuous_homotopy_solver
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_continuous_homotopy_solver
+  file: crates_rs/omega_mub/src/omega_native/mub6_continuous_homotopy_solver.rs
+symbols:
+- global_min_margin
+- boundary_circulation_gamma
+- archimedean_radius_sq
+- SliceCertificate
+- margin
+- archimedean_bound
+- is_margin_positive
+- canonical_chart_certificates
+- InterfaceHomotopy
+- evaluate_margin
+- verify_grid
+- canonical_interface_homotopies
+- HomotopyVerificationReport
+- run_continuous_boundary_homotopy_solver
+owns:
+- global_min_margin
+- boundary_circulation_gamma
+- archimedean_radius_sq
+- slice_certificate
+- margin
+- archimedean_bound
+- is_margin_positive
+- canonical_chart_certificates
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

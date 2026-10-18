@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_general_relativity_certified_dihedral:v1.0.0
+title: Certified Dihedral Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_general_relativity/certified_dihedral.rs
+module: omega_general_relativity::certified_dihedral
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_general_relativity::certified_dihedral
+  file: crates_rs/tests/omega_general_relativity/certified_dihedral.rs
+symbols: []
+owns:
+- omega_general_relativity_certified_dihedral
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

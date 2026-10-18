@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:ceiling:v1.0.0
+title: Canonical evidence ceiling type.  This is the single authoritative definition
+  of the evidence-routing ceiling. It is ...
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/ceiling.rs
+module: ceiling
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: ceiling
+  file: crates_rs/omega_types/src/ceiling.rs
+symbols:
+- EvidenceCeiling
+- meet
+- join
+- raise_with
+owns:
+- evidence_ceiling
+- meet
+- join
+- raise_with
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_finite_probability:test_support:v1.0.0
+title: Shared fixtures for the unit tests of this crate.  Test code only. Nothing
+  here is part of the public interface.  Aut...
+kind: rust_file_contract
+status: active
+crate: omega_finite_probability
+file: crates_rs/omega_finite_probability/src/test_support.rs
+module: test_support
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_finite_probability
+  module: test_support
+  file: crates_rs/omega_finite_probability/src/test_support.rs
+symbols:
+- compositions
+- grid_simplices
+- simplex
+- stochastic
+owns:
+- compositions
+- grid_simplices
+- simplex
+- stochastic
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

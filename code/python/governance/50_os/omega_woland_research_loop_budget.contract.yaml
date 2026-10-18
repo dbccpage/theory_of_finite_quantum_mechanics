@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:research_loop_budget:v1.0.0
+title: The one host-owned budget ledger for a research run.  Every dispatch reserves
+  its worst case before anything is sent:...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/research_loop/budget.rs
+module: research_loop::budget
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: research_loop::budget
+  file: crates_rs/omega_woland/src/research_loop/budget.rs
+symbols:
+- ReservationState
+- Reservation
+- is_open
+- Spend
+- BudgetLedger
+- ReservationRequest
+- spent
+- keys
+- reservation
+- by_occurrence
+- reservations
+- reserve
+- settle
+- reconcile_unknown
+- release
+- verify
+owns:
+- reservation_state
+- reservation
+- is_open
+- spend
+- budget_ledger
+- reservation_request
+- spent
+- keys
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

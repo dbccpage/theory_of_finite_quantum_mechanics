@@ -1,0 +1,76 @@
+schema_version: smplx.nf.contract.v0
+schema_ref: ./normal_form_contract_schema.yaml
+contract_kind: normal_form_contract
+identity:
+  id: nf.classical.3nf
+  name: Third Normal Form
+  short_name: 3NF
+  version: v0
+  theory_status: established
+  contract_status: active
+  verification_status: executable
+  family: shape
+classification:
+  hierarchy_level: normal_form
+  subject_kind:
+  - relvar
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: transitive non-key dependency violating 3NF condition
+  preserves_invariant: for every non-trivial functional dependency X -> A, either X is a superkey or A
+    is a prime attribute
+  protected_skeleton:
+  - candidate_keys
+  - functional_dependencies
+  - prime_attributes
+  erased_structure: []
+  non_claims:
+  - does not certify runtime repair
+  - does not imply authorization
+  - does not eliminate all redundancy where a non-superkey determines a prime attribute (see BCNF)
+declarations_required:
+- heading
+- candidate_keys
+- functional_dependencies
+- relation_predicate
+evidence_required: []
+validation_criteria:
+- for every non-trivial functional dependency X -> A (where A is not a subset of X), either X is a superkey
+  or A is a prime attribute (member of some candidate key)
+- dependency violations terminalize as decomposition requirements rather than being ignored
+proof_obligations: []
+terminal_routes:
+- Accept
+- RejectTransitiveDependency
+- RequireDecomposition
+terminal_route_map:
+  Accept: Preserve
+  RejectTransitiveDependency: Reject
+  RequireDecomposition: Decompose
+certification:
+  certificate_required: false
+  certificate_kind: null
+  obstruction_class_required: false
+  loss_ledger_required: false
+  verifier_required: false
+  loss_ledger_trigger_id: null
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: non-prime attribute depends on another non-key attribute set where determinant is not a superkey
+  diagnosis: transitive dependency violating 3NF condition
+  terminal: RequireDecomposition
+examples:
+- ref: coda_all_universe/1_the_tower/normal_forms/contracts/_book_09_full_normal_form_atlas.md
+  section: 3.0 Running example
+  note: Orders / Customers decomposition sketch
+references:
+- coda_all_universe/1_the_tower/normal_forms/contracts/_book_09_full_normal_form_atlas.md
+- coda_all_universe/1_the_tower/normal_forms/contracts/_paper_0_relvar_relation_table_and_boundary_relvar.md
+normalization:
+  kind: admissibility_predicate
+  claim_scope: Relational admissibility predicate relative to declared dependencies; no unique representative
+    or normalizing algorithm is certified here.
+  evidence: ../docs/normal_form_audit.md

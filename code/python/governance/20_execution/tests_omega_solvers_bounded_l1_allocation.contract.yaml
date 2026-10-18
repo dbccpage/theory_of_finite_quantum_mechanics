@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_solvers_bounded_l1_allocation:v1.0.0
+title: Allocation receipt for a declared finite proposal profile, not BigRational.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_solvers/bounded_l1_allocation.rs
+module: omega_solvers::bounded_l1_allocation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_solvers::bounded_l1_allocation
+  file: crates_rs/tests/omega_solvers/bounded_l1_allocation.rs
+symbols: []
+owns:
+- omega_solvers_bounded_l1_allocation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

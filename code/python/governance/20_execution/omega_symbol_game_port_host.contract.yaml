@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:port_host:v1.0.0
+title: Input-bound native application endpoints over existing domain crates.
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/port_host.rs
+module: port_host
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: port_host
+  file: crates_rs/omega_symbol_game/src/port_host.rs
+symbols:
+- dispatch
+owns:
+- dispatch
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

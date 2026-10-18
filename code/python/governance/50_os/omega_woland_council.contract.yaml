@@ -1,0 +1,38 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:council:v1.0.0
+title: Council YAML assembly over existing immutable Arena records.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/council.rs
+module: council
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: council
+  file: crates_rs/omega_woland/src/council.rs
+symbols:
+- RetinueMode
+- parse
+- as_str
+- CouncilAssembly
+- scheduler
+- to_dict
+- assemble_council
+- assemble_council_for
+owns:
+- retinue_mode
+- parse
+- as_str
+- council_assembly
+- scheduler
+- to_dict
+- assemble_council
+- assemble_council_for
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

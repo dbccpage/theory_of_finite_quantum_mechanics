@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:quantum_entropy:v1.0.0
+title: Entropy Module
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/quantum/entropy.rs
+module: quantum::entropy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: quantum::entropy
+  file: crates_rs/omega_engines/src/quantum/entropy.rs
+symbols:
+- is_converging
+- is_converging_checked
+owns:
+- is_converging
+- is_converging_checked
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

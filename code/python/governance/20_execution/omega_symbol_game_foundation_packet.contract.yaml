@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:foundation_packet:v1.0.0
+title: Packet Module
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/foundation/packet.rs
+module: foundation::packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: foundation::packet
+  file: crates_rs/omega_symbol_game/src/foundation/packet.rs
+symbols:
+- PacketKernel
+- new
+- contract_id
+- task_id
+- payload
+- parent_id
+- identity_material
+- canonical_identity_bytes
+- packet_id
+- structurally_identical
+- PacketProjection
+- DeclaredProjection
+- semantic_equivalent
+owns:
+- packet_kernel
+- new
+- contract_id
+- task_id
+- payload
+- parent_id
+- identity_material
+- canonical_identity_bytes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

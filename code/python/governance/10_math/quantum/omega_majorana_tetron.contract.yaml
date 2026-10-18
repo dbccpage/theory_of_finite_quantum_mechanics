@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_majorana:tetron:v1.0.0
+title: 'Homology-correct tetron-array carriers on a surface.  A tetron **is a 2-cell**:
+  one superconducting island, four MZMs...'
+kind: rust_file_contract
+status: active
+crate: omega_majorana
+file: crates_rs/omega_majorana/src/tetron.rs
+module: tetron
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_majorana
+  module: tetron
+  file: crates_rs/omega_majorana/src/tetron.rs
+symbols:
+- Topology
+- expected_dim_h1
+- name
+- hardware_reading
+- Axis
+- TetronReport
+- homology_matches_prediction
+- build_tetron_array
+- logical_class_representative
+owns:
+- topology
+- expected_dim_h1
+- name
+- hardware_reading
+- axis
+- tetron_report
+- homology_matches_prediction
+- build_tetron_array
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

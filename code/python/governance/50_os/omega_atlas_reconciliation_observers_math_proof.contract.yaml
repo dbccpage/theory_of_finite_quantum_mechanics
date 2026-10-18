@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_atlas_reconciliation:observers_math_proof:v1.0.0
+title: 'math-proof observer: the two-axis honesty rule for proofs.  Prose mechanization
+  is not Lean machine-checking: a `MECH...'
+kind: rust_file_contract
+status: active
+crate: omega_atlas_reconciliation
+file: crates_rs/omega_atlas_reconciliation/src/observers/math_proof.rs
+module: observers::math_proof
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_atlas_reconciliation
+  module: observers::math_proof
+  file: crates_rs/omega_atlas_reconciliation/src/observers/math_proof.rs
+symbols:
+- check
+owns:
+- check
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:quantum_dda_orbit_state_solver:v1.0.0
+title: Discrete Deformation Calculus (DDC) Orbit State & Equational Reasoning Solver.  Implements
+  Quantum Normal Form Reduct...
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/quantum/dda_orbit_state_solver.rs
+module: quantum::dda_orbit_state_solver
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: quantum::dda_orbit_state_solver
+  file: crates_rs/omega_engines/src/quantum/dda_orbit_state_solver.rs
+symbols:
+- DdaRewriteRule
+- new
+- local_laplacian_matrix
+- local_ite_gate
+- DdaMpsState
+- from_product_state
+- uniform_superposition
+- inner_product
+- norm_squared
+- norm
+- normalize
+- fidelity
+- apply_two_site_gate
+- WordProblemResult
+- CountingResult
+- DdaOrbitStateSolver
+- with_max_bond_dim
+- prepare_orbit_state
+- solve_word_problem
+- estimate_class_size
+owns:
+- dda_rewrite_rule
+- new
+- local_laplacian_matrix
+- local_ite_gate
+- dda_mps_state
+- from_product_state
+- uniform_superposition
+- inner_product
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

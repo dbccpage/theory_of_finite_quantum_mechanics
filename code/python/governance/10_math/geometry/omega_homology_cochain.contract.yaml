@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:cochain:v1.0.0
+title: 'Cochain: a linear functional / coordinate vector on chains in degree n.'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/cochain.rs
+module: cochain
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: cochain
+  file: crates_rs/omega_homology/src/cochain.rs
+symbols:
+- Cochain
+- new
+- zero
+- dimension
+- is_zero
+- hash
+- add
+- sub
+- scalar_mul
+owns:
+- cochain
+- new
+- zero
+- dimension
+- is_zero
+- hash
+- add
+- sub
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

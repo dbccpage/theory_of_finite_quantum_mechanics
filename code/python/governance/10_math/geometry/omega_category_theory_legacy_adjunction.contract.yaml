@@ -1,0 +1,57 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:legacy_adjunction:v1.0.0
+title: 'Adjunction — Full Up ⊣ Forget with Derived Monad and Comonad.  An adjunction
+  L ⊣ R (Up ⊣ Forget) consists of: - Left ...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/legacy_adjunction.rs
+module: legacy_adjunction
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: legacy_adjunction
+  file: crates_rs/omega_category_theory/src/legacy_adjunction.rs
+symbols:
+- UpFunctor
+- ForgetFunctor
+- ForgetResult
+- ForgetFunctorWithEvidence
+- ForgetKind
+- AdjunctionPair
+- DeclaredFiniteAdjunction
+- new
+- new_between
+- set_left_ob
+- set_left_mor
+- set_right_ob
+- set_right_mor
+- set_unit
+- set_counit
+- DerivedMonad
+- from_adjunction
+- DerivedComonad
+- kleisli_compose
+- validate_declared_adjunction
+- check_derived_monad_left_unit
+- check_derived_monad_right_unit
+- check_derived_monad_associativity
+- check_derived_comonad_left_counit
+- check_derived_comonad_right_counit
+- check_derived_comonad_coassociativity
+owns:
+- up_functor
+- forget_functor
+- forget_result
+- forget_functor_with_evidence
+- forget_kind
+- adjunction_pair
+- declared_finite_adjunction
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

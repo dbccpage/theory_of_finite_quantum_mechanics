@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:error:v1.0.0
+title: Compatibility error type for certified modules migrated from `homological`.
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/error.rs
+module: error
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: error
+  file: crates_rs/omega_homology/src/error.rs
+symbols:
+- HomologyError
+owns:
+- homology_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

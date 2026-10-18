@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_category_theory_finite_section_separation:v1.0.0
+title: 'DP-2 separation with declared domains and quotient identity: positive, negative,
+  boundary and tamper tests. Authority...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_category_theory/finite_section_separation.rs
+module: omega_category_theory::finite_section_separation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_category_theory::finite_section_separation
+  file: crates_rs/tests/omega_category_theory/finite_section_separation.rs
+symbols: []
+owns:
+- omega_category_theory_finite_section_separation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

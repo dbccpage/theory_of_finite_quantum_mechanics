@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_certifiers:checked_packet:v1.0.0
+title: Checked Packet Module
+kind: rust_file_contract
+status: active
+crate: omega_certifiers
+file: crates_rs/omega_certifiers/src/checked_packet.rs
+module: checked_packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_certifiers
+  module: checked_packet
+  file: crates_rs/omega_certifiers/src/checked_packet.rs
+symbols:
+- CertificateVerdict
+- CheckedClaimKind
+- CheckedClaimScope
+- ProposedPacket
+- UncheckedPacket
+- CheckedPacketArgs
+- CheckedPacketError
+- CheckedPacketCertificateError
+- CheckedPacket
+- new_checked
+- carrier_hash
+- obstruction_mass
+- phi1_certificate_ref
+- replay_hash
+- status
+- certify_evidence
+- PacketCertifier
+owns:
+- certificate_verdict
+- checked_claim_kind
+- checked_claim_scope
+- proposed_packet
+- unchecked_packet
+- checked_packet_args
+- checked_packet_error
+- checked_packet_certificate_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:hermitian_spectral:v1.0.0
+title: Constructive finite Hermitian spectral checks over Q(i).  Algebraic eigenvalues
+  are isolated at every bounded dimensi...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/hermitian_spectral.rs
+module: hermitian_spectral
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: hermitian_spectral
+  file: crates_rs/omega_quantum_physics/src/hermitian_spectral.rs
+symbols:
+- ScalarCarrier
+- is_exact
+- label
+- SpectralError
+- HermitianWitness
+- n
+- carrier
+- defect_is_zero
+- SpectralHypotheses
+- from_matrix_unpaid
+- unpaid
+- all_paid
+- require_paid
+- HermitianMatrix
+- try_exact
+- try_diagonal_rational
+- try_float64_demo
+- witness
+- entry
+- exact_matrix
+- is_diagonal_exact
+- authority_fence
+- SpectralMethod
+- SpectralAuthorityTag
+- SpectralDecomposition
+- distinct_eigenvalues
+- perfect_isqrt
+- spectral_decompose
+- apply_spectral_theorem
+- rational_spectrum_obstruction_witness
+owns:
+- scalar_carrier
+- is_exact
+- label
+- spectral_error
+- hermitian_witness
+- n
+- carrier
+- defect_is_zero
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

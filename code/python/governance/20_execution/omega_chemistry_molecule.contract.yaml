@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_chemistry:molecule:v1.0.0
+title: '`molecule` — finite dual-face object for `omega_chemistry`.  AUTHORING_QUALITY:
+  human_llm_best_effort_slop (best-effo...'
+kind: rust_file_contract
+status: active
+crate: omega_chemistry
+file: crates_rs/omega_chemistry/src/molecule.rs
+module: molecule
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_chemistry
+  module: molecule
+  file: crates_rs/omega_chemistry/src/molecule.rs
+symbols:
+- Molecule
+- new
+- authority_fence
+- atom_count_proxy
+owns:
+- molecule
+- new
+- authority_fence
+- atom_count_proxy
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

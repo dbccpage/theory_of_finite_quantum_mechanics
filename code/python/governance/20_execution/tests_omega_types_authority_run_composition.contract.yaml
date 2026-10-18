@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_types_authority_run_composition:v1.0.0
+title: 'Run composition over the authority lattice: weakest step wins, `Refused` is
+  absorbing, and composition never raises a...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_types/authority_run_composition.rs
+module: omega_types::authority_run_composition
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_types::authority_run_composition
+  file: crates_rs/tests/omega_types/authority_run_composition.rs
+symbols: []
+owns:
+- omega_types_authority_run_composition
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:cycle_aware:v1.0.0
+title: Cycle Aware Module
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/cycle_aware.rs
+module: cycle_aware
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: cycle_aware
+  file: crates_rs/omega_engines/src/cycle_aware.rs
+symbols:
+- CycleAwareGenerator
+owns:
+- cycle_aware_generator
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

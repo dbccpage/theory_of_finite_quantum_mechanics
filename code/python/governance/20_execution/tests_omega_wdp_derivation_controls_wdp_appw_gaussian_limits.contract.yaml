@@ -1,0 +1,36 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_appw_gaussian_limits:v1.0.0
+title: Finite witness for the carrier L=4, M=1, r=0.  TD-2a makes both layers the
+  identity. TD-6 scales Phi by 1/(2 M sqrt(L...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appw_gaussian_limits.rs
+module: omega_wdp::derivation_controls::wdp_appw_gaussian_limits
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_appw_gaussian_limits
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appw_gaussian_limits.rs
+symbols:
+- Rat
+- new
+- Witness
+- witness
+- reject_alternating_as_static_chi
+- reject_joint_spacetime_limit
+- reject_gate_e_as_in_disk
+owns:
+- rat
+- new
+- witness
+- reject_alternating_as_static_chi
+- reject_joint_spacetime_limit
+- reject_gate_e_as_in_disk
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

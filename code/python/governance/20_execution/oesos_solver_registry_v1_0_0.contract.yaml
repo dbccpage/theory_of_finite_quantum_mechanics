@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:oesos:solver_registry:v1.0.0
+title: Solver Registry
+kind: execution_contract
+status: experimental
+layer: 06_execution
+role: SolverKernel
+descriptor:
+  authority_effect: none
+  evidence_ceiling: ShapeOnly
+  runtime_enforcement: false
+  customer_claim_allowed: false
+  dependencies:
+    contracts: []
+    proof_obligations: []
+  terminals:
+    may_emit: []
+    may_support: []
+  refusals:
+    may_emit: []
+  operator_classes:
+    may_support: []
+    must_not_self_assign: true
+relationships:
+  abstract: false
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+  - urn:omega:constitution:base_execution_contract:v1.0.0
+  runtime_bindings:
+  - omega_engine.crates.solver.solv_omega_engine_solver_of_solvers.registry
+  coalesces_detailed_contracts:
+  - urn:omega:execution:oesos_cascade:v0.1.0
+math:
+  object_kind: solver_registry
+  definition: Declarative residual-class to solver-id routing.
+  laws:
+  - Registration order is explicit and is not a hidden score.
+doctrine:
+  summary: Declarative residual-class to solver-id routing.
+  non_role:
+  - authority_minting
+  - policy_decision
+  - self_certification
+  - state_transition
+  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance
+    supplies shared shape and negative-capability rules without increasing authority.

@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:s_level:v1.0.0
+title: S(N) Symbolic-Context Tower Subsystem  Port of the Lean 4 `SLevel` and `LicensedLift`
+  types for runtime enforcement.
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/s_level.rs
+module: s_level
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: s_level
+  file: crates_rs/omega_types/src/s_level.rs
+symbols:
+- SLevel
+- declared_mass
+- LiftRefusal
+- LicensedLift
+- certify
+- source
+- target
+owns:
+- s_level
+- declared_mass
+- lift_refusal
+- licensed_lift
+- certify
+- source
+- target
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

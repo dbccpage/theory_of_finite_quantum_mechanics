@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_state_coda_gtla_protocol:v1.0.0
+title: Coda Gtla Protocol Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_state/coda_gtla_protocol.rs
+module: omega_state::coda_gtla_protocol
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_state::coda_gtla_protocol
+  file: crates_rs/tests/omega_state/coda_gtla_protocol.rs
+symbols: []
+owns:
+- omega_state_coda_gtla_protocol
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

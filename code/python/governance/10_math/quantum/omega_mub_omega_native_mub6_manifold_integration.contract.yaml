@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_manifold_integration:v1.0.0
+title: 'Target B3: Global Manifold Obstruction Integration & Complete Moduli Non-Extendibility
+  Closure.  AuthorityEffect: Non...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_manifold_integration.rs
+module: omega_native::mub6_manifold_integration
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_manifold_integration
+  file: crates_rs/omega_mub/src/omega_native/mub6_manifold_integration.rs
+symbols:
+- map_regional_chart_to_moduli_chart
+- UnifiedModuliSample
+- new
+- chart_representative
+- from_leaf_cell
+- UnifiedObstructionArm
+- MasterUnifiedObstructionResult
+- evaluate_master_unified_obstruction
+- canonical_28_cell_samples
+- canonical_5_chart_representatives
+- continuous_szollosi_chain_samples
+- ContinuousChainingReport
+- verify_continuous_szollosi_chaining
+- CechNerveReport
+- verify_cech_cocycles_all_53_triples
+- CirculationEvaluationReport
+- evaluate_discrete_circulation_gamma
+- UnifiedCoverageReport
+- verify_full_unified_coverage
+- MasterTargetB3Report
+- evaluate_target_b3_manifold_integration
+- ManifoldIntegrationError
+owns:
+- map_regional_chart_to_moduli_chart
+- unified_moduli_sample
+- new
+- chart_representative
+- from_leaf_cell
+- unified_obstruction_arm
+- master_unified_obstruction_result
+- evaluate_master_unified_obstruction
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

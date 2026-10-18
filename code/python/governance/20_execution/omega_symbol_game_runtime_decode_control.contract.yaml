@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:decode_control:v1.0.0
+title: 'Exact decode control and logit-level intervention receipt verifier.  Enforces:
+  - Verification of carrier masks: all g...'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/decode_control.rs
+module: decode_control
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: decode_control
+  file: crates_rs/omega_symbol_game_runtime/src/decode_control.rs
+symbols:
+- DecodeControlReceiptV1
+- DecodeVerificationVerdict
+- verify_decode_receipt
+owns:
+- decode_control_receipt_v1
+- decode_verification_verdict
+- verify_decode_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -67,3 +67,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM034-035-050-051-095-RESERVED-STUBS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM034-035-050-051-095-RESERVED-STUBS` (`FINITE_QM_DYNAMICS` / `CONDITIONAL`)
+- **Mined Operad Family (`M2`)**: `OP-DS-CAYLEY-DIRAC-FINITE-SHADOW`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [130, -260, 195]`, `chord_potential = 195`, `holonomy_gamma2 = 260`
+- **Finite Shadow Exact Witness (`M4`)**: `dirac_klein_gordon_square_diag: m^2 + p^2 = 12^2 + 5^2 == 169` ($\text{value} = 169$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `reserved_stub_slots_count(034,035,050,051,095,200,202,203,205) == 9` ($\text{value} = 9$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `3` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 0ee8ee5615cfcf9f4316ca30580a604e6a03865737143e4fd8e4fd6a2bf4d908`

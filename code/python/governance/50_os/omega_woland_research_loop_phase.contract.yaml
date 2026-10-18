@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:research_loop_phase:v1.0.0
+title: 'The nine loop phases and the PFP stages each one runs.  AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/research_loop/phase.rs
+module: research_loop::phase
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: research_loop::phase
+  file: crates_rs/omega_woland/src/research_loop/phase.rs
+symbols:
+- Phase
+- pfp_stages
+- stage_executor_is_allowed
+owns:
+- phase
+- pfp_stages
+- stage_executor_is_allowed
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

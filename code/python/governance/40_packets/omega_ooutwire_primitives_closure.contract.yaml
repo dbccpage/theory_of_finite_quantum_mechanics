@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:closure:v1.0.0
+title: Primitive — the **declared pair-separation closure policy**, and the external
+  continuation policy it is kept apart fr...
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/closure.rs
+module: closure
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: closure
+  file: crates_rs/omega_ooutwire_primitives/src/closure.rs
+symbols:
+- closure_challenge_orbits
+- closure_round_bound
+owns:
+- closure_challenge_orbits
+- closure_round_bound
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

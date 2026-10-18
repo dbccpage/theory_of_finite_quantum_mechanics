@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_basis_cover:v1.0.0
+title: Basis-level exact interval finite-cover certificates for MUB(6).  `mub6_interval_cover`
+  / `mub6_cyclotomic_enclosure`...
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_basis_cover.rs
+module: omega_native::mub6_basis_cover
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_basis_cover
+  file: crates_rs/omega_mub/src/omega_native/mub6_basis_cover.rs
+symbols:
+- BasisBox
+- basis_residual_sq_lower
+- NoBasisBox
+- certify_basis_box_excludes_fourth_for_triple
+- certify_basis_box_excludes_fourth
+- basis_box_excluded_by_column_for_triple
+- basis_box_excluded_by_column
+- bisect_closed_interval
+- verify_closed_box_bisection_soundness
+- bisect_closed_vector_box
+- bisect_closed_basis_box
+- CIval
+- conj
+- widen
+- BoxedVec
+- enclose_exact_vec
+- enclose_canonical_triple
+- widen_triple
+- column_box_to_civals
+- boxed_basis_residual_sq_lower
+- certify_moduli_box_excludes_fourth
+- certify_basis_moduli_box_excludes_fourth
+owns:
+- basis_box
+- basis_residual_sq_lower
+- no_basis_box
+- certify_basis_box_excludes_fourth_for_triple
+- certify_basis_box_excludes_fourth
+- basis_box_excluded_by_column_for_triple
+- basis_box_excluded_by_column
+- bisect_closed_interval
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

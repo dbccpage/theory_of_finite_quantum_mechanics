@@ -1,0 +1,55 @@
+{
+  "schema_version": "omega.mub6.subgap_r6_general_mechanization_receipt.v1",
+  "project": "MUB(6)",
+  "firewall": "stated region only; mints no authority",
+  "authority_effect": "None",
+  "subgap_id": "R6",
+  "name": "Recorded phase table: Eisenstein norm of the gamma_1 column sum",
+  "status": "NOT_A_CERTIFICATE",
+  "verified": false,
+  "zero_float_verified": false,
+  "arithmetic": "Int only in the named Lean module; this receipt does not replay a float scan",
+  "lean4_module": "lean4/research_programs/mub6/Conjecture2GeneralMechanization.lean",
+  "lean_build": {
+    "command": "lake build Conjecture2GeneralMechanization",
+    "toolchain": "leanprover/lean4:v4.34.0",
+    "exit_code": 0,
+    "axioms": ["propext"],
+    "note": "This build checks the four named theorems. It is not a certificate of Conjecture 2 or Proposition 4.2."
+  },
+  "lean4_theorems": [
+    "column_exponents",
+    "exponent_counts",
+    "tao_normSq_eq_nine",
+    "tao_normSq_nonzero"
+  ],
+  "formalization": {
+    "conjecture_2a_tensor_product_proved": false,
+    "conjecture_2b_tensor_product_proved": false,
+    "hermitian_adjoint_corrected": false,
+    "proposition_4_2_mechanized": false,
+    "sporadic_classes_excluded": []
+  },
+  "supports": "The recorded phase table and gamma_1 = (1, 1, 1, -1, -1, -1) give column exponents (0, 2, 2, 0, 2, 0), exponent counts (3, 0, 3), and Eisenstein norm 9.",
+  "symbolic_verification": {
+    "script": "omega_engine_projects/mub6/code/conj2_symbolic_verification/conj2_tensor_product_proof.py",
+    "clause_a_permutations_tested": 20,
+    "clause_a_zeros": 20,
+    "clause_b_permutations_tested": 20,
+    "clause_b_zeros": 20,
+    "clause_b_both_factors_zero": 20,
+    "replayed_by_this_receipt": false,
+    "note": "These counts are the script's recorded output. This receipt does not replay the script and does not treat the counts as a Lean proof of Proposition 4.2."
+  },
+  "adversarial_audit_r7": {
+    "document": "omega_engine_projects/mub6/research/subgap_r7_adversarial_audit_note.md",
+    "status": "NO_CERTIFICATE_TAUTOLOGY_EXPOSED",
+    "finding": "Identity -1 = h_segre*f_segre + sum(h_k*f_k) + sigma_0 + sigma_1*g_sep telescopes to -1 over Q[a,b,c,d], but g_sep = -eps < 0 on all points of the variety V(f_segre, f_k), failing Stengle Positivstellensatz non-existence."
+  },
+  "claim_hygiene": {
+    "what_it_supports": "Supports only that this phase table and gamma_1 give exponent counts 3, 0, 3 and Eisenstein norm 9.",
+    "what_it_does_not_support": "Does not prove Conjecture 2 or Proposition 4.2. Does not exclude the Tao, Haagerup, or Karlsson classes. Does not support MUB(6)=3 or MUB(6)<=3. Does not discharge Subgap R6 or Subgap R7.",
+    "narrowest_defensible_claim": "For this one phase table and this one sign pattern, the column monomial sum is -3 ω in the basis (1, ω), and its Eisenstein norm x^2 - xy + y^2 is 9.",
+    "next_test_needed": "Proposition 4.2 needs a statement that quantifies the Hadamard slices. A case split that assumes the Tao, Haagerup, and Karlsson discharges is not that proposition."
+  }
+}

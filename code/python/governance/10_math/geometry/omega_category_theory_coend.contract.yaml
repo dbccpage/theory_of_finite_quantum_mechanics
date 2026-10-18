@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:coend:v1.0.0
+title: Coends — Spec Section 14.  A coend ∫^c F(c,c) is the universal quotient of
+  diagonal contributions by dinaturality. It...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/coend.rs
+module: coend
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: coend
+  file: crates_rs/omega_category_theory/src/coend.rs
+symbols:
+- DinaturalityWitness
+- TaggedDiagonal
+- DeclaredFiniteCoend
+- CoendInput
+- compute
+- validate_coend_input
+- check_dinaturality
+owns:
+- dinaturality_witness
+- tagged_diagonal
+- declared_finite_coend
+- coend_input
+- compute
+- validate_coend_input
+- check_dinaturality
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

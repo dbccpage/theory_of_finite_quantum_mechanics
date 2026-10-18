@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:closure_defect:v1.0.0
+title: '# Display-Only Closure Defect  This module provides a display-only view of
+  the exact quotient-level closure defect Γ₂...'
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/closure_defect.rs
+module: closure_defect
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: closure_defect
+  file: crates_rs/omega_types/src/closure_defect.rs
+symbols:
+- DisplayScalar
+- DisplayConversionError
+- ClosureDefectDisplay
+- try_from_verified
+- value
+- coboundary
+- UntrustedClosureDefectDto
+- ClosureDefectAdmissionError
+- try_admit
+owns:
+- display_scalar
+- display_conversion_error
+- closure_defect_display
+- try_from_verified
+- value
+- coboundary
+- untrusted_closure_defect_dto
+- closure_defect_admission_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:loss_curvature:v1.0.0
+title: Exact distinction loss and independently evaluated path curvature.  A flat
+  map may erase a protected question. A quan...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/loss_curvature.rs
+module: loss_curvature
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: loss_curvature
+  file: crates_rs/omega_functional/src/loss_curvature.rs
+symbols:
+- Matrix
+- LossError
+- identity_matrix
+- matrix_norms
+- QuestionLoss
+- collapsed
+- question_difference
+- image_difference
+- inspect_question_loss
+- SeparationBound
+- curvature
+- answer_separation
+- induced_l1
+- entry_l1
+- induced_lower_bound
+- entry_lower_bound
+- verify_path_separation
+- verify_triangle_separation
+owns:
+- matrix
+- loss_error
+- identity_matrix
+- matrix_norms
+- question_loss
+- collapsed
+- question_difference
+- image_difference
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

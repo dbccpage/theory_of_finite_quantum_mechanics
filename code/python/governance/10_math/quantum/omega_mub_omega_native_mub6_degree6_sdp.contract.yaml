@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_degree6_sdp:v1.0.0
+title: 'Target Q3: experimental rational coefficient-matrix diagnostics.  AuthorityEffect:
+  None.  The proposed lifts are not ...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_degree6_sdp.rs
+module: omega_native::mub6_degree6_sdp
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_degree6_sdp
+  file: crates_rs/omega_mub/src/omega_native/mub6_degree6_sdp.rs
+symbols:
+- build_degree6_invariant_diagnostic_matrix
+- build_degree6_extended_diagnostic_matrix
+- build_invariant_dual_witness_x0
+- build_extended_dual_witness_s6
+- DualWitnessReceipt
+- Degree6MomentReport
+- Degree6DiagnosticReport
+- evaluate_target_q3_diagnostics
+- solve_target_q3_degree6_certificate
+- build_degree6_invariant_moment_matrix
+- build_degree6_extended_moment_matrix
+owns:
+- build_degree6_invariant_diagnostic_matrix
+- build_degree6_extended_diagnostic_matrix
+- build_invariant_dual_witness_x0
+- build_extended_dual_witness_s6
+- dual_witness_receipt
+- degree6_moment_report
+- degree6_diagnostic_report
+- evaluate_target_q3_diagnostics
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

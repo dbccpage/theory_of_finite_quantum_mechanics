@@ -1,0 +1,52 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:quantum_channel:v1.0.0
+title: Finite quantum channel face (Kraus representation and CPTP maps) for `omega_quantum_physics`.  Grounded
+  in the mathem...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/quantum_channel.rs
+module: quantum_channel
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: quantum_channel
+  file: crates_rs/omega_quantum_physics/src/quantum_channel.rs
+symbols:
+- StateSpace
+- new
+- ChannelError
+- QuantumChannel
+- try_from_kraus
+- identity
+- depolarizing
+- amplitude_damping
+- phase_damping
+- tp_residual
+- validate
+- apply_matrix
+- apply_diagonal
+- compose
+- compute_c11_coherence_residual
+- degree
+- authority_fence
+- CPTPChannel
+- apply_checked
+- apply_complex
+- compose_checked
+owns:
+- state_space
+- new
+- channel_error
+- quantum_channel
+- try_from_kraus
+- identity
+- depolarizing
+- amplitude_damping
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

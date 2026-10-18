@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_sheaf_theory:stack:v1.0.0
+title: Stacks, Character Stacks, Stacky Groupoids, Hypercovers, and Derived/Higher
+  Stacks.  Unverified metadata schemas asso...
+kind: rust_file_contract
+status: active
+crate: omega_sheaf_theory
+file: crates_rs/omega_sheaf_theory/src/stack.rs
+module: stack
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_sheaf_theory
+  module: stack
+  file: crates_rs/omega_sheaf_theory/src/stack.rs
+symbols:
+- FiniteGroupoid
+- new
+- is_isomorphic
+- Stack
+- is_essentially_surjective
+- artifact_hash
+- CharacterStack
+- num_conjugacy_classes
+- StackyGroupoid
+- Hypercover
+- truncation_level
+- DerivedScheme
+- DerivedStack
+- HigherStack
+owns:
+- finite_groupoid
+- new
+- is_isomorphic
+- stack
+- is_essentially_surjective
+- artifact_hash
+- character_stack
+- num_conjugacy_classes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims
