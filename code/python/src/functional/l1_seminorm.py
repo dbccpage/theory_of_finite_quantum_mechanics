@@ -1,7 +1,7 @@
 """Exact weighted L1 quotient seminorm certificate on Q^n / im(B).
 
 Origin: dag/derivation_dag.json node L1-WDP-WINDOW-PHI1-GAMMA2, and
-lean/DerivationDagQMClosure.lean theorem
+lean4/DerivationDagQMClosure.lean theorem
 l1_gs001_replica_and_phi1_quotient_invariance.
 Claim: urn:omega:fqm:phi1:weighted-l1-quotient-certificate:v1
 AuthorityEffect: None

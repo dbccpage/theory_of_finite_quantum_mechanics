@@ -266,7 +266,7 @@ def test_end_to_end_public_contract() -> None:
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
     dag = (root / "dag" / "derivation_dag.json").read_text(encoding="utf-8")
-    lean = (root / "lean" / "DerivationDagQMClosure.lean").read_text(encoding="utf-8")
+    lean = (root / "lean4" / "DerivationDagQMClosure.lean").read_text(encoding="utf-8")
     assert "L1-WDP-WINDOW-PHI1-GAMMA2" in dag
     assert "l1_gs001_replica_and_phi1_quotient_invariance" in lean
     source = _MODULE_PATH.read_text(encoding="utf-8")
