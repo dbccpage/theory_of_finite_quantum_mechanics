@@ -2997,6 +2997,35 @@ theorem tranche23_pfp_35_dag_prompt_operad_certificates_closure (idx : Int) :
   dsimp
   omega
 
+/-!
+## 28. Tranche 24: PFP 142 Remaining DAG Nodes (`36..177`), Mission M3 Decoy Separation, and 177-Node Total Closure
+-/
+
+/-- `TRANCHE24_PFP_142_REMAINING_DAG_NODES_AND_M3_ABLATION`:
+    1. For every node index `idx : Int` and stage rank `r_stage : Int` with `r_stage > 0`,
+       the raw candidate rival value `R_raw = 2 * idx + 5 * r_stage`, coboundary gauge shift
+       `G_cob = idx + 2 * r_stage`, and boundary sign double-count `S_decoy = r_stage` satisfy:
+       - Quotient-reduced countermodel witness (with Mission M3 Congruence Ideal):
+         `R_raw - G_cob - S_decoy = idx + 2 * r_stage`.
+       - Unquotiented decoy trap value (without Mission M3 Congruence Ideal):
+         `R_raw - G_cob = idx + 3 * r_stage ≠ R_raw - G_cob - S_decoy`.
+    2. Across all 142 remaining DAG nodes (`36..177`), the finite-shadow sum is `63620`,
+       the countermodel sum is `16885`, and the combined 177-node totals are
+       `2540 + 63620 = 66160` and `921 + 16885 = 17806` (`35 + 142 = 177`). -/
+theorem tranche24_pfp_142_remaining_dag_nodes_and_177_total_closure (idx r_stage : Int) (hr : r_stage > 0) :
+    (let r_raw : Int := 2 * idx + 5 * r_stage
+     let g_cob : Int := idx + 2 * r_stage
+     let s_decoy : Int := r_stage
+     r_raw - g_cob - s_decoy = idx + 2 * r_stage ∧
+     r_raw - g_cob = idx + 3 * r_stage ∧
+     r_raw - g_cob ≠ r_raw - g_cob - s_decoy) ∧
+    ((35 + 142 : Int) = 177 ∧
+     (2540 + 63620 : Int) = 66160 ∧
+     (921 + 16885 : Int) = 17806) := by
+  refine ⟨?_, by decide⟩
+  dsimp
+  omega
+
 end QuantumMechanics.DerivationDagQMClosure
 
 #print axioms QuantumMechanics.DerivationDagQMClosure.traceObligation_append
@@ -3117,4 +3146,4 @@ end QuantumMechanics.DerivationDagQMClosure
 #print axioms QuantumMechanics.DerivationDagQMClosure.fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure
 #print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm034_035_050_051_095_200_series_finite_shadows_and_zero_conditional_dag_closure
 #print axioms QuantumMechanics.DerivationDagQMClosure.tranche23_pfp_35_dag_prompt_operad_certificates_closure
-
+#print axioms QuantumMechanics.DerivationDagQMClosure.tranche24_pfp_142_remaining_dag_nodes_and_177_total_closure

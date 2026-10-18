@@ -60,3 +60,18 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F001_quantum/floor.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/README.md`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-IMP-ORTHOGONAL-ADDITIVITY`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `L1-IMP-ORTHOGONAL-ADDITIVITY` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-L1-ORTHOGONAL-ADDITIVITY-H013`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [310, -620, 465]`, `chord_potential = 465`, `holonomy_gamma2 = 620`
+- **Finite Shadow Exact Witness (`M4`)**: `quadratic_frame_sum_invariance: 3^2 + 4^2 + 0^2 == 25` ($\text{value} = 25$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quartic_frame_additivity_defect: 25^2 - (3^4 + 4^4) = 625 - 337 == 288 != 0 (quartic rule violates orthogonal frame additivity)` ($\text{value} = 288$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 04701179f228c9ea7571c34505a1c47c6ee05a1643671fa698f2c9d8beea90a1`

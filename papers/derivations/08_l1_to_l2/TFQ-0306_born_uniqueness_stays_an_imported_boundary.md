@@ -62,3 +62,33 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F001_quantum/floor.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/README.md`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (`FINITE_QM_STRUCTURE` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-DS-BORN-LP-RIVAL-BOUNDARY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [190, -380, 285]`, `chord_potential = 285`, `holonomy_gamma2 = 380`
+- **Finite Shadow Exact Witness (`M4`)**: `born_l2_pairing_3_4: 3^2 + 4^2 == 25` ($\text{value} = 25$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quartic_rival_minus_born_l2: (3^4 + 4^4) - (3^2 + 4^2) = 337 - 25 == 312 (valid L^4 measure pairing differs by 312)` ($\text{value} = 312$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 99a067b813765b36860b763b2b0dff609434c74d277c0bcdef05a2edc2ab18e8`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-IMPORT-GLEASON`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-IMPORT-GLEASON` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-GP-GLEASON-FRAME-IMPORT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [250, -500, 375]`, `chord_potential = 375`, `holonomy_gamma2 = 500`
+- **Finite Shadow Exact Witness (`M4`)**: `sorkin_i3_quadratic_vanishing: I_3^(2)(1,1,1) = 3^2 - (2^2+2^2+2^2) + (1^2+1^2+1^2) == 0` ($\text{value} = 0$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `sorkin_i3_cubic_rival_nonzero: I_3^(3)(1,1,1) = 3^3 - 3*(2^3) + 3*(1^3) = 27 - 24 + 3 == 6` ($\text{value} = 6$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 340be3c3eed8b31920e6de8dde740d023fe82c7ea5d952f59c5c7bf02573d0d3`

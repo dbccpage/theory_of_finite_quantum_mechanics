@@ -76,3 +76,18 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm081_082_090_093_stochastic_contraction_channel_shadow_firewall_and_cochain`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 48778e3e4e96cf41cf8086cb117df6c9bea3484ca59f2d8177e40ff129ea557a`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-IMPORT-CPTP-CLASS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-IMPORT-CPTP-CLASS` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-GP-CPTP-STINESPRING-IMPORT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [240, -480, 360]`, `chord_potential = 360`, `holonomy_gamma2 = 480`
+- **Finite Shadow Exact Witness (`M4`)**: `stochastic_column_conservation: col0_sum(10) + col1_sum(10) == 20` ($\text{value} = 20$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `reversible_bool_x_bool_Reset_dilations_count == 4 (4 distinct bijections realize reset, none selects complex Kraus CPTP)` ($\text{value} = 4$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 5abe05fc56b66b83533844675b9e2c3cdd23bf2314dec075f74173374ee8a207`
