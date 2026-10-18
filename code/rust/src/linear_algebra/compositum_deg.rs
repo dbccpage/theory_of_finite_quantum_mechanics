@@ -504,37 +504,7 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
 }
 
 fn raw_number_admission(input: &str) -> Result<()> {
-    let bytes = input.as_bytes();
-    let (mut index, mut in_string, mut escaped) = (0, false, false);
-    while index < bytes.len() {
-        let byte = bytes[index];
-        if in_string {
-            if escaped {
-                escaped = false;
-            } else if byte == b'\\' {
-                escaped = true;
-            } else if byte == b'"' {
-                in_string = false;
-            }
-            index += 1;
-        } else if byte == b'"' {
-            in_string = true;
-            index += 1;
-        } else if matches!(byte, b'-' | b'0'..=b'9') {
-            index += 1;
-            while index < bytes.len()
-                && matches!(bytes[index], b'0'..=b'9' | b'+' | b'-' | b'.' | b'e' | b'E')
-            {
-                if matches!(bytes[index], b'.' | b'e' | b'E') {
-                    return Err("RAW_INEXACT_JSON_NUMBER".into());
-                }
-                index += 1;
-            }
-        } else {
-            index += 1;
-        }
-    }
-    Ok(())
+    super::json_admission::admit_exact_json(input)
 }
 fn run() -> Result<Value> {
     if std::env::args().len() != 1 {

@@ -10,34 +10,56 @@ fn violated(law: &'static str) -> Result<(), ExactFieldError> {
 
 pub fn check_field_axioms<F: Field + ExactRing>(samples: &[F]) -> Result<(), ExactFieldError> {
     let (zero, one) = (F::zero(), F::one());
+    check_zero_and_one(&zero, &one)?;
+    check_identities_and_inverses(samples, &zero, &one)?;
+    check_commutativity_and_division(samples)?;
+    check_associativity_and_distributivity(samples)
+}
+
+fn check_zero_and_one<F: Field + ExactRing>(zero: &F, one: &F) -> Result<(), ExactFieldError> {
     if !zero.is_zero() {
         return violated("zero is zero");
     }
     if one == zero || one.is_zero() {
         return violated("a field has 0 != 1");
     }
+    Ok(())
+}
+
+fn check_identities_and_inverses<F: Field + ExactRing>(
+    samples: &[F],
+    zero: &F,
+    one: &F,
+) -> Result<(), ExactFieldError> {
     for a in samples {
-        if a.add(&zero) != *a {
+        if a.add(zero) != *a {
             return violated("0 is the additive identity");
         }
-        if a.mul(&one) != *a {
+        if a.mul(one) != *a {
             return violated("1 is the multiplicative identity");
         }
-        if !a.add(&a.neg()).is_zero() {
+        let sum = a.add(&a.neg());
+        if sum != *zero || !sum.is_zero() {
             return violated("a + (-a) = 0");
         }
-        if a.is_zero() != (*a == zero) {
+        if a.is_zero() != (*a == *zero) {
             return violated("is_zero agrees with equality to zero");
         }
         match a.try_inv() {
             None if !a.is_zero() => return violated("every nonzero element has an inverse"),
             Some(_) if a.is_zero() => return violated("zero has no inverse"),
-            Some(inverse) if a.mul(&inverse) != one => {
+            Some(inverse) if a.mul(&inverse) != *one => {
                 return violated("a · a⁻¹ = 1");
             }
             _ => {}
         }
     }
+    Ok(())
+}
+
+fn check_commutativity_and_division<F: Field + ExactRing>(
+    samples: &[F],
+) -> Result<(), ExactFieldError> {
     for a in samples {
         for b in samples {
             if a.add(b) != b.add(a) {
@@ -56,6 +78,12 @@ pub fn check_field_axioms<F: Field + ExactRing>(samples: &[F]) -> Result<(), Exa
             }
         }
     }
+    Ok(())
+}
+
+fn check_associativity_and_distributivity<F: Field + ExactRing>(
+    samples: &[F],
+) -> Result<(), ExactFieldError> {
     for a in samples {
         for b in samples {
             for c in samples {
@@ -173,7 +201,8 @@ pub fn check_hermitian_ordered_axioms<F: HermitianOrdered>(
     for a in samples {
         let norm = a.mul(&a.conjugate());
         match norm.fixed_field_sign() {
-            Some(sign) if sign >= 0 && (sign == 0) == a.is_zero() => {}
+            Some(0) if a.is_zero() => {}
+            Some(1) if !a.is_zero() => {}
             _ => return violated("a norm x · conj(x) is nonnegative and zero only for zero"),
         }
     }
@@ -366,6 +395,109 @@ mod tests {
         ];
         check_field_axioms(&samples).unwrap();
         check_involution_axioms(&samples).unwrap();
+        assert_law(
+            check_hermitian_ordered_axioms(&samples),
+            "a norm x · conj(x) is nonnegative and zero only for zero",
+        );
+    }
+
+    #[test]
+    fn a_false_zero_does_not_excuse_a_broken_additive_inverse() {
+        #[derive(Clone, Debug, PartialEq, Eq)]
+        struct Defect(BigRational);
+        use crate::linear_algebra::scalars::{Ring, Semiring};
+        impl Semiring for Defect {
+            fn zero() -> Self {
+                Defect(q(0, 1))
+            }
+            fn one() -> Self {
+                Defect(q(1, 1))
+            }
+            fn add(&self, rhs: &Self) -> Self {
+                Defect(&self.0 + &rhs.0)
+            }
+            fn mul(&self, rhs: &Self) -> Self {
+                Defect(&self.0 * &rhs.0)
+            }
+            fn is_zero(&self) -> bool {
+                self.0 == q(0, 1) || self.0 == q(42, 1)
+            }
+        }
+        impl Ring for Defect {
+            fn neg(&self) -> Self {
+                if self.0 == q(2, 1) {
+                    Defect(q(40, 1))
+                } else {
+                    Defect(-&self.0)
+                }
+            }
+        }
+        impl Field for Defect {
+            fn try_inv(&self) -> Option<Self> {
+                if self.is_zero() {
+                    None
+                } else {
+                    Some(Defect(self.0.clone().recip()))
+                }
+            }
+        }
+        impl ExactRing for Defect {}
+        let samples = [-1, 0, 1, 2].map(|n| Defect(q(n, 1)));
+        assert_law(check_field_axioms(&samples), "a + (-a) = 0");
+    }
+
+    #[test]
+    fn a_norm_sign_of_two_is_not_nonnegative_unit_sign() {
+        #[derive(Clone, Debug, PartialEq, Eq)]
+        struct SignAtNine(BigRational);
+        use crate::linear_algebra::scalars::{Ring, Semiring};
+        impl Semiring for SignAtNine {
+            fn zero() -> Self {
+                SignAtNine(q(0, 1))
+            }
+            fn one() -> Self {
+                SignAtNine(q(1, 1))
+            }
+            fn add(&self, rhs: &Self) -> Self {
+                SignAtNine(&self.0 + &rhs.0)
+            }
+            fn mul(&self, rhs: &Self) -> Self {
+                SignAtNine(&self.0 * &rhs.0)
+            }
+            fn is_zero(&self) -> bool {
+                num_traits::Zero::is_zero(&self.0)
+            }
+        }
+        impl Ring for SignAtNine {
+            fn neg(&self) -> Self {
+                SignAtNine(-&self.0)
+            }
+        }
+        impl Field for SignAtNine {
+            fn try_inv(&self) -> Option<Self> {
+                if self.is_zero() {
+                    None
+                } else {
+                    Some(SignAtNine(self.0.clone().recip()))
+                }
+            }
+        }
+        impl ExactRing for SignAtNine {}
+        impl Involution for SignAtNine {
+            fn conjugate(&self) -> Self {
+                self.clone()
+            }
+        }
+        impl HermitianOrdered for SignAtNine {
+            fn fixed_field_sign(&self) -> Option<i8> {
+                if self.0 == q(9, 1) {
+                    Some(2)
+                } else {
+                    Some(crate::linear_algebra::test_support::sign_of_rational(&self.0))
+                }
+            }
+        }
+        let samples = [0, 1, -1, -3].map(|n| SignAtNine(q(n, 1)));
         assert_law(
             check_hermitian_ordered_axioms(&samples),
             "a norm x · conj(x) is nonnegative and zero only for zero",

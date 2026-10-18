@@ -21,9 +21,10 @@ pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
 ) -> Result<Vec<F>, ExactFieldError> {
     let n = require_square("characteristic_polynomial", a)?;
     let square = element_count(n, n)?;
+    let coefficients = plus(n, 1)?;
     let cube = times(square, n)?;
     let ops = plus(times(2, times(cube, n)?)?, times(4, cube)?)?;
-    charge(limits, square, ops)?;
+    charge(limits, plus(square, coefficients)?, ops)?;
 
     let data = a.as_slice();
     let at = |r: usize, c: usize| &data[r * n + c];
@@ -117,6 +118,7 @@ pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
 ) -> Result<Vec<F>, ExactFieldError> {
     let n = require_square("minimal_polynomial", a)?;
     if n == 0 {
+        charge(limits, 1, 0)?;
         let mut one = reserve(1)?;
         one.push(F::one());
         return Ok(one);
@@ -582,6 +584,33 @@ mod tests {
         assert!(!is_nilpotent(&identity::<Q>(2).unwrap()).unwrap());
         assert!(!is_nilpotent(&rat(&[&[0, 1], &[1, 0]])).unwrap());
         assert!(is_nilpotent(&zeros::<Q>(0, 0).unwrap()).unwrap());
+        let empty = zeros::<Q>(0, 0).unwrap();
+        assert_eq!(
+            minimal_polynomial_with_limits(
+                &empty,
+                OperationLimits {
+                    max_elements: 0,
+                    max_scalar_ops: 0,
+                }
+            ),
+            Err(ExactFieldError::Matrix(
+                MatrixError::AllocationLimitExceeded {
+                    requested: 1,
+                    limit: 0
+                }
+            ))
+        );
+        assert_eq!(
+            minimal_polynomial_with_limits(
+                &empty,
+                OperationLimits {
+                    max_elements: 1,
+                    max_scalar_ops: 0,
+                }
+            )
+            .unwrap(),
+            vec![q(1, 1)]
+        );
 
         let projector = rat(&[&[1, 0], &[0, 0]]);
         assert!(is_idempotent(&projector).unwrap());
@@ -654,7 +683,7 @@ mod tests {
     fn charpoly_budget_boundary_is_inclusive() {
         let a = rat(&[&[1, 2], &[3, 4]]);
         let exact = OperationLimits {
-            max_elements: 4,
+            max_elements: 7,
             max_scalar_ops: 64,
         };
         assert!(characteristic_polynomial_with_limits(&a, exact).is_ok());

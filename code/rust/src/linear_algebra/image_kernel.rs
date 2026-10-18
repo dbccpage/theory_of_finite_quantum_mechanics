@@ -147,6 +147,30 @@ impl<T: CheckedExactField> RawSubspaceBasis<T> {
     }
 }
 
+/// Rank, reduced row echelon form, image, and kernel for a [`CheckedExactField`].
+///
+/// `i64` is not a `CheckedExactField`. The positive example uses the same imports
+/// as the refusal, so a bad import cannot be what makes the refusal fail.
+///
+/// ```
+/// use theory_of_finite_qm::linear_algebra::basic_matrix::BasicMatrix;
+/// use theory_of_finite_qm::linear_algebra::image_kernel::ExactRowReduction;
+/// use num_rational::Rational64;
+/// let a = BasicMatrix::from_row_major(2, 2, vec![
+///     Rational64::new(2, 1),
+///     Rational64::new(1, 1),
+///     Rational64::new(1, 1),
+///     Rational64::new(0, 1),
+/// ]).unwrap();
+/// assert_eq!(a.rank().unwrap(), 2);
+/// ```
+///
+/// ```compile_fail,E0277
+/// use theory_of_finite_qm::linear_algebra::basic_matrix::BasicMatrix;
+/// use theory_of_finite_qm::linear_algebra::image_kernel::ExactRowReduction;
+/// let a = BasicMatrix::from_row_major(2, 2, vec![2_i64, 1, 1, 0]).unwrap();
+/// let _ = a.rank();
+/// ```
 pub trait ExactRowReduction<T: CheckedExactField = Rational64> {
     fn rank_and_rref(&self) -> Result<RankRref<T>, ExactLinearAlgebraError>;
 

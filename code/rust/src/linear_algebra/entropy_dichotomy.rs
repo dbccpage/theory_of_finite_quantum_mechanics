@@ -1468,7 +1468,9 @@ fn cli() -> Result<Value> {
                 .into(),
         ),
     }
-    let input: Value = serde_json::from_str(&input).map_err(|e| format!("INVALID_JSON:{e}"))?;
+    let raw = std::mem::take(&mut input);
+    let input: Value = serde_json::from_str(&raw).map_err(|e| format!("INVALID_JSON:{e}"))?;
+    super::json_admission::admit_exact_json(&raw)?;
     if spectral_roots {
         return if input.get("fixtures").is_some() {
             cyclotomic_density::polynomial_roots::report(&input)

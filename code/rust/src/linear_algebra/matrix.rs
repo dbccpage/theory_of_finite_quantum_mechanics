@@ -6,8 +6,9 @@ use crate::linear_algebra::{
 };
 use crate::linear_algebra::scalars::{ExactRing, Field};
 use num_bigint::BigInt;
+use num_integer::Integer;
 use num_rational::{BigRational, Rational64};
-use num_traits::ToPrimitive;
+use num_traits::{Signed, ToPrimitive, Zero};
 
 
 pub fn identity<F: Field + ExactRing>(n: usize) -> Result<BasicMatrix<F>, ExactFieldError> {
@@ -81,6 +82,9 @@ pub fn from_rows<F: Field + ExactRing>(
     Ok(BasicMatrix::from_row_major(row_count, cols, data)?)
 }
 
+/// Rows of `m`. A `0×n` matrix has no rows, so the result is `[]` and does not
+/// retain `n`. `from_rows` of that result is `0×0`. The round trip holds when
+/// `m.rows() > 0` or `m.cols() == 0`.
 pub fn to_rows<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<Vec<Vec<F>>, ExactFieldError> {
     let mut rows = reserve(m.rows())?;
     for r in 0..m.rows() {
@@ -116,7 +120,19 @@ where
     )?)
 }
 
+fn axis_out_of_bounds(row: usize, col: usize, rows: usize, cols: usize) -> ExactFieldError {
+    ExactFieldError::Matrix(MatrixError::IndexOutOfBounds {
+        row,
+        col,
+        rows,
+        cols,
+    })
+}
+
 pub fn row<F: Field + ExactRing>(m: &BasicMatrix<F>, r: usize) -> Result<Vec<F>, ExactFieldError> {
+    if r >= m.rows() {
+        return Err(axis_out_of_bounds(r, 0, m.rows(), m.cols()));
+    }
     let mut out = reserve(m.cols())?;
     for c in 0..m.cols() {
         out.push(m.get_ref(r, c)?.clone());
@@ -128,6 +144,9 @@ pub fn column<F: Field + ExactRing>(
     m: &BasicMatrix<F>,
     c: usize,
 ) -> Result<Vec<F>, ExactFieldError> {
+    if c >= m.cols() {
+        return Err(axis_out_of_bounds(0, c, m.rows(), m.cols()));
+    }
     let mut out = reserve(m.rows())?;
     for r in 0..m.rows() {
         out.push(m.get_ref(r, c)?.clone());
@@ -135,15 +154,39 @@ pub fn column<F: Field + ExactRing>(
     Ok(out)
 }
 
+fn canonical_bigint_fraction(numer: &BigInt, denom: &BigInt) -> Option<(BigInt, BigInt)> {
+    if denom.is_zero() {
+        return None;
+    }
+    let g = numer.gcd(denom);
+    let mut n = numer / &g;
+    let mut d = denom / &g;
+    if d.is_negative() {
+        n = -n;
+        d = -d;
+    }
+    if d.is_zero() {
+        None
+    } else {
+        Some((n, d))
+    }
+}
+
 pub fn widen_rational64(
     a: &BasicMatrix<Rational64>,
 ) -> Result<BasicMatrix<BigRational>, ExactFieldError> {
+    let cols = a.cols();
     let mut data = reserve(a.as_slice().len())?;
-    for x in a.as_slice() {
-        data.push(BigRational::new(
-            BigInt::from(*x.numer()),
-            BigInt::from(*x.denom()),
-        ));
+    for (index, x) in a.as_slice().iter().enumerate() {
+        let Some((n, d)) =
+            canonical_bigint_fraction(&BigInt::from(*x.numer()), &BigInt::from(*x.denom()))
+        else {
+            return Err(ExactFieldError::NotRepresentable {
+                row: index / cols.max(1),
+                col: index % cols.max(1),
+            });
+        };
+        data.push(BigRational::new(n, d));
     }
     Ok(BasicMatrix::from_row_major(a.rows(), a.cols(), data)?)
 }
@@ -154,8 +197,14 @@ pub fn narrow_to_rational64(
     let cols = a.cols();
     let mut data = reserve(a.as_slice().len())?;
     for (index, x) in a.as_slice().iter().enumerate() {
-        match (x.numer().to_i64(), x.denom().to_i64()) {
-            (Some(n), Some(d)) => data.push(Rational64::new_raw(n, d)),
+        let Some((n, d)) = canonical_bigint_fraction(x.numer(), x.denom()) else {
+            return Err(ExactFieldError::NotRepresentable {
+                row: index / cols.max(1),
+                col: index % cols.max(1),
+            });
+        };
+        match (n.to_i64(), d.to_i64()) {
+            (Some(n), Some(d)) => data.push(Rational64::new(n, d)),
             _ => {
                 return Err(ExactFieldError::NotRepresentable {
                     row: index / cols.max(1),
@@ -678,6 +727,60 @@ mod tests {
         assert_eq!(
             to_rows(&zeros::<Q>(3, 0).unwrap()).unwrap(),
             vec![Vec::<Q>::new(); 3]
+        );
+        let wide_empty = zeros::<Q>(0, 4).unwrap();
+        assert_eq!(to_rows(&wide_empty).unwrap(), Vec::<Vec<Q>>::new());
+        assert_eq!(
+            from_rows(to_rows(&wide_empty).unwrap()).unwrap().shape(),
+            (0, 0)
+        );
+    }
+
+    #[test]
+    fn an_empty_axis_still_rejects_a_missing_row_or_column() {
+        let rows_only = zeros::<Q>(2, 0).unwrap();
+        assert_eq!(row(&rows_only, 0).unwrap(), Vec::<Q>::new());
+        assert_eq!(row(&rows_only, 1).unwrap(), Vec::<Q>::new());
+        assert!(matches!(
+            row(&rows_only, 2),
+            Err(ExactFieldError::Matrix(MatrixError::IndexOutOfBounds {
+                row: 2,
+                rows: 2,
+                cols: 0,
+                ..
+            }))
+        ));
+        let cols_only = zeros::<Q>(0, 2).unwrap();
+        assert_eq!(column(&cols_only, 0).unwrap(), Vec::<Q>::new());
+        assert_eq!(column(&cols_only, 1).unwrap(), Vec::<Q>::new());
+        assert!(matches!(
+            column(&cols_only, 2),
+            Err(ExactFieldError::Matrix(MatrixError::IndexOutOfBounds {
+                col: 2,
+                rows: 0,
+                cols: 2,
+                ..
+            }))
+        ));
+        let empty = zeros::<Q>(0, 0).unwrap();
+        assert!(row(&empty, 0).is_err());
+        assert!(column(&empty, 0).is_err());
+    }
+
+    #[test]
+    fn rational_conversion_reduces_before_the_fit_check_and_rejects_a_zero_denominator() {
+        let unreduced = BigRational::new_raw(BigInt::from(i64::MAX) * 2, BigInt::from(2));
+        let narrowed = narrow_to_rational64(&from_rows(vec![vec![unreduced]]).unwrap()).unwrap();
+        assert_eq!(narrowed.as_slice()[0], Rational64::from_integer(i64::MAX));
+        let zero_denom = BigRational::new_raw(BigInt::from(1), BigInt::zero());
+        assert_eq!(
+            narrow_to_rational64(&from_rows(vec![vec![zero_denom]]).unwrap()),
+            Err(ExactFieldError::NotRepresentable { row: 0, col: 0 })
+        );
+        let raw = BasicMatrix::from_row_major(1, 1, vec![Rational64::new_raw(1, 0)]).unwrap();
+        assert_eq!(
+            widen_rational64(&raw),
+            Err(ExactFieldError::NotRepresentable { row: 0, col: 0 })
         );
     }
 

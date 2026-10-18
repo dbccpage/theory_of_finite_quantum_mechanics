@@ -1,5 +1,5 @@
 
-use crate::linear_algebra::{ExactMatrix, MatrixError, Q};
+use crate::linear_algebra::{ExactFieldError, ExactMatrix, MatrixError, Q};
 use crate::linear_algebra::scalars::{hash_rational, q};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
@@ -38,6 +38,8 @@ pub enum HomologicalError {
     HomologyDimensionUnderflow { ker_dim: usize, im_dim: usize },
     #[error("Matrix error: {0}")]
     Matrix(#[from] MatrixError),
+    #[error("exact field error: {0}")]
+    ExactField(#[from] ExactFieldError),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -86,7 +88,7 @@ impl Carrier {
         }
 
         let comp = d1.mul(&d0)?;
-        let zero = ExactMatrix::zeros(c2_dim, c0_dim);
+        let zero = ExactMatrix::zeros(c2_dim, c0_dim)?;
         if comp != zero {
             return Err(HomologicalError::CoboundaryLawViolation);
         }
@@ -106,21 +108,21 @@ impl Carrier {
         })
     }
 
-    pub fn rank_d0(&self) -> usize {
-        self.d0.rank()
+    pub fn rank_d0(&self) -> Result<usize, HomologicalError> {
+        Ok(self.d0.rank()?)
     }
 
-    pub fn rank_d1(&self) -> usize {
-        self.d1.rank()
+    pub fn rank_d1(&self) -> Result<usize, HomologicalError> {
+        Ok(self.d1.rank()?)
     }
 
-    pub fn dim_q1(&self) -> usize {
-        self.c1_dim - self.rank_d0()
+    pub fn dim_q1(&self) -> Result<usize, HomologicalError> {
+        Ok(self.c1_dim - self.rank_d0()?)
     }
 
     pub fn dim_h1(&self) -> Result<usize, HomologicalError> {
-        let ker_d1 = self.c1_dim - self.rank_d1();
-        let im_d0 = self.rank_d0();
+        let ker_d1 = self.c1_dim - self.rank_d1()?;
+        let im_d0 = self.rank_d0()?;
         ker_d1
             .checked_sub(im_d0)
             .ok_or(HomologicalError::HomologyDimensionUnderflow {
@@ -147,9 +149,9 @@ mod tests {
         let weights = vec![q(1), q(1), q(1)];
 
         let carrier = Carrier::new(3, 3, 1, d0, d1, weights).unwrap();
-        assert_eq!(carrier.rank_d0(), 2);
-        assert_eq!(carrier.rank_d1(), 1);
-        assert_eq!(carrier.dim_q1(), 1);
+        assert_eq!(carrier.rank_d0().unwrap(), 2);
+        assert_eq!(carrier.rank_d1().unwrap(), 1);
+        assert_eq!(carrier.dim_q1().unwrap(), 1);
         assert_eq!(carrier.dim_h1().unwrap(), 0);
     }
 }

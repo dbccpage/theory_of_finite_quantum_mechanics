@@ -472,6 +472,7 @@ fn cli() -> Result<Value> {
         .read_to_string(&mut text)
         .map_err(|e| format!("INPUT_READ_ERROR:{e}"))?;
     let request = serde_json::from_str(&text).map_err(|e| format!("INVALID_JSON:{e}"))?;
+    crate::linear_algebra::json_admission::admit_exact_json(&text)?;
     handle_request(&request)
 }
 

@@ -284,3 +284,35 @@ fn inclusive_aggregate_budgets_refuse_before_invalid_scalar_contracts() {
     assert!(balance_map_with_limits::<BigRational>(usize::MAX, 1, LIMITS).is_err());
     assert!(balance_projector_with_limits::<BigRational>(usize::MAX / 2, 2, LIMITS).is_err());
 }
+
+fn literal(rows: &[&[i64]]) -> BasicMatrix<BigRational> {
+    mx::from_rows(
+        rows.iter()
+            .map(|row| row.iter().map(|&entry| q(entry, 1)).collect())
+            .collect(),
+    )
+    .unwrap()
+}
+
+#[test]
+fn balance_and_realification_pin_literal_coordinates() {
+    assert_eq!(
+        balance_map_with_limits::<BigRational>(1, 1, LIMITS).unwrap(),
+        literal(&[&[1, 0, 0, -1], &[0, 1, 1, 0]])
+    );
+    assert_eq!(
+        balance_map_with_limits::<BigRational>(1, 2, LIMITS).unwrap(),
+        literal(&[
+            &[1, 0, 0, 0, 0, 0, -1, 0],
+            &[0, 1, 0, 0, 0, 0, 0, -1],
+            &[0, 0, 1, 0, 1, 0, 0, 0],
+            &[0, 0, 0, 1, 0, 1, 0, 0],
+        ])
+    );
+    let real = literal(&[&[1]]);
+    let imaginary = literal(&[&[2]]);
+    assert_eq!(
+        realify_parts_with_limits(&real, &imaginary, LIMITS).unwrap(),
+        literal(&[&[1, -2], &[2, 1]])
+    );
+}
