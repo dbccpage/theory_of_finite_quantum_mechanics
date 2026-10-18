@@ -26,7 +26,6 @@ def _g(pairs):
     return FiniteDirectedGraph.from_pairs(pairs)
 
 
-# 1-3. l1 boundary solver endpoint validation
 def test_l1_rejects_negative_tail():
     b = Boundary1(num_vertices=2, edges=[BoundaryEdge(tail=-1, head=0, weight=1)])
     with pytest.raises(NetworkSimplexError):
@@ -45,9 +44,8 @@ def test_l1_rejects_self_loop():
         solve_phi1(b, [0])
 
 
-# 4-6. hodge checker shape mismatches
 def test_hodge_rejects_tau_length_mismatch():
-    g = _g([(0, 1)])  # 1 edge, 2 nodes
+    g = _g([(0, 1)])
     cert = HodgeCertificate(tau=[0.0, 0.0], primal_alpha=[0.0, 0.0], dual_witness=[0.0])
     s = check_hodge_certificate(g, cert, 1e-9)
     assert s.reason is CertRejectReason.ShapeMismatch
@@ -69,7 +67,6 @@ def test_hodge_rejects_alpha_length_mismatch():
     )
 
 
-# 7-8. hodge checker non-finite
 def test_hodge_rejects_nan_tau():
     g = _g([(0, 1)])
     cert = HodgeCertificate(
@@ -105,7 +102,6 @@ def test_hodge_accepts_simple_zero_certificate():
     assert check_hodge_certificate(g, cert, 1e-9).accept is True
 
 
-# 9. l1 obstruction proposal rejects mismatched core lengths
 def test_l1_obstruction_rejects_mismatched_core():
     core = types.SimpleNamespace(
         delta_exact=[1.0, 2.0], delta_irr=[1.0], f_star=[0.0, 0.0]
@@ -114,7 +110,6 @@ def test_l1_obstruction_rejects_mismatched_core():
         L1ObstructionProposal.try_from_core(_g([(0, 1)]), core)
 
 
-# 10. cadical localizer rejects literal 0 and out-of-range literals
 def test_cadical_rejects_zero_literal():
     loc = CadicalUnsatCoreLocalizer(num_vars=3)
     with pytest.raises(ValueError):
@@ -124,7 +119,7 @@ def test_cadical_rejects_zero_literal():
 def test_cadical_rejects_out_of_range_literal():
     loc = CadicalUnsatCoreLocalizer(num_vars=3)
     with pytest.raises(ValueError):
-        loc.add_clause([1, 4])  # var 4 > num_vars 3
+        loc.add_clause([1, 4])
 
 
 def test_cadical_rejects_negative_num_vars():
@@ -137,6 +132,6 @@ def test_cadical_label_map_is_a_copy():
     loc.add_labeled_clause([1, -2], "rule-A")
     m = loc.get_label_map()
     m[99] = "injected"
-    assert 99 not in loc.get_label_map()  # internal state unchanged
+    assert 99 not in loc.get_label_map()
 
 

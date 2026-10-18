@@ -1,5 +1,3 @@
-//! Finite rational marginal compatibility and minimax L1 repair formulation.
-//! Owns the probability model and LP reduction; generic solvers stay outside.
 
 use num_rational::BigRational as Q;
 use num_traits::{One, Signed, Zero};
@@ -159,8 +157,6 @@ impl MarginalScenario {
             .unwrap())
     }
 
-    /// Variables: repaired p, coordinate error envelopes d, radius t,
-    /// positive/negative inequality slacks, and per-context radius slacks.
     pub fn repair_program(&self, source: &[Vec<Q>]) -> Result<RepairProgram, MarginalError> {
         self.validate_probabilities(source)?;
         let n: usize = self.sections.iter().map(Vec::len).sum();
@@ -276,9 +272,6 @@ impl SamplingBound {
     }
 }
 
-/// Under iid categorical trials: E||f-p||_1^2 <= (m-1)/n.
-/// Markov gives this exact rational probability bound, uniformly in p.
-/// This is a conditional theorem; data do not certify the iid premise.
 pub fn iid_l1_sampling_bound(
     trials: usize,
     outcome_count: usize,
@@ -302,7 +295,6 @@ pub fn iid_l1_sampling_bound(
     })
 }
 
-/// No independence between context experiments is needed for the union bound.
 pub fn joint_sampling_failure(bounds: &[SamplingBound]) -> Q {
     bounds
         .iter()

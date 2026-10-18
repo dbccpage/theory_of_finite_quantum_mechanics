@@ -1,6 +1,3 @@
-//! Named, checked CH14 accessible-self-state and partial-protocol adapter.
-//! All supplied provenance is replayed against the generation relation and
-//! identity/state/report bindings. Content digests do not establish linkage.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -68,8 +65,6 @@ fn lookup(map: &BTreeMap<String, usize>, key: &str) -> Result<usize, WdpError> {
         .ok_or_else(|| invalid("named self-reference map leaves its declared carrier"))
 }
 
-/// Translate only after checking all domains. Absent reports/targets/provenance
-/// are explicit None values; missing rows never receive identity/truth defaults.
 pub fn checked_self_reference(
     packet: &NamedSelfReferencePacket,
 ) -> Result<CheckedSelfReference, WdpError> {
@@ -268,8 +263,6 @@ pub fn audit_self_reference(
     })
 }
 
-/// Recheck every bridge from independent packet data. A hash-valid status or
-/// provenance claim never substitutes for generation/context/protocol replay.
 pub fn verify_self_reference_audit(
     packet: &NamedSelfReferencePacket,
     candidate: &SelfReferenceAudit,
@@ -282,9 +275,6 @@ pub fn verify_self_reference_audit(
     Ok(())
 }
 
-/// Construct a new candidate report/provenance table iff the independently
-/// declared generation/later-target/comparison bridges admit total linked
-/// success. This does not alter an actual observer or certify physical behavior.
 pub fn plan_successful_self_reports(
     packet: &NamedSelfReferencePacket,
     require_context_stability: bool,

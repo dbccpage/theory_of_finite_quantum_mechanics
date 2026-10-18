@@ -1,6 +1,3 @@
-//! Finite carriers for the three corrected premises.
-//! Occupation trace, sharp readout, and pairing scale stay separate.
-//! No volume limit, Born uniqueness, or continuum claim.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Rational {

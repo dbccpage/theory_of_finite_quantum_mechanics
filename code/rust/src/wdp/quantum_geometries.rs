@@ -1,12 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Vector and Quantum Observer Geometries: Stalks, CPTP Transitions & Classical Shadows.
-//!
-//! Grounded in GS-003 ("Vector and Quantum Observer Geometries"):
-//! 1. Vector Observer Bundles: Stalks V_v \cong Q^k and transitions g_{uv} \in GL(k, Q).
-//! 2. Quantum Density Stalks: Exact rational density matrices \rho_v \in Q^{k \times k} with Tr(\rho_v) = 1, \rho_v \ge 0.
-//! 3. CPTP Transitions: Completely positive trace-preserving transition channels on edges.
-//! 4. Schatten-1 Trace Distance: Exact squared qubit distance, rational roots when available.
-//! 5. Classical Population Shadows: Diagonal projection P(\rho) with contractive Schatten-to-classical L1 bounds.
 
 use std::collections::BTreeMap;
 
@@ -21,7 +12,6 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use omega_number_theory::cyclotomic::GaussianRat;
 use omega_quantum_physics::exact_channel::{ExactChannelError, ExactKrausChannel};
 
-/// Verification receipt for quantum observer geometry operations.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QuantumGeometryReceipt {
     pub is_valid_density: bool,
@@ -34,16 +24,14 @@ pub struct QuantumGeometryReceipt {
     pub authority_effect: AuthorityEffect,
 }
 
-/// Exact rational density matrix \rho \in Q^{k \times k} on a quantum observer stalk.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QuantumDensityStalk {
     pub dim: usize,
-    pub data: Vec<Vec<BigRational>>, // k x k real symmetric rational density matrix
+    pub data: Vec<Vec<BigRational>>,
     pub authority_effect: AuthorityEffect,
 }
 
 impl QuantumDensityStalk {
-    /// Creates a new density stalk, asserting squareness.
     pub fn new(data: Vec<Vec<BigRational>>) -> Result<Self, &'static str> {
         let k = data.len();
         if k == 0 {
@@ -61,7 +49,6 @@ impl QuantumDensityStalk {
         })
     }
 
-    /// Pure state projector |psi><psi| / <psi|psi> from rational vector.
     pub fn from_pure_vector(psi: &[BigRational]) -> Result<Self, &'static str> {
         let k = psi.len();
         if k == 0 {
@@ -84,7 +71,6 @@ impl QuantumDensityStalk {
         })
     }
 
-    /// Maximally mixed state (1/k) * I.
     pub fn maximally_mixed(dim: usize) -> Result<Self, &'static str> {
         if dim == 0 {
             return Err("Dimension cannot be 0");
@@ -101,10 +87,6 @@ impl QuantumDensityStalk {
         })
     }
 
-    /// Checked density constructor (DP-8): squareness, symmetry, unit trace and exact
-    /// positive semidefiniteness. [`Self::new`] checks squareness only and its result is
-    /// not a density until [`Self::is_valid_density_matrix`] holds; public fields can also
-    /// be changed after either constructor, so consumers re-check.
     pub fn try_density(data: Vec<Vec<BigRational>>) -> Result<Self, &'static str> {
         let stalk = Self::new(data)?;
         if !stalk.is_symmetric() {
@@ -119,8 +101,6 @@ impl QuantumDensityStalk {
         Ok(stalk)
     }
 
-    /// The same matrix on the Gaussian-rational carrier of `omega_quantum_physics`,
-    /// after re-checking the shape of the public fields.
     pub fn to_gaussian(&self) -> Result<BasicMatrix<GaussianRat>, &'static str> {
         if !self.has_valid_shape() {
             return Err("Density matrix shape does not match its dimension");
@@ -128,7 +108,6 @@ impl QuantumDensityStalk {
         to_gaussian_matrix(&self.data)
     }
 
-    /// Evaluates exact trace Tr(\rho) = sum_i \rho_{ii}.
     pub fn trace(&self) -> BigRational {
         let mut tr = BigRational::zero();
         for i in 0..self.dim {
@@ -137,7 +116,6 @@ impl QuantumDensityStalk {
         tr
     }
 
-    /// Asserts symmetry \rho_{ij} == \rho_{ji}.
     pub fn is_symmetric(&self) -> bool {
         for i in 0..self.dim {
             for j in (i + 1)..self.dim {
@@ -149,29 +127,20 @@ impl QuantumDensityStalk {
         true
     }
 
-    /// Exact positive semidefiniteness in every dimension, by `omega_linear_algebra`'s
-    /// symmetric elimination on the running Schur complement. Non-symmetric data is
-    /// not a real density matrix and is refused before the test.
     pub fn is_positive_semidefinite(&self) -> bool {
         self.is_symmetric() && is_psd_rational(&self.data)
     }
 
-    /// Validates unit trace and positive semidefiniteness.
     pub fn is_valid_density_matrix(&self) -> bool {
         self.has_valid_shape()
             && self.trace() == BigRational::one()
             && self.is_positive_semidefinite()
     }
 
-    /// Extracts classical population shadow P(\rho) = diag(\rho).
     pub fn classical_population_shadow(&self) -> Vec<BigRational> {
         (0..self.dim).map(|i| self.data[i][i].clone()).collect()
     }
 
-    /// Exact square of the trace distance for real rational qubit densities.
-    ///
-    /// For Delta = [[a,b],[b,-a]], Delta^2 = (a^2+b^2) I, hence
-    /// D(rho,sigma)^2 = a^2+b^2. This remains rational when D is irrational.
     pub fn trace_distance_squared_2x2(&self, other: &Self) -> Result<BigRational, &'static str> {
         if self.dim != 2 || other.dim != 2 {
             return Err("trace_distance_2x2 is specialized for dimension 2");
@@ -182,8 +151,6 @@ impl QuantumDensityStalk {
         omega_functional::distinguishability::DistinguishabilityFunctional::qubit_trace_distance_squared(&self.data, &other.data)
     }
 
-    /// Exact rational trace distance, refusing irrational results instead of rounding.
-    /// Use `trace_distance_squared_2x2` to retain exact evidence in every case.
     pub fn trace_distance_2x2(&self, other: &Self) -> Result<BigRational, &'static str> {
         if self.dim != 2 || other.dim != 2 {
             return Err("trace_distance_2x2 is specialized for dimension 2");
@@ -197,9 +164,6 @@ impl QuantumDensityStalk {
         )
     }
 
-    /// Exact witness for diagonal-shadow contraction: D^2 - TV^2 = b^2 >= 0.
-    /// TV = |a| because both qubit densities have trace one. Zero slack is
-    /// equivalent to equality of their off-diagonal coherences.
     pub fn classical_shadow_contraction_slack_2x2(
         &self,
         other: &Self,
@@ -219,7 +183,6 @@ impl QuantumDensityStalk {
             && self.data.iter().all(|row| row.len() == self.dim)
     }
 
-    /// Classical L1 distance between diagonal shadows: (1/2) sum_i |p_i - q_i|.
     pub fn classical_l1_distance(&self, other: &Self) -> BigRational {
         let p = self.classical_population_shadow();
         let q = other.classical_population_shadow();
@@ -228,16 +191,14 @@ impl QuantumDensityStalk {
     }
 }
 
-/// Completely Positive Trace-Preserving (CPTP) Transition Channel.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CptpChannel {
     pub dim: usize,
-    pub kraus_operators: Vec<Vec<Vec<BigRational>>>, // list of k x k matrices K_i
+    pub kraus_operators: Vec<Vec<Vec<BigRational>>>,
     pub authority_effect: AuthorityEffect,
 }
 
 impl CptpChannel {
-    /// Identity channel.
     pub fn identity(dim: usize) -> Self {
         let mut k0 = vec![vec![BigRational::zero(); dim]; dim];
         for i in 0..dim {
@@ -250,7 +211,6 @@ impl CptpChannel {
         }
     }
 
-    /// Creates a CPTP channel from Kraus operators, verifying completeness sum_i K_i^T K_i = I.
     pub fn new(kraus: Vec<Vec<Vec<BigRational>>>) -> Result<Self, &'static str> {
         if kraus.is_empty() {
             return Err("Must have at least one Kraus operator");
@@ -265,7 +225,6 @@ impl CptpChannel {
         {
             return Err("Kraus operators must be square and share a dimension");
         }
-        // Verify completeness: sum_i K_i^T K_i == I
         let mut sum_kt_k = vec![vec![BigRational::zero(); dim]; dim];
         for k in &kraus {
             if k.len() != dim {
@@ -275,7 +234,7 @@ impl CptpChannel {
                 for j in 0..dim {
                     let mut dot = BigRational::zero();
                     for m in 0..dim {
-                        dot += &k[m][i] * &k[m][j]; // K^T_{im} * K_{mj}
+                        dot += &k[m][i] * &k[m][j];
                     }
                     sum_kt_k[i][j] += dot;
                 }
@@ -300,8 +259,6 @@ impl CptpChannel {
         })
     }
 
-    /// Shape of the public fields: positive dimension, at least one Kraus operator, every
-    /// operator `dim x dim`.
     fn has_valid_shape(&self) -> bool {
         self.dim > 0
             && !self.kraus_operators.is_empty()
@@ -311,9 +268,6 @@ impl CptpChannel {
                 .all(|k| k.len() == self.dim && k.iter().all(|row| row.len() == self.dim))
     }
 
-    /// Re-admits this channel through the owner `ExactKrausChannel` (DP-8), which checks
-    /// trace preservation `sum K* K = I` independently of [`Self::new`]. A channel built by
-    /// [`Self::identity`]`(0)` or with mutated public fields is refused here.
     pub fn to_exact_kraus(&self) -> Result<ExactKrausChannel, ExactChannelError> {
         if self.dim == 0 {
             return Err(ExactChannelError::ZeroDimension);
@@ -342,12 +296,10 @@ impl CptpChannel {
         ExactKrausChannel::try_new(self.dim, self.dim, ops, "wdp_cptp_channel")
     }
 
-    /// Applies the channel to a density stalk: E(\rho) = sum_i K_i \rho K_i^T.
     pub fn apply(&self, stalk: &QuantumDensityStalk) -> Result<QuantumDensityStalk, &'static str> {
         if stalk.dim != self.dim {
             return Err("Density stalk dimension must match channel dimension");
         }
-        // Public fields can disagree with `dim`; refuse instead of indexing out of range.
         if !stalk.has_valid_shape() || !self.has_valid_shape() {
             return Err("Channel or stalk shape does not match its dimension");
         }
@@ -355,7 +307,6 @@ impl CptpChannel {
         let mut out_data = vec![vec![BigRational::zero(); dim]; dim];
 
         for k in &self.kraus_operators {
-            // intermediate = K * \rho
             let mut k_rho = vec![vec![BigRational::zero(); dim]; dim];
             for i in 0..dim {
                 for j in 0..dim {
@@ -366,12 +317,11 @@ impl CptpChannel {
                     k_rho[i][j] = sum;
                 }
             }
-            // term = (K * \rho) * K^T
             for i in 0..dim {
                 for j in 0..dim {
                     let mut sum = BigRational::zero();
                     for m in 0..dim {
-                        sum += &k_rho[i][m] * &k[j][m]; // K^T_{mj} = K_{jm}
+                        sum += &k_rho[i][m] * &k[j][m];
                     }
                     out_data[i][j] += sum;
                 }
@@ -391,7 +341,6 @@ fn to_gaussian_matrix(rows: &[Vec<BigRational>]) -> Result<BasicMatrix<GaussianR
     BasicMatrix::from_row_major(n, n, data).map_err(|_| "matrix is not square")
 }
 
-/// Quantum Observer Bundle over a finite 1-skeleton.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QuantumObserverBundle {
     pub vertices: Vec<String>,
@@ -427,7 +376,6 @@ impl QuantumObserverBundle {
         })
     }
 
-    /// Evaluates transition defect along edge e = (u, v): ||E_e(\rho_u) - \rho_v||_1.
     pub fn evaluate_edge_defect_2x2(&self, u: &str, v: &str) -> Result<BigRational, &'static str> {
         let edge_key = (u.to_string(), v.to_string());
         let channel = self
@@ -461,7 +409,6 @@ mod tests {
     #[test]
     fn test_psd_is_exact_in_every_dimension() {
         let rows = |r: &[[i64; 4]]| r.iter().map(|row| row.map(q).to_vec()).collect::<Vec<_>>();
-        // Leading principal minors are all 0, but the (1, 2) block [[0, 1], [1, 0]] is indefinite.
         let indefinite_3 = QuantumDensityStalk::new(vec![
             vec![q(0), q(0), q(0)],
             vec![q(0), q(0), q(1)],
@@ -470,7 +417,6 @@ mod tests {
         .unwrap();
         assert!(!indefinite_3.is_positive_semidefinite());
 
-        // Above 3x3 the previous check only inspected the diagonal.
         let indefinite_4 = QuantumDensityStalk::new(rows(&[
             [1, 2, 0, 0],
             [2, 1, 0, 0],
@@ -507,7 +453,6 @@ mod tests {
 
         assert_eq!(trace_dist, q(1));
         assert_eq!(classical_dist, q(1));
-        // Contraction: D_class <= D_quantum
         assert!(classical_dist <= trace_dist);
     }
 }

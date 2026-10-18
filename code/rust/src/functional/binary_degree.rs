@@ -1,9 +1,4 @@
-//! Binary chain-law defect measurement and shared shape admission.
-//!
-//! Binary quotient distance is owned by `phi1`; binary closure mass by `gamma2`.
-//! This module measures chain-law violations and shares finite shape checks.
 
-/// The largest binary source dimension admitted to the exhaustive Phi1 search.
 pub const MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM: usize = 20;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -25,14 +20,9 @@ pub enum BinaryDegreeError {
     },
 }
 
-/// A cycle-free finite binary specialization. Matrices are row-major over F2.
 pub struct BinaryDegreeFunctional;
 
 impl BinaryDegreeFunctional {
-    /// Number of nonzero entries in a supplied d1*d0 matrix.
-    ///
-    /// This is a chain-law violation count, not quotient Phi1. The caller is
-    /// responsible for constructing the composite on the declared carrier.
     pub fn chain_composite_weight(
         composite_rows: &[Vec<bool>],
         source_dim: usize,
@@ -45,7 +35,6 @@ impl BinaryDegreeFunctional {
             .count())
     }
 
-    /// Decide membership in the image of a binary linear map by row reduction.
     pub fn is_in_image(
         rows: &[Vec<bool>],
         domain_dim: usize,

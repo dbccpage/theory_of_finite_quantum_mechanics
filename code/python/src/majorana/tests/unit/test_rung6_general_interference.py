@@ -54,7 +54,6 @@ class Amplitudes:
         return abs(sum(self.coords)) ** 2
 
 
-# --- Lean dual: signed Int Fin-3 multi-sector lifts ---
 
 
 def sum_squares_int(a: Sequence[int]) -> int:
@@ -78,7 +77,6 @@ def pairwise_cross_term_sum_int(a: Sequence[int]) -> int:
     return 2 * acc
 
 
-# Lean ampA = (1,1,1), ampB = (1,1,-1)
 AMP_A = (1, 1, 1)
 AMP_B = (1, 1, -1)
 
@@ -112,7 +110,6 @@ def test_non_l1_distinguishability():
     )
     assert math.isclose(state_constructive.l1_mass_sum, 1.0, abs_tol=1e-12)
 
-    # Constructive coherent |√2|^2 = 2; destructive = 0
     assert math.isclose(
         state_constructive.total_readout_probability, 2.0, abs_tol=1e-12
     )

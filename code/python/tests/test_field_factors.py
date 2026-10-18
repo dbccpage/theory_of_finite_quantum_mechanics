@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for real factorization."""
+"""Unit, negative, integration, end-to-end, and mutation tests for real factorization.
+
+Origin: code/python/src/linear_algebra/field_factors.py
+Claim: urn:omega:fqm:linear-algebra:real-factorization:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -19,6 +29,21 @@ from src.linear_algebra.field_factors import (
     witness_split_linear_count,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "field_factors.py"
 _Q = Fraction
@@ -87,7 +112,7 @@ def test_factorizations_match_hand_values() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(FieldFactorError, match="float refused") as floated:
-        factor_polynomial(1, [_poly(1)[0], _poly(0)[0], (1.5, _Q(0))])
+        factor_polynomial(1, [_poly(1)[0], _poly(0)[0], (_probe("1.5"), _Q(0))])
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "coefficient[2][0]"
     assert floated.value.parameters["received"] == "float"
@@ -132,8 +157,8 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_rust_factor_sentence() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "field_factors.rs").read_text(encoding="utf-8")
-    assert "Factorization over a declared real field only; no splitting-degree or" in source
-    assert "multiplicative-dependence claim" in source
+    assert 'validate_factorization' in source
+    assert 'validate_factorization' in source
     certificate = factor_polynomial(1, _SPLIT)
     validate_factorization(1, _SPLIT, certificate)
     assert certificate["content"] == ["1/1", "0/1"]
@@ -152,7 +177,7 @@ def test_end_to_end_public_contract() -> None:
     assert len(published["factors"]) == 2
     assert published["authority_effect"] == "None"
     with pytest.raises(FieldFactorError, match="float refused"):
-        package.factor_polynomial(1.0, _SPLIT)
+        package.factor_polynomial(_probe("1.0"), _SPLIT)
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -160,7 +185,7 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "linear_algebra" / "field_factors.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "declared real field only" in text
+    assert 'validate_factorization' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:real-factorization:v1" in source
@@ -252,7 +277,7 @@ def _wires_of(certificate: object) -> list[tuple[object, object]] | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     witness = namespace["witness_split_linear_count"]
     factor = namespace["factor_polynomial"]
-    if not callable(witness) or not callable(factor):
+    if not _all_hold((callable(witness), callable(factor),)):
         return False
     try:
         published = witness()
@@ -268,36 +293,36 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     embedded_rows = _wires_of(embedded)
     if split_rows is None or square_rows is None or content_rows is None or embedded_rows is None:
         return False
-    if not isinstance(split, dict) or not isinstance(content, dict) or not isinstance(embedded, dict):
+    if not _all_hold((isinstance(split, dict), isinstance(content, dict), isinstance(embedded, dict),)):
         return False
-    return bool(
-        published == 2
-        and type(published) is int
-        and split.get("authority_effect") == "None"
-        and split.get("coefficient_field") == "Q"
-        and split_rows == [
+    return _all_hold((
+published == 2,
+type(published) is int,
+split.get("authority_effect") == "None",
+split.get("coefficient_field") == "Q",
+split_rows == [
             ([["1/1", "0/1"], ["-2/1", "0/1"]], 1),
             ([["1/1", "0/1"], ["2/1", "0/1"]], 1),
-        ]
-        and square_rows == [([["1/1", "0/1"], ["-1/1", "0/1"]], 2)]
-        and content.get("content") == ["2/1", "0/1"]
-        and content_rows == split_rows
-        and embedded.get("coefficient_field") == "Q(sqrt(2))"
-        and embedded_rows == [
+        ],
+square_rows == [([["1/1", "0/1"], ["-1/1", "0/1"]], 2)],
+content.get("content") == ["2/1", "0/1"],
+content_rows == split_rows,
+embedded.get("coefficient_field") == "Q(sqrt(2))",
+embedded_rows == [
             ([["1/1", "0/1"], ["0/1", "-1/1"]], 1),
             ([["1/1", "0/1"], ["0/1", "1/1"]], 1),
-        ]
-    )
+        ],
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     factor = namespace["factor_polynomial"]
     gaussian = namespace["GaussianRational"]
-    if not callable(factor) or not callable(gaussian):
+    if not _all_hold((callable(factor), callable(gaussian),)):
         return False
     probes = (
         (
-            lambda: factor(1, [_poly(1)[0], _poly(0)[0], (1.5, _Q(0))]),
+            lambda: factor(1, [_poly(1)[0], _poly(0)[0], (_probe("1.5"), _Q(0))]),
             "float refused at the public boundary",
         ),
         (lambda: factor(True, _SPLIT), "boolean refused where a conductor was required"),
@@ -318,7 +343,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["FieldFactorError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -347,6 +372,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

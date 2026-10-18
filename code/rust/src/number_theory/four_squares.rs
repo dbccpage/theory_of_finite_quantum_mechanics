@@ -1,9 +1,3 @@
-//! Bounded constructive Lagrange four-square certificates for nonnegative integers.
-//!
-//! Rational weights a/b split into at most four rational squares (s_j/b)^2,
-//! without introducing square roots or changing coefficient fields. Exhaustion
-//! returns a typed refusal; every answer replays the sum of squares exactly.
-//! AuthorityEffect: None.
 
 use crate::rational::Rational;
 use num_bigint::BigInt;
@@ -26,8 +20,6 @@ fn charge(remaining: &mut u64) -> Result<(), FourSquaresError> {
     Ok(())
 }
 
-/// Descending search with a <= sqrt(n), b <= a, c <= b, d <= c.
-/// Each loop iteration consumes budget, including unsuccessful outer iterations.
 pub fn four_squares(n: &BigInt, budget: u64) -> Result<[BigInt; 4], FourSquaresError> {
     if n.is_negative() {
         return Err(FourSquaresError::Negative);
@@ -75,7 +67,6 @@ pub fn four_squares(n: &BigInt, budget: u64) -> Result<[BigInt; 4], FourSquaresE
     }
 }
 
-/// a/b = sum_j (s_j/b)^2, since sum s_j^2 = ab. Zero terms are omitted.
 pub fn rational_square_split(
     weight: &Rational,
     budget: u64,

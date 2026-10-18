@@ -1,11 +1,3 @@
-//! Target A8: Collar-Boundary Overlap & Circulation Chaining Engine.
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: floating point types are strictly forbidden in this module.
-//! All coordinates, intervals, bounds, mesh steps, margins, and transition cocycles
-//! are computed in exact rational arithmetic (num_rational::BigRational),
-//! exact cyclotomic field elements (Cyc24), and exact integers.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::BTreeSet;
 
@@ -28,19 +20,14 @@ crate::fixture_set!(fixtures, "mub6_collar_boundary");
 pub const DIM_2D: usize = 2;
 pub const DIM_3D: usize = 3;
 
-/// Certified collar margin: epsilon_0 - L * delta = 12133 / 30000.
 pub fn collar_margin() -> BigRational {
     certified_margin()
 }
 
-/// Karlsson volume margin 37249 / 90000.
-///
-/// fixture: read, not taken from a Karlsson cover run.
 pub fn karlsson_volume_margin() -> BigRational {
     fixtures().rational("karlsson_volume_margin")
 }
 
-/// Certified interface margin: min(12133 / 30000, 37249 / 90000) = 12133 / 30000 > 0.
 pub fn interface_margin() -> BigRational {
     let cm = collar_margin();
     let km = karlsson_volume_margin();
@@ -51,12 +38,10 @@ pub fn interface_margin() -> BigRational {
     }
 }
 
-/// Critical threshold for mesh step: delta_crit = base_gap / lipschitz_bound = 37249 / 850000.
 pub fn critical_mesh_step() -> BigRational {
     &base_gap() / &lipschitz_bound()
 }
 
-/// Errors arising during collar-boundary overlap and circulation chaining certification.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum CollarBoundaryError {
     #[error("Invalid parameter: {0}")]
@@ -100,8 +85,6 @@ pub enum CollarBoundaryError {
     SimplexFailure(String),
 }
 
-/// 3-dimensional rational box parameterizing the collar-Karlsson interface layer:
-/// [x_lo, x_hi] x [y_lo, y_hi] in [0, 1)^2 and z in [z_lo, z_hi] with z in (0, 1/1000].
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarBoundaryBox3D {
     pub index: usize,
@@ -115,7 +98,6 @@ pub struct CollarBoundaryBox3D {
 }
 
 impl CollarBoundaryBox3D {
-    /// Exact rational volume of this 3D boundary box: (x_hi - x_lo) * (y_hi - y_lo) * (z_hi - z_lo).
     pub fn volume(&self) -> BigRational {
         let wx = &self.bounds_xy[0].1 - &self.bounds_xy[0].0;
         let wy = &self.bounds_xy[1].1 - &self.bounds_xy[1].0;
@@ -123,13 +105,10 @@ impl CollarBoundaryBox3D {
         &(&wx * &wy) * &wz
     }
 
-    /// Returns true if this box lies in the certified overlap region where both collar
-    /// and Karlsson volume certifications apply.
     pub fn is_overlap(&self) -> bool {
         self.collar_certified && self.karlsson_certified
     }
 
-    /// Checks whether an exact rational 3D coordinate point lies within this closed box.
     pub fn contains_point(&self, pt: &[BigRational; DIM_3D]) -> bool {
         pt[0] >= self.bounds_xy[0].0
             && pt[0] <= self.bounds_xy[0].1
@@ -140,7 +119,6 @@ impl CollarBoundaryBox3D {
     }
 }
 
-/// Configuration parameters for boundary overlap evaluation.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarBoundaryConfig {
     pub collar_max_depth: BigRational,
@@ -149,7 +127,6 @@ pub struct CollarBoundaryConfig {
 }
 
 impl CollarBoundaryConfig {
-    /// Canonical boundary configuration matching verified constants.
     pub fn canonical(divisions_xy: usize) -> Self {
         Self {
             collar_max_depth: delta_certified(),
@@ -158,7 +135,6 @@ impl CollarBoundaryConfig {
         }
     }
 
-    /// Overlapping boundary configuration where Karlsson coverage extends into collar territory.
     pub fn overlapping(divisions_xy: usize, karlsson_min_depth: BigRational) -> Self {
         Self {
             collar_max_depth: delta_certified(),
@@ -168,7 +144,6 @@ impl CollarBoundaryConfig {
     }
 }
 
-/// Evaluates and stores the rational partition cover of the boundary overlap layer.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BoundaryOverlapPartition {
     pub divisions_xy: usize,
@@ -218,8 +193,6 @@ fn meets_below_karlsson(box3: &CollarBoundaryBox3D, karlsson_min: &BigRational) 
     &below_hi > z_lo
 }
 
-/// The boxes are a partition of `[0,1]² × [0, z_hi]` when every positive atomic cell
-/// inside that rectangle lies in exactly one box and no box covers a cell outside it.
 fn rectangle_partition_holds(boxes: &[CollarBoundaryBox3D], z_hi: &BigRational) -> bool {
     let zero = BigRational::zero();
     let one = BigRational::one();
@@ -284,8 +257,6 @@ fn rectangle_partition_holds(boxes: &[CollarBoundaryBox3D], z_hi: &BigRational) 
 }
 
 impl BoundaryOverlapPartition {
-    /// Recomputes the gap, margins, volume, and the union of the boxes.
-    /// Cached summaries are accepted only when they match that recomputation.
     pub fn verify_partition(&self) -> Result<(), CollarBoundaryError> {
         let zero = BigRational::zero();
         let supported = depth_is_supported(&self.collar_max_depth)
@@ -401,13 +372,11 @@ impl BoundaryOverlapPartition {
         Ok(())
     }
 
-    /// Finds the interface box containing the query 3D point.
     pub fn find_box(&self, pt: &[BigRational; DIM_3D]) -> Option<&CollarBoundaryBox3D> {
         self.boxes.iter().find(|b| b.contains_point(pt))
     }
 }
 
-/// Evaluates boundary overlap and certifies absence of uncertified gaps between collar and Karlsson exterior.
 pub fn evaluate_boundary_overlap(
     config: &CollarBoundaryConfig,
 ) -> Result<BoundaryOverlapPartition, CollarBoundaryError> {
@@ -428,8 +397,6 @@ pub fn evaluate_boundary_overlap(
         ));
     }
 
-    // Exact check of boundary gap emptiness:
-    // If collar_max_depth < karlsson_min_depth, an uncertified gap exists in depth.
     if config.collar_max_depth < config.karlsson_min_depth {
         return Err(CollarBoundaryError::BoundaryGapDetected {
             gap_lo: config.collar_max_depth.clone(),
@@ -460,7 +427,6 @@ pub fn evaluate_boundary_overlap(
     let mut index = 0;
     let mut overlap_count = 0;
 
-    // Check whether there is an interior overlap interval [karlsson_min_depth, collar_max_depth]
     let has_extended_overlap = config.karlsson_min_depth < config.collar_max_depth;
 
     for i in 0..config.divisions_xy {
@@ -474,7 +440,6 @@ pub fn evaluate_boundary_overlap(
             let y_hi = &y_lo + &cell_width;
 
             if has_extended_overlap {
-                // Layer 1: [0, karlsson_min_depth] - collar domain
                 boxes.push(CollarBoundaryBox3D {
                     index,
                     bounds_xy: [(x_lo.clone(), x_hi.clone()), (y_lo.clone(), y_hi.clone())],
@@ -487,7 +452,6 @@ pub fn evaluate_boundary_overlap(
                 });
                 index += 1;
 
-                // Layer 2: [karlsson_min_depth, collar_max_depth] - overlap domain
                 boxes.push(CollarBoundaryBox3D {
                     index,
                     bounds_xy: [(x_lo.clone(), x_hi.clone()), (y_lo.clone(), y_hi.clone())],
@@ -504,8 +468,6 @@ pub fn evaluate_boundary_overlap(
                 index += 1;
                 overlap_count += 1;
             } else {
-                // The depths meet at one face z = δ. The slab (0, δ) is collar volume.
-                // Karlsson coverage starts at that face, so the face is not positive-volume overlap.
                 boxes.push(CollarBoundaryBox3D {
                     index,
                     bounds_xy: [(x_lo.clone(), x_hi.clone()), (y_lo.clone(), y_hi.clone())],
@@ -546,7 +508,6 @@ pub fn evaluate_boundary_overlap(
     Ok(partition)
 }
 
-/// Transition gauge transformation across chart boundaries.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct InterfaceTransition {
     pub from_chart: usize,
@@ -565,7 +526,6 @@ impl InterfaceTransition {
         }
     }
 
-    /// Phase transition with diagonal phases [1, phi1, phi2].
     pub fn phase_transition(
         from: usize,
         to: usize,
@@ -588,7 +548,6 @@ impl InterfaceTransition {
         }
     }
 
-    /// Permutation transition according to column permutation sigma in S_3.
     pub fn permutation_transition(
         from: usize,
         to: usize,
@@ -613,7 +572,6 @@ impl InterfaceTransition {
         }
     }
 
-    /// Identity transition.
     pub fn identity(from: usize, to: usize, defect: BigRational) -> Self {
         Self {
             from_chart: from,
@@ -624,13 +582,11 @@ impl InterfaceTransition {
     }
 }
 
-/// Interface cycle representing the 3-chart loop:
-/// Chart 0 (U_collar) -> Chart 1 (U_trans) -> Chart 2 (U_karlsson) -> Chart 0 (U_collar).
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct InterfaceCycle {
     pub index: usize,
     pub name: String,
-    pub transitions: [InterfaceTransition; 3], // g01, g12, g20
+    pub transitions: [InterfaceTransition; 3],
 }
 
 impl InterfaceCycle {
@@ -642,8 +598,6 @@ impl InterfaceCycle {
         }
     }
 
-    /// Canonical interface cycle using certified margins:
-    /// d0 = collar_margin (12133/30000), d1 = interface_margin (12133/30000), d2 = karlsson_volume_margin (37249/90000).
     pub fn canonical(index: usize) -> Self {
         let g01 = InterfaceTransition::phase_transition(
             0,
@@ -667,7 +621,6 @@ impl InterfaceCycle {
         )
     }
 
-    /// Twisted interface cycle with non-trivial permutation holonomy.
     pub fn twisted(index: usize) -> Self {
         let g01 = InterfaceTransition::permutation_transition(0, 1, [1, 0, 2], collar_margin());
         let g12 = InterfaceTransition::permutation_transition(1, 2, [0, 2, 1], interface_margin());
@@ -679,7 +632,6 @@ impl InterfaceCycle {
         )
     }
 
-    /// Chained transition holonomy around the interface cycle: W = g01 * g12 * g20.
     pub fn chained_holonomy(&self) -> [[Cyc24; 3]; 3] {
         let t01 = &self.transitions[0].matrix;
         let t12 = &self.transitions[1].matrix;
@@ -687,7 +639,6 @@ impl InterfaceCycle {
         mul_mat3(&mul_mat3(t01, t12), t20)
     }
 
-    /// Returns true iff the transition cocycle is trivial (W = I_3).
     pub fn is_cocycle_trivial(&self) -> bool {
         let w = self.chained_holonomy();
         let eye = eye3();
@@ -701,10 +652,6 @@ impl InterfaceCycle {
         true
     }
 
-    /// Constructs the 1-boundary operator on the directed 3-cycle and an integral cochain.
-    ///
-    /// The scale must be positive and must clear every denominator. A non-integral value
-    /// or an integer outside `i128` is a refusal, not a zero coefficient.
     pub fn build_boundary_and_cochain(
         &self,
         scale: i128,
@@ -756,8 +703,6 @@ impl InterfaceCycle {
         Ok((boundary, omega))
     }
 
-    /// Solves the discrete cycle circulation obstruction via Network Simplex,
-    /// verifying Phi_1 >= Gamma > 0, dual gap zero, and coboundary sum vanishing.
     pub fn verify_circulation(
         &self,
         scale: i128,
@@ -774,8 +719,6 @@ impl InterfaceCycle {
             });
         }
 
-        // Verify coboundary sum around 3-cycle vanishes identically:
-        // sum_{e in C} (d alpha)_e = (alpha_1 - alpha_0) + (alpha_2 - alpha_1) + (alpha_0 - alpha_2) = 0.
         let mut d_alpha_sum = 0i128;
         for edge in &boundary.edges {
             let step = phi1_sol.vertex_potential[edge.head]
@@ -821,7 +764,6 @@ impl InterfaceCycle {
     }
 }
 
-/// Certificate of circulation certification for a single interface cycle.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct InterfaceCycleCirculationCert {
     pub cycle_index: usize,
@@ -836,7 +778,6 @@ pub struct InterfaceCycleCirculationCert {
     pub certified: bool,
 }
 
-/// Chaining engine managing multiple interface cycles across collar-Karlsson boundary patches.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct InterfaceCycleChain {
     pub cycles: Vec<InterfaceCycle>,
@@ -847,7 +788,6 @@ impl InterfaceCycleChain {
         Self { cycles }
     }
 
-    /// Constructs a chain of N canonical interface cycles.
     pub fn canonical_chain(count: usize) -> Self {
         let mut cycles = Vec::with_capacity(count);
         for idx in 0..count {
@@ -856,7 +796,6 @@ impl InterfaceCycleChain {
         Self { cycles }
     }
 
-    /// Solves Network Simplex on all interface cycles, certifying Phi_1 >= Gamma > 0 on each.
     pub fn verify_all(
         &self,
         scale: i128,
@@ -869,8 +808,6 @@ impl InterfaceCycleChain {
         Ok(certs)
     }
 
-    /// Chained compound holonomy along the sequence of interface cycles:
-    /// W_total = W_0 * W_1 * ... * W_{k-1}.
     pub fn compound_holonomy(&self) -> [[Cyc24; 3]; 3] {
         let mut w = eye3();
         for cycle in &self.cycles {
@@ -881,7 +818,6 @@ impl InterfaceCycleChain {
     }
 }
 
-/// Canonical sealed receipt certifying Target A8: Collar-Boundary Overlap & Circulation Chaining.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarBoundaryReceipt {
     pub schema_version: String,
@@ -907,18 +843,15 @@ pub struct CollarBoundaryReceipt {
 }
 
 impl CollarBoundaryReceipt {
-    /// Serializes receipt to formatted JSON string.
     pub fn to_json_string(&self) -> Result<String, serde_json::Error> {
         serde_json::to_string_pretty(self)
     }
 
-    /// Deserializes receipt from JSON string.
     pub fn from_json_str(s: &str) -> Result<Self, serde_json::Error> {
         serde_json::from_str(s)
     }
 }
 
-/// Top-level certification engine for Target A8: Collar-Boundary Overlap & Circulation Chaining.
 pub fn certify_collar_boundary_overlap(
     divisions_xy: usize,
     num_cycles: usize,

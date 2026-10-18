@@ -1,4 +1,3 @@
-//! Inspect or contract the complete Lean-exported quartet system with exact arithmetic.
 use omega_mub::omega_native::exact::mub6_szollosi_executable::ExecutableQuartetSystem;
 use std::{
     env, fs,

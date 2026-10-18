@@ -1,7 +1,3 @@
-//! CLI adapter; all computation is shared with the Python extension.
-//!
-//! Before dispatch, the process checks that `Tr(AB) = Tr(BA)` for a fixed
-//! integer pair, by the diagonal of the product and by the Frobenius pairing.
 fn main() {
     if let Err(error) = commutator_traces_agree() {
         eprintln!("{error}");

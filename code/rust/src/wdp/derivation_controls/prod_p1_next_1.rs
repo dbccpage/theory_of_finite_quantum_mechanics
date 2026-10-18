@@ -1,10 +1,3 @@
-//! Finite executable witness for `PROD-P1-NEXT-1`.
-//!
-//! Models the P1 `AbstentionGovernor` 8-label decision table (`Refused`,
-//! `RefusedCertificate`, `Stalled`, `Impossible`, `LosingInDeclaredArena`,
-//! `ResolvedWithinBudget`, `Exhausted`, `UndeterminedBudget`) over exact
-//! rational costs/budgets and explicit `task_admits_impossibility` policy,
-//! with fixed `authority_effect = "None"`.
 
 #![forbid(unsafe_code)]
 

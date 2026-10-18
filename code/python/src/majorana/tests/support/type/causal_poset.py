@@ -29,7 +29,7 @@ class CausalPoset:
             isinstance(c, (tuple, list)) and len(c) == 2 for c in node_coords.values()
         ), "node coordinates must be 2D"
 
-        self.nodes = node_coords  # {id: (x, y)}
+        self.nodes = node_coords
         self.edges = list(initial_edges)
 
         assert self.is_acyclic(), (

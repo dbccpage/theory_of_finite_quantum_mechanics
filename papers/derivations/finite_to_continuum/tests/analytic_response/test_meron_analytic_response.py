@@ -67,7 +67,7 @@ def test_actual_support_graph_counts_cover_wrapping_bond_and_time_copies():
                     + [{x} for _ in range(2*m) for x in range(l)])
         degrees = [sum(bool(s & t) for t in supports)-1 for s in supports]
         assert max(degrees) == 7*m-1
-        t = Q(1, 256*m-1)  # Rational upper bound for exp(1/(256M))-1.
+        t = Q(1, 256*m-1)
         root_bound = 3*t / (1-28*m*3*t)
         assert 7*m*root_bound <= Q(7, 57) < 1
         assert 3*m*root_bound <= Q(1, 19)

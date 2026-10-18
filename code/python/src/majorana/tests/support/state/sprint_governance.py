@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/sprint_governance.rs
-# Rust sha256: dde58b8fa82018b831f3a3aee23ebd62d29434b34872de3acfaf10c79e419b9a
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,11 +38,9 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 SPRINT_GOVERNANCE_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 SPRINT_RETROSPECTIVE_SCHEMA_VERSION: Any = None
 
 
@@ -96,7 +90,6 @@ ProcessProfileKindV1.__doc__ = (
 )
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
@@ -592,10 +585,8 @@ SprintGovernanceError.__doc__ = (
 )
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
-# END GENERATED RUST SURFACE
 
 

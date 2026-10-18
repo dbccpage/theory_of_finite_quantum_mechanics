@@ -1,12 +1,8 @@
-//! Deformation: Cooperads and cocomposition.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};
 use crate::foundation::{OperadColour, Operation};
 
-/// A multi-coloured cooperad C with cocomposition maps.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ColouredCooperad {
     pub name: String,

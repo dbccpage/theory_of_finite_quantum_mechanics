@@ -1,10 +1,3 @@
-//! Native replay of the Lean-exported two-circulant quartet expressions.
-//!
-//! AuthorityEffect: None. Complete coefficient-table comparison and rational probes are
-//! separate from analytic soundness and complete parameter/candidate coverage.
-//! Inspection is a residual interval evaluation. The rectangular mode emits one
-//! exact image and its complete input/Jacobian data; full-cover execution and
-//! native-image kernel reflection remain separate.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -114,7 +107,6 @@ fn rational(text: &str) -> Result<BigRational, SystemError> {
     parse_exact(text).map_err(|_| SystemError::Rational(text.to_owned()))
 }
 
-/// Sorted variable-index factors; repetitions encode squares. All degrees <= 2.
 #[derive(Clone, Debug)]
 struct Polynomial {
     terms: BTreeMap<Vec<usize>, BigRational>,
@@ -190,7 +182,6 @@ impl Polynomial {
         }
     }
 
-    // Indices and input dimensions are checked at the construction/API boundaries.
     fn eval(&self, point: &[BigRational]) -> BigRational {
         self.terms
             .iter()
@@ -260,8 +251,6 @@ impl ExecutableQuartetSystem {
         }
         let wire: SystemWire =
             serde_json::from_slice(bytes).map_err(|e| SystemError::Json(e.to_string()))?;
-        // The two admitted wire shapes have separately bound Lean exports.
-        // A schema label alone does not establish the equations' semantics.
         let equation_count = match wire.schema.as_str() {
             "omega.mub6.szollosi-expressions.v1" => EQUATIONS,
             "omega.mub6.szollosi-gauged-expressions.v1" => GAUGED_EQUATIONS,
@@ -361,7 +350,6 @@ impl ExecutableQuartetSystem {
         Ok(self.polynomials.iter().map(|p| p.range(bounds)).collect())
     }
 
-    /// Sparse interval Jacobian, retaining one row for every equation.
     pub fn jacobian_ranges(
         &self,
         bounds: &[Interval],
@@ -402,8 +390,6 @@ impl ExecutableQuartetSystem {
             .collect()
     }
 
-    /// Compare every compiled coefficient with the independent Lean-normalized table.
-    /// The reference hash binds these bytes; analytic cover closure remains separate.
     pub fn inspect_full_box(&self, reference_bytes: &[u8]) -> Result<ReplayReceipt, SystemError> {
         if reference_bytes.len() > MAX_BYTES {
             return Err(SystemError::InputTooLarge);
@@ -464,8 +450,6 @@ impl ExecutableQuartetSystem {
                 .collect(),
         })
     }
-    /// Exact rectangular image for the complete system; this is a single box,
-    /// without a cover, root-existence claim or native-data kernel reflection.
     pub fn contract_from_bytes(
         &self,
         reference_bytes: &[u8],
@@ -595,7 +579,6 @@ impl ExecutableQuartetSystem {
         })
     }
 
-    /// Deterministic first linear pivots; this is not a Jacobian inverse.
     pub fn contract_full_box_linear(
         &self,
         reference_bytes: &[u8],
@@ -740,8 +723,6 @@ fn range_receipt(index: usize, interval: &Interval) -> RangeReceipt {
     }
 }
 
-/// Sparse evaluation of c-Cf(c)+(I-CJ(X))(X-c), preserving cancellations.
-/// Dimensions, coordinate indices and equation indices are checked before access.
 fn rectangular_image(
     center: &[BigRational],
     bounds: &[Interval],
@@ -963,7 +944,6 @@ mod tests {
         let original = wire["equations"][0]["expression"].clone();
         wire["equations"][0]["expression"] =
             serde_json::json!({"op":"add","left":original,"right":delta});
-        // (x0+x1)(x0-x2+2/7) vanishes at every stored probe, yet changes the polynomial.
         let changed =
             ExecutableQuartetSystem::from_bytes(&serde_json::to_vec(&wire).unwrap()).unwrap();
         assert!(matches!(
@@ -1140,7 +1120,6 @@ mod tests {
 
     #[test]
     fn overdetermined_strict_inclusion_does_not_supply_a_common_root() {
-        // f=(x,1), C=(1,0): K={0} lies strictly inside [-1,1], while f1 is always one.
         let images = rectangular_image(
             &[q(0, 1)],
             &[Interval::new(q(-1, 1), q(1, 1))],
@@ -1158,7 +1137,6 @@ mod tests {
 
     #[test]
     fn quadratic_image_keeps_a_known_root_and_exact_endpoints() {
-        // f=x^2-9/4, center=3/2, J([1,2])=[2,4], C=1/3.
         let images = rectangular_image(
             &[q(3, 2)],
             &[Interval::new(q(1, 1), q(2, 1))],

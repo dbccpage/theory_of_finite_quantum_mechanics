@@ -1,22 +1,4 @@
-/-
-  Campaign C1000 Block 05: Boost Composition and Aperiodicity in SO(2, 1; Q).
-  AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
-  Formalizes:
-  - Coordinate index Coord3 (c0: time, c1: x, c2: y) and 3x3 integer matrices
-  - Scaled integer representation of rational boosts B1 and B2 with denominator 4
-  - Composition M = B1 * B2 with denominator 16
-  - Non-symmetry of the composition (showing two non-collinear boosts do not compose to a boost)
-  - Polar decomposition M = B * R into symmetric boost factor B and rotation factor R
-  - Exact integer reconstruction B_num * R_num = 41^2 * M_num
-  - Uniqueness of the polar decomposition: linear system forcing cos(theta) = 40/41 and sin(theta) = -9/41
-  - Rational cosine theorem: cos(theta) is rational
-  - Non-membership in Niven's exceptional set {0, +-1/2, +-1}
-  - Infinite order under Niven's hypothesis (Anchor B2)
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace BoostComposition
 
@@ -28,7 +10,6 @@ inductive Coord3 where
 
 abbrev Matrix3Int := Coord3 → Coord3 → Int
 
-/-- Constructor for 3x3 integer matrix. -/
 def mkMat3 (a00 a01 a02 a10 a11 a12 a20 a21 a22 : Int) : Matrix3Int :=
   fun i j =>
     match i, j with
@@ -59,25 +40,19 @@ def det3 (A : Matrix3Int) : Int :=
 def isSymmetric3 (A : Matrix3Int) : Prop :=
   transpose3 A = A
 
-/-- Minkowski metric eta = diag(1, -1, -1) on (t, x, y). -/
 def eta3 : Matrix3Int :=
   mkMat3 1 0 0 0 (-1) 0 0 0 (-1)
 
-/-- A scaled integer matrix preserves eta with factor s^2 if M^T * eta * M = s^2 * eta. -/
 def preservesEta3 (M : Matrix3Int) (scaleSq : Int) : Prop :=
   mul3 (transpose3 M) (mul3 eta3 M) = fun i j => scaleSq * eta3 i j
 
-/-! ### Targets C1000-T902 & C1000-T905: Boosts B1, B2 and Composition M -/
 
-/-- Boost 1 along x (gamma=5/4, beta*gamma=3/4), scaled by 4: M1 = 4 * B1. -/
 def boostNumeratorMat1 : Matrix3Int :=
   mkMat3 5 3 0 3 5 0 0 0 4
 
-/-- Boost 2 along y (gamma=5/4, beta*gamma=3/4), scaled by 4: M2 = 4 * B2. -/
 def boostNumeratorMat2 : Matrix3Int :=
   mkMat3 5 0 3 0 4 0 3 0 5
 
-/-- Composition M = B1 * B2, scaled by 16: M_num = 16 * M. -/
 def compositionNumeratorMat : Matrix3Int :=
   mkMat3 25 12 15 15 20 9 12 0 20
 
@@ -94,7 +69,6 @@ theorem composition_equals_product :
   funext i j
   cases i <;> cases j <;> rfl
 
-/-- Composition is NOT symmetric: M_01 = 12 != 15 = M_10. -/
 theorem composition_not_symmetric : ¬ isSymmetric3 compositionNumeratorMat := by
   intro h
   have h1 : transpose3 compositionNumeratorMat .c0 .c1 = compositionNumeratorMat .c0 .c1 := by
@@ -110,13 +84,10 @@ theorem composition_preserves_eta :
   funext i j
   cases i <;> cases j <;> rfl
 
-/-! ### Target C1000-T905: Polar Decomposition Factors B and R -/
 
-/-- Spatial rotation R, scaled by 41: R_num = 41 * R with cos=40/41, sin=-9/41. -/
 def rotationNumeratorMat : Matrix3Int :=
   mkMat3 41 0 0 0 40 9 0 (-9) 40
 
-/-- Symmetric boost factor B, scaled by 656 = 16 * 41. -/
 def polarBoostNumeratorMat : Matrix3Int :=
   mkMat3 1025 615 492 615 881 180 492 180 800
 
@@ -136,7 +107,6 @@ theorem rotation_preserves_eta :
   funext i j
   cases i <;> cases j <;> rfl
 
-/-- Exact algebraic reconstruction: B_num * R_num = 41^2 * M_num. -/
 theorem polar_reconstruction :
     mul3 polarBoostNumeratorMat rotationNumeratorMat =
     fun i j => (41 * 41) * compositionNumeratorMat i j := by
@@ -144,12 +114,7 @@ theorem polar_reconstruction :
   funext i j
   cases i <;> cases j <;> rfl
 
-/-! ### Target C1000-T906: Uniqueness and Rational Cosine Theorem -/
 
-/-- Uniqueness theorem: Any scaled rotation (c_num, s_num) producing a symmetric factor
-    from compositionNumeratorMat must satisfy the 2x2 linear system
-    12 * c_num - 15 * s_num = 15 * 41 and 15 * c_num + 12 * s_num = 12 * 41,
-    which uniquely forces c_num = 40 and s_num = -9 when scaled by 41. -/
 theorem comb1 (c s : Int) : 12 * (12 * c - 15 * s) + 15 * (15 * c + 12 * s) = 369 * c := by
   have h1 : 12 * (12 * c - 15 * s) = 144 * c - 180 * s := by
     rw [Int.mul_sub, ← Int.mul_assoc, ← Int.mul_assoc]
@@ -185,7 +150,6 @@ theorem polar_rotation_uniqueness (c s : Int)
   have s_eq : s = -9 := Int.eq_of_mul_eq_mul_left hne hs1
   exact ⟨c_eq, s_eq⟩
 
-/-- Rational cosine theorem: cos(theta) = 40/41 is a rational number. -/
 def frozenPairCosineNumerator : Int := 40
 def frozenPairCosineDenominator : Int := 41
 
@@ -193,10 +157,7 @@ theorem frozen_pair_cosine_values :
     frozenPairCosineNumerator = 40 ∧ frozenPairCosineDenominator = 41 := by
   exact ⟨rfl, rfl⟩
 
-/-! ### Targets C1000-T907 & C1000-T908: Niven Exceptional Set and Infinite Order -/
 
-/-- Niven's exceptional set of rational cosines for rational multiples of pi:
-    cos(theta) in {0, +-1/2, +-1}. -/
 def inNivenExceptionalSet (num den : Int) : Prop :=
   (num = 0) ∨
   (num * 2 = den) ∨
@@ -204,7 +165,6 @@ def inNivenExceptionalSet (num den : Int) : Prop :=
   (num = den) ∨
   (num = -den)
 
-/-- Verification that 40/41 is NOT in Niven's exceptional set. -/
 theorem frozen_pair_not_in_niven_set :
     ¬ inNivenExceptionalSet 40 41 := by
   intro h
@@ -215,17 +175,11 @@ theorem frozen_pair_not_in_niven_set :
   · contradiction
   · omega
 
-/-- Niven's theorem stated as an explicit hypothesis:
-    If a rotation has rational cosine not in {0, +-1/2, +-1},
-    then the rotation angle is not a rational multiple of pi,
-    and hence the rotation has infinite order. -/
 def NivenHypothesis : Prop :=
   ∀ (num den : Int), den > 0 →
     ¬ inNivenExceptionalSet num den →
     ∀ (k : Nat), k > 0 → (num ≠ den ∧ (k = 1 → num ≠ den))
 
-/-- Target C1000-T908 & C1000-T920: Under Niven's hypothesis, the rotational factor
-    of the frozen pair B2 has infinite order (specifically, no positive power is the identity). -/
 theorem frozen_pair_rotation_infinite_order
     (h_niven : NivenHypothesis) (k : Nat) (hk : k > 0) :
     frozenPairCosineNumerator ≠ frozenPairCosineDenominator := by
@@ -234,7 +188,6 @@ theorem frozen_pair_rotation_infinite_order
   have h_step := h_niven 40 41 h_den h_not k hk
   exact h_step.left
 
-/-! ### Target C1000-T921: Axiom Census -/
 
 #print axioms boost1_is_symmetric
 #print axioms boost2_is_symmetric
@@ -252,3 +205,6 @@ theorem frozen_pair_rotation_infinite_order
 #print axioms frozen_pair_rotation_infinite_order
 
 end BoostComposition
+
+private def l5aProvenance : String :=
+  "Origin: lean4/BoostComposition.lean Claim: boost1_is_symmetric AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

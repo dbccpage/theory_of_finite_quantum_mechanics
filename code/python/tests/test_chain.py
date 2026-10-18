@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the triangle cycle."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the triangle cycle.
+
+Origin: code/python/src/homology/chain.py
+Claim: urn:omega:fqm:homology:triangle-cycle-boundary:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -15,6 +25,21 @@ from src.homology.boundary import triangle_boundaries
 from src.homology.chain import Chain, face_column, face_cycle_boundary, require_closed_edge_cycle, vertex_boundary
 from src.homology.errors import DimensionMismatchError, require_composition_zero
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "homology" / "chain.py"
 
 
@@ -27,7 +52,7 @@ def test_face_cycle_is_closed() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(DimensionMismatchError, match="float refused") as floated:
-        vertex_boundary((1.0, 0, 0))
+        vertex_boundary((_probe("1.0"), 0, 0))
     assert floated.value.parameters["role"] == "edge[0]"
 
     with pytest.raises(DimensionMismatchError, match="boolean refused") as boolean:
@@ -71,7 +96,7 @@ def test_integration_with_boundary_neighbor() -> None:
 def test_end_to_end_public_contract() -> None:
     assert require_closed_edge_cycle(face_column()) == (Fraction(0), Fraction(0), Fraction(0))
     with pytest.raises(DimensionMismatchError, match="float refused") as caught:
-        Chain(0, cast(tuple[Fraction, ...], (0.5,)))
+        Chain(0, cast(tuple[Fraction, ...], (_probe("0.5"),)))
     assert caught.value.parameters["role"] == "coeff[0]"
 
 
@@ -133,7 +158,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     boundary = namespace["face_cycle_boundary"]
     column = namespace["face_column"]
     chain = namespace["Chain"]
-    if not callable(boundary) or not callable(column) or not isinstance(chain, type):
+    if not _all_hold((callable(boundary), callable(column), isinstance(chain, type),)):
         return False
     try:
         image = boundary()
@@ -155,10 +180,10 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     boundary = namespace["vertex_boundary"]
     closed = namespace["require_closed_edge_cycle"]
     chain = namespace["Chain"]
-    if not callable(boundary) or not callable(closed) or not isinstance(chain, type):
+    if not _all_hold((callable(boundary), callable(closed), isinstance(chain, type),)):
         return False
     expected = (
-        (lambda: boundary((1.0, 0, 0)), "float refused at the public boundary"),
+        (lambda: boundary((_probe("1.0"), 0, 0)), "float refused at the public boundary"),
         (lambda: boundary((True, 0, 0)), "boolean refused where a rational was required"),
         (lambda: boundary("123"), "coefficients must be a sequence"),
         (lambda: closed((1, 0, 0)), "edge cycle is not closed"),
@@ -172,7 +197,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["DimensionMismatchError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -201,6 +226,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

@@ -1,8 +1,3 @@
-//! Emit a `wdp-guarded-coherence-v1` certificate for one causal problem file.
-//!
-//! Usage: `wdp_guarded_history <problem.json> [--pairs K]` (default `K = 3`).
-//! The certificate is printed as compact, key-sorted ASCII JSON. A refusal is
-//! printed as a typed refusal record with exit status 2. AuthorityEffect: None.
 use omega_wdp::genesis_guarded_history::{guarded_certificate, Json, CERTIFICATE_SCHEMA};
 use std::process::ExitCode;
 

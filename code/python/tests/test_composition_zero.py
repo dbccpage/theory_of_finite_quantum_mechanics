@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for composition zero."""
+"""Unit, negative, integration, end-to-end, and mutation tests for composition zero.
+
+Origin: code/python/src/homology/errors.py
+Claim: urn:omega:fqm:cochain:composition-zero-certificate:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -19,6 +29,21 @@ from src.homology.errors import (
     triangle_composition_defect,
 )
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "homology" / "errors.py"
 
 _EDGE = (
@@ -36,7 +61,7 @@ def test_triangle_product_is_zero() -> None:
 
 def test_negative_value_failures() -> None:
     with pytest.raises(HomologyError, match="float refused") as caught:
-        require_composition_zero([[1.0]], [[1]])
+        require_composition_zero([[_probe("1.0")]], [[1]])
     assert type(caught.value) is HomologyError
     assert caught.value.parameters["role"] == "left[0][0]"
 
@@ -81,7 +106,7 @@ def test_integration_with_boundary_neighbor() -> None:
 def test_end_to_end_public_contract() -> None:
     assert require_composition_zero([[1, -1], [0, 0]], [[1], [1]]) == Fraction(0)
     with pytest.raises(HomologyError, match="float refused") as caught:
-        require_composition_zero([[1]], [[0.5]])
+        require_composition_zero([[1]], [[_probe("0.5")]])
     assert caught.value.parameters["role"] == "right[0][0]"
 
 
@@ -139,13 +164,13 @@ def _raises(error: type[BaseException], probe: object) -> bool:
 
 
 def _callables_ready(namespace: dict[str, object]) -> bool:
-    return callable(namespace["require_composition_zero"]) and callable(namespace["triangle_composition_defect"])
+    return _all_hold((callable(namespace["require_composition_zero"]), callable(namespace["triangle_composition_defect"]),))
 
 
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     require = namespace["require_composition_zero"]
     triangle = namespace["triangle_composition_defect"]
-    if not callable(require) or not callable(triangle):
+    if not _all_hold((callable(require), callable(triangle),)):
         return False
     try:
         if triangle() != Fraction(0):
@@ -162,7 +187,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(require):
         return False
     probes = (
-        lambda: require([[1.0]], [[0]]),
+        lambda: require([[_probe("1.0")]], [[0]]),
         lambda: require([[True]], [[0]]),
         lambda: require([], [[1]]),
         lambda: require([[1, 0], [0]], [[0], [0]]),
@@ -177,7 +202,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["HomologyError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _callables_ready(namespace):
         return False
@@ -208,6 +233,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

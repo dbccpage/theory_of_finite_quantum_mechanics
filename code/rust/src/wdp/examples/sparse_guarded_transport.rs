@@ -1,6 +1,3 @@
-//! Sparse V2 transport and a separate, source-bound filling check.
-//! The benchmark problem is the boundary of the explicit cell in `problem`.
-//! No command enumerates the event or task complex. No authorization effect.
 use omega_homology::permutohedral::{add_scaled, boundary, Cell, CellChain, ContractionLimits};
 use omega_wdp::guarded_chain_transport::sparse::{
     verify_sparse_event_filling, SparseTransport, SparseTransportLimits,

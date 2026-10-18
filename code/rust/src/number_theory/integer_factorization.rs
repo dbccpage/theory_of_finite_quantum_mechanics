@@ -1,14 +1,3 @@
-//! Bounded, exact integer factorisation with no probabilistic prime verdicts.
-//!
-//! Inputs and factors use arbitrary precision. For integers below 2^64 the
-//! deterministic Miller-Rabin base set is used, followed by bounded Pollard
-//! rho splitting. Larger residuals use trial division until primality is
-//! proved or the declared operation budget is exhausted. Exhaustion returns
-//! no purported complete factorisation. Prime multiplicities are carried by
-//! u32 and excess multiplicity is a typed refusal. Negative integers and zero are
-//! outside this natural-number API; one has the empty prime factorisation.
-//!
-//! AuthorityEffect: None.
 use num_bigint::{BigInt, BigUint};
 use num_integer::Integer;
 use num_traits::{One, ToPrimitive, Zero};
@@ -89,7 +78,6 @@ impl Work {
         }
         let s = (n - 1).trailing_zeros();
         let d = (n - 1) >> s;
-        // This fixed set is deterministic for every n < 2^64.
         for a in [2, 325, 9375, 28178, 450775, 9780504, 1795265022] {
             if a % n == 0 {
                 continue;
@@ -133,7 +121,6 @@ impl Work {
                 return Ok(gcd);
             }
         }
-        // Every remaining iteration consumes the same declared budget.
         let mut d = 41;
         while d <= n / d {
             self.step()?;
@@ -161,7 +148,6 @@ impl Work {
     }
 }
 
-/// Complete certified prime factorisation, with factors in increasing order.
 pub fn factor_natural(
     value: &BigUint,
     budget: FactorizationBudget,
@@ -222,7 +208,6 @@ pub fn is_prime_u64(n: u64, budget: FactorizationBudget) -> Result<bool, Factori
     .prime64(n)
 }
 
-/// Signed prime exponents of a positive rational, with one shared budget for both limbs.
 pub fn factor_positive_rational(
     value: &num_rational::BigRational,
     budget: FactorizationBudget,

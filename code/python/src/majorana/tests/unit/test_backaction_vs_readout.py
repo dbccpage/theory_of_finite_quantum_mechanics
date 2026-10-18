@@ -87,7 +87,6 @@ def test_readout_same_mass_pure_vs_fair_o0():
 
 
 def test_no_universal_nondisturbing_projective():
-    # classical projective backAction disturbs some prior
     assert any(back_action(w, o) != w for w in (FAIR, PRIOR31) for o in Outcome)
 
 
@@ -120,7 +119,6 @@ def test_backaction_vs_readout_package():
     assert GENTLE_UNDER_LIFT is ImportStatus.CONDITIONAL_IMPORT
 
 
-# --- Soft / gentle instrument toy under lift host ---
 
 
 def disturbance(prior: BitWeight, post: BitWeight) -> int:
@@ -157,7 +155,6 @@ def test_soft_gentler_than_projective_prior42():
 
 def test_soft_still_disturbs_and_not_universal_nondisturbing():
     assert soft_back_action(PRIOR42, Outcome.O0) != PRIOR42
-    # some prior is disturbed under soft
     assert any(
         soft_back_action(w, o) != w for w in (PRIOR42, PRIOR31, FAIR) for o in Outcome
     )
@@ -181,7 +178,6 @@ def test_soft_gentle_instrument_package():
     assert GENTLE_UNDER_LIFT is ImportStatus.CONDITIONAL_IMPORT
 
 
-# --- Soft hierarchy + face decoupling residual ---
 
 
 def soft_quarter_back_action(w: BitWeight, o: Outcome) -> BitWeight:
@@ -192,7 +188,7 @@ def soft_quarter_back_action(w: BitWeight, o: Outcome) -> BitWeight:
 
 
 PRIOR84 = BitWeight(8, 4)
-SOFT_EFFECT0 = (2, 1, 1, 2)  # a00,a01,a10,a11
+SOFT_EFFECT0 = (2, 1, 1, 2)
 SOFT_EFFECT1 = (2, -1, -1, 2)
 RHO_PLUS = (1, 1, 1, 1)
 
@@ -231,7 +227,7 @@ def test_soft_density_readout_resolution():
     m0 = soft_density_readout(SOFT_EFFECT0, RHO_PLUS)
     m1 = soft_density_readout(SOFT_EFFECT1, RHO_PLUS)
     assert m0 == 6 and m1 == 2 and m0 + m1 == 8
-    assert SOFT_EFFECT0[1] != 0  # off-diagonal → lift
+    assert SOFT_EFFECT0[1] != 0
 
 
 def test_soft_gentle_hierarchy_package():

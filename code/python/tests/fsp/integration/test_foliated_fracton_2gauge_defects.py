@@ -47,7 +47,6 @@ class TestFoliatedFracton2GaugeDefects:
         assert registry.is_subsystem_neutral()
         assert registry.count_active_leaves() == 0
 
-        # Add neutral planon dipole in xy-plane at z=1
         d1 = FractonDefect(
             defect_id=1,
             mobility=ExcitationMobility.PLANON,
@@ -65,7 +64,6 @@ class TestFoliatedFracton2GaugeDefects:
         registry.add_defect(d1)
         registry.add_defect(d2)
 
-        # In z, 1 - 1 = 0; charges on leaf z=1 cancel
         assert registry.charges_xy[1] == 0
 
     def test_planon_dipole_exact_repair(self) -> None:
@@ -92,7 +90,6 @@ class TestFoliatedFracton2GaugeDefects:
         """Verifies that the subsystem action gap scales with separation distance."""
         res_sep1 = self.engine.evaluate_isolated_fracton_separation(separation_z=1)
         res_sep3 = self.engine.evaluate_isolated_fracton_separation(separation_z=3)
-        # Separation across 3 leaves incurs at least as large an action penalty as 1
         assert res_sep3.subsystem_action_gap >= res_sep1.subsystem_action_gap
 
     def test_abelian_intersecting_2gauge_sheets(self) -> None:

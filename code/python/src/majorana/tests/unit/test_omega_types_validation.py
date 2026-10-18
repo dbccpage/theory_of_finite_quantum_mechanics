@@ -40,7 +40,7 @@ def test_causal_poset_precedes_is_reachability():
 
 def test_banach_validate_shape_mismatch():
     stalks = {"a": BanachStalk(2, "a"), "b": BanachStalk(3, "b")}
-    bad = RestrictionMap(np.eye(2), "b", "a")  # wrong shape: expected (2, 3)
+    bad = RestrictionMap(np.eye(2), "b", "a")
     pre = BanachPresheaf(stalks, [("a", "b")], {("a", "b"): bad})
     with pytest.raises(ValueError):
         pre.validate()
@@ -50,7 +50,7 @@ def test_banach_validate_accepts_well_formed():
     stalks = {"a": BanachStalk(2, "a"), "b": BanachStalk(3, "b")}
     r = RestrictionMap(np.zeros((2, 3)), "b", "a")
     pre = BanachPresheaf(stalks, [("a", "b")], {("a", "b"): r})
-    pre.validate()  # should not raise
+    pre.validate()
 
 
 def test_gauge_metadata_alias_is_same_container():
@@ -61,6 +61,6 @@ def test_gauge_metadata_alias_is_same_container():
 def test_quantum_state_rejects_non_finite():
     with pytest.raises(ValueError):
         QuantumState(np.array([1.0, np.inf]))
-    QuantumState(np.array([1.0, 0.0]))  # finite is fine
+    QuantumState(np.array([1.0, 0.0]))
 
 

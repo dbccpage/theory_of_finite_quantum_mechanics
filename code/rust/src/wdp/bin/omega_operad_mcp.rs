@@ -1,10 +1,3 @@
-//! Sovereign Native Rust Model Context Protocol (MCP) Server.
-//!
-//! Provides high-assurance, sub-millisecond DDC tape parsing, residual contraction
-//! certifiers, and operad verification tools directly to AI coding agents via
-//! standard JSON-RPC 2.0 stdio communication.
-//!
-//! AuthorityEffect: None.
 
 use std::fs;
 use std::io::{self, BufRead, Write};

@@ -1,15 +1,3 @@
-//! Bounded Derived Category $\mathcal{D}^b(\mathcal{A})$.
-//!
-//! Provides bounded chain complexes, cohomology bound validators,
-//! and canonical truncation functors $\tau_{\le n}, \tau_{\ge n}$.
-//!
-//! Invariants:
-//! - Zero floating-point arithmetic.
-//! - Exact integer arithmetic over $\mathbb{Z}$.
-//! - Soviet Builder allocation limits via `OperationLimits`.
-//! - Content-addressed SHA-256 state hashing.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::BTreeMap;
 
@@ -20,7 +8,6 @@ use sha2::{Digest, Sha256};
 use crate::derived::ChainComplex;
 use crate::error::HigherCategoryError;
 
-/// Bounded chain complex with declared homological support $[lower, upper]$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BoundedComplex {
     pub complex: ChainComplex,
@@ -45,11 +32,9 @@ impl BoundedComplex {
     }
 }
 
-/// Cohomology bound validator asserting support strictly within $[lower, upper]$.
 pub struct CohomologyBoundValidator;
 
 impl CohomologyBoundValidator {
-    /// Validates that all generators and non-trivial differentials reside within $[lower, upper]$.
     pub fn validate(
         complex: &ChainComplex,
         lower: i32,
@@ -75,7 +60,6 @@ impl CohomologyBoundValidator {
     }
 }
 
-/// Bounded Derived Category $\mathcal{D}^b(\mathcal{A})$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BoundedDerivedCategory {
     pub name: String,
@@ -115,7 +99,6 @@ impl BoundedDerivedCategory {
         Ok(())
     }
 
-    /// Truncation functor $\tau_{\le n}(X)$.
     pub fn truncate_above(
         &self,
         id: &str,

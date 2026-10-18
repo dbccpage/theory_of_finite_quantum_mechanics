@@ -29,7 +29,7 @@ def test_append_only_dedupes(tmp_path: Path) -> None:
         )
     ]
     assert append_rows(ledger, rows) == 1
-    assert append_rows(ledger, rows) == 0  # no rewrite, no duplicate
+    assert append_rows(ledger, rows) == 0
     lines = [ln for ln in ledger.read_text(encoding="utf-8").splitlines() if ln]
     assert len(lines) == 1
     d = json.loads(lines[0])

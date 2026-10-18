@@ -1,4 +1,3 @@
-# AuthorityEffect: None.
 """QM-217 Finite-Map Control: Algebraic Bound-State Spectra (su(2) Kravchuk & so(4) Hydrogen).
 
 Establishes over Q and certified RationalInterval enclosures that:
@@ -281,7 +280,6 @@ def dirac_fine_structure_coeff(n_principal: int, twice_j_tot: int) -> Fraction:
 class AlgebraicBoundStateSpectraReport:
     """Typed verification receipt for QM-217 algebraic bound-state spectra control."""
 
-    # Part (a): su(2) Kravchuk finite harmonic oscillator
     kravchuk_sl2_commutators_exact: bool
     kravchuk_casimir_matches_j_j_plus_1: bool
     kravchuk_metric_adjoint_exact: bool
@@ -293,7 +291,6 @@ class AlgebraicBoundStateSpectraReport:
     kravchuk_polynomial_orthogonality_exact: bool
     kravchuk_difference_eigenvalue_exact: bool
 
-    # Part (b): so(4) Pauli-Runge-Lenz 3D Hydrogen bound-state spectrum
     hydrogen_chiral_factors_commute: bool
     hydrogen_so4_lie_brackets_exact: bool
     hydrogen_pauli_orthogonality_l_dot_k_zero: bool
@@ -305,7 +302,6 @@ class AlgebraicBoundStateSpectraReport:
     hydrogen_orbital_l2_traces: tuple[Fraction, ...]
     hydrogen_orbital_l2_traces_match_clebsch_gordan: bool
 
-    # Part (c): n = 2 (2S_{1/2} vs 2P_{1/2}) degeneracy & QED Lamb-shift lifting
     n2_projectors_idempotent_orthogonal_complete: bool
     n2_2s_rank: Fraction
     n2_2p_rank: Fraction

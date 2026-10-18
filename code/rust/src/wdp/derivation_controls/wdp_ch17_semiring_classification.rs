@@ -1,8 +1,3 @@
-//! Endpoint-block quotients for row-source matrices over `(Z, +, ·)`.
-//! Carriers are `{0,1}` and `{0,1,2}`. The census is every `2×2` matrix
-//! with entries in `{-1,0,1}` and both nonempty partitions of those vertices.
-//! Checked `i64` arithmetic aborts on overflow, so a passing test is exact.
-//! This count is not a classification over a general semiring and not a continuum limit.
 
 const ALPHABET: [i64; 3] = [-1, 0, 1];
 
@@ -496,7 +491,6 @@ fn example_four() -> (i64, i64, i64, [i64; 2]) {
     (column0[0], total0, length8, edges)
 }
 
-/// Census of `MH=HB` on the selected integer box, plus the opened separations.
 pub fn witness() -> Witness {
     let counts = census();
     let (example1_b, example1_row_sums, example1_pm, example1_lengths) = example_one();
@@ -531,7 +525,6 @@ pub fn witness() -> Witness {
     }
 }
 
-/// Example (2): equal full row sums do not give blocks `((0,1),(2,))`.
 pub fn refuse_example_two_split() -> Result<(), &'static str> {
     let matrix = mat_from(&[&[2, 0, 0], &[0, 0, 2], &[0, 0, 2]]);
     let one_block = vec![vec![0_usize, 1, 2]];

@@ -43,7 +43,6 @@ class DirectedCutD2:
 
     def automorphism_group(self) -> List[Dict[str, str]]:
         """Aut(D2) on {a, b} preserving relation."""
-        # Only identity preserves (a, b) without mapping to (b, a)
         return [{"a": "a", "b": "b"}]
 
 
@@ -130,7 +129,6 @@ class GermState:
 
     def step_04_refuse_self_loop(self, a: str = "a") -> Tuple[bool, str]:
         """Stage 4: Refuse loop <ara> under strict irreflexivity."""
-        # Self-loop boundary ∂(a -> a) = 0 cannot witness distinction
         refusal_reason = "Loop a -> a has boundary a - a = 0; collapsed into identity."
         self._record("step_04_refuse_self_loop", refusal_reason)
         return False, refusal_reason
@@ -172,12 +170,11 @@ def verify_invariant_blindness(
     """
     d2_pair = (d2.source, d2.target)
     d2_rev_pair = (d2.reversed.source, d2.reversed.target)
-    
+
     results = {}
     for i, pred in enumerate(invariant_predicates):
         val_forward = pred(d2_pair)
         val_reverse = pred(d2_rev_pair)
-        # Is the predicate itself swap-invariant?
         is_symmetric = (val_forward == val_reverse)
         results[f"predicate_{i}"] = is_symmetric
     return results

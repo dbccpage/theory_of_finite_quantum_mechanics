@@ -1,5 +1,3 @@
-//! Bounded rival-composition campaign, evaluated in exact shared arithmetic.
-//! AuthorityEffect: None.
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::{involution as star, matrix as mx, ExactFieldError};
 use omega_number_theory::cyclotomic::GaussianRat;
@@ -60,7 +58,6 @@ pub enum RivalSearchError {
     DeclaredLaw(&'static str),
 }
 
-/// Replay the five declared rival compositions; arithmetic failures are refused.
 pub fn enumerate_rival_compositions() -> Result<(usize, bool), RivalSearchError> {
     let w_z = mx::kronecker(
         &omega_lie_theory::pauli_symplectic::pauli::<GaussianRat>(

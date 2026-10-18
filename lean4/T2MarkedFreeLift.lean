@@ -1,26 +1,9 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import Std
 
-/-!
-Overnight T2: marked free-lift on `Int`.
 
-The unique additive map `Int → Int` sending `1` to `g` is
-`n ↦ n * g`. The unique additive map `Int → Int` sending `1`
-to `1`, reduced modulo `n`, has kernel `nZ`.
 
-This is the free marked lift of a generator. It is not forced
-by the N=3 residual. There is no additive section `Z/n → Z`
-for `n > 1`.
 
-AuthorityEffect: None.
--/
 
 namespace OvernightT2
 
@@ -67,7 +50,6 @@ theorem additive_neg (f : Int → Int)
   rw [hzn, hz] at hsum
   omega
 
-/-- Unique additive map `Int → Int` is multiplication by `f 1`. -/
 theorem unique_additive_from_int (f : Int → Int)
     (hadd : ∀ a b, f (a + b) = f a + f b) :
     ∀ n : Int, f n = n * f 1 := by
@@ -99,7 +81,6 @@ theorem markedLift_is_the_unique_additive (g : Int) (f : Int → Int)
   have h := unique_additive_from_int f hadd n
   simpa [markedLift, h1] using h
 
-/-- Reduction `Int → Z/n` as remainder. Kernel is `nZ` for `n > 0`. -/
 theorem emod_eq_zero_iff_dvd (n : Int) {m : Int} (_hm : 0 < m) :
     n % m = 0 ↔ m ∣ n :=
   Int.dvd_iff_emod_eq_zero.symm
@@ -112,7 +93,6 @@ theorem no_nonzero_int_killed_by_n {n g : Int} (hn : 1 < n) :
   · exact absurd h hn0
   · exact h
 
-/-- Scope fence: none of this derives pi, U(1), or free-Z from the residual. -/
 structure ScopeBoundary where
   uniqueLiftOnInt : Bool
   residualForcesFreeZ : Bool
@@ -145,3 +125,6 @@ theorem scope_boundary_refuses_kills :
 #print axioms scope_boundary_refuses_kills
 
 end OvernightT2
+
+private def l5aProvenance : String :=
+  "Origin: lean4/T2MarkedFreeLift.lean Claim: add_eq_add_self_implies_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -1,8 +1,6 @@
-# AuthorityEffect: None.
 from __future__ import annotations
 import numpy as np
 
-# Pauli matrices
 I2 = np.eye(2, dtype=complex)
 SIGMA_X = np.array([[0, 1], [1, 0]], dtype=complex)
 SIGMA_Y = np.array([[0, -1j], [1j, 0]], dtype=complex)
@@ -32,9 +30,7 @@ def verify_mermin_peres_parity() -> bool:
     """Verifies that row products equal +I4 and column products equal (+I4, +I4, -I4)."""
     grid = construct_mermin_peres_grid()
 
-    # Verify rows commute and product to +I4
     for r in range(3):
-        # pairwise commutation
         for i in range(3):
             for j in range(3):
                 comm = grid[r][i] @ grid[r][j] - grid[r][j] @ grid[r][i]
@@ -44,9 +40,7 @@ def verify_mermin_peres_parity() -> bool:
         if not np.allclose(row_prod, I4, atol=1e-12):
             return False
 
-    # Verify columns commute and product to +I4, +I4, -I4
     for c in range(3):
-        # pairwise commutation
         for i in range(3):
             for j in range(3):
                 comm = grid[i][c] @ grid[j][c] - grid[j][c] @ grid[i][c]

@@ -13,7 +13,6 @@ from omega_engine.crates.omega_mvp.models import OmegaCertificate, TerminalStatu
 
 TS = TerminalStatus
 
-# Internal terminal status -> public label.
 PUBLIC_TERMINAL_LABELS: Dict[TerminalStatus, str] = {
     TS.PACKETIZED: "Scoped",
     TS.PARSED: "Scoped",
@@ -34,7 +33,6 @@ PUBLIC_TERMINAL_LABELS: Dict[TerminalStatus, str] = {
     TS.REFUSED: "Refused",
 }
 
-# Operator class -> public, jargon-free repair description.
 _REPAIR_TEXT = {
     "C": "Expose a missing context or field",
     "E": "Apply an exact repair",
@@ -43,7 +41,6 @@ _REPAIR_TEXT = {
     "M": "Refuse unsafe or overclaiming content",
 }
 
-# Human-readable failure descriptions (no internal vocabulary).
 _FAILURE_TEXT = {
     "chain_of_thought_leak": "Hidden reasoning detected and removed",
     "overclaim": "Unsupported certainty claim",
@@ -78,7 +75,6 @@ def _trace_consistency(cert: OmegaCertificate) -> Dict[str, Any]:
         return {"checked": False}
     if not has_defect:
         return {"checked": True, "status": "Consistent"}
-    # Local-green / global-red surfaces as a public defect label.
     label = (
         "GlobalConsistencyFailure" if (d.delta_e or 0.0) != 0.0 else "CompositionDefect"
     )

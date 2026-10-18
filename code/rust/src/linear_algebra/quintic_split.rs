@@ -1,5 +1,3 @@
-// AuthorityEffect: None.
-// Exact finite splitting algebras. Their ranks are not field degrees.
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -155,7 +153,7 @@ fn element(value: &Value, d: u64) -> Result<E> {
     Ok(result)
 }
 
-type Poly = Vec<E>; // ascending ordinary powers
+type Poly = Vec<E>;
 type Exp = Vec<usize>;
 type Multi = BTreeMap<Exp, E>;
 type Vector = Vec<E>;
@@ -601,8 +599,6 @@ fn fixed_basis(algebra: &Algebra, actions: &[Vec<Vector>]) -> Result<Vec<Vector>
     nullspace(equations, n, algebra.d)
 }
 fn ideal_basis(algebra: &Algebra, idempotent: &[E]) -> Result<Vec<Vector>> {
-    // Retain original, unscaled columns in ambient monomial order. An echelon
-    // reducer is auxiliary and never substitutes its normalized rows for them.
     let mut original = Vec::new();
     let mut echelon: BTreeMap<usize, Vector> = BTreeMap::new();
     let mut all_columns = Vec::with_capacity(algebra.rank());
@@ -1163,8 +1159,6 @@ fn validate_ideal(algebra: &Algebra, e: &[E], value: &Value) -> Result<Vec<Vecto
             return Err("LOCAL_IDEAL_BASIS_MEMBERSHIP_FAILED".into());
         }
     }
-    // Every image of the ambient monomial basis must be represented. Together
-    // with membership and independence, this establishes equality to all of eA.
     for index in 0..algebra.rank() {
         let mut monomial = vec![E::zero(); algebra.rank()];
         monomial[index] = E::one();

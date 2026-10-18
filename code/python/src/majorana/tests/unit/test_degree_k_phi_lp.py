@@ -40,8 +40,8 @@ class TestDegreeKPhiLp(unittest.TestCase):
         cochain_cycle = {(0, 1): 1.0, (1, 2): 1.0, (0, 2): -1.0}
 
         complex_obj = assemble_from_network(net, max_dim=2)
-        d_lower = np.array([[-1, 0], [1, -1], [0, 1]])  # d0^\top
-        d_upper = np.array([[1], [1], [1]])  # d1
+        d_lower = np.array([[-1, 0], [1, -1], [0, 1]])
+        d_upper = np.array([[1], [1], [1]])
 
         receipt_joint = solve_degree_k_joint_primal(d_lower, d_upper, np.array([1.0, 1.0, -1.0]), degree=1)
         self.assertAlmostEqual(receipt_joint.min_l1, 0.0, places=5)
@@ -69,7 +69,6 @@ class TestDegreeKPhiLp(unittest.TestCase):
     def test_exact_gradient_cochain(self):
         """Verify exact gradient cochain on triangle graph yields Phi=0.0 and is certified."""
         net = Network(nodes=[0, 1, 2], edges=[(0, 1), (1, 2), (0, 2)])
-        # Gradient of potential f = [0, 2, 5]: e(0,1)=2, e(1,2)=3, e(0,2)=5
         grad_cochain = {(0, 1): 2.0, (1, 2): 3.0, (0, 2): 5.0}
 
         receipt = phi_k_on_network(net, degree=1, cochain_values=grad_cochain)

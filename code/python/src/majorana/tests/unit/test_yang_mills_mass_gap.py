@@ -48,7 +48,7 @@ class TestYangMillsMassGap(unittest.TestCase):
             boundary_d_omega=np.zeros(20),
             immirzi_gamma=0.274,
             instanton_number=0,
-            topological_invariant_phi=0.0,  # Missing topological obstruction!
+            topological_invariant_phi=0.0,
         )
 
         receipt = self.solver.evaluate_mass_gap(data)

@@ -21,7 +21,6 @@ import sys
 from typing import Any, Dict, List, Optional, Set, Tuple
 import numpy as np
 
-# Ensure directory is on sys.path
 code_dir = Path(__file__).resolve().parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -32,7 +31,7 @@ class HoneycombSite:
     site_id: int
     x: int
     y: int
-    sublattice: str  # 'A' or 'B'
+    sublattice: str
 
 
 @dataclass
@@ -40,8 +39,8 @@ class HoneycombLink:
     link_id: str
     site_u: int
     site_v: int
-    bond_dir: str  # 'X', 'Y', 'Z'
-    gauge_u: int   # +1 or -1
+    bond_dir: str
+    gauge_u: int
 
 
 @dataclass
@@ -49,9 +48,9 @@ class HoneycombPlaquette:
     plaquette_id: str
     center_x: float
     center_y: float
-    boundary_links: List[Tuple[str, int]]  # list of (link_id, orientation)
-    flux_wp: int = 1                       # +1 or -1
-    vortex_charge: int = 0                  # 0 if flux_wp == 1, 1 if flux_wp == -1
+    boundary_links: List[Tuple[str, int]]
+    flux_wp: int = 1
+    vortex_charge: int = 0
 
 
 class MockHoneycombGinIndex:
@@ -135,7 +134,7 @@ class KitaevHoneycombModel:
         jx: float = 1.0,
         jy: float = 1.0,
         jz: float = 1.0,
-        kappa: float = 0.1,  # Time-reversal breaking perturbation opening Ising anyon gap
+        kappa: float = 0.1,
     ):
         self.lattice_id = lattice_id
         self.lx = lx
@@ -154,7 +153,6 @@ class KitaevHoneycombModel:
         self.gin_index = MockHoneycombGinIndex(self.links, self.plaquettes)
 
     def _build_lattice(self) -> None:
-        # 2 sites per unit cell: A (sublattice 0) and B (sublattice 1)
         num_cells = self.lx * self.ly
         for y in range(self.ly):
             for x in range(self.lx):
@@ -164,33 +162,25 @@ class KitaevHoneycombModel:
                 self.sites[site_a] = HoneycombSite(site_id=site_a, x=x, y=y, sublattice="A")
                 self.sites[site_b] = HoneycombSite(site_id=site_b, x=x, y=y, sublattice="B")
 
-        # Links in unit cell:
-        # Z-link: A(x, y) -> B(x, y)
-        # X-link: A(x, y) -> B(x-1 mod lx, y)
-        # Y-link: A(x, y) -> B(x, y-1 mod ly)
         for y in range(self.ly):
             for x in range(self.lx):
                 cell_idx = y * self.lx + x
                 u_a = cell_idx * 2
                 v_b_z = cell_idx * 2 + 1
 
-                # Z-link
                 lz_id = f"link_z_{x}_{y}"
                 self.links[lz_id] = HoneycombLink(lz_id, u_a, v_b_z, "Z", 1)
 
-                # X-link: connecting to cell (x-1, y)
                 x_prev = (x - 1) % self.lx
                 v_b_x = (y * self.lx + x_prev) * 2 + 1
                 lx_id = f"link_x_{x}_{y}"
                 self.links[lx_id] = HoneycombLink(lx_id, u_a, v_b_x, "X", 1)
 
-                # Y-link: connecting to cell (x, y-1)
                 y_prev = (y - 1) % self.ly
                 v_b_y = (y_prev * self.lx + x) * 2 + 1
                 ly_id = f"link_y_{x}_{y}"
                 self.links[ly_id] = HoneycombLink(ly_id, u_a, v_b_y, "Y", 1)
 
-        # Build hexagonal plaquettes: each unit cell (x, y) corresponds to a hexagon
         for y in range(self.ly):
             for x in range(self.lx):
                 p_id = f"plaq_{x}_{y}"
@@ -199,9 +189,6 @@ class KitaevHoneycombModel:
                 x_next = (x + 1) % self.lx
                 y_next = (y + 1) % self.ly
 
-                # 6 boundary links around hexagon (x, y):
-                # link_z_{x}_{y}, link_x_{(x+1)%lx}_{y}, link_y_{(x+1)%lx}_{(y+1)%ly},
-                # link_z_{(x+1)%lx}_{(y+1)%ly}, link_x_{(x+1)%lx}_{(y+1)%ly}, link_y_{x}_{(y+1)%ly}
                 b_links = [
                     (f"link_z_{x}_{y}", 1),
                     (f"link_x_{x_next}_{y}", -1),
@@ -227,7 +214,6 @@ class KitaevHoneycombModel:
         n = len(self.sites)
         A = np.zeros((n, n), dtype=float)
 
-        # Nearest neighbor hopping with link gauge u_e
         for link in self.links.values():
             j, k = link.site_u, link.site_v
             coupling = self.jz if link.bond_dir == "Z" else (self.jx if link.bond_dir == "X" else self.jy)
@@ -235,16 +221,13 @@ class KitaevHoneycombModel:
             A[j, k] += val
             A[k, j] -= val
 
-        # Second neighbor chiral hopping (time-reversal breaking kappa)
         if abs(self.kappa) > 1e-6:
             for p in self.plaquettes.values():
-                # Introduce next-nearest neighbor hopping around the hexagon
                 for i in range(len(p.boundary_links)):
                     l1_id, _ = p.boundary_links[i]
                     l2_id, _ = p.boundary_links[(i + 1) % len(p.boundary_links)]
                     l1 = self.links[l1_id]
                     l2 = self.links[l2_id]
-                    # Common site between l1 and l2
                     shared = set([l1.site_u, l1.site_v]) & set([l2.site_u, l2.site_v])
                     if shared:
                         mid = list(shared)[0]
@@ -266,12 +249,9 @@ class KitaevHoneycombModel:
         A = self.compute_majorana_hamiltonian()
         H_herm = 1j * A
         eigvals = np.linalg.eigvalsh(H_herm)
-        # In a gapped or clean sector, eigenvalues come in pairs (+lambda, -lambda)
-        # Parity is product of signs of positive half
         pos_eigs = [e for e in eigvals if e > 1e-8]
         if not pos_eigs:
             return 1
-        # Number of occupied fermions mod 2:
         neg_count = sum(1 for e in eigvals if e < -1e-8)
         return -1 if (neg_count % 2 == 1) else 1
 
@@ -294,7 +274,6 @@ class KitaevHoneycombModel:
         else:
             theoretical_phase = 3.0 * math.pi / 4.0
 
-        # In the simulated discrete model, measured phase reproduces the Ising category certificate
         measured_phase = theoretical_phase
         residual = abs(measured_phase - theoretical_phase)
 

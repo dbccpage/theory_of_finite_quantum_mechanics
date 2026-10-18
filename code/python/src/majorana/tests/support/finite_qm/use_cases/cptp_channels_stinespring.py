@@ -28,11 +28,9 @@ def build_choi_matrix(
     choi = np.zeros((d2, d2), dtype=complex)
     for i in range(dim):
         for j in range(dim):
-            # Unit matrix E_{i,j} = |i><j|
             e_ij = np.zeros((dim, dim), dtype=complex)
             e_ij[i, j] = 1.0
             image_e_ij = channel(e_ij)
-            # Outer product |i><j| (x) image_e_ij
             for r in range(dim):
                 for c in range(dim):
                     row = i * dim + r
@@ -118,8 +116,6 @@ def check_all_principal_minors_psd(matrix: Any, tol: float | None = None) -> tup
     try: mat = _exact_matrix_from_input(matrix)
     except (ValueError, TypeError, OverflowError): return False, []
     n=len(mat)
-    # Hermiticity is structural. Tolerance is applied to real minors, not to
-    # an unannounced projection that discards an anti-Hermitian component.
     if any(mat[i][j] != mat[j][i].conjugate() for i in range(n) for j in range(n)):
         return False, []
     minors=[];good=True
@@ -203,7 +199,6 @@ def identity_channel(dim: int = 2) -> Callable[[np.ndarray], np.ndarray]:
 
 def two_qubit_css_syndrome_channel() -> Callable[[np.ndarray], np.ndarray]:
     """Two-qubit parity measurement channel in Z (x) Z: E(rho) = P_even*rho*P_even + P_odd*rho*P_odd."""
-    # Projector onto even parity span(|00>, |11>) and odd parity span(|01>, |10>)
     p_even = np.zeros((4, 4), dtype=complex)
     p_even[0, 0] = 1.0
     p_even[3, 3] = 1.0
@@ -229,7 +224,6 @@ def minimal_cyclotomic_conductor_for_sqrt(d: int) -> int:
     """
     if type(d) is not int or d < 1:
         raise ValueError("Expected a positive radicand")
-    # Extract squarefree part
     val = d
     sq_free = 1
     for p in range(2, int(math.isqrt(d)) + 1):
@@ -247,21 +241,14 @@ def minimal_cyclotomic_conductor_for_sqrt(d: int) -> int:
     elif sq_free == 2:
         return 8
     elif sq_free == 3:
-        # 3 = 3 mod 4 => 4 * 3 = 12
         return 12
     elif sq_free == 5:
-        # 5 = 1 mod 4 => 5
         return 5
     elif sq_free == 6:
-        # 2 * 3 => 8 * 3 = 24
         return 24
     elif sq_free == 7:
-        # 7 = 3 mod 4 => 4 * 7 = 28
         return 28
     else:
-        # General formula for squarefree m:
-        # if m = 1 mod 4: m
-        # if m = 2, 3 mod 4: 4 * m
         if sq_free % 4 == 1:
             return sq_free
         else:
@@ -287,7 +274,7 @@ def evaluate_channel_census() -> list[dict[str, Any]]:
             "targets": [9],
             "dimension": 2,
             "kraus_rank": 2,
-            "sqrt_factors": [2, 3],  # sqrt(2/3) and sqrt(1/3) => sqrt(6), sqrt(3) => lcm(24, 12) = 24 or 12
+            "sqrt_factors": [2, 3],
             "dilation_conductor": 12,
             "escalates_beyond_120": False,
         },
@@ -297,7 +284,7 @@ def evaluate_channel_census() -> list[dict[str, Any]]:
             "targets": [12],
             "dimension": 2,
             "kraus_rank": 2,
-            "sqrt_factors": [3],  # sqrt(3/4) => sqrt(3)
+            "sqrt_factors": [3],
             "dilation_conductor": 12,
             "escalates_beyond_120": False,
         },
@@ -317,7 +304,7 @@ def evaluate_channel_census() -> list[dict[str, Any]]:
             "targets": [20],
             "dimension": 2,
             "kraus_rank": 4,
-            "sqrt_factors": [3],  # sqrt(3)
+            "sqrt_factors": [3],
             "dilation_conductor": 12,
             "escalates_beyond_120": False,
         },
@@ -327,7 +314,7 @@ def evaluate_channel_census() -> list[dict[str, Any]]:
             "targets": [20],
             "dimension": 2,
             "kraus_rank": 4,
-            "sqrt_factors": [7],  # sqrt(7) => conductor 28
+            "sqrt_factors": [7],
             "dilation_conductor": 28,
             "escalates_beyond_120": True,
         },
@@ -357,27 +344,23 @@ def evaluate_channel_census() -> list[dict[str, Any]]:
 
 def run_block_06_execution() -> dict[str, Any]:
     """Execute complete mathematical and computational battery for Block 06."""
-    # 1. Verify Choi matrix and CPTP property for depolarizing channel p = 1/3
     depol_1_3 = depolarizing_channel(1.0 / 3.0, dim=2)
     choi_1_3 = build_choi_matrix(depol_1_3, dim=2)
     tp_1_3 = verify_trace_preservation(choi_1_3, dim=2, tol=1e-12)
     cp_1_3, ev_1_3 = verify_complete_positivity(choi_1_3, tol=1e-12)
     conductor_1_3 = minimal_cyclotomic_conductor_for_sqrt(3)
 
-    # 2. Verify Choi matrix and CPTP property for depolarizing channel p = 1/7
     depol_1_7 = depolarizing_channel(1.0 / 7.0, dim=2)
     choi_1_7 = build_choi_matrix(depol_1_7, dim=2)
     tp_1_7 = verify_trace_preservation(choi_1_7, dim=2, tol=1e-12)
     cp_1_7, ev_1_7 = verify_complete_positivity(choi_1_7, tol=1e-12)
     conductor_1_7 = minimal_cyclotomic_conductor_for_sqrt(7)
 
-    # 3. Channel census
     census = evaluate_channel_census()
     total_censused = len(census)
     escalating_channels = [c for c in census if c["escalates_beyond_120"]]
     escalating_count = len(escalating_channels)
 
-    # 4. Kraus rank bound on d = 2
     kraus_rank_bound_d2 = 4
 
     result = {

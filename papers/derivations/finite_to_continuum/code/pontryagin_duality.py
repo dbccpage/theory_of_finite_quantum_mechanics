@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Pontryagin Duality Bridge: From Finite Cyclic Characters to Circle and Continuum.
 
@@ -45,7 +44,7 @@ class PontryaginProgrammeError(Exception):
         super().__init__(f"{code}: {detail}")
 
 
-StageStatus = str  # EXACT_Q | OBSERVED | MODELLING_DECLARATION | LITERATURE_IMPORT | NORMALIZATION | HOST_FLOAT | EXPERIMENTAL_HOST | OPEN
+StageStatus = str
 
 
 @dataclass(frozen=True)
@@ -64,7 +63,7 @@ class PontryaginStagedReceipt:
 
     stages: Tuple[ProgrammeStage, ...]
     finite_exact: bool
-    is_exact_q_through_stage: int  # Highest stage that remains exact-Q (0 or -1)
+    is_exact_q_through_stage: int
     continuous_host_active: bool
     experimental_alpha_active: bool
     authority_effect: str
@@ -90,7 +89,6 @@ class PontryaginStagedReceipt:
         raise KeyError(f"Stage '{name}' not found in receipt")
 
 
-# --- Kill Condition Guards ---
 
 def refuse_pi_from_exact_q(claimed_exact_q_outputs_pi: bool) -> None:
     if claimed_exact_q_outputs_pi:
@@ -131,7 +129,6 @@ def refuse_alpha_as_certified_exact(is_exact_certificate: bool, is_experimental_
         )
 
 
-# --- Stages 0 to 6 ---
 
 def stage0_finite_exact(
     lattice_size: int = 4,
@@ -269,13 +266,8 @@ def stage5_continuous_host_eval(
             status="OPEN",
             claim="continuous host eval blocked without dual normalization",
         )
-    # Exact certified rational interval for pi
     pi_enc = certified_pi_enclosure(terms=10)
-    # Theta = pi * sector_fraction
     theta_enc = pi_enc * sector_fraction
-    # Amplitude sinc(theta) = sin(theta) / theta. For theta = pi/6, sin(pi/6) = 1/2.
-    # a = (1/2) / (pi/6) = 3 / pi.
-    # Enclose 3 / pi: 3 / pi_enc
     a_enc = RationalInterval(Fraction(3), Fraction(3)) / pi_enc
     deficit_enc = RationalInterval(Fraction(1), Fraction(1)) - (a_enc * a_enc)
 
@@ -357,7 +349,6 @@ def run_pontryagin_staged_programme(
     s1 = stage1_discrete_period_group(s0)
     s2 = stage2_unbounded_period_declaration(declare_free_z=declare_free_z)
 
-    # Honesty fences
     refuse_pi_from_exact_q(False)
     refuse_u1_derived_from_l1_mass_alone(False)
     if s1.status == "OBSERVED":
@@ -413,7 +404,6 @@ def run_pontryagin_staged_programme(
     )
 
 
-# --- Discrete Fourier Character Orthogonality on Z_L ---
 
 class DiscreteLatticeFourier:
     """Fourier analysis on finite cyclic lattice Z_L using Pontryagin dual characters."""
@@ -425,7 +415,7 @@ class DiscreteLatticeFourier:
 
     def character_matrix_exact_orthogonality(self) -> Dict[str, Any]:
         """Verify character orthogonality sum_{n=0}^{L-1} chi_k(n) chi_m^*(n) = L * delta_{k,m}.
-        
+
         Using exact trigonometric algebra on Z_L roots of unity:
           chi_k(n) = exp(2pi i k n / L).
           sum_{n=0}^{L-1} exp(2pi i (k - m) n / L) = L if k == m (mod L) else 0.
@@ -437,10 +427,7 @@ class DiscreteLatticeFourier:
         for k in range(l_val):
             for m in range(l_val):
                 diff = (k - m) % l_val
-                # If diff == 0, exact sum is L
-                # If diff != 0, exact sum of geometric series (1 - exp(2pi i diff)) / (1 - exp(...)) = 0
                 expected_sum = l_val if diff == 0 else 0
-                # Record verified exact status
                 if diff == 0 and expected_sum != l_val:
                     orthogonality_verified = False
                     violations.append((k, m))

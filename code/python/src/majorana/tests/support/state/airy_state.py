@@ -37,8 +37,6 @@ class ComplexScalarV1:
     def to_complex(self) -> complex:
         return complex(float.fromhex(self.real_hex), float.fromhex(self.imag_hex))
 
-# Delaying import to avoid circular dependency
-# from omega_engine.crates.carrier.airy_carrier import AirySeedSlotV1
 def _get_AirySeedSlotV1():
     from omega_engine.crates.carrier.airy_carrier import AirySeedSlotV1
     return AirySeedSlotV1
@@ -48,7 +46,7 @@ def _get_AirySeedSlotV1():
 class AiryCriticalStateV1:
     """Five labeled values; duplicate roots remain distinct carrier slots."""
 
-    slots: tuple[Any, ...]  # Any is used here to avoid typing circular dependency issues
+    slots: tuple[Any, ...]
 
     def __post_init__(self) -> None:
         if type(self.slots) is not tuple or len(self.slots) != 5:

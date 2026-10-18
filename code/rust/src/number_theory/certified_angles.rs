@@ -1,10 +1,3 @@
-//! Rational enclosures of sqrt, atan and pi with explicit error budgets.
-//!
-//! sqrt uses the shared integer square root. atan uses its alternating series
-//! only on [0,1/2], with the next term as a certified remainder bound; rational
-//! addition and reciprocal identities cover all rational arguments. Machin's
-//! identity supplies pi. See PO-001's angle derivation for containment and
-//! stopping proofs. These are intervals, not exact transcendental values.
 
 use crate::rational::{checked_integer_sqrt, rq, sqrt_exact};
 use num_bigint::BigInt;
@@ -51,8 +44,6 @@ pub fn validate_precision(eps: &Q) -> Result<(), AngleError> {
     Ok(())
 }
 
-/// Width <= eps, with nonnegative endpoints whose squares bracket q.
-/// For a valid eps, choosing b with 2^-b <= eps takes <=1024 doublings.
 pub fn sqrt_enclosure(q: &Q, eps: &Q) -> Result<Interval, AngleError> {
     validate_rational(q)?;
     validate_precision(eps)?;
@@ -81,7 +72,6 @@ pub fn sqrt_enclosure(q: &Q, eps: &Q) -> Result<Interval, AngleError> {
     Err(AngleError::Budget)
 }
 
-/// Private reduced-domain series. Width is |x|^(2N+1)/(2N+1)<=4^-N.
 fn small_atan(x: &Q, eps: &Q) -> Result<Interval, AngleError> {
     let mut sum = Q::zero();
     let mut power = x.clone();
@@ -102,7 +92,6 @@ fn small_atan(x: &Q, eps: &Q) -> Result<Interval, AngleError> {
     Err(AngleError::Budget)
 }
 
-/// pi = 16 atan(1/5)-4 atan(1/239); resulting width <=eps.
 pub fn pi_enclosure(eps: &Q) -> Result<Interval, AngleError> {
     validate_precision(eps)?;
     let tol = eps / rq(20, 1);
@@ -127,7 +116,6 @@ fn positive_atan(x: &Q, eps: &Q) -> Result<Interval, AngleError> {
         .sub(&positive_atan(&x.recip(), &(eps / rq(2, 1)))?))
 }
 
-/// All rational arguments, via oddness, addition and reciprocal identities.
 pub fn atan_enclosure(x: &Q, eps: &Q) -> Result<Interval, AngleError> {
     validate_rational(x)?;
     validate_precision(eps)?;

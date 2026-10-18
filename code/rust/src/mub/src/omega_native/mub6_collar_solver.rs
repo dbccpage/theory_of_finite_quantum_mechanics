@@ -1,7 +1,3 @@
-//! Conditional collar arithmetic and a rational Cartesian grid.
-//! The derivative and slice bounds are assumptions, not established MUB bounds.
-//! Evidence: test_collar_solver.rs and KernelReflectionGrandFrontier.lean.
-//! AuthorityEffect: None.
 
 use crate::omega_native::exact::mub6_constants::{base_gap, delta_certified, lipschitz_bound};
 use crate::omega_native::exact::mub6_karlsson_volume_cover::circle_touches;
@@ -68,8 +64,6 @@ pub struct KarlssonCollarCoverReport {
 }
 
 pub fn solve_karlsson_collar_cover(n: usize) -> KarlssonCollarCoverReport {
-    // Bound enumeration cost and reject an empty grid. No angle bounds are
-    // obtained with atan2; the report contains rational Cartesian endpoints only.
     assert!((2..=64).contains(&n), "grid size must be in 2..=64");
     let q = |a: i64, b: i64| BigRational::new(a.into(), b.into());
     let n_i = n as i64;

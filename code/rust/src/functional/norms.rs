@@ -1,17 +1,9 @@
-//! Finite floating-point Lp diagnostics, not exact quotient/proof evidence.
-//!
-//! Positive p<1 gives a quasi-norm and does not carry triangle-inequality status.
-//! Positive infinity gives the maximum magnitude. Scaling avoids unnecessary
-//! intermediate overflow/underflow; the result remains a floating approximation.
 use serde::{Deserialize, Serialize};
 
-/// Legacy floating L2 diagnostic. It preserves IEEE nonfinite/overflow behavior;
-/// callers needing a checked finite magnitude use `lp_norm` instead.
 pub fn l2_diagnostic(values: &[f64]) -> f64 {
     values.iter().map(|value| value * value).sum::<f64>().sqrt()
 }
 
-/// Exact L1 magnitude of cyclotomic coordinates in a declared real embedding.
 pub fn cyclotomic_l1<const P: usize>(
     values: &[omega_number_theory::cyclotomic_field::Cyclotomic<P>],
     embedding: i64,
@@ -49,15 +41,6 @@ pub enum LpNormError {
     UnrepresentableMagnitude,
 }
 
-/// Checked finite approximate magnitude. Not a theorem, quotient distance,
-/// normalized quantum state, error-bound certificate or actor authorization.
-///
-/// No unchecked constructor or wire deserializer is supplied.
-///
-/// ~~~compile_fail
-/// use omega_functional::norms::{LpKind, LpMagnitude};
-/// let forged = LpMagnitude { value: 1.0, order: 0.0, kind: LpKind::Norm };
-/// ~~~
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct LpMagnitude {
     value: f64,
@@ -79,12 +62,6 @@ impl LpMagnitude {
     }
 }
 
-/// Compute a finite approximate (sum |x_i|^p)^(1/p), with p=+infinity
-/// interpreted as max |x_i| and the empty vector assigned zero.
-///
-/// No global rounding-error bound or mathematical exactness is claimed. All
-/// submitted coordinates are checked even for the infinity norm. A nonfinite
-/// result is a typed refusal, never infinity, NaN or a substituted zero.
 pub fn lp_norm(values: &[f64], p: f64) -> Result<LpMagnitude, LpNormError> {
     if p.is_nan() || p <= 0.0 {
         return Err(LpNormError::InvalidOrder);
@@ -103,8 +80,6 @@ pub fn lp_norm(values: &[f64], p: f64) -> Result<LpMagnitude, LpNormError> {
     } else {
         LpKind::Norm
     };
-    // These cases have an exact finite f64 representation and need no powers.
-    // Infinity is a defined norm order, not permission for nonfinite coordinates.
     if nonzero <= 1 || p == f64::INFINITY {
         return Ok(LpMagnitude {
             value: scale,
@@ -120,9 +95,6 @@ pub fn lp_norm(values: &[f64], p: f64) -> Result<LpMagnitude, LpNormError> {
             .sum::<f64>();
         scale * sum.powf(1.0 / p)
     } else {
-        // For small p, the unscaled power root can overflow while its product
-        // with a tiny scale is representable. Use the log domain for that root.
-        // log(abs(x))-log(scale) also avoids an underflowed abs(x)/scale ratio.
         let log_scale = scale.ln();
         let sum = values
             .iter()
@@ -134,8 +106,6 @@ pub fn lp_norm(values: &[f64], p: f64) -> Result<LpMagnitude, LpNormError> {
     if !magnitude.is_finite() {
         return Err(LpNormError::UnrepresentableMagnitude);
     }
-    // Every positive-order magnitude is at least max |x_i|. Log/exp rounding
-    // must not turn the diagnostic into a smaller value or an underflowed zero.
     Ok(LpMagnitude {
         value: magnitude.max(scale),
         order: p,
@@ -194,18 +164,13 @@ mod tests {
 
     #[test]
     fn log_domain_preserves_representable_roots_small_terms_and_scale_floor() {
-        // Independent 100-digit Decimal oracle:
-        // Decimal.from_float(1e-300) * 2**2000.
         let magnitude = lp_norm(&[1e-300, 1e-300], 0.0005).unwrap().value();
         close(magnitude, 1.1481306952742546e302, 5e-12);
-        // Widely separated coordinates still contribute for small p.
         close(
             lp_norm(&[1e200, 1e-200], 0.01).unwrap().value(),
             1.0100496620928765e200,
             5e-12,
         );
-        // The tiny coordinate cannot change the nearest f64 magnitude here,
-        // and exp(log(scale)) must not round the answer below max |x_i|.
         assert_eq!(lp_norm(&[1e300, 1e-300], 0.5).unwrap().value(), 1e300);
     }
 

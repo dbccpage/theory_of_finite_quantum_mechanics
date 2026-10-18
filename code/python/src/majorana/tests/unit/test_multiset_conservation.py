@@ -70,8 +70,6 @@ class TestMultisetCollapseRefused:
         )
 
     def test_extra_copies_in_the_summary_are_not_refused(self) -> None:
-        # The law conserves obligations downward; duplication discharges
-        # nothing and is therefore not laundering.
         validate_gtla_summary_compression_multiset(
             ["fp_a"], ["R1"], ["fp_a", "fp_a", "fp_a"], ["R1", "R1"]
         )
@@ -86,9 +84,7 @@ class TestSetValidatorBlindSpotIsDocumented:
         the multiset owner refuses the identical inputs."""
         original = ["fp_dup", "fp_dup"]
         compressed = ["fp_dup"]
-        # Set form: blind — passes.
         validate_gtla_summary_compression(set(original), set(), set(compressed), set())
-        # Multiset form: refuses.
         with pytest.raises(
             ValueError,
             match="OBLIGATION_COMPRESSION_LAUNDERING_REFUSED_MULTIPLICITY",

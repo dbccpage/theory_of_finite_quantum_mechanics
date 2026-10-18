@@ -1,4 +1,3 @@
-# AuthorityEffect: None.
 """QM-215 finite-map control: Dirac/Kulish-Faddeev dressed matter and Ward-Takahashi Z_1 = Z_2.
 
 Checks over Q and Q(i):
@@ -221,7 +220,6 @@ def dirac_propagator(p: list[Fraction], mass: Fraction) -> Mat4Qi:
 
 def spinor_bar_correlator(psi_left: Vec4Qi, psi_right: Vec4Qi) -> Qi:
     """Return the Dirac inner product <bar{psi}_left, psi_right> = psi_left^dagger gamma^0 psi_right."""
-    # gamma^0 = diag(1, 1, -1, -1)
     return (
         psi_left[0].conj() * psi_right[0]
         + psi_left[1].conj() * psi_right[1]
@@ -390,9 +388,6 @@ def evaluate_dirac_ward_takahashi_control(
     alpha_inv: Fraction = Fraction(137035999166, 10**9),
 ) -> DiracWardTakahashiReport:
     """Run all three parts of the QM-215 control over Q and Q(i)."""
-    # -------------------------------------------------------------------------
-    # Part (a): Cl_{1,3}(Q(i)), tree-level Ward-Takahashi, and DFM matter dressing
-    # -------------------------------------------------------------------------
     clifford_ok = check_clifford_anticommutation()
 
     p_vec = [Fraction(5, 1), Fraction(1, 1), Fraction(2, 1), Fraction(-1, 1)]
@@ -416,10 +411,8 @@ def evaluate_dirac_ward_takahashi_control(
     wt_inv_diff_ok = mat4_sub(sf_pq_inv, sf_p_inv) == q_slash
     wt_sandwiched_ok = mat4_mul(sf_pq, mat4_mul(q_slash, sf_p)) == mat4_sub(sf_p, sf_pq)
 
-    # DFM spanning-tree fermion dressing on the 4-vertex diamond graph
     dia = hbc.FiniteCarrierGraph(4, ((0, 1), (1, 2), (0, 2), (2, 3), (1, 3)))
     dia_trees = enumerate_spanning_trees(dia)
-    # Exact Pythagorean U(1) elements in Q(i): (3+4i)/5, (5-12i)/13, i, (8+15i)/17, (4-3i)/5
     edge_phases = [
         Qi(Fraction(3, 5), Fraction(4, 5)),
         Qi(Fraction(5, 13), Fraction(-12, 13)),
@@ -427,7 +420,6 @@ def evaluate_dirac_ward_takahashi_control(
         Qi(Fraction(8, 17), Fraction(15, 17)),
         Qi(Fraction(4, 5), Fraction(-3, 5)),
     ]
-    # Local vertex gauge transformation g_v in U(1) subset Q(i) with g_0 = 1
     vertex_gauge = [
         Qi.one(),
         Qi(Fraction(3, 5), Fraction(-4, 5)),
@@ -449,12 +441,10 @@ def evaluate_dirac_ward_takahashi_control(
         [vertex_gauge[v] * comp for comp in bare_spinors[v]] for v in range(dia.vertex_count)
     ]
 
-    # Bare two-point correlator <bar{psi}_3, psi_1> changes under local gauge g_v
     bare_corr_31 = spinor_bar_correlator(bare_spinors[3], bare_spinors[1])
     gauged_bare_corr_31 = spinor_bar_correlator(gauged_spinors[3], gauged_spinors[1])
     bare_correlator_gauge_dependent = bare_corr_31 != gauged_bare_corr_31
 
-    # Dressed correlator <bar{Psi}_y, Psi_x> is strictly gauge-invariant on all 8 spanning trees
     dfm_dressed_gauge_invariant_all = True
     dressed_corr_per_tree: list[Qi] = []
     u_fields_per_tree: list[list[Qi]] = []
@@ -476,7 +466,6 @@ def evaluate_dirac_ward_takahashi_control(
                     dfm_dressed_gauge_invariant_all = False
         dressed_corr_per_tree.append(spinor_bar_correlator(dressed_orig[3], dressed_orig[1]))
 
-    # Under tree change T_0 -> T_7, dressed correlator shifts by exact gauge-invariant cycle holonomy
     hol_shift_3 = u_fields_per_tree[-1][3] * u_fields_per_tree[0][3].inv()
     hol_shift_1 = u_fields_per_tree[-1][1].inv() * u_fields_per_tree[0][1]
     expected_shifted_corr = hol_shift_3 * hol_shift_1 * dressed_corr_per_tree[0]
@@ -484,9 +473,6 @@ def evaluate_dirac_ward_takahashi_control(
         dressed_corr_per_tree[0] != dressed_corr_per_tree[-1]
     )
 
-    # -------------------------------------------------------------------------
-    # Part (b): 1-Loop QED Ward-Takahashi integrand identity & Z_1 = Z_2
-    # -------------------------------------------------------------------------
     k_vec = [Fraction(3, 1), Fraction(-2, 1), Fraction(1, 2), Fraction(1, 1)]
     photon_mass_sq = Fraction(1, 3)
 
@@ -501,7 +487,6 @@ def evaluate_dirac_ward_takahashi_control(
         )
     one_loop_wt_ok = q_dot_lambda == mat4_sub(sigma_p, sigma_pq)
 
-    # Differential Ward identity at q = 0: I_Lambda^mu(p, p; k) == -d I_Sigma(p, k) / d p_mu
     diff_wt_ok = True
     for mu in range(4):
         lam_pp_mu = one_loop_vertex_integrand(p_vec, p_vec, k_vec, mu, mass, photon_mass_sq)
@@ -511,7 +496,6 @@ def evaluate_dirac_ward_takahashi_control(
         if lam_pp_mu != minus_dsigma_mu:
             diff_wt_ok = False
 
-    # BPHZ Taylor subtraction at p = q = 0
     gammas = dirac_gamma_matrices()
     uv_coeff_vertex = Fraction(1, 1)
     uv_coeff_self_energy = Fraction(1, 1)
@@ -525,9 +509,6 @@ def evaluate_dirac_ward_takahashi_control(
     z2_val = Fraction(1, 1) - l_uv_sample * uv_coeff_self_energy
     z1_over_z2 = z1_val / z2_val
 
-    # -------------------------------------------------------------------------
-    # Part (c): Kulish-Faddeev / Bloch-Nordsieck IR soft-photon dressing enclosure
-    # -------------------------------------------------------------------------
     v_cusp = Fraction(3, 5)
     energy_res_ratio = Fraction(1, 2)
 

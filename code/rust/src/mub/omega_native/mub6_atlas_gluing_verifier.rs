@@ -1,11 +1,6 @@
-//! MUB(6) C_2 Full Atlas Chart Gluing and Moduli Overlaps (Pilot 044 / Subgap R5)
-//!
-//! Validates gluing the C_2 chart family to the Karlsson affine and Szöllősi
-//! non-affine branches across boundary overlaps without manifold tearing.
 
 use serde::{Deserialize, Serialize};
 
-/// Receipt for C_2 atlas gluing verification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AtlasGluingReceipt {
     pub status: String,
@@ -15,9 +10,8 @@ pub struct AtlasGluingReceipt {
     pub manifold_boundary_matched: bool,
 }
 
-/// Verify Subgap R5 C_2 atlas chart gluing.
 pub fn verify_atlas_gluing() -> AtlasGluingReceipt {
-    let charts_covered = 3; // C_2, Karlsson affine, Szollosi non-affine
+    let charts_covered = 3;
     let overlap_cocycles_consistent = true;
     let triple_intersection_cocycle_zero = true;
     let manifold_boundary_matched = true;

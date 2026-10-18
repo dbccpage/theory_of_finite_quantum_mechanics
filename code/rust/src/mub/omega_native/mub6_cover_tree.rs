@@ -1,9 +1,3 @@
-//! Recursive 5D rational interval partitioner and tree representation over `num_rational::BigRational`.
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: f32 and f64 are strictly forbidden in this module.
-//! All coordinates, cuts, margins, and volumes are computed in exact rational arithmetic.
-//!
-//! AuthorityEffect: None.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -13,7 +7,6 @@ use sha2::{Digest, Sha256};
 
 pub const DIM_5D: usize = 5;
 
-/// Errors arising during 5D box partition and cover verification.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum CoverTreeError {
     #[error("Invalid dimension {0}: must be strictly less than 5")]
@@ -77,17 +70,12 @@ pub enum CoverTreeError {
     SerializationError(String),
 }
 
-/// A 5-dimensional axis-aligned hyper-rectangle with exact rational interval bounds:
-/// `[u_0, v_0] x [u_1, v_1] x [u_2, v_2] x [u_3, v_3] x [u_4, v_4]`.
-///
-/// Invariant: For all j in 0..5, `bounds[j].0 < bounds[j].1`.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct RationalBox5D {
     pub bounds: [(BigRational, BigRational); DIM_5D],
 }
 
 impl RationalBox5D {
-    /// Constructs the standard 5D unit cube `[0, 1]^5`.
     pub fn unit_cube() -> Self {
         let zero = BigRational::zero();
         let one = BigRational::one();
@@ -96,8 +84,6 @@ impl RationalBox5D {
         }
     }
 
-    /// Constructs a new 5D rational box with strict non-degeneracy check:
-    /// `bounds[j].0 < bounds[j].1` for all j in 0..5.
     pub fn new(bounds: [(BigRational, BigRational); DIM_5D]) -> Result<Self, CoverTreeError> {
         for j in 0..DIM_5D {
             if bounds[j].0 >= bounds[j].1 {
@@ -111,7 +97,6 @@ impl RationalBox5D {
         Ok(Self { bounds })
     }
 
-    /// Tests whether an exact rational 5D point is contained in the closed box.
     pub fn contains_point(&self, pt: &[BigRational; DIM_5D]) -> bool {
         for j in 0..DIM_5D {
             let (ref lo, ref hi) = self.bounds[j];
@@ -122,7 +107,6 @@ impl RationalBox5D {
         true
     }
 
-    /// Exact 5D hyper-volume: product of interval lengths `(v_j - u_j)`.
     pub fn volume(&self) -> BigRational {
         let mut vol = BigRational::one();
         for (lo, hi) in &self.bounds {
@@ -131,8 +115,6 @@ impl RationalBox5D {
         vol
     }
 
-    /// Subdivides the box along dimension `dim` at `cut`, returning `(left, right)`.
-    /// Requires `cut` to be strictly interior: `lo < cut < hi`.
     pub fn subdivide(&self, dim: usize, cut: &BigRational) -> Result<(Self, Self), CoverTreeError> {
         if dim >= DIM_5D {
             return Err(CoverTreeError::InvalidDimension(dim));
@@ -155,7 +137,6 @@ impl RationalBox5D {
         Ok((Self::new(left_bounds)?, Self::new(right_bounds)?))
     }
 
-    /// Returns the exact rational midpoint along coordinate `dim`.
     pub fn midpoint(&self, dim: usize) -> Result<BigRational, CoverTreeError> {
         if dim >= DIM_5D {
             return Err(CoverTreeError::InvalidDimension(dim));
@@ -165,13 +146,11 @@ impl RationalBox5D {
         Ok((lo + hi) / two)
     }
 
-    /// Bisects the box at the exact rational midpoint along coordinate `dim`.
     pub fn bisect(&self, dim: usize) -> Result<(Self, Self), CoverTreeError> {
         let mid = self.midpoint(dim)?;
         self.subdivide(dim, &mid)
     }
 
-    /// Returns the interval width along coordinate `dim`.
     pub fn width(&self, dim: usize) -> Result<BigRational, CoverTreeError> {
         if dim >= DIM_5D {
             return Err(CoverTreeError::InvalidDimension(dim));
@@ -180,7 +159,6 @@ impl RationalBox5D {
         Ok(hi - lo)
     }
 
-    /// Returns the dimension with the strictly maximal interval width (first index in case of tie).
     pub fn max_dim(&self) -> usize {
         let mut best_dim = 0;
         let mut best_width = &self.bounds[0].1 - &self.bounds[0].0;
@@ -194,9 +172,6 @@ impl RationalBox5D {
         best_dim
     }
 
-    /// Checks whether the open interiors of `self` and `other` overlap.
-    /// Two boxes have disjoint interiors iff along at least one dimension `d`,
-    /// `self.hi <= other.lo` or `other.hi <= self.lo`.
     pub fn overlaps_interior(&self, other: &Self) -> bool {
         for j in 0..DIM_5D {
             let (ref a_lo, ref a_hi) = self.bounds[j];
@@ -208,19 +183,16 @@ impl RationalBox5D {
         true
     }
 
-    /// Serializes to JSON string.
     pub fn to_json(&self) -> Result<String, CoverTreeError> {
         serde_json::to_string_pretty(self)
             .map_err(|e| CoverTreeError::SerializationError(e.to_string()))
     }
 
-    /// Deserializes from JSON string.
     pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {
         serde_json::from_str(s).map_err(|e| CoverTreeError::SerializationError(e.to_string()))
     }
 }
 
-/// Recursive 5D bisection tree over `BigRational`.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum BisectionTree {
     Leaf {
@@ -237,7 +209,6 @@ pub enum BisectionTree {
 }
 
 impl BisectionTree {
-    /// Constructs a leaf node.
     pub fn leaf(
         box_5d: RationalBox5D,
         cert_id: Option<String>,
@@ -250,7 +221,6 @@ impl BisectionTree {
         }
     }
 
-    /// Constructs a split node.
     pub fn split(dim: usize, cut: BigRational, left: BisectionTree, right: BisectionTree) -> Self {
         BisectionTree::Split {
             dim,
@@ -260,7 +230,6 @@ impl BisectionTree {
         }
     }
 
-    /// Collects references to all 5D boxes in the tree leaves in left-to-right DFS order.
     pub fn leaves(&self) -> Vec<&RationalBox5D> {
         fn collect<'a>(node: &'a BisectionTree, acc: &mut Vec<&'a RationalBox5D>) {
             match node {
@@ -276,7 +245,6 @@ impl BisectionTree {
         out
     }
 
-    /// Returns the total number of leaves in the tree.
     pub fn leaf_count(&self) -> usize {
         match self {
             BisectionTree::Leaf { .. } => 1,
@@ -284,7 +252,6 @@ impl BisectionTree {
         }
     }
 
-    /// Computes the exact total volume across all leaves.
     pub fn total_volume(&self) -> BigRational {
         match self {
             BisectionTree::Leaf { box_5d, .. } => box_5d.volume(),
@@ -292,7 +259,6 @@ impl BisectionTree {
         }
     }
 
-    /// Maximum depth of the bisection tree (leaf has depth 0).
     pub fn depth(&self) -> usize {
         match self {
             BisectionTree::Leaf { .. } => 0,
@@ -302,7 +268,6 @@ impl BisectionTree {
         }
     }
 
-    /// Mutable references to all leaf records: `(&mut RationalBox5D, &mut Option<String>, &mut Option<BigRational>)`.
     pub fn leaves_mut(
         &mut self,
     ) -> Vec<(
@@ -335,19 +300,15 @@ impl BisectionTree {
         out
     }
 
-    /// Serializes the tree to exact rational JSON format.
     pub fn to_json(&self) -> Result<String, CoverTreeError> {
         serde_json::to_string_pretty(self)
             .map_err(|e| CoverTreeError::SerializationError(e.to_string()))
     }
 
-    /// Deserializes the tree from exact rational JSON format.
     pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {
         serde_json::from_str(s).map_err(|e| CoverTreeError::SerializationError(e.to_string()))
     }
 
-    /// Serializes the tree into a structured Lean 4 / Python DTO representation
-    /// where rational numbers are represented by explicit numerator and denominator strings.
     pub fn to_lean_dto(&self) -> BisectionTreeDto {
         match self {
             BisectionTree::Leaf {
@@ -375,14 +336,12 @@ impl BisectionTree {
         }
     }
 
-    /// Serializes to a Lean 4 / Python friendly JSON string with explicit `{num, den}` fields.
     pub fn to_lean_json(&self) -> Result<String, CoverTreeError> {
         let dto = self.to_lean_dto();
         serde_json::to_string_pretty(&dto)
             .map_err(|e| CoverTreeError::SerializationError(e.to_string()))
     }
 
-    /// Reconstructs tree from Lean 4 / Python DTO format.
     pub fn from_lean_dto(dto: &BisectionTreeDto) -> Result<Self, CoverTreeError> {
         match dto {
             BisectionTreeDto::Leaf {
@@ -446,7 +405,6 @@ impl BisectionTree {
         }
     }
 
-    /// Deserializes from Lean 4 / Python friendly JSON string.
     pub fn from_lean_json(s: &str) -> Result<Self, CoverTreeError> {
         let dto: BisectionTreeDto = serde_json::from_str(s)
             .map_err(|e| CoverTreeError::SerializationError(e.to_string()))?;
@@ -454,7 +412,6 @@ impl BisectionTree {
     }
 }
 
-/// DTO for exact rational intervals `[lo, hi]` with string numerators and denominators.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct RationalIntervalDto {
     pub lo_num: String,
@@ -499,7 +456,6 @@ impl RationalIntervalDto {
     }
 }
 
-/// DTO for 5D rational boxes compatible with Lean 4 and Python.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct RationalBox5DDto {
     pub intervals: [RationalIntervalDto; DIM_5D],
@@ -525,7 +481,6 @@ impl RationalBox5DDto {
     }
 }
 
-/// DTO for recursive bisection trees compatible with Lean 4 and Python.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum BisectionTreeDto {
     Leaf {
@@ -543,16 +498,6 @@ pub enum BisectionTreeDto {
     },
 }
 
-/// Verifies that `tree` constitutes an exact, gap-free, overlap-free partition cover of `domain`.
-///
-/// Specifically verifies:
-/// 1. The root bisection matches the specified domain box.
-/// 2. Every recursive split along coordinate `dim` cuts strictly in the interior `lo < cut < hi`.
-/// 3. The left child exactly matches `[lo, cut]` and the right child exactly matches `[cut, hi]`,
-///    guaranteeing zero boundary leakage and zero gap.
-/// 4. Every leaf box matches the propagated boundary interval.
-/// 5. Exact volume conservation holds: `total_leaf_volume == domain_volume`.
-/// 6. Pairwise open interiors of all leaves are mutually disjoint.
 pub fn check_partition_cover(
     tree: &BisectionTree,
     domain: &RationalBox5D,
@@ -561,7 +506,6 @@ pub fn check_partition_cover(
         return Err(CoverTreeError::EmptyTree);
     }
 
-    // Step 1 & 2 & 3 & 4: Recursive geometric propagation check
     fn verify_node(
         node: &BisectionTree,
         expected_box: &RationalBox5D,
@@ -604,7 +548,6 @@ pub fn check_partition_cover(
 
     verify_node(tree, domain)?;
 
-    // Step 5: Exact volume conservation
     let total_leaf_vol = tree.total_volume();
     let domain_vol = domain.volume();
     if total_leaf_vol != domain_vol {
@@ -614,7 +557,6 @@ pub fn check_partition_cover(
         });
     }
 
-    // Step 6: Pairwise disjoint leaf interiors
     let leaves = tree.leaves();
     let n = leaves.len();
     for i in 0..n {
@@ -631,9 +573,6 @@ pub fn check_partition_cover(
     Ok(())
 }
 
-/// Sealed receipt of a verified exact cover obstruction over a stated 5D rational domain.
-///
-/// Contains proof data that every leaf in the partition cover has a verified positive obstruction margin.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CoverObstructionReceipt {
     pub schema_version: String,
@@ -649,7 +588,6 @@ pub struct CoverObstructionReceipt {
 }
 
 impl CoverObstructionReceipt {
-    /// Computes canonical SHA256 hex digest of the receipt.
     pub fn compute_digest(&self) -> String {
         let mut hasher = Sha256::new();
         hasher.update(self.schema_version.as_bytes());
@@ -666,30 +604,22 @@ impl CoverObstructionReceipt {
         format!("{:x}", hasher.finalize())
     }
 
-    /// Serializes receipt to JSON.
     pub fn to_json(&self) -> Result<String, CoverTreeError> {
         serde_json::to_string_pretty(self)
             .map_err(|e| CoverTreeError::SerializationError(e.to_string()))
     }
 
-    /// Deserializes receipt from JSON.
     pub fn from_json(s: &str) -> Result<Self, CoverTreeError> {
         serde_json::from_str(s).map_err(|e| CoverTreeError::SerializationError(e.to_string()))
     }
 }
 
-/// Verifies that `tree` is a valid partition cover of `domain` AND that every leaf has a
-/// valid obstruction certificate with strictly positive margin `margin > 0`.
-///
-/// Returns a sealed `CoverObstructionReceipt`.
 pub fn verify_cover_obstruction(
     tree: &BisectionTree,
     domain: &RationalBox5D,
 ) -> Result<CoverObstructionReceipt, CoverTreeError> {
-    // 1. Check partition geometry and volume conservation
     check_partition_cover(tree, domain)?;
 
-    // 2. Audit all leaves for positive obstruction certificates
     fn check_leaves<'a>(
         node: &'a BisectionTree,
         min_margin: &mut Option<BigRational>,
@@ -755,9 +685,6 @@ pub fn verify_cover_obstruction(
     Ok(receipt)
 }
 
-// ---------------------------------------------------------------------------
-// Integration with Target A4 Dual SDP Certifier and L1 Network Simplex
-// ---------------------------------------------------------------------------
 
 use omega_solvers::solver_flow_network_simplex::NetworkSimplexSolution;
 
@@ -766,9 +693,6 @@ use crate::omega_native::exact::mub6_quad_sdp::MubQuadSdpCertificate;
 use omega_certifiers::phi1_certifier::Phi1Certificate;
 use omega_solvers::solver_lp_phi1_boundary::Phi1Solution;
 
-/// Attaches a Target A4 SDP Dual Certificate to leaf at `leaf_index`.
-/// Verifies that the SDP certificate successfully certified non-PSD obstruction
-/// and attaches its strict regularized margin.
 pub fn certify_leaf_with_sdp(
     tree: &mut BisectionTree,
     leaf_index: usize,
@@ -789,8 +713,6 @@ pub fn certify_leaf_with_sdp(
         ));
     }
 
-    // In Target A4, strict_inner_product < 0 indicates contradiction: Tr(W * G) < 0 with W >= eps I.
-    // The margin is the magnitude of the negative trace: -Tr(W * G) > 0.
     let num: BigInt = sdp_cert
         .strict_inner_product_num
         .parse()
@@ -813,8 +735,6 @@ pub fn certify_leaf_with_sdp(
     Ok(())
 }
 
-/// Attaches an L1 Phi1 certificate to leaf at `leaf_index`.
-/// Uses the certified objective as the obstruction margin.
 pub fn certify_leaf_with_phi1(
     tree: &mut BisectionTree,
     leaf_index: usize,
@@ -846,7 +766,6 @@ pub fn certify_leaf_with_phi1(
     Ok(())
 }
 
-/// Attaches an L1 Network Simplex solution to leaf at `leaf_index`.
 pub fn certify_leaf_with_simplex_solution(
     tree: &mut BisectionTree,
     leaf_index: usize,
@@ -875,7 +794,6 @@ pub fn certify_leaf_with_simplex_solution(
     Ok(())
 }
 
-/// Attaches an L1 Phi1 solution from `solve_l1_boundary` to leaf at `leaf_index`.
 pub fn certify_leaf_with_phi1_solution(
     tree: &mut BisectionTree,
     leaf_index: usize,
@@ -904,7 +822,6 @@ pub fn certify_leaf_with_phi1_solution(
     Ok(())
 }
 
-/// Attaches a custom obstruction certificate and margin to leaf at `leaf_index`.
 pub fn certify_leaf_with_margin(
     tree: &mut BisectionTree,
     leaf_index: usize,
@@ -926,7 +843,6 @@ pub fn certify_leaf_with_margin(
     Ok(())
 }
 
-/// Attaches the same certified margin and certificate prefix across all leaves in the tree.
 pub fn certify_all_leaves_with_margin(
     tree: &mut BisectionTree,
     cert_id_prefix: &str,

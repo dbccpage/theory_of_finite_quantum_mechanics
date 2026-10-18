@@ -1,8 +1,3 @@
-//! Campaign module electroweak_dfm.
-//!
-//! Electric charge `Q = T3 + Y/2` on the lepton and quark doublets. Each
-//! charge is checked from the formula, and the doublet splitting `Q_up - Q_down`
-//! equals the `T3` splitting because the hypercharges match.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;

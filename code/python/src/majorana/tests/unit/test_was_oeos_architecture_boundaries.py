@@ -120,28 +120,24 @@ def test_value_object_exact_type_equality_and_hashing() -> None:
     c_id = CandidateId("node_1")
     p_id = PacketId("node_1")
 
-    # Cross-class inequality
     assert t_id != c_id
     assert t_id != p_id
     assert c_id != p_id
 
-    # Primitive string inequality
     assert t_id != "node_1"
     assert "node_1" != t_id
 
-    # Hashing separation in sets
     s = {t_id, c_id, p_id}
     assert len(s) == 3
 
-    # Strict constructors reject invalid types
     with pytest.raises(InvariantViolationError):
-        TaskId.from_str(123)  # type: ignore
+        TaskId.from_str(123)
 
     with pytest.raises(InvariantViolationError):
-        CandidateBudget.from_int("3")  # type: ignore
+        CandidateBudget.from_int("3")
 
     with pytest.raises(InvariantViolationError):
-        CandidateBudget.from_int(True)  # type: ignore (bool is subclass of int in Python)
+        CandidateBudget.from_int(True)
 
 
 def test_datarecord_recursive_immutability() -> None:
@@ -153,18 +149,15 @@ def test_datarecord_recursive_immutability() -> None:
     assert isinstance(rec.data["meta"], MappingProxyType)
     assert isinstance(rec.data["items"], tuple)
 
-    # In-place modification is prevented
     with pytest.raises(TypeError):
-        rec.data["meta"] = {}  # type: ignore
+        rec.data["meta"] = {}
 
     with pytest.raises(TypeError):
-        rec.data["meta"]["count"] = 20  # type: ignore
+        rec.data["meta"]["count"] = 20
 
-    # Mutation of original dict has no effect
     raw["meta"]["count"] = 99
     assert rec.data["meta"]["count"] == 10
 
-    # Deterministic hashing
     h1 = hash(rec)
     h2 = hash(DataRecord({"meta": {"count": 10}, "items": (1, 2, 3)}))
     assert h1 == h2

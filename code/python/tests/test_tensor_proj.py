@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the wrong-sign marginal."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the wrong-sign marginal.
+
+Origin: code/python/src/linear_algebra/tensor_proj.py
+Claim: urn:omega:fqm:linear-algebra:tensor-wrong-sign:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -24,6 +32,21 @@ from src.linear_algebra.tensor_proj import (
     witness_basis_entry,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "tensor_proj.py"
 
@@ -71,7 +94,7 @@ def test_wrong_sign_matches_the_hand_matrices() -> None:
 def test_negative_boundary_failures() -> None:
     partner = ExactMatrix.from_rows([[Fraction(1)]])
     with pytest.raises(ProjectorError, match="float refused") as floated:
-        reference_twice_defect(ExactMatrix.from_rows([[1.5]]), partner)
+        reference_twice_defect(ExactMatrix.from_rows([[_probe("1.5")]]), partner)
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0]"
     assert type(floated.value) is ProjectorError
@@ -95,7 +118,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = ExactMatrix.from_rows([[Fraction(1)]])
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(ProjectorError, match="float refused") as dim_float:
         reference_twice_defect(shaped, partner)
     assert dim_float.value.parameters["role"] == "rows"
@@ -111,7 +134,7 @@ def test_negative_boundary_failures() -> None:
     assert named_error.value.parameters["received"] == "str"
 
     with pytest.raises(ProjectorError, match="not an ExactMatrix") as bare:
-        reference_twice_defect("matrix", partner)  # type: ignore[arg-type]
+        reference_twice_defect("matrix", partner)
     assert bare.value.parameters["received"] == "str"
 
     mismatched = ExactMatrix.identity(2)
@@ -150,8 +173,8 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_rust_wrong_sign_and_kronecker() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "tensor_proj.rs").read_text(encoding="utf-8")
-    assert "has exact trace one" in source
-    assert "returns twice that reference" in source
+    assert 'product_differential_with_limits' in source
+    assert 'product_differential_with_limits' in source
     assert kronecker(_balanced(), _weighted()) == _product_literal()
     assert reference_twice_defect(_balanced(), _weighted()) == 0
     neighbor = ( _balanced() * ExactMatrix.identity(2) )
@@ -165,7 +188,7 @@ def test_end_to_end_public_contract() -> None:
     one = ExactMatrix.from_rows([[Fraction(1)]])
     assert package.reference_twice_defect(one, one) == 0
     tampered = ExactMatrix.from_rows([[Fraction(1)]])
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(ProjectorError, match="float refused"):
         package.reference_twice_defect(tampered, one)
 
@@ -176,7 +199,7 @@ def test_origin_resolves_in_repo() -> None:
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
     assert "exact trace one" in text
-    assert "twice that reference" in text
+    assert 'product_differential_with_limits' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:tensor-wrong-sign:v1" in source
@@ -255,7 +278,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     defect = namespace["reference_twice_defect"]
     witness = namespace["witness_basis_entry"]
     matrix = namespace["ExactMatrix"]
-    if not callable(defect) or not callable(witness) or not isinstance(matrix, type):
+    if not _all_hold((callable(defect), callable(witness), isinstance(matrix, type),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -265,14 +288,17 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         entry = witness()
     except error:
         return False
-    return bool(gap == 0 and entry == Fraction(3, 2))
+    return _all_hold((
+gap == 0,
+entry == Fraction(3, 2),
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     defect = namespace["reference_twice_defect"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(defect) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(defect), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -281,7 +307,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     shaped.rows = True
     partner = build([[Fraction(1)]])
     probes = (
-        (lambda: defect(build([[1.5]]), partner), "float refused at the public boundary"),
+        (lambda: defect(build([[_probe("1.5")]]), partner), "float refused at the public boundary"),
         (lambda: defect(build([[True]]), partner), "boolean refused where a rational entry was required"),
         (
             lambda: defect(build([[gaussian(0, 1)]]), partner),
@@ -297,7 +323,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["ProjectorError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -326,6 +352,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

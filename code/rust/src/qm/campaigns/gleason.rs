@@ -1,9 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Exact finite ray and matrix computations. Historical Band C labels are retained.
-//! The Cabello matrix has a negative expectation on w=(0,0,1,1), despite satisfying
-//! the 18-ray/9-context constraints. Peres backtracking and RREF are finite checks.
-//! Topology, global Gleason claims, and p-adic/nonstandard models remain unestablished.
 
 use omega_number_theory::rational::{rq, One, Rational, Zero};
 use serde::{Deserialize, Serialize};
@@ -20,14 +15,8 @@ pub struct CabelloHypergraphReport {
     pub all_contexts_orthogonal: bool,
     pub all_rays_degree_2: bool,
     pub total_incidence: usize,
-    /// Whether some assignment of 0 or 1 to the rays has exactly one 1 in every context,
-    /// decided by exhaustive enumeration ([`count_binary_valuations`]), not by parity.
     pub has_binary_valuation: bool,
-    /// The number of such valuations (`None` if the enumeration was refused).
     pub binary_valuation_count: Option<u64>,
-    /// The double-counting certificate: every ray lies in exactly two contexts, so the
-    /// number of 1s counted over contexts is `n_contexts` and over rays is even; an odd
-    /// number of contexts therefore forbids a valuation. A sufficient condition only.
     pub parity_obstruction: bool,
 }
 
@@ -52,7 +41,6 @@ pub struct PseudoStateReport {
     pub v17_is_negative: bool,
 }
 
-/// Exact 3D ray value object with integer coordinates.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Ray3D {
     pub x: i64,
@@ -74,7 +62,6 @@ impl Ray3D {
     }
 }
 
-/// Exact 3D triad of ray indices.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Triad3D {
     pub r0: usize,
@@ -88,7 +75,6 @@ impl Triad3D {
     }
 }
 
-/// Pure integer square root with zero floating-point operations.
 pub fn integer_isqrt(n: i64) -> i64 {
     if n <= 0 {
         0
@@ -196,14 +182,8 @@ pub struct PadicNonstandardObstructionReport {
     pub nonstandard_external_measure_nonbornian: Option<bool>,
 }
 
-/// The largest number of rays [`count_binary_valuations`] enumerates exhaustively.
 pub const MAX_BINARY_VALUATION_RAYS: usize = 24;
 
-/// The number of binary noncontextual valuations of a context hypergraph: assignments of 0 or
-/// 1 to the `n_rays` rays such that every context has exactly one ray valued 1. Exhaustive over
-/// `2^n_rays` assignments; `None` when `n_rays` exceeds [`MAX_BINARY_VALUATION_RAYS`] or a
-/// context is empty, repeats a ray, or names a ray out of range. With no contexts,
-/// every assignment is a valuation, including the unique assignment on zero rays.
 pub fn count_binary_valuations(n_rays: usize, contexts: &[&[usize]]) -> Option<u64> {
     if n_rays > MAX_BINARY_VALUATION_RAYS {
         return None;
@@ -238,10 +218,7 @@ pub fn count_binary_valuations(n_rays: usize, contexts: &[&[usize]]) -> Option<u
     Some(count as u64)
 }
 
-/// Verifies orthogonality and regularity of the Cabello 18-ray hypergraph, and decides by
-/// enumeration that it has no binary valuation (Kochen-Specker uncolourability).
 pub fn verify_cabello_hypergraph() -> CabelloHypergraphReport {
-    // 1. Check mutual orthogonality within each context
     let mut all_ortho = true;
     for ctx in &CABELLO_9_CONTEXTS {
         for i in 0..4 {
@@ -256,7 +233,6 @@ pub fn verify_cabello_hypergraph() -> CabelloHypergraphReport {
         }
     }
 
-    // 2. Ray degrees across all contexts
     let mut degrees = [0usize; 18];
     for ctx in &CABELLO_9_CONTEXTS {
         for &r in ctx {
@@ -282,13 +258,7 @@ pub fn verify_cabello_hypergraph() -> CabelloHypergraphReport {
     }
 }
 
-/// Verifies non-PSD quadratic form M satisfying all frame constraints on Cabello 18 rays.
 pub fn verify_non_psd_cabello_witness() -> NonPsdWitnessReport {
-    // Exact matrix M:
-    // [ 0    0    0    0  ]
-    // [ 0    1   1/2 -1/2 ]
-    // [ 0   1/2   0  -1/2 ]
-    // [ 0  -1/2 -1/2   0  ]
     let m: [[Rational; 4]; 4] = [
         [
             Rational::zero(),
@@ -303,7 +273,6 @@ pub fn verify_non_psd_cabello_witness() -> NonPsdWitnessReport {
 
     let trace = &m[0][0] + &m[1][1] + &m[2][2] + &m[3][3];
 
-    // Compute f(v_k) for all 18 rays
     let mut ray_expectations = Vec::with_capacity(18);
     let mut all_in_interval = true;
     for v in &CABELLO_18_VECTORS {
@@ -324,7 +293,6 @@ pub fn verify_non_psd_cabello_witness() -> NonPsdWitnessReport {
         ray_expectations.push(exp);
     }
 
-    // Check context sums
     let mut all_contexts_sum_to_one = true;
     for ctx in &CABELLO_9_CONTEXTS {
         let mut sum_ctx = Rational::zero();
@@ -336,7 +304,6 @@ pub fn verify_non_psd_cabello_witness() -> NonPsdWitnessReport {
         }
     }
 
-    // Witness vector w = (0, 0, 1, 1)
     let w = [0i64, 0, 1, 1];
     let norm_sq_w = 2i64;
     let mut quad_w = Rational::zero();
@@ -374,7 +341,6 @@ pub fn verify_non_psd_cabello_witness() -> NonPsdWitnessReport {
     }
 }
 
-/// Verifies diagonal pseudo-state diag(1/2, 1/2, 1/2, -1/2) witness.
 pub fn verify_pseudo_state_diagonal_witness() -> PseudoStateReport {
     let diag = [rq(1, 2), rq(1, 2), rq(1, 2), rq(-1, 2)];
     let trace = &(&(&diag[0] + &diag[1]) + &diag[2]) + &diag[3];
@@ -413,7 +379,6 @@ pub fn verify_pseudo_state_diagonal_witness() -> PseudoStateReport {
     }
 }
 
-/// Verifies exact algebraic search on discrete orthogonal triads in Q^3.
 pub fn verify_d3_pythagorean_triads() -> TriadSearchReport {
     let rays: [Ray3D; 9] = [
         Ray3D::new(1, 0, 0),
@@ -444,7 +409,6 @@ pub fn verify_d3_pythagorean_triads() -> TriadSearchReport {
         }
     }
 
-    // Born ground state on z-axis: f_born(v) = (v.x)^2 / ||v||^2
     let mut f_born = Vec::with_capacity(9);
     for v in &rays {
         let norm_sq = v.norm_sq();
@@ -457,7 +421,6 @@ pub fn verify_d3_pythagorean_triads() -> TriadSearchReport {
         born_sums.push(s);
     }
 
-    // Rival valuation: f_rival(v) = (v.x^2 + v.z^2) / (2 * ||v||^2)
     let mut f_rival = Vec::with_capacity(9);
     for v in &rays {
         let norm_sq = v.norm_sq();
@@ -484,10 +447,7 @@ pub fn verify_d3_pythagorean_triads() -> TriadSearchReport {
     }
 }
 
-/// Bounded denominator search, divisibility, and two pole inequalities only.
-/// None fields are unestablished topology claims, not false theorems.
 pub fn verify_topological_disconnectedness() -> TopologicalObstructionReport {
-    // 1. Verify 2 * p^2 != q^2 for all 1 <= q <= 1000 using integer arithmetic (zero floats)
     let mut no_sqrt_2 = true;
     for q in 1..=1000i64 {
         let target = q * q;
@@ -501,9 +461,7 @@ pub fn verify_topological_disconnectedness() -> TopologicalObstructionReport {
         }
     }
 
-    // Arithmetic divisibility only; no field embedding or topology is constructed.
     let no_cyclotomic_sqrt_7 = 120 % 28 != 0;
-    // These two integer pole inequalities do not prove a sphere partition.
     let z_x: i64 = 0;
     let z_z: i64 = 1;
     let pole_x_in_u = 7 * z_x * z_x < 1;
@@ -525,12 +483,9 @@ fn top_obstruction_report(r: TopologicalObstructionReport) -> TopologicalObstruc
     r
 }
 
-/// Legacy name: checks four rational triads only; higher-conductor counts are zero.
 pub fn verify_higher_conductor_triads() -> HigherConductorTriadReport {
     let rep_base = verify_d3_pythagorean_triads();
 
-    // Historical six higher-conductor offers are not executable witnesses here.
-    // No higher-conductor triad is constructed by this Rust function.
     let n_higher = 0usize;
     let total = rep_base.n_triads + n_higher;
 
@@ -568,8 +523,6 @@ pub fn verify_higher_conductor_triads() -> HigherConductorTriadReport {
     }
 }
 
-/// Four conductor/discriminant calculations under a declared quadratic criterion.
-/// No topology or Gleason continuity theorem is verified.
 pub fn verify_higher_conductor_topology() -> HigherConductorTopologyReport {
     let conductors = vec![120, 240, 480, 840];
     let obs_120 = omega_number_theory::cyclotomic_field::first_missing_quadratic_prime(120, 100)
@@ -581,13 +534,11 @@ pub fn verify_higher_conductor_topology() -> HigherConductorTopologyReport {
     let obs_840 = omega_number_theory::cyclotomic_field::first_missing_quadratic_prime(840, 100)
         .expect("fixed conductor obstruction");
 
-    // 28 | 840, so sqrt(7) embeds into Q(zeta_840)
     let c840_sqrt7 = (num_bigint::BigInt::from(840)
         % omega_number_theory::cyclotomic_field::quadratic_field_conductor(
             &num_bigint::BigInt::from(7),
         ))
     .is_zero();
-    // 44 does not divide 840, so sqrt(11) does not embed into Q(zeta_840)
     let c840_sqrt11 = (num_bigint::BigInt::from(840)
         % omega_number_theory::cyclotomic_field::quadratic_field_conductor(
             &num_bigint::BigInt::from(11),
@@ -661,13 +612,10 @@ pub fn verify_meyer_vs_cyclotomic_colorability() -> MeyerColorabilityReport {
     }
 }
 
-/// Finite 33-ray linear constraints only, not a function on a dense sphere.
-/// The residual about 1/3, not the full frame function, is orthogonal to the rows.
 pub fn verify_clifton_kent_polytope() -> CliftonKentPolytopeReport {
     let peres = generate_peres_33_rays();
     let n_rays = peres.rays.len();
 
-    // 1. Triad incidence matrix A (16 x 33)
     let mut a_triads = vec![vec![Rational::zero(); n_rays]; peres.triads.len()];
     for (t_idx, t) in peres.triads.iter().enumerate() {
         for &r in t {
@@ -683,8 +631,6 @@ pub fn verify_clifton_kent_polytope() -> CliftonKentPolytopeReport {
         - 1;
     let excess_dim = affine_dim - trace1_dim;
 
-    // Evaluate every quadratic entry in the actual ordered number field, then
-    // split its two rational coordinates. The shared field handles mixed entries.
     let mut q_rows = vec![vec![Rational::zero(); n_rays]; 10];
     for (k, r) in peres.rays.iter().enumerate() {
         let norm = r
@@ -768,9 +714,6 @@ const FINITE_MODULAR_PRIMES: [usize; 7] = [2, 3, 5, 7, 11, 13, 17];
 const FINITE_ISOTROPIC_PRIMES: [usize; 3] = [5, 13, 17];
 
 impl PadicNonstandardObstructionReport {
-    /// Replay the declared finite prime witnesses. The ray (1,x) has squared
-    /// norm 1+x²=0 in F_p, so its normalized rank-one formula has zero denominator.
-    /// This establishes no p-adic or nonstandard-model claim.
     pub fn replay_finite_projector_singularity(&self) -> bool {
         self.primes_evaluated == FINITE_MODULAR_PRIMES
             && self.isotropic_primes_mod4 == FINITE_ISOTROPIC_PRIMES
@@ -805,7 +748,6 @@ fn finite_isotropic_report(roots: Vec<(usize, usize)>) -> PadicNonstandardObstru
     report
 }
 
-/// Finite modular square roots only; no p-adic or nonstandard model is built.
 pub fn verify_padic_and_nonstandard_obstructions() -> PadicNonstandardObstructionReport {
     let roots = FINITE_ISOTROPIC_PRIMES
         .into_iter()
@@ -837,16 +779,12 @@ mod tests {
 
     #[test]
     fn the_enumeration_counts_valuations_of_small_hypergraphs() {
-        // two disjoint contexts of four rays: 4 x 4 valuations
         let two_bases: [&[usize]; 2] = [&[0, 1, 2, 3], &[4, 5, 6, 7]];
         assert_eq!(count_binary_valuations(8, &two_bases), Some(16));
-        // an even cycle of pair-contexts is bipartite: exactly two valuations
         let square: [&[usize]; 4] = [&[0, 1], &[1, 2], &[2, 3], &[3, 0]];
         assert_eq!(count_binary_valuations(4, &square), Some(2));
-        // a triangle of pair-contexts has none: three rays, each context needs exactly one 1
         let triangle: [&[usize]; 3] = [&[0, 1], &[1, 2], &[2, 0]];
         assert_eq!(count_binary_valuations(3, &triangle), Some(0));
-        // no contexts: every assignment is a valuation
         assert_eq!(count_binary_valuations(3, &[]), Some(8));
         assert_eq!(count_binary_valuations(0, &[]), Some(1));
         assert_eq!(
@@ -855,8 +793,6 @@ mod tests {
         );
     }
 
-    /// The parity of the number of contexts is not a decision procedure: two disjoint
-    /// triangles have six contexts (even) and every ray in two contexts, yet no valuation.
     #[test]
     fn an_even_number_of_contexts_does_not_give_a_valuation() {
         let two_triangles: [&[usize]; 6] = [&[0, 1], &[1, 2], &[2, 0], &[3, 4], &[4, 5], &[5, 3]];

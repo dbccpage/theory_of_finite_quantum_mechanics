@@ -1,6 +1,3 @@
-//! Finite declared proposal/evaluation/admission and replay factorization.
-//! AuthorityEffect: None. Admission decisions are supplied formal table data,
-//! not authenticated credentials or permission minted by a verifier.
 use omega_category_theory::finite_history_context::run;
 use omega_category_theory::finite_moore::FiniteMoore;
 use omega_category_theory::finite_partial_structure::{
@@ -77,7 +74,6 @@ fn quotient(record_map: &[usize], record_count: usize, value_count: usize) -> So
         maps: vec![record_map.to_vec(), (0..value_count).collect()],
     }
 }
-/// Delegate the iff fiber criterion to the sovereign partial-structure owner.
 fn factor(
     values: &[usize],
     value_count: usize,
@@ -148,8 +144,6 @@ impl ProposalAdmissionModel {
     pub fn evaluation_records(&self) -> Vec<usize> {
         normalize(self.rows.iter().map(|r| r.evaluation))
     }
-    /// Coarsest joint signature retaining the specified outcome pair; it need
-    /// not retain proposal identity, credentials, state or arbitrary history.
     pub fn joint_records(&self) -> Vec<usize> {
         normalize(self.rows.iter().map(|r| (r.evaluation, r.decision)))
     }
@@ -174,8 +168,6 @@ impl ProposalAdmissionModel {
         let count = records.iter().max().map_or(0, |v| v + 1);
         self.decision_from_records(&records, count)
     }
-    /// One physical program can inspect both typed roles. This reads the
-    /// independently supplied decision; it does not derive it from evaluation.
     pub fn inspect_roles(
         &self,
         row: usize,
@@ -185,11 +177,6 @@ impl ProposalAdmissionModel {
             .map(|r| (r.evaluation, r.decision))
             .ok_or(BridgeError::InvalidRow)
     }
-    /// Apply the declared valid-and-permitted commit guard. `Admit` is a
-    /// supplied permission-table value, distinct from the actual state commit:
-    /// mutation additionally requires `Passed`. Failed/unknown evaluations or
-    /// rejected decisions preserve the current state. This guard authenticates
-    /// no grantor and does not alter the separate decision-descent criterion.
     pub fn apply_declared_admission(
         &self,
         row: usize,
@@ -213,8 +200,6 @@ pub struct HistoryModel {
     final_states: Vec<usize>,
 }
 impl HistoryModel {
-    /// The initial state and total deterministic update are declared, not
-    /// inferred from the bare datum or the record. Empty words are valid.
     pub fn new(
         machine: FiniteMoore,
         start: usize,
@@ -255,14 +240,12 @@ impl HistoryModel {
             record_count,
         )
     }
-    /// A byte commitment cannot replace this source-bound semantic comparison.
     pub fn verify_claimed_states(&self, claimed: &[usize]) -> Result<(), BridgeError> {
         if claimed != self.final_states {
             return Err(BridgeError::FalseReplay);
         }
         Ok(())
     }
-    /// Verify a purported decoder independently via the generic owner.
     pub fn verify_decoder(&self, records: &[usize], claimed: &[usize]) -> Result<(), BridgeError> {
         let q = quotient(records, claimed.len(), self.machine.state_count());
         let proposed = FinitePartialStructure {

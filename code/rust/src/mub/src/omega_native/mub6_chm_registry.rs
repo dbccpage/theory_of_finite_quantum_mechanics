@@ -1,13 +1,3 @@
-//! ENC-1147 residual ledger: charted vs uncharted 6×6 complex-Hadamard loci.
-//!
-//! Frontier §6.D requires a **machine-readable registry** of what the Omega program has
-//! actually charted versus what remains open. Catalog breadth is not a substitute for
-//! exhaustive moduli cover. This module:
-//!
-//! * enumerates **owned** chart loci with evidence pointers (code + cover artifacts);
-//! * lists **known open residual** families / classes without inventing certificates;
-//! * never claims ENC-1147 is discharged.
-//!
 
 use serde::Serialize;
 
@@ -19,22 +9,14 @@ use crate::omega_native::campaign::mub6_f6_external_b3::{
     genuine_dita_y2q2_triple_seeds, product_y2_qa_columns,
 };
 
-/// How far a locus has been admitted into the program.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
 pub enum ChartStatus {
-    /// Exact CHM (or MU-pair) construction verified over `Cyc24`.
     ExactChmDeclared,
-    /// Exact MU triple construction verified (pairwise MU).
     ExactMuTripleDeclared,
-    /// Full gauge-fixed 5-torus vector cover complete (point, δ=0).
     PointFullTorusCoverComplete,
-    /// Full gauge-fixed 5-torus cover complete under δ-neighborhood widening.
     NeighborhoodFullTorusCoverComplete,
-    /// Finite diagnostic corpus only (not a continuous chart cover).
     FiniteCorpusDiagnostic,
-    /// The historical label names a cover or census this function did not replay.
     ClaimNotReplayed,
-    /// Named residual; no Omega certificate.
     OpenResidual,
 }
 
@@ -42,11 +24,8 @@ pub enum ChartStatus {
 pub struct ChmLocusRecord {
     pub id: &'static str,
     pub kind: &'static str,
-    /// Historical chart label. A cover-complete label is not a replay of that cover.
     pub recorded_status: ChartStatus,
-    /// Status established by the mechanical checks in this function.
     pub replayed_status: ChartStatus,
-    /// Same as `replayed_status`. Readers of `status` see the replay, not the historical label.
     pub status: ChartStatus,
     pub dimension: &'static str,
     pub evidence: &'static str,
@@ -61,19 +40,16 @@ pub struct ChmRegistryReport {
     pub open_residual: Vec<ChmLocusRecord>,
     pub charted_count: usize,
     pub open_residual_count: usize,
-    /// True only if every mechanical CHM/MU check below passes.
     pub mechanical_checks_ok: bool,
     pub mechanical_check_detail: Vec<String>,
     pub terminal: &'static str,
     pub firewall: &'static str,
 }
 
-/// Build the current ENC-1147 registry from owned code + cover evidence (no fabrication).
 pub fn current_chm_registry() -> ChmRegistryReport {
     let mut checks = Vec::new();
     let mut ok = true;
 
-    // F6 grid sample: all root-of-unity points on a coarse lattice are exact CHMs.
     let mut f6_ok = true;
     for dx in [0i64, 4, 8, 12, 16, 20] {
         for dy in [0i64, 4, 8, 12, 16, 20] {
@@ -89,7 +65,6 @@ pub fn current_chm_registry() -> ChmRegistryReport {
         ok = false;
     }
 
-    // Product corpus bases are exact CHMs.
     let mut prod_ok = true;
     for c in external_b3_product_corpus()
         .into_iter()
@@ -106,7 +81,6 @@ pub fn current_chm_registry() -> ChmRegistryReport {
         ok = false;
     }
 
-    // Chirp Fourier samples.
     let mut chirp_ok = true;
     for alpha in 0..6i64 {
         if !basis_is_exact_chm(&chirp_fourier6_columns(alpha)) {
@@ -120,7 +94,6 @@ pub fn current_chm_registry() -> ChmRegistryReport {
         ok = false;
     }
 
-    // Genuine Dita seeds (Y2Q1 ∪ Y2Q2) are pairwise MU triples.
     let mut seeds_ok = true;
     for &(dx, dy) in &genuine_dita_y2q1_triple_seeds() {
         if !dita_seed_triple_is_pairwise_mu(dx, dy) {
@@ -134,7 +107,6 @@ pub fn current_chm_registry() -> ChmRegistryReport {
             checks.push(format!("seed F6({dx},{dy})+Y2Q2 not pairwise MU"));
         }
     }
-    // Y2⊗Q1 / Y2⊗Q2 are CHMs (used as B3).
     if !basis_is_exact_chm(&product_y2_qa_columns(1)) {
         seeds_ok = false;
         checks.push("Y2⊗Q1 failed exact CHM".into());
@@ -149,7 +121,6 @@ pub fn current_chm_registry() -> ChmRegistryReport {
         ok = false;
     }
 
-    // Tao S6 isolated matrix is exact CHM.
     let s6 = crate::omega_native::exact::szollosi_triad_solver::tao_s6_matrix();
     if !crate::omega_native::exact::szollosi_triad_solver::verify_chm(&s6).is_chm {
         ok = false;
@@ -327,7 +298,6 @@ pub fn current_chm_registry() -> ChmRegistryReport {
         },
     ];
 
-    // Open residual classes are **partitioned** (taxonomy v0, 2026-07-25). Naming ≠ covering.
     let open_residual = vec![
         ChmLocusRecord {
             id: "R1_F6_xy_external_B3_continuous",
@@ -439,7 +409,6 @@ pub fn current_chm_registry() -> ChmRegistryReport {
     }
 }
 
-/// Write the registry JSON under `artifacts/`.
 pub fn write_chm_registry_artifact() -> Result<std::path::PathBuf, String> {
     let report = current_chm_registry();
     if !report.mechanical_checks_ok {

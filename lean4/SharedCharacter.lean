@@ -1,32 +1,13 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import Std
 
-/-!
-Overnight shared character: N=3 pairing versus Hom(Z/3, R/Z).
 
-The leftover pairing ⟨(1/3,1/3,1/3),(1,1,1)⟩ equals the rational
-`1`. That is cohomology evaluation in `Q`.
 
-The remainder character `χ_1(1)` on `Z/3` is the residue `1`,
-i.e. the class `1/3` in `Q/Z`. It is not the pairing `1`.
 
-Shared shadow: order 3. Dual of `Z/3` is `Z/3` (equivalently
-`mu_3` after a circle embedding is imported). Not free `U(1)`.
-This file does not construct `Complex` or `exp`.
 
-AuthorityEffect: None.
--/
 
 namespace OvernightSharedCharacter
 
-/-! ## Pairing in `Q`. -/
 
 def oneThird : Rat := Rat.divInt 1 3
 
@@ -78,7 +59,6 @@ theorem three_thirds_as_divInt :
   have z3 : (3 : Int) ≠ 0 := by decide
   exact Rat.divInt_add_divInt (n₁ := 6) (n₂ := 1) (d₁ := (9 : Int)) (d₂ := (3 : Int)) z9 z3
 
-/-- Cohomology pairing of the N=3 leftover: three copies of `1/3` sum to `1` in `Q`. -/
 theorem pairing_three_thirds : oneThird + oneThird + oneThird = 1 := by
   have h27 : (27 : Nat) ≠ 0 := by decide
   calc
@@ -88,7 +68,6 @@ theorem pairing_three_thirds : oneThird + oneThird + oneThird = 1 := by
     _ = Rat.divInt 27 27 := three_thirds_as_divInt
     _ = 1 := divInt_n_over_n h27
 
-/-- Pairing `1` is not the character value `1/3`. -/
 theorem pairing_ne_oneThird : (1 : Rat) ≠ oneThird := by
   intro h
   have hiff := (Rat.eq_iff_mul_eq_mul (p := (1 : Rat)) (q := oneThird)).mp h
@@ -110,7 +89,6 @@ theorem oneThird_not_integer : ¬ IsIntegerRat oneThird := by
   have : (3 : Nat) = 1 := hden.symm.trans h
   exact (by decide : (3 : Nat) ≠ 1) this
 
-/-! ## Remainder characters `Hom(Z/n, R/Z)`. No `pi`. -/
 
 def charEval (n k g : Nat) : Nat := (k * g) % n
 
@@ -126,10 +104,8 @@ theorem charEval_killed_by_n {n k : Nat} (_hn : 0 < n) :
     charEval n k n = 0 := by
   simp [charEval]
 
-/-- Three remainder characters on `Z/3`. Not `U(1)`. -/
 theorem three_remainder_characters : List.length [0, 1, 2] = 3 := rfl
 
-/-! ## Scope fence. -/
 
 structure ScopeBoundary where
   pairingIsOne : Bool
@@ -168,3 +144,6 @@ theorem scope_boundary_refuses_kills :
 #print axioms scope_boundary_refuses_kills
 
 end OvernightSharedCharacter
+
+private def l5aProvenance : String :=
+  "Origin: lean4/SharedCharacter.lean Claim: oneThird_num_den AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

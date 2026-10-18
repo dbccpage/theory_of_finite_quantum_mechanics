@@ -1,8 +1,3 @@
-/-
-  Root module for the GR-002 finite formalization package.
-  Importing this module elaborates every module listed in the package inventory.
-  AuthorityEffect: None.
--/
 
 import GR002.HodgeDiracSUSY
 import GR002.HodgeSplitC3

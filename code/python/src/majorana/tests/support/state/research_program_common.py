@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/research_program_common.rs
-# Rust sha256: aba4ee6496b31666e82fea67b001f8e52ccea27c7fcdc2c4c141bfffa65fd9b0
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -99,6 +95,5 @@ def validate(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

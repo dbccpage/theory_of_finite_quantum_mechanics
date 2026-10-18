@@ -1,6 +1,3 @@
-//! Supplied source-graph and finite-prefix fidelity, with independent permission.
-//! Domain algorithms live in omega_solvers. StepTrace retains occurrence order;
-//! neither a serialized trace nor any source/hash tag certifies its semantics.
 use crate::types::AuthorityEffect;
 use omega_replay::StepTrace;
 use omega_solvers::data_computation_carrier::{
@@ -25,8 +22,6 @@ impl From<ComputationError> for BridgeError {
     }
 }
 
-/// Actual admitted graph instances over two explicitly interpreted opaque data.
-/// The relation itself is source data; closed-world truth decoding is supplied.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SourceBooleanPacket {
@@ -152,7 +147,6 @@ pub struct CheckedMachinePacket {
     state_ids: BTreeMap<String, usize>,
     symbol_ids: BTreeMap<String, usize>,
 }
-/// Internal immutable ordered occurrences; repeated equal configurations stay.
 pub struct CheckedPrefix {
     trace: StepTrace<NamedConfiguration>,
     bound: usize,

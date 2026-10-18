@@ -1,8 +1,3 @@
-//! Exact finite bi-crossed product Hopf algebra and matched pairs.
-//!
-//! Origin: papers/derivations/general_relativity/rust/src/bi_crossed_product.rs
-//! Claim: DERIV-GR-BICROSSED-001
-//! AuthorityEffect: None.
 
 use num_rational::Ratio;
 use num_traits::{One, Zero};
@@ -16,15 +11,12 @@ pub enum BiCrossedError {
     CompatibilityViolation { detail: String },
 }
 
-/// A finite matched pair of Lie algebras (g, h) forming a bi-crossed product g ⋈ h.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BiCrossedProduct {
     pub dim_g: usize,
     pub dim_h: usize,
     pub label: String,
-    /// Structure constants for g: [e_i, e_j] = sum_k c_{ij}^k e_k
     pub c_g: BTreeMap<(usize, usize, usize), Ratio<i64>>,
-    /// Structure constants for h: [f_a, f_b] = sum_c c_{ab}^c f_c
     pub c_h: BTreeMap<(usize, usize, usize), Ratio<i64>>,
 }
 
@@ -49,7 +41,6 @@ impl BiCrossedProduct {
         self.c_h.insert((b, a, c), -val);
     }
 
-    /// Verifies the Jacobi identity for Lie algebra g over exact rationals.
     pub fn verify_jacobi_g(&self) -> Result<(), BiCrossedError> {
         for i in 0..self.dim_g {
             for j in 0..self.dim_g {
@@ -91,7 +82,6 @@ mod tests {
     #[test]
     fn heisenberg_algebra_jacobi() {
         let mut bp = BiCrossedProduct::new(3, 0, "heisenberg");
-        // [e0, e1] = e2
         bp.set_bracket_g(0, 1, 2, Ratio::new(1, 1));
         assert!(bp.verify_jacobi_g().is_ok());
     }

@@ -1,9 +1,3 @@
-//! Target Q2 Degree-4 / Symmetry-Reduced Moment SDP Solver.
-//!
-//! Evaluates exact rational degree-4 moment relaxations and symmetry-reduced
-//! projector SDPs for MUB(6) candidate completions.
-//!
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -24,7 +18,6 @@ pub const SCOPE_STRING: &str = "degree4_symmetry_reduced_moment_relaxation_quadr
 pub const DEG4_INVARIANT_DIM: usize = 17;
 pub const DEG4_EXTENDED_DIM: usize = 31;
 
-/// Construct the 17x17 S_6-invariant Degree-4 moment matrix M_4^{inv}(G) over BigRational.
 pub fn build_degree4_invariant_moment_matrix(
     g: &[Vec<Cyc24>],
 ) -> Result<Vec<Vec<BigRational>>, String> {
@@ -39,10 +32,8 @@ pub fn build_degree4_invariant_moment_matrix(
     let n = DEG4_INVARIANT_DIM;
     let mut m4 = vec![vec![BigRational::zero(); n]; n];
 
-    // 1. Base identity <1>
     m4[0][0] = BigRational::one();
 
-    // 2. Linear projector sums A_a (indices 1..4)
     for a in 0..NUM_BASES {
         let idx_a = 1 + a;
         m4[0][idx_a] = BigRational::one();
@@ -69,7 +60,6 @@ pub fn build_degree4_invariant_moment_matrix(
         }
     }
 
-    // 3. Projector pairs P_{ab} (indices 5..10) and Q_{ab} (indices 11..16)
     for (p_idx, &(a, b)) in pairs.iter().enumerate() {
         let idx_p = 5 + p_idx;
         let idx_q = 11 + p_idx;
@@ -95,13 +85,11 @@ pub fn build_degree4_invariant_moment_matrix(
         let exp_p = &sixth * &diag_mod_sq;
         let exp_q = &sixth * &off_mod_sq;
 
-        // Moments with 1
         m4[0][idx_p] = exp_p.clone();
         m4[idx_p][0] = exp_p.clone();
         m4[0][idx_q] = exp_q.clone();
         m4[idx_q][0] = exp_q.clone();
 
-        // Moments with A_a and A_b
         m4[1 + a][idx_p] = exp_p.clone();
         m4[idx_p][1 + a] = exp_p.clone();
         m4[1 + b][idx_p] = exp_p.clone();
@@ -112,16 +100,13 @@ pub fn build_degree4_invariant_moment_matrix(
         m4[1 + b][idx_q] = exp_q.clone();
         m4[idx_q][1 + b] = exp_q.clone();
 
-        // Diagonal moments <P_{ab}^2> and <Q_{ab}^2>
         m4[idx_p][idx_p] = exp_p;
         m4[idx_q][idx_q] = exp_q;
 
-        // Cross-term <P_{ab} Q_{ab}> = 0
         m4[idx_p][idx_q] = BigRational::zero();
         m4[idx_q][idx_p] = BigRational::zero();
     }
 
-    // 4. Cross-pair interactions
     for (p1, &(a1, b1)) in pairs.iter().enumerate() {
         for (p2, &(a2, b2)) in pairs.iter().enumerate() {
             if p1 < p2 {
@@ -141,7 +126,6 @@ pub fn build_degree4_invariant_moment_matrix(
     Ok(m4)
 }
 
-/// Construct the 31x31 Degree-4 Extended Moment Matrix M_4^{ext}(G) over BigRational.
 pub fn build_degree4_extended_moment_matrix(
     g: &[Vec<Cyc24>],
 ) -> Result<Vec<Vec<BigRational>>, String> {
@@ -157,7 +141,6 @@ pub fn build_degree4_extended_moment_matrix(
     let mut m4 = vec![vec![BigRational::zero(); n]; n];
     let sixth = BigRational::new(1.into(), 6.into());
 
-    // 1. 25x25 Degree-2 block
     m4[0][0] = BigRational::one();
     for idx in 0..GRAMIAN_DIM {
         m4[0][idx + 1] = sixth.clone();
@@ -186,7 +169,6 @@ pub fn build_degree4_extended_moment_matrix(
         }
     }
 
-    // 2. Pair blocks P_{ab} (indices 25..30)
     for (p_idx, &(a, b)) in pairs.iter().enumerate() {
         let col_p = 25 + p_idx;
         let mut diag_mod_sq = BigRational::zero();
@@ -215,8 +197,8 @@ pub use crate::omega_native::exact::dual_witness::DualWitnessRational;
 pub fn build_invariant_dual_witness_x0(strict: bool) -> DualWitnessRational {
     let mut z = vec![BigRational::zero(); DEG4_INVARIANT_DIM];
     z[0] = BigRational::from_integer((-1).into());
-    z[1] = BigRational::one(); // A_0
-    z[4] = BigRational::one(); // A_3
+    z[1] = BigRational::one();
+    z[4] = BigRational::one();
 
     let mut vectors = vec![z];
     let mut weights = vec![BigRational::one()];
@@ -270,9 +252,6 @@ pub fn build_extended_dual_witness_s6(strict: bool) -> DualWitnessRational {
     }
 }
 
-// ==============================================================================
-// Master Degree-4 Certificate
-// ==============================================================================
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DualWitnessReceipt {
@@ -312,7 +291,6 @@ pub struct MubDegree4Certificate {
 }
 
 pub fn solve_target_q2_degree4_certificate() -> Result<MubDegree4Certificate, String> {
-    // 1. Candidate A: X = 0 on 17x17 invariant moment matrix
     let g_diag = build_block_diagonal_gramian();
     let m4_inv_diag = build_degree4_invariant_moment_matrix(&g_diag)?;
 
@@ -335,7 +313,6 @@ pub fn solve_target_q2_degree4_certificate() -> Result<MubDegree4Certificate, St
         pivots: pivots_x0.iter().map(|p| p.to_string()).collect(),
     };
 
-    // 2. Candidate B: Synthetic S_6 on 31x31 extended moment matrix
     let g_synth = canonical_quad_gramian();
     let m4_ext_synth = build_degree4_extended_moment_matrix(&g_synth)?;
 

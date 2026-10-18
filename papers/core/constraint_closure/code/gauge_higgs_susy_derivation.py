@@ -26,7 +26,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-# Add ooutwire_docs to sys.path if universe_anomalonica is not on python path
 try:
     from universe_anomalonica.omega_engine.type.refusal import Refusal, Result
     from universe_anomalonica.omega_engine.type.witness import IdentityWitness
@@ -136,7 +135,6 @@ def run_full_gauge_higgs_susy_derivation(
     higgs = derive_higgs_potential(mu2=(vev_gev * 0.5) ** 2, lam=0.25)
     susy_tev = compute_susy_saturation_scale(vev_gev)
 
-    # l1_distance is a heuristic relative deviation from the hardcoded 88.56 target, not a cochain quotient
     l1_distance = abs(susy_tev - 88.56) / 88.56
 
     payload_str = f"historical_ansatz:{gauge_group_str}:{higgs.vev_gev}:{susy_tev}"
@@ -148,7 +146,7 @@ def run_full_gauge_higgs_susy_derivation(
         payload_hash=real_payload_hash,
         source_layer="SimplicialComplex",
         target_layer="GaugeGroup",
-        is_valid=False,  # Explicitly uncertified: historical ansatz demonstration
+        is_valid=False,
     )
 
     res = GaugeHiggsSUSYResult(

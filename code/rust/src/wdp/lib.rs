@@ -1,48 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! # Omega WDP (Witnessed Difference Programme)
-//!
-//! Foundational mathematics of the Witnessed Difference Programme:
-//! Finite Obstruction Calculus, exact rational dual-certified cochains,
-//! Moore behavioral quotients, presheaves, and connections to HoTT,
-//! Higher Category Theory, Simplicial Homology, and Quantum Mechanics.
-//!
-//! Under Anomalon and CODA doctrine:
-//! - All mathematical derivations and certificates carry `AuthorityEffect::None`.
-//! - Discrete exactness is guaranteed using `num_rational::BigRational` for all cochains
-//!   and carriers; there is no bounded-width rational type in this crate.
-//! - Engine mathematics is not re-implemented here. Φ₁ (with its primal-dual
-//!   certificate), Γ₂ and the exact trichotomy belong to `omega_functional`;
-//!   coboundary matrices, the chain law and Betti numbers to `omega_homology`;
-//!   exact rank to `omega_linear_algebra`. This crate presents WDP carriers to them.
-//! - [`genesis_questions`] binds protected questions, minimal report quotients,
-//!   local report gluing, and exact information to replayed native histories.
-//!   It is the first finite kernel of the working programme named `?`.
-//! - Source-23 root normalization and its complete gradient/renaming key belong
-//!   to `linear_algebra::gauge_pair_table`. [`genesis_gauge_result`] preserves
-//!   the source's raw tables, observations and atomic raising histories.
-//! - [`genesis_marked_result`] supplies source-25 fillings to the shared raw/gauge
-//!   decoration owners under one writing and delegates balance arithmetic to
-//!   the checked D_F/d0 owner. Carrier edits retain complete raw representatives.
-//! - This crate is the single Rust WDP layer. It holds the CODA nine-stage
-//!   runtime and its Q policy ([`coda`], [`coda::q`]), the Discrete Deformation
-//!   Calculus ([`ddc`]), the Prime algorithms ([`prime_algos`]) and the CODA-bound
-//!   solver orchestration ([`solver_of_solvers`], [`phi1_coda_adapter`],
-//!   [`carrier_binding`], [`phi1_d_sel`]). Generic mathematics leaves this crate
-//!   for its math owner over time; no math owner depends on this crate.
-//! - [`coda::diagnostic_routing`] is CODA's replayed mathematical profile;
-//!   [`prime_algos::finite_routing`] is Prime's finite lift/guard/terminal profile;
-//!   [`path_kernel_gluing`] delegates to LGGR's exact matrix path kernels. These
-//!   profiles do not substitute for operational continuation/authority gates.
-//! - Root W (relational primitive difference, carrier symmetries, memory retention) and
-//!   Root P (simplicial complex, cochain evaluation, quotient defects) are strictly demarcated.
-//! - The quantum-mechanics route is finite and exact over Q and Q(i), each module a
-//!   declared presentation, none a derivation of quantum theory:
-//!   [`stochastic_package`] (`WDP-CH18-P07`, `P08`), [`empirical_adapter`]
-//!   (`WDP-CH19-P02`, `P06`, `P07`, and the CHSH fixtures of `P05`: the PR-box run
-//!   table, the global run tables and the `PairwiseBox` presentation),
-//!   [`composition`] (`WDP-CH19-P08` to `P10`, and the PR-box fixture of `P05`),
-//!   [`amplitude_bridge`] (`WDP-CH19-P11`, `P12`) and [`instrument_adapter`]
-//!   (`WDP-CH19-P13`, `P14`).
 
 pub mod amplitude_bridge;
 pub mod authority_gap;
@@ -90,19 +45,14 @@ pub mod wdp_source_packet;
 pub mod witnessed_reasoning;
 pub mod witnessed_reasoning_replay;
 
-/// CODA-bound solver orchestration over `omega_solvers` and `coda::coda_gtla`.
 pub mod carrier_binding;
-/// CODA (Calculus of Obstruction, Descent, and Authority): nine-stage finite runtime and Q policy.
 pub mod coda;
-/// DDC (Discrete Deformation Calculus): operational trace alphabet, degree tower and finite Lambda ledger.
 pub mod ddc;
 pub mod phi1_coda_adapter;
 pub mod phi1_d_sel;
-/// Prime algorithms: Prime -1 candidate, Prime 000 admission, Prime 001 transport, Prime 002 continuation.
 pub mod prime_algos;
 pub mod solver_of_solvers;
 
-// Re-export primary types for ease of sovereign consumption
 pub use amplitude_bridge::{
     half_exponent_obstruction, readout_quadratic, readout_quartic, same_up_to_common_phase, u_pow,
     u_power_is_never_one, unit_phase, unit_square_root, Amplitude, EdgePath,
@@ -197,7 +147,6 @@ mod tests {
 
     #[test]
     fn test_end_to_end_wdp_foundations() {
-        // 1. Primitive Difference & Carrier
         let carrier = Carrier::new(vec!["p0", "p1", "p2"]).unwrap();
         assert_eq!(carrier.size(), 3);
         assert_eq!(primitive_difference("p0", "p0"), DifferenceOutcome::Same);
@@ -206,12 +155,10 @@ mod tests {
             DifferenceOutcome::Different
         );
 
-        // 2. Moore Behavioral Quotient on CM1
         let cm1 = make_cm1_static_carrier();
         let (num_blocks, _) = compute_behavioral_quotient(&cm1).unwrap();
         assert_eq!(num_blocks, 2);
 
-        // 3. Exact Simplex and Duality Gap Certification (omega_functional)
         let v = BTreeSet::from(["a".to_string(), "b".to_string(), "c".to_string()]);
         let e = vec![
             ("a".to_string(), "b".to_string()),
@@ -229,12 +176,10 @@ mod tests {
             .unwrap();
         let cert = solve_exact_phi1(&space, &complex.cochain_vector(&cochain).unwrap()).unwrap();
         assert_eq!(cert.value(), &q(3));
-        // Zero duality gap: the exported primal-dual witness replays.
         let replayed =
             Phi1Functional::verify_exact_certificate(cert.certificate().clone()).unwrap();
         assert_eq!(replayed.value(), &q(3));
 
-        // 4. Sheaf Descent
         let sieve_carrier = BTreeSet::from(["x0".to_string(), "x1".to_string()]);
         let contexts = BTreeMap::from([(
             "U0".to_string(),
@@ -251,7 +196,6 @@ mod tests {
         let descent = solve_observer_descent(&sieve, &[sec]).unwrap();
         assert!(descent.is_compatible);
 
-        // 5. Homology Betti Numbers (omega_homology)
         let betti = KanSimplicialComplex::from_wdp_complex(&complex)
             .unwrap()
             .complex
@@ -259,7 +203,6 @@ mod tests {
             .unwrap();
         assert_eq!(betti, vec![1, 1]);
 
-        // 6. Cabello 18-ray Contextuality Parity Witness
         let cabello = verify_cabello_18ray_parity();
         assert!(cabello.is_parity_obstructed);
         assert_eq!(cabello.authority_effect, AuthorityEffect::None);
@@ -267,12 +210,10 @@ mod tests {
 
     #[test]
     fn test_w10_to_w18_atlas_derivations() {
-        // W10: Primitive Axiomatics
         let mut kernel =
             GenesisAdmissionKernel::new(BTreeSet::from(["x".to_string(), "y".to_string()]));
         assert!(kernel.admit_difference("x", "y", "token").is_ok());
 
-        // W11: Fenchel-Rockafellar Duality
         let w_complex = WeightedComplex::new(
             vec!["0".to_string(), "1".to_string()],
             vec![("0".to_string(), "1".to_string())],
@@ -282,14 +223,12 @@ mod tests {
         assert!(fenchel.phi1().value().is_zero());
         Phi1Functional::verify_exact_certificate(fenchel.phi1().certificate().clone()).unwrap();
 
-        // W12: LGGR Path Kernel Gluing Counterexample
         let (lggr_graph, cycle) = generate_canonical_lggr_counterexample();
         let (local_g, _) = lggr_graph.check_local_green(qr(1, 2)).unwrap();
         assert!(local_g);
         let (global_g, _) = lggr_graph.check_global_cycle(&cycle, qr(1, 10)).unwrap();
-        assert!(!global_g); // LGGR Anomaly!
+        assert!(!global_g);
 
-        // W13: Chromatic Obstruction Index
         let sys = ChromaticConstraintSystem {
             vertices: vec!["0".into(), "1".into(), "2".into()],
             edges: vec![
@@ -302,7 +241,6 @@ mod tests {
         };
         assert_eq!(sys.evaluate(8, 24).unwrap().minimum.violated_edges.len(), 1);
 
-        // W14: PO-000 exact first-order projection diagnostics.
         let p =
             linear_algebra::backend::basic_matrix::BasicMatrix::from_row_major(1, 1, vec![q(1)])
                 .unwrap();
@@ -319,22 +257,18 @@ mod tests {
         let bounds = problem.evaluate().unwrap();
         assert!(problem.verify(&bounds).unwrap());
 
-        // W15: Quantum Density Stalks & Classical Shadow
         let rho = QuantumDensityStalk::maximally_mixed(2).unwrap();
         assert!(rho.is_valid_density_matrix());
         let shadow = rho.classical_population_shadow();
         assert_eq!(shadow, vec![qr(1, 2), qr(1, 2)]);
 
-        // W16: Polyhedral Gauge
         let gauge = ConvexPolyhedralGauge::standard_l1(2);
         assert_eq!(gauge.evaluate(&[q(1), q(-2)]), q(3));
 
-        // W17: Triangle Separation Anomaly
         let (l11, j21, anomaly) = verify_triangle_separation_anomaly();
         assert!(anomaly);
         assert!(j21 < l11);
 
-        // W18: Countermodels CE1-CE5
         let ce_results = evaluate_countermodels_ce1_to_ce5();
         assert_eq!(ce_results.len(), 5);
         for (_, passes) in ce_results {
@@ -383,23 +317,11 @@ pub mod genesis_report_runtime;
 pub mod genesis_realification_adapter;
 pub mod meron_field_adapter;
 
-/// Appendix X: calibrated interval reports, recovery-or-abstention and robust
-/// observation cost.
 pub mod calibrated_reports;
-/// Appendix T: WDP-DIM-1 / WDP-DIM-R sharp observer completion with distinct
-/// realization and repair images.
 pub mod distinct_image_completion;
-/// Appendix Y: joint report supports for shared affine error, with the
-/// critical-value finite cost witness handed to `observation_cost`.
 pub mod joint_support_recovery;
-/// §14.6–14.7: complete fixed/adaptive priced-observation certificates
-/// (native port of the paper's `finite_observation` reference).
 pub mod observation_cost;
 
 pub mod genesis_translation;
 
-// Retained paper controls are private test modules, not runtime APIs.
-#[cfg(test)]
-#[path = "derivation_controls/mod.rs"]
-mod paper_derivation_controls;
 pub mod application_kernel;

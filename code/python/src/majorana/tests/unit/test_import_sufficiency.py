@@ -125,9 +125,6 @@ def covered_count(pkg: SufficiencyPackage) -> int:
     return sum(1 for t in REQUIRED_TARGETS if pathway_covered(pkg, t))
 
 
-# ---------------------------------------------------------------------------
-# Sealed sufficiency design outline (A1 / SUF-SEALED-THEOREM)
-# ---------------------------------------------------------------------------
 
 
 class SealedStatus(str, Enum):
@@ -253,7 +250,6 @@ def sealed_design(t: RecoveryTarget) -> SealedObligation:
 
 SEALED_DESIGN = {t: sealed_design(t) for t in REQUIRED_TARGETS}
 
-# Global seal flag — remains open under the design outline.
 FULL_SUFFICIENCY_CLOSED = False
 FULL_OPS_SUFFICIENCY_PATHWAY_PACKAGE_TOY = True
 
@@ -479,7 +475,6 @@ def test_sealed_sufficiency_design_package():
     assert FULL_SUFFICIENCY_CLOSED is False
 
 
-# --- B7 independence handoff (W6.19 → W6.21 design bind) ---
 
 
 class IndepSlotId(str, Enum):
@@ -515,7 +510,7 @@ def required_indep_slots(t: RecoveryTarget) -> tuple[IndepSlotId, ...]:
         RecoveryTarget.T08: (IndepSlotId.NONCOMM,),
         RecoveryTarget.T09: (IndepSlotId.HERM, IndepSlotId.UNITARY),
         RecoveryTarget.T10: (IndepSlotId.L2_READOUT, IndepSlotId.BORN),
-        RecoveryTarget.T11: (),  # OB-U1 coupled — not on B7 ledger
+        RecoveryTarget.T11: (),
         RecoveryTarget.T12: (IndepSlotId.UNITARY, IndepSlotId.CONT_TIME),
         RecoveryTarget.T13: (IndepSlotId.NONCOMM,),
         RecoveryTarget.T14: (IndepSlotId.NONCOMM, IndepSlotId.L2_READOUT),

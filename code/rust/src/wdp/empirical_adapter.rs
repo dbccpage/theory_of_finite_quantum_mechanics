@@ -1,47 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Chapter 19: the empirical adapter from run tables to compatible models, and its
-//! tolerant version. Executable finite evidence for `WDP-CH19-P02`, `WDP-CH19-P06`
-//! and `WDP-CH19-P07`, and the CHSH fixtures of `WDP-CH19-P05`; the residual
-//! `WDP-CH19-O01` is the tolerance policy itself.
-//!
-//! A [`MeasurementCover`] declares measurements `0..m`, outcomes `0..k` and contexts
-//! (sorted sets of measurements read together). A [`RunTable`] lists, for each context,
-//! recorded runs: the outcome assignment of the context's measurements, aligned with the
-//! context order. A section over a set of measurements is an outcome vector aligned with
-//! that set in increasing measurement order.
-//!
-//! - [`frequencies`] normalizes the run multiplicities of every context. A context with
-//!   no runs is refused as [`AdapterRefusal::EmptyContext`].
-//! - [`adapt_exact`] (`WDP-CH19-P02`) accepts exactly the tables whose context
-//!   frequencies agree on every pairwise overlap, and returns the
-//!   [`EmpiricalModel`]; the first disagreement is refused as
-//!   [`AdapterRefusal::Signalling`] with the pair and the overlap section.
-//! - [`signalling_defect`] is the L1 distance `D_ij` between the two overlap marginals of
-//!   every pair `i < j`; an empty overlap has marginal one on both sides, so `D_ij = 0`.
-//! - [`adapt_tolerant`] (`WDP-CH19-P06`) accepts when every context has runs and
-//!   `max D_ij <= eps`. At `eps = 0` it accepts exactly what [`adapt_exact`] accepts. If
-//!   every context frequency vector is within `eps` in L1 of one compatible model, then
-//!   `D_ij <= 2 eps` for every pair ([`l1_distance_to_model`]).
-//! - [`two_context_repair`] (`WDP-CH19-P07`): for exactly two contexts, replacing both
-//!   overlap marginals by their average moves each context by exactly `D / 2` in L1, so a
-//!   compatible model within `eps` per context exists exactly when `D <= 2 eps`.
-//!
-//! The tolerance `eps` is a declared policy, not derived; acceptance under `eps > 0` is
-//! not compatibility and confers no standing (`WDP-CH19-O01` stays open).
-//!
-//! [`has_positive_global_assignment`](EmpiricalModel::has_positive_global_assignment) is
-//! the support-level test: some assignment of all measurements has positive probability in
-//! every context. If none does, no joint distribution reproduces the model (the model is
-//! strongly contextual). If one does, that is necessary and not sufficient for a joint
-//! distribution: the test never certifies noncontextuality.
-//!
-//! The CHSH fixtures ([`chsh_cover`], [`pr_box_run_table`], [`global_run_table`]) are
-//! presented to `omega_quantum_physics`'s `PairwiseBox` ([`chsh_pairwise_box`]), and
-//! [`chsh_correlator`] and [`chsh_value`] are its `correlator` and `chsh`.
-//!
-//! Enumerating global assignments is capped by [`MAX_ASSIGNMENTS`] and a cover by
-//! [`MAX_MEASUREMENTS`]; [`EmpiricalModel::positive_global_assignments_with_limit`] takes
-//! the cap as an argument.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -54,22 +10,16 @@ use crate::error::WdpError;
 use crate::stochastic_package::bounded_power;
 use crate::types::AuthorityEffect;
 
-/// Outcomes of measurements, aligned with an increasing list of measurement ids.
 pub type Section = Vec<usize>;
 
-/// A finitely supported distribution over sections; only positive weights are stored.
 pub type SectionDistribution = BTreeMap<Section, BigRational>;
 
-/// Signalling defects `D_ij` keyed by the context pair `(i, j)`, `i < j`.
 pub type PairDefects = Vec<((usize, usize), BigRational)>;
 
-/// Cap on enumerated global assignments.
 pub const MAX_ASSIGNMENTS: usize = 1_000_000;
 
-/// Cap on the measurements of a cover.
 pub const MAX_MEASUREMENTS: usize = 1_000_000;
 
-/// The overlap section on which two contexts disagree, with both weights.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 #[error(
     "contexts {i} and {j} disagree on overlap section {overlap_section:?}: {weight_i} against {weight_j}"
@@ -82,7 +32,6 @@ pub struct SignallingWitness {
     pub weight_j: BigRational,
 }
 
-/// The first pair whose marginal defect exceeds the declared tolerance.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 #[error(
     "contexts {i} and {j} have marginal defect {defect} above tolerance {eps} on overlap {overlap:?}"
@@ -95,8 +44,6 @@ pub struct ToleranceWitness {
     pub overlap: Vec<usize>,
 }
 
-/// Typed refusals of the empirical adapters. The witnesses are boxed: they carry exact
-/// rationals, and a refusal is the rare path.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum AdapterRefusal {
     #[error("context {0} has no runs")]
@@ -107,14 +54,11 @@ pub enum AdapterRefusal {
     ToleranceExceeded(Box<ToleranceWitness>),
     #[error("invalid input: {detail}")]
     InvalidInput { detail: String },
-    /// A crate error other than plain invalid input, carried intact.
     #[error("crate refusal: {0}")]
     Wdp(#[source] Box<WdpError>),
 }
 
 impl From<WdpError> for AdapterRefusal {
-    /// Plain invalid input keeps its shape; a wrapped adapter refusal is unwrapped;
-    /// every other crate error is carried whole in [`AdapterRefusal::Wdp`].
     fn from(error: WdpError) -> Self {
         match error {
             WdpError::InvalidInput { detail } => AdapterRefusal::InvalidInput { detail },
@@ -128,7 +72,6 @@ fn invalid(detail: String) -> AdapterRefusal {
     AdapterRefusal::InvalidInput { detail }
 }
 
-/// Declared measurements, outcome set and contexts.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MeasurementCover {
     measurements: usize,
@@ -137,9 +80,6 @@ pub struct MeasurementCover {
 }
 
 impl MeasurementCover {
-    /// Measurements `0..measurements` (at most [`MAX_MEASUREMENTS`]), outcomes
-    /// `0..outcomes`, and at least one context, each a nonempty strictly increasing list of
-    /// measurement ids.
     pub fn new(
         measurements: usize,
         outcomes: usize,
@@ -191,13 +131,10 @@ impl MeasurementCover {
         &self.contexts
     }
 
-    /// The increasing measurement ids shared by contexts `i` and `j`, or `None` when an
-    /// index is out of range.
     pub fn overlap(&self, i: usize, j: usize) -> Option<Vec<usize>> {
         (i < self.contexts.len() && j < self.contexts.len()).then(|| self.overlap_unchecked(i, j))
     }
 
-    /// The overlap of two contexts whose indices the caller has already bounded.
     fn overlap_unchecked(&self, i: usize, j: usize) -> Vec<usize> {
         let cj = &self.contexts[j];
         self.contexts[i]
@@ -208,16 +145,12 @@ impl MeasurementCover {
     }
 }
 
-/// Recorded runs: for each context, a list of outcome assignments aligned with the context.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RunTable {
     runs: Vec<Vec<Section>>,
 }
 
 impl RunTable {
-    /// A table against `cover`: one run list per context, every run aligned with its
-    /// context and with outcomes below the cover's outcome count. Empty run lists are
-    /// allowed here and refused by the adapters.
     pub fn new(cover: &MeasurementCover, runs: Vec<Vec<Section>>) -> Result<Self, WdpError> {
         check_runs(cover, &runs)?;
         Ok(Self { runs })
@@ -228,8 +161,6 @@ impl RunTable {
     }
 }
 
-/// Whether `runs` has one list per context of `cover`, every run aligned with its context
-/// and with outcomes below the cover's outcome count.
 fn check_runs(cover: &MeasurementCover, runs: &[Vec<Section>]) -> Result<(), WdpError> {
     let bad = |detail: String| WdpError::InvalidInput { detail };
     if runs.len() != cover.contexts.len() {
@@ -259,7 +190,6 @@ fn check_runs(cover: &MeasurementCover, runs: &[Vec<Section>]) -> Result<(), Wdp
     Ok(())
 }
 
-/// The restriction of a section over `context` to the measurement ids `onto`.
 fn restrict(context: &[usize], section: &[usize], onto: &[usize]) -> Section {
     onto.iter()
         .filter_map(|id| context.iter().position(|c| c == id).map(|p| section[p]))
@@ -275,7 +205,6 @@ fn marginal(context: &[usize], dist: &SectionDistribution, onto: &[usize]) -> Se
     out
 }
 
-/// `sum_s |a(s) - b(s)|` over the union of supports.
 pub fn l1_distance(a: &SectionDistribution, b: &SectionDistribution) -> BigRational {
     let keys: BTreeSet<&Section> = a.keys().chain(b.keys()).collect();
     let zero = BigRational::zero();
@@ -291,7 +220,6 @@ fn check_table_shape(cover: &MeasurementCover, table: &RunTable) -> Result<(), A
     Ok(check_runs(cover, &table.runs)?)
 }
 
-/// Normalized run multiplicities per context.
 pub fn frequencies(
     cover: &MeasurementCover,
     table: &RunTable,
@@ -319,7 +247,6 @@ fn pairs(count: usize) -> impl Iterator<Item = (usize, usize)> {
     (0..count).flat_map(move |i| ((i + 1)..count).map(move |j| (i, j)))
 }
 
-/// The pair marginals over the overlap, for `i < j`, both keyed by overlap sections.
 fn pair_marginals(
     cover: &MeasurementCover,
     dists: &[SectionDistribution],
@@ -359,7 +286,6 @@ fn check_compatible(
     Ok(())
 }
 
-/// Per-context distributions that agree on every pairwise overlap.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EmpiricalModel {
     cover: MeasurementCover,
@@ -368,8 +294,6 @@ pub struct EmpiricalModel {
 }
 
 impl EmpiricalModel {
-    /// A model: one distribution per context, nonnegative, summing to one, over sections
-    /// of the right length and outcome range, and marginal-compatible on all overlaps.
     pub fn new(
         cover: MeasurementCover,
         distributions: Vec<SectionDistribution>,
@@ -428,14 +352,10 @@ impl EmpiricalModel {
         self.authority_effect
     }
 
-    /// Every assignment of all measurements whose restriction to each context has
-    /// positive probability, in lexicographic order.
     pub fn positive_global_assignments(&self) -> Result<Vec<Section>, WdpError> {
         self.positive_global_assignments_with_limit(MAX_ASSIGNMENTS)
     }
 
-    /// [`EmpiricalModel::positive_global_assignments`] refusing a cover with more than
-    /// `limit` measurements or more than `limit` assignments (`outcomes^measurements`).
     pub fn positive_global_assignments_with_limit(
         &self,
         limit: usize,
@@ -479,16 +399,11 @@ impl EmpiricalModel {
         }
     }
 
-    /// Whether some global assignment is positive in every context (support level). When
-    /// false, no joint distribution on assignments reproduces the model. When true, that
-    /// is necessary and not sufficient for one.
     pub fn has_positive_global_assignment(&self) -> Result<bool, WdpError> {
         Ok(!self.positive_global_assignments()?.is_empty())
     }
 }
 
-/// `WDP-CH19-P02`: the model of the table if every context has runs and all overlap
-/// marginals of the frequencies agree; otherwise the first refusal.
 pub fn adapt_exact(
     cover: &MeasurementCover,
     table: &RunTable,
@@ -506,7 +421,6 @@ fn defects_of(cover: &MeasurementCover, freqs: &[SectionDistribution]) -> PairDe
         .collect()
 }
 
-/// `D_ij` for every pair `i < j` in lexicographic order, zero for an empty overlap.
 pub fn signalling_defect(
     cover: &MeasurementCover,
     table: &RunTable,
@@ -514,7 +428,6 @@ pub fn signalling_defect(
     Ok(defects_of(cover, &frequencies(cover, table)?))
 }
 
-/// The frequencies of a table accepted under a declared tolerance.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TolerantModel {
     pub frequencies: Vec<SectionDistribution>,
@@ -524,10 +437,6 @@ pub struct TolerantModel {
     pub authority_effect: AuthorityEffect,
 }
 
-/// `WDP-CH19-P06`: accepts iff every context has runs and `max D_ij <= eps`; the refusal
-/// names the first pair (lexicographic) whose defect exceeds `eps`. A negative `eps` is
-/// refused as invalid input; the Lean `adaptTol` accepts any rational `eps` and, for a
-/// negative one, never accepts (`D_ii = 0 > eps`), so the two agree on every accepted table.
 pub fn adapt_tolerant(
     cover: &MeasurementCover,
     table: &RunTable,
@@ -564,7 +473,6 @@ pub fn adapt_tolerant(
     })
 }
 
-/// The L1 distance of each context's frequency vector from the model's distribution.
 pub fn l1_distance_to_model(
     frequencies: &[SectionDistribution],
     model: &EmpiricalModel,
@@ -583,7 +491,6 @@ pub fn l1_distance_to_model(
         .collect())
 }
 
-/// The section over `context` that reads `t` on `overlap` and outcome 0 elsewhere.
 fn canonical_extension(context: &[usize], overlap: &[usize], t: &[usize]) -> Section {
     context
         .iter()
@@ -591,10 +498,6 @@ fn canonical_extension(context: &[usize], overlap: &[usize], t: &[usize]) -> Sec
         .collect()
 }
 
-/// `WDP-CH19-P07`: for exactly two contexts, replaces both overlap marginals by their
-/// average `nu = (mu_1 + mu_2) / 2`, rescaling conditionals (`p'(s) = p(s) nu(t) / mu(t)`
-/// for `s` reading `t` on the overlap) and, where a context had `mu(t) = 0 < nu(t)`,
-/// putting the mass `nu(t)` on the canonical extension of `t` (outcome 0 off the overlap).
 pub fn two_context_repair(
     cover: &MeasurementCover,
     table: &RunTable,
@@ -640,14 +543,10 @@ pub fn two_context_repair(
     EmpiricalModel::new(cover.clone(), repaired)
 }
 
-/// The CHSH cover: measurements `a_0, a_1, b_0, b_1` are ids `0..4`, binary outcomes,
-/// and context `2x + y` is `{a_x, b_y}`.
 pub fn chsh_cover() -> Result<MeasurementCover, WdpError> {
     MeasurementCover::new(4, 2, vec![vec![0, 2], vec![0, 3], vec![1, 2], vec![1, 3]])
 }
 
-/// The Popescu-Rohrlich box as runs: context `(x, y)` has the two outcome pairs `(a, b)`
-/// with `a xor b = x y`, one run each.
 pub fn pr_box_run_table() -> Result<RunTable, WdpError> {
     let cover = chsh_cover()?;
     let runs = (0..2usize)
@@ -662,8 +561,6 @@ pub fn pr_box_run_table() -> Result<RunTable, WdpError> {
     RunTable::new(&cover, runs)
 }
 
-/// A table in which every run assigns all measurements and every context reads the same
-/// runs restricted to itself.
 pub fn global_run_table(
     cover: &MeasurementCover,
     assignments: &[Section],
@@ -698,8 +595,6 @@ fn require_chsh_model(model: &EmpiricalModel) -> Result<(), AdapterRefusal> {
     }
 }
 
-/// The CHSH model as `omega_quantum_physics`'s 16-coordinate `PairwiseBox`: context
-/// `(x, y)` occupies coordinates `4 (2x + y) + 2 a + b` for outcomes `a, b`.
 pub fn chsh_pairwise_box(model: &EmpiricalModel) -> Result<PairwiseBox, AdapterRefusal> {
     require_chsh_model(model)?;
     let mut coordinates = vec![BigRational::zero(); 16];
@@ -711,7 +606,6 @@ pub fn chsh_pairwise_box(model: &EmpiricalModel) -> Result<PairwiseBox, AdapterR
     PairwiseBox::new(coordinates).map_err(|e| AdapterRefusal::from(WdpError::from(e)))
 }
 
-/// `E_xy = P(a = b) - P(a != b)` of context `2x + y` of a CHSH model, by `PairwiseBox`.
 pub fn chsh_correlator(
     model: &EmpiricalModel,
     x: usize,
@@ -722,7 +616,6 @@ pub fn chsh_correlator(
         .map_err(|e| AdapterRefusal::from(WdpError::from(e)))
 }
 
-/// `E_00 + E_01 + E_10 - E_11` of a CHSH model, by `PairwiseBox`.
 pub fn chsh_value(model: &EmpiricalModel) -> Result<BigRational, AdapterRefusal> {
     Ok(chsh_pairwise_box(model)?.chsh())
 }

@@ -28,9 +28,6 @@ U = TypeVar("U")
 MAX_USIZE = sys.maxsize
 
 
-# ---------------------------------------------------------------------------
-# Errors local to numeric matrix storage.
-# ---------------------------------------------------------------------------
 
 class MatrixError(Exception):
     """Base class for numeric matrix storage errors."""
@@ -131,9 +128,6 @@ class CheckedMatrixScalarError(CheckedMatrixError):
         return f"Scalar arithmetic error: {self.error}"
 
 
-# ---------------------------------------------------------------------------
-# Checked scalar protocol.
-# ---------------------------------------------------------------------------
 
 @runtime_checkable
 class CheckedNumeric(Protocol):
@@ -160,9 +154,6 @@ class FlatIndex:
     value: int
 
 
-# ---------------------------------------------------------------------------
-# Helpers.
-# ---------------------------------------------------------------------------
 
 def checked_len(rows: int, cols: int) -> int:
     """Return rows * cols with usize-like validation."""
@@ -191,9 +182,6 @@ def _default_zero_like(example: Any = None) -> Any:
     return 0
 
 
-# ---------------------------------------------------------------------------
-# Dense row-major numeric matrix.
-# ---------------------------------------------------------------------------
 
 class CallableInt(int):
     def __call__(self) -> int:
@@ -215,14 +203,10 @@ class BasicMatrix(Generic[T]):
         expected = checked_len(int(self.rows), int(self.cols))
         if len(self.data) != expected:
             raise ShapeMismatch(int(self.rows), int(self.cols), len(self.data))
-        # Copy to protect the row-major storage boundary.
         self.data = list(self.data)
         object.__setattr__(self, "rows", CallableInt(self.rows))
         object.__setattr__(self, "cols", CallableInt(self.cols))
 
-    # ------------------------------------------------------------------
-    # Constructors.
-    # ------------------------------------------------------------------
 
     def as_slice(self) -> list[T]:
         return self.data
@@ -304,9 +288,6 @@ class BasicMatrix(Generic[T]):
             data = [z for _ in range(length)]
         return cls(rows, cols, data)
 
-    # ------------------------------------------------------------------
-    # Shape and storage.
-    # ------------------------------------------------------------------
 
     def shape(self) -> tuple[int, int]:
         return (self.rows, self.cols)
@@ -341,7 +322,6 @@ class BasicMatrix(Generic[T]):
             flat.extend(row)
         return cls.from_row_major(rows, cols, flat)
 
-    # Optional NumPy bridge. Kept intentionally semantic-free.
     def to_numpy(self, *, dtype: Any = None):
         import numpy as np
         return np.array(self.data, dtype=dtype).reshape((self.rows, self.cols))
@@ -352,7 +332,6 @@ class BasicMatrix(Generic[T]):
         if getattr(arr, "ndim", None) != 2:
             raise InvalidOperation(f"from_numpy expects a 2D array, got ndim={getattr(arr, 'ndim', None)}")
         rows, cols = int(arr.shape[0]), int(arr.shape[1])
-        # Unpack items to native python types to maintain storage boundary
         flat_data: list[Any] = []
         for r in range(rows):
             for c in range(cols):
@@ -360,9 +339,6 @@ class BasicMatrix(Generic[T]):
                 flat_data.append(cast(Any, item.item()) if hasattr(item, "item") else cast(Any, item))
         return cls.from_row_major(rows, cols, flat_data)
 
-    # ------------------------------------------------------------------
-    # Indexing.
-    # ------------------------------------------------------------------
 
     def _index(self, row: int, col: int) -> FlatIndex:
         if row < 0 or col < 0 or row >= self.rows or col >= self.cols:
@@ -387,9 +363,6 @@ class BasicMatrix(Generic[T]):
         row, col = key
         self.set(row, col, value)
 
-    # ------------------------------------------------------------------
-    # Structural transforms.
-    # ------------------------------------------------------------------
 
     def transpose(self) -> "BasicMatrix[T]":
         return BasicMatrix.from_fn(self.cols, self.rows, lambda r, c: self.get(c, r))
@@ -400,9 +373,6 @@ class BasicMatrix(Generic[T]):
     def map_with_index(self, f: Callable[[int, int, T], U]) -> "BasicMatrix[U]":
         return BasicMatrix.from_fn(self.rows, self.cols, lambda r, c: f(r, c, self.get(r, c)))
 
-    # ------------------------------------------------------------------
-    # Ordinary numeric operations.
-    # ------------------------------------------------------------------
 
     def add(self, rhs: "BasicMatrix[T]") -> "BasicMatrix[Any]":
         if self.shape() != rhs.shape():
@@ -448,9 +418,6 @@ class BasicMatrix(Generic[T]):
     def __matmul__(self, rhs: "BasicMatrix[T]") -> "BasicMatrix[Any]":
         return self.mul(rhs)
 
-    # ------------------------------------------------------------------
-    # Checked numeric operations.
-    # ------------------------------------------------------------------
 
     @staticmethod
     def _checked_add_scalar(a: Any, b: Any) -> Any:

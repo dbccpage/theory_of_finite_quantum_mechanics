@@ -1,33 +1,21 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Discrete algebraic carrier definitions for finite quantum mechanics.
-//!
-//! Formalizes the carrier domains, coefficient boundaries, and exact zero relations
-//! across exact rational, cyclotomic, and finite-field quantum representations.
 
 use serde::{Deserialize, Serialize};
 
-/// Target operational scope for finite quantum mechanical carriers.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum DiscreteCarrierScope {
-    /// Dimension 3 Maximal MUBs and Linear Inversion State Tomography (Target 22).
     Dimension3MubTomography,
-    /// Dimension 5 Discrete Gross Phase Space and Wigner Negativity (Target 13).
     Dimension5WignerPhaseSpace,
-    /// Finite Stone-von Neumann and Commutator Trace Obstruction (Target 19).
     FiniteCommutatorObstruction,
-    /// Exact Rational Pythagorean and Bell Nonlocality (Loop 4).
     RationalBellChsh,
 }
 
-/// Status of the algebraic carrier specification.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum DiscreteCarrierStatus {
     Declared,
     AlgebraicallyVerified,
 }
 
-/// Descriptive specification of an exact discrete carrier.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DiscreteQmCarrier {
     pub scope: DiscreteCarrierScope,
@@ -39,7 +27,6 @@ pub struct DiscreteQmCarrier {
     pub verified_properties: Vec<&'static str>,
 }
 
-/// Construct the carrier for Target 22: Dimension 3 Maximal MUB System and Tomography.
 pub fn carrier_d3_mub_tomography() -> DiscreteQmCarrier {
     DiscreteQmCarrier {
         scope: DiscreteCarrierScope::Dimension3MubTomography,
@@ -59,7 +46,6 @@ pub fn carrier_d3_mub_tomography() -> DiscreteQmCarrier {
     }
 }
 
-/// Construct the carrier for Target 13: Dimension 5 Discrete Wigner Phase Space.
 pub fn carrier_d5_wigner_phase_space() -> DiscreteQmCarrier {
     DiscreteQmCarrier {
         scope: DiscreteCarrierScope::Dimension5WignerPhaseSpace,
@@ -79,7 +65,6 @@ pub fn carrier_d5_wigner_phase_space() -> DiscreteQmCarrier {
     }
 }
 
-/// Construct the carrier for Target 19: Finite Commutator Trace Obstruction.
 pub fn carrier_finite_commutator_obstruction(n: usize) -> DiscreteQmCarrier {
     DiscreteQmCarrier {
         scope: DiscreteCarrierScope::FiniteCommutatorObstruction,
@@ -96,7 +81,6 @@ pub fn carrier_finite_commutator_obstruction(n: usize) -> DiscreteQmCarrier {
     }
 }
 
-/// Eisenstein integers `a + b ω` with `ω² + ω + 1 = 0`.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Eisenstein {
     pub real: i64,
@@ -130,7 +114,6 @@ impl Eisenstein {
     }
 }
 
-/// `N(zw) = N(z)N(w)` on the d=3 carrier ring, not the word `Declared`.
 pub fn d3_eisenstein_norm_holds() -> Result<i64, &'static str> {
     let z = Eisenstein { real: 2, root: -1 };
     let w = Eisenstein { real: 1, root: 3 };
@@ -151,8 +134,6 @@ pub fn d3_eisenstein_norm_holds() -> Result<i64, &'static str> {
     Ok(by_product)
 }
 
-/// Phase-space cardinality `d*d`, against a double count. The magic-state
-/// value `-1/d` equals `(1-d)/(d(d-1))`.
 pub fn d5_phase_space_holds() -> Result<(usize, i64, i64), &'static str> {
     let carrier = carrier_d5_wigner_phase_space();
     let d = carrier.dimension;
@@ -179,10 +160,6 @@ pub fn d5_phase_space_holds() -> Result<(usize, i64, i64), &'static str> {
     Ok((counted, numer, denom))
 }
 
-/// `Tr(AB) - Tr(BA)` for integer matrices of width `n`, by the product
-/// diagonal and by the Frobenius pairing `Σ A_ij B_ji`. The common gap is 0,
-/// which is not the Heisenberg value `n`. The clock-shift pairing is the
-/// same zero, because the shift has an empty diagonal.
 pub fn finite_commutator_trace(n: usize) -> Result<i64, &'static str> {
     if n == 0 || n > 12 {
         return Err("commutator dimension");

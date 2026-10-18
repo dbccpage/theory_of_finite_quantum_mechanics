@@ -47,7 +47,6 @@ MEMBERS = {
     "c3": ("a13", "a23", "a33"),
 }
 
-# false = 0 / +, true = 1 / −
 TARGET = {
     "r1": False,
     "r2": False,
@@ -122,17 +121,16 @@ class Pauli2:
         return None
 
 
-# Named Mermin–Peres square (standard two-qubit labels).
 SQUARE_OP: dict[str, Pauli2] = {
-    "a11": Pauli2(0, True, False, False, False),  # X⊗I
-    "a12": Pauli2(0, False, False, True, False),  # I⊗X
-    "a13": Pauli2(0, True, False, True, False),  # X⊗X
-    "a21": Pauli2(1, False, False, True, True),  # I⊗Y
-    "a22": Pauli2(1, True, True, False, False),  # Y⊗I
-    "a23": Pauli2(2, True, True, True, True),  # Y⊗Y
-    "a31": Pauli2(1, True, False, True, True),  # X⊗Y
-    "a32": Pauli2(1, True, True, True, False),  # Y⊗X
-    "a33": Pauli2(0, False, True, False, True),  # Z⊗Z
+    "a11": Pauli2(0, True, False, False, False),
+    "a12": Pauli2(0, False, False, True, False),
+    "a13": Pauli2(0, True, False, True, False),
+    "a21": Pauli2(1, False, False, True, True),
+    "a22": Pauli2(1, True, True, False, False),
+    "a23": Pauli2(2, True, True, True, True),
+    "a31": Pauli2(1, True, False, True, True),
+    "a32": Pauli2(1, True, True, True, False),
+    "a33": Pauli2(0, False, True, False, True),
 }
 
 
@@ -162,7 +160,7 @@ def test_quantitative_cards():
 
 def test_all_variable_incidences_even():
     for v in VARS:
-        assert incidence_parity(v) is False  # even → F2 zero
+        assert incidence_parity(v) is False
 
 
 def test_ell_target_eq_true():

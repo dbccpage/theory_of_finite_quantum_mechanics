@@ -47,7 +47,6 @@ def test_birth_schur_complement_ratio_and_inverse_exactness():
     """Validates that O(k^2) Schur complement ratio and block inverse exactly match full LU."""
     sampler = _setup_test_sampler()
 
-    # Seed with 3 initial vertices
     initial_vertices = [
         CtAuxVertex(site=1, tau=0.2, spin=1),
         CtAuxVertex(site=2, tau=0.5, spin=-1),
@@ -59,10 +58,8 @@ def test_birth_schur_complement_ratio_and_inverse_exactness():
     k = len(sampler.current_vertices)
     assert k == 3
 
-    # New candidate vertex to insert
     new_v = CtAuxVertex(site=4, tau=0.4, spin=-1)
 
-    # Compute full LU baseline
     N_up_old, N_down_old = sampler.build_N_matrices(sampler.current_vertices)
     cand_vertices = list(sampler.current_vertices) + [new_v]
     N_up_new, N_down_new = sampler.build_N_matrices(cand_vertices)
@@ -75,7 +72,6 @@ def test_birth_schur_complement_ratio_and_inverse_exactness():
     det_down_new = np.linalg.det(N_down_new)
     true_ratio_down = det_down_new / det_down_old
 
-    # Rank-1 Schur complement evaluation
     taus_exist = np.array([v.tau for v in sampler.current_vertices], dtype=float)
     sites_exist = np.array([v.site for v in sampler.current_vertices], dtype=int)
     spins_exist = np.array([v.spin for v in sampler.current_vertices], dtype=float)
@@ -90,7 +86,6 @@ def test_birth_schur_complement_ratio_and_inverse_exactness():
     )
     g0_diag = sampler.g0(new_v.site, new_v.site, 0.0)
 
-    # Spin up
     e_up_exist = np.exp(sampler.gamma * spins_exist)
     e_up_new = math.exp(sampler.gamma * new_v.spin)
     u_up = -(e_up_exist - 1.0) * g0_to_new
@@ -101,7 +96,6 @@ def test_birth_schur_complement_ratio_and_inverse_exactness():
     v_tilde_up = v_up @ sampler.M_up
     S_up = d_up - float(v_up @ u_tilde_up)
 
-    # Spin down
     e_down_exist = np.exp(-sampler.gamma * spins_exist)
     e_down_new = math.exp(-sampler.gamma * new_v.spin)
     u_down = -(e_down_exist - 1.0) * g0_to_new
@@ -112,11 +106,9 @@ def test_birth_schur_complement_ratio_and_inverse_exactness():
     v_tilde_down = v_down @ sampler.M_down
     S_down = d_down - float(v_down @ u_tilde_down)
 
-    # 1. Ratio exactness: |S - ratio_LU| < 10^-11
     assert abs(S_up - true_ratio_up) < 1e-11
     assert abs(S_down - true_ratio_down) < 1e-11
 
-    # 2. Block inverse exactness
     M_up_fast = np.empty((k + 1, k + 1), dtype=float)
     inv_S_up = 1.0 / S_up
     M_up_fast[:k, :k] = sampler.M_up + inv_S_up * np.outer(u_tilde_up, v_tilde_up)
@@ -168,14 +160,12 @@ def test_death_diagonal_ratio_and_inverse_exactness():
         true_ratio_up = np.linalg.det(N_up_rem) / det_up
         true_ratio_down = np.linalg.det(N_down_rem) / det_down
 
-        # Fast ratio is simply M[p, p]
         ratio_up_fast = sampler.M_up[p, p]
         ratio_down_fast = sampler.M_down[p, p]
 
         assert abs(ratio_up_fast - true_ratio_up) < 1e-11
         assert abs(ratio_down_fast - true_ratio_down) < 1e-11
 
-        # Fast inverse update
         idx = [i for i in range(k) if i != p]
         M_up_fast = sampler.M_up[np.ix_(idx, idx)] - (1.0 / ratio_up_fast) * np.outer(
             sampler.M_up[idx, p], sampler.M_up[p, idx]
@@ -225,7 +215,6 @@ def test_spin_flip_sherman_morrison_exactness():
         true_ratio_up = np.linalg.det(N_up_new) / det_up_old
         true_ratio_down = np.linalg.det(N_down_new) / det_down_old
 
-        # Exact rank-1 row perturbation
         sites = np.array([v.site for v in sampler.current_vertices], dtype=int)
         taus = np.array([v.tau for v in sampler.current_vertices], dtype=float)
         g0_row = np.array([sampler.g0(v_old.site, s, v_old.tau - t) for s, t in zip(sites, taus)])
@@ -244,7 +233,6 @@ def test_spin_flip_sherman_morrison_exactness():
         assert abs(lambda_up - true_ratio_up) < 1e-11
         assert abs(lambda_down - true_ratio_down) < 1e-11
 
-        # Sherman-Morrison inverse update
         w_up = delta_r_up @ sampler.M_up
         M_up_fast = sampler.M_up - (1.0 / lambda_up) * np.outer(sampler.M_up[:, p], w_up)
 
@@ -274,7 +262,6 @@ def test_fast_sampler_mcmc_trajectory_and_refresh_stability():
             accepted_count += 1
             k = len(sampler.current_vertices)
             if k > 0:
-                # Check that inverse residual stays bounded
                 N_up, N_down = sampler.build_N_matrices(sampler.current_vertices)
                 res_up = np.max(np.abs(sampler.M_up @ N_up - np.eye(k)))
                 res_down = np.max(np.abs(sampler.M_down @ N_down - np.eye(k)))
@@ -289,7 +276,6 @@ def test_speedup_benchmark_scaling():
     """Empirically validates that O(k^2) fast updates outperform full O(k^3) inversion at k >= 40."""
     sampler = _setup_test_sampler()
 
-    # Build a synthetic order-40 configuration
     k = 40
     vertices = [
         CtAuxVertex(
@@ -306,7 +292,6 @@ def test_speedup_benchmark_scaling():
     cand = list(vertices) + [new_v]
     N_up, N_down = sampler.build_N_matrices(cand)
 
-    # Benchmark Full LU inversion and determinant: O(k^3)
     num_reps = 300
     t0 = time.perf_counter()
     for _ in range(num_reps):
@@ -316,7 +301,6 @@ def test_speedup_benchmark_scaling():
         _ = np.linalg.inv(N_down)
     t_full = time.perf_counter() - t0
 
-    # Benchmark Fast Rank-1 update: O(k^2)
     u_up = np.random.randn(k)
     v_up = np.random.randn(k)
     d_up = 1.45
@@ -336,6 +320,5 @@ def test_speedup_benchmark_scaling():
     t_fast = time.perf_counter() - t0
 
     speedup = t_full / t_fast
-    # Fast updates demonstrate strictly bounded O(k^2) complexity with substantial empirical speedup
     assert speedup > 2.0, f"Expected speedup > 2.0x at k=40, observed {speedup:.2f}x"
 

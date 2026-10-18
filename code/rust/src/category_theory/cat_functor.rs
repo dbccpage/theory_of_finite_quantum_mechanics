@@ -1,188 +1,8 @@
-//! CatFunctor, ContravariantFunctor, and DeclaredFiniteFunctor.
-//!
-//! Spec references: Sections 1A, 1B, 1D, 3, 4.
-//!
-//! Laws (CatFunctor):
-//!   F(id_A) = id_{F(A)}
-//!   F(g ∘ f) = F(g) ∘ F(f)
-//!   source(F(f)) = F(source(f))
-//!   target(F(f)) = F(target(f))
-//!
-//! Laws (ContravariantFunctor):
-//!   F(id_A) = id_{F(A)}
-//!   F(g ∘ f) = F(f) ∘ F(g)   ← reversed
 
-use super::finite_category::ValidatedFiniteCategory;
 use std::collections::BTreeMap;
 
-/// Finite functor admission failures. Declarations and certificates are distinct.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum FunctorAdmissionError {
-    Name,
-    CategoryBinding,
-    MappingDomain { kind: &'static str },
-    UnknownImage { kind: &'static str, image: String },
-    Boundary { morphism: String },
-    Identity { object: String },
-    Composition { first: String, second: String },
-}
-
-/// A functor certificate owns immutable admitted endpoints and its total maps.
-/// The checker verifies both boundaries, identities, and every source composite.
-/// AuthorityEffect: None. Finite runtime verification, not a formal proof build.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct ValidatedFiniteFunctor {
-    declared: DeclaredFiniteFunctor,
-    source: ValidatedFiniteCategory,
-    target: ValidatedFiniteCategory,
-}
-
-impl ValidatedFiniteFunctor {
-    pub fn try_new(
-        declared: DeclaredFiniteFunctor,
-        source: ValidatedFiniteCategory,
-        target: ValidatedFiniteCategory,
-    ) -> Result<Self, FunctorAdmissionError> {
-        let candidate = Self {
-            declared,
-            source,
-            target,
-        };
-        candidate.check_binding()?;
-        candidate.check_maps()?;
-        candidate.check_boundaries()?;
-        candidate.check_identities()?;
-        candidate.check_compositions()?;
-        Ok(candidate)
-    }
-
-    pub fn declared(&self) -> &DeclaredFiniteFunctor {
-        &self.declared
-    }
-    pub fn source(&self) -> &ValidatedFiniteCategory {
-        &self.source
-    }
-    pub fn target(&self) -> &ValidatedFiniteCategory {
-        &self.target
-    }
-    pub fn on_object(&self, object: &str) -> Option<&str> {
-        self.declared.on_object(object)
-    }
-    pub fn on_morphism(&self, morphism: &str) -> Option<&str> {
-        self.declared.on_morphism(morphism)
-    }
-
-    fn check_binding(&self) -> Result<(), FunctorAdmissionError> {
-        if self.declared.name.trim().is_empty() {
-            return Err(FunctorAdmissionError::Name);
-        }
-        if self.declared.source_category != self.source.declared().name
-            || self.declared.target_category != self.target.declared().name
-        {
-            return Err(FunctorAdmissionError::CategoryBinding);
-        }
-        Ok(())
-    }
-
-    fn check_maps(&self) -> Result<(), FunctorAdmissionError> {
-        let source = self.source.declared();
-        let target = self.target.declared();
-        if !self.declared.object_map.keys().eq(source.objects.iter()) {
-            return Err(FunctorAdmissionError::MappingDomain { kind: "objects" });
-        }
-        if !self
-            .declared
-            .morphism_map
-            .keys()
-            .eq(source.morphisms.keys())
-        {
-            return Err(FunctorAdmissionError::MappingDomain { kind: "morphisms" });
-        }
-        check_images(
-            &self.declared.object_map,
-            |x| target.has_object(x),
-            "objects",
-        )?;
-        check_images(
-            &self.declared.morphism_map,
-            |x| target.has_morphism(x),
-            "morphisms",
-        )
-    }
-
-    fn check_boundaries(&self) -> Result<(), FunctorAdmissionError> {
-        for (name, morphism) in &self.source.declared().morphisms {
-            let image = self
-                .on_morphism(name)
-                .and_then(|n| self.target.declared().boundary_of(n));
-            let expected = self
-                .on_object(&morphism.source)
-                .zip(self.on_object(&morphism.target));
-            if image.is_none() || image != expected {
-                return Err(FunctorAdmissionError::Boundary {
-                    morphism: name.clone(),
-                });
-            }
-        }
-        Ok(())
-    }
-
-    fn check_identities(&self) -> Result<(), FunctorAdmissionError> {
-        for (object, identity) in &self.source.declared().identities {
-            let expected = self
-                .on_object(object)
-                .and_then(|n| self.target.declared().identity_of(n));
-            if self.on_morphism(identity) != expected || expected.is_none() {
-                return Err(FunctorAdmissionError::Identity {
-                    object: object.clone(),
-                });
-            }
-        }
-        Ok(())
-    }
-
-    fn check_compositions(&self) -> Result<(), FunctorAdmissionError> {
-        for ((first, second), result) in &self.source.declared().compositions {
-            let pair = self.on_morphism(first).zip(self.on_morphism(second));
-            let expected = pair.and_then(|(f, g)| self.target.declared().compose(f, g));
-            if self.on_morphism(result) != expected || expected.is_none() {
-                return Err(FunctorAdmissionError::Composition {
-                    first: first.clone(),
-                    second: second.clone(),
-                });
-            }
-        }
-        Ok(())
-    }
-}
-
-fn check_images(
-    map: &BTreeMap<String, String>,
-    contains: impl Fn(&str) -> bool,
-    kind: &'static str,
-) -> Result<(), FunctorAdmissionError> {
-    for image in map.values() {
-        if !contains(image) {
-            return Err(FunctorAdmissionError::UnknownImage {
-                kind,
-                image: image.clone(),
-            });
-        }
-    }
-    Ok(())
-}
-
-/// Composition table convention:
-/// compositions[(f, g)] = g ∘ f
 pub type CompositionTable = BTreeMap<(String, String), String>;
-// ---------------------------------------------------------------------------
-// Trait: CatFunctor (covariant)
-// ---------------------------------------------------------------------------
 
-/// A covariant functor F : C → D between categories.
-///
-/// This is the mathematical functor. It maps objects to objects and
-/// morphisms to morphisms, preserving identity and composition.
 pub trait CatFunctor {
     type Source: Category;
     type Target: Category;
@@ -196,14 +16,7 @@ pub trait CatFunctor {
     ) -> <Self::Target as Category>::Mor;
 }
 
-// ---------------------------------------------------------------------------
-// Trait: ContravariantFunctor
-// ---------------------------------------------------------------------------
 
-/// A contravariant functor F : C^op → D.
-///
-/// Maps f: A → B to F(f): F(B) → F(A).
-/// Composition is reversed: F(g ∘ f) = F(f) ∘ F(g).
 pub trait ContravariantFunctor {
     type Source: Category;
     type Target: Category;
@@ -211,20 +24,13 @@ pub trait ContravariantFunctor {
     fn map_object(&self, object: &<Self::Source as Category>::Ob)
         -> <Self::Target as Category>::Ob;
 
-    /// Maps f: A → B to F(f): F(B) → F(A).
     fn map_morphism(
         &self,
         morphism: &<Self::Source as Category>::Mor,
     ) -> <Self::Target as Category>::Mor;
 }
 
-// ---------------------------------------------------------------------------
-// Data: DeclaredFiniteFunctor (kernel-auditable record)
-// ---------------------------------------------------------------------------
 
-/// An explicit, finite functor declaration for kernel audit.
-///
-/// This is data, not behavior. Missing mappings are violations (spec §3).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredFiniteFunctor {
     pub name: String,
@@ -262,31 +68,18 @@ impl DeclaredFiniteFunctor {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Category trait (re-stated here for self-containment; canonical is
-// algebra/category/category.rs)
-// ---------------------------------------------------------------------------
 
-/// A category: objects, morphisms, identity, source, target, composition.
 pub trait Category {
     type Ob: Clone + Eq + std::fmt::Debug;
     type Mor: Clone + Eq + std::fmt::Debug;
 
-    /// Unknown identifiers are outside the category, even if the category itself
-    /// has been validated. Public lookups therefore return an admission result.
-    fn id(&self, x: &Self::Ob) -> Option<Self::Mor>;
-    fn src(&self, f: &Self::Mor) -> Option<Self::Ob>;
-    fn tgt(&self, f: &Self::Mor) -> Option<Self::Ob>;
+    fn id(&self, x: &Self::Ob) -> Self::Mor;
+    fn src(&self, f: &Self::Mor) -> Self::Ob;
+    fn tgt(&self, f: &Self::Mor) -> Self::Ob;
     fn compose(&self, f: &Self::Mor, g: &Self::Mor) -> Option<Self::Mor>;
 }
 
-// ---------------------------------------------------------------------------
-// Validation: finite functor law checkers (spec §3, §4)
-// ---------------------------------------------------------------------------
 
-/// Check identity law: F(id_A) = id_{F(A)} for all mapped objects.
-///
-/// Missing identity mappings produce violations, not silent skips (spec §3).
 pub fn check_identity_law(functor: &DeclaredFiniteFunctor) -> Vec<String> {
     let mut violations = Vec::new();
     for (src_obj, tgt_obj) in &functor.object_map {
@@ -308,13 +101,10 @@ pub fn check_identity_law(functor: &DeclaredFiniteFunctor) -> Vec<String> {
     violations
 }
 
-/// Check composition law: F(g∘f) = F(g) ∘ F(f).
-///
-/// Missing morphism mappings produce violations, not silent skips (spec §3).
 pub fn check_composition_law(
     functor: &DeclaredFiniteFunctor,
-    source_compositions: &[(&str, &str, &str)], // (f, g, g∘f) in source
-    target_compositions: &CompositionTable,     // (f, g) → g∘f in target
+    source_compositions: &[(&str, &str, &str)],
+    target_compositions: &CompositionTable,
 ) -> Vec<String> {
     let mut violations = Vec::new();
     for &(f, g, gf) in source_compositions {
@@ -351,7 +141,6 @@ pub fn check_composition_law(
     violations
 }
 
-/// Check object totality: every object in the declared source set is mapped.
 pub fn check_object_totality(
     functor: &DeclaredFiniteFunctor,
     source_objects: &[&str],
@@ -368,7 +157,6 @@ pub fn check_object_totality(
     violations
 }
 
-/// Check morphism totality: every morphism in the declared source set is mapped.
 pub fn check_morphism_totality(
     functor: &DeclaredFiniteFunctor,
     source_morphisms: &[&str],
@@ -385,11 +173,10 @@ pub fn check_morphism_totality(
     violations
 }
 
-/// Check boundary preservation: source(F(f)) = F(source(f)) and target(F(f)) = F(target(f)).
 pub fn check_boundary_preservation(
     functor: &DeclaredFiniteFunctor,
-    source_boundaries: &[(&str, &str, &str)], // (morphism, source_obj, target_obj) in source cat
-    target_boundaries: &BTreeMap<String, (String, String)>, // F(f) -> (src, tgt)
+    source_boundaries: &[(&str, &str, &str)],
+    target_boundaries: &BTreeMap<String, (String, String)>,
 ) -> Vec<String> {
     let mut violations = Vec::new();
 
@@ -465,7 +252,6 @@ mod tests {
     fn declared_finite_functor_missing_mapping_is_violation() {
         let mut f = DeclaredFiniteFunctor::new("F", "C", "D");
         f.map_object("A", "X");
-        // id_A is not mapped — this must be a violation, not silent skip
         let violations = check_identity_law(&f);
         assert_eq!(violations.len(), 1);
         assert!(violations[0].contains("not defined"));
@@ -475,7 +261,6 @@ mod tests {
     fn composition_law_missing_mapping_is_violation() {
         let mut f = DeclaredFiniteFunctor::new("F", "C", "D");
         f.map_morphism("f", "Ff");
-        // g is not mapped
         f.map_morphism("gf", "Fgf");
 
         let target_comp: BTreeMap<(String, String), String> = BTreeMap::new();

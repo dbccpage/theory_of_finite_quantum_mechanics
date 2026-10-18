@@ -31,7 +31,7 @@ class MajoranaBraidProposalPacket:
     round_id: str
     proposer_id: str
     num_modes: int
-    braid_sequence: Tuple[Tuple[int, bool], ...]  # (j, is_inverse)
+    braid_sequence: Tuple[Tuple[int, bool], ...]
 
     def canonical_digest(self) -> str:
         """Deterministic SHA-256 hash of proposal packet."""
@@ -107,7 +107,6 @@ class MajoranaBraidReferee:
                 proposal_digest=packet.canonical_digest(),
             )
 
-        # Validate step indices
         circuit = MajoranaBraidCircuit(self.num_modes)
         for j, inv in packet.braid_sequence:
             if not (1 <= j < self.num_modes):
@@ -126,13 +125,11 @@ class MajoranaBraidReferee:
                 )
             circuit.append(j, inverse=inv)
 
-        # Evaluate composite transformation matrix
         mat = circuit.evaluate_matrix()
         is_ortho = mat.is_orthogonal()
         det = mat.determinant()
         is_proper = (det == Fraction(1, 1))
 
-        # Check Yang-Baxter relation for adjacent generators in the circuit
         yb_ok = True
         if self.num_modes >= 3:
             for j in range(1, self.num_modes - 1):

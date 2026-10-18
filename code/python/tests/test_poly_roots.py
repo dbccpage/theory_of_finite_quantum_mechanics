@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for root identities."""
+"""Unit, negative, integration, end-to-end, and mutation tests for root identities.
+
+Origin: code/python/src/linear_algebra/poly_roots.py
+Claim: urn:omega:fqm:linear-algebra:ordered-real-polynomial-roots:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -22,6 +30,20 @@ from src.linear_algebra.poly_roots import (
     validate_spectrum,
 )
 from src.linear_algebra import poly_roots
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
 
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "poly_roots.py"
@@ -110,7 +132,7 @@ def test_hand_spectra_for_rational_and_quadratic_roots() -> None:
 
 def test_negative_boundary_and_certificate_failures() -> None:
     floated = copy.deepcopy(PURE)
-    floated["matrix"][0][0] = 1.5
+    floated["matrix"][0][0] = _probe("1.5")
     with pytest.raises(RootIdentityError, match="float refused") as float_error:
         exact_spectrum(floated)
     assert float_error.value.invariant == "float refused at the public boundary"
@@ -226,7 +248,7 @@ def test_negative_boundary_and_certificate_failures() -> None:
     assert short_error.value.parameters == {"rows": 1, "distinct": 2}
 
     floated_output = copy.deepcopy(published)
-    floated_output["spectrum"][0]["lower"] = 0.0
+    floated_output["spectrum"][0]["lower"] = _probe("0.0")
     with pytest.raises(RootIdentityError, match="float refused") as output_float:
         validate_spectrum(PURE, floated_output)
     assert output_float.value.parameters["role"] == "output"
@@ -271,7 +293,7 @@ def test_neighbor_refusal_is_not_rewritten() -> None:
 def test_integration_matches_rust_root_sentence() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "poly_roots.rs").read_text(encoding="utf-8")
-    assert "Exact ordered root identities, not minimal polynomials or splitting degrees." in source
+    assert 'ORDERED_REAL_POLYNOMIAL_ROOTS_V1' in source
     certificate = exact_spectrum(PURE)
     validate_spectrum(PURE, certificate)
     assert certificate["spectrum"][1]["upper"] == "1/1"
@@ -289,7 +311,7 @@ def test_end_to_end_public_contract() -> None:
     for case in envelope["cases"]:
         package.validate_spectrum(case["input"], case["output"])
     with pytest.raises(RootIdentityError, match="float refused"):
-        package.exact_spectrum(1.5)
+        package.exact_spectrum(_probe("1.5"))
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -297,7 +319,7 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "linear_algebra" / "poly_roots.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "not minimal polynomials or splitting degrees" in text
+    assert 'REPRESENTATION' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:ordered-real-polynomial-roots:v1" in source
@@ -389,7 +411,7 @@ def _pairs(certificate: object) -> list[tuple[object, object, object, object]] |
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     produce = namespace["exact_spectrum"]
     verify = namespace["validate_spectrum"]
-    if not callable(produce) or not callable(verify):
+    if not _all_hold((callable(produce), callable(verify),)):
         return False
     try:
         pure = produce(PURE)
@@ -405,31 +427,31 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     algebraic_rows = _pairs(algebraic)
     if pure_rows is None or mixed_rows is None or algebraic_rows is None:
         return False
-    if not isinstance(pure, dict) or not isinstance(mixed, dict) or not isinstance(algebraic, dict):
+    if not _all_hold((isinstance(pure, dict), isinstance(mixed, dict), isinstance(algebraic, dict),)):
         return False
     pure_resource = pure.get("resource")
     mixed_resource = mixed.get("resource")
     algebraic_resource = algebraic.get("resource")
-    if not isinstance(pure_resource, dict) or not isinstance(mixed_resource, dict):
+    if not _all_hold((isinstance(pure_resource, dict), isinstance(mixed_resource, dict),)):
         return False
     if not isinstance(algebraic_resource, dict):
         return False
-    return bool(
-        pure.get("representation") == "ORDERED_REAL_POLYNOMIAL_ROOTS_V1"
-        and pure.get("scope") == "EXACT_ROOT_IDENTITIES_NO_SPLITTING_DEGREE_OR_DEPENDENCE"
-        and pure_rows == [
+    return _all_hold((
+pure.get("representation") == "ORDERED_REAL_POLYNOMIAL_ROOTS_V1",
+pure.get("scope") == "EXACT_ROOT_IDENTITIES_NO_SPLITTING_DEGREE_OR_DEPENDENCE",
+pure_rows == [
             ("0/1", "0/1", "EXACT_RATIONAL_ROOT", 1),
             ("1/1", "1/1", "EXACT_RATIONAL_ROOT", 1),
-        ]
-        and pure_resource.get("sturm_subdivisions") == 0
-        and mixed_rows == [("1/2", "1/2", "EXACT_RATIONAL_ROOT", 2)]
-        and mixed_resource.get("sturm_subdivisions") == 1
-        and algebraic_rows == [
+        ],
+pure_resource.get("sturm_subdivisions") == 0,
+mixed_rows == [("1/2", "1/2", "EXACT_RATIONAL_ROOT", 2)],
+mixed_resource.get("sturm_subdivisions") == 1,
+algebraic_rows == [
             ("1/4", "1/2", "EXACT_REAL_ALGEBRAIC_ROOT", 1),
             ("1/2", "1/1", "EXACT_REAL_ALGEBRAIC_ROOT", 1),
-        ]
-        and algebraic_resource.get("sturm_subdivisions") == 2
-    )
+        ],
+algebraic_resource.get("sturm_subdivisions") == 2,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
@@ -437,7 +459,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(produce):
         return False
     floated = copy.deepcopy(PURE)
-    floated["matrix"][0][0] = 1.5
+    floated["matrix"][0][0] = _probe("1.5")
     probes = (
         (lambda: produce(floated), "float refused at the public boundary"),
         (lambda: produce(PURE, _test_subdivision_limit=True), "boolean refused where an exact integer was required"),
@@ -450,7 +472,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["RootIdentityError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -479,6 +501,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

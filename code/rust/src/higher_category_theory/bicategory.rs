@@ -1,12 +1,8 @@
-//! Weak 2-categories (Bicategories) and coherence isomorphisms.
-//!
-//! AuthorityEffect: None.
 
 use crate::error::HigherCategoryError;
 use crate::two_category::{Strict2Category, TwoCategory};
 use std::collections::BTreeMap;
 
-/// An invertible 2-cell (2-isomorphism) witnessing weak equivalence.
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Invertible2Cell<TwoCell> {
     pub forward: TwoCell,
@@ -19,9 +15,7 @@ impl<TwoCell> Invertible2Cell<TwoCell> {
     }
 }
 
-/// The Bicategory trait defining weak 2-categories.
 pub trait Bicategory: TwoCategory {
-    /// Natural isomorphism associator: a_{f, g, h}: (h ∘ g) ∘ f => h ∘ (g ∘ f)
     fn associator(
         &self,
         f: &Self::OneCell,
@@ -29,20 +23,17 @@ pub trait Bicategory: TwoCategory {
         h: &Self::OneCell,
     ) -> Result<Invertible2Cell<Self::TwoCell>, HigherCategoryError>;
 
-    /// Left unitor: l_f: id_B ∘ f => f
     fn left_unitor(
         &self,
         f: &Self::OneCell,
     ) -> Result<Invertible2Cell<Self::TwoCell>, HigherCategoryError>;
 
-    /// Right unitor: r_f: f ∘ id_A => f
     fn right_unitor(
         &self,
         f: &Self::OneCell,
     ) -> Result<Invertible2Cell<Self::TwoCell>, HigherCategoryError>;
 }
 
-/// Finite bicategory with explicit associators and unitors.
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct FiniteBicategory {
     pub base_strict: Strict2Category,
@@ -52,7 +43,6 @@ pub struct FiniteBicategory {
 }
 
 impl FiniteBicategory {
-    /// Creates a new finite bicategory wrapping a base strict 2-category.
     pub fn new(base_strict: Strict2Category) -> Self {
         Self {
             base_strict,
@@ -62,8 +52,6 @@ impl FiniteBicategory {
         }
     }
 
-    /// Sets the associator 2-isomorphism for a composable triple of 1-cells (f, g, h).
-    /// Validates that forward and inverse are mutual 2-cell inverses.
     pub fn set_associator(
         &mut self,
         f: impl Into<String>,
@@ -78,13 +66,11 @@ impl FiniteBicategory {
         let fwd = forward.into();
         let inv = inverse.into();
 
-        // a_{f,g,h}: (h ∘ g) ∘ f => h ∘ (g ∘ f)
         let hg = self.base_strict.compose_1(&g_s, &h_s)?;
         let gf = self.base_strict.compose_1(&f_s, &g_s)?;
         let source = self.base_strict.compose_1(&f_s, &hg)?;
         let target = self.base_strict.compose_1(&gf, &h_s)?;
 
-        // Verify cells exist in base category
         let fwd_cell = self
             .base_strict
             .two_cells
@@ -105,7 +91,6 @@ impl FiniteBicategory {
             });
         }
 
-        // Check inverse compatibility: forward is A => B, inverse is B => A
         if fwd_cell.tgt_1 != inv_cell.src_1 || inv_cell.tgt_1 != fwd_cell.src_1 {
             return Err(HigherCategoryError::InvertibilityViolation {
                 cell: fwd.clone(),
@@ -116,7 +101,6 @@ impl FiniteBicategory {
             });
         }
 
-        // Check vertical composition: inv ∘ fwd == id, fwd ∘ inv == id
         let id_src = self.base_strict.id_2(&fwd_cell.src_1)?;
         let id_tgt = self.base_strict.id_2(&fwd_cell.tgt_1)?;
 
@@ -147,7 +131,6 @@ impl FiniteBicategory {
         Ok(())
     }
 
-    /// Sets the left unitor 2-isomorphism for a 1-cell f: l_f: id_B ∘ f => f.
     pub fn set_left_unitor(
         &mut self,
         f: impl Into<String>,
@@ -215,7 +198,6 @@ impl FiniteBicategory {
         Ok(())
     }
 
-    /// Sets the right unitor 2-isomorphism for a 1-cell f: r_f: f ∘ id_A => f.
     pub fn set_right_unitor(
         &mut self,
         f: impl Into<String>,
@@ -283,7 +265,6 @@ impl FiniteBicategory {
         Ok(())
     }
 
-    /// Exhaustive coherence validation across all composable 1-cell chains.
     pub fn validate_coherence(
         &self,
     ) -> Result<crate::coherence::CoherenceReport, HigherCategoryError> {

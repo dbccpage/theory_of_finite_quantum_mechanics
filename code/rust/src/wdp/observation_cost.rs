@@ -1,24 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Complete finite certificates for fixed and adaptive priced observation
-//! (monograph §14.6–14.7, reused by Appendix X Theorem X.3 and Appendix Y).
-//!
-//! A finite candidate set carries a free visible report, a protected query and
-//! a shelf of priced instruments. An unresolved pair shares its visible report
-//! and differs in its query. The fixed optimum is the minimum-cost instrument
-//! subset that separates every unresolved pair (a weighted hitting set). The
-//! adaptive optimum is the Bellman minimax over candidate subsets:
-//! `W(C) = 0` when the query is constant on `C`, otherwise
-//! `min_i [c_i + max_branch W(C ∩ branch)]` over instruments that split `C`,
-//! and the global value is the maximum over the initial visible fibers.
-//! `None` denotes mathematical infeasibility, never a large finite cost.
-//!
-//! This is a native port of the paper package's
-//! `code/finite_observation/solver.py`. [`verify_certificate_json`] replays a
-//! submitted certificate row by row and never calls [`solve`] to replace a bad
-//! table. Prices and outcome equality are supplied data. The canonical
-//! [`ObservationInstance::instance_sha256`] matches the Python digest byte for
-//! byte, so stored Python certificates replay here. Verification acceptance is
-//! evaluation evidence only; it grants no action authority.
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
@@ -26,13 +5,9 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;
 
-/// Reference cap on candidate states (adaptive tables have `2^n` rows).
 pub const MAX_STATES: usize = 10;
-/// Reference cap on instruments (fixed tables have `2^m` rows).
 pub const MAX_INSTRUMENTS: usize = 12;
-/// Bit cap on each price numerator and denominator.
 pub const MAX_PRICE_BITS: u64 = 256;
-/// Text cap on certificate cost strings, checked before parsing.
 pub const MAX_COST_TEXT: usize = 4096;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -49,7 +24,6 @@ pub enum ObservationCostError {
     BadPrice,
 }
 
-/// One priced instrument: an outcome label for every candidate state.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Instrument {
     pub name: String,
@@ -57,7 +31,6 @@ pub struct Instrument {
     pub cost: BigRational,
 }
 
-/// A validated finite priced-observation instance.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ObservationInstance {
     states: Vec<String>,
@@ -66,8 +39,6 @@ pub struct ObservationInstance {
     instruments: Vec<Instrument>,
 }
 
-/// Verification verdict. `code` is `VERIFIED`, `INPUT_MISMATCH` or
-/// `INVALID_CERTIFICATE`; acceptance carries `AuthorityEffect: None`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Verification {
     pub accepted: bool,
@@ -75,16 +46,13 @@ pub struct Verification {
     pub detail: String,
 }
 
-/// A proposed certificate with complete fixed and adaptive tables.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ObservationCertificate {
     pub instance_sha256: String,
     pub fixed_suite_mask: Option<u32>,
     pub fixed_value: Option<BigRational>,
-    /// `(mask, cost, sufficient)` for every instrument subset.
     pub fixed_table: Vec<(u32, BigRational, bool)>,
     pub adaptive_value: Option<BigRational>,
-    /// `(mask, value, choice)` for every candidate subset.
     pub adaptive_table: Vec<(u32, Option<BigRational>, Option<usize>)>,
     pub infeasible_pair: Option<(usize, usize)>,
 }
@@ -142,8 +110,6 @@ impl ObservationInstance {
         &self.instruments
     }
 
-    /// SHA-256 of the canonical JSON used by the Python reference
-    /// (`json.dumps(sort_keys=True, separators=(",", ":"), ensure_ascii=False)`).
     pub fn instance_sha256(&self) -> String {
         let text = |s: &str| serde_json::to_string(s).unwrap_or_default();
         let list = |xs: &[String]| {
@@ -175,7 +141,6 @@ impl ObservationInstance {
         hex::encode(Sha256::digest(payload.as_bytes()))
     }
 
-    /// Pairs with equal visible report and unequal protected answer.
     pub fn unresolved_pairs(&self) -> Vec<(usize, usize)> {
         let n = self.states.len();
         let mut pairs = Vec::new();
@@ -238,8 +203,6 @@ impl ObservationInstance {
         }
     }
 
-    /// Finite `(cost + worst child, instrument)` options at a subset whose
-    /// children all have finite values.
     fn options(&self, mask: u32, values: &[Option<BigRational>]) -> Vec<(BigRational, usize)> {
         let mut options = Vec::new();
         for (index, item) in self.instruments.iter().enumerate() {
@@ -279,7 +242,6 @@ impl ObservationInstance {
     }
 }
 
-/// Canonical rational text: `p` or `p/q`, matching Python `str(Fraction)`.
 pub fn rational_text(value: &BigRational) -> String {
     let reduced = value.reduced();
     if reduced.denom() == &BigInt::from(1) {
@@ -289,7 +251,6 @@ pub fn rational_text(value: &BigRational) -> String {
     }
 }
 
-/// Propose complete `2^m` subset and `2^n` Bellman tables.
 pub fn solve(instance: &ObservationInstance) -> ObservationCertificate {
     let pairs = instance.unresolved_pairs();
     let fixed_table: Vec<(u32, BigRational, bool)> = (0..(1u32 << instance.instruments.len()))
@@ -325,7 +286,6 @@ pub fn solve(instance: &ObservationInstance) -> ObservationCertificate {
     }
 }
 
-/// Serialize a certificate in the Python reference schema (version 1).
 pub fn certificate_json(certificate: &ObservationCertificate) -> Value {
     let opt = |v: &Option<BigRational>| v.as_ref().map_or(Value::Null, |x| Value::from(rational_text(x)));
     serde_json::json!({
@@ -390,7 +350,6 @@ fn exact_int(value: &Value) -> Option<u64> {
     value.as_u64()
 }
 
-/// Replay every supplied table row, all competing choices and the final claim.
 pub fn verify_certificate_json(instance: &ObservationInstance, certificate: &Value) -> Verification {
     match verify_inner(instance, certificate) {
         Ok(Some(mismatch)) => Verification {
@@ -530,8 +489,6 @@ fn verify_inner(instance: &ObservationInstance, certificate: &Value) -> Check<Op
     Ok(None)
 }
 
-/// Verify a supplied matching rational LP pair for the hitting-set relaxation
-/// and return only the LP optimum (a lower bound on the fixed integer cost).
 pub fn verify_lp_pair(
     instance: &ObservationInstance,
     primal: &[BigRational],

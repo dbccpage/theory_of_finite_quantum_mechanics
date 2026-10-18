@@ -1,16 +1,6 @@
-/-
-  GR002.ReggeDeficit
 
-  Formalization of Hexagonal Disk Boundary Deficit Divergence (HELL-T3).
 
-  Theorems:
-    1. corner_deficit: 6 corners with k=2 contribute 6 * 4 * (π/3) = 8π.
-    2. edge_deficit: 6(R-1) non-corner boundary vertices with k=3 contribute 6(R-1) * 3 * (π/3) = 6(R-1)π.
-    3. total_deficit: Total sum = 2π + 6πR.
-    4. linear_divergence: Total deficit strictly increases with radius R.
 
-  AuthorityEffect: None.
--/
 
 import Lean.Elab.Tactic.Omega
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic

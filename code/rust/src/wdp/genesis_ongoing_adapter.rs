@@ -1,6 +1,3 @@
-//! Fixed-carrier bridge for Genesis Ongoing derivations 23 and 25.
-//! All ordered pairs, including loops and independent reverse arcs, are retained.
-//! Filled triples are declared diagnostics, not balance or permission claims.
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError};
 use linear_algebra::finite_cochain_map::{CochainMap, CochainWindow};
 use linear_algebra::linear_observer_presentation::{
@@ -21,11 +18,8 @@ pub struct MarkedTriple {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GenesisOngoingPacket {
     pub terms: Vec<String>,
-    /// Row-major n² nonnegative integer multiplicities, including the diagonal.
     pub r: Vec<BigInt>,
     pub s: Vec<BigInt>,
-    /// Cyclic orientations start at the least vertex; reverse ways are distinct.
-    /// Sorted, without duplicates, matching source derivation 25's FState.
     pub filled: Vec<MarkedTriple>,
 }
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -131,13 +125,9 @@ impl GenesisRepairReceipt {
 pub struct GenesisOngoingAdapter {
     source: GenesisOngoingPacket,
     excess: Vec<BigInt>,
-    /// Actual D_F and d0: checked by the functional owner to satisfy D_F d0=0.
     presentation: LinearObserverPresentation,
 }
 
-/// Pullback of an actual assertion packet to a declared subcontext. It keeps
-/// loops, reverse arcs and both raw multiplicities. This is not zero-extension
-/// along term addition or quotient transport along identification.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GenesisContextRestriction {
     source: GenesisOngoingPacket,
@@ -160,8 +150,6 @@ impl GenesisContextRestriction {
     pub fn marks(&self) -> &[usize] {
         &self.marks
     }
-    /// Bind composition to the complete intermediate assertion packet, not
-    /// just to a differential with coincidentally matching dimensions.
     pub fn then(&self, after: &Self) -> Result<Self, GenesisBridgeError> {
         if self.target.source != after.source {
             return Err(GenesisBridgeError::ContextMismatch);
@@ -253,9 +241,6 @@ impl GenesisOngoingAdapter {
             self.presentation.report_map().clone(),
         )?)
     }
-    /// Restrict vertices in the supplied order and select existing marked
-    /// triples. Marks are cyclically canonicalized and sorted in the target.
-    /// Both cochain squares are checked by the mathematical matrix owner.
     pub fn restrict(
         &self,
         vertices: &[usize],
@@ -346,7 +331,6 @@ impl GenesisOngoingAdapter {
             balances,
         })
     }
-    /// Gauge-equivalent excess; this is not a single seed change or permission.
     pub fn repair(&self, potential: &[BigInt]) -> Result<GenesisRepairReceipt, GenesisBridgeError> {
         if potential.len() != self.source.terms.len() {
             return Err(GenesisBridgeError::InvalidPotential);
@@ -369,9 +353,6 @@ impl GenesisOngoingAdapter {
             diagnostics,
         })
     }
-    /// Complete fixed-writing integer repair test. None is a genuine obstruction,
-    /// not failure of the marked diagnostics to distinguish the tables.
-    /// No renaming, changing the number of terms or adding/removing marks is done.
     pub fn repair_equivalence(
         &self,
         other: &Self,

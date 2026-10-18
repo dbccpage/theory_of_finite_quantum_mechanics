@@ -1,35 +1,10 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import WorldFiniteReconstruction
 
-/-!
-# Q12: an inhabited diagonal reconstruction retraction
 
-This file strengthens the existing three-preparation/two-effect fixture by
-constructing its exact integer-scaled 2 x 2 diagonal representation.  The
-scale is 25.  `encodeState` sends each preparation to its diagonal probability
-matrix; `decodeState` recognizes each declared image and rejects two explicit
-outside matrices; and `decode_encode` proves a left inverse on every declared
-preparation.
 
-The two effects are explicit diagonal projectors.  Their trace pairing with an
-encoded state reproduces the declared probability table exactly.  The file
-also proves normalization, diagonal nonnegativity, symmetry, projector laws,
-and the exact 9/25--16/25 affine identity.
 
-This is a faithful representation of one finite commutative table.  It is not
-REC-FULL and does not construct a complex host, general matrix positivity or
-order, monoidal products, CPTP/U1 structure, local tomography, instruments, or
-Born selection.  Those general reconstruction obligations remain OPEN.
 
-AuthorityEffect: None.
--/
 
 namespace OmegaWorld
 namespace ReconstructionQ12
@@ -56,7 +31,6 @@ def matrixMul (left right : Matrix2) : Matrix2 := fun row column =>
 def trace2 (matrix : Matrix2) : Int :=
   matrix .zero .zero + matrix .one .one
 
-/-- The exact diagonal matrix `25 * rho_state`. -/
 def encodeState (state : Preparation) : Matrix2
   | .zero, .zero => (probabilityCount state .zero : Int)
   | .one, .one => (probabilityCount state .one : Int)
@@ -68,7 +42,6 @@ def matrixMatches (left right : Matrix2) : Bool :=
     (left .one .zero == right .one .zero) &&
     (left .one .one == right .one .one)
 
-/-- A partial decoder: matrices outside the three declared images return `none`. -/
 def decodeState (matrix : Matrix2) : Option Preparation :=
   if matrixMatches matrix (encodeState .pureZero) then
     some .pureZero
@@ -116,7 +89,6 @@ def malformedMatrix : Matrix2
 theorem decode_malformed_none : decodeState malformedMatrix = none := by
   decide
 
-/-- A normalized nonnegative diagonal matrix not among the three declared images. -/
 def outsideImageDiagonal : Matrix2
   | .zero, .zero => 1
   | .one, .one => 24
@@ -147,7 +119,6 @@ theorem outside_diagonal_not_encoded (state : Preparation) :
   cases state <;>
     simp [outsideImageDiagonal, encodeState, probabilityCount] at zeroEntry
 
-/-- The declared effect is represented by its coordinate projector. -/
 def effectProjector : Basis2 -> Matrix2
   | .zero, .zero, .zero => 1
   | .one, .one, .one => 1
@@ -156,7 +127,6 @@ def effectProjector : Basis2 -> Matrix2
 def bornCount (state : Preparation) (effect : Basis2) : Int :=
   trace2 (matrixMul (encodeState state) (effectProjector effect))
 
-/-- Exact trace pairing; this is not a theorem selecting the Born rule. -/
 theorem born_table_exact (state : Preparation) (effect : Basis2) :
     bornCount state effect = (probabilityCount state effect : Int) := by
   cases state <;> cases effect <;> decide
@@ -196,7 +166,6 @@ theorem effect_projectors_resolve_identity :
   funext row column
   cases row <;> cases column <;> decide
 
-/-- Exact affine identity for the declared 9/25--16/25 mixed state. -/
 theorem mixed_state_affine_identity :
     matrixScale 25 (encodeState .mixedNineSixteen) =
       matrixAdd
@@ -205,12 +174,6 @@ theorem mixed_state_affine_identity :
   funext row column
   cases row <;> cases column <;> decide
 
-/-
-The local generic `ConditionalPackage` defined below is just supplied imports
-paired with a supplied recovery object.  Its round trips expose that this local
-packaging model cannot create either component.  No theorem identifies it with
-the separate legacy REC wrapper described by the frontier sources.
--/
 structure ConditionalPackage (Imports Recovery : Type) where
   explicitImports : Imports
   conditionalRecovery : Recovery
@@ -380,3 +343,6 @@ def diagonalReconstructionRetraction : DiagonalReconstructionRetraction where
 
 end ReconstructionQ12
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldReconstructionRetraction.lean Claim: decode_encode AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

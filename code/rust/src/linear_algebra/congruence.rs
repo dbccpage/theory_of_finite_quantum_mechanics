@@ -1,29 +1,3 @@
-//! Diagonalisation by congruence of symmetric and Hermitian matrices, with a certificate
-//! that replays.
-//!
-//! For a symmetric `A` (or Hermitian, with the field's involution) the algorithm produces an
-//! invertible `S` and a diagonal `D` with `S* A S = D`, where `S*` is `Sᵀ` (symmetric case)
-//! or `S†` (Hermitian case). It works over any field in which `2 ≠ 0`; no ordering is used
-//! here. Reading the signs of `D` in an ordered field gives the inertia of `A` by Sylvester's
-//! law; that step lives in `ordered`.
-//!
-//! The steps are congruences `M ← E* M E`, each one of three kinds, each tracked in `S ← S E`:
-//!
-//! 1. a symmetric permutation, to bring a nonzero diagonal entry to the pivot position;
-//! 2. when every remaining diagonal entry is zero but `M[i][j] ≠ 0` (`i < j`, both in the
-//!    trailing block), the shear `eᵢ ↦ eᵢ + c·eⱼ` with `c = M[i][j]⁻¹`. The new diagonal entry
-//!    is `c·M[i][j] + conj(c·M[i][j]) = 1 + conj(1) = 2 ≠ 0`. Choosing `c` as the inverse, not
-//!    as `1`, is what makes this work for a purely imaginary `M[i][j]`: with `c = 1` the new
-//!    entry would be `M[i][j] + conj(M[i][j]) = 0`;
-//! 3. the elimination `eₗ ↦ eₗ − μₗ·e_k`, `μₗ = M[k][l]·M[k][k]⁻¹`, which clears row and column `k`.
-//!
-//! Permutations have determinant `−1`, shears `1`, so `det S = ±1`; a verifier only needs
-//! `S` invertible. If the trailing block is entirely zero the remaining diagonal entries are
-//! `0` and the algorithm stops.
-//!
-//! Cost model used by the budget checks (worst case, scalar calls): `4n³ + 12n²`.
-//!
-//! AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
 use crate::linear_algebra::elimination::{determinant, is_invertible};
@@ -34,7 +8,6 @@ use crate::linear_algebra::{
 };
 use crate::linear_algebra::scalars::{ExactRing, Field};
 
-/// `S* A S = diag(D)` with `S` invertible: a congruence certificate for `A`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CongruenceDiagonalisation<F> {
     transform: BasicMatrix<F>,
@@ -42,25 +15,27 @@ pub struct CongruenceDiagonalisation<F> {
 }
 
 impl<F> CongruenceDiagonalisation<F> {
-    /// The change of basis `S` (`n × n`).
     pub fn transform(&self) -> &BasicMatrix<F> {
         &self.transform
     }
 
-    /// The diagonal `D` (`n` entries).
     pub fn diagonal(&self) -> &[F] {
         &self.diagonal
     }
 
-    /// The transform and the diagonal.
     pub fn into_parts(self) -> (BasicMatrix<F>, Vec<F>) {
         (self.transform, self.diagonal)
+    }
+
+    pub fn from_certificate(transform: BasicMatrix<F>, diagonal: Vec<F>) -> Self {
+        Self {
+            transform,
+            diagonal,
+        }
     }
 }
 
 impl<F: Field + ExactRing> CongruenceDiagonalisation<F> {
-    /// Replays the symmetric certificate against `a`: `Sᵀ A S = diag(D)` entry for entry and
-    /// `S` invertible. Does not trust whoever produced the certificate.
     pub fn verify_symmetric(&self, a: &BasicMatrix<F>) -> Result<(), ExactFieldError> {
         self.replay(a, &transpose(&self.transform)?)
     }
@@ -94,20 +69,29 @@ impl<F: Field + ExactRing> CongruenceDiagonalisation<F> {
         Ok(())
     }
 
-    /// The determinant of the transform: `±1` for every certificate this module produces.
     pub fn transform_determinant(&self) -> Result<F, ExactFieldError> {
         determinant(&self.transform)
     }
 }
 
 impl<F: Involution> CongruenceDiagonalisation<F> {
-    /// Replays the Hermitian certificate against `a`: `S† A S = diag(D)` and `S` invertible.
     pub fn verify_hermitian(&self, a: &BasicMatrix<F>) -> Result<(), ExactFieldError> {
+        if hermitian_violation(a)?.is_some() {
+            return Err(ExactFieldError::CertificateRejected {
+                reason: "the certified matrix is not Hermitian",
+            });
+        }
+        for entry in &self.diagonal {
+            if entry.conjugate() != *entry {
+                return Err(ExactFieldError::CertificateRejected {
+                    reason: "a Hermitian diagonal entry is fixed by conjugation",
+                });
+            }
+        }
         self.replay(a, &adjoint(&self.transform)?)
     }
 }
 
-/// The first position `(r, c)`, `r < c`, with `a[r][c] ≠ a[c][r]`, or `None` when symmetric.
 pub(crate) fn symmetric_violation<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<Option<(usize, usize)>, ExactFieldError> {
@@ -122,15 +106,12 @@ pub(crate) fn symmetric_violation<F: Field + ExactRing>(
     Ok(None)
 }
 
-/// Diagonalises a symmetric matrix by congruence: `Sᵀ A S = D`. Needs `2 ≠ 0` in the field.
-/// Refuses a non-symmetric matrix.
 pub fn symmetric_congruence_diagonalisation<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
 ) -> Result<CongruenceDiagonalisation<F>, ExactFieldError> {
     symmetric_congruence_diagonalisation_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`symmetric_congruence_diagonalisation`] under a budget: `n²` elements, `4n³ + 12n²` calls.
 pub fn symmetric_congruence_diagonalisation_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -141,15 +122,12 @@ pub fn symmetric_congruence_diagonalisation_with_limits<F: Field + ExactRing>(
     diagonalise(a, &|x: &F| x.clone(), limits)
 }
 
-/// Diagonalises a Hermitian matrix by congruence: `S† A S = D` (the diagonal entries are
-/// fixed by the involution). Needs `2 ≠ 0`. Refuses a non-Hermitian matrix.
 pub fn hermitian_congruence_diagonalisation<F: Involution>(
     a: &BasicMatrix<F>,
 ) -> Result<CongruenceDiagonalisation<F>, ExactFieldError> {
     hermitian_congruence_diagonalisation_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-/// [`hermitian_congruence_diagonalisation`] under a budget: `n²` elements, `4n³ + 12n²` calls.
 pub fn hermitian_congruence_diagonalisation_with_limits<F: Involution>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -160,14 +138,12 @@ pub fn hermitian_congruence_diagonalisation_with_limits<F: Involution>(
     diagonalise(a, &|x: &F| x.conjugate(), limits)
 }
 
-/// Symmetric permutation of `i` and `k`: rows and columns of `M`, columns of `S`.
 fn swap_symmetric<F: Clone>(m: &mut Grid<F>, s: &mut Grid<F>, k: usize, i: usize) {
     m.swap_rows(k, i);
     m.swap_columns(k, i);
     s.swap_columns(k, i);
 }
 
-/// The first `(i, j)` with `k ≤ i < j < n` and `M[i][j] ≠ 0`, row-major.
 fn first_off_diagonal<F: Field + ExactRing>(
     m: &Grid<F>,
     k: usize,
@@ -180,9 +156,6 @@ fn first_off_diagonal<F: Field + ExactRing>(
     })
 }
 
-/// Congruence `M ← E* M E`, `S ← S E` for `E = I + factor·e_source·e_targetᵀ`: column
-/// `target += factor·column source` in both, then row `target += conj(factor)·row source`
-/// in `M`. Rows and columns before `k` of `M` are zero there, so `M` is updated from `k`.
 fn add_multiple<F: Field + ExactRing>(
     m: &mut Grid<F>,
     s: &mut Grid<F>,
@@ -197,8 +170,6 @@ fn add_multiple<F: Field + ExactRing>(
     m.add_scaled_row(target, source, &conj(factor), k);
 }
 
-/// Shared core. Precondition (checked by the callers): `a` is square and `a[r][c] =
-/// conj(a[c][r])` for all `r, c`.
 fn diagonalise<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     conj: &dyn Fn(&F) -> F,
@@ -224,12 +195,10 @@ fn diagonalise<F: Field + ExactRing>(
             if let Some(i) = ((k + 1)..n).find(|&i| !m.at(i, i).is_zero()) {
                 swap_symmetric(&mut m, &mut s, k, i);
             } else if let Some((i, j)) = first_off_diagonal(&m, k, n) {
-                // Every diagonal entry of the trailing block is zero: make M[i][i] = 2.
                 let c = inverse_of("congruence diagonalisation", m.at(i, j))?;
                 add_multiple(&mut m, &mut s, i, j, &c, conj, k);
                 swap_symmetric(&mut m, &mut s, k, i);
             } else {
-                // The trailing block is zero: the remaining diagonal entries are zero.
                 for _ in k..n {
                     diagonal.push(F::zero());
                 }
@@ -274,7 +243,6 @@ mod tests {
         .unwrap()
     }
 
-    /// `B + Bᵀ` for a random `B`: symmetric, typically indefinite, generically invertible.
     fn random_symmetric(rng: &mut Rng, n: usize) -> BasicMatrix<Q> {
         let b = random_matrix(rng, n, n, 4);
         add(&b, &transpose(&b).unwrap()).unwrap()
@@ -299,8 +267,6 @@ mod tests {
         add(&b, &adjoint(&b).unwrap()).unwrap()
     }
 
-    /// The certificate replays for random symmetric matrices of sizes 1..6, the transform has
-    /// determinant ±1, and `D` really is diagonal (the replay compares every off-diagonal entry).
     #[test]
     fn symmetric_certificates_replay_and_the_transform_is_unimodular() {
         let mut rng = Rng::new(501);
@@ -330,8 +296,21 @@ mod tests {
         }
     }
 
-    /// A zero diagonal with nonzero off-diagonal entries forces the shear (step 2) repeatedly:
-    /// the adjacency matrices of complete graphs.
+    #[test]
+    fn a_symmetric_certificate_for_a_non_hermitian_matrix_is_rejected() {
+        let imaginary = gmat(&[&[(0, 1)]]);
+        let certificate = CongruenceDiagonalisation::from_certificate(
+            identity::<G>(1).unwrap(),
+            vec![gi(0, 1)],
+        );
+        assert_eq!(
+            certificate.verify_hermitian(&imaginary),
+            Err(ExactFieldError::CertificateRejected {
+                reason: "the certified matrix is not Hermitian",
+            })
+        );
+    }
+
     #[test]
     fn a_zero_diagonal_is_handled_by_the_shear() {
         for n in 2..=6usize {
@@ -346,8 +325,6 @@ mod tests {
         }
     }
 
-    /// Hermitian case with a purely imaginary off-diagonal entry: σ_y. The shear with `c = 1`
-    /// would give `i + conj(i) = 0`; `c = M[i][j]⁻¹` gives 2. The certificate must replay.
     #[test]
     fn the_hermitian_shear_works_for_imaginary_off_diagonal_entries() {
         let sigma_y = gmat(&[&[(0, 0), (0, -1)], &[(0, 1), (0, 0)]]);
@@ -355,7 +332,6 @@ mod tests {
         cert.verify_hermitian(&sigma_y).unwrap();
         assert!(cert.diagonal().iter().all(|d| !d.is_zero()));
         for d in cert.diagonal() {
-            // diagonal entries of a Hermitian form are self-conjugate
             assert_eq!(d, &d.conjugate());
         }
     }
@@ -379,13 +355,11 @@ mod tests {
         );
     }
 
-    /// A rank-deficient matrix ends with zero diagonal entries exactly `n − rank` times.
     #[test]
     fn the_number_of_zero_diagonal_entries_is_the_corank() {
         use crate::linear_algebra::elimination::rank;
         let mut rng = Rng::new(509);
         for _ in 0..12 {
-            // B Bᵀ with B of rank <= 2 in 4 dimensions
             let b = random_matrix(&mut rng, 4, 2, 3);
             let a = multiply(&b, &transpose(&b).unwrap()).unwrap();
             let cert = symmetric_congruence_diagonalisation(&a).unwrap();
@@ -395,7 +369,6 @@ mod tests {
         }
     }
 
-    /// Works over a finite field of odd characteristic (no ordering needed): GF(5), [[0,1],[1,0]].
     #[test]
     fn diagonalisation_needs_only_characteristic_not_two() {
         type F5 = Fp<5>;
@@ -404,7 +377,6 @@ mod tests {
         let cert = symmetric_congruence_diagonalisation(&a).unwrap();
         cert.verify_symmetric(&a).unwrap();
         assert!(cert.diagonal().iter().all(|d| !d.is_zero()));
-        // GF(3)
         type F3 = Fp<3>;
         let g = |x: i64| F3::new(x);
         let b = from_rows(vec![
@@ -439,8 +411,6 @@ mod tests {
         ));
     }
 
-    /// `Z/6` has a nonzero element (2) without inverse. The first pivot of `[[2,1],[1,1]]` is
-    /// that element, so the diagonalisation must refuse rather than divide by a non-unit.
     #[test]
     fn a_non_field_scalar_is_refused_by_the_diagonalisation() {
         use crate::linear_algebra::test_support::Z6;
@@ -478,8 +448,6 @@ mod tests {
         ));
     }
 
-    /// The verifier rejects tampering: a changed diagonal entry, a changed transform entry,
-    /// a singular transform, and a wrong shape.
     #[test]
     fn tampered_certificates_are_rejected() {
         let a = m(&[&[2, 1], &[1, 3]]);
@@ -516,7 +484,6 @@ mod tests {
         assert!(wrong_shape.verify_symmetric(&a).is_err());
     }
 
-    /// Boundary: for `n = 2` the documented cost is `4·8 + 12·4 = 80` scalar calls, 4 elements.
     #[test]
     fn congruence_budget_boundary_is_inclusive() {
         let a = m(&[&[2, 1], &[1, 3]]);
@@ -550,7 +517,6 @@ mod tests {
         .is_err());
     }
 
-    /// Sanity for the test scalar: the diagonal of a Hermitian certificate over Q(i) is real.
     #[test]
     fn hermitian_diagonal_entries_are_real() {
         let mut rng = Rng::new(521);

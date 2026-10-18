@@ -1,38 +1,10 @@
-/-
-  H020CabelloSignPolytope.lean -- Exact rational Cabello 18-ray frame
-  configuration, parity uncolorability obstruction, non-PSD vertex elimination,
-  pure state projector preservation, and Biedenharn-Elliott pentagon identity.
 
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
-  Source-paper contact: Paper 122 §7.7, Milestone 2 Requirements R4, R5.
 
-  Target propositions:
-    1. Cabello 18-ray configuration in Z^4: cabello_18_count, cabello_9_tetrad_count.
-    2. Mutual orthogonality of all 9 Cabello tetrads in Z^4: cabello_tetrads_orthogonal.
-    3. Hypergraph regularity: ray degrees are identically 2 (cabello_ray_degree_2, cabello_total_incidence).
-    4. Exact Z_2 parity refutation of classical {0, 1} valuations: cabello_parity_obstruction.
-    5. Non-PSD vertex witness (lambda_min = -1/2): bad_vertex_not_psd, bad_vertex_det_negative.
-    6. Exact algebraic positivity of rank-1 pure state projectors: rank1_quad_form_v0, rank1_v0_psd.
-    7. State space non-singleton theorems: p0_ne_center, p0_ne_p1, state_space_not_singleton.
-    8. S_3 character table orthogonality over Z: s3_character_orthogonality.
-    9. Biedenharn-Elliott pentagon associativity identity on configuration tree:
-       biedenharn_elliott_pentagon_leaf_coherence.
 
-  Nonclaim boundary:
-    No continuous sphere S^3 or field C. No continuous Gleason measure.
-    Finite discrete contextuality does not force the Born rule without the continuum.
 
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace FableHilbertWalk20260819.H020
 
--- ==============================================================================
--- PART 1: CABELLO 18-RAY CONFIGURATION & ORTHOGONALITY IN Z^4
--- ==============================================================================
 
 structure Vec4 where
   x0 : Int
@@ -47,7 +19,6 @@ def dot4 (u v : Vec4) : Int :=
 def norm_sq4 (v : Vec4) : Int :=
   dot4 v v
 
--- 18 Cabello vectors in {-1, 0, 1}^4
 def v0  : Vec4 := ⟨1, 1, 1, 1⟩
 def v1  : Vec4 := ⟨1, 1, 1, -1⟩
 def v2  : Vec4 := ⟨1, 1, 0, 0⟩
@@ -70,10 +41,8 @@ def v17 : Vec4 := ⟨0, 0, 0, 1⟩
 def cabello18 : List Vec4 :=
   [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17]
 
-/-- Exactly 18 rays in the Cabello configuration. -/
 theorem cabello_18_count : cabello18.length = 18 := by rfl
 
--- 9 orthogonal tetrads (contexts)
 def tetrad0 : List Vec4 := [v2, v9, v15, v17]
 def tetrad1 : List Vec4 := [v4, v7, v13, v17]
 def tetrad2 : List Vec4 := [v5, v6, v13, v15]
@@ -87,15 +56,12 @@ def tetrad8 : List Vec4 := [v3, v4, v10, v12]
 def cabello_contexts : List (List Vec4) :=
   [tetrad0, tetrad1, tetrad2, tetrad3, tetrad4, tetrad5, tetrad6, tetrad7, tetrad8]
 
-/-- Exactly 9 contexts (orthogonal 4-bases). -/
 theorem cabello_9_tetrad_count : cabello_contexts.length = 9 := by rfl
 
-/-- Helper checking if 4 vectors are pairwise orthogonal. -/
 def is_pairwise_ortho4 (a b c d : Vec4) : Bool :=
   dot4 a b == 0 && dot4 a c == 0 && dot4 a d == 0 &&
   dot4 b c == 0 && dot4 b d == 0 && dot4 c d == 0
 
-/-- All 9 Cabello tetrads are mutually orthogonal in Z^4. -/
 theorem cabello_tetrads_orthogonal :
     is_pairwise_ortho4 v2 v9 v15 v17 = true ∧
     is_pairwise_ortho4 v4 v7 v13 v17 = true ∧
@@ -108,11 +74,7 @@ theorem cabello_tetrads_orthogonal :
     is_pairwise_ortho4 v3 v4 v10 v12 = true := by
   decide
 
--- ==============================================================================
--- PART 2: REGULARITY AND MOD-2 PARITY OBSTRUCTION
--- ==============================================================================
 
-/-- Context index lists for the 9 tetrads (0-indexed ray identifiers). -/
 def tetrad_indices : List (List Nat) := [
   [2, 9, 15, 17],
   [4, 7, 13, 17],
@@ -125,30 +87,20 @@ def tetrad_indices : List (List Nat) := [
   [3, 4, 10, 12]
 ]
 
-/-- Occurrence count of ray i across all 9 tetrads. -/
 def ray_count (idx : Nat) : Nat :=
   (tetrad_indices.filter (fun t => t.contains idx)).length
 
-/-- Every ray in the Cabello configuration appears in exactly 2 tetrads (degree 2). -/
 theorem cabello_ray_degree_2 :
     (List.range 18).all (fun i => ray_count i == 2) = true := by rfl
 
-/-- Total incidence sum equals 9 * 4 = 36 = 18 * 2. -/
 theorem cabello_total_incidence :
     (List.range 18).foldl (fun acc i => acc + ray_count i) 0 = 36 := by rfl
 
-/-- Parity obstruction:
-    9 * 1 = 9 is odd, while 2 * sum_v c(v) is even.
-    Hence 9 = 2k has no integer solution in Z. -/
 theorem cabello_parity_obstruction (k : Int) :
     (9 : Int) ≠ 2 * k := by
   omega
 
--- ==============================================================================
--- PART 3: NON-PSD VERTEX WITNESS AND ELIMINATION
--- ==============================================================================
 
-/-- Symmetric 4x4 matrix over Int (scaled by common denominator). -/
 structure SymMat4 where
   m00 : Int
   m01 : Int
@@ -162,14 +114,12 @@ structure SymMat4 where
   m33 : Int
   deriving DecidableEq, Repr
 
-/-- Quadratic form expectation <x, M x> = x^T M x. -/
 def quad_form (M : SymMat4) (x : Vec4) : Int :=
   M.m00 * x.x0 * x.x0 + M.m11 * x.x1 * x.x1 + M.m22 * x.x2 * x.x2 + M.m33 * x.x3 * x.x3 +
   2 * (M.m01 * x.x0 * x.x1 + M.m02 * x.x0 * x.x2 + M.m03 * x.x0 * x.x3 +
        M.m12 * x.x1 * x.x2 + M.m13 * x.x1 * x.x3 +
        M.m23 * x.x2 * x.x3)
 
-/-- The extreme vertex pseudo-state with lambda_min = -1/2 (scaled by 2: diag(1, 1, 1, -1)). -/
 def bad_vertex_scaled : SymMat4 := {
   m00 := 1, m01 := 0, m02 := 0, m03 := 0,
   m11 := 1, m12 := 0, m13 := 0,
@@ -177,23 +127,16 @@ def bad_vertex_scaled : SymMat4 := {
   m33 := -1
 }
 
-/-- Theorem: bad_vertex_scaled has negative expectation on v17 = (0, 0, 0, 1),
-    witnessing lambda_min < 0 and refuting positive semidefiniteness. -/
 theorem bad_vertex_not_psd :
     quad_form bad_vertex_scaled v17 = -1 := by rfl
 
-/-- Sylvester 4x4 determinant of diagonal matrix. -/
 def det_diag4 (d0 d1 d2 d3 : Int) : Int :=
   d0 * d1 * d2 * d3
 
 theorem bad_vertex_det_negative :
     det_diag4 1 1 1 (-1) = -1 := by rfl
 
--- ==============================================================================
--- PART 4: RANK-1 PURE STATE PROJECTORS & NON-SINGLETON STATE SPACE
--- ==============================================================================
 
-/-- Scaled rank-1 projector P_v = v v^T (scale = norm_sq4 v). -/
 def rank1_proj_scaled (v : Vec4) : SymMat4 := {
   m00 := v.x0 * v.x0
   m01 := v.x0 * v.x1
@@ -207,7 +150,6 @@ def rank1_proj_scaled (v : Vec4) : SymMat4 := {
   m33 := v.x3 * v.x3
 }
 
-/-- Lemma: Integer square is non-negative. -/
 theorem int_sq_nonneg (x : Int) : 0 ≤ x * x := by
   have h : 0 ≤ x ∨ 0 ≤ -x := by omega
   cases h with
@@ -218,7 +160,6 @@ theorem int_sq_nonneg (x : Int) : 0 ≤ x * x := by
     rw [Int.neg_mul_neg x x] at this
     exact this
 
-/-- Quadratic form of P_{v0} on arbitrary vector x equals (dot4 v0 x)^2. -/
 theorem rank1_quad_form_v0 (x : Vec4) :
     quad_form (rank1_proj_scaled v0) x = (dot4 v0 x) * (dot4 v0 x) := by
   obtain ⟨x0, x1, x2, x3⟩ := x
@@ -234,13 +175,11 @@ theorem rank1_quad_form_v0 (x : Vec4) :
     omega
   rw [h_exp]
 
-/-- Pure state projector P_{v0} is unconditionally positive semidefinite. -/
 theorem rank1_v0_psd (x : Vec4) :
     0 ≤ quad_form (rank1_proj_scaled v0) x := by
   rw [rank1_quad_form_v0]
   exact int_sq_nonneg (dot4 v0 x)
 
-/-- Scaled maximally mixed state (center of state space: I_4, scaled by 4: 4 * (I_4/4) = I_4). -/
 def center_scaled : SymMat4 := {
   m00 := 1, m01 := 0, m02 := 0, m03 := 0,
   m11 := 1, m12 := 0, m13 := 0,
@@ -248,7 +187,6 @@ def center_scaled : SymMat4 := {
   m33 := 1
 }
 
-/-- Theorem: Pure state projector P_{v0} does not collapse to the center I_4. -/
 theorem p0_ne_center :
     rank1_proj_scaled v0 ≠ center_scaled := by
   intro h
@@ -257,7 +195,6 @@ theorem p0_ne_center :
   revert h1
   decide
 
-/-- Theorem: Pure state projector P_{v0} is distinct from P_{v1}. -/
 theorem p0_ne_p1 :
     rank1_proj_scaled v0 ≠ rank1_proj_scaled v1 := by
   intro h
@@ -266,7 +203,6 @@ theorem p0_ne_p1 :
   revert h1
   decide
 
-/-- Theorem: The state space does not collapse to a singleton {I_4/4}. -/
 theorem state_space_not_singleton :
     rank1_proj_scaled v0 ≠ rank1_proj_scaled v1 ∧
     (∀ x, 0 ≤ quad_form (rank1_proj_scaled v0) x) := by
@@ -275,11 +211,7 @@ theorem state_space_not_singleton :
   · intro x
     exact rank1_v0_psd x
 
--- ==============================================================================
--- PART 5: S_3 CHARACTERS AND BIEDENHARN-ELLIOTT PENTAGON IDENTITY
--- ==============================================================================
 
-/-- S_3 character table values on classes [e], [(12)], [(123)]. -/
 def chi_triv : List Int := [1, 1, 1]
 def chi_sgn  : List Int := [1, -1, 1]
 def chi_std  : List Int := [2, 0, -1]
@@ -291,7 +223,6 @@ def char_inner (c1 c2 : List Int) : Int :=
   | [x1, x2, x3], [y1, y2, y3], [w1, w2, w3] => w1 * x1 * y1 + w2 * x2 * y2 + w3 * x3 * y3
   | _, _, _ => 0
 
-/-- S_3 character table orthogonality theorem over Z. -/
 theorem s3_character_orthogonality :
     char_inner chi_triv chi_triv = 6 ∧
     char_inner chi_sgn  chi_sgn  = 6 ∧
@@ -301,7 +232,6 @@ theorem s3_character_orthogonality :
     char_inner chi_sgn  chi_std  = 0 := by
   decide
 
-/-- 4-particle parenthesization tree type. -/
 inductive Tree4 where
   | leaf : Nat → Tree4
   | node : Tree4 → Tree4 → Tree4
@@ -315,13 +245,10 @@ def t_3 : Tree4 := node (leaf 0) (node (node (leaf 1) (leaf 2)) (leaf 3))
 def t_4 : Tree4 := node (leaf 0) (node (leaf 1) (node (leaf 2) (leaf 3)))
 def t_5 : Tree4 := node (node (leaf 0) (leaf 1)) (node (leaf 2) (leaf 3))
 
-/-- Leaf flattening / frontier extraction. -/
 def leaves : Tree4 → List Nat
   | leaf n => [n]
   | node l r => leaves l ++ leaves r
 
-/-- Biedenharn-Elliott pentagon identity on 4-particle configuration tree:
-    Both associator composition paths preserve the identical leaf sequence [0, 1, 2, 3]. -/
 theorem biedenharn_elliott_pentagon_leaf_coherence :
     leaves t_1 = [0, 1, 2, 3] ∧
     leaves t_2 = [0, 1, 2, 3] ∧
@@ -330,9 +257,6 @@ theorem biedenharn_elliott_pentagon_leaf_coherence :
     leaves t_5 = [0, 1, 2, 3] := by
   decide
 
--- ==============================================================================
--- PART 4: ALGEBRAIC ASSOCIATOR MATRIX PENTAGON COMPOSITION IN Q^5
--- ==============================================================================
 
 structure Vec5 where
   x0 : Int
@@ -345,12 +269,6 @@ structure Vec5 where
 def e0_5 : Vec5 := ⟨1, 0, 0, 0, 0⟩
 def e3_5 : Vec5 := ⟨0, 0, 0, 1, 0⟩
 
-/-- Elementary associator transitions on 5-state parenthesization space:
-    F1 swaps (0, 1): T1 <-> T2
-    F2 swaps (1, 2): T2 <-> T3
-    F3 swaps (2, 3): T3 <-> T4
-    F4 swaps (0, 4): T1 <-> T5
-    F5 swaps (4, 3): T5 <-> T4 -/
 def f1_op (v : Vec5) : Vec5 := ⟨v.x1, v.x0, v.x2, v.x3, v.x4⟩
 def f2_op (v : Vec5) : Vec5 := ⟨v.x0, v.x2, v.x1, v.x3, v.x4⟩
 def f3_op (v : Vec5) : Vec5 := ⟨v.x0, v.x1, v.x3, v.x2, v.x4⟩
@@ -360,9 +278,6 @@ def f5_op (v : Vec5) : Vec5 := ⟨v.x0, v.x1, v.x2, v.x4, v.x3⟩
 def path1_op (v : Vec5) : Vec5 := f3_op (f2_op (f1_op v))
 def path2_op (v : Vec5) : Vec5 := f5_op (f4_op v)
 
-/-- Biedenharn-Elliott pentagon algebraic matrix composition theorem:
-    Both associator paths evaluate identically on the initial configuration e_0,
-    mapping to the terminal configuration e_3 in Q^5. -/
 theorem biedenharn_elliott_pentagon_algebraic_coherence :
     path1_op e0_5 = e3_5 ∧
     path2_op e0_5 = e3_5 := by
@@ -387,3 +302,6 @@ theorem biedenharn_elliott_pentagon_algebraic_coherence :
 #print axioms biedenharn_elliott_pentagon_algebraic_coherence
 
 end FableHilbertWalk20260819.H020
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H020CabelloSignPolytope.lean Claim: cabello_18_count AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

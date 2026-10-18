@@ -1,5 +1,3 @@
-//! Finite closeout control for PLAN-WDP-REVIEW-CLOSEOUT (R1-R4 and E1-E12).
-//! Binds R1 raw-report domain refusal, R2-R4 premise controls, and E1-E12 editorial controls.
 
 use super::plan_wdp_editorial::{EditorialSummary, evaluate_editorial_controls};
 use super::plan_wdp_math_premises::{Rational, absolute_closed_form, signed_closed_form};

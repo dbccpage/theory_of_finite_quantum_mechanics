@@ -1,7 +1,3 @@
-//! Clean-room exact arithmetic in `Q(zeta_44)`.
-//!
-//! This field supports the d=11 odd-prime Weyl control. It contains eleventh
-//! roots of unity, `i`, and the quadratic Gauss normalization `sqrt(11)`.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -10,8 +6,6 @@ use crate::rational::ri;
 
 const DEGREE: usize = 20;
 
-// Phi_44(x) = x^20 - x^18 + x^16 - ... - x^2 + 1.
-// Coefficients c_j for x^20 + sum_{j<20} c_j x^j.
 const PHI44_LOW: [i64; DEGREE] = [
     1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0,
 ];

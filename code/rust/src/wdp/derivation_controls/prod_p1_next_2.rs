@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P1-NEXT-2 (P1 negative controls: Impossible policy gate & forged cert rejection).
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AbstentionLabel {

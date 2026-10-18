@@ -1,8 +1,3 @@
-//! Finite QM module api.
-//!
-//! The public density check is a 2 by 2 rational state. Trace is read from the
-//! diagonal and from the eigenvalue sum. Purity is `Tr(ρ²)` and the sum of
-//! squares of the eigenvalues of `λ² - (tr)λ + det = 0`.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -35,8 +30,6 @@ pub fn trace_and_purity(state: &QubitDensity) -> Result<(BigRational, BigRationa
     }
     let trace = &a + &d;
     let det = &a * &d - &b * &c;
-    // Eigenvalues sum to the trace and multiply to the determinant.
-    // Sum of squares = (λ1+λ2)² - 2 λ1 λ2.
     let by_spectrum = &trace * &trace - rat((2, 1))? * &det;
     let by_entries = &a * &a + &b * &c + &c * &b + &d * &d;
     if by_spectrum != by_entries {
@@ -54,10 +47,6 @@ pub fn standard_qubit_is_a_state() -> Result<(), &'static str> {
     if det <= BigRational::from_integer(BigInt::from(0)) {
         return Err("determinant is not positive");
     }
-    // (1/2)²+(1/6)²+(1/6)²+(1/2)² = 1/4 + 1/36 + 1/36 + 1/4 = 5/9? 
-    // 1/4+1/4=1/2, 1/36+1/36=1/18, 1/2+1/18 = 9/18+1/18 = 10/18 = 5/9.
-    // Spectrum: λ² - λ + det = 0, det = 1/4 - 1/36 = 9/36 - 1/36 = 8/36 = 2/9.
-    // sum of squares = 1 - 2*(2/9) = 1 - 4/9 = 5/9.
     if purity != rat((5, 9))? {
         return Err("purity is not 5/9");
     }

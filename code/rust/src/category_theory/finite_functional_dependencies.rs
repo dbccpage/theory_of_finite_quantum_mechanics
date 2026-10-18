@@ -1,5 +1,3 @@
-//! Finite heading/FD decisions, separate from instance checks and authorization.
-//! Exact equality and set relations only; no NULL, bag, MVD or join-dependency theory.
 
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
@@ -126,8 +124,6 @@ impl FdSchema {
         )
     }
 
-    /// Replay applications, then check that the final set is closed under all FDs.
-    /// Minimality follows because each added attribute has an admitted derivation.
     pub fn verify_closure(&self, witness: &ClosureWitness) -> bool {
         let Ok(heading) = self.heading() else {
             return false;
@@ -182,8 +178,6 @@ impl FdSchema {
         Ok((projected, violations))
     }
 
-    /// Complete FD-only decisions on the supported finite heading, or BudgetUnknown.
-    /// No successful current instance is used to infer schema membership.
     pub fn binary_decomposition(
         &self,
         components: [u16; 2],
@@ -206,8 +200,6 @@ impl FdSchema {
         let (_, original_bcnf_violations) = self.projection(heading, &mut work)?;
         let (p0, v0) = self.projection(components[0], &mut work)?;
         let (p1, v1) = self.projection(components[1], &mut work)?;
-        // The projected cover can exceed the input cover's size. This is internal,
-        // bounded by 2*(2^8); close it directly without the public input-cover cap.
         let projected = p0.iter().chain(&p1).collect::<Vec<_>>();
         let mut lost_dependencies = Vec::new();
         for fd in &self.dependencies {
@@ -293,7 +285,6 @@ pub fn project<T: Ord + Clone>(
         .collect())
 }
 
-/// Exact natural join in original heading order. Quadratic bounded instance work.
 pub fn natural_join<T: Ord + Clone>(
     left: &BTreeSet<Vec<T>>,
     right: &BTreeSet<Vec<T>>,

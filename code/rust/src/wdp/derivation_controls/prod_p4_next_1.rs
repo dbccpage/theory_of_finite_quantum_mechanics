@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P4-NEXT-1 (ObservationPlanner over finite_observation).
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PlanVerdict {
@@ -8,7 +7,6 @@ pub struct PlanVerdict {
     pub unresolved_pair_indices: Vec<usize>,
 }
 
-/// Evaluates all 2^m subsets over a bitmask coverage table `separates[inst_idx][pair_idx]`.
 pub fn plan_cheapest_suite(
     prices_half_units: &[u64],
     separates: &[Vec<bool>],
@@ -57,7 +55,6 @@ mod tests {
 
     #[test]
     fn cheapest_sufficient_suite_and_infeasible_witness() {
-        // 3 instruments: I0 (cost 10/2=5, separates all 3), I1 (cost 3/2, separates pairs 0,2), I2 (cost 4/2=2, separates pairs 1,2)
         let prices = [10, 3, 4];
         let separates = vec![
             vec![true, true, true],

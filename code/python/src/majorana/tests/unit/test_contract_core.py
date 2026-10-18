@@ -1,7 +1,7 @@
 import pytest
 import os
 import tempfile
-import yaml  # type: ignore[import-untyped]
+import yaml
 from omega_engine_governance.contracts import AuthorityEffect
 from omega_engine_governance.contracts.kinds import Capability, CapabilityPolicy
 from omega_engine_governance.contracts.schema import (
@@ -15,7 +15,6 @@ from omega_engine.crates.contract_core.registry.v1_validate import validate_v1, 
 from omega_engine.crates.contract_core.registry.v1_loader import load_v1_dir, intra_file_consistency
 
 
-# kinds tests
 def test_authority_effect_helpers_partition_layers():
     assert AuthorityEffect.StateTransition.is_execution()
     assert not AuthorityEffect.AuthorizesTransition.is_execution()
@@ -45,7 +44,6 @@ def test_capability_policy_helpers_report_membership():
     assert not policy.requires(Capability.ExecuteStateTransition)
 
 
-# v1 types tests
 def test_policy_types_default_empty():
     assert len(TerminalPolicy().may_emit) == 0
     assert len(TerminalPolicy().may_support) == 0
@@ -62,7 +60,6 @@ def test_proof_obligation_ref_is_transparent_string():
 
 
 def test_rust_binding_renames_crate_field():
-    # Test from_dict renames 'crate' to 'krate' in RustBinding
     y_str = """
 schema_version: "omega.contract.v1"
 contract_id: "urn:omega:math:demo:v0.1.0"
@@ -189,7 +186,6 @@ def test_wrong_schema_version_fails():
     )
 
 
-# loader consistency tests
 def doc_with_codomain(extra_class: str, extra_outcome: str):
     y = f"""
 schema_version: "omega.contract.v1"
@@ -226,17 +222,14 @@ def test_undeclared_meta_outcome_is_unknown_refusal():
 
 def test_load_v1_dir():
     with tempfile.TemporaryDirectory() as tmpdir:
-        # write one good contract
         good_path = os.path.join(tmpdir, "demo.contract.yaml")
         with open(good_path, "w", encoding="utf-8") as f:
             f.write(GOOD_YAML)
 
-        # write a non-v1 yaml file (should be skipped silently)
         skip_path = os.path.join(tmpdir, "skip.contract.yaml")
         with open(skip_path, "w", encoding="utf-8") as f:
             f.write("schema_version: omega.contract.v2\ncontract_id: urn:omega:skip\n")
 
-        # write a malformed yaml file (should be skipped silently)
         mal_path = os.path.join(tmpdir, "malformed.contract.yaml")
         with open(mal_path, "w", encoding="utf-8") as f:
             f.write("invalid: yaml: : foo\n")

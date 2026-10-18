@@ -1,90 +1,3 @@
-//! Minimal Solver of Solvers: `solve(carrier, residual)` over a declared
-//! finite 2-complex, returning a typed status, a normal-form residual, and a
-//! replay-verified certificate chain. All coefficients are **rational**: every
-//! statement below is over ℚ (a rational relaxation — integral and torsion
-//! semantics are not addressed by this module).
-//!
-//! # What this is
-//!
-//! The three-algorithm skeleton, executed against the estate's sealed
-//! verifiers and nothing else:
-//!
-//! 1. **Foundation** — declare the finite carrier (vertices, weighted edges,
-//!    triangular faces). Ambiguous declarations (self-loops, parallel or
-//!    reversed duplicate edges, degenerate or duplicate faces) are refused as
-//!    `RepresentationInvalid`, because face incidence would otherwise depend
-//!    on edge list order. The primitive-difference receipt binds the declared
-//!    residual `ω` itself.
-//! 2. **Gauge projection** — exact `Φ₁ = min_α ‖ω − d₀α‖_{1,w}` via the
-//!    integer network simplex ([`solve_phi1`]), packed and replayed through
-//!    the shared exact evaluation
-//!    ([`crate::coda::coda_gtla::evaluate_exact`]) with the carrier's
-//!    **real** face coboundary `d₁` — unlike the graph-only adapter path,
-//!    Γ₂ here sees the declared 2-cells.
-//! 3. **Multi-cycle projection** — two exact weighted-ℓ¹ projections:
-//!    - `v*`  = distance of `ω` to `im(d₀) + im(∂₂)` (the supplied span:
-//!      whether every `∂₂` column is a *licensed* repair is the caller's
-//!      declaration, not something this module establishes), and
-//!    - `v_closed` = the same distance restricted to **closed**
-//!      representatives (`d₁ z = 0`), i.e. the projection onto
-//!      `im(d₀) + (im(∂₂) ∩ ker d₁)` of the curl-matched shift.
-//!    Each is a bounded basic-solution enumeration whose result is accepted
-//!    only when its primal/dual pair replays with zero gap through
-//!    [`Phi1Functional::verify_exact_certificate`]; the search itself establishes
-//!    nothing, and an uncertifiable candidate is a typed refusal.
-//! 4. **Typed diagnostic terminal** — the status is decided by the exact
-//!    comparison of the two certified values, so it is a function of
-//!    `(ω, weights, span, faces)` alone and does **not** depend on which
-//!    optimal representative the enumeration happened to certify (equal-value
-//!    optima with different closure classes exist — see
-//!    `review_counterexample_status_is_canonical`):
-//!    - `v* = 0` → [`ObstructionDiagnosticClass::ExactRepair`] (over ℚ);
-//!    - `v* > 0` and `v_closed = v*` →
-//!      [`ObstructionDiagnosticClass::ClosedResidual`] — a **closed** minimal
-//!      representative exists and is returned as the normal form;
-//!    - `v* > 0` and (`v_closed > v*` or no closed representative exists) →
-//!      [`ObstructionDiagnosticClass::ActiveClosureFailure`] — closedness
-//!      costs strictly more than the minimum; the certified gap is carried.
-//!    The final class is still emitted by the contract-bound trichotomy
-//!    inside `evaluate_exact` on the returned normal form, and the exact
-//!    value comparison ensures which class that is. The result is a
-//!    checked diagnostic packet: **no terminal classification is minted**
-//!    (`VerifiedExactPhi1` is evidence, never a grant).
-//!
-//! Algorithm 3 is the **window lift** ([`lift`], [`probe_lifts`]): the
-//! caller *declares* candidate 2-cells (the engine never invents one), the
-//! effect on `v*` is certified with monotonicity re-checked at runtime, and
-//! irreducibility is only ever stated relative to the declared budget.
-//!
-//! # What this is not
-//!
-//! No continuum statement is made, no inner product is declared — so
-//! nothing here is called *harmonic*: `ClosedResidual` with `b₁^ℚ > 0` means
-//! a closed non-exact class over ℚ survives, and only that. The `∂₂` columns
-//! are a **declared repair span** — syntactically declared directions, not
-//! policy-*licensed* ones; promotion to "licensed" would require a policy
-//! receipt this module does not carry. No authority is minted: every receipt
-//! carries [`AuthorityEffect::None`].
-//!
-//! # Replay
-//!
-//! The sealed inner witnesses replay their own primal/dual content, but the
-//! *glue* between them (which carrier, which residual, the closed
-//! projection's transformation chain) is re-derived by [`replay_solve`],
-//! which `solve` itself runs before returning a receipt. The primitive
-//! receipt binds the carrier-manifest hash, domain length and class count —
-//! **not** a digest of the residual values; residual binding is carried by
-//! the certificate bytes inside the evidence manifests and by
-//! [`replay_solve`]'s recomputation. An offline serialization for
-//! cross-process replay is recorded open work.
-//!
-//! Both projections are solved by the **exact rational simplex** of
-//! [`omega_solvers::solver_lp_exact_simplex`] (Bland's rule, so no cycling; dual read
-//! off the final tableau). The former 12-edge combinatorial ceiling is gone;
-//! [`MAX_PROJECTION_EDGES`] is a resource guard, not an algorithmic limit,
-//! and exceeding it refuses rather than degrading to floats.
-//!
-//! `AuthorityEffect: None.`
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -108,22 +21,10 @@ use omega_solvers::solver_lp_exact_simplex::{solve_weighted_l1_projection, L1LpE
 use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
 use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
-/// Projection-stage sanity fence on carrier size.
-///
-/// This is a resource guard, **not** an algorithmic limit: the projection is
-/// an exact rational simplex, so the old combinatorial ceiling (12 edges, set
-/// by basic-solution enumeration) is gone. Exceeding this refuses rather than
-/// degrading to floats.
 pub const MAX_PROJECTION_EDGES: usize = 4096;
 
-/// One namespace for the whole solve: every evaluation of one call binds the
-/// same `CarrierManifestHash`, so the certificate chain provably concerns one
-/// carrier identity. Stage labels live in the evidence manifests instead.
 const DOMAIN: &str = "crate::solver_of_solvers";
 
-/// A declared finite 2-truncated carrier: vertices `0..num_vertices`,
-/// directed weighted edges, and triangular faces whose sides must be declared
-/// edges (in either stored orientation).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteCarrier2 {
     pub num_vertices: usize,
@@ -131,7 +32,6 @@ pub struct FiniteCarrier2 {
     pub faces: Vec<(usize, usize, usize)>,
 }
 
-/// One declared edge with its strictly positive ℓ¹ weight.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CarrierEdge {
     pub tail: usize,
@@ -139,42 +39,26 @@ pub struct CarrierEdge {
     pub weight: i128,
 }
 
-/// Typed refusal. A refusal is a valid terminal; it is never converted into a
-/// status claim.
 #[derive(Debug, thiserror::Error)]
 pub enum SolveRefusal {
-    /// The declared carrier or residual is not a valid, unambiguous
-    /// representation.
     #[error("representation invalid: {0}")]
     RepresentationInvalid(String),
-    /// The projection stages' exact enumeration is fenced to small carriers.
     #[error("projection budget: {edges} edges exceeds the exact-enumeration fence of {max}")]
     SizeBudgetExceeded { edges: usize, max: usize },
-    /// The exact integer network simplex refused.
     #[error(transparent)]
     Solver(#[from] NetworkSimplexError),
-    /// The shared exact evaluation refused (certificate replay, Γ₂, or
-    /// trichotomy consistency).
     #[error(transparent)]
     Evaluation(#[from] CodaGtlaEvaluationError),
-    /// Evidence binding failed.
     #[error(transparent)]
     Binding(#[from] DomainEvidenceBindingError),
-    /// Primitive-difference receipt failed.
     #[error(transparent)]
     Primitive(#[from] PrimitiveDifferenceReceiptError),
-    /// Exact linear algebra failed (overflow-free rational path).
     #[error("exact linear algebra: {0:?}")]
     Linear(ExactLinearAlgebraError),
-    /// The enumeration produced a candidate the dual replay could not
-    /// certify, or the two certified stages contradict each other. No claim
-    /// is made in either case.
     #[error("projection stage found no replay-certifiable minimizer: {0}")]
     JointCertificateSynthesis(String),
-    /// Manifest serialization failed.
     #[error(transparent)]
     Manifest(#[from] serde_json::Error),
-    /// The exact rational LP refused (dimension, weight, or budget).
     #[error(transparent)]
     Lp(#[from] L1LpError),
 }
@@ -185,10 +69,6 @@ impl From<ExactLinearAlgebraError> for SolveRefusal {
     }
 }
 
-/// The certificate-bearing outcome of one `solve` call.
-///
-/// Every mathematical claim in here is held by a sealed type another crate's
-/// verifier constructed; this struct only arranges them.
 #[derive(Debug)]
 pub struct SolveReceipt {
     gauge: CodaGtlaEvaluation,
@@ -201,76 +81,40 @@ pub struct SolveReceipt {
 }
 
 impl SolveReceipt {
-    /// The gauge evaluation of the original residual against the declared
-    /// carrier (real `d₁`; Γ₂ sees the faces).
     pub fn gauge(&self) -> &CodaGtlaEvaluation {
         &self.gauge
     }
 
-    /// The unrestricted projection witness: its value is exactly the
-    /// weighted-ℓ¹ distance of `ω` to the supplied span `im(d₀) + im(∂₂)`,
-    /// proved by zero-gap primal/dual replay. `None` when the stage did not
-    /// run (no faces, or the gauge stage already reached zero).
     pub fn joint(&self) -> Option<&VerifiedExactPhi1> {
         self.joint.as_ref()
     }
 
-    /// The closed-representative projection witness: its value is the
-    /// minimum over representatives with `d₁ z = 0`. `None` only when the
-    /// stage did not run (no faces, or the gauge stage already reached
-    /// zero) — for this module's span `S ⊇ im(∂₂)`, **every** class contains
-    /// a closed representative (solve `AAᵀβ = Aω`, always consistent over ℚ
-    /// since `im(AAᵀ) = im(A)`), so an inconsistent closed system is an
-    /// implementation contradiction and refuses; it is never converted into
-    /// a diagnostic. The status is decided by comparing this value with
-    /// [`Self::joint`]'s.
     pub fn closed(&self) -> Option<&VerifiedExactPhi1> {
         self.closed
             .as_ref()
             .map(|projection| &projection.outcome.witness)
     }
 
-    /// The canonical evaluation that classifies the normal form. When the
-    /// projection stages did not run this is the gauge evaluation itself.
     pub fn final_evaluation(&self) -> &CodaGtlaEvaluation {
         self.normal_form_eval.as_ref().unwrap_or(&self.gauge)
     }
 
-    /// The typed status of the normal form, from the contract-bound
-    /// trichotomy. Canonical: decided by the exact value comparison
-    /// `v_closed` vs `v*`, not by which optimum the enumeration found first.
     pub fn status(&self) -> ObstructionDiagnosticClass {
         self.final_evaluation().status()
     }
 
-    /// The normal-form residual. For `ClosedResidual` this is a **closed**
-    /// minimal representative; the status is canonical, the representative
-    /// within its (possibly non-unique) optimal set is not.
     pub fn normal_form(&self) -> &[BigRational] {
         &self.normal_form
     }
 
-    /// First Betti number of the declared carrier **over ℚ** (exact rational
-    /// ranks): the dimension of the surviving cochain quotient. Integral and
-    /// torsion information is not computed.
     pub fn b1_over_q(&self) -> usize {
         self.b1_over_q
     }
 
-    /// `ClosedResidual` with `b₁^ℚ > 0`: a closed, non-exact residual class
-    /// over ℚ survives every supplied repair direction. This is **not** a
-    /// harmonicity claim — harmonic representatives require a declared inner
-    /// product and codifferential, which this module does not carry.
     pub fn is_closed_class_survivor(&self) -> bool {
         self.status() == ObstructionDiagnosticClass::ClosedResidual && self.b1_over_q > 0
     }
 
-    /// The certified span distance `v* = min over [ω]_S of ‖·‖_{1,w}`.
-    ///
-    /// Uniform across the stages: when the projection ran this is its
-    /// witness value; otherwise the declared repair span is `im(d₀)` alone
-    /// (no faces) or the gauge stage already reached zero, and in both cases
-    /// `v* = Φ₁`.
     pub fn span_distance(&self) -> &BigRational {
         match &self.joint {
             Some(witness) => witness.value(),
@@ -278,29 +122,15 @@ impl SolveReceipt {
         }
     }
 
-    /// The certified closure premium `π = v_closed − v*` — the exact price
-    /// of holding a **closed** representative rather than a minimal
-    /// one. Total, and always finite: for this module's span `S ⊇ im(∂₂)`
-    /// every class has a closed representative, so `π = +∞` is unreachable
-    /// (it belongs only to generalized spans not containing `im(d₁ᵀ)`).
-    ///
-    /// `π = 0` ⟺ `ClosedResidual` (when `v* > 0`); `π > 0` ⟺
-    /// `ActiveClosureFailure`. This is the invariant that makes the
-    /// classification canonical (see the module docs).
     pub fn closure_premium(&self) -> BigRational {
         match &self.closed {
             Some(projection) => {
                 projection.outcome.witness.value().clone() - self.span_distance().clone()
             }
-            // No closed projection was needed: either no faces are declared
-            // (every representative is closed) or v* = 0 (the zero
-            // representative is closed). Both have premium zero.
             None => BigRational::zero(),
         }
     }
 
-    /// Always [`AuthorityEffect::None`]: the receipt is evidence, not a
-    /// grant.
     pub fn authority_effect(&self) -> &AuthorityEffect {
         &self.authority_effect
     }
@@ -312,8 +142,6 @@ struct RationalDelta {
     coordinates: Vec<BigRational>,
 }
 
-/// The primitive difference bound by the receipts: the declared edge-space
-/// residual itself (validated as `[0, ω]`, and `[0, z]` for the normal form).
 #[derive(Debug)]
 struct ResidualDifference;
 
@@ -341,10 +169,6 @@ fn rational(value: i128) -> BigRational {
     BigRational::from_integer(BigInt::from(value))
 }
 
-/// Signed incidence row of face `(u, v, w)` over the stored edges:
-/// `+1` where the traversal pair is stored forward, `−1` where stored
-/// reversed. Unambiguous because `validate_carrier` refuses duplicate
-/// unordered edge pairs. Errors if a side is not a declared edge.
 fn face_row(
     carrier: &FiniteCarrier2,
     face: (usize, usize, usize),
@@ -387,9 +211,6 @@ fn validate_carrier(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<(), Solv
             carrier.edges.len()
         )));
     }
-    // Resource fence on every dimension the LP sees (columns = vertices +
-    // faces, rows = edges), not edges alone. A total complexity budget
-    // (allocations, pivot work across all stages) is recorded open work.
     if carrier.num_vertices + carrier.faces.len() > MAX_PROJECTION_EDGES {
         return Err(SolveRefusal::SizeBudgetExceeded {
             edges: carrier.num_vertices + carrier.faces.len(),
@@ -467,13 +288,6 @@ fn boundary1(carrier: &FiniteCarrier2) -> Boundary1 {
     }
 }
 
-/// `d₁` rows, one per declared face. A carrier without faces yields an empty
-/// block (`c₂ = 0`) — the honest serialization; no dummy 2-cell is invented.
-/// `d₁` rows for [`crate::carrier_binding`].
-///
-/// Deliberately routed through the same `face_row` the solver uses: the point of
-/// the binding is to hash the operators the solver actually computes, so a
-/// second, parallel derivation here would defeat it.
 pub(crate) fn d1_rows_for_binding(
     carrier: &FiniteCarrier2,
 ) -> Result<Vec<Vec<BigRational>>, SolveRefusal> {
@@ -509,8 +323,6 @@ fn exact_rank(rows: &[Vec<BigRational>]) -> Result<usize, SolveRefusal> {
     Ok(matrix_from_rows(rows)?.rank()?)
 }
 
-/// Solve `M x = b` exactly (particular solution, free variables zero).
-/// Returns `None` when inconsistent.
 fn rref_solve(
     rows: &[Vec<BigRational>],
     rhs: &[BigRational],
@@ -530,7 +342,7 @@ fn rref_solve(
         .collect();
     let reduction = matrix_from_rows(&augmented)?.rank_and_rref()?;
     if reduction.pivot_columns().contains(&width) {
-        return Ok(None); // pivot in the RHS column: inconsistent
+        return Ok(None);
     }
     let mut solution = vec![BigRational::zero(); width];
     let rref = reduction.rref();
@@ -543,7 +355,6 @@ fn rref_solve(
     Ok(Some(solution))
 }
 
-/// Iterate size-`k` subsets of `0..n` (lexicographic), calling `visit`.
 #[allow(dead_code)]
 fn for_each_subset<F: FnMut(&[usize]) -> Result<bool, SolveRefusal>>(
     n: usize,
@@ -558,7 +369,6 @@ fn for_each_subset<F: FnMut(&[usize]) -> Result<bool, SolveRefusal>>(
         if !visit(&indices)? {
             return Ok(());
         }
-        // advance
         let mut position = k;
         loop {
             if position == 0 {
@@ -586,15 +396,6 @@ struct ProjectionOutcome {
     dual: Vec<BigRational>,
 }
 
-/// Exact weighted-l1 projection of `target` onto the column space of
-/// `map_rows` (an `m x k` matrix given by rows).
-///
-/// Solved by the exact rational simplex of
-/// [`omega_solvers::solver_lp_exact_simplex`] -- polynomial in practice, exact over Q,
-/// and with the dual read straight off the final tableau's reduced costs.
-/// The LP is a *proposal engine*: its output is accepted only when the
-/// primal/dual pair replays with zero gap through the shared verifier, and a
-/// proposal the verifier cannot certify is a typed refusal, never a claim.
 fn exact_l1_projection(
     target: &[BigRational],
     weights: &[BigRational],
@@ -633,9 +434,6 @@ fn exact_l1_projection(
     })
 }
 
-/// Complementary dual: `φ_e = w_e · sign(z_e)` on the support, unknown on the
-/// zero set, subject to `φ ⊥ every map column`; bounds are checked here and
-/// re-checked by the verifier.
 #[allow(dead_code)]
 fn synthesize_dual(
     map_rows: &[Vec<BigRational>],
@@ -657,8 +455,6 @@ fn synthesize_dual(
         fixed[edge] = weights[edge].clone() * sign;
     }
 
-    // Constraint per column c: Σ_e A[e][c] φ_e = 0 →
-    // Σ_{e∈Z} A[e][c] φ_e = − Σ_{e∈S} A[e][c] fixed_e.
     let rows: Vec<Vec<BigRational>> = (0..columns)
         .map(|column| {
             zero_set
@@ -690,13 +486,12 @@ fn synthesize_dual(
     }
     for edge in 0..m {
         if dual[edge].abs() > weights[edge] {
-            return Ok(None); // bound violated; caller may try another optimum
+            return Ok(None);
         }
     }
     Ok(Some(dual))
 }
 
-/// Rows of `[ d₀ | ∂₂ ]` — the supplied repair span.
 fn augmented_rows(
     carrier: &FiniteCarrier2,
     d0_rows: &[Vec<BigRational>],
@@ -717,35 +512,16 @@ fn augmented_rows(
         .collect()
 }
 
-/// The certified closed projection, **with the glue retained** so a replay
-/// can re-derive the constrained minimum from the original `(carrier, ω)`
-/// rather than trusting the transformation chain
-/// `ω → γ₀ → y₀ → shifted → V` that produced it.
 #[derive(Debug)]
 struct ClosedProjection {
     outcome: ProjectionOutcome,
-    /// The closed minimal representative `z_c = ω − y₀ − V s*` (with
-    /// `d₁ z_c = 0` re-checked exactly before this struct is built).
     normal_form: Vec<BigRational>,
-    /// Particular solution: `y₀ = B γ₀`, `d₁ y₀ = d₁ ω`.
     gamma0: Vec<BigRational>,
     y0: Vec<BigRational>,
-    /// Kernel coefficients: each `k` satisfies `(d₁B) k = 0`, and the
-    /// direction columns are `V_j = B k_j`.
     kernel: Vec<Vec<BigRational>>,
-    /// `ω − y₀` — the target of the inner projection witness.
     shifted: Vec<BigRational>,
 }
 
-/// Exact projection of `ω` restricted to **closed** representatives:
-/// minimize `‖ω − y‖_{1,w}` over `y ∈ col(B)` with `d₁(ω − y) = 0`.
-///
-/// For this module's span `B = [d₀ | ∂₂]` the system `(d₁B)γ = d₁ω` is
-/// **always consistent** over ℚ: `im(d₁ ∂₂) = im(d₁ d₁ᵀ) = im(d₁) ∋ d₁ω`
-/// (over an ordered field, `AAᵀx = 0 ⟹ ‖Aᵀx‖² = 0 ⟹ Aᵀx = 0`, so
-/// `rank(AAᵀ) = rank(A)`). Every class therefore has a closed
-/// representative, and an inconsistent solve here is an implementation
-/// contradiction that refuses — it is never converted into a diagnostic.
 fn closed_projection(
     omega_q: &[BigRational],
     weights: &[BigRational],
@@ -755,7 +531,6 @@ fn closed_projection(
     let m = omega_q.len();
     let columns = aug_rows.first().map(Vec::len).unwrap_or(0);
 
-    // BF = d₁ · B  (faces × columns), t = d₁ ω.
     let bf_rows: Vec<Vec<BigRational>> = d1
         .iter()
         .map(|face| {
@@ -777,9 +552,6 @@ fn closed_projection(
         })
         .collect();
 
-    // Particular solution: y₀ = B γ₀ with d₁ y₀ = d₁ ω. Consistency is a
-    // theorem here (see the function docs), so failure is a defect refusal,
-    // never a "no closed representative" diagnostic.
     let gamma0 = match rref_solve(&bf_rows, &t)? {
         Some(gamma0) => gamma0,
         None => {
@@ -803,10 +575,6 @@ fn closed_projection(
         .map(|(observed, base)| observed.clone() - base.clone())
         .collect();
 
-    // Direction space: V = { B k : (d₁ B) k = 0 } = col(B) ∩ ker(d₁).
-    // Note im(d₀) ⊆ V by the chain law, so the constrained dual annihilates
-    // im(d₀) — which is what lets the closed normal form re-certify against
-    // the true d₀ downstream.
     let kernel = matrix_from_rows(&bf_rows)?.kernel_basis()?;
     let v_columns: Vec<Vec<BigRational>> = kernel
         .vectors()
@@ -833,9 +601,6 @@ fn closed_projection(
     let outcome = exact_l1_projection(&shifted, weights, &v_rows)?;
     let normal_form: Vec<BigRational> = outcome.residual.clone();
 
-    // Hard exact check, not an assumption: the returned representative is
-    // closed. Failure here is an internal contradiction, surfaced as a typed
-    // refusal rather than a wrong claim.
     for face in d1 {
         let curl: BigRational = (0..m)
             .map(|edge| face[edge].clone() * normal_form[edge].clone())
@@ -857,16 +622,6 @@ fn closed_projection(
     })
 }
 
-/// One canonical evaluation through the shared CODA/CODA_GTLA runtime. Every call
-/// within one `solve` uses the same [`DOMAIN`] and the same carrier manifest,
-/// hence the same `CarrierManifestHash`: one carrier identity per chain.
-///
-/// Binding honesty: the primitive-difference *validation* runs on
-/// `[0, residual]`, but the receipt records only the carrier hash, domain
-/// length and quotient-class count — it does **not** digest the residual
-/// values. The residual bytes are bound via the certificate inside the
-/// evidence manifest (hashed into the packet args) and re-derived by
-/// [`replay_solve`].
 fn evaluate(
     stage: &str,
     carrier: &FiniteCarrier2,
@@ -908,10 +663,6 @@ fn evaluate(
     ))?)
 }
 
-/// Solve one declared carrier + residual: Foundation → gauge projection →
-/// closed/unrestricted multi-cycle projections → typed diagnostic terminal.
-/// See the module documentation for the exact claims each returned
-/// certificate holds.
 pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, SolveRefusal> {
     validate_carrier(carrier, omega)?;
 
@@ -924,8 +675,6 @@ pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, S
         .collect();
     let omega_q: Vec<BigRational> = omega.iter().copied().map(rational).collect();
 
-    // ---- Stage 1: exact gauge projection, canonically evaluated with the
-    // carrier's real d1 (an empty 2-cell block when no faces are declared).
     let solution = solve_phi1(&boundary, omega)?;
     let gauge_certificate = exact_certificate(&boundary, omega, &solution);
     let d0_rows: Vec<Vec<BigRational>> = gauge_certificate.d0.clone();
@@ -945,7 +694,6 @@ pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, S
         &omega_q,
     )?;
 
-    // b1 over Q from exact ranks: m − rank(d0) − rank(∂2).
     let rank_d0 = exact_rank(&d0_rows)?;
     let rank_faces = if carrier.faces.is_empty() {
         0
@@ -956,15 +704,11 @@ pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, S
 
     let gauge_is_exact = gauge.status() == ObstructionDiagnosticClass::ExactRepair;
 
-    // ---- Stage 2: the two projections (only meaningful with faces and a
-    // surviving residual).
     if carrier.faces.is_empty() || gauge_is_exact {
         let normal_form = gauge.phi1().primal_residual().to_vec();
         return Ok(SolveReceipt {
             gauge,
             joint: None,
-            // Without faces every representative is closed; with an exact
-            // gauge repair the zero representative is closed. π = 0.
             closed: None,
             normal_form_eval: None,
             normal_form,
@@ -977,8 +721,6 @@ pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, S
     let joint = exact_l1_projection(&omega_q, &weights, &aug)?;
     let v_star = joint.witness.value().clone();
 
-    // v* = 0: everything in the supplied span is removable; the zero normal
-    // form is closed, no second projection is needed.
     if v_star.is_zero() {
         let z2 = joint.residual.clone();
         let zero_dual = vec![BigRational::zero(); carrier.edges.len()];
@@ -1009,26 +751,16 @@ pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, S
         });
     }
 
-    // v* > 0: run the closed-representative projection (always solvable for
-    // this span — see `closed_projection`). The status is the exact
-    // comparison of the two certified values — canonical, independent of
-    // which optimum either solver certified.
     let closed = closed_projection(&omega_q, &weights, &aug, &d1)?;
     let v_closed = closed.outcome.witness.value().clone();
 
     let (normal_form, nf_dual, nf_value) = if v_closed == v_star {
-        // A closed minimal representative exists: it IS the normal form, and
-        // the constrained dual (which annihilates V ⊇ im(d0)) certifies it
-        // against the true d0.
         (
             closed.normal_form.clone(),
             closed.outcome.dual.clone(),
             v_closed.clone(),
         )
     } else {
-        // Closedness costs strictly more: the certified gap is the
-        // ActiveClosureFailure witness. Return an unrestricted optimum
-        // (necessarily non-closed, else it would contradict the strict gap).
         (
             joint.residual.clone(),
             joint.dual.clone(),
@@ -1036,9 +768,6 @@ pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, S
         )
     };
 
-    // ---- Stage 3: canonical classification of the chosen normal form
-    // against the true d0. The dual in hand annihilates im(d0) by
-    // construction in both branches.
     let normal_form_certificate = ExactPhi1Certificate {
         omega: normal_form.clone(),
         d0: d0_rows,
@@ -1056,12 +785,10 @@ pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, S
         &normal_form,
     )?;
 
-    // Exact consistency between the value comparison and the contract-bound
-    // classification. A mismatch is an internal contradiction and refuses.
     let expected_closed = v_closed == v_star;
     let classified = normal_form_eval.status();
     let consistent = match classified {
-        ObstructionDiagnosticClass::ExactRepair => false, // v* > 0 here
+        ObstructionDiagnosticClass::ExactRepair => false,
         ObstructionDiagnosticClass::ClosedResidual => expected_closed,
         ObstructionDiagnosticClass::ActiveClosureFailure => !expected_closed,
     };
@@ -1081,19 +808,11 @@ pub fn solve(carrier: &FiniteCarrier2, omega: &[i128]) -> Result<SolveReceipt, S
         b1_over_q,
         authority_effect: AuthorityEffect::None,
     };
-    // Self-replay before returning: the constructor path is also a replay
-    // client, so a receipt that cannot replay is never handed out.
     replay_solve(carrier, omega, &receipt)?;
     Ok(receipt)
 }
 
-// ---------------------------------------------------------------------------
-// Replay: re-derive every glue relation of a receipt from (carrier, ω).
-// ---------------------------------------------------------------------------
 
-/// A receipt that has been replayed against its declared inputs. The only
-/// constructor is [`replay_solve`]; holding one means every glue relation
-/// below was re-checked, not trusted.
 #[derive(Debug)]
 pub struct ReplayedSolve<'a> {
     receipt: &'a SolveReceipt,
@@ -1105,33 +824,6 @@ impl<'a> ReplayedSolve<'a> {
     }
 }
 
-/// Replay a [`SolveReceipt`] from the original `(carrier, ω)`.
-///
-/// The sealed inner witnesses (`VerifiedExactPhi1`, the two canonical
-/// evaluations) already replay their own primal/dual content. What THEY
-/// cannot see is the glue — that the certificates concern *this* carrier and
-/// *this* residual, and that the closed projection's transformation chain
-/// `ω → γ₀ → y₀ → shifted → V` is what it claims. This function re-derives
-/// all of it:
-///
-/// 1. the gauge certificate's `ω`, `d₀`, and weights are the carrier's;
-/// 2. the joint certificate's map is exactly `[d₀ | ∂₂]` of the carrier and
-///    its target is `ω`;
-/// 3. `(d₁B)γ₀ = d₁ω`, `y₀ = Bγ₀`, every kernel vector annihilates `d₁B`,
-///    the direction columns are `V_j = B k_j`, and `shifted = ω − y₀` is the
-///    closed certificate's target over exactly those columns;
-/// 4. the closed normal form is face-closed, and the returned normal form is
-///    the certified representative of the branch the value comparison
-///    selects;
-/// 5. the final evaluation's residual is the normal form and its class
-///    matches the `v_closed` vs `v*` comparison;
-/// 6. `b₁^ℚ` re-derives from exact ranks;
-/// 7. the gauge and final evaluations bind the **same** carrier-manifest
-///    hash (one carrier identity per chain).
-///
-/// What this does NOT yet provide: an offline serialization format — the
-/// receipt is an in-memory object, and cross-process replay requires the
-/// serializable aggregate recorded as open work in the packet.
 pub fn replay_solve<'a>(
     carrier: &FiniteCarrier2,
     omega: &[i128],
@@ -1153,8 +845,6 @@ pub fn replay_solve<'a>(
         .collect();
     let boundary = boundary1(carrier);
     let d0_rows: Vec<Vec<BigRational>> = {
-        // Recompute the signed incidence rows exactly as the certificate
-        // packer does.
         let mut rows = vec![vec![BigRational::zero(); carrier.num_vertices]; carrier.edges.len()];
         for (row, edge) in rows.iter_mut().zip(&boundary.edges) {
             row[edge.tail] -= BigRational::from_integer(BigInt::from(1));
@@ -1164,10 +854,6 @@ pub fn replay_solve<'a>(
     };
     let m = carrier.edges.len();
 
-    // (1) Gauge certificate concerns this carrier and this residual. The
-    // sealed witness does not expose its weight vector, so weights are bound
-    // FUNCTIONALLY: the certified value must equal the residual's norm under
-    // the CARRIER's weights.
     let gauge_phi1 = receipt.gauge.phi1();
     if gauge_phi1.d0() != d0_rows.as_slice() {
         return fail("gauge certificate d0 is not this carrier's incidence map");
@@ -1175,8 +861,6 @@ pub fn replay_solve<'a>(
     if weighted_l1(gauge_phi1.primal_residual(), &weights) != *gauge_phi1.value() {
         return fail("gauge certificate value is not the carrier-weighted norm of its residual");
     }
-    // The verifier ensures residual = omega − d0·alpha; binding omega is
-    // done via the residual identity on the recomputed map.
     let alpha = gauge_phi1.alpha();
     for edge in 0..m {
         let repair: BigRational = (0..carrier.num_vertices)
@@ -1187,7 +871,6 @@ pub fn replay_solve<'a>(
         }
     }
 
-    // (2)–(4) Joint + closed glue, when the stages ran.
     if let Some(joint) = &receipt.joint {
         let aug = augmented_rows(carrier, &d0_rows, &d1);
         if joint.d0() != aug.as_slice() {
@@ -1212,7 +895,6 @@ pub fn replay_solve<'a>(
         match &receipt.closed {
             Some(closed) => {
                 let columns = aug.first().map(Vec::len).unwrap_or(0);
-                // (d1·B) γ0 = d1·ω  and  y0 = B γ0.
                 for (face_index, face) in d1.iter().enumerate() {
                     let lhs: BigRational = (0..columns)
                         .map(|column| {
@@ -1241,8 +923,6 @@ pub fn replay_solve<'a>(
                         return fail("closed glue: shifted ≠ ω − y0");
                     }
                 }
-                // Kernel vectors annihilate d1·B, and the certified map's
-                // columns are B·k.
                 let closed_witness = &closed.outcome.witness;
                 let witness_rows = closed_witness.d0();
                 if witness_rows.len() != m {
@@ -1291,8 +971,6 @@ pub fn replay_solve<'a>(
                         return fail("closed normal form is not face-closed");
                     }
                 }
-                // (5) Branch selection and final class. Weight binding for
-                // the closed witness, as for the others.
                 let v_closed = closed_witness.value();
                 if weighted_l1(closed_witness.primal_residual(), &weights) != *v_closed {
                     return fail(
@@ -1301,7 +979,7 @@ pub fn replay_solve<'a>(
                 }
                 let expected_closed = v_closed == v_star;
                 let expected_normal_form: &[BigRational] = if v_star.is_zero() {
-                    receipt.normal_form.as_slice() // zero form, checked below
+                    receipt.normal_form.as_slice()
                 } else if expected_closed {
                     closed.normal_form.as_slice()
                 } else {
@@ -1329,8 +1007,6 @@ pub fn replay_solve<'a>(
                 }
             }
             None => {
-                // Joint ran without a closed projection: only legal when
-                // v* = 0 (zero normal form, closed trivially).
                 if !v_star.is_zero() {
                     return fail("v* > 0 but no closed projection was recorded");
                 }
@@ -1340,8 +1016,6 @@ pub fn replay_solve<'a>(
             }
         }
     } else {
-        // No joint stage: legal only for faceless carriers or a gauge-exact
-        // residual; the normal form is the gauge residual.
         if !(carrier.faces.is_empty()
             || receipt.gauge.status() == ObstructionDiagnosticClass::ExactRepair)
         {
@@ -1352,7 +1026,6 @@ pub fn replay_solve<'a>(
         }
     }
 
-    // (6) b1 over Q re-derives.
     let rank_d0 = exact_rank(&d0_rows)?;
     let rank_faces = if carrier.faces.is_empty() {
         0
@@ -1363,8 +1036,6 @@ pub fn replay_solve<'a>(
         return fail("b1 over Q does not re-derive from exact ranks");
     }
 
-    // (7) One carrier identity per chain, checked through the REAL pipeline
-    // objects, not synthetic manifests.
     let gauge_hash = receipt.gauge.primitive_receipt().declared_carrier_hash();
     let final_hash = receipt
         .final_evaluation()
@@ -1377,16 +1048,7 @@ pub fn replay_solve<'a>(
     Ok(ReplayedSolve { receipt })
 }
 
-// ---------------------------------------------------------------------------
-// Algorithm 3: the window lift.
-// ---------------------------------------------------------------------------
 
-/// A **declared** window lift: additional 2-cells over the *same* 1-skeleton.
-///
-/// The caller declares which cells may be added. The engine never invents a
-/// 2-cell: inventing the cell that happens to kill the obstruction is not a
-/// solution, it is a change of problem. The engine's job is to certify the
-/// effect of a declared lift — including certifying that it bought nothing.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WindowLift {
     pub added_faces: Vec<(usize, usize, usize)>,
@@ -1398,21 +1060,13 @@ impl WindowLift {
     }
 }
 
-/// The certified effect of a lift on the span distance `v*`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum LiftEffect {
-    /// `v*' = 0`: the lifted span removes the residual entirely.
     Resolved,
-    /// `0 < v*' < v*`: strictly less survives, but something still does.
     Reduced,
-    /// `v*' = v*`: the declared cells bought nothing. Reported, never hidden.
     Ineffective,
 }
 
-/// A certified lift: both solves, both carrier identities, and the typed
-/// effect. Pre-lift evidence does **not** transfer across the lift — the two
-/// receipts are kept separate precisely so that no caller can silently reuse
-/// one carrier's evidence on another.
 #[derive(Debug)]
 pub struct LiftReceipt {
     before: SolveReceipt,
@@ -1423,17 +1077,14 @@ pub struct LiftReceipt {
 }
 
 impl LiftReceipt {
-    /// The pre-lift solve, on the declared carrier.
     pub fn before(&self) -> &SolveReceipt {
         &self.before
     }
 
-    /// The post-lift solve, on the escalated carrier.
     pub fn after(&self) -> &SolveReceipt {
         &self.after
     }
 
-    /// The escalated carrier actually solved (same 1-skeleton, `F' ⊇ F`).
     pub fn lifted_carrier(&self) -> &FiniteCarrier2 {
         &self.lifted_carrier
     }
@@ -1442,15 +1093,10 @@ impl LiftReceipt {
         self.effect
     }
 
-    /// `v* − v*' ≥ 0`, exact. Non-negativity is a theorem
-    /// (`S(P) ⊆ S(P')`) and is re-checked at runtime, not assumed.
     pub fn gain(&self) -> BigRational {
         self.before.span_distance().clone() - self.after.span_distance().clone()
     }
 
-    /// `b₁^ℚ(P) − b₁^ℚ(P') ≥ 0`. A drop here does **not** imply progress:
-    /// filling a cycle the residual does not occupy lowers `b₁` and leaves
-    /// `v*` untouched (see `a_lift_on_an_unoccupied_cycle_is_ineffective`).
     pub fn b1_drop(&self) -> usize {
         self.before.b1_over_q() - self.after.b1_over_q()
     }
@@ -1460,8 +1106,6 @@ impl LiftReceipt {
     }
 }
 
-/// Build `P'` = `P` with the declared cells added, refusing a lift that
-/// re-declares an existing 2-cell (it would be a no-op dressed as a move).
 fn escalate(carrier: &FiniteCarrier2, lift: &WindowLift) -> Result<FiniteCarrier2, SolveRefusal> {
     if lift.added_faces.is_empty() {
         return Err(SolveRefusal::RepresentationInvalid(
@@ -1496,15 +1140,6 @@ fn escalate(carrier: &FiniteCarrier2, lift: &WindowLift) -> Result<FiniteCarrier
     })
 }
 
-/// Apply one **declared** window lift and certify its effect.
-///
-/// Solves on both carriers and compares the certified span distances. The
-/// monotonicity theorem `S(P) ⊆ S(P') ⟹ v*' ≤ v*` (and `b₁^ℚ' ≤ b₁^ℚ`) is
-/// re-checked against the two certificates; a violation is an internal
-/// contradiction and refuses rather than reporting a class.
-///
-/// `AuthorityEffect: None` — a lift is a declared change of carrier, and
-/// certifying its effect grants nothing.
 pub fn lift(
     carrier: &FiniteCarrier2,
     omega: &[i128],
@@ -1532,10 +1167,6 @@ pub fn lift(
         )));
     }
 
-    // Equality FIRST: a lift that changes nothing is Ineffective even when
-    // both values are zero — an already-exact residual gives the lift no
-    // credit. (Reported by external review 2026-08-05: the previous order
-    // called v_before = v_after = 0 "Resolved".)
     let effect = if v_after == v_before {
         LiftEffect::Ineffective
     } else if v_after.is_zero() {
@@ -1553,32 +1184,22 @@ pub fn lift(
     })
 }
 
-/// The result of probing a **declared budget** of candidate lifts.
 #[derive(Debug)]
 pub struct LiftProbe {
-    /// The declared budget, retained verbatim: the irreducibility statement
-    /// below is relative to exactly this candidate list, bound by value.
     candidates: Vec<WindowLift>,
-    /// Every candidate that ran, with its full certified receipt — not just
-    /// the best one. `outcomes[i].0` indexes into `candidates`.
     outcomes: Vec<(usize, LiftReceipt)>,
-    /// Candidates that refused, with the **typed** refusal preserved (an
-    /// earlier draft stringified it, erasing the type it claimed to keep).
     refused: Vec<(usize, SolveRefusal)>,
 }
 
 impl LiftProbe {
-    /// The declared candidate budget, verbatim.
     pub fn candidates(&self) -> &[WindowLift] {
         &self.candidates
     }
 
-    /// Every candidate that ran, with its receipt.
     pub fn outcomes(&self) -> &[(usize, LiftReceipt)] {
         &self.outcomes
     }
 
-    /// The candidate that reached the lowest `v*`, if any strictly reduced it.
     pub fn best(&self) -> Option<&LiftReceipt> {
         self.outcomes
             .iter()
@@ -1587,7 +1208,6 @@ impl LiftProbe {
             .map(|(_, receipt)| receipt)
     }
 
-    /// Indices of candidates certified to buy nothing.
     pub fn ineffective(&self) -> Vec<usize> {
         self.outcomes
             .iter()
@@ -1596,19 +1216,10 @@ impl LiftProbe {
             .collect()
     }
 
-    /// Candidates that refused, with their typed reason. Never silently
-    /// dropped: a refused candidate is not evidence of irreducibility.
     pub fn refused(&self) -> &[(usize, SolveRefusal)] {
         &self.refused
     }
 
-    /// Every declared candidate ran and none reduced `v*`.
-    ///
-    /// This is the **only** irreducibility statement OESOS makes, and it is
-    /// relative to the declared budget retained in [`Self::candidates`]: it
-    /// says nothing about undeclared lifts. It is false whenever some
-    /// candidate refused, since a refusal is not a certified
-    /// ineffectiveness.
     pub fn is_irreducible_within_budget(&self) -> bool {
         self.refused.is_empty()
             && !self.outcomes.is_empty()
@@ -1620,11 +1231,6 @@ impl LiftProbe {
     }
 }
 
-/// Probe a declared budget of candidate lifts, certifying each.
-///
-/// Retains the budget verbatim and a full receipt for **every** candidate
-/// that ran — "no candidate helped" and "some candidate could not be
-/// evaluated" are different facts, and both must survive into the probe.
 pub fn probe_lifts(
     carrier: &FiniteCarrier2,
     omega: &[i128],
@@ -1670,10 +1276,6 @@ mod tests {
         BigRational::new(BigInt::from(numerator), BigInt::from(denominator))
     }
 
-    /// Canonical carrier 1: the filled triangle. The cyclic residual is pure
-    /// face curl; the gauge stage certifies an open obstruction (Φ₁ = 3,
-    /// Γ₂ = 3), and the multi-cycle stage removes everything: ExactRepair
-    /// over ℚ, with a zero-gap witness over the supplied span.
     #[test]
     fn filled_triangle_cyclic_residual_is_exact_after_multi_cycle() {
         let carrier = FiniteCarrier2 {
@@ -1704,9 +1306,6 @@ mod tests {
         assert!(receipt.authority_effect().is_none());
     }
 
-    /// Canonical carrier 2: the bare 3-cycle (no faces, `c₂ = 0` — no dummy
-    /// 2-cell is serialized). The cycle class survives every supplied repair
-    /// direction: ClosedResidual with `b₁^ℚ = 1`.
     #[test]
     fn pure_cycle_is_a_closed_class_survivor() {
         let carrier = FiniteCarrier2 {
@@ -1733,10 +1332,6 @@ mod tests {
         assert!(receipt.authority_effect().is_none());
     }
 
-    /// Canonical carrier 3: the bowtie (two triangles sharing a vertex), one
-    /// lobe filled. The filled lobe is cleared exactly; the unfilled lobe
-    /// survives as a closed residual with a closed-projection witness at the
-    /// same value (v_closed = v* = 3).
     #[test]
     fn bowtie_with_one_filled_lobe_leaves_a_closed_residual() {
         let carrier = FiniteCarrier2 {
@@ -1770,12 +1365,6 @@ mod tests {
         assert!(receipt.authority_effect().is_none());
     }
 
-    /// The review counterexample (2026-08-05): a carrier where the optimal
-    /// set contains BOTH a closed representative and a curl-carrying one at
-    /// the same value 3 (shared dual). Selecting "the first certified
-    /// optimum" would make the status depend on enumeration order; the
-    /// two-projection comparison makes it canonical: v_closed = v* = 3, so
-    /// the status is ClosedResidual and the returned normal form is closed.
     #[test]
     fn review_counterexample_status_is_canonical() {
         let carrier = FiniteCarrier2 {
@@ -1804,15 +1393,10 @@ mod tests {
             "a closed optimum exists at the same value"
         );
         assert_eq!(receipt.status(), ObstructionDiagnosticClass::ClosedResidual);
-        // The returned normal form is genuinely closed on the declared faces.
         assert_eq!(receipt.final_evaluation().gamma2().value(), &int(0));
         assert_eq!(receipt.b1_over_q(), 2);
     }
 
-    /// A certified strict gap: the filled triangle with an expensive pendant
-    /// cycle. Unrestricted minimum v* = 4; the cheapest CLOSED
-    /// representative costs 16/3 > 4. The status is ActiveClosureFailure
-    /// with both values certified — closedness demonstrably costs more.
     #[test]
     fn a_certified_strict_closedness_gap_is_an_active_closure_failure() {
         let carrier = FiniteCarrier2 {
@@ -1846,7 +1430,6 @@ mod tests {
             ],
             faces: vec![(0, 1, 2)],
         };
-        // The pendant cycle 0 -> 3 -> 1 -> (0,1 reversed).
         let receipt = solve(&carrier, &[-1, 0, 0, 1, 1]).expect("solve");
 
         let joint = receipt.joint().expect("joint ran");
@@ -1857,12 +1440,9 @@ mod tests {
             receipt.status(),
             ObstructionDiagnosticClass::ActiveClosureFailure
         );
-        // The returned (unrestricted) optimum necessarily carries curl.
         assert!(receipt.final_evaluation().gamma2().value() > &int(0));
     }
 
-    /// Status and certified values are invariant under edge/face list
-    /// reordering of the same declared carrier.
     #[test]
     fn declaration_order_does_not_change_status_or_values() {
         let original = FiniteCarrier2 {
@@ -1872,8 +1452,6 @@ mod tests {
         };
         let omega_original = [1, 1, 1, 1, 1, 1];
 
-        // Same carrier, edges permuted (and the residual permuted with them),
-        // face rotated.
         let permuted = FiniteCarrier2 {
             num_vertices: 5,
             edges: unit_edges(&[(4, 0), (2, 0), (0, 1), (3, 4), (1, 2), (0, 3)]),
@@ -1896,15 +1474,8 @@ mod tests {
         assert_eq!(receipt_a.b1_over_q(), receipt_b.b1_over_q());
     }
 
-    /// One solve = one carrier identity: the gauge and normal-form stages
-    /// bind the same carrier manifest under the same namespace, so their
-    /// `CarrierManifestHash` values coincide; a different carrier changes it.
     #[test]
     fn the_certificate_chain_shares_one_carrier_identity() {
-        // Through the REAL pipeline, not synthetic manifests: an earlier
-        // version of this test only re-exercised `bind_domain_evidence`, so
-        // a namespace regression inside `solve` itself could survive it
-        // (external review, 2026-08-05).
         let carrier = FiniteCarrier2 {
             num_vertices: 5,
             edges: unit_edges(&[(0, 1), (1, 2), (2, 0), (0, 3), (3, 4), (4, 0)]),
@@ -1924,7 +1495,6 @@ mod tests {
             "gauge and normal-form evaluations must bind one carrier identity"
         );
 
-        // A different carrier binds a different identity, again through solve.
         let other = FiniteCarrier2 {
             num_vertices: 3,
             edges: unit_edges(&[(0, 1), (1, 2), (2, 0)]),
@@ -1940,10 +1510,6 @@ mod tests {
         );
     }
 
-    /// A lift on an already-exact residual buys nothing and must say so:
-    /// `v_before = v_after = 0` is `Ineffective`, never `Resolved`.
-    /// (External review 2026-08-05: the previous partition checked
-    /// `v_after == 0` first and credited the lift.)
     #[test]
     fn a_lift_on_an_already_exact_residual_is_ineffective() {
         let carrier = FiniteCarrier2 {
@@ -1951,7 +1517,6 @@ mod tests {
             edges: unit_edges(&[(0, 1), (1, 2), (2, 0)]),
             faces: vec![],
         };
-        // d0 of potential (0, 1, 3): a pure gradient, exact at the gauge stage.
         let receipt = lift(&carrier, &[1, 2, -3], &WindowLift::new(vec![(0, 1, 2)])).expect("lift");
         assert_eq!(receipt.before().span_distance(), &int(0));
         assert_eq!(receipt.after().span_distance(), &int(0));
@@ -1963,8 +1528,6 @@ mod tests {
         );
     }
 
-    /// Tampering with a receipt is caught by replay: the glue relations are
-    /// re-derived from (carrier, ω), not trusted.
     #[test]
     fn replay_refuses_a_tampered_receipt() {
         let carrier = FiniteCarrier2 {
@@ -1976,22 +1539,16 @@ mod tests {
         let mut receipt = solve(&carrier, &omega).expect("solve");
         assert!(replay_solve(&carrier, &omega, &receipt).is_ok());
 
-        // Tamper with the normal form (same-module access to the private
-        // field, standing in for any downstream mutation).
         receipt.normal_form[3] += int(1);
         assert!(
             replay_solve(&carrier, &omega, &receipt).is_err(),
             "a tampered normal form must refuse replay"
         );
 
-        // Replaying against a different residual also refuses.
         let fresh = solve(&carrier, &omega).expect("solve");
         assert!(replay_solve(&carrier, &[1, 1, 1, 0, 0, 0], &fresh).is_err());
     }
 
-    /// Weights enter the ℓ¹ geometry exactly. On the bare 3-cycle every
-    /// representative carries total circulation 3, so the weighted minimum is
-    /// 3·min_e w_e — the normal form concentrates on the cheapest edge.
     #[test]
     fn weights_route_the_normal_form() {
         let carrier = FiniteCarrier2 {
@@ -2024,11 +1581,6 @@ mod tests {
         );
     }
 
-    /// On a carrier with b₁^ℚ = 0 the supplied moves span everything: the
-    /// projection reaches zero for ANY residual and ANY strictly positive
-    /// weights. (An earlier draft of this suite asserted the opposite by
-    /// forgetting the gauge freedom inside the joint stage; the solver
-    /// refuted it.)
     #[test]
     fn on_a_filled_triangle_every_residual_is_exact_after_multi_cycle() {
         let carrier = FiniteCarrier2 {
@@ -2065,8 +1617,6 @@ mod tests {
         }
     }
 
-    /// A pure gradient is repaired at the gauge stage; the projection stages
-    /// never run and the receipt is ExactRepair with a zero normal form.
     #[test]
     fn a_pure_gradient_is_exact_at_the_gauge_stage() {
         let carrier = FiniteCarrier2 {
@@ -2074,16 +1624,12 @@ mod tests {
             edges: unit_edges(&[(0, 1), (1, 2), (2, 0)]),
             faces: vec![(0, 1, 2)],
         };
-        // d0 of potential (0, 1, 3): edge values (1, 2, -3).
         let receipt = solve(&carrier, &[1, 2, -3]).expect("solve");
         assert_eq!(receipt.status(), ObstructionDiagnosticClass::ExactRepair);
         assert!(receipt.joint().is_none());
         assert!(receipt.normal_form().iter().all(BigRational::is_zero));
     }
 
-    /// Foundation refusals are typed, not coerced into statuses — including
-    /// the ambiguity refusals that keep face incidence independent of list
-    /// order.
     #[test]
     fn representation_refusals_are_typed() {
         let missing_edge_face = FiniteCarrier2 {
@@ -2161,10 +1707,7 @@ mod tests {
         ));
     }
 
-    // ---------------------------------------------------------------- lifts
 
-    /// The bowtie: two triangles sharing vertex 0, no faces declared.
-    /// `b₁^ℚ = 2`.
     fn bowtie() -> FiniteCarrier2 {
         FiniteCarrier2 {
             num_vertices: 5,
@@ -2173,9 +1716,6 @@ mod tests {
         }
     }
 
-    /// Lifting the cycle the residual actually occupies resolves it: the
-    /// bare 3-cycle's surviving class dies exactly when its 2-cell is
-    /// declared.
     #[test]
     fn lifting_the_occupied_cycle_resolves_the_residual() {
         let carrier = FiniteCarrier2 {
@@ -2201,18 +1741,12 @@ mod tests {
         assert!(receipt.authority_effect().is_none());
     }
 
-    /// **A `b₁` drop is not progress.** Filling a cycle the residual does not
-    /// occupy lowers `b₁^ℚ` from 2 to 1 and leaves `v*` exactly where it was.
-    /// An engine that reported "the lift reduced b₁, therefore it helped"
-    /// would be wrong here; the certified `v*` comparison is what decides.
     #[test]
     fn a_lift_on_an_unoccupied_cycle_is_ineffective() {
         let carrier = bowtie();
-        // Circulates the first lobe only.
         let omega = [1, 1, 1, 0, 0, 0];
         assert_eq!(solve(&carrier, &omega).unwrap().b1_over_q(), 2);
 
-        // Declare the OTHER lobe's 2-cell.
         let receipt = lift(&carrier, &omega, &WindowLift::new(vec![(0, 3, 4)])).expect("lift");
 
         assert_eq!(receipt.effect(), LiftEffect::Ineffective);
@@ -2225,8 +1759,6 @@ mod tests {
         );
     }
 
-    /// A partial lift: both lobes circulate (`v* = 6`), declaring one lobe's
-    /// 2-cell removes exactly that lobe's share.
     #[test]
     fn a_partial_lift_is_certified_as_reduced_not_resolved() {
         let carrier = bowtie();
@@ -2238,18 +1770,14 @@ mod tests {
         assert_eq!(receipt.after().span_distance(), &int(3));
         assert_eq!(receipt.gain(), int(3));
         assert_eq!(receipt.b1_drop(), 1);
-        // What survives is still a closed class over Q.
         assert!(receipt.after().is_closed_class_survivor());
     }
 
-    /// Probing a declared budget: irreducibility is reported only relative to
-    /// that budget, and only when every candidate actually ran.
     #[test]
     fn probing_reports_irreducibility_relative_to_the_declared_budget() {
         let carrier = bowtie();
         let omega = [1, 1, 1, 0, 0, 0];
 
-        // Budget containing only the unoccupied lobe: certified ineffective.
         let barren =
             probe_lifts(&carrier, &omega, &[WindowLift::new(vec![(0, 3, 4)])]).expect("probe");
         assert!(barren.best().is_none());
@@ -2257,8 +1785,6 @@ mod tests {
         assert!(barren.refused().is_empty());
         assert!(barren.is_irreducible_within_budget());
 
-        // Widen the budget: the occupied lobe resolves it, so the same
-        // residual is NOT irreducible — irreducibility was always relative.
         let widened = probe_lifts(
             &carrier,
             &omega,
@@ -2274,8 +1800,6 @@ mod tests {
         assert_eq!(widened.ineffective(), &[0]);
     }
 
-    /// A refused candidate is not certified ineffectiveness, so it cannot
-    /// support an irreducibility claim.
     #[test]
     fn a_refused_candidate_blocks_the_irreducibility_claim() {
         let carrier = FiniteCarrier2 {
@@ -2288,7 +1812,6 @@ mod tests {
             &carrier,
             &omega,
             &[
-                // Already declared: refuses.
                 WindowLift::new(vec![(0, 3, 4)]),
             ],
         )
@@ -2303,7 +1826,6 @@ mod tests {
         );
     }
 
-    /// Lift declarations are typed-refused when malformed.
     #[test]
     fn malformed_lifts_are_typed_refusals() {
         let carrier = bowtie();
@@ -2326,15 +1848,12 @@ mod tests {
             "re-declaring an existing 2-cell (any rotation) is a no-op dressed as a move"
         );
 
-        // A cell whose sides are not declared edges cannot be lifted into.
         assert!(matches!(
             lift(&carrier, &omega, &WindowLift::new(vec![(1, 3, 4)])),
             Err(SolveRefusal::RepresentationInvalid(_))
         ));
     }
 
-    /// The closure premium is the certified price of closedness: zero on a
-    /// closed survivor, strictly positive on the certified-gap fixture.
     #[test]
     fn the_closure_premium_prices_closedness() {
         let closed_survivor = solve(&bowtie(), &[1, 1, 1, 0, 0, 0]).expect("solve");
@@ -2383,14 +1902,8 @@ mod tests {
         );
     }
 
-    /// The projection stages' exact enumeration refuses beyond its fence
-    /// instead of approximating.
     #[test]
     fn carriers_past_the_old_enumeration_fence_now_solve_exactly() {
-        // The 13-edge wheel-like carrier that the basic-solution enumeration
-        // refused outright. With the exact rational simplex it is solved, not
-        // fenced: the fence was an artefact of the algorithm, never of the
-        // mathematics.
         let mut edges = Vec::new();
         for spoke in 1..7 {
             edges.push((0, spoke));
@@ -2398,36 +1911,23 @@ mod tests {
         for rim in 1..7 {
             edges.push((rim, if rim == 6 { 1 } else { rim + 1 }));
         }
-        edges.push((1, 4)); // 13th edge
+        edges.push((1, 4));
         let carrier = FiniteCarrier2 {
             num_vertices: 7,
             edges: unit_edges(&edges),
             faces: vec![(0, 1, 2)],
         };
         let mut omega = vec![0i128; 13];
-        // circulate the rim
         for rim_edge in 6..12 {
             omega[rim_edge] = 1;
         }
         let receipt = solve(&carrier, &omega).expect("13 edges is no longer fenced");
-        // The rim cycle is not in the span of d0 plus the single declared
-        // face, so a closed class survives at exactly the rim's mass.
         assert_eq!(receipt.span_distance(), &int(6));
         assert_eq!(receipt.status(), ObstructionDiagnosticClass::ClosedResidual);
         assert_eq!(receipt.closure_premium(), int(0));
         assert!(receipt.is_closed_class_survivor());
     }
 
-    /// Scale at tetron-relevant size, and a demonstration that the exact
-    /// rational path is load-bearing: on a 30-edge carrier the optimum and
-    /// the closure premium are both genuine fractions (15/2 and 3/2), which
-    /// no float path could certify.
-    ///
-    /// The rim circulation is unreachable: every declared face boundary is
-    /// `rim_i + rim_{i+1} - chord_i` and each chord sits in exactly one face,
-    /// so no combination cancels the chords. And `d1` of the rim is 2 on
-    /// every face, so curl genuinely survives - `ActiveClosureFailure` with a
-    /// certified premium, not a fenced refusal.
     #[test]
     fn a_thirty_edge_carrier_solves_exactly_with_fractional_optima() {
         let n = 15usize;

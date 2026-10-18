@@ -44,7 +44,6 @@ class KitaevHoneycombReceipt:
 class KitaevHoneycombBisimulationBridge:
     def __init__(self, schema_path: Optional[Path] = None):
         if schema_path is None:
-            # Try databases/ directory next to code/
             db_schema = code_dir.parent / "databases" / "kitaev_honeycomb_schema.sql"
             if db_schema.exists():
                 self.schema_path = db_schema
@@ -71,7 +70,6 @@ class KitaevHoneycombBisimulationBridge:
     ) -> None:
         c = self.conn.cursor()
 
-        # 1. HoneycombLattice
         c.execute(
             """
             INSERT OR REPLACE INTO HoneycombLattice
@@ -90,7 +88,6 @@ class KitaevHoneycombBisimulationBridge:
             ),
         )
 
-        # 2. HoneycombSites
         for s in model.sites.values():
             c.execute(
                 """
@@ -101,7 +98,6 @@ class KitaevHoneycombBisimulationBridge:
                 (model.lattice_id, s.site_id, s.x, s.y, s.sublattice),
             )
 
-        # 3. HoneycombLinks
         for l in model.links.values():
             c.execute(
                 """
@@ -112,7 +108,6 @@ class KitaevHoneycombBisimulationBridge:
                 (model.lattice_id, l.link_id, l.site_u, l.site_v, l.bond_dir, l.gauge_u),
             )
 
-        # 4. HoneycombPlaquettes & PlaquetteBoundaryLinks
         for p in model.plaquettes.values():
             c.execute(
                 """
@@ -132,7 +127,6 @@ class KitaevHoneycombBisimulationBridge:
                     (model.lattice_id, p.plaquette_id, l_id, order, orient),
                 )
 
-        # 5. GIN Index Postings
         for link_id, p_list in model.gin_index.link_to_plaquettes.items():
             for p_id in p_list:
                 c.execute(
@@ -144,7 +138,6 @@ class KitaevHoneycombBisimulationBridge:
                     (model.lattice_id, link_id, p_id, link_id),
                 )
 
-        # 6. Majorana Matter States
         current_parity = model.compute_fermion_parity()
         for t in range(time_steps):
             parity = current_parity
@@ -160,7 +153,6 @@ class KitaevHoneycombBisimulationBridge:
                 (f"state_{model.lattice_id}_{t}", model.lattice_id, t, parity, proj_valid),
             )
 
-        # 7. Vortex Braiding Trajectories (if vortices exist)
         vortices = model.gin_index.get_vortices()
         if simulate_braid and len(vortices) >= 2:
             v_a, v_b = vortices[0], vortices[1]
@@ -227,10 +219,6 @@ class KitaevHoneycombBisimulationBridge:
             if b["phase_status"] != "ISING_BRAIDING_CERTIFIED":
                 braiding_certified = False
 
-        # Bisimulation check against Lean 4 certificate rules:
-        # 1. If projector invalid -> CLOSURE_FAILURE
-        # 2. If parity defect or odd flux -> SPLIT_BRAIN_REFUSAL
-        # 3. Else -> REPAIR
         lean_bisim_passed = True
         if parity_status != "PARITY_CONSERVED" and route != "SPLIT_BRAIN_REFUSAL":
             lean_bisim_passed = False

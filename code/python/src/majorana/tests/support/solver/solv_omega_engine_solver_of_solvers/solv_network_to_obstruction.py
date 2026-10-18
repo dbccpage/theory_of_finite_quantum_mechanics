@@ -24,8 +24,6 @@ from omega_engine.crates.solver.solv_omega_engine_solver_of_solvers.solv_obstruc
 
 def _fraction(value: Any) -> Fraction:
     if isinstance(value, bool) or isinstance(value, float):
-        # Convert float via string to avoid binary artefacts when possible;
-        # callers should prefer exact inputs. Diagnostic path only.
         return Fraction(str(value)).limit_denominator(10**9)
     return Fraction(value)
 
@@ -46,7 +44,6 @@ def network_to_finite_complex(
     node_idx = {n: i for i, n in enumerate(nodes)}
     edge_idx = {e: i for i, e in enumerate(edges)}
 
-    # d0 rows = edges, cols = nodes
     d0_rows = []
     for u, v in edges:
         row = [Fraction(0)] * n0
@@ -54,7 +51,6 @@ def network_to_finite_complex(
         row[node_idx[v]] = Fraction(1)
         d0_rows.append(row)
 
-    # d1 rows = faces, cols = edges
     d1_rows = []
     for u, v, w in faces:
         row = [Fraction(0)] * n1

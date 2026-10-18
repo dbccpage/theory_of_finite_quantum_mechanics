@@ -1,45 +1,9 @@
-//! Finite classical instruments, their composition and coarse-graining, and conditional
-//! two-party boxes with the no-signalling and local hidden-variable questions kept apart.
-//!
-//! A [`ClassicalInstrument`] from `X` to `Y` with outcome set `A` is a family of nonnegative
-//! rational matrices `K_a in Q^(Y x X)` (column convention: `K_a(y, x)` is the weight of
-//! moving from `x` to `y` while reporting `a`) with `sum_(a, y) K_a(y, x) = 1` for every
-//! input `x`. Its forgotten map `U(K) = sum_a K_a` is column-stochastic.
-//!
-//! - Nonadaptive composition `(L o K)_(a, b) = L_b K_a`. Forgetting commutes with it:
-//!   `U(L o K) = U(L) U(K)`. The equality is a theorem of the nonadaptive premise and is
-//!   re-checked on every call by [`ClassicalInstrument::compose`] through
-//!   [`ClassicalInstrument::forget`].
-//! - Adaptive composition picks the second instrument from the first outcome:
-//!   `(a, b) -> L^a_b K_a`. Forgetting gives `sum_a U(L^a) K_a`, which in general is not
-//!   `U(L-bar) U(K)` for any single continuation; [`ClassicalInstrument::compose_adaptive`]
-//!   computes it and the tests keep the counterexample.
-//! - Coarse-graining sums the outcome maps over the classes of a declared function
-//!   `A -> A'`.
-//!
-//! A [`ConditionalBox`] is a table `p(a, b | x, y)`. Two questions about it are kept apart:
-//!
-//! - No-signalling ([`ConditionalBox::signalling_witness`]): whether each party's marginal
-//!   is independent of the other party's input. A failure is returned as an exact witness
-//!   (party, input, outcome, the two other-party inputs and both sums).
-//! - A local hidden-variable table ([`ConditionalBox::verify_local_model`]): a weighted
-//!   family of deterministic assignments reproducing every entry exactly. The refutation
-//!   [`ConditionalBox::support_compatible_assignments`] returns the deterministic
-//!   assignments that never use a zero-probability entry; when that set is empty no local
-//!   hidden-variable table exists, because every deterministic component of such a table
-//!   lies inside the support.
-//!
-//! The PR box is no-signalling and has no support-compatible assignment. A no-signalling
-//! certificate is therefore not a hidden-variable certificate.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::BTreeMap;
 
 use num_traits::{One, Zero};
 use omega_number_theory::rational::Rational;
 
-/// Refusals of the instrument and box layer.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ClassicalInstrumentError {
     #[error("the input or output carrier is empty")]
@@ -107,7 +71,6 @@ fn mat_add(left: &Matrix, right: &Matrix) -> Matrix {
         .collect()
 }
 
-/// A finite classical instrument; every value has passed [`ClassicalInstrument::try_new`].
 #[derive(Debug, Clone)]
 pub struct ClassicalInstrument {
     inputs: usize,
@@ -123,8 +86,6 @@ impl PartialEq for ClassicalInstrument {
 impl Eq for ClassicalInstrument {}
 
 impl ClassicalInstrument {
-    /// Admits `maps[a]` as `outputs x inputs` nonnegative matrices whose total column
-    /// sums are one.
     pub fn try_new(
         inputs: usize,
         outputs: usize,
@@ -175,14 +136,12 @@ impl ClassicalInstrument {
     pub fn outcome_count(&self) -> usize {
         self.maps.len()
     }
-    /// The outcome map `K_a`.
     pub fn map(&self, outcome: usize) -> Result<&Matrix, ClassicalInstrumentError> {
         self.maps
             .get(outcome)
             .ok_or(ClassicalInstrumentError::UnknownOutcome(outcome))
     }
 
-    /// The forgotten column-stochastic map `U(K) = sum_a K_a`.
     pub fn forget(&self) -> Matrix {
         let mut out = vec![vec![Rational::zero(); self.inputs]; self.outputs];
         for k in &self.maps {
@@ -201,7 +160,6 @@ impl ClassicalInstrument {
         Ok(())
     }
 
-    /// Unnormalised post-measurement vector `K_a p`.
     pub fn apply(
         &self,
         outcome: usize,
@@ -214,14 +172,12 @@ impl ClassicalInstrument {
             .collect())
     }
 
-    /// Outcome probabilities `Pr(a) = 1^T K_a p`.
     pub fn outcome_masses(&self, p: &[Rational]) -> Result<Vec<Rational>, ClassicalInstrumentError> {
         (0..self.maps.len())
             .map(|a| Ok(self.apply(a, p)?.into_iter().sum()))
             .collect()
     }
 
-    /// Conditional state `K_a p / Pr(a)`; refuses an outcome of probability zero.
     pub fn condition(
         &self,
         outcome: usize,
@@ -235,9 +191,6 @@ impl ClassicalInstrument {
         Ok(v.into_iter().map(|x| x / &mass).collect())
     }
 
-    /// Nonadaptive sequential composition `(next o self)_(a, b) = next_b self_a`, outcome
-    /// index `a * |B| + b`. The forgetting law `U(next o self) = U(next) U(self)` is
-    /// re-checked; a failure would be a defect of this code, reported as a refusal.
     pub fn compose(&self, next: &Self) -> Result<Self, ClassicalInstrumentError> {
         if next.inputs != self.outputs {
             return Err(ClassicalInstrumentError::CompositionMismatch {
@@ -258,9 +211,6 @@ impl ClassicalInstrument {
         Ok(composed)
     }
 
-    /// Adaptive composition: `continuations[a]` is applied after outcome `a`; the joint
-    /// outcome `(a, b)` has map `L^a_b K_a` and index `a * |B| + b`. Every continuation
-    /// must read this instrument's outputs and share one outcome count and output size.
     pub fn compose_adaptive(&self, continuations: &[Self]) -> Result<Self, ClassicalInstrumentError> {
         if continuations.len() != self.maps.len() {
             return Err(ClassicalInstrumentError::ContinuationCount {
@@ -290,7 +240,6 @@ impl ClassicalInstrument {
         Self::try_new(self.inputs, first.outputs, maps)
     }
 
-    /// Coarse-graining along `group: A -> {0..target_count-1}`: `K'_c = sum_(g(a) = c) K_a`.
     pub fn coarse_grain(
         &self,
         group: &[usize],
@@ -310,8 +259,6 @@ impl ClassicalInstrument {
         Self::try_new(self.inputs, self.outputs, maps)
     }
 
-    /// Applies the instrument to the first factor of a joint distribution `p(x, z)`; the
-    /// result is `p_a(y, z) = sum_x K_a(y, x) p(x, z)`.
     pub fn apply_local(&self, joint: &[Vec<Rational>]) -> Result<Vec<Matrix>, ClassicalInstrumentError> {
         let cols = joint.first().map_or(0, Vec::len);
         if joint.len() != self.inputs
@@ -326,7 +273,6 @@ impl ClassicalInstrument {
     }
 }
 
-/// Second-factor marginal `q(z) = sum_y p(y, z)` of a joint table.
 pub fn second_marginal(joint: &[Vec<Rational>]) -> Vec<Rational> {
     let cols = joint.first().map_or(0, Vec::len);
     (0..cols)
@@ -334,15 +280,12 @@ pub fn second_marginal(joint: &[Vec<Rational>]) -> Vec<Rational> {
         .collect()
 }
 
-/// Which party a signalling witness concerns.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Party {
     Alice,
     Bob,
 }
 
-/// An exact signalling witness: the marginal of `party` at `(input, outcome)` differs
-/// between the other party's inputs `other_inputs.0` and `other_inputs.1`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SignallingWitness {
     pub party: Party,
@@ -352,14 +295,11 @@ pub struct SignallingWitness {
     pub sums: (Rational, Rational),
 }
 
-/// A weighted family of deterministic assignments `(f, g)`, `f: X -> A`, `g: Y -> B`.
-/// Kept as its own type: it is a hidden-variable table, not a no-signalling certificate.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LocalHiddenVariableTable {
     pub weights: BTreeMap<(Vec<usize>, Vec<usize>), Rational>,
 }
 
-/// A conditional two-party table `p(a, b | x, y)`, indexed `entries[x][y][a][b]`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ConditionalBox {
     inputs: (usize, usize),
@@ -368,7 +308,6 @@ pub struct ConditionalBox {
 }
 
 impl ConditionalBox {
-    /// Admits a complete nonnegative table normalised at every input pair.
     pub fn try_new(
         inputs: (usize, usize),
         outputs: (usize, usize),
@@ -415,7 +354,6 @@ impl ConditionalBox {
         })
     }
 
-    /// The PR box: `p(a, b | x, y) = 1/2` when `a xor b = x y`, zero otherwise.
     pub fn pr_box() -> Self {
         let half = Rational::new(1.into(), 2.into());
         let entries = (0..2)
@@ -450,7 +388,6 @@ impl ConditionalBox {
         self.entries.get(x)?.get(y)?.get(a)?.get(b)
     }
 
-    /// The first failure of no-signalling in a fixed scan order, or `None`.
     pub fn signalling_witness(&self) -> Option<SignallingWitness> {
         let (nx, ny) = self.inputs;
         let (na, nb) = self.outputs;
@@ -512,8 +449,6 @@ impl ConditionalBox {
             .collect())
     }
 
-    /// Every deterministic assignment `(f, g)` with `p(f(x), g(y) | x, y) > 0` for every
-    /// input pair. An empty result refutes every local hidden-variable table.
     pub fn support_compatible_assignments(
         &self,
         budget: usize,
@@ -537,8 +472,6 @@ impl ConditionalBox {
         Ok(out)
     }
 
-    /// Exact replay of a supplied hidden-variable table: nonnegative weights summing to one,
-    /// assignments inside the carriers, and every entry reproduced.
     pub fn verify_local_model(&self, model: &LocalHiddenVariableTable) -> bool {
         let total: Rational = model.weights.values().sum();
         if !total.is_one() || model.weights.values().any(|w| *w < Rational::zero()) {
@@ -571,7 +504,6 @@ impl ConditionalBox {
         true
     }
 
-    /// The CHSH sum `E00 + E01 + E10 - E11` of a binary box, `E_xy = sum (-1)^(a+b) p`.
     pub fn chsh(&self) -> Option<Rational> {
         if self.inputs != (2, 2) || self.outputs != (2, 2) {
             return None;
@@ -654,18 +586,15 @@ mod tests {
             .map(|row| row.iter().zip(&p).map(|(a, b)| a * b).sum())
             .collect();
         assert_eq!(forgotten, vec![rq(13, 30), rq(17, 30)]);
-        // U(L o K) = U(L) U(K).
         assert_eq!(lk.forget(), mat_mul(&report_l().forget(), &report_k().forget()));
     }
 
     #[test]
     fn coarse_graining_sums_classes_and_refuses_bad_maps() {
         let lk = report_k().compose(&report_l()).unwrap();
-        // Keep only the second outcome b: classes {(0,0),(1,0)} and {(0,1),(1,1)}.
         let by_b = lk.coarse_grain(&[0, 1, 0, 1], 2).unwrap();
         assert_eq!(by_b.map(0).unwrap(), &m(&[&[(1, 3), (1, 2)], &[(0, 1), (0, 1)]]));
         assert_eq!(by_b.forget(), lk.forget());
-        // Full coarse-graining is the forgotten map.
         assert_eq!(lk.coarse_grain(&[0, 0, 0, 0], 1).unwrap().map(0).unwrap(), &lk.forget());
         assert_eq!(lk.coarse_grain(&[0, 1, 2], 3), Err(ClassicalInstrumentError::InvalidCoarseGraining));
         assert_eq!(lk.coarse_grain(&[0, 1, 2, 3], 3), Err(ClassicalInstrumentError::InvalidCoarseGraining));
@@ -679,7 +608,6 @@ mod tests {
         let swap = ClassicalInstrument::try_new(2, 2, vec![m(&[&[(0, 1), (1, 1)], &[(1, 1), (0, 1)]])]).unwrap();
         let adaptive = k.compose_adaptive(&[identity, swap]).unwrap();
         assert_eq!(adaptive.forget(), m(&[&[(1, 1), (1, 1)], &[(0, 1), (0, 1)]]));
-        // Replacing the continuation by its average gives a different forgotten map.
         let average = m(&[&[(1, 2), (1, 2)], &[(1, 2), (1, 2)]]);
         assert_eq!(mat_mul(&average, &k.forget()), average);
         assert_ne!(adaptive.forget(), mat_mul(&average, &k.forget()));
@@ -710,7 +638,6 @@ mod tests {
         assert_eq!(k.apply(0, &[rq(1, 2), rq(1, 3)]), Err(ClassicalInstrumentError::InvalidState));
         let wide = ClassicalInstrument::try_new(3, 3, vec![vec![vec![ri(1), ri(0), ri(0)], vec![ri(0), ri(1), ri(0)], vec![ri(0), ri(0), ri(1)]]]).unwrap();
         assert_eq!(k.compose(&wide), Err(ClassicalInstrumentError::CompositionMismatch { expected: 2, actual: 3 }));
-        // Boundary: conditioning on a zero-probability outcome is refused.
         let det = ClassicalInstrument::try_new(1, 1, vec![vec![vec![ri(1)]], vec![vec![ri(0)]]]).unwrap();
         assert_eq!(det.condition(1, &[ri(1)]), Err(ClassicalInstrumentError::ZeroProbabilityConditioning));
         assert_eq!(det.condition(0, &[ri(1)]), Ok(vec![ri(1)]));
@@ -729,7 +656,6 @@ mod tests {
         let summed = mat_add(&parts[0], &parts[1]);
         assert_eq!(second_marginal(&summed), second_marginal(&joint));
         assert_eq!(second_marginal(&joint), vec![rq(1, 2), rq(1, 2)]);
-        // Postselecting outcome 0 and renormalising changes the other party's marginal.
         let mass: Rational = parts[0].iter().flatten().sum();
         let post: Matrix = parts[0].iter().map(|r| r.iter().map(|v| v / &mass).collect()).collect();
         assert_eq!(second_marginal(&post), vec![rq(2, 3), rq(1, 3)]);
@@ -748,7 +674,6 @@ mod tests {
 
     #[test]
     fn local_box_has_a_verified_hidden_variable_table() {
-        // Deterministic a = 0, b = 0 everywhere.
         let point = m(&[&[(1, 1), (0, 1)], &[(0, 1), (0, 1)]]);
         let local = ConditionalBox::try_new((2, 2), (2, 2), vec![vec![point.clone(), point.clone()], vec![point.clone(), point]]).unwrap();
         assert_eq!(local.signalling_witness(), None);
@@ -758,7 +683,6 @@ mod tests {
         weights.insert((vec![0, 0], vec![0, 0]), ri(1));
         let table = LocalHiddenVariableTable { weights };
         assert!(local.verify_local_model(&table));
-        // Mutation: a weight off by a half no longer replays.
         let mut bad = table.clone();
         bad.weights.insert((vec![1, 0], vec![0, 0]), rq(0, 1));
         assert!(local.verify_local_model(&bad));
@@ -769,7 +693,6 @@ mod tests {
 
     #[test]
     fn signalling_box_returns_an_exact_witness_and_partial_tables_are_refused() {
-        // Bob's outcome copies Alice's input: Bob's marginal depends on x.
         let b0 = m(&[&[(1, 2), (0, 1)], &[(1, 2), (0, 1)]]);
         let b1 = m(&[&[(0, 1), (1, 2)], &[(0, 1), (1, 2)]]);
         let signalling = ConditionalBox::try_new((2, 2), (2, 2), vec![vec![b0.clone(), b0], vec![b1.clone(), b1]]).unwrap();

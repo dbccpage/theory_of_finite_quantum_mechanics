@@ -1,12 +1,3 @@
-//! Subgap R7: Full 55-Generator Positivstellensatz Solver & Exact Rational Certificate Verifier.
-//!
-//! AuthorityEffect: None.
-//!
-//!
-//! This module evaluates the 55 real generators of I_55 and a squared distance
-//! to one Karlsson sample. It does not construct Stengle multipliers or sums
-//! of squares, and `solve_and_certify_r7_karlsson_boundary` returns
-//! `NOT_A_CERTIFICATE`.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -16,9 +7,6 @@ use sha2::{Digest, Sha256};
 pub const SCHEMA_VERSION: &str = "omega.mub.positivstellensatz.v1";
 pub const SCOPE_STRING: &str = "r7_singular_segre_positivstellensatz_karlsson_boundary";
 
-/// 50 real coordinates representing a 6x6 dephased matrix in standard form:
-/// Row 0 = (1, 1, 1, 1, 1, 1), Col 0 = (1, 1, 1, 1, 1, 1)^T.
-/// Entries z_{jk} = x[j-1][k-1] + i * y[j-1][k-1] for 1 <= j, k <= 5.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct DephasedMatrixCoords50 {
     pub x: [[BigRational; 5]; 5],
@@ -46,10 +34,6 @@ impl DephasedMatrixCoords50 {
         }
     }
 
-    /// Karlsson z=0 sample used by the Python diagnostic.
-    ///
-    /// Unset interior entries stay at 1, matching `create_karlsson_point`.
-    /// Rows 3-5 of that sample are the all-ones row, not the zero row.
     pub fn karlsson_boundary_slice_zero() -> Self {
         let mut coords = Self::zero();
         let one = BigRational::one();
@@ -77,7 +61,6 @@ impl DephasedMatrixCoords50 {
     }
 }
 
-/// Evaluation of the 55 real polynomial generators of ideal I_55.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct I55EvaluationReport {
     pub num_unimodular: usize,
@@ -94,7 +77,6 @@ pub struct I55EvaluationReport {
     pub nonzero_unimodular: usize,
 }
 
-/// Compute all 55 generators of I_55 and the 2 corner determinant parts.
 pub fn evaluate_i55_generators(c: &DephasedMatrixCoords50) -> I55EvaluationReport {
     let mut unimod = Vec::with_capacity(25);
     let mut nonzero_unimodular = 0usize;
@@ -139,7 +121,6 @@ pub fn evaluate_i55_generators(c: &DephasedMatrixCoords50) -> I55EvaluationRepor
         }
     }
 
-    // Corner determinant: P_corner = (z11-1)(z22-1) - (z12-1)(z21-1)
     let one = BigRational::one();
     let z11_x = &c.x[0][0] - &one;
     let z11_y = &c.y[0][0];
@@ -176,14 +157,10 @@ pub fn evaluate_i55_generators(c: &DephasedMatrixCoords50) -> I55EvaluationRepor
     }
 }
 
-/// Evaluate the authentic separation polynomial:
-/// g_sep(X) = sum_{m=1}^M Q_m(X)^2 - eps_0^2.
 pub fn evaluate_separation_polynomial(
     c: &DephasedMatrixCoords50,
     eps_0_sq: &BigRational,
 ) -> (BigRational, bool) {
-    // Affine parameter invariants Q_m(X) for Karlsson boundary locus:
-    // Measuring algebraic distance to the Karlsson boundary slice z=0 basepoint
     let base = DephasedMatrixCoords50::karlsson_boundary_slice_zero();
     let q1 = &c.x[0][0] - &base.x[0][0];
     let q2 = &c.x[0][1] - &base.x[0][1];
@@ -196,7 +173,6 @@ pub fn evaluate_separation_polynomial(
     (g_sep, is_positive)
 }
 
-/// Certified Stengle Positivstellensatz Receipt over BigRational.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct R7PositivstellensatzReceipt {
     pub schema_version: String,
@@ -218,7 +194,6 @@ pub struct R7PositivstellensatzReceipt {
 
 const REFUSAL_REASON: &str = "Stengle multipliers and sums of squares were not constructed. An assigned defect of zero is not an evaluated identity. The Karlsson z=0 sample is not a point of I_55.";
 
-/// Evaluate the Karlsson sample and refuse a Stengle certificate.
 pub fn solve_and_certify_r7_karlsson_boundary() -> R7PositivstellensatzReceipt {
     let coords = DephasedMatrixCoords50::karlsson_boundary_slice_zero();
     let eps_0_sq = BigRational::new(1.into(), 100.into());
@@ -260,8 +235,6 @@ pub fn solve_and_certify_r7_karlsson_boundary() -> R7PositivstellensatzReceipt {
     }
 }
 
-/// Individual point evaluation on the Singular Segre slice z=0 with quadric:
-/// f_segre(a, b, c, d) = (a - 1)(d - 1) - (b - 1)(c - 1).
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SingularSegrePointEvaluation {
     pub a: String,
@@ -278,18 +251,6 @@ pub struct SingularSegrePointEvaluation {
     pub identity_holds: bool,
 }
 
-/// Evaluate the Singular Segre Stengle Positivstellensatz certificate at an exact rational point (a, b, c, d).
-///
-/// Algebraic Identity over Q[a, b, c, d]:
-/// -1 == h_segre * f_segre + sum(h_circ * f_k) + sigma_0 + sigma_1 * g_sep
-///
-/// with:
-/// sigma_0 = 1/4 * f_segre^2 + 1/4 * f_circ^2
-/// sigma_1 = 1 / eps
-/// f_sep = (1 - eps) * sigma_0 + f_circ
-/// g_sep = f_sep - eps
-/// h_segre = -1/(4*eps) * f_segre
-/// h_circ = -1/eps * (1/4 * f_circ + 1)
 pub fn evaluate_singular_segre_point(
     a: &BigRational,
     b: &BigRational,
@@ -347,10 +308,6 @@ pub fn evaluate_singular_segre_point(
     }
 }
 
-/// Exhaustive verification on the complete 5^4 grid {0, 1, 2, 3, 4}^4 (625 points).
-///
-/// Because deg_k(rhs + 1) <= 4 for every k in {a, b, c, d}, vanishing on a 5-point set in each
-/// coordinate guarantees that the algebraic identity holds identically across all of Q[a, b, c, d].
 pub fn verify_singular_segre_5x5x5x5_grid(eps: &BigRational) -> (usize, usize, bool) {
     let mut total = 0usize;
     let mut passed = 0usize;
@@ -375,8 +332,6 @@ pub fn verify_singular_segre_5x5x5x5_grid(eps: &BigRational) -> (usize, usize, b
     (total, passed, all_passed)
 }
 
-/// Evaluation on the genuine real variety points V = {x in {-1, 1}^4 : f_segre(x) = 0}.
-/// Verifies that f_segre = 0, f_circ = 0, sigma_0 = 0, and g_sep = -eps < 0 strictly.
 pub fn verify_singular_segre_variety_points(eps: &BigRational) -> Vec<SingularSegrePointEvaluation> {
     let one = BigRational::one();
     let neg_one = -BigRational::one();
@@ -394,8 +349,6 @@ pub fn verify_singular_segre_variety_points(eps: &BigRational) -> Vec<SingularSe
         .collect()
 }
 
-/// Construct and certify the Stengle Positivstellensatz certificate for Subgap R7 on the Singular Segre slice.
-/// Returns status CERTIFIED over exact rational arithmetic (BigRational) with zero floats.
 pub fn solve_and_certify_r7_singular_segre_sos() -> R7PositivstellensatzReceipt {
     let eps = BigRational::new(1.into(), 1000.into());
     let (total_grid, passed_grid, grid_success) = verify_singular_segre_5x5x5x5_grid(&eps);
@@ -456,7 +409,6 @@ mod tests {
         let coords = DephasedMatrixCoords50::karlsson_boundary_slice_zero();
         let eps_0_sq = BigRational::new(1.into(), 100.into());
         let (g_sep, is_pos) = evaluate_separation_polynomial(&coords, &eps_0_sq);
-        // On the catalog point, g_sep must be <= 0
         assert!(g_sep <= BigRational::zero());
         assert!(!is_pos);
     }
@@ -464,11 +416,9 @@ mod tests {
     #[test]
     fn test_r7_perturbed_non_catalog_separation() {
         let mut coords = DephasedMatrixCoords50::karlsson_boundary_slice_zero();
-        // Perturb entry off the catalog
         coords.x[0][0] = coords.x[0][0].clone() + BigRational::new(1.into(), 2.into());
         let eps_0_sq = BigRational::new(1.into(), 100.into());
         let (g_sep, is_pos) = evaluate_separation_polynomial(&coords, &eps_0_sq);
-        // On perturbed non-catalog point, g_sep must be strictly positive
         assert!(g_sep > BigRational::zero());
         assert!(is_pos);
     }

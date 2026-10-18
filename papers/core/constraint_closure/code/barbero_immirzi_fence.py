@@ -14,7 +14,7 @@ import math
 import numpy as np
 
 
-THETA_4D = math.acos(0.25)  # ≈ 1.318116 rad
+THETA_4D = math.acos(0.25)
 GAMMA_BI = 0.274066
 
 
@@ -58,9 +58,9 @@ def escape_barrier() -> dict:
         "s7": s7,
         "s8": s8,
         "s10": s10,
-        "barrier_to_k7": s7 - s6,  # ≈ 1.6076
-        "barrier_to_k8_peak": s8 - s6,  # ≈ 4.2916
-        "runaway_at_k10": s10 - s6,  # < 0: s(10) < s(6)
+        "barrier_to_k7": s7 - s6,
+        "barrier_to_k8_peak": s8 - s6,
+        "runaway_at_k10": s10 - s6,
     }
 
 
@@ -76,7 +76,7 @@ def mcmc_valency_demo(
     """
     rng = np.random.default_rng(seed)
     k_min, k_max = k_range
-    k = 6  # start at expected minimum
+    k = 6
 
     visits = {kv: 0 for kv in range(k_min, k_max + 1)}
     current_s = action_density(k)

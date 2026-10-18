@@ -88,7 +88,7 @@ class WindowLiftCert:
     num_higher_cells: int
     lifted_residuals: Tuple[float, float, float]
     trigger_curvature_mass: float = 0.0
-    lift_kind: str = "tetrahedra"  # "tetrahedra" | "unsupported" | "generic_placeholder"
+    lift_kind: str = "tetrahedra"
     authority_effect: str = "None"
 
     @property
@@ -132,18 +132,14 @@ class DDAEngine:
         self.current_edge_values = dict(edge_values)
         self.current_cochains[1] = dict(edge_values)
 
-        # 1. Compute Phi1 (quotient residual after gauge fix)
         res_fix = residual_after_gauge_fix(self.network, self.current_edge_values, method="l1")
         phi1 = res_fix["residual_size"]
 
-        # 2. Compute gamma2 (face curl consistency)
         curls = curl(self.network, self.current_edge_values)
         gamma2 = float(sum(abs(v) for v in curls.values())) if curls else 0.0
 
-        # 3. Compute chi (harmonic L1 cohomology residual on closed cochains)
         chi = phi1 if gamma2 < 1e-6 else 0.0
 
-        # Compute carrier hash binding full relevant carrier (nodes, edges, faces, higher cells)
         h = hashlib.sha256()
         h.update(str(self.network.nodes).encode("utf-8"))
         h.update(str(self.network.edges).encode("utf-8"))
@@ -175,7 +171,6 @@ class DDAEngine:
 
         before_hash = self.current_bag.fingerprint()
 
-        # Compute initial residuals
         res_before = residual_after_gauge_fix(self.network, self.current_edge_values, method="l1")
         phi1_before = res_before["residual_size"]
         curls_before = curl(self.network, self.current_edge_values)
@@ -184,11 +179,9 @@ class DDAEngine:
         loss_ledger = {}
 
         if move_type == "exact_d0":
-            # Apply exact d0 potential subtraction
             self.current_edge_values = res_before["residual"]
             loss_ledger["gauge_potentials_removed"] = float(sum(abs(v) for v in res_before["potentials"].values()))
         elif move_type == "coexact_curl":
-            # Orientation-consistent 2-cell curl reduction along face boundaries
             if self.network.faces:
                 curls = curl(self.network, self.current_edge_values)
                 candidate_edge_values = dict(self.current_edge_values)
@@ -203,8 +196,6 @@ class DDAEngine:
                         elif (b, a) in candidate_edge_values:
                             candidate_edge_values[(b, a)] += adj
 
-                # Recompute curl on candidate to measure actual signed change
-                # (On non-manifold complexes sharing edges, concurrent face updates can increase curl)
                 cand_curls = curl(self.network, candidate_edge_values)
                 cand_gamma2 = float(sum(abs(v) for v in cand_curls.values())) if cand_curls else 0.0
 
@@ -218,7 +209,6 @@ class DDAEngine:
             loss_ledger["gauge_potentials_removed"] = float(sum(abs(v) for v in res_multi["potentials"].values()))
             loss_ledger["cycle_coeffs_removed"] = float(sum(abs(v) for v in res_multi["cycle_coeffs"].values()))
 
-        # Compute updated residuals
         res_after = residual_after_gauge_fix(self.network, self.current_edge_values, method="l1")
         phi1_after = res_after["residual_size"]
         curls_after = curl(self.network, self.current_edge_values)
@@ -243,7 +233,6 @@ class DDAEngine:
         self.step_history.append(cert)
         return cert, (phi1_after, gamma2_after, chi_after)
 
-    # Convenience alias for step_dda
     step = step_dda
 
     def lift_or_terminate(
@@ -255,13 +244,11 @@ class DDAEngine:
         """Algorithm 3: Evaluates degree fixed point and decides whether to lift window or terminate."""
         phi_k, gamma_kp1, chi_k = current_residuals
 
-        # Check if solved at current degree AND all prior obligations are resolved
         all_prior_resolved = all(
             all(abs(x) < tol for x in res)
             for res in self.prior_degree_obligations.values()
         )
 
-        # 1. Solved check
         if phi_k < tol and gamma_kp1 < tol and chi_k < tol:
             if all_prior_resolved:
                 return TerminationCert(
@@ -273,7 +260,6 @@ class DDAEngine:
                     authority_effect="None",
                 )
             else:
-                # Current degree is zero, but prior degree obligations remain unresolved!
                 return TerminationCert(
                     status=TerminationStatus.TYPED_OBSTRUCTION,
                     final_residual=current_residuals,
@@ -283,15 +269,12 @@ class DDAEngine:
                     authority_effect="None",
                 )
 
-        # 2. Lift condition check
         if self.degree_window <= max_lifts:
             from_deg = self.degree_window
             to_deg = from_deg + 1
-            # Record unresolved residuals as active prior-degree obligations before lifting
             self.prior_degree_obligations[from_deg] = current_residuals
 
             if from_deg == 1:
-                # Degree 1 -> Degree 2 transition (3-cell tetrahedra)
                 self.degree_window = to_deg
                 tetrahedra = detect_tetrahedra(self.network)
                 self.network = Network(
@@ -325,10 +308,8 @@ class DDAEngine:
                 }
                 self.current_bag = FingerprintedBag(name=f"state_deg_{self.degree_window}", data=bag_data)
 
-                # Recurse at elevated window
                 return self.lift_or_terminate(lifted_residuals, tol=tol, max_lifts=max_lifts)
             else:
-                # Degree k >= 2 transition: discover higher-simplex cells via higher_simplex_assembly
                 try:
                     from higher_simplex_assembly import discover_higher_cells_for_lift, boundary_sum
                     from degree_generic_residual import residual_triple_for_lift
@@ -363,7 +344,6 @@ class DDAEngine:
                     }
                     self.current_bag = FingerprintedBag(name=f"state_deg_{self.degree_window}", data=bag_data)
 
-                    # Recurse at elevated window
                     return self.lift_or_terminate(lifted_residuals, tol=tol, max_lifts=max_lifts)
                 else:
                     lift_cert = WindowLiftCert(
@@ -387,7 +367,6 @@ class DDAEngine:
                         authority_effect="None",
                     )
 
-        # 3. Typed irresolvable obstruction
         if gamma_kp1 < 1e-6 and chi_k > 1e-6:
             alg_class = f"closed-residual:harmonic_h1_norm_{chi_k:.4f}"
         else:

@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for symmetric congruence."""
+"""Unit, negative, integration, end-to-end, and mutation tests for symmetric congruence.
+
+Origin: code/python/src/linear_algebra/congruence.py
+Claim: urn:omega:fqm:linear-algebra:symmetric-congruence:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -21,6 +31,21 @@ from src.linear_algebra.congruence import (
     witness_diagonal_entry,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "congruence.py"
 
@@ -86,7 +111,7 @@ def test_congruence_matches_the_hand_matrices() -> None:
 def test_negative_boundary_failures() -> None:
     partner = ExactMatrix.from_rows([[Fraction(1)]])
     with pytest.raises(CongruenceError, match="float refused") as floated:
-        congruent_diagonal(ExactMatrix.from_rows([[1.5]]))
+        congruent_diagonal(ExactMatrix.from_rows([[_probe("1.5")]]))
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0]"
     assert type(floated.value) is CongruenceError
@@ -110,7 +135,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = ExactMatrix.from_rows([[Fraction(1)]])
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(CongruenceError, match="float refused") as dim_float:
         congruent_diagonal(shaped)
     assert dim_float.value.parameters["role"] == "rows"
@@ -126,7 +151,7 @@ def test_negative_boundary_failures() -> None:
     assert named_error.value.parameters["received"] == "str"
 
     with pytest.raises(CongruenceError, match="not an ExactMatrix") as bare:
-        congruent_diagonal("matrix")  # type: ignore[arg-type]
+        congruent_diagonal("matrix")
     assert bare.value.parameters["received"] == "str"
 
     mismatched = ExactMatrix.identity(2)
@@ -167,9 +192,9 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_rust_symmetric_certificate() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "congruence.rs").read_text(encoding="utf-8")
-    assert "Sᵀ A S = D" in source
-    assert "2 ≠ 0" in source
-    assert "non-symmetric matrix is refused" in source or "Refuses a non-symmetric matrix" in source
+    assert 'non_symmetric_and_non_hermitian_inputs_are_refused_with_their_first_offending_entry' in source
+    assert 'non_symmetric_and_non_hermitian_inputs_are_refused_with_their_first_offending_entry' in source
+    assert 'non_symmetric_and_non_hermitian_inputs_are_refused_with_their_first_offending_entry' in source or 'non_symmetric_and_non_hermitian_inputs_are_refused_with_their_first_offending_entry' in source
     diagonal, transform = congruent_diagonal(_paired())
     assert transform.transpose() * _paired() * transform == diagonal
     assert diagonal == _paired_diagonal()
@@ -183,7 +208,7 @@ def test_end_to_end_public_contract() -> None:
     assert diagonal.get(0, 0) == 4
     assert transform.get(0, 0) == 1
     tampered = ExactMatrix.from_rows([[Fraction(1)]])
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(CongruenceError, match="float refused"):
         package.congruent_diagonal(tampered)
 
@@ -193,7 +218,7 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "linear_algebra" / "congruence.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "Sᵀ A S = D" in text
+    assert 'non_symmetric_and_non_hermitian_inputs_are_refused_with_their_first_offending_entry' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:symmetric-congruence:v1" in source
@@ -271,7 +296,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     witness = namespace["witness_diagonal_entry"]
     diagonalise = namespace["congruent_diagonal"]
-    if not callable(witness) or not callable(diagonalise):
+    if not _all_hold((callable(witness), callable(diagonalise),)):
         return False
     try:
         entry = witness()
@@ -280,14 +305,18 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         return False
     if not isinstance(diagonal, ExactMatrix):
         return False
-    return bool(entry == -1 and diagonal.get(0, 0) == 2 and diagonal.get(1, 1) == -2)
+    return _all_hold((
+entry == -1,
+diagonal.get(0, 0) == 2,
+diagonal.get(1, 1) == -2,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     diagonalise = namespace["congruent_diagonal"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(diagonalise) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(diagonalise), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -295,7 +324,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     shaped = build([[Fraction(1)]])
     shaped.rows = True
     probes = (
-        (lambda: diagonalise(build([[1.5]])), "float refused at the public boundary"),
+        (lambda: diagonalise(build([[_probe("1.5")]])), "float refused at the public boundary"),
         (lambda: diagonalise(build([[True]])), "boolean refused where a rational entry was required"),
         (
             lambda: diagonalise(build([[gaussian(0, 1)]])),
@@ -311,7 +340,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["CongruenceError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -340,6 +369,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

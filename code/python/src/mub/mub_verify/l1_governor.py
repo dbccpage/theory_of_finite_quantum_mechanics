@@ -165,7 +165,7 @@ def boundary_operator_c1_to_c0(u: str, v: str) -> Dict[str, int]:
     partial_1(u -> v) = v - u.
     """
     if u == v:
-        return {}  # Self-loop boundary cancels to 0
+        return {}
     return {v: 1, u: -1}
 
 
@@ -201,7 +201,6 @@ def find_spanning_forest_potentials(
         comp_edges = [e for e in graph.edges if e.u in comp_set and e.v in comp_set]
         comp_candidates: List[Dict[str, Fraction]] = []
 
-        # Trivial baseline: all zero potential
         comp_candidates.append({v: Fraction(0) for v in comp})
 
         if len(comp) == 1 or not comp_edges:
@@ -270,7 +269,6 @@ def find_spanning_forest_potentials(
 
         candidate_component_potentials.append(comp_candidates)
 
-    # Combine component potentials by Cartesian product
     total_potentials: List[Dict[str, Fraction]] = [{}]
     for comp_cands in candidate_component_potentials:
         next_totals: List[Dict[str, Fraction]] = []
@@ -306,10 +304,10 @@ def compute_phi1(
 
 class MoveType(Enum):
     """The 4-move vocabulary of the discrete Symbol Game Governor."""
-    ASSERT = "ASSERT"    # Asserts ground edge claim (u -> v with expected value)
-    CUT = "CUT"          # Applies deduction / repair step targeting defect
-    VERIFY = "VERIFY"    # Mechanically evaluates formal obligation
-    RETRACT = "RETRACT"  # Reverts state to snapshot in history
+    ASSERT = "ASSERT"
+    CUT = "CUT"
+    VERIFY = "VERIFY"
+    RETRACT = "RETRACT"
 
 
 @dataclass(frozen=True)
@@ -435,7 +433,6 @@ class L1SymbolGameGovernor:
         sid = step_id or f"step_{self._step_counter:03d}"
         defect_before = self.section_defect()
 
-        # Invariant 1: Diagonal Excision (Irreflexivity)
         if u == v:
             return GovernorVerdict(
                 admitted=False,
@@ -466,7 +463,6 @@ class L1SymbolGameGovernor:
                 step_id=sid,
             )
 
-        # Apply proposed assertion
         self.edge_claims[(u, v)] = val_frac
         defect_after = self.section_defect()
 
@@ -524,7 +520,6 @@ class L1SymbolGameGovernor:
                     step_id=sid,
                 )
 
-            # Commit proposed section
             self.section = {v: proposed_section.get(v, Fraction(0)) for v in self.graph.vertices}
 
             status = "ExactRepair" if (defect_after == Fraction(0) and defect_before > Fraction(0)) else (
@@ -556,7 +551,6 @@ class L1SymbolGameGovernor:
             )
 
         if proposed_claims is not None:
-            # 1. Diagonal Excision (Irreflexivity: u != v)
             for (u, v) in proposed_claims.keys():
                 if u == v:
                     return GovernorVerdict(
@@ -568,7 +562,6 @@ class L1SymbolGameGovernor:
                         step_id=sid,
                     )
 
-            # 2. Carrier Boundary Check (u, v in carrier)
             for (u, v) in proposed_claims.keys():
                 if u not in self.graph.vertices or v not in self.graph.vertices:
                     return GovernorVerdict(
@@ -580,7 +573,6 @@ class L1SymbolGameGovernor:
                         step_id=sid,
                     )
 
-            # 3. Production surface check: claims may update only declared edges.
             for (u, v) in proposed_claims.keys():
                 if self.graph.edge_by_pair(u, v) is None:
                     return GovernorVerdict(
@@ -592,7 +584,6 @@ class L1SymbolGameGovernor:
                         step_id=sid,
                     )
 
-            # 4. Anti-erasure check: cannot erase constraints or omit asserted edges.
             if not proposed_claims and self.edge_claims:
                 return GovernorVerdict(
                     admitted=False,

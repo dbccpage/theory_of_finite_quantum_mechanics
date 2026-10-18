@@ -1,10 +1,3 @@
-//! Characteristic-two dimension-parametric projector family gate.
-//!
-//! Finite projector controls certify sampled dimensions only. This gate records
-//! the extra obligations needed to turn those finite characteristic-two
-//! projector controls into a dimension-parametric family over all `2^k`
-//! dimensions. It is the explicit bridge from finite CODA-MUR/projector evidence
-//! to a reusable prime-power theorem, and it rejects sample extrapolation.
 
 use serde::Serialize;
 

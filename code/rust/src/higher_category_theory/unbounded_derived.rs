@@ -1,15 +1,3 @@
-//! Unbounded Derived Category $\mathcal{D}(\mathcal{A})$.
-//!
-//! Provides unbounded complexes, resolution strategies (K-projective, K-injective),
-//! and projective/injective resolution chains.
-//!
-//! Invariants:
-//! - Zero floating-point arithmetic.
-//! - Exact integer arithmetic over $\mathbb{Z}$.
-//! - Soviet Builder allocation limits via `OperationLimits`.
-//! - Content-addressed SHA-256 state hashing.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::BTreeMap;
 
@@ -20,7 +8,6 @@ use sha2::{Digest, Sha256};
 use crate::derived::ChainComplex;
 use crate::error::HigherCategoryError;
 
-/// Resolution strategy for unbounded derived categories.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ResolutionStrategy {
     Projective,
@@ -30,7 +17,6 @@ pub enum ResolutionStrategy {
     Flat,
 }
 
-/// Sequence of complexes forming an approximation chain or tower.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ChainComplexChain {
     pub id: String,
@@ -52,7 +38,6 @@ impl ChainComplexChain {
     }
 }
 
-/// Unbounded Derived Category $\mathcal{D}(\mathcal{A})$.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct UnboundedDerivedCategory {
     pub name: String,
@@ -104,7 +89,6 @@ impl UnboundedDerivedCategory {
         Ok(())
     }
 
-    /// Computes a resolved complex under the declared strategy.
     pub fn resolve(
         &self,
         complex_id: &str,

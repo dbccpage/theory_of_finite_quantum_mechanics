@@ -1,9 +1,6 @@
-//! Cancellation campaign census and evidence reports.
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 
-/// Conductor cancellation classification under Lam-Leung theorem.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct ConductorCancellationClassification {
     pub conductor: usize,
@@ -13,7 +10,6 @@ pub struct ConductorCancellationClassification {
     pub mechanism: String,
 }
 
-/// Classify cyclotomic field Q(zeta_n) phase cancellations.
 pub fn classify_conductor_cancellations(
     conductor: usize,
 ) -> Result<
@@ -46,33 +42,31 @@ pub fn classify_conductor_cancellations(
     })
 }
 
-/// Mapping of all 22 foundational targets to their minimal cyclotomic conductor.
 pub const TARGET_CONDUCTOR_MAP: [(usize, usize); 22] = [
-    (1, 1),  // Primitive difference (Q)
-    (2, 12), // Diamond 2-complex (Z[zeta_12])
-    (3, 1),  // Sorkin I3 quadratic identity (Q)
-    (4, 1),  // Rational Cayley flows (Q)
-    (5, 1),  // Pentagon identity (Q)
-    (6, 1),  // Cabello 18 rays / glued transfer matrix (Q)
-    (7, 2),  // Monotone signed permutations (Z_2)
-    (8, 1),  // Pythagorean Bell-CHSH (Q)
-    (9, 1),  // 3-qubit bitflip code (Q)
-    (10, 4), // Teleportation over Z[i]
-    (11, 4), // Superdense coding over Z[i]
-    (12, 1), // [[4,2,2]] CSS code (Q)
-    (13, 5), // Prime-p Wigner phase space (p=5, Z[zeta_5])
-    (14, 1), // Shor 9-qubit code (Q)
-    (15, 8), // Phase estimation dyadic rational phases (Cyc8)
-    (16, 2), // Toric code homology braiding (phase -1)
-    (17, 8), // Grover search (Cyc8)
-    (18, 2), // Clifford Sp(2k, F2)
-    (19, 1), // Commutator trace obstruction (Q)
-    (20, 1), // Richardson extrapolation (Q)
-    (21, 4), // Quantum walk on S3/S4
-    (22, 3), // MUB state tomography in d=3 (Z[zeta_3])
+    (1, 1),
+    (2, 12),
+    (3, 1),
+    (4, 1),
+    (5, 1),
+    (6, 1),
+    (7, 2),
+    (8, 1),
+    (9, 1),
+    (10, 4),
+    (11, 4),
+    (12, 1),
+    (13, 5),
+    (14, 1),
+    (15, 8),
+    (16, 2),
+    (17, 8),
+    (18, 2),
+    (19, 1),
+    (20, 1),
+    (21, 4),
+    (22, 3),
 ];
 
-/// Record of target census evaluation.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct CancellationCensusItem {
     pub target_id: usize,
@@ -82,7 +76,6 @@ pub struct CancellationCensusItem {
     pub cancellation_family: String,
 }
 
-/// Full census report across all 22 foundational targets.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct CancellationCensusReport {
     pub targets_censused_count: usize,
@@ -92,7 +85,6 @@ pub struct CancellationCensusReport {
     pub target_census: Vec<CancellationCensusItem>,
 }
 
-/// Audit cancellation mechanisms across all 22 targets.
 pub fn audit_target_cancellations() -> CancellationCensusReport {
     let mut census = Vec::with_capacity(22);
     let mut unpairable_ids = Vec::new();
@@ -129,7 +121,6 @@ pub fn audit_target_cancellations() -> CancellationCensusReport {
     }
 }
 
-/// Verification report for Target 3 Sorkin 3-slit interference vanishing.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct SorkinI3CancellationReport {
     pub target_id: usize,
@@ -143,7 +134,6 @@ pub struct SorkinI3CancellationReport {
     pub i3_identically_zero: bool,
 }
 
-/// Evaluate Sorkin 3-slit cancellation structure in Target 3.
 pub fn evaluate_sorkin_i3_cancellation() -> SorkinI3CancellationReport {
     let t3 = crate::qm::campaigns::foundational_targets::verify_target3_sorkin_interference();
     SorkinI3CancellationReport {
@@ -159,7 +149,6 @@ pub fn evaluate_sorkin_i3_cancellation() -> SorkinI3CancellationReport {
     }
 }
 
-/// Structural correspondence with estate SignRepair certificate.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct EstateCertificateCorrespondence {
     pub estate_theorem: String,
@@ -168,7 +157,6 @@ pub struct EstateCertificateCorrespondence {
     pub estate_certificate_link_recorded: bool,
 }
 
-/// Record correspondence to SignRepair.certificate_iff_dominated.
 pub fn record_estate_certificate_correspondence() -> EstateCertificateCorrespondence {
     EstateCertificateCorrespondence {
         estate_theorem: "SignRepair.certificate_iff_dominated".to_string(),
@@ -178,7 +166,6 @@ pub fn record_estate_certificate_correspondence() -> EstateCertificateCorrespond
     }
 }
 
-/// Full Block 08 execution report.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Block08CancellationReport {
     pub authority_effect: String,
@@ -196,7 +183,6 @@ pub struct Block08CancellationReport {
     pub estate_link: EstateCertificateCorrespondence,
 }
 
-/// Run complete Block 08 evaluation in Rust.
 pub fn run_block_08_execution() -> Block08CancellationReport {
     let census = audit_target_cancellations();
     let sorkin = evaluate_sorkin_i3_cancellation();

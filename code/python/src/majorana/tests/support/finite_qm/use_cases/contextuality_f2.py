@@ -73,8 +73,8 @@ def f2_system() -> Tuple[np.ndarray, np.ndarray]:
     a = np.zeros((6, 9), dtype=int)
     for i in range(3):
         for j in range(3):
-            a[i, 3 * i + j] = 1          # row context i
-            a[3 + j, 3 * i + j] = 1      # column context j
+            a[i, 3 * i + j] = 1
+            a[3 + j, 3 * i + j] = 1
     signs = context_products()["signs"]
     b = np.array([0 if s == 1 else 1 for s in signs], dtype=int)
     return a, b

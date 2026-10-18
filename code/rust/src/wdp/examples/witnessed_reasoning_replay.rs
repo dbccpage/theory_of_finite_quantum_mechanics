@@ -1,4 +1,3 @@
-//! Emit a bounded native certificate corpus for the independent Lean kernel.
 use omega_wdp::witnessed_reasoning::{Countermodel, Proof, ProofStep, Rule, Theory};
 use omega_wdp::witnessed_reasoning_replay::{countermodel_module, proof_module};
 use std::{fs, path::PathBuf};

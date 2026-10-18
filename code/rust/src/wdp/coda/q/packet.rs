@@ -3,7 +3,6 @@ use serde::{Deserialize, Serialize};
 use super::errors::{QError, QPacketField};
 use omega_types::q_continuum::{ObstructionKind, TerminalStatus};
 
-/// Local Q terminal request labels used for packet admission.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum QTerminal {
     Refused,
@@ -15,11 +14,6 @@ pub enum QTerminal {
 }
 
 impl QTerminal {
-    /// Converts an admission classification into the nearest Q ledger status.
-    ///
-    /// A raw packet request for `TerminalWithinScope` is never converted through
-    /// this helper before [`crate::coda::admission::QAdmissionGate::classify_admission`]
-    /// has derived a non-terminal classification from finite evidence.
     pub fn to_terminal_status(self) -> TerminalStatus {
         match self {
             Self::Refused => TerminalStatus::Refused,
@@ -31,7 +25,6 @@ impl QTerminal {
     }
 }
 
-/// Representation transport route declared by a Q packet.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TransportSpec {
     pub route: String,
@@ -63,7 +56,6 @@ impl TransportSpec {
     }
 }
 
-/// Residual carried by the packet before any finite promotion.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ResidualSpec {
     pub description: String,
@@ -90,7 +82,6 @@ impl ResidualSpec {
     }
 }
 
-/// Mandatory Q packet.
 #[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QPacket {
     pub id: String,
@@ -194,7 +185,6 @@ impl QPacket {
     }
 }
 
-/// Packet that has passed mandatory field validation.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ValidatedQPacket {
     packet: QPacket,

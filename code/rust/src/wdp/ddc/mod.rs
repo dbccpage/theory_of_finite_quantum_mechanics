@@ -56,15 +56,12 @@ pub enum LambdaAlgebraError {
     CrossTermCoboundary,
 }
 
-/// Represents a discrete topological deformation (Lambda surface)
-/// anchored to a generic Face identifier `F`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct FaceLambda<F> {
     pub face: F,
     pub capacity: i64,
 }
 
-/// A declared oriented edge in C1.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct OrientedEdge<V> {
     pub source: V,
@@ -77,7 +74,6 @@ impl<V> OrientedEdge<V> {
     }
 }
 
-/// A declared oriented 2-simplex with boundary +BC -AC +AB.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
 pub struct OrientedTriangle<V> {
     pub a: V,
@@ -91,7 +87,6 @@ impl<V> OrientedTriangle<V> {
     }
 }
 
-/// A finite local execution window: declared vertices, C1 edges, and C2 faces.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteWindow<V> {
     pub vertices: Vec<V>,
@@ -99,7 +94,6 @@ pub struct FiniteWindow<V> {
     pub faces: Vec<OrientedTriangle<V>>,
 }
 
-/// The local C0 -> C1 -> C2 scan result for a finite window.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteWindowScan<V: Ord> {
     pub c1: Cochain1<V>,
@@ -135,13 +129,11 @@ impl<V> FiniteWindow<V> {
     }
 }
 
-/// A finite C1 boundary with canonical edge orientation.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Boundary1<V: Ord> {
     coefficients: BTreeMap<OrientedEdge<V>, i64>,
 }
 
-/// A finite C1 cochain uses the same declared oriented-edge storage as a C1 boundary shadow.
 pub type Cochain1<V> = Boundary1<V>;
 
 impl<V: Ord> Default for Boundary1<V> {
@@ -171,16 +163,6 @@ impl<V: Clone + Ord> Boundary1<V> {
             .ok_or(LambdaAlgebraError::CapacityOverflow)
     }
 
-    /// Ergonomic signed read of the canonical-edge coefficient.
-    ///
-    /// This is **total**: it can never panic. The only stored value that could
-    /// overflow the reverse-orientation sign multiply (`i64::MIN * -1`) is
-    /// `i64::MIN`, and the write paths
-    /// ([`Self::checked_set_term`] / [`Self::checked_add_term`]) reject storing
-    /// `i64::MIN` (returning [`LambdaAlgebraError::CapacityOverflow`]), so a
-    /// stored coefficient of `i64::MIN` is unrepresentable. The internal
-    /// `.expect()` therefore guards an invariant that cannot be violated
-    /// through the public API.
     #[must_use]
     pub fn coefficient(&self, source: V, target: V) -> i64 {
         self.checked_coefficient(source, target)
@@ -208,10 +190,6 @@ impl<V: Clone + Ord> Boundary1<V> {
         if next == 0 {
             self.coefficients.remove(&edge);
         } else {
-            // Refuse to store i64::MIN: its reverse-orientation sign multiply
-            // (i64::MIN * -1) is unrepresentable, which would make the signed
-            // read non-total. Keeping i64::MIN out of storage makes
-            // `coefficient` / `checked_coefficient` total.
             if next == i64::MIN {
                 return Err(LambdaAlgebraError::CapacityOverflow);
             }
@@ -233,8 +211,6 @@ impl<V: Clone + Ord> Boundary1<V> {
         if signed == 0 {
             self.coefficients.remove(&edge);
         } else {
-            // Refuse to store i64::MIN (see `checked_add_term`): keeps the
-            // signed read total so `coefficient` cannot panic.
             if signed == i64::MIN {
                 return Err(LambdaAlgebraError::CapacityOverflow);
             }
@@ -359,7 +335,6 @@ impl<V: Clone + Ord> FiniteWindow<V> {
     }
 }
 
-/// A finite C0 assignment; omitted vertices have zero local potential.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Cochain0<V: Ord> {
     values: BTreeMap<V, i64>,
@@ -418,11 +393,6 @@ impl<V: Clone + Ord> Cochain0<V> {
     }
 }
 
-/// Provenance of a finite diagnostic vector.
-///
-/// This DDA type currently stores only caller-declared scalars. A structural
-/// descent check over these values is not a computation or verification of the
-/// canonical Phi1 and Gamma2 functionals.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum FiniteDiagnosticProvenance {
     UnverifiedScalarClaim,
@@ -436,8 +406,6 @@ pub struct FiniteDiagnostic {
 }
 
 impl FiniteDiagnostic {
-    /// Construct an unverified scalar claim for structural DDA bookkeeping.
-    /// This does not calculate or certify the canonical functionals.
     pub fn new(phi1: u64, gamma2: u64) -> Self {
         Self {
             phi1,
@@ -450,9 +418,6 @@ impl FiniteDiagnostic {
         self.provenance
     }
 
-    /// Legacy scalar receipt ingress. Equality of two claimed L1 values does
-    /// not replay a primal-dual witness or bind a carrier, so it cannot create
-    /// a functional diagnostic. A future typed path must use omega_functional.
     pub fn checked_from_quotient_certificate(
         certificate: QuotientIrreducibilityCertificate,
         _gamma2: u64,
@@ -473,9 +438,6 @@ impl FiniteDiagnostic {
         self.phi1 > 0 || self.gamma2 > 0
     }
 
-    /// A structural check of declared scalar values. With
-    /// `UnverifiedScalarClaim` provenance, this is not a canonical functional
-    /// certificate or authority to make a terminal mathematical claim.
     #[must_use = "ignoring the lambda-license result skips the declared-scalar obstruction check"]
     pub fn require_lambda_license(self) -> Result<Self, LambdaAlgebraError> {
         if self.is_obstructed() {
@@ -536,12 +498,6 @@ impl FiniteLambdaStepCertificate {
         }
     }
 
-    /// Single-step PaperFOC005 gate: the `before` state must be obstructed
-    /// (Lambda is licensed), the `after` state must be fully resolved
-    /// (`Phi1 = Gamma2 = 0`), and the extension must be non-destructive.
-    ///
-    /// This is the terminal-step contract. Intermediate steps of a multi-step
-    /// chain do NOT resolve to zero on their own — see [`Self::require_descent_step`].
     #[must_use = "ignoring the validity result skips the PaperFOC005 gate"]
     pub fn require_valid(self) -> Result<Self, LambdaAlgebraError> {
         self.before.require_lambda_license()?;
@@ -552,23 +508,10 @@ impl FiniteLambdaStepCertificate {
         Ok(self)
     }
 
-    /// Intermediate-step PaperFOC005 gate for a multi-step descent: the `before`
-    /// state must be obstructed (Lambda is licensed) and the extension must be
-    /// non-destructive, but the `after` state may STILL be obstructed — it only
-    /// has to be a monotone non-increase of the obstruction mass
-    /// `Phi1 + Gamma2` (componentwise: `after.phi1 <= before.phi1` and
-    /// `after.gamma2 <= before.gamma2`).
-    ///
-    /// This is the contract that makes a `>= 2`-step chain reachable: only the
-    /// FINAL step must resolve to zero (via [`Self::require_valid`]); every
-    /// earlier step only has to make non-destructive monotone progress.
     #[must_use = "ignoring the descent-step result skips the monotone-progress gate"]
     pub fn require_descent_step(self) -> Result<Self, LambdaAlgebraError> {
         self.before.require_lambda_license()?;
         if self.after.phi1 > self.before.phi1 || self.after.gamma2 > self.before.gamma2 {
-            // An intermediate step that increases either obstruction coordinate
-            // is not a descent: it manufactures obstruction the chain cannot
-            // discharge. Reuse the observer-passivity error class.
             return Err(LambdaAlgebraError::ObserverPassivityViolation);
         }
         self.extension.require_non_destructive()?;
@@ -600,55 +543,27 @@ impl FiniteLambdaLedger {
         }
     }
 
-    /// Sequence-level PaperFOC005 preservation: a chained finite-Lambda descent.
-    ///
-    /// The chain is admissible iff
-    /// - the head matches `initial` (`steps[0].before == initial`),
-    /// - consecutive steps compose (`steps[i].after == steps[i+1].before`),
-    /// - every NON-FINAL step is a non-destructive monotone descent
-    ///   ([`FiniteLambdaStepCertificate::require_descent_step`]) — its `after`
-    ///   may still be obstructed, it only has to make componentwise
-    ///   non-increasing progress on `(Phi1, Gamma2)`,
-    /// - the FINAL step is a fully-resolving single-step certificate
-    ///   ([`FiniteLambdaStepCertificate::require_valid`]) — its `after` is
-    ///   `Phi1 = Gamma2 = 0`, and
-    /// - the tail matches `terminal` (`steps[last].after == terminal`).
-    ///
-    /// Because intermediate `after` states are allowed to stay obstructed, a
-    /// genuine `>= 2`-step descent (e.g. `Phi1: 3 -> 2 -> 0`) is reachable: the
-    /// success path is NOT contradictory. An empty ledger is admissible only
-    /// when `initial == terminal` and `initial` is already resolved.
     #[must_use = "ignoring the chaining result skips the sequence-level PaperFOC005 gate"]
     pub fn require_chained(&self) -> Result<&Self, LambdaAlgebraError> {
         if self.steps.is_empty() {
-            // empty ledger is admissible only when initial == terminal
-            // and initial is resolved (Phi1 = Gamma2 = 0)
             if self.initial != self.terminal || !self.initial.is_resolved() {
                 return Err(LambdaAlgebraError::LambdaDidNotResolve);
             }
             return Ok(self);
         }
         let last = self.steps.len() - 1;
-        // every NON-FINAL step is a monotone non-destructive descent; its
-        // after may stay obstructed (only the final after must resolve).
         for step in &self.steps[..last] {
             step.require_descent_step()?;
         }
-        // the FINAL step must drive the obstruction to zero.
         self.steps[last].require_valid()?;
-        // head: ledger.initial must equal the first step's before
         if self.steps[0].before != self.initial {
             return Err(LambdaAlgebraError::LambdaDidNotResolve);
         }
-        // chain: consecutive steps must compose
         for window in self.steps.windows(2) {
             if window[0].after != window[1].before {
                 return Err(LambdaAlgebraError::LambdaDidNotResolve);
             }
         }
-        // tail: last step's after must equal ledger.terminal, and (because the
-        // final require_valid enforces is_resolved on after) terminal is the
-        // resolved endpoint.
         if self.steps[last].after != self.terminal {
             return Err(LambdaAlgebraError::LambdaDidNotResolve);
         }
@@ -656,7 +571,6 @@ impl FiniteLambdaLedger {
     }
 }
 
-/// Observer/trace shadows may report diagnostics but may not create a stronger obstruction.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ObserverPassivityCertificate {
     pub source: FiniteDiagnostic,
@@ -682,7 +596,6 @@ impl ObserverPassivityCertificate {
     }
 }
 
-/// Pub010 inversion gate: a cross-term obstruction is typed only with an involution witness.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct CrossTermObstructionCertificate {
     pub cross_term_l1: u64,
@@ -720,7 +633,6 @@ impl CrossTermObstructionCertificate {
         Ok(self)
     }
 
-    /// The typed cross-term observation remains distinct from Phi1/Gamma2.
     pub fn cross_term_diagnostic(self) -> Result<CrossTermDiagnostic, LambdaAlgebraError> {
         let certificate = self.require_typed_obstruction()?;
         Ok(CrossTermDiagnostic {
@@ -728,8 +640,6 @@ impl CrossTermObstructionCertificate {
         })
     }
 
-    /// Compatibility ingress that refuses to relabel a cross-term scalar as
-    /// canonical Phi1 or to assert Gamma2 = 0 without a declared C2 carrier.
     pub fn diagnostic(self) -> Result<FiniteDiagnostic, LambdaAlgebraError> {
         self.require_typed_obstruction()?;
         Err(LambdaAlgebraError::MissingProofCarryingCertificate)
@@ -755,8 +665,6 @@ impl QuotientIrreducibilityCertificate {
         }
     }
 
-    /// Check only the submitted scalar consistency conditions. Equality of
-    /// two caller-supplied masses does not prove quotient irreducibility.
     #[must_use = "ignoring the result skips the declared-scalar consistency check"]
     pub fn require_irreducible(self) -> Result<Self, LambdaAlgebraError> {
         if self.residual_l1 == 0 {
@@ -768,7 +676,6 @@ impl QuotientIrreducibilityCertificate {
         Ok(self)
     }
 
-    /// Report the submitted value only; it is not a verified quotient Phi1.
     pub fn declared_residual_l1(self) -> u64 {
         self.residual_l1
     }
@@ -779,7 +686,6 @@ pub struct NormalizedL1Weight {
     pub denominator: u64,
 }
 
-/// PaperQF002 firewall: Born normalization only re-encodes declared positive L1 weights.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BornNormalizationCertificate {
     weights: Vec<u64>,
@@ -833,7 +739,6 @@ pub enum ProposalAuthority {
     ExternalEvaluatorOnly,
 }
 
-/// PaperAF000 firewall: operators may propose algebraic shadows, not accept them.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct OperatorProposal<T> {
     pub proposal: T,
@@ -849,7 +754,6 @@ impl<T> OperatorProposal<T> {
     }
 }
 
-/// Paper015 firewall: AI lift proposals are admissible only as proof-carrying finite Lambda certificates.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ProofCarryingAiProposal<T> {
     pub proposal: T,
@@ -975,10 +879,8 @@ impl RealizationBoundary {
     }
 }
 
-/// Stable cross-domain evidence id for the PaperFOC000c claim-packet boundary.
 pub const PAPER000C_CLAIM_PACKET_EVIDENCE_ID: &str = "PAPER000C-CLAIM-PACKET-AUTHORITY-BOUNDARY";
 
-/// Root authority status for representation-layer claim packets.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TerminalStatus {
     Certified,
@@ -1003,7 +905,6 @@ impl TerminalStatus {
     }
 }
 
-/// PaperFOC000c boundary: representation-layer material earns authority only by descent.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ClaimPacket<T> {
     pub representation: T,
@@ -1125,56 +1026,36 @@ impl<V: Clone + Ord> FaceLambda<OrientedTriangle<V>> {
     }
 }
 
-/// 1. Merge (Addition)
 impl<F: PartialEq> Add for FaceLambda<F> {
     type Output = Self;
 
-    /// # Panics
-    ///
-    /// Panics on a different-face merge or a capacity overflow. Use the
-    /// non-panicking [`FaceLambda::checked_merge`] when either is possible.
     fn add(self, rhs: Self) -> Self::Output {
         self.checked_merge(rhs)
             .expect("FaceLambda Add failed: invariant violation (different face or overflow)")
     }
 }
 
-/// 2. Reverse (Negation)
 impl<F> Neg for FaceLambda<F> {
     type Output = Self;
 
-    /// # Panics
-    ///
-    /// Panics on a capacity overflow (`i64::MIN` negation). Use the
-    /// non-panicking [`FaceLambda::checked_reverse`] when that is possible.
     fn neg(self) -> Self::Output {
         self.checked_reverse()
             .expect("FaceLambda Neg failed: invariant violation (capacity overflow)")
     }
 }
 
-/// 3. Scale (Scalar Multiplication)
 impl<F> Mul<i64> for FaceLambda<F> {
     type Output = Self;
 
-    /// # Panics
-    ///
-    /// Panics on a capacity overflow. Use the non-panicking
-    /// [`FaceLambda::checked_scale`] when that is possible.
     fn mul(self, scalar: i64) -> Self::Output {
         self.checked_scale(scalar)
             .expect("FaceLambda Mul failed: invariant violation (capacity overflow)")
     }
 }
 
-// Commutative scalar multiplication
 impl<F> Mul<FaceLambda<F>> for i64 {
     type Output = FaceLambda<F>;
 
-    /// # Panics
-    ///
-    /// Panics on a capacity overflow (delegates to `FaceLambda * i64`). Use
-    /// [`FaceLambda::checked_scale`] when that is possible.
     fn mul(self, lambda: FaceLambda<F>) -> Self::Output {
         lambda * self
     }
@@ -1289,19 +1170,13 @@ mod tests {
 
     #[test]
     fn test_set_term_rejects_storing_i64_min_keeping_coefficient_total() {
-        // The reverse-orientation read of a stored i64::MIN would overflow the
-        // sign multiply, which is the only way `coefficient` could panic. The
-        // write paths refuse to store i64::MIN, so the signed read stays total.
         let mut boundary = Cochain1::new();
-        // Canonical edge with target < source so canonical_edge negates: storing
-        // +i64::MIN on ("B","A") would persist i64::MIN under the canonical key.
         assert_eq!(
             boundary.checked_set_term("A", "B", i64::MIN),
             Err(LambdaAlgebraError::CapacityOverflow)
         );
         assert_eq!(boundary.coefficients().len(), 0);
 
-        // checked_add_term reaching i64::MIN is also refused.
         let mut acc = Cochain1::new();
         acc.checked_set_term("A", "B", i64::MIN + 1).unwrap();
         assert_eq!(
@@ -1309,10 +1184,8 @@ mod tests {
             Err(LambdaAlgebraError::CapacityOverflow)
         );
 
-        // A maximal-magnitude legal store still reads back totally (no panic).
         let mut legal = Cochain1::new();
         legal.checked_set_term("A", "B", i64::MIN + 1).unwrap();
-        // coefficient is total: this call must not panic.
         assert_eq!(legal.coefficient("A", "B"), i64::MIN + 1);
         assert_eq!(legal.coefficient("B", "A"), -(i64::MIN + 1));
     }
@@ -1888,24 +1761,15 @@ mod tests {
 
     #[test]
     fn test_finite_lambda_ledger_two_step_descent_phi1_3_2_0_is_ok() {
-        // L5 closure: a genuine, REACHABLE >= 2-step chain returning Ok.
-        // Phi1 descends 3 -> 2 -> 0 across two steps. The FIRST step's `after`
-        // (2, 0) is STILL OBSTRUCTED (this is exactly the case the old
-        // every-step-resolves contract made unreachable); only the SECOND
-        // (final) step resolves to (0, 0).
         let initial = FiniteDiagnostic::new(3, 0);
         let mid = FiniteDiagnostic::new(2, 0);
         let terminal = FiniteDiagnostic::new(0, 0);
 
         let ext = NonDestructiveExtensionCertificate::new(true, true, true);
 
-        // intermediate step: 3 -> 2 (after still obstructed, monotone descent)
         let step1 = FiniteLambdaStepCertificate::new(initial, mid, ext);
-        // final step: 2 -> 0 (resolves)
         let step2 = FiniteLambdaStepCertificate::new(mid, terminal, ext);
 
-        // Precondition: the intermediate after is obstructed (the unreachable
-        // case under the old semantics).
         assert!(mid.is_obstructed());
 
         let ledger = FiniteLambdaLedger::new(initial, vec![step1, step2], terminal);
@@ -1914,9 +1778,6 @@ mod tests {
 
     #[test]
     fn test_finite_lambda_ledger_three_step_descent_phi1_gamma2_is_ok() {
-        // Three-step descent driving both coordinates down monotonically:
-        // (2,2) -> (2,1) -> (1,0) -> (0,0). Two obstructed intermediate
-        // `after`s, only the final step resolves.
         let s0 = FiniteDiagnostic::new(2, 2);
         let s1 = FiniteDiagnostic::new(2, 1);
         let s2 = FiniteDiagnostic::new(1, 0);
@@ -1937,12 +1798,8 @@ mod tests {
 
     #[test]
     fn test_finite_lambda_ledger_refuses_intermediate_obstruction_increase() {
-        // Negative control for the descent gate: an intermediate step whose
-        // `after` INCREASES an obstruction coordinate (1 -> 2 on Phi1) is not a
-        // monotone descent and must be refused, even though the final step
-        // would resolve. This is what keeps `require_descent_step` honest.
         let initial = FiniteDiagnostic::new(1, 0);
-        let mid = FiniteDiagnostic::new(2, 0); // increases Phi1 — illegal
+        let mid = FiniteDiagnostic::new(2, 0);
         let terminal = FiniteDiagnostic::new(0, 0);
         let ext = NonDestructiveExtensionCertificate::new(true, true, true);
 
@@ -1958,8 +1815,6 @@ mod tests {
 
     #[test]
     fn test_finite_lambda_ledger_refuses_final_step_not_resolved() {
-        // The FINAL step must still resolve to (0, 0): a chain whose last step
-        // ends obstructed is refused.
         let initial = FiniteDiagnostic::new(3, 0);
         let mid = FiniteDiagnostic::new(2, 0);
         let unresolved = FiniteDiagnostic::new(1, 0);
@@ -1986,7 +1841,6 @@ mod tests {
         let ext2 = NonDestructiveExtensionCertificate::new(true, true, true);
 
         let step1 = FiniteLambdaStepCertificate::new(initial, mid1, ext1);
-        // Step 2 before doesn't match step 1 after
         let step2 = FiniteLambdaStepCertificate::new(mid2, terminal, ext2);
 
         let ledger = FiniteLambdaLedger::new(initial, vec![step1, step2], terminal);

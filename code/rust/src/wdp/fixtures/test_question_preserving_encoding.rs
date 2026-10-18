@@ -181,7 +181,6 @@ fn exhaustive_comparison_retains_unsatisfiable_tasks_and_the_strong_baseline() {
     assert_eq!(result["satisfiable_tasks"], 125);
     assert_eq!(result["unsatisfiable_tasks"], 100);
     assert_eq!(result["closed_wrong_task_candidate_pairs"], 28000);
-    // 24 extremal candidates have singleton gradient fibers; 101 do not.
     assert_eq!(result["unanchored_colliding_tasks"], 101);
     assert_eq!(result["closure_only_colliding_tasks"], 125);
     assert_eq!(result["strategies"][0]["checker_calls"], 20375);

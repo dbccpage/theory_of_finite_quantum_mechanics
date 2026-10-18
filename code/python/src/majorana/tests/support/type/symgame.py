@@ -13,11 +13,6 @@ if TYPE_CHECKING:
     from omega_engine_pfp.domain.entities.candidate_artifact import CandidateArtifactV1
 
 
-# Resolved on call, not at import. See the same note in
-# omega_engine/crates/operator/projector/proj_symbol_game.py: at module scope
-# this closed an import cycle through omega_engine_pfp.canonical that
-# made test_coboundary_scoring.py uncollectable. `domain_digest` is used only
-# inside two properties. `freeze` was imported here and never used at all.
 def domain_digest(*args: Any, **kwargs: Any) -> Any:
     from omega_engine_pfp.domain.shared_kernel.canonical import (
         domain_digest as _domain_digest,
@@ -47,7 +42,7 @@ class DdaLetter(str, Enum):
     E = "E"
     R = "R"
     C = "C"
-    I = "I"  # noqa: E741
+    I = "I"
     LAMBDA = "Λ"
     D = "D"
     M = "M"

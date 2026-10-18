@@ -1,6 +1,3 @@
-//! Inert, canonical export model for unresolved finite proof obligations.
-//!
-//! Rust face of `omega_engine/kernel/higher_operad/obligations.py`.
 
 use std::collections::BTreeSet;
 use serde::{Deserialize, Serialize};

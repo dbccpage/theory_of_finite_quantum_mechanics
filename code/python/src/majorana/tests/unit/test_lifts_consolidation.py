@@ -24,23 +24,21 @@ from omega_engine.crates.lift import (
 def test_formalism_emergence():
     engine = FormalismEmergenceEngine()
     engine.register_resolver("Algebra", lambda state, act: isinstance(state, StructureDerived))
-    
+
     op = BinaryOperation([0, 1], {(0, 0): 0, (0, 1): 1, (1, 0): 1, (1, 1): 0})
     lift_op = AlgebraLiftOperator(op)
-    
+
     res = lift_op("witness")
     assert isinstance(res, StructureDerived)
     assert engine.resolve(lift_op, "witness", "Algebra")
 
 
 def test_algebra_lift_associativity_check():
-    # Associative operation (addition mod 2)
     op = BinaryOperation([0, 1], {(0, 0): 0, (0, 1): 1, (1, 0): 1, (1, 1): 0})
     is_assoc, failures = check_associativity(op)
     assert is_assoc
     assert not failures
 
-    # Non-associative operation (subtraction mod 3)
     op_non = BinaryOperation([0, 1, 2], {(x, y): (x - y) % 3 for x in range(3) for y in range(3)})
     is_assoc_non, failures_non = check_associativity(op_non)
     assert not is_assoc_non

@@ -1,4 +1,3 @@
-//! P1 Abstention and Impossibility Governor (PROD-P1) exact verifier.
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TerminationLabel {

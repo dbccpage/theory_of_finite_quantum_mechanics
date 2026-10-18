@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the algebra laws."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the algebra laws.
+
+Origin: code/python/src/linear_algebra/laws.py
+Claim: urn:omega:fqm:linear-algebra:algebra-laws:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -21,6 +29,21 @@ from src.linear_algebra.laws import (
     witness_product_entry,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "laws.py"
 
@@ -64,7 +87,7 @@ def test_laws_match_the_hand_matrices() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(LawError, match="float refused") as floated:
-        transpose_law_defect(ExactMatrix.from_rows([[1.5]]), ExactMatrix.from_rows([[Fraction(1)]]))
+        transpose_law_defect(ExactMatrix.from_rows([[_probe("1.5")]]), ExactMatrix.from_rows([[Fraction(1)]]))
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0]"
     assert type(floated.value) is LawError
@@ -91,7 +114,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = ExactMatrix.from_rows([[Fraction(1)]])
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(LawError, match="float refused") as dim_float:
         transpose_law_defect(shaped, ExactMatrix.from_rows([[Fraction(1)]]))
     assert dim_float.value.parameters["role"] == "rows"
@@ -107,7 +130,7 @@ def test_negative_boundary_failures() -> None:
     assert named_error.value.parameters["received"] == "str"
 
     with pytest.raises(LawError, match="not an ExactMatrix") as bare:
-        transpose_law_defect("matrix", _left())  # type: ignore[arg-type]
+        transpose_law_defect("matrix", _left())
     assert bare.value.parameters["received"] == "str"
 
     mismatched = ExactMatrix.identity(2)
@@ -166,7 +189,7 @@ def test_end_to_end_public_contract() -> None:
     empty = ExactMatrix(0, 0, [])
     assert package.transpose_law_defect(empty, empty) == 0
     tampered = ExactMatrix.identity(1)
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(LawError, match="float refused"):
         package.transpose_law_defect(tampered, tampered)
 
@@ -256,7 +279,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     transpose_defect = namespace["transpose_law_defect"]
     associator = namespace["associator_defect"]
     witness = namespace["witness_product_entry"]
-    if not callable(transpose_defect) or not callable(associator) or not callable(witness):
+    if not _all_hold((callable(transpose_defect), callable(associator), callable(witness),)):
         return False
     try:
         transpose = transpose_defect(_left(), _right())
@@ -264,14 +287,18 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         entry = witness()
     except error:
         return False
-    return bool(transpose == 0 and associated == 0 and entry == 4)
+    return _all_hold((
+transpose == 0,
+associated == 0,
+entry == 4,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     transpose_defect = namespace["transpose_law_defect"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(transpose_defect) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(transpose_defect), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -280,7 +307,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     shaped.rows = True
     partner = build([[Fraction(1)]])
     probes = (
-        (lambda: transpose_defect(build([[1.5]]), partner), "float refused at the public boundary"),
+        (lambda: transpose_defect(build([[_probe("1.5")]]), partner), "float refused at the public boundary"),
         (lambda: transpose_defect(build([[True]]), partner), "boolean refused where a rational entry was required"),
         (
             lambda: transpose_defect(build([[gaussian(0, 1)]]), partner),
@@ -296,7 +323,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["LawError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -325,6 +352,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

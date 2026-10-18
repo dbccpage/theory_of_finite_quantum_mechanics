@@ -1,11 +1,7 @@
-//! Dependent function type former `Π(x:A). B(x)`.
-//!
-//! Structural record only: base and family are opaque string refs.
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Dependent product (function) type `Π(x : base). family(x)`.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PiType {
     pub base_type_ref: String,
@@ -13,7 +9,6 @@ pub struct PiType {
 }
 
 impl PiType {
-    /// Validate that base and family references are non-empty.
     pub fn validate(&self) -> Result<(), PiTypeError> {
         if self.base_type_ref.is_empty() {
             return Err(PiTypeError::EmptyBaseTypeRef);

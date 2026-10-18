@@ -1,8 +1,3 @@
-//! Finite executable witness for `PROD-KERNEL-NEXT-1`.
-//!
-//! Models the six-field `ReceiptRecord` and `TypedRefusal` kernel adapter invariants:
-//! sorted/deduplicated `claim_ids`, 64-hex digest validation, tamper refusal
-//! (`receipt_mismatch` and `digest_mismatch`), and fixed `authority_effect = "None"`.
 
 #![forbid(unsafe_code)]
 
@@ -48,7 +43,6 @@ pub fn normalize_claim_ids(raw: &[&str]) -> Result<Vec<String>, TypedRefusal> {
 }
 
 pub fn deterministic_hex64(tag: &str, payload: &str) -> String {
-    // Deterministic 64-hex test digest from tag + payload bytes (FNV-1a 64-bit x 4 lanes).
     let mut out = String::with_capacity(64);
     for lane in 0u64..4 {
         let mut h: u64 = 0xcbf29ce484222325 ^ lane.wrapping_mul(0x9e3779b97f4a7c15);

@@ -1,4 +1,3 @@
-//! campaign modules for the omega-native MUB lane.
 #![allow(clippy::module_inception)]
 #[path = "../mub6_balanced_table_replay.rs"]
 pub mod mub6_balanced_table_replay;

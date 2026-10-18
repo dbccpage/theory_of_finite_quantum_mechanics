@@ -1,10 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Foundational mathematical bridges connecting the Witnessed Difference Programme
-//! to Homotopy Type Theory (HoTT), Higher Category Theory, and Quantum Mechanics.
-//!
-//! Exact rational homology of a WDP complex is `omega_homology`'s: ingest it with
-//! `crate::kan_wdp_bridge::KanSimplicialComplex::from_wdp_complex` and read
-//! `omega_homology::simplicial::SimplicialComplex::rational_betti_numbers`.
 
 use std::collections::BTreeMap;
 
@@ -17,12 +10,7 @@ use crate::error::WdpError;
 use crate::kan_wdp_bridge::KanSimplicialComplex;
 use crate::types::AuthorityEffect;
 
-// =========================================================================
-// 1. Homotopy Type Theory (HoTT) Bridge
-// =========================================================================
 
-/// Shape-only named path reference. Converting to the HoTT spine does not
-/// check an inhabitant of an identity type or establish a semantic equivalence.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct IdentityPathWitness {
     pub source: String,
@@ -76,7 +64,6 @@ impl IdentityPathWitness {
     }
 
     pub fn from_hott_path(path: &omega_homotopy_type_theory::path::Path) -> Self {
-        // Equal endpoints do not make a loop the reflexivity term.
         let is_refl =
             path.source.0 == path.target.0 && path.path_ref == format!("refl({})", path.source.0);
         Self {
@@ -93,8 +80,6 @@ impl IdentityPathWitness {
     }
 }
 
-/// A checked conclusion for paths in the realization of a declared simplicial
-/// complex. Vanishing of one cocycle period never proves homotopy.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum PathHomotopyStatus {
     IdenticalPath,
@@ -107,8 +92,6 @@ pub struct Homotopy2CellObstruction {
     pub path_p: Vec<String>,
     pub path_q: Vec<String>,
     pub loop_circulation: BigRational,
-    /// Some(false) only for a nonzero period of a verified closed 1-cochain;
-    /// Some(true) only for identical paths; None means no homotopy decision.
     pub is_homotopic: Option<bool>,
     pub status: PathHomotopyStatus,
     pub authority_effect: AuthorityEffect,
@@ -179,10 +162,6 @@ fn check_path(complex: &FiniteComplex, path: &[String]) -> Result<(), WdpError> 
     Ok(())
 }
 
-/// Verify a simplicial closed 1-cochain before using its period as a one-way
-/// homotopy obstruction. Nonclosed fields are rejected: their period is not
-/// invariant under face contractions. Zero period remains undetermined because
-/// one rational cocycle cannot detect every fundamental-group element.
 pub fn evaluate_path_homotopy(
     complex: &FiniteComplex,
     cochain: &BTreeMap<(String, String), BigRational>,
@@ -232,11 +211,7 @@ pub fn evaluate_path_homotopy(
     })
 }
 
-// =========================================================================
-// 2. Higher Category Theory Bridge (Kan 2-Nerve Horn Fillers)
-// =========================================================================
 
-/// A horn Lambda^2_1 in a simplicial 2-nerve: two composable 1-morphisms f: x -> y, g: y -> z.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct HornLambda21 {
     pub vertex_x: String,
@@ -246,7 +221,6 @@ pub struct HornLambda21 {
     pub edge_yz: (String, String),
 }
 
-/// Witness of Kan horn filling Lambda^2_1 -> Delta^2.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct KanHornFillerWitness {
     pub horn: HornLambda21,
@@ -257,10 +231,6 @@ pub struct KanHornFillerWitness {
     pub authority_effect: AuthorityEffect,
 }
 
-/// Check one declared triangular face and its boundary curvature. This is
-/// simplicial face membership, not the Kan condition for arbitrary horn maps.
-/// Flatness cannot manufacture a missing face; horn edge fields must match
-/// their named endpoints and all three boundary edges must already exist.
 pub fn verify_kan_horn_filling(
     complex: &FiniteComplex,
     cochain: &BTreeMap<(String, String), BigRational>,
@@ -289,29 +259,19 @@ pub fn verify_kan_horn_filling(
     })
 }
 
-// =========================================================================
-// 3. Quantum Mechanics Bridge (Cabello 18-Ray & Sorkin Interference)
-// =========================================================================
 
-/// Cabello 18-ray contextuality parity obstruction (WDP-CH18-D01, WDP-CH18-P09).
-/// In R^4, exhibits 18 unnormalized rays arranged into 9 mutually orthogonal tetrads.
-/// Every ray belongs to exactly 2 tetrads.
-/// Non-contextual hidden variables require 9 = 2k, which is impossible (odd != even).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Cabello18RayWitness {
     pub num_rays: usize,
     pub num_tetrads: usize,
-    pub ray_occurrences: BTreeMap<usize, usize>, // ray_id -> count in tetrads
-    pub tetrad_sum_parity: usize,                // 9 % 2 = 1 (odd)
-    pub total_ray_parity: usize,                 // (2 * sum) % 2 = 0 (even)
+    pub ray_occurrences: BTreeMap<usize, usize>,
+    pub tetrad_sum_parity: usize,
+    pub total_ray_parity: usize,
     pub is_parity_obstructed: bool,
     pub authority_effect: AuthorityEffect,
 }
 
-/// Constructs and verifies the Cabello 18-ray contextuality parity witness.
 pub fn verify_cabello_18ray_parity() -> Cabello18RayWitness {
-    // 9 tetrads indexed 0..8 containing ray indices 0..17
-    // Standard Cabello 1996 configuration:
     let tetrads: [[usize; 4]; 9] = [
         [0, 1, 2, 3],
         [0, 4, 5, 6],
@@ -334,10 +294,9 @@ pub fn verify_cabello_18ray_parity() -> Cabello18RayWitness {
     let num_rays = occurrences.len();
     let num_tetrads = tetrads.len();
 
-    // Every ray must appear in exactly 2 tetrads
     let all_two = occurrences.values().all(|&c| c == 2);
-    let tetrad_parity = num_tetrads % 2; // 9 % 2 = 1
-    let ray_parity = (occurrences.values().sum::<usize>()) % 2; // (18 * 2) % 2 = 0
+    let tetrad_parity = num_tetrads % 2;
+    let ray_parity = (occurrences.values().sum::<usize>()) % 2;
 
     let is_obstructed = all_two && tetrad_parity == 1 && ray_parity == 0;
 
@@ -352,9 +311,6 @@ pub fn verify_cabello_18ray_parity() -> Cabello18RayWitness {
     }
 }
 
-/// Sorkin 3rd-order interference cancellation witness.
-/// Verifies that in quadratic measure models P(A) = |psi_A|^2,
-/// I_3(A, B, C) = P(ABC) - P(AB) - P(BC) - P(CA) + P(A) + P(B) + P(C) == 0.
 pub fn verify_sorkin_i3_cancellation(psi: [BigRational; 3]) -> (BigRational, bool) {
     let p = |indices: &[usize]| -> BigRational {
         let sum: BigRational = indices.iter().map(|&i| &psi[i]).sum();
@@ -374,7 +330,6 @@ pub fn verify_sorkin_i3_cancellation(psi: [BigRational; 3]) -> (BigRational, boo
     (i3, is_zero)
 }
 
-/// Algebraic non-factorable rank >= 2 witness on Bool x Bool over Z.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AlgebraicNonFactorableWitness {
     pub matrix: [[i64; 2]; 2],

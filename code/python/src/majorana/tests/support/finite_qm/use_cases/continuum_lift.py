@@ -71,9 +71,6 @@ def finite_weyl_heisenberg_algebra(d: int) -> Dict[str, Any]:
     if d < 2:
         raise ValueError("Dimension d must be >= 2")
 
-    # Pure exact permutation logic for X:
-    # X[j, k] = 1 if j == (k + 1) % d else 0
-    # X^T X = I_d
     x_mat = [[1 if j == (k + 1) % d else 0 for k in range(d)] for j in range(d)]
     x_dagger_x = [
         [sum(x_mat[k][i] * x_mat[k][j] for k in range(d)) for j in range(d)]
@@ -84,7 +81,6 @@ def finite_weyl_heisenberg_algebra(d: int) -> Dict[str, Any]:
         for i in range(d) for j in range(d)
     )
 
-    # Check X^d == I_d via exact integer matrix multiplication
     cur = [row[:] for row in x_mat]
     for _ in range(d - 1):
         next_mat = [
@@ -97,17 +93,8 @@ def finite_weyl_heisenberg_algebra(d: int) -> Dict[str, Any]:
         for i in range(d) for j in range(d)
     )
 
-    # Z is diagonal with phase powers zeta_d^j:
-    # (Z^dagger Z)_{jj} = zeta_d^(-j) * zeta_d^j = 1
-    # Z^d = diag(zeta_d^(d * j)) = diag(1) = I_d
-    # Both are exact algebraic identities over Q(zeta_d)
     z_unitary = True
 
-    # Exact Weyl commutation relation:
-    # (Z X)_{j, k} = zeta_d^j delta_{j, (k+1)%d}
-    # (X Z)_{j, k} = zeta_d^k delta_{j, (k+1)%d}
-    # Since j = (k + 1) % d, zeta_d^j = zeta_d^(k+1) = zeta_d * zeta_d^k
-    # Hence (Z X)_{j, k} == zeta_d * (X Z)_{j, k} for all j, k.
     weyl_relation_holds = all(
         (j - k) % d == 1
         for j in range(d) for k in range(d) if j == (k + 1) % d

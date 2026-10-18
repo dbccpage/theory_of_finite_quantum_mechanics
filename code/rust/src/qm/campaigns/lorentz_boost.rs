@@ -1,6 +1,3 @@
-//! C1000 collinear-boost power census. All entries and heights are unbounded
-//! exact integers; the declared exponent budget belongs to the canonical solver.
-// AuthorityEffect: None.
 use crate::linear_algebra::matrix as mx;
 use num_bigint::BigInt;
 use num_integer::Integer;

@@ -114,7 +114,6 @@ def test_import_status_packaging():
     assert OB_STATS_CLASSICAL is ImportStatus.DERIVED
     assert OB_STATS_FROM_FINL1 is ImportStatus.UNDERIVABLE
     assert OB_STATS_UNDER_LIFT is ImportStatus.CONDITIONAL_IMPORT
-    # Classical countermodel: exchange without sign characters
     assert JOINT_ASYM.exchange() != JOINT_ASYM
     assert JOINT_SYM.exchange() == JOINT_SYM
 
@@ -128,7 +127,6 @@ def test_exchange_statistics_package():
     assert OB_STATS_UNDER_LIFT is ImportStatus.CONDITIONAL_IMPORT
 
 
-# --- Signed S2 character residual ---
 
 
 @dataclass(frozen=True)

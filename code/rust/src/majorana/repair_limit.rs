@@ -1,47 +1,18 @@
-//! Finite repair-capacity wall demo (QM_102 shadow; CODE_DEMO only).
-//!
-//! # Authority fence (MANDATORY)
-//!
-//! - **AuthorityEffect: None** on every report.
-//! - Does **not** claim "quantum computing is impossible".
-//! - **Does** claim: finite homology distance bounds unique correction capacity
-//!   \(t = \lfloor(d-1)/2\rfloor\); LGGR holds on the declared \(2\times 2\) torus
-//!   (Local Green zero-syndrome + Global Red nontrivial logical class).
-//!
-//! # What it computes
-//!
-//! - Hamming weight of GF(2) edge vectors
-//! - Homology distance \(d = \min\{\|c\|_1 : c\in\ker d_1\setminus\operatorname{im}d_0\}\)
-//!   (or `None` if \(H^1=0\))
-//! - Repair capacity bound \(t = \lfloor(d-1)/2\rfloor\) (QM_102 Thm 1 shape)
-//! - Coset decoding uniqueness within weight \(\le t\); failure modes when
-//!   \(\mathrm{wt}>t\) or a logical changes the true coset class
-//! - LGGR demo: \(\omega\) with \(d_1\omega=0\) but not Exact → ClosedResidual
 
 use crate::complexes::{surface_grid_2x2_torus, torus_logical_x_example, ChainComplexGf2};
 use crate::gf2_terminalizer::{GF2Matrix, GF2ScheduleStatus, Gf2CocycleClassifier};
 
-/// Max edge dimension for exhaustive \(2^{|E|}\) search (CODE_DEMO toys only).
 const MAX_EXHAUSTIVE_EDGES: usize = 16;
 
-/// Authority fence echoed on every demo report.
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; finite homology distance bounds unique correction capacity; LGGR on declared torus only; not a no-go for quantum computing.";
 
-// ---------------------------------------------------------------------------
-// Hamming weight
-// ---------------------------------------------------------------------------
 
-/// Hamming weight of a GF(2) vector (entries reduced mod 2).
 pub fn hamming_weight(v: &[u8]) -> usize {
     v.iter().map(|&b| (b & 1) as usize).sum()
 }
 
-// ---------------------------------------------------------------------------
-// Linear algebra helpers over the existing GF2Matrix surface
-// ---------------------------------------------------------------------------
 
-/// Apply \(d_1\) (faces × edges) to an edge vector.
 pub fn apply_d1(d1: &GF2Matrix, omega: &[u8]) -> Result<Vec<u8>, String> {
     if omega.len() != d1.cols {
         return Err(format!("vector len {} != d1.cols {}", omega.len(), d1.cols));
@@ -57,17 +28,14 @@ pub fn apply_d1(d1: &GF2Matrix, omega: &[u8]) -> Result<Vec<u8>, String> {
     Ok(out)
 }
 
-/// Alias: face syndrome \(s = d_1 e\).
 pub fn face_syndrome(d1: &GF2Matrix, omega: &[u8]) -> Result<Vec<u8>, String> {
     apply_d1(d1, omega)
 }
 
-/// True iff every syndrome coordinate is zero.
 pub fn syndrome_is_zero(s: &[u8]) -> bool {
     s.iter().all(|&v| v == 0)
 }
 
-/// Apply \(d_0\) (edges × vertices) to a vertex vector → edge coboundary.
 pub fn apply_d0(d0: &GF2Matrix, x: &[u8]) -> Result<Vec<u8>, String> {
     if x.len() != d0.cols {
         return Err(format!("vector len {} != d0.cols {}", x.len(), d0.cols));
@@ -83,13 +51,11 @@ pub fn apply_d0(d0: &GF2Matrix, x: &[u8]) -> Result<Vec<u8>, String> {
     Ok(out)
 }
 
-/// True iff \(d_1\omega = 0 \pmod 2\).
 pub fn is_closed(d1: &GF2Matrix, omega: &[u8]) -> Result<bool, String> {
     let s = apply_d1(d1, omega)?;
     Ok(syndrome_is_zero(&s))
 }
 
-/// True iff \(\omega \in \operatorname{im} d_0\) (Exact class).
 pub fn in_image_d0(d0: &GF2Matrix, omega: &[u8]) -> Result<bool, String> {
     if omega.len() != d0.rows {
         return Err(format!("vector len {} != d0.rows {}", omega.len(), d0.rows));
@@ -106,15 +72,6 @@ pub fn in_image_d0(d0: &GF2Matrix, omega: &[u8]) -> Result<bool, String> {
     Ok(aug_rank == rank_d0)
 }
 
-/// Solve `d0 * alpha = omega` over GF(2), returning a **particular** solution.
-///
-/// `Ok(None)` means the system is inconsistent, i.e. `omega` is not in `im(d0)`.
-///
-/// [`in_image_d0`] *decides* membership by comparing ranks; it does not produce
-/// the witness. An `Exact` receipt that publishes a `certificate_alpha` is only
-/// honest if that alpha actually solves the equation, so the witness has to be
-/// constructed, not borrowed from a capped search. See the regression test
-/// `p1_capped_exact_must_not_publish_a_false_witness`.
 pub fn solve_d0(d0: &GF2Matrix, omega: &[u8]) -> Result<Option<Vec<u8>>, String> {
     if omega.len() != d0.rows {
         return Err(format!("vector len {} != d0.rows {}", omega.len(), d0.rows));
@@ -128,13 +85,11 @@ pub fn solve_d0(d0: &GF2Matrix, omega: &[u8]) -> Result<Option<Vec<u8>>, String>
     }
     let (_, reduced) = GF2Matrix::from_data(augmented).rref();
 
-    // RREF: set free variables to 0, pivot variables to their row's RHS.
     let mut alpha = vec![0u8; d0.cols];
     for r in 0..reduced.rows {
         match (0..d0.cols).find(|&c| reduced.data[r][c] == 1) {
             Some(pivot) => alpha[pivot] = reduced.data[r][d0.cols],
             None => {
-                // 0 = 1 is inconsistent; 0 = 0 is a redundant row.
                 if reduced.data[r][d0.cols] == 1 {
                     return Ok(None);
                 }
@@ -144,7 +99,6 @@ pub fn solve_d0(d0: &GF2Matrix, omega: &[u8]) -> Result<Option<Vec<u8>>, String>
     Ok(Some(alpha))
 }
 
-/// Pointwise GF(2) sum.
 pub fn gf2_add(a: &[u8], b: &[u8]) -> Result<Vec<u8>, String> {
     if a.len() != b.len() {
         return Err(format!("length mismatch {} vs {}", a.len(), b.len()));
@@ -152,7 +106,6 @@ pub fn gf2_add(a: &[u8], b: &[u8]) -> Result<Vec<u8>, String> {
     Ok(a.iter().zip(b).map(|(&x, &y)| (x ^ y) & 1).collect())
 }
 
-/// Enumerate all length-`n` GF(2) vectors (requires \(n \le\) [`MAX_EXHAUSTIVE_EDGES`]).
 fn enumerate_all(n: usize) -> Result<Vec<Vec<u8>>, String> {
     if n > MAX_EXHAUSTIVE_EDGES {
         return Err(format!(
@@ -171,41 +124,27 @@ fn enumerate_all(n: usize) -> Result<Vec<Vec<u8>>, String> {
     Ok(out)
 }
 
-// ---------------------------------------------------------------------------
-// Homology distance + repair capacity (QM_102 Thm 1 shape)
-// ---------------------------------------------------------------------------
 
-/// Diagnostic report: homology distance and repair-capacity bound.
-///
-/// `authority_effect` is always `"None"`. This is not a threshold theorem packet.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct HomologyDistanceReport {
     pub complex_name: &'static str,
-    /// Min weight of nontrivial cocycles \(\ker d_1 \setminus \operatorname{im} d_0\),
-    /// or `None` if \(H^1 = 0\).
     pub d: Option<usize>,
-    /// \(t = \lfloor(d-1)/2\rfloor\) when `d` is `Some`; else `None`.
     pub t: Option<usize>,
-    /// One min-weight ClosedResidual representative (if any).
     pub min_weight_representative: Option<Vec<u8>>,
     pub q1_dimension: usize,
     pub authority_effect: &'static str,
 }
 
-/// Alias used by packet-wall / capacity audit call sites.
 pub type RepairCapacityReceipt = HomologyDistanceReport;
 
-/// QM_102 Thm 1 shape: \(t = \lfloor(d-1)/2\rfloor\).
 pub fn repair_capacity_bound(d: usize) -> usize {
     d.saturating_sub(1) / 2
 }
 
-/// Alias for [`repair_capacity_bound`].
 pub fn repair_capacity_t(d: usize) -> usize {
     repair_capacity_bound(d)
 }
 
-/// Compute homology distance on a declared finite complex by exhaustive search.
 pub fn homology_distance(complex: &ChainComplexGf2) -> Result<HomologyDistanceReport, String> {
     if !complex.verify_boundary() {
         return Err("boundary d1 d0 != 0".into());
@@ -253,34 +192,22 @@ pub fn homology_distance(complex: &ChainComplexGf2) -> Result<HomologyDistanceRe
     })
 }
 
-/// Capacity audit: homology distance + \(t\), optionally filtered by `max_weight`
-/// search hint (exhaustive toys ignore the hint when \(|E|\) is small enough).
 pub fn audit_repair_capacity(
     complex: &ChainComplexGf2,
     _max_weight: usize,
 ) -> Result<RepairCapacityReceipt, String> {
     let mut report = homology_distance(complex)?;
-    // Expose distance under both field names via structural identity.
-    // Callers that need `homology_distance_d` use `.d`.
     let _ = &mut report;
     Ok(report)
 }
 
 impl HomologyDistanceReport {
-    /// Compatibility accessor used by packet_wall call sites.
     pub fn homology_distance_d(&self) -> Option<usize> {
         self.d
     }
 }
 
-// ---------------------------------------------------------------------------
-// Coset decoding demo
-// ---------------------------------------------------------------------------
 
-/// Result of a min-weight coset-leader search for one error vector.
-///
-/// Coset = \(\{ v \mid d_1 v = d_1 e \} = e + \ker d_1\).
-/// Unique correction capacity is guaranteed only for \(\mathrm{wt}(e) \le t\).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CosetDecodeDemo {
     pub error: Vec<u8>,
@@ -288,24 +215,16 @@ pub struct CosetDecodeDemo {
     pub syndrome: Vec<u8>,
     pub t: Option<usize>,
     pub d: Option<usize>,
-    /// Whether \(\mathrm{wt}(e) \le t\) (when \(t\) is known).
     pub within_capacity: bool,
     pub closest_weight: usize,
     pub num_closest: usize,
     pub unique_closest: bool,
-    /// One closest coset representative.
     pub a_closest: Vec<u8>,
-    /// If a logical was supplied: whether `error ⊕ logical` shares the syndrome.
     pub logical_same_syndrome: Option<bool>,
-    /// Whether recovered unique leaders differ after the logical flip
-    /// (or uniqueness is lost). Min-weight decode of a pure logical often
-    /// returns zero — same leader, different true class — so this flag alone
-    /// does not capture logical failure; see LGGR demo.
     pub logical_flips_unique_leader: Option<bool>,
     pub authority_effect: &'static str,
 }
 
-/// Min-weight coset decode demo on a declared complex.
 pub fn coset_decode_demo(
     complex: &ChainComplexGf2,
     error: &[u8],
@@ -391,11 +310,7 @@ fn coset_decode_demo_inner(
     })
 }
 
-// ---------------------------------------------------------------------------
-// LGGR demo (Local Green + Global Red)
-// ---------------------------------------------------------------------------
 
-/// LGGR diagnostic: zero syndrome (Local Green) yet nontrivial logical class (Global Red).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LggrDemoReport {
     pub complex_name: &'static str,
@@ -408,14 +323,12 @@ pub struct LggrDemoReport {
     pub authority_effect: &'static str,
 }
 
-/// Construct \(\omega\) with \(d_1\omega=0\) but not Exact on the declared \(2\times 2\) torus.
 pub fn lggr_demo_torus() -> Result<LggrDemoReport, String> {
     let complex = surface_grid_2x2_torus();
     let omega = torus_logical_x_example();
     lggr_demo_on(&complex, &omega)
 }
 
-/// LGGR check for an arbitrary declared residual on a complex.
 pub fn lggr_demo_on(complex: &ChainComplexGf2, omega: &[u8]) -> Result<LggrDemoReport, String> {
     let cert = Gf2CocycleClassifier::classify(&complex.d0, &complex.d1, omega)?;
     let syndrome_zero = is_closed(&complex.d1, omega)?;
@@ -433,9 +346,6 @@ pub fn lggr_demo_on(complex: &ChainComplexGf2, omega: &[u8]) -> Result<LggrDemoR
     })
 }
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
 
 #[cfg(test)]
 mod tests {
@@ -472,7 +382,6 @@ mod tests {
         let r = homology_distance(&c).unwrap();
         assert_eq!(r.authority_effect, "None");
         assert!(r.q1_dimension >= 1);
-        // Known: weight-2 non-contractible cycles; im d0 min nonzero wt 4.
         assert_eq!(r.d, Some(2), "torus_2x2 homology distance d must be 2");
         assert_eq!(r.t, Some(0), "t = floor((2-1)/2) = 0");
         let rep = r.min_weight_representative.as_ref().unwrap();
@@ -519,7 +428,6 @@ mod tests {
         assert_eq!(demo.authority_effect, "None");
         assert!(!demo.within_capacity, "wt=1 > t=0");
         assert_eq!(demo.logical_same_syndrome, Some(true));
-        // Capacity fence only *guarantees* uniqueness for wt ≤ t.
         assert!(demo.error_weight > demo.t.unwrap());
     }
 
@@ -530,7 +438,6 @@ mod tests {
         let lx = torus_logical_x_example();
         let demo = coset_decode_demo(&c, &e, Some(&lx)).unwrap();
         assert_eq!(demo.logical_same_syndrome, Some(true));
-        // Min-weight of e and e⊕L both return 0: logical invisible to decoder.
         assert_eq!(demo.logical_flips_unique_leader, Some(false));
         assert!(demo.unique_closest);
         assert_eq!(demo.a_closest, e);
@@ -570,7 +477,6 @@ mod tests {
 
     #[test]
     fn planar_edge_has_no_distance_and_two_weight_one_leaders() {
-        // Kills: within_capacity = false when t is None, and a decoder that keeps only one leader.
         let c = surface_grid_2x2_planar();
         let e = surface_open_single_edge_example(c.num_edges);
         let demo = coset_decode_demo(&c, &e, None).unwrap();

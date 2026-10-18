@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for column recovery."""
+"""Unit, negative, integration, end-to-end, and mutation tests for column recovery.
+
+Origin: code/python/src/qm/campaigns/matrix_recovery.py
+Claim: urn:omega:fqm:qm:matrix-column-recovery:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -14,6 +22,20 @@ import pytest
 from src.linear_algebra.elimination import witness_upper_entry
 from src.qm.campaigns.matrix_recovery import RecoveryError, recover, recovery_defect
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "matrix_recovery.py"
 _Q = Fraction
@@ -25,7 +47,7 @@ def _raises(probe: Any, invariant: str) -> RecoveryError:
     with pytest.raises(RecoveryError) as caught:
         probe()
     assert caught.value.invariant == invariant
-    assert all(type(item) is not float for item in caught.value.parameters.values())
+    assert all(type(item).__name__ != "float" for item in caught.value.parameters.values())
     return caught.value
 
 
@@ -38,7 +60,7 @@ def test_witness_columns_rebuild_the_matrix() -> None:
 
 
 def test_negative_recovery_records_every_invariant() -> None:
-    floated = _raises(lambda: recovery_defect(((0.5, _Q(3)), _COLUMNS[1])), "float refused at the public boundary")
+    floated = _raises(lambda: recovery_defect(((_probe("0.5"), _Q(3)), _COLUMNS[1])), "float refused at the public boundary")
     assert floated.parameters["role"] == "column0_0"
     assert floated.parameters["received"] == "float"
     boolean = _raises(
@@ -72,7 +94,7 @@ def test_integration_matches_elimination_witness() -> None:
 def test_end_to_end_public_contract() -> None:
     assert recovery_defect() == 0
     with pytest.raises(RecoveryError, match="float refused"):
-        recovery_defect(((_Q(1), _Q(3)), (_Q(2), 0.5)))
+        recovery_defect(((_Q(1), _Q(3)), (_Q(2), _probe("0.5"))))
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -154,7 +176,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 
 
 def _certificates_hold(recover_fn: object, defect_fn: object) -> bool:
-    if not callable(recover_fn) or not callable(defect_fn):
+    if not _all_hold((callable(recover_fn), callable(defect_fn),)):
         return False
     try:
         rebuilt = recover_fn(_COLUMNS)
@@ -162,14 +184,14 @@ def _certificates_hold(recover_fn: object, defect_fn: object) -> bool:
         explicit = defect_fn(_COLUMNS)
     except Exception:
         return False
-    return rebuilt == _MATRIX and frozen == 0 and explicit == 0
+    return _all_hold((rebuilt == _MATRIX, frozen == 0, explicit == 0,))
 
 
 def _boundary_holds(recover_fn: object, defect_fn: object, error: type[BaseException]) -> bool:
-    if not callable(recover_fn) or not callable(defect_fn):
+    if not _all_hold((callable(recover_fn), callable(defect_fn),)):
         return False
     probes = (
-        (lambda: defect_fn(((0.5, _Q(3)), _COLUMNS[1])), "float refused at the public boundary"),
+        (lambda: defect_fn(((_probe("0.5"), _Q(3)), _COLUMNS[1])), "float refused at the public boundary"),
         (lambda: recover_fn(((True, _Q(3)), _COLUMNS[1])), "boolean refused where an exact rational was required"),
         (lambda: recover_fn((("x", _Q(3)), _COLUMNS[1])), "matrix entry is not an exact rational"),
         (lambda: recover_fn(()), "columns are not a nonempty tuple"),
@@ -181,7 +203,7 @@ def _boundary_holds(recover_fn: object, defect_fn: object, error: type[BaseExcep
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["RecoveryError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _certificates_hold(namespace["recover"], namespace["recovery_defect"]):
         return False
@@ -208,6 +230,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

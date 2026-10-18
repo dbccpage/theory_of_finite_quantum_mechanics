@@ -12,7 +12,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 import numpy as np
 
-# Ensure code directory is in sys.path
 code_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path(".")
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -60,14 +59,12 @@ def build_2d_torus_complex(grid_size: int = 3) -> Network:
             v_up = node_id(r + 1, c)
             v_diag = node_id(r + 1, c + 1)
 
-            # Directed edges
             edges_set.add((u, v_right))
             edges_set.add((u, v_up))
             edges_set.add((v_right, v_diag))
             edges_set.add((v_up, v_diag))
             edges_set.add((u, v_diag))
 
-            # 2-cell triangular faces
             faces.append((u, v_right, v_diag))
             faces.append((u, v_diag, v_up))
 
@@ -83,17 +80,14 @@ def compute_l2_hodge_harmonic(
     d0, _ = build_incidence(network)
     d1 = build_face_boundary(network)
 
-    # 1. Exact part: solve (d0^T @ d0) alpha = d0^T @ omega
     d0_t_d0 = d0.T @ d0
     d0_t_omega = d0.T @ omega_vec
     alpha, _, _, _ = np.linalg.lstsq(d0_t_d0, d0_t_omega, rcond=None)
 
-    # 2. Coexact part: solve (d1 @ d1^T) beta = d1 @ omega
     d1_d1_t = d1.T @ d1
     d1_omega = d1.T @ omega_vec
     beta, _, _, _ = np.linalg.lstsq(d1_d1_t, d1_omega, rcond=None)
 
-    # 3. Orthogonal L2 Harmonic residual
     chi_l2 = omega_vec - d0 @ alpha - d1 @ beta
     l2_norm_val = float(np.linalg.norm(chi_l2))
     return chi_l2, l2_norm_val
@@ -117,8 +111,6 @@ def compute_l1_closed_harmonic(
     a_ub = np.vstack([np.hstack([d_joint, -eye]), np.hstack([-d_joint, -eye])])
     b_ub = np.concatenate([omega_vec, -omega_vec])
 
-    # Equality constraint forcing closedness: d1^T @ (d0 @ alpha + d1 @ beta) = d1^T @ omega_vec
-    # d1^T @ d0 = 0, so (d1^T @ d1) @ beta = d1^T @ omega_vec
     a_eq = np.zeros((n_f, n_v + n_f + n_e))
     a_eq[:, n_v:n_v + n_f] = d1.T @ d1
     b_eq = d1.T @ omega_vec
@@ -142,27 +134,22 @@ def benchmark_hodge_l1_l2_comparison() -> HodgeComparisonReceipt:
     torus_net = build_2d_torus_complex(grid_size=3)
     n_v, n_e, n_f = len(torus_net.nodes), len(torus_net.edges), len(torus_net.faces)
 
-    # Cochain with harmonic cycle tension along non-contractible 1-cycles
     np.random.seed(101)
     edge_dict = {e: float(np.random.randn()) for e in torus_net.edges}
     omega_vec = np.array([edge_dict[e] for e in torus_net.edges])
 
-    # 1. Algorithm A: Classical L2 Hodge Projection
     t0 = time.perf_counter()
     chi_l2_vec, l2_norm_val = compute_l2_hodge_harmonic(torus_net, omega_vec)
     t_l2_ms = (time.perf_counter() - t0) * 1000.0
 
-    # Verify L2 closedness d1 @ chi_l2 = 0
     d1_mat = build_face_boundary(torus_net)
     l2_curl = d1_mat.T @ chi_l2_vec
     is_l2_closed = float(np.linalg.norm(l2_curl)) < 1e-4
 
-    # 2. Algorithm B: L1 Minimal Closed Cohomology Representative
     t0 = time.perf_counter()
     chi_l1_vec, l1_norm_val = compute_l1_closed_harmonic(torus_net, omega_vec)
     t_l1_ms = (time.perf_counter() - t0) * 1000.0
 
-    # Verify L1 closedness
     l1_curl = d1_mat.T @ chi_l1_vec
     is_l1_closed = float(np.linalg.norm(l1_curl)) < 1e-4
 

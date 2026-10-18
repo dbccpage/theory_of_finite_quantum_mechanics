@@ -157,7 +157,6 @@ def _det_4x4(m: list[list[Fraction]]) -> Fraction:
 
 def evaluate_wall1_busch_ic_povm_vs_polyhedral_cone() -> Wall1BuschIcPovmAudit:
     """Evaluate Wall 1: 4-effect rational qubit IC-POVM + Cholesky SOS vs. polyhedral frame cone."""
-    # Four rank-1 rational unit Bloch vectors r_k = (rx, ry, rz) for E_k = (1/4)*(I_2 + r_k . sigma)
     scaled_bloch: tuple[tuple[Fraction, Fraction, Fraction], ...] = (
         (Fraction(3, 5), Fraction(0, 1), Fraction(4, 5)),
         (Fraction(-3, 5), Fraction(0, 1), Fraction(4, 5)),
@@ -173,22 +172,14 @@ def evaluate_wall1_busch_ic_povm_vs_polyhedral_cone() -> Wall1BuschIcPovmAudit:
     by_sum = sum((v[1] for v in scaled_bloch), Fraction(0, 1))
     bz_sum = sum((v[2] for v in scaled_bloch), Fraction(0, 1))
 
-    # 4x4 probability reconstruction matrix M_prob_{k, mu} = (1/4) * (1, rx_k, ry_k, rz_k)
-    # and Bloch row matrix M_bloch_{k, mu} = (1/2) * (1, rx_k, ry_k, rz_k):
-    # det(M_prob) = 9/1000 != 0, det(M_bloch) = 18/125 != 0.
     m_prob = [
         [Fraction(1, 4), Fraction(1, 4) * rx, Fraction(1, 4) * ry, Fraction(1, 4) * rz]
         for rx, ry, rz in scaled_bloch
     ]
     recon_det = _det_4x4(m_prob)
 
-    # Polyhedral frame cone witness rho_2 = [[0, -1/4, 0, 0], [-1/4, 1/2, 0, 1/4], [0, 0, 1/2, 0], [0, 1/4, 0, 0]]:
-    # trace = 1, non-negative on all 18 Cabello rays and 24 Peres rays (min = 0),
-    # leading 2x2 principal minor = 0 * (1/2) - (-1/4)^2 = -1/16 < 0.
     polyhedral_minor = Fraction(0, 1) * Fraction(1, 2) - Fraction(-1, 4) * Fraction(-1, 4)
 
-    # Reconstruct Pythagorean mixed state rho = diag(9/25, 16/25) + off-diagonal 6/25
-    # via Cholesky L = [[1, 0], [2/3, 1]], D = diag(9/25, 12/25) -> tr = 1, det = 108/625 > 0
     d1 = Fraction(9, 25)
     d2 = Fraction(12, 25)
     l21 = Fraction(2, 3)
@@ -221,8 +212,6 @@ def evaluate_wall1_busch_ic_povm_vs_polyhedral_cone() -> Wall1BuschIcPovmAudit:
 
 def evaluate_wall2_galois_sos_total_positivity() -> Wall2GaloisSosAudit:
     """Evaluate Wall 2: Galois conjugate negativity vs. Gram-SOS total positivity in Q(sqrt(5))."""
-    # Represent a + b*sqrt(5) as (a, b) in Q^2
-    # rho_twist = diag((1 + sqrt(5))/4, (3 - sqrt(5))/4)
     t1_a, t1_b = Fraction(1, 4), Fraction(1, 4)
     t2_a, t2_b = Fraction(3, 4), Fraction(-1, 4)
     twist_tr_a = t1_a + t2_a
@@ -231,8 +220,6 @@ def evaluate_wall2_galois_sos_total_positivity() -> Wall2GaloisSosAudit:
     twist_det_b = t1_a * t2_b + t1_b * t2_a
     twist_det_norm = twist_det_a * twist_det_a - 5 * twist_det_b * twist_det_b
 
-    # rho_sos = diag((3 + sqrt(5))/6, (3 - sqrt(5))/6)
-    #         = (1/3) * diag(((1 + sqrt(5))/2)^2, ((1 - sqrt(5))/2)^2)
     s1_a, s1_b = Fraction(1, 2), Fraction(1, 6)
     s2_a, s2_b = Fraction(1, 2), Fraction(-1, 6)
     sos_tr_a = s1_a + s2_a
@@ -241,7 +228,6 @@ def evaluate_wall2_galois_sos_total_positivity() -> Wall2GaloisSosAudit:
     sos_det_b = s1_a * s2_b + s1_b * s2_a
     sos_det_norm = sos_det_a * sos_det_a - 5 * sos_det_b * sos_det_b
 
-    # Verify (1/3) * ((1/2 + (1/2)*sqrt(5))^2) = 1/2 + (1/6)*sqrt(5)
     sq_a = Fraction(1, 3) * (Fraction(1, 2) ** 2 + 5 * Fraction(1, 2) ** 2)
     sq_b = Fraction(1, 3) * (2 * Fraction(1, 2) * Fraction(1, 2))
 
@@ -329,8 +315,6 @@ def evaluate_wall4_cayley_and_entropy_enclosure() -> Wall4CayleyAndEntropyAudit:
     cayley_im = -delta / denom
     single_defect = (cayley_re * cayley_re + cayley_im * cayley_im) - Fraction(1, 1)
 
-    # Strang-Cayley 2nd-order splitting S_2(delta) = U_C(delta/2 * sigma_z) U_C(delta * sigma_x) U_C(delta/2 * sigma_z)
-    # Product of exact rational unitary matrices has determinant norm and column norms equal to 1
     half_denom = Fraction(1, 1) + (delta / Fraction(4, 1)) ** 2
     half_re = (Fraction(1, 1) - (delta / Fraction(4, 1)) ** 2) / half_denom
     half_im = -(delta / Fraction(2, 1)) / half_denom
@@ -345,10 +329,8 @@ def evaluate_wall4_cayley_and_entropy_enclosure() -> Wall4CayleyAndEntropyAudit:
     renyi_p3 = p0 ** 3 + p1 ** 3
     renyi_p4 = p0 ** 4 + p1 ** 4
 
-    # Since 9/25 = (3/5)^2 and 16/25 = (4/5)^2, ln(9/25) = 2*ln(3/5) and ln(16/25) = 2*ln(4/5)
     ln_3_5_lo, ln_3_5_hi = _rational_ln_interval(Fraction(3, 5), terms=22)
     ln_4_5_lo, ln_4_5_hi = _rational_ln_interval(Fraction(4, 5), terms=22)
-    # S_vN = -p0 * 2 * ln(3/5) - p1 * 2 * ln(4/5)
     svn_lo = -Fraction(2, 1) * p0 * ln_3_5_hi - Fraction(2, 1) * p1 * ln_4_5_hi
     svn_hi = -Fraction(2, 1) * p0 * ln_3_5_lo - Fraction(2, 1) * p1 * ln_4_5_lo
     width = svn_hi - svn_lo

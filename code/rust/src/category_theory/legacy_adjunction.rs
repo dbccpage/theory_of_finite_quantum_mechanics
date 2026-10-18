@@ -1,41 +1,13 @@
-//! Adjunction — Full Up ⊣ Forget with Derived Monad and Comonad.
-//!
-//! An adjunction L ⊣ R (Up ⊣ Forget) consists of:
-//!   - Left functor  L : Base → Lifted  (Up / Free)
-//!   - Right functor R : Lifted → Base  (Forget)
-//!   - Unit   η : Id_Base → R∘L         (embed into lifted-then-forgotten)
-//!   - Counit ε : L∘R → Id_Lifted      (evaluate / collapse)
-//!
-//! Triangle identities:
-//!   ε_{L(A)} ∘ L(η_A) = id_{L(A)}     (left triangle)
-//!   R(ε_B)   ∘ η_{R(B)} = id_{R(B)}   (right triangle)
-//!
-//! Derived structures:
-//!   Monad   T = R∘L on Base,   η_T = η,   μ_T = R(ε_{L(-)})
-//!   Comonad D = L∘R on Lifted, ε_D = ε,   δ_D = L(η_{R(-)})
 
 use super::cat_functor::{CatFunctor, Category, DeclaredFiniteFunctor};
 use super::functor_composition::validate_functor_between;
 use std::collections::BTreeMap;
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Marker traits
-// ═══════════════════════════════════════════════════════════════════════════
 
-/// Marker: this functor adds structure (left adjoint / free construction).
-///
-/// L : Base → Lifted. Embeds raw data into structured space.
-/// Examples: free group, free module, discrete topology.
 pub trait UpFunctor: CatFunctor {}
 
-/// Marker: this functor drops structure (right adjoint / forgetful).
-///
-/// R : Lifted → Base. Strips structure, must emit evidence.
-/// Examples: forget group law, forget topology, forget metric.
 pub trait ForgetFunctor: CatFunctor {}
 
-/// When structure is dropped by a forgetful functor, the evidence of
-/// what was lost must be emitted. No silent forgetting.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ForgetResult<Base, Evidence> {
     pub base: Base,
@@ -50,45 +22,26 @@ pub trait ForgetFunctorWithEvidence: ForgetFunctor {
     fn forget(x: Self::Lifted) -> ForgetResult<Self::Base, Self::Evidence>;
 }
 
-/// Classification of forgetting operations.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ForgetKind {
-    /// Harmless: e.g. (value, label) → value. No laws are lost.
     Projection,
-    /// Drops law-bearing structure. Must emit evidence.
     Structure,
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// AdjunctionPair — type-level trait
-// ═══════════════════════════════════════════════════════════════════════════
 
-/// A certified adjunction L ⊣ R with unit and counit.
-///
-/// This is the type-level trait. For finite/declarative adjunctions
-/// used in kernel audit, see `DeclaredFiniteAdjunction`.
 pub trait AdjunctionPair {
     type Base: Category;
     type Lifted: Category;
     type Left: CatFunctor<Source = Self::Base, Target = Self::Lifted>;
     type Right: CatFunctor<Source = Self::Lifted, Target = Self::Base>;
 
-    // Ideally constrained to:
-    // Unit: Id<Base> => Right ∘ Left
-    // Counit: Left ∘ Right => Id<Lifted>
     type Unit;
     type Counit;
 }
 
 pub use super::finite_category::{DeclaredFiniteCategory, DeclaredMorphism};
 
-// ═══════════════════════════════════════════════════════════════════════════
-// DeclaredFiniteAdjunction — kernel-auditable data
-// ═══════════════════════════════════════════════════════════════════════════
 
-/// An explicit, finite adjunction L ⊣ R for kernel audit.
-///
-/// This is the computational workhorse: concrete, finite, checkable.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredFiniteAdjunction {
     pub name: String,
@@ -96,17 +49,11 @@ pub struct DeclaredFiniteAdjunction {
     pub right_functor: String,
     pub left: DeclaredFiniteFunctor,
     pub right: DeclaredFiniteFunctor,
-    /// L's object map: base object -> lifted object.
     pub left_ob_map: BTreeMap<String, String>,
-    /// L's morphism map: base morphism -> lifted morphism.
     pub left_mor_map: BTreeMap<String, String>,
-    /// R's object map: lifted object -> base object.
     pub right_ob_map: BTreeMap<String, String>,
-    /// R's morphism map: lifted morphism -> base morphism.
     pub right_mor_map: BTreeMap<String, String>,
-    /// Unit components: base object A → morphism η_A : A → R(L(A)).
     pub unit_components: BTreeMap<String, String>,
-    /// Counit components: lifted object B → morphism ε_B : L(R(B)) → B.
     pub counit_components: BTreeMap<String, String>,
 }
 
@@ -167,50 +114,34 @@ impl DeclaredFiniteAdjunction {
     }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Derived Monad: T = R∘L on Base
-// ═══════════════════════════════════════════════════════════════════════════
 
-/// The monad induced by an adjunction L ⊣ R.
-///
-///   T = R ∘ L  (endofunctor on Base)
-///   η_T = η   (unit of the adjunction)
-///   μ_T_A = R(ε_{L(A)})  (multiplication: R applied to counit at L(A))
 #[derive(Debug, Clone)]
 pub struct DerivedMonad {
     pub name: String,
-    /// T on objects: A → R(L(A)).
     pub t_ob_map: BTreeMap<String, String>,
-    /// T on morphisms: f → R(L(f)).
     pub t_mor_map: BTreeMap<String, String>,
-    /// Unit: η_A : A → T(A).
     pub unit: BTreeMap<String, String>,
-    /// Multiplication: μ_A : T(T(A)) → T(A).
     pub multiply: BTreeMap<String, String>,
 }
 
 impl DerivedMonad {
-    /// Derive the monad T = R∘L from an adjunction.
     pub fn from_adjunction(adj: &DeclaredFiniteAdjunction) -> Self {
         let mut t_ob_map = BTreeMap::new();
         let mut t_mor_map = BTreeMap::new();
         let mut multiply = BTreeMap::new();
 
-        // T(A) = R(L(A))
         for (a, la) in &adj.left.object_map {
             if let Some(rla) = adj.right.on_object(la) {
                 t_ob_map.insert(a.clone(), rla.into());
             }
         }
 
-        // T(f) = R(L(f))
         for (f, lf) in &adj.left.morphism_map {
             if let Some(rlf) = adj.right.on_morphism(lf) {
                 t_mor_map.insert(f.clone(), rlf.into());
             }
         }
 
-        // μ_A = R(ε_{L(A)})
         for (a, la) in &adj.left.object_map {
             if let Some(eps_la) = adj.counit_components.get(la) {
                 if let Some(r_eps_la) = adj.right.on_morphism(eps_la) {
@@ -229,50 +160,34 @@ impl DerivedMonad {
     }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Derived Comonad: D = L∘R on Lifted
-// ═══════════════════════════════════════════════════════════════════════════
 
-/// The comonad induced by an adjunction L ⊣ R.
-///
-///   D = L ∘ R  (endofunctor on Lifted)
-///   ε_D = ε   (counit of the adjunction)
-///   δ_D_B = L(η_{R(B)})  (comultiplication: L applied to unit at R(B))
 #[derive(Debug, Clone)]
 pub struct DerivedComonad {
     pub name: String,
-    /// D on objects: B → L(R(B)).
     pub d_ob_map: BTreeMap<String, String>,
-    /// D on morphisms: g → L(R(g)).
     pub d_mor_map: BTreeMap<String, String>,
-    /// Counit: ε_B : D(B) → B.
     pub counit: BTreeMap<String, String>,
-    /// Comultiplication: δ_B : D(B) → D(D(B)).
     pub comultiply: BTreeMap<String, String>,
 }
 
 impl DerivedComonad {
-    /// Derive the comonad D = L∘R from an adjunction.
     pub fn from_adjunction(adj: &DeclaredFiniteAdjunction) -> Self {
         let mut d_ob_map = BTreeMap::new();
         let mut d_mor_map = BTreeMap::new();
         let mut comultiply = BTreeMap::new();
 
-        // D(B) = L(R(B))
         for (b, rb) in &adj.right.object_map {
             if let Some(lrb) = adj.left.on_object(rb) {
                 d_ob_map.insert(b.clone(), lrb.into());
             }
         }
 
-        // D(g) = L(R(g))
         for (g, rg) in &adj.right.morphism_map {
             if let Some(lrg) = adj.left.on_morphism(rg) {
                 d_mor_map.insert(g.clone(), lrg.into());
             }
         }
 
-        // δ_B = L(η_{R(B)})
         for (b, rb) in &adj.right_ob_map {
             if let Some(eta_rb) = adj.unit_components.get(rb) {
                 if let Some(l_eta_rb) = adj.left_mor_map.get(eta_rb) {
@@ -291,40 +206,29 @@ impl DerivedComonad {
     }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Kleisli composition for the derived monad
-// ═══════════════════════════════════════════════════════════════════════════
 
-/// Kleisli composition: given f: A → T(B) and g: B → T(C),
-/// produce g >=> f : A → T(C) = μ_C ∘ T(g) ∘ f.
-///
-/// In the finite declared setting, this is a table lookup.
 pub fn kleisli_compose(
     monad: &DerivedMonad,
-    f_result: &str, // image of f (a morphism name in Base)
-    g: &str,        // morphism g: B → T(C) name
-    c: &str,        // object C
+    f_result: &str,
+    g: &str,
+    c: &str,
     base_compositions: &BTreeMap<(String, String), String>,
 ) -> Result<String, String> {
-    // T(g)
     let t_g = monad
         .t_mor_map
         .get(g)
         .ok_or_else(|| format!("Kleisli: T({}) not defined", g))?;
 
-    // T(g) ∘ f
     let key1 = (f_result.to_string(), t_g.clone());
     let tg_f = base_compositions
         .get(&key1)
         .ok_or_else(|| format!("Kleisli: T({}) ∘ {} not in composition table", g, f_result))?;
 
-    // μ_C
     let mu_c = monad
         .multiply
         .get(c)
         .ok_or_else(|| format!("Kleisli: μ_{} not defined", c))?;
 
-    // μ_C ∘ (T(g) ∘ f)
     let key2 = (tg_f.clone(), mu_c.clone());
     let result = base_compositions.get(&key2).ok_or_else(|| {
         format!(
@@ -336,9 +240,6 @@ pub fn kleisli_compose(
     Ok(result.clone())
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Adjunction law validation
-// ═══════════════════════════════════════════════════════════════════════════
 
 use super::validation::{
     AdjunctionValidation, ValidationLocation, ValidationReport, ValidationSeverity, ValidationUnit,
@@ -378,7 +279,6 @@ pub fn validate_declared_adjunction(
     right.object_map = adj.right_ob_map.clone();
     right.morphism_map = adj.right_mor_map.clone();
 
-    // 1. L is a valid functor Base → Lifted
     let left_report = validate_functor_between(&left, base, lifted);
     for res in left_report.results {
         report.add(res);
@@ -387,7 +287,6 @@ pub fn validate_declared_adjunction(
         report.add_violation(violation);
     }
 
-    // 2. R is a valid functor Lifted → Base
     let right_report = validate_functor_between(&right, lifted, base);
     for res in right_report.results {
         report.add(res);
@@ -396,7 +295,6 @@ pub fn validate_declared_adjunction(
         report.add_violation(violation);
     }
 
-    // 3. Triangle left
     let mut tl_violations = Vec::new();
     for a in base.object_names() {
         let Some(la) = left.on_object(a) else {
@@ -444,7 +342,6 @@ pub fn validate_declared_adjunction(
     }
     report.add_typed("triangle_left", tl_violations);
 
-    // 4. Triangle right
     let mut tr_violations = Vec::new();
     for b in lifted.object_names() {
         let Some(rb) = right.on_object(b) else {
@@ -495,11 +392,7 @@ pub fn validate_declared_adjunction(
     report
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Derived monad law validation
-// ═══════════════════════════════════════════════════════════════════════════
 
-/// Verify the derived monad satisfies μ ∘ Tη = id_T (left unit).
 pub fn check_derived_monad_left_unit(
     monad: &DerivedMonad,
     base_compositions: &BTreeMap<(String, String), String>,
@@ -536,7 +429,6 @@ pub fn check_derived_monad_left_unit(
     violations
 }
 
-/// Verify the derived monad satisfies μ ∘ ηT = id_T (right unit).
 pub fn check_derived_monad_right_unit(
     monad: &DerivedMonad,
     base_compositions: &BTreeMap<(String, String), String>,
@@ -565,11 +457,7 @@ pub fn check_derived_monad_right_unit(
     violations
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Derived comonad law validation & monad associativity
-// ═══════════════════════════════════════════════════════════════════════════
 
-/// Verify the derived monad satisfies μ_A ∘ T(μ_A) = μ_A ∘ μ_{T(A)} (associativity).
 pub fn check_derived_monad_associativity(
     monad: &DerivedMonad,
     base_compositions: &BTreeMap<(String, String), String>,
@@ -590,11 +478,9 @@ pub fn check_derived_monad_associativity(
             continue;
         };
 
-        // LHS: μ_A ∘ T(μ_A)
         let lhs_key = (t_mu_a.clone(), mu_a.clone());
         let lhs = base_compositions.get(&lhs_key);
 
-        // RHS: μ_A ∘ μ_{T(A)}
         let rhs_key = (mu_ta.clone(), mu_a.clone());
         let rhs = base_compositions.get(&rhs_key);
 
@@ -613,10 +499,6 @@ pub fn check_derived_monad_associativity(
     violations
 }
 
-/// Composition table convention:
-/// compositions[(f, g)] = g ∘ f
-///
-/// Verify the derived comonad satisfies εD ∘ δ = id_D
 pub fn check_derived_comonad_left_counit(
     comonad: &DerivedComonad,
     lifted_compositions: &BTreeMap<(String, String), String>,
@@ -646,7 +528,6 @@ pub fn check_derived_comonad_left_counit(
     violations
 }
 
-/// Verify the derived comonad satisfies Dε ∘ δ = id_D
 pub fn check_derived_comonad_right_counit(
     comonad: &DerivedComonad,
     lifted_compositions: &BTreeMap<(String, String), String>,
@@ -679,7 +560,6 @@ pub fn check_derived_comonad_right_counit(
     violations
 }
 
-/// Verify the derived comonad satisfies δD ∘ δ = Dδ ∘ δ
 pub fn check_derived_comonad_coassociativity(
     comonad: &DerivedComonad,
     lifted_compositions: &BTreeMap<(String, String), String>,
@@ -700,11 +580,9 @@ pub fn check_derived_comonad_coassociativity(
             continue;
         };
 
-        // LHS: δ_D(B) ∘ δ_B
         let lhs_key = (delta_b.clone(), delta_db.clone());
         let lhs = lifted_compositions.get(&lhs_key);
 
-        // RHS: D(δ_B) ∘ δ_B
         let rhs_key = (delta_b.clone(), d_delta_b.clone());
         let rhs = lifted_compositions.get(&rhs_key);
 
@@ -723,30 +601,19 @@ pub fn check_derived_comonad_coassociativity(
     violations
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// Tests
-// ═══════════════════════════════════════════════════════════════════════════
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    /// Build the simplest nontrivial adjunction: Discrete ⊣ Forget
-    /// between a 1-object base category {*} and a 1-object lifted
-    /// category {*'}, where everything is the identity.
     fn trivial_adjunction() -> DeclaredFiniteAdjunction {
         let mut adj = DeclaredFiniteAdjunction::new("Trivial", "L", "R");
-        // L: * → *'
         adj.set_left_ob("*", "*'");
         adj.set_left_mor("id_*", "id_*'");
-        // R: *' → *
         adj.set_right_ob("*'", "*");
         adj.set_right_mor("id_*'", "id_*");
-        // η: * → R(L(*)) = * → *  ⇒  η_* = id_*
         adj.set_unit("*", "id_*");
-        // ε: L(R(*')) = *' → *'  ⇒  ε_*' = id_*'
         adj.set_counit("*'", "id_*'");
-        // L(η_*) = L(id_*) = id_*'
         adj.set_left_mor("id_*", "id_*'");
         adj
     }
@@ -782,9 +649,7 @@ mod tests {
     fn derived_monad_from_trivial() {
         let adj = trivial_adjunction();
         let monad = DerivedMonad::from_adjunction(&adj);
-        // T(*) = R(L(*)) = R(*') = *
         assert_eq!(monad.t_ob_map.get("*"), Some(&"*".to_string()));
-        // η_* = id_* (unit)
         assert_eq!(monad.unit.get("*"), Some(&"id_*".to_string()));
     }
 
@@ -792,9 +657,7 @@ mod tests {
     fn derived_comonad_from_trivial() {
         let adj = trivial_adjunction();
         let comonad = DerivedComonad::from_adjunction(&adj);
-        // D(*') = L(R(*')) = L(*) = *'
         assert_eq!(comonad.d_ob_map.get("*'"), Some(&"*'".to_string()));
-        // ε_*' = id_*' (counit)
         assert_eq!(comonad.counit.get("*'"), Some(&"id_*'".to_string()));
     }
 

@@ -1,9 +1,3 @@
-//! Sovereign CLI binary for omega_coda 9-layer Master Normal Form pipeline.
-//!
-//! Reads ProblemInstance / Cochain JSON from stdin or --file, executes the full
-//! 9-layer CODA pipeline, and outputs verified outcome JSON to stdout.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::BTreeMap;
 use std::env;
@@ -61,7 +55,6 @@ fn parse_rational_matrix(val: &Value) -> Result<Vec<Vec<BigRational>>, String> {
 }
 
 fn build_problem_instance(val: &Value) -> Result<ProblemInstance, String> {
-    // Check if directly deserializable
     if let Ok(prob) = serde_json::from_value::<ProblemInstance>(val.clone()) {
         return Ok(prob);
     }
@@ -101,7 +94,6 @@ fn build_problem_instance(val: &Value) -> Result<ProblemInstance, String> {
         problem.fda_license_granted = fda;
     }
 
-    // Cochains and coboundaries
     let cochain_val = obj.get("defect_cochain").or_else(|| obj.get("x_vector"));
     if let Some(cv) = cochain_val {
         problem.defect_cochain = parse_rational_vec(cv)?;

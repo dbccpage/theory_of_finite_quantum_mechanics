@@ -1,7 +1,3 @@
-//! C1000 rotation census, computed through the canonical exact Lie group API.
-//! The conductor is the trace-field conductor; an axis choice may require
-//! additional coefficients without changing that invariant.
-// AuthorityEffect: None.
 use omega_lie_theory::rotation::{self, RotationError};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;

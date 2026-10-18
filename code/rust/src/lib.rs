@@ -1,4 +1,3 @@
-//! Sovereign theory of finite quantum mechanics.
 
 pub mod linear_algebra;
 pub mod homology;
@@ -27,12 +26,9 @@ pub use tfqm_wdp as wdp;
 pub use qm::*;
 pub use qm::group_param as group_parameter;
 
-/// The crate root is a barrel. The check walks the declared module names and
-/// compares the index mass with the closed form `n(n+1)/2`.
 pub fn crate_root_inventory_holds() -> Result<(), &'static str> {
     const MODULES: &[&str] = &["linear_algebra", "homology", "qm", "dag_witnesses"];
     inventory_mass(MODULES)?;
-    // 1/2 + 1/3 + 1/6 = 1, cleared over the denominator 6.
     let harmonic = 3i64 + 2 + 1;
     if harmonic != 6 {
         return Err("the three-term harmonic sum is not 1");

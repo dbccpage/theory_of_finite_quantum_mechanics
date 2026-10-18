@@ -123,8 +123,8 @@ def test_registry_classification_only_complex():
     assert satisfies_ax_lift_v0(NamedLift.REAL) is False
     assert satisfies_ax_lift_v0(NamedLift.QUAT) is False
     assert satisfies_local_tomography(NamedLift.COMPLEX) is True
-    assert satisfies_local_tomography(NamedLift.REAL) is False  # 9 != 10
-    assert satisfies_local_tomography(NamedLift.QUAT) is False  # 36 != 28
+    assert satisfies_local_tomography(NamedLift.REAL) is False
+    assert satisfies_local_tomography(NamedLift.QUAT) is False
 
 
 def test_lt_numbers_match_w55():
@@ -191,11 +191,9 @@ def test_ax_lift_v01_optional_packet_keeps_v0_core():
     assert packet.axioms == AX_LIFT_V0
     assert len(packet.optional_axioms) == 2
     assert packet.id == "AX-LIFT-V0.1"
-    # optional not forced into V0 satisfaction
     assert satisfies_ax_lift_v0(NamedLift.COMPLEX) is True
 
 
-# --- V0.1 partial activation: purification (TOY-MECH); continuous OPEN ---
 
 
 @dataclass(frozen=True)
@@ -222,13 +220,12 @@ FAIR = (1, 1)
 
 def satisfies_purification_capacity(lift: NamedLift) -> bool:
     if lift is NamedLift.QUAT:
-        return False  # unclaimed
-    # complex and real: Bell-diagonal pure support purifies fair mixed marginal
+        return False
     return BELL_LIKE.is_quantum_pure_support and BELL_LIKE.marg_a == FAIR
 
 
 def satisfies_continuous_reversible(_lift: NamedLift) -> bool:
-    return False  # not FinL1-native
+    return False
 
 
 class ContinuumHost(str, Enum):
@@ -237,7 +234,6 @@ class ContinuumHost(str, Enum):
 
 
 def continuous_under_host(host: ContinuumHost, _lift: NamedLift) -> bool:
-    # FinL1: refused. Continuum import pathway named but not activated as MECH.
     return False
 
 
@@ -307,7 +303,6 @@ def test_multipartite_lt3_consistent_with_v0():
     assert not satisfies_local_tomography3(NamedLift.REAL)
     assert not satisfies_ax_lift_v0(NamedLift.QUAT)
     assert not satisfies_local_tomography3(NamedLift.QUAT)
-    # LT3 not forced into V0
     assert len(AX_LIFT_V0) == 3
 
 

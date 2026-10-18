@@ -1,4 +1,10 @@
-"""Unit tests verifying parity between Python src/ and Rust src/ exact algebra engines."""
+"""Unit tests verifying parity between Python src/ and Rust src/ exact algebra engines.
+Unit, integration, and negative tests.
+
+Origin: code/python/src/linear_algebra/__init__.py
+Claim: urn:omega:fqm:linear-algebra:exported-smith-trace:v1
+AuthorityEffect: None
+"""
 
 from fractions import Fraction
 import pytest
@@ -42,7 +48,6 @@ def test_exact_determinant_and_inverse():
 
 
 def test_gaussian_rational_unitary():
-    # Pauli-Y: [[0, -i], [i, 0]]
     rows = [
         [GaussianRational(0, 0), GaussianRational(0, -1)],
         [GaussianRational(0, 1), GaussianRational(0, 0)],
@@ -53,7 +58,6 @@ def test_gaussian_rational_unitary():
 
 
 def test_homology_carrier_parity():
-    # Triangle cycle
     d0_rows = [
         [Fraction(-1), Fraction(1), Fraction(0)],
         [Fraction(0), Fraction(-1), Fraction(1)],
@@ -72,7 +76,6 @@ def test_homology_carrier_parity():
 
 
 def test_density_operator_and_observable():
-    # Pure qubit state |0><0|
     rows = [
         [GaussianRational(1, 0), GaussianRational(0, 0)],
         [GaussianRational(0, 0), GaussianRational(0, 0)],
@@ -81,9 +84,16 @@ def test_density_operator_and_observable():
     rho = DensityOperator(mat)
     assert rho.purity() == Fraction(1)
 
-    # Pauli-Z
     sigma_z = ExactMatrix.from_rows([
         [GaussianRational(1, 0), GaussianRational(0, 0)],
         [GaussianRational(0, 0), GaussianRational(-1, 0)],
     ])
     assert rho.expectation(sigma_z) == GaussianRational(1, 0)
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'linear_algebra' / '__init__.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'ExactMatrix' in source
+    assert _MODULE_PATH.is_file()

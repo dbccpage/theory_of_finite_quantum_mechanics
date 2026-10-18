@@ -1,23 +1,3 @@
-//! Canonical finite Rust composition of the CODA diagnostic path and the
-//! CODA_GTLA-governed authority boundary.
-//!
-//! This module owns no domain algorithm. It composes the existing owners in the
-//! one-engine order:
-//!
-//! ```text
-//! PrimitiveDifference (finite validation)
-//!   -> exact C0 -> C1 -> C2 evidence
-//!   -> verified Phi_1 and exact Gamma_2
-//!   -> Exact / Survivor / Open
-//!   -> CheckedPacket
-//!   -> evidence-only CheckedPacketCertificate
-//! ```
-//!
-//! Scope is deliberately narrow. `PrimitiveDifferenceReceipt` is the finite
-//! Rust shadow of the primitive-difference ontology, not a mechanization of the
-//! prose CODA foundations. The pipeline emits evidence only. Host promotion,
-//! receipt-DAG verification, authority-witness attestation, and human decision
-//! remain outside this module.
 
 use num_rational::BigRational;
 use omega_certifiers::certify_checked_packet;
@@ -43,13 +23,6 @@ use omega_policy::trichotomy::{
 use omega_types::authority::{DescentWitness, IsAuth};
 use omega_types::EvidenceCeiling;
 
-/// Evidence that the finite primitive-difference laws and delta congruence were
-/// replayed on one declared carrier manifest.
-///
-/// The generic primitive checker cannot serialize an arbitrary carrier, so the
-/// caller supplies the canonical manifest hash. The runtime binds that same hash
-/// to the checked packet; producing the manifest bytes and digest remains an
-/// explicit upstream trust boundary.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PrimitiveDifferenceReceipt {
     declared_carrier_hash: CarrierManifestHash,
@@ -81,8 +54,6 @@ pub enum PrimitiveDifferenceReceiptError {
     Validation(PrimitiveDifferenceError),
 }
 
-/// Replay the finite primitive-difference quotient laws before exact
-/// obstruction evidence enters the shared pipeline.
 pub fn validate_primitive_difference<P: PrimitiveDifference>(
     primitive: &P,
     domain: Vec<P::Carrier>,
@@ -117,12 +88,6 @@ pub enum DomainEvidenceBindingError {
     EmptyEvidenceManifest,
 }
 
-/// Deterministic binding of one domain carrier/evidence manifest to the
-/// canonical checked-packet schema.
-///
-/// Domain adapters supply bytes, not preselected hashes. This prevents each
-/// application from inventing its own packet binding convention while keeping
-/// all domain-specific candidate construction outside the shared evaluator.
 #[derive(Debug, Clone)]
 pub struct DomainEvidenceBinding {
     carrier_hash: CarrierManifestHash,
@@ -159,10 +124,6 @@ fn domain_hash(
     Hash256(*hasher.finalize().as_bytes())
 }
 
-/// Bind a domain's canonical carrier and evidence bytes to all packet hashes.
-///
-/// The returned packet remains evidence-only. This function neither evaluates
-/// an obstruction nor constructs authority.
 pub fn bind_domain_evidence(
     namespace: &str,
     carrier_manifest: &[u8],
@@ -214,11 +175,6 @@ pub fn bind_domain_evidence(
     })
 }
 
-/// Inputs for the exact finite obstruction path.
-///
-/// Domain adapters are responsible for constructing these values from their
-/// own candidate representation. They must not substitute floating diagnostics
-/// for either exact certificate.
 #[derive(Debug, Clone)]
 pub struct CodaExactInput {
     primitive_receipt: PrimitiveDifferenceReceipt,
@@ -264,11 +220,6 @@ pub enum CodaGtlaEvaluationError {
     CheckedPacket(#[from] CheckedPacketError),
 }
 
-/// Exact diagnostic result plus a checked packet at the authority boundary.
-///
-/// Construction establishes classification and packet well-formedness. It still
-/// carries no authority. [`CodaGtlaEvaluation::certify_certificate`] seals
-/// packet-bound evidence without crossing the host promotion boundary.
 #[derive(Debug)]
 pub struct CodaGtlaEvaluation {
     primitive_receipt: PrimitiveDifferenceReceipt,
@@ -303,8 +254,6 @@ impl CodaGtlaEvaluation {
         &self.packet
     }
 
-    /// Seal packet-bound evidence. Exact classification by itself is
-    /// insufficient, and the returned certificate has `AuthorityEffect::None`.
     pub fn certify_certificate(
         &self,
         witness: DescentWitness,
@@ -314,7 +263,6 @@ impl CodaGtlaEvaluation {
     }
 }
 
-/// Run the exact one-engine diagnostic composition and stop at a checked packet.
 pub fn evaluate_exact(
     input: CodaExactInput,
 ) -> Result<CodaGtlaEvaluation, CodaGtlaEvaluationError> {
@@ -543,11 +491,6 @@ mod tests {
     #[test]
     fn split_d0_rails_are_refused_before_replay() {
         let mut input = exact_repair_input();
-        // ExactCochainComplexQ is sealed, so the divergent d0 must be built
-        // through try_new rather than assigned into the field. The complex
-        // below is internally valid (d1 = 0, so d1 * d0 = 0 holds); what the
-        // test exercises is that it DISAGREES with the phi1 certificate's d0,
-        // which evaluate_exact must catch as D0BindingMismatch.
         input.complex = ExactCochainComplexQ::try_new(1, 1, 1, vec![vec![r(0)]], vec![vec![r(0)]])
             .expect("a zero complex satisfies d1 * d0 = 0");
 

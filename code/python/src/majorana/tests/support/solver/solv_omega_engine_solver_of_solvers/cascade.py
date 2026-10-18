@@ -80,7 +80,6 @@ class OesosCascade:
 
         for stage in self.stages:
             if stage.handler is None:
-                # Declarative stage: registry lookup only
                 solvers = self.registry.solvers_for(problem.residual_class)
                 solver_id = stage.solver_id or (solvers[0] if solvers else "none")
                 receipt.record(
@@ -93,7 +92,6 @@ class OesosCascade:
                     )
                 )
                 continue
-            # Handler may call residual packages; cascade does not build matrices.
             result = stage.handler(**kwargs)
             if isinstance(result, dict):
                 residual_mass = float(result.get("residual_mass", residual_mass))

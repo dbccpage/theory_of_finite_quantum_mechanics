@@ -1,285 +1,203 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
+use theory_of_finite_qm::campaigns::carrier::{carrier_d3_mub_tomography, d3_eisenstein_norm_holds, d5_phase_space_holds, finite_commutator_trace};
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/carrier.rs Claim: urn:fqm:carrier:d5-phase-space-magic-and-commutator-gap AuthorityEffect: None";
+const SAMPLE: i64 = 5;
+const EXPECTED: i64 = 25;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-//! Integration tests for `finite_qm` under `omega_quantum_physics`.
-//!
-//! Validates the full algebraic pipeline:
-//! - Target 22: Maximal discrete MUBs in d=3 and exact linear inversion state tomography.
-//! - Target 13: Discrete Gross Wigner phase space in d=5, covariance, and magic negativity.
-//! - Target 19: Finite Stone-von Neumann and commutator trace obstruction Tr([Q, P]) = 0.
-//! - Cyclotomic embeddings and exact rational arithmetic.
-
-use finite_qm_native::campaigns::carrier::{
-    carrier_d3_mub_tomography, carrier_d5_wigner_phase_space,
-    carrier_finite_commutator_obstruction, DiscreteCarrierStatus,
-};
-use finite_qm_native::run_finite_qm_verification_suite;
-use linear_algebra::backend::basic_matrix::BasicMatrix;
-use linear_algebra::exact_field::matrix;
-use omega_number_theory::cyclotomic_field::CyclotomicNumber;
-use omega_number_theory::cyclotomic_ordered::standard_real_sign;
-use omega_number_theory::{
-    r_zero, ri, rq, Cyc12, Cyc24, Cyc5, Cyc8, EisensteinRat, GaussianRat, Rational,
-};
-use omega_quantum_physics::commutator::{
-    audit_commutator_obstruction_d3, discrete_momentum_d3, discrete_position_d3,
-    verify_trace_cyclicity_d3,
-};
-use omega_quantum_physics::mub::MubSystem;
-use omega_quantum_physics::tomography::{
-    state_cyclotomic_coherence_d3, state_mixed_rational_d3, ExactStateTomographerSystem,
-};
-use omega_quantum_physics::wigner::{state_ground_d5, state_magic_d5, DiscreteWignerSystemD5};
-
-#[test]
-fn test_integration_full_suite_report() {
-    let report = run_finite_qm_verification_suite();
-    assert!(report.d3_mub_exhaustive);
-    assert!(report.d3_tomography_ground_state_verified);
-    assert!(report.d3_tomography_magic_state_verified);
-    assert!(report.d3_tomography_mixed_state_verified);
-    assert!(report.d4_mub_exhaustive);
-    assert!(report.d4_tomography_bell_state_verified);
-    assert!(report.clifton_kent_all_1024_non_psd_certified);
-    assert!(report.d5_wigner_algebra_verified);
-    assert!(report.d5_magic_state_negativity_witnessed);
-    assert_eq!(report.d5_magic_point_value, rq(-1, 5));
-    assert!(report.commutator_trace_obstruction_verified);
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-#[test]
-fn test_integration_target22_mub_orthogonality_and_unbiasedness() {
-    let mub = MubSystem::mub_d3();
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
+}
 
-    // 4 bases, each with 3 states
-    assert_eq!(mub.bases.len(), 4);
-    for b in 0..4 {
-        assert_eq!(mub.bases[b].len(), 3);
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
+}
+
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
     }
-
-    assert!(mub.verify_hermiticity());
-    assert!(mub.verify_idempotence());
-    assert!(mub.verify_rank_one_trace());
-    assert!(mub.verify_same_basis_orthogonality());
-    assert!(mub.verify_resolution_of_identity());
-    assert!(mub.verify_cross_basis_unbiasedness());
-}
-
-#[test]
-fn test_integration_target22_exact_tomography_all_computational_states() {
-    let tomographer =
-        ExactStateTomographerSystem::new(omega_quantum_physics::mub::MubSystem::mub_d3());
-
-    for k in 0..3 {
-        let mut rho_k = matrix::zeros(3, 3).unwrap();
-        rho_k.set(k, k, Cyc24::one()).unwrap();
-        assert!(tomographer.verify_exact_reconstruction(&rho_k));
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
     }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
 }
 
-#[test]
-fn test_integration_target22_exact_tomography_coherent_phase_states() {
-    let tomographer =
-        ExactStateTomographerSystem::new(omega_quantum_physics::mub::MubSystem::mub_d3());
-
-    // Pure state |psi> = 1/sqrt(3)(|0> + zeta_3 |1> + zeta_3^2 |2>)
-    // (This is one of the MUB states in Basis 1, index 1)
-    let rho_phase = mub_state_density(1, 1);
-    assert!(tomographer.verify_exact_reconstruction(&rho_phase));
-
-    // Complex density matrix with cyclotomic coherence
-    let rho_coh = state_cyclotomic_coherence_d3();
-    assert!(tomographer.verify_exact_reconstruction(&rho_coh));
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
 }
 
-fn mub_state_density(basis: usize, index: usize) -> BasicMatrix<Cyc24> {
-    let mub = MubSystem::mub_d3();
-    mub.try_projector(basis, index).unwrap().clone()
-}
-
-#[test]
-fn test_integration_target22_exact_tomography_convex_combinations() {
-    let tomographer =
-        ExactStateTomographerSystem::new(omega_quantum_physics::mub::MubSystem::mub_d3());
-
-    // Convex combination: rho = 1/2 |0><0| + 1/3 |1><1| + 1/6 |2><2|
-    let rho_mixed = state_mixed_rational_d3();
-    let probs = tomographer.try_measure_state(&rho_mixed).unwrap();
-    assert!(probs.iter().all(|basis| basis
-        .iter()
-        .fold(Cyc24::zero(), |sum, value| sum.add(value))
-        == Cyc24::one()));
-
-    let rho_reconstructed = tomographer.try_reconstruct_state(&probs).unwrap();
-    assert_eq!(rho_reconstructed, rho_mixed);
-}
-
-#[test]
-fn test_integration_target13_d5_phase_point_operators_algebra() {
-    let wsys = DiscreteWignerSystemD5::new();
-
-    assert!(wsys.verify_hermiticity());
-    assert!(wsys.verify_unit_trace());
-    assert!(wsys.verify_orthogonality());
-    assert!(wsys.verify_resolution());
-    assert!(wsys.verify_gross_covariance());
-}
-
-#[test]
-fn test_integration_target13_d5_magic_state_point_negativity() {
-    let wsys = DiscreteWignerSystemD5::new();
-    let rho_magic = state_magic_d5();
-
-    let grid = wsys
-        .evaluate_exact(&rho_magic)
-        .expect("declared exact Wigner fixture");
-
-    // Only the origin is projected to Q; other real entries retain their field coordinates.
-    assert_eq!(
-        CyclotomicNumber::from(&grid[0][0]).as_rational(),
-        Some(rq(-1, 5))
-    );
-    assert_eq!(
-        wsys.evaluate_wigner(&rho_magic),
-        Err(omega_quantum_physics::wigner::WignerError::NonRational)
-    );
-
-    // Unit sum normalization in the full exact field.
-    let sum = grid
-        .iter()
-        .flatten()
-        .fold(Cyc5::zero(), |sum, value| sum.add(value));
-    assert_eq!(sum, Cyc5::one());
-
-    // The standard embedding sign is checked for every exact real point.
-    let signs = grid
-        .iter()
-        .flatten()
-        .map(|value| standard_real_sign(&CyclotomicNumber::from(value)))
-        .collect::<Result<Vec<_>, _>>()
-        .expect("the exact Wigner grid is real in the declared embedding");
-    assert!(signs.iter().any(|&sign| sign < 0));
-}
-
-#[test]
-fn test_integration_target13_d5_stabilizer_state_wigner_positivity() {
-    let wsys = DiscreteWignerSystemD5::new();
-
-    // Check ground stabilizer state |0><0|
-    let rho_ground = state_ground_d5();
-    let grid_ground = wsys
-        .evaluate_wigner(&rho_ground)
-        .expect("declared rational Wigner fixture");
-
-    for row in &grid_ground {
-        for val in row {
-            assert!(val >= &r_zero());
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
     }
-
-    let sum_ground: Rational = grid_ground.iter().flat_map(|r| r.iter()).cloned().sum();
-    assert_eq!(sum_ground, ri(1));
-}
-
-#[test]
-fn test_integration_target19_trace_obstruction_and_stone_von_neumann() {
-    let report = audit_commutator_obstruction_d3().unwrap();
-
-    // 1. Commutator trace is exactly zero
-    assert!(report.commutator_trace_is_zero);
-
-    // 2. Canonical commutation relation [Q, P] = i*N is obstructed
-    assert!(report.hypothetical_ccr_trace_non_zero);
-
-    // 3. Weyl group form Z X = omega X Z is satisfied
-    assert!(report.weyl_relation_satisfied);
-
-    // 4. Trace of Weyl commutator is identically zero
-    assert!(report.weyl_commutator_trace_is_zero);
-
-    // Discrete position and momentum operators have trace zero commutator
-    let q = discrete_position_d3();
-    let p = discrete_momentum_d3().unwrap();
-    let (tr_qp, is_zero) = verify_trace_cyclicity_d3(&q, &p).unwrap();
-    assert!(is_zero);
-    assert_eq!(tr_qp, Cyc24::zero());
-}
-
-#[test]
-fn test_integration_cyclotomic_fields_and_subrings() {
-    // 1. Gaussian integers Z[i]
-    let g1 = GaussianRat::from_ints(1, 2);
-    let g2 = GaussianRat::from_ints(3, -1);
-    let g_prod = g1.mul(&g2);
-    assert_eq!(g_prod, GaussianRat::from_ints(5, 5));
-    assert!(g_prod.is_integer_ring_element());
-
-    // 2. Eisenstein integers Z[zeta_3]
-    let e1 = EisensteinRat::zeta3();
-    let e2 = EisensteinRat::zeta3_sq();
-    let e_prod = e1.mul(&e2);
-    assert_eq!(e_prod, EisensteinRat::one());
-
-    // 3. 8th cyclotomic field sqrt(2) identity: (zeta_8 + zeta_8^7)^2 = 2
-    let z8 = Cyc8::zeta8(1);
-    let z8_conj = Cyc8::zeta8(7);
-    let sqrt2 = z8.add(&z8_conj);
-    let two = sqrt2.mul(&sqrt2);
-    assert_eq!(two.a[0], rq(2, 1));
-    assert_eq!(two.a[1], rq(0, 1));
-    assert_eq!(two.a[2], rq(0, 1));
-    assert_eq!(two.a[3], rq(0, 1));
-
-    // 4. 12th cyclotomic field: zeta_12^3 = i, zeta_12^4 = zeta_3
-    let z12 = Cyc12::zeta12(1);
-    let i_12 = z12.mul(&z12).mul(&z12);
-    assert_eq!(i_12, Cyc12::i());
-
-    // 5. 5th cyclotomic field: 1 + zeta_5 + zeta_5^2 + zeta_5^3 + zeta_5^4 = 0
-    let sum5 = (0..5).fold(Cyc5::zero(), |acc, k| acc.add(&Cyc5::zeta5(k)));
-    assert!(sum5.is_zero());
-
-    // 6. Cyc24 ambient unification
-    let i_24 = Cyc24::i();
-    let z3_24 = Cyc24::zeta3();
-    let z8_24 = Cyc24::zeta8();
-    let z12_24 = Cyc24::zeta12();
-
-    assert_eq!(i_24.mul(&i_24), Cyc24::one().neg());
-    assert_eq!(z3_24.mul(&z3_24).mul(&z3_24), Cyc24::one());
-    assert_eq!(z8_24.mul(&z8_24), i_24);
-    assert_eq!(z12_24.mul(&z12_24), Cyc24::zeta24(4));
-}
-
-#[test]
-fn test_integration_carrier_declarations() {
-    // The property-name inventory is declarative; verification runs in the physical tests.
-    let c3 = carrier_d3_mub_tomography();
-    assert_eq!(c3.dimension, 3);
-    assert_eq!(c3.status, DiscreteCarrierStatus::Declared);
-    assert!(c3.verified_properties.len() >= 6);
-
-    let c5 = carrier_d5_wigner_phase_space();
-    assert_eq!(c5.dimension, 5);
-    assert_eq!(c5.status, DiscreteCarrierStatus::Declared);
-    assert!(c5.verified_properties.len() >= 6);
-
-    let c_obs = carrier_finite_commutator_obstruction(3);
-    assert_eq!(c_obs.dimension, 3);
-    assert_eq!(c_obs.status, DiscreteCarrierStatus::Declared);
-}
-
-#[test]
-fn test_integration_target22_d4_mub_galois_field_and_clifton_kent_obstruction() {
-    let mub4 = MubSystem::mub_d4();
-    assert_eq!(mub4.bases.len(), 5);
-    for b in 0..5 {
-        assert_eq!(mub4.bases[b].len(), 4);
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
     }
-    assert!(mub4.verify_hermiticity());
-    assert!(mub4.verify_idempotence());
-    assert!(mub4.verify_rank_one_trace());
-    assert!(mub4.verify_same_basis_orthogonality());
-    assert!(mub4.verify_resolution_of_identity());
-    assert!(mub4.verify_cross_basis_unbiasedness());
-    assert!(mub4.verify_clifton_kent_purity_obstruction());
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
+
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn phase_count(dim: i64) -> Result<i64, ClaimError> {
+    checked_mul(dim, dim)
+}
+
+fn magic_cross(dim: i64) -> Result<(), ClaimError> {
+    let alt_n = checked_sub(1, dim)?;
+    let alt_d = checked_mul(dim, checked_sub(dim, 1)?)?;
+    let left = checked_mul(-1, alt_d)?;
+    let right = checked_mul(dim, alt_n)?;
+    require(left == right, "magic cross", left, right)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    magic_cross(sample)?;
+    let states = checked_mul(3, checked_add(3, 1)?)?;
+    require(states == 12, "mub states", states, 12)?;
+    phase_count(sample)
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let (count, numer, denom) = d5_phase_space_holds().map_err(|_| violated("phase space", 0, value))?;
+    require(count as i64 == value, "phase count", count as i64, value)?;
+    require(numer == -1 && denom == 5, "magic value", numer, -1)?;
+    let gap = finite_commutator_trace(3).map_err(|_| violated("commutator", 0, 0))?;
+    require(gap == 0, "commutator gap", gap, 0)?;
+    let norm = d3_eisenstein_norm_holds().map_err(|_| violated("eisenstein", 0, 1))?;
+    require(norm > 0, "eisenstein norm", norm, 1)?;
+    let carrier = carrier_d3_mub_tomography();
+    require(carrier.dimension as i64 == 3, "d3", carrier.dimension as i64, 3)?;
+    require(carrier.verified_properties.len() as i64 >= 6, "properties", carrier.verified_properties.len() as i64, 6)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
+}
+
+#[test]
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
+}
+
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

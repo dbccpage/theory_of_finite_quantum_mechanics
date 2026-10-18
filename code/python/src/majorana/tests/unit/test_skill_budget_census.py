@@ -48,8 +48,6 @@ BASELINE_PATH = (
     / "skill_budget_baseline.json"
 )
 
-# The epic's own numbers, restated here so that a change to either the epic or
-# the gate has to come past this file.
 EPIC_MAX_LINES = 300
 EPIC_MAX_BYTES = 20 * 1024
 
@@ -74,9 +72,6 @@ def synthetic_census(
     )
 
 
-# --------------------------------------------------------------------------
-# The finding: a green gate with a sampled scope
-# --------------------------------------------------------------------------
 
 
 def test_the_gate_scans_a_small_fraction_of_the_garden(census):
@@ -164,9 +159,6 @@ def test_the_report_marks_which_breaches_are_unscanned(census):
     assert "UNSCANNED" in report
 
 
-# --------------------------------------------------------------------------
-# The gate's terms are read from the gate, never restated
-# --------------------------------------------------------------------------
 
 
 def test_the_limits_match_the_epic(census):
@@ -266,9 +258,6 @@ def test_the_census_does_not_hardcode_the_governed_names():
     )
 
 
-# --------------------------------------------------------------------------
-# Measurement
-# --------------------------------------------------------------------------
 
 
 def test_a_file_without_a_trailing_newline_still_counts_its_last_line(tmp_path):
@@ -319,9 +308,6 @@ def test_the_limits_are_inclusive_ceilings():
     assert synthetic("over", 301, 1).breaches(EPIC_MAX_LINES, EPIC_MAX_BYTES)
 
 
-# --------------------------------------------------------------------------
-# The ratchet
-# --------------------------------------------------------------------------
 
 
 def test_the_committed_baseline_matches_the_garden(census):
@@ -450,9 +436,6 @@ def test_the_rendered_baseline_says_regenerating_it_defeats_it(census):
     assert "defeats it" in document["note"]
 
 
-# --------------------------------------------------------------------------
-# The epic's other claims, checked
-# --------------------------------------------------------------------------
 
 
 def test_the_eval_runner_claim_of_sixteen_of_sixteen_holds():

@@ -1,75 +1,3 @@
-//! Exact spectral-certificate membrane for One Regime Q admission.
-//!
-//! --- Math Contract:
-//! - Purpose: carry a finite refinement tower and its typed symbolic
-//!   convergence-certificate metadata through the existing five-field
-//!   [`ContinuumDebt`] shape without changing the input [`QPacket`].
-//! - Inputs: one owned `QPacket`, one [`RefinementTower`], and optionally one
-//!   exact [`ConvergenceCertificate`].
-//! - Outputs: `ConditionalSupport` with a private binding when the certificate
-//!   matches, or `OracleNeeded` when it is withheld.
-//! - Invariants: the packet is returned byte-for-byte unchanged; certificate
-//!   family, kind, topology, and tower digest match; the evidence ceiling is
-//!   always [`EvidenceCeiling::ShapeOnly`]; authority effect is always
-//!   [`AuthorityEffectLevel::None`].
-//! - Failure: malformed packets and mismatched typed artifacts are rejected by
-//!   [`SpectralMembraneError`].
-//! - Numerical status: no floating-point evidence is accepted by this API.
-//! - Authority: a successful membrane decision is conditional support only and
-//!   never constructs a continuum object or mints authority.
-//! - Source scope: receipt source-binding status is preserved in rendered
-//!   routes. A Rust source-byte check does not replay Lean convergence proofs.
-//!
-//! A floating-point substitute cannot inhabit the certificate parameter:
-//!
-//! ```compile_fail
-//! use crate::coda::q::{QPacket, SpectralMembrane};
-//! use omega_types::{
-//!     PositiveRational, RefinementLevel, RefinementRelation, RefinementTower, ShadowFamily,
-//!     ShadowKind,
-//! };
-//!
-//! struct NumericalEvidence(f64);
-//!
-//! let family = ShadowFamily::new(
-//!     "compile-fail-cycle",
-//!     ShadowKind::UniformCycle,
-//!     "unit circle",
-//! )?;
-//! let levels = vec![
-//!     RefinementLevel::new(8, PositiveRational::from_u64(1, 8)?)?,
-//!     RefinementLevel::new(16, PositiveRational::from_u64(1, 16)?)?,
-//! ];
-//! let tower = RefinementTower::new(
-//!     family,
-//!     RefinementRelation::ExactUniformSubdivision,
-//!     levels,
-//! )?;
-//! let numerical = NumericalEvidence(0.0);
-//! let _ = SpectralMembrane::decide(
-//!     QPacket::new("q:compile-fail"),
-//!     &tower,
-//!     Some(&numerical),
-//! );
-//! # Ok::<(), Box<dyn std::error::Error>>(())
-//! ```
-//!
-//! The binding and decision are loggable but cannot be reconstructed from a
-//! wire payload:
-//!
-//! ```compile_fail
-//! use crate::coda::q::SpectralConvergenceBinding;
-//!
-//! fn requires_deserialize<T: serde::de::DeserializeOwned>() {}
-//! requires_deserialize::<SpectralConvergenceBinding>();
-//! ```
-//!
-//! ```compile_fail
-//! use crate::coda::q::SpectralMembraneDecision;
-//!
-//! fn requires_deserialize<T: serde::de::DeserializeOwned>() {}
-//! requires_deserialize::<SpectralMembraneDecision>();
-//! ```
 
 use omega_types::{
     AuthorityEffectLevel, ConvergenceCertificate, EvidenceCeiling, RefinementRelation,
@@ -80,11 +8,6 @@ use thiserror::Error;
 
 use super::{ContinuumDebt, QError, QPacket, QTerminal};
 
-/// A private, exact binding between the unchanged Q packet, the finite tower,
-/// its convergence certificate, and the five rendered continuum-debt routes.
-///
-/// All fields are private and the sole constructor is the membrane. The type
-/// intentionally implements `Serialize` but not `Deserialize`.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct SpectralConvergenceBinding {
     bound_packet: QPacket,
@@ -121,11 +44,6 @@ impl SpectralConvergenceBinding {
     }
 }
 
-/// Derived membrane decision.
-///
-/// The input packet is owned and returned unchanged. Private fields prevent
-/// callers from manufacturing a supported decision. This type deliberately
-/// implements `Serialize` but not `Deserialize`.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct SpectralMembraneDecision {
     packet: QPacket,
@@ -162,7 +80,6 @@ impl SpectralMembraneDecision {
     }
 }
 
-/// Typed failures at the exact spectral membrane.
 #[derive(Clone, Debug, PartialEq, Eq, Error)]
 pub enum SpectralMembraneError {
     #[error("invalid Q packet: {0}")]
@@ -192,17 +109,10 @@ pub enum SpectralMembraneError {
     RenderedDebtInvalid(QError),
 }
 
-/// Exact Q/CODA-CS spectral membrane.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct SpectralMembrane;
 
 impl SpectralMembrane {
-    /// Classifies an exact convergence certificate without modifying the packet.
-    ///
-    /// A withheld certificate is not an error: it is the typed
-    /// `OracleNeeded` branch, with the convergence-certificate route left
-    /// absent. A supplied certificate is accepted only after all typed identity
-    /// checks pass.
     pub fn decide(
         packet: QPacket,
         tower: &RefinementTower,

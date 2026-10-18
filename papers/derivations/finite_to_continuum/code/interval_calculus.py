@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Certified Rational Interval Arithmetic for Real-Valued Physical Variables.
 
@@ -63,7 +62,7 @@ def _validate_exact_int(val: Any, name: str = "integer") -> int:
 @dataclass(frozen=True)
 class RationalInterval:
     """A closed rational interval [lo, hi] in Q x Q representing a real quantity.
-    
+
     Invariants:
       lo <= hi (fail-closed if violated).
     """
@@ -137,7 +136,6 @@ class RationalInterval:
         eps = _validate_exact_rational(epsilon, "epsilon")
         return self.width < eps
 
-    # --- Interval Arithmetic Overloads ---
 
     def __neg__(self) -> RationalInterval:
         return RationalInterval(-self.hi, -self.lo)
@@ -214,7 +212,6 @@ class RationalInterval:
             return RationalInterval(Fraction(1), Fraction(1)) / (self ** (-p))
         if p % 2 == 1:
             return RationalInterval(self.lo ** p, self.hi ** p)
-        # Even power: non-negative minimum if interval straddles 0
         if self.contains(Fraction(0)):
             return RationalInterval(Fraction(0), max(self.lo ** p, self.hi ** p))
         return RationalInterval(min(self.lo ** p, self.hi ** p), max(self.lo ** p, self.hi ** p))
@@ -227,11 +224,10 @@ class RationalInterval:
         return float(self.lo), float(self.hi)
 
 
-# --- Certified Elementary Functions & Transcendentals on Rational Intervals ---
 
 def rational_heron_sqrt_bounds(val: Fraction, steps: int = 15) -> Tuple[Fraction, Fraction]:
     """Certified rational lower and upper bounds for sqrt(val) where val >= 0.
-    
+
     Proof:
       Let y_0 >= sqrt(val).
       Heron's iteration y_{k+1} = (y_k + val / y_k) / 2 satisfies:
@@ -246,7 +242,6 @@ def rational_heron_sqrt_bounds(val: Fraction, steps: int = 15) -> Tuple[Fraction
     if val == 1:
         return Fraction(1), Fraction(1)
 
-    # Initial upper bound y_0 >= sqrt(val)
     y = max(Fraction(1), val)
     if y * y == val:
         return y, y
@@ -265,7 +260,7 @@ def rational_heron_sqrt_bounds(val: Fraction, steps: int = 15) -> Tuple[Fraction
 
 def sqrt_interval(interval: RationalInterval, steps: int = 20) -> RationalInterval:
     """Certified rational interval square root for non-negative intervals.
-    
+
     For I = [lo, hi] with 0 <= lo <= hi:
       sqrt(I) subseteq [lower_bound(sqrt(lo)), upper_bound(sqrt(hi))].
     """
@@ -278,10 +273,10 @@ def sqrt_interval(interval: RationalInterval, steps: int = 20) -> RationalInterv
 
 def exp_interval(interval: RationalInterval, order: int = 20) -> RationalInterval:
     """Certified rational interval exponential for [lo, hi].
-    
+
     Uses Taylor polynomial sum_{k=0}^N x^k / k! with certified Lagrange remainder.
     Since exp is strictly increasing on R, exp([lo, hi]) = [exp(lo), exp(hi)].
-    
+
     For a rational point x:
       If x >= 0:
         exp(x) >= sum_{k=0}^N x^k / k! (since all subsequent terms > 0).
@@ -302,24 +297,16 @@ def exp_interval(interval: RationalInterval, order: int = 20) -> RationalInterva
             pos_lo, pos_hi = _exp_point_bounds(-x)
             return Fraction(1) / pos_hi, Fraction(1) / pos_lo
 
-        # x > 0:
-        # Taylor sum S_N = sum_{k=0}^N x^k / k!
         terms = [Fraction(1)]
         current = Fraction(1)
         for k in range(1, order + 1):
             current = (current * x) / k
             terms.append(current)
         s_n = sum(terms)
-        
-        # Certified upper bound on remainder:
-        # R_N(x) = sum_{k=N+1}^infty x^k / k! <= (x^{N+1} / (N+1)!) * 1 / (1 - x / (N+2))
-        # Valid whenever N + 2 > x.
-        # If N + 2 <= x, we increase effective N for remainder calculation.
+
         rem_denom = order + 2 - x
         if rem_denom <= 0:
-            # Fallback safe over-bound using ceiling of x
             ceil_x = math.ceil(float(x))
-            # e^x <= 3^{ceil_x}
             three_pow = Fraction(3 ** ceil_x)
             last_term = terms[-1] * x / (order + 1)
             rem = last_term * three_pow
@@ -338,33 +325,28 @@ def exp_interval(interval: RationalInterval, order: int = 20) -> RationalInterva
 
 def ln_interval_around_one(u_interval: RationalInterval, order: int = 30) -> RationalInterval:
     """Certified interval natural log ln(1 + u) for |u| < 1 using alternating series.
-    
+
     ln(1 + u) = sum_{k=1}^infty (-1)^{k-1} u^k / k.
     For 0 <= u < 1, alternating series Leibniz criterion:
       sum_{k=1}^{2M} (-1)^{k-1} u^k / k <= ln(1+u) <= sum_{k=1}^{2M-1} (-1)^{k-1} u^k / k.
     """
     order = _validate_exact_int(order, "Taylor order")
-    # Pointwise bounds for monotonically increasing ln(x)
     def _ln_point(u: Fraction) -> Tuple[Fraction, Fraction]:
         if u <= -1:
             raise ValueError(f"u must be > -1, got {u}")
         if u == 0:
             return Fraction(0), Fraction(0)
-        
-        # When 0 < u < 1:
+
         if 0 < u < 1:
             terms = [Fraction(0)]
             curr = Fraction(1)
             for k in range(1, order + 1):
                 curr = curr * u
                 terms.append(curr / k)
-            # Alternating sums
             s_even = sum((-1)**(k-1) * terms[k] for k in range(1, (order // 2) * 2 + 1))
             s_odd = sum((-1)**(k-1) * terms[k] for k in range(1, (order // 2) * 2))
             return min(s_even, s_odd), max(s_even, s_odd)
-        
-        # For general u > 0, we can use ln(y) = 2 sum_{k=0}^M (1/(2k+1)) * ((y-1)/(y+1))^{2k+1}
-        # with y = 1 + u > 0. Let z = (y - 1)/(y + 1) = u / (u + 2) in (0, 1).
+
         y = 1 + u
         z = (y - 1) / (y + 1)
         z2 = z * z
@@ -374,7 +356,6 @@ def ln_interval_around_one(u_interval: RationalInterval, order: int = 30) -> Rat
             partial += curr_z / (2 * k + 1)
             curr_z *= z2
         lower = 2 * partial
-        # Remainder: sum_{k=M}^infty z^{2k+1}/(2k+1) <= (z^{2M+1}/(2M+1)) / (1 - z^2)
         rem = 2 * (curr_z / (2 * order + 1)) / (1 - z2)
         return lower, lower + rem
 
@@ -389,8 +370,6 @@ def certified_pi_enclosure(terms: int = 12) -> RationalInterval:
     with exact alternating series remainder bounds.
     """
     def _arctan_alternating_bounds(x: Fraction, n_terms: int) -> Tuple[Fraction, Fraction]:
-        # arctan(x) = sum_{k=0}^infty (-1)^k x^{2k+1} / (2k+1)
-        # For 0 < x < 1, S_{2m-1} < arctan(x) < S_{2m}
         curr = x
         x2 = x * x
         s_even = Fraction(0)
@@ -412,7 +391,6 @@ def certified_pi_enclosure(terms: int = 12) -> RationalInterval:
     lo1, hi1 = _arctan_alternating_bounds(Fraction(1, 5), terms)
     lo2, hi2 = _arctan_alternating_bounds(Fraction(1, 239), terms)
 
-    # 4 * (4 * arctan(1/5) - arctan(1/239))
     pi_lo = 4 * (4 * lo1 - hi2)
     pi_hi = 4 * (4 * hi1 - lo2)
     return RationalInterval(pi_lo, pi_hi)
@@ -428,14 +406,12 @@ def _ln_positive_rational(x: Fraction, order: int = 25) -> Tuple[Fraction, Fract
         inv_lo, inv_hi = _ln_positive_rational(Fraction(1) / x, order=order)
         return -inv_hi, -inv_lo
 
-    # x > 1: range reduction x = 2^k * curr where curr in [1, 2)
     k = 0
     curr = x
     while curr >= 2:
         curr /= 2
         k += 1
 
-    # curr in [1, 2) ==> z = (curr - 1)/(curr + 1) in [0, 1/3)
     z = (curr - 1) / (curr + 1)
     z2 = z * z
     curr_z = z
@@ -447,7 +423,6 @@ def _ln_positive_rational(x: Fraction, order: int = 25) -> Tuple[Fraction, Fract
     rem = 2 * (curr_z / (2 * order + 1)) / (1 - z2)
     ln_curr_hi = ln_curr_lo + rem
 
-    # ln(2) computation with z = 1/3
     z2_two = Fraction(1, 3)
     z2_sq = Fraction(1, 9)
     curr_z2 = z2_two
@@ -459,7 +434,6 @@ def _ln_positive_rational(x: Fraction, order: int = 25) -> Tuple[Fraction, Fract
     rem2 = 2 * (curr_z2 / (2 * order + 1)) / (1 - z2_sq)
     ln_2_hi = ln_2_lo + rem2
 
-    # ln(x) = k * ln(2) + ln(curr)
     total_lo = k * ln_2_lo + ln_curr_lo
     total_hi = k * ln_2_hi + ln_curr_hi
     return total_lo, total_hi

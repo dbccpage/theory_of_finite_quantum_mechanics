@@ -106,7 +106,6 @@ def test_atiyah_singer_integer_index():
     D_ov, Gamma_5, sgn_Hw, gap = evaluator.build_overlap_dirac_operator(g_reg, m0=1.2, r=1.0)
     index_val, n_pos, n_neg = evaluator.evaluate_topological_index(D_ov, Gamma_5, a)
 
-    # Check integer proximity
     diff_from_int = abs(index_val - round(index_val))
     assert diff_from_int <= 1e-12, f"Index is not an integer: {index_val}"
     evaluator.close()
@@ -124,7 +123,6 @@ def test_wilson_doubler_decoupling():
 
     D_w, Gamma_5, H_w = evaluator.build_wilson_dirac_operator(g_reg, m0=1.2, r=r)
     eigenvals = np.linalg.eigvals(H_w)
-    # Check that eigenvalues do not collapse to zero
     assert np.min(np.abs(eigenvals)) > 0.05
     evaluator.close()
 
@@ -147,13 +145,11 @@ def test_sqlite_relational_views():
     """8. Test SQLite ViewCdtOverlapDiracAudit produces certified audit verdicts."""
     evaluator = CdtOverlapDiracEvaluator()
 
-    # 1. Regular gapped complex
     g_reg = evaluator.build_regular_gapped_complex("sql_reg", num_vertices=6)
     r_reg = evaluator.record_complex_evaluation(g_reg)
     assert r_reg["audit_verdict"] == "EXACT_CHIRAL_OVERLAP_CERTIFIED"
     assert r_reg["classification"] == "ExactChiralOverlapPreserved"
 
-    # 2. Singular gapless complex
     g_sing = evaluator.build_singular_gapless_complex("sql_sing", num_vertices=8)
     r_sing = evaluator.record_complex_evaluation(g_sing)
     assert r_sing["audit_verdict"] == "LOCALITY_OBSTRUCTION_DETECTED"

@@ -1,8 +1,3 @@
-//! Checked receipt for the pinned d=6 transport-closure subcertificate.
-//!
-//! This module validates the shape and key terminal fields of the existing
-//! transport-closure receipt. It does not rebuild the Apache-derived
-//! certificate and it does not prove coverage of all MUB(6) triples.
 
 use std::path::Path;
 

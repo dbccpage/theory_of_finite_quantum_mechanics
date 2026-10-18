@@ -1,19 +1,7 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
--- Integer quadratic frame identities; NOT a proof of Gleason's theorem.
--- AuthorityEffect: None
 
 namespace GleasonTheorem
 
-/-- Integer coefficients and a declared denominator for a quadratic form:
-    Q(x, y) = a * x^2 + 2 b * x * y + c * y^2
-    induced by a symmetric matrix with unit trace condition a + c = denom. -/
 structure QuadraticFrameFunction2 where
   a : Int
   b : Int
@@ -22,14 +10,9 @@ structure QuadraticFrameFunction2 where
   h_denom_pos : denom > 0
   h_unit_trace : a + c = (denom : Int)
 
-/-- Evaluation of the quadratic form on a 2D vector (x, y):
-    Q(x, y) = a * x^2 + 2 b * x * y + c * y^2. -/
 def eval_quad (q : QuadraticFrameFunction2) (x y : Int) : Int :=
   q.a * (x * x) + 2 * q.b * (x * y) + q.c * (y * y)
 
-/-- Quadratic frame identity in d = 2:
-    For any quadratic form Q and any orthogonal pair (ux, uy) and (-uy, ux),
-    the sum Q(u) + Q(u_perp) equals (a + c) * ||u||^2. -/
 theorem quad_frame_sum (q : QuadraticFrameFunction2) (ux uy : Int) :
     eval_quad q ux uy + eval_quad q (-uy) ux = (q.a + q.c) * (ux * ux + uy * uy) := by
   dsimp [eval_quad]
@@ -53,18 +36,11 @@ theorem quad_frame_sum (q : QuadraticFrameFunction2) (ux uy : Int) :
   rw [h_lin, h_dist_a, h_dist_c]
   exact (Int.add_mul q.a q.c (ux * ux + uy * uy)).symm
 
-/-- Normalized Frame Sum:
-    When evaluated on an orthonormal frame with ||u||^2 = denom,
-    the sum Q(u) + Q(v) = denom * denom (total probability 1.0 when divided by denom^2). -/
 theorem frame_sum_on_unit_frame (q : QuadraticFrameFunction2) (ux uy : Int)
     (h_norm : ux * ux + uy * uy = (q.denom : Int)) :
     eval_quad q ux uy + eval_quad q (-uy) ux = (q.denom : Int) * (q.denom : Int) := by
   rw [quad_frame_sum, q.h_unit_trace, h_norm]
 
-/-- With INTEGER cross coefficient b, the diagonal value 1 + 2b is odd.
-    This does not construct a binary frame function or rule out real/rational
-    quadratic coefficients (b = 1/2 would give value 2). Historical name retained;
-    neither dimension-two non-Born existence nor general Gleason follows. -/
 theorem d2_binary_non_bornian_obstruction (q : QuadraticFrameFunction2)
     (_h_denom_one : q.denom = 1)
     (h_e0 : eval_quad q 1 0 = 1)
@@ -85,3 +61,6 @@ theorem d2_binary_non_bornian_obstruction (q : QuadraticFrameFunction2)
 #print axioms d2_binary_non_bornian_obstruction
 
 end GleasonTheorem
+
+private def l5aProvenance : String :=
+  "Origin: lean4/GleasonTheorem.lean Claim: quad_frame_sum AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

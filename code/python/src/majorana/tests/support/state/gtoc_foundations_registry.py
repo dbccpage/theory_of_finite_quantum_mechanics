@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/gtoc_foundations_registry.rs
-# Rust sha256: 6b7fd8cccf38ea3373190199efd3c05278ea13cb1a59d09db8e1a9c70f7ee7d9
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,15 +38,12 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 G11_FOUNDATIONS_PACKET_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 G11_FOUNDATIONS_VERIFICATION_SCHEMA_V1: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 G11_SOURCE_LEDGER_V1: Any = None
 
 
@@ -83,11 +76,9 @@ PlGtocRowIdV1 = Enum(
 PlGtocRowIdV1.__doc__ = "Structural mirror of Rust ``PlGtocRowIdV1`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 ALL: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
@@ -384,6 +375,5 @@ def verify_g11_foundations_v1(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

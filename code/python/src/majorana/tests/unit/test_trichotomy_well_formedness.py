@@ -39,7 +39,6 @@ class TestInconsistentWitnessRefusal:
         assert excinfo.value.token == "INCONSISTENT_WITNESS"
 
     def test_zero_phi_with_positive_gamma_refuses_on_full_classifier(self) -> None:
-        # Must never emit ExactRepair over an inconsistent witness pair.
         with pytest.raises(TerminalizerRefusal, match="INCONSISTENT_WITNESS"):
             classify_phi_gamma(0, "1/7")
 
@@ -56,15 +55,10 @@ class TestExactRailInputDiscipline:
             classify_trichotomy(1, 1e-30)
 
     def test_tiny_float_never_rounds_to_zero_mass(self) -> None:
-        # The OD-3 regression: 1e-30 via Fraction(float).limit_denominator()
-        # rounded to zero mass and classified ExactRepair. Now the float
-        # refuses; there is no rounding path left.
         with pytest.raises(TerminalizerRefusal, match="FLOAT_MASS_REFUSED"):
             classify_phi_gamma(1e-30, 0)
 
     def test_exact_string_1e30_is_positive_mass_closed_survivor(self) -> None:
-        # The exact-string spelling of the same magnitude is a legal exact
-        # rational and must classify as POSITIVE mass — never ExactRepair.
         assert classify_trichotomy("1e-30", 0) is CohomologicalStatus.ClosedSurvivor
         verdict = classify_phi_gamma("1e-30", 0)
         assert verdict.cohomological is CohomologicalStatus.ClosedSurvivor
@@ -116,9 +110,6 @@ class TestMassExponentBound:
             classify_trichotomy(huge_exponent_mass, 0)
         elapsed = time.monotonic() - start
         assert excinfo.value.token == "MASS_EXPONENT_OUT_OF_RANGE_REFUSED"
-        # The refusal must fire BEFORE Fraction() would materialize the
-        # giant numerator/denominator (that construction alone took ~1s
-        # pre-repair for a single ~2,000,000-digit literal).
         assert elapsed < 0.1
 
     def test_full_classifier_also_refuses_huge_exponent(self) -> None:
@@ -131,7 +122,6 @@ class TestMassExponentBound:
     def test_exponent_exactly_at_the_bound_is_still_accepted(
         self, boundary_exponent: str
     ) -> None:
-        # abs(exponent) > bound refuses; == bound is legal (fence-post).
         result = classify_trichotomy(boundary_exponent, 0)
         assert result is CohomologicalStatus.ClosedSurvivor
 
@@ -142,12 +132,10 @@ class TestMassExponentBound:
             classify_trichotomy("1e10001", 0)
 
     def test_small_exponent_masses_are_unaffected(self) -> None:
-        # Regression guard: the bound must not disturb ordinary literals.
         assert classify_trichotomy("1e-30", 0) is CohomologicalStatus.ClosedSurvivor
         assert classify_trichotomy("1e4", 0) is CohomologicalStatus.ClosedSurvivor
 
     def test_non_exponent_strings_are_unaffected(self) -> None:
-        # No 'e'/'E' present -> the exponent regex must not fire at all.
         assert classify_trichotomy("1/3", 0) is CohomologicalStatus.ClosedSurvivor
 
 

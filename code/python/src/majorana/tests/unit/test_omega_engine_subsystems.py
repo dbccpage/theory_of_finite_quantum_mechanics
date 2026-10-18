@@ -24,16 +24,15 @@ from omega_engine.crates.type import TypeRegistry, KindDefinition, verify_type_c
 
 
 def test_observer_subsystem():
-    # Observer projection matrix 3 channels x 3 measurements
     proj = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
     obs = Observer(observer_id="obs_001", num_channels=3, projection_matrix=proj)
-    
+
     omega = obs.observe([0.5, 1.0, -0.5])
     assert omega == [0.5, 1.0, -0.5]
-    
+
     artifact = obs.to_artifact()
     assert artifact.authority_effect == "None"
-    
+
     checked = obs.check_contract()
     assert checked.authority_effect == "EvidenceOnly"
 
@@ -41,10 +40,10 @@ def test_observer_subsystem():
 def test_observable_subsystem():
     observable = Observable(observable_id="observable_001")
     output = observable.extract(source_ref="state:001", raw_data=[1.0, 2.0, 3.0])
-    
+
     assert output.authority_effect == "EvidenceOnly"
     assert output.raw_values == [1.0, 2.0, 3.0]
-    
+
     checked = observable.check_output(output)
     assert checked.authority_effect == "FactOnly"
 
@@ -52,14 +51,12 @@ def test_observable_subsystem():
 def test_evaluator_subsystem():
     evaluator = Evaluator(evaluator_id="eval_001")
     policy = EvaluationPolicy(policy_id="strict_policy", max_phi1_tol=1e-3, max_gamma2_tol=1e-3)
-    
-    # 1. Admissible input
+
     good_input = EvaluationInput(candidate_id="cand_good", fact_envelopes={"phi1_mass": 0.0, "gamma2_mass": 0.0})
     good_res = evaluator.evaluate(good_input, policy)
     assert good_res.is_admissible is True
     assert good_res.verdict == "ACCEPT"
-    
-    # 2. Obstructed input
+
     bad_input = EvaluationInput(candidate_id="cand_bad", fact_envelopes={"phi1_mass": 0.5, "gamma2_mass": 0.0})
     bad_res = evaluator.evaluate(bad_input, policy)
     assert bad_res.is_admissible is False
@@ -79,16 +76,16 @@ def test_pipeline_subsystem():
         d0=[[-1.0, 0.0], [1.0, -1.0], [0.0, 1.0]],
         d1=[[1.0, 1.0, 1.0]],
     )
-    
+
     steps = [
         PipelineStep(step_id="s1", step_kind="extract"),
         PipelineStep(step_id="s2", step_kind="engine_step"),
         PipelineStep(step_id="s3", step_kind="evaluate"),
     ]
-    
+
     pipeline = Pipeline(pipeline_id="pipe_001", steps=steps)
     res = pipeline.run(run_id="run_001", carrier=carrier, cochain_vec=[0.0, 0.0, 0.0])
-    
+
     assert res.is_success is True
     assert res.status == "ACCEPT"
     assert len(res.steps_executed) == 3
@@ -98,7 +95,7 @@ def test_gamma2_functional_update():
     res = evaluate_gamma2([0.0, 0.0, 0.0])
     assert res.is_closed is True
     assert res.gamma2_mass == 0.0
-    
+
     defect = curvature_defect([1.0, 2.0], [1.0, 1.0])
     assert defect == 1.0
 

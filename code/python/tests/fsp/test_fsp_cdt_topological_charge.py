@@ -45,7 +45,6 @@ def test_lean4_topological_charge_theorems():
     assert "instantons_preserve_wdw_constraint" in content
     assert "TopologicalSusceptibilityWdwBreachObstruction" in content
 
-    # Test compilation
     result = subprocess.run(["lean", str(lean_file)], capture_output=True, text=True)
     assert result.returncode == 0, f"Lean compilation failed: {result.stderr}"
 
@@ -160,7 +159,6 @@ def test_sqlite_relational_schema_and_view_integrity():
     """Validates full relational persistence and SQL audit view across both regimes."""
     evaluator = CdtTopologicalChargeEvaluator(in_memory=True)
 
-    # Run both ensembles
     evaluator.evaluate_instanton_susceptibility_ensemble(
         ensemble_id="ens_regime_a",
         geometry_regime="SMOOTH_SEMICLASSICAL",
@@ -176,7 +174,6 @@ def test_sqlite_relational_schema_and_view_integrity():
         seed=2,
     )
 
-    # Check database counts
     evaluator.cur.execute("SELECT COUNT(*) FROM CdtTopologicalChargeTrajectory")
     row_count = evaluator.cur.fetchone()[0]
     assert row_count == 20
@@ -189,7 +186,6 @@ def test_sqlite_relational_schema_and_view_integrity():
     summary_count = evaluator.cur.fetchone()[0]
     assert summary_count == 2
 
-    # Query View
     evaluator.cur.execute("SELECT ensemble_id, topological_audit_verdict FROM ViewCdtTopologicalChargeAudit")
     rows = dict(evaluator.cur.fetchall())
     assert rows["ens_regime_a"] == "TOPOLOGICAL_TUNNELING_WDW_CERTIFIED"

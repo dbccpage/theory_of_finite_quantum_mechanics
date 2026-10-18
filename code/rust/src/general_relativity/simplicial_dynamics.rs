@@ -1,6 +1,3 @@
-//! Finite oriented-bivector boundary identities and a declared triad-flux slice.
-//! The curvature/master functionals are a finite model, not the continuum
-//! Hamiltonian constraint algebra. AuthorityEffect: None.
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
 use num_traits::{Signed, Zero};
@@ -270,8 +267,6 @@ impl CauchySlice {
     }
     pub fn constraints(&self) -> Constraints {
         let n = self.positions.len();
-        // A Gauss node is a tetrahedron. Its outward oriented face fluxes
-        // share the declared Euclidean frame and sum to zero geometrically.
         let gauss: Vec<V3> = self
             .tetrahedra
             .iter()
@@ -334,7 +329,6 @@ impl CauchySlice {
             boundary_area: self.boundary_faces().len(),
         }
     }
-    /// Source-compatible finite proposal. A smaller edge trace defect need not reduce total master/variance.
     pub fn relaxation_step(
         &mut self,
         tau: &Q,
@@ -416,7 +410,6 @@ impl CauchySlice {
     }
 }
 
-/// Symmetric central hinge forces. Global cancellation need not imply local closure.
 pub fn bianchi(
     positions: &[Vec<Q>],
     edges: &[(usize, usize, Q)],
@@ -453,8 +446,6 @@ pub fn bianchi(
     Ok((forces, total, torque))
 }
 
-/// Transfer the finite orbital bivector r wedge p from body to radiation.
-/// The total bivector is conserved exactly; no continuum radiation model is asserted.
 pub fn emit_angular(
     body: &mut BasicMatrix<Q>,
     radiation: &mut BasicMatrix<Q>,

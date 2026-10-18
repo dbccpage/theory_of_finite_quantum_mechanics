@@ -1,15 +1,3 @@
-//! Compactly Generated Categories and Compact Objects.
-//!
-//! Provides mathematically rigorous foundations for accessible and presentable ∞-categories:
-//! - Compact objects K: Hom(K, -) commutes with filtered colimits (finite presentability).
-//! - Filtered colimit diagrams and cocones.
-//! - Factorization of morphisms K -> colim D through finite stages D(i_0).
-//! - Compact generators G: set of compact objects generating the category under filtered colimits.
-//! - Coverage verification: every object is a filtered colimit of compact generators.
-//!
-//! Zero floats. Soviet Builder allocation bounded by `OperationLimits`.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{HashMap, HashSet};
 
@@ -18,23 +6,19 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// A compact object K in a compactly generated category.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CompactObject {
     pub id: String,
     pub is_generator: bool,
 }
 
-/// A stage in a filtered diagram.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DiagramStage {
     pub index: usize,
     pub object_id: String,
-    /// Coprojection map ι_i: D(i) -> colim D
     pub coprojection_id: String,
 }
 
-/// A filtered diagram D: I -> C with colimit L = colim D.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FilteredDiagram {
     pub id: String,
@@ -42,31 +26,25 @@ pub struct FilteredDiagram {
     pub stages: Vec<DiagramStage>,
 }
 
-/// Witness that a morphism f: K -> colim D factors through some finite stage D(i_0):
-/// f = ι_{i_0} ∘ g where g: K -> D(i_0).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FactorizationWitness {
     pub morphism_id: String,
     pub compact_object_id: String,
     pub diagram_id: String,
     pub stage_index: usize,
-    /// The factored morphism g: K -> D(i_0)
     pub factored_morphism_id: String,
 }
 
-/// Compactly generated category structure and verification.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CompactlyGeneratedCategory {
     pub objects: Vec<String>,
     pub compact_generators: HashSet<String>,
     pub diagrams: HashMap<String, FilteredDiagram>,
     pub factorizations: Vec<FactorizationWitness>,
-    /// Representation of each general object as a filtered colimit of compact generators
     pub object_presentations: HashMap<String, String>,
 }
 
 impl CompactlyGeneratedCategory {
-    /// Constructs an empty compactly generated category under `OperationLimits`.
     pub fn new(limits: &OperationLimits) -> Result<Self, HigherCategoryError> {
         let mut objects = Vec::new();
         reserve_exact(&mut objects, 8, limits)?;
@@ -79,7 +57,6 @@ impl CompactlyGeneratedCategory {
         })
     }
 
-    /// Adds an object to the category.
     pub fn add_object(&mut self, id: impl Into<String>, is_generator: bool, limits: &OperationLimits) -> Result<(), HigherCategoryError> {
         let id_str = id.into();
         if self.objects.contains(&id_str) {
@@ -93,19 +70,16 @@ impl CompactlyGeneratedCategory {
         Ok(())
     }
 
-    /// Registers a filtered diagram with its colimit object.
     pub fn add_diagram(&mut self, diagram: FilteredDiagram) {
         self.diagrams.insert(diagram.id.clone(), diagram);
     }
 
-    /// Registers a factorization witness for a morphism from a compact object to a colimit.
     pub fn add_factorization_witness(&mut self, witness: FactorizationWitness, limits: &OperationLimits) -> Result<(), HigherCategoryError> {
         reserve_exact(&mut self.factorizations, 1, limits)?;
         self.factorizations.push(witness);
         Ok(())
     }
 
-    /// Declares how an object is presented as a filtered colimit of compact generators.
     pub fn set_object_presentation(&mut self, object_id: &str, diagram_id: &str) -> Result<(), HigherCategoryError> {
         if !self.objects.contains(&object_id.to_string()) {
             return Err(HigherCategoryError::ZeroCellNotFound { id: object_id.to_string() });
@@ -117,10 +91,6 @@ impl CompactlyGeneratedCategory {
         Ok(())
     }
 
-    /// Verifies that all factorization witnesses are structurally valid:
-    /// 1. Morphism IDs are non-empty and well-formed.
-    /// 2. The compact object is registered.
-    /// 3. The diagram exists, contains the claimed stage index, and stage fields are non-empty.
     pub fn verify_compact_factorizations(&self) -> Result<(), HigherCategoryError> {
         for witness in &self.factorizations {
             if witness.morphism_id.trim().is_empty() || witness.factored_morphism_id.trim().is_empty() {
@@ -167,9 +137,6 @@ impl CompactlyGeneratedCategory {
         Ok(())
     }
 
-    /// Verifies that every object in the category is covered by compact generators:
-    /// Either the object is itself a compact generator, or it has a valid presentation
-    /// as a filtered colimit whose stages consist of compact generators.
     pub fn verify_generator_coverage(&self) -> Result<(), HigherCategoryError> {
         for obj in &self.objects {
             if self.compact_generators.contains(obj) {
@@ -191,7 +158,6 @@ impl CompactlyGeneratedCategory {
                 }
             })?;
 
-            // Check that all stages in presenting diagram are compact generators
             for stage in &diagram.stages {
                 if !self.compact_generators.contains(&stage.object_id) {
                     return Err(HigherCategoryError::CompactGeneratorCoverageViolation {
@@ -207,7 +173,6 @@ impl CompactlyGeneratedCategory {
         Ok(())
     }
 
-    /// Master verification for compactly generated category.
     pub fn validate(&self) -> Result<(), HigherCategoryError> {
         self.verify_compact_factorizations()?;
         self.verify_generator_coverage()?;

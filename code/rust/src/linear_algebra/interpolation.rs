@@ -1,23 +1,8 @@
-//! Bounded exact Neville--Aitken evaluation and rational interval propagation.
-//!
-//! For distinct nodes, the recurrence evaluates the unique interpolating
-//! polynomial of each finite prefix. Endpoint propagation encloses every
-//! polynomial obtained by independently choosing a sample in its interval;
-//! repeated dependencies can widen this enclosure. The separate Lagrange
-//! calculation gives the tight image of that sample box and can replay it.
-//! Neither calculation supplies a function remainder or an asymptotic limit.
-//!
-//! All scalar arithmetic uses one caller-owned [`RationalBudget`]. Limits count
-//! scalar calls, canonicality checks and comparisons, rather than CPU work or
-//! scalar-internal allocation. Each scratch/output collection is element-bounded
-//! and uses fallible reservation. AuthorityEffect: None.
 
 use super::rational_bareiss::{RationalBudget, RationalError};
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
 
-/// Endpoint transport without depending on a higher-level interval carrier.
-/// Every consuming operation checks canonical rationals and endpoint order.
 pub type RationalEndpoints = (BigRational, BigRational);
 
 #[derive(Clone, Debug, PartialEq, Eq, thiserror::Error)]
@@ -92,7 +77,6 @@ pub fn validate_interval(
     Ok(())
 }
 
-/// Exact Minkowski addition of two validated rational intervals.
 pub fn interval_add(
     a: &RationalEndpoints,
     b: &RationalEndpoints,
@@ -103,7 +87,6 @@ pub fn interval_add(
     Ok((fuel.add(&a.0, &b.0)?, fuel.add(&a.1, &b.1)?))
 }
 
-/// The exact image under scalar multiplication, reversing endpoints for `k < 0`.
 pub fn interval_scale(
     a: &RationalEndpoints,
     k: &BigRational,
@@ -120,7 +103,6 @@ pub fn interval_scale(
     Ok((fuel.mul(lo, k)?, fuel.mul(hi, k)?))
 }
 
-/// Division by a nonzero rational scalar, with exact endpoint orientation.
 pub fn interval_divide(
     a: &RationalEndpoints,
     k: &BigRational,
@@ -128,7 +110,7 @@ pub fn interval_divide(
 ) -> Result<RationalEndpoints, NevilleError> {
     validate_interval(a, fuel)?;
     fuel.rational(k)?;
-    fuel.charge(1)?;
+    fuel.charge(2)?;
     if k.is_zero() {
         return Err(RationalError::DivisionByZero.into());
     }
@@ -140,7 +122,6 @@ pub fn interval_divide(
     Ok((fuel.div(lo, k)?, fuel.div(hi, k)?))
 }
 
-/// Checked closed intersection. A shared endpoint is a valid point interval.
 pub fn intersect(
     a: &RationalEndpoints,
     b: &RationalEndpoints,
@@ -157,8 +138,6 @@ pub fn intersect(
     Ok((lo.clone(), hi.clone()))
 }
 
-/// Exact values `p_1(at), ..., p_N(at)` from the Neville--Aitken recurrence.
-/// Distinct nodes may arrive in any order, including negative rationals.
 pub fn interpolate_prefixes(
     nodes: &[BigRational],
     values: &[BigRational],
@@ -187,7 +166,6 @@ pub fn interpolate_prefixes(
     Ok(prefixes)
 }
 
-/// Conservative interval propagation through that same Neville recurrence.
 pub fn interpolate_interval_prefixes(
     nodes: &[BigRational],
     samples: &[RationalEndpoints],
@@ -217,8 +195,6 @@ pub fn interpolate_interval_prefixes(
     Ok(prefixes)
 }
 
-/// Independent Lagrange-weight image for every prefix of the sample box.
-/// Unlike recursive interval propagation, each uncertain sample occurs once.
 pub fn lagrange_interval_prefixes(
     nodes: &[BigRational],
     samples: &[RationalEndpoints],
@@ -253,4 +229,27 @@ pub fn lagrange_interval_prefixes(
         prefixes.push(sum);
     }
     Ok(prefixes)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::linear_algebra::bareiss_det::RationalLimits;
+
+    fn q(n: i64) -> BigRational {
+        BigRational::from_integer(n.into())
+    }
+
+    #[test]
+    fn dividing_a_positive_interval_charges_both_explicit_predicates() {
+        let mut fuel = RationalBudget::new(RationalLimits {
+            max_scalar_ops: 100,
+            max_elements: 100,
+            max_bits: 4096,
+        });
+        let scaled = interval_divide(&(q(1), q(2)), &q(2), &mut fuel).unwrap();
+        assert_eq!(scaled.0, q(1) / &q(2));
+        assert_eq!(scaled.1, q(1));
+        assert_eq!(fuel.used(), 12);
+    }
 }

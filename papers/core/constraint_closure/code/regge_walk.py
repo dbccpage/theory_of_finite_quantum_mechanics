@@ -202,10 +202,9 @@ def rung3_tetrahedron(prev: Rung) -> Rung:
     from regge_climb import su2_tetra_admissible
 
     admissible = su2_tetra_admissible(spins)
-    # Regular tetrahedron dihedral: arccos(1/3). Named geometric extra.
     theta = math.acos(1.0 / 3.0)
     k_flat = 2.0 * math.pi / theta
-    k = 5  # one under-flat hinge, same motif as 2d k=5
+    k = 5
     epsilon_3d = 2.0 * math.pi - k * theta
     return Rung(
         index=3,
@@ -228,12 +227,10 @@ def rung4_four_simplex(prev: Rung) -> Rung:
     """4-simplex: 4d hinge deficit. Λ_toy = mean |ε| in first-fire units."""
     unit = int(prev.payload["unit"])
     eps3 = float(prev.payload["epsilon_3d"])
-    # Regular 4-simplex dihedral: arccos(1/4). Named geometric extra.
     theta4 = math.acos(1.0 / 4.0)
     k_flat4 = 2.0 * math.pi / theta4
     k = 5
     epsilon_4d = 2.0 * math.pi - k * theta4
-    # One 4-simplex, 10 triangular hinges; toy uses five under-flat, five flat.
     n_under, n_flat = 5, 5
     mean_abs_eps = (n_under * abs(epsilon_4d) + n_flat * 0.0) / (n_under + n_flat)
     lambda_toy = mean_abs_eps / unit

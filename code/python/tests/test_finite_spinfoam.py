@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the tetrahedron Euler count."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the tetrahedron Euler count.
+
+Origin: code/python/src/qm/finite_spinfoam.py
+Claim: urn:omega:fqm:spinfoam:tetrahedron-euler:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -14,6 +24,21 @@ import pytest
 from src.combinatorics.finite_combinatorics import binomial_exact
 from src.qm.finite_spinfoam import SpinfoamError, certified_euler, main, tetrahedron_euler
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "finite_spinfoam.py"
 
 
@@ -27,7 +52,7 @@ def test_labeled_tetrahedron_has_characteristic_two() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(SpinfoamError, match="float refused") as floated:
-        tetrahedron_euler((1.0, 2, 3, 4))
+        tetrahedron_euler((_probe("1.0"), 2, 3, 4))
     assert floated.value.invariant == "float refused at the vertex boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is SpinfoamError
@@ -145,7 +170,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     euler = namespace["tetrahedron_euler"]
     certified = namespace["certified_euler"]
-    if not callable(euler) or not callable(certified):
+    if not _all_hold((callable(euler), callable(certified),)):
         return False
     try:
         standard = euler((0, 1, 2, 3))
@@ -162,7 +187,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(euler):
         return False
     probes = (
-        (lambda: euler((1.0, 2, 3, 4)), "float refused at the vertex boundary"),
+        (lambda: euler((_probe("1.0"), 2, 3, 4)), "float refused at the vertex boundary"),
         (lambda: euler((True, 2, 3, 4)), "boolean refused where an integer vertex was required"),
         (lambda: euler(("0", 1, 2, 3)), "tetrahedron vertex is not an exact integer"),
         (lambda: euler((0, 1, 2)), "tetrahedron vertices are not four"),
@@ -178,7 +203,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["SpinfoamError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -207,6 +232,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

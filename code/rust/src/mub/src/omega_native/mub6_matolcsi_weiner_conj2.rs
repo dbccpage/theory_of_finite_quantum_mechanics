@@ -1,20 +1,3 @@
-//! Matolcsi-Weiner Conjecture 2 verifier (arXiv:2503.14752).
-//!
-//! Verifies the algebraic identity from Matolcsi-Matszangosz-Varga-Weiner (2025):
-//!
-//! For any MUB-triplet (X₁, X₂, X₃) with transition matrices H₁, H₂, H₃, and
-//! for all permutations π ∈ S₆:
-//!   (a) G_{Hⱼ}(π(1,1,1,-1,-1,-1)) = 0  for j=1,2,3
-//!   (b) G_{Hⱼ}(π(3,3,3,-3,-3,-3)) · G_{H*ⱼ}(π(3,3,3,-3,-3,-3)) = 0  for j=1,2,3
-//!
-//! where G_H(γ) = |∑_j h_j^{γ_j}|² with h_j = columns of H.
-//!
-//! The proof chain (Prop. 4.2 in the paper): Conj2 + Conj3 ⟹ MUB(6)=3.
-//!
-//! This module evaluates G_H(γ) over Cyc24 (exact cyclotomic arithmetic) on the
-//! catalog of known MUB-triples from omega_mub.
-//!
-//! AuthorityEffect: None
 
 use crate::omega_native::exact::d6_exact_curvature_cochain::{
     inner, is_mutually_unbiased_triple_exact, ExactVec, COLUMN_COUNT,
@@ -24,7 +7,6 @@ use serde::Serialize;
 
 type GammaVec = [i64; 6];
 
-/// All 20 distinct permutations of (1,1,1,-1,-1,-1) = C(6,3) = 20 elements.
 pub fn gamma1_permutations() -> Vec<GammaVec> {
     let base = [1i64, 1, 1, -1, -1, -1];
     let mut perms = Vec::new();
@@ -34,7 +16,6 @@ pub fn gamma1_permutations() -> Vec<GammaVec> {
     perms
 }
 
-/// All 20 distinct permutations of (3,3,3,-3,-3,-3).
 pub fn gamma2_permutations() -> Vec<GammaVec> {
     let base = [3i64, 3, 3, -3, -3, -3];
     let mut perms = Vec::new();
@@ -76,16 +57,6 @@ fn next_permutation(arr: &mut [i64; 6]) -> bool {
     true
 }
 
-/// Evaluate the monomial power G_H(γ) for a 6×6 CHM H.
-///
-/// H is stored as `h[row][col]` in Cyc24.
-/// Columns h_j have entries h[0][j], h[1][j], ..., h[5][j].
-///
-/// G_H(γ) = |∑_{j=0}^{5} ∏_{k=0}^{5} H_{k,j}^{γ_k}|²
-///
-/// For unit-circle entries, H_{k,j}^{-n} = conj(H_{k,j})^n.
-///
-/// Returns exact Cyc24 value (real, non-negative when entries are unimodular).
 pub fn evaluate_g_h(h: &[[Cyc24; 6]; 6], gamma: &GammaVec) -> Cyc24 {
     let mut sum = Cyc24::zero();
     for j in 0..6 {
@@ -109,7 +80,6 @@ pub fn evaluate_g_h(h: &[[Cyc24; 6]; 6], gamma: &GammaVec) -> Cyc24 {
     sum.mul(&sum.conj())
 }
 
-/// Result of verifying Conjecture 2 on a single transition matrix.
 #[derive(Debug, Clone, Serialize)]
 pub struct Conj2SingleResult {
     pub matrix_id: String,
@@ -120,7 +90,6 @@ pub struct Conj2SingleResult {
     pub conjecture_2_holds: bool,
 }
 
-/// Result of verifying Conjecture 2 on a full MUB-triple.
 #[derive(Debug, Clone, Serialize)]
 pub struct Conj2TripleResult {
     pub triple_id: String,
@@ -132,9 +101,6 @@ pub struct Conj2TripleResult {
     pub firewall: String,
 }
 
-/// Compute the CHM transition matrix H = sqrt(6) * <U1_j, U2_k>.
-///
-/// H is a 6x6 matrix over Cyc24 with entries H[row][col] = sqrt(6) * <basis1[row], basis2[col]>.
 pub fn transition_matrix(basis1_cols: &[ExactVec], basis2_cols: &[ExactVec]) -> [[Cyc24; 6]; 6] {
     let sqrt_six = Cyc24::sqrt2().mul(&Cyc24::sqrt3());
     std::array::from_fn(|row| {
@@ -145,7 +111,6 @@ pub fn transition_matrix(basis1_cols: &[ExactVec], basis2_cols: &[ExactVec]) -> 
     })
 }
 
-/// Extract three 6-column bases from an 18-column system.
 pub fn extract_bases(all_cols: &[ExactVec]) -> (Vec<ExactVec>, Vec<ExactVec>, Vec<ExactVec>) {
     assert_eq!(all_cols.len(), COLUMN_COUNT, "expected 18 columns for triple");
     let b1: Vec<ExactVec> = all_cols[0..6].to_vec();
@@ -154,16 +119,6 @@ pub fn extract_bases(all_cols: &[ExactVec]) -> (Vec<ExactVec>, Vec<ExactVec>, Ve
     (b1, b2, b3)
 }
 
-/// Verify Conjecture 2 Laurent conditions on a full MUB-triple.
-///
-/// First certifies that the triple is an actual mutually unbiased triple
-/// (orthonormal within each basis and |<e_i, e_j>|^2 = 1/6 across distinct bases)
-/// using [`is_mutually_unbiased_triple_exact`].
-///
-/// Then computes the three transition matrices H_12, H_23, H_31 and verifies
-/// both Conjecture 2 Laurent conditions:
-///   (a) G_H(pi(1,1,1,-1,-1,-1)) = 0 for all 20 permutations
-///   (b) G_H(pi(3,3,3,-3,-3,-3)) * G_{H*}(pi(3,3,3,-3,-3,-3)) = 0 for all 20 permutations
 pub fn verify_mub_triple_conjecture2(triple_id: &str, all_cols: &[ExactVec]) -> Conj2TripleResult {
     let is_mu = is_mutually_unbiased_triple_exact(all_cols);
     let (b1, b2, b3) = extract_bases(all_cols);
@@ -189,8 +144,6 @@ pub fn verify_mub_triple_conjecture2(triple_id: &str, all_cols: &[ExactVec]) -> 
     }
 }
 
-/// Verify Conjecture 2 (part a: gamma1) on a single CHM H.
-/// Returns the number of failures (0 means the identity holds).
 pub fn verify_gamma1(h: &[[Cyc24; 6]; 6]) -> usize {
     let perms = gamma1_permutations();
     let mut failures = 0;
@@ -203,8 +156,6 @@ pub fn verify_gamma1(h: &[[Cyc24; 6]; 6]) -> usize {
     failures
 }
 
-/// Verify Conjecture 2 (part b: gamma2 product) on a single CHM H.
-/// Checks G_H(γ₂) · G_{H*}(γ₂) = 0 for all permutations γ₂ of (3,3,3,-3,-3,-3).
 pub fn verify_gamma2_product(h: &[[Cyc24; 6]; 6]) -> usize {
     let perms = gamma2_permutations();
     let h_star = adjoint_matrix(h);
@@ -220,7 +171,6 @@ pub fn verify_gamma2_product(h: &[[Cyc24; 6]; 6]) -> usize {
     failures
 }
 
-/// Verify Conjecture 2 on a single CHM H (both parts).
 pub fn verify_conjecture2_single(matrix_id: &str, h: &[[Cyc24; 6]; 6]) -> Conj2SingleResult {
     let g1_failures = verify_gamma1(h);
     let g2_failures = verify_gamma2_product(h);
@@ -235,22 +185,10 @@ pub fn verify_conjecture2_single(matrix_id: &str, h: &[[Cyc24; 6]; 6]) -> Conj2S
     }
 }
 
-/// Compute the Hermitian adjoint H* (conjugate transpose).
 pub fn adjoint_matrix(h: &[[Cyc24; 6]; 6]) -> [[Cyc24; 6]; 6] {
     std::array::from_fn(|i| std::array::from_fn(|j| h[j][i].conj()))
 }
 
-/// Construct the displayed two-phase affine ansatz A_6(x, y) over Cyc24.
-///
-/// This matrix represents the two-phase affine non-tensor configuration:
-///   [ 1,  1,          1,          1,          1,          1         ]
-///   [ 1, -1,          x,         -x,          y,         -y         ]
-///   [ 1,  1,      omega,      omega,   omega^2,    omega^2         ]
-///   [ 1, -1,    omega*x,   -omega*x, omega^2*y, -omega^2*y         ]
-///   [ 1,  1,    omega^2,    omega^2,      omega,      omega         ]
-///   [ 1, -1,  omega^2*x, -omega^2*x,    omega*y,   -omega*y         ]
-///
-/// where omega = e^{2pi i / 3} = zeta24(8) and omega^2 = zeta24(16).
 pub fn make_displayed_karlsson_ansatz(x: &Cyc24, y: &Cyc24) -> [[Cyc24; 6]; 6] {
     let one = Cyc24::one();
     let neg_one = one.neg();
@@ -272,7 +210,6 @@ pub fn make_displayed_karlsson_ansatz(x: &Cyc24, y: &Cyc24) -> [[Cyc24; 6]; 6] {
     ]
 }
 
-/// Count the number of distinct rows that contain at least one entry equal to -1 in Cyc24.
 pub fn count_rows_with_minus_one(h: &[[Cyc24; 6]; 6]) -> usize {
     let neg_one = Cyc24::one().neg();
     let mut count = 0;
@@ -479,8 +416,6 @@ mod tests {
             h
         };
 
-        // Test arbitrary 24th root samples for (b, c, e, f).
-        // Parity cancellation must hold unconditionally regardless of whether z1 + z2 = 0.
         let test_exponents = [
             (2, 5, 7, 11),
             (1, 4, 10, 19),
@@ -518,7 +453,6 @@ mod tests {
                 "Clause (b) G_H(gamma2) * G_H*(gamma2) must vanish for 2-circulant ({kb},{kc},{ke},{kf})"
             );
 
-            // Both individual factors must vanish for all 20 permutations
             for gamma in &perms2 {
                 let v_h = evaluate_g_h(&h, gamma);
                 let v_h_star = evaluate_g_h(&h_star, gamma);
@@ -641,7 +575,6 @@ mod tests {
     fn conjecture2_forces_three_minus_one_rows_algebraic_test() {
         use crate::omega_native::exact::mub6_orbit_exhaustiveness::canonical_catalog_candidates;
 
-        // 1. Fourier-Dita F6 has >= 3 rows with -1
         let mut f6: [[Cyc24; 6]; 6] =
             std::array::from_fn(|_| std::array::from_fn(|_| Cyc24::zero()));
         for j in 0..6 {
@@ -653,14 +586,12 @@ mod tests {
         let f6_count = count_rows_with_minus_one(&f6);
         assert!(f6_count >= 3, "F6 must contain >= 3 rows with -1, got {f6_count}");
 
-        // 2. Karlsson displayed ansatz has >= 3 rows with -1
         let x = Cyc24::zeta24(1);
         let y = Cyc24::zeta24(5);
         let k_mat = make_displayed_karlsson_ansatz(&x, &y);
         let k_count = count_rows_with_minus_one(&k_mat);
         assert!(k_count >= 3, "Karlsson ansatz must contain >= 3 rows with -1, got {k_count}");
 
-        // 3. Catalog candidates:
         let candidates = canonical_catalog_candidates();
         for c in &candidates {
             let g1 = verify_gamma1(&c.matrix);
@@ -680,7 +611,6 @@ mod tests {
 
     #[test]
     fn actual_mu_triples_satisfy_conjecture2_laurent_conditions() {
-        // 1. Canonical product triple T0 = {I, X2 (x) Q0, Y2 (x) Q1}
         let t0_cols = canonical_triple_exact();
         assert_eq!(t0_cols.len(), 18);
         assert!(
@@ -700,7 +630,6 @@ mod tests {
         assert!(res_t0.h23_result.conjecture_2_holds);
         assert!(res_t0.h31_result.conjecture_2_holds);
 
-        // 2. All 6 genuine Dita seeds
         let seeds = all_genuine_dita_seeds();
         assert_eq!(seeds.len(), 6, "must test all 6 genuine Dita seeds");
         for &(dx, dy, qa) in &seeds {

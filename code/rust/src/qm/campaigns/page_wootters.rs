@@ -1,8 +1,3 @@
-//! Campaign module page_wootters.
-//!
-//! A stationary history on a 3-tick clock entangled with a bit. Conditioning
-//! on clock tick 1 reads off `X|ψ⟩`. The clock marginals are equal, and their
-//! sum is the history norm.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;

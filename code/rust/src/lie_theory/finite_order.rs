@@ -1,22 +1,3 @@
-//! Exact decision of whether a rational matrix has finite order.
-//!
-//! A matrix `M` over `Q` has finite order exactly when its minimal polynomial is a product
-//! of distinct cyclotomic polynomials. Its characteristic polynomial `chi` then has integer
-//! coefficients and factors into cyclotomic polynomials `Phi_k` with `phi(k) <= n` (Kronecker:
-//! the eigenvalues are roots of unity of degree at most `n`), which bounds `k` by `2 n^2`.
-//! The decision needs no iteration bound:
-//!
-//! 1. compute `chi` (Faddeev-LeVerrier);
-//! 2. divide out `Phi_k` for every `k` with `phi(k) <= n`; a cofactor other than 1 means
-//!    some eigenvalue is not a root of unity, so the order is infinite;
-//! 3. let `L` be the least common multiple of the `k` found; the order is `L` if `M^L = I`
-//!    and infinite otherwise (a non-diagonalisable `M` has roots-of-unity eigenvalues but
-//!    infinite order).
-//!
-//! [`rational_cosines_of_finite_order_rotations`] is Niven's set `{-1, -1/2, 0, 1/2, 1}`,
-//! derived from the cyclotomic polynomials of degree at most 2 rather than listed.
-//!
-//! AuthorityEffect: None.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -30,10 +11,8 @@ use linear_algebra::exact_field::{characteristic_polynomial, matrix as mx, Exact
 
 use crate::QMatrix;
 
-/// The largest dimension for which the decision is made.
 pub const MAX_DIMENSION: usize = 16;
 
-/// Refusals of the finite-order decision.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum FiniteOrderError {
     #[error("a square matrix of dimension 1..={MAX_DIMENSION} is required, got {rows}x{cols}")]
@@ -50,10 +29,6 @@ pub enum FiniteOrderError {
     Matrix(#[from] ExactFieldError),
 }
 
-/// The multiplicity of each cyclotomic polynomial `Phi_k` (with `phi(k) <= n`) in a monic
-/// integer polynomial of degree at most `n`, or `None` if it is not a product of them.
-/// Bounds greater than [`MAX_DIMENSION`] and polynomials exceeding the supplied
-/// bound are refused before the finite conductor search.
 pub fn cyclotomic_factorisation(
     polynomial: &Polynomial<BigRational>,
     degree_bound: usize,
@@ -73,7 +48,6 @@ pub fn cyclotomic_factorisation(
     }
     let mut remaining = polynomial.clone();
     let mut factors = Vec::new();
-    // phi(k) >= sqrt(k / 2), so phi(k) <= n forces k <= 2 n^2.
     for k in 1..=(2 * degree_bound * degree_bound).max(1) {
         if euler_phi(k) > degree_bound {
             continue;
@@ -103,7 +77,6 @@ pub fn cyclotomic_factorisation(
     }
 }
 
-/// The multiplicative order of a square rational matrix, or `None` if it is infinite.
 pub fn finite_order(m: &QMatrix) -> Result<Option<usize>, FiniteOrderError> {
     let n = m.rows();
     if m.rows() != m.cols() || n == 0 || n > MAX_DIMENSION {
@@ -113,7 +86,6 @@ pub fn finite_order(m: &QMatrix) -> Result<Option<usize>, FiniteOrderError> {
         });
     }
     let coefficients = characteristic_polynomial::characteristic_polynomial(m)?;
-    // A finite-order matrix has a monic integer characteristic polynomial.
     if coefficients.iter().any(|c| !c.is_integer()) {
         return Ok(None);
     }
@@ -132,11 +104,6 @@ pub fn finite_order(m: &QMatrix) -> Result<Option<usize>, FiniteOrderError> {
     Ok(mx::is_identity_matrix(&power)?.then_some(candidate))
 }
 
-/// The rational numbers `c` such that a rotation of the plane with cosine `c` and rational
-/// sine has finite order, in increasing order. They are the `cos` of the angles `2 pi j / k`
-/// that have rational cosine, which happens exactly for `phi(k) <= 2` (Niven): `k` in
-/// `1, 2, 3, 4, 6`. Read here from the cyclotomic polynomials `Phi_k = x^2 - 2 c x + 1`
-/// (or `x -+ 1`) instead of being listed.
 pub fn rational_cosines_of_finite_order_rotations() -> Result<Vec<BigRational>, FiniteOrderError> {
     let mut cosines: Vec<BigRational> = Vec::new();
     for k in 1..=6usize {
@@ -145,9 +112,7 @@ pub fn rational_cosines_of_finite_order_rotations() -> Result<Vec<BigRational>, 
         }
         let phi_k = cyclotomic_polynomial(k)?;
         let cosine = match phi_k.degree() {
-            // x - 1 and x + 1 give the rotations 1 and -1.
             Some(1) => -phi_k.coefficient(0),
-            // x^2 - 2 c x + 1 gives cos = -(coefficient of x) / 2.
             Some(2) => -phi_k.coefficient(1) / BigRational::from_integer(BigInt::from(2)),
             _ => continue,
         };
@@ -211,14 +176,12 @@ mod tests {
         assert_eq!(finite_order(&mat(&[&[1, 0], &[0, 1]])).unwrap(), Some(1));
         assert_eq!(finite_order(&mat(&[&[-1, 0], &[0, -1]])).unwrap(), Some(2));
         assert_eq!(finite_order(&mat(&[&[0, -1], &[1, 0]])).unwrap(), Some(4));
-        // The 3-cycle permutation matrix has order 3; the companion matrices of Phi_6 and Phi_3 have orders 6 and 3.
         assert_eq!(
             finite_order(&mat(&[&[0, 0, 1], &[1, 0, 0], &[0, 1, 0]])).unwrap(),
             Some(3)
         );
         assert_eq!(finite_order(&mat(&[&[0, -1], &[1, 1]])).unwrap(), Some(6));
         assert_eq!(finite_order(&mat(&[&[0, -1], &[1, -1]])).unwrap(), Some(3));
-        // A 5-cycle of order 5 and a block of orders 2 and 3 of order 6.
         let five = mat(&[
             &[0, 0, 0, 0, 1],
             &[1, 0, 0, 0, 0],
@@ -231,11 +194,9 @@ mod tests {
 
     #[test]
     fn matrices_of_infinite_order_are_decided_without_a_bound() {
-        // A rational rotation by an angle that is not a rational multiple of pi (cos = 3/5).
         let rotation =
             QMatrix::from_row_major(2, 2, vec![rq(3, 5), rq(-4, 5), rq(4, 5), rq(3, 5)]).unwrap();
         assert_eq!(finite_order(&rotation).unwrap(), None);
-        // A hyperbolic matrix, a unipotent matrix (eigenvalues 1 but not diagonalisable), a nonintegral one.
         assert_eq!(finite_order(&mat(&[&[2, 1], &[1, 1]])).unwrap(), None);
         assert_eq!(finite_order(&mat(&[&[1, 1], &[0, 1]])).unwrap(), None);
         assert_eq!(
@@ -249,7 +210,6 @@ mod tests {
 
     #[test]
     fn the_decision_agrees_with_direct_powers_up_to_the_order() {
-        // Independent route: M^k for k = 1..=12 against the identity.
         let candidates = [
             mat(&[&[0, -1], &[1, 0]]),
             mat(&[&[0, -1], &[1, 1]]),
@@ -288,11 +248,9 @@ mod tests {
 
     #[test]
     fn cyclotomic_factorisation_reports_multiplicities() {
-        // (x - 1)^2 (x^2 + x + 1) = x^4 - x^3 - x + 1 = Phi_1^2 Phi_3.
         let p = Polynomial::from_i64s(&[1, -1, 0, -1, 1]);
         let factors = cyclotomic_factorisation(&p, 4).unwrap().unwrap();
         assert_eq!(factors, vec![(1, 2), (3, 1)]);
-        // x^2 - 2 is not a product of cyclotomic polynomials.
         assert_eq!(
             cyclotomic_factorisation(&Polynomial::from_i64s(&[-2, 0, 1]), 2).unwrap(),
             None
@@ -300,9 +258,6 @@ mod tests {
     }
 }
 
-/// The multiplicative order over Q(i), decided by the faithful rational
-/// realification [Re A,-Im A; Im A,Re A]. The rational dimension budget applies
-/// to the doubled carrier. This is an algebraic decision, not a cutoff search.
 pub fn gaussian_finite_order(
     matrix: &linear_algebra::backend::basic_matrix::BasicMatrix<
         omega_number_theory::cyclotomic::GaussianRat,

@@ -1,13 +1,3 @@
-//! Wiring (S7): bind the registry to the real `omega_functional::phi1` and
-//! `omega_functional::gamma2` public surfaces. Diagnostic-only. Mints no
-//! authority.
-//!
-//! Per the S7b stability requirement, the local-id derivation is restricted to
-//! the genuinely shape-bearing accessors `phi1.value()`, `phi1.d0()`,
-//! `gamma2.value()`, `gamma2.d0()`. The `alpha` / `primal_residual` /
-//! `dual_witness` accessors are gauge-twin axes and are deliberately NOT
-//! hashed into the local class id. The `Observer.id` and `Observer.kind` are
-//! recorded for audit elsewhere; they are NOT inputs to the local class id.
 
 use std::fmt;
 
@@ -30,19 +20,6 @@ fn truncate_to_u64(digest: &blake3::Hash) -> u64 {
     u64::from_le_bytes(buf)
 }
 
-/// Local `Q1ClassId` derivation: blake3 digest over the shape-bearing
-/// accessors of `VerifiedExactPhi1` — `phi1.value()` and `phi1.d0()`.
-///
-/// Per S7b, `phi1.alpha()`, `phi1.primal_residual()`, and `phi1.dual_witness()`
-/// are gauge-twin axes and are NOT hashed into the local id. The `Observer.id`
-/// / `Observer.kind` are recorded elsewhere for audit; they are NOT part of
-/// the local class key.
-///
-/// # Panics
-///
-/// Panics only if `serde_json::to_vec` fails to serialize `phi1.value()`
-/// (a `BigRational`) or `phi1.d0()` (a `Vec<Vec<BigRational>>`). Both carry
-/// total serde derives, so this is unreachable for the current types.
 #[must_use]
 pub fn derive_q1_class_id(phi1: &VerifiedExactPhi1) -> Q1ClassId {
     let mut hasher = blake3::Hasher::new();
@@ -64,17 +41,6 @@ pub fn derive_q1_class_id(phi1: &VerifiedExactPhi1) -> Q1ClassId {
     Q1ClassId::from_u64(truncate_to_u64(&digest))
 }
 
-/// Local `Gamma2ClassId` derivation: blake3 digest over the shape-bearing
-/// accessors of `ExactGamma2Result` — `gamma2.value()` and `gamma2.d0()`.
-///
-/// Per S7b, `gamma2.residual()` and `gamma2.coboundary()` are gauge-twin axes
-/// and are NOT hashed into the local id.
-///
-/// # Panics
-///
-/// Panics only if `serde_json::to_vec` fails to serialize `gamma2.value()`
-/// (a `BigRational`) or `gamma2.d0()` (a `Vec<Vec<BigRational>>`). Both carry
-/// total serde derives, so this is unreachable for the current types.
 #[must_use]
 pub fn derive_gamma2_class_id(gamma2: &ExactGamma2Result) -> Gamma2ClassId {
     let mut hasher = blake3::Hasher::new();
@@ -96,7 +62,6 @@ pub fn derive_gamma2_class_id(gamma2: &ExactGamma2Result) -> Gamma2ClassId {
     Gamma2ClassId::from_u64(truncate_to_u64(&digest))
 }
 
-/// Successful reconciliation of a pre-replay lookup with current exact evidence.
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub struct FamilyResolution {
     signature: crate::residual_families::signature::ShapeSignature,
@@ -122,7 +87,6 @@ impl FamilyResolution {
         self.gamma2_class_id
     }
 
-    /// `true` only when the explicit lookup hit before class-id derivation.
     #[must_use]
     pub fn lookup_hit(&self) -> bool {
         self.lookup_hit
@@ -133,7 +97,6 @@ impl FamilyResolution {
     }
 }
 
-/// Same shape key produced a different exact residual class.
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub struct FamilyCollision {
     pub signature: crate::residual_families::signature::ShapeSignature,
@@ -151,14 +114,6 @@ impl fmt::Display for FamilyCollision {
 
 impl std::error::Error for FamilyCollision {}
 
-/// Reconcile a lookup performed before exact replay with current verified
-/// Phi1/Gamma2 evidence.
-///
-/// This function derives class ids only after receiving a
-/// [`FamilyConsultation`], making the consumer order explicit:
-/// `shape -> lookup -> shared exact replay -> reconcile`. A hit never replaces
-/// replay. A same-shape/different-class result is returned as an error and the
-/// registry preserves the prior class.
 pub fn reconcile_verified(
     reg: &mut FamilyRegistry,
     consultation: FamilyConsultation,
@@ -195,18 +150,6 @@ pub fn reconcile_verified(
     })
 }
 
-/// Compute `ShapeSignature` (S2) and derive local
-/// `(Q1ClassId, Gamma2ClassId)`, then `record` into the registry.
-///
-/// The `observer` argument is taken for future audit-side wiring, but is
-/// deliberately NOT folded into the local class id (S7b): observer kind /
-/// identity must not change the class key for a given shape.
-///
-/// # Panics
-///
-/// Panics only via the total-serde `expect`s in [`shape_signature`],
-/// [`derive_q1_class_id`], and [`derive_gamma2_class_id`] — unreachable for the
-/// current `BigRational` / `QuotientRelation` types.
 pub fn record_from_verified<K>(
     reg: &mut FamilyRegistry,
     diff: &CochainPrimitiveDifference<'_>,
@@ -218,8 +161,6 @@ pub fn record_from_verified<K>(
 where
     K: CheckedNumeric + PartialEq + Serialize,
 {
-    // The observer is read so the call site cannot accidentally drop it; we
-    // deliberately do NOT mix it into either id (S7b stability requirement).
     let _ = (&observer.id, &observer.kind);
 
     let sig = shape_signature(diff, q);

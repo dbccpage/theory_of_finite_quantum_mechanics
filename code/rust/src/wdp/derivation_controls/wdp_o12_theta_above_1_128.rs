@@ -1,4 +1,3 @@
-//! Exact rational witness for `WDP-O12-THETA-ABOVE-1-128` (`derivation.md`).
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Frac {

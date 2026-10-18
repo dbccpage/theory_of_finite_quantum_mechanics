@@ -1,4 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 """Branch Fine-Graining, Rational Sector Boundaries, and the Irrational Wall.
 
 Campaign C250 Block 02 (Global Steps 76-100).
@@ -46,7 +45,7 @@ class FineGrainedTree:
     branches: List[FineGrainedBranch]
     total_multiplicity: int
     is_exact_match: bool
-    sector: str  # "RATIONAL" or "IRRATIONAL"
+    sector: str
     refusal_reason: Optional[str] = None
 
 
@@ -77,29 +76,29 @@ def compute_lcm(numbers: Sequence[int]) -> int:
 
 def compute_minimal_finegraining(weights: Sequence[Fraction]) -> Tuple[int, List[int]]:
     """Computes the minimal fine-graining multiplicity N* and branch counts m_j.
-    
+
     Given rational Born weights w_j in lowest terms p_j / q_j with sum w_j == 1:
     N* = lcm(q_1, ..., q_k)
     m_j = w_j * N* = p_j * (N* / q_j) in Z^+
     """
     if not weights:
         raise ValueError("Weights sequence cannot be empty")
-    
+
     total_weight = sum(weights)
     if total_weight != Fraction(1, 1):
         raise ValueError(f"Weights must sum to 1, got {total_weight}")
-    
+
     for w in weights:
         if w < 0:
             raise ValueError(f"Weights must be non-negative, got {w}")
-    
+
     denominators = [w.denominator for w in weights if w > 0]
     if not denominators:
         return 1, [0] * len(weights)
-    
+
     n_star = compute_lcm(denominators)
     sub_counts = [int(w * n_star) for w in weights]
-    
+
     assert sum(sub_counts) == n_star, f"Sum of sub_counts {sum(sub_counts)} must equal N* {n_star}"
     return n_star, sub_counts
 
@@ -116,7 +115,7 @@ def verify_finegraining(
         return False
     if sum(sub_counts) != multiplicity:
         return False
-    
+
     for w, m in zip(weights, sub_counts):
         if Fraction(m, multiplicity) != w:
             return False
@@ -129,7 +128,7 @@ def finegrain_state_rationals(
 ) -> FineGrainedTree:
     """Constructs a FineGrainedTree for a state in the rational sector."""
     n_star, min_sub_counts = compute_minimal_finegraining(weights)
-    
+
     if multiplicity is None:
         target_n = n_star
         target_counts = min_sub_counts
@@ -145,7 +144,7 @@ def finegrain_state_rationals(
         scale = multiplicity // n_star
         target_n = multiplicity
         target_counts = [m * scale for m in min_sub_counts]
-    
+
     is_ok = verify_finegraining(weights, target_n, target_counts)
     branches = []
     for idx, (w, m) in enumerate(zip(weights, target_counts)):
@@ -159,7 +158,7 @@ def finegrain_state_rationals(
                 is_rational=True,
             )
         )
-    
+
     return FineGrainedTree(
         branches=branches,
         total_multiplicity=target_n,
@@ -176,19 +175,18 @@ def finegrain_cyclotomic_state(
     """Constructs a FineGrainedTree from cyclotomic amplitudes, enforcing the irrational wall."""
     if not amplitudes:
         raise ValueError("Amplitudes list cannot be empty")
-    
+
     conductor = amplitudes[0].conductor
     born_weights = [a.born_weight() for a in amplitudes]
     total_born = sum(born_weights, CyclotomicElement.rational(0, conductor))
     if total_born.is_zero():
         raise ValueError("Total Born weight cannot be zero")
-    
+
     inv_total = total_born.inverse()
     norm_weights = [bw * inv_total for bw in born_weights]
-    
+
     all_rational = all(w.is_rational() for w in norm_weights)
     if not all_rational:
-        # IRRATIONAL SECTOR: Refused by the irrational wall
         irrational_indices = [i for i, w in enumerate(norm_weights) if not w.is_rational()]
         return FineGrainedTree(
             branches=[],
@@ -201,7 +199,7 @@ def finegrain_cyclotomic_state(
                 f"of finite integers m_j / N."
             ),
         )
-    
+
     rat_weights = [w.as_rational() for w in norm_weights]
     assert all(rw is not None for rw in rat_weights)
     return finegrain_state_rationals([rw for rw in rat_weights if rw is not None], multiplicity)
@@ -214,18 +212,13 @@ def search_smallest_irrational_conductor(
     evaluations: List[Dict[str, Any]] = []
     found_conductor: Optional[int] = None
     witness_info: Optional[Dict[str, Any]] = None
-    
+
     for n in conductors:
-        # Check real subfield degree [Q(zeta_n)^+ : Q]
-        # For n=1,2: deg 1, real deg 1
-        # For n=3: deg 2, real deg 1 (Q(zeta_3)^+ = Q)
-        # For n=4: deg 2, real deg 1 (Q(i)^+ = Q)
-        # For n=5: deg 4, real deg 2 (Q(zeta_5)^+ = Q(sqrt(5)))
         phi = cyclotomic_polynomial_coeffs(n)
         totient = len(phi) - 1
         real_deg = 1 if n in (1, 2) else totient // 2
         is_real_subfield_q = (real_deg == 1)
-        
+
         record: Dict[str, Any] = {
             "conductor": n,
             "totient": totient,
@@ -233,7 +226,7 @@ def search_smallest_irrational_conductor(
             "real_subfield_is_q": is_real_subfield_q,
             "admits_irrational_weight": not is_real_subfield_q,
         }
-        
+
         if is_real_subfield_q:
             record["status"] = "RATIONAL_ONLY"
             record["reason"] = f"[Q(zeta_{n})^+ : Q] = 1, so all squared moduli and ratios land in Q."
@@ -241,27 +234,25 @@ def search_smallest_irrational_conductor(
             record["status"] = "ADMITS_IRRATIONAL_WEIGHT"
             if found_conductor is None:
                 found_conductor = n
-                # Construct canonical witness state at conductor n=5
                 if n == 5:
                     z5 = CyclotomicElement.zeta(5)
-                    alpha = z5 + (z5 ** 4)  # 2 cos(2 pi / 5) = (sqrt(5) - 1) / 2
+                    alpha = z5 + (z5 ** 4)
                     c0 = CyclotomicElement.rational(1, 5)
                     c1 = alpha
-                    
+
                     b0 = c0.born_weight()
                     b1 = c1.born_weight()
                     tot = b0 + b1
                     w0 = b0 / tot
                     w1 = b1 / tot
-                    
-                    # Verify minimal polynomial of w1: 5 x^2 - 5 x + 1 = 0
+
                     poly_eval = (
                         CyclotomicElement.rational(5, 5) * (w1 ** 2)
                         - CyclotomicElement.rational(5, 5) * w1
                         + CyclotomicElement.rational(1, 5)
                     )
                     assert poly_eval.is_zero(), "Minimal polynomial evaluation must vanish"
-                    
+
                     witness_info = {
                         "conductor": 5,
                         "state_description": "(1, zeta_5 + zeta_5^4)",
@@ -277,7 +268,7 @@ def search_smallest_irrational_conductor(
                         "is_rational": False,
                     }
         evaluations.append(record)
-    
+
     assert found_conductor == 5, f"Expected smallest irrational conductor 5, got {found_conductor}"
     return {
         "smallest_conductor": found_conductor,
@@ -574,12 +565,11 @@ def census_all_targets() -> Dict[str, Any]:
     rational_count = sum(1 for r in records if r.sector == "RATIONAL")
     irrational_count = sum(1 for r in records if r.sector == "IRRATIONAL")
     irrational_ids = [r.target_id for r in records if r.sector == "IRRATIONAL"]
-    
-    # Target 8 (CHSH)
+
     t8 = next(r for r in records if r.target_id == 8)
     min_chsh = t8.minimal_N
     assert min_chsh == 25, f"Target 8 minimal N must be 25, got {min_chsh}"
-    
+
     return {
         "total_targets": len(records),
         "targets_rational_sector": rational_count,
@@ -606,15 +596,13 @@ def census_all_targets() -> Dict[str, Any]:
 
 def envariance_deutsch_wallace_symmetry_audit() -> Dict[str, Any]:
     """Audits Envariance (Zurek) and Deutsch-Wallace symmetry over the cyclotomic tower.
-    
+
     Evaluates where the argument succeeds on the rational sector (via fine-graining)
     and where it fails on the irrational sector (due to refusal of continuous limits).
     """
-    # Rational Case Demonstration
-    # Bipartite state with rational weights (9/25, 16/25)
     w_rat = [Fraction(9, 25), Fraction(16, 25)]
     n_star, sub_counts = compute_minimal_finegraining(w_rat)
-    
+
     rational_audit = {
         "state_type": "RATIONAL_SECTOR",
         "weights": [str(w) for w in w_rat],
@@ -624,9 +612,7 @@ def envariance_deutsch_wallace_symmetry_audit() -> Dict[str, Any]:
         "deutsch_wallace_step": f"Fine-grained into {n_star} equal sub-branches, S_{n_star} permutation acts symmetrically",
         "argument_status": "DERIVED_VIA_COUNTING",
     }
-    
-    # Irrational Case Demonstration
-    # Witness state at conductor 5 with weight w1 = (5 - sqrt(5)) / 10
+
     irrational_audit = {
         "state_type": "IRRATIONAL_SECTOR",
         "conductor": 5,
@@ -635,7 +621,7 @@ def envariance_deutsch_wallace_symmetry_audit() -> Dict[str, Any]:
         "carrier_refusal_step": "Infinite rational approximation sequence / continuous topological limit is refused by finite carrier Q(zeta_5)",
         "argument_status": "REFUSED_BEYOND_RATIONAL_SECTOR",
     }
-    
+
     return {
         "authority_effect": "None",
         "rational_audit": rational_audit,
@@ -647,31 +633,27 @@ def envariance_deutsch_wallace_symmetry_audit() -> Dict[str, Any]:
 def run_negative_controls() -> Dict[str, bool]:
     """Runs negative control assertions ensuring invalid fine-grainings are rejected."""
     controls_passed = True
-    
-    # Negative Control 1: Attempting to finegrain an irrational cyclotomic state
+
     z5 = CyclotomicElement.zeta(5)
     alpha = z5 + (z5 ** 4)
     wit_amps = [CyclotomicElement.rational(1, 5), alpha]
     tree_irrational = finegrain_cyclotomic_state(wit_amps)
     if tree_irrational.is_exact_match or tree_irrational.sector != "IRRATIONAL":
         controls_passed = False
-    
-    # Negative Control 2: Rational weights with wrong multiplicity (not multiple of N*)
-    # Weights 9/25, 16/25 requires N in 25*Z. Test with N=10 and N=24.
+
     w_rat = [Fraction(9, 25), Fraction(16, 25)]
     tree_wrong_n = finegrain_state_rationals(w_rat, multiplicity=10)
     if tree_wrong_n.is_exact_match:
         controls_passed = False
-    
+
     tree_wrong_n2 = finegrain_state_rationals(w_rat, multiplicity=24)
     if tree_wrong_n2.is_exact_match:
         controls_passed = False
-    
-    # Negative Control 3: Verifier called directly with incorrect counts
-    bad_verify = verify_finegraining(w_rat, 25, [10, 15])  # 10/25 != 9/25
+
+    bad_verify = verify_finegraining(w_rat, 25, [10, 15])
     if bad_verify:
         controls_passed = False
-    
+
     return {
         "irrational_state_rejected": not tree_irrational.is_exact_match,
         "wrong_multiplicity_10_rejected": not tree_wrong_n.is_exact_match,
@@ -686,18 +668,18 @@ def generate_block_02_receipts(base_dir: Optional[str] = None) -> Tuple[str, str
     import hashlib
     import json
     import os
-    
+
     app_dir = base_dir or str((_Path(__file__).resolve().parents[4] / "apps" / "finite_qm"))
     evidence_dir = os.path.join(app_dir, "evidence")
     block_dir = os.path.join(app_dir, "block_02")
     os.makedirs(evidence_dir, exist_ok=True)
     os.makedirs(block_dir, exist_ok=True)
-    
+
     census_res = census_all_targets()
     smallest_irr = search_smallest_irrational_conductor()
     sym_audit = envariance_deutsch_wallace_symmetry_audit()
     neg_controls = run_negative_controls()
-    
+
     evidence_payload = {
         "authority_effect": "None",
         "citation": "sealed-derivation-v1 (3100c4e)",
@@ -710,13 +692,13 @@ def generate_block_02_receipts(base_dir: Optional[str] = None) -> Tuple[str, str
         "envariance_and_symmetry_audit": sym_audit,
         "negative_controls": neg_controls,
     }
-    
+
     evidence_path = os.path.join(evidence_dir, "branch_finegraining.json")
     with open(evidence_path, "w", encoding="utf-8") as f:
         json.dump(evidence_payload, f, indent=2)
-        
+
     evidence_sha256 = hashlib.sha256(open(evidence_path, "rb").read()).hexdigest()
-    
+
     result_payload = {
         "authority_effect": "None",
         "block": 2,
@@ -844,11 +826,11 @@ def generate_block_02_receipts(base_dir: Optional[str] = None) -> Tuple[str, str
             "all_tests_green": True
         }
     }
-    
+
     result_path = os.path.join(block_dir, "result.json")
     with open(result_path, "w", encoding="utf-8") as f:
         json.dump(result_payload, f, indent=2)
-        
+
     return evidence_path, result_path
 
 

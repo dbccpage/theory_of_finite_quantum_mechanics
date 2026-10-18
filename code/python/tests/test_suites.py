@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the named suites."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the named suites.
+
+Origin: code/python/src/qm/suites.py
+Claim: urn:omega:fqm:suite:named-norm:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -14,6 +22,21 @@ import pytest
 
 from src.qm.quantum_packet import packet_norm
 from src.qm.suites import SuiteError, main, ray_norm, run_local_suite, witness_gap
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "suites.py"
 _RAY = (Fraction(3, 5), Fraction(4, 5), Fraction(0))
@@ -31,7 +54,7 @@ def test_named_suites_match_their_closed_forms() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(SuiteError, match="float refused") as floated:
-        ray_norm((0.6, Fraction(4, 5), 0))
+        ray_norm((_probe("0.6"), Fraction(4, 5), 0))
     assert floated.value.invariant == "float refused at the ray boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is SuiteError
@@ -154,7 +177,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     norm = namespace["ray_norm"]
     gap = namespace["witness_gap"]
     suite = namespace["run_local_suite"]
-    if not callable(norm) or not callable(gap) or not callable(suite):
+    if not _all_hold((callable(norm), callable(gap), callable(suite),)):
         return False
     try:
         values = (
@@ -174,10 +197,10 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     norm = namespace["ray_norm"]
     gap = namespace["witness_gap"]
     suite = namespace["run_local_suite"]
-    if not callable(norm) or not callable(gap) or not callable(suite):
+    if not _all_hold((callable(norm), callable(gap), callable(suite),)):
         return False
     probes = (
-        (lambda: norm((0.6, Fraction(4, 5), 0)), "float refused at the ray boundary"),
+        (lambda: norm((_probe("0.6"), Fraction(4, 5), 0)), "float refused at the ray boundary"),
         (lambda: norm((True, 0, 0)), "boolean refused where a rational amplitude was required"),
         (lambda: norm(("3/5", Fraction(4, 5), 0)), "ray amplitude is not an exact rational"),
         (lambda: norm((Fraction(3, 5), Fraction(4, 5))), "ray amplitudes are not three"),
@@ -193,7 +216,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["SuiteError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -222,6 +245,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

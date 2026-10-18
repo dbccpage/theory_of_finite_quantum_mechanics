@@ -1,18 +1,13 @@
-//! Foundation: Multi-sorted colours and signatures.
-//!
-//! AuthorityEffect: None.
 
 use std::fmt;
 use serde::{Deserialize, Serialize};
 
-/// Exact-type multi-sorted colour representing a wire or port boundary.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct OperadColour {
     name: String,
 }
 
 impl OperadColour {
-    /// Creates a validated, non-empty OperadColour.
     pub fn new(name: impl Into<String>) -> Result<Self, String> {
         let n = name.into();
         let trimmed = n.trim();
@@ -35,7 +30,6 @@ impl fmt::Display for OperadColour {
     }
 }
 
-/// Multi-sorted signature (c_1, ..., c_n) -> target.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct OperadSignature {
     pub inputs: Vec<OperadColour>,

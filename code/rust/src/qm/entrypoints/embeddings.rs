@@ -1,7 +1,3 @@
-//! Entrypoint: embeddings.
-//!
-//! The matrix embedding `a+bi ↦ [[a,-b],[b,a]]` preserves multiplication:
-//! `ρ(zw) = ρ(z)ρ(w)` and `ρ(1) = I`.
 
 pub fn run_embeddings() -> Result<(), String> {
     let one = gauss(1, 0);
@@ -19,7 +15,6 @@ pub fn run_embeddings() -> Result<(), String> {
             "embedding failed to preserve multiplication: {by_elements:?} vs {by_matrices:?}"
         ));
     }
-    // i^2 = -1, so ρ(i)^2 = -I.
     let i_sq = mat_mul(&embed(&i)?, &embed(&i)?)?;
     if i_sq != [[-1, 0], [0, -1]] {
         return Err(format!("ρ(i)^2 is not -I: {i_sq:?}"));

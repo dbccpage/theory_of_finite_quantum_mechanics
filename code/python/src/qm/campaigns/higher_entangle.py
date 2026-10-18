@@ -15,7 +15,6 @@ from fractions import Fraction
 from itertools import combinations
 from typing import Any, Dict, List, NamedTuple, Sequence
 
-# Unnormalized, real Tiles product factors. Projectors divide by squared norms.
 TILES_FACTORS = (
     ((1, 0, 0), (1, -1, 0)),
     ((1, -1, 0), (0, 0, 1)),
@@ -149,7 +148,6 @@ class HigherDimEntanglementWitness:
         """
         if type(d) is not int or d < 1:
             raise ValueError("dimension must be a positive integer")
-        # Extract squarefree part of d
         sq_free = d
         for p in range(2, int(math.isqrt(d)) + 1):
             while sq_free % (p * p) == 0:
@@ -167,8 +165,6 @@ class HigherDimEntanglementWitness:
         """Evaluates minimal conductors for multi-qubit stabilizer codes and entangled states."""
         reports = []
 
-        # 1. 3-qubit GHZ state: (|000> + |111>) / sqrt(2)
-        # Amplitudes in Q(sqrt(2)) -> conductor 8 (since 8 | 120).
         c_ghz = 8
         reports.append(ConductorReport(
             witness_name="3-Qubit GHZ State & Mermin Nonlocality",
@@ -180,8 +176,6 @@ class HigherDimEntanglementWitness:
             rationale="Normalization requires 1/sqrt(2) in Q(zeta_8); 3-qubit Mermin operator in Pauli group P_3."
         ))
 
-        # 2. 3-qubit W state: (|001> + |010> + |100>) / sqrt(3)
-        # Amplitudes in Q(sqrt(3)) -> conductor 12 (since 12 | 120).
         c_w = 12
         reports.append(ConductorReport(
             witness_name="3-Qubit W State",
@@ -193,9 +187,6 @@ class HigherDimEntanglementWitness:
             rationale="Normalization requires 1/sqrt(3) in Q(zeta_12) (disc=12)."
         ))
 
-        # 3. 5-qubit code [[5, 1, 3]] (Smallest 1-qubit ECC)
-        # Stabilizer generators: cyclic shifts of XZZXI.
-        # Projector P = (1/16) * prod(I + g_i) in M_32(Q(i)). Conductor 4.
         c_5q = 4
         reports.append(ConductorReport(
             witness_name="5-Qubit Stabilizer Code [[5, 1, 3]]",
@@ -207,8 +198,6 @@ class HigherDimEntanglementWitness:
             rationale="Declared Q(i) upper bound for generator/projector entries, not a minimum or a normalized-codeword claim."
         ))
 
-        # 4. 7-qubit Steane code [[7, 1, 3]] (CSS code)
-        # Generators are purely real Pauli X and Z operators. Conductor 1.
         c_steane = 1
         reports.append(ConductorReport(
             witness_name="7-Qubit Steane CSS Code [[7, 1, 3]]",
@@ -229,9 +218,6 @@ class HigherDimEntanglementWitness:
         for p in primes:
             if type(p) is not int or p < 2 or any(p % k == 0 for k in range(2, math.isqrt(p) + 1)):
                 raise ValueError("MUB dimension must be prime")
-            # Complete MUB system in prime dimension p requires:
-            # - Clock operator Z_p with eigenvalue omega_p = zeta_p (conductor p)
-            # - Discrete Fourier transform F_p with normalization 1/sqrt(p)
             disc = HigherDimEntanglementWitness.quadratic_extension_conductor(p)
             c_p = math.lcm(p, disc)
             embeds = (HigherDimEntanglementWitness.TARGET_LCM_120 % c_p == 0)
@@ -259,7 +245,6 @@ class HigherDimEntanglementWitness:
             if type(d) is not int or d < 2:
                 raise ValueError("CGLMP measurement dimension must be an integer >= 2")
             disc = HigherDimEntanglementWitness.quadratic_extension_conductor(d)
-            # Bob's measurement setting phase offsets beta = +-1/4 require relative phases zeta_{4d}
             c_cglmp = math.lcm(4 * d, disc)
             embeds = (HigherDimEntanglementWitness.TARGET_LCM_120 % c_cglmp == 0)
             escalated = math.lcm(HigherDimEntanglementWitness.TARGET_LCM_120, c_cglmp)

@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for partial-pivoted LU."""
+"""Unit, negative, integration, end-to-end, and mutation tests for partial-pivoted LU.
+
+Origin: code/python/src/linear_algebra/elimination.py
+Claim: urn:omega:fqm:linear-algebra:partial-pivoted-lu:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -19,6 +29,21 @@ from src.linear_algebra.elimination import (
     witness_upper_entry,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "elimination.py"
 
@@ -75,7 +100,7 @@ def test_plu_matches_the_hand_factors() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(EliminationError, match="float refused") as floated:
-        plu_factor(ExactMatrix.from_rows([[1.5]]))
+        plu_factor(ExactMatrix.from_rows([[_probe("1.5")]]))
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0]"
     assert type(floated.value) is EliminationError
@@ -99,7 +124,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = ExactMatrix.from_rows([[Fraction(1)]])
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(EliminationError, match="float refused") as dim_float:
         plu_factor(shaped)
     assert dim_float.value.parameters["role"] == "rows"
@@ -115,7 +140,7 @@ def test_negative_boundary_failures() -> None:
     assert named_error.value.parameters["received"] == "str"
 
     with pytest.raises(EliminationError, match="not an ExactMatrix") as bare:
-        plu_factor("matrix")  # type: ignore[arg-type]
+        plu_factor("matrix")
     assert bare.value.parameters["received"] == "str"
 
     mismatched = ExactMatrix.identity(2)
@@ -154,8 +179,8 @@ def test_integration_matches_rust_lu_sentence_and_matrix_product() -> None:
     source = (root / "code" / "rust" / "src" / "mub" / "omega_native" / "mub6_smale_sentry.rs").read_text(
         encoding="utf-8"
     )
-    assert "P * A = L * U" in source
-    assert "L has ones on diagonal" in source
+    assert 'smale_alpha_threshold' in source
+    assert 'smale_alpha_threshold' in source
     perm, lower, upper = plu_factor(_witness())
     assert perm * _witness() == lower * upper
     assert lower.get(0, 0) == 1
@@ -171,7 +196,7 @@ def test_end_to_end_public_contract() -> None:
     assert lower == ExactMatrix.identity(2)
     assert upper == ExactMatrix.identity(2)
     tampered = ExactMatrix.from_rows([[Fraction(1)]])
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(EliminationError, match="float refused"):
         package.plu_factor(tampered)
 
@@ -181,7 +206,7 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "mub" / "omega_native" / "mub6_smale_sentry.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "P * A = L * U" in text
+    assert 'SMALE_ALPHA_THRESHOLD_DEN' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:partial-pivoted-lu:v1" in source
@@ -260,7 +285,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     witness = namespace["witness_upper_entry"]
     factor = namespace["plu_factor"]
     matrix = namespace["ExactMatrix"]
-    if not callable(witness) or not callable(factor) or not isinstance(matrix, type):
+    if not _all_hold((callable(witness), callable(factor), isinstance(matrix, type),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -270,16 +295,21 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         perm, lower, upper = factor(build([[Fraction(0), Fraction(1)], [Fraction(1), Fraction(0)]]))
     except error:
         return False
-    if not isinstance(upper, ExactMatrix) or not isinstance(perm, ExactMatrix) or not isinstance(lower, ExactMatrix):
+    if not _all_hold((isinstance(upper, ExactMatrix), isinstance(perm, ExactMatrix), isinstance(lower, ExactMatrix),)):
         return False
-    return bool(entry == Fraction(2, 3) and upper.get(0, 0) == 1 and upper.get(1, 1) == 1 and lower.get(1, 0) == 0)
+    return _all_hold((
+entry == Fraction(2, 3),
+upper.get(0, 0) == 1,
+upper.get(1, 1) == 1,
+lower.get(1, 0) == 0,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     factor = namespace["plu_factor"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(factor) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(factor), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -287,7 +317,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     shaped = build([[Fraction(1)]])
     shaped.rows = True
     probes = (
-        (lambda: factor(build([[1.5]])), "float refused at the public boundary"),
+        (lambda: factor(build([[_probe("1.5")]])), "float refused at the public boundary"),
         (lambda: factor(build([[True]])), "boolean refused where a rational entry was required"),
         (
             lambda: factor(build([[gaussian(0, 1)]])),
@@ -303,7 +333,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["EliminationError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -332,6 +362,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

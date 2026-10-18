@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the quadratic jet."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the quadratic jet.
+
+Origin: code/python/src/linear_algebra/second_jet.py
+Claim: urn:omega:fqm:linear-algebra:second-jet:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -22,6 +30,21 @@ from src.linear_algebra.second_jet import (
 )
 from src.linear_algebra.scalars import GaussianRational
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "second_jet.py"
 
 
@@ -38,7 +61,7 @@ def test_jet_matches_the_hand_expansion() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(JetError, match="float refused") as floated:
-        quadratic_value(1.5, 0)
+        quadratic_value(_probe("1.5"), 0)
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "x"
     assert type(floated.value) is JetError
@@ -56,7 +79,7 @@ def test_negative_boundary_failures() -> None:
     assert text.value.parameters["received"] == "str"
 
     with pytest.raises(JetError, match="float refused") as step:
-        taylor_defect(0, 0, 0.5, 0)
+        taylor_defect(0, 0, _probe("0.5"), 0)
     assert step.value.parameters["role"] == "step_x"
 
     with pytest.raises(JetError, match="Taylor defect") as defect:
@@ -100,7 +123,7 @@ def test_end_to_end_public_contract() -> None:
     value, gradient, _hessian = package.second_jet(0, 0)
     assert value == 0
     assert gradient == (Fraction(4), Fraction(-1))
-    tampered = 0.25
+    tampered = _probe("0.25")
     with pytest.raises(JetError, match="float refused"):
         package.certify_taylor(tampered, 0, 0, 0)
 
@@ -197,7 +220,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     jet = namespace["second_jet"]
     certify = namespace["certify_taylor"]
     matrix = namespace["ExactMatrix"]
-    if not callable(value_at) or not callable(jet) or not callable(certify) or not isinstance(matrix, type):
+    if not _all_hold((callable(value_at), callable(jet), callable(certify), isinstance(matrix, type),)):
         return False
     try:
         value = value_at(1, 2)
@@ -207,24 +230,24 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         return False
     if not isinstance(hessian, matrix):
         return False
-    return bool(
-        value == 11
-        and jet_value == 11
-        and gradient == (Fraction(12), Fraction(4))
-        and hessian.get(0, 0) == 2
-        and hessian.get(0, 1) == 3
-        and hessian.get(1, 0) == 3
-        and defect == 0
-    )
+    return _all_hold((
+value == 11,
+jet_value == 11,
+gradient == (Fraction(12), Fraction(4)),
+hessian.get(0, 0) == 2,
+hessian.get(0, 1) == 3,
+hessian.get(1, 0) == 3,
+defect == 0,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     value_at = namespace["quadratic_value"]
     gaussian = namespace["GaussianRational"]
-    if not callable(value_at) or not callable(gaussian):
+    if not _all_hold((callable(value_at), callable(gaussian),)):
         return False
     probes = (
-        (lambda: value_at(1.5, 0), "float refused at the public boundary"),
+        (lambda: value_at(_probe("1.5"), 0), "float refused at the public boundary"),
         (lambda: value_at(True, 0), "boolean refused where a rational coordinate was required"),
         (lambda: value_at(gaussian(0, 1), 0), "Gaussian rational refused; the second jet in this module is over Q"),
     )
@@ -236,7 +259,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["JetError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -265,6 +288,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

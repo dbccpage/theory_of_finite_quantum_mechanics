@@ -1,26 +1,8 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 
-/-!
-# Extensional event effects and trace congruence
 
-This is the abstract law behind the finite Python event-effect quotient. Event
-equivalence means equality of their action on every lawful state. Such an
-equivalence is a congruence inside every replay context. Adjacent events may be
-swapped only after a universal commutation witness, and an absorbing terminal
-remains absorbing under every trace.
 
-Ownership, budget, capability, and audit-history preservation are additional
-governance premises in the executable finite model; state extensionality alone
-does not erase them.
--/
 
 namespace OmegaCore.EventEffects
 
@@ -141,3 +123,6 @@ theorem traceEquivalent_trans {Event State : Type}
 #print axioms traceEquivalent_trans
 
 end OmegaCore.EventEffects
+
+private def l5aProvenance : String :=
+  "Origin: lean4/EventEffects.lean Claim: eventEquivalent_refl AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

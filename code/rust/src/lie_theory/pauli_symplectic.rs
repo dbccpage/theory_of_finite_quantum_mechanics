@@ -1,12 +1,3 @@
-//! Pauli tensors and the exact binary symplectic action of Clifford unitaries.
-//!
-//! Hermitian Pauli words use `Y = i X Z` and labels `(x_0,...,x_n,z_0,...,z_n)`.
-//! Commutation is the alternating form `x.z' + z.x'` over F_2. The columns
-//! of a Clifford image are obtained from the conjugates of the generators;
-//! unitarity and preservation of the symplectic form are checked exactly.
-//! Group orders use arbitrary precision, and all enumeration is bounded.
-//!
-//! AuthorityEffect: None.
 
 use crate::scalar::{dagger, is_unitary, ComplexField};
 use linear_algebra::backend::basic_matrix::BasicMatrix;
@@ -75,7 +66,6 @@ pub fn generate_sp4_f2() -> Result<Vec<SymplecticF2>, PauliError> {
     )?)
 }
 
-/// The canonical 2x2 Hermitian Pauli matrix, over the caller's exact field.
 pub fn pauli<F: ComplexField>(letter: Pauli) -> Result<BasicMatrix<F>, PauliError> {
     let z = F::zero();
     let o = F::one();
@@ -122,7 +112,6 @@ pub fn phase_gate<F: ComplexField>() -> Result<BasicMatrix<F>, PauliError> {
     )
 }
 
-/// A validated symplectic matrix in the `(x,z)` ordering. Values must already be bits.
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct SymplecticF2 {
     qubits: usize,
@@ -221,12 +210,10 @@ pub fn symplectic_order(n: usize) -> Result<BigUint, PauliError> {
     Ok(value)
 }
 
-/// Order modulo global phases: the Pauli kernel has order `4^n`.
 pub fn clifford_order_mod_phases(n: usize) -> Result<BigUint, PauliError> {
     Ok(symplectic_order(n)? << (2 * n))
 }
 
-/// Number of pure stabilizer states, `2^n product_{j=1}^n (2^j+1)`.
 pub fn stabilizer_state_count(n: usize) -> Result<BigUint, PauliError> {
     if n > 4096 {
         return Err(PauliError::SizeBound {
@@ -241,7 +228,6 @@ pub fn stabilizer_state_count(n: usize) -> Result<BigUint, PauliError> {
     Ok(v)
 }
 
-/// Derive the binary image from exact adjoint action, including multi-qubit gates.
 pub fn clifford_to_symplectic<F: ComplexField>(
     u: &BasicMatrix<F>,
 ) -> Result<SymplecticF2, PauliError> {

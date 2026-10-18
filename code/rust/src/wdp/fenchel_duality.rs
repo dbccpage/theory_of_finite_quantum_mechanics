@@ -1,16 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Lp-Native Cohomology & Exact Fenchel-Rockafellar Duality Solvers.
-//!
-//! Grounded in FOC-007 ("Lp-Native Cohomology") & FOC-037 ("L1 Obstruction Framework"):
-//! - Primal: weighted L1 coboundary quotient min_phi sum_e c_e |omega_e - (d_0 phi)_e|
-//! - Dual: circulation psi in ker(d_0^*) with capacity bounds |psi_e| <= c_e
-//! - Zero duality gap: <omega, psi> == ||[omega]||_{1, c} over exact rationals
-//! - Complementary slackness: active edges force capacity saturation psi_e = c_e * sgn(residual_e).
-//!
-//! The primal-dual pair is solved and replayed by `omega_solvers::solver_lp_phi1_quotient`
-//! on the incidence matrix of `omega_homology::graph_carrier`. A receipt exists
-//! only around a `VerifiedExactPhi1`, whose verifier has already checked that
-//! psi is divergence-free, within capacity, and pairs with omega to the primal value.
 
 use num_rational::BigRational;
 use num_traits::Signed;
@@ -23,18 +10,13 @@ use crate::cochains::{coboundary_rows, named_graph_carrier};
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
 
-/// Edge saturation status under complementary slackness.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum EdgeSaturationStatus {
-    SaturatedPositive, // residual > 0, psi_e == c_e
-    SaturatedNegative, // residual < 0, psi_e == -c_e
-    GaugeInactive,     // residual == 0, |psi_e| <= c_e
+    SaturatedPositive,
+    SaturatedNegative,
+    GaugeInactive,
 }
 
-/// Verification receipt for exact Fenchel-Rockafellar duality.
-///
-/// The primal value, optimal potential (in `WeightedComplex::vertices` order)
-/// and dual circulation (in edge order) are read from [`Self::phi1`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FenchelDualityReceipt {
     phi1: VerifiedExactPhi1,
@@ -56,12 +38,11 @@ impl FenchelDualityReceipt {
     }
 }
 
-/// Weighted cell complex for Fenchel-Rockafellar duality solvers.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct WeightedComplex {
     pub vertices: Vec<String>,
     pub edges: Vec<(String, String)>,
-    pub capacities: Vec<BigRational>, // positive rational edge weights c_e > 0
+    pub capacities: Vec<BigRational>,
     pub authority_effect: AuthorityEffect,
 }
 
@@ -87,7 +68,6 @@ impl WeightedComplex {
         }
     }
 
-    /// The weighted L1 quotient `C^1 / im(d_0)` on this complex.
     pub fn l1_quotient_presentation(&self) -> Result<L1Seminorm, WdpError> {
         let carrier = named_graph_carrier(
             &self.vertices,
@@ -102,7 +82,6 @@ impl WeightedComplex {
         )?)
     }
 
-    /// Solves the exact rational Fenchel-Rockafellar primal-dual pair.
     pub fn solve_fenchel_duality(
         &self,
         omega: &[BigRational],
@@ -150,24 +129,19 @@ mod tests {
         let capacities = vec![q(1), q(1), q(1)];
         let complex = WeightedComplex::new(vertices, edges, capacities);
 
-        // Coboundary input (zero defect)
         let exact_omega = vec![q(2), q(3), q(5)];
         let receipt1 = complex.solve_fenchel_duality(&exact_omega).unwrap();
         assert!(receipt1.phi1().value().is_zero());
         assert_eq!(receipt1.authority_effect(), AuthorityEffect::None);
 
-        // Non-trivial circulation defect
         let cycle_omega = vec![q(1), q(1), q(0)];
         let receipt2 = complex.solve_fenchel_duality(&cycle_omega).unwrap();
         assert_eq!(receipt2.phi1().value(), &q(2));
-        // Circulation 2 on unit capacities saturates every edge of the cycle.
         assert!(receipt2
             .edge_statuses()
             .iter()
             .all(|status| *status != EdgeSaturationStatus::GaugeInactive));
 
-        // Zero duality gap and a divergence-free, capacity-bounded dual: the
-        // shared verifier replays both receipts' witnesses independently.
         for receipt in [receipt1, receipt2] {
             let replayed =
                 Phi1Functional::verify_exact_certificate(receipt.phi1().certificate().clone())

@@ -76,7 +76,6 @@ def test_path_set_blocks_equal_count_substitution() -> None:
     paths = list(base["packages"][pkg]["stub_paths"])
     if len(paths) < 2:
         return
-    # Equal count: drop one real stub path, add a fake path
     poisoned = json.loads(json.dumps(base))
     poisoned["packages"][pkg]["stub_paths"] = paths[1:] + [f"{pkg}/__fake_sub__.py"]
     poisoned["packages"][pkg]["STUB"] = len(paths)
@@ -116,7 +115,6 @@ def test_anchor_blocks_new_stub_vs_main() -> None:
 def test_symbol_inventory_mismatch_fails() -> None:
     base = load_baseline()
     poisoned = json.loads(json.dumps(base))
-    # drop a proto symbol entry so measured != proposed
     ps = poisoned["packages"]["functional"]["proto_symbols"]
     if not ps:
         return
@@ -131,10 +129,6 @@ def test_symbol_inventory_mismatch_fails() -> None:
 def test_protected_proto_deletion_fails() -> None:
     base = load_baseline()
     anchor = json.loads(json.dumps(base))
-    # Remove a PROTO path from measured by claiming empty package file_kinds in anchor
-    # Use evaluate with anchor that has proto surface which we simulate missing by
-    # shrinking measured via a fake package name not available — instead poison anchor
-    # to claim a fake PROTO path that measured lacks.
     anchor["packages"]["functional"]["proto_symbols"]["functional/__missing_proto__.py"] = [
         "ghost_symbol"
     ]
@@ -150,21 +144,17 @@ def test_forbidden_identities_derived_from_inventory() -> None:
     forbidden = stub_identities_from_inventory()
     assert any("gram_schmidt" in f for f in forbidden)
     assert any("_rust_lib_surface" in f for f in forbidden)
-    # PROTO residual surface must NOT be forbidden
     assert "omega_engine.crates.functional.phi1" not in forbidden
     assert "functional.phi1" not in forbidden or "phi1" in str(
         [x for x in forbidden if "phi1" in x]
     )
-    # phi1 is PROTO — should not appear as STUB identity
     assert "omega_engine.crates.functional.phi1" not in forbidden
 
 
 def test_exact_importfrom_symbol_identity() -> None:
     root = Path("dummy")
-    # relative form
     src = "from ..linear_algebra import gram_schmidt\n"
     tree = __import__("ast").parse(src)
-    # use real path under playpen for resolution
     from omega_engine_governance.contracts.dual_home_import_auditor import (
         playpen_omega_engine_root,
     )
@@ -249,7 +239,6 @@ def test_discover_role_not_filename_only(tmp_path: Path) -> None:
 
 
 def test_positive_delegation_required() -> None:
-    # DomainWorker without residual import/call fails even without DIY
     src = textwrap.dedent(
         """
         from omega_engine.crates.runtime.rt_domain_worker import DomainWorker
@@ -332,7 +321,6 @@ def test_one_task_delegates_other_diy_fails() -> None:
     assert any("_bad" in i or "path-sensitive" in i or "live run()" in i for i in audit.issues)
 
 
-# Unique base so natural L1 mass cannot accidentally equal the spy result.
 _RESIDUAL_SPY_SENTINEL_BASE = 881337.0
 
 
@@ -432,7 +420,7 @@ def test_side_kernel_call_does_not_bind_emitted_residual() -> None:
 
     r1_log: List[Dict[str, Any]] = []
 
-    def r1_spy(xs, *args, **kwargs):  # type: ignore[no-untyped-def]
+    def r1_spy(xs, *args, **kwargs):
         xs_l = [float(x) for x in xs]
         result = _RESIDUAL_SPY_SENTINEL_BASE + sum(abs(x) for x in xs_l) * 1e-9
         r1_log.append({"xs": xs_l, "result": result})
@@ -446,9 +434,9 @@ def test_side_kernel_call_does_not_bind_emitted_residual() -> None:
             return ("bad",)
 
         def run(self, inp: DomainWorkerInput) -> DomainWorkerOutput:
-            _ = r1_spy([0.0])  # side call — satisfies hit-only quantifier
+            _ = r1_spy([0.0])
             xs = list(inp.payload.get("xs", [1.0, -2.0, 3.0]))
-            r = sum(abs(x) for x in xs)  # DIY residual for emitted field
+            r = sum(abs(x) for x in xs)
             return self._output(
                 task_id=inp.task_id,
                 task_kind=inp.task_kind,
@@ -471,9 +459,7 @@ def test_side_kernel_call_does_not_bind_emitted_residual() -> None:
     results = {e["result"] for e in r1_log}
     bound = any(abs(float(out.residual_l1) - r) < 1e-9 for r in results)
     assert not bound, "DIY residual_l1 field must not equal residual_l1 spy sentinel"
-    # vector provenance also fails: spy saw [0.0], output vector is payload
     assert not any(_vecs_close(out.residual_vector, e["xs"]) for e in r1_log)
-    # Binding predicate used by taskwise spy suite
     vector_bound = any(
         _vecs_close(out.residual_vector, e["xs"])
         and abs(float(out.residual_l1) - e["result"]) < 1e-9
@@ -515,7 +501,6 @@ def test_local_def_residual_math_caught() -> None:
 
 def test_helper_import_bypass_caught() -> None:
     forbidden = stub_identities_from_inventory()
-    # invent a residual-related helper path that is STUB if present
     src = textwrap.dedent(
         """
         from omega_engine.crates.runtime.rt_domain_worker import DomainWorker
@@ -541,7 +526,6 @@ def test_live_auditor_and_gates_bootstrap() -> None:
     assert ok, [(a.rel_path, a.issues) for a in audits if not a.ok]
     assert report["forbidden_stub_module_count"] > 3
     result = run_all_gates(allow_bootstrap=True)
-    # Measurement may be green; ordinary PASS requires EVALUATOR_BOUND_TO_ANCHOR.
     assert result.get("measure_ok") is True, result.get("violations")
     assert result["authority_effect"] == "None"
     assert result["wave_e_status"] == "NOT_COMPLETE"
@@ -559,7 +543,6 @@ def test_live_auditor_and_gates_bootstrap() -> None:
         assert result["ok"] is True
     else:
         assert result["ok"] is False
-    # Post Wave E land on main: anchor baseline exists — measure without bootstrap.
     result_main = run_all_gates(allow_bootstrap=False)
     assert result_main.get("measure_ok") is True, result_main.get("violations")
     assert result_main["stub_ratchet"]["measured"].get("has_anchor") is True
@@ -593,7 +576,6 @@ def test_evidence_receipt_binds_fields(tmp_path: Path) -> None:
     assert receipt["evaluator_locus"] == "protected_anchor_hash_match"
     assert receipt["gate_admission"] == "EVALUATOR_BOUND_TO_ANCHOR"
     assert receipt["receipt_digest"]
-    # digest is self-binding
     body = {k: v for k, v in receipt.items() if k != "receipt_digest"}
     assert receipt["receipt_digest"] == sha256_json(body)
 
@@ -655,13 +637,9 @@ def test_discovered_worker_spy_matrix_not_hand_picked() -> None:
     for row in matrix:
         assert row["task_kinds"], row
         assert "run" in row["live_methods"]
-        # expanded constants, not raw _TASK_* names alone
         assert not all(k.startswith("_TASK_") for k in row["task_kinds"])
 
 
-# Explicit non-residual task exemptions (role/contract). Empty default: every
-# discovered DomainWorker task is residual-producing EvidenceOnly and must hit
-# an approved kernel under spy. Add a kind here only with a written justification.
 NON_RESIDUAL_TASK_EXEMPTIONS: Dict[str, str] = {}
 
 
@@ -680,14 +658,13 @@ def test_discovered_workers_delegate_via_spy_taskwise(
     assert matrix, "discovery returned empty spy matrix"
     task_rows_exercised = 0
     for row in matrix:
-        # Import worker (and deps) before patching so modules are loaded
         mod = importlib.import_module(row["module"])
         cls = getattr(mod, row["class_name"])
 
         r1_log: List[Dict[str, Any]] = []
         g2_log: List[Any] = []
 
-        def r1_spy(xs, *args, _log=r1_log, **kwargs):  # type: ignore[no-untyped-def]
+        def r1_spy(xs, *args, _log=r1_log, **kwargs):
             try:
                 xs_l = [float(x) for x in xs]
             except TypeError:
@@ -696,7 +673,7 @@ def test_discovered_workers_delegate_via_spy_taskwise(
             _log.append({"xs": xs_l, "result": float(result)})
             return float(result)
 
-        def g2_spy(*args, _log=g2_log, **kwargs):  # type: ignore[no-untyped-def]
+        def g2_spy(*args, _log=g2_log, **kwargs):
             import numpy as np
 
             from omega_engine.crates.functional.gamma2 import (
@@ -745,8 +722,6 @@ def test_discovered_workers_delegate_via_spy_taskwise(
                 f"live_methods={row['live_methods']}). "
                 f"Exists-task satisfaction must not waive this task."
             )
-            # Provenance: emitted residual_l1 must equal a residual_l1 spy return
-            # (canonical kernel result flows to evidence field).
             if r1_log:
                 results = {e["result"] for e in r1_log}
                 bound = any(
@@ -783,7 +758,7 @@ def test_taskwise_spy_a_does_not_satisfy_b(monkeypatch: pytest.MonkeyPatch) -> N
 
     calls: List[Any] = []
 
-    def spy(xs, *args, **kwargs):  # type: ignore[no-untyped-def]
+    def spy(xs, *args, **kwargs):
         calls.append(list(xs))
         return real_r1(xs)
 
@@ -807,7 +782,6 @@ def test_taskwise_spy_a_does_not_satisfy_b(monkeypatch: pytest.MonkeyPatch) -> N
                     residual_l1=r,
                     math_path=["spy"],
                 )
-            # DIY residual path for bad task
             r = sum(abs(x) for x in xs)
             return self._output(
                 task_id=inp.task_id,
@@ -819,7 +793,6 @@ def test_taskwise_spy_a_does_not_satisfy_b(monkeypatch: pytest.MonkeyPatch) -> N
                 math_path=["diy"],
             )
 
-    # Static gate must already refuse this shape via helper/method DIY
     src = textwrap.dedent(
         """
         from omega_engine.crates.runtime.rt_domain_worker import DomainWorker
@@ -835,7 +808,6 @@ def test_taskwise_spy_a_does_not_satisfy_b(monkeypatch: pytest.MonkeyPatch) -> N
     audit = audit_source("engine/mixed_ab.py", src, role="domain_worker")
     assert not audit.ok
 
-    # Runtime quantifier: good hits spy, bad must not be waived by good
     worker = MixedWorker()
     calls.clear()
     worker.run(

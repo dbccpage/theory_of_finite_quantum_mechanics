@@ -1,16 +1,8 @@
-//! Dihedral angles at hinges in 2D, 3D, and 4D simplicial manifolds.
-//!
-//! - In 2D: hinge is a 0-simplex (vertex), angle is interior triangle angle.
-//! - In 3D: hinge is a 1-simplex (edge), dihedral angle between triangular faces of tetrahedron.
-//! - In 4D: hinge is a 2-simplex (triangle), dihedral angle between tetrahedra of 4-simplex.
-//!
-//! AuthorityEffect: None.
 
 use crate::cayley_menger::simplex_volume_cayley_menger;
 
 pub const DEFAULT_ANGLE_TOL: f64 = 1e-9;
 
-/// Interior angle of a triangle (2-simplex) at `vertex` via the cosine law (radians).
 pub fn triangle_angle_at(
     triangle: &[usize; 3],
     vertex: usize,
@@ -39,8 +31,6 @@ pub fn triangle_angle_at(
     Ok(cos_theta.acos())
 }
 
-/// Dihedral angle of a tetrahedron (3-simplex) at edge `(u, v)` (radians).
-/// The edge is shared by two triangular faces with opposite vertices w1 and w2.
 pub fn tetrahedron_dihedral_angle_at_edge(
     tetrahedron: &[usize; 4],
     edge: (usize, usize),
@@ -70,9 +60,6 @@ pub fn tetrahedron_dihedral_angle_at_edge(
         return Err("Degenerate triangle face area in tetrahedron".to_string());
     }
 
-    // Formula: sin(theta) = (3 * V * ell) / (2 * A1 * A2)
-    // Formula for cos(theta):
-    // Let edge endpoints be 1, 2; opposite vertices 3, 4.
     let d12_sq = ell * ell;
     let d13 = get_length(e1, w1).ok_or("Missing length")?;
     let d23 = get_length(e2, w1).ok_or("Missing length")?;
@@ -94,7 +81,6 @@ pub fn tetrahedron_dihedral_angle_at_edge(
     Ok(theta)
 }
 
-/// Dihedral angle of a 4-simplex at triangle face `(u, v, w)` (radians).
 pub fn pentachoron_dihedral_angle_at_triangle(
     four_simplex: &[usize; 5],
     triangle: &[usize; 3],
@@ -124,7 +110,6 @@ pub fn pentachoron_dihedral_angle_at_triangle(
             gram[j][i] = dot;
         }
     }
-    // Schur complement removes the two tangent directions along the hinge.
     let det = gram[0][0] * gram[1][1] - gram[0][1] * gram[0][1];
     if !det.is_finite() || det <= 0.0 {
         return Err("degenerate hinge".into());
@@ -155,7 +140,6 @@ mod tests {
         let get_len = |_: usize, _: usize| Some(side);
         let tet = [0, 1, 2, 3];
         let theta = tetrahedron_dihedral_angle_at_edge(&tet, (0, 1), get_len).unwrap();
-        // For regular tetrahedron: cos(theta) = 1/3, so theta = arccos(1/3) ~ 1.2309594 radians (70.53 degrees)
         let expected = (1.0f64 / 3.0).acos();
         assert!((theta - expected).abs() < 1e-7);
     }

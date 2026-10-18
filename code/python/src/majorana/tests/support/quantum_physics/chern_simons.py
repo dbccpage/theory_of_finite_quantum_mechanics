@@ -13,7 +13,6 @@ from typing import List, Tuple
 
 from omega_engine.crates.homology_theory.thimble_state import AnalyticAction
 
-# Hyperbolic volume of figure-eight knot 4_1 (exact to 12 decimal places)
 FIGURE_EIGHT_VOLUME = 2.029883212819
 
 

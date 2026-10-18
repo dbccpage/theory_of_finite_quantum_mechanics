@@ -1,6 +1,3 @@
-//! Native passage binding of joint operations. Reading one side and setting the
-//! other side's license is an explicitly admitted interaction protocol, not a
-//! primitive Genesis event or an assertion of spacelike availability.
 use crate::genesis_carrier::{
     CarrierError, CarrierRequest, PassageAnswer, PassageCarrier, PassageQuestion,
 };
@@ -45,9 +42,6 @@ pub struct PassageJoint {
     joint: JointDynamics,
 }
 impl PassageJoint {
-    /// Operation order is all left letters, all right letters, then interactions.
-    /// Every successful native local/interaction step must stay in the declared
-    /// pair relation. Guard failure alone becomes None.
     pub fn build(request: &PassageJointRequest) -> Result<Self, PassageJointError> {
         let work = request
             .interactions

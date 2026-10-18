@@ -1,6 +1,3 @@
-// AuthorityEffect: None.
-// Exact matrix/root/irreducible-factor binding over the real coefficient field.
-// No numerical splitting degree, multiplicative dependence, or new admission.
 use super::{
     characteristic, embedding, eval, polynomial_roots, qstr, rat, reject_float, root_count, sturm,
     validate, Element, Polynomial, Result, Q,
@@ -35,7 +32,6 @@ fn integer(value: &Value, label: &str) -> Result<usize> {
         .ok_or_else(|| format!("{label}:EXACT_NONNEGATIVE_INTEGER_REQUIRED"))
 }
 
-// Derived coefficients and certificate endpoints have no matrix height bound.
 fn rational(value: &Value) -> Result<Q> {
     let text = value
         .as_str()
@@ -327,8 +323,6 @@ pub fn validate_spectral_factor_binding(input: &Value, certificate: &Value) -> R
         ],
         "carrier_transport",
     )?;
-    // This comparison checks fixed metadata only, after all real-root premises
-    // have been independently established; it is not producer replay.
     if certificate["carrier_transport"] != transport(data.n) {
         return Err("BINDING_CARRIER_TRANSPORT_MISMATCH".into());
     }
@@ -365,7 +359,6 @@ pub fn closed_right_control(
         .iter()
         .map(|factor| {
             let p = polynomial_from_wire(data.n, &factor["polynomial"])?;
-            // Deliberately copied endpoint mutation: count (lower, upper].
             Ok(root_count(&sturm(&p)?, &lower, &upper)? + usize::from(eval(&p, &upper).is_zero()))
         })
         .collect()

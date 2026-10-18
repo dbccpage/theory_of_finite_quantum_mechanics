@@ -80,19 +80,14 @@ from mub_verify.verifier import (
 )
 
 
-# ==============================================================================
-# B1: MU Transition Normalization Scale
-# ==============================================================================
 
 def test_b1_mu_transition_scale():
     """B1: Raw CHM transition U = H1* H2 must test entrywise |U_jk|^2 == 6, not 1."""
-    # Positive control: genuine MU pair from canonical_triple_exact
     res = verify_genuine_mu_pair_transition()
     assert res["status"] == "PASS"
     assert res["is_mu_transition"] is True
     assert res["violations_count"] == 0
 
-    # Direct test: normalized transition elements have |u_jk|^2 = 6 for raw CHM
     cols = canonical_triple_exact()
     from mub_verify.mub_triples import sqrt2_cyc, sqrt3_cyc
     from mub_verify.target_g1_orbit_incompatibilities import (
@@ -100,93 +95,69 @@ def test_b1_mu_transition_scale():
         matrix_mul,
     )
     s6_factor = sqrt2_cyc().mul(sqrt3_cyc())
-    # Construct raw CHMs H2 = sqrt(6) * B2 (cols 6..11), H3 = sqrt(6) * B3 (cols 12..17)
-    # B2* B3 has entries with squared modulus 1/6, so raw H2* H3 has squared modulus 6
     h2 = [[cols[6 + c][r].mul(s6_factor) for c in range(6)] for r in range(6)]
     h3 = [[cols[12 + c][r].mul(s6_factor) for c in range(6)] for r in range(6)]
     u_raw = matrix_mul(matrix_adjoint(h2), h3)
 
-    # Testing with expected_mod_sq = 6 passes
     is_mu_6, v_count_6 = check_mu_transition_modulus(u_raw, expected_mod_sq=6)
     assert is_mu_6 is True
     assert len(v_count_6) == 0
 
-    # Testing with expected_mod_sq = 1 produces 36 violations (reproducing the old defect)
     is_mu_1, v_count_1 = check_mu_transition_modulus(u_raw, expected_mod_sq=1)
     assert is_mu_1 is False
     assert len(v_count_1) == 36
 
 
-# ==============================================================================
-# B2: Corner Dephasing and Direct 3x3 Determinant
-# ==============================================================================
 
 def test_b2_corner_dephasing_and_direct_3x3_det():
     """B2: Undephased H6 corner determinant is non-zero (2-4i), dephased is -2+4i != 0."""
     h6 = haagerup_h6_matrix()
 
-    # Raw top-left 3x3 block direct determinant
     raw_det = direct_3x3_determinant(h6)
-    # The direct determinant of the raw top-left block of Haagerup H6 is 2 - 4i != 0 (i = zeta_24^6)
     four_i = Cyc24.zeta(6).mul(Cyc24.rat(Fraction(4)))
     assert raw_det == Cyc24.rat(Fraction(2)).sub(four_i)
 
-    # Dephased matrix top-left 3x3 block direct determinant is -2 + 4i != 0
     h6_dephased = dephase_hadamard_matrix(h6)
     dephased_det = direct_3x3_determinant(h6_dephased)
     assert dephased_det == Cyc24.rat(Fraction(-2)).add(four_i)
 
-    # Verify factorization check dephases and matches direct 3x3 determinant
     receipt = verify_t05_06_corner_factorization()
     assert receipt["verified"] is True
     assert receipt["direct_3x3_determinant_controls"]["H6_Haagerup"] == str(dephased_det)
-    # H6 is routed to regular corner (non-singular) because corner determinant is non-zero
     h6_rep = receipt["corner_determinants"]["H6_Haagerup"]
     assert h6_rep["is_zero"] is False
     assert h6_rep["routing"] == "branch_regular_corner"
 
 
-# ==============================================================================
-# B3: Diagnostic Status Preservation in Q Consumers
-# ==============================================================================
 
 def test_b3_q_diagnostic_status_preservation():
     """B3: Q3/Q4 and Degree-8 witness replays must preserve DIAGNOSTIC status."""
-    # Degree-8 X=0 replay
     x0_receipt = replay_degree8_x0_witness()
     assert x0_receipt.status == STATUS_DIAGNOSTIC_REPLAY
     assert x0_receipt.expected_trace_matched is True
     assert x0_receipt.pivots_strictly_positive is True
 
-    # Degree-8 S6 replay
     s6_receipt = replay_degree8_s6_witness()
     assert s6_receipt.status == STATUS_DIAGNOSTIC_REPLAY
     assert s6_receipt.expected_trace_matched is True
     assert s6_receipt.pivots_strictly_positive is True
 
-    # Q soundness obligations receipt
     q_receipt = generate_q_soundness_receipt()
     assert q_receipt.status == "DIAGNOSTIC_ONLY"
     assert q_receipt.candidate_refutation_status == "MISSING_PROOF_OBLIGATION"
     assert q_receipt.all_obligations_satisfied is False
 
 
-# ==============================================================================
-# B4: GNS Indefinite Form Rejection & Pre-Hilbert Construction Status
-# ==============================================================================
 
 def test_b4_gns_indefinite_form_rejection():
     """B4: Indefinite matrices cannot form GNS pre-Hilbert spaces; diagnosed as indefinite forms."""
-    # Example 1: 2x2 indefinite matrix [[1, 2], [2, 1]]
     indef_2x2 = [
         [Fraction(1), Fraction(2)],
         [Fraction(2), Fraction(1)],
     ]
-    # Default constructor without allow_indefinite raises ValueError
     with pytest.raises(ValueError, match="positive semidefinite"):
         GNSPreHilbertSpace(["w0", "w1"], indef_2x2, allow_indefinite=False)
 
-    # evaluate_gns_pre_hilbert_space emits indefinite diagnostic receipt
     gns, receipt = evaluate_gns_pre_hilbert_space(["w0", "w1"], indef_2x2, allow_indefinite=True)
     assert receipt.status == STATUS_INDEFINITE_FORM_DIAGNOSTIC
     assert receipt.is_psd is False
@@ -194,12 +165,10 @@ def test_b4_gns_indefinite_form_rejection():
     assert receipt.positivity_refuted is True
     assert receipt.negative_norm_modes_detected >= 1
 
-    # Verify that the detected negative mode has strictly negative squared norm
     neg_states = [s for s in receipt.test_evaluations if s.is_negative_norm]
     assert len(neg_states) >= 1
     assert neg_states[0].norm_squared < 0
 
-    # Example 2: 1x1 negative scalar [[-1]]
     with pytest.raises(ValueError, match="positive semidefinite"):
         GNSPreHilbertSpace(["w0"], [[Fraction(-1)]], allow_indefinite=False)
 
@@ -209,7 +178,6 @@ def test_b4_gns_indefinite_form_rejection():
     assert receipt_1x1.pre_hilbert_constructed is False
     assert receipt_1x1.positivity_refuted is True
 
-    # Positive control: Identity 2x2 is PSD and constructs pre-Hilbert space
     psd_2x2 = [
         [Fraction(1), Fraction(0)],
         [Fraction(0), Fraction(1)],
@@ -224,16 +192,11 @@ def test_b4_gns_indefinite_form_rejection():
     assert receipt_psd.negative_norm_modes_detected == 0
 
 
-# ==============================================================================
-# B5: A10 Domain Volume Binding and Witness Support
-# ==============================================================================
 
 def test_b5_a10_domain_volume_binding_and_witness_replay():
     """B5: Inconsistent expected volumes, unsupported witnesses, and zero-cell receipts are rejected."""
     tree = build_canonical_global_partition_tree()
 
-    # Retain only first F6 leaf (volume 1/4) inside unchanged unit-volume domain,
-    # and declare expected F6 volume to be 1/4.
     f6_tree = tree.regional_trees[REGION_F6_DITA]
     leaves = f6_tree.collect_leaves()
     first_leaf = leaves[0]
@@ -251,12 +214,10 @@ def test_b5_a10_domain_volume_binding_and_witness_replay():
         regional_trees=bad_regional_trees,
         expected_domain_volumes=bad_expected,
     )
-    # verify_volume_conservation must reject this because domain geometry volume is 1 != 1/4
     ok, msg, _ = verify_volume_conservation(bad_tree)
     assert not ok
     assert "does not match immutable domain geometry volume" in msg or "Volume discrepancy" in msg
 
-    # Unsupported witness rejection
     bad_witness_leaf = GlobalLeafNode(
         RationalCell(
             cell_id="F6_unsupported_witness",
@@ -278,7 +239,6 @@ def test_b5_a10_domain_volume_binding_and_witness_replay():
     assert not ok_w
     assert "unsupported witness type" in msg_w
 
-    # Zero-cell receipt rejection
     zero_cell_receipt = {
         "schema_version": "omega.mub.target-a10-global-cover.v1",
         "firewall": "stated region only; mints no authority",
@@ -319,15 +279,9 @@ def test_b5_a10_domain_volume_binding_and_witness_replay():
         audit_target_a10_receipt(zero_cell_receipt)
 
 
-# ==============================================================================
-# B6: A11 Spectrum Reporting and Orbit Reduction Evidence
-# ==============================================================================
 
 def test_b6_a11_spectrum_reporting_and_orbit_reduction():
     """B6: Non-root-24 elements prevent claiming strict sextic spectrum; reductions require supported cells."""
-    # Construct a matrix with a non-root-24 phase, e.g. (3 + 4i)/5
-    # The phase (3+4i)/5 in Q(zeta_24) is not a root of unity
-    # When cross-ratios contain non-root24 elements, classify_orbit must report them
     f6_mat = f6_fourier_matrix()
     rep = classify_orbit(f6_mat)
     assert rep.is_chm is True
@@ -335,7 +289,6 @@ def test_b6_a11_spectrum_reporting_and_orbit_reduction():
     assert rep.details["non_root24_count"] == 0
     assert "strictly in sextic spectrum" in rep.notes
 
-    # certify_orbit_reduction on uncertified / unsupported target cell raises ValueError
     tree = build_canonical_global_partition_tree()
     unsupported_leaf = GlobalLeafNode(
         RationalCell(
@@ -362,7 +315,6 @@ def test_b6_a11_spectrum_reporting_and_orbit_reduction():
     with pytest.raises(ValueError, match="not certified|unsupported witness"):
         certify_orbit_reduction(f6_mat, matrix_label="F6_Fourier", tree=bad_tree)
 
-    # audit_target_a11_receipt rejects reductions missing orbit_id, region, or witness_data
     stub_receipt = {
         "schema_version": "omega.mub.target-a11-orbit-exhaustiveness.v1",
         "firewall": "stated region only; mints no authority",
@@ -386,9 +338,6 @@ def test_b6_a11_spectrum_reporting_and_orbit_reduction():
         audit_target_a11_receipt(stub_receipt)
 
 
-# ==============================================================================
-# B7: Manifest Verification Rejects 3-Field Stubs & Labels Audit Type
-# ==============================================================================
 
 def test_b7_verify_all_receipts_rejects_3field_stubs(tmp_path):
     """B7: Receipts containing only schema_version, verified, and firewall are strictly rejected."""
@@ -442,9 +391,6 @@ def test_b7_verify_all_receipts_rejects_3field_stubs(tmp_path):
     assert all("Receipt contains no mathematical certificate payload" in err for err in res["errors"])
 
 
-# ==============================================================================
-# B8: Conditional Pigeonhole Bridge Integration
-# ==============================================================================
 
 def test_b8_pigeonhole_bridge_conditional():
     """B8: verify_pigeonhole_global_cover_bridge_integration reports conditional replay."""
@@ -454,9 +400,6 @@ def test_b8_pigeonhole_bridge_conditional():
     assert len(res["unproved_premises"]) >= 3
 
 
-# ==============================================================================
-# B9: Cross-Language Consistency as Lexical Presence
-# ==============================================================================
 
 def test_b9_cross_language_consistency_is_lexical():
     """B9: Consistency check verifies lexical identifier presence, keeping semantic consistency undischarged."""
@@ -469,30 +412,23 @@ def test_b9_cross_language_consistency_is_lexical():
     assert receipt.semantic_consistency_verified is False
     assert receipt.consistent is False
 
-    # evaluate_stream3_target_q_degree8_and_gns must have all_vectors_satisfied = False
     master = evaluate_stream3_target_q_degree8_and_gns()
     assert master.all_vectors_satisfied is False
 
 
-# ==============================================================================
-# B10: Stratified Verifier Presplit Chunk Selection & Empty Seeds
-# ==============================================================================
 
 def test_b10_stratified_verifier_presplit_chunks():
     """B10: Stratified boxes respect chunks_to_sample, empty seeds produce all_positive = False."""
     verifier = IndependentMubVerifier()
 
-    # Sampling on-torus chunks (e.g. chunk 31, 21) produces results
     res_chunk31 = verifier.collect_stratified_boxes(dx=0, dy=8, chunks_to_sample=(31,))
     res_chunk21 = verifier.collect_stratified_boxes(dx=0, dy=8, chunks_to_sample=(21,))
-    # Sampling out-of-range chunk 999 produces 0 results
     res_chunk999 = verifier.collect_stratified_boxes(dx=0, dy=8, chunks_to_sample=(999,))
 
     assert len(res_chunk31) > 0
     assert len(res_chunk21) > 0
     assert len(res_chunk999) == 0
 
-    # Running audit on empty seeds produces total_boxes_tested = 0 and all_positive = False
     summary, _ = verifier.run_stratified_audit(seeds=())
     assert summary.total_boxes_tested == 0
     assert summary.all_positive is False

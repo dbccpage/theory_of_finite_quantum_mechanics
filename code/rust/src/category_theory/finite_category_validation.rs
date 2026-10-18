@@ -1,8 +1,3 @@
-//! Finite category validation.
-//!
-//! The checks here validate the shared `DeclaredFiniteCategory` model:
-//! object references, morphism boundaries, identities, composition totality,
-//! closure, boundary compatibility, and associativity.
 
 use super::finite_category::DeclaredFiniteCategory;
 use super::validation::{
@@ -513,8 +508,6 @@ mod tests {
     #[test]
     fn associativity_failure_is_detected() {
         let mut cat = DeclaredFiniteCategory::new("AssocFail");
-        // We only declare the subset needed to trigger associativity failure to keep the test small.
-        // It will fail other tests (identity/totality) but that is fine for testing associativity specifically.
         cat.add_morphism("f", "A", "B");
         cat.add_morphism("g", "B", "C");
         cat.add_morphism("h", "C", "D");

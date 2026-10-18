@@ -1,15 +1,7 @@
-//! Strongly typed errors, operational limits, and Soviet allocation helpers for omega_holonomy.
-//!
-//! AuthorityEffect: None.
-//! Governing Rule: RULE[user_global] (claim hygiene, zero floats).
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Strongly typed error enum for discrete holonomy operations.
-///
-/// Enforces strict precedence:
-/// AllocationFailure > SingularConnection > OpenLoop > VertexNotFound > EdgeNotFound > DimensionMismatch > PathLengthExceeded.
 #[derive(Debug, Clone, PartialEq, Eq, Error, Serialize, Deserialize)]
 pub enum HolonomyError {
     #[error("resource element count overflows usize")]
@@ -82,14 +74,9 @@ pub enum HolonomyError {
     #[error("Negative bound: {quantity} = {value} must be non-negative")]
     NegativeBound { quantity: String, value: String },
 
-    /// A matrix with no inverse, outside any edge: `ExactMatrix::inverse`
-    /// reports this, and `DiscreteConnection::set_connection` turns it into
-    /// `SingularConnection` with the edge attached.
     #[error("Singular matrix: {detail}")]
     SingularMatrix { detail: String },
 
-    /// An edge index beyond the complex: the edge-indexed connection and walk
-    /// API of `gauge_fixing` names edges by index, not by vertex pair.
     #[error("Edge index {index} is out of range: the complex has {edge_count} edges")]
     EdgeIndexOutOfRange { index: usize, edge_count: usize },
 
@@ -102,9 +89,6 @@ pub enum HolonomyError {
     #[error("Expected one gauge value per vertex ({expected} vertices) but got {actual} values")]
     VertexValueCount { expected: usize, actual: usize },
 
-    /// A `(source, target)`-keyed connection stores one matrix per vertex pair
-    /// and treats the opposite direction as its inverse, so two edges joining
-    /// the same vertices in opposite directions cannot carry independent values.
     #[error(
         "Edges {first} and {second} join the same vertices in opposite directions; a \
          (source, target)-keyed connection cannot give them independent values"
@@ -125,7 +109,6 @@ pub enum HolonomyError {
 }
 
 impl HolonomyError {
-    /// Returns the precedence rank of this error (lower integer = higher priority).
     pub fn precedence_rank(&self) -> usize {
         match self {
             HolonomyError::ResourceCountOverflow => 0,
@@ -163,7 +146,6 @@ impl HolonomyError {
     }
 }
 
-/// Resource admission is owned by the kernel; holonomy preserves its domain error.
 impl From<omega_kernel::resource_limits::ResourceError> for HolonomyError {
     fn from(error: omega_kernel::resource_limits::ResourceError) -> Self {
         use omega_kernel::resource_limits::ResourceError;

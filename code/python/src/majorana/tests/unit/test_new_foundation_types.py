@@ -13,9 +13,7 @@ def test_primitive_difference_invariance():
     assert pd.zero_rel(2, 4)
     assert not pd.zero_rel(2, 3)
 
-    # Observable phi(x) = x % 2 is invariant
     assert pd.invariant_congruent(lambda x: x % 2, [(2, 4), (1, 3)])
-    # Observable phi(x) = x is non-invariant over (2, 4)
     assert not pd.invariant_congruent(lambda x: x, [(2, 4)])
 
 

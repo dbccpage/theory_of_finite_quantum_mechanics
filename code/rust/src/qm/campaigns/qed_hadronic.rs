@@ -1,8 +1,3 @@
-//! Campaign module qed_hadronic.
-//!
-//! The leading hadronic `R` ratio for three colors and three light quarks is
-//! `Nc Σ e_q²`. The sum of squared charges is `6/9` by fractions and `18/9`
-//! after clearing the common denominator and multiplying by the colors.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;

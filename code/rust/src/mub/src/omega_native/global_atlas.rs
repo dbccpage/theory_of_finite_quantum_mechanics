@@ -1,8 +1,3 @@
-//! Global MUB(6) atlas gate.
-//!
-//! This is the certificate shape needed to turn pinned-wall work into a full
-//! MUB(6) no-go. Current receipts are audited as candidate sources, but none is
-//! accepted as an exhaustive triple-class atlas.
 
 use std::path::Path;
 
@@ -12,7 +7,6 @@ use serde_json::Value;
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
 pub enum AtlasStatus {
     Certified,
-    /// The declaration checklist is well formed. It is not verified evidence.
     DeclaredChecklist,
     MissingProofObligation,
     InvalidCertificate,
@@ -62,10 +56,6 @@ pub struct GlobalMub6AtlasCertificate {
     pub terminalizer_preserved: bool,
 }
 
-/// The atlas obligations an assessment established, one flag per obligation.
-///
-/// `Certified` implies every flag; the flags let callers pass on exactly what
-/// was established instead of fanning one status out to each obligation.
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize)]
 pub struct GlobalAtlasEvidence {
     pub exhaustive_triple_cover: bool,
@@ -404,8 +394,6 @@ mod tests {
         };
         let assessment = verify_global_mub6_atlas_certificate(&certificate);
         assert_eq!(assessment.status, AtlasStatus::MissingProofObligation);
-        // Each obligation is reported on its own rather than inherited from
-        // the overall status.
         assert!(assessment.evidence.exhaustive_triple_cover);
         assert!(assessment.evidence.overlap_compatibility);
         assert!(!assessment.evidence.wall_certificate_for_every_class);

@@ -1,13 +1,9 @@
-//! Sheaf condition: S1 Locality and S2 Gluing on covers (SH-06, SH-07, SH-08, Sheaf Contract).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::OpenSet;
 use crate::presheaf::Presheaf;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 
-/// Result of checking S1 locality and S2 gluing axioms on a cover.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SheafConditionResult<T> {
     pub is_sheaf: bool,
@@ -16,8 +12,6 @@ pub struct SheafConditionResult<T> {
     pub witness_global_section: Option<T>,
 }
 
-/// Verify S1 (Separated presheaf / Locality):
-/// If s, t in F(U) satisfy rho(s) == rho(t) on all U_i in cover, then s == t.
 pub fn check_separated<T: Clone + PartialEq + Debug>(
     presheaf: &Presheaf<T>,
     u: &OpenSet,
@@ -48,8 +42,6 @@ pub fn check_separated<T: Clone + PartialEq + Debug>(
     (true, None)
 }
 
-/// Compute the Equalizer Kernel (SH-08):
-/// eq = { (s_i) in prod F(U_i) | rho(s_i) == rho(s_j) on U_i cap U_j }.
 pub fn compute_equalizer_kernel<T: Clone + PartialEq + Debug>(
     presheaf: &Presheaf<T>,
     cover: &[OpenSet],
@@ -59,7 +51,6 @@ pub fn compute_equalizer_kernel<T: Clone + PartialEq + Debug>(
         return Vec::new();
     }
 
-    // Cartesian product of candidate sections
     let mut families: Vec<Vec<T>> = vec![vec![]];
     for &secs in &cover_secs {
         let mut next_families = Vec::new();
@@ -73,7 +64,6 @@ pub fn compute_equalizer_kernel<T: Clone + PartialEq + Debug>(
         families = next_families;
     }
 
-    // Filter matching families
     let mut matching = Vec::new();
     for fam in families {
         let mut compat = true;
@@ -105,7 +95,6 @@ pub fn compute_equalizer_kernel<T: Clone + PartialEq + Debug>(
     matching
 }
 
-/// Verify both S1 (separation) and S2 (gluing) for a cover {U_i} of U.
 pub fn check_sheaf_condition<T: Clone + PartialEq + Debug>(
     presheaf: &Presheaf<T>,
     u: &OpenSet,
@@ -179,7 +168,6 @@ mod tests {
         let mut secs = BTreeMap::new();
         secs.insert(u0.clone(), vec!["val0".to_string()]);
         secs.insert(u1.clone(), vec!["val1".to_string()]);
-        // Correct sheaf product section over U0 uplus U1
         secs.insert(u01.clone(), vec!["val0_val1".to_string()]);
 
         let p = Presheaf::new("sheaf_demo", top, secs, |u, v, s| {

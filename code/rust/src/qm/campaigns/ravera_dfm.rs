@@ -1,5 +1,3 @@
-// AuthorityEffect: None.
-//! Ravera DFM Finite-to-Continuum Dossier verification module (Theorems 3.7, 3.8, 3.9).
 
 pub use omega_quantum_physics::quantum_import_finite_maps::ravera_dfm_finite_to_continuum::*;
 

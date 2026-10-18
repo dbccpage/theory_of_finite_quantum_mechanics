@@ -1,17 +1,3 @@
-//! Target G1: Rust Native Hadamard Variety Constraint Evaluator & Triad Solver.
-//!
-//! AuthorityEffect: None
-//!
-//! Responsibilities:
-//! 1. 50-variable Hadamard variety constraint evaluator over `BigRational`:
-//!    - 25 circle equations: x_{ij}^2 + y_{ij}^2 - 1 = 0 for 1 <= i, j <= 5.
-//!    - 15 real column-orthogonality equations for 0 <= j < k < 6.
-//!    - 15 imaginary column-orthogonality equations for 0 <= j < k < 6.
-//! 2. 3x3 corner minor evaluation and branch factorization.
-//! 3. Triad compatibility decision solver over `Cyc24`:
-//!    - Verifies whether U = H1^dag H2 satisfies unit modulus and column orthogonality.
-//! 4. Network Simplex cycle circulation checker confirming Phi_1 >= Gamma > 0 on cross-orbit loops.
-//! 5. Strict AST zero-float check via `syn`.
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
@@ -31,18 +17,12 @@ use omega_number_theory::rational::rq;
 
 crate::fixture_set!(fixtures, "mub6_g1_variety");
 
-/// Number of non-trivial off-diagonal entries: 5 x 5 = 25.
 pub const NUM_DEPHASED_ENTRIES: usize = 25;
 
-/// Number of real coordinates: 25 * 2 = 50.
 pub const NUM_COORDINATES_50: usize = 50;
 
-/// Number of defining polynomial equations: 25 circle + 15 real orth + 15 imag orth = 55.
 pub const NUM_CONSTRAINTS_55: usize = 55;
 
-/// 50-variable real coordinate presentation of a dephased 6x6 complex matrix:
-/// H_{i, j} = x_{i-1, j-1} + i * y_{i-1, j-1} for 1 <= i, j <= 5.
-/// Row 0 and column 0 are fixed to 1 + 0i.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct HadamardPoint50 {
     pub x: [[BigRational; 5]; 5],
@@ -50,14 +30,11 @@ pub struct HadamardPoint50 {
 }
 
 impl HadamardPoint50 {
-    /// Construct a dephased point from 5x5 real and imaginary coordinates.
     pub fn new(x: [[BigRational; 5]; 5], y: [[BigRational; 5]; 5]) -> Self {
         Self { x, y }
     }
 
-    /// Construct the canonical Fourier point F_6 over exact rationals (approximated or exact root components).
     pub fn fourier_seed() -> Self {
-        // At theta = 0, F_6 has explicit rational components on its 5x5 submatrix
         let half = rq(1, 2);
         let zero = BigRational::zero();
         let one = BigRational::one();
@@ -99,7 +76,6 @@ impl HadamardPoint50 {
         Self { x, y }
     }
 
-    /// Full 6x6 real entry: row 0 or col 0 evaluates to 1.
     pub fn entry_re(&self, row: usize, col: usize) -> BigRational {
         if row == 0 || col == 0 {
             BigRational::one()
@@ -108,7 +84,6 @@ impl HadamardPoint50 {
         }
     }
 
-    /// Full 6x6 imaginary entry: row 0 or col 0 evaluates to 0.
     pub fn entry_im(&self, row: usize, col: usize) -> BigRational {
         if row == 0 || col == 0 {
             BigRational::zero()
@@ -118,7 +93,6 @@ impl HadamardPoint50 {
     }
 }
 
-/// Evaluation report of the 55 Hadamard variety constraints.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct VarietyEvaluationReport {
     pub circle_residuals: Vec<BigRational>,
@@ -130,7 +104,6 @@ pub struct VarietyEvaluationReport {
     pub sha256_digest: String,
 }
 
-/// Evaluates all 55 constraints of the Hadamard variety H_6 at a given 50-variable point.
 pub fn evaluate_variety_constraints(point: &HadamardPoint50) -> VarietyEvaluationReport {
     let one = BigRational::one();
     let zero = BigRational::zero();
@@ -139,7 +112,6 @@ pub fn evaluate_variety_constraints(point: &HadamardPoint50) -> VarietyEvaluatio
     let mut imag_orth_residuals = Vec::with_capacity(15);
     let mut max_res = BigRational::zero();
 
-    // 1. 25 Circle equations: x_ij^2 + y_ij^2 - 1 = 0
     for i in 0..5 {
         for j in 0..5 {
             let x_val = &point.x[i][j];
@@ -153,7 +125,6 @@ pub fn evaluate_variety_constraints(point: &HadamardPoint50) -> VarietyEvaluatio
         }
     }
 
-    // 2. 15 Real and 15 Imaginary column orthogonality equations for 0 <= j < k < 6
     for j in 0..D {
         for k in (j + 1)..D {
             let mut sum_re = BigRational::zero();
@@ -164,9 +135,7 @@ pub fn evaluate_variety_constraints(point: &HadamardPoint50) -> VarietyEvaluatio
                 let x_rk = point.entry_re(r, k);
                 let y_rk = point.entry_im(r, k);
 
-                // Real part of <col_j, col_k>: sum_r (x_rj x_rk + y_rj y_rk)
                 sum_re += &x_rj * &x_rk + &y_rj * &y_rk;
-                // Imaginary part of <col_j, col_k>: sum_r (x_rk y_rj - x_rj y_rk)
                 sum_im += &x_rk * &y_rj - &x_rj * &y_rk;
             }
 
@@ -206,7 +175,6 @@ pub fn evaluate_variety_constraints(point: &HadamardPoint50) -> VarietyEvaluatio
     }
 }
 
-/// 3x3 Corner Minor representation and branch factorization.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum CornerBranch {
     FourierBranch,
@@ -217,10 +185,8 @@ pub enum CornerBranch {
     NonVarietyResidual,
 }
 
-/// Evaluates the 3x3 corner minor of rows 1..3 and cols 1..3 over BigRational.
 pub fn evaluate_corner_minor_3x3_real(point: &HadamardPoint50) -> BigRational {
     let c = &point.x;
-    // determinant of 3x3 matrix c[0..3][0..3]
     let m00 = &c[0][0];
     let m01 = &c[0][1];
     let m02 = &c[0][2];
@@ -237,7 +203,6 @@ pub fn evaluate_corner_minor_3x3_real(point: &HadamardPoint50) -> BigRational {
     t1 - t2 + t3
 }
 
-/// Factoring corner determinant into canonical branch candidates.
 pub fn factor_corner_minor_branch(det: &BigRational, is_rigid: bool) -> CornerBranch {
     if det.is_zero() {
         CornerBranch::FourierBranch
@@ -250,8 +215,6 @@ pub fn factor_corner_minor_branch(det: &BigRational, is_rigid: bool) -> CornerBr
     }
 }
 
-/// Triad Compatibility Decision Solver:
-/// Checks if transition matrix U = H1^dag H2 is a complex Hadamard matrix.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TriadCompatibilityResult {
     pub is_compatible: bool,
@@ -263,13 +226,11 @@ pub struct TriadCompatibilityResult {
     pub sha256_digest: String,
 }
 
-/// Computes transition matrix U = H1^dag * H2 over Cyc24.
 pub fn compute_transition_matrix(h1: &Matrix6, h2: &Matrix6) -> Matrix6 {
     std::array::from_fn(|j| {
         std::array::from_fn(|k| {
             let mut acc = Cyc24::zero();
             for r in 0..D {
-                // (H1^dag)_{jr} = conj((H1)_{rj})
                 let h1_conj = h1[r][j].conj();
                 let term = h1_conj.mul(&h2[r][k]);
                 acc = acc.add(&term);
@@ -279,18 +240,12 @@ pub fn compute_transition_matrix(h1: &Matrix6, h2: &Matrix6) -> Matrix6 {
     })
 }
 
-/// Checks triad compatibility: whether (I_6, H1, H2) forms an admissible mutually unbiased triple.
-///
-/// `H1`, `H2` are unnormalized complex Hadamard matrices (unimodular entries, `H H† = 6 I`), so
-/// the bases are `H/√6` and the transition `U = H1† H2` of an unbiased pair has `|U_jk|² = 6`
-/// and `U U† = 36 I`.
 pub fn check_triad_compatibility(h1: &Matrix6, h2: &Matrix6) -> TriadCompatibilityResult {
     let u = compute_transition_matrix(h1, h2);
     let six = Cyc24::rat(ri(6));
     let thirty_six = Cyc24::rat(ri(36));
     let zero = Cyc24::zero();
 
-    // Check 1: flat modulus |U_{jk}|^2 == 6 (unbiasedness of the normalized bases)
     let mut unit_modulus_satisfied = true;
     let mut viol_r = None;
     let mut viol_c = None;
@@ -314,7 +269,6 @@ pub fn check_triad_compatibility(h1: &Matrix6, h2: &Matrix6) -> TriadCompatibili
         }
     }
 
-    // Check 2: row orthogonality U * U^dag == 36 I_6 (evaluated whatever check 1 returned)
     let mut orthogonality_satisfied = true;
     {
         for j in 0..D {
@@ -362,7 +316,6 @@ pub fn check_triad_compatibility(h1: &Matrix6, h2: &Matrix6) -> TriadCompatibili
     }
 }
 
-/// Network Simplex positive cycle circulation checker across cross-orbit triads.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum CrossOrbitTriad {
     TaoSzollosi,
@@ -380,9 +333,7 @@ pub struct CirculationResult {
     pub duality_gap_zero: bool,
 }
 
-/// Verifies strict positive circulation Phi_1 >= Gamma > 0 for a given cross-orbit triad.
 pub fn verify_cross_orbit_triad_circulation(triad: CrossOrbitTriad) -> CirculationResult {
-    // Gamma and every Phi1 below are fixtures: no circulation is computed here.
     let gamma = fixtures().rational("circulation_gamma");
     let phi1 = fixtures().rational(match triad {
         CrossOrbitTriad::TaoSzollosi => "circulation_phi1_tao_szollosi",
@@ -400,15 +351,9 @@ pub fn verify_cross_orbit_triad_circulation(triad: CrossOrbitTriad) -> Circulati
     }
 }
 
-// ============================================================================
-// MATOLCSI–MATSZANGOSZ–VARGA–WEINER (2025) CONJECTURE 2 EVALUATION ENGINE
-// Exact Rational / Cyclotomic Evaluation over Q(zeta_24) on the 55-Poly Ideal
-// ============================================================================
 
-/// Number of unique permutations of (1, 1, 1, -1, -1, -1): 6 choose 3 = 20.
 pub const NUM_GAMMA_PERMUTATIONS_20: usize = 20;
 
-/// Canonical index triplets for the 20 permutations of (1, 1, 1, -1, -1, -1).
 pub const GAMMA_SUBSETS_20: [[usize; 3]; 20] = [
     [0, 1, 2],
     [0, 1, 3],
@@ -432,7 +377,6 @@ pub const GAMMA_SUBSETS_20: [[usize; 3]; 20] = [
     [3, 4, 5],
 ];
 
-/// Returns the 20 distinct permutation sign vectors for gamma_1 = (1, 1, 1, -1, -1, -1).
 pub fn canonical_gamma1_permutations() -> [[i32; 6]; 20] {
     std::array::from_fn(|idx| {
         let sub = GAMMA_SUBSETS_20[idx];
@@ -444,7 +388,6 @@ pub fn canonical_gamma1_permutations() -> [[i32; 6]; 20] {
     })
 }
 
-/// Returns the 20 distinct permutation sign vectors for gamma_2 = (3, 3, 3, -3, -3, -3).
 pub fn canonical_gamma2_permutations() -> [[i32; 6]; 20] {
     std::array::from_fn(|idx| {
         let sub = GAMMA_SUBSETS_20[idx];
@@ -456,13 +399,6 @@ pub fn canonical_gamma2_permutations() -> [[i32; 6]; 20] {
     })
 }
 
-/// Evaluates g_H(gamma) = sum_{k=0..5} prod_{j=0..5} H_{j,k}^{gamma_j} in Q(zeta_24).
-///
-/// For unimodular entries:
-/// - exponent +1: H_{j,k}
-/// - exponent -1: H_{j,k}^* (conjugate)
-/// - exponent +3: H_{j,k}^3
-/// - exponent -3: (H_{j,k}^*)^3
 pub fn evaluate_matolcsi_g_gamma(h: &Matrix6, gamma: &[i32; 6]) -> Cyc24 {
     let mut total = Cyc24::zero();
     for k in 0..D {
@@ -488,13 +424,11 @@ pub fn evaluate_matolcsi_g_gamma(h: &Matrix6, gamma: &[i32; 6]) -> Cyc24 {
     total
 }
 
-/// Evaluates G_H(gamma) = |g_H(gamma)|^2 = g_H(gamma) * (g_H(gamma))^* in Q(zeta_24).
 pub fn evaluate_matolcsi_gh_sq(h: &Matrix6, gamma: &[i32; 6]) -> Cyc24 {
     let g = evaluate_matolcsi_g_gamma(h, gamma);
     g.mul(&g.conj())
 }
 
-/// Evaluation record for a single complex Hadamard matrix under Conjecture 2.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MatolcsiSingleMatrixReport {
     pub matrix_name: String,
@@ -509,7 +443,6 @@ pub struct MatolcsiSingleMatrixReport {
     pub max_g2_prod_mod_sq_rat: String,
 }
 
-/// Evaluates Conjecture 2 for a single 6x6 matrix across all 20 permutations of gamma_1 and gamma_2.
 pub fn evaluate_matolcsi_conjecture2_matrix(
     matrix_name: &str,
     h: &Matrix6,
@@ -554,7 +487,6 @@ pub fn evaluate_matolcsi_conjecture2_matrix(
         }
     }
 
-    // Check CHM property: |H_{jk}|^2 == 1 and H H† == 6 I
     let mut is_chm = true;
     let six = Cyc24::rat(ri(6));
     let one = Cyc24::rat(ri(1));
@@ -595,7 +527,6 @@ pub fn evaluate_matolcsi_conjecture2_matrix(
     }
 }
 
-/// Comprehensive Master Certification Report for Target G1 / Matolcsi Conjecture 2.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MatolcsiG1CertificationReceipt {
     pub schema: String,
@@ -615,13 +546,11 @@ pub struct MatolcsiG1CertificationReceipt {
     pub sha256_digest: String,
 }
 
-/// Executes full G1 certification evaluating Matolcsi Conjecture 2 against the 55-polynomial variety.
 pub fn certify_matolcsi_conjecture2_g1() -> Result<MatolcsiG1CertificationReceipt, String> {
     let tao = tao_s6_matrix();
     let f6 = standard_fourier_f6();
     let h6 = haagerup_h6_matrix();
 
-    // Szöllősi canonical point: b = 1, c = i, e = 1, f = -1
     let one = Cyc24::rat(ri(1));
     let neg_one = Cyc24::rat(ri(-1));
     let i_unit = Cyc24::i();
@@ -633,7 +562,6 @@ pub fn certify_matolcsi_conjecture2_g1() -> Result<MatolcsiG1CertificationReceip
     let rep_b6 = evaluate_matolcsi_conjecture2_matrix("Szollosi_B6_Canonical", &b6);
     let rep_h6 = evaluate_matolcsi_conjecture2_matrix("Haagerup_H6", &h6);
 
-    // Diță samples
     let dita_pts = [
         (0i32, 0i32),
         (0, 8),
@@ -707,7 +635,6 @@ pub fn certify_matolcsi_conjecture2_g1() -> Result<MatolcsiG1CertificationReceip
         sha256_digest,
     };
 
-    // Write artifact to omega_engine_atlas/coda_atlas/F004_papers/010_mub6/artifacts/
     let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let artifact_path = manifest_dir
         .join("../../../omega_engine_atlas/coda_atlas/F004_papers/010_mub6/artifacts/mub_target_g1_matolcsi_conjecture2_receipt.json");
@@ -718,8 +645,6 @@ pub fn certify_matolcsi_conjecture2_g1() -> Result<MatolcsiG1CertificationReceip
     Ok(receipt)
 }
 
-/// AST zero-float auditor to enforce 100% exact rational discipline.
-/// Test-only: `syn` is a dev-dependency of this crate.
 #[cfg(test)]
 pub fn audit_source_zero_float(source_code: &str) -> Result<(), String> {
     let syntax = syn::parse_file(source_code).map_err(|e| format!("parse error: {e}"))?;
@@ -777,8 +702,6 @@ mod tests {
 
     #[test]
     fn test_triad_compatibility_accepts_fourier_and_gauss_fourier() {
-        // F6 = (ζ6^{jk}) and G = diag(ζ12^{j²}) F6 are unbiased complex Hadamard matrices
-        // (|(F6† G)_{jk}|² = 6, checked numerically as well); {I, F6/√6, G/√6} is an MUB triple.
         let f6: Matrix6 = std::array::from_fn(|j| {
             std::array::from_fn(|k| Cyc24::zeta24((4 * j * k % 24) as i32))
         });
@@ -789,19 +712,16 @@ mod tests {
         assert!(res.unit_modulus_satisfied, "{}", res.reason);
         assert!(res.orthogonality_satisfied, "{}", res.reason);
         assert!(res.is_compatible);
-        // F6 against itself is not unbiased: U = 6 I.
         assert!(!check_triad_compatibility(&f6, &f6).is_compatible);
     }
 
     #[test]
     fn test_triad_compatibility_negative_control() {
-        // Distinct matrices or perturbed candidate should fail triad compatibility
         let one = Cyc24::one();
         let zero = Cyc24::zero();
         let h1: Matrix6 = std::array::from_fn(|i| {
             std::array::from_fn(|j| if i == j { one.clone() } else { zero.clone() })
         });
-        // Non-unitary matrix h2
         let h2: Matrix6 = std::array::from_fn(|_| std::array::from_fn(|_| one.clone()));
         let res = check_triad_compatibility(&h1, &h2);
         assert!(!res.is_compatible);

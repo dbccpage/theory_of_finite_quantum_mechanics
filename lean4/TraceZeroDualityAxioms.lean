@@ -1,16 +1,8 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import TraceZeroDuality
 
 open TraceZeroDuality
 
-/-- On the split spectrum `(2, -2)` the dual pairing meets the spread and the centered norm. -/
 theorem split_spectrum_gap_zero :
     spread (⟨2, -2⟩ : Eig2) = 4 ∧
       pairing ⟨2, -2⟩ (optimalVec2 ⟨2, -2⟩) = spread ⟨2, -2⟩ ∧
@@ -27,3 +19,6 @@ theorem split_spectrum_gap_zero :
 #print axioms monotone_metric_distinct
 #print axioms coboundary_shift_equiv
 #print axioms quotient_evaluation_invariant
+
+private def l5aProvenance : String :=
+  "Origin: lean4/TraceZeroDualityAxioms.lean Claim: split_spectrum_gap_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

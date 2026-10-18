@@ -238,11 +238,6 @@ impl BinaryCochainSegment {
 pub enum DdaOperationKind {
     SuccessorProbe,
     ResidualUpdate,
-    /// Repair by CHANGING THE CARRIER rather than updating the residual within
-    /// it: pass to a covering/total space where the pulled-back class is exact.
-    /// (A `StabilizedSurvivor` at the base — a genuine cohomology class — is never
-    /// repairable by a `ResidualUpdate`; the lift absorbs it by adding the
-    /// fiber dimension).
     CarrierLift,
 }
 

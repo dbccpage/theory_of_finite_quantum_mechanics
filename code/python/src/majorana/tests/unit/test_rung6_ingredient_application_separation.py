@@ -30,7 +30,6 @@ def test_clifford_circuit_separation_witness():
     )
     assert clifford.has_cross_term_ingredient is True
     assert clifford.has_qc_advantage is False
-    # Proves ingredient does NOT imply application (prevents category error)
     assert clifford.has_cross_term_ingredient != clifford.has_qc_advantage
 
 

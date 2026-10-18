@@ -1,28 +1,11 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Exact Cyclotomic Fields and Discrete Rings.
-//!
-//! Provides exact arithmetic representations for:
-//! - Q (rational base field)
-//! - Z[i] and Q(i) (Gaussian integers and rationals)
-//! - Z[zeta_3] and Q(zeta_3) (Eisenstein integers and rationals)
-//! - Z[zeta_8] and Q(zeta_8) (8th cyclotomic field, includes sqrt(2))
-//! - Z[zeta_12] and Q(zeta_12) (12th cyclotomic field, includes i and zeta_3)
-//! - Z[zeta_5] and Q(zeta_5) (5th cyclotomic field for dimension-5 phase space)
-//! - Q(zeta_24) (unifying ambient field for d=2, 3, 4, 6, 8, 12, 24)
-//!
-//! All operations are purely algebraic with zero floating-point conversions.
 
 use num_traits::{One, Zero};
 use serde::{Deserialize, Serialize};
 
 use crate::rational::{r_half, ri, Rational};
 
-// ---------------------------------------------------------------------------
-// 1. Gaussian Rationals Q(i) with subring Z[i]
-// ---------------------------------------------------------------------------
 
-/// Element of Q(i): a + b*i where i^2 = -1.
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct GaussianRat {
     pub re: Rational,
@@ -73,7 +56,6 @@ impl GaussianRat {
         self.re.is_zero() && self.im.is_zero()
     }
 
-    /// True when the imaginary part vanishes.
     pub fn is_real(&self) -> bool {
         self.im.is_zero()
     }
@@ -100,7 +82,6 @@ impl GaussianRat {
     }
 
     pub fn mul(&self, other: &Self) -> Self {
-        // (a + bi)(c + di) = (ac - bd) + (ad + bc)i
         Self {
             re: &self.re * &other.re - &self.im * &other.im,
             im: &self.re * &other.im + &self.im * &other.re,
@@ -130,14 +111,7 @@ impl GaussianRat {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 2. Eisenstein Rationals Q(zeta_3) with subring Z[zeta_3]
-// ---------------------------------------------------------------------------
 
-/// Element of Q(zeta_3): a + b*zeta_3 where zeta_3^2 + zeta_3 + 1 = 0.
-///
-/// Notice zeta_3^2 = -1 - zeta_3.
-/// Conjugate of zeta_3 is zeta_3^2 = -1 - zeta_3.
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct EisensteinRat {
     pub a: Rational,
@@ -210,9 +184,6 @@ impl EisensteinRat {
     }
 
     pub fn mul(&self, other: &Self) -> Self {
-        // (a + b w)(c + d w) = ac + (ad + bc) w + bd w^2
-        // = ac + (ad + bc) w + bd (-1 - w)
-        // = (ac - bd) + (ad + bc - bd) w
         let ac = &self.a * &other.a;
         let bd = &self.b * &other.b;
         let ad = &self.a * &other.d_coeff();
@@ -228,7 +199,6 @@ impl EisensteinRat {
     }
 
     pub fn conj(&self) -> Self {
-        // conj(a + b w) = a + b (-1 - w) = (a - b) - b w
         Self {
             a: &self.a - &self.b,
             b: -&self.b,
@@ -236,7 +206,6 @@ impl EisensteinRat {
     }
 
     pub fn norm_sq(&self) -> Rational {
-        // N(a + b w) = a^2 - ab + b^2
         &self.a * &self.a - &self.a * &self.b + &self.b * &self.b
     }
 
@@ -253,11 +222,7 @@ impl EisensteinRat {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 3. 8th Cyclotomic Field Q(zeta_8) with subring Z[zeta_8]
-// ---------------------------------------------------------------------------
 
-/// Element of Q(zeta_8): sum_{k=0}^3 a_k zeta_8^k where Phi_8(x) = x^4 + 1 = 0 (zeta_8^4 = -1).
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct Cyc8 {
     pub a: [Rational; 4],
@@ -343,7 +308,6 @@ impl Cyc8 {
                 }
             }
         }
-        // reduce x^4 = -1, x^5 = -x, x^6 = -x^2
         let mut res = std::array::from_fn(|k| full[k].clone());
         for k in 4..7 {
             if !full[k].is_zero() {
@@ -354,9 +318,6 @@ impl Cyc8 {
     }
 
     pub fn conj(&self) -> Self {
-        // zeta_8 -> zeta_8^7 = -zeta_8^3
-        // zeta_8^2 -> zeta_8^6 = -zeta_8^2
-        // zeta_8^3 -> zeta_8^5 = -zeta_8
         Self {
             a: [
                 self.a[0].clone(),
@@ -367,8 +328,6 @@ impl Cyc8 {
         }
     }
 
-    /// Multiplicative inverse, from the exact solution of the multiplication-matrix
-    /// system (`crate::power_basis`). Panics on zero, like the other `inv` methods here.
     pub fn inv(&self) -> Self {
         let coeffs = crate::power_basis::invert_by_multiplication_matrix(4, |j| {
             let mut unit = Self::zero();
@@ -390,11 +349,7 @@ impl Cyc8 {
     }
 }
 
-// ---------------------------------------------------------------------------
-// 4. 12th Cyclotomic Field Q(zeta_12) with subring Z[zeta_12]
-// ---------------------------------------------------------------------------
 
-/// Element of Q(zeta_12): sum_{k=0}^3 a_k zeta_12^k where Phi_12(x) = x^4 - x^2 + 1 = 0 (x^4 = x^2 - 1).
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct Cyc12 {
     pub a: [Rational; 4],
@@ -484,8 +439,6 @@ impl Cyc12 {
         }
     }
 
-    /// Multiplicative inverse, from the exact solution of the multiplication-matrix
-    /// system (`crate::power_basis`). Panics on zero, like the other `inv` methods here.
     pub fn inv(&self) -> Self {
         let coeffs = crate::power_basis::invert_by_multiplication_matrix(4, |j| {
             let mut unit = Self::zero();
@@ -513,7 +466,6 @@ impl Cyc12 {
 }
 
 fn reduce_dense_12(mut poly: Vec<Rational>) -> [Rational; 4] {
-    // x^4 = x^2 - 1
     while poly.len() > 4 {
         let deg = poly.len() - 1;
         let c = poly.pop().unwrap();
@@ -531,12 +483,7 @@ fn reduce_dense_12(mut poly: Vec<Rational>) -> [Rational; 4] {
     out
 }
 
-// ---------------------------------------------------------------------------
-// 5. 5th Cyclotomic Field Q(zeta_5) with subring Z[zeta_5] for p=5 Phase Space
-// ---------------------------------------------------------------------------
 
-/// Element of Q(zeta_5): sum_{k=0}^3 a_k zeta_5^k where Phi_5(x) = x^4 + x^3 + x^2 + x + 1 = 0
-/// so x^4 = -1 - x - x^2 - x^3.
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct Cyc5 {
     pub a: [Rational; 4],
@@ -626,12 +573,10 @@ impl Cyc5 {
     }
 
     pub fn trace(&self) -> Rational {
-        // Tr(1) = 4, Tr(zeta_5^k) = -1 for k=1,2,3
         &self.a[0] * ri(4) - &self.a[1] - &self.a[2] - &self.a[3]
     }
 
     pub fn inv(&self) -> Self {
-        // Invert by linear system: find c such that c * self = 1
         let cols: [[Rational; 4]; 4] = std::array::from_fn(|k| {
             let zk = Self::zeta5(k as i32);
             let p = self.mul(&zk);
@@ -650,7 +595,6 @@ impl Cyc5 {
 }
 
 fn reduce_dense_5(mut poly: Vec<Rational>) -> [Rational; 4] {
-    // x^4 = -1 - x - x^2 - x^3
     while poly.len() > 4 {
         let deg = poly.len() - 1;
         let c = poly.pop().unwrap();
@@ -669,16 +613,9 @@ fn reduce_dense_5(mut poly: Vec<Rational>) -> [Rational; 4] {
     out
 }
 
-// ---------------------------------------------------------------------------
-// 6. 24th Cyclotomic Field Q(zeta_24) Unifying Ambient Field
-// ---------------------------------------------------------------------------
 
 const DEGREE_24: usize = 8;
-// Phi_24(x) = x^8 - x^4 + 1 = 0, so x^8 = x^4 - 1.
 
-/// Element of Q(zeta_24): sum_{k=0}^7 a_k zeta_24^k.
-///
-/// Contains Q, Q(i), Q(zeta_3), Q(zeta_8), Q(zeta_12), sqrt(2), and sqrt(3).
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct Cyc24 {
     pub a: [Rational; DEGREE_24],
@@ -724,7 +661,6 @@ impl Cyc24 {
         Self::zeta24(8)
     }
 
-    /// `zeta_3^k = zeta_24^(8 k)`, for any integer `k`.
     pub fn zeta3_pow(k: i32) -> Self {
         Self::zeta24(8 * k)
     }
@@ -741,7 +677,6 @@ impl Cyc24 {
         Self::zeta24(3).sub(&Self::zeta24(9))
     }
 
-    /// `sqrt3 = zeta^2 + zeta^-2 = 2 cos(pi/6)`.
     pub fn sqrt3() -> Self {
         Self::zeta24(2).add(&Self::zeta24(-2))
     }
@@ -850,7 +785,6 @@ impl Cyc24 {
 }
 
 fn reduce_dense_24(mut poly: Vec<Rational>) -> [Rational; DEGREE_24] {
-    // x^8 = x^4 - 1
     while poly.len() > DEGREE_24 {
         let deg = poly.len() - 1;
         let c = poly.pop().unwrap();
@@ -868,9 +802,6 @@ fn reduce_dense_24(mut poly: Vec<Rational>) -> [Rational; DEGREE_24] {
     out
 }
 
-// ---------------------------------------------------------------------------
-// Linear Solvers for Field Inversion
-// ---------------------------------------------------------------------------
 
 fn solve_linear_4(cols: &[[Rational; 4]; 4], b: &[Rational; 4]) -> Option<[Rational; 4]> {
     let mut m: [[Rational; 5]; 4] =
@@ -1045,7 +976,6 @@ mod tests {
 
     #[test]
     fn test_cyc8_sqrt2_identity() {
-        // sqrt(2) = zeta_8 + zeta_8^7 = zeta_8 - zeta_8^3
         let z = Cyc8::zeta8(1);
         let z7 = Cyc8::zeta8(7);
         let sqrt2 = z.add(&z7);
@@ -1072,7 +1002,6 @@ mod tests {
         let z5 = z.mul(&z).mul(&z).mul(&z).mul(&z);
         assert_eq!(z5, Cyc5::one());
 
-        // sum of 5th roots of unity is zero: 1 + z + z^2 + z^3 + z^4 = 0
         let sum = (0..5).fold(Cyc5::zero(), |acc, k| acc.add(&Cyc5::zeta5(k)));
         assert!(sum.is_zero());
     }

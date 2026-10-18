@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Wilsonian Finite-Size Scaling Extrapolation Adapter.
 
@@ -34,8 +33,8 @@ class ChainObservation:
     """Measurement of an extensive or intensive observable on a finite chain of size L."""
 
     chain_length_l: int
-    observable_value: RationalInterval  # E.g. ground state energy E_0(L), or free energy density
-    is_density: bool = True  # If True, value is already intensive (e.g. E_0/L); if False, extensive
+    observable_value: RationalInterval
+    is_density: bool = True
 
     def __post_init__(self) -> None:
         l_val = _validate_exact_int(self.chain_length_l, "chain_length_l")
@@ -57,7 +56,7 @@ class WilsonianScalingReceipt:
     """Certified audit receipt for finite-size scaling extrapolation to thermodynamic limit."""
 
     input_chain_lengths: Tuple[int, ...]
-    scaling_variable_power: int  # p where scaling is in (1/L)^p, e.g. p=2 for symmetric 1D chains
+    scaling_variable_power: int
     extrapolated_thermodynamic_limit: RationalInterval
     neville_tableau: Tuple[Tuple[RationalInterval, ...], ...]
     finite_size_residuals: Dict[int, RationalInterval]
@@ -114,7 +113,7 @@ class WilsonianExtrapolator:
 
     def extrapolate(self, select_lengths: Optional[Sequence[int]] = None) -> WilsonianScalingReceipt:
         """Perform Neville-Aitken polynomial extrapolation in x = (1/L)^p evaluated at x = 0.
-        
+
         Given nodes (x_i, y_i) where x_i = (1/L_i)^p:
           T_{i, 0} = y_i
           T_{i, k} = (x_{i+k} * T_{i, k-1} - x_i * T_{i+1, k-1}) / (x_{i+k} - x_i)
@@ -136,13 +135,10 @@ class WilsonianExtrapolator:
         n = len(lengths)
         p = self.scaling_power
 
-        # Initialize tableau T[i][k]
-        # Column 0: raw density values
         tableau: List[List[RationalInterval]] = []
         col0 = [self._observations[l].density_value for l in lengths]
         tableau.append(col0)
 
-        # Neville recurrence
         for k in range(1, n):
             col_k: List[RationalInterval] = []
             for i in range(n - k):
@@ -150,24 +146,19 @@ class WilsonianExtrapolator:
                 l_ik = Fraction(lengths[i + k] ** p)
                 t_prev_low = tableau[k - 1][i]
                 t_prev_high = tableau[k - 1][i + 1]
-                # Formula: (l_ik * t_prev_high - l_i * t_prev_low) / (l_ik - l_i)
                 denom = l_ik - l_i
                 t_ik = (t_prev_high * l_ik - t_prev_low * l_i) / denom
                 col_k.append(t_ik)
             tableau.append(col_k)
 
-        # Highest-order extrapolated enclosure at the apex: T[n-1][0]
         thermo_limit = tableau[n - 1][0]
 
-        # Compute finite-size residuals: Delta(L) = g(L) - f_infty (or L * (g(L) - f_infty))
         residuals: Dict[int, RationalInterval] = {}
         for l in lengths:
             g_l = self._observations[l].density_value
             delta_density = g_l - thermo_limit
-            # Extensive correction Delta(L) = L * delta_density
             residuals[l] = delta_density * l
 
-        # Freeze tableau into tuples
         frozen_tableau = tuple(tuple(col) for col in tableau)
 
         payload = {

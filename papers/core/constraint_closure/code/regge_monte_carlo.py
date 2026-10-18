@@ -27,24 +27,22 @@ try:
         SolverOutput,
     )
 except ImportError:
-    # Standalone paper-package fallback.  These are usable value objects, not
-    # empty mocks that make an unexercised adapter appear to work.
     @dataclass(frozen=True)
-    class SolverCertificate:  # type: ignore[no-redef]
+    class SolverCertificate:
         certificate_type: str
         witness_data: Dict[str, Any]
         is_valid: bool
         certificate_hash: str
 
     @dataclass(frozen=True)
-    class SolverInput:  # type: ignore[no-redef]
+    class SolverInput:
         problem_id: str
         category: str = "LatticeMonteCarlo"
         data: Dict[str, Any] | None = None
         parameters: Dict[str, Any] | None = None
 
     @dataclass(frozen=True)
-    class SolverOutput:  # type: ignore[no-redef]
+    class SolverOutput:
         problem_id: str
         solver_id: str
         status: str
@@ -54,7 +52,7 @@ except ImportError:
         metadata: Dict[str, Any]
         authority_effect: str
 
-    class BaseSolver:  # type: ignore[no-redef]
+    class BaseSolver:
         def __init__(self, solver_id: str, category: str, solver_version: str):
             self.solver_id = solver_id
             self.category = category
@@ -86,7 +84,7 @@ def compute_hinge_action(
     immirzi_gamma: float = 0.274066,
 ) -> float:
     """Compute 4D Regge-Barbero-Immirzi action for a single hinge with valency k."""
-    theta_hyper = math.acos(0.25)  # arccos(1/4) ~ 1.318116 rad
+    theta_hyper = math.acos(0.25)
     epsilon = 2.0 * math.pi - k * theta_hyper
     return area * (epsilon + (1.0 / max(1e-6, immirzi_gamma)) * math.sin(epsilon))
 
@@ -100,7 +98,6 @@ def run_regge_monte_carlo_simulation(
 ) -> Dict[str, Any]:
     """Execute Metropolis-Hastings thermal simulation of 4D Regge hinge valencies."""
     np.random.seed(seed)
-    # Initialize hinges with random initial valencies k in [3, 7]
     valencies = np.random.randint(3, 8, size=n_hinges)
     areas = np.ones(n_hinges)
 
@@ -115,11 +112,9 @@ def run_regge_monte_carlo_simulation(
     n_accepted = 0
 
     for step in range(n_steps):
-        # Pick random hinge
         idx = np.random.randint(0, n_hinges)
         current_k = valencies[idx]
 
-        # Propose step delta_k in {-1, +1} with boundaries in [3, 8]
         delta_k = np.random.choice([-1, 1])
         proposed_k = current_k + delta_k
         if proposed_k < 3 or proposed_k > 8:
@@ -128,7 +123,6 @@ def run_regge_monte_carlo_simulation(
         proposed_action = compute_hinge_action(proposed_k, areas[idx], immirzi_gamma)
         delta_s = proposed_action - current_actions[idx]
 
-        # Metropolis-Hastings acceptance rule
         if delta_s <= 0 or np.random.rand() < math.exp(-beta * delta_s):
             valencies[idx] = proposed_k
             total_action += delta_s
@@ -163,7 +157,7 @@ def run_regge_monte_carlo_simulation(
         "total_action": total_action,
         "mean_action_per_hinge": total_action / max(1, n_hinges),
         "budget_heuristic_reached": budget_heuristic_reached,
-        "has_adequate_sampling": budget_heuristic_reached,  # Retained for backward compat, documented as budget heuristic
+        "has_adequate_sampling": budget_heuristic_reached,
         "equilibrium_assertion": "NOT_CERTIFIED_BUDGET_HEURISTIC_ONLY",
         "authority_effect": "None",
     }

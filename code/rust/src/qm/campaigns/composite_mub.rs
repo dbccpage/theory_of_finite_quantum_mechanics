@@ -1,13 +1,4 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Campaign C250 Block 05: Composition, Tensor Product Axioms, Dimension 6 MUB, and GKP Scaling.
-//!
-//! This module implements exact Rust parity for:
-//! 1. The 4 linear-algebraic axioms selecting the Kronecker tensor product combining operation.
-//! 2. Verification that the projection / report-dump rival fails local unitary covariance.
-//! 3. Dimension d=6 product MUB verification (3 bases at conductor 24 with pairwise overlap 1/6).
-//! 4. Bounded algebraic search for a fourth MUB in dimension 6 (concluding OPEN).
-//! 5. A finite check of the GKP cyclotomic conductor lower bound.
 
 use crate::linear_algebra::{elimination::rank, involution::outer_product, matrix};
 use omega_number_theory::cyclotomic::Cyc24;
@@ -17,7 +8,6 @@ use omega_number_theory::vanishing_sums::minimal_root_conductor;
 use omega_quantum_physics::mub::algebra::{verify_mub_projector_algebra, ProjectorAlgebraStatus};
 use omega_quantum_physics::mub::composite::build_composite_mub_d6;
 
-/// Declared list of 4 axioms selecting the Kronecker tensor product combining operation.
 pub const TENSOR_AXIOMS: [&str; 4] = [
     "bilinearity",
     "local_unitary_covariance",
@@ -25,26 +15,21 @@ pub const TENSOR_AXIOMS: [&str; 4] = [
     "no_signaling",
 ];
 
-/// Returns the exact count of declared axioms.
 pub fn tensor_axiom_count() -> usize {
     TENSOR_AXIOMS.len()
 }
 
-/// Returns whether the tensor product is uniquely selected under the 4 declared axioms.
 pub fn tensor_unique_under_axioms() -> Option<bool> {
     None
 }
 
-/// A bilinear combining operation on `Q^2 x Q^2`, given on basis vectors.
 pub type CombiningOperation = fn(&[Rational; 2], &[Rational; 2]) -> Vec<Rational>;
 
-/// The projection / report-dump rival: `u boxtimes_dump v = (<0|v> + <1|v>) u`.
 pub fn dump_combine(u: &[Rational; 2], v: &[Rational; 2]) -> Vec<Rational> {
     let weight = &v[0] + &v[1];
     u.iter().map(|x| x * &weight).collect()
 }
 
-/// The Kronecker tensor product `u (x) v`, into `Q^4`.
 pub fn kronecker_combine(u: &[Rational; 2], v: &[Rational; 2]) -> Vec<Rational> {
     let mut out = Vec::with_capacity(4);
     for a in u {
@@ -55,14 +40,6 @@ pub fn kronecker_combine(u: &[Rational; 2], v: &[Rational; 2]) -> Vec<Rational> 
     out
 }
 
-/// Whether `combine` fails local unitary covariance under `U_B = Z = diag(1, -1)`.
-///
-/// Covariance asks for one linear `T = T(I, Z)` on the output space with
-/// `T(combine(u, v)) = combine(u, Z v)` for every basis `u, v`. With `A` the
-/// matrix whose columns are `combine(e_i, e_k)` and `B` the one whose columns
-/// are `combine(e_i, Z e_k)`, such a `T` exists exactly when `B` vanishes on
-/// the kernel of `A`, that is when `rank [A; B] = rank A`. Both ranks are
-/// computed exactly over `Q`.
 pub fn fails_local_unitary_covariance(combine: CombiningOperation) -> Result<bool, String> {
     let basis = [[ri(1), ri(0)], [ri(0), ri(1)]];
     let z = |v: &[Rational; 2]| [v[0].clone(), -v[1].clone()];
@@ -84,10 +61,6 @@ pub fn fails_local_unitary_covariance(combine: CombiningOperation) -> Result<boo
     )
 }
 
-/// The projection / report-dump rival fails local unitary covariance: for
-/// `u != 0`, covariance would need `T(u) = u` (from `v = |0>`) and
-/// `T(u) = -u` (from `v = |1>`), impossible in characteristic 0. Computed by
-/// [`fails_local_unitary_covariance`].
 pub fn rival_fails_local_unitary_covariance() -> bool {
     fails_local_unitary_covariance(dump_combine).unwrap_or(false)
 }
@@ -98,7 +71,6 @@ fn columns_to_rows(cols: &[Vec<Rational>]) -> Vec<Vec<Rational>> {
         .collect()
 }
 
-/// Verification of the 3 product MUBs in dimension 6.
 pub fn verify_d6_product_mubs() -> (usize, usize, bool) {
     let bases = build_composite_mub_d6();
     let basis_count = bases.len();
@@ -110,11 +82,6 @@ pub fn verify_d6_product_mubs() -> (usize, usize, bool) {
     (basis_count, total_projectors, ok)
 }
 
-/// Bounded algebraic search for a fourth MUB in dimension 6 over conductor 24.
-///
-/// Returns `(candidates_found, status)`. The status is `"OPEN"` when no
-/// candidate vector in the bound is unbiased to all 18 projectors, which
-/// settles nothing about existence, and `"CANDIDATE_VECTOR_FOUND"` otherwise.
 pub fn search_fourth_mub_d6(
     conductor_ceiling: usize,
     max_candidates: usize,
@@ -134,7 +101,6 @@ pub fn search_fourth_mub_d6(
     let cond = conductor_ceiling;
     let mut candidates_found = 0;
 
-    // Test candidate phase-vector candidates w = (1, zeta^{k_1}, ..., zeta^{k_5})
     for cand_idx in 0..max_candidates {
         let mut index = cand_idx;
         let mut powers = [0usize; 5];
@@ -152,10 +118,8 @@ pub fn search_fourth_mub_d6(
             Cyc24::zeta24((k5 * 24 / cond) as i32),
         ];
 
-        // Rank-1 unnormalized projector M = w * w^dagger (satisfying Tr(M) = 6)
         let m = outer_product(&phases, &phases).map_err(|e| e.to_string())?;
 
-        // Mutual unbiasedness with all 18 projectors Pi: Tr(M/6 * Pi) == 1/6 <=> Tr(M * Pi) == 1
         let mut all_unbiased = true;
         for basis in &bases {
             for pi in basis {
@@ -184,15 +148,6 @@ pub fn search_fourth_mub_d6(
     Ok((candidates_found, status))
 }
 
-/// Evaluation of GKP phase-space grid state cyclotomic conductor scaling.
-///
-/// For grid modulus N, grid translations require roots of unity zeta_N or zeta_{4N},
-/// so the cyclotomic conductor n(N) >= N/2, scaling proportionally to N.
-///
-/// Returns `(lower_bound_verified, scaling_factor, max_conductor)`. The first
-/// entry is computed: `n(N) >= N/2` for every `N` in `2..=max_n`. Unbounded
-/// growth follows from that bound as a theorem; a finite scan does not
-/// compute it.
 pub fn evaluate_gkp_conductor_scaling(max_n: usize) -> Result<(bool, &'static str, usize), String> {
     if max_n > 128 {
         return Err("the declared root carrier exceeds128".into());
@@ -215,7 +170,6 @@ pub fn evaluate_gkp_conductor_scaling(max_n: usize) -> Result<(bool, &'static st
     Ok((lower_bound_verified, scaling_factor, max_conductor))
 }
 
-/// Comprehensive verification report for Block 05 execution.
 #[derive(serde::Serialize)]
 pub struct Block05ExecutionReport {
     pub tensor_unique_under_axioms: Option<bool>,
@@ -230,9 +184,6 @@ pub struct Block05ExecutionReport {
 }
 
 impl Block05ExecutionReport {
-    /// The declared counts and bounded computations agree with their reported
-    /// outcomes. This does not settle tensor uniqueness or the fourth-MUB
-    /// existence question.
     pub fn bounded_checks_hold(&self) -> bool {
         self.tensor_axiom_count == TENSOR_AXIOMS.len()
             && self.rival_fails_covariance
@@ -244,8 +195,6 @@ impl Block05ExecutionReport {
             && self.gkp_conductor_scaling_factor == "N"
     }
 
-    /// A bounded check can pass while the block's mathematical questions
-    /// remain open; a failed check or a refuted uniqueness claim is a failure.
     pub fn status(&self) -> &'static str {
         if self.bounded_checks_hold() && self.tensor_unique_under_axioms.is_none() {
             "SCOPED_RESULTS_WITH_OPEN_OBLIGATIONS"
@@ -296,8 +245,6 @@ mod tests {
 
     #[test]
     fn test_kronecker_product_is_locally_covariant() {
-        // Negative control: the tensor product itself must pass, or the
-        // covariance test would reject every combining operation.
         assert!(!fails_local_unitary_covariance(kronecker_combine).unwrap());
     }
 
@@ -321,7 +268,6 @@ mod tests {
         let (bound_verified, factor, max_cond) =
             evaluate_gkp_conductor_scaling(20).expect("bounded root conductor search");
         assert!(bound_verified);
-        // An empty scan verifies nothing.
         assert!(!evaluate_gkp_conductor_scaling(1).unwrap().0);
         assert_eq!(factor, "N");
         assert_eq!(max_cond, 20);

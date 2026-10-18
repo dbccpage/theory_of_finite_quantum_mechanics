@@ -15,7 +15,6 @@ MAX_ITEMS = 256
 DIGEST_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 IDENTIFIER_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:/@-]*$")
 
-# Canonical Schema Identifiers
 SCHEMA_APPROVED_PROMPT = "omega.prompt.approved.v1"
 SCHEMA_TYPED_PROMPT = "omega.prompt.typed.v1"
 SCHEMA_REVIEW_BUNDLE = "omega.prompt.review-bundle.v1"
@@ -39,7 +38,6 @@ class CandidateDisciplineLevel(str, Enum):
     REPLAYABLE_ANTIBODY = "replayable_antibody"
 
 
-# Wire Keys
 class ApprovedPromptWireKey(str, Enum):
     PROMPT_ID = "prompt_id"
     REVIEW_RECEIPT_ID = "review_receipt_id"

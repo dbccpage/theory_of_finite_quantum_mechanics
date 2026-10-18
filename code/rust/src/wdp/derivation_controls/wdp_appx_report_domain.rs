@@ -1,13 +1,7 @@
-//! Companion Rust witness crate for `WDP-APPX-REPORT-DOMAIN`:
-//! Aligns calibrated model admission and bounded raw report semantics.
-//! AuthorityEffect: None.
 
 pub const COST_DOMAIN: &str = "ideal_calibrated_interval_product";
 pub const MAX_RAW_BITS: u32 = 256;
 
-/// Checks whether a point interval `[y_pow2, y_pow2]` with `offset = 0` and
-/// `gain = 2^(-gain_neg_pow2)` has a raw reading `r = y / gain = 2^(y_pow2 + gain_neg_pow2)`
-/// within the 256-bit parser cap (`<= 2^256`).
 pub fn point_cell_raw_bits(y_pow2: u32, gain_neg_pow2: u32) -> u32 {
     y_pow2.saturating_add(gain_neg_pow2)
 }
@@ -59,11 +53,8 @@ mod tests {
 
     #[test]
     fn test_cap_boundary_255_vs_257() {
-        // y = 2^128, gain = 2^-127 => raw = 2^255 (within 2^256 cap)
         assert!(is_executable_under_256bit_cap(128, 127));
-        // y = 2^128, gain = 2^-128 => raw = 2^256 (exact boundary of 2^256 cap)
         assert!(is_executable_under_256bit_cap(128, 128));
-        // y = 2^129, gain = 2^-128 => raw = 2^257 (exceeds 2^256 cap)
         assert!(!is_executable_under_256bit_cap(129, 128));
     }
 }

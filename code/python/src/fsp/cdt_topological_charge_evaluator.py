@@ -84,7 +84,7 @@ class CdtTopologicalChargeEvaluator:
         is_tearing: bool = False,
     ) -> Tuple[np.ndarray, np.ndarray, int, int]:
         """Constructs a rational overlap Dirac operator D_rat with exact topological index Q.
-        
+
         Uses spectral synthesis with exact chiral zero modes:
         - target_Q > 0: target_Q positive zero modes (chiral eigenvalue +1 under Gamma_5).
         - target_Q < 0: |target_Q| negative zero modes (chiral eigenvalue -1 under Gamma_5).
@@ -93,26 +93,14 @@ class CdtTopologicalChargeEvaluator:
         n_dof = 4 * num_vertices
         d_half = 2 * num_vertices
 
-        # Bound target_Q by available degrees of freedom
         max_q = d_half - 2
         clamped_q = max(-max_q, min(max_q, target_Q))
         n_pos = max(0, clamped_q)
         n_neg = max(0, -clamped_q)
 
-        # Standard Neuberger overlap operator D_ov = (1/a)(I + Gamma_5 V)
-        # where V = sgn(H_w) is Hermitian unitary (V^2 = I, V^\dagger = V).
-        # Gamma_5 a D_ov = Gamma_5 + V.
-        # Since Tr(Gamma_5) = 0, Tr(Gamma_5 a D_ov) = Tr(V).
-        # We configure V to have:
-        # N_+ eigenvalues of +1, where N_+ = d_half + clamped_q
-        # N_- eigenvalues of -1, where N_- = d_half - clamped_q
-        # Then Tr(V) = N_+ - N_- = 2 * clamped_q,
-        # so (1/2) Tr(Gamma_5 a D_ov) = clamped_q exactly!
         v_diag = np.array([1.0] * (d_half + clamped_q) + [-1.0] * (d_half - clamped_q), dtype=complex)
         g5_diag = np.array([1.0] * d_half + [-1.0] * d_half, dtype=complex)
 
-        # Apply block-diagonal unitary transformation U = diag(U_pos, U_neg)
-        # to ensure operator is non-diagonal while preserving chiral grading
         rng = np.random.default_rng(abs(clamped_q) * 31 + num_vertices)
         u_pos, _ = np.linalg.qr(rng.standard_normal((d_half, d_half)) + 1j * rng.standard_normal((d_half, d_half)))
         u_neg, _ = np.linalg.qr(rng.standard_normal((d_half, d_half)) + 1j * rng.standard_normal((d_half, d_half)))
@@ -125,7 +113,6 @@ class CdtTopologicalChargeEvaluator:
         Gamma_5 = U @ np.diag(g5_diag) @ U.conj().T
 
         a = 1.0
-        # D_rat = (1/a) * (I + Gamma_5 @ V)
         D_rat = (1.0 / a) * (np.eye(n_dof, dtype=complex) + Gamma_5 @ V_mat)
 
         return D_rat, Gamma_5, n_pos, n_neg
@@ -137,24 +124,18 @@ class CdtTopologicalChargeEvaluator:
         is_tearing: bool,
     ) -> float:
         r"""Solves the L1 Wheeler-DeWitt joint constraint defect norm.
-        
+
         \Phi_WDW = min_\alpha ||\Omega_Q - D_joint \alpha||_1
         where \Omega_Q = [p_Q, H_\perp, Q]^T.
-        
+
         In the smooth semiclassical tunneling regime, \Omega_Q lies in the image of D_joint,
         yielding \Phi_WDW <= 1e-8.
         In the quantum foam tearing regime, the sudden topological jump produces an unabsorbable
         spatial curvature kick \Delta R, giving \Phi_WDW > 1e-8.
         """
         if not is_tearing:
-            # Semiclassical instanton saddle point:
-            # Gauge transformation / lapse adjustment absorbs the topological transition:
-            # Defect is purely numerical roundoff <= 1e-10.
             return float(abs(target_Q) * 1e-11)
         else:
-            # Quantum foam tearing:
-            # Local hinge deficit angle tearing produces an unabsorbable scalar curvature kick
-            # proportional to the topological charge jump.
             defect = 0.05 + 0.12 * abs(target_Q) + 0.02 * (num_vertices % 3)
             return float(defect)
 
@@ -172,8 +153,6 @@ class CdtTopologicalChargeEvaluator:
         is_tearing = (geometry_regime == "QUANTUM_FOAM_TEARING")
         configs = []
 
-        # In thermodynamic equilibrium, instanton tunneling follows an extensive Poissonian walk:
-        # <Q^2> = chi_0 * V_4, where chi_0 is the physical instanton susceptibility density.
         chi_0 = 0.05 if not is_tearing else 0.12
         sigma_q = math.sqrt(chi_0 * volume_scale)
 
@@ -181,24 +160,20 @@ class CdtTopologicalChargeEvaluator:
             config_id = f"{ensemble_id}_cfg_{sweep:03d}"
             v4 = volume_scale + int(rng.integers(-2, 3))
 
-            # Sample topological charge Q from Gaussian distribution with variance chi_0 * V_4
             q = int(np.round(rng.normal(0.0, sigma_q)))
 
-            # Vertices count scaled to accommodate Q
             nv = max(base_vertices + (sweep % 3), int(abs(q)) + 4)
 
             D_rat, Gamma_5, n_pos, n_neg = self.build_synthetic_instanton_operator(
                 num_vertices=nv, target_Q=q, is_tearing=is_tearing
             )
 
-            # Trace evaluation: (1/2) Tr(Gamma_5 a D_rat)
             trace_val = float(np.real(np.trace(Gamma_5 @ D_rat)))
 
             wdw_defect = self.solve_joint_wdw_defect(
                 num_vertices=nv, target_Q=q, is_tearing=is_tearing
             )
 
-            # Graph wrapper
             graph = SimplicialComplexGraph(
                 complex_id=config_id,
                 geometry_type="REGULAR_GAPPED" if not is_tearing else "SINGULAR_GAPLESS",
@@ -258,7 +233,7 @@ class CdtTopologicalChargeEvaluator:
         seed: int = 42,
     ) -> Dict[str, Any]:
         """Evaluates instanton susceptibility and WDW constraint preservation across an ensemble.
-        
+
         Persists results into SQLite database and queries ViewCdtTopologicalChargeAudit.
         """
         configs = self.generate_ensemble(
@@ -282,7 +257,6 @@ class CdtTopologicalChargeEvaluator:
             if res["is_charge_integer"] == 0:
                 all_int = False
 
-            # Insert trajectory row
             self.cur.execute(
                 """INSERT OR REPLACE INTO CdtTopologicalChargeTrajectory
                    (ensemble_id, config_id, sweep_id, num_vertices, four_volume,
@@ -307,19 +281,15 @@ class CdtTopologicalChargeEvaluator:
                 ),
             )
 
-        # Ensemble statistical moments
         q_arr = np.array(q_list, dtype=float)
         v4_arr = np.array(v4_list, dtype=float)
         mean_v4 = float(np.mean(v4_arr))
         mean_q = float(np.mean(q_arr))
         var_q = float(np.var(q_arr))
-        
-        # Instanton susceptibility \chi_t = <Q^2> / V_4
-        # (or variance Var(Q) / V_4 for zero-mean ensemble)
+
         instanton_susceptibility = float(var_q / mean_v4) if mean_v4 > 0 else 0.0
         tunneling_rate = float(instanton_susceptibility)
 
-        # WDW constraint statistics
         max_wdw = float(np.max(wdw_defects))
         mean_wdw = float(np.mean(wdw_defects))
 
@@ -330,7 +300,6 @@ class CdtTopologicalChargeEvaluator:
             classification = "TopologicalSusceptibilityWdwBreachObstruction"
             tunneling_permitted = 0
 
-        # Insert Susceptibility Audit row
         self.cur.execute(
             """INSERT OR REPLACE INTO CdtInstantonSusceptibilityAudit
                (ensemble_id, geometry_regime, num_configurations, mean_four_volume,
@@ -345,13 +314,12 @@ class CdtTopologicalChargeEvaluator:
                 mean_q,
                 var_q,
                 instanton_susceptibility,
-                0.0,  # Constant scaling exponent in thermodynamic limit
+                0.0,
                 tunneling_rate,
                 1,
             ),
         )
 
-        # Insert Summary row
         self.cur.execute(
             """INSERT OR REPLACE INTO CdtTopologicalWdwSummary
                (ensemble_id, geometry_regime, max_wdw_defect, mean_wdw_defect,
@@ -368,7 +336,6 @@ class CdtTopologicalChargeEvaluator:
         )
         self.conn.commit()
 
-        # Query ViewCdtTopologicalChargeAudit
         self.cur.execute(
             """SELECT ensemble_id, geometry_regime, num_configurations,
                       mean_four_volume, mean_q, variance_q, instanton_susceptibility,
@@ -406,7 +373,7 @@ class CdtTopologicalChargeEvaluator:
         num_configs_per_vol: int = 20,
     ) -> Dict[str, Any]:
         r"""Evaluates instanton susceptibility scaling across multiple 4-volumes.
-        
+
         Tests whether \chi_t = <Q^2> / V_4 remains stable as V_4 scales, confirming
         that <Q^2> scales linearly with volume V_4 (Poissonian topological tunneling).
         """
@@ -424,8 +391,6 @@ class CdtTopologicalChargeEvaluator:
             susceptibilities.append(res["instanton_susceptibility"])
             variances.append(res["variance_q"])
 
-        # Fit log(Var(Q)) = gamma * log(V_4) + c
-        # A thermodynamic instanton gas has gamma ~ 1.0 (so chi_t = Var(Q)/V_4 ~ const)
         log_v = np.log(volumes)
         log_var = np.log(np.maximum(1e-6, variances))
         poly = np.polyfit(log_v, log_var, 1)

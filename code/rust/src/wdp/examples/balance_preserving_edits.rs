@@ -1,4 +1,3 @@
-//! Native finite fixtures for lesson 720.24. No input parser or Python solver.
 use linear_algebra::backend::basic_matrix::OperationLimits;
 use num_bigint::BigInt;
 use num_traits::One;

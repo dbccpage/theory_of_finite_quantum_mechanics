@@ -24,7 +24,6 @@ class MatrixGroupSpec:
     rank: int
     factors: List[Tuple[str, int]]
 
-    # sample_fn should return an (rep_dim x rep_dim) numpy array
     sample_fn: Callable[[], np.ndarray]
     is_product: bool
     rep_dim: int
@@ -47,7 +46,6 @@ class L1LocalizationResult:
     zero_fraction: float
     n_samples: int
 
-    # List of sampled matrices achieving min_cost
     best_config: Optional[List[np.ndarray]] = None
 
 
@@ -67,16 +65,10 @@ class ConstraintCheckResult:
     details: str
 
 
-# Legacy aliases for backward compatibility with active pipelines
 GaugeGroupSpec = MatrixGroupSpec
 
-# Metadata-only alias: stores boolean outcomes of constraint checks; it is NOT
-# a verified anomaly-cancellation result (no derivation or enforcement).
 AnomalyCancellationMetadata = ConstraintCheckResult
 
-# Backward-compatible alias. Despite the name, this is metadata only (the same
-# ConstraintCheckResult container) and does NOT constitute a verified
-# anomaly-cancellation result.
 AnomalyCancellationResult = ConstraintCheckResult
 
 

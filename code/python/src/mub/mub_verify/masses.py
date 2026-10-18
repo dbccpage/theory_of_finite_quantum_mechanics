@@ -41,7 +41,6 @@ class EnclosedVector:
     def from_exact_vec(cls, e: ExactVec, sb: SqrtBox) -> EnclosedVector:
         comps = []
         for k in range(D):
-            # conj(e[k]) = A_k + i B_k
             re_iv, im_iv = cyc24_interval_enclosure(e[k].conj(), sb)
             comps.append((re_iv, im_iv))
         return cls(comps)
@@ -63,7 +62,6 @@ class EnclosedVector:
             a, b = self.components[k]
             x = vbox[2 * k]
             y = vbox[2 * k + 1]
-            # (A + iB)(x + iy) = (A x - B y) + i (A y + B x)
             re = re.add(a.mul(x).sub(b.mul(y)))
             im = im.add(a.mul(y).add(b.mul(x)))
 

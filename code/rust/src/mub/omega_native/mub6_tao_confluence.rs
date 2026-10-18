@@ -1,7 +1,3 @@
-//! Exhaustive phase arithmetic on the explicit 6 by 6 Tao table.
-//! No Karlsson limit or tubular-neighborhood identification is asserted.
-//! Evidence: test_tao_confluence_verifier.rs and KernelReflectionTaoConfluence.lean.
-//! AuthorityEffect: None.
 
 use crate::omega_native::exact::mub6_quad_sdp::TAO_PHASES;
 use serde::{Deserialize, Serialize};
@@ -44,7 +40,6 @@ pub struct Pilot035Check {
     pub scope: String,
 }
 
-/// Normative task inputs only. Expected results are intentionally absent.
 pub fn pilot035_public_input() -> Value {
     json!({
         "version":"pilot035.finite-tao.v1",

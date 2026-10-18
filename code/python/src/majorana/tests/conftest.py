@@ -73,7 +73,6 @@ class Paper026CratesBridgeFinder(MetaPathFinder):
     SEARCH_DIRS = (CODE_DIR, SUPPORT_DIR)
 
     def find_spec(self, fullname: str, path: object = None, target: object = None) -> ModuleSpec | None:
-        # Coda smoke tests expect ImportError when importing omega_engine.crates.coda.*
         if fullname == "omega_engine.crates.coda" or fullname.startswith("omega_engine.crates.coda."):
             return None
 
@@ -98,7 +97,6 @@ class Paper026CratesBridgeFinder(MetaPathFinder):
         first = parts[0]
         rest = parts[1:]
 
-        # If it's a flat namespace root (e.g. omega_engine.crates.residuals, omega_engine.crates.solver, etc.)
         if len(parts) == 1 and first in self.FLAT_NAMESPACES:
             for search_base in self.SEARCH_DIRS:
                 cand_dir = search_base / first
@@ -109,9 +107,7 @@ class Paper026CratesBridgeFinder(MetaPathFinder):
             spec.submodule_search_locations = [str(d) for d in self.SEARCH_DIRS if d.exists()]
             return spec
 
-        # If it's inside a flat namespace, check candidate files across all roots
         if len(parts) >= 2 and first in self.FLAT_NAMESPACES:
-            # First check direct path in support, code, or p002: e.g. SUPPORT_DIR / Path(*parts)
             for search_base in self.SEARCH_DIRS:
                 cand_dir = search_base / Path(*parts)
                 if cand_dir.is_dir():
@@ -126,7 +122,6 @@ class Paper026CratesBridgeFinder(MetaPathFinder):
                 if cand_file.is_file():
                     return spec_from_file_location(fullname, str(cand_file))
 
-            # Then check flattened relative to search_base: e.g. CODE_DIR / Path(*rest).py
             mod_rel = Path(*rest)
             for search_base in self.SEARCH_DIRS:
                 cand_file = search_base / (mod_rel.as_posix() + ".py")
@@ -142,7 +137,6 @@ class Paper026CratesBridgeFinder(MetaPathFinder):
                     spec.submodule_search_locations = [str(cand_dir)]
                     return spec
 
-        # For any other package (e.g. majorana, prime, domain, representation)
         for search_base in self.SEARCH_DIRS:
             candidate_dir = search_base / Path(*parts)
             if candidate_dir.is_dir():
@@ -160,6 +154,5 @@ class Paper026CratesBridgeFinder(MetaPathFinder):
         return None
 
 
-# Install bridge finder at highest precedence
 if not any(isinstance(finder, Paper026CratesBridgeFinder) for finder in sys.meta_path):
     sys.meta_path.insert(0, Paper026CratesBridgeFinder())

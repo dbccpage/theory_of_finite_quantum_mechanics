@@ -1,33 +1,10 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 
-/-!
-# W3.5 observer functoriality: exact relation-level quotient core
 
-This file proves the finite, relation-level core of observer functoriality.
-A proof-bearing `SysMorph` is exactly a state map that preserves the zero
-relation of the source and target primitive differences.  Such a map descends
-uniquely to residual quotients; identity and composition descend functorially.
 
-The explicit `Fin 2` identity below is deliberately a `RawMapCandidate`, not a
-`SysMorph`: the source observer is constant and the target observer separates
-the two points.  It is the coordinatewise-smallest heterogeneous non-descent
-witness.  The returning-action adapter is only the same-system endomap special
-case of that heterogeneous witness; no PCC theorem is imported.
 
-This does not construct the full action/probe morphism from the historical
-W3.5 packet, prove target-context coverage, treat partial actions, discharge an
-estate-wide refactor, or establish a cohomological or authority claim.
 
-AuthorityEffect: None.
--/
 
 namespace OmegaWorld
 namespace ObserverFunctorialityW35
@@ -37,8 +14,6 @@ open OmegaCore.PrimitiveDifference
 
 universe u v w z
 
-/-- A relation-level observer system.  The residual is Boolean, while its
-`Zero` predicate and induced equivalence are carried by the shared kernel. -/
 structure ObserverSystem where
   State : Type u
   difference : PrimitiveDifference State Bool
@@ -56,14 +31,11 @@ abbrev ZeroRel (S : ObserverSystem.{u}) (x y : S.State) : Prop :=
 
 end ObserverSystem
 
-/-- The exact relation-preservation obligation for quotient descent. -/
 def PreservesZeroRel
     {S : ObserverSystem.{u}} {T : ObserverSystem.{v}}
     (toFun : S.State → T.State) : Prop :=
   ∀ x y : S.State, S.ZeroRel x y → T.ZeroRel (toFun x) (toFun y)
 
-/-- A proof-bearing relation-level system morphism.  A raw map becomes a
-`SysMorph` only after its zero-relation preservation proof is supplied. -/
 structure SysMorph (S : ObserverSystem.{u}) (T : ObserverSystem.{v}) where
   toFun : S.State → T.State
   preservesZeroRel : PreservesZeroRel toFun
@@ -131,7 +103,6 @@ theorem comp_assoc
 
 end SysMorph
 
-/-- The quotient map induced by a proof-bearing system morphism. -/
 def quotientMap
     {S : ObserverSystem.{u}} {T : ObserverSystem.{v}}
     (f : SysMorph S T) : S.Residual → T.Residual :=
@@ -145,8 +116,6 @@ theorem quotientMap_classOf
   S.difference.invariantFactorMod_classOf
     f.toFun T.difference.zeroSetoid f.preservesZeroRel x
 
-/-- Relation preservation is necessary and sufficient for the existence of a
-quotient factor satisfying the commuting class equation. -/
 theorem preserves_iff_exists_quotient_factor
     {S : ObserverSystem.{u}} {T : ObserverSystem.{v}}
     (toFun : S.State → T.State) :
@@ -172,8 +141,6 @@ theorem quotient_factor_unique
     quotientMap ⟨toFun, hpres⟩ (S.classOf x)
   rw [hfactor x, quotientMap_classOf]
 
-/-- An explicit core-only encoding of unique existence; no library-specific
-unique-existence notation is required. -/
 def UniqueQuotientFactor
     {S : ObserverSystem.{u}} {T : ObserverSystem.{v}}
     (toFun : S.State → T.State) : Prop :=
@@ -183,8 +150,6 @@ def UniqueQuotientFactor
       (∀ x : S.State, other (S.classOf x) = T.classOf (toFun x)) →
       other = factor
 
-/-- The stronger exact statement: the commuting quotient factor exists
-uniquely iff the raw map preserves the two zero relations. -/
 theorem preserves_iff_existsUnique_quotient_factor
     {S : ObserverSystem.{u}} {T : ObserverSystem.{v}}
     (toFun : S.State → T.State) :
@@ -216,12 +181,9 @@ theorem quotientMap_compose
   intro x
   rfl
 
-/-- A raw state function is named separately so that a non-preserving map
-cannot be mistaken for a proof-bearing `SysMorph`. -/
 structure RawMapCandidate (S : ObserverSystem.{u}) (T : ObserverSystem.{v}) where
   toFun : S.State → T.State
 
-/-- Exact heterogeneous witness that a raw map fails quotient descent. -/
 structure DescentFailure
     (S : ObserverSystem.{u}) (T : ObserverSystem.{v})
     (toFun : S.State → T.State) where
@@ -287,7 +249,6 @@ theorem preserves_of_subsingleton_target
   rw [hxy]
   exact T.difference.zeroRel_refl _
 
-/-- A Boolean observer produces `false` exactly when the observations agree. -/
 def observerDifference {X : Type u} (observe : X → Bool) :
     PrimitiveDifference X Bool where
   δ x y := if observe x = observe y then false else true
@@ -325,7 +286,6 @@ def fin2SeparatingSystem : ObserverSystem where
   State := Fin 2
   difference := observerDifference fin2SeparatingObserve
 
-/-- The candidate is raw on purpose: no proof-bearing morphism is forged. -/
 def fin2IdentityCandidate : RawMapCandidate fin2ConstantSystem fin2SeparatingSystem where
   toFun := id
 
@@ -369,9 +329,6 @@ theorem fin2_identity_no_quotient_factor :
           fin2SeparatingSystem.classOf (fin2IdentityCandidate.toFun x)) :=
   fin2IdentityFailure.no_quotient_factor
 
-/-- This packages the coordinatewise minimality claim without a cardinality
-library: a failure itself supplies two distinct source points and two distinct
-target images, while either subsingleton carrier forces preservation. -/
 theorem fin2_failure_coordinatewise_minimal :
     fin2IdentityFailure.left ≠ fin2IdentityFailure.right ∧
       fin2IdentityCandidate.toFun fin2IdentityFailure.left ≠
@@ -379,8 +336,6 @@ theorem fin2_failure_coordinatewise_minimal :
   ⟨fin2IdentityFailure.source_points_distinct,
     fin2IdentityFailure.target_images_distinct⟩
 
-/-- The returning-action witness shape is the same-system endomap
-specialization of heterogeneous descent failure. -/
 structure ReturningActionWitness
     (S : ObserverSystem.{u}) (Context : Type v)
     (act : Context → S.State → S.State) where
@@ -400,8 +355,6 @@ def ReturningActionWitness.toDescentFailure
   sourceZero := witness.sourceZero
   targetNonzero := witness.returnedNonzero
 
-/-- Serialized scope metadata.  False fields record nonclaims made by this
-file; they are not proofs of global non-derivability. -/
 inductive AuthorityEffect where
   | none
 deriving DecidableEq, Repr
@@ -468,3 +421,6 @@ theorem authority_effect_none : scopeFence.authorityEffect = .none :=
 
 end ObserverFunctorialityW35
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldObserverFunctoriality.lean Claim: ext AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

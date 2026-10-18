@@ -34,8 +34,6 @@ class FiniteGroup:
     generators: int
 
 
-# Declared finite menu. Lie groups are not on this list because they
-# are not constructed on the host.
 FINITE_MENU: tuple[FiniteGroup, ...] = (
     FiniteGroup("1", 1, True, 0),
     FiniteGroup("Z2", 2, True, 1),
@@ -57,17 +55,6 @@ def group_by_name(name: str) -> FiniteGroup:
     raise KeyError(name)
 
 
-# Feature layout (all integers):
-# 0 n_slots
-# 1 size of 2-slot (finite order, or Lie adjoint dim for the named extra)
-# 2 size of 1-slot
-# 3 size of 0-slot
-# 4 number of abelian factors
-# 5 number of nonabelian factors
-# 6 compact-connected Lie extra (1 only for the named SM target)
-# 7 Z2 grading present
-# 8 odd generator with square even (superbracket shadow)
-# 9 equal even/odd counting extra
 FEATURE_LEN = 10
 
 
@@ -97,12 +84,8 @@ def features(
     )
 
 
-# Declared extras of ordinary SM gauge. Not a theorem of the host.
-# Sizes are adjoint dimensions 8, 3, 1.
 SM_GAUGE_EXTRAS: tuple[int, ...] = (3, 8, 3, 1, 1, 2, 1, 0, 0, 0)
 
-# Declared extras of a supersymmetry-like structure on top of a host.
-# Grading, superbracket, equal boson/fermion counting. Not a superalgebra.
 SUSY_EXTRAS: tuple[int, ...] = (0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
 
 
@@ -149,10 +132,7 @@ def uniqueness_killed() -> bool:
     return len(names) > 1 and 0 not in distances
 
 
-# --- Class A: ℓ¹ residual on the boundary of a 2-simplex ---
 
-# Oriented edges of a triangle: 01, 12, 20.
-# d0 maps vertex values (a,b,c) to edge differences (b-a, c-b, a-c).
 
 
 def d0_vertex(alpha: tuple[int, int, int]) -> tuple[int, int, int]:
@@ -188,8 +168,6 @@ def exact_implies_loop_sum_zero(bound: int = 2) -> bool:
     return True
 
 
-# Cochain grading: even = vertex 0-cochains, odd = edge 1-cochains.
-# This is the closest host object to a boson/fermion split. It is not SUSY.
 
 
 @dataclass(frozen=True)

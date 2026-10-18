@@ -1,34 +1,20 @@
-//! Target 19 — Separating predictions: analytic CHSH/Tsirelson + Mermin–Peres bridge.
-//!
-//! Finite analytic bounds (exact rationals / integers), an exhaustive search
-//! for noncontextual assignments of a declared Mermin–Peres square, and the
-//! degree-two class of its sign table, decided exactly over `F_2`.
-//!
-//! AuthorityEffect: None. Not PROVED. Not GlobalGreen.
 
 use num_traits::Signed;
 use omega_number_theory::rational::{ri, Rational};
 
-/// Fence.
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; CHSH/Tsirelson + Mermin-Peres cochain bridge face.";
 
 pub type Q = Rational;
 
-/// CHSH correlator bound face.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ChshBounds {
-    /// Classical local-realistic bound |S| ≤ 2.
     pub classical: Q,
-    /// Tsirelson quantum bound 2√2 (stored as exact square: we keep 2√2 as
-    /// residual OPEN for exact √2 in ℚ; provide integer proxy comparison).
     pub tsirelson_squared: Q,
-    /// Notes.
     pub note: &'static str,
 }
 
 impl ChshBounds {
-    /// Classical 2; Tsirelson 2√2 ⇒ (2√2)² = 8 as exact rational marker.
     pub fn standard() -> Self {
         Self {
             classical: ri(2),
@@ -39,7 +25,6 @@ impl ChshBounds {
         }
     }
 
-    /// Classify an observed S² value.
     pub fn classify_s_squared(&self, s_sq: &Q) -> Result<ChshClass, &'static str> {
         if s_sq.is_negative() {
             return Err("a squared correlator cannot be negative");
@@ -62,7 +47,6 @@ pub enum ChshClass {
     BeyondTsirelson,
 }
 
-/// Analytic CHSH example: PR-box S=4 ⇒ S²=16 beyond Tsirelson; quantum max S²=8.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ChshExample {
     pub label: &'static str,
@@ -103,12 +87,10 @@ impl ChshExample {
     }
 }
 
-/// `S = E00 + E01 + E10 - E11`.
 pub fn chsh_value(correlators: &[Q; 4]) -> Q {
     &correlators[0] + &correlators[1] + &correlators[2] - &correlators[3]
 }
 
-/// `S²` by multiplying the sum, and by expanding the square.
 pub fn chsh_square_two_ways(correlators: &[Q; 4]) -> Result<(Q, Q), &'static str> {
     let value = chsh_value(correlators);
     let direct = &value * &value;
@@ -130,9 +112,6 @@ fn expand_square(correlators: &[Q; 4]) -> Q {
         - &two * c * d
 }
 
-/// Row-sum constraints `0,0,0` and column-sum constraints `0,0,1` over `F_2`.
-/// The sums of the constraints disagree, and the exhaustive 2^9 search finds
-/// no assignment.
 pub fn mermin_square_has_no_noncontextual_assignment() -> Result<u32, &'static str> {
     let row_parity = 0u8 ^ 0 ^ 0;
     let col_parity = 0u8 ^ 0 ^ 1;

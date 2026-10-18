@@ -1,66 +1,22 @@
-//! The canonical DDC operation alphabet — `{E, R, C, I, Λ/Meta, D, M, T}`.
-//!
-//! Canonical provenance:
-//! `coda_atlas/F004_papers/006_project_anomalon_codename_woland_omega_engine/001_discrete_deformation_calculus/discrete_deformation_calculus.md`
-//! (Paper ID: `oe_010_ddc_trace_calculus`, Series: `008_engine_runtime`).
-//!
-//! CODA is no longer used; all current DDC hails from Discrete Deformation Calculus (DDC).
-//!
-//! Three core DDC obligations are carried structurally, not by comment:
-//!
-//! * **DDC-0 / Lawful Transition Typing** (`OE010-01`..`OE010-05`) — "Every lawful transition
-//!   must emit a typed DDC operation together with the local execution log or explicit refusal to
-//!   execute." A [`DdcStep`] cannot be constructed without a [`StepOutcome`], so
-//!   a logless step is unrepresentable rather than merely discouraged.
-//! * **DDC Out-of-Window Import Boundary** — imported representation theorems (Gleason, Hilbert space, Born
-//!   ontology) are *not* DDC operations; a transformation licensed from outside
-//!   the declared finite 2-window is an import/oracle and drives the trace to
-//!   [`TraceTerminal::OracleNeeded`]. There is deliberately **no** `DdcOp`
-//!   variant for "import" — see [`DdcTrace::import`].
-//! * **DDC No-Authority Firewall** (`OE010-04`) — a well-typed DDC trace does not mint authority. [`DdcTrace`]
-//!   exposes [`DdcTrace::authority_effect`], which returns
-//!   `AuthorityEffect::None` unconditionally; the type has no method producing an
-//!   authority-bearing value at all. Authorization requires the separate host
-//!   promotion contract with verified certificate, receipt DAG, witness
-//!   attestation, and human event; none of those capabilities lives here.
-//!
-//! What this module is NOT: a scheduler, a prover, or an authority source. It
-//! records which lawful op was emitted, with what log, in what order.
 
 use omega_types::authority::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 
-/// The eight lawful transitions of Discrete Deformation Calculus (`discrete_deformation_calculus.md` §1).
-///
-/// The letters are the canonical DDC operational alphabet \(\mathcal{A}_{\mathrm{DDC}} = \{E, R, C, I, \Lambda, D, M, T\}\).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum DdcOp {
-    /// `E` — exact repair: discharge the defect outright (residual → 0).
     ExactRepair,
-    /// `R` — residual projection: carry forward what repair could not remove.
     ResidualProjection,
-    /// `C` — context exposure: declare/split the carrier and its 2-window.
     ContextExposure,
-    /// `I` — integration: append to the local ledger.
     Integration,
-    /// `Λ`/`Meta` — structural lift or extension. Lift *trigger* is not lift
-    /// *license*: a lift needs obstruction, preservation, and
-    /// non-destruction witnesses plus a terminalizer route.
     Lift,
-    /// `D` — descent / re-index (e.g. refine the window).
     Descent,
-    /// `M` — mutation / typed refusal.
     Refusal,
-    /// `T` — terminalization. Emitting `T` records a terminal status; it does
-    /// **not** mint authority (`AuthorityEffect::None`).
     Terminalize,
 }
 
-/// Backward compatibility alias for [`DdcOp`].
 pub type DdaOp = DdcOp;
 
 impl DdcOp {
-    /// The spine letter.
     pub fn letter(self) -> &'static str {
         match self {
             DdcOp::ExactRepair => "E",
@@ -74,7 +30,6 @@ impl DdcOp {
         }
     }
 
-    /// Parse a spine letter into a DDC operation.
     pub fn from_letter(s: &str) -> Option<DdcOp> {
         match s {
             "E" => Some(DdcOp::ExactRepair),
@@ -89,7 +44,6 @@ impl DdcOp {
         }
     }
 
-    /// The full declared alphabet, in spine order.
     pub fn alphabet() -> [DdcOp; 8] {
         [
             DdcOp::ExactRepair,
@@ -104,11 +58,6 @@ impl DdcOp {
     }
 }
 
-/// DDC invariant: every emitted op carries **either** its local execution log
-/// Canonical closed refusal vocabulary (matching DDC paper M_REASONS).
-///
-/// Refusal is a typed terminal, not an unhandled error. Each variant
-/// represents a closed reason code.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum RefusalReason {
     #[serde(rename = "REFUSED_INVALID_WITNESS")]
@@ -213,29 +162,21 @@ impl From<&String> for RefusalReason {
     }
 }
 
-/// DDC invariant: every emitted op carries **either** its local execution log
-/// **or** an explicit refusal to execute. There is no third state, and no way to
-/// emit an op with neither.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum StepOutcome {
-    /// The op executed; the string is the local execution log.
     Executed { log: String },
-    /// The op was refused; carries a typed refusal reason from [`RefusalReason`].
     RefusedToExecute { reason: RefusalReason },
 }
 
-/// One lawful transition: a typed op plus its log-or-refusal.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct DdcStep {
     pub op: DdcOp,
     pub outcome: StepOutcome,
 }
 
-/// Backward compatibility alias for [`DdcStep`].
 pub type DdaStep = DdcStep;
 
 impl DdcStep {
-    /// Emit an executed op with its local execution log.
     pub fn executed(op: DdcOp, log: impl Into<String>) -> Self {
         Self {
             op,
@@ -243,7 +184,6 @@ impl DdcStep {
         }
     }
 
-    /// Emit an op that explicitly refused to execute.
     pub fn refused(op: DdcOp, reason: impl Into<RefusalReason>) -> Self {
         Self {
             op,
@@ -253,32 +193,20 @@ impl DdcStep {
         }
     }
 
-    /// True when the step actually ran.
     pub fn is_executed(&self) -> bool {
         matches!(self.outcome, StepOutcome::Executed { .. })
     }
 }
 
-/// Where a trace currently stands. Not an authority (`AuthorityEffect::None`); a status.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum TraceTerminal {
-    /// No `T` and no `M` yet.
     Open,
-    /// `T` emitted and executed through a gated terminalizer.
     Terminalized,
-    /// `T` emitted through raw `emit` without a gated terminalizer (Hole 7).
     UnverifiedTerminal,
-    /// `M` emitted: typed refusal. A valid terminal, not a failure.
     Refused,
-    /// DDC: an import/oracle was requested — outside the declared window.
-    /// The trace cannot terminalize on its own authority.
     OracleNeeded { import: String },
 }
 
-/// An append-only sequence of lawful transitions.
-///
-/// Mints nothing. See the module docs for the DDC obligations this type
-/// carries structurally.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize)]
 pub struct DdcTrace {
     steps: Vec<DdcStep>,
@@ -286,7 +214,6 @@ pub struct DdcTrace {
     gated_terminal: bool,
 }
 
-/// Backward compatibility alias for [`DdcTrace`].
 pub type DdaTrace = DdcTrace;
 
 impl DdcTrace {
@@ -298,29 +225,17 @@ impl DdcTrace {
         }
     }
 
-    /// Append a lawful transition via the raw path.
-    ///
-    /// Per Hole 7, emitting `Terminalize` here does NOT produce `TraceTerminal::Terminalized`.
-    /// Only [`Self::emit_gated_terminal`] or a verified terminalizer can set `Terminalized`.
     pub fn emit(&mut self, step: DdcStep) -> &mut Self {
         self.steps.push(step);
         self
     }
 
-    /// Gated terminalization: records an executed terminal from a verified gate.
-    /// Closes Hole 7: raw `emit` cannot yield `TraceTerminal::Terminalized`.
     pub fn emit_gated_terminal(&mut self, step: DdcStep) -> &mut Self {
         self.gated_terminal = true;
         self.steps.push(step);
         self
     }
 
-    /// DDC Out-of-Window Import: record that a transformation was licensed from **outside** the
-    /// declared finite 2-window (an imported representation theorem, a
-    /// continuum move, ...). This is deliberately *not* a [`DdcOp`]: the
-    /// alphabet has no import letter, because an import is not a lawful
-    /// transition. It drives the terminal to [`TraceTerminal::OracleNeeded`]
-    /// and cannot be cleared by emitting more ops.
     pub fn import(&mut self, what: impl Into<String>) -> &mut Self {
         self.oracle = Some(what.into());
         self
@@ -330,7 +245,6 @@ impl DdcTrace {
         &self.steps
     }
 
-    /// The spine letters, in emission order — e.g. `"C E D Λ I T"`.
     pub fn letters(&self) -> String {
         self.steps
             .iter()
@@ -339,10 +253,6 @@ impl DdcTrace {
             .join(" ")
     }
 
-    /// Current terminal status.
-    ///
-    /// An outstanding import wins over everything: an oracle cannot be
-    /// terminalized away by appending `T`.
     pub fn terminal(&self) -> TraceTerminal {
         if let Some(import) = &self.oracle {
             return TraceTerminal::OracleNeeded {
@@ -365,10 +275,6 @@ impl DdcTrace {
         TraceTerminal::Open
     }
 
-    /// **DDC No-Authority Firewall (`OE010-04`).** A well-typed DDC trace does not mint authority.
-    /// This is the only authority-shaped method on the type and it is constant:
-    /// no trace, however long, well-typed, or terminalized, can return anything
-    /// else. Authority requires verified certificates and external promotion.
     pub fn authority_effect(&self) -> AuthorityEffect {
         AuthorityEffect::None
     }
@@ -386,8 +292,6 @@ mod tests {
 
     #[test]
     fn ddc_every_step_carries_log_or_refusal() {
-        // The invariant is structural: both constructors demand a payload, so a
-        // logless step cannot be built. Assert both shapes round-trip.
         let e = DdcStep::executed(DdcOp::ExactRepair, "discharged defect on e_3");
         let m = DdcStep::refused(DdcOp::Lift, "no non-destruction witness");
         assert!(e.is_executed());
@@ -439,7 +343,6 @@ mod tests {
 
     #[test]
     fn refused_terminalize_does_not_terminalize() {
-        // An op that refused to execute did not happen.
         let mut t = DdcTrace::new();
         t.emit(DdcStep::refused(DdcOp::Terminalize, "no witness support"));
         assert_eq!(t.terminal(), TraceTerminal::Open);
@@ -458,8 +361,6 @@ mod tests {
 
     #[test]
     fn ddc_oracle_cannot_be_terminalized_away() {
-        // Appending T after an import must NOT clear the oracle: an import is
-        // licensed from outside the declared window and no lawful op can pay it.
         let mut t = DdcTrace::new();
         t.import("continuum path integral")
             .emit_gated_terminal(DdcStep::executed(DdcOp::Terminalize, "claiming a seal"));
@@ -468,7 +369,6 @@ mod tests {
 
     #[test]
     fn ddc_no_trace_mints_authority() {
-        // Empty, executed, terminalized, refused — every shape returns None.
         let empty = DdcTrace::new();
         assert_eq!(empty.authority_effect(), AuthorityEffect::None);
 

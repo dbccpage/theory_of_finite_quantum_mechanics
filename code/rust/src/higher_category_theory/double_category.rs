@@ -1,17 +1,3 @@
-//! Strict Double Categories.
-//!
-//! Provides 0-cells (objects), horizontal 1-cells, vertical 1-cells,
-//! 2-cell squares, horizontal and vertical square composition, identity squares,
-//! and the middle-four square interchange law:
-//! $$(\alpha \circ_h \beta) \circ_v (\gamma \circ_h \delta) = (\alpha \circ_v \gamma) \circ_h (\beta \circ_v \delta)$$
-//!
-//! Invariants:
-//! - Zero floating-point arithmetic.
-//! - Exact boundary checks on 0-cells and 1-cells for all squares.
-//! - Soviet Builder allocation limits via `OperationLimits` and `reserve_exact`.
-//! - Content-addressed SHA-256 state hashing.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -21,7 +7,6 @@ use sha2::{Digest, Sha256};
 
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// Horizontal 1-cell $f: A \to_h B$.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct HorizontalCell {
     pub id: String,
@@ -29,7 +14,6 @@ pub struct HorizontalCell {
     pub tgt: String,
 }
 
-/// Vertical 1-cell $u: A \to_v C$.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct VerticalCell {
     pub id: String,
@@ -37,15 +21,6 @@ pub struct VerticalCell {
     pub tgt: String,
 }
 
-/// 2-cell Square $\alpha$ with boundary:
-/// ```text
-///       A --- top_h ---> B
-///       |                |
-///     left_v           right_v
-///       |                |
-///       v                v
-///       C --- bot_h ---> D
-/// ```
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct SquareCell {
     pub id: String,
@@ -57,18 +32,9 @@ pub struct SquareCell {
     pub tgt_0: String,
 }
 
-/// Square interchange validator evaluating $2 \times 2$ grid pasting diagrams.
 pub struct SquareInterchange;
 
 impl SquareInterchange {
-    /// Evaluates the middle-four interchange law across a $2 \times 2$ grid:
-    /// ```text
-    /// [ alpha ] [ beta  ]
-    /// [ gamma ] [ delta ]
-    /// ```
-    /// LHS = $(\alpha \circ_h \beta) \circ_v (\gamma \circ_h \delta)$
-    /// RHS = $(\alpha \circ_v \gamma) \circ_h (\beta \circ_v \delta)$
-    /// Asserts $\text{LHS} == \text{RHS}$.
     pub fn verify_interchange(
         cat: &DoubleCategory,
         alpha: &str,
@@ -76,12 +42,10 @@ impl SquareInterchange {
         gamma: &str,
         delta: &str,
     ) -> Result<(), HigherCategoryError> {
-        // Horizontal compositions (rows)
         let top_row = cat.compose_square_h(alpha, beta)?;
         let bot_row = cat.compose_square_h(gamma, delta)?;
         let lhs = cat.compose_square_v(&top_row, &bot_row)?;
 
-        // Vertical compositions (columns)
         let left_col = cat.compose_square_v(alpha, gamma)?;
         let right_col = cat.compose_square_v(beta, delta)?;
         let rhs = cat.compose_square_h(&left_col, &right_col)?;
@@ -100,7 +64,6 @@ impl SquareInterchange {
     }
 }
 
-/// Strict Double Category.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DoubleCategory {
     pub name: String,
@@ -237,8 +200,6 @@ impl DoubleCategory {
             HigherCategoryError::OneCellNotFound { id: right_v.to_string() }
         })?;
 
-        // Boundary globular coherence:
-        // top: A -> B, bot: C -> D, left: A -> C, right: B -> D
         if left.src != top.src {
             return Err(HigherCategoryError::SquareBoundaryMismatch {
                 square_id: id.to_string(),
@@ -394,7 +355,6 @@ impl DoubleCategory {
         Ok(())
     }
 
-    /// Composes two squares horizontally: left $\circ_h$ right.
     pub fn compose_square_h(&self, left: &str, right: &str) -> Result<String, HigherCategoryError> {
         let l = self.squares.get(left).ok_or_else(|| {
             HigherCategoryError::TwoCellNotFound { id: left.to_string() }
@@ -423,7 +383,6 @@ impl DoubleCategory {
             })
     }
 
-    /// Composes two squares vertically: top $\circ_v$ bot.
     pub fn compose_square_v(&self, top: &str, bot: &str) -> Result<String, HigherCategoryError> {
         let t = self.squares.get(top).ok_or_else(|| {
             HigherCategoryError::TwoCellNotFound { id: top.to_string() }
@@ -462,8 +421,6 @@ impl DoubleCategory {
         SquareInterchange::verify_interchange(self, alpha, beta, gamma, delta)
     }
 
-    /// Verifies the middle-four square interchange law across all composable $2 \times 2$ square grids.
-    /// Employs Soviet Builder allocation discipline (`reserve_exact`).
     pub fn verify_all_interchanges(&self) -> Result<usize, HigherCategoryError> {
         let mut grids = Vec::new();
         let square_ids: Vec<&String> = self.squares.keys().collect();

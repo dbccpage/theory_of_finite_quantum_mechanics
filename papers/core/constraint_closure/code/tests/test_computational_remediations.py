@@ -57,7 +57,6 @@ class TestItem1HamiltonianBlindSpot:
         In the naive encoding omega = p + d0 H, Phi_{d0}(omega) = 0 because d0 H is in im(d0).
         In the joint direct-sum system C^1 + C^0, Phi_joint = Phi(p) + ||H||_1 > 0.
         """
-        # 3-sphere: boundary of 4-simplex (5 vertices 0..4, 10 edges, 10 triangles, 5 tetrahedra)
         vertices = list(range(5))
         edges = [(i, j) for i in range(5) for j in range(i + 1, 5)]
         tetrahedra = [
@@ -68,15 +67,12 @@ class TestItem1HamiltonianBlindSpot:
             (1, 2, 3, 4),
         ]
         edge_lengths = {e: 1.0 for e in edges}
-        # Zero momenta
         p_edge = {e: 0.0 for e in edges}
 
-        # Deficit on each edge: 2*pi - 3 * arccos(1/3) approx 2.5903070552
         theta_tet = regular_simplex_dihedral_angle(3)
         expected_deficit = 2.0 * math.pi - 3.0 * theta_tet
         assert abs(expected_deficit - 2.5903070552) < 1e-6
 
-        # Build Hamiltonian constraint at vertices
         H_vertex = build_hamiltonian_scalar_constraint(
             vertices,
             edges,
@@ -85,22 +81,17 @@ class TestItem1HamiltonianBlindSpot:
             p_edge,
             dual_vertex_volume=1.0,
         )
-        # Expected H approx -20.7224564413 at every vertex
         for v in vertices:
             assert abs(H_vertex[v] - (-20.7224564413)) < 1e-6
 
-        # In the naive encoding, total cochain is p + d0 H.
-        # Since p = 0, total cochain = d0 H, so Phi_{d0}(total) == 0!
         naive_cochain, d0_matrix = build_total_constraint_cochain(
             vertices, edges, p_edge, H_vertex
         )
         solver = DualCertifiedL1Solver(tol=1e-8)
         naive_result = solver.solve(naive_cochain, d0_matrix)
-        # Naive encoding reports is_closed=True, completely blind to H!
         assert naive_result.is_closed is True
         assert naive_result.primal_obj < 1e-8
 
-        # Under the joint direct-sum system (Omega_joint, D_joint, H_norm):
         omega_joint, D_joint, H_l1_norm = build_joint_constraint_system(
             vertices, edges, p_edge, H_vertex
         )
@@ -108,7 +99,6 @@ class TestItem1HamiltonianBlindSpot:
         joint_result = solve_joint_wdw_constraints(
             vertices, edges, p_edge, H_vertex, tol=1e-8
         )
-        # Joint system correctly preserves Hamiltonian violation:
         assert joint_result["is_closed"] is False
         assert joint_result["hamiltonian_l1_violation"] > 100.0
         assert abs(joint_result["joint_quotient_distance"] - joint_result["hamiltonian_l1_violation"]) < 1e-6
@@ -132,7 +122,6 @@ class TestItem1HamiltonianBlindSpot:
                 self.dual_witness = res.dual_witness
                 self.dual_divergence_norm = res.dual_divergence_norm
                 self.solver_status = res.solver_status
-                # Deliberately omit self.is_certified to simulate legacy solver
 
         orig_solve = DualCertifiedL1Solver.solve
         def mock_solve(self, omega, d0):
@@ -142,7 +131,7 @@ class TestItem1HamiltonianBlindSpot:
         monkeypatch.setattr(DualCertifiedL1Solver, "solve", mock_solve)
         joint_res = solve_joint_wdw_constraints(vertices, edges, p_edge, H_vertex)
         assert "is_certified" in joint_res
-        assert joint_res["is_certified"] is True  # Computed from verified invariants!
+        assert joint_res["is_certified"] is True
 
 
 class TestItem2BianchiDiagnostics:
@@ -225,14 +214,11 @@ class TestItem3ExactRationalLP:
         assert res.is_certified is True
         assert res.authority_effect == "None"
 
-        # Check that primal_alpha is exported and exactly cancels omega:
         assert res.primal_alpha is not None
         alpha0, alpha1 = res.primal_alpha
-        # D * alpha = -alpha0 + alpha1
         d_alpha = -alpha0 + alpha1
         assert d_alpha == Fraction(1, 1000001)
 
-        # Check export in to_dict()
         d = res.to_dict()
         assert d["is_closed"] is True
         assert d["is_certified"] is True
@@ -254,11 +240,9 @@ class TestItem3ExactRationalLP:
         assert res.duality_gap == Fraction(0)
         assert res.is_certified is True
 
-        # Check dual witness properties: D^T w = 0, |w_i| <= 1, <w, omega> = 3
         w = res.dual_witness
         for wi in w:
             assert abs(wi) <= Fraction(1)
-        # D^T w:
         for j in range(3):
             col_dot = sum(d0[i][j] * w[i] for i in range(3))
             assert col_dot == Fraction(0)
@@ -282,11 +266,9 @@ class TestItem4NumericalZeroAndCertificates:
         solver = DualCertifiedL1Solver(tol=1e-12)
         res = solver.solve(omega, d0)
 
-        # Objective must reflect the non-trivial cycle distance approx 1.5e-10
         assert res.primal_obj > 1e-11
         assert abs(res.primal_obj - 1.5e-10) < 1e-11
 
-        # Check exported certificate fields in to_dict()
         d = res.to_dict()
         assert "primal_alpha" in d
         assert "primal_residual" in d
@@ -344,9 +326,6 @@ class TestItem6SimplexGeometryValidation:
         reconstruct_simplex_coordinates must return None.
         tetrahedron_dihedral_angle must raise ValueError.
         """
-        # Vertices: base 0, 1, 2; apex 3
-        # Base edges: (0,1), (0,2), (1,2) with length 1.0 (s = 1.0)
-        # Apex edges: (0,3), (1,3), (2,3) with length 0.55 (s = 0.55^2 = 0.3025)
         s = {
             (0, 1): 1.0,
             (0, 2): 1.0,
@@ -355,14 +334,13 @@ class TestItem6SimplexGeometryValidation:
             (1, 3): 0.55 ** 2,
             (2, 3): 0.55 ** 2,
         }
-        # Matrix of squared distances
         mat = np.zeros((4, 4), dtype=float)
         for (i, j), val in s.items():
             mat[i, j] = val
             mat[j, i] = val
 
         coords = reconstruct_simplex_coordinates(mat, dim=3)
-        assert coords is None  # Correctly rejected due to negative Gram eigenvalue
+        assert coords is None
 
         with pytest.raises(ValueError, match="Cannot compute tetrahedron dihedral angle"):
             tetrahedron_dihedral_angle(s, (0, 1))
@@ -387,7 +365,6 @@ class TestItem6SimplexGeometryValidation:
 
     def test_cayley_menger_negative_volume_raises_value_error(self):
         """Negative Cayley-Menger squared volume must raise ValueError instead of clipping to 0."""
-        # Invalid tetrahedron with base 1.0, apex 0.55 has det(CM) yielding negative squared volume
         mat = np.array([
             [0.0, 1.0, 1.0, 0.55**2],
             [1.0, 0.0, 1.0, 0.55**2],
@@ -414,7 +391,6 @@ class TestItem7CauchySandwichFoliation:
             spatial_vertices=spatial_coords,
             spatial_tetrahedra=spatial_tetrahedra,
         )
-        # Must have exactly 8 spacetime vertices (4 base + 4 top)
         assert sandwich.num_vertices == 8
         base_set = set(spatial_coords.keys())
         top_set = set(sandwich.top_vertex_map.values())
@@ -429,7 +405,6 @@ class TestItem7CauchySandwichFoliation:
         is_cauchy_foliation() is False.
         """
         sandwich = build_canonical_3simplex_sandwich(dt=1.0, lapse_val=1.0, shift_val=0.0)
-        # Apply non-uniform lapse (1, 3, 1, 1)
         sandwich.lapse[0] = 1.0
         sandwich.lapse[1] = 3.0
         sandwich.lapse[2] = 1.0
@@ -438,7 +413,7 @@ class TestItem7CauchySandwichFoliation:
 
         assert sandwich.has_timelike_tracks() is True
         assert sandwich.is_spacelike_slice(0) is True
-        assert sandwich.is_spacelike_slice(1) is False  # Final slice is not spacelike!
+        assert sandwich.is_spacelike_slice(1) is False
         assert sandwich.is_cauchy_foliation() is False
 
 
@@ -514,7 +489,6 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
             discover_higher_cells_for_lift,
             boundary_sum,
         )
-        # 4-simplex with vertices 0..4
         vertices = tuple(range(5))
         edges = [(i, j) for i in range(5) for j in range(i + 1, 5)]
         faces = [(i, j, k) for i in range(5) for j in range(i + 1, 5) for k in range(j + 1, 5)]
@@ -541,17 +515,13 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
         higher_cells, kind = discover_higher_cells_for_lift(complex_4s, from_degree=2)
         assert kind == "tetrahedra"
         assert len(higher_cells) == 5
-        # Every cell must have 4 vertices (3-simplex)
         for cell in higher_cells:
             assert len(cell) == 4
 
-        # Put value 1.0 on triangle (0, 1, 2) and 0.0 on all other faces
         face_values = {f: (1.0 if f == (0, 1, 2) else 0.0) for f in faces}
 
-        # Compute higher cochain via boundary_sum
         higher_cochain = {cell: boundary_sum(cell, face_values) for cell in higher_cells}
         raw_l1 = sum(abs(v) for v in higher_cochain.values())
-        # Exactly 2 tetrahedra contain face (0, 1, 2): (0,1,2,3) and (0,1,2,4)
         assert abs(raw_l1 - 2.0) < 1e-9
 
     def test_five_triangle_shared_edge_coexact_update(self):
@@ -562,7 +532,6 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
         """
         from discrete_descent_engine import DDAEngine, Network
 
-        # Triangles (0, 1, i) for i in 2..6
         nodes = list(range(7))
         edges = [(0, 1)] + [(0, i) for i in range(2, 7)] + [(1, i) for i in range(2, 7)]
         faces = [(0, 1, i) for i in range(2, 7)]
@@ -573,26 +542,23 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
         found_cert = engine.run_foundation(edge_values)
         step_cert, residuals = engine.step(move_type="coexact_curl")
 
-        # Gamma before = 5.0, gamma after = 20/3 approx 6.6667
         assert abs(found_cert.gamma2 - 5.0) < 1e-6
         assert abs(residuals[1] - 20.0 / 3.0) < 1e-6
-        assert step_cert.loss_ledger["delta_gamma2"] > 0.0  # Curl strictly increased!
-        assert step_cert.loss_ledger["curl_mass_canceled"] == 0.0  # Zero cancellation credited!
+        assert step_cert.loss_ledger["delta_gamma2"] > 0.0
+        assert step_cert.loss_ledger["curl_mass_canceled"] == 0.0
 
     def test_lp_failure_upper_bound_propagation(self):
         """When the LP solver fails, evaluate_residual flags result as an uncertified upper bound."""
         from degree_generic_residual import _solve_l1_linear_system, evaluate_residual
         from higher_simplex_assembly import SimplexComplex
 
-        # Test _solve_l1_linear_system on empty matrix
         x, res, norm, success = _solve_l1_linear_system(np.zeros((3, 0)), np.array([1.0, 2.0, 3.0]))
         assert success is True
         assert abs(norm - 6.0) < 1e-9
 
-        # SimplexComplex with single edge
         sc = SimplexComplex(vertices=[0, 1], cells={0: [(0,), (1,)], 1: [(0, 1)]})
         report = evaluate_residual(sc, degree=1, cochain={(0, 1): 1.5})
-        assert report.is_certified is False  # Honest uncertified status
+        assert report.is_certified is False
         assert report.lp_success is True
 
     def test_solver_cascade_receipt_is_solved_consistency_checks(self):
@@ -605,7 +571,6 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
         """
         from solver_of_solvers import SolverCascadeReceipt
 
-        # 1. Authorization exhausted with zero residual must NOT be solved
         r_auth = SolverCascadeReceipt(
             carrier_nodes=4,
             carrier_edges=5,
@@ -619,7 +584,6 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
         )
         assert r_auth.is_solved() is False
 
-        # 2. Residual triple (0, 1, 0) must NOT be solved even if scalar residual is 0
         r_triple = SolverCascadeReceipt(
             carrier_nodes=4,
             carrier_edges=5,
@@ -633,7 +597,6 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
         )
         assert r_triple.is_solved() is False
 
-        # 3. Unverified admitted complex must NOT be solved
         r_unver = SolverCascadeReceipt(
             carrier_nodes=4,
             carrier_edges=5,
@@ -647,7 +610,6 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
         )
         assert r_unver.is_solved() is False
 
-        # 4. Non-zero prior obligation must NOT be solved
         r_prior = SolverCascadeReceipt(
             carrier_nodes=4,
             carrier_edges=5,
@@ -662,7 +624,6 @@ class TestItem12DegreeLiftingAndCoexactUpdate:
         )
         assert r_prior.is_solved() is False
 
-        # 5. All valid conditions met -> returns True
         r_valid = SolverCascadeReceipt(
             carrier_nodes=4,
             carrier_edges=5,
@@ -739,7 +700,7 @@ class TestItem14MonteCarloSamplingAndEquilibrium:
                 data={"n_hinges": 1000, "n_steps": 3000, "beta": 1.0, "seed": 42},
             )
         )
-        assert output.residual_mass >= 0.0  # Must NEVER be negative!
+        assert output.residual_mass >= 0.0
         assert output.certificate.certificate_type == "MONTE_CARLO_SAMPLING_RECEIPT"
-        assert output.metadata["total_action"] < -2000.0  # Signed action preserved in metadata
+        assert output.metadata["total_action"] < -2000.0
         assert abs(output.metadata["total_action"] - (-2522.45383)) < 5.0

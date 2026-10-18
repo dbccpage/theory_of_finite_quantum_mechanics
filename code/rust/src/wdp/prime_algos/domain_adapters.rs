@@ -1,11 +1,3 @@
-//! Built-in Algorithm Prime 000 domain adapters.
-//!
-//! Each adapter fills declaration slots for one programme surface and is run
-//! through [`crate::prime_algos::prime_algorithm_0::run_prime_algorithm_0`] so every domain emits the same
-//! DDA letter-tape work product (H-O1).
-//!
-//! Step-9 lift candidates carry nine bits + `PaperER003.LicensedLiftCertificate`
-//! materials; admission is gated by H-O3 [`crate::prime_algos::licensed_lift_gate`].
 
 use crate::prime_algos::licensed_lift_gate::{
     certificate_from_labels, NineUpLiftBits, PaperEr003LiftCertificate,
@@ -15,25 +7,22 @@ use crate::prime_algos::prime_algorithm_0::{
     PrimeDomain,
 };
 
-/// Fully licensed nine-bit packet (all true, authority preserved).
 fn licensed_nine() -> NineUpLiftBits {
     NineUpLiftBits::all_true()
 }
 
-/// Certificate labels for a residual → resolve_* operator lift.
 fn resolve_cert(residual: &str, operator: &str) -> PaperEr003LiftCertificate {
     certificate_from_labels(
         residual,
         &format!("mss1:{residual}"),
         operator,
-        true,  // residual_reduced
-        true,  // replay_checked
-        true,  // closure_preserved
-        false, // policy_violation
+        true,
+        true,
+        true,
+        false,
     )
 }
 
-/// Generic MSS-0 genesis: one witnessed δ₀, justified path-graph cochain, Φ₁>0 Γ₂=0.
 pub struct GenericMss0Adapter;
 
 impl DomainAdapter for GenericMss0Adapter {
@@ -90,7 +79,6 @@ impl DomainAdapter for GenericMss0Adapter {
     }
 }
 
-/// MUB wall scaffold — open residual; no finite licensed lift.
 pub struct MubWallAdapter;
 
 impl DomainAdapter for MubWallAdapter {
@@ -144,7 +132,6 @@ impl DomainAdapter for MubWallAdapter {
     }
 }
 
-/// FSP Channel A scaffold.
 pub struct FspChannelAAdapter;
 
 impl DomainAdapter for FspChannelAAdapter {
@@ -204,7 +191,6 @@ impl DomainAdapter for FspChannelAAdapter {
     }
 }
 
-/// CODA residual-firewall adapter.
 pub struct CodaResidualAdapter;
 
 impl DomainAdapter for CodaResidualAdapter {
@@ -266,7 +252,6 @@ impl DomainAdapter for CodaResidualAdapter {
     }
 }
 
-/// Symbol Game expressivity obstruction adapter.
 #[derive(Debug, Clone)]
 pub struct SymbolGameExpressivityAdapter {
     pub phi1: u64,
@@ -348,7 +333,6 @@ impl DomainAdapter for SymbolGameExpressivityAdapter {
     }
 }
 
-/// All built-in adapters as a fixed roster for Rosetta multi-domain runs.
 pub fn builtin_adapter_roster() -> Vec<Box<dyn DomainAdapter>> {
     vec![
         Box::new(GenericMss0Adapter),

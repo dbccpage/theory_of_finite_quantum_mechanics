@@ -78,13 +78,11 @@ def verify_clause_b(H: sp.Matrix, H_star: sp.Matrix, perms: list[tuple[int, ...]
     print(f"\n--- Verifying Clause (b): G_H(pi(gamma_2)) * G_H*(pi(gamma_2)) = 0 across {len(perms)} permutations ---")
     all_zero = True
     for i, gamma in enumerate(perms):
-        # 1. Compute on H
         inner_h = compute_inner_sum(H, gamma)
         res_h = sp.simplify(sp.expand(inner_h))
         if res_h != 0:
             res_h = sp.trigsimp(res_h)
 
-        # 2. Compute on H* (Hermitian adjoint: conjugate transpose)
         inner_h_star = compute_inner_sum(H_star, gamma)
         res_h_star = sp.simplify(sp.expand(inner_h_star))
         if res_h_star != 0:
@@ -118,7 +116,6 @@ def main() -> int:
         "v00 v01 v02 v10 v11 v12 v20 v21 v22", nonzero=True
     )
 
-    # 1. Qubit MUB transition and generic qutrit factor
     U = sp.Matrix([
         [1 / sp.sqrt(2), 1 / sp.sqrt(2)],
         [sp.exp(sp.I * phi) / sp.sqrt(2), -sp.exp(sp.I * phi) / sp.sqrt(2)],
@@ -131,17 +128,13 @@ def main() -> int:
     ])
 
     H = build_tensor(U, V)
-    # H* is conjugate transpose: in SymPy, H.H computes conjugate transpose
     H_star = H.H
 
-    # Permutations
     perms_g1 = gamma_permutations((1, 1, 1, -1, -1, -1))
     perms_g2 = gamma_permutations((3, 3, 3, -3, -3, -3))
 
-    # Verify Clause (a)
     pass_a = verify_clause_a(H, perms_g1)
 
-    # Verify Clause (b)
     pass_b = verify_clause_b(H, H_star, perms_g2)
 
     print("\n" + "=" * 80)

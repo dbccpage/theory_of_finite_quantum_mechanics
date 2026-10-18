@@ -1,29 +1,3 @@
-//! MUB(6) balanced lift: independent replay of the pinned 648-equation, 320-coordinate table.
-//!
-//! The table `balanced_quadratic_coefficients_20261011.jsonl` (010_mub6 artifacts) is parsed
-//! with its SHA-256 digest pinned. Every row is then regenerated here from the definitions in
-//! `MubBalancedQuadraticPolynomials.lean` and `MubQuadraticLiftPolynomials.lean`: the raw
-//! Hadamards `H = fromBlocks E B C D`, `U`, `V` in the gauge with first rows (and the first
-//! column of `H`) equal to one, the three transition cores `W_a` completed by the sum-six
-//! rule, and the four equation blocks
-//!
-//! * codes `36a+6i+j`: `|A_ij|^2 - 1` for `A in (H, U, V)`;
-//! * codes `108 + 2(36a+6i+j) + b`: component `b` of `(A^H A - 6 I)_ij`;
-//! * codes `324 + 2(36a+6i+j) + b`: component `b` of `(W_a - T_a)_ij` with
-//!   `T = (H^H U, H^H V, U^H V)`;
-//! * codes `540 + 36a+6i+j`: `|W_a,ij|^2 - 6`.
-//!
-//! The regenerated rows are compared with the table term by term over the rationals.
-//! Evaluation at a point uses exact arithmetic in Q(zeta_24).
-//!
-//! Checked here: the rows equal the regenerated polynomials; which rows are empty and why;
-//! the Hermitian-duplicate and diagonal-sum identities among the Gram rows; the value of every
-//! row at the point encoded from an exact triple `(H, U, V)`; and box membership of that point.
-//! Not checked here: the Lean theorem `exists_quartet_iff_balanced_polynomials` (a Lean kernel
-//! run), or the existence or non-existence of a fourth mutually unbiased basis.
-//!
-//! AuthorityEffect: None
-//! Firewall Line: NOT MUB(6)=3, NOT MUB(6)<=3; stated region only; mints no authority
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -37,14 +11,11 @@ use thiserror::Error;
 
 pub const VARIABLES: usize = 320;
 pub const EQUATIONS: usize = 648;
-/// First coordinate index of the transition cores `W_a[i][j]`, `a < 3`, `i, j < 5`.
 pub const CORE_START: usize = 170;
-/// First coordinate index of the `D` block of `H` (rows 3..5, columns 3..5).
 pub const D_START: usize = 152;
 pub const SCHEMA: &str = "mub6.balanced_quadratic.coefficients.v1";
 pub const COEFFICIENT_SHA256: &str =
     "cb552359467ede318508279b62b7203e65b3c510abf77b5492d3d3f4a49c217d";
-/// Half-width of the box on a transition-core coordinate (above `sqrt 6`).
 pub const CORE_RADIUS: (i64, i64) = (10035, 4096);
 
 pub const MODULUS_START: usize = 0;
@@ -52,11 +23,8 @@ pub const GRAM_START: usize = 108;
 pub const GRAPH_START: usize = 324;
 pub const TRANSITION_MODULUS_START: usize = 540;
 
-/// A monomial: the sorted list of coordinate indices it multiplies, with repetition.
 pub type Monomial = Vec<usize>;
-/// A sparse polynomial with rational coefficients. Zero coefficients are never stored.
 pub type RationalPoly = BTreeMap<Monomial, BigRational>;
-/// A 6 x 6 matrix over Q(zeta_24), row-major.
 pub type ExactMatrix = Vec<Vec<Cyc24>>;
 
 #[derive(Debug, Error)]
@@ -120,7 +88,6 @@ const PROBE_DEFINITIONS: [&str; 4] = [
 ];
 const SEMANTICS: &str = "Sum coefficient times product of factor coordinates; every equation equals zero.";
 
-/// The pinned table, parsed and checked for shape, canonical rationals and probe values.
 #[derive(Debug, Clone)]
 pub struct BalancedTable {
     pub rows: Vec<RationalPoly>,
@@ -158,7 +125,6 @@ fn probe(p: usize, i: usize) -> BigRational {
     }
 }
 
-/// Upper end of the box on coordinate `v` (the lower end is its negative).
 pub fn coordinate_radius(v: usize) -> BigRational {
     if v < CORE_START {
         BigRational::one()
@@ -172,7 +138,6 @@ fn shape(message: impl Into<String>) -> BalancedReplayError {
 }
 
 impl BalancedTable {
-    /// Parses the pinned table. Any digest, shape, literal or probe mismatch is an error.
     pub fn from_bytes(bytes: &[u8]) -> Result<Self, BalancedReplayError> {
         let digest = format!("{:x}", Sha256::digest(bytes));
         if digest != COEFFICIENT_SHA256 {
@@ -270,7 +235,6 @@ impl BalancedTable {
     }
 }
 
-/// Evaluates a rational polynomial at a rational point.
 pub fn evaluate_rational(poly: &RationalPoly, point: &[BigRational]) -> BigRational {
     let mut sum = BigRational::zero();
     for (factors, coefficient) in poly {
@@ -283,7 +247,6 @@ pub fn evaluate_rational(poly: &RationalPoly, point: &[BigRational]) -> BigRatio
     sum
 }
 
-/// Evaluates a rational polynomial at a point of Q(zeta_24).
 pub fn evaluate_exact(poly: &RationalPoly, point: &[Cyc24]) -> Cyc24 {
     let mut sum = Cyc24::zero();
     for (factors, coefficient) in poly {
@@ -347,7 +310,6 @@ fn poly_var(v: usize) -> RationalPoly {
     out
 }
 
-/// A complex-valued polynomial `re + i im` in the 320 real coordinates.
 #[derive(Clone, Debug, PartialEq)]
 struct ComplexPoly {
     re: RationalPoly,
@@ -399,8 +361,6 @@ impl ComplexPoly {
 
 type SymbolicMatrix = Vec<Vec<ComplexPoly>>;
 
-/// Coordinate base (real part) of each gauge-free entry, following `MubBoundedExportIndices`
-/// and `MubBalancedIndices`: `None` marks a gauge entry fixed to one.
 pub fn entry_base(a: usize, i: usize, j: usize) -> Option<usize> {
     match a {
         0 => {
@@ -428,7 +388,6 @@ pub fn entry_base(a: usize, i: usize, j: usize) -> Option<usize> {
     }
 }
 
-/// Coordinate base (real part) of transition core `W_a[i][j]`, `i, j < 5`.
 pub fn core_base(a: usize, i: usize, j: usize) -> usize {
     CORE_START + 2 * (25 * a + 5 * i + j)
 }
@@ -494,24 +453,19 @@ fn symbolic_conj_transpose_mul(x: &SymbolicMatrix, y: &SymbolicMatrix) -> Symbol
         .collect()
 }
 
-/// Row code of `|A_ij|^2 - 1`.
 pub fn modulus_code(a: usize, i: usize, j: usize) -> usize {
     MODULUS_START + 36 * a + 6 * i + j
 }
-/// Row code of component `b` of `(A^H A - 6 I)_ij`.
 pub fn gram_code(a: usize, i: usize, j: usize, b: usize) -> usize {
     GRAM_START + 2 * (36 * a + 6 * i + j) + b
 }
-/// Row code of component `b` of `(W_a - T_a)_ij`.
 pub fn graph_code(a: usize, i: usize, j: usize, b: usize) -> usize {
     GRAPH_START + 2 * (36 * a + 6 * i + j) + b
 }
-/// Row code of `|W_a,ij|^2 - 6`.
 pub fn transition_modulus_code(a: usize, i: usize, j: usize) -> usize {
     TRANSITION_MODULUS_START + 36 * a + 6 * i + j
 }
 
-/// Regenerates the 648 balanced equations from their definitions, indexed by row code.
 pub fn regenerate_equations() -> Vec<RationalPoly> {
     let bases = symbolic_bases();
     let pairs = [(0, 1), (0, 2), (1, 2)];
@@ -545,7 +499,6 @@ pub fn regenerate_equations() -> Vec<RationalPoly> {
     equations
 }
 
-/// Row-by-row accounting of the pinned table against its definitions.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct TableInventory {
     pub table_sha256: String,
@@ -553,20 +506,13 @@ pub struct TableInventory {
     pub variables: usize,
     pub total_terms: usize,
     pub maximum_terms: usize,
-    /// Rows whose terms differ from the regenerated polynomial (expected empty).
     pub mismatched_rows: Vec<usize>,
     pub empty_rows: Vec<usize>,
-    /// `|A_ij|^2 - 1` rows for gauge entries fixed to one (constant zero).
     pub empty_gauge_modulus_rows: usize,
     pub nonempty_modulus_rows: usize,
-    /// Gram rows that are constant zero: every diagonal imaginary part, and the real
-    /// diagonal entry of column 0 of `H`, whose column is fixed to ones.
     pub empty_gram_rows: usize,
-    /// Pairs `i > j` with real rows equal and imaginary rows opposite to `(j, i)`.
     pub gram_hermitian_duplicate_pairs: usize,
-    /// Diagonal real Gram rows equal to the sum of the modulus rows of that column.
     pub gram_diagonal_real_equal_modulus_sum: usize,
-    /// Gram rows `i < j` (real and imaginary), the ones not implied by other rows.
     pub gram_upper_rows: usize,
     pub graph_rows: usize,
     pub transition_modulus_rows: usize,
@@ -576,7 +522,6 @@ fn is_gauge(a: usize, i: usize, j: usize) -> bool {
     entry_base(a, i, j).is_none()
 }
 
-/// Compares the table with the regenerated equations and accounts for every row.
 pub fn inventory(table: &BalancedTable) -> TableInventory {
     let regenerated = regenerate_equations();
     let mismatched_rows: Vec<usize> = (0..EQUATIONS)
@@ -643,19 +588,16 @@ pub fn inventory(table: &BalancedTable) -> TableInventory {
     }
 }
 
-/// `(z + conj z) / 2`.
 pub fn real_part(z: &Cyc24) -> Cyc24 {
     z.add(&z.conj()).scale_rat(&BigRational::new(1.into(), 2.into()))
 }
 
-/// `(z - conj z) / (2 i)`.
 pub fn imag_part(z: &Cyc24) -> Cyc24 {
     z.sub(&z.conj())
         .mul(&Cyc24::i())
         .scale_rat(&BigRational::new((-1).into(), 2.into()))
 }
 
-/// `(X^H Y)_ij = sum_k conj(X_ki) Y_kj` over Q(zeta_24).
 pub fn exact_conj_transpose_mul(x: &ExactMatrix, y: &ExactMatrix) -> ExactMatrix {
     let n = x.len();
     (0..n)
@@ -676,9 +618,6 @@ fn check_square(name: &str, m: &ExactMatrix) -> Result<(), BalancedReplayError> 
     Ok(())
 }
 
-/// Encodes raw Hadamards `(H, U, V)` in the table's gauge as its 320 coordinates. The cores
-/// are the 5 x 5 corners of `H^H U`, `H^H V`, `U^H V`. A matrix outside the gauge (a first
-/// row, or the first column of `H`, not all ones) is refused.
 pub fn encode_triple(
     h: &ExactMatrix,
     u: &ExactMatrix,
@@ -728,9 +667,6 @@ pub fn encode_triple(
     Ok(point)
 }
 
-/// Box membership of an exact point, decided coordinate pair by coordinate pair. A pair
-/// `(x, y)` with rational `x^2 + y^2 <= r^2` lies in the box; a rational coordinate is
-/// compared directly; anything else is reported undecided rather than guessed.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct BoxMembership {
     pub inside: usize,
@@ -766,11 +702,9 @@ pub fn box_membership(point: &[Cyc24]) -> BoxMembership {
     }
 }
 
-/// Every row's value at an exact point: which rows do not vanish, and their distinct values.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct PointEvaluation {
     pub nonzero_rows: Vec<usize>,
-    /// Distinct nonzero values as canonical `p/q`, or `irrational` when not in Q.
     pub nonzero_values: BTreeSet<String>,
     pub box_membership: BoxMembership,
 }
@@ -795,7 +729,6 @@ pub fn evaluate_point(table: &BalancedTable, point: &[Cyc24]) -> PointEvaluation
     }
 }
 
-/// Builds an index from row code to equation block name, for reports.
 pub fn block_of(code: usize) -> &'static str {
     match code {
         c if c < GRAM_START => "modulus",
@@ -805,7 +738,6 @@ pub fn block_of(code: usize) -> &'static str {
     }
 }
 
-/// Counts rows per block, keyed by block name.
 pub fn rows_per_block(codes: &[usize]) -> BTreeMap<&'static str, usize> {
     let mut out = BTreeMap::new();
     for &c in codes {

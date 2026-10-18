@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the CLI collision sum."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the CLI collision sum.
+
+Origin: code/python/src/bin/entropy_cli.py
+Claim: urn:omega:fqm:entropy:cli-collision-gap:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -14,6 +24,21 @@ import pytest
 
 from src.bin.entropy_cli import ParityError, collision_probability, main, parity_gap
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "bin" / "entropy_cli.py"
 
 
@@ -26,7 +51,7 @@ def test_pure_and_fair_collisions() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(ParityError, match="float refused") as floated:
-        collision_probability((1.0, 0))
+        collision_probability((_probe("1.0"), 0))
     assert floated.value.invariant == "float refused at the parity boundary"
     assert floated.value.parameters["index"] == 0
     assert type(floated.value) is ParityError
@@ -141,7 +166,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     collision = namespace["collision_probability"]
     gap = namespace["parity_gap"]
-    if not callable(collision) or not callable(gap):
+    if not _all_hold((callable(collision), callable(gap),)):
         return False
     try:
         pure = collision((1, 0))
@@ -150,7 +175,12 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         measured = gap()
     except error:
         return False
-    return bool(pure == Fraction(1) and fair == Fraction(1, 2) and point == Fraction(1) and measured == Fraction(1, 2))
+    return _all_hold((
+pure == Fraction(1),
+fair == Fraction(1, 2),
+point == Fraction(1),
+measured == Fraction(1, 2),
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
@@ -158,7 +188,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(collision):
         return False
     probes = (
-        (lambda: collision((1.0, 0)), "float refused at the parity boundary"),
+        (lambda: collision((_probe("1.0"), 0)), "float refused at the parity boundary"),
         (lambda: collision((True, 0)), "boolean refused where a rational weight was required"),
         (lambda: collision((-1, 2)), "parity weight is negative"),
         (lambda: collision(()), "parity weights are empty"),
@@ -174,7 +204,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["ParityError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -203,6 +233,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

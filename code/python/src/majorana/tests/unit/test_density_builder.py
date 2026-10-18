@@ -26,8 +26,8 @@ class TestDensityBuilder(unittest.TestCase):
         """Verify state feature matrix F shape (M_bins x N_samples)."""
         samples = [[0.1, 0.5], [0.3, 0.8], [0.7, 0.2]]
         matrix_F = build_state_feature_matrix(samples, num_bins=4)
-        self.assertEqual(len(matrix_F), 4)  # M_bins rows
-        self.assertEqual(len(matrix_F[0]), 3)  # N_samples cols
+        self.assertEqual(len(matrix_F), 4)
+        self.assertEqual(len(matrix_F[0]), 3)
 
     def test_density_matrix_trace_one(self):
         r"""Verify rho = F F^\dagger / Tr(F F^\dagger) has exact trace 1.0."""
@@ -35,7 +35,6 @@ class TestDensityBuilder(unittest.TestCase):
         matrix_F = build_state_feature_matrix(samples, num_bins=4)
         rho = build_density_matrix_from_matrix(matrix_F)
 
-        # Verify trace is 1.0
         self.assertAlmostEqual(rho.trace(), 1.0, places=6)
 
     def test_density_matrix_hermiticity(self):

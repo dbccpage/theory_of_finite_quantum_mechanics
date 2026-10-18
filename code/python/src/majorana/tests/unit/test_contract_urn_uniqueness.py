@@ -38,7 +38,6 @@ def test_duplicate_id_across_directories_is_detected(tmp_path: Path):
     assert not report.ok
     assert list(report.duplicates) == ["urn:omega:state:packet:v1.0.0"]
     assert len(report.duplicates["urn:omega:state:packet:v1.0.0"]) == 2
-    # The ungoverned copy is named so it can be found and removed.
     assert report.ungoverned_files == 1
     assert report.governed_files == 1
 
@@ -74,7 +73,6 @@ def test_fixtures_are_reported_but_do_not_fail_the_gate(tmp_path: Path):
     )
 
     report = build_report(repo_root=tmp_path)
-    # A fixture reusing a live id is a warning, not a duplicate claim on the corpus.
     assert report.ok
     assert report.duplicates == {}
     assert report.fixture_files == 1
@@ -113,7 +111,6 @@ def test_quoted_ids_collide_with_unquoted_ids(tmp_path: Path):
         "urn:omega:products:symbol_game:v1.0.0",
     )
     report = build_report(repo_root=tmp_path)
-    # Quoting is a serialization detail; it must not hide a collision.
     assert not report.ok
     assert list(report.duplicates) == ["urn:omega:products:symbol_game:v1.0.0"]
 
@@ -135,8 +132,6 @@ def test_nested_worktrees_and_vendor_dirs_are_not_scanned(tmp_path: Path):
         "omega_engine_governance/contracts/contracts_system/a.contract.yaml",
         "urn:omega:state:packet:v1.0.0",
     )
-    # A nested worktree holds a second checkout of the same repo; scanning it would
-    # report every contract as a duplicate of itself.
     _write(
         tmp_path,
         ".claude/worktrees/other/omega_engine_governance/contracts/a.contract.yaml",

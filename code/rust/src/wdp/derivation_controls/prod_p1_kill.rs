@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P1-KILL (Evaluate P1 kill conditions on pilot arenas).
 
 pub fn evaluate_p1_kill(state_count: usize, distinct_decisions: usize, loss_cert_verified: bool) -> (bool, bool, bool, bool) {
     let kill_size = state_count > 64;

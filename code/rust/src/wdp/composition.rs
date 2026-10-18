@@ -1,27 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Chapter 19: the composition principle, conditional on a declared composition. Executable
-//! finite evidence for `WDP-CH19-P08`, `WDP-CH19-P09` and `WDP-CH19-P10`; the composition
-//! principle `WDP-CH19-O02` itself is not derived.
-//!
-//! - `WDP-CH19-P08` ([`local_decoders`]): a composition table `c : A x B -> C` has local
-//!   decoders `d_A c(a, b) = a` and `d_B c(a, b) = b` exactly when `c` is injective. The
-//!   degenerate table `c(a, b) = b` ([`dump_right_table`]) is not injective once
-//!   `|A| >= 2`.
-//! - `WDP-CH19-P09` ([`JointState`]): a stochastic instrument applied on one side of a
-//!   joint state leaves the other side's marginal untouched, summing `q[o][a][b']` over
-//!   the outcome `o` and the new coordinate `b'` returns `sum_b p[a][b]`. A presentation
-//!   `pres_A : A -> Q_A` lifts to `A x B` along the first projection and commutes with
-//!   marginalization.
-//! - `WDP-CH19-P10` ([`composite_state_from_bilinear`]): a bilinear form on effect vectors
-//!   that is nonnegative on product effects and takes value one on the top effects is
-//!   the joint distribution `p[a][b] = omega(1_a, 1_b)`. Nonnegativity on product effects
-//!   is equivalent to nonnegativity on indicator product effects. [`pr_box_fixture`] is a
-//!   compatible, strongly contextual box: its contexts agree on every overlap, yet no
-//!   global assignment is positive in all four contexts, so no joint distribution
-//!   reproduces it.
-//!
-//! A composite state built here confers no standing on a composition: the principle that
-//! a composite is determined by its parts remains a declared premise.
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
@@ -35,25 +11,18 @@ use crate::stochastic_package::{
 };
 use crate::types::AuthorityEffect;
 
-/// Cap on the effect-grid size `3^(|A| + |B|)` checked for bilinearity.
 pub const MAX_GRID_PAIRS: usize = 100_000;
 
-/// Cap on the target states of a composition table or of a pushforward.
 pub const MAX_TARGET_STATES: usize = 1_000_000;
 
-/// Cap on the entries of a table built from caller-supplied dimensions.
 pub const MAX_TABLE_ENTRIES: usize = 1_000_000;
 
 fn invalid(detail: String) -> WdpError {
     WdpError::InvalidInput { detail }
 }
 
-/// Decoders `(d_A, d_B)` on `C = {0, ..., n_c - 1}`.
 pub type Decoders = (Vec<usize>, Vec<usize>);
 
-/// `WDP-CH19-P08`: the decoders of a table `c[a][b]`, or `None` when `c` is not injective.
-/// `n_c` is one more than the largest table value; on values outside the image the
-/// decoders are 0. A malformed (empty or ragged) table is refused.
 pub fn local_decoders(c: &[Vec<usize>]) -> Result<Option<Decoders>, WdpError> {
     let n_a = c.len();
     let n_b = c.first().map_or(0, Vec::len);
@@ -94,7 +63,6 @@ pub fn local_decoders(c: &[Vec<usize>]) -> Result<Option<Decoders>, WdpError> {
     Ok(Some((decoder_a, decoder_b)))
 }
 
-/// Whether `d_A c(a, b) = a` and `d_B c(a, b) = b` for every pair.
 pub fn decoders_are_left_inverse(c: &[Vec<usize>], decoders: &Decoders) -> bool {
     c.iter().enumerate().all(|(a, row)| {
         row.iter().enumerate().all(|(b, &value)| {
@@ -103,8 +71,6 @@ pub fn decoders_are_left_inverse(c: &[Vec<usize>], decoders: &Decoders) -> bool 
     })
 }
 
-/// Refuses an `n_a x n_b` table with a side or an entry count above [`MAX_TABLE_ENTRIES`]
-/// (a side alone can be huge while the product is zero, and rows would still be allocated).
 fn check_table_size(n_a: usize, n_b: usize) -> Result<(), WdpError> {
     if n_a > MAX_TABLE_ENTRIES
         || n_b > MAX_TABLE_ENTRIES
@@ -119,8 +85,6 @@ fn check_table_size(n_a: usize, n_b: usize) -> Result<(), WdpError> {
     Ok(())
 }
 
-/// The pairing table `c(a, b) = a * n_b + b`. The size check bounds `n_a * n_b`, so no
-/// entry overflows.
 pub fn pairing_table(n_a: usize, n_b: usize) -> Result<Vec<Vec<usize>>, WdpError> {
     check_table_size(n_a, n_b)?;
     Ok((0..n_a)
@@ -128,13 +92,11 @@ pub fn pairing_table(n_a: usize, n_b: usize) -> Result<Vec<Vec<usize>>, WdpError
         .collect())
 }
 
-/// The degenerate table `c(a, b) = b`, which forgets `A`.
 pub fn dump_right_table(n_a: usize, n_b: usize) -> Result<Vec<Vec<usize>>, WdpError> {
     check_table_size(n_a, n_b)?;
     Ok((0..n_a).map(|_| (0..n_b).collect()).collect())
 }
 
-/// The pushforward of a vector along `map : {0..dist.len()} -> {0..n_target}`.
 pub fn pushforward(
     dist: &[BigRational],
     map: &[usize],
@@ -162,7 +124,6 @@ pub fn pushforward(
     Ok(out)
 }
 
-/// The map `A x B -> Q_A`, `(a, b) -> pres_A(a)`, on pairs flattened as `a * n_b + b`.
 pub fn lift_along_first(pres_a: &[usize], n_b: usize) -> Result<Vec<usize>, WdpError> {
     check_table_size(pres_a.len(), n_b)?;
     Ok(pres_a
@@ -171,7 +132,6 @@ pub fn lift_along_first(pres_a: &[usize], n_b: usize) -> Result<Vec<usize>, WdpE
         .collect())
 }
 
-/// A joint distribution `p[a][b]` on a finite product carrier.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct JointState {
     p: Matrix,
@@ -180,7 +140,6 @@ pub struct JointState {
 }
 
 impl JointState {
-    /// Nonnegative entries summing to one.
     pub fn new(p: Matrix) -> Result<Self, WdpError> {
         let (n_a, n_b) = matrix_shape(&p, "joint state")?;
         if let Some((a, b)) = (0..n_a)
@@ -213,7 +172,6 @@ impl JointState {
         self.n_b
     }
 
-    /// `a -> sum_b p[a][b]`.
     pub fn marginal_a(&self) -> Vec<BigRational> {
         self.p
             .iter()
@@ -221,7 +179,6 @@ impl JointState {
             .collect()
     }
 
-    /// `b -> sum_a p[a][b]`.
     pub fn marginal_b(&self) -> Vec<BigRational> {
         (0..self.n_b)
             .map(|b| {
@@ -232,7 +189,6 @@ impl JointState {
             .collect()
     }
 
-    /// `q[o][a][b'] = sum_b K_o[b'][b] p[a][b]` for an instrument `K` on `B`.
     pub fn apply_instrument_on_b(
         &self,
         instrument: &ClassicalInstrument,
@@ -251,7 +207,6 @@ impl JointState {
             .collect())
     }
 
-    /// `q[o][a'][b] = sum_a K_o[a'][a] p[a][b]` for an instrument `K` on `A`.
     pub fn apply_instrument_on_a(
         &self,
         instrument: &ClassicalInstrument,
@@ -279,7 +234,6 @@ impl JointState {
             .collect())
     }
 
-    /// The pushforward of the joint state along `pres_A o fst : A x B -> Q_A`.
     pub fn pushforward_along_first(
         &self,
         pres_a: &[usize],
@@ -296,7 +250,6 @@ impl JointState {
         pushforward(&flat, &lift_along_first(pres_a, self.n_b)?, n_q)
     }
 
-    /// The joint distribution `[q][b]` on `Q_A x B` after `pres_A x id_B`.
     pub fn pushforward_presentation_a(
         &self,
         pres_a: &[usize],
@@ -331,7 +284,6 @@ impl JointState {
     }
 }
 
-/// `sum_{o, b'} q[o][a][b']` for each `a`.
 pub fn outcome_marginal_a(q: &[Matrix]) -> Result<Vec<BigRational>, WdpError> {
     let first = q
         .first()
@@ -350,7 +302,6 @@ pub fn outcome_marginal_a(q: &[Matrix]) -> Result<Vec<BigRational>, WdpError> {
     Ok(out)
 }
 
-/// `sum_{o, a'} q[o][a'][b]` for each `b`.
 pub fn outcome_marginal_b(q: &[Matrix]) -> Result<Vec<BigRational>, WdpError> {
     let width = q
         .first()
@@ -371,7 +322,6 @@ pub fn outcome_marginal_b(q: &[Matrix]) -> Result<Vec<BigRational>, WdpError> {
     Ok(out)
 }
 
-/// A bilinear form on effect vectors, `omega(e, f) = sum_{a,b} e_a W[a][b] f_b`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BilinearForm {
     w: Matrix,
@@ -409,9 +359,6 @@ impl BilinearForm {
     }
 }
 
-/// `WDP-CH19-P10`: the joint distribution `p = W` of a bilinear form that is nonnegative
-/// on product effects (refused on an indicator product effect `(1_a, 1_b)` with negative
-/// value) and normalized, `omega(1, 1) = 1`.
 pub fn composite_state_from_bilinear(w: &[Vec<BigRational>]) -> Result<JointState, WdpError> {
     let form = BilinearForm::new(w.to_vec())?;
     for (a, row) in form.w.iter().enumerate() {
@@ -449,7 +396,6 @@ fn indicator(n: usize, i: usize) -> Vec<BigRational> {
         .collect()
 }
 
-/// The effect vectors with entries in `{0, 1/2, 1}` of length `n`.
 fn effect_grid(n: usize) -> Vec<Vec<BigRational>> {
     let levels = [
         BigRational::zero(),
@@ -472,20 +418,13 @@ fn effect_grid(n: usize) -> Vec<Vec<BigRational>> {
     grid
 }
 
-/// The joint state extracted from a black-box form, with the size of the verified grid.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FormReceipt {
     pub state: JointState,
-    /// Pairs of effects in `{0, 1/2, 1}^A x {0, 1/2, 1}^B` on which the form matched.
     pub grid_pairs_checked: usize,
     pub authority_effect: AuthorityEffect,
 }
 
-/// `WDP-CH19-P10` from a black-box form: extracts `W[a][b] = omega(1_a, 1_b)`, requires
-/// [`composite_state_from_bilinear`], and then verifies `omega(e, f) = sum p[a][b] e_a f_b`
-/// on every pair of effects in `{0, 1/2, 1}^A x {0, 1/2, 1}^B`. A form that disagrees with
-/// the extracted `W` on that grid is refused at the first disagreeing pair; agreement on
-/// the grid is what is checked, not bilinearity off it.
 pub fn composite_state_from_form(
     n_a: usize,
     n_b: usize,
@@ -529,24 +468,16 @@ pub fn composite_state_from_form(
     })
 }
 
-/// The PR box on the CHSH cover: compatible, CHSH value 4, no positive global assignment.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PrBoxFixture {
     pub model: EmpiricalModel,
-    /// Largest pairwise overlap-marginal L1 defect of the run frequencies.
     pub max_signalling_defect: BigRational,
     pub chsh_value: BigRational,
     pub positive_global_assignments: usize,
-    /// No global assignment is positive in every context, so no joint distribution
-    /// reproduces the model. This is the support-level fact only: the reverse
-    /// (`positive_global_assignments > 0`) would be necessary and not sufficient for
-    /// noncontextuality, and is never claimed.
     pub strongly_contextual: bool,
     pub authority_effect: AuthorityEffect,
 }
 
-/// The PR-box fixture: `adapt_exact` accepts it (no signalling), yet no global assignment
-/// is positive in all four contexts, so it is strongly contextual.
 pub fn pr_box_fixture() -> Result<PrBoxFixture, WdpError> {
     let cover = chsh_cover()?;
     let table = pr_box_run_table()?;

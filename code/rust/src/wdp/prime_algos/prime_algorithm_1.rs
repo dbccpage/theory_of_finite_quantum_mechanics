@@ -1,36 +1,3 @@
-//! PRIME-ALGORITHM-001 — intake and inter-carrier transport soundness.
-//!
-//! Canonical source: `research/omega_engine_prime_algos/`
-//! §1, which assigns Prime 001 to *"intake and inter-carrier transport
-//! soundness, enforcing that translation into an `OmegaPacket` does not confer
-//! validity and tracking all lost data in explicit loss ledgers
-//! ($L_\text{adapter}$)."*
-//!
-//! An earlier cut of this crate used the name `prime_algorithm_1` for the continuation
-//! predicate. That is Prime **002**; see [`crate::prime_algos::prime_algorithm_2`].
-//!
-//! # The one law
-//!
-//! **Translation does not confer validity.** A judgment that held on carrier A
-//! arrives on carrier B as *proposed*, never as *admitted*. This is not a
-//! stylistic preference: an adapter that upgrades status while moving carriers
-//! is an authority-laundering device, and it is the cheapest one to build by
-//! accident.
-//!
-//! [`TransportedPacket`] therefore has no constructor that yields an admitted
-//! status, and [`TransportStatus`] has no variant meaning "valid here because it
-//! was valid there".
-//!
-//! # Loss ledgers
-//!
-//! Every transport books what it dropped. A ledger is **sealed** on
-//! construction and its entries cannot be edited afterwards, so a caller cannot
-//! shrink a loss after the fact. An *empty* ledger is a positive claim that
-//! nothing was lost — it is not the same as no ledger, and
-//! [`LossLedger::is_empty`] is what Prime 002's skeleton-preservation law reads
-//! to tell the two apart.
-//!
-//! `AuthorityEffect: None`.
 
 use crate::prime_algos::prime_scope::{digest, ScopeBinding};
 use omega_kernel::evidence::Hash256;
@@ -41,23 +8,14 @@ use std::fmt;
 
 const LEDGER_DOMAIN: &str = "oeprm.ledger.v1";
 
-/// What an adapter dropped in translation, booked and sealed.
-///
-/// Entries are private and there is no mutator: a ledger cannot be shrunk after
-/// the checks that read it.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct LossLedger {
     scope: ScopeBinding,
     entries: BTreeMap<String, usize>,
-    /// False when the ledger was constructed from an inconsistent report.
     sound: bool,
 }
 
 impl LossLedger {
-    /// A ledger asserting that nothing was lost.
-    ///
-    /// This is a *claim*, not an absence. Prime 002 distinguishes "nothing was
-    /// lost" from "no ledger was produced".
     pub fn empty(scope: ScopeBinding) -> Self {
         Self {
             scope,
@@ -66,9 +24,6 @@ impl LossLedger {
         }
     }
 
-    /// Book losses. A zero-count entry is unsound: booking "we lost 0 faces" as
-    /// an entry rather than omitting it hides the difference between a measured
-    /// zero and an unmeasured field.
     pub fn booked(entries: Vec<(String, usize)>, scope: ScopeBinding) -> Self {
         let sound = entries.iter().all(|(k, n)| *n > 0 && !k.trim().is_empty());
         Self {
@@ -86,7 +41,6 @@ impl LossLedger {
         self.sound
     }
 
-    /// True when the ledger books no losses.
     pub fn is_empty(&self) -> bool {
         self.entries.is_empty()
     }
@@ -99,7 +53,6 @@ impl LossLedger {
         &self.entries
     }
 
-    /// Canonical commitment, so a tape head can bind the ledger that was read.
     pub fn commit(&self) -> Hash256 {
         let mut parts: Vec<Vec<u8>> = Vec::new();
         parts.push(self.scope.commit().0.to_vec());
@@ -132,25 +85,15 @@ impl fmt::Display for LossLedger {
     }
 }
 
-/// Status of a packet after transport.
-///
-/// There is deliberately **no** `AdmittedBecauseItWasAdmittedThere`. Crossing a
-/// carrier boundary cannot raise status.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum TransportStatus {
-    /// The only status transport can produce. Whatever the source status was,
-    /// the packet arrives as a proposal for the target carrier's own checks.
     Proposed,
 }
 
-/// Why a transport was refused.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub enum TransportRefusal {
-    /// The adapter reported losses inconsistently.
     UnsoundLedger { detail: String },
-    /// Source and target carrier are the same; transport is not the operation
-    /// wanted, and calling it transport would book a loss that did not occur.
     SameCarrier,
 }
 
@@ -172,10 +115,6 @@ impl fmt::Display for TransportRefusal {
 
 impl std::error::Error for TransportRefusal {}
 
-/// A packet that has crossed a carrier boundary.
-///
-/// Fields are private and there is exactly one constructor, [`transport`], so a
-/// packet cannot be assembled with a status it did not earn.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TransportedPacket {
     from: Hash256,
@@ -198,19 +137,11 @@ impl TransportedPacket {
     pub fn ledger(&self) -> &LossLedger {
         &self.ledger
     }
-    /// Always [`TransportStatus::Proposed`]. Kept as an accessor rather than a
-    /// constant so the type reads the same as the other evidence surfaces.
     pub fn status(&self) -> TransportStatus {
         self.status
     }
 }
 
-/// Move a packet between carriers, booking what was lost.
-///
-/// The result is always [`TransportStatus::Proposed`], whatever the source
-/// status was. `source_was_admitted` is accepted **and deliberately ignored for
-/// status purposes** — it exists so the signature makes the discarded
-/// information visible at every call site rather than silently absent.
 pub fn transport(
     from: Hash256,
     to: Hash256,
@@ -244,7 +175,6 @@ pub fn transport(
     })
 }
 
-/// Authority effect of this module.
 pub const AUTHORITY_EFFECT: AuthorityEffect = AuthorityEffect::None;
 
 #[cfg(test)]
@@ -259,8 +189,6 @@ mod tests {
         ScopeBinding::with_carrier_and_d0(h(0), carrier, h(100), h(200), None, 0)
     }
 
-    /// The one law of Prime 001, stated as a test: an admitted source packet
-    /// arrives proposed.
     #[test]
     fn translation_does_not_confer_validity() {
         let p = transport(h(1), h(2), h(9), LossLedger::empty(test_scope(h(1))), true)
@@ -272,8 +200,6 @@ mod tests {
         );
     }
 
-    /// Anti-vacuity for the law above: the status is not constant
-    /// because transport always fails. It succeeds, and still does not upgrade.
     #[test]
     fn transport_succeeds_for_both_source_statuses_and_upgrades_neither() {
         for was_admitted in [true, false] {
@@ -322,9 +248,6 @@ mod tests {
         assert!(matches!(err, TransportRefusal::UnsoundLedger { .. }));
     }
 
-    /// An empty ledger is a *claim* that nothing was lost; the absence of a
-    /// ledger is a different thing, and Prime 002 reads exactly this
-    /// distinction.
     #[test]
     fn an_empty_ledger_is_a_claim_not_an_absence() {
         let l = LossLedger::empty(test_scope(h(1)));
@@ -344,8 +267,6 @@ mod tests {
         assert_eq!(l.total_lost(), 7);
     }
 
-    /// The commitment must distinguish ledgers, or a tape head could not bind
-    /// which ledger was read.
     #[test]
     fn distinct_ledgers_commit_distinctly() {
         let a = LossLedger::booked(vec![("faces".into(), 2)], test_scope(h(1)));
@@ -360,8 +281,6 @@ mod tests {
         );
     }
 
-    /// Soundness is committed too: an unsound ledger must not share a
-    /// commitment with a sound one.
     #[test]
     fn soundness_is_committed() {
         let sound = LossLedger::empty(test_scope(h(1)));

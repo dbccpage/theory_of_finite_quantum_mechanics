@@ -54,26 +54,23 @@ def partial_trace(rho: ComplexMatrix, keep_sites: Sequence[int], num_sites: int)
     dim_total = 2**num_sites
     if rho.shape != (dim_total, dim_total):
         raise QuantumInputError(f"rho shape must be ({dim_total}, {dim_total})")
-    
+
     keep = list(keep_sites)
     trace_out = [s for s in range(num_sites) if s not in keep]
-    
-    # Reshape into tensor of shape (2, 2, ..., 2, 2) with 2*num_sites indices
+
     shape = [2] * (2 * num_sites)
     tensor = rho.reshape(shape)
-    
-    # Transpose so keep indices come first, then trace_out indices
+
     axes_row = keep + trace_out
     axes_col = [k + num_sites for k in keep] + [t + num_sites for t in trace_out]
     perm = axes_row + axes_col
     tensor = np.transpose(tensor, perm)
-    
-    # Contract trace_out indices
+
     n_keep = len(keep)
     n_trace = len(trace_out)
     dim_keep = 2**n_keep
     dim_trace = 2**n_trace
-    
+
     matrix = tensor.reshape((dim_keep, dim_trace, dim_keep, dim_trace))
     reduced = np.trace(matrix, axis1=1, axis2=3)
     return reduced.astype(np.complex128)
@@ -91,21 +88,21 @@ def build_1d_tfim_hamiltonian(
     r"""Build 1D TFIM Hamiltonian: H = -J \sum_{i} Z_i Z_{i+1} - h \sum_i X_i."""
     if num_sites < 2:
         raise QuantumInputError("num_sites must be at least 2")
-    
+
     _, x, _, z = _paulis()
     dim = 2**num_sites
     H_int = np.zeros((dim, dim), dtype=np.complex128)
     H_local = np.zeros((dim, dim), dtype=np.complex128)
     edges = []
-    
+
     for i in range(num_sites - 1):
         edge_term = -coupling * _two_site_op(z, i, z, i + 1, num_sites)
         H_int += edge_term
         edges.append((i, i + 1))
-        
+
     for i in range(num_sites):
         H_local += -transverse_field * _single_site_op(x, i, num_sites)
-        
+
     return H_int + H_local, H_int, edges
 
 
@@ -116,33 +113,31 @@ def build_2d_tfim_hamiltonian(
     num_sites = rows * cols
     if num_sites < 4:
         raise QuantumInputError("2D grid must have at least 4 sites")
-    
+
     _, x, _, z = _paulis()
     dim = 2**num_sites
     H_int = np.zeros((dim, dim), dtype=np.complex128)
     H_local = np.zeros((dim, dim), dtype=np.complex128)
     edges = []
-    
+
     def site_idx(r: int, c: int) -> int:
         return r * cols + c
-    
+
     for r in range(rows):
         for c in range(cols):
             u = site_idx(r, c)
-            # Right neighbor
             if c + 1 < cols:
                 v = site_idx(r, c + 1)
                 H_int += -coupling * _two_site_op(z, u, z, v, num_sites)
                 edges.append((u, v))
-            # Down neighbor
             if r + 1 < rows:
                 v = site_idx(r + 1, c)
                 H_int += -coupling * _two_site_op(z, u, z, v, num_sites)
                 edges.append((u, v))
-                
+
     for i in range(num_sites):
         H_local += -transverse_field * _single_site_op(x, i, num_sites)
-        
+
     return H_int + H_local, H_int, edges
 
 
@@ -152,13 +147,13 @@ def build_1d_heisenberg_hamiltonian(
     r"""Build 1D Heisenberg XXZ Hamiltonian: H = -J \sum (X_i X_{i+1} + Y_i Y_{i+1} + \Delta Z_i Z_{i+1}) - h \sum Z_i."""
     if num_sites < 2:
         raise QuantumInputError("num_sites must be at least 2")
-    
+
     _, x, y, z = _paulis()
     dim = 2**num_sites
     H_int = np.zeros((dim, dim), dtype=np.complex128)
     H_local = np.zeros((dim, dim), dtype=np.complex128)
     edges = []
-    
+
     for i in range(num_sites - 1):
         term = -J * (
             _two_site_op(x, i, x, i + 1, num_sites)
@@ -167,11 +162,11 @@ def build_1d_heisenberg_hamiltonian(
         )
         H_int += term
         edges.append((i, i + 1))
-        
+
     if h_z != 0.0:
         for i in range(num_sites):
             H_local += -h_z * _single_site_op(z, i, num_sites)
-            
+
     return H_int + H_local, H_int, edges
 
 
@@ -243,7 +238,6 @@ def run_lattice_simulation_replay(
     else:
         raise QuantumInputError(f"Unknown model_type {model_type}")
 
-    # Initial state: product state |+>^{\otimes N} (x-polarized for TFIM/Heisenberg)
     dim = 2**n_sites
     psi0 = np.ones(dim, dtype=np.complex128) / np.sqrt(dim)
     rho0 = np.outer(psi0, psi0.conj())
@@ -257,7 +251,6 @@ def run_lattice_simulation_replay(
         rho_t = U @ rho0 @ U.conj().T
         defect = compute_edgewise_l1_defect(rho_t, n_sites, edges)
         bound = c2 * (t**2)
-        # At short times (t <= t_max), empirical defect should satisfy defect >= bound - atol
         satisfied = bool(defect >= bound - 1.0e-5)
         trajectories.append(
             LatticeTrajectoryResult(
@@ -284,20 +277,19 @@ def build_2d_heisenberg_hamiltonian(
     num_sites = rows * cols
     if num_sites < 4:
         raise QuantumInputError("2D grid must have at least 4 sites")
-    
+
     _, x, y, z = _paulis()
     dim = 2**num_sites
     H_int = np.zeros((dim, dim), dtype=np.complex128)
     H_local = np.zeros((dim, dim), dtype=np.complex128)
     edges = []
-    
+
     def site_idx(r: int, c: int) -> int:
         return r * cols + c
-    
+
     for r in range(rows):
         for c in range(cols):
             u = site_idx(r, c)
-            # Right neighbor
             if c + 1 < cols:
                 v = site_idx(r, c + 1)
                 term = -J * (
@@ -307,7 +299,6 @@ def build_2d_heisenberg_hamiltonian(
                 )
                 H_int += term
                 edges.append((u, v))
-            # Down neighbor
             if r + 1 < rows:
                 v = site_idx(r + 1, c)
                 term = -J * (
@@ -317,11 +308,11 @@ def build_2d_heisenberg_hamiltonian(
                 )
                 H_int += term
                 edges.append((u, v))
-                
+
     if h_z != 0.0:
         for i in range(num_sites):
             H_local += -h_z * _single_site_op(z, i, num_sites)
-            
+
     return H_int + H_local, H_int, edges
 
 
@@ -329,7 +320,7 @@ def compute_higher_order_commutator_coefficients(
     H: ComplexMatrix, H_int: ComplexMatrix, rho0: ComplexMatrix
 ) -> tuple[float, float, float, float]:
     """Compute exact Taylor derivative coefficients for the defect sum up to 4th order.
-    
+
     Returns (c1, c2, c3, c4) where:
       c1 = first derivative (normal rate sum)
       c2 = second derivative prefactor (1/2) d^2 D / dt^2 (0)
@@ -340,7 +331,7 @@ def compute_higher_order_commutator_coefficients(
     comm2 = H @ comm1 - comm1 @ H
     comm3 = H @ comm2 - comm2 @ H
     comm4 = H @ comm3 - comm3 @ H
-    
+
     c1 = float(trace_norm(comm1))
     c2 = 0.5 * float(trace_norm(comm2))
     c3 = (1.0 / 6.0) * float(trace_norm(comm3))
@@ -422,7 +413,7 @@ def run_longer_time_defect_evolution_replay(
 
     times = np.linspace(0.0, t_max, num_points)
     trajectories = []
-    
+
     t_break = t_max
     t_peak = 0.0
     max_defect = -1.0
@@ -431,15 +422,15 @@ def run_longer_time_defect_evolution_replay(
         U = expm(-1j * H * t)
         rho_t = U @ rho0 @ U.conj().T
         defect = compute_edgewise_l1_defect(rho_t, n_sites, edges)
-        
+
         short_bound = max(c1 * t - c2 * (t**2), 0.0)
         taylor_4 = c1 * t - c2 * (t**2) + c3 * (t**3) - c4 * (t**4)
         lr_bound = compute_lieb_robinson_bound(1.0, float(t))
-        
+
         bound_valid = bool(t <= t0 or defect >= short_bound - 1e-4)
         if not bound_valid and t_break == t_max:
             t_break = float(t)
-            
+
         if defect > max_defect:
             max_defect = defect
             t_peak = float(t)
@@ -495,27 +486,27 @@ def extrapolate_infinite_system_defect_density(
     sizes: Sequence[int], site_densities: Sequence[float]
 ) -> tuple[float, float]:
     """Perform 1/N linear extrapolation of site-normalized defect density d_site(N) = S_inf + alpha / N.
-    
+
     Returns (S_inf, r_squared) where:
       S_inf = extrapolated infinite-system defect density limit
       r_squared = coefficient of determination of the 1/N fit
     """
     if len(sizes) < 2:
         raise QuantumInputError("At least 2 system sizes required for 1/N extrapolation")
-    
+
     inv_N = np.array([1.0 / n for n in sizes], dtype=np.float64)
     densities = np.array(site_densities, dtype=np.float64)
-    
+
     poly = np.polyfit(inv_N, densities, 1)
     alpha, S_inf = poly[0], poly[1]
-    
+
     total_var = float(np.sum((densities - np.mean(densities)) ** 2))
     if total_var < 1e-12:
         r2 = 1.0
     else:
         ss_res = float(np.sum((densities - (alpha * inv_N + S_inf)) ** 2))
         r2 = max(0.0, 1.0 - (ss_res / total_var))
-        
+
     return float(S_inf), float(r2)
 
 
@@ -530,10 +521,10 @@ def compute_thermodynamic_defect_scaling(
 ) -> ThermodynamicScalingReplay:
     """Compute defect density scaling C(t_peak)/N across growing lattice sizes."""
     results: list[ThermodynamicScalingResult] = []
-    
+
     for item in sizes_or_grids:
         if model_type == "1d_tfim":
-            n_sites = int(item)  # type: ignore
+            n_sites = int(item)
             H, H_int, edges = build_1d_tfim_hamiltonian(n_sites, coupling, transverse_field_or_delta)
             family_name = f"1D TFIM Family (J={coupling}, h={transverse_field_or_delta})"
         elif model_type == "2d_tfim":
@@ -545,7 +536,7 @@ def compute_thermodynamic_defect_scaling(
             H, H_int, edges = build_2d_tfim_hamiltonian(r, c, coupling, transverse_field_or_delta)
             family_name = f"2D TFIM Family (J={coupling}, h={transverse_field_or_delta})"
         elif model_type == "1d_heisenberg":
-            n_sites = int(item)  # type: ignore
+            n_sites = int(item)
             H, H_int, edges = build_1d_heisenberg_hamiltonian(n_sites, coupling, transverse_field_or_delta)
             family_name = f"1D Heisenberg Family (J={coupling}, Delta={transverse_field_or_delta})"
         else:
@@ -557,7 +548,7 @@ def compute_thermodynamic_defect_scaling(
 
         times = np.linspace(0.0, t_max, num_points)
         peak_defect = -1.0
-        
+
         U_dt = expm(-1j * H * times[1])
         rho_dt = U_dt @ rho0 @ U_dt.conj().T
         d_dt = compute_edgewise_l1_defect(rho_dt, n_sites, edges)
@@ -588,7 +579,7 @@ def compute_thermodynamic_defect_scaling(
     all_n = [r.num_sites for r in results]
     all_site_d = [r.peak_site_defect_density for r in results]
     S_inf, r2 = extrapolate_infinite_system_defect_density(all_n, all_site_d)
-    
+
     saturates = bool(len(results) >= 2 and abs(results[-1].peak_site_defect_density - results[-2].peak_site_defect_density) < 0.5)
 
     return ThermodynamicScalingReplay(
@@ -608,7 +599,7 @@ def build_global_gibbs_state(H: ComplexMatrix, beta: float) -> ComplexMatrix:
     if beta == 0.0:
         dim = H.shape[0]
         return np.eye(dim, dtype=np.complex128) / dim
-    
+
     exp_neg_beta_H = expm(-beta * H)
     z = np.trace(exp_neg_beta_H)
     return (exp_neg_beta_H / z).astype(np.complex128)
@@ -618,14 +609,14 @@ def build_local_thermal_product_state(num_sites: int, local_hamiltonian: Complex
     """Build local thermal product state rho_beta = exp(-beta * h_v) / Tr(exp(-beta * h_v))."""
     if beta < 0.0:
         raise QuantumInputError("beta must be non-negative")
-    
+
     if beta == 0.0:
         single_rho = np.eye(2, dtype=np.complex128) / 2.0
     else:
         exp_h = expm(-beta * local_hamiltonian)
         z = np.trace(exp_h)
         single_rho = (exp_h / z).astype(np.complex128)
-        
+
     factors = [single_rho] * num_sites
     return kron_n(factors)
 

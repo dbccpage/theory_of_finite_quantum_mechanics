@@ -608,9 +608,8 @@ def evaluate_holonomy_bridge_control(
         raise HolonomyControlRefusal(
             "the control needs 12 | conductor (mu_3, mu_4 and mu_6 are used)"
         )
-    # Carrier: the diamond 0-1-3, 0-2-3 with the chord 1-2. b_1 = 2. Three reports from 0 to 3.
     graph = FiniteCarrierGraph(4, ((0, 1), (0, 2), (1, 3), (2, 3), (1, 2)))
-    z = lambda k: root_of_unity(conductor, k)  # noqa: E731
+    z = lambda k: root_of_unity(conductor, k)
     cochain = U1Cochain(graph, (z(1), z(0), z(2), z(5), z(7)))
     reports: List[Walk] = [[0, 1, 3], [0, 2, 3], [0, 1, 2, 3]]
     gauge = [z(3), z(11), z(4), z(6)]
@@ -641,7 +640,7 @@ def evaluate_holonomy_bridge_control(
     state = [half * s for s in state]
     born_diag = l1_weights(state)
     born_fourier = born_in_context(F, state)
-    total = lambda ws: sum(ws[1:], ws[0])  # noqa: E731
+    total = lambda ws: sum(ws[1:], ws[0])
 
     pm = peres_mermin_parity_holonomy(conductor)
     tower = clock_refinement_tower(3, 3, conductor)

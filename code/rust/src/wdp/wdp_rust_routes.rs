@@ -1,8 +1,3 @@
-//! Structural and source-bound checks for the WDP-to-code ownership DAG.
-//!
-//! A checked route names its exact owner, contracts, test and negative control.
-//! Validation checks graph structure and artifact commitments. It does not run
-//! the named test or certify a mathematical theorem. AuthorityEffect: None.
 
 use omega_types::authority::AuthorityEffect;
 use serde::{Deserialize, Serialize};
@@ -11,8 +6,6 @@ use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
 pub const DAG_SCHEMA_V1: &str = "omega.wdp.architecture-dag.v1";
 pub const MAX_DAG_ROWS: usize = 2048;
-/// Total UTF-8 bytes in caller-declared strings, counted before graph storage
-/// or the typed JSON commitment. Fixed schema overhead is also row-bounded.
 pub const MAX_DAG_METADATA_BYTES: usize = 256 * 1024;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
@@ -50,7 +43,6 @@ pub struct DagNode {
     pub scope: String,
 }
 
-/// Each semantic premise is explicit, including a stated non-applicable field.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct BridgePremises {
@@ -76,8 +68,6 @@ pub struct DagEdge {
     pub negative_control: String,
     pub premises: Option<BridgePremises>,
     pub scope: String,
-    /// Declares that the named owner API was absent at the task's frozen baseline.
-    /// The separate baseline comparison records evidence for that declaration.
     pub added_since_baseline: bool,
 }
 
@@ -108,7 +98,6 @@ pub enum DagError {
     Serialization,
 }
 
-/// Receipt minted by structural validation, with a fixed evidence ceiling.
 #[derive(Debug, Clone, Serialize)]
 pub struct DagReceipt {
     pub schema_version: &'static str,
@@ -116,12 +105,10 @@ pub struct DagReceipt {
     pub edges: usize,
     pub implemented_routes: usize,
     pub declared_new_routes: usize,
-    /// Distinct obligation nodes, counted once even with several incoming edges.
     pub open_obligations: usize,
     pub open_obligation_routes: usize,
     pub topological_order: Vec<String>,
     pub evidence_scope: &'static str,
-    /// Domain-separated typed JSON commitment, distinct from raw artifact hashes.
     pub graph_digest_sha256: String,
     pub authority_effect: AuthorityEffect,
 }

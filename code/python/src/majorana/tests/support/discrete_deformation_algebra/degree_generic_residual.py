@@ -54,14 +54,9 @@ def _solve_l1_linear_system(
     if n_cols == 0 or n_rows == 0:
         return np.zeros(n_cols), b.copy(), float(np.sum(np.abs(b)))
 
-    # Variables: x (n_cols), t (n_rows)
-    # Objective: min sum(t)
     c = np.zeros(n_cols + n_rows)
     c[n_cols:] = 1.0
 
-    # Constraints:
-    # A x - t <= b  =>  [A, -I] [x; t] <= b
-    # -A x - t <= -b => [-A, -I] [x; t] <= -b
     I_m = np.eye(n_rows)
     A_ub = np.block([[A, -I_m], [-A, -I_m]])
     b_ub = np.concatenate([b, -b])
@@ -76,7 +71,6 @@ def _solve_l1_linear_system(
         min_l1 = float(np.sum(np.abs(residual_vec)))
         return x_opt, residual_vec, min_l1
     else:
-        # Fallback to zero x
         return np.zeros(n_cols), b.copy(), float(np.sum(np.abs(b)))
 
 
@@ -106,28 +100,21 @@ def evaluate_residual(
     cell_index_k = {cell: idx for idx, cell in enumerate(cells_k)}
     w_vec = np.zeros(n_k, dtype=float)
     for cell, val in cochain.items():
-        # Handle orientation/sorting if needed
         sorted_cell = tuple(sorted(cell))
         if sorted_cell in cell_index_k:
             w_vec[cell_index_k[sorted_cell]] += val
 
-    # 1. Lower coboundary operator d_{k-1}^\top: C^{k-1} -> C^k
-    # boundary_matrix(cells_k, cells_{k-1}) is d_k: C^k -> C^{k-1} of shape (N_{k-1}, N_k)
-    # Its transpose d_k^\top is the coboundary operator C^{k-1} -> C^k of shape (N_k, N_{k-1})
     cells_km1 = complex_obj.cells.get(degree - 1, [])
     if cells_km1:
-        d_k_lower = boundary_matrix(cells_k, cells_km1)  # shape (N_{k-1}, N_k)
-        B_km1 = d_k_lower.T  # shape (N_k, N_{k-1})
+        d_k_lower = boundary_matrix(cells_k, cells_km1)
+        B_km1 = d_k_lower.T
     else:
         B_km1 = np.zeros((n_k, 0), dtype=float)
 
-    # 2. Upper coboundary operator d_k^\top: C^k -> C^{k+1}
-    # boundary_matrix(cells_{k+1}, cells_k) is d_{k+1}: C^{k+1} -> C^k of shape (N_k, N_{k+1})
-    # Its transpose d_{k+1}^\top is coboundary C^k -> C^{k+1} of shape (N_{k+1}, N_k)
     cells_kp1 = complex_obj.cells.get(degree + 1, [])
     if cells_kp1:
-        d_kp1_upper = boundary_matrix(cells_kp1, cells_k)  # shape (N_k, N_{k+1})
-        D_k = d_kp1_upper.T  # shape (N_{k+1}, N_k)
+        d_kp1_upper = boundary_matrix(cells_kp1, cells_k)
+        D_k = d_kp1_upper.T
     else:
         D_k = np.zeros((0, n_k), dtype=float)
 
@@ -139,14 +126,9 @@ def evaluate_residual(
         if len(cells_km1) > 0:
             potentials_dict = {cells_km1[i]: float(alpha[i]) for i in range(len(cells_km1))}
     elif method == "l1_joint":
-        # Joint gauge + coexact repair
-        # Gauge matrix: B_km1 (N_k, N_{k-1})
-        # Coexact matrix: d_{k+1} of shape (N_k, N_{k+1})
         if cells_kp1:
-            d_kp1_matrix = boundary_matrix(cells_kp1, cells_k).T  # shape (N_k, N_{k+1})
-            # Wait, coexact vectors in C^k are represented by d_{k+1} (columns of d_{k+1})
-            # boundary_matrix(cells_kp1, cells_k) is shape (N_k, N_{k+1})
-            coexact_mat = boundary_matrix(cells_kp1, cells_k)  # shape (N_k, N_{k+1})
+            d_kp1_matrix = boundary_matrix(cells_kp1, cells_k).T
+            coexact_mat = boundary_matrix(cells_kp1, cells_k)
         else:
             coexact_mat = np.zeros((n_k, 0), dtype=float)
 
@@ -162,11 +144,9 @@ def evaluate_residual(
         if len(cells_kp1) > 0:
             coexact_dict = {cells_kp1[i]: float(beta[i]) for i in range(len(cells_kp1))}
     else:
-        # Passthrough
         res_vec = w_vec.copy()
         phi = float(np.sum(np.abs(res_vec)))
 
-    # Compute curvature mass gamma_{k+1} = ||D_k res_vec||_1
     if D_k.shape[0] > 0:
         curv_vec = D_k @ res_vec
         gamma = float(np.sum(np.abs(curv_vec)))

@@ -1,10 +1,3 @@
-//! DDC Tape Parser & Candidate Runtime Law Verifier.
-//!
-//! Translates Discrete Deformation Calculus (DDC) 8-letter event tapes (ddc.jsonl)
-//! into verified operational receipts, enforces candidate runtime laws,
-//! and computes exact rational residual contraction receipts.
-//!
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
@@ -71,11 +64,6 @@ pub struct DdcTapeReceipt {
     pub authority_effect: String,
 }
 
-/// Largest decimal exponent magnitude accepted by [`parse_fraction_str`].
-///
-/// The value is exact for every exponent, but `10^e` is materialised as a
-/// big integer; the bound keeps one hostile field from forcing an unbounded
-/// allocation.
 pub const MAX_DECIMAL_EXPONENT: u32 = 4096;
 
 fn residual_refusal(field: &str, text: &str, reason: &str) -> DdcParserRefusal {
@@ -90,9 +78,6 @@ fn is_ascii_digits(text: &str) -> bool {
     !text.is_empty() && text.bytes().all(|b| b.is_ascii_digit())
 }
 
-/// Parse an optionally signed decimal `[+-]digits[.digits][(e|E)[+-]digits]`
-/// (at least one digit before or after the point) exactly into a rational.
-/// Returns `Err(reason)` when the text is not in that grammar.
 fn parse_decimal_exact(text: &str) -> Result<BigRational, &'static str> {
     let (negative, body) = match text.as_bytes().first() {
         Some(b'-') => (true, &text[1..]),
@@ -154,15 +139,6 @@ fn parse_decimal_exact(text: &str) -> Result<BigRational, &'static str> {
     }
 }
 
-/// Parse residual text exactly.
-///
-/// * `""` and `"None"` mean the field is absent and yield `Ok(None)`.
-/// * `"p/q"` (integers, optional signs, `q != 0`) yields `p/q` in lowest terms.
-/// * An integer or a decimal `[+-]d[.d][e[+-]d]` yields its exact value, so
-///   `"0.1"` is `1/10`, never the binary float nearest to it.
-///
-/// Anything else (`"NaN"`, `"inf"`, `"1/0"`, stray characters) is refused with
-/// the typed `INVALID_RESIDUAL_TEXT` refusal. No floating point is used.
 pub fn parse_fraction_str(val: &str) -> Result<Option<BigRational>, DdcParserRefusal> {
     parse_residual_text("residual", val)
 }
@@ -194,13 +170,6 @@ fn parse_residual_text(field: &str, val: &str) -> Result<Option<BigRational>, Dd
         .map_err(|reason| residual_refusal(field, val, reason))
 }
 
-/// Read one residual field of a DDC payload.
-///
-/// A missing key or JSON `null` is absent. A string goes through
-/// [`parse_fraction_str`]. A JSON integer is taken exactly. Any other JSON
-/// value — a non-integral number, a boolean, an array or object — is refused:
-/// a JSON number with a fraction part has already been read as a binary float
-/// by most readers, so exact residuals must travel as strings.
 fn parse_residual_field(
     payload: &BTreeMap<String, serde_json::Value>,
     field: &str,
@@ -267,7 +236,6 @@ impl DdcTapeParser {
             let parent_sha = record["parent_sha256"].as_str().map(|s| s.to_string());
             let rec_sha = record["record_sha256"].as_str().unwrap_or("").to_string();
 
-            // Hash chain validation
             if parent_sha != expected_parent_sha {
                 return Err(DdcParserRefusal {
                     code: "HASH_CHAIN_BROKEN".to_string(),
@@ -280,7 +248,6 @@ impl DdcTapeParser {
                 });
             }
 
-            // Verify SHA256 of payload
             let payload_val = &record["payload"];
             let canonical_payload: BTreeMap<String, serde_json::Value> = match payload_val {
                 serde_json::Value::Object(map) => {
@@ -365,7 +332,6 @@ impl DdcTapeParser {
             expected_parent_sha = Some(computed_rec_sha);
         }
 
-        // Verify Candidate Laws
         let mut violations = Vec::new();
         let mut terminal_seen = false;
         let mut prev_phi1: Option<&BigRational> = None;
@@ -409,7 +375,6 @@ impl DdcTapeParser {
 
         let ddc_laws_valid = violations.is_empty();
 
-        // Calculate Residual Contraction
         let init_phi1 = steps.first().and_then(|s| s.phi_1.as_ref());
         let init_gamma2 = steps.first().and_then(|s| s.gamma_2.as_ref());
         let term_phi1 = steps.last().and_then(|s| s.phi_1.as_ref());

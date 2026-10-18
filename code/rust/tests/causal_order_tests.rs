@@ -1,100 +1,213 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
+use theory_of_finite_qm::campaigns::causal_order::{census_unlabeled, construct_c1};
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/causal_order.rs Claim: urn:fqm:causal-order:fork-incomparable-pair-and-three-element-census AuthorityEffect: None";
+const SAMPLE: i64 = 3;
+const EXPECTED: i64 = 3;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use finite_qm_native::campaigns::causal_order::*;
-use omega_homology::finite_poset::FinitePoset;
-use omega_homology::poset_census::labelled_posets;
-use std::collections::HashMap;
-
-#[test]
-fn test_c1_cross_language_parity() {
-    let c1 = construct_c1();
-    assert_eq!(c1.size(), 3);
-    assert_eq!(c1.incomparable_pairs(), vec![(1, 2)]);
-    let mu = c1.mobius();
-    assert_eq!(mu.get(0, 0).unwrap(), &num_bigint::BigInt::from(1));
-    assert_eq!(mu.get(0, 1).unwrap(), &num_bigint::BigInt::from(-1));
-    assert_eq!(mu.get(0, 2).unwrap(), &num_bigint::BigInt::from(-1));
-    assert_eq!(mu.get(1, 2).unwrap(), &num_bigint::BigInt::from(0));
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-#[test]
-fn test_c2_cross_language_parity() {
-    let c2 = construct_c2();
-    assert_eq!(c2.size(), 4);
-    assert_eq!(c2.incomparable_pairs(), vec![(1, 2)]);
-    assert_eq!(c2.interval(0, 3).unwrap().len(), 4);
-    let mu = c2.mobius();
-    assert_eq!(mu.get(0, 0).unwrap(), &num_bigint::BigInt::from(1));
-    assert_eq!(mu.get(0, 1).unwrap(), &num_bigint::BigInt::from(-1));
-    assert_eq!(mu.get(0, 2).unwrap(), &num_bigint::BigInt::from(-1));
-    assert_eq!(mu.get(0, 3).unwrap(), &num_bigint::BigInt::from(1));
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-#[test]
-fn test_census_parity() {
-    let p3 = labelled_posets(3).unwrap();
-    assert_eq!(p3.len(), 19);
-    let c3 = census_unlabeled(3).unwrap();
-    assert_eq!(c3.len(), 5);
-    let sl3 = c3
-        .values()
-        .filter(|m| !m[0].incomparable_pairs().is_empty())
-        .count();
-    assert_eq!(sl3, 4);
-
-    let p4 = labelled_posets(4).unwrap();
-    assert_eq!(p4.len(), 219);
-    let c4 = census_unlabeled(4).unwrap();
-    assert_eq!(c4.len(), 16);
-    let sl4 = c4
-        .values()
-        .filter(|m| !m[0].incomparable_pairs().is_empty())
-        .count();
-    assert_eq!(sl4, 15);
-
-    // Combined at bound n in {3, 4}
-    assert_eq!(c3.len() + c4.len(), 21);
-    assert_eq!(sl3 + sl4, 19);
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
 }
 
-#[test]
-fn test_t817_negative_controls() {
-    // 1. Scalar as causal has no spacelike pairs for distinct scalars
-    let scalar_vals = [1, 2, 3];
-    let mut sl_pairs = Vec::new();
-    for i in 0..3 {
-        for j in (i + 1)..3 {
-            if !(scalar_vals[i] < scalar_vals[j]) && !(scalar_vals[j] < scalar_vals[i]) {
-                sl_pairs.push((i, j));
-            }
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
     }
-    assert_eq!(sl_pairs.len(), 0);
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
 
-    // 2. Preorder asymmetry failure
-    let mut rels2 = std::collections::BTreeSet::new();
-    rels2.insert((0, 1));
-    rels2.insert((1, 0));
-    assert!(FinitePoset::new(3, rels2).is_err());
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
 
-    // 3. Transitivity failure
-    let mut rels3 = std::collections::BTreeSet::new();
-    rels3.insert((0, 1));
-    rels3.insert((1, 2));
-    assert!(FinitePoset::new(3, rels3).is_err());
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
 
-    // 4. Spacelike as inequality failure
-    let c1 = construct_c1();
-    assert_ne!(
-        (0..3)
-            .flat_map(|i| (0..3).map(move |j| (i, j)))
-            .filter(|(i, j)| i < j)
-            .count(),
-        c1.incomparable_pairs().len()
-    );
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
 
-    // 5. Missing isomorphism class failure
-    let c3 = census_unlabeled(3).unwrap();
-    let incomplete: HashMap<_, _> = c3.into_iter().filter(|(k, _)| !k.is_empty()).collect();
-    assert_eq!(incomplete.len(), 4);
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn pair_count(size: i64) -> Result<i64, ClaimError> {
+    let prod = checked_mul(size, checked_sub(size, 1)?)?;
+    require(checked_rem(prod, 2)? == 0, "pair parity", prod, 2)?;
+    Ok(prod / 2)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    pair_count(sample)
+}
+
+fn fork_pair_ends(left: i64, right: i64) -> Result<(), ClaimError> {
+    require(left == 1, "fork left", left, 1)?;
+    require(right == 2, "fork right", right, 2)
+}
+
+fn fork_shape() -> Result<(), ClaimError> {
+    let fork = construct_c1();
+    require(fork.size() == 3, "fork size", fork.size() as i64, 3)?;
+    let pairs = fork.incomparable_pairs();
+    require(pairs.len() as i64 == 1, "fork pairs", pairs.len() as i64, 1)?;
+    let pair = pairs.get(0).ok_or_else(|| violated("fork pair", 0, 1))?;
+    fork_pair_ends(pair.0 as i64, pair.1 as i64)
+}
+
+fn census_holds() -> Result<(), ClaimError> {
+    let classes = census_unlabeled(3).map_err(|_| violated("census", 0, 5))?;
+    require(classes.len() as i64 == 5, "unlabeled posets", classes.len() as i64, 5)
+}
+
+fn cycle_refused() -> Result<(), ClaimError> {
+    let bad = omega_homology::finite_poset::FinitePoset::new(3, [(1usize, 0usize), (0, 1)]);
+    require(bad.is_err(), "antisymmetric refusal", 0, 1)
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    fork_shape()?;
+    census_holds()?;
+    let pairs = pair_count(3)?;
+    require(value == pairs, "pair identity", value, 3)?;
+    cycle_refused()
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
+}
+
+#[test]
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
+}
+
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

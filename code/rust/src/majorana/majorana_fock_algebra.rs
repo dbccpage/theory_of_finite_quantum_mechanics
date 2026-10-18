@@ -1,40 +1,3 @@
-//! Majorana operators on a declared finite fermionic Fock space, over `Q(i)`.
-//!
-//! # Authority fence (MANDATORY)
-//! AuthorityEffect: None.
-//!
-//! A carrier declares `L` fermionic modes. Its Fock space is `C^(2^L)` with
-//! basis `|n_1 .. n_L>`, `n_j` in `{0, 1}`, mode 1 the leftmost tensor factor.
-//! Through the Jordan–Wigner string the `2L` Majorana operators are
-//!
-//! `gamma_(2j-1) = Z (x) .. (x) Z (x) X (x) I (x) ..`,
-//! `gamma_(2j)   = Z (x) .. (x) Z (x) Y (x) I (x) ..`
-//!
-//! with the `X` or `Y` at mode `j`, and `c_j = (gamma_(2j-1) + i gamma_(2j)) / 2`
-//! lowers `n_j`. Computed exactly:
-//!
-//! - the Majoranas, the lowering operators `c_j`, and the parity
-//!   `P = prod_j (-i gamma_(2j-1) gamma_(2j))`, which is `(-1)^(n_1 + .. + n_L)`
-//!   on the basis;
-//! - [`first_anticommutation_failure`]: the first pair of a declared family
-//!   that breaks `{g_a, g_b} = 2 delta_ab I`. The Jordan–Wigner family has
-//!   none; without its `Z` strings it fails;
-//! - [`FockCarrier::kitaev_chain`]: the declared operator
-//!   `H = sum_j [-t (c_j* c_(j+1) + h.c.) + Delta (c_j c_(j+1) + h.c.)] - mu sum_j (c_j* c_j - 1/2)`
-//!   at rational `t`, `Delta`, `mu`, built from the `c_j`. Its algebraic
-//!   properties (Hermitian, commuting with `P`, and at `t = Delta`, `mu = 0`
-//!   equal to `i t sum_j gamma_(2j) gamma_(2j+1)` with `gamma_1` and
-//!   `gamma_(2L)` commuting with it) are checked in the tests;
-//! - [`FockCarrier::braid_unitary`]: `U_a = ((1 + i)/2)(I + gamma_(a+1) gamma_a)`,
-//!   an exact unitary. It is `e^(i pi/4) exp((pi/4) gamma_(a+1) gamma_a)`: the
-//!   braid operator of two Majoranas up to a declared global phase that no
-//!   homogeneous identity sees;
-//! - [`FockCarrier::restrict_to_sector`]: an operator that commutes with `P`,
-//!   compressed to the even or odd parity sector (basis states in increasing
-//!   index order).
-//!
-//! The carrier, the parameters and the chain are declared data. Nothing here
-//! is a statement about a physical device or topological quantum computer.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
@@ -44,13 +7,10 @@ use omega_lie_theory::clifford::{CliffordError, CliffordFamily};
 use omega_number_theory::cyclotomic::GaussianRat;
 use omega_number_theory::rational::{rq, Rational};
 
-/// Declaration of authority effect.
 pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
 
-/// The largest number of modes a carrier declares (`2^5 = 32` dimensions).
 pub const MAX_MODES: usize = 5;
 
-/// Refusals for Fock carriers and their operators.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum MajoranaError {
     #[error(transparent)]
@@ -81,12 +41,10 @@ pub enum MajoranaError {
     MixesSectors,
 }
 
-/// Helper to construct GaussianRat from integers.
 pub fn gi(re: i64, im: i64) -> GaussianRat {
     GaussianRat::from_ints(re, im)
 }
 
-/// Helper to construct GaussianRat from rational fractions.
 pub fn gq(a: i64, b: i64, c: i64, d: i64) -> GaussianRat {
     GaussianRat {
         re: rq(a, b),
@@ -94,8 +52,6 @@ pub fn gq(a: i64, b: i64, c: i64, d: i64) -> GaussianRat {
     }
 }
 
-/// The first pair `(a, b)`, `a <= b`, with `{g_a, g_b} != 2 delta_ab I`.
-/// An empty family has no failing pair.
 pub fn first_anticommutation_failure(
     family: &[BasicMatrix<GaussianRat>],
 ) -> Result<Option<(usize, usize)>, MajoranaError> {
@@ -110,14 +66,12 @@ pub fn first_anticommutation_failure(
     }
 }
 
-/// A declared Fock space of `L` fermionic modes.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct FockCarrier {
     modes: usize,
 }
 
 impl FockCarrier {
-    /// Constructs a validated Fock carrier for `modes` modes (`1..=MAX_MODES`).
     pub fn new(modes: usize) -> Result<Self, MajoranaError> {
         if modes == 0 || modes > MAX_MODES {
             return Err(MajoranaError::Modes { modes });
@@ -125,12 +79,10 @@ impl FockCarrier {
         Ok(Self { modes })
     }
 
-    /// Number of fermionic modes.
     pub fn modes(&self) -> usize {
         self.modes
     }
 
-    /// Fock space dimension: `2^L`.
     pub fn dimension(&self) -> usize {
         1 << self.modes
     }
@@ -154,7 +106,6 @@ impl FockCarrier {
         .expect("validated Fock dimensions")
     }
 
-    /// `gamma_index`, `index` in `1..=2L`.
     pub fn majorana(&self, index: usize) -> Result<BasicMatrix<GaussianRat>, MajoranaError> {
         if index == 0 || index > 2 * self.modes {
             return Err(MajoranaError::MajoranaIndex {
@@ -165,14 +116,12 @@ impl FockCarrier {
         Ok(self.majorana_unchecked(index))
     }
 
-    /// All `2L` Majoranas in index order.
     pub fn majoranas(&self) -> Vec<BasicMatrix<GaussianRat>> {
         (1..=2 * self.modes)
             .map(|index| self.majorana_unchecked(index))
             .collect()
     }
 
-    /// `c_mode = (gamma_(2 mode - 1) + i gamma_(2 mode)) / 2`, `mode` in `1..=L`.
     pub fn lowering(&self, mode: usize) -> Result<BasicMatrix<GaussianRat>, MajoranaError> {
         if mode == 0 || mode > self.modes {
             return Err(MajoranaError::ModeIndex {
@@ -183,7 +132,6 @@ impl FockCarrier {
         Ok(self.lowering_unchecked(mode))
     }
 
-    /// `P = prod_j (-i gamma_(2j-1) gamma_(2j))`.
     pub fn parity(&self) -> BasicMatrix<GaussianRat> {
         let mut parity = mx::identity(self.dimension()).expect("validated finite Fock dimension");
         for j in 1..=self.modes {
@@ -201,8 +149,6 @@ impl FockCarrier {
         parity
     }
 
-    /// Real antisymmetric A in H=(i/4) sum_ab A_ab gamma_a gamma_b.
-    /// `boundary=None` gives an open chain; `Some(+-1)` declares the boundary twist.
     pub fn bdg_majorana_matrix(
         &self,
         t: &Rational,
@@ -236,7 +182,6 @@ impl FockCarrier {
             .expect("the BdG carrier has 2L squared entries"))
     }
 
-    /// The Kitaev chain Hamiltonian with optional boundary twist.
     pub fn kitaev_chain_with_boundary(
         &self,
         t: &Rational,
@@ -267,8 +212,6 @@ impl FockCarrier {
         Ok(h)
     }
 
-    /// The declared Kitaev chain at hopping `t`, pairing `Delta` and chemical
-    /// potential `mu`, with open ends.
     pub fn kitaev_chain(
         &self,
         hopping: &Rational,
@@ -279,8 +222,6 @@ impl FockCarrier {
             .expect("the validated finite Fock carrier admits its open-chain Hamiltonian")
     }
 
-    /// The translation-invariant bulk Z2 invariant: signs of the k=0/pi Pfaffians.
-    /// None denotes a gap closing: mu=+-2t, or Delta=0 with |mu|<=2|t|.
     pub fn bulk_kitaev_invariant(t: &Rational, delta: &Rational, mu: &Rational) -> Option<i8> {
         use num_traits::Signed;
         let product = (mu + t * Rational::from_integer(2.into()))
@@ -295,7 +236,6 @@ impl FockCarrier {
         }
     }
 
-    /// Finite-chain Pfaffian, whose zero detects an exact zero BdG mode.
     pub fn kitaev_pfaffian(
         &self,
         t: &Rational,
@@ -307,7 +247,6 @@ impl FockCarrier {
         Ok(pfaffian(&a)?)
     }
 
-    /// `U_index = ((1 + i)/2)(I + gamma_(index+1) gamma_index)`, `index` in `1..2L`.
     pub fn braid_unitary(&self, index: usize) -> Result<BasicMatrix<GaussianRat>, MajoranaError> {
         if index == 0 || index >= 2 * self.modes {
             return Err(MajoranaError::BraidIndex {
@@ -325,15 +264,12 @@ impl FockCarrier {
         )?)
     }
 
-    /// Basis indices of the even (`even = true`) or odd parity sector.
     pub fn sector_basis(&self, even: bool) -> Vec<usize> {
         (0..self.dimension())
             .filter(|b| (b.count_ones() % 2 == 0) == even)
             .collect()
     }
 
-    /// The compression of `operator` to one parity sector, refused unless
-    /// `operator` commutes with `P`.
     pub fn restrict_to_sector(
         &self,
         operator: &BasicMatrix<GaussianRat>,
@@ -384,7 +320,6 @@ mod tests {
 
     #[test]
     fn one_mode_majoranas_are_pauli_x_and_y() {
-        // Kills: swapping X with Z, or flipping the sign of Y, and treating an empty family as a failure.
         let carrier = FockCarrier::new(1).unwrap();
         let x = mx::from_rows(vec![vec![gi(0, 0), gi(1, 0)], vec![gi(1, 0), gi(0, 0)]]).unwrap();
         let y = mx::from_rows(vec![
@@ -408,12 +343,10 @@ mod tests {
             let gammas = carrier.majoranas();
             assert_eq!(gammas.len(), 2 * modes);
 
-            // Majoranas are self-adjoint: gamma_k^\dagger = gamma_k
             for gamma in &gammas {
                 assert_eq!(iv::adjoint(gamma).unwrap(), *gamma);
             }
 
-            // CAR: {gamma_j, gamma_k} = 2 delta_{jk} I
             let identity = mx::identity(carrier.dimension()).unwrap();
             let two_i = mx::scale(&identity, &gi(2, 0)).unwrap();
             let zero = mx::zeros(carrier.dimension(), carrier.dimension()).unwrap();
@@ -429,7 +362,6 @@ mod tests {
                 }
             }
 
-            // Lowering and raising operators: {c_j, c_k^\dagger} = delta_{jk} I, {c_j, c_k} = 0
             let lowerings: Vec<_> = (1..=modes).map(|m| carrier.lowering(m).unwrap()).collect();
             for (j, c_j) in lowerings.iter().enumerate() {
                 for (k, c_k) in lowerings.iter().enumerate() {
@@ -444,7 +376,6 @@ mod tests {
                 }
             }
 
-            // No failure in canonical Jordan-Wigner family
             assert_eq!(first_anticommutation_failure(&gammas).unwrap(), None);
         }
     }
@@ -457,13 +388,10 @@ mod tests {
             let identity = mx::identity(carrier.dimension()).unwrap();
             let zero = mx::zeros(carrier.dimension(), carrier.dimension()).unwrap();
 
-            // P is Hermitian
             assert_eq!(iv::adjoint(&p).unwrap(), p);
 
-            // P^2 = I
             assert_eq!(mx::multiply(&p, &p).unwrap(), identity);
 
-            // {P, gamma_j} = 0 for all Majoranas
             for gamma in carrier.majoranas() {
                 assert_eq!(anticommutator(&p, &gamma), zero);
             }
@@ -475,18 +403,15 @@ mod tests {
         let carrier = FockCarrier::new(2).unwrap();
         let identity = mx::identity(carrier.dimension()).unwrap();
 
-        // Check braid unitaries U_1, U_2, U_3
         let u1 = carrier.braid_unitary(1).unwrap();
         let u2 = carrier.braid_unitary(2).unwrap();
         let u3 = carrier.braid_unitary(3).unwrap();
 
-        // Unitarity: U^\dagger U = I
         for u in [&u1, &u2, &u3] {
             assert_eq!(mx::multiply(&iv::adjoint(u).unwrap(), u).unwrap(), identity);
             assert_eq!(mx::multiply(u, &iv::adjoint(u).unwrap()).unwrap(), identity);
         }
 
-        // Braid action: U_a gamma_a U_a^\dagger = gamma_{a+1}
         let gammas = carrier.majoranas();
         let g1 = &gammas[0];
         let g2 = &gammas[1];
@@ -494,17 +419,14 @@ mod tests {
         let braided_1 = mx::multiply(&u1, &mx::multiply(g1, &u1_dag).unwrap()).unwrap();
         assert_eq!(braided_1, *g2);
 
-        // U_a gamma_{a+1} U_a^\dagger = -gamma_a
         let braided_2 = mx::multiply(&u1, &mx::multiply(g2, &u1_dag).unwrap()).unwrap();
         let neg_g1 = mx::scale(g1, &gi(-1, 0)).unwrap();
         assert_eq!(braided_2, neg_g1);
 
-        // Artin braid relation: U_1 U_2 U_1 = U_2 U_1 U_2
         let lhs = mx::multiply(&u1, &mx::multiply(&u2, &u1).unwrap()).unwrap();
         let rhs = mx::multiply(&u2, &mx::multiply(&u1, &u2).unwrap()).unwrap();
         assert_eq!(lhs, rhs);
 
-        // Distant commutativity: U_1 U_3 = U_3 U_1 (|1 - 3| >= 2)
         assert_eq!(
             mx::multiply(&u1, &u3).unwrap(),
             mx::multiply(&u3, &u1).unwrap()
@@ -520,22 +442,18 @@ mod tests {
 
         let h = carrier.kitaev_chain(&t, &delta, &mu);
 
-        // Hamiltonian is Hermitian
         assert_eq!(iv::adjoint(&h).unwrap(), h);
 
-        // Hamiltonian commutes with parity: [H, P] = 0
         let p = carrier.parity();
         let zero = mx::zeros(carrier.dimension(), carrier.dimension()).unwrap();
         assert_eq!(commutator(&h, &p), zero);
 
-        // At sweet spot (t = Delta, mu = 0), edge modes gamma_1 and gamma_{2L} commute with H
         let gammas = carrier.majoranas();
         let g1 = &gammas[0];
         let g_last = &gammas[2 * carrier.modes() - 1];
         assert_eq!(commutator(&h, g1), zero);
         assert_eq!(commutator(&h, g_last), zero);
 
-        // Bulk invariant
         assert_eq!(FockCarrier::bulk_kitaev_invariant(&t, &delta, &mu), Some(-1));
     }
 
@@ -544,24 +462,20 @@ mod tests {
         let carrier = FockCarrier::new(2).unwrap();
         let p = carrier.parity();
 
-        // Parity commutes with itself, so restriction to even and odd succeeds
         let p_even = carrier.restrict_to_sector(&p, true).unwrap();
         let p_odd = carrier.restrict_to_sector(&p, false).unwrap();
         assert_eq!(p_even.rows(), 2);
         assert_eq!(p_odd.rows(), 2);
 
-        // Majoranas anticommute with parity (do not commute), so restrict_to_sector is refused
         let g1 = carrier.majorana(1).unwrap();
         assert_eq!(
             carrier.restrict_to_sector(&g1, true),
             Err(MajoranaError::MixesSectors)
         );
 
-        // Refusals on invalid modes
         assert_eq!(FockCarrier::new(0), Err(MajoranaError::Modes { modes: 0 }));
         assert_eq!(FockCarrier::new(6), Err(MajoranaError::Modes { modes: 6 }));
 
-        // Refusals on out of bounds indices
         assert_eq!(
             carrier.majorana(0),
             Err(MajoranaError::MajoranaIndex { index: 0, count: 4 })

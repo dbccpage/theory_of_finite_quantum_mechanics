@@ -207,7 +207,6 @@ def test_wave7_exit_not_claimed():
     assert wave7_exit_claimed is False
 
 
-# --- Wave-6 / Wave-7 exit criteria (honest residual dual) ---
 
 
 @dataclass(frozen=True)

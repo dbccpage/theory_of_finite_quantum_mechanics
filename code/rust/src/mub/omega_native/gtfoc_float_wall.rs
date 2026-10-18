@@ -1,7 +1,3 @@
-//! Shared f64 helpers for the dimension-6 and dimension-10 wall cross-checks.
-//!
-//! The dimension lives on the vector length, not in a copied function body.
-//! These routines are numerical diagnostics. They mint no MUB authority.
 
 use linear_algebra::linear_algebra::complex_matrix::{CVector, C64};
 use std::f64::consts::PI;

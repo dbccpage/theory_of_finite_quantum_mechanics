@@ -1,14 +1,3 @@
-//! Pilot implementation of the planar tree category Omega and minimal dendroidal set inner horn filler.
-//!
-//! Provides mathematically rigorous structures and exact solvers for:
-//! - Planar rooted trees with corollas, grafting, and inner edge contraction
-//! - Dendroidal sets as presheaves over the planar tree category Omega
-//! - Minimal inner horn Lambda^e(T) omitting the inner edge contraction face
-//! - Constructive inner horn filler producing the operadic composite on the missing inner face
-//! - Strict Soviet allocation bounds via `reserve_exact` and `OperationLimits`
-//! - Strictly zero floating-point arithmetic, deterministic canonical SHA-256 hashing
-//!
-//! AuthorityEffect: None.
 
 use std::collections::{BTreeMap, HashMap, HashSet};
 
@@ -17,14 +6,12 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// An edge in a planar rooted tree, carrying a categorical colour.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TreeEdge {
     pub id: String,
     pub colour: String,
 }
 
-/// A vertex in a planar rooted tree, representing an operadic operation node.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TreeVertex {
     pub id: String,
@@ -33,7 +20,6 @@ pub struct TreeVertex {
     pub operation_id: Option<String>,
 }
 
-/// A rooted planar tree in the indexing category Omega.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PlanarTree {
     pub id: String,
@@ -45,7 +31,6 @@ pub struct PlanarTree {
 }
 
 impl PlanarTree {
-    /// Constructs a basic corolla C_k: a single vertex with k inputs and 1 output.
     pub fn corolla(
         id: &str,
         operation_id: &str,
@@ -93,8 +78,6 @@ impl PlanarTree {
         })
     }
 
-    /// Grafts an upper corolla onto the `graft_index`-th leaf of a lower corolla.
-    /// The connected leaf becomes the unique inner edge e of the resulting tree T_graft.
     pub fn graft_two_corollas(
         id: &str,
         lower: &PlanarTree,
@@ -143,12 +126,10 @@ impl PlanarTree {
         let total_edges = lower.edges.len() + upper.edges.len() - 1;
         reserve_exact(&mut edges, total_edges, limits)?;
 
-        // Collect new leaves: lower leaves before graft, then upper leaves, then lower leaves after graft
         let mut leaf_edges = Vec::new();
         let total_leaves = lower.leaf_edges.len() + upper.leaf_edges.len() - 1;
         reserve_exact(&mut leaf_edges, total_leaves, limits)?;
 
-        // Lower leaves before graft
         for (idx, e_id) in lower.leaf_edges.iter().enumerate() {
             if idx == graft_index {
                 continue;
@@ -160,14 +141,12 @@ impl PlanarTree {
             }
         }
 
-        // Upper leaves
         for e_id in &upper.leaf_edges {
             let edge = upper.edges.iter().find(|e| &e.id == e_id).unwrap();
             edges.push(edge.clone());
             leaf_edges.push(edge.id.clone());
         }
 
-        // Lower leaves after graft
         for (idx, e_id) in lower.leaf_edges.iter().enumerate() {
             if idx > graft_index {
                 let edge = lower.edges.iter().find(|e| &e.id == e_id).unwrap();
@@ -175,17 +154,14 @@ impl PlanarTree {
             }
         }
 
-        // Root edge
         let root_edge = lower.edges.iter().find(|e| e.id == lower.root_edge).unwrap();
         edges.push(root_edge.clone());
 
-        // Inner edge
         edges.push(TreeEdge {
             id: inner_edge_id.clone(),
             colour: lower_edge.colour.clone(),
         });
 
-        // Vertices: lower vertex (with graft_index replaced by inner_edge_id) and upper vertex
         let mut vertices = Vec::new();
         reserve_exact(&mut vertices, 2, limits)?;
 
@@ -222,7 +198,6 @@ impl PlanarTree {
         Ok(tree)
     }
 
-    /// Contracts the specified inner edge, merging the two adjacent vertices into one.
     pub fn contract_inner_edge(
         &self,
         inner_edge_id: &str,
@@ -235,7 +210,6 @@ impl PlanarTree {
             });
         }
 
-        // Find lower vertex (where inner_edge is an input) and upper vertex (where inner_edge is output)
         let lower_v = self
             .vertices
             .iter()
@@ -254,7 +228,6 @@ impl PlanarTree {
                 found: "not found".to_string(),
             })?;
 
-        // Merged inputs: lower_v inputs with inner_edge replaced by upper_v inputs
         let mut merged_inputs = Vec::new();
         reserve_exact(
             &mut merged_inputs,
@@ -302,7 +275,7 @@ impl PlanarTree {
             id: format!("{}_merged", self.id),
             inputs: merged_inputs,
             output: lower_v.output.clone(),
-            operation_id: None, // To be filled by operadic composition
+            operation_id: None,
         });
 
         Ok(PlanarTree {
@@ -315,8 +288,6 @@ impl PlanarTree {
         })
     }
 
-    /// Input colours, then output colour, of the corolla obtained by contracting `inner_edge_id`.
-    /// The input list is the lower inputs with that edge replaced by the upper inputs, in order.
     pub fn contracted_boundary_colours(
         &self,
         inner_edge_id: &str,
@@ -366,9 +337,7 @@ impl PlanarTree {
         Ok((inputs, output))
     }
 
-    /// Verifies that the tree graph is strictly acyclic and rooted.
     pub fn validate_tree_acyclicity(&self) -> Result<(), HigherCategoryError> {
-        // Build adjacency from child to parent (edge outputs)
         let mut visited = HashSet::new();
         let mut on_path = HashSet::new();
 
@@ -410,9 +379,6 @@ impl PlanarTree {
     }
 }
 
-/// An inner horn Lambda^e(T) in the planar tree category:
-/// consists of the outer faces meeting along the inner edge e.
-/// Crucially, the inner face partial_e(T) is omitted!
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TreeInnerHorn {
     pub tree: PlanarTree,
@@ -449,7 +415,6 @@ impl TreeInnerHorn {
     }
 }
 
-/// The Dendroidal Set solver and horn filling engine.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DendroidalSet {
     pub colours: Vec<String>,
@@ -541,7 +506,6 @@ impl DendroidalSet {
             });
         }
 
-        // Graft substitution: lower inputs with index `graft_index` replaced by the upper inputs.
         let mut expected_inputs = Vec::with_capacity(lower_inps.len() + upper_inps.len() - 1);
         expected_inputs.extend(lower_inps[..graft_index].iter().cloned());
         expected_inputs.extend(upper_inps.iter().cloned());
@@ -560,13 +524,10 @@ impl DendroidalSet {
         Ok(())
     }
 
-    /// Fills the minimal dendroidal inner horn Lambda^e(T) by retrieving the operadic composite
-    /// assigned to the contracted tree along inner edge e.
     pub fn fill_dendroidal_inner_horn(
         &self,
         horn: &TreeInnerHorn,
     ) -> Result<String, HigherCategoryError> {
-        // Find which input of the lower vertex connects to inner_edge
         let lower_v = horn
             .tree
             .vertices
@@ -603,7 +564,6 @@ impl DendroidalSet {
         Ok(composite.clone())
     }
 
-    /// The filled inner face matches the graft substitution read off the horn's tree.
     pub fn verify_dendroidal_inner_horn_property(
         &self,
         horn: &TreeInnerHorn,
@@ -626,7 +586,6 @@ impl DendroidalSet {
         Ok(true)
     }
 
-    /// Computes canonical content hash of the dendroidal set structure.
     pub fn content_hash(&self) -> String {
         use sha2::{Digest, Sha256};
         let mut hasher = Sha256::new();

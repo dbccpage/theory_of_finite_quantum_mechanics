@@ -219,7 +219,6 @@ class MultiQubitNoiseSweepRunner:
                 for tol in tolerances:
                     for trial in range(trials_per_config):
                         point_idx += 1
-                        # 1. Synthesize candidate Clifford circuit
                         ops: List[Tuple[str, Tuple[int, ...]]] = [("phase", (1, 0))]
                         if num_qubits >= 2:
                             ops.append(("hadamard", (2, 0)))
@@ -228,14 +227,12 @@ class MultiQubitNoiseSweepRunner:
                             ops.append(("hadamard", (3, 0)))
                             ops.append(("cnot", (2, 3)))
 
-                        # 2. Generate random skew-symmetric noise matrix
                         noise = self.generator.generate_skew_symmetric_matrix(
                             dim=num_modes,
                             scale_bound=scale,
                             density=density,
                         )
 
-                        # Extract couplings
                         couplings: List[Tuple[int, int, Fraction]] = []
                         for r in range(num_modes):
                             for c in range(r + 1, num_modes):
@@ -271,9 +268,6 @@ class MultiQubitNoiseSweepRunner:
                             )
                         )
 
-        # Verify sharp boundary:
-        # Native evaluation owns the exact defect <= tolerance decision.
-        # Audit that each displayed flag agrees with its native status.
         sharp_boundary = all(
             p.is_accepted == (p.status_reason == "ACCEPTED_STABLE") for p in data_points
         )

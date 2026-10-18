@@ -22,7 +22,7 @@ if "higher_operad" not in sys.modules:
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
 
-from higher_operad import (  # noqa: E402
+from higher_operad import (
     AgentLicense,
     AuthorityEffect,
     BudgetTransition,

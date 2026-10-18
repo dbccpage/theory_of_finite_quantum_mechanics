@@ -22,36 +22,30 @@ from src.fsp.fermion_boson_germ import (
 def test_germ_genesis_walk():
     """Validates the 5-step genesis walk from void to fermion cut and boson link."""
     state = GermState()
-    # Stage 0: Void
     state.step_00_void()
     assert state.stage == 0
     assert len(state.carrier) == 0
 
-    # Stage 1: Lone Mark
     state.step_01_lone_mark("x")
     assert state.stage == 1
     assert state.carrier == {"x"}
 
-    # Stage 2: Unmarked Pair
     state.step_02_unmarked_pair("x", "y")
     assert state.stage == 2
     assert state.carrier == {"x", "y"}
 
-    # Stage 3: Directed Cut (Fermion germ)
     d2 = state.step_03_directed_cut("x", "y")
     assert d2.source == "x"
     assert d2.target == "y"
     assert d2.boundary_0chain == {"y": 1, "x": -1}
-    assert len(d2.automorphism_group()) == 1  # Rigid
+    assert len(d2.automorphism_group()) == 1
 
-    # Stage 4: Refused Self-Loop
     success, reason = state.step_04_refuse_self_loop("x")
     assert not success
     assert "boundary a - a = 0" in reason
 
-    # Stage 5: Symmetric Link (Boson germ)
     s2 = state.step_05_symmetric_link("x", "y")
-    assert len(s2.automorphism_group()) == 2  # Swap Z2
+    assert len(s2.automorphism_group()) == 2
 
 
 def test_invariant_blindness():

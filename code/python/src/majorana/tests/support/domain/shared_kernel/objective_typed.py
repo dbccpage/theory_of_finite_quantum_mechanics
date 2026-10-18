@@ -70,6 +70,6 @@ class ObjectiveTypedV1:
         return cls.create(
             kind=str(data.get("kind", "prompt_turn")),
             summary=str(data.get("summary", "structured prompt turn")),
-            target_obstruction_ids=tuple(str(x) for x in data.get("target_obstruction_ids", ())),  # type: ignore[arg-type]
-            target_demand_ids=tuple(str(x) for x in data.get("target_demand_ids", ())),  # type: ignore[arg-type]
+            target_obstruction_ids=tuple(str(x) for x in data.get("target_obstruction_ids", ())),
+            target_demand_ids=tuple(str(x) for x in data.get("target_demand_ids", ())),
         )

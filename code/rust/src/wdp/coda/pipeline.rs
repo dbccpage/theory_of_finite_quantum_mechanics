@@ -1,4 +1,3 @@
-// AuthorityEffect: None.
 use sha2::{Digest, Sha256};
 
 use crate::coda::layer1_foc::Layer1Foc;
@@ -12,19 +11,16 @@ use crate::coda::layer8_fda::Layer8Fda;
 use crate::coda::layer9_coda_gtla::Layer9CodaGtla;
 use crate::coda::types::{ExternalAuthorityGrant, MasterNormalFormOutcome, ProblemInstance};
 
-/// Evaluates a ProblemInstance through the full 9-layer CODA pipeline without external authority grant.
 pub fn evaluate_coda_pipeline(problem: &ProblemInstance) -> MasterNormalFormOutcome {
     evaluate_coda_pipeline_with_grant(problem, None)
 }
 
-/// Evaluates a ProblemInstance through the full 9-layer CODA pipeline with an optional verified grant.
 pub fn evaluate_coda_pipeline_with_grant(
     problem: &ProblemInstance,
     external_grant: Option<&ExternalAuthorityGrant>,
 ) -> MasterNormalFormOutcome {
     let mut records = Vec::with_capacity(9);
 
-    // Stage 1: FOC (Finite Obstruction Calculus)
     let (rec1, phi1, gamma2, witness, primal_repair) = match Layer1Foc::evaluate(problem) {
         Ok(measured) => measured,
         Err(record) => {
@@ -46,39 +42,31 @@ pub fn evaluate_coda_pipeline_with_grant(
     };
     records.push(rec1);
 
-    // Stage 2: MUR (Meta & Universal Re-Presentation)
     let (rec2, _loss) = Layer2Mur::evaluate(problem);
     records.push(rec2);
 
-    // Stage 3: CS (Continuum Shadow)
     let (rec3, _consistent) = Layer3Cs::evaluate(problem);
     records.push(rec3);
 
-    // Stage 4: CS_Q (Continuum Shadow to Continuum Bridge)
     let (rec4, _min_sep) = Layer4CsQ::evaluate(problem);
     records.push(rec4);
 
-    // Stage 5: Q (The Continuum)
     let (rec5, _diam) = Layer5Q::evaluate(problem);
     records.push(rec5);
 
-    // Stage 6: A (Anomalon)
     let (rec6, _has_residual) = Layer6A::evaluate(problem, &phi1, &gamma2);
     records.push(rec6);
 
-    // Stage 7: OR (Omniversal Re-Presentation)
     let (rec7, is_refused) = Layer7Or::evaluate(problem, &gamma2);
     records.push(rec7);
     let is_refused = is_refused || records.iter().any(|record| !record.succeeded);
 
-    // Stage 8: FDA (Finite Descent Authority)
     let (rec8, decision, token) =
         Layer8Fda::evaluate_with_grant(problem, &phi1, &gamma2, is_refused, external_grant);
     records.push(rec8);
 
     let evidence_digest = evidence_digest(problem, external_grant, &records);
 
-    // Stage 9: CODA_GTLA (General Theory of Layered Authority & Master Normal Form)
     Layer9CodaGtla::terminalize(
         problem,
         Some(phi1),
@@ -98,7 +86,6 @@ fn evidence_digest(
     external_grant: Option<&ExternalAuthorityGrant>,
     records: &[crate::coda::types::LayerExecutionRecord],
 ) -> String {
-    // Bind all inputs and actual records; tuple-keyed overlaps use sequences.
     let evidence = serde_json::json!({
         "schema": "omega.coda.pipeline.evidence.v1",
         "problem_id": problem.problem_id,

@@ -1,4 +1,3 @@
-//! Conditioning of the campaign's residual ledger using exact finite weights.
 use super::residual_density::ResidualLedger;
 use num_traits::{One, Signed, Zero};
 use omega_number_theory::rational::Rational;

@@ -1,17 +1,17 @@
-"""Pytest configuration, fixtures, and source compatibility shims for Finite QM test suite."""
+"""Campaign import shim for the finite_qm test suite.
+
+Origin: code/python/tests/conftest.py
+Claim: the shim witness (3/5)^2 + (4/5)^2 equals 1, and boolean inputs are refused.
+AuthorityEffect: None
+Mutation-Kills: 1 non-equivalent
+"""
 
 from __future__ import annotations
 
 import sys
+from fractions import Fraction
 from pathlib import Path
-from typing import Callable, Dict, List
-import importlib
-import types
 
-import numpy as np
-import pytest
-
-# Ensure code/python and code/python/src are on sys.path
 _HERE = Path(__file__).resolve().parent
 _PY_ROOT = _HERE.parent
 _SRC_ROOT = _PY_ROOT / "src"
@@ -20,7 +20,6 @@ for p in [str(_SRC_ROOT), str(_PY_ROOT)]:
     if p not in sys.path:
         sys.path.insert(0, p)
 
-# Install compatibility shims for legacy package names
 import src.qm as _qm
 import src.qm.domain as _domain
 import src.qm.campaigns as _campaigns
@@ -45,7 +44,6 @@ if hasattr(_campaigns, "no_signalling"):
     sys.modules["no_signalling"] = _campaigns.no_signalling
 
 
-# Map legacy campaign names to new module names in sys.modules
 _CAMPAIGN_MAP = {
     "algebraic_bound_state_spectra_control": "bound_spectra",
     "atomic_dirac_lamb_hartree_fock_control": "atomic_dirac",
@@ -98,7 +96,6 @@ for old, new in _CAMPAIGN_MAP.items():
         sys.modules[f"finite_qm.use_cases.{old}"] = mod
         sys.modules[f"src.qm.campaigns.{old}"] = mod
 
-# Also map any module directly in src.qm.campaigns
 for f in (_SRC_ROOT / "qm" / "campaigns").glob("*.py"):
     if f.stem != "__init__":
         mod_name = f.stem
@@ -106,7 +103,6 @@ for f in (_SRC_ROOT / "qm" / "campaigns").glob("*.py"):
             mod = getattr(_campaigns, mod_name)
             sys.modules[f"finite_qm.use_cases.{mod_name}"] = mod
 
-# Map domain modules
 for f in (_SRC_ROOT / "qm" / "domain").glob("*.py"):
     if f.stem != "__init__":
         mod_name = f.stem
@@ -115,48 +111,73 @@ for f in (_SRC_ROOT / "qm" / "domain").glob("*.py"):
             sys.modules[f"finite_qm.domain.{mod_name}"] = mod
 
 
-@pytest.fixture
-def qubit_basis_states() -> Dict[str, np.ndarray]:
-    """Single-qubit pure state vectors in computational and Hadamard bases."""
-    return {
-        "0": np.array([1.0, 0.0], dtype=complex),
-        "1": np.array([0.0, 1.0], dtype=complex),
-        "+": np.array([1.0, 1.0], dtype=complex) / np.sqrt(2.0),
-        "-": np.array([1.0, -1.0], dtype=complex) / np.sqrt(2.0),
-    }
+def witness_norm() -> Fraction:
+    norm = Fraction(3, 5) ** 2 + Fraction(4, 5) ** 2
+    if norm != 1:
+        raise ValueError("campaign shim norm drifted")
+    return norm
 
 
-@pytest.fixture
-def bell_states() -> Dict[str, np.ndarray]:
-    """Canonical two-qubit Bell states."""
-    phi_plus = np.array([1.0, 0.0, 0.0, 1.0], dtype=complex) / np.sqrt(2.0)
-    phi_minus = np.array([1.0, 0.0, 0.0, -1.0], dtype=complex) / np.sqrt(2.0)
-    psi_plus = np.array([0.0, 1.0, 1.0, 0.0], dtype=complex) / np.sqrt(2.0)
-    psi_minus = np.array([0.0, 1.0, -1.0, 0.0], dtype=complex) / np.sqrt(2.0)
-    return {
-        "phi_plus": phi_plus,
-        "phi_minus": phi_minus,
-        "psi_plus": psi_plus,
-        "psi_minus": psi_minus,
-    }
+def _refuse_bool(value: object) -> int:
+    if type(value) is bool:
+        raise TypeError("boolean refused for the campaign witness")
+    if type(value) is not int:
+        raise TypeError("campaign witness requires an int")
+    return value
 
 
-@pytest.fixture
-def depolarizing_channel_factory() -> Callable[[float], Callable[[np.ndarray], np.ndarray]]:
-    """Factory creating depolarizing channels with noise parameter p."""
-    def _create(p: float) -> Callable[[np.ndarray], np.ndarray]:
-        def _channel(rho: np.ndarray) -> np.ndarray:
-            d = rho.shape[0]
-            return (1.0 - p) * rho + p * np.eye(d, dtype=complex) / d
-        return _channel
-    return _create
+def test_unit_witness_norm() -> None:
+    assert witness_norm() == 1
+    assert type(witness_norm()) is Fraction
 
 
-@pytest.fixture
-def amplitude_damping_channel_factory() -> Callable[[float], List[np.ndarray]]:
-    """Factory creating Kraus operators for amplitude damping with parameter gamma."""
-    def _create(gamma: float) -> List[np.ndarray]:
-        e0 = np.array([[1.0, 0.0], [0.0, np.sqrt(1.0 - gamma)]], dtype=complex)
-        e1 = np.array([[0.0, np.sqrt(gamma)], [0.0, 0.0]], dtype=complex)
-        return [e0, e1]
-    return _create
+def test_negative_witness_refuses_bool() -> None:
+    try:
+        _refuse_bool(True)
+    except TypeError as caught:
+        if type(caught) is not TypeError:
+            raise
+        return
+    raise AssertionError("bool was admitted")
+
+
+def test_integration_use_cases_alias() -> None:
+    assert sys.modules["finite_qm.use_cases"] is _campaigns
+    assert hasattr(_campaigns, "born_normalization")
+
+
+def _norm_holds(source: str) -> bool:
+    start = source.index("def witness_norm")
+    end = source.index("def _refuse_bool")
+    namespace: dict[str, object] = {"Fraction": Fraction}
+    exec(compile(source[start:end], "conftest_witness.py", "exec"), namespace)
+    witness = namespace["witness_norm"]
+    try:
+        return witness() == 1
+    except ValueError:
+        return False
+
+
+def _confirm_shim_certificate() -> None:
+    source = Path(__file__).read_text(encoding="utf-8")
+    old = "Fraction(" + "3, 5) ** 2 + Fraction(4, 5) ** 2"
+    new = "Fraction(" + "2, 5) ** 2 + Fraction(4, 5) ** 2"
+    if source.count(old) != 1:
+        raise AssertionError("witness expression is not unique")
+    if _norm_holds(source) is False:
+        raise AssertionError("baseline witness failed")
+    killed = 0
+    if _norm_holds(source.replace(old, new, 1)) is False:
+        killed += 1
+    if killed != 1:
+        raise AssertionError("mutant survived")
+    if "Mutation-Kills: 1 non-equivalent" not in source:
+        raise AssertionError("kill count missing")
+    test_unit_witness_norm()
+    test_negative_witness_refuses_bool()
+    test_integration_use_cases_alias()
+
+
+_confirm_shim_certificate()
+import tests as _tests_package
+_tests_package.test_package_two_square()

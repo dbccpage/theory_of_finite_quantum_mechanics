@@ -1,32 +1,4 @@
-// AuthorityEffect: None.
 
-//! The registry-relative tower walk: obstruction, lift pressure, a declared lift
-//! registry, and a transition ledger that refuses when a prerequisite is absent.
-//!
-//! - [`find_lift_trigger`] searches a finite carrier for `x, y, c` with
-//!   `p(x) = p(y)` but `p(rho_c x) != p(rho_c y)`. A witness is lift *pressure*:
-//!   its terminal is `LiftRequired`, and nothing here turns it into a licensed lift.
-//! - [`holonomy_commutator`] returns `[Hol_a, Hol_b]` from `omega_holonomy`. A
-//!   nonzero commutator is pressure on the representation, not a channel.
-//! - [`audit_registry`] adjudicates the declared seven-row interface registry.
-//!   Three rows are computed: the classical contextual packet fails on an
-//!   exhaustive Mermin–Peres search, the rebit packet on the local-tomography
-//!   count `3 * 3 != 10`, and the complex Hilbert/CPTP packet resolves only if
-//!   its `M_2` declarations replay *and* every declared Born probability equals
-//!   `Tr(E rho)`; a Born defect is an open obstruction and dominates. The scalar
-//!   and rotational rows fail by their declared witnesses, and the GPT and
-//!   quaternionic rows are refused while no composite rule is declared.
-//!   Minimality is relative to the rows given.
-//! - [`validate_tower_walk`] emits either a registry-relative conclusion or a
-//!   conclusion explicitly conditional on the still-unproved minimality
-//!   premise. It never reports an unconditional forced lift while minimality
-//!   is open.
-//! - Norm branches: scalar `sum w |x|`, internal `SO(k)` `sum w ||x||_2`
-//!   (an exact sum of surds), and `(1/2)||X||_1` for Hermitian `2 x 2` `X`.
-//!
-//! The walk derives no Hilbert space, Born rule or CPTP law; those are imports
-//! of the complex packet. Registry-relative minimality is not universal
-//! uniqueness, and no ledger row is an authority terminal.
 
 use num_traits::Zero;
 use omega_number_theory::rational::Rational;
@@ -36,7 +8,6 @@ use omega_quantum_physics::separating_predictions::MerminPeresSquare;
 use crate::qm::quantum_packet::{verify, M2Refusal};
 use omega_quantum_physics::gauge_cochain_complex::M2Packet;
 
-/// The status attached to each transition of the walk.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TransitionStatus {
     Derived,
@@ -45,7 +16,6 @@ pub enum TransitionStatus {
     Refused,
 }
 
-/// The seven declared candidate interfaces of the registry.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum CandidateInterface {
     ScalarL1,
@@ -57,14 +27,12 @@ pub enum CandidateInterface {
     ComplexHilbertCptp,
 }
 
-/// One registry row: an interface and whether its composite rule is declared.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct DeclaredCandidate {
     pub interface: CandidateInterface,
     pub composite_rule_declared: bool,
 }
 
-/// Why a candidate fails under its own declared rules.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum FailureWitness {
     NoStateEffectStructure,
@@ -77,24 +45,19 @@ pub enum FailureWitness {
         joint: usize,
     },
     M2Replay(M2Refusal),
-    /// The packet replays, but its declared Born probability at `entry`
-    /// differs from `Tr(E rho)` by `defect`: an active closure failure.
     BornDefect {
         entry: usize,
         defect: Rational,
     },
 }
 
-/// The registry terminal of one candidate.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum RegistryTerminal {
     Fail(FailureWitness),
-    /// Refused because its composite rule is undeclared, not refuted.
     Refuse,
     Resolve,
 }
 
-/// The declared seven-row registry.
 pub fn declared_registry() -> Vec<DeclaredCandidate> {
     use CandidateInterface::*;
     [
@@ -114,7 +77,6 @@ pub fn declared_registry() -> Vec<DeclaredCandidate> {
     .collect()
 }
 
-/// Adjudicate one candidate under the registry's declared rules.
 pub fn adjudicate(candidate: &DeclaredCandidate, m2: &M2Packet) -> RegistryTerminal {
     use CandidateInterface::*;
     match candidate.interface {
@@ -131,8 +93,6 @@ pub fn adjudicate(candidate: &DeclaredCandidate, m2: &M2Packet) -> RegistryTermi
             }
         }
         GptConvex | QuaternionicGuarded => {
-            // A declaration flag carries no composite replay, effect pairing,
-            // or channel witness, so it cannot license a resolving row.
             RegistryTerminal::Refuse
         }
         RealHilbertRebit => {
@@ -152,10 +112,6 @@ pub fn adjudicate(candidate: &DeclaredCandidate, m2: &M2Packet) -> RegistryTermi
     }
 }
 
-/// The complex packet resolves only when its declarations replay and its
-/// declared Born residual is zero. That residual has `dE = drho = 0`, so `d1`
-/// of it is its Born part: a nonzero defect is never closed, and so is an
-/// active closure failure that dominates resolution.
 fn complex_packet_terminal(m2: &M2Packet) -> RegistryTerminal {
     let verified = match verify(m2.clone()) {
         Ok(verified) => verified,
@@ -174,14 +130,12 @@ fn complex_packet_terminal(m2: &M2Packet) -> RegistryTerminal {
     }
 }
 
-/// The adjudicated registry.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RegistryAudit {
     pub rows: Vec<(CandidateInterface, RegistryTerminal)>,
 }
 
 impl RegistryAudit {
-    /// The unique resolving candidate, if exactly one row resolves.
     pub fn minimal_interface(&self) -> Option<CandidateInterface> {
         let mut resolvers = self
             .rows
@@ -192,7 +146,6 @@ impl RegistryAudit {
     }
 }
 
-/// Adjudicate every declared row against the declared `M_2` packet.
 pub fn audit_registry(candidates: &[DeclaredCandidate], m2: &M2Packet) -> RegistryAudit {
     RegistryAudit {
         rows: candidates
@@ -202,7 +155,6 @@ pub fn audit_registry(candidates: &[DeclaredCandidate], m2: &M2Packet) -> Regist
     }
 }
 
-/// The five named antecedents and the minimality evidence of `ForcedLift`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ForcedLiftPrerequisites {
     pub open_comm: bool,
@@ -210,11 +162,9 @@ pub struct ForcedLiftPrerequisites {
     pub admissible: bool,
     pub valid_transport: bool,
     pub resolves: bool,
-    /// `None` is an explicitly open minimality proof.
     pub minimality: Option<RegistryAudit>,
 }
 
-/// A forced-lift prerequisite that the validator found absent.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Prerequisite {
     OpenComm,
@@ -225,24 +175,18 @@ pub enum Prerequisite {
     MinimalInterface,
 }
 
-/// The scope in which a forced lift was recorded.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ForcedLiftScope {
-    /// The other antecedents hold, but minimality has not been supplied. The
-    /// ledger is therefore conditional on that unresolved premise.
     ConditionalOnMinimality,
     DeclaredRegistryOnly(CandidateInterface),
 }
 
-/// One ledger row.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct LedgerRow {
     pub transition: &'static str,
     pub status: TransitionStatus,
 }
 
-/// The emitted transition ledger. The four flags are the walk's stated
-/// non-claims; the validator has no path that sets them.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TowerWalkLedger {
     pub rows: Vec<LedgerRow>,
@@ -253,7 +197,6 @@ pub struct TowerWalkLedger {
     pub external_sealed_terminal_supplied: bool,
 }
 
-/// Emit the ledger, or refuse with every missing prerequisite.
 pub fn validate_tower_walk(
     pre: &ForcedLiftPrerequisites,
 ) -> Result<TowerWalkLedger, Vec<Prerequisite>> {
@@ -309,13 +252,8 @@ pub fn validate_tower_walk(
     })
 }
 
-/// The canonical walk: `Open_comm` from the exhaustive Mermin–Peres search,
-/// `Resolve` from the complex packet's registry terminal (replay and a zero
-/// Born defect), the registry audit as minimality evidence; protocol,
-/// admissibility and transport are declared.
 pub fn canonical_prerequisites(m2: &M2Packet) -> ForcedLiftPrerequisites {
     ForcedLiftPrerequisites {
-        // A refused search leaves `Open_comm` unestablished (fail closed).
         open_comm: matches!(
             MerminPeresSquare::standard().verify_no_noncontextual_assignment(),
             Ok(true)

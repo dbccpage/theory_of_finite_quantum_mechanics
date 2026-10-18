@@ -16,8 +16,8 @@ from omega_engine.crates.operator.base.operator_base import OperatorBase
 @dataclass(frozen=True, slots=True)
 class OperatorKey:
     """Explicit tuple key identifying an Operator implementation by kind and domain."""
-    op_kind: str  # "lambda", "reducer", "transform"
-    domain: str   # e.g. "qm.channel", "graph.canonical", "cochain.h1"
+    op_kind: str
+    domain: str
 
 
 class OperatorFactory:

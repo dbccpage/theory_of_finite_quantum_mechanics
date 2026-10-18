@@ -1,10 +1,6 @@
-//! Complete free path categories of declared finite acyclic multigraphs.
-//! Parallel edges are distinct generators. Cycles and resource excess are
-//! refused; enumeration never turns a truncated frontier into a category.
 use crate::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// Explicit execution bound, not a mathematical finiteness theorem.
 pub const MAX_PATHS: usize = 64;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -44,7 +40,6 @@ impl FinitePath {
     pub fn target(&self) -> usize {
         self.target
     }
-    /// Chronological edge order; the empty path is the source identity.
     pub fn edges(&self) -> &[usize] {
         &self.edges
     }
@@ -97,7 +92,6 @@ impl FinitePathCategory {
         if vertices > budget {
             return Err(PathError::PathBudget);
         }
-        // Identities have indices exactly equal to their vertices.
         let mut paths: Vec<_> = (0..vertices)
             .map(|v| FinitePath {
                 source: v,
@@ -178,7 +172,6 @@ impl FinitePathCategory {
     pub fn path(&self, index: usize) -> Result<&FinitePath, PathError> {
         self.paths.get(index).ok_or(PathError::UnknownPath)
     }
-    /// Second after first. None means noncomposable, never missing closure.
     pub fn compose(&self, first: usize, second: usize) -> Result<Option<usize>, PathError> {
         self.composition
             .get(first)

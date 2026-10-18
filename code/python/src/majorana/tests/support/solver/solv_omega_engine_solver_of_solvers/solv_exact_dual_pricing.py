@@ -54,10 +54,8 @@ class ExactDualPricingReceipt:
     declaration_degree: int
     authority_effect: str = "None"
     refuse_code: Optional[str] = None
-    # Certificate attainment only — never estate-wide quotient-norm (live attrs).
     estate_wide_phi_k_theorem: str = "REFUSED"
     normhood_from_attainment_alone: str = "REFUSED"
-    # serialisable dual/primal snapshots (lists of str rationals)
     alpha_star: Tuple[str, ...] = ()
     y_star: Tuple[str, ...] = ()
     residual: Tuple[str, ...] = ()
@@ -83,7 +81,6 @@ class ExactDualPricingReceipt:
             "exact_degree": self.degree,
             "arithmetic_mode": self.arithmetic_mode,
             "authority_effect": self.authority_effect,
-            # Certificate attainment only — not estate-wide Φ_k / quotient-norm theorem.
             "estate_wide_phi_k_theorem": self.estate_wide_phi_k_theorem or "REFUSED",
             "normhood_from_attainment_alone": self.normhood_from_attainment_alone
             or "REFUSED",
@@ -275,8 +272,6 @@ def price_degree_k_with_optional_nilpotency(
     if d_upper is not None:
         dL = d_lower if isinstance(d_lower, MatrixBase) else Matrix(d_lower)
         dU = d_upper if isinstance(d_upper, MatrixBase) else Matrix(d_upper)
-        # For Phi_k, repair map is d_{k-1} (rows = dim C^k). Upper map d_k
-        # should satisfy d_k @ d_{k-1} = 0 when both share the middle dimension.
         if dU.cols == dL.rows:
             product = dU * dL
             if product != Matrix.zeros(product.rows, product.cols):

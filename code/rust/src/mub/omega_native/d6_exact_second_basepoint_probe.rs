@@ -1,19 +1,3 @@
-//! Q1 Path-B second-basepoint campaign: can genuine Dita seed triples serve as
-//! **second exact basepoints** for triple-level \(I(T)\) comparison?
-//!
-//! Background (deformation-invariance Phase 0): probes on the **canonical product triple
-//! T0** already show that cohomological candidates `(rank_j, h1_dim)` fail Gate A on T0
-//! (blind / mass-collision). Triple-level deformation invariance additionally needs at
-//! least one **inequivalent** exact MU triple as a second basepoint — the gauge orbit of
-//! T0 is not a second basepoint (`Ψ_basis` is gauge-invariant).
-//!
-//! This module:
-//! 1. materializes T0 + locked Dita seeds as exact 18-column triples;
-//! 2. re-runs the vector-level Gate A/B probe on each basepoint;
-//! 3. fingerprints each triple via far-control invariant pair + modal flat pair + gates;
-//! 4. reports whether seeds are **usable as second basepoints** (exact MU + structural
-//!    probe runs) and whether any triple-level signal appears.
-//!
 
 use serde::Serialize;
 
@@ -27,7 +11,6 @@ use crate::omega_native::campaign::mub6_dita_seed_cover::{
 
 crate::fixture_set!(fixtures, "d6_exact_second_basepoint_probe");
 
-/// Fingerprint of vector-level cohomological probe on one fixed triple basepoint.
 #[derive(Debug, Clone, Serialize)]
 pub struct BasepointFingerprint {
     pub id: String,
@@ -43,23 +26,17 @@ pub struct BasepointFingerprint {
     pub max_h1: Option<usize>,
     pub gate_a_reason: String,
     pub gate_b_reason: String,
-    /// Presentation-dependence flag (R03): fixed candidate vectors are not gauge-transported
-    /// with the triple presentation.
     pub is_presentation_fixed: bool,
     pub presentation_dependence_warning: &'static str,
 }
 
-/// Campaign-level report (Q1 Path B).
 #[derive(Debug, Clone, Serialize)]
 pub struct SecondBasepointCampaignReport {
     pub schema_version: &'static str,
     pub programme: &'static str,
     pub basepoints: Vec<BasepointFingerprint>,
-    /// True iff every Dita seed is pairwise MU and structural probe checks hold.
     pub dita_seeds_usable_as_exact_second_basepoints: bool,
-    /// True iff at least one Dita fingerprint differs from T0 on far/modal pairs or gates.
     pub triple_level_fingerprint_differs_from_t0: bool,
-    /// True iff any basepoint passes Gate A ∧ Gate B (Path B survivor signal).
     pub any_basepoint_gate_a_and_b: bool,
     pub verdict: &'static str,
     pub kill_note: String,
@@ -125,21 +102,17 @@ fn fingerprint(
     }
 }
 
-/// Run the Q1 second-basepoint campaign: T0 + all six genuine Dita seeds.
 pub fn run_second_basepoint_campaign() -> SecondBasepointCampaignReport {
     let mut basepoints = Vec::new();
 
-    // T0 product triple.
     let t0_cols = canonical_triple_exact();
     basepoints.push(fingerprint(
         "T0_product".into(),
         "canonical_product",
-        // fixture: not computed in this campaign.
         fixtures().flag("t0_pairwise_mu"),
         &t0_cols,
     ));
 
-    // Six genuine Dita seeds (Y2Q1 ∪ Y2Q2).
     for (dx, dy, qa) in all_genuine_dita_seeds() {
         let id = format!("dita_F6_{dx}_{dy}_Y2Q{qa}");
         let mu = dita_seed_triple_is_pairwise_mu(dx, dy);
@@ -170,7 +143,6 @@ pub fn run_second_basepoint_campaign() -> SecondBasepointCampaignReport {
 
     let any_basepoint_gate_a_and_b = basepoints.iter().any(|b| b.gate_a_pass && b.gate_b_pass);
 
-    // Verdict for Path B Month-2 kill criterion.
     let (verdict, kill_note) = if !dita_seeds_usable_as_exact_second_basepoints {
         (
             "SECOND_BASEPOINT_UNUSABLE",
@@ -220,7 +192,6 @@ pub fn run_second_basepoint_campaign() -> SecondBasepointCampaignReport {
     }
 }
 
-/// Write campaign JSON under `artifacts/`.
 pub fn write_second_basepoint_artifact() -> Result<std::path::PathBuf, String> {
     let report = run_second_basepoint_campaign();
     let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
@@ -245,7 +216,6 @@ mod tests {
         }
     }
 
-    /// Lightweight: only T0 + one Y2Q1 + one Y2Q2 for CI time; full campaign is separate.
     #[test]
     fn representative_second_basepoints_structural_and_open_residual() {
         let t0 = fingerprint(
@@ -273,11 +243,9 @@ mod tests {
         );
         assert!(y2q2.pairwise_mu && y2q2.structural_ok);
 
-        // Usable second basepoints: exact MU + structural probe runs.
         assert!(y2q1.pairwise_mu && y2q2.pairwise_mu);
     }
 
-    /// Full six-seed campaign (exact arithmetic; may take tens of seconds).
     #[test]
     fn full_second_basepoint_campaign_usable_and_open() {
         let r = run_second_basepoint_campaign();
@@ -288,7 +256,6 @@ mod tests {
             r.dita_seeds_usable_as_exact_second_basepoints,
             "all Dita seeds must be usable exact second basepoints"
         );
-        // Cohomological (rank_j,h1) is not expected to pass A∧B on any basepoint today.
         assert!(
             !r.any_basepoint_gate_a_and_b,
             "unexpected Gate A∧B survivor — update campaign ledger if this flips"

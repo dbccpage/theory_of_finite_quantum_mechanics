@@ -1,12 +1,6 @@
-//! MUB(6) Simplicial Nerve Homotopy and Path B Invariant Survivor (Pilot 045 / Subgap R9)
-//!
-//! Validates the cohomological deformation route over the 13 catalog components,
-//! proving that the simplicial nerve retracts to a non-contractible 1-skeleton
-//! with first Betti number B_1 >= 1, establishing a persistent topological obstruction.
 
 use serde::{Deserialize, Serialize};
 
-/// Receipt for Subgap R9 simplicial nerve homotopy verification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NerveHomotopyReceipt {
     pub status: String,
@@ -16,7 +10,6 @@ pub struct NerveHomotopyReceipt {
     pub persistent_obstruction_verified: bool,
 }
 
-/// Verify Subgap R9 nerve homotopy obstruction.
 pub fn verify_nerve_homotopy() -> NerveHomotopyReceipt {
     let catalog_components_count = 13;
     let betti_1_nerve = 1;

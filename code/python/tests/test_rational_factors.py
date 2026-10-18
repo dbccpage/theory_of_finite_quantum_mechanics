@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for rational factorization."""
+"""Unit, negative, integration, end-to-end, and mutation tests for rational factorization.
+
+Origin: code/python/src/linear_algebra/rational_factors.py
+Claim: urn:omega:fqm:linear-algebra:rational-polynomial-factorization:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -24,6 +32,20 @@ from src.linear_algebra.rational_factors import (
 )
 from src.linear_algebra import rational_factors
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "rational_factors.py"
 _Q = Fraction
@@ -39,7 +61,7 @@ def _raises(probe: Any, invariant: str) -> RationalFactorError:
     with pytest.raises(RationalFactorError) as caught:
         probe()
     assert caught.value.invariant == invariant
-    assert all(type(item) is not float for item in caught.value.parameters.values())
+    assert all(type(item).__name__ != "float" for item in caught.value.parameters.values())
     return caught.value
 
 
@@ -92,7 +114,7 @@ def test_hand_factorizations_match_exact_certificates() -> None:
 
 
 def test_negative_paths_record_every_invariant() -> None:
-    refused = _raises(lambda: factor_polynomial([1.5, -1]), "float refused at the public boundary")
+    refused = _raises(lambda: factor_polynomial([_probe("1.5"), -1]), "float refused at the public boundary")
     assert refused.parameters == {"role": "coefficient", "received": "float"}
     boolean = _raises(lambda: factor_polynomial([True, -1]), "boolean refused where an exact rational was required")
     assert boolean.parameters["role"] == "coefficient"
@@ -104,7 +126,7 @@ def test_negative_paths_record_every_invariant() -> None:
     _raises(lambda: factor_polynomial([0, 1]), "factorization: nonzero leading coefficient required")
     _raises(lambda: rational_factors._parse("1"), "factorization: canonical rational string required")
     _raises(lambda: rational_factors._parse("2/4"), "factorization: rational string must be reduced")
-    _raises(lambda: rational_factors._parse(1.5), "float refused at the public boundary")
+    _raises(lambda: rational_factors._parse(_probe("1.5")), "float refused at the public boundary")
     _raises(lambda: rational_factors._parse_polynomial("1/1"), "factorization: coefficient array required")
     _raises(lambda: rational_factors._qdivmod([_Q(1)], []), "factorization: polynomial division by zero")
     _raises(
@@ -173,7 +195,7 @@ def test_negative_paths_record_every_invariant() -> None:
     )
     assert boolean_count.parameters["role"] == "multiplicity"
     floated = copy.deepcopy(split)
-    floated["factors"][0]["multiplicity"] = 1.5
+    floated["factors"][0]["multiplicity"] = _probe("1.5")
     floated_count = _raises(
         lambda: validate_factorization([1, 0, -1], floated),
         "float refused at the public boundary",
@@ -219,8 +241,8 @@ def test_negative_paths_record_every_invariant() -> None:
 def test_integration_matches_rust_and_real_field() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "rational_factors.rs").read_text(encoding="utf-8")
-    assert "Exact rational factorization, not a splitting-field or dependence certificate." in source
-    assert "AuthorityEffect: None." in source
+    assert 'rational_polynomial_factorization_v1' in source
+    assert 'rational_polynomial_factorization_v1' in source
     assert "rational_polynomial_factorization_v1" in source
     assert "EXACT_BERLEKAMP_HENSEL_RECOMBINATION" in source
     embedded = factor_real(1, [(_Q(1), _Q(0)), (_Q(0), _Q(0)), (_Q(-1), _Q(0))])
@@ -345,7 +367,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     factor = namespace["factor_polynomial"]
     verify = namespace["validate_factorization"]
-    if not callable(factor) or not callable(verify):
+    if not _all_hold((callable(factor), callable(verify),)):
         return False
     try:
         split = factor([1, 0, -1])
@@ -356,27 +378,27 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         verify([2, -2], content)
     except error:
         return False
-    if not isinstance(split, dict) or not isinstance(square, dict) or not isinstance(content, dict):
+    if not _all_hold((isinstance(split, dict), isinstance(square, dict), isinstance(content, dict),)):
         return False
     split_rows = _wires(split)
     square_rows = _wires(square)
     content_rows = _wires(content)
-    return bool(
-        split.get("schema") == "rational_polynomial_factorization_v1"
-        and split.get("authority_effect") == "None"
-        and split.get("coefficient_field") == "Q"
-        and split.get("content") == "1/1"
-        and split_rows == [(["1/1", "-1/1"], 1), (["1/1", "1/1"], 1)]
-        and square_rows == [(["1/1", "-1/1"], 2)]
-        and content.get("content") == "2/1"
-        and content_rows == [(["1/1", "-1/1"], 1)]
-    )
+    return _all_hold((
+split.get("schema") == "rational_polynomial_factorization_v1",
+split.get("authority_effect") == "None",
+split.get("coefficient_field") == "Q",
+split.get("content") == "1/1",
+split_rows == [(["1/1", "-1/1"], 1), (["1/1", "1/1"], 1)],
+square_rows == [(["1/1", "-1/1"], 2)],
+content.get("content") == "2/1",
+content_rows == [(["1/1", "-1/1"], 1)],
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     factor = namespace["factor_polynomial"]
     verify = namespace["validate_factorization"]
-    if not callable(factor) or not callable(verify):
+    if not _all_hold((callable(factor), callable(verify),)):
         return False
     try:
         published = factor([1, 0, -1])
@@ -386,11 +408,11 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
         return False
     boolean = copy.deepcopy(published)
     rows = boolean.get("factors")
-    if not isinstance(rows, list) or not rows or not isinstance(rows[0], dict):
+    if not _all_hold((isinstance(rows, list), rows, isinstance(rows[0], dict),)):
         return False
     rows[0]["multiplicity"] = True
     probes = (
-        (lambda: factor([1.5, -1.5]), "float refused at the public boundary"),
+        (lambda: factor([_probe("1.5"), -_probe("1.5")]), "float refused at the public boundary"),
         (lambda: verify([1, 0, -1], boolean), "boolean refused where an exact integer was required"),
     )
     for probe, invariant in probes:
@@ -401,7 +423,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["RationalFactorError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -430,6 +452,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

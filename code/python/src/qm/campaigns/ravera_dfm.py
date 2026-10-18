@@ -1,4 +1,3 @@
-# AuthorityEffect: None.
 """Self-contained exact rational replay for the Ravera DFM Finite-to-Continuum Dossier.
 
 This standalone module implements and checks all nine finite-to-continuum
@@ -210,9 +209,6 @@ def fundamental_cycle_vector(tree_edges: tuple[int, ...], chord_idx: int) -> lis
     return vec
 
 
-# ============================================================================
-# Pillar 1: Abelian Spanning-Tree DFM & Symanzik U_G Polynomial
-# ============================================================================
 
 
 def verify_pillar1_abelian_tree_dfm_and_symanzik_u() -> dict[str, object]:
@@ -263,12 +259,10 @@ def verify_pillar1_abelian_tree_dfm_and_symanzik_u() -> dict[str, object]:
             all_gauge_invariant = False
         cycle_matrices.append([fundamental_cycle_vector(tree, c) for c in cotree])
 
-    # Check GL(2, Z) unimodularity between every pair of spanning trees
     all_unimodular = True
     t0_tree, t0_cotree = trees[0]
     for _t_prime, c_prime in trees:
         c_mat_0 = [fundamental_cycle_vector(t0_tree, c) for c in t0_cotree]
-        # Express T_0 cycles on chords of T'
         m00, m01 = c_mat_0[0][c_prime[0]], c_mat_0[0][c_prime[1]]
         m10, m11 = c_mat_0[1][c_prime[0]], c_mat_0[1][c_prime[1]]
         det_m = m00 * m11 - m01 * m10
@@ -286,9 +280,6 @@ def verify_pillar1_abelian_tree_dfm_and_symanzik_u() -> dict[str, object]:
     }
 
 
-# ============================================================================
-# Pillar 2: Non-Abelian Borel Two-Stage Dressing & Artificial vs. Substantial
-# ============================================================================
 
 
 def _b2_mul(a: tuple[Q, Q, Q], b: tuple[Q, Q, Q]) -> tuple[Q, Q, Q]:
@@ -305,7 +296,6 @@ def verify_pillar2_nonabelian_borel_two_stage_dfm() -> dict[str, object]:
     trees = enumerate_diamond_spanning_trees()
     tree0, cotree0 = trees[0]
 
-    # Artificial pure-gauge connection U_e = g_v * g_u^{-1} in B_2(Q)
     g_art = [
         id_b2,
         (Q(2, 1), Q(3, 1), Q(5, 1)),
@@ -314,11 +304,9 @@ def verify_pillar2_nonabelian_borel_two_stage_dfm() -> dict[str, object]:
     ]
     u_art = [_b2_mul(g_art[v], _b2_inv(g_art[u])) for u, v in DIAMOND_EDGES]
 
-    # Substantial connection: tree edges in B_2(Q), non-identity on cotree chords
     u_sub = list(u_art)
     u_sub[cotree0[0]] = _b2_mul((Q(2, 1), Q(1, 1), Q(3, 1)), u_art[cotree0[0]])
 
-    # Build spanning-tree dressing field u_T(v) in B_2(Q) for both
     def _tree_dress_b2(links: list[tuple[Q, Q, Q]]) -> list[tuple[Q, Q, Q]]:
         u_v = [id_b2] * DIAMOND_VERTICES
         for v in range(DIAMOND_VERTICES):
@@ -343,7 +331,6 @@ def verify_pillar2_nonabelian_borel_two_stage_dfm() -> dict[str, object]:
     substantial_tree_identity = all(dressed_sub[te] == id_b2 for te in tree0)
     substantial_cotree_nontrivial = dressed_sub[cotree0[0]] != id_b2
 
-    # Two-stage Borel factorization u = t * u_N with u_N in N (unipotent) and t in T_2(Q) (diagonal)
     u_full = [id_b2] * DIAMOND_VERTICES
     for v in range(DIAMOND_VERTICES):
         path = tree_path(tree0, 0, v)
@@ -381,9 +368,6 @@ def verify_pillar2_nonabelian_borel_two_stage_dfm() -> dict[str, object]:
     }
 
 
-# ============================================================================
-# Pillar 3: Symanzik 2-Forest F_G, Tree Momentum Routing & BPHZ Cancellation
-# ============================================================================
 
 
 def verify_pillar3_symanzik_two_forest_and_bphz() -> dict[str, object]:
@@ -405,7 +389,6 @@ def verify_pillar3_symanzik_two_forest_and_bphz() -> dict[str, object]:
         qy = sum(q_ext[v][1] for v in v1)
         f0_comb += prod_alpha * (qx * qx + qy * qy)
 
-    # Check DFM spanning-tree momentum routing across all 8 spanning trees
     all_trees_match = True
     for tree, cotree in trees:
         p_tree = [(Q(0, 1), Q(0, 1)) for _ in DIAMOND_EDGES]
@@ -437,7 +420,6 @@ def verify_pillar3_symanzik_two_forest_and_bphz() -> dict[str, object]:
         if u_dfm != u_dia or f0_dfm != f0_comb:
             all_trees_match = False
 
-    # Zimmermann BPHZ algebraic pole cancellation witness
     z_ext = Q(3, 5)
     bphz_poles_cancel = True
     for lam1 in (Q(1, 2), Q(1, 10), Q(1, 1000)):
@@ -461,9 +443,6 @@ def verify_pillar3_symanzik_two_forest_and_bphz() -> dict[str, object]:
     }
 
 
-# ============================================================================
-# Pillar 4: Dressed Dirac Matter Propagator & Ward-Takahashi Identity Z_1 = Z_2
-# ============================================================================
 
 
 def verify_pillar4_dressed_dirac_and_ward_takahashi() -> dict[str, object]:
@@ -517,7 +496,6 @@ def verify_pillar4_dressed_dirac_and_ward_takahashi() -> dict[str, object]:
         if (d_orig[3].conj() * d_orig[1]) != (d_gaug[3].conj() * d_gaug[1]):
             dressed_gauge_invariant_all_trees = False
 
-    # Exact 4x4 Clifford Cl_{1,3}(Q(i)) Dirac propagator and Ward-Takahashi identity
     z0, o1, mo1, iu, miu = Qi.zero(), Qi.one(), Qi(Q(-1, 1)), Qi.i_unit(), Qi(Q(0, 1), Q(-1, 1))
     g0 = [[o1, z0, z0, z0], [z0, o1, z0, z0], [z0, z0, mo1, z0], [z0, z0, z0, mo1]]
     g1 = [[z0, z0, z0, o1], [z0, z0, o1, z0], [z0, mo1, z0, z0], [mo1, z0, z0, z0]]
@@ -593,14 +571,9 @@ def verify_pillar4_dressed_dirac_and_ward_takahashi() -> dict[str, object]:
     }
 
 
-# ============================================================================
-# Pillar 5: Relational Page-Wootters Clock Dressing
-# ============================================================================
 
 
 def verify_pillar5_page_wootters_clock_dressing() -> dict[str, object]:
-    # 4-tick clock (t = 0, 1, 2, 3) with genuine order-4 unitary step U_S on 2D system over Q(i):
-    # U_S = [[0, -1], [1, 0]] (U_S^2 = -I_2 != I_2, U_S^4 = I_2)
     def _apply_u_s(state: tuple[Qi, Qi], power: int) -> tuple[Qi, Qi]:
         s0, s1 = state
         for _ in range(power % 4):
@@ -619,7 +592,6 @@ def verify_pillar5_page_wootters_clock_dressing() -> dict[str, object]:
         state == psi0 for state in dressed_history
     )
 
-    # Explicit 8x8 matrix check of D^dagger W D = S_C x I_S on H_C (x) H_S (dim 8)
     u_s_mat = [[Qi.zero(), Qi(Q(-1, 1))], [Qi.one(), Qi.zero()]]
 
     def _mat2_pow(p: int) -> list[list[Qi]]:
@@ -665,15 +637,11 @@ def verify_pillar5_page_wootters_clock_dressing() -> dict[str, object]:
     }
 
 
-# ============================================================================
-# Pillar 6: Electroweak SU(2)_L x U(1)_Y -> U(1)_EM Doublet Dressing
-# ============================================================================
 
 
 def verify_pillar6_electroweak_doublet_dfm() -> dict[str, object]:
     v_vev = Q(246, 1)
     phi = (Qi(Q(3, 5) * v_vev, Q(4, 5) * v_vev), Qi(Q(0, 1), Q(0, 1)))
-    # Unitary SU(2)_L dressing u(Phi) brings Higgs doublet to (0, v)
     u00 = Qi(phi[1].re / v_vev, -phi[1].im / v_vev)
     u01 = Qi(phi[0].re / v_vev, phi[0].im / v_vev)
     u10 = Qi(-phi[0].re / v_vev, phi[0].im / v_vev)
@@ -682,14 +650,12 @@ def verify_pillar6_electroweak_doublet_dfm() -> dict[str, object]:
         u00.conj() * phi[0] + u10.conj() * phi[1],
         u01.conj() * phi[0] + u11.conj() * phi[1],
     )
-    # Unbroken U(1)_EM generator Q_EM = T^3 + Y = diag(1, 0) annihilates dressed_phi = (0, v):
     q_em_dressed_phi = (dressed_phi[0], Qi.zero())
     unitary_gauge_exact = (
         dressed_phi == (Qi.zero(), Qi(v_vev, Q(0, 1)))
         and q_em_dressed_phi == (Qi.zero(), Qi.zero())
     )
 
-    # Rational Weinberg projectors at g = 3/5, g' = 4/5 -> sin^2(theta_W) = 16/25, cos^2(theta_W) = 9/25
     g_w, gp_y = Q(3, 5), Q(4, 5)
     g_sum_sq = g_w * g_w + gp_y * gp_y
     sin2_tw = (gp_y * gp_y) / g_sum_sq
@@ -698,7 +664,6 @@ def verify_pillar6_electroweak_doublet_dfm() -> dict[str, object]:
     mz_sq = (g_sum_sq * v_vev * v_vev) / Q(4, 1)
     rho_ew = mw_sq / (mz_sq * cos2_tw)
 
-    # Full 4-condition chiral anomaly polynomials for general N_c
     def _su2_sq_u1_anomaly(n_c: int) -> Q:
         return Q(n_c, 1) * Q(1, 6) + Q(-1, 2)
 
@@ -720,9 +685,6 @@ def verify_pillar6_electroweak_doublet_dfm() -> dict[str, object]:
     }
 
 
-# ============================================================================
-# Pillar 7 (Theorem 3.7): Bipartite Flavor Graph CKM Rephasing & Jarlskog DFM
-# ============================================================================
 
 
 def verify_pillar7_ckm_jarlskog_bipartite_dfm() -> dict[str, object]:
@@ -764,10 +726,6 @@ def verify_pillar7_ckm_jarlskog_bipartite_dfm() -> dict[str, object]:
     }
 
 
-# ============================================================================
-# Pillar 8 (Theorem 3.8): Non-Abelian SU(3)_c Spanning-Tree Dressing vs.
-#                         Discrete Landau Gauge Gribov Copies
-# ============================================================================
 
 
 Mat3Qi = list[list[Qi]]
@@ -877,7 +835,6 @@ def verify_pillar8_su3_spanning_tree_vs_landau_gribov() -> dict[str, object]:
         if d_orig != d_gaug:
             all_trees_gauge_invariant = False
 
-    # Diagonal Klein 4-group Gribov copies in SU(3, Q)
     def _diag3(d0: int, d1: int, d2: int) -> Mat3Qi:
         m = [[Qi.zero() for _ in range(3)] for _ in range(3)]
         m[0][0] = Qi(Q(d0, 1))
@@ -886,8 +843,6 @@ def verify_pillar8_su3_spanning_tree_vs_landau_gribov() -> dict[str, object]:
         return m
 
     k4 = [_diag3(1, 1, 1), _diag3(1, -1, -1), _diag3(-1, 1, -1), _diag3(-1, -1, 1)]
-    # Traceless Hermitian off-diagonal generator H^(23) = E_23 + E_32 in su(3) (Tr(H^(23)) = 0)
-    # with square (H^(23))^2 = diag(0, 1, 1):
     h23 = [
         [Qi.zero(), Qi.zero(), Qi.zero()],
         [Qi.zero(), Qi.zero(), Qi.one()],
@@ -919,7 +874,6 @@ def verify_pillar8_su3_spanning_tree_vs_landau_gribov() -> dict[str, object]:
                     if link != _mat3_dag(link):
                         all_landau_zero = False
                     tr_re = (link[0][0] + link[1][1] + link[2][2]).re
-                    # Evaluate Faddeev-Popov Hessian quadratic form Tr(Omega_e (H^(23))^2) on traceless H^(23):
                     prod_h = _mat3_mul(link, h23_sq)
                     fp_quad = (prod_h[0][0] + prod_h[1][1] + prod_h[2][2]).re
                     if h23_traceless and tr_re == Q(-1, 1) and fp_quad == Q(-2, 1):
@@ -940,10 +894,6 @@ def verify_pillar8_su3_spanning_tree_vs_landau_gribov() -> dict[str, object]:
     }
 
 
-# ============================================================================
-# Pillar 9 (Theorem 3.9): Discrete Cartan-Regge Lorentz Tetrad/Frame Dressing
-#                         Around Simplicial 2-Hinges over Q
-# ============================================================================
 
 
 Mat4Q = list[list[Q]]
@@ -1044,7 +994,6 @@ def verify_pillar9_cartan_regge_lorentz_tetrad_dfm() -> dict[str, object]:
     connection_invariant = gamma_01 == gamma_01_g
     metric_compatible = _mat4_mul(_mat4_t(gamma_01), _mat4_mul(g0, gamma_01)) == g1
 
-    # Artificial vs substantial 2-hinge holonomy
     l2 = _lorentz_boost_x(Q(3, 5))
     h_art = _mat4_mul(
         _mat4_mul(l0, _mat4_inv(l1)),
@@ -1059,7 +1008,6 @@ def verify_pillar9_cartan_regge_lorentz_tetrad_dfm() -> dict[str, object]:
     tr_sub = sum(h_sub[i][i] for i in range(4))
     tr_sub_dressed = sum(h_sub_dressed[i][i] for i in range(4))
 
-    # Non-Abelian discrete Bianchi identity around closed 3-cell boundary
     p1, p2, p3 = l0, l1, l2
     h1_d = _mat4_mul(_mat4_inv(e0), _mat4_mul(_mat4_mul(p1, _mat4_inv(p2)), e0))
     h2_d = _mat4_mul(_mat4_inv(e0), _mat4_mul(_mat4_mul(p2, _mat4_inv(p3)), e0))

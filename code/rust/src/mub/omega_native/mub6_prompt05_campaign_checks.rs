@@ -1,41 +1,3 @@
-//! MUB(6) prompt 05 campaign: exact checks of its local lemmas and its next step B-0.2.
-//!
-//! The prompt 05 campaign (four rounds, recorded in the 010_mub6 paper package) stated a
-//! set of local lemmas by hand. This module checks the ones that reduce to finite exact
-//! computation, and runs the negative controls of the next step:
-//!
-//! * D1: the product triple `I, H/sqrt6, U/sqrt6` with `H = F2 (x) F3` and
-//!   `U = (D2 F2) (x) (D3 F3)`, `D2 = diag(1, i)`, `D3 = diag(1, w, w)`, is a triple of
-//!   pairwise mutually unbiased bases (entries in Q(zeta_12)).
-//! * D2: the two permutation decoys `sigma_z F2` and `diag(1, w, w^2) F3` fail.
-//! * D3: the 24 x 24 Gram matrix `I4 (x) I6 + (J4 - I4) (x) J6/6` has spectrum
-//!   `{4^1, 1^20, 0^3}`, read from exact ranks.
-//! * D9: the repository's 180 residuals in 72 coordinates (`ConcreteMubPolynomials.lean`)
-//!   are 108 squared-overlap rows and the 72 real components of `B3^H B3 - I`; 42 of them
-//!   are implied by others (30 Hermitian duplicates, 6 zero diagonal imaginary parts, 6
-//!   diagonal real parts equal to sums of the identity-basis overlap rows). No row of
-//!   `B3 B3^H - I` is among them.
-//! * E.1: under the product of four-point designs `{r, ir, -r, -ir}`, `r^2 = 1/6`, on the 36
-//!   entries of `B3`, every one of those residuals (and every component of `B3 B3^H - I`)
-//!   times every multiplier of degree at most one has expectation zero. This is the
-//!   measure argument of E.1 with a finite design in place of the circle; the two agree on
-//!   all moments of degree at most three, which is all the argument uses.
-//! * F.2: the commutative model on `{1..6}^4` satisfies the trace-level relations and
-//!   violates the operator identity `P_ai P_bj P_ai = P_ai / 6`.
-//! * G: the 320-coordinate count and the sum-six balance of the transitions, at the
-//!   product triple only.
-//! * B-0.2: the pinned balanced table is replayed by `mub6_balanced_table_replay`; the
-//!   negative controls `V := H` and `V := U` are evaluated on it.
-//! * Route D premise: the campaign wrote that the Jacobian of the table vanishes at the
-//!   centre of the coordinate box. The table has degree-one terms, so the Jacobian there is
-//!   the matrix of their coefficients; its exact rank is reported, together with whether it
-//!   is zero and whether it has full column rank.
-//!
-//! Each report states what was computed. None of this bears on whether a fourth basis
-//! exists in dimension 6.
-//!
-//! AuthorityEffect: None
-//! Firewall Line: NOT MUB(6)=3, NOT MUB(6)<=3; stated region only; mints no authority
 
 use crate::omega_native::campaign::mub6_balanced_table_replay::{
     self as table_replay, exact_conj_transpose_mul, imag_part, real_part, BalancedReplayError,
@@ -89,7 +51,6 @@ fn identity(n: usize) -> ExactMatrix {
         .collect()
 }
 
-/// Raw Fourier matrix of order 2: `[[1, 1], [1, -1]]`.
 pub fn fourier2() -> ExactMatrix {
     vec![
         vec![Cyc24::one(), Cyc24::one()],
@@ -97,14 +58,12 @@ pub fn fourier2() -> ExactMatrix {
     ]
 }
 
-/// Raw Fourier matrix of order 3: entry `(j, k)` is `w^(jk)`, `w = zeta_3`.
 pub fn fourier3() -> ExactMatrix {
     (0..3)
         .map(|j| (0..3).map(|k| Cyc24::zeta3_pow(j * k)).collect())
         .collect()
 }
 
-/// `diag(d) M`.
 pub fn diagonal_times(d: &[Cyc24], m: &ExactMatrix) -> ExactMatrix {
     m.iter()
         .zip(d)
@@ -112,7 +71,6 @@ pub fn diagonal_times(d: &[Cyc24], m: &ExactMatrix) -> ExactMatrix {
         .collect()
 }
 
-/// Kronecker product with row and column index `n_b * a + b`.
 pub fn kronecker(x: &ExactMatrix, y: &ExactMatrix) -> ExactMatrix {
     let (n, m) = (x.len(), y.len());
     let mut out = vec![vec![Cyc24::zero(); n * m]; n * m];
@@ -128,7 +86,6 @@ pub fn kronecker(x: &ExactMatrix, y: &ExactMatrix) -> ExactMatrix {
     out
 }
 
-/// The campaign's raw product Hadamards `H = F2 (x) F3`, `U = (D2 F2) (x) (D3 F3)`.
 pub fn product_triple() -> (ExactMatrix, ExactMatrix) {
     let w = Cyc24::zeta3();
     let d2 = [Cyc24::one(), Cyc24::i()];
@@ -141,7 +98,6 @@ pub fn product_triple() -> (ExactMatrix, ExactMatrix) {
     (h, u)
 }
 
-/// Distinct values of `|(X^H Y)_ij|^2 * scale`.
 fn overlap_values(x: &ExactMatrix, y: &ExactMatrix, scale: BigRational) -> BTreeSet<String> {
     exact_conj_transpose_mul(x, y)
         .iter()
@@ -156,9 +112,7 @@ pub struct ProductTripleCheck {
     pub entries_in_q_zeta12: bool,
     pub gram_equals_six_identity: bool,
     pub gauge_first_rows_and_column_one: bool,
-    /// Distinct `|<b1_i, b2_j>|^2` over the normalized bases `H/sqrt6`, `U/sqrt6`.
     pub normalized_cross_overlaps: BTreeSet<String>,
-    /// Distinct `|<e_i, b_j>|^2` against the identity basis, for `H` and for `U`.
     pub normalized_identity_overlaps: BTreeSet<String>,
 }
 
@@ -188,11 +142,8 @@ pub fn check_product_triple() -> ProductTripleCheck {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct DecoyCheck {
-    /// Normalized overlaps of `F2` with `sigma_z F2` (a column swap).
     pub qubit_sigma_z: BTreeSet<String>,
-    /// Normalized overlaps of `F3` with `diag(1, w, w^2) F3` (a column permutation).
     pub qutrit_diag_one_w_w2: BTreeSet<String>,
-    /// Normalized overlaps of `F2 (x) F3` with `(sigma_z F2) (x) (D3 F3)`.
     pub six_dim_sigma_z_seed: BTreeSet<String>,
 }
 
@@ -222,7 +173,6 @@ pub struct GramSpectrumCheck {
     pub rank_g: usize,
     pub rank_g_minus_identity: usize,
     pub rank_g_minus_four_identity: usize,
-    /// Multiplicities of the eigenvalues 0, 1, 4 read from the ranks (G is symmetric).
     pub multiplicity_zero: usize,
     pub multiplicity_one: usize,
     pub multiplicity_four: usize,
@@ -308,14 +258,10 @@ fn cyc_term(monomial: Monomial, coefficient: Cyc24) -> CycPoly {
     out
 }
 
-/// Coordinate of `Re B3[k][j]` (`b = 0`) or `Im B3[k][j]` (`b = 1`), as in
-/// `ConcreteMubPolynomials.Coord = Fin 6 x Fin 6 x Bool`.
 pub fn fixed_triple_coordinate(k: usize, j: usize, b: usize) -> usize {
     12 * k + 2 * j + b
 }
 
-/// The repository's 180 residuals for the product triple, in its order: 108 rows
-/// `muPolynomial a i j`, then `unitaryRe i j`, `unitaryIm i j` for each `(i, j)`.
 pub fn fixed_triple_system() -> Vec<CycPoly> {
     let (h, u) = product_triple();
     let inv_sqrt6 = Cyc24::sqrt2().mul(&Cyc24::sqrt3()).scale_rat(&q(1, 6));
@@ -361,8 +307,6 @@ pub fn fixed_triple_system() -> Vec<CycPoly> {
     system
 }
 
-/// The 72 real components of `B3 B3^H - I` (the campaign's block U2), real then imaginary
-/// for each `(i, j)`.
 pub fn row_unitarity_components() -> Vec<CycPoly> {
     let x = |k, j, b| cyc_term(vec![fixed_triple_coordinate(k, j, b)], Cyc24::one());
     let mut out = Vec::with_capacity(72);
@@ -395,7 +339,6 @@ pub struct FixedTripleCountCheck {
     pub diagonal_real_equal_identity_overlap_sums: usize,
     pub implied_rows: usize,
     pub rows_not_implied_by_these_identities: usize,
-    /// Nonzero components of `B3 B3^H - I` that occur among the 180 rows.
     pub row_unitarity_components_listed: usize,
 }
 
@@ -447,9 +390,6 @@ pub fn check_fixed_triple_counts() -> FixedTripleCountCheck {
     }
 }
 
-/// Moment of a monomial under the product of four-point designs `{r, ir, -r, -ir}` on each
-/// entry, `r^2 = 1/6`: `E[x^a y^b]` is 1 for `a = b = 0`, `(1/6)^(e/2) / 2` for one of
-/// `a, b` equal to an even `e > 0` and the other zero, and 0 otherwise.
 pub fn design_moment(monomial: &[usize]) -> BigRational {
     let mut counts: BTreeMap<usize, (u32, u32)> = BTreeMap::new();
     for &v in monomial {
@@ -491,8 +431,6 @@ pub struct AffineMultiplierCheck {
     pub nonzero_expectations: usize,
     pub second_moment_of_a_coordinate: String,
     pub support_modulus_squared: String,
-    /// `E[F^2]` for the first `|<b1_0, v_0>|^2 - 1/6` row: degree-two multipliers are not
-    /// blocked by this measure.
     pub degree_two_example_nonzero: bool,
 }
 
@@ -533,7 +471,6 @@ pub struct CommutativeModelCheck {
     pub complete: bool,
     pub single_traces: BTreeSet<String>,
     pub pair_traces_across_bases: BTreeSet<String>,
-    /// Triples `(a != b, i, j)` with `P_ai P_bj P_ai != P_ai / 6` in the model.
     pub sandwich_violations: usize,
     pub sandwich_cases: usize,
 }
@@ -595,8 +532,6 @@ pub struct GaugeCountCheck {
     pub slot_coordinates: usize,
     pub d_block_coordinates: usize,
     pub core_coordinates: usize,
-    /// At the product triple: row and column sums of `H^H U` are 6, and the corner obeys
-    /// `W[5][5] = sum of the 5 x 5 core - 24`.
     pub product_triple_balance: bool,
 }
 
@@ -627,8 +562,6 @@ pub struct NegativeControl {
     pub nonzero_rows_by_block: BTreeMap<&'static str, usize>,
 }
 
-/// Evaluates the table at the product pair `(H, U)` with the third basis set to `H` or `U`.
-/// Neither is a fourth mutually unbiased basis; the controls show which rows notice.
 pub fn negative_controls(table: &BalancedTable) -> Result<Vec<NegativeControl>, CampaignCheckError> {
     let (h, u) = product_triple();
     let mut out = Vec::new();
@@ -652,19 +585,14 @@ pub fn negative_controls(table: &BalancedTable) -> Result<Vec<NegativeControl>, 
 pub struct CentreJacobianCheck {
     pub rows: usize,
     pub columns: usize,
-    /// Monomials of degree one across all rows.
     pub linear_terms: usize,
     pub linear_terms_by_block: BTreeMap<&'static str, usize>,
     pub rows_with_linear_part: usize,
-    /// Exact rank over Q of the Jacobian at the origin, the centre of the coordinate box.
     pub rank: usize,
     pub jacobian_is_zero: bool,
     pub full_column_rank: bool,
 }
 
-/// The Jacobian of the table at the origin is the coefficient matrix of its degree-one
-/// terms. Its rank is computed exactly over Q on the rows that have a linear part; the other
-/// rows are zero there and do not change the rank.
 pub fn centre_jacobian(table: &BalancedTable) -> Result<CentreJacobianCheck, CampaignCheckError> {
     let columns = table_replay::VARIABLES;
     let mut linear_terms = 0;
@@ -730,7 +658,6 @@ pub struct CampaignReceipt {
     pub g_gauge_counts: GaugeCountCheck,
 }
 
-/// Runs every check on the pinned balanced table bytes.
 pub fn run_campaign_checks(table_bytes: &[u8]) -> Result<CampaignReceipt, CampaignCheckError> {
     let table = BalancedTable::from_bytes(table_bytes)?;
     Ok(CampaignReceipt {

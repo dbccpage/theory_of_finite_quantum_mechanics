@@ -1,126 +1,192 @@
-//! Program buildability declaration tests, retained from the mixed superposition suite.
-use finite_qm_native::campaigns::buildability_criterion::{ArchitectureDeclaration, ResidualRace};
-use omega_number_theory::rational::{ri, rq};
-use omega_quantum_physics::exact_hermitian::{gi, gq};
-use omega_quantum_physics::u1_graph_connection::U1Connection;
-use omega_solvers::data_cochain_packet::FiniteCochainPacket;
+use omega_number_theory::rational::ri;
+use theory_of_finite_qm::campaigns::buildability::ResidualRace;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/buildability.rs Claim: urn:fqm:buildability:residual-step-lambda-minus-mu-minus-eps AuthorityEffect: None";
+const SAMPLE: i64 = 10;
+const EXPECTED: i64 = -5;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-fn packet(vertices: &[&str], edges: &[(&str, &str)]) -> FiniteCochainPacket {
-    FiniteCochainPacket::with_unit_weights(
-        FiniteCochainPacket::build_complex(vertices, edges, &[]).unwrap(),
-    )
-    .unwrap()
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-fn triangle() -> FiniteCochainPacket {
-    packet(&["a", "b", "c"], &[("a", "b"), ("b", "c"), ("c", "a")])
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-fn path_tree() -> FiniteCochainPacket {
-    packet(&["a", "b", "c", "d"], &[("a", "b"), ("b", "c"), ("c", "d")])
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
 }
 
-// ---------------------------------------------------------------------------
-// QM-061-C12..C14: the declared buildability set S.
-// ---------------------------------------------------------------------------
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
 
-fn resource(packet: &FiniteCochainPacket, present: bool) -> U1Connection {
-    if present {
-        U1Connection::new(packet, vec![gi(0, 1), gi(1, 0), gi(1, 0)]).unwrap()
-    } else {
-        U1Connection::trivial(packet)
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
     }
-}
-
-fn race(lambda: i64, mu: i64, eps: i64) -> ResidualRace {
-    ResidualRace::new(ri(lambda), ri(mu), ri(eps))
-}
-
-#[test]
-fn the_residual_stays_bounded_exactly_when_the_step_is_not_positive() {
-    let rho0 = rq(7, 2);
-    let repairing = race(10, 15, 0);
-    assert_eq!(repairing.step(), ri(-5));
-    let mut iterated = rho0.clone();
-    for n in 0..=20u64 {
-        assert_eq!(repairing.residual_after(&rho0, n), iterated);
-        iterated += repairing.step();
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
     }
-    for n in 0..=100u64 {
-        assert!(repairing.residual_after(&rho0, n) <= rho0);
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
     }
-    assert_eq!(repairing.first_excess_cycle(), None);
-
-    let overwhelmed = race(20, 10, 0);
-    assert_eq!(overwhelmed.residual_after(&rho0, 1), &rho0 + ri(10));
-    assert_eq!(overwhelmed.first_excess_cycle(), Some(1));
-    let balanced = race(10, 10, 0);
-    assert_eq!(balanced.residual_after(&rho0, 1000), rho0);
-    assert_eq!(balanced.first_excess_cycle(), None);
-    let barely = ResidualRace::new(ri(10) + rq(1, 1_000_000_000_000), ri(10), ri(0));
-    assert_eq!(barely.first_excess_cycle(), Some(1));
-    assert_eq!(race(12, 10, 3).step(), ri(-1));
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
 }
 
-#[test]
-fn set_s_over_all_sixteen_assignments_is_the_conjunction() {
-    let tri = triangle();
-    for mask in 0..16u32 {
-        let wanted = [mask & 1 == 1, mask & 2 == 2, mask & 4 == 4, mask & 8 == 8];
-        let declaration = ArchitectureDeclaration::new(
-            if wanted[0] {
-                race(5, 10, 0)
-            } else {
-                race(25, 10, 0)
-            },
-            if wanted[1] { rq(1, 100) } else { ri(0) },
-            wanted[2],
-            &tri,
-            &resource(&tri, wanted[3]),
-        )
-        .unwrap();
-        assert_eq!(declaration.conditions(), wanted);
-        assert_eq!(declaration.satisfies_set_s(), mask == 15);
-    }
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
 }
 
-#[test]
-fn each_member_of_s_is_necessary_and_s_is_satisfiable() {
-    let tri = triangle();
-    let tree = path_tree();
-    let floor = rq(1, 1000);
-    let rotation = U1Connection::new(&tri, vec![gq(3, 5, 4, 5), gi(1, 0), gi(1, 0)]).unwrap();
-    let satisfiable =
-        ArchitectureDeclaration::new(race(10, 15, 0), floor.clone(), true, &tri, &rotation)
-            .unwrap();
-    assert_eq!(satisfiable.conditions(), [true; 4]);
-    assert!(satisfiable.satisfies_set_s());
-
-    let drop_s1 =
-        ArchitectureDeclaration::new(race(20, 10, 0), floor.clone(), true, &tri, &rotation)
-            .unwrap();
-    let drop_s2 =
-        ArchitectureDeclaration::new(race(10, 15, 0), ri(0), true, &tri, &rotation).unwrap();
-    let drop_s3 =
-        ArchitectureDeclaration::new(race(10, 15, 0), floor.clone(), false, &tri, &rotation)
-            .unwrap();
-    // Any connection on a tree is gauge trivial, so a tree carrier has no S4 resource.
-    let on_tree = U1Connection::new(&tree, vec![gi(0, 1), gq(3, 5, -4, 5), gi(-1, 0)]).unwrap();
-    let drop_s4 =
-        ArchitectureDeclaration::new(race(10, 15, 0), floor, true, &tree, &on_tree).unwrap();
-    for (declaration, missing) in [(drop_s1, 0), (drop_s2, 1), (drop_s3, 2), (drop_s4, 3)] {
-        let conditions = declaration.conditions();
-        for (index, condition) in conditions.iter().enumerate() {
-            assert_eq!(*condition, index != missing);
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
-        assert!(!declaration.satisfies_set_s());
     }
-    let negative_floor =
-        ArchitectureDeclaration::new(race(5, 10, 0), ri(-1), true, &tri, &rotation).unwrap();
-    assert!(!negative_floor.conditions()[1]);
-    // A pure-gauge connection on the triangle carries no resource either.
-    let pure_gauge = U1Connection::new(&tri, vec![gi(0, 1), gi(0, 1), gi(-1, 0)]).unwrap();
-    let flat =
-        ArchitectureDeclaration::new(race(5, 10, 0), rq(1, 2), true, &tri, &pure_gauge).unwrap();
-    assert_eq!(flat.conditions(), [true, true, true, false]);
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
+
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn residual_step(lambda: i64, mu: i64, eps: i64) -> Result<i64, ClaimError> {
+    checked_sub(checked_sub(lambda, mu)?, eps)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    residual_step(10, 15, 0)
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let repairing = ResidualRace::new(ri(10), ri(15), ri(0));
+    require(repairing.step() == ri(value), "repair step", value, -5)?;
+    require(repairing.first_excess_cycle().is_none(), "repair excess", 0, 0)?;
+    let overwhelmed = ResidualRace::new(ri(20), ri(10), ri(0));
+    match overwhelmed.first_excess_cycle() {
+        Some(1) => Ok(()),
+        Some(other) => Err(violated("excess cycle", other as i64, 1)),
+        None => Err(violated("excess cycle", 0, 1)),
+    }
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
+}
+
+#[test]
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
+}
+
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

@@ -128,18 +128,15 @@ def test_m5_session_result_value_object_exact_type_equality():
     res2 = SessionResult(terminal_status="ADMITTED", admitted=1, refused=0, turn_records=({"turn": 1},))
     res_diff = SessionResult(terminal_status="REFUSED", admitted=0, refused=1, turn_records=())
 
-    # Exact equality across identical contents
     assert res1 == res2
     assert res1 != res_diff
 
-    # Exact type guard rejects cross-class confusion without error
     fake_dict = {"terminal_status": "ADMITTED", "admitted": 1, "refused": 0, "turn_records": ({"turn": 1},)}
     assert res1 != fake_dict
     assert res1 != "ADMITTED"
     assert res1 != 42
     assert res1 is not None
 
-    # Immutability: frozen dataclass prohibits attribute mutation
     with pytest.raises(Exception):
         res1.terminal_status = "MUTATED"
 

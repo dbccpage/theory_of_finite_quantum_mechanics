@@ -1,8 +1,3 @@
-//! Entrypoint: consolidate.
-//!
-//! Two finite weight ledgers consolidate by exact addition. The consolidated
-//! total equals the sum of the totals, and it equals the entrywise sum read
-//! from the other end.
 
 pub fn run_consolidate() -> Result<(), String> {
     let left = [1i64, 4, 2, 7];

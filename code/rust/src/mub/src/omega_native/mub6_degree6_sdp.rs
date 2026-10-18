@@ -1,14 +1,3 @@
-//! Target Q3: experimental rational coefficient-matrix diagnostics.
-//!
-//! AuthorityEffect: None.
-//!
-//! The proposed lifts are not validated projector moment matrices. They fail a
-//! repeated-standard-basis positivity control, and their real cyclotomic terms need
-//! not be rational. Diagnostic builders explicitly project onto the constant
-//! power-basis coefficient. This is not an ordered-field embedding or a
-//! positivity-preserving map. Negative traces concern only the constructed rational
-//! matrices; they do not certify a candidate or a Lasserre relaxation.
-//! The former certification entry points fail closed.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -31,7 +20,6 @@ pub const SCOPE_STRING: &str = "experimental_coefficient_projection_only_no_mome
 pub const DEG6_INVARIANT_DIM: usize = 21;
 pub const DEG6_EXTENDED_DIM: usize = 35;
 
-/// Experimental 21x21 coefficient matrix; projector moment semantics are unverified.
 pub fn build_degree6_invariant_diagnostic_matrix(
     g: &[Vec<Cyc24>],
 ) -> Result<Vec<Vec<BigRational>>, String> {
@@ -54,10 +42,8 @@ pub fn build_degree6_invariant_diagnostic_matrix(
     let n = DEG6_INVARIANT_DIM;
     let mut m6 = vec![vec![BigRational::zero(); n]; n];
 
-    // 1. Base identity <1>
     m6[0][0] = BigRational::one();
 
-    // 2. Linear projector sums A_a (indices 1..4)
     for a in 0..NUM_BASES {
         let idx_a = 1 + a;
         m6[0][idx_a] = BigRational::one();
@@ -84,7 +70,6 @@ pub fn build_degree6_invariant_diagnostic_matrix(
         }
     }
 
-    // 3. Projector pairs P_{ab} (indices 5..10) and Q_{ab} (indices 11..16)
     for (p_idx, &(a, b)) in pairs.iter().enumerate() {
         let idx_p = 5 + p_idx;
         let idx_q = 11 + p_idx;
@@ -110,13 +95,11 @@ pub fn build_degree6_invariant_diagnostic_matrix(
         let exp_p = &sixth * &diag_mod_sq;
         let exp_q = &sixth * &off_mod_sq;
 
-        // Moments with 1
         m6[0][idx_p] = exp_p.clone();
         m6[idx_p][0] = exp_p.clone();
         m6[0][idx_q] = exp_q.clone();
         m6[idx_q][0] = exp_q.clone();
 
-        // Moments with A_a and A_b
         m6[1 + a][idx_p] = exp_p.clone();
         m6[idx_p][1 + a] = exp_p.clone();
         m6[1 + b][idx_p] = exp_p.clone();
@@ -136,12 +119,10 @@ pub fn build_degree6_invariant_diagnostic_matrix(
             }
         }
 
-        // Diagonal moments <P_{ab}^2> and <Q_{ab}^2>
         m6[idx_p][idx_p] = exp_p;
         m6[idx_q][idx_q] = exp_q;
     }
 
-    // Cross-pair interactions
     for (p1, &(a1, b1)) in pairs.iter().enumerate() {
         for (p2, &(a2, b2)) in pairs.iter().enumerate() {
             if p1 < p2 {
@@ -160,7 +141,6 @@ pub fn build_degree6_invariant_diagnostic_matrix(
         }
     }
 
-    // 4. Degree-3 Triples T_{abc} (indices 17..20)
     let sixth = BigRational::new(1.into(), 6.into());
     for (t_idx, &(a, b, c)) in triples.iter().enumerate() {
         let idx_t = 17 + t_idx;
@@ -181,17 +161,14 @@ pub fn build_degree6_invariant_diagnostic_matrix(
 
         let exp_t = &sixth * &bargmann_sum;
 
-        // Moment with 1
         m6[0][idx_t] = exp_t.clone();
         m6[idx_t][0] = exp_t.clone();
 
-        // Moment with A_d
         for d in 0..NUM_BASES {
             m6[1 + d][idx_t] = exp_t.clone();
             m6[idx_t][1 + d] = exp_t.clone();
         }
 
-        // Moment with P_{ab}
         for (p_idx, &(p_a, p_b)) in pairs.iter().enumerate() {
             let idx_p = 5 + p_idx;
             let idx_q = 11 + p_idx;
@@ -208,7 +185,6 @@ pub fn build_degree6_invariant_diagnostic_matrix(
             m6[idx_t][idx_q] = q_val;
         }
 
-        // Diagonal moment <T_{abc}^2>
         let exp_t_diag = &sixth * diag_cubed_sum;
         m6[idx_t][idx_t] = if exp_t_diag > BigRational::zero() {
             exp_t_diag
@@ -239,7 +215,6 @@ pub fn build_degree6_invariant_diagnostic_matrix(
     Ok(m6)
 }
 
-/// Experimental 35x35 coefficient matrix; projector moment semantics are unverified.
 pub fn build_degree6_extended_diagnostic_matrix(
     g: &[Vec<Cyc24>],
 ) -> Result<Vec<Vec<BigRational>>, String> {
@@ -263,7 +238,6 @@ pub fn build_degree6_extended_diagnostic_matrix(
     let mut m6 = vec![vec![BigRational::zero(); n]; n];
     let sixth = BigRational::new(1.into(), 6.into());
 
-    // 1. 25x25 Degree-2 block
     m6[0][0] = BigRational::one();
     for idx in 0..GRAMIAN_DIM {
         m6[0][idx + 1] = sixth.clone();
@@ -292,7 +266,6 @@ pub fn build_degree6_extended_diagnostic_matrix(
         }
     }
 
-    // 2. Pair blocks P_{ab} (indices 25..30)
     for (p_idx, &(a, b)) in pairs.iter().enumerate() {
         let col_p = 25 + p_idx;
         let mut diag_mod_sq = BigRational::zero();
@@ -313,7 +286,6 @@ pub fn build_degree6_extended_diagnostic_matrix(
         m6[col_p][col_p] = exp_p;
     }
 
-    // 3. Triple blocks T_{abc} (indices 31..34)
     for (t_idx, &(a, b, c)) in triples.iter().enumerate() {
         let col_t = 31 + t_idx;
         let mut bargmann_sum = BigRational::zero();
@@ -348,7 +320,6 @@ pub fn build_degree6_extended_diagnostic_matrix(
 pub use crate::omega_native::exact::dual_witness::DualWitnessRational;
 
 
-/// PSD weight matrix for the experimental X=0 coefficient matrix.
 pub fn build_invariant_dual_witness_x0(strict: bool) -> DualWitnessRational {
     let mut z = vec![BigRational::zero(); DEG6_INVARIANT_DIM];
     z[0] = -BigRational::one();
@@ -376,7 +347,6 @@ pub fn build_invariant_dual_witness_x0(strict: bool) -> DualWitnessRational {
     }
 }
 
-/// PSD weight matrix for the experimental S6 coefficient matrix.
 pub fn build_extended_dual_witness_s6(strict: bool) -> DualWitnessRational {
     let mut z = vec![BigRational::zero(); DEG6_EXTENDED_DIM];
     z[0] = BigRational::from_integer(12.into());
@@ -408,7 +378,6 @@ pub fn build_extended_dual_witness_s6(strict: bool) -> DualWitnessRational {
     }
 }
 
-/// Exact trace and positive-pivot diagnostics for a specified rational matrix.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DualWitnessReceipt {
     pub target_description: String,
@@ -421,7 +390,6 @@ pub struct DualWitnessReceipt {
     pub pivots: Vec<String>,
 }
 
-/// Moment report.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Degree6MomentReport {
     pub invariant_dimension: usize,
@@ -431,7 +399,6 @@ pub struct Degree6MomentReport {
     pub details: String,
 }
 
-/// Diagnostic receipt; complete and moment_semantics_verified remain false.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Degree6DiagnosticReport {
     pub schema_version: String,
@@ -450,9 +417,7 @@ pub struct Degree6DiagnosticReport {
     pub moment_semantics_verified: bool,
 }
 
-/// Evaluate two experimental coefficient matrices without candidate certification.
 pub fn evaluate_target_q3_diagnostics() -> Result<Degree6DiagnosticReport, String> {
-    // 1. Diagnose the X=0 coefficient matrix
     let g_diag = build_block_diagonal_gramian();
     let m6_diag = build_degree6_invariant_diagnostic_matrix(&g_diag)?;
     let w_x0 = build_invariant_dual_witness_x0(true);
@@ -479,7 +444,6 @@ pub fn evaluate_target_q3_diagnostics() -> Result<Degree6DiagnosticReport, Strin
         pivots: pivots_x0.iter().map(|p| p.to_string()).collect(),
     };
 
-    // 2. Diagnose the synthetic S6 coefficient matrix
     let g_synth = canonical_quad_gramian();
     let m6_synth = build_degree6_extended_diagnostic_matrix(&g_synth)?;
     let w_s6 = build_extended_dual_witness_s6(true);
@@ -531,17 +495,14 @@ pub fn evaluate_target_q3_diagnostics() -> Result<Degree6DiagnosticReport, Strin
     })
 }
 
-/// Certification is unavailable; use evaluate_target_q3_diagnostics for exploration.
 pub fn solve_target_q3_degree6_certificate() -> Result<(), String> {
     Err("MissingProofObligation: valid projector moment identities and a positivity-preserving exact field representation are required".into())
 }
 
-/// No sound projector-moment construction is supplied.
 pub fn build_degree6_invariant_moment_matrix(_g: &[Vec<Cyc24>]) -> Result<(), String> {
     Err("MissingProofObligation: valid projector moment identities and a positivity-preserving exact field representation are required".into())
 }
 
-/// No sound projector-moment construction is supplied.
 pub fn build_degree6_extended_moment_matrix(_g: &[Vec<Cyc24>]) -> Result<(), String> {
     Err("MissingProofObligation: valid projector moment identities and a positivity-preserving exact field representation are required".into())
 }

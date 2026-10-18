@@ -1,9 +1,7 @@
-// AuthorityEffect: None.
 use num_rational::BigRational;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
-/// Canonical Layer IDs for the nine runtime stages of CODA.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 #[allow(non_camel_case_types)]
 #[repr(u8)]
@@ -36,7 +34,6 @@ impl LayerId {
     }
 }
 
-/// Audit record emitted by each CODA layer evaluation.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LayerExecutionRecord {
     pub layer_id: LayerId,
@@ -68,7 +65,6 @@ impl LayerExecutionRecord {
     }
 }
 
-/// Machine-verifiable dual witness functional certifying an exact quotient obstruction.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DualWitness {
     pub vector: Vec<BigRational>,
@@ -97,7 +93,6 @@ impl DualWitness {
     }
 }
 
-/// Firewall routing decision for Layer 8 FDA.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum FirewallDecision {
     PermitAuthorized,
@@ -105,7 +100,6 @@ pub enum FirewallDecision {
     RouteRefused,
 }
 
-/// Definitive 3-way disjoint coproduct partition for Master Normal Form.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum TerminalKind {
     Authorized,
@@ -113,7 +107,6 @@ pub enum TerminalKind {
     Refused,
 }
 
-/// Legacy authority-token metadata; no verification is provided by this crate.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AuthorityToken {
     pub token_id: String,
@@ -123,7 +116,6 @@ pub struct AuthorityToken {
     pub timestamp_iso: String,
 }
 
-/// Evaluated residual pair (Phi_1, Gamma_2).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ResidualPair {
     pub phi1: BigRational,
@@ -145,7 +137,6 @@ impl ResidualPair {
     }
 }
 
-/// Untrusted grant request; strings do not verify a signer, scope, or freshness.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExternalAuthorityGrant {
     pub grant_id: String,
@@ -153,7 +144,6 @@ pub struct ExternalAuthorityGrant {
     pub grantee: String,
 }
 
-/// Canonical problem instance containing finite cochains, profiles, and sections.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ProblemInstance {
     pub problem_id: String,
@@ -194,7 +184,6 @@ impl ProblemInstance {
     }
 }
 
-/// Definitive outcome of the 9-stage Master Normal Form pipeline.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MasterNormalFormOutcome {
     pub problem_id: String,

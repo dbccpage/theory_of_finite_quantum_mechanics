@@ -28,7 +28,6 @@ from omega_engine.crates.majorana.certificates.ledger import (
 
 REPORT = Path(__file__).resolve().parents[1] / "artifacts" / "tetron_homology_report.json"
 
-# A small carrier with a nonzero image, exercised through the real builder.
 D0 = [[1, 0], [1, 1], [0, 1]]
 D1 = [[0, 0, 0]]
 RESIDUAL = [1, 1, 0]
@@ -49,7 +48,7 @@ def test_clean_ledger_verifies(tmp_path: Path) -> None:
 @pytest.mark.parametrize(
     "field",
     [
-        "reason",              # the field the review found unguarded
+        "reason",
         "terminal_status",
         "interpretation",
         "certificate_alpha",
@@ -88,7 +87,6 @@ def test_every_row_field_is_either_replayed_or_a_declared_input() -> None:
     inputs = {"D0", "D1", "residual", "budget", "instance"}
     derived = set(row) - inputs
     assert derived, "the row must carry derived fields"
-    # `reason` is the specific field the review found on the wrong side.
     assert "reason" in derived
     assert inputs <= set(row), "every declared input must appear in the row"
 

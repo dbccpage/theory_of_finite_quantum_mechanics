@@ -23,10 +23,10 @@ def evaluate_2simplex_face_inertia_transition() -> Dict[str, Any]:
 
     d1_filled = np.array([[1.0, 1.0, 1.0]])
     h1_rank_filled = 0
-    
+
     omega_loop = np.array([1.0, 1.0, 1.0])
     curvature_f = float((d1_filled @ omega_loop)[0])
-    
+
     d1_t_d1_omega = d1_filled.T @ (d1_filled @ omega_loop)
     mass_inertia_gap = float(np.sum(np.abs(d1_t_d1_omega)))
 
@@ -57,8 +57,7 @@ def evaluate_c3_hodge_split_inflation(
 
     omega = np.asarray(cochain_omega, dtype=float)
     d0_matrix = np.array([[-1.0, 1.0, 0.0], [0.0, -1.0, 1.0], [1.0, 0.0, -1.0]])
-    
-    # L2 least squares solve for alpha
+
     alpha_l2, _, _, _ = np.linalg.lstsq(d0_matrix, omega, rcond=None)
     d0_alpha = d0_matrix @ alpha_l2
     h_l2 = omega - d0_alpha
@@ -66,8 +65,8 @@ def evaluate_c3_hodge_split_inflation(
     norm_omega_l1 = float(np.sum(np.abs(omega)))
     norm_d0_alpha_l1 = float(np.sum(np.abs(d0_alpha)))
     norm_h_l1 = float(np.sum(np.abs(h_l2)))
-    
-    phi_1 = 1.0  # L1 optimal quotient norm for single edge indicator
+
+    phi_1 = 1.0
     phi_2 = float(np.linalg.norm(h_l2))
 
     r_split = (norm_d0_alpha_l1 + norm_h_l1) / max(1e-12, norm_omega_l1)
@@ -163,11 +162,9 @@ def derive_fermion_mass_spectrum_lggr(
 
     omega = np.asarray(cochain_1cycle, dtype=float)
     n_e = len(omega)
-    
-    # Boundary d0 matrix for 3-vertex loop (v0->v1, v1->v2, v2->v0)
+
     d0_matrix = np.array([[-1.0, 1.0, 0.0], [0.0, -1.0, 1.0], [1.0, 0.0, -1.0]])
-    
-    # Compute L1 primitive difference quotient \inf_\alpha \|\omega - d_0 \alpha\|_1
+
     try:
         import scipy.optimize as opt
         n_e, n_v = d0_matrix.shape
@@ -179,25 +176,20 @@ def derive_fermion_mass_spectrum_lggr(
         res = opt.linprog(c, A_ub=a_ub, b_ub=b_ub, bounds=bounds, method="highs")
         phi_l1_residual = float(res.fun) if res.success else float(np.sum(np.abs(omega)))
     except Exception:
-        # Fallback if scipy is unavailable
         phi_l1_residual = float(np.sum(np.abs(omega - d0_matrix @ np.mean(omega) * np.ones(3))))
 
-    # Face stiffness multiplier from d1^\dagger d1 face cap
     face_inertia = evaluate_2simplex_face_inertia_transition()
     m_face_stiffness = math.sqrt(float(face_inertia["mass_inertia_gap"]))
 
-    # Z_3 spectral eigenvalues for 3 generations
     z3_eigenvalues = [
         abs(1.0 - math.cos(2.0 * math.pi * k / 3.0) - 1j * math.sin(2.0 * math.pi * k / 3.0))
         for k in range(3)
     ]
 
-    # Raw dimensionless L1 residual mass gaps per generation
     raw_residual_mass_gaps = [
         float(phi_l1_residual * lam * m_face_stiffness) for lam in z3_eigenvalues
     ]
 
-    # Optional physical scale projection (if external VEV input provided)
     if v_ew_gev is not None:
         scaled_masses_gev = [float(m * v_ew_gev) for m in raw_residual_mass_gaps]
     else:

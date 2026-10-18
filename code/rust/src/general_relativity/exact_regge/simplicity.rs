@@ -1,10 +1,3 @@
-//! Triangle area bivectors and the Barrett-Crane simplicity constraint.
-//!
-//! `Σ = (1/2) (r_j - r_i) ∧ (r_k - r_i)` in the caller's vertex order `(i, j, k)`.
-//! Simplicity is the vanishing of the pfaffian of `Σ`. The deficit
-//! `ε_h = 2π - Σ θ` is not computed.
-//!
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 

@@ -1,15 +1,3 @@
-//! Corrected d=10 canonical-triple wall status.
-//!
-//! This records the reproducible d=10 wall-value/stabilizer evidence without
-//! promoting it to a complete MUB(10) existence or nonexistence theorem. The
-//! authority boundary is deliberately narrower: high-precision critical value,
-//! PSLQ-miss evidence, and full single-qudit Clifford stabilizer census.
-//!
-//! The census, the f64 wall comparison and every status derived from them are
-//! computed by [`crate::omega_native::d10_gtfoc_cross_validation`]. The dps=460
-//! critical value, the Noah anchor and the PSLQ search come from high-precision
-//! scripts that are not in this repository. They are reported under
-//! [`D10RecordedHighPrecisionEvidence`] and never counted as discharged here.
 
 use crate::omega_native::float_check::d10_gtfoc_cross_validation::{
     d10_gtfoc_cross_validation_report, D10GtfocCrossValidationReport, MatchStatus,
@@ -42,11 +30,6 @@ pub enum D10WallAuthorityStatus {
     MissingGlobalWallCertificate,
 }
 
-/// Values from high-precision runs whose scripts are not in this repository.
-///
-/// Nothing here is recomputed. `agrees_with_f64_wall` is the one check this
-/// crate can make: the recorded wall prefix against the f64 wall value, within
-/// the f64 comparison tolerance.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct D10RecordedHighPrecisionEvidence {
     pub dps: usize,
@@ -88,10 +71,6 @@ pub fn current_d10_wall_status() -> D10WallStatusReport {
     d10_wall_status_from(d10_gtfoc_cross_validation_report())
 }
 
-/// Derives the wall status from a cross-validation report.
-///
-/// Every census count and status comes from `validation`; only the fields of
-/// [`D10RecordedHighPrecisionEvidence`] are recorded constants.
 pub fn d10_wall_status_from(validation: &D10GtfocCrossValidationReport) -> D10WallStatusReport {
     let comparison = &validation.wall_comparison;
     let value_reproduced = comparison.obstruction_matches && comparison.wall_matches;

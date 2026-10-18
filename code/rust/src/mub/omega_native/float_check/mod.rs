@@ -1,4 +1,3 @@
-//! float check modules for the omega-native MUB lane.
 #![allow(clippy::module_inception)]
 #[path = "../d10_gtfoc_cross_validation.rs"]
 pub mod d10_gtfoc_cross_validation;

@@ -1,8 +1,3 @@
-//! Finite labelled relational systems: strong report-respecting bisimulation.
-//!
-//! Labels index declared successor sets, which may be empty or branching.
-//! This is exact set-level coalgebra, not trace equivalence, a clock, HoTT
-//! equivalence, or Kan fibrancy. Reports are caller-interned equality classes.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -25,9 +20,6 @@ impl std::fmt::Display for RelationalError {
 }
 impl std::error::Error for RelationalError {}
 
-/// Least reflexive, transitive relation containing the supplied finite edges.
-/// Empty carriers are allowed. Cycles identify preorder-equivalent states;
-/// they do not establish antisymmetry on the original carrier.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FinitePreorder {
     relation: Vec<Vec<bool>>,
@@ -92,9 +84,6 @@ pub struct RelationalQuotient {
     pub quotient: FiniteRelational,
 }
 
-/// Nonempty reachability classifies raw succession. Cycles forbid a strict
-/// order on the original carrier. SCC condensation supplies a strict order
-/// on a *different* carrier; internal transitions do not become strict edges.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SuccessionClassification {
     pub nonempty_reachability: Vec<Vec<bool>>,
@@ -178,8 +167,6 @@ impl FiniteRelational {
         )
     }
 
-    /// Equality partitions are bisimulations exactly when related states have
-    /// equal reports and identical sets of successor blocks for every label.
     pub fn is_report_bisimulation_partition(&self, partition: &[usize]) -> bool {
         if partition.len() != self.state_count() {
             return false;
@@ -203,8 +190,6 @@ impl FiniteRelational {
         true
     }
 
-    /// Every strict round splits at least one block. At most n-1 strict
-    /// rounds occur; the repeated stable partition is not stored twice.
     pub fn bisimulation_quotient(&self) -> RelationalQuotient {
         let mut partition = normalize(self.reports.clone());
         let mut partitions = vec![partition.clone()];
@@ -246,16 +231,10 @@ impl FiniteRelational {
         }
     }
 
-    /// Receipts are replayed from the actual system, including maximality:
-    /// a merely stable but unnecessarily fine partition is rejected.
     pub fn verify_quotient(&self, receipt: &RelationalQuotient) -> bool {
         &self.bisimulation_quotient() == receipt
     }
 
-    /// Unpointed behavioral classification. Report IDs and label positions
-    /// must have the same interpretation in both inputs. Equality of the
-    /// represented bisimulation classes is equivalent to isomorphism of
-    /// their minimal quotients, without choosing an initial state.
     pub fn same_behavior_set(&self, other: &Self) -> bool {
         if self.label_count != other.label_count {
             return false;
@@ -276,9 +255,6 @@ impl FiniteRelational {
             == classes[offset..].iter().copied().collect::<BTreeSet<_>>()
     }
 
-    /// A surjective bounded morphism has equal reports and exactly the
-    /// target successor set as the image of each source successor set.
-    /// Forward edge preservation alone does not suffice.
     pub fn factor_through_bounded_quotient(
         &self,
         target: &Self,
@@ -325,9 +301,6 @@ impl FiniteRelational {
             .collect())
     }
 
-    /// Classify the union of *declared* labelled transitions without selecting
-    /// or orienting new transitions from reports. Index enumeration affects
-    /// only identifiers, not reachability, SCCs, or the component strict order.
     pub fn succession_classification(&self) -> SuccessionClassification {
         let n = self.state_count();
         let mut reach = vec![vec![false; n]; n];

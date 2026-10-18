@@ -62,7 +62,6 @@ class AliasAdapterRefusal(ValueError):
         super().__init__(f"{token}: {detail}" if detail else token)
 
 
-#: The four supported target axes (live registry enums; no duplicates).
 SUPPORTED_AXES: Tuple[Type[enum.Enum], ...] = (
     DiagnosticClass,
     RoutingTerminal,
@@ -70,8 +69,6 @@ SUPPORTED_AXES: Tuple[Type[enum.Enum], ...] = (
     CohomologicalStatus,
 )
 
-# Declared alias rows per axis (paper spelling -> registry member). Native
-# registry spellings resolve as identity rows and are NOT repeated here.
 _ALIAS_ROWS: Dict[Type[enum.Enum], Dict[str, enum.Enum]] = {
     RoutingTerminal: {
         "LiftRequired": RoutingTerminal.RequiresLift,
@@ -93,7 +90,7 @@ _ALIAS_ROWS: Dict[Type[enum.Enum], Dict[str, enum.Enum]] = {
         "OpenResidual": CohomologicalStatus.ActiveClosureFailure,
         "OpenObstruction": CohomologicalStatus.ActiveClosureFailure,
     },
-    ExtensionStatus: {},  # identity-only: the paper uses registry spellings
+    ExtensionStatus: {},
 }
 
 

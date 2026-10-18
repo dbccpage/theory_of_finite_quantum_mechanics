@@ -216,7 +216,6 @@ class AdmittedComplexV1:
             raise ValueError("d1 * d0 != 0; complex composition failed")
 
 
-# Canonical induced cochain class and backward-compatible alias
 ObservedEdgeField = InducedCochain
 
 

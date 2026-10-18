@@ -8,7 +8,7 @@ module for non-prototype use. Nothing here terminalizes or enforces anything.
 
 from typing import Dict, List, Optional, Set, Tuple
 
-from .finite_poset import FinitePoset  # noqa: E402
+from .finite_poset import FinitePoset
 
 
 

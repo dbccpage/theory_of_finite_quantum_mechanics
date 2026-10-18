@@ -1,9 +1,3 @@
-//! Campaign module contextuality_f2.
-//!
-//! The five-cycle exclusivity graph has independence number 2, by exhaustive
-//! search of its 32 vertex subsets. The fractional assignment `1/2` on every
-//! vertex sums to `5/2` and puts mass 1 on every edge, so the `F_2` packing
-//! bound is not the fractional one.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;

@@ -1,30 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Chapter 19: the finite quantum-instrument adapter, conditional on a declared Kraus
-//! family. Executable finite evidence for `WDP-CH19-P13` and `WDP-CH19-P14`; the residual
-//! `WDP-CH19-O04` (which instrument, if any, a physical apparatus realizes) stays open.
-//!
-//! A qubit instrument over Q(i) is a family `{K_o}` of 2 x 2 Gaussian-rational matrices
-//! with `sum_o K_o^dagger K_o = I`. A [`QubitState`] is a finite rational mixture
-//! `sum_j w_j |v_j><v_j|` with `w_j >= 0`, `v_j` in Q(i)^2 and `sum_j w_j N(v_j) = 1`.
-//!
-//! - `WDP-CH19-P13`: the outcome probability is `p_o = tr(E_o rho) = sum_j w_j N(K_o v_j)`
-//!   with the effect `E_o = K_o^dagger K_o` ([`QubitInstrument::outcome_probability`] and
-//!   [`QubitInstrument::outcome_probability_trace_formula`] agree exactly), the `p_o` sum
-//!   to one, and the post-state is `K_o rho K_o^dagger / p_o` when `p_o > 0`
-//!   ([`QubitInstrument::post_state`]). [`QubitInstrument::outcome_run_table`] turns the
-//!   probabilities into run counts over a common denominator, and `adapt_exact` on the
-//!   one-measurement cover reproduces `{p_o}` exactly.
-//! - `WDP-CH19-P14`: the effects `E_o` do not determine the instrument. The measure-and-
-//!   prepare instrument `K_o = |w><o|` (`N(w) = 1`) has the same effects
-//!   `{|0><0|, |1><1|}` as the Luders instrument [`luders_instrument`] and the same outcome
-//!   probabilities on every state, but a different post-state: from `|0><0|` the Luders
-//!   post-state is `|0><0|` and the measure-and-prepare post-state is `|w><w|`.
-//!
-//! Delegation: completeness `sum_o K_o^dagger K_o = I` is certified by
-//! `omega_quantum_physics::exact_channel::ExactKrausChannel::try_new`, which also carries
-//! the outcome-forgetting channel; matrices, adjoints, traces and outer products are
-//! `linear_algebra::exact_field` on the shared `BasicMatrix` over `cyclotomic::GaussianRat`. Only the
-//! outcome-indexed bookkeeping (probabilities, post-states, receipts) is local.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{involution, matrix as mx};
@@ -40,14 +13,12 @@ use crate::empirical_adapter::{adapt_exact, EmpiricalModel, MeasurementCover, Ru
 use crate::error::WdpError;
 use crate::types::{blake3_digest, AuthorityEffect};
 
-/// Cap on the number of runs in a table built from outcome probabilities.
 pub const MAX_RUNS: usize = 1_000_000;
 
 fn invalid(detail: String) -> WdpError {
     WdpError::InvalidInput { detail }
 }
 
-/// The 2 x 2 matrix with the given rows.
 pub fn qubit_matrix(rows: [[GaussianRat; 2]; 2]) -> BasicMatrix<GaussianRat> {
     BasicMatrix::<GaussianRat>::from_row_major(2, 2, rows.into_iter().flatten().collect())
         .expect("two declared rows of two entries")
@@ -57,14 +28,12 @@ fn norm_of(v: &[GaussianRat]) -> Rational {
     v.iter().fold(Rational::zero(), |acc, x| acc + x.norm_sq())
 }
 
-/// A finite rational mixture of pure qubit states with total trace one.
 #[derive(Debug, Clone)]
 pub struct QubitState {
     components: Vec<(Rational, [GaussianRat; 2])>,
 }
 
 impl QubitState {
-    /// Nonempty, all weights nonnegative, `sum_j w_j N(v_j) = 1`.
     pub fn new(components: Vec<(Rational, [GaussianRat; 2])>) -> Result<Self, WdpError> {
         if components.is_empty() {
             return Err(invalid("a state needs at least one component".to_string()));
@@ -81,7 +50,6 @@ impl QubitState {
         Ok(Self { components })
     }
 
-    /// The pure state `|v><v|` for a vector of norm one.
     pub fn pure(v: [GaussianRat; 2]) -> Result<Self, WdpError> {
         Self::new(vec![(ri(1), v)])
     }
@@ -90,7 +58,6 @@ impl QubitState {
         &self.components
     }
 
-    /// `rho = sum_j w_j |v_j><v_j|`, a 2 x 2 Hermitian matrix over Q(i).
     pub fn density_matrix(&self) -> Result<BasicMatrix<GaussianRat>, WdpError> {
         self.components
             .iter()
@@ -105,17 +72,14 @@ impl QubitState {
             })
     }
 
-    /// `tr(rho)`, computed from the density matrix.
     pub fn trace(&self) -> Result<Rational, WdpError> {
         Ok(hermitian_trace(&self.density_matrix()?)?)
     }
 
-    /// Whether the two mixtures have the same density matrix.
     pub fn same_density(&self, other: &QubitState) -> Result<bool, WdpError> {
         Ok(self.density_matrix()? == other.density_matrix()?)
     }
 
-    /// A canonical string of the density matrix, independent of the mixture presentation.
     pub fn canonical_string(&self) -> Result<String, WdpError> {
         let rho = self.density_matrix()?;
         let entries: Vec<String> = rho
@@ -128,33 +92,27 @@ impl QubitState {
     }
 }
 
-/// The digest recorded for one outcome of one run of an instrument on a state.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct InstrumentReceipt {
     pub outcome: usize,
     pub probability: Rational,
-    /// Blake3 of the canonical string of the post-state; `None` when `probability = 0`.
     pub post_state_digest: Option<String>,
     pub authority_effect: AuthorityEffect,
 }
 
-/// The one-measurement cover, run table and run count reproducing outcome probabilities.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct OutcomeRunTable {
     pub cover: MeasurementCover,
     pub table: RunTable,
-    /// `N`, the least number of runs clearing every denominator; outcome `o` has `N p_o`.
     pub runs: usize,
 }
 
-/// A qubit instrument: Kraus operators `K_o` with `sum_o K_o^dagger K_o = I`.
 #[derive(Debug, Clone)]
 pub struct QubitInstrument {
     channel: ExactKrausChannel,
 }
 
 impl QubitInstrument {
-    /// Certifies completeness through `ExactKrausChannel::try_new`.
     pub fn new(operators: Vec<BasicMatrix<GaussianRat>>, label: &str) -> Result<Self, WdpError> {
         let channel = ExactKrausChannel::try_new(2, 2, operators, label)?;
         Ok(Self { channel })
@@ -168,12 +126,10 @@ impl QubitInstrument {
         self.channel.operators()
     }
 
-    /// The outcome-forgetting channel `rho -> sum_o K_o rho K_o^dagger`.
     pub fn channel(&self) -> &ExactKrausChannel {
         &self.channel
     }
 
-    /// The effects `E_o = K_o^dagger K_o`.
     pub fn povm_effects(&self) -> Result<Vec<BasicMatrix<GaussianRat>>, WdpError> {
         self.operators()
             .iter()
@@ -187,7 +143,6 @@ impl QubitInstrument {
             .ok_or_else(|| invalid(format!("outcome {outcome} outside 0..{}", self.outcomes())))
     }
 
-    /// `p_o = sum_j w_j N(K_o v_j)`.
     pub fn outcome_probability(
         &self,
         outcome: usize,
@@ -203,7 +158,6 @@ impl QubitInstrument {
             })
     }
 
-    /// `p_o = tr(E_o rho)`, refused if the trace is not real.
     pub fn outcome_probability_trace_formula(
         &self,
         outcome: usize,
@@ -221,14 +175,12 @@ impl QubitInstrument {
         Ok(trace.re)
     }
 
-    /// `(p_0, ..., p_{k-1})`, summing to one.
     pub fn outcome_probabilities(&self, state: &QubitState) -> Result<Vec<Rational>, WdpError> {
         (0..self.outcomes())
             .map(|o| self.outcome_probability(o, state))
             .collect()
     }
 
-    /// `K_o rho K_o^dagger / p_o` as a mixture, or `None` when `p_o = 0`.
     pub fn post_state(
         &self,
         outcome: usize,
@@ -253,7 +205,6 @@ impl QubitInstrument {
         QubitState::new(components).map(Some)
     }
 
-    /// `sum_o K_o rho K_o^dagger`, by the outcome-forgetting channel.
     pub fn average_post_density(
         &self,
         state: &QubitState,
@@ -261,7 +212,6 @@ impl QubitInstrument {
         Ok(self.channel.apply(&state.density_matrix()?)?)
     }
 
-    /// The receipt of one outcome: its probability and the digest of its post-state.
     pub fn receipt(
         &self,
         outcome: usize,
@@ -280,20 +230,16 @@ impl QubitInstrument {
         })
     }
 
-    /// The receipts of every outcome, in order.
     pub fn receipts(&self, state: &QubitState) -> Result<Vec<InstrumentReceipt>, WdpError> {
         (0..self.outcomes())
             .map(|o| self.receipt(o, state))
             .collect()
     }
 
-    /// `N p_o` runs of outcome `o` on the one-measurement cover with `outcomes()` outcomes,
-    /// `N` the least common denominator of the probabilities (`WDP-CH19-P04` style).
     pub fn outcome_run_table(&self, state: &QubitState) -> Result<OutcomeRunTable, WdpError> {
         self.outcome_run_table_with_limit(state, MAX_RUNS)
     }
 
-    /// [`QubitInstrument::outcome_run_table`] refusing more than `max_runs` runs.
     pub fn outcome_run_table_with_limit(
         &self,
         state: &QubitState,
@@ -332,14 +278,12 @@ impl QubitInstrument {
         })
     }
 
-    /// `adapt_exact` of [`QubitInstrument::outcome_run_table`]: the empirical model `{p_o}`.
     pub fn outcome_model(&self, state: &QubitState) -> Result<EmpiricalModel, WdpError> {
         let runs = self.outcome_run_table(state)?;
         Ok(adapt_exact(&runs.cover, &runs.table)?)
     }
 }
 
-/// The Luders instrument `K_0 = |0><0|`, `K_1 = |1><1|`.
 pub fn luders_instrument() -> Result<QubitInstrument, WdpError> {
     let (zero, one) = (GaussianRat::zero(), GaussianRat::one());
     QubitInstrument::new(
@@ -351,13 +295,10 @@ pub fn luders_instrument() -> Result<QubitInstrument, WdpError> {
     )
 }
 
-/// The non-projective instrument `K_0 = diag(1, 3/5)`, `K_1 = diag(0, 4/5)`
-/// (`1 = 1` and `9/25 + 16/25 = 1`).
 pub fn non_projective_instrument() -> Result<QubitInstrument, WdpError> {
     non_projective_with_phase(GaussianRat::one(), "non_projective")
 }
 
-/// The same instrument with `K_1` multiplied by the phase `i`, exercising Q(i).
 pub fn complex_phase_instrument() -> Result<QubitInstrument, WdpError> {
     non_projective_with_phase(GaussianRat::i(), "complex_phase")
 }
@@ -377,8 +318,6 @@ fn non_projective_with_phase(phase: GaussianRat, label: &str) -> Result<QubitIns
     )
 }
 
-/// The measure-and-prepare instrument `K_o = |w><o|` for `N(w) = 1`: read the basis
-/// state `o`, then prepare `w`.
 pub fn measure_and_prepare_instrument(w: [GaussianRat; 2]) -> Result<QubitInstrument, WdpError> {
     if norm_of(&w) != ri(1) {
         return Err(invalid(format!(
@@ -397,9 +336,6 @@ pub fn measure_and_prepare_instrument(w: [GaussianRat; 2]) -> Result<QubitInstru
     )
 }
 
-/// A problem-bound receipt for a declared arbitrary-dimensional instrument.
-/// Digests bind the input density and ordered Kraus presentation (including
-/// outcome grouping), rather than only the probability/post-state payload.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct FiniteInstrumentReceipt {
     pub instrument_digest: String,
@@ -410,16 +346,12 @@ pub struct FiniteInstrumentReceipt {
     pub authority_effect: AuthorityEffect,
 }
 
-/// Arbitrary finite-dimensional quantum adapter. Mathematical operations belong
-/// to `omega_quantum_physics::exact_instrument`; WDP owns receipt binding/replay.
 #[derive(Debug, Clone)]
 pub struct FiniteQuantumInstrument {
     instrument: omega_quantum_physics::exact_instrument::ExactFiniteInstrument,
 }
 
 fn finite_matrix_digest(matrix: &BasicMatrix<GaussianRat>) -> String {
-    // BasicMatrix<GaussianRat> has an ordered row-major exact rational representation. This
-    // domain-separated encoding includes both dimensions and every entry.
     let mut encoding = format!("wdp-qi-matrix-v1;{}x{};", matrix.rows(), matrix.cols());
     for entry in matrix.as_slice() {
         encoding.push_str(&format!("{}+{}i;", entry.re, entry.im));
@@ -445,9 +377,6 @@ impl FiniteQuantumInstrument {
         &self.instrument
     }
 
-    /// Canonical digest of this ordered Kraus presentation. Mathematically
-    /// equivalent Kraus presentations may have different digests; replay binds
-    /// precisely the declared presentation, not a quotient by Kraus equivalence.
     pub fn canonical_digest(&self) -> String {
         let channel = self.instrument.channel();
         let mut encoding = format!(
@@ -457,7 +386,6 @@ impl FiniteQuantumInstrument {
             self.instrument.outcomes(),
         );
         for outcome in 0..self.instrument.outcomes() {
-            // The loop bounds are the validated instrument's own outcome count.
             let operators = self
                 .instrument
                 .operators_for_outcome(outcome)
@@ -494,9 +422,6 @@ impl FiniteQuantumInstrument {
         })
     }
 
-    /// Recompute from the caller's actual validated state and instrument. A
-    /// forged payload or a receipt for another input/instrument fails closed;
-    /// malformed outcome indices preserve the sovereign typed refusal.
     pub fn verify_receipt(
         &self,
         state: &omega_quantum_physics::exact_instrument::ExactDensityState,

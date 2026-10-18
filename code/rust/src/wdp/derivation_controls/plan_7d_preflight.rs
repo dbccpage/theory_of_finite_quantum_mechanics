@@ -1,4 +1,3 @@
-//! Staged PFP runner dependency, path, and budget-reservation preflight control for PLAN-7D-PREFLIGHT.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct RunnerPreflightConfig {

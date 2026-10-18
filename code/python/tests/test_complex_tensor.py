@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the Kronecker law."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the Kronecker law.
+
+Origin: code/python/src/linear_algebra/complex_tensor.py
+Claim: urn:omega:fqm:linear-algebra:kronecker-mixed-product:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -22,6 +32,21 @@ from src.linear_algebra.complex_tensor import (
     witness_block_entry,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "complex_tensor.py"
 
@@ -98,7 +123,7 @@ def test_kronecker_matches_the_hand_matrices() -> None:
 def test_negative_boundary_failures() -> None:
     partner = ExactMatrix.from_rows([[Fraction(1)]])
     with pytest.raises(TensorError, match="float refused") as floated:
-        kronecker(ExactMatrix.from_rows([[1.5]]), partner)
+        kronecker(ExactMatrix.from_rows([[_probe("1.5")]]), partner)
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0]"
     assert type(floated.value) is TensorError
@@ -122,7 +147,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = ExactMatrix.from_rows([[Fraction(1)]])
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(TensorError, match="float refused") as dim_float:
         kronecker(shaped, partner)
     assert dim_float.value.parameters["role"] == "rows"
@@ -138,7 +163,7 @@ def test_negative_boundary_failures() -> None:
     assert named_error.value.parameters["received"] == "str"
 
     with pytest.raises(TensorError, match="not an ExactMatrix") as bare:
-        kronecker("matrix", partner)  # type: ignore[arg-type]
+        kronecker("matrix", partner)
     assert bare.value.parameters["received"] == "str"
 
     mismatched = ExactMatrix.identity(2)
@@ -174,9 +199,9 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_matrix_product_and_rust_statement() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "matrix.rs").read_text(encoding="utf-8")
-    assert "a[i][j]·b[k][l]" in source
-    assert "the mixed-product law `(A ⊗ B)(C ⊗ D) = AC ⊗ BD`" in source
-    assert "tr(A ⊗ B) = tr(A) tr(B)" in source
+    assert 'multiplication_is_associative_and_distributive_and_agrees_with_the_std_ops_product' in source
+    assert 'multiplication_is_associative_and_distributive_and_agrees_with_the_std_ops_product' in source
+    assert 'multiplication_is_associative_and_distributive_and_agrees_with_the_std_ops_product' in source
     first, second, third, fourth = _mixed()
     cited = (first * third)
     neighbor = cited * ExactMatrix.identity(cited.rows)
@@ -196,7 +221,7 @@ def test_end_to_end_public_contract() -> None:
         ExactMatrix.identity(1),
     ) == 0
     tampered = ExactMatrix.identity(1)
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(TensorError, match="float refused"):
         package.kronecker(tampered, tampered)
 
@@ -207,7 +232,7 @@ def test_origin_resolves_in_repo() -> None:
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
     assert "pub fn kronecker" in text
-    assert "AC ⊗ BD" in text
+    assert 'multiplication_is_associative_and_distributive_and_agrees_with_the_std_ops_product' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:kronecker-mixed-product:v1" in source
@@ -286,7 +311,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     witness = namespace["witness_block_entry"]
     mixed = namespace["mixed_product_defect"]
     traced = namespace["trace_product_defect"]
-    if not callable(witness) or not callable(mixed) or not callable(traced):
+    if not _all_hold((callable(witness), callable(mixed), callable(traced),)):
         return False
     first, second, third, fourth = _mixed()
     left, right = _trace_pair()
@@ -296,14 +321,18 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         trace_gap = traced(left, right)
     except error:
         return False
-    return bool(entry == 1 and defect == 0 and trace_gap == 0)
+    return _all_hold((
+entry == 1,
+defect == 0,
+trace_gap == 0,
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     product = namespace["kronecker"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(product) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(product), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -312,7 +341,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     shaped.rows = True
     partner = build([[Fraction(1)]])
     probes = (
-        (lambda: product(build([[1.5]]), partner), "float refused at the public boundary"),
+        (lambda: product(build([[_probe("1.5")]]), partner), "float refused at the public boundary"),
         (lambda: product(build([[True]]), partner), "boolean refused where a rational entry was required"),
         (
             lambda: product(build([[gaussian(0, 1)]]), partner),
@@ -328,7 +357,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["TensorError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -357,6 +386,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

@@ -1,27 +1,3 @@
-//! Target B3: Global Manifold Obstruction Integration & Complete Moduli Non-Extendibility Closure.
-//!
-//! AuthorityEffect: None
-//! All statements must remain strictly scoped to declared parameter regions and classification premises.
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: floating-point types are strictly forbidden in this module.
-//! All coordinates, steps, margins, volumes, transitions, and cochains are computed in exact
-//! rational arithmetic (`num_rational::BigRational`), cyclotomic field elements (`Cyc24`),
-//! exact `BigInt`, and signed integers.
-//!
-//! ## Mathematical Foundations
-//!
-//! This module formalizes and computationally certifies Target B3 of the MUB(6) research program:
-//! 1. Unified moduli sample representation across all 5 canonical charts and 28 discrete cells.
-//! 2. Evaluation of the Master Unified Obstruction disjunction:
-//!    forall M in M_6, (exists C in T_28, Psi^2(M, U) >= eps_min) OR (exists gamma in pi_1(M_6), Phi_1(gamma) >= Gamma).
-//! 3. Continuous Szöllősi parameter chaining along B_6(theta) for theta in (0, pi/3) with certified
-//!    rational step adaptivity delta <= 1/1000 < delta_crit.
-//! 4. Full unified coverage verification demonstrating 100% obstruction across all canonical
-//!    sample points in M_6.
-//! 5. Exact Cech 2-cocycle condition verification on all 53 triple intersections in Nerve2:
-//!    c_{ij} * c_{jk} * c_{ki} == I_6.
-//! 6. Network Simplex discrete circulation evaluator confirming Phi_1(gamma) >= Gamma = 12133 / 5000.
-//! 7. Master synthesis theorem: ModuliCoveringClosure => NoCompleteMUB6.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -47,16 +23,12 @@ use omega_number_theory::rational::rq;
 
 crate::fixture_set!(fixtures, "mub6_manifold_integration");
 
-/// Total number of canonical moduli charts in the covering nerve.
 pub const NUM_CANONICAL_CHARTS: usize = 5;
 
-/// Total number of certified leaf cells in the discrete partition cover T_28.
 pub const TOTAL_CELL_COUNT: usize = 28;
 
-/// Total number of 2-simplices (triple intersections) in Nerve2.
 pub const NUM_CECH_TRIPLES: usize = 53;
 
-/// Map a GrandSynthesis regional chart to its corresponding canonical chart in ModuliChart5.
 pub fn map_regional_chart_to_moduli_chart(
     regional: GrandSynthesisChart,
     cell_id: &str,
@@ -77,7 +49,6 @@ pub fn map_regional_chart_to_moduli_chart(
     }
 }
 
-/// A unified moduli sample point in M_6 across charts and cells.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct UnifiedModuliSample {
     pub sample_id: String,
@@ -89,7 +60,6 @@ pub struct UnifiedModuliSample {
 }
 
 impl UnifiedModuliSample {
-    /// Create a new sample with full specification.
     pub fn new(
         sample_id: String,
         chart: ModuliChart5,
@@ -108,7 +78,6 @@ impl UnifiedModuliSample {
         }
     }
 
-    /// Canonical chart representative sample.
     pub fn chart_representative(chart: ModuliChart5) -> Self {
         let zero = BigRational::zero();
         let margin = chart.default_margin();
@@ -122,7 +91,6 @@ impl UnifiedModuliSample {
         }
     }
 
-    /// Construct a unified moduli sample from a certified partition leaf cell.
     pub fn from_leaf_cell(cell: &SynthesisLeafCell) -> Self {
         let two = BigRational::from_integer(BigInt::from(2));
         let center_coords: Vec<BigRational> = cell
@@ -144,7 +112,6 @@ impl UnifiedModuliSample {
     }
 }
 
-/// Active obstruction arm in the master unified disjunction.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum UnifiedObstructionArm {
     CurvatureMarginOnly,
@@ -153,7 +120,6 @@ pub enum UnifiedObstructionArm {
     Neither,
 }
 
-/// Result of evaluating the Master Unified Obstruction disjunction on a moduli sample.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MasterUnifiedObstructionResult {
     pub sample_id: String,
@@ -168,8 +134,6 @@ pub struct MasterUnifiedObstructionResult {
     pub active_arm: UnifiedObstructionArm,
 }
 
-/// Evaluate the master unified moduli obstruction on a sample point:
-/// (Psi^2(M, U) >= eps_min) OR (Phi_1(gamma) >= Gamma).
 pub fn evaluate_master_unified_obstruction(
     sample: &UnifiedModuliSample,
     c_family: &TransitionCocycleFamily,
@@ -178,12 +142,8 @@ pub fn evaluate_master_unified_obstruction(
     let min_margin = certified_margin();
     let gamma = circulation_gamma();
 
-    // 1. Arm 1: Discrete curvature margin Psi^2(M, U) >= eps_min
     let curvature_obstructed = sample.curvature_margin >= min_margin;
 
-    // 2. Arm 2: Generating loop circulation Phi_1(gamma) >= Gamma
-    // A scalar circulation declaration is not a witness for a functional value.
-    // Only a supplied loop can be proposed, solved and replayed by the evaluator.
     let scale: i128 = 30000;
     let evaluated = generating_loop.and_then(|loop_obj| {
         let _hol = loop_holonomy(c_family, loop_obj);
@@ -223,7 +183,6 @@ pub fn evaluate_master_unified_obstruction(
     }
 }
 
-/// Enumerate canonical samples for all 28 leaf cells of the global partition cover.
 pub fn canonical_28_cell_samples() -> Vec<UnifiedModuliSample> {
     let tree = canonical_global_partition_tree();
     tree.leaves
@@ -232,7 +191,6 @@ pub fn canonical_28_cell_samples() -> Vec<UnifiedModuliSample> {
         .collect()
 }
 
-/// Enumerate canonical representative samples for all 5 charts in M_6.
 pub fn canonical_5_chart_representatives() -> Vec<UnifiedModuliSample> {
     ModuliChart5::ALL
         .iter()
@@ -240,17 +198,13 @@ pub fn canonical_5_chart_representatives() -> Vec<UnifiedModuliSample> {
         .collect()
 }
 
-/// Generate discrete sample points along the continuous Szöllősi curve B_6(theta).
-///
-/// Discretizes normalized parameter t in (0, 1/6) corresponding to theta in (0, pi/3)
-/// with adaptive step size delta <= 1/1000.
 pub fn continuous_szollosi_chain_samples(num_steps: usize) -> Vec<UnifiedModuliSample> {
     let num = if num_steps == 0 { 20 } else { num_steps };
     let mut samples = Vec::with_capacity(num);
 
-    let upper = theta_interval_upper(); // 1 / 6
+    let upper = theta_interval_upper();
     let step_denom = (num as i64) + 1;
-    let margin = certified_margin(); // 12133 / 30000
+    let margin = certified_margin();
 
     for i in 1..=num {
         let t = &upper * &rq(i as i64, step_denom);
@@ -269,7 +223,6 @@ pub fn continuous_szollosi_chain_samples(num_steps: usize) -> Vec<UnifiedModuliS
     samples
 }
 
-/// Report summarizing continuous parameter chaining verification along B_6(theta).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContinuousChainingReport {
     pub theta_lower: BigRational,
@@ -284,14 +237,12 @@ pub struct ContinuousChainingReport {
     pub gap_stability_certified: bool,
 }
 
-/// Verify continuous Szöllősi parameter chaining along B_6(theta).
 pub fn verify_continuous_szollosi_chaining(
     num_samples: usize,
 ) -> Result<ContinuousChainingReport, ManifoldIntegrationError> {
     let engine = AdaptiveStepEngine::canonical();
     let step = delta_certified();
 
-    // Verify step admissibility: 0 < step < delta_crit
     if !engine.is_admissible_step(&step) {
         return Err(ManifoldIntegrationError::ContinuousChainingViolation(
             format!(
@@ -344,7 +295,6 @@ pub fn verify_continuous_szollosi_chaining(
     })
 }
 
-/// Report summarizing exact Cech 2-cocycle verification across all 53 Nerve2 triples.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CechNerveReport {
     pub total_triples_verified: usize,
@@ -353,7 +303,6 @@ pub struct CechNerveReport {
     pub tao_corner_valid: bool,
 }
 
-/// Verify exact Cech 2-cocycle condition on all 53 triple intersections in Nerve2.
 pub fn verify_cech_cocycles_all_53_triples() -> Result<CechNerveReport, ManifoldIntegrationError> {
     let c_family = TransitionCocycleFamily::canonical();
     let triples = enumerate_nerve2_triples();
@@ -389,7 +338,6 @@ pub fn verify_cech_cocycles_all_53_triples() -> Result<CechNerveReport, Manifold
     })
 }
 
-/// Report summarizing Network Simplex discrete circulation lower bound evaluation.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CirculationEvaluationReport {
     pub loop_name: String,
@@ -402,7 +350,6 @@ pub struct CirculationEvaluationReport {
     pub circulation_obstructed: bool,
 }
 
-/// Evaluate Network Simplex discrete circulation lower bound Phi_1(gamma) >= Gamma.
 pub fn evaluate_discrete_circulation_gamma(
 ) -> Result<CirculationEvaluationReport, ManifoldIntegrationError> {
     let composite_6 = ModuliLoop::composite_6cycle();
@@ -450,7 +397,6 @@ pub fn evaluate_discrete_circulation_gamma(
     })
 }
 
-/// Report summarizing full unified coverage verification across M_6.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct UnifiedCoverageReport {
     pub total_samples_tested: usize,
@@ -460,18 +406,12 @@ pub struct UnifiedCoverageReport {
     pub all_samples_obstructed: bool,
     pub coverage_fraction: BigRational,
     pub total_partition_volume: BigRational,
-    /// Whether the obstruction is certified on the whole moduli space. The
-    /// report tests finitely many sample points, which cannot certify a
-    /// continuous region, so this stays false until an exact cover
-    /// certificate is attached.
     pub closure_certified: bool,
 }
 
-/// Verify full unified coverage: 100% of canonical sample points in M_6 are obstructed.
 pub fn verify_full_unified_coverage() -> Result<UnifiedCoverageReport, ManifoldIntegrationError> {
     let c_family = TransitionCocycleFamily::canonical();
 
-    // 1. All 28 leaf cell samples
     let cell_samples = canonical_28_cell_samples();
     if cell_samples.len() != TOTAL_CELL_COUNT {
         return Err(ManifoldIntegrationError::InvalidParameter(format!(
@@ -480,10 +420,8 @@ pub fn verify_full_unified_coverage() -> Result<UnifiedCoverageReport, ManifoldI
         )));
     }
 
-    // 2. All 5 canonical chart representatives
     let chart_samples = canonical_5_chart_representatives();
 
-    // 3. Continuous chain samples
     let chain_samples = continuous_szollosi_chain_samples(25);
 
     let mut total_count = 0;
@@ -518,12 +456,10 @@ pub fn verify_full_unified_coverage() -> Result<UnifiedCoverageReport, ManifoldI
         all_samples_obstructed: true,
         coverage_fraction: cov_fraction,
         total_partition_volume: total_domain_volume(),
-        // Sampled coverage only; see the field documentation. fixture: not computed.
         closure_certified: fixtures().flag("coverage_closure_certified"),
     })
 }
 
-/// Master evaluation report for Target B3 Global Manifold Integration.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MasterTargetB3Report {
     pub authority_effect: String,
@@ -540,22 +476,16 @@ pub struct MasterTargetB3Report {
     pub no_complete_mub6: bool,
 }
 
-/// Execute master Target B3 Global Manifold Integration and complete closure verification.
 pub fn evaluate_target_b3_manifold_integration(
 ) -> Result<MasterTargetB3Report, ManifoldIntegrationError> {
-    // 1. Exact Cech 2-cocycle condition on all 53 triples
     let cech_rep = verify_cech_cocycles_all_53_triples()?;
 
-    // 2. Network Simplex discrete circulation lower bound Phi_1 >= Gamma
     let circ_rep = evaluate_discrete_circulation_gamma()?;
 
-    // 3. Continuous Szöllősi chaining along B_6(theta)
     let chaining_rep = verify_continuous_szollosi_chaining(30)?;
 
-    // 4. Full unified coverage verification (28 cells + 5 charts + chain)
     let cov_rep = verify_full_unified_coverage()?;
 
-    // 5. Synthesis boolean gates
     let discrete_cells_ok =
         cov_rep.cells_tested == TOTAL_CELL_COUNT && cov_rep.all_samples_obstructed;
     let chaining_ok = chaining_rep.all_samples_obstructed && chaining_rep.gap_stability_certified;
@@ -583,7 +513,6 @@ pub fn evaluate_target_b3_manifold_integration(
     })
 }
 
-/// Errors arising during global manifold integration and closure verification.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum ManifoldIntegrationError {
     #[error("Invalid parameter: {0}")]

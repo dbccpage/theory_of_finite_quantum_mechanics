@@ -1,4 +1,3 @@
-//! Exact geodesic distances in Q/Z and nearest roots of unity.
 use crate::rational::{ri, Rational};
 use num_bigint::BigInt;
 use num_integer::Integer;
@@ -10,7 +9,6 @@ pub enum RationalCircleError {
     #[error("the nearest root index cannot be represented")]
     Index,
 }
-/// Canonical fractional part in [0,1), for arbitrarily large signed rationals.
 pub fn fractional_part(theta: &Rational) -> Rational {
     Rational::new(
         theta.numer().mod_floor(theta.denom()),
@@ -25,8 +23,6 @@ pub fn phase_distance_on_circle(a: &Rational, b: &Rational) -> Rational {
         r
     }
 }
-/// Only the two adjacent lattice points can minimize geodesic distance. Ties
-/// choose the smallest residue, including the tie across the circle's cut.
 pub fn nearest_root_of_unity(
     theta: &Rational,
     order: usize,

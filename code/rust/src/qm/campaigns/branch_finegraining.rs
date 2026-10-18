@@ -1,8 +1,6 @@
-//! Program target census and symmetry audit. AuthorityEffect: None.
 use omega_number_theory::rational::rq;
 use omega_quantum_physics::branch_finegraining::*;
 use serde::{Deserialize, Serialize};
-/// Target census entry.
 #[allow(non_snake_case)]
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct TargetCensusEntry {
@@ -16,7 +14,6 @@ pub struct TargetCensusEntry {
     pub minimal_N: i64,
 }
 
-/// Target census summary report.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct TargetCensusSummary {
     pub total_targets: usize,
@@ -27,7 +24,6 @@ pub struct TargetCensusSummary {
     pub targets: Vec<TargetCensusEntry>,
 }
 
-/// Runs the 23-target census across the foundational corpus.
 pub fn census_all_targets() -> TargetCensusSummary {
     let raw = vec![
         (1, "Primitive Difference", 1, "Q", "|0> in Q", vec!["1"], 1),
@@ -259,7 +255,6 @@ pub fn census_all_targets() -> TargetCensusSummary {
     }
 }
 
-/// Envariance and Deutsch-Wallace symmetry audit result.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct SymmetryAuditResult {
     pub authority_effect: String,
@@ -270,7 +265,6 @@ pub struct SymmetryAuditResult {
     pub everett_counting_status: String,
 }
 
-/// Audits Envariance and Deutsch-Wallace symmetry across the rational and irrational sectors.
 pub fn envariance_deutsch_wallace_symmetry_audit() -> SymmetryAuditResult {
     SymmetryAuditResult {
         authority_effect: "None".to_string(),
@@ -284,7 +278,6 @@ pub fn envariance_deutsch_wallace_symmetry_audit() -> SymmetryAuditResult {
     }
 }
 
-/// Negative controls verification result.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct NegativeControlResult {
     pub wrong_multiplicity_rejected: bool,
@@ -292,7 +285,6 @@ pub struct NegativeControlResult {
     pub all_controls_passed: bool,
 }
 
-/// Runs negative control assertions.
 pub fn run_negative_controls() -> NegativeControlResult {
     let w = vec![rq(9, 25), rq(16, 25)];
     let tree_bad_n = finegrain_state_rationals(&w, Some(10));

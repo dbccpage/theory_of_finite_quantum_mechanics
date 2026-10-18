@@ -1,4 +1,3 @@
-//! Finite correlation experiments; all decisions use the canonical physics kernel.
 use crate::linear_algebra::{
     elimination::{solve, LinearSolution},
     matrix,
@@ -61,8 +60,6 @@ fn fraction(q: &Rational) -> String {
     }
 }
 
-/// Exact quadratic formatting is presentation only. A scalar is first decomposed
-/// by the canonical rational field solver, and the decomposition is replayed.
 pub fn render_real(x: &Cyclotomic<24>) -> Result<String, String> {
     if let Some(q) = x.as_number().as_rational() {
         return Ok(fraction(&q));

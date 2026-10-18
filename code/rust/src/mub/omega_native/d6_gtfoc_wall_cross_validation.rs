@@ -1,23 +1,3 @@
-//! CODA-FOC cross-validation for the d=6 canonical-triple fourth-vector wall.
-//!
-//! Rebuilds the canonical mutually-unbiased triple
-//! `T0 = {Z2⊗Z3, X2⊗Q0, Y2⊗Q1}` of `C^6` directly in Rust, optimizes the
-//! single fourth candidate vector over the unit sphere, and checks that the
-//! native maximal feasibility value `max f` reproduces the Invariant-Systems
-//! certified wall `W = (88 + 3√6)/100`.
-//!
-//! This is the in-tree numerical discharge of ENC-1134 hypothesis **H2** (the
-//! identification of the upstream feasibility functional `f` with our extension
-//! curvature `ω`): our `MubFeasibilityWallFunctional` normalization for `d=6` is
-//! `f = 1 − (6/5)‖ω‖₂²`, so `f = 1 ⟺ ω = 0`. The optimizer reports the residual
-//! norm it found and compares that observation with the cited reference
-//! `√((1−W)·5/6)`. A positive observation is not a certified global floor.
-//!
-//! It is **cross-validation evidence only**: an f64 optimizer reproducing a
-//! cited exact value. It mints no MUB(6) authority and does not re-derive the
-//! Invariant-Systems certificate. That exact two-sided proof is their result,
-//! held externally — the `crates/mub` port that once vendored it was deleted
-//! 2026-08-04, so nothing in this tree reproduces it.
 
 use linear_algebra::linear_algebra::complex_matrix::{CVector, C64};
 use omega_functional::{
@@ -34,13 +14,10 @@ type C = C64;
 type Vector = CVector;
 
 const D: usize = 6;
-/// 3 bases × 6 vectors = 18 fixed columns of the canonical triple.
 const COLUMN_COUNT: usize = 18;
 const TARGET_PROB: f64 = 1.0 / 6.0;
-/// f64 diagnostic tolerance (the optimizer is f64; this is not an exact proof).
 const TOLERANCE: f64 = 1e-9;
 
-/// The Invariant-Systems certified d=6 wall value `W = (88 + 3√6)/100` (cited).
 pub fn certified_wall_w() -> f64 {
     (88.0 + 3.0 * 6.0_f64.sqrt()) / 100.0
 }
@@ -49,25 +26,17 @@ pub fn certified_wall_w() -> f64 {
 pub struct D6GtfocWallCrossValidation {
     pub target: &'static str,
     pub method: &'static str,
-    /// native `max f` over the d=6 triple (our optimizer + omega_functional)
     pub wall_value_native: f64,
-    /// certified `W = (88+3√6)/100`
     pub wall_value_certified: f64,
     pub wall_abs_error: f64,
     pub wall_matches: bool,
-    /// native minimal normalized obstruction `1 − f` at the optimum
     pub obstruction_value_native: f64,
-    /// certified `1 − W`
     pub obstruction_value_certified: f64,
     pub obstruction_abs_error: f64,
     pub obstruction_matches: bool,
-    /// Residual norm observed at the optimizer's found candidate.
     pub observed_residual_norm: f64,
-    /// Cited reference `√((1−W)·5/6)`, computed from the external wall value.
     pub phi1_reference_from_cited_wall: f64,
-    /// Numerical agreement of the observation with the cited reference.
     pub observed_residual_matches_cited_reference: bool,
-    /// True only when an admitted global wall certificate forces `Φ₁ > 0`.
     pub phi1_strictly_positive: bool,
     pub tolerance: f64,
     pub has_exact_certificate: bool,
@@ -76,7 +45,6 @@ pub struct D6GtfocWallCrossValidation {
     pub boundary: &'static str,
 }
 
-/// Run the d=6 canonical-triple wall cross-validation.
 pub fn run_d6_gtfoc_wall_cross_validation() -> D6GtfocWallCrossValidation {
     let columns = canonical_d6_columns();
     let maximizer = optimize_wall_candidate(&columns);
@@ -92,9 +60,6 @@ pub fn run_d6_gtfoc_wall_cross_validation() -> D6GtfocWallCrossValidation {
     let (observed_residual_norm, phi1_reference_from_cited_wall) =
         MubFeasibilityWallFunctional::curvature_floors(&wall, w)
             .expect("finite declared MUB wall normalization");
-    // Shared f64 diagnostic comparison (the same helper d10 uses). Its result is
-    // typed `F64Diagnostic` with no exact or global certificate; nothing below
-    // derives an exact, certified or authority flag from it.
     let wall_comparison = target_comparison(&wall, one_minus_w, w);
     let has_global_upper_bound_certificate = false;
 
@@ -124,8 +89,6 @@ pub fn run_d6_gtfoc_wall_cross_validation() -> D6GtfocWallCrossValidation {
     }
 }
 
-/// Compare the native wall scalars with the cited targets through the shared
-/// `omega_functional` f64 diagnostic helper.
 fn target_comparison(
     wall: &MubFeasibilityWallValue,
     target_obstruction: f64,
@@ -140,17 +103,14 @@ fn target_comparison(
     .expect("finite d=6 MUB wall target comparison")
 }
 
-// ---- canonical d=6 triple T0 = {Z2⊗Z3, X2⊗Q0, Y2⊗Q1} ----
 
 fn canonical_d6_columns() -> Vec<Vector> {
     let mut columns = Vec::with_capacity(COLUMN_COUNT);
-    // B1 = Z2 ⊗ Z3 = standard basis of C^6.
     for idx in 0..D {
         let mut v = zero_vec(D);
         v[idx] = C::new(1.0, 0.0);
         columns.push(v);
     }
-    // B2 = X2 ⊗ Q0, B3 = Y2 ⊗ Q1.
     let x2 = qubit_x_basis();
     let y2 = qubit_y_basis();
     let q0 = qutrit_q_basis(0);
@@ -168,8 +128,6 @@ fn canonical_d6_columns() -> Vec<Vector> {
     columns
 }
 
-/// Qutrit (d=3) quadratic-Gauss MUB basis `Q_a`, columns
-/// `(Q_a)_{j,m} = ω₃^{a j² + m j}/√3`.
 fn qutrit_q_basis(a: i32) -> Vec<Vector> {
     let scale = 1.0 / 3.0_f64.sqrt();
     let mut columns = Vec::with_capacity(3);
@@ -184,7 +142,6 @@ fn qutrit_q_basis(a: i32) -> Vec<Vector> {
     columns
 }
 
-// ---- optimizer (minimize Σ p² ≡ maximize f, since Σ p = BASIS_COUNT) ----
 
 fn optimize_wall_candidate(columns: &[Vector]) -> Vector {
     let mut best = zero_vec(D);
@@ -253,7 +210,6 @@ mod tests {
     #[test]
     fn d6_triple_bases_are_pairwise_orthonormal_and_mutually_unbiased() {
         let columns = canonical_d6_columns();
-        // within-basis orthonormality + cross-basis unbiasedness |<c_i,c_j>|^2 = 1/6
         for (i, ci) in columns.iter().enumerate() {
             for (j, cj) in columns.iter().enumerate() {
                 let overlap = inner(ci, cj).norm_sqr();
@@ -318,13 +274,11 @@ mod tests {
         );
         assert!(!cmp.has_exact_certificate);
         assert!(!cmp.has_global_upper_bound_certificate);
-        // The report's comparison fields are exactly the shared helper's.
         assert_eq!(report.wall_abs_error, cmp.wall_abs_error);
         assert_eq!(report.wall_matches, cmp.wall_matches);
         assert_eq!(report.obstruction_abs_error, cmp.obstruction_abs_error);
         assert_eq!(report.obstruction_matches, cmp.obstruction_matches);
         assert_eq!(report.tolerance, cmp.tolerance);
-        // A matching f64 comparison still sets no exact or authority flag.
         assert!(report.wall_matches);
         assert!(!report.has_exact_certificate);
         assert!(!report.has_global_upper_bound_certificate);
@@ -334,7 +288,6 @@ mod tests {
 
     #[test]
     fn d6_perfect_unbiasedness_gives_unit_wall_value() {
-        // f = 1 ⟺ ω = 0: feed the exact target profile (all p = 1/6).
         let probabilities = vec![TARGET_PROB; COLUMN_COUNT];
         let wall =
             MubFeasibilityWallFunctional::evaluate_probabilities(&probabilities, TARGET_PROB)

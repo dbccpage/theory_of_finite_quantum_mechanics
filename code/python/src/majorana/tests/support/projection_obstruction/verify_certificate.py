@@ -108,7 +108,6 @@ def _resolve_po000_package_root(start: Path) -> Path:
             return p
         if (p / "crates").is_dir() and ((p / "_tests_unit").is_dir() or (p / "tests").is_dir()):
             return p
-    # legacy layouts relative to this file
     if start.name == "po000" and start.parent.name == "src":
         return start.parent.parent
     if start.name in ("code", "po000_lib"):

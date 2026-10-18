@@ -1,34 +1,13 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import Std
 
-/-!
-Overnight T1: scalar period subgroup.
 
-Reduced classes `a/b` in `Q/Z` generate a cyclic group of order
-`n = lcm(denominators)`. The algebraic core recorded here is:
 
-- `Z/n` modelled as remainders; residue `1` has order `n`.
-- Coefficients of `1/a` and `1/b` inside `Z/lcm(a,b)` are coprime.
-- Bézout: those coefficients integer-combine to `1`, so they
-  generate the whole remainder group `Z/n`.
 
-Vector periods need not be cyclic. `Z/2 × Z/2` (Klein) is the
-fence: four elements, every element 2-torsion, no generator of
-order 4. Dual of `Z/n` remains `Z/n`, not free `U(1)`.
 
-AuthorityEffect: None.
--/
 
 namespace OvernightT1
 
-/-! ## Remainders: order of 1 in `Z/n`. -/
 
 theorem residue_one_killed_by_n {n : Nat} (_hn : 0 < n) :
     (n * 1) % n = 0 := by
@@ -40,7 +19,6 @@ theorem residue_one_not_killed_below {n k : Nat}
   simp [Nat.mul_one, Nat.mod_eq_of_lt hkn]
   exact Nat.ne_of_gt hk
 
-/-! ## Bézout for `Nat.gcd`. -/
 
 theorem mul_reassoc (x q m : Int) : x * (q * m) = m * (x * q) := by
   calc
@@ -88,7 +66,6 @@ theorem coprime_bezout {a b : Nat} (h : a.gcd b = 1) :
   refine ⟨u, v, ?_⟩
   simpa [h] using huv
 
-/-! ## Coefficient identity: `gcd(n/a, n/b) = n / lcm(a,b)`. -/
 
 theorem gcd_div_self_eq_one {a b : Nat} (ha : 0 < a) (_hb : 0 < b) :
     (a / a.gcd b).gcd (b / a.gcd b) = 1 := by
@@ -143,7 +120,6 @@ theorem gcd_of_embedded_coeffs {a b n : Nat}
     exact gcd_div_self_eq_one ha hb
   simpa [hcop] using h3
 
-/-- Inside `Z/lcm(a,b)`, the residues of `1/a` and `1/b` are coprime. -/
 theorem embedded_coeffs_coprime {a b : Nat} (ha : 0 < a) (hb : 0 < b) :
     (a.lcm b / a).gcd (a.lcm b / b) = 1 := by
   have hn : 0 < a.lcm b := Nat.lcm_pos ha hb
@@ -151,13 +127,11 @@ theorem embedded_coeffs_coprime {a b : Nat} (ha : 0 < a) (hb : 0 < b) :
     gcd_of_embedded_coeffs ha hb hn (Nat.dvd_lcm_left a b) (Nat.dvd_lcm_right a b)
   simpa [Nat.div_self hn] using h
 
-/-- Those residues integer-combine to `1`, so they generate `Z/n`. -/
 theorem lcm_coeffs_generate_one {a b : Nat} (ha : 0 < a) (hb : 0 < b) :
     ∃ u v : Int,
       u * ((a.lcm b / a) : Int) + v * ((a.lcm b / b) : Int) = 1 :=
   coprime_bezout (embedded_coeffs_coprime ha hb)
 
-/-- Concrete witness used by the Python twin: `1/2` and `1/3` generate `1/6`. -/
 theorem one_half_one_third_coeffs :
     (Nat.lcm 2 3 / 2) = 3 ∧ (Nat.lcm 2 3 / 3) = 2 ∧ (3 : Nat).gcd 2 = 1 := by
   decide
@@ -166,7 +140,6 @@ theorem two_times_one_third_minus_one_half_is_one_sixth :
     (2 : Int) * 2 + (-1 : Int) * 3 = 1 := by
   decide
 
-/-! ## Vector fence: Klein four-group is not cyclic. -/
 
 def Klein := Bool × Bool
 
@@ -188,11 +161,9 @@ theorem klein_four_distinct :
       ((false, true) : Klein) ≠ (true, true) := by
   decide
 
-/-- No element of Klein has additive order 4: double is always zero. -/
 theorem klein_no_order_four (p : Klein) : kadd p p = kzero :=
   kadd_self p
 
-/-! ## Scope fence. -/
 
 structure ScopeBoundary where
   scalarLcmGeneratesZn : Bool
@@ -228,3 +199,6 @@ theorem scope_boundary_refuses_kills :
 #print axioms scope_boundary_refuses_kills
 
 end OvernightT1
+
+private def l5aProvenance : String :=
+  "Origin: lean4/T1ScalarPeriod.lean Claim: residue_one_killed_by_n AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -1,24 +1,10 @@
-//! Typed newtype IDs for homological algebra entities.
-//!
-//! Each ID type uniquely identifies a specific kind of mathematical object
-//! within the omega_homology system. Numeric constructors reject the zero id.
-//! Basis names are checked by [`BasisId::try_new`]. [`Degree::new`] stays total
-//! because chain complexes use negative degrees; the degree-drop law is
-//! [`boundary_lowers_degree_by_one`].
 
 use serde::{Deserialize, Serialize};
 
-/// Refusal of an identifier constructor.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum IdError {
-    /// A numeric homological id was zero.
-    #[error("zero identifier")]
     ZeroId,
-    /// A basis name was empty or only whitespace.
-    #[error("empty basis identifier")]
     EmptyBasis,
-    /// A degree shift overflowed `i32`.
-    #[error("degree overflow")]
     DegreeOverflow,
 }
 
@@ -26,11 +12,9 @@ macro_rules! define_id {
     ($(#[$meta:meta])* $name:ident) => {
         $(#[$meta])*
         #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
-        #[serde(try_from = "u64", into = "u64")]
-        pub struct $name(u64);
+        pub struct $name(pub u64);
 
         impl $name {
-            /// Construct a nonzero id. Zero is not an identifier.
             pub fn new(id: u64) -> Result<Self, IdError> {
                 if id == 0 {
                     Err(IdError::ZeroId)
@@ -44,14 +28,6 @@ macro_rules! define_id {
             }
         }
 
-        impl TryFrom<u64> for $name {
-            type Error = IdError;
-            fn try_from(value: u64) -> Result<Self, IdError> { Self::new(value) }
-        }
-        impl From<$name> for u64 {
-            fn from(value: $name) -> u64 { value.0 }
-        }
-
         impl std::fmt::Display for $name {
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(f, "{}({})", stringify!($name), self.0)
@@ -61,65 +37,50 @@ macro_rules! define_id {
 }
 
 define_id!(
-    /// Identifies a chain element.
     ChainId
 );
 define_id!(
-    /// Identifies a cochain element.
     CochainId
 );
 define_id!(
-    /// Identifies a verified cycle.
     CycleId
 );
 define_id!(
-    /// Identifies a verified cocycle.
     CocycleId
 );
 define_id!(
-    /// Identifies a boundary element.
     BoundaryId
 );
 define_id!(
-    /// Identifies a coboundary element.
     CoboundaryId
 );
 define_id!(
-    /// Identifies a chain complex.
     ChainComplexId
 );
 define_id!(
-    /// Identifies a cochain complex.
     CochainComplexId
 );
 define_id!(
-    /// Identifies a homology class.
     HomologyClassId
 );
 define_id!(
-    /// Identifies a cohomology class.
     CohomologyClassId
 );
 define_id!(
-    /// Identifies a carrier.
     CarrierId
 );
-/// Identifies a basis by name.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
-#[serde(try_from = "String", into = "String")]
-pub struct BasisId(String);
+pub struct BasisId(pub String);
 
 impl BasisId {
-    /// Construct an identifier for a graded basis family; empty names are invalid.
-    pub fn new(name: impl Into<String>) -> Result<Self, IdError> {
-        Self::try_new(&name.into())
+    pub fn new(name: impl Into<String>) -> Self {
+        let name = name.into();
+        match Self::try_new(&name) {
+            Ok(id) => id,
+            Err(_) => Self(name),
+        }
     }
 
-    pub fn as_str(&self) -> &str {
-        &self.0
-    }
-
-    /// Reject an empty or whitespace basis name.
     pub fn try_new(name: &str) -> Result<Self, IdError> {
         if name.trim().is_empty() {
             Err(IdError::EmptyBasis)
@@ -129,37 +90,21 @@ impl BasisId {
     }
 }
 
-impl TryFrom<String> for BasisId {
-    type Error = IdError;
-    fn try_from(value: String) -> Result<Self, IdError> {
-        Self::new(value)
-    }
-}
-impl From<BasisId> for String {
-    fn from(value: BasisId) -> String {
-        value.0
-    }
-}
-
 impl std::fmt::Display for BasisId {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "BasisId({})", self.0)
     }
 }
 define_id!(
-    /// Identifies a matrix.
     MatrixId
 );
 define_id!(
-    /// Identifies a manifest.
     ManifestId
 );
 define_id!(
-    /// Identifies a witness.
     WitnessId
 );
 
-/// Grading degree in a chain/cochain complex.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct Degree(pub i32);
 
@@ -173,17 +118,11 @@ impl Degree {
     }
 
     pub fn checked_pred(self) -> Result<Self, IdError> {
-        self.0
-            .checked_sub(1)
-            .map(Self)
-            .ok_or(IdError::DegreeOverflow)
+        self.0.checked_sub(1).map(Self).ok_or(IdError::DegreeOverflow)
     }
 
     pub fn checked_succ(self) -> Result<Self, IdError> {
-        self.0
-            .checked_add(1)
-            .map(Self)
-            .ok_or(IdError::DegreeOverflow)
+        self.0.checked_add(1).map(Self).ok_or(IdError::DegreeOverflow)
     }
 }
 
@@ -193,8 +132,6 @@ impl std::fmt::Display for Degree {
     }
 }
 
-/// Boundary maps lower degree by exactly one, and that shift is invertible
-/// away from `i32` overflow.
 pub fn boundary_lowers_degree_by_one(source: Degree) -> Result<(), IdError> {
     let target = source.checked_pred()?;
     let restored = target.checked_succ()?;
@@ -207,8 +144,6 @@ pub fn boundary_lowers_degree_by_one(source: Degree) -> Result<(), IdError> {
     Ok(())
 }
 
-/// Display prefixes of the numeric id kinds are pairwise distinct, and a
-/// nonzero chain id round-trips through its display text.
 pub fn identifier_kinds_round_trip(id: u64) -> Result<(), IdError> {
     let chain = ChainId::new(id)?;
     let rendered = chain.to_string();
@@ -251,10 +186,7 @@ fn parse_parenthesized(text: &str, kind: &str) -> Result<u64, IdError> {
     let Some(rest) = text.strip_prefix(kind) else {
         return Err(IdError::EmptyBasis);
     };
-    let Some(inner) = rest
-        .strip_prefix('(')
-        .and_then(|body| body.strip_suffix(')'))
-    else {
+    let Some(inner) = rest.strip_prefix('(').and_then(|body| body.strip_suffix(')')) else {
         return Err(IdError::EmptyBasis);
     };
     let value: u64 = inner.parse().map_err(|_| IdError::ZeroId)?;

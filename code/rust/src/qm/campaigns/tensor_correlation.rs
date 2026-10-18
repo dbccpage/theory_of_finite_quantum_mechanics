@@ -1,12 +1,3 @@
-//! Campaign C500 Block 08: Correlation Models and Computability Boundary.
-//!
-//! Mechanizes:
-//! 1. Correlation set inclusions C_q(d) \subseteq C_q \subseteq C_qa \subseteq C_qc.
-//! 2. Certified rational interval enclosure for CHSH game: [17/20, 43/50] > 3/4.
-//! 3. Audit of NPA hierarchy finite-level exactness vs flatness requirement.
-//!
-//! AuthorityEffect: None.
-//! Citation: sealed-derivation-v1 (3100c4e).
 
 use omega_number_theory::rational::{rq, Rational};
 use omega_quantum_physics::tensor_commuting_correlation_frontier::{
@@ -14,7 +5,6 @@ use omega_quantum_physics::tensor_commuting_correlation_frontier::{
 };
 use serde_json::json;
 
-/// Typed classification of correlation model classes in the nonlocal hierarchy.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum CorrelationModelClass {
     FixedDimensionTensor,
@@ -50,7 +40,6 @@ impl CorrelationModelClass {
     }
 }
 
-/// Returns the 4 correlation model definitions in hierarchical order.
 pub fn correlation_model_hierarchy() -> Vec<(&'static str, &'static str)> {
     CorrelationModelClass::ALL
         .iter()
@@ -58,19 +47,14 @@ pub fn correlation_model_hierarchy() -> Vec<(&'static str, &'static str)> {
         .collect()
 }
 
-/// Certified rational bounds for the CHSH nonlocal game:
-/// (classical_value, quantum_lower_bound, quantum_upper_bound).
 pub fn chsh_game_bounds() -> (Rational, Rational, Rational) {
     (rq(3, 4), rq(17, 20), rq(43, 50))
 }
 
-/// NPA levels have no automatic exactness guarantee; flatness is sufficient,
-/// not a universally necessary certificate. Returns (automatic_exactness, requires_flatness).
 pub fn audit_npa_exactness() -> (bool, bool) {
     (false, false)
 }
 
-/// Generate canonical Block 08 receipt.
 pub fn generate_canonical_block08_rust_receipt() -> serde_json::Value {
     let (c_val, lower, upper) = chsh_game_bounds();
     let (exact_without_flat, req_flat) = audit_npa_exactness();

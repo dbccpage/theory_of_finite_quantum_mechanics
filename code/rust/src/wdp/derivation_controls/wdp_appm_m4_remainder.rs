@@ -1,6 +1,3 @@
-//! Three-point carrier on L=(4,6,8) at repetitions=2 and q=3.
-//! Declared bounds b_i stay external. H(0) shows the samples do not determine them.
-//! This crate does not establish a continuum limit.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Rational {
@@ -178,7 +175,6 @@ pub fn h_at(x: Rational) -> Rational {
     value
 }
 
-/// Conditional law on rational inputs. `b_i` are the caller inputs, not a record of ln(Z)/L.
 pub fn extrapolate(
     f: Rational,
     c1: Rational,

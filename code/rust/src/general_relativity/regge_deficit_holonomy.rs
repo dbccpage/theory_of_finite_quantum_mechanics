@@ -1,12 +1,3 @@
-//! Bounded declared rational hinge turns and their exact holonomy in `Q/Z`.
-//!
-//! The supplied angles are turns `theta/(2*pi)`, so the declared deficit is
-//! `1 - sum(theta/(2*pi))`. They are not inferred from lengths, simplex metrics,
-//! or the rational Regge proxy. A checked modulo-turn correspondence with a
-//! separately supplied `d1*w` and a signed integral `d2` license an oriented
-//! boundary holonomy identity. They do not license an unrestricted scalar sum.
-//! Ordered noncommuting `SO(4,Q)` word cancellation has its own API and receipt.
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 
@@ -102,13 +93,9 @@ fn pair(
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum ReggeTurnScope {
-    /// Supplied rational turns with a checked algebraic correspondence.
-    /// There is no length-to-angle derivation or geometric Regge action here.
     DeclaredRationalHingeTurns,
 }
 
-/// An explicit closed chamber cycle and the interior turn assigned to each
-/// sector. These are declarations, not a certificate of simplex realizability.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredHingeStar {
     hinge: usize,
@@ -176,8 +163,6 @@ impl DeclaredHingeStar {
     }
 }
 
-/// Complete finite cochain data through `d2`. Signed integral incidence makes
-/// modulo-turn boundary evaluation well defined; rational weights would not.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredReggeTurnComplex {
     source: GaugeSource,
@@ -243,8 +228,6 @@ impl DeclaredReggeTurnComplex {
         Ok(())
     }
 
-    /// Evaluates every declared hinge, then checks `deficit = d1*w` in `Q/Z`.
-    /// Both the real lift of the deficit and its periodic holonomy are retained.
     pub fn evaluate(
         &self,
         stars: Option<&[DeclaredHingeStar]>,
@@ -306,8 +289,6 @@ impl DeclaredReggeTurnComplex {
         })
     }
 
-    /// The supplied integral 3-chain determines the oriented 2-cycle `d2ᵀ*c3`.
-    /// Checks both its zero curvature pairing and its integer deficit pairing.
     pub fn boundary_holonomy(
         &self,
         deficit: &ReggeDeficitReceipt,
@@ -482,8 +463,6 @@ pub struct OrientedSo4Step {
     pub orientation: So4Orientation,
 }
 
-/// Checked directed frame transport. The matrix owner certifies `SO(4,Q)`.
-/// Keeping the matrix private prevents post-admission mutation of that claim.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct So4EdgeTransport {
     source: usize,
@@ -517,10 +496,6 @@ impl So4EdgeTransport {
     }
 }
 
-/// Replays the WHOLE ordered word: every face loop uses a common basepoint and
-/// the concatenated edge/inverse word freely cancels before matrix evaluation.
-/// This is a sufficient combinatorial Bianchi premise. No chamber geometry or
-/// completeness of a 3-cell's face inventory is inferred from its cancellation.
 pub fn ordered_so4_boundary(
     source: Option<GaugeSource>,
     edges: Option<&[So4EdgeTransport]>,

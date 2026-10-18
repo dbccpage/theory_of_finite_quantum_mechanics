@@ -1,6 +1,3 @@
-//! Complete balance-preservation criteria for the five canonical Source-25
-//! edits at a fixed ordered carrier and declared oriented face set. This is a
-//! diagnostic on raw states; it confers no permission to extend Genesis.
 use crate::genesis_ongoing_adapter::{GenesisOngoingPacket, MarkedTriple};
 use crate::genesis_source_execution::{Source25Change, Source25State, SourceExecutionError};
 use crate::types::AuthorityEffect;
@@ -60,8 +57,6 @@ pub enum BalanceVerdict {
     Obstructed(BalanceCounterexample),
 }
 
-/// Complete input/output representatives are retained even when the universal
-/// context verdict is negative but this particular transition remains balanced.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Source25BalanceProfile {
     source: Source25State,
@@ -180,9 +175,6 @@ fn counterexample(
 }
 
 impl Source25BalanceProfile {
-    /// `fill_solver_limits` applies to the dense Fill matrix and exact solver.
-    /// Raw source execution and face scans retain the source kernel's allocation
-    /// behavior; this API does not promise a global memory or time budget.
     pub fn new(
         source: Source25State,
         change: Source25Change,
@@ -252,8 +244,6 @@ impl Source25BalanceProfile {
         result.verify()?;
         Ok(result)
     }
-    /// No elimination in replay. Positive Fill uses the exact equation
-    /// combination; a negative verdict uses an actual enabled source edit.
     pub fn verify(&self) -> Result<(), BalanceTransitionError> {
         if self.source.perform_enabled(self.change)? != self.target {
             return Err(BalanceTransitionError::Replay);

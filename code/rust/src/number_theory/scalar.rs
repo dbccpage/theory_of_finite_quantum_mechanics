@@ -1,21 +1,3 @@
-//! The exact scalar tower for this crate's number fields.
-//!
-//! Every exact type here is a commutative ring whose equality is mathematical
-//! equality (elements are stored in a canonical reduced form), and every nonzero
-//! element is invertible. This module states that in the vocabulary the rest of the
-//! estate already uses:
-//!
-//! - `std::ops::{Add, Sub, Mul, Neg}` (owned and by reference), so
-//!   `linear_algebra::backend::basic_matrix::BasicMatrix<T>` and its checked
-//!   products apply;
-//! - `num_traits::{Zero, One}`;
-//! - `linear_algebra::scalars::{Semiring, Ring, Field, ExactRing}`, the tower that
-//!   the exact rank, kernel, determinant and path-sum algorithms are generic over.
-//!
-//! The tower delegates to each number field's arithmetic and complex conjugation.
-//! Rational embedding is declared separately from the ring and involution laws.
-//!
-//! AuthorityEffect: None.
 
 use linear_algebra::scalars::{ExactRing, Field, Ring, Semiring};
 
@@ -25,13 +7,10 @@ use crate::cyclotomic28::Cyc28;
 use crate::cyclotomic44::Cyc44;
 use crate::cyclotomic52::Cyc52;
 
-/// The specified embedding of Q into an exact field of characteristic zero.
-/// Implementers preserve zero, one, addition, and multiplication exactly.
 pub trait RationalEmbedding: Field + ExactRing {
     fn from_rational(value: &crate::rational::Rational) -> Self;
 }
 
-/// Generic exact scalar refusals, independent of any domain carrier.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ScalarError {
     #[error("the inverse of zero is undefined")]
@@ -42,11 +21,9 @@ pub enum ScalarError {
     Budget { what: &'static str, limit: u64 },
 }
 
-/// The exponent bound limits scalar-internal output growth as well as work.
 pub const MAX_SCALAR_EXPONENT: u64 = 1 << 20;
 pub const MAX_EMBEDDED_POLYNOMIAL_COEFFICIENTS: usize = 1024;
 
-/// Exact semiring power, including `0^0=1`, with an explicit exponent bound.
 pub fn power_unsigned<K: Semiring>(x: &K, mut exponent: u64) -> Result<K, ScalarError> {
     if exponent > MAX_SCALAR_EXPONENT {
         return Err(ScalarError::Budget {
@@ -68,8 +45,6 @@ pub fn power_unsigned<K: Semiring>(x: &K, mut exponent: u64) -> Result<K, Scalar
     Ok(result)
 }
 
-/// Signed exact field power. Magnitude is checked before inversion, including
-/// `i64::MIN`; an inverse-of-zero refusal differs from a resource refusal.
 pub fn power<K: Field + ExactRing>(x: &K, exponent: i64) -> Result<K, ScalarError> {
     let magnitude = exponent.unsigned_abs();
     if magnitude > MAX_SCALAR_EXPONENT {
@@ -109,8 +84,6 @@ pub fn from_fraction<K: RationalEmbedding>(numerator: i64, denominator: i64) -> 
     })
 }
 
-/// Embed an integer polynomial into the specified characteristic-zero field,
-/// then evaluate it with the canonical polynomial implementation.
 pub fn evaluate_integer_polynomial<K: RationalEmbedding>(
     coefficients: &[num_bigint::BigInt],
     x: &K,
@@ -130,7 +103,6 @@ pub fn evaluate_integer_polynomial<K: RationalEmbedding>(
     .eval(x))
 }
 
-/// Exact semiring sum. A finite term budget also bounds infinite iterators.
 pub fn sum_with_budget<'a, K: Semiring + 'a>(
     items: impl IntoIterator<Item = &'a K>,
     budget: usize,
@@ -382,7 +354,6 @@ mod tests {
     use crate::rational::{ri, rq};
     use linear_algebra::backend::basic_matrix::BasicMatrix;
 
-    /// Field axioms on a finite sample, through the `linear_algebra` trait tower only.
     fn check_field_axioms<F: Field + ExactRing>(samples: &[F]) {
         let zero = F::zero();
         let one = F::one();
@@ -488,7 +459,6 @@ mod tests {
 
     #[test]
     fn cyclotomic_matrices_use_the_linear_algebra_matrix_type() {
-        // The Hadamard-like matrix [[1, 1], [1, -1]] / sqrt2 over Q(zeta_8) squares to 1.
         let s = Cyc8::sqrt2().inv();
         let one = Cyc8::one();
         let m =

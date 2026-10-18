@@ -41,20 +41,12 @@ from typing import Any, Mapping
 FITNESS_VECTOR_SCHEMA_V1 = "omega.prompt_civilization.fitness-vector.v1"
 PREREGISTRATION_SCHEMA_V1 = "omega.prompt_civilization.scalar-preregistration.v1"
 
-# Four-valued on purpose. PASS and FAIL are outcomes; INCONCLUSIVE means the
-# dimension was evaluated and did not decide; MISSING means it was not evaluated.
-# Collapsing the last two into FAIL is the prohibition this vocabulary exists to
-# make impossible.
 DIMENSION_OUTCOMES = frozenset({"PASS", "FAIL", "INCONCLUSIVE", "MISSING"})
 DECIDED_OUTCOMES = frozenset({"PASS", "FAIL"})
 UNDECIDED_OUTCOMES = frozenset({"INCONCLUSIVE", "MISSING"})
 
-# Everything the epic requires be frozen before outcomes are observed.
 PREREGISTRATION_PARTS = ("formula", "units", "weights", "tie_rule", "sensitivity")
 
-# A change to any of these invalidates comparison between two vectors -- the
-# acceptance condition names them: "changing a fitness formula, weight, seed,
-# checker, holdout, renderer, or model".
 COMPARISON_BINDINGS = ("preregistration_digest", "checker_id", "holdout_digest")
 
 
@@ -183,9 +175,6 @@ class FitnessDimensionV1:
                 raise FitnessError(
                     "BAD_COUNTS", "observed exceeds total"
                 )
-        # The epic requires uncertainty on every dimension, including the ones
-        # that did not decide -- "we could not evaluate this" is itself a stated
-        # uncertainty, and an empty string would erase the distinction.
         if type(self.uncertainty) is not str or not self.uncertainty.strip():
             raise FitnessError(
                 "UNCERTAINTY_ABSENT",
@@ -238,8 +227,6 @@ class FitnessVectorV1:
         if len(set(names)) != len(names):
             raise FitnessError("BAD_DIMENSION", "a dimension name appears twice")
 
-        # The epic: a scalar is admissible only for a preregistered experiment
-        # whose formula was frozen before outcomes were observed.
         if self.scalar is not None:
             if not self.preregistration_digest:
                 raise FitnessError(

@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-KERNEL-NEXT-2 (Pilot agent loop finite arena & usable budget).
 
 pub const PILOT_USABLE_BUDGET: u64 = 3;
 

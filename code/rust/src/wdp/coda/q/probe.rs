@@ -2,7 +2,6 @@ use omega_types::q_continuum::{generate_probe_plan, ProbePlan, QIdea};
 
 use super::packet::ValidatedQPacket;
 
-/// Builds a deterministic first-pass probe plan from a validated Q packet.
 pub fn probe_plan_for_packet(packet: &ValidatedQPacket) -> ProbePlan {
     let packet = packet.packet();
     let body = format!(

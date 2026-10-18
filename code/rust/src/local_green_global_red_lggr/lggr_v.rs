@@ -1,32 +1,3 @@
-//! LGGR V — Soundness check and unsoundness witness.
-//!
-//! # Soundness Invariant
-//!
-//! Let $D$ be the carrier difference operator ($m \times n$) and $Q$ be the observer
-//! quotient projection ($p \times m$).
-//! Soundness holds iff $\operatorname{im}(D) \cap \ker(Q) = \{0\}$.
-//! By the dimension formula, this is algebraically equivalent to:
-//!
-//! \[
-//! \operatorname{rank}(Q \cdot D) = \operatorname{rank}(D)
-//! \]
-//!
-//! Over $\mathbb{Q}$, this rank equality is computed exactly via Bareiss / Gauss–Jordan
-//! exact row reduction without any numerical tolerance or floating-point approximations.
-//!
-//! # Unsoundness Witness
-//!
-//! When $\operatorname{rank}(Q \cdot D) < \operatorname{rank}(D)$, the system is unsound.
-//! There exists an unsoundness witness vector $v \in \mathbb{Q}^n$ such that:
-//!
-//! \[
-//! D v \neq 0 \quad \text{and} \quad Q D v = 0
-//! \]
-//!
-//! That is, $v \in \ker(Q \cdot D)$ but $v \notin \ker(D)$, proving that the unobservable
-//! non-trivial state $D v$ is invisible to the observer $Q$.
-//!
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::Zero;
@@ -35,13 +6,10 @@ use omega_linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-/// Maximum matrix cells allowed before returning `BUDGET_UNKNOWN`.
 pub const MAX_LGGR_CELLS: usize = 4096;
 
-/// Canonical schema for LGGR V soundness report.
 pub const LGGR_SOUNDNESS_SCHEMA: &str = "omega.epk.lggr-soundness.v1";
 
-/// Errors encountered during the LGGR V soundness check.
 #[derive(Debug, Clone, PartialEq, Eq, Error, Serialize, Deserialize)]
 pub enum LggrSoundnessError {
     #[error("BUDGET_UNKNOWN: matrix cell count exceeds limit {limit} (got {cells})")]
@@ -54,19 +22,13 @@ pub enum LggrSoundnessError {
     LinearAlgebra(String),
 }
 
-/// The exact soundness verdict report for LGGR V.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LggrSoundnessReport {
-    /// True iff rank(Q·D) == rank(D).
     pub sound: bool,
-    /// Exact rank of D over ℚ.
     pub d_rank: usize,
-    /// Exact rank of Q·D over ℚ.
     pub qd_rank: usize,
-    /// If unsound, an exact witness vector v in ℚ^n with D v != 0 and Q D v == 0.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub witness: Option<Vec<BigRational>>,
-    /// Canonical authority effect: None.
     pub authority_effect: String,
 }
 
@@ -80,11 +42,6 @@ impl LggrSoundnessReport {
     }
 }
 
-/// Decide LGGR V soundness: rank(Q·D) == rank(D).
-///
-/// Returns `Ok(LggrSoundnessReport)` with `sound: true` if sound.
-/// If unsound, returns `sound: false` and carries an exact witness vector `v`
-/// satisfying `D v != 0` and `Q D v == 0`.
 pub fn check_soundness(
     d: &BasicMatrix<BigRational>,
     q: &BasicMatrix<BigRational>,
@@ -134,7 +91,6 @@ pub fn check_soundness(
             authority_effect: "None".to_string(),
         })
     } else {
-        // Unsound! Find a witness v in ker(Q·D) such that D·v != 0.
         let qd_null = qd
             .kernel_basis()
             .map_err(|e| LggrSoundnessError::LinearAlgebra(e.to_string()))?;
@@ -166,8 +122,6 @@ pub fn check_soundness(
     }
 }
 
-/// Verify that a candidate witness satisfies the exact unsoundness condition:
-/// `D·v != 0` and `Q·D·v == 0`.
 pub fn verify_unsoundness_witness(
     d: &BasicMatrix<BigRational>,
     q: &BasicMatrix<BigRational>,
@@ -205,8 +159,6 @@ mod tests {
 
     #[test]
     fn exact_soundness_sound_case() {
-        // D is 2x2 identity, Q is 2x2 identity.
-        // rank(D) = 2, rank(Q·D) = 2 -> sound.
         let d =
             BasicMatrix::from_row_major(2, 2, vec![r(1, 1), r(0, 1), r(0, 1), r(1, 1)]).unwrap();
         let q =
@@ -221,11 +173,6 @@ mod tests {
 
     #[test]
     fn exact_soundness_unsound_with_witness() {
-        // D is 2x2 identity: rank(D) = 2.
-        // Q is 1x2 projection [1, -1]: ker(Q) is span((1, 1)).
-        // Q·D = [1, -1], rank(Q·D) = 1.
-        // Unsound! Witness v in ker(Q·D) with D·v != 0.
-        // (1, 1) has D·(1, 1) = (1, 1) != 0, and Q·D·(1, 1) = 0.
         let d =
             BasicMatrix::from_row_major(2, 2, vec![r(1, 1), r(0, 1), r(0, 1), r(1, 1)]).unwrap();
         let q = BasicMatrix::from_row_major(1, 2, vec![r(1, 1), r(-1, 1)]).unwrap();
@@ -237,21 +184,12 @@ mod tests {
         let witness = report.witness.as_ref().expect("unsound must carry witness");
         assert_eq!(witness.len(), 2);
 
-        // Verify witness satisfies D·v != 0 and Q·D·v == 0
         let valid = verify_unsoundness_witness(&d, &q, witness).unwrap();
         assert!(valid, "witness must be valid");
     }
 
     #[test]
     fn witness_break_floating_point_rounding() {
-        // Tiny rational entry: 1 / 10^30
-        // In f64, 1.0 + 1e-30 rounds to 1.0.
-        // Matrix:
-        // D = [[1, 0], [0, 1]] (rank 2)
-        // Q = [[1, 1], [1, 1 + 1/10^30]]
-        // Exactly: det(Q) = 1 + 1/10^30 - 1 = 1/10^30 != 0 -> Q is invertible!
-        // rank(Q·D) = 2 == rank(D) -> SOUND.
-        // Under f64, Q is [[1, 1], [1, 1]], which has rank 1 -> would incorrectly declare unsound!
         let tiny = BigRational::new(BigInt::one(), BigInt::from(10).pow(30));
         let d =
             BasicMatrix::from_row_major(2, 2, vec![r(1, 1), r(0, 1), r(0, 1), r(1, 1)]).unwrap();
@@ -266,7 +204,6 @@ mod tests {
 
     #[test]
     fn oversize_matrix_returns_budget_unknown() {
-        // 65 x 65 = 4225 > 4096 cells
         let rows = 65;
         let cols = 65;
         let d = BasicMatrix::zero(rows, cols).unwrap();

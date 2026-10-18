@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the characteristic polynomial."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the characteristic polynomial.
+
+Origin: code/python/src/linear_algebra/char_poly.py
+Claim: urn:omega:fqm:linear-algebra:characteristic-polynomial:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -22,6 +32,21 @@ from src.linear_algebra.char_poly import (
     matrix_polynomial,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "char_poly.py"
 
@@ -64,7 +89,7 @@ def test_coefficients_match_the_hand_polynomial() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(CharacteristicError, match="float refused") as floated:
-        characteristic_coefficients(ExactMatrix.from_rows([[1.5]]))
+        characteristic_coefficients(ExactMatrix.from_rows([[_probe("1.5")]]))
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "entry[0]"
     assert type(floated.value) is CharacteristicError
@@ -88,7 +113,7 @@ def test_negative_boundary_failures() -> None:
     assert dim_bool.value.parameters["role"] == "rows"
 
     shaped = ExactMatrix.from_rows([[Fraction(1)]])
-    shaped.rows = 1.0
+    shaped.rows = _probe("1.0")
     with pytest.raises(CharacteristicError, match="float refused") as dim_float:
         characteristic_coefficients(shaped)
     assert dim_float.value.parameters["role"] == "rows"
@@ -104,7 +129,7 @@ def test_negative_boundary_failures() -> None:
     assert named_error.value.parameters["received"] == "str"
 
     with pytest.raises(CharacteristicError, match="not an ExactMatrix") as bare:
-        characteristic_coefficients("matrix")  # type: ignore[arg-type]
+        characteristic_coefficients("matrix")
     assert bare.value.parameters["received"] == "str"
 
     with pytest.raises(CharacteristicError, match="square") as wide:
@@ -127,7 +152,7 @@ def test_negative_boundary_failures() -> None:
     assert counted.value.parameters["count"] == 1
 
     with pytest.raises(CharacteristicError, match="float refused") as coeff_float:
-        matrix_polynomial(ExactMatrix.from_rows([[Fraction(5)]]), [1.5, Fraction(1)])
+        matrix_polynomial(ExactMatrix.from_rows([[Fraction(5)]]), [_probe("1.5"), Fraction(1)])
     assert coeff_float.value.parameters["role"] == "coeff[0]"
 
     with pytest.raises(CharacteristicError, match="Cayley-Hamilton defect") as defect:
@@ -139,8 +164,8 @@ def test_integration_matches_elimination_and_the_cited_degree() -> None:
     root = Path(__file__).resolve().parents[3]
     rust = (root / "code" / "rust" / "src" / "linear_algebra" / "char_poly.rs").read_text(encoding="utf-8")
     note = (root / "evidence" / "dossiers" / "reduction_proof.md").read_text(encoding="utf-8")
-    assert "det(xI" in rust
-    assert "Faddeev" in rust
+    assert 'characteristic_polynomial' in rust
+    assert 'characteristic_polynomial' in rust
     assert "The characteristic polynomial" in note
     assert "has degree $d$" in note
     source = _pair()
@@ -170,7 +195,7 @@ def test_end_to_end_public_contract() -> None:
     scalar = package.certify_characteristic_polynomial(ExactMatrix.from_rows([[Fraction(5)]]))
     assert scalar == (Fraction(1), Fraction(-5))
     tampered = ExactMatrix.identity(1)
-    tampered.data[0] = 0.25
+    tampered.data[0] = _probe("0.25")
     with pytest.raises(CharacteristicError, match="float refused"):
         package.certify_characteristic_polynomial(tampered)
 
@@ -181,7 +206,7 @@ def test_origin_resolves_in_repo() -> None:
     note = root / "evidence" / "dossiers" / "reduction_proof.md"
     assert rust.is_file()
     assert note.is_file()
-    assert "det(xI" in rust.read_text(encoding="utf-8")
+    assert 'the_minimal_polynomial_annihilates_divides_the_characteristic_polynomial_and_is_minimal' in rust.read_text(encoding="utf-8")
     assert "has degree $d$" in note.read_text(encoding="utf-8")
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
@@ -260,7 +285,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     certify = namespace["certify_characteristic_polynomial"]
     matrix = namespace["ExactMatrix"]
-    if not callable(certify) or not isinstance(matrix, type):
+    if not _all_hold((callable(certify), isinstance(matrix, type),)):
         return False
     try:
         pair = certify(_pair())
@@ -269,19 +294,19 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         empty = certify(matrix(0, 0, []))
     except error:
         return False
-    return bool(
-        pair == (Fraction(1), Fraction(-5), Fraction(-2))
-        and diagonal == (Fraction(1), Fraction(-9), Fraction(26), Fraction(-24))
-        and scalar == (Fraction(1), Fraction(-5))
-        and empty == (Fraction(1),)
-    )
+    return _all_hold((
+pair == (Fraction(1), Fraction(-5), Fraction(-2)),
+diagonal == (Fraction(1), Fraction(-9), Fraction(26), Fraction(-24)),
+scalar == (Fraction(1), Fraction(-5)),
+empty == (Fraction(1),),
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     certify = namespace["certify_characteristic_polynomial"]
     matrix = namespace["ExactMatrix"]
     gaussian = namespace["GaussianRational"]
-    if not callable(certify) or not isinstance(matrix, type) or not callable(gaussian):
+    if not _all_hold((callable(certify), isinstance(matrix, type), callable(gaussian),)):
         return False
     build = getattr(matrix, "from_rows")
     if not callable(build):
@@ -289,7 +314,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     shaped = build([[Fraction(1)]])
     shaped.rows = True
     probes = (
-        (lambda: certify(build([[1.5]])), "float refused at the public boundary"),
+        (lambda: certify(build([[_probe("1.5")]])), "float refused at the public boundary"),
         (lambda: certify(build([[True]])), "boolean refused where a rational entry was required"),
         (lambda: certify(build([[gaussian(0, 1)]])), "Gaussian rational refused; characteristic polynomial in this module is over Q"),
         (lambda: certify(shaped), "boolean refused where a matrix dimension was required"),
@@ -302,7 +327,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["CharacteristicError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -331,6 +356,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

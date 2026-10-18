@@ -59,14 +59,9 @@ def _solve_l1_linear_system(
     if n_cols == 0 or n_rows == 0:
         return np.zeros(n_cols), b.copy(), float(np.sum(np.abs(b))), True
 
-    # Variables: x (n_cols), t (n_rows)
-    # Objective: min sum(t)
     c = np.zeros(n_cols + n_rows)
     c[n_cols:] = 1.0
 
-    # Constraints:
-    # A x - t <= b  =>  [A, -I] [x; t] <= b
-    # -A x - t <= -b => [-A, -I] [x; t] <= -b
     I_m = np.eye(n_rows)
     A_ub = np.block([[A, -I_m], [-A, -I_m]])
     b_ub = np.concatenate([b, -b])
@@ -81,7 +76,6 @@ def _solve_l1_linear_system(
         min_l1 = float(np.sum(np.abs(residual_vec)))
         return x_opt, residual_vec, min_l1, True
     else:
-        # Fallback to zero x: upper bound, not computed minimum
         return np.zeros(n_cols), b.copy(), float(np.sum(np.abs(b))), False
 
 
@@ -139,7 +133,6 @@ def evaluate_residual(
         else:
             unrecognized_mass += abs(val)
 
-    # 1. Lower coboundary operator d_{k-1}^\top: C^{k-1} -> C^k
     cells_km1 = complex_obj.cells.get(degree - 1, [])
     if cells_km1:
         d_k_lower = boundary_matrix(cells_k, cells_km1)
@@ -147,7 +140,6 @@ def evaluate_residual(
     else:
         B_km1 = np.zeros((n_k, 0), dtype=float)
 
-    # 2. Upper coboundary operator d_k^\top: C^k -> C^{k+1}
     cells_kp1 = complex_obj.cells.get(degree + 1, [])
     if cells_kp1:
         d_kp1_upper = boundary_matrix(cells_kp1, cells_k)
@@ -189,7 +181,6 @@ def evaluate_residual(
         res_vec = w_vec.copy()
         phi = float(np.sum(np.abs(res_vec)))
 
-    # Compute curvature mass gamma_{k+1} = ||D_k res_vec||_1
     if D_k.shape[0] > 0:
         curv_vec = D_k @ res_vec
         gamma = float(np.sum(np.abs(curv_vec)))

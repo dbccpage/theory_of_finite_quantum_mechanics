@@ -1,15 +1,3 @@
-//! Exact rational and F2 witness for `WDP-21-16-WDP` (`derivation.md`).
-//!
-//! Verifies:
-//! 1. Packet L: 4x4 rational Bell density matrices `rho`, `sigma`, single-qubit marginals `I/2`,
-//!    product projection `I/4`, residual difference `R = rho - sigma = (XX - YY)/2`,
-//!    `Tr(R) = 0`, `Tr(R O_R) = 0`, `Tr(R ZZ) = 0`, `Tr(R O) = 1/4 = 2*beta`, `||R||_1 = 2`,
-//!    and L4 endpoint reconstruction bound `alpha >= delta / 2 = 1/8`.
-//! 2. Support-vector vs signed-operator distinction: `supp(XX) + supp(YY) = (0,0,1,1) = supp(ZZ)`
-//!    in `F_2^4`, whereas `R = (XX - YY)/2` has `Tr(R ZZ) = 0`.
-//! 3. Packet S: `V = F_2^3`, `Q(x,y,z) = x xor y`, `ker Q = {000,001,110,111}`, `B = {000,110}`,
-//!    witness `001 in ker Q \ B`, and `dim(ker Q / B) = 1` separated by row `z`.
-//! 4. Refuses treating `1 = dim(ker Q / B) = R_{0,3}` as a cross-carrier adapter or Lieb-Robinson floor.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Frac {

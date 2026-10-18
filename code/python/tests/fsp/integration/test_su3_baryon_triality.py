@@ -37,13 +37,11 @@ def test_su3_cartan_root_algebra():
     junction = SU3SimplicialYJunction()
     w = junction.weights
 
-    # Color singlet condition: sum of weights in fundamental triplet must be zero
     sum_x = w["R"][0] + w["G"][0] + w["B"][0]
     sum_y = w["R"][1] + w["G"][1] + w["B"][1]
     assert sum_x == pytest.approx(0.0, abs=1e-9)
     assert sum_y == pytest.approx(0.0, abs=1e-9)
 
-    # Root vector norms must all equal 1.0 (equilateral triangle in weight space)
     r_rg = junction.evaluate_cartan_root_diff("R", "G")
     r_gb = junction.evaluate_cartan_root_diff("G", "B")
     r_br = junction.evaluate_cartan_root_diff("B", "R")
@@ -82,15 +80,11 @@ def test_su3_baryon_triality_higher_order_curvature():
         assert receipt.gauge_group == "SU(3)"
         assert receipt.center_triality == "Z_3"
 
-        # Higher-order curvature strictly strictly positive
         assert receipt.has_higher_order_curvature is True
         assert receipt.baryon_gamma_2 > 0.0
         assert receipt.baryon_gamma_2 == pytest.approx(5.0, rel=1e-4)
 
-        # Residual defect strictly positive
         assert receipt.baryon_phi_1 > 0.0
-        # Exact primal/dual certificate. The former 2.6 was a fixed-step
-        # subgradient artifact, not the quotient-distance optimum.
         cochain = [Fraction(x) for x in engine.junction.build_baryon_cochain()[0]]
         boundary = engine.junction.complex.d0
         gauge = [Fraction(0), Fraction(1, 2), Fraction(1, 2), Fraction(1, 2)]
@@ -104,7 +98,6 @@ def test_su3_baryon_triality_higher_order_curvature():
         assert sum(abs(x) for x in residual) == sum(x * y for x, y in zip(cochain, dual)) == Fraction(5, 2)
         assert receipt.baryon_phi_1 == Fraction(5, 2)
 
-        # Routes deterministically to OpenSignObstruction
         assert receipt.baryon_terminal_route == "OpenSignObstruction"
     finally:
         engine.close()
@@ -115,13 +108,11 @@ def test_su3_gin_mode_posting_list():
     engine = SU3BaryonGinEngine(in_memory=True)
     try:
         engine.audit_su3_baryon_triality()
-        # Ensure modes 1..9 are present in the posting index or database
         c = engine.conn.cursor()
         c.execute("SELECT COUNT(DISTINCT mode_id) FROM GinModePostingList;")
         count = c.fetchone()[0]
         assert count == 9
 
-        # Verify the 3 occupied modes for the baryon state
         occupied = [m for m, cfgs in engine.posting_index.items() if len(cfgs) > 0]
         assert len(occupied) == 3
         assert set(occupied) == {1, 5, 9}

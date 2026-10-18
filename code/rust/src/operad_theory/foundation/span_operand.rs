@@ -1,23 +1,12 @@
-//! Foundation: Exact UTF-8 Span Operands as Multicategory Objects.
-//!
-//! Enforces:
-//! 1. Exact UTF-8 byte span boundaries without BOM (RULE_UTF8_MOJIBAKE_CLEANLINESS_001).
-//! 2. Content-addressable SHA-256 integrity digests for all parsed spans.
-//! 3. Sort mapping to ADMITTED_FINITE_COLOURS.
-//! 4. Strict Value Object exact-type equality and ordered key derivation (RULE_RUST_ORDERED_KEY_DERIVE_001).
-//!
-//! AuthorityEffect: None.
 
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use super::colour::OperadColour;
 
-/// Admitted finite colours for span operands in the estate.
 pub const ADMITTED_FINITE_COLOURS: &[&str] = &[
     "State", "Proof", "Receipt", "Audit", "Contract", "Ledger", "Code", "Paper", "Diagram", "Post",
 ];
 
-/// An exact, content-addressed text span acting as an operand in a coloured multicategory.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub struct SpanOperand {
     pub file_path: String,
@@ -32,7 +21,6 @@ pub struct SpanOperand {
 }
 
 impl SpanOperand {
-    /// Constructs and validates a SpanOperand from raw text.
     pub fn new(
         file_path: impl Into<String>,
         start_line: usize,
@@ -73,7 +61,6 @@ impl SpanOperand {
         })
     }
 
-    /// Factory method computing SHA-256 and byte length automatically.
     pub fn from_raw_text(
         file_path: impl Into<String>,
         raw_text: impl Into<String>,
@@ -106,7 +93,6 @@ impl SpanOperand {
         )
     }
 
-    /// Verifies if the internal SHA-256 matches the raw text digest.
     pub fn verify_integrity(&self) -> bool {
         let mut hasher = Sha256::new();
         hasher.update(self.raw_text.as_bytes());

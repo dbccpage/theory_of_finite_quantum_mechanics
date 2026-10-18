@@ -82,7 +82,6 @@ def test_evaluate_exact() -> None:
 
 
 def test_repo_pilot_set_loads() -> None:
-    # Live pilot set path (if present after land)
     from omega_engine_governance.contracts import c2s2_uncontracted_refuse as m
 
     if m._DEFAULT_PILOT.is_file():

@@ -1,25 +1,3 @@
-//! Exact rational and cyclotomic decision procedure for Szöllősi B6(θ) and Tao S6 MU triple compatibility.
-//!
-//! AuthorityEffect: None
-//!
-//! ## Overview
-//!
-//! In dimension d=6, any mutually unbiased triple containing the standard basis I_6 is of the form
-//! {I_6, (1/sqrt(6)) H_1, (1/sqrt(6)) H_2}, where H_1, H_2 are 6x6 complex Hadamard matrices (CHMs)
-//! satisfying |(H_1)_{jk}| = 1, |(H_2)_{jk}| = 1, H_1 H_1† = 6 I_6, H_2 H_2† = 6 I_6.
-//! The triple is pairwise mutually unbiased if and only if the transition matrix
-//!   H_{12} = H_1† H_2
-//! is also proportional to a complex Hadamard matrix, which means:
-//!   |(H_{12})_{jk}|² = 6   for all j, k ∈ {0, ..., 5}.
-//!
-//! This module implements clean-room exact cyclotomic arithmetic in Q(ζ₂₄) (via `Cyc24`) to decide
-//! whether:
-//! 1. The isolated Tao matrix S_6 can form an MU triple with itself (under permutations / phase gauges).
-//! 2. Any discrete root-of-unity member of the 2-circulant Szöllősi / Beauchamp-Nicoară family B_6(θ)
-//!    can form an MU triple with the Tao matrix S_6.
-//! 3. Any pair of discrete root-of-unity Szöllősi matrices B_6(θ₁), B_6(θ₂) can form an MU triple.
-//!
-//! Zero floating-point certifiers are used. All norms and inner products are evaluated in Cyc24.
 
 use num_rational::BigRational;
 use serde::{Deserialize, Serialize};
@@ -30,15 +8,12 @@ use crate::omega_native::exact::mub6_matrix6::{matrix_adjoint, matrix_mul, matri
 use omega_number_theory::cyclotomic::Cyc24;
 use omega_number_theory::rational::ri;
 
-/// Exact 6-vector over Q(ζ₂₄).
 pub type ExactVec = [Cyc24; D];
 
-/// Exact modulus squared |z|² = z * conj(z).
 pub fn mod_sq(z: &Cyc24) -> Cyc24 {
     z.mul(&z.conj())
 }
 
-/// Verification report for Complex Hadamard Matrix property.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChmVerificationReport {
     pub is_chm: bool,
@@ -49,9 +24,6 @@ pub struct ChmVerificationReport {
     pub details: String,
 }
 
-/// Check if a 6x6 matrix is an exact Complex Hadamard Matrix (CHM):
-/// 1. |M_{jk}|² == 1 for all j, k.
-/// 2. M * M† == 6 * I_6.
 #[allow(clippy::needless_range_loop)]
 pub fn verify_chm(m: &Matrix6) -> ChmVerificationReport {
     let one = Cyc24::rat(ri(1));
@@ -106,11 +78,6 @@ pub fn verify_chm(m: &Matrix6) -> ChmVerificationReport {
     }
 }
 
-/// Concrete construction of Terence Tao's isolated spectral CHM S_6.
-///
-/// Entries are powers of third root of unity ω = e^{2πi/3} = ζ₂₄⁸:
-/// [S_6]_{jk} = ω^{p(j,k)}, with exponents in {0, 1, 2}.
-/// S_6 is symmetric (S_6^T = S_6) and dephased (row 0 and col 0 are all 1).
 pub fn tao_s6_matrix() -> Matrix6 {
     let w0 = Cyc24::rat(ri(1));
     let w1 = Cyc24::zeta24(8);
@@ -129,15 +96,6 @@ pub fn tao_s6_matrix() -> Matrix6 {
     std::array::from_fn(|i| std::array::from_fn(|j| w[table[i][j]].clone()))
 }
 
-/// Szöllősi / Beauchamp-Nicoară 2-circulant matrix B_6(a, b, c, d, e, f).
-///
-/// H = [ A    B  ]
-///     [ B†  -A† ]
-/// where A = circ(a, b, c) and B = circ(d, e, f).
-/// The condition for H to be a complex Hadamard matrix with unit entries is:
-///   z₁ + z₂ = 0
-/// where z₁ = a/c + b/a + c/b = a c* + b a* + c b*
-///       z₂ = d/f + e/d + f/e = d f* + e d* + f e*.
 pub fn szollosi_b6_matrix(
     a: &Cyc24,
     b: &Cyc24,
@@ -146,7 +104,6 @@ pub fn szollosi_b6_matrix(
     e: &Cyc24,
     f: &Cyc24,
 ) -> Result<Matrix6, String> {
-    // Condition check: z1 + z2 == 0
     let z1 = a
         .mul(&c.conj())
         .add(&b.mul(&a.conj()))
@@ -160,28 +117,24 @@ pub fn szollosi_b6_matrix(
         return Err("Szollosi condition z1 + z2 == 0 violated".to_string());
     }
 
-    // A = circ(a, b, c)
     let a_rows = [
         [a.clone(), b.clone(), c.clone()],
         [c.clone(), a.clone(), b.clone()],
         [b.clone(), c.clone(), a.clone()],
     ];
 
-    // B = circ(d, e, f)
     let b_rows = [
         [d.clone(), e.clone(), f.clone()],
         [f.clone(), d.clone(), e.clone()],
         [e.clone(), f.clone(), d.clone()],
     ];
 
-    // B† = circ(d*, f*, e*)
     let bd_rows = [
         [d.conj(), f.conj(), e.conj()],
         [e.conj(), d.conj(), f.conj()],
         [f.conj(), e.conj(), d.conj()],
     ];
 
-    // -A† = -circ(a*, c*, b*)
     let neg_ad_rows = [
         [a.conj().neg(), c.conj().neg(), b.conj().neg()],
         [b.conj().neg(), a.conj().neg(), c.conj().neg()],
@@ -201,13 +154,11 @@ pub fn szollosi_b6_matrix(
     Ok(out)
 }
 
-/// Dephased Szöllősi matrix B_6(b, c, e, f) with a = 1 and d = 1.
 pub fn szollosi_dephased_b6(b: &Cyc24, c: &Cyc24, e: &Cyc24, f: &Cyc24) -> Result<Matrix6, String> {
     let one = Cyc24::rat(ri(1));
     szollosi_b6_matrix(&one, b, c, &one, e, f)
 }
 
-/// Violation of Hadamard transition condition |(H_{12})_{jk}|² = 6.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransitionViolation {
     pub row: usize,
@@ -216,7 +167,6 @@ pub struct TransitionViolation {
     pub delta_from_six: String,
 }
 
-/// Detailed report on transition matrix H_{12} = H_1† H_2.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransitionReport {
     pub is_mutually_unbiased: bool,
@@ -228,9 +178,6 @@ pub struct TransitionReport {
     pub sample_violations: Vec<TransitionViolation>,
 }
 
-/// Check if two CHMs H_1, H_2 form a mutually unbiased pair (and with I_6 an MU triple).
-///
-/// Condition: for H_{12} = H_1† H_2, |(H_{12})_{jk}|² == 6 for all j, k.
 #[allow(clippy::needless_range_loop)]
 pub fn check_hadamard_transition(h1: &Matrix6, h2: &Matrix6) -> TransitionReport {
     let h12 = matrix_mul(&matrix_adjoint(h1), h2);
@@ -296,8 +243,6 @@ pub fn check_hadamard_transition(h1: &Matrix6, h2: &Matrix6) -> TransitionReport
     }
 }
 
-/// A discrete parameter point for the Szöllősi family over μ₂₄:
-/// b = ζ₂₄^{kb}, c = ζ₂₄^{kc}, e = ζ₂₄^{ke}, f = ζ₂₄^{kf}.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SzollosiDiscretePoint {
     pub kb: usize,
@@ -308,12 +253,6 @@ pub struct SzollosiDiscretePoint {
     pub z2_desc: String,
 }
 
-/// Search all 24⁴ = 331,776 discrete root-of-unity parameter points for valid Szöllősi CHMs.
-///
-/// Points satisfy:
-///   z₁ + z₂ = 0
-/// where z₁ = c* + b + c b* = ζ₂₄^{-kc} + ζ₂₄^{kb} + ζ₂₄^{kc-kb}
-///       z₂ = f* + e + f e* = ζ₂₄^{-kf} + ζ₂₄^{ke} + ζ₂₄^{kf-ke}.
 pub fn search_discrete_szollosi_chm_points() -> Vec<SzollosiDiscretePoint> {
     let mut z_table = Vec::with_capacity(24 * 24);
     for k1 in 0..24i32 {
@@ -350,7 +289,6 @@ pub fn search_discrete_szollosi_chm_points() -> Vec<SzollosiDiscretePoint> {
     valid_points
 }
 
-/// Complete search receipt for Szöllősi and Tao MU Triple Compatibility.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SzollosiTriadSearchReceipt {
     pub schema_version: &'static str,
@@ -375,24 +313,19 @@ pub struct SzollosiTriadSearchReceipt {
     pub terminal_status: &'static str,
 }
 
-/// Execute the exhaustive Szöllősi & Tao MU triple compatibility search.
 pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
     let s6 = tao_s6_matrix();
     let s6_report = verify_chm(&s6);
     assert!(s6_report.is_chm, "Tao matrix S6 must be an exact CHM");
 
-    // 1. Tao-Tao Compatibility Search
     let mut tao_permutations: Vec<[usize; 6]> = Vec::new();
-    // Identity
     tao_permutations.push([0, 1, 2, 3, 4, 5]);
-    // Cyclic shifts
     for shift in 1..6 {
         let p = std::array::from_fn(|i| (i + shift) % 6);
         if !tao_permutations.contains(&p) {
             tao_permutations.push(p);
         }
     }
-    // Transpositions
     for i in 0..6 {
         for j in (i + 1)..6 {
             let mut p = [0, 1, 2, 3, 4, 5];
@@ -402,8 +335,6 @@ pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
             }
         }
     }
-    // NOTE (R14 audit): Block swap [3, 4, 5, 0, 1, 2] is identical to cyclic shift 3 and is deduplicated.
-    // The permutation set consists of exactly 21 distinct operations (1 identity + 5 cyclic shifts + 15 transpositions).
     debug_assert_eq!(tao_permutations.len(), 21);
 
     let mut tao_tao_mu_count = 0;
@@ -415,12 +346,10 @@ pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
         }
     }
 
-    // 2. Discrete Szöllősi Parameter Space Search
     let discrete_points = search_discrete_szollosi_chm_points();
     let total_tuples = 24 * 24 * 24 * 24;
     let valid_count = discrete_points.len();
 
-    // 3. Tao vs Szöllősi Search
     let mut tao_szo_mu_count = 0;
     let mut sample_tao_szo_report = None;
     let mut tested_szo_matrices = Vec::new();
@@ -445,7 +374,6 @@ pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
         }
     }
 
-    // 4. Szöllősi vs Szöllősi Search
     let mut szo_szo_mu_count = 0;
     let mut sample_szo_szo_report = None;
     let num_tested_szo = tested_szo_matrices.len();
@@ -472,7 +400,6 @@ pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
         "Prefix subset of 64 discrete Szöllősi CHM points over mu_24 evaluated"
     };
 
-    // NOTE (R14 audit): Derive terminal status and obstruction summary dynamically from search counts.
     let (terminal_status, obstruction_summary) = if tao_tao_mu_count == 0
         && tao_szo_mu_count == 0
         && szo_szo_mu_count == 0
@@ -512,7 +439,6 @@ pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
     }
 }
 
-/// Emit JSON receipt to `artifacts/` and `runs/mub6/`.
 pub fn emit_receipt_files(receipt: &SzollosiTriadSearchReceipt) -> Result<Vec<PathBuf>, String> {
     let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let artifacts_dir = manifest_dir.join("../tests/omega_mub/artifacts");
@@ -549,7 +475,6 @@ mod tests {
     fn tao_s6_self_transition_is_not_mu() {
         let s6 = tao_s6_matrix();
         let tr = check_hadamard_transition(&s6, &s6);
-        // S6† S6 = 6 I6, so diagonal is |6|² = 36 != 6, offdiagonal is 0 != 6.
         assert!(!tr.is_mutually_unbiased);
         assert_eq!(tr.violation_count, 36);
         assert_eq!(tr.min_entry_mod_sq_rat, "0/1");
@@ -564,7 +489,6 @@ mod tests {
             "Should find valid discrete Szöllősi points"
         );
 
-        // Take first valid point and verify the resulting matrix is an exact CHM
         let pt0 = &points[0];
         let b = Cyc24::zeta24(pt0.kb as i32);
         let c = Cyc24::zeta24(pt0.kc as i32);
@@ -589,7 +513,6 @@ mod tests {
         let b6 = szollosi_dephased_b6(&b, &c, &e, &f).unwrap();
 
         let tr = check_hadamard_transition(&s6, &b6);
-        // Must detect non-unbiasedness (obstruction)
         assert!(!tr.is_mutually_unbiased);
         assert!(tr.violation_count > 0);
     }

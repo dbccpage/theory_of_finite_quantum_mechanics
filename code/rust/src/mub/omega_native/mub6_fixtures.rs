@@ -1,36 +1,20 @@
-//! Fixture values: hard-coded inputs that omega_mub receipts use where no computation exists.
-//!
-//! Each file under `omega_mub/fixtures/` holds the literals, assumed constants and fixed
-//! verdict flags of one module, each with its kind, the reason it is a fixture and the source file
-//! that reads it. Code reads them through [`fixture_set!`] instead of embedding them, so every number
-//! that stands in for a computation is listed outside the code. A value read from here is not
-//! evidence for any MUB(6) statement. The files are embedded at compile time.
-//!
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use serde_json::Value;
 use std::str::FromStr;
 
-/// Schema every fixture file declares.
 pub const SCHEMA: &str = "omega_mub.fixture_values.v1";
 
-/// Kinds a fixture value may declare: a number written in place of a computation, a constant the
-/// code assumes without derivation, or a verdict flag or status set without a check.
 pub const KINDS: [&str; 3] = ["literal", "assumed_constant", "fixed_verdict"];
 
-/// Value types a fixture may declare; each has one accessor on [`FixtureSet`].
 pub const TYPES: [&str; 6] = ["rational", "float", "bool", "string", "integer", "count"];
 
-/// One module's fixture values, parsed from its embedded JSON file.
 pub struct FixtureSet {
     name: &'static str,
     values: serde_json::Map<String, Value>,
 }
 
 impl FixtureSet {
-    /// Parses an embedded fixture file. The files are compile-time constants checked by the
-    /// register test, so a malformed file stops the program instead of returning a value.
     pub fn parse(name: &'static str, json: &'static str) -> Self {
         let doc: Value = serde_json::from_str(json)
             .unwrap_or_else(|e| panic!("fixture file {name} is not valid JSON: {e}"));
@@ -48,7 +32,6 @@ impl FixtureSet {
             .unwrap_or_else(|| panic!("fixture {} has no value {id}", self.name))
     }
 
-    /// A rational written as `"p/q"` or `"p"`.
     pub fn rational(&self, id: &str) -> BigRational {
         let text = self
             .value(id)
@@ -58,21 +41,18 @@ impl FixtureSet {
             .unwrap_or_else(|e| panic!("fixture {}.{id} = {text:?}: {e}", self.name))
     }
 
-    /// A float, for code that already works in `f64`.
     pub fn float(&self, id: &str) -> f64 {
         self.value(id)
             .as_f64()
             .unwrap_or_else(|| panic!("fixture {}.{id} is not a number", self.name))
     }
 
-    /// A boolean flag.
     pub fn flag(&self, id: &str) -> bool {
         self.value(id)
             .as_bool()
             .unwrap_or_else(|| panic!("fixture {}.{id} is not a boolean", self.name))
     }
 
-    /// A string.
     pub fn text(&self, id: &str) -> String {
         self.value(id)
             .as_str()
@@ -80,14 +60,12 @@ impl FixtureSet {
             .to_string()
     }
 
-    /// A signed integer.
     pub fn integer(&self, id: &str) -> i64 {
         self.value(id)
             .as_i64()
             .unwrap_or_else(|| panic!("fixture {}.{id} is not an integer", self.name))
     }
 
-    /// An unsigned integer.
     pub fn count(&self, id: &str) -> usize {
         self.value(id)
             .as_u64()
@@ -96,8 +74,6 @@ impl FixtureSet {
     }
 }
 
-/// Checks the document shape: schema, authority, and for every value a type, a kind, a reason
-/// and the `used_at` source file (relative to the crate) that reads it.
 pub fn check_document(doc: &Value) -> Result<(), String> {
     if doc["schema"] != SCHEMA {
         return Err(format!("schema is {}, expected {SCHEMA}", doc["schema"]));
@@ -134,8 +110,6 @@ pub fn check_document(doc: &Value) -> Result<(), String> {
     Ok(())
 }
 
-/// Declares `fn $func() -> &'static FixtureSet` reading `omega_mub/fixtures/$name.json`, embedded
-/// at compile time and parsed once.
 #[macro_export]
 macro_rules! fixture_set {
     ($func:ident, $name:literal) => {
@@ -191,8 +165,6 @@ mod tests {
         }
     }
 
-    /// Each value names the source file that reads it; that file must load this fixture set and
-    /// mention the value id, so a value no code reads cannot sit in a fixture file.
     #[test]
     fn every_fixture_value_is_read_where_it_says() {
         let root = Path::new(env!("CARGO_MANIFEST_DIR"));

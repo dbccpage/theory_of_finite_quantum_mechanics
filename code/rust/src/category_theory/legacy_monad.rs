@@ -1,21 +1,3 @@
-//! Monad — Spec Section 22.
-//!
-//! A monad on C is a monoid object in the bicategory Prof,
-//! restricted to representable profunctors.
-//!
-//! Representable case (classical monad):
-//!   T : C → C (endofunctor)
-//!   η : id ⇒ T (unit)
-//!   μ : T² ⇒ T (multiplication)
-//!
-//! Monad laws:
-//!   μ ∘ Tη = id_T       (left unit)
-//!   μ ∘ ηT = id_T       (right unit)
-//!   μ ∘ Tμ = μ ∘ μT     (associativity)
-//!
-//! Non-representable case (profunctor monad / relative monad):
-//!   P : C ⊸ C (profunctor, not necessarily representable)
-//!   unit and multiplication as profunctor natural transformations.
 
 use super::cat_functor::{Category, DeclaredFiniteFunctor};
 use super::finite_category::DeclaredFiniteCategory;
@@ -24,52 +6,27 @@ use super::validation::{
 };
 use std::collections::BTreeMap;
 
-// ---------------------------------------------------------------------------
-// Trait: Monad (representable case)
-// ---------------------------------------------------------------------------
 
-/// A monad on a category C: an endofunctor T with unit η and multiplication μ.
-///
-/// This is the representable specialization of a monoid in Prof.
-/// Laws (validation obligations):
-///   μ ∘ Tη = id_T       (left unit)
-///   μ ∘ ηT = id_T       (right unit)
-///   μ ∘ Tμ = μ ∘ μT     (associativity)
 pub trait Monad {
     type C: Category;
 
-    /// The endofunctor T on objects: T(A).
     fn map_object(&self, x: &<Self::C as Category>::Ob) -> <Self::C as Category>::Ob;
 
-    /// The endofunctor T on morphisms: T(f).
     fn map_morphism(&self, f: &<Self::C as Category>::Mor) -> <Self::C as Category>::Mor;
 
-    /// Unit component: η_A : A → T(A).
     fn unit(&self, x: &<Self::C as Category>::Ob) -> <Self::C as Category>::Mor;
 
-    /// Multiplication component: μ_A : T(T(A)) → T(A).
     fn multiply(&self, x: &<Self::C as Category>::Ob) -> <Self::C as Category>::Mor;
 }
 
-// ---------------------------------------------------------------------------
-// DeclaredFiniteMonad (data record)
-// ---------------------------------------------------------------------------
 
-/// An explicit, finite monad declaration for kernel audit.
-///
-/// This is the data-level record: maps are string tables,
-/// law checking is external.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredFiniteMonad {
     pub name: String,
     pub category: String,
-    /// T on objects: object → T(object).
     pub object_map: BTreeMap<String, String>,
-    /// T on morphisms: morphism → T(morphism).
     pub morphism_map: BTreeMap<String, String>,
-    /// Unit components: object A → morphism η_A.
     pub unit_components: BTreeMap<String, String>,
-    /// Multiplication components: object A → morphism μ_A.
     pub multiplication_components: BTreeMap<String, String>,
 }
 
@@ -102,7 +59,6 @@ impl DeclaredFiniteMonad {
             .insert(object.into(), morphism.into());
     }
 
-    /// Extract the underlying endofunctor.
     pub fn underlying_functor(&self) -> DeclaredFiniteFunctor {
         let mut f =
             DeclaredFiniteFunctor::new(&format!("T_{}", self.name), &self.category, &self.category);
@@ -112,24 +68,12 @@ impl DeclaredFiniteMonad {
     }
 }
 
-// ---------------------------------------------------------------------------
-// ProfunctorMonad (non-representable / relative monad)
-// ---------------------------------------------------------------------------
 
-/// A profunctor monad (relative monad): a monoid in Prof
-/// that is NOT required to be representable.
-///
-/// The carrier is a profunctor P : C ⊸ C rather than a functor.
-/// This captures effect systems, open semantics, and generalized
-/// algebraic theories.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ProfunctorMonad {
     pub name: String,
-    /// The carrier profunctor (by name/reference).
     pub carrier_profunctor: String,
-    /// Unit components: object → profunctor element (η : id ⇒ P).
     pub unit_components: BTreeMap<String, String>,
-    /// Multiplication components: profunctor element → element (μ : P∘P ⇒ P).
     pub multiplication_components: BTreeMap<String, String>,
 }
 
@@ -144,20 +88,11 @@ impl ProfunctorMonad {
     }
 }
 
-// ---------------------------------------------------------------------------
-// ValidatedFiniteMonad (trust-boundary wrapper)
-// ---------------------------------------------------------------------------
 
-/// A wrapper proving that a finite monad has passed all three law checks
-/// (left unit, right unit, associativity) against a declared category,
-/// and that its underlying functor and natural transformations are valid.
-///
-/// The inner `DeclaredFiniteMonad` is private; construction forces validation.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValidatedFiniteMonad(DeclaredFiniteMonad);
 
 impl ValidatedFiniteMonad {
-    /// Validates and wraps a monad declaration.
     pub fn try_new(
         monad: DeclaredFiniteMonad,
         category: &DeclaredFiniteCategory,
@@ -177,7 +112,6 @@ impl ValidatedFiniteMonad {
             return Err(report);
         }
 
-        // 1. Validate T as endofunctor
         let functor = monad.underlying_functor();
         let functor_report =
             super::functor_composition::validate_functor_between(&functor, category, category);
@@ -185,10 +119,8 @@ impl ValidatedFiniteMonad {
             report.add_violation(violation);
         }
 
-        // 2 & 3. Check boundaries and naturality of η and μ
         check_boundaries_and_naturality(&monad, category, &mut report);
 
-        // 4, 5, 6. Monad laws
         let left_units = check_left_unit(&monad, &category.compositions, &category.identities);
         for err in left_units {
             report.add_violation(ValidationViolation::new(
@@ -226,15 +158,11 @@ impl ValidatedFiniteMonad {
         }
     }
 
-    /// Access the underlying declared monad.
     pub fn declared(&self) -> &DeclaredFiniteMonad {
         &self.0
     }
 }
 
-// ---------------------------------------------------------------------------
-// Validation: Boundaries and Naturality
-// ---------------------------------------------------------------------------
 
 fn check_boundaries_and_naturality(
     monad: &DeclaredFiniteMonad,
@@ -242,7 +170,6 @@ fn check_boundaries_and_naturality(
     report: &mut ValidationReport,
 ) {
     for obj in &category.objects {
-        // Boundary for η_A : A → T(A)
         if let Some(eta_a) = monad.unit_components.get(obj) {
             if let Some(mor) = category.morphisms.get(eta_a) {
                 let ta = monad.object_map.get(obj).unwrap_or(obj);
@@ -274,7 +201,6 @@ fn check_boundaries_and_naturality(
             ));
         }
 
-        // Boundary for μ_A : T(T(A)) → T(A)
         let ta = monad.object_map.get(obj).cloned().unwrap_or_default();
         let tta = monad.object_map.get(&ta).cloned().unwrap_or_default();
         if let Some(mu_a) = monad.multiplication_components.get(obj) {
@@ -308,8 +234,6 @@ fn check_boundaries_and_naturality(
         }
     }
 
-    // Naturality for η: T(f) ∘ η_A = η_B ∘ f
-    // Naturality for μ: T(f) ∘ μ_A = μ_B ∘ T²(f)
     for (f_name, mor) in &category.morphisms {
         let a = &mor.source;
         let b = &mor.target;
@@ -331,7 +255,6 @@ fn check_boundaries_and_naturality(
             .cloned()
             .unwrap_or_default();
 
-        // Unit Naturality
         let left_eta = category.compositions.get(&(eta_a.clone(), tf.clone()));
         let right_eta = category.compositions.get(&(f_name.clone(), eta_b.clone()));
 
@@ -347,7 +270,6 @@ fn check_boundaries_and_naturality(
             ));
         }
 
-        // Multiply Naturality
         let left_mu = category.compositions.get(&(mu_a.clone(), tf.clone()));
         let right_mu = category.compositions.get(&(ttf.clone(), mu_b.clone()));
 
@@ -365,11 +287,7 @@ fn check_boundaries_and_naturality(
     }
 }
 
-// ---------------------------------------------------------------------------
-// Validation: monad law checkers
-// ---------------------------------------------------------------------------
 
-/// Check left unit law: μ_A ∘ T(η_A) = id_{T(A)}.
 pub fn check_left_unit(
     monad: &DeclaredFiniteMonad,
     compositions: &BTreeMap<(String, String), String>,
@@ -393,7 +311,7 @@ pub fn check_left_unit(
         let id_ta = identity_map.get(ta);
 
         match (composed, id_ta) {
-            (Some(c), Some(id)) if c == id => {} // law holds
+            (Some(c), Some(id)) if c == id => {}
             (Some(c), Some(id)) => {
                 violations.push(format!(
                     "Left unit at {}: μ ∘ T(η) = {} but id_{{T({})}} = {}",
@@ -412,7 +330,6 @@ pub fn check_left_unit(
     violations
 }
 
-/// Check right unit law: μ_A ∘ η_{T(A)} = id_{T(A)}.
 pub fn check_right_unit(
     monad: &DeclaredFiniteMonad,
     compositions: &BTreeMap<(String, String), String>,
@@ -452,7 +369,6 @@ pub fn check_right_unit(
     violations
 }
 
-/// Check associativity law: μ_A ∘ T(μ_A) = μ_A ∘ μ_{T(A)}.
 pub fn check_associativity(
     monad: &DeclaredFiniteMonad,
     compositions: &BTreeMap<(String, String), String>,
@@ -477,7 +393,7 @@ pub fn check_associativity(
         let right = compositions.get(&right_key);
 
         match (left, right) {
-            (Some(l), Some(r)) if l == r => {} // associativity holds
+            (Some(l), Some(r)) if l == r => {}
             (Some(l), Some(r)) => {
                 violations.push(format!("Assoc at {}: μ∘Tμ = {} but μ∘μT = {}", a, l, r));
             }

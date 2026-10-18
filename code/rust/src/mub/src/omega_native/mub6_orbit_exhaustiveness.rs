@@ -1,24 +1,3 @@
-//! Target A11: Rust Native Invariant Orbit Classifier & Catalog Certifier.
-//!
-//! AuthorityEffect: None
-//!
-//! This module formalizes and executes Target A11 of the MUB(6) research program:
-//! 1. Exact invariant spectrum evaluator over `Cyc24` and `BigRational`:
-//!    - 225 dephased cross-ratios: cr_{ij, kl} = (H_{ik} H_{jl}) / (H_{il} H_{jk})
-//!      for 0 <= i < j < 6 and 0 <= k < l < 6.
-//!    - Haagerup imaginary spectrum test: distinguishing H_6 by its unique cross-ratio
-//!      distribution (exactly 120 imaginary unit values i and -i, strictly quartic mod 24).
-//!    - Tao cubic spectrum test: checking whether all 225 cross-ratios lie in {1, omega_3, omega_3^2}
-//!      (zeta_24^e with e in {0, 8, 16}).
-//!    - Fourier vanishing tests: affine submatrix algebraic conditions (3+3 column and 3-pair row
-//!      sign-alternating partition and 3x3 corner determinant polynomial vanishing).
-//! 2. Deterministic decision-tree orbit classifier:
-//!    - Input: 6x6 matrix of `Cyc24`.
-//!    - Output: enum `OrbitClass { Fourier, Szollosi { theta_approx: BigRational }, Tao, Haagerup }`.
-//! 3. Exact catalog exhaustiveness certifier:
-//!    - Verifies that all test candidate matrices (F_6, Tao S_6, Haagerup H_6, Szöllősi samples B_6(theta))
-//!      and boundary matrices are cleanly and uniquely classified without unassigned residual.
-//! 4. Strict zero-float discipline: pure Cyc24 and BigRational exact arithmetic; zero floating-point types.
 
 use num_rational::BigRational;
 use num_traits::Zero;
@@ -37,17 +16,14 @@ use omega_number_theory::rational::rq;
 
 crate::fixture_set!(fixtures, "mub6_orbit_exhaustiveness");
 
-/// Rational stand-in for pi, read from the fixture file (314159265359 / 100000000000).
 pub fn pi_approx() -> BigRational {
     fixtures().rational("pi_surrogate")
 }
 
-/// Standard 6x6 Fourier matrix F_6 with [F_6]_{jk} = zeta_6^{jk} = zeta_24^{4jk}.
 pub fn standard_fourier_f6() -> Matrix6 {
     std::array::from_fn(|j| std::array::from_fn(|k| Cyc24::zeta24((4 * j * k) as i32)))
 }
 
-/// Construct 3x3 circulant matrix circ(c0, c1, c2).
 pub fn circ3(c0: &Cyc24, c1: &Cyc24, c2: &Cyc24) -> [[Cyc24; 3]; 3] {
     [
         [c0.clone(), c1.clone(), c2.clone()],
@@ -56,21 +32,17 @@ pub fn circ3(c0: &Cyc24, c1: &Cyc24, c2: &Cyc24) -> [[Cyc24; 3]; 3] {
     ]
 }
 
-/// Quotient cross-ratio `(a * d) / (b * c)`, with no conjugation.
-/// Haagerup and Tao use the conjugate form in `mub6_matrix6::cross_ratio_at`.
 pub fn cross_ratio_at(m: &Matrix6, idx: &Submatrix2Index) -> Cyc24 {
     let num = m[idx.r0][idx.c0].mul(&m[idx.r1][idx.c1]);
     let den = m[idx.r0][idx.c1].mul(&m[idx.r1][idx.c0]);
     num.mul(&den.inv())
 }
 
-/// Evaluate all 225 quotient cross-ratios for a given matrix.
 pub fn evaluate_all_225_cross_ratios(m: &Matrix6) -> Vec<Cyc24> {
     let indices = enumerate_225_submatrices();
     indices.iter().map(|idx| cross_ratio_at(m, idx)).collect()
 }
 
-/// Cross-ratio invariant spectrum representing the multiset of exponents mod 24 and raw cross-ratios.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CrossRatioSpectrum {
     #[serde(skip)]
@@ -104,17 +76,14 @@ impl CrossRatioSpectrum {
         }
     }
 
-    /// Count of cross-ratios equal to a specific root exponent mod 24.
     pub fn count_of(&self, exponent: i64) -> usize {
         self.exponent_counts.get(&exponent).copied().unwrap_or(0)
     }
 
-    /// Count of imaginary unit cross-ratios: i (exponent 6) and -i (exponent 18).
     pub fn imaginary_unit_count(&self) -> usize {
         self.count_of(6) + self.count_of(18)
     }
 
-    /// Returns true iff all cross-ratios are exact 24th roots with exponents in {0, 8, 16} (strictly cubic).
     pub fn is_strictly_cubic(&self) -> bool {
         self.non_root24_count == 0
             && self
@@ -123,7 +92,6 @@ impl CrossRatioSpectrum {
                 .all(|&k| k == 0 || k == 8 || k == 16)
     }
 
-    /// Returns true iff all cross-ratios are exact 24th roots with exponents in {0, 6, 12, 18} (strictly quartic).
     pub fn is_strictly_quartic(&self) -> bool {
         self.non_root24_count == 0
             && self
@@ -132,9 +100,6 @@ impl CrossRatioSpectrum {
                 .all(|&k| k == 0 || k == 6 || k == 12 || k == 18)
     }
 
-    /// Haagerup imaginary spectrum test:
-    /// Uniquely distinguishes H_6 by containing exactly 120 imaginary unit values (60 of i, 60 of -i),
-    /// with 30 of 1 and 75 of -1, strictly quartic mod 24.
     pub fn haagerup_imaginary_spectrum_test(&self) -> bool {
         self.imaginary_unit_count() == 120
             && self.count_of(6) == 60
@@ -144,9 +109,6 @@ impl CrossRatioSpectrum {
             && self.is_strictly_quartic()
     }
 
-    /// Tao cubic spectrum test:
-    /// Uniquely distinguishes Terence Tao's isolated spectral CHM S_6:
-    /// all 225 cross-ratios lie strictly in {1, omega_3, omega_3^2} (exponents in {0, 8, 16} mod 24).
     pub fn tao_cubic_spectrum_test(&self) -> bool {
         self.is_strictly_cubic()
             && self.count_of(0) == 45
@@ -155,21 +117,13 @@ impl CrossRatioSpectrum {
     }
 }
 
-/// Corner determinant polynomial for dephased 3x3 corner:
-/// P_corner(a, b, c, d) = ad - bc - a + b + c - d.
 pub fn corner_determinant(a: &Cyc24, b: &Cyc24, c: &Cyc24, d: &Cyc24) -> Cyc24 {
     let ad = a.mul(d);
     let bc = b.mul(c);
     ad.sub(&bc).sub(a).add(b).add(c).sub(d)
 }
 
-/// Affine Fourier submatrix algebraic condition test:
-/// Checks if the matrix possesses the affine Diță block structure:
-/// there exists a partition of the 6 columns into two 3-blocks C_1, C_2,
-/// and a partition of the 6 rows into 3 pairs (r_k, r_k') such that the entry ratio
-/// M[r_k', c] / M[r_k, c] is constant across C_1 and opposite on C_2.
 pub fn has_affine_fourier_submatrix_condition(m: &Matrix6) -> bool {
-    // Generate all (6 choose 3) / 2 = 10 unique partitions of columns into two sets of 3.
     let cols: [usize; 6] = [0, 1, 2, 3, 4, 5];
     for i1 in 0..4 {
         for i2 in (i1 + 1)..5 {
@@ -184,11 +138,9 @@ pub fn has_affine_fourier_submatrix_condition(m: &Matrix6) -> bool {
                     }
                 }
 
-                // Check all 15 possible row pairs (r0, r1)
                 let mut valid_row_pairs = Vec::new();
                 for r0 in 0..D {
                     for r1 in (r0 + 1)..D {
-                        // Ratio M[r1, c] / M[r0, c]
                         let val_c1 = m[r1][c1[0]].mul(&m[r0][c1[0]].inv());
                         let c1_const = m[r1][c1[1]].mul(&m[r0][c1[1]].inv()) == val_c1
                             && m[r1][c1[2]].mul(&m[r0][c1[2]].inv()) == val_c1;
@@ -206,7 +158,6 @@ pub fn has_affine_fourier_submatrix_condition(m: &Matrix6) -> bool {
                     }
                 }
 
-                // Check if valid_row_pairs contains a partition of all 6 rows (3 disjoint pairs)
                 let n_pairs = valid_row_pairs.len();
                 if n_pairs >= 3 {
                     for p1 in 0..n_pairs {
@@ -235,13 +186,6 @@ pub fn has_affine_fourier_submatrix_condition(m: &Matrix6) -> bool {
     false
 }
 
-/// Fourier vanishing test:
-/// Returns true iff the matrix belongs to the Fourier / affine Diță family F_6(x, y).
-/// Satisfied when:
-/// 1. The matrix satisfies the affine Fourier submatrix condition; OR
-/// 2. The cross-ratio spectrum matches the canonical Fourier distribution
-///    (zero imaginary cross-ratios, 45 cross-ratios equal to -1, 36 equal to 1,
-///    exponents restricted to multiples of 4 mod 24: {0, 4, 8, 12, 16, 20}).
 pub fn fourier_vanishing_test(m: &Matrix6, spec: &CrossRatioSpectrum) -> bool {
     if spec.imaginary_unit_count() != 0 || spec.is_strictly_cubic() {
         return false;
@@ -250,37 +194,24 @@ pub fn fourier_vanishing_test(m: &Matrix6, spec: &CrossRatioSpectrum) -> bool {
     has_affine_fourier_submatrix_condition(m)
 }
 
-/// Discrete orbit classification for 6x6 complex Hadamard matrices in M_6.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum OrbitClass {
-    /// Affine Diță Fourier family F_6(x, y), including standard F_6.
     Fourier,
-    /// Szöllősi / Beauchamp-Nicoară 1-parameter non-affine family B_6(theta),
-    /// annotated with certified exact rational approximation of theta in radians.
     Szollosi { theta_approx: BigRational },
-    /// Terence Tao's isolated spectral complex Hadamard matrix S_6.
     Tao,
-    /// Haagerup's algebraic isolated complex Hadamard matrix H_6.
     Haagerup,
 }
 
-/// Extract the exact rational approximation of parameter theta in radians for a Szöllősi matrix.
-///
-/// In the canonical 2-circulant structure B_6(b, c, e, f) with A = circ(1, b, c) and B = circ(1, e, f),
-/// the phase factor e = u + i v = e^{i theta} sits at entry M[0][4].
-/// When e = zeta_24^k, theta = (k * pi) / 12.
 pub fn extract_szollosi_theta_approx(m: &Matrix6) -> BigRational {
     let pi = pi_approx();
     let twelve = rq(12, 1);
 
-    // 1. Direct check at canonical 2-circulant position M[0][4]
     if let Some(k) = root24_exponent(&m[0][4]) {
         if k != 0 {
             return (rq(k, 1) * &pi) / &twelve;
         }
     }
 
-    // 2. Scan row 0 entries for unimodular roots of unity
     for col in 1..D {
         if let Some(k) = root24_exponent(&m[0][col]) {
             if k != 0 && k != 12 {
@@ -289,42 +220,28 @@ pub fn extract_szollosi_theta_approx(m: &Matrix6) -> BigRational {
         }
     }
 
-    // 3. Fallback to 0 (corresponding to boundary confluence theta = 0)
     BigRational::zero()
 }
 
-/// Deterministic decision-tree orbit classifier for 6x6 matrices over Q(zeta_24):
-///
-/// Decision Tree Logic:
-/// 1. Compute exact cross-ratio invariant spectrum over 225 submatrices.
-/// 2. If spectrum has 120 imaginary unit cross-ratios and is strictly quartic -> Haagerup.
-/// 3. If spectrum is strictly cubic in {0, 8, 16} mod 24 -> Tao.
-/// 4. If matrix satisfies the affine Fourier submatrix condition or exact Fourier spectrum -> Fourier.
-/// 5. Otherwise -> Szollosi { theta_approx }.
 pub fn classify_orbit(m: &Matrix6) -> OrbitClass {
     let spec = CrossRatioSpectrum::from_matrix(m);
 
-    // Node 1: Haagerup Imaginary Spectrum Test
     if spec.haagerup_imaginary_spectrum_test() {
         return OrbitClass::Haagerup;
     }
 
-    // Node 2: Tao Cubic Spectrum Test
     if spec.tao_cubic_spectrum_test() {
         return OrbitClass::Tao;
     }
 
-    // Node 3: Fourier Vanishing / Affine Submatrix Test
     if fourier_vanishing_test(m, &spec) {
         return OrbitClass::Fourier;
     }
 
-    // Node 4: Szöllősi Deltoid Arc
     let theta_approx = extract_szollosi_theta_approx(m);
     OrbitClass::Szollosi { theta_approx }
 }
 
-/// A test candidate in the complex Hadamard catalog.
 #[derive(Clone, Debug)]
 pub struct CatalogCandidate {
     pub name: String,
@@ -333,7 +250,6 @@ pub struct CatalogCandidate {
     pub notes: String,
 }
 
-/// Detailed classification result for an individual catalog candidate.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CandidateClassificationResult {
     pub candidate_name: String,
@@ -345,7 +261,6 @@ pub struct CandidateClassificationResult {
     pub details: String,
 }
 
-/// Comprehensive Catalog Exhaustiveness Certificate.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CatalogExhaustivenessReport {
     pub schema_version: String,
@@ -361,17 +276,9 @@ pub struct CatalogExhaustivenessReport {
     pub candidate_results: Vec<CandidateClassificationResult>,
 }
 
-/// Build standard canonical catalog candidates:
-/// - F_6 (standard Fourier)
-/// - Diță family samples F_6(0, 0), F_6(0, 8), F_6(8, 0), F_6(16, 16), F_6(0, 16), F_6(8, 8), F_6(16, 0)
-/// - Tao isolated spectral matrix S_6
-/// - Haagerup isolated algebraic matrix H_6
-/// - Szöllősi discrete sample points B_6(theta)
-/// - Boundary confluence matrices
 pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
     let mut candidates = Vec::new();
 
-    // 1. Standard Fourier matrix F_6
     candidates.push(CatalogCandidate {
         name: "Standard_F6".to_string(),
         matrix: standard_fourier_f6(),
@@ -379,7 +286,6 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
         notes: "Classical cyclic group Z6 Fourier matrix with 6th roots of unity".to_string(),
     });
 
-    // 2. Affine Diță family points F_6(dx, dy)
     let dita_pts = [
         (0i64, 0i64),
         (0, 8),
@@ -408,13 +314,9 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
         let mut mat = matrix_zero();
         for r in 0..3 {
             for c in 0..3 {
-                // Block (0, 0): F3
                 mat[r][c] = f3_arr[r][c].clone();
-                // Block (0, 1): D * F3
                 mat[r][c + 3] = d_diag[r].mul(&f3_arr[r][c]);
-                // Block (1, 0): F3
                 mat[r + 3][c] = f3_arr[r][c].clone();
-                // Block (1, 1): - D * F3
                 mat[r + 3][c + 3] = d_diag[r].mul(&f3_arr[r][c]).neg();
             }
         }
@@ -427,7 +329,6 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
         });
     }
 
-    // 3. Terence Tao isolated spectral matrix S_6
     let s6_phases: [[usize; D]; D] = [
         [0, 0, 0, 0, 0, 0],
         [0, 0, 1, 1, 2, 2],
@@ -447,7 +348,6 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
         notes: "Chernyavsky-Tao isolated spectral matrix over Z3".to_string(),
     });
 
-    // 4. Haagerup algebraic matrix H_6
     let h6_b = Cyc24::zeta24(0);
     let h6_c = Cyc24::zeta24(6);
     let h6_e = Cyc24::zeta24(0);
@@ -471,8 +371,6 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
         notes: "Haagerup isolated algebraic matrix with 120 imaginary cross-ratios".to_string(),
     });
 
-    // 5. Szöllősi discrete sample points B_6(theta)
-    // Point A: kb=0, kc=8, ke=8, kf=0 (theta = 2pi/3)
     let sz_a_b = Cyc24::zeta24(0);
     let sz_a_c = Cyc24::zeta24(8);
     let sz_a_e = Cyc24::zeta24(8);
@@ -499,7 +397,6 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
         notes: "Szollosi 2-circulant point with ke=8 (theta approx 2pi/3)".to_string(),
     });
 
-    // Point B: kb=2, kc=19, ke=14, kf=1 (theta = 7pi/6)
     let sz_b_b = Cyc24::zeta24(2);
     let sz_b_c = Cyc24::zeta24(19);
     let sz_b_e = Cyc24::zeta24(14);
@@ -525,8 +422,6 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
         notes: "Szollosi 2-circulant point with ke=14 (theta approx 7pi/6)".to_string(),
     });
 
-    // 6. Boundary confluence candidate: Szöllősi boundary point at theta = 0
-    // kb=0, kc=8, ke=0, kf=16 (meets Fourier boundary)
     let bnd_b = Cyc24::zeta24(0);
     let bnd_c = Cyc24::zeta24(8);
     let bnd_e = Cyc24::zeta24(0);
@@ -552,12 +447,6 @@ pub fn canonical_catalog_candidates() -> Vec<CatalogCandidate> {
     candidates
 }
 
-/// Exact catalog exhaustiveness certifier:
-/// Evaluates the deterministic decision-tree classifier across all catalog candidates.
-/// Verifies:
-/// 1. Every test candidate is cleanly classified into one of the four orbits.
-/// 2. Zero unassigned residual matrices exist.
-/// 3. Boundary matrices are consistently classified according to the algebraic spectrum.
 pub fn certify_catalog_exhaustiveness(catalog: &[CatalogCandidate]) -> CatalogExhaustivenessReport {
     let mut fourier_count = 0;
     let mut tao_count = 0;

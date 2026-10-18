@@ -290,7 +290,6 @@ class Matrix:
         return [[self.data[i][j].to_string() for j in range(self.cols)] for i in range(self.rows)]
 
 
-# Standard 1-qubit matrices in Q(i)
 def pauli_i() -> Matrix:
     return Matrix.identity(2)
 
@@ -344,7 +343,6 @@ def proj_1() -> Matrix:
     return Matrix(2, 2, ((z, z), (z, one)))
 
 
-# Four Bell states of Q1 (2 qubits, Herm_4(Q(i)))
 def bell_phi_plus() -> Matrix:
     """|Phi+> = 1/sqrt(2)(|00> + |11>) -> rho = 1/2 [[1, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 1]]."""
     half = GaussianRational.from_fraction(1, 2)
@@ -404,7 +402,6 @@ def all_bell_states() -> Dict[str, Matrix]:
     }
 
 
-# Tensor composition and Partial Trace
 def tensor_composition(a: Matrix, b: Matrix) -> Matrix:
     """Admitted tensor composition rule (T827, T830)."""
     return a.kron(b)
@@ -458,7 +455,7 @@ def verify_local_statistics_reproduction(rho: Matrix, d_a: int, d_b: int) -> boo
 
 def prove_partial_trace_uniqueness(rho: Matrix, d_a: int, d_b: int) -> Dict[str, Any]:
     """Target C1000-T831: Prove that Tr_B is the UNIQUE linear map satisfying local statistics.
-    
+
     Proof:
     For any linear map M: M_{d_a d_b} -> M_{d_a} satisfying Tr[A M(rho)] = Tr[(A (x) I_B) rho] for all A:
     Choose A = E_{k, j} (the elementary matrix with 1 at (k, j) and 0 elsewhere).
@@ -477,7 +474,6 @@ def prove_partial_trace_uniqueness(rho: Matrix, d_a: int, d_b: int) -> Dict[str,
     for j in range(d_a):
         for k in range(d_a):
             e_kj = Matrix.elementary(d_a, d_a, k, j)
-            # LHS expectation
             fixed_val = (e_kj.kron(id_b) * rho).trace()
             actual_val = rho_a.get(j, k)
             if fixed_val != actual_val:
@@ -497,7 +493,6 @@ def prove_partial_trace_uniqueness(rho: Matrix, d_a: int, d_b: int) -> Dict[str,
     }
 
 
-# Local operations on Alice and No-Signalling
 def apply_alice_local_unitary(rho: Matrix, u_a: Matrix, d_a: int = 2, d_b: int = 2) -> Matrix:
     """Unitary operation on Alice: rho' = (U_A (x) I_B) rho (U_A^dagger (x) I_B)."""
     id_b = Matrix.identity(d_b)
@@ -541,7 +536,6 @@ def check_no_signalling_on_bell_states() -> Dict[str, Any]:
 
     for state_name, rho in bell_states.items():
         state_res = {}
-        # Initial Bob marginal
         initial_bob = partial_trace_a(rho, 2, 2)
         if initial_bob != expected_bob_marginal:
             all_passed = False
@@ -549,7 +543,6 @@ def check_no_signalling_on_bell_states() -> Dict[str, Any]:
         for op_name, op_func in local_ops.items():
             post_rho = op_func(rho)
             post_bob = partial_trace_a(post_rho, 2, 2)
-            # Exact comparison without float tolerance
             is_invariant = post_bob == initial_bob
             if not is_invariant:
                 all_passed = False
@@ -571,7 +564,6 @@ def check_no_signalling_on_bell_states() -> Dict[str, Any]:
     }
 
 
-# Rival Composition Search Space (T829, T834, T835, T838)
 def cnot_matrix() -> Matrix:
     one = GaussianRational.one()
     z = GaussianRational.zero()
@@ -617,15 +609,12 @@ class RivalComposition:
 
 def declared_rival_compositions() -> List[RivalComposition]:
     """Target C1000-T829: Declared rival-composition search space containing >= 4 non-tensor bilinear maps."""
-    w_z = pauli_z().kron(pauli_i())  # Z (x) I
+    w_z = pauli_z().kron(pauli_i())
     w_cnot = cnot_matrix()
     w_swap = swap_matrix()
     w_cz = cz_matrix()
 
     rivals = [
-        # Rival 1: Twisted product by Z (x) I
-        # Commutes with Bob's factor (I (x) B) for all B: [Z (x) I, I (x) B] = 0.
-        # Does NOT commute with Alice's factor: [Z (x) I, X (x) I] = 2ZX (x) I != 0.
         RivalComposition(
             name="twisted_z_product",
             description="Twisted product W(A (x) B)W^dagger with W = Z (x) I; commutes with Bob factor and not Alice factor",
@@ -633,7 +622,6 @@ def declared_rival_compositions() -> List[RivalComposition]:
             is_twisted_product=True,
             twist_commutes_with_one_factor_only=True,
         ),
-        # Rival 2: CNOT-twisted product
         RivalComposition(
             name="cnot_twisted_product",
             description="Twisted product W(A (x) B)W^dagger with W = CNOT",
@@ -641,7 +629,6 @@ def declared_rival_compositions() -> List[RivalComposition]:
             is_twisted_product=True,
             twist_commutes_with_one_factor_only=False,
         ),
-        # Rival 3: Swapped tensor product
         RivalComposition(
             name="swap_product",
             description="Swapped bilinear composition: A * B = B (x) A",
@@ -649,7 +636,6 @@ def declared_rival_compositions() -> List[RivalComposition]:
             is_twisted_product=True,
             twist_commutes_with_one_factor_only=False,
         ),
-        # Rival 4: CZ-twisted product
         RivalComposition(
             name="cz_twisted_product",
             description="Twisted product W(A (x) B)W^dagger with W = CZ",
@@ -657,7 +643,6 @@ def declared_rival_compositions() -> List[RivalComposition]:
             is_twisted_product=True,
             twist_commutes_with_one_factor_only=False,
         ),
-        # Rival 5: Trace-split bilinear map
         RivalComposition(
             name="trace_split_bilinear",
             description="Bilinear map: 1/2 Tr(A)(I (x) B) + 1/2 Tr(B)(A (x) I) - 1/4 Tr(A)Tr(B)I_4",
@@ -679,19 +664,16 @@ def verify_bilinearity(rule: Callable[[Matrix, Matrix], Matrix]) -> bool:
     b1, b2 = pauli_y(), pauli_i()
     c = GaussianRational.from_fraction(3, 5)
 
-    # Linearity in A
     left_a = rule(a1 + a2, b1)
     right_a = rule(a1, b1) + rule(a2, b1)
     if left_a != right_a:
         return False
 
-    # Linearity in B
     left_b = rule(a1, b1 + b2)
     right_b = rule(a1, b1) + rule(a1, b2)
     if left_b != right_b:
         return False
 
-    # Scalar scaling
     left_sc = rule(a1.scale(c), b1)
     right_sc = rule(a1, b1).scale(c)
     if left_sc != right_sc:
@@ -702,7 +684,7 @@ def verify_bilinearity(rule: Callable[[Matrix, Matrix], Matrix]) -> bool:
 
 def enumerate_rival_composition_search() -> Dict[str, Any]:
     """Target C1000-T834 & T838: Search declared rival-composition space for a signalling rival.
-    
+
     A valid rival composition must:
     1. Be bilinear over M_2 x M_2 -> M_4
     2. Be unital: star(I_2, I_2) = I_4
@@ -722,15 +704,10 @@ def enumerate_rival_composition_search() -> Dict[str, Any]:
         is_bilinear = verify_bilinearity(r.rule)
         is_unital = r.rule(id2, id2) == id4
 
-        # Check marginal map definition:
-        # Does star(I, B) define a valid observable embedding?
-        # A linear functional omega_rho(B) = Tr[star(I, B) rho] uniquely defines M_B(rho) by Pauli basis expansion:
-        # M_B(rho) = 1/2 sum_{sigma in {I, X, Y, Z}} Tr[star(I, sigma) rho] sigma
         marginal_well_defined = True
         permits_signalling = False
 
         for state_name, rho in bell_states.items():
-            # Bob's marginal before operation
             m_b_before = Matrix.zero(2, 2)
             half = GaussianRational.from_fraction(1, 2)
             for sigma in paulis:
@@ -738,24 +715,15 @@ def enumerate_rival_composition_search() -> Dict[str, Any]:
                 coeff = (obs_joint * rho).trace() * half
                 m_b_before = m_b_before + sigma.scale(coeff)
 
-            # Alice applies local operations in her observable algebra:
-            # Under composition star, Alice's local observable is star(A, I).
-            # For unitary u in M_2, Alice's local operation is represented by the unitary in star's algebra:
-            # In twisted product star_W: Alice's unitary is W (u (x) I) W^dagger.
-            # In trace_split: star(A, I) = A (x) I, so Alice's local unitary is u (x) I.
             alice_ops = [pauli_x(), pauli_z(), pauli_y()]
             for u in alice_ops:
                 if r.is_twisted_product:
-                    # Construct Alice's operation from the algebra:
-                    # Since star_W(A, B) = W(A (x) B)W^dagger, Alice's local unitary is W(u (x) I)W^dagger
                     w_u = r.rule(u, id2)
                     rho_prime = w_u * rho * w_u.dagger()
                 else:
-                    # For trace-split: star(A, I) = A (x) I, so Alice's unitary is u (x) I
                     u_joint = u.kron(id2)
                     rho_prime = u_joint * rho * u_joint.dagger()
 
-                # Bob's marginal after Alice's local operation
                 m_b_after = Matrix.zero(2, 2)
                 for sigma in paulis:
                     obs_joint = r.rule(id2, sigma)
@@ -782,15 +750,6 @@ def enumerate_rival_composition_search() -> Dict[str, Any]:
     return {
         "rival_compositions_enumerated": len(rivals),
         "signalling_rival_found": signalling_rival_found,
-        # REVIEWER CORRECTION (PR #231). This was the literal `True`.
-        # The five rivals below are a hand-chosen list, not an enumeration of
-        # any declared candidate space, so "exhausted" was unsupported: a
-        # search that covers five named constructions has not shown there is
-        # no sixth. The block's rule is that a search reaching its budget is
-        # reported as refusing at budget, never as a negative result, and the
-        # repository's discipline is that necessity claims are either proved
-        # by enumeration over a DECLARED finite space or downgraded to
-        # conditional scope. This is the downgrade.
         "search_exhausted": False,
         "search_disposition": "REFUSED_AT_BUDGET",
         "search_scope": (

@@ -1,7 +1,3 @@
-//! Clean-room exact arithmetic in `Q(zeta_28)`.
-//!
-//! This field supports the d=7 odd-prime Weyl control. It contains seventh
-//! roots of unity, `i`, and the quadratic Gauss normalization `sqrt(7)`.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -10,8 +6,6 @@ use crate::rational::ri;
 
 const DEGREE: usize = 12;
 
-// Phi_28(x) = x^12 - x^10 + x^8 - x^6 + x^4 - x^2 + 1.
-// Coefficients c_j for x^12 + sum_{j<12} c_j x^j.
 const PHI28_LOW: [i64; DEGREE] = [1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0];
 
 #[derive(Clone, Debug, PartialEq, Eq)]

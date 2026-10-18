@@ -1,7 +1,3 @@
-//! Discrete connection Laplacian Delta_U = D - A_U and spectral verification.
-//!
-//! AuthorityEffect: None.
-//! Governing Rule: RULE[user_global] (Hermiticity, PSD quadratic form, Zero-Float Law).
 
 use crate::connection::DiscreteConnection;
 use crate::error::HolonomyError;
@@ -13,7 +9,6 @@ use num_traits::{Signed, Zero};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
-/// Discrete connection Laplacian operator $\Delta_U = D - A_U = D_U^\dagger D_U$.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ConnectionLaplacian<T: ExactScalar> {
     pub matrix: ExactMatrix<T>,
@@ -23,7 +18,6 @@ pub struct ConnectionLaplacian<T: ExactScalar> {
 }
 
 impl<T: ExactScalar> ConnectionLaplacian<T> {
-    /// Constructs the discrete connection Laplacian $\Delta_U$ from cell complex and gauge connection.
     pub fn compute(
         complex: &CellComplex,
         connection: &DiscreteConnection<T>,
@@ -42,14 +36,12 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
             let u_idx = *complex.vertex_map.get(&u.id).unwrap();
             let mut weighted_deg = T::zero();
 
-            // Find all neighbors v connected to u in complex
             for v in &complex.vertices {
                 if u.id == v.id {
                     continue;
                 }
                 let v_idx = *complex.vertex_map.get(&v.id).unwrap();
 
-                // Check if step u -> v exists
                 if let Ok(u_mat) = connection.get_step(&u.id, &v.id) {
                     let w = weights
                         .and_then(|map| {
@@ -61,7 +53,6 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
 
                     weighted_deg += w.clone();
 
-                    // Place -w * U(u, v) in block (u_idx, v_idx)
                     for r in 0..d {
                         for c in 0..d {
                             let val = -w.clone() * u_mat.get(r, c).clone();
@@ -71,7 +62,6 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
                 }
             }
 
-            // Diagonal block: weighted_deg * I_d
             for r in 0..d {
                 *lap.get_mut(u_idx * d + r, u_idx * d + r) = weighted_deg.clone();
             }
@@ -85,22 +75,18 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
         })
     }
 
-    /// Checks if the Laplacian matrix is symmetric: L = L^T.
     pub fn is_symmetric(&self) -> bool {
         self.matrix.is_symmetric()
     }
 
-    /// Checks if the Laplacian matrix is Hermitian: L = L^\dagger.
     pub fn is_hermitian(&self) -> bool {
         self.matrix.is_hermitian()
     }
 
-    /// Computes the exact trace: $\operatorname{Tr}(\Delta_U) = d \sum_{v} \operatorname{deg}(v) = 2 d |E|$.
     pub fn trace(&self) -> Result<T, HolonomyError> {
         self.matrix.trace()
     }
 
-    /// Evaluates the quadratic form $\langle \psi, \Delta_U \psi \rangle = \psi^\dagger \Delta_U \psi$.
     pub fn evaluate_quadratic_form(&self, psi: &[T]) -> Result<T, HolonomyError> {
         if psi.len() != self.total_dim {
             return Err(HolonomyError::DimensionMismatch {
@@ -119,21 +105,17 @@ impl<T: ExactScalar> ConnectionLaplacian<T> {
         Ok(sum)
     }
 
-    /// Computes the exact dimension of the kernel $\ker(\Delta_U) = \text{total\_dim} - \operatorname{rank}(\Delta_U)$.
     pub fn kernel_dimension(&self) -> usize {
         let r = self.matrix.rank();
         self.total_dim.saturating_sub(r)
     }
 
-    /// Verifies whether a spectral gap exists: returns true if $\ker(\Delta_U) = \{0\}$.
     pub fn has_spectral_gap(&self) -> bool {
         self.kernel_dimension() == 0
     }
 }
 
-/// Scalars whose value on a Hermitian diagonal lies in the ordered field Q.
 pub trait RealDiagonal: ExactScalar {
-    /// This scalar as an element of Q, or `None` when it is not real.
     fn as_rational(&self) -> Option<BigRational>;
 }
 
@@ -149,35 +131,17 @@ impl RealDiagonal for GaussianRational<BigRational> {
     }
 }
 
-/// Weyl–Gershgorin certificate for a Hermitian connection Laplacian under a
-/// bounded transport perturbation (WDP-CH05-O01).
-///
-/// If every edge transport moves by `δU(u, v)` with `‖δU(u, v)‖_∞ ≤ ε`
-/// (maximum absolute row sum), each block row of `δΔ_U` has absolute row sum at
-/// most `deg_W(u) · ε`. For Hermitian `δΔ_U`, `‖δΔ_U‖_2 ≤ ‖δΔ_U‖_∞ ≤ Δ_W · ε`
-/// with `Δ_W = max_u deg_W(u)`, and by Weyl every eigenvalue moves by at most
-/// that much. A gap wider than twice the bound therefore survives.
-///
-/// The degrees are read from the diagonal blocks of `Δ_U`, which equal the
-/// weighted degrees under the Laplacian convention of non-negative weights.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PerturbationCertificate {
     pub max_weighted_degree: BigRational,
     pub transport_epsilon: BigRational,
-    /// `max_weighted_degree · transport_epsilon`, a bound on `‖δΔ_U‖_2`.
     pub operator_norm_bound: BigRational,
-    /// `2 · operator_norm_bound`: the most two eigenvalues can close by.
     pub spectral_gap_tolerance: BigRational,
     pub unperturbed_gap: BigRational,
-    /// `unperturbed_gap > spectral_gap_tolerance`.
     pub gap_survives: bool,
 }
 
 impl<T: RealDiagonal> ConnectionLaplacian<T> {
-    /// `max_u deg_W(u)`, read from the diagonal blocks of `Δ_U`.
-    ///
-    /// A non-real diagonal entry is refused as non-Hermitian; a negative one
-    /// (only possible with a negative edge weight) is refused as a negative bound.
     pub fn max_weighted_degree(&self) -> Result<BigRational, HolonomyError> {
         let mut max = BigRational::zero();
         for i in 0..self.total_dim {
@@ -203,11 +167,6 @@ impl<T: RealDiagonal> ConnectionLaplacian<T> {
         Ok(max)
     }
 
-    /// Certify whether a spectral gap of `unperturbed_gap` survives every
-    /// transport perturbation with `‖δU(u, v)‖_∞ ≤ transport_epsilon`.
-    ///
-    /// Refuses a non-Hermitian Laplacian, where Weyl's bound does not apply, and
-    /// negative inputs. All arithmetic is exact over Q.
     pub fn perturbation_certificate(
         &self,
         transport_epsilon: BigRational,
@@ -253,7 +212,6 @@ impl<T: RealDiagonal> ConnectionLaplacian<T> {
     }
 }
 
-/// Helper function computing connection Laplacian directly.
 pub fn compute_connection_laplacian<T: ExactScalar>(
     complex: &CellComplex,
     connection: &DiscreteConnection<T>,

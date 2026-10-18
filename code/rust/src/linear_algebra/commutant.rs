@@ -1,7 +1,3 @@
-//! Exact centralizers of a finite matrix family, with replayed commutation.
-//! The linear equations use row-major matrix coordinates. All dimensions,
-//! construction work, elimination work and basis storage are bounded before allocation.
-//! AuthorityEffect: None.
 use super::{charge, element_count, plus, times, ExactFieldError};
 use super::{elimination, matrix};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
@@ -44,7 +40,6 @@ fn system<F: Field + ExactRing>(
         value
     })
 }
-/// Dimension of the common centralizer; an empty family centralizes every matrix.
 pub fn commutant_dimension_with_limits<F: Field + ExactRing>(
     n: usize,
     generators: &[BasicMatrix<F>],
@@ -58,12 +53,36 @@ pub fn commutant_dimension_with_limits<F: Field + ExactRing>(
     let equations = system(n, generators, limits)?;
     Ok(vars - elimination::rank_with_limits(&equations, limits)?)
 }
-/// Construct an exact basis and independently replay every commutator.
+fn combined_basis_budget(n: usize, generators: usize) -> Result<(usize, usize), ExactFieldError> {
+    let vars = element_count(n, n)?;
+    let rows = times(generators, vars)?;
+    let equation_elements = element_count(rows, vars)?;
+    let construction_ops = plus(
+        times(2, equation_elements)?,
+        times(2, times(rows, times(vars, vars)?)?)?,
+    )?;
+    let kernel_elements = equation_elements.max(element_count(vars, vars)?);
+    let kernel_ops = elimination::reduction_cost(rows, vars)?;
+    let stored_basis = element_count(vars, vars)?;
+    let replay_ops = times(
+        4,
+        times(generators, times(vars, times(n, times(n, n)?)?)?)?,
+    )?;
+    let elements = plus(
+        plus(plus(stored_basis, equation_elements)?, kernel_elements)?,
+        stored_basis,
+    )?;
+    let ops = plus(plus(construction_ops, kernel_ops)?, replay_ops)?;
+    Ok((elements, ops))
+}
+
 pub fn commutant_basis_with_limits<F: Field + ExactRing>(
     n: usize,
     generators: &[BasicMatrix<F>],
     limits: OperationLimits,
 ) -> Result<Vec<BasicMatrix<F>>, ExactFieldError> {
+    let (elements, ops) = combined_basis_budget(n, generators.len())?;
+    charge(limits, elements, ops)?;
     let vars = element_count(n, n)?;
     charge(limits, times(vars, vars)?, 0)?;
     let equations = system(n, generators, limits)?;
@@ -99,6 +118,7 @@ pub fn commutant_basis_with_limits<F: Field + ExactRing>(
 mod tests {
     use super::*;
     use num_rational::BigRational;
+    use num_traits::Zero;
     fn q(v: i64) -> BigRational {
         BigRational::from_integer(v.into())
     }
@@ -144,5 +164,52 @@ mod tests {
             }
         )
         .is_err());
+    }
+
+    #[test]
+    fn the_basis_budget_is_an_aggregate_of_construction_elimination_and_replay() {
+        let generator = matrix::from_rows(vec![vec![q(7)]]).unwrap();
+        assert!(commutant_basis_with_limits(
+            1,
+            &[generator],
+            OperationLimits {
+                max_elements: 1,
+                max_scalar_ops: 4,
+            }
+        )
+        .is_err());
+    }
+
+    #[test]
+    fn a_nilpotent_centralizer_and_a_scalar_center_are_spanned_and_independent() {
+        let limits = OperationLimits {
+            max_elements: 10000,
+            max_scalar_ops: 100000,
+        };
+        let nilpotent = matrix::from_rows(vec![vec![q(0), q(1)], vec![q(0), q(0)]]).unwrap();
+        let basis = commutant_basis_with_limits(2, &[nilpotent], limits).unwrap();
+        assert_eq!(basis.len(), 2);
+        for matrix in &basis {
+            let entries = matrix.as_slice();
+            assert_eq!(entries[0], entries[3]);
+            assert_eq!(entries[2], q(0));
+        }
+        let stacked = matrix::from_rows(
+            basis
+                .iter()
+                .map(|matrix| matrix.as_slice().to_vec())
+                .collect(),
+        )
+        .unwrap();
+        assert_eq!(elimination::rank(&stacked).unwrap(), basis.len());
+
+        let lower = matrix::from_rows(vec![vec![q(0), q(0)], vec![q(1), q(0)]]).unwrap();
+        let upper = matrix::from_rows(vec![vec![q(0), q(1)], vec![q(0), q(0)]]).unwrap();
+        let center = commutant_basis_with_limits(2, &[lower, upper], limits).unwrap();
+        assert_eq!(center.len(), 1);
+        let entries = center[0].as_slice();
+        assert_eq!(entries[0], entries[3]);
+        assert!(entries[1].is_zero() && entries[2].is_zero());
+        assert!(!entries[0].is_zero());
     }
 }

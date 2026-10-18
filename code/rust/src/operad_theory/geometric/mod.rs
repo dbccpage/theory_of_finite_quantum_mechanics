@@ -1,6 +1,3 @@
-//! Geometric Tier for Operad Theory.
-//!
-//! AuthorityEffect: None.
 
 pub mod little_disks;
 pub mod en_algebra;

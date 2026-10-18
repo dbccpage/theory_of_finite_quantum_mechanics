@@ -50,21 +50,18 @@ class TestWitnessDominanceHeadline:
     def test_gamma_positive_with_budget_is_active_closure_failure_never_budget_unknown(
         self,
     ) -> None:
-        # The exact OD-1 falsifier input: (1, 1, budget_exhausted=True).
         verdict = classify_phi_gamma(1, 1, budget_exhausted=True, debt=_debt())
         assert verdict.cohomological is CohomologicalStatus.ActiveClosureFailure
         assert verdict.routing is RoutingTerminal.Repair
         assert verdict.routing is not RoutingTerminal.BudgetUnknown
 
     def test_closed_survivor_with_budget_is_preserved(self) -> None:
-        # (2, 0, budget): a closed survivor may not be demoted by a flag.
         verdict = classify_phi_gamma(2, 0, budget_exhausted=True, debt=_debt())
         assert verdict.cohomological is CohomologicalStatus.ClosedSurvivor
         assert verdict.routing is RoutingTerminal.RequiresLift
         assert verdict.routing is not RoutingTerminal.BudgetUnknown
 
     def test_exact_repair_with_budget_stays_exact_repair_check_passed(self) -> None:
-        # (0, 0, budget): classification completed; CheckPassed, not BudgetUnknown.
         verdict = classify_phi_gamma(0, 0, budget_exhausted=True, debt=_debt())
         assert verdict.cohomological is CohomologicalStatus.ExactRepair
         assert verdict.routing is RoutingTerminal.CheckPassed
@@ -103,14 +100,12 @@ class TestBudgetFlagIsInertOnBothAxes:
         assert flagged.cohomological is expected_coh
         assert free.routing is expected_routing
         assert flagged.routing is expected_routing
-        # The trichotomy core agrees with the verdict's cohomological axis.
         assert classify_trichotomy(phi1, gamma2) is expected_coh
 
     def test_budget_debt_is_recorded_as_trace_event_not_terminal(self) -> None:
         debt = _debt()
         verdict = classify_phi_gamma(1, 1, budget_exhausted=True, debt=debt)
         assert verdict.trace_events == (debt.as_trace_event(),)
-        # The verdict itself still classifies; the debt rides the trace only.
         assert verdict.cohomological is CohomologicalStatus.ActiveClosureFailure
 
     def test_budget_flag_without_debt_record_refuses_typed(self) -> None:
@@ -130,8 +125,6 @@ class TestBudgetFlagIsInertOnBothAxes:
 
 class TestTrichotomyIsBudgetFreeByConstruction:
     def test_classify_trichotomy_signature_admits_masses_only(self) -> None:
-        # The budget-free law is structural: there IS no flag to consult.
-        # Mutation that adds any budget/licensing parameter goes red here.
         params = list(inspect.signature(classify_trichotomy).parameters)
         assert params == ["phi1", "gamma2"]
 

@@ -20,7 +20,6 @@ class SimplicialComplex:
     _boundary_cache: Dict[int, np.ndarray] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
-        # Ensure all subfaces are closed under boundary
         self._close_under_faces()
 
     def _close_under_faces(self) -> None:
@@ -39,7 +38,6 @@ class SimplicialComplex:
                         self.cells[lower_d].append(face)
                         existing_lower.add(face)
 
-        # Ensure canonical sorting of vertices in each simplex
         for d in self.cells:
             self.cells[d] = sorted(list(set(tuple(sorted(c)) for c in self.cells[d])))
 
@@ -130,7 +128,6 @@ def build_simplex_boundary_complex(d: int) -> SimplicialComplex:
     d=4: Boundary of 5-simplex -> 6 vertices, 15 edges, 20 triangles, 15 tetrahedra, 6 4-simplices.
     """
     verts = list(range(d + 2))
-    # Boundary is all proper subsets of (d+2) vertices of size <= (d+1)
     cells: Dict[int, List[Tuple[int, ...]]] = {}
     for dim in range(d + 1):
         cells[dim] = [tuple(c) for c in itertools.combinations(verts, dim + 1)]
@@ -177,7 +174,6 @@ def build_flat_torus_2d(n_x: int = 3, n_y: int = 3) -> SimplicialComplex:
             v01 = v_id(x, y + 1)
             v11 = v_id(x + 1, y + 1)
 
-            # Two triangles per square: (v00, v10, v11) and (v00, v11, v01)
             faces.append(tuple(sorted((v00, v10, v11))))
             faces.append(tuple(sorted((v00, v11, v01))))
 

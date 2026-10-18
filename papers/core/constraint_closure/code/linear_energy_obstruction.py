@@ -43,14 +43,13 @@ def verify_linear_energy(
 ) -> dict:
     """Verify degree-1 homogeneity: E(φ) = |φ| Φ_1([ω_0])."""
     d0 = coboundary_d0_c3()
-    omega_0 = np.array([1.0, 0.0, 0.0])  # non-trivial defect cochain
+    omega_0 = np.array([1.0, 0.0, 0.0])
     Phi1_unit = quotient_norm_phi1_c3(omega_0)
 
     phis = np.linspace(phi_range[0], phi_range[1], n_points)
     energies = np.array([pure_l1_energy(p, omega_0, d0) for p in phis])
     expected = np.abs(phis) * Phi1_unit
 
-    # Linear regression on positive half
     pos_mask = phis > 0.01
     if np.sum(pos_mask) > 2:
         x = phis[pos_mask]
@@ -72,6 +71,6 @@ def verify_linear_energy(
         "r_squared": r_squared,
         "max_absolute_error": max_error,
         "is_exactly_linear": max_error < 1e-10,
-        "second_derivative_zero": True,  # E''=0 for φ≠0 by degree-1 homogeneity
+        "second_derivative_zero": True,
         "is_not_mexican_hat": True,
     }

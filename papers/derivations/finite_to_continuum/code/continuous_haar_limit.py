@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Inductive direct limit of finite cyclic character sums to continuous Haar measure.
 
@@ -42,9 +41,6 @@ from interval_calculus import (
     _validate_exact_rational,
 )
 
-# ==============================================================================
-# 1. Finite Character Sum Direct Limits
-# ==============================================================================
 
 @dataclass(frozen=True)
 class HaarLimitCharacterPair:
@@ -62,8 +58,6 @@ class HaarLimitCharacterPair:
         if delta == 0:
             stab = 0
         else:
-            # Stabilization level n_0 such that 2^{n_0} > |delta|
-            # i.e., n_0 = |delta|.bit_length()
             stab = abs(delta).bit_length()
         object.__setattr__(self, "k", k_val)
         object.__setattr__(self, "j", j_val)
@@ -101,9 +95,6 @@ class HaarLimitCharacterPair:
         return self.discrete_sum_at_level(level) == self.exact_haar_integral
 
 
-# ==============================================================================
-# 2. Trigonometric Polynomials & Discrete Haar Recovery
-# ==============================================================================
 
 @dataclass(frozen=True)
 class TrigPolynomial:
@@ -180,9 +171,6 @@ class TrigPolynomial:
         }
 
 
-# ==============================================================================
-# 3. Lipschitz Continuous Function Cauchy Contraction
-# ==============================================================================
 
 @dataclass(frozen=True)
 class LipschitzContinuumEnclosure:
@@ -205,7 +193,7 @@ class LipschitzContinuumEnclosure:
         L = _validate_exact_rational(lipschitz_constant, "lipschitz_constant")
         if L <= 0:
             raise ValueError(f"Lipschitz constant must be strictly positive, got {L}")
-        
+
         intervals_list: List[RationalInterval] = []
         for n, r_val in enumerate(riemann_sums):
             r_frac = _validate_exact_rational(r_val, f"riemann_sum at level {n}")
@@ -225,9 +213,6 @@ class LipschitzContinuumEnclosure:
         )
 
 
-# ==============================================================================
-# 4. Receipt & Validation
-# ==============================================================================
 
 def _contains_float(obj: Any) -> bool:
     """Recursively verify that no floating-point types exist in data structures."""
@@ -249,7 +234,6 @@ def generate_continuous_haar_limit_receipt() -> Dict[str, Any]:
     Demonstrates in this toy setting that inductive colimits of finite cyclic presentations
     recover continuous Haar measure orthogonality without float leakage.
     """
-    # 1. Test character pairs across multiple modes
     test_pairs = [
         (0, 0),
         (1, 0),
@@ -276,8 +260,6 @@ def generate_continuous_haar_limit_receipt() -> Dict[str, Any]:
             "authority_effect": "None",
         })
 
-    # 2. Test trigonometric polynomials
-    # P_1(x) = 3 + 2 exp(2 pi i x) + 2 exp(-2 pi i x) + exp(4 pi i x)
     poly_1 = TrigPolynomial({
         0: Fraction(3),
         1: Fraction(2),
@@ -286,7 +268,6 @@ def generate_continuous_haar_limit_receipt() -> Dict[str, Any]:
     })
     poly_receipt_1 = poly_1.verify_haar_recovery(max_level=5)
 
-    # P_2(x) = 5/2 - 7/3 exp(2 pi i * 3 x) + 1/4 exp(-2 pi i * 5 x)
     poly_2 = TrigPolynomial({
         0: Fraction(5, 2),
         3: Fraction(-7, 3),
@@ -294,9 +275,6 @@ def generate_continuous_haar_limit_receipt() -> Dict[str, Any]:
     })
     poly_receipt_2 = poly_2.verify_haar_recovery(max_level=6)
 
-    # 3. Test Lipschitz continuous Cauchy contraction
-    # Model test observable with exact integral 1/2 and L = 1
-    # Riemann sums at levels 0..5 converging to 1/2
     test_sums = [
         Fraction(1, 2) + Fraction(1, 2 * (1 << n)) if n > 0 else Fraction(1)
         for n in range(6)

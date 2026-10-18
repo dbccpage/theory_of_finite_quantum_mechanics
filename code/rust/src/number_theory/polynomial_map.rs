@@ -1,6 +1,3 @@
-//! Sparse rational polynomials and exact Jacobians of declared polynomial maps.
-//! Coordinates have explicit arity. Missing coordinates never evaluate as one.
-//! A Jacobian difference witnesses non-affinity; equal samples do not prove affinity.
 
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError};
 use num_rational::BigRational as Q;
@@ -127,7 +124,6 @@ impl PolynomialMap {
         if point.iter().any(|x| !x.denom().is_positive()) {
             return Err(PolynomialMapError::InvalidRational);
         }
-        // Admission of the output shape precedes the derivative computations.
         let mut result =
             BasicMatrix::try_from_fn(self.components.len(), self.input_dimension, |_, _| {
                 Q::zero()

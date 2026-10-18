@@ -39,7 +39,7 @@ def test_three_frozen_fixtures() -> None:
 
 def test_ingest_deepseek_reply_000() -> None:
     if not COOKBOOK_REPLY.is_file():
-        return  # skip if cookbook not checked out
+        return
     text = COOKBOOK_REPLY.read_text(encoding="utf-8")
     result = parse_gate11_symbolic_reply(text)
     assert result["overall_passed"] is True

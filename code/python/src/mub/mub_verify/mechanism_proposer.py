@@ -34,12 +34,9 @@ try:
 except ImportError:
     transformers = None
     TRANSFORMERS_AVAILABLE = False
-    LogitsProcessor = object  # type: ignore[misc, assignment]
+    LogitsProcessor = object
 
 
-# =============================================================================
-# 1. Pure-Python Carrier Projection & Logit Masking
-# =============================================================================
 
 def pure_carrier_projection(
     scores: Union[List[float], List[List[float]]],
@@ -49,7 +46,7 @@ def pure_carrier_projection(
     """
     Pure Python logit carrier projection.
     Sets all off-carrier logits to float("-inf").
-    
+
     Validates:
     - carrier_ids is non-empty, contains integers in [0, vocab_size - 1].
     - vocab_size >= 1.
@@ -69,7 +66,7 @@ def pure_carrier_projection(
         return scores
 
     is_1d = not isinstance(scores[0], list)
-    rows: List[List[float]] = [scores] if is_1d else scores  # type: ignore[list-item]
+    rows: List[List[float]] = [scores] if is_1d else scores
 
     result_rows: List[List[float]] = []
     for row in rows:
@@ -95,7 +92,7 @@ def pure_carrier_projection(
     return result_rows[0] if is_1d else result_rows
 
 
-class CarrierProjection(LogitsProcessor if TRANSFORMERS_AVAILABLE else object):  # type: ignore[misc]
+class CarrierProjection(LogitsProcessor if TRANSFORMERS_AVAILABLE else object):
     """
     Layer 2 Carrier Projection:
     Forces next-token probability mass onto the declared carrier simplex face
@@ -117,7 +114,7 @@ class CarrierProjection(LogitsProcessor if TRANSFORMERS_AVAILABLE else object): 
 
         if TORCH_AVAILABLE and torch is not None:
             mask = torch.ones(vocab_size, dtype=torch.bool)
-            mask[self.carrier_ids] = False  # True = off carrier -> to be masked
+            mask[self.carrier_ids] = False
             self.off_carrier: Optional[torch.Tensor] = mask
         else:
             self.off_carrier = None
@@ -189,9 +186,6 @@ def build_carrier(tokenizer: Any, allowed: Sequence[str]) -> List[int]:
     return sorted(set(ids))
 
 
-# =============================================================================
-# 2. 2D Attention Mask Distillation & Steering
-# =============================================================================
 
 def create_attention_mask_2d(
     seq_len: int,
@@ -342,13 +336,10 @@ class AttentionMaskDistiller:
         if TORCH_AVAILABLE and torch is not None and isinstance(attentions, torch.Tensor):
             t = attentions
             if t.ndim == 4:
-                # [batch, heads, seq, seq] -> select batch 0, mean over heads, query row
                 row = t[0].mean(dim=0)[query_pos].float().tolist()
             elif t.ndim == 3:
-                # [heads, seq, seq]
                 row = t.mean(dim=0)[query_pos].float().tolist()
             elif t.ndim == 2:
-                # [seq, seq]
                 row = t[query_pos].float().tolist()
             elif t.ndim == 1:
                 row = t.float().tolist()
@@ -366,7 +357,6 @@ class AttentionMaskDistiller:
                     and isinstance(elem[0][0], list)
                     and isinstance(elem[0][0][0], (int, float))
                 ):
-                    # [batch][head][q][k] -> batch 0
                     heads = elem[0]
                     n_heads = len(heads)
                     k_len = len(heads[0][query_pos])
@@ -375,7 +365,6 @@ class AttentionMaskDistiller:
                         for k in range(k_len)
                     ]
                 elif isinstance(elem[0], list) and isinstance(elem[0][0], (int, float)):
-                    # [q][k]
                     row = elem[query_pos]
                 else:
                     row = list(elem)
@@ -399,9 +388,6 @@ class AttentionMaskDistiller:
         }
 
 
-# =============================================================================
-# 3. Pure-Python Carrier Grammar & Token-Level Validation (Graceful Fallback)
-# =============================================================================
 
 DEFAULT_MUB6_CARRIER_CHARS: Set[str] = set(
     "0123456789+-*/=(){}[],:.'\" \n\t"
@@ -477,12 +463,10 @@ class CarrierGrammar:
             ast.Div,
         )
 
-        # Structural syntax whitelist check
         for node in ast.walk(tree):
             if not isinstance(node, allowed_nodes):
                 return False, f"Forbidden AST node: {type(node).__name__}"
 
-        # Semantic validation on permitted nodes
         for node in ast.walk(tree):
             if isinstance(node, ast.Constant):
                 if isinstance(node.value, (float, complex)):
@@ -493,7 +477,6 @@ class CarrierGrammar:
                     return False, f"CALL_REJECTED: unauthorized function call {func_repr}"
             if isinstance(node, ast.Name):
                 if node.id not in ("Fraction", "Cyc24", "None", "True", "False"):
-                    # Variable names allowed if part of expressions or keys
                     pass
 
         return True, None

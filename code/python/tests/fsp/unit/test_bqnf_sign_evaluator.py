@@ -8,7 +8,6 @@ import pytest
 import sys
 from pathlib import Path
 
-# Add code directory to path
 current_dir = Path(__file__).resolve().parent
 pkg_dir = current_dir.parent.parent
 if str(pkg_dir) not in sys.path:
@@ -24,15 +23,11 @@ from src.fsp.bqnf_sign_evaluator import (
 class TestBQNFSignEvaluator:
     @pytest.fixture
     def cochain_setup(self):
-        # Construct small nilpotent complex: C0 (2) -> C1 (3) -> C2 (1)
-        # d0: 3 x 2, d1: 1 x 3 such that d1 . d0 = 0
         d0 = [
             [1.0, -1.0],
             [1.0, 0.0],
             [0.0, 1.0]
         ]
-        # d1 = [1.0, -1.0, 1.0]
-        # d1 . d0 = [1*(1) + (-1)*(1) + 1*(0), 1*(-1) + (-1)*(0) + 1*(1)] = [0, 0]
         d1 = [
             [1.0, -1.0, 1.0]
         ]
@@ -40,12 +35,11 @@ class TestBQNFSignEvaluator:
 
     def test_exact_repair_routing(self, cochain_setup):
         evaluator = BQNFSignEvaluator(cochain_setup)
-        # Pure boundary c1 = d0 * [2.0, 1.0]
         alpha = [2.0, 1.0]
         c1 = [
-            1.0 * alpha[0] - 1.0 * alpha[1],  # 1.0
-            1.0 * alpha[0],                  # 2.0
-            1.0 * alpha[1]                   # 1.0
+            1.0 * alpha[0] - 1.0 * alpha[1],
+            1.0 * alpha[0],
+            1.0 * alpha[1]
         ]
         signs = [1, 1, 1]
         res = evaluator.evaluate_sign_packet(c1, signs, tol=1e-4)
@@ -53,13 +47,11 @@ class TestBQNFSignEvaluator:
         assert res["phi_1_residual"] == pytest.approx(0.0, abs=1e-3)
 
     def test_exact_cancellation_meron_routing(self):
-        # 4-dim complex for clean meron pair testing
         d0 = [[0.0], [0.0], [0.0], [0.0]]
         d1 = [[1.0, 1.0, 1.0, 1.0]]
         complex_meron = CochainComplex(dim_c0=1, dim_c1=4, dim_c2=1, d0=d0, d1=d1)
         evaluator = BQNFSignEvaluator(complex_meron)
 
-        # Equal weights with opposite signs (Meron clusters)
         c1 = [1.5, 1.5, 2.0, 2.0]
         signs = [1, -1, 1, -1]
         res = evaluator.evaluate_sign_packet(c1, signs)
@@ -68,7 +60,6 @@ class TestBQNFSignEvaluator:
 
     def test_open_sign_obstruction_routing(self, cochain_setup):
         evaluator = BQNFSignEvaluator(cochain_setup)
-        # Non-boundary, non-cancelling defect
         c1 = [10.0, 0.0, 0.0]
         signs = [1, 1, 1]
         res = evaluator.evaluate_sign_packet(c1, signs)
@@ -77,7 +68,6 @@ class TestBQNFSignEvaluator:
 
     def test_refused_malformed_packet(self, cochain_setup):
         evaluator = BQNFSignEvaluator(cochain_setup)
-        # Dimension mismatch: c1 has 4 elements, dim_c1 is 3
         c1 = [1.0, 2.0, 3.0, 4.0]
         signs = [1, 1, 1, 1]
         res = evaluator.evaluate_sign_packet(c1, signs)

@@ -1,10 +1,3 @@
-//! Constructive integral chain transport for paired count-guard schedules.
-//!
-//! This adapter owns the event presentation, supplied pair precedence, and
-//! bounded enumeration. Signed boundaries, contractions, and exact identity
-//! checking are owned by `omega_homology`. Construction produces a candidate;
-//! verification rebuilds both complexes and checks the supplied candidate.
-//! Neither operation authorizes an engine action.
 
 pub mod sparse;
 
@@ -52,7 +45,6 @@ pub enum TransportError {
 }
 type Result<T> = std::result::Result<T, TransportError>;
 
-/// Wire matrices must already be canonical; the verifier never repairs them.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct MatrixProposal {
@@ -71,8 +63,6 @@ pub struct WitnessProposal {
     pub pairing: i64,
 }
 
-/// The complete finite proposal. Cell labels are checked against fresh
-/// enumeration, and all four map arrays include every common padded degree.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct TransportProposal {
@@ -130,8 +120,6 @@ pub fn parameters(pairs: usize, capacity: usize) -> Result<()> {
     Ok(())
 }
 
-/// Every block is safe under all its internal orderings. States encode
-/// unstarted/active/finished tasks; starts use capacity before finishes release it.
 pub fn enumerate_event_cells(pairs: usize, capacity: usize) -> Result<CellLevels> {
     parameters(pairs, capacity)?;
     fn visit(states: &mut [u8], capacity: usize, blocks: &mut Cell, levels: &mut CellLevels) {
@@ -181,7 +169,6 @@ pub fn enumerate_event_cells(pairs: usize, capacity: usize) -> Result<CellLevels
     Ok(levels)
 }
 
-/// All ordered partitions of tasks with tied blocks of size at most capacity.
 pub fn enumerate_task_cells(pairs: usize, capacity: usize) -> Result<CellLevels> {
     parameters(pairs, capacity)?;
     fn visit(
@@ -418,9 +405,6 @@ fn decode_matrices(
         .collect()
 }
 
-/// Construct the uniform acyclic-carrier maps and source homotopy. Parameters
-/// only select admitted cells; the image of an admitted cell is independent of
-/// capacity. The target homotopy is zero and `p i = id` is checked exactly.
 pub fn propose_transport(
     pairs: usize,
     capacity: usize,
@@ -606,9 +590,6 @@ fn sphere_witness(pairs: usize, levels: &CellLevels) -> Result<(Vec<i64>, Vec<i6
     Ok((cycle, cocycle))
 }
 
-/// Independently enumerate the declared carrier, decode without normalization,
-/// and check every equation. This path never invokes `propose_transport` or a
-/// contraction and does not trust certificate cell counts or cell labels.
 pub fn verify_transport(
     pairs: usize,
     capacity: usize,
@@ -649,8 +630,6 @@ pub fn verify_transport(
         target_homotopy: decode_matrices(&proposal.target_homotopy, &target_shift, &target_dims)?,
     };
     let checked = verify_chain_equivalence(&source, &target, &certificate)?;
-    // This construction promises the stronger strict retraction. A valid
-    // generic equivalence with a nonzero target homotopy is outside its schema.
     if certificate
         .target_homotopy
         .iter()

@@ -47,43 +47,33 @@ from src.fsp.bqnf_sign_evaluator import (
 
 
 def test_monograph_full_derivation_walk_e2e():
-    # -------------------------------------------------------------
-    # Step 1: Primitive Difference Genesis Walk (<> -> <a> -> <ab> -> <arb> / <ara>)
-    # -------------------------------------------------------------
     state = GermState()
 
-    # Stage 0: Void <>
     state.step_00_void()
     assert state.stage == 0
     assert len(state.carrier) == 0
 
-    # Stage 1: Lone Mark <a>
     state.step_01_lone_mark("u")
     assert state.stage == 1
     assert state.carrier == {"u"}
 
-    # Stage 2: Unmarked Pair <ab>
     state.step_02_unmarked_pair("u", "v")
     assert state.stage == 2
     assert state.carrier == {"u", "v"}
 
-    # Stage 3: Directed Cut <arb> (Fermion germ D2)
     d2 = state.step_03_directed_cut("u", "v")
     assert d2.source == "u"
     assert d2.target == "v"
     assert d2.boundary_0chain == {"v": 1, "u": -1}
-    assert len(d2.automorphism_group()) == 1  # Rigid orientation
+    assert len(d2.automorphism_group()) == 1
 
-    # Stage 4: Refused Self-Loop <ara>
     refused, reason = state.step_04_refuse_self_loop("u")
     assert not refused
     assert "boundary a - a = 0" in reason
 
-    # Stage 5: Symmetric Link (Boson germ S2)
     s2 = state.step_05_symmetric_link("u", "v")
-    assert len(s2.automorphism_group()) == 2  # Swap Z2 symmetry
+    assert len(s2.automorphism_group()) == 2
 
-    # Invariant Blindness on D2 vs rev(D2)
     blindness = verify_invariant_blindness(
         d2,
         [
@@ -94,12 +84,8 @@ def test_monograph_full_derivation_walk_e2e():
     )
     assert all(blindness.values())
 
-    # -------------------------------------------------------------
-    # Step 2: Many-Body Quantum Hamiltonian Generation & GIN Indexing
-    # -------------------------------------------------------------
     bridge = HamiltonianGinBridge(in_memory=True)
     try:
-        # 2a. Bipartite Fermi-Hubbard Lattice
         bip_lat = FermionicLattice.linear_chain(4, periodic=True)
         h_bip = DiscreteFermionicHamiltonian(bip_lat, t=1.0, u=0.0, num_up=2, num_down=0)
 
@@ -115,7 +101,6 @@ def test_monograph_full_derivation_walk_e2e():
         assert audit_bip.gin_quotiented_average_sign == 1.0
         assert audit_bip.terminal_route == "Repair"
 
-        # 2b. Frustrated Triangle Lattice
         tri_lat = FermionicLattice.triangle_cluster()
         h_tri = DiscreteFermionicHamiltonian(tri_lat, t=1.0, u=0.0, num_up=2, num_down=0)
 
@@ -131,7 +116,6 @@ def test_monograph_full_derivation_walk_e2e():
         assert audit_tri.gin_quotiented_average_sign < 1.0
         assert audit_tri.terminal_route == "SplitBrainRefusal"
 
-        # 2c. Kitaev Majorana Zero-Mode Chain
         mzm = bridge.index_kitaev_chain_majorana(L=4, model_name="E2E_Kitaev")
         assert mzm.is_boundary_isolated is True
         assert set(mzm.unpaired_zero_modes) == {1, 8}

@@ -1,6 +1,3 @@
-//! Source-25 complete result marks and raw states use ONE joint writing.
-//! Filled triples, raw assertion multiplicities and balance have distinct
-//! meanings. No carrier-changing quotient transition is asserted here.
 use crate::genesis_gauge_result::{integers, Source23Error, Source23State};
 use crate::genesis_ongoing_adapter::{GenesisOngoingAdapter, GenesisOngoingPacket, MarkedTriple};
 use crate::genesis_source_execution::{canonical_triple, Source25State, SourceExecutionError};
@@ -58,7 +55,6 @@ impl Source25State {
             filled: renamed(&self.packet().filled, image),
         })?)
     }
-    /// Source canonical_state: raw r, then raw s, then filled triples.
     pub fn canonical_state(&self, max_permutations: usize) -> Result<Self, Source23Error> {
         let n = self.packet().terms.len();
         let tables = [&self.packet().r, &self.packet().s]
@@ -80,8 +76,6 @@ impl Source25State {
         })?;
         self.rewrite(&joint.old_to_new)
     }
-    /// Source result_mark: root-normalized excess, then filled triples, under
-    /// one shared writing. Independently canonicalizing the pieces loses incidence.
     pub fn result_mark(
         &self,
         max_permutations: usize,
@@ -107,7 +101,6 @@ impl Source25State {
         }
         Ok(self.result_mark(max_permutations)? == target.result_mark(max_permutations)?)
     }
-    /// Source align: retain the first rewriting of the ORIGINAL raw state.
     pub fn align_to(&self, target: &Self, max_permutations: usize) -> Result<Self, Source23Error> {
         if self.packet().terms.len() != target.packet().terms.len() {
             return Err(Source23Error::NotSameResult);
@@ -147,7 +140,6 @@ impl Source25State {
             filled: self.packet().filled.clone(),
         })
     }
-    /// Delegate actual diagnostic arithmetic to the existing checked D_F/d0 owner.
     pub fn balance_record(&self) -> Result<Vec<(MarkedTriple, bool)>, Source23Error> {
         let receipt = GenesisOngoingAdapter::try_new(self.packet().clone())
             .map_err(SourceExecutionError::from)?

@@ -1,4 +1,3 @@
-//! Foundational finite QM primitives.
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -15,8 +14,6 @@ pub enum AxiomError {
 }
 
 impl PrimitiveAxiom {
-    /// Normalization axiom: the integer weights sum to one common total,
-    /// computed from both ends.
     pub fn normalization(weights: &[i64]) -> Result<Self, AxiomError> {
         let total = normalization_two_ways(weights)?;
         Ok(Self {
@@ -26,7 +23,6 @@ impl PrimitiveAxiom {
     }
 }
 
-/// Left-to-right sum, right-to-left sum, and `sum(2 w_i) / 2` agree.
 pub fn normalization_two_ways(weights: &[i64]) -> Result<i64, AxiomError> {
     if weights.is_empty() {
         return Err(AxiomError::Empty);

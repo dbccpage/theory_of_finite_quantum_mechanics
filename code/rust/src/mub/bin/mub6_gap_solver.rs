@@ -1,18 +1,3 @@
-//! `mub6_gap_solver` — frontier planning report with scoped registry and catalog checks.
-//!
-//! AuthorityEffect: None
-//!
-//! This binary:
-//! 1. Reads the current ENC-1147 CHM registry summary and mechanical checks.
-//! 2. Classifies the declared catalog candidates with the decision-tree classifier.
-//! 3. Ranks a fixed list of frontier targets by declared integer heuristic points.
-//! 4. Lists proposed certificate types; it does not verify those certificates.
-//! 5. Emits a structured JSON frontier report to stdout and artifacts/.
-//!
-//! Usage:
-//!   cargo run --bin mub6_gap_solver
-//!   cargo run --bin mub6_gap_solver -- --target R7
-//!   cargo run --bin mub6_gap_solver -- --verify-catalog
 
 use omega_mub::omega_native::exact::mub6_chm_registry::current_chm_registry;
 use omega_mub::omega_native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
@@ -28,7 +13,6 @@ use sha2::{Digest, Sha256};
 
 omega_mub::fixture_set!(fixtures, "mub6_gap_solver");
 
-/// A declared frontier target with integer heuristic points and a proposed certificate type.
 #[derive(Debug, Clone, Serialize)]
 pub struct FrontierTarget {
     pub id: String,
@@ -44,25 +28,18 @@ pub struct FrontierTarget {
 
 #[derive(Debug, Clone, Serialize, PartialEq, Eq, PartialOrd, Ord)]
 pub enum CertificateType {
-    /// Exact Nullstellensatz polynomial identity refuting a branch.
     NullstellensatzRefutation {
         ideal_dimension: usize,
         witness_degree: usize,
     },
-    /// Exact Positivstellensatz SOS certificate refuting real solutions in a region.
     PositivstellensatzSos { bound_type: String },
-    /// Continuous branch-and-bound cover closing a parameter region.
     BranchAndBoundCover {
         parameter_dimension: usize,
         estimated_cells: usize,
     },
-    /// Cross-ratio spectrum invariant distinguishing an orbit.
     CrossRatioSpectrumCertificate { orbit: String },
-    /// Triad compatibility obstruction certificate.
     TriadObstruction { orbits: (String, String) },
-    /// Global moduli algebraic elimination (full ideal decomposition).
     AlgebraicElimination { variables: usize, equations: usize },
-    /// Deferred neighborhood widening.
     NeighborhoodWidening { delta: String },
 }
 
@@ -73,7 +50,6 @@ pub enum TargetStatus {
     Blocked,
 }
 
-/// Snapshot of frontier targets and declared-catalog checks.
 #[derive(Debug, Clone, Serialize)]
 pub struct FrontierReport {
     pub schema_version: String,
@@ -121,7 +97,6 @@ pub struct CirculationSummary {
 fn declared_frontier_targets() -> Vec<FrontierTarget> {
     let mut targets = Vec::new();
 
-    // R7 is the irreducible global residual — closing it would discharge G1 entirely.
     targets.push(FrontierTarget {
         id: "G1-MASTER".to_string(),
         residual_class: "R7".to_string(),
@@ -151,7 +126,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Open,
     });
 
-    // R6: sporadic literature classes — prerequisite for R7.
     targets.push(FrontierTarget {
         id: "G1-R6-LITERATURE".to_string(),
         residual_class: "R6".to_string(),
@@ -171,7 +145,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Open,
     });
 
-    // R1: F6 external B3 continuous locus beyond the 6 locked lattice seeds.
     targets.push(FrontierTarget {
         id: "G1-R1-F6-CONTINUOUS".to_string(),
         residual_class: "R1".to_string(),
@@ -192,7 +165,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Partial,
     });
 
-    // R3: dephased CHM moduli outside delta-patches — covered by R7 but can be attacked independently.
     targets.push(FrontierTarget {
         id: "G1-R3-MODULI-OUTSIDE-PATCHES".to_string(),
         residual_class: "R3".to_string(),
@@ -212,7 +184,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Partial,
     });
 
-    // R2: Y2Q2 delta neighborhood deferred.
     targets.push(FrontierTarget {
         id: "G1-R2-Y2Q2-NEIGHBORHOOD".to_string(),
         residual_class: "R2".to_string(),
@@ -231,7 +202,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Open,
     });
 
-    // R4: basis gluing and Ψ bridge.
     targets.push(FrontierTarget {
         id: "G1-R4-BASIS-GLUING".to_string(),
         residual_class: "R4".to_string(),
@@ -251,7 +221,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Blocked,
     });
 
-    // R5: C2 full atlas glue.
     targets.push(FrontierTarget {
         id: "G1-R5-ATLAS-COHERENCE".to_string(),
         residual_class: "R5".to_string(),
@@ -271,7 +240,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Partial,
     });
 
-    // R9: Path B invariant survivor (cohomological deformation route).
     targets.push(FrontierTarget {
         id: "G1-R9-PATH-B-INVARIANT".to_string(),
         residual_class: "R9".to_string(),
@@ -292,7 +260,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Open,
     });
 
-    // R8: Lean kernel reflection scale.
     targets.push(FrontierTarget {
         id: "G1-R8-LEAN-SCALE".to_string(),
         residual_class: "R8".to_string(),
@@ -312,7 +279,6 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Blocked,
     });
 
-    // Sort by declared heuristic points descending.
     targets.sort_by(|a, b| {
         b.heuristic_priority_points
             .cmp(&a.heuristic_priority_points)
@@ -340,7 +306,6 @@ fn main() {
     eprintln!("═══════════════════════════════════════════════════════════════════");
     eprintln!();
 
-    // 1. Read CHM registry.
     eprintln!("[1/4] Reading ENC-1147 CHM registry...");
     let registry = current_chm_registry();
     eprintln!("  Charted loci: {}", registry.charted_count);
@@ -366,7 +331,6 @@ fn main() {
         mechanical_checks_ok: registry.mechanical_checks_ok,
     };
 
-    // 2. Classify the declared catalog candidates.
     eprintln!("[2/4] Classifying declared catalog candidates...");
     let catalog = canonical_catalog_candidates();
     let exhaustiveness = certify_catalog_exhaustiveness(&catalog);
@@ -408,7 +372,6 @@ fn main() {
         all_declared_candidates_classified: exhaustiveness.is_exhaustive,
     };
 
-    // 3. Cross-orbit circulation checks.
     eprintln!("[3/4] Verifying cross-orbit triad circulations...");
     let triads = [
         CrossOrbitTriad::TaoSzollosi,
@@ -432,7 +395,6 @@ fn main() {
     }
     eprintln!();
 
-    // 4. Compute frontier targets.
     eprintln!("[4/4] Ranking declared frontier targets...");
     let mut targets = declared_frontier_targets();
 
@@ -494,7 +456,6 @@ fn main() {
         "No open targets.".to_string()
     };
 
-    // Build report.
     let report = FrontierReport {
         schema_version: "omega.mub6.frontier-report.v2".to_string(),
         firewall: FIREWALL.to_string(),
@@ -512,21 +473,17 @@ fn main() {
         sha256_digest: String::new(),
     };
 
-    // Compute content hash.
     let json = serde_json::to_string_pretty(&report).expect("serialize");
     let mut hasher = Sha256::new();
     hasher.update(json.as_bytes());
     let digest = format!("{:x}", hasher.finalize());
 
-    // Re-serialize with hash (two-pass).
     let mut report = report;
     report.sha256_digest = digest.clone();
     let json_final = serde_json::to_string_pretty(&report).expect("serialize");
 
-    // Write to stdout.
     println!("{json_final}");
 
-    // Write to artifacts/ if CARGO_MANIFEST_DIR is set.
     if let Ok(manifest) = std::env::var("CARGO_MANIFEST_DIR") {
         let dir = std::path::PathBuf::from(manifest).join("../tests/omega_mub/artifacts");
         let _ = std::fs::create_dir_all(&dir);
@@ -540,7 +497,6 @@ fn main() {
     eprintln!("{recommended}");
 }
 
-// fixture: a fixed string, not the time of the run.
 fn chrono_stub() -> String {
     fixtures().text("report_timestamp")
 }

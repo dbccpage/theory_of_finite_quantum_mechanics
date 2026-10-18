@@ -1,4 +1,3 @@
-//! Bounded finite control for WF-RESEARCH-BIND-PROMPTS.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Witness {

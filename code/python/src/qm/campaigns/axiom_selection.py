@@ -54,26 +54,22 @@ def evaluate_local_tomography(d_a: int, d_b: int) -> Dict[str, Any]:
     """Test local tomography D(AB) == D(A) * D(B) for classical, complex, real, quaternionic."""
     d_ab = d_a * d_b
 
-    # Classical
     c_a = classical_state_dimension(d_a)
     c_b = classical_state_dimension(d_b)
     c_ab = classical_state_dimension(d_ab)
     classical_pass = (c_ab == c_a * c_b)
 
-    # Complex
     z_a = complex_quantum_state_dimension(d_a)
     z_b = complex_quantum_state_dimension(d_b)
     z_ab = complex_quantum_state_dimension(d_ab)
     complex_pass = (z_ab == z_a * z_b)
 
-    # Real
     r_a = real_quantum_state_dimension(d_a)
     r_b = real_quantum_state_dimension(d_b)
     r_ab = real_quantum_state_dimension(d_ab)
     real_pass = (r_ab == r_a * r_b)
     real_deficit = (r_a * r_b) - r_ab
 
-    # Quaternionic
     h_a = quaternionic_quantum_state_dimension(d_a)
     h_b = quaternionic_quantum_state_dimension(d_b)
     h_ab = quaternionic_quantum_state_dimension(d_ab)

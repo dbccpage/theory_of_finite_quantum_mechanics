@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 
 import json
@@ -10,21 +9,21 @@ from omega_engine.crates.majorana.engines.terminalizer import terminalize
 
 def run_tgp_demo() -> dict[str, Any]:
     """Simulate topological gap protocol parameter sensitivity under parameter transport."""
-    
+
     t_A = 0.35
     residual_A = [1, 1, 0]
     D0_A = [[1, 0], [0, 1], [1, 1]]
     D1_A = [[1, 1, 1]]
-    
+
     res_A = terminalize(D0_A, D1_A, residual_A)
-    
+
     t_B = 0.45
     residual_B = [1, 0, 0]
     D0_B = [[1, 0], [0, 1], [1, 1]]
     D1_B = [[1, 1, 1]]
-    
+
     res_B = terminalize(D0_B, D1_B, residual_B)
-    
+
     mutation_status = "SilentMutationDetected" if res_A["terminal_status"] != res_B["terminal_status"] else "None"
 
     return {

@@ -39,27 +39,22 @@ import omega_engine.crates.projection_obstruction.claim_coverage as claim_covera
 import omega_engine.crates.projection_obstruction.inline_code_companion as inline_code_companion
 import omega_engine.crates.projection_obstruction.generate_figures as generate_figures
 import omega_engine.crates.projection_obstruction.verify_certificate as verify_certificate
-# --- 1. Replica Hierarchy Soviet Inspection & Countermodels ---
 
 def test_replica_hierarchy_exceptions_and_audits():
     """Derive and verify every exception and audit branch in replica_hierarchy.py."""
-    # Exception: empty edges
     with pytest.raises(ValueError, match="at least one edge"):
         replica_hierarchy.FiniteDiagnosticFamily(edges=[], gauges={}, diagnostic=lambda e, p: 0)
 
-    # Exception: duplicate edges
     with pytest.raises(ValueError, match="unique"):
         replica_hierarchy.FiniteDiagnosticFamily(
             edges=["e1", "e1"], gauges={"e1": replica_hierarchy.absolute_gauge}, diagnostic=lambda e, p: 0
         )
 
-    # Exception: missing local gauge
     with pytest.raises(ValueError, match="exactly one local gauge"):
         replica_hierarchy.FiniteDiagnosticFamily(
             edges=["e1", "e2"], gauges={"e1": replica_hierarchy.absolute_gauge}, diagnostic=lambda e, p: 0
         )
 
-    # Exception: edge_types mismatch
     with pytest.raises(ValueError, match="edge_types must cover"):
         replica_hierarchy.FiniteDiagnosticFamily(
             edges=["e1"],
@@ -74,64 +69,54 @@ def test_replica_hierarchy_exceptions_and_audits():
         diagnostic=replica_hierarchy.unweighted_l1_diagnostic,
     )
 
-    # Evaluate exceptions
     with pytest.raises(ValueError, match="unknown edge"):
         family.evaluate(["e1", "unknown"], {"e1": (Rational(1),), "unknown": (Rational(1),)})
 
     with pytest.raises(ValueError, match="domain must equal"):
         family.evaluate(["e1"], {"e1": (Rational(1),), "e2": (Rational(1),)})
 
-    # Audit exceptions
     with pytest.raises(ValueError, match="sample grids must be nonempty"):
         family.audit(samples={"e1": [(Rational(1),)]})
 
     with pytest.raises(ValueError, match="nonnegative"):
         family.audit(samples={"e1": [(Rational(1),)], "e2": [(Rational(1),)]}, scalars=(-1,))
 
-    # Audit clean PASS
     audit_pass = family.audit(samples={"e1": [(Rational(0),), (Rational(1),)], "e2": [(Rational(0),), (Rational(1),)]})
     assert audit_pass.checked_points > 0
     assert audit_pass.re1_global_gauge is True
     assert audit_pass.re3_disjoint_replica_additivity is True
     assert audit_pass.re5_singleton_calibration is True
 
-    # Audit countermodels for RE1 violations:
-    # 1. Non-zero value at zero
     f_nonzero_zero = replica_hierarchy.FiniteDiagnosticFamily(
         edges=["e1"], gauges={"e1": replica_hierarchy.absolute_gauge}, diagnostic=lambda e, p: Rational(5)
     )
     a1 = f_nonzero_zero.audit(samples={"e1": [(Rational(0),), (Rational(1),)]})
     assert a1.re1_global_gauge is False
 
-    # 2. Faithfulness violation (zero at non-zero point)
     f_unfaithful = replica_hierarchy.FiniteDiagnosticFamily(
         edges=["e1"], gauges={"e1": replica_hierarchy.absolute_gauge}, diagnostic=lambda e, p: Rational(0)
     )
     a2 = f_unfaithful.audit(samples={"e1": [(Rational(0),), (Rational(1),)]})
     assert a2.re1_global_gauge is False
 
-    # 3. Positive homogeneity violation J(c*x) != c*J(x)
     f_homog = replica_hierarchy.FiniteDiagnosticFamily(
         edges=["e1"], gauges={"e1": replica_hierarchy.absolute_gauge}, diagnostic=lambda e, p: p["e1"][0]**2
     )
     a3 = f_homog.audit(samples={"e1": [(Rational(0),), (Rational(1),)]}, scalars=(Rational(2),))
     assert a3.re1_global_gauge is False
 
-    # 4. Subadditivity violation J(x+y) > J(x) + J(y)
     f_subadd = replica_hierarchy.FiniteDiagnosticFamily(
         edges=["e1"], gauges={"e1": replica_hierarchy.absolute_gauge}, diagnostic=lambda e, p: p["e1"][0]**2
     )
     a4 = f_subadd.audit(samples={"e1": [(Rational(0),), (Rational(1),), (Rational(2),)]}, scalars=(Rational(1),))
     assert a4.re1_global_gauge is False
 
-    # 5. RE2 violation (equal magnitudes give different diagnostic values)
     f_re2 = replica_hierarchy.FiniteDiagnosticFamily(
         edges=["e1"], gauges={"e1": lambda p: abs(p[0])}, diagnostic=lambda e, p: p["e1"][0]
     )
     a5 = f_re2.audit(samples={"e1": [(Rational(-1),), (Rational(1),)]}, scalars=(Rational(1),))
     assert a5.re2_local_magnitude_sufficiency is False
 
-    # Audit countermodel for lp (p=2)
     lp_family = replica_hierarchy.FiniteDiagnosticFamily(
         edges=["e1", "e2"],
         gauges={"e1": replica_hierarchy.absolute_gauge, "e2": replica_hierarchy.absolute_gauge},
@@ -140,11 +125,9 @@ def test_replica_hierarchy_exceptions_and_audits():
     lp_audit = lp_family.audit(samples={"e1": [(Rational(1),)], "e2": [(Rational(1),)]})
     assert lp_audit.re3_disjoint_replica_additivity is False
 
-    # Conclusion certificate check
     cert_res = family.conclusion_certificate({"e1": (Rational(1),), "e2": (Rational(1),)})
     assert cert_res.singleton_decomposition_holds is True
 
-    # Helper exception checks
     with pytest.raises(ValueError, match="expects one coordinate"):
         replica_hierarchy.absolute_gauge((Rational(1), Rational(2)))
 
@@ -159,13 +142,11 @@ def test_replica_hierarchy_exceptions_and_audits():
         replica_hierarchy.scaled_sum_counterexample(Rational(1))
 
 
-# --- 2. Cochain Presentation & Linear Repair Soviet Inspection ---
 
 def test_cochain_presentation_deep_coverage():
     """Derive and verify every missing exception in cochain_presentation.py."""
     obs1 = cochain_presentation.ObservationMap("e1", Matrix([[1, 0]]))
-    
-    # Missing observation map error
+
     with pytest.raises(ValueError, match="observation-map domain mismatch"):
         cochain_presentation.ObservationPresentation(["e1", "e2"], {"e1": obs1})
 
@@ -173,25 +154,21 @@ def test_cochain_presentation_deep_coverage():
     with pytest.raises(cochain_presentation.MissingObservationMapError, match="normal residuals missing declared edges"):
         pres.induce_field({})
 
-    # Non-exact cochain exactness check
     problem = cochain_presentation.LinearRepairProblem(Matrix([[1, 0], [0, 0]]))
     non_exact_cert = problem.exactness_certificate(Matrix([[0], [1]]))
     assert not non_exact_cert.is_exact_coboundary
     assert non_exact_cert.verify()
 
-    # Non-zero quotient distance
     problem_proj = cochain_presentation.LinearRepairProblem(Matrix([[1, 0], [0, 0]]))
     dist_cert = problem_proj.quotient_l1_distance(Matrix([[0], [1]]))
     assert dist_cert.verify()
     assert dist_cert.distance == 1
 
-    # Primal and dual rank 0 vertices
     witness_p, res_p, opt_p = cochain_presentation._exact_l1_primal_vertex(Matrix.zeros(2, 2), Matrix([[1], [2]]))
     assert opt_p == 3
     witness_d, opt_d = cochain_presentation._exact_l1_dual_vertex(Matrix.zeros(2, 2), Matrix([[1], [2]]))
     assert opt_d == 3
 
-    # Admitted complex coboundary problem
     cap = cochain_presentation.AdmittedComplexV1(d0=Matrix([[1], [0]]), d1=Matrix([[0, 1]]))
     ac_prob = cochain_presentation.AdmittedComplexCoboundaryProblem(cap)
     assert ac_prob.d0 == cap.d0
@@ -199,7 +176,6 @@ def test_cochain_presentation_deep_coverage():
     with pytest.raises(cochain_presentation.HigherDifferentialUnavailable, match="missing AdmittedComplexV1"):
         cochain_presentation.AdmittedComplexCoboundaryProblem("not_a_capability")
 
-    # Complex verification error checks
     with pytest.raises(cochain_presentation.HigherDifferentialUnavailable, match="supplies no C2 or d1"):
         cochain_presentation.verify_cochain_complex(Matrix([[1], [0]]), None)
 
@@ -213,7 +189,6 @@ def test_cochain_presentation_deep_coverage():
     assert cochain_presentation.exact_cochain([1, 2]).shape == (2, 1)
 
 
-# --- 3. Family Bound & Uniform Scale Soviet Inspection ---
 
 def test_family_bound_deep_coverage():
     """Verify uniform family member validation and edge load bounds."""
@@ -226,7 +201,6 @@ def test_family_bound_deep_coverage():
     )
     assert m1.system_id == "m1"
 
-    # Invalid members
     with pytest.raises(ValueError, match="system_id must be nonempty"):
         family_bound.FiniteFamilyMember("  ", 2, 1, Rational(1), (Rational(1),))
 
@@ -245,7 +219,6 @@ def test_family_bound_deep_coverage():
     with pytest.raises(ValueError, match="nonnegative"):
         family_bound.FiniteFamilyMember("m_bad4", 2, 1, Rational(1), (Rational(-1),))
 
-    # Uniform family premises with valid short-time window
     family_prem = family_bound.UniformFamilyPremises(
         g_star=Rational(2),
         eta_star=Rational(1, 4),
@@ -255,7 +228,6 @@ def test_family_bound_deep_coverage():
     cert = family_bound.certify_uniform_family(members=(m1,), premises=family_prem, time=Rational(1, 1000))
     assert cert.accepted is True
 
-    # Failing family refusal reasons
     for bad_prem in (
         family_bound.UniformFamilyPremises(g_star=Rational(0), eta_star=Rational(1, 4), nu_star=Rational(1, 2), a_star=Rational(1, 2)),
         family_bound.UniformFamilyPremises(g_star=Rational(2), eta_star=Rational(0), nu_star=Rational(1, 2), a_star=Rational(1, 2)),
@@ -266,7 +238,6 @@ def test_family_bound_deep_coverage():
         cert_ref = family_bound.certify_uniform_family(members=(m1,), premises=bad_prem, time=Rational(1, 1000))
         assert cert_ref.accepted is False
 
-    # Member-based refusals
     m_high_g = family_bound.FiniteFamilyMember("m_high", 2, 1, Rational(10), (Rational(1),))
     cert_high = family_bound.certify_uniform_family(members=(m_high_g,), premises=family_prem, time=Rational(1, 1000))
     assert cert_high.accepted is False
@@ -275,20 +246,16 @@ def test_family_bound_deep_coverage():
     cert_low = family_bound.certify_uniform_family(members=(m_low_rate,), premises=family_prem, time=Rational(1, 1000))
     assert cert_low.accepted is False
 
-    # Duplicate system ID refusal
     cert_dup = family_bound.certify_uniform_family(members=(m1, m1), premises=family_prem, time=Rational(1, 1000))
     assert cert_dup.accepted is False
 
-    # Time outside uniform window refusal
     cert_time = family_bound.certify_uniform_family(members=(m1,), premises=family_prem, time=Rational(1, 10))
     assert cert_time.accepted is False
 
-    # Failing family certification (empty family)
     cert_fail = family_bound.certify_uniform_family(members=(), premises=family_prem, time=Rational(1, 1000))
     assert cert_fail.accepted is False
 
 
-# --- 4. Quantum Lattice & Input Validation Soviet Inspection ---
 
 def test_quantum_lattice_input_validation():
     """Verify QuantumInputError checks and edge cases in quantum_lattice.py."""
@@ -301,14 +268,12 @@ def test_quantum_lattice_input_validation():
     with pytest.raises(quantum_lattice.QuantumInputError, match="must be finite and nonnegative"):
         quantum_lattice._finite_nonnegative_float(-1.0, name="val")
 
-    # Readonly matrix validation
     with pytest.raises(quantum_lattice.QuantumInputError, match="must be a finite complex matrix"):
         quantum_lattice._readonly_matrix([1, [2]], name="val")
 
     with pytest.raises(quantum_lattice.QuantumInputError, match="must be rank two"):
         quantum_lattice._readonly_matrix([1, 2, 3], name="val")
 
-    # Partial trace error checks
     mat_2x2 = np.eye(2, dtype=complex)
     with pytest.raises(quantum_lattice.QuantumInputError, match="keep must be"):
         quantum_lattice.partial_trace_bipartite(mat_2x2, 1, 2, keep="invalid")
@@ -316,7 +281,6 @@ def test_quantum_lattice_input_validation():
     with pytest.raises(quantum_lattice.QuantumInputError, match="bipartite operator has shape"):
         quantum_lattice.partial_trace_bipartite(mat_2x2, 2, 2, keep="a")
 
-    # Quantum lattice model validation checks
     term1 = quantum_lattice.LocalHamiltonianTerm("h1", ("u", "v"), np.eye(4, dtype=complex))
     state_u = np.eye(2, dtype=complex) / 2.0
     state_v = np.eye(2, dtype=complex) / 2.0
@@ -346,7 +310,6 @@ def test_quantum_lattice_input_validation():
     with pytest.raises(quantum_lattice.QuantumInputError, match="references unknown sites"):
         quantum_lattice.FiniteQuantumLattice(["u", "v"], {"u": 2, "v": 2}, (term_bad_site,), {"u": state_u, "v": state_v})
 
-    # Method-level exception checks
     lattice = quantum_lattice.FiniteQuantumLattice(["u", "v"], {"u": 2, "v": 2}, (term1,), {"u": state_u, "v": state_v})
     with pytest.raises(quantum_lattice.QuantumInputError, match="an edge must contain two distinct sites"):
         lattice._canonical_edge(["u", "u"])
@@ -382,7 +345,6 @@ def test_quantum_lattice_input_validation():
     assert lattice.partial_trace(np.eye(4), ["v", "u"]).shape == (4, 4)
 
 
-# --- 5. Lattice Simulation & Extended Trajectories Soviet Inspection ---
 
 def test_lattice_simulation_deep_coverage():
     """Verify 1D/2D TFIM, Heisenberg dynamics, thermal sweeps, and higher order commutators."""
@@ -408,18 +370,15 @@ def test_lattice_simulation_deep_coverage():
     with pytest.raises(quantum_lattice.QuantumInputError, match="2D grid must have at least 4 sites"):
         lattice_simulation.build_2d_heisenberg_hamiltonian(1, 1, 1.0)
 
-    # 2D Heisenberg Hamiltonian test
     h_tot, h_int, edges = lattice_simulation.build_2d_heisenberg_hamiltonian(rows=2, cols=2, J=1.0)
     assert h_tot.shape == (16, 16)
     assert len(edges) == 4
 
-    # Higher order commutator coefficients
     rho0 = np.eye(8, dtype=complex) / 8.0
     h_sim, h_int_sim, _ = lattice_simulation.build_1d_tfim_hamiltonian(num_sites=3, coupling=1.0, transverse_field=1.0)
     c1, c2, c3, c4 = lattice_simulation.compute_higher_order_commutator_coefficients(h_sim, h_int_sim, rho0)
     assert c1 >= 0 and c2 >= 0 and c3 >= 0 and c4 >= 0
 
-    # Thermal simulation replay (product thermal & global gibbs)
     for model in ("1d_tfim", "2d_tfim", "1d_heisenberg"):
         therm_replay = lattice_simulation.run_thermal_defect_simulation_replay(
             model_type=model, num_sites_or_rows=2, cols=2, coupling=1.0, transverse_field_or_delta=0.5, betas=(0.1, 1.0), t_max=0.05, num_points=3, state_mode="product_thermal"
@@ -443,7 +402,6 @@ def test_lattice_simulation_deep_coverage():
         assert len(scaling.results) >= 1
 
 
-# --- 6. Observer Carriers Deep Coverage ---
 
 def test_observer_carriers_deep_coverage():
     """Verify observer carriers, watcher kernels, and visibility gap calculations."""
@@ -453,7 +411,6 @@ def test_observer_carriers_deep_coverage():
     scale_cert = observer_carriers.scaling_family_certificate(scales=[Rational(2)])
     assert scale_cert.exact_linear_scaling is True
 
-    # Observer family exception checks
     with pytest.raises(ValueError, match="needs at least one edge"):
         observer_carriers.ObserverFamily({}, [])
 
@@ -487,7 +444,6 @@ def test_observer_carriers_deep_coverage():
         fam.normalize_defects({"e1": [1, 2, 3]})
 
 
-# --- 7. Projection Transfer & Reverse-Triangle Deep Coverage ---
 
 def test_transfer_deep_coverage():
     """Verify reverse-triangle transfer certificate exception and refusal branches."""
@@ -517,7 +473,6 @@ def test_transfer_deep_coverage():
         transfer.linear_projection_transfer_certificate([1, 0], [0, 1], Matrix([[1, 1], [0, 2]]), 1)
 
 
-# --- 8. Retraction Geometry Deep Coverage ---
 
 def test_retraction_geometry_deep_coverage():
     """Verify retraction geometry exceptions and lifted affine charts."""
@@ -537,7 +492,6 @@ def test_retraction_geometry_deep_coverage():
         retraction_geometry.projected_family(Matrix([1, 0, 2]), pi)
 
 
-# --- 9. Falsification Sandbox Deep Coverage ---
 
 def test_falsification_sandbox_deep_coverage():
     """Verify falsification sandbox edge cases and helpers."""
@@ -546,21 +500,17 @@ def test_falsification_sandbox_deep_coverage():
     assert falsification_sandbox.global_max_aggregator([]) == 0.0
 
 
-# --- 10. Independent Verifier Deep Coverage ---
 
 def test_verify_certificate_deep_coverage():
     """Verify all verification failure modes in verify_certificate.py."""
     pkg_root = verify_certificate.RELEASE_ROOT
 
-    # Invalid document type
     errors_type = verify_certificate.verify_document("not_a_dict", pkg_root)
     assert len(errors_type) > 0
 
-    # Missing required keys
     errors_keys = verify_certificate.verify_document({}, pkg_root)
     assert len(errors_keys) > 0
 
-    # Source hashes validation errors
     sample_path = sorted(verify_certificate.REQUIRED_SOURCE_PATHS)[0] if verify_certificate.REQUIRED_SOURCE_PATHS else "_tests_unit/test_po000_core.py"
 
     bad_hashes_1 = verify_certificate.verify_hash_inventory(
@@ -597,7 +547,6 @@ def test_verify_certificate_deep_coverage():
     )
     assert any("hash mismatch" in err for err in bad_hashes_5)
 
-    # Document validation errors
     bad_doc_1 = {
         "schema_version": "wrong_version",
         "paper_version": "1.0",
@@ -639,7 +588,6 @@ def test_verify_certificate_deep_coverage():
     assert any("unresolved_claim_ids contains duplicates" in err for err in errs2)
     assert any("records a failed executable check" in err for err in errs2)
 
-    # CLI failure mode
     with tempfile.TemporaryDirectory() as tmpdir:
         bad_cert = Path(tmpdir) / "bad.json"
         bad_cert.write_text("{}", encoding="utf-8")
@@ -647,7 +595,6 @@ def test_verify_certificate_deep_coverage():
         assert ret == 1
 
 
-# --- 13. Inline Code Companion Execution Tests ---
 
 def test_inline_code_companion_functions():
     """Verify inline code companion functions match closed forms."""

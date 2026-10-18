@@ -1,28 +1,7 @@
-/-
-  H034CliffordPauliConjugationAndTGateOrbit.lean
-  AuthorityEffect: None.
 
-  Shows in this model under exact Gaussian integer matrix arithmetic Z[i] that:
-  1. The scaled Hadamard matrix H = [[1, 1], [1, -1]] satisfies H^2 = 2 * I.
-  2. Scaled Hadamard preserves the Pauli group under conjugation:
-     H * X * H = 2 * Z
-     H * Z * H = 2 * X
-     H * Y * H = -2 * Y.
-  3. The Phase gate S = [[1, 0], [0, i]] preserves the Pauli group under conjugation:
-     S * X * S_adj = Y
-     S * Y * S_adj = -X
-     S * Z * S_adj = Z.
-  4. The T-gate action produces X + Y, which strictly escapes the set of single Pauli operators,
-     witnessing the non-Clifford obstruction to classical simulability.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace FableHilbertWalk20260819.H034
 
-/-- Gaussian integer a + b * i. -/
 structure GaussInt where
   re : Int
   im : Int
@@ -54,7 +33,6 @@ instance : Sub GaussInt := ⟨gsub⟩
 instance : Neg GaussInt := ⟨gneg⟩
 instance : Mul GaussInt := ⟨gmul⟩
 
-/-- 2x2 matrix with Gaussian integer entries. -/
 structure Mat2 where
   m00 : GaussInt
   m01 : GaussInt
@@ -89,53 +67,34 @@ def mat_Z : Mat2 := ⟨gone, gz, gz, -gone⟩
 def mat_H : Mat2 := ⟨gone, gone, gone, -gone⟩
 def mat_S : Mat2 := ⟨gone, gz, gz, gi⟩
 
--- ==============================================================================
--- PART 1: HADAMARD CONJUGATIONS
--- ==============================================================================
 
-/-- H^2 = 2 * I. -/
 theorem hadamard_squared : mat_mul mat_H mat_H = mat_smul 2 mat_I := by rfl
 
-/-- H * X * H = 2 * Z. -/
 theorem hadamard_conjugates_X_to_Z :
     mat_mul (mat_mul mat_H mat_X) mat_H = mat_smul 2 mat_Z := by rfl
 
-/-- H * Z * H = 2 * X. -/
 theorem hadamard_conjugates_Z_to_X :
     mat_mul (mat_mul mat_H mat_Z) mat_H = mat_smul 2 mat_X := by rfl
 
-/-- H * Y * H = -2 * Y. -/
 theorem hadamard_conjugates_Y_to_neg_Y :
     mat_mul (mat_mul mat_H mat_Y) mat_H = mat_smul (-2) mat_Y := by rfl
 
--- ==============================================================================
--- PART 2: PHASE GATE S CONJUGATIONS
--- ==============================================================================
 
-/-- S^4 = I. -/
 theorem phase_fourth_is_I :
     mat_mul (mat_mul (mat_mul mat_S mat_S) mat_S) mat_S = mat_I := by rfl
 
-/-- S * X * S_adj = Y. -/
 theorem phase_conjugates_X_to_Y :
     mat_mul (mat_mul mat_S mat_X) (mat_adj mat_S) = mat_Y := by rfl
 
-/-- S * Y * S_adj = -X. -/
 theorem phase_conjugates_Y_to_neg_X :
     mat_mul (mat_mul mat_S mat_Y) (mat_adj mat_S) = mat_smul (-1) mat_X := by rfl
 
-/-- S * Z * S_adj = Z. -/
 theorem phase_conjugates_Z_to_Z :
     mat_mul (mat_mul mat_S mat_Z) (mat_adj mat_S) = mat_Z := by rfl
 
--- ==============================================================================
--- PART 3: NON-CLIFFORD T-GATE ORBIT DEPARTURE
--- ==============================================================================
 
-/-- The linear combination X + Y produced by T-gate conjugation. -/
 def mat_X_plus_Y : Mat2 := mat_add mat_X mat_Y
 
-/-- Theorem: X + Y is not equal to any single Pauli matrix (or its negation). -/
 theorem t_gate_escapes_pauli :
     mat_X_plus_Y ≠ mat_I ∧
     mat_X_plus_Y ≠ mat_smul (-1) mat_I ∧
@@ -157,3 +116,6 @@ theorem t_gate_escapes_pauli :
 #print axioms t_gate_escapes_pauli
 
 end FableHilbertWalk20260819.H034
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H034CliffordPauliConjugationAndTGateOrbit.lean Claim: hadamard_squared AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

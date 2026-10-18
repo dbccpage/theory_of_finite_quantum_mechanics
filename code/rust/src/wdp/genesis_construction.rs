@@ -1,9 +1,3 @@
-//! A literal `<>` history executed by the canonical Genesis primitives.
-//!
-//! Every accepted prefix is compared with WDP's existing deduplicating source
-//! model. A separately requested incidence interpretation constructs cells
-//! from admitted instances, never from token spelling. Mathematical results
-//! are obtained from the existing geometry/homology owners.
 
 use omega_ooutwire_primitives::{admission, event::Event, regime::Regime, token::Token};
 
@@ -15,15 +9,12 @@ use crate::genesis_primitive_execution::{
     PrimitiveEvent, PrimitiveInstance, PrimitiveReading, PrimitiveRegime,
 };
 
-/// The exact first presentation of this construction.
 pub const GENESIS_INSCRIPTION: &str = "<>";
 
-/// Caller-supplied execution limits, kept with the construction on continuation.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ConstructionLimits {
     pub max_events: usize,
     pub max_cells: usize,
-    /// Conservative dense-matrix allowance: the square of the total cell count.
     pub max_matrix_entries: usize,
 }
 
@@ -37,7 +28,6 @@ impl Default for ConstructionLimits {
     }
 }
 
-/// An admission, correspondence, or interpretation failure.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ConstructionError {
     #[error("the first event must present the literal <> inscription")]
@@ -63,7 +53,6 @@ pub enum ConstructionError {
     },
 }
 
-/// Copy every admitted field, including requirements. No geometric reading yet.
 pub fn interpret_regime(regime: &Regime) -> Result<PrimitiveRegime, ConstructionError> {
     PrimitiveRegime::try_new(
         regime
@@ -93,7 +82,6 @@ pub fn interpret_regime(regime: &Regime) -> Result<PrimitiveRegime, Construction
     })
 }
 
-/// Translate all six event kinds without adding or discarding an event.
 pub fn interpret_event(event: &Event) -> PrimitiveEvent {
     match event {
         Event::Supply(token) => PrimitiveEvent::Supply {
@@ -115,11 +103,6 @@ pub fn interpret_event(event: &Event) -> PrimitiveEvent {
     }
 }
 
-/// A retained construction. Fields are private; every extension runs both steps.
-///
-/// `pre_genesis()` has no presentation and no admitted data. The first accepted
-/// event supplies `<>`; it still admits nothing. Later admissions are supplied
-/// construction choices. This type does not issue operational authorization.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GenesisConstruction {
     limits: ConstructionLimits,
@@ -146,7 +129,6 @@ impl GenesisConstruction {
         Self::pre_genesis().advance(Event::Supply(Token::new(GENESIS_INSCRIPTION)))
     }
 
-    /// Recompute every prefix from the original empty admitted state.
     pub fn replay(history: &[Event]) -> Result<Self, ConstructionError> {
         Self::replay_with_limits(history, ConstructionLimits::default())
     }
@@ -181,10 +163,6 @@ impl GenesisConstruction {
         self.limits
     }
 
-    /// Return a new history; a refused event leaves the original untouched.
-    ///
-    /// The canonical crate uses deduplication. WDP's occurrence reading remains
-    /// available elsewhere and is deliberately not identified with that reading.
     pub fn advance(&self, event: Event) -> Result<Self, ConstructionError> {
         let index = self.history.len();
         if index >= self.limits.max_events {
@@ -273,7 +251,6 @@ impl GenesisConstruction {
         Ok(cells)
     }
 
-    /// Admitted instances, checked once against the declared incidence domain.
     fn encoded_incidence(&self) -> Result<(ComplexPacket, SimplicialComplex), ConstructionError> {
         let cells = self.incidence_cells()?;
         let complex = encode_declared(&cells)
@@ -281,17 +258,10 @@ impl GenesisConstruction {
         Ok((ComplexPacket { cells }, complex))
     }
 
-    /// Choose the simplicial-incidence interpretation of this admitted state:
-    /// an arity-k form denotes a (k-1)-simplex on its ordered argument marks.
-    ///
-    /// Every datum needs an explicit vertex instance; all faces must already
-    /// exist. Duplicate cells, non-increasing arguments, uniform rules and
-    /// requirements are refused rather than normalized or omitted.
     pub fn simplicial_incidence(&self) -> Result<ComplexPacket, ConstructionError> {
         self.encoded_incidence().map(|(packet, _complex)| packet)
     }
 
-    /// Rational boundaries and Betti numbers from `omega_homology`.
     pub fn homology(&self) -> Result<ChainReport, ConstructionError> {
         let (_packet, complex) = self.encoded_incidence()?;
         declared_chain_report(&complex)
@@ -300,7 +270,6 @@ impl GenesisConstruction {
     }
 }
 
-/// Recompute from a separately supplied event history, then compare the result.
 pub fn verify_history_report(
     history: &[Event],
     claimed: &ChainReport,
@@ -312,8 +281,6 @@ pub fn verify_history_report(
     Ok(())
 }
 
-/// Construct the boundary of a triangle through explicit canonical admissions.
-/// Labels are opaque; changing their spelling does not choose the cell structure.
 pub fn cycle_construction(labels: [&str; 3]) -> Result<GenesisConstruction, ConstructionError> {
     use omega_ooutwire_primitives::mark::Mark;
     let mut walk = GenesisConstruction::from_literal_seed()?;

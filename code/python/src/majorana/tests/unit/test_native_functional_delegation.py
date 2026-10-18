@@ -19,7 +19,7 @@ for directory in (CODE.parents[4], CODE):
     if str(directory) not in sys.path:
         sys.path.insert(0, str(directory))
 
-from omega_engine_operating_system.adapters.rust_host.majorana_math import (  # noqa: E402
+from omega_engine_operating_system.adapters.rust_host.majorana_math import (
     NativeMathRefusal,
     NativeMathReply,
 )

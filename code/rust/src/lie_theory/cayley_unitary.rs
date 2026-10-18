@@ -1,12 +1,3 @@
-//! Exact unitary Cayley charts and their phase-shifted atlas.
-//!
-//! C_tau(H)=(I-i tau H)(I+i tau H)^-1 for Hermitian H. The inverse chart
-//! H=i(U-I)(U+I)^-1 refuses eigenvalue -1. A declared scalar unit phase u
-//! changes the chart to u C(H), so its cut locus is eigenvalue -u; multiple
-//! charts admit operators excluded by a particular choice of phase.
-//! Elimination and its typed singularity data come from linear algebra.
-//!
-//! AuthorityEffect: None.
 use crate::scalar::{is_hermitian, is_unitary, ComplexField};
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{elimination, matrix as mx, ExactFieldError};

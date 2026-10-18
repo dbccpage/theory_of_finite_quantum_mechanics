@@ -1,18 +1,11 @@
-//! Torsors and principal G-sheaves (SH-19).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::OpenSet;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
-/// A Z_2-torsor (principal Z_2-bundle) on a simplicial complex (SH-19).
-///
-/// Classified by H^1(X, Z_2). Transition signs on pairwise overlaps are +1 or -1.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PrincipalBundleZ2 {
     pub cover: Vec<OpenSet>,
-    /// Transition signs for sorted pairs (i, j) where i < j
     pub transition_signs: BTreeMap<(usize, usize), i8>,
 }
 
@@ -37,7 +30,6 @@ impl PrincipalBundleZ2 {
         })
     }
 
-    /// Compute holonomy along a cyclic sequence of cover indices: prod_{k} g_{i_k, i_{k+1}}.
     pub fn holonomy_around_loop(&self, loop_indices: &[usize]) -> i8 {
         if loop_indices.is_empty() {
             return 1;
@@ -57,7 +49,6 @@ impl PrincipalBundleZ2 {
         holo
     }
 
-    /// Trivial bundle check: holonomy around canonical cycle is +1.
     pub fn is_trivial_bundle(&self) -> bool {
         let full_cycle: Vec<usize> = (0..self.cover.len()).collect();
         self.holonomy_around_loop(&full_cycle) == 1
@@ -74,7 +65,6 @@ mod tests {
         let u1 = OpenSet::new(vec!["1", "2"]);
         let u2 = OpenSet::new(vec!["2", "0"]);
 
-        // Möbius transition: one flip (-1) along the wrap-around
         let bundle = PrincipalBundleZ2::new(
             vec![u0, u1, u2],
             vec![((0, 1), 1), ((1, 2), 1), ((0, 2), -1)],

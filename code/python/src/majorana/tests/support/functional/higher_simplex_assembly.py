@@ -37,7 +37,6 @@ def filter_simplices_by_skeleton(
     valid_cells = []
     for cell in candidates:
         all_faces_present = True
-        # A k-simplex has (k+1) faces obtained by omitting vertex i
         for i in range(len(cell)):
             face = cell[:i] + cell[i + 1 :]
             if face not in existing_lower_cells:
@@ -108,27 +107,22 @@ def assemble_from_network(network: Any, max_dim: int = 4) -> SimplexComplex:
     nodes = sorted(list(network.nodes))
     complex_obj = SimplexComplex(vertices=nodes, max_dim=max_dim)
 
-    # 0-cells
     complex_obj.cells[0] = [(v,) for v in nodes]
 
-    # 1-cells (edges normalized to (u, v) with u < v)
     edges = set()
     for u, v in network.edges:
         edges.add((min(u, v), max(u, v)))
     complex_obj.cells[1] = sorted(list(edges))
 
-    # 2-cells (faces)
     faces = set()
     if hasattr(network, "faces") and network.faces:
         for f in network.faces:
             faces.add(tuple(sorted(f)))
     else:
-        # Detect triangles from edges
         triangles = detect_simplices(nodes, edges, dim=2)
         faces.update(triangles)
     complex_obj.cells[2] = sorted(list(faces))
 
-    # Higher k-cells for k >= 3
     lower_set = set(complex_obj.cells[2])
     for k in range(3, max_dim + 1):
         higher_cells = detect_simplices(nodes, lower_set, dim=k)
@@ -188,9 +182,8 @@ def exact_quotient_l1_distance(
     cells_k = complex_obj.cells.get(dim, [])
     cells_km1 = complex_obj.cells.get(dim - 1, [])
 
-    # Boundary matrix d_k: C^k -> C^{k-1} transpose is coboundary d_{k-1}^\top: C^{k-1} -> C^k
     d_k_mat = rational_boundary_matrix(cells_k, cells_km1)
-    coboundary_mat = d_k_mat.T  # shape (n_k, n_km1)
+    coboundary_mat = d_k_mat.T
 
     problem = LinearRepairProblem(coboundary_mat)
     cochain_mat = Matrix(cochain_raw)
@@ -228,7 +221,7 @@ def nilpotency_report(complex_obj: SimplexComplex) -> Dict[str, Any]:
 def discover_higher_cells_for_lift(network: Any, from_degree: int) -> Tuple[List[Tuple[Any, ...]], str]:
     """Lift-compatible entry point returning (cells, lift_kind) for a given degree transition C^k -> C^{k+1}."""
     complex_obj = assemble_from_network(network, max_dim=from_degree + 2)
-    target_dim = from_degree + 2  # e.g., for C^1 -> C^2, 3-simplices (tetrahedra, dim 3); for C^2 -> C^3, dim 4
+    target_dim = from_degree + 2
     cells = complex_obj.cells.get(target_dim, [])
 
     if cells:

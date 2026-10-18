@@ -1,25 +1,5 @@
-/-
-  H013 same-contract pairings -- two effect-bearing rules that
-  share the unit-effect total and still disagree.
-  AuthorityEffect: None. Candidate only.
 
-  QM_122 remaining job 7.1.5, scoped. The named extras are:
-  positivity on nonnegative effects, and agreement on the unit
-  effect (the "always yes" effect, value 1 at every report).
-  Both rules pair the same quadratic weights with an effect.
-  One uses the declared dual pairing. The other swaps the report
-  labels of the effect. They share every unit-effect total and
-  disagree on the false-indicator at amplitudes (2,1).
 
-  This contract does not mention frame additivity, noncontextuality,
-  or dimension. Gleason uniqueness remains imported. The quartic
-  rival in H013 is a different comparison: it does not share the
-  unit-effect total (17 versus 5) and is not an effect rule.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import HWKernel
 import H008PhaseBlindPresentation
@@ -32,15 +12,12 @@ open FableHilbertWalk20260819.H004 (Vec)
 open FableHilbertWalk20260819.H008 (phaseBlind totalWeight weight_nonneg)
 open FableHilbertWalk20260819.H013 (pair indicator psi21)
 
-/-- The unit effect: value 1 at every report. -/
 def unitEffect : Bool → Int :=
   fun _ => 1
 
-/-- Declared dual pairing of quadratic weights with an effect. -/
 def bornRule (v : Vec GaussInt Bool) (e : Bool → Int) : Int :=
   pair enumBool (phaseBlind v) e
 
-/-- Same quadratic weights, effect with report labels swapped. -/
 def swapEffect (e : Bool → Int) : Bool → Int :=
   fun q => e (!q)
 
@@ -106,10 +83,6 @@ theorem disagree_on_false_indicator :
 
 #print axioms disagree_on_false_indicator
 
-/-- Punchline: two effect-bearing pairings of the same quadratic
-    weights share every unit-effect total, are nonnegative on
-    nonnegative effects, and disagree. Gleason uniqueness is not
-    this theorem. -/
 theorem two_effect_rules_share_unit_total_and_disagree :
     (∀ v, bornRule v unitEffect = totalWeight enumBool v) ∧
       (∀ v, swappedRule v unitEffect = totalWeight enumBool v) ∧
@@ -125,3 +98,6 @@ theorem two_effect_rules_share_unit_total_and_disagree :
 #print axioms two_effect_rules_share_unit_total_and_disagree
 
 end FableHilbertWalk20260819.H013Contract
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H013SameContract.lean Claim: rsum_nonneg AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

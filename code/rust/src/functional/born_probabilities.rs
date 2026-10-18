@@ -1,9 +1,3 @@
-//! Exact application of a declared finite squared-modulus representation rule.
-//!
-//! This computes normalized nonnegative weights or |a_i|^2 / sum_j |a_j|^2
-//! for complex rational amplitudes. It does not derive the Born rule, certify
-//! physical states, authenticate input provenance or authorize an engine outcome.
-//! The immutable result has no unchecked wire/deserialization constructor.
 
 use num_complex::Complex;
 use num_rational::BigRational;
@@ -32,12 +26,6 @@ pub enum BornProbabilityError {
     ZeroTotalWeight,
 }
 
-/// A nonempty, exact, nonnegative finite distribution whose sum is one.
-///
-/// ~~~compile_fail
-/// use omega_functional::born_probabilities::BornProbabilities;
-/// let forged = BornProbabilities { probabilities: Vec::new() };
-/// ~~~
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BornProbabilities {
     probabilities: Vec<BigRational>,
@@ -51,7 +39,6 @@ fn canonical_rational(
     if value.denom().is_zero() {
         return Err(BornProbabilityError::ZeroDenominator { index, component });
     }
-    // new_raw is public: canonicalize valid, possibly unreduced/signed input.
     Ok(BigRational::new(value.numer().clone(), value.denom().clone()))
 }
 
@@ -86,8 +73,6 @@ impl BornProbabilities {
     pub fn from_amplitudes(
         amplitudes: &[Complex<BigRational>],
     ) -> Result<Self, BornProbabilityError> {
-        // Empty amplitudes reach the same checked normalization entry point.
-        // A second early guard here is redundant, not an independent gate.
         let weights = amplitudes
             .iter()
             .enumerate()
@@ -142,7 +127,6 @@ mod tests {
             Complex::new(q(-3, 1), q(1, 1)),
         ];
         let original = BornProbabilities::from_amplitudes(&amplitudes).unwrap();
-        // Multiplication by 7i changes neither normalized squared-modulus ratio.
         let changed = amplitudes.map(|a| Complex::new(-a.im * q(7, 1), a.re * q(7, 1)));
         assert_eq!(
             BornProbabilities::from_amplitudes(&changed).unwrap(),

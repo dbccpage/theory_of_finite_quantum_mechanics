@@ -1,4 +1,3 @@
-//! Campaigns of the finite quantum mechanics programme.
 
 pub mod advanced_targets;
 pub mod atomic_dirac;
@@ -94,8 +93,6 @@ pub mod vacuum_polarization;
 pub mod ward_takahashi;
 pub mod weyl_ccr_residual;
 
-/// Walks the declared campaign modules. Index mass equals `n(n+1)/2`, and
-/// the three-term frame sum `1/2 + 1/3 + 1/6` clears to 1.
 pub fn campaign_inventory_holds() -> Result<(), &'static str> {
     const NAMES: &[&str] = &[
         "advanced_targets",
@@ -212,7 +209,6 @@ pub fn campaign_inventory_holds() -> Result<(), &'static str> {
     if mass != closed {
         return Err("campaign index mass disagrees with n(n+1)/2");
     }
-    // 1/2 + 1/3 + 1/6 = 1, cleared over the denominator 6.
     let frame = 3i64 + 2 + 1;
     if frame != 6 {
         return Err("campaign frame sum is not 1");

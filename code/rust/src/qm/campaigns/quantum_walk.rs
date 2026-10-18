@@ -1,10 +1,8 @@
-//! Programme receipt for the declared finite permutation walk. AuthorityEffect: None.
 use omega_number_theory::rational::Rational;
 use omega_quantum_physics::quantum_walk::{
     simulate_walk_s3_exact, simulate_walk_s4_exact, QuantumWalkError,
 };
 use serde::{Deserialize, Serialize};
-/// Receipt of finite propagation; asymptotic scaling requires an infinite graph.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct BallisticWalkReceipt {
     pub group_name: String,
@@ -17,7 +15,6 @@ pub struct BallisticWalkReceipt {
 }
 
 impl BallisticWalkReceipt {
-    /// [`BallisticWalkReceipt::evaluate`] with a typed refusal instead of a panic.
     pub fn try_evaluate(group: &str, steps: usize) -> Result<Self, QuantumWalkError> {
         let res = match group {
             "S3" => simulate_walk_s3_exact(steps)?,

@@ -59,7 +59,6 @@ def test_kz_slice_chern_numbers(clean_model):
     assert len(topo_slices) > 0
     assert len(trivial_slices) > 0
 
-    # All topological slices must lie strictly within (-k0, k0)
     for s in topo_slices:
         assert abs(s.kz_val) < model.k0
 
@@ -80,7 +79,7 @@ def test_surface_majorana_fermi_arcs(clean_model):
 
 def test_callan_harvey_anomaly_inflow_conservation(clean_model):
     model = clean_model
-    assert len(model.spectral_trajectory) == 9 # 8 steps + 0
+    assert len(model.spectral_trajectory) == 9
 
     for step in model.spectral_trajectory:
         assert step.net_anomaly == 0

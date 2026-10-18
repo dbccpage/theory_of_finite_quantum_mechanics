@@ -1,19 +1,3 @@
-//! Symbol Game Minimal Host & Three-Layer Verification Protocol.
-//!
-//! Provides the trusted host interface for the Symbol Game solution engine:
-//! 1. Three-layer sovereignty model:
-//!    - Layer 1: L1 discrete projection governor (defect norm D(s), idempotent projection P_S, monotonic descent).
-//!    - Layer 2: Simplicial boundary divergence (B^T z = 0 on vertices, cycle holonomy).
-//!    - Layer 3: Phi_1 defect descent and exact rational weak duality certification (<z, r> == ||r||_{1,w}).
-//! 2. Untrusted Proposer / Trusted Host Architecture:
-//!    - Untrusted proposer submits exact rational algebraic data.
-//!    - Trusted host re-derives all steps fail-closed with AuthorityEffect: None.
-//!    - Immutable problem digest pinning (problem statements cannot be altered or erased).
-//!    - Verified state transition logging with cryptographic parent linking.
-//!
-//! # Epistemic Firewall
-//! Firewall: stated region only; mints no authority
-//! AuthorityEffect: None.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -22,7 +6,6 @@ use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 
-/// Edge definition in the constraint complex.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ProblemEdge {
     pub u: String,
@@ -30,7 +13,6 @@ pub struct ProblemEdge {
     pub weight: BigRational,
 }
 
-/// Immutable problem instance pinning the target mathematical system.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SymbolGameProblem {
     pub problem_id: String,
@@ -79,7 +61,6 @@ impl SymbolGameProblem {
         })
     }
 
-    /// Exact canonical calculation of the problem instance SHA-256 digest.
     pub fn calculate_problem_digest(
         problem_id: &str,
         vertices: &[String],
@@ -99,7 +80,6 @@ impl SymbolGameProblem {
         format!("{:x}", hasher.finalize())
     }
 
-    /// Recompute the problem instance digest from declared mathematical fields.
     pub fn compute_digest(&self) -> String {
         Self::calculate_problem_digest(
             &self.problem_id,
@@ -110,7 +90,6 @@ impl SymbolGameProblem {
     }
 }
 
-/// Declared operations for Symbol Game turns.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum HostMoveOp {
     Assert,
@@ -119,7 +98,6 @@ pub enum HostMoveOp {
     Retract,
 }
 
-/// Untrusted proposal submitted by an untrusted proposer.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct UntrustedProposal {
     pub proposer_id: String,
@@ -135,7 +113,6 @@ pub struct UntrustedProposal {
     pub rationale: String,
 }
 
-/// Refusal codes when an untrusted proposal fails closed.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum HostRefusalCode {
     #[error("Problem digest mismatch: expected {expected}, got {found}")]
@@ -182,7 +159,6 @@ pub enum HostRefusalCode {
     FormatViolation,
 }
 
-/// Verified state transition logged in the append-only evidence DAG.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct VerifiedEvent {
     pub event_id: String,
@@ -199,7 +175,6 @@ pub struct VerifiedEvent {
 }
 
 impl VerifiedEvent {
-    /// Exact canonical calculation of the event SHA-256 digest in the evidence DAG.
     pub fn calculate_event_digest(
         event_id: &str,
         parent_event_id: Option<&str>,
@@ -230,7 +205,6 @@ impl VerifiedEvent {
     }
 }
 
-/// Result of proposal evaluation by the trusted host.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct HostVerdict {
     pub admitted: bool,
@@ -241,7 +215,6 @@ pub struct HostVerdict {
     pub event_id: Option<String>,
 }
 
-/// Trusted Symbol Game host executing fail-closed verification.
 pub struct SymbolGameHost {
     pub problem: SymbolGameProblem,
     pub current_state_digest: String,
@@ -252,7 +225,6 @@ pub struct SymbolGameHost {
 }
 
 impl SymbolGameHost {
-    /// Attempt to initialize trusted host, fail-closed validating the declared problem digest.
     pub fn try_new(problem: SymbolGameProblem) -> Result<Self, HostRefusalCode> {
         let expected_digest = problem.compute_digest();
         if problem.digest != expected_digest {
@@ -283,7 +255,6 @@ impl SymbolGameHost {
         })
     }
 
-    /// Initialize trusted host, asserting that the problem instance digest matches its declared mathematical fields.
     pub fn new(problem: SymbolGameProblem) -> Self {
         Self::try_new(problem).expect("valid problem digest required at host bootstrap")
     }
@@ -354,10 +325,6 @@ impl SymbolGameHost {
         residuals
     }
 
-    /// Verifies the three Lean soundness hypotheses for weak duality:
-    /// 1. Divergence condition: B^T z = 0 at every vertex.
-    /// 2. Weight bound: |z_e| <= w_e for every edge.
-    /// 3. Zero duality gap: <z, r> == ||r||_{1,w}.
     pub fn verify_dual_witness(
         &self,
         dual: &[BigRational],
@@ -368,7 +335,6 @@ impl SymbolGameHost {
             return Err(HostRefusalCode::FormatViolation);
         }
 
-        // 1. Divergence check at each vertex: sum_{in} z_e - sum_{out} z_e = 0
         let n_verts = self.problem.vertices.len();
         let mut divergences = vec![BigRational::zero(); n_verts];
         for (e_idx, edge) in self.problem.edges.iter().enumerate() {
@@ -397,7 +363,6 @@ impl SymbolGameHost {
             }
         }
 
-        // 2. Weight bound: |z_e| <= w_e
         for (e_idx, edge) in self.problem.edges.iter().enumerate() {
             let z_val = &dual[e_idx];
             let abs_z = if z_val.is_negative() {
@@ -414,7 +379,6 @@ impl SymbolGameHost {
             }
         }
 
-        // 3. Zero duality gap: sum_e z_e * r_e == ||r||_{1,w}
         let residuals = self.compute_residuals(sec);
         let defect = Self::compute_defect(&self.problem, sec);
 
@@ -433,9 +397,7 @@ impl SymbolGameHost {
         Ok(())
     }
 
-    /// Evaluates an untrusted proposal fail-closed.
     pub fn process_proposal(&mut self, proposal: &UntrustedProposal) -> HostVerdict {
-        // 1. FW-PROBLEM-PIN: Problem digest must match exactly
         if proposal.problem_digest != self.problem.digest {
             return self.refuse(HostRefusalCode::ProblemDigestMismatch {
                 expected: self.problem.digest.clone(),
@@ -443,7 +405,6 @@ impl SymbolGameHost {
             });
         }
 
-        // 2. FW-PARENT-PIN: Parent state digest must match current tip
         if proposal.parent_state_digest != self.current_state_digest {
             return self.refuse(HostRefusalCode::ParentStateMismatch {
                 expected: self.current_state_digest.clone(),
@@ -471,7 +432,6 @@ impl SymbolGameHost {
                 let defect_before = self.section_defect();
                 let defect_after = Self::compute_defect(&self.problem, candidate_section);
 
-                // Monotonic descent check: defect must not increase
                 if defect_after > defect_before {
                     return self.refuse(HostRefusalCode::DefectIncrease {
                         before: defect_before.to_string(),
@@ -479,7 +439,6 @@ impl SymbolGameHost {
                     });
                 }
 
-                // Compute host post-state digest
                 let host_post_digest = Self::calculate_state_digest(
                     &self.problem.digest,
                     &self.current_state_digest,
@@ -488,7 +447,6 @@ impl SymbolGameHost {
                     &defect_after,
                 );
 
-                // Validate proposer claimed post-state digest
                 if host_post_digest != proposal.claimed_post_state_digest {
                     return self.refuse(HostRefusalCode::PostStateDigestMismatch {
                         host_digest: host_post_digest,
@@ -496,7 +454,6 @@ impl SymbolGameHost {
                     });
                 }
 
-                // Commit state
                 self.section = candidate_section.clone();
                 self.step_counter = next_step;
                 self.current_state_digest = host_post_digest.clone();
@@ -613,7 +570,6 @@ impl SymbolGameHost {
             }
 
             HostMoveOp::Assert => {
-                // Problem claims are immutable; uncertified assert refused
                 self.refuse(HostRefusalCode::UnlicensedProblemMutation)
             }
 
@@ -703,8 +659,6 @@ impl SymbolGameHost {
     }
 }
 
-/// Helper to build a 3-vertex directed cycle constraint problem encoding:
-/// det = prod_diff - lin_corr.
 pub fn build_mub6_det_cycle(
     a: BigRational,
     b: BigRational,

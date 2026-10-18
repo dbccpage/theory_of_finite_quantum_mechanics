@@ -1,13 +1,9 @@
-//! Stalk at a point/simplex and germs of sections (SH-03).
-//!
-//! AuthorityEffect: None.
 
 use crate::open_set::OpenSet;
 use crate::presheaf::Presheaf;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 
-/// A germ of a section at point x: equivalence class [(U, s)]_x.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Germ<T> {
     pub point: String,
@@ -15,8 +11,6 @@ pub struct Germ<T> {
     pub section: T,
 }
 
-/// In a finite Alexandrov poset, the stalk F_x is canonically isomorphic
-/// to the sections over the minimal open neighborhood U_x = star(x).
 pub fn compute_stalk<T: Clone + PartialEq + Debug>(
     presheaf: &Presheaf<T>,
     x: &str,

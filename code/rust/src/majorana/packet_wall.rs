@@ -1,18 +1,3 @@
-//! Declared repair-capacity **packet wall** (CODE_DEMO; QM_102/QM_101 shape).
-//!
-//! # Authority fence (MANDATORY)
-//!
-//! - **AuthorityEffect: None**
-//! - Incomplete packets **refuse** (no inference past the declaration).
-//! - When residual + logical witness remains after repair image saturation,
-//!   the count-packet terminal is **ResidualLogicallyVisible** — capacity wall
-//!   on the declared finite packet only.
-//! - Does **not** claim a physical threshold or that quantum computing is impossible.
-//!
-//! Surfaces:
-//! 1. **Toy GF(2) packet** (`ToyRepairPacket` / `terminalize_packet`) — complex + residual
-//! 2. **Count packet** (`CountRepairPacket` / `terminalize_count_packet`) — λ_proj / μ_repair
-//! 3. **Diagnostic admit/refuse** (`DiagnosticPacket`) — d0/d1/syndrome completeness
 
 use serde::{Deserialize, Serialize};
 
@@ -25,67 +10,40 @@ use crate::repair_limit::{
 };
 use crate::RECEIPT_TAG;
 
-/// Authority fence echoed on every packet receipt.
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; incomplete packets refuse; residual+logical after repair saturation is a declared-packet capacity wall only; not a physical no-go.";
 
-// ===========================================================================
-// Terminal labels
-// ===========================================================================
 
-/// Diagnostic terminal at the packet wall.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum PacketWallTerminal {
-    // --- Count-packet terminals ---
-    /// Every declared C1 defect lies in the declared d0 repair image.
     Absorbed,
-    /// Residual C1 remains; toy logical witness proxy is zero (invisible).
     ResidualInvisible,
-    /// Residual C1 remains **and** logical witness is nonzero — capacity wall.
     ResidualLogicallyVisible,
-    /// Incomplete or invalid count declaration.
     Refused,
-    // --- GF(2) schedule terminals ---
-    /// Residual is a coboundary.
     Exact,
-    /// Closed residual / LGGR shape.
     ClosedResidual,
-    /// Detectable open obstruction.
     OpenObstruction,
-    /// Packet missing required fields — wall refuses classification.
     IncompleteRefusal,
-    /// Declared distance present; residual weight exceeds repair capacity \(t\).
     CapacityWallHit,
 }
 
-// ===========================================================================
-// Toy GF(2) complex packet (primary surface; hard-invariant battery)
-// ===========================================================================
 
-/// Declared defect event on a residual 1-cochain.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct DefectEvent {
     pub residual: Vec<u8>,
     pub weight: usize,
 }
 
-/// Proposed repair action (diagnostic bookkeeping only; not a certified decoder).
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct RepairAction {
-    /// Hamming weight of the proposed correction.
     pub proposed_weight: usize,
-    /// Whether the proposal claims to stay within capacity \(t\) (if \(d\) known).
     pub within_capacity: Option<bool>,
 }
 
-/// Toy repair packet. All structural fields must be present for admission.
-///
-/// Missing `complex` or `defect` ⇒ incomplete refusal.
 #[derive(Debug, Clone)]
 pub struct ToyRepairPacket {
     pub complex: Option<ChainComplexGf2>,
     pub defect: Option<DefectEvent>,
-    /// Optional declared homology/code distance (not inferred unless provided).
     pub declared_distance_d: Option<usize>,
     pub proposed_repair: Option<RepairAction>,
 }
@@ -111,7 +69,6 @@ impl ToyRepairPacket {
     }
 }
 
-/// Packet-wall receipt. Always `authority_effect = "None"` when emitted.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct PacketWallReceipt {
     pub certificate_tag: String,
@@ -121,7 +78,6 @@ pub struct PacketWallReceipt {
     pub complex_name: Option<String>,
     pub residual_weight: Option<usize>,
     pub repair_capacity_t: Option<usize>,
-    /// Always `"None"`. Incomplete refusals also carry None (no authority mint).
     pub authority_effect: String,
     pub notes: String,
 }
@@ -130,12 +86,6 @@ fn none_auth() -> String {
     "None".into()
 }
 
-/// Terminalize a toy GF(2) repair packet at the wall.
-///
-/// - Incomplete → `PacketWallTerminal::IncompleteRefusal` (does not panic).
-/// - Complete → GF(2) schedule class + Auth=None.
-/// - If `declared_distance_d` is set and residual weight \(> t=\lfloor(d-1)/2\rfloor\)
-///   while class is ClosedResidual, annotate `CapacityWallHit` (still Auth=None).
 pub fn terminalize_packet(packet: &ToyRepairPacket) -> PacketWallReceipt {
     let complex = match &packet.complex {
         Some(c) => c,
@@ -270,14 +220,12 @@ pub fn terminalize_packet(packet: &ToyRepairPacket) -> PacketWallReceipt {
     }
 }
 
-/// Illustrative physical-error probabilities for a toy suppression narrative.
 pub fn illustrative_p_pair() -> (f64, f64) {
     let p = 0.01_f64;
     let p_logical_shadow = p;
     (p, p_logical_shadow)
 }
 
-/// Illustrative regime label when \(t=\lfloor(d-1)/2\rfloor\) is known.
 pub fn illustrative_suppression_regime(d: usize) -> &'static str {
     let t = repair_capacity_t(d);
     if t == 0 {
@@ -287,7 +235,6 @@ pub fn illustrative_suppression_regime(d: usize) -> &'static str {
     }
 }
 
-/// Convenience: run capacity audit then wall-terminalize a residual.
 pub fn wall_with_audit(
     complex: &ChainComplexGf2,
     residual: &[u8],
@@ -299,11 +246,7 @@ pub fn wall_with_audit(
     Ok((audit, terminalize_packet(&packet)))
 }
 
-// ===========================================================================
-// Count-rate packet (λ_proj / μ_repair) — secondary surface
-// ===========================================================================
 
-/// One declared C0 repair action in a count packet.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CountRepairAction {
     pub action_id: String,
@@ -311,17 +254,14 @@ pub struct CountRepairAction {
     pub site: (usize, usize),
 }
 
-/// One declared C1 defect event in a count packet.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CountDefectEvent {
     pub defect_id: String,
     pub cycle: usize,
     pub site: (usize, usize),
-    /// Binary logical-witness annotation (0 = invisible, 1 = visible).
     pub logical_witness_value: u8,
 }
 
-/// Fully explicit finite count packet.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CountRepairPacket {
     pub name: String,
@@ -337,7 +277,6 @@ pub struct CountRepairPacket {
     pub logical_witness_proxy: Option<String>,
 }
 
-/// Count-only rates for a declared packet.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PacketMetrics {
     pub site_cycle_opportunities: usize,
@@ -347,7 +286,6 @@ pub struct PacketMetrics {
     pub logical_pairing_indicator: u8,
 }
 
-/// Receipt for a count packet.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CountPacketReceipt {
     pub packet: String,
@@ -482,7 +420,6 @@ fn validate_count_packet(packet: &CountRepairPacket) -> Vec<String> {
     errors
 }
 
-/// Terminalize one declared finite **count** packet or refuse.
 pub fn terminalize_count_packet(packet: &CountRepairPacket) -> CountPacketReceipt {
     let errors = validate_count_packet(packet);
     if !errors.is_empty() {
@@ -552,7 +489,6 @@ pub fn terminalize_count_packet(packet: &CountRepairPacket) -> CountPacketReceip
     }
 }
 
-/// Build a minimal complete count packet for demos/tests.
 pub fn demo_count_packet(
     name: &str,
     seed: u64,
@@ -608,7 +544,6 @@ pub fn demo_count_packet(
     }
 }
 
-/// Incomplete count declaration used to exercise Refused.
 pub fn incomplete_count_packet() -> CountRepairPacket {
     CountRepairPacket {
         name: "incomplete_declaration".into(),
@@ -625,11 +560,7 @@ pub fn incomplete_count_packet() -> CountRepairPacket {
     }
 }
 
-// ===========================================================================
-// GF(2) diagnostic packet admit/refuse
-// ===========================================================================
 
-/// Declared GF(2) diagnostic packet: coboundary pair + residual 1-cochain.
 #[derive(Debug, Clone)]
 pub struct DiagnosticPacket {
     pub d0: Option<GF2Matrix>,
@@ -655,7 +586,6 @@ impl DiagnosticPacket {
     }
 }
 
-/// Typed refusal for incomplete or invalid GF(2) diagnostic packets.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PacketRefusal {
     IncompletePacket { missing: &'static str },
@@ -663,7 +593,6 @@ pub enum PacketRefusal {
     Terminalize(String),
 }
 
-/// Admit a complete GF(2) diagnostic packet (run `terminalize`) or refuse.
 pub fn admit_or_refuse(packet: &DiagnosticPacket) -> Result<Gf2ScheduleReceipt, PacketRefusal> {
     let d0 = packet
         .d0
@@ -689,9 +618,6 @@ pub fn admit_or_refuse(packet: &DiagnosticPacket) -> Result<Gf2ScheduleReceipt, 
     Gf2CocycleClassifier::classify(d0, d1, syndrome).map_err(PacketRefusal::Terminalize)
 }
 
-// ===========================================================================
-// Tests
-// ===========================================================================
 
 #[cfg(test)]
 mod tests {
@@ -746,7 +672,7 @@ mod tests {
     fn capacity_wall_on_logical_when_d_declared() {
         let c = surface_grid_2x2_torus();
         let mut p = ToyRepairPacket::complete(c, torus_logical_x_example());
-        p.declared_distance_d = Some(2); // t = 0; weight 2 > 0
+        p.declared_distance_d = Some(2);
         let r = terminalize_packet(&p);
         assert_eq!(r.terminal, PacketWallTerminal::CapacityWallHit);
         assert_eq!(r.repair_capacity_t, Some(0));
@@ -784,7 +710,6 @@ mod tests {
             exact_syndrome_example(),
         ))
         .unwrap();
-        // Kills: admitting the triangle coboundary as ClosedResidual while authority stays None.
         assert_eq!(cert.status, GF2ScheduleStatus::Exact);
         assert_eq!(cert.q1_dimension, 0);
         let short = triangle();
@@ -796,7 +721,6 @@ mod tests {
 
     #[test]
     fn illustrative_regime_splits_on_a_zero_radius() {
-        // Kills: swapping the t=0 string with the positive-radius string.
         assert_eq!(illustrative_p_pair(), (0.01, 0.01));
         assert_eq!(
             illustrative_suppression_regime(2),

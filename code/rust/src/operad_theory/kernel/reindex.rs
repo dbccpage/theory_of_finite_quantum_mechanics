@@ -1,10 +1,3 @@
-//! Explicit input reindexing of checked planar terms.
-//!
-//! Each bijection maps an external input occurrence to its planar leaf index.
-//! This layer neither permutes operation children nor enumerates permutations.
-//! Its canonical profile is distinct from the unchanged planar profile. A host
-//! must still authorize the underlying term and bind the external ordering in
-//! its execution record; reindexing itself grants no execution authority.
 
 use serde_json::{json, Value};
 
@@ -26,10 +19,6 @@ fn refuse(code: &str, message: &str) -> Refusal {
     }
 }
 
-/// A checked bijection from new positions to old positions.
-///
-/// There is no unchecked deserialization path. For a term, old positions are
-/// the ordered planar leaves, including separate occurrences of one colour.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct InputPermutation {
     external_to_planar: Vec<usize>,
@@ -72,9 +61,6 @@ impl InputPermutation {
         }
     }
 
-    /// `self.compose(right)[i] = self[right[i]]`.
-    ///
-    /// Reindexing first by `self`, then by `right`, uses this composition.
     pub fn compose(&self, right: &Self) -> Result<Self, Refusal> {
         if self.external_to_planar.len() != right.external_to_planar.len() {
             return Err(refuse(
@@ -92,7 +78,6 @@ impl InputPermutation {
     }
 }
 
-/// An immutable checked planar tree and an explicit external input order.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ReindexedTerm {
     planar: NormalizedTerm,
@@ -150,9 +135,6 @@ impl ReindexedTerm {
         })
     }
 
-    /// Route externally supplied values into the existing planar executor.
-    ///
-    /// Values are transported as occurrences, without sorting or deduplication.
     pub fn route_inputs<T: Clone>(&self, external: &[T]) -> Result<Vec<T>, Refusal> {
         if external.len() != self.permutation.as_slice().len() {
             return Err(refuse(
@@ -169,12 +151,6 @@ impl ReindexedTerm {
             .collect())
     }
 
-    /// Substitute at an external slot, retaining explicit external order.
-    ///
-    /// The selected planar leaf is `self.permutation[external_slot]`. The new
-    /// external order is the outer prefix, inner order, then outer suffix.
-    /// Tree validation, colour checking and identity reduction remain owned by
-    /// the planar kernel, including its existing occurrence-name convention.
     pub fn substitute(&self, external_slot: usize, inner: &Self) -> Result<Self, Refusal> {
         let outer_order = self.permutation.as_slice();
         let Some(&planar_slot) = outer_order.get(external_slot) else {
@@ -196,8 +172,6 @@ impl ReindexedTerm {
             if index < planar_slot {
                 index
             } else {
-                // The replaced index is excluded below. This order also
-                // handles a nullary inner operation without unsigned underflow.
                 index - 1 + inner_order.len()
             }
         };

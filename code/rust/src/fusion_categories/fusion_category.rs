@@ -1,31 +1,3 @@
-//! Multiplicity-free fusion categories: F-symbols, the pentagon equation, unit
-//! normalisation, gauge transformations, unitarity and dimension data.
-//!
-//! Conventions. For simple objects `a, b, c, d` the F-symbol `[F^{abc}_d]_{ef}` is the
-//! coefficient in `|(a b)_e c; d> = sum_f [F^{abc}_d]_{ef} |a (b c)_f; d>`, where `e`
-//! runs over the labels of `a x b` that fuse with `c` to `d`, and `f` over the labels
-//! of `b x c` that fuse with `a` to `d`. The pentagon equation, for all labels, is
-//!
-//! `[F^{fcd}_e]_{gl} [F^{abl}_e]_{fk} = sum_h [F^{abc}_g]_{fh} [F^{ahd}_e]_{gk} [F^{bcd}_k]_{hl}`,
-//!
-//! with the convention that an F-symbol whose indices are not admissible is zero. A
-//! gauge is a nonzero scalar `u^{ab}_c` for each vertex `N_{ab}^c = 1`; it acts by
-//! `F' = u^{ab}_e u^{ec}_d / (u^{bc}_f u^{af}_d) F`.
-//!
-//! The unit normalisation asks `F^{abc}_d = 1` whenever one of `a, b, c` is the unit.
-//! The quantity `[F^{a a* a}_a]_{00} [F^{a* a a*}_{a*}]_{00}` is invariant under gauges
-//! that fix the unit vertices, and equals `1 / (d_a d_{a*})` for the quantum
-//! dimensions of a pivotal category; a Frobenius-Schur indicator of a self-dual object
-//! is `nu_a = d_a [F^{aaa}_a]_{00}`.
-//!
-//! What is computed: the pentagon equation exactly over `K` (every violated index
-//! tuple, not a tolerance), unit-law violations, unitarity of the F-matrices, exact
-//! gauge transformations and the canonical unit-normalising gauge, and the
-//! consistency of a proposed dimension vector with the ring and with the F-symbols.
-//! What is not: the existence of a category for ring data without F-symbols,
-//! categorification of rings with multiplicity (`N > 1`), or positivity of dimensions.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::BTreeMap;
 
@@ -37,9 +9,6 @@ use crate::fusion_ring::FusionRing;
 use crate::scalar::FusionScalar;
 use linear_algebra::exact_field::{elimination, involution};
 
-/// Default bounds for constructing F-symbols and replaying all category laws.
-/// These charge aggregate symbol storage, defect records, label traversal and
-/// scalar calls; they do not count work inside a caller's coefficient generator.
 pub const DEFAULT_CATEGORY_LIMITS: OperationLimits = OperationLimits {
     max_elements: 1 << 20,
     max_scalar_ops: 1 << 28,
@@ -89,7 +58,6 @@ fn admit_category_resources(ring: &FusionRing, limits: OperationLimits) -> Resul
                         continue;
                     }
                     let d = dimension as u128;
-                    // F and its inverse, with their row/column/key labels.
                     entries += 2 * (d * d + 2 * d + 4);
                     inverse_work += 4 * d.pow(3) + 2 * d * d + d;
                 }
@@ -103,8 +71,6 @@ fn admit_category_resources(ring: &FusionRing, limits: OperationLimits) -> Resul
                             four[total] += count;
                         }
                     }
-                    // The two parenthesizations have the same dimension by
-                    // fusion-ring associativity, so there are dimension^2 equations.
                     equations += four
                         .iter()
                         .map(|&count| (count as u128).pow(2))
@@ -128,22 +94,17 @@ fn admit_category_resources(ring: &FusionRing, limits: OperationLimits) -> Resul
     )
 }
 
-/// A law of a fusion category that fails, with the indices at which it fails.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum CategoryDefect {
-    /// `N_{ab}^c > 1`: F-symbols of this crate are scalars, which needs multiplicity one.
     #[error("the ring has multiplicity {multiplicity} at {labels:?}; only multiplicity-free categories are supported")]
     NotMultiplicityFree {
         labels: [usize; 3],
         multiplicity: u64,
     },
-    /// An admissible `(a, b, c, d)` without an F-block.
     #[error("missing F-block for {labels:?}")]
     BlockMissing { labels: [usize; 4] },
-    /// An F-block at a non-admissible `(a, b, c, d)`.
     #[error("unexpected F-block for {labels:?}")]
     BlockUnexpected { labels: [usize; 4] },
-    /// An F-block that is not square or has the wrong size.
     #[error("F-block {labels:?} is {rows}x{cols}, expected {expected}x{expected}")]
     BlockShape {
         labels: [usize; 4],
@@ -151,60 +112,42 @@ pub enum CategoryDefect {
         cols: usize,
         expected: usize,
     },
-    /// An F-block whose row or column labels are not the admissible intermediate labels.
     #[error("F-block {labels:?} has the wrong intermediate labels")]
     BlockLabels { labels: [usize; 4] },
-    /// An F-block that is not invertible.
     #[error("F-block {labels:?} is singular")]
     BlockSingular { labels: [usize; 4] },
-    /// A violated pentagon equation at `(a, b, c, d, e, f, g, k, l)`.
     #[error("pentagon equation violated at {labels:?}")]
     Pentagon { labels: [usize; 9] },
-    /// An F-symbol with a unit leg that is not `1`.
     #[error("F-symbol with a unit leg is not 1 at {labels:?}")]
     UnitLaw { labels: [usize; 4] },
-    /// A gauge without an entry for an admissible vertex.
     #[error("the gauge has no entry for the vertex {labels:?}")]
     GaugeMissing { labels: [usize; 3] },
-    /// A gauge entry equal to zero.
     #[error("the gauge entry at {labels:?} is zero")]
     GaugeZero { labels: [usize; 3] },
-    /// The unit-normalising gauge does not exist for this data.
     #[error("no gauge normalises the unit F-symbols (obstruction at {labels:?})")]
     UnitNormalizationImpossible { labels: [usize; 3] },
-    /// A dimension vector inconsistent with the category.
     #[error("dimension data: {0}")]
     Dimensions(DimensionDefect),
 }
 
-/// Why a proposed dimension vector is not the dimension vector of the category.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Error)]
 pub enum DimensionDefect {
-    /// The vector does not have one entry per simple object.
     #[error("expected {expected} dimensions, got {got}")]
     Count { expected: usize, got: usize },
-    /// `d_0 != 1`.
     #[error("the unit has dimension other than 1")]
     UnitNotOne,
-    /// `d_a` is zero.
     #[error("label {label} has dimension zero")]
     Zero { label: usize },
-    /// `d_{a*} != d_a` (not spherical).
     #[error("label {label} and its dual have different dimensions")]
     NotSpherical { label: usize },
-    /// `d_a d_b != sum_c N_{ab}^c d_c`.
     #[error("dimensions are not a character of the fusion ring at ({a}, {b})")]
     NotCharacter { a: usize, b: usize },
-    /// `d_a d_{a*} [F^{a a* a}_a]_{00} [F^{a* a a*}_{a*}]_{00} != 1`.
     #[error("dimension of label {label} disagrees with the F-symbols")]
     DisagreesWithF { label: usize },
-    /// `d_a [F^{aaa}_a]_{00}` is not `+1` or `-1`.
     #[error("Frobenius-Schur value of label {label} is not a sign")]
     FrobeniusSchurNotSign { label: usize },
 }
 
-/// One F-matrix `F^{abc}_d`: rows are the admissible `e`, columns the admissible `f`,
-/// both ascending.
 #[derive(Debug, Clone, PartialEq)]
 pub struct FBlock<K> {
     rows: Vec<usize>,
@@ -213,30 +156,24 @@ pub struct FBlock<K> {
 }
 
 impl<K: FusionScalar> FBlock<K> {
-    /// The row labels `e`.
     pub fn rows(&self) -> &[usize] {
         &self.rows
     }
 
-    /// The column labels `f`.
     pub fn cols(&self) -> &[usize] {
         &self.cols
     }
 
-    /// The matrix (rows indexed by [`Self::rows`], columns by [`Self::cols`]).
     pub fn matrix(&self) -> &BasicMatrix<K> {
         &self.matrix
     }
 
-    /// The entry `[F]_{ef}`, or `None` when `e` or `f` is not admissible (an F-symbol
-    /// with non-admissible indices is zero).
     pub fn entry(&self, e: usize, f: usize) -> Option<&K> {
         let i = self.rows.binary_search(&e).ok()?;
         let j = self.cols.binary_search(&f).ok()?;
         self.matrix.get_ref(i, j).ok()
     }
 
-    /// The inverse block: rows are the old columns, columns the old rows.
     pub fn inverse(&self) -> Result<FBlock<K>, FusionError> {
         Ok(FBlock {
             rows: self.cols.clone(),
@@ -246,7 +183,6 @@ impl<K: FusionScalar> FBlock<K> {
     }
 }
 
-/// The F-symbols of a multiplicity-free fusion ring.
 #[derive(Debug, Clone, PartialEq)]
 pub struct FSymbols<K> {
     rank: usize,
@@ -254,8 +190,6 @@ pub struct FSymbols<K> {
 }
 
 impl<K: FusionScalar> FSymbols<K> {
-    /// Builds the F-blocks of `ring` from an entry function
-    /// `entry([a, b, c, d], e, f) = [F^{abc}_d]_{ef}`, called once per admissible entry.
     pub fn from_fn(
         ring: &FusionRing,
         mut entry: impl FnMut([usize; 4], usize, usize) -> K,
@@ -263,7 +197,6 @@ impl<K: FusionScalar> FSymbols<K> {
         Self::try_from_fn(ring, |labels, e, f| Ok(entry(labels, e, f)))
     }
 
-    /// [`Self::from_fn`] with full category-law resource admission.
     pub fn from_fn_with_limits(
         ring: &FusionRing,
         limits: OperationLimits,
@@ -272,8 +205,6 @@ impl<K: FusionScalar> FSymbols<K> {
         Self::try_from_fn_with_limits(ring, limits, |labels, e, f| Ok(entry(labels, e, f)))
     }
 
-    /// F-symbols from a fallible exact formula. A refused coefficient is
-    /// propagated before an incomplete block can become category data.
     pub fn try_from_fn(
         ring: &FusionRing,
         entry: impl FnMut([usize; 4], usize, usize) -> Result<K, FusionError>,
@@ -281,8 +212,6 @@ impl<K: FusionScalar> FSymbols<K> {
         Self::try_from_fn_with_limits(ring, DEFAULT_CATEGORY_LIMITS, entry)
     }
 
-    /// [`Self::try_from_fn`] with storage and full-law replay admission before
-    /// invoking a coefficient formula or allocating its blocks.
     pub fn try_from_fn_with_limits(
         ring: &FusionRing,
         limits: OperationLimits,
@@ -326,7 +255,6 @@ impl<K: FusionScalar> FSymbols<K> {
         Ok(Self { rank: r, blocks })
     }
 
-    /// The trivial associator `F = 1` of a pointed ring (every block is `1 x 1`).
     pub fn trivial(ring: &FusionRing) -> Result<Self, FusionError> {
         if !ring.is_pointed() {
             return Err(FusionError::NotInSubfield {
@@ -337,28 +265,22 @@ impl<K: FusionScalar> FSymbols<K> {
         Self::from_fn(ring, |_, _, _| K::one())
     }
 
-    /// The number of simple objects.
     pub fn rank(&self) -> usize {
         self.rank
     }
 
-    /// The block `F^{abc}_d`, if `(a, b, c, d)` is admissible.
     pub fn block(&self, labels: [usize; 4]) -> Option<&FBlock<K>> {
         self.blocks.get(&labels)
     }
 
-    /// The entry `[F^{abc}_d]_{ef}`, or `None` (zero) when an index is not admissible.
     pub fn entry(&self, labels: [usize; 4], e: usize, f: usize) -> Option<&K> {
         self.block(labels)?.entry(e, f)
     }
 
-    /// All blocks in index order.
     pub fn blocks(&self) -> impl Iterator<Item = (&[usize; 4], &FBlock<K>)> {
         self.blocks.iter()
     }
 
-    /// A copy with one admissible entry replaced (for negative controls and
-    /// experiments). Refuses a non-admissible index.
     pub fn with_entry(
         &self,
         labels: [usize; 4],
@@ -407,7 +329,6 @@ fn require_multiplicity_free(ring: &FusionRing) -> Result<(), FusionError> {
     Ok(())
 }
 
-/// The admissible `(rows e, cols f)` of the block `F^{abc}_d`.
 fn intermediate_labels(ring: &FusionRing, [a, b, c, d]: [usize; 4]) -> (Vec<usize>, Vec<usize>) {
     let r = ring.rank();
     let rows = (0..r)
@@ -419,25 +340,14 @@ fn intermediate_labels(ring: &FusionRing, [a, b, c, d]: [usize; 4]) -> (Vec<usiz
     (rows, cols)
 }
 
-/// A violated pentagon equation with both sides.
 #[derive(Debug, Clone, PartialEq)]
 pub struct PentagonDefect<K> {
-    /// `(a, b, c, d, e, f, g, k, l)`.
     pub labels: [usize; 9],
-    /// `[F^{fcd}_e]_{gl} [F^{abl}_e]_{fk}`.
     pub lhs: K,
-    /// `sum_h [F^{abc}_g]_{fh} [F^{ahd}_e]_{gk} [F^{bcd}_k]_{hl}`.
     pub rhs: K,
 }
 
 impl<K> PentagonDefect<K> {
-    /// Whether the F-symbol entry `[F^{a2 b2 c2}_{d2}]_{e2 f2}` is one of the entries this
-    /// equation reads: the two factors of the left-hand side, or a factor of a term of
-    /// the right-hand side for some summation label `h`.
-    ///
-    /// An equation reads only those entries, so a perturbation of any other entry cannot
-    /// make it fail; the set is an upper bound on the entries that can matter (terms with
-    /// an inadmissible `h` are zero).
     pub fn involves(&self, [a2, b2, c2, d2]: [usize; 4], e2: usize, f2: usize) -> bool {
         let [a, b, c, d, e, f, g, k, l] = self.labels;
         let left = ([a2, b2, c2, d2] == [f, c, d, e] && (e2, f2) == (g, l))
@@ -449,14 +359,12 @@ impl<K> PentagonDefect<K> {
     }
 }
 
-/// A gauge: a nonzero scalar `u^{ab}_c` for every vertex `N_{ab}^c = 1`.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Gauge<K> {
     u: BTreeMap<[usize; 3], K>,
 }
 
 impl<K: FusionScalar> Gauge<K> {
-    /// The trivial gauge (`u = 1` everywhere).
     pub fn trivial(ring: &FusionRing) -> Self {
         Self::build(ring, |_| K::one())
     }
@@ -476,7 +384,6 @@ impl<K: FusionScalar> Gauge<K> {
         Self { u }
     }
 
-    /// A gauge from a function of the vertex; a zero value is refused.
     pub fn from_fn(
         ring: &FusionRing,
         value: impl FnMut([usize; 3]) -> K,
@@ -490,7 +397,6 @@ impl<K: FusionScalar> Gauge<K> {
         Ok(gauge)
     }
 
-    /// `u^{ab}_c`, if `(a, b; c)` is a vertex.
     pub fn get(&self, labels: [usize; 3]) -> Option<&K> {
         self.u.get(&labels)
     }
@@ -503,7 +409,6 @@ impl<K: FusionScalar> Gauge<K> {
             }))
     }
 
-    /// A copy with one vertex changed; a zero value or a non-vertex is refused.
     pub fn with(&self, labels: [usize; 3], value: K) -> Result<Self, FusionError> {
         if value.is_zero() {
             return Err(FusionError::Category(CategoryDefect::GaugeZero { labels }));
@@ -518,7 +423,6 @@ impl<K: FusionScalar> Gauge<K> {
         Ok(Self { u })
     }
 
-    /// The pointwise inverse gauge.
     pub fn inverse(&self) -> Result<Self, FusionError> {
         let mut u = BTreeMap::new();
         for (labels, value) in &self.u {
@@ -531,14 +435,6 @@ impl<K: FusionScalar> Gauge<K> {
     }
 }
 
-/// A multiplicity-free fusion category: a fusion ring with its F-symbols.
-///
-/// Construction checks structure (blocks present exactly at the admissible labels, with
-/// the right labels). Blocks that are not invertible are recorded ([`Self::singular_blocks`]),
-/// not refused, so that the pentagon equation can still be checked on such data and report
-/// exactly where it fails; [`Self::validate`] and every braided construction refuse them.
-/// The pentagon and unit laws are checked by [`Self::pentagon_defects`],
-/// [`Self::unit_defects`] and [`Self::validate`].
 #[derive(Debug, Clone, PartialEq)]
 pub struct FusionCategory<K> {
     ring: FusionRing,
@@ -548,12 +444,10 @@ pub struct FusionCategory<K> {
 }
 
 impl<K: FusionScalar> FusionCategory<K> {
-    /// A category from a ring and its F-symbols (structure checked, pentagon not).
     pub fn new(ring: FusionRing, f: FSymbols<K>) -> Result<Self, FusionError> {
         Self::new_with_limits(ring, f, DEFAULT_CATEGORY_LIMITS)
     }
 
-    /// [`Self::new`] with admission for aggregate construction and all law scans.
     pub fn new_with_limits(
         ring: FusionRing,
         f: FSymbols<K>,
@@ -623,41 +517,32 @@ impl<K: FusionScalar> FusionCategory<K> {
         })
     }
 
-    /// The labels `(a, b, c, d)` of the F-blocks that are not invertible (none in any
-    /// valid category).
     pub fn singular_blocks(&self) -> &[[usize; 4]] {
         &self.singular
     }
 
-    /// A category whose structure, unit laws and pentagon equation all hold.
     pub fn validated(ring: FusionRing, f: FSymbols<K>) -> Result<Self, FusionError> {
         let category = Self::new(ring, f)?;
         category.validate()?;
         Ok(category)
     }
 
-    /// The fusion ring.
     pub fn ring(&self) -> &FusionRing {
         &self.ring
     }
 
-    /// The F-symbols.
     pub fn f_symbols(&self) -> &FSymbols<K> {
         &self.f
     }
 
-    /// `[F^{abc}_d]_{ef}` (zero when an index is not admissible).
     pub fn f_entry(&self, labels: [usize; 4], e: usize, f: usize) -> K {
         self.f.entry(labels, e, f).cloned().unwrap_or_else(K::zero)
     }
 
-    /// The inverse block `(F^{abc}_d)^{-1}`: rows are the old columns `f`, columns the
-    /// old rows `e`.
     pub fn f_inverse_block(&self, labels: [usize; 4]) -> Option<&FBlock<K>> {
         self.f_inverse.get(&labels)
     }
 
-    /// `[(F^{abc}_d)^{-1}]_{fe}` (zero when an index is not admissible).
     pub fn f_inverse_entry(&self, labels: [usize; 4], f: usize, e: usize) -> K {
         self.f_inverse
             .get(&labels)
@@ -677,22 +562,14 @@ impl<K: FusionScalar> FusionCategory<K> {
             .collect()
     }
 
-    /// Every violated pentagon equation, exactly, in index order.
     pub fn pentagon_defects(&self) -> Vec<PentagonDefect<K>> {
         self.pentagon_scan(false)
     }
 
-    /// The first violated pentagon equation in index order, if any.
     pub fn first_pentagon_defect(&self) -> Option<PentagonDefect<K>> {
         self.pentagon_scan(true).into_iter().next()
     }
 
-    /// Scans the pentagon tuples `(a, b, c, d, e, f, g, k, l)` in lexicographic order.
-    ///
-    /// Every nonzero term of either side needs `f in a x b`, `g in f x c`, `e in g x d`,
-    /// `l in c x d`, `k in b x l` and `e in a x k` (the basis vectors at both ends of the
-    /// equation exist), so the scan is restricted to those tuples; any other tuple has
-    /// both sides zero.
     fn pentagon_scan(&self, stop_at_first: bool) -> Vec<PentagonDefect<K>> {
         let r = self.ring.rank();
         let fuse = self.fuse_table();
@@ -769,7 +646,6 @@ impl<K: FusionScalar> FusionCategory<K> {
         total
     }
 
-    /// The labels `(a, b, c, d)` of every F-symbol with a unit leg whose entry is not `1`.
     pub fn unit_defects(&self) -> Vec<[usize; 4]> {
         let unit = self.ring.unit();
         self.f
@@ -784,8 +660,6 @@ impl<K: FusionScalar> FusionCategory<K> {
             .collect()
     }
 
-    /// Checks invertibility of the F-blocks, the unit laws and the pentagon equation; the
-    /// error names the first failure.
     pub fn validate(&self) -> Result<(), FusionError> {
         if let Some(labels) = self.singular.first() {
             return Err(FusionError::Category(CategoryDefect::BlockSingular {
@@ -805,7 +679,6 @@ impl<K: FusionScalar> FusionCategory<K> {
         Ok(())
     }
 
-    /// Whether every F-matrix is unitary: `F F^dagger = 1`, with the field's conjugation.
     pub fn is_unitary(&self) -> Result<bool, FusionError> {
         for block in self.f.blocks.values() {
             if !involution::is_unitary(&block.matrix).map_err(FusionError::from)? {
@@ -815,8 +688,6 @@ impl<K: FusionScalar> FusionCategory<K> {
         Ok(true)
     }
 
-    /// The category obtained by the gauge `u`:
-    /// `F' = u^{ab}_e u^{ec}_d / (u^{bc}_f u^{af}_d) F`.
     pub fn gauge_transform(&self, gauge: &Gauge<K>) -> Result<Self, FusionError> {
         let mut blocks = BTreeMap::new();
         for (&[a, b, c, d], block) in &self.f.blocks {
@@ -851,14 +722,6 @@ impl<K: FusionScalar> FusionCategory<K> {
         )
     }
 
-    /// The gauge (nontrivial only on the unit vertices) under which every F-symbol with a
-    /// unit leg becomes `1`, or an error when the data admit none.
-    ///
-    /// With `r_x = u^{x0}_x` and `l_x = u^{0x}_x` the conditions read
-    /// `F^{0bc}_d[b,d] = l_d / l_b`, `F^{a0c}_d[a,c] = l_c / r_a` and
-    /// `F^{ab0}_d[d,b] = r_b / r_d`; they are solved by `r_b = F^{b* b 0}_0[0,b]` and
-    /// `l_b = 1 / F^{0 b b*}_0[b,0]` (normalising `l_0 = r_0 = 1`), and the result is
-    /// verified, not assumed.
     pub fn unit_normalizing_gauge(&self) -> Result<Gauge<K>, FusionError> {
         let unit = self.ring.unit();
         let mut gauge = Gauge::trivial(&self.ring);
@@ -901,14 +764,10 @@ impl<K: FusionScalar> FusionCategory<K> {
         Ok(gauge)
     }
 
-    /// The category in the canonical unit-normalised gauge (see
-    /// [`Self::unit_normalizing_gauge`]).
     pub fn normalize_units(&self) -> Result<Self, FusionError> {
         self.gauge_transform(&self.unit_normalizing_gauge()?)
     }
 
-    /// `[F^{a a* a}_a]_{00} [F^{a* a a*}_{a*}]_{00}`, the gauge-invariant (for gauges that
-    /// fix the unit vertices) product whose inverse is `d_a d_{a*}`.
     pub fn dimension_invariant(&self, a: usize) -> Result<K, FusionError> {
         let unit = self.ring.unit();
         let a_star = self.ring.dual(a)?;
@@ -922,13 +781,6 @@ impl<K: FusionScalar> FusionCategory<K> {
         }
     }
 
-    /// Checks a proposed dimension vector: `d_0 = 1`, `d_a != 0`, `d_{a*} = d_a`,
-    /// `d_a d_b = sum_c N_{ab}^c d_c`, and `d_a d_{a*} [F^{a a* a}_a]_{00}
-    /// [F^{a* a a*}_{a*}]_{00} = 1` (valid in a unit-normalised gauge).
-    ///
-    /// Positivity is not decided here: a dimension vector that passes is a character of
-    /// the ring consistent with the F-symbols, and the same data admit the Galois
-    /// conjugate vectors (for Ising, `d_sigma = -sqrt 2`) as pivotal structures.
     pub fn verify_dimensions(&self, dims: &[K]) -> Result<(), FusionError> {
         let r = self.ring.rank();
         let fail = |defect: DimensionDefect| {
@@ -982,9 +834,6 @@ impl<K: FusionScalar> FusionCategory<K> {
         Ok(())
     }
 
-    /// The Frobenius-Schur indicator `nu_a = d_a [F^{aaa}_a]_{00}` of a self-dual object
-    /// (`+1` or `-1`), given dimensions that passed [`Self::verify_dimensions`]; `None` for
-    /// an object that is not self-dual (its indicator is not gauge invariant).
     pub fn frobenius_schur_indicator(
         &self,
         a: usize,
@@ -1075,7 +924,6 @@ mod tests {
 
     fn z2_category(omega: i64) -> Result<FusionCategory<Rational>, FusionError> {
         let ring = FusionRing::z_n(2)?;
-        // The only nontrivial block is F^{111}_1; every other block is 1.
         let f = FSymbols::from_fn(&ring, |labels, _, _| {
             if labels == [1, 1, 1, 1] {
                 rq(omega, 1)
@@ -1088,8 +936,6 @@ mod tests {
 
     #[test]
     fn the_two_associators_of_z2_satisfy_the_pentagon_and_nothing_else_does() {
-        // omega = +1 (trivial) and omega = -1 (the semion associator) are the two classes of
-        // 3-cocycles on Z_2; the pentagon forces omega^2 = 1.
         for omega in [1, -1] {
             let category = z2_category(omega).unwrap();
             assert_eq!(category.pentagon_defects(), vec![], "omega = {omega}");
@@ -1102,8 +948,6 @@ mod tests {
             bad.validate(),
             Err(FusionError::Category(CategoryDefect::Pentagon { .. }))
         ));
-        // A singular F-block is recorded at construction (so the pentagon can still be
-        // checked on it) and refused by validation.
         let zero_entry = z2_category(0).unwrap();
         assert_eq!(zero_entry.singular_blocks(), &[[1, 1, 1, 1]]);
         assert!(
@@ -1119,11 +963,6 @@ mod tests {
 
     #[test]
     fn the_pentagon_defect_reports_the_first_tuple_and_both_sides() {
-        // F^{111}_1 = w, every other F-symbol 1. For each (a, b, c, d) the labels
-        // e = a+b+c+d, f = a+b, g = a+b+c, l = c+d, k = b+c+d, h = b+c (mod 2) are forced, and
-        // the two sides are powers of w. They differ only at (1,1,1,1): the left side is 1
-        // and the right side is w^2 (two factors F^{111}_1), so the single defect is
-        // pentagon(1,1,1,1; e=0, f=0, g=1, k=1, l=0).
         let bad = z2_category(3).unwrap();
         let defects = bad.pentagon_defects();
         assert_eq!(defects.len(), 1);
@@ -1132,8 +971,6 @@ mod tests {
         assert_eq!(first.labels, [1, 1, 1, 1, 0, 0, 1, 1, 0]);
         assert_eq!(first.lhs, rq(1, 1));
         assert_eq!(first.rhs, rq(9, 1));
-        // The reported equation reads the perturbed entry F^{111}_1[0,0]; the equations
-        // that hold do not need to.
         assert!(first.involves([1, 1, 1, 1], 0, 0));
         assert!(!first.involves([0, 0, 0, 0], 0, 0));
     }
@@ -1142,8 +979,6 @@ mod tests {
     fn unit_laws_are_checked_and_repaired_by_the_canonical_gauge() {
         let category = z2_category(-1).unwrap();
         assert_eq!(category.unit_defects(), Vec::<[usize; 4]>::new());
-        // Scale the unit vertices: u^{10}_1 = 2, u^{01}_1 = 3. The F-symbols with a unit leg
-        // are no longer 1, but the pentagon still holds (gauge covariance).
         let gauge = Gauge::trivial(category.ring())
             .with([1, 0, 1], rq(2, 1))
             .unwrap()
@@ -1170,10 +1005,8 @@ mod tests {
         .unwrap();
         let transformed = category.gauge_transform(&gauge).unwrap();
         let g = |a, b, c| gauge.get([a, b, c]).unwrap().clone();
-        // F^{111}_1 has e = f = 0: (u^{11}_0 u^{01}_1)/(u^{11}_0 u^{10}_1) F.
         let expected = (g(1, 1, 0) * g(0, 1, 1)) / (g(1, 1, 0) * g(1, 0, 1)) * rq(-1, 1);
         assert_eq!(transformed.f_entry([1, 1, 1, 1], 0, 0), expected);
-        // The inverse gauge undoes it exactly.
         let back = transformed
             .gauge_transform(&gauge.inverse().unwrap())
             .unwrap();
@@ -1183,17 +1016,14 @@ mod tests {
     #[test]
     fn structural_defects_in_f_data_are_refused_with_typed_errors() {
         let ring = FusionRing::z_n(2).unwrap();
-        // A ring with multiplicity cannot carry scalar F-symbols.
         let s3 = FusionRing::rep_s3().unwrap();
         assert!(FSymbols::<Rational>::trivial(&s3).is_err());
         let fusion = FSymbols::from_fn(&ring, |_, _, _| rq(1, 1)).unwrap();
-        // Wrong rank.
         let other = FusionRing::z_n(3).unwrap();
         assert!(matches!(
             FusionCategory::new(other, fusion.clone()),
             Err(FusionError::ListLength { .. })
         ));
-        // Entry replacement refuses non-admissible indices and missing blocks.
         assert!(fusion.with_entry([0, 0, 0, 1], 0, 0, rq(1, 1)).is_err());
         assert!(fusion.with_entry([1, 1, 1, 1], 1, 1, rq(1, 1)).is_err());
         let replaced = fusion.with_entry([1, 1, 1, 1], 0, 0, rq(-1, 1)).unwrap();
@@ -1206,12 +1036,10 @@ mod tests {
         let semion = z2_category(-1).unwrap();
         let ones = vec![rq(1, 1), rq(1, 1)];
         assert_eq!(semion.verify_dimensions(&ones), Ok(()));
-        // The semion has Frobenius-Schur indicator -1 (F^{sss}_s = -1, d = 1).
         assert_eq!(semion.frobenius_schur_indicator(1, &ones), Ok(Some(-1)));
         assert_eq!(semion.frobenius_schur_indicator(0, &ones), Ok(Some(1)));
         let trivial = z2_category(1).unwrap();
         assert_eq!(trivial.frobenius_schur_indicator(1, &ones), Ok(Some(1)));
-        // Wrong dimension data.
         let defect = |dims: Vec<Rational>| match semion.verify_dimensions(&dims) {
             Err(FusionError::Category(CategoryDefect::Dimensions(defect))) => defect,
             other => panic!("expected a dimension defect, got {other:?}"),
@@ -1231,18 +1059,13 @@ mod tests {
             defect(vec![rq(1, 1), rq(0, 1)]),
             DimensionDefect::Zero { label: 1 }
         );
-        // d_s = 2 is not a character of the Z_2 ring: d_s^2 = 4 but N_{ss}^0 d_0 = 1.
         assert_eq!(
             defect(vec![rq(1, 1), rq(2, 1)]),
             DimensionDefect::NotCharacter { a: 1, b: 1 }
         );
-        // d_s = -1 is the other character of Z_2 (the Galois-conjugate pivotal structure):
-        // it passes, and it flips the Frobenius-Schur indicator of the semion.
         let flipped = vec![rq(1, 1), rq(-1, 1)];
         assert_eq!(semion.verify_dimensions(&flipped), Ok(()));
         assert_eq!(semion.frobenius_schur_indicator(1, &flipped), Ok(Some(1)));
-        // An F-block scaled away from the normalisation disagrees with d = 1 (F = 2 is not a
-        // pentagon solution, but the dimension check reads only the F-symbols it needs).
         let scaled = z2_category(2).unwrap();
         match scaled.verify_dimensions(&ones) {
             Err(FusionError::Category(CategoryDefect::Dimensions(defect))) => {
@@ -1250,7 +1073,6 @@ mod tests {
             }
             other => panic!("expected a disagreement with the F-symbols, got {other:?}"),
         }
-        // A Frobenius-Schur value that is not a sign is refused.
         assert_eq!(
             scaled.frobenius_schur_indicator(1, &ones),
             Err(FusionError::Category(CategoryDefect::Dimensions(

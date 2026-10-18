@@ -1,5 +1,3 @@
-//! Run with `cargo run -p omega_wdp --example finite_derivations`.
-//! Declared finite mathematics only; each replay checks the actual problem.
 
 use std::collections::BTreeSet;
 

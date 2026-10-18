@@ -13,7 +13,6 @@ def test_try_from_fn_result_populates_data():
     m = BasicMatrix.try_from_fn_result(2, 3, lambda r, c: r * 10 + c)
 
     assert m.shape() == (2, 3)
-    # row-major: [f(0,0), f(0,1), f(0,2), f(1,0), f(1,1), f(1,2)]
     assert m.as_slice() == [0, 1, 2, 10, 11, 12]
     assert m.get(1, 2) == 12
 

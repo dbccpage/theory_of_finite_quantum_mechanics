@@ -1,4 +1,3 @@
-//! Exact finite continuation tables using the native state and observation owners.
 use crate::genesis_gauge_result::Source23Error;
 use crate::genesis_ongoing_adapter::{GenesisOngoingPacket, MarkedTriple};
 use crate::genesis_source_execution::{
@@ -95,7 +94,6 @@ pub struct BoundedFutureCensus {
     pub partitions: Partitions,
 }
 
-/// This report has three additional fields beside the complete result mark.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ClippedReport {
@@ -177,7 +175,6 @@ fn result_mark(state: &Source25State) -> Result<ResultMark, FutureCompressionErr
     })
 }
 
-/// The fixed literal alphabet, including addresses absent from smaller states.
 pub fn action_alphabet() -> Vec<Source25Change> {
     let mut actions = Vec::new();
     for x in 0..MAX_TERMS {
@@ -328,7 +325,6 @@ pub fn clipped_report(state: &StateRecord) -> ClippedReport {
     }
 }
 
-/// Decode the admitted bounded report, rejecting malformed or inconsistent data.
 pub fn decode_clipped(report: &ClippedReport) -> Result<RawState, FutureCompressionError> {
     let n = report.mark.n;
     if n > MAX_TERMS
@@ -399,7 +395,6 @@ pub fn decode_clipped(report: &ClippedReport) -> Result<RawState, FutureCompress
     Ok(decoded)
 }
 
-/// Construct the full census from native calls; no partition counts are assumed.
 pub fn generate_bounded_future() -> Result<BoundedFutureCensus, FutureCompressionError> {
     let raw_states = enumerate_raw_states();
     let index: BTreeMap<_, _> = raw_states

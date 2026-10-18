@@ -29,9 +29,7 @@ def test_golden_ratio_quantum_dimensions() -> None:
     phi = (1.0 + math.sqrt(5.0)) / 2.0
     assert abs(d_1 - 1.0) < 1e-12
     assert abs(d_tau - phi) < 1e-12
-    # Fundamental Fibonacci relation: d_tau^2 = d_tau + 1
     assert abs(d_tau**2 - (d_tau + 1.0)) < 1e-12
-    # Total dimension: D = sqrt(1 + phi^2) = sqrt(2 + phi)
     assert abs(total_d - math.sqrt(2.0 + phi)) < 1e-12
 
 
@@ -40,9 +38,7 @@ def test_f_matrix_orthogonality_and_pentagon_axiom() -> None:
     model = FibonacciAnyonModel()
     f = model.get_f_matrix()
 
-    # F is symmetric and real
     assert abs(f[0][1] - f[1][0]) < 1e-12
-    # F^2 == I
     f2_00 = f[0][0]**2 + f[0][1]**2
     f2_01 = f[0][0] * f[0][1] + f[0][1] * f[1][1]
     f2_11 = f[1][0]**2 + f[1][1]**2
@@ -50,7 +46,6 @@ def test_f_matrix_orthogonality_and_pentagon_axiom() -> None:
     assert abs(f2_01 - 0.0) < 1e-12
     assert abs(f2_11 - 1.0) < 1e-12
 
-    # Mac Lane pentagon axiom across all 4-anyon fusion trees
     pentagon_err = model.verify_pentagon_equation()
     assert pentagon_err < 1e-12
 
@@ -59,11 +54,9 @@ def test_artin_braid_relations_and_non_commutativity() -> None:
     """Verifies braid relation sigma_1 sigma_2 sigma_1 == sigma_2 sigma_1 sigma_2 and [sigma_1, sigma_2] != 0."""
     model = FibonacciAnyonModel()
 
-    # Exact braid relation
     braid_err = model.verify_artin_braid_relation()
     assert braid_err < 1e-12
 
-    # Non-commutativity: [sigma_1, sigma_2] != 0
     _, comm_norm = model.compute_commutator()
     assert comm_norm > 1.5
     assert abs(comm_norm - 1.798907) < 1e-3
@@ -85,7 +78,6 @@ def test_quantum_state_leakage_under_scalar_projection() -> None:
     model = FibonacciAnyonModel()
     leakage = model.compute_quantum_state_leakage()
 
-    # Exact closed-form value: phi^-1 = (sqrt(5) - 1) / 2 approx 0.618034
     expected_leakage = (math.sqrt(5.0) - 1.0) / 2.0
     assert abs(leakage - expected_leakage) < 1e-12
 
@@ -114,14 +106,12 @@ def test_gin_mode_posting_list_resolution() -> None:
     engine = FibonacciAnyonBraidingEngine(in_memory=True)
     receipt = engine.audit_fibonacci_braiding(model)
 
-    # Check posting index contains expected modes
-    assert 1 in engine.posting_index  # Vacuum channel |0>
-    assert 2 in engine.posting_index  # Non-abelian channel |1>
-    assert 3 in engine.posting_index  # sigma_1 loop
-    assert 4 in engine.posting_index  # sigma_2 loop
-    assert 5 in engine.posting_index  # commutator cycle
+    assert 1 in engine.posting_index
+    assert 2 in engine.posting_index
+    assert 3 in engine.posting_index
+    assert 4 in engine.posting_index
+    assert 5 in engine.posting_index
 
-    # Query SQLite database directly
     c = engine.conn.cursor()
     c.execute("SELECT COUNT(*) FROM FermionConfigurations WHERE model_name = ?;", (model.model_id,))
     cfg_count = c.fetchone()[0]
@@ -129,6 +119,6 @@ def test_gin_mode_posting_list_resolution() -> None:
 
     c.execute("SELECT COUNT(*) FROM GinModePostingList WHERE mode_id = 5;")
     comm_mode_count = c.fetchone()[0]
-    assert comm_mode_count == 2  # Both configurations share the commutator cycle boundary
+    assert comm_mode_count == 2
 
     engine.close()

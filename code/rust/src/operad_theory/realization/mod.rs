@@ -1,6 +1,3 @@
-//! Realization Tier for Operad Theory.
-//!
-//! AuthorityEffect: None.
 
 pub mod algebra_over_operad;
 pub mod module_over_operad;

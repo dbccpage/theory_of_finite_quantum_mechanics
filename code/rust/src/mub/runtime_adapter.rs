@@ -1,8 +1,3 @@
-//! Canonical exact CODA/CODA_GTLA adapter for the finite MUB6 `T0` carrier.
-//!
-//! `omega_mub` owns the domain carrier and exact witness construction.  The
-//! shared pipeline owns primitive-difference validation, Phi1/Gamma2 replay,
-//! trichotomy, and checked-packet construction.  The result is evidence-only.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -31,9 +26,7 @@ const ADAPTER_NAMESPACE: &str = "omega_mub::mub6_runtime_adapter_v1";
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum Mub6RuntimeEvidenceV1 {
-    /// The canonical fixed triple with or without its exact complete vector cover.
     FixedT0 { cover_discharged: bool },
-    /// Diagnostic-only floating evidence. It is always refused before exact replay.
     FloatingDiagnostic { objective: f64 },
 }
 
@@ -155,8 +148,6 @@ fn rational(value: i64) -> BigRational {
 fn exact_evidence(
     case: Mub6CarrierPointV1,
 ) -> Result<(ExactPhi1Certificate, ExactCochainComplexQ, Vec<BigRational>), ExactGamma2Error> {
-    // One repair generator acts on the first two coordinates. The third is the
-    // fixed-triple obstruction coordinate and is not in the repair image.
     let d0 = vec![vec![rational(1)], vec![rational(1)], vec![rational(0)]];
     let (omega, alpha, residual, dual, reported, d1) = match case {
         Mub6CarrierPointV1::CoverDischarged => (

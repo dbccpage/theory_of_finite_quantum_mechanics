@@ -1,7 +1,3 @@
-//! Charges on one L=4, M=1 all-horizontal checkerboard breakup.
-//! The two opposite staggered masks are negative, so this finite signed
-//! SQL charging is not a positive measure and not a probability measure.
-//! The carrier is not a continuum limit.
 
 #![forbid(unsafe_code)]
 
@@ -435,7 +431,6 @@ fn nonnegative(charges: &[Charge; 4]) -> bool {
     charges.iter().all(|charge| charge.num >= 0 && charge.den > 0)
 }
 
-/// Constructor guard, then the selected L=4, M=1 scope.
 pub fn try_scope(sites: i64, repetitions: i64) -> Result<(), &'static str> {
     if sites < 4 || sites % 2 != 0 || sites > 6 {
         return Err("finite checkerboard fixture requires 4 or 6 sites");
@@ -528,7 +523,6 @@ pub fn witness() -> Witness {
     }
 }
 
-/// Admit only the two computed opposite-mask charges.
 pub fn admit_opposite_charge(num: i128, den: i128) -> Result<(), &'static str> {
     if den <= 0 {
         return Err("denominator must be positive");

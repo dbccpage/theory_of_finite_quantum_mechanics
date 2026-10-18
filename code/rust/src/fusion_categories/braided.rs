@@ -1,32 +1,3 @@
-//! Braided and ribbon fusion categories: R-symbols, the hexagon equations, twists,
-//! the ribbon (balancing) relation, and braid-group representations on fusion spaces.
-//!
-//! Conventions. `R^{ab}_c` (for `N_{ab}^c = 1`) is the braiding `a x b -> b x a` on the
-//! fusion channel `c`. With the F-symbol convention of `fusion_category`, the two
-//! hexagon equations are
-//!
-//! `R^{ec}_d [(F^{cab}_d)^{-1}]_{eg} = sum_f [F^{abc}_d]_{ef} R^{bc}_f [(F^{acb}_d)^{-1}]_{fg} R^{ac}_g`
-//!
-//! and the mirror form obtained by `R^{xy}_z -> (R^{yx}_z)^{-1}`. The quantum
-//! dimensions `d_a` of a ribbon category define the twist
-//! `theta_a = (1/d_a) sum_c N_{aa}^c d_c R^{aa}_c` (the partial trace of the braiding of
-//! `a` with itself), and the balancing relation reads
-//! `R^{ab}_c R^{ba}_c = theta_c / (theta_a theta_b)`.
-//!
-//! The braid group `B_n` acts on the fusion space `Hom(total, a_1 x ... x a_n)`, with
-//! basis the left-associated fusion paths `x_1 = a_1, x_j in x_{j-1} x a_j, x_n = total`.
-//! `sigma_1` is diagonal with entries `R^{a_1 a_2}_{x_2}`; for `i >= 2` the generator
-//! `sigma_i` changes `x_i` and acts, in coordinates, as the transpose of
-//! `F diag(R) F'^{-1}` (the blocks `F^{p a_i a_{i+1}}_r` and `F^{p a_{i+1} a_i}_r` with
-//! `p = x_{i-1}`, `r = x_{i+1}`).
-//!
-//! What is computed: both hexagon equations exactly over `K` (every violated index
-//! tuple), twists, the ribbon relation, gauge transformations, complex conjugation and
-//! the reversed braiding, and the braid-group generators as exact matrices. What is not:
-//! any claim about the image of the braid group being dense (see `braid_group` for the
-//! exact finite-closure statement), and positivity of dimensions.
-//!
-//! AuthorityEffect: None.
 
 use std::cmp::Ordering;
 use std::collections::BTreeMap;
@@ -44,10 +15,8 @@ use linear_algebra::backend::basic_matrix::OperationLimits;
 use linear_algebra::exact_field::matrix;
 use omega_number_theory::algebraic_real::RealAlgebraic;
 
-/// Largest dimension of a fusion space the braid-group routines will build.
 pub const MAX_FUSION_SPACE: usize = 1 << 16;
 
-/// Bounds on materialized fusion paths, distinct from exact path counting.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct FusionSpaceLimits {
     pub max_strands: usize,
@@ -92,40 +61,28 @@ fn braid_product_work(
     charge_braid("braid product scalar work", work, limits.max_scalar_ops)
 }
 
-/// A law of a braided or ribbon fusion category that fails.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Error)]
 pub enum BraidedDefect {
-    /// `N_{ab}^c != N_{ba}^c`: the fusion ring is not commutative.
     #[error("labels {left} and {right} do not fuse commutatively")]
     NotCommutative { left: usize, right: usize },
-    /// A vertex `N_{ab}^c = 1` without an R-symbol.
     #[error("missing R-symbol at {labels:?}")]
     RMissing { labels: [usize; 3] },
-    /// An R-symbol at something that is not a vertex.
     #[error("unexpected R-symbol at {labels:?}")]
     RUnexpected { labels: [usize; 3] },
-    /// An R-symbol equal to zero.
     #[error("R-symbol at {labels:?} is zero")]
     RZero { labels: [usize; 3] },
-    /// A violated hexagon equation at `(a, b, c, d, e, g)`.
     #[error("hexagon equation (mirror form: {mirror}) violated at {labels:?}")]
     Hexagon { mirror: bool, labels: [usize; 6] },
-    /// The balancing relation `R^{ab}_c R^{ba}_c = theta_c / (theta_a theta_b)` fails.
     #[error("balancing relation fails at {labels:?}")]
     Ribbon { labels: [usize; 3] },
-    /// `theta_a != theta_{a*}`.
     #[error("the twist of label {label} differs from the twist of its dual")]
     TwistNotDualInvariant { label: usize },
-    /// `theta_0 != 1`.
     #[error("the twist of the unit is not 1")]
     TwistOfUnit,
-    /// `theta_a` is zero (so the twist is not invertible).
     #[error("the twist of label {label} is zero")]
     TwistZero { label: usize },
 }
 
-/// R-symbols of a multiplicity-free commutative fusion ring: one nonzero scalar
-/// `R^{ab}_c` per vertex `N_{ab}^c = 1`.
 #[derive(Debug, Clone, PartialEq)]
 pub struct RSymbols<K> {
     rank: usize,
@@ -133,7 +90,6 @@ pub struct RSymbols<K> {
 }
 
 impl<K: FusionScalar> RSymbols<K> {
-    /// R-symbols from a function of the vertex; a zero value is refused.
     pub fn from_fn(
         ring: &FusionRing,
         mut value: impl FnMut([usize; 3]) -> K,
@@ -158,17 +114,14 @@ impl<K: FusionScalar> RSymbols<K> {
         Ok(Self { rank: n, r })
     }
 
-    /// `R^{ab}_c`, if `(a, b; c)` is a vertex.
     pub fn get(&self, labels: [usize; 3]) -> Option<&K> {
         self.r.get(&labels)
     }
 
-    /// All entries in index order.
     pub fn entries(&self) -> impl Iterator<Item = (&[usize; 3], &K)> {
         self.r.iter()
     }
 
-    /// A copy with one vertex's R-symbol replaced; a non-vertex or zero is refused.
     pub fn with_entry(&self, labels: [usize; 3], value: K) -> Result<Self, FusionError> {
         if value.is_zero() {
             return Err(FusionError::Braided(BraidedDefect::RZero { labels }));
@@ -182,31 +135,21 @@ impl<K: FusionScalar> RSymbols<K> {
     }
 }
 
-/// Which of the two hexagon equations.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum HexagonForm {
-    /// With `R^{xy}_z`.
     Direct,
-    /// With `R^{xy}_z` replaced by `(R^{yx}_z)^{-1}`.
     Mirror,
 }
 
-/// A violated hexagon equation with both sides.
 #[derive(Debug, Clone, PartialEq)]
 pub struct HexagonDefect<K> {
-    /// Which equation.
     pub form: HexagonForm,
-    /// `(a, b, c, d, e, g)`.
     pub labels: [usize; 6],
-    /// `R^{ec}_d [(F^{cab}_d)^{-1}]_{eg}` (or its mirror).
     pub lhs: K,
-    /// `sum_f [F^{abc}_d]_{ef} R^{bc}_f [(F^{acb}_d)^{-1}]_{fg} R^{ac}_g` (or its mirror).
     pub rhs: K,
 }
 
 impl<K> HexagonDefect<K> {
-    /// Whether the R-symbol `R^{xy}_z` is read by this equation (for some summation label
-    /// `f` on the right-hand side).
     pub fn reads_r(&self, [x, y, z]: [usize; 3]) -> bool {
         let [a, b, c, d, e, g] = self.labels;
         match self.form {
@@ -220,8 +163,6 @@ impl<K> HexagonDefect<K> {
     }
 }
 
-/// A basis of `Hom(total, a_1 x ... x a_n)`: the left-associated fusion paths
-/// `x_1 = a_1, x_j in x_{j-1} x a_j, x_n = total`, recorded as `(x_2, ..., x_{n-1})`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FusionSpace {
     word: Vec<usize>,
@@ -231,32 +172,26 @@ pub struct FusionSpace {
 }
 
 impl FusionSpace {
-    /// The word `(a_1, ..., a_n)`.
     pub fn word(&self) -> &[usize] {
         &self.word
     }
 
-    /// The total charge.
     pub fn total(&self) -> usize {
         self.total
     }
 
-    /// The number of basis paths.
     pub fn dimension(&self) -> usize {
         self.basis.len()
     }
 
-    /// The basis paths `(x_2, ..., x_{n-1})`, lexicographically ascending.
     pub fn basis(&self) -> &[Vec<usize>] {
         &self.basis
     }
 
-    /// The position of a path in the basis.
     pub fn index_of(&self, path: &[usize]) -> Option<usize> {
         self.basis.binary_search_by(|p| p.as_slice().cmp(path)).ok()
     }
 
-    /// `x_j` (1-based `j` in `1..=n`) of a path.
     fn charge(&self, path: &[usize], j: usize) -> Option<usize> {
         let n = self.word.len();
         if j == 0 || j > n {
@@ -271,11 +206,6 @@ impl FusionSpace {
     }
 }
 
-/// A multiplicity-free braided fusion category: a fusion category with R-symbols on a
-/// commutative ring.
-///
-/// Construction checks structure (commutative ring, one nonzero R-symbol per vertex); the
-/// hexagon equations are checked by [`Self::hexagon_defects`] and [`Self::validate`].
 #[derive(Debug, Clone, PartialEq)]
 pub struct BraidedFusionCategory<K> {
     category: FusionCategory<K>,
@@ -283,7 +213,6 @@ pub struct BraidedFusionCategory<K> {
 }
 
 impl<K: FusionScalar> BraidedFusionCategory<K> {
-    /// A braided category from a category and R-symbols (structure checked, hexagons not).
     pub fn new(category: FusionCategory<K>, r: RSymbols<K>) -> Result<Self, FusionError> {
         let ring = category.ring();
         let n = ring.rank();
@@ -333,35 +262,28 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         Ok(Self { category, r })
     }
 
-    /// A braided category whose F-symbols satisfy the unit laws and pentagon and whose
-    /// R-symbols satisfy both hexagon equations.
     pub fn validated(category: FusionCategory<K>, r: RSymbols<K>) -> Result<Self, FusionError> {
         let braided = Self::new(category, r)?;
         braided.validate()?;
         Ok(braided)
     }
 
-    /// The underlying fusion category.
     pub fn category(&self) -> &FusionCategory<K> {
         &self.category
     }
 
-    /// The fusion ring.
     pub fn ring(&self) -> &FusionRing {
         self.category.ring()
     }
 
-    /// The R-symbols.
     pub fn r_symbols(&self) -> &RSymbols<K> {
         &self.r
     }
 
-    /// `R^{ab}_c` (zero when `(a, b; c)` is not a vertex).
     pub fn r_entry(&self, labels: [usize; 3]) -> K {
         self.r.get(labels).cloned().unwrap_or_else(K::zero)
     }
 
-    /// The R-symbol of the equation's form: `R^{xy}_z` or `(R^{yx}_z)^{-1}`.
     fn r_in_form(&self, form: HexagonForm, [x, y, z]: [usize; 3]) -> Option<K> {
         match form {
             HexagonForm::Direct => self.r.get([x, y, z]).cloned(),
@@ -369,12 +291,10 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         }
     }
 
-    /// Every violated hexagon equation of the given form, exactly, in index order.
     pub fn hexagon_defects(&self, form: HexagonForm) -> Vec<HexagonDefect<K>> {
         self.hexagon_scan(form, false)
     }
 
-    /// The first violated hexagon equation of the given form, if any.
     pub fn first_hexagon_defect(&self, form: HexagonForm) -> Option<HexagonDefect<K>> {
         self.hexagon_scan(form, true).into_iter().next()
     }
@@ -451,8 +371,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         total
     }
 
-    /// Checks the unit laws, the pentagon and both hexagon equations; the error names the
-    /// first failure.
     pub fn validate(&self) -> Result<(), FusionError> {
         self.category.validate()?;
         for (form, mirror) in [(HexagonForm::Direct, false), (HexagonForm::Mirror, true)] {
@@ -466,21 +384,16 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         Ok(())
     }
 
-    /// `R^{ab}_c R^{ba}_c`, the monodromy scalar of the vertex.
     pub fn monodromy(&self, [a, b, c]: [usize; 3]) -> Option<K> {
         Some(self.r.get([a, b, c])?.mul(self.r.get([b, a, c])?))
     }
 
-    /// Whether every monodromy is `1` (a symmetric braiding; such a category is never
-    /// modular unless trivial).
     pub fn is_symmetric(&self) -> bool {
         self.r
             .entries()
             .all(|(&[a, b, c], _)| self.monodromy([a, b, c]).is_some_and(|m| m == K::one()))
     }
 
-    /// The category obtained by the gauge `u`: `F` as in
-    /// [`FusionCategory::gauge_transform`] and `R'^{ab}_c = (u^{ab}_c / u^{ba}_c) R^{ab}_c`.
     pub fn gauge_transform(&self, gauge: &Gauge<K>) -> Result<Self, FusionError> {
         let category = self.category.gauge_transform(gauge)?;
         let mut entries = BTreeMap::new();
@@ -507,8 +420,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         )
     }
 
-    /// The complex conjugate category (every F- and R-symbol conjugated): its twists and
-    /// central charge are the conjugates and the negative.
     pub fn complex_conjugate(&self) -> Result<Self, FusionError> {
         let ring = self.ring().clone();
         let f = FSymbols::from_fn(&ring, |labels, e, f| {
@@ -522,7 +433,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         Self::new(category, r)
     }
 
-    /// The reversed-braiding category: `R'^{ab}_c = (R^{ba}_c)^{-1}` with the same F-symbols.
     pub fn reverse_braiding(&self) -> Result<Self, FusionError> {
         let ring = self.ring().clone();
         let mut entries = BTreeMap::new();
@@ -547,17 +457,11 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         )
     }
 
-    // ------------------------------------------------------------------
-    // Braid-group representations
-    // ------------------------------------------------------------------
 
-    /// The fusion space `Hom(total, w_1 x ... x w_n)` with its path basis.
     pub fn fusion_space(&self, word: &[usize], total: usize) -> Result<FusionSpace, FusionError> {
         self.fusion_space_with_limits(word, total, FusionSpaceLimits::default())
     }
 
-    /// [`Self::fusion_space`] with declared path-storage and extension-work limits.
-    /// Every extension is charged before cloning or appending its path.
     pub fn fusion_space_with_limits(
         &self,
         word: &[usize],
@@ -596,8 +500,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
                 }
             }
             _ => {
-                // x_1 = w_1; extend the path one fused charge at a time, in ascending order
-                // (which keeps the paths lexicographically sorted).
                 let first = word.first().copied().unwrap_or(0);
                 let mut partial: Vec<(Vec<usize>, usize)> = vec![(Vec::new(), first)];
                 for step in 2..n {
@@ -670,9 +572,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         })
     }
 
-    /// The generator `sigma_i` (`1 <= i <= n - 1`, exchanging strands `i` and `i + 1`) as a
-    /// matrix from the space of `space.word()` to the space of the word with those two
-    /// letters exchanged. Columns are source basis paths, rows target basis paths.
     pub fn braid_matrix(
         &self,
         space: &FusionSpace,
@@ -681,7 +580,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         self.braid_matrix_with_limits(space, i, DEFAULT_BRAID_LIMITS)
     }
 
-    /// [`Self::braid_matrix`] with an allocation and coefficient-work budget.
     pub fn braid_matrix_with_limits(
         &self,
         space: &FusionSpace,
@@ -810,12 +708,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         Ok((target, matrix))
     }
 
-    /// The defining relations of the braid groupoid on the fusion space of `word`: for every
-    /// `i`, `sigma_i sigma_{i+1} sigma_i = sigma_{i+1} sigma_i sigma_{i+1}` as maps from the
-    /// space of `word` to the space of `word` with the first and third letters of the window
-    /// exchanged, and `sigma_j sigma_i = sigma_i sigma_j` for `|i - j| >= 2`. Generator
-    /// numbers in the defects are 0-based. For words of distinct letters these are the
-    /// pentagon-and-hexagon consistency conditions seen through the braid group.
     pub fn braid_relation_defects_on_word(
         &self,
         word: &[usize],
@@ -937,8 +829,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         Ok(defects)
     }
 
-    /// The braid-group generators `sigma_1, ..., sigma_{n-1}` of `n` copies of `a` fusing to
-    /// `total`, as square matrices on the fusion space (every generator preserves the word).
     pub fn braid_generators(
         &self,
         a: usize,
@@ -948,7 +838,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         self.braid_generators_with_limits(a, n, total, DEFAULT_BRAID_LIMITS)
     }
 
-    /// [`Self::braid_generators`] with aggregate storage and assembly limits.
     pub fn braid_generators_with_limits(
         &self,
         a: usize,
@@ -988,13 +877,6 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
     }
 }
 
-/// A ribbon (spherical braided) fusion category: a braided fusion category with quantum
-/// dimensions and the twists they define, verified against each other.
-///
-/// Construction verifies: the pentagon and both hexagons, the dimension data against the
-/// ring and the F-symbols (see [`FusionCategory::verify_dimensions`]), and the balancing
-/// relation `R^{ab}_c R^{ba}_c = theta_c / (theta_a theta_b)` with `theta_a = (1/d_a)
-/// sum_c N_{aa}^c d_c R^{aa}_c`, together with `theta_{a*} = theta_a` and `theta_0 = 1`.
 #[derive(Debug, Clone, PartialEq)]
 pub struct RibbonFusionCategory<K> {
     braided: BraidedFusionCategory<K>,
@@ -1003,7 +885,6 @@ pub struct RibbonFusionCategory<K> {
 }
 
 impl<K: FusionScalar> RibbonFusionCategory<K> {
-    /// The twist `theta_a` of each object computed from the R-symbols and dimensions.
     pub fn compute_twists(
         braided: &BraidedFusionCategory<K>,
         dimensions: &[K],
@@ -1034,7 +915,6 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         Ok(twists)
     }
 
-    /// Builds and verifies a ribbon category from a braided category and dimensions.
     pub fn try_new(
         braided: BraidedFusionCategory<K>,
         dimensions: Vec<K>,
@@ -1081,32 +961,26 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         })
     }
 
-    /// The braided fusion category.
     pub fn braided(&self) -> &BraidedFusionCategory<K> {
         &self.braided
     }
 
-    /// The fusion category.
     pub fn category(&self) -> &FusionCategory<K> {
         self.braided.category()
     }
 
-    /// The fusion ring.
     pub fn ring(&self) -> &FusionRing {
         self.braided.ring()
     }
 
-    /// The quantum dimensions `d_a`.
     pub fn dimensions(&self) -> &[K] {
         &self.dimensions
     }
 
-    /// The twists `theta_a`.
     pub fn twists(&self) -> &[K] {
         &self.twists
     }
 
-    /// `d_a`.
     pub fn dimension(&self, a: usize) -> Result<&K, FusionError> {
         self.dimensions.get(a).ok_or(FusionError::Label {
             label: a,
@@ -1114,7 +988,6 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         })
     }
 
-    /// `theta_a`.
     pub fn twist(&self, a: usize) -> Result<&K, FusionError> {
         self.twists.get(a).ok_or(FusionError::Label {
             label: a,
@@ -1122,14 +995,12 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         })
     }
 
-    /// The global dimension squared `D^2 = sum_a d_a^2`, exactly in `K`.
     pub fn global_dimension_squared(&self) -> K {
         self.dimensions
             .iter()
             .fold(K::zero(), |acc, d| acc.add(&d.mul(d)))
     }
 
-    /// `p_+ = sum_a d_a^2 theta_a`, the Gauss sum of the twists.
     pub fn gauss_sum(&self) -> K {
         self.dimensions
             .iter()
@@ -1137,16 +1008,6 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
             .fold(K::zero(), |acc, (d, theta)| acc.add(&d.mul(d).mul(theta)))
     }
 
-    /// Whether every quantum dimension `d_a` is exactly the Frobenius-Perron dimension of
-    /// its object (the category is pseudo-unitary as far as dimensions go).
-    ///
-    /// Decided exactly: `d_a` must be a root of the characteristic polynomial of `N_a`
-    /// (checked in the field), and it must be the root the ring selects: equal to the
-    /// rational value, or the larger root of the quadratic surd (the sign of `d_a - a` equal to
-    /// the sign of `b` for `a + b sqrt(d)`), or inside the rational isolating interval
-    /// `(lower, upper]` that contains exactly one root. The signs are decided by
-    /// [`FusionScalar::real_sign`]; a scalar type that cannot decide them gives
-    /// [`FusionError::SignUndecided`].
     pub fn dimensions_are_frobenius_perron(&self) -> Result<bool, FusionError> {
         let ring = self.ring();
         for a in 0..ring.rank() {
@@ -1190,8 +1051,6 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         Ok(true)
     }
 
-    /// The complex conjugate ribbon category (conjugate symbols, conjugate dimensions and
-    /// twists).
     pub fn complex_conjugate(&self) -> Result<Self, FusionError> {
         let dimensions = self
             .dimensions
@@ -1201,7 +1060,6 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         Self::try_new(self.braided.complex_conjugate()?, dimensions)
     }
 
-    /// The braid-group generators, see [`BraidedFusionCategory::braid_generators`].
     pub fn braid_generators(
         &self,
         a: usize,
@@ -1211,8 +1069,6 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         self.braided.braid_generators(a, n, total)
     }
 
-    /// The full twist `(sigma_1 ... sigma_{n-1})^n` of `n` copies of `a` fusing to `total`;
-    /// by the ribbon structure it is the scalar `theta_total / theta_a^n`.
     pub fn full_twist(
         &self,
         a: usize,
@@ -1253,7 +1109,6 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         .map_err(FusionError::from)
     }
 
-    /// The scalar `theta_total / theta_a^n` by which [`Self::full_twist`] acts.
     pub fn full_twist_scalar(&self, a: usize, n: usize, total: usize) -> Result<K, FusionError> {
         let theta_a = self.twist(a)?;
         let theta_total = self.twist(total)?;
@@ -1278,8 +1133,6 @@ mod resource_tests {
         let model = crate::catalog::ising::<Cyclotomic<16>>().unwrap();
         let space = model.braided().fusion_space(&vec![1; 32], 1).unwrap();
         assert_eq!(space.dimension(), 0);
-        // Even though sigma^32 cannot fuse to sigma, its intermediate path
-        // carrier is large. Replaying every generator still consumes that work.
         assert!(matches!(
             model.braid_generators(1, 32, 1),
             Err(FusionError::Budget {
@@ -1343,7 +1196,6 @@ mod resource_tests {
         ));
         assert_eq!(braided.fusion_space(&[], 0).unwrap().dimension(), 1);
         assert_eq!(braided.fusion_space(&[], 1).unwrap().dimension(), 0);
-        // Empty sectors remain actual zero-dimensional mathematical carriers.
         let empty = braided.fusion_space(&[0, 0], 1).unwrap();
         assert_eq!(braided.braid_matrix(&empty, 1).unwrap().1.shape(), (0, 0));
     }

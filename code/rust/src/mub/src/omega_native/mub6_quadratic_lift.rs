@@ -1,8 +1,3 @@
-//! Exact inspection of the pinned 386-coordinate quadratic quartet table.
-//!
-//! Interval contraction retains every zero of the input polynomials. A retained
-//! box is not a root witness. Neither this parser nor this contractor is a Lean
-//! kernel reflection of its runtime output. AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -182,8 +177,6 @@ pub struct SeparationExclusion {
     soundness_endpoint: &'static str,
 }
 
-// By the checked identity W0.conjTranspose * W1 = 6 W2, every pair of these
-// columns has squared distance at least 72 - 12*(10035/4096).
 fn separation_exclusion(bounds: &[Interval], lower: &BigRational) -> Option<SeparationExclusion> {
     for i in 0..6 {
         for j in 0..6 {
@@ -390,8 +383,6 @@ impl QuadraticLift {
     }
 }
 
-// For c*x^k + R = 0 with R independent of x, every root satisfies
-// x^k in -range(R)/c. Square isolation uses only its upper endpoint.
 fn contract(
     polynomials: &[Polynomial],
     input: &[Interval],

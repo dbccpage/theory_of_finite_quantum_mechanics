@@ -1,43 +1,3 @@
-// Executable finite evidence; AuthorityEffect: None.
-//! Chapter 18: the strengthened stochastic package S, outcome (a) of `WDP-CH18-O01`.
-//! Executable finite evidence for `WDP-CH18-P07` and `WDP-CH18-P08`.
-//!
-//! Over exact rationals, a finite carrier `{0, ..., n-1}` carries stochastic
-//! updates: `n_out x n_in` matrices with nonnegative entries whose every column
-//! sums to one, so a column is the law of the next state given the current one.
-//!
-//! - [`StochasticUpdate`] is closed under [`StochasticUpdate::compose`], contains
-//!   the deterministic updates [`StochasticUpdate::from_function`], and every
-//!   update is a convex mixture of deterministic ones
-//!   ([`StochasticUpdate::mixture_of_functions`], weights
-//!   `w_f = prod_j T[f(j)][j]`), which [`StochasticUpdate::recompose`] rebuilds
-//!   exactly (`WDP-CH18-P07`).
-//! - Reversibility within states is being a permutation matrix (`WDP-CH18-P02`).
-//!   [`StochasticUpdate::stochastic_left_inverse`] decides exactly, on a square
-//!   carrier, whether an update has a left inverse and whether that inverse is
-//!   itself stochastic; it is, exactly for permutations.
-//! - [`ClassicalInstrument`] is a finite family of nonnegative matrices, one per
-//!   outcome, whose sum is a stochastic update. Words of outcomes are run first
-//!   outcome first, and the law of a word is the mass left after running it. The
-//!   laws of the extensions of a word sum to the law of the word, and the laws of
-//!   all words of one length sum to the mass of the input (`WDP-CH18-P08`).
-//! - [`signed_shear_counterexample`] is the fixture `signed_weights_break_the_corner`:
-//!   a mass-preserving invertible matrix with a mass-preserving inverse that is not
-//!   a permutation, so the reversible corner needs the sign restriction, and
-//!   [`StochasticUpdate::new`] refuses it for its negative entry.
-//!
-//! Enumerations are capped: [`MAX_ENUMERATION`] bounds supported functions and outcome
-//! words, and the `*_with_limit` variants take the cap as an argument so a test can
-//! exercise a refusal at a small size. A word length above the cap is refused even for
-//! a one-outcome instrument, whose single word would otherwise be as long as asked.
-//!
-//! Delegation: the exact left-inverse solve is `omega_linear_algebra`'s
-//! `solve_in_image`. The row-stochastic `StochasticMap` of `omega_finite_probability`
-//! is the transpose of this column convention;
-//! [`StochasticUpdate::to_stochastic_map`] and
-//! [`StochasticUpdate::from_stochastic_map`] convert exactly, and the tests compare
-//! [`StochasticUpdate::compose`] with `StochasticMap::compose`. Application to
-//! unnormalized vectors is local because `ProbabilitySimplex` requires unit mass.
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::{
@@ -51,28 +11,22 @@ use serde::Serialize;
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
 
-/// Row-major exact matrix: `m[i][j]` is row `i`, column `j`.
 pub type Matrix = Vec<Vec<BigRational>>;
 
-/// A convex mixture of deterministic updates: `(f, w_f)` with `f : n_in -> n_out`.
 pub type FunctionMixture = Vec<(Vec<usize>, BigRational)>;
 
-/// Cap on enumerated supported functions and on enumerated outcome words.
 pub const MAX_ENUMERATION: usize = 1_000_000;
 
-/// Cap on the entries of a matrix allocated from caller-supplied dimensions.
 pub const MAX_MATRIX_ENTRIES: usize = 1_000_000;
 
 fn invalid(detail: String) -> WdpError {
     WdpError::InvalidInput { detail }
 }
 
-/// Total mass `sum_i p_i`.
 pub fn mass(p: &[BigRational]) -> BigRational {
     p.iter().fold(BigRational::zero(), |acc, x| acc + x)
 }
 
-/// Shape `(rows, cols)` of a nonempty rectangular matrix, else a refusal.
 pub(crate) fn matrix_shape(m: &[Vec<BigRational>], what: &str) -> Result<(usize, usize), WdpError> {
     let rows = m.len();
     if rows == 0 {
@@ -93,7 +47,6 @@ pub(crate) fn matrix_shape(m: &[Vec<BigRational>], what: &str) -> Result<(usize,
     Ok((rows, cols))
 }
 
-/// `m * x` for a rectangular matrix and a vector of length `cols`.
 pub(crate) fn matrix_apply(m: &[Vec<BigRational>], x: &[BigRational]) -> Vec<BigRational> {
     m.iter()
         .map(|row| {
@@ -104,7 +57,6 @@ pub(crate) fn matrix_apply(m: &[Vec<BigRational>], x: &[BigRational]) -> Vec<Big
         .collect()
 }
 
-/// The first column of a validated rectangular matrix whose sum is not one, with the sum.
 fn column_defect(m: &[Vec<BigRational>], cols: usize) -> Option<(usize, BigRational)> {
     (0..cols).find_map(|j| {
         let sum = m.iter().fold(BigRational::zero(), |acc, row| acc + &row[j]);
@@ -112,14 +64,11 @@ fn column_defect(m: &[Vec<BigRational>], cols: usize) -> Option<(usize, BigRatio
     })
 }
 
-/// `base^exponent` when it is at most `limit`, else `None` (also on overflow). A base of
-/// one stays one, so callers bound the exponent separately.
 pub(crate) fn bounded_power(base: usize, exponent: usize, limit: usize) -> Option<usize> {
     base.checked_pow(u32::try_from(exponent).ok()?)
         .filter(|&power| power <= limit)
 }
 
-/// `sum_o updates[o]` for updates already validated to be `n_out x n_in`.
 fn sum_updates(updates: &[Matrix], n_out: usize, n_in: usize) -> Matrix {
     let mut total = vec![vec![BigRational::zero(); n_in]; n_out];
     for update in updates {
@@ -143,13 +92,10 @@ fn check_nonnegative(m: &[Vec<BigRational>], what: &str) -> Result<(), WdpError>
     Ok(())
 }
 
-/// Whether every column sums to one. An empty, column-free or ragged matrix is not a
-/// matrix of columns, so it is `false` rather than a panic or a vacuous `true`.
 pub fn preserves_basis_mass(m: &[Vec<BigRational>]) -> bool {
     matrix_shape(m, "matrix").is_ok_and(|(_, cols)| column_defect(m, cols).is_none())
 }
 
-/// Whether `m` is a permutation matrix: square, entries 0 or 1, one 1 per row and column.
 pub fn is_permutation_matrix(m: &[Vec<BigRational>]) -> bool {
     let n = m.len();
     if n == 0 || m.iter().any(|row| row.len() != n) {
@@ -166,7 +112,6 @@ pub fn is_permutation_matrix(m: &[Vec<BigRational>]) -> bool {
     rows_ok && cols_ok
 }
 
-/// Matrix product `a * b` of exact matrices; the caller guarantees `a.cols == b.rows`.
 fn matrix_product(a: &[Vec<BigRational>], b: &[Vec<BigRational>]) -> Matrix {
     let cols = b.first().map_or(0, Vec::len);
     a.iter()
@@ -182,21 +127,13 @@ fn matrix_product(a: &[Vec<BigRational>], b: &[Vec<BigRational>]) -> Matrix {
         .collect()
 }
 
-/// The verdict of the exact left-inverse search on a square carrier.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum LeftInverse {
-    /// No matrix `S` with `S T = I` exists over Q.
     NoLeftInverse,
-    /// `S T = I` over Q, but `S` has a negative entry, so it is not an update.
     SignedOnly(Matrix),
-    /// A stochastic left inverse; `T` is then a permutation matrix.
     Stochastic(StochasticUpdate),
 }
 
-/// A column-stochastic update `T : Q^{n_in} -> Q^{n_out}` over exact rationals.
-///
-/// Every value has passed [`StochasticUpdate::new`]: nonnegative entries and every
-/// column summing to exactly one. There is no deserializer.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct StochasticUpdate {
     n_out: usize,
@@ -205,8 +142,6 @@ pub struct StochasticUpdate {
 }
 
 impl StochasticUpdate {
-    /// A validated update from its rows (`entries[i][j] = T[i][j]`, the probability of
-    /// landing in `i` from `j`).
     pub fn new(entries: Matrix) -> Result<Self, WdpError> {
         let (n_out, n_in) = matrix_shape(&entries, "stochastic update")?;
         check_nonnegative(&entries, "stochastic update")?;
@@ -222,7 +157,6 @@ impl StochasticUpdate {
         })
     }
 
-    /// The identity update on `{0, ..., n-1}`.
     pub fn identity(n: usize) -> Result<Self, WdpError> {
         if n.checked_mul(n)
             .is_none_or(|entries| entries > MAX_MATRIX_ENTRIES)
@@ -235,8 +169,6 @@ impl StochasticUpdate {
         Self::from_function(&f, n)
     }
 
-    /// The deterministic update of `f : {0..f.len()} -> {0..n_out}`: column `j` is the
-    /// basis vector `f[j]`.
     pub fn from_function(f: &[usize], n_out: usize) -> Result<Self, WdpError> {
         if n_out
             .checked_mul(f.len())
@@ -247,8 +179,6 @@ impl StochasticUpdate {
                 f.len()
             )));
         }
-        // With no columns the product above is zero whatever `n_out` is, but the rows
-        // below would still be allocated.
         if n_out > MAX_MATRIX_ENTRIES {
             return Err(invalid(format!(
                 "{n_out} outputs exceed the cap {MAX_MATRIX_ENTRIES}"
@@ -287,12 +217,10 @@ impl StochasticUpdate {
         &self.entries
     }
 
-    /// `T[i][j]`, or `None` outside the matrix.
     pub fn get(&self, i: usize, j: usize) -> Option<&BigRational> {
         self.entries.get(i).and_then(|row| row.get(j))
     }
 
-    /// `T p` for any vector `p` of length `n_in`, not only distributions.
     pub fn apply(&self, p: &[BigRational]) -> Result<Vec<BigRational>, WdpError> {
         if p.len() != self.n_in {
             return Err(invalid(format!(
@@ -304,8 +232,6 @@ impl StochasticUpdate {
         Ok(matrix_apply(&self.entries, p))
     }
 
-    /// First `self`, then `next`: the matrix product `next * self`. Closed: a product of
-    /// column-stochastic matrices is column-stochastic.
     pub fn compose(&self, next: &StochasticUpdate) -> Result<StochasticUpdate, WdpError> {
         if self.n_out != next.n_in {
             return Err(invalid(format!(
@@ -316,7 +242,6 @@ impl StochasticUpdate {
         Self::new(matrix_product(&next.entries, &self.entries))
     }
 
-    /// Whether every entry is 0 or 1.
     pub fn is_deterministic(&self) -> bool {
         self.entries
             .iter()
@@ -324,7 +249,6 @@ impl StochasticUpdate {
             .all(|x| x.is_zero() || x.is_one())
     }
 
-    /// The function `f` with `T = funMatrix(f)`, when `T` is deterministic.
     pub fn as_function(&self) -> Option<Vec<usize>> {
         if !self.is_deterministic() {
             return None;
@@ -334,23 +258,14 @@ impl StochasticUpdate {
             .collect()
     }
 
-    /// A permutation matrix: deterministic and bijective on a square carrier.
     pub fn is_permutation(&self) -> bool {
         is_permutation_matrix(&self.entries)
     }
 
-    /// The decomposition `T = sum_f w_f funMatrix(f)` over the supported functions `f`
-    /// (those with `T[f(j)][j] != 0` for every column `j`), with
-    /// `w_f = prod_j T[f(j)][j]`. Functions come in lexicographic order.
-    ///
-    /// The weights are nonnegative and sum to one: the sum over all functions of
-    /// `prod_j T[f(j)][j]` factors as `prod_j (column j sum) = 1`.
     pub fn mixture_of_functions(&self) -> Result<FunctionMixture, WdpError> {
         self.mixture_of_functions_with_limit(MAX_ENUMERATION)
     }
 
-    /// [`StochasticUpdate::mixture_of_functions`] refusing more than `limit` supported
-    /// functions.
     pub fn mixture_of_functions_with_limit(
         &self,
         limit: usize,
@@ -401,7 +316,6 @@ impl StochasticUpdate {
         }
     }
 
-    /// `sum_f w_f funMatrix(f)` as an `n_out x n_in` matrix.
     pub fn recompose(
         mixture: &[(Vec<usize>, BigRational)],
         n_out: usize,
@@ -440,9 +354,6 @@ impl StochasticUpdate {
         Ok(matrix)
     }
 
-    /// Exact left-inverse search on a square carrier: solves `S T = I` row by row as
-    /// `T^t s_k = e_k` with `omega_linear_algebra`. A square left inverse is unique
-    /// when it exists, so `SignedOnly` means no stochastic left inverse exists.
     pub fn stochastic_left_inverse(&self) -> Result<LeftInverse, WdpError> {
         if self.n_out != self.n_in {
             return Err(invalid(format!(
@@ -479,8 +390,6 @@ impl StochasticUpdate {
         }
     }
 
-    /// The row-stochastic `omega_quantum_physics` map of the transpose: source `n_in`,
-    /// target `n_out`, `P(j | i)` equal to `T[j][i]`.
     pub fn to_stochastic_map(&self, label: &str) -> Result<StochasticMap, WdpError> {
         let rows: Matrix = (0..self.n_in)
             .map(|j| {
@@ -494,7 +403,6 @@ impl StochasticUpdate {
         )?)
     }
 
-    /// The inverse of [`StochasticUpdate::to_stochastic_map`].
     pub fn from_stochastic_map(map: &StochasticMap) -> Result<Self, WdpError> {
         let rows = map.rows();
         let entries: Matrix = (0..map.target_n())
@@ -504,8 +412,6 @@ impl StochasticUpdate {
     }
 }
 
-/// A finite classical instrument: one nonnegative matrix per outcome, all of one shape,
-/// whose sum is a stochastic update.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ClassicalInstrument {
     n_out: usize,
@@ -557,12 +463,10 @@ impl ClassicalInstrument {
         &self.updates
     }
 
-    /// The outcome-forgetting update `sum_o T_o`.
     pub fn total_update(&self) -> Result<StochasticUpdate, WdpError> {
         StochasticUpdate::new(sum_updates(&self.updates, self.n_out, self.n_in))
     }
 
-    /// `p` must be nonnegative and of length `n_in`, for every word including the empty one.
     fn check_input(&self, p: &[BigRational]) -> Result<(), WdpError> {
         if let Some(i) = p.iter().position(Signed::is_negative) {
             return Err(invalid(format!("input vector entry {i} is negative")));
@@ -577,8 +481,6 @@ impl ClassicalInstrument {
         Ok(())
     }
 
-    /// `T_o current`; each step needs `current` to have length `n_in`, so words longer
-    /// than one need a square instrument.
     fn step(&self, outcome: usize, current: &[BigRational]) -> Result<Vec<BigRational>, WdpError> {
         let update = self.updates.get(outcome).ok_or_else(|| {
             invalid(format!(
@@ -596,8 +498,6 @@ impl ClassicalInstrument {
         Ok(matrix_apply(update, current))
     }
 
-    /// Runs the word on `p`, first outcome first: `run (o :: l) p = run l (T_o p)`.
-    /// `p` must be nonnegative of length `n_in`.
     pub fn run(&self, word: &[usize], p: &[BigRational]) -> Result<Vec<BigRational>, WdpError> {
         self.check_input(p)?;
         let mut current = p.to_vec();
@@ -607,19 +507,14 @@ impl ClassicalInstrument {
         Ok(current)
     }
 
-    /// The law of the word on `p`: the mass of `run word p`.
     pub fn law(&self, word: &[usize], p: &[BigRational]) -> Result<BigRational, WdpError> {
         Ok(mass(&self.run(word, p)?))
     }
 
-    /// The sum of `law` over all `outcomes^n` words of length `n`.
     pub fn law_total(&self, n: usize, p: &[BigRational]) -> Result<BigRational, WdpError> {
         self.law_total_with_limit(n, p, MAX_ENUMERATION)
     }
 
-    /// [`ClassicalInstrument::law_total`] refusing a word length above `limit` and more
-    /// than `limit` words. The words are walked depth first, each extension applying one
-    /// matrix to the vector of its prefix.
     pub fn law_total_with_limit(
         &self,
         n: usize,
@@ -639,8 +534,6 @@ impl ClassicalInstrument {
             ))
         })?;
         let mut total = BigRational::zero();
-        // `vectors[d]` is the run of the current `d`-outcome prefix, so `vectors.len()`
-        // is always `word.len() + 1`.
         let mut vectors: Vec<Vec<BigRational>> = vec![p.to_vec()];
         let mut word: Vec<usize> = Vec::new();
         loop {
@@ -666,8 +559,6 @@ impl ClassicalInstrument {
     }
 }
 
-/// Evidence that mass-preserving invertible maps are not all permutations once signs are
-/// allowed (fixture `signed_weights_break_the_corner`).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SignedShearReport {
     pub t: Matrix,
@@ -678,7 +569,6 @@ pub struct SignedShearReport {
     pub t_is_permutation_matrix: bool,
     pub t_is_column_stochastic: bool,
     pub t_image_of_first_basis_vector: Vec<BigRational>,
-    /// Why [`StochasticUpdate::new`] refuses `t`.
     pub refusal: WdpError,
     pub authority_effect: AuthorityEffect,
 }
@@ -693,9 +583,6 @@ fn integer_matrix(rows: &[&[i64]]) -> Matrix {
         .collect()
 }
 
-/// `T = [[2, 1], [-1, 0]]` with inverse `[[0, -1], [1, 2]]`: both preserve total mass on
-/// every basis vector and `T^{-1} T = I`, yet `T` is not a permutation matrix and has a
-/// negative entry, so it is refused as a stochastic update.
 pub fn signed_shear_counterexample() -> Result<SignedShearReport, WdpError> {
     let t = integer_matrix(&[&[2, 1], &[-1, 0]]);
     let t_inverse = integer_matrix(&[&[0, -1], &[1, 2]]);

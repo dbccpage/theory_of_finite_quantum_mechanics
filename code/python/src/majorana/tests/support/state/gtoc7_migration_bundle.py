@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/gtoc7_migration_bundle.rs
-# Rust sha256: 01cae950e7f7c3bf47c392a68e5094e668ceaa3af9f76fe11edfbed9942ee1a9
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any, TypeAlias
@@ -42,87 +38,66 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC7_PACKET_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC7_RECEIPT_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC7_VERIFICATION_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_FROZEN_BASE: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_PACKET_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_GOAL_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_PRODUCER_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_EVALUATOR_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_AUTHORITY_WITNESS_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_PATH_POLICY_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_SOURCE_ROOT: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_TARGET_ROOT: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_PREDECESSOR_RESIDUAL_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_UNRESTRICTED_FAMILY_RESIDUAL_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_001_RECEIPT_PATH: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_003_VERIFICATION_PATH: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S06_004_HISTORICAL_RECEIPT_PATH: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_EVIDENCE_CEILING: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_WRITE_SURFACE: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S03_002_SOURCE_MANIFEST: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC7_FIXTURE_SCOPE: Any = None
 
 
@@ -934,6 +909,5 @@ def parse_gtoc7_verification_canonical_v1(*args: Any, **kwargs: Any) -> Any:
     )
 
 
-# END GENERATED RUST SURFACE
 
 

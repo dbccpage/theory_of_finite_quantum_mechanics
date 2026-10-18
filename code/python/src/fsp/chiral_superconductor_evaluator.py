@@ -22,7 +22,6 @@ import sys
 from typing import Any, Dict, List, Optional, Set, Tuple
 import numpy as np
 
-# Ensure directory is on sys.path
 code_dir = Path(__file__).resolve().parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -35,8 +34,8 @@ class WeylNode:
     kx: float
     ky: float
     kz: float
-    chirality: int       # +1 or -1
-    monopole_charge: int # +1 or -1
+    chirality: int
+    monopole_charge: int
 
 
 @dataclass(frozen=True)
@@ -45,7 +44,7 @@ class KzSlice:
     slice_id: str
     kz_index: int
     kz_val: float
-    chern_number: int    # 1 if in (-k0, k0), else 0
+    chern_number: int
     bulk_gap: float
 
 
@@ -55,7 +54,7 @@ class SurfaceMajoranaArc:
     arc_id: str
     node_start_id: str
     node_end_id: str
-    surface_orientation: str # 'TOP' or 'BOTTOM'
+    surface_orientation: str
     arc_length: float
     is_self_conjugate: int = 1
     spectral_residual: float = 0.0
@@ -89,7 +88,6 @@ class MockChiralSuperconductorGinIndex:
         self.slices = slices
         self.arcs = arcs
 
-        # Inverted index posting mappings
         self.tag_to_targets: Dict[str, List[str]] = {}
         self.postings_records: List[Dict[str, Any]] = []
 
@@ -109,7 +107,6 @@ class MockChiralSuperconductorGinIndex:
                 self.tag_to_targets[tag].append(target_id)
 
     def _build_inverted_index(self) -> None:
-        # Index Bulk Nodes
         for node in self.nodes:
             chirality_tag = "CHIRAL_PLUS" if node.chirality == 1 else "CHIRAL_MINUS"
             self._add_posting(
@@ -119,7 +116,6 @@ class MockChiralSuperconductorGinIndex:
                 tags=["BULK_NODE", chirality_tag, f"kz_{round(node.kz, 2)}"]
             )
 
-        # Index Kz Chern Slices
         for s in self.slices:
             topo_tag = "TOPOLOGICAL_SLICE" if s.chern_number == 1 else "TRIVIAL_SLICE"
             self._add_posting(
@@ -129,7 +125,6 @@ class MockChiralSuperconductorGinIndex:
                 tags=["KZ_SLICE", topo_tag, f"kz_idx_{s.kz_index}"]
             )
 
-        # Index Surface Majorana Arcs
         for arc in self.arcs:
             surface_tag = f"SURFACE_{arc.surface_orientation}"
             conj_tag = "SELF_CONJUGATE" if arc.is_self_conjugate == 1 else "CONJUGATE_BROKEN"
@@ -211,7 +206,6 @@ class ChiralSuperconductor3DModel:
         )
 
     def _build_model(self) -> None:
-        # 1. Generate 2 Bulk Weyl Nodes with opposite chiralities at (0, 0, +-k0)
         self.nodes = [
             WeylNode(
                 lattice_id=self.lattice_id,
@@ -233,16 +227,11 @@ class ChiralSuperconductor3DModel:
             ),
         ]
 
-        # 2. Generate 2D Kz Slices along kz in [-pi, pi]
-        # In a Weyl semimetal, slices between the two nodes |kz| < k0 carry Chern number 1
-        # while slices outside |kz| > k0 carry Chern number 0.
         kz_values = np.linspace(-math.pi, math.pi, self.lz, endpoint=False)
         self.slices = []
         for idx, kz in enumerate(kz_values):
-            # Check if within open interval (-k0, k0)
             in_gap = abs(kz) < (self.k0 - 1e-5)
             chern = 1 if in_gap else 0
-            # Bulk gap: minimum distance to Weyl nodes
             dist_to_nodes = min(abs(kz - self.k0), abs(kz - (-self.k0)))
             gap = max(0.05, self.delta_0 * math.sin(dist_to_nodes))
             self.slices.append(
@@ -256,17 +245,13 @@ class ChiralSuperconductor3DModel:
                 )
             )
 
-        # 3. Surface Majorana Fermi Arcs on boundaries:
-        # A slab with boundaries at z = Lz-1 (TOP) and z = 0 (BOTTOM) produces
-        # 1 Fermi arc on the top surface and 1 Fermi arc on the bottom surface,
-        # connecting kz = -k0 to kz = +k0.
         arc_length = 2.0 * self.k0
         self.arcs = [
             SurfaceMajoranaArc(
                 lattice_id=self.lattice_id,
                 arc_id=f"{self.lattice_id}_arc_top",
-                node_start_id=self.nodes[1].node_id, # node_neg
-                node_end_id=self.nodes[0].node_id,   # node_pos
+                node_start_id=self.nodes[1].node_id,
+                node_end_id=self.nodes[0].node_id,
                 surface_orientation="TOP",
                 arc_length=arc_length,
                 is_self_conjugate=1 if self.phs_symmetric else 0,
@@ -284,13 +269,10 @@ class ChiralSuperconductor3DModel:
             ),
         ]
 
-        # 4. Callan-Harvey Anomaly Inflow Trajectory under adiabatic flux insertion theta in [0, 2pi]
         self.spectral_trajectory = []
         n_steps = 8
         for step in range(n_steps + 1):
             theta = 2.0 * math.pi * step / n_steps
-            # Under exact chiral anomaly cancellation, bulk pumped charge is 0
-            # and surface pumped charge matches inflow exactly, giving net anomaly = 0.
             bulk_pumped = 0
             surface_pumped = 0
             net_anomaly = bulk_pumped + surface_pumped
@@ -369,7 +351,6 @@ class ChiralSuperconductor3DModel:
         anomaly_ok = (net_chirality == 0) and (len(self.nodes) >= 2)
         anomaly_status = "ANOMALY_CANCELLED_VALID" if anomaly_ok else "CHIRAL_ANOMALY_DEFECT"
 
-        # Bulk-boundary correspondence: 2 bulk Weyl nodes with Delta C = 2 expect 2 surface arcs
         expected_arcs = 2 if (len(self.nodes) >= 2 and max(n.chirality for n in self.nodes) - min(n.chirality for n in self.nodes) == 2) else len(self.nodes)
         bulk_boundary_ok = len(self.arcs) == expected_arcs and expected_arcs == 2
         bulk_boundary_status = "BULK_BOUNDARY_MATCH" if bulk_boundary_ok else "BULK_BOUNDARY_DISCREPANCY"
@@ -377,7 +358,6 @@ class ChiralSuperconductor3DModel:
         phs_ok = self.phs_symmetric and all(a.is_self_conjugate == 1 for a in self.arcs)
         inflow_ok = all(t.net_anomaly == 0 for t in self.spectral_trajectory)
 
-        # BQNF Terminal Routing
         if not phs_ok:
             terminal_route = "CLOSURE_FAILURE"
         elif not anomaly_ok or not bulk_boundary_ok or not inflow_ok:

@@ -1,4 +1,3 @@
-//! C750 exact computational operations and separately labelled historical declarations.
 use crate::qm::entropy_solver as solver;
 use crate::qm::finite_witness::{field_q, field_usize, parse_q, qstr, qvec};
 use crate::linear_algebra::matrix as mx;
@@ -83,7 +82,6 @@ pub fn majorization(p: &[Q], q: &[Q]) -> Result<&'static str, String> {
     {
         return Err("INVALID_SORTED_PROBABILITY_VECTORS".into());
     }
-    // This wire carries a diagonal rational spectrum; physical validation owns shape/trace.
     let first = omega_quantum_physics::exact_entropy::RationalSpectrum::try_new(
         p.iter().cloned().map(|q| (q, 1)).collect(),
     )

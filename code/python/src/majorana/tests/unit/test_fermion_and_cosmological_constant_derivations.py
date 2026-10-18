@@ -21,7 +21,7 @@ from omega_engine.crates.solver.solv_l1_topological_defects import (
 
 def test_c3_hodge_split_inflation_sharp_ceiling():
     res = evaluate_c3_hodge_split_inflation(cochain_omega=[0.0, 1.0, 0.0])
-    
+
     assert res["r_split"] == pytest.approx(7.0 / 3.0, abs=1e-12)
     assert res["r_rep"] == pytest.approx(1.0, abs=1e-12)
     assert res["phi_1"] == pytest.approx(1.0, abs=1e-12)
@@ -30,9 +30,8 @@ def test_c3_hodge_split_inflation_sharp_ceiling():
 
 
 def test_fermion_mass_spectrum_lggr_witness_and_structure():
-    # Test pure topological derivation with default [1.0, 1.0, 1.0] cochain
     res = derive_fermion_mass_spectrum_lggr(cochain_1cycle=[1.0, 1.0, 1.0], v_ew_gev=246.0)
-    
+
     assert res["lean4_proof_witness"] == "OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction"
     assert len(res["z3_spectral_eigenvalues"]) == 3
     assert len(res["raw_residual_mass_gaps"]) == 3

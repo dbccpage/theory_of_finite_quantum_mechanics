@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the half simplex."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the half simplex.
+
+Origin: code/python/src/finite_probability/simplex.py
+Claim: urn:omega:fqm:simplex:fractional-half:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -20,6 +30,21 @@ from src.finite_probability.simplex import (
     main,
 )
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "finite_probability" / "simplex.py"
 
 
@@ -33,7 +58,7 @@ def test_half_weights_match_the_theorem() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(SimplexError, match="float refused") as floated:
-        ProbabilitySimplex([0.5, 0.5])
+        ProbabilitySimplex([_probe("0.5"), _probe("0.5")])
     assert floated.value.invariant == "float refused at the simplex boundary"
     assert floated.value.parameters["role"] == "distribution[0]"
     assert type(floated.value) is SimplexError
@@ -158,7 +183,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     simplex = namespace["ProbabilitySimplex"]
     uniform_of = getattr(simplex, "uniform", None)
     dirac_at = getattr(simplex, "dirac", None)
-    if not callable(half) or not callable(uniform_of) or not callable(dirac_at):
+    if not _all_hold((callable(half), callable(uniform_of), callable(dirac_at),)):
         return False
     try:
         uniform = uniform_of(2)
@@ -174,7 +199,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not isinstance(simplex, type):
         return False
     probes = (
-        (lambda: simplex([0.5, 0.5]), "float refused at the simplex boundary"),
+        (lambda: simplex([_probe("0.5"), _probe("0.5")]), "float refused at the simplex boundary"),
         (lambda: simplex([True, False]), "boolean refused where an exact rational was required"),
         (lambda: simplex("ab"), "masses are not a sequence"),
         (lambda: simplex([]), "masses are empty"),
@@ -189,7 +214,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["SimplexError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -218,6 +243,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

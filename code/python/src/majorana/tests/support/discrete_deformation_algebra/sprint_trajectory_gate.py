@@ -104,7 +104,6 @@ def _is_legacy_shape(record: Record) -> bool:
     """ORT process tape: stage/name/note style without integrity keys."""
     if _has_step_index(record) or _has_phi1(record) or _has_state_fingerprint(record):
         return False
-    # Process tapes always carry stage + name in the measured corpus.
     return "stage" in record and "name" in record
 
 
@@ -229,17 +228,14 @@ def validate_dda_sprint_trajectory(
             or (v.code == "MISSING_RUN_ID" and not record.get("run_id"))
             for v in line_violations
         ):
-            # Pure process tape (possibly also missing run_id — still legacy-shaped).
             legacy_count += 1
             if require_integrity_v1:
                 violations.extend(line_violations)
             elif any(v.code == "AUTHORITY_EFFECT_NOT_NONE" for v in line_violations):
-                # Authority minting is never allowed, even for legacy classification.
                 violations.extend(
                     v for v in line_violations if v.code == "AUTHORITY_EFFECT_NOT_NONE"
                 )
             else:
-                # Still enforce authority_effect and run_id on legacy when present.
                 hard = [
                     v
                     for v in line_violations
@@ -249,10 +245,8 @@ def validate_dda_sprint_trajectory(
                     hard.append(Violation(line, "MISSING_RUN_ID", "run_id required"))
                 violations.extend(hard)
         else:
-            # Partial / broken integrity attempt — always hard fail.
             violations.extend(line_violations)
 
-    # Hash chain when any step declares step_hash.
     if any("step_hash" in r for r in records):
         chain_ok, chain_detail = verify_trajectory_chain(records)
         if not chain_ok:
@@ -276,14 +270,12 @@ def validate_dda_sprint_trajectory(
     else:
         classification = CLASS_INVALID
 
-    # Chain/load violations force not-ok even if shapes look good.
     ok = len(violations) == 0
     if require_integrity_v1 and classification != CLASS_INTEGRITY_V1 and records:
         ok = False
         if classification == CLASS_LEGACY and not any(
             v.code.startswith("MISSING_") for v in violations
         ):
-            # ensure at least one summary violation when somehow empty
             violations.append(
                 Violation(
                     None,

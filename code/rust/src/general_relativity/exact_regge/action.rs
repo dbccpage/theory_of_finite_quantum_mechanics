@@ -1,16 +1,3 @@
-//! Rational Regge proxy and the exact defect predicate.
-//!
-//! The proxy is `Σ_h A_h² κ_h`, not `Σ_h A_h ε_h`.
-//! Deficit angles are not rational, so the classical sum is not implemented.
-//! `defect_bound_holds` checks `(S - S_EH)² ≤ (C a²)²` and rejects a negative `C`
-//! or a negative `a²`.
-//! `flat_einstein_hilbert` returns zero because the Einstein-Hilbert action of a
-//! flat metric is the rational zero. That zero is not the round 4-sphere action.
-//! `einstein_hilbert_fence` returns the proxy action. `flat_chart_admitted` holds
-//! only when that decision equals `flat_einstein_hilbert`. `|S| < 1e-6` is not
-//! the admission decision.
-//!
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 
@@ -28,18 +15,12 @@ pub struct RationalReggeProxy {
     pub hinge_count: u32,
 }
 
-/// Squared area of `triangle` in chart `pentatope_index`.
-///
-/// The three vertices must lie in that chart. Squared lengths are read from the
-/// manifold metric. The value is the Cayley-Menger `volume_squared` of the
-/// leading 3×3 block.
 pub fn area_squared_in_pentatope(
     manifold: &SimplicialManifold4D,
     pentatope_index: usize,
     triangle: [u32; 3],
 ) -> Result<BigRational, ManifoldError> {
     for vertex in triangle {
-        // Membership only. Distances are not recomputed from these coordinates.
         if manifold.chart_coords(pentatope_index, vertex).is_err() {
             return Err(ManifoldError::NotAFace);
         }
@@ -63,13 +44,6 @@ pub fn area_squared_in_pentatope(
         })
 }
 
-/// Rational proxy `Σ_h A_h² κ_h`.
-///
-/// The classical sum `Σ_h A_h ε_h` is not implemented: deficit angles are not
-/// rational. `κ_h` is the supplied defect, or zero when the hinge is omitted.
-/// A zero defect list on a nonempty complex is a successful proxy whose action
-/// is zero. That is the flat-chart value, not a measurement of continuum
-/// curvature, and not the round 4-sphere action.
 pub fn rational_regge_proxy(
     manifold: &SimplicialManifold4D,
     defects: &[([u32; 3], BigRational)],
@@ -113,24 +87,10 @@ pub fn rational_regge_proxy(
     })
 }
 
-/// Einstein-Hilbert value of a flat metric.
-///
-/// The classical sum `Σ_h A_h ε_h` is not implemented: deficit angles are not
-/// rational. The Einstein-Hilbert action of a flat metric is the rational zero.
-/// This zero is not the Einstein-Hilbert action of the round 4-sphere.
 pub fn flat_einstein_hilbert() -> BigRational {
     BigRational::zero()
 }
 
-/// Einstein-Hilbert flatness fence.
-///
-/// Returns [`rational_regge_proxy`]. Its `action` is `Σ_h A_h² κ_h`.
-/// [`flat_chart_admitted`] holds only when that decision equals
-/// [`flat_einstein_hilbert`]. A nonzero supplied `κ_h` is carried by the sum.
-/// `|S| < 1e-6` is not the decision. The classical sum `Σ_h A_h ε_h` is not
-/// evaluated. This is not the round 4-sphere action.
-///
-/// AuthorityEffect: None.
 pub fn einstein_hilbert_fence(
     manifold: &SimplicialManifold4D,
     defects: &[([u32; 3], BigRational)],
@@ -138,12 +98,10 @@ pub fn einstein_hilbert_fence(
     rational_regge_proxy(manifold, defects)
 }
 
-/// True only when `decision` equals [`flat_einstein_hilbert`].
 pub fn flat_chart_admitted(decision: &BigRational) -> bool {
     *decision == flat_einstein_hilbert()
 }
 
-/// `(S_regge - S_EH)² ≤ (C · a²)²`. False when `C < 0` or `a² < 0`.
 pub fn defect_bound_holds(
     s_regge: &BigRational,
     s_eh: &BigRational,

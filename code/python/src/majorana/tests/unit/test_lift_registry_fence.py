@@ -56,7 +56,6 @@ def test_registry_finite_and_relative_complete():
 
 def test_outside_candidates_disjoint_role():
     assert len(OUTSIDE) == 3
-    # Roles are distinct string tags
     for L in REGISTRY:
         for O in OUTSIDE:
             assert f"declared:{L.value}" != f"outside:{O.value}"

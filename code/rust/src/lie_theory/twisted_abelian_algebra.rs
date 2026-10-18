@@ -1,9 +1,3 @@
-//! A finite abelian group with a fully checked normalized unitary 2-cocycle.
-//!
-//! u_g u_h = alpha(g,h) u_(gh). Scalars and matrices retain their canonical
-//! owners. The complex block profile is algebraic; it admits neither histories
-//! nor physical states/processes. The cubic declaration check is bounded by 64
-//! labels. AuthorityEffect: None.
 
 use crate::finite_group::{FiniteGroup, GroupError};
 use crate::scalar::ComplexField;
@@ -34,8 +28,6 @@ pub enum TwistedAlgebraError {
     Matrix(#[from] ExactFieldError),
 }
 
-/// Over C the algebra is a sum of `center_dimension` copies of
-/// M_`block_dimension`(C). This says nothing about operational availability.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ComplexBlockProfile {
     pub algebra_dimension: usize,
@@ -51,8 +43,6 @@ pub struct TwistedAbelianAlgebra<F> {
 }
 
 impl<F: ComplexField> TwistedAbelianAlgebra<F> {
-    /// The table uses left * right; identities need not have index zero.
-    /// Every group law and every cocycle triple is checked, not sampled.
     pub fn new(table: Vec<Vec<usize>>, alpha: Vec<Vec<F>>) -> Result<Self, TwistedAlgebraError> {
         let n = table.len();
         if n > MAX_COCYCLE_ORDER {
@@ -100,7 +90,6 @@ impl<F: ComplexField> TwistedAbelianAlgebra<F> {
     pub fn group(&self) -> &FiniteGroup<usize> {
         &self.group
     }
-    /// Labels spanning the center, i.e. the radical of alpha(g,h)/alpha(h,g).
     pub fn center_basis(&self) -> &[usize] {
         &self.radical
     }
@@ -126,8 +115,6 @@ impl<F: ComplexField> TwistedAbelianAlgebra<F> {
         if r == 0 || n % r != 0 {
             return Err(TwistedAlgebraError::InconsistentBlocks);
         }
-        // Integer-only square recognition. The written center/free-module
-        // theorem supplies the reason every complex block has this dimension.
         let d = (1..=n)
             .find(|d| d * d == n / r)
             .ok_or(TwistedAlgebraError::InconsistentBlocks)?;
@@ -175,12 +162,10 @@ impl<F: ComplexField> TwistedAbelianAlgebra<F> {
         }
         Ok(result)
     }
-    /// Identity coefficient: tau(a* a) = sum_g conjugate(a_g) a_g.
     pub fn trace(&self, a: &[F]) -> Result<F, TwistedAlgebraError> {
         self.check(a)?;
         Ok(a[self.group.identity()].clone())
     }
-    /// Faithful left multiplication on the complete group-label space.
     pub fn left_regular(&self, a: &[F]) -> Result<BasicMatrix<F>, TwistedAlgebraError> {
         self.check(a)?;
         let n = self.group.order();

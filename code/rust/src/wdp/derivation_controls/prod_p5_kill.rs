@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P5-KILL (Evaluate P5 kill conditions on a pilot ledger).
 
 pub fn evaluate_p5_kill(ci_executed: bool, proved_missing_d3_count: usize) -> (bool, bool, bool) {
     let kill_1 = !ci_executed;

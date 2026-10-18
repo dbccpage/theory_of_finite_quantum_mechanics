@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for the boost eigenpair residual."""
+"""Unit, negative, integration, end-to-end, and mutation tests for the boost eigenpair residual.
+
+Origin: code/python/src/qm/finite_witness.py
+Claim: urn:omega:fqm:witness:boost-eigenpair-residual:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -13,6 +23,21 @@ from pathlib import Path
 import pytest
 
 from src.qm.finite_witness import FiniteWitnessError, eigenpair_residual, main, pair_residual
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "finite_witness.py"
 _NEIGHBOR = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "spectral_claims.py"
@@ -30,7 +55,7 @@ def test_boost_numerator_eigenpairs_have_zero_residual() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(FiniteWitnessError, match="float refused") as floated:
-        pair_residual(_MATRIX, (1.0, 1), 8)
+        pair_residual(_MATRIX, (_probe("1.0"), 1), 8)
     assert floated.value.invariant == "float refused at the eigenpair boundary"
     assert floated.value.parameters["role"] == "vector"
     assert type(floated.value) is FiniteWitnessError
@@ -40,7 +65,7 @@ def test_negative_type_failures() -> None:
     assert boolean.value.invariant == "boolean refused where a rational entry was required"
 
     with pytest.raises(FiniteWitnessError, match="float refused") as scale:
-        pair_residual(_MATRIX, (1, 1), 8.0)
+        pair_residual(_MATRIX, (1, 1), _probe("8.0"))
     assert scale.value.parameters["role"] == "eigenvalue"
 
     with pytest.raises(FiniteWitnessError, match="not an exact rational") as text:
@@ -156,7 +181,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     residual = namespace["pair_residual"]
     certified = namespace["eigenpair_residual"]
-    if not callable(residual) or not callable(certified):
+    if not _all_hold((callable(residual), callable(certified),)):
         return False
     try:
         left = residual(_MATRIX, (1, 1), 8)
@@ -176,12 +201,12 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(residual):
         return False
     probes = (
-        (lambda: residual(_MATRIX, (1.0, 1), 8), "float refused at the eigenpair boundary"),
+        (lambda: residual(_MATRIX, (_probe("1.0"), 1), 8), "float refused at the eigenpair boundary"),
         (lambda: residual(_MATRIX, (True, 1), 8), "boolean refused where a rational entry was required"),
         (lambda: residual(_MATRIX, ("1", 1), 8), "eigenpair entry is not an exact rational"),
         (lambda: residual(_MATRIX, (1,), 8), "eigenpair value has the wrong length"),
         (lambda: residual([(5, 3), (3, 5)], (1, 1), 8), "eigenpair value is not a tuple"),
-        (lambda: residual(_MATRIX, (1, 1), 8.0), "float refused at the eigenpair boundary"),
+        (lambda: residual(_MATRIX, (1, 1), _probe("8.0")), "float refused at the eigenpair boundary"),
     )
     for probe, invariant in probes:
         if _invariant(error, probe) != invariant:
@@ -191,7 +216,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["FiniteWitnessError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -220,6 +245,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

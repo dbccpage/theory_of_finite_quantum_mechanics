@@ -1,20 +1,3 @@
-//! Discrete Simplicial Ricci and Scalar Curvatures & Higher-Derivative Regge Gravity (Hamber §7.2-7.3).
-//!
-//! In a D-dimensional simplicial complex (D=4):
-//! - Dual volume associated with vertex v:
-//!   $$V(v) = \frac{1}{D+1} \sum_{\sigma \supset v} V_D(\sigma)$$
-//! - Integrated scalar curvature at vertex v:
-//!   $$\mathcal{R}(v) = 2 \sum_{h \supset v} A_h \epsilon_h$$
-//! - Local scalar curvature density at vertex v:
-//!   $$R(v) = \frac{\mathcal{R}(v)}{V(v)} = \frac{2 \sum_{h \supset v} A_h \epsilon_h}{V(v)}$$
-//! - Einstein–Hilbert–Regge action equivalence:
-//!   $$S_{\text{EH}} = \frac{1}{2} \sum_v V(v) R(v) = \sum_h A_h \epsilon_h = S_{\text{Regge}}$$
-//! - Higher-Derivative Regge action (Hamber & Williams 1984):
-//!   $$S_{\text{HD}} = a \sum_v V(v) R(v)^2 = 4 a \sum_v \frac{1}{V(v)} \left( \sum_{h \supset v} A_h \epsilon_h \right)^2$$
-//!   This curvature-squared term is strictly non-negative (S_HD >= 0) and regulates
-//!   the Euclidean conformal factor instability in quantum Regge calculus.
-//!
-//! AuthorityEffect: None.
 
 use crate::regge_4d::ReggeTriangulation4D;
 use crate::regge_calculus::ReggeError;
@@ -24,36 +7,25 @@ use std::collections::{BTreeMap, BTreeSet};
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; discrete Ricci and higher-derivative Regge.";
 
-/// Curvature and volume measures localized at a single vertex in a 4D triangulation.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct VertexCurvature4D {
     pub vertex: usize,
-    /// Barycentric dual volume V(v) = 1/5 ∑_{σ ⊃ v} V_4(σ).
     pub dual_volume: f64,
-    /// Integrated scalar curvature: 2 ∑_{h ⊃ v} A_h ε_h.
     pub integrated_scalar_curvature: f64,
-    /// Local scalar curvature density: R(v) = 2 ∑_{h ⊃ v} A_h ε_h / V(v).
     pub scalar_curvature_density: f64,
-    /// Incident 4-simplices.
     pub incident_pentachora_count: usize,
-    /// Incident hinges.
     pub incident_hinge_count: usize,
 }
 
-/// Complete curvature field and higher-derivative action across all vertices of a 4D triangulation.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct DiscreteCurvatureField4D {
     pub vertex_curvatures: BTreeMap<usize, VertexCurvature4D>,
-    /// Total 4-volume: ∑_σ V_4(σ) = ∑_v V(v).
     pub total_4volume: f64,
-    /// Total Einstein-Hilbert action: 1/2 ∑_v V(v) R(v) = ∑_h A_h ε_h.
     pub einstein_hilbert_action: f64,
-    /// Higher-derivative curvature squared action: a ∑_v V(v) R(v)².
     pub higher_derivative_action: f64,
     pub coupling_a: f64,
 }
 
-/// Compute vertex-localized Ricci scalar curvature densities and higher-derivative action.
 pub fn compute_discrete_curvature_field_4d(
     triangulation: &ReggeTriangulation4D,
     coupling_a: f64,
@@ -74,7 +46,7 @@ pub fn compute_discrete_curvature_field_4d(
 
     for (p_idx, p) in triangulation.pentachora.iter().enumerate() {
         let vol = triangulation.pentachora_volumes[p_idx];
-        let share = 0.2 * vol; // 1/5 share of 4-simplex volume per vertex
+        let share = 0.2 * vol;
         for &v in p {
             if let Some(entry) = vertex_dual_vol.get_mut(&v) {
                 *entry += share;
@@ -92,9 +64,6 @@ pub fn compute_discrete_curvature_field_4d(
         vertex_incident_hinges.insert(v, 0);
     }
 
-    // Distribute hinge curvature 2 * A_h * ε_h equally among its 3 vertices:
-    // Hinge h = {u, v, w} contributes (2/3) * A_h * ε_h to each vertex,
-    // so ∑_v ∑_{h ⊃ v} (2/3) A_h ε_h = 2 ∑_h A_h ε_h.
     for h in &triangulation.hinges {
         if !h.is_interior {
             continue;
@@ -166,15 +135,11 @@ mod tests {
         let tri = ReggeTriangulation4D::four_pentachora_fan(1.0).unwrap();
         let field = compute_discrete_curvature_field_4d(&tri, 1.0).unwrap();
 
-        // Total 4-volume should equal sum of the 4 pentachora volumes
         let sum_pent_vol: f64 = tri.pentachora_volumes.iter().sum();
         assert!((field.total_4volume - sum_pent_vol).abs() < 1e-7);
 
-        // Float residual of this discrete field. Not the flatness admission:
-        // that decision is `exact_regge::einstein_hilbert_fence`.
         assert!(field.einstein_hilbert_action.abs() < 1e-6);
 
-        // Higher-derivative action is non-negative and zero for flat space
         assert!(field.higher_derivative_action >= 0.0);
         assert!(field.higher_derivative_action.abs() < 1e-6);
     }

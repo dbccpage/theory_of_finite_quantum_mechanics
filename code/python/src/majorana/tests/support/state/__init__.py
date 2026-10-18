@@ -23,9 +23,7 @@ class StateRepresentation:
         return f"StateRepresentation(layer_id={self.layer_id}, variables={self.variables!r})"
 
 
-# BEGIN GENERATED RUST SURFACE
-# Lazy Rust-surface exports; existing Python implementations win.
-from importlib import import_module as _rust_surface_import_module  # noqa: E402
+from importlib import import_module as _rust_surface_import_module
 
 _RUST_SURFACE_EXPORTS = {
     "ALL": "omega_state.application_convergence",
@@ -771,4 +769,3 @@ def __getattr__(name: str):
 
 
 __all__ = sorted(set(globals().get("__all__", ())) | set(_RUST_SURFACE_EXPORTS))
-# END GENERATED RUST SURFACE

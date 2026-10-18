@@ -1,6 +1,3 @@
-//! Exact flux closure and volume of finite oriented tetrahedra.
-//! This finite geometric face does not construct a continuum Hilbert space.
-//! AuthorityEffect: None.
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError};
 use linear_algebra::exact_field::elimination::determinant;
 use num_traits::Zero;
@@ -66,8 +63,6 @@ impl FluxTetrahedron {
             .map(|v| v.iter().map(|x| x * x).sum())
     }
 }
-/// The declared finite carrier retains its label and degree, now with actual
-/// validated geometric cells. The empty carrier carries no geometric claim.
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct LoopQuantumGravity {
     pub degree: usize,
@@ -98,8 +93,6 @@ impl LoopQuantumGravity {
             .all(|t| t.closure_defect().iter().all(Zero::is_zero))
     }
 }
-/// Exact oriented Euclidean four-simplex; the determinant is its signed 4!
-/// volume. Hinge bivectors are wedges of its triangle edge vectors.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ExactFourSimplex {
     pub vertices: [[Rational; 4]; 5],

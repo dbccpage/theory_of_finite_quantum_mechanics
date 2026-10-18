@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Jeremy H. Carroll
 
 import unittest
 
@@ -15,17 +13,13 @@ from omega_engine.crates.majorana.engines.exact_algebraic_verifier import (
 
 class TestExactAlgebraicVerifier(unittest.TestCase):
     def test_exact_algebraic_identities(self):
-        # Cyclotomic properties
         self.assertEqual(SQRT2 * SQRT2, Cyclotomic16([2, 0, 0, 0, 0, 0, 0, 0]))
         self.assertEqual(I_IMAG * I_IMAG, Cyclotomic16([-1, 0, 0, 0, 0, 0, 0, 0]))
 
-        # Braid relation
         self.assertTrue(verify_ising_braid_relation())
 
-        # Fusion associativity F^2 = I
         self.assertTrue(verify_fusion_associativity())
 
-        # Hexagon equations
         self.assertTrue(verify_ising_sigma_hexagon_specialization())
 
     def test_float_rejection(self):

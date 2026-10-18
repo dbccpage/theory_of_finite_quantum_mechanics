@@ -1,8 +1,3 @@
-//! Exact diagnostics for the single synthetic block matrix constructed below.
-//! The blocks are independently prescribed; they are not a parameterization of
-//! every MUB system. See research/mub6_frontier_synthesis.md and the matching
-//! test_*_verifier.rs for the scope and exact replay checks.
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -75,12 +70,11 @@ pub fn dita_d6_block(dx: i64, dy: i64) -> Vec<Vec<Cyc24>> {
     mat
 }
 pub fn canonical_5mub_gramian() -> Vec<Vec<Cyc24>> {
-    let cols = canonical_triple_exact(); // 18 columns: 0..6 B0, 6..12 B1, 12..18 B2
+    let cols = canonical_triple_exact();
     let s6 = tao_s6_block();
     let d6 = dita_d6_block(0, 0);
     let mut g = vec![vec![Cyc24::zero(); GRAMIAN_DIM_5]; GRAMIAN_DIM_5];
 
-    // Blocks 0, 1, 2: pairwise Gramian from canonical triple T0
     for a in 0..3 {
         for b in 0..3 {
             for j in 0..DIM_HILBERT {
@@ -93,7 +87,6 @@ pub fn canonical_5mub_gramian() -> Vec<Vec<Cyc24>> {
         }
     }
 
-    // Diagonal identity for blocks 3 and 4
     let one = Cyc24::rat(BigRational::one());
     for b in 3..5 {
         for j in 0..DIM_HILBERT {
@@ -101,7 +94,6 @@ pub fn canonical_5mub_gramian() -> Vec<Vec<Cyc24>> {
         }
     }
 
-    // Off-diagonal block 3: G_a3 = S6 and G_3a = S6^\dagger for a in 0..3
     for a in 0..3 {
         for j in 0..DIM_HILBERT {
             for k in 0..DIM_HILBERT {
@@ -112,7 +104,6 @@ pub fn canonical_5mub_gramian() -> Vec<Vec<Cyc24>> {
         }
     }
 
-    // Off-diagonal block 4: G_a4 = D6(0, 0) and G_4a = D6(0, 0)^\dagger for a in 0..4
     for a in 0..4 {
         for j in 0..DIM_HILBERT {
             for k in 0..DIM_HILBERT {
@@ -130,20 +121,17 @@ pub fn canonical_6mub_gramian() -> Vec<Vec<Cyc24>> {
     let f6_1 = chirp_fourier6_block(1);
     let mut g = vec![vec![Cyc24::zero(); GRAMIAN_DIM_6]; GRAMIAN_DIM_6];
 
-    // Copy leading 30 x 30 block from G^(5)
     for i in 0..GRAMIAN_DIM_5 {
         for j in 0..GRAMIAN_DIM_5 {
             g[i][j] = g5[i][j].clone();
         }
     }
 
-    // Diagonal identity for block 5
     let one = Cyc24::rat(BigRational::one());
     for j in 0..DIM_HILBERT {
         g[5 * DIM_HILBERT + j][5 * DIM_HILBERT + j] = one.clone();
     }
 
-    // Off-diagonal block 5: G_a5 = F6^(1) and G_5a = (F6^(1))^\dagger for a in 0..5
     for a in 0..5 {
         for j in 0..DIM_HILBERT {
             for k in 0..DIM_HILBERT {
@@ -284,7 +272,6 @@ pub fn verify_hyper_gramian_structure(
     let zero = Cyc24::zero();
     let dim = num_bases * DIM_HILBERT;
 
-    // 1. Diagonal blocks are identity
     let mut diag_ok = true;
     for a in 0..num_bases {
         for i in 0..DIM_HILBERT {
@@ -302,7 +289,6 @@ pub fn verify_hyper_gramian_structure(
         }
     }
 
-    // 2. Off-diagonal blocks have modulus squared = 1/6
     let mut modulus_ok = true;
     for a in 0..num_bases {
         for b in 0..num_bases {
@@ -323,7 +309,6 @@ pub fn verify_hyper_gramian_structure(
         }
     }
 
-    // 3. Exactly Hermitian
     let mut herm_ok = true;
     for i in 0..dim {
         for j in 0..dim {
@@ -354,7 +339,6 @@ pub struct MubHyperGramianCertificate {
     pub gramian_5_structure: GramianStructureReport,
     pub gramian_6_structure: GramianStructureReport,
 
-    // 5-MUB certificates
     pub mub5_rank1_inner_product: String,
     pub mub5_rank1_strictly_negative: bool,
     pub mub5_strict_inner_product: String,
@@ -365,7 +349,6 @@ pub struct MubHyperGramianCertificate {
     pub mub5_strict_pivots: Vec<String>,
     pub mub5_strict_pivots_strictly_positive: bool,
 
-    // 6-MUB certificates
     pub mub6_rank1_inner_product: String,
     pub mub6_rank1_strictly_negative: bool,
     pub mub6_strict_inner_product: String,
@@ -376,7 +359,6 @@ pub struct MubHyperGramianCertificate {
     pub mub6_strict_pivots: Vec<String>,
     pub mub6_strict_pivots_strictly_positive: bool,
 
-    // Global assertions
     pub dual_certificates_psd_certified: bool,
     pub fixed_matrix_5_witness_checked: bool,
     pub fixed_matrix_6_witness_checked: bool,
@@ -390,7 +372,6 @@ pub struct MubHyperGramianCertificate {
     pub sha256_digest: Option<String>,
 }
 pub fn solve_hyper_gramian_certificate() -> MubHyperGramianCertificate {
-    // 1. 5-MUB formulation and verification
     let g5 = canonical_5mub_gramian();
     let struct5 = verify_hyper_gramian_structure(&g5, NUM_BASES_5);
 
@@ -414,7 +395,6 @@ pub fn solve_hyper_gramian_certificate() -> MubHyperGramianCertificate {
         ldlt_pivots_rational(&w5_strict).expect("LDL^T decomposition failed for W_strict^(5)");
     let all_pos5 = pivots5_strict.iter().all(|p| p > &BigRational::zero());
 
-    // 2. 6-MUB formulation and verification
     let g6 = canonical_6mub_gramian();
     let struct6 = verify_hyper_gramian_structure(&g6, NUM_BASES_6);
 

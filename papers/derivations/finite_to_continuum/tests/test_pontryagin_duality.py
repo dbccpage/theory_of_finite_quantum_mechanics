@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Unit tests for Pontryagin Duality Bridge and 7-stage honest program."""
 
 from __future__ import annotations
@@ -36,35 +35,27 @@ class TestPontryaginDuality(unittest.TestCase):
         self.assertEqual(r.is_exact_q_through_stage, 0)
         self.assertEqual(r.authority_effect, "None")
 
-        # Stage 0: FINITE_EXACT
         self.assertEqual(r.stage("FINITE_EXACT").status, "EXACT_Q")
         self.assertEqual(r.stage("FINITE_EXACT").evidence["verdict"], "closed_residual")
 
-        # Stage 1: DISCRETE_PERIOD_GROUP
         self.assertEqual(r.stage("DISCRETE_PERIOD_GROUP").status, "OBSERVED")
         self.assertEqual(r.stage("DISCRETE_PERIOD_GROUP").evidence["character_group_observed"], "Z/4Z")
 
-        # Stage 2: UNBOUNDED_PERIOD_DECL
         self.assertEqual(r.stage("UNBOUNDED_PERIOD_DECL").status, "MODELLING_DECLARATION")
 
-        # Stage 3: PONTRYAGIN_DUAL_IMPORT
         self.assertEqual(r.stage("PONTRYAGIN_DUAL_IMPORT").status, "LITERATURE_IMPORT")
         self.assertEqual(r.stage("PONTRYAGIN_DUAL_IMPORT").evidence["pontryagin_dual"], "U(1)")
 
-        # Stage 4: HAAR_PERIOD_CONVENTION
         self.assertEqual(r.stage("HAAR_PERIOD_CONVENTION").status, "NORMALIZATION")
         self.assertEqual(r.stage("HAAR_PERIOD_CONVENTION").evidence["pi_origin"], "NORMALIZATION_ON_DUAL_NOT_EXACT_Q_OUTPUT")
 
-        # Stage 5: CONTINUOUS_HOST_EVAL
         self.assertEqual(r.stage("CONTINUOUS_HOST_EVAL").status, "HOST_FLOAT")
         self.assertFalse(r.stage("CONTINUOUS_HOST_EVAL").evidence["is_exact_q_certificate"])
         a_mid = r.stage("CONTINUOUS_HOST_EVAL").evidence["amplitude_a_interval"]["midpoint_float"]
         self.assertAlmostEqual(a_mid, 3.0 / math.pi, places=10)
 
-        # Stage 6: EXPERIMENTAL_ALPHA
         self.assertEqual(r.stage("EXPERIMENTAL_ALPHA").status, "OPEN")
 
-        # Spine fences
         self.assertEqual(r.spine_fence["pi_from_exact_q"], "REFUSED")
         self.assertEqual(r.spine_fence["u1_from_l1_mass_alone"], "REFUSED")
 

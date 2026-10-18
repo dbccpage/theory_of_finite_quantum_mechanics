@@ -1,4 +1,3 @@
-//! JSON-only local driver for the bounded WDP encoding experiment.
 use std::io::{self, Read};
 
 use omega_wdp::question_preserving_encoding::{experiment, verify_cochain, verify_direct, Task};

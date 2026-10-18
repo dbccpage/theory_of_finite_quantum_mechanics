@@ -48,8 +48,6 @@ from omega_engine_workflows_agents_skills.domain.workflow_graph import (
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 WORKFLOWS = REPO_ROOT / ".agents" / "workflows"
 
-# Measured after repairing the three documented renames. Pinned as a set so a
-# sixth appearing -- or one of these being resolved -- is reported.
 UNRESOLVED_OPERATIONS = ("meta-law-contract-enforcer", "paper-build")
 
 
@@ -58,9 +56,6 @@ def reports():
     return validate_all()
 
 
-# --------------------------------------------------------------------------
-# The estate
-# --------------------------------------------------------------------------
 
 
 def test_every_shipped_workflow_is_validated(reports):
@@ -144,9 +139,6 @@ def test_every_workflow_declares_authority_effect_none(reports):
         assert not [f for f in report.findings if f.code == "AUTHORITY"]
 
 
-# --------------------------------------------------------------------------
-# The validator itself
-# --------------------------------------------------------------------------
 
 
 def _write(tmp_path, name, payload):
@@ -276,9 +268,6 @@ def test_a_missing_workflow_directory_is_refused(tmp_path):
         validate_all(tmp_path / "absent")
 
 
-# --------------------------------------------------------------------------
-# Cycle detection
-# --------------------------------------------------------------------------
 
 
 def test_the_same_operation_at_the_same_slot_is_a_cycle():

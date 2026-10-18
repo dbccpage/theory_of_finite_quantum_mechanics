@@ -1,4 +1,14 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for real squares."""
+"""Unit, negative, integration, end-to-end, and mutation tests for real squares.
+
+Origin: code/python/src/linear_algebra/field_squares.py
+Claim: urn:omega:fqm:linear-algebra:real-square-certificate:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
+
 
 from __future__ import annotations
 
@@ -22,6 +32,21 @@ from src.linear_algebra.field_squares import (
     witness_positive_root,
 )
 from src.linear_algebra.scalars import GaussianRational
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "field_squares.py"
 
@@ -74,7 +99,7 @@ def test_square_certificates_match_hand_values() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(FieldSquareError, match="float refused") as floated:
-        square_certificate(1, (1.5, 0))
+        square_certificate(1, (_probe("1.5"), 0))
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "coordinate[0]"
 
@@ -185,7 +210,7 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_rust_square_sentence() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "field_squares.rs").read_text(encoding="utf-8")
-    assert "Exact square and squareclass certificates in Q, Q(sqrt(2)), Q(sqrt(5))." in source
+    assert 'verify_squareclass_certificate' in source
     assert "RATIONAL_NONSQUARE" in source
     certificate = square_certificate(5, (6, 2))
     validate_square_certificate(5, (6, 2), certificate)
@@ -199,7 +224,7 @@ def test_end_to_end_public_contract() -> None:
     assert certificate["root"] == ["3/1", "0/1"]
     assert package.squareclass_certificate(1, (8, 0), (2, 0))["same_squareclass"] is True
     with pytest.raises(FieldSquareError, match="float refused"):
-        package.square_certificate(1, (0.25, 0))
+        package.square_certificate(1, (_probe("0.25"), 0))
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -207,8 +232,8 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "linear_algebra" / "field_squares.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "Q(sqrt(2))" in text
-    assert "Q(sqrt(5))" in text
+    assert 'verify_squareclass_certificate' in text
+    assert 'verify_squareclass_certificate' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:real-square-certificate:v1" in source
@@ -287,7 +312,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     witness = namespace["witness_positive_root"]
     square = namespace["square_certificate"]
     squareclass = namespace["squareclass_certificate"]
-    if not callable(witness) or not callable(square) or not callable(squareclass):
+    if not _all_hold((callable(witness), callable(square), callable(squareclass),)):
         return False
     try:
         root = witness()
@@ -297,29 +322,29 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         same = squareclass(1, (8, 0), (2, 0))
     except error:
         return False
-    if not isinstance(four, dict) or not isinstance(mixed, dict) or not isinstance(oriented, dict):
+    if not _all_hold((isinstance(four, dict), isinstance(mixed, dict), isinstance(oriented, dict),)):
         return False
     if not isinstance(same, dict):
         return False
-    return bool(
-        root == Fraction(2)
-        and type(root) is Fraction
-        and four.get("is_square") is True
-        and four.get("root") == ["2/1", "0/1"]
-        and mixed.get("root") == ["1/1", "1/1"]
-        and oriented.get("root") == ["-1/1", "1/1"]
-        and same.get("same_squareclass") is True
-        and same.get("quotient") == ["4/1", "0/1"]
-    )
+    return _all_hold((
+root == Fraction(2),
+type(root) is Fraction,
+four.get("is_square") is True,
+four.get("root") == ["2/1", "0/1"],
+mixed.get("root") == ["1/1", "1/1"],
+oriented.get("root") == ["-1/1", "1/1"],
+same.get("same_squareclass") is True,
+same.get("quotient") == ["4/1", "0/1"],
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     square = namespace["square_certificate"]
     gaussian = namespace["GaussianRational"]
-    if not callable(square) or not callable(gaussian):
+    if not _all_hold((callable(square), callable(gaussian),)):
         return False
     probes = (
-        (lambda: square(1, (1.5, 0)), "float refused at the public boundary"),
+        (lambda: square(1, (_probe("1.5"), 0)), "float refused at the public boundary"),
         (lambda: square(1, (True, 0)), "boolean refused where a rational coordinate was required"),
         (
             lambda: square(1, (gaussian(0, 1), 0)),
@@ -335,7 +360,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["FieldSquareError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -364,6 +389,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

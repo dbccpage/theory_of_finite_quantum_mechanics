@@ -27,16 +27,12 @@ from __future__ import annotations
 import pathlib
 import re
 
-# Cells escape literal pipes as `\|` (norms, inner products). Protect them
-# before splitting on the real column separators.
 _ESCAPED_PIPE = "\x00PIPE\x00"
 
 MAP_RELPATH = (
     "122_finite_hilbert_boundary_from_primitive_difference/evidence/PAPER_CLAIM_MAP.md"
 )
 
-# The audit's restricted status vocabulary, mapped onto this application's types.
-# `proved` is deliberately NOT mapped to a proof: see the module docstring.
 STATUS_TYPE = {
     "proved": "LEAN SOURCE (UNREPLAYED)",
     "computed": "FINITE FIXTURE",
@@ -135,11 +131,8 @@ def retype_from_audit(rec: dict) -> tuple[str, str]:
     """Type a claim from its audit row, never above LEAN SOURCE (UNREPLAYED)."""
     exists = rec["exists_stub"].lower()
     ctype = rec["type"]
-    # A "proved" row whose declaration is a stub, or absent, proves nothing.
     if ctype == "LEAN SOURCE (UNREPLAYED)" and not exists.startswith("yes / no"):
         ctype = "ASSERTED"
-    # A refuted row carries no evidence, whatever Lean it once pointed at:
-    # citing the declaration would read as support for a claim that was struck.
     if ctype == "REFUTED BY AUDIT":
         return ctype, "none -- refuted by the 2026-08-19 adversarial audit; do not cite"
     return ctype, evidence_for(rec)

@@ -1,9 +1,3 @@
-//! Target A1: Full Collar Partition Cover & Network Simplex Acceleration.
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: floating point types are strictly forbidden in this module.
-//! All coordinates, cuts, margins, and volumes are computed in exact rational arithmetic.
-//!
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -16,7 +10,6 @@ use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge
 
 pub const DIM_2D: usize = 2;
 
-/// Errors arising during 2D collar box partition and cover verification.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum CollarCoverError {
     #[error("Invalid dimension {0}: must be strictly less than 2")]
@@ -58,15 +51,12 @@ pub enum CollarCoverError {
     SimplexFailure(String),
 }
 
-/// A 2-dimensional axis-aligned interval box `[u_0, v_0] x [u_1, v_1]` parameterizing
-/// the periodic collar slice `[0, 1)^2 \subset \mathbb{Q}^2`.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct RationalBox2D {
     pub bounds: [(BigRational, BigRational); DIM_2D],
 }
 
 impl RationalBox2D {
-    /// Constructs the standard 2D unit square `[0, 1]^2`.
     pub fn unit_square() -> Self {
         let zero = BigRational::zero();
         let one = BigRational::one();
@@ -75,8 +65,6 @@ impl RationalBox2D {
         }
     }
 
-    /// Constructs a new 2D rational box with strict non-degeneracy check:
-    /// `bounds[j].0 < bounds[j].1` for all j in 0..2.
     pub fn new(bounds: [(BigRational, BigRational); DIM_2D]) -> Result<Self, CollarCoverError> {
         for j in 0..DIM_2D {
             if bounds[j].0 >= bounds[j].1 {
@@ -90,7 +78,6 @@ impl RationalBox2D {
         Ok(Self { bounds })
     }
 
-    /// Tests whether an exact rational 2D point is contained in the closed box.
     pub fn contains_point(&self, pt: &[BigRational; DIM_2D]) -> bool {
         for j in 0..DIM_2D {
             let (ref lo, ref hi) = self.bounds[j];
@@ -101,7 +88,6 @@ impl RationalBox2D {
         true
     }
 
-    /// Sup-norm radius about the box centre: the largest half-width.
     pub fn radius(&self) -> BigRational {
         let two = rq(2, 1);
         self.bounds
@@ -111,15 +97,12 @@ impl RationalBox2D {
             .expect("a 2D box has two intervals")
     }
 
-    /// Exact 2D area: product of interval lengths `(v_0 - u_0) * (v_1 - u_1)`.
     pub fn area(&self) -> BigRational {
         let w0 = &self.bounds[0].1 - &self.bounds[0].0;
         let w1 = &self.bounds[1].1 - &self.bounds[1].0;
         w0 * w1
     }
 
-    /// Subdivides the box along dimension `dim` at `cut`, returning `(left, right)`.
-    /// Requires `cut` to be strictly interior: `lo < cut < hi`.
     pub fn subdivide(
         &self,
         dim: usize,
@@ -154,7 +137,6 @@ impl RationalBox2D {
     }
 }
 
-/// Inductive bisection tree for the 2D periodic collar slice.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum CollarBisectionTree {
     Leaf(RationalBox2D),
@@ -167,7 +149,6 @@ pub enum CollarBisectionTree {
 }
 
 impl CollarBisectionTree {
-    /// Extracts the list of terminal leaf boxes.
     pub fn leaves(&self) -> Vec<RationalBox2D> {
         let mut result = Vec::new();
         self.collect_leaves(&mut result);
@@ -184,16 +165,12 @@ impl CollarBisectionTree {
         }
     }
 
-    /// Computes the sum of all leaf areas in exact rational arithmetic.
     pub fn total_area(&self) -> BigRational {
         self.leaves()
             .iter()
             .fold(BigRational::zero(), |acc, b| acc + b.area())
     }
 
-    /// Verifies partition cover validity against an expected domain:
-    /// - At a leaf: checks exact equality of the box with the domain;
-    /// - At a split: checks strictly interior cut and recursively validates both children.
     pub fn verify_partition_cover(&self, domain: &RationalBox2D) -> Result<(), CollarCoverError> {
         match self {
             CollarBisectionTree::Leaf(b) => {
@@ -219,7 +196,6 @@ impl CollarBisectionTree {
         }
     }
 
-    /// Verifies exact area conservation: total leaf area == expected area.
     pub fn verify_volume_conservation(
         &self,
         expected: &BigRational,
@@ -235,7 +211,6 @@ impl CollarBisectionTree {
     }
 }
 
-/// Constructs a canonical 4-quadrant bisection tree over `[0, 1]^2`.
 pub fn sample_quadrant_tree() -> CollarBisectionTree {
     let half = rq(1, 2);
     let unit = RationalBox2D::unit_square();
@@ -262,7 +237,6 @@ pub fn sample_quadrant_tree() -> CollarBisectionTree {
     }
 }
 
-/// Builds a uniform dyadic bisection tree to specified depth (alternating dimensions 0 and 1).
 pub fn build_uniform_dyadic_tree(depth: usize) -> CollarBisectionTree {
     fn recurse(
         domain: RationalBox2D,
@@ -285,8 +259,6 @@ pub fn build_uniform_dyadic_tree(depth: usize) -> CollarBisectionTree {
     recurse(RationalBox2D::unit_square(), 0, depth)
 }
 
-/// Evaluate transverse collar barrier margin:
-/// eps = slice_floor - lipschitz * delta.
 pub fn evaluate_collar_barrier_margin(
     slice_floor: &BigRational,
     lipschitz: &BigRational,
@@ -308,31 +280,21 @@ pub fn evaluate_collar_barrier_margin(
     Ok(margin)
 }
 
-/// Standard Diță collar barrier margin:
-/// floor = 37249/90000, L_z = 85/9, delta = 1/1000 => margin = 12133/30000 > 0.
 pub fn standard_collar_barrier_margin() -> BigRational {
     evaluate_collar_barrier_margin(&base_gap(), &lipschitz_bound(), &delta_certified())
         .expect("standard collar barrier margin must be positive")
 }
 
-/// Barrier margin over one cell: `floor - L_z * r`, with `r` the cell's
-/// sup-norm radius. The barrier holds on the whole cell only when this is
-/// positive. It can be negative, so it is returned rather than refused.
 pub fn collar_cell_margin(cell: &RationalBox2D) -> BigRational {
     base_gap() - lipschitz_bound() * cell.radius()
 }
 
-/// The smallest uniform dyadic depth at which every cell's margin is positive,
-/// searched up to `max_depth`.
 pub fn collar_certification_depth(max_depth: usize) -> Option<usize> {
     (0..=max_depth).find(|&depth| {
         generate_collar_cover_report(&build_uniform_dyadic_tree(depth)).all_margins_positive
     })
 }
 
-/// Wire the in-tree Network Simplex solver to evaluate the discrete cycle circulation
-/// obstruction Phi_1([omega]) on the triad boundary graph:
-/// Vertices: 3, Edges: 3 with weights and prescribed integer cocycle omega.
 pub fn solve_collar_cycle_circulation(
     weights: &[i128; 3],
     omega: &[i128; 3],
@@ -360,7 +322,6 @@ pub fn solve_collar_cycle_circulation(
     solve_phi1(&boundary, omega).map_err(|e| CollarCoverError::SimplexFailure(e.to_string()))
 }
 
-/// Certified cell obstruction report.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarCellCertificate {
     pub box_bounds: [(String, String); DIM_2D],
@@ -370,7 +331,6 @@ pub struct CollarCellCertificate {
     pub certified: bool,
 }
 
-/// Comprehensive collar partition cover verification report.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarPartitionCoverReport {
     pub schema_version: String,
@@ -385,11 +345,6 @@ pub struct CollarPartitionCoverReport {
     pub certificates: Vec<CollarCellCertificate>,
 }
 
-/// Generates a cover report for a given bisection tree.
-///
-/// Each leaf is certified by its own margin, `collar_cell_margin`, so a
-/// coarse tree whose cells are too large for the Lipschitz erosion is
-/// reported uncertified rather than inheriting the fixed-step margin.
 pub fn generate_collar_cover_report(tree: &CollarBisectionTree) -> CollarPartitionCoverReport {
     let leaves = tree.leaves();
     let total_area = tree.total_area();

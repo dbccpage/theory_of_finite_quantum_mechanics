@@ -1,20 +1,9 @@
-//! Path-oriented transport and J-style identity elimination records.
-//!
-//! [`PathTransport`] is a synonym name for [`Transport`](crate::identity::Transport):
-//! transport along a path into a dependent family. [`IdentityEliminator`] is the
-//! finite shape of the path-induction (J) eliminator. Neither record mints
-//! authority; validation is shape-only.
 
 use crate::identity::{IdentityError, Transport};
 use serde::{Deserialize, Serialize};
 
-/// Transport along a path into a dependent family (synonym of [`Transport`]).
 pub type PathTransport = Transport;
 
-/// J-style identity eliminator record (path induction).
-///
-/// Motive `C`, base case `c` for `refl`, path `p`, and result term.
-/// Shape-only: does not compute or verify the elimination.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct IdentityEliminator {
     pub motive_ref: String,
@@ -24,7 +13,6 @@ pub struct IdentityEliminator {
 }
 
 impl IdentityEliminator {
-    /// Shape-only validation: all J-eliminator references must be non-empty.
     pub fn validate(&self) -> Result<(), IdentityError> {
         if self.motive_ref.is_empty()
             || self.base_case_ref.is_empty()

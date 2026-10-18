@@ -1,6 +1,3 @@
-//! Formal exact power series modulo x^(N+1). Coefficients use the estate's
-//! exact scalar tower; calculus refuses fields where a required integer vanishes.
-//! AuthorityEffect: None.
 use linear_algebra::scalars::{ExactRing, Field};
 pub const MAX_SERIES_ORDER: usize = 1024;
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -119,8 +116,6 @@ impl<K: Field + ExactRing> TruncatedSeries<K> {
         }
         Ok(Self { coefficients })
     }
-    /// Formal derivative, padded to the same order. Its highest coefficient is unknown
-    /// from an N-jet and recorded as zero; use only through degree N-1.
     pub fn derivative(&self) -> Self {
         let mut coefficients = vec![K::zero(); self.order() + 1];
         for k in 1..=self.order() {

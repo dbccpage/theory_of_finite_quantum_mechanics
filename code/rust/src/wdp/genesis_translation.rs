@@ -1,8 +1,3 @@
-//! Checked candidate translation between two preserved Genesis source models.
-//! The represented world's requirements become asserted/retained/protected pairs;
-//! views become an explicitly declared passage observer. Notes are forgotten.
-//! Total source replay is compared, not the additional guard-success semantics.
-//! Different refusal and augmentation premises can refute this translation.
 use crate::genesis_passage::{PassageEvent, PassageState};
 use crate::genesis_refusal::{Constitution, RepresentedWorld, WorldEvent};
 #[derive(Debug, Clone, PartialEq, Eq)]

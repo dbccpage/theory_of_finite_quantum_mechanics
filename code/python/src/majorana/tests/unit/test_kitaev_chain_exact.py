@@ -11,7 +11,6 @@ from pathlib import Path
 import sys
 import pytest
 
-# Add ms_majorana/code to sys.path
 code_dir = Path(__file__).resolve().parent.parent.parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
@@ -41,15 +40,12 @@ class TestMajoranaBilinear:
 
     def test_commutator_with_mode(self):
         b = MajoranaBilinear(2, 5)
-        # Mode 2: [i g2 g5, g2] -> factor 2, target 5
         comm2 = b.commutator_with_mode(2)
         assert comm2 == (Fraction(2, 1), 5)
 
-        # Mode 5: [i g2 g5, g5] -> factor -2, target 2
         comm5 = b.commutator_with_mode(5)
         assert comm5 == (Fraction(-2, 1), 2)
 
-        # Uninvolved mode 1: commutator is None
         assert b.commutator_with_mode(1) is None
         assert b.commutator_with_mode(3) is None
 
@@ -58,34 +54,27 @@ class TestKitaevChainExact:
     """Test suite for KitaevChainExact Hamiltonian and MZM isolation."""
 
     def test_sweet_spot_chain_4_sites(self):
-        # 4 sites => 8 Majorana modes: gamma_1 .. gamma_8
         chain = KitaevChainExact(num_sites=4, t=1, mu=0, delta=1)
         assert chain.is_sweet_spot is True
         assert chain.num_modes == 8
 
-        # Bulk paired modes should be 2, 3, 4, 5, 6, 7
         bulk_modes = chain.bulk_paired_modes()
         assert bulk_modes == {2, 3, 4, 5, 6, 7}
 
-        # Boundary modes are (1, 8)
         assert chain.boundary_modes() == (1, 8)
 
-        # Unpaired modes are exactly {1, 8}
         unpaired = chain.unpaired_zero_modes()
         assert unpaired == {1, 8}
 
-        # Commutator with boundary modes is exactly zero
         comm1 = chain.commutator_with_mode(1)
         comm8 = chain.commutator_with_mode(8)
         assert comm1 == {}
         assert comm8 == {}
 
-        # Commutator with bulk mode 2 is non-zero (couples to mode 3)
         comm2 = chain.commutator_with_mode(2)
         assert 3 in comm2
         assert comm2[3] != Fraction(0, 1)
 
-        # MZM isolation verification report
         res = chain.verify_mzm_isolation()
         assert res["is_sweet_spot"] is True
         assert res["mzm_topologically_protected"] is True
@@ -95,14 +84,11 @@ class TestKitaevChainExact:
         assert res["authority_effect"] == "None"
 
     def test_non_sweet_spot_with_chemical_potential(self):
-        # Non-zero chemical potential mu couples on-site pairs (2j-1, 2j)
         chain = KitaevChainExact(num_sites=3, t=1, mu=Fraction(1, 2), delta=1)
         assert chain.is_sweet_spot is False
 
-        # Mode 1 now participates in on-site pairing (1, 2)
         assert 1 in chain.bulk_paired_modes()
 
-        # Commutator [H, gamma_1] is no longer zero
         comm1 = chain.commutator_with_mode(1)
         assert 2 in comm1
         assert comm1[2] != Fraction(0, 1)
@@ -113,10 +99,8 @@ class TestKitaevChainExact:
         assert res["mzm_topologically_protected"] is False
 
     def test_non_sweet_spot_delta_different_from_t(self):
-        # t != delta induces cross pairing (2j-1, 2j+2)
         chain = KitaevChainExact(num_sites=3, t=Fraction(2, 1), mu=0, delta=Fraction(1, 1))
         assert chain.is_sweet_spot is False
-        # Mode 1 now participates via (1, 4) cross bond
         assert 1 in chain.bulk_paired_modes()
 
         res = chain.verify_mzm_isolation()

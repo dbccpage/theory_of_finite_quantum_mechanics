@@ -80,7 +80,6 @@ class ProjectionContextCongruenceEngine:
         self.generators = generators
         self.observation_fn = observation_fn
 
-        # Verify no state ID collisions
         self.raw_states = list(states)
         self.state_ids: List[str] = []
         self.id_to_state: Dict[str, Any] = {}
@@ -91,7 +90,6 @@ class ProjectionContextCongruenceEngine:
             self.state_ids.append(sid)
             self.id_to_state[sid] = s
 
-        # Verify generator domain closure
         for gname, gen in self.generators.items():
             for s in self.raw_states:
                 succ = gen(s)
@@ -108,23 +106,18 @@ class ProjectionContextCongruenceEngine:
         return self.state_id_fn(curr)
 
     def compute_core_c(self) -> ProjectionContextCongruenceResult:
-        # Step 1: Initial observation partition
         obs_groups: Dict[Any, List[str]] = {}
         for sid in self.state_ids:
             val = self.observation_fn(self.id_to_state[sid])
-            # Normalize unhashable observation if necessary
             key = val if isinstance(val, (int, str, float, bool, tuple)) else str(val)
             obs_groups.setdefault(key, []).append(sid)
 
         initial_blocks = [sorted(block) for block in obs_groups.values()]
-        # Sort blocks canonically by their first element
         initial_blocks.sort(key=lambda b: b[0] if b else "")
 
-        # Current partition: list of sets of state IDs
         current_blocks: List[List[str]] = [list(b) for b in initial_blocks]
         splits_count = 0
 
-        # Step 2: Partition refinement loop (Moore / Hopcroft)
         changed = True
         while changed:
             changed = False
@@ -134,16 +127,13 @@ class ProjectionContextCongruenceEngine:
                     new_blocks.append(block)
                     continue
 
-                # Check if this block can be split by any generator
                 block_split = False
                 for gname in sorted(self.generators.keys()):
                     gen = self.generators[gname]
-                    # Map each state in block to the index of the block containing its successor
                     subgroups: Dict[int, List[str]] = {}
                     for sid in block:
                         succ = gen(self.id_to_state[sid])
                         succ_id = self.state_id_fn(succ)
-                        # Find block index of succ_id
                         b_idx = -1
                         for idx, b in enumerate(current_blocks):
                             if succ_id in b:
@@ -152,7 +142,6 @@ class ProjectionContextCongruenceEngine:
                         subgroups.setdefault(b_idx, []).append(sid)
 
                     if len(subgroups) > 1:
-                        # Block is split!
                         for sub in subgroups.values():
                             new_blocks.append(sub)
                         splits_count += 1
@@ -165,11 +154,9 @@ class ProjectionContextCongruenceEngine:
 
             current_blocks = new_blocks
 
-        # Canonical sort of final blocks
         final_blocks = [sorted(b) for b in current_blocks]
         final_blocks.sort(key=lambda b: b[0] if b else "")
 
-        # Map initial and final block indices
         initial_of = {
             sid: idx for idx, block in enumerate(initial_blocks) for sid in block
         }
@@ -177,12 +164,9 @@ class ProjectionContextCongruenceEngine:
             sid: idx for idx, block in enumerate(final_blocks) for sid in block
         }
 
-        # Step 3: Find separating witness context words for returning pairs
-        # Returning pairs: x, y where initial_of[x] == initial_of[y] but final_of[x] != final_of[y]
         witnesses: List[ReturningProjectionWitness] = []
         gen_keys = sorted(self.generators.keys())
 
-        # For every pair separated by refinement
         seen_pairs = set()
         for i, sid_x in enumerate(self.state_ids):
             for sid_y in self.state_ids[i + 1 :]:
@@ -192,7 +176,6 @@ class ProjectionContextCongruenceEngine:
                         continue
                     seen_pairs.add(pair_key)
 
-                    # BFS to find the shortest separating word
                     queue: deque[Tuple[str, ...]] = deque([()])
                     found_word: Optional[Tuple[str, ...]] = None
                     obs_x_str = ""
@@ -210,7 +193,6 @@ class ProjectionContextCongruenceEngine:
                                 obs_x_str = str(ox)
                                 obs_y_str = str(oy)
                                 break
-                        # Limit depth to prevent runaway on huge state spaces
                         if len(w) < len(self.state_ids):
                             for gk in gen_keys:
                                 queue.append(w + (gk,))
@@ -228,7 +210,6 @@ class ProjectionContextCongruenceEngine:
 
         is_invariant = (splits_count == 0)
 
-        # Step 4: Canonical receipt hash (permutation invariant)
         canonical_quotient = [sorted(b) for b in final_blocks]
         canonical_quotient.sort(key=lambda b: b[0] if b else "")
         digest_bytes = json.dumps(canonical_quotient, sort_keys=True).encode("utf-8")

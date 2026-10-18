@@ -1,4 +1,3 @@
-//! P3 Transferable Guard Library (PROD-P3) exact verifier.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum TransferOutcome {

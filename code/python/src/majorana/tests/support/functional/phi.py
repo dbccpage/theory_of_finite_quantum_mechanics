@@ -17,10 +17,10 @@ try:
 except ImportError:
     def math_phi1(n_nodes: int, edges: List[Tuple[int, int]], omega1: List[float]) -> float:
         return sum(abs(x) for x in omega1)
-    
+
     def raw_l1(delta: List[float]) -> float:
         return sum(abs(v) for v in delta)
-    
+
     def residual_l1(residual: List[float]) -> float:
         return sum(abs(v) for v in residual)
 
@@ -101,7 +101,6 @@ def solve_phi1_dual_witness(
             d0_mat[i, v_map[u]] = -1.0
             d0_mat[i, v_map[v]] = 1.0
 
-    # Primal LP: min_{alpha, t} sum_e w_e t_e  s.t.  -t <= omega - d0 alpha <= t
     c_lp = np.concatenate([np.zeros(n_v), edge_weights])
     i_e = np.eye(n_e)
     a_ub = np.vstack([np.hstack([d0_mat, -i_e]), np.hstack([-d0_mat, -i_e])])
@@ -117,7 +116,6 @@ def solve_phi1_dual_witness(
         alpha_opt = np.zeros(n_v)
         min_l1 = float(np.sum(edge_weights * np.abs(cochain_vec)))
 
-    # Dual LP: max_phi <phi, omega>  s.t.  d0^T phi = 0 and -w_e <= phi_e <= w_e
     c_dual = -np.asarray(cochain_vec, dtype=float)
     a_eq_dual = d0_mat.T
     b_eq_dual = np.zeros(n_v)
@@ -232,7 +230,6 @@ def constant_gauge_sweep_is_a_noop(
     }
 
 
-# Canonical Aliases
 Phi1 = evaluate_phi1
 
 __all__ = [

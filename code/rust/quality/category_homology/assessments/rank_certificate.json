@@ -7,7 +7,7 @@
     "sha256": "d10f292c869981053835b0afa088be72e2084b33abc7a9af153621281a5f7e2f"
   },
   "reviewer": "Codex source, specification and evidence review",
-  "evaluation_timestamp": "2026-10-18T20:34:56.105168+00:00",
+  "evaluation_timestamp": "2026-10-18T20:49:29.179693+00:00",
   "gates": {
     "G1": "A",
     "G2": "A",
@@ -103,7 +103,8 @@
       "The bound kernel receipt checks all twelve mathematical/refusal/index lemmas, with no unfinished proof and only propext, Classical.choice and Quot.sound. The model proves exact rank from checked identities and no successful artifact after any explicit refusal or failed predicate; a separate generic-error lemma preserves the first typed payload.",
       "The source-level refinement audit above covers every public construction, replay and observation path, plus the private scalar/shape/product/pivot/inverse primitives. Successful Rust construction is dominated by the same model predicates. Every fallible producer or matrix operation propagates an error before the sole certificate commit; producer correctness is not a soundness premise.",
       "The actual matrix-storage, serde, scalar and elimination sources are pinned by the Rust dependency receipt. Checked storage, canonical Q admission, range-derived row/column bounds and nonzero-pivot selection discharge the logical panic obligations. The compiled Rust challenge suite exercises malformed values, forged proofs, binding/shape rejection, extreme empty metadata and typed source propagation.",
-      "The grade is relative to the declared ordinary safe-Rust/runtime and exact-arithmetic trusted boundary. No custom consistency axiom or admitted mathematical obligation is introduced. Mechanized Rust/MIR refinement, global allocator totality and machine-checked crash freedom are not claimed; those stronger assurances belong to A+."
+      "The grade is relative to the declared ordinary safe-Rust/runtime and exact-arithmetic trusted boundary. No custom consistency axiom or admitted mathematical obligation is introduced. Mechanized Rust/MIR refinement, global allocator totality and machine-checked crash freedom are not claimed; those stronger assurances belong to A+.",
+      "The final isolated proof receipt 20261018T204626Z-rank-proof has all three command exits zero and stable direct source/library inputs, with explicit LEAN_PATH and LEAN_SRC_PATH excluding main-project outputs. Earlier 203223 root-configuration drift, 203754 timeout and 204240 source-search failure receipts are preserved but excluded from grading. Printed axiom reports never override an unsuccessful execution."
     ]
   },
   "open_findings": [],
@@ -168,31 +169,35 @@
     },
     {
       "path": "code/rust/quality/category_homology/run_rank_proof.py",
-      "sha256": "5be6894dd39046f846f3c17110395c0e7587cb791d2fd69ea5b718af9633433f"
+      "sha256": "ae496e9becba2b6e0d1fea111d497cf42a6a10ea7cc14234afa263f4f15562e1"
     },
     {
-      "path": "evidence/quality/category_homology/20261018T203223Z-rank-proof/receipt.json",
-      "sha256": "60f7a3bcf04705c71368fe1839e407710196d1ad8ce371361a8aa4f0d00fb5ab"
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/receipt.json",
+      "sha256": "5deb8c4ff5f3190bb6f1d2b0df31029bddc2f4e8f15b50874f39a112e9b4dfea"
     },
     {
-      "path": "evidence/quality/category_homology/20261018T203223Z-rank-proof/source_manifest.json",
-      "sha256": "aa99594aab0c68aa25682de461f22f9d5b19c1e14e16e12488f85abe38d52381"
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/source_manifest.json",
+      "sha256": "90e09c3fd1d2502c05ac8c12ed181eba2689d83baf09d4c32a51296c8caf8070"
     },
     {
-      "path": "evidence/quality/category_homology/20261018T203223Z-rank-proof/dependency_manifest.json",
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/dependency_manifest.json",
       "sha256": "c7661d12c7ba182b18f33a576e11d0fe3bdb94297b080da2ffed9923d39675ad"
     },
     {
-      "path": "evidence/quality/category_homology/20261018T203223Z-rank-proof/check.log",
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/check.log",
       "sha256": "de7c3ec59a8a6390c71a4c72926d434837b6e3b77b32be3642e7d00a02c8acec"
     },
     {
-      "path": "evidence/quality/category_homology/20261018T203223Z-rank-proof/dependencies.log",
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/dependencies.log",
       "sha256": "9df4d913da80a9a06704accbea05e01f1d653863f057e5762cb00a80b9e9cfe5"
     },
     {
-      "path": "evidence/quality/category_homology/20261018T203223Z-rank-proof/dependency-sources.log",
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/dependency-sources.log",
       "sha256": "dbf843b4a090e95cd4e858e3d1558a3a692e043ebe0a4f1eecb0931509b63731"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/environment.json",
+      "sha256": "3b7dd88f93ba110e0b27cda290cfde6c89d4dab4d41bfe53520cf6b071378bd9"
     }
   ],
   "rust_model_refinement": {
@@ -225,8 +230,8 @@
   },
   "proof_receipts": [
     {
-      "path": "evidence/quality/category_homology/20261018T203223Z-rank-proof/receipt.json",
-      "sha256": "60f7a3bcf04705c71368fe1839e407710196d1ad8ce371361a8aa4f0d00fb5ab",
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/receipt.json",
+      "sha256": "5deb8c4ff5f3190bb6f1d2b0df31029bddc2f4e8f15b50874f39a112e9b4dfea",
       "proof": "code/rust/quality/category_homology/proofs/RankCertificate.lean",
       "mathlib_root": "lean4/.lake/packages/mathlib"
     }

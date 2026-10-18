@@ -1,12 +1,6 @@
-//! MUB(6) Projector-Moments and 180 Quadratic Residuals Flatness Verifier (Pilot 046 / Gap G5)
-//!
-//! Validates the 180 quadratic residuals (108 MU + 72 orthonormality) in 72 real coordinates.
-//! Verifies degree-one and degree-two moment Gram matrix rank equality (rank 6 == rank 6),
-//! establishing exact moment flatness without ungrounded realification.
 
 use serde::{Deserialize, Serialize};
 
-/// Receipt for MUB projector moment flatness verification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MomentFlatnessReceipt {
     pub status: String,
@@ -19,7 +13,6 @@ pub struct MomentFlatnessReceipt {
     pub is_flat: bool,
 }
 
-/// Verify MUB projector moment flatness.
 pub fn verify_moment_flatness() -> MomentFlatnessReceipt {
     let mu_residuals = 108;
     let orthonormality_residuals = 72;

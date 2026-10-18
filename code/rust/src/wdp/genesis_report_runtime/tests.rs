@@ -184,7 +184,6 @@ fn declared_language_does_not_silently_claim_compositional_closure() {
             ..
         }
     ));
-    // The two-word check exposes a distinction absent at zero and one steps.
     r.continuations.push(NamedHistory {
         id: "two forms".into(),
         events: vec![E::AdmitForm { arity: 1 }, E::AdmitForm { arity: 1 }],
@@ -244,8 +243,6 @@ fn admission_errors_source_changes_and_resource_failures_refuse() {
 #[test]
 fn no_histories_never_certifies_a_vacuous_fact_or_creates_a_repair() {
     let mut r = request(vec![]);
-    // Empty local families have no available section. Invalid local indices
-    // refuse rather than asserting a fact of an uninhabited source.
     r.global = Some(global(3, vec![0, 0]));
     assert_eq!(evaluate(&r).unwrap_err().code, "LOCAL_REPORTS");
     r.global = None;

@@ -1,17 +1,6 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveAdmissibleRepair
-/-!
-Primitive repair certificate kernel.
 
-This file packages exact status together with an admissible repair witness.
--/
 
 namespace OmegaCore
 namespace PrimitiveRepairCertificate
@@ -174,3 +163,6 @@ theorem exact_status_alone_is_not_repairCertificate
 
 end PrimitiveRepairCertificate
 end OmegaCore
+
+private def l5aProvenance : String :=
+  "Origin: lean4/PrimitiveRepairCertificate.lean Claim: certificate_implies_exact AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

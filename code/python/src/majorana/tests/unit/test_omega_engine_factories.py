@@ -68,17 +68,14 @@ class TestOmegaEngineFactories(unittest.TestCase):
         self.assertIn("phi1", funcs)
         self.assertIn("wigner_yanase", funcs)
 
-        # Test gamma2
         res_g2 = evaluate_functional("gamma2", [0.0, 0.0, 0.0])
         self.assertTrue(res_g2.is_closed)
         self.assertEqual(res_g2.value, 0.0)
 
-        # Test phi1
         res_p1 = evaluate_functional("phi1", [1.0, 2.0])
         self.assertFalse(res_p1.is_closed)
         self.assertEqual(res_p1.value, 3.0)
 
-        # Test wigner_yanase
         rho = np.array([[1.0, 0.0], [0.0, 0.0]])
         h_op = np.array([[0.0, 1.0], [1.0, 0.0]])
         res_wy = evaluate_functional("wigner_yanase", rho, h_op)

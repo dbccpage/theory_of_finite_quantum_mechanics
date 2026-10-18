@@ -1,4 +1,3 @@
-//! Dimension-four Clifton-Kent campaign table. AuthorityEffect: None.
 use crate::linear_algebra::matrix as mx;
 use omega_number_theory::cyclotomic::Cyc24;
 use omega_number_theory::rational::{r_zero, rq};
@@ -16,7 +15,6 @@ pub struct CliftonKentDeficitReceipt {
     pub contextuality_persists_unconditionally: bool,
 }
 
-/// Evaluates the Clifton-Kent non-PSD deficit across all 4^5 = 1,024 classical valuations on d=4 MUBs.
 pub fn evaluate_all_1024_clifton_kent_valuations(
     system: &MubSystem<Cyc24>,
 ) -> Result<CliftonKentDeficitReceipt, String> {

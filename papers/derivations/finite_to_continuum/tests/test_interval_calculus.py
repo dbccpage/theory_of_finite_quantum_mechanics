@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Unit tests for Step 1: Certified Rational Interval Arithmetic."""
 
 from __future__ import annotations
@@ -43,22 +42,18 @@ class TestRationalIntervalCalculus(unittest.TestCase):
         a = RationalInterval(Fraction(1, 2), Fraction(3, 2))
         b = RationalInterval(Fraction(2), Fraction(3))
 
-        # Addition: [1/2+2, 3/2+3] = [5/2, 9/2]
         c = a + b
         self.assertEqual(c.lo, Fraction(5, 2))
         self.assertEqual(c.hi, Fraction(9, 2))
 
-        # Subtraction: [1/2-3, 3/2-2] = [-5/2, -1/2]
         d = a - b
         self.assertEqual(d.lo, Fraction(-5, 2))
         self.assertEqual(d.hi, Fraction(-1, 2))
 
-        # Multiplication: [1/2*2, 3/2*3] = [1, 9/2]
         m = a * b
         self.assertEqual(m.lo, Fraction(1))
         self.assertEqual(m.hi, Fraction(9, 2))
 
-        # Division: [ (1/2)/3, (3/2)/2 ] = [1/6, 3/4]
         div = a / b
         self.assertEqual(div.lo, Fraction(1, 6))
         self.assertEqual(div.hi, Fraction(3, 4))
@@ -84,12 +79,10 @@ class TestRationalIntervalCalculus(unittest.TestCase):
         self.assertEqual(cube.hi, Fraction(27))
 
     def test_heron_sqrt_bounds(self) -> None:
-        # Perfect square 4: bounded around 2
         lo, hi = rational_heron_sqrt_bounds(Fraction(4), steps=5)
         self.assertTrue(lo <= Fraction(2) <= hi)
         self.assertTrue(hi - lo < Fraction(1, 1000))
 
-        # Non-square: 2
         lo2, hi2 = rational_heron_sqrt_bounds(Fraction(2), steps=8)
         self.assertTrue(lo2 * lo2 <= Fraction(2) <= hi2 * hi2)
         self.assertTrue(hi2 - lo2 < Fraction(1, 10**8))
@@ -101,19 +94,16 @@ class TestRationalIntervalCalculus(unittest.TestCase):
         self.assertTrue(sq.hi >= Fraction(2))
 
     def test_exp_interval(self) -> None:
-        # exp(0) = 1
         e0 = exp_interval(RationalInterval(Fraction(0), Fraction(0)), order=5)
         self.assertEqual(e0.lo, Fraction(1))
         self.assertEqual(e0.hi, Fraction(1))
 
-        # exp(1) in [2.71828..., 2.71829...]
         e1 = exp_interval(RationalInterval(Fraction(1), Fraction(1)), order=15)
         self.assertTrue(Fraction(271828, 100000) <= e1.lo <= e1.hi <= Fraction(271829, 100000))
         self.assertTrue(e1.width < Fraction(1, 10**6))
 
     def test_certified_pi_enclosure(self) -> None:
         pi = certified_pi_enclosure(terms=8)
-        # pi contains 3.14159...: 3.14159 < pi.lo <= pi.hi < 3.14160
         self.assertTrue(Fraction(314159, 100000) <= pi.lo <= pi.hi <= Fraction(314160, 100000))
         self.assertTrue(pi.width < Fraction(1, 10**18))
 

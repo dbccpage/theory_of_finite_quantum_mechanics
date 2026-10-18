@@ -1,9 +1,3 @@
-//! Exact weighted L1 seminorm on a fixed finite rational quotient presentation.
-//!
-//! This is a certificate evaluator, not an optimizer or the legacy raw edge norm.
-//! It binds B and positive weights before accepting a primal-dual certificate.
-//! The declared quotient is Q^n / im(B); no ambient graded complex, graph identity,
-//! actor license or task-completion fact is inferred from this finite calculation.
 
 use crate::phi1::{
     ExactPhi1Certificate, ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1,
@@ -21,15 +15,6 @@ pub enum L1SeminormError {
     WeightBindingMismatch,
 }
 
-/// Immutable finite quotient presentation. All weights are strictly positive.
-/// Rank-deficient and zero-column boundaries are legitimate repair subspaces.
-///
-/// No public fields, unchecked constructor, mutation or wire deserializer.
-///
-/// ~~~compile_fail
-/// use omega_functional::l1_seminorm::L1Seminorm;
-/// let forged = L1Seminorm { boundary: vec![], weights: vec![] };
-/// ~~~
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct L1Seminorm {
     boundary: Vec<Vec<BigRational>>,
@@ -37,10 +22,6 @@ pub struct L1Seminorm {
 }
 
 impl L1Seminorm {
-    /// Check a finite presentation using the shared exact verifier on its zero
-    /// certificate. This checks dimensions, rectangularity, denominators and
-    /// positive weights without a duplicate, potentially drifting admission law.
-    /// The empty presentation represents only the zero-dimensional space.
     pub fn new(
         boundary: Vec<Vec<BigRational>>,
         weights: Vec<BigRational>,
@@ -56,7 +37,6 @@ impl L1Seminorm {
             dual_witness: vec![BigRational::zero(); coordinates],
             reported_value: BigRational::zero(),
         })?;
-        // Denominators have already been checked by the shared verifier.
         let canonical = |q: &BigRational| BigRational::new(q.numer().clone(), q.denom().clone());
         Ok(Self {
             boundary: checked
@@ -81,11 +61,6 @@ impl L1Seminorm {
         &self.weights
     }
 
-    /// Verify a claimed quotient seminorm, not the unminimized representative
-    /// mass. Typed Phi1 refusals propagate unchanged inside InvalidCertificate.
-    /// A valid certificate for another matrix or weight profile is still refused.
-    /// Mathematically equal rational encodings bind; a different basis/matrix
-    /// needs an explicit transport contract and is not silently substituted.
     pub fn evaluate(
         &self,
         certificate: ExactPhi1Certificate,
@@ -109,8 +84,6 @@ mod tests {
         BigRational::from_integer(value.into())
     }
 
-    // B spans the first axis. min_a 2|x-a| + 3|y| = 3|y|,
-    // independently of the native certificate verifier.
     fn axis() -> L1Seminorm {
         L1Seminorm::new(vec![vec![q(1)], vec![q(0)]], vec![q(2), q(3)]).unwrap()
     }
@@ -277,7 +250,7 @@ mod tests {
     #[test]
     fn false_optima_and_mutated_primal_data_do_not_become_measurements() {
         let mut submitted = certificate(3, 4);
-        submitted.reported_value = q(18); // raw representative mass, not optimum
+        submitted.reported_value = q(18);
         assert_eq!(
             axis().evaluate(submitted),
             Err(L1SeminormError::InvalidCertificate(

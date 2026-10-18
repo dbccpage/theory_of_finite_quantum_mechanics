@@ -76,7 +76,7 @@ class TestSovietSimplicialTopologyInvariants:
     def test_topological_nilpotency_sphere3(self):
         """Verify partial^2 = 0 and d^2 = 0 on triangulated 3-sphere (boundary of 4-simplex)."""
         s3 = build_4simplex_boundary_3sphere()
-        assert s3.euler_characteristic() == 0  # chi(S^3) = 0
+        assert s3.euler_characteristic() == 0
         assert s3.verify_nilpotency(1) is True
         assert s3.verify_nilpotency(2) is True
         assert s3.verify_nilpotency(3) is True
@@ -84,7 +84,7 @@ class TestSovietSimplicialTopologyInvariants:
     def test_topological_nilpotency_sphere4(self):
         """Verify partial^2 = 0 and d^2 = 0 on triangulated 4-sphere (boundary of 5-simplex)."""
         s4 = build_5simplex_boundary_4sphere()
-        assert s4.euler_characteristic() == 2  # chi(S^4) = 2
+        assert s4.euler_characteristic() == 2
         assert s4.verify_nilpotency(1) is True
         assert s4.verify_nilpotency(2) is True
         assert s4.verify_nilpotency(3) is True
@@ -104,7 +104,6 @@ class TestSovietSimplicialBianchiInvariants:
     def test_flat_space_zero_deficit_and_bianchi(self):
         """On a regular flat 2D triangular grid, every interior vertex has valency 6 and deficit 0."""
         torus = build_flat_torus_2d(3, 3)
-        # In a regular equilateral triangular grid, dihedral angle = pi/3, 6 triangles meet at vertex
         deficits = np.zeros(torus.num_edges)
         res = verify_closed_bianchi_flux(torus, deficits, hinge_dim=1)
         assert res["is_satisfied"] is True
@@ -117,8 +116,6 @@ class TestSovietSimplicialBianchiInvariants:
         Note: each triangle in partial Delta^5 belongs to exactly 3 (not 5) 4-simplices.
         """
         s4 = build_5simplex_boundary_4sphere()
-        # In 4D, hinges are 2-simplices (triangles, 20 of them)
-        # Each triangle is shared by 6 - 3 = 3 4-simplices
         deficits = np.ones(s4.num_faces) * (2.0 * math.pi - 3 * regular_simplex_dihedral_angle(4))
         res = verify_closed_bianchi_flux(s4, deficits, hinge_dim=2)
         assert res["is_satisfied"] is True
@@ -134,7 +131,6 @@ class TestSovietSimplicialBianchiInvariants:
         """
         from itertools import combinations
 
-        # 6 vertices 0..5
         all_edges = list(combinations(range(6), 2))
         edge_lens = {e: 1.0 for e in all_edges}
         edge_lens[(0, 1)] = 1.1
@@ -149,14 +145,11 @@ class TestSovietSimplicialBianchiInvariants:
             for t, th in dihedrals.items():
                 tri_dihedrals[t].append(th)
 
-        # Each triangle must belong to exactly 3 4-simplices
         for t, ths in tri_dihedrals.items():
             assert len(ths) == 3, f"Triangle {t} belongs to {len(ths)} simplices, expected 3"
 
         deficits = {t: 2.0 * math.pi - sum(ths) for t, ths in tri_dihedrals.items()}
 
-        # Compute d_2 epsilon on tetrahedra:
-        # (d_2 epsilon)(v0, v1, v2, v3) = eps(1,2,3) - eps(0,2,3) + eps(0,1,3) - eps(0,1,2)
         d2_eps: dict[tuple[int, int, int, int], float] = {}
         for tau in tetrahedra:
             v0, v1, v2, v3 = tau
@@ -166,14 +159,10 @@ class TestSovietSimplicialBianchiInvariants:
         l1_flux = sum(abs(v) for v in d2_eps.values())
         linf_flux = max(abs(v) for v in d2_eps.values())
 
-        # Exact reviewer values:
-        # ||d2 eps||_1 approx 1.9565652080
-        # ||d2 eps||_inf approx 0.2445706510
-        # (d2 eps)(0,2,3,4) approx -0.2445706510
         assert abs(l1_flux - 1.9565652080) < 1e-6
         assert abs(linf_flux - 0.2445706510) < 1e-6
         assert abs(d2_eps[(0, 2, 3, 4)] - (-0.2445706510)) < 1e-6
-        assert l1_flux > 1.9  # Confirms non-vanishing scalar flux
+        assert l1_flux > 1.9
 
     def test_simplicial_faces_and_subsimplices(self):
         """Test Simplex dataclass subface decomposition."""
@@ -181,7 +170,6 @@ class TestSovietSimplicialBianchiInvariants:
         faces = t.faces
         assert len(faces) == 4
         assert all(f.dimension == 2 for f in faces)
-        # 0-simplex faces
         v = Simplex(dimension=0, vertices=(0,))
         assert v.faces == []
 
@@ -203,7 +191,6 @@ class TestSovietSimplicialBianchiInvariants:
 
     def test_contracted_bianchi_vertex_flux_vanishing(self):
         """In 3D, verify contracted Bianchi flux sum_{e in star(v)} eps_e * hat{e} = 0 for symmetric star."""
-        # 6 symmetric edges in 3D space meeting at origin
         coords = {
             0: np.array([0.0, 0.0, 0.0]),
             1: np.array([1.0, 0.0, 0.0]),
@@ -214,7 +201,6 @@ class TestSovietSimplicialBianchiInvariants:
             6: np.array([0.0, 0.0, -1.0]),
         }
         edges = [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6)]
-        # Equal deficit on opposite edges
         deficits = {
             (0, 1): 0.3, (0, 2): 0.3,
             (0, 3): -0.2, (0, 4): -0.2,
@@ -249,20 +235,15 @@ class TestSovietWDWConstraintAndDualL1Solvers:
         torus = build_flat_torus_2d(3, 3)
         d0 = torus.coboundary_matrix(0)
 
-        # Create a non-trivial circulation on edges
         omega_loop = np.ones(torus.num_edges)
         solver = DualCertifiedL1Solver(tol=1e-8)
         res = solver.solve(omega_loop, d0)
 
         assert res.is_closed is False
         assert res.primal_obj > 0.0
-        # Strong duality must hold with zero duality gap
         assert res.duality_gap < 1e-8
-        # Dual witness must be a valid 1-cycle (divergence free)
         assert res.dual_divergence_norm < 1e-8
-        # Dual witness must satisfy L_infty norm <= 1
         assert np.max(np.abs(res.dual_witness)) <= 1.0 + 1e-8
-        # Complementary slackness: <w, residual> == ||residual||_1
         dot_val = float(np.dot(res.dual_witness, res.primal_residual))
         assert abs(dot_val - res.primal_obj) < 1e-8
 
@@ -275,7 +256,6 @@ class TestSovietWDWConstraintAndDualL1Solvers:
         solver = DualCertifiedL1Solver(tol=1e-8)
         base_res = solver.solve(omega, d0)
 
-        # Add 5 different random gauge shifts
         np.random.seed(123)
         for _ in range(5):
             gamma = np.random.randn(s3.num_vertices) * 10.0
@@ -292,7 +272,6 @@ class TestSovietWDWConstraintAndDualL1Solvers:
             [0, -1, 1],
             [1, 0, -1],
         ]
-        # Pure cycle loop omega = [1, 1, 1]
         res = exact_rational_l1_quotient([1, 1, 1], d0)
         assert res.primal_obj == Fraction(3, 1)
         assert res.dual_obj == Fraction(3, 1)
@@ -312,7 +291,6 @@ class TestSovietStressAndExtremeGeometry:
         ])
         vol = simplex_volume(l_sq)
         assert vol > 0.0
-        # For an isosceles needle, height ~ 1e-5 / 2, base ~ 1 -> area ~ 1e-5 / 2 / 2
         assert vol < 1e-4
 
     def test_degenerate_flattened_simplex_zero_volume(self):
@@ -342,7 +320,7 @@ class TestSovietPonzanoReggeAsymptotics:
     def test_lipschitz_continuity_under_l1_norm(self):
         """Verify |S(j1) - S(j2)| <= ||j1 - j2||_1 * ||theta||_inf for fixed dihedral angles."""
         j1 = [2, 2, 2, 2, 2, 2]
-        j2 = [3, 2, 2, 2, 2, 3]  # L1 diff = 2
+        j2 = [3, 2, 2, 2, 2, 3]
         res = verify_regge_action_lipschitz_bound(j1, j2)
         assert res["bound_holds"] is True
         assert res["l1_spin_difference"] == 2
@@ -373,12 +351,10 @@ class TestSovietPonzanoReggeAsymptotics:
         delta_j_1 = 1.0
         naive_bound = delta_j_1 * max_th1
 
-        # Check reviewer's exact values:
         assert abs(delta_S - 1.3634964245) < 1e-6
         assert abs(naive_bound - 1.2309594173) < 1e-6
-        assert delta_S > naive_bound  # Confirms counterexample to endpoint fixed-angle bound
+        assert delta_S > naive_bound
 
-        # Validate Schläfli path bound
         schlafli = evaluate_schlafli_path_bound(
             [J1[e] for e in edges],
             [J2[e] for e in edges],
@@ -392,7 +368,6 @@ class TestSovietPonzanoReggeAsymptotics:
         spins = [1, 2, 3, 4, 5, 6]
         env = compute_l1_phase_envelope(spins)
         phase = evaluate_semiclassical_regge_phase(spins)
-        # Phase includes +0.5 per edge, so phase <= (||j||_1 + 3) * theta
         max_theta = regular_simplex_dihedral_angle(3)
         assert phase <= (sum(spins) + 3.0) * max_theta + 1e-10
 
@@ -415,7 +390,6 @@ class TestSovietPonzanoReggeAsymptotics:
         total_omega = wdw_sys.build_total_constraint_cochain()
         assert len(total_omega) == s3.num_edges
 
-        # Solve L1 constraint closure
         d0 = s3.coboundary_matrix(0)
         res = compute_l1_quotient_with_dual_witness(total_omega, d0)
         assert res.duality_gap < 1e-8
@@ -423,17 +397,14 @@ class TestSovietPonzanoReggeAsymptotics:
 
     def test_simplex_geometry_utilities(self):
         """Test dihedral angles, deficit angles, boundary hinges, and error handling."""
-        # 1. Boundary deficit angle
         b_def = compute_hinge_deficit_angle([math.pi / 3.0], hinge_is_boundary=True)
         assert abs(b_def - (math.pi - math.pi / 3.0)) < 1e-10
 
-        # 2. 4-simplex dihedral
         theta_4 = four_simplex_dihedral_angle(regular=True)
         assert abs(theta_4 - math.acos(0.25)) < 1e-10
         with pytest.raises(NotImplementedError):
             four_simplex_dihedral_angle(regular=False)
 
-        # 3. Regular tetrahedron dihedral via edge lengths
         s_dict = {
             (min(i, j), max(i, j)): 1.0
             for i in range(4) for j in range(4) if i != j
@@ -441,11 +412,9 @@ class TestSovietPonzanoReggeAsymptotics:
         theta_tet = tetrahedron_dihedral_angle(s_dict, (0, 1))
         assert abs(theta_tet - math.acos(1.0 / 3.0)) < 1e-6
 
-        # 4. Dimension error
         with pytest.raises(ValueError):
             regular_simplex_dihedral_angle(0)
 
-        # 5. Zero dual volume error in curvature
         with pytest.raises(ValueError):
             compute_discrete_scalar_curvature(0, [(0, 1)], {(0, 1): 1.0}, {(0, 1): 0.1}, dual_volume=0.0)
 
@@ -456,14 +425,12 @@ class TestSovietPonzanoReggeAsymptotics:
         d0 = s3.coboundary_matrix(0)
         solver = DualCertifiedL1Solver(tol=1e-8)
 
-        # Zero cochain
         zero_res = solver.solve(np.zeros(s3.num_edges), d0)
         assert zero_res.is_closed is True
         assert zero_res.primal_obj == 0.0
         d_dict = zero_res.to_dict()
         assert d_dict["is_closed"] is True
 
-        # Exact rational to_dict
         d0_tri = [[-1, 1, 0], [0, -1, 1], [1, 0, -1]]
         exact_res = exact_rational_l1_quotient([0, 0, 0], d0_tri)
         ex_dict = exact_res.to_dict()
@@ -471,7 +438,6 @@ class TestSovietPonzanoReggeAsymptotics:
 
     def test_asymptotics_and_complex_edge_cases(self):
         """Test error handling in asymptotics and complex helpers."""
-        # Bad spin count
         with pytest.raises(ValueError):
             evaluate_semiclassical_regge_phase([1, 2, 3])
 
@@ -481,12 +447,10 @@ class TestSovietPonzanoReggeAsymptotics:
         with pytest.raises(ValueError):
             verify_regge_action_lipschitz_bound([1, 2], [1, 2])
 
-        # Complex star method
         s3 = build_4simplex_boundary_3sphere()
         star_v0 = s3.star((0,), target_dim=1)
-        assert len(star_v0) == 4  # 4 incident edges on vertex 0
+        assert len(star_v0) == 4
 
-        # Flat torus invalid size
         with pytest.raises(ValueError):
             build_flat_torus_2d(2, 2)
 

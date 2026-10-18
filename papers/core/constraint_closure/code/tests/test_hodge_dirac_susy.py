@@ -38,8 +38,8 @@ class TestDiracOperator:
     def test_anticommutes_with_grading(self):
         d0, d1 = build_operators_single_simplex()
         D = build_dirac_operator(d0, d1)
-        n_even = 3 + 1  # n_vert + n_face
-        n_odd = 3  # n_edge
+        n_even = 3 + 1
+        n_odd = 3
         Gamma = np.diag([1.0] * n_even + [-1.0] * n_odd)
         assert np.allclose(D @ Gamma + Gamma @ D, 0), "{D, Γ} != 0"
 

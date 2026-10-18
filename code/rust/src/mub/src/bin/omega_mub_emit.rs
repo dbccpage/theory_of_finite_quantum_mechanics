@@ -1,5 +1,3 @@
-//! One emitter for the scoped MUB diagnostics that shared a flag parser.
-//! AuthorityEffect: None.
 use std::{fs, path::PathBuf, process::ExitCode};
 
 use omega_mub::omega_native::exact::mub6_collar_solver;

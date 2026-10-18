@@ -29,7 +29,7 @@ import numpy as np
 @dataclass
 class SimplicialDiracOperator:
     """Discrete Dirac / Kähler-Dirac operator D on a simplicial complex.
-    
+
     Acts on differential forms or vertex Grassmann fields.
     Anti-Hermitian hopping matrix D_{uv} = -D_{vu}^* + i * m * delta_{uv}.
     """
@@ -43,15 +43,12 @@ class SimplicialDiracOperator:
         """Constructs the discrete Dirac operator matrix D."""
         n = self.num_vertices
         D = np.zeros((n, n), dtype=complex)
-        
-        # Mass term on diagonal: m * I (or mass pairing)
+
         for i in range(n):
             D[i, i] = self.mass
 
-        # Hopping terms along oriented edges
         for u, v in self.edges:
             theta = self.flux_phases.get((u, v), 0.0)
-            # Hopping with chemical potential mu: e^(mu) forward, e^(-mu) backward
             hop_forward = 1.0j * np.exp(1.0j * theta + self.chemical_potential)
             hop_backward = 1.0j * np.exp(-1.0j * theta - self.chemical_potential)
             D[u, v] += hop_forward
@@ -132,7 +129,7 @@ class CdtFermionSignEvaluator:
         mass: float = 0.05,
     ) -> List[FermionicConfiguration]:
         """Generates an ensemble with an exact reflection/parity involution symmetry.
-        
+
         Configurations come in pairs (A, B) where B = Xi(A), having identical action
         S(A) = S(B) and opposite fermion signs sgn(A) = +1, sgn(B) = -1.
         """
@@ -142,8 +139,7 @@ class CdtFermionSignEvaluator:
             s_matter = 1.0 + 0.2 * (i % 3)
             s_total = s_geom + s_matter
             weight = math.exp(-beta * s_total)
-            
-            # Pair configuration A (positive sign)
+
             conf_a = FermionicConfiguration(
                 config_id=f"{ensemble_id}_pair_{i}_pos",
                 s_geom=s_geom,
@@ -152,8 +148,7 @@ class CdtFermionSignEvaluator:
                 fermion_sign=1,
                 boltzmann_weight=weight,
             )
-            
-            # Pair configuration B (negative sign, identical action)
+
             conf_b = FermionicConfiguration(
                 config_id=f"{ensemble_id}_pair_{i}_neg",
                 s_geom=s_geom,
@@ -162,10 +157,10 @@ class CdtFermionSignEvaluator:
                 fermion_sign=-1,
                 boltzmann_weight=weight,
             )
-            
+
             configs.append(conf_a)
             configs.append(conf_b)
-            
+
         return configs
 
     def generate_frustrated_chiral_ensemble(
@@ -177,24 +172,23 @@ class CdtFermionSignEvaluator:
         volume: int = 16,
     ) -> List[FermionicConfiguration]:
         """Generates a geometrically frustrated or chiral ensemble without exact involution.
-        
+
         Fermion sign sgn(Re(det(D))) fluctuates with non-vanishing chemical potential
         or frustrated magnetic flux loops.
         """
         configs: List[FermionicConfiguration] = []
         rng = random.Random(42)
-        
+
         for i in range(num_configs):
             s_geom = 3.0 + 0.1 * (i % 7) + 0.05 * volume
             s_matter = 1.5 + 0.2 * (i % 4)
             s_total = s_geom + s_matter
             weight = math.exp(-beta * s_total)
-            
-            # Fluctuating phase due to chemical potential and volume
+
             phase = rng.uniform(0, 2.0 * math.pi) + chemical_potential * (i % 3)
             det_val = complex(math.cos(phase), math.sin(phase))
             sign = 1 if det_val.real >= 0.0 else -1
-            
+
             conf = FermionicConfiguration(
                 config_id=f"{ensemble_id}_cfg_{i}",
                 s_geom=s_geom,
@@ -204,14 +198,14 @@ class CdtFermionSignEvaluator:
                 boltzmann_weight=weight,
             )
             configs.append(conf)
-            
+
         return configs
 
     def search_bqnf_involution_witness(
         self, configs: List[FermionicConfiguration], tol: float = 1e-9
     ) -> BqnfInvolutionResult:
         """Searches for an exact pairing involution Xi on the ensemble.
-        
+
         Requires:
         1. Xi(Xi(c)) = c
         2. Xi(c) != c
@@ -220,14 +214,13 @@ class CdtFermionSignEvaluator:
         """
         pos_configs = [c for c in configs if c.fermion_sign == 1]
         neg_configs = [c for c in configs if c.fermion_sign == -1]
-        
+
         if len(pos_configs) != len(neg_configs) or len(configs) == 0:
             return BqnfInvolutionResult(has_exact_involution=False)
-            
-        # Greedy pairing based on matching weights
+
         unpaired_neg = list(neg_configs)
         involution_map: Dict[str, str] = {}
-        
+
         for p in pos_configs:
             matched_n = None
             for n in unpaired_neg:
@@ -239,13 +232,11 @@ class CdtFermionSignEvaluator:
                 involution_map[matched_n.config_id] = p.config_id
                 unpaired_neg.remove(matched_n)
             else:
-                # No match with equal weight
                 return BqnfInvolutionResult(has_exact_involution=False)
-                
-        # Check all 4 axioms
+
         is_involutive = all(involution_map[involution_map[cid]] == cid for cid in involution_map)
         is_fp_free = all(involution_map[cid] != cid for cid in involution_map)
-        
+
         config_dict = {c.config_id: c for c in configs}
         is_sign_rev = all(
             config_dict[involution_map[cid]].fermion_sign == -config_dict[cid].fermion_sign
@@ -255,9 +246,9 @@ class CdtFermionSignEvaluator:
             abs(config_dict[involution_map[cid]].boltzmann_weight - config_dict[cid].boltzmann_weight) <= tol
             for cid in involution_map
         )
-        
+
         certified = is_involutive and is_fp_free and is_sign_rev and is_weight_pres
-        
+
         return BqnfInvolutionResult(
             has_exact_involution=certified,
             involution_map=involution_map,
@@ -272,35 +263,30 @@ class CdtFermionSignEvaluator:
         self, configs: List[FermionicConfiguration], involution: BqnfInvolutionResult
     ) -> Tuple[float, float, float, float, float, bool, str]:
         """Computes Z_B, Z_F, <Sign>, quotient norm defect Phi_1, and bounds.
-        
+
         Returns:
             (z_b, z_f, average_sign, c1_norm1, phi_1, bound_satisfied, classification)
         """
         z_b = sum(c.boltzmann_weight for c in configs)
         z_f = sum(c.signed_weight for c in configs)
         avg_sign = z_f / z_b if z_b > 0 else 0.0
-        
+
         c1_norm1 = z_b
-        
+
         if involution.is_involution_certified:
-            # Exact cancellation: Z_F = 0, average_sign = 0, Phi_1 = 0
             phi_1 = 0.0
             bound_satisfied = True
             classification = "ExactCancellation"
             return z_b, z_f, avg_sign, c1_norm1, phi_1, bound_satisfied, classification
-            
-        # Frustrated / obstructed case:
-        # Quotient defect is the uncancelled weight mass
+
         z_pos = sum(c.boltzmann_weight for c in configs if c.fermion_sign == 1)
         z_neg = sum(c.boltzmann_weight for c in configs if c.fermion_sign == -1)
         phi_1 = abs(z_pos - z_neg)
-        
-        # Lower bound on average sign: <Sign> >= 1 - 2*Z_neg / Z_b = (Z_pos - Z_neg) / Z_b
-        # Certified bound: <Sign> >= 1 - (Phi_1 + 2*min(Z_pos, Z_neg)) / Z_B = (Z_pos - Z_neg) / Z_B
+
         sign_bound_lower = (z_pos - z_neg) / z_b if z_b > 0 else 0.0
         bound_satisfied = avg_sign >= sign_bound_lower - 1e-12
         classification = "OpenSignObstruction"
-        
+
         return z_b, z_f, avg_sign, c1_norm1, phi_1, bound_satisfied, classification
 
     def record_ensemble_evaluation(
@@ -314,13 +300,12 @@ class CdtFermionSignEvaluator:
         z_b, z_f, avg_sign, c1_norm, phi_1, bound_sat, classification = (
             self.compute_bqnf_quotient_bounds(configs, involution)
         )
-        
+
         pos_count = sum(1 for c in configs if c.fermion_sign == 1)
         neg_count = sum(1 for c in configs if c.fermion_sign == -1)
-        
+
         cur = self.conn.cursor()
-        
-        # 1. Record individual trajectory configurations
+
         for c in configs:
             paired_id = involution.involution_map.get(c.config_id)
             is_paired = 1 if paired_id is not None else 0
@@ -346,8 +331,7 @@ class CdtFermionSignEvaluator:
                     paired_id,
                 ),
             )
-            
-        # 2. Record involution audit
+
         cur.execute(
             """
             INSERT OR REPLACE INTO CdtBqnfInvolutionAudit (
@@ -373,8 +357,7 @@ class CdtFermionSignEvaluator:
                 1 if involution.is_involution_certified else 0,
             ),
         )
-        
-        # 3. Record quotient summary
+
         sign_bound_lower = (
             0.0 if involution.is_involution_certified else ((pos_count - neg_count) / len(configs))
         )
@@ -398,10 +381,9 @@ class CdtFermionSignEvaluator:
                 classification,
             ),
         )
-        
+
         self.conn.commit()
-        
-        # 4. Fetch audit verdict from ViewCdtFermionSignBqnfAudit
+
         cur.execute(
             """
             SELECT audit_verdict FROM ViewCdtFermionSignBqnfAudit WHERE ensemble_id = ?
@@ -410,7 +392,7 @@ class CdtFermionSignEvaluator:
         )
         row = cur.fetchone()
         audit_verdict = row[0] if row else "AUDIT_NOT_FOUND"
-        
+
         return {
             "ensemble_id": ensemble_id,
             "ensemble_type": ensemble_type,

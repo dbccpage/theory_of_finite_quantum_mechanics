@@ -1,25 +1,3 @@
-//! C2 / Čech gluing obligations for the multi-patch moduli atlas.
-//!
-//! The moduli atlas (`mub6_moduli_atlas`) now holds several certified patches.
-//! C2 asks whether those patches form an **overlap-compatible, gap-free** cover of
-//! their union. This module discharges what can be discharged mechanically and
-//! leaves the rest as typed open residual:
-//!
-//! 1. **Nested containment (discharged):** a point patch (`δ = 0`) at a Dita seed is
-//!    contained in that seed's neighborhood patch (`δ = 1/1000`) by construction of
-//!    `EnclosedTriple::widened_from_exact_columns`.
-//! 2. **Pairwise neighborhood separation (exact-interval):** entrywise `L^∞` distance
-//!    lower/upper bounds between seed centers vs `2δ`. If `||c_i − c_j||_∞ > 2δ`, the
-//!    neighborhoods are **proven disjoint** (no C2 edge). If the upper bound is
-//!    `≤ 2δ`, they **may overlap** and need an intersection cover (open residual).
-//! 3. **T0 vs Dita (charted distance):** entrywise `L^∞` bounds between the canonical
-//!    triple `T0` and each genuine Dita seed vs `2δ`. When proven disjoint, the T0
-//!    neighborhood patch and that seed's neighborhood have **no C2 edge**. When not,
-//!    intersection cover remains open for that pair.
-//! 4. **Global moduli cover (open residual / ENC-1147):** the union of recorded patches
-//!    is not the whole moduli of MU triples.
-//!
-//! `patches_glue = true` for the full atlas (T0 + cross-family residual remains).
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
@@ -54,9 +32,6 @@ fn abs_upper(i: &Interval) -> BigRational {
     }
 }
 
-/// Entrywise `L^∞` lower/upper bounds between two exact 18-column triples on the **moduli**
-/// columns only (`B2`/`B3` = indices `6..18`). `B1` is gauge-fixed identical (standard basis)
-/// and does not contribute to moduli distance.
 pub fn moduli_entrywise_l_inf_bounds(
     cols_a: &[ExactVec],
     cols_b: &[ExactVec],
@@ -83,14 +58,10 @@ pub fn moduli_entrywise_l_inf_bounds(
     (lo, hi)
 }
 
-/// Relation between two neighborhood balls of radius `delta` at exact centers.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
 pub enum NeighborhoodPairRelation {
-    /// Proven `||c_i − c_j||_∞ > 2δ` ⇒ neighborhoods disjoint; no C2 edge.
     ProvenDisjoint,
-    /// Upper bound `≤ 2δ` ⇒ balls may meet; intersection cover required.
     MayOverlap,
-    /// Bounds straddle `2δ` ⇒ inconclusive under current enclosure.
     Inconclusive,
 }
 
@@ -104,7 +75,6 @@ pub struct SeedPairC2 {
     pub relation: NeighborhoodPairRelation,
 }
 
-/// Distance of the canonical triple `T0` (neighborhood center) to one genuine Dita seed.
 #[derive(Debug, Clone, Serialize)]
 pub struct T0VsDitaC2 {
     pub seed: (i64, i64),
@@ -112,7 +82,6 @@ pub struct T0VsDitaC2 {
     pub dist_upper: String,
     pub two_delta: String,
     pub relation: NeighborhoodPairRelation,
-    /// Both sides use δ=1/1000 neighborhoods in the atlas.
     pub note: &'static str,
 }
 
@@ -133,14 +102,12 @@ fn pair_relation(
 #[derive(Debug, Clone, Serialize)]
 pub struct NestedContainment {
     pub seed: (i64, i64),
-    /// Point patch is subset of neighborhood patch of the same center.
     pub discharged: bool,
     pub reason: &'static str,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
 pub enum C2Terminal {
-    /// Some pairwise edges discharged; global multi-patch gluing still open.
     PartialOpenResidual,
 }
 
@@ -149,26 +116,19 @@ pub struct AtlasC2Report {
     pub delta: String,
     pub nested: Vec<NestedContainment>,
     pub seed_pairs: Vec<SeedPairC2>,
-    /// T0 (canonical triple) vs each genuine Dita seed neighborhood.
     pub t0_vs_dita: Vec<T0VsDitaC2>,
     pub all_seed_neighborhoods_pairwise_disjoint: bool,
     pub all_nested_discharged: bool,
-    /// T0 neighborhood is proven disjoint from every recorded Dita neighborhood.
     pub t0_disjoint_from_all_dita_neighborhoods: bool,
-    /// Full atlas C2 (moduli exhaustion / basis gluing) remains open even when all
-    /// recorded neighborhood pairs are disjoint.
     pub full_atlas_c2_discharged: bool,
     pub terminal: C2Terminal,
     pub open_obligations: Vec<&'static str>,
     pub firewall: &'static str,
 }
 
-/// Run the mechanical C2 analysis for T0 + all six genuine Dita seeds (Y2⊗Q1 ∪ Y2⊗Q2)
-/// at `delta = 1/1000`.
 pub fn dita_seed_atlas_c2_report() -> AtlasC2Report {
     let delta = neighborhood_delta_1_1000();
     let two_delta = &delta + &delta;
-    // (dx, dy) only — qa is encoded in the locked seed list.
     let seeds: Vec<(i64, i64)> = all_genuine_dita_seeds()
         .into_iter()
         .map(|(dx, dy, _qa)| (dx, dy))
@@ -262,7 +222,6 @@ pub fn dita_seed_atlas_c2_report() -> AtlasC2Report {
     }
 }
 
-/// Write the C2 report under `artifacts/`.
 pub fn write_atlas_c2_report_artifact() -> Result<std::path::PathBuf, String> {
     let report = dita_seed_atlas_c2_report();
     let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
@@ -273,15 +232,7 @@ pub fn write_atlas_c2_report_artifact() -> Result<std::path::PathBuf, String> {
     Ok(path)
 }
 
-// ---------------------------------------------------------------------------
-// Kernel-reflection pilot: small held-out region with Lean-checkable summary
-// ---------------------------------------------------------------------------
 
-/// A deliberately small, versioned cover summary for Lean consume-path pilot.
-///
-/// This is **not** a box-level reflection of the full 5-torus. It records a complete
-/// stated-region certificate (narrow torus cell) plus the FiniteVectorCover schema
-/// identifiers so Lean can cite the pilot without inventing completeness.
 #[derive(Debug, Clone, Serialize)]
 pub struct KernelReflectionPilot {
     pub schema_version: &'static str,
@@ -293,7 +244,6 @@ pub struct KernelReflectionPilot {
     pub firewall: &'static str,
 }
 
-/// Build the pilot: complete narrow-cell cover of seed `(0,8)` under point enclosure.
 pub fn kernel_reflection_pilot_dita_0_8_narrow() -> KernelReflectionPilot {
     use crate::omega_native::campaign::mub6_dita_seed_cover::{cover_seed_region, narrow_torus_cell};
     let cover = cover_seed_region(0, 8, narrow_torus_cell(), 24);
@@ -310,7 +260,6 @@ pub fn kernel_reflection_pilot_dita_0_8_narrow() -> KernelReflectionPilot {
     }
 }
 
-/// Wider held-out region pilot (still stated-region, not full 5-torus).
 pub fn kernel_reflection_pilot_dita_0_8_wide() -> KernelReflectionPilot {
     use crate::omega_native::campaign::mub6_dita_seed_cover::{
         cover_seed_region_prefiltered, wide_torus_cell,
@@ -347,7 +296,6 @@ fn write_pilot(
     Ok(path)
 }
 
-/// Write the narrow-cell pilot JSON under `artifacts/`.
 pub fn write_kernel_reflection_pilot_artifact() -> Result<std::path::PathBuf, String> {
     write_pilot(
         "kernel_reflection_pilot_dita_0_8_narrow_cell.json",
@@ -355,7 +303,6 @@ pub fn write_kernel_reflection_pilot_artifact() -> Result<std::path::PathBuf, St
     )
 }
 
-/// Write the wide-cell pilot JSON under `artifacts/`.
 pub fn write_kernel_reflection_wide_pilot_artifact() -> Result<std::path::PathBuf, String> {
     write_pilot(
         "kernel_reflection_pilot_dita_0_8_wide_cell.json",
@@ -371,7 +318,7 @@ mod tests {
     fn nested_containment_discharged_for_all_seeds() {
         let r = dita_seed_atlas_c2_report();
         assert!(r.all_nested_discharged);
-        assert_eq!(r.nested.len(), 6); // Y2Q1 ∪ Y2Q2
+        assert_eq!(r.nested.len(), 6);
         assert!(!r.full_atlas_c2_discharged);
         assert_eq!(r.terminal, C2Terminal::PartialOpenResidual);
         assert!(r.firewall.contains("mints no authority"));
@@ -380,8 +327,8 @@ mod tests {
     #[test]
     fn seed_pair_distances_are_exact_and_self_consistent() {
         let r = dita_seed_atlas_c2_report();
-        assert_eq!(r.seed_pairs.len(), 15); // C(6,2)
-        let two_delta = ri(1) / ri(500); // 2/1000
+        assert_eq!(r.seed_pairs.len(), 15);
+        let two_delta = ri(1) / ri(500);
         for p in &r.seed_pairs {
             let lo: BigRational = p.dist_lower.parse().unwrap();
             let hi: BigRational = p.dist_upper.parse().unwrap();
@@ -423,7 +370,6 @@ mod tests {
                 }
             }
         }
-        // Record the boolean honestly — do not invent disjointness if enclosures disagree.
         assert_eq!(
             r.t0_disjoint_from_all_dita_neighborhoods,
             r.t0_vs_dita

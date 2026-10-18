@@ -1,9 +1,3 @@
-//! Higher-Dimensional Entanglement Witnesses and Conductor Bound Hierarchy
-//!
-//! Investigates minimal cyclotomic conductor bounds n*(d) beyond dimension d=4.
-//!
-//! AuthorityEffect: None.
-//! Citation: sealed-derivation-v1 (3100c4e)
 
 use num_bigint::BigInt;
 use num_integer::Integer;
@@ -17,8 +11,6 @@ use omega_quantum_physics::pauli::PauliString;
 
 pub const TARGET_LCM_120: u64 = 120;
 
-/// The actual Pauli stabilizer families commute and square to identity.
-/// W is evaluated as a non-stabilizer state: it has no declaration of a Pauli group.
 pub fn verify_multi_qubit_stabilizers() -> bool {
     for words in [
         vec!["XXX", "ZZI", "IZZ"],
@@ -51,9 +43,6 @@ pub fn verify_multi_qubit_stabilizers() -> bool {
     true
 }
 
-/// Verifies prime qudit MUB escalation boundary:
-/// p in {2, 3, 5} divide 120, while p = 7 has conductor 28 which does NOT divide 120,
-/// escalating the LCM conductor to lcm(120, 28) = 840.
 pub fn verify_prime_qudit_escalation_boundary() -> Result<(bool, BigInt), ArithmeticError> {
     let p_dims = [2u64, 3, 5];
     let mut all_p_contained = true;
@@ -65,7 +54,6 @@ pub fn verify_prime_qudit_escalation_boundary() -> Result<(bool, BigInt), Arithm
         }
     }
 
-    // Dimension 7
     let c_7 = quadratic_field_conductor(&BigInt::from(7));
     let escalates_at_7 = BigInt::from(TARGET_LCM_120).mod_floor(&c_7) != BigInt::from(0);
     let escalated_lcm = BigInt::from(TARGET_LCM_120).lcm(&c_7);
@@ -73,16 +61,10 @@ pub fn verify_prime_qudit_escalation_boundary() -> Result<(bool, BigInt), Arithm
     Ok((all_p_contained && escalates_at_7, escalated_lcm))
 }
 
-/// Exact Tiles certificate under the replayed UPB-complement criterion.
 pub fn verify_horodecki_3x3_bound_entanglement() -> bool {
     omega_quantum_physics::higher_dim::tiles().is_ok()
 }
 
-/// Verifies CGLMP nonlocality conductor escalation boundary:
-/// Bob's measurement phase offsets +/- 1/4 require relative phases zeta_{4d}.
-/// Conductor is lcm(4*d, quadratic_extension_conductor(d)).
-/// For d=4, conductor is 16 (which does not divide 120), escalating to lcm(120, 16) = 240.
-/// For d=8, conductor is 32 (which does not divide 120), escalating to lcm(120, 32) = 480.
 pub fn verify_cglmp_escalation_boundary() -> (bool, BigInt, BigInt) {
     let c_4 = BigInt::from(16).lcm(&quadratic_field_conductor(&BigInt::from(1)));
     let escalates_4 = BigInt::from(TARGET_LCM_120).mod_floor(&c_4) != BigInt::from(0);

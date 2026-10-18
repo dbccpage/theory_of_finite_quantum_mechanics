@@ -1,15 +1,3 @@
-//! Multi-Simplex 4D Regge Triangulations and Simplicial Gravitational Dynamics (RQ-01, RQ-02).
-//!
-//! Extends Regge calculus to 4-dimensional manifolds:
-//! - 4-simplices (pentachora) with 10 edges, 10 triangular faces, 5 tetrahedral facets.
-//! - Codimension-2 hinges: 2-simplices (triangles) $f = \{u, v, w\}$.
-//! - Dihedral angles $\theta_f(\sigma)$ at hinge triangle $f$ inside each incident 4-simplex $\sigma$.
-//! - Deficit angles: $\epsilon_f = 2\pi - \sum_{\sigma \supset f} \theta_f(\sigma)$ for interior hinges.
-//! - 4D Regge action:
-//!   $S_{\text{Regge}}^{(4D)} = \sum_{f \in \text{hinges}} A_f \epsilon_f - \Lambda \sum_{\sigma \in \text{4-simplices}} V_4(\sigma)$
-//!   where $A_f$ is the area of triangle $f$ and $V_4(\sigma)$ is the Cayley-Menger 4-volume.
-//!
-//! AuthorityEffect: None.
 
 use crate::cayley_menger::simplex_volume_cayley_menger;
 use crate::dec_laplacian::DecOperators;
@@ -18,7 +6,6 @@ use crate::regge_calculus::{EdgeLengthMetric, ReggeError, DEFAULT_TOL};
 use omega_homology::simplicial::{OrientedSimplex, SimplicialComplex};
 use serde::{Deserialize, Serialize};
 
-/// Detailed breakdown of 4D Regge action evaluation.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct ReggeActionResult4D {
     pub curvature_term: f64,
@@ -31,7 +18,6 @@ pub struct ReggeActionResult4D {
     pub boundary_hinges: usize,
 }
 
-/// Codimension-2 hinge in a 4D triangulation (a triangular 2-simplex).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct HingeTriangle4D {
     pub triangle: [usize; 3],
@@ -43,7 +29,6 @@ pub struct HingeTriangle4D {
     pub is_interior: bool,
 }
 
-/// Finite 4D Regge triangulation: multi-simplex 4D complex + metric lengths.
 #[derive(Debug, Clone, PartialEq)]
 pub struct ReggeTriangulation4D {
     pub complex: SimplicialComplex,
@@ -55,7 +40,6 @@ pub struct ReggeTriangulation4D {
 }
 
 impl ReggeTriangulation4D {
-    /// Construct a 4D Regge triangulation from a simplicial complex and edge metric.
     pub fn try_new(
         complex: SimplicialComplex,
         metric: EdgeLengthMetric,
@@ -71,7 +55,6 @@ impl ReggeTriangulation4D {
             )));
         }
 
-        // Verify every edge has a valid metric length
         for e in complex.simplices(1) {
             let v = e.vertices();
             let _ = metric.get(v[0], v[1])?;
@@ -80,7 +63,6 @@ impl ReggeTriangulation4D {
         let mut pentachora = Vec::new();
         let mut pentachora_volumes = Vec::new();
 
-        // 1. Process 4-simplices (pentachora)
         for s4 in complex.simplices(4) {
             let verts = s4.vertices();
             if verts.len() != 5 {
@@ -107,7 +89,6 @@ impl ReggeTriangulation4D {
             return Err(ReggeError::Computation("No 4-simplices found in complex".to_string()));
         }
 
-        // 2. Identify all triangular hinges (2-simplices)
         let mut hinges = Vec::new();
 
         for s2 in complex.simplices(2) {
@@ -142,14 +123,10 @@ impl ReggeTriangulation4D {
             }
 
             let total_angle: f64 = dihedrals.iter().copied().sum();
-            // A hinge is interior if the surrounding tetrahedra form a closed circuit
-            // (in flat space, sum of angles is ~ 2*pi).
-            // When total angle exceeds 1.5*pi or incident >= 3, treat as interior with target 2*pi.
             let is_interior = incident.len() >= 3 || (total_angle - 2.0 * std::f64::consts::PI).abs() < 0.2;
             let target = if is_interior {
                 2.0 * std::f64::consts::PI
             } else {
-                // Boundary hinge deficit
                 std::f64::consts::PI
             };
             let deficit = target - total_angle;
@@ -175,10 +152,6 @@ impl ReggeTriangulation4D {
         })
     }
 
-    /// Construct a multi-simplex 4D triangulation with two regular pentachora glued along a common tetrahedron [0, 1, 2, 3].
-    /// - Simplex 1: [0, 1, 2, 3, 4]
-    /// - Simplex 2: [0, 1, 2, 3, 5]
-    /// All edge lengths equal `edge_len`.
     pub fn two_pentachora_glued(edge_len: f64) -> Result<Self, ReggeError> {
         if edge_len <= 0.0 || !edge_len.is_finite() {
             return Err(ReggeError::NonFinite);
@@ -198,23 +171,11 @@ impl ReggeTriangulation4D {
         Self::try_new(complex, metric, "two_pentachora_glued")
     }
 
-    /// Construct a flat multi-simplex 4D triangulation: 4 pentachora arranged around
-    /// the interior hinge triangle [0, 1, 2] in the 4 quadrants of the orthogonal (z, w) 2-plane.
-    /// In Euclidean R^4, each pentachoron has an exact dihedral angle of pi/2 at [0, 1, 2].
-    /// Total dihedral angle = 4 * (pi/2) = 2*pi, giving an exact deficit angle of 0.0!
     pub fn four_pentachora_fan(edge_len: f64) -> Result<Self, ReggeError> {
         if edge_len <= 0.0 || !edge_len.is_finite() {
             return Err(ReggeError::NonFinite);
         }
 
-        // Coordinates in R^4:
-        // v0 = (0, 0, 0, 0)
-        // v1 = (L, 0, 0, 0)
-        // v2 = (0, L, 0, 0)
-        // v3 = (0, 0, L, 0)   (+z)
-        // v4 = (0, 0, 0, L)   (+w)
-        // v5 = (0, 0, -L, 0)  (-z)
-        // v6 = (0, 0, 0, -L)  (-w)
         let coords: [[f64; 4]; 7] = [
             [0.0, 0.0, 0.0, 0.0],
             [edge_len, 0.0, 0.0, 0.0],
@@ -225,11 +186,6 @@ impl ReggeTriangulation4D {
             [0.0, 0.0, 0.0, -edge_len],
         ];
 
-        // 4 pentachora:
-        // s1: [0, 1, 2, 3, 4]  (+z, +w)
-        // s2: [0, 1, 2, 4, 5]  (+w, -z)
-        // s3: [0, 1, 2, 5, 6]  (-z, -w)
-        // s4: [0, 1, 2, 3, 6]  (+z, -w)
         let s1 = OrientedSimplex::from_unordered(vec![0, 1, 2, 3, 4])?;
         let s2 = OrientedSimplex::from_unordered(vec![0, 1, 2, 4, 5])?;
         let s3 = OrientedSimplex::from_unordered(vec![0, 1, 2, 5, 6])?;
@@ -255,8 +211,6 @@ impl ReggeTriangulation4D {
         Self::try_new(complex, metric, "four_pentachora_flat_fan")
     }
 
-    /// Compute the 4D Regge action:
-    /// S_Regge = sum_{f in hinges} A_f * eps_f - Lambda * sum_{sigma} V_4(sigma).
     pub fn compute_action(&self, lambda_param: f64) -> ReggeActionResult4D {
         let mut curvature_term = 0.0;
         let mut interior_count = 0;
@@ -287,15 +241,9 @@ impl ReggeTriangulation4D {
         }
     }
 
-    /// Build Discrete Exterior Calculus (DEC) operators corresponding to this 4D triangulation.
-    /// Dual volumes are computed via the canonical barycentric dual decomposition:
-    /// - star0_v = sum_{sigma \ni v} V_4(sigma) / 5
-    /// - star1_e = sum_{sigma \ni e} V_4(sigma) / 10
-    /// - W_e = star1_e / length_e
     pub fn build_dec_operators(&self) -> Result<DecOperators, String> {
         let num_vertices = self.complex.num_vertices();
 
-        // 1. Collect and sort edges (u, v) with u < v
         let mut edges = Vec::new();
         let mut edge_lengths = Vec::new();
 
@@ -307,14 +255,12 @@ impl ReggeTriangulation4D {
             edge_lengths.push(len);
         }
 
-        // Sort edges canonically
         let mut edge_order: Vec<usize> = (0..edges.len()).collect();
         edge_order.sort_by_key(|&i| edges[i]);
 
         let sorted_edges: Vec<(usize, usize)> = edge_order.iter().map(|&i| edges[i]).collect();
         let sorted_lengths: Vec<f64> = edge_order.iter().map(|&i| edge_lengths[i]).collect();
 
-        // 2. Collect and sort triangles
         let mut triangles = Vec::new();
         for t in self.complex.simplices(2) {
             let v = t.vertices();
@@ -324,7 +270,6 @@ impl ReggeTriangulation4D {
         }
         triangles.sort();
 
-        // 3. Compute barycentric dual volumes for vertices (star0)
         let mut star0 = vec![0.0; num_vertices];
         for (p_idx, &p) in self.pentachora.iter().enumerate() {
             let vol = self.pentachora_volumes[p_idx];
@@ -336,7 +281,6 @@ impl ReggeTriangulation4D {
             }
         }
 
-        // 4. Compute barycentric dual volumes for edges (star1)
         let mut star1 = vec![0.0; sorted_edges.len()];
         for (e_idx, &(u, w)) in sorted_edges.iter().enumerate() {
             for (p_idx, &p) in self.pentachora.iter().enumerate() {
@@ -345,7 +289,6 @@ impl ReggeTriangulation4D {
                     star1[e_idx] += vol / 10.0;
                 }
             }
-            // Fallback for boundary edges with tiny dual volume
             if star1[e_idx] <= 1e-15 {
                 star1[e_idx] = sorted_lengths[e_idx].powi(3) / 24.0;
             }
@@ -361,9 +304,6 @@ impl ReggeTriangulation4D {
         )
     }
 
-    /// Verifies the 4D Schläfli differential identity on a pentachoron:
-    /// sum_{f in triangles} Area(f) * d theta_f = 0
-    /// when edge `edge` is perturbed by `delta_l`.
     pub fn schlafli_differential_4d(
         pentachoron: &[usize; 5],
         edge: (usize, usize),
@@ -391,7 +331,6 @@ impl ReggeTriangulation4D {
         for tri in &tri_faces {
             let area = simplex_volume_cayley_menger(tri, &get_length)?;
 
-            // Forward perturbed length lookup
             let get_len_plus = |u: usize, v: usize| {
                 if (u == e1 && v == e2) || (u == e2 && v == e1) {
                     Some(base_l + delta)
@@ -400,7 +339,6 @@ impl ReggeTriangulation4D {
                 }
             };
 
-            // Backward perturbed length lookup
             let get_len_minus = |u: usize, v: usize| {
                 if (u == e1 && v == e2) || (u == e2 && v == e1) {
                     Some(base_l - delta)
@@ -431,7 +369,6 @@ mod tests {
         assert!(tri.pentachora_volumes[0] > 0.02);
         assert_eq!(tri.complex.num_vertices(), 6);
 
-        // Action with Lambda = 0
         let act = tri.compute_action(0.0);
         assert!(act.curvature_term.is_finite());
         assert_eq!(act.cosmological_term, 0.0);
@@ -442,7 +379,6 @@ mod tests {
         let fan = ReggeTriangulation4D::four_pentachora_fan(1.0).unwrap();
         assert_eq!(fan.pentachora.len(), 4);
 
-        // Find the central hinge triangle [0, 1, 2]
         let central_hinge = fan
             .hinges
             .iter()
@@ -450,7 +386,6 @@ mod tests {
             .expect("Central hinge [0, 1, 2] must exist");
 
         assert_eq!(central_hinge.incident_pentachora.len(), 4);
-        // On the flat fan, each dihedral angle is pi/2, so total angle is 2*pi
         let expected_angle = 2.0 * std::f64::consts::PI;
         assert!((central_hinge.total_dihedral_angle - expected_angle).abs() < 1e-9);
         assert!(central_hinge.deficit_angle.abs() < 1e-9);

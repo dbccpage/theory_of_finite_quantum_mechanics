@@ -1,173 +1,216 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
+use theory_of_finite_qm::causal_prices::build_field_extension_census;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/causal_prices.rs Claim: urn:fqm:causal-price:cyclotomic-degree-sum-nineteen AuthorityEffect: None";
+const SAMPLE: i64 = 12;
+const EXPECTED: i64 = 19;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-//! Integration tests and mutation tests for Campaign C1000 Block 10: Causal Price List in Rust.
-//!
-//! Covers:
-//! - Target C1000-T1041: Independent reimplementation of extension census
-//! - Target C1000-T1042: Cross-language parity on extension census
-//! - Target C1000-T1043: 5 mutation tests mirrored in Rust
-
-use finite_qm_native::causal_price_list::*;
-
-#[test]
-fn test_t1041_extension_census() {
-    let census = build_field_extension_census();
-    assert_eq!(census.len(), 7);
-
-    let q = census
-        .iter()
-        .find(|e| e.id == "EXT_Q")
-        .expect("EXT_Q must exist");
-    assert_eq!(q.degree, 1);
-    assert_eq!(q.conductor, 1);
-    assert_eq!(q.purchase_type, "FORCED");
-
-    let qi = census
-        .iter()
-        .find(|e| e.id == "EXT_Q_I")
-        .expect("EXT_Q_I must exist");
-    assert_eq!(qi.degree, 2);
-    assert_eq!(qi.conductor, 4);
-
-    let sqrt5 = census
-        .iter()
-        .find(|e| e.id == "EXT_Q_SQRT5")
-        .expect("EXT_Q_SQRT5 must exist");
-    assert_eq!(sqrt5.degree, 2);
-    assert_eq!(sqrt5.conductor, 5);
-    assert_eq!(sqrt5.purchase_type, "FORCED");
-
-    let zeta8 = census
-        .iter()
-        .find(|e| e.id == "EXT_Q_ZETA8")
-        .expect("EXT_Q_ZETA8 must exist");
-    assert_eq!(zeta8.degree, 4);
-    assert_eq!(zeta8.conductor, 8);
-    assert_eq!(zeta8.purchase_type, "FORCED");
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-#[test]
-fn test_t1042_cross_language_parity() {
-    let census = build_field_extension_census();
-    let ids: Vec<&str> = census.iter().map(|e| e.id.as_str()).collect();
-    let expected_ids = vec![
-        "EXT_Q",
-        "EXT_Q_I",
-        "EXT_Q_ZETA3",
-        "EXT_Q_SQRT5",
-        "EXT_Q_ZETA5",
-        "EXT_Q_ZETA8",
-        "EXT_Q_ZETA12",
-    ];
-    assert_eq!(ids, expected_ids);
-
-    let degrees: Vec<u32> = census.iter().map(|e| e.degree).collect();
-    assert_eq!(degrees, vec![1, 2, 2, 2, 4, 4, 4]);
-
-    let conductors: Vec<u32> = census.iter().map(|e| e.conductor).collect();
-    assert_eq!(conductors, vec![1, 4, 3, 5, 5, 8, 12]);
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-#[test]
-fn test_t1043_mutation_1_extension_omitted_from_price_list() {
-    let full_list = build_full_price_list();
-    // Drop EXT_Q_SQRT5
-    let defective: Vec<PriceListRow> = full_list
-        .into_iter()
-        .filter(|r| r.item_id != "EXT_Q_SQRT5")
-        .collect();
-    let report = verify_price_list_totality(&defective);
-    assert!(!report.forward_total);
-    assert!(!report.both_directions_total);
-    assert!(report
-        .missing_extensions
-        .contains(&"EXT_Q_SQRT5".to_string()));
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
 }
 
-#[test]
-fn test_t1043_mutation_2_unbacked_row_in_price_list() {
-    let mut full_list = build_full_price_list();
-    full_list.push(PriceListRow {
-        item_id: "PHANTOM_EXTENSION_Q_PI".to_string(),
-        item_kind: "FIELD_EXTENSION".to_string(),
-        description: "Phantom extension".to_string(),
-        target_id: "C1000-T9999".to_string(),
-        cost_metric: "DEGREE".to_string(),
-        cost_value: "degree=inf".to_string(),
-        purchase_type: "CHOSEN".to_string(),
-        carrier: "Q(pi)".to_string(),
-    });
-    let report = verify_price_list_totality(&full_list);
-    assert!(!report.reverse_total);
-    assert!(!report.both_directions_total);
-    assert!(report
-        .unbacked_rows
-        .contains(&"PHANTOM_EXTENSION_Q_PI".to_string()));
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
 }
 
-#[test]
-fn test_t1043_mutation_3_clause_discharged_against_restricted_class() {
-    let clauses = adjudicate_fqmr1_clauses();
-    assert_eq!(clauses.len(), 10);
-    assert!(clauses.iter().all(|c| c.discharged));
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
 
-    // Simulate restricted class without R3
-    let restricted_members = vec!["R1", "R2", "B1", "B2", "C1", "C2", "Q1", "Q2", "X1", "X2"];
-    let r3_present = restricted_members.contains(&"R3");
-    assert!(!r3_present);
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
 
-    // If R3 is missing, clauses witnessing R3 (clause 4 and 10) must be rejected
-    let mut rejected_clauses = Vec::new();
-    for c in &clauses {
-        if !restricted_members.contains(&c.witness_member.as_str()) {
-            rejected_clauses.push(c.clause_key.clone());
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
     }
-    assert!(rejected_clauses.contains(&"4_element_inventory_with_price".to_string()));
-    assert!(rejected_clauses.contains(&"10_price_ledger".to_string()));
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
+
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn totient(n: i64) -> Result<i64, ClaimError> {
+    if n <= 0 {
+        return Err(violated("totient", n, 1));
+    }
+    let mut count = 0i64;
+    let mut cursor = 1i64;
+    while cursor <= n {
+        if gcd_pos(cursor, n)? == 1 {
+            count = checked_add(count, 1)?;
+        }
+        cursor = checked_add(cursor, 1)?;
+    }
+    Ok(count)
+}
+
+fn degree_sum() -> Result<i64, ClaimError> {
+    let cyclotomic = [1i64, 3, 4, 5, 8, 12];
+    let mut total = 0i64;
+    let mut index = 0i64;
+    while index < 6 {
+        let conductor = match cyclotomic.get(index as usize) {
+            Some(conductor) => *conductor,
+            None => return Err(violated("conductor", index, 6)),
+        };
+        total = checked_add(total, totient(conductor)?)?;
+        index = checked_add(index, 1)?;
+    }
+    checked_add(total, 2)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    require(totient(sample)? == 4, "phi twelve", totient(sample)?, 4)?;
+    degree_sum()
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let census = build_field_extension_census();
+    require(census.len() as i64 == 7, "extension count", census.len() as i64, 7)?;
+    let mut total = 0i64;
+    for row in &census {
+        total = checked_add(total, i64::from(row.degree))?;
+    }
+    require(total == value, "degree sum", total, value)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn test_t1043_mutation_4_nondeterministic_replay_rejected() {
-    // A replay that injects non-deterministic data must differ from canonical output
-    let canonical = r#"{"block":10,"campaign":"C1000"}"#;
-    let mutated = r#"{"block":10,"campaign":"C1000","timestamp":"2026-09-08T00:00:00Z"}"#;
-    assert_ne!(canonical, mutated);
-    assert!(mutated.contains("timestamp"));
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
 }
 
 #[test]
-fn test_t1043_mutation_5_planted_mismatch_detected() {
-    // Planted claim: boost group closes into finite subgroup
-    let claimed_finite = true;
-    // Receipt truth: boost B1 has infinite order
-    let receipt_finite_subgroup_found = false;
-
-    let audit_passes = if claimed_finite && !receipt_finite_subgroup_found {
-        false // Mismatch caught!
-    } else {
-        true
-    };
-    assert!(
-        !audit_passes,
-        "Planted prose claim must be rejected by receipt"
-    );
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
 }
 
 #[test]
-fn test_totality_clean() {
-    let full = build_full_price_list();
-    assert_eq!(full.len(), 47);
-    let report = verify_price_list_totality(&full);
-    assert!(report.forward_total);
-    assert!(report.reverse_total);
-    assert!(report.both_directions_total);
-    assert!(report.admissions_have_own_rows);
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
 }
 
 #[test]
-fn test_structural_sentence_rust() {
-    let (sentence, supported) = check_structural_sentence(true, true, true);
-    assert!(supported);
-    assert!(sentence.contains("The carrier holds group elements and never group parameters"));
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

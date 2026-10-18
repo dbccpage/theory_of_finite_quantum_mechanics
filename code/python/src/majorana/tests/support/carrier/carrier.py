@@ -81,7 +81,7 @@ class Carrier:
     ):
         if c0_dim <= 0 or c1_dim <= 0 or c2_dim < 0:
             raise ValueError(f"Invalid dimensions: c0={c0_dim}, c1={c1_dim}, c2={c2_dim}")
-        
+
         self.c0_dim = c0_dim
         self.c1_dim = c1_dim
         self.c2_dim = c2_dim
@@ -91,7 +91,7 @@ class Carrier:
         self.coefficient_semantics = coefficient_semantics
         self.context_family = context_family
         self.admissible_repair_set = admissible_repair_set
-        
+
         self.carrier_id = f"carrier:{self.compute_carrier_hash()[:16]}"
         self.schema_hash = self.compute_schema_hash()
         self.carrier_hash = self.compute_carrier_hash()
@@ -116,12 +116,11 @@ class Carrier:
         """Verify d1 ∘ d0 = 0."""
         if self.c2_dim == 0 or not self.d1 or not self.d0:
             return True
-        
-        # Matrix multiplication d1 (c2 x c1) * d0 (c1 x c0)
+
         n_c2 = len(self.d1)
         n_c1 = len(self.d0)
         n_c0 = len(self.d0[0]) if n_c1 > 0 else 0
-        
+
         for i in range(n_c2):
             for j in range(n_c0):
                 val = sum(self.d1[i][k] * self.d0[k][j] for k in range(n_c1))
@@ -133,7 +132,7 @@ class Carrier:
         """Export as EvidenceOnly CarrierArtifact."""
         is_zero = self.verify_chain_law()
         witness = f"witness:d1_d0_zero:{self.carrier_hash[:8]}" if is_zero else None
-        
+
         return CarrierArtifact(
             carrier_id=self.carrier_id,
             carrier_kind=self.carrier_kind,
@@ -156,7 +155,7 @@ class Carrier:
         artifact = self.to_artifact()
         if not self.verify_chain_law():
             raise ValueError(f"Carrier {self.carrier_id} violates chain law d1 ∘ d0 = 0")
-        
+
         return CheckedCarrierArtifact(
             artifact=artifact,
             is_valid_chain_law=True,
@@ -168,7 +167,7 @@ def verify_carrier_contract(carrier: Carrier) -> Dict[str, Any]:
     """Helper to audit carrier against urn:omega:state:carrier:v1.0.0 contract invariants."""
     is_law = carrier.verify_chain_law()
     artifact = carrier.to_artifact()
-    
+
     return {
         "contract_id": CONTRACT_ID,
         "carrier_id": carrier.carrier_id,

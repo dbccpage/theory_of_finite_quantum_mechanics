@@ -1,17 +1,3 @@
-//! Exact elements of `Z[zeta_n]` for a run-time conductor `n`, the value ring of
-//! character tables.
-//!
-//! An element is stored in the power basis `1, zeta, ..., zeta^(phi(n) - 1)` with
-//! integer coefficients, reduced modulo the cyclotomic polynomial `Phi_n`, so two
-//! elements are equal exactly when their coefficient vectors are equal. Complex
-//! conjugation is `zeta -> zeta^(-1)`. There is no floating point.
-//!
-//! Character values and integral host amplitudes share this single BigInt carrier.
-//! Rational coefficient admission proves integrality and checks a caller-declared
-//! coefficient limit before entering the ring. The cyclotomic modulus comes from
-//! the canonical polynomial implementation in this crate.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::BTreeMap;
 use std::sync::{Arc, Mutex, OnceLock};
@@ -21,7 +7,6 @@ use crate::rational::Rational;
 use num_bigint::BigInt;
 use num_traits::{One, Signed, Zero};
 
-/// Refusals of the `Z[zeta_n]` constructions.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum CyclotomicIntegerError {
     #[error("the conductor {0} is outside 1..={MAX_CONDUCTOR}")]
@@ -40,8 +25,6 @@ impl From<CyclotomicIntegerError> for String {
     }
 }
 
-/// `Phi_n` as integer coefficients from the constant term up (monic, degree `phi(n)`), for a
-/// conductor already checked against `1..=MAX_CONDUCTOR`, computed once per conductor.
 fn modulus(n: usize) -> Arc<Vec<BigInt>> {
     static CACHE: OnceLock<Mutex<BTreeMap<usize, Arc<Vec<BigInt>>>>> = OnceLock::new();
     let cache = CACHE.get_or_init(|| Mutex::new(BTreeMap::new()));
@@ -78,16 +61,13 @@ fn check_conductor(conductor: usize) -> Result<usize, CyclotomicIntegerError> {
     Ok(conductor)
 }
 
-/// An element of `Z[zeta_n]`.
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct CyclotomicInteger {
     conductor: usize,
-    /// Coefficients of `1, zeta, .., zeta^(phi(n) - 1)`.
     coefficients: Vec<BigInt>,
 }
 
 impl CyclotomicInteger {
-    /// Admit integral rational coefficients, at the default limit of 512 entries.
     pub fn new(
         conductor: usize,
         coefficients: Vec<Rational>,
@@ -95,7 +75,6 @@ impl CyclotomicInteger {
         Self::with_budget(conductor, coefficients, 512)
     }
 
-    /// Check the coefficient count and integrality before exact integer reduction.
     pub fn with_budget(
         conductor: usize,
         coefficients: Vec<Rational>,
@@ -116,8 +95,6 @@ impl CyclotomicInteger {
         ))
     }
 
-    /// Canonically trimmed rational values for JSON and rational-polynomial ingestion.
-    /// This allocates an adapter view; the only stored arithmetic coefficients are BigInt.
     pub fn coefficient_values(&self) -> Vec<Rational> {
         let length = self
             .coefficients
@@ -143,7 +120,6 @@ impl CyclotomicInteger {
         self.add(&other.negate())
     }
 
-    /// Exact exponentiation in the already admitted ring, including exponent zero.
     pub fn pow(&self, mut exponent: usize) -> Self {
         let mut base = self.clone();
         let mut out = Self::reduce(self.conductor, vec![BigInt::one()]);
@@ -163,7 +139,6 @@ impl CyclotomicInteger {
         self.conjugate()
     }
 
-    /// Algebraic norm, the canonical resultant Res(Phi_n, value).
     pub fn norm(&self) -> BigInt {
         let phi = Polynomial::from_coefficients(
             modulus(self.conductor)
@@ -181,12 +156,10 @@ impl CyclotomicInteger {
         norm.to_integer()
     }
 
-    /// An algebraic integer is a unit precisely when its integral norm is +/-1.
     pub fn is_unit(&self) -> bool {
         self.norm().abs() == BigInt::one()
     }
 
-    /// Reduce an arbitrary-length coefficient vector modulo `Phi_n`; `conductor` is valid.
     fn reduce(conductor: usize, mut raw: Vec<BigInt>) -> Self {
         let modulus = modulus(conductor);
         let degree = modulus.len() - 1;
@@ -216,7 +189,6 @@ impl CyclotomicInteger {
         Ok(Self::reduce(check_conductor(conductor)?, vec![value]))
     }
 
-    /// `zeta_n^exponent`, for any integer exponent (reduced modulo `n`).
     pub fn root_of_unity(conductor: usize, exponent: i64) -> Result<Self, CyclotomicIntegerError> {
         let n = check_conductor(conductor)?;
         let n_signed = i64::try_from(n).expect("a conductor up to MAX_CONDUCTOR fits i64");
@@ -227,7 +199,6 @@ impl CyclotomicInteger {
         Ok(Self::reduce(n, raw))
     }
 
-    /// `sum multiplicity * zeta_n^exponent` for a formal sum over exponents (reduced modulo `n`).
     pub fn from_formal_sum(
         conductor: usize,
         terms: &[(usize, BigInt)],
@@ -244,7 +215,6 @@ impl CyclotomicInteger {
         self.conductor
     }
 
-    /// The reduced coefficients of `1, zeta, .., zeta^(phi(n) - 1)`.
     pub fn coefficients(&self) -> &[BigInt] {
         &self.coefficients
     }
@@ -253,7 +223,6 @@ impl CyclotomicInteger {
         self.coefficients.iter().all(Zero::is_zero)
     }
 
-    /// The integer this element equals, when it lies in `Z`.
     pub fn as_integer(&self) -> Option<BigInt> {
         if self.coefficients.iter().skip(1).all(Zero::is_zero) {
             Some(
@@ -315,12 +284,10 @@ impl CyclotomicInteger {
         self.scale(&-BigInt::one())
     }
 
-    /// Complex conjugation `zeta -> zeta^(-1)`.
     pub fn conjugate(&self) -> Self {
         let n = self.conductor;
         let mut raw = vec![BigInt::zero(); n];
         for (k, c) in self.coefficients.iter().enumerate() {
-            // zeta^k -> zeta^(n - k) for k >= 1, and 1 -> 1.
             raw[(n - k % n) % n] += c;
         }
         Self::reduce(n, raw)
@@ -406,7 +373,6 @@ mod tests {
 
     #[test]
     fn a_conductor_three_element_reduces_and_compares_canonically() {
-        // zeta_3^2 = -1 - zeta_3.
         let w = z(3, 1);
         let w2 = w.mul(&w).unwrap();
         assert_eq!(w2.coefficients(), &[big(-1), big(-1)]);
@@ -448,7 +414,6 @@ mod tests {
             Some(big(7))
         );
         assert_eq!(z(5, 1).as_integer(), None);
-        // zeta_6 + zeta_6^5 = 1 (twice the real part of e^{i pi/3}).
         assert_eq!(z(6, 1).add(&z(6, 5)).unwrap().as_integer(), Some(big(1)));
     }
 }

@@ -72,9 +72,6 @@ def qi_mat_pow(a: QiMat, n: int) -> QiMat:
 StressTensor = tuple[tuple[Fraction, ...], ...]
 
 
-# ============================================================================
-# QM-229: Post-Newtonian light deflection and perihelion advance over Q
-# ============================================================================
 
 
 @dataclass(frozen=True)
@@ -104,7 +101,7 @@ class SolarSystemInputs:
     )
 
 
-ARCSEC_PER_RADIAN_TIMES_PI = Fraction(648000)  # 180 * 3600; arcsec = rad * 648000 / pi
+ARCSEC_PER_RADIAN_TIMES_PI = Fraction(648000)
 
 
 def ppn_deflection_factor(gamma: Fraction) -> Fraction:
@@ -284,9 +281,6 @@ def build_post_newtonian_audit(inputs: SolarSystemInputs | None = None) -> PostN
     )
 
 
-# ============================================================================
-# QM-230 (a): Three-qubit GHZ / Mermin algebra over Q(i)
-# ============================================================================
 
 
 def pauli_x() -> QiMat:
@@ -424,9 +418,6 @@ def build_ghz_mermin_audit() -> GhzMerminAudit:
     )
 
 
-# ============================================================================
-# QM-230 (b): Four-tick Page-Wootters history over Q(i)
-# ============================================================================
 
 
 def clock_shift(dim: int, step: int) -> QiMat:
@@ -531,9 +522,6 @@ def build_page_wootters_audit() -> PageWoottersAudit:
     )
 
 
-# ============================================================================
-# QM-230 (c): Pythagorean phase damping
-# ============================================================================
 
 
 def phase_damping_kraus(p: int, r: int, q: int) -> tuple[QiMat, QiMat]:
@@ -643,9 +631,6 @@ def build_phase_damping_audit() -> PhaseDampingAudit:
     return PhaseDampingAudit(runs=tuple(runs))
 
 
-# ============================================================================
-# QM-231: QWZ / Haldane Dirac-point Chern parity over Q
-# ============================================================================
 
 
 def sgn(x: Fraction) -> int:
@@ -777,9 +762,6 @@ def build_chern_parity_audit() -> ChernParityAudit:
     )
 
 
-# ============================================================================
-# Combined control report
-# ============================================================================
 
 
 @dataclass(frozen=True)

@@ -1,8 +1,3 @@
-//! Campaign module discrete_walk.
-//!
-//! The Cayley graph of `Z/6Z` with steps `±1` is 2-regular. Every row of the
-//! adjacency matrix sums to the degree, and `Tr(A²)` equals both the square
-//! of that matrix and `n` times the degree.
 
 pub fn verify() -> Result<i64, &'static str> {
     let n = 6usize;

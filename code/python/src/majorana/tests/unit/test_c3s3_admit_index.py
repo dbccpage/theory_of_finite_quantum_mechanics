@@ -52,7 +52,6 @@ def test_apply_admit_marks_batch_only(tmp_path: Path) -> None:
     idx = load_index(out)
     for rel in report.admitted_paths:
         assert disposition_of(idx, rel) == "admitted"
-    # non-batch math path remains suspect
     assert disposition_of(idx, "math/a_infinity_algebra.contract.yaml") == "suspect"
 
 

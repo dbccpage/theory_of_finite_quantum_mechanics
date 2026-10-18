@@ -1,39 +1,3 @@
-//! Target P5: exact arithmetic on a synthetic collar/nerve fixture.
-//!
-//! AuthorityEffect: None
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: floating-point types are strictly forbidden
-//! in this module. All coordinates, intervals, margins, circulation defects,
-//! and Network Simplex solutions are conducted over exact rational numbers
-//! (`num_rational::BigRational`), exact cyclotomic field elements (`Cyc24`), and exact integers.
-//!
-//! ## Mathematical Foundations
-//!
-//! The edge defects are assigned Γ/3 by construction and the u0 routing is a
-//! fixture policy. Neither a geometric chart overlap nor a curvature-to-edge
-//! map is verified here. Positive circulation describes this fixture alone.
-//!
-//! The fixture includes:
-//! 1. Declared rational fixture constants:
-//!    - Discrete cycle circulation threshold: Γ = 12133 / 5000.
-//!    - Global minimal curvature margin: ε_min = 12133 / 30000.
-//!    - Exact relation: 6 · ε_min = Γ.
-//! 2. Rational coordinate boxes:
-//!    - Axis-aligned rational interval boxes B = [u_0, v_0] x [u_1, v_1] in [0, 1)^2.
-//!    - The grid alone does not establish a Karlsson boundary realization.
-//! 3. Declared chart-label triples:
-//!    - 2-simplices τ = (c_0, c_1, c_2) in the canonical 5-chart moduli covering nerve.
-//!    - Canonical boundary nerve triangles connecting to the collar (Chart 1):
-//!      * Deltoid boundary nerve triangle: Δ_deltoid = (0, 1, 2)
-//!      * Tao confluence boundary nerve triangle: Δ_tao = (0, 1, 4)
-//! 4. Synthetic box-to-triple routing and exact area arithmetic.
-//! 5. Exact rational directed-cycle diagnostic:
-//!    - Evaluates the 1-cochain ω along the boundary 1-cycle ∂τ = e_01 + e_12 + e_20.
-//!    - Native Network Simplex discrete cycle circulation solver:
-//!      Φ_1(τ, ω) = min_α ∑_{e ∈ ∂τ} |ω_e - (dα)_e|.
-//!    - Exact cycle circulation invariance: ∑_{e ∈ ∂τ} (dα)_e = 0.
-//!    - The assigned fixture cycles reach Γ = 12133 / 5000.
-//!    - Exact zero duality gap: Φ_1 = net_circulation.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -50,13 +14,10 @@ use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge
 pub const SCOPE: &str = "synthetic_edge_weights_no_geometric_or_curvature_bridge";
 pub const DIM_2D: usize = 2;
 
-/// Integer scaling factor for Network Simplex solver (LCM of 5000 and 30000 is 30000).
 pub const INTEGER_SCALE: i128 = 30000;
 
-/// Scaled integer circulation threshold: Γ * 30000 = (12133 / 5000) * 30000 = 72798.
 pub const SCALED_GAMMA_THRESHOLD: i128 = 72798;
 
-/// Errors arising during this finite fixture diagnostic.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum NerveChainingError {
     #[error("Invalid parameter: {0}")]
@@ -109,7 +70,6 @@ pub enum NerveChainingError {
     NetworkSimplexFailure(String),
 }
 
-/// A 2-dimensional rational interval box B = [u_0, v_0] x [u_1, v_1] in [0, 1)^2.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarBox2D {
     pub bounds: [(BigRational, BigRational); DIM_2D],
@@ -117,7 +77,6 @@ pub struct CollarBox2D {
 }
 
 impl CollarBox2D {
-    /// Standard 2D unit square [0, 1]^2.
     pub fn unit_square() -> Self {
         let zero = BigRational::zero();
         let one = BigRational::one();
@@ -127,7 +86,6 @@ impl CollarBox2D {
         }
     }
 
-    /// Construct a new 2D collar box with strict interval validation.
     pub fn new(
         bounds: [(BigRational, BigRational); DIM_2D],
         cell_id: String,
@@ -156,14 +114,12 @@ impl CollarBox2D {
         Ok(Self { bounds, cell_id })
     }
 
-    /// Exact rational area: (v_0 - u_0) * (v_1 - u_1).
     pub fn area(&self) -> BigRational {
         let w0 = &self.bounds[0].1 - &self.bounds[0].0;
         let w1 = &self.bounds[1].1 - &self.bounds[1].0;
         &w0 * &w1
     }
 
-    /// Exact rational center point: ((u_0 + v_0)/2, (u_1 + v_1)/2).
     pub fn center(&self) -> [BigRational; DIM_2D] {
         let two = BigRational::from_integer(BigInt::from(2));
         [
@@ -172,7 +128,6 @@ impl CollarBox2D {
         ]
     }
 
-    /// Check if point pt is inside closed box.
     pub fn contains_point(&self, pt: &[BigRational; DIM_2D]) -> bool {
         pt[0] >= self.bounds[0].0
             && pt[0] <= self.bounds[0].1
@@ -180,7 +135,6 @@ impl CollarBox2D {
             && pt[1] <= self.bounds[1].1
     }
 
-    /// Split box along dimension dim at threshold cut into left and right sub-boxes.
     pub fn split_dim(
         &self,
         dim: usize,
@@ -209,7 +163,6 @@ impl CollarBox2D {
     }
 }
 
-/// Partition the 2D periodic collar slice [0, 1)^2 into an exact divisions x divisions grid.
 pub fn build_canonical_collar_grid(
     divisions: usize,
 ) -> Result<Vec<CollarBox2D>, NerveChainingError> {
@@ -242,7 +195,6 @@ pub fn build_canonical_collar_grid(
     Ok(boxes)
 }
 
-/// An oriented triangular face τ = (c_0, c_1, c_2) in the moduli covering nerve N_2.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BoundaryNerveTriangle {
     pub name: String,
@@ -250,7 +202,6 @@ pub struct BoundaryNerveTriangle {
 }
 
 impl BoundaryNerveTriangle {
-    /// Construct and validate a boundary nerve triangle.
     pub fn new(name: String, nodes: [ModuliChart5; 3]) -> Result<Self, NerveChainingError> {
         let [c0, c1, c2] = nodes;
         if c0 == c1 || c1 == c2 || c2 == c0 {
@@ -262,7 +213,6 @@ impl BoundaryNerveTriangle {
         Ok(Self { name, nodes })
     }
 
-    /// Construct a boundary nerve triangle from an oriented 3-edge cycle.
     pub fn from_directed_edges(
         name: String,
         edges: [(ModuliChart5, ModuliChart5); 3],
@@ -276,7 +226,6 @@ impl BoundaryNerveTriangle {
         Self::new(name, [e0.0, e1.0, e2.0])
     }
 
-    /// Canonical Deltoid boundary nerve triangle: (0, 1, 2) = (Szöllősi, Karlsson, Deltoid).
     pub fn deltoid() -> Self {
         Self {
             name: "delta_deltoid_0_1_2".to_string(),
@@ -288,7 +237,6 @@ impl BoundaryNerveTriangle {
         }
     }
 
-    /// Canonical Tao confluence boundary nerve triangle: (0, 1, 4) = (Szöllősi, Karlsson, Tao).
     pub fn tao() -> Self {
         Self {
             name: "delta_tao_0_1_4".to_string(),
@@ -300,23 +248,17 @@ impl BoundaryNerveTriangle {
         }
     }
 
-    /// Directed edges along the boundary 1-cycle.
     pub fn directed_edges(&self) -> [(ModuliChart5, ModuliChart5); 3] {
         let [c0, c1, c2] = self.nodes;
         [(c0, c1), (c1, c2), (c2, c0)]
     }
 
-    /// Assigned edge weights for the finite arithmetic fixture.
-    ///
-    /// No curvature witness is used: ω_e = Γ / 3 = 12133 / 15000.
-    /// Total net circulation: 3 · (12133 / 15000) = 12133 / 5000 = Γ.
     pub fn canonical_edge_defects(&self) -> [BigRational; 3] {
         let d = rq(12133, 15000);
         [d.clone(), d.clone(), d]
     }
 }
 
-/// Interface classification for collar-to-nerve connections.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum CollarNerveInterfaceType {
     DeltoidBoundary,
@@ -332,7 +274,6 @@ impl CollarNerveInterfaceType {
     }
 }
 
-/// Binds a 2D collar coordinate box to its associated boundary nerve triangle.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarBoxNerveBinding {
     pub box_2d: CollarBox2D,
@@ -341,7 +282,6 @@ pub struct CollarBoxNerveBinding {
     pub edge_defects: [BigRational; 3],
 }
 
-/// Route a box by its first lower endpoint; this is an illustrative policy.
 pub fn connect_collar_box_to_nerve(
     box_2d: CollarBox2D,
     custom_defects: Option<[BigRational; 3]>,
@@ -377,7 +317,6 @@ pub fn connect_collar_box_to_nerve(
     })
 }
 
-/// Complete nerve chaining connecting a partition of the periodic collar to boundary nerve triangles.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CollarNerveChaining {
     pub bindings: Vec<CollarBoxNerveBinding>,
@@ -385,7 +324,6 @@ pub struct CollarNerveChaining {
 }
 
 impl CollarNerveChaining {
-    /// Construct canonical chaining from an exact divisions x divisions grid.
     pub fn from_grid(divisions: usize) -> Result<Self, NerveChainingError> {
         let boxes = build_canonical_collar_grid(divisions)?;
         let mut bindings = Vec::with_capacity(boxes.len());
@@ -404,7 +342,6 @@ impl CollarNerveChaining {
     }
 }
 
-/// Detailed report for discrete cycle circulation evaluation on a boundary nerve triangle.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TriangularCirculationReport {
     pub triangle_name: String,
@@ -421,7 +358,6 @@ pub struct TriangularCirculationReport {
     pub phi1_ge_gamma: bool,
 }
 
-/// Solve the supplied three-edge fixture with exact integer scaling.
 pub fn solve_triangular_circulation(
     triangle: &BoundaryNerveTriangle,
     edge_defects: Option<[BigRational; 3]>,
@@ -449,7 +385,6 @@ pub fn solve_triangular_circulation(
         let val = scaled.to_integer().to_i128().ok_or_else(|| {
             NerveChainingError::InvalidParameter("Scaled defect exceeds i128 range".to_string())
         })?;
-        // Leave arithmetic headroom for the native solver's internal sums.
         if val.checked_abs().map_or(true, |n| n > i128::MAX / 16) {
             return Err(NerveChainingError::InvalidParameter(
                 "Scaled defect exceeds safe solver range".to_string(),
@@ -470,7 +405,6 @@ pub fn solve_triangular_circulation(
         });
     }
 
-    // Directed 3-cycle boundary operator: 0 -> 1, 1 -> 2, 2 -> 0
     let boundary = Boundary1 {
         num_vertices: 3,
         edges: vec![
@@ -495,7 +429,6 @@ pub fn solve_triangular_circulation(
     let phi1_sol = solve_phi1(&boundary, &omega_int)
         .map_err(|e| NerveChainingError::NetworkSimplexFailure(format!("{e:?}")))?;
 
-    // 1. Verify coboundary sum around closed loop vanishes: ∑_{e ∈ ∂τ} (dα)_e == 0
     let coboundary_sum: i128 = boundary.edges.iter().try_fold(0i128, |sum, e| {
         let difference = phi1_sol.vertex_potential[e.head]
             .checked_sub(phi1_sol.vertex_potential[e.tail])
@@ -516,7 +449,6 @@ pub fn solve_triangular_circulation(
         });
     }
 
-    // 2. Verify zero duality gap: objective == net_circulation
     let l1_norm: i128 = phi1_sol.z.iter().try_fold(0i128, |sum, &x| {
         let magnitude = x.checked_abs().ok_or_else(|| {
             NerveChainingError::InvalidParameter("Residual magnitude overflow".to_string())
@@ -576,7 +508,6 @@ pub fn solve_triangular_circulation(
     })
 }
 
-/// Verify that applying an arbitrary 0-cochain potential α preserves circulation and Φ_1.
 pub fn verify_gauge_invariance(
     triangle: &BoundaryNerveTriangle,
     alpha: &[i128; 3],
@@ -585,7 +516,6 @@ pub fn verify_gauge_invariance(
 ) -> Result<bool, NerveChainingError> {
     let base_report = solve_triangular_circulation(triangle, custom_defects, scale)?;
 
-    // Coboundaries: d_0(α)_{01} = α[1] - α[0], etc.
     let gauge_overflow =
         || NerveChainingError::InvalidParameter("Gauge difference overflow".to_string());
     let d_alpha = [
@@ -616,7 +546,6 @@ pub fn verify_gauge_invariance(
     )
 }
 
-/// Master report summarizing full 2D collar-to-nerve chaining and circulation verification.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct NerveChainingMasterReport {
     pub firewall_line: String,
@@ -636,7 +565,6 @@ pub struct NerveChainingMasterReport {
     pub gamma_threshold: BigRational,
 }
 
-/// Perform end-to-end evaluation of 2D collar-to-nerve boundary chaining.
 pub fn evaluate_nerve_chaining(
     divisions: usize,
     scale: i128,

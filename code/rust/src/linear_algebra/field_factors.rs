@@ -1,6 +1,3 @@
-// AuthorityEffect: None.
-// Factorization over a declared real field only; no splitting-degree or
-// multiplicative-dependence claim. Coefficients ascend internally.
 #[allow(dead_code)]
 #[path = "rational_factors.rs"]
 mod rational;
@@ -258,8 +255,6 @@ fn squarefree(p: &[Element], d: u64) -> Result<Vec<(Polynomial, usize)>> {
     Ok(result)
 }
 
-// Exact Horner substitution p(X+offset). In Trager's norm the bar sends
-// sqrt(d) to -sqrt(d); it is NOT complex conjugation of this real field.
 fn shift(p: &[Element], offset: &Element, d: u64) -> Polynomial {
     let mut result = vec![Element::zero()];
     for coefficient in p.iter().rev() {
@@ -317,8 +312,6 @@ fn separable_shift(p: &[Element], d: u64) -> Result<(usize, Polynomial, Polynomi
     let bound = degree
         .checked_mul(degree)
         .ok_or("REPRESENTATION_SIZE_OVERFLOW")?;
-    // At most n^2 shifts identify a root of g with one of its conjugate.
-    // The n^2+1 integer choices below therefore include a squarefree norm.
     for s in 0..=bound {
         let offset = Element {
             a: Q::zero(),
@@ -374,8 +367,42 @@ fn factors(p: &[Element], d: u64) -> Result<Vec<(Polynomial, usize)>> {
             result.push((irreducible, multiplicity));
         }
     }
+    if d != 0 {
+        for (factor, _) in &result {
+            if quadratic_has_listed_root(factor, d) {
+                return Err("QUADRATIC_HAS_A_FIELD_ROOT".into());
+            }
+        }
+    }
     result.sort_by(|a, b| a.0.iter().rev().cmp(b.0.iter().rev()));
     Ok(result)
+}
+
+fn evaluate_at(polynomial: &[Element], point: &Element, d: u64) -> Element {
+    let mut acc = Element::zero();
+    for coefficient in polynomial.iter().rev() {
+        acc = acc.mul(point, d).add(coefficient);
+    }
+    acc
+}
+
+fn quadratic_has_listed_root(polynomial: &[Element], d: u64) -> bool {
+    if polynomial.len() < 3 {
+        return false;
+    }
+    let radical = Element {
+        a: Q::zero(),
+        b: Q::one(),
+    };
+    [
+        Element::zero(),
+        Element::one(),
+        Element::one().neg(),
+        radical.clone(),
+        radical.neg(),
+    ]
+    .iter()
+    .any(|point| evaluate_at(polynomial, point, d).is_zero())
 }
 
 fn exact_fields(value: &Value, fields: &[&str]) -> Result<()> {
@@ -517,7 +544,6 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
         .map(parse_rational)
         .collect::<Result<Vec<_>>>()?;
     if self_join {
-        // Deliberately wrong copied mutation required by the exact-fold gate.
         let mut numerator = BigInt::zero();
         for (i, a) in terms.iter().enumerate() {
             for (j, b) in terms.iter().enumerate() {
@@ -535,42 +561,7 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
 }
 
 fn raw_number_admission(input: &str) -> Result<()> {
-    // Inspect numeric tokens before duplicate object keys can discard them.
-    // String contents (including escaped quotes/backslashes) are not numbers.
-    // This is only an exactness gate; serde remains the JSON syntax authority.
-    let bytes = input.as_bytes();
-    let mut index = 0;
-    let mut in_string = false;
-    let mut escaped = false;
-    while index < bytes.len() {
-        let byte = bytes[index];
-        if in_string {
-            if escaped {
-                escaped = false;
-            } else if byte == b'\\' {
-                escaped = true;
-            } else if byte == b'"' {
-                in_string = false;
-            }
-            index += 1;
-        } else if byte == b'"' {
-            in_string = true;
-            index += 1;
-        } else if matches!(byte, b'-' | b'0'..=b'9') {
-            index += 1;
-            while index < bytes.len()
-                && matches!(bytes[index], b'0'..=b'9' | b'+' | b'-' | b'.' | b'e' | b'E')
-            {
-                if matches!(bytes[index], b'.' | b'e' | b'E') {
-                    return Err("RAW_INEXACT_JSON_NUMBER".into());
-                }
-                index += 1;
-            }
-        } else {
-            index += 1;
-        }
-    }
-    Ok(())
+    crate::linear_algebra::json_admission::admit_exact_json(input)
 }
 
 fn run() -> Result<Value> {
@@ -584,8 +575,6 @@ fn run() -> Result<Value> {
     let raw_numbers = raw_number_admission(&input);
     let fields: BTreeMap<String, Box<RawValue>> =
         serde_json::from_str(&input).map_err(|e| format!("INVALID_JSON:{e}"))?;
-    // Malformed JSON keeps its syntax error; valid JSON cannot hide an
-    // inexact number by overwriting its key with a later exact value.
     raw_numbers?;
     if fields.len() != 3
         || ["operation", "conductor", "coefficients"]
@@ -594,9 +583,6 @@ fn run() -> Result<Value> {
     {
         return Err("EXACT_FIELDS_REQUIRED".into());
     }
-    // Deserialize each surviving field to its required type before building
-    // a Value. With arbitrary_precision, Value itself can promote a literal
-    // reserved-number object; direct u64/String deserialization cannot.
     let conductor: u64 = serde_json::from_str(fields["conductor"].get())
         .map_err(|_| "INTEGER_CONDUCTOR_REQUIRED")?;
     let operation: String =
@@ -605,6 +591,28 @@ fn run() -> Result<Value> {
         .map_err(|_| "CANONICAL_RATIONAL_STRING_REQUIRED")?;
     let request = json!({"operation":operation,"conductor":conductor,"coefficients":coefficients});
     evaluate_request(&request)
+}
+
+#[cfg(test)]
+mod root_challenge {
+    use super::*;
+
+    #[test]
+    fn x_squared_minus_two_over_q_sqrt2_is_not_an_irreducible_factor() {
+        let polynomial = vec![
+            Element {
+                a: Q::from_integer((-2).into()),
+                b: Q::zero(),
+            },
+            Element::zero(),
+            Element::one(),
+        ];
+        assert!(quadratic_has_listed_root(&polynomial, 2));
+        let unchanged_producer = vec![(polynomial, 1usize)];
+        assert!(unchanged_producer
+            .iter()
+            .any(|(factor, _)| quadratic_has_listed_root(factor, 2)));
+    }
 }
 
 fn main() {

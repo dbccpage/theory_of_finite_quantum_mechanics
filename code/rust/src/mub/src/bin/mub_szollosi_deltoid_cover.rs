@@ -1,19 +1,3 @@
-//! Production runner: exact rational interval solver for the Szöllősi deltoid arc B_6(θ).
-//!
-//! AuthorityEffect: None
-//! Restricted words: forced, minimal, free, canonical, equivalent, universal, complete
-//! require proof or explicit conditional scope. The `complete` flag denotes finite
-//! branch-and-bound partition termination over the declared stated region, nothing more.
-//!
-//! ## Usage
-//! ```text
-//! cargo run --release -p omega_mub --bin mub_szollosi_deltoid_cover -- \
-//!   --grid 8 --delta-den 1000 --max-depth 24 --emit
-//! ```
-//!
-//! Writes exact cover receipt under:
-//! - `omega_engine/crates_rs/tests/omega_mub/artifacts/mub_szollosi_deltoid_cover.json`
-//! - `artifacts/mub_szollosi_deltoid_cover.json`
 
 use std::fs;
 use std::path::{Path, PathBuf};
@@ -111,7 +95,6 @@ fn main() {
     println!("======================");
 
     if emit {
-        // Pre-serialize without digest to compute SHA-256 over canonical content
         let pre_json = serde_json::to_string_pretty(&report)
             .expect("failed to serialize preliminary deltoid report to JSON");
         let mut hasher = Sha256::new();
@@ -123,7 +106,6 @@ fn main() {
         let json_str = serde_json::to_string_pretty(&report)
             .expect("failed to serialize final deltoid report to JSON");
 
-        // Target path 1: inside omega_mub/artifacts/
         let crate_artifact_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
         fs::create_dir_all(&crate_artifact_dir)
             .expect("failed to create crate artifacts directory");
@@ -131,7 +113,6 @@ fn main() {
         fs::write(&crate_artifact_path, &json_str)
             .expect("failed to write crate cover receipt JSON");
 
-        // Target path 2: repository root artifacts/
         let repo_root = find_repo_root(Path::new(env!("CARGO_MANIFEST_DIR")));
         let repo_artifact_dir = repo_root.join("artifacts");
         fs::create_dir_all(&repo_artifact_dir)

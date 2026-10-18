@@ -66,21 +66,21 @@ def test_relative_phase_dimension():
     """Verify relative phase dimension formula |E_w| - 1 (Nat shell)."""
     sw_single = SectorWeights([1.0, 0.0, 0.0])
     assert sw_single.active_count == 1
-    assert sw_single.relative_phase_dim == 0  # 1 - 1 = 0
+    assert sw_single.relative_phase_dim == 0
 
     sw_pair = SectorWeights([0.6, 0.4])
     assert sw_pair.active_count == 2
-    assert sw_pair.relative_phase_dim == 1  # 2 - 1 = 1
+    assert sw_pair.relative_phase_dim == 1
 
     sw_tri = SectorWeights([0.3, 0.3, 0.4])
     assert sw_tri.active_count == 3
-    assert sw_tri.relative_phase_dim == 2  # 3 - 1 = 2
+    assert sw_tri.relative_phase_dim == 2
 
 
 def test_global_gauge_invariance():
     """Global continuous phase shift leaves relative phases unchanged (diagnostic shell)."""
     phases = [0.1, 0.5, 1.2, 0.0, 2.3]
-    active = [0, 1, 4]  # 3 active sectors
+    active = [0, 1, 4]
     rel1 = compute_relative_phases(phases, active)
 
     alpha = 0.77
@@ -115,12 +115,10 @@ def test_flip_all_involutive_fin3():
 
 def test_flip_all_free_action_fin3():
     """Lean flipAll_free_action_fin3 / flipAll_no_fixed_point: no fixed points on Fin 3."""
-    # Exhaustive 2^3 = 8 phase maps
     for bits in range(8):
         phi = [bool((bits >> i) & 1) for i in range(3)]
         flipped = flip_all(phi)
         assert flipped != phi
-        # pointwise: every bit flips
         for i in range(3):
             assert flipped[i] is (not phi[i])
 
@@ -133,7 +131,6 @@ def test_orbit_size_two_fin3():
         orbit = frozenset({tuple(phi), tuple(flip_all(phi))})
         assert len(orbit) == 2
         seen_orbits.add(orbit)
-    # 8 points / 2 = 4 orbits (matches fiberCardGauge = 4 = 2^{3-1})
     assert len(seen_orbits) == 4
 
 

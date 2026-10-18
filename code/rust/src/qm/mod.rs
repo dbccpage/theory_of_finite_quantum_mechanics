@@ -1,6 +1,5 @@
-//! Exact finite quantum mechanical states, density operators, observables, and campaigns.
 
-use crate::linear_algebra::{ExactMatrix, GaussianRational, MatrixError, Q};
+use crate::linear_algebra::{ExactFieldError, ExactMatrix, GaussianRational, MatrixError, Q};
 use crate::linear_algebra::scalars::{q, Semiring};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
@@ -11,6 +10,8 @@ pub enum QmError {
     DimensionMismatch(String),
     #[error("Matrix error: {0}")]
     Matrix(#[from] MatrixError),
+    #[error("exact field error: {0}")]
+    ExactField(#[from] ExactFieldError),
     #[error("State normalization violation: trace is not 1")]
     NormalizationViolation,
     #[error("Hermiticity violation: operator is not self-adjoint")]
@@ -78,6 +79,7 @@ impl DensityOperator {
 }
 
 pub mod domain;
+pub mod exact_token;
 pub mod entrypoints;
 pub mod campaigns;
 pub mod entropy_solver;

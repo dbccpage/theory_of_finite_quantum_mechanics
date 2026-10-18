@@ -1,12 +1,3 @@
-//! Bounded rational contractions and fraction-free integer elimination.
-//!
-//! Each row of `[A | b]` is cleared by the product of its denominators;
-//! Bareiss elimination then uses checked exact integer divisions. Free variables
-//! are zero. Singular consistent systems are supported; inconsistent systems
-//! return a typed refusal. This returns a proposal, not an inconsistency proof.
-//! Fuel counts scalar arithmetic calls (including rational normalization), not
-//! CPU instructions or bit operations. Every intermediate integer is bit-bounded;
-//! each matrix/vector allocation is element-bounded. AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError};
 use num_bigint::BigInt;
@@ -36,6 +27,8 @@ pub enum RationalError {
     Allocation,
     #[error("linear system is inconsistent")]
     Inconsistent,
+    #[error("candidate solution failed exact replay")]
+    ReplayRejected,
     #[error("Bareiss division was not exact")]
     NonExactDivision,
     #[error("division by zero")]
@@ -44,7 +37,6 @@ pub enum RationalError {
     Matrix(#[from] MatrixError),
 }
 
-/// One caller-owned budget, shared by construction and certificate replay.
 #[derive(Clone, Debug)]
 pub struct RationalBudget {
     limits: RationalLimits,
@@ -92,7 +84,7 @@ impl RationalBudget {
         }
         self.integer(x.numer())?;
         self.integer(x.denom())?;
-        self.charge(1)?; // normalization includes a gcd, counted as one scalar call
+        self.charge(1)?;
         let normalized = BigRational::new(x.numer().clone(), x.denom().clone());
         if x.numer() != normalized.numer() || x.denom() != normalized.denom() {
             return Err(RationalError::InvalidRational);
@@ -174,6 +166,9 @@ pub fn dot(
         return Err(RationalError::Shape);
     }
     fuel.elements(a.len(), 1)?;
+    if a.is_empty() {
+        return fuel.result(BigRational::zero());
+    }
     let mut out = BigRational::zero();
     for (x, y) in a.iter().zip(b) {
         let product = fuel.mul(x, y)?;
@@ -199,7 +194,12 @@ pub fn multiply(
     for q in a.as_slice().iter().chain(b.as_slice()) {
         fuel.rational(q)?;
     }
-    let mut out = buffer(count, BigRational::zero())?;
+    let fill = if a.cols() == 0 && count > 0 {
+        fuel.result(BigRational::zero())?
+    } else {
+        BigRational::zero()
+    };
+    let mut out = buffer(count, fill)?;
     for r in 0..a.rows() {
         for c in 0..b.cols() {
             for k in 0..a.cols() {
@@ -212,9 +212,6 @@ pub fn multiply(
     Ok(BasicMatrix::from_row_major(a.rows(), b.cols(), out)?)
 }
 
-/// Gaussian-rational contraction on separate real and imaginary parts. All
-/// four rational contractions and both combinations consume the caller's one
-/// budget; no complex scalar or domain-crate dependency is needed here.
 pub fn multiply_complex_parts(
     a_re: &BasicMatrix<BigRational>,
     a_im: &BasicMatrix<BigRational>,
@@ -234,7 +231,6 @@ pub fn multiply_complex_parts(
     ))
 }
 
-/// Conjugate transpose with bit checks and the same shared scalar budget.
 pub fn adjoint_complex_parts(
     re: &BasicMatrix<BigRational>,
     im: &BasicMatrix<BigRational>,
@@ -259,7 +255,6 @@ pub fn adjoint_complex_parts(
     ))
 }
 
-/// Entrywise addition on a shared rational budget.
 pub fn add_matrix(
     left: &BasicMatrix<BigRational>,
     right: &BasicMatrix<BigRational>,
@@ -268,7 +263,6 @@ pub fn add_matrix(
     combine_parts(left, right, false, fuel)
 }
 
-/// Entrywise rational scaling on a shared rational budget.
 pub fn scale_matrix(
     matrix: &BasicMatrix<BigRational>,
     scalar: &BigRational,
@@ -334,9 +328,6 @@ pub fn multiply_vector(
     Ok(out)
 }
 
-/// Overwrite caller-owned storage without allocating a temporary collection in
-/// the contraction. Scalar BigRational arithmetic still allocates internally.
-/// On fuel/bit exhaustion the destination may be partial and must be discarded.
 pub fn multiply_vector_into(
     a: &BasicMatrix<BigRational>,
     x: &[BigRational],
@@ -365,12 +356,22 @@ pub fn multiply_vector_into(
     Ok(())
 }
 
-/// A deterministic particular solution. Free columns are zero; no uniqueness
-/// of the potential is asserted when the matrix has a kernel.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct RationalSolution {
     pub particular: Vec<BigRational>,
     pub pivot_columns: Vec<usize>,
+}
+
+pub(crate) fn certify_replay(
+    a: &BasicMatrix<BigRational>,
+    x: &[BigRational],
+    b: &[BigRational],
+    fuel: &mut RationalBudget,
+) -> Result<(), RationalError> {
+    if multiply_vector(a, x, fuel)? != b {
+        return Err(RationalError::ReplayRejected);
+    }
+    Ok(())
 }
 
 pub fn solve(
@@ -427,7 +428,8 @@ pub fn solve(
     if (pivots.len()..m).any(|r| !grid[r * width + n].is_zero()) {
         return Err(RationalError::Inconsistent);
     }
-    let mut x = buffer(n, BigRational::zero())?;
+    let zero = fuel.result(BigRational::zero())?;
+    let mut x = buffer(n, zero)?;
     for (r, &col) in pivots.iter().enumerate().rev() {
         let mut rhs = BigRational::from_integer(grid[r * width + n].clone());
         for (c, xc) in x.iter().enumerate().skip(col + 1) {
@@ -439,10 +441,7 @@ pub fn solve(
             &BigRational::from_integer(grid[r * width + col].clone()),
         )?;
     }
-    // Replay against the original rational problem, independently of row clearing.
-    if multiply_vector(a, &x, fuel)? != b {
-        return Err(RationalError::Inconsistent);
-    }
+    certify_replay(a, &x, b, fuel)?;
     Ok(RationalSolution {
         particular: x,
         pivot_columns: pivots,
@@ -594,5 +593,58 @@ mod tests {
                 }
             }
         }
+    }
+
+    fn bits(max_bits: u64) -> RationalLimits {
+        RationalLimits {
+            max_scalar_ops: 1_000,
+            max_elements: 1_000,
+            max_bits,
+        }
+    }
+
+    #[test]
+    fn empty_sums_admit_the_created_zero() {
+        assert_eq!(
+            dot(&[], &[], &mut RationalBudget::new(bits(0))),
+            Err(RationalError::BitLimit)
+        );
+        assert_eq!(
+            dot(&[], &[], &mut RationalBudget::new(bits(1))).unwrap(),
+            q(0, 1)
+        );
+        let left = BasicMatrix::from_row_major(1, 0, vec![]).unwrap();
+        let right = BasicMatrix::from_row_major(0, 1, vec![]).unwrap();
+        assert_eq!(
+            multiply(&left, &right, &mut RationalBudget::new(bits(0))),
+            Err(RationalError::BitLimit)
+        );
+        assert_eq!(
+            multiply(&left, &right, &mut RationalBudget::new(bits(1)))
+                .unwrap()
+                .as_slice(),
+            &[q(0, 1)]
+        );
+    }
+
+    #[test]
+    fn a_bad_candidate_is_replay_rejected_rather_than_inconsistent() {
+        let a = matrix::from_rows(vec![vec![q(1, 1)]]).unwrap();
+        assert_eq!(
+            certify_replay(
+                &a,
+                &[q(2, 1)],
+                &[q(1, 1)],
+                &mut RationalBudget::new(limits())
+            ),
+            Err(RationalError::ReplayRejected)
+        );
+        certify_replay(
+            &a,
+            &[q(1, 1)],
+            &[q(1, 1)],
+            &mut RationalBudget::new(limits()),
+        )
+        .unwrap();
     }
 }

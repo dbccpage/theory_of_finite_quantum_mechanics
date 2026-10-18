@@ -1,7 +1,3 @@
-//! Ordered real places and CM coordinates of finite cyclotomic fields.
-//! Arithmetic delegates to the canonical rational polynomial and cyclotomic kernels.
-//! The represented conductors are 4, 5, 8, 12 and 24; a real place is explicit.
-//! AuthorityEffect: None.
 use crate::cyclotomic_field::{min_poly_of_2cos, Cyclotomic, CyclotomicError, CyclotomicNumber};
 use crate::polynomial::{
     isolate_real_roots, refine_root, Polynomial, PolynomialError, RootLocation, SturmSequence,
@@ -31,9 +27,6 @@ pub enum CyclotomicOrderError {
     NoRelation,
 }
 
-/// Sign at zeta_n=exp(2*pi*i/n). The real coordinate t=2*cos(2*pi/n)
-/// is the largest root of its minimal polynomial. Interval refinement separates
-/// every nonzero reduced polynomial from zero, while reduction detects equality.
 pub fn standard_real_sign(number: &CyclotomicNumber) -> Result<i8, CyclotomicOrderError> {
     if !number.is_real() {
         return Err(CyclotomicOrderError::NotReal);
@@ -94,15 +87,10 @@ impl<const N: usize> linear_algebra::exact_field::ordered::HermitianOrdered for 
 
 pub fn conductor_min_poly(conductor: usize) -> Polynomial<Rational> {
     match conductor {
-        // n=4: theta_4 = 0, F^+ = Q, min poly is x
         4 => Polynomial::<Rational>::from_i64s(&[0, 1]),
-        // n=5: theta_5^2 + theta_5 - 1 = 0
         5 => Polynomial::<Rational>::from_i64s(&[-1, 1, 1]),
-        // n=8: theta_8^2 - 2 = 0
         8 => Polynomial::<Rational>::from_i64s(&[-2, 0, 1]),
-        // n=12: theta_12^2 - 3 = 0
         12 => Polynomial::<Rational>::from_i64s(&[-3, 0, 1]),
-        // n=24: theta_24^4 - 4 theta_24^2 + 1 = 0
         24 => Polynomial::<Rational>::from_i64s(&[1, 0, -4, 0, 1]),
         _ => panic!(
             "Conductor {} not in supported set {{4, 5, 8, 12, 24}}",
@@ -122,7 +110,6 @@ pub fn conductor_initial_interval(conductor: usize) -> (Rational, Rational) {
     }
 }
 
-/// Isolates the positive real root alpha_* of minimal polynomial P_n(x) with rational intervals.
 #[derive(Clone, Debug)]
 pub struct CyclotomicRealRoot {
     pub conductor: usize,
@@ -154,7 +141,6 @@ impl CyclotomicRealRoot {
         }
     }
 
-    /// Bisect the isolating interval (a, b) once to half its width.
     pub fn refine(&mut self) {
         if self.conductor == 4 {
             self.a = r_zero();
@@ -182,7 +168,6 @@ impl CyclotomicRealRoot {
         }
     }
 
-    /// Repeatedly bisect interval until (b - a) <= max_width.
     pub fn refine_to_width(&mut self, max_width: &Rational) -> Result<(), CyclotomicOrderError> {
         if max_width <= &r_zero() {
             return Err(CyclotomicOrderError::NonpositiveWidth);
@@ -193,7 +178,6 @@ impl CyclotomicRealRoot {
         Ok(())
     }
 
-    /// Determine the exact algebraic sign (-1, 0, 1) of poly(alpha_*) under the embedding.
     pub fn sign_of_poly(&mut self, poly: &Polynomial<Rational>) -> i8 {
         if poly.is_zero() {
             return 0;
@@ -252,7 +236,6 @@ impl CyclotomicRealRoot {
         }
     }
 
-    /// Compute exact rational bounds r <= poly(alpha_*) <= s with (s - r) <= epsilon.
     pub fn bound_poly(
         &mut self,
         poly: &Polynomial<Rational>,
@@ -298,9 +281,6 @@ impl CyclotomicRealRoot {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Section 3: Maximal Real Subfield F^+ = Q(theta_n)
-// ---------------------------------------------------------------------------
 
 pub fn f_plus_degree(conductor: usize) -> usize {
     match conductor {
@@ -311,7 +291,6 @@ pub fn f_plus_degree(conductor: usize) -> usize {
     }
 }
 
-/// Exact element of maximal real subfield F^+ = Q(theta_n) in basis {1, theta, ..., theta^{m-1}}.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FieldElementFPlus {
     pub conductor: usize,
@@ -525,9 +504,6 @@ impl Div for FieldElementFPlus {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Section 4: Cyclotomic Field F = Q(zeta_n) = F^+(xi)
-// ---------------------------------------------------------------------------
 
 pub fn xi_squared(conductor: usize) -> FieldElementFPlus {
     match conductor {
@@ -537,7 +513,6 @@ pub fn xi_squared(conductor: usize) -> FieldElementFPlus {
     }
 }
 
-/// Exact element of cyclotomic field F = F^+(xi) represented as x + y * xi, with x, y in F^+.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FieldElementF {
     pub conductor: usize,
@@ -604,8 +579,6 @@ impl FieldElementF {
         ))
     }
 
-    /// The CM coordinate is i for conductors divisible by four, and
-    /// zeta-zeta^{-1} for conductor five. Both presentations map to Q(zeta_n).
     pub fn as_cyclotomic(&self) -> Result<CyclotomicNumber, CyclotomicError> {
         let xi = if self.conductor == 5 {
             CyclotomicNumber::zeta(5, 1)?.sub(&CyclotomicNumber::zeta(5, -1)?)?
@@ -773,13 +746,13 @@ mod tests {
     use super::*;
     #[test]
     fn test_polynomial_euclidean_and_derivative() {
-        let p1 = Polynomial::<Rational>::from_i64s(&[-2, 0, 1]); // x^2 - 2
-        let p2 = Polynomial::<Rational>::from_i64s(&[-1, 1]); // x - 1
+        let p1 = Polynomial::<Rational>::from_i64s(&[-2, 0, 1]);
+        let p2 = Polynomial::<Rational>::from_i64s(&[-1, 1]);
 
-        let prod = p1.mul(&p2); // x^3 - x^2 - 2x + 2
+        let prod = p1.mul(&p2);
         assert_eq!(prod.coefficients(), vec![ri(2), ri(-2), ri(-1), ri(1)]);
 
-        let d_prod = prod.derivative(); // 3x^2 - 2x - 2
+        let d_prod = prod.derivative();
         assert_eq!(d_prod.coefficients(), vec![ri(-2), ri(-2), ri(3)]);
 
         let (quot, rem) = p1.div_rem(&p2).unwrap();
@@ -861,9 +834,6 @@ mod tests {
     }
 }
 
-/// Minimal polynomial of an exact field element, found as the first dependence
-/// among 1,x,...,x^degree. The relation is reduced over Q and made monic;
-/// no numerical eigenvalue or root approximation enters the certificate.
 pub fn element_minimal_polynomial(
     number: &CyclotomicNumber,
 ) -> Result<Polynomial<Rational>, CyclotomicOrderError> {

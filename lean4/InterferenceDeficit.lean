@@ -1,25 +1,14 @@
-/-
-  InterferenceDeficit.lean
-  Additivity defect and non-descent from L1 weights for Paper 061.
-  AuthorityEffect: None
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import GaussIntKernel
 
 namespace InterferenceNonL1Resource
 
-/-- Diagonal L1 norm: sum of squared moduli on each sector -/
 def L1_norm (v : Vec GaussInt Bool) : Int :=
   GaussInt.sqMod (v false) + GaussInt.sqMod (v true)
 
-/-- Interfered weight: modulus squared of the coherent sum -/
 def interfered_weight (v : Vec GaussInt Bool) : Int :=
   GaussInt.sqMod (GaussInt.add (v false) (v true))
 
-/-- Interference Deficit: difference between coherent and incoherent sums -/
 def interference_deficit (v : Vec GaussInt Bool) : Int :=
   interfered_weight v - L1_norm v
 
@@ -41,13 +30,11 @@ theorem sq_add_cross (a b c d : Int) :
   rw [h1, h2, hca, hdb]
   omega
 
-/-- Algebraic Cross-Term Identity: deficit equals twice real part of cross term -/
 theorem deficit_eq_cross_term (v : Vec GaussInt Bool) :
     interference_deficit v = 2 * (v false).re * (v true).re + 2 * (v false).im * (v true).im := by
   dsimp [interference_deficit, interfered_weight, L1_norm, GaussInt.sqMod, GaussInt.add]
   exact sq_add_cross (v false).re (v false).im (v true).re (v true).im
 
-/-! ### The Three Deficit Trichotomy Witnesses -/
 def psi_plus : Vec GaussInt Bool := fun _ => GaussInt.one
 def psi_minus : Vec GaussInt Bool := fun q => if q then GaussInt.neg GaussInt.one else GaussInt.one
 def psi_ortho : Vec GaussInt Bool := fun q => if q then GaussInt.i else GaussInt.one
@@ -56,7 +43,6 @@ theorem psi_plus_deficit : interference_deficit psi_plus = 2 := by decide
 theorem psi_minus_deficit : interference_deficit psi_minus = -2 := by decide
 theorem psi_ortho_deficit : interference_deficit psi_ortho = 0 := by decide
 
-/-- THEOREM A1: No function of the L1 norm determines the interfered weight -/
 theorem L1_cannot_compute_interference :
     ¬ ∃ f : Int → Int, ∀ v : Vec GaussInt Bool, interfered_weight v = f (L1_norm v) := by
   intro ⟨f, hf⟩
@@ -71,3 +57,6 @@ theorem L1_cannot_compute_interference :
   decide
 
 end InterferenceNonL1Resource
+
+private def l5aProvenance : String :=
+  "Origin: lean4/InterferenceDeficit.lean Claim: sq_add_cross AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -94,7 +94,6 @@ class TestNarrativeRidesAsDataOnly:
         assert receipt.authority_effect == "none"
         for step in receipt.layer_path:
             assert step["authority_status"] == "None"
-        # The witness binds the narrative-bearing bytes.
         assert emission.witness.replay_hash == receipt.replay_hash
 
     def test_one_char_narrative_tamper_is_refused_by_the_frozen_witness(self) -> None:
@@ -176,8 +175,6 @@ class TestEmissionOwnerRefusals:
             )
 
     def test_unregistered_diagnostic_token_fails_closed_not_unavailable(self) -> None:
-        # The pre-repair path wrote "UNAVAILABLE: ..." strings; now the alias
-        # adapter refuses the unknown token outright.
         bad_step = DdaStepReceipt(
             step_id="s_tok",
             letter=DdaLetter.E,
@@ -185,7 +182,7 @@ class TestEmissionOwnerRefusals:
             output_state_hash="o",
             carrier_hash="c",
             diagnostic_before="Closed",
-            diagnostic_after="Closed",  # not a registry token, not an alias
+            diagnostic_after="Closed",
             required_witness="w",
             witness_hash="wh",
         )
@@ -230,7 +227,6 @@ class TestDeclaredLetterAdapter:
         assert axes["authority_status"] == "None"
 
     def test_letter_tables_cover_the_whole_alphabet(self) -> None:
-        # Totality of the declared adapter: every DDA letter routes.
         assert set(LETTER_ROUTING_DEFAULT) == set(DdaLetter)
         assert set(LETTER_EXTENSION) <= set(DdaLetter)
 

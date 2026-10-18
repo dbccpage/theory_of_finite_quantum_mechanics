@@ -1,4 +1,3 @@
-//! Cyclotomic tower domain types.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CyclotomicTower {
@@ -6,8 +5,6 @@ pub struct CyclotomicTower {
     pub degree: usize,
 }
 
-/// Coefficient vector of a cyclotomic integer, length equal to the conductor,
-/// in the power basis `1, ζ, …, ζ^{n-1}`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CyclotomicCoeffs {
     pub conductor: usize,
@@ -15,7 +12,6 @@ pub struct CyclotomicCoeffs {
 }
 
 impl CyclotomicTower {
-    /// Degree is Euler's totient of the conductor, counted and closed-form.
     pub fn new(conductor: usize) -> Result<Self, &'static str> {
         let degree = euler_totient(conductor)?;
         Ok(Self { conductor, degree })
@@ -30,7 +26,6 @@ impl CyclotomicCoeffs {
         Ok(Self { conductor, coeffs })
     }
 
-    /// Add two elements of the same cyclotomic order.
     pub fn add(&self, other: &Self) -> Result<Self, &'static str> {
         if self.conductor != other.conductor || self.coeffs.len() != other.coeffs.len() {
             return Err("cyclotomic conductors differ");
@@ -48,7 +43,6 @@ impl CyclotomicCoeffs {
         })
     }
 
-    /// For a prime conductor, fold `ζ^{p-1} = -1 - ζ - … - ζ^{p-2}`.
     pub fn reduce_prime(&self) -> Result<Self, &'static str> {
         let p = self.conductor;
         if p < 2 || !is_prime(p) || self.coeffs.len() != p {
@@ -68,7 +62,6 @@ impl CyclotomicCoeffs {
     }
 }
 
-/// `1 + ζ_3 + ζ_3^2 = 0`, seen by reduction and by `(x-1)(x^2+x+1) = x^3-1`.
 pub fn prime_relation_vanishes() -> Result<(), &'static str> {
     let one = CyclotomicCoeffs::try_new(3, vec![1, 0, 0])?;
     let zeta = CyclotomicCoeffs::try_new(3, vec![0, 1, 0])?;
@@ -77,7 +70,6 @@ pub fn prime_relation_vanishes() -> Result<(), &'static str> {
     if sum.coeffs.iter().any(|c| *c != 0) {
         return Err("1+ζ+ζ^2 did not reduce to 0");
     }
-    // (x-1)(x^2+x+1) = x^3 - 1.
     let factor = poly_mul(&[1, 1, 1], &[-1, 1])?;
     if factor != vec![-1, 0, 0, 1] {
         return Err("cyclotomic factorization of x^3-1 failed");

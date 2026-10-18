@@ -1,8 +1,6 @@
-//! Counts drawn from a finite-report cover classification.
 
 use omega_category_theory::finite_report_descent::{CoverClassification, DescentOutcome};
 
-/// Counts drawn from a cover classification.
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct DescentSummary {
     pub matching_families: usize,

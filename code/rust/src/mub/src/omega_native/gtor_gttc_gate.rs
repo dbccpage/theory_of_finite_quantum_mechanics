@@ -1,9 +1,3 @@
-//! Executable CODA-OR/CODA-CS non-creation gates.
-//!
-//! CODA-OR comparison envelopes and CODA-CS continuum shadows can organize evidence,
-//! but they cannot create MUB authority unless finite components are
-//! terminalized, representation edges are certified, and a query-relative
-//! gluing theorem is present. This module records that audit explicitly.
 
 use serde::Serialize;
 

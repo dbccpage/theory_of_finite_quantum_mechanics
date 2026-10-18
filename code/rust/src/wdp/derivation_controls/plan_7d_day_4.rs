@@ -27,12 +27,10 @@ pub fn verify_day_4_correspondence(
         return Err("undeclared Lane D bound extension refused");
     }
 
-    // In quarter-units: flip_read = 2, read_A/read_B = 12, restore = restore_cost_quarter_units.
     let disturbance_repair_quarters = 2 + 12 + restore_cost_quarter_units;
-    let nondisturbing_quarters = 16; // 4 = 16/4
+    let nondisturbing_quarters = 16;
     let overall_opt_quarters = disturbance_repair_quarters.min(nondisturbing_quarters);
 
-    // Lane C cost in half-units: 8 + 6 + 2 + 9 + 9 = 34 (which is 17). With repeat child (+9 half-units): 43 > 36 (which is 18).
     let lane_c_half_units = 34 + if repeat_child_without_reuse { 9 } else { 0 };
     if lane_c_half_units > 36 {
         return Err("Lane C trace cost exceeds budget cap 18");

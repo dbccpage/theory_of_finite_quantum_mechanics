@@ -47,7 +47,6 @@ class ChiralSuperconductorReceipt:
 class ChiralSuperconductorBisimulationBridge:
     def __init__(self, schema_path: Optional[Path] = None):
         if schema_path is None:
-            # Try databases/ directory next to code/
             db_schema = code_dir.parent / "databases" / "chiral_superconductor_schema.sql"
             if db_schema.exists():
                 self.schema_path = db_schema
@@ -68,7 +67,6 @@ class ChiralSuperconductorBisimulationBridge:
         c = self.conn.cursor()
         data = model.export_relational_tuples()
 
-        # 1. WeylSuperconductorLattice
         c.executemany(
             """
             INSERT OR REPLACE INTO WeylSuperconductorLattice
@@ -78,7 +76,6 @@ class ChiralSuperconductorBisimulationBridge:
             data["WeylSuperconductorLattice"],
         )
 
-        # 2. WeylBulkNodes
         c.executemany(
             """
             INSERT OR REPLACE INTO WeylBulkNodes
@@ -88,7 +85,6 @@ class ChiralSuperconductorBisimulationBridge:
             data["WeylBulkNodes"],
         )
 
-        # 3. KzSliceTopologicalInvariants
         c.executemany(
             """
             INSERT OR REPLACE INTO KzSliceTopologicalInvariants
@@ -98,7 +94,6 @@ class ChiralSuperconductorBisimulationBridge:
             data["KzSliceTopologicalInvariants"],
         )
 
-        # 4. SurfaceMajoranaFermiArcs
         c.executemany(
             """
             INSERT OR REPLACE INTO SurfaceMajoranaFermiArcs
@@ -109,7 +104,6 @@ class ChiralSuperconductorBisimulationBridge:
             data["SurfaceMajoranaFermiArcs"],
         )
 
-        # 5. SurfaceBulkSpectralFlowTrajectory
         c.executemany(
             """
             INSERT OR REPLACE INTO SurfaceBulkSpectralFlowTrajectory
@@ -120,7 +114,6 @@ class ChiralSuperconductorBisimulationBridge:
             data["SurfaceBulkSpectralFlowTrajectory"],
         )
 
-        # 6. ChiralSuperconductorGinPostings
         c.executemany(
             """
             INSERT INTO ChiralSuperconductorGinPostings
@@ -163,7 +156,7 @@ class ChiralSuperconductorBisimulationBridge:
 
         anomaly_status = anomaly_dict.get("anomaly_status", "CHIRAL_ANOMALY_DEFECT")
         bulk_boundary_status = flow_dict.get("bulk_boundary_status", "BULK_BOUNDARY_DISCREPANCY")
-        
+
         majorana_status = "MAJORANA_SELF_CONJUGATE_VALID"
         for a in arc_rows:
             if a["majorana_status"] != "MAJORANA_SELF_CONJUGATE_VALID":
@@ -176,10 +169,6 @@ class ChiralSuperconductorBisimulationBridge:
                 inflow_verdict = i["inflow_verdict"]
                 break
 
-        # Bisimulation verification against Lean 4 ChiralSuperconductorCore rules:
-        # 1. Broken PHS or broken Majorana conjugacy -> CLOSURE_FAILURE
-        # 2. Chiral anomaly defect or bulk-boundary discrepancy or inflow leak -> SPLIT_BRAIN_REFUSAL
-        # 3. Else -> REPAIR
         lean_bisim_passed = True
         if not model.phs_symmetric and route != "CLOSURE_FAILURE":
             lean_bisim_passed = False

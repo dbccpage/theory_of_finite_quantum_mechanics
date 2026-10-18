@@ -173,7 +173,7 @@ def conjugation_invariance(conductor: int) -> dict[str, Any]:
     for name, u in frames.items():
         if not hbc.is_unitary(u):
             raise ContextControlRefusal(f"frame {name} is not unitary")
-        conj = lambda m: hbc.matmul(hbc.matmul(u, m), hbc.dagger(u))  # noqa: E731
+        conj = lambda m: hbc.matmul(hbc.matmul(u, m), hbc.dagger(u))
         results[name] = hbc.commutator_holonomy(conj(x), conj(zc)) == base
     diag = frames["diagonal_phases"]
     return {

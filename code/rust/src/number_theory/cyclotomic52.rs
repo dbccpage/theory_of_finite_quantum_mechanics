@@ -1,7 +1,3 @@
-//! Clean-room exact arithmetic in `Q(zeta_52)`.
-//!
-//! This field supports the d=13 odd-prime Weyl control. It contains thirteenth
-//! roots of unity, `i`, and the quadratic Gauss normalization `sqrt(13)`.
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
@@ -10,8 +6,6 @@ use crate::rational::ri;
 
 const DEGREE: usize = 24;
 
-// Phi_52(x) = x^24 - x^22 + x^20 - ... - x^2 + 1.
-// Coefficients c_j for x^24 + sum_{j<24} c_j x^j.
 const PHI52_LOW: [i64; DEGREE] = [
     1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, -1, 0,
 ];

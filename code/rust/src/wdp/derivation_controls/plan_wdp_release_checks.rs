@@ -1,5 +1,3 @@
-//! Finite revalidation and policy-disposition control for PLAN-WDP-RELEASE-CHECKS.
-//! Refuses silent trusted-baseline refresh and requires explicit disposition of DEC-WDP-REPIN.
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct ReleaseCheckInput {

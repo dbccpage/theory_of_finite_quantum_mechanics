@@ -131,7 +131,6 @@ class SU2ClusterBenchmarkRunner:
         total_proposals = 0
         accepted_count = 0
 
-        # Deterministic suite of exact rational Pythagorean quaternions
         candidate_palette = [
             ExactRationalSU2.from_pythagorean_quadruple(1, 2, 2, 0),
             ExactRationalSU2.from_pythagorean_quadruple(2, 1, 0, 2),
@@ -149,10 +148,9 @@ class SU2ClusterBenchmarkRunner:
             )
             cluster = self.generate_cluster_sites(base_site, cluster_size=cluster_size)
 
-            # Propose candidate updates for links inside the cluster
             proposals = []
             cand = candidate_palette[rnd % len(candidate_palette)]
-            for site in cluster[:4]:  # Update subset of cluster links per round
+            for site in cluster[:4]:
                 for mu in range(2):
                     proposals.append(FspLinkProposal(site.x0, site.x1, site.x2, site.x3, mu, cand))
 

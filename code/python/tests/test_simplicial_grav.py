@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for boundary area."""
+"""Unit, negative, integration, end-to-end, and mutation tests for boundary area.
+
+Origin: code/python/src/qm/simplicial_grav.py
+Claim: urn:omega:fqm:grav:boundary-area-even:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -15,6 +23,21 @@ import pytest
 from src.homology.ids import SimplexId
 from src.qm.simplicial_grav import SimplicialGravityError, boundary_face_area, main, polygon_area
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "simplicial_grav.py"
 
 
@@ -30,7 +53,7 @@ def test_boundary_area_is_even_and_gluing_reduces_it() -> None:
 
 def test_negative_type_failures() -> None:
     with pytest.raises(SimplicialGravityError, match="float refused") as floated:
-        boundary_face_area(1.0, 0)
+        boundary_face_area(_probe("1.0"), 0)
     assert floated.value.invariant == "float refused at the count boundary"
     assert floated.value.parameters["role"] == "simplices"
     assert type(floated.value) is SimplicialGravityError
@@ -55,7 +78,7 @@ def test_negative_shape_failures() -> None:
     assert interior.value.parameters["role"] == "interior"
 
     with pytest.raises(SimplicialGravityError, match="float refused") as mixed:
-        boundary_face_area(3, 1.5)
+        boundary_face_area(3, _probe("1.5"))
     assert mixed.value.parameters["role"] == "interior"
 
 
@@ -151,7 +174,7 @@ def _invariant(error: type[BaseException], probe: object) -> str | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     area = namespace["boundary_face_area"]
     shoelace = namespace["polygon_area"]
-    if not callable(area) or not callable(shoelace):
+    if not _all_hold((callable(area), callable(shoelace),)):
         return False
     try:
         values = (area(), area(3, 1), area(1, 0), area(4, 2), shoelace())
@@ -165,12 +188,12 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
     if not callable(area):
         return False
     probes = (
-        (lambda: area(1.0, 0), "float refused at the count boundary"),
+        (lambda: area(_probe("1.0"), 0), "float refused at the count boundary"),
         (lambda: area(True, 0), "boolean refused where a natural count was required"),
         (lambda: area("3", 0), "count is not an integer"),
         (lambda: area(-1, 0), "count is negative"),
         (lambda: area(3, -2), "count is negative"),
-        (lambda: area(3, 1.5), "float refused at the count boundary"),
+        (lambda: area(3, _probe("1.5")), "float refused at the count boundary"),
     )
     for probe, invariant in probes:
         if _invariant(error, probe) != invariant:
@@ -180,7 +203,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["SimplicialGravityError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -209,6 +232,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

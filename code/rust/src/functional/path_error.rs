@@ -1,6 +1,3 @@
-//! Source-bound telescoping error for two finite, endpoint-compatible paths.
-//! Prefix/suffix gains are measured; an unweighted local-error budget alone
-//! cannot bound the endpoint error when later maps amplify a discrepancy.
 
 use crate::loss_curvature::{matrix_norms, LossError, Matrix};
 use num_rational::BigRational as Q;
@@ -62,7 +59,6 @@ impl PathErrorBound {
     }
 }
 
-/// Products act in chronological order on columns: A_last ... A_first.
 pub fn certify_path_error(
     first: &[Matrix],
     second: &[Matrix],

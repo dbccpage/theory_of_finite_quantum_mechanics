@@ -1,10 +1,3 @@
-//! Problem-bound WDP receipts for conditional finite clock adequacy.
-//!
-//! Chain arithmetic, edge coupling and budget/coarsening proofs are owned by
-//! `omega_measurement::finite_chain_clock`. Occurrence names, packet identity,
-//! actual budgets and selected partition boundaries are preserved for replay.
-//! Clock construction, physical coupling/units and traceability remain declared
-//! prerequisites; adequate finite data does not derive those prerequisites.
 
 use omega_measurement::finite_chain_clock::{ChainClock, ChainClockError, ClockIntervalBound};
 use thiserror::Error;
@@ -23,8 +16,6 @@ pub enum ClockPacketError {
     Clock(#[from] ChainClockError),
 }
 
-/// Labels annotate the declared vertices; equal strings may recur, since their
-/// vertex positions are retained and no quotient of occurrences is inferred.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct NamedChainClockPacket {
     pub packet_id: String,
@@ -140,9 +131,6 @@ pub fn evaluate_clock_coarsening(
     })
 }
 
-/// Actual boundaries are a separate verifier argument. Changing a candidate's
-/// declared cuts, dropping edges, weakening budgets or replaying a different
-/// chain therefore cannot fabricate evidence for the requested coarsening.
 pub fn verify_clock_coarsening(
     actual_fine: &NamedChainClockPacket,
     actual_boundaries: &[usize],
@@ -160,9 +148,6 @@ pub struct ClockRefinementReceipt {
     pub authority_effect: AuthorityEffect,
 }
 
-/// Certify a separately declared coarse clock, permitting coarse budgets larger
-/// than fine block sums but requiring the same endpoint readings, reference
-/// durations, calibration and occurrence labels at the selected boundaries.
 pub fn evaluate_clock_refinement(
     fine: &NamedChainClockPacket,
     coarse: &NamedChainClockPacket,

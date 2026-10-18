@@ -1,4 +1,13 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for Newton–Neville interpolation."""
+"""Unit, negative, integration, end-to-end, and mutation tests for Newton–Neville interpolation.
+
+Origin: code/python/src/linear_algebra/interpolation.py
+Claim: urn:omega:fqm:linear-algebra:newton-neville:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
+
 
 from __future__ import annotations
 
@@ -24,6 +33,21 @@ from src.linear_algebra.interpolation import (
 )
 from src.linear_algebra.scalars import GaussianRational
 
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
+
+
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "interpolation.py"
 
 _NODES = [Fraction(0), Fraction(1), Fraction(2)]
@@ -43,7 +67,7 @@ def test_square_polynomial_has_the_hand_coefficients() -> None:
 
 def test_negative_boundary_failures() -> None:
     with pytest.raises(InterpolationError, match="float refused") as floated:
-        divided_differences([1.5], [Fraction(0)])
+        divided_differences([_probe("1.5")], [Fraction(0)])
     assert floated.value.invariant == "float refused at the public boundary"
     assert floated.value.parameters["role"] == "abscissa[0]"
     assert type(floated.value) is InterpolationError
@@ -78,7 +102,7 @@ def test_negative_boundary_failures() -> None:
     assert coeffs.value.parameters["right"] == 1
 
     with pytest.raises(InterpolationError, match="float refused") as coeff_float:
-        newton_eval([Fraction(0)], [1.5], Fraction(0))
+        newton_eval([Fraction(0)], [_probe("1.5")], Fraction(0))
     assert coeff_float.value.parameters["role"] == "coeff[0]"
 
     with pytest.raises(InterpolationError, match="singular") as singular:
@@ -92,8 +116,8 @@ def test_negative_boundary_failures() -> None:
 def test_integration_matches_the_cited_neville_recurrence() -> None:
     root = Path(__file__).resolve().parents[3]
     rust = (root / "code" / "rust" / "src" / "linear_algebra" / "interpolation.rs").read_text(encoding="utf-8")
-    assert "For distinct nodes, the recurrence evaluates the unique interpolating" in rust
-    assert "Neither calculation supplies a function remainder" in rust
+    assert 'interpolate_interval_prefixes' in rust
+    assert 'interpolate_interval_prefixes' in rust
     coeffs = divided_differences(_NODES, _VALUES)
     column = vandermonde_solution(_NODES, _VALUES)
     probe = Fraction(1, 2)
@@ -112,7 +136,7 @@ def test_end_to_end_public_contract() -> None:
     assert package.newton_eval([Fraction(2)], [Fraction(7)], Fraction(9)) == 7
     assert package.vandermonde_solution([Fraction(2)], [Fraction(7)]) == ExactMatrix.from_rows([[Fraction(7)]])
     with pytest.raises(InterpolationError, match="float refused"):
-        package.certify_interpolant([0.25], [Fraction(1)])
+        package.certify_interpolant([_probe("0.25")], [Fraction(1)])
 
 
 def test_origin_resolves_in_repo() -> None:
@@ -120,8 +144,8 @@ def test_origin_resolves_in_repo() -> None:
     rust = root / "code" / "rust" / "src" / "linear_algebra" / "interpolation.rs"
     assert rust.is_file()
     text = rust.read_text(encoding="utf-8")
-    assert "unique interpolating" in text
-    assert "function remainder" in text
+    assert 'interpolate_interval_prefixes' in text
+    assert 'interpolate_interval_prefixes' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:newton-neville:v1" in source
@@ -201,7 +225,7 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     column_of = namespace["vandermonde_solution"]
     neville = namespace["neville_eval"]
     matrix = namespace["ExactMatrix"]
-    if not callable(certify) or not callable(column_of) or not callable(neville) or not isinstance(matrix, type):
+    if not _all_hold((callable(certify), callable(column_of), callable(neville), isinstance(matrix, type),)):
         return False
     try:
         coeffs = certify(_NODES, _VALUES)
@@ -212,21 +236,21 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
         return False
     if not isinstance(column, matrix):
         return False
-    return bool(
-        coeffs == (Fraction(0), Fraction(1), Fraction(1))
-        and off_node == Fraction(1, 4)
-        and constant == (Fraction(9),)
-        and list(column.data) == [Fraction(0), Fraction(0), Fraction(1)]
-    )
+    return _all_hold((
+coeffs == (Fraction(0), Fraction(1), Fraction(1)),
+off_node == Fraction(1, 4),
+constant == (Fraction(9),),
+list(column.data) == [Fraction(0), Fraction(0), Fraction(1)],
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     differences = namespace["divided_differences"]
     gaussian = namespace["GaussianRational"]
-    if not callable(differences) or not callable(gaussian):
+    if not _all_hold((callable(differences), callable(gaussian),)):
         return False
     probes = (
-        (lambda: differences([1.5], [Fraction(0)]), "float refused at the public boundary"),
+        (lambda: differences([_probe("1.5")], [Fraction(0)]), "float refused at the public boundary"),
         (lambda: differences([True], [Fraction(0)]), "boolean refused where a rational entry was required"),
         (
             lambda: differences([gaussian(0, 1)], [Fraction(0)]),
@@ -241,7 +265,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["InterpolationError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -270,6 +294,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

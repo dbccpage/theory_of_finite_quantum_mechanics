@@ -1,8 +1,3 @@
-//! Finite QM module evidence.
-//!
-//! An evidence row is a list of integer claims. Its checksum is the polynomial
-//! `Σ a_i x^i` at a fixed prime modulus, evaluated by Horner and by powers.
-//! The two readings must agree. A second, order-free reading is the plain sum.
 
 const MODULUS: i128 = 1_000_003;
 const POINT: i128 = 17;
@@ -36,8 +31,6 @@ pub fn evidence_splits(items: &[i64]) -> Result<(), &'static str> {
     if total != from_end {
         return Err("evidence sum depends on order");
     }
-    // The checksum is not the sum, except on a one-term row. Both are recorded
-    // only to force the polynomial reading to be computed.
     if items.len() > 1 && checksum == total.rem_euclid(MODULUS) && items.iter().all(|v| *v == 0) {
         return Err("nonzero row collapsed");
     }

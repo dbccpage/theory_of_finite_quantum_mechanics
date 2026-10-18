@@ -69,7 +69,7 @@ class MockFermionGinIndex:
         """Indexes a fermion configuration and populates the GIN mode posting lists."""
         c = self.conn.cursor()
         c.execute(
-            """INSERT INTO FermionConfigurations 
+            """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
                VALUES (?, ?, ?, ?, ?, ?, ?);""",
             (cfg_id, model_name, len(occupied_modes), total_modes, weight, jw_sign, parity_sector),
@@ -108,11 +108,9 @@ class MockFermionGinIndex:
         if current is None:
             return None
 
-        # Spectator modes must be identical
         spectator_occupied = current - flip_modes
         spectator_empty = set(range(1, total_modes + 1)) - current - flip_modes
 
-        # Target states must have opposite occupation on flip_modes
         target_flipped_occupied = flip_modes - current
         target_flipped_empty = flip_modes & current
 
@@ -123,13 +121,8 @@ class MockFermionGinIndex:
         candidates.discard(cfg_id)
         return next(iter(candidates)) if candidates else None
 
-    # ------------------------------------------------------------------------
-    # Model Generators
-    # ------------------------------------------------------------------------
     def build_bipartite_hopping_model(self) -> None:
         """Builds a bipartite 4-site fermion model with exact meron/Kramers sign cancellation."""
-        # 4 sites, 2 particles. Bipartite A-B sites: {1, 3} (A) and {2, 4} (B).
-        # We generate pairs of configurations with opposite permutation signs and identical weights.
         configurations = [
             (1, {1, 2}, 1.25, 1, 1),
             (2, {2, 3}, 1.25, -1, 1),
@@ -141,7 +134,6 @@ class MockFermionGinIndex:
         for cid, occ, w, sgn, par in configurations:
             self.index_configuration(cid, "BipartiteChain", occ, 4, w, sgn, par)
 
-        # Invert and register exact involution pairs
         c = self.conn.cursor()
         c.execute("INSERT INTO GinInvolutionPairs VALUES (1, 1, 2, 'MeronReflection', 1);")
         c.execute("INSERT INTO GinInvolutionPairs VALUES (2, 3, 4, 'MeronReflection', 1);")
@@ -150,24 +142,20 @@ class MockFermionGinIndex:
 
     def build_frustrated_triangle_model(self) -> None:
         """Builds a frustrated triangle lattice model with an uncancelled sign obstruction."""
-        # 3 sites, odd loop creates an unpartnered negative configuration
         configurations = [
             (101, {1, 2}, 1.0, 1, 1),
             (102, {2, 3}, 1.0, 1, 1),
-            (103, {1, 3}, 1.0, -1, 1),  # Frustrated odd parity loop has no cancelling partner
+            (103, {1, 3}, 1.0, -1, 1),
         ]
         for cid, occ, w, sgn, par in configurations:
             self.index_configuration(cid, "FrustratedTriangle", occ, 3, w, sgn, par)
 
         c = self.conn.cursor()
-        # Pair 101 with 103 as defective pair (weights match but leaves 102 uncancelled)
         c.execute("INSERT INTO GinInvolutionPairs VALUES (10, 101, 103, 'DefectivePair', 1);")
         self.conn.commit()
 
     def build_kitaev_chain_majorana_model(self, L: int = 4) -> None:
         """Builds a Kitaev chain with 2L Majorana modes and bulk bonds h_j = (2j, 2j+1)."""
-        # Sweet-spot bonds: (2, 3), (4, 5), (6, 7).
-        # Unpaired boundary zero modes: 1 and 8 (2L).
         c = self.conn.cursor()
         bond_id = 1
         for j in range(1, L):
@@ -179,16 +167,12 @@ class MockFermionGinIndex:
             )
             bond_id += 1
 
-        # Register edge zero modes in dummy configuration to audit
         c.execute(
             "INSERT INTO GinMajoranaBonds (bond_id, cfg_id, u, v, is_bulk_bond) VALUES (?, 1, 1, ?, 0);",
             (bond_id, 2 * L),
         )
         self.conn.commit()
 
-    # ------------------------------------------------------------------------
-    # Auditing Queries
-    # ------------------------------------------------------------------------
     def verify_involution_cancellation(self, model_name: str = "BipartiteChain") -> Dict[str, Any]:
         """Audits FSP involution sign cancellation via ViewFspInvolutionSignCancellationAudit."""
         c = self.conn.cursor()

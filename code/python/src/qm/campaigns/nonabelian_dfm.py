@@ -199,7 +199,6 @@ def classify_punctured_diamond_connection(
     tree_edges: Sequence[int] = (0, 2, 3),
 ) -> str:
     """Classify a connection on the punctured diamond into GaugeTrivial, FlatNontrivial, or Curved."""
-    # Face f0 = (0 -> 1 -> 2 -> 0) uses steps (e0, +1), (e1, +1), (e2, -1)
     face_f0 = walk_holonomy(edge_mats, ((0, 1), (1, 1), (2, -1)))
     if face_f0 != id2():
         return "Curved"
@@ -209,9 +208,6 @@ def classify_punctured_diamond_connection(
     return "FlatNontrivial"
 
 
-# ============================================================================
-# Poset Restriction DGA over P_5 = {0 < {1, 2} < 3 < 4}
-# ============================================================================
 
 POSET_P5_COVERS: Tuple[Tuple[int, int], ...] = (
     (0, 1),

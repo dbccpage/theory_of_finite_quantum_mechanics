@@ -272,31 +272,16 @@ pub struct MubBasisGluingDefect {
     pub obligation: &'static str,
 }
 
-/// Evidence about the MUB(6) atlas that a caller has computed.
-///
-/// `Default` means nothing is established. The search derives the atlas flags,
-/// the basis-gluing inputs and the verdict from this evidence and from its own
-/// analyses; it never sets one of them to true by itself. A caller should set a
-/// field only from a check it actually ran.
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize)]
 pub struct MubAtlasEvidence {
-    /// The pinned T0 lane has a loaded Q/PSD upper-bound replay.
     pub pinned_upper_replayed: bool,
-    /// The classification of admissible MUB(6) triples is proof-carrying.
     pub proof_carrying_classification: bool,
-    /// The atlas classes cover every admissible triple.
     pub exhaustive_triple_cover: bool,
-    /// Every non-pinned atlas class carries its own wall certificate.
     pub wall_certificate_for_every_class: bool,
-    /// Atlas transport squares commute across class overlaps.
     pub overlap_compatibility: bool,
-    /// ZeroRel is preserved across every non-identity atlas transport.
     pub zero_rel_preserved: bool,
-    /// The terminalizer is preserved across atlas and basis-gluing transport.
     pub terminalizer_preserved: bool,
-    /// A classwise fourth-vector obstruction holds for every covered class.
     pub classwise_fourth_vector_obstruction: bool,
-    /// A basis-gluing operator from the classwise obstruction is available.
     pub basis_gluing_operator_available: bool,
 }
 
@@ -482,9 +467,7 @@ pub enum MubCochainError {
 impl std::fmt::Display for MubCochainError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            // LambdaAlgebraError is a plain enum (no Display); render via Debug.
             Self::Algebra(e) => write!(f, "MUB cochain algebra error: {e:?}"),
-            // Phi1/Gamma2 errors are thiserror types with their own Display.
             Self::Phi1(e) => write!(f, "MUB cochain Phi1 certificate error: {e}"),
             Self::Gamma2(e) => write!(f, "MUB cochain Gamma2 error: {e}"),
         }
@@ -494,10 +477,7 @@ impl std::fmt::Display for MubCochainError {
 impl std::error::Error for MubCochainError {
     fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
         match self {
-            // LambdaAlgebraError does not implement std::error::Error, so the
-            // chain terminates at the Algebra variant.
             Self::Algebra(_) => None,
-            // The thiserror-derived wrapped errors are the source.
             Self::Phi1(e) => Some(e),
             Self::Gamma2(e) => Some(e),
         }
@@ -527,7 +507,6 @@ pub fn mub6_carrier_declaration() -> MubCarrierDeclaration {
     MubCarrierDeclaration {
         target: MubTarget::Mub6,
         dimension,
-        // A complete set of MUBs in dimension d has d + 1 bases.
         required_basis_count: dimension + 1,
         fixed_basis_count: 3,
         carrier: "complete MUB(6) atlas of admissible triple classes with pinned T0, product, Weyl-sector, and general triple-class nodes",
@@ -678,13 +657,6 @@ pub fn mub6_lean_obligations() -> Vec<LeanObligation> {
     ]
 }
 
-/// The MUB(6) triple-carrier atlas under the given evidence.
-///
-/// The four classes, their representatives and their obligations are the
-/// declared candidate. Their certificate, transport and preservation flags come
-/// from `evidence`. With `MubAtlasEvidence::default()` none is established,
-/// except one structural fact: the pinned T0 lane is the identity transport,
-/// so it preserves ZeroRel.
 pub fn mub6_triple_carrier_atlas(evidence: &MubAtlasEvidence) -> MubTripleCarrierAtlas {
     let classified = evidence.proof_carrying_classification;
     let classwise_wall = if evidence.wall_certificate_for_every_class {
@@ -884,7 +856,6 @@ pub fn mub6_c3_atlas_coherence_from_triple_atlas(
     }
 }
 
-/// C3 coherence of the atlas when no caller evidence is supplied.
 pub fn mub6_c3_atlas_coherence_candidate() -> MubC3AtlasCoherence {
     let atlas = mub6_triple_carrier_atlas(&MubAtlasEvidence::default());
     mub6_c3_atlas_coherence_from_triple_atlas(&atlas)
@@ -997,10 +968,6 @@ pub fn checked_basis_gluing_cochain(inputs: MubBasisGluingInputs) -> MubBasisGlu
     }
 }
 
-/// The basis-gluing cochain, from the computed C3 analysis and caller evidence.
-///
-/// Preservation comes from the atlas coherence, which is derived from every
-/// class, rather than from the evidence directly.
 pub fn mub6_basis_gluing_cochain(
     c3: &MubC3AtlasCoherence,
     c3_d2: &D2C3Analysis,
@@ -1173,11 +1140,6 @@ fn closure_analysis_with_declared_support(
                 (false, true) => SupportDefectKind::ClosureValueOnly,
                 (true, false) => SupportDefectKind::MissingSupportOnly,
                 (false, false) => SupportDefectKind::MixedValueAndSupport,
-                // Dead arm: the enclosing `if value != 0 || !missing.is_empty()`
-                // guard (a few lines above) only admits faces with a non-zero
-                // closure value OR a missing support term, so `(value == 0 &&
-                // missing.is_empty())` — i.e. `(face_value_l1 == 0 &&
-                // face_missing_l1 == 0)` — cannot reach this match.
                 (true, true) => unreachable!("zero-valued full support is excluded by the guard"),
             };
             k_l1 = k_l1
@@ -1278,13 +1240,6 @@ fn trichotomy_status(outcome: &TrichotomyOutcome) -> FunctionalTrichotomyStatus 
         TrichotomyOutcome::TriRefused(_) => FunctionalTrichotomyStatus::Refused,
     }
 }
-/// The terminal verdict implied by the computed analyses.
-///
-/// A candidate cochain with a nonzero `d1 d0` or missing face support is a
-/// counterexample. A theorem needs all three of: basis gluing closed, a
-/// geometry-bound functional packet (a synthetic packet is never MUB(6)
-/// geometry), and no open Lean proof target. Anything else is a missing proof
-/// obligation.
 pub fn mub6_terminal_verdict(
     carrier: &MubCarrierDeclaration,
     d1d0: &D1D0Analysis,
@@ -1365,19 +1320,9 @@ pub fn run_mub6_cochain_obstruction_search(
     })
 }
 
-/// Secondary MUB(10) target status.
-///
-/// NOT-YET-IMPLEMENTED STUB. MUB(10) has no cochain candidate, atlas, or
-/// closure analysis in this crate yet; it deliberately reports
-/// [`MubTerminalVerdict::MissingProofObligation`] as a fixed placeholder until
-/// the MUB(6) obstruction pattern is fully discharged and ported. The
-/// companion test asserts only that this stub still reports the placeholder —
-/// it is not coverage of a real computation.
 pub const MUB10_SECONDARY_TARGET_STATUS: MubTerminalVerdict =
     MubTerminalVerdict::MissingProofObligation;
 
-/// Stub accessor for [`MUB10_SECONDARY_TARGET_STATUS`]. See that const's docs:
-/// MUB(10) is not yet modelled; this returns the fixed placeholder verdict.
 pub fn mub10_secondary_target_status() -> MubTerminalVerdict {
     MUB10_SECONDARY_TARGET_STATUS
 }
@@ -1558,11 +1503,8 @@ mod tests {
         let candidate = mub6_atlas_cochain_candidate().unwrap();
         let quotient = candidate.checked_quotient_residual().unwrap();
 
-        // Structured assertion on the underlying BigRational values (so a
-        // change in Display formatting is distinguishable from a value change).
         assert_eq!(quotient.evidence.phi1.value(), &r(1));
         assert_eq!(quotient.evidence.gamma2.value(), &r(1));
-        // String-field contract (the serialized replay summary).
         assert_eq!(quotient.replay.phi1_value, "1");
         assert_eq!(quotient.replay.gamma2_value, "1");
         assert_eq!(
@@ -1774,8 +1716,6 @@ mod tests {
             report.basis_gluing_cochain.status,
             MubBasisGluingStatus::CompleteNoGoGlued
         );
-        // Evidence alone cannot promote the run: the functional packet is
-        // synthetic and the Lean obligations are still proof targets.
         assert_eq!(report.verdict, MubTerminalVerdict::MissingProofObligation);
     }
 
@@ -1863,7 +1803,6 @@ mod tests {
         use omega_functional::phi1::ExactPhi1CertificateError;
         use std::error::Error as _;
 
-        // Algebra variant: Clone, Display via Debug, source terminates.
         let algebra = MubCochainError::Algebra(LambdaAlgebraError::CapacityOverflow);
         assert_eq!(algebra, algebra.clone());
         let rendered = format!("{algebra}");
@@ -1871,15 +1810,11 @@ mod tests {
         assert!(rendered.contains("CapacityOverflow"));
         assert!(algebra.source().is_none());
 
-        // Phi1 variant: From conversion, distinct Display prefix, source
-        // delegates to the wrapped thiserror error.
         let phi1: MubCochainError = ExactPhi1CertificateError::CochainDimensionMismatch.into();
         assert_eq!(phi1, phi1.clone());
         assert!(format!("{phi1}").contains("Phi1 certificate error"));
         assert!(phi1.source().is_some());
 
-        // Gamma2 variant: From conversion, distinct Display prefix, source
-        // delegates to the wrapped thiserror error.
         let gamma2: MubCochainError =
             ExactGamma2Error::CochainIdentityViolation { row: 0, column: 0 }.into();
         assert_eq!(gamma2, gamma2.clone());

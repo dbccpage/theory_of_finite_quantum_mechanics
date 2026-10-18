@@ -1,13 +1,9 @@
-//! Strict 2-category trait and validated finite representation.
-//!
-//! AuthorityEffect: None.
 
 use crate::error::HigherCategoryError;
 use omega_kernel::resource_limits::OperationLimits;
 use sha2::{Digest, Sha256};
 use std::collections::{BTreeMap, BTreeSet};
 
-/// The general trait defining a strict 2-category.
 pub trait TwoCategory {
     type ZeroCell: Clone + Eq + std::hash::Hash + std::fmt::Debug;
     type OneCell: Clone + Eq + std::hash::Hash + std::fmt::Debug;
@@ -22,23 +18,18 @@ pub trait TwoCategory {
     fn id_1(&self, a: &Self::ZeroCell) -> Result<Self::OneCell, HigherCategoryError>;
     fn id_2(&self, f: &Self::OneCell) -> Result<Self::TwoCell, HigherCategoryError>;
 
-    /// Horizontal composition of 1-morphisms: g ∘ f (f: A -> B, g: B -> C => g ∘ f: A -> C).
     fn compose_1(
         &self,
         f: &Self::OneCell,
         g: &Self::OneCell,
     ) -> Result<Self::OneCell, HigherCategoryError>;
 
-    /// Vertical composition of 2-morphisms: beta ∘_v alpha
-    /// alpha: f => g, beta: g => h (where f, g, h: A -> B) => beta ∘_v alpha: f => h.
     fn compose_2_vertical(
         &self,
         alpha: &Self::TwoCell,
         beta: &Self::TwoCell,
     ) -> Result<Self::TwoCell, HigherCategoryError>;
 
-    /// Horizontal composition of 2-morphisms: beta *_h alpha
-    /// alpha: f => f' (A -> B), beta: g => g' (B -> C) => beta *_h alpha: (g ∘ f) => (g' ∘ f').
     fn compose_2_horizontal(
         &self,
         alpha: &Self::TwoCell,
@@ -46,7 +37,6 @@ pub trait TwoCategory {
     ) -> Result<Self::TwoCell, HigherCategoryError>;
 }
 
-/// Declared finite 1-morphism data.
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct OneMorphismData {
     pub id: String,
@@ -64,7 +54,6 @@ impl OneMorphismData {
     }
 }
 
-/// Declared finite 2-morphism data.
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct TwoMorphismData {
     pub id: String,
@@ -92,7 +81,6 @@ impl TwoMorphismData {
     }
 }
 
-/// Validated finite strict 2-category with complete law verification and Soviet Builder discipline.
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Strict2Category {
     pub name: String,
@@ -108,8 +96,6 @@ pub struct Strict2Category {
 }
 
 impl Strict2Category {
-    /// Creates a new empty strict 2-category with its original finite policy:
-    /// 100,000 cells per dimension and 1,000,000 declared operations.
     pub fn new(name: impl Into<String>) -> Self {
         Self::with_limits(
             name,
@@ -121,7 +107,6 @@ impl Strict2Category {
         )
     }
 
-    /// Creates a new empty strict 2-category with specified operation limits.
     pub fn with_limits(name: impl Into<String>, limits: OperationLimits) -> Self {
         Self {
             name: name.into(),
@@ -137,7 +122,6 @@ impl Strict2Category {
         }
     }
 
-    /// Adds a 0-cell (object) to the category.
     pub fn add_zero_cell(&mut self, id: impl Into<String>) -> Result<(), HigherCategoryError> {
         let id_str = id.into();
         if self.zero_cells.len().saturating_add(1) > self.limits.max_cells {
@@ -153,7 +137,6 @@ impl Strict2Category {
         Ok(())
     }
 
-    /// Adds a 1-cell (morphism) to the category.
     pub fn add_one_cell(
         &mut self,
         id: impl Into<String>,
@@ -187,7 +170,6 @@ impl Strict2Category {
         Ok(())
     }
 
-    /// Adds a 2-cell (2-morphism) between parallel 1-cells to the category.
     pub fn add_two_cell(
         &mut self,
         id: impl Into<String>,
@@ -236,7 +218,6 @@ impl Strict2Category {
         Ok(())
     }
 
-    /// Sets the identity 1-cell for an object A.
     pub fn set_id_1(
         &mut self,
         ob: impl Into<String>,
@@ -253,8 +234,6 @@ impl Strict2Category {
             .get(&id_str)
             .ok_or_else(|| HigherCategoryError::OneCellNotFound { id: id_str.clone() })?;
         if mor.src != ob_str || mor.tgt != ob_str {
-            // Report the endpoint that actually differs. A target-only failure
-            // used to echo the matching source, so expected and actual agreed.
             let actual = if mor.src != ob_str {
                 mor.src.clone()
             } else {
@@ -270,7 +249,6 @@ impl Strict2Category {
         Ok(())
     }
 
-    /// Sets the identity 2-cell for a 1-morphism f.
     pub fn set_id_2(
         &mut self,
         mor: impl Into<String>,
@@ -302,7 +280,6 @@ impl Strict2Category {
         Ok(())
     }
 
-    /// Sets 1-cell composition: g ∘ f = comp (f: A -> B, g: B -> C).
     pub fn set_compose_1(
         &mut self,
         f: impl Into<String>,
@@ -348,7 +325,6 @@ impl Strict2Category {
         Ok(())
     }
 
-    /// Sets 2-cell vertical composition: beta ∘_v alpha = comp (alpha: f => g, beta: g => h).
     pub fn set_compose_2_v(
         &mut self,
         alpha: impl Into<String>,
@@ -394,8 +370,6 @@ impl Strict2Category {
         Ok(())
     }
 
-    /// Sets 2-cell horizontal composition: beta *_h alpha = comp
-    /// (alpha: f => f' on A->B, beta: g => g' on B->C => comp: g∘f => g'∘f').
     pub fn set_compose_2_h(
         &mut self,
         alpha: impl Into<String>,
@@ -445,14 +419,7 @@ impl Strict2Category {
         Ok(())
     }
 
-    /// Exhaustive validation of all strict 2-category laws:
-    /// - 0-cell and 1-cell identity unitality
-    /// - 1-cell associativity
-    /// - 2-cell vertical identity unitality and associativity
-    /// - 2-cell horizontal identity preservation
-    /// - Middle-four interchange law across all valid 2x2 grids
     pub fn validate_all_laws(&self) -> Result<(), HigherCategoryError> {
-        // 1. Validate 1-cell identities exist and satisfy unitality
         for ob in &self.zero_cells {
             let id_f = self.id_1(ob)?;
             let mor = self
@@ -472,7 +439,6 @@ impl Strict2Category {
             let id_src = self.id_1(&mor.src)?;
             let id_tgt = self.id_1(&mor.tgt)?;
 
-            // Right identity: f ∘ id_src = f
             let right_comp = self.compose_1(&id_src, f_id)?;
             if right_comp != *f_id {
                 return Err(HigherCategoryError::UnitLawViolation {
@@ -480,7 +446,6 @@ impl Strict2Category {
                 });
             }
 
-            // Left identity: id_tgt ∘ f = f
             let left_comp = self.compose_1(f_id, &id_tgt)?;
             if left_comp != *f_id {
                 return Err(HigherCategoryError::UnitLawViolation {
@@ -489,7 +454,6 @@ impl Strict2Category {
             }
         }
 
-        // 2. Validate 1-cell associativity: (h ∘ g) ∘ f = h ∘ (g ∘ f)
         for (f_id, f) in &self.one_cells {
             for (g_id, g) in &self.one_cells {
                 if f.tgt != g.src {
@@ -513,7 +477,6 @@ impl Strict2Category {
             }
         }
 
-        // 3. Validate 2-cell identities exist and satisfy vertical unitality
         for mor_id in self.one_cells.keys() {
             let id_2 = self.id_2(mor_id)?;
             let cell2 = self
@@ -533,7 +496,6 @@ impl Strict2Category {
             let id_src1 = self.id_2(&alpha.src_1)?;
             let id_tgt1 = self.id_2(&alpha.tgt_1)?;
 
-            // alpha ∘_v 1_{src_1} = alpha
             let right_comp = self.compose_2_vertical(&id_src1, alpha_id)?;
             if right_comp != *alpha_id {
                 return Err(HigherCategoryError::UnitLawViolation {
@@ -541,7 +503,6 @@ impl Strict2Category {
                 });
             }
 
-            // 1_{tgt_1} ∘_v alpha = alpha
             let left_comp = self.compose_2_vertical(alpha_id, &id_tgt1)?;
             if left_comp != *alpha_id {
                 return Err(HigherCategoryError::UnitLawViolation {
@@ -550,7 +511,6 @@ impl Strict2Category {
             }
         }
 
-        // 4. Validate 2-cell vertical associativity: (gamma ∘_v beta) ∘_v alpha = gamma ∘_v (beta ∘_v alpha)
         for (a_id, alpha) in &self.two_cells {
             for (b_id, beta) in &self.two_cells {
                 if alpha.tgt_1 != beta.src_1 {
@@ -574,7 +534,6 @@ impl Strict2Category {
             }
         }
 
-        // 5. Validate 2-cell horizontal identity preservation: 1_g *_h 1_f = 1_{g ∘ f}
         for (f_id, f) in &self.one_cells {
             for (g_id, g) in &self.one_cells {
                 if f.tgt != g.src {
@@ -594,14 +553,11 @@ impl Strict2Category {
             }
         }
 
-        // 6. Validate middle-four interchange law across all valid 2x2 grids
         crate::exchange::verify_all_exchange_laws(self)?;
 
         Ok(())
     }
 
-    /// Computes deterministic SHA-256 content-address hash over all canonical records.
-    /// Strictly non-float, zero timestamps.
     pub fn content_hash(&self) -> String {
         let mut hasher = Sha256::new();
         hasher.update(b"Strict2Category:v1.0.0\n");

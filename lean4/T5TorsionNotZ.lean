@@ -1,29 +1,9 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import Std
 
-/-!
-Overnight T5: unbounded finite orders do not select `Z`.
 
-`1` in `Int` is not torsion. Every displayed element of a
-cyclic group of order `n` (modelled as remainder modulo `n`)
-is torsion. A group in which a generating unit has infinite
-order cannot be isomorphic to a group in which every displayed
-element is torsion.
 
-This does not construct the Prufer colimit inside Lean 4
-without a colimit library. The Python twin enumerates the
-Prufer and `Q/Z` witnesses. Together they refute
-`UNBOUNDED_FINITE_PERIOD_IMPLIES_Z`.
 
-AuthorityEffect: None.
--/
 
 namespace OvernightT5
 
@@ -37,7 +17,6 @@ theorem one_not_torsion : ¬ IsTorsion 1 := by
     simpa using heq
   exact Nat.ne_of_gt hn (Int.ofNat_eq_zero.mp this)
 
-/-- The class of `1` modulo `n` is killed by `n` itself. -/
 theorem residue_one_is_torsion (n : Nat) (_hn : 0 < n) :
     ((n : Int) * 1) % n = 0 := by
   simp
@@ -75,3 +54,6 @@ theorem scope_boundary_refuses_kills :
 #print axioms scope_boundary_refuses_kills
 
 end OvernightT5
+
+private def l5aProvenance : String :=
+  "Origin: lean4/T5TorsionNotZ.lean Claim: one_not_torsion AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

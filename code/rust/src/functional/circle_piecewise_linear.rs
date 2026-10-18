@@ -1,5 +1,3 @@
-//! Exact continuous periodic test functions, with derived bounds and integrals.
-//! Knots include both 0 and 1, with equal endpoint values. No field model is chosen.
 use num_rational::BigRational as Rational;
 use num_traits::{One, Signed, Zero};
 

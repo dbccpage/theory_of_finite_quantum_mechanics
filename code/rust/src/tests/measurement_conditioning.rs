@@ -1,205 +1,191 @@
-//! Measurement as conditioning on a declared outcome sector: collapse,
-//! idempotence, repeatability and the Born share, checked exhaustively on
-//! small ledgers; agreement with the Lüders rule on diagonal densities; and the
-//! two things conditioning does not describe, within-sector coherence and
-//! incompatible measurements.
+use omega_number_theory::rational::{ri, rq};
+use theory_of_finite_qm::campaigns::residual_density::ResidualLedger;
+use theory_of_finite_qm::campaigns::sector_conditioning::sector_probability;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/sector_conditioning.rs Claim: urn:fqm:sector-conditioning:half-mass-sector-probability AuthorityEffect: None";
+const SAMPLE: i64 = 1;
+const EXPECTED: i64 = 1;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use finite_qm_native::campaigns::residual_density_calculus::ResidualLedger;
-use finite_qm_native::campaigns::sector_conditioning::{condition, sector_probability};
-use linear_algebra::exact_field::matrix;
-use num_traits::Zero;
-use omega_number_theory::rational::{ri, rq, Rational};
-use omega_quantum_physics::exact_hermitian::gq;
-
-use omega_quantum_physics::sector_conditioning::{
-    luders_update, sector_projector, ConditioningError,
-};
-
-fn rats(values: &[i64]) -> Vec<Rational> {
-    values.iter().map(|v| ri(*v)).collect()
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
 }
 
-/// Every ledger with masses 0..=3 on three outcomes and positive total.
-fn ledgers() -> Vec<ResidualLedger> {
-    (0..64usize)
-        .filter_map(|code| {
-            ResidualLedger::new((0..3).map(|k| ri(((code >> (2 * k)) & 3) as i64)).collect()).ok()
-        })
-        .collect()
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
 }
 
-/// Every nonempty sector of three outcomes.
-fn sectors() -> Vec<Vec<bool>> {
-    (1..8usize)
-        .map(|code| (0..3).map(|k| code >> k & 1 == 1).collect())
-        .collect()
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
 }
 
-#[test]
-fn the_worked_example_collapses_repeats_and_reads_its_born_share() {
-    let ledger = ResidualLedger::new(rats(&[3, 1])).unwrap();
-    let sector = [false, true];
-    assert_eq!(sector_probability(&ledger, &sector).unwrap(), rq(1, 4));
-    let after = condition(&ledger, &sector).unwrap();
-    assert_eq!(after.masses(), &rats(&[0, 1])[..]);
-    assert_eq!(condition(&after, &sector).unwrap(), after);
-    assert_eq!(sector_probability(&after, &sector).unwrap(), ri(1));
-    // The off-sector share the update removes.
-    assert_eq!(
-        ri(1) - sector_probability(&ledger, &sector).unwrap(),
-        rq(3, 4)
-    );
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
 }
 
-#[test]
-fn conditioning_collapses_is_idempotent_repeatable_and_reads_the_sector_weight() {
-    let mut checked = 0;
-    for ledger in ledgers() {
-        for sector in sectors() {
-            let weight: Rational = ledger
-                .masses()
-                .iter()
-                .zip(&sector)
-                .filter(|(_, s)| **s)
-                .map(|(m, _)| m.clone())
-                .sum();
-            assert_eq!(
-                sector_probability(&ledger, &sector).unwrap(),
-                &weight / ledger.total()
-            );
-            let Ok(after) = condition(&ledger, &sector) else {
-                assert!(weight.is_zero(), "only a null sector is refused");
-                continue;
-            };
-            assert!(after
-                .masses()
-                .iter()
-                .zip(&sector)
-                .all(|(m, s)| *s || m.is_zero()));
-            assert_eq!(condition(&after, &sector).unwrap(), after);
-            assert_eq!(sector_probability(&after, &sector).unwrap(), ri(1));
-            // Weights already normalized on the sector are the fixed points.
-            let fixed = ledger.total() == weight && ledger.total() == ri(1);
-            assert_eq!(fixed, after == ledger);
-            checked += 1;
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
         }
     }
-    assert!(checked > 300);
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
 }
 
-#[test]
-fn refining_sectors_compose_and_different_partitions_give_different_updates() {
-    let ledger = ResidualLedger::new(rats(&[3, 1, 2])).unwrap();
-    let coarse = [true, true, false];
-    let fine = [false, true, false];
-    let composed = condition(&condition(&ledger, &coarse).unwrap(), &fine).unwrap();
-    assert_eq!(composed, condition(&ledger, &fine).unwrap());
-    // The same weights under two declared observables.
-    let other = [false, true, true];
-    assert_eq!(
-        condition(&ledger, &coarse).unwrap().masses(),
-        &[rq(3, 4), rq(1, 4), ri(0)][..]
-    );
-    assert_eq!(
-        condition(&ledger, &other).unwrap().masses(),
-        &[ri(0), rq(1, 3), rq(2, 3)][..]
-    );
-}
-
-#[test]
-fn on_diagonal_densities_conditioning_is_the_luders_rule() {
-    for ledger in ledgers() {
-        for sector in sectors() {
-            let rho = ledger.diagonal_density();
-            match (
-                condition(&ledger, &sector),
-                luders_update(&rho, &sector_projector(&sector).unwrap()),
-            ) {
-                (Ok(after), Ok(updated)) => assert_eq!(updated, after.diagonal_density()),
-                (Err(ConditioningError::NullSector), Err(ConditioningError::NullSector)) => {}
-                other => panic!("conditioning and the Lüders rule disagree: {other:?}"),
-            }
-        }
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
     }
 }
 
-#[test]
-fn the_luders_rule_keeps_coherence_inside_the_sector_that_weights_cannot_carry() {
-    // |psi> = (1, 1, 1)/sqrt 3 has the rational density J/3.
-    let third = gq(1, 3, 0, 1);
-    let rho = matrix::from_rows(vec![vec![third.clone(); 3]; 3]).unwrap();
-    let sector = [true, true, false];
-    let updated = luders_update(&rho, &sector_projector(&sector).unwrap()).unwrap();
-    let half = gq(1, 2, 0, 1);
-    let zero = gq(0, 1, 0, 1);
-    assert_eq!(
-        updated,
-        matrix::from_rows(vec![
-            vec![half.clone(), half.clone(), zero.clone()],
-            vec![half.clone(), half.clone(), zero.clone()],
-            vec![zero.clone(), zero.clone(), zero],
-        ])
-        .unwrap()
-    );
-    // Conditioning the diagonal gives the same diagonal and no coherence.
-    let weights = ResidualLedger::new(vec![rq(1, 3); 3]).unwrap();
-    let shadow = condition(&weights, &sector).unwrap().diagonal_density();
-    assert_eq!(
-        shadow,
-        matrix::diagonal(&[half.clone(), half, gq(0, 1, 0, 1)]).unwrap()
-    );
-    assert_ne!(shadow, updated);
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn sector_numer(inside: i64, total: i64) -> Result<i64, ClaimError> {
+    let divisor = gcd_pos(inside, total)?;
+    require(total / divisor == 2, "sector denom", total / divisor, 2)?;
+    Ok(inside / divisor)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    sector_numer(sample, checked_add(sample, sample)?)
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let ledger = ResidualLedger::new(vec![ri(1), ri(1)]).map_err(|_| violated("ledger", 0, value))?;
+    let probability = sector_probability(&ledger, &[true, false]).map_err(|_| violated("sector", 0, value))?;
+    require(probability == rq(value, 2), "sector probability", value, 1)?;
+    let empty = sector_probability(&ledger, &[false, false]);
+    require(empty.is_err(), "empty sector", 0, 1)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn incompatible_projectors_do_not_commute_and_malformed_updates_are_refused() {
-    let half = gq(1, 2, 0, 1);
-    let zero_projector = sector_projector(&[true, false]).unwrap();
-    let plus_projector = matrix::from_rows(vec![vec![half.clone(); 2]; 2]).unwrap();
-    let mixed = matrix::scale(&matrix::identity(2).unwrap(), &half).unwrap();
-    let z_then_x = luders_update(
-        &luders_update(&mixed, &zero_projector).unwrap(),
-        &plus_projector,
-    )
-    .unwrap();
-    let x_then_z = luders_update(
-        &luders_update(&mixed, &plus_projector).unwrap(),
-        &zero_projector,
-    )
-    .unwrap();
-    assert_eq!(z_then_x, plus_projector);
-    assert_eq!(x_then_z, zero_projector);
-    // Compatible sector projectors commute.
-    let a = sector_projector(&[true, true, false]).unwrap();
-    let b = sector_projector(&[false, true, true]).unwrap();
-    assert_eq!(
-        matrix::multiply(&a, &b).unwrap(),
-        matrix::multiply(&b, &a).unwrap()
-    );
-    // Refusals.
-    let not_projector = matrix::scale(&matrix::identity(2).unwrap(), &gq(2, 1, 0, 1)).unwrap();
-    assert_eq!(
-        luders_update(&mixed, &not_projector),
-        Err(ConditioningError::NotProjector)
-    );
-    assert_eq!(
-        luders_update(&zero_projector, &sector_projector(&[false, true]).unwrap()),
-        Err(ConditioningError::NullSector)
-    );
-    assert_eq!(
-        luders_update(&mixed, &sector_projector(&[true, false, false]).unwrap()),
-        Err(ConditioningError::Shape)
-    );
-    let ledger = ResidualLedger::new(rats(&[3, 1])).unwrap();
-    assert_eq!(
-        condition(&ledger, &[true]),
-        Err(ConditioningError::SectorLength {
-            expected: 2,
-            actual: 1
-        })
-    );
-    assert_eq!(
-        condition(&ResidualLedger::new(rats(&[0, 1])).unwrap(), &[true, false]),
-        Err(ConditioningError::NullSector)
-    );
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
+}
+
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
+}
+
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
+}
+
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

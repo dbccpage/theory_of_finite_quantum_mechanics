@@ -1,6 +1,3 @@
-//! Closed finite passage carriers, protected futures, and source-bound evidence.
-//! Exhaustive means reachable from these seeds under this finite alphabet.
-//! Completion is a fixed point, never a depth cutoff treated as unavailability.
 
 use crate::genesis_passage::{replay, PassageEvent, PassageState};
 use crate::genesis_questions::GluingRequest;
@@ -64,7 +61,6 @@ pub struct CarrierLimits {
     pub max_transitions: usize,
     pub max_history_events: usize,
     pub max_state_cells: usize,
-    /// Conservative n²(a+q+1) allowance for refinement/table work, not CPU time.
     pub max_refinement_cells: usize,
 }
 
@@ -106,8 +102,6 @@ pub struct CarrierCertificate {
     pub seed_states: Vec<usize>,
     pub transitions: Vec<Vec<Option<usize>>>,
     pub answers: Vec<Vec<PassageAnswer>>,
-    /// Includes one internal unavailable sink, separately labelled from all
-    /// real states. Its final class is not a member of the native carrier.
     pub refinement: MooreQuotient,
 }
 
@@ -130,8 +124,6 @@ pub struct PassageDistinction {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PassageGluing {
     pub source: CarrierRequest,
-    /// Explicit history alternatives, not silently the entire closure.
-    /// Different event histories may reach the same state and remain distinct.
     pub histories: Vec<Vec<PassageEvent>>,
     pub request: GluingRequest,
     pub fiber: DescentFiber,
@@ -142,7 +134,6 @@ pub struct SequentialComposition {
     pub source: CarrierRequest,
     pub words: Vec<Vec<usize>>,
     pub right_reports: Vec<usize>,
-    /// All real left states × all supplied right continuations, left-major.
     pub decision: ReportQueryDecision<usize, (usize, usize), Option<usize>>,
 }
 
@@ -311,8 +302,6 @@ impl PassageCarrier {
         Ok(())
     }
 
-    /// Sequential history composition only. Equal right reports must preserve
-    /// their action on EVERY left state, not only their result from one seed.
     pub fn compose(
         &self,
         words: &[Vec<usize>],
@@ -370,9 +359,6 @@ impl PassageCarrier {
         Ok(())
     }
 
-    /// Certifies the complete extension fiber of explicitly listed histories.
-    /// Replay from genesis must land in this carrier; resource failure never
-    /// counts as absence of a global extension. Duplicate histories are refused.
     pub fn glue(
         &self,
         histories: &[Vec<PassageEvent>],

@@ -1,6 +1,3 @@
-//! Exact nonnegative finite Boolean valuations; no normalization requirement.
-//! AuthorityEffect: None. FinN requires a nonempty probability carrier, whereas
-//! this unnormalized measure layer also admits the empty carrier.
 use std::collections::{BTreeMap, BTreeSet};
 
 use num_traits::{Signed, Zero};
@@ -34,8 +31,6 @@ pub struct BooleanValuation {
 }
 
 impl BooleanValuation {
-    /// Independently check carrier typing, Boolean closure, nonnegativity and
-    /// all disjoint additive equations. Inputs are owned and fields private.
     pub fn try_new(size: usize, entries: Vec<(Event, Rational)>) -> Result<Self, ValuationError> {
         let full: Event = (0..size).collect();
         let mut values = BTreeMap::new();
@@ -75,8 +70,6 @@ impl BooleanValuation {
                 }
             }
         }
-        // Equal event-membership signatures are exactly algebra atoms. Closure
-        // makes each signature class measurable, so its mass is uniquely fixed.
         let mut signatures: BTreeMap<Vec<bool>, Event> = BTreeMap::new();
         for point in 0..size {
             let signature = values.keys().map(|event| event.contains(&point)).collect();
@@ -117,8 +110,6 @@ impl BooleanValuation {
             .map(|atom| self.values[atom].clone())
             .sum())
     }
-    /// Exhibit full-powerset extensions concentrating each atom's mass on its
-    /// first/last point. Positive nonsingleton atoms give distinct extensions.
     pub fn singleton_extension(&self, choose_last: bool) -> Vec<Rational> {
         let mut masses = vec![Rational::zero(); self.size];
         for atom in &self.atoms {
@@ -133,13 +124,11 @@ impl BooleanValuation {
         }
         masses
     }
-    /// Nonnegativity is essential: zero atom mass forces every point mass zero.
     pub fn singleton_extension_is_unique(&self) -> bool {
         self.atoms
             .iter()
             .all(|atom| atom.len() == 1 || self.values[atom].is_zero())
     }
-    /// Restrict to a coarser Boolean algebra; constructor checks its closure.
     pub fn coarsen(&self, events: Vec<Event>) -> Result<Self, ValuationError> {
         let entries = events
             .into_iter()
@@ -154,8 +143,6 @@ impl BooleanValuation {
             .collect::<Result<Vec<_>, ValuationError>>()?;
         Self::try_new(self.size, entries)
     }
-    /// Pushforward through a declared measurable map. Target events must form a
-    /// Boolean algebra and every inverse image must be source-measurable.
     pub fn pushforward(
         &self,
         target_size: usize,

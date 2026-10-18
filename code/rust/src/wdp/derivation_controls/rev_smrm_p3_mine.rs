@@ -1,4 +1,3 @@
-//! Rejection-Ledger Guard Mining & Trace Verification (REV-SMRM-P3-MINE) exact verifier.
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Candidate(pub u8, pub u8, pub u8);

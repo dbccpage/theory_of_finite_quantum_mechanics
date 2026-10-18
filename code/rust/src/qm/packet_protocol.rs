@@ -1,49 +1,4 @@
-// AuthorityEffect: None.
 
-//! The show-the-packet protocol as a replayable checker.
-//!
-//! A claim of scalable physical quantum computation is asked to expose a
-//! finite packet, the fields of [`RealizationPacket`]. [`terminalize`] reads
-//! them in a fixed order and returns the first typed refusal, or a report
-//! with a terminal it computes itself:
-//!
-//! - presence: each missing or ill-typed field is refused with the protocol's
-//!   vocabulary, from `NoPhysicalCarrier` to `NoHumanSignificantScale`;
-//! - replay of the finite algebra over `Q`: `d0` has shape `C^1 x C^0`; the
-//!   declared repair image spans exactly `im d0` (exact membership by
-//!   `omega_linear_algebra`); the declared dimension of `Q^1 = C^1 / B^1` is
-//!   `dim C^1 - rank d0`; `d1 d0 = 0` (`omega_functional`'s
-//!   `ExactCochainComplexQ`); every logical witness vanishes on `im d0`;
-//! - the defect history `omega_t`: its class, `Phi1` and `Gamma2` from
-//!   `finite_cochain_packet::certified_trichotomy` (unit weights; `Phi1`
-//!   proposed by `omega_solvers` and replayed by `omega_functional`), and its
-//!   pairing with each logical witness;
-//! - the gap `lambda - mu - epsilon` of the repair-capacity recurrence
-//!   (`omega_quantum_physics::repair_capacity`), started at the certified `Phi1`;
-//! - the terminal. A replayed `Gamma2 > 0` dominates every resource terminal:
-//!   the defect history is then an open closure failure and the terminal is
-//!   `ActiveClosureFailure`, whatever the repair-capacity recurrence says (a
-//!   budget cannot erase an obstruction that replays). Otherwise, for a
-//!   finite-benchmark claim: `ResidualForced` when the recurrence forces the
-//!   residual past the declared visibility threshold within the claimed
-//!   windows, `FailureNotEstablished` otherwise. The latter says only that this
-//!   lower bound does not prove failure; it is not an upper bound or a survival
-//!   certificate. For a claim at human-significant scale
-//!   no finite field certifies a margin that holds as distance and workload
-//!   grow, so the only other terminal is `ConditionalSurvival`, from an
-//!   imported threshold scaling with `p < p_th`, evidence that includes a
-//!   theorem and a nonpositive declared gap; anything else is refused as
-//!   `ClaimOverreach`;
-//! - a terminal declared by the claimant must equal the computed one
-//!   (`TerminalMismatch`).
-//!
-//! The source vocabulary has no refusal for two of its own required fields;
-//! `NoClosureMap` (`d1`) and `NoMixingBound` (`epsilon`) are added. The
-//! terminal rule above is this module's declaration: the source names the
-//! terminals and works one example, and does not state a rule.
-//! [`RealizationPacket::from_threshold_theorem`] fills exactly the fields
-//! that the threshold-theorem mapping (THR-001) names. A complete packet
-//! yields a terminal status, never authority.
 
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::{
@@ -59,7 +14,6 @@ use omega_solvers::data_cochain_packet::certified_trichotomy;
 
 use omega_quantum_physics::threshold_repair_certificate::ThresholdScaling;
 
-/// One source of the packet's evidence; a packet may declare several.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EvidenceKind {
     Theorem,
@@ -67,35 +21,23 @@ pub enum EvidenceKind {
     Simulation,
 }
 
-/// The logical-pairing bound of the packet.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PairingBound {
-    /// A bound or measurement at the benchmarked scale, in `[0, 1]`.
     Measured(Rational),
-    /// A threshold-scaling family imported from a theorem.
     Scaling(ThresholdScaling),
 }
 
-/// The scope of the claim the packet is offered for.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ClaimScope {
-    /// Success over `windows` correction windows at the benchmarked scale,
-    /// with residual visibility threshold `visibility`.
     FiniteBenchmark { windows: u64, visibility: Rational },
-    /// Scalable computation, with residual visibility threshold `visibility`
-    /// and the largest code distance the declared overhead admits.
     HumanSignificantScale {
         visibility: Rational,
         max_distance: u32,
     },
 }
 
-/// A terminal computed by [`terminalize`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PacketTerminal {
-    /// The recurrence is only a lower bound and does not force threshold
-    /// crossing in the stated window. This is inconclusive about the actual
-    /// residual trajectory.
     FailureNotEstablished {
         windows: u64,
     },
@@ -105,37 +47,24 @@ pub enum PacketTerminal {
     ConditionalSurvival {
         least_distance: u32,
     },
-    /// The defect history replays with `Gamma2 > 0`: an open closure failure,
-    /// which dominates the three resource terminals above.
     ActiveClosureFailure {
         gamma2: Rational,
     },
 }
 
-/// The declared packet. Field names follow the protocol's schema.
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct RealizationPacket {
     pub physical_carrier: Option<String>,
     pub logical_distinction: Option<String>,
-    /// `dim C^0`.
     pub repair_space: Option<usize>,
-    /// `dim C^1`.
     pub defect_space: Option<usize>,
-    /// `d0`, a `dim C^1 x dim C^0` matrix.
     pub repair_boundary: Option<Vec<Vec<Rational>>>,
-    /// Vectors of `C^1` declared to span `B^1 = im d0`.
     pub repair_image: Option<Vec<Vec<Rational>>>,
-    /// The declared `dim Q^1`.
     pub residual_quotient: Option<usize>,
-    /// `d1`, a `dim C^2 x dim C^1` matrix.
     pub closure_map: Option<Vec<Vec<Rational>>>,
-    /// `omega_t` in `C^1`.
     pub defect_history: Option<Vec<Rational>>,
-    /// `mu`.
     pub repair_capacity: Option<Rational>,
-    /// `lambda`.
     pub defect_rate: Option<Rational>,
-    /// `epsilon`.
     pub mixing_bound: Option<Rational>,
     pub logical_witnesses: Option<Vec<Vec<Rational>>>,
     pub pairing_bound: Option<PairingBound>,
@@ -145,7 +74,6 @@ pub struct RealizationPacket {
     pub claimed_terminal: Option<PacketTerminal>,
 }
 
-/// Typed refusals, in check order.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum PacketRefusal {
     #[error("NoPhysicalCarrier: hardware and operating regime are not declared")]
@@ -193,7 +121,6 @@ pub enum PacketRefusal {
     Replay(String),
 }
 
-/// What [`terminalize`] computed for an accepted packet.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PacketReport {
     repair_rank: usize,
@@ -207,37 +134,30 @@ pub struct PacketReport {
 }
 
 impl PacketReport {
-    /// `rank d0 = dim B^1`.
     pub fn repair_rank(&self) -> usize {
         self.repair_rank
     }
 
-    /// `dim Q^1`.
     pub fn quotient_dimension(&self) -> usize {
         self.quotient_dimension
     }
 
-    /// The certified class of the defect history.
     pub fn class(&self) -> ObstructionDiagnosticClass {
         self.class
     }
 
-    /// `Phi1([omega_t])`, unit weights.
     pub fn residual_mass(&self) -> &Rational {
         &self.residual_mass
     }
 
-    /// `Gamma2([omega_t])`.
     pub fn closure_defect(&self) -> &Rational {
         &self.closure_defect
     }
 
-    /// `<z, omega_t>` for each logical witness `z`.
     pub fn witness_pairings(&self) -> &[Rational] {
         &self.witness_pairings
     }
 
-    /// `lambda - mu - epsilon`.
     pub fn gap(&self) -> &Rational {
         &self.gap
     }
@@ -248,12 +168,6 @@ impl PacketReport {
 }
 
 impl RealizationPacket {
-    /// The threshold-theorem mapping: a code family's `C^0`, `C^1`, `d0` and
-    /// logical witnesses, the scaling's rates as `lambda = p` and `mu = p_th`,
-    /// the scaling as the pairing bound, the declared overhead, the theorem as
-    /// evidence, and `dim Q^1` computed from `d0`. The mapping names no
-    /// carrier, logical distinction, repair image, closure map, defect
-    /// history or mixing bound, and none is filled.
     pub fn from_threshold_theorem(
         scaling: &ThresholdScaling,
         repair_space: usize,
@@ -318,7 +232,6 @@ fn nonnegative(value: &Option<Rational>) -> Option<Rational> {
     value.clone().filter(|v| !v.is_negative())
 }
 
-/// Check a packet in the protocol's order and compute its terminal.
 pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRefusal> {
     use PacketRefusal::*;
     if !present(&packet.physical_carrier) {
@@ -385,9 +298,6 @@ pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRef
                     .sum::<Rational>()
                     .is_zero()
             });
-        // A zero witness vanishes on `im d0` vacuously and distinguishes nothing,
-        // so a family made only of zeros would pass the replay while naming no
-        // logical distinction.
         if !vanishes || z.iter().all(Zero::is_zero) {
             return Err(NoLogicalWitnessFamily { index: Some(index) });
         }
@@ -415,8 +325,6 @@ pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRef
     let budget = RepairBudget::new(lambda, mu, epsilon).map_err(|e| Replay(e.to_string()))?;
     let gap = budget.persistent_gap();
 
-    // The claim scope is validated before the terminal is chosen, so a typed
-    // refusal keeps its protocol precedence over the dominance rule below.
     let (ClaimScope::FiniteBenchmark { visibility, .. }
     | ClaimScope::HumanSignificantScale { visibility, .. }) = claim;
     if !visibility.is_positive() {
@@ -425,7 +333,6 @@ pub fn terminalize(packet: &RealizationPacket) -> Result<PacketReport, PacketRef
 
     let terminal =
         if trichotomy.diagnostic_class() == ObstructionDiagnosticClass::ActiveClosureFailure {
-            // A replayed open obstruction dominates the resource terminals.
             PacketTerminal::ActiveClosureFailure {
                 gamma2: trichotomy.gamma2_value().clone(),
             }

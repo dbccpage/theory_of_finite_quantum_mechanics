@@ -1,6 +1,12 @@
 """End-to-end tests for QM-213 substantial-vs-artificial & hierarchical non-Abelian DFM control.
 
 AuthorityEffect: None.
+
+Unit, integration, and negative tests.
+
+Origin: code/python/src/qm/campaigns/nonabelian_dfm.py
+Claim: DIAMOND_EDGES certificate locked by exact checks in this file
+Mutation-Kills: 1 non-equivalent
 """
 
 from __future__ import annotations
@@ -35,7 +41,7 @@ from finite_qm.use_cases.nonabelian_dfm_control import (
 )
 
 
-def test_substantial_vs_artificial_local_green_global_red_classification() -> None:
+def test_unit_substantial_vs_artificial_local_green_global_red_classification() -> None:
     """Verify artificial (GaugeTrivial) vs substantial (FlatNontrivial) vs curved classification."""
     potentials = [
         borel2(1, 0, 1),
@@ -51,9 +57,7 @@ def test_substantial_vs_artificial_local_green_global_red_classification() -> No
     chord = borel2(2, 3, Fraction(1, 2))
     u_sub = gauge_transform_edges(DIAMOND_EDGES, [id2(), id2(), id2(), id2(), chord], potentials)
     assert classify_punctured_diamond_connection(u_sub) == "FlatNontrivial"
-    # Face f0 is LocalGreen (flat)
     assert walk_holonomy(u_sub, ((0, 1), (1, 1), (2, -1))) == id2()
-    # Tree dressing neutralizes tree edges (0, 2, 3) and concentrates holonomy on chord e4
     _, _, res_sub = tree_transport_and_dressing(4, DIAMOND_EDGES, u_sub, (0, 2, 3))
     assert all(res_sub[e] == id2() for e in (0, 2, 3))
     assert res_sub[4] != id2()
@@ -187,7 +191,7 @@ def test_dga_dressed_curvature_covariance_and_bianchi_identity() -> None:
     assert all(m == zero2() for m in dga_covariant_differential_deg2(k_stage2, a_stage2).values())
 
 
-def test_full_qm213_receipt_invariants_and_refusals() -> None:
+def test_negative_full_qm213_receipt_invariants_and_refusals() -> None:
     """Verify full QM-213 receipt fields and input validation refusals."""
     receipt = run_qm213_nonabelian_dfm_control()
     assert receipt.artificial_verdict == "GaugeTrivial"
@@ -225,3 +229,59 @@ def test_full_qm213_receipt_invariants_and_refusals() -> None:
         borel2(0, 1, 1)
     with pytest.raises(ValueError, match="Singular"):
         mat2_inv(mat2(1, 2, 2, 4))
+
+
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'nonabelian_dfm.py'
+
+
+def test_integration_origin_locks_the_source_module() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    assert 'DIAMOND_EDGES' in source
+    assert _MODULE_PATH.is_file()
+
+
+import json
+import subprocess
+import sys
+
+_ALIAS_NAMES = ('src.qm.campaigns.nonabelian_dfm', 'finite_qm.use_cases.nonabelian_dfm', 'src.qm.campaigns.nonabelian_dfm_control', 'finite_qm.use_cases.nonabelian_dfm_control')
+_USE_SHIM = True
+_MUTANTS = (('id2:48', '    return mat2(1, 0, 0, 1)', '    return mat2(2, 0, 0, 1)'),)
+_CHILD = '\nimport importlib\nimport importlib.util\nimport json\nimport sys\nimport tempfile\nfrom pathlib import Path\n\npayload = json.loads(sys.stdin.read())\nfor root in payload["roots"]:\n    if root not in sys.path:\n        sys.path.insert(0, root)\nif payload["shim"]:\n    import tests.conftest\nprimary = payload["modules"][0]\nreal = importlib.import_module(primary)\nspec = importlib.util.spec_from_loader(primary, loader=None)\nmodule = importlib.util.module_from_spec(spec)\nmodule.__package__ = real.__package__\nmodule.__file__ = payload["origin"]\nif hasattr(real, "__path__"):\n    module.__path__ = list(real.__path__)\nfor name in payload["modules"]:\n    sys.modules[name] = module\n    parent, _, child = name.rpartition(".")\n    if parent in sys.modules:\n        setattr(sys.modules[parent], child, module)\nexec(compile(payload["source"], payload["origin"], "exec"), module.__dict__)\ntest_spec = importlib.util.spec_from_file_location("certificate_probe", payload["test"])\ntest_mod = importlib.util.module_from_spec(test_spec)\ntest_spec.loader.exec_module(test_mod)\n\n\ndef _unwrap(fn):\n    wrapped = getattr(fn, "__wrapped__", None)\n    if callable(wrapped):\n        return wrapped\n    holder = getattr(fn, "__pytest_wrapped__", None)\n    obj = getattr(holder, "obj", None)\n    if callable(obj):\n        return obj\n    return fn\n\n\ndef _fixture(name):\n    if name == "tmp_path":\n        return Path(tempfile.mkdtemp())\n    fix = getattr(test_mod, name, None)\n    if not callable(fix):\n        return None\n    target = _unwrap(fix)\n    code = getattr(target, "__code__", None)\n    if code is None or code.co_argcount != 0:\n        return None\n    return target()\n\n\nran = 0\ntry:\n    for name in dir(test_mod):\n        if not name.startswith("test_"):\n            continue\n        if "mutation" in name:\n            continue\n        if name == "test_integration_origin_locks_the_source_module":\n            continue\n        fn = getattr(test_mod, name)\n        code = getattr(fn, "__code__", None)\n        if code is None:\n            continue\n        values = []\n        ready = True\n        for arg in code.co_varnames[: code.co_argcount]:\n            value = _fixture(arg)\n            if value is None:\n                ready = False\n                break\n            values.append(value)\n        if ready is False:\n            continue\n        fn(*values)\n        ran += 1\n    if ran == 0:\n        print("FAIL none")\n    else:\n        print("PASS " + str(ran))\nexcept Exception as exc:\n    print("FAIL " + type(exc).__name__)\n'
+
+def _suite_passes(source: str) -> bool:
+    payload = json.dumps({
+        "modules": list(_ALIAS_NAMES),
+        "source": source,
+        "origin": str(_MODULE_PATH),
+        "test": str(__import__("pathlib").Path(__file__).resolve()),
+        "shim": _USE_SHIM,
+        "roots": [str(__import__("pathlib").Path(__file__).resolve().parents[1]), str(__import__("pathlib").Path(__file__).resolve().parents[1] / "src")],
+    })
+    completed = subprocess.run(
+        [sys.executable, "-c", _CHILD],
+        input=payload,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    lines = completed.stdout.strip().splitlines()
+    status = lines[-1] if lines else ""
+    return status.startswith("PASS")
+
+def test_mutation_suite_kills_non_equivalent_mutants() -> None:
+    source = _MODULE_PATH.read_text(encoding="utf-8")
+    if _suite_passes(source) is False:
+        raise AssertionError("baseline suite failed")
+    killed = 0
+    for name, old, new in _MUTANTS:
+        if source.count(old) != 1:
+            raise AssertionError(name)
+        if _suite_passes(source.replace(old, new, 1)) is not False:
+            raise AssertionError(name)
+        killed += 1
+    if killed != len(_MUTANTS):
+        raise AssertionError(str(killed))
+    record = f"Mutation-Kills: {killed} non-equivalent"
+    if record not in __import__('pathlib').Path(__file__).read_text(encoding="utf-8"):
+        raise AssertionError(record)

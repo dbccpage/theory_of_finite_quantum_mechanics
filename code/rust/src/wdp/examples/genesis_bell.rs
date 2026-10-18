@@ -1,4 +1,3 @@
-//! Replay all three native examples and print checked finite evidence.
 #[path = "../../../tests/omega_wdp/common/genesis_bell_cases.rs"]
 mod cases;
 use omega_solvers::solver_convex_farkas_feasibility::FeasibilityVerdict;

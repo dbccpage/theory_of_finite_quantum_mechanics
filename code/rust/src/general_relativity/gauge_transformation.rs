@@ -1,8 +1,3 @@
-//! Discrete gauge transformation group acting on simplicial connections.
-//!
-//! Origin: papers/derivations/general_relativity/rust/src/gauge_transformation.rs
-//! Claim: DERIV-GR-GAUGE-001
-//! AuthorityEffect: None.
 
 use num_rational::Ratio;
 use num_traits::Zero;
@@ -15,7 +10,6 @@ pub enum GaugeError {
     NonGaugeInvariantObservable,
 }
 
-/// A discrete 0-cochain of gauge group parameters f: V -> Q.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DiscreteGaugeTransformation {
     pub num_vertices: usize,
@@ -38,12 +32,10 @@ impl DiscreteGaugeTransformation {
         self.vertex_phases.get(&v).copied().unwrap_or_else(Ratio::zero)
     }
 
-    /// Transforms an edge connection: A_{uv} -> A_{uv} + f(v) - f(u).
     pub fn transform_edge(&self, u: usize, v: usize, old_phase: Ratio<i64>) -> Ratio<i64> {
         old_phase + self.get_phase(v) - self.get_phase(u)
     }
 
-    /// Strictly verifies that cycle flux is invariant under the gauge transformation.
     pub fn verify_cycle_invariance(
         &self,
         cycle: &[(usize, usize)],

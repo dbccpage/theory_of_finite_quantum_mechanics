@@ -1,4 +1,3 @@
-// AuthorityEffect: None.
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use omega_category_theory::finite_section_separation::{
@@ -14,18 +13,6 @@ use crate::coda::types::{LayerExecutionRecord, LayerId, ProblemInstance};
 pub struct Layer4CsQ;
 
 impl Layer4CsQ {
-    /// Evaluates Layer 4: Continuum Shadow to Continuum Bridge (CODA-CS-Q),
-    /// legacy overlap-flag screen.
-    ///
-    /// Section vectors are compared position by position with the unweighted
-    /// L1 sum. A pair at distance 0 that no `true` overlap flag declares
-    /// glued is reported as a collision. Vectors of different lengths are
-    /// incomparable and fail the screen (they are not skipped). The screen
-    /// reports the least nonzero distance but is not a separation
-    /// certificate: the overlap flags are not checked to be an equivalence,
-    /// a flagged pair at positive distance is accepted, and with fewer than
-    /// two sections nothing is compared. The declared-domain contract is
-    /// [`Layer4CsQ::evaluate_declared_separation`].
     pub fn evaluate(problem: &ProblemInstance) -> (LayerExecutionRecord, BigRational) {
         let sections: Vec<(&String, &Vec<BigRational>)> = problem.local_sections.iter().collect();
         let mut glued: BTreeSet<BTreeSet<String>> = BTreeSet::new();
@@ -113,14 +100,6 @@ impl Layer4CsQ {
         (record, sep)
     }
 
-    /// Decides separation of a declared quotient through the category owner
-    /// [`omega_category_theory::finite_section_separation`]: records on one
-    /// declared common domain, a nonnegative weight per coordinate, and the
-    /// declared classes as a partition of the record identities. Succeeds
-    /// only with `Separated` (the identification is exactly the zero-distance
-    /// relation and there are at least two classes); the record value is the
-    /// attained gap. Every other outcome fails, with the typed refusal or the
-    /// zero-distance collision returned.
     pub fn evaluate_declared_separation<P>(
         records: &[SectionRecord<String, P>],
         common_domain: &[P],
@@ -236,7 +215,6 @@ mod tests {
         assert!(!rec.succeeded);
         assert!(matches!(out, Ok(SeparationOutcome::ZeroCollision { .. })));
 
-        // Identifying records at positive distance is refused.
         let records = [
             record("a", q(0, 1), q(0, 1)),
             record("b", q(1, 1), q(0, 1)),
@@ -250,7 +228,6 @@ mod tests {
             Err(SeparationRefusal::IdentificationNotZero { .. })
         ));
 
-        // One record: nothing to compare.
         let (rec, out) = Layer4CsQ::evaluate_declared_separation(
             &records[..1],
             &["x", "y"],
@@ -260,7 +237,6 @@ mod tests {
         assert!(!rec.succeeded);
         assert!(matches!(out, Err(SeparationRefusal::NoComparablePairs)));
 
-        // Different declared domains are incomparable.
         let other = SectionRecord::new("c".to_string(), &["x"], &[("x", q(0, 1))])
             .expect("admitted");
         let mixed = [records[0].clone(), other];

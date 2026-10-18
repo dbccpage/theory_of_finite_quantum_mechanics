@@ -1,12 +1,7 @@
-//! MUB(6) Discrete 4D Bianchi Spectral Contraction Solver (Pilot 041)
-//!
-//! Validates the discrete 4D Bianchi identity (d3 o d2 = 0) and exact spectral
-//! contraction floor sigma_floor >= 31/800, forcing vanishing closure ratio R_cl = 0.
 
 use num_rational::BigRational;
 use serde::{Deserialize, Serialize};
 
-/// Receipt for discrete 4D Bianchi contraction verification.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BianchiContractionReceipt {
     pub status: String,
@@ -16,9 +11,7 @@ pub struct BianchiContractionReceipt {
     pub closure_ratio_r_cl: String,
 }
 
-/// Verify discrete 4D Bianchi identity and spectral contraction.
 pub fn verify_bianchi_contraction() -> BianchiContractionReceipt {
-    // Discrete Bianchi: d3 o d2 == 0 identically on cochain complex
     let d3_circ_d2_zero = true;
     let sigma_floor = BigRational::new(31.into(), 800.into());
     let curvature_closure = BigRational::from_integer(0.into());

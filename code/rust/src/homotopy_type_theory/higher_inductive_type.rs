@@ -1,19 +1,13 @@
-//! Higher Inductive Types (HIT) module for homotopy type theory.
-//!
-//! Provides finite records for 0-cell point constructors, 1-cell path constructors,
-//! and higher surface constructors, formalizing types like S^1, Interval, and Q^1 quotient HITs.
 
 use crate::truncation::TruncationLevel;
 use serde::{Deserialize, Serialize};
 
-/// Point constructor (0-cell generator).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PointConstructor {
     pub name: String,
     pub doc: String,
 }
 
-/// Path constructor (1-cell generator equality between points).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PathConstructor {
     pub name: String,
@@ -22,7 +16,6 @@ pub struct PathConstructor {
     pub dimension: usize,
 }
 
-/// Higher Inductive Type specification.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct HigherInductiveType {
     pub type_name: String,
@@ -32,7 +25,6 @@ pub struct HigherInductiveType {
 }
 
 impl HigherInductiveType {
-    /// Construct a simple circle S^1 (base point + loop path).
     pub fn circle_s1() -> Self {
         Self {
             type_name: "S^1".to_string(),
@@ -50,7 +42,6 @@ impl HigherInductiveType {
         }
     }
 
-    /// Construct an Interval type I (left + right + seg).
     pub fn interval_i() -> Self {
         Self {
             type_name: "Interval".to_string(),
@@ -74,7 +65,6 @@ impl HigherInductiveType {
         }
     }
 
-    /// Check if the HIT definition has valid endpoint references.
     pub fn is_well_formed(&self) -> bool {
         let point_names: Vec<&str> = self.points.iter().map(|p| p.name.as_str()).collect();
         self.paths.iter().all(|path| {

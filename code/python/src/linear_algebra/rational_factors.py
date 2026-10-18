@@ -256,11 +256,17 @@ def _berlekamp_matrix(polynomial: list[int], prime: int) -> list[list[int]]:
     return matrix
 
 
+def _diagonal_bit(row: int, column: int) -> int:
+    if row == column:
+        return 1
+    return 0
+
+
 def _berlekamp_row(columns: list[list[int]], row: int, degree: int, prime: int) -> list[int]:
     entries: list[int] = []
     for column in range(degree):
         coefficient = columns[column][row] if row < len(columns[column]) else 0
-        entries.append((coefficient - int(row == column)) % prime)
+        entries.append((coefficient - _diagonal_bit(row, column)) % prime)
     return entries
 
 
@@ -375,8 +381,6 @@ def _lift_all(
     modulus: int,
     prime: int,
 ) -> list[list[int]]:
-    # Reduction modulo m*p preserves (f-product)/m modulo p.
-    # Reducing modulo m alone would lose the next lifting digit.
     product = _product_mod(lifted, modulus * prime)
     error = _zadd(polynomial, [-coefficient for coefficient in product])
     correction = _mod(_lifting_digit(error, modulus), prime)
@@ -437,9 +441,6 @@ def _root_radius(polynomial: list[int]) -> int:
         raise _fail("factor_bound: nonconstant monic integer polynomial required")
     degree = len(polynomial) - 1
     magnitude = max(_integer_root_ceiling(abs(coefficient), degree - index) for index, coefficient in enumerate(polynomial[:-1]))
-    # If M>0, at |z|>=2M the sum |a_(n-k)|/|z|^k is <=1-2^-n<1.
-    # M=0 means f=X^n and radius zero is valid. Retain the old Cauchy
-    # bound when smaller, so the required reconstruction modulus never grows.
     return min(1 + max(abs(coefficient) for coefficient in polynomial[:-1]), 2 * magnitude)
 
 
@@ -500,8 +501,6 @@ def _factor_monic_integer(polynomial: list[int]) -> list[list[int]]:
     modular = _berlekamp(polynomial, prime)
     if len(modular) == 1:
         return [polynomial]
-    # Both exact radii bound every complex root. A monic divisor of degree
-    # k has coefficients bounded by (1+R)^k; only k<=floor(n/2) is needed.
     radius = _root_radius(polynomial)
     bound = (1 + radius) ** (degree // 2)
     modulus, lifted = _hensel(polynomial, modular, prime, bound)
@@ -520,7 +519,6 @@ def _factor_squarefree(polynomial: list[Q]) -> list[list[Q]]:
         common = gcd(common, coefficient)
     integer = [coefficient // common for coefficient in integer]
     leading, degree = integer[-1], len(integer) - 1
-    # Scaling y=a*x avoids nonmonic Hensel lifting without losing any factor.
     transformed = [integer[index] * leading ** (degree - 1 - index) for index in range(degree)] + [1]
     result: list[list[Q]] = []
     for factor in _factor_monic_integer(transformed):

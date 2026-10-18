@@ -1,13 +1,3 @@
-//! Path B Gate A/B candidate campaign + formal tombstone of `(rank_j, h1_dim)`.
-//!
-//! Runs on T0 and one Dita second basepoint (F6(0,8)+Y2Q1) for dual-basepoint honesty
-//! without the full six-seed wall-time of the second-basepoint campaign.
-//!
-//! Candidates:
-//! * **omega_mass** — scalar curvature mass (expect Gate A SIGNAL, Gate B WALL)
-//! * **wall_functional_f** — scalar wall functional (expect A SIGNAL, B WALL)
-//! * **(rank_j, h1)** — cohomological pair (expect A FAIL; tombstoned as no-go tracker)
-//!
 
 use serde::Serialize;
 
@@ -160,7 +150,6 @@ where
         .filter(|r| r.category == SampleCategory::FlatTorus)
         .collect();
     let vals: Vec<T> = flat.iter().map(|r| inv(r)).collect();
-    // Modal by frequency.
     let mut modal: Option<T> = None;
     let mut best = 0usize;
     for v in &vals {
@@ -222,7 +211,6 @@ fn run_on_basepoint(id: &str, columns: &[ExactVec]) -> Vec<CandidateVerdict> {
 
     let mut out = Vec::new();
 
-    // Scalar mass.
     {
         let a = eval_gate_a(&rows, "omega_mass", mass_key);
         let b = eval_gate_b(&rows, "omega_mass", mass_key);
@@ -233,7 +221,6 @@ fn run_on_basepoint(id: &str, columns: &[ExactVec]) -> Vec<CandidateVerdict> {
             gate_a: a,
             gate_b: b,
             a_and_b,
-            // fixture: the second label is written without reading gate_a or gate_b.
             disposition: if a_and_b {
                 "UNEXPECTED_A_AND_B_SURVIVOR".to_string()
             } else {
@@ -242,7 +229,6 @@ fn run_on_basepoint(id: &str, columns: &[ExactVec]) -> Vec<CandidateVerdict> {
         });
     }
 
-    // Wall functional f.
     {
         let a = eval_gate_a(&rows, "wall_functional_f", f_key);
         let b = eval_gate_b(&rows, "wall_functional_f", f_key);
@@ -253,7 +239,6 @@ fn run_on_basepoint(id: &str, columns: &[ExactVec]) -> Vec<CandidateVerdict> {
             gate_a: a,
             gate_b: b,
             a_and_b,
-            // fixture: the second label is written without reading gate_a or gate_b.
             disposition: if a_and_b {
                 "UNEXPECTED_A_AND_B_SURVIVOR".to_string()
             } else {
@@ -262,7 +247,6 @@ fn run_on_basepoint(id: &str, columns: &[ExactVec]) -> Vec<CandidateVerdict> {
         });
     }
 
-    // Cohomological pair — tombstone target.
     {
         let a = eval_gate_a(&rows, "rank_j_h1", rank_h1);
         let b = eval_gate_b(&rows, "rank_j_h1", rank_h1);
@@ -282,14 +266,12 @@ fn run_on_basepoint(id: &str, columns: &[ExactVec]) -> Vec<CandidateVerdict> {
         });
     }
 
-    // Cross-check vs existing probe module on structural Gate A for rank_h1.
     let probe: Vec<SampleRow> = run_probe_on_columns(columns).rows;
     assert_eq!(probe.len(), rows.len());
 
     out
 }
 
-/// Run Path B candidate campaign on T0 + one Dita second basepoint.
 pub fn run_path_b_gate_candidate_campaign() -> PathBGateCandidateReport {
     let mut candidates = Vec::new();
     candidates.extend(run_on_basepoint("T0_product", &canonical_triple_exact()));

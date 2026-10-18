@@ -1,4 +1,3 @@
-//! Campaign finite Heisenberg census, using the sovereign group. AuthorityEffect: None.
 use omega_lie_theory::heisenberg::FiniteHeisenberg;
 #[cfg(test)]
 use omega_lie_theory::heisenberg::HeisenbergElement;
@@ -116,7 +115,6 @@ mod tests {
         let g21 = heisenberg_multiply(g2, g1, p);
         assert_eq!(g12.q, g21.q);
         assert_eq!(g12.p_coord, g21.p_coord);
-        // Commutator z difference should be exactly 1 mod p
         let diff_z = (g12.z + p - g21.z) % p;
         assert_eq!(diff_z, 1);
     }

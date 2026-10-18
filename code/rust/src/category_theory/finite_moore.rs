@@ -1,9 +1,3 @@
-//! Exact finite deterministic labelled systems and their minimal report quotient.
-//!
-//! This is finite coalgebra mathematics, independent of WDP naming/retention.
-//! Reports and input labels are caller-interned identifiers: report equality is
-//! literal equality, not a tolerance or an undeclared equivalence closure.
-//! No initial state or chronological total order is required.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -16,7 +10,6 @@ pub enum MooreError {
     InvalidQuotientMap,
 }
 
-/// A total finite Moore system: `transitions[m][i] = u(m,i)`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteMoore {
     reports: Vec<usize>,
@@ -24,8 +17,6 @@ pub struct FiniteMoore {
     input_count: usize,
 }
 
-/// Replayable refinement chain, beginning at the readout kernel and ending at
-/// its greatest transition-stable refinement. IDs use first-state order.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MooreQuotient {
     pub partitions: Vec<Vec<usize>>,
@@ -101,8 +92,6 @@ impl FiniteMoore {
         )
     }
 
-    /// A congruence is an equivalence partition whose related states have equal
-    /// reports and related successors for every label.
     pub fn is_report_congruence(&self, partition: &[usize]) -> bool {
         if partition.len() != self.state_count() {
             return false;
@@ -122,12 +111,6 @@ impl FiniteMoore {
         true
     }
 
-    /// R0 = ker(report), R(k+1) = Rk intersect all labelled inverse images of Rk.
-    /// Strict refinement increases block count, so at most |M|-1 strict splits
-    /// occur. At a fixed point the relation is a bisimulation/congruence. Every
-    /// readout-respecting congruence is contained in every Rk by induction, so
-    /// the fixed point is the greatest one. Equivalently it compares all finite
-    /// input-tree paths, including the empty path.
     pub fn behavioral_quotient(&self) -> MooreQuotient {
         let mut partitions = vec![self.initial_partition()];
         loop {
@@ -167,9 +150,6 @@ impl FiniteMoore {
         }
     }
 
-    /// Verify the entire submitted chain against this problem, including its
-    /// origin, exact refinement steps, stabilization and quotient operations.
-    /// Comparing only a stable partition would certify an arbitrary overrefinement.
     pub fn verify_quotient(&self, receipt: &MooreQuotient) -> bool {
         if receipt.partitions.first() != Some(&self.initial_partition()) {
             return false;
@@ -191,15 +171,10 @@ impl FiniteMoore {
         {
             return false;
         }
-        // Reconstructing checks report labels, quotient typing and all labels.
         let checked = self.behavioral_quotient();
         receipt.quotient == checked.quotient
     }
 
-    /// Given a surjective readout/transition-preserving map f:M->N, produce the
-    /// unique map g:N->M/~ satisfying g(f(m))=[m]. Kernel(f) is a congruence,
-    /// hence lies inside ~. This proves |M/~| <= |N| and the minimal quotient
-    /// property. The factor also preserves every report and labelled update.
     pub fn factor_surjective_quotient(
         &self,
         target: &Self,
@@ -232,11 +207,6 @@ impl FiniteMoore {
         Ok(factor.into_iter().map(Option::unwrap).collect())
     }
 
-    /// Unpointed classification: the machines realize the same set of labelled
-    /// report behaviors. Refinement of their disjoint union computes cross-model
-    /// bisimulation. Every block must meet both carriers. Thus their minimal
-    /// quotients are canonically isomorphic by their common behavior classes.
-    /// Reports and input indices must use the same externally declared labels.
     pub fn same_behavior_set(&self, other: &Self) -> bool {
         if self.input_count != other.input_count {
             return false;
@@ -264,8 +234,6 @@ mod tests {
 
     #[test]
     fn delayed_distinctions_and_nontrivial_blocks() {
-        // Three-step distinctions and equivalent duplicates: refinement must
-        // preserve integer block IDs rather than collapsing them to booleans.
         let m = FiniteMoore::new(
             vec![0, 0, 0, 0, 1, 1],
             vec![vec![1], vec![2], vec![4], vec![4], vec![4], vec![5]],

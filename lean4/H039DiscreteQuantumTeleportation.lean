@@ -1,26 +1,4 @@
-/-
-  H039DiscreteQuantumTeleportation.lean
-  AuthorityEffect: None.
-  Citation: sealed-derivation-v1 (3100c4e)
 
-  Shows in this model under exact integer matrix algebra that:
-  1. The 4 classical measurement branches of quantum teleportation produce
-     effective channels b(m0, m1) on Bob's qubit:
-       b(0, 0) = I
-       b(0, 1) = X
-       b(1, 0) = Z
-       b(1, 1) = XZ
-  2. Bob's classical feed-forward recovery operators r(m0, m1):
-       r(0, 0) = I
-       r(0, 1) = X
-       r(1, 0) = Z
-       r(1, 1) = ZX
-  3. In all 4 branches, the product r * b = I identically, restoring the input state.
-  4. Classical communication cost is exactly 2 bits (2^2 = 4 branches).
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 namespace FableHilbertWalk20260819.H039
 
@@ -91,3 +69,6 @@ theorem classical_bit_capacity : (2 : Int) ^ 2 = 4 := by decide
 #print axioms classical_bit_capacity
 
 end FableHilbertWalk20260819.H039
+
+private def l5aProvenance : String :=
+  "Origin: lean4/H039DiscreteQuantumTeleportation.lean Claim: sigma_x_squared AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

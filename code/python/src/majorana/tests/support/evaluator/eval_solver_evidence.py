@@ -15,8 +15,8 @@ from omega_engine.crates.type.solver_evidence import (
 
 
 def assert_deterministic(solver: object, problem: object) -> None:
-    first = solver.solve(problem)  # type: ignore[attr-defined]
-    second = solver.solve(problem)  # type: ignore[attr-defined]
+    first = solver.solve(problem)
+    second = solver.solve(problem)
     if first != second:
         raise AssertionError("solver output drifted on identical input")
 
@@ -35,7 +35,7 @@ def assert_disclosure(result: SolverResult[object]) -> None:
 
 def assert_non_finite_rejected(solver: object, bad_input: object) -> None:
     try:
-        solver.solve(bad_input)  # type: ignore[attr-defined]
+        solver.solve(bad_input)
     except SolverError as error:
         if error.kind == SolverError.NON_FINITE_INPUT:
             return
@@ -47,9 +47,9 @@ def assert_repeated_same_input(
     problem: object,
     runs: int,
 ) -> None:
-    baseline = solver.solve(problem)  # type: ignore[attr-defined]
+    baseline = solver.solve(problem)
     for _ in range(runs):
-        if solver.solve(problem) != baseline:  # type: ignore[attr-defined]
+        if solver.solve(problem) != baseline:
             raise AssertionError("hidden state affected semantic output")
 
 
@@ -59,8 +59,8 @@ def assert_canonical_equivalent_input(
     second_input: object,
     canonicalize_out: Callable[[object], object],
 ) -> None:
-    first = solver.solve(first_input)  # type: ignore[attr-defined]
-    second = solver.solve(second_input)  # type: ignore[attr-defined]
+    first = solver.solve(first_input)
+    second = solver.solve(second_input)
     if canonicalize_out(first.value) != canonicalize_out(second.value):
         raise AssertionError("equivalent inputs yielded non-equivalent outputs")
 

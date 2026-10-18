@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P5-NEXT-2 (CertificationService 21.11 dependency-order propagation).
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Status {

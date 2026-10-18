@@ -16,7 +16,6 @@ from pathlib import Path
 from sympy import Matrix, Rational, symbols
 import pytest
 
-# Ensure coda is accessible
 coda_dir = Path(__file__).resolve().parents[1] / "coda"
 ooutwire_dir = Path(__file__).resolve().parents[2]
 
@@ -51,11 +50,9 @@ def test_parabola_retraction_experiment():
     assert receipt.d0.shape == (2, 2)
     assert receipt.cochain.shape == (2, 1)
 
-    # Cochain values for x1=1 and x2=2: -1 - 2(1) = -3, -2 - 2(8) = -18
     assert receipt.cochain[0, 0] == Rational(-3)
     assert receipt.cochain[1, 0] == Rational(-18)
 
-    # Certificates must recheck cleanly
     assert receipt.exactness_cert.verify()
     assert receipt.quotient_cert.verify()
     assert receipt.l1_mass >= 0
@@ -78,16 +75,14 @@ def test_higher_order_chart_gauge_adapter_and_phi_monotonicity():
     p2 = Matrix([Rational(2), Rational(0), Rational(4)])
     sample_points = [p1, p2]
 
-    gen1 = Matrix([Rational(1), Rational(0)])  # partial_x
-    gen2 = Matrix([Rational(0), Rational(1)])  # partial_y
+    gen1 = Matrix([Rational(1), Rational(0)])
+    gen2 = Matrix([Rational(0), Rational(1)])
     first_order_generators = [gen1, gen2]
 
-    # Build 1st-order repair matrix
     d0_1st = adapter.build_repair_matrix(sample_points, first_order_generators)
 
-    # Build higher-order repair matrix with weighted field X3 = x*partial_x
     x_sym, y_sym = symbols("x y", real=True)
-    weighted_fields = [(x_sym, Rational(0))]  # (x, 0)
+    weighted_fields = [(x_sym, Rational(0))]
     d0_higher = adapter.build_higher_order_repair_matrix(
         sample_points,
         first_order_generators,
@@ -106,7 +101,6 @@ def test_higher_order_chart_gauge_adapter_and_phi_monotonicity():
     phi_1st = cert_1st.distance
     phi_higher = cert_higher.distance
 
-    # Prove monotonicity: higher order captures curvature, driving Phi to 0
     assert phi_1st > 0
     assert phi_higher <= phi_1st
     assert phi_higher == Rational(0)

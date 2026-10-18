@@ -32,44 +32,35 @@ class TestCauchySandwichGeometryAndFoliation:
         """Verify simplex counts, Euler characteristic, and boundaries of 3-prism triangulation."""
         sandwich = build_canonical_3simplex_sandwich(dt=1.0, lapse_val=1.0, shift_val=0.0)
 
-        # 4 spatial vertices extruded over interval -> 8 spacetime vertices
         assert sandwich.num_vertices == 8
-        # Prism Delta^3 x I triangulated into four 4-simplices
         assert sandwich.num_four_simplices == 4
-        # Simplex counts: N0=8, N1=22, N2=28, N3=17, N4=4
         assert sandwich.num_edges == 22
         assert sandwich.num_triangles == 28
         assert sandwich.num_tetrahedra == 17
 
-        # Euler characteristic chi = N0 - N1 + N2 - N3 + N4 = 8 - 22 + 28 - 17 + 4 = 1
         assert sandwich.euler_characteristic() == 1
 
-        # Boundary tetrahedra must contain the base slice Sigma_0 (0, 1, 2, 3) and top slice Sigma_1 (4, 5, 6, 7)
         b_tetras = sandwich.lorentzian_complex.boundary_tetrahedra()
         assert (0, 1, 2, 3) in b_tetras
         assert (4, 5, 6, 7) in b_tetras
 
     def test_timelike_foliation_condition(self):
         """Verify that N_v^2 > |N_v|^2 yields strictly timelike time-tracks."""
-        # 1. Standard lapse N=1.0, shift=0 -> strictly timelike
         sandwich_standard = build_canonical_3simplex_sandwich(dt=1.0, lapse_val=1.0, shift_val=0.0)
         assert sandwich_standard.is_timelike_foliation() is True
 
-        # Check time-track edge (0, 4)
         s2_04 = sandwich_standard.lorentzian_complex.edge_squared_interval((0, 4))
         assert s2_04 == pytest.approx(-1.0, abs=1e-12)
 
-        # 2. Subluminal shift N=1.0, shift=0.5 -> |N|^2 = 0.25 < 1.0 -> timelike (s^2 = -0.75)
         sandwich_subluminal = build_canonical_3simplex_sandwich(dt=1.0, lapse_val=1.0, shift_val=0.5)
         assert sandwich_subluminal.is_timelike_foliation() is True
         s2_sub = sandwich_subluminal.lorentzian_complex.edge_squared_interval((0, 4))
         assert s2_sub == pytest.approx(-0.75, abs=1e-12)
 
-        # 3. Superluminal shift N=1.0, shift=2.0 -> |N|^2 = 4.0 > 1.0 -> spacelike time-track!
         sandwich_super = build_canonical_3simplex_sandwich(dt=1.0, lapse_val=1.0, shift_val=2.0)
         assert sandwich_super.is_timelike_foliation() is False
         s2_super = sandwich_super.lorentzian_complex.edge_squared_interval((0, 4))
-        assert s2_super > 0.0  # Spacelike violation of Cauchy foliation
+        assert s2_super > 0.0
 
     def test_cauchy_sandwich_operator_nilpotency(self):
         """Verify partial^2 = 0 and d^2 = 0 across dimensions on Cauchy sandwich."""
@@ -90,9 +81,7 @@ class TestLapseShiftVariationsAndCoboundaryInvariants:
         beta, delta_omega = sandwich.apply_lapse_shift_variation(delta_lapse, delta_shift)
         d1 = sandwich.coboundary_matrix(1)
 
-        # By construction delta_omega == d1 @ beta
         assert np.allclose(delta_omega, d1 @ beta, atol=1e-14)
-        # Bianchi identity must vanish: d_2 (d_1 beta) == 0
         d2 = sandwich.coboundary_matrix(2)
         bianchi_flux = d2 @ delta_omega
         assert np.allclose(bianchi_flux, 0.0, atol=1e-14)
@@ -147,13 +136,11 @@ class TestCauchySandwichDualWitnessCertification:
         solver = Degree2DualCertifiedL1Solver(tol=1e-10)
         d1 = sandwich.coboundary_matrix(1)
 
-        # Baseline non-trivial constraint cochain
         omega_base = sandwich.build_sandwich_wdw_constraint_cochain(extrinsic_curvature_pert=1.5)
         base_res = solver.solve(omega_base, d1)
         assert base_res.is_closed is False
         assert base_res.primal_obj > 0.0
 
-        # Apply 5 randomized lapse and shift variations
         np.random.seed(2026)
         for _ in range(5):
             delta_lapse = {v: float(np.random.randn() * 0.5) for v in range(4)}
@@ -163,7 +150,6 @@ class TestCauchySandwichDualWitnessCertification:
             omega_shifted = omega_base + delta_omega
 
             shifted_res = solver.solve(omega_shifted, d1)
-            # Gauge invariance of the physical quotient norm
             assert abs(shifted_res.primal_obj - base_res.primal_obj) < 1e-10
             assert abs(shifted_res.dual_obj - base_res.dual_obj) < 1e-10
             assert shifted_res.duality_gap < 1e-10
@@ -190,11 +176,9 @@ class TestCauchySandwichDualWitnessCertification:
         assert res.dual_divergence_norm < 1e-10
         assert np.max(np.abs(res.dual_witness)) <= 1.0 + 1e-10
 
-        # Complementary slackness
         dot_val = float(np.dot(res.dual_witness, res.primal_residual))
         assert abs(dot_val - res.primal_obj) < 1e-10
 
-        # Subgradient condition
         for h_idx, r_val in enumerate(res.primal_residual):
             if abs(r_val) > 1e-8:
                 assert np.sign(res.dual_witness[h_idx]) == np.sign(r_val)
@@ -221,13 +205,11 @@ class TestCauchySandwichDualWitnessCertification:
         sandwich = build_canonical_3simplex_sandwich(dt=1.0)
         solver = Degree2DualCertifiedL1Solver(tol=1e-10)
 
-        # Pre-subdivision
         assert sandwich.num_four_simplices == 4
 
-        # Perform 1-to-5 stellar subdivision on first sandwich 4-simplex
         new_v, daughters = sandwich.lorentzian_complex.stellar_subdivide(0)
         assert new_v == 8
-        assert sandwich.lorentzian_complex.num_four_simplices == 8  # 4 - 1 + 5 = 8
+        assert sandwich.lorentzian_complex.num_four_simplices == 8
 
         d1_sub = sandwich.lorentzian_complex.coboundary_matrix(1)
         omega_sub = np.zeros(sandwich.lorentzian_complex.num_triangles)

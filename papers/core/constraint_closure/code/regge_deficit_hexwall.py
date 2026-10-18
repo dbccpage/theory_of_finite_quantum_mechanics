@@ -37,26 +37,23 @@ def hexagonal_disk_deficit(R: int) -> dict:
 
     n_corners = 6
     k_corner = 2
-    deficit_per_corner = deficit_angle_2d(k_corner)  # 4π/3
+    deficit_per_corner = deficit_angle_2d(k_corner)
 
     n_edge_vertices = 6 * (R - 1)
     k_edge = 3
-    deficit_per_edge = deficit_angle_2d(k_edge)  # π
+    deficit_per_edge = deficit_angle_2d(k_edge)
 
     total_deficit_radians = (
         n_corners * deficit_per_corner + n_edge_vertices * deficit_per_edge
     )
     expected_radians = 2 * math.pi + 6 * math.pi * R
 
-    # Units of π/3
     total_units = round(total_deficit_radians / (math.pi / 3))
     expected_units = 6 + 18 * R
 
-    # Gauss-Bonnet turning angles
-    turning_corner = turning_angle_2d(k_corner)  # π/3
-    turning_edge = turning_angle_2d(k_edge)  # 0
+    turning_corner = turning_angle_2d(k_corner)
+    turning_edge = turning_angle_2d(k_edge)
     total_turning = n_corners * turning_corner + n_edge_vertices * turning_edge
-    # Should be 6 * π/3 = 2π
 
     return {
         "R": R,
@@ -83,7 +80,6 @@ def verify_linear_divergence(R_values: list[int] | None = None) -> dict:
         result = hexagonal_disk_deficit(R)
         deficits.append(result["total_deficit_radians"])
 
-    # Check linearity: deficit = 2π + 6πR
     slopes = []
     for i in range(1, len(R_values)):
         dR = R_values[i] - R_values[i - 1]

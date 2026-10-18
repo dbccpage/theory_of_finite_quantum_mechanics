@@ -1,5 +1,4 @@
 from __future__ import annotations
-# SPDX-License-Identifier: Apache-2.0
 
 
 from typing import Any, Sequence
@@ -42,19 +41,19 @@ class GraphToComplexAdapter:
         """Construct a complex adapter directly from a FiniteDirectedGraph."""
         nodes = list(graph.nodes())
         node_index = {node: i for i, node in enumerate(nodes)}
-        
+
         edges: list[tuple[int, int]] = []
         for u, v in graph.edges():
             u_idx = u if (isinstance(u, int) and 0 <= u < len(nodes)) else node_index.get(u)
             v_idx = v if (isinstance(v, int) and 0 <= v < len(nodes)) else node_index.get(v)
-            
+
             if u_idx is None:
                 u_idx = node_index[u]
             if v_idx is None:
                 v_idx = node_index[v]
-                
+
             edges.append((u_idx, v_idx))
-            
+
         return cls(nodes, edges, faces)
 
     def _build_boundary_operators(self) -> None:
@@ -96,7 +95,7 @@ class GraphToComplexAdapter:
             raise ValueError(
                 f"Mismatch vector length {len(r)} must equal edge count {self.num_edges}"
             )
-        
+
         meta = dict(metadata) if metadata is not None else {}
         meta.update({
             "graph_vertices": self.vertices,

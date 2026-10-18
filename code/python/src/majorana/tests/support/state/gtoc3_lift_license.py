@@ -7,10 +7,6 @@ fail closed where behavior has not been implemented.
 """
 
 
-# BEGIN GENERATED RUST SURFACE
-# Rust source: omega_engine/crates/omega_state/src/gtoc3_lift_license.rs
-# Rust sha256: 11cbcd541f8ef89796d02cfdf4382de8a7a4c3a688569ebff5dd1103e2a3ec79
-# Structural parity only; no behavioral or authority claim.
 from pydantic.dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -42,83 +38,63 @@ class _RustSurfaceObject(metaclass=_RustSurfaceMeta):
         return unavailable
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC3_PACKET_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC3_ADMISSION_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC3_CLASSIFICATION_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 GTOC3_RECEIPT_SCHEMA_VERSION: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_FROZEN_BASE: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_TARGET: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_OPERATOR_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_SEMANTIC_CONTRACT_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_license_ID: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_OBSERVER_DOMAIN: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_STATE_DOMAIN: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_EVIDENCE_CEILING: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_SOURCE_CARRIER_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_TARGET_CARRIER_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_OBSTRUCTION_SUMMARY: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_OBSTRUCTION_SHA256: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_MAX_COST_UNITS: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_MAX_NEW_DIMENSIONS: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_SOURCE_MANIFEST: Any = None
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 S02_002_WRITE_SURFACE: Any = None
 
 
@@ -574,10 +550,8 @@ Gtoc3Error = Enum(
 Gtoc3Error.__doc__ = "Structural mirror of Rust ``Gtoc3Error`` variants."
 
 
-# The Rust value is intentionally not guessed by the structural mirror.
 fn: Any = None
 
 
-# END GENERATED RUST SURFACE
 
 

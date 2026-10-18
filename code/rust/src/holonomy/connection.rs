@@ -1,7 +1,3 @@
-//! Discrete connection (lattice gauge field) mapping oriented edges to exact rational matrices GL(d, Q).
-//!
-//! AuthorityEffect: None.
-//! Governing Rule: RULE[user_global] (Edge inversion law U(v, u) = U(u, v)^-1, Zero-Float Law).
 
 use crate::error::HolonomyError;
 use crate::graph::CellComplex;
@@ -12,7 +8,6 @@ use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;
 
-/// Discrete connection mapping oriented edges to exact matrices in GL(d, F).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DiscreteConnection<T: ExactScalar> {
     pub dim: usize,
@@ -22,7 +17,6 @@ pub struct DiscreteConnection<T: ExactScalar> {
 }
 
 impl<T: ExactScalar> DiscreteConnection<T> {
-    /// Construct a new empty connection of fiber dimension `dim`.
     pub fn new(dim: usize, limits: OperationLimits) -> Self {
         Self {
             dim,
@@ -32,10 +26,6 @@ impl<T: ExactScalar> DiscreteConnection<T> {
         }
     }
 
-    /// Sets the connection matrix on directed edge `(u, v)`.
-    ///
-    /// Automatically computes and registers the inverted matrix on reverse edge `(v, u)`
-    /// satisfying the edge inversion law: $U(v, u) = U(u, v)^{-1}$.
     pub fn set_connection(
         &mut self,
         u: impl Into<String>,
@@ -53,9 +43,6 @@ impl<T: ExactScalar> DiscreteConnection<T> {
         }
         let forward_key = (u_str.clone(), v_str.clone());
         let opposite_key = (v_str.clone(), u_str.clone());
-        // One undirected edge. A second write, including the opposite
-        // direction, replaces that edge instead of stacking another forward
-        // matrix that get_step would prefer over the stored inverse.
         let replacing =
             self.forward.contains_key(&forward_key) || self.forward.contains_key(&opposite_key);
         if !replacing && self.forward.len() >= self.limits.max_edges {
@@ -65,7 +52,6 @@ impl<T: ExactScalar> DiscreteConnection<T> {
             });
         }
 
-        // Exact inversion over exact field
         let inv = matrix.inverse().map_err(|e| match e {
             HolonomyError::SingularMatrix { detail } => HolonomyError::SingularConnection {
                 src: u_str.clone(),
@@ -84,9 +70,6 @@ impl<T: ExactScalar> DiscreteConnection<T> {
         Ok(())
     }
 
-    /// Retrieves the parallel transport matrix for directed step from `u` to `v`.
-    ///
-    /// Checks forward edges first, then reverse edges.
     pub fn get_step(&self, u: &str, v: &str) -> Result<&ExactMatrix<T>, HolonomyError> {
         let key = (u.to_string(), v.to_string());
         if let Some(m) = self.forward.get(&key) {
@@ -101,8 +84,6 @@ impl<T: ExactScalar> DiscreteConnection<T> {
         })
     }
 
-    /// Constructs a pure gauge connection from vertex gauge potentials:
-    /// $$U(u, v) = g(v) \cdot g(u)^{-1}$$
     pub fn from_pure_gauge(
         complex: &CellComplex,
         gauge_potentials: &BTreeMap<String, ExactMatrix<T>>,
@@ -132,8 +113,6 @@ impl<T: ExactScalar> DiscreteConnection<T> {
         Ok(conn)
     }
 
-    /// Applies a 0-cochain gauge transformation $g: V \to GL(d, F)$:
-    /// $$U'(u, v) = g(v) \cdot U(u, v) \cdot g(u)^{-1}$$
     pub fn apply_gauge_transformation(
         &self,
         gauge_potentials: &BTreeMap<String, ExactMatrix<T>>,
@@ -164,7 +143,6 @@ impl<T: ExactScalar> DiscreteConnection<T> {
         Ok(transformed)
     }
 
-    /// Computes a deterministic SHA-256 state hash of all connection matrices.
     pub fn content_hash(&self) -> String {
         let mut hasher = Sha256::new();
         hasher.update(format!("DiscreteConnection:dim={}\n", self.dim).as_bytes());
@@ -175,5 +153,4 @@ impl<T: ExactScalar> DiscreteConnection<T> {
     }
 }
 
-/// Type alias for DiscreteConnection over BigRational.
 pub type Connection = DiscreteConnection<BigRational>;

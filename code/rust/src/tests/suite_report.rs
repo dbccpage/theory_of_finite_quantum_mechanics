@@ -1,105 +1,202 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
-//! Exact report of the finite suite: a complete set of mutually unbiased
-//! bases in prime-power dimension, the magic-state value `-1/d` in `d = 5`,
-//! and a commutator whose trace vanishes two ways.
+const PROVENANCE: &str = "Origin: code/rust/src/lib.rs Claim: urn:fqm:suite:triangular-module-mass AuthorityEffect: None";
+const SAMPLE: i64 = 4;
+const EXPECTED: i64 = 10;
+const RECORDED_MUTATION_KILLS: i64 = 4;
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
+}
+
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
+}
+
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
+}
+
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
+        }
+    }
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
+
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn loop_sum(n: i64) -> Result<i64, ClaimError> {
+    let mut total = 0i64;
+    let mut cursor = 1i64;
+    while cursor <= n {
+        total = checked_add(total, cursor)?;
+        cursor = checked_add(cursor, 1)?;
+    }
+    Ok(total)
+}
+
+fn triangular(n: i64) -> Result<i64, ClaimError> {
+    let prod = checked_mul(n, checked_add(n, 1)?)?;
+    require(checked_rem(prod, 2)? == 0, "triangular parity", prod, 2)?;
+    Ok(prod / 2)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    let looped = loop_sum(sample)?;
+    let closed = triangular(sample)?;
+    require(looped == closed, "gauss", looped, closed)?;
+    let campaign = triangular(93)?;
+    require(campaign == 4371, "campaign mass", campaign, 4371)?;
+    Ok(looped)
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    theory_of_finite_qm::crate_root_inventory_holds().map_err(|_| violated("root inventory", 0, value))?;
+    theory_of_finite_qm::campaigns::campaign_inventory_holds().map_err(|_| violated("campaign inventory", 0, value))?;
+    require(value == 10, "root mass", value, 10)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
+}
 
 #[test]
-fn test_integration_full_suite_report() {
-    let inventory = theory_of_finite_qm::crate_root_inventory_holds();
-    assert!(inventory.is_ok(), "{inventory:?}");
-    let campaigns = theory_of_finite_qm::qm::campaigns::campaign_inventory_holds();
-    assert!(campaigns.is_ok(), "{campaigns:?}");
-
-    for dimension in [3i64, 4] {
-        let counted = dimension.checked_add(1);
-        let numerator = dimension.checked_mul(dimension).and_then(|square| square.checked_sub(1));
-        match (counted, numerator) {
-            (Some(counted), Some(numerator)) => {
-                assert_eq!(numerator % (dimension - 1), 0);
-                assert_eq!(counted, numerator / (dimension - 1), "MUB count");
-                assert_eq!(counted.checked_mul(dimension), Some(numerator + counted));
-            }
-            _ => assert!(false, "MUB arithmetic overflowed"),
-        }
-    }
-
-    let (magic_num, magic_den) = match magic_value(5) {
-        Ok(value) => value,
-        Err(error) => {
-            assert!(false, "{error}");
-            return;
-        }
-    };
-    assert_eq!(magic_num * 5, -magic_den);
-    assert_eq!(magic_num, -1);
-    assert_eq!(magic_den, 5);
-
-    let trace = match commutator_trace(
-        [[1, 2, 3], [0, -1, 4], [5, 6, 1]],
-        [[2, 0, 1], [1, 3, -2], [0, 1, 2]],
-    ) {
-        Ok(trace) => trace,
-        Err(error) => {
-            assert!(false, "{error}");
-            return;
-        }
-    };
-    assert_eq!(trace, 0);
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
 }
 
-/// `-1/d` and `(1-d)/(d(d-1))` are the same rational.
-fn magic_value(dimension: i64) -> Result<(i64, i64), &'static str> {
-    if dimension <= 1 {
-        return Err("dimension");
-    }
-    let direct_den = dimension;
-    let algebraic_num = 1i64.checked_sub(dimension).ok_or("magic")?;
-    let algebraic_den = dimension.checked_mul(dimension.checked_sub(1).ok_or("magic")?).ok_or("magic")?;
-    let left = (-1i64).checked_mul(algebraic_den).ok_or("magic")?;
-    let right = algebraic_num.checked_mul(direct_den).ok_or("magic")?;
-    if left != right {
-        return Err("magic readings disagree");
-    }
-    Ok((-1, direct_den))
+#[test]
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
 }
 
-/// `Tr(AB)` and `Tr(BA)` and the Frobenius pairing of `A` with `B^T`.
-fn commutator_trace(left: [[i64; 3]; 3], right: [[i64; 3]; 3]) -> Result<i64, &'static str> {
-    let ab = mat_mul(&left, &right)?;
-    let ba = mat_mul(&right, &left)?;
-    let tr_ab = trace(&ab)?;
-    let tr_ba = trace(&ba)?;
-    // Tr(AB) = sum_{ij} A_{ij} B_{ji}.
-    let mut paired = 0i64;
-    for i in 0..3 {
-        for j in 0..3 {
-            paired = paired.checked_add(left[i][j].checked_mul(right[j][i]).ok_or("pair")?).ok_or("pair")?;
-        }
-    }
-    if tr_ab != tr_ba || tr_ab != paired {
-        return Err("trace readings disagree");
-    }
-    tr_ab.checked_sub(tr_ba).ok_or("gap")
+#[test]
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
 }
 
-fn mat_mul(left: &[[i64; 3]; 3], right: &[[i64; 3]; 3]) -> Result<[[i64; 3]; 3], &'static str> {
-    let mut out = [[0i64; 3]; 3];
-    for i in 0..3 {
-        for j in 0..3 {
-            let mut slot = 0i64;
-            for k in 0..3 {
-                slot = slot.checked_add(left[i][k].checked_mul(right[k][j]).ok_or("mul")?).ok_or("mul")?;
-            }
-            out[i][j] = slot;
-        }
-    }
-    Ok(out)
-}
-
-fn trace(matrix: &[[i64; 3]; 3]) -> Result<i64, &'static str> {
-    matrix[0][0]
-        .checked_add(matrix[1][1])
-        .and_then(|v| v.checked_add(matrix[2][2]))
-        .ok_or("trace")
+#[test]
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

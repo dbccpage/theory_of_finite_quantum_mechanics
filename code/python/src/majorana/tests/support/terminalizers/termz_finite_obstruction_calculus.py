@@ -34,26 +34,11 @@ from typing import Any, Optional, Tuple, Union
 from .termz_debt import DebtRecord
 from .termz_refusals import TerminalizerRefusal
 
-#: Exact-mass input domain. ``float`` is deliberately NOT a member: this is
-#: the exact rail (FiniteCochainComplex discipline — "floating point is
-#: forbidden"). The legacy alias ``Number`` is kept for importers but no
-#: longer admits floats at runtime.
 ExactMass = Union[int, str, Fraction]
 Number = ExactMass
 
-#: Scientific-notation exponent, matched at the end of a candidate mass
-#: string (mirrors the ``E`` group of ``fractions._RATIONAL_FORMAT``).
 _SCI_EXPONENT_RE = re.compile(r"[eE]\s*([+-]?\d+)\s*\Z")
 
-#: Bound on ``abs(exponent)`` for a scientific-notation mass literal.
-#: ``Fraction`` builds the numerator/denominator via ``10 ** abs(exponent)``
-#: (a power, not a digit-string-to-int conversion), so Python's
-#: ``sys.int_max_str_digits`` guard (default 4300) does NOT fire on this
-#: path — ``Fraction("1e-2000000")`` parses in ~1s while materializing a
-#: ~2,000,000-digit denominator. 10**4 gives ten thousand digits of
-#: precision, comfortably beyond any exact mass literal that arises in this
-#: domain, while keeping worst-case construction cost bounded and in the
-#: same order of magnitude as the digit-literal guard's own ceiling.
 _MAX_ABS_MASS_EXPONENT = 10**4
 
 
@@ -259,8 +244,6 @@ def classify_phi_gamma(
     p = _exact_mass(phi1, "phi1")
     g = _exact_mass(gamma2, "gamma2")
 
-    # Witness dominance: the trichotomy is decided FIRST, from the witnessed
-    # masses only. No flag consulted before this line.
     coh = classify_trichotomy(p, g)
 
     trace_events: Tuple[str, ...] = ()
@@ -274,8 +257,6 @@ def classify_phi_gamma(
                 "If classification did not complete, use "
                 "omega_terminalizers.debt.emit_budget_unknown instead.",
             )
-        # Budget exhaustion may stop further search; it may not retire a
-        # witness already found. Record the debt; classify by dominance.
         trace_events = trace_events + (debt.as_trace_event(),)
     elif debt is not None:
         if not isinstance(debt, DebtRecord):
@@ -285,7 +266,6 @@ def classify_phi_gamma(
             )
         trace_events = trace_events + (debt.as_trace_event(),)
 
-    # Lift-licensing gate on the extension axis (GTLA-T53; see docstring).
     if coh == CohomologicalStatus.ExactRepair:
         if licensed_lift_certificate:
             raise TerminalizerRefusal(
@@ -308,7 +288,6 @@ def classify_phi_gamma(
             else ExtensionStatus.NoExtensionNeeded
         )
 
-    # Default routing from the witnessed class (SVIII front table).
     if coh == CohomologicalStatus.ExactRepair:
         routing = RoutingTerminal.CheckPassed
     elif coh == CohomologicalStatus.ClosedSurvivor:
@@ -316,7 +295,6 @@ def classify_phi_gamma(
     else:
         routing = RoutingTerminal.Repair
 
-    # Meta flags: routing-axis overrides only (never the cohomological axis).
     if refused:
         routing = RoutingTerminal.Refusal
     elif no_rule:

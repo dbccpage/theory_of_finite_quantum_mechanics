@@ -1,5 +1,3 @@
-//! Roots of unity and additive two-torsion in residue rings, by prime powers and CRT.
-//! AuthorityEffect: None.
 use crate::integer_factorization::{factor_natural, FactorizationBudget, FactorizationError};
 use num_bigint::{BigInt, BigUint};
 use num_integer::Integer;
@@ -22,7 +20,6 @@ pub fn two_torsion(n: u64) -> Result<Vec<u64>, ResidueError> {
     Ok(if n % 2 == 0 { vec![0, n / 2] } else { vec![0] })
 }
 
-/// All solutions to `x^2=1 mod n`, sorted. Never enumerates `0..n`.
 pub fn square_roots_unity(n: u64, budget: FactorizationBudget) -> Result<Vec<u64>, ResidueError> {
     if n < 2 {
         return Err(ResidueError::Modulus);

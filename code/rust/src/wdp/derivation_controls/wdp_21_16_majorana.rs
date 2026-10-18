@@ -1,5 +1,3 @@
-//! Packet A is Theorem L1 on F_2^3. Packet B is the L=3 toric incidence carrier.
-//! Neither packet closes section 21.16, and dim(ker Q/S) is not computed.
 
 #![forbid(unsafe_code)]
 
@@ -546,7 +544,6 @@ pub fn witness() -> Witness {
     }
 }
 
-/// L=2 and L=4 are outside packet B. Only L=3 is accepted.
 pub fn refuse_lattice(lattice: i64) -> Result<(), &'static str> {
     if lattice == 2 {
         return Err("surface_grid_2x2_torus is outside this scope");
@@ -560,19 +557,16 @@ pub fn refuse_lattice(lattice: i64) -> Result<(), &'static str> {
     Ok(())
 }
 
-/// No dimension of ker Q/S is a result of this witness.
 pub fn refuse_toric_quotient(claimed_dimension: i64) -> Result<(), &'static str> {
     let _ = claimed_dimension;
     Err("dim(ker Q/S) is outside this scope, including the quotient count 4")
 }
 
-/// Section 21.16 names no triple (E, Q, B).
 pub fn refuse_section_closure(answer: i64) -> Result<(), &'static str> {
     let _ = (answer, witness().section_closed);
     Err("section 21.16 is not closed by either packet")
 }
 
-/// The packet A row budget is not a detector purchase on the torus.
 pub fn refuse_toric_purchase(rows: i64) -> Result<(), &'static str> {
     let _ = rows;
     Err("the packet A minimum of one extra row is not a toric purchase")

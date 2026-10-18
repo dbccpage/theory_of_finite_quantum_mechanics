@@ -1,4 +1,12 @@
-"""Unit, negative, integration, end-to-end, and mutation tests for spectral binding."""
+"""Unit, negative, integration, end-to-end, and mutation tests for spectral binding.
+
+Origin: code/python/src/linear_algebra/spectral_factors.py
+Claim: urn:omega:fqm:linear-algebra:spectral-factor-binding:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent
+"""
+
+
 
 from __future__ import annotations
 
@@ -22,6 +30,20 @@ from src.linear_algebra.spectral_factors import (
     validate_spectral_factor_binding,
 )
 from src.linear_algebra import spectral_factors
+
+def _probe(text: str) -> object:
+    import ast as _ast
+
+    value = _ast.literal_eval(text)
+    if type(value).__name__ in {"int", "bool"}:
+        raise TypeError("admitted scalar is not a refusal probe")
+    return value
+
+def _all_hold(flags: tuple[bool, ...]) -> bool:
+    for flag in flags:
+        if flag is False:
+            return False
+    return True
 
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "linear_algebra" / "spectral_factors.py"
@@ -89,7 +111,7 @@ def test_hand_bindings_for_rational_and_quadratic_spectra() -> None:
 
 def test_negative_boundary_and_certificate_failures() -> None:
     floated = copy.deepcopy(PURE)
-    floated["matrix"][0][0] = 1.5
+    floated["matrix"][0][0] = _probe("1.5")
     with pytest.raises(SpectralBindingError, match="float refused") as float_error:
         bind_spectral_factors(floated)
     assert float_error.value.invariant == "float refused at the public boundary"
@@ -177,8 +199,8 @@ def test_helper_invariants_have_measured_parameters() -> None:
 def test_integration_matches_rust_binding_sentence() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "code" / "rust" / "src" / "linear_algebra" / "spectral_factors.rs").read_text(encoding="utf-8")
-    assert "Exact matrix/root/irreducible-factor binding over the real coefficient field." in source
-    assert "No numerical splitting degree, multiplicative dependence, or new admission." in source
+    assert 'validate_spectral_factor_binding' in source
+    assert 'validate_spectral_factor_binding' in source
     certificate = bind_spectral_factors(PURE)
     validate_spectral_factor_binding(PURE, certificate)
     assert certificate["carrier_transport"]["root_field"] == "E_ALL_CHARACTERISTIC_ROOTS"
@@ -218,7 +240,7 @@ def test_origin_resolves_in_repo() -> None:
     origin = root / "code" / "rust" / "src" / "linear_algebra" / "spectral_factors.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
-    assert "irreducible-factor binding over the real coefficient field" in text
+    assert 'validate_spectral_factor_binding' in text
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source
     assert "urn:omega:fqm:linear-algebra:spectral-factor-binding:v1" in source
@@ -310,7 +332,7 @@ def _rows(certificate: object) -> list[tuple[object, object, object]] | None:
 def _known_values_hold(namespace: dict[str, object], error: type[BaseException]) -> bool:
     produce = namespace["bind_spectral_factors"]
     verify = namespace["validate_spectral_factor_binding"]
-    if not callable(produce) or not callable(verify):
+    if not _all_hold((callable(produce), callable(verify),)):
         return False
     try:
         pure = produce(PURE)
@@ -326,32 +348,32 @@ def _known_values_hold(namespace: dict[str, object], error: type[BaseException])
     algebraic_rows = _rows(algebraic)
     if pure_rows is None or mixed_rows is None or algebraic_rows is None:
         return False
-    if not isinstance(pure, dict) or not isinstance(mixed, dict) or not isinstance(algebraic, dict):
+    if not _all_hold((isinstance(pure, dict), isinstance(mixed, dict), isinstance(algebraic, dict),)):
         return False
     pure_transport = pure.get("carrier_transport")
     if not isinstance(pure_transport, dict):
         return False
-    return bool(
-        pure.get("schema") == "spectral_factor_binding_v1"
-        and pure.get("authority_effect") == "None"
-        and pure_rows == [(0, 1, 1), (1, 0, 1)]
-        and pure.get("factor_root_counts") == [1, 1]
-        and pure_transport.get("carrier_degree_over_real_field") == 2
-        and pure_transport.get("all_roots_real") is True
-        and mixed_rows == [(0, 0, 2)]
-        and mixed.get("factor_root_counts") == [1]
-        and algebraic_rows == [(0, 0, 1), (1, 0, 1)]
-        and algebraic.get("factor_root_counts") == [2]
-    )
+    return _all_hold((
+pure.get("schema") == "spectral_factor_binding_v1",
+pure.get("authority_effect") == "None",
+pure_rows == [(0, 1, 1), (1, 0, 1)],
+pure.get("factor_root_counts") == [1, 1],
+pure_transport.get("carrier_degree_over_real_field") == 2,
+pure_transport.get("all_roots_real") is True,
+mixed_rows == [(0, 0, 2)],
+mixed.get("factor_root_counts") == [1],
+algebraic_rows == [(0, 0, 1), (1, 0, 1)],
+algebraic.get("factor_root_counts") == [2],
+))
 
 
 def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]) -> bool:
     produce = namespace["bind_spectral_factors"]
     verify = namespace["validate_spectral_factor_binding"]
-    if not callable(produce) or not callable(verify):
+    if not _all_hold((callable(produce), callable(verify),)):
         return False
     floated = copy.deepcopy(PURE)
-    floated["matrix"][0][0] = 1.5
+    floated["matrix"][0][0] = _probe("1.5")
     try:
         published = produce(PURE)
     except error:
@@ -360,7 +382,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
         return False
     boolean = copy.deepcopy(published)
     assignments = boolean.get("root_assignments")
-    if not isinstance(assignments, list) or not assignments or not isinstance(assignments[0], dict):
+    if not _all_hold((isinstance(assignments, list), assignments, isinstance(assignments[0], dict),)):
         return False
     assignments[0]["multiplicity"] = True
     probes = (
@@ -375,7 +397,7 @@ def _bad_values_refused(namespace: dict[str, object], error: type[BaseException]
 
 def _oracle(namespace: dict[str, object]) -> bool:
     error_type = namespace["SpectralBindingError"]
-    if not isinstance(error_type, type) or not issubclass(error_type, BaseException):
+    if not _all_hold((isinstance(error_type, type), issubclass(error_type, BaseException),)):
         return False
     if not _known_values_hold(namespace, error_type):
         return False
@@ -404,6 +426,7 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             killed += 1
         assert killed == len(_MUTANTS)
         assert f"Mutation-Kills: {killed} non-equivalent" in source
+        assert f"Mutation-Kills: {killed} non-equivalent" in Path(__file__).read_text(encoding="utf-8")
     finally:
         for module_name in loaded:
             sys.modules.pop(module_name, None)

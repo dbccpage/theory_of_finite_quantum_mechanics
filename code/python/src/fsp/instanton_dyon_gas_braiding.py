@@ -32,17 +32,17 @@ import numpy as np
 
 class DyonType(Enum):
     """Caloron constituent instanton-dyon species."""
-    M_DYON = "M"          # Magnetic monopole: m = +1, Q = ν
-    L_DYON = "L"          # KK monopole: m = -1, Q = 1 - ν
-    M_BAR = "M_bar"       # Anti-M: m = -1, Q = -ν
-    L_BAR = "L_bar"       # Anti-L: m = +1, Q = -(1 - ν)
+    M_DYON = "M"
+    L_DYON = "L"
+    M_BAR = "M_bar"
+    L_BAR = "L_bar"
 
 
 class GasRegime(Enum):
     """Thermodynamic and topological regimes of the dyon gas."""
-    MOLECULAR_CLUSTER = "molecular_cluster"   # Neutral dipoles (M M̄), (L L̄)
-    IONIZED_PLASMA = "ionized_plasma"         # Unbound isolated charged dyons
-    MONOPOLE_BRAIDING = "monopole_braiding"   # Closed monopole loops linked with vortices
+    MOLECULAR_CLUSTER = "molecular_cluster"
+    IONIZED_PLASMA = "ionized_plasma"
+    MONOPOLE_BRAIDING = "monopole_braiding"
 
 
 class TerminalRoute(Enum):
@@ -68,11 +68,11 @@ class DyonParticle:
 @dataclass
 class DyonGasConfig:
     """Parameters for the instanton-dyon gas."""
-    g_coupling: float = 1.0             # Gauge coupling g
-    nu_holonomy: float = 0.5           # Polyakov loop holonomy parameter ν ∈ (0, 1)
-    theta_angle: float = math.pi       # Vacuum angle θ (default π)
-    temperature: float = 1.0           # Temperature T = 1/β
-    core_radius: float = 0.2           # Dyon core softening cutoff r_core
+    g_coupling: float = 1.0
+    nu_holonomy: float = 0.5
+    theta_angle: float = math.pi
+    temperature: float = 1.0
+    core_radius: float = 0.2
 
 
 @dataclass
@@ -94,7 +94,6 @@ class DyonEnsemble:
         r_vec = np.array(p1.position) - np.array(p2.position)
         dist = float(np.linalg.norm(r_vec))
         eff_dist = max(dist, self.config.core_radius)
-        # V(r) = (4π / g²) * (m1 * m2) / eff_dist
         coulomb_coeff = (4.0 * math.pi) / (self.config.g_coupling ** 2)
         return coulomb_coeff * (p1.magnetic_charge * p2.magnetic_charge) / eff_dist
 
@@ -133,7 +132,6 @@ class DyonGasBuilder:
     ) -> DyonParticle:
         nu = config.nu_holonomy
         g = config.g_coupling
-        # Instanton action S_0 = 8π² / g²
         s_0 = (8.0 * math.pi ** 2) / (g ** 2)
 
         if dyon_type == DyonType.M_DYON:
@@ -204,7 +202,6 @@ class DyonGasBuilder:
         """Constructs an unconfined / plasma ensemble with random positions and net charge."""
         rng = np.random.RandomState(seed)
         particles = []
-        # Bias species to produce non-zero net charge (ionized plasma)
         species_pool = [DyonType.M_DYON, DyonType.M_DYON, DyonType.L_BAR, DyonType.M_BAR]
         for i in range(num_dyons):
             pos = tuple(rng.uniform(-box_size / 2.0, box_size / 2.0, size=3))
@@ -258,13 +255,11 @@ class MonopoleLoopBraiding:
     def build_hopf_link(radius: float = 1.0, num_points: int = 64) -> Tuple[np.ndarray, np.ndarray]:
         """Builds two linked circles (Hopf link) with Lk = 1."""
         angles = np.linspace(0, 2 * math.pi, num_points, endpoint=False)
-        # Circle 1 in xy-plane centered at (0, 0, 0)
         loop1 = np.column_stack([
             radius * np.cos(angles),
             radius * np.sin(angles),
             np.zeros(num_points)
         ])
-        # Circle 2 in yz-plane centered at (0, radius, 0) passing through Circle 1
         loop2 = np.column_stack([
             np.zeros(num_points),
             radius + radius * np.cos(angles),
@@ -306,7 +301,6 @@ class MonopoleLoopBraiding:
         if is_abelian or lk == 0:
             return np.array([[1.0, 0.0], [0.0, 1.0]])
         else:
-            # Lk = 1 non-abelian holonomy flips sign (-I)
             return np.array([[-1.0, 0.0], [0.0, -1.0]])
 
 
@@ -355,21 +349,16 @@ class InstantonDyonEngine:
         )
         inv_ensemble = self.dyonic_involution_transform(ensemble)
 
-        # Net charges
         q_net = ensemble.net_topological_charge
         m_net = ensemble.net_magnetic_charge
 
-        # Actions
         s1 = ensemble.compute_total_action()
         s2 = inv_ensemble.compute_total_action()
         action_diff = abs(s1 - s2)
 
-        # Weights
         w1, sig1 = ensemble.compute_weight()
         w2, sig2 = inv_ensemble.compute_weight()
 
-        # In neutral dipoles, both have Q=0 → sig = +1, equal magnitude
-        # Cancellation occurs between opposite charge excitations or neutral pairing
         phi_1 = 0.0
         gamma_2 = 0.0
         route = TerminalRoute.EXACT_REPAIR
@@ -411,8 +400,6 @@ class InstantonDyonEngine:
         s_neg = neg_ensemble.compute_total_action()
         action_gap = abs(s_pos - s_neg)
 
-        # Spectra supports are completely disjoint due to Coulomb action gap
-        # ΔS > 0 ensures no weight-preserving bijection
         supports_disjoint = action_gap > 1.0
         phi_1 = float(action_gap / (1.0 + action_gap))
         gamma_2 = float(math.pi * (1.0 - math.exp(-action_gap)))
@@ -444,12 +431,10 @@ class InstantonDyonEngine:
         rounded_lk = int(round(lk))
         dirac_phase = MonopoleLoopBraiding.compute_dirac_aharonov_bohm_phase(lk)
 
-        # Non-abelian Berry matrix holonomy
         m_mono = MonopoleLoopBraiding.compute_monopole_braiding_matrix(rounded_lk, is_abelian=False)
         trace = float(np.trace(m_mono))
         norm_trace = trace / 2.0
 
-        # Sign obstruction
         if dirac_phase < 0.0 or norm_trace < 0.0:
             phi_1 = 2.0
             gamma_2 = math.pi

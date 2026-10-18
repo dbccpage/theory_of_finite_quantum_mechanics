@@ -99,7 +99,6 @@ def smith_normal_form_checked(matrix: Any) -> SmithNormalForm:
     Rejects non-integer inputs, arbitrary-precision integer safe, bounded elimination loop,
     and independently verifies U * A * V = D in pure integer arithmetic.
     """
-    # 1. Parse and validate input entries
     if hasattr(matrix, "tolist"):
         raw_list = matrix.tolist()
     elif isinstance(matrix, (list, tuple)):
@@ -117,7 +116,6 @@ def smith_normal_form_checked(matrix: Any) -> SmithNormalForm:
         v_mat = np.eye(n, dtype=object)
         return SmithNormalForm(diagonal=diag, diagonal_matrix=d_mat, u=u_mat, v=v_mat)
 
-    # Validate exact integer entries without float truncation
     A_orig: List[List[int]] = []
     for i, row in enumerate(raw_list):
         if len(row) != n:
@@ -147,7 +145,6 @@ def smith_normal_form_checked(matrix: Any) -> SmithNormalForm:
                     f"Smith normal form reduction exceeded step limit ({max_steps})"
                 )
 
-            # 1. Find non-zero entry with minimal absolute value in submatrix
             pivot = None
             min_val = None
             for i in range(k, m):
@@ -176,7 +173,6 @@ def smith_normal_form_checked(matrix: Any) -> SmithNormalForm:
                 for j in range(m):
                     u[k][j] = -u[k][j]
 
-            # 2. Eliminate row k and column k
             cleared = True
             for i in range(k + 1, m):
                 if d[i][k] != 0:
@@ -206,12 +202,10 @@ def smith_normal_form_checked(matrix: Any) -> SmithNormalForm:
             if not cleared:
                 continue
 
-            # Check if any new entries appeared in column k or row k
             has_row_col = any(d[i][k] != 0 for i in range(k + 1, m)) or any(d[k][j] != 0 for j in range(k + 1, n))
             if has_row_col:
                 continue
 
-            # 3. Check divisibility across remaining submatrix
             divides_all = True
             bad_pos = None
             for i in range(k + 1, m):
@@ -231,10 +225,8 @@ def smith_normal_form_checked(matrix: Any) -> SmithNormalForm:
                     u[k][j] += u[bi][j]
                 continue
 
-            # Fully reduced at pivot k
             break
 
-    # Ensure all diagonal elements are non-negative
     for i in range(r):
         if d[i][i] < 0:
             for j in range(n):
@@ -242,20 +234,16 @@ def smith_normal_form_checked(matrix: Any) -> SmithNormalForm:
             for j in range(m):
                 u[i][j] = -u[i][j]
 
-    # Independent Terminal Verification:
-    # Check 1: D is diagonal
     for i in range(m):
         for j in range(n):
             if i != j and d[i][j] != 0:
                 raise VerificationFailed(f"Off-diagonal element non-zero: D[{i}, {j}] = {d[i][j]}")
 
-    # Check 2: Smith divisibility sequence d_0 | d_1 | ... | d_{rank-1}
     invs = [d[i][i] for i in range(r) if d[i][i] != 0]
     for p1, p2 in zip(invs[:-1], invs[1:]):
         if p2 % p1 != 0:
             raise VerificationFailed(f"Divisibility violation: {p1} does not divide {p2}")
 
-    # Check 3: Independent verification of U * A * V = D
     UA = _mat_mul_int(u, A_orig)
     UAV = _mat_mul_int(UA, v)
     for i in range(m):

@@ -1,10 +1,3 @@
-//! The first finite kernel of `?`: presentations, questions, reports, evidence.
-//!
-//! Native histories are replayed through GenesisConstruction before any answer
-//! is computed. The quotient, LGGR site, and factorization equations delegate to
-//! category theory; probability and entropy delegate to finite probability.
-//! This is the explicit deduplicating Genesis reading, not all possible readings.
-//! See `docs/question_calculus.md` for the mathematics and remaining obligations.
 
 use crate::genesis_computation::{BridgeError, CheckedBooleanPacket, SourceBooleanPacket};
 use crate::genesis_construction::{ConstructionError, ConstructionLimits, GenesisConstruction};
@@ -36,16 +29,12 @@ pub enum QuestionError {
     Computation(BridgeError),
 }
 
-/// Identities name alternatives; event order and repeated occurrences are kept.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct History {
     pub id: String,
     pub events: Vec<Event>,
 }
 
-/// Native total observations. Unavailable derivability questions have a distinct
-/// answer; they are not silently evaluated as false. Token equality uses the
-/// source's declared lexical deduplication, not a physical equality assertion.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(
     tag = "kind",
@@ -84,7 +73,6 @@ pub enum Answer {
     Unavailable,
 }
 
-/// Explicit resource bounds, retained as part of a presentation's identity.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct QuestionLimits {
     pub max_histories: usize,
@@ -104,8 +92,6 @@ impl Default for QuestionLimits {
     }
 }
 
-/// A checked finite selection of native histories and protected observations.
-/// Neither exhaustive history enumeration nor physical availability is claimed.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Presentation {
     histories: Vec<History>,
@@ -115,14 +101,11 @@ pub struct Presentation {
     family: FiniteQuestionFamily<Answer>,
 }
 
-/// One retained symbol per declared history, in presentation order.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Report {
     pub values: Vec<String>,
 }
 
-/// Full source binding plus a decoder or an explicit lost-distinction witness.
-/// Public claims are untrusted until `verify_report` recomputes the equation.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Certificate {
     pub presentation: Presentation,
@@ -137,20 +120,15 @@ pub struct ContinuationCertificate {
     pub decision: ReportQueryDecision<usize, usize, Option<Vec<Answer>>>,
 }
 
-/// A declared locality problem, including its resource bound. Context bits refer
-/// to the expected presentation's question order, not to spatial coordinates.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GluingRequest {
     pub contexts: BTreeSet<u64>,
-    /// Separate cell allowance for site construction and the requested fiber's
-    /// overlap/extension scan; not a byte or wall-clock limit.
     pub work_limit: usize,
     pub target: u64,
     pub cover: Vec<u64>,
     pub locals: Vec<usize>,
 }
 
-/// A complete extension fiber bound to the source and locality problem.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GluingCertificate {
     pub presentation: Presentation,
@@ -158,8 +136,6 @@ pub struct GluingCertificate {
     pub fiber: DescentFiber,
 }
 
-/// Entropies are exact natural-log forms. Divide by ln(2) for bits; in
-/// particular ln(2) nats is exactly one bit. The prior is supplied, not derived.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct InformationCertificate {
     pub presentation: Presentation,
@@ -220,8 +196,6 @@ impl Presentation {
         let constructions = histories
             .iter()
             .map(|h| {
-                // Empty history is explicit pre-Genesis. Any nonempty history must
-                // start with literal <>; supply itself admits no datum.
                 GenesisConstruction::pre_genesis_with_limits(limits.construction)
                     .extend(&h.events)
                     .map_err(QuestionError::Source)
@@ -258,9 +232,6 @@ impl Presentation {
         self.family.quotient()
     }
 
-    /// Read a complete Boolean function graph from selected native questions.
-    /// The existing computation owner checks every input row is present exactly
-    /// once. This verifies a supplied graph; Genesis does not force these choices.
     pub fn boolean_graph(
         &self,
         inputs: &[usize],
@@ -312,7 +283,6 @@ impl Presentation {
         })
     }
 
-    /// Recheck against the expected source and report, not a candidate's source.
     pub fn verify_report(
         &self,
         report: &Report,
@@ -328,9 +298,6 @@ impl Presentation {
             .map_err(|_| QuestionError::CertificateMismatch)
     }
 
-    /// Does appending this native event word descend to the protected quotient?
-    /// Source admission failure means unavailable. Budget/correspondence failures
-    /// remain refusals. Equal current answers can have different future answers.
     pub fn continuation(&self, suffix: &[Event]) -> Result<ContinuationCertificate, QuestionError> {
         if suffix.len() > self.limits.construction.max_events {
             return Err(QuestionError::Budget);
@@ -372,7 +339,6 @@ impl Presentation {
         Ok(())
     }
 
-    /// Local/global is indexed by an explicit family of question contexts.
     pub fn report_site(
         &self,
         contexts: &BTreeSet<u64>,
@@ -419,8 +385,6 @@ impl Presentation {
         Ok(())
     }
 
-    /// Push the supplied exact prior to the minimal report carrier and compute
-    /// H(history), H(protected report), and their difference H(history|report).
     pub fn information(
         &self,
         prior: &ProbabilitySimplex,

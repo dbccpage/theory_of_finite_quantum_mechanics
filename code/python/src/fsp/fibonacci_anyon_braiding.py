@@ -129,15 +129,12 @@ class FibonacciAnyonModel:
         f = self.get_f_matrix()
         r = self.get_r_matrix()
 
-        # sigma_1 = R
         s1 = [[r[i][j] for j in range(2)] for i in range(2)]
 
-        # Temp: R @ F
         rf = [
             [sum(r[i][k] * f[k][j] for k in range(2)) for j in range(2)]
             for i in range(2)
         ]
-        # sigma_2 = F @ (R @ F)
         s2 = [
             [sum(f[i][k] * rf[k][j] for k in range(2)) for j in range(2)]
             for i in range(2)
@@ -157,7 +154,6 @@ class FibonacciAnyonModel:
                 return 1 if b == c else 0
             if b == 0:
                 return 1 if a == c else 0
-            # a == 1, b == 1: can fuse to 0 or 1
             return 1
 
         def get_f_elem(a: int, b: int, c: int, d: int, e: int, f: int) -> float:
@@ -200,23 +196,19 @@ class FibonacciAnyonModel:
         """
         s1, s2 = self.get_braid_generators()
 
-        # s1 @ s2
         s1s2 = [
             [sum(s1[i][k] * s2[k][j] for k in range(2)) for j in range(2)]
             for i in range(2)
         ]
-        # s1 @ s2 @ s1
         b1 = [
             [sum(s1s2[i][k] * s1[k][j] for k in range(2)) for j in range(2)]
             for i in range(2)
         ]
 
-        # s2 @ s1
         s2s1 = [
             [sum(s2[i][k] * s1[k][j] for k in range(2)) for j in range(2)]
             for i in range(2)
         ]
-        # s2 @ s1 @ s2
         b2 = [
             [sum(s2s1[i][k] * s2[k][j] for k in range(2)) for j in range(2)]
             for i in range(2)
@@ -254,18 +246,13 @@ class FibonacciAnyonModel:
         """
         s1, s2 = self.get_braid_generators()
 
-        # Inverses for unitary matrices are conjugate transposes
         s1_inv = [[s1[j][i].conjugate() for j in range(2)] for i in range(2)]
         s2_inv = [[s2[j][i].conjugate() for j in range(2)] for i in range(2)]
 
-        # s1 @ s2
         m1 = [[sum(s1[i][k] * s2[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
-        # (s1 @ s2) @ s1_inv
         m2 = [[sum(m1[i][k] * s1_inv[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
-        # Hol = ((s1 @ s2) @ s1_inv) @ s2_inv
         hol = [[sum(m2[i][k] * s2_inv[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
 
-        # Frobenius distance from Identity: ||Hol - I||_F
         dist_sq = 0.0
         for i in range(2):
             for j in range(2):
@@ -287,7 +274,6 @@ class FibonacciAnyonModel:
             _, s2 = self.get_braid_generators()
             braid_op = s2
 
-        # <0| sigma |0> is element [0][0]
         overlap_sq = abs(braid_op[0][0])**2
         leakage = 1.0 - overlap_sq
         return max(0.0, leakage)
@@ -301,10 +287,8 @@ class FibonacciAnyonModel:
         Returns (commutator_norm_with_xi, is_obstructed).
         """
         _, s2 = self.get_braid_generators()
-        # Candidate involution pairing witness Xi = sigma_z
         xi = [[1.0 + 0.0j, 0.0 + 0.0j], [0.0 + 0.0j, -1.0 + 0.0j]]
 
-        # [s2, xi]
         comm_xi = [
             [sum(s2[i][k] * xi[k][j] - xi[i][k] * s2[k][j] for k in range(2)) for j in range(2)]
             for i in range(2)
@@ -342,43 +326,33 @@ class FibonacciAnyonBraidingEngine:
         Audits Fibonacci quantum dimensions, pentagon consistency, braid relations,
         matrix holonomy, state leakage, and BQNF terminal routing.
         """
-        # 1. Quantum dimensions
         d_1, d_tau, total_d = model.compute_quantum_dimensions()
 
-        # 2. Pentagon equation and braid relations
         pentagon_err = model.verify_pentagon_equation()
         braid_err = model.verify_artin_braid_relation()
 
-        # 3. Commutator and non-abelian cochain holonomy
         _, comm_norm = model.compute_commutator()
         _, hol_norm, is_contractible, gamma_2 = model.compute_commutator_holonomy()
 
-        # 4. Quantum state leakage and involution obstruction
         leakage = model.compute_quantum_state_leakage()
         comm_xi_norm, is_obstructed = model.evaluate_involution_obstruction()
 
-        # Uncancelled defect mass: includes both braid generator non-commutativity and state leakage
         phi_1 = round(comm_norm + leakage, 6)
 
-        # Non-contractible matrix holonomy (gamma_2 > 0) with uncancelled defect mass (phi_1 > 0)
-        # routes deterministically to OpenSignObstruction
         terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
 
-        # 5. GIN mode indexing into relational SQLite database
         c = self.conn.cursor()
         c.execute("SELECT COALESCE(MAX(cfg_id), 0) FROM FermionConfigurations;")
         max_cfg = c.fetchone()[0]
         cfg_vac = max_cfg + 1
         cfg_tau = max_cfg + 2
 
-        # Insert configuration 1: Vacuum fusion channel |0>
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
                VALUES (?, ?, 1, 5, ?, 1, 1);""",
             (cfg_vac, model.model_id, 1.0),
         )
-        # Insert configuration 2: Anyon fusion channel |1>
         c.execute(
             """INSERT INTO FermionConfigurations
                (cfg_id, model_name, num_particles, total_modes, weight, jw_sign, parity_sector)
@@ -386,12 +360,6 @@ class FibonacciAnyonBraidingEngine:
             (cfg_tau, model.model_id, round(leakage, 6)),
         )
 
-        # Modes:
-        # 1: Vacuum Fusion Channel |0> = (tau tau)_1
-        # 2: Non-Abelian Fusion Channel |1> = (tau tau)_tau
-        # 3: Braid Generator Loop sigma_1 in B_3
-        # 4: Braid Generator Loop sigma_2 in B_3
-        # 5: Commutator Holonomy Cycle gamma_comm in Z_1
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (1, ?, 1);", (cfg_vac,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (3, ?, 1);", (cfg_vac,))
         c.execute("INSERT INTO GinModePostingList (mode_id, cfg_id, is_occupied) VALUES (5, ?, 1);", (cfg_vac,))

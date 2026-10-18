@@ -1,39 +1,11 @@
-/-
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  AuthorityEffect: None
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
-  Mutation: 100% killed (negative falsification lemmas verified)
--/
 
 import PrimitiveDifference
 import WorldObserverFunctoriality
 
-/-!
-# W8.4 observer directed-colimit no-go
 
-The frozen W8.4 target asks for the full observer quotient as a directed
-colimit of quotients at finite probe stages.  The relation-level W3.5 descent
-criterion fixes the variance: a strict refinement has a canonical quotient
-map from the finer quotient to the coarser quotient, while the proposed
-commuting map in the other direction exists only when the two zero relations
-are already equal.
 
-This file proves that generic variance and its identity/composition laws,
-reuses the coordinatewise-minimal `Fin 2` obstruction, supplies an actual
-finite-carrier ordered-pair budget for strict observer refinements, and gives
-the countable equality-probe tower in which every finite prefix is
-non-faithful.  The explicit coherent `ghostThread` is not induced by any
-natural-number state.
 
-No categorical inverse-limit universal property is asserted.  In particular,
-the coherent-thread structure below is an exact code-level carrier, not a
-claim that a library-level limit has been constructed.  Full action/probe
-morphisms, target-context coverage, topology, physics, estate gates,
-complexity, promotion, and authority all remain outside scope.
 
-AuthorityEffect: None.
--/
 
 namespace OmegaWorld
 namespace ObserverDirectedColimitNoGoW84
@@ -44,22 +16,16 @@ open ObserverFunctorialityW35
 
 universe u v
 
-/-! ## Generic quotient variance -/
 
-/-- Regard any lawful Boolean primitive difference as a W3.5 relation-level
-observer system. -/
 def asSystem {X : Type u} (P : PrimitiveDifference X Bool) :
     ObserverSystem where
   State := X
   difference := P
 
-/-- `fine` refines `coarse` exactly when every fine zero pair remains a coarse
-zero pair. -/
 def ZeroRefines {X : Type u}
     (fine coarse : PrimitiveDifference X Bool) : Prop :=
   ∀ x y : X, fine.ZeroRel x y → coarse.ZeroRel x y
 
-/-- Pointwise equality of the two quotient relations. -/
 def SameZeroRelation {X : Type u}
     (left right : PrimitiveDifference X Bool) : Prop :=
   ∀ x y : X, left.ZeroRel x y ↔ right.ZeroRel x y
@@ -80,8 +46,6 @@ theorem trans {X : Type u}
 
 end ZeroRefines
 
-/-- Refinement gives a proof-bearing identity-on-states morphism in the
-fine-to-coarse direction. -/
 def reverseIdentityMorphism {X : Type u}
     {fine coarse : PrimitiveDifference X Bool}
     (href : ZeroRefines fine coarse) :
@@ -107,8 +71,6 @@ theorem reverseIdentityMorphism_trans {X : Type u}
   apply SysMorph.ext
   rfl
 
-/-- Every refinement therefore has a unique commuting fine-to-coarse quotient
-factor. -/
 theorem reverse_unique_factor {X : Type u}
     {fine coarse : PrimitiveDifference X Bool}
     (href : ZeroRefines fine coarse) :
@@ -143,8 +105,6 @@ theorem reverse_quotient_map_compose {X : Type u}
   exact quotientMap_compose (reverseIdentityMorphism hmc)
     (reverseIdentityMorphism hfm)
 
-/-- Under a known refinement, a commuting quotient factor in the proposed
-coarse-to-fine direction exists exactly when the refinement is not strict. -/
 theorem forward_factor_iff_same {X : Type u}
     {fine coarse : PrimitiveDifference X Bool}
     (href : ZeroRefines fine coarse) :
@@ -174,7 +134,6 @@ theorem forward_factor_iff_same {X : Type u}
       (S := asSystem coarse) (T := asSystem fine) id).mp hpres
     simpa [asSystem] using hfactor
 
-/-- The unique-factor version of the same exact criterion. -/
 theorem forward_unique_factor_iff_same {X : Type u}
     {fine coarse : PrimitiveDifference X Bool}
     (href : ZeroRefines fine coarse) :
@@ -194,7 +153,6 @@ theorem forward_unique_factor_iff_same {X : Type u}
     intro x y hcoarse
     exact (hsame x y).mpr hcoarse
 
-/-- An explicit pair dropped by a strict refinement. -/
 structure StrictRefinement {X : Type u}
     (fine coarse : PrimitiveDifference X Bool) where
   refines : ZeroRefines fine coarse
@@ -229,7 +187,6 @@ theorem no_forward_factor {X : Type u}
   exact witness.fineNonzero
     (hpres witness.left witness.right witness.coarseZero)
 
-/-- No one-point carrier can support the required dropped pair. -/
 theorem impossible_of_subsingleton {X : Type u} [Subsingleton X]
     {fine coarse : PrimitiveDifference X Bool} :
     ¬Nonempty (StrictRefinement fine coarse) := by
@@ -241,7 +198,6 @@ theorem impossible_of_subsingleton {X : Type u} [Subsingleton X]
 
 end StrictRefinement
 
-/-! ## Coordinatewise-minimal two-state obstruction -/
 
 def fin2StrictRefinement :
     StrictRefinement (observerDifference fin2SeparatingObserve)
@@ -259,8 +215,6 @@ theorem fin2_witness_points_distinct :
     fin2StrictRefinement.left ≠ fin2StrictRefinement.right := by
   decide
 
-/-- The imported W3.5 theorem also records distinct target images, so the
-two-state witness is coordinatewise minimal rather than merely source-small. -/
 theorem fin2_coordinatewise_minimal :
     fin2IdentityFailure.left ≠ fin2IdentityFailure.right ∧
       fin2IdentityCandidate.toFun fin2IdentityFailure.left ≠
@@ -273,8 +227,6 @@ theorem fin2_no_forward_unique_factor :
       (T := asSystem (observerDifference fin2SeparatingObserve)) id :=
   fin2StrictRefinement.no_forward_unique_factor
 
-/-- This is exactly the already-frozen W3.5 commuting-factor failure, exposed
-under the W8.4 variance reading. -/
 theorem fin2_no_forward_commuting_factor :
     ¬(∃ factor : fin2ConstantSystem.Residual →
         fin2SeparatingSystem.Residual,
@@ -283,9 +235,7 @@ theorem fin2_no_forward_commuting_factor :
           fin2SeparatingSystem.classOf (fin2IdentityCandidate.toFun x)) :=
   fin2_identity_no_quotient_factor
 
-/-! ## Generic finite-carrier ordered-pair budget -/
 
-/-- The complete ordered-pair listing of `Fin n`. -/
 def allPairs (n : Nat) : List (Fin n × Fin n) :=
   (List.finRange n).flatMap fun x =>
     (List.finRange n).map fun y => (x, y)
@@ -359,8 +309,6 @@ theorem filter_length_strict_of_imp_witness
   exact Nat.lt_iff_add_one_le.mp
     (Nat.lt_of_le_of_ne hlenLe hlenNe)
 
-/-- A finite strict chain on actual primitive-difference carriers, with its
-decision procedure and every strict witness carried as data. -/
 structure FiniteObserverChain (n steps : Nat) where
   stage : Nat → PrimitiveDifference (Fin n) Bool
   decideZero : Nat → Fin n → Fin n → Bool
@@ -433,9 +381,6 @@ theorem strict_nat_budget (count : Nat → Nat) :
       have hzero := hstep 0 (by omega)
       omega
 
-/-- Genuine carrier-level bound: each certified strict step permanently drops
-at least one ordered pair, so the steps plus the terminal related-pair count
-fit inside the `n²` complete ordered-pair carrier. -/
 theorem strict_refinement_pair_budget {n steps : Nat}
     (chain : FiniteObserverChain n steps) :
     steps + chain.relatedPairCount steps ≤ n * n := by
@@ -454,10 +399,7 @@ theorem strict_refinement_steps_le_sq {n steps : Nat}
 
 end FiniteObserverChain
 
-/-! ## Countable equality-probe prefix tower -/
 
-/-- A code-valued observation gives a lawful Boolean primitive difference:
-zero means that the two codes agree. -/
 def codeDifference {X : Type u} {O : Type v} [DecidableEq O]
     (code : X → O) : PrimitiveDifference X Bool where
   δ x y := if code x = code y then false else true
@@ -483,8 +425,6 @@ theorem codeDifference_zeroRel_iff
     code x = code y
   by_cases h : code x = code y <;> simp [h]
 
-/-- Stage `k` remembers the singleton codes below `k` and one tail code `k`.
-It is the quotient code for the first `k` equality-indicator probes. -/
 def stageCode (k x : Nat) : Nat := Nat.min x k
 
 theorem stageCode_realizes_bounded_code {k q : Nat} (hq : q ≤ k) :
@@ -501,7 +441,6 @@ theorem prefixDifference_zeroRel_iff (k x y : Nat) :
     (prefixDifference k).ZeroRel x y ↔ PrefixRel k x y := by
   exact codeDifference_zeroRel_iff (stageCode k) x y
 
-/-- The concrete fine-to-coarse transition on quotient codes. -/
 theorem forget_compat (k x : Nat) :
     Nat.min (stageCode (k + 1) x) k = stageCode k x := by
   simp [stageCode, Nat.min_assoc]
@@ -550,7 +489,6 @@ theorem prefix_no_forward_factor (k : Nat) :
           (asSystem (prefixDifference (k + 1))).classOf x) :=
   (prefixStrictRefinement k).no_forward_factor
 
-/-- Equality in every finite prefix is equality of natural-number states. -/
 def FullPrefixRel (x y : Nat) : Prop :=
   ∀ k, PrefixRel k x y
 
@@ -572,15 +510,12 @@ theorem fullPrefixRel_iff_eq (x y : Nat) :
 def PrefixFaithful (k : Nat) : Prop :=
   ∀ x y, PrefixRel k x y → x = y
 
-/-- Every finite prefix conflates the two fresh states `k` and `k+1`. -/
 theorem no_finite_prefix_faithful (k : Nat) :
     ¬PrefixFaithful k := by
   intro h
   have heq := h k (k + 1) (prefix_pair_related k)
   omega
 
-/-- Explicit coherent quotient-code threads.  This is not presented as a
-categorical limit object. -/
 structure PrefixThread where
   value : Nat → Nat
   bounded : ∀ k, value k ≤ k
@@ -595,7 +530,6 @@ def stateThread (x : Nat) : PrefixThread where
   bounded k := Nat.min_le_right x k
   coherent k := forget_compat k x
 
-/-- The coherent tail class at every finite stage. -/
 def ghostThread : PrefixThread where
   value k := k
   bounded k := Nat.le_refl k
@@ -624,7 +558,6 @@ theorem ghost_unrealized :
   rintro ⟨x, hx⟩
   exact ghost_not_stateThread x hx
 
-/-! ## Scope and authority fence -/
 
 structure ScopeFence where
   relationVarianceMechanized : Bool
@@ -697,3 +630,6 @@ theorem authority_effect_none :
 
 end ObserverDirectedColimitNoGoW84
 end OmegaWorld
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WorldObserverDirectedColimitNoGo.lean Claim: refl AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

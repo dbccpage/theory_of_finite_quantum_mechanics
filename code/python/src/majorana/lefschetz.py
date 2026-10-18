@@ -102,11 +102,10 @@ def lefschetz_diagnostic(stokes_data: Any) -> LefschetzDiagnostic:
     """Computes LefschetzDiagnostic from a StokesData instance."""
     pairings = getattr(stokes_data, "stokes_matrix", {})
     critical_vals = getattr(stokes_data, "critical_values", {})
-    
-    # Non-degenerate if all critical values are distinct
+
     vals = list(critical_vals.values())
     is_non_deg = len(set(vals)) == len(vals) if vals else True
-    
+
     res = LefschetzDiagnostic()
     res.pairings = pairings
     res.total_defect = 0.0

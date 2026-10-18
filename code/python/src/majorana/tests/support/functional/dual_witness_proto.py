@@ -141,7 +141,6 @@ def float_dual_checks(
             if not math.isfinite(float(v)):
                 raise ValueError(f"B[{r},{c}] is not finite")
 
-    # div = B^T @ phi  (length cols)
     div: List[float] = []
     for c in range(cols):
         s = 0.0
@@ -165,7 +164,6 @@ def float_dual_checks(
         "tightness_error": float(tight_err),
         "dual_pairing": float(pairing),
         "tol": float(tol),
-        # Diagnostic aggregate only — never exact-certificate / authority admission.
         "float_checks_pass": float_checks_pass,
         "evidence_ceiling": "float_diagnostic",
         "authority_effect": "None",

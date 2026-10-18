@@ -1,51 +1,15 @@
-//! Scope binding and sealed evidence shared by the Prime rules.
-//!
-//! # What this fixes
-//!
-//! The first cut of the Prime rules carried every alleged fact as a public
-//! `bool` and every "verified" label as a caller-chosen enum variant. That makes
-//! the rules *assertions in Rust shape* rather than authority that cannot be
-//! forged: an adapter could set `detector_adequate = true`, select
-//! `VerifierProduced`, and receive the same admission as a verified run.
-//!
-//! Three properties are needed, and none of them follow from removing `Default`:
-//!
-//! 1. **Sealed** — a receipt's fields are private and there is exactly one
-//!    constructor, which verifies. This is the [`VerifiedExactPhi1`] pattern
-//!    (`omega_functional::phi1`), and like it, **nothing here derives
-//!    `Deserialize`**: a type you can deserialize is a type you can forge by
-//!    writing JSON.
-//! 2. **Bound** — a receipt names the run, carrier, residual, and tape head it
-//!    was produced for. An unbound permit for residual A authorizes residual B.
-//! 3. **Single-use** — a permit is consumed by value. A permit that derives
-//!    `Clone` does not license *one* step.
-//!
-//! # Why hashes, not strings
-//!
-//! Identifiers are [`Hash256`] (32 bytes), never `String`. This is not
-//! cosmetic:
-//!
-//! * a fixed-width hash cannot contain the field delimiter, so the canonical
-//!   encoding in [`ScopeBinding::commit`] is unambiguous;
-//! * byte-slicing a `String` for display can split a UTF-8 code point and turn a
-//!   typed refusal into a panic — a hostile identifier should refuse, not crash.
 
 use omega_kernel::evidence::Hash256;
 use serde::Serialize;
 use sha2::{Digest, Sha256};
 use std::fmt;
 
-/// Domain separator, versioned. Changing the encoding changes this string, so
-/// two encodings can never collide into the same commitment.
 const COMMIT_DOMAIN: &str = "oeprm.scope.v1";
 
-/// A 32-byte digest of arbitrary bytes, domain-separated.
 pub fn digest(domain: &str, parts: &[&[u8]]) -> Hash256 {
     let mut h = Sha256::new();
     h.update(domain.as_bytes());
     for p in parts {
-        // Length-prefix every part: without it, ("ab","c") and ("a","bc")
-        // hash identically and two different events share a commitment.
         h.update((p.len() as u64).to_le_bytes());
         h.update(p);
     }
@@ -54,18 +18,12 @@ pub fn digest(domain: &str, parts: &[&[u8]]) -> Hash256 {
     Hash256(out)
 }
 
-/// Short hex for display. Operates on bytes, so it cannot panic on any input.
 pub fn short(h: &Hash256) -> String {
     h.0.iter().take(6).map(|b| format!("{b:02x}")).collect()
 }
 
-/// Domain separator for carrier manifest commitment.
 const MANIFEST_DOMAIN: &str = "oeprm.manifest.v1";
 
-/// Binds carrier identity and its declared d₀ together (Hole 1).
-///
-/// Prevents declaring a carrier (e.g. torus) while measuring Φ₁ against a
-/// foreign or trivial 1×1 d₀.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct BoundCarrierManifest {
     carrier: Hash256,
@@ -96,12 +54,6 @@ impl fmt::Display for BoundCarrierManifest {
     }
 }
 
-/// A wrapper for values supplied by the caller that are recorded for provenance
-/// but cannot feed authority (fences Holes 3–5).
-///
-/// Any value wrapped in `CallerAttested<T>` carries `AuthorityEffect::None`
-/// and is explicit that the platform attests only that the caller presented it,
-/// not that its contents are verified.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct CallerAttested<T> {
     inner: T,
@@ -139,16 +91,11 @@ impl<T: fmt::Display> fmt::Display for CallerAttested<T> {
     }
 }
 
-/// What a piece of evidence is *about*.
-///
-/// Every sealed receipt carries one. Two receipts with different bindings are
-/// about different things and may not be substituted for one another.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ScopeBinding {
     run: Hash256,
     carrier_manifest: BoundCarrierManifest,
     residual: Hash256,
-    /// Tape head this evidence was produced against. `None` only at run open.
     tape_head: Option<Hash256>,
     step_index: usize,
 }
@@ -209,8 +156,6 @@ impl ScopeBinding {
         self.step_index
     }
 
-    /// Canonical commitment to this binding. Length-prefixed and
-    /// domain-separated, so no two distinct bindings collide.
     pub fn commit(&self) -> Hash256 {
         let empty: [u8; 0] = [];
         digest(
@@ -225,11 +170,6 @@ impl ScopeBinding {
         )
     }
 
-    /// Does `other` describe the same run, carrier, residual and tape head?
-    ///
-    /// Step index is deliberately excluded: evidence produced for a step is
-    /// consumed at that same step, and the step index is checked separately by
-    /// the consumer so a mismatch reports *which* field diverged.
     pub fn same_subject(&self, other: &ScopeBinding) -> bool {
         self.run == other.run
             && self.carrier_manifest == other.carrier_manifest
@@ -252,7 +192,6 @@ impl fmt::Display for ScopeBinding {
     }
 }
 
-/// Evidence was presented for the wrong subject.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ScopeMismatch {
     pub what: &'static str,
@@ -272,7 +211,6 @@ impl fmt::Display for ScopeMismatch {
 
 impl std::error::Error for ScopeMismatch {}
 
-/// Check that evidence bound to `evidence` may be consumed at `site`.
 pub fn require_same_scope(
     what: &'static str,
     evidence: &ScopeBinding,
@@ -322,9 +260,6 @@ mod tests {
         }
     }
 
-    /// Anti-vacuity for the commitment: two bindings built **independently**
-    /// from equal parts must agree, or "every field changes it" would be
-    /// satisfied by a random function.
     #[test]
     fn independently_built_equal_bindings_commit_identically() {
         let built_here = ScopeBinding::with_carrier_and_d0(
@@ -340,7 +275,6 @@ mod tests {
         assert_eq!(built_here.commit(), built_by_helper.commit());
     }
 
-    /// Length-prefixing is what stops ("ab","c") and ("a","bc") colliding.
     #[test]
     fn concatenation_ambiguity_is_impossible() {
         assert_ne!(
@@ -372,14 +306,11 @@ mod tests {
             .expect_err("evidence from an earlier step must not be replayed");
     }
 
-    /// Anti-vacuity: matching evidence must be accepted.
     #[test]
     fn matching_evidence_is_accepted() {
         require_same_scope("permit", &scope(2), &scope(2)).expect("same subject and step");
     }
 
-    /// A hostile identifier must not be able to turn a refusal into a panic.
-    /// Hashes are bytes, so `short` can never split a code point.
     #[test]
     fn display_never_panics_on_any_byte_pattern() {
         for pattern in [0x00u8, 0x80, 0xC3, 0xFF] {

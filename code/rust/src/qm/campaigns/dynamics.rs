@@ -1,10 +1,3 @@
-//! Program Stone interface pricing. AuthorityEffect: None.
-//!
-//! A 4-cycle has characteristic polynomial `x^4 - 1`, computed by Laplace
-//! expansion of `xI - P` and by the factorization `(x^2 - 1)(x^2 + 1)`.
-//! The quadratic factor has no rational root, so a Stone generator is not
-//! internal to `M_4(Q)`. Two integer lifts of the same root of unity witness
-//! the branch ambiguity.
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -16,7 +9,6 @@ pub struct StoneCostingReport {
     pub infinite_branch_ambiguity: bool,
 }
 
-/// Returns the formal pricing report for Stone's theorem (GAP-F001-S000-008).
 pub fn price_stone_theorem_interface() -> StoneCostingReport {
     let imported = cycle_obstruction().is_ok();
     let branched = distinct_lifts(4).is_ok();
@@ -33,13 +25,10 @@ pub fn price_stone_theorem_interface() -> StoneCostingReport {
     }
 }
 
-/// Laplace determinant of `xI - P` equals `(x^2 - 1)(x^2 + 1)`, and `x^2 + 1`
-/// has no rational root.
 pub fn cycle_obstruction() -> Result<Vec<i64>, &'static str> {
     let matrix = cycle_pencil(4)?;
     let expanded = poly_trim(&det_poly(&matrix)?);
     let factored = poly_trim(&poly_mul(&poly_mul(&[1, 0, 1], &[-1, 0, 1])?, &[1])?);
-    // (x^2+1)(x^2-1) = x^4 - 1. The trailing `[1]` keeps the product total.
     let direct = poly_mul(&[1, 0, 1], &[-1, 0, 1])?;
     if expanded != poly_trim(&direct) || expanded != factored {
         return Err("cycle characteristic polynomial readings disagree");
@@ -50,7 +39,6 @@ pub fn cycle_obstruction() -> Result<Vec<i64>, &'static str> {
     Ok(expanded)
 }
 
-/// `1` and `1 + order` are distinct integer lifts of the same root of unity.
 pub fn distinct_lifts(order: i64) -> Result<(i64, i64), &'static str> {
     if order <= 1 {
         return Err("cycle order is not branching");
@@ -82,8 +70,6 @@ fn rational_root_exists(poly: &[i64]) -> Result<bool, &'static str> {
     if leading == 0 || constant == 0 {
         return Err("root test needs nonzero ends");
     }
-    // Any rational root in lowest terms divides the constant and the leading
-    // coefficient. Both are ±1 here, so the only candidates are ±1.
     for candidate in [1i64, -1] {
         if poly_eval(poly, candidate)? == 0 {
             return Ok(true);

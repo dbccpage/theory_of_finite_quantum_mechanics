@@ -35,21 +35,16 @@ def test_large_lattice_hubbard_cluster_geometry():
     assert cluster16.num_sites == 256
     assert cluster16.total_modes == 512
 
-    # Check coordinate round-trip
     for s in [1, 16, 17, 256]:
         x, y = cluster16.site_to_coord(s)
         assert cluster16.coord_to_site(x, y) == s
 
-    # Check bipartition
-    assert cluster16.sublattice(1) == 0  # (0, 0) -> A
-    assert cluster16.sublattice(2) == 1  # (1, 0) -> B
-    assert cluster16.sublattice(17) == 1 # (0, 1) -> B
+    assert cluster16.sublattice(1) == 0
+    assert cluster16.sublattice(2) == 1
+    assert cluster16.sublattice(17) == 1
 
-    # Plaquette cluster of size 2x2
     c_modes = cluster16.get_plaquette_cluster(top_left_site=1, size=2)
-    # 4 sites * 2 spins = 8 modes
     assert len(c_modes) == 8
-    # Sites are 1, 2, 17, 18
     expected_sites = {1, 2, 17, 18}
     expected_modes = expected_sites | {s + 256 for s in expected_sites}
     assert c_modes == expected_modes
@@ -64,11 +59,9 @@ def test_gin_inverted_index_fast_partner_retrieval():
     for cid, occ, w, sgn in configs:
         gin.index_configuration(cid, occ, w, sgn)
 
-    # For every pair query, verify partner retrieval
     for q_cid, c_modes in queries:
         partner_id = gin.find_involution_partner_gin(q_cid, c_modes)
         assert partner_id is not None, f"Partner not found for config {q_cid}"
-        # Partner must be the next adjacent ID in our paired generation
         expected_partner = q_cid + 1 if q_cid % 2 == 1 else q_cid - 1
         assert partner_id == expected_partner
 
@@ -118,11 +111,9 @@ def test_adversarial_corrupted_spectator_detection():
     q1_cid, c_modes = queries[0]
     expected_partner_id = q1_cid + 1 if q1_cid % 2 == 1 else q1_cid - 1
 
-    # Locate the true partner in the shuffled configs
     partner_idx = next(i for i, c in enumerate(configs) if c[0] == expected_partner_id)
     p_id, p_occ, p_w, p_sgn = configs[partner_idx]
 
-    # Pick a spectator mode not in cluster
     spectator_candidates = list(set(range(1, cluster.total_modes + 1)) - c_modes)
     corrupted_mode = spectator_candidates[0]
     corrupted_occ = set(p_occ)
@@ -136,7 +127,6 @@ def test_adversarial_corrupted_spectator_detection():
     for cid, occ, w, sgn in configs:
         gin.index_configuration(cid, occ, w, sgn)
 
-    # GIN lookup for query 1 must return None because spectator is corrupted
     corrupted_partner = gin.find_involution_partner_gin(q1_cid, c_modes)
     assert corrupted_partner is None, "GIN falsely paired a configuration with corrupted spectator modes"
 

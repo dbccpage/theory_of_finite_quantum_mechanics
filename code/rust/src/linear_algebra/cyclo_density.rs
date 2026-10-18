@@ -1,6 +1,3 @@
-// AuthorityEffect: None.
-// Independent quotient-field density arithmetic for C750 T562/T563.
-// No floating-point predicate and no splitting/dependence certificate.
 use super::{
     cluster_entropy_interval, entropy_verdict, parse_q, qstr, rat, reject_float, ClusterBounds,
     Result, Q,
@@ -129,8 +126,6 @@ impl Element {
             a.mul(&inverse_zeta).add(&Self::rational(self.n, q.clone()))
         })
     }
-    // Solve the exact multiplication-by-self linear system. Degree is at most
-    // four; the declared irreducible modulus makes a nonzero element invertible.
     #[allow(clippy::needless_range_loop)]
     pub(crate) fn inverse(&self) -> Result<Self> {
         if self.is_zero() {
@@ -227,7 +222,7 @@ fn parse_element(n: u64, value: &Value) -> Result<Element> {
 }
 
 type Matrix = Vec<Vec<Element>>;
-type Polynomial = Vec<Element>; // descending powers
+type Polynomial = Vec<Element>;
 
 pub fn has_coefficient_objects(input: &Value) -> bool {
     input["matrix"].as_array().is_some_and(|rows| {
@@ -567,8 +562,6 @@ fn sturm(p: &[Element]) -> Result<Vec<Polynomial>> {
             return Err("STURM_FACTOR_NOT_SQUAREFREE".into());
         }
         let leading_sign = remainder[0].sign()?;
-        // Normalize by the POSITIVE absolute leading coefficient at this
-        // embedding. Multiplication by a negative unit would corrupt signs.
         let absolute = if leading_sign == Ordering::Less {
             remainder[0].neg()
         } else {
@@ -659,8 +652,6 @@ fn isolate(
             if count == 0 {
                 continue;
             }
-            // Stop at the precision depth, not when eigenvalues separate.
-            // Open-bin counts remain distinct from squarefree multiplicities.
             if &hi - &lo <= bounds.delta {
                 let (entropy_lo, entropy_hi, terms) = cluster_entropy_interval(&lo, &hi, bounds)?;
                 max_terms = max_terms.max(terms);
@@ -799,8 +790,6 @@ pub fn test_cluster_proof_bound(input: &Value, k: u64) -> Result<()> {
 
 #[cfg(test)]
 pub fn test_negative_remainder_rescaling() -> Result<(usize, usize)> {
-    // x^2-x+1/8 has exactly two roots (1 +/- sqrt(1/2))/2 in (0,1).
-    // Its unsigned division remainder against the derivative is negative.
     let p = vec![
         Element::one(8),
         Element::rational(8, rat(-1, 1)),
@@ -817,4 +806,18 @@ pub fn test_negative_remainder_rescaling() -> Result<(usize, usize)> {
     }
     let mutated = root_count(&sequence, &Q::zero(), &Q::one())?;
     Ok((correct, mutated))
+}
+
+#[cfg(test)]
+mod literal_characteristic {
+    use super::*;
+
+    #[test]
+    fn a_zero_one_by_one_matrix_has_the_monic_linear_characteristic_polynomial() {
+        let matrix = vec![vec![Element::rational(1, rat(0, 1))]];
+        assert_eq!(
+            characteristic(&matrix).unwrap(),
+            vec![Element::one(1), Element::zero(1)]
+        );
+    }
 }

@@ -22,7 +22,7 @@ if "higher_operad" not in sys.modules:
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
 
-from higher_operad import (  # noqa: E402
+from higher_operad import (
     Attestation,
     ComparisonEvidence,
     ComparisonVerdict,
@@ -43,7 +43,7 @@ from higher_operad import (  # noqa: E402
     vertical_compose,
     whisker2,
 )
-from higher_operad.cells import _seal_replayed_attestation  # noqa: E402
+from higher_operad.cells import _seal_replayed_attestation
 
 D0 = "sha256:" + "0" * 64
 D1 = "sha256:" + "1" * 64

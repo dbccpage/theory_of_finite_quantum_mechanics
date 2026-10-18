@@ -1,35 +1,3 @@
-//! Validated constructors for the standard anyon models, with pinned exact data.
-//!
-//! Every constructor returns a [`RibbonFusionCategory`] that has passed the unit laws,
-//! the pentagon equation, both hexagon equations, the dimension checks and the
-//! balancing relation, exactly in the coefficient field `K`. A field that lacks a needed
-//! root of unity (`zeta_16` for Ising, `zeta_10` for Fibonacci, `zeta_4` for the
-//! semion) is a typed [`FusionError::FieldTooSmall`], never an approximation.
-//!
-//! The data (labels `0 = 1`, conventions of `fusion_category` and `braided`):
-//!
-//! - **Ising** (`1, sigma, psi`; needs `zeta_16`): `d = (1, sqrt 2, 1)`;
-//!   `F^{sigma sigma sigma}_sigma = (1/sqrt 2) [[1, 1], [1, -1]]` on the rows and columns
-//!   `(1, psi)`, `F^{sigma psi sigma}_psi = F^{psi sigma psi}_sigma = -1`;
-//!   `R^{sigma sigma}_1 = zeta_16^-1`, `R^{sigma sigma}_psi = zeta_16^3`,
-//!   `R^{sigma psi}_sigma = R^{psi sigma}_sigma = -i`, `R^{psi psi}_1 = -1`;
-//!   twists `(1, zeta_16, -1)`; `D^2 = 4`, `p_+ = 2 zeta_16`, `c = 1/2`.
-//! - **Fibonacci** (`1, tau`; needs `zeta_10`), in the algebraic (non-unitary) gauge
-//!   `F^{tau tau tau}_tau = [[phi^-1, 1], [phi^-1, -phi^-1]]` (its unitary gauge needs
-//!   `phi^{-1/2}`, which lies in no cyclotomic field): `d = (1, phi)`,
-//!   `R^{tau tau}_1 = zeta_10^-4`, `R^{tau tau}_tau = zeta_10^3`, `theta_tau = zeta_10^4`,
-//!   `D^2 = 2 + phi`, `c = 14/5`.
-//! - **Semion** (`1, s`; needs `i`): `F^{sss}_s = -1`, `R^{ss}_1 = i`, `D^2 = 2`, `c = 1`.
-//! - **Pointed braided categories** (`pointed_braided`): trivial associator, braiding a
-//!   bicharacter `c(x, y)`, so `R^{xy}_{x+y} = c(x, y)` and `theta_x = c(x, x)`. The toric
-//!   code `D(Z_2)` has `c(x, y) = (-1)^{x_1 y_2}`, the three-fermion model
-//!   `(-1)^{x_1 y_1 + x_2 y_2 + x_1 y_2}`, and the quantum double `D(Z_n)` has
-//!   `c(x, y) = zeta_n^{x_1 y_2}`; a cyclic `Z_n` (`n` odd) with
-//!   `c(x, y) = zeta_n^{k x y}` has `p_+` equal to a quadratic Gauss sum.
-//!
-//! Nothing here says that a material hosts any of these categories.
-//!
-//! AuthorityEffect: None.
 
 use crate::braided::{BraidedFusionCategory, RSymbols, RibbonFusionCategory};
 use crate::error::FusionError;
@@ -47,7 +15,6 @@ fn ribbon<K: FusionScalar>(
     RibbonFusionCategory::try_new(BraidedFusionCategory::new(category, r)?, dimensions)
 }
 
-/// The Ising category (`1, sigma, psi`), needing a primitive sixteenth root of unity.
 pub fn ising<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError> {
     let ring = FusionRing::ising()?;
     let zeta = |k: i64| root_of_unity::<K>(16, k);
@@ -74,8 +41,6 @@ pub fn ising<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError> 
     ribbon(ring, f, r, vec![K::one(), sqrt2, K::one()])
 }
 
-/// The Fibonacci category (`1, tau`) in the algebraic gauge, needing a primitive tenth
-/// root of unity.
 pub fn fibonacci<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError> {
     let ring = FusionRing::fibonacci()?;
     let phi = golden_ratio::<K>()?;
@@ -96,7 +61,6 @@ pub fn fibonacci<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionErr
     ribbon(ring, f, r, vec![K::one(), phi])
 }
 
-/// The semion category (`1, s`), needing `i`.
 pub fn semion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError> {
     let ring = FusionRing::semion()?;
     let minus_one = K::one().neg();
@@ -118,11 +82,6 @@ pub fn semion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>
     ribbon(ring, f, r, vec![K::one(), K::one()])
 }
 
-/// A pointed braided category: the abelian group `Z_{m_1} x ... x Z_{m_r}` with the trivial
-/// associator and the bicharacter
-/// `c(x, y) = exp(2 pi i sum_{ij} B_ij x_i y_j / gcd(m_i, m_j))`, given by the integer
-/// matrix `exponents = (B_ij)`. The field must contain the `lcm_{B_ij != 0} gcd(m_i, m_j)`-th
-/// roots of unity.
 pub fn pointed_braided<K: FusionScalar>(
     moduli: &[usize],
     exponents: &[Vec<i64>],
@@ -220,8 +179,6 @@ pub fn pointed_braided<K: FusionScalar>(
     ribbon(ring, f, r_symbols, (0..order).map(|_| K::one()).collect())
 }
 
-/// The toric code `D(Z_2)`: objects `1, e, m, eps`, `c(x, y) = (-1)^{x_1 y_2}`. `K = Q`
-/// suffices.
 pub fn toric_code<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError> {
     pointed_braided(
         &[2, 2],
@@ -230,8 +187,6 @@ pub fn toric_code<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionEr
     )
 }
 
-/// The three-fermion model: objects `1, f1, f2, f3`, `c(x, y) = (-1)^{x_1 y_1 + x_2 y_2 +
-/// x_1 y_2}`, all nontrivial twists `-1`. `K = Q` suffices.
 pub fn three_fermion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError> {
     pointed_braided(
         &[2, 2],
@@ -240,9 +195,6 @@ pub fn three_fermion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, Fusio
     )
 }
 
-/// The quantum double `D(Z_n)` of a cyclic group: objects `(a, b)` (electric charge `a`,
-/// magnetic flux `b`), `c((a, b), (a', b')) = zeta_n^{a b'}`, `theta_{(a, b)} = zeta_n^{a b}`.
-/// Needs a primitive `n`-th root of unity.
 pub fn quantum_double_cyclic<K: FusionScalar>(
     n: usize,
 ) -> Result<RibbonFusionCategory<K>, FusionError> {
@@ -258,9 +210,6 @@ pub fn quantum_double_cyclic<K: FusionScalar>(
     pointed_braided(&[n, n], &[vec![0, 1], vec![0, 0]], None)
 }
 
-/// The cyclic pointed modular category `Z_n` with `c(x, y) = zeta_n^{k x y}`: modular when
-/// `n` is odd and `gcd(k, n) = 1`, where `theta_x = zeta_n^{k x^2}` and `p_+` is the
-/// quadratic Gauss sum `sum_x zeta_n^{k x^2}`.
 pub fn cyclic_pointed<K: FusionScalar>(
     n: usize,
     k: i64,

@@ -93,7 +93,7 @@ def test_product_ne_sum_classical_composition():
 
     Note: 2×2 is degenerate (4=4). Use 2×3 and 3×3 where product ≠ sum.
     """
-    assert product_sector_count(2, 2) == sum_sector_count(2, 2) == 4  # degenerate
+    assert product_sector_count(2, 2) == sum_sector_count(2, 2) == 4
     assert product_sector_count(2, 3) == 6
     assert sum_sector_count(2, 3) == 5
     assert product_sector_count(2, 3) != sum_sector_count(2, 3)
@@ -105,10 +105,10 @@ def test_product_ne_sum_classical_composition():
 def test_classical_product_marginal_recovery():
     """Independent product recovers A-marginal scaled by total mass of B."""
     wa = BitWeight(2, 3)
-    wb = BitWeight(1, 0)  # pure unit-total on 0
+    wb = BitWeight(1, 0)
     j = product_joint(wa, wb)
     assert j.marg_a == BitWeight(wa.w0 * wb.total, wa.w1 * wb.total)
-    assert j.marg_a == wa  # wb.total == 1
+    assert j.marg_a == wa
     assert j.w00 == 2 and j.w10 == 3 and j.w01 == 0 and j.w11 == 0
 
 
@@ -132,7 +132,6 @@ def test_mixed_bit_has_no_pure_classical_purification():
     assert fair.is_mixed
     assert not fair.is_pure
 
-    # Exhaustive search over small pure joints (single atom with mass 1..4)
     found = False
     for mass in range(1, 5):
         candidates = [
@@ -147,7 +146,6 @@ def test_mixed_bit_has_no_pure_classical_purification():
                 found = True
     assert found is False
 
-    # Also: any pure joint's A-marginal is pure, so cannot equal mixed fair.
     for j in [
         JointWeight(3, 0, 0, 0),
         JointWeight(0, 4, 0, 0),
@@ -186,7 +184,6 @@ def test_composition_kind_labels_are_distinct():
     assert "cartesianProduct" in kinds
 
 
-# --- W6.14 residual: declaredTensor bound to named complex-Hilbert lift ---
 
 
 @dataclass(frozen=True)
@@ -243,8 +240,6 @@ def test_declared_tensor_requires_named_lift():
 def test_declared_tensor_kind_distinct_from_classical():
     assert "declaredTensor" != "cartesianProduct"
     assert "declaredTensor" != "directSum"
-    # Sector counts: classical product of bits matches Hilbert dim product
-    # as *counting*, but the tensor interface still needs the lift tag.
     assert product_sector_count(2, 2) == complex_hilbert_tensor(2, 2).dim_ab
     assert complex_hilbert_tensor(2, 3).dim_ab == 6
 
@@ -252,7 +247,7 @@ def test_declared_tensor_kind_distinct_from_classical():
 def test_bell_like_not_classically_pure_but_quantum_pure_support():
     j = bell_like_joint()
     assert is_quantum_pure_support(j)
-    assert not j.is_pure  # classical single-atom purity fails (two atoms)
+    assert not j.is_pure
     assert j.marg_a == BitWeight(1, 1)
     assert j.marg_a.is_mixed
 
@@ -263,7 +258,6 @@ def test_fair_bit_quantum_purification_under_complex_lift():
     j = bell_like_joint()
     assert is_quantum_pure_support(j)
     assert j.marg_a == fair
-    # Classical pure-joint model still refuses (mirror Lean split theorem).
     found_classical = False
     for mass in range(1, 5):
         for pure in (
@@ -284,7 +278,6 @@ def test_qubit_tensor_binding_receipt():
     assert q.dim_ab == 4
 
 
-# --- W6.14 residual: composite LT underivable from FinL1 product alone ---
 
 
 NAMED_LIFTS = ("complexHilbert", "realHilbert", "quaternionicHilbert")
@@ -385,7 +378,6 @@ def test_only_complex_among_three_satisfies_lt_qubits():
     assert winners == ["complexHilbert"]
 
 
-# --- W6.14 residual: composite LT ↔ OB-U1 packaged as COUPLED (deepened dual) ---
 
 
 def has_complex_phase_carrier(lift: str) -> bool:
@@ -410,7 +402,6 @@ def named_lift_has_phase_bool(lift: str) -> bool:
 
 
 def named_lift_satisfies_lt_bool(lift: str) -> bool:
-    # Bool dual of registry LT face (matches NamedLift constructors only).
     return lift == "complexHilbert"
 
 
@@ -449,7 +440,6 @@ def test_no_named_lift_xor_registry_scan():
 
 
 def test_finL1_host_neither_phase_nor_lt():
-    # FinL1 product host is outside NamedLift registry: neither complex phase nor LT.
     fin_l1_has_phase = False
     fin_l1_has_lt = False
     assert not fin_l1_has_phase and not fin_l1_has_lt
@@ -476,7 +466,6 @@ def test_lt_vs_ob_u1_coupled_status():
     assert not satisfies_composite_lt("quaternionicHilbert", 2, 2)
 
 
-# --- Residual OPEN: SPLIT-OUTSIDE-REGISTRY ---
 
 
 def test_split_outside_registry_open():
@@ -485,13 +474,11 @@ def test_split_outside_registry_open():
     assert split_outside_registry_status == "open"
     assert split_outside_registry_status != "coupled"
     assert split_outside_registry_status != "independent"
-    # Registry couple does not seal absolute couple for all hosts.
     lt_vs_ob_u1_status = "coupled"
     assert lt_vs_ob_u1_status == "coupled"
     assert lt_vs_ob_u1_status != split_outside_registry_status
 
 
-# --- Exploratory toy: ExoticHost (OutsideRegistry, not NamedLift, not BASIS) ---
 
 
 EXTENDED_HOSTS = ("finL1Product", "namedLift", "exoticHost")
@@ -501,7 +488,6 @@ def is_outside_registry(host: str) -> bool:
     return host == "exoticHost"
 
 
-# Exploratory face booleans: LT without complex phase (XOR split toy).
 EXOTIC_HAS_COMPLEX_PHASE = False
 EXOTIC_SATISFIES_COMPOSITE_LT = True
 EXOTIC_XOR_CLAIM_LEVEL = "notBasisIndependence"
@@ -517,7 +503,6 @@ def test_exotic_host_xor_exploratory():
     assert EXOTIC_HAS_COMPLEX_PHASE is False
     assert EXOTIC_SATISFIES_COMPOSITE_LT != EXOTIC_HAS_COMPLEX_PHASE
     assert EXOTIC_XOR_CLAIM_LEVEL == "notBasisIndependence"
-    # Exploratory XOR does NOT discharge SPLIT-OUTSIDE-REGISTRY to independent.
     split_outside_registry_status = "open"
     assert split_outside_registry_status == "open"
     assert split_outside_registry_status != "independent"
@@ -531,15 +516,12 @@ def test_residual_status_table():
     assert split_outside_registry_status == "open"
     assert EXOTIC_XOR_CLAIM_LEVEL == "notBasisIndependence"
     assert is_outside_registry("exoticHost") is True
-    # W6.19 design note: B5 must keep LT/U1 excluded until non-exploratory split.
     w6_19_b5_must_exclude_lt_u1 = True
     assert w6_19_b5_must_exclude_lt_u1
     assert EXOTIC_XOR_CLAIM_LEVEL != "basisIndependence"
-    # Absolute couple outside registry is refused (path kept OPEN).
     assert split_outside_registry_status != "coupled"
 
 
-# --- BASIS unblocking: CoupledImportBundle (BUNDLE-U1-LT) ---
 
 
 @dataclass(frozen=True)
@@ -593,7 +575,6 @@ def test_illegal_xor_not_bundle_covariant():
     assert not ILLEGAL_XOR_PHASE_WITHOUT_LT.covaries()
 
 
-# --- SPLIT-OUTSIDE-REGISTRY residual deepen (outside XOR witnesses) ---
 
 
 class OutsideRegistryHost(str, Enum):
@@ -649,8 +630,7 @@ def test_split_outside_not_discharged():
     assert c.admits_to_basis_independence is False
     assert c.named_lift_xor_refused is True
     assert c.residual_status_independent is False
-    assert "open" == "open"  # residual status
-    # NamedLift XOR still refused
+    assert "open" == "open"
     for L in NAMED_LIFTS:
         assert not xor_splits_lt_from_phase(L)
 
@@ -687,7 +667,6 @@ def test_basis_unblock_via_coupled_bundle():
     assert PROVISIONAL_B8_DESIGN_CARD == 8
     assert SEPARATE_OB_U1_ROW_IN_INDEPENDENCE_MATRIX is False
     assert BUNDLE_SLOT_ADMITTED_TO_BASIS_DESIGN is True
-    # Still coupled on registry; outside still open; exotic not BASIS.
     assert LT_VS_OB_U1_STATUS == "coupled" if "LT_VS_OB_U1_STATUS" in dir() else True
     lt_vs_ob_u1_status = "coupled"
     split_outside_registry_status = "open"

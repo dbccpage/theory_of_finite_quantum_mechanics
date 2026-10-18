@@ -59,7 +59,6 @@ WORKING_BASIS_B7 = (
 
 WORKING_BASIS_B8 = WORKING_BASIS_B7 + (ImportSlot.BUNDLE_U1_LT,)
 
-# Primary provisional working basis alias
 WORKING_BASIS = WORKING_BASIS_B8
 
 EXCLUDED_COUPLED = ()
@@ -226,7 +225,6 @@ def test_l2_born_split_models():
     assert not l2_only.admits(ImportSlot.OB_BORN)
     assert born_only.admits(ImportSlot.OB_BORN)
     assert not born_only.admits(ImportSlot.OB_L2_READOUT)
-    # Mutation trap: merged model would have both false together only
     merged_false = _all_true(l2=False, born=False)
     assert not merged_false.fails_exactly(ImportSlot.OB_L2_READOUT)
     assert not merged_false.fails_exactly(ImportSlot.OB_BORN)
@@ -257,7 +255,6 @@ def test_drop_models_pairwise_distinct():
     assert len(models) == 8
     for a, b in combinations(models, 2):
         assert a != b
-    # C(8,2) = 28
     assert len(list(combinations(models, 2))) == 28
 
 
@@ -268,15 +265,12 @@ def test_independence_models_match_basis():
 
 
 def test_capital_fences():
-    # reset kernel shape: column-stochastic (1+0=1, 1+0=1) but not doubly (row0 sum=2)
-    reset = (1, 0, 1, 0)  # k00, k10, k01, k11
+    reset = (1, 0, 1, 0)
     assert reset[0] + reset[1] == 1
     assert reset[2] + reset[3] == 1
     assert reset[0] + reset[2] != 1
-    # L2 not forced from ℓ¹ shadow
     l2_forced_from_l1 = False
     assert l2_forced_from_l1 is False
-    # Born not forced from L2 host alone
     born_forced_from_l2 = False
     assert born_forced_from_l2 is False
 
@@ -294,7 +288,7 @@ def test_full_basis_independence_open():
     full_basis_closed = False
     assert full_basis_closed is False
     names = {s.value for s in WORKING_BASIS_B8}
-    assert "OB-U1" not in names  # separate row refused
+    assert "OB-U1" not in names
     assert "BUNDLE-U1-LT" in names
 
 

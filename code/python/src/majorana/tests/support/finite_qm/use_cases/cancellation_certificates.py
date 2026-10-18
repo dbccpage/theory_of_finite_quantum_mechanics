@@ -1,4 +1,3 @@
-# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
 
 """
 Cyclotomic cancellation certificates and discrete phase sum classification.
@@ -59,28 +58,28 @@ def classify_conductor_cancellations(conductor: int) -> Dict[str, Any]:
 
 
 TARGET_CONDUCTOR_MAP: Dict[int, int] = {
-    1: 1,    # Primitive difference (Q)
-    2: 12,   # Diamond 2-complex (Z[zeta_12])
-    3: 1,    # Sorkin I3 quadratic identity (Q)
-    4: 1,    # Rational Cayley flows (Q)
-    5: 1,    # Pentagon identity (Q)
-    6: 1,    # Cabello 18 rays / glued transfer matrix
-    7: 2,    # Monotone signed permutations (Z_2)
-    8: 1,    # Pythagorean Bell-CHSH (Q)
-    9: 1,    # 3-qubit bitflip code (Q)
-    10: 4,   # Teleportation over Z[i]
-    11: 4,   # Superdense coding over Z[i]
-    12: 1,   # [[4,2,2]] CSS code (Q)
-    13: 5,   # Prime-p Wigner phase space (p=5, Z[zeta_5])
-    14: 1,   # Shor 9-qubit code (Q)
-    15: 8,   # Phase estimation dyadic rational phases (Cyc8)
-    16: 2,   # Toric code homology braiding (phase -1)
-    17: 8,   # Grover search (Cyc8)
-    18: 2,   # Clifford Sp(2k, F2)
-    19: 1,   # Commutator trace obstruction (Q)
-    20: 1,   # Richardson extrapolation (Q)
-    21: 4,   # Quantum walk on S3/S4
-    22: 3,   # MUB state tomography in d=3 (Z[zeta_3])
+    1: 1,
+    2: 12,
+    3: 1,
+    4: 1,
+    5: 1,
+    6: 1,
+    7: 2,
+    8: 1,
+    9: 1,
+    10: 4,
+    11: 4,
+    12: 1,
+    13: 5,
+    14: 1,
+    15: 8,
+    16: 2,
+    17: 8,
+    18: 2,
+    19: 1,
+    20: 1,
+    21: 4,
+    22: 3,
 }
 
 

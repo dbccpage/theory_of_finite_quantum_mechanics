@@ -1,4 +1,3 @@
-//! Presheaf of locally admissible partial assignments.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -7,8 +6,6 @@ use omega_category_theory::finite_report_descent::{CoverClassification, FiniteRe
 use super::model::Scenario;
 use super::{positions, EmpiricalError};
 
-/// A presheaf of admissible partial assignments on an intersection-closed
-/// family of measurement sets, bridged to `FiniteReportPresheaf`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AssignmentPresheaf {
     arities: Vec<usize>,
@@ -16,8 +13,6 @@ pub struct AssignmentPresheaf {
 }
 
 impl AssignmentPresheaf {
-    /// Enumerate the admissible assignments on every key, after closing the
-    /// key family under intersection and adding the empty and full sets.
     pub fn from_rule(
         arities: Vec<usize>,
         keys: &BTreeSet<u64>,
@@ -75,7 +70,6 @@ impl AssignmentPresheaf {
             .position(|s| s.as_slice() == assignment)
     }
 
-    /// Total restriction tables for every inclusion, as the descent module requires.
     pub fn to_finite_report_presheaf(&self) -> Result<FiniteReportPresheaf, EmpiricalError> {
         let report_counts: BTreeMap<u64, usize> =
             self.sections.iter().map(|(&k, s)| (k, s.len())).collect();
@@ -104,11 +98,6 @@ impl AssignmentPresheaf {
         )?)
     }
 
-    /// Classify every matching family of `cover` over `target` through the
-    /// descent module. A fiber with no global section is a local-green,
-    /// global-red event: its family is consistent on every member of the
-    /// cover and on their overlaps, and no admissible assignment on `target`
-    /// restricts to it.
     pub fn classify_cover(
         &self,
         target: u64,

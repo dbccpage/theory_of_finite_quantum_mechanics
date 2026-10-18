@@ -1,4 +1,3 @@
-# AuthorityEffect: None.
 """QM-216: 1-Loop QED Vacuum Polarization, Running Coupling, and Uehling / Lamb Shift Control.
 
 Implements the two-layer finite-to-continuum decomposition for 1-loop QED photon
@@ -93,7 +92,6 @@ def check_transverse_projector_identities(q: list[Fraction]) -> tuple[bool, bool
     pt = transverse_projector(q)
     t_mat = transverse_tensor_t(q)
 
-    # 1. Ward transversality: sum_mu q_mu T^{mu nu} = 0 and sum_mu q_mu P_T^{mu nu} = 0
     ward_ok = True
     for nu in range(4):
         dot_t = sum(MINKOWSKI_METRIC[mu] * q[mu] * t_mat[mu][nu] for mu in range(4))
@@ -101,7 +99,6 @@ def check_transverse_projector_identities(q: list[Fraction]) -> tuple[bool, bool
         if dot_t != 0 or dot_p != 0:
             ward_ok = False
 
-    # 2. Idempotence: sum_{a} P_T^{mu a} eta_{a a} P_T^{a nu} == P_T^{mu nu}
     idempotent_ok = True
     for mu in range(4):
         for nu in range(4):
@@ -109,7 +106,6 @@ def check_transverse_projector_identities(q: list[Fraction]) -> tuple[bool, bool
             if comp != pt[mu][nu]:
                 idempotent_ok = False
 
-    # 3. Lorentz trace: sum_mu eta_{mu mu} P_T^{mu mu} == 3
     trace_val = sum(MINKOWSKI_METRIC[mu] * pt[mu][mu] for mu in range(4))
     return (ward_ok, idempotent_ok, trace_val)
 
@@ -209,7 +205,6 @@ def vacuum_polarization_spacelike_closed_interval(
 class VacuumPolarizationLambShiftReport:
     """Typed receipt for QM-216 1-loop vacuum polarization, running alpha, and Lamb shift control."""
 
-    # Part (a): Ward transverse projector, Clifford bubble trace, and Symanzik / BPHZ subtraction
     transverse_ward_identity_exact: bool
     transverse_projector_idempotent_exact: bool
     transverse_projector_trace_equals_three: Fraction
@@ -218,7 +213,6 @@ class VacuumPolarizationLambShiftReport:
     symanzik_bubble_simplex_f_matches_feynman_denom: bool
     bphz_uv_cutoff_cancels_at_all_scales: bool
     bphz_on_shell_pi_r_at_zero_is_zero: bool
-    # Part (b): Exact rational Beta moments and 12-decimal running coupling enclosure
     moments_match_beta_closed_form: bool
     uehling_leading_slope_coeff: Fraction
     second_moment_series_coeff: Fraction
@@ -232,7 +226,6 @@ class VacuumPolarizationLambShiftReport:
     alpha_eff_inv_spacelike_decimal_12: str
     alpha_eff_inv_spacelike_12_digits_agree: bool
     alpha_eff_exceeds_bare_alpha: bool
-    # Part (c): Uehling potential & Hydrogen 2S_{1/2}-2P_{1/2} Lamb shift enclosure
     lamb_contact_se_term: Fraction
     lamb_contact_g2_magnetic_term: Fraction
     lamb_contact_uehling_vp_term: Fraction
@@ -249,9 +242,6 @@ def evaluate_vacuum_polarization_lamb_shift_control(
     me_c2_over_h_mhz: Fraction = Fraction(123558996383000, 1),
 ) -> VacuumPolarizationLambShiftReport:
     """Run all three parts of the QM-216 control over Q, Q(i), and RationalInterval."""
-    # -------------------------------------------------------------------------
-    # Part (a): Transverse Ward projector, Clifford bubble trace & BPHZ on-shell subtraction
-    # -------------------------------------------------------------------------
     q_vec = [Fraction(2, 1), Fraction(3, 1), Fraction(1, 1), Fraction(1, 1)]
     ward_ok, idemp_ok, tr_pt = check_transverse_projector_identities(q_vec)
 
@@ -261,25 +251,19 @@ def evaluate_vacuum_polarization_lamb_shift_control(
     num_analytic = fermion_bubble_numerator_analytic(k_vec, q_vec, mass)
     clifford_trace_ok = num_clifford == num_analytic
 
-    # Symanzik 1-loop bubble graph G_bub: 2 vertices, 2 parallel edges (0, 1), (0, 1)
     bub = bubble_graph()
     x_param = Fraction(3, 7)
     alphas_simplex = [x_param, Fraction(1, 1) - x_param]
     u_bub_simplex = symanzik_u_polynomial(bub, alphas_simplex)
     u_simplex_ok = u_bub_simplex == Fraction(1, 1)
 
-    # In Euclidean signature with external momentum q_E (q_E^2 = -q^2),
-    # F_{G_bub}(x, 1-x; q_E, m^2) = x(1-x) q_E^2 + (x + 1 - x)^2 m^2 = m^2 - x(1-x) q^2
     q_eucl = [[Fraction(3, 1), Fraction(0, 1)], [Fraction(-3, 1), Fraction(0, 1)]]
-    q_mink_sq = Fraction(-9, 1)  # since -q^2 = q_E^2 = 9
+    q_mink_sq = Fraction(-9, 1)
     m2_bub = [mass * mass, mass * mass]
     f_bub_simplex = symanzik_f_polynomial(bub, alphas_simplex, q_eucl, m2_bub)
     expected_feynman_denom = mass * mass - x_param * (Fraction(1, 1) - x_param) * q_mink_sq
     f_simplex_ok = f_bub_simplex == expected_feynman_denom
 
-    # Bare arguments Lambda^2/Delta move with the cutoff. Their ratio equals
-    # m^2/Delta at every cutoff. On shell that ratio is 1, the bare argument
-    # is not 1, and the same subtraction at m^2 + 1 is not 1.
     m2 = mass * mass
     delta = expected_feynman_denom
     uv_cutoffs = [Fraction(10, 1), Fraction(1000, 1), Fraction(10**9, 1)]
@@ -310,21 +294,14 @@ def evaluate_vacuum_polarization_lamb_shift_control(
         denom_at_zero == m2 and on_shell_is_one and bare_on_shell_not_one and wrong_point_not_one
     )
 
-    # -------------------------------------------------------------------------
-    # Part (b): Exact rational Beta moments & 12-decimal running coupling enclosure
-    # -------------------------------------------------------------------------
     moments_poly = [feynman_parameter_moment_polynomial(n) for n in range(1, 5)]
     moments_beta = [feynman_parameter_moment_beta_closed(n) for n in range(1, 5)]
     moments_match = moments_poly == moments_beta
 
-    # Series coefficients of Pi_R(q^2) / (alpha / pi) = sum_{n>=1} (2 M_n / n) (q^2 / m^2)^n
-    c_uehling_1 = Fraction(2, 1) * moments_poly[0] / Fraction(1, 1)  # 2 * (1/30) = 1/15
-    c_uehling_2 = Fraction(2, 1) * moments_poly[1] / Fraction(2, 1)  # 1/140
-    c_uehling_3 = Fraction(2, 1) * moments_poly[2] / Fraction(3, 1)  # 1/945
+    c_uehling_1 = Fraction(2, 1) * moments_poly[0] / Fraction(1, 1)
+    c_uehling_2 = Fraction(2, 1) * moments_poly[1] / Fraction(2, 1)
+    c_uehling_3 = Fraction(2, 1) * moments_poly[2] / Fraction(3, 1)
 
-    # Space-like evaluation at conformal velocity v = 5/3:
-    # Q^2 / m^2 = 4 / (v^2 - 1) = 4 / (16/9) = 9/4 (so q^2 / m^2 = -9/4),
-    # and (v + 1)/(v - 1) = (8/3)/(2/3) = 4 -> ln((v+1)/(v-1)) = 2 ln 2
     v_space = Fraction(5, 3)
     q2_over_m2_space = Fraction(-9, 4)
     pi_iv = pi_interval(20)
@@ -334,27 +311,17 @@ def evaluate_vacuum_polarization_lamb_shift_control(
     pi_r_iv = vacuum_polarization_spacelike_closed_interval(v_space, alpha_inv, ln4_iv, pi_iv)
     pi_r_lo12, _pi_r_hi12, pi_r_agree12 = pi_r_iv.decimal_prefix(12)
 
-    # Since Z_1 = Z_2 (QM-215), alpha_eff(q^2) = alpha / (1 + Pi_R(q^2)), so
-    # alpha_eff^{-1}(q^2) = alpha^{-1} * (1 + Pi_R(q^2))
     one_plus_pi_r = RationalInterval.exact(Fraction(1, 1)) + pi_r_iv
     alpha_eff_inv_iv = one_plus_pi_r.scale(alpha_inv)
     aeff_lo12, _aeff_hi12, aeff_agree12 = alpha_eff_inv_iv.decimal_prefix(12)
     alpha_eff_exceeds_bare = alpha_eff_inv_iv.hi < alpha_inv
 
-    # -------------------------------------------------------------------------
-    # Part (c): Uehling potential & Hydrogen 2S_{1/2}-2P_{1/2} Lamb shift enclosure
-    # -------------------------------------------------------------------------
-    # 2S self-energy constant 11/24 + 3/8 = 5/6 (the 3/8 is the S-state anomalous-moment
-    # part). 19/30 = 5/6 - 1/5 already contains the Uehling term, so it must not be
-    # combined with lamb_vp again.
     lamb_se = Fraction(5, 6)
     lamb_g2 = Fraction(1, 8)
     lamb_vp = Fraction(-1, 5)
-    lamb_total_contact = lamb_se + lamb_g2 + lamb_vp  # 91/120, as in QM-224
+    lamb_total_contact = lamb_se + lamb_g2 + lamb_vp
 
-    # Dimensionless Uehling 2S_{1/2}-2P_{1/2} shift:
-    # Delta E_Uehling / (m_e c^2) = -(4/15) * alpha^5 / (8 pi) = -alpha^5 / (30 pi)
-    uehling_dimless_coeff = Fraction(-4, 15) * Fraction(1, 8)  # -1/30
+    uehling_dimless_coeff = Fraction(-4, 15) * Fraction(1, 8)
     alpha_exact = RationalInterval.exact(Fraction(1, 1) / alpha_inv)
     alpha5_over_pi = alpha_exact.pow(5) * pi_iv.reciprocal()
     uehling_dimless_iv = alpha5_over_pi.scale(uehling_dimless_coeff)

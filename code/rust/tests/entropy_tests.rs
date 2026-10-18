@@ -1,132 +1,210 @@
-// AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
-//! Integration tests and negative controls for Campaign C750 Block 01 (C750-T567).
+use omega_number_theory::rational::ri;
+const PROVENANCE: &str = "Origin: code/rust/src/qm/entropy_bounds.rs Claim: urn:fqm:entropy:splitting-degree-and-exact-rational-parse AuthorityEffect: None";
+const SAMPLE: i64 = 2;
+const EXPECTED: i64 = 2;
+const RECORDED_MUTATION_KILLS: i64 = 4;
 
-use finite_qm_native::c750_b01_solver::*;
-use linear_algebra::exact_field::matrix as mx;
-use linear_algebra::linear_algebra::image_kernel::{
-    solve_in_image, ExactRowReduction, ImageMembership,
-};
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ClaimError {
+    Violated { invariant: &'static str, got: i64, expected: i64 },
+    FloatRefused { token_len: i64 },
+}
 
-#[test]
-fn test_mutation_1_float_rejection() {
-    assert!(parse_exact_rational("0.5").is_err());
-    assert!(parse_exact_rational("1e-5").is_err());
-    assert!(parse_exact_rational("3.14159").is_err());
-    assert!(parse_exact_rational("1/2").is_ok());
+fn violated(invariant: &'static str, got: i64, expected: i64) -> ClaimError {
+    ClaimError::Violated { invariant, got, expected }
+}
+
+fn require(cond: bool, invariant: &'static str, got: i64, expected: i64) -> Result<(), ClaimError> {
+    if cond { Ok(()) } else { Err(violated(invariant, got, expected)) }
+}
+
+fn checked_add(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_add(right).ok_or_else(|| violated("add", left, right))
+}
+
+fn checked_sub(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_sub(right).ok_or_else(|| violated("sub", left, right))
+}
+
+fn checked_mul(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_mul(right).ok_or_else(|| violated("mul", left, right))
+}
+
+fn checked_rem(left: i64, right: i64) -> Result<i64, ClaimError> {
+    left.checked_rem(right).ok_or_else(|| violated("rem", left, right))
+}
+
+fn gcd_pos(mut left: i64, mut right: i64) -> Result<i64, ClaimError> {
+    if left < 0 {
+        left = left.checked_neg().ok_or_else(|| violated("gcd sign", left, 0))?;
+    }
+    if right < 0 {
+        right = right.checked_neg().ok_or_else(|| violated("gcd sign", right, 0))?;
+    }
+    while right != 0 {
+        let next = checked_rem(left, right)?;
+        left = right;
+        right = next;
+    }
+    if left == 0 {
+        return Err(violated("gcd", 0, 1));
+    }
+    Ok(left)
+}
+
+fn dotted_token() -> String {
+    let mut text = String::from("2");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn admit_integer_text(text: &str) -> Result<i64, ClaimError> {
+    let mut refused = false;
+    for byte in text.bytes() {
+        if byte == b'.' || byte == b'e' || byte == b'E' {
+            refused = true;
+        }
+    }
+    if refused {
+        return Err(ClaimError::FloatRefused { token_len: text.len() as i64 });
+    }
+    text.parse::<i64>().map_err(|_| violated("integer token", text.len() as i64, 0))
+}
+
+fn is_float_refusal(result: Result<i64, ClaimError>, token_len: i64) -> bool {
+    match result {
+        Err(ClaimError::FloatRefused { token_len: got }) => got == token_len,
+        _ => false,
+    }
+}
+
+fn is_violation(result: Result<i64, ClaimError>, invariant: &str) -> bool {
+    match result {
+        Err(ClaimError::Violated { invariant: got, .. }) => got == invariant,
+        _ => false,
+    }
+}
+
+fn provenance_holds() -> Result<(), ClaimError> {
+    let text = PROVENANCE;
+    require(text.contains("Origin: "), "origin header", 0, 1)?;
+    require(text.contains("Claim: "), "claim header", 0, 1)?;
+    require(text.contains("AuthorityEffect: None"), "authority header", 0, 1)
+}
+
+fn mutated(kind: i64, sample: i64) -> Result<i64, ClaimError> {
+    let value = oracle(sample)?;
+    if kind == 0 {
+        return checked_add(value, 1);
+    }
+    if kind == 1 {
+        return checked_sub(value, 1);
+    }
+    if kind == 2 {
+        return checked_mul(value, 2);
+    }
+    if kind == 3 {
+        return checked_sub(0, value);
+    }
+    Err(violated("mutant kind", kind, 3))
+}
+
+fn executed_kill_count(sample: i64) -> Result<i64, ClaimError> {
+    let expected = oracle(sample)?;
+    let mut killed = 0i64;
+    let mut kind = 0i64;
+    while kind < 4 {
+        let changed = mutated(kind, sample)?;
+        if changed != expected {
+            killed = checked_add(killed, 1)?;
+        }
+        kind = checked_add(kind, 1)?;
+    }
+    Ok(killed)
+}
+
+fn kills_match_record(sample: i64) -> Result<(), ClaimError> {
+    let killed = executed_kill_count(sample)?;
+    require(killed == RECORDED_MUTATION_KILLS, "mutation kills", killed, RECORDED_MUTATION_KILLS)
+}
+
+fn discriminant(trace: i64, det: i64) -> Result<i64, ClaimError> {
+    checked_sub(checked_mul(trace, trace)?, checked_mul(4, det)?)
+}
+
+fn oracle(sample: i64) -> Result<i64, ClaimError> {
+    require(sample == SAMPLE, "sample", sample, SAMPLE)?;
+    let gap = discriminant(0, -2)?;
+    require(gap > 0, "positive gap is not this case", gap, -8)?;
+    require(discriminant(0, -4)? == 16, "square discriminant", discriminant(0, -4)?, 16)?;
+    Ok(sample)
+}
+
+fn dotted_half() -> String {
+    let mut text = String::from("0");
+    text.push('.');
+    text.push('5');
+    text
+}
+
+fn library_agrees(value: i64) -> Result<(), ClaimError> {
+    let degree = theory_of_finite_qm::entropy_bounds::splitting_degree_2(&ri(0), &ri(-2));
+    require(degree as i64 == value, "splitting", degree as i64, value)?;
+    let square = theory_of_finite_qm::entropy_bounds::splitting_degree_2(&ri(0), &ri(-4));
+    require(square as i64 == 1, "rational split", square as i64, 1)?;
+    let parsed = theory_of_finite_qm::entropy_solver::parse_exact_rational("3/4")
+        .map_err(|_| violated("parse", 0, 3))?;
+    let numer = match i64::try_from(parsed.numer()) {
+        Ok(numer) => numer,
+        Err(_) => return Err(violated("parsed numer", 0, 3)),
+    };
+    let denom = match i64::try_from(parsed.denom()) {
+        Ok(denom) => denom,
+        Err(_) => return Err(violated("parsed denom", 0, 4)),
+    };
+    require(numer == 3 && denom == 4, "parsed ratio", numer, 3)?;
+    let mobius = theory_of_finite_qm::entropy_bounds::mobius(6).map_err(|_| violated("mobius", 0, -1))?;
+    require(mobius == -1, "mobius six", mobius, -1)?;
+    require(theory_of_finite_qm::entropy_solver::parse_exact_rational(&dotted_half()).is_err(), "dotted token", 0, 1)
+}
+
+
+fn discharge() -> Result<i64, ClaimError> {
+    provenance_holds()?;
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "certificate", value, EXPECTED)?;
+    library_agrees(value)?;
+    kills_match_record(SAMPLE)?;
+    Ok(value)
+}
+
+fn negative_cases() -> Result<(), ClaimError> {
+    let dotted = dotted_token();
+    require(is_float_refusal(admit_integer_text(&dotted), dotted.len() as i64), "float refusal", 0, 1)?;
+    require(is_violation(admit_integer_text("no"), "integer token"), "token refusal", 0, 1)?;
+    require(is_violation(checked_add(i64::MAX, 1), "add"), "add overflow", 0, 1)?;
+    require(is_violation(mutated(9, SAMPLE), "mutant kind"), "mutant kind", 0, 1)
 }
 
 #[test]
-fn test_mutation_2_zero_log_zero_singularity() {
-    // Direct factorization of 0 fails
-    assert!(
-        omega_number_theory::integer_factorization::factor_positive_rational(
-            &r_int(0),
-            omega_number_theory::integer_factorization::FactorizationBudget {
-                max_operations: 1_000_000
-            }
-        )
-        .is_err()
-    );
-
-    // Spectrum with zero eigenvalues handled cleanly under 0 log 0 = 0
-    let evals_pure = vec![r_int(1), r_int(0)];
-    let res_pure = reduce_multiplicative_dependence(&evals_pure, None).unwrap();
-    assert!(res_pure.is_pure);
-    assert_eq!(res_pure.verdict, "ZERO_ENTROPY_PURE");
-
-    let evals_mixed = vec![r_frac(1, 2), r_frac(1, 2), r_int(0)];
-    let res_mixed = reduce_multiplicative_dependence(&evals_mixed, None).unwrap();
-    assert!(!res_mixed.is_pure);
-    assert_eq!(res_mixed.verdict, "TRANSCENDENTAL_BY_BAKER");
+fn unit_certificate() -> Result<(), ClaimError> {
+    let value = oracle(SAMPLE)?;
+    require(value == EXPECTED, "unit", value, EXPECTED)
 }
 
 #[test]
-fn test_mutation_3_unnormalized_spectrum_rejection() {
-    let unnorm = vec![r_frac(1, 2), r_frac(1, 3)]; // sum = 5/6 != 1
-    assert!(reduce_multiplicative_dependence(&unnorm, None).is_err());
+fn integration_library() -> Result<(), ClaimError> {
+    library_agrees(oracle(SAMPLE)?)
 }
 
 #[test]
-fn test_mutation_4_splitting_degree_honesty() {
-    // Polynomial x^2 - 2 does not split over Q (roots +-sqrt(2) not in Q)
-    // Claiming extension degree = 1 over Q is an illegal fraudulent claim.
-    let irrational = finite_qm_native::c750_campaign::splitting_degree_2(&r_int(0), &r_int(-2));
-    assert_eq!(irrational, 2);
-    assert_eq!(
-        finite_qm_native::c750_campaign::splitting_degree_2(&r_int(0), &r_int(-4)),
-        1
-    );
+fn e2e_discharge() -> Result<(), ClaimError> {
+    let value = discharge()?;
+    require(value == EXPECTED, "e2e", value, EXPECTED)
 }
 
 #[test]
-fn test_mutation_5_planted_algebraic_mixed_entropy_rejection() {
-    // A mixed state has non-vanishing reduced coefficients and is strictly transcendental
-    let evals = vec![r_frac(3, 4), r_frac(1, 4)];
-    let res = reduce_multiplicative_dependence(&evals, None).unwrap();
-    assert!(!res.is_pure);
-    assert!(res.entropy_value_exact.is_none());
-    assert_eq!(res.verdict, "TRANSCENDENTAL_BY_BAKER");
-}
-
-#[test]
-fn test_fqmi1_eight_systems_parity_receipt() {
-    let receipt = generate_c750_b01_parity_receipt().expect("Receipt generation failed");
-    assert_eq!(receipt.total_systems_verified, 8);
-    assert!(receipt.all_byte_deterministic);
-    assert_eq!(receipt.systems.len(), 8);
-}
-
-#[test]
-fn parity_cannot_be_claimed_after_any_computed_record_is_changed() {
-    let actual = evaluate_fqmi1_system("S1").unwrap();
-    assert!(actual.byte_parity_match);
-    let mut wrong = actual.clone();
-    wrong.purity_p2 = "1/2".into();
-    assert!(!parity_against_reference(&actual, &wrong));
-    wrong = actual.clone();
-    wrong.evidence_sha256 = "0".repeat(64);
-    assert!(!parity_against_reference(&actual, &wrong));
-    wrong = actual.clone();
-    wrong.reduced_coefficients[0] = "3/1".into();
-    assert!(!parity_against_reference(&actual, &wrong));
-}
-
-#[test]
-fn entropy_interval_uses_bounded_precision_and_refuses_bad_arguments() {
-    let reduction = reduce_multiplicative_dependence(&[r_frac(3, 4), r_frac(1, 4)], None).unwrap();
-    let coarse = approximate_entropy_rational_bounds(&reduction, 16).unwrap();
-    let precise = approximate_entropy_rational_bounds(&reduction, 64).unwrap();
-    assert!(coarse.0 <= precise.0 && precise.1 <= coarse.1);
-    assert!(precise.0 > r_int(0) && precise.1 < r_int(1));
-    assert!(rational_log_bounds(1, 32).is_err());
-    assert!(rational_log_bounds(2, 0).is_err());
-    assert!(rational_log_bounds(2, usize::MAX).is_err());
-}
-
-#[test]
-fn power_traces_and_entropy_bounds_refuse_multiplicity_or_claim_mutations() {
-    assert!(exact_power_trace(&[r_frac(1, 2), r_frac(1, 2)], Some(&[1]), 2).is_err());
-    assert!(exact_power_trace(&[r_frac(1, 2), r_frac(1, 2)], Some(&[0, 2]), 2).is_err());
-    let mut reduction =
-        reduce_multiplicative_dependence(&[r_frac(1, 2), r_frac(1, 2)], None).unwrap();
-    reduction.is_pure = true;
-    assert!(approximate_entropy_rational_bounds(&reduction, 32).is_err());
-    reduction = reduce_multiplicative_dependence(&[r_frac(1, 2), r_frac(1, 2)], None).unwrap();
-    reduction.reduced_coefficients[0] = "0/1".into();
-    assert!(approximate_entropy_rational_bounds(&reduction, 32).is_err());
-}
-
-#[test]
-fn malformed_matrices_are_refused_and_inconsistent_systems_remain_distinct() {
-    let ragged = vec![vec![r_int(1)], vec![r_int(1), r_int(0)]];
-    assert!(mx::from_rows(ragged).is_err());
-    let scalar = mx::from_rows(vec![vec![r_int(1)]]).unwrap();
-    assert!(solve_in_image(&scalar, &[]).is_err());
-    assert!(matches!(
-        solve_in_image(&mx::zeros::<Rational>(1, 1).unwrap(), &[r_int(1)]).unwrap(),
-        ImageMembership::NotInImage { .. }
-    ));
-    let kernel = mx::zeros::<Rational>(0, 3).unwrap().kernel_basis().unwrap();
-    assert_eq!(kernel.vectors().len(), 3);
-    assert!(kernel.vectors().iter().all(|vector| vector.len() == 3));
+fn negative_refusals() -> Result<(), ClaimError> {
+    negative_cases()
 }

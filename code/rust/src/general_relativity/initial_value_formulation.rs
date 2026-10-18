@@ -1,15 +1,3 @@
-//! 3+1 (ADM) Simplicial Cauchy Dynamics and Initial-Value Formulation (MTW §42.11, Sorkin 1975, Hamber §6.5).
-//!
-//! Decomposes spacetime into spatial Cauchy hypersurfaces $\Sigma_t$ evolved
-//! across discrete time intervals $\Delta t$:
-//! - Spatial 3D triangulation $\Sigma_t$ with spatial edge lengths $\ell_a(t)$.
-//! - 4D prismatoid slab $\Sigma_t \times [t, t+\Delta t]$ triangulated into 4-simplices.
-//! - Time-struts connecting vertex $v \in \Sigma_t$ to $v' \in \Sigma_{t+\Delta t}$ with
-//!   squared lengths $s_{\text{strut}}(v) = (N_v \Delta t)^2$, where $N_v$ is the lapse.
-//! - Conjugate momentum $\pi_a$ to spatial squared edge length $s_a = \ell_a^2$:
-//!   $$\pi_a = \frac{\partial S_{\text{slab}}}{\partial s_a(t+\Delta t)}$$
-//!
-//! AuthorityEffect: None.
 
 use crate::cayley_menger::simplex_volume_cayley_menger;
 use crate::regge_calculus::{EdgeLengthMetric, ReggeError};
@@ -19,16 +7,11 @@ use std::collections::{BTreeMap, BTreeSet};
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; 3+1 ADM simplicial dynamics.";
 
-/// Spatial Cauchy hypersurface $\Sigma_t$ at fixed discrete time t.
 #[derive(Debug, Clone, PartialEq)]
 pub struct SpatialSlice3D {
-    /// Spatial tetrahedra: [v0, v1, v2, v3].
     pub tetrahedra: Vec<[usize; 4]>,
-    /// Unique spatial edges: (u, v) with u < v.
     pub edges: Vec<(usize, usize)>,
-    /// Metric lengths for all spatial edges.
     pub metric: EdgeLengthMetric,
-    /// Time label / index.
     pub time_index: usize,
 }
 
@@ -49,7 +32,6 @@ impl SpatialSlice3D {
             }
         }
 
-        // Verify every spatial edge has a valid length
         for &(u, v) in &edge_set {
             let _ = metric.get(u, v)?;
         }
@@ -62,7 +44,6 @@ impl SpatialSlice3D {
         })
     }
 
-    /// Single regular tetrahedron spatial slice for testing and benchmark models.
     pub fn single_tetrahedron(side_len: f64) -> Result<Self, ReggeError> {
         let mut metric = EdgeLengthMetric::new();
         let tet = [0, 1, 2, 3];
@@ -74,7 +55,6 @@ impl SpatialSlice3D {
         Self::try_new(vec![tet], metric, 0)
     }
 
-    /// Compute total spatial 3-volume: ∑_τ V_3(τ).
     pub fn total_volume(&self) -> Result<f64, ReggeError> {
         let mut sum = 0.0;
         let get_len = |u: usize, v: usize| self.metric.get(u, v).ok();
@@ -87,14 +67,11 @@ impl SpatialSlice3D {
     }
 }
 
-/// A 4D sandwich slab connecting slice $\Sigma_t$ to $\Sigma_{t+\Delta t}$.
 #[derive(Debug, Clone, PartialEq)]
 pub struct SimplicialSlab4D {
     pub slice_t0: SpatialSlice3D,
     pub slice_t1: SpatialSlice3D,
-    /// Lapse function N_v at each vertex v.
     pub lapse: BTreeMap<usize, f64>,
-    /// Time increment Δt.
     pub delta_t: f64,
 }
 
@@ -116,8 +93,6 @@ impl SimplicialSlab4D {
         })
     }
 
-    /// Strut edge length connecting vertex v at time t0 to corresponding vertex v' at time t1:
-    /// ℓ_strut(v) = N_v * Δt.
     pub fn strut_length(&self, v: usize) -> Result<f64, ReggeError> {
         let n = self.lapse.get(&v).copied().unwrap_or(1.0);
         if n <= 0.0 || !n.is_finite() {
@@ -126,9 +101,6 @@ impl SimplicialSlab4D {
         Ok(n * self.delta_t)
     }
 
-    /// Discrete conjugate momentum π_a conjugate to squared edge length s_a = ℓ_a²:
-    /// In a discrete time step, π_a ≈ (s_a(t1) - s_a(t0)) / (2 * N_a * Δt),
-    /// corresponding to the extrinsic curvature K_a on edge a.
     pub fn canonical_momenta(&self) -> Result<BTreeMap<(usize, usize), f64>, ReggeError> {
         let mut momenta = BTreeMap::new();
         for &(u, v) in &self.slice_t0.edges {
@@ -142,7 +114,6 @@ impl SimplicialSlab4D {
             let n_v = self.lapse.get(&v).copied().unwrap_or(1.0);
             let n_avg = 0.5 * (n_u + n_v);
 
-            // Momentum: rate of change of metric divided by lapse
             let pi = (s1 - s0) / (2.0 * n_avg * self.delta_t);
             momenta.insert((u, v), pi);
         }
@@ -150,7 +121,6 @@ impl SimplicialSlab4D {
     }
 }
 
-/// Results of a 3+1 Cauchy evolution step.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct CauchyStepSummary {
     pub time_index: usize,
@@ -184,7 +154,6 @@ mod tests {
         let momenta = slab.canonical_momenta().unwrap();
         assert_eq!(momenta.len(), 6);
 
-        // s0 = 1.0, s1 = 1.21, ds = 0.21. pi = 0.21 / (2 * 1.0 * 0.1) = 1.05.
         for &pi in momenta.values() {
             assert!((pi - 1.05).abs() < 1e-6);
         }

@@ -17,7 +17,6 @@ import json
 from pathlib import Path
 
 
-# Entry (a, b) denotes a + i*sqrt(3)*b. All arithmetic is exact.
 Pair = tuple[Q, Q]
 Monomial = tuple[int, ...]
 Polynomial = dict[Monomial, Q]

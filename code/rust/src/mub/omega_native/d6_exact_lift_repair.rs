@@ -1,31 +1,3 @@
-//! Exact first-order lift/repair for the MUB(6) tangent-obstruction complex, over the
-//! native field `Q(zeta_24)`.
-//!
-//! Increment 4 of the real deformation algebra: the actual repair experiment. Given a
-//! candidate fourth vector `v` with curvature residual `omega(v)`, we try to **kill the
-//! residual with a first-order deformation** — solve the exact linear system
-//!
-//! ```text
-//!     J . delta_v = -omega(v),     J = d0 (the linearized-MU Jacobian).
-//! ```
-//!
-//! because `omega(v + delta_v) = omega(v) + J . delta_v + O(|delta_v|^2)`. A solution
-//! `delta_v` (a "lift") exists **iff** `omega(v) in im(d0)`, i.e. iff its class in the
-//! obstruction quotient `C^1 / im(d0)` vanishes. This is the linear-carrier analogue of
-//! the `omega_lifts` lift gate (the graph `lift_gate` does not apply to a Jacobian
-//! carrier, but the question — does the obstruction descend? — is the same), with a
-//! `LiftRepair` verdict mirroring `Accepted` / `Refused`.
-//!
-//! Two exact facts the verdict rests on:
-//! * `im(d0) subset ker(d1)` (the Bianchi identity), so any curvature target violating the
-//!   linearized Bianchi closure is **refused** outright — a provable obstruction.
-//! * when accepted, the returned `delta_v` is verified to satisfy `J . delta_v = -omega`
-//!   exactly in `Cyc24` — the repair genuinely cancels the residual to first order.
-//!
-//! reducibility at a non-critical point is expected and does not produce a fourth vector;
-//! the global obstruction is the Invariant-Systems wall (no first-order descent at the
-//! critical maximizer). The second-order Kuranishi obstruction and the global/invariance
-//! argument are subsequent increments.
 
 use crate::omega_native::exact::d6_exact_curvature_cochain::{curvature_c2, ExactVec};
 use crate::omega_native::exact::d6_exact_tangent_obstruction::curvature_jacobian;
@@ -77,9 +49,6 @@ impl std::fmt::Display for SolveError {
 
 impl std::error::Error for SolveError {}
 
-/// Solve `A x = b` exactly over `Q(zeta_24)`. Validates matrix shape and RHS length before elimination.
-/// Returns `Ok(Some(x))` (verified exact solution `A x = b`), `Ok(None)` if the system is inconsistent,
-/// or `Err(SolveError)` if matrix/RHS dimensions are invalid or replay fails.
 pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, SolveError> {
     let nrows = a.len();
     let rhs_len = b.len();
@@ -107,7 +76,6 @@ pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, 
         }
     }
 
-    // Augmented matrix [A | b].
     let mut m: Vec<Vec<Cyc24>> = a
         .iter()
         .zip(b.iter())
@@ -118,7 +86,6 @@ pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, 
         })
         .collect();
 
-    // Reduced row echelon form over the field; record pivot columns.
     let mut pivot_cols: Vec<usize> = Vec::new();
     let mut pr = 0usize;
     for col in 0..ncols {
@@ -146,7 +113,6 @@ pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, 
         }
     }
 
-    // Consistency: a row with zero A-part but nonzero b-part is `0 = nonzero`.
     for row in &m {
         let a_zero = row[..ncols].iter().all(|z| z.is_zero());
         if a_zero && !row[ncols].is_zero() {
@@ -154,13 +120,11 @@ pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, 
         }
     }
 
-    // Particular solution: free variables = 0; pivot variable = its row's RHS.
     let mut x = vec![Cyc24::zero(); ncols];
     for (i, &col) in pivot_cols.iter().enumerate() {
         x[col] = m[i][ncols].clone();
     }
 
-    // Replay A x = b in exact arithmetic
     for (i, row) in a.iter().enumerate() {
         let mut ax_i = Cyc24::zero();
         for (j, a_ij) in row.iter().enumerate() {
@@ -174,16 +138,11 @@ pub fn solve_exact(a: &[Vec<Cyc24>], b: &[Cyc24]) -> Result<Option<Vec<Cyc24>>, 
     Ok(Some(x))
 }
 
-/// The verdict of the first-order lift/repair attempt at a candidate vector.
 pub struct LiftRepair {
-    /// `true` iff a first-order deformation cancels the curvature residual
-    /// (`omega in im(d0)`).
     pub accepted: bool,
-    /// The repair deformation `delta_v in R^12` (verified `J . delta_v = -omega`), if any.
     pub repair: Option<Vec<Cyc24>>,
 }
 
-/// Attempt to repair the curvature residual at `v` by a first-order deformation.
 pub fn lift_repair(columns: &[ExactVec], v: &ExactVec) -> LiftRepair {
     let j = curvature_jacobian(columns, v);
     let neg_omega: Vec<Cyc24> = curvature_c2(columns, v).iter().map(|w| w.neg()).collect();
@@ -212,7 +171,7 @@ mod tests {
     }
 
     fn generic_unit() -> ExactVec {
-        let s = Cyc24::zeta24(3).add(&Cyc24::zeta24(-3)).mul(&rat(1, 2)); // 1/sqrt2
+        let s = Cyc24::zeta24(3).add(&Cyc24::zeta24(-3)).mul(&rat(1, 2));
         let mut v: ExactVec = std::array::from_fn(|_| Cyc24::zero());
         v[0] = s.clone();
         v[1] = Cyc24::zeta24(6).mul(&s);
@@ -221,7 +180,6 @@ mod tests {
 
     #[test]
     fn image_target_is_solved_exactly() {
-        // b = J . dv0 is in im(J); the solver must return some x with J x = b exactly.
         let cols = canonical_triple_exact();
         let v = generic_unit();
         let j = curvature_jacobian(&cols, &v);
@@ -241,8 +199,6 @@ mod tests {
 
     #[test]
     fn bianchi_violating_target_is_refused() {
-        // A target supported on a single B1 constraint violates the linearized Bianchi
-        // closure (B1 sum = 1, B2/B3 sums = 0), so it is NOT in im(d0) = subset of ker(d1).
         let cols = canonical_triple_exact();
         let j = curvature_jacobian(&cols, &generic_unit());
         let mut b = vec![Cyc24::zero(); COLUMN_COUNT];

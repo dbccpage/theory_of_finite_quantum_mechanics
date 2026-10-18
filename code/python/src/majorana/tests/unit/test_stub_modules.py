@@ -44,9 +44,7 @@ def test_constants():
     sig2 = constants.POMUOrdinalSignature(2, 0.5)
     sig3 = constants.POMUOrdinalSignature(1, 0.4)
 
-    # sig3 has lower value => sig3 < sig1
     assert sig3 < sig1
-    # sig2 has larger step at same value => sig2 < sig1 (descent)
     assert sig2 < sig1
 
 

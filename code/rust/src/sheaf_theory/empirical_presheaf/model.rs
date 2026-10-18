@@ -1,4 +1,3 @@
-//! Measurement scenarios and the empirical models on their covers.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -14,23 +13,16 @@ use super::lp::{
 use super::presheaf::AssignmentPresheaf;
 use super::{mask, positions, EmpiricalError, MAX_GLOBAL_ASSIGNMENTS, Q};
 
-/// Kernel label prefix of the support presheaf over the maximal-context
-/// cover; [`Scenario::kernel_label`] completes it with the cover and the
-/// arities of the scenario under evaluation.
 pub const KERNEL_SUPPORT_PRESHEAF: &str = "support presheaf over the maximal-context cover";
 
-/// A measurement scenario: outcome arities and a cover by maximal contexts.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Scenario {
     pub(super) arities: Vec<usize>,
     pub(super) contexts: Vec<Vec<usize>>,
 }
 
-/// Čech 0-cochain: one vector over the joint outcomes of every maximal context.
 pub type Cochain0 = Vec<Vec<Q>>;
-/// Čech 1-cochain: one vector over the joint outcomes of every nonempty pairwise overlap.
 pub type Cochain1 = BTreeMap<(usize, usize), Vec<Q>>;
-/// Čech 2-cochain: one vector over the joint outcomes of every nonempty triple overlap.
 pub type Cochain2 = BTreeMap<(usize, usize, usize), Vec<Q>>;
 
 impl Scenario {
@@ -65,7 +57,6 @@ impl Scenario {
         Ok(Self { arities, contexts })
     }
 
-    /// Binary measurements only.
     pub fn binary(measurements: usize, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {
         Self::new(vec![2; measurements], contexts)
     }
@@ -102,11 +93,6 @@ impl Scenario {
         (0..self.arities.len()).collect()
     }
 
-    /// Number of joint outcomes on a position list, folded with checked
-    /// multiplication against [`MAX_GLOBAL_ASSIGNMENTS`]. The ceiling is
-    /// enforced inside the fold, so the product can neither wrap nor be
-    /// compared after the fact: an oversized carrier is refused here, before
-    /// any caller allocates or enumerates it.
     pub fn section_count(&self, positions: &[usize]) -> Result<usize, EmpiricalError> {
         positions.iter().try_fold(1usize, |acc, &p| {
             let arity = *self.arities.get(p).ok_or(EmpiricalError::Shape)?;
@@ -118,10 +104,6 @@ impl Scenario {
         })
     }
 
-    /// Subset walks on `positions` run only when the product of `(1 + arity_i)`
-    /// fits in [`MAX_GLOBAL_ASSIGNMENTS`]. The product uses `checked_mul` and
-    /// is not `1 << width`, so a wide binary window is refused before the
-    /// power set is built.
     fn subset_window_fits(&self, positions: &[usize]) -> Result<(), EmpiricalError> {
         positions.iter().try_fold(
             1usize,
@@ -140,9 +122,6 @@ impl Scenario {
         Ok(())
     }
 
-    /// The kernel label an observer declares to evaluate a model on this
-    /// scenario: the support presheaf over this cover with these arities. A
-    /// bare phrase names no carrier, so the label spells the cover out.
     pub fn kernel_label(&self) -> String {
         let cover = self
             .contexts
@@ -162,7 +141,6 @@ impl Scenario {
         format!("{KERNEL_SUPPORT_PRESHEAF} {cover} with arities {arities}")
     }
 
-    /// Mixed-radix index of a joint outcome, first position most significant.
     pub fn index_of(&self, positions: &[usize], assignment: &[usize]) -> usize {
         positions
             .iter()
@@ -170,7 +148,6 @@ impl Scenario {
             .fold(0, |acc, (&p, &a)| acc * self.arities[p] + a)
     }
 
-    /// Inverse of [`Scenario::index_of`].
     pub fn assignment_of(&self, positions: &[usize], index: usize) -> Vec<usize> {
         let mut rest = index;
         let mut out = vec![0; positions.len()];
@@ -181,8 +158,6 @@ impl Scenario {
         out
     }
 
-    /// Restrict a joint outcome on `positions` to the sub-list `sub`; `None`
-    /// when `sub` is not contained in `positions` or the outcome is short.
     pub fn restrict(
         positions: &[usize],
         assignment: &[usize],
@@ -206,7 +181,6 @@ impl Scenario {
         Self::restrict(positions, assignment, sub).ok_or(EmpiricalError::Shape)
     }
 
-    /// The restriction map of the distribution presheaf: marginalisation.
     pub fn marginalize(
         &self,
         positions: &[usize],
@@ -229,7 +203,6 @@ impl Scenario {
         positions(self.context_mask(i) & self.context_mask(j))
     }
 
-    /// Pairs of the nerve: distinct contexts with nonempty overlap.
     pub fn nerve_pairs(&self) -> Vec<(usize, usize)> {
         let n = self.contexts.len();
         (0..n)
@@ -238,7 +211,6 @@ impl Scenario {
             .collect()
     }
 
-    /// Triples of the nerve: distinct contexts with nonempty triple overlap.
     pub fn nerve_triples(&self) -> Vec<(usize, usize, usize)> {
         let n = self.contexts.len();
         let mut out = Vec::new();
@@ -254,9 +226,6 @@ impl Scenario {
         out
     }
 
-    /// A 0-cochain declares one vector per context, each of that context's
-    /// section count. The whole declaration is checked before any incidence
-    /// is read, so a context that meets no other context is still checked.
     fn check0(&self, cochain: &Cochain0) -> Result<(), EmpiricalError> {
         if cochain.len() != self.contexts.len() {
             return Err(EmpiricalError::Shape);
@@ -269,9 +238,6 @@ impl Scenario {
         Ok(())
     }
 
-    /// A 1-cochain declares exactly the nerve pairs, each with the section
-    /// count of its overlap: no pair missing and none extraneous, whether or
-    /// not the pair lies in a triple.
     fn check1(&self, cochain: &Cochain1) -> Result<(), EmpiricalError> {
         let pairs = self.nerve_pairs();
         if cochain.len() != pairs.len() {
@@ -286,7 +252,6 @@ impl Scenario {
         Ok(())
     }
 
-    /// The zero 0-cochain, one zero vector per context.
     fn zero_cochain0(&self) -> Result<Cochain0, EmpiricalError> {
         self.contexts
             .iter()
@@ -294,7 +259,6 @@ impl Scenario {
             .collect()
     }
 
-    /// `delta0(alpha)_{ij} = alpha_j|_{ij} - alpha_i|_{ij}` on the nerve pairs.
     pub fn delta0(&self, cochain: &Cochain0) -> Result<Cochain1, EmpiricalError> {
         self.check0(cochain)?;
         let mut out = Cochain1::new();
@@ -308,7 +272,6 @@ impl Scenario {
         Ok(out)
     }
 
-    /// `delta1(beta)_{ijk} = beta_{jk} - beta_{ik} + beta_{ij}` restricted to the triple overlap.
     pub fn delta1(&self, cochain: &Cochain1) -> Result<Cochain2, EmpiricalError> {
         self.check1(cochain)?;
         let mut out = Cochain2::new();
@@ -326,7 +289,6 @@ impl Scenario {
         Ok(out)
     }
 
-    /// Flatten a 1-cochain in nerve-pair order.
     pub fn flatten1(&self, cochain: &Cochain1) -> Result<Vec<Q>, EmpiricalError> {
         self.check1(cochain)?;
         let mut out = Vec::new();
@@ -337,7 +299,6 @@ impl Scenario {
         Ok(out)
     }
 
-    /// Columns spanning the image of `delta0`, in flattened 1-cochain coordinates.
     pub fn delta0_generators(&self) -> Result<Vec<Vec<Q>>, EmpiricalError> {
         let mut columns = Vec::new();
         for (i, context) in self.contexts.iter().enumerate() {
@@ -350,8 +311,6 @@ impl Scenario {
         Ok(columns)
     }
 
-    /// Matrix of `delta0` in flattened coordinates: one row per 1-cochain
-    /// coordinate, one column per 0-cochain coordinate.
     pub fn delta0_matrix(&self) -> Result<Vec<Vec<Q>>, EmpiricalError> {
         let columns = self.delta0_generators()?;
         let height = columns.first().map_or(0, Vec::len);
@@ -360,9 +319,6 @@ impl Scenario {
             .collect())
     }
 
-    /// Graham–Yu–Özsoyoglu reduction. `Some(order)` lists `(context, parent)`
-    /// in running-intersection order: each context meets the union of the
-    /// earlier ones inside its parent. `None` means the cover is cyclic.
     pub fn join_tree(&self) -> Option<Vec<(usize, Option<usize>)>> {
         let n = self.contexts.len();
         let mut sets: Vec<u64> = (0..n).map(|i| self.context_mask(i)).collect();
@@ -411,7 +367,6 @@ impl Scenario {
     }
 }
 
-/// First pair of contexts whose marginals disagree on their overlap.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SignallingWitness {
     pub left: usize,
@@ -421,27 +376,18 @@ pub struct SignallingWitness {
     pub right_marginal: Vec<Q>,
 }
 
-/// An empirical model: one exact distribution per maximal context.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EmpiricalModel {
     scenario: Scenario,
     distributions: Vec<Vec<Q>>,
 }
 
-/// The noncontextual-fraction LP receipt with its Bell-functional dual.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct NoncontextualFractionReceipt {
     pub noncontextual_fraction: Q,
     pub contextual_fraction: Q,
-    /// Sub-probability weights over global assignments, in index order.
     pub noncontextual_part: Vec<Q>,
-    /// Nonnegative functional over (context, local outcome) coordinates with
-    /// `A^T beta >= 1` on every global assignment and `e . beta` the fraction.
     pub bell_functional: Vec<Q>,
-    /// The standard-form solution. Replay rebuilds the LP, verifies
-    /// `primal`, `dual` and `value` as its certificate and binds them to the
-    /// part, the functional and the fraction. `lp.pivots` is the solver's
-    /// pivot trace: it is carried for reproduction and is not bound by replay.
     pub lp: StandardLpSolution,
 }
 
@@ -472,7 +418,6 @@ impl EmpiricalModel {
         &self.distributions
     }
 
-    /// Marginal of context `context` on the sorted sub-list `sub`.
     pub fn marginal(&self, context: usize, sub: &[usize]) -> Result<Vec<Q>, EmpiricalError> {
         let positions = self
             .scenario
@@ -483,7 +428,6 @@ impl EmpiricalModel {
             .marginalize(positions, &self.distributions[context], sub)
     }
 
-    /// Identity and composition of marginalisation on every chain `E ⊆ D ⊆ C`.
     pub fn restriction_is_functorial(&self) -> Result<bool, EmpiricalError> {
         for (c, context) in self.scenario.contexts.iter().enumerate() {
             self.scenario.subset_window_fits(context)?;
@@ -514,7 +458,6 @@ impl EmpiricalModel {
         Ok(true)
     }
 
-    /// `None` exactly when `delta0(e) = 0`: the model is a presheaf.
     pub fn signalling_witness(&self) -> Result<Option<SignallingWitness>, EmpiricalError> {
         for (left, right) in self.scenario.nerve_pairs() {
             let overlap = self.scenario.overlap(left, right);
@@ -537,12 +480,10 @@ impl EmpiricalModel {
         Ok(self.signalling_witness()?.is_none())
     }
 
-    /// The model as a Čech 0-cochain.
     pub fn cochain(&self) -> Cochain0 {
         self.distributions.clone()
     }
 
-    /// Indices of the supported joint outcomes of a context.
     pub fn support(&self, context: usize) -> Result<Vec<usize>, EmpiricalError> {
         Ok(self
             .distributions
@@ -555,14 +496,10 @@ impl EmpiricalModel {
             .collect())
     }
 
-    /// The global assignment count under the declared ceiling; the checked
-    /// fold of [`Scenario::section_count`] is the whole of the check.
     fn global_limit(&self) -> Result<usize, EmpiricalError> {
         self.scenario.section_count(&self.scenario.all_positions())
     }
 
-    /// Global assignments whose restriction to every context is supported:
-    /// the global sections of the support presheaf.
     pub fn global_support(&self) -> Result<Vec<usize>, EmpiricalError> {
         let total = self.global_limit()?;
         let all = self.scenario.all_positions();
@@ -584,13 +521,10 @@ impl EmpiricalModel {
         Ok(globals)
     }
 
-    /// Strong contextuality: no global section of the support presheaf.
     pub fn is_strongly_contextual(&self) -> Result<bool, EmpiricalError> {
         Ok(self.global_support()?.is_empty())
     }
 
-    /// A supported local outcome with no global extension in the support,
-    /// as `(context, local index)`; logical contextuality is its existence.
     pub fn logical_contextuality_witness(&self) -> Result<Option<(usize, usize)>, EmpiricalError> {
         let globals = self.global_support()?;
         let all = self.scenario.all_positions();
@@ -613,8 +547,6 @@ impl EmpiricalModel {
         Ok(None)
     }
 
-    /// Incidence matrix `A` (one row per (context, local outcome), one column
-    /// per global assignment) and the flattened model vector `e`.
     pub fn incidence(&self) -> Result<(Vec<Vec<Q>>, Vec<Q>), EmpiricalError> {
         let total = self.global_limit()?;
         let mut height = 0usize;
@@ -653,10 +585,6 @@ impl EmpiricalModel {
             .collect()
     }
 
-    /// Variables `(p, s)`, rows `A p + s = e`, cost `-sum p`: the
-    /// noncontextual-fraction LP in standard form, built the same way by the
-    /// solver and by the replay so a receipt's `lp` subrecord is verified
-    /// against the LP it claims to solve.
     fn standard_form_ncf(rows: &[Vec<Q>], e: &[Q]) -> Result<StandardLp, EmpiricalError> {
         let (m, n) = (rows.len(), rows.first().map_or(0, Vec::len));
         let width = n.checked_add(m).ok_or_else(too_large)?;
@@ -676,8 +604,6 @@ impl EmpiricalModel {
         Ok(StandardLp::new(costs, matrix, e.to_vec())?)
     }
 
-    /// Noncontextual fraction: `max sum(p)` with `A p <= e`, `p >= 0`, and its
-    /// Bell-functional dual, certified by independent replay.
     pub fn noncontextual_fraction(
         &self,
         pivots: usize,
@@ -703,10 +629,6 @@ impl EmpiricalModel {
         }
     }
 
-    /// Replay of a noncontextual-fraction receipt against this model. The LP
-    /// is rebuilt from the model and the embedded `lp` subrecord is verified
-    /// as its certificate and bound to the part, the functional and the
-    /// fraction, so a corrupted subrecord is refused, not carried along.
     pub fn verify_noncontextual_fraction(&self, receipt: &NoncontextualFractionReceipt) -> bool {
         let Ok((rows, e)) = self.incidence() else {
             return false;
@@ -751,14 +673,11 @@ impl EmpiricalModel {
         part_ok && functional_ok && fraction_ok
     }
 
-    /// `min_{p in simplex} ||A p - e||_1`: the L1 distance of the model from
-    /// the noncontextual polytope, with its dual witness.
     pub fn l1_defect(&self, pivots: usize) -> Result<L1DefectReceipt, EmpiricalError> {
         let (rows, e) = self.incidence()?;
         l1_distance_to_convex_hull(&Self::columns(&rows), &e, pivots)
     }
 
-    /// Replay of an L1-defect receipt against this model.
     pub fn verify_l1_defect(&self, receipt: &L1DefectReceipt) -> bool {
         match self.incidence() {
             Ok((rows, e)) => verify_l1_defect_receipt(&Self::columns(&rows), &e, receipt),
@@ -766,10 +685,6 @@ impl EmpiricalModel {
         }
     }
 
-    /// A signed measure on global assignments with the model's marginals, or
-    /// `None` when the linear system is infeasible. Abramsky–Brandenburger
-    /// (2011) show one exists for every no-signalling model, which is why the
-    /// linear Čech obstruction does not detect probabilistic contextuality.
     pub fn signed_global_section(&self, pivots: usize) -> Result<Option<Vec<Q>>, EmpiricalError> {
         let (rows, e) = self.incidence()?;
         let n = rows.first().map_or(0, Vec::len);
@@ -796,10 +711,6 @@ impl EmpiricalModel {
         }
     }
 
-    /// Quotient evaluator on the Čech side: `Phi_1([omega]) = min_alpha
-    /// ||omega - delta0 alpha||_1`, with `phi*` in `ker(delta0^T)` and
-    /// `||phi*||_inf <= 1` at zero duality gap. The LP is proposed by
-    /// `omega_solvers` and the certificate replayed by `omega_functional`.
     pub fn cech_quotient_defect(
         &self,
         omega: &Cochain1,
@@ -813,8 +724,6 @@ impl EmpiricalModel {
             .map_err(|error| EmpiricalError::CertifiedPhi1(error.to_string()))
     }
 
-    /// Vorob'ev gluing on a GYO-acyclic cover: the product formula along the
-    /// join tree yields a global distribution with the model's marginals.
     pub fn acyclic_global_section(&self) -> Result<Vec<Q>, EmpiricalError> {
         if !self.is_no_signalling()? {
             return Err(EmpiricalError::Signalling);
@@ -870,10 +779,6 @@ impl EmpiricalModel {
         Ok(global)
     }
 
-    /// The locally admissible assignment presheaf: on a set `W` of
-    /// measurements, the assignments whose restriction to every maximal
-    /// context inside `W` is supported. Keys are the down-closure of the
-    /// cover, `extra`, the carrier, the empty set, and all intersections.
     pub fn admissible_presheaf(&self, extra: &[u64]) -> Result<AssignmentPresheaf, EmpiricalError> {
         let mut keys: BTreeSet<u64> = extra.iter().copied().collect();
         for (i, context) in self.scenario.contexts.iter().enumerate() {

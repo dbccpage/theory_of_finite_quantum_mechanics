@@ -56,7 +56,6 @@ from .target_q4_degree8_sdp import (
     ldlt_pivots_strictly_positive,
 )
 
-# Constants & Epistemic Firewall
 SCHEMA_VERSION: str = "omega.mub.target-q-degree8-and-gns.v1"
 FIREWALL_LINE: str = "stated region only; mints no authority"
 AUTHORITY_EFFECT: str = "None"
@@ -70,14 +69,10 @@ STATUS_GNS_CONSTRUCTED: str = "CERTIFIED_GNS_CONSTRUCTION"
 STATUS_INDEFINITE_FORM_DIAGNOSTIC: str = "STATUS_INDEFINITE_FORM_DIAGNOSTIC"
 STATUS_CYCLOTOMIC_VERIFIED: str = "CERTIFIED_CYCLOTOMIC_INNER_PRODUCT"
 
-# Exact target traces
 DEG8_X0_EXACT_TRACE: Fraction = Fraction(-9071, 10800)
 DEG8_S6_EXACT_TRACE: Fraction = Fraction(-5046587, 129600)
 
 
-# ==============================================================================
-# 0. Zero Float Auditor & Exact Rational Typing
-# ==============================================================================
 
 def _require_exact(value: Any) -> Fraction:
     """Ensure value is an exact integer or Fraction, returning Fraction."""
@@ -136,9 +131,6 @@ def assert_no_float(obj: Any, path: str = "$", seen: Optional[Set[int]] = None) 
                 assert_no_float(getattr(obj, slot), f"{path}.{slot}", seen)
 
 
-# ==============================================================================
-# 1. Vector T06_03: Confluent Term Rewriting System (TRS)
-# ==============================================================================
 
 @dataclass(frozen=True)
 class ProjectorSymbol:
@@ -217,11 +209,9 @@ def reduce_projector_word_step(
         s2 = syms[k + 1]
         if s1.basis == s2.basis:
             if s1.outcome == s2.outcome:
-                # Idempotency reduction: collapse adjacent identical projector
                 new_syms = syms[:k] + (s1,) + syms[k + 2:]
                 return ProjectorWord(new_syms), True
             else:
-                # Orthogonality reduction: distinct outcomes in same basis vanish
                 return None, True
 
     return word, False
@@ -365,9 +355,6 @@ def verify_confluent_rewriting_system() -> ConfluentRewritingReceipt:
     return receipt
 
 
-# ==============================================================================
-# 2. Vector T08_05: Projector Idempotency & Spectral Containment Identity
-# ==============================================================================
 
 @dataclass(frozen=True)
 class IdempotencySpectralBoundReceipt:
@@ -412,12 +399,10 @@ def verify_idempotency_spectral_bound(
     w_p = ProjectorWord((sym,))
     w_p2 = ProjectorWord((sym, sym))
 
-    # 1. Target operator: 1 - Pi
     target = NonCommutativeProjectorPolynomial()
     target.set(w_id, Fraction(1))
     target.set(w_p, Fraction(-1))
 
-    # 2. SOS square: (1 - Pi)^2 = 1 - 2*Pi + Pi^2
     sos_weight = Fraction(1)
     if perturb_sos_coeff is not None:
         sos_weight += _require_exact(perturb_sos_coeff)
@@ -427,16 +412,13 @@ def verify_idempotency_spectral_bound(
     sos_square.set(w_p, Fraction(-2) * sos_weight)
     sos_square.set(w_p2, Fraction(1) * sos_weight)
 
-    # 3. Ideal generator: Pi - Pi^2
     ideal_elem = NonCommutativeProjectorPolynomial()
     ideal_elem.set(w_p, Fraction(1))
     ideal_elem.set(w_p2, Fraction(-1))
 
-    # 4. Check identity: target - sos_square - ideal_elem == 0
     diff = target.sub(sos_square).sub(ideal_elem)
     sos_ok = diff.is_zero()
 
-    # 5. Check positive semidefiniteness Pi = Pi^2 + (Pi - Pi^2)
     p_target = NonCommutativeProjectorPolynomial()
     p_target.set(w_p, Fraction(1))
 
@@ -471,9 +453,6 @@ def verify_idempotency_spectral_bound(
     return receipt
 
 
-# ==============================================================================
-# 3. Vector T09_10: Non-Commutative GNS Pre-Hilbert Space Construction
-# ==============================================================================
 
 def nullspace_rational(matrix: Sequence[Sequence[Fraction]]) -> Tuple[List[List[Fraction]], int]:
     """Compute an exact rational basis for the nullspace (kernel) of a matrix over Fraction.
@@ -534,13 +513,11 @@ def find_negative_mode_or_certify_psd(
         If not PSD, returns (False, v) where v^T m v < 0 is an exact witness vector.
     """
     n = len(m)
-    # 1. Check diagonal entries
     for i in range(n):
         if m[i][i] < 0:
             v = [Fraction(1 if k == i else 0) for k in range(n)]
             return False, v
 
-    # 2. Check 0-diagonal entries with non-zero off-diagonals
     for i in range(n):
         if m[i][i] == 0:
             for j in range(n):
@@ -551,12 +528,10 @@ def find_negative_mode_or_certify_psd(
                     v[j] = Fraction(1)
                     return False, v
 
-    # 3. LDL^T decomposition
     L, D, is_psd = ldlt_decomposition_rational(m)
     if is_psd and all(d >= 0 for d in D):
         return True, None
 
-    # Find first negative pivot in D
     neg_idx = -1
     for k in range(n):
         if D[k] < 0:
@@ -564,8 +539,6 @@ def find_negative_mode_or_certify_psd(
             break
 
     if neg_idx >= 0:
-        # Solve L^T v = e_{neg_idx} by backward substitution
-        # L is unit lower triangular, so L^T is unit upper triangular with 1 on diagonal
         v = [Fraction(0) for _ in range(n)]
         v[neg_idx] = Fraction(1)
         for i in range(neg_idx - 1, -1, -1):
@@ -575,8 +548,6 @@ def find_negative_mode_or_certify_psd(
             v[i] = -s
         return False, v
 
-    # If is_psd was False without negative D[k]:
-    # Test alternating vector
     v_alt = [Fraction((-1) ** k) for k in range(n)]
     tot = Fraction(0)
     for i in range(n):
@@ -616,13 +587,11 @@ class GNSPreHilbertSpace:
         ]
         assert_no_float(self.moment_matrix, "GNSPreHilbertSpace.moment_matrix")
 
-        # Verify symmetry M_ij == M_ji
         for i in range(self.dim):
             for j in range(i + 1, self.dim):
                 if self.moment_matrix[i][j] != self.moment_matrix[j][i]:
                     raise ValueError(f"Moment matrix not symmetric at ({i}, {j})")
 
-        # Verify positive semidefiniteness (PSD)
         self.is_psd, self.negative_mode = find_negative_mode_or_certify_psd(self.moment_matrix)
         if not self.is_psd and not allow_indefinite:
             raise ValueError(
@@ -630,7 +599,6 @@ class GNSPreHilbertSpace:
                 "indefinite form detected."
             )
 
-        # Compute exact rational nullspace N = ker(M)
         self.null_basis, self.rank = nullspace_rational(self.moment_matrix)
         self.null_dim = len(self.null_basis)
         self.gns_dim = self.rank
@@ -724,7 +692,6 @@ def evaluate_gns_pre_hilbert_space(
     omega = gns.cyclic_state_vector()
     omega_norm_sq = gns.norm_squared(omega)
 
-    # Default canonical test states if none supplied
     if test_states is None:
         eval_states: List[Tuple[str, Sequence[Fraction]]] = [("Omega (cyclic)", omega)]
         for i in range(min(5, gns.dim)):
@@ -762,7 +729,6 @@ def evaluate_gns_pre_hilbert_space(
             )
         )
 
-    # Distinguish successful pre-Hilbert construction from indefinite form refutation
     if gns.is_psd and omega_norm_sq >= 0 and neg_norm_count == 0:
         status = STATUS_GNS_CONSTRUCTED
         pre_hilbert_constructed = True
@@ -792,9 +758,6 @@ def evaluate_gns_pre_hilbert_space(
 
 
 
-# ==============================================================================
-# 4. Vector T07_08: Degree-8 Decoupled X=0 Dual Witness Replay
-# ==============================================================================
 
 @dataclass(frozen=True)
 class Degree8WitnessReplayReceipt:
@@ -834,19 +797,16 @@ def replay_degree8_x0_witness(
     w_witness = build_invariant_dual_witness_x0(strict=True)
     w_mat = w_witness.to_matrix()
 
-    # Optional negative control perturbation
     if perturb_pivot_idx is not None:
         if not (0 <= perturb_pivot_idx < DEG8_INVARIANT_DIM):
             raise IndexError(f"perturb_pivot_idx {perturb_pivot_idx} out of range")
         w_mat = [list(r) for r in w_mat]
         w_mat[perturb_pivot_idx][perturb_pivot_idx] = Fraction(-1)
 
-    # 1. Exact rational LDL^T decomposition and strictly positive pivots
     pivots = ldlt_pivots_strictly_positive(w_mat)
     if len(pivots) != DEG8_INVARIANT_DIM:
         raise ValueError(f"Expected {DEG8_INVARIANT_DIM} pivots, got {len(pivots)}")
 
-    # 2. Exact trace inner product Tr(W_8 . M_8)
     trace = Fraction(0)
     for i in range(DEG8_INVARIANT_DIM):
         for j in range(DEG8_INVARIANT_DIM):
@@ -880,9 +840,6 @@ def replay_degree8_x0_witness(
     return receipt
 
 
-# ==============================================================================
-# 5. Vector T07_09: Degree-8 Synthetic Tao S6 Dual Witness Replay
-# ==============================================================================
 
 def replay_degree8_s6_witness(
     perturb_pivot_idx: Optional[int] = None,
@@ -904,19 +861,16 @@ def replay_degree8_s6_witness(
     w_witness = build_extended_dual_witness_s6(strict=True)
     w_mat = w_witness.to_matrix()
 
-    # Optional negative control perturbation
     if perturb_pivot_idx is not None:
         if not (0 <= perturb_pivot_idx < DEG8_EXTENDED_DIM):
             raise IndexError(f"perturb_pivot_idx {perturb_pivot_idx} out of range")
         w_mat = [list(r) for r in w_mat]
         w_mat[perturb_pivot_idx][perturb_pivot_idx] = Fraction(-1)
 
-    # 1. Exact rational LDL^T decomposition and strictly positive pivots
     pivots = ldlt_pivots_strictly_positive(w_mat)
     if len(pivots) != DEG8_EXTENDED_DIM:
         raise ValueError(f"Expected {DEG8_EXTENDED_DIM} pivots, got {len(pivots)}")
 
-    # 2. Exact trace inner product Tr(W_8 . M_8)
     trace = Fraction(0)
     for i in range(DEG8_EXTENDED_DIM):
         for j in range(DEG8_EXTENDED_DIM):
@@ -950,9 +904,6 @@ def replay_degree8_s6_witness(
     return receipt
 
 
-# ==============================================================================
-# 6. Vector T10_10: Exact Cyclotomic Inner Product Verification Engine
-# ==============================================================================
 
 class ExactCyclotomicInnerProductEngine:
     """Exact cyclotomic inner product verification engine over Q(zeta_24).
@@ -978,7 +929,6 @@ class ExactCyclotomicInnerProductEngine:
     def norm_squared(cls, u: Sequence[Cyc24]) -> Fraction:
         """Exact rational norm squared ||u||^2 = <u, u> in Q."""
         val = cls.inner_product(u, u)
-        # In Q(zeta_24), <u, u> must be real and purely rational
         frac = exact_rational(val)
         if frac < 0:
             raise ValueError(f"Norm squared must be non-negative, got {frac}")
@@ -1044,42 +994,35 @@ def evaluate_cyclotomic_inner_product_suite() -> CyclotomicInnerProductReceipt:
     """Execute algebraic verification of cyclotomic inner products on canonical MUB triples."""
     engine = ExactCyclotomicInnerProductEngine
 
-    # 1. Construct canonical bases: standard basis B1 and Fourier basis F6(0, 0)
     b1 = standard_basis_b1()
     f6 = f6_family_columns(0, 0)
     cols_triple = canonical_triple_exact()
 
-    # 2. Check sesquilinearity: <u, c*v1 + v2> == c*<u, v1> + <u, v2>
     u = b1[0]
     v1 = f6[0]
     v2 = f6[1]
-    c = Cyc24.zeta(3)  # zeta^3
+    c = Cyc24.zeta(3)
 
     lhs_lin = engine.inner_product(u, [c.mul(v1[k]).add(v2[k]) for k in range(DIM_HILBERT)])
     rhs_lin = c.mul(engine.inner_product(u, v1)).add(engine.inner_product(u, v2))
     diff_lin = lhs_lin.sub(rhs_lin)
     sesqui_ok = diff_lin.is_zero()
 
-    # 3. Check conjugate symmetry: <u, v> == conj(<v, u>)
     ip_uv = engine.inner_product(u, v1)
     ip_vu = engine.inner_product(v1, u)
     symm_ok = ip_uv.sub(ip_vu.conj()).is_zero()
 
-    # 4. Check positive definiteness: ||u||^2 == 1, ||0|| == 0
     zero_vec = [Cyc24.zero() for _ in range(DIM_HILBERT)]
     pos_def_ok = (engine.norm_squared(u) == Fraction(1)) and (engine.inner_product(zero_vec, zero_vec).is_zero())
 
-    # 5. Check Cauchy-Schwarz on non-trivial vectors
     lhs_cs, rhs_cs, cs_ok = engine.cauchy_schwarz(u, v1)
     if not cs_ok:
         raise ValueError(f"Cauchy-Schwarz violation: {lhs_cs} > {rhs_cs}")
 
-    # 6. Check intra-basis orthonormality and inter-basis unbiasedness on canonical triple
     num_evals = 0
     ortho_ok = True
     unbiased_ok = True
 
-    # Check B1 intra-basis orthonormality
     for i in range(DIM_HILBERT):
         for j in range(DIM_HILBERT):
             ip = engine.inner_product(b1[i], b1[j])
@@ -1088,7 +1031,6 @@ def evaluate_cyclotomic_inner_product_suite() -> CyclotomicInnerProductReceipt:
             if not ip.sub(expected).is_zero():
                 ortho_ok = False
 
-    # Check B1 vs F6 unbiasedness: |<b1_i, f6_j>|^2 == 1/6
     for i in range(DIM_HILBERT):
         for j in range(DIM_HILBERT):
             ip = engine.inner_product(b1[i], f6[j])
@@ -1113,9 +1055,6 @@ def evaluate_cyclotomic_inner_product_suite() -> CyclotomicInnerProductReceipt:
     return receipt
 
 
-# ==============================================================================
-# 7. Consistency Verification: Lean 4 and Rust Files
-# ==============================================================================
 
 @dataclass(frozen=True)
 class ConsistencyReceipt:
@@ -1207,9 +1146,6 @@ def verify_target_q_lean4_and_rust_consistency(
     return receipt
 
 
-# ==============================================================================
-# 8. Master Stream 3 Aggregator
-# ==============================================================================
 
 @dataclass(frozen=True)
 class Stream3MasterReceipt:
@@ -1232,24 +1168,18 @@ def evaluate_stream3_target_q_degree8_and_gns(
     repo_root: Optional[pathlib.Path] = None,
 ) -> Stream3MasterReceipt:
     """Execute all six Stream 3 vectors and emit the master certificate."""
-    # 1. T06_03: Confluent term rewriting system
     rewriting_receipt = verify_confluent_rewriting_system()
 
-    # 2. T08_05: Idempotency spectral containment identity
     spectral_receipt = verify_idempotency_spectral_bound(basis=0, outcome=0)
 
-    # 3. T07_08: Degree-8 decoupled X=0 witness replay
     x0_receipt = replay_degree8_x0_witness()
 
-    # 4. T07_09: Degree-8 synthetic Tao S6 witness replay
     s6_receipt = replay_degree8_s6_witness()
 
-    # 5. T09_10: GNS pre-Hilbert space construction on X=0 moment matrix
     g_diag = build_block_diagonal_gramian()
     m8_diag = build_degree8_invariant_diagnostic_matrix(g_diag)
     word_labels = [f"word_{i}" for i in range(DEG8_INVARIANT_DIM)]
 
-    # Provide rank-1 mode vector z from X=0 dual witness to test negative mode detection
     z_x0 = [Fraction(0) for _ in range(DEG8_INVARIANT_DIM)]
     z_x0[0] = Fraction(-1)
     z_x0[1] = Fraction(1)
@@ -1261,13 +1191,10 @@ def evaluate_stream3_target_q_degree8_and_gns(
     ]
     _, gns_receipt = evaluate_gns_pre_hilbert_space(word_labels, m8_diag, test_states)
 
-    # 6. T10_10: Cyclotomic inner product verification engine
     cyclotomic_receipt = evaluate_cyclotomic_inner_product_suite()
 
-    # Consistency with Lean 4 and Rust
     consistency_receipt = verify_target_q_lean4_and_rust_consistency(repo_root)
 
-    # All vectors satisfied requires valid pre-Hilbert GNS space and semantic consistency
     all_satisfied = (
         rewriting_receipt.unique_normal_form_certified
         and spectral_receipt.spectrum_contained_in_unit_interval

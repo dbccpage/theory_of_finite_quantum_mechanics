@@ -1,21 +1,4 @@
-//! # omega_epk — EPK host overlay
-//!
-//! **Path-kernel math (LGGR I)** lives in [`lggr_engine`].
-//! That is the engine face: finite exact path mass, Δ_E, metrics, RKE.
-//!
-//! **This crate** keeps host overlays only:
-//! - [`ledger`] — Auth=0 residual ledger + optional FOC family bridge
-//! - [`adequacy`] — detector-adequacy protocol (green ≠ certificate)
-//!
-//! Re-exports engine surface so existing `use omega_epk::…` paths keep working.
-//! New theory / morphism work should use [`lggr_engine`] directly.
-//!
-//! OE layering: pipelines orchestrate engines; engines orchestrate 1-/2-morphisms
-//! that do not increase Φ. EPK is an evaluator (Auth=0), not a terminalizer.
-//!
-//! **AuthorityEffect: None.**
 
-/// Exact rational matrix specialization, with native graph/holonomy owners.
 pub mod matrix_path_kernel;
 pub mod lggr_engine;
 pub use lggr_engine as epk_engine;
@@ -30,7 +13,6 @@ pub use crate::lggr_engine::{
     TraceLedger, TraceRecord,
 };
 
-// Module paths preserved for `omega_epk::core::…` / `::metrics::…` call sites.
 pub mod composition {
     pub use crate::lggr_engine::{
         analyze_composition, boundary_in_slice, evaluator_residual, g2_action_additive,

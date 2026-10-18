@@ -141,7 +141,6 @@ def _from_real(conductor: int, coordinates: tuple[Q, Q]) -> field.Cyclotomic:
 
 
 def _charpoly(matrix: list[list[field.Cyclotomic]]) -> list[object]:
-    # The entropy kernel annotates this routine over Q. The carrier is cyclotomic.
     return cast(list[object], kernel.charpoly(cast(list[list[Q]], matrix)))
 
 
@@ -193,9 +192,6 @@ def _validate_nested(
         factors.validate_factorization(conductor, polynomial, factorization)
         roots.validate_spectrum(case, root_certificate)
     except (KeyError, IndexError, TypeError, AttributeError, ZeroDivisionError) as error:
-        # Malformed supplied data must not leak decoder/container exceptions.
-        # Existing ValueError subclasses, including genuine resource refusals,
-        # pass through unchanged.
         raise _fail("spectral_binding: malformed nested arithmetic certificate") from error
 
 
@@ -413,8 +409,6 @@ def _require_counts(actual: object, expected: list[int]) -> None:
 
 def _require_transport(actual: object, conductor: int) -> None:
     checked = _require_fields(actual, TRANSPORT_FIELDS, "carrier transport")
-    # Only after input, factorization, containment and full root census checks
-    # is the real-field base-change premise admitted. No degree value follows.
     for key, value in _transport(conductor).items():
         if type(checked[key]) is not type(value) or checked[key] != value:
             raise _fail("spectral_binding: carrier transport premise differs", field=key)

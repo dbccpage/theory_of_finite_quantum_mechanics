@@ -1,12 +1,6 @@
-//! MUB(6) Depth-64 56-Cell Smale Sentry Inspector (Pilot 039)
-//!
-//! Validates the 56-cell moduli partition cover at depth 64 via exact rational
-//! Krawczyk interval operators, establishing zero uncertified leaves and certified
-//! root exclusion on the Szöllősi quadratic manifold.
 
 use serde::{Deserialize, Serialize};
 
-/// Summary of a certified moduli cell.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CertifiedCellSummary {
     pub cell_id: usize,
@@ -15,7 +9,6 @@ pub struct CertifiedCellSummary {
     pub root_excluded: bool,
 }
 
-/// Receipt for Smale sentry partition cover inspection.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SmaleSentryReceipt {
     pub status: String,
@@ -25,7 +18,6 @@ pub struct SmaleSentryReceipt {
     pub krawczyk_contractive: bool,
 }
 
-/// Verify that all 56 partition cells at depth 64 are rigorously certified.
 pub fn verify_smale_sentry_cover() -> SmaleSentryReceipt {
     let cells_certified = 56;
     let target_depth = 64;

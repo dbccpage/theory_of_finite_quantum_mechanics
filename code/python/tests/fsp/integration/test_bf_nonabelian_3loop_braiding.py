@@ -43,14 +43,11 @@ def test_su2_level_k_modular_data():
     for k in [2, 3, 4]:
         cat = SU2LevelKCategory(k=k)
         assert cat.num_objects == k + 1
-        # d_0 = 1.0 always
         assert pytest.approx(cat.quantum_dimension(0)) == 1.0
 
-        # Quantum dimensions positive
         for two_j in range(cat.num_objects):
             assert cat.quantum_dimension(two_j) > 0.0
 
-        # F-matrix unitarity: F @ F^dagger = I
         F = cat.f_matrix_fundamental()
         assert F.shape == (2, 2)
         assert np.allclose(F @ F.conj().T, np.eye(2), atol=1e-12)
@@ -77,7 +74,6 @@ def test_nonabelian_3loop_braiding_obstruction_k2():
 
     assert receipt.is_non_abelian is True
     assert receipt.fusion_space_dim == 2
-    # Non-abelian braiding generates non-trivial holonomy with defect mass
     assert receipt.involution_pairing_phi1 > 0.0
     assert receipt.cochain_curvature_gamma2 > 0.0
     assert receipt.terminal_route == TerminalRoute.OPEN_SIGN_OBSTRUCTION
@@ -112,11 +108,9 @@ def test_quantum_double_projection_repair():
     """Validates that the quantum double projector P_QD restores real positive trace and ExactRepair."""
     for k in [2, 3, 4]:
         model = WangLevin3LoopBraidingModel(k_level=k, loop_fluxes=(0.5, 0.5, 0.5))
-        # Unprojected routes to OpenSignObstruction
         receipt_unproj = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model, use_quantum_double=False)
         assert receipt_unproj.terminal_route == TerminalRoute.OPEN_SIGN_OBSTRUCTION
 
-        # Quantum double projection repairs sign
         receipt_proj = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model, use_quantum_double=True)
         assert receipt_proj.is_quantum_double_projected is True
         assert receipt_proj.involution_pairing_phi1 == 0.0
@@ -124,7 +118,6 @@ def test_quantum_double_projection_repair():
         assert receipt_proj.average_sign_gin == 1.0
         assert receipt_proj.terminal_route == TerminalRoute.EXACT_REPAIR
 
-        # Verify trace is strictly positive real
         assert receipt_proj.trace_holonomy.real > 0.0
         assert abs(receipt_proj.trace_holonomy.imag) < 1e-12
 

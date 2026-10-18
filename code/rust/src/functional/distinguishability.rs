@@ -1,10 +1,3 @@
-//! Bounded trace-distance diagnostics on numerically admitted state inputs.
-//!
-//! Admission checks the submitted floating representation: exact Hermitian
-//! symmetry, trace within a selected tolerance of one, and computed eigenvalues
-//! at least minus that tolerance, with independently checked spectral residuals.
-//! This is not exact positivity, a rounding certificate, physical-state proof,
-//! a primary obstruction score, actor licensing or a workload verdict.
 
 use linear_algebra::hermitian_eigen::{
     hermitian_eigen_checked, HermitianSpectrum, SpectrumError, SpectrumPolicy,
@@ -54,12 +47,6 @@ pub enum DistinguishabilityError {
     DistanceArithmetic,
 }
 
-/// Immutable numerical policy; a large tolerance cannot make admission vacuous.
-///
-/// ~~~compile_fail
-/// use omega_functional::distinguishability::DistinguishabilityPolicy;
-/// let forged: DistinguishabilityPolicy = serde_json::from_str("{}").unwrap();
-/// ~~~
 #[derive(Debug, Clone, Copy, PartialEq, Serialize)]
 pub struct DistinguishabilityPolicy {
     spectrum: SpectrumPolicy,
@@ -103,14 +90,6 @@ enum DensityOrigin {
     },
 }
 
-/// Numerically admitted representation, not an exact density or physical proof.
-/// The original matrix/vector and observed defects are retained, not normalized.
-/// No mutable getter or unchecked deserialization can change an admitted input.
-///
-/// ~~~compile_fail
-/// use omega_functional::distinguishability::DensityAdmission;
-/// let forged: DensityAdmission = serde_json::from_str("{}").unwrap();
-/// ~~~
 #[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct DensityAdmission {
     policy: DistinguishabilityPolicy,
@@ -150,14 +129,6 @@ impl DensityAdmission {
     }
 }
 
-/// Half the sum of absolute eigenvalues of the full Hermitian difference.
-/// Every contribution and both original admissions remain independently visible.
-/// No overlap clamping, probability interpretation or successful-task flag exists.
-///
-/// ~~~compile_fail
-/// use omega_functional::distinguishability::TraceDistanceDiagnostic;
-/// let forged: TraceDistanceDiagnostic = serde_json::from_str("{}").unwrap();
-/// ~~~
 #[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct TraceDistanceDiagnostic {
     authority_effect: DistinguishabilityAuthorityEffect,
@@ -199,7 +170,6 @@ pub struct DistinguishabilityFunctional {
 }
 
 impl DistinguishabilityFunctional {
-    /// Total variation of two declared rational coordinate lists.
     pub fn rational_total_variation(
         left: &[num_rational::BigRational],
         right: &[num_rational::BigRational],
@@ -215,7 +185,6 @@ impl DistinguishabilityFunctional {
         )
     }
 
-    /// Exact squared trace distance of real rational qubit densities.
     pub fn qubit_trace_distance_squared(
         left: &[Vec<num_rational::BigRational>],
         right: &[Vec<num_rational::BigRational>],
@@ -244,7 +213,6 @@ impl DistinguishabilityFunctional {
         Ok(&a * &a + &b * &b)
     }
 
-    /// Rational distance only when its square has an exact rational root.
     pub fn qubit_trace_distance(
         left: &[Vec<num_rational::BigRational>],
         right: &[Vec<num_rational::BigRational>],
@@ -260,7 +228,6 @@ impl DistinguishabilityFunctional {
         Ok(num_rational::BigRational::new(numerator, denominator))
     }
 
-    /// Exact loss of squared distinguishability under the diagonal shadow.
     pub fn qubit_shadow_contraction_slack(
         left: &[Vec<num_rational::BigRational>],
         right: &[Vec<num_rational::BigRational>],
@@ -306,8 +273,6 @@ impl DistinguishabilityFunctional {
                     tolerance: self.policy.state_tolerance,
                 });
             }
-            // Positive part is the explicitly named negativity defect, not a
-            // repair or clamp of the matrix or the computed eigenvalues.
             maximum_negative_eigenvalue_magnitude =
                 maximum_negative_eigenvalue_magnitude.max(-value);
         }
@@ -334,7 +299,6 @@ impl DistinguishabilityFunctional {
                 limit: self.policy.spectrum.max_dimension(),
             });
         }
-        // Validate the bounded vector before allocating a dense outer product.
         for (index, value) in vector.iter().enumerate() {
             if !value.re.is_finite() || !value.im.is_finite() {
                 return Err(DistinguishabilityError::NonFiniteVector { index });
@@ -377,7 +341,6 @@ impl DistinguishabilityFunctional {
         left: &DensityAdmission,
         right: &DensityAdmission,
     ) -> Result<TraceDistanceDiagnostic, DistinguishabilityError> {
-        // Bind both selected policies and dimensions before subtraction/cloning.
         if left.policy != self.policy {
             return Err(DistinguishabilityError::PolicyBinding { side: "left" });
         }
@@ -411,8 +374,6 @@ impl DistinguishabilityFunctional {
     }
 }
 
-// This private arithmetic kernel is also exercised directly with finite values
-// whose sum overflows, without forging an admitted state or spectral result.
 fn checked_trace_contributions(values: &[f64]) -> Result<(Vec<f64>, f64), DistinguishabilityError> {
     let mut contributions = Vec::with_capacity(values.len());
     let mut sum = 0.0_f64;
@@ -459,9 +420,6 @@ mod tests {
 
     #[test]
     fn compensated_half_sum_preserves_a_three_quarter_ulp_tail() {
-        // Each small half-contribution is exactly a quarter ULP at one.
-        // Naive sequential addition rounds every small term away. Three such
-        // terms must instead round the aggregate to the next f64 above one.
         let small = f64::EPSILON / 2.0;
         let values = [-2.0, -small, -small, -small];
         let (contributions, sum) = checked_trace_contributions(&values).unwrap();
@@ -512,7 +470,6 @@ mod tests {
                 error: SpectrumError::IterationLimit { limit: 2 }
             }
         );
-        // Independent rank-one formula: overlap magnitude squared is 1/4.
         let owner = make_owner(100);
         let result = owner
             .trace_distance(
@@ -805,7 +762,6 @@ mod tests {
         let result = owner
             .trace_distance(&admitted, &owner.admit_matrix(&right).unwrap())
             .unwrap();
-        // Near-density input is not exact PSD; this is not a probability.
         assert_eq!(result.trace_distance(), 1.0 + 2.0 * delta);
         assert!(result.trace_distance() > 1.0);
         assert_eq!(result.policy().state_tolerance(), tolerance);

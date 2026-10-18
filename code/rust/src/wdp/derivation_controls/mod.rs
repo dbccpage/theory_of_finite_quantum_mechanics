@@ -1,6 +1,3 @@
-//! Bounded WDP paper controls, integrated into the canonical Cargo workspace.
-//! Each private module retains its declared carrier and refusal tests.
-//! These are test fixtures, not production APIs or proofs of unrestricted claims.
 #![allow(dead_code)]
 
 #[path = "plan_wdp_math_premises.rs"]

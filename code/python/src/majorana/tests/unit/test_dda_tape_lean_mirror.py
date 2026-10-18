@@ -42,11 +42,9 @@ def test_residual_decay_transitivity():
     residuals = [10.0, 8.5, 6.0, 4.0, 2.5, 1.0, 0.5, 0.1, 0.0]
     tape = ["E", "R", "C", "I", "L", "Λ", "D", "M", "T"]
 
-    # Verify monotonic decay at every step: r_{k+1} <= r_k
     for i in range(len(residuals) - 1):
         assert residuals[i + 1] <= residuals[i]
 
-    # Verify transitive decay from start to finish
     assert residuals[-1] <= residuals[0]
 
 

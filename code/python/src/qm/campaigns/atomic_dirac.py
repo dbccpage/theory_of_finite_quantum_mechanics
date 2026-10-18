@@ -16,9 +16,6 @@ from .dressed_qed import RationalInterval
 RationalIntervalQ = RationalInterval
 
 
-# ============================================================================
-# Goal 2 (QM-224): Hydrogen Fine Structure, Dirac-Coulomb Spectrum & Lamb Shift
-# ============================================================================
 
 
 def dirac_coulomb_alpha4_coeff(n: int, two_j: int) -> Fraction:
@@ -86,8 +83,8 @@ def build_qm224_dirac_lamb_certificate() -> Qm224DiracLambCertificate:
         and c4_2p_rel_kin + c4_2p_32_so == c4_2p_32 == Fraction(1, 128)
     )
 
-    fs_coeff_mc2 = c4_2p_half - c4_2p_32  # 1/32
-    fs_coeff_ry = 2 * fs_coeff_mc2  # 1/16
+    fs_coeff_mc2 = c4_2p_half - c4_2p_32
+    fs_coeff_ry = 2 * fs_coeff_mc2
 
     alpha_inv_iv = RationalInterval(
         Fraction(137_035_999_084, 1_000_000_000),
@@ -112,13 +109,11 @@ def build_qm224_dirac_lamb_certificate() -> Qm224DiracLambCertificate:
 
     uehling_vp_4pi = Fraction(-4, 15)
     uehling_vp_6pi = Fraction(-1, 5)
-    se_const = Fraction(10, 9) - Fraction(5, 18)  # 5/6
-    se_plus_vp = se_const + uehling_vp_6pi  # 19/30
-    mag_diff = Fraction(1, 12) - Fraction(-1, 24)  # 1/8
-    lamb_total_contact = se_plus_vp + mag_diff  # 91/120
+    se_const = Fraction(10, 9) - Fraction(5, 18)
+    se_plus_vp = se_const + uehling_vp_6pi
+    mag_diff = Fraction(1, 12) - Fraction(-1, 24)
+    lamb_total_contact = se_plus_vp + mag_diff
 
-    # True 2S - 2P Bethe logarithm: ln k_0(2S) approx 2.81176989, ln k_0(2P) approx -0.03001671
-    # -> ln k_0(2S) - ln k_0(2P) in [2.841786, 2.841787] (distinct from 1S Bethe log 2.98412856)
     bethe_log_diff_iv = RationalInterval(
         Fraction(2_841_786, 1_000_000),
         Fraction(2_841_787, 1_000_000),
@@ -135,20 +130,17 @@ def build_qm224_dirac_lamb_certificate() -> Qm224DiracLambCertificate:
     three_pi_recip = pi_iv.scale(3).reciprocal()
     lamb_prefactor_mhz_iv = alpha3_iv.scale(c_rydberg_mhz) * three_pi_recip
 
-    # Pure 1-loop non-recoil O(alpha^5 m_e c^2) bracket (no ad-hoc binding offset):
     bracket_1loop_iv = (
         ln_alpha_inv_sq_iv - bethe_log_diff_iv
     ) + RationalInterval.exact(lamb_total_contact)
     lamb_1loop_mhz_iv = lamb_prefactor_mhz_iv * bracket_1loop_iv
 
-    # External higher-order O(alpha(Z*alpha)^5) relativistic binding (+7.14 MHz),
-    # 2-loop, nuclear recoil, and proton charge-radius remainder (+5.65 MHz net):
     higher_order_binding_two_loop_recoil_mhz_iv = RationalInterval(
         Fraction(5_645, 1_000),
         Fraction(5_655, 1_000),
     )
     lamb_full_mhz_iv = lamb_1loop_mhz_iv + higher_order_binding_two_loop_recoil_mhz_iv
-    lundeen_pipkin_mhz = Fraction(211_569, 200)  # 1057.845 MHz
+    lundeen_pipkin_mhz = Fraction(211_569, 200)
     lundeen_pipkin_enclosed = lamb_full_mhz_iv.contains(lundeen_pipkin_mhz)
 
     passed = (
@@ -198,9 +190,6 @@ def build_qm224_dirac_lamb_certificate() -> Qm224DiracLambCertificate:
     )
 
 
-# ============================================================================
-# Goal 3 (QM-225): Helium Variational / Hylleraas, 1s2s Exchange & RHF SCF
-# ============================================================================
 
 
 @dataclass(frozen=True)

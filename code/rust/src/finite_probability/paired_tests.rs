@@ -1,11 +1,3 @@
-//! Exact Rational Paired Statistics (U08).
-//!
-//! Enforces:
-//! - Exact two-sided McNemar test p-value in BigRational:
-//!   p = min(1, 2 * sum_{i=0}^{min(b,c)} binom(n, i) / 2^n) where n = b + c.
-//! - Exact rational Clopper-Pearson / Wilson intervals.
-//! - No float approximations.
-//! AuthorityEffect: None (const).
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
@@ -16,7 +8,6 @@ fn default_authority_effect() -> String {
     "None".to_string()
 }
 
-/// Computes binomial coefficient binom(n, k) exactly as BigInt.
 pub fn binom(n: u64, k: u64) -> BigInt {
     if k > n {
         return BigInt::zero();
@@ -32,16 +23,6 @@ pub fn binom(n: u64, k: u64) -> BigInt {
     c
 }
 
-/// Exact two-sided McNemar test.
-///
-/// Parameters:
-/// - b: Discordant pairs where Method 1 succeeds and Method 2 fails.
-/// - c: Discordant pairs where Method 1 fails and Method 2 succeeds.
-///
-/// Invariant:
-/// Returns exact two-sided p-value:
-/// p = min(1, 2 * sum_{i=0}^{min(b,c)} binom(n, i) / 2^n)
-/// MUTATION KILL GATE: Omitting the factor 2 makes the test one-sided and turns tests RED!
 pub fn mcnemar_exact(b: u64, c: u64) -> BigRational {
     let n = b + c;
     if n == 0 {
@@ -53,8 +34,6 @@ pub fn mcnemar_exact(b: u64, c: u64) -> BigRational {
         sum += binom(n, i);
     }
 
-    // Two-sided factor of 2!
-    // MUTATION KILL GATE: MUST multiply by 2!
     let two_sided_sum = BigInt::from(2) * sum;
     let denom = BigInt::from(2).pow(n as u32);
 

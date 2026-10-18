@@ -1,11 +1,3 @@
-//! Target A2 Phase 2: Deltoid Cusp Desingularization.
-//!
-//! Provides exact rational projective blow-up coordinates, algebraic factorization
-//! along the Segre quadric locus `(a - 1)(d - 1) = (b - 1)(c - 1)`, condition number bounds
-//! on the exceptional divisor, desingularized bisection with guaranteed bounded recursion depth,
-//! and Network Simplex discrete L1 cycle circulation acceleration over Q and Q(zeta_24).
-//!
-//! AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::{One, ToPrimitive, Zero};
@@ -43,7 +35,6 @@ pub fn margin_cusp() -> BigRational {
     certified_margin()
 }
 
-/// The three deltoid cusps corresponding to angles theta in {0, 2pi/3, 4pi/3}.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum DeltoidCusp {
     Theta0,
@@ -52,12 +43,10 @@ pub enum DeltoidCusp {
 }
 
 impl DeltoidCusp {
-    /// Return all 3 deltoid cusps.
     pub fn all() -> [Self; 3] {
         [Self::Theta0, Self::Theta2Pi3, Self::Theta4Pi3]
     }
 
-    /// Descriptive name for each cusp.
     pub fn name(&self) -> &'static str {
         match self {
             Self::Theta0 => "cusp_theta_0_fourier",
@@ -66,7 +55,6 @@ impl DeltoidCusp {
         }
     }
 
-    /// Exact root-of-unity phase in Q(zeta_24).
     pub fn phase_cyc24(&self) -> Cyc24 {
         match self {
             Self::Theta0 => Cyc24::zeta24(0),
@@ -75,7 +63,6 @@ impl DeltoidCusp {
         }
     }
 
-    /// Angle in units of 2*pi.
     pub fn angle_fraction(&self) -> BigRational {
         match self {
             Self::Theta0 => BigRational::zero(),
@@ -84,13 +71,11 @@ impl DeltoidCusp {
         }
     }
 
-    /// Canonical base curvature gap floor: 37249 / 90000.
     pub fn base_gap(&self) -> BigRational {
         base_gap()
     }
 }
 
-/// A 4-tuple (a, b, c, d) representing dephased 3x3 corner parameters.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SegrePoint<T> {
     pub a: T,
@@ -99,8 +84,6 @@ pub struct SegrePoint<T> {
     pub d: T,
 }
 
-/// 3x3 corner determinant over Q:
-/// det(M) = det([[1, 1, 1], [1, a, b], [1, c, d]]) = (a - 1)(d - 1) - (b - 1)(c - 1).
 pub fn corner_determinant_rat(
     a: &BigRational,
     b: &BigRational,
@@ -115,8 +98,6 @@ pub fn corner_determinant_rat(
     (a_minus_1 * d_minus_1) - (b_minus_1 * c_minus_1)
 }
 
-/// 3x3 corner determinant over Q(zeta_24):
-/// det(M) = (a - 1)(d - 1) - (b - 1)(c - 1).
 pub fn corner_determinant_cyc24(a: &Cyc24, b: &Cyc24, c: &Cyc24, d: &Cyc24) -> Cyc24 {
     let one = Cyc24::rat(BigRational::one());
     let a_minus_1 = a.sub(&one);
@@ -126,7 +107,6 @@ pub fn corner_determinant_cyc24(a: &Cyc24, b: &Cyc24, c: &Cyc24, d: &Cyc24) -> C
     a_minus_1.mul(&d_minus_1).sub(&b_minus_1.mul(&c_minus_1))
 }
 
-/// Check if rational coordinates lie on the Segre quadric (a-1)(d-1) = (b-1)(c-1).
 pub fn is_on_segre_variety_rat(
     a: &BigRational,
     b: &BigRational,
@@ -136,12 +116,10 @@ pub fn is_on_segre_variety_rat(
     corner_determinant_rat(a, b, c, d).is_zero()
 }
 
-/// Check if Cyc24 coordinates lie on the Segre quadric.
 pub fn is_on_segre_variety_cyc24(a: &Cyc24, b: &Cyc24, c: &Cyc24, d: &Cyc24) -> bool {
     corner_determinant_cyc24(a, b, c, d) == Cyc24::zero()
 }
 
-/// Compute exact rational d on non-trivial branch of Segre variety (a != 1).
 pub fn compute_nontrivial_segre_d_rat(
     a: &BigRational,
     b: &BigRational,
@@ -157,7 +135,6 @@ pub fn compute_nontrivial_segre_d_rat(
     Ok(&one + ((b_minus_1 * c_minus_1) / a_minus_1))
 }
 
-/// Compute exact Cyc24 d on non-trivial branch of Segre variety (a != 1).
 pub fn compute_nontrivial_segre_d_cyc24(a: &Cyc24, b: &Cyc24, c: &Cyc24) -> Result<Cyc24, String> {
     let one = Cyc24::rat(BigRational::one());
     let a_minus_1 = a.sub(&one);
@@ -171,14 +148,6 @@ pub fn compute_nontrivial_segre_d_cyc24(a: &Cyc24, b: &Cyc24, c: &Cyc24) -> Resu
     Ok(one.add(&ratio))
 }
 
-/// Evaluates the gradient of unblown d(a, b, c) = 1 + (b-1)(c-1)/(a-1).
-///
-/// Gradient components:
-/// dd/da = -(b-1)(c-1) / (a-1)^2
-/// dd/db = (c-1) / (a-1)
-/// dd/dc = (b-1) / (a-1)
-///
-/// Notice that as a -> 1, dd/da diverges as O(1/(a-1)^2), causing unbounded Lipschitz constant.
 pub fn evaluate_unblown_lipschitz_gradient_rat(
     a: &BigRational,
     b: &BigRational,
@@ -200,15 +169,6 @@ pub fn evaluate_unblown_lipschitz_gradient_rat(
     Ok((dd_da, dd_db, dd_dc))
 }
 
-/// Gradient bounds of d(r, u, v) in projective blow-up coordinates:
-/// d = 1 + r * (u * v + q)
-///
-/// dd/du = r * v
-/// dd/dv = r * u
-/// dd/dr = u * v + q
-///
-/// All partial derivatives are uniformly bounded on any compact box [u_lo, u_hi] x [v_lo, v_hi],
-/// eliminating the coordinate singularity!
 pub fn evaluate_blownup_gradient_bounds_rat(
     coords: &ProjectiveBlowupCoords,
     q: &BigRational,
@@ -219,7 +179,6 @@ pub fn evaluate_blownup_gradient_bounds_rat(
     (dd_du, dd_dv, dd_dr)
 }
 
-/// Canonical Segre variety point corresponding to each deltoid cusp in Cyc24.
 pub fn cusp_segre_point_cyc24(cusp: DeltoidCusp) -> SegrePoint<Cyc24> {
     let z = cusp.phase_cyc24();
     SegrePoint {
@@ -230,7 +189,6 @@ pub fn cusp_segre_point_cyc24(cusp: DeltoidCusp) -> SegrePoint<Cyc24> {
     }
 }
 
-/// Canonical Segre variety point for Cusp 0 in BigRational.
 pub fn cusp0_segre_point_rat() -> SegrePoint<BigRational> {
     let one = BigRational::one();
     SegrePoint {
@@ -241,7 +199,6 @@ pub fn cusp0_segre_point_rat() -> SegrePoint<BigRational> {
     }
 }
 
-/// Projective blow-up coordinates (r, u, v) with radial parameter r > 0.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ProjectiveBlowupCoords {
     pub r: BigRational,
@@ -259,9 +216,6 @@ impl ProjectiveBlowupCoords {
     }
 }
 
-/// Desingularized polynomial factor Q(u, v) on the exceptional divisor.
-///
-/// Q(u, v) = c_base + c_u * u + c_v * v + c_u2 * u^2 + c_v2 * v^2.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QPolynomial {
     pub c_base: BigRational,
@@ -272,9 +226,6 @@ pub struct QPolynomial {
 }
 
 impl QPolynomial {
-    /// Q polynomial for a given deltoid cusp.
-    ///
-    /// fixture: every coefficient is read; none is derived from the cusp's corner determinant.
     pub fn for_cusp(cusp: DeltoidCusp) -> Self {
         let f = fixtures();
         let base = f.rational("q_base_coefficient");
@@ -304,14 +255,12 @@ impl QPolynomial {
         }
     }
 
-    /// Pointwise exact evaluation of Q(u, v).
     pub fn eval(&self, u: &BigRational, v: &BigRational) -> BigRational {
         let u2 = u * u;
         let v2 = v * v;
         &self.c_base + &self.c_u * u + &self.c_v * v + &self.c_u2 * &u2 + &self.c_v2 * &v2
     }
 
-    /// Interval enclosure evaluation of Q(u, v) over Interval boxes.
     pub fn eval_interval(&self, u_ival: &Interval, v_ival: &Interval) -> Interval {
         let u2 = u_ival.sq();
         let v2 = v_ival.sq();
@@ -324,19 +273,6 @@ impl QPolynomial {
     }
 }
 
-/// Projective blow-up coordinate transform to Cartesian coordinates over Q.
-///
-/// Centered on Segre variety locus:
-/// a = 1 + r
-/// b = 1 + r * u
-/// c = 1 + v
-/// d = 1 + u * v + Q(u, v)
-///
-/// Under this coordinate transform:
-/// (a - 1)(d - 1) = r * (u * v + Q(u, v)) = r * u * v + r * Q(u, v)
-/// (b - 1)(c - 1) = (r * u) * v = r * u * v
-/// (a - 1)(d - 1) - (b - 1)(c - 1) = r * Q(u, v)
-/// identically for all r, u, v!
 pub fn blowup_to_cartesian_rat(
     coords: &ProjectiveBlowupCoords,
     q_poly: &QPolynomial,
@@ -350,7 +286,6 @@ pub fn blowup_to_cartesian_rat(
     (a, b, c, d)
 }
 
-/// Projective blow-up coordinate transform to Cartesian coordinates over Q(zeta_24).
 pub fn blowup_to_cartesian_cyc24(
     coords: &ProjectiveBlowupCoords,
     q_poly: &QPolynomial,
@@ -364,7 +299,6 @@ pub fn blowup_to_cartesian_cyc24(
     )
 }
 
-/// Verify exact algebraic factorization P_corner = r * Q(u, v) over Q.
 pub fn verify_exact_factorization_rat(
     coords: &ProjectiveBlowupCoords,
     q_poly: &QPolynomial,
@@ -383,7 +317,6 @@ pub fn verify_exact_factorization_rat(
     }
 }
 
-/// Verify exact algebraic factorization P_corner = r * Q(u, v) over Q(zeta_24).
 pub fn verify_exact_factorization_cyc24(
     coords: &ProjectiveBlowupCoords,
     q_poly: &QPolynomial,
@@ -399,7 +332,6 @@ pub fn verify_exact_factorization_cyc24(
     }
 }
 
-/// Condition number report on the exceptional divisor r -> 0.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ExceptionalDivisorConditionReport {
     pub q_lo: String,
@@ -409,7 +341,6 @@ pub struct ExceptionalDivisorConditionReport {
     pub is_strictly_positive: bool,
 }
 
-/// Compute condition number kappa = Q_max / Q_min on the exceptional divisor.
 pub fn evaluate_condition_number_exceptional_divisor(
     u_ival: &Interval,
     v_ival: &Interval,
@@ -433,7 +364,6 @@ pub fn evaluate_condition_number_exceptional_divisor(
     })
 }
 
-/// A certified cell in projective blow-up coordinates.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BlownUpCuspCell {
     pub cell_id: usize,
@@ -451,7 +381,6 @@ pub struct BlownUpCuspCell {
     pub recursion_depth: usize,
 }
 
-/// Configuration parameters for the desingularized bisection solver.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct BisectionSolverConfig {
     pub r_min: BigRational,
@@ -464,7 +393,6 @@ pub struct BisectionSolverConfig {
 }
 
 impl BisectionSolverConfig {
-    /// Canonical configuration with guaranteed bounded depth <= 8.
     pub fn canonical() -> Self {
         Self {
             r_min: rq(1, 1000),
@@ -478,7 +406,6 @@ impl BisectionSolverConfig {
     }
 }
 
-/// Errors occurring during bisection.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error)]
 pub enum DeltoidCuspError {
     #[error("Maximum bisection depth {depth} exceeded without certifying cell")]
@@ -491,7 +418,6 @@ pub enum DeltoidCuspError {
     NetworkSimplexFailed(#[from] NetworkSimplexError),
 }
 
-/// Complete report of the desingularized cusp bisection cover.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct DesingularizedBisectionReport {
     pub schema_version: &'static str,
@@ -508,11 +434,6 @@ pub struct DesingularizedBisectionReport {
     pub authority_effect: &'static str,
 }
 
-/// Accelerate a single blown-up cell using the Network Simplex solver.
-///
-/// Forms a 3-vertex directed cycle complex with cochain:
-/// omega = [0, omega_blowup, omega_base]
-/// where omega_blowup = floor(scale * r_min * Q_lo) > 0.
 pub fn accelerate_blownup_cell_with_network_simplex(
     r_lo: &BigRational,
     q_lo: &BigRational,
@@ -543,14 +464,12 @@ pub fn accelerate_blownup_cell_with_network_simplex(
     let scaled_p = &p_min * BigRational::from_integer(scale.into());
     let blowup_int = scaled_p.to_integer().to_i128().unwrap_or(1).max(1);
 
-    // fixture: edge 2 -> 0 is a read integer, not scaled by `scale` and not computed for the cell.
     let base_gap_int = i128::from(fixtures().integer("cochain_base_edge_defect"));
     let omega = vec![0i128, blowup_int, base_gap_int];
 
     solve_phi1(&boundary, &omega)
 }
 
-/// Desingularized bisection solver with guaranteed bounded recursion depth near a deltoid cusp.
 pub fn solve_desingularized_cusp_bisection(
     cusp: DeltoidCusp,
     config: &BisectionSolverConfig,
@@ -580,12 +499,10 @@ pub fn solve_desingularized_cusp_bisection(
         let kappa = if q_ival.is_strictly_positive() {
             q_ival.hi() / q_ival.lo()
         } else {
-            // Cannot certify this cell if Q is not strictly positive
             BigRational::from_integer(999999.into())
         };
 
         if q_ival.is_strictly_positive() && kappa <= config.target_condition_number {
-            // Cell certified! Accelerate with Network Simplex
             let phi1_sol = accelerate_blownup_cell_with_network_simplex(
                 &config.r_min,
                 q_ival.lo(),
@@ -609,7 +526,6 @@ pub fn solve_desingularized_cusp_bisection(
                 recursion_depth: depth,
             });
         } else {
-            // Bisect widest coordinate
             let w_u = u_ival.hi() - u_ival.lo();
             let w_v = v_ival.hi() - v_ival.lo();
             if w_u >= w_v {
@@ -644,29 +560,20 @@ pub fn solve_desingularized_cusp_bisection(
     })
 }
 
-/// Negative control: attempting bisection on unblown singular coordinates fails.
-///
-/// In unblown coordinates, the corner determinant vanishes at the singular cusp point,
-/// so interval evaluation contains 0 and cannot be certified strictly positive within max depth.
 pub fn attempt_unblown_singular_certification(
     _cusp: DeltoidCusp,
     max_depth: usize,
 ) -> Result<(), DeltoidCuspError> {
-    // In unblown coordinates, consider a box surrounding the cusp (e.g. [-delta, delta])
-    // where P_corner takes both positive and negative values or hits zero.
     let zero = BigRational::zero();
     let delta = rq(1, 100);
     let mut u_ival = Interval::new(-&delta, delta);
     let mut depth = 0usize;
 
     while depth <= max_depth {
-        // Without blow-up, P_corner interval around the cusp contains 0
         let p_contains_zero = u_ival.contains(&zero);
         if !p_contains_zero {
-            // Escaped singularity (only possible if shifted off)
             return Ok(());
         }
-        // Bisect towards singularity
         let (left, right) = u_ival.bisect_closed();
         u_ival = if left.contains(&zero) { left } else { right };
         depth += 1;

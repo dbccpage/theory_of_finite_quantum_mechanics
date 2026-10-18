@@ -1,9 +1,3 @@
-//! Exact distinction loss and independently evaluated path curvature.
-//!
-//! A flat map may erase a protected question. A quantitative curvature floor
-//! instead needs a direct path that kills a difference and a composed path
-//! whose measured answer separates it. Repeated records do not multiply this
-//! operator norm. No authorization or physical availability is inferred.
 
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError};
 use num_rational::BigRational as Q;
@@ -49,7 +43,6 @@ fn valid_matrix(m: &Matrix) -> Result<(), LossError> {
 
 use crate::phi1::l1_mass as l1;
 
-/// Exact `n x n` identity over `BasicMatrix<Q>`; the crate-wide copy.
 pub(crate) fn identity_matrix(n: usize) -> Result<Matrix, MatrixError> {
     Matrix::try_from_fn(n, n, |i, j| if i == j { Q::one() } else { Q::zero() })
 }
@@ -60,7 +53,6 @@ fn linf(v: &[Q]) -> Q {
 
 use crate::phi1::dot;
 
-/// Independently measured norms, evaluated from all matrix entries.
 pub fn matrix_norms(m: &Matrix) -> Result<(Q, Q), LossError> {
     valid_matrix(m)?;
     let mut induced_l1 = Q::zero();
@@ -95,7 +87,6 @@ impl QuestionLoss {
     }
 }
 
-/// Evaluate actual input-question loss; no distinction count is accepted.
 pub fn inspect_question_loss(
     map: &Matrix,
     x: &[Q],
@@ -149,10 +140,6 @@ impl SeparationBound {
     }
 }
 
-/// Check `R d=0` and `|ell B d|>=eta>0`, then independently evaluate
-/// `K=B-R`. The proved floors are eta/(||ell||inf ||d||1) and
-/// eta/(||ell||inf ||d||inf), for induced and entrywise l1 respectively.
-/// `composed` must be the actual path product supplied by the caller.
 pub fn verify_path_separation(
     composed: &Matrix,
     direct: &Matrix,
@@ -181,7 +168,6 @@ pub fn verify_path_separation(
     if &answer_separation < margin {
         return Err(LossError::NotSeparated);
     }
-    // Positive measured separation proves both denominators below are nonzero.
     let curvature = composed.sub(direct)?;
     let (induced_l1, entry_l1) = matrix_norms(&curvature)?;
     let qnorm = linf(question);
@@ -197,7 +183,6 @@ pub fn verify_path_separation(
     })
 }
 
-/// Bind the composed path to its actual two restriction operators.
 pub fn verify_triangle_separation(
     first: &Matrix,
     second: &Matrix,

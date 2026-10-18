@@ -1,5 +1,3 @@
-//! Product-moment defects and their finite distance-from-product lower bound.
-//! Measurement provenance, support admission and action authorization belong to callers.
 
 use crate::phi1::{ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1};
 use num_rational::BigRational;
@@ -38,9 +36,6 @@ impl ProductDistanceValue {
     }
 }
 
-/// Evaluate the declared moment functional and replay an independently supplied
-/// primal/dual witness using the canonical Phi1 verifier. The normalized weights
-/// are fixed here; a caller cannot change the norm while retaining the bound.
 pub fn evaluate_product_distance(
     joint: &[BigRational],
     factors: &[Vec<BigRational>],
@@ -104,7 +99,6 @@ mod tests {
     }
     #[test]
     fn correlated_separable_bit_reports_have_positive_product_distance() {
-        // Half 000 plus half 111: each ZZ moment is one, each Z mean is zero.
         let v = evaluate_product_distance(
             &vec![q(1, 1); 3],
             &vec![vec![q(0, 1); 2]; 3],
@@ -137,8 +131,6 @@ mod tests {
     }
     #[test]
     fn nonuniform_separable_reports_use_the_quotient_after_repair() {
-        // Half 001 plus half 110: pair moments (1,-1,-1), local means zero.
-        // The raw mean-l1 norm is one; the certified quotient is one third.
         let value = evaluate_product_distance(
             &[q(1, 1), q(-1, 1), q(-1, 1)],
             &vec![vec![q(0, 1); 2]; 3],

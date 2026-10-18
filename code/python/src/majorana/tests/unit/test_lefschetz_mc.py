@@ -22,7 +22,6 @@ def test_tangent_frame_transport_airy():
     res = steepest_descent_flow_with_frame(action, z_start, dt=0.005, steps=50)
     assert len(res.jacobian_history) == 51
 
-    # Check Jacobian determinant magnitude is positive and finite
     assert res.jacobian_determinant > 0.0
     assert math.isfinite(res.residual_phase)
 
@@ -32,7 +31,6 @@ def test_residual_phase_smoothness():
     z_start = [0.1 + 0.9j]
 
     res = steepest_descent_flow_with_frame(action, z_start, dt=0.002, steps=100)
-    # Check that residual phase stays within [-pi, pi]
     assert -math.pi <= res.residual_phase <= math.pi
     assert res.max_im_deviation < 1e-3
 
@@ -55,7 +53,6 @@ def test_airy_integral_reconstruction():
     lam = 1.0 + 0.0j
     z_est = estimate_airy_integral(lam, n_samples=1000)
 
-    # Reconstructed value should be finite complex number
     assert math.isfinite(z_est.real)
     assert math.isfinite(z_est.imag)
 

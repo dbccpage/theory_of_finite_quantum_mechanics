@@ -1,38 +1,19 @@
-//! Validation — cross-cutting validation unit declarations.
-//!
-//! Maps directly to spec §4 and §10 validation unit lists.
-//! Each validation unit is a single-property checker.
 
-// ---------------------------------------------------------------------------
-// Validation unit identifiers (spec §4)
-// ---------------------------------------------------------------------------
 
-/// Identifiers for all functor validation units.
-///
-/// These correspond 1:1 with the spec's declared validation obligations.
-/// They are used as keys in validation reports and contract audit trails.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum FunctorValidation {
-    Name,
-    MappingDomain,
-    // Covariant functor (spec §4)
     ObjectTotality,
     MorphismTotality,
     BoundaryPreservation,
     IdentityPreservation,
     CompositionPreservation,
 
-    // Contravariant functor (spec §4)
     ContravariantIdentityPreservation,
     ContravariantCompositionReversal,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum NatTransValidation {
-    Name,
-    FunctorBinding,
-    ComponentDomain,
-    ComponentBoundary,
     NaturalitySquare,
 }
 
@@ -69,67 +50,48 @@ pub enum HigherFunctorValidation {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum CoendValidation {
-    /// Quotient respects all morphisms (spec §14).
     Dinaturality,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum KanExtensionValidation {
-    /// Lan is universal (spec §16).
     UniversalProperty,
-    /// Lan_id F ≅ F (Yoneda unit law, spec §16).
     YonedaUnitLaw,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum CauchyValidation {
-    /// r ∘ s = id_R, s ∘ r = e (spec §17).
     IdempotentSplitting,
-    /// All idempotents split (spec §17).
     CauchyCompleteness,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum MonadValidation {
-    /// μ ∘ Tη = id_T (spec §22).
     UnitLeft,
-    /// μ ∘ ηT = id_T (spec §22).
     UnitRight,
-    /// μ ∘ Tμ = μ ∘ μT (spec §22).
     Associativity,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum CondensationValidation {
-    /// Base splitting laws: r∘s = id, s∘r = e (spec §21).
     BaseSplitting,
-    /// Homotopy coherence at each level (spec §21).
     CoherenceWitness,
-    /// All condensations split (∞-Cauchy, spec §21).
     InfinityCauchyCompleteness,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum LawvereValidation {
-    /// Theory respects finite products (spec §25).
     ProductPreservation,
-    /// Composition = substitution (spec §25).
     SubstitutionAssociativity,
-    /// All idempotent operations split (spec §25).
     CauchyCompleteness,
-    /// Theory ↔ finitary monad correspondence (spec §25).
     MonadEquivalence,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum OperadValidation {
-    /// Tree-substitution is associative (spec §26).
     Associativity,
-    /// Identity operations act as units (spec §26).
     Unit,
-    /// Symmetric group action is compatible (spec §26).
     Equivariance,
-    /// Homotopy coherence at each level (spec §26).
     InfinityCoherence,
 }
 
@@ -147,13 +109,9 @@ pub enum FiniteCategoryValidation {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum RewritingValidation {
-    /// All critical pairs join (local confluence).
     LocalConfluence,
-    /// No infinite rewrite chains (termination).
     Termination,
-    /// 2-cells resolve all non-confluent pairs (homotopy resolution).
     HomotopyResolution,
-    /// Higher cells are coherent at declared truncation level.
     TruncationCoherence,
 }
 
@@ -225,11 +183,7 @@ impl ValidationViolation {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Validation report
-// ---------------------------------------------------------------------------
 
-/// A single validation result.
 #[derive(Debug, Clone)]
 pub struct ValidationResult {
     pub unit: String,
@@ -255,7 +209,6 @@ impl ValidationResult {
     }
 }
 
-/// A collection of validation results for a functor or related structure.
 #[derive(Debug, Clone)]
 pub struct ValidationReport {
     pub target_name: String,

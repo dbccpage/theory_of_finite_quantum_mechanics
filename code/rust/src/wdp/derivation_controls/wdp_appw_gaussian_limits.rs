@@ -1,8 +1,3 @@
-//! Finite witness for the carrier L=4, M=1, r=0.
-//!
-//! TD-2a makes both layers the identity. TD-6 scales Phi by 1/(2 M sqrt(L)).
-//! The values below are exact rationals on this carrier. They are not a
-//! continuum limit and not a joint spacetime Gaussian field.
 
 const SITES: usize = 4;
 const M: i64 = 1;
@@ -114,7 +109,6 @@ fn binom(n: usize, k: usize) -> i64 {
     value
 }
 
-/// Connected cumulants through order 4, with kappa_n the nth derivative of log E[e^{u Phi}] at 0.
 fn cumulants(moments: &[Rat; 5]) -> [Rat; 5] {
     assert_eq!(moments[0], Rat::new(1, 1), "zeroth moment must be 1");
     let mut kappa = [Rat::new(0, 1); 5];
@@ -153,7 +147,6 @@ fn scale_denominator() -> i64 {
     den
 }
 
-/// Staggered occupation observable a_x = (-1)^x (n_x - 1/2) on the periodic chain.
 fn a_of(state: usize, site: usize) -> Rat {
     assert!(site < SITES, "site is outside the four-site cycle");
     let occupied = ((state >> site) & 1) as i64;
@@ -165,7 +158,6 @@ fn periodic_neighbors(site: usize) -> (usize, usize) {
     ((site + SITES - 1) % SITES, (site + 1) % SITES)
 }
 
-/// At r=0 both checkerboard layers are the identity, and the trace closes s_2 = s_0.
 fn history_weight(s0: usize, s1: usize) -> i64 {
     let layer0 = if s1 == s0 { 1i64 } else { 0 };
     let layer1 = if s0 == s1 { 1i64 } else { 0 };
@@ -218,7 +210,6 @@ fn joint_cumulants(profile: &[[i64; SITES]; HALF_STEPS]) -> (i64, [Rat; 5]) {
     (mass, cumulants(&moments))
 }
 
-/// Sum of the four site cumulants, each measured on its own labels. Not one site copied four times.
 fn site_cumulant_sum(profile: &[[i64; SITES]; HALF_STEPS]) -> (Rat, Rat) {
     let mut kappa2 = Rat::new(0, 1);
     let mut kappa4 = Rat::new(0, 1);
@@ -300,7 +291,6 @@ fn infinity_norm(profile: &[[i64; SITES]; HALF_STEPS]) -> i64 {
     norm
 }
 
-/// Printed TD-7 majorant at n=2: (2/19) * 2! * (N/R)^2 * L^0, with R=1/64.
 fn majorant_kappa2(norm_inf: i64) -> Rat {
     assert!(norm_inf >= 0, "infinity norm is negative");
     let scaled = (norm_inf as i128) * 64;

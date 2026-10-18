@@ -33,7 +33,6 @@ def test_simplicial_manifold_seed_and_pachner_moves():
     """Validates S^4 manifold seed and topological invariance under 1->5, 2->4, and 3->3 Pachner moves."""
     manifold = Simplicial4DManifold()
 
-    # Boundary of 5-simplex: 6 vertices, 15 edges, 20 triangles, 15 tetrahedra, 6 4-simplices
     assert manifold.num_vertices == 6
     assert manifold.num_edges == 15
     assert manifold.num_triangles == 20
@@ -41,24 +40,21 @@ def test_simplicial_manifold_seed_and_pachner_moves():
     assert manifold.num_four_simplices == 6
     assert manifold.euler_characteristic == 2
 
-    # Execute 1->5 Pachner move (subdivision)
     success_15 = manifold.apply_1_to_5_move()
     assert success_15 is True
     assert manifold.num_vertices == 7
-    assert manifold.num_four_simplices == 10  # Delta N4 = +4
+    assert manifold.num_four_simplices == 10
     assert manifold.euler_characteristic == 2
 
-    # Execute 2->4 Pachner move (growth)
     success_24 = manifold.apply_2_to_4_move(auto_subdivide=False)
     assert success_24 is True
-    assert manifold.num_four_simplices == 12  # Delta N4 = +2
-    assert manifold.euler_characteristic == 2  # Topological invariant
+    assert manifold.num_four_simplices == 12
+    assert manifold.euler_characteristic == 2
 
-    # Execute 3->3 Pachner move (flip)
     success_33 = manifold.apply_3_to_3_move()
     assert success_33 is True
-    assert manifold.num_four_simplices == 12  # Delta N4 = 0
-    assert manifold.euler_characteristic == 2  # Topological invariant
+    assert manifold.num_four_simplices == 12
+    assert manifold.euler_characteristic == 2
 
 
 def test_flat_triangulation_exact_constraint_closure():
@@ -105,12 +101,10 @@ def test_curved_pachner_moves_induce_defect_mass():
         assert receipt.final_n4 == 12
         assert receipt.euler_characteristic == 2
 
-        # Core Discovery: Non-vanishing constraint defect mass
         assert receipt.primal_wdw_defect_mass > 0.0
         assert receipt.primal_wdw_defect_mass == pytest.approx(receipt.dual_certified_objective, rel=1e-4)
         assert receipt.duality_gap <= 1e-6
 
-        # Discrete diffeomorphism closure broken
         assert receipt.is_diffeomorphism_closed is False
         assert receipt.terminal_route == "SplitBrainRefusal"
     finally:
@@ -146,7 +140,6 @@ def test_gin_mode_posting_list_indexing():
         c.execute("SELECT COUNT(DISTINCT mode_id) FROM GinModePostingList;")
         distinct_modes = c.fetchone()[0]
 
-        # S^4 manifold after 1->5, 2->4, 3->3 has 7 vertices -> 7 constraint mode channels
         assert distinct_modes == 7
         assert len(engine.posting_index) == 7
         for m in range(1, 8):

@@ -279,7 +279,7 @@ def evaluate_dfm_symanzik_bridge(conductor: int = 12) -> dict[str, Any]:
     u_tri = symanzik_u_polynomial(triangle, tri_alphas)
     k_tri = kirchhoff_dual_symanzik_u(triangle, tri_alphas)
 
-    z = lambda k: hbc.root_of_unity(conductor, k)  # noqa: E731
+    z = lambda k: hbc.root_of_unity(conductor, k)
     cochain = hbc.U1Cochain(diamond, (z(1), z(0), z(2), z(5), z(7)))
     gauge = [z(3), z(11), z(4), z(6)]
     gauged = cochain.gauge_transform(gauge)
@@ -289,7 +289,6 @@ def evaluate_dfm_symanzik_bridge(conductor: int = 12) -> dict[str, Any]:
     dressed_twice = dress_cochain_on_tree(dressed, base_tree)
     dressed_gauged = dress_cochain_on_tree(gauged, base_tree)
 
-    # Edge weights derived from the dressed cochain exponents (strictly gauge-invariant)
     def dressed_edge_alphas(c: hbc.U1Cochain) -> list[Fraction]:
         d = dress_cochain_on_tree(c, base_tree)
         return [Fraction(1 + hbc.root_exponent(val)) for val in d.values]
@@ -412,7 +411,6 @@ def qed_loop_coefficients() -> dict[str, RationalInterval]:
         + (pi2 * z3).scale(Fraction(83, 72))
         - z5.scale(Fraction(215, 24))
     )
-    # Declared 4-loop mass-independent coefficient enclosure (Laporta 2017)
     c4 = RationalInterval(
         Fraction(-191224576492645, 10**14),
         Fraction(-191224576492644, 10**14),
@@ -428,7 +426,7 @@ def evaluate_qed_g2_enclosure(
         raise DressedQedControlRefusal("alpha_inv must be positive")
     coeffs = qed_loop_coefficients()
     alpha = RationalInterval.exact(Fraction(1) / alpha_inv)
-    x = alpha * coeffs["pi"].reciprocal()  # alpha / pi
+    x = alpha * coeffs["pi"].reciprocal()
     x2 = x.pow(2)
     x3 = x.pow(3)
     x4 = x.pow(4)

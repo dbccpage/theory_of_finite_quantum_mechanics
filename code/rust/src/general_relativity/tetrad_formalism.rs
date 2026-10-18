@@ -1,8 +1,3 @@
-//! Discrete tetrad (vielbein) formalism and metric reconstruction over exact rationals.
-//!
-//! Origin: papers/derivations/general_relativity/rust/src/tetrad_formalism.rs
-//! Claim: DERIV-GR-TETRAD-001
-//! AuthorityEffect: None.
 
 use num_rational::Ratio;
 use num_traits::{One, Zero};
@@ -14,11 +9,9 @@ pub enum TetradError {
     DimensionMismatch,
 }
 
-/// A discrete 4-bein e^a_mu relating internal Minkowski metric eta_{ab} to spacetime metric g_{mu nu}.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DiscreteTetrad {
     pub dim: usize,
-    /// Matrix entries e[a][mu] in Q
     pub entries: Vec<Vec<Ratio<i64>>>,
 }
 
@@ -41,8 +34,6 @@ impl DiscreteTetrad {
         Ok(Self { dim, entries })
     }
 
-    /// Reconstructs spacetime metric: g_{mu nu} = sum_{a, b} e^a_mu e^b_nu eta_{ab}
-    /// with internal signature (-1, +1, +1, +1) in 4D.
     pub fn reconstruct_metric(&self) -> Vec<Vec<Ratio<i64>>> {
         let n = self.dim;
         let mut g = vec![vec![Ratio::zero(); n]; n];

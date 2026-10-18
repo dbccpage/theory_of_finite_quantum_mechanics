@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Unit tests for 2D Pontryagin Duality Bridge and Torus Character sums."""
 
 from __future__ import annotations
@@ -36,40 +35,32 @@ class TestCoda2DPontryagin(unittest.TestCase):
         self.assertEqual(r.is_exact_q_through_stage, 0)
         self.assertEqual(r.authority_effect, "None")
 
-        # Stage 0: FINITE_EXACT_2D
         s0 = r.stage("FINITE_EXACT_2D")
         self.assertEqual(s0.status, "EXACT_Q")
         self.assertEqual(s0.evidence["total_sites"], 16)
 
-        # Stage 1: DISCRETE_TORUS_GROUP
         s1 = r.stage("DISCRETE_TORUS_GROUP")
         self.assertEqual(s1.status, "OBSERVED")
         self.assertEqual(s1.evidence["character_group_observed"], "Z/4Z x Z/4Z")
 
-        # Stage 2: UNBOUNDED_TORUS_DECL
         s2 = r.stage("UNBOUNDED_TORUS_DECL")
         self.assertEqual(s2.status, "MODELLING_DECLARATION")
         self.assertEqual(s2.evidence["declared_group"], "Z^2")
 
-        # Stage 3: PONTRYAGIN_DUAL_IMPORT_2D
         s3 = r.stage("PONTRYAGIN_DUAL_IMPORT_2D")
         self.assertEqual(s3.status, "LITERATURE_IMPORT")
         self.assertEqual(s3.evidence["pontryagin_dual"], "T^2")
 
-        # Stage 4: HAAR_TORUS_CONVENTION
         s4 = r.stage("HAAR_TORUS_CONVENTION")
         self.assertEqual(s4.status, "NORMALIZATION")
         self.assertEqual(s4.evidence["conventional_torus_volume"], "(2*pi)^2")
 
-        # Stage 5: CONTINUOUS_HOST_EVAL_2D
         s5 = r.stage("CONTINUOUS_HOST_EVAL_2D")
         self.assertEqual(s5.status, "HOST_FLOAT")
         a_mid = s5.evidence["amplitude_2d_interval"]["midpoint_float"]
-        # a_2d = (3/pi)^2 = 9 / pi^2 ~ 0.911890636
         expected = (3.0 / math.pi) ** 2
         self.assertAlmostEqual(a_mid, expected, places=8)
 
-        # Spine fences
         self.assertEqual(r.spine_fence["pi_from_exact_q_2d"], "REFUSED")
         self.assertEqual(r.spine_fence["t2_from_l1_alone"], "REFUSED")
 

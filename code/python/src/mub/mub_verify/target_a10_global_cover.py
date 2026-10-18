@@ -43,7 +43,6 @@ SCHEMA_VERSION: str = "omega.mub.target-a10-global-cover.v1"
 FIREWALL_LINE: str = "stated region only; mints no authority"
 AUTHORITY_EFFECT: str = "None"
 
-# Canonical Region Identifiers
 REGION_F6_DITA: str = "F6_Affine_Dita"
 REGION_B6_SZOLLOSI: str = "B6_Szollosi_Deltoid"
 REGION_S6_TAO: str = "S6_Tao_Confluence"
@@ -60,14 +59,12 @@ ALL_REGIONS: Tuple[str, ...] = (
     REGION_H6_HAAGERUP,
 )
 
-# Canonical exact rational parameters
 EPSILON_BASE: Fraction = Fraction(37249, 90000)
 LIPSCHITZ_BOUND: Fraction = Fraction(85, 9)
 DELTA: Fraction = Fraction(1, 1000)
 DELTA_CRIT: Fraction = Fraction(37249, 850000)
 EROSION: Fraction = Fraction(17, 1800)
 
-# Regional certified obstruction margins
 MARGIN_F6: Fraction = Fraction(37249, 90000)
 MARGIN_B6: Fraction = Fraction(12133, 30000)
 MARGIN_S6: Fraction = Fraction(527, 576)
@@ -76,14 +73,10 @@ MARGIN_KARLSSON: Fraction = Fraction(37249, 90000)
 MARGIN_H6: Fraction = Fraction(12133, 30000)
 GLOBAL_MIN_MARGIN: Fraction = Fraction(12133, 30000)
 
-# Multi-chart circulation on 6-cycle (each of 6 edges carries at least 12133/30000)
-CIRCULATION_GAMMA: Fraction = Fraction(12133, 5000)  # 6 * (12133 / 30000) = 12133 / 5000
+CIRCULATION_GAMMA: Fraction = Fraction(12133, 5000)
 PHI1_OBSTRUCTION: Fraction = Fraction(12133, 5000)
 
 
-# ==============================================================================
-# 1. Zero Floating-Point Type Auditor
-# ==============================================================================
 
 def assert_no_float(obj: Any, path: str = "root", seen: Optional[Set[int]] = None) -> None:
     """Recursively verify that no floating-point types exist in any certifier data structure.
@@ -138,9 +131,6 @@ def assert_no_float(obj: Any, path: str = "root", seen: Optional[Set[int]] = Non
             assert_no_float(v, f"{path}.{k}", seen)
 
 
-# ==============================================================================
-# 2. Exact Rational Coordinate Boxes and Certified Cells
-# ==============================================================================
 
 @dataclass(frozen=True)
 class RationalIntervalBox:
@@ -326,9 +316,6 @@ class RationalCell:
         )
 
 
-# ==============================================================================
-# 3. Recursive Global Partition Tree Nodes
-# ==============================================================================
 
 class GlobalTreeNode:
     """Base class for recursive partition tree nodes."""
@@ -494,9 +481,6 @@ class GlobalPartitionTree:
         }
 
 
-# ==============================================================================
-# 4. Canonical Regional Cover Builders
-# ==============================================================================
 
 def build_f6_dita_cover(divisions_per_dim: int = 2) -> RegionalCoverTree:
     """Build exact rational bisection tree for Affine Dita Fourier Chart F_6.
@@ -505,7 +489,6 @@ def build_f6_dita_cover(divisions_per_dim: int = 2) -> RegionalCoverTree:
     All cells certified with positive margin MARGIN_F6.
     """
     domain = RationalIntervalBox(tuple((Fraction(0), Fraction(1)) for _ in range(5)))
-    # Subdivide along dim 0 into 2 halves, then dim 1 into 2 halves -> 4 cells
     left_0, right_0 = domain.subdivide(0, Fraction(1, 2))
     b00, b01 = left_0.subdivide(1, Fraction(1, 2))
     b10, b11 = right_0.subdivide(1, Fraction(1, 2))
@@ -572,7 +555,6 @@ def build_b6_szollosi_cover() -> RegionalCoverTree:
     All cells certified with positive margin MARGIN_B6.
     """
     domain = RationalIntervalBox(((Fraction(0), Fraction(1)), (Fraction(0), Fraction(1))))
-    # Subdivide into 4 quadrants, then each into 2 halves -> 8 cells
     left, right = domain.subdivide(0, Fraction(1, 2))
     b00, b01 = left.subdivide(1, Fraction(1, 2))
     b10, b11 = right.subdivide(1, Fraction(1, 2))
@@ -703,7 +685,7 @@ def build_karlsson_exterior_cover() -> RegionalCoverTree:
     Domain: [0, 1] x [0, 1] x [0, 1/1000], volume = 1/1000.
     All cells certified with positive margin MARGIN_KARLSSON = 37249/90000.
     """
-    z_max = DELTA  # 1/1000
+    z_max = DELTA
     domain = RationalIntervalBox((
         (Fraction(0), Fraction(1)),
         (Fraction(0), Fraction(1)),
@@ -806,9 +788,6 @@ def build_canonical_global_partition_tree() -> GlobalPartitionTree:
     return tree
 
 
-# ==============================================================================
-# 5. Exact Volume Conservation Verifier
-# ==============================================================================
 
 def verify_volume_conservation(
     tree: GlobalPartitionTree,
@@ -835,7 +814,6 @@ def verify_volume_conservation(
         "disjoint_interiors_verified": False,
     }
 
-    # 1. Verify each region
     for r in ALL_REGIONS:
         if r not in tree.regional_trees:
             return False, f"Missing regional cover for '{r}'", details
@@ -844,7 +822,6 @@ def verify_volume_conservation(
         if not cells:
             return False, f"Regional cover '{r}' contains no cells", details
 
-        # Derive expected volume from immutable domain geometry
         domain_geo_vol = rtree.domain.volume()
         declared_expected_vol = tree.expected_domain_volumes.get(r)
         if declared_expected_vol is not None and declared_expected_vol != domain_geo_vol:
@@ -857,7 +834,6 @@ def verify_volume_conservation(
         expected_vol = domain_geo_vol
         actual_vol = sum((c.volume for c in cells), Fraction(0))
 
-        # Check cell certification, margins, containment, supported witness
         for idx, c in enumerate(cells):
             if not c.certified:
                 return False, f"Cell {c.cell_id} in region {r} is not certified", details
@@ -886,7 +862,6 @@ def verify_volume_conservation(
                     details,
                 )
 
-        # Check pairwise interior disjointness within region
         n = len(cells)
         for i in range(n):
             for j in range(i + 1, n):
@@ -897,7 +872,6 @@ def verify_volume_conservation(
                         details,
                     )
 
-        # Exact regional volume conservation
         if actual_vol != expected_vol:
             return (
                 False,
@@ -914,7 +888,6 @@ def verify_volume_conservation(
             "volume_conserved": True,
         }
 
-    # 2. Check global volume conservation against immutable domain total
     total_cells = tree.total_cell_count()
     total_actual_vol = tree.total_volume()
     immutable_domain_total = sum((tree.regional_trees[r].domain.volume() for r in ALL_REGIONS), Fraction(0))
@@ -943,9 +916,6 @@ def verify_volume_conservation(
     return True, f"Global volume conservation verified: {total_actual_vol} == {target_vol} across {total_cells} cells", details
 
 
-# ==============================================================================
-# 6. Multi-Chart Boundary Interface Adjacency Verifier
-# ==============================================================================
 
 @dataclass(frozen=True)
 class BoundaryInterface:
@@ -1125,12 +1095,10 @@ def verify_boundary_interface_adjacency(
         if iface.chart_u in adjacency:
             adjacency[iface.chart_u].append(iface.chart_v)
 
-    # Check all expected regions are covered
     missing = set(expected_regions) - visited_regions
     if missing:
         return False, f"Interfaces do not cover regions: {missing}", details
 
-    # Check that the interfaces form a connected cycle covering all expected regions
     start_node = expected_regions[0]
     curr = start_node
     cycle_length = 0
@@ -1156,9 +1124,6 @@ def verify_boundary_interface_adjacency(
     return True, f"Multi-chart boundary adjacency verified: {len(interfaces)} interfaces form closed zero-gap cycle", details
 
 
-# ==============================================================================
-# 7. Network Simplex Cycle Circulation Check
-# ==============================================================================
 
 class GlobalNetworkSimplexVerifier:
     """Network Simplex cycle circulation check on the multi-chart nerve cycle."""
@@ -1247,7 +1212,6 @@ class GlobalNetworkSimplexVerifier:
         phi1_val, gauge = self.compute_primary_obstruction()
         circ = self.compute_circulation()
 
-        # Generate adversarial test potentials
         potentials: List[Dict[str, Fraction]] = []
         for i in range(num_adversarial):
             pot: Dict[str, Fraction] = {}
@@ -1271,9 +1235,6 @@ class GlobalNetworkSimplexVerifier:
         return True, f"Network Simplex cycle circulation verified: Phi_1 = {phi1_val} >= Gamma = {circ} > 0", details
 
 
-# ==============================================================================
-# 8. Canonical Receipt Generator and Auditor
-# ==============================================================================
 
 def generate_target_a10_receipt(
     output_path: Optional[str] = None,
@@ -1457,20 +1418,15 @@ def audit_target_a10_receipt(
     }
 
 
-# ==============================================================================
-# 9. Falsification Audit Functions (Negative Controls)
-# ==============================================================================
 
 def audit_missing_cell_tree(tree: GlobalPartitionTree, drop_region: str = REGION_F6_DITA) -> Tuple[bool, str]:
     """Negative control: audits rejection of a tree missing a region or leaf cell."""
     bad_trees = dict(tree.regional_trees)
-    # Remove one leaf from regional tree
     orig_rtree = bad_trees[drop_region]
     leaves = orig_rtree.collect_leaves()
     if len(leaves) <= 1:
         del bad_trees[drop_region]
     else:
-        # Create a single leaf with the first cell only
         bad_rtree = RegionalCoverTree(
             region=drop_region,
             domain=orig_rtree.domain,
@@ -1524,7 +1480,6 @@ def audit_overlapping_cells(tree: GlobalPartitionTree) -> Tuple[bool, str]:
     f6_tree = bad_trees[REGION_F6_DITA]
     leaves = f6_tree.collect_leaves()
 
-    # Make cell 1 duplicate bounds of cell 0 so they overlap interior
     dup_cell = RationalCell(
         cell_id="F6_overlapping_cell",
         region=REGION_F6_DITA,
@@ -1534,7 +1489,6 @@ def audit_overlapping_cells(tree: GlobalPartitionTree) -> Tuple[bool, str]:
         witness_data={"trace_inner_product": "-12133/30000", "psd_verified": True},
     )
     dup_leaf = GlobalLeafNode(dup_cell)
-    # Combine in a split node
     split = GlobalSplitNode(
         dim=0, cut=Fraction(1, 2), left=leaves[0], right=dup_leaf, region=REGION_F6_DITA, box=f6_tree.domain
     )
@@ -1559,7 +1513,6 @@ def audit_non_positive_margin(tree: GlobalPartitionTree) -> Tuple[bool, str]:
     leaves = f6_tree.collect_leaves()
 
     try:
-        # Constructing RationalCell with <= 0 margin must raise ValueError
         bad_cell = RationalCell(
             cell_id="F6_bad_margin_cell",
             region=REGION_F6_DITA,

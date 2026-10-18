@@ -38,8 +38,6 @@ def _unique_receipt_object(pairs):
 def _regular_file_snapshot(path: Path) -> tuple[tuple, bytes]:
     """Bind file identity as well as bytes; never follow a replaced control."""
     def identity(info):
-        # Windows stat and fstat disagree about ctime on Python 3.13; birthtime
-        # has consistent semantics. File identity, mtime, and bytes stay bound.
         change_time = getattr(info, "st_birthtime_ns", info.st_ctime_ns) if os.name == "nt" else info.st_ctime_ns
         return (info.st_dev, info.st_ino, info.st_mode, info.st_size,
                 info.st_mtime_ns, change_time, getattr(info, "st_file_attributes", 0))

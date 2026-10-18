@@ -1,6 +1,3 @@
-// AuthorityEffect: None.
-// Exact rational factorization, not a splitting-field or dependence certificate.
-// Internal coefficients ascend; the external protocol uses descending order.
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
@@ -75,8 +72,6 @@ fn ceil_integer_root(value: &BigInt, degree: usize) -> Result<BigInt> {
     if degree >= bits {
         return Ok(BigInt::from(2));
     }
-    // Integer Newton iteration starts above the root and decreases until the
-    // floor root is reached. No fixed precision or iteration budget is used.
     let mut root = BigInt::one() << ((bits - 1) / degree + 1);
     let degree_integer = BigInt::from(degree);
     loop {
@@ -125,16 +120,11 @@ fn root_radius(p: &[BigInt]) -> Result<BigInt> {
         root_maximum = root_maximum.max(ceil_integer_root(&absolute, degree - i)?);
         maximum = maximum.max(absolute);
     }
-    // For M=max ceil(|a_i|^(1/(n-i))) and |z|>=2M>0,
-    // sum |a_i|/|z|^(n-i) <= sum_{k=1}^n 2^-k < 1.
-    // Cauchy's 1+max|a_i| is also valid; taking the smaller never
-    // increases the inherited bound. M=0 gives X^n, whose roots are zero.
     let radius = (maximum + BigInt::one()).min(root_maximum * BigInt::from(2));
     verify_root_radius(p, &radius)?;
     Ok(radius)
 }
 fn coefficient_bound(p: &[BigInt]) -> Result<BigInt> {
-    // A monic degree-k divisor has coefficients at most (1+R)^k.
     Ok(power(root_radius(p)? + 1, (p.len() - 1) / 2))
 }
 fn verify_recombination_modulus(bound: &BigInt, modulus: &BigInt) -> Result<()> {
@@ -488,9 +478,6 @@ fn lift(p: &[BigInt], initial: &[Z], prime: &BigInt, bound: &BigInt) -> Result<(
     }
     while modulus <= 2 * bound {
         let next_modulus = &modulus * prime;
-        // Only (p-product)/modulus modulo prime is needed. Reducing each
-        // intermediate product modulo modulus*prime preserves this quotient;
-        // reducing modulo modulus alone would discard its carry.
         let product = factors
             .iter()
             .fold(vec![BigInt::one()], |a, b| fmul(&a, b, &next_modulus));
@@ -590,7 +577,6 @@ fn recombine(mut p: Z, mut factors: Vec<Z>, modulus: &BigInt) -> Vec<Z> {
             factors: &factors,
             modulus,
         };
-        // Increasing degree ensures that the first exact divisor is irreducible.
         let found = (1..=(p.len() - 1) / 2)
             .find_map(|degree| search.subset(0, degree, vec![BigInt::one()], &mut Vec::new()));
         match found {
@@ -858,7 +844,6 @@ pub fn hensel_carry_control(wrong_modulus: bool) -> Result<()> {
     let next_modulus = &prime * &prime;
     let initial = berlekamp(&p, &prime)?;
     let product_modulus = if wrong_modulus { &prime } else { &next_modulus };
-    // The copied defect drops the next p-adic digit before dividing by p.
     let product = initial
         .iter()
         .fold(vec![BigInt::one()], |a, b| fmul(&a, b, product_modulus));
@@ -894,7 +879,6 @@ pub fn hensel_verification_modulus_control(mutate: bool) -> Result<()> {
     let (mut factors, modulus) = lift(&p, &initial, &prime, &BigInt::from(9))?;
     if mutate {
         factors[0][0] += &prime;
-        // Checking only modulo the old prime would falsely accept this edit.
         verify_lift(&p, &factors, &prime)?;
     }
     verify_lift(&p, &factors, &modulus)

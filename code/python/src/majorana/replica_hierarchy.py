@@ -112,8 +112,6 @@ class FiniteDiagnosticFamily:
         counters: list[AxiomCounterexample] = []
         full_points = self._all_points(self.edges, samples)
 
-        # RE1: faithful convex gauge (finite checks of codomain, zero,
-        # positive homogeneity, and subadditivity on the declared grid).
         re1 = True
         point_values: list[Basic] = []
         zero_point = {edge: tuple(Rational(0) for _ in samples[edge][0]) for edge in self.edges}
@@ -198,7 +196,6 @@ class FiniteDiagnosticFamily:
                 if not re1:
                     break
 
-        # RE2: points with equal local magnitudes have equal diagnostics.
         re2 = True
         for left, right in combinations(full_points, 2):
             left_magnitudes = tuple(simplify(self.gauges[edge](left[edge])) for edge in self.edges)
@@ -216,9 +213,6 @@ class FiniteDiagnosticFamily:
                 )
                 break
 
-        # RE3: every unique nontrivial bipartition of every declared union.
-        # Requiring the union's first edge on the left removes only the
-        # duplicate obtained by swapping the two disjoint parts.
         re3 = True
         for union_size in range(2, len(self.edges) + 1):
             for union_edges in combinations(self.edges, union_size):
@@ -257,7 +251,6 @@ class FiniteDiagnosticFamily:
             if not re3:
                 break
 
-        # RE4: pairwise swaps inside a declared type orbit.
         re4 = True
         for i, left_edge in enumerate(self.edges):
             for right_edge in self.edges[i + 1 :]:
@@ -287,7 +280,6 @@ class FiniteDiagnosticFamily:
             if not re4:
                 break
 
-        # RE5: exact singleton calibration.
         re5 = True
         for edge in self.edges:
             for value in samples[edge]:

@@ -1,26 +1,3 @@
-//! Target A13: Rust Native Grand Synthesis Pipeline.
-//!
-//! STRICT ZERO-FLOAT DISCIPLINE: floating point types are strictly forbidden in this module.
-//! All arithmetic is computed in exact rational arithmetic (num_rational::BigRational),
-//! exact cyclotomics (Cyc24), and exact integers.
-//!
-//! AuthorityEffect: None
-//! The formal result is strictly scoped to the declared classification premises, the certified
-//! partition cover, and the combinatorial basis gluing theorem.
-//!
-//! This module formalizes and executes Target A13 of the MUB(6) research program:
-//! 1. Canonical orbit classification via 225-cross-ratio spectrum (matching Target A11).
-//! 2. Moduli space parameter extraction and leaf cell lookup in the Target A10 partition tree
-//!    (`canonical_global_partition_tree`).
-//! 3. Retrieval and validation of the certified positive curvature margin (eps_C >= 12133/30000 > 0).
-//! 4. Smale sentry: a positive certified residual margin rules out a root in each cell. No
-//!    Smale alpha is evaluated on cover cells; alpha is computed only for probed points in the
-//!    synthetic bifurcation (alpha_0 = 157/1000).
-//! 5. Combinatorial gluing: enumerate every triple of the 7 bases (premise G3), which with an
-//!    empty ZeroRel variety gives ¬HasFourthBasis.
-//! 6. Exact rational volume conservation (sum vol = 5001/1000) across the 28 leaf cells of the 6 regional charts.
-//! 7. Boundary cyclic interface circulation (Phi_1 >= 12133/5000 > 0).
-//! 8. Decisive bifurcation: Branch A confirmed on certified cover; Branch B detected on synthetic roots.
 
 use std::collections::BTreeMap;
 
@@ -49,40 +26,26 @@ use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge
 
 crate::fixture_set!(fixtures, "mub6_grand_synthesis");
 
-/// Total number of regional chart components in the global atlas.
 pub const NUM_REGIONAL_CHARTS: usize = 6;
 
-/// Total number of certified leaf cells across all 6 regional charts in the canonical global partition tree.
 pub const TOTAL_CELL_COUNT: usize = 28;
 
-/// A complete MUB family in dimension `D = 6` has `D + 1 = 7` bases.
 pub const COMPLETE_MUB_BASES_COUNT: usize = D + 1;
-/// A constituent triple of bases.
 pub const TRIPLE_BASES_COUNT: usize = 3;
-/// Bases left over once a triple is fixed: `7 - 3 = 4` candidate fourth bases.
 pub const REMAINING_CANDIDATE_BASES_COUNT: usize = COMPLETE_MUB_BASES_COUNT - TRIPLE_BASES_COUNT;
-/// Total number of constituent triples in a complete 7-basis MUB family: C(7, 3) = 35.
 pub const TOTAL_COMBINATORIAL_TRIPLES_COUNT: usize = 35;
 
-/// The 6 canonical regional charts of the MUB(6) global atlas.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum GrandSynthesisChart {
-    /// Component 1: Affine Dita Fourier chart (F_6).
     DitaFourierF6,
-    /// Component 2: Szollosi deltoid arc and desingularized cusps (B_6).
     SzollosiDeltoidB6,
-    /// Component 3: Tao confluence chart (S_6).
     TaoConfluenceS6,
-    /// Component 4: 2D Periodic collar partition cover.
     PeriodicCollar2D,
-    /// Component 5: Karlsson volume exterior boundary interface.
     KarlssonVolumeExterior,
-    /// Component 6: Isolated Haagerup orbit neighborhood (H_6).
     HaagerupOrbitH6,
 }
 
 impl GrandSynthesisChart {
-    /// Array of all 6 regional charts in canonical order.
     pub const ALL: [GrandSynthesisChart; NUM_REGIONAL_CHARTS] = [
         GrandSynthesisChart::DitaFourierF6,
         GrandSynthesisChart::SzollosiDeltoidB6,
@@ -92,7 +55,6 @@ impl GrandSynthesisChart {
         GrandSynthesisChart::HaagerupOrbitH6,
     ];
 
-    /// Human-readable descriptive name.
     pub fn name(&self) -> &'static str {
         match self {
             Self::DitaFourierF6 => "Affine Dita Fourier chart (F_6)",
@@ -104,7 +66,6 @@ impl GrandSynthesisChart {
         }
     }
 
-    /// Canonical identifier matching Target A10 and Target A11 conventions.
     pub fn canonical_id(&self) -> &'static str {
         match self {
             Self::DitaFourierF6 => "F6_dita_fourier",
@@ -116,7 +77,6 @@ impl GrandSynthesisChart {
         }
     }
 
-    /// 0-based chart index in 0..6.
     pub fn chart_index(&self) -> usize {
         match self {
             Self::DitaFourierF6 => 0,
@@ -128,7 +88,6 @@ impl GrandSynthesisChart {
         }
     }
 
-    /// Convert from 0-based index.
     pub fn from_index(index: usize) -> Option<Self> {
         match index {
             0 => Some(Self::DitaFourierF6),
@@ -141,21 +100,17 @@ impl GrandSynthesisChart {
         }
     }
 
-    /// Declared default obstruction margin for this chart. Not computed here: each value is a
-    /// constant from `mub6_constants` or a fixture, and it becomes the leaf margin of every cell
-    /// of the chart.
     pub fn default_margin(&self) -> BigRational {
         match self {
-            Self::DitaFourierF6 => base_gap(),             // 37249 / 90000
-            Self::SzollosiDeltoidB6 => certified_margin(), // 12133 / 30000
+            Self::DitaFourierF6 => base_gap(),
+            Self::SzollosiDeltoidB6 => certified_margin(),
             Self::TaoConfluenceS6 => fixtures().rational("tao_confluence_s6_default_margin"),
-            Self::PeriodicCollar2D => certified_margin(),  // 12133 / 30000
-            Self::KarlssonVolumeExterior => base_gap(),    // 37249 / 90000
-            Self::HaagerupOrbitH6 => certified_margin(),   // 12133 / 30000
+            Self::PeriodicCollar2D => certified_margin(),
+            Self::KarlssonVolumeExterior => base_gap(),
+            Self::HaagerupOrbitH6 => certified_margin(),
         }
     }
 
-    /// Declared domain volume for this chart.
     pub fn domain_volume(&self) -> BigRational {
         match self {
             Self::KarlssonVolumeExterior => rq(1, 1000),
@@ -194,7 +149,6 @@ impl From<RegionalCoverComponent> for GrandSynthesisChart {
     }
 }
 
-/// Errors arising during Grand Synthesis pipeline execution.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, thiserror::Error, Serialize, Deserialize)]
 pub enum GrandSynthesisError {
     #[error("Volume conservation mismatch: expected {expected}, actual {actual}, diff {diff}")]
@@ -248,7 +202,6 @@ pub enum GrandSynthesisError {
     GluingNotEstablished { cell_id: String },
 }
 
-/// A certified partition leaf cell in the Grand Synthesis global tree.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SynthesisLeafCell {
     pub cell_id: String,
@@ -260,7 +213,6 @@ pub struct SynthesisLeafCell {
 }
 
 impl SynthesisLeafCell {
-    /// Construct a new synthesis leaf cell with geometric validation.
     pub fn new(
         cell_id: impl Into<String>,
         chart: GrandSynthesisChart,
@@ -298,13 +250,10 @@ impl SynthesisLeafCell {
         })
     }
 
-    /// Dimensionality of this cell.
     pub fn dimension(&self) -> usize {
         self.bounds.len()
     }
 
-    /// Tests whether an exact rational coordinate point lies within this closed cell.
-    /// Handles coordinate queries where query dimensionality is <= cell dimensionality.
     pub fn contains_point(&self, pt: &[BigRational]) -> bool {
         let check_dim = pt.len().min(self.bounds.len());
         for j in 0..check_dim {
@@ -316,7 +265,6 @@ impl SynthesisLeafCell {
         true
     }
 
-    /// Center point of the cell along each bounded dimension.
     pub fn center(&self) -> Vec<BigRational> {
         let two = BigRational::from_integer(BigInt::from(2));
         self.bounds
@@ -325,7 +273,6 @@ impl SynthesisLeafCell {
             .collect()
     }
 
-    /// Maximum radius / half-width across all dimensions.
     pub fn radius(&self) -> BigRational {
         let two = BigRational::from_integer(BigInt::from(2));
         let mut max_rad = BigRational::zero();
@@ -338,7 +285,6 @@ impl SynthesisLeafCell {
         max_rad
     }
 
-    /// Converts this leaf cell into a `CertifiedLeafCell` for `SmaleSentry::scan_bisection_leaves`.
     pub fn to_certified_leaf_cell(&self) -> CertifiedLeafCell {
         CertifiedLeafCell {
             cell_id: self.cell_id.clone(),
@@ -349,7 +295,6 @@ impl SynthesisLeafCell {
     }
 }
 
-/// The Canonical Global Partition Tree aggregating all 28 leaf cells across the 6 regional charts.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GrandSynthesisPartitionTree {
     pub declared_total_volume: BigRational,
@@ -357,7 +302,6 @@ pub struct GrandSynthesisPartitionTree {
 }
 
 impl GrandSynthesisPartitionTree {
-    /// Construct a partition tree from a vector of synthesis leaf cells.
     pub fn new(leaves: Vec<SynthesisLeafCell>) -> Self {
         Self {
             declared_total_volume: total_domain_volume(),
@@ -365,12 +309,10 @@ impl GrandSynthesisPartitionTree {
         }
     }
 
-    /// Total number of leaf cells.
     pub fn leaf_count(&self) -> usize {
         self.leaves.len()
     }
 
-    /// Total exact hyper-volume across all leaf cells: sum vol(C_i).
     pub fn total_volume(&self) -> BigRational {
         let mut sum_vol = BigRational::zero();
         for leaf in &self.leaves {
@@ -379,7 +321,6 @@ impl GrandSynthesisPartitionTree {
         sum_vol
     }
 
-    /// Minimum curvature margin across all leaf cells.
     pub fn min_margin(&self) -> BigRational {
         let mut min_m = BigRational::from_integer(BigInt::from(1000000));
         for leaf in &self.leaves {
@@ -390,22 +331,18 @@ impl GrandSynthesisPartitionTree {
         min_m
     }
 
-    /// Returns true iff all leaf cell margins are strictly positive (> 0).
     pub fn all_margins_positive(&self) -> bool {
         self.leaves.iter().all(|l| l.margin > BigRational::zero())
     }
 
-    /// Collect all leaf cells belonging to a specific chart.
     pub fn cells_for_chart(&self, chart: GrandSynthesisChart) -> Vec<&SynthesisLeafCell> {
         self.leaves.iter().filter(|c| c.chart == chart).collect()
     }
 
-    /// Cell count for a specific chart.
     pub fn cell_count_for_chart(&self, chart: GrandSynthesisChart) -> usize {
         self.leaves.iter().filter(|c| c.chart == chart).count()
     }
 
-    /// Hyper-volume sum for a specific chart.
     pub fn volume_for_chart(&self, chart: GrandSynthesisChart) -> BigRational {
         let mut sum_v = BigRational::zero();
         for c in self.cells_for_chart(chart) {
@@ -414,7 +351,6 @@ impl GrandSynthesisPartitionTree {
         sum_v
     }
 
-    /// Lookup the unique leaf cell containing a given coordinate point in a given chart.
     pub fn lookup_cell(
         &self,
         chart: GrandSynthesisChart,
@@ -429,7 +365,6 @@ impl GrandSynthesisPartitionTree {
     }
 }
 
-/// Verification receipt for exact rational volume conservation.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct VolumeConservationReceipt {
     pub declared_total_volume: BigRational,
@@ -443,8 +378,6 @@ pub struct VolumeConservationReceipt {
     pub certified: bool,
 }
 
-/// Verifies exact rational volume conservation across the canonical global partition tree:
-/// sum vol(C_i) = 5001 / 1000 with exact zero gap (`vol_diff.is_zero()`).
 pub fn verify_volume_conservation(
     tree: &GrandSynthesisPartitionTree,
 ) -> Result<VolumeConservationReceipt, GrandSynthesisError> {
@@ -497,18 +430,6 @@ pub fn verify_volume_conservation(
     })
 }
 
-/// Constructs the canonical 28-leaf-cell Target A10 partition tree.
-///
-/// Layout across the 6 regional charts:
-/// 1. F6_Affine_Dita: 4 cells, each vol 1/4, total vol 1, margin 37249/90000
-/// 2. B6_Szollosi_Deltoid: 8 cells, each vol 1/8, total vol 1, margin 12133/30000
-/// 3. S6_Tao_Confluence: 4 cells, each vol 1/4, total vol 1, margin 527/576
-/// 4. Collar_2D_Periodic: 4 cells, each vol 1/4, total vol 1, margin 12133/30000
-/// 5. Karlsson_Volume_Exterior: 4 cells, each vol 1/4000, total vol 1/1000, margin 37249/90000
-/// 6. H6_Haagerup_Isolated: 4 cells, each vol 1/4, total vol 1, margin 12133/30000
-///
-/// Total cells: 4 + 8 + 4 + 4 + 4 + 4 = 28 cells.
-/// Total volume: 1 + 1 + 1 + 1 + 1/1000 + 1 = 5001/1000.
 pub fn canonical_global_partition_tree() -> GrandSynthesisPartitionTree {
     let mut leaves = Vec::with_capacity(TOTAL_CELL_COUNT);
 
@@ -517,11 +438,8 @@ pub fn canonical_global_partition_tree() -> GrandSynthesisPartitionTree {
     let half = rq(1, 2);
     let qtr = rq(1, 4);
     let three_qtr = rq(3, 4);
-    let z_max = delta_certified(); // 1 / 1000
+    let z_max = delta_certified();
 
-    // ------------------------------------------------------------------------
-    // 1. Affine Dita Fourier chart F_6 (4 cells in 5D torus, vol 1/4 each)
-    // ------------------------------------------------------------------------
     let m_f6 = GrandSynthesisChart::DitaFourierF6.default_margin();
     let f6_specs = [
         (
@@ -573,9 +491,6 @@ pub fn canonical_global_partition_tree() -> GrandSynthesisPartitionTree {
         );
     }
 
-    // ------------------------------------------------------------------------
-    // 2. Szollosi deltoid arc and desingularized cusps B_6 (8 cells in 2D, vol 1/8 each)
-    // ------------------------------------------------------------------------
     let m_b6 = GrandSynthesisChart::SzollosiDeltoidB6.default_margin();
     let b6_specs = [
         (
@@ -657,9 +572,6 @@ pub fn canonical_global_partition_tree() -> GrandSynthesisPartitionTree {
         );
     }
 
-    // ------------------------------------------------------------------------
-    // 3. Tao confluence chart S_6 (4 cells in 2D, vol 1/4 each)
-    // ------------------------------------------------------------------------
     let m_s6 = GrandSynthesisChart::TaoConfluenceS6.default_margin();
     let s6_specs = [
         (
@@ -705,9 +617,6 @@ pub fn canonical_global_partition_tree() -> GrandSynthesisPartitionTree {
         );
     }
 
-    // ------------------------------------------------------------------------
-    // 4. 2D Periodic collar partition cover (4 cells in 2D, vol 1/4 each)
-    // ------------------------------------------------------------------------
     let m_collar = GrandSynthesisChart::PeriodicCollar2D.default_margin();
     let collar_specs = [
         (
@@ -753,9 +662,6 @@ pub fn canonical_global_partition_tree() -> GrandSynthesisPartitionTree {
         );
     }
 
-    // ------------------------------------------------------------------------
-    // 5. Karlsson volume exterior boundary interface (4 cells in 3D, vol 1/4000 each)
-    // ------------------------------------------------------------------------
     let m_karlsson = GrandSynthesisChart::KarlssonVolumeExterior.default_margin();
     let karlsson_specs = [
         (
@@ -805,9 +711,6 @@ pub fn canonical_global_partition_tree() -> GrandSynthesisPartitionTree {
         );
     }
 
-    // ------------------------------------------------------------------------
-    // 6. Isolated Haagerup orbit neighborhood H_6 (4 cells in 2D, vol 1/4 each)
-    // ------------------------------------------------------------------------
     let m_h6 = GrandSynthesisChart::HaagerupOrbitH6.default_margin();
     let h6_specs = [
         (
@@ -856,8 +759,6 @@ pub fn canonical_global_partition_tree() -> GrandSynthesisPartitionTree {
     GrandSynthesisPartitionTree::new(leaves)
 }
 
-/// Solves and verifies boundary cyclic interface circulation Phi_1 >= 12133/5000 > 0
-/// across the connected 6-cycle ring: F_6 -> B_6 -> S_6 -> Collar -> Karlsson -> H_6 -> F_6.
 pub fn verify_boundary_circulation() -> Result<CycleCirculationReceipt, GrandSynthesisError> {
     let k = NUM_REGIONAL_CHARTS;
     let scale = 30000i128;
@@ -920,19 +821,15 @@ pub fn verify_boundary_circulation() -> Result<CycleCirculationReceipt, GrandSyn
     })
 }
 
-/// Candidate input to the Grand Synthesis pipeline: either an exact matrix or an explicit moduli point.
 #[derive(Clone, Debug)]
 pub enum SynthesisCandidate {
-    /// Exact 6x6 matrix over Q(zeta_24).
     Matrix(Matrix6),
-    /// Explicit moduli space coordinate point in a designated regional chart.
     ModuliPoint {
         chart: GrandSynthesisChart,
         coords: Vec<BigRational>,
     },
 }
 
-/// Premise G3: the combinatorial half of basis gluing, as enumerated.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CombinatorialGluingReceipt {
     pub complete_mub_bases: usize,
@@ -940,8 +837,6 @@ pub struct CombinatorialGluingReceipt {
     pub candidates_per_triple: usize,
 }
 
-/// The candidate fourth bases left once `triple` is fixed in a family of
-/// `total_bases`, in increasing order.
 pub fn candidate_fourth_indices(
     triple: [usize; 3],
     total_bases: usize,
@@ -957,8 +852,6 @@ pub fn candidate_fourth_indices(
     Ok((0..total_bases).filter(|i| !triple.contains(i)).collect())
 }
 
-/// Enumerates every triple of a `total_bases` family and checks each leaves
-/// `total_bases - 3` candidate fourth bases. For 7 bases: 35 triples, 4 each.
 pub fn verify_all_combinatorial_triples(
     total_bases: usize,
 ) -> Result<CombinatorialGluingReceipt, GrandSynthesisError> {
@@ -993,15 +886,8 @@ pub fn verify_all_combinatorial_triples(
     })
 }
 
-/// Decisive bifurcation result: Branch A (obstruction confirmed) vs Branch B (root detected).
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub enum BifurcationBranch {
-    /// Branch A: Positive curvature margin confirms empty ZeroRel variety and no fourth basis.
-    ///
-    /// `zero_rel_empty` and `no_fourth_basis` are computed from the checks that
-    /// ran on the cell. `smale_alpha_ge_alpha0` is `None` on a cover cell: no
-    /// Smale alpha is evaluated there. The cell's positive residual margin rules
-    /// out a root inside the cell, which is a different statement.
     BranchA {
         chart: GrandSynthesisChart,
         cell_id: String,
@@ -1010,15 +896,11 @@ pub enum BifurcationBranch {
         no_fourth_basis: bool,
         smale_alpha_ge_alpha0: Option<bool>,
     },
-    /// Branch B: Approximate zero detected within Smale radius of attraction.
     BranchB {
         alpha: BigRational,
         approximate_zero_detected: bool,
         witness_coords: Vec<BigRational>,
     },
-    /// The probed point is not a certified approximate zero. This is not
-    /// Branch A: no cover cell was evaluated, so nothing about the ZeroRel
-    /// variety or a fourth basis follows.
     NoRootCertified {
         alpha: BigRational,
         alpha_ge_alpha0: bool,
@@ -1026,7 +908,6 @@ pub enum BifurcationBranch {
     },
 }
 
-/// Detailed evaluation report from executing the Grand Synthesis pipeline on a candidate.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GrandSynthesisEvaluation {
     pub orbit_class: Option<OrbitClass>,
@@ -1044,23 +925,15 @@ pub struct GrandSynthesisEvaluation {
     pub authority_effect: String,
 }
 
-/// Evaluates the end-to-end Grand Synthesis pipeline for a candidate:
-/// 1. Canonical orbit classification via 225-cross-ratio invariant spectrum.
-/// 2. Moduli space parameter extraction and leaf cell lookup in the Target A10 partition tree.
-/// 3. Retrieval and validation of the certified positive curvature margin (eps_C >= 12133/30000 > 0).
-/// 4. Smale sentry verification confirming no approximate zero exists on certified cells (alpha >= alpha_0).
-/// 5. Combinatorial gluing evaluation confirming ¬HasFourthBasis.
 pub fn evaluate_grand_synthesis(
     candidate: &SynthesisCandidate,
     tree: &GrandSynthesisPartitionTree,
 ) -> Result<GrandSynthesisEvaluation, GrandSynthesisError> {
     match candidate {
         SynthesisCandidate::Matrix(m) => {
-            // 1. Orbit classification via 225-cross-ratio spectrum
             let spec = CrossRatioSpectrum::from_matrix(m);
             let orbit_class = classify_orbit(m);
 
-            // Map orbit class to canonical regional chart and parameter point
             let (chart, coords) = match &orbit_class {
                 OrbitClass::Fourier => {
                     (GrandSynthesisChart::DitaFourierF6, vec![rq(1, 4), rq(1, 4)])
@@ -1094,16 +967,6 @@ pub fn evaluate_grand_synthesis(
     }
 }
 
-/// Steps 2-5 of the pipeline on the cover cell containing `coords`.
-///
-/// Every flag in the result is computed from a check that ran here:
-/// - the cell margin is positive;
-/// - the sentry finds a positive certified residual margin, which rules out a
-///   root in the cell (the same derivation as the Python A12 scan, where a
-///   root is admitted exactly when a margin is not positive);
-/// - `zero_rel_empty` is the conjunction of those two; both were checked above with an early
-///   return, so it is true whenever it is reached;
-/// - `no_fourth_basis` adds premise G3, the enumeration of every basis triple.
 fn evaluate_cover_cell(
     chart: GrandSynthesisChart,
     coords: &[BigRational],
@@ -1111,9 +974,8 @@ fn evaluate_cover_cell(
     orbit_class: Option<OrbitClass>,
     cross_ratio_count: usize,
 ) -> Result<GrandSynthesisEvaluation, GrandSynthesisError> {
-    let alpha_0 = smale_alpha_threshold(); // 157 / 1000
+    let alpha_0 = smale_alpha_threshold();
 
-    // 2. Leaf cell lookup in the Target A10 partition tree
     let cell =
         tree.lookup_cell(chart, coords)
             .ok_or_else(|| GrandSynthesisError::CellLookupFailed {
@@ -1121,7 +983,6 @@ fn evaluate_cover_cell(
                 coords: coords.to_vec(),
             })?;
 
-    // 3. Margin validation
     let margin = cell.margin.clone();
     let margin_positive = margin > BigRational::zero();
     if !margin_positive {
@@ -1132,8 +993,6 @@ fn evaluate_cover_cell(
     }
     let margin_validated = margin >= certified_margin();
 
-    // 4. Smale sentry on the certified cell. It reads the certified residual
-    // margin; it does not evaluate a Smale alpha.
     let sentry_summary = SmaleSentry::scan_bisection_leaves(&[cell.to_certified_leaf_cell()]);
     if !sentry_summary.all_positive {
         return Err(GrandSynthesisError::NonPositiveMargin {
@@ -1142,7 +1001,6 @@ fn evaluate_cover_cell(
         });
     }
 
-    // 5. Combinatorial gluing (premise G3)
     let combinatorial_gluing = verify_all_combinatorial_triples(COMPLETE_MUB_BASES_COUNT)?;
     let zero_rel_empty = margin_positive && sentry_summary.all_positive;
     let no_fourth_basis = zero_rel_empty
@@ -1180,9 +1038,6 @@ fn evaluate_cover_cell(
     })
 }
 
-/// Evaluates synthetic root injection to demonstrate bifurcation:
-/// - Genuine approximate zero (small perturbation) triggers Branch B detection.
-/// - Out-of-basin points yield `NoRootCertified`, not Branch A: no cover cell is evaluated.
 pub fn evaluate_synthetic_root_bifurcation(
     system: &SquarePolynomialSystem,
     exact_root: &[BigRational],
@@ -1212,13 +1067,10 @@ pub fn evaluate_synthetic_root_bifurcation(
     }
 }
 
-/// Asserts and verifies mutual exclusivity of Branch A and Branch B:
-/// Branch A and Branch B cannot hold simultaneously.
 pub fn verify_bifurcation_mutual_exclusivity(branch_a_valid: bool, branch_b_valid: bool) -> bool {
     branch_a_valid != branch_b_valid
 }
 
-/// Full comprehensive Grand Synthesis certification receipt.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GrandSynthesisReceipt {
     pub firewall: String,
@@ -1235,12 +1087,6 @@ pub struct GrandSynthesisReceipt {
     pub certified: bool,
 }
 
-/// Whether the grand synthesis is certified: every premise that ran holds.
-///
-/// Volume conservation, the boundary circulation certificate, a positive
-/// sentry margin on every cell, canonical minimum margin validated, complete
-/// combinatorial basis gluing enumeration, and Branch A on the F6 evaluation
-/// with an empty ZeroRel variety and no fourth basis.
 pub fn grand_synthesis_certified(
     volume: &VolumeConservationReceipt,
     circulation: &CycleCirculationReceipt,
@@ -1266,12 +1112,6 @@ pub fn grand_synthesis_certified(
         && f6_branch_a
 }
 
-/// Executes the full Grand Synthesis certification suite:
-/// 1. Volume conservation across the 28 leaf cells of the canonical global partition tree.
-/// 2. Boundary cyclic interface circulation (Phi_1 >= 12133/5000 > 0).
-/// 3. Smale sentry scan across all 28 leaf cells.
-/// 4. Pipeline evaluation on standard canonical Fourier F_6.
-/// 5. SHA-256 integrity hash digest computation.
 pub fn certify_grand_synthesis() -> Result<GrandSynthesisReceipt, GrandSynthesisError> {
     let tree = canonical_global_partition_tree();
 

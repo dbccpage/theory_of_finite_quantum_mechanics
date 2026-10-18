@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Meron-Cluster Fermion Chain to Continuum Wilsonian Bridge.
 
@@ -29,7 +28,6 @@ from pathlib import Path
 import sys
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
-# Ensure projects are on path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FSP_CODE = str(REPO_ROOT / "omega_engine_projects" / "fsp" / "meron_sign_problem" / "code")
 if FSP_CODE not in sys.path:
@@ -72,7 +70,6 @@ class MeronThermodynamicReceipt:
 class MeronWilsonianBridge:
     """Calculates and extrapolates Meron cluster transfer traces to the thermodynamic limit."""
 
-    # Checked-in ground truth traces for repetitions=2, q=3
     CANONICAL_TRACES: Dict[int, int] = {
         4: 912,
         6: 33012,

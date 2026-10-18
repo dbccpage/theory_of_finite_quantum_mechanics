@@ -88,9 +88,6 @@ class NamedGraphError(NamedEdgeResolutionError):
         return f"graph construction error: {self.error}"
 
 
-# ---------------------------------------------------------------------------
-# Payload / provenance validation errors (typed)
-# ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -133,13 +130,9 @@ class DeprecatedPosetAliasUsed(DirectedGraphError):
         return "FinitePosetGraph is removed; use FiniteDirectedGraph and call validate_poset() explicitly"
 
 
-# ---------------------------------------------------------------------------
-# Runtime validation helpers (no coercion)
-# ---------------------------------------------------------------------------
 
 
 def _require_int(value: object, field: str) -> int:
-    # Reject booleans (subclass of int) and non-ints to avoid permissive coercion
     if isinstance(value, bool) or not isinstance(value, int):
         raise MalformedGraphPayload(field=field, expected="int")
     return value
@@ -152,7 +145,6 @@ def _require_str(value: object, field: str) -> str:
 
 
 def _require_list(value: object, field: str) -> list[object]:
-    # Require a concrete list (JSON-deserialized) rather than a generic Sequence
     if not isinstance(value, list):
         raise MalformedGraphPayload(field=field, expected="list")
     return value
@@ -164,9 +156,6 @@ def _require_mapping(value: object, field: str) -> Mapping[str, object]:
     return cast(Mapping[str, object], value)
 
 
-# ---------------------------------------------------------------------------
-# Provenance and witness.
-# ---------------------------------------------------------------------------
 
 try:
     from omega_engine.crates.linear_algebra_theory.proof import TheoremProvenance, TheoremId, CertificateId, ReplayHash, BoundaryId, ReviewerId
@@ -181,8 +170,6 @@ class DirectedGraphWitness:
 
     @classmethod
     def new(cls, edges: Sequence[tuple[int, int]], nodes: Sequence[str]) -> "DirectedGraphWitness":
-        # Include node names and canonical edge list so witness distinguishes
-        # graphs that share edge topology but differ in node identities.
         canonical_edges = sorted((int(src), int(dst)) for src, dst in edges)
         payload_obj = {"nodes": list(nodes), "edges": canonical_edges}
         payload = json.dumps(payload_obj, separators=(",", ":"), sort_keys=True).encode("utf-8")
@@ -195,13 +182,9 @@ class DirectedGraphWitness:
         return {"edge_hash": self.hex()}
 
 
-# Compatibility alias
 PosetWitness = DirectedGraphWitness
 
 
-# ---------------------------------------------------------------------------
-# Finite directed graph.
-# ---------------------------------------------------------------------------
 
 @dataclass(frozen=True)
 class FiniteDirectedGraph:
@@ -230,7 +213,6 @@ class FiniteDirectedGraph:
         edges: Sequence[tuple[int, int]],
         provenance: TheoremProvenance,
     ) -> "FiniteDirectedGraph":
-        # Validate node names (reject non-string and duplicates)
         node_list: list[str] = []
         seen_names: set[str] = set()
         for i, raw_name in enumerate(nodes):
@@ -240,7 +222,6 @@ class FiniteDirectedGraph:
             seen_names.add(name)
             node_list.append(name)
 
-        # Validate node index mapping (require string keys and int values)
         index_map: dict[str, int] = {}
         for raw_k, raw_v in node_index.items():
             k = _require_str(raw_k, "node_index.key")
@@ -250,7 +231,6 @@ class FiniteDirectedGraph:
         if len(node_list) != len(index_map):
             raise NodeCountMismatch()
 
-        # Ensure index ordering and uniqueness
         for expected_index, name in enumerate(node_list):
             mapped = index_map.get(name)
             if mapped != expected_index:
@@ -262,7 +242,6 @@ class FiniteDirectedGraph:
                 raise InvalidNodeIndex()
             seen_indices.add(index)
 
-        # Validate edges strictly (require 2-tuples of ints)
         edge_list: list[tuple[int, int]] = []
         for i, raw_edge in enumerate(edges):
             if not isinstance(raw_edge, Sequence) or isinstance(raw_edge, (str, bytes)):
@@ -346,9 +325,6 @@ class FiniteDirectedGraph:
                 return (idx, -1)
         return None
 
-    # ------------------------------------------------------------------
-    # Accessors matching Rust naming.
-    # ------------------------------------------------------------------
 
     def num_nodes(self) -> int:
         return len(self._nodes)
@@ -427,13 +403,10 @@ class FiniteDirectedGraph:
             raise MalformedProvenancePayload(field="provenance", expected="mapping")
         provenance_payload = cast(Mapping[str, object], provenance_raw)
 
-        # In this POC, we reconstruct provenance from dict fields.
-        # This is a bit simplified compared to the full proof.py logic.
         try:
             from omega_engine.crates.linear_algebra_theory.proof import ProvenanceKind, TheoremBoundaryRisk
         except ImportError:
             from arithmos.linear_algebra.proof import ProvenanceKind, TheoremBoundaryRisk
-        # Provenance: require explicit, well-typed fields; do not fabricate defaults.
         kind_raw = provenance_payload.get("kind")
         if not isinstance(kind_raw, str):
             raise MalformedProvenancePayload(field="kind", expected="ProvenanceKind string")
@@ -497,7 +470,6 @@ class FiniteDirectedGraph:
         nodes_raw = payload.get("nodes")
         if nodes_raw is None:
             raise MalformedGraphPayload(field="nodes", expected="list of node names")
-        # require concrete list to avoid treating strings as sequences
         nodes_list = _require_list(nodes_raw, "nodes")
         nodes = [ _require_str(x, f"nodes[{i}]") for i, x in enumerate(nodes_list) ]
 

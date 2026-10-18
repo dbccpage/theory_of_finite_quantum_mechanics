@@ -28,7 +28,6 @@ def test_historical_mirror_manifest_retains_its_declared_source_records():
 def test_contracts_corpus_is_available_and_hashable():
     paths = corpus_paths()
     assert CONTRACT_CORPUS_ROOT.exists()
-    # Independent scope oracle: not the selector's own root constant.
     names = (
         "contract_governance", "contracts_base", "contracts_oe",
         "contracts_oeos",
@@ -55,7 +54,6 @@ def test_contracts_corpus_file_contract_gate_runs_evidence_only():
     assert {item.relpath for item in report.dispositions} == {
         path.relative_to(CONTRACT_CORPUS_ROOT).as_posix() for path in paths
     }
-    # Record real open obligations. Do not turn ignored v1/v2 YAML into a pass.
     assert summary["operationally_validated"] == 0
     assert summary["status"] == "INVALID" and not report.ok
     unsupported = {item.relpath for item in report.dispositions if item.disposition == "UNSUPPORTED_DOCUMENT_SCHEMA" and item.relpath.endswith(".contract.yaml")}

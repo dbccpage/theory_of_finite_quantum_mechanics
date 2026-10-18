@@ -1,8 +1,3 @@
-//! Campaign module higher_entangle.
-//!
-//! An unnormalized GHZ vector has amplitude 1 on `|000⟩` and `|111⟩`. The
-//! partial trace over the last two qubits is diagonal with entries `(1, 1)`.
-//! The normalized purity is `1/2`, also equal to `(λ1²+λ2²)/(λ1+λ2)²`.
 
 use num_bigint::BigInt;
 use num_rational::BigRational;

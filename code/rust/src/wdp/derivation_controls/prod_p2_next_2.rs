@@ -1,4 +1,3 @@
-//! Companion Rust witness for PROD-P2-NEXT-2 (Fixture per G.5 step failing exclusively that step).
 
 pub const G5_STEPS: [&str; 12] = [
     "G.5.1", "G.5.2", "G.5.3", "G.5.4", "G.5.5", "G.5.6",

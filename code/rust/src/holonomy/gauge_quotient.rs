@@ -1,10 +1,3 @@
-//! Exact finite `C¹ / im(d₀)` and the descended map `dbar₁` to `C²`.
-//!
-//! The kernel is `H¹ = ker(d₁) / im(d₀)`, rather than the whole quotient.
-//! Shape, canonical rational coefficients and `d₁ d₀ = 0` are replayed.
-//! Elimination and quotient bases belong to the sovereign linear-algebra and
-//! homology owners. No norm minimization or geometric interpretation is inferred.
-//! AuthorityEffect: None.
 
 #![forbid(unsafe_code)]
 
@@ -17,8 +10,6 @@ use omega_homology::finite_rational_homology::{
 use omega_homology::scalar::Q;
 use omega_kernel::Digest;
 
-/// Hard bound on each carrier. Owner limits additionally bound each operation;
-/// they do not bound BigInt limb allocation or constitute a wall-clock deadline.
 pub const MAX_GAUGE_DIMENSION: usize = 256;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -105,8 +96,6 @@ fn frame_matrix(bytes: &mut Vec<u8>, matrix: &BasicMatrix<Q>) {
     }
 }
 
-/// Declared source custody. This binds a label and digest; it does not read a
-/// file, certify its contents, or promote a source assertion to a theorem.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GaugeSource {
     label: String,
@@ -134,7 +123,6 @@ impl GaugeSource {
     }
 }
 
-/// Immutable complete `Q` cochain window and chosen exact quotient bases.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RationalGaugeQuotient {
     source: GaugeSource,
@@ -166,8 +154,6 @@ impl RationalGaugeQuotient {
         if product.as_slice().iter().any(|value| !value.is_zero()) {
             return Err(GaugeQuotientRefusal::ChainLaw);
         }
-        // Reverse degrees so the homology owner computes the two cochain
-        // quotients. In degree zero the first complex has no cycle restriction.
         let all_one_cochains = FiniteRationalChainComplex::new(
             vec![dimensions[1], dimensions[0]],
             vec![d0.clone()],
@@ -266,7 +252,6 @@ impl RationalGaugeQuotient {
             .map_err(owner)
     }
 
-    /// `dbar₁([w]) = d₁w`, defined on the full quotient, including nonclosed classes.
     pub fn dbar1(
         &self,
         class: &RationalGaugeClass,
@@ -296,7 +281,6 @@ impl RationalGaugeQuotient {
         Ok(curvature)
     }
 
-    /// Retains the original and shifted representatives and replays both images.
     pub fn shift_with_receipt(
         &self,
         representative: &[Q],
@@ -333,7 +317,6 @@ impl RationalGaugeQuotient {
         })
     }
 
-    /// Exactness is solved and replayed; zero curvature alone never supplies a repair.
     pub fn diagnose(
         &self,
         representative: &[Q],
@@ -385,8 +368,6 @@ impl RationalGaugeQuotient {
     }
 }
 
-/// Context-bound coordinates, with equality exactly in the computed quotient.
-/// Fields are private; no unchecked class deserialization is provided.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RationalGaugeClass {
     context_digest: Digest,
@@ -503,8 +484,6 @@ impl GaugeDiagnosisReceipt {
     }
 }
 
-/// A complete exact cochain map. Commutation licenses quotient transport;
-/// injectivity, inverse transport and norm preservation require further data.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CommutingGaugeMap {
     source: RationalGaugeQuotient,

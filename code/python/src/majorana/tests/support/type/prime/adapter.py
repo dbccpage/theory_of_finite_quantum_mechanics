@@ -36,9 +36,9 @@ class LossLedger:
 
 @dataclass(frozen=True)
 class AdapterCheck:
-    placement: str  # "intake" | "transport"
+    placement: str
     status: AdapterStatus
     loss_ledger: Tuple[LossEntry, ...]
     reason: str
     authority_effect: str = "None"
-    enters_dda_trace: bool = False  # always False for intake refusals
+    enters_dda_trace: bool = False

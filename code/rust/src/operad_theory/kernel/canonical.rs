@@ -1,25 +1,3 @@
-//! Canonical encoding and identifiers, byte-compatible with the Python kernel.
-//!
-//! This is the Rust face of `omega_engine/crates/kernel/higher_operad/canonical.py`.
-//! Its whole purpose is that `canonical_id` returns the *same string* as the
-//! Python function for the same input. Every decision below exists to protect
-//! that equality; a change here that alters one byte silently invalidates every
-//! stored identifier in the estate.
-//!
-//! The encoding is `sha256` over
-//! `{"domain": <identifier>, "payload": <canonicalized>}` serialized with sorted
-//! keys, no whitespace, and no non-finite numbers.
-//!
-//! Two properties make the Rust and Python encoders agree:
-//!
-//! - Every object is explicitly key-sorted, including when a consumer enables
-//!   the additive `serde_json/preserve_order` feature. Keys serialize exactly
-//!   as Python's `sort_keys=True` produces. Both sort by Unicode code point;
-//!   UTF-8 byte order and code point order coincide.
-//! - `serde_json::to_string` emits `,` and `:` with no padding, matching
-//!   Python's `separators=(",", ":")`.
-//!
-//! AuthorityEffect: None.
 
 use serde_json::{Map, Value};
 use sha2::{Digest, Sha256};
@@ -45,16 +23,6 @@ pub enum CanonicalError {
     #[error("unsupported canonical value: {kind}")]
     UnsupportedValue { kind: String },
 
-    /// Refused rather than risk a digest that disagrees with Python.
-    ///
-    /// The Python encoder NFC-normalizes every string. Reproducing that here
-    /// would mean vendoring a Unicode normalization table, and NFC is the
-    /// identity on the ASCII identifiers and digests this kernel actually
-    /// carries. Rather than normalize approximately -- which could yield a
-    /// different digest than Python for the same logical value, the one failure
-    /// this module must never have -- non-ASCII text is refused outright. To
-    /// widen the domain, add a normalization dependency and drop this check
-    /// together, never one without the other.
     #[error(
         "{field} contains non-ASCII text, which this encoder refuses; see CanonicalError::NonAscii"
     )]
@@ -80,10 +48,6 @@ fn is_digest(value: &str) -> bool {
             .all(|c| c.is_ascii_digit() || ('a'..='f').contains(&c))
 }
 
-/// Trim, reject empty, and reject non-ASCII.
-///
-/// Python additionally applies NFC here; see [`CanonicalError::NonAscii`] for
-/// why refusing non-ASCII is the safe way to match it.
 pub fn require_text(value: &str, field: &str) -> Result<String, CanonicalError> {
     let trimmed = value.trim();
     if trimmed.is_empty() {
@@ -119,7 +83,6 @@ pub fn require_digest(value: &str, field: &str) -> Result<String, CanonicalError
     Ok(normalized)
 }
 
-/// Sort and reject duplicates, mirroring `sorted_unique` in the Python kernel.
 pub fn sorted_unique(values: &[String], field: &str) -> Result<Vec<String>, CanonicalError> {
     let mut normalized = Vec::with_capacity(values.len());
     for value in values {
@@ -136,12 +99,6 @@ pub fn sorted_unique(values: &[String], field: &str) -> Result<Vec<String>, Cano
     Ok(sorted)
 }
 
-/// Recursively validate and normalize a value for canonical encoding.
-///
-/// Mirrors Python `_canonicalize`, including its refusals: only null, bool,
-/// integer, string, map, and array are admissible. A float is rejected there
-/// (it falls through to the `TypeError` branch) and must be rejected here too,
-/// because binary floating point has no exact canonical decimal form.
 fn canonicalize(value: &Value) -> Result<Value, CanonicalError> {
     match value {
         Value::Null | Value::Bool(_) => Ok(value.clone()),
@@ -187,7 +144,6 @@ fn canonicalize(value: &Value) -> Result<Value, CanonicalError> {
     }
 }
 
-/// The exact bytes hashed by [`canonical_id`].
 pub fn canonical_bytes(domain: &str, payload: &Value) -> Result<Vec<u8>, CanonicalError> {
     let mut envelope = Map::new();
     envelope.insert(
@@ -195,11 +151,9 @@ pub fn canonical_bytes(domain: &str, payload: &Value) -> Result<Vec<u8>, Canonic
         Value::String(require_identifier(domain, "domain")?),
     );
     envelope.insert("payload".to_owned(), canonicalize(payload)?);
-    // `to_string` on a Value cannot fail: every branch above is representable.
     Ok(Value::Object(envelope).to_string().into_bytes())
 }
 
-/// `sha256:<hex>` over the canonical envelope.
 pub fn canonical_id(domain: &str, payload: &Value) -> Result<String, CanonicalError> {
     let bytes = canonical_bytes(domain, payload)?;
     let digest = Sha256::digest(&bytes);
@@ -266,10 +220,8 @@ mod tests {
     fn identifier_grammar_matches_the_python_regex() {
         assert!(require_identifier("omega.oewas.colour.v1", "f").is_ok());
         assert!(require_identifier("a-b_c:d/e@f", "f").is_ok());
-        // must start alphanumeric
         assert!(require_identifier(".leading", "f").is_err());
         assert!(require_identifier("-leading", "f").is_err());
-        // no spaces, no other punctuation
         assert!(require_identifier("has space", "f").is_err());
         assert!(require_identifier("has!bang", "f").is_err());
         assert!(require_identifier("", "f").is_err());

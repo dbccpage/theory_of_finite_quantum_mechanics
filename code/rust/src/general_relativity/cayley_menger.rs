@@ -1,16 +1,6 @@
-//! Cayley–Menger metric determinants and polytope admissibility (RQ-03).
-//!
-//! Evaluates n-simplex volumes directly from edge lengths without coordinate embeddings:
-//! - 1-simplex: length
-//! - 2-simplex: Heron's formula / 2D area
-//! - 3-simplex: Cayley–Menger tetrahedron volume V^2 = (1/288) det(CM)
-//! - 4-simplex: Cayley–Menger 4-simplex volume V^2 = (-1/9216) det(CM)
-//!
-//! AuthorityEffect: None.
 
 pub const DEFAULT_CM_TOL: f64 = 1e-9;
 
-/// Computes determinant of small square matrices (up to 6x6) using Gaussian elimination with partial pivoting.
 pub fn small_matrix_det(mut mat: Vec<Vec<f64>>) -> f64 {
     let n = mat.len();
     if n == 0 {
@@ -24,7 +14,6 @@ pub fn small_matrix_det(mut mat: Vec<Vec<f64>>) -> f64 {
 
     let mut det = 1.0;
     for col in 0..n {
-        // Pivot selection
         let mut pivot_row = col;
         let mut max_val = mat[col][col].abs();
         for r in (col + 1)..n {
@@ -57,8 +46,6 @@ pub fn small_matrix_det(mut mat: Vec<Vec<f64>>) -> f64 {
     det
 }
 
-/// Computes the cofactor of an n x n matrix at entry (row, col):
-/// Cof(M)_{row, col} = (-1)^{row + col} * det(submatrix excluding row and col).
 pub fn matrix_cofactor(mat: &[Vec<f64>], row: usize, col: usize) -> f64 {
     let n = mat.len();
     if n <= 1 {
@@ -86,16 +73,6 @@ pub fn matrix_cofactor(mat: &[Vec<f64>], row: usize, col: usize) -> f64 {
     }
 }
 
-/// Constructs the Cayley-Menger matrix for an n-simplex on vertices v_0, ..., v_n given a distance lookup function.
-/// Size is (n + 2) x (n + 2).
-///
-/// CM = [
-///   [ 0,  1,       1,       ..., 1       ],
-///   [ 1,  0,       d(0,1)^2, ..., d(0,n)^2 ],
-///   [ 1,  d(1,0)^2, 0,       ..., d(1,n)^2 ],
-///   ...
-///   [ 1,  d(n,0)^2, d(n,1)^2, ..., 0       ]
-/// ]
 pub fn cayley_menger_matrix(
     vertices: &[usize],
     get_length: impl Fn(usize, usize) -> Option<f64>,
@@ -105,10 +82,9 @@ pub fn cayley_menger_matrix(
         return Err("Cannot construct Cayley-Menger matrix for empty vertex set".to_string());
     }
 
-    let m = k + 1; // size of matrix
+    let m = k + 1;
     let mut mat = vec![vec![0.0; m]; m];
 
-    // First row and column are [0, 1, 1, ..., 1]
     for i in 1..m {
         mat[0][i] = 1.0;
         mat[i][0] = 1.0;
@@ -134,7 +110,6 @@ pub fn cayley_menger_matrix(
     Ok(mat)
 }
 
-/// Computes the determinant of the Cayley-Menger matrix of an n-simplex.
 pub fn cayley_menger_determinant(
     vertices: &[usize],
     get_length: impl Fn(usize, usize) -> Option<f64>,
@@ -143,15 +118,13 @@ pub fn cayley_menger_determinant(
     Ok(small_matrix_det(mat))
 }
 
-/// Computes the volume of an n-simplex via Cayley-Menger:
-/// V_n^2 = ((-1)^{n+1} / (2^n (n!)^2)) * det(CM).
 pub fn simplex_volume_cayley_menger(
     vertices: &[usize],
     get_length: impl Fn(usize, usize) -> Option<f64>,
 ) -> Result<f64, String> {
     let n = vertices.len().saturating_sub(1);
     if n == 0 {
-        return Ok(1.0); // 0-simplex point has volume 1
+        return Ok(1.0);
     }
     if n == 1 {
         let u = vertices[0];
@@ -162,7 +135,6 @@ pub fn simplex_volume_cayley_menger(
 
     let det = cayley_menger_determinant(vertices, get_length)?;
 
-    // Factor: (-1)^{n+1} / (2^n * (n!)^2)
     let mut factorial = 1.0;
     for i in 1..=n {
         factorial *= i as f64;
@@ -179,9 +151,6 @@ pub fn simplex_volume_cayley_menger(
     Ok(vol_sq.max(0.0).sqrt())
 }
 
-/// Metric polytope admissibility check (RQ-03):
-/// 1. Triangle inequalities for all triangles.
-/// 2. Positive Cayley-Menger volume for all higher simplices.
 #[derive(Debug, Clone, PartialEq)]
 pub struct MetricPolytopeCheck {
     pub is_admissible: bool,
@@ -205,7 +174,6 @@ impl Default for MetricPolytopeCheck {
     }
 }
 
-/// Check metric polytope admissibility for a complex and an edge-length lookup.
 pub fn check_metric_polytope_admissibility(
     triangles: &[[usize; 3]],
     tetrahedra: &[[usize; 4]],
@@ -254,9 +222,6 @@ pub fn check_metric_polytope_admissibility(
     check
 }
 
-/// Computes the exact analytical partial derivative of the n-simplex volume with respect to
-/// the squared edge length s_{uv} = d(u, v)^2 via Jacobi's cofactor formula:
-/// ∂(V_n)/∂(s_{uv}) = ((-1)^{n+1} / (2^n (n!)^2 V_n)) * Cof(CM)_{i+1, j+1}
 pub fn simplex_volume_derivative_wrt_squared_edge(
     vertices: &[usize],
     u: usize,
@@ -309,7 +274,6 @@ mod tests {
         let side = 2.0;
         let get_len = |_: usize, _: usize| Some(side);
         let vol = simplex_volume_cayley_menger(&[0, 1, 2], get_len).unwrap();
-        // Area = (sqrt(3)/4) * side^2 = sqrt(3) ~ 1.7320508
         let expected = (3.0f64.sqrt() / 4.0) * side * side;
         assert!((vol - expected).abs() < 1e-9);
     }
@@ -319,7 +283,6 @@ mod tests {
         let side = 1.0;
         let get_len = |_: usize, _: usize| Some(side);
         let vol = simplex_volume_cayley_menger(&[0, 1, 2, 3], get_len).unwrap();
-        // Volume = side^3 / (6 * sqrt(2)) ~ 0.11785113
         let expected = side.powi(3) / (6.0 * 2.0f64.sqrt());
         assert!((vol - expected).abs() < 1e-9);
     }
@@ -331,7 +294,7 @@ mod tests {
         let mut map = BTreeMap::new();
         map.insert((0, 1), 1.0);
         map.insert((1, 2), 2.0);
-        map.insert((0, 2), 10.0); // 1 + 2 < 10 violates!
+        map.insert((0, 2), 10.0);
         let get_len = |u: usize, v: usize| {
             let key = if u < v { (u, v) } else { (v, u) };
             map.get(&key).copied()
@@ -344,7 +307,6 @@ mod tests {
 
     #[test]
     fn test_simplex_volume_derivative_wrt_squared_edge() {
-        // Test on a triangle with sides a=3, b=4, c=5 (right triangle, Area = 6)
         let get_len = |u: usize, v: usize| {
             let key = if u < v { (u, v) } else { (v, u) };
             match key {
@@ -355,13 +317,9 @@ mod tests {
             }
         };
 
-        // For edge (0, 1) with length 3:
-        // Angle opposite to (0, 1) is at vertex 2: tan(theta_2) = 3/4, cot(theta_2) = 4/3.
-        // ∂A/∂(s_a) = 1/4 * cot(theta_2) = 1/4 * 4/3 = 1/3 ~ 0.33333333.
         let d_anal = simplex_volume_derivative_wrt_squared_edge(&[0, 1, 2], 0, 1, get_len).unwrap();
         assert!((d_anal - 1.0 / 3.0).abs() < 1e-7);
 
-        // Finite difference verification
         let eps = 1e-6;
         let s0 = 3.0f64 * 3.0;
         let l_plus = (s0 + eps).sqrt();

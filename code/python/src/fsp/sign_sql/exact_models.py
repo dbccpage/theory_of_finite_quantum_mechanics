@@ -285,8 +285,6 @@ def gauge_obstruction(con: sqlite3.Connection) -> dict:
     bad = con.execute("SELECT root FROM gauge_reach WHERE root=node AND sign=-1 ORDER BY root LIMIT 1").fetchone()
     vertices = con.execute("SELECT COUNT(*) FROM hubbard_basis").fetchone()[0]
     if bad:
-        # BFS over a finite signed double cover returns a shortest negative cycle.
-        # SQL performs the same reachability independently above; this stores a readable witness.
         from collections import deque
         start = bad[0]
         edges = con.execute("SELECT source,target,-qsign(value) FROM hubbard_hamiltonian WHERE source<>target AND qsign(value)<>0 ORDER BY source,target").fetchall()
@@ -406,7 +404,6 @@ def auxiliary_summary(con: sqlite3.Connection) -> dict:
     total,absolute=con.execute("SELECT qsum(weight),qsum(qabs(weight)) FROM dq_weight").fetchone()
     number=con.execute("SELECT qsum(numerator) FROM dq_number").fetchone()[0]
     negative=[{"mask":row[0],"up":row[1],"down":row[2],"weight":row[3]} for row in rows if rational(row[3])<0]
-    # Identity is checked with rational arithmetic, including zero determinants.
     sites,slices,hs,z,attractive=con.execute("SELECT * FROM dq_parameter").fetchone()
     pairing=[]
     for mask,up,down,weight in rows:
@@ -472,7 +469,6 @@ def hubbard_transfer_trace(sites: int, bonds: list[tuple[int,int]], slices: int=
     matrix=[[Fraction(i==j) for j in range(dim)] for i in range(dim)]
     c,s=(r+1/r)/2,(r-1/r)/2
     for _ in range(slices):
-        # B=T V: onsite factors first, then kinetic factors, in column convention.
         for state in range(dim):
             factor=z**state.bit_count()
             for x in range(sites):

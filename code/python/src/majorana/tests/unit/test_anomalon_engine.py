@@ -24,8 +24,8 @@ def test_anomalon_signal_metrics():
     assert metrics["questionCount"] == 0
     assert (
         metrics["imperativeCount"] == 2
-    )  # "Write" starts both the first and second sentences
-    assert metrics["hedgeCount"] >= 2  # "maybe", "seems", "uncertain"
+    )
+    assert metrics["hedgeCount"] >= 2
     assert metrics["charEntropy"] > 0.0
     assert metrics["wordEntropy"] > 0.0
 

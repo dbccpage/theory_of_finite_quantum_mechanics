@@ -1,9 +1,3 @@
-//! Exact unweighted L1 dual feasibility and pairing, not primal optimality.
-//!
-//! A boundary-annihilating vector of infinity norm at most one proves a lower
-//! bound on inf_alpha ||h - B alpha||_1. Equality with a submitted scalar does
-//! NOT prove equality with the infimum. Full Phi1 verification separately needs
-//! a matching primal witness. These immutable results grant no actor authority.
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
 use serde::{Deserialize, Serialize};
@@ -38,32 +32,6 @@ pub enum DualVerificationError {
     PairingMismatch,
 }
 
-/// A replayed dual lower bound, not a certificate of the optimum or of authority.
-///
-/// There is no unchecked constructor or deserializer. Inputs remain available
-/// read-only, and cloned inputs must be verified again after modification.
-///
-/// ~~~compile_fail
-/// use omega_functional::dual_verification::VerifiedDualLowerBound;
-/// let forged = VerifiedDualLowerBound {
-///     boundary: vec![], dual: vec![], residual: vec![],
-///     value: num_rational::BigRational::from_integer(1.into()),
-/// };
-/// ~~~
-///
-/// A feasible lower bound cannot stand in for the separately verified optimum:
-///
-/// ~~~compile_fail
-/// use num_rational::BigRational;
-/// use omega_functional::dual_verification::verify_dual_witness;
-/// fn needs_optimum(_: omega_functional::phi1::VerifiedExactPhi1) {}
-/// let one = BigRational::from_integer(1.into());
-/// let lower = verify_dual_witness(
-///     &[vec![]], std::slice::from_ref(&one),
-///     std::slice::from_ref(&one), &one,
-/// ).unwrap();
-/// needs_optimum(lower);
-/// ~~~
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct VerifiedDualLowerBound {
     boundary: Vec<Vec<BigRational>>,
@@ -100,12 +68,6 @@ fn canonical(
     Ok(BigRational::new(value.numer().clone(), value.denom().clone()))
 }
 
-/// Verify B^T dual = 0, |dual_i| <= 1 and <dual, residual> = claimed >= 0.
-///
-/// Uses exact finite rationals, no floating tolerance, and a nonempty residual.
-/// Zero-column boundaries represent the legitimate zero repair subspace. The
-/// matrix need not be a graph incidence matrix: only its declared linear image
-/// is used here. Neither source identity nor an external graph is authenticated.
 pub fn verify_dual_witness(
     boundary: &[Vec<BigRational>],
     dual: &[BigRational],
@@ -131,8 +93,6 @@ pub fn verify_dual_witness(
         }
     }
 
-    // new_raw can bypass rational invariants in typed callers. Validate and
-    // canonicalize every input before signs, bounds, products or comparisons.
     let boundary = boundary
         .iter()
         .enumerate()
@@ -201,8 +161,6 @@ mod tests {
 
     #[test]
     fn a_strict_lower_bound_is_valid_without_claiming_primal_optimality() {
-        // im(B) is the first coordinate axis. The exact distance of (3,4)
-        // is 4, while dual=(0,1/2) proves only the strict lower bound 2.
         let boundary = vec![vec![r(1)], vec![r(0)]];
         let dual = vec![r(0), BigRational::new(1.into(), 2.into())];
         let residual = vec![r(3), r(4)];
@@ -228,7 +186,7 @@ mod tests {
         assert_eq!(verified.dual(), &[r(1)]);
         assert_eq!(verified.residual(), &[r(1)]);
         let zero = verify_dual_witness(&[vec![]], &[r(0)], &[r(99)], &r(0)).unwrap();
-        assert_eq!(zero.value(), &r(0)); // zero lower bound is not zero optimum
+        assert_eq!(zero.value(), &r(0));
     }
 
     #[test]

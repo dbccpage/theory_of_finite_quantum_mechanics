@@ -68,7 +68,7 @@ def test_audit_failure_type_mismatch():
 
     class TestContract(BoundContract):
         DESCRIPTOR = desc
-        Input = int  # Type mismatch (expected type(None))
+        Input = int
         Output = type(None)
         Subject = type(None)
         RuntimeState = type(None)
@@ -89,11 +89,9 @@ def test_no_authority_guard():
         def artifact_id(self) -> str:
             return self.art_id
 
-    # OK case
     artifact_ok = DummyTagged("id1", AuthorityEffect.None_)
     NoAuthorityGuard.validate(artifact_ok, "test_artifact")
 
-    # Violating case
     artifact_fail = DummyTagged("id2", AuthorityEffect.StateTransition)
     with pytest.raises(AuthorityViolation) as exc_info:
         NoAuthorityGuard.validate(artifact_fail, "test_artifact")

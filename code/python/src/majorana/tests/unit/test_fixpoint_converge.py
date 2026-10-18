@@ -68,7 +68,7 @@ class TestPresheafFixpointConverge(unittest.TestCase):
             agent_id="agent_bad",
             steps=[
                 DdaStepRecord(DdaTapeLetter.I, residual_phi1=2.0, foc_class="P_NONCLOSED"),
-                DdaStepRecord(DdaTapeLetter.T, residual_phi1=2.0, foc_class="P_NONCLOSED"),  # Uncompensated I!
+                DdaStepRecord(DdaTapeLetter.T, residual_phi1=2.0, foc_class="P_NONCLOSED"),
             ],
         )
 

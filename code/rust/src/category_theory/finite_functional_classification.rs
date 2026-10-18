@@ -1,8 +1,3 @@
-//! Complete constructive finite predicate classifications, without phenomenology.
-//!
-//! Component data are not predicates: these theorems classify explicitly chosen
-//! invariants of total finite maps. Every permitted signature has a concrete
-//! witness with at most four states; necessity uses universal map arguments.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -25,10 +20,6 @@ pub struct RetentionSignature {
 }
 
 impl RetentionSignature {
-    /// Complete necessary/sufficient criterion for these SIX predicates.
-    /// Singleton maps force reversible/injective/minimal and no activity/tolerance.
-    /// Injective recognized reports force minimality. Identity dynamics have no
-    /// future distinguishing power, so minimal iff raw-injective and no tolerance.
     pub fn is_realizable(self) -> bool {
         if !self.nontrivial {
             return self.reversible
@@ -47,9 +38,6 @@ impl RetentionSignature {
     }
 }
 
-/// Raw and recognized report identifiers, together with a total Moore system.
-/// Recognition must factor through raw report equality, making a genuine finite
-/// report equivalence; arbitrary nontransitive tolerances are outside this scope.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteRetentionModel {
     raw_reports: Vec<usize>,
@@ -121,8 +109,6 @@ impl FiniteRetentionModel {
     }
 }
 
-/// Construct every realizable signature; exhaustive checks are corroboration,
-/// while the construction and universal implications prove completeness.
 pub fn realize_retention(
     signature: RetentionSignature,
 ) -> Result<FiniteRetentionModel, ClassificationError> {
@@ -165,29 +151,20 @@ pub fn realize_retention(
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct FunctionalSignature {
-    /// An independent report s factors through the accessible presentation q.
     pub linked: bool,
-    /// q is stable under the declared context action t.
     pub presentation_stable: bool,
-    /// s is stable under t (the manuscript's REPORT-stability predicate).
     pub report_stable: bool,
-    /// Report equals the declared behavioral target at every state.
     pub calibrated: bool,
-    /// At least two states have the same accessible presentation.
     pub blind_spot: bool,
 }
 
 impl FunctionalSignature {
-    /// Exactly two constraints: injective q forces factorization, and linked
-    /// reports inherit presentation stability. All other combinations occur.
     pub fn is_realizable(self) -> bool {
         (self.blind_spot || self.linked)
             && !(self.linked && self.presentation_stable && !self.report_stable)
     }
 }
 
-/// Total finite maps q,s,t,b on a nonempty common carrier. Accessible self-state
-/// is identified with that carrier. No report factorization is presumed.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteFunctionalModel {
     presentation: Vec<usize>,
@@ -232,8 +209,6 @@ impl FiniteFunctionalModel {
         &self.target
     }
 
-    /// Factorization exists iff every q-fiber has a constant s; this is a
-    /// checked partial map on realized presentations, not a guessed decoder.
     pub fn report_factor(&self) -> Option<BTreeMap<usize, usize>> {
         let mut factor = BTreeMap::new();
         for (&q, &s) in self.presentation.iter().zip(&self.report) {
@@ -265,8 +240,6 @@ impl FiniteFunctionalModel {
     }
 }
 
-/// Construct all 20 realizable signatures with at most three states.
-/// Calibration is independent: b=s for success, change b(0) for failure.
 pub fn realize_functional(
     signature: FunctionalSignature,
 ) -> Result<FiniteFunctionalModel, ClassificationError> {
@@ -312,18 +285,12 @@ pub fn realize_functional(
     FiniteFunctionalModel::new(q, s, t, target)
 }
 
-/// A positive or negative literal in the documented signature field order.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct PropertyLiteral {
     pub index: usize,
     pub value: bool,
 }
 
-/// Return an explicit countermodel, or None when every classified retention
-/// model satisfying the premises satisfies the conclusion. Field order is
-/// N,V,O,T,K,A. Contradictory premises entail vacuously; invalid indices refuse.
-/// Completeness follows from the universal classification plus constructors,
-/// not an assumed bound on possible carrier sizes.
 pub fn retention_implication_countermodel(
     premises: &[PropertyLiteral],
     conclusion: PropertyLiteral,
@@ -355,9 +322,6 @@ pub fn retention_implication_countermodel(
     Ok(None)
 }
 
-/// Complete implication replay for F,P,S,C,B with an explicit finite witness
-/// for every failed implication. Returns None iff the implication is valid in
-/// the entire declared class (including the vacuous contradictory-premise case).
 pub fn functional_implication_countermodel(
     premises: &[PropertyLiteral],
     conclusion: PropertyLiteral,

@@ -1,20 +1,3 @@
-//! Simplicial Sets, Kan Complexes, and Quasi-Categories (∞-Categories).
-//!
-//! Provides mathematically rigorous foundations for simplicial homotopy theory:
-//! - Simplicial sets X_• with face maps d_i and degeneracy maps s_j
-//! - Simplicial identities validation:
-//!     1. d_i ∘ d_j = d_{j-1} ∘ d_i (i < j)
-//!     2. d_i ∘ s_j = s_{j-1} ∘ d_i (i < j)
-//!     3. d_j ∘ s_j = id = d_{j+1} ∘ s_j
-//!     4. d_i ∘ s_j = s_j ∘ d_{i-1} (i > j + 1)
-//!     5. s_i ∘ s_j = s_{j+1} ∘ s_i (i <= j)
-//! - Horns Λ^k_n (inner for 0 < k < n, outer for k = 0, n)
-//! - Quasi-category inner horn filling verification
-//! - Kan complex horn filling verification
-//!
-//! Zero floats. Soviet Builder allocation bounded by `OperationLimits`.
-//!
-//! AuthorityEffect: None.
 
 use std::collections::HashMap;
 
@@ -23,43 +6,33 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::{reserve_exact, HigherCategoryError};
 
-/// An n-simplex in a simplicial set.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Simplex {
     pub id: String,
     pub dimension: usize,
 }
 
-/// A horn Λ^k_n in a simplicial set.
-/// Specified by (n-1)-simplices x_i for i ∈ {0, ..., n} \ {k}.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Horn {
     pub dimension: usize,
     pub omitted_index: usize,
-    /// Maps face index i (where i != omitted_index) to (n-1)-simplex ID.
     pub faces: HashMap<usize, String>,
 }
 
 impl Horn {
-    /// Returns true if this is an inner horn (0 < k < n).
     pub fn is_inner(&self) -> bool {
         self.omitted_index > 0 && self.omitted_index < self.dimension
     }
 }
 
-/// Simplicial set data structure with exact combinatorial verification.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SimplicialSet {
-    /// Simplices grouped by dimension
     pub simplices_by_dim: Vec<Vec<Simplex>>,
-    /// Face maps: (dim, face_index, simplex_id) -> face_simplex_id
     pub face_maps: HashMap<(usize, usize, String), String>,
-    /// Degeneracy maps: (dim, degen_index, simplex_id) -> degen_simplex_id
     pub degeneracy_maps: HashMap<(usize, usize, String), String>,
 }
 
 impl SimplicialSet {
-    /// Constructs an empty simplicial set up to max_dimension under `OperationLimits`.
     pub fn new(max_dimension: usize, limits: &OperationLimits) -> Result<Self, HigherCategoryError> {
         let count = max_dimension.saturating_add(1);
         let mut simplices_by_dim = Vec::new();
@@ -74,7 +47,6 @@ impl SimplicialSet {
         })
     }
 
-    /// Adds a simplex of a given dimension.
     pub fn add_simplex(
         &mut self,
         dimension: usize,
@@ -99,7 +71,6 @@ impl SimplicialSet {
         Ok(())
     }
 
-    /// Declares a face map d_i: X_n -> X_{n-1}.
     pub fn set_face(
         &mut self,
         dim: usize,
@@ -119,7 +90,6 @@ impl SimplicialSet {
                 found: format!("i = {}", i),
             });
         }
-        // Verify simplex existence
         if !self.simplices_by_dim[dim].iter().any(|s| s.id == simplex) {
             return Err(HigherCategoryError::ZeroCellNotFound { id: simplex.to_string() });
         }
@@ -131,7 +101,6 @@ impl SimplicialSet {
         Ok(())
     }
 
-    /// Declares a degeneracy map s_j: X_n -> X_{n+1}.
     pub fn set_degeneracy(
         &mut self,
         dim: usize,
@@ -162,23 +131,19 @@ impl SimplicialSet {
         Ok(())
     }
 
-    /// Evaluates d_i(x).
     pub fn face(&self, dim: usize, i: usize, simplex: &str) -> Option<&str> {
         self.face_maps.get(&(dim, i, simplex.to_string())).map(|s| s.as_str())
     }
 
-    /// Evaluates s_j(x).
     pub fn degeneracy(&self, dim: usize, j: usize, simplex: &str) -> Option<&str> {
         self.degeneracy_maps.get(&(dim, j, simplex.to_string())).map(|s| s.as_str())
     }
 
-    /// Verifies the first simplicial identity: d_i ∘ d_j = d_{j-1} ∘ d_i for all i < j.
     pub fn verify_face_face_identities(&self) -> Result<(), HigherCategoryError> {
         for dim in 2..self.simplices_by_dim.len() {
             for simplex in &self.simplices_by_dim[dim] {
                 for j in 1..=dim {
                     for i in 0..j {
-                        // Left: d_i(d_j(x))
                         let d_j_x = self.face(dim, j, &simplex.id).ok_or_else(|| {
                             HigherCategoryError::SimplicialIdentityViolation {
                                 dimension: dim,
@@ -191,7 +156,6 @@ impl SimplicialSet {
                                 details: format!("Missing face d_{} on d_{}('{}')", i, j, simplex.id),
                             }
                         })?;
-                        // Right: d_{j-1}(d_i(x))
                         let d_i_x = self.face(dim, i, &simplex.id).ok_or_else(|| {
                             HigherCategoryError::SimplicialIdentityViolation {
                                 dimension: dim,
@@ -220,7 +184,6 @@ impl SimplicialSet {
         Ok(())
     }
 
-    /// Verifies that a horn Λ^k_n is well-formed (satisfies boundary compatibility).
     pub fn verify_horn_compatibility(&self, horn: &Horn) -> Result<(), HigherCategoryError> {
         let n = horn.dimension;
         let k = horn.omitted_index;
@@ -237,7 +200,6 @@ impl SimplicialSet {
             });
         }
 
-        // Verify compatibility: d_i(x_j) = d_{j-1}(x_i) for i < j, i != k, j != k
         for j in 0..=n {
             if j == k {
                 continue;
@@ -298,8 +260,6 @@ impl SimplicialSet {
         Ok(())
     }
 
-    /// Checks if a candidate n-simplex y fills horn Λ^k_n:
-    /// d_i(y) = x_i for all i != k.
     pub fn is_horn_filler(&self, horn: &Horn, candidate_simplex_id: &str) -> bool {
         let n = horn.dimension;
         let k = horn.omitted_index;
@@ -319,7 +279,6 @@ impl SimplicialSet {
         true
     }
 
-    /// Verifies that horn Λ^k_n admits a filler in X_n.
     pub fn verify_horn_has_filler(&self, horn: &Horn) -> Result<String, HigherCategoryError> {
         self.verify_horn_compatibility(horn)?;
         let n = horn.dimension;
@@ -345,11 +304,9 @@ impl SimplicialSet {
     }
 }
 
-/// Quasi-Category (∞-Category) validator.
 pub struct QuasiCategoryValidator;
 
 impl QuasiCategoryValidator {
-    /// Verifies that every supplied inner horn (0 < k < n) admits a filler in the simplicial set.
     pub fn verify_inner_horns(
         sset: &SimplicialSet,
         inner_horns: &[Horn],
@@ -368,11 +325,9 @@ impl QuasiCategoryValidator {
     }
 }
 
-/// Kan Complex validator.
 pub struct KanComplexValidator;
 
 impl KanComplexValidator {
-    /// Verifies that every supplied horn (inner and outer: 0 <= k <= n) admits a filler.
     pub fn verify_all_horns(
         sset: &SimplicialSet,
         horns: &[Horn],

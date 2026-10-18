@@ -50,13 +50,13 @@ class Isometry2to4:
 
 
 V_DEPHASE = Isometry2to4(
-    v0=Vec4(1, 0, 0, 0),  # |00>
-    v1=Vec4(0, 0, 0, 1),  # |11>
+    v0=Vec4(1, 0, 0, 0),
+    v1=Vec4(0, 0, 0, 1),
 )
 
 V_DEPHASE_ENV_X = Isometry2to4(
-    v0=Vec4(0, 1, 0, 0),  # |01>
-    v1=Vec4(0, 0, 1, 0),  # |10>
+    v0=Vec4(0, 1, 0, 0),
+    v1=Vec4(0, 0, 1, 0),
 )
 
 
@@ -100,7 +100,7 @@ def test_same_classical_population_channel():
 def test_kraus_rank_two():
     dephase_kraus_rank = 2
     assert dephase_kraus_rank > 0
-    assert dephase_kraus_rank <= 2  # env dim
+    assert dephase_kraus_rank <= 2
 
 
 def test_env_x_gauge_relates_dilations():
@@ -124,7 +124,6 @@ def test_dephase_env_is_minimal():
 def test_absolute_isometry_uniqueness_refused():
     absolute_isometry_uniqueness_claim = False
     assert absolute_isometry_uniqueness_claim is False
-    # distinct maps but gauge-related
     assert V_DEPHASE.v0 != V_DEPHASE_ENV_X.v0
     assert apply_env_x(V_DEPHASE.v0) == V_DEPHASE_ENV_X.v0
 
@@ -133,7 +132,7 @@ def test_minimal_dilation_gauge_package():
     assert apply_env_x(V_DEPHASE.v0) == V_DEPHASE_ENV_X.v0
     assert apply_env_x(V_DEPHASE.v1) == V_DEPHASE_ENV_X.v1
     assert apply_env_x(apply_env_x(V_DEPHASE.v0)) == V_DEPHASE.v0
-    assert 2 == 2  # kraus rank = env dim
+    assert 2 == 2
     assert V_DEPHASE.v0 != V_DEPHASE_ENV_X.v0
     absolute_uniqueness = False
     full_cptp_stinespring_open = True

@@ -1,35 +1,3 @@
-//! Eight typed admission conditions for the CODA-CS–Q bridge (Lean `BridgeAdmissible8`).
-//!
-//! Each conjunct is a **named** witness structure, projectable independently.
-//! Admission is fail-closed: missing any of the eight conditions refuses.
-//!
-//! # Terminalizer equality theorem (named maps)
-//!
-//! ```text
-//! Theorem factorization_implies_named_terminalizers_agree
-//! Premises:
-//!   (F)  profile_factorization:  ∀ x. q(x) = q_bar(Prof(x))
-//!   (N)  named terminals are the query-via-factor instance:
-//!          τ_Q := q
-//!          τ_CODA-CS := q_bar ∘ Prof
-//! Conclusion:
-//!   (A)  terminalizers_agree:  ∀ x. τ_Q(x) = τ_CODA-CS(x)
-//! Proof sketch:
-//!   Fix x.  τ_Q(x) = q(x) = q_bar(Prof(x)) = τ_CODA-CS(x)  by (F) and (N).
-//!   Every premise is used. Equality is NOT (step5 ∧ step2) flag conjunction
-//!   and is NOT automatic from tower / completion / route flags alone.
-//! ```
-//!
-//! Runtime dual: [`terminalizers_agree`] recomputes pointwise equality on the
-//! finite sample; [`terminalizers_agree_from_factorization`] requires a live
-//! factorization check (consumes premise F), then builds the query-via-factor
-//! terminals and checks agreement.
-//!
-//! # Authority
-//!
-//! `AuthorityEffect: None` on all paths. Never GlobalGreen. Never PROD LIVE.
-//!
-//! Lean: `OmegaEngine.Bridge.BridgeAdmissible8` in `GttcQBridge.lean`.
 
 use serde::{Deserialize, Serialize};
 
@@ -37,10 +5,8 @@ use super::bridge_packet::{
     profile_factorization_holds, BridgePacket14, DomainId, FactorizationDefect, QueryValue,
 };
 
-/// Paper / Lean step count for eight-way admission.
 pub const BRIDGE_ADMISSIBLE_8_STEP_COUNT: usize = 8;
 
-/// Ordered step names (parity with paper / Python `BRIDGE_ADMISSIBLE_8_STEPS`).
 pub const BRIDGE_ADMISSIBLE_8_STEP_NAMES: [&str; BRIDGE_ADMISSIBLE_8_STEP_COUNT] = [
     "finite_packet_validity",
     "tower_coherence",
@@ -52,14 +18,10 @@ pub const BRIDGE_ADMISSIBLE_8_STEP_NAMES: [&str; BRIDGE_ADMISSIBLE_8_STEP_COUNT]
     "terminal_agreement",
 ];
 
-/// Obligation state for one typed admission conjunct (not a continuum proof).
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum ObligationState {
-    /// Explicit verified witness string.
     Verified { witness: String },
-    /// Explicit failure with residual.
     Failed { residual: String },
-    /// Declared but not verified (fail-closed for full admission).
     DeclaredUnverified { note: String },
 }
 
@@ -80,7 +42,6 @@ impl ObligationState {
         Self::DeclaredUnverified { note: note.into() }
     }
 
-    /// Only explicit Verified counts as holding (fail-closed).
     pub fn holds(&self) -> bool {
         matches!(self, Self::Verified { .. })
     }
@@ -94,7 +55,6 @@ impl ObligationState {
     }
 }
 
-/// Step 1 — Finite packet validity (Lean `FinitePacketValidity`).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FinitePacketValidity {
     pub index_presented: ObligationState,
@@ -119,7 +79,6 @@ impl FinitePacketValidity {
     }
 }
 
-/// Step 2 — Tower coherence (Lean `TowerCoherence`).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TowerCoherence {
     pub paste_transitions: ObligationState,
@@ -143,7 +102,6 @@ impl TowerCoherence {
     }
 }
 
-/// Step 3 — Completion realization (Lean `CompletionWitness`).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CompletionWitness {
     pub named_completion: ObligationState,
@@ -163,7 +121,6 @@ impl CompletionWitness {
     }
 }
 
-/// Step 4 — QHeld five-debt gate (Lean `QHeldDebts`).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QHeldDebts {
     pub shadow: ObligationState,
@@ -193,15 +150,9 @@ impl QHeldDebts {
     }
 }
 
-/// Step 5 — Profile factorization evidence (Lean `profile_factorization` conjunct).
-///
-/// Not a bare bool alone for terminalizer discharge: live check must re-run
-/// [`profile_factorization_holds`] on the packet maps.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FactorizationEvidence {
-    /// Whether the finite sample satisfies $q = \bar{q} \circ \operatorname{Prof}$.
     pub holds: bool,
-    /// Witness or residual detail.
     pub detail: String,
 }
 
@@ -224,7 +175,6 @@ impl FactorizationEvidence {
     }
 }
 
-/// Step 6 — Route independence (Lean `RouteIndependence`).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RouteIndependence {
     pub cofinal_routes_admissible: ObligationState,
@@ -244,7 +194,6 @@ impl RouteIndependence {
     }
 }
 
-/// Step 7 — Reflection descent (Lean `ReflectionDescent`).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ReflectionDescent {
     pub descends_to_carrier: ObligationState,
@@ -264,16 +213,10 @@ impl ReflectionDescent {
     }
 }
 
-/// Named terminal maps $\tau_Q$ and $\tau_{\mathrm{CODA\text{-}CS}}$ (Lean `NamedTerminalizers`).
-///
-/// Diagnostic equality carrier only — AuthorityEffect: None.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct NamedTerminalizers {
-    /// Pointwise $\tau_Q$ on the sample domain (domain id → value).
     pub tau_q: std::collections::BTreeMap<DomainId, QueryValue>,
-    /// Pointwise $\tau_{\mathrm{CODA\text{-}CS}}$ on the sample domain.
     pub tau_coda_cs: std::collections::BTreeMap<DomainId, QueryValue>,
-    /// Domain order for evaluation.
     pub domain: Vec<DomainId>,
 }
 
@@ -309,7 +252,6 @@ impl NamedTerminalizers {
     }
 }
 
-/// Pointwise terminal mismatch residual.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TerminalMismatch {
     pub x: DomainId,
@@ -317,9 +259,6 @@ pub struct TerminalMismatch {
     pub tau_coda_cs: QueryValue,
 }
 
-/// Pointwise agreement of named terminals (Lean `terminalizers_agree`).
-///
-/// Returns `Ok(())` iff $\tau_Q(x) = \tau_{\mathrm{CODA\text{-}CS}}(x)$ for all sample $x$.
 pub fn terminalizers_agree(named: &NamedTerminalizers) -> Result<(), TerminalMismatch> {
     for &x in &named.domain {
         let tq = named.tau_q.get(&x).copied();
@@ -343,7 +282,6 @@ pub fn terminalizers_agree(named: &NamedTerminalizers) -> Result<(), TerminalMis
         }
     }
     if named.domain.is_empty() {
-        // Empty domain: fail closed (no free agreement).
         return Err(TerminalMismatch {
             x: 0,
             tau_q: 0,
@@ -353,36 +291,22 @@ pub fn terminalizers_agree(named: &NamedTerminalizers) -> Result<(), TerminalMis
     Ok(())
 }
 
-/// Factorization premise discharges named query terminals
-/// (Lean `factorization_implies_named_terminalizers_agree`).
-///
-/// **Consumes the factorization premise** by re-checking
-/// [`profile_factorization_holds`] on the packet maps — not `step5 && step2`
-/// boolean flags alone.
 pub fn terminalizers_agree_from_factorization(
     packet: &BridgePacket14,
 ) -> Result<NamedTerminalizers, BridgeAdmissionError> {
-    // Premise (F): live factorization check — required before agreement claim.
     profile_factorization_holds(packet).map_err(BridgeAdmissionError::Factorization)?;
 
-    // Premise (N): query-via-factor terminals.
     let named = NamedTerminalizers::query_via_qbar_prof(packet)
         .map_err(BridgeAdmissionError::Factorization)?;
 
-    // Conclusion (A): pointwise agreement (follows from F+N on finite sample).
     terminalizers_agree(&named).map_err(BridgeAdmissionError::TerminalMismatch)?;
 
     Ok(named)
 }
 
-/// Step 8 — Terminal agreement (Lean `TerminalAgreement`).
-///
-/// Holds only when bundled named terminals agree pointwise. Must not be defined
-/// as `factorization_evidence.holds && tower_coherence.holds`.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TerminalAgreement {
     pub named: NamedTerminalizers,
-    /// True only after pointwise `terminalizers_agree`.
     pub pointwise: bool,
     pub detail: String,
 }
@@ -392,7 +316,6 @@ impl TerminalAgreement {
         self.pointwise && terminalizers_agree(&self.named).is_ok()
     }
 
-    /// Build step-8 from factorization (uses every premise of the equality theorem).
     pub fn from_factorization(packet: &BridgePacket14) -> Result<Self, BridgeAdmissionError> {
         let named = terminalizers_agree_from_factorization(packet)?;
         Ok(Self {
@@ -403,33 +326,21 @@ impl TerminalAgreement {
     }
 }
 
-/// Eight typed admission conditions (Lean `BridgeAdmissible8`).
-///
-/// Each field is separately named and projectable. Not a single bool blob.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BridgeAdmissible8 {
-    /// Step 1.
     pub finite_packet_validity: FinitePacketValidity,
-    /// Step 2.
     pub tower_coherence: TowerCoherence,
-    /// Step 3.
     pub completion_witness: CompletionWitness,
-    /// Step 4.
     pub qheld_debts: QHeldDebts,
-    /// Step 5 — factorization evidence (recomputed from packet maps at admit time).
     pub factorization_evidence: FactorizationEvidence,
-    /// Step 6.
     pub route_independence: RouteIndependence,
-    /// Step 7.
     pub reflection_descent: ReflectionDescent,
-    /// Step 8 — named terminal agreement (not step5 ∧ step2).
     pub terminal_agreement: TerminalAgreement,
 }
 
 impl BridgeAdmissible8 {
     pub const STEP_COUNT: usize = BRIDGE_ADMISSIBLE_8_STEP_COUNT;
 
-    /// Unfolded eight-way conjunction (each step's hold predicate).
     pub fn holds(&self) -> bool {
         self.finite_packet_validity.holds()
             && self.tower_coherence.holds()
@@ -441,47 +352,38 @@ impl BridgeAdmissible8 {
             && self.terminal_agreement.holds()
     }
 
-    /// Project step 1.
     pub fn project_finite_packet_validity(&self) -> bool {
         self.finite_packet_validity.holds()
     }
 
-    /// Project step 2.
     pub fn project_tower_coherence(&self) -> bool {
         self.tower_coherence.holds()
     }
 
-    /// Project step 3.
     pub fn project_completion_witness(&self) -> bool {
         self.completion_witness.holds()
     }
 
-    /// Project step 4.
     pub fn project_qheld_debts(&self) -> bool {
         self.qheld_debts.paid()
     }
 
-    /// Project step 5.
     pub fn project_factorization_evidence(&self) -> bool {
         self.factorization_evidence.holds()
     }
 
-    /// Project step 6.
     pub fn project_route_independence(&self) -> bool {
         self.route_independence.holds()
     }
 
-    /// Project step 7.
     pub fn project_reflection_descent(&self) -> bool {
         self.reflection_descent.holds()
     }
 
-    /// Project step 8.
     pub fn project_terminal_agreement(&self) -> bool {
         self.terminal_agreement.holds()
     }
 
-    /// All eight projectors (dual of Lean `admissible_implies_all_eight`).
     pub fn project_all_eight(&self) -> [bool; 8] {
         [
             self.project_finite_packet_validity(),
@@ -495,7 +397,6 @@ impl BridgeAdmissible8 {
         ]
     }
 
-    /// Names of conjuncts that fail (empty iff `holds()`).
     pub fn failing_steps(&self) -> Vec<&'static str> {
         let flags = self.project_all_eight();
         BRIDGE_ADMISSIBLE_8_STEP_NAMES
@@ -506,48 +407,33 @@ impl BridgeAdmissible8 {
     }
 }
 
-/// Typed bridge admission refusal / residual (AuthorityEffect: None).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum BridgeAdmissionError {
     Factorization(FactorizationDefect),
     TerminalMismatch(TerminalMismatch),
-    /// One or more of the eight conditions failed.
     ConditionsFailed {
         failing_steps: Vec<String>,
     },
-    /// Attempted to define step 8 as flag conjunction (forbidden path).
     ForbiddenStep8FromFlags,
 }
 
-/// Admission decision for a bridge packet (diagnostic only).
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct BridgeAdmissionDecision {
     pub is_admissible: bool,
-    /// Always `"None"`.
     pub authority_effect: &'static str,
-    /// Always `false` — never GlobalGreen.
     pub global_green: bool,
-    /// Finite-domain audit status only.
     pub status: BridgeAdmissionStatus,
     pub admissible: Option<BridgeAdmissible8>,
     pub failing_steps: Vec<String>,
 }
 
-/// Finite-domain admission status labels (never PROD LIVE / GlobalGreen).
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum BridgeAdmissionStatus {
-    /// All eight conditions verified on finite sample (audit only).
     BoundedEvaluationScope,
-    /// One or more conditions failed.
     AdmissionFailed,
-    /// Conditions declared but not verified.
     AdmissionBlockedDeclaredUnverified,
 }
 
-/// Build a fully-witnessed eight-step bundle for a factoring finite demo.
-///
-/// Steps 1–4 and 6–7 take explicit obligation witnesses (demo: all verified).
-/// Step 5 and step 8 are **computed** from packet maps via factorization.
 pub fn build_admissible8_demo(
     packet: &BridgePacket14,
 ) -> Result<BridgeAdmissible8, BridgeAdmissionError> {
@@ -570,23 +456,16 @@ pub fn build_admissible8_demo(
     })
 }
 
-/// Admit a bridge packet under eight typed conditions (fail closed).
-///
-/// AuthorityEffect is always `None`. Never mints GlobalGreen or PROD LIVE.
 pub fn admit_bridge(
     packet: &BridgePacket14,
     mut conditions: BridgeAdmissible8,
 ) -> BridgeAdmissionDecision {
-    // Recompute step 5 from maps (flags alone are not continuum authority).
     conditions.factorization_evidence = FactorizationEvidence::from_packet(packet);
 
-    // Step 8 must use named terminals / factorization, not flag AND.
-    // If factorization holds, re-discharge named query terminals from maps.
     if conditions.factorization_evidence.holds() {
         match TerminalAgreement::from_factorization(packet) {
             Ok(ta) => conditions.terminal_agreement = ta,
             Err(_) => {
-                // Keep caller-supplied terminal_agreement; holds() will decide.
             }
         }
     }
@@ -618,10 +497,6 @@ pub fn admit_bridge(
     }
 }
 
-/// Forbidden construction: step 8 defined as `factorization && tower` flags.
-///
-/// Dual of Lean `terminalizers_not_automatic_from_flags` / contract law
-/// `step8_terminal_agreement is never defined as step5 AND step2`.
 pub fn step8_from_step5_and_step2(
     factorization_holds: bool,
     tower_holds: bool,
@@ -645,7 +520,6 @@ mod tests {
     }
 
     fn non_factoring_packet() -> BridgePacket14 {
-        // Same Prof fiber {0,1} but different q — factorization fails.
         let q = FiniteQueryMap::from_pairs([(0, 10), (1, 99)]);
         let prof = FiniteProfileMap::from_pairs([(0, 0), (1, 0)]);
         let q_bar = FiniteFactorMap::from_pairs([(0, 10)]);
@@ -665,7 +539,6 @@ mod tests {
         let named = terminalizers_agree_from_factorization(&packet)
             .expect("factorization should discharge named terminals");
         assert!(terminalizers_agree(&named).is_ok());
-        // Explicit: q[x] == q_bar[Prof[x]] for all sample x.
         for &x in &named.domain {
             assert_eq!(named.tau_q.get(&x), named.tau_coda_cs.get(&x));
         }
@@ -682,12 +555,10 @@ mod tests {
 
     #[test]
     fn terminalizers_not_automatic_from_tower_flags() {
-        // Dual of Lean terminalizers_not_automatic_from_flags:
-        // True tower-style flags do not force agreement of disagreeing maps.
         let mut tau_q = std::collections::BTreeMap::new();
         let mut tau_coda = std::collections::BTreeMap::new();
-        tau_q.insert(0, 0); // id at false-ish
-        tau_coda.insert(0, 1); // const "true"-ish
+        tau_q.insert(0, 0);
+        tau_coda.insert(0, 1);
         let disagreeing = NamedTerminalizers {
             tau_q,
             tau_coda_cs: tau_coda,
@@ -698,7 +569,6 @@ mod tests {
         let route_flags_true = true;
         assert!(tower_flags_true && completion_flags_true && route_flags_true);
         assert!(terminalizers_agree(&disagreeing).is_err());
-        // Forbidden: step8 := step5 ∧ step2
         assert_eq!(
             step8_from_step5_and_step2(true, true),
             Err(BridgeAdmissionError::ForbiddenStep8FromFlags)
@@ -773,9 +643,7 @@ mod tests {
     #[test]
     fn mutation_missing_factorization_fails() {
         let packet = non_factoring_packet();
-        // Cannot build full demo (factorization fails).
         assert!(build_admissible8_demo(&packet).is_err());
-        // Hand-built bundle with fake step5/step8 still fails recompute on admit.
         let fake_named = NamedTerminalizers {
             tau_q: [(0, 10)].into_iter().collect(),
             tau_coda_cs: [(0, 10)].into_iter().collect(),
@@ -787,7 +655,7 @@ mod tests {
             completion_witness: CompletionWitness::all_verified_demo(),
             qheld_debts: QHeldDebts::all_paid_demo(),
             factorization_evidence: FactorizationEvidence {
-                holds: true, // lying flag
+                holds: true,
                 detail: "fake".into(),
             },
             route_independence: RouteIndependence::all_verified_demo(),
@@ -828,17 +696,12 @@ mod tests {
     fn mutation_missing_terminal_agreement_fails() {
         let packet = factoring_packet();
         let mut adm = build_admissible8_demo(&packet).unwrap();
-        // Corrupt named terminals so pointwise agreement fails after admit
-        // re-discharge would fix them — so we instead admit with factorization
-        // cleared so re-discharge cannot restore step8.
         adm.factorization_evidence = FactorizationEvidence {
             holds: false,
             detail: "forced fail".into(),
         };
         adm.terminal_agreement.pointwise = false;
         adm.terminal_agreement.named.tau_coda_cs.insert(0, 999);
-        // admit recomputes factorization from packet (restores step5) and step8.
-        // So to keep step8 broken we use non-factoring packet with corrupted tau.
         let bad = non_factoring_packet();
         let decision = admit_bridge(&bad, adm);
         assert!(!decision.is_admissible);
@@ -848,9 +711,7 @@ mod tests {
     #[test]
     fn terminal_agreement_consumes_factorization_not_flags_alone() {
         let packet = factoring_packet();
-        // Step5 true + step2 true is not enough API for step8:
         assert!(step8_from_step5_and_step2(true, true).is_err());
-        // Correct path consumes factorization maps:
         let ta = TerminalAgreement::from_factorization(&packet).unwrap();
         assert!(ta.holds());
         assert!(terminalizers_agree(&ta.named).is_ok());

@@ -1,38 +1,3 @@
-//! `ShapeSignature` — `blake3`-derived shape-only key over a
-//! `CochainPrimitiveDifference` + `QuotientSpace` pair.
-//!
-//! The signature is the kernel of the gauge relation ZeroRel (packet §5):
-//! two primitive-difference instances yield the same `ShapeSignature` iff they
-//! agree on
-//!
-//! - cochain dimensions $(c_0, c_1, c_2)$ (arity / face-index counts),
-//! - the shapes of $d_0$ and $d_1$ (rows, cols),
-//! - the coefficient-domain tag (currently `Q`),
-//! - the `QuotientSpace`'s quotient-class id (`relation` + `degree` +
-//!   `dim_total` + `coefficient_domain` + projection-matrix shape).
-//!
-//! Raw cochain payload bytes are NOT part of the digest input. Coefficient
-//! values inside $d_0$ / $d_1$ matrices are NOT part of the digest input.
-//!
-//! ## Doctest — no payload accessor on the public surface
-//!
-//! Verifies the public surface does not expose any `.coefficient()` /
-//! `.payload()` accessor on `ShapeSignature`. A future refactor that tried to
-//! widen the surface this way would have to delete this doctest first.
-//!
-//! ```compile_fail
-//! use omega_epk::residual_families::ShapeSignature;
-//! let bytes: [u8; 32] = [0; 32];
-//! let sig = ShapeSignature::from_bytes(bytes);
-//! let _ = sig.coefficient();
-//! ```
-//!
-//! ```compile_fail
-//! use omega_epk::residual_families::ShapeSignature;
-//! let bytes: [u8; 32] = [0; 32];
-//! let sig = ShapeSignature::from_bytes(bytes);
-//! let _ = sig.payload();
-//! ```
 
 use std::fmt;
 
@@ -43,31 +8,23 @@ use omega_homology::cochain_primitive_difference::CochainPrimitiveDifference;
 use omega_homology::quotient::{QuotientRelation, QuotientSpace};
 use serde::Serialize;
 
-/// Shape-only `blake3` digest. Opaque newtype around the 32-byte hash.
-///
-/// `face_indices` and `quotient_space_id` flow into the digest via
-/// [`shape_signature`]; this struct only carries the resulting bytes.
 #[derive(Copy, Clone, Debug, Eq, Hash, PartialEq)]
 pub struct ShapeSignature([u8; 32]);
 
 impl ShapeSignature {
-    /// Construct from raw bytes. Test-and-fixture-only.
     #[must_use]
     pub fn from_bytes(bytes: [u8; 32]) -> Self {
         Self(bytes)
     }
 
-    /// Borrow the underlying digest bytes.
     #[must_use]
     pub fn as_bytes(&self) -> &[u8; 32] {
         &self.0
     }
 }
 
-/// Failure to derive a namespaced exact-complex shape signature.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ShapeSignatureError {
-    /// A namespace is required so unrelated domain carriers cannot alias.
     EmptyNamespace,
 }
 
@@ -132,13 +89,6 @@ fn signature_from_parts(
     ShapeSignature(*hasher.finalize().as_bytes())
 }
 
-/// Derive the residual-family key for a shared exact CODA complex.
-///
-/// Only dimensions, boundary-map shapes, the rational coefficient tag, and a
-/// domain-separated quotient-space id enter the digest. Matrix and residual
-/// values are deliberately excluded. This lets application adapters consult
-/// the registry before exact Phi1/Gamma2 replay without turning a family hit
-/// into proof of the current evidence.
 pub fn shape_signature_from_exact_complex(
     namespace: &str,
     complex: &ExactCochainComplexQ,
@@ -167,21 +117,6 @@ pub fn shape_signature_from_exact_complex(
     ))
 }
 
-/// Deterministic canonical signature over the shape inputs of a
-/// `CochainPrimitiveDifference` and its `QuotientSpace`.
-///
-/// Two calls on inputs that agree on `face_indices`, arity, coefficient-domain
-/// tag, and `quotient_space_id` produce byte-identical `ShapeSignature`s.
-/// Two calls on inputs whose cochain dimensions $(c_0, c_1, c_2)$ or whose
-/// $d_0$/$d_1$ matrix shapes differ produce distinct `ShapeSignature`s.
-///
-/// Raw cochain payload bytes never enter the digest input.
-///
-/// # Panics
-///
-/// Panics only if `serde_json::to_vec` fails to serialize `q.relation`
-/// (`QuotientRelation`). That type carries a total serde derive, so this is
-/// unreachable for the current types; the `expect` documents the invariant.
 #[must_use]
 pub fn shape_signature<K>(
     diff: &CochainPrimitiveDifference<'_>,

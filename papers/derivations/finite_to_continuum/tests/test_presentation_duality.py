@@ -24,15 +24,12 @@ from omega_engine_projects.finite_to_continuum.code.presentation_duality import 
 
 def test_integer_character_lipschitz():
     assert verify_integer_characters() == 5 * sum(4**n for n in range(9))
-    # Wraparound uses the circle metric rather than distance of representatives.
     assert circle_distance(Fraction(255, 256), 0) == Fraction(1, 256)
     assert integer_character(-5, Fraction(255, 256)) == Fraction(5, 256)
     assert integer_character(0, Fraction(255, 256)) == 0
 
 
 def test_two_adic_minus_one_third_pc_refusal():
-    # Arbitrary input is supported by the constructor, not established by this
-    # finite list. The all-delta argument uses 4**(-m)<delta and image>=1/4.
     for delta in (
         Fraction(3),
         Fraction(1, 4),
@@ -48,7 +45,6 @@ def test_two_adic_minus_one_third_pc_refusal():
         assert witness["x"] < delta
         assert witness["image"] >= Fraction(1, 4)
         assert Fraction(1, 3) - witness["image"] == witness["x"] / 3
-    # The inequality is strict: x=delta is not an accepted PC counterexample.
     assert minus_one_third_pc_witness(Fraction(1, 4))["m"] == 2
 
 
@@ -101,8 +97,6 @@ def test_refusal_verifier_rejects_missing_fields():
 
 
 def test_discrete_topology_does_not_inherit_the_circle_refusal():
-    # In the discrete source metric, delta=1 forces x=y, so every algebraic
-    # character is uniformly continuous. These x_m have discrete distance 1.
     for m in range(1, 20):
         x = Fraction(1, 4**m)
         assert int(x != 0) == 1
@@ -111,9 +105,6 @@ def test_discrete_topology_does_not_inherit_the_circle_refusal():
 
 
 def test_colimit_non_locally_compact_witness():
-    # a=1/(3*2**s) lies outside D; floors approach a inside every chosen ball.
-    # Infinite convergence/noncompactness follow in the analytic derivation,
-    # not from declaring this finite prefix compact or noncompact.
     for radius in (
         Fraction(5),
         Fraction(1, 4),

@@ -1,12 +1,7 @@
-//! Quantum contextuality thresholds across cyclotomic number fields.
-//!
-//! Campaign C250 Block 07 (Global Steps 201-225).
-//! AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 
-/// Evaluation report for the Peres 33-ray configuration in d=3 at conductor 8.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct PeresReport {
     pub ray_count: usize,
@@ -19,7 +14,6 @@ pub struct PeresReport {
     pub uncolorability_confirmed: bool,
 }
 
-/// Evaluation report for bounded candidate ray search at conductor 12 in d=3.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Conductor12Report {
     pub conductor: usize,
@@ -32,7 +26,6 @@ pub struct Conductor12Report {
     pub search_status: String,
 }
 
-/// Evaluation report for conductor 24 where Peres 33 rays embed.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Conductor24Report {
     pub conductor: usize,
@@ -42,7 +35,6 @@ pub struct Conductor24Report {
     pub configuration_name: String,
 }
 
-/// Evaluation report for Cabello's 18-ray configuration in d=4 over Q (conductor 1).
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct CabelloReport {
     pub dimension: usize,
@@ -60,7 +52,6 @@ pub struct CabelloReport {
     pub smallest_found_rays: usize,
 }
 
-/// Consolidated verification report for Block 07 execution.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Block07Report {
     pub authority_effect: String,
@@ -81,7 +72,6 @@ pub struct Block07Report {
 use omega_quantum_physics::kochen_specker::{self, CABELLO_9_CONTEXTS};
 use omega_solvers::solver_sat_dpll::{BooleanError, BooleanOutcome, BooleanProblem};
 
-/// A bounded exact decision; the returned assignment is independently replayable.
 pub fn solve_ks_coloring(
     n: usize,
     pairs: &[(usize, usize)],

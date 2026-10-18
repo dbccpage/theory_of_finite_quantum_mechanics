@@ -1,24 +1,3 @@
-//! Discrete holonomy residual on a declared face (CODE_DEMO).
-//!
-//! # What this is (only this)
-//!
-//! Given a **declared** finite complex and a **declared** edge cochain (connection
-//! data in a **declared** coefficient monoid), each face has a **holonomy** equal
-//! to the ordered product of edge values around that face (for \(\mathbb{F}_2\),
-//! the sum mod 2 of incident edges — same linear map as \(d_1\)).
-//!
-//! The **holonomy residual** on a face is the failure of that product/sum to equal
-//! the monoid identity. On \(\mathbb{F}_2\) that residual **is** the face component
-//! of \(d_1 A\).
-//!
-//! # Authority fence
-//!
-//! - AuthorityEffect: **None** on every receipt.
-//! - Does not mint `CertifiedAuthority`, FOC ExactRepair, or continuum curvature.
-//! - Does not assert ontology outside the declared carrier and monoid.
-//! - Gauge-equivalent connections (differ by \(d_0\alpha\)) share the same face
-//!   holonomy residual when \(d_1 d_0 = 0\) — a **declared** identity of the
-//!   cochain complex, not a claim about anything outside the packet.
 
 use crate::complexes::ChainComplexGf2;
 use crate::gf2_terminalizer::{
@@ -31,41 +10,30 @@ pub const HOLONOMY_RECEIPT_TAG: &str = "omega.majorana-holonomy-receipt.v1";
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; declared carrier + monoid only; diagnostic receipt.";
 
-/// \(\mathbb{F}_2\) holonomy residual on each face: \(r = d_1 A\).
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct HolonomyReceiptGf2 {
     pub certificate_tag: String,
     pub complex_name: String,
-    /// Edge cochain \(A \in C^1(\mathbb{F}_2)\).
     pub connection: Vec<u8>,
-    /// Face residuals \(r = d_1 A\) (same length as number of faces).
     pub face_residuals: Vec<u8>,
-    /// True iff every face residual is 0.
     pub flat: bool,
-    /// Hamming weight of face residual vector.
     pub residual_weight: usize,
     pub boundary_valid: bool,
-    /// Always `"None"`.
     pub authority_effect: String,
     pub notes: String,
 }
 
-/// Parallel-transport product around one face in \(\mathbb{Q}(\zeta_{16})\) (exact seed monoid).
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct HolonomyReceiptCyclotomic {
     pub certificate_tag: String,
     pub face_index: usize,
-    /// Edge indices used on the face walk (as listed in `d1` support).
     pub edge_walk: Vec<usize>,
-    /// Product of declared edge elements around the face (basis coeffs).
     pub holonomy_coeffs: [i64; 8],
-    /// Residual = holonomy * inverse(identity) failure: true iff holonomy ≠ 1.
     pub residual_nontrivial: bool,
     pub authority_effect: String,
     pub notes: String,
 }
 
-/// Face residual vector \(r = d_1 A\) over \(\mathbb{F}_2\).
 pub fn face_holonomy_residual_gf2(d1: &GF2Matrix, connection: &[u8]) -> Result<Vec<u8>, String> {
     if connection.len() != d1.cols {
         return Err(format!(
@@ -85,7 +53,6 @@ pub fn face_holonomy_residual_gf2(d1: &GF2Matrix, connection: &[u8]) -> Result<V
     Ok(r)
 }
 
-/// Holonomy residual receipt for a declared complex + \(\mathbb{F}_2\) connection.
 pub fn holonomy_receipt_gf2(
     complex: &ChainComplexGf2,
     connection: &[u8],
@@ -128,7 +95,6 @@ pub fn holonomy_receipt_gf2(
     })
 }
 
-/// Gauge transform: \(A' = A + d_0 \alpha\) (edge coboundary of a vertex 0-cochain).
 pub fn gauge_transform_gf2(
     d0: &GF2Matrix,
     connection: &[u8],
@@ -148,7 +114,6 @@ pub fn gauge_transform_gf2(
     Ok(out)
 }
 
-/// Edge indices with nonzero incidence on face `f` (walk support for products).
 pub fn face_edge_support(d1: &GF2Matrix, face: usize) -> Result<Vec<usize>, String> {
     if face >= d1.rows {
         return Err("face index out of range".into());
@@ -156,9 +121,6 @@ pub fn face_edge_support(d1: &GF2Matrix, face: usize) -> Result<Vec<usize>, Stri
     Ok((0..d1.cols).filter(|&j| d1.data[face][j] == 1).collect())
 }
 
-/// Cyclotomic holonomy around face 0: product of declared edge elements.
-///
-/// Edge data must have length = number of edges; unused edges may be `one()`.
 pub fn holonomy_receipt_cyclotomic_face0(
     complex: &ChainComplexGf2,
     edge_elements: &[Cyclotomic16Element],
@@ -189,9 +151,6 @@ pub fn holonomy_receipt_cyclotomic_face0(
     })
 }
 
-/// Bridge: treat face residual as open if any face has holonomy residual 1,
-/// and compare to schedule class when connection is re-read as edge syndrome
-/// against the same complex (optional diagnostic link, not an identification of layers).
 pub fn connect_to_schedule_class(
     complex: &ChainComplexGf2,
     connection: &[u8],
@@ -210,7 +169,6 @@ mod tests {
     #[test]
     fn plaquette_flat_connection() {
         let c = plaquette();
-        // All-zero connection: flat
         let r = holonomy_receipt_gf2(&c, &[0, 0, 0, 0]).unwrap();
         assert!(r.flat);
         assert_eq!(r.residual_weight, 0);
@@ -221,7 +179,6 @@ mod tests {
     #[test]
     fn plaquette_single_edge_flux() {
         let c = plaquette();
-        // One edge set → face residual 1
         let r = holonomy_receipt_gf2(&c, &[1, 0, 0, 0]).unwrap();
         assert!(!r.flat);
         assert_eq!(r.face_residuals, vec![1]);
@@ -232,7 +189,6 @@ mod tests {
     #[test]
     fn plaquette_full_cycle_flat_in_f2() {
         let c = plaquette();
-        // All four edges: sum mod 2 = 0 on the single face
         let r = holonomy_receipt_gf2(&c, &[1, 1, 1, 1]).unwrap();
         assert!(r.flat);
         assert_eq!(r.face_residuals, vec![0]);
@@ -240,7 +196,6 @@ mod tests {
 
     #[test]
     fn gauge_invariance_of_face_residual() {
-        // Kills: gauge_transform returning the input connection, which keeps the residual equal.
         let c = plaquette();
         let a = vec![1, 0, 0, 0];
         let a2 = gauge_transform_gf2(&c.d0, &a, &[1, 0, 0, 0]).unwrap();
@@ -259,7 +214,6 @@ mod tests {
         let c = triangle();
         let a = vec![1, 1, 0];
         let r = holonomy_receipt_gf2(&c, &a).unwrap();
-        // d1 = [1,1,1], sum = 0
         assert!(r.flat);
         let a2 = vec![1, 0, 0];
         let r2 = holonomy_receipt_gf2(&c, &a2).unwrap();
@@ -268,7 +222,6 @@ mod tests {
 
     #[test]
     fn torus_single_edge_lights_faces_zero_and_two() {
-        // Kills: a length-4 residual that is nonzero but not the support of edge 0.
         let c = surface_grid_2x2_torus();
         let r = holonomy_receipt_gf2(&c, &[1, 0, 0, 0, 0, 0, 0, 0]).unwrap();
         assert_eq!(r.face_residuals, vec![1, 0, 1, 0]);
@@ -282,7 +235,6 @@ mod tests {
 
     #[test]
     fn refuses_a_short_connection_and_a_broken_boundary() {
-        // Kills: skipping the length check or the d1*d0 check.
         let c = plaquette();
         assert!(holonomy_receipt_gf2(&c, &[1, 0, 0])
             .unwrap_err()
@@ -307,13 +259,11 @@ mod tests {
     #[test]
     fn cyclotomic_face0_zeta_product() {
         let c = plaquette();
-        // ζ on one edge: product = ζ ≠ 1
         let mut edges: Vec<_> = (0..4).map(|_| Cyclotomic16Element::one()).collect();
         let mut z = [0i64; 8];
-        z[1] = 1; // ζ
+        z[1] = 1;
         edges[0] = Cyclotomic16Element { coeffs: z };
         let r = holonomy_receipt_cyclotomic_face0(&c, &edges).unwrap();
-        // Kills: setting residual_nontrivial without writing the product into the basis.
         assert_eq!(r.holonomy_coeffs, [0, 1, 0, 0, 0, 0, 0, 0]);
         assert!(r.residual_nontrivial);
         edges[1] = Cyclotomic16Element::zeta();
@@ -324,7 +274,6 @@ mod tests {
 
     #[test]
     fn schedule_bridge_separates_flat_logical_from_open_flux() {
-        // Kills: deriving the schedule class from flatness (flat would become Exact).
         let c = plaquette();
         let (h, status) = connect_to_schedule_class(&c, &[1, 0, 0, 0]).unwrap();
         assert_eq!(h.face_residuals, vec![1]);

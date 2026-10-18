@@ -1,8 +1,3 @@
-//! Typed extension attempts beyond the pinned T0 wall.
-//!
-//! Each verdict's terminal is fixed by the missing obligations that this crate
-//! does not discharge. Census flags move labels between the discharged list and
-//! the missing list. They do not promote a target to a theorem.
 
 use serde::Serialize;
 
@@ -76,10 +71,6 @@ pub struct Mub10Census {
     pub cyclotomic120_lower_control_verified: bool,
 }
 
-/// Reports already produced by the deep-run census.
-///
-/// Discharged labels are read off these statuses. The general-MUB terminal
-/// stays a typed refusal.
 pub struct GeneralMubEvidence<'a> {
     pub dimension_stratification: &'a [DimensionStratificationReport],
     pub composite_tensor_family: &'a CompositeTensorFamilyReport,

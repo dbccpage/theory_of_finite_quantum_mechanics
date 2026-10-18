@@ -1,5 +1,3 @@
-//! Emit scoped, deterministic diagnostics. See research/mub6_frontier_synthesis.md.
-//! AuthorityEffect: None.
 use omega_mub::omega_native::mub6_deltoid_cusp_asymptotics;
 use std::{fs, path::PathBuf};
 

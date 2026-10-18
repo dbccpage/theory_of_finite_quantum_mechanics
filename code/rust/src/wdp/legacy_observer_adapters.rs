@@ -1,7 +1,3 @@
-//! CH10 semantic adapters for the locally identified legacy families.
-//! AuthorityEffect: None. Missing memory, policy and authority are never filled
-//! by defaults. Source receipt/authority tags are retained as unverified source
-//! metadata, independently of computed mathematical evidence.
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use omega_number_theory::cyclotomic::GaussianRat;
 use std::collections::{BTreeMap, BTreeSet};
@@ -149,9 +145,6 @@ pub struct EvaluatorLayer {
     tolerance: BigRational,
 }
 impl EvaluatorLayer {
-    /// Finite-instance semantic specialization of the normalized evaluator:
-    /// state-indexed defects, common repair/gauge/closure, explicit lawful
-    /// state permutations, and a declared exact tolerance terminalizer.
     pub fn try_new(
         system: &ContextSystem,
         packets: Vec<DiagnosticPacket>,
@@ -511,8 +504,6 @@ pub fn adapt_quantum_presentation(
     Ok(result)
 }
 
-/// Explicit identity bridge between the presentation report carrier and memory
-/// readout carrier. Without this bridge, a memory packet remains disconnected.
 pub fn attach_memory(
     mut adapted: AdaptedObserver,
     memory: MemoryLayer,
@@ -545,8 +536,6 @@ pub struct SelfReferenceEvidence {
     pub reaccessed_report: usize,
 }
 
-/// A partial self-presentation adapter with an actual finite decoder and
-/// reaccessed memory payload. This is not an accepted E-observation receipt.
 pub fn adapt_self_reference(
     adapted: &AdaptedObserver,
     target: &SourceCustody,
@@ -616,8 +605,6 @@ pub fn adapt_self_reference(
     })
 }
 
-/// The consolidated corpus names a six-component Genesis packet but does not
-/// recover its field vocabulary. Refuse a nominal six-string "completion".
 pub fn adapt_unrecovered_genesis_six(
     _fields: [&str; 6],
     _custody: SourceCustody,
@@ -627,7 +614,6 @@ pub fn adapt_unrecovered_genesis_six(
     ))
 }
 
-/// General source sensing preserves actual R and d0, with no quotient assertion.
 pub fn adapt_linear_sensing(
     sensing: LinearSensingPresentation,
     custody: SourceCustody,

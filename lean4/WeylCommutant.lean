@@ -1,19 +1,6 @@
-/-
-Dimension-independent scalar commutant lemma over an arbitrary field.
-The input clock equation is entrywise ZA=AZ with distinct diagonal entries.
-The shift premise is the adjacent-diagonal consequence of AX=XA for the
-canonical cyclic shift. Distinct eigenvalues and that premise are supplied;
-this file does not construct roots, representations, or classify all irreps.
-Lean.Grind.Field supplies the ordinary field laws from Lean core.
-AuthorityEffect: None.
-  Origin: papers/core/finite_quantum_mechanics.md
-  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
-  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
--/
 namespace FiniteQm.WeylCommutant
 variable {K : Type} [Lean.Grind.Field K]
 
-/-- Entrywise form of commuting with a clock having distinct eigenvalues. -/
 theorem off_diagonal_zero {n : Nat} (A : Fin n → Fin n → K)
     (eigenvalue : Fin n → K)
     (distinct : ∀ i j, eigenvalue i = eigenvalue j → i = j)
@@ -23,7 +10,6 @@ theorem off_diagonal_zero {n : Nat} (A : Fin n → Fin n → K)
   have hc := commutes i j
   grind
 
-/-- A distinct clock kills off-diagonals; the shift connects all diagonals. -/
 theorem clock_shift_commutant_scalar {n : Nat} (A : Fin (n+1) → Fin (n+1) → K)
     (eigenvalue : Fin (n+1) → K)
     (distinct : ∀ i j, eigenvalue i = eigenvalue j → i = j)
@@ -46,6 +32,8 @@ theorem clock_shift_commutant_scalar {n : Nat} (A : Fin (n+1) → Fin (n+1) → 
 end FiniteQm.WeylCommutant
 
 
-/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
 theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
   decide
+
+private def l5aProvenance : String :=
+  "Origin: lean4/WeylCommutant.lean Claim: off_diagonal_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

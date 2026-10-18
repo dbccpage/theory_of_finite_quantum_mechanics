@@ -115,14 +115,12 @@ def test_gin_mode_posting_list_resolution() -> None:
     engine = IsingMajoranaBraidingEngine(in_memory=True)
     receipt = engine.audit_majorana_braiding(model, inject_t_gate=True)
 
-    # Check posting index contains expected modes
-    assert 1 in engine.posting_index  # Vacuum parity channel |0>
-    assert 2 in engine.posting_index  # Occupied parity channel |1>
-    assert 3 in engine.posting_index  # tau_1 loop (Phase gate)
-    assert 4 in engine.posting_index  # tau_2 loop (Hadamard generator)
-    assert 5 in engine.posting_index  # T-gate injection loop
+    assert 1 in engine.posting_index
+    assert 2 in engine.posting_index
+    assert 3 in engine.posting_index
+    assert 4 in engine.posting_index
+    assert 5 in engine.posting_index
 
-    # Query SQLite database directly
     c = engine.conn.cursor()
     c.execute("SELECT COUNT(*) FROM FermionConfigurations WHERE model_name = ?;", (model.model_id,))
     cfg_count = c.fetchone()[0]
@@ -130,6 +128,6 @@ def test_gin_mode_posting_list_resolution() -> None:
 
     c.execute("SELECT COUNT(*) FROM GinModePostingList WHERE mode_id = 5;")
     t_gate_mode_count = c.fetchone()[0]
-    assert t_gate_mode_count == 2  # Both configurations share the non-Clifford injection boundary
+    assert t_gate_mode_count == 2
 
     engine.close()

@@ -55,7 +55,6 @@ from .constants import AUTHORITY_EFFECT_NONE
 
 REPAIR_HINT_SCHEMA_V1 = "omega.antiskill.repair-hint-candidate.v1"
 
-# Field names a repair hint may never carry, refused rather than dropped.
 REPAIR_HINT_FORBIDDEN_KEYS = frozenset(
     {
         "action",

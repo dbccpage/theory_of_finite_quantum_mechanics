@@ -1,32 +1,9 @@
-// AuthorityEffect: None.
 
-//! Rational splittings `Q^m = R ⊕ W` of a repair image `R = im d0` and the
-//! weighted-`l1` distortion of their residual projection: certificate checks.
-//!
-//! Fix a basis matrix `B` (`m x r`) of `R` and a completion `N` (`m x (m - r)`)
-//! with `S = [B N]` invertible, `S^{-1} = [U; Q]` (`U` is `r x m`, `Q` is
-//! `(m - r) x m`). Every complement `W` of `R` is `im(N - B H)` for exactly one
-//! rational `H` (`r x (m - r)`), and the projections along it are
-//!
-//! - `C_H = B (U + H Q)` onto `R`,
-//! - `L_H = (N - B H) Q = I - C_H` onto `W_H` along `R`.
-//!
-//! `L_H` vanishes on `R`, so with `Phi1(x) = min_a ||x - d0 a||_{1,w}`:
-//! `Phi1(x) <= ||L_H x||_{1,w} <= ||L_H||_{1,w} Phi1(x)`. The left inequality
-//! holds because `x - L_H x = C_H x` lies in `R`. The weighted operator norm is
-//! `max_j sum_i w_i |M_ij| / w_j`.
-//!
-//! [`ResidualSplittingCertificate::verify`] replays all of these identities,
-//! the repair-image equality `im B = im d0` through `B = d0 F` and `d0 = B E`,
-//! and returns the exact distortion `||L_H||_{1,w}`. Whether some `H` makes it
-//! at most one is a linear feasibility question, answered (with a Farkas
-//! certificate when no such `H` exists) in `omega_solvers::solver_cohomology_splitting`.
 
 use num_rational::BigRational as Q;
 use num_traits::{One, Signed, Zero};
 use thiserror::Error;
 
-/// Refusals and failed identities of the splitting contract.
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum ResidualSplittingError {
     #[error("{what} has shape {actual_rows}x{actual_cols}, expected {rows}x{cols}")]
@@ -51,7 +28,6 @@ pub enum ResidualSplittingError {
 
 type Result<T> = std::result::Result<T, ResidualSplittingError>;
 
-/// A row-wise rational matrix with a declared column count.
 pub type RowMatrix = Vec<Vec<Q>>;
 
 fn shape(what: &'static str, m: &[Vec<Q>], rows: usize, cols: usize) -> Result<()> {
@@ -71,7 +47,6 @@ fn shape(what: &'static str, m: &[Vec<Q>], rows: usize, cols: usize) -> Result<(
     Ok(())
 }
 
-/// `a b` for row-wise `a` (`p x q`) and `b` (`q x s`).
 pub fn multiply(a: &[Vec<Q>], b: &[Vec<Q>], s: usize) -> RowMatrix {
     a.iter()
         .map(|row| {
@@ -118,8 +93,6 @@ fn check_weights(weights: &[Q]) -> Result<()> {
     Ok(())
 }
 
-/// `max_j sum_i w_i |M_ij| / w_j` for a square `M` on `(Q^m, ||.||_{1,w})`;
-/// zero when `m = 0`.
 pub fn weighted_l1_operator_norm(matrix: &[Vec<Q>], weights: &[Q]) -> Result<Q> {
     let m = weights.len();
     check_weights(weights)?;
@@ -137,8 +110,6 @@ pub fn weighted_l1_operator_norm(matrix: &[Vec<Q>], weights: &[Q]) -> Result<Q> 
     Ok(best)
 }
 
-/// The residual and projection of the splitting with parameter `h`, from
-/// `B`, `N`, `S^{-1}`; shapes are checked, identities are not.
 pub fn splitting_from_parameter(
     basis: &[Vec<Q>],
     complement: &[Vec<Q>],
@@ -175,35 +146,21 @@ pub fn splitting_from_parameter(
     Ok((projection, residual))
 }
 
-/// A complete, replayable splitting of `Q^m` along `R = im d0`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ResidualSplittingCertificate {
-    /// `d0`, `m x k`.
     pub d0: RowMatrix,
-    /// Declared `k`; needed when `m = 0`.
     pub repair_columns: usize,
-    /// `B`, `m x r`.
     pub basis: RowMatrix,
-    /// `N`, `m x (m - r)`.
     pub complement: RowMatrix,
-    /// `S^{-1}` for `S = [B N]`.
     pub inverse: RowMatrix,
-    /// `H`, `r x (m - r)`.
     pub parameter: RowMatrix,
-    /// `C_H`, `m x m`.
     pub projection: RowMatrix,
-    /// `L_H`, `m x m`.
     pub residual: RowMatrix,
-    /// `E`, `r x k`, with `d0 = B E`.
     pub image_coordinates: RowMatrix,
-    /// `F`, `k x r`, with `B = d0 F`.
     pub selection: RowMatrix,
 }
 
 impl ResidualSplittingCertificate {
-    /// Replays `S S^{-1} = S^{-1} S = I`, `B = d0 F`, `d0 = B E`,
-    /// `C = B (U + H Q)`, `L = (N - B H) Q`, `C + L = I`, `C C = C`,
-    /// `L d0 = 0`, and returns `||L||_{1,w}`.
     pub fn verify(&self, weights: &[Q]) -> Result<Q> {
         let m = weights.len();
         let k = self.repair_columns;
@@ -266,8 +223,6 @@ impl ResidualSplittingCertificate {
     }
 }
 
-/// `T C = C' T` for square `t`, `c`, `c_prime`: the splitting `C` is carried
-/// to `C'` by `T`. Returns the first entry where the identity fails.
 pub fn verify_transport(t: &[Vec<Q>], c: &[Vec<Q>], c_prime: &[Vec<Q>]) -> Result<()> {
     let m = t.len();
     shape("T", t, m, m)?;
@@ -291,7 +246,6 @@ mod tests {
         rows.iter().map(|r| r.iter().map(|x| z(*x)).collect()).collect()
     }
 
-    /// The diagonal line in Q^2: d0 = (1, 1)^T, B = d0, N = e2, H = h.
     fn line2(h: Q) -> ResidualSplittingCertificate {
         let basis = mat(&[&[1], &[1]]);
         let complement = mat(&[&[0], &[1]]);
@@ -316,20 +270,16 @@ mod tests {
     #[test]
     fn two_dimensional_splittings_are_contractive() {
         let w = vec![z(1), z(1)];
-        // H = 0: C x = x1 (1, 1), L x = (0, x2 - x1).
         let cert = line2(z(0));
         assert_eq!(cert.verify(&w).unwrap(), z(1));
-        // H = 1/2: C x = ((x1 + x2)/2)(1, 1), L (3, 1) = (1, -1).
         let cert = line2(q(1, 2));
         assert_eq!(cert.verify(&w).unwrap(), z(1));
         let lx: Vec<Q> = cert.residual.iter().map(|r| &r[0] * z(3) + &r[1] * z(1)).collect();
         assert_eq!(lx, vec![z(1), z(-1)]);
-        // H = 1: C x = x2 (1, 1), L (3, 1) = (2, 0).
         let cert = line2(z(1));
         assert_eq!(cert.verify(&w).unwrap(), z(1));
         let lx: Vec<Q> = cert.residual.iter().map(|r| &r[0] * z(3) + &r[1] * z(1)).collect();
         assert_eq!(lx, vec![z(2), z(0)]);
-        // H = 2 is a splitting, but not contractive: norm 3.
         assert_eq!(line2(z(2)).verify(&w).unwrap(), z(3));
     }
 
@@ -348,7 +298,6 @@ mod tests {
             cert.verify(&w),
             Err(ResidualSplittingError::IdentityFails { identity: "S S^{-1} = I", .. })
         ));
-        // A basis outside im d0.
         let mut cert = line2(z(0));
         cert.d0 = mat(&[&[1], &[2]]);
         assert!(matches!(
@@ -363,7 +312,6 @@ mod tests {
 
     #[test]
     fn extreme_images() {
-        // R = Q^2: L = 0, distortion 0 (zero quotient, zero norm).
         let id = mat(&[&[1, 0], &[0, 1]]);
         let full = ResidualSplittingCertificate {
             d0: id.clone(),
@@ -378,7 +326,6 @@ mod tests {
             selection: id.clone(),
         };
         assert_eq!(full.verify(&[z(1), z(5)]).unwrap(), z(0));
-        // R = 0: L = I, distortion 1.
         let zero = ResidualSplittingCertificate {
             d0: vec![vec![], vec![]],
             repair_columns: 0,
@@ -396,13 +343,11 @@ mod tests {
 
     #[test]
     fn weighted_norm_and_transport() {
-        // Column 0: (1*|1| + 3*|2|)/1 = 7; column 1: (1*0 + 3*1)/3 = 1.
         assert_eq!(
             weighted_l1_operator_norm(&mat(&[&[1, 0], &[2, 1]]), &[z(1), z(3)]).unwrap(),
             z(7)
         );
         assert_eq!(weighted_l1_operator_norm(&[], &[]).unwrap(), z(0));
-        // The coordinate swap carries H = 0 (C x = x1 (1,1)) to H = 1 (C x = x2 (1,1)).
         let t = mat(&[&[0, 1], &[1, 0]]);
         let c0 = line2(z(0)).projection;
         let c1 = line2(z(1)).projection;
