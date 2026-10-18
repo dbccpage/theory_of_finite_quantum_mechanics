@@ -1,7 +1,15 @@
+//! Shared finite category declarations.
+//!
+//! This module is the canonical finite category data model for the functor
+//! core.  It keeps declarations explicit and auditable, while
+//! `ValidatedFiniteCategory` marks data that has passed the finite category
+//! law checks.
 
 use super::cat_functor::Category;
 use std::collections::{BTreeMap, BTreeSet};
 
+/// Composition table convention:
+/// compositions[(f, g)] = g composed after f.
 pub type CompositionTable = BTreeMap<(String, String), String>;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -77,6 +85,7 @@ impl DeclaredFiniteCategory {
             .map(|mor| (mor.source.as_str(), mor.target.as_str()))
     }
 
+    /// Returns g ∘ f (first `f`, then `g`).
     pub fn compose(&self, f: &str, g: &str) -> Option<&str> {
         self.compositions
             .get(&(f.into(), g.into()))
@@ -153,27 +162,20 @@ impl Category for ValidatedFiniteCategory {
     type Ob = String;
     type Mor = String;
 
-    fn id(&self, x: &Self::Ob) -> Self::Mor {
-        self.declared
-            .identity_of(x)
-            .expect("validated finite category has every identity")
-            .to_string()
+    fn id(&self, x: &Self::Ob) -> Option<Self::Mor> {
+        self.declared.identity_of(x).map(str::to_string)
     }
 
-    fn src(&self, f: &Self::Mor) -> Self::Ob {
+    fn src(&self, f: &Self::Mor) -> Option<Self::Ob> {
         self.declared
             .boundary_of(f)
-            .expect("validated finite category has every morphism boundary")
-            .0
-            .to_string()
+            .map(|(source, _)| source.to_string())
     }
 
-    fn tgt(&self, f: &Self::Mor) -> Self::Ob {
+    fn tgt(&self, f: &Self::Mor) -> Option<Self::Ob> {
         self.declared
             .boundary_of(f)
-            .expect("validated finite category has every morphism boundary")
-            .1
-            .to_string()
+            .map(|(_, target)| target.to_string())
     }
 
     fn compose(&self, f: &Self::Mor, g: &Self::Mor) -> Option<Self::Mor> {
@@ -206,9 +208,9 @@ mod tests {
         let cat = ValidatedFiniteCategory::try_new(walking_arrow())
             .expect("walking arrow should validate");
 
-        assert_eq!(cat.id(&"A".into()), "id_A");
-        assert_eq!(cat.src(&"f".into()), "A");
-        assert_eq!(cat.tgt(&"f".into()), "B");
+        assert_eq!(cat.id(&"A".into()), Some("id_A".into()));
+        assert_eq!(cat.src(&"f".into()), Some("A".into()));
+        assert_eq!(cat.tgt(&"f".into()), Some("B".into()));
         assert_eq!(cat.compose(&"id_A".into(), &"f".into()), Some("f".into()));
     }
 

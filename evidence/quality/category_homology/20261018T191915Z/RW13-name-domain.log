@@ -1,0 +1,32 @@
+warning: function `check_names` is never used
+   --> src\category_theory\rewriting.rs:642:4
+    |
+642 | fn check_names(sys: &InfinityRewriteSystem) -> Vec<RewriteError> {
+    |    ^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 440 tests
+....................................................................................... 87/440
+....................................................................................... 174/440
+....................................................................................... 261/440
+....................................................................................... 348/440
+............................................................................. 425/440
+rewriting::tests::all_name_path_and_truncation_boundaries_reject_bad_candidates --- FAILED
+..............
+failures:
+
+---- rewriting::tests::all_name_path_and_truncation_boundaries_reject_bad_candidates stdout ----
+
+thread 'rewriting::tests::all_name_path_and_truncation_boundaries_reject_bad_candidates' (13512) panicked at src\category_theory\rewriting.rs:1097:13:
+boundary 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    rewriting::tests::all_name_path_and_truncation_boundaries_reject_bad_candidates
+
+test result: FAILED. 439 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

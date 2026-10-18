@@ -99,7 +99,7 @@ impl SmithNormalForm {
     }
 }
 
-fn bigint_identity(n: usize) -> BasicMatrix<BigInt> {
+fn bigint_identity(n: usize) -> Result<BasicMatrix<BigInt>, SmithError> {
     BasicMatrix::<BigInt>::try_from_fn(n, n, |i, j| {
         if i == j {
             BigInt::from(1)
@@ -107,7 +107,7 @@ fn bigint_identity(n: usize) -> BasicMatrix<BigInt> {
             BigInt::from(0)
         }
     })
-    .expect("identity creation should succeed")
+    .map_err(SmithError::Matrix)
 }
 
 fn bigint_abs(x: &BigInt) -> BigInt {
@@ -140,8 +140,8 @@ fn smith_normal_form_checked_with_iteration_limit(
         let diag = SmithDiagonal { invariants: vec![] };
         let d_mat = BasicMatrix::<BigInt>::try_from_fn(m, n, |_, _| zero.clone())
             .map_err(SmithError::Matrix)?;
-        let u = bigint_identity(m);
-        let v = bigint_identity(n);
+        let u = bigint_identity(m)?;
+        let v = bigint_identity(n)?;
         return Ok(SmithNormalForm {
             diagonal: diag,
             diagonal_matrix: d_mat,
@@ -377,28 +377,33 @@ fn smith_normal_form_checked_with_iteration_limit(
     })
 }
 
-fn integer_numerator_i64(val: &Rational64) -> Option<i64> {
-    use num_traits::{One, Zero};
-    if val.denom().is_zero() {
+fn integer_numerator_from_rational64(val: &Rational64) -> Option<BigInt> {
+    use num_traits::Zero;
+    let d = *val.denom();
+    if d == 0 {
         return None;
     }
-    let reduced = val.reduced();
-    if !reduced.denom().is_one() {
-        return None;
+    let n_big = BigInt::from(*val.numer());
+    let d_big = BigInt::from(d);
+    if (&n_big % &d_big).is_zero() {
+        Some(n_big / d_big)
+    } else {
+        None
     }
-    Some(*reduced.numer())
 }
 
 fn integer_numerator_big(val: &num_rational::BigRational) -> Option<BigInt> {
-    use num_traits::{One, Zero};
+    use num_traits::Zero;
     if val.denom().is_zero() {
         return None;
     }
-    let reduced = val.reduced();
-    if !reduced.denom().is_one() {
-        return None;
+    let n = val.numer();
+    let d = val.denom();
+    if (n % d).is_zero() {
+        Some(n / d)
+    } else {
+        None
     }
-    Some(reduced.numer().clone())
 }
 
 pub fn from_rational64_integer_matrix(
@@ -406,8 +411,7 @@ pub fn from_rational64_integer_matrix(
 ) -> Result<BasicMatrix<BigInt>, SmithError> {
     BasicMatrix::<BigInt>::try_from_fn_result(m.rows(), m.cols(), |row, col| {
         let val = m.get(row, col)?;
-        integer_numerator_i64(&val)
-            .map(BigInt::from)
+        integer_numerator_from_rational64(&val)
             .ok_or(SmithError::NonIntegerEntry { row, col })
     })
 }
@@ -434,6 +438,12 @@ pub enum SparseMatrixError {
 
     #[error("duplicate row in sparse column: col={col}, row={row}")]
     DuplicateRowInColumn { col: usize, row: usize },
+
+    #[error("dense conversion shape overflow: rows={rows}, cols={cols}")]
+    ShapeOverflow { rows: usize, cols: usize },
+
+    #[error("matrix error: {0}")]
+    Matrix(#[from] MatrixError),
 }
 
 pub struct SparseColMatrix {
@@ -513,15 +523,25 @@ impl SparseColMatrix {
         Ok(result)
     }
 
-    pub fn to_dense(&self) -> BasicMatrix<BigInt> {
-        let mut data = vec![BigInt::from(0); self.rows * self.cols];
+    pub fn to_dense(&self) -> Result<BasicMatrix<BigInt>, SparseMatrixError> {
+        let total = self.rows.checked_mul(self.cols).ok_or(SparseMatrixError::ShapeOverflow {
+            rows: self.rows,
+            cols: self.cols,
+        })?;
+        let mut data = vec![BigInt::from(0); total];
         for (j, col) in self.columns.iter().enumerate() {
             for (row, val) in col {
-                data[row * self.cols + j] = val.clone();
+                let idx = row
+                    .checked_mul(self.cols)
+                    .and_then(|rc| rc.checked_add(j))
+                    .ok_or(SparseMatrixError::ShapeOverflow {
+                        rows: self.rows,
+                        cols: self.cols,
+                    })?;
+                data[idx] = val.clone();
             }
         }
-        BasicMatrix::from_row_major(self.rows, self.cols, data)
-            .expect("dimensions already validated")
+        BasicMatrix::from_row_major(self.rows, self.cols, data).map_err(SparseMatrixError::Matrix)
     }
 
     pub fn from_dense(m: &BasicMatrix<BigInt>) -> Self {
@@ -748,6 +768,25 @@ mod tests {
     }
 
 
+    fn check_unimodular(m: &BasicMatrix<BigInt>) {
+        let n = m.rows();
+        assert_eq!(n, m.cols(), "transformation matrix must be square");
+        if n == 0 {
+            return;
+        }
+        let m_q = BasicMatrix::<num_rational::BigRational>::try_from_fn(n, n, |i, j| {
+            num_rational::BigRational::from_integer(m.get(i, j).unwrap())
+        })
+        .expect("matrix conversion to BigRational");
+        let det = crate::linear_algebra::elimination::determinant(&m_q).expect("det computation");
+        let one = num_rational::BigRational::from_integer(BigInt::from(1));
+        let neg_one = num_rational::BigRational::from_integer(BigInt::from(-1));
+        assert!(
+            det == one || det == neg_one,
+            "transformation matrix must be unimodular (det in {{-1, 1}}), got {det}"
+        );
+    }
+
     fn verify_snf(matrix: &BasicMatrix<BigInt>, snf: &SmithNormalForm) {
         let ua = snf.u().mul(matrix).expect("U*A");
         let uav = ua.mul(snf.v()).expect("U*A*V");
@@ -756,6 +795,8 @@ mod tests {
             snf.diagonal_matrix().as_slice(),
             "U*A*V != D"
         );
+        check_unimodular(snf.u());
+        check_unimodular(snf.v());
     }
 
     fn triangle_incidence_matrix() -> BasicMatrix<BigInt> {
@@ -1070,7 +1111,7 @@ mod tests {
         )
         .unwrap();
         let sparse = SparseColMatrix::from_dense(&dense);
-        let recovered = sparse.to_dense();
+        let recovered = sparse.to_dense().unwrap();
         assert_eq!(dense.as_slice(), recovered.as_slice());
         assert_eq!(dense.rows(), recovered.rows());
         assert_eq!(dense.cols(), recovered.cols());
@@ -1080,7 +1121,7 @@ mod tests {
     fn sparse_col_to_dense_zero_matrix() {
         let dense = BasicMatrix::<BigInt>::try_from_fn(3, 2, |_, _| BigInt::from(0)).unwrap();
         let sparse = SparseColMatrix::from_dense(&dense);
-        let recovered = sparse.to_dense();
+        let recovered = sparse.to_dense().unwrap();
         assert_eq!(dense.as_slice(), recovered.as_slice());
         for col in sparse.columns() {
             assert!(col.is_empty());
@@ -1109,4 +1150,76 @@ mod tests {
         assert_eq!(sparse_result[0], dense_result.as_slice()[0]);
         assert_eq!(sparse_result[1], dense_result.as_slice()[1]);
     }
+
+    #[test]
+    fn sparse_col_to_dense_overflow_refused() {
+        let rows = 1usize << (usize::BITS - 1);
+        let sparse = SparseColMatrix::new_checked(
+            rows,
+            2,
+            vec![vec![(0, BigInt::from(1))], vec![]],
+        )
+        .unwrap();
+        let res = sparse.to_dense();
+        assert!(matches!(res, Err(SparseMatrixError::ShapeOverflow { .. })));
+    }
+
+    #[test]
+    fn integer_matrix_conversion_handles_i64_extremes_and_negative_denominators() {
+        // (MIN, -1) -> 2^63
+        let r1 = Rational64::new_raw(i64::MIN, -1);
+        let expected1 = BigInt::from(i64::MAX) + BigInt::from(1);
+        assert_eq!(integer_numerator_from_rational64(&r1), Some(expected1));
+
+        // (MIN, 1) -> -2^63
+        let r2 = Rational64::new_raw(i64::MIN, 1);
+        let expected2 = BigInt::from(i64::MIN);
+        assert_eq!(integer_numerator_from_rational64(&r2), Some(expected2));
+
+        // (MIN, MIN) -> 1
+        let r3 = Rational64::new_raw(i64::MIN, i64::MIN);
+        assert_eq!(integer_numerator_from_rational64(&r3), Some(BigInt::from(1)));
+
+        // (1, MIN) -> not an integer
+        let r4 = Rational64::new_raw(1, i64::MIN);
+        assert_eq!(integer_numerator_from_rational64(&r4), None);
+
+        // Denominator 0 -> None
+        let r5 = Rational64::new_raw(5, 0);
+        assert_eq!(integer_numerator_from_rational64(&r5), None);
+    }
+
+    #[test]
+    fn snf_empty_rectangular_matrices() {
+        let m03 = BasicMatrix::<BigInt>::try_from_fn(0, 3, |_, _| BigInt::from(0)).unwrap();
+        let snf03 = smith_normal_form_checked(&m03).unwrap();
+        assert_eq!(snf03.diagonal().rank(), 0);
+        assert_eq!(snf03.u().shape(), (0, 0));
+        assert_eq!(snf03.v().shape(), (3, 3));
+        verify_snf(&m03, &snf03);
+
+        let m30 = BasicMatrix::<BigInt>::try_from_fn(3, 0, |_, _| BigInt::from(0)).unwrap();
+        let snf30 = smith_normal_form_checked(&m30).unwrap();
+        assert_eq!(snf30.diagonal().rank(), 0);
+        assert_eq!(snf30.u().shape(), (3, 3));
+        assert_eq!(snf30.v().shape(), (0, 0));
+        verify_snf(&m30, &snf30);
+    }
+
+    #[test]
+    fn unimodularity_verifier_rejects_non_unimodular_matrix() {
+        let non_unimodular = BasicMatrix::from_row_major(
+            1,
+            1,
+            vec![BigInt::from(2)],
+        )
+        .unwrap();
+        let m_q = BasicMatrix::<num_rational::BigRational>::try_from_fn(1, 1, |i, j| {
+            num_rational::BigRational::from_integer(non_unimodular.get(i, j).unwrap())
+        })
+        .unwrap();
+        let det = crate::linear_algebra::elimination::determinant(&m_q).unwrap();
+        assert_eq!(det, num_rational::BigRational::from_integer(BigInt::from(2)));
+    }
+
 }

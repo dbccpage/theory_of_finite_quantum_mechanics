@@ -1,18 +1,37 @@
+//! Exact finite rational homology. AuthorityEffect: None.
+//!
+//! Runtime certificates establish finite algebraic identities only. The canonical
+//! carrier admits shapes, d1*d0=0, positive weights and rank inclusion before use.
 
-use crate::linear_algebra::{ExactFieldError, ExactMatrix, MatrixError, Q};
-use crate::linear_algebra::scalars::{hash_rational, q};
+use crate::linear_algebra::scalars::hash_rational;
+use crate::linear_algebra::{ExactMatrix, Q};
 use serde::{Deserialize, Serialize};
-use thiserror::Error;
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub struct Hash256(pub [u8; 32]);
+pub mod boundary;
+pub mod carrier;
+pub mod carrier_manifest;
+pub mod chain;
+pub mod chain_complex;
+pub mod coboundary;
+pub mod cochain;
+pub mod cochain_complex;
+pub mod errors;
+pub mod exact_carrier;
+mod exact_scalar;
+pub mod graded_vector;
+pub mod hashing;
+pub mod ids;
+pub mod rank_certificate;
+pub mod simplicial;
+pub mod witness;
 
-impl Hash256 {
-    pub fn to_hex(&self) -> String {
-        hex::encode(self.0)
-    }
-}
+#[cfg(test)]
+mod l5a_challenges;
 
+pub use errors::HomologicalError;
+pub use hashing::Hash256;
+
+/// Legacy root matrix digest; its tag is retained for existing receipts.
 pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"TheoryOfFiniteQM.ExactMatrix<Q>.v1");
@@ -24,34 +43,25 @@ pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Hash256 {
     Hash256(*hasher.finalize().as_bytes())
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Error)]
-pub enum HomologicalError {
-    #[error("Dimension mismatch: expected {expected}, got {got}")]
-    DimensionMismatch { expected: usize, got: usize },
-    #[error("Coboundary law violated: d1 * d0 != 0")]
-    CoboundaryLawViolation,
-    #[error("Weight dimension mismatch: expected {expected}, got {got}")]
-    WeightDimensionMismatch { expected: usize, got: usize },
-    #[error("Non-positive weight at index {index}")]
-    NonPositiveWeight { index: usize },
-    #[error("Homology dimension underflow: ker_dim={ker_dim}, im_dim={im_dim}")]
-    HomologyDimensionUnderflow { ker_dim: usize, im_dim: usize },
-    #[error("Matrix error: {0}")]
-    Matrix(#[from] MatrixError),
-    #[error("exact field error: {0}")]
-    ExactField(#[from] ExactFieldError),
+/// Compatibility facade over the single admitted carrier. Serialization is data;
+/// deserialization recomputes the law, ranks and hashes instead of trusting bytes.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(try_from = "CarrierWire", into = "CarrierWire")]
+pub struct Carrier {
+    inner: carrier::Carrier,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-pub struct Carrier {
-    pub c0_dim: usize,
-    pub c1_dim: usize,
-    pub c2_dim: usize,
-    pub d0: ExactMatrix<Q>,
-    pub d1: ExactMatrix<Q>,
-    pub weights: Vec<Q>,
-    pub d0_hash: Hash256,
-    pub d1_hash: Hash256,
+#[derive(Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct CarrierWire {
+    c0_dim: usize,
+    c1_dim: usize,
+    c2_dim: usize,
+    d0: ExactMatrix<Q>,
+    d1: ExactMatrix<Q>,
+    weights: Vec<Q>,
+    d0_hash: Hash256,
+    d1_hash: Hash256,
 }
 
 impl Carrier {
@@ -63,95 +73,121 @@ impl Carrier {
         d1: ExactMatrix<Q>,
         weights: Vec<Q>,
     ) -> Result<Self, HomologicalError> {
-        if d0.rows() != c1_dim || d0.cols() != c0_dim {
-            return Err(HomologicalError::DimensionMismatch {
-                expected: c1_dim * c0_dim,
-                got: d0.rows() * d0.cols(),
-            });
-        }
-        if d1.rows() != c2_dim || d1.cols() != c1_dim {
-            return Err(HomologicalError::DimensionMismatch {
-                expected: c2_dim * c1_dim,
-                got: d1.rows() * d1.cols(),
-            });
-        }
-        if weights.len() != c1_dim {
-            return Err(HomologicalError::WeightDimensionMismatch {
-                expected: c1_dim,
-                got: weights.len(),
-            });
-        }
-        for (i, w) in weights.iter().enumerate() {
-            if *w <= q(0) {
-                return Err(HomologicalError::NonPositiveWeight { index: i });
-            }
-        }
-
-        let comp = d1.mul(&d0)?;
-        let zero = ExactMatrix::zeros(c2_dim, c0_dim)?;
-        if comp != zero {
-            return Err(HomologicalError::CoboundaryLawViolation);
-        }
-
-        let d0_hash = hash_exact_matrix(&d0);
-        let d1_hash = hash_exact_matrix(&d1);
-
+        let provenance =
+            cochain_complex::TheoremProvenance::new("runtime exact d1*d0 verification".into())?;
         Ok(Self {
-            c0_dim,
-            c1_dim,
-            c2_dim,
-            d0,
-            d1,
-            weights,
-            d0_hash,
-            d1_hash,
+            inner: carrier::Carrier::new(c0_dim, c1_dim, c2_dim, d0.0, d1.0, weights, provenance)?,
         })
     }
-
-    pub fn rank_d0(&self) -> Result<usize, HomologicalError> {
-        Ok(self.d0.rank()?)
+    pub fn c0_dim(&self) -> usize {
+        self.inner.c0_dim()
     }
-
-    pub fn rank_d1(&self) -> Result<usize, HomologicalError> {
-        Ok(self.d1.rank()?)
+    pub fn c1_dim(&self) -> usize {
+        self.inner.c1_dim()
     }
-
-    pub fn dim_q1(&self) -> Result<usize, HomologicalError> {
-        Ok(self.c1_dim - self.rank_d0()?)
+    pub fn c2_dim(&self) -> usize {
+        self.inner.c2_dim()
     }
-
+    pub fn d0(&self) -> &crate::linear_algebra::BasicMatrix<Q> {
+        self.inner.d0()
+    }
+    pub fn d1(&self) -> &crate::linear_algebra::BasicMatrix<Q> {
+        self.inner.d1()
+    }
+    pub fn weights(&self) -> &[Q] {
+        self.inner.weights()
+    }
+    pub fn rank_d0(&self) -> usize {
+        self.inner.rank_d0()
+    }
+    pub fn rank_d1(&self) -> usize {
+        self.inner.rank_d1()
+    }
+    pub fn dim_q1(&self) -> usize {
+        self.c1_dim() - self.rank_d0()
+    }
     pub fn dim_h1(&self) -> Result<usize, HomologicalError> {
-        let ker_d1 = self.c1_dim - self.rank_d1()?;
-        let im_d0 = self.rank_d0()?;
-        ker_d1
-            .checked_sub(im_d0)
-            .ok_or(HomologicalError::HomologyDimensionUnderflow {
-                ker_dim: ker_d1,
-                im_dim: im_d0,
-            })
+        self.inner.dim_h1()
     }
+}
+
+impl AsRef<carrier::Carrier> for Carrier {
+    fn as_ref(&self) -> &carrier::Carrier {
+        &self.inner
+    }
+}
+
+impl From<Carrier> for CarrierWire {
+    fn from(value: Carrier) -> Self {
+        let d0 = ExactMatrix(value.d0().clone());
+        let d1 = ExactMatrix(value.d1().clone());
+        Self {
+            c0_dim: value.c0_dim(),
+            c1_dim: value.c1_dim(),
+            c2_dim: value.c2_dim(),
+            d0_hash: hash_exact_matrix(&d0),
+            d1_hash: hash_exact_matrix(&d1),
+            d0,
+            d1,
+            weights: value.weights().to_vec(),
+        }
+    }
+}
+
+impl TryFrom<CarrierWire> for Carrier {
+    type Error = HomologicalError;
+    fn try_from(value: CarrierWire) -> Result<Self, Self::Error> {
+        verify_hash(&value.d0_hash, &hash_exact_matrix(&value.d0))?;
+        verify_hash(&value.d1_hash, &hash_exact_matrix(&value.d1))?;
+        Self::new(
+            value.c0_dim,
+            value.c1_dim,
+            value.c2_dim,
+            value.d0,
+            value.d1,
+            value.weights,
+        )
+    }
+}
+
+fn verify_hash(expected: &Hash256, got: &Hash256) -> Result<(), HomologicalError> {
+    if expected != got {
+        return Err(HomologicalError::HashMismatch {
+            expected: expected.to_hex(),
+            got: got.to_hex(),
+        });
+    }
+    Ok(())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::linear_algebra::scalars::q;
 
     #[test]
     fn test_triangle_carrier_homology() {
+        // Triangle 1-skeleton (cycle of 3 vertices, 3 edges)
+        // d0: C0 (3 vertices) -> C1 (3 edges)
+        // e0 = (0, 1): v1 - v0
+        // e1 = (1, 2): v2 - v1
+        // e2 = (2, 0): v0 - v2
         let d0_rows = vec![
             vec![q(-1), q(1), q(0)],
             vec![q(0), q(-1), q(1)],
             vec![q(1), q(0), q(-1)],
         ];
         let d0 = ExactMatrix::from_rows(d0_rows).unwrap();
+        // d1: C1 -> C2 (single 2-simplex face with boundary e0 + e1 + e2)
         let d1_rows = vec![vec![q(1), q(1), q(1)]];
         let d1 = ExactMatrix::from_rows(d1_rows).unwrap();
         let weights = vec![q(1), q(1), q(1)];
 
         let carrier = Carrier::new(3, 3, 1, d0, d1, weights).unwrap();
-        assert_eq!(carrier.rank_d0().unwrap(), 2);
-        assert_eq!(carrier.rank_d1().unwrap(), 1);
-        assert_eq!(carrier.dim_q1().unwrap(), 1);
+        assert_eq!(carrier.rank_d0(), 2);
+        assert_eq!(carrier.rank_d1(), 1);
+        assert_eq!(carrier.dim_q1(), 1);
+        // H^1 = ker(d1) - im(d0) = (3 - 1) - 2 = 0
         assert_eq!(carrier.dim_h1().unwrap(), 0);
     }
 }

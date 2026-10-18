@@ -1,0 +1,39 @@
+warning: methods `check_horizontal_identities` and `horizontal_identity_at` are never used
+   --> src\category_theory\higher.rs:249:8
+    |
+135 | impl ValidatedFiniteTwoCategory {
+    | ------------------------------- methods in this implementation
+...
+249 |     fn check_horizontal_identities(&self) -> Result<(), ValidationViolation> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+255 |     fn horizontal_identity_at(
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 447 tests
+....................................................................................... 87/447
+....................................................................................... 174/447
+....................................................................................... 261/447
+.......... 271/447
+higher::tests::horizontal_identity_preservation_is_not_just_interchange --- FAILED
+....................................................................................... 359/447
+....................................................................................... 446/447
+.
+failures:
+
+---- higher::tests::horizontal_identity_preservation_is_not_just_interchange stdout ----
+
+thread 'higher::tests::horizontal_identity_preservation_is_not_just_interchange' (28540) panicked at src\category_theory\higher.rs:993:52:
+called `Result::unwrap_err()` on an `Ok` value: ValidatedFiniteTwoCategory { declared: DeclaredFiniteTwoCategory { name: "two color tensor", objects: {"*"}, one_morphisms: {"e": DeclaredOneMorphism { name: "e", source: "*", target: "*" }, "f": DeclaredOneMorphism { name: "f", source: "*", target: "*" }}, two_morphisms: {"e0": DeclaredTwoMorphism { name: "e0", source: "e", target: "e" }, "f0": DeclaredTwoMorphism { name: "f0", source: "f", target: "f" }, "f1": DeclaredTwoMorphism { name: "f1", source: "f", target: "f" }}, id_1: {"*": "e"}, id_2: {"e": "e0", "f": "f0"}, compose_1: {("e", "e"): "e", ("e", "f"): "f", ("f", "e"): "f", ("f", "f"): "f"}, compose_2_vertical: {("e0", "e0"): "e0", ("f0", "f0"): "f0", ("f0", "f1"): "f1", ("f1", "f0"): "f1", ("f1", "f1"): "f1"}, compose_2_horizontal: {("e0", "e0"): "e0", ("e0", "f0"): "f0", ("e0", "f1"): "f1", ("f0", "e0"): "f0", ("f0", "f0"): "f1", ("f0", "f1"): "f1", ("f1", "e0"): "f1", ("f1", "f0"): "f1", ("f1", "f1"): "f1"} }, underlying: ValidatedFiniteCategory { declared: DeclaredFiniteCategory { name: "two color tensor", objects: {"*"}, morphisms: {"e": DeclaredMorphism { name: "e", source: "*", target: "*" }, "f": DeclaredMorphism { name: "f", source: "*", target: "*" }}, identities: {"*": "e"}, compositions: {("e", "e"): "e", ("e", "f"): "f", ("f", "e"): "f", ("f", "f"): "f"} } }, vertical: ValidatedFiniteCategory { declared: DeclaredFiniteCategory { name: "two color tensor.hom-disjoint-union", objects: {"e", "f"}, morphisms: {"e0": DeclaredMorphism { name: "e0", source: "e", target: "e" }, "f0": DeclaredMorphism { name: "f0", source: "f", target: "f" }, "f1": DeclaredMorphism { name: "f1", source: "f", target: "f" }}, identities: {"e": "e0", "f": "f0"}, compositions: {("e0", "e0"): "e0", ("f0", "f0"): "f0", ("f0", "f1"): "f1", ("f1", "f0"): "f1", ("f1", "f1"): "f1"} } } }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    higher::tests::horizontal_identity_preservation_is_not_just_interchange
+
+test result: FAILED. 446 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.70s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

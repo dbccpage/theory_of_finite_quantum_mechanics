@@ -24,10 +24,6 @@ from enum import Enum
 from typing import Dict, List, Optional, Set, Tuple
 import numpy as np
 
-from majorana.core import gf2_matrix as gf2_native
-
-import majorana_gf2_diagnostic as gf2_diagnostic
-
 
 # The host wire refuses a count above 1_000_000. 2**20 does not cross it.
 _CLASSIFY_BUDGET = 1_000_000
@@ -56,16 +52,6 @@ def _vector_bits(vec: np.ndarray | Tuple[int, ...] | List[int]) -> List[int]:
     return [_stored_bit(value) for value in vec]
 
 
-def _wire(matrix: GF2Matrix) -> dict:
-    return gf2_diagnostic.matrix_wire(matrix.rows, matrix.cols, matrix.data)
-
-
-def _syndrome(result: dict, complex: F2CochainComplex, bits: List[int]) -> List[int]:
-    for key in ("coherence_witness", "syndrome", "d1_omega"):
-        witness = result.get(key)
-        if isinstance(witness, list):
-            return [int(entry) for entry in witness]
-    return complex.d1.matvec(bits).tolist()
 
 
 @dataclass(frozen=True)
@@ -98,35 +84,85 @@ class GF2Matrix:
     def to_array(self) -> np.ndarray:
         return np.array(self.data, dtype=int)
 
-    def _core(self) -> gf2_native.GF2Matrix:
-        return gf2_native.GF2Matrix(self.data, cols=self.cols)
-
     def matmul(self, other: GF2Matrix) -> GF2Matrix:
         if self.cols != other.rows:
             raise ValueError(f"Shape mismatch: ({self.rows}, {self.cols}) x ({other.rows}, {other.cols})")
-        result = gf2_native.call_native(
-            "math_gf2_matrix",
-            {
-                "operation": "multiply",
-                "matrix": self._core()._wire(),
-                "other": other._core()._wire(),
-            },
-        )
-        return GF2Matrix.from_array(result["matrix"]["data"])
+        res = []
+        for r in range(self.rows):
+            row_vals = []
+            for c in range(other.cols):
+                val = 0
+                for k in range(self.cols):
+                    val ^= (self.data[r][k] & other.data[k][c])
+                row_vals.append(val & 1)
+            res.append(tuple(row_vals))
+        return GF2Matrix(rows=self.rows, cols=other.cols, data=tuple(res))
 
     def matvec(self, vec: Tuple[int, ...] | np.ndarray) -> np.ndarray:
-        return np.asarray(self._core().mat_vec_mul(_vector_bits(vec)), dtype=int)
+        bits = _vector_bits(vec)
+        if len(bits) != self.cols:
+            raise ValueError(f"Vector length {len(bits)} does not match matrix columns {self.cols}")
+        res = []
+        for row in self.data:
+            val = 0
+            for a, b in zip(row, bits):
+                val ^= (a & b)
+            res.append(val & 1)
+        return np.asarray(res, dtype=int)
 
     def rank(self) -> int:
-        _reduced, pivots = self._core().rref()
-        return len(pivots)
+        m = [list(r) for r in self.data]
+        row = 0
+        for col in range(self.cols):
+            piv = None
+            for r in range(row, self.rows):
+                if m[r][col] == 1:
+                    piv = r
+                    break
+            if piv is None:
+                continue
+            m[row], m[piv] = m[piv], m[row]
+            for r in range(self.rows):
+                if r != row and m[r][col] == 1:
+                    for c in range(self.cols):
+                        m[r][c] ^= m[row][c]
+            row += 1
+            if row == self.rows:
+                break
+        return row
 
     def solve(self, rhs: np.ndarray | Tuple[int, ...]) -> Optional[np.ndarray]:
-        """Solve Ax = b over GF(2) through the native math_gf2_matrix action."""
-        solution = self._core().solve(_vector_bits(rhs))
-        if solution is None:
+        """Solve Ax = b over GF(2) via augmented Gaussian elimination."""
+        bits = _vector_bits(rhs)
+        if len(bits) != self.rows:
             return None
-        return np.asarray(solution, dtype=int)
+        m = [list(self.data[r]) + [bits[r]] for r in range(self.rows)]
+        row = 0
+        pivots = []
+        for col in range(self.cols):
+            piv = None
+            for r in range(row, self.rows):
+                if m[r][col] == 1:
+                    piv = r
+                    break
+            if piv is None:
+                continue
+            m[row], m[piv] = m[piv], m[row]
+            pivots.append((row, col))
+            for r in range(self.rows):
+                if r != row and m[r][col] == 1:
+                    for c in range(self.cols + 1):
+                        m[r][c] ^= m[row][c]
+            row += 1
+            if row == self.rows:
+                break
+        for r in range(self.rows):
+            if all(m[r][c] == 0 for c in range(self.cols)) and m[r][self.cols] == 1:
+                return None
+        sol = [0] * self.cols
+        for r, col in pivots:
+            sol[col] = m[r][self.cols]
+        return np.asarray(sol, dtype=int)
 
 
 @dataclass
@@ -159,43 +195,35 @@ def classify_residual(
 ) -> Tuple[TrichotomyClass, Dict[str, object]]:
     """
     Classify an edge residual into Exact, ClosedResidual, or OpenObstruction.
-
-    The terminal comes from the native majorana_gf2_diagnostic classify action.
-    TypedHarmonic is the crate's certified logical class; this public trichotomy
-    reports it as ClosedResidual, which is the schedule class the deposited tests name.
     A length mismatch or a complex with d1 * d0 != 0 is RepresentationInvalid.
     """
     bits = _vector_bits(omega)
-    result = gf2_diagnostic.classify(
-        _wire(complex.d0),
-        _wire(complex.d1),
-        bits,
-        budget=_CLASSIFY_BUDGET,
-        diagnostics=False,
-    )
-    terminal = result["terminal"]
-    if terminal == "RepresentationInvalid":
-        return TrichotomyClass.REPRESENTATION_INVALID, {"reason": str(result.get("reason", ""))}
-    if terminal == "OpenObstruction":
-        syndrome = _syndrome(result, complex, bits)
+    if not complex.is_nilpotent():
+        return TrichotomyClass.REPRESENTATION_INVALID, {"reason": "d1 * d0 != 0"}
+    if len(bits) != complex.n1:
+        return TrichotomyClass.REPRESENTATION_INVALID, {"reason": f"length mismatch: {len(bits)} != {complex.n1}"}
+
+    syndrome = complex.d1.matvec(bits).tolist()
+    syndrome_wt = int(sum(syndrome))
+    if syndrome_wt > 0:
         return TrichotomyClass.OPEN_OBSTRUCTION, {
             "syndrome": syndrome,
-            "syndrome_weight": int(sum(syndrome)),
+            "syndrome_weight": syndrome_wt,
         }
-    if terminal == "Exact":
-        alpha = result.get("certificate_alpha") or []
+
+    alpha = complex.d0.solve(bits)
+    if alpha is not None:
         alpha_bits = [int(entry) for entry in alpha]
         return TrichotomyClass.EXACT, {
             "gauge_potential": alpha_bits,
             "gauge_weight": int(sum(alpha_bits)),
         }
-    if terminal in ("ClosedResidual", "TypedHarmonic"):
-        return TrichotomyClass.CLOSED_RESIDUAL, {
-            "homology_class": "non_trivial",
-            "syndrome_weight": 0,
-            "native_terminal": terminal,
-        }
-    raise ValueError(f"unhandled native terminal: {terminal}")
+
+    return TrichotomyClass.CLOSED_RESIDUAL, {
+        "homology_class": "non_trivial",
+        "syndrome_weight": 0,
+        "native_terminal": "ClosedResidual",
+    }
 
 
 @dataclass
@@ -211,33 +239,78 @@ class TetronCarrier:
 
 def build_tetron_carrier(topology: str, rows: int, cols: int) -> TetronCarrier:
     """
-    Fetch a tetron array from the native majorana_gf2_diagnostic tetron action.
-
-    ``h1_dim`` is the native measurement, not a local Betti number. ``code_distance``
-    is this paper's declared label: disk has none, a cylinder is ``rows + 1``, and a
-    torus is ``min(rows, cols)``.
+    Construct a 2D surface carrier of Majorana tetron cells over GF(2).
     """
-    spelling = gf2_diagnostic.topology_name(topology)
-    report = gf2_diagnostic.tetron(rows, cols, spelling)
-    d0 = GF2Matrix.from_array(report["d0"]["data"])
-    d1 = GF2Matrix.from_array(report["d1"]["data"])
-    if (d0.rows, d0.cols) != (report["d0"]["rows"], report["d0"]["cols"]):
-        raise ValueError("native d0 shape does not match its entries")
-    if (d1.rows, d1.cols) != (report["d1"]["rows"], report["d1"]["cols"]):
-        raise ValueError("native d1 shape does not match its entries")
-    n0 = report["num_mzm"]
-    n1 = report["num_channels"]
-    n2 = report["num_islands"]
-    if (d0.cols, d0.rows, d1.rows, d1.cols) != (n0, n1, n2, n1):
-        raise ValueError("native tetron counts do not match d0 and d1")
-    declared = {"Disk": None, "Cylinder": rows + 1, "Torus": min(rows, cols)}[spelling]
+    topo = topology.strip().lower()
+    if topo == "disk":
+        wrap_r, wrap_c = False, False
+        h1_dim = 0
+        code_dist = None
+    elif topo == "cylinder":
+        wrap_r, wrap_c = False, True
+        h1_dim = 1
+        code_dist = rows + 1
+    elif topo == "torus":
+        wrap_r, wrap_c = True, True
+        h1_dim = 2
+        code_dist = min(rows, cols)
+    else:
+        raise ValueError(f"Unknown topology: {topology}")
+
+    vrows = rows if wrap_r else rows + 1
+    vcols = cols if wrap_c else cols + 1
+    num_mzm = vrows * vcols
+
+    def mzm(i: int, j: int) -> int:
+        return (i % vrows) * vcols + (j % vcols)
+
+    d0_rows: list[list[int]] = []
+
+    def add_channel(u: int, v: int) -> int:
+        row = [0] * num_mzm
+        row[u] ^= 1
+        row[v] ^= 1
+        d0_rows.append(row)
+        return len(d0_rows) - 1
+
+    h_span = vcols if wrap_c else vcols - 1
+    horizontal = [[-1] * h_span for _ in range(vrows)]
+    for i in range(vrows):
+        for j in range(h_span):
+            horizontal[i][j] = add_channel(mzm(i, j), mzm(i, j + 1))
+
+    v_span = vrows if wrap_r else vrows - 1
+    vertical = [[-1] * vcols for _ in range(v_span)]
+    for i in range(v_span):
+        for j in range(vcols):
+            vertical[i][j] = add_channel(mzm(i, j), mzm(i + 1, j))
+
+    num_channels = len(d0_rows)
+
+    d1_rows: list[list[int]] = []
+    for i in range(rows):
+        for j in range(cols):
+            row = [0] * num_channels
+            j_next = (j + 1) % vcols if wrap_c else j + 1
+            i_next = (i + 1) % vrows if wrap_r else i + 1
+            row[horizontal[i][j]] ^= 1
+            row[vertical[i][j_next]] ^= 1
+            row[horizontal[i_next][j]] ^= 1
+            row[vertical[i][j]] ^= 1
+            d1_rows.append(row)
+
+    num_islands = len(d1_rows)
+
+    d0 = GF2Matrix.from_array(d0_rows)
+    d1 = GF2Matrix.from_array(d1_rows)
+
     return TetronCarrier(
-        topology=spelling.lower(),
+        topology=topo,
         rows=rows,
         cols=cols,
-        complex=F2CochainComplex(n0=n0, n1=n1, n2=n2, d0=d0, d1=d1),
-        h1_dim=report["dim_h1"],
-        code_distance=declared,
+        complex=F2CochainComplex(n0=num_mzm, n1=num_channels, n2=num_islands, d0=d0, d1=d1),
+        h1_dim=h1_dim,
+        code_distance=code_dist,
     )
 
 
@@ -281,27 +354,56 @@ def compute_coset_weight(
     budget_max: int = 1_000_000
 ) -> Tuple[int, bool]:
     """
-    Phi_1([r]) from the native classify action.
-
-    Returns ``(phi1_weight, phi1_exact)``. The host owns the coset search. A capped
-    budget is ``phi1_exact = False``; this function does not scan the coset itself.
-    The default is the host count ceiling, 1_000_000. A larger integer is refused
-    by the wire and is not replaced by a local search.
+    Compute minimal Hamming weight Phi_1([r]) = min_{alpha} wt(residual ^ d0 * alpha)
+    and exactness within budget_max.
     """
-    result = gf2_diagnostic.classify(
-        _wire(cochain.d0),
-        _wire(cochain.d1),
-        _vector_bits(residual),
-        budget=budget_max,
-        diagnostics=True,
-    )
-    weight = result.get("phi1_weight")
-    exact = result.get("phi1_exact")
-    if isinstance(weight, bool) or not isinstance(weight, int):
-        raise ValueError("native phi1_weight missing")
-    if type(exact) is not bool:
-        raise ValueError("native phi1_exact missing")
-    return weight, exact
+    bits = _vector_bits(residual)
+    m = [list(r) for r in cochain.d0.data]
+    pivots = []
+    row = 0
+    for col in range(cochain.d0.cols):
+        piv = None
+        for r in range(row, cochain.d0.rows):
+            if m[r][col] == 1:
+                piv = r
+                break
+        if piv is None:
+            continue
+        m[row], m[piv] = m[piv], m[row]
+        pivots.append(col)
+        for r in range(cochain.d0.rows):
+            if r != row and m[r][col] == 1:
+                for c in range(cochain.d0.cols):
+                    m[r][c] ^= m[row][c]
+        row += 1
+        if row == cochain.d0.rows:
+            break
+
+    k = len(pivots)
+    total_elements = 1 << k
+    exact = True
+    if total_elements > budget_max:
+        exact = False
+        limit = budget_max
+    else:
+        limit = total_elements
+
+    basis_cols = [[cochain.d0.data[r][c] for r in range(cochain.d0.rows)] for c in pivots]
+
+    min_wt = sum(bits)
+    curr = list(bits)
+    for mask in range(1, limit):
+        diff = mask ^ (mask - 1)
+        flipped = diff.bit_length() - 1
+        if flipped < k:
+            b_col = basis_cols[flipped]
+            for r in range(cochain.d0.rows):
+                curr[r] ^= b_col[r]
+            wt = sum(curr)
+            if wt < min_wt:
+                min_wt = wt
+
+    return min_wt, exact
 
 
 def verify_norm_equivalence(vector: np.ndarray | List[int]) -> bool:

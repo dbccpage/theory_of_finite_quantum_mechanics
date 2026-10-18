@@ -1,505 +1,367 @@
-pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/hom_adjunction.rs";
-pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:hom_adjunction:strictly-ascending-arrow-count";
-pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
-pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
+//! Hom-set bijection witnesses for adjunctions.
+//!
+//! An adjunction L ⊣ R induces a natural bijection
+//!   Hom_D(L(A), B) ≅ Hom_C(A, R(B))
+//!
+//! This module records explicit witness pairs and validates round-trip
+//! coherence, complementing the unit/counit triangle checks in `adjunction.rs`.
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum HomBijectionWitnessError {
-    FloatRefused { invariant: &'static str, measured_len: usize },
-    EmptyCarrier { invariant: &'static str, measured: usize },
-    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
-    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
-    Overflow { invariant: &'static str, measured: i64 },
-}
+use super::finite_category::DeclaredFiniteCategory;
+use super::validation::{
+    AdjunctionValidation, ValidationLocation, ValidationReport, ValidationSeverity, ValidationUnit,
+    ValidationViolation,
+};
+use crate::cat_functor::DeclaredFiniteFunctor;
+use std::collections::{BTreeMap, BTreeSet};
 
-impl std::fmt::Display for HomBijectionWitnessError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{self:?}")
-    }
-}
+// ═══════════════════════════════════════════════════════════════════════════
+// Hom-set bijection witness
+// ═══════════════════════════════════════════════════════════════════════════
 
-impl std::error::Error for HomBijectionWitnessError {}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct ArrowLedger {
-    objects: usize,
-    arrows: Vec<(usize, usize)>,
-}
-
-impl ArrowLedger {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, HomBijectionWitnessError> {
-        refuse_empty(objects)?;
-        refuse_budget(objects, arrows.len())?;
-        refuse_endpoints(objects, &arrows)?;
-        Ok(Self { objects, arrows })
-    }
-
-    pub fn objects(&self) -> usize {
-        self.objects
-    }
-
-    pub fn arrows(&self) -> &[(usize, usize)] {
-        &self.arrows
-    }
-}
-
-fn refuse_empty(objects: usize) -> Result<(), HomBijectionWitnessError> {
-    if objects == 0 {
-        return Err(HomBijectionWitnessError::EmptyCarrier {
-            invariant: "hom_adjunction-carrier-nonempty",
-            measured: objects,
-        });
-    }
-    Ok(())
-}
-
-fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), HomBijectionWitnessError> {
-    if objects > 16 {
-        return Err(HomBijectionWitnessError::EmptyCarrier {
-            invariant: "hom_adjunction-carrier-at-most-16",
-            measured: objects,
-        });
-    }
-    if arrow_len > 64 {
-        return Err(HomBijectionWitnessError::EmptyCarrier {
-            invariant: "hom_adjunction-arrow-budget-64",
-            measured: arrow_len,
-        });
-    }
-    Ok(())
-}
-
-fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
-    let src_ok = arrow.0 < objects;
-    let tgt_ok = arrow.1 < objects;
-    src_ok && tgt_ok
-}
-
-fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), HomBijectionWitnessError> {
-    for (index, arrow) in arrows.iter().enumerate() {
-        if !endpoint_ok(objects, *arrow) {
-            return Err(HomBijectionWitnessError::IndexOutOfBounds {
-                invariant: "hom_adjunction-arrow-endpoint-in-carrier",
-                measured: index,
-                bound: objects,
-            });
-        }
-    }
-    Ok(())
-}
-
+/// A single hom-set bijection witness for a pair (A, B).
+///
+/// Records the explicit bijection Hom_D(L(A), B) ↔ Hom_C(A, R(B))
+/// as a finite map in both directions, plus round-trip data.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct HomBijectionWitness {
-    ledger: ArrowLedger,
+    /// Base object A.
+    pub base_object: String,
+    /// Lifted object B.
+    pub lifted_object: String,
+    /// Forward direction: morphism in Hom_D(L(A), B) → morphism in Hom_C(A, R(B)).
+    /// Also called the "transpose" or "mate" in the left-to-right direction.
+    pub forward: BTreeMap<String, String>,
+    /// Backward direction: morphism in Hom_C(A, R(B)) → morphism in Hom_D(L(A), B).
+    pub backward: BTreeMap<String, String>,
 }
 
 impl HomBijectionWitness {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, HomBijectionWitnessError> {
-        let ledger = ArrowLedger::try_new(objects, arrows)?;
-        Ok(Self { ledger })
-    }
-
-    pub fn selected_count(&self) -> Result<i64, HomBijectionWitnessError> {
-        measured_count(self.ledger.arrows(), self.ledger.objects())
-    }
-
-    pub fn certificate(&self) -> Result<i64, HomBijectionWitnessError> {
-        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
-        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
-        agree_folded(measured, expected, self.ledger.objects())
-    }
-}
-
-fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, HomBijectionWitnessError> {
-    let folded = fold_carrier(measured, objects)?;
-    let expected_folded = fold_carrier(expected, objects)?;
-    require_agreement(folded, expected_folded)
-}
-
-fn selected(arrow: (usize, usize), objects: usize) -> bool {
-    let _budget = objects;
-    arrow.0 < arrow.1
-}
-
-fn unselected(arrow: (usize, usize), objects: usize) -> bool {
-    let keep = selected(arrow, objects);
-    !keep
-}
-
-fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, HomBijectionWitnessError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if selected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(HomBijectionWitnessError::Overflow {
-                invariant: "hom_adjunction-measured-count-fits-i64",
-                measured: total,
-            })?;
+    pub fn new(base_object: &str, lifted_object: &str) -> Self {
+        Self {
+            base_object: base_object.into(),
+            lifted_object: lifted_object.into(),
+            forward: BTreeMap::new(),
+            backward: BTreeMap::new(),
         }
     }
-    Ok(total)
-}
 
-fn count_all(arrows: &[(usize, usize)]) -> Result<i64, HomBijectionWitnessError> {
-    let mut total = 0i64;
-    for _arrow in arrows {
-        total = total.checked_add(1).ok_or(HomBijectionWitnessError::Overflow {
-            invariant: "hom_adjunction-arrow-count-fits-i64",
-            measured: total,
-        })?;
+    /// Record a bijection pair: f : L(A) → B  ↔  f_bar : A → R(B).
+    pub fn add_mate_pair(&mut self, lifted_morphism: &str, base_morphism: &str) {
+        self.forward
+            .insert(lifted_morphism.into(), base_morphism.into());
+        self.backward
+            .insert(base_morphism.into(), lifted_morphism.into());
     }
-    Ok(total)
 }
 
-fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, HomBijectionWitnessError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if unselected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(HomBijectionWitnessError::Overflow {
-                invariant: "hom_adjunction-complement-count-fits-i64",
-                measured: total,
-            })?;
+// ═══════════════════════════════════════════════════════════════════════════
+// Declared hom-set adjunction data
+// ═══════════════════════════════════════════════════════════════════════════
+
+/// Full hom-set bijection data for a declared finite adjunction.
+///
+/// This augments `DeclaredFiniteAdjunction` with explicit bijection witnesses
+/// for each (A, B) pair where A is a base object and B is a lifted object.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct DeclaredHomAdjunction {
+    pub adjunction_name: String,
+    pub left_functor: String,
+    pub right_functor: String,
+    pub witnesses: Vec<HomBijectionWitness>,
+}
+
+impl DeclaredHomAdjunction {
+    pub fn new(name: &str, left: &str, right: &str) -> Self {
+        Self {
+            adjunction_name: name.into(),
+            left_functor: left.into(),
+            right_functor: right.into(),
+            witnesses: Vec::new(),
         }
     }
-    Ok(total)
-}
 
-fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, HomBijectionWitnessError> {
-    let all = count_all(arrows)?;
-    let skipped = count_unselected(arrows, objects)?;
-    all.checked_sub(skipped).ok_or(HomBijectionWitnessError::Overflow {
-        invariant: "hom_adjunction-expected-count-fits-i64",
-        measured: all,
-    })
-}
-
-fn fold_carrier(measured: i64, objects: usize) -> Result<i64, HomBijectionWitnessError> {
-    let width = i64::try_from(objects).map_err(|_| HomBijectionWitnessError::Overflow {
-        invariant: "hom_adjunction-carrier-width-fits-i64",
-        measured,
-    })?;
-    measured.checked_add(width).ok_or(HomBijectionWitnessError::Overflow {
-        invariant: "hom_adjunction-folded-certificate-fits-i64",
-        measured,
-    })
-}
-
-pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, HomBijectionWitnessError> {
-    if measured == expected {
-        return Ok(measured);
+    pub fn add_witness(&mut self, witness: HomBijectionWitness) {
+        self.witnesses.push(witness);
     }
-    Err(HomBijectionWitnessError::ClaimFailed {
-        invariant: "hom_adjunction-hom-sum-equals-outgoing",
-        measured,
-        expected,
-    })
 }
 
-pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, HomBijectionWitnessError> {
-    let mut total = 0i64;
-    for (index, part) in parts.iter().enumerate() {
-        let measured = match i64::try_from(index) {
-            Ok(value) => value,
-            Err(_) => i64::MAX,
+// ═══════════════════════════════════════════════════════════════════════════
+// Validation
+// ═══════════════════════════════════════════════════════════════════════════
+
+fn hom_violation(
+    unit: AdjunctionValidation,
+    location: ValidationLocation,
+    message: impl Into<String>,
+) -> ValidationViolation {
+    ValidationViolation::new(
+        ValidationUnit::Adjunction(unit),
+        location,
+        message,
+        ValidationSeverity::Error,
+    )
+}
+
+fn hom_set(category: &DeclaredFiniteCategory, src: &str, tgt: &str) -> BTreeSet<String> {
+    category
+        .morphisms
+        .values()
+        .filter(|m| m.source == src && m.target == tgt)
+        .map(|m| m.name.clone())
+        .collect()
+}
+
+/// Validate hom-set bijection witnesses for round-trip coherence and totality.
+///
+/// For each witness (A, B):
+///   1. A is in Base, B is in Lifted.
+///   2. forward and backward map exactly the sets Hom_D(L(A), B) and Hom_C(A, R(B)).
+///   3. forward(f) = f_bar  implies  backward(f_bar) = f   (left round-trip)
+///   4. backward(f_bar) = f implies  forward(f) = f_bar    (right round-trip)
+///   5. forward and backward have the same cardinality (bijectivity)
+pub fn validate_hom_adjunction(
+    hom_adj: &DeclaredHomAdjunction,
+    left: &DeclaredFiniteFunctor,
+    right: &DeclaredFiniteFunctor,
+    base: &DeclaredFiniteCategory,
+    lifted: &DeclaredFiniteCategory,
+) -> ValidationReport {
+    let mut report = ValidationReport::new(&hom_adj.adjunction_name);
+
+    for witness in &hom_adj.witnesses {
+        let pair_label = format!("({}, {})", witness.base_object, witness.lifted_object);
+        let mut violations = Vec::new();
+
+        // 1. Check functor application
+        let la = match left.on_object(&witness.base_object) {
+            Some(obj) => obj,
+            None => {
+                violations.push(hom_violation(
+                    AdjunctionValidation::HomSetMembership,
+                    ValidationLocation::Object(witness.base_object.clone()),
+                    format!(
+                        "Left functor is undefined on base object {}",
+                        witness.base_object
+                    ),
+                ));
+                report.add_typed(&format!("hom_bijection_{}", pair_label), violations);
+                continue;
+            }
         };
-        total = total.checked_add(*part).ok_or(HomBijectionWitnessError::Overflow {
-            invariant: "claim-sum-stays-in-i64",
-            measured,
-        })?;
-    }
-    Ok(total)
-}
 
-fn text_has_byte(text: &str, target: u8) -> bool {
-    for byte in text.bytes() {
-        if byte == target {
-            return true;
-        }
-    }
-    false
-}
-
-fn text_refused(text: &str) -> bool {
-    if text.is_empty() {
-        return true;
-    }
-    if text_has_byte(text, 46) {
-        return true;
-    }
-    if text_has_byte(text, 101) {
-        return true;
-    }
-    if text_has_byte(text, 69) {
-        return true;
-    }
-    false
-}
-
-fn split_sign(text: &str) -> (i64, &str) {
-    if text.starts_with('-') {
-        let rest = match text.get(1..) {
-            Some(value) => value,
-            None => "",
+        let rb = match right.on_object(&witness.lifted_object) {
+            Some(obj) => obj,
+            None => {
+                violations.push(hom_violation(
+                    AdjunctionValidation::HomSetMembership,
+                    ValidationLocation::Object(witness.lifted_object.clone()),
+                    format!(
+                        "Right functor is undefined on lifted object {}",
+                        witness.lifted_object
+                    ),
+                ));
+                report.add_typed(&format!("hom_bijection_{}", pair_label), violations);
+                continue;
+            }
         };
-        return (-1, rest);
-    }
-    (1, text)
-}
 
-fn digits_only(text: &str) -> bool {
-    if text.is_empty() {
-        return false;
-    }
-    for byte in text.bytes() {
-        if !byte.is_ascii_digit() {
-            return false;
+        // 2. Hom-set totality
+        let lifted_hom = hom_set(lifted, la, &witness.lifted_object);
+        let base_hom = hom_set(base, &witness.base_object, rb);
+
+        let forward_domain: BTreeSet<_> = witness.forward.keys().cloned().collect();
+        let forward_codomain: BTreeSet<_> = witness.forward.values().cloned().collect();
+
+        if forward_domain != lifted_hom {
+            violations.push(hom_violation(
+                AdjunctionValidation::HomBijectionTotality,
+                ValidationLocation::Named(pair_label.clone()),
+                format!(
+                    "Forward domain mismatch. Expected Hom_Lifted({}, {}) = {:?}, got {:?}",
+                    la, witness.lifted_object, lifted_hom, forward_domain
+                ),
+            ));
         }
-    }
-    true
-}
 
-fn accumulate_digits(text: &str) -> Result<i64, HomBijectionWitnessError> {
-    let mut value = 0i64;
-    for byte in text.bytes() {
-        value = value.checked_mul(10).ok_or(HomBijectionWitnessError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-        let digit = i64::from(byte - 48);
-        value = value.checked_add(digit).ok_or(HomBijectionWitnessError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-    }
-    Ok(value)
-}
-
-pub fn parse_exact_i64(text: &str) -> Result<i64, HomBijectionWitnessError> {
-    if text_refused(text) {
-        return Err(HomBijectionWitnessError::FloatRefused {
-            invariant: "public-boundary-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let (sign, digits) = split_sign(text);
-    if !digits_only(digits) {
-        return Err(HomBijectionWitnessError::FloatRefused {
-            invariant: "public-boundary-refuses-non-integer-text",
-            measured_len: text.len(),
-        });
-    }
-    let magnitude = accumulate_digits(digits)?;
-    magnitude.checked_mul(sign).ok_or(HomBijectionWitnessError::Overflow {
-        invariant: "parsed-signed-integer-fits-i64",
-        measured: magnitude,
-    })
-}
-
-pub fn certify_claim(text: &str) -> Result<i64, HomBijectionWitnessError> {
-    let spec = parse_spec(text)?;
-    let value = HomBijectionWitness::try_new(spec.0, spec.1)?;
-    value.certificate()
-}
-
-fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), HomBijectionWitnessError> {
-    let objects = parse_object_count(text)?;
-    let arrows = parse_arrow_list(&arrow_fields(text))?;
-    Ok((objects, arrows))
-}
-
-fn parse_object_count(text: &str) -> Result<usize, HomBijectionWitnessError> {
-    if text_refused(text) {
-        return Err(HomBijectionWitnessError::FloatRefused {
-            invariant: "spec-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let head = match text.split(';').next() {
-        Some(value) => value,
-        None => "",
-    };
-    let objects_i = parse_exact_i64(head)?;
-    usize_from_i64(objects_i)
-}
-
-fn arrow_fields(text: &str) -> Vec<&str> {
-    let mut fields = Vec::new();
-    let mut skipped_head = false;
-    for part in text.split(';') {
-        if skipped_head {
-            fields.push(part);
+        if forward_codomain != base_hom {
+            violations.push(hom_violation(
+                AdjunctionValidation::HomBijectionTotality,
+                ValidationLocation::Named(pair_label.clone()),
+                format!(
+                    "Forward codomain mismatch. Expected Hom_Base({}, {}) = {:?}, got {:?}",
+                    witness.base_object, rb, base_hom, forward_codomain
+                ),
+            ));
         }
-        if !skipped_head {
-            skipped_head = true;
+
+        // 3. Check cardinality match
+        if witness.forward.len() != witness.backward.len() {
+            violations.push(hom_violation(
+                AdjunctionValidation::HomBijectionRoundTrip,
+                ValidationLocation::Named(pair_label.clone()),
+                format!(
+                    "Bijection cardinality mismatch: forward has {}, backward has {}",
+                    witness.forward.len(),
+                    witness.backward.len()
+                ),
+            ));
         }
+
+        // 4. Left round-trip: backward(forward(f)) = f
+        for (f, f_bar) in &witness.forward {
+            match witness.backward.get(f_bar) {
+                Some(roundtrip) if roundtrip == f => {}
+                Some(roundtrip) => violations.push(hom_violation(
+                    AdjunctionValidation::HomBijectionRoundTrip,
+                    ValidationLocation::Morphism(f.clone()),
+                    format!(
+                        "Left round-trip fails at {}: backward(forward({})) = backward({}) = {}, expected {}",
+                        pair_label, f, f_bar, roundtrip, f
+                    ),
+                )),
+                None => violations.push(hom_violation(
+                    AdjunctionValidation::HomBijectionRoundTrip,
+                    ValidationLocation::Morphism(f.clone()),
+                    format!(
+                        "Left round-trip fails at {}: forward({}) = {}, but backward({}) is undefined",
+                        pair_label, f, f_bar, f_bar
+                    ),
+                )),
+            }
+        }
+
+        // 5. Right round-trip: forward(backward(f_bar)) = f_bar
+        for (f_bar, f) in &witness.backward {
+            match witness.forward.get(f) {
+                Some(roundtrip) if roundtrip == f_bar => {}
+                Some(roundtrip) => violations.push(hom_violation(
+                    AdjunctionValidation::HomBijectionRoundTrip,
+                    ValidationLocation::Morphism(f_bar.clone()),
+                    format!(
+                        "Right round-trip fails at {}: forward(backward({})) = forward({}) = {}, expected {}",
+                        pair_label, f_bar, f, roundtrip, f_bar
+                    ),
+                )),
+                None => violations.push(hom_violation(
+                    AdjunctionValidation::HomBijectionRoundTrip,
+                    ValidationLocation::Morphism(f_bar.clone()),
+                    format!(
+                        "Right round-trip fails at {}: backward({}) = {}, but forward({}) is undefined",
+                        pair_label, f_bar, f, f
+                    ),
+                )),
+            }
+        }
+
+        report.add_typed(&format!("hom_bijection_{}", pair_label), violations);
     }
-    fields
+
+    report
 }
 
-fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, HomBijectionWitnessError> {
-    let mut arrows = Vec::new();
-    let mut index = 0usize;
-    while index < fields.len() {
-        let field = match fields.get(index) {
-            Some(value) => *value,
-            None => "",
-        };
-        arrows.push(parse_arrow(field)?);
-        index = index.saturating_add(1);
-    }
-    Ok(arrows)
-}
-
-fn parse_arrow(part: &str) -> Result<(usize, usize), HomBijectionWitnessError> {
-    let mut ends = part.split('>');
-    let src_text = ends.next().ok_or(HomBijectionWitnessError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-source",
-        measured: 0,
-        bound: 0,
-    })?;
-    let tgt_text = ends.next().ok_or(HomBijectionWitnessError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-target",
-        measured: 0,
-        bound: 0,
-    })?;
-    if ends.next().is_some() {
-        return Err(HomBijectionWitnessError::IndexOutOfBounds {
-            invariant: "spec-arrow-has-two-ends",
-            measured: part.len(),
-            bound: 2,
-        });
-    }
-    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
-    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
-    Ok((src, tgt))
-}
-
-fn usize_from_i64(value: i64) -> Result<usize, HomBijectionWitnessError> {
-    if value < 0 {
-        return Err(HomBijectionWitnessError::IndexOutOfBounds {
-            invariant: "spec-index-nonnegative",
-            measured: 0,
-            bound: 0,
-        });
-    }
-    usize::try_from(value).map_err(|_| HomBijectionWitnessError::Overflow {
-        invariant: "spec-index-fits-usize",
-        measured: value,
-    })
-}
+// ═══════════════════════════════════════════════════════════════════════════
+// Tests
+// ═══════════════════════════════════════════════════════════════════════════
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::cat_functor::DeclaredFiniteFunctor;
+    use crate::finite_category_builder::DeclaredFiniteCategoryBuilder;
 
-    const UNIT_EXPECT: i64 = 3;
-    const INTEG_EXPECT: i64 = 3;
-
-    fn show(err: HomBijectionWitnessError) -> String {
-        format!("{err:?}")
+    fn trivial_base() -> DeclaredFiniteCategory {
+        DeclaredFiniteCategoryBuilder::new("Base")
+            .identity("*", "id_*")
+            .identity_compositions()
+            .build()
     }
 
-    fn integration_certificate() -> Result<i64, HomBijectionWitnessError> {
-        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
-        let value = HomBijectionWitness::try_new(ledger.objects(), ledger.arrows().to_vec())?;
-        value.certificate()
+    fn trivial_lifted() -> DeclaredFiniteCategory {
+        DeclaredFiniteCategoryBuilder::new("Lifted")
+            .identity("*'", "id_*'")
+            .identity_compositions()
+            .build()
     }
 
-    #[test]
-    fn unit_hom_adjunction_hom_sum_matches_outgoing() -> Result<(), String> {
-        let value = HomBijectionWitness::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
-        let got = value.certificate().map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("certificate {got}"));
-        }
-        Ok(())
+    fn trivial_left_functor() -> DeclaredFiniteFunctor {
+        let mut left = DeclaredFiniteFunctor::new("L", "Base", "Lifted");
+        left.map_object("*", "*'");
+        left.map_morphism("id_*", "id_*'");
+        left
     }
 
-    #[test]
-    fn integration_ledger_and_hom_adjunction_agree() -> Result<(), String> {
-        let cert = integration_certificate().map_err(show)?;
-        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
-        if combined != INTEG_EXPECT {
-            return Err(format!("combined {combined}"));
-        }
-        Ok(())
+    fn trivial_right_functor() -> DeclaredFiniteFunctor {
+        let mut right = DeclaredFiniteFunctor::new("R", "Lifted", "Base");
+        right.map_object("*'", "*");
+        right.map_morphism("id_*'", "id_*");
+        right
     }
 
     #[test]
-    fn e2e_certify_claim_text() -> Result<(), String> {
-        let got = certify_claim("2;0>1;1>1").map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("e2e {got}"));
-        }
-        Ok(())
+    fn trivial_hom_bijection_passes() {
+        let base = trivial_base();
+        let lifted = trivial_lifted();
+        let left = trivial_left_functor();
+        let right = trivial_right_functor();
+
+        let mut hom = DeclaredHomAdjunction::new("Trivial", "L", "R");
+        let mut witness = HomBijectionWitness::new("*", "*'");
+        // Hom(L(*), *') = {id_*'} ↔ Hom(*, R(*')) = {id_*}
+        witness.add_mate_pair("id_*'", "id_*");
+        hom.add_witness(witness);
+
+        let report = validate_hom_adjunction(&hom, &left, &right, &base, &lifted);
+        assert!(report.all_passed(), "{:?}", report.typed_violations);
     }
 
     #[test]
-    fn negative_empty_carrier() -> Result<(), String> {
-        let err = HomBijectionWitness::try_new(0, vec![]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("hom_adjunction-carrier-nonempty") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("empty carrier accepted".into()),
-        }
+    fn broken_round_trip_detected() {
+        let base = trivial_base();
+        let lifted = trivial_lifted();
+        let left = trivial_left_functor();
+        let right = trivial_right_functor();
+
+        let mut hom = DeclaredHomAdjunction::new("Broken", "L", "R");
+        let mut witness = HomBijectionWitness::new("*", "*'");
+        // Deliberately broken: forward maps f → g, but backward maps g → h (not f)
+        witness.forward.insert("f".into(), "g".into());
+        witness.backward.insert("g".into(), "h".into());
+        hom.add_witness(witness);
+
+        let report = validate_hom_adjunction(&hom, &left, &right, &base, &lifted);
+        assert!(!report.all_passed());
+        assert!(
+            report
+                .typed_violations
+                .iter()
+                .any(|v| v.message.contains("round-trip") || v.message.contains("mismatch")),
+            "Should detect round-trip or totality failure: {:?}",
+            report.typed_violations
+        );
     }
 
     #[test]
-    fn negative_float_boundary() -> Result<(), String> {
-        let err = parse_exact_i64("1.5").map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("binary64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("float accepted".into()),
-        }
-    }
+    fn cardinality_mismatch_detected() {
+        let base = trivial_base();
+        let lifted = trivial_lifted();
+        let left = trivial_left_functor();
+        let right = trivial_right_functor();
 
-    #[test]
-    fn negative_index() -> Result<(), String> {
-        let err = HomBijectionWitness::try_new(1, vec![(0, 2)]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("endpoint") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("bad arrow accepted".into()),
-        }
-    }
+        let mut hom = DeclaredHomAdjunction::new("BadCard", "L", "R");
+        let mut witness = HomBijectionWitness::new("*", "*'");
+        witness.forward.insert("f".into(), "g".into());
+        // backward is empty → cardinality mismatch
+        hom.add_witness(witness);
 
-    #[test]
-    fn negative_claim_disagreement() -> Result<(), String> {
-        let err = require_agreement(1, 2).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("hom_adjunction-hom-sum-equals-outgoing") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("disagreement accepted".into()),
-        }
-    }
-
-    #[test]
-    fn negative_overflow_sum() -> Result<(), String> {
-        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("claim-sum-stays-in-i64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("overflow accepted".into()),
-        }
+        let report = validate_hom_adjunction(&hom, &left, &right, &base, &lifted);
+        assert!(!report.all_passed());
+        assert!(
+            report
+                .typed_violations
+                .iter()
+                .any(|v| v.message.contains("cardinality") || v.message.contains("mismatch")),
+            "{:?}",
+            report.typed_violations
+        );
     }
 }

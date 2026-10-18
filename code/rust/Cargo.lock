@@ -321,6 +321,43 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "aedcfb3409746eddb02b9e19ebda1c3394f759a152e48ee875a0844d1b955484"
 
 [[package]]
+name = "finite_qm_c750"
+version = "0.1.0"
+dependencies = [
+ "num-bigint",
+ "num-rational",
+ "num-traits",
+ "serde_json",
+]
+
+[[package]]
+name = "finite_qm_native"
+version = "0.2.0"
+dependencies = [
+ "finite_qm_c750",
+ "linear_algebra",
+ "num-bigint",
+ "num-integer",
+ "num-rational",
+ "num-traits",
+ "omega_combinatorics",
+ "omega_engines",
+ "omega_functional",
+ "omega_general_relativity",
+ "omega_holonomy",
+ "omega_homology",
+ "omega_kernel",
+ "omega_lie_theory",
+ "omega_number_theory",
+ "omega_policy",
+ "omega_quantum_physics",
+ "omega_solvers",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "flate2"
 version = "1.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1684,6 +1721,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "tfqm_fsp"
+version = "0.1.0"
+dependencies = [
+ "num-bigint",
+ "num-integer",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "tfqm_functional"
 version = "0.1.0"
 dependencies = [
@@ -1947,6 +1997,7 @@ dependencies = [
  "omega_replay",
  "omega_solvers",
  "omega_types",
+ "omega_wdp",
  "serde",
  "serde_json",
  "serde_yaml",
@@ -1959,6 +2010,7 @@ name = "theory_of_finite_qm"
 version = "0.1.0"
 dependencies = [
  "blake3",
+ "finite_qm_native",
  "hex",
  "linear_algebra",
  "nalgebra",
@@ -1984,6 +2036,7 @@ dependencies = [
  "tfqm_category_theory",
  "tfqm_combinatorics",
  "tfqm_finite_probability",
+ "tfqm_fsp",
  "tfqm_functional",
  "tfqm_fusion_categories",
  "tfqm_general_relativity",

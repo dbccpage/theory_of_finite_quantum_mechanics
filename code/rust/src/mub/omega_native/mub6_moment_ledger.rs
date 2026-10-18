@@ -483,7 +483,7 @@ pub fn evaluate_moment_sdp_hierarchy_ledger() -> Result<MomentSDPHierarchyLedger
 
 pub const CANONICAL_FIXTURES_JSON: &str = include_str!(concat!(
     env!("CARGO_MANIFEST_DIR"),
-    "/fixtures/mub_moment_sdp_ledger_fixtures.json"
+    "/../tests/omega_mub/fixtures/mub_moment_sdp_ledger_fixtures.json"
 ));
 
 pub fn load_canonical_fixtures() -> Result<MomentSdpLedgerFixtures, String> {

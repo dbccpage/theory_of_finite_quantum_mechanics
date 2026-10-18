@@ -1076,12 +1076,20 @@ def verify_target_q_lean4_and_rust_consistency(
 ) -> ConsistencyReceipt:
     """Check structural consistency with Lean 4 and Rust reference implementations."""
     if repo_root is None:
-        repo_root = next(
-            p for p in pathlib.Path(__file__).resolve().parents if (p / "omega_engine").is_dir()
-        )
+        try:
+            repo_root = next(
+                p for p in pathlib.Path(__file__).resolve().parents if (p / "omega_engine").is_dir()
+            )
+        except StopIteration:
+            repo_root = next(
+                (p for p in pathlib.Path(__file__).resolve().parents if (p / "pyproject.toml").is_file()),
+                pathlib.Path(__file__).resolve().parents[4],
+            )
 
     lean_path = repo_root / "lean4" / "sdp" / "TargetQArchimedeanPositivstellensatz.lean"
-    rust_path = repo_root / "omega_engine" / "crates_rs" / "omega_mub" / "src" / "omega_native" / "mub6_degree8_sdp.rs"
+    rust_path = repo_root / "code" / "rust" / "src" / "mub" / "omega_native" / "mub6_degree8_sdp.rs"
+    if not rust_path.exists():
+        rust_path = repo_root / "omega_engine" / "crates_rs" / "omega_mub" / "src" / "omega_native" / "mub6_degree8_sdp.rs"
 
     lean_matched: List[str] = []
     if lean_path.exists():

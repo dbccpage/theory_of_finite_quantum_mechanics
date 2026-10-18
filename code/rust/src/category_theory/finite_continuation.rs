@@ -1,3 +1,8 @@
+//! Partial finite dynamics and shortest distinguishing continuations.
+//!
+//! One fresh, observably distinct absorbing state totalizes unavailability.
+//! Moore refinement therefore preserves BOTH answers and availability for every
+//! finite word. The added state is internal, never a physical alternative.
 
 use crate::finite_moore::{FiniteMoore, MooreError, MooreQuotient};
 use std::collections::{BTreeMap, VecDeque};
@@ -49,6 +54,7 @@ impl PartialDynamics {
                 MooreError::TransitionOutsideCarrier,
             ));
         }
+        // Intern Option<label>, rather than label+1: usize::MAX is a valid label.
         let mut labels = BTreeMap::new();
         let mut outputs = Vec::new();
         for label in reports
@@ -88,6 +94,7 @@ impl PartialDynamics {
         self.machine.verify_quotient(q)
     }
 
+    /// Full word validation occurs even if an earlier operation is unavailable.
     pub fn run(&self, start: usize, word: &[usize]) -> Result<Option<usize>, ContinuationError> {
         if start >= self.reports.len() {
             return Err(ContinuationError::OutsideCarrier);
@@ -102,9 +109,12 @@ impl PartialDynamics {
         Ok(state)
     }
 
+    /// Exactly one partial update per real quotient class. The sink's class
+    /// occupies no entry; no failed operation is silently an identity.
     pub fn quotient_operations(&self) -> Vec<Vec<Option<usize>>> {
         let q = self.quotient();
         let dead = q.state_to_block[self.reports.len()];
+        // First-state block numbering puts the uniquely labelled sink last.
         q.quotient.transitions()[..dead]
             .iter()
             .map(|row| {
@@ -115,6 +125,8 @@ impl PartialDynamics {
             .collect()
     }
 
+    /// BFS on ordered state pairs. A completed empty result proves equivalence
+    /// in THIS finite machine; exceeding `max_pairs` is a resource refusal.
     pub fn distinguish(
         &self,
         left: usize,
@@ -159,6 +171,7 @@ impl PartialDynamics {
         Ok(None)
     }
 
+    /// Replay the claimed distinction without trusting its saved answers.
     pub fn verify_distinction(&self, c: &DistinguishingWord) -> Result<(), ContinuationError> {
         let l = self.run(c.left, &c.word)?.map(|s| self.reports[s]);
         let r = self.run(c.right, &c.word)?.map(|s| self.reports[s]);

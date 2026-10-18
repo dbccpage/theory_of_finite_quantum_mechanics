@@ -1,3 +1,12 @@
+//! Finite contextual systems, checked morphisms and relation-coarsening reflection.
+//! AuthorityEffect: None. No authority or report-reflecting completion is claimed.
+//!
+//! Objects have a total action for each fixed context label and a profile
+//! equivalence. Morphisms commute with actions and preserve that equivalence.
+//! The full subcategory Cong consists of action-stable equivalences. Closing
+//! an equivalence upward under actions gives a reflector with identity carrier
+//! unit, initial in (S down-arrow Cong). It can merge previously distinct
+//! profiles. A profile-reflecting unit into Cong cannot repair noncongruence.
 use crate::finite_moore::{FiniteMoore, MooreError};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -77,6 +86,7 @@ impl ContextSystem {
     }
 }
 
+/// Typed checked arrow. No caller can replace its domain, codomain or map.
 #[derive(Debug, Clone)]
 pub struct ContextHom<'a> {
     source: &'a ContextSystem,
@@ -176,6 +186,8 @@ fn merge(labels: &mut [usize], x: usize, y: usize) {
 }
 
 impl CongruenceReflection {
+    /// Least stable equivalence above the given profile equivalence. Every
+    /// strict round merges at least two blocks, hence at most n-1 strict rounds.
     pub fn new(source: &ContextSystem) -> Result<Self, ContextError> {
         let mut labels = canonicalize(source.profiles());
         let mut chain = vec![labels.clone()];
@@ -227,6 +239,9 @@ impl CongruenceReflection {
             (0..self.source.state_count()).collect(),
         )
     }
+    /// Given an object (T,f:S->T) of the comma category S↓Cong, construct its
+    /// unique arrow from (R(S),eta). Relation-preservation is independently
+    /// checked on the saturated relation; no trust in a claimed factor flag.
     pub fn factor<'a>(&'a self, arrow: &ContextHom<'a>) -> Result<ContextHom<'a>, ContextError> {
         if arrow.source != &self.source {
             return Err(ContextError::WrongDomain);
@@ -236,6 +251,8 @@ impl CongruenceReflection {
         }
         ContextHom::new(&self.completed, arrow.target, arrow.map.clone())
     }
+    /// Check the actual comma triangle for a candidate factor. Since eta is
+    /// identity on carriers, two accepted factors have exactly the same map.
     pub fn is_factor(&self, arrow: &ContextHom<'_>, candidate: &ContextHom<'_>) -> bool {
         arrow.source == &self.source
             && arrow.target.is_congruent()
@@ -245,6 +262,7 @@ impl CongruenceReflection {
     }
 }
 
+/// The reflector's action on arrows, with endpoints checked against both units.
 pub fn reflect_arrow<'a>(
     source: &'a CongruenceReflection,
     target: &'a CongruenceReflection,

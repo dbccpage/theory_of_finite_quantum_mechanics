@@ -187,7 +187,7 @@ def run_pytest(paper_dir) -> bool:
         env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1",
                    COVERAGE_FILE=str(Path(scratch) / ".coverage"))
         cmd = [
-            sys.executable, "-m", "pytest", "-n", "8", "-q",
+            sys.executable, "-m", "pytest", "-n", "4", "-q",
             "-p", "no:cacheprovider", "--basetemp=" + str(Path(scratch) / "pytest"),
             "--cov=majorana_evaluator", "--cov-fail-under=95",
             "tests/unit/test_gf2_trichotomy.py",

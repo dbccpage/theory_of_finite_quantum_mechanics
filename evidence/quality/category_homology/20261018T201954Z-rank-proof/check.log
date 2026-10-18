@@ -1,0 +1,76 @@
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\quality\category_homology\proofs\RankCertificate.lean:92:59: error: unsolved goals
+m n r : ℕ
+M : Matrix (Fin m) (Fin n) ℚ
+c : Candidate m n r
+⊢ runChecks
+        [Except.ok (decide (M = c.image * c.coordinates)), Except.ok (decide (c.imageRetraction * c.image = 1)),
+          Except.ok (decide (c.coordinates * c.coordinateSection = 1))] =
+      Except.ok () ↔
+    M = c.image * c.coordinates ∧ c.imageRetraction * c.image = 1 ∧ c.coordinates * c.coordinateSection = 1
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\quality\category_homology\proofs\RankCertificate.lean:94:24: warning: This simp argument is unused:
+  runChecks
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [identityChecks, Valid]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\quality\category_homology\proofs\RankCertificate.lean:131:14: error: unsolved goals
+case error
+m n r : ℕ
+M : Matrix (Fin m) (Fin n) ℚ
+c out : Candidate m n r
+before after : List (Except Refusal Bool)
+e : Refusal
+all :
+  runChecks (before ++ [Except.error e] ++ after ++ identityChecks M c) = Except.ok () ↔
+    ∀ check ∈ before ++ [Except.error e] ++ after ++ identityChecks M c, check = Except.ok true
+err : Refusal
+hc : runChecks (before ++ [Except.error e] ++ after ++ identityChecks M c) = Except.error err
+success :
+  (match runChecks (before ++ Except.error e :: (after ++ identityChecks M c)) with
+    | Except.error e => Except.error e
+    | Except.ok PUnit.unit => Except.ok c) =
+    Except.ok out
+⊢ False
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\quality\category_homology\proofs\RankCertificate.lean:131:30: warning: This simp argument is unused:
+  hc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [admit] at success
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\quality\category_homology\proofs\RankCertificate.lean:145:14: error: unsolved goals
+case error
+m n r : ℕ
+M : Matrix (Fin m) (Fin n) ℚ
+c out : Candidate m n r
+before after : List (Except Refusal Bool)
+all :
+  runChecks (before ++ [Except.ok false] ++ after ++ identityChecks M c) = Except.ok () ↔
+    ∀ check ∈ before ++ [Except.ok false] ++ after ++ identityChecks M c, check = Except.ok true
+err : Refusal
+hc : runChecks (before ++ [Except.ok false] ++ after ++ identityChecks M c) = Except.error err
+success :
+  (match runChecks (before ++ Except.ok false :: (after ++ identityChecks M c)) with
+    | Except.error e => Except.error e
+    | Except.ok PUnit.unit => Except.ok c) =
+    Except.ok out
+⊢ False
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\quality\category_homology\proofs\RankCertificate.lean:145:30: warning: This simp argument is unused:
+  hc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [admit] at success
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\quality\category_homology\proofs\RankCertificate.lean:169:9: warning: Local variable 'unit' resembles constructor 'PUnit.unit' - write '.unit' (with a dot) or 'PUnit.unit' to use the constructor.
+
+Note: This linter can be disabled with `set_option linter.constructorNameAsVariable false`
+'TFQM.RankCertificate.valid_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.RankCertificate.runChecks_ok_iff' depends on axioms: [propext, Quot.sound]
+'TFQM.RankCertificate.admit_success' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.RankCertificate.admit_success_rank' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.RankCertificate.producer_failure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.RankCertificate.explicit_failure' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.RankCertificate.failed_predicate' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.RankCertificate.first_error_preserved' depends on axioms: [propext]

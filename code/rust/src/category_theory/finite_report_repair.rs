@@ -1,3 +1,9 @@
+//! Witness-guided repair of a complete finite report/answer table.
+//!
+//! Each step splits one current report class by an already supplied question.
+//! The result is the least refinement retaining the old report and all answers.
+//! This repairs a representation, not the source world or observation hardware.
+//! Bounds count rows, questions, steps and pair inspections, not bytes or time.
 
 use crate::finite_question_family::FiniteQuestionFamily;
 use std::collections::BTreeMap;
@@ -33,6 +39,7 @@ pub enum RepairError {
     NotLeastSufficient,
 }
 
+/// Source indices and a question witnessing unequal answers in one report class.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RepairStep {
     pub first: usize,
@@ -40,6 +47,9 @@ pub struct RepairStep {
     pub question: usize,
 }
 
+/// Numbered classes use first occurrence order after each split. The verifier
+/// accepts any legal witness order, without calling the repair search.
+/// Application-level source identities and acquisition licenses are separate.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RepairCertificate {
     pub steps: Vec<RepairStep>,
@@ -130,6 +140,8 @@ fn split<A: Ord + Clone + Debug>(
     })))
 }
 
+/// Return a complete repair or a typed resource/input refusal. The input tables
+/// are unchanged. No partial repair is labeled sufficient on budget exhaustion.
 pub fn repair_report<A: Ord + Clone + Debug, R: Ord>(
     family: &FiniteQuestionFamily<A>,
     report: &[R],
@@ -152,6 +164,8 @@ pub fn repair_report<A: Ord + Clone + Debug, R: Ord>(
     })
 }
 
+/// Replay each declared split, then independently check the defining pair
+/// relation. Both excessive splitting and unresolved collisions are refused.
 pub fn verify_repair<A: Ord + Clone + Debug, R: Ord>(
     family: &FiniteQuestionFamily<A>,
     report: &[R],
@@ -185,6 +199,9 @@ pub fn verify_repair<A: Ord + Clone + Debug, R: Ord>(
     Ok(())
 }
 
+/// Replay a legal prefix without claiming sufficiency. Includes the initial
+/// partition, so an application can recheck its original task after each split.
+/// Each transition uses the same checked split as the complete verifier.
 pub fn replay_repair_prefix<A: Ord + Clone + Debug, R: Ord>(
     family: &FiniteQuestionFamily<A>,
     report: &[R],

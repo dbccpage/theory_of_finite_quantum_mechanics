@@ -1,3 +1,4 @@
+//! Error types for homological algebra operations.
 
 use crate::linear_algebra::basic_matrix::MatrixError;
 use crate::linear_algebra::smith_form::SmithError;
@@ -5,6 +6,24 @@ use thiserror::Error;
 
 #[derive(Debug, Error, Clone, PartialEq, Eq)]
 pub enum HomologicalError {
+    #[error("noncanonical or undefined rational at coefficient {index}")]
+    InvalidRational { index: usize },
+    #[error("certificate identity failed: {identity}")]
+    CertificateMismatch { identity: &'static str },
+    #[error("matrix shape mismatch: expected {expected:?}, got {got:?}")]
+    ShapeMismatch {
+        expected: (usize, usize),
+        got: (usize, usize),
+    },
+
+    #[error("degree mismatch: expected {expected}, got {got}")]
+    DegreeMismatch { expected: i32, got: i32 },
+
+    #[error("degree shift overflows its representation")]
+    DegreeOverflow,
+
+    #[error("resource limit exceeded: {0}")]
+    ResourceLimit(&'static str),
     #[error("dimension mismatch: expected {expected}, got {got}")]
     DimensionMismatch { expected: usize, got: usize },
 
@@ -19,6 +38,18 @@ pub enum HomologicalError {
 
     #[error("matrix error: {0}")]
     MatrixError(#[from] MatrixError),
+
+    #[error("rank factorization row reduction failed")]
+    RankReductionFailed {
+        #[source]
+        source: crate::linear_algebra::image_kernel::ExactLinearAlgebraError,
+    },
+
+    #[error("rank factorization inverse failed")]
+    RankInverseFailed {
+        #[source]
+        source: crate::linear_algebra::ExactFieldError,
+    },
 
     #[error("non-exact division encountered")]
     NonExactDivision,
@@ -52,6 +83,9 @@ pub enum HomologicalError {
 
     #[error("missing witness")]
     MissingWitness,
+    /// A Smith-normal-form rank exceeds the dimension it is subtracted from, which
+    /// would make a Betti number negative. Reported rather than clamped to zero:
+    /// clamping would emit a plausible Betti number for an inconsistent carrier.
     #[error(
         "Betti rank inconsistency at degree {degree}: rank sum {rank_sum} exceeds dimension {dimension}"
     )]
@@ -61,6 +95,14 @@ pub enum HomologicalError {
         degree: usize,
     },
 
+    /// A boundary map has a non-integer entry in the carrier's coordinate lattice,
+    /// so it has no Smith normal form over ℤ and no integral rank or torsion can be
+    /// reported for it.
+    ///
+    /// Typed rather than folded into [`Self::UnsupportedOperation`]: a caller must be
+    /// able to distinguish "this carrier is rational, not integral" — a fact about
+    /// the input that a different lattice could change — from "the SNF algorithm
+    /// failed", which is a fact about this implementation.
     #[error(
         "boundary map {map} is not integral in the carrier's coordinate lattice: \
          non-integer entry at row {row}, column {col}"
@@ -71,6 +113,9 @@ pub enum HomologicalError {
         col: usize,
     },
 
+    /// Smith normal form of a boundary map failed. The underlying [`SmithError`] is
+    /// preserved as the source rather than stringified, so a caller can match on
+    /// `Overflow` / `DivisibilityViolation` / `VerificationFailed` separately.
     #[error("Smith normal form of boundary map {map} failed")]
     SmithNormalFormFailed {
         map: &'static str,

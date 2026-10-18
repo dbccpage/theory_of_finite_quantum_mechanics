@@ -1,0 +1,49 @@
+warning: unused variable: `a`
+   --> src\category_theory\higher.rs:448:24
+    |
+448 |     fn target_2(&self, a: &String) -> Result<String, ValidationViolation> {
+    |                        ^ help: if this is intentional, prefix it with an underscore: `_a`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+
+running 447 tests
+....................................................................................... 87/447
+....................................................................................... 174/447
+....................................................................................... 261/447
+....... 268/447
+higher::tests::associativity_and_strict_units_have_independent_counterexamples --- FAILED
+.. 271/447
+higher::tests::object_and_one_cell_boundaries_and_owned_context_are_exact --- FAILED
+.. 274/447
+higher::tests::unknown_identifier_lookups_are_typed_failures_instead_of_panics --- FAILED
+....................................................................................... 362/447
+.....................................................................................
+failures:
+
+---- higher::tests::associativity_and_strict_units_have_independent_counterexamples stdout ----
+
+thread 'higher::tests::associativity_and_strict_units_have_independent_counterexamples' (22584) panicked at src\category_theory\higher.rs:960:9:
+assertion failed: ValidatedFiniteTwoCategory::try_new(two_color_linear_tensor(1, 1,
+            true)).is_ok()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- higher::tests::object_and_one_cell_boundaries_and_owned_context_are_exact stdout ----
+
+thread 'higher::tests::object_and_one_cell_boundaries_and_owned_context_are_exact' (14496) panicked at src\category_theory\higher.rs:845:66:
+called `Result::unwrap()` on an `Err` value: [ValidationViolation { law: UnknownTwoMorphism, message: "0" }]
+
+---- higher::tests::unknown_identifier_lookups_are_typed_failures_instead_of_panics stdout ----
+
+thread 'higher::tests::unknown_identifier_lookups_are_typed_failures_instead_of_panics' (12460) panicked at src\category_theory\higher.rs:710:34:
+called `Result::unwrap_err()` on an `Ok` value: "e"
+
+
+failures:
+    higher::tests::associativity_and_strict_units_have_independent_counterexamples
+    higher::tests::object_and_one_cell_boundaries_and_owned_context_are_exact
+    higher::tests::unknown_identifier_lookups_are_typed_failures_instead_of_panics
+
+test result: FAILED. 444 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.67s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

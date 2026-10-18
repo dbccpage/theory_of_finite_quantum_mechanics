@@ -1,0 +1,32 @@
+warning: unused variable: `max_level`
+   --> src\category_theory\rewriting.rs:631:9
+    |
+631 |     let max_level = sys.cells.values().map(|cell| cell.level).max().unwrap_or(0);
+    |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_max_level`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+
+running 440 tests
+....................................................................................... 87/440
+....................................................................................... 174/440
+....................................................................................... 261/440
+....................................................................................... 348/440
+................................................................................ 428/440
+rewriting::tests::all_name_path_and_truncation_boundaries_reject_bad_candidates --- FAILED
+...........
+failures:
+
+---- rewriting::tests::all_name_path_and_truncation_boundaries_reject_bad_candidates stdout ----
+
+thread 'rewriting::tests::all_name_path_and_truncation_boundaries_reject_bad_candidates' (18956) panicked at src\category_theory\rewriting.rs:1097:13:
+boundary 9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    rewriting::tests::all_name_path_and_truncation_boundaries_reject_bad_candidates
+
+test result: FAILED. 439 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.28s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

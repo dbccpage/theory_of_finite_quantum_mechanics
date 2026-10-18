@@ -1,0 +1,441 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/rank_certificate.rs",
+    "language": "Rust",
+    "sha256": "d10f292c869981053835b0afa088be72e2084b33abc7a9af153621281a5f7e2f"
+  },
+  "reviewer": "Codex source, specification and evidence review",
+  "evaluation_timestamp": "2026-10-18T20:49:29.179693+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G4": "A",
+    "G5": "A",
+    "G3": "A"
+  },
+  "formal_specification": {
+    "domain": "M in Q^(m x n), with m,n natural numbers represented by checked BasicMatrix dimensions. Q values have denominator > 0 and gcd(numerator,denominator)=1. No floating or fixed-width coefficient path is admitted.",
+    "candidate": "U in Q^(m x r), V in Q^(r x n), L in Q^(r x m), R in Q^(n x r), with r <= min(m,n). All four stored candidate matrices independently pass canonical-Q admission.",
+    "acceptance": "M = U*V AND L*U = I_r AND V*R = I_r. Equality includes matrix shape. The certificate stores r and a digest of the admitted mathematical value M at that time, not an alias to a mutable caller variable.",
+    "soundness": "Acceptance implies rank_Q(M)=r, including r=0.",
+    "replay": "verify_against(M2) returns Ok only after digest equality and re-admission of the same owned U,V,L,R against M2. Digest collision alone cannot bypass the matrix equalities.",
+    "production": "certify_rank is a fallible candidate producer followed by the same independent checker. For a zero-area matrix it constructs the unique rank-zero shapes without iterating metadata-only rows/columns. Producer error is not a rank-zero result.",
+    "authority": "AuthorityEffect None. These are finite exact linear-algebra claims, not a physical derivation, publication, cross-repository origin attestation or completed formal proof of Rust crash freedom.",
+    "checked_model": "proofs/RankCertificate.lean: actual Q-matrix rank, successful admission, rejection of arbitrary explicit failures/failed predicates, exact first-error preservation and arithmetic/index bounds. Checked with Lean 4.33.1 and pinned Mathlib."
+  },
+  "symbol_map": {
+    "try_admit": "Canonical-Q -> shape/rank-domain -> three matrix identities -> immutable evidence; only explicit certificate struct construction.",
+    "rank": "Read the private r fixed from U.cols() at admission.",
+    "matrix_hash": "Read the private binding digest without exposing mutable state.",
+    "candidate": "Read-only access to owned witness matrices; BasicMatrix setters require mutable access.",
+    "verify_against": "Check digest then replay try_admit; caller mutation of an original matrix does not update the certificate claim.",
+    "shape": "Reject differing ordered row/column dimensions.",
+    "check_shapes": "Bound r before identity allocation and enforce all four witness shapes.",
+    "require_equal": "Refuse unequal exact matrices with the designated identity label.",
+    "identity": "Build I_r from exact integer coefficients 0 and 1 through checked matrix construction.",
+    "certify_rank": "Reject invalid coefficient domains before producer arithmetic; all successful paths finish at try_admit.",
+    "empty_candidate": "Use four zero-area shapes, r=0, without work proportional to a metadata-only dimension.",
+    "check_coefficients": "Validate M,U,V,L,R, including unchecked BigRational::new_raw construction paths.",
+    "factorization": "Untrusted elimination proposal: pivot columns and RREF coordinates use checked bounds and typed producer failures.",
+    "left_inverse": "Propose (U^T U)^-1 U^T; proposal correctness receives no trust until split identities replay.",
+    "inverse": "Preserve the ExactFieldError variant as the source of RankInverseFailed."
+  },
+  "origin": {
+    "repository": "C:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics",
+    "repository_head": "0a010adb194d217fa1079be1bdb53a287635e072",
+    "subject_state": "Uncommitted working source; artifact SHA-256, not HEAD, identifies the evaluated bytes. No human authorship or signature is asserted."
+  },
+  "invariant_argument": [
+    "Over Q, rank(UV) <= r, because U has r columns. From M=UV this gives rank(M) <= r.",
+    "Associativity gives LMR = L(UV)R = (LU)(VR) = I_r. Thus r = rank(I_r) = rank(LMR) <= rank(M). Combine both inequalities. For r=0 the same empty-matrix identities imply M=0.",
+    "try_admit checks canonical coefficients before scalar multiplication, then all shapes before identity construction, then each displayed identity. Its final struct construction is dominated by all checks. The input is borrowed immutably and witness matrices are owned.",
+    "certify_rank may propose arbitrary producer output, but neither producer branch constructs RankCertificate directly. A returned certificate therefore still requires all acceptance checks. Elimination correctness is not a soundness premise of the checker.",
+    "The checked Lean model and the source-level refinement audit jointly support finite certificate invariant preservation. The model is not presented as a machine-checked Rust/callee crash-freedom proof.",
+    "Storage audit: safe constructors and BasicMatrix serde preserve len=data_rows*data_cols with checked multiplication; index(row,col) checks row<rows and col<cols and checked offset arithmetic. Thus subsequent private data indexing has a mathematical bound. The sealed Q field instance excludes fixed-width and floating coefficient implementations.",
+    "Producer bounds audit: a found pivot has pivot_row<rows, so incrementing pivot_row cannot overflow; inversion checks doubled grid dimensions before allocation, and r<n,c<n imply n+c<2n for augmented-grid extraction. The checked bound lemmas and source-stage relation discharge these finite index obligations under the declared runtime contracts."
+  ],
+  "failure_paths": {
+    "coefficient_domain": "InvalidRational before try_admit arithmetic or producer elimination; tests inject zero/negative denominators and noncanonical fractions in every role.",
+    "dimensions": "CertificateMismatch(rank dimension) before allocating I_r, or ShapeMismatch for any mismatched witness shape; safe storage constructors enforce data.len() == rows*cols.",
+    "identity_replay": "MatrixError from multiplication or CertificateMismatch with M=UV / LU=I / VR=I; no partial certificate is returned.",
+    "producer": "RankReductionFailed retains ExactLinearAlgebraError, RankInverseFailed retains ExactFieldError, and checked matrix errors propagate. Neither failure is converted to rank zero.",
+    "binding": "CertificateMismatch(matrix binding) or a replay error; verify_against does not accept a digest in place of the algebraic equalities."
+  },
+  "trust_boundary": {
+    "checked_mathematics": "Finite-dimensional linear algebra over Q, checked by the three finite exact matrix identities; ordinary rank-product inequalities supply the explicit algebraic argument.",
+    "runtime": "Safe Rust compiler/library contracts and the pinned BigRational/BigInt, matrix storage/operations and hashing implementations. No unsafe code or deserialization constructor for RankCertificate exists in this module.",
+    "binding": "The receipts pin the harness, resolved Cargo lock/metadata, 58 package roots and 2,934 package/ancestor input files, compiler binaries, rustc -vV and relevant inherited compiler flags. Package file inventories include unexecuted files and are not origin attestations or exact compiler read traces.",
+    "formal_model": "Lean 4.33.1; Mathlib 0df444a360eaa60ab8c11dca51a86af692955474; transitive axiom reports contain only the three standard foundational axioms. Runtime representation and source-stage correspondence are explicitly source-reviewed, not claimed as extracted-program equivalence."
+  },
+  "consumer_review": [
+    "carrier::Carrier::new owns its CochainComplex immutably, obtains both differential ranks through certify_rank, and checks subtraction and image/kernel inclusion before caching the certificates.",
+    "carrier::Carrier::rank_certificates returns shared references. Public getters cannot mutate matrices, rank fields or certificate witnesses.",
+    "Direct call-site search finds the canonical carrier and the explicit homology challenge suite. No implementation of a higher physical or infinite-dimensional theorem is claimed for these consumers."
+  ],
+  "basis": {
+    "G1": [
+      "The source SHA-256, precise finite-domain specification and all 15 production-symbol mappings are bound to replay receipts. All hypotheses are explicit: canonical Q, checked matrix storage, witness dimensions, the three exact identities and ordinary safe-Rust/library contracts.",
+      "Actual offline Cargo metadata, lockfile, package file contents and resolved compiler binaries are pinned. The dependency inventories and working-source manifests are equal before/after each campaign. The selected host is x86_64-pc-windows-msvc, rustc 1.99.0; inherited compiler overrides are all unset.",
+      "Known downstream certificate ownership and rank consumption are reviewed above. AuthorityEffect stays None; cross-repository authorship attestation, zero-drift tracing and physical/Lean/MIR proof claims are explicitly excluded rather than invented."
+    ],
+    "G2": [
+      "Every witness role and M is admitted into canonical Q; positive denominators and gcd=1 also reject undefined, negative-denominator and unreduced new_raw values. Matrix operations use arbitrary-precision rational coefficients, without float conversion or fixed-width coefficient narrowing.",
+      "The stated factorization/split specification directly matches acceptance and gives the explicit upper/lower rank argument above. Stored r comes from U.cols(); r <= min(m,n) is checked before identity construction. Empty shapes receive a replayed rank-zero witness, not a default rank after an error.",
+      "Producer elimination/Gram inversion are untrusted for acceptance. Independently hand-constructed U,V,L,R and forged identities challenge this boundary; replay checks both binding and algebra. No assertion is made that a certificate tracks subsequent mutation of a caller-owned matrix."
+    ],
+    "G4": [
+      "The final source-bound campaign passes 95 homology tests before and after mutation. Independent tests include all 81 ternary 2x2 matrices against determinant/zero rank expectations, a 200-bit integer/fraction fixture, all four witness shapes and invalid canonical rationals in all five matrix roles.",
+      "The new scaled rank-one fixture is hand-constructed: M=[[6,9],[10,15]], U=[[3],[5]], V=[[2,3]], L=[[1/3,0]], R=[[1/2],[0]]. The source checker must accept it and individually reject forged M=UV, LU=I and VR=I while the other two identities still hold.",
+      "A bounded thread challenge checks 0 x usize::MAX, usize::MAX x 0 and ordinary empty shapes without dimension enumeration. An impossible rank with empty storage is rejected before identity allocation. Actual singular/non-square inverse failures preserve typed source variants.",
+      "Final campaign: generated=8, killed=8; survived/equivalent/invalid/inconclusive/unrun=0; R=1.0. These faults remove one of the three identities, falsify rank output, bypass candidate or producer scalar admission, remove the zero-area fast path, or erase typed inverse failure causes.",
+      "An earlier receipt (20261018T195034Z) was rejected by score validation: its final nonunique RK08 recipe was marked invalid in memory/summary but remained unrun in the saved ledger. It is retained unchanged and is not grading evidence. A unique-site RK09 probe was replayed separately, then the complete eight-fault campaign was replayed with corrected ledger persistence. No inconsistent receipt is used here and no timeout is counted as a kill."
+    ],
+    "G5": [
+      "Calibrated syn AST metrics cover 15 explicit production functions: maximum CCN 10, cognitive upper bound 3 and nesting 1. No function contains an opaque macro and the module defines no item-generating macro.",
+      "No recursive production path exists. The checker performs three dense products: U*V, L*U and V*R, plus linear coefficient/shape/hash work. Scalar-operation cost is O(m*n*r + m*r^2 + n*r^2), with rational bit costs separate. I_r is allocated once and reused.",
+      "Candidate production uses finite elimination and Gram inverses, with polynomial dense matrix-operation counts and rational coefficient growth. Typed matrix/inversion refusals propagate; source getters and failure paths do not duplicate rank computations or allocate in an inner loop gratuitously.",
+      "Zero-area shapes now bypass elimination completely and build only zero-area witness buffers. Their work is independent of metadata-only row/column magnitudes. The prior verified two-second counterexample is retained and the regression now completes immediately.",
+      "This is a source/metric/cost review. No benchmark-checked resource contract, expanded MIR proof, allocator guarantee or A+ claim is made."
+    ],
+    "G3": [
+      "The bound kernel receipt checks all twelve mathematical/refusal/index lemmas, with no unfinished proof and only propext, Classical.choice and Quot.sound. The model proves exact rank from checked identities and no successful artifact after any explicit refusal or failed predicate; a separate generic-error lemma preserves the first typed payload.",
+      "The source-level refinement audit above covers every public construction, replay and observation path, plus the private scalar/shape/product/pivot/inverse primitives. Successful Rust construction is dominated by the same model predicates. Every fallible producer or matrix operation propagates an error before the sole certificate commit; producer correctness is not a soundness premise.",
+      "The actual matrix-storage, serde, scalar and elimination sources are pinned by the Rust dependency receipt. Checked storage, canonical Q admission, range-derived row/column bounds and nonzero-pivot selection discharge the logical panic obligations. The compiled Rust challenge suite exercises malformed values, forged proofs, binding/shape rejection, extreme empty metadata and typed source propagation.",
+      "The grade is relative to the declared ordinary safe-Rust/runtime and exact-arithmetic trusted boundary. No custom consistency axiom or admitted mathematical obligation is introduced. Mechanized Rust/MIR refinement, global allocator totality and machine-checked crash freedom are not claimed; those stronger assurances belong to A+.",
+      "The final isolated proof receipt 20261018T204626Z-rank-proof has all three command exits zero and stable direct source/library inputs, with explicit LEAN_PATH and LEAN_SRC_PATH excluding main-project outputs. Earlier 203223 root-configuration drift, 203754 timeout and 204240 source-search failure receipts are preserved but excluded from grading. Printed axiom reports never override an unsuccessful execution."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Contract attachment remains pending at the user request.",
+    "No cross-repository origin attestation, exact compiler-read trace, mechanized source-to-MIR equivalence, global allocator-totality/crash-freedom proof, benchmark-checked resource contract or whole-directory A score is inferred.",
+    "This completed component assessment uses a checked exact/refusal model plus an explicit source refinement audit. It is not a declaration that the Rust implementation was extracted from Lean or independently verified at MIR level."
+  ],
+  "unassessed": {},
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/source_manifest.json",
+      "sha256": "18370f10f2ed8ad63d893d9f780b62a587342bb8c5dd7ce8acb84a48cca678f9"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/baseline.json",
+      "sha256": "751b1871d1d2b3d4e621420ea7d4b9c9ac39362a50c0c8785dda94ce63c55261"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/restored.json",
+      "sha256": "52d1ef149f629c8cf0c1a5eead80e4ff9da20522f3b3712c2af1e92f22134483"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/mutations.json",
+      "sha256": "b3beaab36a56cd53dcef03ddeca2137d501f9938580f22702f8789ad58469959"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/summary.json",
+      "sha256": "443696d2aed3064e745e4f2c8bdbab9bb9aa53c32ff0d2f831c32ab115d83148"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/dependency_receipt.json",
+      "sha256": "d05f4fc6722e2b0b16fe4a46da90122479c8d53b11e8a1421ec9e07edbc131e7"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/dependency_manifest.json",
+      "sha256": "01bcc8083d7c09af9fde72422c5d5319045d72b981710352a7901d75730b23a0"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/cargo-metadata.json",
+      "sha256": "ee3a43f6e9eb8b68efdd3aad55e89b86abc930aace242d1e84e289b5b9354fbf"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/snapshot-Cargo.lock",
+      "sha256": "30722a017c8e74c91367b3f4b4f91d676333e8b6621eb0d1b1315d05a63e39b2"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T200256Z/run_audit.py",
+      "sha256": "2f8c79e00d38f8dcc9e1e42ca8a5aa408b579322f6496f14d8183ce28aa93fb7"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T195109Z-metrics/receipt.json",
+      "sha256": "3b93cf640570717a5717bd47598f914a809b309a1daf6877c634417c34b449da"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T195109Z-metrics/metrics.json",
+      "sha256": "5d5ad6c614efb1487ab3f699f4fc28f67582ac5eb7f49f0725dcc560b6122df9"
+    },
+    {
+      "path": "code/rust/quality/category_homology/proofs/RankCertificate.lean",
+      "sha256": "4959253aeeae62fc42460986e8dbc33a8d36e3789f29651070d924918453ff81"
+    },
+    {
+      "path": "code/rust/quality/category_homology/run_rank_proof.py",
+      "sha256": "ae496e9becba2b6e0d1fea111d497cf42a6a10ea7cc14234afa263f4f15562e1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/receipt.json",
+      "sha256": "5deb8c4ff5f3190bb6f1d2b0df31029bddc2f4e8f15b50874f39a112e9b4dfea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/source_manifest.json",
+      "sha256": "90e09c3fd1d2502c05ac8c12ed181eba2689d83baf09d4c32a51296c8caf8070"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/dependency_manifest.json",
+      "sha256": "c7661d12c7ba182b18f33a576e11d0fe3bdb94297b080da2ffed9923d39675ad"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/check.log",
+      "sha256": "de7c3ec59a8a6390c71a4c72926d434837b6e3b77b32be3642e7d00a02c8acec"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/dependencies.log",
+      "sha256": "9df4d913da80a9a06704accbea05e01f1d653863f057e5762cb00a80b9e9cfe5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/dependency-sources.log",
+      "sha256": "dbf843b4a090e95cd4e858e3d1558a3a692e043ebe0a4f1eecb0931509b63731"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/environment.json",
+      "sha256": "3b7dd88f93ba110e0b27cda290cfde6c89d4dab4d41bfe53520cf6b071378bd9"
+    }
+  ],
+  "rust_model_refinement": {
+    "assurance": "Source-level refinement audit of the pinned Rust code to the checked model. This is not a mechanized compiler/MIR equivalence proof or a Rust crash-freedom certificate.",
+    "representation": [
+      "BasicMatrix stores private rows/cols/data. Safe construction checks rows*cols with checked_mul and data length equality. Its serde implementation calls the same constructor; set/get do not change shape. Thus row/column indices refine Fin m and Fin n after checked bounds.",
+      "admit_coefficients rejects denominator <= 0 or gcd(numerator,denominator) != 1 for M,U,V,L,R. Canonical BigRational values have a unique Q interpretation, so derived exact matrix equality agrees with entrywise Q equality. Scalar operations are monomorphic BigRational, not arbitrary caller-supplied numeric implementations.",
+      "check_shapes refines all four witness shapes to the model Candidate m n r and bounds r by min(m,n). Shape/product failures return typed errors before construction; the model represents any such refusal as an unsuccessful extra check."
+    ],
+    "success_relation": [
+      "try_admit has exactly one successful RankCertificate struct literal. It is dominated by coefficient admission, shape checks, identity allocation, M=UV, LU=I and VR=I. The Rust comparison UV==M is the symmetric form of the first model equality; the other two are identical. admit_success and admit_success_rank establish the invariant and rank conclusion.",
+      "certify_rank has two successful routes: the zero-area proposal and the elimination/Gram proposal. Both call try_admit. No row-reduction rank field or inverse result is itself trusted as a certificate. Producer errors propagate before admission, matching producer_failure.",
+      "verify_against first refuses a binding mismatch and then calls try_admit on the owned witness clone. Success therefore refines a fresh admission for the supplied matrix; the hash is not used as a substitute for the algebraic equations."
+    ],
+    "failure_relation": [
+      "Each explicit Result error is propagated with ? or wrapped in a source-preserving HomologicalError variant. Failed equalities return CertificateMismatch. No error branch constructs a certificate or returns a default rank. explicit_failure and failed_predicate exclude every successful model result after a refused check.",
+      "Fallible operations may occur between equality checks; the model rejection property is independent of their placement, and first_error_preserved applies to the actual flattened sequence of Result guards. It preserves an arbitrary typed error payload, not merely an error tag. RankReductionFailed and RankInverseFailed retain the original producer error; singular and nonsquare source variants are exercised.",
+      "The borrowed matrix is never mutated. Producer reduction starts from a clone, and all scratch values/candidate matrices are owned Rust values. Error unwinding drops those values without exposing a partial certificate or mutating a previously admitted one. No unmanaged handle, async task, FFI export or mutable global is introduced by the subject."
+    ],
+    "logical_panic_obligations": [
+      "Checked storage gives len=rows*cols. Every backend element access first checks row<rows and col<cols. row_major_index_lt proves row*cols+col<len; checked index arithmetic and valid allocated shape prevent wrapping or bounds panics.",
+      "The local inverse uses an augmented n by 2n grid only after checked dimension/cost arithmetic. augmented_column_lt proves n+col<2n for col<n. Its grid row operations iterate admitted row/column ranges; the same row-major bound justifies their internal indexing.",
+      "Row reduction increments pivot_row only after a nonzero pivot is found in pivot_row..rows. Hence pivot_row<rows, and pivot_increment_fits proves the increment stays within the represented rows bound. Both row-reduction implementations select a nonzero pivot before reciprocal/division; the sealed canonical Q instance excludes division by an admitted zero pivot.",
+      "identity_area_le proves r*r<=m*n from the admitted r<=m and r<=n bounds. Matrix constructors/reservations still propagate typed overflow/allocation refusals. Zero-area metadata bypasses row-reduction enumeration and is independently replayed by the checker."
+    ],
+    "construction_census": [
+      "The only production struct-literal constructor is the successful end of try_admit. certify_rank delegates to it. Clone preserves the same immutable fields; Eq and Debug are observers. There is no Deserialize, Default or unchecked public constructor for RankCertificate.",
+      "rank, matrix_hash and candidate return a value or shared references. Candidate mutability belongs to untrusted RankCandidate values before admission; a shared borrow from a certificate cannot invoke BasicMatrix mutation. Ordinary safe-Rust ownership and the fixed scalar types prevent a caller from mutating admitted witness data behind these borrows."
+    ]
+  },
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/receipt.json",
+      "sha256": "5deb8c4ff5f3190bb6f1d2b0df31029bddc2f4e8f15b50874f39a112e9b4dfea",
+      "proof": "code/rust/quality/category_homology/proofs/RankCertificate.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/homology/boundary.rs",
+      "sha256": "9408d47116a07fee24a3d490c122b9d041dbf51b2f9018b929bf2de7ca96abba"
+    },
+    {
+      "path": "code/rust/src/homology/carrier.rs",
+      "sha256": "8c3cd15da1e2446854173c303752f26ca8fedc5dc92c4cc78d15cebd17a15ef8"
+    },
+    {
+      "path": "code/rust/src/homology/carrier_manifest.rs",
+      "sha256": "56c31afcee6f0c8af9362395fd7813e7060f7cdc438cbcac060c26cb7e766c02"
+    },
+    {
+      "path": "code/rust/src/homology/chain.rs",
+      "sha256": "9713e4b716f7dd05f62433ea0dad249ee48b038afe995312bbfd4344e6639c32"
+    },
+    {
+      "path": "code/rust/src/homology/chain_complex.rs",
+      "sha256": "8de8868140dd9fbd98dae63e84239c28f0009b1bce552c3e12574cef465b8d42"
+    },
+    {
+      "path": "code/rust/src/homology/coboundary.rs",
+      "sha256": "3b4d98c6a891cb131294b1b671d1f5ff65b50c1d48bf9761d12e589afb1ee03a"
+    },
+    {
+      "path": "code/rust/src/homology/cochain.rs",
+      "sha256": "e5f39bda3cdb9b229f076d7a41705e4e1d30f33bf28b2d746736e24e8ddf9778"
+    },
+    {
+      "path": "code/rust/src/homology/cochain_complex.rs",
+      "sha256": "e752e789bd8c3a76cf5adb08070548b459d3e1c735399d7b17f40b66b3a5354a"
+    },
+    {
+      "path": "code/rust/src/homology/errors.rs",
+      "sha256": "c099cb5ff8a727aca82019d75d4afc5be2bdf53ca080da2c08eb8130b84aa8e6"
+    },
+    {
+      "path": "code/rust/src/homology/exact_carrier.rs",
+      "sha256": "45dac03bf600211df22a75bcb2fd02c209e91353d15181e301b598ea35644c83"
+    },
+    {
+      "path": "code/rust/src/homology/exact_scalar.rs",
+      "sha256": "d6c7ebbbeea899412a96cf1f9a686e2fe2a7bf1b09d6eb34ed72f74a0562dc35"
+    },
+    {
+      "path": "code/rust/src/homology/graded_vector.rs",
+      "sha256": "80a2c598049ad838ff219d1491d0d709c8116107afa49869b7fbd469a7c587b7"
+    },
+    {
+      "path": "code/rust/src/homology/hashing.rs",
+      "sha256": "5ec2e16f3cb9dcda7c54ae40a7f824b5878a106bc1d76b0c43c677a5ebc1dd5b"
+    },
+    {
+      "path": "code/rust/src/homology/ids.rs",
+      "sha256": "0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1"
+    },
+    {
+      "path": "code/rust/src/homology/l5a_challenges.rs",
+      "sha256": "0cf95ea5101a91630317a8b76065c71d9b8db01d4846d0169cf87df7a2f01ca6"
+    },
+    {
+      "path": "code/rust/src/homology/mod.rs",
+      "sha256": "2df7a5ef1d81c28031717b5fd0c57dc3e58dfff9e48949288ce8cdaf1ae375c2"
+    },
+    {
+      "path": "code/rust/src/homology/rank_certificate.rs",
+      "sha256": "d10f292c869981053835b0afa088be72e2084b33abc7a9af153621281a5f7e2f"
+    },
+    {
+      "path": "code/rust/src/homology/simplicial.rs",
+      "sha256": "bcc037d479e319a8aa8e0cffb0b7a7106f0b1738e7b059e1c3136c2852cc1c52"
+    },
+    {
+      "path": "code/rust/src/homology/witness.rs",
+      "sha256": "7bfd0a3a4d9610fea754663ece5deaba858045c77883b7d1aa8994f2cdb905c7"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/bareiss_det.rs",
+      "sha256": "ecab1f2e1b2af2679963c83317c11863e7d0dae852a79b5f2c8287ffe7543285"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+      "sha256": "08b2275ef2211c7d5d1434c18454e6da5b163f396cc6a07592c0a4e0d17987b8"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/char_poly.rs",
+      "sha256": "8eecde4caf3d4f9ea3bab01299576321aa8b83356cc2bcc055a4c4d3e7abad83"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/commutant.rs",
+      "sha256": "d5e3bf2926896312dc4b431243d1c5d284f099e824f3e3182dcdf3a32a5a12ca"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/complex_tensor.rs",
+      "sha256": "8f560a34d7c651b9d9f6e273c95ed5858e99e717b2a844e5715132398c11a99b"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/complex_tensor/tests.rs",
+      "sha256": "d5a07aded0ab1936661155dad18bceb98281fc5a7f50b50f103e7a0234d155b5"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/compositum_deg.rs",
+      "sha256": "9acd7a7f779ae821485603c4758f43d50ef62263371d7a13b5da888ed1fb0a1d"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/congruence.rs",
+      "sha256": "220a7ad2131c9e83ac1377ec5efc61caae337a7bac29f373c3646125b1a081ae"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/cyclo_density.rs",
+      "sha256": "d2a02cf5bd64268de62a62387d9de4376ea070e1f63bc70412189f477cacd109"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/elimination.rs",
+      "sha256": "01e1d2528b67e5e8c84077bc5f88697404a249e511242bcab00f0366e9e7df56"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+      "sha256": "232df16ad172ea7bea233c43dfdcef132cfaaaf8b5b953a92af23db250db587f"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/field_factors.rs",
+      "sha256": "718ba7d7450a648784cb95c21c352e169f22ac690b2dbfbb05c398b2e786e1ec"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/field_squares.rs",
+      "sha256": "c257ee509d00353f91f7d283eb23b7f27fc6755b983285fa87d20d541932186d"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/image_kernel.rs",
+      "sha256": "71cf42837a101925c2f385d8bf10ac70c0f6d708ee2c73f6488829c13356270f"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/interpolation.rs",
+      "sha256": "d4eaa6f46d71041b10eb46e336c3343b1b23c63dee3585d06152a877e1d589fb"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/involution.rs",
+      "sha256": "2f80bb28b42571bc1b1cceca487d4bd8263276a9b8fe19a182ff3fc43b3c5a88"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/laws.rs",
+      "sha256": "1e4cddfd7bdef1920cc77dab618e84d48d6aacf18cd3a47162d49a6953bd7fda"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/matrix.rs",
+      "sha256": "637a1ee31adbd1d8af15aca13cd9edeb0fea19e44700f8ece60d6a9ad12d44a0"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/mod.rs",
+      "sha256": "1d7b0e3b1bc454716191b434af66d49541a203c9dad91fa537274843fc6b4722"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/ordered.rs",
+      "sha256": "5c18e0f6f2c40b18f3ffda770aa88154f2230721dadf9809f4633dfb02a8385d"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/poly_roots.rs",
+      "sha256": "093d5db5659d6638ee076a91358c933b62eab650c0dc13d59dee265c918a7414"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/pseudoinverse.rs",
+      "sha256": "ea9973d16a79349a48baccc394d9e228b9055a97523cbaedbd1048a84074ce68"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/quintic_split.rs",
+      "sha256": "f3ef4142f7cea0f144c9c5b5d35816992e88cc511ba346a1df8774fd1eacc8a8"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/rational_factors.rs",
+      "sha256": "5be5f8a20225b8e9863ea09f20010be92f6e444ec64db51769118bbc150c87ff"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/scalars.rs",
+      "sha256": "b6f02490a60610b88c25eabc9df707aba99b0f319ec57a5ae7d04ecdd69cb892"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/second_jet.rs",
+      "sha256": "f604cb70c87a877aec66aa40502fa5718e3eb0188e1216eb269b723c13335764"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/smith_form.rs",
+      "sha256": "80fc079f6cd90ad1cc9582a43aa4cbec3f291d303e9f5e397b2b3055341803fe"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/spectral_factors.rs",
+      "sha256": "454a1d2f22658c9626c8016083419531ad715918fa0152768afddc0c8d11ea15"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/splitting_deg.rs",
+      "sha256": "1c22c530204d3c7a4392f86858f9a0c95b0a6ae881ca0fb05111efa49204ab17"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/tensor_proj.rs",
+      "sha256": "28c81d5749232318791c23bf8de37e80e2607da8b2816db6aaae5a9ad18e2bdc"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/test_support.rs",
+      "sha256": "0075c89caa1042fd4383075b323bd62a0960b92f235ac4ca446e8a8975a60233"
+    }
+  ]
+}

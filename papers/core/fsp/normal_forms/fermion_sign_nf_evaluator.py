@@ -3,10 +3,16 @@ import importlib.util
 from pathlib import Path
 import sys
 
-_code_dir = Path(__file__).resolve().parent.parent / "code"
-if str(_code_dir) not in sys.path:
-    sys.path.insert(0, str(_code_dir))
-_spec = importlib.util.spec_from_file_location("_fermion_sign_contract_evaluator", _code_dir / "fermion_sign_nf_evaluator.py")
+_repo = next((p for p in Path(__file__).resolve().parents if (p / "pyproject.toml").is_file()), Path(__file__).resolve().parents[3])
+_src_fsp = _repo / "code" / "python" / "src" / "fsp"
+_src = _repo / "code" / "python" / "src"
+
+for p in (_src_fsp, _src):
+    if p.exists() and str(p) not in sys.path:
+        sys.path.insert(0, str(p))
+
+_evaluator_path = _src_fsp / "fermion_sign_nf_evaluator.py"
+_spec = importlib.util.spec_from_file_location("_fermion_sign_contract_evaluator", _evaluator_path)
 _module = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_module)
 NormalFormEvaluator = _module.NormalFormEvaluator

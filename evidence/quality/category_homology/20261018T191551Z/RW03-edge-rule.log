@@ -1,0 +1,32 @@
+warning: unused variable: `rule`
+   --> src\category_theory\rewriting.rs:737:9
+    |
+737 |     let rule = cell
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_rule`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+
+running 439 tests
+....................................................................................... 87/439
+....................................................................................... 174/439
+....................................................................................... 261/439
+....................................................................................... 348/439
+......................................................................... 421/439
+rewriting::tests::admission_rejects_inconsistent_cell_and_rule_records --- FAILED
+.................
+failures:
+
+---- rewriting::tests::admission_rejects_inconsistent_cell_and_rule_records stdout ----
+
+thread 'rewriting::tests::admission_rejects_inconsistent_cell_and_rule_records' (16404) panicked at src\category_theory\rewriting.rs:1036:13:
+admitted extra edge contradicts its rule
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    rewriting::tests::admission_rejects_inconsistent_cell_and_rule_records
+
+test result: FAILED. 438 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

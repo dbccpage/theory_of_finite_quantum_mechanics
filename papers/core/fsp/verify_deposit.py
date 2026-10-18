@@ -218,6 +218,16 @@ def check_claim_ledger(root: Path) -> list:
                 func = None
             tf_path = root / tf_rel
             if not tf_path.exists():
+                repo_root = root.parents[2]
+                rel_clean = tf_rel.replace("code/tests/", "").replace("code/sign_sql/tests/", "sign_sql/")
+                cand = repo_root / "code" / "python" / "tests" / "fsp" / rel_clean
+                if cand.exists():
+                    tf_path = cand
+                else:
+                    matches = list((repo_root / "code" / "python" / "tests" / "fsp").rglob(Path(tf_rel).name))
+                    if matches:
+                        tf_path = matches[0]
+            if not tf_path.exists():
                 errors.append(f"[{cid}] Test file {tf_rel} not found")
             elif func:
                 with open(tf_path, "r", encoding="utf-8") as tf_in:
@@ -238,19 +248,21 @@ def check_claim_hygiene(root: Path) -> list:
     return errors
 
 def run_tests(root: Path) -> list:
-    code_dir = root / "code"
-    if not code_dir.exists():
-        return ["code directory missing"]
-    cmd = [sys.executable, "-m", "pytest", "tests", "sign_sql/tests", "-n", "8",
-           "--dist=loadfile", "--import-mode=importlib", "-q"]
+    repo_root = root.parents[2]
+    test_dir = repo_root / "code" / "python" / "tests" / "fsp"
+    if not test_dir.exists():
+        test_dir = root / "code" / "tests"
+    if not test_dir.exists():
+        return ["fsp tests directory missing"]
+    cmd = [sys.executable, "-m", "pytest", str(test_dir), "-n", "4", "-q"]
     env = os.environ.copy()
-    env["PYTHONPATH"] = str(code_dir) + (os.pathsep + env["PYTHONPATH"] if "PYTHONPATH" in env else "")
+    env["PYTHONPATH"] = str(repo_root / "code" / "python") + (os.pathsep + env["PYTHONPATH"] if "PYTHONPATH" in env else "")
     try:
         with tempfile.TemporaryDirectory(prefix="po023-tests-") as test_root:
             env["HYPOTHESIS_STORAGE_DIRECTORY"] = str(Path(test_root) / "hypothesis")
             res = subprocess.run(cmd + ["--basetemp", str(Path(test_root) / "temp"),
                                  "-o", f"cache_dir={Path(test_root) / 'cache'}"],
-                                 cwd=str(code_dir), env=env, capture_output=True,
+                                 cwd=str(repo_root), env=env, capture_output=True,
                                  text=True, encoding="utf-8", timeout=300)
         if res.returncode != 0:
             return [f"pytest failed with code {res.returncode}:\n{res.stdout}\n{res.stderr}"]
