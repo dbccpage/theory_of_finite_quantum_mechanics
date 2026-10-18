@@ -392,3 +392,20 @@ __all__ = [
     "build_d3_mub_projectors", "reconstruct_state_from_mub_probabilities", "reconstruct_d3_state_from_mub_probabilities", "simulate_mub_tomography", "verify_mub_inversion_all_tested_states", "verify_mub_inversion_completeness", "D3_STATE_BUILDERS",
     "build_d4_mub_projectors", "reconstruct_d4_state_from_mub_probabilities", "simulate_d4_mub_tomography", "evaluate_d4_clifton_kent_deficit", "D4_STATE_BUILDERS",
 ]
+
+
+def foundations_frame_norm():
+    """Sum of squared norms of the exported rational Pythagorean frames. Each vector contributes 1."""
+    from fractions import Fraction
+
+    total = Fraction(0)
+    for frame in rational_pythagorean_frames_d2():
+        dot = frame[0][0] * frame[1][0] + frame[0][1] * frame[1][1]
+        if dot != 0:
+            raise ValueError(f"exported frame is not orthogonal: dot {dot}")
+        for vector in frame:
+            norm = vector[0] * vector[0] + vector[1] * vector[1]
+            if norm != 1:
+                raise ValueError(f"exported frame vector has norm {norm}")
+            total += norm
+    return total

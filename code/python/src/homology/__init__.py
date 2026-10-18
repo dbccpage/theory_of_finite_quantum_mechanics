@@ -12,6 +12,7 @@ from .cochain_complex import CochainComplex
 from .carrier import Carrier
 from .exact_carrier import ExactCarrier
 from .witness import HomologyWitness
+from .exact_carrier import triangle_betti
 
 __all__ = [
     "SimplexId",
@@ -32,4 +33,19 @@ __all__ = [
     "Carrier",
     "ExactCarrier",
     "HomologyWitness",
+    "triangle_betti",
 ]
+
+
+def exported_triangle_rank_sum() -> int:
+    """Computed triangle ranks. Nilpotency is rechecked, then the Betti number is returned."""
+    from fractions import Fraction
+    from .boundary import triangle_boundary_defect
+
+    rank0, rank1, betti = triangle_betti()
+    defect = triangle_boundary_defect()
+    if defect != 0:
+        raise ValueError(f"triangle boundary square has defect {defect}")
+    if rank0 != 2 or rank1 != 1 or betti != 0:
+        raise ValueError(f"triangle Betti data {(rank0, rank1, betti)} is not (2, 1, 0)")
+    return rank0 + rank1 + betti + int(defect == Fraction(0))

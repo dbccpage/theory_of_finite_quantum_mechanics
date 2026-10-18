@@ -80,6 +80,16 @@ theorem master_inadmissible_positive_eigenvalue :
 theorem master_inadmissible_action :
     (applyMasterConstraint badState).amplitude = 1 := by rfl
 
+/-- Every admissible state, not only the vacuum, lies in the kernel. -/
+theorem master_kills_admissible (psi : BoundaryState)
+    (h : constraintDefect psi.spins = 0) :
+    (applyMasterConstraint psi).amplitude = 0 := by
+  unfold applyMasterConstraint natToCyclo
+  rw [h]
+  show mul ⟨0, 0, 0, 0⟩ psi.amplitude = zero
+  unfold mul smul add zero
+  simp [Int.zero_mul, Int.add_zero]
+
 end DiscreteMasterConstraint
 
 -- ==============================================================================
@@ -136,6 +146,11 @@ theorem physical_projector_inadmissible :
 /-- Theorem: Idempotence of the physical projector: P_0^2 = P_0 on the vacuum. -/
 theorem physical_projector_idempotent :
     physicalProjector (physicalProjector vacuumState) = physicalProjector vacuumState := by rfl
+
+/-- The spectral projector is idempotent on every boundary state. -/
+theorem physical_projector_idempotent_all (psi : BoundaryState) :
+    physicalProjector (physicalProjector psi) = physicalProjector psi := by
+  cases h : constraintDefect psi.spins == 0 <;> simp [physicalProjector, h]
 
 end SpectralDecomposition
 

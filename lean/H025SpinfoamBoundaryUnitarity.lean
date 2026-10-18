@@ -120,6 +120,14 @@ def badState : BoundaryState :=
 
 theorem boundary_inadmissible_zero_norm : normSquared badState = 0 := by rfl
 
+/-- On every admissible boundary spin, the physical norm is `conj(c) * c`. -/
+theorem normSquared_admissible (b : BoundaryTetrahedronSpins) (c : Cyclo12)
+    (h : boundaryAdmissible b = true) :
+    normSquared ⟨b, c⟩ = conj c * c := by
+  unfold normSquared innerProduct
+  have hb : (b == b) = true := by simp
+  simp [hb, h]
+
 end BoundaryInnerProduct
 
 -- ==============================================================================

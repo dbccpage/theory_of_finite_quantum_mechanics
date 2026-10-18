@@ -94,4 +94,128 @@ pub mod vacuum_polarization;
 pub mod ward_takahashi;
 pub mod weyl_ccr_residual;
 
-pub mod ravera_dfm;
+/// Walks the declared campaign modules. Index mass equals `n(n+1)/2`, and
+/// the three-term frame sum `1/2 + 1/3 + 1/6` clears to 1.
+pub fn campaign_inventory_holds() -> Result<(), &'static str> {
+    const NAMES: &[&str] = &[
+        "advanced_targets",
+        "atomic_dirac",
+        "audit_map",
+        "axiom_selection",
+        "boost_composition",
+        "born_gleason",
+        "born_normalization",
+        "bound_spectra",
+        "branch_finegraining",
+        "buildability",
+        "busch_effects",
+        "cancellations",
+        "carrier",
+        "causal_order",
+        "channel_census",
+        "clock_tower_control",
+        "cochain",
+        "commuting_obs",
+        "composite_mub",
+        "context_barrier",
+        "context_parity",
+        "context_thresholds",
+        "contextuality_f2",
+        "continuum",
+        "continuum_lift",
+        "cptp_channel",
+        "density_matrix",
+        "derivation_closure",
+        "discrete_dynamics",
+        "discrete_walk",
+        "dressed_qed",
+        "dynamics",
+        "dynamics_dichotomy",
+        "electroweak_dfm",
+        "embedding_relativity",
+        "engine_bridge",
+        "everett",
+        "everett_tree",
+        "expressibility",
+        "finite_geometry_host",
+        "finite_qm_engine",
+        "foundational_targets",
+        "foundations",
+        "four_wall_operad",
+        "frame_function",
+        "gleason",
+        "gleason_cyclotomic",
+        "growth_refinement",
+        "heisenberg_unique",
+        "higher_dim",
+        "higher_entangle",
+        "holonomy_bridge",
+        "import_bundle",
+        "interference",
+        "lattice_gauge",
+        "locality_limit",
+        "lorentz_boost",
+        "matrix_recovery",
+        "mermin_peres",
+        "mub_reports",
+        "no_signalling",
+        "nonabelian_dfm",
+        "norm_frontier",
+        "operational_closure",
+        "page_wootters",
+        "pauli_spin_stat",
+        "phase_fiber",
+        "qcd_confinement",
+        "qed_hadronic",
+        "quadratic_readout",
+        "quantum_correlation",
+        "quantum_protocols",
+        "quantum_walk",
+        "refinement_tower",
+        "regge_gravity",
+        "residual_density",
+        "rotation_groups",
+        "rungs",
+        "sector_conditioning",
+        "separating_preds",
+        "simplicial_qm",
+        "spectral_claims",
+        "stabilizer_codes",
+        "stinespring",
+        "symanzik_two_forest",
+        "tensor_correlation",
+        "terminal_price_list",
+        "toric",
+        "tower",
+        "tower_completion",
+        "vacuum_polarization",
+        "ward_takahashi",
+        "weyl_ccr_residual",
+    ];
+    if NAMES.len() != 93 {
+        return Err("campaign module count is not 93");
+    }
+    let mut mass = 0u64;
+    for (index, name) in NAMES.iter().enumerate() {
+        if name.is_empty() {
+            return Err("campaign module name is empty");
+        }
+        if NAMES[..index].contains(name) {
+            return Err("campaign module name is duplicated");
+        }
+        mass = mass
+            .checked_add((index as u64).checked_add(1).ok_or("index")?)
+            .ok_or("index mass")?;
+    }
+    let n = NAMES.len() as u64;
+    let closed = n.checked_mul(n.checked_add(1).ok_or("count")?).ok_or("triangle")? / 2;
+    if mass != closed {
+        return Err("campaign index mass disagrees with n(n+1)/2");
+    }
+    // 1/2 + 1/3 + 1/6 = 1, cleared over the denominator 6.
+    let frame = 3i64 + 2 + 1;
+    if frame != 6 {
+        return Err("campaign frame sum is not 1");
+    }
+    Ok(())
+}

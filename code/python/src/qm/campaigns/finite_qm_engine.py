@@ -10,6 +10,7 @@ AuthorityEffect: None.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from fractions import Fraction
 from typing import Any, Dict, List, Optional
 
 import numpy as np
@@ -254,4 +255,42 @@ def evaluate_6rung_ladder(
         },
     }
 
-__all__ = ['FiniteQMEngine', 'Rung1BornRedundancy', 'Rung2DensityPurity', 'Rung3CPTPShadow', 'Rung4PathSum', 'Rung5SuperpositionFiber', 'Rung6InterferenceCrossTerm', 'evaluate_6rung_ladder']
+def _matmul(left, right):
+    size = len(left)
+    return tuple(
+        tuple(
+            sum((left[row][k] * right[k][col] for k in range(size)), Fraction(0))
+            for col in range(size)
+        )
+        for row in range(size)
+    )
+
+
+def exact_ladder_cross_term() -> Fraction:
+    """Chapman–Kolmogorov defect of a rational permutation, then the cross term.
+
+    The step matrix is the 3-cycle. M^2 M is compared with M^3. The returned
+    value is the interference cross term of amplitudes (1, -1), which is -2,
+    after that defect has been checked.
+    """
+    step = (
+        (Fraction(0), Fraction(0), Fraction(1)),
+        (Fraction(1), Fraction(0), Fraction(0)),
+        (Fraction(0), Fraction(1), Fraction(0)),
+    )
+    square = _matmul(step, step)
+    cube_by_square = _matmul(square, step)
+    cube_by_power = _matmul(step, square)
+    defect = Fraction(0)
+    for row in range(3):
+        for col in range(3):
+            defect += abs(cube_by_square[row][col] - cube_by_power[row][col])
+    if defect != 0:
+        raise ValueError(f"Chapman-Kolmogorov defect is {defect}")
+    amplitudes = (Fraction(1), Fraction(-1))
+    born = amplitudes[0] ** 2 + amplitudes[1] ** 2
+    interfered = (amplitudes[0] + amplitudes[1]) ** 2
+    return interfered - born
+
+
+__all__ = ['FiniteQMEngine', 'Rung1BornRedundancy', 'Rung2DensityPurity', 'Rung3CPTPShadow', 'Rung4PathSum', 'Rung5SuperpositionFiber', 'Rung6InterferenceCrossTerm', 'evaluate_6rung_ladder', 'exact_ladder_cross_term']

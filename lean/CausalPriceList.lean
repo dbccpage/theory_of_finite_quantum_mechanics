@@ -278,4 +278,30 @@ theorem campaign_terminal_correct :
 #print axioms structural_sentence_holds
 #print axioms campaign_terminal_correct
 
+/-- Integer price of a field extension: degree times conductor. -/
+def extensionPrice (e : FieldExtensionRecord) : Nat :=
+  e.degree * e.conductor
+
+def totalExtensionPrice : Nat :=
+  fieldExtensions.foldl (fun acc e => acc + extensionPrice e) 0
+
+theorem extension_price_is_the_sum :
+    totalExtensionPrice =
+      extensionPrice extOctahedral + extensionPrice extIcosahedral +
+        extensionPrice extBoostDilation + extensionPrice extBoostComposition +
+        extensionPrice extTsirelsonSqrt2 + extensionPrice extCabelloComplex +
+        extensionPrice extFiniteMicrocausality := by
+  decide
+
+theorem icosahedral_dearer_than_octahedral :
+    extensionPrice extOctahedral < extensionPrice extIcosahedral := by
+  decide
+
+theorem quadratic_extensions_need_larger_conductor :
+    ∀ e ∈ fieldExtensions, e.degree = 2 → 1 < e.conductor := by
+  decide
+
+theorem extension_ids_unique : (fieldExtensions.map (·.id)).Nodup := by
+  decide
+
 end CausalPriceList

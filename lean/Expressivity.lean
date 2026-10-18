@@ -49,4 +49,29 @@ theorem expressivityNorm_cons (x : Int) (xs : List Int) :
 theorem expressivityNorm_nonneg (h : List Int) : 0 ≤ expressivityNorm h := by
   exact Nat.zero_le _
 
+/-- The defect mass adds across a disjoint union of overlaps. -/
+theorem expressivityNorm_append (h1 h2 : List Int) :
+    expressivityNorm (h1 ++ h2) = expressivityNorm h1 + expressivityNorm h2 := by
+  induction h1 with
+  | nil =>
+    rw [List.nil_append, expressivityNorm_nil, Nat.zero_add]
+  | cons x xs ih =>
+    rw [List.cons_append, expressivityNorm_cons, ih, expressivityNorm_cons, Nat.add_assoc]
+
+/-- Global sign flip of the cochain does not change the ℓ¹ mass. -/
+theorem expressivityNorm_neg (h : List Int) :
+    expressivityNorm (h.map Neg.neg) = expressivityNorm h := by
+  induction h with
+  | nil => rfl
+  | cons x xs ih =>
+    rw [List.map_cons, expressivityNorm_cons, expressivityNorm_cons, Int.natAbs_neg, ih]
+
+/-- A non-constant shift of `[1, -1]` changes the norm, so the mass does not
+    descend along a general coboundary. -/
+theorem nonconstant_shift_changes_norm :
+    expressivityNorm [1, -1] = 2 ∧
+      expressivityNorm [2, -1] = 3 ∧
+      expressivityNorm [1, -1] ≠ expressivityNorm [2, -1] := by
+  decide
+
 end OmegaCosmology.SymbolGame

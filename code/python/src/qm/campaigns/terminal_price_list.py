@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict, dataclass
+from fractions import Fraction
 from pathlib import Path
-from pathlib import Path as _Path
 from typing import Any
 
 
@@ -148,6 +148,21 @@ def get_declaration_count() -> int:
     return len(DECLARATIONS)
 
 
+def declaration_index_gap() -> Fraction:
+    """Gap between the triangular number n(n+1)/2 and the summed declaration indices.
+
+    Indices are read from the declaration objects. Independence flags are left
+    untouched.
+    """
+    indices = [declaration.index for declaration in DECLARATIONS]
+    counted = len(indices)
+    triangular = Fraction(counted * (counted + 1), 2)
+    summed = sum((Fraction(index) for index in indices), Fraction(0))
+    if len(set(indices)) != counted:
+        raise ValueError("declaration indices are not unique")
+    return triangular - summed
+
+
 def any_declaration_named_born_rule() -> bool:
     """Check whether any declaration is named the Born rule."""
     forbidden_names = {"born_rule", "the_born_rule", "born", "born_postulate"}
@@ -194,7 +209,7 @@ def compile_block_10_payload() -> dict[str, Any]:
 def emit_receipt(output_path: str | Path | None = None) -> Path:
     """Emit a JSON report; writing it does not verify its mathematical claims."""
     if output_path is None:
-        output_path = (_Path(__file__).resolve().parents[4] / "apps" / "finite_qm") / "evidence" / "c250_block10_terminal_price_list.json"
+        output_path = (Path(__file__).resolve().parents[4] / "apps" / "finite_qm") / "evidence" / "c250_block10_terminal_price_list.json"
     else:
         output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)

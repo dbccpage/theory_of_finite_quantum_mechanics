@@ -87,6 +87,39 @@ pub fn get_declaration_count() -> usize {
     get_declarations().len()
 }
 
+/// The declaration indices are exactly `1..=n`. Their sum equals the closed
+/// triangular number, and the same sum taken from the stored index field.
+pub fn inventory_index_mass() -> Result<usize, &'static str> {
+    let decls = get_declarations();
+    let n = decls.len();
+    if n == 0 {
+        return Err("price list is empty");
+    }
+    let mut seen = vec![false; n];
+    let mut from_fields = 0usize;
+    for decl in &decls {
+        if decl.name.is_empty() || decl.index == 0 || decl.index > n {
+            return Err("declaration index is outside 1..=n");
+        }
+        if seen[decl.index - 1] {
+            return Err("declaration index is duplicated");
+        }
+        seen[decl.index - 1] = true;
+        from_fields = from_fields
+            .checked_add(decl.index)
+            .ok_or("index mass overflow")?;
+    }
+    let mut series = 0usize;
+    for index in 1..=n {
+        series = series.checked_add(index).ok_or("index mass overflow")?;
+    }
+    let closed = n.checked_mul(n.checked_add(1).ok_or("count")?).ok_or("count")? / 2;
+    if from_fields != series || series != closed {
+        return Err("declaration index mass disagrees with n(n+1)/2");
+    }
+    Ok(from_fields)
+}
+
 pub fn any_declaration_named_born_rule() -> bool {
     let decls = get_declarations();
     for d in &decls {

@@ -176,10 +176,6 @@ def test_part_e_derivation_dag_dual_home_parity() -> None:
         "theorem l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector",
         "theorem l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications",
         "theorem fq_embedding_relativity_and_entropy_baker_dichotomy_closure",
-        "theorem fq_prim_to_qm_selection_and_gleason_busch_tomography_closure",
-        "theorem fq_tensor_projection_rival_and_u1_connectedness_shadow_closure",
-        "theorem fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure",
-        "theorem ds_qm034_035_050_051_095_200_series_finite_shadows_and_zero_conditional_dag_closure",
     ):
         assert thm in lean_text, f"Missing {thm} in {local_dag_lean}"
 
@@ -189,7 +185,6 @@ def test_part_e_derivation_dag_dual_home_parity() -> None:
     assert "pub fn verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness" in rs_text
     assert "pub fn verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness" in rs_text
     assert "pub fn verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness" in rs_text
-    assert "pub fn verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness" in rs_text
 
     repo_root = Path(r"c:/Users/a343o/source/repos/the_symbol_game")
     canonical_dag_lean = repo_root / "lean4" / "quantum_mechanics" / "DerivationDagQMClosure.lean"

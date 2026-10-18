@@ -2,7 +2,7 @@
 -- Campaign: C750 Block 01 (Target C750-T569)
 -- AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 
-import C750Definitions
+import EntropyDefs
 
 namespace FiniteQm.C750.B01
 

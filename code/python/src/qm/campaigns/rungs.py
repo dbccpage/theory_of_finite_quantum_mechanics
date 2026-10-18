@@ -33,24 +33,100 @@ from .interference import (
 )
 
 
+class RungFrameError(Exception):
+    """A rational frame or a rational cocycle failed an exact check."""
+
+
+def _rational_or_none(value: object) -> Fraction | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, float) and not math.isfinite(value):
+        return None
+    if not isinstance(value, (int, float, Fraction)):
+        return None
+    return Fraction(value)
+
+
 def primitive_difference(x: float | int, y: float | int) -> float:
-    """Rung 1: D(x, y) := y - x (QM-001 §1 C4)."""
+    """Float helper. The certificate is exact_cocycle_defect."""
     return float(y - x)
 
 
+def exact_primitive_difference(x: Fraction | int, y: Fraction | int) -> Fraction:
+    """D(x, y) = y - x over the rationals."""
+    return Fraction(y) - Fraction(x)
+
+
+def exact_cocycle_defect(x: Fraction | int, y: Fraction | int, z: Fraction | int) -> Fraction:
+    """(y - x) + (z - y) minus the direct step (z - x)."""
+    left = Fraction(x)
+    middle = Fraction(y)
+    right = Fraction(z)
+    telescoping = exact_primitive_difference(left, middle) + exact_primitive_difference(middle, right)
+    return telescoping - exact_primitive_difference(left, right)
+
+
 def is_same(x: float | int, y: float | int, tol: float = 1e-9) -> bool:
-    """Rung 1: Sameness certified by zero primitive difference, never assumed."""
-    return abs(primitive_difference(x, y)) <= tol
+    """Sameness is equality of the rational values. `tol` is not consulted."""
+    del tol
+    left = _rational_or_none(x)
+    right = _rational_or_none(y)
+    if left is None or right is None:
+        return False
+    return exact_primitive_difference(left, right) == 0
 
 
 def check_difference_cocycle(x: float, y: float, z: float, tol: float = 1e-12) -> bool:
-    """Cocycle identity on 0-simplexes: D(x, y) + D(y, z) == D(x, z)."""
-    return abs(primitive_difference(x, y) + primitive_difference(y, z) - primitive_difference(x, z)) <= tol
+    """Cocycle identity on 0-simplexes, decided by exact_cocycle_defect."""
+    del tol
+    if any(_rational_or_none(value) is None for value in (x, y, z)):
+        return False
+    return exact_cocycle_defect(x, y, z) == 0
 
 
 def check_difference_antisymmetry(x: float, y: float, tol: float = 1e-12) -> bool:
-    """Antisymmetry: D(x, y) == -D(y, x)."""
-    return abs(primitive_difference(x, y) + primitive_difference(y, x)) <= tol
+    """Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals."""
+    del tol
+    left = _rational_or_none(x)
+    right = _rational_or_none(y)
+    if left is None or right is None:
+        return False
+    return exact_primitive_difference(left, right) + exact_primitive_difference(right, left) == 0
+
+
+def triangle_boundary_rank() -> int:
+    """Rank of the triangle coboundary over Fraction, by Gaussian elimination."""
+    matrix = [
+        [Fraction(-1), Fraction(1), Fraction(0)],
+        [Fraction(-1), Fraction(0), Fraction(1)],
+        [Fraction(0), Fraction(-1), Fraction(1)],
+    ]
+    rows = len(matrix)
+    cols = len(matrix[0])
+    rank = 0
+    pivot_col = 0
+    while rank < rows and pivot_col < cols:
+        pivot = None
+        for row in range(rank, rows):
+            if matrix[row][pivot_col] != 0:
+                pivot = row
+                break
+        if pivot is None:
+            pivot_col += 1
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        scale = matrix[rank][pivot_col]
+        for col in range(pivot_col, cols):
+            matrix[rank][col] /= scale
+        for row in range(rows):
+            if row == rank or matrix[row][pivot_col] == 0:
+                continue
+            factor = matrix[row][pivot_col]
+            for col in range(pivot_col, cols):
+                matrix[row][col] -= factor * matrix[rank][col]
+        rank += 1
+        pivot_col += 1
+    return rank
 
 
 # --------------------------------------------------------------------------- #
@@ -649,9 +725,11 @@ def rational_pythagorean_frames_d2() -> list[list[tuple[Fraction, Fraction]]]:
         dot = u1[0] * u2[0] + u1[1] * u2[1]
         norm1_sq = u1[0] ** 2 + u1[1] ** 2
         norm2_sq = u2[0] ** 2 + u2[1] ** 2
-        assert dot == 0, f"Frame vectors must be strictly orthogonal: got {dot}"
-        assert norm1_sq == 1 and norm2_sq == 1, "Frame vectors must be unit normalized in Q"
+        if dot != 0 or norm1_sq != 1 or norm2_sq != 1:
+            raise RungFrameError(
+                f"frame ({a}, {b}, {c}) has dot {dot} and norms {norm1_sq}, {norm2_sq}"
+            )
         frames.append([u1, u2])
     return frames
 
-__all__ = ['BoundaryDefense', 'CochainPacket', 'amplitudes_to_probabilities', 'bell_state', 'bipartite_linear_entropy', 'bipartite_von_neumann_entropy', 'born_normalization', 'build_triangle_packet', 'check_difference_antisymmetry', 'check_difference_cocycle', 'compute_cycle_holonomy', 'continuous_generator_branch_count', 'density_matrix_frame_function', 'discrete_gleason_triads_d3', 'discrete_unitary_step', 'evaluate_frame_function', 'get_boundary_defense', 'gleason_dimension_2_counterexample', 'is_entangled_pure_state', 'is_orthonormal_frame', 'is_same', 'is_unitary', 'is_valid_povm', 'non_selective_measurement_decoherence', 'partial_trace', 'povm_probabilities', 'primitive_difference', 'rational_pythagorean_frames_d2', 'schmidt_decomposition', 'sorkin_3slit_parameter', 'superposition_interference_test', 'superposition_quotient_fiber', 'two_path_interference', 'verify_born_normalization_redundancy', 'verify_cptp_contractivity', 'verify_gleason_frame_additivity', 'verify_mermin_peres_contextuality', 'verify_non_signaling', 'verify_ray_invariance', 'weights_to_born_density', 'weights_to_probabilities']
+__all__ = ['BoundaryDefense', 'CochainPacket', 'RungFrameError', 'amplitudes_to_probabilities', 'exact_cocycle_defect', 'exact_primitive_difference', 'triangle_boundary_rank', 'bell_state', 'bipartite_linear_entropy', 'bipartite_von_neumann_entropy', 'born_normalization', 'build_triangle_packet', 'check_difference_antisymmetry', 'check_difference_cocycle', 'compute_cycle_holonomy', 'continuous_generator_branch_count', 'density_matrix_frame_function', 'discrete_gleason_triads_d3', 'discrete_unitary_step', 'evaluate_frame_function', 'get_boundary_defense', 'gleason_dimension_2_counterexample', 'is_entangled_pure_state', 'is_orthonormal_frame', 'is_same', 'is_unitary', 'is_valid_povm', 'non_selective_measurement_decoherence', 'partial_trace', 'povm_probabilities', 'primitive_difference', 'rational_pythagorean_frames_d2', 'schmidt_decomposition', 'sorkin_3slit_parameter', 'superposition_interference_test', 'superposition_quotient_fiber', 'two_path_interference', 'verify_born_normalization_redundancy', 'verify_cptp_contractivity', 'verify_gleason_frame_additivity', 'verify_mermin_peres_contextuality', 'verify_non_signaling', 'verify_ray_invariance', 'weights_to_born_density', 'weights_to_probabilities']

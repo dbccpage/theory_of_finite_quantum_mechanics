@@ -61,6 +61,24 @@ theorem bound_cross_products_increase {d1 d2 : Nat} (h : d1 < d2) :
 /-- For concrete dimensions 2, 4, 8: 2 < 4 and 4 < 8. -/
 theorem fuzzy_sphere_dim_steps : (2 : Nat) < 4 ∧ (4 : Nat) < 8 := by decide
 
+/-- Numerator of the finite commutator `2(d-1)/d^2`. The comparison
+    `2(d-1)/d^2 ≤ 2/d` is the whole claim; no norm completion is taken. -/
+def fuzzyCommutatorNum (d : Nat) : Nat := 2 * (d - 1)
+def fuzzyCommutatorDen (d : Nat) : Nat := d * d
+
+theorem two_over_d_bounds_commutator (d : Nat) (_hd : 2 ≤ d) :
+    fuzzyCommutatorNum d * d ≤ 2 * fuzzyCommutatorDen d := by
+  unfold fuzzyCommutatorNum fuzzyCommutatorDen
+  have hle : d - 1 ≤ d := Nat.sub_le d 1
+  have hmul : (d - 1) * d ≤ d * d := Nat.mul_le_mul_right d hle
+  have h2 : 2 * ((d - 1) * d) ≤ 2 * (d * d) := Nat.mul_le_mul_left 2 hmul
+  simpa [Nat.mul_assoc] using h2
+
+theorem casimir_below_one (d : Nat) (hd : 2 ≤ d) :
+    d * d - 1 < d * d := by
+  have hd0 : 0 < d := Nat.lt_of_lt_of_le (by decide) hd
+  exact Nat.sub_lt (Nat.mul_pos hd0 hd0) (by decide)
+
 
 -- ===========================================================================
 -- Section 3: Countermodel to Topology-Free Convergence

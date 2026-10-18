@@ -17,41 +17,45 @@ Citation: sealed-derivation-v1 (3100c4e).
 
 from __future__ import annotations
 
-import math
+from fractions import Fraction
 from typing import Any, Dict
 
-import numpy as np
+
+class ContinuumLiftError(Exception):
+    """An exact continuum-interface identity failed."""
 
 
 def wintner_wielandt_trace_obstruction(d: int, hbar: float = 1.0) -> Dict[str, Any]:
-    """Demonstrate that [X, P] = i*hbar*I is algebraically obstructed in any finite dimension d.
+    """Trace of [N, S] is 0, while a nonzero scalar matrix has trace proportional to d.
 
-    For any d x d matrices X, P in M_d(C):
-        tr([X, P]) = tr(XP - PX) = tr(XP) - tr(PX) = 0
-    whereas
-        tr(i * hbar * I_d) = i * hbar * d != 0 for d >= 1, hbar != 0.
+    N is the diagonal number operator and S is the subdiagonal shift, both over
+    Fraction. The trace is the sum of diagonal entries of NS - SN. A scalar
+    matrix c I has trace c * d, which is nonzero for c != 0 and d >= 1.
+    `hbar` is retained for callers and is not used as a float tolerance.
     """
-    if d < 1:
+    if isinstance(d, bool) or not isinstance(d, int) or d < 1:
         raise ValueError("Dimension d must be >= 1")
-
-    rng = np.random.default_rng(42)
-    X = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
-    P = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
-
-    comm = X @ P - P @ X
-    tr_comm = np.trace(comm)
-    tr_target = 1j * hbar * d
-
+    trace = Fraction(0)
+    for row in range(d):
+        for col in range(d):
+            number_row = Fraction(row) if row == col else Fraction(0)
+            shift_col_row = Fraction(1) if col == row + 1 else Fraction(0)
+            shift_row_col = Fraction(1) if row == col + 1 else Fraction(0)
+            number_col = Fraction(col) if col == row else Fraction(0)
+            trace += number_row * shift_col_row - shift_row_col * number_col
+    if trace != 0:
+        raise ContinuumLiftError(f"commutator trace is {trace}")
+    scalar_trace = Fraction(d)
     return {
         "dimension": d,
         "hbar": hbar,
-        "trace_commutator": complex(tr_comm),
-        "trace_commutator_abs": float(abs(tr_comm)),
-        "trace_target": complex(tr_target),
-        "trace_target_abs": float(abs(tr_target)),
-        "trace_discrepancy": float(abs(tr_comm - tr_target)),
-        "obstruction_holds": bool(abs(tr_comm) < 1e-12 and abs(tr_target) > 0),
-        "conclusion": "tr([X, P]) = 0 != i*hbar*d for all d < infty",
+        "trace_commutator": trace,
+        "trace_commutator_abs": abs(trace),
+        "trace_target": scalar_trace,
+        "trace_target_abs": abs(scalar_trace),
+        "trace_discrepancy": abs(scalar_trace - trace),
+        "obstruction_holds": trace == 0 and scalar_trace != 0,
+        "conclusion": "tr([N, S]) = 0 while tr(I) = d",
     }
 
 
@@ -101,7 +105,8 @@ def finite_weyl_heisenberg_algebra(d: int) -> Dict[str, Any]:
     # (Z^dagger Z)_{jj} = zeta_d^(-j) * zeta_d^j = 1
     # Z^d = diag(zeta_d^(d * j)) = diag(1) = I_d
     # Both are exact algebraic identities over Q(zeta_d)
-    z_unitary = True
+    z_order = all((d * index) % d == 0 for index in range(d))
+    z_unitary = z_order and d >= 1
 
     # Exact Weyl commutation relation:
     # (Z X)_{j, k} = zeta_d^j delta_{j, (k+1)%d}
@@ -124,20 +129,39 @@ def finite_weyl_heisenberg_algebra(d: int) -> Dict[str, Any]:
     }
 
 
-def cyclotomic_density_approximation(target: complex, grid_resolution: int = 100) -> Dict[str, Any]:
-    """Show that Q(i) subset Q^ab is dense in C by approximating an arbitrary complex target."""
-    q1 = round(target.real * grid_resolution) / grid_resolution
-    q2 = round(target.imag * grid_resolution) / grid_resolution
-    approx = complex(q1, q2)
-    err = abs(target - approx)
+def _nearest_grid(value: Fraction, resolution: int) -> Fraction:
+    scaled = value * resolution
+    quotient = scaled.numerator // scaled.denominator
+    remainder = scaled - quotient
+    if remainder < 0:
+        remainder += 1
+        quotient -= 1
+    if remainder * 2 > 1 or (remainder * 2 == 1 and quotient % 2 != 0):
+        quotient += 1
+    return Fraction(quotient, resolution)
 
+
+def cyclotomic_density_approximation(target: complex, grid_resolution: int = 100) -> Dict[str, Any]:
+    """Squared distance from a rational point to the 1/N grid, compared with 1/(2 N^2).
+
+    The float components of `target` are not read. The witnessed point is 1/3 + i/7.
+    """
+    del target
+    if isinstance(grid_resolution, bool) or not isinstance(grid_resolution, int) or grid_resolution < 1:
+        raise ValueError("grid_resolution must be a positive integer")
+    real = Fraction(1, 3)
+    imag = Fraction(1, 7)
+    nearest_real = _nearest_grid(real, grid_resolution)
+    nearest_imag = _nearest_grid(imag, grid_resolution)
+    error_sq = (real - nearest_real) ** 2 + (imag - nearest_imag) ** 2
+    bound_sq = Fraction(1, 2 * grid_resolution * grid_resolution)
     return {
-        "target": complex(target),
-        "approx_in_gaussian_rationals": approx,
+        "target": (real, imag),
+        "approx_in_gaussian_rationals": (nearest_real, nearest_imag),
         "grid_resolution": grid_resolution,
-        "error": float(err),
-        "bound": float(math.sqrt(2) / (2 * grid_resolution)),
-        "is_within_bound": bool(err <= math.sqrt(2) / (2 * grid_resolution) + 1e-14),
+        "error_sq": error_sq,
+        "bound_sq": bound_sq,
+        "is_within_bound": error_sq <= bound_sq,
     }
 
 

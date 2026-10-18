@@ -94,4 +94,23 @@ from . import vacuum_polarization
 from . import ward_takahashi
 from . import weyl_ccr_residual
 
-from . import ravera_dfm
+
+def campaign_pauli_anticommutator():
+    """(0, 1) entry of XZ for the integer Pauli matrices. XZ + ZX is the zero matrix."""
+    from fractions import Fraction
+
+    pauli_x = ((0, 1), (1, 0))
+    pauli_z = ((1, 0), (0, -1))
+
+    def mul(left, right):
+        return tuple(
+            tuple(sum(left[i][k] * right[k][j] for k in range(2)) for j in range(2))
+            for i in range(2)
+        )
+
+    xz = mul(pauli_x, pauli_z)
+    zx = mul(pauli_z, pauli_x)
+    defect = sum(abs(xz[i][j] + zx[i][j]) for i in range(2) for j in range(2))
+    if defect != 0:
+        raise ValueError(f"Pauli anticommutator defect is {defect}")
+    return Fraction(xz[0][1])

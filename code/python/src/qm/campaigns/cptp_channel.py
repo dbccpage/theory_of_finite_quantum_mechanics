@@ -13,6 +13,7 @@ rather than asserted.
 
 from __future__ import annotations
 
+from fractions import Fraction
 from typing import Any, Dict, List, Sequence
 
 import numpy as np
@@ -215,4 +216,33 @@ def verify_dual_witness_bound(rho1: np.ndarray, rho2: np.ndarray) -> bool:
     # Duality gap zero: alignment == trace_norm
     return bool(np.isclose(alignment, t_norm, atol=1e-10))
 
-__all__ = ['amplitude_damping_kraus', 'apply_channel', 'apply_depolarizing_channel', 'choi_matrix', 'construct_dual_witness', 'dephasing_kraus', 'hadamard_kraus', 'is_completely_positive', 'is_covariant', 'is_trace_preserving', 'is_unital', 'solve_covariant_wigner_yanase_monotonicity', 'solve_cptp_wigner_yanase_monotonicity', 'solve_unital_wigner_yanase_monotonicity', 'trace_distance_contraction', 'trace_norm', 'verify_cptp_contractivity', 'verify_dual_witness_bound', 'wigner_yanase_skew_information']
+def exact_dephasing_defect(
+    scale_identity: Fraction | int = Fraction(3, 5),
+    scale_pauli: Fraction | int = Fraction(4, 5),
+) -> Fraction:
+    """Entrywise defect of a^2 I + b^2 Z^2 - I for rational dephasing scales."""
+    identity_scale = Fraction(scale_identity)
+    pauli_scale = Fraction(scale_pauli)
+    z_diag = (Fraction(1), Fraction(-1))
+    matrix = (
+        (
+            identity_scale ** 2 + (pauli_scale * z_diag[0]) ** 2,
+            Fraction(0),
+        ),
+        (
+            Fraction(0),
+            identity_scale ** 2 + (pauli_scale * z_diag[1]) ** 2,
+        ),
+    )
+    identity = ((Fraction(1), Fraction(0)), (Fraction(0), Fraction(1)))
+    entry_defect = Fraction(0)
+    for row in range(2):
+        for col in range(2):
+            entry_defect += abs(matrix[row][col] - identity[row][col])
+    scalar_defect = abs(identity_scale ** 2 + pauli_scale ** 2 - 1) * 2
+    if entry_defect != scalar_defect:
+        raise ValueError(f"dephasing defects {entry_defect} and {scalar_defect} differ")
+    return entry_defect
+
+
+__all__ = ['amplitude_damping_kraus', 'apply_channel', 'apply_depolarizing_channel', 'choi_matrix', 'construct_dual_witness', 'dephasing_kraus', 'exact_dephasing_defect', 'hadamard_kraus', 'is_completely_positive', 'is_covariant', 'is_trace_preserving', 'is_unital', 'solve_covariant_wigner_yanase_monotonicity', 'solve_cptp_wigner_yanase_monotonicity', 'solve_unital_wigner_yanase_monotonicity', 'trace_distance_contraction', 'trace_norm', 'verify_cptp_contractivity', 'verify_dual_witness_bound', 'wigner_yanase_skew_information']
