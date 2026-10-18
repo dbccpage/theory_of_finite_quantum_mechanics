@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_plan_odm_guarded_open:v1.0.0
+title: Plan Odm Guarded Open Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/plan_odm_guarded_open.rs
+module: omega_wdp::derivation_controls::plan_odm_guarded_open
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::plan_odm_guarded_open
+  file: crates_rs/tests/omega_wdp/derivation_controls/plan_odm_guarded_open.rs
+symbols:
+- ControlReceipt
+- evaluate_plan_odm_guarded_open
+owns:
+- control_receipt
+- evaluate_plan_odm_guarded_open
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

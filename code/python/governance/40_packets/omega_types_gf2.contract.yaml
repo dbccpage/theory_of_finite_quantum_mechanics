@@ -1,0 +1,38 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:gf2:v1.0.0
+title: Gf2 Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/gf2.rs
+module: gf2
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: gf2
+  file: crates_rs/omega_types/src/gf2.rs
+symbols:
+- Gf2Row
+- new
+- CochainVector
+- from_edges
+- add
+- weight
+- Gf2Matrix
+- n_rows
+owns:
+- gf2_row
+- new
+- cochain_vector
+- from_edges
+- add
+- weight
+- gf2_matrix
+- n_rows
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

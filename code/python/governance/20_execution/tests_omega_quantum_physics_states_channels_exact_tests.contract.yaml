@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_states_channels_exact_tests:v1.0.0
+title: Exact state, channel and information laws, with independent presentations.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/states_channels_exact_tests.rs
+module: omega_quantum_physics::states_channels_exact_tests
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::states_channels_exact_tests
+  file: crates_rs/tests/omega_quantum_physics/states_channels_exact_tests.rs
+symbols: []
+owns:
+- omega_quantum_physics_states_channels_exact_tests
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

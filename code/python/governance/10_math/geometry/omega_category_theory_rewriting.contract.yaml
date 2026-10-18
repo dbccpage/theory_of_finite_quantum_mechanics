@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:rewriting:v1.0.0
+title: 'Rewriting — ∞-categorical rewriting systems.  A rewriting system generates
+  an (∞,1)-category: 0-cells: terms / expres...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/rewriting.rs
+module: rewriting
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: rewriting
+  file: crates_rs/omega_category_theory/src/rewriting.rs
+symbols:
+- Term
+- new
+- RewriteCell
+- term
+- rewrite
+- higher
+- RewriteRule
+- PathStep
+- RewritePath
+- single
+- named_single
+- compose
+- len
+- is_empty
+- inverse
+- concat
+- NormalFormWitness
+- InfinityRewriteSystem
+- add_term
+- add_rule
+- add_path
+- add_homotopy
+- add_higher_cell
+- cells_at_level
+- terms
+- rewrites
+- is_normal_form
+- normal_form_witness
+- path_boundary
+- whisker_left
+owns:
+- term
+- new
+- rewrite_cell
+- rewrite
+- higher
+- rewrite_rule
+- path_step
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

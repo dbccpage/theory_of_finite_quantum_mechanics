@@ -1,0 +1,55 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:derived:v1.0.0
+title: Derived Categories and Mapping Cones.  Provides chain complexes, chain maps,
+  mapping cones $C(f) = Y \oplus X[1]$, bl...
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/derived.rs
+module: derived
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: derived
+  file: crates_rs/omega_higher_category_theory/src/derived.rs
+symbols:
+- ChainComplex
+- new
+- add_generator
+- set_differential
+- differential_of
+- apply_differential_to_terms
+- check_nilpotence
+- ChainMap
+- set_component
+- apply_to_gen
+- apply_to_terms
+- check_commutes_with_differential
+- ConeDifferentialMatrix
+- MappingCone
+- construct
+- QuasiIsomorphism
+- DerivedCategory
+- with_limits
+- add_complex
+- add_chain_map
+- construct_mapping_cone
+- check_cone_nilpotence
+- validate_all
+- content_hash
+owns:
+- chain_complex
+- new
+- add_generator
+- set_differential
+- differential_of
+- apply_differential_to_terms
+- check_nilpotence
+- chain_map
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:epics_ooutwire:v1.0.0
+title: The Ooutwire ingestion manifest and the glyph game registry.  `EPIC-OE-SYMGAM-016`.
+  Both YAML files this epic names a...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/epics/ooutwire.rs
+module: epics::ooutwire
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: epics::ooutwire
+  file: crates_rs/omega_symbol_game/src/epics/ooutwire.rs
+symbols:
+- OoutwireRefusal
+- OoutwireRecord
+- OoutwireManifest
+- parse_manifest
+- load_manifest
+- disposition_divergence
+- total_custody_bytes
+- GlyphGame
+- is_implemented
+- GlyphRegistry
+- parse_registry
+- load_registry
+- verification_consistent
+- inconsistent_games
+- unresolved_verifiers
+- RegistryCensus
+- census
+- OoutwireValidationReceiptV1
+- validation_receipt
+owns:
+- ooutwire_refusal
+- ooutwire_record
+- ooutwire_manifest
+- parse_manifest
+- load_manifest
+- disposition_divergence
+- total_custody_bytes
+- glyph_game
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

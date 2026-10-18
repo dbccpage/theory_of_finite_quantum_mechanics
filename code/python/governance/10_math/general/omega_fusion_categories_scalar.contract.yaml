@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_fusion_categories:scalar:v1.0.0
+title: The exact scalar protocol for fusion-category data.  F-symbols, R-symbols,
+  twists, dimensions and modular matrices ar...
+kind: rust_file_contract
+status: active
+crate: omega_fusion_categories
+file: crates_rs/omega_fusion_categories/src/scalar.rs
+module: scalar
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_fusion_categories
+  module: scalar
+  file: crates_rs/omega_fusion_categories/src/scalar.rs
+symbols:
+- FusionScalar
+- sign_of
+- root_of_unity
+- sqrt_two
+- golden_ratio
+- root_of_unity_data
+owns:
+- fusion_scalar
+- sign_of
+- root_of_unity
+- sqrt_two
+- golden_ratio
+- root_of_unity_data
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

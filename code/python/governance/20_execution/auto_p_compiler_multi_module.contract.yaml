@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_multi_module:v1.0.0
+title: '--- yaml title: multi_module file_name: multi_module.rs file_location: omega_engine/crates_rs/auto_p/compiler/multi_m...'
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/multi_module.rs
+module: compiler::multi_module
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::multi_module
+  file: crates_rs/auto_p/src/compiler/multi_module.rs
+symbols:
+- MultiModuleCompileError
+- MultiModuleCompilationResult
+- MultiModuleProject
+- new
+- add_source
+- from_sources
+- module_sccs
+- detect_recursive_diagram_cycles
+- check_boundaries_all
+- build_unified_diagram
+- emit_bytecode
+- compile
+- lower_to_physical_braid_schedule
+- compile_with_braid_schedule
+- compile_multi_module_project
+- compile_multi_module_project_with_braid_schedule
+owns:
+- multi_module_compile_error
+- multi_module_compilation_result
+- multi_module_project
+- new
+- add_source
+- from_sources
+- module_sccs
+- detect_recursive_diagram_cycles
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

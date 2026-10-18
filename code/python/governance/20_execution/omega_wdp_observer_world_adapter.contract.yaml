@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:observer_world_adapter:v1.0.0
+title: 'The source observer-world five: (image(profile), contexts, histories, witnesses,
+  grammar). A finite closed history re...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/observer_world_adapter.rs
+module: observer_world_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: observer_world_adapter
+  file: crates_rs/omega_wdp/src/observer_world_adapter.rs
+symbols:
+- WorldWitness
+- FiniteObserverWorldPacket
+- WorldAdapterError
+- ObserverWorldReceipt
+- adapt
+- packet
+- context_system
+- facts
+- verify_against
+owns:
+- world_witness
+- finite_observer_world_packet
+- world_adapter_error
+- observer_world_receipt
+- adapt
+- packet
+- context_system
+- facts
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

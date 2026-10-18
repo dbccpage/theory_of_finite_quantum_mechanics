@@ -1,0 +1,52 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:operadic_nerve:v1.0.0
+title: Higher-dimensional operadic nerve functors mapping coloured operads to quasi-categories.  Provides
+  mathematically rig...
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/operadic_nerve.rs
+module: operadic_nerve
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: operadic_nerve
+  file: crates_rs/omega_higher_category_theory/src/operadic_nerve.rs
+symbols:
+- MultiAryOp
+- arity
+- is_unary
+- ColouredOperad
+- new
+- add_colour
+- add_unary_operation
+- add_multi_ary_operation
+- set_identity_operation
+- register_comp1
+- validate_spine_associativity
+- validate_spine_unitality
+- canonical_hash
+- OperadNerve0
+- OperadNerve1
+- OperadNerve2
+- InnerHorn2_1
+- fill_inner_horn_2_1
+- OperadicNerve
+- from_coloured_operad
+- verify_quasi_category_property
+owns:
+- multi_ary_op
+- arity
+- is_unary
+- coloured_operad
+- new
+- add_colour
+- add_unary_operation
+- add_multi_ary_operation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

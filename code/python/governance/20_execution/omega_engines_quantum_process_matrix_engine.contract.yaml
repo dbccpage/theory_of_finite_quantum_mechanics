@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:quantum_process_matrix_engine:v1.0.0
+title: It deliberately does not claim full causal-separability SDP solving.
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/quantum/process_matrix_engine.rs
+module: quantum::process_matrix_engine
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: quantum::process_matrix_engine
+  file: crates_rs/omega_engines/src/quantum/process_matrix_engine.rs
+symbols:
+- ProcessMatrixError
+- LabIoDim
+- new
+- total_dim
+- ChoiMatrix
+- from_kraus
+- from_kraus_with_tolerance
+- from_matrix
+- from_matrix_with_tolerance
+- unitary
+- choi
+- lab_dim
+- is_trace_preserving
+- authority_admission
+- trace_preserving_defect
+- ProcessMatrix
+- with_tolerance
+- normalized_positive
+- labs
+- generalized_born_probability
+- witness_value
+- violates_witness_constraint
+- CausalOrder
+- CausalMixture
+- fixed
+- is_fixed_order
+- violates_causal_bound
+- QuantumSwitch
+- apply
+- reduced_control_density
+owns:
+- process_matrix_error
+- lab_io_dim
+- new
+- total_dim
+- choi_matrix
+- from_kraus
+- from_kraus_with_tolerance
+- from_matrix
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:diagram_plotting:v1.0.0
+title: 'Textual / coordinate helpers for diagram visualization.  AuthorityEffect:
+  None. Best-effort shell for computational t...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/diagram_plotting.rs
+module: diagram_plotting
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: diagram_plotting
+  file: crates_rs/omega_homology/src/diagram_plotting.rs
+symbols:
+- DiagramPlotting
+- new
+- with_note
+- validate_shell
+owns:
+- diagram_plotting
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,52 @@
+schema_version: omega.contract.v2
+contract_id: urn:omega:prompt:dialogue_session:v2.0.0
+title: Multi-Turn Dialogue Session
+kind: prompt_contract
+layer: 40_packets
+role: PromptSpecification
+status: active
+council_owner: L3_nous_glossa
+descriptor:
+  authority_effect: None
+  evidence_ceiling: ShapeOnly
+  runtime_enforcement: false
+  clean_architecture_layer: domain
+  dependencies:
+    contracts: []
+    lean4_theorems: []
+  terminals:
+    may_emit: []
+    may_support: []
+  refusals:
+    may_emit:
+    - REFUSAL_INVALID_ARGUMENTS
+    - REFUSAL_GATE_FAILED
+    - REFUSAL_INVARIANT_BREACH
+doctrine:
+  summary: Structured multi-turn dialogic exchange session record capturing turn trajectory
+    DAG.
+  invariants:
+  - Prompt specification must maintain complete provenance of input clauses.
+  - AuthorityEffect is strictly bounded at None.
+  non_roles:
+  - authority_source
+  - promotion_granter
+  - implicit_coercion
+  required_negative_capabilities:
+  - no_self_certification
+  - no_implicit_authority_upgrade
+  - no_undeclared_state_transition
+specification:
+  algebraic_structure:
+    carrier_type: DialogueSessionCarrier
+    operations: []
+  ports:
+    input_packet: urn:omega:packet:work_packet:v1.0.0
+    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0
+    error_type: Refusal
+  verification:
+    fitness_test: null
+    lean4_file: null
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0

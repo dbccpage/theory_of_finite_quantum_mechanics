@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_policy:jcs:v1.0.0
+title: 'RFC 8785 subset used by the local-CI gate receipt. AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_policy
+file: crates_rs/omega_policy/src/jcs.rs
+module: jcs
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_policy
+  module: jcs
+  file: crates_rs/omega_policy/src/jcs.rs
+symbols: []
+owns:
+- jcs
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

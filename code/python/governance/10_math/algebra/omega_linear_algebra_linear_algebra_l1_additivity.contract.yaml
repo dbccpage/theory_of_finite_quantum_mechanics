@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:linear_algebra_l1_additivity:v1.0.0
+title: L1 Additivity Module
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/linear_algebra/l1_additivity.rs
+module: linear_algebra::l1_additivity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: linear_algebra::l1_additivity
+  file: crates_rs/omega_linear_algebra/src/linear_algebra/l1_additivity.rs
+symbols:
+- L1AdditivityError
+- L1AdditivityCheck
+- passed
+- error
+- tolerance
+- check_l1_coordinate_additivity
+owns:
+- l1_additivity_error
+- l1_additivity_check
+- passed
+- error
+- tolerance
+- check_l1_coordinate_additivity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

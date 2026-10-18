@@ -1,0 +1,54 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_q_packet:v1.0.0
+title: Packet Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/q/packet.rs
+module: coda::q::packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::q::packet
+  file: crates_rs/omega_wdp/src/coda/q/packet.rs
+symbols:
+- QTerminal
+- to_terminal_status
+- TransportSpec
+- new
+- with_equivalence_scope
+- with_failure_mode
+- is_declared
+- ResidualSpec
+- with_next_probe_hint
+- QPacket
+- with_carrier
+- with_composition
+- with_observer
+- with_finite_prediction
+- with_transport
+- with_residual
+- with_terminal_request
+- missing_mandatory_fields
+- validate_mandatory
+- ValidatedQPacket
+- packet
+- into_packet
+- has_text
+- option_has_text
+owns:
+- q_terminal
+- to_terminal_status
+- transport_spec
+- new
+- with_equivalence_scope
+- with_failure_mode
+- is_declared
+- residual_spec
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

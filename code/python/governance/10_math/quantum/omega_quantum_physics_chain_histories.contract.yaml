@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:chain_histories:v1.0.0
+title: Prepare chain-history proposals; decoherence evaluation belongs to omega_functional.
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/chain_histories.rs
+module: chain_histories
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: chain_histories
+  file: crates_rs/omega_quantum_physics/src/chain_histories.rs
+symbols:
+- ChainHistory
+- preflight_history_budget
+- chain_histories
+owns:
+- chain_history
+- preflight_history_budget
+- chain_histories
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

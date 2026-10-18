@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:quaternion_gauge_shadow:v1.0.0
+title: The quaternion group as a finite non-abelian gauge shadow, and the flux and
+  holonomy operators on functions on a fini...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/quaternion_gauge_shadow.rs
+module: quaternion_gauge_shadow
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: quaternion_gauge_shadow
+  file: crates_rs/omega_quantum_physics/src/quaternion_gauge_shadow.rs
+symbols:
+- GroupAlgebraError
+- FiniteGroupAlgebra
+- new
+- order
+- conjugacy_classes
+- commuting_probability
+- center
+- product_index
+- flux
+- holonomy
+- flux_holonomy_commutator
+- translated_difference
+owns:
+- group_algebra_error
+- finite_group_algebra
+- new
+- order
+- conjugacy_classes
+- commuting_probability
+- center
+- product_index
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_state_witness_receipt_dag:v1.0.0
+title: Witness Receipt Dag Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_state/witness_receipt_dag.rs
+module: omega_state::witness_receipt_dag
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_state::witness_receipt_dag
+  file: crates_rs/tests/omega_state/witness_receipt_dag.rs
+symbols: []
+owns:
+- omega_state_witness_receipt_dag
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

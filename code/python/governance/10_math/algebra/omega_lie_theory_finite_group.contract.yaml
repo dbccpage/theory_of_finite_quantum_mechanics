@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:finite_group:v1.0.0
+title: Finite groups by Cayley table, and the constructions every finite-group computation
+  needs.  A [`FiniteGroup`] is a se...
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/finite_group.rs
+module: finite_group
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: finite_group
+  file: crates_rs/omega_lie_theory/src/finite_group.rs
+symbols:
+- GroupError
+- FiniteGroup
+- ClassEquation
+- holds
+- generate
+- from_table
+- from_operation
+- generated
+- verify_associativity
+- order
+- elements
+- identity
+- element
+- multiply
+- inverse
+- power
+- element_order
+- order_census
+- exponent
+- is_abelian
+- conjugacy_classes
+- centralizer
+- centre
+- class_equation
+- subgroup_generated_by
+- is_subgroup
+- is_normal_subgroup
+- commutator_subgroup
+- abelianisation_order
+- commuting_pairs
+owns:
+- group_error
+- finite_group
+- class_equation
+- holds
+- generate
+- from_table
+- from_operation
+- generated
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

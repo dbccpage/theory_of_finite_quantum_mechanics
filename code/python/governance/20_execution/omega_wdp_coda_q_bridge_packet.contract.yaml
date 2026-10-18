@@ -1,0 +1,57 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_q_bridge_packet:v1.0.0
+title: 'Rust dual of Lean `BridgePacket14` (paper 14-tuple $\mathcal{B}_q$).  Paper
+  / Lean schema: $$\mathcal{B}_q := (\Lambd...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/q/bridge_packet.rs
+module: coda::q::bridge_packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::q::bridge_packet
+  file: crates_rs/omega_wdp/src/coda/q/bridge_packet.rs
+symbols:
+- DomainId
+- ProfileId
+- QueryValue
+- SchemaSlot
+- unbound
+- declared
+- is_declared
+- FiniteQueryMap
+- new
+- from_pairs
+- get
+- covers_domain
+- FiniteProfileMap
+- FiniteFactorMap
+- BridgePacket14
+- CodaCsQBridgePacketV1
+- finite_demo
+- field_count
+- field_names
+- sample_domain
+- authority_effect
+- finite_maps_cover_domain
+- profile_factorization_holds
+- fiber_constant_holds
+- FactorizationDefect
+- FiberConstancyDefect
+owns:
+- domain_id
+- profile_id
+- query_value
+- schema_slot
+- unbound
+- declared
+- is_declared
+- finite_query_map
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

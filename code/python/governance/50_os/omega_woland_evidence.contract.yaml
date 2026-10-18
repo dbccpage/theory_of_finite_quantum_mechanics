@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:evidence:v1.0.0
+title: Exact carrier measurements and byte-bound candidate checks. Certificate/verdict
+  facts come from injected checkers; th...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/evidence.rs
+module: evidence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: evidence
+  file: crates_rs/omega_woland/src/evidence.rs
+symbols:
+- value_error
+- sha256_ref
+- is_sha256_ref
+- canonical_rational
+- parse_exact_rational
+- MeasurementStatus
+- MeasurementInput
+- ObstructionMeasurement
+- new
+- not_measured
+- is_measured
+- is_exact_joint_zero
+- has_open_obstruction
+- phi1_text
+- gamma2_text
+- backend
+- defect_count
+- active_obstructions
+- reason
+- phi1
+- gamma2
+- certificate_verified
+- dual_witness
+- from_json
+- from_bytes
+- to_dict
+- CheckerVerdict
+- CandidateCheckInput
+- CandidateCheck
+- binds
+owns:
+- value_error
+- sha256_ref
+- is_sha256_ref
+- canonical_rational
+- parse_exact_rational
+- measurement_status
+- measurement_input
+- obstruction_measurement
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,57 @@
+schema_version: omega.contract.v2
+contract_id: urn:omega:packet:symbol_game:host_request_v1:v1.0.0
+title: Host Request v1
+kind: packet_contract
+layer: 40_packets
+role: PacketSpecification
+status: active
+council_owner: L3_logos_techne
+descriptor:
+  authority_effect: None
+  evidence_ceiling: LocalReplay
+  runtime_enforcement: true
+  clean_architecture_layer: domain
+  refusals:
+    may_emit:
+    - FW-UNKNOWN-FIELD
+    - FW-DUPLICATE-KEY
+doctrine:
+  summary: HostRequestV1, a wire type on the Symbol Game protocol surface.
+  invariants:
+  - The shape declared here is the shape in protocol.rs, enforced at compile time
+    by an exhaustive destructure.
+  - Unknown fields are refused, not ignored. An ignored field is one a reader believes
+    is load-bearing while it is inert.
+  non_roles:
+  - authority_source
+  - promotion_granter
+  required_negative_capabilities:
+  - no_self_certification
+  - no_implicit_authority_upgrade
+structure:
+  rust_crate: omega_symbol_game
+  rust_module: protocol
+  rust_type: HostRequestV1
+  form: struct
+  serde:
+    deny_unknown_fields: true
+  fields:
+  - name: schema_version
+  - name: request_id_sha256
+  - name: challenge_hex
+  - name: operation
+  - name: canonicalization_profile
+  - name: authority_effect
+  - name: expected_host_registry_hash_sha256
+  - name: expected_host_source_revision
+  - name: outer_dda_dialect
+  - name: packet_envelope
+  - name: source
+  - name: carrier
+  - name: residual
+  - name: prime_profiles
+  - name: prime002
+  - name: budgets
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0

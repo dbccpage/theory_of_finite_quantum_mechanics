@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_epistemic_immune_system:authenticated:v1.0.0
+title: Explicit-key attestation custody. Authentication is relative to the supplied
+  operator policy, never proof that an arb...
+kind: rust_file_contract
+status: active
+crate: omega_epistemic_immune_system
+file: crates_rs/omega_epistemic_immune_system/src/authenticated.rs
+module: authenticated
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_epistemic_immune_system
+  module: authenticated
+  file: crates_rs/omega_epistemic_immune_system/src/authenticated.rs
+symbols:
+- Purpose
+- Binding
+- TrustedKey
+- TrustPolicy
+- Attestation
+- SignedEvidence
+- bytes_digest
+- signing_bytes
+- VerifiedAttestation
+- verify
+- history
+- execute
+owns:
+- purpose
+- binding
+- trusted_key
+- trust_policy
+- attestation
+- signed_evidence
+- bytes_digest
+- signing_bytes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_finite_probability:marginal_compatibility:v1.0.0
+title: Finite rational marginal compatibility and minimax L1 repair formulation. Owns
+  the probability model and LP reduction...
+kind: rust_file_contract
+status: active
+crate: omega_finite_probability
+file: crates_rs/omega_finite_probability/src/marginal_compatibility.rs
+module: marginal_compatibility
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_finite_probability
+  module: marginal_compatibility
+  file: crates_rs/omega_finite_probability/src/marginal_compatibility.rs
+symbols:
+- MarginalError
+- MarginalScenario
+- RepairProgram
+- new
+- measurements
+- outcomes
+- contexts
+- sections
+- validate_probabilities
+- compatible
+- minimax_distance
+- repair_program
+- unpack
+- SamplingBound
+- trials
+- outcome_count
+- l1_radius
+- failure_upper
+- iid_l1_sampling_bound
+- joint_sampling_failure
+owns:
+- marginal_error
+- marginal_scenario
+- repair_program
+- new
+- measurements
+- outcomes
+- contexts
+- sections
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

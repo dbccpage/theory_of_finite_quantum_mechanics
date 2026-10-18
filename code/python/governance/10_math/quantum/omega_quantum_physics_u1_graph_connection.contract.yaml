@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:u1_graph_connection:v1.0.0
+title: Declared U(1) connections on a finite oriented graph.  A connection assigns
+  a unit-modulus scalar `A_e` to each orien...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+module: u1_graph_connection
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: u1_graph_connection
+  file: crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+symbols:
+- U1GaugeError
+- OrientedWalk
+- new
+- start
+- end
+- steps
+- is_closed
+- replays_on
+- VertexGauge
+- values
+- apply_to_field
+- diagonal
+- U1Connection
+- indexed_connection
+- trivial
+- covariant_difference
+- covariant_difference_matrix
+- try_covariant_difference_matrix
+- gauge_transform
+- transport
+- holonomy
+- laplacian
+- try_laplacian
+- dirichlet_energy
+- to_holonomy_connection
+- holonomy_crate_laplacian
+- holonomy_crate_loop
+- CochainExponential
+- base
+- order
+owns:
+- u1_gauge_error
+- oriented_walk
+- new
+- start
+- end
+- steps
+- is_closed
+- replays_on
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

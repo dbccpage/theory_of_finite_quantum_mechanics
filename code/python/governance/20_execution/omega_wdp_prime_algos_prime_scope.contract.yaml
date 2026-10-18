@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:prime_algos_prime_scope:v1.0.0
+title: 'Scope binding and sealed evidence shared by the Prime rules.  # What this
+  fixes  The first cut of the Prime rules car...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/prime_algos/prime_scope.rs
+module: prime_algos::prime_scope
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: prime_algos::prime_scope
+  file: crates_rs/omega_wdp/src/prime_algos/prime_scope.rs
+symbols:
+- digest
+- short
+- BoundCarrierManifest
+- new
+- carrier
+- d0
+- commit
+- CallerAttested
+- value
+- inner
+- into_inner
+- authority
+- ScopeBinding
+- with_carrier_and_d0
+- run
+- carrier_manifest
+- residual
+- tape_head
+- step_index
+- same_subject
+- ScopeMismatch
+- require_same_scope
+owns:
+- digest
+- short
+- bound_carrier_manifest
+- new
+- carrier
+- d0
+- commit
+- caller_attested
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

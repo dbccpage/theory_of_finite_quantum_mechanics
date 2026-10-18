@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_mub_lane_v3_soundness_audit:v1.0.0
+title: Lane V3 Adversarial Soundness Audit Test Suite.  Evaluates the 6 candidate
+  failure vectors for the MUB(6) finite-cove...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_mub/lane_v3_soundness_audit.rs
+module: omega_mub::lane_v3_soundness_audit
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_mub::lane_v3_soundness_audit
+  file: crates_rs/tests/omega_mub/lane_v3_soundness_audit.rs
+symbols: []
+owns:
+- omega_mub_lane_v3_soundness_audit
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

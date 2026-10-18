@@ -1,0 +1,57 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:ddc_op_verification:v1.0.0
+title: Op-level verification — binding each `DdaOp` to a **checked law** on cochain
+  state.  Closes the obligation logged by ...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/ddc/op_verification.rs
+module: ddc::op_verification
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: ddc::op_verification
+  file: crates_rs/omega_wdp/src/ddc/op_verification.rs
+symbols:
+- CochainState
+- new
+- with_adequacy_state
+- with_adequacy
+- diagnose
+- same_carrier
+- OpViolation
+- code
+- StepWitness
+- StepEvidence
+- verify_step
+- verify_step_with_witness
+- ControlStatus
+- as_str
+- VerifiedTrace
+- control
+- step
+- step_with_witness
+- step_inert
+- step_inert_with_witness
+- import
+- trace
+- evidence
+- state
+- letters
+- authority_effect
+owns:
+- cochain_state
+- new
+- with_adequacy_state
+- with_adequacy
+- diagnose
+- same_carrier
+- op_violation
+- code
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

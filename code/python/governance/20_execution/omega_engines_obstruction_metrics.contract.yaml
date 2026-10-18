@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:obstruction_metrics:v1.0.0
+title: Obstruction metrics types shared across the omega engine.  Extracted from `obstruction_calculus::obstruction_runtime`...
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/obstruction_metrics.rs
+module: obstruction_metrics
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: obstruction_metrics
+  file: crates_rs/omega_engines/src/obstruction_metrics.rs
+symbols:
+- ObstructionMetrics
+- new
+- with_gamma2_delta
+- with_noether_drift
+- is_finite
+- is_valid_range
+- is_valid
+- ObstructionVerdict
+- is_accepted
+- ObstructionThresholds
+- validate
+- ScoreWeights
+- obstruction_score
+owns:
+- obstruction_metrics
+- new
+- with_gamma2_delta
+- with_noether_drift
+- is_finite
+- is_valid_range
+- is_valid
+- obstruction_verdict
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

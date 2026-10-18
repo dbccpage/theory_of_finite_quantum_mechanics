@@ -1,0 +1,58 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:alpha_projection_obstruction_rational:v1.0.0
+title: Exact rational arithmetic and univariate polynomials, dependency-free.  The
+  crate has no rational type because the se...
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/rational.rs
+module: alpha_projection_obstruction::rational
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: alpha_projection_obstruction::rational
+  file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/rational.rs
+symbols:
+- Rational
+- new
+- numerator
+- denominator
+- abs
+- signum
+- is_zero
+- is_positive
+- recip
+- pow
+- max
+- min
+- exact_sqrt
+- sum
+- to_f64
+- r
+- q
+- Poly
+- constant
+- symbol
+- degree
+- derivative
+- eval
+- add
+- sub
+- mul
+- scale
+owns:
+- rational
+- new
+- numerator
+- denominator
+- abs
+- signum
+- is_zero
+- is_positive
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

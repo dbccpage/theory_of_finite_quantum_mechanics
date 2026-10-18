@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:oewas_oeeis_bridge:v1.0.0
+title: Sovereign Rust bridge connecting `omega_epistemic_immune_system` (OEEIS), `omega_workflows_agents_skills`
+  (OEWAS), an...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/oewas_oeeis_bridge.rs
+module: oewas_oeeis_bridge
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: oewas_oeeis_bridge
+  file: crates_rs/omega_woland/src/oewas_oeeis_bridge.rs
+symbols:
+- OeeisImmuneAdapter
+- new
+- with_quorum_gate
+- standard_baseline
+- self_panel
+- WolandOewasBoutBridge
+- standard_base
+- specialization
+- immune_mut
+- formulary
+- stage_danger_guarded_substitute
+- stage_allosteric_quorum_substitute
+- stage_validate_workflow_guard
+- stage_screen_skill_triggers
+- stage_propose_and_screen_antiskill
+- stage_register_and_admit_antiskill
+- stage_review_detector_telemetry
+owns:
+- oeeis_immune_adapter
+- new
+- with_quorum_gate
+- standard_baseline
+- self_panel
+- woland_oewas_bout_bridge
+- standard_base
+- specialization
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

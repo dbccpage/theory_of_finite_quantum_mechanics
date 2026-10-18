@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_interpretations_interpretations_as_authority_shadows:v1.0.0
+title: 'Interpretations as packet-indistinguishable shadows: the paper''s worked example
+  on a certified survivor packet, the o...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/interpretations/interpretations_as_authority_shadows.rs
+module: omega_quantum_physics::interpretations::interpretations_as_authority_shadows
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::interpretations::interpretations_as_authority_shadows
+  file: crates_rs/tests/omega_quantum_physics/interpretations/interpretations_as_authority_shadows.rs
+symbols: []
+owns:
+- omega_quantum_physics_interpretations_interpretations_as_authority_shadows
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_q_product_vertical_slice:v1.0.0
+title: 'Target 7 — Q/CODA product vertical slice (diagnostic / experimental).  Pipeline:
+  Proposal → PromptReview → ScopedRese...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/q/product_vertical_slice.rs
+module: coda::q::product_vertical_slice
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::q::product_vertical_slice
+  file: crates_rs/omega_wdp/src/coda/q/product_vertical_slice.rs
+symbols:
+- FeatureStatus
+- as_str
+- allows_product_mount
+- is_production
+- LaunchTarget
+- id
+- LaunchTargetBoard
+- new
+- is_complete
+- mark_complete
+- all_complete
+- incomplete
+- ProductGateError
+- evaluate_q_coda_integration
+- refuse_silent_prod_enablement
+- q_coda_product_mount_allowed
+- gate_product_mount
+- try_auto_promote
+- ClaimStatus
+- ClaimRecord
+- open
+- resolved
+- ProductProposal
+- with_claim
+- PipelineStage
+- StageStatus
+- StageReceipt
+- with_unresolved
+- with_artifact_hash
+- PackageManifest
+owns:
+- feature_status
+- as_str
+- allows_product_mount
+- is_production
+- launch_target
+- id
+- launch_target_board
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

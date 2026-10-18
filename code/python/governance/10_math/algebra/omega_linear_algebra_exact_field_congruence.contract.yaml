@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:exact_field_congruence:v1.0.0
+title: Diagonalisation by congruence of symmetric and Hermitian matrices, with a certificate
+  that replays.  For a symmetric ...
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/exact_field/congruence.rs
+module: exact_field::congruence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: exact_field::congruence
+  file: crates_rs/omega_linear_algebra/src/exact_field/congruence.rs
+symbols:
+- CongruenceDiagonalisation
+- transform
+- diagonal
+- into_parts
+- verify_symmetric
+- transform_determinant
+- verify_hermitian
+- symmetric_violation
+- symmetric_congruence_diagonalisation
+- symmetric_congruence_diagonalisation_with_limits
+- hermitian_congruence_diagonalisation
+- hermitian_congruence_diagonalisation_with_limits
+owns:
+- congruence_diagonalisation
+- transform
+- diagonal
+- into_parts
+- verify_symmetric
+- transform_determinant
+- verify_hermitian
+- symmetric_violation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

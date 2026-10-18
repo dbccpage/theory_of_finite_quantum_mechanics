@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:linear_algebra_hermitian_mul_blocked:v1.0.0
+title: Hermitian Mul Blocked Module
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/linear_algebra/hermitian_mul_blocked.rs
+module: linear_algebra::hermitian_mul_blocked
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: linear_algebra::hermitian_mul_blocked
+  file: crates_rs/omega_linear_algebra/src/linear_algebra/hermitian_mul_blocked.rs
+symbols:
+- mul_then_force_hermitian_from_upper_triangle_blocked_unchecked
+- hermitian_conjugation_blocked_unchecked
+- hermitian_square_blocked_checked
+- hermitian_conjugation_blocked_checked
+owns:
+- mul_then_force_hermitian_from_upper_triangle_blocked_unchecked
+- hermitian_conjugation_blocked_unchecked
+- hermitian_square_blocked_checked
+- hermitian_conjugation_blocked_checked
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

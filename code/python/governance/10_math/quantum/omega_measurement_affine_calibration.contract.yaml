@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_measurement:affine_calibration:v1.0.0
+title: Exact affine calibration composition and declared deterministic error bounds.  These
+  are algebraic enclosures conditi...
+kind: rust_file_contract
+status: active
+crate: omega_measurement
+file: crates_rs/omega_measurement/src/affine_calibration.rs
+module: affine_calibration
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_measurement
+  module: affine_calibration
+  file: crates_rs/omega_measurement/src/affine_calibration.rs
+symbols:
+- CalibrationError
+- BoundedReading
+- new
+- center
+- radius
+- interval
+- contains
+- AffineCalibration
+- gain
+- offset
+- gain_error
+- offset_error
+- residual_error
+- propagate
+- interval_image
+- compose_nominal
+- propagate_chain
+- nominal_update_bound
+- nominal_chain_update_bound
+owns:
+- calibration_error
+- bounded_reading
+- new
+- center
+- radius
+- interval
+- contains
+- affine_calibration
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

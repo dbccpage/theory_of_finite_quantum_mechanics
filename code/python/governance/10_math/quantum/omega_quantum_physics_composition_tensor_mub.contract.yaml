@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:composition_tensor_mub:v1.0.0
+title: Checked finite tensor composition of density operators and product statistics.
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs
+module: composition_tensor_mub
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: composition_tensor_mub
+  file: crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs
+symbols:
+- TensorCompositionError
+- TensorStateCertificate
+- compose_density
+- product_statistic
+- verify_tensor_state
+owns:
+- tensor_composition_error
+- tensor_state_certificate
+- compose_density
+- product_statistic
+- verify_tensor_state
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

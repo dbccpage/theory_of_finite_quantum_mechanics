@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:artifact_policy:v1.0.0
+title: S11-001 artifact visibility, retention, redaction, and publication policy.  This
+  module validates bounded fixture rou...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/artifact_policy.rs
+module: artifact_policy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: artifact_policy
+  file: crates_rs/omega_contracts/src/artifact_policy.rs
+symbols:
+- VisibilityClassV1
+- RetentionClassV1
+- ArtifactRouteV1
+- ArtifactLicenseV1
+- ArtifactPolicyV1
+- validate
+- PolicyArtifactV1
+- RedactionRuleV1
+- RedactionReceiptV1
+- artifact_id
+- input_sha256
+- output_sha256
+- authority_effect
+- redact_artifact_v1
+- RouteReceiptV1
+- gate_artifact_route_v1
+- PublicationArtifactV1
+- PublicationPlanV1
+- build_publication_plan_v1
+- ArtifactPolicyError
+owns:
+- visibility_class_v1
+- retention_class_v1
+- artifact_route_v1
+- artifact_license_v1
+- artifact_policy_v1
+- validate
+- policy_artifact_v1
+- redaction_rule_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

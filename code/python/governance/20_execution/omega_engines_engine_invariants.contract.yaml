@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:engine_invariants:v1.0.0
+title: Engine Invariants Module
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/engine_invariants.rs
+module: engine_invariants
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: engine_invariants
+  file: crates_rs/omega_engines/src/engine_invariants.rs
+symbols:
+- Tolerances
+- EscalationRoute
+- EvaluationVerdict
+- TerminationCondition
+- EngineDecision
+- EngineTraceStep
+- EngineRuntimeState
+- EngineError
+- assert_trace_integrity
+- assert_meta_escalation_resolution
+- assert_stagnation_resolves
+- EvaluationAudit
+- assert_candidate_accounting
+- RunSummary
+- assert_search_endpoint_invariance
+owns:
+- tolerances
+- escalation_route
+- evaluation_verdict
+- termination_condition
+- engine_decision
+- engine_trace_step
+- engine_runtime_state
+- engine_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

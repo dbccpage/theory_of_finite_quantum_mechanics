@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:validation_rules:v1.0.0
+title: 'Validation rules from YAML canonical contract definitions.  These rules are
+  extracted from: - `04_actions_contracts.y...'
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/validation/rules.rs
+module: validation::rules
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: validation::rules
+  file: crates_rs/omega_contracts/src/validation/rules.rs
+symbols:
+- ValidationRuleId
+- ValidationRuleResult
+- pass
+- fail
+- check_candidate_authority_effect
+- check_no_action_fact_envelope
+- check_no_operator_fact_envelope
+- check_action_license_only_from_licensing_boundary
+- check_state_transition_only_from_engine
+- check_default_unchecked_outputs_to_evidence_only
+- check_validator_outputs_evidence_only_until_checked
+- check_witness_does_not_verify_itself
+- check_certificate_authority_not_exceeds_evidence
+- check_checked_packet_references_evidence
+- check_checked_packet_references_checker
+- check_all_component_rules
+- all_rules_passed
+- failed_rules
+owns:
+- validation_rule_id
+- validation_rule_result
+- pass
+- fail
+- check_candidate_authority_effect
+- check_no_action_fact_envelope
+- check_no_operator_fact_envelope
+- check_action_license_only_from_licensing_boundary
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_sheaf_theory:empirical_presheaf_parity:v1.0.0
+title: Binary parity cycles and their support-level descent.
+kind: rust_file_contract
+status: active
+crate: omega_sheaf_theory
+file: crates_rs/omega_sheaf_theory/src/empirical_presheaf/parity.rs
+module: empirical_presheaf::parity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_sheaf_theory
+  module: empirical_presheaf::parity
+  file: crates_rs/omega_sheaf_theory/src/empirical_presheaf/parity.rs
+symbols:
+- ParityCycle
+- ParityCycleReport
+- new
+- targets
+- holonomy
+- scenario
+- model
+- arc_cover
+- report
+owns:
+- parity_cycle
+- parity_cycle_report
+- new
+- targets
+- holonomy
+- scenario
+- model
+- arc_cover
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

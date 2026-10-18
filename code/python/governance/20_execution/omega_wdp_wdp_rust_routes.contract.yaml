@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:wdp_rust_routes:v1.0.0
+title: Structural and source-bound checks for the WDP-to-code ownership DAG.  A checked
+  route names its exact owner, contrac...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/wdp_rust_routes.rs
+module: wdp_rust_routes
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: wdp_rust_routes
+  file: crates_rs/omega_wdp/src/wdp_rust_routes.rs
+symbols:
+- NodeKind
+- EdgeKind
+- ArtifactBinding
+- DagNode
+- BridgePremises
+- DagEdge
+- DagRecord
+- DagError
+- DagReceipt
+- validate_dag
+- validate_artifact
+- repository_path
+owns:
+- node_kind
+- edge_kind
+- artifact_binding
+- dag_node
+- bridge_premises
+- dag_edge
+- dag_record
+- dag_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:examples_genesis_bell:v1.0.0
+title: Replay all three native examples and print checked finite evidence.
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/examples/genesis_bell.rs
+module: examples::genesis_bell
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: examples::genesis_bell
+  file: crates_rs/omega_wdp/src/examples/genesis_bell.rs
+symbols: []
+owns:
+- examples_genesis_bell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:witness:v1.0.0
+title: 'Mathematical witnesses: evidence structs for verified computations.  Witnesses
+  are created during construction-time v...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/witness.rs
+module: witness
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: witness
+  file: crates_rs/omega_homology/src/witness.rs
+symbols:
+- ChainComplexWitness
+- new
+- CochainComplexWitness
+- d0_shape
+- d1_shape
+- BoundaryZeroWitness
+- CoboundaryZeroWitness
+- CycleWitness
+- CocycleWitness
+- HomologyWitness
+- CohomologyWitness
+owns:
+- chain_complex_witness
+- new
+- cochain_complex_witness
+- d0_shape
+- d1_shape
+- boundary_zero_witness
+- coboundary_zero_witness
+- cycle_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

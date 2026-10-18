@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_search:search_mcts_bisimulation:v1.0.0
+title: Search Mcts Bisimulation Module
+kind: rust_file_contract
+status: active
+crate: omega_search
+file: crates_rs/omega_search/src/search_mcts_bisimulation.rs
+module: search_mcts_bisimulation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_search
+  module: search_mcts_bisimulation
+  file: crates_rs/omega_search/src/search_mcts_bisimulation.rs
+symbols:
+- BisimulationEntry
+- BisimulationTracker
+- new
+- representative
+- register
+owns:
+- bisimulation_entry
+- bisimulation_tracker
+- new
+- representative
+- register
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

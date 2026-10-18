@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:alpha_projection_obstruction_derivative_bound:v1.0.0
+title: Appendix B second-derivative bound assembly and numerical kill-hook companion.  Replicates
+  the valid-input arithmetic...
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/derivative_bound.rs
+module: alpha_projection_obstruction::derivative_bound
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: alpha_projection_obstruction::derivative_bound
+  file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/derivative_bound.rs
+symbols:
+- SecondDerivativeBoundCertificate
+- SecondDerivativeBoundReport
+- new
+- evaluate_assembly
+owns:
+- second_derivative_bound_certificate
+- second_derivative_bound_report
+- new
+- evaluate_assembly
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

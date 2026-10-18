@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_search:allocation:v1.0.0
+title: Exact Rational Thompson Sampling & Economic Compute Allocation (U21).  Allocates
+  budget across arms to maximize verif...
+kind: rust_file_contract
+status: active
+crate: omega_search
+file: crates_rs/omega_search/src/allocation.rs
+module: allocation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_search
+  module: allocation
+  file: crates_rs/omega_search/src/allocation.rs
+symbols:
+- ArmState
+- new
+- mean_cost_microusd
+- SeededRng
+- next_u64
+- next_uniform_rational
+- sample_beta
+- AllocationOutcome
+- AllocationEngine
+- select
+- update
+owns:
+- arm_state
+- new
+- mean_cost_microusd
+- seeded_rng
+- next_u64
+- next_uniform_rational
+- sample_beta
+- allocation_outcome
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

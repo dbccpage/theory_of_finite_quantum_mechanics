@@ -1,0 +1,38 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:lefschetz:v1.0.0
+title: Lefschetz Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/lefschetz.rs
+module: lefschetz
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: lefschetz
+  file: crates_rs/omega_homology/src/lefschetz.rs
+symbols:
+- LefschetzPairing
+- LefschetzDiagnostic
+- LefschetzOperator
+- lefschetz_pair
+- lefschetz_pair_with_defect
+- lefschetz_diagnostic
+- shift_operator
+- xi_shift_coherence
+- xi_shift_normalized
+owns:
+- lefschetz_pairing
+- lefschetz_diagnostic
+- lefschetz_operator
+- lefschetz_pair
+- lefschetz_pair_with_defect
+- shift_operator
+- xi_shift_coherence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

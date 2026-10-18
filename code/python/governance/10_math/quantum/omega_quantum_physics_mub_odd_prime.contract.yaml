@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_odd_prime:v1.0.0
+title: 'Odd-prime Weyl MUB construction.  Adapted from omega_mub odd_prime_weyl.rs:
+  implements the exact quadratic additive-c...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/odd_prime.rs
+module: mub::odd_prime
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::odd_prime
+  file: crates_rs/omega_quantum_physics/src/mub/odd_prime.rs
+symbols:
+- build_odd_prime_mub_d3
+- build_odd_prime_mub_d5
+- build_odd_prime_power_mub
+owns:
+- build_odd_prime_mub_d3
+- build_odd_prime_mub_d5
+- build_odd_prime_power_mub
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

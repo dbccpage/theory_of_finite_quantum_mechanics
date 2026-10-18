@@ -1,0 +1,36 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_superposition_support:v1.0.0
+title: 'Small shared fixtures: exact vector builders and a deterministic generator.'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/superposition/support.rs
+module: omega_quantum_physics::superposition::support
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::superposition::support
+  file: crates_rs/tests/omega_quantum_physics/superposition/support.rs
+symbols:
+- rats
+- reals
+- Lcg
+- new
+- range
+- rational
+- gaussian
+owns:
+- rats
+- reals
+- lcg
+- new
+- range
+- rational
+- gaussian
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

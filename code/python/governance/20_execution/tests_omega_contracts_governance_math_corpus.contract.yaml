@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_contracts_governance_math_corpus:v1.0.0
+title: Governance-side gate for the mathematics contract corpus.  `omega_contracts/tests/v1_corpus_gate.rs`
+  validates the cr...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_contracts/governance_math_corpus.rs
+module: omega_contracts::governance_math_corpus
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_contracts::governance_math_corpus
+  file: crates_rs/tests/omega_contracts/governance_math_corpus.rs
+symbols: []
+owns:
+- omega_contracts_governance_math_corpus
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

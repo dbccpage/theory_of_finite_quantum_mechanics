@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_holonomy:holonomy:v1.0.0
+title: 'Path holonomy, loop products, Wilson loop traces, and topological cycle pairings.  AuthorityEffect:
+  None. Governing R...'
+kind: rust_file_contract
+status: active
+crate: omega_holonomy
+file: crates_rs/omega_holonomy/src/holonomy.rs
+module: holonomy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_holonomy
+  module: holonomy
+  file: crates_rs/omega_holonomy/src/holonomy.rs
+symbols:
+- HolonomyLoop
+- try_new
+- compute_path_holonomy
+- compute_loop_holonomy
+- wilson_loop_trace
+- is_flat
+- cycle_homology_pairing
+- HolonomyEngine
+- new
+- compute_holonomy
+owns:
+- holonomy_loop
+- try_new
+- compute_path_holonomy
+- compute_loop_holonomy
+- wilson_loop_trace
+- is_flat
+- cycle_homology_pairing
+- holonomy_engine
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

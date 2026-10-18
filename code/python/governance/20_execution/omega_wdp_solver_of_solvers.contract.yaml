@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:solver_of_solvers:v1.0.0
+title: 'Minimal Solver of Solvers: `solve(carrier, residual)` over a declared finite
+  2-complex, returning a typed status, a n...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/solver_of_solvers.rs
+module: solver_of_solvers
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: solver_of_solvers
+  file: crates_rs/omega_wdp/src/solver_of_solvers.rs
+symbols:
+- FiniteCarrier2
+- CarrierEdge
+- SolveRefusal
+- SolveReceipt
+- gauge
+- joint
+- closed
+- final_evaluation
+- status
+- normal_form
+- b1_over_q
+- is_closed_class_survivor
+- span_distance
+- closure_premium
+- authority_effect
+- d1_rows_for_binding
+- solve
+- ReplayedSolve
+- receipt
+- replay_solve
+- WindowLift
+- new
+- LiftEffect
+- LiftReceipt
+- before
+- after
+- lifted_carrier
+- effect
+- gain
+- b1_drop
+owns:
+- finite_carrier2
+- carrier_edge
+- solve_refusal
+- solve_receipt
+- gauge
+- joint
+- closed
+- final_evaluation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

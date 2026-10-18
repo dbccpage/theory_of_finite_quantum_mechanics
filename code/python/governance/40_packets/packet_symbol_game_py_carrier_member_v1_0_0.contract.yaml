@@ -1,0 +1,40 @@
+schema_version: omega.contract.v2
+contract_id: urn:omega:packet:symbol_game:py_carrier_member:v1.0.0
+title: Carrier Member (Python)
+kind: packet_contract
+layer: 40_packets
+role: PacketSpecification
+status: active
+council_owner: L3_logos_techne
+descriptor:
+  authority_effect: None
+  evidence_ceiling: LocalReplay
+  runtime_enforcement: true
+  clean_architecture_layer: domain
+  refusals:
+    may_emit:
+    - FW-UNKNOWN-FIELD
+    - FW-DUPLICATE-KEY
+doctrine:
+  summary: One declared carrier symbol pinned to an exact codepoint.
+  invariants:
+  - codepoint is a U+XXXX literal; the pin is on the codepoint, never the rendered
+    glyph.
+  - Two symbols may not bind the same codepoint; the pin would be ambiguous.
+  non_roles:
+  - authority_source
+  - promotion_granter
+  required_negative_capabilities:
+  - no_self_certification
+  - no_implicit_authority_upgrade
+structure:
+  language: python
+  python_module: omega_engine_pfp.domain.glyph_calculus
+  python_type: CarrierMember
+  form: dataclass
+  fields:
+  - name: symbol
+  - name: codepoint
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0

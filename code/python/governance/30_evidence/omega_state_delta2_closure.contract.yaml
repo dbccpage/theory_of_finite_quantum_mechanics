@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:delta2_closure:v1.0.0
+title: S07-004 delta2 scalar and equivariance obstruction registry.  The admitted
+  attempt preserves PL-CODA-6/12/13 as OPEN....
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/delta2_closure.rs
+module: delta2_closure
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: delta2_closure
+  file: crates_rs/omega_state/src/delta2_closure.rs
+symbols:
+- Delta2ObligationIdV1
+- Delta2DispositionV1
+- Delta2ObligationRowV1
+- Delta2ClosurePacketV1
+- Delta2ClosureObservationV1
+- Delta2ClosureVerificationV1
+- Delta2ClosureError
+- canonical_delta2_obligations_v1
+- validate
+- delta2_obligation_registry_sha256_v1
+- delta2_closure_packet_sha256_v1
+- verify_delta2_closure_v1
+owns:
+- delta2_obligation_id_v1
+- delta2_disposition_v1
+- delta2_obligation_row_v1
+- delta2_closure_packet_v1
+- delta2_closure_observation_v1
+- delta2_closure_verification_v1
+- delta2_closure_error
+- canonical_delta2_obligations_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

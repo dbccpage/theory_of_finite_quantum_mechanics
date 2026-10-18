@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:wire_limits:v1.0.0
+title: Bounded transport preflight for programmatically supplied JSON values. Depth,
+  node count and decoded text bytes are c...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/wire_limits.rs
+module: wire_limits
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: wire_limits
+  file: crates_rs/omega_symbol_game/src/wire_limits.rs
+symbols:
+- JsonWireLimitError
+- validate_json_value
+owns:
+- json_wire_limit_error
+- validate_json_value
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

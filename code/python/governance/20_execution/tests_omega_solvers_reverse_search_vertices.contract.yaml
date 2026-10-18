@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_solvers_reverse_search_vertices:v1.0.0
+title: Streaming reverse search checked against the independent active-set oracle.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_solvers/reverse_search_vertices.rs
+module: omega_solvers::reverse_search_vertices
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_solvers::reverse_search_vertices
+  file: crates_rs/tests/omega_solvers/reverse_search_vertices.rs
+symbols: []
+owns:
+- omega_solvers_reverse_search_vertices
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

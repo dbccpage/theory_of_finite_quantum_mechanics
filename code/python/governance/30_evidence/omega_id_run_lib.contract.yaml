@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_id_run:lib:v1.0.0
+title: '`omega_id_run` — the ID-calculus end-to-end run.'
+kind: rust_file_contract
+status: active
+crate: omega_id_run
+file: crates_rs/omega_id_run/src/lib.rs
+module: lib
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_id_run
+  module: lib
+  file: crates_rs/omega_id_run/src/lib.rs
+symbols: []
+owns:
+- lib
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_prompt_civilization:fitness:v1.0.0
+title: 'Receipt-backed integer evidence and Pareto front selection.  Enforces: - F-SELECT-01:
+  Front ordering plus declared ti...'
+kind: rust_file_contract
+status: active
+crate: omega_prompt_civilization
+file: crates_rs/omega_prompt_civilization/src/fitness.rs
+module: fitness
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_prompt_civilization
+  module: fitness
+  file: crates_rs/omega_prompt_civilization/src/fitness.rs
+symbols:
+- PromptFitnessV1
+- is_valid_sealed_digest
+- new
+- correctness
+- completion_rate
+- record_verifier_result
+- record_syntax_only_output
+- reduce_selected_attempt_outcome
+- compute_pareto_fronts
+- CandidateRational
+- weakly_dominates
+- strictly_better_any
+- dominates
+- compute_pareto_fronts_rational
+- pareto_frontier_rational
+- CandidateBigRational
+- compute_pareto_fronts_bigrational
+owns:
+- prompt_fitness_v1
+- is_valid_sealed_digest
+- new
+- correctness
+- completion_rate
+- record_verifier_result
+- record_syntax_only_output
+- reduce_selected_attempt_outcome
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

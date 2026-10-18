@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:instrument_adapter:v1.0.0
+title: 'Chapter 19: the finite quantum-instrument adapter, conditional on a declared
+  Kraus family. Executable finite evidence...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/instrument_adapter.rs
+module: instrument_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: instrument_adapter
+  file: crates_rs/omega_wdp/src/instrument_adapter.rs
+symbols:
+- qubit_matrix
+- QubitState
+- new
+- pure
+- components
+- density_matrix
+- trace
+- same_density
+- canonical_string
+- InstrumentReceipt
+- OutcomeRunTable
+- QubitInstrument
+- outcomes
+- operators
+- channel
+- povm_effects
+- outcome_probability
+- outcome_probability_trace_formula
+- outcome_probabilities
+- post_state
+- average_post_density
+- receipt
+- receipts
+- outcome_run_table
+- outcome_run_table_with_limit
+- outcome_model
+- luders_instrument
+- non_projective_instrument
+- complex_phase_instrument
+- measure_and_prepare_instrument
+owns:
+- qubit_matrix
+- qubit_state
+- new
+- pure
+- components
+- density_matrix
+- trace
+- same_density
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

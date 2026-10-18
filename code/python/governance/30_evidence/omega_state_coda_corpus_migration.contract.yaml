@@ -1,0 +1,36 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:coda_corpus_migration:v1.0.0
+title: S07-006 frozen plan for the CODA paper-corpus relocation.
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/coda_corpus_migration.rs
+module: coda_corpus_migration
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: coda_corpus_migration
+  file: crates_rs/omega_state/src/coda_corpus_migration.rs
+symbols:
+- CodaCorpusMigrationPacketV1
+- CodaCorpusMigrationObservationV1
+- CodaCorpusMigrationVerificationV1
+- CodaCorpusMigrationError
+- validate
+- coda_corpus_migration_packet_sha256_v1
+- verify_coda_corpus_migration_v1
+owns:
+- coda_corpus_migration_packet_v1
+- coda_corpus_migration_observation_v1
+- coda_corpus_migration_verification_v1
+- coda_corpus_migration_error
+- validate
+- coda_corpus_migration_packet_sha256_v1
+- verify_coda_corpus_migration_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

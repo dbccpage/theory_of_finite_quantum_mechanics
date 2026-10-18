@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:s_matrix:v1.0.0
+title: Exact finite scattering matrices over Q(i).  A Hermitian reaction matrix K
+  gives S = (I + iK)(I - iK)^(-1). Construct...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/s_matrix.rs
+module: s_matrix
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: s_matrix
+  file: crates_rs/omega_quantum_physics/src/s_matrix.rs
+symbols:
+- ScatteringError
+- SMatrix
+- from_unitary
+- from_k
+- operator
+- channels
+- transition_operator
+- authority_fence
+owns:
+- scattering_error
+- s_matrix
+- from_unitary
+- from_k
+- operator
+- channels
+- transition_operator
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

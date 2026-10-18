@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_operad_theory:kernel_observer:v1.0.0
+title: 'Observer identity: the digest that makes two evaluations comparable.  An observer
+  is not a person, a camera, or a con...'
+kind: rust_file_contract
+status: active
+crate: omega_operad_theory
+file: crates_rs/omega_operad_theory/src/kernel/observer.rs
+module: kernel::observer
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_operad_theory
+  module: kernel::observer
+  file: crates_rs/omega_operad_theory/src/kernel/observer.rs
+symbols:
+- ObserverDeclaration
+- new
+- to_canonical
+- observer_id
+- same_observer_as
+- authority_effect
+owns:
+- observer_declaration
+- new
+- to_canonical
+- observer_id
+- same_observer_as
+- authority_effect
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

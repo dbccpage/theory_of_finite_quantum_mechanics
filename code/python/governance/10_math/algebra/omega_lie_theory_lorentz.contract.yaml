@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:lorentz:v1.0.0
+title: 'The Lorentz group `SO+(1, d; Q)` over the rationals: boosts, rotations, the
+  polar decomposition and the Thomas-Wigner...'
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/lorentz.rs
+module: lorentz
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: lorentz
+  file: crates_rs/omega_lie_theory/src/lorentz.rs
+symbols:
+- LorentzError
+- minkowski_form
+- space_dimension
+- preserves_form
+- is_orthochronous
+- check_proper_orthochronous
+- boost_from_point
+- boost
+- boost_point
+- spatial_rotation
+- RapidityPoint
+- rational_hyperbola_points
+- rational_unit_vector_2d
+- rational_unit_vector_3d
+- PolarDecomposition
+- polar_decompose
+- thomas_wigner_rotation
+- composed_gamma
+- wigner_cosine_closed_form
+- perpendicular_wigner_cosine
+- rotation_cosine
+- collinear_power_entries
+- lorentz_power
+- height
+- ElementClass
+- classify_so21
+- adjoint_of_gl2
+- gl2_determinant_class
+- ratio_of
+- ThomasWignerCensus
+owns:
+- lorentz_error
+- minkowski_form
+- space_dimension
+- preserves_form
+- is_orthochronous
+- check_proper_orthochronous
+- boost_from_point
+- boost
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

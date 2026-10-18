@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_atlas_reconciliation:render:v1.0.0
+title: Human-readable markdown renderer for a reconciliation ledger.  Produces a compact
+  GitHub-flavored markdown table — on...
+kind: rust_file_contract
+status: active
+crate: omega_atlas_reconciliation
+file: crates_rs/omega_atlas_reconciliation/src/render.rs
+module: render
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_atlas_reconciliation
+  module: render
+  file: crates_rs/omega_atlas_reconciliation/src/render.rs
+symbols:
+- render_md
+owns:
+- render_md
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

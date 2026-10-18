@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_ooutwire_primitives_genesis_fidelity:v1.0.0
+title: Admission and bounded-search regressions against the declared Genesis model.
+  The frozen Python source remains unchang...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_ooutwire_primitives/genesis_fidelity.rs
+module: omega_ooutwire_primitives::genesis_fidelity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_ooutwire_primitives::genesis_fidelity
+  file: crates_rs/tests/omega_ooutwire_primitives/genesis_fidelity.rs
+symbols: []
+owns:
+- omega_ooutwire_primitives_genesis_fidelity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

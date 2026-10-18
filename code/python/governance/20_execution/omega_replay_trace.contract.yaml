@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_replay:trace:v1.0.0
+title: Replay-side trace containers.  The trace-artifact **vocabulary** (`TraceArtifact`
+  and its marker family, plus the `Vo...
+kind: rust_file_contract
+status: active
+crate: omega_replay
+file: crates_rs/omega_replay/src/trace.rs
+module: trace
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_replay
+  module: trace
+  file: crates_rs/omega_replay/src/trace.rs
+symbols:
+- StepTrace
+- new
+- steps
+- into_steps
+- LayeredTrace
+- layers
+- into_layers
+owns:
+- step_trace
+- new
+- steps
+- into_steps
+- layered_trace
+- layers
+- into_layers
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

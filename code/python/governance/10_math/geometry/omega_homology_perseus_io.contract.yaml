@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:perseus_io:v1.0.0
+title: 'Perseus file format shell.  AuthorityEffect: None. Best-effort shell for computational
+  topology. Not PROVED; not Glob...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/perseus_io.rs
+module: perseus_io
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: perseus_io
+  file: crates_rs/omega_homology/src/perseus_io.rs
+symbols:
+- PerseusIo
+- new
+- with_note
+- validate_shell
+owns:
+- perseus_io
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

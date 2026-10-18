@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:auto_p_test_multi_module_ptir_benchmarks:v1.0.0
+title: '--- yaml title: test_multi_module_ptir_benchmarks file_name: test_multi_module_ptir_benchmarks.rs
+  file_location: omeg...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/auto_p/test_multi_module_ptir_benchmarks.rs
+module: auto_p::test_multi_module_ptir_benchmarks
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: auto_p::test_multi_module_ptir_benchmarks
+  file: crates_rs/tests/auto_p/test_multi_module_ptir_benchmarks.rs
+symbols: []
+owns:
+- auto_p_test_multi_module_ptir_benchmarks
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

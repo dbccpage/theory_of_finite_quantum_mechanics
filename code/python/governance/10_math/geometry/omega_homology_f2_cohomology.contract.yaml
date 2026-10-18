@@ -1,0 +1,57 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:f2_cohomology:v1.0.0
+title: Chain complexes, homology and cohomology with coefficients in `F_2 = GF(2)`.  An
+  [`F2ChainComplex`] is a finite seque...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/f2_cohomology.rs
+module: f2_cohomology
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: f2_cohomology
+  file: crates_rs/omega_homology/src/f2_cohomology.rs
+symbols:
+- ComplexError
+- F2ChainComplex
+- new
+- from_simplicial_complex
+- top_dimension
+- cell_count
+- euler_characteristic
+- boundary
+- coboundary
+- cycle_space
+- boundary_space
+- cocycle_space
+- coboundary_space
+- homology_dimension
+- cohomology_dimension
+- cocycle_count
+- coboundary_count
+- cohomology_count
+- homology_basis
+- cohomology_basis
+- is_cocycle
+- is_coboundary
+- is_cycle
+- is_boundary
+- cohomology_coordinates
+- solve_coboundary
+owns:
+- complex_error
+- f2_chain_complex
+- new
+- from_simplicial_complex
+- top_dimension
+- cell_count
+- euler_characteristic
+- boundary
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

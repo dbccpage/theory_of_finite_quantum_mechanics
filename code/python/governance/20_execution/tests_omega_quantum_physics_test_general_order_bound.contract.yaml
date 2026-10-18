@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_test_general_order_bound:v1.0.0
+title: 'Test for PO-000 §5.8 Theorem 5.5: General-order short-time product defect
+  lower-bound certificate. Evaluates Taylor r...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/test_general_order_bound.rs
+module: omega_quantum_physics::test_general_order_bound
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::test_general_order_bound
+  file: crates_rs/tests/omega_quantum_physics/test_general_order_bound.rs
+symbols: []
+owns:
+- omega_quantum_physics_test_general_order_bound
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

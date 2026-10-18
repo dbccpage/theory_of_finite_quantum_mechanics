@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homotopy_type_theory:primitive_difference:v1.0.0
+title: Finite Rust shadow of the **core** `PrimitiveDifference` quotient/descent kernel.  Corresponds
+  to the Lean definition...
+kind: rust_file_contract
+status: active
+crate: omega_homotopy_type_theory
+file: crates_rs/omega_homotopy_type_theory/src/primitive_difference.rs
+module: primitive_difference
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homotopy_type_theory
+  module: primitive_difference
+  file: crates_rs/omega_homotopy_type_theory/src/primitive_difference.rs
+symbols:
+- PrimitiveDifference
+- QuotientClass
+- index
+- carrier_id
+- PrimitiveDifferenceError
+- ZeroLawWitness
+- DeltaCongruenceWitness
+- PairDescentWitness
+- PairObstructionWitness
+- LocalGlobalPairObstruction
+- FiniteCarrier
+- new
+- domain_len
+- validate_zero_laws
+- try_validate
+- ValidatedFiniteCarrier
+- try_new
+- num_classes
+- residual_quotient
+- class_of_index
+- class_of_value_diagnostic
+- validate_delta_congruence
+- delta_congruent_on_domain
+- delta_factors_through_quotient_on_domain
+- try_delta_factor
+- observable_descends_on_domain
+- validate_pair_descent_on_domain
+- local_green_global_red
+- DeltaFactor
+- apply
+owns:
+- primitive_difference
+- quotient_class
+- index
+- carrier_id
+- primitive_difference_error
+- zero_law_witness
+- delta_congruence_witness
+- pair_descent_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

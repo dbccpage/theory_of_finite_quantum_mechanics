@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:quantum_import_finite_maps_page_wootters_tsirelson_wigner_cyclotomic_rings:v1.0.0
+title: Cyclotomic matrix helpers for the QM-218 Page-Wootters control.
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/page_wootters_tsirelson_wigner/cyclotomic_rings.rs
+module: quantum_import_finite_maps::page_wootters_tsirelson_wigner::cyclotomic_rings
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: quantum_import_finite_maps::page_wootters_tsirelson_wigner::cyclotomic_rings
+  file: crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/page_wootters_tsirelson_wigner/cyclotomic_rings.rs
+symbols:
+- QiDynMat
+- qi_dyn_zeros
+- qi_dyn_eye
+- qi_dyn_add
+- qi_dyn_sub
+- qi_dyn_scale
+- qi_dyn_mul
+- qi_dyn_dagger
+- qi_dyn_comm
+- qi_dyn_kron
+- qi_dyn_is_zero
+- qi_dyn_trace
+- qi_dyn_matvec
+- qi_dyn_inner
+- Cyclo8
+- zero
+- one
+- from_int
+- sqrt2
+- inv_sqrt2
+- is_zero
+- conj
+- add
+- sub
+- neg
+- mul
+- Z8DynMat
+- z8_zeros
+- z8_eye
+- z8_add
+owns:
+- qi_dyn_mat
+- qi_dyn_zeros
+- qi_dyn_eye
+- qi_dyn_add
+- qi_dyn_sub
+- qi_dyn_scale
+- qi_dyn_mul
+- qi_dyn_dagger
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

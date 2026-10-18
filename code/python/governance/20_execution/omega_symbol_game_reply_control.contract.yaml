@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:reply_control:v1.0.0
+title: Untrusted machine-block parsing and residual declaration checks.  This preserves
+  the swarm-facing Python contract, wh...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/reply_control.rs
+module: reply_control
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: reply_control
+  file: crates_rs/omega_symbol_game/src/reply_control.rs
+symbols:
+- ReplyControlRequest
+- ResidualDeclaration
+- MachineFields
+- parse_machine_block
+- validate_reply_residual
+owns:
+- reply_control_request
+- residual_declaration
+- machine_fields
+- parse_machine_block
+- validate_reply_residual
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

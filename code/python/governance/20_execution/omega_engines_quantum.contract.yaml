@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:quantum:v1.0.0
+title: 'Quantum engine surfaces under `omega_engines`.  Authority fence: residual-density,
+  GOMC, and Majorana GF(2) modules i...'
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/quantum/mod.rs
+module: quantum
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: quantum
+  file: crates_rs/omega_engines/src/quantum/mod.rs
+symbols: []
+owns:
+- quantum
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:discrete_morse_function:v1.0.0
+title: 'Discrete Morse function: cell pairing + critical cells.  AuthorityEffect:
+  None. Best-effort shell for computational t...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/discrete_morse_function.rs
+module: discrete_morse_function
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: discrete_morse_function
+  file: crates_rs/omega_homology/src/discrete_morse_function.rs
+symbols:
+- DiscreteMorseFunction
+- new
+- with_note
+- validate_shell
+owns:
+- discrete_morse_function
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

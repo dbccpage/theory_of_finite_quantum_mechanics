@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_local_green_global_red_lggr:verified_continuation_context_v2_refusal_store:v1.0.0
+title: '`AppendLogRefusalStore` — the third real v2 verifier.  # The defect this closes  In
+  v1, prior refusals were a **calle...'
+kind: rust_file_contract
+status: active
+crate: omega_local_green_global_red_lggr
+file: crates_rs/omega_local_green_global_red_lggr/src/verified_continuation_context_v2_refusal_store.rs
+module: verified_continuation_context_v2_refusal_store
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_local_green_global_red_lggr
+  module: verified_continuation_context_v2_refusal_store
+  file: crates_rs/omega_local_green_global_red_lggr/src/verified_continuation_context_v2_refusal_store.rs
+symbols:
+- RefusalStoreError
+- RefusalStorePin
+- record_count
+- head_sha256
+- AppendLogRefusalStore
+- open
+- open_pinned
+- record
+- pin
+- path
+owns:
+- refusal_store_error
+- refusal_store_pin
+- record_count
+- head_sha256
+- append_log_refusal_store
+- open
+- open_pinned
+- record
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

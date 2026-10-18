@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_sheaf_theory:cech:v1.0.0
+title: 'Čech cochain complex and Čech cohomology H^p(U, F) (SH-16, SH-17, SH-18, SH-24).  AuthorityEffect:
+  None.'
+kind: rust_file_contract
+status: active
+crate: omega_sheaf_theory
+file: crates_rs/omega_sheaf_theory/src/cech.rs
+module: cech
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_sheaf_theory
+  module: cech
+  file: crates_rs/omega_sheaf_theory/src/cech.rs
+symbols:
+- CechCochain
+- new
+- get
+- is_zero
+- cech_coboundary_rational
+- compute_cech_h0
+- CechH1Result
+- compute_cech_h1_obstruction
+- check_h1_vanishing_on_intersections
+owns:
+- cech_cochain
+- new
+- get
+- is_zero
+- cech_coboundary_rational
+- compute_cech_h0
+- cech_h1_result
+- compute_cech_h1_obstruction
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

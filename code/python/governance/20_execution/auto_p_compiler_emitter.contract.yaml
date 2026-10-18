@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_emitter:v1.0.0
+title: '--- yaml title: catkit_emitter file_name: emitter.rs file_location: omega_core/src/compiler/emitter.rs
+  status: Diamon...'
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/emitter.rs
+module: compiler::emitter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::emitter
+  file: crates_rs/auto_p/src/compiler/emitter.rs
+symbols:
+- CatkitEmitter
+- new
+- emit_module
+- generate_catkit
+owns:
+- catkit_emitter
+- new
+- emit_module
+- generate_catkit
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

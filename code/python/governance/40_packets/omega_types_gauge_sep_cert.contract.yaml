@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:gauge_sep_cert:v1.0.0
+title: Gauge Sep Cert Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/gauge_sep_cert.rs
+module: gauge_sep_cert
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: gauge_sep_cert
+  file: crates_rs/omega_types/src/gauge_sep_cert.rs
+symbols:
+- GaugeClassificationMode
+- GaugeSepCertError
+- GaugeSepCert
+- new
+- carrier_ref
+- gauge_identifier
+- nonnegativity_witness_ref
+- zero_witness_ref
+- lower_bound_witness_ref
+- closedness_witness_ref
+- replay_ref
+- classification_mode
+- can_classify_exact_authority
+owns:
+- gauge_classification_mode
+- gauge_sep_cert_error
+- gauge_sep_cert
+- new
+- carrier_ref
+- gauge_identifier
+- nonnegativity_witness_ref
+- zero_witness_ref
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

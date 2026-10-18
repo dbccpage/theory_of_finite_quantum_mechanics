@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:sums_of_squares:v1.0.0
+title: Constructive two-square norm certificates from complete prime factorisation.
+  Arbitrary-precision inputs have caller b...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/sums_of_squares.rs
+module: sums_of_squares
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: sums_of_squares
+  file: crates_rs/omega_number_theory/src/sums_of_squares.rs
+symbols:
+- TwoSquaresError
+- two_squares
+owns:
+- two_squares_error
+- two_squares
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

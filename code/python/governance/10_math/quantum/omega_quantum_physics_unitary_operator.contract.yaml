@@ -1,0 +1,57 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:unitary_operator:v1.0.0
+title: Unitary quantum operator (U† U = I) for `omega_quantum_physics`.  Grounded
+  in the mathematical foundational types of ...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/unitary_operator.rs
+module: unitary_operator
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: unitary_operator
+  file: crates_rs/omega_quantum_physics/src/unitary_operator.rs
+symbols:
+- UnitaryError
+- UnitaryOperator
+- new
+- try_new
+- identity
+- hadamard
+- pauli_x
+- pauli_y
+- pauli_z
+- phase_s
+- t_gate
+- cnot
+- unitarity_defect
+- validate
+- evolve_state
+- evolve_density_matrix
+- compose
+- degree
+- authority_fence
+- ExactUnitary
+- ExactUnitaryError
+- matrix
+- pauli
+- tensor
+- inverse
+- apply
+owns:
+- unitary_error
+- unitary_operator
+- new
+- try_new
+- identity
+- hadamard
+- pauli_x
+- pauli_y
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

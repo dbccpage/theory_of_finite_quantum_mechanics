@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:u1_gauge_triviality:v1.0.0
+title: Deciding whether a declared U(1) connection is pure gauge.  A connection `A`
+  on a [`FiniteCochainPacket`] is gauge-tr...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
+module: u1_gauge_triviality
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: u1_gauge_triviality
+  file: crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
+symbols:
+- HolonomyWitness
+- GaugeTrivialityError
+- trivializing_gauge
+owns:
+- holonomy_witness
+- gauge_triviality_error
+- trivializing_gauge
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

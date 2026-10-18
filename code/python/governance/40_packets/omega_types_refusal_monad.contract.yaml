@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:refusal_monad:v1.0.0
+title: 'The refusal monad `M(Y) = Y + F` (AUTH-002 primitive).  The endofunctor `T_R:
+  X ↦ X + R` (with `R` = refusal) equippe...'
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/refusal_monad.rs
+module: refusal_monad
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: refusal_monad
+  file: crates_rs/omega_types/src/refusal_monad.rs
+symbols:
+- Refusable
+- unit
+- bind
+- map
+- is_refused
+- value
+- multiply
+owns:
+- refusable
+- unit
+- bind
+- map
+- is_refused
+- value
+- multiply
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

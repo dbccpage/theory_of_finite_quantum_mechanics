@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:q_continuum:v1.0.0
+title: Minimal Q-continuum data kernel.  This module is a proposal/probe boundary.
+  It records speculative Q-layer material a...
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/q_continuum.rs
+module: q_continuum
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: q_continuum
+  file: crates_rs/omega_types/src/q_continuum.rs
+symbols:
+- QInputKind
+- ProbeKind
+- ObstructionKind
+- AuthorityStrength
+- TerminalStatus
+- is_support_status
+- is_terminal_support
+- is_terminal
+- AuthorityScope
+- new
+- with_constraint
+- with_exclusion
+- contains
+- applies_to_domain
+- QIdea
+- with_tag
+- QClaim
+- apply_descent_result
+- QAnalogy
+- QModel
+- QAuthorityCandidate
+- QProbeRequest
+- QProbe
+- FiniteProjection
+- DescentObligation
+- Witness
+- Residual
+- with_next_probe_hint
+- DescentResult
+- supported
+owns:
+- q_input_kind
+- probe_kind
+- obstruction_kind
+- authority_strength
+- terminal_status
+- is_support_status
+- is_terminal_support
+- is_terminal
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

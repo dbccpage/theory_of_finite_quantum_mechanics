@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:trace_distance_quotient:v1.0.0
+title: The trace-distance quotient obstruction of Hermitian trace-zero edge defects
+  on a finite directed graph, certified ex...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs
+module: trace_distance_quotient
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: trace_distance_quotient
+  file: crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs
+symbols:
+- TraceQuotientError
+- RepairSpace
+- PrimalCertificate
+- DualCertificate
+- TraceDefectPacket
+- new
+- graph
+- dim
+- defects
+- residuals
+- divergence
+- upper_bound
+- lower_bound
+- certify
+- diagonal_certificates
+- cycle_certificates
+owns:
+- trace_quotient_error
+- repair_space
+- primal_certificate
+- dual_certificate
+- trace_defect_packet
+- new
+- graph
+- dim
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

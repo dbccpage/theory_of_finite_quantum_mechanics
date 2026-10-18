@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:obstruction:v1.0.0
+title: Exact 1-cochain obstruction and simplicial L1 quotient solver via Sparse Revised
+  Simplex.  Replaces ad-hoc BFS spanni...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/obstruction.rs
+module: obstruction
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: obstruction
+  file: crates_rs/omega_wdp/src/obstruction.rs
+symbols:
+- Cochain0
+- get
+- Cochain1
+- l1_norm
+- DualWitnessCertificate
+- CertificateVerificationError
+- verify
+- solve_exact_potential_weighted
+- solve_exact_potential
+owns:
+- cochain0
+- get
+- cochain1
+- l1_norm
+- dual_witness_certificate
+- certificate_verification_error
+- verify
+- solve_exact_potential_weighted
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

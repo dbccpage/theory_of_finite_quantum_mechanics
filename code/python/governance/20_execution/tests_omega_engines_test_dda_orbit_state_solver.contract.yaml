@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_engines_test_dda_orbit_state_solver:v1.0.0
+title: Integration & Verification suite for the DDA Orbit State Solver & MPS Equational
+  Engine.  Grounded in Rattacaso et al...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_engines/test_dda_orbit_state_solver.rs
+module: omega_engines::test_dda_orbit_state_solver
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_engines::test_dda_orbit_state_solver
+  file: crates_rs/tests/omega_engines/test_dda_orbit_state_solver.rs
+symbols: []
+owns:
+- omega_engines_test_dda_orbit_state_solver
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:upper_triangular_pairs:v1.0.0
+title: Upper Triangular Pairs Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/upper_triangular_pairs.rs
+module: upper_triangular_pairs
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: upper_triangular_pairs
+  file: crates_rs/omega_homology/src/upper_triangular_pairs.rs
+symbols:
+- UpperTriangularPairs
+- build
+- add_edges_for_new_vertex
+owns:
+- upper_triangular_pairs
+- build
+- add_edges_for_new_vertex
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:published_series_agreement:v1.0.0
+title: Imported agreement schema with unresolved manuscript custody in CODA. Tests
+  of supplied observation flags are conditi...
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/published_series_agreement.rs
+module: published_series_agreement
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: published_series_agreement
+  file: crates_rs/omega_state/src/published_series_agreement.rs
+symbols:
+- PaperAgreementIdV1
+- PaperAgreementVerdictV1
+- PaperAgreementRowV1
+- PublishedSeriesAgreementPacketV1
+- PublishedSeriesAgreementObservationV1
+- PublishedSeriesAgreementVerificationV1
+- PublishedSeriesAgreementError
+- validate
+- validate_published_series_matrix_v1
+- published_series_matrix_sha256_v1
+- published_series_packet_sha256_v1
+- verify_published_series_agreement_v1
+owns:
+- paper_agreement_id_v1
+- paper_agreement_verdict_v1
+- paper_agreement_row_v1
+- published_series_agreement_packet_v1
+- published_series_agreement_observation_v1
+- published_series_agreement_verification_v1
+- published_series_agreement_error
+- validate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:exact_pfaffian:v1.0.0
+title: Exact Pfaffians of alternating matrices by paired Gaussian elimination.  Simultaneous
+  row/column permutations change ...
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/exact_pfaffian.rs
+module: exact_pfaffian
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: exact_pfaffian
+  file: crates_rs/omega_linear_algebra/src/exact_pfaffian.rs
+symbols:
+- PfaffianError
+- pfaffian
+owns:
+- pfaffian_error
+- pfaffian
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

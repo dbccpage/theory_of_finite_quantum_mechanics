@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:observable:v1.0.0
+title: 'Observables: Hermitian operators `A = A*` with expectation values `<psi|A|psi>`
+  and `Tr(A rho)`, as an exact operator...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/observable.rs
+module: observable
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: observable
+  file: crates_rs/omega_quantum_physics/src/observable.rs
+symbols:
+- ExactObservableError
+- ExactObservable
+- UncertaintyRelation
+- holds
+- is_saturated
+- try_new
+- identity
+- pauli
+- as_operator
+- dim
+- expectation_ray
+- expectation_state
+- square
+- variance_ray
+- variance_state
+- commutator
+- anticommutator
+- commutes_with
+- uncertainty_relation
+- spectrum
+- spectral_resolution
+- ObservableError
+- Observable
+- pauli_x
+- pauli_y
+- pauli_z
+- hermitian_defect
+- expectation_value_state
+- expectation_value_density
+- authority_fence
+owns:
+- exact_observable_error
+- exact_observable
+- uncertainty_relation
+- holds
+- is_saturated
+- try_new
+- identity
+- pauli
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

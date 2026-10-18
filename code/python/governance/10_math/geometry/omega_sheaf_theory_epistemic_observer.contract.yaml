@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_sheaf_theory:epistemic_observer:v1.0.0
+title: Epistemic observer kernel for the companion note `WDP-DOC-EPIS-NOGO-001`.  This
+  module is a thin terminalising layer ...
+kind: rust_file_contract
+status: active
+crate: omega_sheaf_theory
+file: crates_rs/omega_sheaf_theory/src/epistemic_observer.rs
+module: epistemic_observer
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_sheaf_theory
+  module: epistemic_observer
+  file: crates_rs/omega_sheaf_theory/src/epistemic_observer.rs
+symbols:
+- rational_string
+- parse_rational
+- TableRow
+- EpistemicError
+- model_from_rows
+- ParityCut
+- ParityStatus
+- parity_analysis
+- nerve_h1_dimension
+- LocalSection
+- GlobalSection
+- ContextualObstruction
+- lp_dual_witness
+- nerve_h1_dim
+- kind
+- ContextualityVerdict
+- into_result
+- to_json
+- verify_joint
+- evaluate_epistemic_contextuality
+- BoundaryProjection
+- private_fiber_dim
+- Terminal
+- LedgerEntry
+- ObserverError
+- EpistemicObserver
+- new
+- authority_effect
+- carries
+- terminalize
+owns:
+- rational_string
+- parse_rational
+- table_row
+- epistemic_error
+- model_from_rows
+- parity_cut
+- parity_status
+- parity_analysis
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

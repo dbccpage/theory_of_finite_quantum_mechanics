@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:ddc_episode:v1.0.0
+title: Obstruction Episode Segmentation (U02).  An ObstructionEpisodeV1 represents
+  a sequence of DDC transitions beginning w...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/ddc/episode.rs
+module: ddc::episode
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: ddc::episode
+  file: crates_rs/omega_wdp/src/ddc/episode.rs
+symbols:
+- EpisodeStatus
+- ObstructionEpisodeV1
+- EpisodeSegmenter
+- new
+- process_step
+- completed_episodes
+- active_episode
+owns:
+- episode_status
+- obstruction_episode_v1
+- episode_segmenter
+- new
+- process_step
+- completed_episodes
+- active_episode
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

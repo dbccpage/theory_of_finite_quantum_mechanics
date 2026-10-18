@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_d10_wall_status:v1.0.0
+title: Corrected d=10 canonical-triple wall status.  This records the reproducible
+  d=10 wall-value/stabilizer evidence witho...
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/d10_wall_status.rs
+module: omega_native::d10_wall_status
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::d10_wall_status
+  file: crates_rs/omega_mub/src/omega_native/d10_wall_status.rs
+symbols:
+- D10WallValueStatus
+- D10StabilizerStatus
+- D10ClosedFormStatus
+- D10WallAuthorityStatus
+- D10RecordedHighPrecisionEvidence
+- D10WallStatusReport
+- current_d10_wall_status
+- d10_wall_status_from
+owns:
+- d10_wall_value_status
+- d10_stabilizer_status
+- d10_closed_form_status
+- d10_wall_authority_status
+- d10_recorded_high_precision_evidence
+- d10_wall_status_report
+- current_d10_wall_status
+- d10_wall_status_from
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

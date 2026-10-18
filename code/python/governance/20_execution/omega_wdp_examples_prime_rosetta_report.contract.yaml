@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:examples_prime_rosetta_report:v1.0.0
+title: Print the Rosetta cross-domain letter-tape report.  `rosetta.rs` computes finite
+  statistics over several domain adapt...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/examples/prime_rosetta_report.rs
+module: examples::prime_rosetta_report
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: examples::prime_rosetta_report
+  file: crates_rs/omega_wdp/src/examples/prime_rosetta_report.rs
+symbols: []
+owns:
+- examples_prime_rosetta_report
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

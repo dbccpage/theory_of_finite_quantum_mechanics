@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_sheaf_theory:structure_sheaf:v1.0.0
+title: 'Sheaf of rings and structure sheaf O_X (SH-15, Derived Scheme Contract Foundation).  AuthorityEffect:
+  None.'
+kind: rust_file_contract
+status: active
+crate: omega_sheaf_theory
+file: crates_rs/omega_sheaf_theory/src/structure_sheaf.rs
+module: structure_sheaf
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_sheaf_theory
+  module: structure_sheaf
+  file: crates_rs/omega_sheaf_theory/src/structure_sheaf.rs
+symbols:
+- StructureSheaf
+- new
+- sections
+- section_rank
+owns:
+- structure_sheaf
+- new
+- sections
+- section_rank
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

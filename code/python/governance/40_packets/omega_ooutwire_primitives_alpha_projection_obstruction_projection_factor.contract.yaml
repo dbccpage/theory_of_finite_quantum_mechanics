@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:alpha_projection_obstruction_projection_factor:v1.0.0
+title: §3.4 and Proposition 3.B — projection is not authorization.  The counterexample
+  `T_t = [[1, 0], [a(1 − e^{−t}), e^{−t...
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/projection_factor.rs
+module: alpha_projection_obstruction::projection_factor
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: alpha_projection_obstruction::projection_factor
+  file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/projection_factor.rs
+symbols:
+- ResidualTriple
+- EngineSlots
+- Prop3BWitness
+- product_retract
+- paper_semigroup
+- prop3b_witness
+- residual_triple
+- slots_from_residual
+- collapse_tally_to_auth
+- ExperimentResult
+- run_experiment
+owns:
+- residual_triple
+- engine_slots
+- prop3_b_witness
+- product_retract
+- paper_semigroup
+- prop3b_witness
+- slots_from_residual
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

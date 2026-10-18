@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:discrete_spacetime:v1.0.0
+title: Finite discrete spacetime as a simplicial complex.  Combinatorial carrier is
+  [`omega_homology::simplicial::Simplicial...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/discrete_spacetime.rs
+module: discrete_spacetime
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: discrete_spacetime
+  file: crates_rs/omega_general_relativity/src/discrete_spacetime.rs
+symbols:
+- DiscreteSpacetime
+- new
+- try_from_maximal
+- standard_simplex
+- event_count_proxy
+- degree
+- count
+- euler_characteristic
+- contains
+- authority_fence
+owns:
+- discrete_spacetime
+- new
+- try_from_maximal
+- standard_simplex
+- event_count_proxy
+- degree
+- count
+- euler_characteristic
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_search:search_mcts_curvature:v1.0.0
+title: Topos-Certified Curvature-Guided MCTS  Maps curvature measurements into a structural
+  bounding presheaf.
+kind: rust_file_contract
+status: active
+crate: omega_search
+file: crates_rs/omega_search/src/search_mcts_curvature.rs
+module: search_mcts_curvature
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_search
+  module: search_mcts_curvature
+  file: crates_rs/omega_search/src/search_mcts_curvature.rs
+symbols:
+- CurvatureMctsConfig
+- ToposCurvatureNode
+- new
+- bounded_ucb1
+- ToposCurvatureState
+- ToposCurvatureSearch
+- expand
+owns:
+- curvature_mcts_config
+- topos_curvature_node
+- new
+- bounded_ucb1
+- topos_curvature_state
+- topos_curvature_search
+- expand
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

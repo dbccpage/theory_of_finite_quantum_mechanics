@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:errors:v1.0.0
+title: Error types for homological algebra operations.
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/errors.rs
+module: errors
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: errors
+  file: crates_rs/omega_homology/src/errors.rs
+symbols:
+- HomologicalError
+owns:
+- homological_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:fda:v1.0.0
+title: 'Finite Descent Authority (FDA) halt guard derivation.  Grounded in CODA-FDA
+  (Definition FDA-D3): Seven halt guards g1...'
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/fda.rs
+module: fda
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: fda
+  file: crates_rs/omega_types/src/fda.rs
+symbols:
+- Guards
+- GuardEvidence
+- new_valid
+- derive_guards
+owns:
+- guards
+- guard_evidence
+- new_valid
+- derive_guards
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

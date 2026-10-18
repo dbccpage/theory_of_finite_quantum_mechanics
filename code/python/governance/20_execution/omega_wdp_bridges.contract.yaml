@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:bridges:v1.0.0
+title: Foundational mathematical bridges connecting the Witnessed Difference Programme
+  to Homotopy Type Theory (HoTT), Highe...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/bridges.rs
+module: bridges
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: bridges
+  file: crates_rs/omega_wdp/src/bridges.rs
+symbols:
+- IdentityPathWitness
+- refl
+- path
+- to_hott_path
+- from_hott_path
+- PathHomotopyStatus
+- Homotopy2CellObstruction
+- evaluate_path_homotopy
+- HornLambda21
+- KanHornFillerWitness
+- verify_kan_horn_filling
+- Cabello18RayWitness
+- verify_cabello_18ray_parity
+- verify_sorkin_i3_cancellation
+- AlgebraicNonFactorableWitness
+- bell_basis
+owns:
+- identity_path_witness
+- refl
+- path
+- to_hott_path
+- from_hott_path
+- path_homotopy_status
+- homotopy2_cell_obstruction
+- evaluate_path_homotopy
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

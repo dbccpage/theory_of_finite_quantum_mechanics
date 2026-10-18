@@ -1,0 +1,54 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:finite_directed_graph:v1.0.0
+title: Finite directed graph carrier.  This module provides a general finite directed
+  graph with named nodes, checked constr...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/finite_directed_graph.rs
+module: finite_directed_graph
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: finite_directed_graph
+  file: crates_rs/omega_homology/src/finite_directed_graph.rs
+symbols:
+- DirectedGraphError
+- NamedEdgeResolutionError
+- TheoremProvenance
+- PosetWitness
+- new
+- FiniteDirectedGraph
+- from_pairs
+- validate_poset
+- num_nodes
+- node_count
+- num_edges
+- edge_count
+- nodes
+- node_index
+- edges
+- covering_edges
+- DirectedGraphBuilder
+- build
+- from_named
+- from_anonymous
+- chain
+- ring
+- cycle_graph
+owns:
+- directed_graph_error
+- named_edge_resolution_error
+- theorem_provenance
+- poset_witness
+- new
+- finite_directed_graph
+- from_pairs
+- validate_poset
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

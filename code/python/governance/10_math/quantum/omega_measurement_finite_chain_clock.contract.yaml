@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_measurement:finite_chain_clock:v1.0.0
+title: Conditional adequacy of exact finite calibrated chains.  The occurrence chain,
+  coupling, reference durations, positiv...
+kind: rust_file_contract
+status: active
+crate: omega_measurement
+file: crates_rs/omega_measurement/src/finite_chain_clock.rs
+module: finite_chain_clock
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_measurement
+  module: finite_chain_clock
+  file: crates_rs/omega_measurement/src/finite_chain_clock.rs
+symbols:
+- ChainClockError
+- ChainClock
+- ClockIntervalBound
+- new
+- exact_from_durations
+- durations
+- readings
+- calibration
+- error_budgets
+- edge_count
+- interval_bound
+- verify_interval_bound
+- all_interval_bounds
+- coarsen
+- refines
+owns:
+- chain_clock_error
+- chain_clock
+- clock_interval_bound
+- new
+- exact_from_durations
+- durations
+- readings
+- calibration
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

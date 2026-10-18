@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:task_admission:v1.0.0
+title: Bounded S03-001 mixed-carrier packet admission and host lease receipts.  Historical
+  source paths identify frozen Anom...
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/task_admission.rs
+module: task_admission
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: task_admission
+  file: crates_rs/omega_state/src/task_admission.rs
+symbols:
+- FrozenTaskArtifactV1
+- TaskArtifactKindV1
+- TaskArtifactRoleV1
+- TaskOperationV1
+- TaskAdmissionPermissionV1
+- TaskFreezeStatusV1
+- LegacyReadPolicyV1
+- OraclePolicyV1
+- CarrierChangePolicyV1
+- TaskLeaseModeV1
+- TaskAdmissionStatusV1
+- TaskAdmissionSurvivorV1
+- TaskArtifactV1
+- ResolvedTaskArtifactV1
+- TaskPacketReferenceV1
+- LegacyPacketReferenceV1
+- TaskAdmissionBudgetsV1
+- TaskAdmissionPolicyV1
+- TaskSuccessorPolicyV1
+- TaskLeaseRequestV1
+- FrozenTaskObserverV1
+- MixedCarrierTaskPacketV1
+- TaskAdmissionEnvelopeV1
+- CompiledTaskPacketV1
+- ActiveTaskLeaseV1
+- TaskAdmissionReceiptV1
+- HostLeaseRegistryV1
+- expected_source_manifest_v1
+- resolve_task_artifact_v1
+- artifact_id
+owns:
+- frozen_task_artifact_v1
+- task_artifact_kind_v1
+- task_artifact_role_v1
+- task_operation_v1
+- task_admission_permission_v1
+- task_freeze_status_v1
+- legacy_read_policy_v1
+- oracle_policy_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

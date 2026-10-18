@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:nomos_urn_golden_parity:v1.0.0
+title: Rust half of the shared Nomos URN conformance corpus.  This grammar has two
+  implementations -- `nomos_urn.py` and `no...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/nomos_urn_golden_parity.rs
+module: nomos_urn_golden_parity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: nomos_urn_golden_parity
+  file: crates_rs/omega_contracts/src/nomos_urn_golden_parity.rs
+symbols: []
+owns:
+- nomos_urn_golden_parity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

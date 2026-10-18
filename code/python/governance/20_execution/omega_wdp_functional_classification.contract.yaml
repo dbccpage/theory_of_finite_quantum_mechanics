@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:functional_classification:v1.0.0
+title: Named WDP adapters for sovereign finite component classifications.  CH03 uses
+  the existing property-vector meanings, ...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/functional_classification.rs
+module: functional_classification
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: functional_classification
+  file: crates_rs/omega_wdp/src/functional_classification.rs
+symbols:
+- RetentionClassification
+- classify_retention_packet
+- construct_retention_witness
+- classify_functional_maps
+- FunctionalClassification
+- classify_existing_functional_packet
+owns:
+- retention_classification
+- classify_retention_packet
+- construct_retention_witness
+- classify_functional_maps
+- functional_classification
+- classify_existing_functional_packet
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_atlas_reconciliation:observers_code:v1.0.0
+title: 'code-reality observer: committed source must correspond to a built, passing
+  artifact.  Two canaries: * tests that are...'
+kind: rust_file_contract
+status: active
+crate: omega_atlas_reconciliation
+file: crates_rs/omega_atlas_reconciliation/src/observers/code.rs
+module: observers::code
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_atlas_reconciliation
+  module: observers::code
+  file: crates_rs/omega_atlas_reconciliation/src/observers/code.rs
+symbols:
+- check
+owns:
+- check
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

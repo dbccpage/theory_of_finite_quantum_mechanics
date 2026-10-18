@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:clique_complex:v1.0.0
+title: 'Flag / clique complex from an undirected graph.  AuthorityEffect: None. Best-effort
+  shell for computational topology....'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/clique_complex.rs
+module: clique_complex
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: clique_complex
+  file: crates_rs/omega_homology/src/clique_complex.rs
+symbols:
+- CliqueComplex
+- new
+- with_note
+- validate_shell
+owns:
+- clique_complex
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

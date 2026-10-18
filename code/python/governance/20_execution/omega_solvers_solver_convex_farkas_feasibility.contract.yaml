@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:solver_convex_farkas_feasibility:v1.0.0
+title: Exact rational feasibility of a finite inequality system `M v <= b`.  Either
+  a rational point satisfies every row, or...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/solver_convex_farkas_feasibility.rs
+module: solver_convex_farkas_feasibility
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: solver_convex_farkas_feasibility
+  file: crates_rs/omega_solvers/src/solver_convex_farkas_feasibility.rs
+symbols:
+- FeasibilityError
+- FarkasDefect
+- FeasibilityVerdict
+- LinearInequalitySystem
+- try_new
+- empty
+- push_le
+- push_eq
+- columns
+- rows
+- rhs
+- is_satisfied_by
+- verify_farkas
+- decide
+owns:
+- feasibility_error
+- farkas_defect
+- feasibility_verdict
+- linear_inequality_system
+- try_new
+- empty
+- push_le
+- push_eq
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

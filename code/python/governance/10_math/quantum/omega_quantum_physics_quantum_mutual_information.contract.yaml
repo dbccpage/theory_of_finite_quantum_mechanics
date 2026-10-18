@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:quantum_mutual_information:v1.0.0
+title: 'Quantum mutual information and conditional entropy for `omega_quantum_physics`.  Evaluates:
+  - Quantum Mutual Informat...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/quantum_mutual_information.rs
+module: quantum_mutual_information
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: quantum_mutual_information
+  file: crates_rs/omega_quantum_physics/src/quantum_mutual_information.rs
+symbols:
+- MutualInformationError
+- QuantumMutualInformation
+- new
+- mutual_information
+- mutual_information_bits
+- conditional_entropy
+- coherent_information
+- mutual_information_matrix
+- conditional_entropy_matrix
+- exact
+- conditional_exact
+- conditional_mutual_exact
+- araki_lieb_gaps
+- enclosure
+- degree
+- authority_fence
+owns:
+- mutual_information_error
+- quantum_mutual_information
+- new
+- mutual_information
+- mutual_information_bits
+- conditional_entropy
+- coherent_information
+- mutual_information_matrix
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

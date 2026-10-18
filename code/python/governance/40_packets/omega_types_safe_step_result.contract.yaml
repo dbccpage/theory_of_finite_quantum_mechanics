@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:safe_step_result:v1.0.0
+title: Safe Step Result Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/safe_step_result.rs
+module: safe_step_result
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: safe_step_result
+  file: crates_rs/omega_types/src/safe_step_result.rs
+symbols:
+- SafeStepResult
+owns:
+- safe_step_result
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

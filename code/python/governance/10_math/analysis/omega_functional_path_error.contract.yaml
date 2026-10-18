@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:path_error:v1.0.0
+title: Source-bound telescoping error for two finite, endpoint-compatible paths. Prefix/suffix
+  gains are measured; an unweig...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/path_error.rs
+module: path_error
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: path_error
+  file: crates_rs/omega_functional/src/path_error.rs
+symbols:
+- PathErrorRefusal
+- PathErrorBound
+- first
+- second
+- residual
+- terms
+- bound
+- actual_norm
+- certify_path_error
+owns:
+- path_error_refusal
+- path_error_bound
+- first
+- second
+- residual
+- terms
+- bound
+- actual_norm
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

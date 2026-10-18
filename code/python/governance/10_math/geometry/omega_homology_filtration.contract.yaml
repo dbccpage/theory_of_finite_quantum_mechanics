@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:filtration:v1.0.0
+title: 'Nested filtered complex: parameter-indexed simplices with filtration value.  AuthorityEffect:
+  None. Shell / best-effo...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/filtration.rs
+module: filtration
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: filtration
+  file: crates_rs/omega_homology/src/filtration.rs
+symbols:
+- FilteredSimplex
+- Filtration
+- new
+- len
+- is_empty
+- values_nondecreasing
+- value
+owns:
+- filtered_simplex
+- filtration
+- new
+- len
+- is_empty
+- values_nondecreasing
+- value
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:cochain_realization:v1.0.0
+title: Exact finite admission from active presentation demands to a cochain window.  Rust
+  face of `omega_engine/kernel/cocha...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/cochain_realization.rs
+module: cochain_realization
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: cochain_realization
+  file: crates_rs/omega_homology/src/cochain_realization.rs
+symbols:
+- IntegerVector
+- IntegerMatrix
+- CochainRealizationError
+- ClosureStatus
+- canonical_sha256
+- mat_vec
+- mat_mul
+- CochainWindowV1
+- new
+- to_canonical
+- canonical_id
+- CochainRealizationV1
+- closure
+- closure_of
+- closure_status
+- repaired
+- exact_repair_witness
+owns:
+- integer_vector
+- integer_matrix
+- cochain_realization_error
+- closure_status
+- canonical_sha256
+- mat_vec
+- mat_mul
+- cochain_window_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

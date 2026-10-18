@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_contracts_v1_poison:v1.0.0
+title: Task 14 — poison fixtures must fail closed (parse rejection or validate_v1
+  finding).
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_contracts/v1_poison.rs
+module: omega_contracts::v1_poison
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_contracts::v1_poison
+  file: crates_rs/tests/omega_contracts/v1_poison.rs
+symbols: []
+owns:
+- omega_contracts_v1_poison
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

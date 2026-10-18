@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_atlas_reconciliation_two_axis_honesty:v1.0.0
+title: Two Axis Honesty Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_atlas_reconciliation/two_axis_honesty.rs
+module: omega_atlas_reconciliation::two_axis_honesty
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_atlas_reconciliation::two_axis_honesty
+  file: crates_rs/tests/omega_atlas_reconciliation/two_axis_honesty.rs
+symbols: []
+owns:
+- omega_atlas_reconciliation_two_axis_honesty
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

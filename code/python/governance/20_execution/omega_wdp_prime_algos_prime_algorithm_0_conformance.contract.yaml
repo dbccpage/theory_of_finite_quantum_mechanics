@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:prime_algos_prime_algorithm_0_conformance:v1.0.0
+title: Letter-law conformance for Prime Algorithm 0 receipts.  A receipt records a
+  *letter tape* and a terminal. The DDA alp...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0_conformance.rs
+module: prime_algos::prime_algorithm_0_conformance
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: prime_algos::prime_algorithm_0_conformance
+  file: crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0_conformance.rs
+symbols:
+- ReceiptViolation
+- ConformanceVerdict
+- conforms
+- no_decidable_violation
+- violations
+- unchecked_laws
+- ReceiptConformance
+- check_receipt
+- check_builtin_roster
+owns:
+- receipt_violation
+- conformance_verdict
+- conforms
+- no_decidable_violation
+- violations
+- unchecked_laws
+- receipt_conformance
+- check_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

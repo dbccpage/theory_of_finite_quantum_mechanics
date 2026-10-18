@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:stage_canonical:v1.0.0
+title: Canonical identities for the pure Arena domain. No authority is granted.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/stage/canonical.rs
+module: stage::canonical
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: stage::canonical
+  file: crates_rs/omega_woland/src/stage/canonical.rs
+symbols:
+- python_whitespace
+- text
+- identifier
+- digest
+- integer
+- StringKind
+- strings
+- semantic_id
+- bind_id
+- envelope
+owns:
+- python_whitespace
+- text
+- identifier
+- digest
+- integer
+- string_kind
+- strings
+- semantic_id
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

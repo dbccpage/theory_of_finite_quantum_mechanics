@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:build:v1.0.0
+title: Build Module
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/build.rs
+module: build
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: build
+  file: crates_rs/omega_symbol_game/build.rs
+symbols: []
+owns:
+- build
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

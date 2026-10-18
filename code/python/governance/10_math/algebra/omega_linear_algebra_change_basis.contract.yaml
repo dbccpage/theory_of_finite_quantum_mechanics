@@ -1,0 +1,52 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:change_basis:v1.0.0
+title: Change Basis Module
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/change_basis.rs
+module: change_basis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: change_basis
+  file: crates_rs/omega_linear_algebra/src/change_basis.rs
+symbols:
+- MatrixInverseWitness
+- new_unchecked
+- provenance
+- MatrixInverseCertificate
+- p_shape
+- p_inv_shape
+- witness
+- BasisIsomorphism
+- source_basis
+- target_basis
+- matrix
+- inverse_matrix
+- inverse_certificate
+- conjugate
+- apply_to_vector
+- apply_inverse_to_vector
+- CheckedBasisError
+- checked_conjugate
+- checked_apply_to_vector
+- checked_apply_inverse_to_vector
+- new_checked_arithmetic
+- new_checked
+owns:
+- matrix_inverse_witness
+- new_unchecked
+- provenance
+- matrix_inverse_certificate
+- p_shape
+- p_inv_shape
+- witness
+- basis_isomorphism
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

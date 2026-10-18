@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:trace_artifact:v1.0.0
+title: 'Trace-artifact vocabulary — the shared abstraction for execution traces.  These
+  traits are **law**: abstract contract...'
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/trace_artifact.rs
+module: trace_artifact
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: trace_artifact
+  file: crates_rs/omega_types/src/trace_artifact.rs
+symbols:
+- TraceArtifact
+- ImmutableTrace
+- AnalysisArtifact
+- ValidationArtifact
+- DecisionArtifact
+- ActionResultArtifact
+- VoidTrace
+owns:
+- trace_artifact
+- immutable_trace
+- analysis_artifact
+- validation_artifact
+- decision_artifact
+- action_result_artifact
+- void_trace
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

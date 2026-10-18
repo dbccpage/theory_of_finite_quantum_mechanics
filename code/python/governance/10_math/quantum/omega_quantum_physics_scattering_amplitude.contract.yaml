@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:scattering_amplitude:v1.0.0
+title: Finite channel amplitudes and resolvent/Born identities at a declared energy.
+  T=(S-I)/(2i) follows the convention of ...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/scattering_amplitude.rs
+module: scattering_amplitude
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: scattering_amplitude
+  file: crates_rs/omega_quantum_physics/src/scattering_amplitude.rs
+symbols:
+- AmplitudeError
+- ScatteringAmplitude
+- from_s
+- amplitude
+- probability
+- optical_theorem_defect
+- authority_fence
+- ScatteringProblem
+- new
+- free_resolvent
+- resolvent
+- t_matrix
+- born_series
+- lippmann_schwinger_defect
+- resolvent_identity_defect
+- born_remainder
+- born_convergence_sufficient
+owns:
+- amplitude_error
+- scattering_amplitude
+- from_s
+- amplitude
+- probability
+- optical_theorem_defect
+- authority_fence
+- scattering_problem
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

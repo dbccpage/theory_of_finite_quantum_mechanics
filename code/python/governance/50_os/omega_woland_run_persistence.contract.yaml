@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:run_persistence:v1.0.0
+title: Content-addressed run custody through an injected artifact transaction port.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/run_persistence.rs
+module: run_persistence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: run_persistence
+  file: crates_rs/omega_woland/src/run_persistence.rs
+symbols:
+- novella_bytes
+- run_directory_name
+- DdaTape
+- dda_tape
+- ddc_trace_digest
+- receipt_id_from_parts
+- receipt_id_from_parts_v2
+- content_addressed_receipt_id_v2
+- receipt_id_from_parts_v3
+- content_addressed_receipt_id_v3
+- validate_uts
+- summary_core_bytes
+- content_addressed_receipt_id
+- RunArtifactPort
+- PersistenceInput
+- persist_bout_run_folder
+- persist_bout_run_folder_v2
+- persist_bout_run_folder_v3
+owns:
+- novella_bytes
+- run_directory_name
+- dda_tape
+- ddc_trace_digest
+- receipt_id_from_parts
+- receipt_id_from_parts_v2
+- content_addressed_receipt_id_v2
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

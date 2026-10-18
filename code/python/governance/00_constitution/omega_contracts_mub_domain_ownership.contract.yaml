@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:mub_domain_ownership:v1.0.0
+title: Canonical ownership ledger for the MUB application lane.  The ledger assigns
+  every load-bearing semantic surface to o...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/mub_domain_ownership.rs
+module: mub_domain_ownership
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: mub_domain_ownership
+  file: crates_rs/omega_contracts/src/mub_domain_ownership.rs
+symbols:
+- MubSemanticSurfaceV1
+- MubSemanticOwnerV1
+- MubOwnershipRoleV1
+- MubConversionClassV1
+- MubOwnershipRecordV1
+- MubConversionRecordV1
+- MubOwnershipContractError
+- validate_mub_ownership_contract_v1
+owns:
+- mub_semantic_surface_v1
+- mub_semantic_owner_v1
+- mub_ownership_role_v1
+- mub_conversion_class_v1
+- mub_ownership_record_v1
+- mub_conversion_record_v1
+- mub_ownership_contract_error
+- validate_mub_ownership_contract_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

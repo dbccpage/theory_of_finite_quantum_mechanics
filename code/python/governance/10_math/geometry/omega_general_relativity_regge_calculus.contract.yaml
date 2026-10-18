@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:regge_calculus:v1.0.0
+title: 'Finite **2D Regge calculus** on a simplicial complex.  Combinatorial complex:
+  [`omega_homology::simplicial`] (no sepa...'
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/regge_calculus.rs
+module: regge_calculus
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: regge_calculus
+  file: crates_rs/omega_general_relativity/src/regge_calculus.rs
+symbols:
+- ReggeError
+- EdgeLengthMetric
+- new
+- set
+- get
+- edge_count
+- ReggeCalculus
+- try_from_spacetime
+- try_new
+- equilateral_fan
+- angle_at
+- angle_sum_at_vertex
+- deficit_at_vertex
+- vertex_deficits
+- regge_action_2d
+- degree
+- authority_fence
+- simplex_volume
+- deficit_at_edge
+- regge_action_with_lambda
+owns:
+- regge_error
+- edge_length_metric
+- new
+- set
+- get
+- edge_count
+- regge_calculus
+- try_from_spacetime
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:quantum_quantum_geometry:v1.0.0
+title: 'Quantum geometry observables.  MUST NOT be used for: - candidate acceptance
+  - ranking - reward - search heuristics  D...'
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/quantum/quantum_geometry.rs
+module: quantum::quantum_geometry
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: quantum::quantum_geometry
+  file: crates_rs/omega_engines/src/quantum/quantum_geometry.rs
+symbols:
+- qfi_statistical_speed_observable
+- qfi_statistical_speed_observable_checked
+- bures_angle_observable
+- bures_angle_observable_checked
+owns:
+- qfi_statistical_speed_observable
+- qfi_statistical_speed_observable_checked
+- bures_angle_observable
+- bures_angle_observable_checked
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

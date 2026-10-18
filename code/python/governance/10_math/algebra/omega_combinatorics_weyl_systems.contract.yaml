@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_combinatorics:weyl_systems:v1.0.0
+title: 'Discrete Weyl-Heisenberg systems and finite phase-space symplectic geometry.  AuthorityEffect:
+  None.  Provides finite...'
+kind: rust_file_contract
+status: active
+crate: omega_combinatorics
+file: crates_rs/omega_combinatorics/src/weyl_systems.rs
+module: weyl_systems
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_combinatorics
+  module: weyl_systems
+  file: crates_rs/omega_combinatorics/src/weyl_systems.rs
+symbols:
+- WeylSystemError
+- PhasePoint
+- new
+- DiscreteWeylSystem
+- dim
+- symplectic_form
+- commutes
+- add
+- isotropic_rays
+owns:
+- weyl_system_error
+- phase_point
+- new
+- discrete_weyl_system
+- dim
+- symplectic_form
+- commutes
+- add
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:born_probabilities:v1.0.0
+title: Exact application of a declared finite squared-modulus representation rule.  This
+  computes normalized nonnegative wei...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/born_probabilities.rs
+module: born_probabilities
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: born_probabilities
+  file: crates_rs/omega_functional/src/born_probabilities.rs
+symbols:
+- ProbabilityComponent
+- BornProbabilityError
+- BornProbabilities
+- from_weights
+- from_amplitudes
+- probabilities
+owns:
+- probability_component
+- born_probability_error
+- born_probabilities
+- from_weights
+- from_amplitudes
+- probabilities
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

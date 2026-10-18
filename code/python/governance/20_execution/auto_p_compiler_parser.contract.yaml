@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_parser:v1.0.0
+title: Parser Module
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/parser.rs
+module: compiler::parser
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::parser
+  file: crates_rs/auto_p/src/compiler/parser.rs
+symbols:
+- AtpModule
+- Declaration
+- span
+- ManifoldDecl
+- MorphismDecl
+- OperatorDecl
+- SheafDecl
+- AdjunctionDecl
+- AdjointArm
+- TensorDecl
+- OrbitDecl
+- SectionDecl
+- ProofDecl
+- FunctorDecl
+- NaturalTransformationDecl
+- CategoryDecl
+- NetworkDecl
+- DeployDecl
+- OperadDecl
+- BundleDecl
+- ToposDecl
+- PresheafDecl
+- CohomologyDecl
+- TypeExpr
+- base_name
+- children
+- Equation
+- Expr
+- BinOpKind
+- ModuleDecl
+owns:
+- atp_module
+- declaration
+- span
+- manifold_decl
+- morphism_decl
+- operator_decl
+- sheaf_decl
+- adjunction_decl
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

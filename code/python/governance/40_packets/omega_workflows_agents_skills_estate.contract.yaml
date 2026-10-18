@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_workflows_agents_skills:estate:v1.0.0
+title: V3 estate identifiers, lifecycle facets, operations and source provenance.
+kind: rust_file_contract
+status: active
+crate: omega_workflows_agents_skills
+file: crates_rs/omega_workflows_agents_skills/src/estate.rs
+module: estate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_workflows_agents_skills
+  module: estate
+  file: crates_rs/omega_workflows_agents_skills/src/estate.rs
+symbols:
+- new
+- value
+- ContentDigest
+- sha256
+- empty_sha256
+- canonical
+- serialize
+- deserialize
+- SourceByteSpan
+- byte_length
+- SkillLifecycleV3
+- is_executable
+- AuthorityEffect
+- PortSpecV3
+- same_contract_as
+- InstructionOperand
+- ArtifactOperandRef
+- ResidualPackageSpan
+- OperationV3
+- from_json
+- operation_id
+- to_dict
+- CompositionV3
+- DocumentLeafNode
+- SkillDocumentV3
+- get_operation
+- CapabilitySliceV3
+- execute
+- verify_composition
+- execute_composition
+owns:
+- new
+- value
+- content_digest
+- sha256
+- empty_sha256
+- canonical
+- serialize
+- deserialize
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

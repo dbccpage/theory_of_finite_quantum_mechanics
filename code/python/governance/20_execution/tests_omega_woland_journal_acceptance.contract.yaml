@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_woland_journal_acceptance:v1.0.0
+title: Journal Acceptance Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_woland/journal_acceptance.rs
+module: omega_woland::journal_acceptance
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_woland::journal_acceptance
+  file: crates_rs/tests/omega_woland/journal_acceptance.rs
+symbols: []
+owns:
+- omega_woland_journal_acceptance
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

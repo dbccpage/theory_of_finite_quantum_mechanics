@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:immune_fence:v1.0.0
+title: Render admitted, reviewed guidance without copying detector fixtures into prompts.
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/immune_fence.rs
+module: immune_fence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: immune_fence
+  file: crates_rs/omega_symbol_game_runtime/src/immune_fence.rs
+symbols:
+- execute
+owns:
+- execute
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

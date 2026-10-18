@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:finite_groupoid:v1.0.0
+title: Checked finite groupoids and their matrix/group coordinates.  This strengthens
+  the canonical finite dagger category b...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/finite_groupoid.rs
+module: finite_groupoid
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: finite_groupoid
+  file: crates_rs/omega_category_theory/src/finite_groupoid.rs
+symbols:
+- GroupoidError
+- GroupoidComponent
+- GroupoidMatrixCoordinate
+- ValidatedFiniteGroupoid
+- try_new
+- try_from_dagger
+- category
+- inverse
+- components
+- matrix_coordinates
+- is_connected_thin
+owns:
+- groupoid_error
+- groupoid_component
+- groupoid_matrix_coordinate
+- validated_finite_groupoid
+- try_new
+- try_from_dagger
+- category
+- inverse
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

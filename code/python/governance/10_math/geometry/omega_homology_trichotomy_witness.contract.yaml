@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:trichotomy_witness:v1.0.0
+title: '--- Math Contract: PO-D9 / GTFOC-20 — Element-level residual trichotomy ---  Mechanizes
+  the element-level finite obst...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/trichotomy_witness.rs
+module: trichotomy_witness
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: trichotomy_witness
+  file: crates_rs/omega_homology/src/trichotomy_witness.rs
+symbols:
+- ResidualClass
+- is_cocycle
+- is_coboundary
+- classify_residual
+- cohomologous
+owns:
+- residual_class
+- is_cocycle
+- is_coboundary
+- classify_residual
+- cohomologous
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

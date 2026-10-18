@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_symbol_game_runtime_digest_is_canonical:v1.0.0
+title: 'The round-record digest must be what the host says it is.  `main.rs` advertises
+  `canonicalization_profile: "omega-sor...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_symbol_game_runtime/digest_is_canonical.rs
+module: omega_symbol_game_runtime::digest_is_canonical
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_symbol_game_runtime::digest_is_canonical
+  file: crates_rs/tests/omega_symbol_game_runtime/digest_is_canonical.rs
+symbols: []
+owns:
+- omega_symbol_game_runtime_digest_is_canonical
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

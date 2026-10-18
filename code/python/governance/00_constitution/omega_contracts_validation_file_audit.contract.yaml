@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:validation_file_audit:v1.0.0
+title: File Audit Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/validation/file_audit.rs
+module: validation::file_audit
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: validation::file_audit
+  file: crates_rs/omega_contracts/src/validation/file_audit.rs
+symbols:
+- FileAuditSubject
+- FilePart
+- FileValidator
+owns:
+- file_audit_subject
+- file_part
+- file_validator
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_q_authority:v1.0.0
+title: Authority Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/q/authority.rs
+module: coda::q::authority
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::q::authority
+  file: crates_rs/omega_wdp/src/coda/q/authority.rs
+symbols:
+- AuthorityPolicy
+- new_trace
+- record_result
+owns:
+- authority_policy
+- new_trace
+- record_result
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

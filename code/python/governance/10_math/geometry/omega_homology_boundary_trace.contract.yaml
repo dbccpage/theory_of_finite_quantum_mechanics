@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:boundary_trace:v1.0.0
+title: Boundary Trace Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/boundary_trace.rs
+module: boundary_trace
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: boundary_trace
+  file: crates_rs/omega_homology/src/boundary_trace.rs
+symbols:
+- DensityDiagnosticsSnapshot
+- BoundaryTrace
+- BoundaryStep
+- new
+- push
+owns:
+- density_diagnostics_snapshot
+- boundary_trace
+- boundary_step
+- new
+- push
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

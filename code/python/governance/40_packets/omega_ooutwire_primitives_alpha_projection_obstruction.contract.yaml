@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:alpha_projection_obstruction:v1.0.0
+title: '# alpha_projection_obstruction — PO-000 replicated in Rust  `AuthorityEffect:
+  None.`  A replication of the CODA atlas...'
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/mod.rs
+module: alpha_projection_obstruction
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: alpha_projection_obstruction
+  file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/mod.rs
+symbols:
+- receipt_path
+- EvidenceKind
+- name
+- Verdict
+- ClaimEvidence
+- receipt_float
+- normalization_arithmetic
+- MechanizationRun
+- covered_claim_ids
+- to_text
+- run
+owns:
+- receipt_path
+- evidence_kind
+- name
+- verdict
+- claim_evidence
+- receipt_float
+- normalization_arithmetic
+- mechanization_run
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

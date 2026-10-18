@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_operad_theory:applications:v1.0.0
+title: 'Applications Tier for Operad Theory.  AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_operad_theory
+file: crates_rs/omega_operad_theory/src/applications/mod.rs
+module: applications
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_operad_theory
+  module: applications
+  file: crates_rs/omega_operad_theory/src/applications/mod.rs
+symbols: []
+owns:
+- applications
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:packed_hermitian:v1.0.0
+title: Physical density-state adapter to canonical exact packed Hermitian operators.
+  Population shadows are distinguished fr...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/packed_hermitian.rs
+module: packed_hermitian
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: packed_hermitian
+  file: crates_rs/omega_quantum_physics/src/packed_hermitian.rs
+symbols:
+- PackedDensityOperator
+- PackedDensityError
+- from_state
+- to_state
+- expectation
+- packed
+owns:
+- packed_density_operator
+- packed_density_error
+- from_state
+- to_state
+- expectation
+- packed
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

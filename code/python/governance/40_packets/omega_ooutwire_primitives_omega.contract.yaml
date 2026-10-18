@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:omega:v1.0.0
+title: 'The **Omega engine**: a fold with four holes.  `AuthorityEffect: None.`  Source:
+  crosstab §11.3 (the cycle with the g...'
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/omega.rs
+module: omega
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: omega
+  file: crates_rs/omega_ooutwire_primitives/src/omega.rs
+symbols:
+- DemandOrigin
+- Gate
+- Config
+- sealed
+- Move
+- Report
+- verify
+- Omega
+- new
+- run
+owns:
+- demand_origin
+- gate
+- config
+- sealed
+- move
+- report
+- verify
+- omega
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

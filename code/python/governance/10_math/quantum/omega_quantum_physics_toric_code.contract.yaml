@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:toric_code:v1.0.0
+title: General rectangular toric CSS codes on the sovereign F2 lattice complex. Logical
+  intersection, endpoint defects and e...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/toric_code.rs
+module: toric_code
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: toric_code
+  file: crates_rs/omega_quantum_physics/src/toric_code.rs
+symbols:
+- ToricError
+- ToricCode
+- new
+- lattice
+- code
+- stars
+- plaquettes
+- x_logicals
+- z_logicals
+- distance
+- ground_state_degeneracy
+- logical_commutation_matrix
+- e_defects
+- m_defects
+- braiding_sign
+- e_loop_around_m
+- ground_state
+- ground_state_entropy
+- kitaev_preskill_gamma
+- authority_fence
+owns:
+- toric_error
+- toric_code
+- new
+- lattice
+- code
+- stars
+- plaquettes
+- x_logicals
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

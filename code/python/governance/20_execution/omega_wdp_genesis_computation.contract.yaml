@@ -1,0 +1,52 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:genesis_computation:v1.0.0
+title: Supplied source-graph and finite-prefix fidelity, with independent permission.
+  Domain algorithms live in omega_solver...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/genesis_computation.rs
+module: genesis_computation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: genesis_computation
+  file: crates_rs/omega_wdp/src/genesis_computation.rs
+symbols:
+- BridgeError
+- SourceBooleanPacket
+- CheckedBooleanPacket
+- admit
+- source
+- graph_cnf
+- verify_cnf
+- readout
+- verify_readout
+- authority_effect
+- NamedRule
+- SourceMachinePacket
+- NamedConfiguration
+- NamedTermination
+- SourcePrefix
+- CheckedMachinePacket
+- CheckedPrefix
+- execute
+- verify_prefix
+- trace
+- export
+owns:
+- bridge_error
+- source_boolean_packet
+- checked_boolean_packet
+- admit
+- source
+- graph_cnf
+- verify_cnf
+- readout
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

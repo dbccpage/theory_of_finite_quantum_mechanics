@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:cauchy:v1.0.0
+title: Cauchy Completeness — Spec Section 17.  A category C is Cauchy complete (Karoubi
+  complete, idempotent complete) iff e...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/cauchy.rs
+module: cauchy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: cauchy
+  file: crates_rs/omega_category_theory/src/cauchy.rs
+symbols:
+- IdempotentSplitting
+- CauchyStatus
+- CauchyCompletion
+- find_idempotents
+- check_idempotent_splits
+- check_cauchy_completeness
+- validate_splitting
+- ValidatedIdempotentSplitting
+- try_new
+- declared
+owns:
+- idempotent_splitting
+- cauchy_status
+- cauchy_completion
+- find_idempotents
+- check_idempotent_splits
+- check_cauchy_completeness
+- validate_splitting
+- validated_idempotent_splitting
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

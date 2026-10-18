@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:runtime_adapter:v1.0.0
+title: Canonical exact CODA/CODA_GTLA adapter for the finite MUB6 `T0` carrier.  `omega_mub`
+  owns the domain carrier and exa...
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/runtime_adapter.rs
+module: runtime_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: runtime_adapter
+  file: crates_rs/omega_mub/src/runtime_adapter.rs
+symbols:
+- Mub6RuntimeEvidenceV1
+- Mub6RuntimeRequestV1
+- Mub6RuntimeAdapterError
+- terminal
+- Mub6RuntimeEvaluationV1
+- authority_effect
+- tuple_hash
+- replay_hash
+- evaluation
+- cover_discharged
+- evaluate_mub6_request
+- evaluate_mub6_json
+owns:
+- mub6_runtime_evidence_v1
+- mub6_runtime_request_v1
+- mub6_runtime_adapter_error
+- terminal
+- mub6_runtime_evaluation_v1
+- authority_effect
+- tuple_hash
+- replay_hash
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

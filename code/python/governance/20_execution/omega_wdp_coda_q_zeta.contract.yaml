@@ -1,0 +1,36 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_q_zeta:v1.0.0
+title: Zeta Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/q/zeta.rs
+module: coda::q::zeta
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::q::zeta
+  file: crates_rs/omega_wdp/src/coda/q/zeta.rs
+symbols:
+- ZetaRhClaimKind
+- ZetaTransportDirection
+- ZetaRhCandidate
+- new
+- ZetaRhDecision
+- ZetaRhFirewall
+- classify
+owns:
+- zeta_rh_claim_kind
+- zeta_transport_direction
+- zeta_rh_candidate
+- new
+- zeta_rh_decision
+- zeta_rh_firewall
+- classify
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

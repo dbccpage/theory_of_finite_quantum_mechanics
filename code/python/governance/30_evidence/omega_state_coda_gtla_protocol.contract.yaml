@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:coda_gtla_protocol:v1.0.0
+title: Canonical structural CODA/CODA_GTLA execution protocol.  This module validates
+  protocol shape, legacy-field compilati...
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/coda_gtla_protocol.rs
+module: coda_gtla_protocol
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: coda_gtla_protocol
+  file: crates_rs/omega_state/src/coda_gtla_protocol.rs
+symbols:
+- CodaGtlaStage
+- CodaTerminal
+- CochainRealizationKind
+- FrozenObserverContextV1
+- validate
+- LegacyPacketFieldV1
+- CompileContextFieldV1
+- ProtocolSourceV1
+- LegacyLiftV1
+- LegacyDdaExecutionV1
+- LegacyPacketV1
+- LegacyCompileContextV1
+- CompiledStageV1
+- CompiledProtocolV1
+- stage
+- LegacyAdapterLimitationV1
+- StageSourceReceiptV1
+- LegacyCompileReceiptV1
+- LegacyCompileOutputV1
+- compile_legacy_packet_v1
+- ProtocolSchemaReceiptV1
+- protocol_schema_receipt_v1
+- ProtocolStateV1
+- TransitionProposalV1
+- preserving
+- TransitionReceiptV1
+- ProtocolTraceV1
+- ProtocolMachineV1
+- new
+- state
+owns:
+- coda_gtla_stage
+- coda_terminal
+- cochain_realization_kind
+- frozen_observer_context_v1
+- validate
+- legacy_packet_field_v1
+- compile_context_field_v1
+- protocol_source_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

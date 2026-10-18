@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:traits_analysis:v1.0.0
+title: Analysis Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/traits/analysis.rs
+module: traits::analysis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: traits::analysis
+  file: crates_rs/omega_contracts/src/traits/analysis.rs
+symbols:
+- AnalysisId
+- DiagnosticReportId
+- FunctionalId
+- MetaJudgmentId
+- SubjectHash
+- CertificateId
+- AnalysisArtifact
+- AnalysisEnvelope
+- new
+- AnalysisKernel
+- DiagnosticKernel
+- DiagnosticEnvelope
+- FunctionalKernel
+- FunctionalEnvelope
+- MetaJudgmentKernel
+- MetaJudgmentEnvelope
+owns:
+- analysis_id
+- diagnostic_report_id
+- functional_id
+- meta_judgment_id
+- subject_hash
+- certificate_id
+- analysis_artifact
+- analysis_envelope
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

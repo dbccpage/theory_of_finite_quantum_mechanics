@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:quantum_gaps:v1.0.0
+title: Adjacent energy-spacing diagnostics from canonical checked Hermitian eigenpairs.
+  Multiplicity, zero spacing and the a...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/quantum_gaps.rs
+module: quantum_gaps
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: quantum_gaps
+  file: crates_rs/omega_functional/src/quantum_gaps.rs
+symbols:
+- SpectrumAuthorityEffect
+- QuantumGapFunctional
+- QuantumGaps
+- authority_effect
+- spectrum
+- adjacent_spacings
+- lowest_adjacent_spacing
+- new
+- policy
+- evaluate
+owns:
+- spectrum_authority_effect
+- quantum_gap_functional
+- quantum_gaps
+- authority_effect
+- spectrum
+- adjacent_spacings
+- lowest_adjacent_spacing
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

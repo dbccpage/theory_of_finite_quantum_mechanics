@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:examples_question_preserving_encoding:v1.0.0
+title: JSON-only local driver for the bounded WDP encoding experiment.
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/examples/question_preserving_encoding.rs
+module: examples::question_preserving_encoding
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: examples::question_preserving_encoding
+  file: crates_rs/omega_wdp/src/examples/question_preserving_encoding.rs
+symbols: []
+owns:
+- examples_question_preserving_encoding
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

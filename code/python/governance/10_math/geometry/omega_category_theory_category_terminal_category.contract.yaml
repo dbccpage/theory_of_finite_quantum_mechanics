@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:category_terminal_category:v1.0.0
+title: 'terminal_category shell for omega_category_theory. AuthorityEffect: None.
+  Not PROVED / GlobalGreen.  1: one object, o...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/category/terminal_category.rs
+module: category::terminal_category
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: category::terminal_category
+  file: crates_rs/omega_category_theory/src/category/terminal_category.rs
+symbols:
+- TerminalCategoryShell
+- new
+- with_object
+- validate_shell
+owns:
+- terminal_category_shell
+- new
+- with_object
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

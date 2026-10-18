@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:modular:v1.0.0
+title: 'Integer modular arithmetic shared by Rust-side Symbol Game re-derivations.  AuthorityEffect:
+  None. Return the least n...'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/modular.rs
+module: modular
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: modular
+  file: crates_rs/omega_symbol_game_runtime/src/modular.rs
+symbols:
+- least_non_negative_residue
+owns:
+- least_non_negative_residue
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

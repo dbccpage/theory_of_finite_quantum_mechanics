@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:epics_grammar:v1.0.0
+title: Incremental token frontiers and grammar-aligned decoding.  `EPIC-OE-SYMGAM-003`
+  asks for a token trie with dynamic ma...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/epics/grammar.rs
+module: epics::grammar
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: epics::grammar
+  file: crates_rs/omega_symbol_game/src/epics/grammar.rs
+symbols:
+- TokenId
+- GrammarError
+- TokenTrieIndex
+- Descent
+- build
+- vocabulary_size
+- sentence_count
+- node_count
+- descend
+- admissible
+- is_terminal
+- mask
+- enumerate_admissible
+- ExpectedFutureGrammaticality
+- score
+- score_value
+- admitted
+- considered
+- is_dead_end
+- TokenFrontierReceiptV1
+- compression_ratio
+- efg
+owns:
+- token_id
+- grammar_error
+- token_trie_index
+- descent
+- build
+- vocabulary_size
+- sentence_count
+- node_count
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

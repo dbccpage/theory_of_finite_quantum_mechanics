@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_operad_theory:python:v1.0.0
+title: 'Thin PyO3 bridge exposing the Rust operad kernel to Python.  AuthorityEffect:
+  None.'
+kind: rust_file_contract
+status: active
+crate: omega_operad_theory
+file: crates_rs/omega_operad_theory/src/python.rs
+module: python
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_operad_theory
+  module: python
+  file: crates_rs/omega_operad_theory/src/python.rs
+symbols:
+- PyOperadColour
+- new
+- name
+- __repr__
+- __str__
+- PyOperationId
+- identity_for
+- PyPlanarTree
+- term_hash
+- arity
+- authority_effect
+- package_info
+- omega_operad_theory_rs
+owns:
+- py_operad_colour
+- new
+- name
+- __repr__
+- __str__
+- py_operation_id
+- identity_for
+- py_planar_tree
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

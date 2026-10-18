@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:prime:v1.0.0
+title: 'Prime 000 admission and replay runtime actions.  AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/prime.rs
+module: prime
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: prime
+  file: crates_rs/omega_symbol_game/src/prime.rs
+symbols:
+- HostPrimeAdmitRequestV1
+- HostCochainWindowWire
+- HostPrimeAdmitOutcomeV1
+- HostPrimeReplayDecideRequestV1
+- PrimeReplayStepWire
+- HostPrimeReplayDecideOutcomeV1
+- prime_admit
+- prime_replay_decide
+- evaluate_candidate_proposal
+- record_prime_stage_transition
+- HostCarrierEdgeWire
+- HostFiniteCarrier2Wire
+- ExternalAuthorityGrantWire
+- HostPrimeDescentRequestV1
+- HostPrimeDescentOutcomeV1
+- prime_descent
+owns:
+- host_prime_admit_request_v1
+- host_cochain_window_wire
+- host_prime_admit_outcome_v1
+- host_prime_replay_decide_request_v1
+- prime_replay_step_wire
+- host_prime_replay_decide_outcome_v1
+- prime_admit
+- prime_replay_decide
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

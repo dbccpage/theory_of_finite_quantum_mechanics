@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_chemistry:retrosynthesis:v1.0.0
+title: '`retrosynthesis` — finite dual-face object for `omega_chemistry`.  AUTHORING_QUALITY:
+  human_llm_best_effort_slop (bes...'
+kind: rust_file_contract
+status: active
+crate: omega_chemistry
+file: crates_rs/omega_chemistry/src/retrosynthesis.rs
+module: retrosynthesis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_chemistry
+  module: retrosynthesis
+  file: crates_rs/omega_chemistry/src/retrosynthesis.rs
+symbols:
+- Retrosynthesis
+- new
+- authority_fence
+owns:
+- retrosynthesis
+- new
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

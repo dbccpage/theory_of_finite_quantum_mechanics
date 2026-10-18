@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_local_green_global_red_lggr_lggr_prime_seam:v1.0.0
+title: Integration tests for the LGGR(EPK) → OE Prime 000/001/002 seam.  These exercise
+  the real [`omega_epk::adequacy`] pro...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_local_green_global_red_lggr/lggr_prime_seam.rs
+module: omega_local_green_global_red_lggr::lggr_prime_seam
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_local_green_global_red_lggr::lggr_prime_seam
+  file: crates_rs/tests/omega_local_green_global_red_lggr/lggr_prime_seam.rs
+symbols: []
+owns:
+- omega_local_green_global_red_lggr_lggr_prime_seam
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

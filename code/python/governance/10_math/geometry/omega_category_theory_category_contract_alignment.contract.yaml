@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:category_contract_alignment:v1.0.0
+title: Category theory contract alignment module.  Maps Rust category-theoretic structures
+  (categories, functors, natural tr...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/category_contract_alignment.rs
+module: category_contract_alignment
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: category_contract_alignment
+  file: crates_rs/omega_category_theory/src/category_contract_alignment.rs
+symbols:
+- CategoryContractBinding
+- default_category_bindings
+owns:
+- category_contract_binding
+- default_category_bindings
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:observer_family:v1.0.0
+title: '§ 14.1, Definition 16.9: Observer Family  An **observer family** $\mathfrak{O}$
+  is a finite set of observers declared...'
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/observer_family.rs
+module: observer_family
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: observer_family
+  file: crates_rs/omega_types/src/observer_family.rs
+symbols:
+- ObserverFamilyError
+- ObserverFamily
+- try_new
+- new
+- observers
+- len
+- is_empty
+- NonEmptyObserverFamily
+- family
+owns:
+- observer_family_error
+- observer_family
+- try_new
+- new
+- observers
+- len
+- is_empty
+- non_empty_observer_family
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:witness_directive:v1.0.0
+title: Witness directive trait for configuring witness generation.  Action-candidate
+  witness profiles may require phi-monoto...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/witness/directive.rs
+module: witness::directive
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: witness::directive
+  file: crates_rs/omega_contracts/src/witness/directive.rs
+symbols:
+- WitnessDirective
+owns:
+- witness_directive
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

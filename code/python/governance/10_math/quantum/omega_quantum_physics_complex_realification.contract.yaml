@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:complex_realification:v1.0.0
+title: Exact Q(i) realizations of a declared complex structure and balanced tensor.
+  Generic maps, quotient balancing and mat...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/complex_realification.rs
+module: complex_realification
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: complex_realification
+  file: crates_rs/omega_quantum_physics/src/complex_realification.rs
+symbols:
+- realify_operator_with_limits
+- realify_density_with_limits
+- product_operator_with_limits
+- product_density_with_limits
+- lift_composite_density_with_limits
+- composite_density_views_with_limits
+owns:
+- realify_operator_with_limits
+- realify_density_with_limits
+- product_operator_with_limits
+- product_density_with_limits
+- lift_composite_density_with_limits
+- composite_density_views_with_limits
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

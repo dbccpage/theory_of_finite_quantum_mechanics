@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:lambda_graph:v1.0.0
+title: Lambda Graph Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/lambda_graph.rs
+module: lambda_graph
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: lambda_graph
+  file: crates_rs/omega_homology/src/lambda_graph.rs
+symbols:
+- graph_from_poset
+- graph_from_edges
+owns:
+- graph_from_poset
+- graph_from_edges
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

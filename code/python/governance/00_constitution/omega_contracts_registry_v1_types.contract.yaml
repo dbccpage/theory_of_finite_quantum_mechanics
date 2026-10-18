@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:registry_v1_types:v1.0.0
+title: omega.contract.v1 envelope types.  See `docs/superpowers/specs/2026-05-31-omega-contract-v1-walking-skeleton-design.m...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/registry/v1_types.rs
+module: registry::v1_types
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: registry::v1_types
+  file: crates_rs/omega_contracts/src/registry/v1_types.rs
+symbols:
+- OmegaContractV1Status
+- normalized
+- to_contract_status
+- ContractKind
+- category
+- default_role
+- is_math
+- forbidden_capabilities
+- Dependencies
+- DescriptorBlock
+- OmegaContractV1
+- NomosDebateNotCanonical
+- to_descriptor
+owns:
+- omega_contract_v1_status
+- normalized
+- to_contract_status
+- contract_kind
+- category
+- default_role
+- is_math
+- forbidden_capabilities
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

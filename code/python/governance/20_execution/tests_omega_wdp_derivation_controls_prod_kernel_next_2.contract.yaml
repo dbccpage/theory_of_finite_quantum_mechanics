@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_prod_kernel_next_2:v1.0.0
+title: Companion Rust witness for PROD-KERNEL-NEXT-2 (Pilot agent loop finite arena
+  & usable budget).
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/prod_kernel_next_2.rs
+module: omega_wdp::derivation_controls::prod_kernel_next_2
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::prod_kernel_next_2
+  file: crates_rs/tests/omega_wdp/derivation_controls/prod_kernel_next_2.rs
+symbols:
+- pilot_minimax_value
+- resolves_within_budget
+owns:
+- pilot_minimax_value
+- resolves_within_budget
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

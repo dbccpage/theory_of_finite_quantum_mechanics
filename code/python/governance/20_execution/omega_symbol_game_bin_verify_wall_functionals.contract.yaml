@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:bin_verify_wall_functionals:v1.0.0
+title: Replay only the exact functional claims in an omega_id_run wall deposit.  This
+  is designed to pair with independent s...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/bin/verify_wall_functionals.rs
+module: bin::verify_wall_functionals
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: bin::verify_wall_functionals
+  file: crates_rs/omega_symbol_game/src/bin/verify_wall_functionals.rs
+symbols: []
+owns:
+- bin_verify_wall_functionals
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

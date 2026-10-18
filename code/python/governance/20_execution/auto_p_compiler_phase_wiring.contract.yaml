@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_phase_wiring:v1.0.0
+title: '--- yaml title: phase_wiring file_name: phase_wiring.rs file_location: omega_core/src/compiler/phase_wiring.rs
+  status...'
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/phase_wiring.rs
+module: compiler::phase_wiring
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::phase_wiring
+  file: crates_rs/auto_p/src/compiler/phase_wiring.rs
+symbols:
+- VerifiedSimplicialComplex
+- GeometricOpCode
+- VerifiedInstruction
+- wire_phase3_to_phase4
+owns:
+- verified_simplicial_complex
+- geometric_op_code
+- verified_instruction
+- wire_phase3_to_phase4
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

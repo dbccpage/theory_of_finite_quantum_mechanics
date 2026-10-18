@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_pipeline:v1.0.0
+title: Pipeline Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/pipeline.rs
+module: coda::pipeline
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::pipeline
+  file: crates_rs/omega_wdp/src/coda/pipeline.rs
+symbols:
+- evaluate_coda_pipeline
+- evaluate_coda_pipeline_with_grant
+owns:
+- evaluate_coda_pipeline
+- evaluate_coda_pipeline_with_grant
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

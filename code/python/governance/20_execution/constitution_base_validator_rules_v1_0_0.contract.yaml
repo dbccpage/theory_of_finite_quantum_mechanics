@@ -1,0 +1,14 @@
+schema_version: omega.validator_rules.v1
+contract_id: urn:omega:constitution:base_validator_rules:v1.0.0
+title: Abstract Validator Rules
+status: active
+authority_effect: none
+relationships:
+  abstract: true
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+  - urn:omega:constitution:base_contract:v1.0.0
+rules:
+- id: validator_rules_are_evidence_only
+  severity: P0
+  requirement: Rules may reject or report; they do not mint authority.

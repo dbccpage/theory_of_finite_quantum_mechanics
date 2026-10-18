@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_combinatorics:enumeration:v1.0.0
+title: 'Budgeted combinatorial enumeration: permutations, combinations and weak compositions
+  in lexicographic order, exact fa...'
+kind: rust_file_contract
+status: active
+crate: omega_combinatorics
+file: crates_rs/omega_combinatorics/src/enumeration.rs
+module: enumeration
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_combinatorics
+  module: enumeration
+  file: crates_rs/omega_combinatorics/src/enumeration.rs
+symbols:
+- CombinatoricsError
+- factorial
+- binomial
+- next_permutation
+- next_combination
+- permutations
+- combinations
+- weak_compositions
+- Permutations
+- new
+- Combinations
+- to_u64
+owns:
+- combinatorics_error
+- factorial
+- binomial
+- next_permutation
+- next_combination
+- permutations
+- combinations
+- weak_compositions
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

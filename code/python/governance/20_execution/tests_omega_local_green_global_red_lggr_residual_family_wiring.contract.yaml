@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_local_green_global_red_lggr_residual_family_wiring:v1.0.0
+title: Residual Family Wiring Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_local_green_global_red_lggr/residual_family_wiring.rs
+module: omega_local_green_global_red_lggr::residual_family_wiring
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_local_green_global_red_lggr::residual_family_wiring
+  file: crates_rs/tests/omega_local_green_global_red_lggr/residual_family_wiring.rs
+symbols: []
+owns:
+- omega_local_green_global_red_lggr_residual_family_wiring
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

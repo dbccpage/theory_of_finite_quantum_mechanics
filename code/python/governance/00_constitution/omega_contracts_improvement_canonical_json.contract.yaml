@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:improvement_canonical_json:v1.0.0
+title: '`omega.canonical_json.v1` — compact, recursively key-sorted, raw-Unicode JSON.  Matches
+  the existing conductor/assura...'
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/improvement/canonical_json.rs
+module: improvement::canonical_json
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: improvement::canonical_json
+  file: crates_rs/omega_contracts/src/improvement/canonical_json.rs
+symbols:
+- CanonicalJsonError
+- dumps_canonical_v1
+- hash_canonical_v1
+- hash_raw_bytes
+owns:
+- canonical_json_error
+- dumps_canonical_v1
+- hash_canonical_v1
+- hash_raw_bytes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

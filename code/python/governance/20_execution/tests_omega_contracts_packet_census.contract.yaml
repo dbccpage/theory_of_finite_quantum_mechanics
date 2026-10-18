@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_contracts_packet_census:v1.0.0
+title: Two independent packet inventories, not a historical survey-count assertion.  Governance
+  rows describe only the curre...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_contracts/packet_census.rs
+module: omega_contracts::packet_census
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_contracts::packet_census
+  file: crates_rs/tests/omega_contracts/packet_census.rs
+symbols: []
+owns:
+- omega_contracts_packet_census
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

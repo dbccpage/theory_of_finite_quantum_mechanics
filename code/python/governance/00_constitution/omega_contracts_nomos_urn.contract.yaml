@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:nomos_urn:v1.0.0
+title: 'Nomos URN schema for Omega contract identifiers.  Canonical grammar (012 contracts
+  + live corpus):  ```text Form A: u...'
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/nomos_urn.rs
+module: nomos_urn
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: nomos_urn
+  file: crates_rs/omega_contracts/src/nomos_urn.rs
+symbols:
+- NomosUrn
+- NomosUrnError
+- parse_nomos_urn
+- is_well_formed_nomos_urn
+- format_nomos_urn
+- NomosUrnSampleRow
+- NomosUrnSampleReceipt
+- audit_critical_urn_sample
+owns:
+- nomos_urn
+- nomos_urn_error
+- parse_nomos_urn
+- is_well_formed_nomos_urn
+- format_nomos_urn
+- nomos_urn_sample_row
+- nomos_urn_sample_receipt
+- audit_critical_urn_sample
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

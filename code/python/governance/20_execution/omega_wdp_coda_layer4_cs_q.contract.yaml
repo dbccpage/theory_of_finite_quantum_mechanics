@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_layer4_cs_q:v1.0.0
+title: Layer4 Cs Q Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/layer4_cs_q.rs
+module: coda::layer4_cs_q
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::layer4_cs_q
+  file: crates_rs/omega_wdp/src/coda/layer4_cs_q.rs
+symbols:
+- Layer4CsQ
+- evaluate
+- evaluate_declared_separation
+owns:
+- layer4_cs_q
+- evaluate
+- evaluate_declared_separation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homotopy_type_theory:empty_type:v1.0.0
+title: 'Empty type former `0` / `⊥`.  Structural record only: a named empty type id.'
+kind: rust_file_contract
+status: active
+crate: omega_homotopy_type_theory
+file: crates_rs/omega_homotopy_type_theory/src/empty_type.rs
+module: empty_type
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homotopy_type_theory
+  module: empty_type
+  file: crates_rs/omega_homotopy_type_theory/src/empty_type.rs
+symbols:
+- EmptyType
+- validate
+- EmptyTypeError
+owns:
+- empty_type
+- validate
+- empty_type_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

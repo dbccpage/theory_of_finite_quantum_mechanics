@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:domain_types:v1.0.0
+title: Domain Types Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/domain_types.rs
+module: domain_types
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: domain_types
+  file: crates_rs/omega_types/src/domain_types.rs
+symbols:
+- RowId
+- new
+- as_str
+- PolicyId
+- EvidenceRef
+- Hash256
+- from_hex_unchecked
+- DatasetSplit
+- Sector
+- PacketFamily
+- SolverFamily
+- SolverEvidenceClass
+- EvaluationVerdict
+- EvaluationReason
+- ReplayFailureCode
+- ClauseCode
+- DomainTypeError
+- EvaluatorFacts
+- PolicyContext
+- PolicyRequest
+- MetricPolicyRequest
+- PolicyMetric
+- ConstraintKind
+- BoundConstraint
+- PolicyDecisionKind
+- PolicyDecision
+- PolicyDecisionEnvelope
+- PolicySet
+- PolicyResolutionStrategy
+- ReplayMethod
+owns:
+- row_id
+- new
+- as_str
+- policy_id
+- evidence_ref
+- hash256
+- from_hex_unchecked
+- dataset_split
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

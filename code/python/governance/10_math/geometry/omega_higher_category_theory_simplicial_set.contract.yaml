@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:simplicial_set:v1.0.0
+title: Simplicial Sets, Kan Complexes, and Quasi-Categories (∞-Categories).  Provides
+  mathematically rigorous foundations fo...
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/simplicial_set.rs
+module: simplicial_set
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: simplicial_set
+  file: crates_rs/omega_higher_category_theory/src/simplicial_set.rs
+symbols:
+- Simplex
+- Horn
+- is_inner
+- SimplicialSet
+- new
+- add_simplex
+- set_face
+- set_degeneracy
+- face
+- degeneracy
+- verify_face_face_identities
+- verify_horn_compatibility
+- is_horn_filler
+- verify_horn_has_filler
+- QuasiCategoryValidator
+- verify_inner_horns
+- KanComplexValidator
+- verify_all_horns
+owns:
+- simplex
+- horn
+- is_inner
+- simplicial_set
+- new
+- add_simplex
+- set_face
+- set_degeneracy
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

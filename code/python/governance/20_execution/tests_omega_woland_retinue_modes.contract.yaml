@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_woland_retinue_modes:v1.0.0
+title: 'Core and full retinue modes of the Woland council.  AuthorityEffect: None.'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_woland/retinue_modes.rs
+module: omega_woland::retinue_modes
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_woland::retinue_modes
+  file: crates_rs/tests/omega_woland/retinue_modes.rs
+symbols: []
+owns:
+- omega_woland_retinue_modes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

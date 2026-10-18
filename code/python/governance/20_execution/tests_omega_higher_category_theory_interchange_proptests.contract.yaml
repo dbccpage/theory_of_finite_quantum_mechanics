@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_higher_category_theory_interchange_proptests:v1.0.0
+title: 'Property-based testing grid for the middle-four interchange law.  AuthorityEffect:
+  None.'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_higher_category_theory/interchange_proptests.rs
+module: omega_higher_category_theory::interchange_proptests
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_higher_category_theory::interchange_proptests
+  file: crates_rs/tests/omega_higher_category_theory/interchange_proptests.rs
+symbols: []
+owns:
+- omega_higher_category_theory_interchange_proptests
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

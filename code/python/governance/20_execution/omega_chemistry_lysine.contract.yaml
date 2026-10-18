@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_chemistry:lysine:v1.0.0
+title: '--- yaml title: chiral_lysine status: Coal invariance_level: Tier 5 logic_system:
+  Quantum Chemical Topology substrate...'
+kind: rust_file_contract
+status: active
+crate: omega_chemistry
+file: crates_rs/omega_chemistry/src/lysine.rs
+module: lysine
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_chemistry
+  module: lysine
+  file: crates_rs/omega_chemistry/src/lysine.rs
+symbols:
+- LysineMolecule
+- standard
+- betti_1
+- is_chiral
+owns:
+- lysine_molecule
+- standard
+- betti_1
+- is_chiral
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

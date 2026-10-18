@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:invoke_native_matrix:v1.0.0
+title: Bounded wire adapters to the canonical exact matrix implementations.
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/invoke/native_matrix.rs
+module: invoke::native_matrix
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: invoke::native_matrix
+  file: crates_rs/omega_symbol_game/src/invoke/native_matrix.rs
+symbols:
+- parse_matrix
+- matrix_value
+- rational
+- gf2
+owns:
+- parse_matrix
+- matrix_value
+- rational
+- gf2
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

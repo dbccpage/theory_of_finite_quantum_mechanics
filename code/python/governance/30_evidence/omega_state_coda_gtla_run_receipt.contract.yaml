@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:coda_gtla_run_receipt:v1.0.0
+title: Bounded S06-001 CODA/CODA_GTLA run-receipt DAG verifier.  This module is a
+  finite behavior baseline for the conductor...
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/coda_gtla_run_receipt.rs
+module: coda_gtla_run_receipt
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: coda_gtla_run_receipt
+  file: crates_rs/omega_state/src/coda_gtla_run_receipt.rs
+symbols:
+- FrozenRunSourceV1
+- RunArtifactBindingV1
+- RunBudgetsV1
+- FrozenRunObserverV1
+- CodaGtlaRunPacketV1
+- RunStepOutcomeV1
+- DdaTransitionReceiptV1
+- ExternalImportV1
+- RunReceiptKindV1
+- RunReceiptParentV1
+- DefectDispositionV1
+- RunReceiptPayloadV1
+- kind
+- RunReceiptNodeMaterialV1
+- RunReceiptNodeV1
+- CodaGtlaRunReceiptV1
+- CanonicalRunRenderV1
+- CodaGtlaRunVerificationV1
+- RunArtifactBytesV1
+- canonical_s06_001_packet_v1
+- canonical_s06_001_render_v1
+- canonical_s06_001_render_bytes_v1
+- canonical_s06_001_run_receipt_v1
+- run_packet_canonical_bytes_v1
+- run_packet_sha256_v1
+- run_receipt_sha256_v1
+- run_verification_sha256_v1
+- run_receipt_node_sha256_v1
+- run_observer_sha256_v1
+- parse_run_packet_canonical_v1
+owns:
+- frozen_run_source_v1
+- run_artifact_binding_v1
+- run_budgets_v1
+- frozen_run_observer_v1
+- coda_gtla_run_packet_v1
+- run_step_outcome_v1
+- dda_transition_receipt_v1
+- external_import_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

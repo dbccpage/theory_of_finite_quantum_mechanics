@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:e_infinity_operad:v1.0.0
+title: 'E∞ operad shell.  AuthorityEffect: None. Best-effort shell for computational
+  topology. Not PROVED; not GlobalGreen. A...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/e_infinity_operad.rs
+module: e_infinity_operad
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: e_infinity_operad
+  file: crates_rs/omega_homology/src/e_infinity_operad.rs
+symbols:
+- EInfinityOperad
+- new
+- with_note
+- validate_shell
+owns:
+- e_infinity_operad
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

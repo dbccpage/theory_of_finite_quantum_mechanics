@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:fenchel_duality:v1.0.0
+title: Lp-Native Cohomology & Exact Fenchel-Rockafellar Duality Solvers.  Grounded
+  in FOC-007 ("Lp-Native Cohomology") & FOC...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/fenchel_duality.rs
+module: fenchel_duality
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: fenchel_duality
+  file: crates_rs/omega_wdp/src/fenchel_duality.rs
+symbols:
+- EdgeSaturationStatus
+- FenchelDualityReceipt
+- phi1
+- edge_statuses
+- authority_effect
+- WeightedComplex
+- new
+- l1_quotient_presentation
+- solve_fenchel_duality
+owns:
+- edge_saturation_status
+- fenchel_duality_receipt
+- phi1
+- edge_statuses
+- authority_effect
+- weighted_complex
+- new
+- l1_quotient_presentation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

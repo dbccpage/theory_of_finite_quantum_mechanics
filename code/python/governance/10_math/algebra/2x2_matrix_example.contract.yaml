@@ -1,0 +1,116 @@
+example_id: basic_matrix_2x2_identity_multiplication
+description: 2×2 identity matrix multiplication preserves input matrix
+matrix_a:
+  rows: 2
+  cols: 2
+  data:
+  - 1
+  - 2
+  - 3
+  - 4
+  scalar_domain: urn:math:contract:Field:v0.1.0#GF(5)
+  layout: row_major
+identity_matrix:
+  rows: 2
+  cols: 2
+  data:
+  - 1
+  - 0
+  - 0
+  - 1
+  scalar_domain: urn:math:contract:Field:v0.1.0#GF(5)
+  layout: row_major
+operation:
+  name: matmul
+  left_operand: matrix_a
+  right_operand: identity_matrix
+  preconditions:
+  - lhs_cols (2) == rhs_rows (2)
+  expected_result:
+    rows: 2
+    cols: 2
+    data:
+    - 1
+    - 2
+    - 3
+    - 4
+operation_commuted:
+  name: matmul
+  left_operand: identity_matrix
+  right_operand: matrix_a
+  preconditions:
+  - lhs_cols (2) == rhs_rows (2)
+  expected_result:
+    rows: 2
+    cols: 2
+    data:
+    - 1
+    - 2
+    - 3
+    - 4
+transpose_example:
+  input: matrix_a
+  operation: transpose
+  expected_result:
+    rows: 2
+    cols: 2
+    data:
+    - 1
+    - 3
+    - 2
+    - 4
+transpose_involution:
+  input: matrix_a
+  operation: transpose
+  then_operation: transpose
+  expected_result:
+    rows: 2
+    cols: 2
+    data:
+    - 1
+    - 2
+    - 3
+    - 4
+scalar_multiplication:
+  input: matrix_a
+  operation: scale
+  scalar: 2
+  expected_result:
+    rows: 2
+    cols: 2
+    data:
+    - 2
+    - 4
+    - 6
+    - 8
+addition_example:
+  left_operand: matrix_a
+  right_operand:
+    rows: 2
+    cols: 2
+    data:
+    - 4
+    - 3
+    - 2
+    - 1
+    scalar_domain: urn:math:contract:Field:v0.1.0#GF(5)
+  operation: add
+  expected_result:
+    rows: 2
+    cols: 2
+    data:
+    - 5
+    - 5
+    - 5
+    - 5
+validation:
+  contract: urn:math:contract:BasicMatrix:v1.0.0
+  validators_applied:
+  - shape_validator
+  - storage_validator
+  - scalar_domain_validator
+  deterministic: true
+  replay_algorithm: SHA-256
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0

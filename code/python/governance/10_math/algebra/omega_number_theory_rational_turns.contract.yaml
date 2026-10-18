@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:rational_turns:v1.0.0
+title: 'Exact rational turns Q/Z and their declared root-of-unity character. AuthorityEffect:
+  None. The symbolic group has ar...'
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/rational_turns.rs
+module: rational_turns
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: rational_turns
+  file: crates_rs/omega_number_theory/src/rational_turns.rs
+symbols:
+- RationalTurnError
+- RationalTurn
+- new
+- zero
+- representative
+- add
+- inverse
+- sub
+- multiply_integer
+- root
+- character_in
+- character
+owns:
+- rational_turn_error
+- rational_turn
+- new
+- zero
+- representative
+- add
+- inverse
+- sub
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

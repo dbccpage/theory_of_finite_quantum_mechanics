@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:matrix:v1.0.0
+title: Matrix utilities wrapping linear_algebra backend. All functions return Results
+  - no panics in library code.
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/matrix.rs
+module: matrix
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: matrix
+  file: crates_rs/omega_homology/src/matrix.rs
+symbols:
+- is_zero_matrix
+- matrix_rank
+- kernel_dim
+- image_dim
+- in_column_space
+- mat_vec_mul
+- mat_mul
+- check_mat_vec_dims
+- zero_matrix
+owns:
+- is_zero_matrix
+- matrix_rank
+- kernel_dim
+- image_dim
+- in_column_space
+- mat_vec_mul
+- mat_mul
+- check_mat_vec_dims
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

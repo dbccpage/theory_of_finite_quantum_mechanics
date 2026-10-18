@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:bin_genesis_extension:v1.0.0
+title: Native finite realizations of independently supplied Genesis packets. Source
+  replay and permission remain separate fr...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/bin/genesis_extension.rs
+module: bin::genesis_extension
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: bin::genesis_extension
+  file: crates_rs/omega_wdp/src/bin/genesis_extension.rs
+symbols: []
+owns:
+- bin_genesis_extension
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

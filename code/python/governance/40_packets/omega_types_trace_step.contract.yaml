@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:trace_step:v1.0.0
+title: Trace Step Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/trace_step.rs
+module: trace_step
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: trace_step
+  file: crates_rs/omega_types/src/trace_step.rs
+symbols:
+- TraceStepError
+- TraceStep
+- new_validated
+- index
+- score
+- content_hash
+- TraceDependencyError
+- TraceDependency
+- from_index
+- to_index
+- weight
+owns:
+- trace_step_error
+- trace_step
+- new_validated
+- index
+- score
+- content_hash
+- trace_dependency_error
+- trace_dependency
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

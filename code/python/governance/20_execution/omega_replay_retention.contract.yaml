@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_replay:retention:v1.0.0
+title: 'Retention: age out trace CONTENT while keeping the hash ledger auditable.  #
+  Why redaction cannot be an in-place edit...'
+kind: rust_file_contract
+status: active
+crate: omega_replay
+file: crates_rs/omega_replay/src/retention.rs
+module: retention
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_replay
+  module: retention
+  file: crates_rs/omega_replay/src/retention.rs
+symbols:
+- LegalHold
+- RetentionClass
+- RetentionPolicy
+- RedactedEventV1
+- RedactedTraceV1
+- RetentionError
+- redact_trace_v1
+- verify_chain_linkage
+- to_json
+owns:
+- legal_hold
+- retention_class
+- retention_policy
+- redacted_event_v1
+- redacted_trace_v1
+- retention_error
+- redact_trace_v1
+- verify_chain_linkage
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_layer3_cs:v1.0.0
+title: Layer3 Cs Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/layer3_cs.rs
+module: coda::layer3_cs
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::layer3_cs
+  file: crates_rs/omega_wdp/src/coda/layer3_cs.rs
+symbols:
+- Layer3Cs
+- evaluate
+- evaluate_report_query
+owns:
+- layer3_cs
+- evaluate
+- evaluate_report_query
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

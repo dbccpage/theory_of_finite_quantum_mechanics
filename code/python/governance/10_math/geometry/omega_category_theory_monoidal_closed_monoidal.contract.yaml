@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:monoidal_closed_monoidal:v1.0.0
+title: 'closed_monoidal shell for omega_category_theory. AuthorityEffect: None. Not
+  PROVED / GlobalGreen.'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/monoidal/closed_monoidal.rs
+module: monoidal::closed_monoidal
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: monoidal::closed_monoidal
+  file: crates_rs/omega_category_theory/src/monoidal/closed_monoidal.rs
+symbols:
+- ClosedMonoidal
+- new
+- with_internal_hom
+- validate_shell
+owns:
+- closed_monoidal
+- new
+- with_internal_hom
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

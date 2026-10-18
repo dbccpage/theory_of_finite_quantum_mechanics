@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:rational:v1.0.0
+title: Exact rational arithmetic and the integer arithmetic it rests on.  Provides
+  clean constructors and operations for exa...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/rational.rs
+module: rational
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: rational
+  file: crates_rs/omega_number_theory/src/rational.rs
+symbols:
+- Rational
+- ArithmeticError
+- from_ratio_i64
+- to_ratio_i64
+- ri
+- rq
+- checked_ratio
+- r_zero
+- r_one
+- r_half
+- r_third
+- r_fifth
+- integer_sqrt
+- checked_integer_sqrt
+- exact_integer_sqrt
+- is_perfect_square
+- sqrt_exact
+- is_rational_square
+- gcd_usize
+- checked_lcm_usize
+- squarefree_part
+- squarefree_part_with_limit
+owns:
+- rational
+- arithmetic_error
+- from_ratio_i64
+- to_ratio_i64
+- ri
+- rq
+- checked_ratio
+- r_zero
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_woland_candidate_check_custody:v1.0.0
+title: Host-side byte binding, independent of the frozen single-artifact parity cases.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_woland/candidate_check_custody.rs
+module: omega_woland::candidate_check_custody
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_woland::candidate_check_custody
+  file: crates_rs/tests/omega_woland/candidate_check_custody.rs
+symbols: []
+owns:
+- omega_woland_candidate_check_custody
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

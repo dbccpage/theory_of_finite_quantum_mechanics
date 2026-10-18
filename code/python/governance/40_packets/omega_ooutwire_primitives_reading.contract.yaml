@@ -1,0 +1,36 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:reading:v1.0.0
+title: 'Primitive — the two **admission readings** L and F, and Challenges 0–2.  Crate
+  boundary: engine.  Source: `engine.py:...'
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/reading.rs
+module: reading
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: reading
+  file: crates_rs/omega_ooutwire_primitives/src/reading.rs
+symbols:
+- Reading
+- readings
+- Challenge0
+- challenge0
+- Challenge1
+- challenge1
+- Challenge2
+- challenge2
+owns:
+- reading
+- readings
+- challenge0
+- challenge1
+- challenge2
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

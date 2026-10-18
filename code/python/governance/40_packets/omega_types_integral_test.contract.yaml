@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:integral_test:v1.0.0
+title: An input sequence for the integral test, representing sampled function values
+  or coefficients of a series `{a_0, a_1,...
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/integral_test.rs
+module: integral_test
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: integral_test
+  file: crates_rs/omega_types/src/integral_test.rs
+symbols:
+- IntegralTestInput
+- IntegralTestResult
+owns:
+- integral_test_input
+- integral_test_result
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

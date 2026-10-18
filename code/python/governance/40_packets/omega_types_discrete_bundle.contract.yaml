@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:discrete_bundle:v1.0.0
+title: Discrete Bundle Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/discrete_bundle.rs
+module: discrete_bundle
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: discrete_bundle
+  file: crates_rs/omega_types/src/discrete_bundle.rs
+symbols:
+- TransitionId
+- TransitionRef
+- DiscreteBundle
+owns:
+- transition_id
+- transition_ref
+- discrete_bundle
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

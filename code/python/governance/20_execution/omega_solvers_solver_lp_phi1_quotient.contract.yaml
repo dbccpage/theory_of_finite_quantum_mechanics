@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:solver_lp_phi1_quotient:v1.0.0
+title: '# Phi1 certificate construction over exact rationals  [`omega_functional::phi1`]
+  and [`omega_functional::l1_seminorm`...'
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/solver_lp_phi1_quotient.rs
+module: solver_lp_phi1_quotient
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: solver_lp_phi1_quotient
+  file: crates_rs/omega_solvers/src/solver_lp_phi1_quotient.rs
+symbols:
+- Phi1LinearProgram
+- SimplexRefusal
+- Phi1SolveError
+- solve_exact_phi1
+- CurvedConstrainedPhi1Certificate
+- VerifiedCurvedConstrainedPhi1
+- certificate
+- value
+- alpha
+- primal_residual
+- baseline_raw_gamma2
+- repaired_raw_gamma2
+- curvature_k
+- is_curved
+- tau
+- dual_y
+- dual_z
+- dual_lambda
+- CurvedConstrainedPhi1Error
+- compute_curvature_k
+- verify_constrained_curved_phi1
+- solve_constrained_curved_phi1
+owns:
+- phi1_linear_program
+- simplex_refusal
+- phi1_solve_error
+- solve_exact_phi1
+- curved_constrained_phi1_certificate
+- verified_curved_constrained_phi1
+- certificate
+- value
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

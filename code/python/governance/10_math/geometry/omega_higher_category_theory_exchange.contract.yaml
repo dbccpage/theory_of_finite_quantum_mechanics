@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:exchange:v1.0.0
+title: 'Middle-Four Interchange / Exchange Law verification.  Evaluates the fundamental
+  2-categorical coherence: (beta_2 ∘_v ...'
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/exchange.rs
+module: exchange
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: exchange
+  file: crates_rs/omega_higher_category_theory/src/exchange.rs
+symbols:
+- ExchangeQuadruple
+- new
+- check_exchange_composability
+- verify_exchange_law
+- verify_all_exchange_laws
+owns:
+- exchange_quadruple
+- new
+- check_exchange_composability
+- verify_exchange_law
+- verify_all_exchange_laws
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

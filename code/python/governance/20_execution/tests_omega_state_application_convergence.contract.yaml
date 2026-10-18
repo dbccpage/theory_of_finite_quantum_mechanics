@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_state_application_convergence:v1.0.0
+title: Synthetic schema/validator fixtures; no historical run or receipt is replayed.
+  Missing upstream packet custody is rec...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_state/application_convergence.rs
+module: omega_state::application_convergence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_state::application_convergence
+  file: crates_rs/tests/omega_state/application_convergence.rs
+symbols: []
+owns:
+- omega_state_application_convergence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

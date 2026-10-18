@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_finite_probability_exact_mcnemar_test:v1.0.0
+title: 'Tests for exact rational McNemar paired test (U08).  Enforces: - Exact rational
+  arithmetic with zero floating point d...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_finite_probability/exact_mcnemar_test.rs
+module: omega_finite_probability::exact_mcnemar_test
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_finite_probability::exact_mcnemar_test
+  file: crates_rs/tests/omega_finite_probability/exact_mcnemar_test.rs
+symbols: []
+owns:
+- omega_finite_probability_exact_mcnemar_test
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

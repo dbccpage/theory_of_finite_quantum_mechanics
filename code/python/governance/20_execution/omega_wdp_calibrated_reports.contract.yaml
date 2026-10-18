@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:calibrated_reports:v1.0.0
+title: Calibrated interval reports, certified recovery and robust observation cost
+  (monograph Appendix X).  * Proposition X....
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/calibrated_reports.rs
+module: calibrated_reports
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: calibrated_reports
+  file: crates_rs/omega_wdp/src/calibrated_reports.rs
+symbols:
+- CalibratedError
+- transported_radius
+- Channel
+- separates
+- RawReading
+- RecoveryStatus
+- RecoveryEvaluation
+- CalibratedModel
+- new
+- channels
+- evaluate
+- alphabet
+- finite_lift
+- fixed_robust_cost
+- adaptive_robust_cost
+owns:
+- calibrated_error
+- transported_radius
+- channel
+- separates
+- raw_reading
+- recovery_status
+- recovery_evaluation
+- calibrated_model
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

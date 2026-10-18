@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_lifetime_check:v1.0.0
+title: '--- yaml title: lifetime_check file_name: lifetime_check.rs file_location:
+  ~/anomalon/anomalon_kernel/omega_core/src/...'
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/lifetime_check.rs
+module: compiler::lifetime_check
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::lifetime_check
+  file: crates_rs/auto_p/src/compiler/lifetime_check.rs
+symbols:
+- LifetimeCheckResult
+- ScopeAnalysis
+- DropDirective
+- ResourceEscape
+- check_lifetimes
+owns:
+- lifetime_check_result
+- scope_analysis
+- drop_directive
+- resource_escape
+- check_lifetimes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

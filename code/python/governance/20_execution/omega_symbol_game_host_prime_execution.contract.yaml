@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:host_prime_execution:v1.0.0
+title: Exact Prime 0/1/2 execution, witness commitments and typed mathematical refusals.
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/host/prime_execution.rs
+module: host::prime_execution
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: host::prime_execution
+  file: crates_rs/omega_symbol_game/src/host/prime_execution.rs
+symbols:
+- same_carrier_identity
+- rational
+- weighted_l1
+- vector_commitment_i128
+- vector_commitment_rational
+- exact_stage
+- oesos_summary
+- exact_u64
+- prime000_summary
+- run_prime002_exact_transition
+- law_names
+- solve_refusal_code
+- admission_reason
+owns:
+- same_carrier_identity
+- rational
+- weighted_l1
+- vector_commitment_i128
+- vector_commitment_rational
+- exact_stage
+- oesos_summary
+- exact_u64
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

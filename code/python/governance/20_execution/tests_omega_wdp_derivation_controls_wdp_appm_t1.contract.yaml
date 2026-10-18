@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_appm_t1:v1.0.0
+title: Exact witness for the finite carrier in `derivation.md`.  Sites are `(Z/4Z)^2`.
+  Configurations are the two orientatio...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appm_t1.rs
+module: omega_wdp::derivation_controls::wdp_appm_t1
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_appm_t1
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appm_t1.rs
+symbols:
+- Witness
+- witness
+- reject_pinned_scalar
+owns:
+- witness
+- reject_pinned_scalar
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:mcp:v1.0.0
+title: Bounded MCP stdio transport. All tools execute the existing native owners.
+  Transport success never promotes an outcom...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/mcp.rs
+module: mcp
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: mcp
+  file: crates_rs/omega_symbol_game/src/mcp.rs
+symbols:
+- tool_actions
+- McpSession
+- handle
+- serve
+owns:
+- tool_actions
+- mcp_session
+- handle
+- serve
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

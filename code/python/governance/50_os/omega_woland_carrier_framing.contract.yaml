@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:carrier_framing:v1.0.0
+title: 'Act I: carrier admission precedes history and synthetic perception.'
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/carrier_framing.rs
+module: carrier_framing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: carrier_framing
+  file: crates_rs/omega_woland/src/carrier_framing.rs
+symbols:
+- CarrierFramingInput
+- CarrierFramingOutcome
+- network
+- initial_cochain
+- active_antibodies
+- prompt_sbe
+- narrative
+- carrier_status
+- to_dict
+- execute_act1_carrier_framing
+owns:
+- carrier_framing_input
+- carrier_framing_outcome
+- network
+- initial_cochain
+- active_antibodies
+- prompt_sbe
+- narrative
+- carrier_status
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

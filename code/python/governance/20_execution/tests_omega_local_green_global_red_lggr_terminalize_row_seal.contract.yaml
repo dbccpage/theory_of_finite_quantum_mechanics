@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_local_green_global_red_lggr_terminalize_row_seal:v1.0.0
+title: 'S9: terminalize-seal handoff firewall test.  This test does NOT mint a terminal
+  itself; it verifies the `residual_fam...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_local_green_global_red_lggr/terminalize_row_seal.rs
+module: omega_local_green_global_red_lggr::terminalize_row_seal
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_local_green_global_red_lggr::terminalize_row_seal
+  file: crates_rs/tests/omega_local_green_global_red_lggr/terminalize_row_seal.rs
+symbols: []
+owns:
+- omega_local_green_global_red_lggr_terminalize_row_seal
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

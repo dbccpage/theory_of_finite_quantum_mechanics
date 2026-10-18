@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:exact_regge_manifold:v1.0.0
+title: Simplicial 4-complex with per-pentatope charts in `Q^4`.  Vertex ids come from
+  the charts and are not renumbered. Squ...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/exact_regge/manifold.rs
+module: exact_regge::manifold
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: exact_regge::manifold
+  file: crates_rs/omega_general_relativity/src/exact_regge/manifold.rs
+symbols:
+- ManifoldError
+- PentatopeChart
+- SimplicialManifold4D
+- from_ambient_pentatopes
+- from_charts
+- vertex_count
+- pentatope_count
+- pentatope
+- charts
+- chart_coords
+- edge_length_squared
+- nondegeneracy
+- triangles
+- tetrahedra
+- edges
+- euler_characteristic
+owns:
+- manifold_error
+- pentatope_chart
+- simplicial_manifold4_d
+- from_ambient_pentatopes
+- from_charts
+- vertex_count
+- pentatope_count
+- pentatope
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

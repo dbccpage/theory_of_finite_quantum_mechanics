@@ -1,0 +1,54 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:data_computation_carrier:v1.0.0
+title: Exact supplied Boolean graphs/CNF and deterministic finite-prefix tape machines.
+  No logic, permission, universal comp...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/data_computation_carrier.rs
+module: data_computation_carrier
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: data_computation_carrier
+  file: crates_rs/omega_solvers/src/data_computation_carrier.rs
+symbols:
+- ComputationError
+- Literal
+- Cnf
+- satisfied_by
+- BooleanGraph
+- new
+- arity
+- outputs
+- evaluate
+- graph_cnf
+- verify_cnf
+- Configuration
+- Transition
+- FiniteMachine
+- PrefixTermination
+- MachineRun
+- initial_state
+- is_halting
+- transition_keys
+- checked_read
+- step
+- execute
+- verify_run
+owns:
+- computation_error
+- literal
+- cnf
+- satisfied_by
+- boolean_graph
+- new
+- arity
+- outputs
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

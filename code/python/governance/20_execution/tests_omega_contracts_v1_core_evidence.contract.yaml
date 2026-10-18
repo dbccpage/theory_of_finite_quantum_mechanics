@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_contracts_v1_core_evidence:v1.0.0
+title: The migrated evidence contracts load and pass `validate_registry` (CheckedPacket/Diagnostic/Measurement/Observable/Re...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_contracts/v1_core_evidence.rs
+module: omega_contracts::v1_core_evidence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_contracts::v1_core_evidence
+  file: crates_rs/tests/omega_contracts/v1_core_evidence.rs
+symbols: []
+owns:
+- omega_contracts_v1_core_evidence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

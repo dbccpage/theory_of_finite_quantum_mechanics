@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:finite_joint_dynamics:v1.0.0
+title: Joint operations on an explicit relation of component states. Local transitions
+  must preserve the relation; missing p...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/finite_joint_dynamics.rs
+module: finite_joint_dynamics
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: finite_joint_dynamics
+  file: crates_rs/omega_category_theory/src/finite_joint_dynamics.rs
+symbols:
+- JointOperation
+- JointDynamicsError
+- JointDynamicsAnalysis
+- JointDynamics
+- new
+- pairs
+- local_reports
+- dynamics
+- analyze
+- verify
+owns:
+- joint_operation
+- joint_dynamics_error
+- joint_dynamics_analysis
+- joint_dynamics
+- new
+- pairs
+- local_reports
+- dynamics
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

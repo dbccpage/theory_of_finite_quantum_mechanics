@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_ptir:v1.0.0
+title: '--- yaml title: ptir file_name: ptir.rs file_location: omega_core/src/compiler/ptir.rs
+  status: Diamond invariance_lev...'
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/ptir.rs
+module: compiler::ptir
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::ptir
+  file: crates_rs/auto_p/src/compiler/ptir.rs
+symbols:
+- ProtectionZone
+- ProofCertificate
+- DualWitnessCertificate
+- is_valid
+- canonical_receipt_string
+- receipt_hash
+- to_proof_certificate
+- PTIRNode
+- ProgramGeometry
+- PTIR
+- hash_expr
+- expr_fingerprint
+- compute_fingerprint
+- new
+- validate_certificates
+- validate_diagram_alignment
+- verify_yang_baxter_braid
+owns:
+- protection_zone
+- proof_certificate
+- dual_witness_certificate
+- is_valid
+- canonical_receipt_string
+- receipt_hash
+- to_proof_certificate
+- p_t_i_r_node
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_epistemic_immune_system:lib:v1.0.0
+title: 'Sovereign Rust Epistemic Immune System (EIS) Engine.  AuthorityEffect: None.  Implements
+  the Four-Gate Epistemic Immu...'
+kind: rust_file_contract
+status: active
+crate: omega_epistemic_immune_system
+file: crates_rs/omega_epistemic_immune_system/src/lib.rs
+module: lib
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_epistemic_immune_system
+  module: lib
+  file: crates_rs/omega_epistemic_immune_system/src/lib.rs
+symbols:
+- Refusal
+- new
+owns:
+- refusal
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

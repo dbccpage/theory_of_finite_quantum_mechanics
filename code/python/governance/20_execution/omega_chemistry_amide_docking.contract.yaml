@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_chemistry:amide_docking:v1.0.0
+title: Amide Docking & Peptide Condensation Engine  Evaluates the topological synthesis
+  of peptide linkages by fusing amine ...
+kind: rust_file_contract
+status: active
+crate: omega_chemistry
+file: crates_rs/omega_chemistry/src/amide_docking.rs
+module: amide_docking
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_chemistry
+  module: amide_docking
+  file: crates_rs/omega_chemistry/src/amide_docking.rs
+symbols:
+- LisdexamfetamineMolecule
+- betti_1
+- MolecularDockingEngine
+- synthesize_lisdexamfetamine
+- MolecularSkeletalGraph
+- from_substance
+- condense
+- cyclize_head_to_tail
+- exact_betti_1
+- cycle_basis_betti_1
+owns:
+- lisdexamfetamine_molecule
+- betti_1
+- molecular_docking_engine
+- synthesize_lisdexamfetamine
+- molecular_skeletal_graph
+- from_substance
+- condense
+- cyclize_head_to_tail
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_rewrite_proof:v1.0.0
+title: Rewrite Proof Module
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/rewrite_proof.rs
+module: compiler::rewrite_proof
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::rewrite_proof
+  file: crates_rs/auto_p/src/compiler/rewrite_proof.rs
+symbols:
+- DiagramId
+- of
+- ProofStep
+- RewriteProof
+- new
+- record
+- len
+- is_empty
+- to_lean4
+- to_markdown
+- normalize_incremental_with_proof
+owns:
+- diagram_id
+- of
+- proof_step
+- rewrite_proof
+- new
+- record
+- len
+- is_empty
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

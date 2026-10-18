@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:homology_class:v1.0.0
+title: Homology Class Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/homology_class.rs
+module: homology_class
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: homology_class
+  file: crates_rs/omega_homology/src/homology_class.rs
+symbols:
+- CertifiedCycle
+- new_unchecked
+- coefficients
+- degree
+- HomologyClass
+- new_checked
+- cycle
+- quotient_class
+- complex_id
+- coefficient_domain
+- CohomologyClass
+- cocycle
+owns:
+- certified_cycle
+- new_unchecked
+- coefficients
+- degree
+- homology_class
+- new_checked
+- cycle
+- quotient_class
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

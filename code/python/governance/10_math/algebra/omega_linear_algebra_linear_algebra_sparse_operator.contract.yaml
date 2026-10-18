@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:linear_algebra_sparse_operator:v1.0.0
+title: Sparse Operator Module
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/linear_algebra/sparse_operator.rs
+module: linear_algebra::sparse_operator
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: linear_algebra::sparse_operator
+  file: crates_rs/omega_linear_algebra/src/linear_algebra/sparse_operator.rs
+symbols:
+- SparseOperatorError
+- SparseOperator
+- CompressWitness
+- new
+- from_entries_checked
+- shape
+- rows
+- cols
+- entries
+- into_entries
+- add_entry
+- apply
+- compress_checked
+- compress_witness
+- is_compressed
+owns:
+- sparse_operator_error
+- sparse_operator
+- compress_witness
+- new
+- from_entries_checked
+- shape
+- rows
+- cols
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

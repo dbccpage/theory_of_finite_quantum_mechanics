@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:representative_cycle:v1.0.0
+title: 'Reconstruct a cycle representative for a persistence bar.  AuthorityEffect:
+  None. Shell / best-effort computational t...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/representative_cycle.rs
+module: representative_cycle
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: representative_cycle
+  file: crates_rs/omega_homology/src/representative_cycle.rs
+symbols:
+- RepresentativeCycle
+- empty
+- support_size
+- is_zero
+owns:
+- representative_cycle
+- empty
+- support_size
+- is_zero
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

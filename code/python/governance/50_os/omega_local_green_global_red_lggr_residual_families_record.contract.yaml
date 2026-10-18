@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_local_green_global_red_lggr:residual_families_record:v1.0.0
+title: '`ResidualClassRecord` + opaque local id newtypes.  `Q1ClassId` and `Gamma2ClassId`
+  are LOCAL ids only. They carry NO ...'
+kind: rust_file_contract
+status: active
+crate: omega_local_green_global_red_lggr
+file: crates_rs/omega_local_green_global_red_lggr/src/residual_families/record.rs
+module: residual_families::record
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_local_green_global_red_lggr
+  module: residual_families::record
+  file: crates_rs/omega_local_green_global_red_lggr/src/residual_families/record.rs
+symbols:
+- Q1ClassId
+- from_u64
+- as_u64
+- Gamma2ClassId
+- ResidualClassRecord
+- new
+owns:
+- q1_class_id
+- from_u64
+- as_u64
+- gamma2_class_id
+- residual_class_record
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

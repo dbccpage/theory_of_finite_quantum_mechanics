@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:maurer_cartan:v1.0.0
+title: Maurer Cartan Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/maurer_cartan.rs
+module: maurer_cartan
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: maurer_cartan
+  file: crates_rs/omega_homology/src/maurer_cartan.rs
+symbols:
+- Cochain1
+- Cochain2
+- MCResidual
+- MCDecomposition
+- Bracket11To2
+- AbelianBracket
+- TraceInteractionBracket
+- BracketError
+- StructureConstantBracket
+- new
+- bracket
+- try_new
+- maurer_cartan_residual
+- maurer_cartan_decomposition
+- accept_mc_step
+- build_path_d1
+- scores_to_cochain1
+owns:
+- cochain1
+- cochain2
+- m_c_residual
+- m_c_decomposition
+- bracket11_to2
+- abelian_bracket
+- trace_interaction_bracket
+- bracket_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

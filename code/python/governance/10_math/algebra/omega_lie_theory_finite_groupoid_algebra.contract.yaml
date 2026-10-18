@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:finite_groupoid_algebra:v1.0.0
+title: Faithful finite-groupoid convolution over the exact subfield Q(i).  The category
+  owner validates identities, composit...
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/finite_groupoid_algebra.rs
+module: finite_groupoid_algebra
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: finite_groupoid_algebra
+  file: crates_rs/omega_lie_theory/src/finite_groupoid_algebra.rs
+symbols:
+- GroupoidAlgebraError
+- FiniteGroupoidAlgebra
+- new
+- groupoid
+- arrows
+- dimension
+- basis
+- unit
+- multiply
+- star
+- trace
+- coefficient_norm_squared
+- left_regular
+- central_isotropy_average
+owns:
+- groupoid_algebra_error
+- finite_groupoid_algebra
+- new
+- groupoid
+- arrows
+- dimension
+- basis
+- unit
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

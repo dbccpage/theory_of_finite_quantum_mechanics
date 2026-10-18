@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:bin_omega_operad_mcp:v1.0.0
+title: Sovereign Native Rust Model Context Protocol (MCP) Server.  Provides high-assurance,
+  sub-millisecond DDC tape parsing...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/bin/omega_operad_mcp.rs
+module: bin::omega_operad_mcp
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: bin::omega_operad_mcp
+  file: crates_rs/omega_wdp/src/bin/omega_operad_mcp.rs
+symbols: []
+owns:
+- bin_omega_operad_mcp
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

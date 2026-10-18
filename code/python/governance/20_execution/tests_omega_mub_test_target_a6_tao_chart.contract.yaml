@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_mub_test_target_a6_tao_chart:v1.0.0
+title: 'Comprehensive Integration and Falsification Test Suite for Target A6 (Tao
+  Confluence Chart).  AuthorityEffect: None'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_mub/test_target_a6_tao_chart.rs
+module: omega_mub::test_target_a6_tao_chart
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_mub::test_target_a6_tao_chart
+  file: crates_rs/tests/omega_mub/test_target_a6_tao_chart.rs
+symbols: []
+owns:
+- omega_mub_test_target_a6_tao_chart
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

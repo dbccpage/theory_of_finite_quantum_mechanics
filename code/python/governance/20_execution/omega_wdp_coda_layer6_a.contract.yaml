@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_layer6_a:v1.0.0
+title: Layer6 A Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/layer6_a.rs
+module: coda::layer6_a
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::layer6_a
+  file: crates_rs/omega_wdp/src/coda/layer6_a.rs
+symbols:
+- Layer6A
+- evaluate
+owns:
+- layer6_a
+- evaluate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

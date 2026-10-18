@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_lambda_emitter:v1.0.0
+title: Lambda Emitter Module
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/lambda_emitter.rs
+module: compiler::lambda_emitter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::lambda_emitter
+  file: crates_rs/auto_p/src/compiler/lambda_emitter.rs
+symbols:
+- TowerAddress
+- EmittedLambda
+- emit_lambda
+owns:
+- tower_address
+- emitted_lambda
+- emit_lambda
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

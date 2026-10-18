@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_plan_qp_c7:v1.0.0
+title: Exact finite control witness for `PLAN-QP-C7` (`plan_qp_c7`).  Evaluates the
+  declared finite carrier invariant and re...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/plan_qp_c7.rs
+module: omega_wdp::derivation_controls::plan_qp_c7
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::plan_qp_c7
+  file: crates_rs/tests/omega_wdp/derivation_controls/plan_qp_c7.rs
+symbols:
+- Witness
+- witness
+- reject_rigorous_bound_claim_for_neville_proxy
+owns:
+- witness
+- reject_rigorous_bound_claim_for_neville_proxy
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

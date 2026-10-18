@@ -1,0 +1,58 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:composition:v1.0.0
+title: 'Chapter 19: the composition principle, conditional on a declared composition.
+  Executable finite evidence for `WDP-CH1...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/composition.rs
+module: composition
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: composition
+  file: crates_rs/omega_wdp/src/composition.rs
+symbols:
+- Decoders
+- local_decoders
+- decoders_are_left_inverse
+- pairing_table
+- dump_right_table
+- pushforward
+- lift_along_first
+- JointState
+- new
+- entries
+- n_a
+- n_b
+- marginal_a
+- marginal_b
+- apply_instrument_on_b
+- apply_instrument_on_a
+- pushforward_along_first
+- pushforward_presentation_a
+- outcome_marginal_a
+- outcome_marginal_b
+- BilinearForm
+- evaluate
+- composite_state_from_bilinear
+- FormReceipt
+- composite_state_from_form
+- PrBoxFixture
+- pr_box_fixture
+owns:
+- decoders
+- local_decoders
+- decoders_are_left_inverse
+- pairing_table
+- dump_right_table
+- pushforward
+- lift_along_first
+- joint_state
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

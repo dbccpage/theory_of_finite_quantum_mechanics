@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_prompt_civilization:antimorphism:v1.0.0
+title: Exact Antimorphism Detectors and Judge-Suite Exporter (U19).  Implements exact
+  mathematical predicates for failure cl...
+kind: rust_file_contract
+status: active
+crate: omega_prompt_civilization
+file: crates_rs/omega_prompt_civilization/src/antimorphism.rs
+module: antimorphism
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_prompt_civilization
+  module: antimorphism
+  file: crates_rs/omega_prompt_civilization/src/antimorphism.rs
+symbols:
+- AntimorphismVerdict
+- HarvestRow
+- ExportedSuite
+- SuiteExportError
+- ExactOrbitSumDetector
+- check
+- ExactSignInversionDetector
+- ExactStationaryRepeatDetector
+- JudgeSuiteExporter
+- export
+owns:
+- antimorphism_verdict
+- harvest_row
+- exported_suite
+- suite_export_error
+- exact_orbit_sum_detector
+- check
+- exact_sign_inversion_detector
+- exact_stationary_repeat_detector
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

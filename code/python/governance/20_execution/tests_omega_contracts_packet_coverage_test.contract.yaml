@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_contracts_packet_coverage_test:v1.0.0
+title: Exact packet-mapping findings for the canonical Rust workspace.  Cargo supplies
+  the member denominator. Current unmap...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_contracts/packet_coverage_test.rs
+module: omega_contracts::packet_coverage_test
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_contracts::packet_coverage_test
+  file: crates_rs/tests/omega_contracts/packet_coverage_test.rs
+symbols: []
+owns:
+- omega_contracts_packet_coverage_test
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

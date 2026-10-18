@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:kinds:v1.0.0
+title: Kinds Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/kinds.rs
+module: kinds
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: kinds
+  file: crates_rs/omega_contracts/src/kinds.rs
+symbols:
+- SchemaRef
+- SchemaHash
+- BaseValidationWitness
+- BaseValidationViolation
+- MutabilityMode
+- BaseType
+- ContractCategory
+- ComponentRole
+- ContractEffect
+- ArtifactKind
+- Capability
+- CapabilityPolicy
+- forbids
+- requires
+- KindDescriptor
+- ContractStatus
+owns:
+- schema_ref
+- schema_hash
+- base_validation_witness
+- base_validation_violation
+- mutability_mode
+- base_type
+- contract_category
+- component_role
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

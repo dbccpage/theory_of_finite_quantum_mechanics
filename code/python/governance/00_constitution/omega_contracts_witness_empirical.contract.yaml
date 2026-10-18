@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:witness_empirical:v1.0.0
+title: Empirical Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/witness/empirical.rs
+module: witness::empirical
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: witness::empirical
+  file: crates_rs/omega_contracts/src/witness/empirical.rs
+symbols:
+- produce_lambda_phi_witness
+- produce_reducer_idempotence_witness
+- produce_transform_determinism_witness
+owns:
+- produce_lambda_phi_witness
+- produce_reducer_idempotence_witness
+- produce_transform_determinism_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

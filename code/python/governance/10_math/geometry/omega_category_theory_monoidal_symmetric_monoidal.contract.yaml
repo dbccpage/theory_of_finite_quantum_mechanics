@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:monoidal_symmetric_monoidal:v1.0.0
+title: 'symmetric_monoidal shell for omega_category_theory. AuthorityEffect: None.
+  Not PROVED / GlobalGreen.'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/monoidal/symmetric_monoidal.rs
+module: monoidal::symmetric_monoidal
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: monoidal::symmetric_monoidal
+  file: crates_rs/omega_category_theory/src/monoidal/symmetric_monoidal.rs
+symbols:
+- SymmetricMonoidal
+- new
+- with_braiding
+- validate_shell
+owns:
+- symmetric_monoidal
+- new
+- with_braiding
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

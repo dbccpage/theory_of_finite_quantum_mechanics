@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_solvers_solver_integration:v1.0.0
+title: Integration tests for exact primal-dual solvers and falsification of positive-epsilon
+  gap claims. (SPEC-OE-WOLAND-RUS...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_solvers/solver_integration.rs
+module: omega_solvers::solver_integration
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_solvers::solver_integration
+  file: crates_rs/tests/omega_solvers/solver_integration.rs
+symbols: []
+owns:
+- omega_solvers_solver_integration
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

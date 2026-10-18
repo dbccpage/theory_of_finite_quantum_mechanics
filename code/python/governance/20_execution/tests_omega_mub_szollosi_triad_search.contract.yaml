@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_mub_szollosi_triad_search:v1.0.0
+title: 'Integration tests for Szöllősi B6 and Tao S6 MU Triad Compatibility Solver.  AuthorityEffect:
+  None'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_mub/szollosi_triad_search.rs
+module: omega_mub::szollosi_triad_search
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_mub::szollosi_triad_search
+  file: crates_rs/tests/omega_mub/szollosi_triad_search.rs
+symbols: []
+owns:
+- omega_mub_szollosi_triad_search
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

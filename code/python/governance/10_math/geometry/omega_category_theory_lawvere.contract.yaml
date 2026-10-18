@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:lawvere:v1.0.0
+title: Lawvere Theory — Spec Section 25.  A Lawvere theory is a Cauchy-complete monoid
+  in Prof. Operations are profunctor el...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/lawvere.rs
+module: lawvere
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: lawvere
+  file: crates_rs/omega_category_theory/src/lawvere.rs
+symbols:
+- OperationDecl
+- new
+- arity
+- coarity
+- EquationDecl
+- TheoryCauchyStatus
+- LawvereTheory
+- add_sort
+- add_operation
+- add_equation
+- add_substitution
+- substitute
+- operations_of_arity
+- check_substitution_associativity
+- check_theory_cauchy
+owns:
+- operation_decl
+- new
+- arity
+- coarity
+- equation_decl
+- theory_cauchy_status
+- lawvere_theory
+- add_sort
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

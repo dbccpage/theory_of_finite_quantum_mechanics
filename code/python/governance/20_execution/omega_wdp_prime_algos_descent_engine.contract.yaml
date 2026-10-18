@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:prime_algos_descent_engine:v1.0.0
+title: Exact solver diagnostics for a finite carrier.  Prime 002 permit/terminalization
+  integration is not implemented here....
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/prime_algos/descent_engine.rs
+module: prime_algos::descent_engine
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: prime_algos::descent_engine
+  file: crates_rs/omega_wdp/src/prime_algos/descent_engine.rs
+symbols:
+- DescentExecutionReceipt
+- PrimeDescentCoordinator
+- new
+- trace
+- execute_descent
+- execute_descent_with_grant
+- DescentRefusal
+owns:
+- descent_execution_receipt
+- prime_descent_coordinator
+- new
+- trace
+- execute_descent
+- execute_descent_with_grant
+- descent_refusal
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

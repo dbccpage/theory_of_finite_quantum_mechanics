@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:simplicial_entropy_schedule:v1.0.0
+title: 'Declared combinatorial area count and Page schedule from the finite-QM simplicial
+  host.  Source: `omega_engine_atlas/...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/simplicial_entropy_schedule.rs
+module: simplicial_entropy_schedule
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: simplicial_entropy_schedule
+  file: crates_rs/omega_quantum_physics/src/simplicial_entropy_schedule.rs
+symbols:
+- AreaModel
+- PageStep
+- area_model
+- page_curve
+owns:
+- area_model
+- page_step
+- page_curve
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

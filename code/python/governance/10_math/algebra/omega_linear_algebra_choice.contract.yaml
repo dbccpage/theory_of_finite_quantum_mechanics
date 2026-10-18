@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:choice:v1.0.0
+title: Linear algebra specific choice metadata.
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/choice.rs
+module: choice
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: choice
+  file: crates_rs/omega_linear_algebra/src/choice.rs
+symbols:
+- Choice
+- WithChoice
+- new
+- inner
+- choice
+- forget
+- BasisChoiceError
+- BasisChoice
+- descriptor
+- into_descriptor
+- WithChosenBasis
+- ChangeBasisExt
+owns:
+- choice
+- with_choice
+- new
+- inner
+- forget
+- basis_choice_error
+- basis_choice
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

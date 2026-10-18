@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_category_theory_finite_self_reference:v1.0.0
+title: Finite Self Reference Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_category_theory/finite_self_reference.rs
+module: omega_category_theory::finite_self_reference
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_category_theory::finite_self_reference
+  file: crates_rs/tests/omega_category_theory/finite_self_reference.rs
+symbols: []
+owns:
+- omega_category_theory_finite_self_reference
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

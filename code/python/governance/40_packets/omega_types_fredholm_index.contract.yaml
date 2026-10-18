@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:fredholm_index:v1.0.0
+title: Fredholm index configuration for a pseudoholomorphic curve with constraints.  For
+  genus-0 rational curves (g = 0) in ...
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/fredholm_index.rs
+module: fredholm_index
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: fredholm_index
+  file: crates_rs/omega_types/src/fredholm_index.rs
+symbols:
+- FredholmIndex
+- FredholmDiagnostic
+- diagnose_points
+- diagnose_tangency
+- max_stable_tangency_order
+- equivalent_tangency_order
+owns:
+- fredholm_index
+- fredholm_diagnostic
+- diagnose_points
+- diagnose_tangency
+- max_stable_tangency_order
+- equivalent_tangency_order
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

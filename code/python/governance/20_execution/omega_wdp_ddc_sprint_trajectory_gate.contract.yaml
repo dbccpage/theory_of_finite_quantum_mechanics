@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:ddc_sprint_trajectory_gate:v1.0.0
+title: 'ORT / process NDJSON gate for `dda_sprint_trajectory` tapes.  Schema id: `dda_sprint_trajectory.v1`  Integrity
+  mode r...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/ddc/sprint_trajectory_gate.rs
+module: ddc::sprint_trajectory_gate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: ddc::sprint_trajectory_gate
+  file: crates_rs/omega_wdp/src/ddc/sprint_trajectory_gate.rs
+symbols:
+- Violation
+- TrajectoryGateResult
+- step_hash
+- verify_trajectory_chain
+- validate_dda_sprint_trajectory_records
+- validate_dda_sprint_trajectory_path
+- emit_integrity_v1_record
+owns:
+- violation
+- trajectory_gate_result
+- step_hash
+- verify_trajectory_chain
+- validate_dda_sprint_trajectory_records
+- validate_dda_sprint_trajectory_path
+- emit_integrity_v1_record
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

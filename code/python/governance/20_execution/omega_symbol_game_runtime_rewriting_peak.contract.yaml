@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:rewriting_peak:v1.0.0
+title: Peak Module
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/rewriting/peak.rs
+module: rewriting::peak
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: rewriting::peak
+  file: crates_rs/omega_symbol_game_runtime/src/rewriting/peak.rs
+symbols:
+- CriticalPeakClaim
+- ExhaustionBasis
+- PeakVerdict
+- token
+- presentation_digest
+- PresentationAuthority
+- PresentationPins
+- empty
+- pin
+- is_empty
+- len
+- pin_names
+- authority_of
+- PeakEvaluation
+- decides
+- evaluate_peak_pinned
+- evaluate_peak
+- DeclaredJoin
+- decide_joinability
+owns:
+- critical_peak_claim
+- exhaustion_basis
+- peak_verdict
+- token
+- presentation_digest
+- presentation_authority
+- presentation_pins
+- empty
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

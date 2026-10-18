@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_homology_restriction_dga:v1.0.0
+title: Independent finite controls for the strict-chain operator algebra.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_homology/restriction_dga.rs
+module: omega_homology::restriction_dga
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_homology::restriction_dga
+  file: crates_rs/tests/omega_homology/restriction_dga.rs
+symbols: []
+owns:
+- omega_homology_restriction_dga
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:prime_algos_domain_adapters:v1.0.0
+title: Built-in Algorithm Prime 000 domain adapters.  Each adapter fills declaration
+  slots for one programme surface and is ...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/prime_algos/domain_adapters.rs
+module: prime_algos::domain_adapters
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: prime_algos::domain_adapters
+  file: crates_rs/omega_wdp/src/prime_algos/domain_adapters.rs
+symbols:
+- GenericMss0Adapter
+- MubWallAdapter
+- FspChannelAAdapter
+- CodaResidualAdapter
+- SymbolGameExpressivityAdapter
+- builtin_adapter_roster
+owns:
+- generic_mss0_adapter
+- mub_wall_adapter
+- fsp_channel_a_adapter
+- coda_residual_adapter
+- symbol_game_expressivity_adapter
+- builtin_adapter_roster
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

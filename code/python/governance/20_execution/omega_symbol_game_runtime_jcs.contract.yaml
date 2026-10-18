@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:jcs:v1.0.0
+title: 'RFC 8785 JSON Canonicalization Scheme (JCS) implementation in Rust.  Enforces:
+  - UTF-16 code unit property key sortin...'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/jcs.rs
+module: jcs
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: jcs
+  file: crates_rs/omega_symbol_game_runtime/src/jcs.rs
+symbols:
+- JcsError
+- JcsValue
+- format_es_number
+- format_es_string
+- serialize_jcs
+- from_serde_value
+- parse_json
+- canonicalize_str
+- canonicalize_value
+- canonicalize
+- digest_sha256
+- digest_str_sha256
+owns:
+- jcs_error
+- jcs_value
+- format_es_number
+- format_es_string
+- serialize_jcs
+- from_serde_value
+- parse_json
+- canonicalize_str
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

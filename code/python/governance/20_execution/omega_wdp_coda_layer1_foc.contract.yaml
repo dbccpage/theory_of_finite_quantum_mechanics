@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_layer1_foc:v1.0.0
+title: Layer1 Foc Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/layer1_foc.rs
+module: coda::layer1_foc
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::layer1_foc
+  file: crates_rs/omega_wdp/src/coda/layer1_foc.rs
+symbols:
+- Layer1Foc
+- evaluate
+- evaluate_with_closure_guard
+- evaluate_with_payload
+- evaluate_curved_constrained
+owns:
+- layer1_foc
+- evaluate
+- evaluate_with_closure_guard
+- evaluate_with_payload
+- evaluate_curved_constrained
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

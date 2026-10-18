@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:projection:v1.0.0
+title: 'Prompt-bound declared finite carrier projection. No semantic inference. AuthorityEffect:
+  None.'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/projection.rs
+module: projection
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: projection
+  file: crates_rs/omega_symbol_game/src/projection.rs
+symbols:
+- NormalResidualWire
+- ProjectionReceiptV1
+- projection_input_digest
+- evaluate_projection
+- verify_projection
+owns:
+- normal_residual_wire
+- projection_receipt_v1
+- projection_input_digest
+- evaluate_projection
+- verify_projection
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

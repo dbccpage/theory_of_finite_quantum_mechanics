@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:cyclotomic52:v1.0.0
+title: Clean-room exact arithmetic in `Q(zeta_52)`.  This field supports the d=13
+  odd-prime Weyl control. It contains thirte...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/cyclotomic52.rs
+module: cyclotomic52
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: cyclotomic52
+  file: crates_rs/omega_number_theory/src/cyclotomic52.rs
+symbols:
+- Cyc52
+- zero
+- rat
+- zeta
+- add
+- sub
+- mul
+- conj
+- inv
+- is_zero
+- c1_52
+- icyc_52
+- sqrt13_52
+- scale_rat
+owns:
+- cyc52
+- zero
+- rat
+- zeta
+- add
+- sub
+- mul
+- conj
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

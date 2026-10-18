@@ -1,0 +1,36 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homotopy_type_theory:difference:v1.0.0
+title: Difference Module
+kind: rust_file_contract
+status: active
+crate: omega_homotopy_type_theory
+file: crates_rs/omega_homotopy_type_theory/src/difference.rs
+module: difference
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homotopy_type_theory
+  module: difference
+  file: crates_rs/omega_homotopy_type_theory/src/difference.rs
+symbols:
+- Difference
+- DifferenceTerm
+- validate
+- ZeroDifferenceCertificate
+- ContextualDifferenceWitness
+- is_failed_transport_witness
+- DifferenceError
+owns:
+- difference
+- difference_term
+- validate
+- zero_difference_certificate
+- contextual_difference_witness
+- is_failed_transport_witness
+- difference_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:solver_crn_deficiency:v1.0.0
+title: Exact Chemical Reaction Network Theory (CRNT) & Deficiency Calculator (U24).  Evaluates
+  Feinberg Chemical Reaction Ne...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/solver_crn_deficiency.rs
+module: solver_crn_deficiency
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: solver_crn_deficiency
+  file: crates_rs/omega_solvers/src/solver_crn_deficiency.rs
+symbols:
+- Species
+- Complex
+- zero
+- single
+- from_pairs
+- to_string_repr
+- Reaction
+- new
+- ReactionNetworkReport
+- ReactionNetwork
+- compute_stoichiometric_rank
+- compute_linkage_classes
+- is_weakly_reversible
+- evaluate
+owns:
+- species
+- complex
+- zero
+- single
+- from_pairs
+- to_string_repr
+- reaction
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

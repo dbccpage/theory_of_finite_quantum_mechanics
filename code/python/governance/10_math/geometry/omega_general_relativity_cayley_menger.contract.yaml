@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:cayley_menger:v1.0.0
+title: Cayley–Menger metric determinants and polytope admissibility (RQ-03).  Evaluates
+  n-simplex volumes directly from edge...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/cayley_menger.rs
+module: cayley_menger
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: cayley_menger
+  file: crates_rs/omega_general_relativity/src/cayley_menger.rs
+symbols:
+- small_matrix_det
+- matrix_cofactor
+- cayley_menger_matrix
+- cayley_menger_determinant
+- simplex_volume_cayley_menger
+- MetricPolytopeCheck
+- new
+- check_metric_polytope_admissibility
+- simplex_volume_derivative_wrt_squared_edge
+owns:
+- small_matrix_det
+- matrix_cofactor
+- cayley_menger_matrix
+- cayley_menger_determinant
+- simplex_volume_cayley_menger
+- metric_polytope_check
+- new
+- check_metric_polytope_admissibility
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims
