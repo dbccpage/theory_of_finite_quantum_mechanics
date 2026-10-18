@@ -71,3 +71,16 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm020_thm6_p1_scope_fence`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_l1_to_l2_bridges_and_ladder_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 96cbf58738acf6615765fe837f1b7e3a3b53ae2d2096adb9e587b171ac83e7ce`
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (`FINITE_QM_STRUCTURE` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-DS-BORN-LP-RIVAL-BOUNDARY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [190, -380, 285]`, `chord_potential = 285`, `holonomy_gamma2 = 380`
+- **Finite Shadow Exact Witness (`M4`)**: `born_l2_pairing_3_4: 3^2 + 4^2 == 25` ($\text{value} = 25$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quartic_rival_minus_born_l2: (3^4 + 4^4) - (3^2 + 4^2) = 337 - 25 == 312 (valid L^4 measure pairing differs by 312)` ($\text{value} = 312$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 99a067b813765b36860b763b2b0dff609434c74d277c0bcdef05a2edc2ab18e8`

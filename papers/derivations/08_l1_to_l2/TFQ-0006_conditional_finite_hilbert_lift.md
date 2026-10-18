@@ -63,8 +63,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 252d95ebc14fe52e670005365fdb71eb7628efdbe61010d9831097c51e670f38`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-QM020-C10-BRANCH-LOCALIZATION`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -77,8 +75,6 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure`
 - **Sovereign Rust Witness Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = db66edbe975c0a6c0d8239227d59c0bab645e917425a57d7dad974b7cab1301f`
-
----
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-WDP-REALIFICATION-J`)
 

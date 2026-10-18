@@ -79,3 +79,18 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 4fe72910799e415a738a75b2984783aed5f3f19afb445ddf31efcdf6a1a750da`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-QM020-THM2B-MINKOWSKI`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `L1-QM020-THM2B-MINKOWSKI` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-L1-MINKOWSKI-LP-SUBADDITIVITY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [340, -680, 510]`, `chord_potential = 510`, `holonomy_gamma2 = 680`
+- **Finite Shadow Exact Witness (`M4`)**: `l1_disjoint_support_exact_additivity: ||u+v||_1 = 3 + 4 == 7 == ||u||_1 + ||v||_1` ($\text{value} = 7$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `minkowski_l2_strict_subadditivity_gap: (||u||_2 + ||v||_2)^2 - ||u+v||_2^2 = (3+4)^2 - (9+16) = 49 - 25 == 24 > 0` ($\text{value} = 24$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = d4c7ab4348440b1e5e699cbc22ebad8945d9d932a82475e633277730ca2d28ac`

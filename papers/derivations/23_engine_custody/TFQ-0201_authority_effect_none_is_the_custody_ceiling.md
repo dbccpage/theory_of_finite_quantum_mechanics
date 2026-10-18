@@ -50,3 +50,18 @@ In accordance with strict constructive principles:
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GAP-C500-ORIGINAL-TARGETS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-GAP-C500-ORIGINAL-TARGETS` (`FINITE_QM_CORE` / `OPEN`)
+- **Mined Operad Family (`M2`)**: `OP-FQ-C500-SCOPE-REDUCTION`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [30, -60, 45]`, `chord_potential = 45`, `holonomy_gamma2 = 60`
+- **Finite Shadow Exact Witness (`M4`)**: `c500_total_blocks == 10 and scoped_evidence_blocks == 10` ($\text{value} = 100$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `block10_unpaid_bet_clauses_count(M2,M5,M7,J1,J2) == 5` ($\text{value} = 5$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_c500_ten_blocks_and_custody_axiom_audit_certificate`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = d2f6692c4de4b94cc37d6e542849c39863fc352d33fb48b275a642f888db2e0c`

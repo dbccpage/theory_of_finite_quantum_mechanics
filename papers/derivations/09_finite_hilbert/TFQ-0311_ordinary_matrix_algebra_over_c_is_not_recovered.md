@@ -85,8 +85,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ec9b9688fabaa0c9bd197faf6ff73a3e645f3992778dc385593e9f7647d1d1eb`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-FIN-GAUSS-MATRIX-ALGEBRA`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)

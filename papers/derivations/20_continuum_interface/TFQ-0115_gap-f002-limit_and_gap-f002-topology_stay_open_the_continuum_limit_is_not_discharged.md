@@ -60,3 +60,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F002.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-IMPORT-CONTINUUM-HILBERT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-IMPORT-CONTINUUM-HILBERT` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-GP-CONTINUUM-HILBERT-COMPLETION`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [230, -460, 345]`, `chord_potential = 345`, `holonomy_gamma2 = 460`
+- **Finite Shadow Exact Witness (`M4`)**: `finite_commutator_trace_identity_d4: Tr([A,B]) == 0 on M_4(Z)` ($\text{value} = 0$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `ccr_trace_contradiction_d4: Tr(I_4) == 4 != 0 (so [X,P] = I_d has no finite-dimensional solution)` ($\text{value} = 4$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ee36ec5abebaa65d6fb8b0e8a571f40ccb958eb652cc73237a5e4ae6aebad291`

@@ -91,3 +91,18 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = bb48d89472357ea4f8ca7a46fcebe5ed16dbb04d9a73b6e5fd0814be7b00d40b`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-IMP-SQRT-FIELD`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `L1-IMP-SQRT-FIELD` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-L1-SQRT-FIELD-EXTENSION`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [320, -640, 480]`, `chord_potential = 480`, `holonomy_gamma2 = 640`
+- **Finite Shadow Exact Witness (`M4`)**: `pythagorean_square_weights_lift: sqrt(9) + sqrt(16) = 3 + 4 == 7` ($\text{value} = 7$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `non_square_weight_2_gap: min_{z in Z} |z^2 - 2| == 1 (2 has no square root in Z or Q; exact_amplitudes returns None)` ($\text{value} = 1$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = e0dcb5a9572e390e346f0e9877fefc1c37654d7bd5b77969b44aeffda7da3298`

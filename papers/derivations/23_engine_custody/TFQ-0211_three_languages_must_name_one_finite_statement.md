@@ -52,3 +52,18 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GAP-CUSTODY-AND-RECEIPTS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-GAP-CUSTODY-AND-RECEIPTS` (`FINITE_QM_CORE` / `OPEN`)
+- **Mined Operad Family (`M2`)**: `OP-FQ-CUSTODY-RECEIPT-AUDIT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [60, -120, 90]`, `chord_potential = 90`, `holonomy_gamma2 = 120`
+- **Finite Shadow Exact Witness (`M4`)**: `ledger_untyped_rows == 48 and gap_text_rows == 24 (ratio 2:1, difference 24)` ($\text{value} = 24$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `qm122_uncovered_lean_files == 53 - 22 = 31 (axiom report covers 22 of 53 files)` ($\text{value} = 31$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_c500_ten_blocks_and_custody_axiom_audit_certificate`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 9e7530e8e74030730cbedf323e530c8f718847960c2375df27078555c7a7cde9`

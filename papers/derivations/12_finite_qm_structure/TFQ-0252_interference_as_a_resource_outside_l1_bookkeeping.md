@@ -96,8 +96,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 318ebec9defd8080068d8c242ca66bf7bc484675364a22cb3b884f1b8159445a`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -111,8 +109,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = c6537274b75991afa76e3a126cb04b5c73c786c4b8c39df08810e2fa23faa5c0`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM061-BUILDABILITY-SET-S`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -125,8 +121,6 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 0a5bf7204d17f67e1c30598cac2e96addf4a6d7b13f7d230cf5fd9a91177956c`
-
----
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE`)
 

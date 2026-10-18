@@ -60,3 +60,33 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/README.md`
   - `omega_engine_atlas/coda_atlas/F002_continuum/floor.yaml`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-IMPORT-COMPLEX-FIELD`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-IMPORT-COMPLEX-FIELD` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-GP-COMPLEX-FIELD-GAUSSIAN-GAP`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [210, -420, 315]`, `chord_potential = 315`, `holonomy_gamma2 = 420`
+- **Finite Shadow Exact Witness (`M4`)**: `gaussian_norm_multiplicativity: N(1+i) * N(2+i) = 2 * 5 == 10` ($\text{value} = 10$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `non_unit_norm_1_plus_i: N(1+i) == 2 != 1 (so (1+i)*(a+bi) = 1 has 2*(a^2+b^2)=1, impossible in Z)` ($\text{value} = 2$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = fbaa7c263e1f933fe5bdd5a8676697b23f365b2650ecd76ba3a21e2f213135d5`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-IMP-COMPLEX-FIELD`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `L1-IMP-COMPLEX-FIELD` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-L1-COMPLEX-FIELD-H007`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [270, -540, 405]`, `chord_potential = 405`, `holonomy_gamma2 = 540`
+- **Finite Shadow Exact Witness (`M4`)**: `gaussian_unit_group_cardinality: |{1, -1, i, -i}| == 4` ($\text{value} = 4$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `non_invertible_gaussian_integer_norm: N(2 + i) = 2^2 + 1^2 == 5 != 1 (not a field element inverse in Z[i])` ($\text{value} = 5$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 4a47ba81bc9fb2f8636d646d7e989614dd2d704052c54b653b024e81ec51b6b9`

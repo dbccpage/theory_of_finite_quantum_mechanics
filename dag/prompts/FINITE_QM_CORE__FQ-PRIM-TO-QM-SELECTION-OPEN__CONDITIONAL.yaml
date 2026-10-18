@@ -1,1 +1,339 @@
-user_prompt: prompt_text
+schema_id: omega.pfp.finite_qm.dag_prompt.v1
+packet_type: PromptPacketV0_1
+policy_id: SPK-001
+stage_controller_version: pfp-staged.0.3
+operad_template: COPP-v2-COMPACT
+authority_effect: None
+firewall: stated region only; mints no authority.
+dag_node:
+  prompt_index: 10
+  node_id: FQ-PRIM-TO-QM-SELECTION-OPEN
+  stage: FINITE_QM_CORE
+  status: CONDITIONAL
+  source_status: 7-stage finite relational operad chain (D2, D3, D2xD3, D3^2, D3^3) and d-dimensional diagonal vs
+    rebit vs qubit state-parameter gap (d-1 < d^2-1) mechanized in CoupledRelationalProjectors.lean and DerivationDagQMClosure.lean;
+    continuum Hilbert/Gleason imports remain external
+  statement: 'Primitive difference does not select the declared quantum model or readout. Direct packet-walk execution
+    is an integration result: the complexes, Cayley parameter, cyclotomic weights, detector and squared-amplitude
+    readout were supplied independently of the computed difference value.'
+  bottleneck: Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension gap d-1 < d^2-1 are
+    mechanized without free parameters; full continuum M_n(C) and Gleason n>=3 remain explicit external imports.
+  imported_structure:
+  - all of FQ-DECLARED-QUANTUM-INTERFACE (assumption)
+  incoming_routes:
+  - FQ-R-GAP-PRIM-TO-SELECTION
+  outgoing_routes: []
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:367
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332
+  lean_refs:
+  - lean4/quantum_mechanics/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate
+  - lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap
+  - lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  rust_refs:
+  - omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quadratic
+  - omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs::DeclaredRealComposite
+  - omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs::evaluate_coupled_relational_operad
+  - omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness
+  - omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  paper_refs:
+  - papers/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+  - papers/derivations/08_l1_to_l2/TFQ-0287_cohomology_admission_does_not_select_hilbert_space.md
+pfp_modes_active:
+- mode_02_packets_and_sealed_envelopes
+- mode_04_epistemic_antibody_injections
+- mode_05_skill_injection_and_operad_morphisms
+- mode_08_discrete_cochain_involutions
+- mode_09_lean4_proof_kernel_elaboration
+- mode_10_cemetery_dag_mining
+- mode_14_fail_closed_typed_refusal
+stages_plan:
+- stage: 1
+  name: admit
+  executor: host
+  gate: Verify YAML schema & 4 operad mining slots
+- stage: 1a_1b
+  name: p_star_cochain_syndrome
+  executor: model_and_host
+  gate: G1_COCHAIN_EXACT_SEQUENCE_D1D0 + G2_P_STAR_TREE_CHORD_SYNDROME_DECODE
+- stage: 2
+  name: ideation
+  executor: model
+  seat: seat_begemot
+  gate: Candidate finite shadow + countermodel ideation
+- stage: 3
+  name: audit
+  executor: model
+  seat: seat_koroviev
+  gate: Congruence Ideal I & Annihilator Decoy O^- audit
+- stage: 4
+  name: l2_extraction
+  executor: model
+  seat: seat_begemot
+  gate: G0_STRICT_TYPED_JSON_SCHEMA
+- stage: 5
+  name: evaluation
+  executor: host
+  seat: seat_woland
+  gate: Sovereign exact integer/rational + Lean4/Rust anchor verification (< 2 ms)
+- stage: 9
+  name: receipt
+  executor: host
+  gate: Emit cryptographic receipt to evidence/receipts/pfp_dag_prompts/ and update papers/
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED_BY_4MISSION_MINER
+    mission_id: M1_CARRIER_AND_NORMAL_FORM_MINING
+    algebraic_ring: Z (exact state-parameter dimension counting across diagonal, rebit, and qubit)
+    ambient_carrier: 7-stage relational operad chain (D_2, D_3, D_2xD_3, D_3^2, D_3^3) and d=3 state manifolds
+    normal_form_contracts:
+    - nf.cochain.dhnf
+    - nf.epistemic.authority
+    observer_budget: B_O = 100 (exact integer accounting, zero float tolerance)
+    p_star_cochain_syndrome:
+      carrier_graph: C_4(V=4, E=4, F=1) with gauge root v_0 = 0
+      spanning_tree_edges:
+      - edge:
+        - 0
+        - 1
+        du: 100
+      - edge:
+        - 1
+        - 2
+        du: -300
+      - edge:
+        - 2
+        - 3
+        du: 350
+      chord_edge:
+        edge:
+        - 0
+        - 3
+        measured_omega: -50
+      coboundary_law: v_b - v_a = du_e on tree; chord_potential = v_3 - v_0; gamma_2 = |measured_omega - chord_potential|
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED_BY_4MISSION_MINER
+    mission_id: M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING
+    operad_family_id: OP-FQ-PRIM-TO-QM-PARAMETER-GAP
+    incoming_routes:
+    - FQ-R-GAP-PRIM-TO-SELECTION
+    outgoing_routes: []
+    source_colours:
+    - CochainCarrierC4
+    - FiniteShadowSpan
+    - CountermodelSpan
+    - ImportBoundaryList
+    target_colour: TypedDerivationCertificate
+    operators:
+    - id: op_stage1_p_star_syndrome
+      signature: (CochainCarrierC4) -> PStarSyndromeReceipt
+      arity: 1
+      rule: Integrate tree coboundaries v_1, v_2, v_3 from v_0=0, evaluate chord_potential = v_3 - v_0, and compute
+        holonomy_gamma2 = |measured_omega - chord_potential|.
+    - id: op_finite_shadow_witness
+      signature: (FiniteShadowSpan) -> ExactIntegerShadowWitness
+      arity: 1
+      rule: 'Evaluate exact finite shadow identity: d3_parameter_hierarchy: diag_params(3-1=2) + rebit_params(3*4/2-1=5)
+        + qubit_params(3^2-1=8) == 15 -> 2 + 5 + 8 == 15.'
+    - id: op_countermodel_separation
+      signature: (CountermodelSpan) -> ExactCountermodelWitness
+      arity: 1
+      rule: 'Evaluate exact finite countermodel/obstruction: d3_qubit_minus_diagonal_parameter_gap: (3^2 - 1) -
+        (3 - 1) == 6 unfixed coherence parameters -> 8 - 2 == 6.'
+    - id: op_import_boundary_certificate
+      signature: (PStarSyndromeReceipt, ExactIntegerShadowWitness, ExactCountermodelWitness, ImportBoundaryList)
+        -> TypedDerivationCertificate
+      arity: 4
+      rule: Bind unpaid_import_count, refuse unconditional promotion (unconditional_promotion_refused = true), and
+        attach Lean 4 and Rust anchors.
+    planar_grafting_sequence:
+    - op_stage1_p_star_syndrome -> slot_0(op_import_boundary_certificate)
+    - op_finite_shadow_witness -> slot_1(op_import_boundary_certificate)
+    - op_countermodel_separation -> slot_2(op_import_boundary_certificate)
+    - ImportBoundaryList -> slot_3(op_import_boundary_certificate)
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED_BY_4MISSION_MINER
+    mission_id: M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING
+    concrete_spans:
+      node_statement: 'Primitive difference does not select the declared quantum model or readout. Direct packet-walk
+        execution is an integration result: the complexes, Cayley parameter, cyclotomic weights, detector and squared-amplitude
+        readout were supplied independently of the computed difference value.'
+      node_bottleneck: Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension gap d-1
+        < d^2-1 are mechanized without free parameters; full continuum M_n(C) and Gleason n>=3 remain explicit external
+        imports.
+      imported_assumptions:
+      - all of FQ-DECLARED-QUANTUM-INTERFACE (assumption)
+      finite_shadow_lhs_expr: 2 + 5 + 8
+      countermodel_lhs_expr: 8 - 2
+      raw_candidate_rival_int: 37
+      coboundary_gauge_shift_int: 24
+      sign_double_count_int: 7
+    congruence_ideals:
+    - 'IDEAL_ZERO_FLOAT_TOLERANCE: All output numbers must be exact integers (no floats).'
+    - 'IDEAL_AUTHORITY_EFFECT_NONE: authority_effect == ''None'' and firewall_status == ''stated region only; mints
+      no authority.'''
+    - 'IDEAL_COCHAIN_D1D0_ZERO: cochain_d1_d0_exact_zero == true on the P* C_4 complex.'
+    - 'IDEAL_QUOTIENT_COBOUNDARY_ANNIHILATION: Both coboundary_gauge_shift G_cob and boundary sign_double_count
+      S_decoy lie in Congruence Ideal I and must be subtracted from R_raw.'
+    - 'IDEAL_NON_PROMOTION_FENCE: Node status is CONDITIONAL; under SPK-001 (stated region only; mints no authority),
+      unconditional_promotion_refused MUST be true even when status is PROVED_LEAN, DEFINITION, or ADMITTED_PRIMITIVE.'
+    annihilator_antibodies:
+    - antibody_id: AB_RAW_RIVAL_DECOY_TRAP
+      target_decoy: Reporting unquotiented R_raw=37 or partially quotiented R_raw - G_cob=13 instead of 8 - 2 ==
+        6
+      refutation_witness: 'NullTree: Congruence Ideal I annihilates both G_cob=24 and S_decoy=7, leaving 6.'
+    - antibody_id: AB_FALSE_UNCONDITIONAL_PROMOTION
+      target_decoy: Setting unconditional_promotion_refused = false because DAG status is CONDITIONAL
+      refutation_witness: 'NullTree: SPK-001 firewall refuses unconditional authority/continuum promotion for all
+        DAG statuses.'
+    - antibody_id: AB_CONTINUUM_FLOAT_DRIFT
+      target_decoy: Emitting floating-point approximations instead of exact integer invariants
+      refutation_witness: 'NullTree: G0_STRICT_TYPED_JSON_SCHEMA rejects non-integer scalars.'
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED_BY_4MISSION_MINER
+    mission_id: M4_TRI_LANGUAGE_EXACT_WITNESS_MINING
+    finite_shadow_equation: 'd3_parameter_hierarchy: diag_params(3-1=2) + rebit_params(3*4/2-1=5) + qubit_params(3^2-1=8)
+      == 15'
+    finite_shadow_lhs: 2 + 5 + 8
+    finite_shadow_rhs: '15'
+    finite_shadow_expected_int: 15
+    countermodel_equation: 'd3_qubit_minus_diagonal_parameter_gap: (3^2 - 1) - (3 - 1) == 6 unfixed coherence parameters'
+    countermodel_lhs: 8 - 2
+    countermodel_rhs: '6'
+    countermodel_expected_int: 6
+    unpaid_import_count_expected: 1
+    lean4_theorem_anchor: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+    rust_witness_anchor: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+    paper_refs:
+    - papers/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+    - papers/derivations/08_l1_to_l2/TFQ-0287_cohomology_admission_does_not_select_hilbert_space.md
+system_prompt: 'You are a precise, fast JSON extraction engine under SPK-001 (AuthorityEffect: None). Do NOT write
+  long reasoning; keep any thinking under 150 tokens and immediately output ONLY a single raw JSON object matching
+  response_schema with no markdown fences and no prose.'
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-PRIM-TO-QM-SELECTION-OPEN]\nPolicy: SPK-001\
+  \ | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: FQ-PRIM-TO-QM-SELECTION-OPEN\
+  \ | Stage: FINITE_QM_CORE | DAG Status: CONDITIONAL\nOperad Family: OP-FQ-PRIM-TO-QM-PARAMETER-GAP\n\nLayer 0\
+  \ (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z (exact state-parameter dimension counting\
+  \ across diagonal, rebit, and qubit)\n- Carrier: 7-stage relational operad chain (D_2, D_3, D_2xD_3, D_3^2, D_3^3)\
+  \ and d=3 state manifolds\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=100, (1->2) du=-300, (2->3) du=350;\
+  \ chord (0->3) measured_omega=-50.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 100, v_2 =\
+  \ v_1 + (-300), v_3 = v_2 + (350).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2\
+  \ = |measured_omega - p_star_chord_potential| = |-50 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer\
+  \ 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): d3_parameter_hierarchy:\
+  \ diag_params(3-1=2) + rebit_params(3*4/2-1=5) + qubit_params(3^2-1=8) == 15\n  Evaluate finite_shadow_witness_int\
+  \ = 2 + 5 + 8 (which equals 15).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy\
+  \ Equation 1 (Quotient Countermodel Reduction): d3_qubit_minus_diagonal_parameter_gap: (3^2 - 1) - (3 - 1) ==\
+  \ 6 unfixed coherence parameters\n  Annihilate coboundary shift G_cob=24 and boundary sign double-count S_decoy=7\
+  \ (do NOT report unreduced R_raw=37 or partial 13):\n  Evaluate countermodel_witness_int = 8 - 2 (which equals\
+  \ 6).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['all of FQ-DECLARED-QUANTUM-INTERFACE\
+  \ (assumption)'].\n  Even when DAG Status is CONDITIONAL, SPK-001 refuses unconditional authority/continuum promotion\
+  \ beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\
+  \nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set\
+  \ authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id\
+  \ = \"FQ-PRIM-TO-QM-SELECTION-OPEN\", stage = \"FINITE_QM_CORE\", dag_status = \"CONDITIONAL\"\n- Set operad_family_id\
+  \ = \"OP-FQ-PRIM-TO-QM-PARAMETER-GAP\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\"\
+  \n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness\"\
+  \n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
+response_schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  required:
+  - derived_under_policy
+  - authority_effect
+  - firewall_status
+  - node_id
+  - stage
+  - dag_status
+  - operad_family_id
+  - p_star_tree_potentials
+  - p_star_chord_potential
+  - p_star_holonomy_gamma2
+  - cochain_d1_d0_exact_zero
+  - finite_shadow_witness_int
+  - countermodel_witness_int
+  - unpaid_import_count
+  - unconditional_promotion_refused
+  - lean4_theorem_anchor
+  - rust_witness_anchor
+  - should_continue
+  properties:
+    derived_under_policy:
+      type: string
+      enum:
+      - SPK-001
+    authority_effect:
+      type: string
+      enum:
+      - None
+    firewall_status:
+      type: string
+      enum:
+      - stated region only; mints no authority.
+    node_id:
+      type: string
+      enum:
+      - FQ-PRIM-TO-QM-SELECTION-OPEN
+    stage:
+      type: string
+      enum:
+      - FINITE_QM_CORE
+    dag_status:
+      type: string
+      enum:
+      - CONDITIONAL
+    operad_family_id:
+      type: string
+    p_star_tree_potentials:
+      type: array
+      items:
+        type: integer
+      minItems: 3
+      maxItems: 3
+    p_star_chord_potential:
+      type: integer
+    p_star_holonomy_gamma2:
+      type: integer
+    cochain_d1_d0_exact_zero:
+      type: boolean
+    finite_shadow_witness_int:
+      type: integer
+    countermodel_witness_int:
+      type: integer
+    unpaid_import_count:
+      type: integer
+    unconditional_promotion_refused:
+      type: boolean
+    lean4_theorem_anchor:
+      type: string
+    rust_witness_anchor:
+      type: string
+    should_continue:
+      type: boolean
+user_prompt_without_m3_ablation: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK (ABLATED WITHOUT M3 DECOY EQUATIONS):\
+  \ FQ-PRIM-TO-QM-SELECTION-OPEN]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints\
+  \ no authority.\nNode: FQ-PRIM-TO-QM-SELECTION-OPEN | Stage: FINITE_QM_CORE | DAG Status: CONDITIONAL\nStatement:\
+  \ Primitive difference does not select the declared quantum model or readout. Direct packet-walk execution is\
+  \ an integration result: the complexes, Cayley parameter, cyclotomic weights, detector and squared-amplitude readout\
+  \ were supplied independently of the computed difference value.\nOperad Family: OP-FQ-PRIM-TO-QM-PARAMETER-GAP\n\
+  \nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z (exact state-parameter dimension\
+  \ counting across diagonal, rebit, and qubit)\n- Carrier: 7-stage relational operad chain (D_2, D_3, D_2xD_3,\
+  \ D_3^2, D_3^3) and d=3 state manifolds\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=100, (1->2) du=-300, (2->3)\
+  \ du=350; chord (0->3) measured_omega=-50.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 100,\
+  \ v_2 = v_1 + (-300), v_3 = v_2 + (350).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2\
+  \ = |measured_omega - p_star_chord_potential| = |-50 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer\
+  \ 1 (M2 — Operad Morphisms O^+ & Candidate Witness Parameters [M3 Decoy Equations Omitted]):\n- Op 1 (Finite Shadow\
+  \ Witness): d3_parameter_hierarchy: diag_params(3-1=2) + rebit_params(3*4/2-1=5) + qubit_params(3^2-1=8) == 15\n\
+  \  Evaluate finite_shadow_witness_int = 2 + 5 + 8 (which equals 15).\n- Op 2 (Candidate Countermodel Parameters\
+  \ — Unreduced): Candidate rival functional raw value R_raw = 37, coboundary gauge shift parameter G_cob = 24,\
+  \ boundary sign double-count parameter S_decoy = 7. Determine integer countermodel_witness_int for node FQ-PRIM-TO-QM-SELECTION-OPEN.\n\
+  - Op 3 (Import Boundary & Promotion): Imported assumptions list has 1 items ['all of FQ-DECLARED-QUANTUM-INTERFACE\
+  \ (assumption)']. Set unpaid_import_count = 1. Given DAG Status = CONDITIONAL and Policy = SPK-001, determine\
+  \ boolean unconditional_promotion_refused.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n-\
+  \ Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated\
+  \ region only; mints no authority.\"\n- Set node_id = \"FQ-PRIM-TO-QM-SELECTION-OPEN\", stage = \"FINITE_QM_CORE\"\
+  , dag_status = \"CONDITIONAL\"\n- Set operad_family_id = \"OP-FQ-PRIM-TO-QM-PARAMETER-GAP\"\n- Set lean4_theorem_anchor\
+  \ = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\"\
+  \n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness\"\
+  \n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
