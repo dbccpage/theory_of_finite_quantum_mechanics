@@ -9,6 +9,9 @@
   - Countermodel: incomparability is not transitive (exhibited on C1 and C2)
   - Theorem: Causal order independence (two distinct partial orders on Fin 3 compatible with carrier Q)
   - Finite incidence algebra and Möbius values on C1 and C2
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace CausalOrder

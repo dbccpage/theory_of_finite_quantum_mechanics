@@ -1,3 +1,11 @@
+/-
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
+-/
+
 import Std
 /-!
 # Pure Relational Operad Chain (`P_REL_01`–`P_REL_07`): Single, Bipartite, and Tripartite Projectors

@@ -15,6 +15,11 @@
      gauge Gribov copies and Faddeev–Popov horizon sign flip.
   5. Discrete Cartan–Regge Lorentz tetrad/frame dressing around simplicial
      2-hinges over Q, metric invariance, and discrete Bianchi identity.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace RaveraDfmFiniteToContinuum

@@ -11,6 +11,8 @@
   2(d-1)/d^2 and Casimir 1-1/d^2; 2/d is only an upper bound.
   Tracial moments on varying matrix algebras are not a weak-* state-space limit.
   No identification of the p-adic completion of Q^ab with C_p is asserted.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H072

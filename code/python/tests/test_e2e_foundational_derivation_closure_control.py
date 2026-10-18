@@ -117,7 +117,9 @@ def test_part_d_finite_qm_lean4_mechanization_parity() -> None:
     paper_root = Path(__file__).resolve().parents[3]
     local_lean = paper_root / "code" / "lean4" / "FiniteQM.lean"
     if not local_lean.is_file():
-        local_lean = Path(__file__).resolve().parents[3] / "lean" / "FiniteQM.lean"
+        local_lean = Path(__file__).resolve().parents[3] / "lean4" / "FiniteQM.lean"
+        if not local_lean.is_file():
+            local_lean = Path(__file__).resolve().parents[3] / "lean" / "FiniteQM.lean"
     assert local_lean.is_file(), f"Missing {local_lean}"
     text = local_lean.read_text(encoding="utf-8")
     assert re.search(r"\bsorry\b", text) is None
@@ -145,7 +147,9 @@ def test_part_e_derivation_dag_dual_home_parity() -> None:
     local_dag_lean = paper_root / "code" / "lean4" / "DerivationDagQMClosure.lean"
     local_dag_rs = paper_root / "code" / "rust" / "src" / "derivation_dag_witnesses.rs"
     if not local_dag_lean.is_file():
-        local_dag_lean = Path(__file__).resolve().parents[3] / "lean" / "DerivationDagQMClosure.lean"
+        local_dag_lean = Path(__file__).resolve().parents[3] / "lean4" / "DerivationDagQMClosure.lean"
+        if not local_dag_lean.is_file():
+            local_dag_lean = Path(__file__).resolve().parents[3] / "lean" / "DerivationDagQMClosure.lean"
     if not local_dag_rs.is_file():
         local_dag_rs = paper_root / "code" / "rust" / "src" / "dag_witnesses.rs"
     if not local_dag_rs.is_file():

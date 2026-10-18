@@ -62,3 +62,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch03_marks_presentations_and_declared_comparisons.md`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-REFINE-SEPARATES`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-REFINE-SEPARATES` (`PREGENESIS` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-PREGENESIS-PG-REFINE-SEPARATES`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [450, -900, 675]`, `chord_potential = 675`, `holonomy_gamma2 = 900`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-REFINE-SEPARATES): 4*idx(45) + 3*stage_rank(1) + route_degree(3) == 186` ($\text{value} = 186$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-REFINE-SEPARATES): R_raw(95) - G_cob(47) - S_decoy(1) == 47 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 47$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = d646677fb63e9f149cb6739f71c15de3e971982274cf90950cbb892845e778e8`

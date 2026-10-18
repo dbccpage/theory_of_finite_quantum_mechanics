@@ -1,0 +1,42 @@
+{
+  "schema": "omega.pfp.finite_qm.m3_decoy_ablation_receipt.v1",
+  "authority_effect": "None",
+  "prompt_index": 105,
+  "node_id": "FQ-FIVE-IMPORT-PROXY-SEPARATION",
+  "stage": "FINITE_QM_STRUCTURE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_STRUCTURE-FQ-FIVE-IMPORT-PROXY-SEPARATION",
+  "expected_finite_shadow_int": 446,
+  "expected_countermodel_int": 121,
+  "without_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "FAIL",
+    "all_gates_passed": false,
+    "failures": [
+      "G4_COUNTERMODEL_MISMATCH:got=129,exp=121"
+    ],
+    "emitted_countermodel_int": 129,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1118,
+    "completion_tokens": 903,
+    "elapsed_ms": 28328.0
+  },
+  "with_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "failures": [],
+    "emitted_countermodel_int": 121,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1127,
+    "completion_tokens": 618,
+    "elapsed_ms": 16765.0
+  },
+  "with_m3_final": {
+    "status": "PASS",
+    "all_gates_passed": true,
+    "attempts_used": 1,
+    "winning_model": "deepseek/deepseek-v4.1-flash",
+    "receipt_sha256": "2a0d78d22e0ec9123838c87bde358aff8ff9aa3eeec116e276f54f44c707b450"
+  }
+}

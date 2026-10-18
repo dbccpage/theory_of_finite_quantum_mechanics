@@ -65,3 +65,33 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM030-GRADED-PATHSUM`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM030-GRADED-PATHSUM` (`FINITE_QM_DYNAMICS` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_DYNAMICS-DS-QM030-GRADED-PATHSUM`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1340, -2680, 2010]`, `chord_potential = 2010`, `holonomy_gamma2 = 2680`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(DS-QM030-GRADED-PATHSUM): 4*idx(134) + 3*stage_rank(9) + route_degree(5) == 568` ($\text{value} = 568$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM030-GRADED-PATHSUM): R_raw(313) - G_cob(152) - S_decoy(9) == 152 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 152$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `3` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = d23231919eb9f7981671c81ea8d96c1acd989816567c3cc97ab49e5508d909f6`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY` (`FINITE_QM_DYNAMICS` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_DYNAMICS-DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1420, -2840, 2130]`, `chord_potential = 2130`, `holonomy_gamma2 = 2840`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY): 4*idx(142) + 3*stage_rank(9) + route_degree(2) == 597` ($\text{value} = 597$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY): R_raw(329) - G_cob(160) - S_decoy(9) == 160 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 160$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = c5a639c88af3e8b7b9392756845d9a04f436ea6d6040e96132c31cb2b6f269d3`

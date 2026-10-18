@@ -14,6 +14,10 @@
      S * Z * S_adj = Z.
   4. The T-gate action produces X + Y, which strictly escapes the set of single Pauli operators,
      witnessing the non-Clifford obstruction to classical simulability.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H034

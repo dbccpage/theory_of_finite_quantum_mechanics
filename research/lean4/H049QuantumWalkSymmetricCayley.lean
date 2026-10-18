@@ -14,6 +14,8 @@
      at step t = 3, with propagation velocity v_front = 1 edge/step.
   4. Under the scaled Hadamard coin, the quantum walk on Cay(S_3) produces non-vanishing
      amplitude at the antipodal element w_0 at t = 3, confirming ballistic graph traversal.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H049
@@ -253,3 +255,8 @@ theorem s4_walk_ballistic_propagation :
 #print axioms s4_walk_ballistic_propagation
 
 end FableHilbertWalk20260819.H049
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

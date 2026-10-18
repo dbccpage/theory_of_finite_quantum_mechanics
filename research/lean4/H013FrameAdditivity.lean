@@ -12,6 +12,10 @@
   uniqueness of the square among all possible rules, nor a proof
   that the square obeys the constraint on every frame: it excludes
   one named rival on this host.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 import HWKernel

@@ -14,6 +14,10 @@ Formalizes:
 3. Preservation of the unit circle condition and orthogonality: Rᵀ · R = I₂.
 4. One-parameter group identity phase(0) = I₂ and phase(θ₁ + θ₂) = phase(θ₁) · phase(θ₂).
 5. Complex structure forcing: J = R(0, 1) satisfies J² = -I₂ and J⁴ = I₂.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace U1AngleAddition

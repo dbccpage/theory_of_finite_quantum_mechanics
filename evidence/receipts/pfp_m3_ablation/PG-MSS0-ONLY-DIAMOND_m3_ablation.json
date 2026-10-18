@@ -1,0 +1,42 @@
+{
+  "schema": "omega.pfp.finite_qm.m3_decoy_ablation_receipt.v1",
+  "authority_effect": "None",
+  "prompt_index": 50,
+  "node_id": "PG-MSS0-ONLY-DIAMOND",
+  "stage": "GENESIS",
+  "dag_status": "DEFINITION",
+  "operad_family_id": "OP-GENESIS-PG-MSS0-ONLY-DIAMOND",
+  "expected_finite_shadow_int": 209,
+  "expected_countermodel_int": 54,
+  "without_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "FAIL",
+    "all_gates_passed": false,
+    "failures": [
+      "G4_COUNTERMODEL_MISMATCH:got=56,exp=54"
+    ],
+    "emitted_countermodel_int": 56,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 988,
+    "completion_tokens": 600,
+    "elapsed_ms": 19266.0
+  },
+  "with_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "failures": [],
+    "emitted_countermodel_int": 54,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1047,
+    "completion_tokens": 541,
+    "elapsed_ms": 15156.0
+  },
+  "with_m3_final": {
+    "status": "PASS",
+    "all_gates_passed": true,
+    "attempts_used": 1,
+    "winning_model": "deepseek/deepseek-v4.1-flash",
+    "receipt_sha256": "215ec820cfbee32437f5d9eaed8b4f9197ae69f8fb52fa0a482356f72c1a39ce"
+  }
+}

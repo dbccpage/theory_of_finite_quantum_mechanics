@@ -2,6 +2,9 @@
 AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
 C750 T568--T571. Natural real logarithm; arbitrary finite dimension.
 BakerCitedInput is a hypothesis, not an axiom declaration or a proved theorem.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.RingTheory.Algebraic.Integral

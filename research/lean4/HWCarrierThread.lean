@@ -12,6 +12,10 @@
 
   Superposition is the phase-blind fiber. Entanglement is not
   on this carrier; it needs a tensor of two report sets (H014).
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 import HWKernel

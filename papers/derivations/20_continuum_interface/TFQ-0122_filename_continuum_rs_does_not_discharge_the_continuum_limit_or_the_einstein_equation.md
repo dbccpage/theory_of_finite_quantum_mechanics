@@ -56,3 +56,18 @@ In accordance with strict constructive principles:
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
   - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-COMMUTATOR-TRACE-OBSTRUCTION`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-COMMUTATOR-TRACE-OBSTRUCTION` (`FINITE_QM_DYNAMICS` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_DYNAMICS-FQ-COMMUTATOR-TRACE-OBSTRUCTION`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1190, -2380, 1785]`, `chord_potential = 1785`, `holonomy_gamma2 = 2380`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-COMMUTATOR-TRACE-OBSTRUCTION): 4*idx(119) + 3*stage_rank(9) + route_degree(4) == 507` ($\text{value} = 507$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-COMMUTATOR-TRACE-OBSTRUCTION): R_raw(283) - G_cob(137) - S_decoy(9) == 137 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 137$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/H068WeylCcrResidual.lean::tr_comm2_vanishes`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs::canonical_commutator_obstruction`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 9c5cfc16491784e2c5221b179df644465e5d6ea354ee630b6f55ed558b497c29`

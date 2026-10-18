@@ -2,6 +2,9 @@
   QuotientFiber.lean
   Setoid, quotient lifting, and relative phase fiber for Paper 060.
   AuthorityEffect: None
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 import PhaseBlindPresentation

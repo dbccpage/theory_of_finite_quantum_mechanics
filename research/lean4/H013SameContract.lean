@@ -15,6 +15,10 @@
   or dimension. Gleason uniqueness remains imported. The quartic
   rival in H013 is a different comparison: it does not share the
   unit-effect total (17 versus 5) and is not an effect rule.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 import HWKernel

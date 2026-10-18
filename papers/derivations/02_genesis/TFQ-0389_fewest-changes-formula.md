@@ -57,3 +57,33 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F000.S000`, `F000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-GEN-REWRITING-COMMUTATION`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-GEN-REWRITING-COMMUTATION` (`GENESIS` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-GENESIS-PG-GEN-REWRITING-COMMUTATION`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [590, -1180, 885]`, `chord_potential = 885`, `holonomy_gamma2 = 1180`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-REWRITING-COMMUTATION): 4*idx(59) + 3*stage_rank(2) + route_degree(2) == 244` ($\text{value} = 244$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-REWRITING-COMMUTATION): R_raw(128) - G_cob(63) - S_decoy(2) == 63 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 63$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 8961b2145cfe721b4e62bcd8a6fb66df19351c1cd2d6c7b81943f160849b9ba6`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-GEN-ONGOING-FEWEST-CHANGES`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-GEN-ONGOING-FEWEST-CHANGES` (`GENESIS` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-GENESIS-PG-GEN-ONGOING-FEWEST-CHANGES`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [580, -1160, 870]`, `chord_potential = 870`, `holonomy_gamma2 = 1160`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-ONGOING-FEWEST-CHANGES): 4*idx(58) + 3*stage_rank(2) + route_degree(4) == 242` ($\text{value} = 242$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-ONGOING-FEWEST-CHANGES): R_raw(126) - G_cob(62) - S_decoy(2) == 62 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 62$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean::Reach.names_stay_merged`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 98ba09eb426f5b0399ff6c862616dda4d4fa9e05f632223fd60edcabfe5f5b44`

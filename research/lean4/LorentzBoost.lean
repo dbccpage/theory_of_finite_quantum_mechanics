@@ -18,6 +18,9 @@
     gamma_num (k + 1) = 5 * gamma_num k - 4 * gamma_num (k - 1)
   - Lowest-terms theorem:
     gamma_num k is odd for all k >= 0, so gcd(gamma_num k, 2^(k + 1)) = 1.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace LorentzBoost

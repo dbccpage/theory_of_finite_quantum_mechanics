@@ -13,6 +13,10 @@ This file proves the following integer matrix and arithmetic statements:
 Unbounded labels do not imply infinitely many group elements: J itself has
 order four. No theorem here excludes torsion from U(1), proves a faithful
 embedding of the label lattice, or selects a continuum phase group.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace U1TorsionExclusion

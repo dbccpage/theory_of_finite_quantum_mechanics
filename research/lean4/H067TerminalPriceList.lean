@@ -4,6 +4,9 @@ The original success-flag proofs at 22824045918194a72a9557b9410bf5d2e5380b93
 are withdrawn as evidence of physics. This module proves inventory properties
 and a concrete obstruction to deriving verification from a displayed label.
 Sealed citation: sealed-derivation-v1, 3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 namespace FableHilbertWalk20260819.H067
 

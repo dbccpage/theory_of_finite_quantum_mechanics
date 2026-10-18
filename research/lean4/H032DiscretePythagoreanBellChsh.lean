@@ -18,6 +18,10 @@
   6. Since the classical local realism bound at scale 25 is 2 * 25 = 50,
      the discrete quantum value 70 strictly violates the classical bound (deficit 70 - 50 = 20),
      achieving normalized S = 14/5 = 2.8 > 2 without continuous angle imports.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H032

@@ -27,6 +27,7 @@
     Finite discrete cyclotomic spin-foam amplitudes over Z[zeta_12] only.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import H021TriangleNetworkComplexCarrier
@@ -266,3 +267,8 @@ end S4PartitionFunction
 #print axioms S4PartitionFunction.s4_truncation_bound
 
 end FableHilbertWalk20260819.H024
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

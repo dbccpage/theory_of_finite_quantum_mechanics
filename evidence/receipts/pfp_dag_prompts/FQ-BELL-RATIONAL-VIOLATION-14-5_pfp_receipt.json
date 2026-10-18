@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:47:50.753181+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_CORE__FQ-BELL-RATIONAL-VIOLATION-14-5__PROVED_LEAN.yaml",
+  "node_id": "FQ-BELL-RATIONAL-VIOLATION-14-5",
+  "stage": "FINITE_QM_CORE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_CORE-FQ-BELL-RATIONAL-VIOLATION-14-5",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1130,
+  "completion_tokens": 636,
+  "elapsed_ms": 19563.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_115_fq-bell-rational-v_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1130,
+      "completion_tokens": 636,
+      "cost_usd": 0.000164808,
+      "generation_id": "gen-1792309651-pslNFmQT1cmQVGkqcNgH",
+      "elapsed_ms": 19563.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1150,-2300,1725],\"p_star_chord_potential\":1725,\"p_star_holonomy_gamma2\":2300,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":484,\"countermodel_witness_int\":129,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=136,exp=129"
+      ],
+      "emitted_countermodel_int": 136,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1083,
+      "completion_tokens": 752,
+      "elapsed_ms": 25203.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 129,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1130,
+      "completion_tokens": 636,
+      "elapsed_ms": 19563.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1150,
+      -2300,
+      1725
+    ],
+    "p_star_chord_potential": 1725,
+    "p_star_holonomy_gamma2": 2300,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 484,
+    "countermodel_witness_int": 129,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "FQ-BELL-RATIONAL-VIOLATION-14-5",
+    "stage": "FINITE_QM_CORE",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_CORE-FQ-BELL-RATIONAL-VIOLATION-14-5",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_rational_violation_14_5_no_joint_law",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-BELL-RATIONAL-VIOLATION-14-5",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0243,
+    "receipt_sha256": "4193e1dc12f0a1729fb73556178c8e423405d88ba671738b100f7163766b191f"
+  },
+  "updated_papers": [
+    "papers/derivations/12_finite_qm_structure/TFQ-0260_bell_theorem_not_derived_from_the_finite_tables.md"
+  ]
+}

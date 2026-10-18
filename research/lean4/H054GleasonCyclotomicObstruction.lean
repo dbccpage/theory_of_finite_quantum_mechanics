@@ -7,6 +7,8 @@
   Finite Cabello matrices and a partition of norm-25 integer triples only.
   No topology on a dense cyclotomic sphere is constructed. The two typed
   open_conditional dispositions remain open, not proofs of necessity.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H054

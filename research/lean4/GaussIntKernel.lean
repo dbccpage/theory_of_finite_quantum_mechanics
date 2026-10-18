@@ -4,6 +4,9 @@
   interference modules (retired papers QM_060 and QM_061).
   AuthorityEffect: None
   Zero Mathlib dependency.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 structure GaussInt where

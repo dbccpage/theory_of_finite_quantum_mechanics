@@ -4,6 +4,9 @@ The carrier is all nonzero vectors in Q^2 modulo nonzero rational rescaling.
 Rotation (x,y) -> (-y,x) complements its value, but no rational quadratic
 form represents its normalized ray values. No dimension >= 3 claim follows.
 AuthorityEffect: None. Lean core Rat is used, without numerical tolerance.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 namespace FiniteQm.GleasonRationalPlane
 

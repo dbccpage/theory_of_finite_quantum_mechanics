@@ -30,6 +30,7 @@
     nonconflation stands).
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import HWKernel

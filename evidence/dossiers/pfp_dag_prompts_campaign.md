@@ -1,0 +1,152 @@
+# Finite-QM 135 DAG Prompts: 4-Mission Operad Mining & Multi-Stage PFP Verification Dossier
+
+**AuthorityEffect:** `None`  
+**Policy & Stage Contract:** `SPK-001` (`pfp-staged.0.3`, `COPP-v2-COMPACT`, `PromptPacketV0_1`)  
+**Completed & Verified Prompts:** `135 / 135`
+
+## 1. Execution Summary Table
+
+| # | Node ID | Stage | DAG Status | Operad Family | Model | Prompt Tok | Comp Tok | Gate Status | Receipt SHA-256 |
+|---|---|---|---|---|---|---:|---:|---|---|
+| 001 | `FQ-DECLARED-QUANTUM-INTERFACE` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `OP-FQ-DECLARED-INTERFACE-GATE` | `deepseek/deepseek-v4.1-flash` | 931 | 891 | **PASS** | `044fe92e7a52dad3...` |
+| 002 | `FQ-GAP-BORN-UNIQUENESS-GLEASON` | `FINITE_QM_CORE` | `CONDITIONAL` | `OP-FQ-SORKIN-GLEASON-BUSCH` | `deepseek/deepseek-v4.1-flash` | 918 | 695 | **PASS** | `6d40469bbfc2d3d2...` |
+| 003 | `FQ-GAP-C500-ORIGINAL-TARGETS` | `FINITE_QM_CORE` | `OPEN` | `OP-FQ-C500-SCOPE-REDUCTION` | `deepseek/deepseek-v4.1-flash` | 827 | 663 | **PASS** | `d2f6692c4de4b94c...` |
+| 004 | `FQ-GAP-CONTINUUM-HILBERT-LIFT` | `FINITE_QM_CORE` | `CONDITIONAL` | `OP-FQ-CONTINUUM-WINTNER-WIELANDT` | `deepseek/deepseek-v4.1-flash` | 898 | 609 | **PASS** | `ff39939e9b28a8b8...` |
+| 005 | `FQ-GAP-CORPUS-REWRITE` | `FINITE_QM_CORE` | `OPEN` | `OP-FQ-CORPUS-CONSOLIDATION` | `deepseek/deepseek-v4.1-flash` | 813 | 652 | **PASS** | `89825786c3ee13df...` |
+| 006 | `FQ-GAP-CUSTODY-AND-RECEIPTS` | `FINITE_QM_CORE` | `OPEN` | `OP-FQ-CUSTODY-RECEIPT-AUDIT` | `deepseek/deepseek-v4.1-flash` | 826 | 531 | **PASS** | `9e7530e8e7403073...` |
+| 007 | `FQ-GAP-TENSOR-UNIQUENESS` | `FINITE_QM_CORE` | `CONDITIONAL` | `OP-FQ-TENSOR-CONE-BRACKETING` | `deepseek/deepseek-v4-flash` | 979 | 958 | **PASS** | `f797bcf12dc545d4...` |
+| 008 | `FQ-GAP-U1-CIRCLE` | `FINITE_QM_CORE` | `CONDITIONAL` | `OP-FQ-CAYLEY-U1-PUNCTURED-CIRCLE` | `deepseek/deepseek-v4.1-flash` | 936 | 877 | **PASS** | `013e82297478109c...` |
+| 009 | `FQ-POSITIVE-WEIGHTS-ADMITTED` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `OP-FQ-POSITIVE-L1-WEIGHT-ADMISSION` | `deepseek/deepseek-v4.1-flash` | 879 | 1193 | **PASS** | `321911a5814f23a0...` |
+| 010 | `FQ-PRIM-TO-QM-SELECTION-OPEN` | `FINITE_QM_CORE` | `CONDITIONAL` | `OP-FQ-PRIM-TO-QM-PARAMETER-GAP` | `deepseek/deepseek-v4.1-flash` | 931 | 1008 | **PASS** | `afcfb80d98f91d52...` |
+| 011 | `DS-CONTINUOUS-TIME-EXP-GENERATOR` | `FINITE_QM_DYNAMICS` | `IMPORTED_ASSUMPTION` | `OP-DS-EXP-GENERATOR-BOUNDARY` | `deepseek/deepseek-v4.1-flash` | 914 | 728 | **PASS** | `b93f8b82fe847096...` |
+| 012 | `DS-QM033-064-074-083-QHELD-CONTINUUM` | `FINITE_QM_DYNAMICS` | `IMPORTED_ASSUMPTION` | `OP-DS-QHELD-CONTINUUM-FENCE` | `deepseek/deepseek-v4.1-flash` | 918 | 2039 | **PASS** | `1703936361a632b9...` |
+| 013 | `DS-QM034-035-050-051-095-RESERVED-STUBS` | `FINITE_QM_DYNAMICS` | `CONDITIONAL` | `OP-DS-CAYLEY-DIRAC-FINITE-SHADOW` | `deepseek/deepseek-v4.1-flash` | 925 | 556 | **PASS** | `0ee8ee5615cfcf9f...` |
+| 014 | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT` | `FINITE_QM_DYNAMICS` | `IMPORTED_ASSUMPTION` | `OP-DS-DECOHERENCE-GRAM-MATRIX` | `deepseek/deepseek-v4.1-flash` | 937 | 1003 | **PASS** | `b6a1ff704b2a7ee4...` |
+| 015 | `FQ-GAP-STONE-CONTINUOUS-TIME` | `FINITE_QM_DYNAMICS` | `CONDITIONAL` | `OP-DS-STONE-PYTHAGOREAN-ALIASING` | `deepseek/deepseek-v4.1-flash` | 897 | 1038 | **PASS** | `210aa1d9caefdf7e...` |
+| 016 | `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `OP-DS-CPTP-CHOI-PARTIAL-TRANSPOSE` | `deepseek/deepseek-v4.1-flash` | 920 | 628 | **PASS** | `ade1abc854da8d28...` |
+| 017 | `DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `OP-DS-PROJECTION-POSTULATE-BOUNDARY` | `deepseek/deepseek-v4.1-flash` | 915 | 663 | **PASS** | `2c867b3d2d5a91a4...` |
+| 018 | `DS-QM062-U1-RESIDUES-IMPORT` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `OP-DS-U1-SELECTOR-RESIDUES` | `deepseek/deepseek-v4.1-flash` | 952 | 1101 | **PASS** | `7f9d73950b35dbcb...` |
+| 019 | `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `OP-DS-BORN-LP-RIVAL-BOUNDARY` | `deepseek/deepseek-v4.1-flash` | 934 | 651 | **PASS** | `99a067b813765b36...` |
+| 020 | `GP-IMPORT-CIRCLE-U1` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-GP-CIRCLE-U1-IMPORT` | `deepseek/deepseek-v4.1-flash` | 896 | 587 | **PASS** | `7c35753fa4028aab...` |
+| 021 | `GP-IMPORT-COMPLEX-FIELD` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-GP-COMPLEX-FIELD-GAUSSIAN-GAP` | `deepseek/deepseek-v4.1-flash` | 920 | 662 | **PASS** | `fbaa7c263e1f933f...` |
+| 022 | `GP-IMPORT-CONTINUOUS-TIME` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-GP-CONTINUOUS-TIME-TOGGLE-GAP` | `deepseek/deepseek-v4.1-flash` | 929 | 688 | **PASS** | `ded07484ac0fab03...` |
+| 023 | `GP-IMPORT-CONTINUUM-HILBERT` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-GP-CONTINUUM-HILBERT-COMPLETION` | `deepseek/deepseek-v4.1-flash` | 870 | 664 | **PASS** | `ee36ec5abebaa65d...` |
+| 024 | `GP-IMPORT-CPTP-CLASS` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-GP-CPTP-STINESPRING-IMPORT` | `deepseek/deepseek-v4.1-flash` | 852 | 871 | **PASS** | `5abe05fc56b66b83...` |
+| 025 | `GP-IMPORT-GLEASON` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-GP-GLEASON-FRAME-IMPORT` | `deepseek/deepseek-v4.1-flash` | 943 | 582 | **PASS** | `340be3c3eed8b319...` |
+| 026 | `GP-IMPORT-TENSOR-PRODUCT` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-GP-TENSOR-BILINEAR-RIVAL` | `deepseek/deepseek-v4.1-flash` | 891 | 601 | **PASS** | `c8aef65056eec1f5...` |
+| 027 | `L1-IMP-COMPLEX-FIELD` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-COMPLEX-FIELD-H007` | `deepseek/deepseek-v4.1-flash` | 859 | 1027 | **PASS** | `4a47ba81bc9fb2f8...` |
+| 028 | `L1-IMP-HAAR-INDEPENDENT-PHASES` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-HAAR-VS-FINITE-Z4-AVERAGE` | `deepseek/deepseek-v4.1-flash` | 921 | 1050 | **PASS** | `089e8e01b9ef4087...` |
+| 029 | `L1-IMP-HILBERT-INNER-PRODUCT` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-GRAM-INNER-PRODUCT-H005` | `deepseek/deepseek-v4.1-flash` | 915 | 676 | **PASS** | `f43cd2701d04b840...` |
+| 030 | `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-ISOMETRIC-DYNAMICS-H003` | `deepseek/deepseek-v4.1-flash` | 931 | 459 | **PASS** | `b11618c4bdc564cb...` |
+| 031 | `L1-IMP-ORTHOGONAL-ADDITIVITY` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-ORTHOGONAL-ADDITIVITY-H013` | `deepseek/deepseek-v4.1-flash` | 905 | 1366 | **PASS** | `04701179f228c9ea...` |
+| 032 | `L1-IMP-SQRT-FIELD` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-SQRT-FIELD-EXTENSION` | `deepseek/deepseek-v4.1-flash` | 877 | 622 | **PASS** | `e0dcb5a9572e390e...` |
+| 033 | `L1-IMP-U1-PHASES` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-U1-PHASE-GROUP-H011` | `deepseek/deepseek-v4.1-flash` | 881 | 588 | **PASS** | `a699e6e2bbc0abec...` |
+| 034 | `L1-QM020-THM2B-MINKOWSKI` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-MINKOWSKI-LP-SUBADDITIVITY` | `deepseek/deepseek-v4.1-flash` | 938 | 693 | **PASS** | `d4c7ab4348440b1e...` |
+| 035 | `L1-QM020-THM6-P2-GLEASON` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `OP-L1-GLEASON-BORN-UNIQUENESS` | `deepseek/deepseek-v4.1-flash` | 904 | 598 | **PASS** | `7a5387ea551a1209...` |
+| 036 | `PG-ROOT-DIFF-STRUCTURE` | `PREGENESIS` | `ADMITTED_PRIMITIVE` | `OP-PREGENESIS-PG-ROOT-DIFF-STRUCTURE` | `deepseek/deepseek-v4.1-flash` | 1105 | 729 | **PASS** | `99dcda861d27c22f...` |
+| 037 | `PG-INERT-DIAMOND` | `PREGENESIS` | `DEFINITION` | `OP-PREGENESIS-PG-INERT-DIAMOND` | `deepseek/deepseek-v4.1-flash` | 1011 | 561 | **PASS** | `e0c9784cc655825c...` |
+| 038 | `PG-SIX-OPERATIONS` | `PREGENESIS` | `DEFINITION` | `OP-PREGENESIS-PG-SIX-OPERATIONS` | `deepseek/deepseek-v4.1-flash` | 1024 | 531 | **PASS** | `38fed40f2d484f26...` |
+| 039 | `PG-PRIMDIFF-AXIOMS` | `PREGENESIS` | `DEFINITION` | `OP-PREGENESIS-PG-PRIMDIFF-AXIOMS` | `deepseek/deepseek-v4.1-flash` | 1055 | 738 | **PASS** | `4dca55db1e670e11...` |
+| 040 | `PG-ADMISSION-FLOOR` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-ADMISSION-FLOOR` | `deepseek/deepseek-v4.1-flash` | 1062 | 747 | **PASS** | `601fef8267a9f287...` |
+| 041 | `PG-COLLAPSE-BARRIER` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-COLLAPSE-BARRIER` | `deepseek/deepseek-v4.1-flash` | 1054 | 452 | **PASS** | `c704463448954fae...` |
+| 042 | `PG-HISTORY-REPORT-CRITERION` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-HISTORY-REPORT-CRITERION` | `deepseek/deepseek-v4.1-flash` | 1081 | 603 | **PASS** | `372962f855ce75bf...` |
+| 043 | `PG-PREGEN-CONSTRUCTIVE-SUMMARY` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-PREGEN-CONSTRUCTIVE-SUMMARY` | `deepseek/deepseek-v4.1-flash` | 1057 | 601 | **PASS** | `fda142091b847ff0...` |
+| 044 | `PG-DEMAND-ACCOUNTING` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-DEMAND-ACCOUNTING` | `deepseek/deepseek-v4.1-flash` | 1048 | 578 | **PASS** | `4c72f2b4ea3ef27b...` |
+| 045 | `PG-REFINE-SEPARATES` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-REFINE-SEPARATES` | `deepseek/deepseek-v4.1-flash` | 1045 | 608 | **PASS** | `d646677fb63e9f14...` |
+| 046 | `PG-OLD-IMAGE-INJECTIVE` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-OLD-IMAGE-INJECTIVE` | `deepseek/deepseek-v4.1-flash` | 1047 | 747 | **PASS** | `06ae5b3d7f1f8a00...` |
+| 047 | `PG-SN-OFF-IMAGE-REFUSAL` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-SN-OFF-IMAGE-REFUSAL` | `deepseek/deepseek-v4.1-flash` | 1060 | 614 | **PASS** | `8d6d5d053ab2b9a6...` |
+| 048 | `PG-FREE-MONOID-NONISO` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-FREE-MONOID-NONISO` | `deepseek/deepseek-v4.1-flash` | 1054 | 673 | **PASS** | `039e66b0acd4fa61...` |
+| 049 | `PG-CHAIN-RETRACTION` | `PREGENESIS` | `PROVED_LEAN` | `OP-PREGENESIS-PG-CHAIN-RETRACTION` | `deepseek/deepseek-v4.1-flash` | 1055 | 795 | **PASS** | `08784bcc39c3506a...` |
+| 050 | `PG-MSS0-ONLY-DIAMOND` | `GENESIS` | `DEFINITION` | `OP-GENESIS-PG-MSS0-ONLY-DIAMOND` | `deepseek/deepseek-v4.1-flash` | 1047 | 541 | **PASS** | `215ec820cfbee324...` |
+| 051 | `PG-GEN-REGIME-EVENTS` | `GENESIS` | `DEFINITION` | `OP-GENESIS-PG-GEN-REGIME-EVENTS` | `deepseek/deepseek-v4.1-flash` | 1047 | 689 | **PASS** | `a0fff983bb56b7c8...` |
+| 052 | `PG-GEN-SUPPLY-NO-OP` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-SUPPLY-NO-OP` | `deepseek/deepseek-v4.1-flash` | 1075 | 707 | **PASS** | `cf82bee9927d85f6...` |
+| 053 | `PG-GEN-SUPPLY-ERASURE` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-SUPPLY-ERASURE` | `deepseek/deepseek-v4.1-flash` | 1055 | 705 | **PASS** | `aae4d4f3c122ba58...` |
+| 054 | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` | `deepseek/deepseek-v4.1-flash` | 1119 | 626 | **PASS** | `bf446d713f355a93...` |
+| 055 | `PG-GEN-NO-RETURN` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-NO-RETURN` | `deepseek/deepseek-v4.1-flash` | 1044 | 614 | **PASS** | `2ca3dfb4a00e3e2a...` |
+| 056 | `PG-GEN-IRREFLEXIVE-DISTINCT` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-IRREFLEXIVE-DISTINCT` | `deepseek/deepseek-v4.1-flash` | 1074 | 636 | **PASS** | `8f1cffbc0186add7...` |
+| 057 | `PG-GEN-ONGOING-OBSTRUCTION` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-ONGOING-OBSTRUCTION` | `deepseek/deepseek-v4-flash` | 1116 | 1250 | **PASS** | `1b0bf55e0dd333b1...` |
+| 058 | `PG-GEN-ONGOING-FEWEST-CHANGES` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-ONGOING-FEWEST-CHANGES` | `deepseek/deepseek-v4.1-flash` | 1097 | 702 | **PASS** | `98ba09eb426f5b03...` |
+| 059 | `PG-GEN-REWRITING-COMMUTATION` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-REWRITING-COMMUTATION` | `deepseek/deepseek-v4.1-flash` | 1067 | 659 | **PASS** | `8961b2145cfe721b...` |
+| 060 | `PG-GEN-SAMENESS-REFINEMENTS` | `GENESIS` | `PROVED_LEAN` | `OP-GENESIS-PG-GEN-SAMENESS-REFINEMENTS` | `deepseek/deepseek-v4.1-flash` | 1079 | 726 | **PASS** | `54c5105a12cd6989...` |
+| 061 | `PG-SN-CARRIER` | `MSSN_SN` | `PROVED_LEAN` | `OP-MSSN_SN-PG-SN-CARRIER` | `deepseek/deepseek-v4.1-flash` | 1072 | 822 | **PASS** | `dc89fff93989b563...` |
+| 062 | `PG-OBLIGATION-MONOID` | `MSSN_SN` | `PROVED_LEAN` | `OP-MSSN_SN-PG-OBLIGATION-MONOID` | `deepseek/deepseek-v4.1-flash` | 1032 | 610 | **PASS** | `990f297c03f5d120...` |
+| 063 | `PG-WDP-PROTECTED-QUESTIONS` | `WDP` | `PROVED_LEAN` | `OP-WDP-PG-WDP-PROTECTED-QUESTIONS` | `deepseek/deepseek-v4.1-flash` | 1072 | 679 | **PASS** | `7dc69b01d4c56857...` |
+| 064 | `PG-WDP-DEGREE1-WINDOW` | `WDP` | `DEFINITION` | `OP-WDP-PG-WDP-DEGREE1-WINDOW` | `deepseek/deepseek-v4.1-flash` | 1114 | 813 | **PASS** | `294b65908bf6f8ef...` |
+| 065 | `PG-WDP-QUOTIENT-EXACT-SEQUENCE` | `WDP` | `PROVED_LEAN` | `OP-WDP-PG-WDP-QUOTIENT-EXACT-SEQUENCE` | `deepseek/deepseek-v4.1-flash` | 1132 | 562 | **PASS** | `fee8023c81762ae5...` |
+| 066 | `PG-WDP-GROWTH-NO-REPAIR` | `WDP` | `PROVED_LEAN` | `OP-WDP-PG-WDP-GROWTH-NO-REPAIR` | `deepseek/deepseek-v4.1-flash` | 1078 | 661 | **PASS** | `1495ec7d40b2acb1...` |
+| 067 | `PG-WDP-DIAGNOSTIC-NOT-ROUTING` | `WDP` | `DEFINITION` | `OP-WDP-PG-WDP-DIAGNOSTIC-NOT-ROUTING` | `deepseek/deepseek-v4.1-flash` | 1091 | 685 | **PASS** | `a2b690f493369995...` |
+| 068 | `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` | `WDP` | `PROVED_LEAN` | `OP-WDP-PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` | `deepseek/deepseek-v4.1-flash` | 1138 | 781 | **PASS** | `ea9f040c6770519a...` |
+| 069 | `L1-WDP-WINDOW-PHI1-GAMMA2` | `L1_EMERGENCE` | `DEFINITION` | `OP-L1_EMERGENCE-L1-WDP-WINDOW-PHI1-GAMMA2` | `deepseek/deepseek-v4.1-flash` | 1144 | 616 | **PASS** | `9bbbd4892f8d1968...` |
+| 070 | `L1-OBSERVER-AXIOMS-H1-H5` | `L1_EMERGENCE` | `ADMITTED_PRIMITIVE` | `OP-L1_EMERGENCE-L1-OBSERVER-AXIOMS-H1-H5` | `deepseek/deepseek-v4.1-flash` | 1140 | 702 | **PASS** | `0bf2e578f1165af2...` |
+| 071 | `L1-GS000-EDGEWISE-L1` | `L1_EMERGENCE` | `PROVED_LEAN` | `OP-L1_EMERGENCE-L1-GS000-EDGEWISE-L1` | `deepseek/deepseek-v4.1-flash` | 1119 | 512 | **PASS** | `73cbe6e96d284fbc...` |
+| 072 | `L1-GS001-GAUGE-L1` | `L1_EMERGENCE` | `PROVED_LEAN` | `OP-L1_EMERGENCE-L1-GS001-GAUGE-L1` | `deepseek/deepseek-v4.1-flash` | 1096 | 518 | **PASS** | `6947d1560985d126...` |
+| 073 | `L1-WDP-CH08-C01-REPLICA-L1` | `L1_EMERGENCE` | `PROVED_LEAN` | `OP-L1_EMERGENCE-L1-WDP-CH08-C01-REPLICA-L1` | `deepseek/deepseek-v4.1-flash` | 1135 | 746 | **PASS** | `0ddb6adba074ab9e...` |
+| 074 | `L1-WDP-WITNESS-MASS` | `L1_EMERGENCE` | `DEFINITION` | `OP-L1_EMERGENCE-L1-WDP-WITNESS-MASS` | `deepseek/deepseek-v4.1-flash` | 1066 | 681 | **PASS** | `1e54e9082a9d770a...` |
+| 075 | `L1-QM002-O022A-PHI1-QUOTIENT` | `L1_EMERGENCE` | `PROVED_LEAN` | `OP-L1_EMERGENCE-L1-QM002-O022A-PHI1-QUOTIENT` | `deepseek/deepseek-v4-flash` | 1187 | 913 | **PASS** | `8e87d80a31ed7f04...` |
+| 076 | `L1-FRAMEWORK-KKT-CERT` | `L1_EMERGENCE` | `PROVED_LEAN` | `OP-L1_EMERGENCE-L1-FRAMEWORK-KKT-CERT` | `deepseek/deepseek-v4.1-flash` | 1069 | 785 | **PASS** | `da35df572608b49d...` |
+| 077 | `L1-CHAIN-D1D0-AXIOM` | `L1_EMERGENCE` | `ADMITTED_PRIMITIVE` | `OP-L1_EMERGENCE-L1-CHAIN-D1D0-AXIOM` | `deepseek/deepseek-v4.1-flash` | 1097 | 635 | **PASS** | `8d6c561e92287034...` |
+| 078 | `L1-OPERATOR-LIFT-TRACE-EMBED-013` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-OPERATOR-LIFT-TRACE-EMBED-013` | `deepseek/deepseek-v4.1-flash` | 1136 | 792 | **PASS** | `0face75857cc8223...` |
+| 079 | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` | `deepseek/deepseek-v4.1-flash` | 1152 | 644 | **PASS** | `3f8b47ddf88fcde3...` |
+| 080 | `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` | `deepseek/deepseek-v4.1-flash` | 1143 | 717 | **PASS** | `ab5ac4e2782afc3d...` |
+| 081 | `L1-QM020-THM1-DIRECT-NORMALIZATION` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM020-THM1-DIRECT-NORMALIZATION` | `deepseek/deepseek-v4.1-flash` | 1110 | 640 | **PASS** | `c094685cfa33f2ef...` |
+| 082 | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | `deepseek/deepseek-v4.1-flash` | 1140 | 688 | **PASS** | `4fe72910799e415a...` |
+| 083 | `L1-QM020-THM3-ROW-SPARSITY` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM020-THM3-ROW-SPARSITY` | `deepseek/deepseek-v4.1-flash` | 1109 | 513 | **PASS** | `fd3dafde37e98bc3...` |
+| 084 | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` | `deepseek/deepseek-v4.1-flash` | 1164 | 553 | **PASS** | `f6dbb65386b39bba...` |
+| 085 | `L1-QM020-THM5-PHASE-AVERAGED-SHADOW` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM020-THM5-PHASE-AVERAGED-SHADOW` | `deepseek/deepseek-v4.1-flash` | 1185 | 730 | **PASS** | `3d5a0f9699dd28e2...` |
+| 086 | `L1-QM020-THM6-P1-SCOPE-FENCE` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM020-THM6-P1-SCOPE-FENCE` | `deepseek/deepseek-v4.1-flash` | 1091 | 657 | **PASS** | `96cbf58738acf661...` |
+| 087 | `L1-QM020-THM7-REPRESENTATION-CAPACITY` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM020-THM7-REPRESENTATION-CAPACITY` | `deepseek/deepseek-v4.1-flash` | 1159 | 568 | **PASS** | `f5a2a2f391ad80e7...` |
+| 088 | `L1-WDP-REALIFICATION-J` | `L1_TO_L2` | `DEFINITION` | `OP-L1_TO_L2-L1-WDP-REALIFICATION-J` | `deepseek/deepseek-v4.1-flash` | 1064 | 711 | **PASS** | `ca19effa7cccd8f8...` |
+| 089 | `L1-QM121-LADDER-RUNGS-2-6` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM121-LADDER-RUNGS-2-6` | `deepseek/deepseek-v4.1-flash` | 1148 | 627 | **PASS** | `4dad7131e5300e32...` |
+| 090 | `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` | `deepseek/deepseek-v4.1-flash` | 1139 | 701 | **PASS** | `252d95ebc14fe52e...` |
+| 091 | `L1-QM122-CIRCLE-SELECTOR-BOUNDARY` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM122-CIRCLE-SELECTOR-BOUNDARY` | `deepseek/deepseek-v4.1-flash` | 1108 | 636 | **PASS** | `5479f83cbfbaea4a...` |
+| 092 | `L1-QM122-BORN-PAIRING-NONUNIQUE` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM122-BORN-PAIRING-NONUNIQUE` | `deepseek/deepseek-v4.1-flash` | 1104 | 663 | **PASS** | `0792ec8456cc7ac2...` |
+| 093 | `L1-QM122-LEFTOVER-MNC-NOT-RECOVERED` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM122-LEFTOVER-MNC-NOT-RECOVERED` | `deepseek/deepseek-v4.1-flash` | 1166 | 522 | **PASS** | `ec9b9688fabaa0c9...` |
+| 094 | `L1-U1-SELECTOR-OTHER-SEGMENT` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-U1-SELECTOR-OTHER-SEGMENT` | `deepseek/deepseek-v4.1-flash` | 1125 | 775 | **PASS** | `25bbbb501bd826d6...` |
+| 095 | `L1-QM020-C10-BRANCH-LOCALIZATION` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM020-C10-BRANCH-LOCALIZATION` | `deepseek/deepseek-v4.1-flash` | 1142 | 761 | **PASS** | `db66edbe975c0a6c...` |
+| 096 | `L1-QM003-C17-COMPOSABLE-FACTORIZATION` | `L1_TO_L2` | `PROVED_LEAN` | `OP-L1_TO_L2-L1-QM003-C17-COMPOSABLE-FACTORIZATION` | `deepseek/deepseek-v4.1-flash` | 1109 | 797 | **PASS** | `9a9563bc7afd0ad6...` |
+| 097 | `FQ-CARRIER-CONTRACT-V2` | `FINITE_QM_CORE` | `DEFINITION` | `OP-FINITE_QM_CORE-FQ-CARRIER-CONTRACT-V2` | `deepseek/deepseek-v4.1-flash` | 1140 | 519 | **PASS** | `f1df1f0f341241f2...` |
+| 098 | `FQ-PRIMDIFF-QUOTIENT-KERNEL` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-PRIMDIFF-QUOTIENT-KERNEL` | `deepseek/deepseek-v4.1-flash` | 1123 | 687 | **PASS** | `d38bc3b82a459c3a...` |
+| 099 | `FQ-PHASE-FIBER-QUOTIENT` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-PHASE-FIBER-QUOTIENT` | `deepseek/deepseek-v4.1-flash` | 1142 | 525 | **PASS** | `318ebec9defd8080...` |
+| 100 | `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED` | `deepseek/deepseek-v4.1-flash` | 1136 | 712 | **PASS** | `c6537274b75991af...` |
+| 101 | `FQ-BORN-NORMALIZATION-REDUNDANCY` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-BORN-NORMALIZATION-REDUNDANCY` | `deepseek/deepseek-v4.1-flash` | 1116 | 697 | **PASS** | `c52fa38dbe320d4d...` |
+| 102 | `FQ-INTERFERENCE-NONDESCENT` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-INTERFERENCE-NONDESCENT` | `deepseek/deepseek-v4.1-flash` | 1062 | 528 | **PASS** | `db089d1b2acae5e8...` |
+| 103 | `FQ-SORKIN-READOUT-CLASS-QM208` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-SORKIN-READOUT-CLASS-QM208` | `deepseek/deepseek-v4.1-flash` | 1148 | 799 | **PASS** | `2d0bd5a00111979b...` |
+| 104 | `FQ-POWER-RULE-P2-SELECTION` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-POWER-RULE-P2-SELECTION` | `deepseek/deepseek-v4.1-flash` | 1122 | 726 | **PASS** | `b36e0d419a431191...` |
+| 105 | `FQ-FIVE-IMPORT-PROXY-SEPARATION` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `OP-FINITE_QM_STRUCTURE-FQ-FIVE-IMPORT-PROXY-SEPARATION` | `deepseek/deepseek-v4.1-flash` | 1127 | 618 | **PASS** | `2a0d78d22e0ec912...` |
+| 106 | `FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION` | `deepseek/deepseek-v4.1-flash` | 1118 | 646 | **PASS** | `5c8524efabc0c750...` |
+| 107 | `FQ-CABELLO-NO-INTEGER-FRAME` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-CABELLO-NO-INTEGER-FRAME` | `deepseek/deepseek-v4.1-flash` | 1106 | 572 | **PASS** | `ee4503323cdc9ca0...` |
+| 108 | `FQ-CABELLO-FRAME-POLYTOPE-146` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-CABELLO-FRAME-POLYTOPE-146` | `deepseek/deepseek-v4.1-flash` | 1154 | 1672 | **PASS** | `0d3f57a67ec5428c...` |
+| 109 | `FQ-BUSCH-EFFECT-FRAME` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `OP-FINITE_QM_STRUCTURE-FQ-BUSCH-EFFECT-FRAME` | `deepseek/deepseek-v4.1-flash` | 1111 | 728 | **PASS** | `ee337aecf2c6a1fc...` |
+| 110 | `FQ-TENSOR-LU-RIVAL-EXCLUSION` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `OP-FINITE_QM_STRUCTURE-FQ-TENSOR-LU-RIVAL-EXCLUSION` | `deepseek/deepseek-v4.1-flash` | 1111 | 521 | **PASS** | `87f0f20c30bad111...` |
+| 111 | `FQ-CPTP-CLASS-DEFINITION` | `FINITE_QM_STRUCTURE` | `DEFINITION` | `OP-FINITE_QM_STRUCTURE-FQ-CPTP-CLASS-DEFINITION` | `deepseek/deepseek-v4.1-flash` | 1083 | 686 | **PASS** | `3b0b2ee15c1d0078...` |
+| 112 | `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` | `deepseek/deepseek-v4.1-flash` | 1154 | 544 | **PASS** | `62c4999f1004a22d...` |
+| 113 | `FQ-TRACE-ZERO-DUALITY-K23` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-TRACE-ZERO-DUALITY-K23` | `deepseek/deepseek-v4.1-flash` | 1098 | 764 | **PASS** | `de44fc4bd6581c92...` |
+| 114 | `FQ-BELL-CLASSICAL-JOINT-EXTENSION` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-BELL-CLASSICAL-JOINT-EXTENSION` | `deepseek/deepseek-v4.1-flash` | 1127 | 520 | **PASS** | `22c87a7cc081b29f...` |
+| 115 | `FQ-BELL-RATIONAL-VIOLATION-14-5` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-BELL-RATIONAL-VIOLATION-14-5` | `deepseek/deepseek-v4.1-flash` | 1130 | 636 | **PASS** | `4193e1dc12f0a172...` |
+| 116 | `FQ-TSIRELSON-SOS-Q-SQRT2` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-TSIRELSON-SOS-Q-SQRT2` | `deepseek/deepseek-v4.1-flash` | 1154 | 1637 | **PASS** | `bb48d89472357ea4...` |
+| 117 | `FQ-CONTEXTUALITY-CECH-F2` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-CONTEXTUALITY-CECH-F2` | `deepseek/deepseek-v4-flash` | 1119 | 1038 | **PASS** | `9e973ede4508f1fd...` |
+| 118 | `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `OP-FINITE_QM_STRUCTURE-FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` | `deepseek/deepseek-v4.1-flash` | 1190 | 794 | **PASS** | `6a16bfa3c03b4306...` |
+| 119 | `FQ-COMMUTATOR-TRACE-OBSTRUCTION` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `OP-FINITE_QM_DYNAMICS-FQ-COMMUTATOR-TRACE-OBSTRUCTION` | `deepseek/deepseek-v4.1-flash` | 1094 | 683 | **PASS** | `9c5cfc16491784e2...` |
+| 120 | `FQ-U1-TRANSPORT-N-TORSION` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `OP-FINITE_QM_STRUCTURE-FQ-U1-TRANSPORT-N-TORSION` | `deepseek/deepseek-v4.1-flash` | 1143 | 685 | **PASS** | `7f286792df08d067...` |
+| 121 | `FQ-DISCRETE-DYNAMICS-DICHOTOMY` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `OP-FINITE_QM_DYNAMICS-FQ-DISCRETE-DYNAMICS-DICHOTOMY` | `deepseek/deepseek-v4.1-flash` | 1151 | 790 | **PASS** | `066ad4e28c5ee935...` |
+| 122 | `FQ-DISCRETE-TIME-STONE-AMBIGUITY` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `OP-FINITE_QM_DYNAMICS-FQ-DISCRETE-TIME-STONE-AMBIGUITY` | `deepseek/deepseek-v4.1-flash` | 1143 | 687 | **PASS** | `e9a9850b2b30b962...` |
+| 123 | `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `OP-FINITE_QM_DYNAMICS-FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` | `deepseek/deepseek-v4-flash` | 1168 | 1074 | **PASS** | `837688b6f190b4ab...` |
+| 124 | `FQ-GAP-REAL-EMBEDDING-CHOICE` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `OP-FINITE_QM_DYNAMICS-FQ-GAP-REAL-EMBEDDING-CHOICE` | `deepseek/deepseek-v4.1-flash` | 1172 | 580 | **PASS** | `5f2bdf4ba14eb041...` |
+| 125 | `FQ-ENTROPY-DICHOTOMY-BAKER` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-FQ-ENTROPY-DICHOTOMY-BAKER` | `deepseek/deepseek-v4-flash` | 1196 | 889 | **PASS** | `38df70300b0b3b49...` |
+| 126 | `FQ-IMPL-F64-GATING` | `IMPLEMENTATION` | `DEFINITION` | `OP-IMPLEMENTATION-FQ-IMPL-F64-GATING` | `deepseek/deepseek-v4.1-flash` | 1060 | 754 | **PASS** | `8a80e51136e8fca1...` |
+| 127 | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` | `IMPLEMENTATION` | `PROVED_LEAN` | `OP-IMPLEMENTATION-FQ-IMPL-WDP-AMPLITUDE-BRIDGE` | `deepseek/deepseek-v4.1-flash` | 1139 | 650 | **PASS** | `8d7bcd7fc8c391e3...` |
+| 128 | `FQ-IMPL-REALIFICATION-ADAPTER` | `IMPLEMENTATION` | `PROVED_LEAN` | `OP-IMPLEMENTATION-FQ-IMPL-REALIFICATION-ADAPTER` | `deepseek/deepseek-v4.1-flash` | 1076 | 654 | **PASS** | `1c56a98cc8cf2571...` |
+| 129 | `FQ-IMPL-PAIRING-AUDIT` | `IMPLEMENTATION` | `PROVED_LEAN` | `OP-IMPLEMENTATION-FQ-IMPL-PAIRING-AUDIT` | `deepseek/deepseek-v4.1-flash` | 1066 | 589 | **PASS** | `7c95e7434670df70...` |
+| 130 | `FQ-QM207-231-FINITE-MAP-CONTROLS` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `OP-FINITE_QM_STRUCTURE-FQ-QM207-231-FINITE-MAP-CONTROLS` | `deepseek/deepseek-v4.1-flash` | 1165 | 742 | **PASS** | `4f03f564f1675dc7...` |
+| 131 | `GP-GAP-EXACT-DUALITY` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `OP-FINITE_QM_STRUCTURE-GP-GAP-EXACT-DUALITY` | `deepseek/deepseek-v4.1-flash` | 1073 | 723 | **PASS** | `c8a5318ce3d61fa1...` |
+| 132 | `GP-FIN-GAUSS-MATRIX-ALGEBRA` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-GP-FIN-GAUSS-MATRIX-ALGEBRA` | `deepseek/deepseek-v4-flash` | 1219 | 1152 | **PASS** | `da368211df4b3d06...` |
+| 133 | `GP-DROP-ONE-CENSUS` | `FINITE_QM_CORE` | `PROVED_LEAN` | `OP-FINITE_QM_CORE-GP-DROP-ONE-CENSUS` | `deepseek/deepseek-v4.1-flash` | 1064 | 1309 | **PASS** | `374275e6a3959562...` |
+| 134 | `DS-QM030-GRADED-PATHSUM` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `OP-FINITE_QM_DYNAMICS-DS-QM030-GRADED-PATHSUM` | `deepseek/deepseek-v4.1-flash` | 1141 | 681 | **PASS** | `d23231919eb9f798...` |
+| 135 | `DS-QM030-UNGRADED-OVERCOUNT` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `OP-FINITE_QM_DYNAMICS-DS-QM030-UNGRADED-OVERCOUNT` | `deepseek/deepseek-v4.1-flash` | 1116 | 590 | **PASS** | `e213aec69283111f...` |
+
+## 2. Claim Hygiene Summary (`RULE[user_global]`)
+
+1. **What this dossier supports**: That each executed DAG prompt node in `dag/prompts/` had its 4 operad slots populated by deterministic operad mining (`M1`..`M4`) and its typed JSON response verified against exact integer/rational gates (`G0`..`G6`), Lean 4 theorem anchors, and Rust witness functions.
+2. **What this dossier does not support**: Promoting `IMPORTED_ASSUMPTION`, `CONDITIONAL`, `OPEN`, `DEFINITION`, `ADMITTED_PRIMITIVE`, or finite `PROVED_LEAN` nodes beyond their stated finite carrier without paid external bridges.
+3. **Narrowest defensible claim**: Within this finite-carrier PFP test harness (`AuthorityEffect: None`), the 4-mission operad-grafted prompts steer `deepseek/deepseek-v4.1-flash` to emit exact finite-shadow and countermodel certificates verified in `< 2 ms` per node.
+4. **Next test needed**: Run `verify_pfp_dag_prompts.py` and `cargo test --lib dag_witnesses` across `theory_of_finite_quantum_mechanics`.

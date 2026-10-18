@@ -1,3 +1,11 @@
+/-
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
+-/
+
 -- Purity.lean — Purity Corollary & Transcendence under Baker Hypothesis
 -- Campaign: C750 Block 01 (Target C750-T570)
 -- AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).

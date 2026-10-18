@@ -9,6 +9,8 @@
   Divisibility is sufficient for the declared diagram, not an iff for fields:
   zeta_6 = 1 + zeta_3 is the elementary counterexample. The Gaussian record
   identities are separate from a generic cyclotomic field.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H052

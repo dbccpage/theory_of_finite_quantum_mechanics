@@ -14,6 +14,9 @@
      cannot be represented as physical quantum density operators under linear state inversion.
   4. The 6-qubit graph state on the octahedron complex has symmetric adjacency matrix,
      forcing all symplectic commutators over F_2 to vanish identically: A_uv + A_vu = 0 mod 2.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H030

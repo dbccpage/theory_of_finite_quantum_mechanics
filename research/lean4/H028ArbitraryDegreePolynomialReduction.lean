@@ -10,6 +10,10 @@
   4. Homogeneous polynomials of degree 2k factoring through (x^2 + y^2)^(k-1) * Q_2(x, y)
      identically collapse on S^1 to the quadratic form Q_2(x, y).
   5. Specifically checks degree-4 (k=2), degree-6 (k=3), and degree-8 (k=4) instances.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H028

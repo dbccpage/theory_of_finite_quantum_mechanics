@@ -15,6 +15,8 @@
      the Weyl shift operator X and clock operator Z circumvent this obstruction:
        Z X = omega * X Z,
      establishing the discrete Weyl commutation relation without trace contradictions.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H047

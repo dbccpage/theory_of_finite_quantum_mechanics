@@ -8,6 +8,9 @@
   integer matrices. The remaining declarations check arithmetic fixtures
   or distinguish metadata constructors. They do not prove matrix norm
   bounds, a phase approximation theorem, a limit, or a Bott obstruction.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H069

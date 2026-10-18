@@ -1,0 +1,42 @@
+{
+  "schema": "omega.pfp.finite_qm.m3_decoy_ablation_receipt.v1",
+  "authority_effect": "None",
+  "prompt_index": 59,
+  "node_id": "PG-GEN-REWRITING-COMMUTATION",
+  "stage": "GENESIS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-GENESIS-PG-GEN-REWRITING-COMMUTATION",
+  "expected_finite_shadow_int": 244,
+  "expected_countermodel_int": 63,
+  "without_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "FAIL",
+    "all_gates_passed": false,
+    "failures": [
+      "G4_COUNTERMODEL_MISMATCH:got=65,exp=63"
+    ],
+    "emitted_countermodel_int": 65,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1022,
+    "completion_tokens": 876,
+    "elapsed_ms": 27672.0
+  },
+  "with_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "failures": [],
+    "emitted_countermodel_int": 63,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1067,
+    "completion_tokens": 659,
+    "elapsed_ms": 20141.0
+  },
+  "with_m3_final": {
+    "status": "PASS",
+    "all_gates_passed": true,
+    "attempts_used": 1,
+    "winning_model": "deepseek/deepseek-v4.1-flash",
+    "receipt_sha256": "8961b2145cfe721b4e62bcd8a6fb66df19351c1cd2d6c7b81943f160849b9ba6"
+  }
+}

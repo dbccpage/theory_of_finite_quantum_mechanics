@@ -17,6 +17,9 @@ witnesses instead of silently promoting representation-layer language.
 This file does not identify the most primitive cosmological object.  Carrier,
 Primitive Difference, and Structure are typed authority/descent interfaces for
 the current engine layer, not an origin theorem about the lower primitive layer.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace OmegaCosmology

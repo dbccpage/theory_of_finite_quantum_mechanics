@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:47:42.187349+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_CORE__FQ-BELL-CLASSICAL-JOINT-EXTENSION__PROVED_LEAN.yaml",
+  "node_id": "FQ-BELL-CLASSICAL-JOINT-EXTENSION",
+  "stage": "FINITE_QM_CORE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_CORE-FQ-BELL-CLASSICAL-JOINT-EXTENSION",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1127,
+  "completion_tokens": 520,
+  "elapsed_ms": 16984.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_114_fq-bell-classical-_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1127,
+      "completion_tokens": 520,
+      "cost_usd": 0.0001479096,
+      "generation_id": "gen-1792309645-Gr9VlgD0CFdFT2GkXEjr",
+      "elapsed_ms": 16984.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1140,-2280,1710],\"p_star_chord_potential\":1710,\"p_star_holonomy_gamma2\":2280,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":480,\"countermodel_witness_int\":128,\"unpaid_import_count\":2,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=135,exp=128"
+      ],
+      "emitted_countermodel_int": 135,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1103,
+      "completion_tokens": 618,
+      "elapsed_ms": 19407.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 128,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1127,
+      "completion_tokens": 520,
+      "elapsed_ms": 16984.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1140,
+      -2280,
+      1710
+    ],
+    "p_star_chord_potential": 1710,
+    "p_star_holonomy_gamma2": 2280,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 480,
+    "countermodel_witness_int": 128,
+    "unpaid_import_count": 2,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region; mints no authority.",
+    "node_id": "FQ-BELL-CLASSICAL-JOINT-EXTENSION",
+    "stage": "FINITE_QM_CORE",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_CORE-FQ-BELL-CLASSICAL-JOINT-EXTENSION",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-BELL-CLASSICAL-JOINT-EXTENSION",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0216,
+    "receipt_sha256": "22c87a7cc081b29fb96b6b3983b03b35c699ed9445f9a1cf0cd57046616791a6"
+  },
+  "updated_papers": [
+    "papers/derivations/12_finite_qm_structure/TFQ-0256_product_defect_on_a_bipartite_weight_table.md"
+  ]
+}

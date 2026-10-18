@@ -1,0 +1,109 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:43:01.768109+00:00",
+  "prompt_file": "dag/prompts/PREGENESIS__PG-CHAIN-RETRACTION__PROVED_LEAN.yaml",
+  "node_id": "PG-CHAIN-RETRACTION",
+  "stage": "PREGENESIS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-PREGENESIS-PG-CHAIN-RETRACTION",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1055,
+  "completion_tokens": 795,
+  "elapsed_ms": 23218.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_049_pg-chain-retractio_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1055,
+      "completion_tokens": 795,
+      "cost_usd": 0.000182844,
+      "generation_id": "gen-1792309358-Mw9prCzrBVG2nDYC4ZWI",
+      "elapsed_ms": 23218.0,
+      "raw_preview": " {\"derived_under_policy\":\"SPK-001\",\"authority_effect\":\"None\",\"firewall_status\":\"stated region only; mints no authority.\",\"node_id\":\"PG-CHAIN-RETRACTION\",\"stage\":\"PREGENESIS\",\"dag_status\":\"PROVED_LEAN\",\"operad_family_id\":\"OP-PREGENESIS-PG-CHAIN-RETRACTION\",\"lean4_theorem_anchor\":\"lean4/quantum_mechan",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=52,exp=51"
+      ],
+      "emitted_countermodel_int": 52,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1020,
+      "completion_tokens": 998,
+      "elapsed_ms": 33172.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 51,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1055,
+      "completion_tokens": 795,
+      "elapsed_ms": 23218.0
+    }
+  },
+  "typed_model_response": {
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "PG-CHAIN-RETRACTION",
+    "stage": "PREGENESIS",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-PREGENESIS-PG-CHAIN-RETRACTION",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness",
+    "should_continue": false,
+    "p_star_tree_potentials": [
+      490,
+      -980,
+      735
+    ],
+    "p_star_chord_potential": 735,
+    "p_star_holonomy_gamma2": 980,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 202,
+    "countermodel_witness_int": 51,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "PG-CHAIN-RETRACTION",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0239,
+    "receipt_sha256": "08784bcc39c3506a05d523e6ae246d94b8c6e7ccd4077779c6ab872f250e90f1"
+  },
+  "updated_papers": [
+    "papers/derivations/01_pregenesis/TFQ-0375_chain-retraction-old-class.md",
+    "papers/derivations/05_mssn_sn/TFQ-0337_record_homology_injectivity_under_a_chain-map_retraction_and_record_that_the_two-point.md"
+  ]
+}

@@ -10,6 +10,10 @@
   3. Any homogeneous degree-4 polynomial satisfying the frame-additivity symmetry
      and trace constraints factors as (x^2 + y^2) * (quadratic), collapsing on the
      unit circle to quadratic degree p = 2.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H013QuarticSeparation

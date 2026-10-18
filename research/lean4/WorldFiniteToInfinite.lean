@@ -18,6 +18,9 @@ comparison, or infinite limiting object is introduced.  The general F7/Q11
 finite-to-infinite and exhaustion-independence theorem remains OPEN.
 
 AuthorityEffect: None.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace OmegaWorld

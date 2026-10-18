@@ -125,6 +125,8 @@ def test_master_dossier_replay_and_self_containment() -> None:
 
     lean_path = REPO_ROOT / "research" / "lean4" / "RaveraDfmFiniteToContinuum.lean"
     if not lean_path.is_file():
+        lean_path = REPO_ROOT / "lean4" / "RaveraDfmFiniteToContinuum.lean"
+    if not lean_path.is_file():
         lean_path = REPO_ROOT / "lean" / "RaveraDfmFiniteToContinuum.lean"
     rust_path = REPO_ROOT / "code" / "rust" / "src" / "qm" / "campaigns" / "ravera_dfm.rs"
     assert lean_path.is_file()

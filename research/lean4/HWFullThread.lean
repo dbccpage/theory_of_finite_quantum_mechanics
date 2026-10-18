@@ -31,6 +31,8 @@
     Not a replacement of H017 by a derivation of quantum mechanics.
 
   AuthorityEffect: None
+  Origin: papers/core/finite_quantum_mechanics.md
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import HWKernel

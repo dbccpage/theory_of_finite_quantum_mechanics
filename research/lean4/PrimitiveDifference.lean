@@ -4,6 +4,11 @@ Primitive difference quotient kernel.
 This file records the minimum data needed for the zero-difference relation,
 the quotient by that relation, and the condition under which `δ` descends to
 the quotient.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace OmegaCore

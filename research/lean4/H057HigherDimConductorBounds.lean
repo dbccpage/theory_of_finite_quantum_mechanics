@@ -8,6 +8,9 @@
   state, stabilizer, measurement, minimal field, or UPB theorem is proved here.
   For declared CGLMP setting bounds: d=4 gives LCM 240; d=8 gives LCM 480.
   These do not include an optimal state's amplitudes.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H057

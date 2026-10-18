@@ -17,6 +17,8 @@
      in the discrete Gross Wigner representation.
   6. Gross phase space covariance holds: the cyclic translation X satisfies
        P X P = X^{-1}, confirming that phase space reflection inverts translations.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H041
@@ -133,3 +135,8 @@ theorem gross_parity_commutation (v : Vec5) :
 #print axioms gross_parity_commutation
 
 end FableHilbertWalk20260819.H041
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

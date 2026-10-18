@@ -1,0 +1,106 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:44:59.376314+00:00",
+  "prompt_file": "dag/prompts/L1_TO_L2__L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY__PROVED_LEAN.yaml",
+  "node_id": "L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY",
+  "stage": "L1_TO_L2",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-L1_TO_L2-L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1164,
+  "completion_tokens": 553,
+  "elapsed_ms": 15375.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_084_l1-qm020-thm4-hilb_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1164,
+      "completion_tokens": 553,
+      "cost_usd": 0.0001550592,
+      "generation_id": "gen-1792309484-ezXrM7QRc63WgEv9RDe4",
+      "elapsed_ms": 15375.0,
+      "raw_preview": "{\"node_id\":\"L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY\",\"stage\":\"L1_TO_L2\",\"dag_status\":\"PROVED_LEAN\",\"operad_family_id\":\"OP-L1_TO_L2-L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY\",\"p_star_tree_potentials\":[840,-1680,1260],\"p_star_chord_potential\":1260,\"p_star_holonomy_gamma2\":1680,\"cochain_d1_d0_exact_zero\":tru",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 96,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1157,
+      "completion_tokens": 825,
+      "elapsed_ms": 22594.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 96,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1164,
+      "completion_tokens": 553,
+      "elapsed_ms": 15375.0
+    }
+  },
+  "typed_model_response": {
+    "node_id": "L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY",
+    "stage": "L1_TO_L2",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-L1_TO_L2-L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY",
+    "p_star_tree_potentials": [
+      840,
+      -1680,
+      1260
+    ],
+    "p_star_chord_potential": 1260,
+    "p_star_holonomy_gamma2": 1680,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 362,
+    "countermodel_witness_int": 96,
+    "unpaid_import_count": 3,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm020_thm4_hilbert_lift_redundancy",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_l1_to_l2_bridges_and_ladder_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0344,
+    "receipt_sha256": "f6dbb65386b39bbac017390172f48067e46a34944e51bef5e2e095475d5feeb8"
+  },
+  "updated_papers": [
+    "papers/derivations/07_l1_emergence/TFQ-0355_stop_at_the_open_residual-to-weight_gap_and_do_not_import_a_hilbert.md"
+  ]
+}

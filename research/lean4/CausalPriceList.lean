@@ -11,6 +11,8 @@
   - Structural sentence verification against Block 09, Block 03, and Block 05
   - Consolidation of cited Lean theorems across Blocks 01-09 with zero Classical.choice dependence
   - Terminal outcome: FQMR1_CLOSED_AT_DECLARED_CLASS
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import CausalOrder

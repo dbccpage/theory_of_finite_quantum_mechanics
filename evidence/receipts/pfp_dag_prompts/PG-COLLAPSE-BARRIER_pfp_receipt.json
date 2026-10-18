@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:43:09.602352+00:00",
+  "prompt_file": "dag/prompts/PREGENESIS__PG-COLLAPSE-BARRIER__PROVED_LEAN.yaml",
+  "node_id": "PG-COLLAPSE-BARRIER",
+  "stage": "PREGENESIS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-PREGENESIS-PG-COLLAPSE-BARRIER",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1054,
+  "completion_tokens": 452,
+  "elapsed_ms": 13016.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_041_pg-collapse-barrie_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1054,
+      "completion_tokens": 452,
+      "cost_usd": 0.0001333872,
+      "generation_id": "gen-1792309376-AJnEzDAG8SELADroMaQj",
+      "elapsed_ms": 13016.0,
+      "raw_preview": " {\"node_id\":\"PG-COLLAPSE-BARRIER\",\"stage\":\"PREGENESIS\",\"dag_status\":\"PROVED_LEAN\",\"operad_family_id\":\"OP-PREGENESIS-PG-COLLAPSE-BARRIER\",\"p_star_tree_potentials\":[410,-820,615],\"p_star_chord_potential\":615,\"p_star_holonomy_gamma2\":820,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":172,\"",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=44,exp=43"
+      ],
+      "emitted_countermodel_int": 44,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 984,
+      "completion_tokens": 868,
+      "elapsed_ms": 51204.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 43,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1054,
+      "completion_tokens": 452,
+      "elapsed_ms": 13016.0
+    }
+  },
+  "typed_model_response": {
+    "node_id": "PG-COLLAPSE-BARRIER",
+    "stage": "PREGENESIS",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-PREGENESIS-PG-COLLAPSE-BARRIER",
+    "p_star_tree_potentials": [
+      410,
+      -820,
+      615
+    ],
+    "p_star_chord_potential": 615,
+    "p_star_holonomy_gamma2": 820,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 172,
+    "countermodel_witness_int": 43,
+    "unpaid_import_count": 0,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "PG-COLLAPSE-BARRIER",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0182,
+    "receipt_sha256": "c704463448954fae5f061b6ed15e1e4dd177a1de118b3a5d0a871ccb1073df63"
+  },
+  "updated_papers": [
+    "papers/derivations/01_pregenesis/TFQ-0365_collapsed-observation-barrier.md"
+  ]
+}

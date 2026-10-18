@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:52:19.606029+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_STRUCTURE__DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION__PROVED_LEAN.yaml",
+  "node_id": "DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION",
+  "stage": "FINITE_QM_STRUCTURE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_STRUCTURE-DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1180,
+  "completion_tokens": 544,
+  "elapsed_ms": 14985.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_157_ds-qm080-081-trace_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1180,
+      "completion_tokens": 544,
+      "cost_usd": 0.0001548,
+      "generation_id": "gen-1792309924-EzDD5e0eTkb45h5xBr7c",
+      "elapsed_ms": 14985.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1570,-3140,2355],\"p_star_chord_potential\":2355,\"p_star_holonomy_gamma2\":3140,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":654,\"countermodel_witness_int\":173,\"unpaid_import_count\":4,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=181,exp=173"
+      ],
+      "emitted_countermodel_int": 181,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1130,
+      "completion_tokens": 832,
+      "elapsed_ms": 28203.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 173,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1180,
+      "completion_tokens": 544,
+      "elapsed_ms": 14985.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1570,
+      -3140,
+      2355
+    ],
+    "p_star_chord_potential": 2355,
+    "p_star_holonomy_gamma2": 3140,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 654,
+    "countermodel_witness_int": 173,
+    "unpaid_import_count": 4,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION",
+    "stage": "FINITE_QM_STRUCTURE",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_STRUCTURE-DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0166,
+    "receipt_sha256": "d812cb0121a5a508f59d368314f4eb02e86e22bcbf711fb101569a15ca81df55"
+  },
+  "updated_papers": [
+    "papers/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md"
+  ]
+}

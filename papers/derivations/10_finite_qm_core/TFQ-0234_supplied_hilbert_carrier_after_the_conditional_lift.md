@@ -76,3 +76,48 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-PRIMDIFF-QUOTIENT-KERNEL`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-PRIMDIFF-QUOTIENT-KERNEL` (`FINITE_QM_CORE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_CORE-FQ-PRIMDIFF-QUOTIENT-KERNEL`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [980, -1960, 1470]`, `chord_potential = 1470`, `holonomy_gamma2 = 1960`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-PRIMDIFF-QUOTIENT-KERNEL): 4*idx(98) + 3*stage_rank(7) + route_degree(8) == 421` ($\text{value} = 421$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-PRIMDIFF-QUOTIENT-KERNEL): R_raw(231) - G_cob(112) - S_decoy(7) == 112 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 112$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = d38bc3b82a459c3a2a7aa1e77f081143f6203fdabded64bb482121ee0329ca9b`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-INTERFERENCE-NONDESCENT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-INTERFERENCE-NONDESCENT` (`FINITE_QM_CORE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_CORE-FQ-INTERFERENCE-NONDESCENT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1020, -2040, 1530]`, `chord_potential = 1530`, `holonomy_gamma2 = 2040`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-INTERFERENCE-NONDESCENT): 4*idx(102) + 3*stage_rank(7) + route_degree(2) == 431` ($\text{value} = 431$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-INTERFERENCE-NONDESCENT): R_raw(239) - G_cob(116) - S_decoy(7) == 116 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 116$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/H010InterferenceNonDescent.lean::mix_separates`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = db089d1b2acae5e8dd8734e7bac78f2a7e7c3ace7fa97a0c434da783cc8f5c13`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-SORKIN-READOUT-CLASS-QM208`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-SORKIN-READOUT-CLASS-QM208` (`FINITE_QM_CORE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_CORE-FQ-SORKIN-READOUT-CLASS-QM208`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1030, -2060, 1545]`, `chord_potential = 1545`, `holonomy_gamma2 = 2060`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-SORKIN-READOUT-CLASS-QM208): 4*idx(103) + 3*stage_rank(7) + route_degree(3) == 436` ($\text{value} = 436$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-SORKIN-READOUT-CLASS-QM208): R_raw(241) - G_cob(117) - S_decoy(7) == 117 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 117$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 2d0bd5a00111979bcd4b4f93a6c5f03d97d1591b4d2a56683ee1d9d3e3eeaf0f`

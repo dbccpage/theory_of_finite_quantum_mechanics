@@ -13,6 +13,10 @@
      establishing that the normalized parity expectation is exact -1.
   5. In the discrete Gross Wigner representation, W_M(0, 0) = (1/3) * (-1) = -1/3 < 0,
      establishing discrete Wigner negativity as the non-classical resource.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H035

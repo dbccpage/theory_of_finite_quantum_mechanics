@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:49:14.998766+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_STRUCTURE__FQ-QM207-231-FINITE-MAP-CONTROLS__PROVED_LEAN.yaml",
+  "node_id": "FQ-QM207-231-FINITE-MAP-CONTROLS",
+  "stage": "FINITE_QM_STRUCTURE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_STRUCTURE-FQ-QM207-231-FINITE-MAP-CONTROLS",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1165,
+  "completion_tokens": 742,
+  "elapsed_ms": 22437.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_130_fq-qm207-231-finit_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1165,
+      "completion_tokens": 742,
+      "cost_usd": 0.00018234,
+      "generation_id": "gen-1792309732-o4l9knNw4FsiGg4lpDM6",
+      "elapsed_ms": 22437.0,
+      "raw_preview": "{\"p_star_tree_potentials\": [1300, -2600, 1950], \"p_star_chord_potential\": 1950, \"p_star_holonomy_gamma2\": 2600, \"cochain_d1_d0_exact_zero\": true, \"finite_shadow_witness_int\": 546, \"countermodel_witness_int\": 146, \"unpaid_import_count\": 2, \"unconditional_promotion_refused\": true, \"derived_under_polic",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=154,exp=146"
+      ],
+      "emitted_countermodel_int": 154,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1286,
+      "completion_tokens": 1038,
+      "elapsed_ms": 51062.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 146,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1165,
+      "completion_tokens": 742,
+      "elapsed_ms": 22437.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1300,
+      -2600,
+      1950
+    ],
+    "p_star_chord_potential": 1950,
+    "p_star_holonomy_gamma2": 2600,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 546,
+    "countermodel_witness_int": 146,
+    "unpaid_import_count": 2,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "FQ-QM207-231-FINITE-MAP-CONTROLS",
+    "stage": "FINITE_QM_STRUCTURE",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_STRUCTURE-FQ-QM207-231-FINITE-MAP-CONTROLS",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-QM207-231-FINITE-MAP-CONTROLS",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0403,
+    "receipt_sha256": "4f03f564f1675dc7abe1226c9a7fadf62df0aed935938099aec0db828e3eec7b"
+  },
+  "updated_papers": [
+    "papers/derivations/21_implementation_core/TFQ-0160_import_finite_maps_qm-207_to_qm-215.md"
+  ]
+}

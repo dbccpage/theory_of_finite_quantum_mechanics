@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:51:44.673248+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_DYNAMICS__DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS__PROVED_LEAN.yaml",
+  "node_id": "DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS",
+  "stage": "FINITE_QM_DYNAMICS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_DYNAMICS-DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1188,
+  "completion_tokens": 637,
+  "elapsed_ms": 22359.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_140_ds-qm040-gaussint-_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1188,
+      "completion_tokens": 637,
+      "cost_usd": 0.0001687104,
+      "generation_id": "gen-1792309882-6TcEKBugQTaZ25z3lCzJ",
+      "elapsed_ms": 22359.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1400,-2800,2100],\"p_star_chord_potential\":2100,\"p_star_holonomy_gamma2\":2800,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":589,\"countermodel_witness_int\":158,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=167,exp=158"
+      ],
+      "emitted_countermodel_int": 167,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1155,
+      "completion_tokens": 966,
+      "elapsed_ms": 35281.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 158,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1188,
+      "completion_tokens": 637,
+      "elapsed_ms": 22359.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1400,
+      -2800,
+      2100
+    ],
+    "p_star_chord_potential": 2100,
+    "p_star_holonomy_gamma2": 2800,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 589,
+    "countermodel_witness_int": 158,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS",
+    "stage": "FINITE_QM_DYNAMICS",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_DYNAMICS-DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.028,
+    "receipt_sha256": "bc58f9bf456feb2c058429396ab9944cf9e8e1373c556350811a7433a52fa376"
+  },
+  "updated_papers": [
+    "papers/derivations/12_finite_qm_structure/TFQ-0249_trace-zero_summaries_do_not_fix_commutation.md"
+  ]
+}

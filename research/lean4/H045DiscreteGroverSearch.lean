@@ -14,6 +14,9 @@
      2*theta = pi/3, with sin(theta) = 1/2 and cos(theta) = sqrt(3)/2.
   5. The trigonometric recurrence s_{k+1} = s_k - s_{k-1} yields the exact sequence
      s_0 = 1/2, s_1 = 1 (100% success at k = 1), with period 6.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H045

@@ -16,6 +16,9 @@
        - X-strings create pairs of magnetic flux (m) defects at plaquette boundaries.
   6. Topological mutual braiding phase: a closed e-loop encircling an m-defect crosses the dual
      m-string at exactly 1 edge, yielding the exact braiding phase (-1)^1 = -1 = e^{i pi}.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H044

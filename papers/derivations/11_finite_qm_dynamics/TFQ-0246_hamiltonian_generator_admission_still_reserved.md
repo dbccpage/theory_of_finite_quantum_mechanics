@@ -78,3 +78,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-DISCRETE-TIME-STONE-AMBIGUITY`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-DISCRETE-TIME-STONE-AMBIGUITY` (`FINITE_QM_DYNAMICS` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_DYNAMICS-FQ-DISCRETE-TIME-STONE-AMBIGUITY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1220, -2440, 1830]`, `chord_potential = 1830`, `holonomy_gamma2 = 2440`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-DISCRETE-TIME-STONE-AMBIGUITY): 4*idx(122) + 3*stage_rank(9) + route_degree(3) == 518` ($\text{value} = 518$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-DISCRETE-TIME-STONE-AMBIGUITY): R_raw(289) - G_cob(140) - S_decoy(9) == 140 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 140$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = e9a9850b2b30b962bf646b391c520c727300be672a4b6c618df4854da95267fe`

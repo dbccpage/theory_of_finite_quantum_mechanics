@@ -22,6 +22,9 @@
      hidden variables for separate disjoint bases (a product measure mu(lambda) = prod_b p_{b, lambda_b}
      reproduces all single-basis marginals). It establishes specifically that extreme valuations
      cannot be represented as physical quantum density operators under linear state inversion.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H051

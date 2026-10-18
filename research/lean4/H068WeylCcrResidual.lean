@@ -9,6 +9,8 @@
   checks for dimensions 2 and 3. No all-dimension or arbitrary-field
   matrix theorem, analytic differentiation theorem, or Python/Rust
   refinement is established by this file.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H068

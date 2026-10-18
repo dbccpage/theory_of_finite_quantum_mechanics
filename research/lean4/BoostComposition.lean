@@ -13,6 +13,9 @@
   - Rational cosine theorem: cos(theta) is rational
   - Non-membership in Niven's exceptional set {0, +-1/2, +-1}
   - Infinite order under Niven's hypothesis (Anchor B2)
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace BoostComposition

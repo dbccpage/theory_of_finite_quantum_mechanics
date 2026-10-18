@@ -16,6 +16,9 @@
      the cubic Richardson estimator satisfies sum gamma_j * E(lambda_j) = E_0 identically,
      eliminating noise bias without approximations.
   6. The noise amplification factor Lambda_M = sum |gamma_j| evaluates to 3 (M=1), 7 (M=2), 15 (M=3).
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H048

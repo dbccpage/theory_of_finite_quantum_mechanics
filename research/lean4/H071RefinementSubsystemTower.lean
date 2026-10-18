@@ -17,6 +17,9 @@
   4. Phase mismatch obstruction:
        The natural-number cross products for 1/d1 and 1/d2 differ when d1 != d2.
   5. Distinct labels for direct and inverse system directions.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H071

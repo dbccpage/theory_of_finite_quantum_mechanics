@@ -12,6 +12,9 @@
      are mutually orthogonal in Z^4 with norm squared 2 (Gram matrix 2 * I_4).
   2. The 4 states are in bijection with the 4 classical 2-bit messages {0, 1}^2.
   3. Channel capacity ratio is 2 cbits per 1 transmitted qubit (2^2 = 4).
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H040

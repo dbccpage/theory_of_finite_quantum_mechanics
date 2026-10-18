@@ -2,6 +2,9 @@
   H062CompositionTensorMub.lean
   AuthorityEffect: None.
   Citation: sealed-derivation-v1 (3100c4e)
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H062

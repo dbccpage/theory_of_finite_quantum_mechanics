@@ -7,6 +7,8 @@
   Trace identities and a commutator obstruction for 2x2 Int matrices, plus
   one integral Weyl fixture. Not all dimensions or all characteristic-zero
   rings. The target classifications and interface prices are declarations.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H056

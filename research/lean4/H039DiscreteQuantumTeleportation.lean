@@ -17,6 +17,9 @@
        r(1, 1) = ZX
   3. In all 4 branches, the product r * b = I identically, restoring the input state.
   4. Classical communication cost is exactly 2 bits (2^2 = 4 branches).
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H039

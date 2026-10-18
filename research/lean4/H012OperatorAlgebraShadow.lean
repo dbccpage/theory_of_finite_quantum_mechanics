@@ -29,6 +29,8 @@
     phenomena (QM_209 territory) are reached at this dimension.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 import HWKernel

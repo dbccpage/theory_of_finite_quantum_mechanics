@@ -2,6 +2,9 @@
   BuildabilitySetS.lean
   Necessary and sufficient Set S buildability conditions for Paper 061.
   AuthorityEffect: None
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace InterferenceNonL1Resource

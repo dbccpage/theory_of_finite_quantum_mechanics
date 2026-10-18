@@ -20,6 +20,9 @@
        Quaternionic quantum strictly fails local tomography at d=2: D(4) = 28 ≠ 6 * 6 = 36.
   3. Unique surviving row of the declared Boolean table under its two flags.
   4. Naimark dilation vs. Born rule derivation distinction.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H074

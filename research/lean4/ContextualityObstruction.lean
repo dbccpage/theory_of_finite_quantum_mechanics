@@ -10,6 +10,9 @@
   - Negative control X2: product scenario with explicitly exhibited global section as an inhabited term
   - Witness X1: Cabello 18-ray configuration in 9 contexts with proved parity obstruction (no global section exists)
   - Census: 0 axioms outside standard core {propext, Quot.sound}, 0 sorry, 0 Classical.choice.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace ContextualityObstruction

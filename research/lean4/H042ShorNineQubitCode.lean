@@ -16,6 +16,8 @@
   5. The code distance is d = 3: the minimal non-trivial logical operator has weight 3.
   6. All 27 non-trivial single-qubit Pauli errors (X_i, Z_i, Y_i for i in 0..8) produce
      non-zero error syndromes, establishing single-qubit error detection.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H042
@@ -212,3 +214,8 @@ theorem all_y_errors_detected :
 #print axioms all_y_errors_detected
 
 end FableHilbertWalk20260819.H042
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

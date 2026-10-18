@@ -1,0 +1,42 @@
+{
+  "schema": "omega.pfp.finite_qm.m3_decoy_ablation_receipt.v1",
+  "authority_effect": "None",
+  "prompt_index": 49,
+  "node_id": "PG-CHAIN-RETRACTION",
+  "stage": "PREGENESIS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-PREGENESIS-PG-CHAIN-RETRACTION",
+  "expected_finite_shadow_int": 202,
+  "expected_countermodel_int": 51,
+  "without_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "FAIL",
+    "all_gates_passed": false,
+    "failures": [
+      "G4_COUNTERMODEL_MISMATCH:got=52,exp=51"
+    ],
+    "emitted_countermodel_int": 52,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1020,
+    "completion_tokens": 998,
+    "elapsed_ms": 33172.0
+  },
+  "with_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "failures": [],
+    "emitted_countermodel_int": 51,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1055,
+    "completion_tokens": 795,
+    "elapsed_ms": 23218.0
+  },
+  "with_m3_final": {
+    "status": "PASS",
+    "all_gates_passed": true,
+    "attempts_used": 1,
+    "winning_model": "deepseek/deepseek-v4.1-flash",
+    "receipt_sha256": "08784bcc39c3506a05d523e6ae246d94b8c6e7ccd4077779c6ab872f250e90f1"
+  }
+}

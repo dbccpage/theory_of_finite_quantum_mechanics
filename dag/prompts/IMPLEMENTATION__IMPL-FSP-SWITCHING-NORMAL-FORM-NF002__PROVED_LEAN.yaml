@@ -1,0 +1,194 @@
+schema_id: omega.pfp.finite_qm.dag_prompt.v1
+packet_type: PromptPacketV0_1
+policy_id: SPK-001
+stage_controller_version: pfp-staged.0.3
+operad_template: COPP-v2-COMPACT
+authority_effect: None
+firewall: stated region only; mints no authority.
+dag_node:
+  prompt_index: 175
+  node_id: IMPL-FSP-SWITCHING-NORMAL-FORM-NF002
+  stage: IMPLEMENTATION
+  status: PROVED_LEAN
+  source_status: MECHANIZED in SwitchingNormalForm.lean (including normalForms_length = 2 ^ numChord T, normalForms_nodup,
+    and mem_normalForms_iff) with Rust witness
+  statement: 'FSP switching normal form NF-002: theorems T1 to T3 and T5 and the T4 bijection are attached to the
+    draft PR. The Nat count 2^(|E| - |V| + c) is the one residual, because it needs that functions from the chord
+    set to Bool number 2^numChord and core Lean has no cardinality library.'
+  bottleneck: All NF-002 theorems T1-T5 and the duplicate-free 2^numChord normal-form enumeration are mechanized
+    in core Lean 4 without Classical.choice.
+  imported_structure: []
+  incoming_routes:
+  - IMPL-R-FSP-NF002
+  outgoing_routes: []
+  source_refs:
+  - omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml
+  lean_refs:
+  - omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normal_sound
+  - omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.same_class_iff
+  - omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.numChord_identity
+  - omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_length
+  - omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_nodup
+  - omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.mem_normalForms_iff
+  rust_refs:
+  - omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_impl_nf002_thymus_and_lggr_witness
+  - omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  paper_refs:
+  - papers/derivations/23_engine_custody/TFQ-0200_three-language_custody_on_the_omega_engine_runtime.md
+pfp_modes_active:
+- mode_02_packets_and_sealed_envelopes
+- mode_04_epistemic_antibody_injections
+- mode_05_skill_injection_and_operad_morphisms
+- mode_08_discrete_cochain_involutions
+- mode_09_lean4_proof_kernel_elaboration
+- mode_10_cemetery_dag_mining
+- mode_14_fail_closed_typed_refusal
+stages_plan:
+- stage: 1
+  name: admit
+  executor: host
+  gate: Verify YAML schema & 4 operad mining slots
+- stage: 1a_1b
+  name: p_star_cochain_syndrome
+  executor: model_and_host
+  gate: G1_COCHAIN_EXACT_SEQUENCE_D1D0 + G2_P_STAR_TREE_CHORD_SYNDROME_DECODE
+- stage: 2
+  name: ideation
+  executor: model
+  seat: seat_begemot
+  gate: Candidate finite shadow + countermodel ideation
+- stage: 3
+  name: audit
+  executor: model
+  seat: seat_koroviev
+  gate: Congruence Ideal I & Annihilator Decoy O^- audit
+- stage: 4
+  name: l2_extraction
+  executor: model
+  seat: seat_begemot
+  gate: G0_STRICT_TYPED_JSON_SCHEMA
+- stage: 5
+  name: evaluation
+  executor: host
+  seat: seat_woland
+  gate: Sovereign exact integer/rational + Lean4/Rust anchor verification (< 2 ms)
+- stage: 9
+  name: receipt
+  executor: host
+  gate: Emit cryptographic receipt to evidence/receipts/pfp_dag_prompts/ and update papers/
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNFILLED_PENDING_MINING
+    mission_id: M1_CARRIER_AND_NORMAL_FORM_MINING
+    target_operad_family_hint: OP-IMPLEMENTATION-IMPL-FSP-SWITCHING-NORMAL-FORM-NF002
+    algebraic_ring: null
+    ambient_carrier: null
+    normal_form_contracts: []
+    observer_budget: null
+    p_star_cochain_syndrome: null
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNFILLED_PENDING_MINING
+    mission_id: M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING
+    operad_family_id: null
+    source_colours: []
+    target_colour: null
+    operators: []
+    planar_grafting_sequence: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNFILLED_PENDING_MINING
+    mission_id: M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING
+    concrete_spans: {}
+    congruence_ideals: []
+    annihilator_antibodies: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNFILLED_PENDING_MINING
+    mission_id: M4_TRI_LANGUAGE_EXACT_WITNESS_MINING
+    finite_shadow_equation: null
+    finite_shadow_lhs: null
+    finite_shadow_rhs: null
+    countermodel_equation: null
+    countermodel_lhs: null
+    countermodel_rhs: null
+    lean4_theorem_anchor: null
+    rust_witness_anchor: null
+system_prompt: 'You are a precise JSON extraction engine under SPK-001 (AuthorityEffect: None). Output ONLY a single
+  raw JSON object matching response_schema with no markdown fences and no prose.'
+user_prompt: '[PENDING_OPERAD_MINING] Node IMPL-FSP-SWITCHING-NORMAL-FORM-NF002 (IMPLEMENTATION / PROVED_LEAN).
+  Run the 4-Mission Operad Miner (M1..M4) to populate operad_slots before live model execution.'
+response_schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  required:
+  - derived_under_policy
+  - authority_effect
+  - firewall_status
+  - node_id
+  - stage
+  - dag_status
+  - operad_family_id
+  - p_star_tree_potentials
+  - p_star_chord_potential
+  - p_star_holonomy_gamma2
+  - cochain_d1_d0_exact_zero
+  - finite_shadow_witness_int
+  - countermodel_witness_int
+  - unpaid_import_count
+  - unconditional_promotion_refused
+  - lean4_theorem_anchor
+  - rust_witness_anchor
+  - should_continue
+  properties:
+    derived_under_policy:
+      type: string
+      enum:
+      - SPK-001
+    authority_effect:
+      type: string
+      enum:
+      - None
+    firewall_status:
+      type: string
+      enum:
+      - stated region only; mints no authority.
+    node_id:
+      type: string
+      enum:
+      - IMPL-FSP-SWITCHING-NORMAL-FORM-NF002
+    stage:
+      type: string
+      enum:
+      - IMPLEMENTATION
+    dag_status:
+      type: string
+      enum:
+      - PROVED_LEAN
+    operad_family_id:
+      type: string
+    p_star_tree_potentials:
+      type: array
+      items:
+        type: integer
+      minItems: 3
+      maxItems: 3
+    p_star_chord_potential:
+      type: integer
+    p_star_holonomy_gamma2:
+      type: integer
+    cochain_d1_d0_exact_zero:
+      type: boolean
+    finite_shadow_witness_int:
+      type: integer
+    countermodel_witness_int:
+      type: integer
+    unpaid_import_count:
+      type: integer
+    unconditional_promotion_refused:
+      type: boolean
+    lean4_theorem_anchor:
+      type: string
+    rust_witness_anchor:
+      type: string
+    should_continue:
+      type: boolean

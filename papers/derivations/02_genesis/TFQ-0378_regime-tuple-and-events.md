@@ -65,3 +65,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F000.S000`, `F000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-GEN-REGIME-EVENTS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-GEN-REGIME-EVENTS` (`GENESIS` / `DEFINITION`)
+- **Mined Operad Family (`M2`)**: `OP-GENESIS-PG-GEN-REGIME-EVENTS`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [510, -1020, 765]`, `chord_potential = 765`, `holonomy_gamma2 = 1020`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-REGIME-EVENTS): 4*idx(51) + 3*stage_rank(2) + route_degree(8) == 218` ($\text{value} = 218$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-REGIME-EVENTS): R_raw(112) - G_cob(55) - S_decoy(2) == 55 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 55$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = a0fff983bb56b7c86377021f8aa8cbe76529ef223ebea8a0707e15309bf02637`
