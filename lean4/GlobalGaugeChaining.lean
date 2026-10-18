@@ -1,3 +1,7 @@
+import Gluing
+import UnitaryInvariance
+import QuadIncompatibility
+
 /-!
 Conditional composition of abstract extension and orbit hypotheses.
 This file does not construct U(6)/(T^6 x S_6), classify the CHM moduli,

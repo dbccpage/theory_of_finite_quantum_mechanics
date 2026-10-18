@@ -64,3 +64,9 @@ Also note two directory updates requested by the user:
 1. `lean/DerivationDagQMClosure.lean` has been moved into `lean4/DerivationDagQMClosure.lean` and `lean/` has been deleted.
 2. `research/lean4/` has been merged into root `lean4/` and `research/` has been deleted.
 Make sure the Orchestrator and Lean 4 worker use root `lean4/` exclusively and do not recreate `lean/` or `research/`.
+
+## Follow-up — 2026-10-18T21:42:05Z
+
+Diagnostic note for the Project Orchestrator (`2f7c2b5c-0caf-47df-b59c-b0d9e7b0ab22`):
+`worker_m2_rust` (`36adb1c9-8534-4191-92f4-412d219079a0`) has been waiting on `task-394` (`cargo test -p tfqm_mub --lib` in unoptimized debug mode) for over 67 minutes because a single exhaustive search test (`omega_native::exact::mub6_continuous_manifold_residue::tests::test_solve_continuous_manifold_residue_smoke`, PID 21404) has consumed 3,389s of CPU in debug mode while the other 390+ tests already passed.
+Please instruct the Orchestrator to have `worker_m2_rust` kill `task-394`, bound or `--release`-run `test_solve_continuous_manifold_residue_smoke` (or pass `-- --skip test_solve_continuous_manifold_residue_smoke` for debug and run that single test with `--release`), so Milestone M2 can finish immediately instead of hanging in debug mode.

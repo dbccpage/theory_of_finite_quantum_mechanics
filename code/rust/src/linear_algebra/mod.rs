@@ -36,6 +36,7 @@ pub mod smith_form;
 pub mod splitting_deg;
 pub use splitting_deg as real_field_splitting_degrees;
 pub mod tensor_proj;
+#[cfg(test)]
 pub mod test_support;
 
 pub use basic_matrix::{BasicMatrix, MatrixError, OperationLimits};

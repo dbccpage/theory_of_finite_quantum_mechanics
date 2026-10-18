@@ -1,3 +1,6 @@
+import Gluing
+import ZeroRelInvariance
+
 /-!
 # MUB(6) Sub-Obligation G2.3: Transport of Curvature Lower Bounds along Certified Wall Paths
 

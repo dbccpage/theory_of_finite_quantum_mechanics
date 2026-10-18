@@ -1,0 +1,678 @@
+=== DOMAIN: MUB (41 claims) ===
+
+ID: MUB6-C01
+Name: Orbit Configuration Fourier Count Lower Bound
+Type: FormalLeanTheorem
+Statement: Orbit configuration lower bound on Fourier count (n_dita >= 5) in MUB6OrbitConfiguration.
+Lean: {'module': 'RouteCFourierLandingBypass', 'theorems': ['fourier_count_ge_five']}
+Code Evidence: {}
+--------------------------------------------------
+ID: MUB6-C02
+Name: Orbit Configuration Fourier Transition Pairs Lower Bound
+Type: FormalLeanTheorem
+Statement: Orbit configuration Fourier transition pairs lower bound (pairCombinations n_dita >= 10).
+Lean: {'module': 'RouteCFourierLandingBypass', 'theorems': ['fourier_pairs_ge_ten']}
+Code Evidence: {}
+--------------------------------------------------
+ID: MUB6-C03
+Name: Orbit Configuration Fourier Landing Edges Lower Bound
+Type: FormalLeanTheorem
+Statement: Lower bound of at least 15 Fourier transition edges in orbit configuration.
+Lean: {'module': 'RouteCFourierLandingBypass', 'theorems': ['fourier_landing_edges_lower_bound']}
+Code Evidence: {}
+--------------------------------------------------
+ID: MUB6-C04
+Name: Conditional Non-Existence of Complete MUB(6) via Route C
+Type: FormalLeanTheoremConditional
+Statement: Conditional non-existence of complete MUB(6) via Route C given landing hypothesis h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily.
+Lean: {'module': 'RouteCFourierLandingBypass', 'theorems': ['no_complete_mub6_via_route_c']}
+Code Evidence: {}
+--------------------------------------------------
+ID: MUB6-C05
+Name: Non-Existence under Fourier Triple Landing Bypass
+Type: FormalLeanTheoremConditional
+Statement: Non-existence of complete MUB(6) under the supplied premise FourierTripleLandingPremise (a constituent triple in InFourierDitaChart), without orbit-count fields.
+Lean: {'module': 'RouteCFourierLandingBypass', 'theorems': ['no_complete_mub6_of_fourier_triple_landing']}
+Code Evidence: {}
+--------------------------------------------------
+ID: MUB6-C06
+Name: Analytic Cube Slice Certificate for Conjecture 2
+Type: LeanDefinition
+Statement: Analytic cube slice certificate supplying row bounds, integer parity, and class/table compatibility.
+Lean: {'module': 'Conjecture2GeneralMechanization', 'theorems': ['AnalyticCubeSliceCertificate']}
+Code Evidence: {'tests': ['tests/test_conj2_all_slice_configurations.py']}
+--------------------------------------------------
+ID: MUB6-C07
+Name: Tao Phase-Table All-Slice Evaluation
+Type: FormalLeanTheorem
+Statement: Kernel-checked evaluation of the Tao phase table across all 20 balanced three-positive/three-negative sign patterns, each with Eisenstein norm 9.
+Lean: {'module': 'Conjecture2GeneralMechanization', 'theorems': ['balanced_mask_count', 'tao_all_balanced_masks']}
+Code Evidence: {}
+--------------------------------------------------
+ID: MUB6-C08
+Name: R6 Moduli Classification Receipt Status
+Type: CustodyVerification
+Statement: R6 classification receipt with SHA-256 cf8442d8fe1397226d669fcea7bc038ef8d984a9bae741772b9d742fbe62eb59 retains NOT_A_CERTIFICATE status.
+Lean: None
+Code Evidence: {'tests': ['tests/test_option_b_premises.py']}
+--------------------------------------------------
+ID: MUB6-C09
+Name: Matolcsi Moduli Receipt Verification
+Type: CustodyVerification
+Statement: Matolcsi receipt verification with internal digest separation and custody verification.
+Lean: None
+Code Evidence: {'tests': ['tests/test_option_b_premises.py']}
+--------------------------------------------------
+ID: MUB6-C10
+Name: Cauchy-Binet Invertible Minor Quantitative Bound
+Type: FormalLeanTheorem
+Statement: Every raw 6x6 complex Hadamard has a minor with squared determinant >= 54/5 and inverse-entry squared moduli <= 10/27.
+Lean: {'module': 'MubMinorChart', 'theorems': ['exists_minor_norm_ge', 'inverse_entry_normSq_le', 'exists_bounded_inverse_minor']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C11
+Name: Complete Block Reconstruction Chart
+Type: FormalLeanTheorem
+Statement: Bounded minor supplies complete block reconstruction chart for quartet existence.
+Lean: {'module': 'MubBoundedBlockChart', 'theorems': ['chart_hadamard', 'chart_hasRawQuartet_iff']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C12
+Name: Division-Free Quartet Matrix Equations
+Type: FormalLeanTheorem
+Statement: Clearing nonzero determinant denominator yields explicit division-free matrix equations equivalent to quartet existence.
+Lean: {'module': 'MubBoundedQuartetEquations', 'theorems': ['exists_quartet_iff_equations']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C13
+Name: Standard-Basis Unbiasedness Coordinate Bounds
+Type: FormalLeanTheorem
+Statement: Standard-basis unbiasedness bounds all real candidate coordinates by 1/2 in absolute value.
+Lean: {'module': 'SzollosiQuartetSystem', 'theorems': ['mu_identity_coordinates_bounded']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C14
+Name: Rational Affine Completion System
+Type: FormalLeanTheorem
+Statement: Checked affine completion of balanced transition matrices gives an equivalent system of rational polynomial equations.
+Lean: {'module': 'MubBalancedCompletion', 'theorems': ['complete_restrict', 'restrict_complete', 'complete_row_sum', 'complete_column_sum']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C15
+Name: Balanced Quadratic System Degree and Equivalence
+Type: FormalLeanTheorem
+Statement: 648 rational polynomial equations of degree at most two in 320 bounded real coordinates whose common zeros are equivalent to quartet existence. The counts are equation and coordinate counts, not dimension or independence claims.
+Lean: {'module': 'MubBalancedQuadraticPolynomials', 'theorems': ['equation_degree', 'exists_quartet_iff_balanced_polynomials']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C16
+Name: Quadratic Lift Equivalence
+Type: FormalLeanTheorem
+Statement: Quadratic lifting yields equivalent quadratic equations preserving all candidate solutions.
+Lean: {'module': 'SzollosiQuadraticSystem', 'theorems': ['exists_solution_iff_quartet']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C17
+Name: Rational Containing Box Radius Bounds
+Type: FormalLeanTheorem
+Statement: Rational containing box has radius 1 for phase/raw-basis coordinates and 3 for cross-product coordinates.
+Lean: {'module': 'SzollosiQuadraticSystem', 'theorems': ['solution_in_full_box']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C18
+Name: Bounded Solution Quartet Equivalence
+Type: FormalLeanTheorem
+Statement: Bounded solution existence in full box is equivalent to actual quartet existence.
+Lean: {'module': 'SzollosiQuadraticSystem', 'theorems': ['exists_bounded_solution_iff_quartet']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C19
+Name: Deltoid Cover Standard-Basis Margin Disjointness
+Type: ExactComputation
+Statement: Deltoid candidate box residual margin 37249/90000 separates standard-basis residual outside unbiased candidate box (|U[0,0]|^2 = 1/6).
+Lean: None
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C20
+Name: Augmented 666-Equation System Parameter Equivalence
+Type: FormalLeanTheorem
+Statement: Quartet existence is equivalent to augmented 666-equation solution at each admissible family parameter.
+Lean: {'module': 'SzollosiGaugedExecutable', 'theorems': ['augmented_exists_with_parameters_iff']}
+Code Evidence: {'tests': ['tests/test_gauged_reflection_wire.py']}
+--------------------------------------------------
+ID: MUB6-C21
+Name: Native Six-Chart Candidate Cover Equivalence
+Type: FormalLeanTheorem
+Statement: Quartet existence is equivalent to an augmented-system solution in at least one of six overlapping native candidate charts.
+Lean: {'module': 'SzollosiGaugedReflection', 'theorems': ['native_chart_quartet_iff']}
+Code Evidence: {'tests': ['tests/test_gauged_reflection_wire.py']}
+--------------------------------------------------
+ID: MUB6-C22
+Name: Szöllősi Continuous Two-Circulant Construction
+Type: FormalLeanTheorem
+Statement: Unit phases and complex compatibility equation yield Gram identity, normalized unitarity, and 1/6 entry moduli.
+Lean: {'module': 'SzollosiTwoCirculant', 'theorems': ['rawSix_gram', 'normalized_unitary', 'normalized_entry_modulus']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C23
+Name: Szöllősi Quartet Equivalence with Arbitrary Additional Bases
+Type: FormalLeanTheorem
+Statement: Quartet existence with identity and family matrix equivalent to candidate equations with 144 retained coordinates.
+Lean: {'module': 'SzollosiQuartetSystem', 'theorems': ['quartet_iff_candidate_equations']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C24
+Name: 618 Rational Equations Degree at Most Two
+Type: FormalLeanTheorem
+Statement: 618 rational equations in 440 real variables have total degree at most two, with solutions corresponding to actual quartets.
+Lean: {'module': 'SzollosiQuadraticSystem', 'theorems': ['equation_degree', 'exists_solution_with_parameters_iff']}
+Code Evidence: {'tests': ['tests/test_remediation_b1_b11.py']}
+--------------------------------------------------
+ID: MUB6-C25
+Name: Midpoint Secant Identity and Exclusion Soundness
+Type: FormalLeanTheorem
+Statement: Exact midpoint secant identity and derivative intervals enclose zeros; strict coordinate separation excludes roots.
+Lean: {'module': 'RectangularQuadraticExclusion', 'theorems': ['list_secant_identity', 'exclusion_sound']}
+Code Evidence: {'tests': ['tests/test_rectangular_reflection_wire.py']}
+--------------------------------------------------
+ID: MUB6-C26
+Name: Column-Gauge Reduction First-Row Equality
+Type: FormalLeanTheorem
+Statement: 24 real wire coordinates prescribed with ordered IDs and values checked by kernel reduction (by rfl).
+Lean: {'module': 'SzollosiColumnGauge', 'theorems': ['gaugePointCodes_checked', 'gauge_box_firstRow']}
+Code Evidence: {'tests': ['tests/test_gauged_reflection_wire.py']}
+--------------------------------------------------
+ID: MUB6-C27
+Name: Native Sparse Jacobian Row Reflection
+Type: FormalLeanTheorem
+Statement: All 618 sparse Jacobian rows (9,000 entries) and 440 images match sound actual-system semantics.
+Lean: {'module': 'SzollosiRectangularReflection', 'theorems': ['native_jacobian_eq', 'native_images_eq']}
+Code Evidence: {'tests': ['tests/test_rectangular_reflection_wire.py::test_formatter_reproduces_the_kernel_checked_source']}
+--------------------------------------------------
+ID: MUB6-C28
+Name: Native Candidate Box Exclusion on Coordinate 368
+Type: FormalLeanTheorem
+Statement: Native box exclusion excludes recorded candidate box via row balance coordinate 368 without global quartet absence.
+Lean: {'module': 'SzollosiGaugedReflection', 'theorems': ['native_box_exclusion', 'native_box_has_admissible_phase_point']}
+Code Evidence: {'tests': ['tests/test_gauged_reflection_wire.py::test_formatter_reproduces_checked_candidate_box_source']}
+--------------------------------------------------
+ID: MUB6-C29
+Name: Concrete Complex Rank-One Projector Matrix Construction
+Type: FormalLeanTheorem
+Statement: Construction of complex rank-one projector matrices from FiniteComplexMubFamily with self-adjointness and trace one.
+Lean: {'module': 'ConcreteMubProjectors', 'theorems': ['concreteProjector_self_adjoint', 'concreteProjector_trace_one']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C30
+Name: Concrete MUB Word Moment Flatness
+Type: FormalLeanTheorem
+Statement: Degree-one and two word Gram moment matrices are PSD with rank equality to coordinate cardinality.
+Lean: {'module': 'ConcreteMubMoments', 'theorems': ['concrete_mub_moment_flatness']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C31
+Name: Concrete MUB Orthonormality and Overlap Polynomials
+Type: FormalLeanTheorem
+Statement: 108 MU residuals in 72 real coordinates agree with projector cross-trace minus 1/6; 72 further residuals encode candidate orthonormality U*U = I.
+Lean: {'module': 'ConcreteMubPolynomials', 'theorems': ['muPolynomial_eval_projector_trace']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C32
+Name: Finite Reverse Word Projector Extraction
+Type: FormalLeanTheorem
+Statement: Extraction of Gram factor, common range, normalized state, and complex linear idempotents from positive flat data.
+Lean: {'module': 'FlatMomentProjectorExtraction', 'theorems': ['extract_word_projectors']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C33
+Name: Contextual Basis Word Relations Extraction
+Type: FormalLeanTheorem
+Statement: Extraction of orthogonal basis actions and normalized degree-two representation from contextual same-basis data.
+Lean: {'module': 'FlatMomentBasisRelations', 'theorems': ['extract_word_basis']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C34
+Name: Zero-Action Interface Countermodel Inhabitation
+Type: FormalLeanTheorem
+Statement: Unconstrained projector interface admits trivial countermodel lacking completeness and cross-basis constraints.
+Lean: {'module': 'MomentPositivityObligation', 'theorems': ['not_universal_interface_exclusion']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C35
+Name: Commutative Flat Real Moments Zero Extraction
+Type: FormalLeanTheorem
+Statement: Construction of common real point from normalized positive flat real coordinate moments via commuting operators.
+Lean: {'module': 'CommutativeFlatMoments', 'theorems': ['real_point_of_positive_flat']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C36
+Name: Fourth-Basis Existence Equivalence to Positive Flat Moments
+Type: FormalLeanTheorem
+Statement: Existence of unitary fourth-basis candidate is equivalent to normalized positive flat compatible coordinate moments.
+Lean: {'module': 'ConcreteMubFlatExtension', 'theorems': ['fourth_basis_iff_positive_flat_moments']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C37
+Name: Moment Functional Nonpositivity from Empty Variety
+Type: FormalLeanTheorem
+Statement: Fixed-variety emptiness and finite relation compatibility imply failure of positive semidefiniteness for moment functional.
+Lean: {'module': 'ConcreteMubFlatExtension', 'theorems': ['moment_nonpositive_of_empty_variety']}
+Code Evidence: {'tests': ['tests/test_remediation_m1_m4.py']}
+--------------------------------------------------
+ID: MUB6-C38
+Name: Balanced Table Regeneration, Negative Controls and Centre Jacobian
+Type: ExactComputation
+Statement: The 648-row, 320-coordinate balanced table equals its regeneration from the definitions over Q; a third basis equal to the first or second makes exactly 36 transition-modulus rows nonzero; the Jacobian at the box centre has exact rank 184 of 320. Not the Lean equivalence exists_quartet_iff_table, which is not elaborated.
+Lean: None
+Code Evidence: {'rust': {'crate': 'omega_mub', 'modules': ['omega_native::mub6_balanced_table_replay', 'omega_native::mub6_prompt05_campaign_checks']}, 'tests': ['omega_engine/crates_rs/tests/omega_mub/test_mub6_prompt05_campaign_checks.rs'], 'artifacts': ['artifacts/mub6_prompt05_campaign_receipt.json']}
+--------------------------------------------------
+ID: MUB6-C39
+Name: Prompt 05 Fixed-Triple Local Lemma Checks
+Type: ExactComputation
+Statement: Fixed-triple checks D1, D2, D3, D9, E.1, F.2 and G at the values the receipt records. D9 refutes its stated premise (138 of 180 rows independent, no row-unitarity rows); E.1 covers multipliers of degree at most one; F.2 is a commutative trace model. No quartet exclusion.
+Lean: None
+Code Evidence: {'rust': {'crate': 'omega_mub', 'modules': ['omega_native::mub6_prompt05_campaign_checks']}, 'tests': ['omega_engine/crates_rs/tests/omega_mub/test_mub6_prompt05_campaign_checks.rs'], 'artifacts': ['artifacts/mub6_prompt05_campaign_receipt.json']}
+--------------------------------------------------
+ID: MUB6-C40
+Name: Szöllősi Common-Ray Reduction
+Type: FormalLeanTheorem
+Statement: For a raw complex Hadamard H, H lies in a quartet with I iff two orthonormal bases of common rays of I and H are mutually unbiased; so if no two common rays are unbiased, H is in no quartet. Owner build of 2026-10-15 recorded lake exit 0 and axioms propext, Classical.choice, Quot.sound; the source digest is unchanged on main; not rebuilt on 2026-10-16.
+Lean: {'module': 'SzollosiCommonRays', 'theorems': ['quartet_iff_ray_bases', 'no_quartet_of_no_unbiased_ray_pair']}
+Code Evidence: {'artifacts': ['research/five_derivations_20261015/execution_receipt.json']}
+--------------------------------------------------
+ID: MUB6-C41
+Name: Pair Exclusion at the Special Szöllősi Point, Represented Rays
+Type: ExactComputation
+Statement: At (x, y, u, v) = (1, -1, 1, i), the 120 real rays represented by the rational parametrization are nonsingular, and all 7,140 pairs satisfy ||z*w|^2 - 6| > 47/100. Status PASS_FOR_REPRESENTED_SOLUTIONS; completeness of the ray set needs an independent bound on the number of complex solutions. Not replayed on 2026-10-16.
+Lean: None
+Code Evidence: {'python': ['research/five_derivations_20261015/replay_rur.py'], 'tests': ['research/five_derivations_20261015/test_rur.py'], 'artifacts': ['research/five_derivations_20261015/special_replay.json']}
+--------------------------------------------------
+=== DOMAIN: FSP (35 claims) ===
+
+ID: PO-023-C1
+Name: Binary Observation Non-Faithfulness
+Type: Theorem
+Statement: Every projection from an operational execution space with >= 3 distinct termination outcomes to Bool is non-faithful.
+Lean: {'module': 'HaltingQuotient', 'theorems': ['binary_projection_not_injective', 'binary_projection_has_collision'], 'axioms': []}
+Code Evidence: {'tests': ['code/tests/e2e/test_monograph_derivation_walk_e2e.py::test_monograph_full_derivation_walk_e2e']}
+--------------------------------------------------
+ID: PO-023-C2
+Name: Halting Pigeonhole Collision
+Type: ConditionalTheorem
+Statement: A binary observation on a domain containing three distinct operational classes has a collision; no conclusion about Turing undecidability follows from this finite pigeonhole argument.
+Lean: {'module': 'HaltingQuotient', 'theorems': ['binary_projection_has_collision', 'binary_projection_no_left_inverse'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'tests': ['code/tests/e2e/test_monograph_derivation_walk_e2e.py::test_monograph_full_derivation_walk_e2e']}
+--------------------------------------------------
+ID: GIN-C1
+Name: Mode Posting List Query Efficiency
+Type: ImplementationBound
+Statement: A query over k modes uses k posting-list operations, with cost depending on their cardinalities and output size. Explicit path enumeration can be exponential in lattice size.
+Lean: None
+Code Evidence: {'module': 'MockFermionGinIndex', 'functions': ['MockFermionGinIndex.query_by_modes'], 'tests': ['code/tests/test_fermion_gin_index.py::test_gin_posting_index_creation_and_fast_lookup']}
+--------------------------------------------------
+ID: GIN-C2
+Name: Jordan-Wigner Permutation Sign Preservation
+Type: FiniteExactComputation
+Statement: The occupation-basis CAR hopping construction and finite Euler path products are exact rational operations. These are finite transfer weights, not an exact exponential or all physical fermion signs.
+Lean: {'module': 'FrustratedSpectrumObstruction', 'theorems': ['bipartite_pair_exact_cancellation'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'DiscreteFermionicHamiltonian', 'functions': ['DiscreteFermionicHamiltonian.generate_sample_paths'], 'tests': ['code/tests/test_fermion_sign_engine.py::TestFermionicHamiltonian::test_path_generation']}
+--------------------------------------------------
+ID: GIN-C3
+Name: Bipartite Hubbard GIN Involution Cancellation
+Type: FiniteExactComputation
+Statement: For the four-site periodic U=0 spin-polarized sector with two up particles, beta=3/2 and four Euler slices, all 32 negative paths have disjoint exact-weight partners. This is not an interacting half-filled Hubbard theorem and does not certify spectator or general-observable preservation.
+Lean: {'module': 'FrustratedSpectrumObstruction', 'theorems': ['bipartite_pair_exact_cancellation'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'HamiltonianGinBridge', 'functions': ['HamiltonianGinBridge.index_hamiltonian_paths'], 'tests': ['code/tests/integration/test_hamiltonian_gin_bridge.py::test_bipartite_hamiltonian_indexing_and_sign_repair']}
+--------------------------------------------------
+ID: GIN-C4
+Name: Frustrated Geometry Disjoint Spectrum Obstruction
+Type: ConditionalTheoremAndFixture
+Statement: Disjoint positive and negative magnitude supports obstruct equal-weight pairing. The fixed two-particle free triangle at beta=2 and three Euler slices is such a fixture; frustration alone does not imply disjoint spectra or hardness.
+Lean: {'module': 'FrustratedSpectrumObstruction', 'theorems': ['disjoint_spectra_obstructs_involution', 'disjoint_pair_residual_nonzero'], 'axioms': ['propext'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'HamiltonianGinBridge', 'functions': ['HamiltonianGinBridge.audit_sign_resolution'], 'tests': ['code/tests/integration/test_hamiltonian_gin_bridge.py::test_frustrated_triangle_hamiltonian_indexing_obstruction']}
+--------------------------------------------------
+ID: GIN-C5
+Name: 1D Kitaev Chain Majorana Zero Mode Isolation
+Type: ConditionalFiniteFixture
+Statement: The supplied sweet-spot Kitaev bond pattern pairs bulk labels and leaves two boundary labels unmatched. A general topological protection theorem requires a separate Hamiltonian and stability argument.
+Lean: {'module': 'FermionGinCore', 'theorems': ['edge_mode_1_not_in_bulk', 'edge_mode_2L_not_in_bulk'], 'axioms': ['propext', 'Quot.sound'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'MockFermionGinIndex', 'functions': ['MockFermionGinIndex.verify_majorana_zero_modes'], 'tests': ['code/tests/integration/test_majorana_zero_modes.py::test_kitaev_chain_majorana_zero_mode_isolation']}
+--------------------------------------------------
+ID: GIN-C6
+Name: Banach Quotient and Involution Sign Cancellation Identity
+Type: ConditionalAlgebraicLemma
+Statement: Equal-magnitude opposite-sign doublets have zero signed sum. Rational quotient normal forms and exact L1 minimization are separately stated in NF-001 and NF-003; no Banach completeness over Q is claimed.
+Lean: {'module': 'FermionGinCore', 'theorems': ['involution_pair_cancels_sign'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'tests': ['code/tests/test_fermion_sign_engine.py::TestBQNFSignEvaluator::test_exact_cancellation_meron_routing']}
+--------------------------------------------------
+ID: GIN-C7
+Name: Majorana Zero Mode Boundary Non-Bulk Membership
+Type: ConditionalFiniteFixture
+Statement: The declared boundary mode labels are absent from the supplied bulk-pairing list. No perturbative or physical protection conclusion follows from list membership alone.
+Lean: {'module': 'FermionGinCore', 'theorems': ['edge_mode_1_not_in_bulk', 'edge_mode_2L_not_in_bulk'], 'axioms': ['propext', 'Quot.sound'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'tests': ['code/tests/integration/test_majorana_zero_modes.py::test_kitaev_chain_majorana_zero_mode_isolation']}
+--------------------------------------------------
+ID: GIN-C8
+Name: Relational SQL CTE Audits
+Type: ImplementationScope
+Statement: Legacy REAL SQL views are numerical displays. Exact Hamiltonian receipts use retained rational records; new meron/Hubbard SQL uses rational TEXT arithmetic and a stepwise GCD-reduced aggregate.
+Lean: None
+Code Evidence: {'module': 'databases/fermion_gin_index_schema.sql', 'tests': ['code/tests/integration/test_sign_sql.py::test_fermion_gin_index_schema_instantiation']}
+--------------------------------------------------
+ID: GIN-C9
+Name: SU(2) Lattice Gauge Action Gap at Theta = Pi
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'SU(2) Lattice Gauge Action Gap at Theta = Pi' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'NonAbelianGaugeSigns', 'theorems': ['su2_action_gap_forces_weight_inequality', 'su2_disjoint_weights_nonzero_residual'], 'axioms': ['propext'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'SU2GinBridge', 'functions': ['SU2GinBridge.index_su2_model_paths'], 'tests': ['code/tests/integration/test_su2_lattice_gauge.py::test_su2_topological_flux_disjoint_weight_spectra']}
+--------------------------------------------------
+ID: GIN-C10
+Name: SU(3) Color Gauge Baryon Triality Cochain Curvature
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'SU(3) Color Gauge Baryon Triality Cochain Curvature' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'NonAbelianGaugeSigns', 'theorems': ['baryon_cochain_is_open', 'meson_cochain_is_closed'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'SU3BaryonGinEngine', 'functions': ['SU3BaryonGinEngine.audit_su3_baryon_triality'], 'tests': ['code/tests/integration/test_su3_baryon_triality.py::test_su3_baryon_triality_higher_order_curvature']}
+--------------------------------------------------
+ID: GIN-C11
+Name: SU(3) Polyakov Loop Deconfinement Action Gap
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'SU(3) Polyakov Loop Deconfinement Action Gap' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'NonAbelianGaugeSigns', 'theorems': ['polyakov_deconfinement_action_gap', 'polyakov_sector_weights_distinct'], 'axioms': ['propext'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'SU3PolyakovGinBridge', 'functions': ['SU3PolyakovGinBridge.index_polyakov_paths'], 'tests': ['code/tests/integration/test_su3_polyakov_loop.py::test_deconfined_phase_disjoint_weight_spectra']}
+--------------------------------------------------
+ID: GIN-C12
+Name: SU(N_c) Adjoint Zero N-ality String Breaking
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'SU(N_c) Adjoint Zero N-ality String Breaking' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'NonAbelianGaugeSigns', 'theorems': ['adjoint_matter_zero_n_ality', 'adjoint_flux_tube_curvature_vanishes'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'SUNCAdjointEngine', 'functions': ['SUNCAdjointEngine.audit_adjoint_flux_tube'], 'tests': ['code/tests/integration/test_su_nc_adjoint_flux.py::test_adjoint_zero_n_ality_and_cochain_closure']}
+--------------------------------------------------
+ID: GIN-C13
+Name: 4D Simplicial Regge Wheeler-DeWitt Pachner Defect Mass
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled '4D Simplicial Regge Wheeler-DeWitt Pachner Defect Mass' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'ReggePachnerWdw', 'theorems': ['flat_vertex_wdw_closure', 'curved_pachner_induces_positive_defect'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'ReggeWheelerDeWittEngine', 'functions': ['ReggeWheelerDeWittEngine.audit_pachner_surgery'], 'tests': ['code/tests/integration/test_regge_pachner_wdw.py::test_curved_pachner_moves_induce_defect_mass']}
+--------------------------------------------------
+ID: GIN-C14
+Name: Genesis-to-FSP Discrete Deductive Ladder
+Type: WithdrawnPhysicalInterpretation
+Statement: GenesisFspBridge contains independently admitted algebraic fixtures. It does not derive a physical Hamiltonian, a general CAR representation, or the Troyer-Wiese complexity reduction from the sealed source.
+Lean: {'module': 'GenesisFspBridge', 'theorems': ['swap_invariant_blind', 'discrete_stokes_cancellation', 'wdw_scalar_defect_unscreenable', 'involution_doublet_exact_cancellation', 'bqnf_quotient_bounds_average_sign', 'troyer_wiese_obstruction_sound'], 'axioms': ['propext', 'Quot.sound'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'tests': ['code/tests/e2e/test_monograph_derivation_walk_e2e.py::test_monograph_full_derivation_walk_e2e']}
+--------------------------------------------------
+ID: GIN-C15
+Name: 3D Weyl Semimetal Callan-Harvey Anomaly Inflow
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled '3D Weyl Semimetal Callan-Harvey Anomaly Inflow' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'ChiralAnomalyInflow', 'theorems': ['callan_harvey_cancellation', 'chiral_asymmetry_energy_split'], 'axioms': ['propext'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'ChiralAnomalyInflowEngine', 'functions': ['ChiralAnomalyInflowEngine.audit_chiral_inflow'], 'tests': ['code/tests/integration/test_chiral_anomaly_inflow.py::test_callan_harvey_anomaly_inflow_conservation']}
+--------------------------------------------------
+ID: GIN-C16
+Name: 2D Fractional Quantum Hall Laughlin Monodromy Order Clash
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled '2D Fractional Quantum Hall Laughlin Monodromy Order Clash' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'FqhLaughlinBraiding', 'theorems': ['involution_coprime_to_laughlin_phase', 'fqh_curvature_is_positive'], 'axioms': ['propext'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'FQHLaughlinBraidingEngine', 'functions': ['FQHLaughlinBraidingEngine.audit_fqh_braiding'], 'tests': ['code/tests/integration/test_fqh_laughlin_braiding.py::test_abelian_involution_obstruction_and_open_sign_routing']}
+--------------------------------------------------
+ID: GIN-C17
+Name: Fibonacci Anyon Non-Abelian Braiding and State Leakage
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'Fibonacci Anyon Non-Abelian Braiding and State Leakage' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'FibonacciAnyonBraiding', 'theorems': ['artin_braid_relation_holds', 'commutator_nontrivial_of_non_commuting', 'fibonacci_leakage_is_positive', 'non_commuting_precludes_simultaneous_diagonalization'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'FibonacciAnyonBraidingEngine', 'functions': ['FibonacciAnyonBraidingEngine.audit_fibonacci_braiding'], 'tests': ['code/tests/integration/test_fibonacci_anyon_braiding.py::test_quantum_state_leakage_under_scalar_projection']}
+--------------------------------------------------
+ID: GIN-C18
+Name: Ising Majorana Clifford Stability and Non-Clifford Magic Defect
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'Ising Majorana Clifford Stability and Non-Clifford Magic Defect' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'IsingMajoranaBraiding', 'theorems': ['stabilizer_sector_cochain_closed', 'magic_state_punctures_octahedron'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'IsingMajoranaBraidingEngine', 'functions': ['IsingMajoranaBraidingEngine.audit_majorana_braiding'], 'tests': ['code/tests/integration/test_ising_majorana_braiding.py::test_magic_state_wigner_negativity_and_defect']}
+--------------------------------------------------
+ID: GIN-C19
+Name: 3D Topological BF Linked Flux Loop Level Parity Trichotomy
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled '3D Topological BF Linked Flux Loop Level Parity Trichotomy' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'BfLinkedFluxBraiding', 'theorems': ['level2_symmetric_orientation_cancels', 'level3_involution_order_clash', 'orientation_asymmetric_residual_nonzero'], 'axioms': ['propext'], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'BFLinkedFluxBraidingEngine', 'functions': ['BFLinkedFluxBraidingEngine.audit_bf_braiding'], 'tests': ['code/tests/integration/test_bf_linked_flux_braiding.py::test_z2_bf_theory_exact_repair']}
+--------------------------------------------------
+ID: GIN-C20
+Name: Non-Abelian BF 3-Loop Braiding and Drinfeld Double Trace Positivity
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'Non-Abelian BF 3-Loop Braiding and Drinfeld Double Trace Positivity' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'NonAbelianBfBraiding', 'theorems': ['quantum_double_trace_nonnegative', 'quantum_double_nullifies_defect'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'NonAbelianBfEngine', 'functions': ['NonAbelianBfEngine.audit_nonabelian_3loop_braiding'], 'tests': ['code/tests/integration/test_bf_nonabelian_3loop_braiding.py::test_quantum_double_projection_repair']}
+--------------------------------------------------
+ID: GIN-C21
+Name: Higher 2-Group Braiding and Higher 2-Double Trace Positivity
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'Higher 2-Group Braiding and Higher 2-Double Trace Positivity' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'Higher2GroupBraiding', 'theorems': ['higher_2double_restores_sign_positivity'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'Higher2GroupEngine', 'functions': ['Higher2GroupEngine.audit_2group_gauge_theory'], 'tests': ['code/tests/integration/test_higher_2group_gauge_bf.py::test_higher_2double_restores_exact_repair']}
+--------------------------------------------------
+ID: GIN-C22
+Name: 5D Spin Cobordism Global Gravitational Anomaly Obstruction
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled '5D Spin Cobordism Global Gravitational Anomaly Obstruction' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'Cobordism5dAnomaly', 'theorems': ['gravitational_anomaly_obstructs_sign_cancellation', 'anomalous_doubled_trace_is_negative'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'CobordismAnomalyEngine', 'functions': ['CobordismAnomalyEngine.audit_5d_cobordism_anomaly'], 'tests': ['code/tests/integration/test_cobordism_5d_higher_anomaly.py::test_global_gravitational_anomaly_obstructs_2double']}
+--------------------------------------------------
+ID: GIN-C23
+Name: Semiclassical Instanton-Dyon Gas Clustering and Monopole Braiding Obstruction
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'Semiclassical Instanton-Dyon Gas Clustering and Monopole Braiding Obstruction' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'InstantonDyonGas', 'theorems': ['kvbll_fractional_charge_sum', 'molecular_cluster_nullifies_defect', 'monopole_braiding_obstructs_sign', 'dyonic_involution_pair_cancels_sign'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'InstantonDyonEngine', 'functions': ['InstantonDyonEngine.audit_complete_instanton_dyon_system'], 'tests': ['code/tests/integration/test_instanton_dyon_gas_braiding.py::test_molecular_cluster_involution_pairing_exact_repair']}
+--------------------------------------------------
+ID: GIN-C24
+Name: Foliated Fracton Order and Higher-Form 2-Gauge Defect Networks
+Type: HistoricalIllustrativeFixture
+Statement: The module labelled 'Foliated Fracton Order and Higher-Form 2-Gauge Defect Networks' evaluates supplied finite algebraic or numerical fixture data. Its interpretation as a theorem of the named physical theory or a model-preserving sign solver is withdrawn pending an explicit representation and observable-preservation proof.
+Lean: {'module': 'FoliatedFracton2Gauge', 'theorems': ['planon_dipole_neutrality', 'planon_dipole_defect_nullification', 'subsystem_extensive_gap_positive', 'decoupled_foliated_projection_nonnegative', 'corner_lineon_obstruction_persists'], 'axioms': [], 'scope': 'Only the actual declaration under its supplied hypotheses; not the former physical interpretation or the full Python implementation.'}
+Code Evidence: {'module': 'FoliatedFractonEngine', 'functions': ['FoliatedFractonEngine.audit_foliated_fracton_2gauge_defects'], 'tests': ['code/tests/integration/test_foliated_fracton_2gauge_defects.py::TestFoliatedFracton2GaugeDefects::test_planon_dipole_exact_repair']}
+--------------------------------------------------
+ID: NF-001
+Name: Rational quotient normal form
+Type: ConditionalTheoremAndFiniteEvidence
+Statement: For fixed rational D and coordinate order, the RREF section is sound, idempotent, and complete for x-y in im(D). The general proof is handwritten; Python is checked against independent annihilators and basis changes.
+Lean: None
+Code Evidence: {'tests': ['code/tests/test_normal_form_laws.py::test_rational_completeness_against_independent_annihilator', 'code/tests/test_normal_form_laws.py::test_rational_normal_form_independent_of_gauge_generator_basis']}
+--------------------------------------------------
+ID: NF-002
+Name: Binary graph switching normal form
+Type: ConditionalTheoremAndFiniteEvidence
+Statement: For a fixed ordered labelled graph, spanning-forest switching is sound, idempotent, and complete modulo vertex sign gauges. General proofs are handwritten; NormalFormLaws mechanizes a triangle instance only.
+Lean: None
+Code Evidence: {'tests': ['code/tests/test_normal_form_laws.py::test_sign_section_exhaustive_soundness_idempotence_completeness']}
+--------------------------------------------------
+ID: NF-003
+Name: Exact quotient L1 reference solver
+Type: ConditionalTheoremAndFiniteEvidence
+Statement: A full-column-rank rational image basis gives a coercive piecewise linear objective attaining its L1 minimum at an enumerated independent zero-residual intersection. The finite search refuses beyond its declared budget; its output is separate from the normal representative.
+Lean: None
+Code Evidence: {'tests': ['code/tests/test_normal_form_laws.py::test_l1_section_is_not_l1_minimizer_and_exact_distance_is', 'code/tests/test_normal_form_laws.py::test_exact_distance_and_membership_survive_exponential_budget_refusal']}
+--------------------------------------------------
+ID: MERON-001
+Name: Boolean character orbit compression
+Type: ConditionalTheoremAndFiniteEvidence
+Statement: Given independent Boolean cluster flips and a sign character, the expanded sign sum is zero if any meron occurs and is 2^k otherwise. Positivity additionally requires positive zero-meron reference sign.
+Lean: {'module': 'MeronCharacter', 'theorems': ['meron_orbit_cancels', 'zero_meron_orbit_positive', 'compression_preserves_partition'], 'axioms': ['propext', 'Quot.sound']}
+Code Evidence: {'tests': []}
+--------------------------------------------------
+ID: MERON-002
+Name: Physical meron SQL reconstruction
+Type: ConditionalTheoremAndFiniteEvidence
+Statement: The declared U=t even-chain local transfer breakup reconstructs the normalized occupation trace. The four-site two-repetition q=3 instance has Z=912 and squared-staggered numerator=36864 before and after meron reduction.
+Lean: None
+Code Evidence: {'tests': ['code/sign_sql/tests/test_exact_models.py::test_real_meron_partition_replays_independent_transfer', 'code/sign_sql/tests/test_exact_models.py::test_meron_cancellation_and_observable_are_nontrivial']}
+--------------------------------------------------
+ID: HUBBARD-001
+Name: Protected determinant representations
+Type: ConditionalTheoremAndFiniteEvidence
+Statement: Repulsive half-filled bipartite real hopping yields a determinant square divided by a positive determinant under the stated slice relation; attractive spin-balanced real hopping yields a square with a positive charge-field factor. Sign positivity does not prove polynomial mixing.
+Lean: None
+Code Evidence: {'tests': ['code/sign_sql/tests/test_exact_models.py::test_half_filled_hubbard_all_fields_have_paired_determinants', 'code/sign_sql/tests/test_exact_models.py::test_attractive_frustrated_doped_hubbard_is_a_square']}
+--------------------------------------------------
+ID: HUBBARD-002
+Name: Hubbard reconstruction and negative field witnesses
+Type: ConditionalTheoremAndFiniteEvidence
+Statement: The exact discrete HS sum equals independently constructed full-Fock transfer traces. Specific doped and frustrated fields have negative exact determinant products; this witnesses negativity in those declared representations, not a no-go for all solvers.
+Lean: None
+Code Evidence: {'tests': ['code/sign_sql/tests/test_exact_models.py::test_hs_sum_replays_full_fock_transfer_including_charge_prefactor', 'code/sign_sql/tests/test_exact_models.py::test_negative_hubbard_fields_have_independently_replayed_determinants']}
+--------------------------------------------------
+ID: ORIGIN-001
+Name: Conditional signed-transport Hamiltonian
+Type: ConditionalTheoremAndFiniteEvidence
+Statement: The pinned post-seal hopping comparison can be coupled to positive edge magnitudes and diagonal energies to define a self-adjoint Hamiltonian. Odd configuration cycles give negative individual shifted-series terms. Vertex sign-gauge removal exists iff every configuration cycle is even.
+Lean: None
+Code Evidence: {'tests': ['code/sign_sql/tests/test_exact_models.py::test_hubbard_configuration_cycles_reconstruct_negative_gauge_holonomy']}
+--------------------------------------------------
+ID: HUBBARD-003
+Name: Exact particle-number numerator
+Type: ConditionalIdentityAndFiniteEvidence
+Statement: SQL logarithmic differentiation of the determinant fold preserves zero-determinant derivative terms and yields total number (1/L) dlogZ/dlogz for L slices. The half-filled ring gives exactly four; two-site repulsive and attractive number numerators equal independent full-Fock traces.
+Lean: None
+Code Evidence: {'tests': ['code/sign_sql/tests/test_exact_models.py::test_hs_sum_replays_full_fock_transfer_including_charge_prefactor', 'code/sign_sql/tests/test_exact_models.py::test_half_filled_hubbard_all_fields_have_paired_determinants']}
+--------------------------------------------------
+=== DOMAIN: MAJORANA (20 claims) ===
+
+ID: MAJ-C1
+Name: The Microsoft Majorana Problem
+Type: Definition
+Statement: The realization packet gap between continuous laboratory hardware narratives (InAs-Al nanowires, ZBAs, capacitance shifts) and discrete algebraic verification schedules (F2 homology, Ising matrices).
+Lean: {'module': 'MajoranaCore', 'theorems': ['transfer_gap_strictly_positive', 'detector_inadequate_when_kernel_nontrivial'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['DetectorAdequacyAudit.audit_syndrome_readout', 'DetectorAdequacyAudit.audit_homology_readout'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_detector_adequacy_syndrome_vs_homology', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C2
+Name: F2 Residual Trichotomy
+Type: Theorem
+Statement: For any cochain complex C0 -> C1 -> C2 over F2 with d1 d0 = 0, every w in C1 is exclusively Exact, ClosedResidual, or OpenObstruction.
+Lean: {'module': 'MajoranaCore', 'theorems': ['coboundary_is_cocycle', 'exact_not_open', 'exact_not_closed_residual', 'closed_residual_not_open', 'trichotomy_pairwise_disjoint'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['classify_residual'], 'tests': ['code/tests/unit/test_gf2_trichotomy.py::test_residual_trichotomy_classification', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C3
+Name: Polynomial-Time Decidability
+Type: Theorem
+Statement: Lean declaration gaussian_elimination_cubic_bound proves gaussian_elimination_ops n <= n * n * n by Nat.le_refl, and gaussian_elimination_ops n is defined as n * n * n. That declaration does not exhibit Gaussian elimination and does not decide the F2 trichotomy.
+Lean: {'module': 'MajoranaCore', 'theorems': ['gaussian_elimination_cubic_bound'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['GF2Matrix.rank', 'GF2Matrix.solve'], 'tests': ['code/tests/unit/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve']}
+--------------------------------------------------
+ID: MAJ-C4
+Name: Nilpotency Refusal
+Type: Proposition
+Statement: If d1 o d0 != 0 mod 2, evaluation is strictly refused (RepresentationInvalid); no homology labels are emitted.
+Lean: {'module': 'MajoranaCore', 'theorems': ['coboundary_is_cocycle', 'nilpotency_refusal_sound'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['F2CochainComplex.is_nilpotent', 'classify_residual'], 'tests': ['code/tests/unit/test_gf2_trichotomy.py::test_cochain_nilpotency_and_refusal', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C5
+Name: Surface Toy Scope Fence
+Type: ScopeFence
+Statement: Multi-plaquette surface code models are diagnostic shadows for software schedules, not physical threshold certificates or fault-tolerance proofs. Lean surface_code_error_detection_bound is the identity err_weight < code_distance -> err_weight < code_distance. The fence is this sentence.
+Lean: {'module': 'MajoranaCore', 'theorems': ['surface_code_error_detection_bound'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['build_tetron_carrier'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C6
+Name: Kitaev Chain Import
+Type: ScopeFence
+Statement: The 1D Kitaev wire Hamiltonian, BdG spectrum, and topological phase bounds are standard imported models, not theorems derived by discrete algebra.
+Lean: {'module': 'MajoranaCore', 'theorems': ['mzm_boundary_decoupling', 'disjoint_majorana_pair_commute'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['KitaevSweetSpotChain'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C7
+Name: Ising Anyon Algebraic Bounds
+Type: ScopeFence
+Statement: Fusion rules sigma x sigma = 1 + psi and specialized Q(zeta16) braid matrices check software consistency, but do not prove physical anyon braiding or universal TQC.
+Lean: {'module': 'MajoranaCore', 'theorems': ['ising_quantum_dim_squared'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['IsingFusionAlgebra.verify_quantum_dimensions', 'IsingFusionAlgebra.verify_yang_baxter_braid'], 'tests': ['code/tests/unit/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C8
+Name: Parity Observable Isolation
+Type: ScopeFence
+Statement: Z2 parity operator algebra commuting with an effective Hamiltonian is an algebraic consistency property, not experimental proof of quantum capacitance or topological protection.
+Lean: {'module': 'MajoranaCore', 'theorems': ['parity_eigenvalues'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['ParityAlgebraModel.verify_involutory_and_hermitian', 'ParityAlgebraModel.sector_splitting'], 'tests': ['code/tests/unit/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C9
+Name: Pfaffian Positivity Scope
+Type: ScopeFence
+Statement: Local Pfaffian non-negativity under declared time-reversal/particle-hole symmetries does not solve the generic NP-hard fermion sign problem.
+Lean: {'module': 'MajoranaCore', 'theorems': ['pfaffian_topological_sign'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['pfaffian_z2_invariant', 'compute_skew_pfaffian'], 'tests': ['code/tests/unit/test_gf2_trichotomy.py::test_pfaffian_z2_topological_invariant', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C10
+Name: Observer Projection Quarantine
+Type: ScopeFence
+Statement: Continuous device baths, continuum BdG spectra, and vendor marketing are external observer projections; they do not populate F2 receipts or mint authority.
+Lean: {'module': 'MajoranaCore', 'theorems': ['detector_inadequate_when_kernel_nontrivial'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['DetectorAdequacyAudit.audit_syndrome_readout'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_detector_adequacy_syndrome_vs_homology', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C11
+Name: Local Green != Global Red on Surface Schedules
+Type: Theorem
+Statement: Lean local_green_not_global_red restates is_closed_residual as is_cocycle and not is_exact by exact h. That declaration does not by itself prove a surface-schedule theorem about non-contractible cycles.
+Lean: {'module': 'MajoranaCore', 'theorems': ['local_green_not_global_red'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['classify_residual'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights']}
+--------------------------------------------------
+ID: MAJ-C12
+Name: Measured Tetron-Array Homology
+Type: Computation
+Statement: Lean torus_h1_dimension, cylinder_h1_dimension, and disk_h1_dimension are rfl on the enum betti1_of_topology: Torus maps to 2, Cylinder to 1, and Disk to 0. Those declarations do not compute the homology of a tetron array.
+Lean: {'module': 'MajoranaCore', 'theorems': ['torus_h1_dimension', 'cylinder_h1_dimension', 'disk_h1_dimension'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['build_tetron_carrier'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C13
+Name: Retraction of Legacy Carrier
+Type: Retraction
+Statement: Formal supersession and retraction of legacy tetron_carrier.py, which had dim H1 = 0 identically at all sizes T=1..4 and could not exhibit logical classes.
+Lean: {'module': 'MajoranaCore', 'theorems': ['legacy_carrier_obstruction'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['audit_legacy_carrier'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C14
+Name: Toric Code Distance and Additive Diagonal Weight
+Type: Computation
+Statement: Lean toric_distance_3x4 is rfl of toric_distance 3 4, and toric_distance is min. Lean torus_3x4_additive_weight is rfl of (3 : Nat) + 4 = 7. Those declarations do not prove that the distance of a toric-code lattice is min(rows, cols).
+Lean: {'module': 'MajoranaCore', 'theorems': ['toric_distance_3x4', 'torus_3x4_additive_weight'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['compute_coset_weight', 'logical_representative'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C15
+Name: Syndrome Decoding Complexity and Upper Bound Capping
+Type: Complexity
+Statement: Computing Phi1([r]) = min_alpha wt(r + d0 alpha) over F2 across general binary linear code families is NP-hard syndrome decoding (while specific restricted families of d0 may admit polynomial-time decoders); capped Gray-code searches return upper bounds and degrade terminal routing to ClosedResidual.
+Lean: {'module': 'MajoranaCore', 'theorems': ['candidate_gauge_is_upper_bound'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['compute_coset_weight'], 'tests': ['code/tests/integration/test_tetron_surface_codes.py::test_coset_weight_budget_capping']}
+--------------------------------------------------
+ID: MAJ-C16
+Name: Trichotomy Benchmark
+Type: Benchmark
+Statement: The Lean declaration cited for this row is gaussian_elimination_cubic_bound, the same reflexivity as MAJ-C3. That declaration does not time a 6 x 6 torus and does not record a 50 ms bound.
+Lean: {'module': 'MajoranaCore', 'theorems': ['gaussian_elimination_cubic_bound'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['classify_residual'], 'tests': ['code/tests/unit/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C17
+Name: Norm Equivalence on Binary Carriers
+Type: Theorem
+Statement: For any v in {0, 1}^n, ||v||_p^p = wt(v) for all p >= 1; l1 and l2 minimizations coincide identically over F2, refuting purported norm separation claims.
+Lean: {'module': 'MajoranaCore', 'theorems': ['f2_weight_l1_l2_coincide'], 'axioms': []}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['verify_norm_equivalence'], 'tests': ['code/tests/unit/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C18
+Name: Continuous-to-Discrete Transfer Bound under Open-System Dynamics
+Type: Theorem
+Statement: In the declared analytical open-system Lindblad envelope model with quasiparticle poisoning gamma_qp > 0, the upper-bound trade-off envelope on the trace-norm transfer defect Delta_transfer has a strictly positive minimum Delta_min > 0; Lean 4 transfer_defect_lower_bound_pos verifies the integer arithmetic positivity (Nat.mul_pos) of the declared rate-duration product rather than an unconditional physical trace-distance lower bound.
+Lean: {'module': 'MajoranaCore', 'theorems': ['transfer_defect_lower_bound_pos', 'transfer_pareto_defect_pos', 'transfer_gap_strictly_positive'], 'axioms': ['propext', 'Quot.sound']}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['OpenSystemMajoranaBraidModel.audit_transfer', 'OpenSystemMajoranaBraidModel.optimal_braid_time'], 'tests': ['code/tests/unit/test_open_system_transfer_bounds.py::test_pareto_optimal_sweet_spot_and_positive_infimum', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C19
+Name: Non-Markovian Memory-Kernel Transfer Bounds
+Type: Theorem
+Statement: Structured bosonic bath spectra J(omega) = 2*pi*alpha * omega_c^(1-s) * omega^s * exp(-omega/omega_c) alter the Pareto scaling exponent beta = 2 / (p + 2) for the minimum transfer defect Delta_min, with sub-Ohmic noise (s < 1) accelerating dephasing and sub-gap cutoffs (omega_c < Delta) exponentially suppressing bulk leakage while maintaining Delta_min > 0 for any alpha > 0.
+Lean: {'module': 'MajoranaCore', 'theorems': ['non_markovian_transfer_defect_pos', 'pareto_denominator_pos', 'non_markovian_pareto_defect_pos', 'sub_ohmic_exponent_shift'], 'axioms': ['propext', 'Quot.sound']}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['NonMarkovianBosonicBathModel.effective_power_p', 'NonMarkovianBosonicBathModel.scaling_exponent_beta', 'NonMarkovianBosonicBathModel.audit_transfer'], 'tests': ['code/tests/unit/test_open_system_transfer_bounds.py::test_non_markovian_scaling_exponents_sub_vs_super_ohmic', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
+ID: MAJ-C20
+Name: Multi-Terminal Cross-Junction Transfer Bounds under Potential Disorder
+Type: Theorem
+Statement: In multi-terminal nanowire cross-junctions (M >= 4), M(M-1)/2 >= 6 inter-arm cross-talk channels and electrostatic potential disorder sigma_V monotonically degrade the effective topological gap Delta_eff(sigma_V), elevating the Pareto transfer defect infimum Delta_min^(M) > 0 for all sigma_V < sigma_crit.
+Lean: {'module': 'MajoranaCore', 'theorems': ['multiterminal_transfer_defect_pos', 'multiterminal_crosstalk_channels_pos', 'multiterminal_pareto_defect_pos', 'disorder_gap_degradation_lower_bound'], 'axioms': ['propext', 'Quot.sound']}
+Code Evidence: {'module': 'majorana_evaluator', 'functions': ['ContinuumCrossJunctionFemModel.effective_gap', 'ContinuumCrossJunctionFemModel.pairwise_crosstalk_sum', 'ContinuumCrossJunctionFemModel.audit_transfer'], 'tests': ['code/tests/unit/test_open_system_transfer_bounds.py::test_multiterminal_cross_junction_transfer_bounds_and_disorder', 'code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk']}
+--------------------------------------------------
