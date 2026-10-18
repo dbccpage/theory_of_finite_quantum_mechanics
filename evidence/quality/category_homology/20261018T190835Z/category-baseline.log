@@ -1,0 +1,39 @@
+
+running 432 tests
+....................................................................................... 87/432
+....................................................................................... 174/432
+....................................................................................... 261/432
+....................................................................................... 348/432
+......................................................................... 421/432
+rewriting::tests::admission_rejects_inconsistent_cell_and_rule_records --- FAILED
+rewriting::tests::admission_binds_two_cells_and_homotopy_data_in_both_directions --- FAILED
+.. 425/432
+rewriting::tests::inverse_paths_cannot_prove_directed_local_confluence --- FAILED
+......
+failures:
+
+---- rewriting::tests::admission_rejects_inconsistent_cell_and_rule_records stdout ----
+
+thread 'rewriting::tests::admission_rejects_inconsistent_cell_and_rule_records' (24044) panicked at src\category_theory\rewriting.rs:850:13:
+admitted term boundary
+
+---- rewriting::tests::admission_binds_two_cells_and_homotopy_data_in_both_directions stdout ----
+
+thread 'rewriting::tests::admission_binds_two_cells_and_homotopy_data_in_both_directions' (4696) panicked at src\category_theory\rewriting.rs:860:9:
+assertion failed: ValidatedInfinityRewriteSystem::validate(missing_map).is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- rewriting::tests::inverse_paths_cannot_prove_directed_local_confluence stdout ----
+
+thread 'rewriting::tests::inverse_paths_cannot_prove_directed_local_confluence' (3788) panicked at src\category_theory\rewriting.rs:881:9:
+b and c have no common forward reduct
+
+
+failures:
+    rewriting::tests::admission_binds_two_cells_and_homotopy_data_in_both_directions
+    rewriting::tests::admission_rejects_inconsistent_cell_and_rule_records
+    rewriting::tests::inverse_paths_cannot_prove_directed_local_confluence
+
+test result: FAILED. 429 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

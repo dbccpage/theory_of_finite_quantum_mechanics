@@ -75,8 +75,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 22c87a7cc081b29fb96b6b3983b03b35c699ed9445f9a1cf0cd57046616791a6`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM070-PRODUCT-NONFACTORIZATION`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -89,3 +87,33 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 9b7b203675cd581ecd15511bdd7832c6c361d581a33c1d487e500f76f0d25b83`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GAP-TENSOR-UNIQUENESS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-GAP-TENSOR-UNIQUENESS` (`FINITE_QM_CORE` / `CONDITIONAL`)
+- **Mined Operad Family (`M2`)**: `OP-FQ-TENSOR-CONE-BRACKETING`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [70, -140, 105]`, `chord_potential = 105`, `holonomy_gamma2 = 140`
+- **Finite Shadow Exact Witness (`M4`)**: `cone_bracketing_sum: min_cone(50) + hilbert_cone(70) + max_cone(100) == 220` ($\text{value} = 220$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `projDump_pauliZ_covariance_defect: |(1,0) - (-1,0)|_1 == 2 (rival bilinear map violates local Pauli-Z covariance)` ($\text{value} = 2$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4-flash` | `status = PASS` | `receipt_sha256 = f797bcf12dc545d42a2a96b7dd02fe0b59613b8cfc18c337d4470e9c4bee4e7f`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-IMPORT-TENSOR-PRODUCT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-IMPORT-TENSOR-PRODUCT` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-GP-TENSOR-BILINEAR-RIVAL`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [260, -520, 390]`, `chord_potential = 390`, `holonomy_gamma2 = 520`
+- **Finite Shadow Exact Witness (`M4`)**: `kronecker_dimension_2x2: 2 * 2 == 4` ($\text{value} = 4$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `projDump_collision_defect: ||projDump(e0,e0) - projDump(e0,e1)||_1 == ||(1,0) - (1,0)||_1 == 0 (collapses distinct second-system states)` ($\text{value} = 0$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = c8aef65056eec1f595edaf2a9feac20558bfc7c4c8de960ec337c4965eab6cf5`

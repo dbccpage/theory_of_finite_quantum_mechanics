@@ -26,10 +26,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Formalization
-*Formalization active. Proof obligations tracked under zero-sorry regime.*
+- **Primary Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` (zero-axiom, zero-sorry kernel verification in `lean/DerivationDagQMClosure.lean`).
 
 ### Sovereign Rust Certifiers
-*Computational witness tracked under `theory_of_finite_qm` crate.*
+- **Primary Rust Witness**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness` (`code/rust/src/dag_witnesses.rs`, exact `i64`/`BigRational` arithmetic).
+- **Python PFP Gate Engine**: `omega_engine_pfp/tests/demo_004/finite_qm_derivation_pfp/gates/gate_engine.py::verify_dag_prompt_node_reply` (`G0`..`G6`).
 
 ---
 
@@ -46,3 +47,18 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F001_quantum/floor.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/README.md`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-PRIM-TO-QM-SELECTION-OPEN`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-PRIM-TO-QM-SELECTION-OPEN` (`FINITE_QM_CORE` / `CONDITIONAL`)
+- **Mined Operad Family (`M2`)**: `OP-FQ-PRIM-TO-QM-PARAMETER-GAP`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [100, -200, 150]`, `chord_potential = 150`, `holonomy_gamma2 = 200`
+- **Finite Shadow Exact Witness (`M4`)**: `d3_parameter_hierarchy: diag_params(3-1=2) + rebit_params(3*4/2-1=5) + qubit_params(3^2-1=8) == 15` ($\text{value} = 15$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `d3_qubit_minus_diagonal_parameter_gap: (3^2 - 1) - (3 - 1) == 6 unfixed coherence parameters` ($\text{value} = 6$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = afcfb80d98f91d52fe05966a4b8f466848f83f0af6e760fe4672a846036d6192`

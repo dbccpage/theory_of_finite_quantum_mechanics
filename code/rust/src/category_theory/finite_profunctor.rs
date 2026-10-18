@@ -7,6 +7,8 @@
 //!
 //! All structures are finite and declarative for kernel audit.
 
+use num_rational::BigRational;
+use num_traits::Zero;
 use std::collections::BTreeMap;
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -88,7 +90,7 @@ pub struct DeclaredFiniteWeightedProfunctor {
     pub source_category: String,
     pub target_category: String,
     /// (source_object, target_object) → list of (witness, weight).
-    pub weighted_relations: BTreeMap<(String, String), Vec<(String, f64)>>,
+    weighted_relations: BTreeMap<(String, String), Vec<(String, BigRational)>>,
 }
 
 impl DeclaredFiniteWeightedProfunctor {
@@ -106,9 +108,9 @@ impl DeclaredFiniteWeightedProfunctor {
         source_ob: &str,
         target_ob: &str,
         witness: &str,
-        weight: f64,
+        weight: BigRational,
     ) -> Result<(), String> {
-        if !weight.is_finite() || weight < 0.0 {
+        if weight.denom() <= &0.into() || weight < BigRational::zero() {
             return Err(format!(
                 "Weight must be finite and non-negative, got {}",
                 weight
@@ -124,11 +126,15 @@ impl DeclaredFiniteWeightedProfunctor {
     }
 
     /// Total weight of P(A, B).
-    pub fn total_weight(&self, source_ob: &str, target_ob: &str) -> f64 {
+    pub fn weighted_relations(&self) -> &BTreeMap<(String, String), Vec<(String, BigRational)>> {
+        &self.weighted_relations
+    }
+
+    pub fn total_weight(&self, source_ob: &str, target_ob: &str) -> BigRational {
         self.weighted_relations
             .get(&(source_ob.into(), target_ob.into()))
             .map(|v| v.iter().map(|(_, w)| w).sum())
-            .unwrap_or(0.0)
+            .unwrap_or_else(BigRational::zero)
     }
 }
 
@@ -344,14 +350,18 @@ mod tests {
     #[test]
     fn weighted_profunctor_sums_weights() {
         let mut p = DeclaredFiniteWeightedProfunctor::new("W", "C", "D");
-        p.add_weighted_witness("A", "X", "w1", 1.5).unwrap();
-        p.add_weighted_witness("A", "X", "w2", 2.5).unwrap();
+        p.add_weighted_witness("A", "X", "w1", BigRational::new(3.into(), 2.into()))
+            .unwrap();
+        p.add_weighted_witness("A", "X", "w2", BigRational::new(5.into(), 2.into()))
+            .unwrap();
 
         let total = p.total_weight("A", "X");
-        assert!((total - 4.0).abs() < 1e-10);
-        assert!((p.total_weight("A", "Y") - 0.0).abs() < 1e-10);
+        assert_eq!(total, BigRational::from_integer(4.into()));
+        assert_eq!(p.total_weight("A", "Y"), BigRational::zero());
 
-        assert!(p.add_weighted_witness("A", "X", "w3", -1.0).is_err());
+        assert!(p
+            .add_weighted_witness("A", "X", "w3", BigRational::from_integer((-1).into()))
+            .is_err());
     }
 
     #[test]

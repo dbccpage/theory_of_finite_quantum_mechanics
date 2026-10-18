@@ -1,0 +1,59 @@
+warning: methods `decreasing_ranks`, `indegrees`, and `drain_edges` are never used
+   --> src\category_theory\rewriting.rs:884:8
+    |
+825 | impl<'a> ForwardGraph<'a> {
+    | ------------------------- methods in this implementation
+...
+884 |     fn decreasing_ranks(&self) -> Result<BTreeMap<String, usize>, RewriteError> {
+    |        ^^^^^^^^^^^^^^^^
+...
+906 |     fn indegrees(&self) -> Result<BTreeMap<&'a str, usize>, RewriteError> {
+    |        ^^^^^^^^^
+...
+920 |     fn drain_edges(
+    |        ^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 439 tests
+....................................................................................... 87/439
+....................................................................................... 174/439
+....................................................................................... 261/439
+....................................................................................... 348/439
+............................................................................. 425/439
+rewriting::tests::all_512_directed_graphs_match_independent_matrix_oracles --- FAILED
+..... 431/439
+rewriting::tests::whiskering_preserves_admission_and_failure_is_atomic --- FAILED
+...... 438/439
+rewriting::tests::termination_on_a_long_chain_uses_no_recursive_call_stack --- FAILED
+
+failures:
+
+---- rewriting::tests::all_512_directed_graphs_match_independent_matrix_oracles stdout ----
+
+thread 'rewriting::tests::all_512_directed_graphs_match_independent_matrix_oracles' (27468) panicked at src\category_theory\rewriting.rs:1191:13:
+assertion `left == right` failed: graph 0
+  left: false
+ right: true
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- rewriting::tests::whiskering_preserves_admission_and_failure_is_atomic stdout ----
+
+thread 'rewriting::tests::whiskering_preserves_admission_and_failure_is_atomic' (9128) panicked at src\category_theory\rewriting.rs:1307:55:
+called `Result::unwrap()` on an `Err` value: RewriteError { invariant: RankDomain, subject: "arrow" }
+
+---- rewriting::tests::termination_on_a_long_chain_uses_no_recursive_call_stack stdout ----
+
+thread 'rewriting::tests::termination_on_a_long_chain_uses_no_recursive_call_stack' (14844) panicked at src\category_theory\rewriting.rs:1352:54:
+called `Result::unwrap()` on an `Err` value: RewriteError { invariant: RankDomain, subject: "long" }
+
+
+failures:
+    rewriting::tests::all_512_directed_graphs_match_independent_matrix_oracles
+    rewriting::tests::termination_on_a_long_chain_uses_no_recursive_call_stack
+    rewriting::tests::whiskering_preserves_admission_and_failure_is_atomic
+
+test result: FAILED. 436 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

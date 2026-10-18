@@ -1,0 +1,1007 @@
+// Lean compiler output
+// Module: H044SurfaceCodeToricTopology
+// Imports: public import Init public meta import Init
+#include <lean/lean.h>
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma clang diagnostic ignored "-Wunused-label"
+#elif defined(__GNUC__) && !defined(__CLANG__)
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-label"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#endif
+#ifdef __cplusplus
+extern "C" {
+#endif
+lean_object* lean_nat_to_int(lean_object*);
+lean_object* l_Int_mul___boxed(lean_object*, lean_object*);
+lean_object* lean_mk_empty_array_with_capacity(lean_object*);
+lean_object* l___private_Init_Data_List_Impl_0__List_zipWithTR_go___redArg(lean_object*, lean_object*, lean_object*, lean_object*);
+lean_object* lean_int_add(lean_object*, lean_object*);
+lean_object* lean_int_emod(lean_object*, lean_object*);
+uint8_t lean_int_dec_eq(lean_object*, lean_object*);
+lean_object* lean_int_neg(lean_object*);
+LEAN_EXPORT lean_object* lp_FiniteQuantum_List_foldl___at___00FableHilbertWalk20260819_H044_list__sum_spec__0(lean_object*, lean_object*);
+LEAN_EXPORT lean_object* lp_FiniteQuantum_List_foldl___at___00FableHilbertWalk20260819_H044_list__sum_spec__0___boxed(lean_object*, lean_object*);
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum(lean_object*);
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___boxed(lean_object*);
+static const lean_closure_object lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list___closed__0_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_closure_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 245}, .m_fun = (void*)l_Int_mul___boxed, .m_arity = 2, .m_num_fixed = 0, .m_objs = {} };
+static const lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list___closed__0 = (const lean_object*)&lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list___closed__0_value;
+static const lean_array_object lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list___closed__1_value = {.m_header = {.m_rc = 0, .m_cs_sz = sizeof(lean_array_object) + sizeof(void*)*0, .m_other = 0, .m_tag = 246}, .m_size = 0, .m_capacity = 0, .m_data = {}};
+static const lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list___closed__1 = (const lean_object*)&lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list___closed__1_value;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list(lean_object*, lean_object*);
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__3;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__5;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__6;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__7;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__8_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__8;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__4;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__5;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__6;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__7_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__7;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__3;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__3;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__3;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__4;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__5;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__6;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__3;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__3;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__4;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__5;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__6_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__6;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__3;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__1;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase(lean_object*, lean_object*);
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__0_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__0;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__1_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__1;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__2_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__2;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__3_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__3;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__4_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__4;
+static lean_once_cell_t lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__5_once = LEAN_ONCE_CELL_INITIALIZER;
+static lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__5;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing;
+LEAN_EXPORT lean_object* lp_FiniteQuantum_List_foldl___at___00FableHilbertWalk20260819_H044_list__sum_spec__0(lean_object* v_x_1_, lean_object* v_x_2_){
+_start:
+{
+if (lean_obj_tag(v_x_2_) == 0)
+{
+return v_x_1_;
+}
+else
+{
+lean_object* v_head_3_; lean_object* v_tail_4_; lean_object* v___x_5_; 
+v_head_3_ = lean_ctor_get(v_x_2_, 0);
+v_tail_4_ = lean_ctor_get(v_x_2_, 1);
+v___x_5_ = lean_int_add(v_x_1_, v_head_3_);
+lean_dec(v_x_1_);
+v_x_1_ = v___x_5_;
+v_x_2_ = v_tail_4_;
+goto _start;
+}
+}
+}
+LEAN_EXPORT lean_object* lp_FiniteQuantum_List_foldl___at___00FableHilbertWalk20260819_H044_list__sum_spec__0___boxed(lean_object* v_x_7_, lean_object* v_x_8_){
+_start:
+{
+lean_object* v_res_9_; 
+v_res_9_ = lp_FiniteQuantum_List_foldl___at___00FableHilbertWalk20260819_H044_list__sum_spec__0(v_x_7_, v_x_8_);
+lean_dec(v_x_8_);
+return v_res_9_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0(void){
+_start:
+{
+lean_object* v___x_10_; lean_object* v___x_11_; 
+v___x_10_ = lean_unsigned_to_nat(0u);
+v___x_11_ = lean_nat_to_int(v___x_10_);
+return v___x_11_;
+}
+}
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum(lean_object* v_l_12_){
+_start:
+{
+lean_object* v___x_13_; lean_object* v___x_14_; 
+v___x_13_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_14_ = lp_FiniteQuantum_List_foldl___at___00FableHilbertWalk20260819_H044_list__sum_spec__0(v___x_13_, v_l_12_);
+return v___x_14_;
+}
+}
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___boxed(lean_object* v_l_15_){
+_start:
+{
+lean_object* v_res_16_; 
+v_res_16_ = lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum(v_l_15_);
+lean_dec(v_l_15_);
+return v_res_16_;
+}
+}
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list(lean_object* v_l1_20_, lean_object* v_l2_21_){
+_start:
+{
+lean_object* v___f_22_; lean_object* v___x_23_; lean_object* v___x_24_; lean_object* v___x_25_; lean_object* v___x_26_; 
+v___f_22_ = ((lean_object*)(lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list___closed__0));
+v___x_23_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_24_ = ((lean_object*)(lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list___closed__1));
+v___x_25_ = l___private_Init_Data_List_Impl_0__List_zipWithTR_go___redArg(v___f_22_, v_l1_20_, v_l2_21_, v___x_24_);
+v___x_26_ = lp_FiniteQuantum_List_foldl___at___00FableHilbertWalk20260819_H044_list__sum_spec__0(v___x_23_, v___x_25_);
+lean_dec(v___x_25_);
+return v___x_26_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0(void){
+_start:
+{
+lean_object* v___x_27_; lean_object* v___x_28_; 
+v___x_27_ = lean_unsigned_to_nat(1u);
+v___x_28_ = lean_nat_to_int(v___x_27_);
+return v___x_28_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1(void){
+_start:
+{
+lean_object* v___x_29_; lean_object* v___x_30_; lean_object* v___x_31_; 
+v___x_29_ = lean_box(0);
+v___x_30_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_31_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_31_, 0, v___x_30_);
+lean_ctor_set(v___x_31_, 1, v___x_29_);
+return v___x_31_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__2(void){
+_start:
+{
+lean_object* v___x_32_; lean_object* v___x_33_; lean_object* v___x_34_; 
+v___x_32_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1);
+v___x_33_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_34_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_34_, 0, v___x_33_);
+lean_ctor_set(v___x_34_, 1, v___x_32_);
+return v___x_34_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__3(void){
+_start:
+{
+lean_object* v___x_35_; lean_object* v___x_36_; lean_object* v___x_37_; 
+v___x_35_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__2);
+v___x_36_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_37_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_37_, 0, v___x_36_);
+lean_ctor_set(v___x_37_, 1, v___x_35_);
+return v___x_37_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4(void){
+_start:
+{
+lean_object* v___x_38_; lean_object* v___x_39_; lean_object* v___x_40_; 
+v___x_38_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__3);
+v___x_39_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_40_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_40_, 0, v___x_39_);
+lean_ctor_set(v___x_40_, 1, v___x_38_);
+return v___x_40_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__5(void){
+_start:
+{
+lean_object* v___x_41_; lean_object* v___x_42_; lean_object* v___x_43_; 
+v___x_41_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4);
+v___x_42_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_43_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_43_, 0, v___x_42_);
+lean_ctor_set(v___x_43_, 1, v___x_41_);
+return v___x_43_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__6(void){
+_start:
+{
+lean_object* v___x_44_; lean_object* v___x_45_; lean_object* v___x_46_; 
+v___x_44_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__5, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__5_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__5);
+v___x_45_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_46_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_46_, 0, v___x_45_);
+lean_ctor_set(v___x_46_, 1, v___x_44_);
+return v___x_46_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__7(void){
+_start:
+{
+lean_object* v___x_47_; lean_object* v___x_48_; lean_object* v___x_49_; 
+v___x_47_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__6, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__6_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__6);
+v___x_48_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_49_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_49_, 0, v___x_48_);
+lean_ctor_set(v___x_49_, 1, v___x_47_);
+return v___x_49_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__8(void){
+_start:
+{
+lean_object* v___x_50_; lean_object* v___x_51_; lean_object* v___x_52_; 
+v___x_50_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__7, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__7_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__7);
+v___x_51_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_52_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_52_, 0, v___x_51_);
+lean_ctor_set(v___x_52_, 1, v___x_50_);
+return v___x_52_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00(void){
+_start:
+{
+lean_object* v___x_53_; 
+v___x_53_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__8, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__8_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__8);
+return v___x_53_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0(void){
+_start:
+{
+lean_object* v___x_54_; lean_object* v___x_55_; lean_object* v___x_56_; 
+v___x_54_ = lean_box(0);
+v___x_55_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_56_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_56_, 0, v___x_55_);
+lean_ctor_set(v___x_56_, 1, v___x_54_);
+return v___x_56_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__1(void){
+_start:
+{
+lean_object* v___x_57_; lean_object* v___x_58_; lean_object* v___x_59_; 
+v___x_57_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0);
+v___x_58_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_59_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_59_, 0, v___x_58_);
+lean_ctor_set(v___x_59_, 1, v___x_57_);
+return v___x_59_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__2(void){
+_start:
+{
+lean_object* v___x_60_; lean_object* v___x_61_; lean_object* v___x_62_; 
+v___x_60_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__1);
+v___x_61_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_62_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_62_, 0, v___x_61_);
+lean_ctor_set(v___x_62_, 1, v___x_60_);
+return v___x_62_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3(void){
+_start:
+{
+lean_object* v___x_63_; lean_object* v___x_64_; lean_object* v___x_65_; 
+v___x_63_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__2);
+v___x_64_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_65_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_65_, 0, v___x_64_);
+lean_ctor_set(v___x_65_, 1, v___x_63_);
+return v___x_65_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__4(void){
+_start:
+{
+lean_object* v___x_66_; lean_object* v___x_67_; lean_object* v___x_68_; 
+v___x_66_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3);
+v___x_67_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_68_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_68_, 0, v___x_67_);
+lean_ctor_set(v___x_68_, 1, v___x_66_);
+return v___x_68_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__5(void){
+_start:
+{
+lean_object* v___x_69_; lean_object* v___x_70_; lean_object* v___x_71_; 
+v___x_69_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__4, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__4_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__4);
+v___x_70_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_71_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_71_, 0, v___x_70_);
+lean_ctor_set(v___x_71_, 1, v___x_69_);
+return v___x_71_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__6(void){
+_start:
+{
+lean_object* v___x_72_; lean_object* v___x_73_; lean_object* v___x_74_; 
+v___x_72_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__5, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__5_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__5);
+v___x_73_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_74_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_74_, 0, v___x_73_);
+lean_ctor_set(v___x_74_, 1, v___x_72_);
+return v___x_74_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__7(void){
+_start:
+{
+lean_object* v___x_75_; lean_object* v___x_76_; lean_object* v___x_77_; 
+v___x_75_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__6, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__6_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__6);
+v___x_76_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_77_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_77_, 0, v___x_76_);
+lean_ctor_set(v___x_77_, 1, v___x_75_);
+return v___x_77_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10(void){
+_start:
+{
+lean_object* v___x_78_; 
+v___x_78_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__7, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__7_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__7);
+return v___x_78_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__0(void){
+_start:
+{
+lean_object* v___x_79_; lean_object* v___x_80_; lean_object* v___x_81_; 
+v___x_79_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__4);
+v___x_80_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_81_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_81_, 0, v___x_80_);
+lean_ctor_set(v___x_81_, 1, v___x_79_);
+return v___x_81_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__1(void){
+_start:
+{
+lean_object* v___x_82_; lean_object* v___x_83_; lean_object* v___x_84_; 
+v___x_82_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__0);
+v___x_83_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_84_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_84_, 0, v___x_83_);
+lean_ctor_set(v___x_84_, 1, v___x_82_);
+return v___x_84_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__2(void){
+_start:
+{
+lean_object* v___x_85_; lean_object* v___x_86_; lean_object* v___x_87_; 
+v___x_85_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__1);
+v___x_86_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_87_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_87_, 0, v___x_86_);
+lean_ctor_set(v___x_87_, 1, v___x_85_);
+return v___x_87_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__3(void){
+_start:
+{
+lean_object* v___x_88_; lean_object* v___x_89_; lean_object* v___x_90_; 
+v___x_88_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__2);
+v___x_89_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_90_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_90_, 0, v___x_89_);
+lean_ctor_set(v___x_90_, 1, v___x_88_);
+return v___x_90_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01(void){
+_start:
+{
+lean_object* v___x_91_; 
+v___x_91_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01___closed__3);
+return v___x_91_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__0(void){
+_start:
+{
+lean_object* v___x_92_; lean_object* v___x_93_; lean_object* v___x_94_; 
+v___x_92_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__3);
+v___x_93_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_94_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_94_, 0, v___x_93_);
+lean_ctor_set(v___x_94_, 1, v___x_92_);
+return v___x_94_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__1(void){
+_start:
+{
+lean_object* v___x_95_; lean_object* v___x_96_; lean_object* v___x_97_; 
+v___x_95_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__0);
+v___x_96_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_97_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_97_, 0, v___x_96_);
+lean_ctor_set(v___x_97_, 1, v___x_95_);
+return v___x_97_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__2(void){
+_start:
+{
+lean_object* v___x_98_; lean_object* v___x_99_; lean_object* v___x_100_; 
+v___x_98_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__1);
+v___x_99_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_100_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_100_, 0, v___x_99_);
+lean_ctor_set(v___x_100_, 1, v___x_98_);
+return v___x_100_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__3(void){
+_start:
+{
+lean_object* v___x_101_; lean_object* v___x_102_; lean_object* v___x_103_; 
+v___x_101_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__2);
+v___x_102_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_103_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_103_, 0, v___x_102_);
+lean_ctor_set(v___x_103_, 1, v___x_101_);
+return v___x_103_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11(void){
+_start:
+{
+lean_object* v___x_104_; 
+v___x_104_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11___closed__3);
+return v___x_104_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0(void){
+_start:
+{
+lean_object* v___x_105_; lean_object* v___x_106_; lean_object* v___x_107_; 
+v___x_105_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__1);
+v___x_106_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_107_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_107_, 0, v___x_106_);
+lean_ctor_set(v___x_107_, 1, v___x_105_);
+return v___x_107_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__1(void){
+_start:
+{
+lean_object* v___x_108_; lean_object* v___x_109_; lean_object* v___x_110_; 
+v___x_108_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0);
+v___x_109_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_110_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_110_, 0, v___x_109_);
+lean_ctor_set(v___x_110_, 1, v___x_108_);
+return v___x_110_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2(void){
+_start:
+{
+lean_object* v___x_111_; lean_object* v___x_112_; lean_object* v___x_113_; 
+v___x_111_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__1);
+v___x_112_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_113_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_113_, 0, v___x_112_);
+lean_ctor_set(v___x_113_, 1, v___x_111_);
+return v___x_113_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__3(void){
+_start:
+{
+lean_object* v___x_114_; lean_object* v___x_115_; lean_object* v___x_116_; 
+v___x_114_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2);
+v___x_115_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_116_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_116_, 0, v___x_115_);
+lean_ctor_set(v___x_116_, 1, v___x_114_);
+return v___x_116_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__4(void){
+_start:
+{
+lean_object* v___x_117_; lean_object* v___x_118_; lean_object* v___x_119_; 
+v___x_117_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__3);
+v___x_118_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_119_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_119_, 0, v___x_118_);
+lean_ctor_set(v___x_119_, 1, v___x_117_);
+return v___x_119_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__5(void){
+_start:
+{
+lean_object* v___x_120_; lean_object* v___x_121_; lean_object* v___x_122_; 
+v___x_120_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__4, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__4_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__4);
+v___x_121_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_122_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_122_, 0, v___x_121_);
+lean_ctor_set(v___x_122_, 1, v___x_120_);
+return v___x_122_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__6(void){
+_start:
+{
+lean_object* v___x_123_; lean_object* v___x_124_; lean_object* v___x_125_; 
+v___x_123_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__5, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__5_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__5);
+v___x_124_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_125_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_125_, 0, v___x_124_);
+lean_ctor_set(v___x_125_, 1, v___x_123_);
+return v___x_125_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00(void){
+_start:
+{
+lean_object* v___x_126_; 
+v___x_126_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__6, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__6_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__6);
+return v___x_126_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__0(void){
+_start:
+{
+lean_object* v___x_127_; lean_object* v___x_128_; lean_object* v___x_129_; 
+v___x_127_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__2);
+v___x_128_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_129_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_129_, 0, v___x_128_);
+lean_ctor_set(v___x_129_, 1, v___x_127_);
+return v___x_129_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__1(void){
+_start:
+{
+lean_object* v___x_130_; lean_object* v___x_131_; lean_object* v___x_132_; 
+v___x_130_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__0);
+v___x_131_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_132_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_132_, 0, v___x_131_);
+lean_ctor_set(v___x_132_, 1, v___x_130_);
+return v___x_132_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__2(void){
+_start:
+{
+lean_object* v___x_133_; lean_object* v___x_134_; lean_object* v___x_135_; 
+v___x_133_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__1);
+v___x_134_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_135_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_135_, 0, v___x_134_);
+lean_ctor_set(v___x_135_, 1, v___x_133_);
+return v___x_135_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__3(void){
+_start:
+{
+lean_object* v___x_136_; lean_object* v___x_137_; lean_object* v___x_138_; 
+v___x_136_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__2);
+v___x_137_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_138_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_138_, 0, v___x_137_);
+lean_ctor_set(v___x_138_, 1, v___x_136_);
+return v___x_138_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10(void){
+_start:
+{
+lean_object* v___x_139_; 
+v___x_139_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10___closed__3);
+return v___x_139_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__0(void){
+_start:
+{
+lean_object* v___x_140_; lean_object* v___x_141_; lean_object* v___x_142_; 
+v___x_140_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10___closed__0);
+v___x_141_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_142_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_142_, 0, v___x_141_);
+lean_ctor_set(v___x_142_, 1, v___x_140_);
+return v___x_142_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__1(void){
+_start:
+{
+lean_object* v___x_143_; lean_object* v___x_144_; lean_object* v___x_145_; 
+v___x_143_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__0);
+v___x_144_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_145_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_145_, 0, v___x_144_);
+lean_ctor_set(v___x_145_, 1, v___x_143_);
+return v___x_145_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2(void){
+_start:
+{
+lean_object* v___x_146_; lean_object* v___x_147_; lean_object* v___x_148_; 
+v___x_146_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__1);
+v___x_147_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_148_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_148_, 0, v___x_147_);
+lean_ctor_set(v___x_148_, 1, v___x_146_);
+return v___x_148_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__3(void){
+_start:
+{
+lean_object* v___x_149_; lean_object* v___x_150_; lean_object* v___x_151_; 
+v___x_149_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2);
+v___x_150_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_151_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_151_, 0, v___x_150_);
+lean_ctor_set(v___x_151_, 1, v___x_149_);
+return v___x_151_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__4(void){
+_start:
+{
+lean_object* v___x_152_; lean_object* v___x_153_; lean_object* v___x_154_; 
+v___x_152_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__3);
+v___x_153_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_154_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_154_, 0, v___x_153_);
+lean_ctor_set(v___x_154_, 1, v___x_152_);
+return v___x_154_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__5(void){
+_start:
+{
+lean_object* v___x_155_; lean_object* v___x_156_; lean_object* v___x_157_; 
+v___x_155_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__4, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__4_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__4);
+v___x_156_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_157_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_157_, 0, v___x_156_);
+lean_ctor_set(v___x_157_, 1, v___x_155_);
+return v___x_157_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__6(void){
+_start:
+{
+lean_object* v___x_158_; lean_object* v___x_159_; lean_object* v___x_160_; 
+v___x_158_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__5, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__5_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__5);
+v___x_159_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_160_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_160_, 0, v___x_159_);
+lean_ctor_set(v___x_160_, 1, v___x_158_);
+return v___x_160_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01(void){
+_start:
+{
+lean_object* v___x_161_; 
+v___x_161_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__6, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__6_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__6);
+return v___x_161_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__0(void){
+_start:
+{
+lean_object* v___x_162_; lean_object* v___x_163_; lean_object* v___x_164_; 
+v___x_162_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01___closed__2);
+v___x_163_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_164_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_164_, 0, v___x_163_);
+lean_ctor_set(v___x_164_, 1, v___x_162_);
+return v___x_164_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__1(void){
+_start:
+{
+lean_object* v___x_165_; lean_object* v___x_166_; lean_object* v___x_167_; 
+v___x_165_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__0);
+v___x_166_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_167_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_167_, 0, v___x_166_);
+lean_ctor_set(v___x_167_, 1, v___x_165_);
+return v___x_167_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__2(void){
+_start:
+{
+lean_object* v___x_168_; lean_object* v___x_169_; lean_object* v___x_170_; 
+v___x_168_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__1);
+v___x_169_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_170_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_170_, 0, v___x_169_);
+lean_ctor_set(v___x_170_, 1, v___x_168_);
+return v___x_170_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__3(void){
+_start:
+{
+lean_object* v___x_171_; lean_object* v___x_172_; lean_object* v___x_173_; 
+v___x_171_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__2);
+v___x_172_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_173_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_173_, 0, v___x_172_);
+lean_ctor_set(v___x_173_, 1, v___x_171_);
+return v___x_173_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11(void){
+_start:
+{
+lean_object* v___x_174_; 
+v___x_174_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11___closed__3);
+return v___x_174_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__0(void){
+_start:
+{
+lean_object* v___x_175_; lean_object* v___x_176_; 
+v___x_175_ = lean_unsigned_to_nat(2u);
+v___x_176_ = lean_nat_to_int(v___x_175_);
+return v___x_176_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__1(void){
+_start:
+{
+lean_object* v___x_177_; lean_object* v___x_178_; 
+v___x_177_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_178_ = lean_int_neg(v___x_177_);
+return v___x_178_;
+}
+}
+LEAN_EXPORT lean_object* lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase(lean_object* v_s_179_, lean_object* v_p_180_){
+_start:
+{
+lean_object* v___x_181_; lean_object* v___x_182_; lean_object* v___x_183_; lean_object* v___x_184_; uint8_t v___x_185_; 
+v___x_181_ = lp_FiniteQuantum_FableHilbertWalk20260819_H044_dot__list(v_s_179_, v_p_180_);
+v___x_182_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__0);
+v___x_183_ = lean_int_emod(v___x_181_, v___x_182_);
+lean_dec(v___x_181_);
+v___x_184_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_185_ = lean_int_dec_eq(v___x_183_, v___x_184_);
+lean_dec(v___x_183_);
+if (v___x_185_ == 0)
+{
+lean_object* v___x_186_; 
+v___x_186_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__plaq__commute__phase___closed__1);
+return v___x_186_;
+}
+else
+{
+lean_object* v___x_187_; 
+v___x_187_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+return v___x_187_;
+}
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__0(void){
+_start:
+{
+lean_object* v___x_188_; lean_object* v___x_189_; lean_object* v___x_190_; 
+v___x_188_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00___closed__0);
+v___x_189_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_190_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_190_, 0, v___x_189_);
+lean_ctor_set(v___x_190_, 1, v___x_188_);
+return v___x_190_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__1(void){
+_start:
+{
+lean_object* v___x_191_; lean_object* v___x_192_; lean_object* v___x_193_; 
+v___x_191_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__0);
+v___x_192_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_193_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_193_, 0, v___x_192_);
+lean_ctor_set(v___x_193_, 1, v___x_191_);
+return v___x_193_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__2(void){
+_start:
+{
+lean_object* v___x_194_; lean_object* v___x_195_; lean_object* v___x_196_; 
+v___x_194_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__1, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__1_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__1);
+v___x_195_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_196_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_196_, 0, v___x_195_);
+lean_ctor_set(v___x_196_, 1, v___x_194_);
+return v___x_196_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__3(void){
+_start:
+{
+lean_object* v___x_197_; lean_object* v___x_198_; lean_object* v___x_199_; 
+v___x_197_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__2, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__2_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__2);
+v___x_198_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_199_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_199_, 0, v___x_198_);
+lean_ctor_set(v___x_199_, 1, v___x_197_);
+return v___x_199_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__4(void){
+_start:
+{
+lean_object* v___x_200_; lean_object* v___x_201_; lean_object* v___x_202_; 
+v___x_200_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__3, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__3_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__3);
+v___x_201_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_list__sum___closed__0);
+v___x_202_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_202_, 0, v___x_201_);
+lean_ctor_set(v___x_202_, 1, v___x_200_);
+return v___x_202_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__5(void){
+_start:
+{
+lean_object* v___x_203_; lean_object* v___x_204_; lean_object* v___x_205_; 
+v___x_203_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__4, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__4_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__4);
+v___x_204_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00___closed__0);
+v___x_205_ = lean_alloc_ctor(1, 2, 0);
+lean_ctor_set(v___x_205_, 0, v___x_204_);
+lean_ctor_set(v___x_205_, 1, v___x_203_);
+return v___x_205_;
+}
+}
+static lean_object* _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing(void){
+_start:
+{
+lean_object* v___x_206_; 
+v___x_206_ = lean_obj_once(&lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__5, &lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__5_once, _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing___closed__5);
+return v___x_206_;
+}
+}
+lean_object* initialize_Init(uint8_t builtin);
+lean_object* initialize_Init(uint8_t builtin);
+static bool _G_initialized = false;
+LEAN_EXPORT lean_object* initialize_FiniteQuantum_H044SurfaceCodeToricTopology(uint8_t builtin) {
+lean_object * res;
+if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
+_G_initialized = true;
+res = initialize_Init(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_Init(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00 = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__00);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10 = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__10);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01 = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__01);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11 = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_star__11);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00 = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__00);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10 = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__10);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01 = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__01);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11 = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_plaq__11);
+lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing = _init_lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing();
+lean_mark_persistent(lp_FiniteQuantum_FableHilbertWalk20260819_H044_m__string__puncturing);
+return lean_io_result_mk_ok(lean_box(0));
+}
+#ifdef __cplusplus
+}
+#endif

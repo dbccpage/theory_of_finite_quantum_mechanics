@@ -92,8 +92,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_l1_to_l2_bridges_and_ladder_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = f6dbb65386b39bbac017390172f48067e46a34944e51bef5e2e095475d5feeb8`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -106,3 +104,18 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.signed_sqrt_density_lift_cauchy_schwarz`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_l1_sector_weights_and_density_lift_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ab5ac4e2782afc3d6e725ede706bdd80ab0b54ed596e067d2efe2b03131baf29`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-IMP-HILBERT-INNER-PRODUCT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `L1-IMP-HILBERT-INNER-PRODUCT` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-L1-GRAM-INNER-PRODUCT-H005`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [290, -580, 435]`, `chord_potential = 435`, `holonomy_gamma2 = 580`
+- **Finite Shadow Exact Witness (`M4`)**: `standard_gram_norm_v11: (1,1)^T I_2 (1,1) = 1 + 1 == 2` ($\text{value} = 2$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `anisotropic_gram_norm_gap_v11: (1,1)^T diag(2,3) (1,1) - (1,1)^T I_2 (1,1) = 5 - 2 == 3 (distinct admissible Gram forms)` ($\text{value} = 3$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = f43cd2701d04b840881c03a2422b39addf88a6103350b20d80c6fb01588990c3`

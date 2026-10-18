@@ -50,10 +50,13 @@ def test_formatter_reproduces_checked_candidate_box_source(tmp_path):
     output = tmp_path / "reflected.lean"
     result = run_formatter(files, output)
     assert result.returncode == 0, result.stderr
-    assert (
-        output.read_bytes()
-        == (ROOT / "lean4/research_programs/mub6/SzollosiGaugedReflection.lean").read_bytes()
-    )
+    target_lean = ROOT / "lean4" / "SzollosiGaugedReflection.lean"
+    if not target_lean.exists():
+        if (ROOT / "lean4/research_programs/mub6/SzollosiGaugedReflection.lean").exists():
+            target_lean = ROOT / "lean4/research_programs/mub6/SzollosiGaugedReflection.lean"
+        else:
+            target_lean = Path(r"C:\Users\a343o\source\repos\the_symbol_game\lean4\research_programs\mub6\SzollosiGaugedReflection.lean")
+    assert output.read_bytes() == target_lean.read_bytes()
 
 
 @pytest.mark.parametrize(

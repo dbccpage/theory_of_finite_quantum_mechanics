@@ -1,0 +1,24 @@
+
+running 440 tests
+....................................................................................... 87/440
+....................................................................................... 174/440
+....................................................................................... 261/440
+....................................................................................... 348/440
+................................................................................. 429/440
+rewriting::tests::rank_checker_rejects_forged_domains_and_non_decreasing_edges --- FAILED
+..........
+failures:
+
+---- rewriting::tests::rank_checker_rejects_forged_domains_and_non_decreasing_edges stdout ----
+
+thread 'rewriting::tests::rank_checker_rejects_forged_domains_and_non_decreasing_edges' (23776) panicked at src\category_theory\rewriting.rs:1239:54:
+called `Result::unwrap_err()` on an `Ok` value: TerminationCertificate { system: ValidatedInfinityRewriteSystem { declared: InfinityRewriteSystem { name: "arrow", cells: {"a": RewriteCell { name: "a", level: 0, source: None, target: None, rule: None }, "b": RewriteCell { name: "b", level: 0, source: None, target: None, rule: None }, "r": RewriteCell { name: "r", level: 1, source: Some("a"), target: Some("b"), rule: Some("r") }}, rules: [RewriteRule { name: "r", lhs: "a", rhs: "b" }], paths: [RewritePath { name: "p", steps: [Forward("r")] }], homotopies: {}, truncation_level: 1 } }, ranks: {"a": 0, "b": 0} }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    rewriting::tests::rank_checker_rejects_forged_domains_and_non_decreasing_edges
+
+test result: FAILED. 439 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.28s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

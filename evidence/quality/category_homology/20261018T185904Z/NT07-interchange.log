@@ -1,0 +1,25 @@
+
+running 429 tests
+....................................................................................... 87/429
+....................................................................................... 174/429
+....................................................................................... 261/429
+....................................................................................... 348/429
+........................................................... 407/429
+natural_trans_composition::tests::raw_horizontal_composition_rejects_noncommuting_paths --- FAILED
+.....................
+failures:
+
+---- natural_trans_composition::tests::raw_horizontal_composition_rejects_noncommuting_paths stdout ----
+
+thread 'natural_trans_composition::tests::raw_horizontal_composition_rejects_noncommuting_paths' (10120) panicked at src\category_theory\natural_trans_composition.rs:619:9:
+assertion failed: matches!(horizontal_compose_nat_trans("bad", &a, &b, &f, &f, &f, &f, &cat),
+    Err(CompositionError::Interchange { .. }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    natural_trans_composition::tests::raw_horizontal_composition_rejects_noncommuting_paths
+
+test result: FAILED. 428 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

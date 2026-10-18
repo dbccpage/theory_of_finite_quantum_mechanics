@@ -1,77 +1,27 @@
-//! Finite cochain complex and carrier manifest.
+//! Compatibility facade for the admitted rational carrier. AuthorityEffect: None.
 //!
-//! Implements the core carrier structure from General Theory §1, §3:
-//!   C⁰ →d₀ C¹ →d₁ C², with d₁∘d₀ = 0.
-//!
-//! All matrices use exact rational arithmetic (`Q` = `BigRational`).
-//! The fundamental relation d₁∘d₀ = 0 is verified at construction time.
-//! Construction fails if the relation does not hold.
+//! All three carrier entry points share the same immutable law-checked core.
 
-use crate::linear_algebra::scalars::{hash_rational, q, Q};
+use super::cochain_complex::TheoremProvenance;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
-use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
-use num_traits::Zero;
-use serde::{Deserialize, Serialize};
+use crate::linear_algebra::scalars::{q, Q};
+use std::collections::BTreeMap;
 
-/// Compute the blake3 hash of the matrix data for carrier manifests.
-pub fn matrix_content_hash(m: &BasicMatrix<Q>) -> [u8; 32] {
-    let mut hasher = blake3::Hasher::new();
-    hasher.update(&(m.rows() as u64).to_le_bytes());
-    hasher.update(&(m.cols() as u64).to_le_bytes());
-    for val in m.as_slice() {
-        hash_rational(&mut hasher, val);
-    }
-    *hasher.finalize().as_bytes()
-}
+pub use super::carrier_manifest::CarrierManifest;
+pub use super::errors::HomologicalError as CarrierError;
 
-/// Error when constructing a cochain complex.
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum CarrierError {
-    CochainRelationViolated,
-    DimensionMismatch {
-        map_name: String,
-        expected: (usize, usize),
-        got: (usize, usize),
-    },
-    WeightDimensionMismatch {
-        expected: usize,
-        got: usize,
-    },
-    NonPositiveWeight {
-        index: usize,
-    },
-    MatrixConstructionFailed,
-}
-
-/// A finite cochain complex C⁰ →d₀ C¹ →d₁ C² with d₁∘d₀ = 0.
-///
-/// This is the core carrier for the MSS-N obstruction calculus.
-/// All arithmetic is exact over the canonical coefficient domain
-/// `omega_homology::scalar::Q` = `BigRational` (ADR-001). The cochain
-/// relation is verified at construction time. Failed construction returns
-/// a typed error.
-///
-/// Satisfies BaseType contract: no execution logic, all fields explicit,
-/// serializable, no lazy computation.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Carrier {
-    pub c0_dim: usize,
-    pub c1_dim: usize,
-    pub c2_dim: usize,
-    pub d0: BasicMatrix<Q>,
-    pub d1: BasicMatrix<Q>,
-    pub weights: Vec<Q>,
+    inner: super::carrier::Carrier,
+}
+
+impl AsRef<super::carrier::Carrier> for Carrier {
+    fn as_ref(&self) -> &super::carrier::Carrier {
+        &self.inner
+    }
 }
 
 impl Carrier {
-    /// Construct a new cochain complex, verifying d₁∘d₀ = 0 and weight positivity.
-    ///
-    /// This is the only constructor. It enforces:
-    /// 1. d₀ is c1_dim × c0_dim
-    /// 2. d₁ is c2_dim × c1_dim
-    /// 3. d₁ * d₀ = 0 (exact check)
-    /// 4. weights has length c1_dim
-    /// 5. All weights are strictly positive
     pub fn new(
         c0_dim: usize,
         c1_dim: usize,
@@ -80,188 +30,134 @@ impl Carrier {
         d1: BasicMatrix<Q>,
         weights: Vec<Q>,
     ) -> Result<Self, CarrierError> {
-        if d0.rows() != c1_dim || d0.cols() != c0_dim {
-            return Err(CarrierError::DimensionMismatch {
-                map_name: "d0".into(),
-                expected: (c1_dim, c0_dim),
-                got: (d0.rows(), d0.cols()),
-            });
-        }
-
-        if d1.rows() != c2_dim || d1.cols() != c1_dim {
-            return Err(CarrierError::DimensionMismatch {
-                map_name: "d1".into(),
-                expected: (c2_dim, c1_dim),
-                got: (d1.rows(), d1.cols()),
-            });
-        }
-
-        if weights.len() != c1_dim {
-            return Err(CarrierError::WeightDimensionMismatch {
-                expected: c1_dim,
-                got: weights.len(),
-            });
-        }
-
-        for (i, w) in weights.iter().enumerate() {
-            if w <= &Q::zero() {
-                return Err(CarrierError::NonPositiveWeight { index: i });
-            }
-        }
-
-        if c2_dim > 0 && c0_dim > 0 {
-            let product = d1
-                .mul(&d0)
-                .map_err(|_| CarrierError::MatrixConstructionFailed)?;
-            if !product.as_slice().iter().all(|x| x.is_zero()) {
-                return Err(CarrierError::CochainRelationViolated);
-            }
-        }
-
+        let provenance = TheoremProvenance::new("runtime exact d1*d0 verification".into())?;
         Ok(Self {
-            c0_dim,
-            c1_dim,
-            c2_dim,
-            d0,
-            d1,
-            weights,
+            inner: super::carrier::Carrier::new(
+                c0_dim, c1_dim, c2_dim, d0, d1, weights, provenance,
+            )?,
         })
     }
-
-    /// Rank of d₀ = dim(im(d₀)) = dim(B¹).
+    pub fn c0_dim(&self) -> usize {
+        self.inner.c0_dim()
+    }
+    pub fn c1_dim(&self) -> usize {
+        self.inner.c1_dim()
+    }
+    pub fn c2_dim(&self) -> usize {
+        self.inner.c2_dim()
+    }
+    pub fn d0(&self) -> &BasicMatrix<Q> {
+        self.inner.d0()
+    }
+    pub fn d1(&self) -> &BasicMatrix<Q> {
+        self.inner.d1()
+    }
+    pub fn weights(&self) -> &[Q] {
+        self.inner.weights()
+    }
     pub fn rank_d0(&self) -> usize {
-        self.d0
-            .rank()
-            .expect("rank is defined for finite Q matrices")
+        self.inner.rank_d0()
     }
-
-    /// Dimension of Q¹ = C¹/B¹ = c1_dim - rank(d₀).
-    pub fn dim_q1(&self) -> usize {
-        self.c1_dim - self.rank_d0()
-    }
-
-    /// Rank of d₁.
     pub fn rank_d1(&self) -> usize {
-        self.d1
-            .rank()
-            .expect("rank is defined for finite Q matrices")
+        self.inner.rank_d1()
     }
-
-    /// Dimension of H¹ = ker(d̄₁) ⊆ Q¹.
-    /// H¹ = ker(d₁) / im(d₀).
-    /// dim(H¹) = dim(ker(d₁)) - dim(im(d₀)).
+    pub fn dim_q1(&self) -> usize {
+        self.c1_dim() - self.rank_d0()
+    }
+    /// Rank inclusion was checked during construction; subtraction cannot underflow.
     pub fn dim_h1(&self) -> usize {
-        let ker_d1_dim = self.c1_dim - self.rank_d1();
-        let im_d0_dim = self.rank_d0();
-        ker_d1_dim.saturating_sub(im_d0_dim)
+        self.c1_dim() - self.rank_d1() - self.rank_d0()
     }
 }
 
-/// A cryptographic manifest identifying a specific carrier configuration.
-///
-/// Used in checked packets, exhaustion certificates, and lift licenses to
-/// bind results to the exact carrier that produced them.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-pub struct CarrierManifest {
-    /// Hash of the complete carrier (d₀, d₁, weights, dimensions).
-    pub carrier_hash: [u8; 32],
-    /// Hash of d₀ alone.
-    pub d0_hash: [u8; 32],
-    /// Hash of d₁ alone.
-    pub d1_hash: [u8; 32],
-    /// Dimensions.
-    pub c0_dim: usize,
-    pub c1_dim: usize,
-    pub c2_dim: usize,
-    /// Rank data.
-    pub rank_d0: usize,
-    pub dim_q1: usize,
-    pub dim_h1: usize,
-}
-
-impl CarrierManifest {
-    /// Compute the manifest for a given carrier.
-    pub fn from_carrier(carrier: &Carrier) -> Self {
-        let d0_hash = matrix_content_hash(&carrier.d0);
-        let d1_hash = matrix_content_hash(&carrier.d1);
-
-        let mut hasher = blake3::Hasher::new();
-        hasher.update(&d0_hash);
-        hasher.update(&d1_hash);
-        hasher.update(&(carrier.c0_dim as u64).to_le_bytes());
-        hasher.update(&(carrier.c1_dim as u64).to_le_bytes());
-        hasher.update(&(carrier.c2_dim as u64).to_le_bytes());
-        for w in &carrier.weights {
-            hash_rational(&mut hasher, w);
-        }
-        let carrier_hash = *hasher.finalize().as_bytes();
-
-        Self {
-            carrier_hash,
-            d0_hash,
-            d1_hash,
-            c0_dim: carrier.c0_dim,
-            c1_dim: carrier.c1_dim,
-            c2_dim: carrier.c2_dim,
-            rank_d0: carrier.rank_d0(),
-            dim_q1: carrier.dim_q1(),
-            dim_h1: carrier.dim_h1(),
-        }
-    }
-}
-
-/// Build a cochain complex from a directed graph.
-///
-/// - Nodes = C⁰ basis
-/// - Edges = C¹ basis
-/// - Triangles (3-cliques) = C² basis (optional)
-///
-/// d₀ is the signed incidence matrix: d₀(e) = target(e) - source(e)
-/// for edge e going from source to target. The matrix d₀ has dimensions
-/// |E| × |V| where (d₀)_{e,v} = +1 if v = target(e), -1 if v = source(e).
+/// Signed incidence carrier for a finite simple directed presentation.
+/// Triangles (a,b,c) require edges a->b, b->c and a->c. Missing edges,
+/// repeated vertices, parallel edges and self loops are rejected explicitly.
+/// Construction costs O(E log E + T log E) table work, plus exact law/rank checks.
 pub fn graph_carrier(
     num_nodes: usize,
     edges: &[(usize, usize)],
     triangles: &[(usize, usize, usize)],
     weights: Vec<Q>,
 ) -> Result<Carrier, CarrierError> {
-    let num_edges = edges.len();
-    let num_triangles = triangles.len();
+    let indices = edge_indices(num_nodes, edges)?;
+    let mut d0 = BasicMatrix::<Q>::zero(edges.len(), num_nodes)?;
+    for (i, &(src, tgt)) in edges.iter().enumerate() {
+        d0.set(i, src, q(-1))?;
+        d0.set(i, tgt, q(1))?;
+    }
+    let d1 = triangle_boundary(num_nodes, edges.len(), triangles, &indices)?;
+    Carrier::new(num_nodes, edges.len(), triangles.len(), d0, d1, weights)
+}
 
-    let mut d0 = BasicMatrix::<Q>::zero(num_edges, num_nodes)
-        .map_err(|_| CarrierError::MatrixConstructionFailed)?;
-    for (e_idx, &(src, tgt)) in edges.iter().enumerate() {
-        if src >= num_nodes || tgt >= num_nodes {
-            return Err(CarrierError::DimensionMismatch {
-                map_name: "graph_edge".into(),
-                expected: (num_nodes, num_nodes),
-                got: (src, tgt),
+fn triangle_boundary(
+    num_nodes: usize,
+    num_edges: usize,
+    triangles: &[(usize, usize, usize)],
+    indices: &BTreeMap<(usize, usize), usize>,
+) -> Result<BasicMatrix<Q>, CarrierError> {
+    let mut d1 = BasicMatrix::<Q>::zero(triangles.len(), num_edges)?;
+    for (i, &(a, b, c)) in triangles.iter().enumerate() {
+        admit_triangle(num_nodes, i, (a, b, c))?;
+        for (src, tgt, sign) in [(a, b, 1), (b, c, 1), (a, c, -1)] {
+            let col = indices
+                .get(&(src, tgt))
+                .ok_or(CarrierError::TriangleMissingEdge {
+                    triangle: i,
+                    src,
+                    tgt,
+                })?;
+            d1.set(i, *col, q(sign))?;
+        }
+    }
+    Ok(d1)
+}
+
+fn edge_indices(
+    num_nodes: usize,
+    edges: &[(usize, usize)],
+) -> Result<BTreeMap<(usize, usize), usize>, CarrierError> {
+    let mut indices = BTreeMap::new();
+    for (i, &(src, tgt)) in edges.iter().enumerate() {
+        admit_edge(num_nodes, i, src, tgt)?;
+        if indices.insert((src, tgt), i).is_some() {
+            return Err(CarrierError::BasisMismatch {
+                description: "parallel directed edges".into(),
             });
         }
-        d0.set(e_idx, src, q(-1))
-            .map_err(|_| CarrierError::MatrixConstructionFailed)?;
-        d0.set(e_idx, tgt, q(1))
-            .map_err(|_| CarrierError::MatrixConstructionFailed)?;
     }
+    Ok(indices)
+}
 
-    let mut d1 = BasicMatrix::<Q>::zero(num_triangles, num_edges)
-        .map_err(|_| CarrierError::MatrixConstructionFailed)?;
-    for (t_idx, &(a, b, c)) in triangles.iter().enumerate() {
-        for (e_idx, &(src, tgt)) in edges.iter().enumerate() {
-            if src == a && tgt == b {
-                d1.set(t_idx, e_idx, q(1))
-                    .map_err(|_| CarrierError::MatrixConstructionFailed)?;
-            } else if src == b && tgt == c {
-                d1.set(t_idx, e_idx, q(1))
-                    .map_err(|_| CarrierError::MatrixConstructionFailed)?;
-            } else if src == a && tgt == c {
-                d1.set(t_idx, e_idx, q(-1))
-                    .map_err(|_| CarrierError::MatrixConstructionFailed)?;
-            }
+fn admit_edge(n: usize, edge: usize, src: usize, tgt: usize) -> Result<(), CarrierError> {
+    if src >= n {
+        return Err(CarrierError::EdgeSourceOutOfRange { edge, src });
+    }
+    if tgt >= n {
+        return Err(CarrierError::EdgeTargetOutOfRange { edge, tgt });
+    }
+    if src == tgt {
+        return Err(CarrierError::SelfLoopNotAllowed { node: src });
+    }
+    Ok(())
+}
+
+fn admit_triangle(
+    n: usize,
+    triangle: usize,
+    (a, b, c): (usize, usize, usize),
+) -> Result<(), CarrierError> {
+    for vertex in [a, b, c] {
+        if vertex >= n {
+            return Err(CarrierError::TriangleVertexOutOfRange { triangle, vertex });
         }
     }
-
-    Carrier::new(num_nodes, num_edges, num_triangles, d0, d1, weights)
+    if a == b || b == c || a == c {
+        return Err(CarrierError::BasisMismatch {
+            description: "triangle vertices must be distinct".into(),
+        });
+    }
+    Ok(())
 }
 
 #[cfg(test)]
@@ -282,10 +178,7 @@ mod tests {
         let d0 = BasicMatrix::<Q>::from_row_major(1, 2, vec![r(-1), r(1)]).unwrap();
         let d1 = BasicMatrix::<Q>::from_row_major(1, 1, vec![r(1)]).unwrap();
         let result = Carrier::new(2, 2, 1, d0, d1, unit_weights(2));
-        assert!(matches!(
-            result,
-            Err(CarrierError::DimensionMismatch { .. })
-        ));
+        assert!(matches!(result, Err(CarrierError::ShapeMismatch { .. })));
     }
 
     #[test]
@@ -308,9 +201,9 @@ mod tests {
     fn single_edge_tree() {
         let cx = graph_carrier(2, &[(0, 1)], &[], unit_weights(1)).unwrap();
 
-        assert_eq!(cx.c0_dim, 2);
-        assert_eq!(cx.c1_dim, 1);
-        assert_eq!(cx.c2_dim, 0);
+        assert_eq!(cx.c0_dim(), 2);
+        assert_eq!(cx.c1_dim(), 1);
+        assert_eq!(cx.c2_dim(), 0);
         assert_eq!(cx.rank_d0(), 1);
         assert_eq!(cx.dim_q1(), 0);
         assert_eq!(cx.dim_h1(), 0);
@@ -321,9 +214,9 @@ mod tests {
         let cx =
             graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[(0, 1, 2)], unit_weights(3)).unwrap();
 
-        assert_eq!(cx.c0_dim, 3);
-        assert_eq!(cx.c1_dim, 3);
-        assert_eq!(cx.c2_dim, 1);
+        assert_eq!(cx.c0_dim(), 3);
+        assert_eq!(cx.c1_dim(), 3);
+        assert_eq!(cx.c2_dim(), 1);
         assert_eq!(cx.rank_d0(), 2);
         assert_eq!(cx.dim_q1(), 1);
         assert_eq!(cx.dim_h1(), 0);
@@ -352,7 +245,10 @@ mod tests {
         let d1 = BasicMatrix::<Q>::from_row_major(1, 2, vec![r(1), r(1)]).unwrap();
 
         let result = Carrier::new(2, 2, 1, d0, d1, unit_weights(2));
-        assert_eq!(result, Err(CarrierError::CochainRelationViolated));
+        assert_eq!(
+            result,
+            Err(CarrierError::CoboundaryLawViolation { degree: 0 })
+        );
     }
 
     #[test]
@@ -374,9 +270,9 @@ mod tests {
         let m1 = CarrierManifest::from_carrier(&cx);
         let m2 = CarrierManifest::from_carrier(&cx);
 
-        assert_eq!(m1.carrier_hash, m2.carrier_hash);
-        assert_eq!(m1.dim_q1, 1);
-        assert_eq!(m1.dim_h1, 1);
+        assert_eq!(m1.carrier_hash(), m2.carrier_hash());
+        assert_eq!(m1.dimensions().1 - m1.ranks().0, 1);
+        assert_eq!(m1.dimensions().1 - m1.ranks().0 - m1.ranks().1, 1);
     }
 
     #[test]
@@ -387,13 +283,13 @@ mod tests {
         let m1 = CarrierManifest::from_carrier(&cx1);
         let m2 = CarrierManifest::from_carrier(&cx2);
 
-        assert_ne!(m1.carrier_hash, m2.carrier_hash);
+        assert_ne!(m1.carrier_hash(), m2.carrier_hash());
     }
 
     #[test]
     fn matrix_kernel_basis() {
         let cx = graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[], unit_weights(3)).unwrap();
-        let ker = cx.d0.try_transpose().unwrap().kernel_basis().unwrap();
+        let ker = cx.d0().try_transpose().unwrap().kernel_basis().unwrap();
         assert_eq!(ker.len(), 1);
     }
 }

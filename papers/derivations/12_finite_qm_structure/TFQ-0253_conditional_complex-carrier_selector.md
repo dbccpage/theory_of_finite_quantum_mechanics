@@ -98,3 +98,31 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity`
 - **Sovereign Rust Witness Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = b708a3068d4620daa6a5374c808e0e9f8d7883d17eda4f32a423bb3b666d7773`
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM062-U1-RESIDUES-IMPORT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM062-U1-RESIDUES-IMPORT` (`FINITE_QM_STRUCTURE` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-DS-U1-SELECTOR-RESIDUES`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [180, -360, 270]`, `chord_potential = 270`, `holonomy_gamma2 = 360`
+- **Finite Shadow Exact Witness (`M4`)**: `elliptic_selector_det: det(3*I + 4*J) = 3^2 + 4^2 == 25` ($\text{value} = 25$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `split_complex_zero_divisor_det: det(1*I + 1*S) = 1^2 - 1^2 == 0 (hyperbolic ring has zero divisors)` ($\text{value} = 0$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `3` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 7f9d73950b35dbcb8f5978db02b992848c2592270bf4d1c1ff49de262004c453`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GAP-U1-CIRCLE`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-GAP-U1-CIRCLE` (`FINITE_QM_CORE` / `CONDITIONAL`)
+- **Mined Operad Family (`M2`)**: `OP-FQ-CAYLEY-U1-PUNCTURED-CIRCLE`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [80, -160, 120]`, `chord_potential = 120`, `holonomy_gamma2 = 160`
+- **Finite Shadow Exact Witness (`M4`)**: `cayley_t2_pythagorean_identity: (1 - 2^2)^2 + (2*2)^2 == (1 + 2^2)^2 == 25` ($\text{value} = 25$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `half_angle_obstruction: (a^2 - b^2 = 15 and 2ab = 20) has no integer solution (min_residual |(4^2-2^2)-15| + |2*4*2-20| = 3 + 4 = 7)` ($\text{value} = 7$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 013e82297478109c69e3bdf8df3e4e441184ffbbc37583e7ea336f23c1c67d8d`

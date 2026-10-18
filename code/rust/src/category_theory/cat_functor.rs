@@ -12,7 +12,165 @@
 //!   F(id_A) = id_{F(A)}
 //!   F(g ∘ f) = F(f) ∘ F(g)   ← reversed
 
+use super::finite_category::ValidatedFiniteCategory;
 use std::collections::BTreeMap;
+
+/// Finite functor admission failures. Declarations and certificates are distinct.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum FunctorAdmissionError {
+    Name,
+    CategoryBinding,
+    MappingDomain { kind: &'static str },
+    UnknownImage { kind: &'static str, image: String },
+    Boundary { morphism: String },
+    Identity { object: String },
+    Composition { first: String, second: String },
+}
+
+/// A functor certificate owns immutable admitted endpoints and its total maps.
+/// The checker verifies both boundaries, identities, and every source composite.
+/// AuthorityEffect: None. Finite runtime verification, not a formal proof build.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ValidatedFiniteFunctor {
+    declared: DeclaredFiniteFunctor,
+    source: ValidatedFiniteCategory,
+    target: ValidatedFiniteCategory,
+}
+
+impl ValidatedFiniteFunctor {
+    pub fn try_new(
+        declared: DeclaredFiniteFunctor,
+        source: ValidatedFiniteCategory,
+        target: ValidatedFiniteCategory,
+    ) -> Result<Self, FunctorAdmissionError> {
+        let candidate = Self {
+            declared,
+            source,
+            target,
+        };
+        candidate.check_binding()?;
+        candidate.check_maps()?;
+        candidate.check_boundaries()?;
+        candidate.check_identities()?;
+        candidate.check_compositions()?;
+        Ok(candidate)
+    }
+
+    pub fn declared(&self) -> &DeclaredFiniteFunctor {
+        &self.declared
+    }
+    pub fn source(&self) -> &ValidatedFiniteCategory {
+        &self.source
+    }
+    pub fn target(&self) -> &ValidatedFiniteCategory {
+        &self.target
+    }
+    pub fn on_object(&self, object: &str) -> Option<&str> {
+        self.declared.on_object(object)
+    }
+    pub fn on_morphism(&self, morphism: &str) -> Option<&str> {
+        self.declared.on_morphism(morphism)
+    }
+
+    fn check_binding(&self) -> Result<(), FunctorAdmissionError> {
+        if self.declared.name.trim().is_empty() {
+            return Err(FunctorAdmissionError::Name);
+        }
+        if self.declared.source_category != self.source.declared().name
+            || self.declared.target_category != self.target.declared().name
+        {
+            return Err(FunctorAdmissionError::CategoryBinding);
+        }
+        Ok(())
+    }
+
+    fn check_maps(&self) -> Result<(), FunctorAdmissionError> {
+        let source = self.source.declared();
+        let target = self.target.declared();
+        if !self.declared.object_map.keys().eq(source.objects.iter()) {
+            return Err(FunctorAdmissionError::MappingDomain { kind: "objects" });
+        }
+        if !self
+            .declared
+            .morphism_map
+            .keys()
+            .eq(source.morphisms.keys())
+        {
+            return Err(FunctorAdmissionError::MappingDomain { kind: "morphisms" });
+        }
+        check_images(
+            &self.declared.object_map,
+            |x| target.has_object(x),
+            "objects",
+        )?;
+        check_images(
+            &self.declared.morphism_map,
+            |x| target.has_morphism(x),
+            "morphisms",
+        )
+    }
+
+    fn check_boundaries(&self) -> Result<(), FunctorAdmissionError> {
+        for (name, morphism) in &self.source.declared().morphisms {
+            let image = self
+                .on_morphism(name)
+                .and_then(|n| self.target.declared().boundary_of(n));
+            let expected = self
+                .on_object(&morphism.source)
+                .zip(self.on_object(&morphism.target));
+            if image.is_none() || image != expected {
+                return Err(FunctorAdmissionError::Boundary {
+                    morphism: name.clone(),
+                });
+            }
+        }
+        Ok(())
+    }
+
+    fn check_identities(&self) -> Result<(), FunctorAdmissionError> {
+        for (object, identity) in &self.source.declared().identities {
+            let expected = self
+                .on_object(object)
+                .and_then(|n| self.target.declared().identity_of(n));
+            if self.on_morphism(identity) != expected || expected.is_none() {
+                return Err(FunctorAdmissionError::Identity {
+                    object: object.clone(),
+                });
+            }
+        }
+        Ok(())
+    }
+
+    fn check_compositions(&self) -> Result<(), FunctorAdmissionError> {
+        for ((first, second), result) in &self.source.declared().compositions {
+            let pair = self.on_morphism(first).zip(self.on_morphism(second));
+            let expected = pair.and_then(|(f, g)| self.target.declared().compose(f, g));
+            if self.on_morphism(result) != expected || expected.is_none() {
+                return Err(FunctorAdmissionError::Composition {
+                    first: first.clone(),
+                    second: second.clone(),
+                });
+            }
+        }
+        Ok(())
+    }
+}
+
+fn check_images(
+    map: &BTreeMap<String, String>,
+    contains: impl Fn(&str) -> bool,
+    kind: &'static str,
+) -> Result<(), FunctorAdmissionError> {
+    for image in map.values() {
+        if !contains(image) {
+            return Err(FunctorAdmissionError::UnknownImage {
+                kind,
+                image: image.clone(),
+            });
+        }
+    }
+    Ok(())
+}
 
 /// Composition table convention:
 /// compositions[(f, g)] = g ∘ f
@@ -114,9 +272,11 @@ pub trait Category {
     type Ob: Clone + Eq + std::fmt::Debug;
     type Mor: Clone + Eq + std::fmt::Debug;
 
-    fn id(&self, x: &Self::Ob) -> Self::Mor;
-    fn src(&self, f: &Self::Mor) -> Self::Ob;
-    fn tgt(&self, f: &Self::Mor) -> Self::Ob;
+    /// Unknown identifiers are outside the category, even if the category itself
+    /// has been validated. Public lookups therefore return an admission result.
+    fn id(&self, x: &Self::Ob) -> Option<Self::Mor>;
+    fn src(&self, f: &Self::Mor) -> Option<Self::Ob>;
+    fn tgt(&self, f: &Self::Mor) -> Option<Self::Ob>;
     fn compose(&self, f: &Self::Mor, g: &Self::Mor) -> Option<Self::Mor>;
 }
 

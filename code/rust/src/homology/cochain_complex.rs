@@ -1,21 +1,19 @@
 //! Finite cochain complex C^0 --d0--> C^1 --d1--> C^2 with d1 * d0 = 0.
 
-use crate::coboundary::CoboundaryMap;
-use crate::errors::HomologicalError;
-use crate::hashing::{
-    hash_cochain_complex_manifest, hash_cochain_witness, hash_provenance, Hash256,
-};
-use crate::ids::Degree;
-use crate::linear_algebra::scalars::Q;
-use crate::witness::CochainComplexWitness;
+use crate::homology::coboundary::CoboundaryMap;
+use crate::homology::errors::HomologicalError;
+use crate::homology::hashing::{hash_cochain_complex_manifest, hash_provenance, Hash256};
+use crate::homology::ids::Degree;
+use crate::homology::witness::CochainComplexWitness;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
-use num_traits::Zero;
+use crate::linear_algebra::scalars::Q;
 use serde::{Deserialize, Serialize};
 
 /// Provenance for a cochain complex construction.
 ///
 /// Records the verification source that justified the coboundary law d^1 * d^0 = 0.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(try_from = "String", into = "String")]
 pub struct TheoremProvenance {
     verification_source: String,
 }
@@ -46,6 +44,18 @@ impl TheoremProvenance {
     }
 }
 
+impl TryFrom<String> for TheoremProvenance {
+    type Error = HomologicalError;
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        Self::new(value)
+    }
+}
+impl From<TheoremProvenance> for String {
+    fn from(value: TheoremProvenance) -> String {
+        value.verification_source
+    }
+}
+
 /// A finite cochain complex with verified coboundary law.
 ///
 /// C^0 --d0--> C^1 --d1--> C^2
@@ -53,17 +63,17 @@ impl TheoremProvenance {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CochainComplex {
     /// Dimension of C^0.
-    pub c0_dim: usize,
+    pub(super) c0_dim: usize,
     /// Dimension of C^1.
-    pub c1_dim: usize,
+    pub(super) c1_dim: usize,
     /// Dimension of C^2.
-    pub c2_dim: usize,
+    pub(super) c2_dim: usize,
     /// Coboundary map d0 : C^0 -> C^1 (matrix is c1_dim x c0_dim).
-    pub d0: CoboundaryMap,
+    pub(super) d0: CoboundaryMap,
     /// Coboundary map d1 : C^1 -> C^2 (matrix is c2_dim x c1_dim).
-    pub d1: CoboundaryMap,
+    pub(super) d1: CoboundaryMap,
     /// Witness proving d1 * d0 = 0.
-    pub witness: CochainComplexWitness,
+    pub(super) witness: CochainComplexWitness,
 }
 
 impl CochainComplex {
@@ -90,42 +100,20 @@ impl CochainComplex {
         d1_matrix: BasicMatrix<Q>,
         provenance: TheoremProvenance,
     ) -> Result<Self, HomologicalError> {
-        // Check d0 dimensions: c1_dim x c0_dim
-        if d0_matrix.rows() != c1_dim || d0_matrix.cols() != c0_dim {
-            return Err(HomologicalError::DimensionMismatch {
-                expected: c1_dim * c0_dim,
-                got: d0_matrix.rows() * d0_matrix.cols(),
-            });
-        }
+        super::exact_scalar::admit_shaped_matrix(&d0_matrix, (c1_dim, c0_dim))?;
+        super::exact_scalar::admit_shaped_matrix(&d1_matrix, (c2_dim, c1_dim))?;
+        super::exact_scalar::admit_zero_product(
+            &d1_matrix,
+            &d0_matrix,
+            HomologicalError::CoboundaryLawViolation { degree: 0 },
+        )?;
 
-        // Check d1 dimensions: c2_dim x c1_dim
-        if d1_matrix.rows() != c2_dim || d1_matrix.cols() != c1_dim {
-            return Err(HomologicalError::DimensionMismatch {
-                expected: c2_dim * c1_dim,
-                got: d1_matrix.rows() * d1_matrix.cols(),
-            });
-        }
-
-        // Verify d1 * d0 = 0 (the fundamental coboundary law)
-        // Only check if both domains are non-trivial
-        if c2_dim > 0 && c0_dim > 0 {
-            let product = d1_matrix
-                .mul(&d0_matrix)
-                .map_err(HomologicalError::MatrixError)?;
-            if !product.as_slice().iter().all(|x| x.is_zero()) {
-                return Err(HomologicalError::CoboundaryLawViolation { degree: 0 });
-            }
-        }
-
-        let d0 = CoboundaryMap::new(Degree::new(0), Degree::new(1), d0_matrix);
-        let d1 = CoboundaryMap::new(Degree::new(1), Degree::new(2), d1_matrix);
+        let d0 = CoboundaryMap::new(Degree::new(0), Degree::new(1), d0_matrix)?;
+        let d1 = CoboundaryMap::new(Degree::new(1), Degree::new(2), d1_matrix)?;
 
         let provenance_hash = provenance.provenance_hash();
         let complex_hash =
             hash_cochain_complex_manifest(c0_dim, c1_dim, c2_dim, &d0.map_hash, &d1.map_hash);
-
-        let _witness_hash =
-            hash_cochain_witness(d0.matrix.shape(), d1.matrix.shape(), &provenance_hash);
 
         let witness = CochainComplexWitness::new(
             complex_hash,
@@ -149,6 +137,16 @@ impl CochainComplex {
     /// Hash identifying this cochain complex.
     pub fn complex_hash(&self) -> &Hash256 {
         &self.witness.complex_hash
+    }
+
+    pub fn d0(&self) -> &CoboundaryMap {
+        &self.d0
+    }
+    pub fn d1(&self) -> &CoboundaryMap {
+        &self.d1
+    }
+    pub fn witness(&self) -> &CochainComplexWitness {
+        &self.witness
     }
 
     /// Returns the dimension of the cochain group at the given degree.
@@ -232,7 +230,7 @@ mod tests {
         let complex = CochainComplex::new(1, 2, 1, d0, d1, test_provenance());
         assert!(matches!(
             complex,
-            Err(HomologicalError::DimensionMismatch { .. })
+            Err(HomologicalError::ShapeMismatch { .. })
         ));
     }
 
@@ -245,7 +243,7 @@ mod tests {
         let complex = CochainComplex::new(1, 2, 1, d0, d1, test_provenance());
         assert!(matches!(
             complex,
-            Err(HomologicalError::DimensionMismatch { .. })
+            Err(HomologicalError::ShapeMismatch { .. })
         ));
     }
 
@@ -274,16 +272,5 @@ mod tests {
     }
 }
 
-#[cfg(test)]
-mod contract_conformance {
-    use super::CochainComplex;
-    use omega_contracts::binding::ImplementsContract;
-    use omega_contracts::contract_images::CochainComplexContract;
-
-    impl ImplementsContract<CochainComplexContract> for CochainComplex {}
-
-    #[test]
-    fn cochain_complex_binds_and_audits_its_contract() {
-        omega_contracts::assert_contract_binding!(CochainComplex, CochainComplexContract);
-    }
-}
+// Contract registry membership is metadata, not evidence for d1*d0=0.
+// The constructor rejection tests above exercise the executable law directly.

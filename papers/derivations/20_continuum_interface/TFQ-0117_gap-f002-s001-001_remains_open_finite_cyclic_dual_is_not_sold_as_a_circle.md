@@ -47,3 +47,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F002.S001`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-IMPORT-CIRCLE-U1`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-IMPORT-CIRCLE-U1` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-GP-CIRCLE-U1-IMPORT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [200, -400, 300]`, `chord_potential = 300`, `holonomy_gamma2 = 400`
+- **Finite Shadow Exact Witness (`M4`)**: `sign_fiber_destructive_cancellation: (1 + (-1))^2 == 0 vs (1 + 1)^2 == 4 (gap 4)` ($\text{value} = 4$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `non_exponent_two_satisfied_by_Z3: |Z/3Z| == 3 (finite group of order 3 is not exponent-2 yet is not the circle U(1))` ($\text{value} = 3$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 7c35753fa4028aabc0abad1200143bd785e3fa2d2f5fa1d396f4d05eba145d01`

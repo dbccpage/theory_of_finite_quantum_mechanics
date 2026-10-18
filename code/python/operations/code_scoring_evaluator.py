@@ -1,4 +1,10 @@
-"""Forwarder for code_scoring_evaluator from operations.cicd."""
+"""Forwarder for code_scoring_evaluator from operations.cicd.
+
+AuthorityEffect: None.
+Origin: code/python/operations/cicd/code_scoring_evaluator.py
+Claim: urn:omega:operations:code_scoring_evaluator:forwarder:v2
+Profile: Non-Numeric
+"""
 
 from pathlib import Path
 import sys

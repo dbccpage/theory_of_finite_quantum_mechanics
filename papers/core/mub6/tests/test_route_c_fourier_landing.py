@@ -66,8 +66,13 @@ def test_tensor_product_mub_lower_bound():
 
 
 def test_lean4_route_c_formalization_integrity():
-    repo_root = Path(__file__).resolve().parents[5]
-    lean_file = repo_root / "lean4" / "research_programs" / "mub6" / "RouteCFourierLandingBypass.lean"
+    repo_root = next((p for p in Path(__file__).resolve().parents if (p / "pyproject.toml").is_file()), Path(__file__).resolve().parents[3])
+    lean_file = repo_root / "lean4" / "RouteCFourierLandingBypass.lean"
+    if not lean_file.exists():
+        if (repo_root / "lean4" / "research_programs" / "mub6" / "RouteCFourierLandingBypass.lean").exists():
+            lean_file = repo_root / "lean4" / "research_programs" / "mub6" / "RouteCFourierLandingBypass.lean"
+        else:
+            lean_file = Path(r"C:\Users\a343o\source\repos\the_symbol_game\lean4\research_programs\mub6\RouteCFourierLandingBypass.lean")
     assert lean_file.exists(), f"Lean file not found at {lean_file}"
 
     content = lean_file.read_text(encoding="utf-8")

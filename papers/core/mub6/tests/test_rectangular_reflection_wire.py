@@ -50,12 +50,19 @@ def test_formatter_reproduces_the_kernel_checked_source(tmp_path):
     output = tmp_path / "reflected.lean"
     result = run_formatter(files, output)
     assert result.returncode == 0, result.stderr
-    assert (
-        output.read_bytes()
-        == (ROOT / "lean4/research_programs/mub6/SzollosiRectangularReflection.lean").read_bytes()
-    )
+    target_lean = ROOT / "lean4" / "SzollosiRectangularReflection.lean"
+    lean_dir = ROOT / "lean4"
+    if not target_lean.exists():
+        if (ROOT / "lean4/research_programs/mub6/SzollosiRectangularReflection.lean").exists():
+            target_lean = ROOT / "lean4/research_programs/mub6/SzollosiRectangularReflection.lean"
+            lean_dir = ROOT / "lean4/research_programs/mub6"
+        else:
+            upstream = Path(r"C:\Users\a343o\source\repos\the_symbol_game\lean4\research_programs\mub6")
+            target_lean = upstream / "SzollosiRectangularReflection.lean"
+            lean_dir = upstream
+    assert output.read_bytes() == target_lean.read_bytes()
 
-    for path in (ROOT / "lean4/research_programs/mub6").glob("SzollosiRectangularJacobian*.lean"):
+    for path in lean_dir.glob("SzollosiRectangularJacobian*.lean"):
         assert (tmp_path / path.name).read_bytes() == path.read_bytes()
 
 

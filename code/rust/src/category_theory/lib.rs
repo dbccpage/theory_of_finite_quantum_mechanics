@@ -13,6 +13,8 @@ pub mod enriched;
 pub mod finite_continuation;
 pub mod foundations;
 pub mod functor;
+#[cfg(test)]
+mod l5a_challenges;
 pub mod limits_colimits;
 pub mod monad;
 pub mod monoidal;
@@ -143,13 +145,13 @@ pub mod dagger;
 pub mod finite_history_context;
 pub mod finite_partial_structure;
 pub mod finite_question_family;
-pub mod finite_report_repair;
 pub mod finite_report_descent;
 pub mod finite_report_query;
+pub mod finite_report_repair;
 pub mod finite_section_separation;
 
 pub mod finite_independence;
-pub mod finite_trace;
 pub mod finite_joint_carrier;
 pub mod finite_joint_dynamics;
 pub mod finite_simulation;
+pub mod finite_trace;

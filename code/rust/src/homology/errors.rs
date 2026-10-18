@@ -6,6 +6,24 @@ use thiserror::Error;
 
 #[derive(Debug, Error, Clone, PartialEq, Eq)]
 pub enum HomologicalError {
+    #[error("noncanonical or undefined rational at coefficient {index}")]
+    InvalidRational { index: usize },
+    #[error("certificate identity failed: {identity}")]
+    CertificateMismatch { identity: &'static str },
+    #[error("matrix shape mismatch: expected {expected:?}, got {got:?}")]
+    ShapeMismatch {
+        expected: (usize, usize),
+        got: (usize, usize),
+    },
+
+    #[error("degree mismatch: expected {expected}, got {got}")]
+    DegreeMismatch { expected: i32, got: i32 },
+
+    #[error("degree shift overflows its representation")]
+    DegreeOverflow,
+
+    #[error("resource limit exceeded: {0}")]
+    ResourceLimit(&'static str),
     #[error("dimension mismatch: expected {expected}, got {got}")]
     DimensionMismatch { expected: usize, got: usize },
 
@@ -20,6 +38,18 @@ pub enum HomologicalError {
 
     #[error("matrix error: {0}")]
     MatrixError(#[from] MatrixError),
+
+    #[error("rank factorization row reduction failed")]
+    RankReductionFailed {
+        #[source]
+        source: crate::linear_algebra::image_kernel::ExactLinearAlgebraError,
+    },
+
+    #[error("rank factorization inverse failed")]
+    RankInverseFailed {
+        #[source]
+        source: crate::linear_algebra::ExactFieldError,
+    },
 
     #[error("non-exact division encountered")]
     NonExactDivision,

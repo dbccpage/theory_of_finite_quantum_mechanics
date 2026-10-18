@@ -58,3 +58,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM102-SYNDROME-CAPACITY-BOUND`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM102-SYNDROME-CAPACITY-BOUND` (`FINITE_QM_STRUCTURE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_STRUCTURE-DS-QM102-SYNDROME-CAPACITY-BOUND`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1680, -3360, 2520]`, `chord_potential = 2520`, `holonomy_gamma2 = 3360`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(DS-QM102-SYNDROME-CAPACITY-BOUND): 4*idx(168) + 3*stage_rank(8) + route_degree(2) == 698` ($\text{value} = 698$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM102-SYNDROME-CAPACITY-BOUND): R_raw(376) - G_cob(184) - S_decoy(8) == 184 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 184$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm102_110_111_212_syndrome_hamming_lqg_wilson_and_majorana_braid`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = c1883d04d527bb7608a2160e652b6ca3a9679dad83298dd8c74acde1145587af`

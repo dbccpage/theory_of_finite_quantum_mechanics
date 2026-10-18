@@ -1,0 +1,80 @@
+# SCORING.md v2; incomplete gates deliberately remain null.
+schema_version: "2.0.0"
+artifact:
+  path: "code/rust/src/category_theory/higher.rs"
+  language: "Rust"
+  sha256: "7158313eed769c24e7ca04bb5a2fce1990b7b8646580a81df12699ca18249d00"
+profile: "Exact"
+level: "L5"
+level_basis: "Immutable finite strict 2-category admission owns checked underlying and vertical categories and exhaustively checks horizontal functor, unit, associativity and interchange laws under an admitted work budget."
+architecture_target: "L5"
+engineering_target: "A"
+gates:
+  G1: null
+  G2: null
+  G3: null
+  G4: "A"
+  G5: "A"
+composite_grade: null
+score_token: null
+is_complete: false
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-18T19:38:08.027410+00:00"
+AuthorityEffect: "None"
+claim:
+  urn: "urn:tfqm:rust:category_theory:higher"
+  description: "Admitted finite strict 2-categories. AuthorityEffect: None.  Convention: every table entry (a,b) composes a first, then b. Admission checks the underlying 1-category, the disjoint union of hom categories, globularity, exact horizontal domain/boundaries, strict associativity and units, horizontal identity preservation and interchange: h(v(a,b),v(c,d)) = v(h(a,c),h(b,d)). The immutable wrapper owns both category certificates and the full tables. Unknown identifiers return typed errors. A checked work bound is admitted before any quadratic/cubic/quartic law enumeration; no unbounded-size or weak/bicategorical coherence claim is made."
+  scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+contract:
+  status: "pending"
+  path: null
+  note: "Reserved for a later user-requested contract; none created or asserted here."
+evidence:
+  - {"path": "evidence/quality/category_homology/20261018T193427Z/baseline.json", "sha256": "400ef040ec3fb6098502e0440ee1f91e20d7e43f0ca0a7ab29e9cecdd0a04726", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261018T193427Z/summary.json", "sha256": "e11c39bea5e5a0aa41e5a0a033ff2ffcafd13c88870b77893c048140da1d74cd", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261018T193427Z/mutations.json", "sha256": "1e000579f4b8e1a618c35d5951696c7a440b847dc4a33a07862efa68b9118aaa", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261018T193445Z-metrics/receipt.json", "sha256": "1f1317dc593b08086888f9fcd1fa743a533ccfcbcf6b2ca8f0ed9daaffe0a420", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/higher.json", "sha256": "1dd8a7dec92ccb54a4a4fd2259fdea344bdf1290d28b0746f3eaa99f9102b078", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
+verification:
+  baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "shared scoped crate build"
+  local_mutant_ids:
+    - "TC01-horizontal-admission"
+    - "TC02-strict-units"
+    - "TC03-associativity"
+    - "TC04-identity-functor"
+    - "TC05-interchange-admission"
+    - "TC06-one-domain"
+    - "TC07-two-domain"
+    - "TC08-composition-domain"
+    - "TC09-vertical-boundary"
+    - "TC10-horizontal-boundary"
+    - "TC11-work-admission"
+    - "TC12-overflow"
+    - "TC13-budget-boundary"
+    - "TC14-interchange-equality"
+mutation_accounting:
+  killed: 14
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: 1.0
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 1017
+  parsed_production_functions: 48
+  max_production_ccn: 9
+  cognitive_complexity_upper_bound: 9
+  control_nesting: 3
+  opaque_function_macros: []
+  functions_exceeding_A: []
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+open_findings:
+  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
+  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
+  - "External path dependency source contents have not received a separate origin/content attestation."

@@ -133,7 +133,7 @@ pub fn compose_validated_functors(
     first: &ValidatedFiniteFunctor,
     second: &ValidatedFiniteFunctor,
 ) -> Result<DeclaredFiniteFunctor, String> {
-    if first.target().name != second.source().name {
+    if first.target() != second.source() {
         return Err(format!(
             "Cannot compose validated functors {} and {}: target {} does not match source {}",
             first.declared().name,
@@ -230,13 +230,105 @@ pub fn declared_finite_functor_from_maps(
     functor
 }
 
+/// Exhaustive finite functor checking. Endpoints must first satisfy all finite
+/// category laws; both maps have exactly the source domain. Law checks are
+/// polynomial in the explicit tables, including O(m^3 log c) endpoint validation.
 pub fn validate_functor_between(
     functor: &DeclaredFiniteFunctor,
     source: &DeclaredFiniteCategory,
     target: &DeclaredFiniteCategory,
 ) -> ValidationReport {
     let mut report = ValidationReport::new(&functor.name);
+    check_endpoint_categories(&mut report, source, target);
+    add_unit(
+        &mut report,
+        FunctorValidation::Name,
+        check_functor_name(functor),
+    );
+    add_unit(
+        &mut report,
+        FunctorValidation::MappingDomain,
+        check_mapping_domains(functor, source),
+    );
+    add_unit(
+        &mut report,
+        FunctorValidation::ObjectTotality,
+        check_object_images(functor, source, target),
+    );
+    add_unit(
+        &mut report,
+        FunctorValidation::MorphismTotality,
+        check_morphism_images(functor, source, target),
+    );
+    add_unit(
+        &mut report,
+        FunctorValidation::BoundaryPreservation,
+        check_boundary_images(functor, source, target),
+    );
+    add_unit(
+        &mut report,
+        FunctorValidation::IdentityPreservation,
+        check_identity_images(functor, source, target),
+    );
+    add_unit(
+        &mut report,
+        FunctorValidation::CompositionPreservation,
+        check_composition_images(functor, source, target),
+    );
+    report
+}
 
+fn check_endpoint_categories(
+    report: &mut ValidationReport,
+    source: &DeclaredFiniteCategory,
+    target: &DeclaredFiniteCategory,
+) {
+    let checked_source = super::finite_category_validation::validate_finite_category(source);
+    report.add_typed("functor::source_category", checked_source.typed_violations);
+    if source != target {
+        let checked_target = super::finite_category_validation::validate_finite_category(target);
+        report.add_typed("functor::target_category", checked_target.typed_violations);
+    }
+}
+
+fn check_functor_name(functor: &DeclaredFiniteFunctor) -> Vec<ValidationViolation> {
+    if functor.name.trim().is_empty() {
+        return vec![violation(
+            FunctorValidation::Name,
+            ValidationLocation::Global,
+            "Empty functor name",
+        )];
+    }
+    Vec::new()
+}
+
+fn check_mapping_domains(
+    functor: &DeclaredFiniteFunctor,
+    source: &DeclaredFiniteCategory,
+) -> Vec<ValidationViolation> {
+    let mut errors = Vec::new();
+    if !functor.object_map.keys().eq(source.objects.iter()) {
+        errors.push(violation(
+            FunctorValidation::MappingDomain,
+            ValidationLocation::Global,
+            "Object map domain differs from source objects",
+        ));
+    }
+    if !functor.morphism_map.keys().eq(source.morphisms.keys()) {
+        errors.push(violation(
+            FunctorValidation::MappingDomain,
+            ValidationLocation::Global,
+            "Morphism map domain differs from source morphisms",
+        ));
+    }
+    errors
+}
+
+fn check_object_images(
+    functor: &DeclaredFiniteFunctor,
+    source: &DeclaredFiniteCategory,
+    target: &DeclaredFiniteCategory,
+) -> Vec<ValidationViolation> {
     let mut object_violations = Vec::new();
     if functor.source_category != source.name {
         object_violations.push(violation(
@@ -277,12 +369,14 @@ pub fn validate_functor_between(
             )),
         }
     }
-    add_unit(
-        &mut report,
-        FunctorValidation::ObjectTotality,
-        object_violations,
-    );
+    object_violations
+}
 
+fn check_morphism_images(
+    functor: &DeclaredFiniteFunctor,
+    source: &DeclaredFiniteCategory,
+    target: &DeclaredFiniteCategory,
+) -> Vec<ValidationViolation> {
     let mut morphism_violations = Vec::new();
     for morphism in source.morphisms.keys() {
         match functor.on_morphism(morphism) {
@@ -302,12 +396,14 @@ pub fn validate_functor_between(
             )),
         }
     }
-    add_unit(
-        &mut report,
-        FunctorValidation::MorphismTotality,
-        morphism_violations,
-    );
+    morphism_violations
+}
 
+fn check_boundary_images(
+    functor: &DeclaredFiniteFunctor,
+    source: &DeclaredFiniteCategory,
+    target: &DeclaredFiniteCategory,
+) -> Vec<ValidationViolation> {
     let mut boundary_violations = Vec::new();
     for morphism in source.morphisms.values() {
         let Some(image_morphism) = functor.on_morphism(&morphism.name) else {
@@ -338,12 +434,14 @@ pub fn validate_functor_between(
             ));
         }
     }
-    add_unit(
-        &mut report,
-        FunctorValidation::BoundaryPreservation,
-        boundary_violations,
-    );
+    boundary_violations
+}
 
+fn check_identity_images(
+    functor: &DeclaredFiniteFunctor,
+    source: &DeclaredFiniteCategory,
+    target: &DeclaredFiniteCategory,
+) -> Vec<ValidationViolation> {
     let mut identity_violations = Vec::new();
     for object in &source.objects {
         let Some(source_identity) = source.identity_of(object) else {
@@ -372,12 +470,14 @@ pub fn validate_functor_between(
             )),
         }
     }
-    add_unit(
-        &mut report,
-        FunctorValidation::IdentityPreservation,
-        identity_violations,
-    );
+    identity_violations
+}
 
+fn check_composition_images(
+    functor: &DeclaredFiniteFunctor,
+    source: &DeclaredFiniteCategory,
+    target: &DeclaredFiniteCategory,
+) -> Vec<ValidationViolation> {
     let mut composition_violations = Vec::new();
     for ((first, second), composite) in &source.compositions {
         let Some(first_image) = functor.on_morphism(first) else {
@@ -418,18 +518,41 @@ pub fn validate_functor_between(
             )),
         }
     }
-    add_unit(
-        &mut report,
-        FunctorValidation::CompositionPreservation,
-        composition_violations,
-    );
-
-    report
+    composition_violations
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn admission_rejects_non_categories_and_extra_map_entries() {
+        let mut c = walking_arrow("C");
+        let valid = identity_functor(&c, "F");
+        let mut extra = valid.clone();
+        extra.map_object("outside", "A");
+        assert!(ValidatedFiniteFunctor::try_new(extra, &c, &c).is_err());
+        c.compositions.clear();
+        assert!(ValidatedFiniteFunctor::try_new(valid, &c, &c).is_err());
+    }
+
+    #[test]
+    fn composition_rejects_different_middle_categories_with_the_same_name() {
+        let middle = walking_arrow("SameName");
+        let mut different = middle.clone();
+        different.add_identity("Extra", "id_Extra");
+        different.set_composition("id_Extra", "id_Extra", "id_Extra");
+        let first =
+            ValidatedFiniteFunctor::try_new(identity_functor(&middle, "F"), &middle, &middle)
+                .unwrap();
+        let second = ValidatedFiniteFunctor::try_new(
+            identity_functor(&different, "G"),
+            &different,
+            &different,
+        )
+        .unwrap();
+        assert!(compose_validated_functors("GF", &first, &second).is_err());
+    }
     use crate::finite_category_builder::DeclaredFiniteCategoryBuilder;
 
     fn walking_arrow(name: &str) -> DeclaredFiniteCategory {

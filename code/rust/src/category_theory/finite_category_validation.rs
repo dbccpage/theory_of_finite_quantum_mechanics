@@ -91,8 +91,15 @@ pub fn check_object_references(category: &DeclaredFiniteCategory) -> Vec<Validat
 pub fn check_nonempty_names(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation> {
     let mut violations = Vec::new();
 
+    if category.name.trim().is_empty() {
+        violations.push(violation(
+            FiniteCategoryValidation::ObjectReference,
+            ValidationLocation::Object(category.name.clone()),
+            "Empty category name",
+        ));
+    }
     for object in &category.objects {
-        if object.is_empty() {
+        if object.trim().is_empty() {
             violations.push(violation(
                 FiniteCategoryValidation::ObjectReference,
                 ValidationLocation::Object(object.clone()),
@@ -102,7 +109,7 @@ pub fn check_nonempty_names(category: &DeclaredFiniteCategory) -> Vec<Validation
     }
 
     for name in category.morphisms.keys() {
-        if name.is_empty() {
+        if name.trim().is_empty() {
             violations.push(violation(
                 FiniteCategoryValidation::MorphismBoundary,
                 ValidationLocation::Morphism(name.clone()),
@@ -349,60 +356,45 @@ pub fn check_composition_boundaries(category: &DeclaredFiniteCategory) -> Vec<Va
     violations
 }
 
+/// Exhaustive associativity, O(m^3 log c) table lookups and output-sized storage.
 pub fn check_associativity(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation> {
     let mut violations = Vec::new();
-
     for first in category.morphisms.values() {
-        for second in category.morphisms.values() {
-            if first.target != second.source {
-                continue;
-            }
-            for third in category.morphisms.values() {
-                if second.target != third.source {
-                    continue;
-                }
-
-                let Some(second_after_first) = category.compose(&first.name, &second.name) else {
-                    continue;
-                };
-                let Some(third_after_second) = category.compose(&second.name, &third.name) else {
-                    continue;
-                };
-                let left = category.compose(second_after_first, &third.name);
-                let right = category.compose(&first.name, third_after_second);
-
-                match (left, right) {
-                    (Some(left), Some(right)) if left == right => {}
-                    (Some(left), Some(right)) => violations.push(violation(
-                        FiniteCategoryValidation::Associativity,
-                        ValidationLocation::Composition {
-                            first: first.name.clone(),
-                            second: second.name.clone(),
-                            composite: Some(third.name.clone()),
-                        },
-                        format!(
-                            "Associativity fails for ({}, {}, {}): left {}, right {}",
-                            first.name, second.name, third.name, left, right
-                        ),
-                    )),
-                    _ => violations.push(violation(
-                        FiniteCategoryValidation::Associativity,
-                        ValidationLocation::Composition {
-                            first: first.name.clone(),
-                            second: second.name.clone(),
-                            composite: Some(third.name.clone()),
-                        },
-                        format!(
-                            "Associativity comparison undefined for ({}, {}, {})",
-                            first.name, second.name, third.name
-                        ),
-                    )),
-                }
-            }
+        let seconds = category
+            .morphisms
+            .values()
+            .filter(|second| first.target == second.source);
+        for second in seconds {
+            let thirds = category
+                .morphisms
+                .values()
+                .filter(|third| second.target == third.source);
+            violations.extend(thirds.filter_map(|third| {
+                associativity_at(category, &first.name, &second.name, &third.name)
+            }));
         }
     }
-
     violations
+}
+
+fn associativity_at(
+    category: &DeclaredFiniteCategory,
+    first: &str,
+    second: &str,
+    third: &str,
+) -> Option<ValidationViolation> {
+    let left = category
+        .compose(first, second)
+        .and_then(|pair| category.compose(pair, third));
+    let right = category
+        .compose(second, third)
+        .and_then(|pair| category.compose(first, pair));
+    if left.is_some() && left == right {
+        return None;
+    }
+    Some(violation(FiniteCategoryValidation::Associativity,
+        ValidationLocation::Composition { first: first.into(), second: second.into(), composite: Some(third.into()) },
+        format!("Associativity fails or is undefined for ({first}, {second}, {third}): {left:?} versus {right:?}")))
 }
 
 pub fn validate_finite_category(category: &DeclaredFiniteCategory) -> ValidationReport {

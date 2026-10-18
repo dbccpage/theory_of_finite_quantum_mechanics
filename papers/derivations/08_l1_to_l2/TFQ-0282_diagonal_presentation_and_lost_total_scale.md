@@ -62,8 +62,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 0face75857cc8223b8bce01b8fcb280a13ccdc4fc11ec98872c32bc388ad4b99`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-QM003-C17-COMPOSABLE-FACTORIZATION`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)

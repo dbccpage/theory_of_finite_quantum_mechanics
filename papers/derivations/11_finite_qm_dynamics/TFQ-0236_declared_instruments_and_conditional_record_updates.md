@@ -70,3 +70,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT` (`FINITE_QM_STRUCTURE` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-DS-PROJECTION-POSTULATE-BOUNDARY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [170, -340, 255]`, `chord_potential = 255`, `holonomy_gamma2 = 340`
+- **Finite Shadow Exact Witness (`M4`)**: `idempotent_repeat_stability: E(E(v)) == E(v) with trace 1 + 0 == 1` ($\text{value} = 1$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `sequential_order_sensitivity_defect: |(P_z P_x - P_x P_z)|_entry_sq == 4 (order sensitivity requires non-commuting projector algebra)` ($\text{value} = 4$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 2c867b3d2d5a91a4dc5e8116fad497573f2f6864492728764f1585f9d9216c7e`

@@ -1,3 +1,6 @@
+//! Exact Reader/State/Writer arrow combinators. AuthorityEffect: None.
+//! Callback termination and panic behavior remain the caller's trust boundary.
+
 use std::sync::Arc;
 
 // ----------------------------------------------------------------------------
@@ -7,8 +10,8 @@ use std::sync::Arc;
 // Ctx: Configuration / Global Constants (Reader)
 #[derive(Clone, Debug)]
 pub struct Ctx {
-    pub common_constants: Vec<f64>,
-    pub threshold: f64,
+    pub common_constants: Vec<num_rational::BigRational>,
+    pub threshold: num_rational::BigRational,
 }
 
 // St: State (Accumulated suggestions, local symbol table)

@@ -99,11 +99,21 @@ def load_and_validate_receipt(filepath: Path) -> Dict[str, Any]:
     return data
 
 
-def _resolve_audit_paths(
-    artifacts_dir: Optional[Union[Path, str]],
-    manifest_path: Optional[Union[Path, str]],
-) -> Tuple[Path, Path]:
+def verify_all_receipts(
+    artifacts_dir: Optional[Union[Path, str]] = None,
+    manifest_path: Optional[Union[Path, str]] = None,
+) -> Dict[str, Any]:
+    """Verify all certified receipts against the canonical manifest.
+
+    Args:
+        artifacts_dir: Directory containing receipt JSON files. Defaults to repo 'artifacts/'.
+        manifest_path: Path to manifest.json. Defaults to 'artifacts/manifest.json'.
+
+    Returns:
+        Summary dictionary: {"all_passed": bool, "receipts_verified": int, "errors": List[str]}
+    """
     if artifacts_dir is None:
+        # The paper's own artifacts: code/mub_verify/ -> paper root.
         resolved_artifacts = Path(__file__).resolve().parents[2] / "artifacts"
     else:
         resolved_artifacts = Path(artifacts_dir)
@@ -112,17 +122,19 @@ def _resolve_audit_paths(
         resolved_manifest = resolved_artifacts / "manifest.json"
     else:
         resolved_manifest = Path(manifest_path)
-    return resolved_artifacts, resolved_manifest
 
+    errors: List[str] = []
+    receipts_verified = 0
 
-def _load_and_validate_manifest(
-    resolved_manifest: Path,
-    errors: List[str],
-) -> Optional[Dict[str, Any]]:
     if not resolved_manifest.is_file():
         errors.append(f"Manifest file not found at: {resolved_manifest}")
-        return None
+        return {
+            "all_passed": False,
+            "receipts_verified": 0,
+            "errors": errors,
+        }
 
+    # Load and validate manifest
     try:
         raw_manifest_bytes = resolved_manifest.read_bytes()
         manifest_data = json.loads(
@@ -131,8 +143,13 @@ def _load_and_validate_manifest(
         assert_no_float(manifest_data, path="manifest.json")
     except Exception as exc:
         errors.append(f"Failed to parse manifest {resolved_manifest}: {exc}")
-        return None
+        return {
+            "all_passed": False,
+            "receipts_verified": 0,
+            "errors": errors,
+        }
 
+    # Manifest metadata validation
     if manifest_data.get("manifest_version") != EXPECTED_MANIFEST_VERSION:
         errors.append(
             f"Invalid manifest_version: expected '{EXPECTED_MANIFEST_VERSION}', "
@@ -156,14 +173,25 @@ def _load_and_validate_manifest(
     if not isinstance(manifest_data.get("timestamp"), str) or not manifest_data.get("timestamp"):
         errors.append("Manifest missing valid ISO-8601 timestamp")
 
-    return manifest_data
+    receipts_list = manifest_data.get("receipts")
+    if not isinstance(receipts_list, list):
+        errors.append(f"Manifest 'receipts' must be a list, got {type(receipts_list).__name__}")
+        return {
+            "audit_type": "FILE_INTEGRITY_AND_METADATA_AUDIT",
+            "mathematical_theorem_replay_dispatched": False,
+            "theorem_replay_status": "MISSING_MATHEMATICAL_REPLAY_DISPATCH",
+            "missing_replay_obligations": [
+                "Target A12",
+                "Target A13",
+                "Target B1",
+                "Target B2",
+                "Target B3",
+            ],
+            "all_passed": False,
+            "receipts_verified": 0,
+            "errors": errors,
+        }
 
-
-def _validate_manifest_registry(
-    manifest_data: Dict[str, Any],
-    receipts_list: List[Any],
-    errors: List[str],
-) -> bool:
     if len(receipts_list) != EXPECTED_TOTAL_RECEIPTS:
         errors.append(
             f"Expected {EXPECTED_TOTAL_RECEIPTS} receipts in manifest, found {len(receipts_list)}"
@@ -175,123 +203,119 @@ def _validate_manifest_registry(
 
     actual_registry = [(e.get("target"), e.get("filename"), e.get("schema_version"))
                        for e in receipts_list if isinstance(e, dict)]
-    if (len(actual_registry) != len(receipts_list)
-            or set(actual_registry) != set(EXPECTED_RECEIPT_REGISTRY)
-            or len(set(actual_registry)) != len(actual_registry)):
-        errors.append("Receipt registry mismatch or duplicate")
-        return False
-    return True
+    if len(actual_registry) != len(receipts_list) or set(actual_registry) != set(EXPECTED_RECEIPT_REGISTRY) or len(set(actual_registry)) != len(actual_registry):
+        return {
+            "audit_type": "FILE_INTEGRITY_AND_METADATA_AUDIT",
+            "mathematical_theorem_replay_dispatched": False,
+            "theorem_replay_status": "MISSING_MATHEMATICAL_REPLAY_DISPATCH",
+            "missing_replay_obligations": [
+                "Target A12",
+                "Target A13",
+                "Target B1",
+                "Target B2",
+                "Target B3",
+            ],
+            "all_passed": False,
+            "receipts_verified": 0,
+            "errors": errors + ["Receipt registry mismatch or duplicate"],
+        }
 
+    # Verification of individual receipts
+    for idx, entry in enumerate(receipts_list):
+        target = entry.get("target")
+        filename = entry.get("filename")
+        expected_sha256 = entry.get("sha256")
+        expected_schema = entry.get("schema_version")
+        manifest_verified = entry.get("verified")
+        arithmetic = entry.get("arithmetic")
+        entry_firewall = entry.get("firewall_line")
 
-def _verify_receipt_content(
-    receipt_data: Dict[str, Any],
-    expected_schema: Any,
-    manifest_verified: Any,
-    arithmetic: Any,
-    entry_firewall: Any,
-    entry_prefix: str,
-    errors: List[str],
-) -> bool:
-    receipt_schema = receipt_data.get("schema_version")
-    if receipt_schema != expected_schema:
-        errors.append(
-            f"{entry_prefix}: Schema mismatch. "
-            f"Manifest specifies '{expected_schema}', receipt has '{receipt_schema}'"
-        )
+        entry_prefix = f"Receipt[{idx}] ({target} / {filename})"
 
-    receipt_verified = receipt_data.get("verified")
-    if receipt_verified is not True:
-        errors.append(f"{entry_prefix}: Receipt verified status is not True ({receipt_verified!r})")
-    if manifest_verified is not True:
-        errors.append(f"{entry_prefix}: Manifest verified flag is not True ({manifest_verified!r})")
+        if not filename:
+            errors.append(f"{entry_prefix}: Missing filename")
+            continue
 
-    if arithmetic != "exact rational / cyclotomic":
-        errors.append(
-            f"{entry_prefix}: Manifest arithmetic must be 'exact rational / cyclotomic', got '{arithmetic}'"
-        )
+        receipt_file = (resolved_artifacts / filename).resolve()
+        if not receipt_file.is_relative_to(resolved_artifacts.resolve()):
+            errors.append(f"{entry_prefix}: receipt path outside artifacts root")
+            continue
+        if not receipt_file.is_file():
+            errors.append(f"{entry_prefix}: File not found at {receipt_file}")
+            continue
 
-    if entry_firewall != EXPECTED_FIREWALL_LINE:
-        errors.append(
-            f"{entry_prefix}: Manifest entry firewall mismatch: expected '{EXPECTED_FIREWALL_LINE}', "
-            f"got '{entry_firewall}'"
-        )
+        # Check raw SHA-256 (with canonical LF normalization for Windows line-ending resilience)
+        raw_receipt_bytes = receipt_file.read_bytes()
+        actual_sha256 = hashlib.sha256(raw_receipt_bytes).hexdigest()
+        if actual_sha256 != expected_sha256:
+            # Check if difference is strictly due to platform CRLF line-ending conversion
+            norm_sha256 = hashlib.sha256(raw_receipt_bytes.replace(b"\r\n", b"\n")).hexdigest()
+            if norm_sha256 == expected_sha256:
+                actual_sha256 = norm_sha256
+        if actual_sha256 != expected_sha256:
+            errors.append(
+                f"{entry_prefix}: SHA-256 digest mismatch. "
+                f"Expected {expected_sha256}, got {actual_sha256}"
+            )
+            continue
 
-    receipt_firewall = receipt_data.get("firewall") or receipt_data.get("firewall_line")
-    if receipt_firewall != EXPECTED_FIREWALL_LINE:
-        errors.append(
-            f"{entry_prefix}: Receipt body firewall mismatch: expected '{EXPECTED_FIREWALL_LINE}', "
-            f"got '{receipt_firewall}'"
-        )
+        # Load and float-check receipt data
+        try:
+            receipt_data = load_and_validate_receipt(receipt_file)
+        except ReceiptVerificationError as exc:
+            errors.append(f"{entry_prefix}: {exc}")
+            continue
 
-    math_payload_keys = [
-        k for k in receipt_data.keys()
-        if k not in ("schema_version", "verified", "firewall", "firewall_line", "authority_effect", "project")
-    ]
-    if not math_payload_keys or len(receipt_data) <= 3:
-        errors.append(
-            f"{entry_prefix}: Receipt contains no mathematical certificate payload (only {list(receipt_data.keys())})"
-        )
-        return False
-    return True
+        # Validate schema version
+        receipt_schema = receipt_data.get("schema_version")
+        if receipt_schema != expected_schema:
+            errors.append(
+                f"{entry_prefix}: Schema mismatch. "
+                f"Manifest specifies '{expected_schema}', receipt has '{receipt_schema}'"
+            )
 
+        # Validate verified flag
+        receipt_verified = receipt_data.get("verified")
+        if receipt_verified is not True:
+            errors.append(f"{entry_prefix}: Receipt verified status is not True ({receipt_verified!r})")
+        if manifest_verified is not True:
+            errors.append(f"{entry_prefix}: Manifest verified flag is not True ({manifest_verified!r})")
 
-def _verify_single_receipt_entry(
-    idx: int,
-    entry: Dict[str, Any],
-    resolved_artifacts: Path,
-    errors: List[str],
-) -> bool:
-    target = entry.get("target")
-    filename = entry.get("filename")
-    expected_sha256 = entry.get("sha256")
-    expected_schema = entry.get("schema_version")
-    manifest_verified = entry.get("verified")
-    arithmetic = entry.get("arithmetic")
-    entry_firewall = entry.get("firewall_line")
+        # Validate arithmetic mode
+        if arithmetic != "exact rational / cyclotomic":
+            errors.append(
+                f"{entry_prefix}: Manifest arithmetic must be 'exact rational / cyclotomic', got '{arithmetic}'"
+            )
 
-    entry_prefix = f"Receipt[{idx}] ({target} / {filename})"
+        # Validate firewall statement in entry and in receipt
+        if entry_firewall != EXPECTED_FIREWALL_LINE:
+            errors.append(
+                f"{entry_prefix}: Manifest entry firewall mismatch: expected '{EXPECTED_FIREWALL_LINE}', "
+                f"got '{entry_firewall}'"
+            )
 
-    if not filename:
-        errors.append(f"{entry_prefix}: Missing filename")
-        return False
+        receipt_firewall = receipt_data.get("firewall") or receipt_data.get("firewall_line")
+        if receipt_firewall != EXPECTED_FIREWALL_LINE:
+            errors.append(
+                f"{entry_prefix}: Receipt body firewall mismatch: expected '{EXPECTED_FIREWALL_LINE}', "
+                f"got '{receipt_firewall}'"
+            )
 
-    receipt_file = (resolved_artifacts / filename).resolve()
-    if not receipt_file.is_relative_to(resolved_artifacts.resolve()):
-        errors.append(f"{entry_prefix}: receipt path outside artifacts root")
-        return False
-    if not receipt_file.is_file():
-        errors.append(f"{entry_prefix}: File not found at {receipt_file}")
-        return False
+        # Check that receipt is not an empty 3-field stub and contains mathematical payload
+        math_payload_keys = [
+            k for k in receipt_data.keys()
+            if k not in ("schema_version", "verified", "firewall", "firewall_line", "authority_effect", "project")
+        ]
+        if not math_payload_keys or len(receipt_data) <= 3:
+            errors.append(
+                f"{entry_prefix}: Receipt contains no mathematical certificate payload (only {list(receipt_data.keys())})"
+            )
+            continue
 
-    raw_receipt_bytes = receipt_file.read_bytes()
-    actual_sha256 = hashlib.sha256(raw_receipt_bytes).hexdigest()
-    if actual_sha256 != expected_sha256:
-        norm_sha256 = hashlib.sha256(raw_receipt_bytes.replace(b"\r\n", b"\n")).hexdigest()
-        if norm_sha256 == expected_sha256:
-            actual_sha256 = norm_sha256
-    if actual_sha256 != expected_sha256:
-        errors.append(
-            f"{entry_prefix}: SHA-256 digest mismatch. "
-            f"Expected {expected_sha256}, got {actual_sha256}"
-        )
-        return False
+        receipts_verified += 1
 
-    try:
-        receipt_data = load_and_validate_receipt(receipt_file)
-    except ReceiptVerificationError as exc:
-        errors.append(f"{entry_prefix}: {exc}")
-        return False
+    all_passed = (len(errors) == 0) and (receipts_verified == EXPECTED_TOTAL_RECEIPTS)
 
-    return _verify_receipt_content(
-        receipt_data, expected_schema, manifest_verified, arithmetic, entry_firewall, entry_prefix, errors
-    )
-
-
-def _make_audit_summary(
-    all_passed: bool,
-    receipts_verified: int,
-    errors: List[str],
-) -> Dict[str, Any]:
     return {
         "audit_type": "FILE_INTEGRITY_AND_METADATA_AUDIT",
         "mathematical_theorem_replay_dispatched": False,
@@ -307,43 +331,6 @@ def _make_audit_summary(
         "receipts_verified": receipts_verified,
         "errors": errors,
     }
-
-
-def verify_all_receipts(
-    artifacts_dir: Optional[Union[Path, str]] = None,
-    manifest_path: Optional[Union[Path, str]] = None,
-) -> Dict[str, Any]:
-    """Verify all certified receipts against the canonical manifest.
-
-    Args:
-        artifacts_dir: Directory containing receipt JSON files. Defaults to repo 'artifacts/'.
-        manifest_path: Path to manifest.json. Defaults to 'artifacts/manifest.json'.
-
-    Returns:
-        Summary dictionary: {"all_passed": bool, "receipts_verified": int, "errors": List[str]}
-    """
-    resolved_artifacts, resolved_manifest = _resolve_audit_paths(artifacts_dir, manifest_path)
-    errors: List[str] = []
-    receipts_verified = 0
-
-    manifest_data = _load_and_validate_manifest(resolved_manifest, errors)
-    if manifest_data is None:
-        return _make_audit_summary(False, 0, errors)
-
-    receipts_list = manifest_data.get("receipts")
-    if not isinstance(receipts_list, list):
-        errors.append(f"Manifest 'receipts' must be a list, got {type(receipts_list).__name__}")
-        return _make_audit_summary(False, 0, errors)
-
-    if not _validate_manifest_registry(manifest_data, receipts_list, errors):
-        return _make_audit_summary(False, 0, errors)
-
-    for idx, entry in enumerate(receipts_list):
-        if _verify_single_receipt_entry(idx, entry, resolved_artifacts, errors):
-            receipts_verified += 1
-
-    all_passed = (len(errors) == 0) and (receipts_verified == EXPECTED_TOTAL_RECEIPTS)
-    return _make_audit_summary(all_passed, receipts_verified, errors)
 
 
 def main() -> None:

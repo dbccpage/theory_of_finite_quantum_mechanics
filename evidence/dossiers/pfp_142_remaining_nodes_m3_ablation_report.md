@@ -2,18 +2,18 @@
 
 **AuthorityEffect:** `None`  
 **Model Evaluated:** `deepseek/deepseek-v4.1-flash` (`openrouter:deepseek/deepseek-v4.1-flash`)  
-**Paired DAG Nodes Evaluated:** `100 / 142` (`prompt_index` `36`..`177`)  
+**Paired DAG Nodes Evaluated:** `142 / 142` (`prompt_index` `36`..`177`)  
 
 ## 1. Aggregate First-Attempt Pass Rate & Marginal Contribution of Mission M3 (`slot_m3_layer2_ideals_and_annihilators`)
 
 | Metric | Without Mission M3 Decoy Equations (`M1+M2+M4`) | With Mission M3 Decoy Equations (`M1+M2+M3+M4`) | Marginal M3 Contribution ($\Delta$) |
 |---|---:|---:|---:|
-| **Attempt-1 All-Gates Pass (`G0..G6`)** | `35 / 100` (`35.0%`) | `94 / 100` (`94.0%`) | **`+59` nodes (`+59.0%`)** |
-| **Final Multi-Stage Pass (`<= 2` attempts)** | — | `100 / 100` (`100.0%`) | — |
-| **`G4` Countermodel Decoy Failures (`Attempt 1`)** | `65` | `0` | **`-65` failures** |
+| **Attempt-1 All-Gates Pass (`G0..G6`)** | `52 / 142` (`36.62%`) | `134 / 142` (`94.37%`) | **`+82` nodes (`+57.75%`)** |
+| **Final Multi-Stage Pass (`<= 2` attempts)** | — | `142 / 142` (`100.0%`) | — |
+| **`G4` Countermodel Decoy Failures (`Attempt 1`)** | `89` | `1` | **`-88` failures** |
 | **`G5` Unconditional Promotion Failures (`Attempt 1`)** | `2` | `0` | **`-2` failures** |
-| **Mean Completion Tokens (`Attempt 1`)** | `852.7` | `687.1` | **`-165.6` tokens** |
-| **Mean Latency (`Attempt 1`, ms)** | `29255.0 ms` | `21063.0 ms` | **`-8192.0 ms`** |
+| **Mean Completion Tokens (`Attempt 1`)** | `866.4` | `686.1` | **`-180.3` tokens** |
+| **Mean Latency (`Attempt 1`, ms)** | `29616.5 ms` | `21096.1 ms` | **`-8520.4 ms`** |
 
 ## 2. Stage-by-Stage Breakdown (`36..177`)
 
@@ -26,9 +26,9 @@
 | `L1_EMERGENCE` | 9 | `3 / 9` | `8 / 9` | **`9 / 9`** |
 | `L1_TO_L2` | 19 | `10 / 19` | `19 / 19` | **`19 / 19`** |
 | `FINITE_QM_CORE` | 20 | `9 / 20` | `17 / 20` | **`20 / 20`** |
-| `FINITE_QM_STRUCTURE` | 8 | `3 / 8` | `8 / 8` | **`8 / 8`** |
-| `FINITE_QM_DYNAMICS` | 7 | `5 / 7` | `6 / 7` | **`7 / 7`** |
-| `IMPLEMENTATION` | 4 | `2 / 4` | `4 / 4` | **`4 / 4`** |
+| `FINITE_QM_STRUCTURE` | 40 | `17 / 40` | `38 / 40` | **`40 / 40`** |
+| `FINITE_QM_DYNAMICS` | 14 | `6 / 14` | `13 / 14` | **`14 / 14`** |
+| `IMPLEMENTATION` | 7 | `4 / 7` | `7 / 7` | **`7 / 7`** |
 
 ## 3. Node-by-Node Paired Comparison (`36..177`)
 
@@ -134,6 +134,48 @@
 | 133 | `GP-DROP-ONE-CENSUS` | `FINITE_QM_CORE` | `PROVED_LEAN` | `147` | `FAIL` (`cm=154`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
 | 134 | `DS-QM030-GRADED-PATHSUM` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `152` | `FAIL` (`cm=161`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
 | 135 | `DS-QM030-UNGRADED-OVERCOUNT` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `153` | `PASS` (`cm=153`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 136 | `DS-QM030-TRANSFER-OPERATOR-SHADOW` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `154` | `FAIL` (`cm=163`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 137 | `DS-QM032-FINITE-FEYNMAN-SHADOW` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `155` | `FAIL` (`cm=164`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 138 | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `156` | `FAIL` (`cm=165`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 139 | `DS-QM033-SCHRODINGER-DISCRETE-COCHAIN` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `157` | `FAIL` (`cm=489`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 140 | `DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `158` | `FAIL` (`cm=167`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 141 | `DS-QM041-HEISENBERG-PICTURE-FINITE` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `159` | `FAIL` (`cm=168`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 142 | `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY` | `FINITE_QM_DYNAMICS` | `PROVED_LEAN` | `160` | `PASS` (`cm=160`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 143 | `DS-QM021-IDEMPOTENT-CONDITIONING` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `159` | `FAIL` (`cm=159`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 144 | `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `160` | `FAIL` (`cm=168`, `ref=True`) | **FAIL** | **PASS** (`a=3`) |
+| 145 | `DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `161` | `FAIL` (`cm=169`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 146 | `DS-QM061-BUILDABILITY-SET-S` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `162` | `FAIL` (`cm=170`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 147 | `DS-QM062-U1-SELECTOR-LAYERS` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `163` | `PASS` (`cm=163`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 148 | `DS-QM063-HOLONOMY-COHERENT-INTENSITY` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `164` | `PASS` (`cm=164`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 149 | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `165` | `PASS` (`cm=165`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 150 | `DS-QM070-PRODUCT-NONFACTORIZATION` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `166` | `FAIL` (`cm=174`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 151 | `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `167` | `FAIL` (`cm=175`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 152 | `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `168` | `FAIL` (`cm=176`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 153 | `DS-QM073-FINITE-CHSH-AND-PR-BOX` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `169` | `FAIL` (`cm=177`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 154 | `DS-QM073-BELL-THEOREM-OBSTRUCTED` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `170` | `FAIL` (`cm=178`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 155 | `DS-QM074-NO-SIGNALING-MARGINAL` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `171` | `PASS` (`cm=171`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 156 | `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `172` | `FAIL` (`cm=180`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 157 | `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `173` | `FAIL` (`cm=181`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 158 | `DS-QM081-CPTP-MONOTONE-NOT-SELECTING` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `174` | `FAIL` (`cm=538`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 159 | `DS-QM081-STOCHASTIC-L1-CONTRACTION` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `175` | `PASS` (`cm=175`, `ref=True`) | **FAIL** | **PASS** (`a=2`) |
+| 160 | `DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `176` | `PASS` (`cm=176`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 161 | `DS-QM090-092-AUTHORITY-FIREWALL` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `177` | `PASS` (`cm=177`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 162 | `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `178` | `FAIL` (`cm=550`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 163 | `DS-QM090-093-QM-UNIQUENESS-TIER3` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `179` | `PASS` (`cm=179`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 164 | `DS-QM093-SURVIVAL-THEOREM` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `180` | `FAIL` (`cm=540`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 165 | `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `181` | `PASS` (`cm=181`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 166 | `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `182` | `FAIL` (`cm=190`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 167 | `DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `183` | `PASS` (`cm=183`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 168 | `DS-QM102-SYNDROME-CAPACITY-BOUND` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `184` | `FAIL` (`cm=192`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 169 | `DS-QM103-SHOW-THE-PACKET-PROTOCOL` | `FINITE_QM_STRUCTURE` | `DEFINITION` | `185` | `FAIL` (`cm=193`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 170 | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `186` | `PASS` (`cm=186`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 171 | `DS-QM120-MERMIN-PERES-F2-OBSTRUCTION` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `187` | `FAIL` (`cm=195`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 172 | `DS-QM206-BOUNDARY-SYNTHESIS` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `188` | `PASS` (`cm=188`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 173 | `DS-QM207-211-FIVE-IMPORT-CASCADE` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `189` | `PASS` (`cm=189`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 174 | `DS-QM212-MAJORANA-PROBLEM` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `190` | `PASS` (`cm=190`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 175 | `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` | `IMPLEMENTATION` | `PROVED_LEAN` | `195` | `PASS` (`cm=195`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 176 | `IMPL-THYMUS-SCREENING-SOUNDNESS` | `IMPLEMENTATION` | `PROVED_LEAN` | `196` | `FAIL` (`cm=608`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
+| 177 | `IMPL-LGGR-FINITE-RESULTS-LEAN` | `IMPLEMENTATION` | `PROVED_LEAN` | `197` | `PASS` (`cm=197`, `ref=True`) | **PASS** | **PASS** (`a=1`) |
 
 ## 4. Claim Hygiene Summary (`RULE[user_global]`)
 

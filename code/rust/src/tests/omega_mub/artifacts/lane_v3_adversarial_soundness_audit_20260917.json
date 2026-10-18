@@ -1,0 +1,64 @@
+{
+  "firewall": "AuthorityEffect: None. NOT MUB(6)=3.",
+  "timestamp": "2026-09-17T05:46:00Z",
+  "audit_target": "omega_engine/crates_rs/omega_mub",
+  "verification_command": "cargo test --test lane_v3_soundness_audit",
+  "test_results": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0,
+    "duration_seconds": 0.22
+  },
+  "vectors": {
+    "vector_1_gauge_fixing": {
+      "status": "REFUTED_SUSPICION",
+      "findings": "For any fixed triple with B1=I, global phase rotation v -> exp(-i arg(v_0)) v strictly preserves mutual unbiasedness against all columns while pinning v_0 = 1/sqrt(6) real positive. The 5-torus candidate box [0.4082, 0.4083] x {0} x [-0.41, 0.41]^10 provably encloses all candidate vectors. Candidate basis columns can be independently phased without violating basis orthonormality or mutual unbiasedness.",
+      "tests": [
+        "test_vector_1_gauge_rotation_preserves_mutual_unbiasedness_exactly",
+        "test_vector_1_candidate_5_torus_box_contains_gauge_fixed_vector"
+      ]
+    },
+    "vector_2_off_torus_cells": {
+      "status": "REFUTED_SUSPICION",
+      "findings": "Off-torus boxes are defined by 1/6 not in mod_sq interval for at least one coordinate. By the Intermediate Value Theorem on connected Cartesian product boxes, no point in any off-torus box can satisfy |v_k|^2 = 1/6. The count discrepancy (858,895 in point cover vs 954,386 in neighborhood cover) is caused by conservative interval widening forcing deeper splits, producing split off-torus children.",
+      "tests": [
+        "test_vector_2_off_torus_cells_provably_contain_no_b1_unbiased_vector"
+      ]
+    },
+    "vector_3_boundaries": {
+      "status": "REFUTED_SUSPICION",
+      "findings": "split_widest produces closed intervals [lo, mid] and [mid, hi] overlapping at {mid}. Their union has zero gaps. Closed interval bounds guarantee that any point on the torus cannot be discarded by an off-torus neighbor.",
+      "tests": [
+        "test_vector_3_boundaries_are_closed_and_have_zero_gaps"
+      ]
+    },
+    "vector_4_neighbourhood_widening": {
+      "status": "CONFIRMED_GAP",
+      "findings": "EnclosedTriple::widened_from_exact_columns widens entrywise Cartesian coordinate intervals by +/- delta. In quantum mechanics, column/ray phasing yields the exact same physical MUB triple, but for theta = pi/6 the distance is > 0.12, exceeding delta = 1/1000. Widening does not quotient by column phase or basis rotation gauge symmetries.",
+      "tests": [
+        "test_vector_4_confirmed_gap_column_phasing_not_enclosed"
+      ]
+    },
+    "vector_5_exactness": {
+      "status": "REFUTED_SUSPICION",
+      "findings": "d6_sos_float_sdp.rs is an isolated Stage B diagnostic with zero code paths leading to CoverCertificate. In cover_region_prefiltered, EnclosedTripleF64::residual_lower_estimate is strictly a performance heuristic; every certified box must pass exact.certify in exact BigRational arithmetic.",
+      "tests": [
+        "test_vector_5_float_prefilter_cannot_induce_false_certificate"
+      ]
+    },
+    "vector_6_merging": {
+      "status": "CONFIRMED_GAP",
+      "findings": "merge_chunk_certificates does not validate expected chunk count (2^presplit = 64) or chunk indices. It returns complete: true even if 63 chunks are missing or 64 duplicates of chunk 0 are passed. Furthermore, merge_on_disk_presplit6_chunks returns any pre-merged summary on disk without validating the presence or hashes of the underlying 64 chunk files.",
+      "tests": [
+        "test_vector_6_confirmed_gap_merge_accepts_missing_chunks",
+        "test_vector_6_confirmed_gap_merge_accepts_duplicated_chunks",
+        "test_vector_6_confirmed_gap_on_disk_merge_bypasses_chunk_verification"
+      ]
+    }
+  },
+  "untested_angles": [
+    "Triple gauge-slice transversality for global gluing (G1/G2)",
+    "Global moduli space coverage beyond the 6 genuine Dita seeds (ENC-1147)",
+    "Full box-level kernel reflection on 5-torus leaf boxes"
+  ]
+}

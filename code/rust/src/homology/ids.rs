@@ -9,13 +9,16 @@
 use serde::{Deserialize, Serialize};
 
 /// Refusal of an identifier constructor.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
 pub enum IdError {
     /// A numeric homological id was zero.
+    #[error("zero identifier")]
     ZeroId,
     /// A basis name was empty or only whitespace.
+    #[error("empty basis identifier")]
     EmptyBasis,
     /// A degree shift overflowed `i32`.
+    #[error("degree overflow")]
     DegreeOverflow,
 }
 
@@ -23,7 +26,8 @@ macro_rules! define_id {
     ($(#[$meta:meta])* $name:ident) => {
         $(#[$meta])*
         #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
-        pub struct $name(pub u64);
+        #[serde(try_from = "u64", into = "u64")]
+        pub struct $name(u64);
 
         impl $name {
             /// Construct a nonzero id. Zero is not an identifier.
@@ -38,6 +42,14 @@ macro_rules! define_id {
             pub fn get(self) -> u64 {
                 self.0
             }
+        }
+
+        impl TryFrom<u64> for $name {
+            type Error = IdError;
+            fn try_from(value: u64) -> Result<Self, IdError> { Self::new(value) }
+        }
+        impl From<$name> for u64 {
+            fn from(value: $name) -> u64 { value.0 }
         }
 
         impl std::fmt::Display for $name {
@@ -94,17 +106,17 @@ define_id!(
 );
 /// Identifies a basis by name.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub struct BasisId(pub String);
+#[serde(try_from = "String", into = "String")]
+pub struct BasisId(String);
 
 impl BasisId {
-    /// Historical total constructor. Callers in the homology complex pass a
-    /// nonempty name. The enforcing constructor is [`BasisId::try_new`].
-    pub fn new(name: impl Into<String>) -> Self {
-        let name = name.into();
-        match Self::try_new(&name) {
-            Ok(id) => id,
-            Err(_) => Self(name),
-        }
+    /// Construct an identifier for a graded basis family; empty names are invalid.
+    pub fn new(name: impl Into<String>) -> Result<Self, IdError> {
+        Self::try_new(&name.into())
+    }
+
+    pub fn as_str(&self) -> &str {
+        &self.0
     }
 
     /// Reject an empty or whitespace basis name.
@@ -114,6 +126,18 @@ impl BasisId {
         } else {
             Ok(Self(name.to_string()))
         }
+    }
+}
+
+impl TryFrom<String> for BasisId {
+    type Error = IdError;
+    fn try_from(value: String) -> Result<Self, IdError> {
+        Self::new(value)
+    }
+}
+impl From<BasisId> for String {
+    fn from(value: BasisId) -> String {
+        value.0
     }
 }
 
@@ -149,11 +173,17 @@ impl Degree {
     }
 
     pub fn checked_pred(self) -> Result<Self, IdError> {
-        self.0.checked_sub(1).map(Self).ok_or(IdError::DegreeOverflow)
+        self.0
+            .checked_sub(1)
+            .map(Self)
+            .ok_or(IdError::DegreeOverflow)
     }
 
     pub fn checked_succ(self) -> Result<Self, IdError> {
-        self.0.checked_add(1).map(Self).ok_or(IdError::DegreeOverflow)
+        self.0
+            .checked_add(1)
+            .map(Self)
+            .ok_or(IdError::DegreeOverflow)
     }
 }
 
@@ -221,7 +251,10 @@ fn parse_parenthesized(text: &str, kind: &str) -> Result<u64, IdError> {
     let Some(rest) = text.strip_prefix(kind) else {
         return Err(IdError::EmptyBasis);
     };
-    let Some(inner) = rest.strip_prefix('(').and_then(|body| body.strip_suffix(')')) else {
+    let Some(inner) = rest
+        .strip_prefix('(')
+        .and_then(|body| body.strip_suffix(')'))
+    else {
         return Err(IdError::EmptyBasis);
     };
     let value: u64 = inner.parse().map_err(|_| IdError::ZeroId)?;

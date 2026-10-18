@@ -1,0 +1,54 @@
+
+running 415 tests
+....................................................................................... 87/415
+....................................................................................... 174/415
+....................................................................................... 261/415
+functor_composition::tests::admission_rejects_non_categories_and_extra_map_entries --- FAILED
+functor_composition::tests::composition_rejects_different_middle_categories_with_the_same_name --- FAILED
+....................................................................................... 350/415
+................................................ 398/415
+natural_trans::tests::rejects_partial_functor_instead_of_skipping_the_square --- FAILED
+natural_trans::tests::rejects_extra_components_and_unlawful_endpoint_categories --- FAILED
+. 401/415
+natural_trans::tests::square_checker_reports_missing_maps_and_components --- FAILED
+.............
+failures:
+
+---- functor_composition::tests::admission_rejects_non_categories_and_extra_map_entries stdout ----
+
+thread 'functor_composition::tests::admission_rejects_non_categories_and_extra_map_entries' (28140) panicked at src\category_theory\functor_composition.rs:440:9:
+assertion failed: ValidatedFiniteFunctor::try_new(extra, &c, &c).is_err()
+
+---- functor_composition::tests::composition_rejects_different_middle_categories_with_the_same_name stdout ----
+
+thread 'functor_composition::tests::composition_rejects_different_middle_categories_with_the_same_name' (10916) panicked at src\category_theory\functor_composition.rs:453:9:
+assertion failed: compose_validated_functors("GF", &first, &second).is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- natural_trans::tests::rejects_partial_functor_instead_of_skipping_the_square stdout ----
+
+thread 'natural_trans::tests::rejects_partial_functor_instead_of_skipping_the_square' (17276) panicked at src\category_theory\natural_trans.rs:321:9:
+assertion failed: ValidatedFiniteNatTrans::try_new(nat, &cat, &cat, &functor, &functor).is_err()
+
+---- natural_trans::tests::rejects_extra_components_and_unlawful_endpoint_categories stdout ----
+
+thread 'natural_trans::tests::rejects_extra_components_and_unlawful_endpoint_categories' (14948) panicked at src\category_theory\natural_trans.rs:338:9:
+assertion failed: ValidatedFiniteNatTrans::try_new(nat, &cat, &cat, &functor, &functor).is_err()
+
+---- natural_trans::tests::square_checker_reports_missing_maps_and_components stdout ----
+
+thread 'natural_trans::tests::square_checker_reports_missing_maps_and_components' (8376) panicked at src\category_theory\natural_trans.rs:329:9:
+assertion failed: !check_naturality_square(&nat, &cat, &partial, &functor.morphism_map,
+            &cat.compositions).is_empty()
+
+
+failures:
+    functor_composition::tests::admission_rejects_non_categories_and_extra_map_entries
+    functor_composition::tests::composition_rejects_different_middle_categories_with_the_same_name
+    natural_trans::tests::rejects_extra_components_and_unlawful_endpoint_categories
+    natural_trans::tests::rejects_partial_functor_instead_of_skipping_the_square
+    natural_trans::tests::square_checker_reports_missing_maps_and_components
+
+test result: FAILED. 410 passed; 5 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

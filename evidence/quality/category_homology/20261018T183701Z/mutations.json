@@ -1,0 +1,184 @@
+[
+  {
+    "id": "H01-basis",
+    "needle": "if self.basis_id != other.basis_id {",
+    "outcome": "unrun",
+    "path": "homology/graded_vector.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H02-degree-hash",
+    "needle": "hasher.update(&degree.to_le_bytes());",
+    "outcome": "unrun",
+    "path": "homology/hashing.rs",
+    "replacement": "hasher.update(&0i32.to_le_bytes());"
+  },
+  {
+    "id": "H03-basis-hash",
+    "needle": "hasher.update(basis.as_bytes());",
+    "outcome": "unrun",
+    "path": "homology/hashing.rs",
+    "replacement": "hasher.update(b\"fixed\");"
+  },
+  {
+    "id": "H04-vector-kind",
+    "needle": "const TAG: &'static [u8] = b\"cochain\";",
+    "outcome": "unrun",
+    "path": "homology/graded_vector.rs",
+    "replacement": "const TAG: &'static [u8] = b\"chain\";"
+  },
+  {
+    "id": "H05-down-degree",
+    "needle": "if chain.degree != self.from_degree {",
+    "outcome": "unrun",
+    "path": "homology/boundary.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H06-up-degree",
+    "needle": "if cochain.degree != self.from_degree {",
+    "outcome": "unrun",
+    "path": "homology/coboundary.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H07-provenance",
+    "needle": "if verification_source.trim().is_empty() {",
+    "outcome": "unrun",
+    "path": "homology/cochain_complex.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H08-zero-id",
+    "needle": "if id == 0 {",
+    "outcome": "unrun",
+    "path": "homology/ids.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H09-simplex-order",
+    "needle": "if pair[1] <= pair[0] {",
+    "outcome": "unrun",
+    "path": "homology/simplicial.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H10-orientation",
+    "needle": "if value.orientation != 1 && value.orientation != -1 {",
+    "outcome": "unrun",
+    "path": "homology/simplicial.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H11-LU",
+    "needle": "\"LU=I\",",
+    "outcome": "unrun",
+    "path": "homology/rank_certificate.rs",
+    "replacement": "\"LU=I-SKIP\","
+  },
+  {
+    "id": "H12-VR",
+    "needle": "\"VR=I\",",
+    "outcome": "unrun",
+    "path": "homology/rank_certificate.rs",
+    "replacement": "\"VR=I-SKIP\","
+  },
+  {
+    "id": "H13-MUV",
+    "needle": "\"M=UV\",",
+    "outcome": "unrun",
+    "path": "homology/rank_certificate.rs",
+    "replacement": "\"M=UV-SKIP\","
+  },
+  {
+    "id": "H14-zero-product",
+    "needle": "if !product.as_slice().iter().all(Zero::is_zero) {",
+    "outcome": "unrun",
+    "path": "homology/exact_scalar.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H15-positive-weights",
+    "needle": "if *w <= Q::zero() {",
+    "outcome": "unrun",
+    "path": "homology/carrier.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H16-self-loop",
+    "needle": "if src == tgt {",
+    "outcome": "unrun",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "H17-raw-rationals",
+    "needle": "admit_coefficients(matrix.as_slice())",
+    "outcome": "unrun",
+    "path": "homology/exact_scalar.rs",
+    "replacement": "Ok(())"
+  },
+  {
+    "id": "H18-rank-output",
+    "needle": "        self.rank\n",
+    "outcome": "unrun",
+    "path": "homology/rank_certificate.rs",
+    "replacement": "        0\n"
+  },
+  {
+    "id": "C01-functor-composition",
+    "needle": "        candidate.check_compositions()?;",
+    "outcome": "unrun",
+    "path": "category_theory/cat_functor.rs",
+    "replacement": ""
+  },
+  {
+    "id": "C02-functor-domain",
+    "needle": "        candidate.check_maps()?;",
+    "outcome": "unrun",
+    "path": "category_theory/cat_functor.rs",
+    "replacement": ""
+  },
+  {
+    "id": "C03-functor-identity",
+    "needle": "        candidate.check_identities()?;",
+    "outcome": "unrun",
+    "path": "category_theory/cat_functor.rs",
+    "replacement": ""
+  },
+  {
+    "id": "C04-functor-boundary",
+    "needle": "        candidate.check_boundaries()?;",
+    "outcome": "unrun",
+    "path": "category_theory/cat_functor.rs",
+    "replacement": ""
+  },
+  {
+    "id": "C05-set-duplicates",
+    "needle": "if !seen.insert(e) {",
+    "outcome": "unrun",
+    "path": "category_theory/foundations/finite_set.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "C08-set-duplicates-valid",
+    "needle": "if !seen.insert(e) {",
+    "outcome": "unrun",
+    "path": "category_theory/foundations/finite_set.rs",
+    "replacement": "if seen.insert(e) && false {"
+  },
+  {
+    "id": "C06-weight-negatives",
+    "needle": "if weight.denom() <= &0.into() || weight < BigRational::zero() {",
+    "outcome": "unrun",
+    "path": "category_theory/finite_profunctor.rs",
+    "replacement": "if false {"
+  },
+  {
+    "id": "C07-category-associativity",
+    "needle": "        check_associativity(category),",
+    "outcome": "unrun",
+    "path": "category_theory/finite_category_validation.rs",
+    "replacement": "        Vec::new(),"
+  }
+]

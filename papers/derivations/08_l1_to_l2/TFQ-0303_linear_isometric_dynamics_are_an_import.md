@@ -59,3 +59,18 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F001_quantum/floor.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/README.md`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`L1-IMP-LINEAR-ISOMETRIC-DYNAMICS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` (`L1_TO_L2` / `IMPORTED_ASSUMPTION`)
+- **Mined Operad Family (`M2`)**: `OP-L1-ISOMETRIC-DYNAMICS-H003`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [300, -600, 450]`, `chord_potential = 450`, `holonomy_gamma2 = 600`
+- **Finite Shadow Exact Witness (`M4`)**: `permutation_l2_norm_preservation: ||P(3,4)||_2^2 = 4^2 + 3^2 == 25` ($\text{value} = 25$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `reset_map_l2_norm_distortion: ||R(3,4)||_2^2 - ||(3,4)||_2^2 = (3+4)^2 - 25 = 49 - 25 == 24 != 0` ($\text{value} = 24$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = b11618c4bdc564cb8530c1c33def5425e3eddf813415be539e18ce7748a6fdd7`

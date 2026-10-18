@@ -1,0 +1,43 @@
+warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\?\C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\code\rust\target\category-homology-audit-build\debug\incremental\tfqm_category_theory-17r437hrhrmrz\s-hnc1jawfou-1p0mvaz-working`
+
+warning: method `check_compositions` is never used
+   --> src\category_theory\cat_functor.rs:144:8
+    |
+ 40 | impl ValidatedFiniteFunctor {
+    | --------------------------- method in this implementation
+...
+144 |     fn check_compositions(&self) -> Result<(), FunctorAdmissionError> {
+    |        ^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 7 tests
+..... 5/7
+l5a_challenges::functor_rejects_each_mapping_and_binding_failure --- FAILED
+l5a_challenges::finite_functor_admission_matches_all_eight_c3_c2_maps --- FAILED
+
+failures:
+
+---- l5a_challenges::functor_rejects_each_mapping_and_binding_failure stdout ----
+
+thread 'l5a_challenges::functor_rejects_each_mapping_and_binding_failure' (16280) panicked at src\category_theory\l5a_challenges.rs:93:5:
+assertion failed: matches!(ValidatedFiniteFunctor::try_new(map_c3_c2([0, 1, 0]), c3, c2),
+    Err(FunctorAdmissionError::Composition { .. }))
+
+---- l5a_challenges::finite_functor_admission_matches_all_eight_c3_c2_maps stdout ----
+
+thread 'l5a_challenges::finite_functor_admission_matches_all_eight_c3_c2_maps' (27932) panicked at src\category_theory\l5a_challenges.rs:44:9:
+assertion `left == right` failed: map [0, 1, 0]
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    l5a_challenges::finite_functor_admission_matches_all_eight_c3_c2_maps
+    l5a_challenges::functor_rejects_each_mapping_and_binding_failure
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 403 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

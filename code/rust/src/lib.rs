@@ -8,6 +8,7 @@ pub mod dag_witnesses;
 pub use tfqm_category_theory as category_theory;
 pub use tfqm_combinatorics as combinatorics;
 pub use tfqm_finite_probability as finite_probability;
+pub use tfqm_fsp as fsp;
 pub use tfqm_functional as functional;
 pub use tfqm_fusion_categories as fusion_categories;
 pub use tfqm_general_relativity as general_relativity;
@@ -36,6 +37,7 @@ pub fn crate_root_inventory_holds() -> Result<(), &'static str> {
     if harmonic != 6 {
         return Err("the three-term harmonic sum is not 1");
     }
+    tfqm_fsp::fsp_crate_invariants_hold()?;
     crate::qm::domain::domain_invariants_hold()
 }
 

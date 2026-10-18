@@ -1,0 +1,38 @@
+warning: method `check_interchange` is never used
+   --> src\category_theory\higher.rs:304:8
+    |
+135 | impl ValidatedFiniteTwoCategory {
+    | ------------------------------- method in this implementation
+...
+304 |     fn check_interchange(&self) -> Result<(), ValidationViolation> {
+    |        ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 447 tests
+....................................................................................... 87/447
+....................................................................................... 174/447
+....................................................................................... 261/447
+....................................................................................... 348/447
+....................................................................................... 435/447
+......... 444/447
+higher::tests::all_6561_unital_scalar_pairs_match_eckmann_hilton --- FAILED
+..
+failures:
+
+---- higher::tests::all_6561_unital_scalar_pairs_match_eckmann_hilton stdout ----
+
+thread 'higher::tests::all_6561_unital_scalar_pairs_match_eckmann_hilton' (13360) panicked at src\category_theory\higher.rs:795:17:
+assertion `left == right` failed: vertical 13, horizontal 29
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    higher::tests::all_6561_unital_scalar_pairs_match_eckmann_hilton
+
+test result: FAILED. 446 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.26s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

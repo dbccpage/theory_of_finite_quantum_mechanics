@@ -1,0 +1,40 @@
+warning: unused variable: `limit`
+   --> src\category_theory\higher.rs:147:9
+    |
+147 |         limit: usize,
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_limit`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `check_work_budget` is never used
+   --> src\category_theory\higher.rs:354:4
+    |
+354 | fn check_work_budget(
+    |    ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+
+running 447 tests
+....................................................................................... 87/447
+....................................................................................... 174/447
+....................................................................................... 261/447
+................. 278/447
+higher::tests::work_budget_is_checked_before_enumeration_and_has_exact_boundaries --- FAILED
+....................................................................................... 366/447
+.................................................................................
+failures:
+
+---- higher::tests::work_budget_is_checked_before_enumeration_and_has_exact_boundaries stdout ----
+
+thread 'higher::tests::work_budget_is_checked_before_enumeration_and_has_exact_boundaries' (17012) panicked at src\category_theory\higher.rs:1005:77:
+called `Result::unwrap_err()` on an `Ok` value: ValidatedFiniteTwoCategory { declared: DeclaredFiniteTwoCategory { name: "C2 scalars", objects: {"*"}, one_morphisms: {"e": DeclaredOneMorphism { name: "e", source: "*", target: "*" }}, two_morphisms: {"0": DeclaredTwoMorphism { name: "0", source: "e", target: "e" }, "1": DeclaredTwoMorphism { name: "1", source: "e", target: "e" }}, id_1: {"*": "e"}, id_2: {"e": "0"}, compose_1: {("e", "e"): "e"}, compose_2_vertical: {("0", "0"): "0", ("0", "1"): "1", ("1", "0"): "1", ("1", "1"): "0"}, compose_2_horizontal: {("0", "0"): "0", ("0", "1"): "1", ("1", "0"): "1", ("1", "1"): "0"} }, underlying: ValidatedFiniteCategory { declared: DeclaredFiniteCategory { name: "C2 scalars", objects: {"*"}, morphisms: {"e": DeclaredMorphism { name: "e", source: "*", target: "*" }}, identities: {"*": "e"}, compositions: {("e", "e"): "e"} } }, vertical: ValidatedFiniteCategory { declared: DeclaredFiniteCategory { name: "C2 scalars.hom-disjoint-union", objects: {"e"}, morphisms: {"0": DeclaredMorphism { name: "0", source: "e", target: "e" }, "1": DeclaredMorphism { name: "1", source: "e", target: "e" }}, identities: {"e": "0"}, compositions: {("0", "0"): "0", ("0", "1"): "1", ("1", "0"): "1", ("1", "1"): "0"} } } }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    higher::tests::work_budget_is_checked_before_enumeration_and_has_exact_boundaries
+
+test result: FAILED. 446 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.69s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

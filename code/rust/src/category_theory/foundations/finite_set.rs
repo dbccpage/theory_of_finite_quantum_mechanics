@@ -41,12 +41,16 @@ impl FiniteSet {
     }
 
     pub fn validate_shell(&self) -> Result<(), String> {
-        if self.label.is_empty() {
+        if self.label.trim().is_empty() {
             return Err("empty label".into());
         }
+        let mut seen = std::collections::BTreeSet::new();
         for (i, e) in self.elements.iter().enumerate() {
-            if e.is_empty() {
+            if e.trim().is_empty() {
                 return Err(format!("empty element tag at index {i}"));
+            }
+            if !seen.insert(e) {
+                return Err(format!("duplicate element tag at index {i}"));
             }
         }
         if let Some(n) = self.declared_cardinality {
@@ -58,6 +62,46 @@ impl FiniteSet {
             }
         }
         Ok(())
+    }
+}
+
+/// A finite set whose distinct, nonempty elements and cardinality were checked.
+/// The declaration stays mutable until admission; admitted data is immutable.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(try_from = "FiniteSet", into = "FiniteSet")]
+pub struct ValidatedFiniteSet {
+    declared: FiniteSet,
+}
+
+impl TryFrom<FiniteSet> for ValidatedFiniteSet {
+    type Error = String;
+    fn try_from(declared: FiniteSet) -> Result<Self, String> {
+        declared.validate_shell()?;
+        Ok(Self { declared })
+    }
+}
+
+impl From<ValidatedFiniteSet> for FiniteSet {
+    fn from(value: ValidatedFiniteSet) -> Self {
+        value.declared
+    }
+}
+
+impl ValidatedFiniteSet {
+    pub fn declared(&self) -> &FiniteSet {
+        &self.declared
+    }
+    pub fn label(&self) -> &str {
+        &self.declared.label
+    }
+    pub fn elements(&self) -> &[String] {
+        &self.declared.elements
+    }
+    pub fn cardinality(&self) -> usize {
+        self.declared.cardinality()
+    }
+    pub fn contains(&self, value: &str) -> bool {
+        self.declared.elements.iter().any(|e| e == value)
     }
 }
 

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/rewriting.rs",
+    "language": "Rust",
+    "sha256": "b1692cf1829be23f6a80f227b83d9fd4e6f1006dc2ae3da6a70a9ad1a22d8087"
+  },
+  "reviewer": "Codex source and evidence review",
+  "gates": {
+    "G4": "A",
+    "G5": "A"
+  },
+  "basis": {
+    "G4": [
+      "Admitted domain: finite globular records, formal paths, forward graph diagnostics, normal-form witnesses, decreasing-rank certificates and checked whiskering. No infinity-category theorem is assessed.",
+      "All 512 labeled directed graphs on three vertices, including self-loops, are checked against an independent Boolean Floyd-Warshall oracle. The implementation uses explicit graph traversal and Kahn sorting. The oracle supplies termination, directed local confluence and normal-form expectations.",
+      "Negative admission challenges cover term boundaries, cell-key mismatches, absent/duplicate/inconsistent rules, orphan/mismatched 2-cell records, parallelism, missing/dangling/disconnected paths, exact names and truncation. Rank challenges forge missing/extra domains, equal ranks and reversed descent. Whiskering checks both orientations, reflexive and distinct branches, fresh-name collisions and failure atomicity.",
+      "A 20,000-node chain challenges recursive traversal failure and checks endpoint ranks. Owned-context challenges mutate caller declarations after admission and inspect retained witnesses/certificates.",
+      "The final source has 440 passing package tests before and after mutation. Sixteen designated semantic faults compile and fail tests: admission bypass, term boundary, edge/rule binding, 2-cell binding, higher parallelism, rank domain/descent, inverse orientation, path composition, producer output, orphan homotopy, truncation, name domain, failure atomicity, false joins and equal ranks. Killed=16; all other outcomes=0; R=1.0.",
+      "This is scoped challenge evidence. Exhausting three-vertex graphs is not a formal proof about all finite graphs. No blanket package grade or alternate-checker A+ claim is inferred."
+    ],
+    "G5": [
+      "The pinned syn AST replay parses all explicit production bodies: 76 functions, maximum CCN 8, cognitive upper bound 6, and nesting 3. No function contains an opaque macro. The module has no item-generating macro definitions; standard formatting/vector arguments are accounted for. Compiler-generated Debug/Clone/Eq code is not claimed as analyzed source.",
+      "Source review finds no recursive or mutually recursive production call path. Topological traversal uses a ready work set and indegrees, reachability uses a heap-backed explicit stack, and admission delegates dimension/name/path checks to small functions.",
+      "Kahn sorting constructs and drains each distinct forward edge once, with ordered-map/set lookup factors: O((V+E) log(V)) operations plus label comparison and copying costs. Rank checking traverses the exact term domain and every forward edge. Indegree updates use checked arithmetic.",
+      "Directed local confluence tests at most the sum of choose(outdegree(v),2) branch pairs. Each pair runs two iterative reachable-set traversals, using O(V) temporary entries and O((V+E) log(V)) ordered operations plus label costs. Thus worst-case work is polynomial, bounded by O(E^2 (V+E) log(V)), rather than path enumeration.",
+      "Validation indexes rule names and uses finite record/path scans; repeated homotopy path lookup and boundary scans remain polynomial in total input bytes. Candidate composition validates and clones before commit. Owned witnesses and certificates copy O(N) declaration bytes; no constant-space or zero-copy claim is made. All allocations are owned collections or Arc and leave scope normally or propagate typed errors.",
+      "The structural A assessment combines source inspection, declared polynomial costs, calibrated metrics and the long-chain challenge. It does not certify machine-checked crash freedom, expanded MIR, or an all-input hardware budget."
+    ]
+  },
+  "unassessed": {
+    "G1": "Full specification/symbol/consumer provenance review remains pending; contract status stays pending.",
+    "G2": "Complete independent semantic review of every public boundary remains pending.",
+    "G3": "Complete invariant-preservation and trust-boundary review across all failure modes remains pending."
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T191915Z/source_manifest.json",
+      "sha256": "aa887c66acaad6368257ae53e0af105ad5d5341591c9314bd3280a0d5b38e09c"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T191915Z/baseline.json",
+      "sha256": "93dd2022eb0d9e2dad37e7803f328fd01ddab345b2269fafc8d22685b2cb8e63"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T191915Z/restored.json",
+      "sha256": "20751b68b06153185155ee1b0d0e5c5902d9eed695051ce2c9778d7426c40593"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T191915Z/mutations.json",
+      "sha256": "42d380279a39aa1afe0e0d81ad68a76958bc90cad6d9eaaa547af467ecc00471"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T191915Z/summary.json",
+      "sha256": "b0e3934aeccd2c6c957e4453c9fa48b3104960aacda9deb92b39503eb974796f"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+      "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T192425Z-metrics/metrics.json",
+      "sha256": "36323caaa8a9d4df8f7d357fef6692c819d977e962ce62a1ef33178d0833e2d8"
+    }
+  ],
+  "evaluation_timestamp": "2026-10-18T19:24:55.627398+00:00"
+}

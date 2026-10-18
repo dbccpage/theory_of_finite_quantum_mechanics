@@ -13,6 +13,8 @@
 /// They are used as keys in validation reports and contract audit trails.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum FunctorValidation {
+    Name,
+    MappingDomain,
     // Covariant functor (spec §4)
     ObjectTotality,
     MorphismTotality,
@@ -27,6 +29,10 @@ pub enum FunctorValidation {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum NatTransValidation {
+    Name,
+    FunctorBinding,
+    ComponentDomain,
+    ComponentBoundary,
     NaturalitySquare,
 }
 

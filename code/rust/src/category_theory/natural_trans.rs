@@ -10,7 +10,8 @@
 use super::cat_functor::{CatFunctor, Category, DeclaredFiniteFunctor};
 use super::finite_category::DeclaredFiniteCategory;
 use super::validation::{
-    ValidationLocation, ValidationReport, ValidationSeverity, ValidationUnit, ValidationViolation,
+    NatTransValidation, ValidationLocation, ValidationReport, ValidationSeverity, ValidationUnit,
+    ValidationViolation,
 };
 use std::collections::BTreeMap;
 
@@ -83,6 +84,10 @@ impl DeclaredFiniteNatTrans {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValidatedFiniteNatTrans {
     declared: DeclaredFiniteNatTrans,
+    source_category: DeclaredFiniteCategory,
+    target_category: DeclaredFiniteCategory,
+    source_functor: DeclaredFiniteFunctor,
+    target_functor: DeclaredFiniteFunctor,
 }
 
 impl ValidatedFiniteNatTrans {
@@ -102,7 +107,13 @@ impl ValidatedFiniteNatTrans {
         );
 
         if report.all_passed() {
-            Ok(Self { declared })
+            Ok(Self {
+                declared,
+                source_category: source_category.clone(),
+                target_category: target_category.clone(),
+                source_functor: source_functor.clone(),
+                target_functor: target_functor.clone(),
+            })
         } else {
             Err(report)
         }
@@ -111,12 +122,27 @@ impl ValidatedFiniteNatTrans {
     pub fn declared(&self) -> &DeclaredFiniteNatTrans {
         &self.declared
     }
+    pub fn source_category(&self) -> &DeclaredFiniteCategory {
+        &self.source_category
+    }
+    pub fn target_category(&self) -> &DeclaredFiniteCategory {
+        &self.target_category
+    }
+    pub fn source_functor(&self) -> &DeclaredFiniteFunctor {
+        &self.source_functor
+    }
+    pub fn target_functor(&self) -> &DeclaredFiniteFunctor {
+        &self.target_functor
+    }
 }
 
 // ---------------------------------------------------------------------------
 // Validation Logic
 // ---------------------------------------------------------------------------
 
+/// Exhaustive finite naturality admission. A certificate requires lawful
+/// endpoint categories and total lawful functors; component data alone is not
+/// sufficient. Runtime finite verification only. AuthorityEffect: None.
 pub fn validate_natural_transformation_between(
     nat: &DeclaredFiniteNatTrans,
     source_category: &DeclaredFiniteCategory,
@@ -125,77 +151,108 @@ pub fn validate_natural_transformation_between(
     target_functor: &DeclaredFiniteFunctor,
 ) -> ValidationReport {
     let mut report = ValidationReport::new(&nat.name);
-
-    if nat.source_functor != source_functor.name {
-        report.add_violation(ValidationViolation::new(
-            ValidationUnit::Other("NatTrans::FunctorMismatch".into()),
-            ValidationLocation::Global,
-            format!(
-                "Source functor name mismatch: {} != {}",
-                nat.source_functor, source_functor.name
-            ),
-            ValidationSeverity::Error,
-        ));
-    }
-
-    if nat.target_functor != target_functor.name {
-        report.add_violation(ValidationViolation::new(
-            ValidationUnit::Other("NatTrans::FunctorMismatch".into()),
-            ValidationLocation::Global,
-            format!(
-                "Target functor name mismatch: {} != {}",
-                nat.target_functor, target_functor.name
-            ),
-            ValidationSeverity::Error,
-        ));
-    }
-
-    if source_functor.source_category != source_category.name
-        || source_functor.target_category != target_category.name
-        || target_functor.source_category != source_category.name
-        || target_functor.target_category != target_category.name
-    {
-        report.add_violation(ValidationViolation::new(
-            ValidationUnit::Other("NatTrans::CategoryMismatch".into()),
-            ValidationLocation::Global,
-            "Functors do not match the provided source/target categories",
-            ValidationSeverity::Error,
-        ));
-    }
-
-    let bnd_errors = check_component_boundaries(
-        nat,
+    check_functor_endpoints(
+        &mut report,
         source_category,
         target_category,
         source_functor,
         target_functor,
     );
-    for err in bnd_errors {
-        report.add_violation(ValidationViolation::new(
-            ValidationUnit::Other("NatTrans::Boundary".into()),
-            ValidationLocation::Global,
-            err,
-            ValidationSeverity::Error,
-        ));
-    }
-
-    let sq_errors = check_naturality_square(
-        nat,
-        source_category,
-        &source_functor.morphism_map,
-        &target_functor.morphism_map,
-        &target_category.compositions,
+    add_nat_errors(&mut report, NatTransValidation::Name, check_nat_name(nat));
+    add_nat_errors(
+        &mut report,
+        NatTransValidation::FunctorBinding,
+        check_functor_binding(nat, source_functor, target_functor),
     );
-    for err in sq_errors {
-        report.add_violation(ValidationViolation::new(
-            ValidationUnit::Other("NatTrans::NaturalitySquare".into()),
-            ValidationLocation::Global,
-            err,
-            ValidationSeverity::Error,
-        ));
-    }
-
+    add_nat_errors(
+        &mut report,
+        NatTransValidation::ComponentDomain,
+        check_component_domain(nat, source_category),
+    );
+    add_nat_errors(
+        &mut report,
+        NatTransValidation::ComponentBoundary,
+        check_component_boundaries(
+            nat,
+            source_category,
+            target_category,
+            source_functor,
+            target_functor,
+        ),
+    );
+    add_nat_errors(
+        &mut report,
+        NatTransValidation::NaturalitySquare,
+        check_naturality_square(
+            nat,
+            source_category,
+            &source_functor.morphism_map,
+            &target_functor.morphism_map,
+            &target_category.compositions,
+        ),
+    );
     report
+}
+
+fn check_functor_endpoints(
+    report: &mut ValidationReport,
+    source: &DeclaredFiniteCategory,
+    target: &DeclaredFiniteCategory,
+    f: &DeclaredFiniteFunctor,
+    g: &DeclaredFiniteFunctor,
+) {
+    let checked_f = super::functor_composition::validate_functor_between(f, source, target);
+    report.add_typed("nat::source_functor", checked_f.typed_violations);
+    if f != g {
+        let checked_g = super::functor_composition::validate_functor_between(g, source, target);
+        report.add_typed("nat::target_functor", checked_g.typed_violations);
+    }
+}
+
+fn add_nat_errors(report: &mut ValidationReport, unit: NatTransValidation, errors: Vec<String>) {
+    let violations = errors
+        .into_iter()
+        .map(|message| {
+            ValidationViolation::new(
+                ValidationUnit::NatTrans(unit),
+                ValidationLocation::Global,
+                message,
+                ValidationSeverity::Error,
+            )
+        })
+        .collect();
+    report.add_typed(&format!("nat::{unit:?}"), violations);
+}
+
+fn check_nat_name(nat: &DeclaredFiniteNatTrans) -> Vec<String> {
+    if nat.name.trim().is_empty() {
+        return vec!["Empty natural transformation name".into()];
+    }
+    Vec::new()
+}
+
+fn check_functor_binding(
+    nat: &DeclaredFiniteNatTrans,
+    f: &DeclaredFiniteFunctor,
+    g: &DeclaredFiniteFunctor,
+) -> Vec<String> {
+    if nat.source_functor != f.name || nat.target_functor != g.name {
+        return vec![format!(
+            "Transformation {} names {} => {}, expected {} => {}",
+            nat.name, nat.source_functor, nat.target_functor, f.name, g.name
+        )];
+    }
+    Vec::new()
+}
+
+fn check_component_domain(
+    nat: &DeclaredFiniteNatTrans,
+    source: &DeclaredFiniteCategory,
+) -> Vec<String> {
+    if !nat.components.keys().eq(source.objects.iter()) {
+        return vec!["Component domain differs from the source objects".into()];
+    }
+    Vec::new()
 }
 
 pub fn check_component_boundaries(
@@ -242,6 +299,8 @@ pub fn check_component_boundaries(
     violations
 }
 
+/// Check every requested square, reporting absent data as a failure. This
+/// diagnostic can be used on partial declarations; it never silently skips one.
 pub fn check_naturality_square(
     nat: &DeclaredFiniteNatTrans,
     source_category: &DeclaredFiniteCategory,
@@ -249,61 +308,218 @@ pub fn check_naturality_square(
     g_map: &BTreeMap<String, String>,
     target_compositions: &BTreeMap<(String, String), String>,
 ) -> Vec<String> {
-    let mut violations = Vec::new();
+    source_category
+        .morphisms
+        .iter()
+        .filter_map(|(name, mor)| {
+            check_square_at(
+                nat,
+                name,
+                &mor.source,
+                &mor.target,
+                f_map,
+                g_map,
+                target_compositions,
+            )
+            .err()
+        })
+        .collect()
+}
 
-    for (mor, decl_mor) in &source_category.morphisms {
-        let src_obj = &decl_mor.source;
-        let tgt_obj = &decl_mor.target;
-
-        let Some(eta_a) = nat.component(src_obj) else {
-            continue;
-        };
-        let Some(eta_b) = nat.component(tgt_obj) else {
-            continue;
-        };
-        let Some(f_of_mor) = f_map.get(mor) else {
-            continue;
-        };
-        let Some(g_of_mor) = g_map.get(mor) else {
-            continue;
-        };
-
-        let left_key = (f_of_mor.clone(), eta_b.to_string());
-        let left = target_compositions.get(&left_key);
-
-        let right_key = (eta_a.to_string(), g_of_mor.clone());
-        let right = target_compositions.get(&right_key);
-
-        match (left, right) {
-            (Some(l), Some(r)) if l == r => {} // naturality holds
-            (Some(l), Some(r)) => {
-                violations.push(format!(
-                    "Naturality square fails at {}: η_{}∘F({}) = {} but G({})∘η_{} = {}",
-                    mor, tgt_obj, mor, l, mor, src_obj, r
-                ));
-            }
-            (None, _) => {
-                violations.push(format!(
-                    "Naturality square: η_{}∘F({}) composition not in target table",
-                    tgt_obj, mor
-                ));
-            }
-            (_, None) => {
-                violations.push(format!(
-                    "Naturality square: G({})∘η_{} composition not in target table",
-                    mor, src_obj
-                ));
-            }
-        }
+fn check_square_at(
+    nat: &DeclaredFiniteNatTrans,
+    mor: &str,
+    source: &str,
+    target: &str,
+    f_map: &BTreeMap<String, String>,
+    g_map: &BTreeMap<String, String>,
+    table: &BTreeMap<(String, String), String>,
+) -> Result<(), String> {
+    let eta_a = nat
+        .component(source)
+        .ok_or_else(|| format!("Missing component at {source}"))?;
+    let eta_b = nat
+        .component(target)
+        .ok_or_else(|| format!("Missing component at {target}"))?;
+    let f_mor = f_map.get(mor).ok_or_else(|| format!("Missing F({mor})"))?;
+    let g_mor = g_map.get(mor).ok_or_else(|| format!("Missing G({mor})"))?;
+    let left = table
+        .get(&(f_mor.clone(), eta_b.into()))
+        .ok_or_else(|| format!("Missing eta_{target} after F({mor})"))?;
+    let right = table
+        .get(&(eta_a.into(), g_mor.clone()))
+        .ok_or_else(|| format!("Missing G({mor}) after eta_{source}"))?;
+    if left != right {
+        return Err(format!(
+            "Naturality fails at {mor}: left {left}, right {right}"
+        ));
     }
-
-    violations
+    Ok(())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::finite_category_builder::DeclaredFiniteCategoryBuilder;
+
+    fn identity_fixture() -> (
+        DeclaredFiniteCategory,
+        DeclaredFiniteFunctor,
+        DeclaredFiniteNatTrans,
+    ) {
+        let cat = DeclaredFiniteCategoryBuilder::walking_arrow("C", "A", "B", "f").build();
+        let functor = crate::functor_composition::identity_functor(&cat, "Id");
+        let mut nat = DeclaredFiniteNatTrans::new("eta", "Id", "Id");
+        nat.set_component("A", "id_A");
+        nat.set_component("B", "id_B");
+        (cat, functor, nat)
+    }
+
+    #[test]
+    fn rejects_partial_functor_instead_of_skipping_the_square() {
+        let (cat, mut functor, nat) = identity_fixture();
+        functor.morphism_map.remove("f");
+        assert!(ValidatedFiniteNatTrans::try_new(nat, &cat, &cat, &functor, &functor).is_err());
+    }
+
+    #[test]
+    fn admitted_certificate_owns_its_endpoint_context() {
+        let (mut cat, mut f, nat) = identity_fixture();
+        let checked = ValidatedFiniteNatTrans::try_new(nat, &cat, &cat, &f, &f).unwrap();
+        cat.compositions.clear();
+        f.morphism_map.clear();
+        assert!(checked.source_category().compose("id_A", "f").is_some());
+        assert_eq!(checked.source_functor().on_morphism("f"), Some("f"));
+    }
+
+    #[test]
+    fn full_maps_do_not_excuse_unlawful_functors_or_nonassociative_categories() {
+        let table = [[0, 1, 2], [1, 0, 0], [2, 1, 0]];
+        let mut cat = DeclaredFiniteCategory::new("nonassociative");
+        for a in 0..3 {
+            cat.add_morphism(&a.to_string(), "*", "*");
+        }
+        cat.set_identity("*", "0");
+        for a in 0..3 {
+            for b in 0..3 {
+                cat.set_composition(&a.to_string(), &b.to_string(), &table[a][b].to_string());
+            }
+        }
+        let f = crate::functor_composition::identity_functor(&cat, "F");
+        let mut nat = DeclaredFiniteNatTrans::new("eta", "F", "F");
+        nat.set_component("*", "0");
+        assert!(check_naturality_square(
+            &nat,
+            &cat,
+            &f.morphism_map,
+            &f.morphism_map,
+            &cat.compositions
+        )
+        .is_empty());
+        assert!(ValidatedFiniteNatTrans::try_new(nat, &cat, &cat, &f, &f).is_err());
+
+        // A total map C3 -> C3 preserving identities but not composition.
+        let mut cyclic = DeclaredFiniteCategory::new("C3");
+        for a in 0..3 {
+            cyclic.add_morphism(&a.to_string(), "*", "*");
+        }
+        cyclic.set_identity("*", "0");
+        for a in 0..3 {
+            for b in 0..3 {
+                cyclic.set_composition(&a.to_string(), &b.to_string(), &((a + b) % 3).to_string());
+            }
+        }
+        let mut f = DeclaredFiniteFunctor::new("F", "C3", "C3");
+        f.map_object("*", "*");
+        for (a, b) in [("0", "0"), ("1", "1"), ("2", "1")] {
+            f.map_morphism(a, b);
+        }
+        let mut nat = DeclaredFiniteNatTrans::new("eta", "F", "F");
+        nat.set_component("*", "0");
+        assert!(check_naturality_square(
+            &nat,
+            &cyclic,
+            &f.morphism_map,
+            &f.morphism_map,
+            &cyclic.compositions
+        )
+        .is_empty());
+        assert!(ValidatedFiniteNatTrans::try_new(nat, &cyclic, &cyclic, &f, &f).is_err());
+    }
+
+    #[test]
+    fn every_missing_square_operand_and_path_is_a_reported_error() {
+        let (cat, f, nat) = identity_fixture();
+        let mut partial = f.morphism_map.clone();
+        partial.remove("f");
+        assert!(
+            !check_naturality_square(&nat, &cat, &f.morphism_map, &partial, &cat.compositions)
+                .is_empty()
+        );
+        for object in ["A", "B"] {
+            let mut bad = nat.clone();
+            bad.components.remove(object);
+            assert!(!check_naturality_square(
+                &bad,
+                &cat,
+                &f.morphism_map,
+                &f.morphism_map,
+                &cat.compositions
+            )
+            .is_empty());
+        }
+        for (first, second) in [("f", "id_B"), ("id_A", "f")] {
+            let mut table = cat.compositions.clone();
+            table.remove(&(first.into(), second.into()));
+            assert!(
+                !check_naturality_square(&nat, &cat, &f.morphism_map, &f.morphism_map, &table)
+                    .is_empty()
+            );
+        }
+        let mut nameless = nat.clone();
+        nameless.name.clear();
+        assert!(ValidatedFiniteNatTrans::try_new(nameless, &cat, &cat, &f, &f).is_err());
+        let mut wrong = nat.clone();
+        wrong.source_functor = "other".into();
+        assert!(ValidatedFiniteNatTrans::try_new(wrong, &cat, &cat, &f, &f).is_err());
+        let mut wrong = nat.clone();
+        wrong.set_component("A", "f");
+        assert!(ValidatedFiniteNatTrans::try_new(wrong, &cat, &cat, &f, &f).is_err());
+    }
+
+    #[test]
+    fn square_checker_reports_missing_maps_and_components() {
+        let (cat, functor, mut nat) = identity_fixture();
+        let mut partial = functor.morphism_map.clone();
+        partial.remove("f");
+        assert!(!check_naturality_square(
+            &nat,
+            &cat,
+            &partial,
+            &functor.morphism_map,
+            &cat.compositions
+        )
+        .is_empty());
+        nat.components.remove("A");
+        assert!(!check_naturality_square(
+            &nat,
+            &cat,
+            &functor.morphism_map,
+            &functor.morphism_map,
+            &cat.compositions
+        )
+        .is_empty());
+    }
+
+    #[test]
+    fn rejects_extra_components_and_unlawful_endpoint_categories() {
+        let (mut cat, functor, mut nat) = identity_fixture();
+        nat.set_component("outside", "id_A");
+        assert!(ValidatedFiniteNatTrans::try_new(nat, &cat, &cat, &functor, &functor).is_err());
+        let (_, _, nat) = identity_fixture();
+        cat.compositions.remove(&("id_A".into(), "id_A".into()));
+        assert!(ValidatedFiniteNatTrans::try_new(nat, &cat, &cat, &functor, &functor).is_err());
+    }
 
     #[test]
     fn trivial_nat_trans_passes_naturality() {

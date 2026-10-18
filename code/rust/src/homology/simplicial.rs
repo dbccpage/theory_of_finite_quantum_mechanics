@@ -5,10 +5,10 @@
 //! faces, gives deterministic basis order, and builds signed boundary and
 //! coboundary matrices for arbitrary degree.
 
-use crate::errors::HomologicalError;
-use crate::linear_algebra::scalars::{q, Q};
+use crate::homology::errors::HomologicalError;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
-use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
+use crate::linear_algebra::image_kernel::ExactRowReduction;
+use crate::linear_algebra::scalars::{q, Q};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -16,8 +16,21 @@ use std::collections::{BTreeMap, BTreeSet};
 ///
 /// Vertices are strictly ascending. A k-simplex has k + 1 vertices.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
+#[serde(try_from = "SimplexWire")]
 pub struct Simplex {
     vertices: Vec<usize>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct SimplexWire {
+    vertices: Vec<usize>,
+}
+impl TryFrom<SimplexWire> for Simplex {
+    type Error = HomologicalError;
+    fn try_from(value: SimplexWire) -> Result<Self, Self::Error> {
+        Self::new(value.vertices)
+    }
 }
 
 impl Simplex {
@@ -91,9 +104,31 @@ impl Simplex {
 /// The stored vertices are canonical. `orientation` is the sign of the input
 /// ordering relative to canonical ascending order.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
+#[serde(try_from = "OrientedWire")]
 pub struct OrientedSimplex {
     simplex: Simplex,
     orientation: i8,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct OrientedWire {
+    simplex: Simplex,
+    orientation: i8,
+}
+impl TryFrom<OrientedWire> for OrientedSimplex {
+    type Error = HomologicalError;
+    fn try_from(value: OrientedWire) -> Result<Self, Self::Error> {
+        if value.orientation != 1 && value.orientation != -1 {
+            return Err(HomologicalError::BasisMismatch {
+                description: "orientation must be +1 or -1".into(),
+            });
+        }
+        Ok(Self {
+            simplex: value.simplex,
+            orientation: value.orientation,
+        })
+    }
 }
 
 impl OrientedSimplex {
@@ -167,10 +202,35 @@ impl OrientedSimplex {
 
 /// A finite simplicial complex closed under all faces.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(try_from = "ComplexWire", into = "ComplexWire")]
 pub struct SimplicialComplex {
     simplices_by_dim: Vec<Vec<Simplex>>,
     indices_by_dim: Vec<BTreeMap<Simplex, usize>>,
     num_vertices: usize,
+}
+
+/// Explicit operational ceiling: at most 65,535 nonempty faces, each at
+/// most 16 vertices. The full face lattice has exponential output size.
+pub const MAX_SIMPLEX_VERTICES: usize = 16;
+pub const MAX_SIMPLICES: usize = 65_535;
+
+#[derive(Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct ComplexWire {
+    simplices: Vec<Simplex>,
+}
+impl From<SimplicialComplex> for ComplexWire {
+    fn from(value: SimplicialComplex) -> Self {
+        Self {
+            simplices: value.simplices_by_dim.into_iter().flatten().collect(),
+        }
+    }
+}
+impl TryFrom<ComplexWire> for SimplicialComplex {
+    type Error = HomologicalError;
+    fn try_from(value: ComplexWire) -> Result<Self, Self::Error> {
+        Self::from_simplices(value.simplices)
+    }
 }
 
 impl SimplicialComplex {
@@ -188,21 +248,14 @@ impl SimplicialComplex {
     ///
     /// The result contains every k-simplex for 0 <= k <= n.
     pub fn standard_n_simplex(n: usize) -> Result<Self, HomologicalError> {
+        if n >= MAX_SIMPLEX_VERTICES {
+            return Err(HomologicalError::ResourceLimit("simplex dimension"));
+        }
         Self::from_simplices(vec![Simplex::new((0..=n).collect())?])
     }
 
     fn from_canonical_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError> {
-        let mut all: BTreeSet<Simplex> = BTreeSet::new();
-        let mut stack = simplices;
-
-        while let Some(simplex) = stack.pop() {
-            if all.insert(simplex.clone()) {
-                for (face, _) in simplex.faces() {
-                    stack.push(face);
-                }
-            }
-        }
-
+        let all = close_faces(simplices)?;
         let max_dim = all.iter().map(Simplex::dimension).max().unwrap_or(0);
         let mut simplices_by_dim = vec![Vec::new(); max_dim + 1];
         let mut max_vertex = None::<usize>;
@@ -211,7 +264,11 @@ impl SimplicialComplex {
             if let Some(&v) = simplex.vertices().last() {
                 max_vertex = Some(max_vertex.map_or(v, |m| m.max(v)));
             }
-            simplices_by_dim[simplex.dimension()].push(simplex);
+            // Every simplex dimension is <= max_dim, measured from this same set.
+            simplices_by_dim
+                .get_mut(simplex.dimension())
+                .ok_or(HomologicalError::ResourceLimit("simplex dimension"))?
+                .push(simplex);
         }
 
         let indices_by_dim = simplices_by_dim
@@ -229,7 +286,12 @@ impl SimplicialComplex {
         Ok(Self {
             simplices_by_dim,
             indices_by_dim,
-            num_vertices: max_vertex.map_or(0, |v| v + 1),
+            num_vertices: match max_vertex {
+                None => 0,
+                Some(v) => v
+                    .checked_add(1)
+                    .ok_or(HomologicalError::ResourceLimit("vertex label overflow"))?,
+            },
         })
     }
 
@@ -273,7 +335,8 @@ impl SimplicialComplex {
             .is_some_and(|indices| indices.contains_key(simplex))
     }
 
-    /// Euler characteristic.
+    /// Euler characteristic. At most MAX_SIMPLICES terms of magnitude one
+    /// occur, so the admitted storage bound proves that the i64 sum fits.
     pub fn euler_characteristic(&self) -> i64 {
         self.simplices_by_dim
             .iter()
@@ -326,7 +389,8 @@ impl SimplicialComplex {
 
     /// Coboundary matrix d^k: C^k -> C^{k+1}, the transpose of d_{k+1}.
     pub fn coboundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
-        let boundary = self.boundary_matrix(k + 1)?;
+        let next = k.checked_add(1).ok_or(HomologicalError::DegreeOverflow)?;
+        let boundary = self.boundary_matrix(next)?;
         let mut matrix = BasicMatrix::<Q>::zero(boundary.cols(), boundary.rows())?;
 
         for row in 0..boundary.rows() {
@@ -461,18 +525,40 @@ impl SimplicialComplex {
     }
 }
 
+fn close_faces(simplices: Vec<Simplex>) -> Result<BTreeSet<Simplex>, HomologicalError> {
+    if simplices.len() > MAX_SIMPLICES
+        || simplices
+            .iter()
+            .any(|s| s.num_vertices() > MAX_SIMPLEX_VERTICES)
+    {
+        return Err(HomologicalError::ResourceLimit("simplicial face closure"));
+    }
+    let mut all: BTreeSet<Simplex> = BTreeSet::new();
+    let mut stack = simplices;
+
+    while let Some(simplex) = stack.pop() {
+        if all.insert(simplex.clone()) {
+            if all.len() > MAX_SIMPLICES {
+                return Err(HomologicalError::ResourceLimit("simplicial face closure"));
+            }
+            for (face, _) in simplex.faces() {
+                stack.push(face);
+            }
+        }
+    }
+
+    Ok(all)
+}
+
 fn validate_strict_vertices(vertices: &[usize]) -> Result<(), HomologicalError> {
     if vertices.is_empty() {
         return Err(HomologicalError::EmptyBasis);
     }
 
-    for index in 1..vertices.len() {
-        if vertices[index] <= vertices[index - 1] {
+    for pair in vertices.windows(2) {
+        if pair[1] <= pair[0] {
             return Err(HomologicalError::BasisMismatch {
-                description: format!(
-                    "simplex vertices must be strictly ascending; violation at index {}",
-                    index
-                ),
+                description: format!("simplex vertices must be strictly ascending: {:?}", pair),
             });
         }
     }
@@ -486,8 +572,8 @@ fn canonicalize_vertices(mut vertices: Vec<usize>) -> Result<Vec<usize>, Homolog
     }
 
     vertices.sort_unstable();
-    for index in 1..vertices.len() {
-        if vertices[index] == vertices[index - 1] {
+    for pair in vertices.windows(2) {
+        if pair[1] == pair[0] {
             return Err(HomologicalError::BasisMismatch {
                 description: "simplex vertices must be distinct".to_string(),
             });

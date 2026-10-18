@@ -1,0 +1,801 @@
+[
+  {
+    "candidate_sha256": "c0934fb94c257de89b1c15c0275fdb312258b7b8a302d1242674bef00deba09f",
+    "id": "H01-basis",
+    "needle": "if self.basis_id != other.basis_id {",
+    "outcome": "killed",
+    "path": "homology/graded_vector.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 8.954,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H01-basis.log",
+      "log_sha256": "a1976509fa7993cddf27e7f08be8ee8326184370e296e4ad8f48e6368c7ed843",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "9d87b7308de88c6041dfd7d2c0a48aa99cb72796eb03a4e4eff09e0d1ed4cc6a",
+    "id": "H02-degree-hash",
+    "needle": "hasher.update(&degree.to_le_bytes());",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "hasher.update(&0i32.to_le_bytes());",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 6.468,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H02-degree-hash.log",
+      "log_sha256": "39b26ef1faf5174cb98480b4f07a8bf5e0b6d06201c5e9332175ac23bead09b9",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "49339b7fa77bb36738e8c53742dd5975fa066f7c876026b423de51f8eebe8d0e",
+    "id": "H03-basis-hash",
+    "needle": "hasher.update(basis.as_bytes());",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "hasher.update(b\"fixed\");",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.844,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H03-basis-hash.log",
+      "log_sha256": "b5067da334af316907058a788a0af191e025fe9c37d39d295b70616c268d1894",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "08696e021ce38645cd3769c7734d1fbc0a296dd349d74a819e83aac998ed2aef",
+    "id": "H04-vector-kind",
+    "needle": "const TAG: &'static [u8] = b\"cochain\";",
+    "outcome": "killed",
+    "path": "homology/graded_vector.rs",
+    "replacement": "const TAG: &'static [u8] = b\"chain\";",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 6.172,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H04-vector-kind.log",
+      "log_sha256": "ed2c75c1be5b3d12eeedd9d73c22683349d3cc7d79d303282162f953673334f0",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "9cceba1f6265f41cc399ddf9004070c1f54b0739a95aadd0ab9a04dbfeee2c9d",
+    "id": "H05-down-degree",
+    "needle": "if chain.degree != self.from_degree {",
+    "outcome": "killed",
+    "path": "homology/boundary.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 7.39,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H05-down-degree.log",
+      "log_sha256": "eb19ff01e560ed42afab940ede069e44d6b32783703a35deca6a6464a3b82337",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "70215915e6d0d85694086440aae1d7ed76b0f10e9cffc0cfcbda88b3d0d53d04",
+    "id": "H06-up-degree",
+    "needle": "if cochain.degree != self.from_degree {",
+    "outcome": "killed",
+    "path": "homology/coboundary.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 12.11,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H06-up-degree.log",
+      "log_sha256": "ac34d9256eb50f2518380f95dbc5738994ff1b42993e513cd42428ff0513fda9",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "eaf3e7516c3b7d376c7e7e98feee63bc31967739275bcaada3ee371480fff7c6",
+    "id": "H07-provenance",
+    "needle": "if verification_source.trim().is_empty() {",
+    "outcome": "killed",
+    "path": "homology/cochain_complex.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 7.281,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H07-provenance.log",
+      "log_sha256": "1d810f73de837a0cd695896c3e6f36fc2078bc9f12b1cd7a011f72b10e08f081",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "da3ceb2b4bf4074f1cc3f2420f377b3b744d14a3ee6006279815dfe65e562a90",
+    "id": "H08-zero-id",
+    "needle": "if id == 0 {",
+    "outcome": "killed",
+    "path": "homology/ids.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 6.64,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H08-zero-id.log",
+      "log_sha256": "659bcba70452f3cb1c15886d7dd4a7c228fd31ad9f9b7f5901c84c2d63bc35a2",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "180d6e0ceffab317d5a0fce2d548c78dcee1e97ba7772efe3fa5977e97af7047",
+    "id": "H09-simplex-order",
+    "needle": "if pair[1] <= pair[0] {",
+    "outcome": "killed",
+    "path": "homology/simplicial.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.797,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H09-simplex-order.log",
+      "log_sha256": "a835c7a957fe6c3a39d5ffaf40f1f2ca6e5b27bf03760c06b854dd63adca2cfc",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "f4d362d5a63c89b55f2c8e1df3ae8ae4d4a1439ad1c16a618108330a7bba35fc",
+    "id": "H10-orientation",
+    "needle": "if value.orientation != 1 && value.orientation != -1 {",
+    "outcome": "killed",
+    "path": "homology/simplicial.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 6.266,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H10-orientation.log",
+      "log_sha256": "4a497c6aece7e8c3c9f0441deb91f4b0ec6e7c2ca8a8ea4b085a1588485ce07a",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "27fcee96ac517d40bb4a7dd9af03d50e6d32ccd9afe28c204a413eb15ee55990",
+    "id": "H11-LU",
+    "needle": "\"LU=I\",",
+    "outcome": "killed",
+    "path": "homology/rank_certificate.rs",
+    "replacement": "\"LU=I-SKIP\",",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 9.937,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H11-LU.log",
+      "log_sha256": "aa2d0b1dead5d598ab3dc418d05b745a35d7f69753cce4862ee568cc8bdda90e",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "cef89521c438d5edb906a3e5f9c07fe827b2935c421282d16abf1f5b924cf87f",
+    "id": "H12-VR",
+    "needle": "\"VR=I\",",
+    "outcome": "killed",
+    "path": "homology/rank_certificate.rs",
+    "replacement": "\"VR=I-SKIP\",",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 6.063,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H12-VR.log",
+      "log_sha256": "325fe5a64001bb765f75fa1f5a88cd4891285a0f1f44fb53b054f0f9286b9d33",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "adde303fef5c5d6c73a4dacdd30806ae88a625837282de91b45dd6c4a30e4242",
+    "id": "H13-MUV",
+    "needle": "\"M=UV\",",
+    "outcome": "killed",
+    "path": "homology/rank_certificate.rs",
+    "replacement": "\"M=UV-SKIP\",",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 6.14,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H13-MUV.log",
+      "log_sha256": "bad9993e57b3eac15c5c262df38bc5dccfc2761ef9a88ba504c3ae1b87cf2ed6",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "ab152b3d57694c94b63a23aefaa3cd9c53d21da38c38b08639ca2b2ba6aaee7d",
+    "id": "H14-zero-product",
+    "needle": "if !product.as_slice().iter().all(Zero::is_zero) {",
+    "outcome": "killed",
+    "path": "homology/exact_scalar.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 6.11,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H14-zero-product.log",
+      "log_sha256": "d6f53aa9625e8b66b55f4911563f4f0ebbbffcba77581375c49bb6fab39fe304",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "37f55c1ac177bdfad6560e721e46ffec6f240bf100cedc6147d6cb774f5a75ec",
+    "id": "H15-positive-weights",
+    "needle": "if *w <= Q::zero() {",
+    "outcome": "killed",
+    "path": "homology/carrier.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.812,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H15-positive-weights.log",
+      "log_sha256": "83c422a39b936633c4732f8dbd33db465974d272179e49786020bb5f2cd87495",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "1dd90f279cdc05cf9091bf302b80274df01c9b688a306e3664f5014ca618a238",
+    "id": "H16-self-loop",
+    "needle": "if src == tgt {",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.5,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H16-self-loop.log",
+      "log_sha256": "7300270de4ef34b3e0c661f159b777b8104a1802e778639ff3682476e77ec946",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "80d0b9f3ed8dd133fc18b587ef347c853eed4dc6e83d447d9e8571d3eba0bbfe",
+    "id": "H17-raw-rationals",
+    "needle": "admit_coefficients(matrix.as_slice())",
+    "outcome": "killed",
+    "path": "homology/exact_scalar.rs",
+    "replacement": "Ok(())",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.5,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H17-raw-rationals.log",
+      "log_sha256": "769e59ad2f353cc6899bb8228be619ad0d9f89390665d7a47e30385ae8ceeb49",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "cb69a15ba529cd018db38e2804819f93b2b20d82fe1a28d9ee2af645f74ea9c5",
+    "id": "H18-rank-output",
+    "needle": "        self.rank\n",
+    "outcome": "killed",
+    "path": "homology/rank_certificate.rs",
+    "replacement": "        0\n",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_homology_audit",
+        "--lib",
+        "--offline",
+        "--quiet",
+        "homology"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.657,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\H18-rank-output.log",
+      "log_sha256": "c4c67cfa75045c7b2aaf33bc3cb02ac08aaed1ca939371b7473c28f61e5c8d21",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "e573840d43b01fc1fad649cc1435aa90f6560241e7ebd13e584cc9ee6987cda7",
+    "id": "C01-functor-composition",
+    "needle": "        candidate.check_compositions()?;",
+    "outcome": "killed",
+    "path": "category_theory/cat_functor.rs",
+    "replacement": "",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_theory",
+        "--lib",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.89,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\C01-functor-composition.log",
+      "log_sha256": "ad499c2afbdefb56ccf07336fff1f70ba2d9b1e4afd7265b44a087e89684f331",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "890623e6ae6fccea54dc84a460a6f3271360ddc5e997a8fb620fafafd526c0e2",
+    "id": "C02-functor-domain",
+    "needle": "        candidate.check_maps()?;",
+    "outcome": "killed",
+    "path": "category_theory/cat_functor.rs",
+    "replacement": "",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_theory",
+        "--lib",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 6.516,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\C02-functor-domain.log",
+      "log_sha256": "78ca5b48163279514c560880ffde86145e1443ae39294f04d7e4b353b9d8ff83",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "2d779b162905619f538d4c6fad6c53dbb0b7909ee45f4cecea44d73972660695",
+    "id": "C03-functor-identity",
+    "needle": "        candidate.check_identities()?;",
+    "outcome": "killed",
+    "path": "category_theory/cat_functor.rs",
+    "replacement": "",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_theory",
+        "--lib",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 9.5,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\C03-functor-identity.log",
+      "log_sha256": "678b6e98dc70549d135e72b504eecaad42ff9a47163743dcee5c2bd2a22ac6ba",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "ab9618fa0b061b0d23c6ad7ef9268c0a46c8faee52e10865ed64ebe444811158",
+    "id": "C04-functor-boundary",
+    "needle": "        candidate.check_boundaries()?;",
+    "outcome": "killed",
+    "path": "category_theory/cat_functor.rs",
+    "replacement": "",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_theory",
+        "--lib",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.61,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\C04-functor-boundary.log",
+      "log_sha256": "6426654ff29453a1a7e698eae9adacfcf928f8542a259c99b550fc1c7f522089",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "5a37ffe428e07e0628d413cb2ed5e7d216960e03b13f3b8230616187abe96ef0",
+    "id": "C05-set-duplicates",
+    "needle": "if !seen.insert(e) {",
+    "outcome": "invalid",
+    "path": "category_theory/foundations/finite_set.rs",
+    "reason": "Compiler rejected the candidate; its diagnostics are retained in the hashed log. Excluded from eligible semantic faults.",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_theory",
+        "--lib",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 4.563,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\C05-set-duplicates.log",
+      "log_sha256": "0bb09cc69c756a1a8311e7130ff8bac803b1ee430085e78350db8759c4ef34e4",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "3c220f54ad098c36d71ef2baee55f8208d65e6b7a9c9160f3c453e23162f4692",
+    "id": "C08-set-duplicates-valid",
+    "needle": "if !seen.insert(e) {",
+    "outcome": "killed",
+    "path": "category_theory/foundations/finite_set.rs",
+    "replacement": "if seen.insert(e) && false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_theory",
+        "--lib",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.703,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\C08-set-duplicates-valid.log",
+      "log_sha256": "61001d13a92922a77181dfbe8ff4509c87f5cc437a8220e362edb0ec87c228af",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "86ae1c58beb674956bd2cd9a5bef8e5edc8e94d2be5e94f62278010533f0f1e4",
+    "id": "C06-weight-negatives",
+    "needle": "if weight.denom() <= &0.into() || weight < BigRational::zero() {",
+    "outcome": "killed",
+    "path": "category_theory/finite_profunctor.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_theory",
+        "--lib",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.859,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\C06-weight-negatives.log",
+      "log_sha256": "e7cefedab34c2d73b899a1b94423bb9cfda70fa0ad53f79abf6ad4a1cbe6e0b2",
+      "timed_out": false
+    }
+  },
+  {
+    "candidate_sha256": "2c482fc36981154ce6b5719a4a281cbe88f0f1a6a4cb934f8d9b2ca268fa5a8c",
+    "id": "C07-category-associativity",
+    "needle": "        check_associativity(category),",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_validation.rs",
+    "replacement": "        Vec::new(),",
+    "run": {
+      "command": [
+        "cargo",
+        "test",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z\\target",
+        "-p",
+        "tfqm_category_theory",
+        "--lib",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\category-homology-audit\\20261018T184203Z",
+      "elapsed_seconds": 5.469,
+      "environment": {
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T184203Z\\C07-category-associativity.log",
+      "log_sha256": "3371a3ddb07e85fbeb47e5c96c4109ff9a3be7b9b22fd26a2269c237c8c5c9c6",
+      "timed_out": false
+    }
+  }
+]

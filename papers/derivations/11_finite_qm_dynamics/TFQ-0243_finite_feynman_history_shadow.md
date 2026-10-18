@@ -82,8 +82,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 12d65dabf8fb01fcb1aca033a1b9db0b1deed6118f3e874f25bd2784cc28c8de`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM032-FINITE-FEYNMAN-SHADOW`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)

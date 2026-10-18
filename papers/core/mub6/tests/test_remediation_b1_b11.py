@@ -460,7 +460,11 @@ def test_b8_pigeonhole_bridge_conditional():
 
 def test_b9_cross_language_consistency_is_lexical():
     """B9: Consistency check verifies lexical identifier presence, keeping semantic consistency undischarged."""
-    receipt = verify_target_q_lean4_and_rust_consistency()
+    repo_root = next(
+        (p for p in pathlib.Path(__file__).resolve().parents if (p / "pyproject.toml").is_file()),
+        pathlib.Path(__file__).resolve().parents[3],
+    )
+    receipt = verify_target_q_lean4_and_rust_consistency(repo_root=repo_root)
     assert receipt.status == "LEXICAL_IDENTIFIER_PRESENCE_CHECKED"
     assert receipt.semantic_consistency_verified is False
     assert receipt.consistent is False

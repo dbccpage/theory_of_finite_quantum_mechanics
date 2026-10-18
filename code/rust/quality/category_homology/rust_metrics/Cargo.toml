@@ -1,0 +1,20 @@
+[package]
+name = "tfqm_rust_metrics"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dependencies]
+syn = { version = "=3.0.9", features = ["full", "visit"] }
+proc-macro2 = { version = "=1.0.107", features = ["span-locations"] }
+serde_json = "=1.0.154"
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false

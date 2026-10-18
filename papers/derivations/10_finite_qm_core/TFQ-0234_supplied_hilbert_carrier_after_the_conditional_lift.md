@@ -92,8 +92,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = d38bc3b82a459c3a2a7aa1e77f081143f6203fdabded64bb482121ee0329ca9b`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-INTERFERENCE-NONDESCENT`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -107,8 +105,6 @@ In accordance with strict constructive principles:
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = db089d1b2acae5e8dd8734e7bac78f2a7e7c3ace7fa97a0c434da783cc8f5c13`
 
----
-
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-SORKIN-READOUT-CLASS-QM208`)
 
 - **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
@@ -121,3 +117,16 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 2d0bd5a00111979bcd4b4f93a6c5f03d97d1591b4d2a56683ee1d9d3e3eeaf0f`
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-GAP-CONTINUUM-HILBERT-LIFT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-GAP-CONTINUUM-HILBERT-LIFT` (`FINITE_QM_CORE` / `CONDITIONAL`)
+- **Mined Operad Family (`M2`)**: `OP-FQ-CONTINUUM-WINTNER-WIELANDT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [40, -80, 60]`, `chord_potential = 60`, `holonomy_gamma2 = 80`
+- **Finite Shadow Exact Witness (`M4`)**: `wintner_wielandt_trace_commutator Tr([A,B]) == 0 and norm_1_plus_i == 2` ($\text{value} = 2$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `discriminant_2x2_self_adjoint [[1,1],[1,0]] == 5 (not a square in Z[i], exiting Q(i))` ($\text{value} = 5$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ff39939e9b28a8b84cf626b2096e55594ad238a0d45d7fc3845ab2f0e98401f9`

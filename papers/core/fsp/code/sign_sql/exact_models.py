@@ -16,7 +16,20 @@ from pathlib import Path
 import sqlite3
 
 
-BASE = Path(__file__).resolve().parents[2]
+def _find_databases_dir() -> Path:
+    candidates = [
+        Path(__file__).resolve().parents[2] / "databases",
+        Path(__file__).resolve().parents[1] / "databases",
+        Path(__file__).resolve().parents[4] / "code" / "python" / "src" / "fsp" / "databases",
+    ]
+    for c in candidates:
+        if (c / "meron_hubbard.sql").is_file():
+            return c
+    return candidates[0]
+
+
+DATABASES_DIR = _find_databases_dir()
+BASE = DATABASES_DIR.parent
 
 
 def rational(value: object) -> Fraction:
