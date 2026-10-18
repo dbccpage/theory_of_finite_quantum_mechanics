@@ -1,0 +1,117 @@
+{
+  "authority_effect": "None",
+  "date": "2026-09-07",
+  "publication_source_commit": "b1b749a9c8fb1e61492673c251deb791ff2501a9",
+  "scope": "LOCAL_NATIVE_BUILD_AND_TEST_EVIDENCE_FOR_REVIEWED_SOURCES",
+  "host": "Windows; isolated worktree; native toolchains; external pytest and Cargo target directories",
+  "toolchains": {
+    "python": "3.13.11",
+    "cargo": "1.98.0",
+    "application_lean": "4.33.1",
+    "genx_lean": "4.32.2"
+  },
+  "hosted_ci": "SEPARATE_GITHUB_STATE_NOT_CERTIFIED_BY_THIS_RECEIPT",
+  "lean_projects": [
+    {
+      "directory": "apps/finite_qm/lean4",
+      "command": "lake build",
+      "exit_code": 0,
+      "jobs": 144,
+      "replay_input_sha256": "f29684d87e20968fc641591d5986a73872f96ef645ecf82db82b09e0ded936b7",
+      "unique_printed_axiom_reports": 1244,
+      "raw_log": {
+        "path": "C:\\Users\\a343o\\.codex\\visualizations\\2026\\09\\07\\01a079ac-fbf4-7f23-88e6-4c192c154674\\pr214_native\\application_lake.log",
+        "sha256": "80f9d489a591605fcf2ee849afff5ac1e020edc071730ee878d9bf4f265793e3"
+      }
+    },
+    {
+      "directory": "coda_atlas/F004_papers/003_quantum_foundations/060_superposition_as_the_quotient_fiber/lean4",
+      "command": "lake build",
+      "exit_code": 0,
+      "jobs": 6,
+      "replay_input_sha256": "ae54f32c44ed42ef82af85a698448cffc82783cb319a711383fea55e0aab9c4a",
+      "unique_printed_axiom_reports": 1,
+      "raw_log": {
+        "path": "C:\\Users\\a343o\\.codex\\visualizations\\2026\\09\\07\\01a079ac-fbf4-7f23-88e6-4c192c154674\\pr214_native\\qm060_lake.log",
+        "sha256": "bc400551fc7689c5920a844dca2167bf79513f86d13fdb14c74192724277f4d6"
+      }
+    },
+    {
+      "directory": "coda_atlas/F004_papers/003_quantum_foundations/061_interference_as_the_non_l1_resource/lean4",
+      "command": "lake build",
+      "exit_code": 0,
+      "jobs": 6,
+      "replay_input_sha256": "de9b230ea13d843b43637da2c0c3e50c4819fffc423162c94c0e1f7da8493227",
+      "unique_printed_axiom_reports": 0,
+      "raw_log": {
+        "path": "C:\\Users\\a343o\\.codex\\visualizations\\2026\\09\\07\\01a079ac-fbf4-7f23-88e6-4c192c154674\\pr214_native\\qm061_lake.log",
+        "sha256": "0cce215f04fe16438fd58fd7618b895ce08a8426fd1679de0d63486d2967cd92"
+      }
+    },
+    {
+      "directory": "coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/lean4",
+      "command": "lake build",
+      "exit_code": 0,
+      "jobs": 47,
+      "replay_input_sha256": "ef088ce024197da61422baa3488cfed0b03d5f39b48091068beff5b68853de91",
+      "unique_printed_axiom_reports": 403,
+      "raw_log": {
+        "path": "C:\\Users\\a343o\\.codex\\visualizations\\2026\\09\\07\\01a079ac-fbf4-7f23-88e6-4c192c154674\\pr214_native\\qm122_lake.log",
+        "sha256": "f416aea0878b852816c86622697004633f4c46ca582427146fda76ced57efe80"
+      }
+    },
+    {
+      "directory": "lean4/genx",
+      "command": "lake build",
+      "exit_code": 0,
+      "jobs": 6,
+      "replay_input_sha256": "c153aee1b1925c8929b736769e8cf0ead34011c9d5f7c82d76516edeafdb00a2",
+      "unique_printed_axiom_reports": 13,
+      "raw_log": {
+        "path": "C:\\Users\\a343o\\.codex\\visualizations\\2026\\09\\07\\01a079ac-fbf4-7f23-88e6-4c192c154674\\pr214_native\\genx_lake.log",
+        "sha256": "866c65ad7b435c3b00c5106303a8161904b390c214df561da6f56353d036c063"
+      }
+    }
+  ],
+  "rust": {
+    "command": "cargo test --release --locked",
+    "exit_code": 0,
+    "passed": 238,
+    "ignored": 0,
+    "suite_counts": [
+      225,
+      0,
+      1,
+      12,
+      0
+    ],
+    "raw_log": {
+      "path": "C:\\Users\\a343o\\.codex\\visualizations\\2026\\09\\07\\01a079ac-fbf4-7f23-88e6-4c192c154674\\pr214_native\\cargo_test_release.log",
+      "sha256": "e39517b6c822a176c4cc94d8732166ec5ee500e88970c643e1a64606ee65b3ee"
+    }
+  },
+  "clippy": {
+    "command": "cargo clippy --locked --all-targets -- -D warnings",
+    "exit_code": 0,
+    "raw_log": {
+      "path": "C:\\Users\\a343o\\.codex\\visualizations\\2026\\09\\07\\01a079ac-fbf4-7f23-88e6-4c192c154674\\pr214_native\\cargo_clippy.log",
+      "sha256": "56b7d6ceb5e1adfab6bfe0f79e1c99cff35facfeb194e0e91e4e04c78e4cab5d"
+    }
+  },
+  "nonclaims": [
+    "No launch custody is established.",
+    "No original C500 target is certified complete.",
+    "No semantic proof follows from a passing native gate.",
+    "Raw log paths are local custody locations; commands and source hashes support independent replay."
+  ],
+  "python": {
+    "command": "python -m pytest -n 8 -q code/tests --basetemp <external> -p no:cacheprovider",
+    "exit_code": 0,
+    "passed": 1039,
+    "skipped": 0,
+    "raw_log": {
+      "path": "C:\\Users\\a343o\\.codex\\visualizations\\2026\\09\\07\\01a079ac-fbf4-7f23-88e6-4c192c154674\\pr214_native\\pytest_full.log",
+      "sha256": "5a2ff20d85629b116a4a2b5f0ebc2debff83b0343ba3bde53c7f2a101f89a870"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+# [TFQ-0367] listed-history-choice-free-summary
+
+> **Stage**: `PREGENESIS` | **Status**: `OPEN_OBLIGATION`  
+> **UUID**: `70fe0c06-13b8-53f5-aa86-796b837d523f`  
+> **Parent Derivation**: [TFQ-0366](TFQ-0366_history-report-fiber-criterion.md)
+
+---
+
+## 1. Abstract & Formal Statement
+
+PG-PREGEN-CONSTRUCTIVE-SUMMARY names a choice-free listed-history criterion, with declarations recon_of_fiberConstant and fiberConstant_of_recon. The reading note says draft work for that node is not counted on main. The education path cited by the DAG was not opened, and 000_pre_genesis_to_mssn/lean4 has no ListedHistorySummary file in the directory listing. Opened Paper.lean still uses Classical.choose for arbitrary images. The finite statement still required is a choice-free first-match reconstruction whose domain is an explicit finite list of histories, with unlisted populations left outside that statement.
+
+### Governing Obligation
+For an explicit finite list of histories, fiber constancy and first-match reconstruction match, with no use of choice, and unlisted populations stay outside.
+
+---
+
+## 2. Derivation Context & Mathematical Grounding
+
+In accordance with strict constructive principles:
+- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
+- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+
+### Epistemic Bottlenecks & Falsification Fences
+> [!WARNING]
+> Applies to explicitly listed finite histories; unlisted or infinite populations remain outside this constructive criterion.
+
+---
+
+## 3. Multi-Tier Code & Proof Witnesses
+
+### Lean 4 Theorems
+- [`missing declaration obligation: a choice-free listed-history criterion inside 000_pre_genesis_to_mssn/lean4, where Paper.lean still mentions Classical.choice`](../../code/lean4/)
+- [`omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.fiberConstant_of_recon`](../../code/lean4/)
+- [`omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.listed_history_report_criterion`](../../code/lean4/)
+- [`omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.recon_of_fiberConstant`](../../code/lean4/)
+
+### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`missing obligation: a listed-history reconstructor in crate pre_mssn_preservation whose input length is part of the statement`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_pregenesis_constructive_summary_witness`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
+
+### Python Oracles & Numerical Evaluators
+- [`missing obligation: a first-match reconstructor on an explicit list in 000_pre_genesis_to_mssn/code/preservation.py, beside report_factor and not using an unlisted search`](../../code/python/)
+
+---
+
+## 4. Downstream Derivations (Outgoing DAG Links)
+
+- [TFQ-0368](TFQ-0368_index-layer-separation.md)
+
+---
+
+## 5. Audit Trail & Primary Source Lineage
+
+- **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
+- **Primary Source Paths**:
+  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch05_descent_versus_selected_representatives.md`

@@ -1,0 +1,55 @@
+[package]
+autotests = false
+name = "omega_general_relativity"
+version.workspace = true
+edition = "2021"
+description = "Domain dual-face GR: finite Regge calculus on omega_homology simplicial complexes (AuthorityEffect None)"
+license.workspace = true
+
+[dependencies]
+omega_homology = { path = "../omega_homology" }
+omega_holonomy = { path = "../omega_holonomy" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+num-bigint = "0.4"
+num-rational = "0.4"
+num-traits = "0.2"
+thiserror = "2"
+omega_number_theory = { path = "../omega_number_theory" }
+linear_algebra = { path = "../omega_linear_algebra" }
+omega_lie_theory = { path = "../omega_lie_theory" }
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/omega_general_relativity`.
+
+[[test]]
+name = "certified_dihedral"
+path = "../tests/omega_general_relativity/certified_dihedral.rs"
+
+[[test]]
+name = "finite_physics"
+path = "../tests/omega_general_relativity/finite_physics.rs"
+
+[[test]]
+name = "metric_hinge_transport"
+path = "../tests/omega_general_relativity/metric_hinge_transport.rs"
+
+[[test]]
+name = "review_regressions"
+path = "../tests/omega_general_relativity/review_regressions.rs"
+
+[[test]]
+name = "test_dec_input_bounds"
+path = "../tests/omega_general_relativity/test_dec_input_bounds.rs"
+
+[[test]]
+name = "test_regge_4d"
+path = "../tests/omega_general_relativity/test_regge_4d.rs"
+
+[[test]]
+name = "test_regge_calculus_foundations"
+path = "../tests/omega_general_relativity/test_regge_calculus_foundations.rs"
+
+[[test]]
+name = "test_regge_deficit_holonomy"
+path = "../tests/omega_general_relativity/test_regge_deficit_holonomy.rs"

@@ -1,0 +1,2799 @@
+{
+  "entropy": {
+    "authority_effect": "None",
+    "authority_notice": "AuthorityEffect: None.",
+    "schema": "c750_b01_exact_v1",
+    "serialization": "UTF-8 compact JSON, keys lexicographically sorted recursively, no whitespace, one terminal LF. Rationals are reduced numerator/positive-denominator strings including integers as a/1. No floats.",
+    "input_fields": [
+      "fixture_id",
+      "system_id",
+      "conductor",
+      "matrix",
+      "scope"
+    ],
+    "root_rational": {
+      "kind": "rational",
+      "value": "a/b"
+    },
+    "root_quadratic": {
+      "kind": "quadratic",
+      "center": "a/b",
+      "coefficient": "a/b",
+      "radicand": "positive squarefree integer"
+    },
+    "output_fields": [
+      "characteristic_polynomial",
+      "spectrum",
+      "splitting_field",
+      "dependence",
+      "purity",
+      "renyi2_power_sum",
+      "entropy"
+    ],
+    "characteristic_polynomial": "All dimension+1 coefficients of det(xI-rho), descending powers, rational strings.",
+    "spectrum": "Array of {root: root object, multiplicity: positive integer}; rationals first by exact value, then quadratics by center, radicand, coefficient. Product of their exact factors must equal the independently computed characteristic polynomial.",
+    "splitting_field_fields": [
+      "spectrum_splitting_field",
+      "spectrum_degree_over_q",
+      "carrier_conductor",
+      "extension_degree_over_carrier",
+      "compositum_degree_over_q"
+    ],
+    "splitting_field_names": "Q or Q(sqrt(d)); a real quadratic lies in the frozen carrier only for d=2,n=8 or d=5,n=5. Compositum degree is phi(n) times extension degree.",
+    "dependence_fields": [
+      "status",
+      "method",
+      "arguments",
+      "generators",
+      "exponent_rows",
+      "basis_argument_indices",
+      "coordinates"
+    ],
+    "dependence_status": "EXACT",
+    "dependence_method": "PRIME_EXPONENT_Q_ROW_BASIS or PRIME_AND_CONJUGATE_RATIO_Q_ROW_BASIS",
+    "dependence_arguments": "Distinct nonzero eigenvalue root objects in spectrum order, including 1 if present.",
+    "dependence_generators": "Sorted prime generators {kind:prime,value:integer}; if a quadratic pair is present append {kind:quadratic_ratio,numerator:qplus-root,denominator:qminus-root}.",
+    "dependence_rows": "All entries are rational strings. Rational log arguments use prime valuations and zero ratio coordinate. Quadratic conjugate logs use half the prime valuations of their rational norm, and respectively minus or plus 1/2 in the ratio coordinate.",
+    "dependence_basis": "Greedy first linearly independent rows in argument order under exact Q row elimination; coordinates are the unique coefficients expressing each original row in this selected row basis. Zero rows have all-zero coordinates. This is the Q basis of the actual eigenvalue-log span. No numerical independence test.",
+    "purity": "PURE or MIXED; computed by exact sum of squared eigenvalues, with PSD and trace one checked first.",
+    "renyi2_power_sum": "Tr(rho^2), a rational string; this is the power sum, not the logarithmic Renyi entropy.",
+    "entropy_fields": [
+      "verdict",
+      "reason",
+      "anchor",
+      "quantity_type"
+    ],
+    "pure_entropy": {
+      "verdict": "CARRIED",
+      "reason": "PURE_STATE_ZERO",
+      "anchor": "ZERO_LOG_ZERO_CONVENTION_AND_REAL_LOG_ONE",
+      "quantity_type": "CARRIER_ZERO"
+    },
+    "mixed_entropy": {
+      "verdict": "REFUSED_TRANSCENDENTAL",
+      "reason": "MIXED_STATE_POSITIVITY_AND_BAKER_REDUCTION",
+      "anchor": "A1",
+      "quantity_type": "TRANSCENDENTAL_VALUE"
+    },
+    "external_entropy": {
+      "verdict": "EXTERNALLY_INTERFACED",
+      "reason": "MIXED_STATE_WITH_RATIONAL_INTERVAL_INTERFACE",
+      "anchor": "A1",
+      "quantity_type": "APPROXIMATION_NOT_MEMBERSHIP"
+    },
+    "external_rule": "Requesting an external interval returns the external verdict only after a rational entropy interval of width <= 2^-k is established; its separate record names the absolute-error metric. Computational budget refusal is a separate exception, never a negative theorem or fabricated entropy verdict.",
+    "report": "{authority_effect:None,schema:c750_b01_exact_v1,cases:[{input:fixture,output:output}]}; external approximation records are separate and are not required in the cross-language kernel report.",
+    "bounded_scope": "The exact spectrum/dependence report supports rational real-symmetric density matrices of dimension <=5 whose characteristic polynomial splits into rational factors and at most one distinct quadratic conjugate pair, including a repeated quadratic factor. Graph component size is not an admission condition. General rational-matrix verdicts and entropy intervals have separate interfaces and do not claim that arbitrary splitting fields or dependence relations were computed. Launch bounds remain unchanged; unsupported spectrum shapes and exhausted budgets are distinct refusals.",
+    "frozen_class_limit": "S8 describes a two-dimensional [[4,2,2]] code space in dimension four while invoking four-qubit factorization; this is retained as unresolved. S8 fixtures are explicitly dimension-only proxies and cannot certify its claimed code support or channels.",
+    "fixtures": [
+      {
+        "fixture_id": "s1_pure",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s1_mixed_half",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/2",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/2"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s1_sqrt2",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            "5/8",
+            "1/8"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s2_pure",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s2_mixed",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            "1/2",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/3",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/6"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s3_pure",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s3_mixed",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            "3/4",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/4"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s3_sqrt2",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            "5/8",
+            "1/8"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s4_bell_pure",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/2",
+            "0/1",
+            "0/1",
+            "1/2"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "1/2",
+            "0/1",
+            "0/1",
+            "1/2"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s4_mixed",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/4",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/4",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/4",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/4"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_pure",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_mixed",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "1/5",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/5",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/5",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/5",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/5"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_sqrt5",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "3/4",
+            "1/8",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "1/8",
+            "1/4",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s6_frozen_ladder",
+        "system_id": "S6",
+        "conductor": 1,
+        "matrix": [
+          [
+            "8/15",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "4/15",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "2/15",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/15"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s7_frozen_ladder",
+        "system_id": "S7",
+        "conductor": 1,
+        "matrix": [
+          [
+            "1/7",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "2/7",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "4/7"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s7_pure",
+        "system_id": "S7",
+        "conductor": 1,
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s8_pure_proxy",
+        "system_id": "S8",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "S8_DIMENSION_ONLY_PROXY"
+      },
+      {
+        "fixture_id": "s8_mixed_proxy",
+        "system_id": "S8",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/2",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/2",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "S8_DIMENSION_ONLY_PROXY"
+      },
+      {
+        "fixture_id": "s2_connected_three_scope_witness",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            "1/3",
+            "1/12",
+            "0/1"
+          ],
+          [
+            "1/12",
+            "1/3",
+            "1/12"
+          ],
+          [
+            "0/1",
+            "1/12",
+            "1/3"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s4_dense_repeated_quadratic",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/4",
+            "1/8",
+            "-1/8",
+            "0/1"
+          ],
+          [
+            "1/8",
+            "1/4",
+            "0/1",
+            "1/8"
+          ],
+          [
+            "-1/8",
+            "0/1",
+            "1/4",
+            "1/8"
+          ],
+          [
+            "0/1",
+            "1/8",
+            "1/8",
+            "1/4"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_dense_quadratic_plus_rationals",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "24/125",
+            "11/500",
+            "-1/125",
+            "3/250",
+            "3/250"
+          ],
+          [
+            "11/500",
+            "19/125",
+            "11/500",
+            "-1/125",
+            "-1/125"
+          ],
+          [
+            "-1/125",
+            "11/500",
+            "24/125",
+            "3/250",
+            "3/250"
+          ],
+          [
+            "3/250",
+            "-1/125",
+            "3/250",
+            "29/125",
+            "4/125"
+          ],
+          [
+            "3/250",
+            "-1/125",
+            "3/250",
+            "4/125",
+            "29/125"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      }
+    ],
+    "entropy_definitions": {
+      "log_branch": "Real natural logarithm of strictly positive algebraic eigenvalues under the declared real embedding.",
+      "zero_convention": "The summand at eigenvalue zero is exactly zero without evaluating log(0).",
+      "shannon": "H(p) = -sum_i p_i ln(p_i) for finite nonnegative algebraic p with sum one.",
+      "von_neumann": "S(rho) = -sum_i lambda_i ln(lambda_i), multiplicities retained.",
+      "renyi_integer_order": "H_alpha = ln(sum_i lambda_i^alpha)/(1-alpha), integer alpha>=2. The power sum is algebraic; this definition does not claim the logarithmic entropy is algebraic."
+    }
+  },
+  "entropy-verdict": {
+    "authority_effect": "None",
+    "authority_notice": "AuthorityEffect: None.",
+    "schema": "c750_b01_general_rational_inputs_v1",
+    "scope": "Exact rational PSD verdict and bounded certified entropy approximation; not a general splitting-field or logarithm-dependence implementation.",
+    "fixtures": [
+      {
+        "fixture_id": "s1_pure",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s2_irreducible_cubic",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            "1/5",
+            "1/10",
+            "0/1"
+          ],
+          [
+            "1/10",
+            "3/10",
+            "1/10"
+          ],
+          [
+            "0/1",
+            "1/10",
+            "1/2"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s4_irreducible_quartic",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/7",
+            "1/14",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "1/14",
+            "3/14",
+            "1/14",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/14",
+            "2/7",
+            "1/14"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/14",
+            "5/14"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_irreducible_quintic",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "3/11",
+            "1/11",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "1/11",
+            "2/11",
+            "1/11",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/11",
+            "2/11",
+            "1/11",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/11",
+            "2/11",
+            "1/11"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/11",
+            "2/11"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s4_dense_repeated_quadratic",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/4",
+            "1/8",
+            "-1/8",
+            "0/1"
+          ],
+          [
+            "1/8",
+            "1/4",
+            "0/1",
+            "1/8"
+          ],
+          [
+            "-1/8",
+            "0/1",
+            "1/4",
+            "1/8"
+          ],
+          [
+            "0/1",
+            "1/8",
+            "1/8",
+            "1/4"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      }
+    ]
+  },
+  "entropy-interval": {
+    "authority_effect": "None",
+    "authority_notice": "AuthorityEffect: None.",
+    "fixtures": [
+      {
+        "fixture_id": "close_twin_wells",
+        "system_id": "S4",
+        "conductor": 8,
+        "scope": "DECLARED_SYSTEM_STATE",
+        "matrix": [
+          [
+            "1/8",
+            {
+              "cyclotomic_coefficients": [
+                "99/4096",
+                "-35/2048",
+                "0/1",
+                "35/2048"
+              ]
+            },
+            "0/1",
+            "0/1"
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "99/4096",
+                "-35/2048",
+                "0/1",
+                "35/2048"
+              ]
+            },
+            "3/8",
+            {
+              "cyclotomic_coefficients": [
+                "99/4096",
+                "-35/2048",
+                "0/1",
+                "35/2048"
+              ]
+            },
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "99/4096",
+                "-35/2048",
+                "0/1",
+                "35/2048"
+              ]
+            },
+            "3/8",
+            {
+              "cyclotomic_coefficients": [
+                "99/4096",
+                "-35/2048",
+                "0/1",
+                "35/2048"
+              ]
+            }
+          ],
+          [
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "99/4096",
+                "-35/2048",
+                "0/1",
+                "35/2048"
+              ]
+            },
+            "1/8"
+          ]
+        ]
+      },
+      {
+        "fixture_id": "near_zero_ladder",
+        "system_id": "S5",
+        "conductor": 5,
+        "scope": "DECLARED_SYSTEM_STATE",
+        "matrix": [
+          [
+            "1/2309",
+            "24/2309",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "24/2309",
+            "577/2309",
+            "24/2309",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "24/2309",
+            "577/2309",
+            "24/2309",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "24/2309",
+            "577/2309",
+            "24/2309"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "24/2309",
+            "577/2309"
+          ]
+        ]
+      }
+    ]
+  },
+  "cyclotomic-characteristic": {
+    "authority_effect": "None",
+    "schema": "cyclotomic_density_inputs_v1",
+    "scope": "Frozen cyclotomic scalar fields with existing system restrictions; S8 remains an explicit dimension-only proxy, not code-support evidence.",
+    "fixtures": [
+      {
+        "fixture_id": "positive_sqrt_two_embedding",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "-1/1",
+                "1/1",
+                "0/1",
+                "-1/1"
+              ]
+            },
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "2/1",
+                "-1/1",
+                "0/1",
+                "1/1"
+              ]
+            }
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "positive_sqrt_five_embedding",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "-3/1",
+                "0/1",
+                "-2/1",
+                "-2/1"
+              ]
+            },
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "4/1",
+                "0/1",
+                "2/1",
+                "2/1"
+              ]
+            },
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "qubit_imaginary_pure",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "1/2",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "-1/2"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/2"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/2",
+                "0/1"
+              ]
+            }
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "qubit_imaginary_mixed",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/2",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/5"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "-1/5"
+              ]
+            },
+            "1/2"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "eisenstein_phase_pure",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "1/3",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "-1/3",
+                "-1/3"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/3"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/3"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/3",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "-1/3",
+                "-1/3"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "-1/3",
+                "-1/3"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/3"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/3",
+                "0/1"
+              ]
+            }
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "eisenstein_connected_mixed",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            "1/3",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/12"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "-1/14",
+                "-1/14"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "-1/12",
+                "-1/12"
+              ]
+            },
+            "1/3",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/13"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/14"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "-1/13",
+                "-1/13"
+              ]
+            },
+            "1/3"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "quadratic_real_qubit",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "1/2",
+                "1/8",
+                "0/1",
+                "-1/8"
+              ]
+            },
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "1/2",
+                "-1/8",
+                "0/1",
+                "1/8"
+              ]
+            }
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "cyclotomic_phase_qubit_mixed",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/2",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/8",
+                "0/1",
+                "0/1"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "-1/8"
+              ]
+            },
+            "1/2"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "cyclotomic_phase_qubit_pure",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "1/2",
+                "0/1",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "-1/2"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/2",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/2",
+                "0/1",
+                "0/1",
+                "0/1"
+              ]
+            }
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "quadratic_real_connected_two_qubits",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "1/4",
+                "1/64",
+                "0/1",
+                "-1/64"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/32",
+                "0/1",
+                "0/1"
+              ]
+            },
+            "0/1",
+            "0/1"
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "-1/32"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/4",
+                "-1/64",
+                "0/1",
+                "1/64"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/31",
+                "0/1"
+              ]
+            },
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "-1/31",
+                "0/1"
+              ]
+            },
+            "1/4",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/30"
+              ]
+            }
+          ],
+          [
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "-1/30",
+                "0/1",
+                "0/1"
+              ]
+            },
+            "1/4"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "phase_bell_state",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/2",
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/2",
+                "0/1",
+                "0/1"
+              ]
+            }
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "-1/2"
+              ]
+            },
+            "0/1",
+            "0/1",
+            "1/2"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "golden_real_qudit",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "7/40",
+                "0/1",
+                "-1/20",
+                "-1/20"
+              ]
+            },
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "3/16",
+                "0/1",
+                "-1/40",
+                "-1/40"
+              ]
+            },
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "19/80",
+                "0/1",
+                "3/40",
+                "3/40"
+              ]
+            },
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/5",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/5"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "fifth_root_phase_pure",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "1/5",
+                "0/1",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "-1/5",
+                "-1/5",
+                "-1/5",
+                "-1/5"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/5"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/5",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/5",
+                "0/1",
+                "0/1"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/5",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/5",
+                "0/1",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "-1/5",
+                "-1/5",
+                "-1/5",
+                "-1/5"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/5"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/5",
+                "0/1"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/5",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/5",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/5",
+                "0/1",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "-1/5",
+                "-1/5",
+                "-1/5",
+                "-1/5"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/5"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/5"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/5",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/5",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/5",
+                "0/1",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "-1/5",
+                "-1/5",
+                "-1/5",
+                "-1/5"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "-1/5",
+                "-1/5",
+                "-1/5",
+                "-1/5"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/5"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/5",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/5",
+                "0/1",
+                "0/1"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "1/5",
+                "0/1",
+                "0/1",
+                "0/1"
+              ]
+            }
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "fifth_root_connected_mixed",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "7/40",
+                "0/1",
+                "-1/20",
+                "-1/20"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/40",
+                "0/1",
+                "0/1"
+              ]
+            },
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/48",
+                "0/1"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "-1/40",
+                "-1/40",
+                "-1/40",
+                "-1/40"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "9/40",
+                "0/1",
+                "1/20",
+                "1/20"
+              ]
+            },
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/41",
+                "0/1"
+              ]
+            },
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/41"
+              ]
+            },
+            "1/5",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/42"
+              ]
+            },
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "1/42",
+                "0/1"
+              ]
+            },
+            "1/5",
+            {
+              "cyclotomic_coefficients": [
+                "-1/43",
+                "-1/43",
+                "-1/43",
+                "-1/43"
+              ]
+            }
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "0/1",
+                "0/1",
+                "1/48"
+              ]
+            },
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/43",
+                "0/1",
+                "0/1"
+              ]
+            },
+            "1/5"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "rational_ladder_power_basis",
+        "system_id": "S6",
+        "conductor": 1,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "8/15"
+              ]
+            },
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "4/15"
+              ]
+            },
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "2/15"
+              ]
+            },
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "1/15"
+              ]
+            }
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "rational_control_power_basis",
+        "system_id": "S7",
+        "conductor": 1,
+        "matrix": [
+          [
+            {
+              "cyclotomic_coefficients": [
+                "1/7"
+              ]
+            },
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "2/7"
+              ]
+            },
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "4/7"
+              ]
+            }
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "code_dimension_phase_proxy",
+        "system_id": "S8",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/2",
+            "0/1",
+            "0/1",
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "1/2"
+              ]
+            }
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            {
+              "cyclotomic_coefficients": [
+                "0/1",
+                "-1/2"
+              ]
+            },
+            "0/1",
+            "0/1",
+            "1/2"
+          ]
+        ],
+        "scope": "S8_DIMENSION_ONLY_PROXY"
+      }
+    ]
+  },
+  "polynomial-roots": {
+    "authority_effect": "None",
+    "authority_notice": "AuthorityEffect: None.",
+    "schema": "c750_b01_exact_v1",
+    "serialization": "UTF-8 compact JSON, keys lexicographically sorted recursively, no whitespace, one terminal LF. Rationals are reduced numerator/positive-denominator strings including integers as a/1. No floats.",
+    "input_fields": [
+      "fixture_id",
+      "system_id",
+      "conductor",
+      "matrix",
+      "scope"
+    ],
+    "root_rational": {
+      "kind": "rational",
+      "value": "a/b"
+    },
+    "root_quadratic": {
+      "kind": "quadratic",
+      "center": "a/b",
+      "coefficient": "a/b",
+      "radicand": "positive squarefree integer"
+    },
+    "output_fields": [
+      "characteristic_polynomial",
+      "spectrum",
+      "splitting_field",
+      "dependence",
+      "purity",
+      "renyi2_power_sum",
+      "entropy"
+    ],
+    "characteristic_polynomial": "All dimension+1 coefficients of det(xI-rho), descending powers, rational strings.",
+    "spectrum": "Array of {root: root object, multiplicity: positive integer}; rationals first by exact value, then quadratics by center, radicand, coefficient. Product of their exact factors must equal the independently computed characteristic polynomial.",
+    "splitting_field_fields": [
+      "spectrum_splitting_field",
+      "spectrum_degree_over_q",
+      "carrier_conductor",
+      "extension_degree_over_carrier",
+      "compositum_degree_over_q"
+    ],
+    "splitting_field_names": "Q or Q(sqrt(d)); a real quadratic lies in the frozen carrier only for d=2,n=8 or d=5,n=5. Compositum degree is phi(n) times extension degree.",
+    "dependence_fields": [
+      "status",
+      "method",
+      "arguments",
+      "generators",
+      "exponent_rows",
+      "basis_argument_indices",
+      "coordinates"
+    ],
+    "dependence_status": "EXACT",
+    "dependence_method": "PRIME_EXPONENT_Q_ROW_BASIS or PRIME_AND_CONJUGATE_RATIO_Q_ROW_BASIS",
+    "dependence_arguments": "Distinct nonzero eigenvalue root objects in spectrum order, including 1 if present.",
+    "dependence_generators": "Sorted prime generators {kind:prime,value:integer}; if a quadratic pair is present append {kind:quadratic_ratio,numerator:qplus-root,denominator:qminus-root}.",
+    "dependence_rows": "All entries are rational strings. Rational log arguments use prime valuations and zero ratio coordinate. Quadratic conjugate logs use half the prime valuations of their rational norm, and respectively minus or plus 1/2 in the ratio coordinate.",
+    "dependence_basis": "Greedy first linearly independent rows in argument order under exact Q row elimination; coordinates are the unique coefficients expressing each original row in this selected row basis. Zero rows have all-zero coordinates. This is the Q basis of the actual eigenvalue-log span. No numerical independence test.",
+    "purity": "PURE or MIXED; computed by exact sum of squared eigenvalues, with PSD and trace one checked first.",
+    "renyi2_power_sum": "Tr(rho^2), a rational string; this is the power sum, not the logarithmic Renyi entropy.",
+    "entropy_fields": [
+      "verdict",
+      "reason",
+      "anchor",
+      "quantity_type"
+    ],
+    "pure_entropy": {
+      "verdict": "CARRIED",
+      "reason": "PURE_STATE_ZERO",
+      "anchor": "ZERO_LOG_ZERO_CONVENTION_AND_REAL_LOG_ONE",
+      "quantity_type": "CARRIER_ZERO"
+    },
+    "mixed_entropy": {
+      "verdict": "REFUSED_TRANSCENDENTAL",
+      "reason": "MIXED_STATE_POSITIVITY_AND_BAKER_REDUCTION",
+      "anchor": "A1",
+      "quantity_type": "TRANSCENDENTAL_VALUE"
+    },
+    "external_entropy": {
+      "verdict": "EXTERNALLY_INTERFACED",
+      "reason": "MIXED_STATE_WITH_RATIONAL_INTERVAL_INTERFACE",
+      "anchor": "A1",
+      "quantity_type": "APPROXIMATION_NOT_MEMBERSHIP"
+    },
+    "external_rule": "Requesting an external interval returns the external verdict only after a rational entropy interval of width <= 2^-k is established; its separate record names the absolute-error metric. Computational budget refusal is a separate exception, never a negative theorem or fabricated entropy verdict.",
+    "report": "{authority_effect:None,schema:c750_b01_exact_v1,cases:[{input:fixture,output:output}]}; external approximation records are separate and are not required in the cross-language kernel report.",
+    "bounded_scope": "The exact spectrum/dependence report supports rational real-symmetric density matrices of dimension <=5 whose characteristic polynomial splits into rational factors and at most one distinct quadratic conjugate pair, including a repeated quadratic factor. Graph component size is not an admission condition. General rational-matrix verdicts and entropy intervals have separate interfaces and do not claim that arbitrary splitting fields or dependence relations were computed. Launch bounds remain unchanged; unsupported spectrum shapes and exhausted budgets are distinct refusals.",
+    "frozen_class_limit": "S8 describes a two-dimensional [[4,2,2]] code space in dimension four while invoking four-qubit factorization; this is retained as unresolved. S8 fixtures are explicitly dimension-only proxies and cannot certify its claimed code support or channels.",
+    "fixtures": [
+      {
+        "fixture_id": "s1_pure",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s1_mixed_half",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/2",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/2"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s1_sqrt2",
+        "system_id": "S1",
+        "conductor": 4,
+        "matrix": [
+          [
+            "5/8",
+            "1/8"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s2_pure",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s2_mixed",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            "1/2",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/3",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/6"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s3_pure",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s3_mixed",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            "3/4",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/4"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s3_sqrt2",
+        "system_id": "S3",
+        "conductor": 8,
+        "matrix": [
+          [
+            "5/8",
+            "1/8"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s4_bell_pure",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/2",
+            "0/1",
+            "0/1",
+            "1/2"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "1/2",
+            "0/1",
+            "0/1",
+            "1/2"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s4_mixed",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/4",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/4",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/4",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/4"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_pure",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_mixed",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "1/5",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/5",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/5",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/5",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/5"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_sqrt5",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "3/4",
+            "1/8",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "1/8",
+            "1/4",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s6_frozen_ladder",
+        "system_id": "S6",
+        "conductor": 1,
+        "matrix": [
+          [
+            "8/15",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "4/15",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "2/15",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/15"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s7_frozen_ladder",
+        "system_id": "S7",
+        "conductor": 1,
+        "matrix": [
+          [
+            "1/7",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "2/7",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "4/7"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s7_pure",
+        "system_id": "S7",
+        "conductor": 1,
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s8_pure_proxy",
+        "system_id": "S8",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "S8_DIMENSION_ONLY_PROXY"
+      },
+      {
+        "fixture_id": "s8_mixed_proxy",
+        "system_id": "S8",
+        "conductor": 4,
+        "matrix": [
+          [
+            "1/2",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "1/2",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1"
+          ]
+        ],
+        "scope": "S8_DIMENSION_ONLY_PROXY"
+      },
+      {
+        "fixture_id": "s2_connected_three_scope_witness",
+        "system_id": "S2",
+        "conductor": 3,
+        "matrix": [
+          [
+            "1/3",
+            "1/12",
+            "0/1"
+          ],
+          [
+            "1/12",
+            "1/3",
+            "1/12"
+          ],
+          [
+            "0/1",
+            "1/12",
+            "1/3"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s4_dense_repeated_quadratic",
+        "system_id": "S4",
+        "conductor": 8,
+        "matrix": [
+          [
+            "1/4",
+            "1/8",
+            "-1/8",
+            "0/1"
+          ],
+          [
+            "1/8",
+            "1/4",
+            "0/1",
+            "1/8"
+          ],
+          [
+            "-1/8",
+            "0/1",
+            "1/4",
+            "1/8"
+          ],
+          [
+            "0/1",
+            "1/8",
+            "1/8",
+            "1/4"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      },
+      {
+        "fixture_id": "s5_dense_quadratic_plus_rationals",
+        "system_id": "S5",
+        "conductor": 5,
+        "matrix": [
+          [
+            "24/125",
+            "11/500",
+            "-1/125",
+            "3/250",
+            "3/250"
+          ],
+          [
+            "11/500",
+            "19/125",
+            "11/500",
+            "-1/125",
+            "-1/125"
+          ],
+          [
+            "-1/125",
+            "11/500",
+            "24/125",
+            "3/250",
+            "3/250"
+          ],
+          [
+            "3/250",
+            "-1/125",
+            "3/250",
+            "29/125",
+            "4/125"
+          ],
+          [
+            "3/250",
+            "-1/125",
+            "3/250",
+            "4/125",
+            "29/125"
+          ]
+        ],
+        "scope": "DECLARED_SYSTEM_STATE"
+      }
+    ],
+    "entropy_definitions": {
+      "log_branch": "Real natural logarithm of strictly positive algebraic eigenvalues under the declared real embedding.",
+      "zero_convention": "The summand at eigenvalue zero is exactly zero without evaluating log(0).",
+      "shannon": "H(p) = -sum_i p_i ln(p_i) for finite nonnegative algebraic p with sum one.",
+      "von_neumann": "S(rho) = -sum_i lambda_i ln(lambda_i), multiplicities retained.",
+      "renyi_integer_order": "H_alpha = ln(sum_i lambda_i^alpha)/(1-alpha), integer alpha>=2. The power sum is algebraic; this definition does not claim the logarithmic entropy is algebraic."
+    }
+  },
+  "rational-polynomial-factors": {
+    "operation": "factor",
+    "coefficients": [
+      "7/1"
+    ]
+  },
+  "real-field-squares": {
+    "operation": "square",
+    "conductor": 1,
+    "coefficients": [
+      "0/1",
+      "0/1"
+    ]
+  },
+  "real-field-polynomial-factors": {
+    "operation": "factor",
+    "conductor": 1,
+    "coefficients": [
+      [
+        "-3/1",
+        "0/1"
+      ]
+    ]
+  },
+  "real-field-splitting-degrees": {
+    "operation": "irreducible_splitting_degree",
+    "conductor": 1,
+    "coefficients": [
+      [
+        "1/1",
+        "0/1"
+      ],
+      [
+        "0/1",
+        "0/1"
+      ],
+      [
+        "-3/1",
+        "0/1"
+      ],
+      [
+        "1/1",
+        "0/1"
+      ]
+    ]
+  },
+  "real-field-compositum-degrees": {
+    "operation": "compositum_splitting_degree",
+    "conductor": 1,
+    "coefficients": [
+      [
+        "1/1",
+        "0/1"
+      ],
+      [
+        "0/1",
+        "0/1"
+      ],
+      [
+        "-7/1",
+        "0/1"
+      ]
+    ]
+  },
+  "quintic-splitting-algebras": {
+    "operation": "quintic_splitting_degree",
+    "conductor": 1,
+    "coefficients": [
+      [
+        "1/1",
+        "0/1"
+      ],
+      [
+        "1/1",
+        "0/1"
+      ],
+      [
+        "-4/1",
+        "0/1"
+      ],
+      [
+        "-3/1",
+        "0/1"
+      ],
+      [
+        "3/1",
+        "0/1"
+      ],
+      [
+        "1/1",
+        "0/1"
+      ]
+    ]
+  },
+  "spectral-factor-binding": {
+    "operation": "bind_spectral_factors",
+    "input": {
+      "fixture_id": "repeated_quadratic_factor",
+      "system_id": "S4",
+      "conductor": 8,
+      "scope": "DECLARED_SYSTEM_STATE",
+      "matrix": [
+        [
+          "1/8",
+          "1/16",
+          "0/1",
+          "0/1"
+        ],
+        [
+          "1/16",
+          "3/8",
+          "0/1",
+          "0/1"
+        ],
+        [
+          "0/1",
+          "0/1",
+          "1/8",
+          "1/16"
+        ],
+        [
+          "0/1",
+          "0/1",
+          "1/16",
+          "3/8"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,67 @@
+//! Schläfli differential identity and Regge field equations of motion (RQ-02).
+//!
+//! For any flat Euclidean n-simplex:
+//! sum_{h in hinges of sigma} V_{n-2}(h) * d theta_sigma(h) = 0.
+//!
+//! This discrete Bianchi identity guarantees that edge length variations of angles
+//! cancel out identically in the variation of the Regge action.
+//!
+//! AuthorityEffect: None.
+
+use crate::dihedral_angles::triangle_angle_at;
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct SchlafliCheckResult {
+    pub simplex_vertices: Vec<usize>,
+    pub residual_sum: f64,
+    pub is_vanishing: bool,
+}
+
+/// Verify the Schläfli identity for a 2-simplex (triangle):
+/// d(theta_0 + theta_1 + theta_2) = 0 because sum(theta_i) = pi identically!
+pub fn verify_schlafli_identity_2d(
+    triangle: &[usize; 3],
+    get_length: impl Fn(usize, usize) -> Option<f64>,
+) -> Result<SchlafliCheckResult, String> {
+    let a0 = triangle_angle_at(triangle, triangle[0], &get_length)?;
+    let a1 = triangle_angle_at(triangle, triangle[1], &get_length)?;
+    let a2 = triangle_angle_at(triangle, triangle[2], &get_length)?;
+
+    let sum = a0 + a1 + a2;
+    let err = (sum - std::f64::consts::PI).abs();
+
+    Ok(SchlafliCheckResult {
+        simplex_vertices: triangle.to_vec(),
+        residual_sum: err,
+        is_vanishing: err < 1e-7,
+    })
+}
+
+/// Numerical gradient of the Regge action dS / d ell_e with respect to edge length ell_e.
+pub fn compute_regge_action_gradient_at_edge(
+    _edge: (usize, usize),
+    current_length: f64,
+    delta: f64,
+    mut action_evaluator: impl FnMut(f64) -> f64,
+) -> f64 {
+    let s_fwd = action_evaluator(current_length + delta);
+    let s_bwd = action_evaluator(current_length - delta);
+    (s_fwd - s_bwd) / (2.0 * delta)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_schlafli_identity_triangle() {
+        let tri = [0, 1, 2];
+        let side = 3.5;
+        let get_len = |_: usize, _: usize| Some(side);
+
+        let res = verify_schlafli_identity_2d(&tri, get_len).unwrap();
+        assert!(res.is_vanishing);
+        assert!(res.residual_sum < 1e-9);
+    }
+}

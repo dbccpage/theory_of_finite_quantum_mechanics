@@ -1,0 +1,465 @@
+{
+  "disposition": "historical declared metadata; not computationally discharged by this table",
+  "values": {
+    "classify_quantities": {
+      "purity": {
+        "type": "SYMMETRIC_POLYNOMIAL",
+        "carrier_internal": true,
+        "expression": "Tr(rho^2)",
+        "conductor_cost": 0,
+        "extension_degree": 1
+      },
+      "tr_rho_3": {
+        "type": "SYMMETRIC_POLYNOMIAL",
+        "carrier_internal": true,
+        "expression": "Tr(rho^3)",
+        "conductor_cost": 0,
+        "extension_degree": 1
+      },
+      "participation_ratio": {
+        "type": "SYMMETRIC_RATIONAL",
+        "carrier_internal": true,
+        "expression": "1 / Tr(rho^2)",
+        "conductor_cost": 0,
+        "extension_degree": 1
+      },
+      "renyi_order_2": {
+        "type": "SYMMETRIC_ARGUMENT_INTERNAL",
+        "carrier_internal": true,
+        "expression": "argument Tr(rho^2) carried, log exterior",
+        "conductor_cost": 0,
+        "extension_degree": 1
+      },
+      "von_neumann_entropy": {
+        "type": "ORDER_DEPENDENT_OR_TRANSCENDENTAL",
+        "carrier_internal": false,
+        "expression": "-Tr(rho log rho)",
+        "status": "REFUSED_TRANSCENDENTAL"
+      },
+      "trace_distance": {
+        "type": "ORDER_DEPENDENT_SPLITTING_FIELD",
+        "carrier_internal": false,
+        "expression": "Tr|rho - sigma| / 2",
+        "status": "REQUIRES_SPLITTING_FIELD_AND_IOTA",
+        "extension_degree": 2
+      },
+      "min_entropy": {
+        "type": "ORDER_DEPENDENT_MAX_EIGENVALUE",
+        "carrier_internal": false,
+        "expression": "-log lambda_max",
+        "status": "REQUIRES_IOTA_AND_LOG"
+      },
+      "fidelity": {
+        "type": "CONDUCTOR_ESCALATION",
+        "carrier_internal": false,
+        "expression": "Tr sqrt(sqrt(rho) sigma sqrt(rho))",
+        "status": "REQUIRES_CONDUCTOR_8",
+        "conductor_cost": 8
+      }
+    },
+    "candidate_monotone_inventory": {
+      "purity": {
+        "name": "Purity Tr(rho^2)",
+        "conductor_cost": 0,
+        "extension_degree": 1,
+        "universal_monotone": false,
+        "carrier_internal": true,
+        "failure_channel": "amplitude_damping / erasure"
+      },
+      "trace_distance": {
+        "name": "Trace Distance 1/2 ||rho - sigma||_1",
+        "conductor_cost": 0,
+        "extension_degree": 2,
+        "universal_monotone": true,
+        "carrier_internal": false
+      },
+      "fidelity": {
+        "name": "Uhlmann Fidelity F(rho, sigma)",
+        "conductor_cost": 8,
+        "extension_degree": 2,
+        "universal_monotone": true,
+        "carrier_internal": false
+      },
+      "min_entropy": {
+        "name": "Min-Entropy H_min(rho)",
+        "conductor_cost": 0,
+        "extension_degree": 2,
+        "universal_monotone": true,
+        "carrier_internal": false
+      },
+      "relative_entropy": {
+        "name": "Umegaki Relative Entropy S(rho || sigma)",
+        "conductor_cost": "UNBOUNDED",
+        "extension_degree": "TRANSCENDENTAL",
+        "universal_monotone": true,
+        "carrier_internal": false,
+        "verdict": "REFUSED_TRANSCENDENTAL"
+      },
+      "max_eigenvalue": {
+        "name": "Maximal Eigenvalue lambda_max",
+        "conductor_cost": 0,
+        "extension_degree": 2,
+        "universal_monotone": false,
+        "carrier_internal": false
+      }
+    },
+    "five_partition_table": {
+      "S1": {
+        "commensurable": false,
+        "periodic": false,
+        "thermal": false,
+        "recurrence": false,
+        "zero_height_growth": false
+      },
+      "S2": {
+        "commensurable": true,
+        "periodic": true,
+        "thermal": true,
+        "recurrence": true,
+        "zero_height_growth": true
+      },
+      "S3": {
+        "commensurable": true,
+        "periodic": true,
+        "thermal": true,
+        "recurrence": true,
+        "zero_height_growth": true
+      },
+      "S4": {
+        "commensurable": true,
+        "periodic": true,
+        "thermal": true,
+        "recurrence": true,
+        "zero_height_growth": true
+      },
+      "S5": {
+        "commensurable": true,
+        "periodic": true,
+        "thermal": true,
+        "recurrence": true,
+        "zero_height_growth": true
+      },
+      "S6": {
+        "commensurable": true,
+        "periodic": true,
+        "thermal": true,
+        "recurrence": true,
+        "zero_height_growth": true
+      },
+      "S7": {
+        "commensurable": false,
+        "periodic": false,
+        "thermal": false,
+        "recurrence": false,
+        "zero_height_growth": false
+      },
+      "S8": {
+        "commensurable": true,
+        "periodic": true,
+        "thermal": true,
+        "recurrence": true,
+        "zero_height_growth": true
+      }
+    },
+    "cost_growth_measurements": [
+      {
+        "size": 2,
+        "conductor": 4,
+        "certificate_length": 2,
+        "cost": 4
+      },
+      {
+        "size": 3,
+        "conductor": 3,
+        "certificate_length": 3,
+        "cost": 6
+      },
+      {
+        "size": 4,
+        "conductor": 8,
+        "certificate_length": 4,
+        "cost": 12
+      }
+    ],
+    "generate_irreversibility_price_list": [
+      {
+        "block": 1,
+        "target": "C750-T558",
+        "item": "Baker theorem on linear forms in logarithms",
+        "cost": "CITED_INPUT (Anchor A1)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 1,
+        "target": "C750-T559",
+        "item": "Transcendental von Neumann entropy evaluation",
+        "cost": "REFUSED_TRANSCENDENTAL",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 1,
+        "target": "C750-T560",
+        "item": "Rényi integer order evaluation",
+        "cost": "CARRIER_INTERNAL (conductor cost 0)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 2,
+        "target": "C750-T580",
+        "item": "Characteristic polynomial coefficients",
+        "cost": "REAL_SUBFIELD (degree 1 or 2)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 2,
+        "target": "C750-T581",
+        "item": "Newton power sum determination",
+        "cost": "RATIONAL_DIVISION (char 0)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 2,
+        "target": "C750-T582",
+        "item": "Spectral splitting field entry",
+        "cost": "QUADRATIC_EXTENSION (degree 2)",
+        "purchase_type": "CHOSEN"
+      },
+      {
+        "block": 2,
+        "target": "C750-T585",
+        "item": "Real embedding iota for Sturm ordering",
+        "cost": "IMPORTED_CHOICE (isolating interval)",
+        "purchase_type": "CHOSEN"
+      },
+      {
+        "block": 3,
+        "target": "C750-T605",
+        "item": "Gelfond-Schneider transcendence theorem",
+        "cost": "CITED_INPUT (Anchor A3)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 3,
+        "target": "C750-T605",
+        "item": "Lindemann-Weierstrass transcendence theorem",
+        "cost": "CITED_INPUT (Anchor A2)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 3,
+        "target": "C750-T606",
+        "item": "S6 rational Gibbs state construction",
+        "cost": "COMMENSURABLE_LADDER (degree 1)",
+        "purchase_type": "CHOSEN"
+      },
+      {
+        "block": 3,
+        "target": "C750-T608",
+        "item": "Inverse temperature beta",
+        "cost": "TRANSCENDENTAL_EXTERNAL_PARAMETER",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 3,
+        "target": "C750-T609",
+        "item": "Dynamical recurrence period T = 2*pi/Delta",
+        "cost": "EXTERNAL_REAL_SCALAR",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 3,
+        "target": "C750-T610",
+        "item": "S7 incommensurable negative control",
+        "cost": "SPECTRUM_INCOMMENSURABILITY",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 4,
+        "target": "C750-T630",
+        "item": "Exact majorization partial sums",
+        "cost": "ORDERING_RELATIVE_TO_IOTA",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 4,
+        "target": "C750-T631",
+        "item": "Doubly stochastic transfer matrix",
+        "cost": "RATIONAL_WEIGHTS_IN_Q",
+        "purchase_type": "CHOSEN"
+      },
+      {
+        "block": 4,
+        "target": "C750-T632",
+        "item": "Incomparable pair resolution",
+        "cost": "PARTIAL_ORDER_SEPARATION",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 4,
+        "target": "C750-T635",
+        "item": "Thermomajorization background state",
+        "cost": "RESTRICTED_TO_S6_LADDER",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 4,
+        "target": "C750-T637",
+        "item": "Work extraction LP feasibility",
+        "cost": "RATIONAL_SIMPLEX_FEASIBILITY",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 5,
+        "target": "C750-T656",
+        "item": "Purity monotone evaluation",
+        "cost": "CARRIER_INTERNAL (conductor cost 0)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 5,
+        "target": "C750-T657",
+        "item": "Trace distance splitting field",
+        "cost": "DEGREE_2_SPLITTING_FIELD",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 5,
+        "target": "C750-T658",
+        "item": "Fidelity conductor escalation",
+        "cost": "CONDUCTOR_8 (requires sqrt 2)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 5,
+        "target": "C750-T659",
+        "item": "Relative entropy evaluation",
+        "cost": "REFUSED_TRANSCENDENTAL",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 6,
+        "target": "C750-T680",
+        "item": "Niven theorem on rational cosines",
+        "cost": "CITED_INPUT (Anchor A4)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 6,
+        "target": "C750-T681",
+        "item": "Rational rotation orbit iteration",
+        "cost": "INFINITE_ORDER_GROUP",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 6,
+        "target": "C750-T682",
+        "item": "Denominator 5^k growth",
+        "cost": "STRICT_INTEGER_HEIGHT_GROWTH",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 6,
+        "target": "C750-T683",
+        "item": "Logarithmic height growth rate log 5",
+        "cost": "CONJUGATION_INVARIANT",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 7,
+        "target": "C750-T705",
+        "item": "Lam-Leung semigroup cancellation theorem",
+        "cost": "CITED_INPUT (Anchor A6)",
+        "purchase_type": "FORCED"
+      },
+      {
+        "block": 8,
+        "target": "C750-T732",
+        "item": "Clifford stoquasticity conjugation",
+        "cost": "TWO_QUBIT_CLIFFORD_SEARCH",
+        "purchase_type": "CHOSEN"
+      }
+    ],
+    "adjudicate_fqmi1_clauses": {
+      "1_decidable_state_ordering": {
+        "requirement": "Exact decidable state ordering replacing continuous entropic arrow",
+        "status": "DISCHARGED",
+        "discharging_block": 4,
+        "discharging_target": "C750-T630",
+        "witness_system": "S3",
+        "evidence": "Majorization decidable via exact Sturm ordering under declared iota"
+      },
+      "2_exact_invariant_family": {
+        "requirement": "Complete family of carrier-internal trace polynomial invariants",
+        "status": "DISCHARGED",
+        "discharging_block": 2,
+        "discharging_target": "C750-T580",
+        "witness_system": "S1",
+        "evidence": "Char poly coefficients & moment sequence Tr(rho^k) lie in real subfield"
+      },
+      "3_transcendental_verdict": {
+        "requirement": "Strict typing and refusal of transcendental entropic numbers",
+        "status": "DISCHARGED",
+        "discharging_block": 1,
+        "discharging_target": "C750-T558",
+        "witness_system": "S6",
+        "evidence": "von Neumann entropy typed REFUSED_TRANSCENDENTAL via Baker theorem"
+      },
+      "4_monotone_with_price": {
+        "requirement": "Explicit price ledger for thermodynamic monotones",
+        "status": "DISCHARGED",
+        "discharging_block": 5,
+        "discharging_target": "C750-T655",
+        "witness_system": "S8",
+        "evidence": "Trace distance costs degree 2 splitting; fidelity costs conductor 8"
+      },
+      "5_admitted_thermal_states": {
+        "requirement": "Identification of exact carrier-internal Gibbs states and negative controls",
+        "status": "DISCHARGED",
+        "discharging_block": 3,
+        "discharging_target": "C750-T606",
+        "witness_system": "S6",
+        "evidence": "S6 admits rational Gibbs state at beta=log 2; S7 negative control discharged"
+      },
+      "6_terminating_algorithms": {
+        "requirement": "Constructive terminating algorithms for spectrum and majorization decisions",
+        "status": "DISCHARGED",
+        "discharging_block": 2,
+        "discharging_target": "C750-T581",
+        "witness_system": "S2",
+        "evidence": "Newton identities and Sturm sequence termination proved"
+      },
+      "7_structural_verdicts": {
+        "requirement": "Exact five-way agreement between dynamical, arithmetic, and order partitions",
+        "status": "DISCHARGED",
+        "discharging_block": 6,
+        "discharging_target": "C750-T685",
+        "witness_system": "S4",
+        "evidence": "All 5 partitions agree across all 8 systems of FQMI-1 class"
+      },
+      "8_cancellation_certificate": {
+        "requirement": "Universal discrete cancellation certificate covering physical signed weights",
+        "status": "OPEN",
+        "discharging_block": 7,
+        "discharging_target": "C750-T709",
+        "witness_system": "S5",
+        "evidence": "Lam-Leung complete for nonnegative integers only; signed reduction remains OPEN"
+      },
+      "9_sign_decision": {
+        "requirement": "Proved general asymptotic growth law connecting conductor escalation to sign decay",
+        "status": "OPEN",
+        "discharging_block": 8,
+        "discharging_target": "C750-T735",
+        "witness_system": "S4",
+        "evidence": "Decidability proved under finite group; conductor growth law MEASURED_ONLY, bridge OPEN"
+      },
+      "10_price_ledger": {
+        "requirement": "Unified, comprehensive price ledger for finite quantum thermodynamics",
+        "status": "DISCHARGED",
+        "discharging_block": 10,
+        "discharging_target": "C750-T783",
+        "witness_system": "S3",
+        "evidence": "Complete 28-row irreversibility price list assembled with both directions checked"
+      }
+    }
+  }
+}

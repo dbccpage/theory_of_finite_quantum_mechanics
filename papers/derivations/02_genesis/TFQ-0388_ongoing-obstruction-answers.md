@@ -1,0 +1,60 @@
+# [TFQ-0388] ongoing-obstruction-answers
+
+> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **UUID**: `31de4540-692e-5f6c-9e08-e951184bfff8`  
+> **Parent Derivation**: [TFQ-0387](TFQ-0387_irreflexive-endpoints-distinct.md)
+
+---
+
+## 1. Abstract & Formal Statement
+
+PG-GEN-ONGOING-OBSTRUCTION and ledger rows D3 and D4 say an attempted change is obstructed exactly when it adds some xrx or identifies two related terms, and that adding xrx is obstructed in every state. Opened H3V7N5QF/Finite.lean declares identify_legal_iff and adding_xrx_always_obstructed. The three answers named in the DAG are refuse, remove the obstruction, or build structure. The finite statement still required is that trichotomy for this finite game only. Chapter 7 of the S000 book treats Phi1 and Gamma2 as a later host signature, and this game obstruction is not that signature.
+
+### Governing Obligation
+In the finite ongoing game, obstruction is adding xrx or identifying related terms, and the answers are refuse, remove, or build.
+
+---
+
+## 2. Derivation Context & Mathematical Grounding
+
+In accordance with strict constructive principles:
+- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
+- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+
+### Epistemic Bottlenecks & Falsification Fences
+> [!WARNING]
+> none for the finite game; this is a game-level obstruction, separate from the L1 Phi1/Gamma2 obstruction.
+
+---
+
+## 3. Multi-Tier Code & Proof Witnesses
+
+### Lean 4 Theorems
+- [`declaration obligation: identify_legal_iff and adding_xrx_always_obstructed`](../../code/lean4/)
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Answers.lean`](../../code/lean4/)
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last`](../../code/lean4/)
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Finite.lean`](../../code/lean4/)
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Finite.lean::adding_xrx_always_obstructed`](../../code/lean4/)
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Finite.lean::identify_legal_iff`](../../code/lean4/)
+
+### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`missing obligation: the ongoing package listing showed no Rust crate; a later crate must not reuse this obstruction as an L1 weight`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
+
+### Python Oracles & Numerical Evaluators
+- [`missing obligation: an answer triple refuse, remove, build under 001_genesis_ongoing_h3v7n5qf/code, not a Phi1 residual`](../../code/python/)
+
+---
+
+## 4. Downstream Derivations (Outgoing DAG Links)
+
+- [TFQ-0389](TFQ-0389_fewest-changes-formula.md)
+
+---
+
+## 5. Audit Trail & Primary Source Lineage
+
+- **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
+- **Primary Source Paths**:
+  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch07_finite_obstruction_calculus.md`

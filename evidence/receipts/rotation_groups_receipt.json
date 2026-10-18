@@ -1,0 +1,98 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "campaign": "C1000",
+  "block": 3,
+  "global_targets": "C1000-T851..C1000-T875",
+  "realisation_convention": "REAL_ORTHOGONAL",
+  "dimension": 3,
+  "price_table_total_both_directions": true,
+  "price_table_rows": 5,
+  "every_row_has_witness": true,
+  "octahedral_price": 1,
+  "octahedral_order": 24,
+  "tetrahedral_price": 1,
+  "tetrahedral_order": 12,
+  "icosahedral_price": 5,
+  "icosahedral_order": 60,
+  "icosahedral_rational_realisation_found": false,
+  "max_group_order_computed": 60,
+  "cyclic_price_formula_proved": true,
+  "trace_field_audit": {
+    "group_order": 60,
+    "order_census": {
+      "1": 1,
+      "2": 15,
+      "3": 20,
+      "5": 24
+    },
+    "trace_census": {
+      "(1/2 + 1/2*sqrt(5))": 12,
+      "(1/2 - 1/2*sqrt(5))": 12,
+      "-1": 15,
+      "0": 20,
+      "3": 1
+    },
+    "non_rational_trace_count": 24,
+    "order_5_elements_count": 24,
+    "order_5_traces_require_sqrt5": true,
+    "conductor_price": 5,
+    "rational_realisation_possible": false,
+    "trace_field_conductor_lower_bound": 5
+  },
+  "price_table": [
+    {
+      "class_id": "CYCLIC",
+      "class_name": "cyclic group family",
+      "symbol": "C_m",
+      "order_formula": "m",
+      "conductor_price_formula": "lcm(m, 4) for m >= 3; 1 for m in {1, 2}",
+      "carrier_field": "Q(zeta_lcm(m, 4))",
+      "has_witness": true,
+      "witness_summary": "Explicit generators for C_1, C_2, C_3, C_4, C_6 in SO(3, Q)"
+    },
+    {
+      "class_id": "DIHEDRAL",
+      "class_name": "dihedral group family",
+      "symbol": "D_2m",
+      "order_formula": "2*m",
+      "conductor_price_formula": "lcm(m, 4) for m >= 3; 1 for m = 2",
+      "carrier_field": "Q(zeta_lcm(m, 4))",
+      "has_witness": true,
+      "witness_summary": "Explicit generators for D_4, D_6, D_8 in SO(3, Q)"
+    },
+    {
+      "class_id": "TETRAHEDRAL",
+      "class_name": "tetrahedral group",
+      "symbol": "T =~ A_4",
+      "order_formula": "12",
+      "conductor_price_formula": "1",
+      "carrier_field": "Q",
+      "has_witness": true,
+      "witness_element_count": 12,
+      "witness_summary": "12 signed permutation matrices with determinant 1 over Q"
+    },
+    {
+      "class_id": "OCTAHEDRAL",
+      "class_name": "octahedral group",
+      "symbol": "O =~ S_4",
+      "order_formula": "24",
+      "conductor_price_formula": "1",
+      "carrier_field": "Q",
+      "has_witness": true,
+      "witness_element_count": 24,
+      "witness_summary": "24 signed permutation matrices with determinant 1 over Q"
+    },
+    {
+      "class_id": "ICOSAHEDRAL",
+      "class_name": "icosahedral group",
+      "symbol": "I =~ A_5",
+      "order_formula": "60",
+      "conductor_price_formula": "5",
+      "carrier_field": "Q(sqrt(5))",
+      "has_witness": true,
+      "witness_element_count": 60,
+      "witness_summary": "60 orthogonal matrices with golden ratio entries in Q(sqrt(5))"
+    }
+  ]
+}

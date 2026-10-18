@@ -1,0 +1,51 @@
+# Claim Ledger — Constraint-Closure Toy Model for $\ell^1$ Residuals on Finite Complexes (GR-002)
+
+**Paper Key:** `004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law`
+**Paper:** `constraint_closure_and_the_l1structure_of_physical_law.md`
+**Version:** 1.2 (As-Is Toy-Model Republication, 2026-09-11)
+**Scope:** Finite toy-model claims only: rigorous discrete linear $\ell^1$ quotient/certificate statements, exact LP strong duality, dual circulation certificates, and Regge-calculus examples. All continuous-GR and particle-physics interpretations are illustrative, conditional, or quarantined; speculative particle physics analogies are strictly fenced with formal falsification receipts.
+**Evidence Scope:** Receipts certify scoped finite computations, tests, and formal checks; they do not certify continuous-GR or particle-physics truth.
+
+---
+
+## 1. Rigorous Mathematical Theorems & Definitions
+
+| Claim ID | Claim (Short Description) | Claim Type | Exact Status | Code / Test Locus |
+|---|---|---|---|---|
+| **GR-THM-1.1** | Simplicial operator nilpotency: $\partial_{k-1} \circ \partial_k = 0$ and $d_k \circ d_{k-1} = 0$ for all $k \ge 1$. | THEOREM | **PROVED** (Exact linear algebra on all simplicial complexes) | [`code/complex.py`](code/complex.py), `code/tests/test_soviet_gr_invariants.py::test_topological_nilpotency_sphere3` |
+| **GR-THM-2.1** | Flat space invariant: a simplicial complex is locally flat iff the curvature $\ell^1$ norm vanishes: $\|\omega_R\|_1 = 0 \iff \varepsilon_h = 0$ for all interior hinges. | THEOREM | **PROVED** (Characterization of flat Euclidean subdivisions) | [`code/simplex.py`](code/simplex.py), `code/tests/test_soviet_gr_invariants.py::test_flat_space_zero_deficit_and_bianchi` |
+| **GR-THM-3.1** | 3D Contracted Bianchi identity: variation of discrete action under vertex translation vanishes on-shell: $\sum_{w \sim v} \varepsilon_{vw} \hat{e}_{vw} = 0$ at all interior vertices in stationary/flat background regimes. | THEOREM | **PROVED** (Schläfli identity and interior coordinate gauge invariance) | [`code/bianchi.py`](code/bianchi.py), `code/tests/test_soviet_gr_invariants.py::test_contracted_bianchi_vertex_flux_vanishing` |
+| **GR-THM-3.2** | 4D Simplicial Bianchi curvature conservation: on uniform/symmetric closed complexes and abelian gauge models, the curvature 2-cochain satisfies $d_2 \varepsilon = 0$ ($\partial_3^T \varepsilon = 0$); generic curved 4-manifolds are non-abelian ($\|d_2 \varepsilon\|_1 > 0$). | THEOREM | **PROVED** (Alternating boundary sign cancellation on symmetric complexes; non-abelian failure on generic curvature) | [`code/bianchi.py`](code/bianchi.py), `code/tests/test_soviet_gr_invariants.py::test_closed_bianchi_flux_vanishing_on_4sphere` |
+| **GR-THM-4.1** | Gauge invariance of $\ell^1$ constraint quotient: $\Phi_D([\omega + D \gamma]) = \Phi_D([\omega])$ for any pure gauge shift $\gamma$. | THEOREM | **PROVED** (Translation invariance of infimum over linear affine subspace) | [`code/wdw_constraint.py`](code/wdw_constraint.py), `code/tests/test_soviet_gr_invariants.py::test_wdw_gauge_invariance_under_arbitrary_shifts` |
+| **GR-DEF-4.2** | Exact constraint closure: discrete constraint system satisfies closure iff $\Phi_D([\omega]) = 0$, which holds iff $\omega \in \mathrm{im}(D)$. | DEFINITION | **DEFINED** (Operational stopping criterion for gauge-fixed constraints) | [`code/wdw_constraint.py`](code/wdw_constraint.py), `code/tests/test_soviet_gr_invariants.py::test_exact_constraint_closure_pure_gauge` |
+| **GR-THM-5.1** | Exact strong duality for discrete linear constraints: $\Phi_D([\omega]) = \max_{w: D^T w = 0, \|w\|_\infty \le 1} \langle w, \omega \rangle$ with zero duality gap. | THEOREM | **PROVED** (Strong Duality Theorem for polyhedral linear programming) | [`code/dual_witness.py`](code/dual_witness.py), `code/tests/test_soviet_gr_invariants.py::test_non_closable_constraint_violation_dual_witness_certification` |
+| **GR-THM-5.2** | Certified dual circulation witness: when $\Phi_D([\omega]) > 0$, optimal dual variable $w^*$ is a divergence-free cycle ($D^T w^* = 0$, $\|w^*\|_\infty \le 1$) saturating the residual $\langle w^*, r^* \rangle = \|r^*\|_1 = \Phi_D([\omega])$. | THEOREM | **PROVED** (Complementary slackness of primal-dual optimal bases) | [`code/dual_witness.py`](code/dual_witness.py), `code/tests/test_soviet_gr_invariants.py::test_non_closable_constraint_violation_dual_witness_certification` |
+| **GR-THM-6.1** | Ponzano--Regge semiclassical bounds: fixed-angle linear functional bound $|S_\theta(j) - S_\theta(j')| \le \|j - j'\|_1 \|\theta\|_\infty$ and geometric Schläfli path bound $|S(J') - S(J)| \le \pi \|J' - J\|_1$ along nondegenerate deformation trajectories. | THEOREM | **PROVED** (Hölder inequality and Schläfli differential identity) | [`code/ponzano_regge.py`](code/ponzano_regge.py), `code/tests/test_soviet_gr_invariants.py::test_lipschitz_continuity_under_l1_norm` |
+| **GR-THM-8.3** | Hamiltonian blind spot resolution: direct-sum joint constraint system in $C^1(K) \oplus C^0(K)$ with block coboundary $D_{\mathrm{joint}} = \begin{pmatrix} d_0 \\ 0 \end{pmatrix}$ strictly isolates scalar violations ($\Phi_{\mathrm{joint}} = \Phi_{d_0}(p) + \|H_\perp\|_1$), preventing absorption into gauge. | THEOREM | **PROVED** (Block diagonal LP separation and dual certificate construction) | [`code/wdw_constraint.py`](code/wdw_constraint.py), `code/tests/test_computational_remediations.py::test_solve_joint_wdw_constraints_legacy_solver_interface` |
+| **GR-THM-8.4** | Exact rational LP certification: `exact_rational_l1_quotient` over $\mathbb{Q}$ using `fractions.Fraction` decides true membership in $\operatorname{im}(D)$, produces exact zero duality gap, and reconstructs rational primal potentials $\alpha^*$. | THEOREM | **PROVED** (Exact Gauss--Jordan elimination over $\mathbb{Q}$) | [`code/exact_lp.py`](code/exact_lp.py), `code/tests/test_computational_remediations.py` |
+| **GR-THM-8.5** | Finite Hodge--Dirac Laplacian identity: on single oriented 2-simplex $\Delta^2$, $\Delta_1 = d_0 d_0^T + d_1^T d_1 = 3 I_3$, with Witten index $W = \chi(\Delta^2) = 1$. | THEOREM | **PROVED** (Direct coordinate matrix algebra; formalized in Lean 4 `delta1_is_3_identity`) | [`code/gauge_higgs_susy_derivation.py`](code/gauge_higgs_susy_derivation.py), [`lean4/GR002/HodgeDiracSUSY.lean`](lean4/GR002/HodgeDiracSUSY.lean) |
+| **GR-THM-8.6** | Fixed-carrier quotient absolute homogeneity: $\Phi_D([t\omega]) = |t| \Phi_D([\omega])$ for any linear coboundary $D$ and ray parameter $t \in \mathbb{R}$. The unique global minimum is at $t = 0$; spontaneous symmetry breaking is ruled out for pure linear $\ell^1$ topology. | THEOREM | **PROVED** (Linear scaling of $\ell^1$ norm; formalized in Lean 4 `fixed_carrier_quotient_homogeneity` and `linear_energy_has_origin_minimum`) | [`code/higgs_pure_linear_certificate.py`](code/higgs_pure_linear_certificate.py), [`lean4/GR002/LinearEnergy.lean`](lean4/GR002/LinearEnergy.lean) |
+| **GR-THM-8.7** | Discrete descent dynamics on non-manifold complexes: uncoupled local coexact updates do not guarantee monotonic curvature reduction on general complexes (increases from $5$ to $20/3$ on five-triangle fan); repaired engine credits zero canceled mass and preserves prior-degree obligations. | THEOREM | **PROVED** (Counterexample construction and loss ledger verification) | [`code/discrete_descent_engine.py`](code/discrete_descent_engine.py), [`code/higher_simplex_assembly.py`](code/higher_simplex_assembly.py) |
+
+---
+
+## 2. Quarantined Speculative Analogies & Falsification Receipts
+
+| Quarantine ID | Original Speculative Climb | Falsification Reason | Formal Verdict | Code Locus |
+|---|---|---|---|---|
+| **GR-QRN-7.1** | Simplicial 3-2-1 boundary hierarchy uniquely forces $SU(3) \times SU(2) \times U(1)$ Standard Model gauge group. | Category error: boundary operators are abelian homomorphisms; no Lie brackets or representation theory forced. | **QUARANTINED_FALSIFIED** | [`code/high_energy_fence.py::falsify_gauge_group_uniqueness`](code/high_energy_fence.py) |
+| **GR-QRN-7.2** | Cochain quadratic defect potential derives electroweak Higgs VEV $v = 246$ GeV. | Injected scale: parameters $\mu$ and $\lambda$ are tuned by hand; not derived from constraint closure. | **QUARANTINED_FALSIFIED** | [`code/high_energy_fence.py::falsify_higgs_vev_derivation`](code/high_energy_fence.py) |
+| **GR-QRN-7.3** | Topological SUSY saturation scale $E_{\mathrm{sat}} = v_{\mathrm{EW}} \times 360^\circ \approx 85.6$ TeV. | Dimensional inconsistency: multiplying energy by degrees is angle-unit numerology; no supersymmetry algebra constructed. | **QUARANTINED_FALSIFIED** | [`code/high_energy_fence.py::falsify_susy_saturation_scale`](code/high_energy_fence.py) |
+| **GR-QRN-7.4** | Hexagonal Regge wall derives fine-structure constant $\alpha^{-1} \approx 137.036$ via $4\pi^3 + \pi^2 + \pi$. | Divergent lattice sum ($O(R)$) and post-hoc numerical coincidence; not derived from QED dynamics. Boundary turning sum is $2\pi$ for all $R$. | **QUARANTINED_FALSIFIED** | [`code/high_energy_fence.py::falsify_alpha_fine_structure_wall`](code/high_energy_fence.py) |
+| **GR-QRN-7.5** | Isolated 1-simplex cochain edges with $\Phi = 2$ represent cosmological cold dark matter. | Missing physics: isolated edges have no stress-energy tensor, no gravitational clustering, and no equation of state $w=0$. | **QUARANTINED_FALSIFIED** | [`code/high_energy_fence.py::falsify_dark_sector_analogy`](code/high_energy_fence.py) |
+
+---
+
+## 3. Aggregate Ledger Summary
+
+- **Total Active Claims:** 19 (14 Theorems & Definitions, 5 Quarantined Falsification Receipts).
+- **Mathematical Assertions Proved or Verified by Test:** The figure 100% is a recorded summary in this ledger. This correspondence pass did not re-run the suite.
+- **Speculative Particle Physics Promotions:** 0 quarantined in the recorded summary.
+- **Pytest Test Suite Status:** Recorded suite, not re-run in this correspondence pass: 286 passed, 11 skipped, 0 failures across 8 workers.
+- **Lean 4 Mechanized Theorems:** Recorded note, not a fresh Lake run: 20 theorems across 6 modules, with the earlier note `lake build` clean, 0 sorry.
+- **Evidence Scope:** Receipts certify scoped finite computations, tests, and formal checks only.

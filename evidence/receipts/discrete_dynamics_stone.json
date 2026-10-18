@@ -1,0 +1,78 @@
+{
+  "authority_effect": "None",
+  "schema": "historical-campaign-narrative-v1",
+  "current_status": "HISTORICAL_NOT_A_CURRENT_PROOF_RECEIPT",
+  "scope": "Preserved from PR #205 source 516e14b6. Finite identities are checked in code; global completion, continuous-generator and Born-necessity prose is not verified. See PR205_REVIEW.md.",
+  "historical_payload": {
+    "authority_effect": "None",
+    "citation": "sealed-derivation-v1 (3100c4e)",
+    "band": "Band D (Steps 31-38)",
+    "bet_id": "BET-D",
+    "bet_sha256": "f6041f5a95e3d4ee1e1f1f77612407802602d68c1e05821d50b84b666998b5de",
+    "generator_ambiguity": {
+      "discrete_operator": "X = [[0, 1], [1, 0]]",
+      "eigenvalues": [
+        1,
+        -1
+      ],
+      "branch_generators_formula": "H_k = (pi/2) * (2k + 1) * (I - X)",
+      "k_branches_tested": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "integer_time_t1_agreement": "True",
+      "fractional_time_t_half_divergence": "True",
+      "branch_0_vs_branch_1_at_t_half_diff": "2.0",
+      "conclusion": "A discrete unitary transition U does not uniquely determine a continuous generator H; infinite countable branches agree at integer times but diverge at fractional times."
+    },
+    "step_interpolation_obstruction": {
+      "toggle_determinant": "-1",
+      "square_root_determinant_equation": "det(M)^2 = -1",
+      "has_real_solution": "False",
+      "has_rational_solution": "False",
+      "boolean_endomorphism_obstruction": "No f: Bool -> Bool satisfies f(f(b)) = not b",
+      "cyclotomic_field_solution": "Q(i)",
+      "cyclotomic_square_root_matrix": "M = ((1+i)/2) * [[1, -i], [-i, 1]]",
+      "m_squared_equals_x": "True"
+    },
+    "exact_cayley_dynamics": {
+      "formula": "cay_tau(H) = (I - i*tau*H)(I + i*tau*H)^(-1)",
+      "arithmetic_domain": "Exact rational arithmetic in Q(i)",
+      "norm_preservation_polynomial": "(tau^2 - 1)^2 + (2*tau)^2 = (tau^2 + 1)^2",
+      "unitarity_without_floats": "True",
+      "abelian_composition_formula": "tau_comp = (tau1 + tau2) / (1 - tau1 * tau2)",
+      "group_isomorphism": "SO(2, Q) isomorphic to rational projectivized line"
+    },
+    "stone_theorem_costing": {
+      "gap_id": "GAP-F001-S000-008",
+      "status": "PRICED_CONTINUUM_INTERFACE",
+      "title": "Stone's theorem on one-parameter unitary groups",
+      "rationale": "Discrete quantum systems evolve via unitary step operators without needing continuous time parameterizations. Stone's theorem U(t) = exp(-iHt) requires the continuum R and strong continuity; in finite discrete QM it functions as an external continuum interface with non-unique branch choices rather than an internal algebraic theorem."
+    },
+    "lean4_formalization": {
+      "module": "H055DiscreteDynamicsStone.lean",
+      "status": "PROVED (0 sorry, 0 admit)",
+      "axioms": "strictly within {propext, Quot.sound}",
+      "theorems": [
+        "no_bool_half_step",
+        "sqrt_toggle_scaled_squares",
+        "interpolant_not_unique",
+        "cayley_norm_identity",
+        "branch_ambiguity_distinct",
+        "stone_continuum_interface_priced"
+      ]
+    },
+    "rust_verification": {
+      "module": "code_rs/src/dynamics.rs",
+      "tests": "4 passed, cargo clippy clean with 0 warnings"
+    },
+    "python_verification": {
+      "module": "code/discrete_dynamics.py",
+      "tests": "code/tests/unit/test_discrete_dynamics.py (4 passed)"
+    },
+    "terminal_statement": "Discrete dynamics proceed by exact unitary steps over cyclotomic fields without continuous time or continuous generators. Stone's theorem is an imported continuum interface with countable branch ambiguity, not an internal consequence of finite quantum transitions."
+  }
+}

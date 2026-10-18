@@ -1,0 +1,3035 @@
+{
+  "team_id": "team_05",
+  "team_name": "Team 5: 50-Variable Variety H6 Decomposition & Triad Pigeonhole",
+  "target": "TARGET_G1",
+  "authority_effect": "None",
+  "firewall_line": "stated region only; mints no authority",
+  "total_sessions": 25,
+  "sessions": [
+    {
+      "session_id": "SESSION_PROMPT_T05_01",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_01",
+      "target": "TARGET_G1",
+      "prompt_description": "Formulation of the 55 polynomial equations in 50 real variables defining $\\mathcal{H}_6$.",
+      "timestamp": "2026-09-23T22:01:03.477804+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "3f895bb4bce0e46b59995d0b265a322dd3310f804cb8494e61bcf63588e196dc",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "1/6"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "-1/6"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-1/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "0/1",
+          "variety_h6_v1->variety_h6_v2": "0/1",
+          "variety_h6_v2->variety_h6_v3": "0/1",
+          "variety_h6_v3->variety_h6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "b46d8157745fed6f0c98b4fe0237ddff0b642e3074d3055066e78d0266b6be32"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_01_A",
+        "PROP_PROMPT_T05_01_B"
+      ],
+      "terminal_state_digest": "abb42a93e950d0b095964e88079d77caf93b2b8055eb70985c8cbea81cce49c4"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_02",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_02",
+      "target": "TARGET_G1",
+      "prompt_description": "Elimination ideal of the $3 \\times 3$ corner submatrix: 9 complex variables (18 real variables).",
+      "timestamp": "2026-09-23T22:01:03.482596+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "dafa5b0b0cedf2a94b45cd8e48853ea4435de2208e5ee9cd3b3ad3ecde5df3e3",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_02_A",
+        "PROP_PROMPT_T05_02_B"
+      ],
+      "terminal_state_digest": "c09f27a8cbdf855bb8a3aa8084cb5b1c3a15a96136f6935f8ec15344fb6b1a76"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_03",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_03",
+      "target": "TARGET_G1",
+      "prompt_description": "Finite-incidence algebraic corner reconstruction theorem (C\u00e1rdenes Wuttig & Tindall 2026).",
+      "timestamp": "2026-09-23T22:01:03.486718+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "877df6bccd95a54bf6632e3be6f366e6b6d0489118eeaebbaeca788b18380b79",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_03_A",
+        "PROP_PROMPT_T05_03_B"
+      ],
+      "terminal_state_digest": "e55b3044058c8d6cd948a0e8c5883c44a7e27944552035b99e7fe419cd210eba"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_04",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_04",
+      "target": "TARGET_G1",
+      "prompt_description": "Proof that every dephased $6 \\times 6$ CHM is algebraically determined by a $3 \\times 3$ corner.",
+      "timestamp": "2026-09-23T22:01:03.492946+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "2d57c1f49acc576bae8ec8e3f749358f1ac3a3ad94161cfe811aa6ef918f7165",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_04_A",
+        "PROP_PROMPT_T05_04_B"
+      ],
+      "terminal_state_digest": "25423737d85b580d2418e3505153d18edc1d26f3719229065f4fc50a53635baf"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_05",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_05",
+      "target": "TARGET_G1",
+      "prompt_description": "Irreducible component decomposition of the corner variety $V(I_{\\text{corner}})$.",
+      "timestamp": "2026-09-23T22:01:03.499568+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "6177ad84689540e4238fcf0ffa469a6942f1286018166d9d1359ecbe6c6b7e4f",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "3/4"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "-5/6"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-3/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "0/1",
+          "variety_h6_v1->variety_h6_v2": "0/1",
+          "variety_h6_v2->variety_h6_v3": "0/1",
+          "variety_h6_v3->variety_h6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "b46d8157745fed6f0c98b4fe0237ddff0b642e3074d3055066e78d0266b6be32"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_05_A",
+        "PROP_PROMPT_T05_05_B"
+      ],
+      "terminal_state_digest": "445762df9380ebde998d784507fd76b858acefde49887df51458b408a1bc40a2"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_06",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_06",
+      "target": "TARGET_G1",
+      "prompt_description": "Proof that all viable corner determinants factor into $F_6, D_6, S_6, B_6, K_6$ branches.",
+      "timestamp": "2026-09-23T22:01:03.505927+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "4d90c23c4c787feb56010050a6c920b42d3d922511fe661a52cc13b203d2eff9",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_06_A",
+        "PROP_PROMPT_T05_06_B"
+      ],
+      "terminal_state_digest": "ae407acf3fdb19d3d7f89db401594fd1cbf39e361588c1b687a9ba1d11e1c046"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_07",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_07",
+      "target": "TARGET_G1",
+      "prompt_description": "Absence of exotic isolated points: proof that defect zero implies $S_6$ equivalence.",
+      "timestamp": "2026-09-23T22:01:03.512516+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "bbe55822127fe9754cda14a6294263bd4ea68889ca605792ff430ff4b9ce1670",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_07_A",
+        "PROP_PROMPT_T05_07_B"
+      ],
+      "terminal_state_digest": "266c8b0692a9e9e9260750b23d1cf733f8d9cc0e3aa84e6c70192bf9df1582b6"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_08",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_08",
+      "target": "TARGET_G1",
+      "prompt_description": "Formulation of the Triad Compatibility Variety $V_{\\text{triple}} \\subset \\mathcal{H}_6 \\times \\mathcal{H}_6$.",
+      "timestamp": "2026-09-23T22:01:03.516564+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "27611c9a0adbd9447910f8a9bc9541aa9b484fdfc6b461217c7fe496da5f6821",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_08_A",
+        "PROP_PROMPT_T05_08_B"
+      ],
+      "terminal_state_digest": "2f08241cfdb7861a70c9ac9dd986751f1cfea26c4bb8e24cf54899489ee1a63a"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_09",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_09",
+      "target": "TARGET_G1",
+      "prompt_description": "Proof that $H_1^\\dagger H_2 \\in \\mathcal{H}_6$ forces both $H_1$ and $H_2$ to lie in compatible orbits.",
+      "timestamp": "2026-09-23T22:01:03.521156+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "2ad3d6b715b352404f40b4dfb4fd21f60c785f11fa91f5ba708ef4d9a3f7423e",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "3/2"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "5/4"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "-3/2"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "0/1",
+          "variety_h6_v1->variety_h6_v2": "0/1",
+          "variety_h6_v2->variety_h6_v3": "0/1",
+          "variety_h6_v3->variety_h6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "b46d8157745fed6f0c98b4fe0237ddff0b642e3074d3055066e78d0266b6be32"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_09_A",
+        "PROP_PROMPT_T05_09_B"
+      ],
+      "terminal_state_digest": "f560e98d3db6c3d90e64ca3e95fbb707c6e4249afde758a83dfad14444a1019c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_10",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_10",
+      "target": "TARGET_G1",
+      "prompt_description": "Cross-orbit triad obstruction: proof that $(S_6, B_6)$, $(S_6, S_6)$, $(B_6, B_6)$ cannot form an MU triple with $I_6$.",
+      "timestamp": "2026-09-23T22:01:03.527316+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "45dea6dfd23e429bcb957de306005470fffa3c4896113023227156eb2c5b7b6e",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_10_A",
+        "PROP_PROMPT_T05_10_B"
+      ],
+      "terminal_state_digest": "d865ed336a145514daf2eab0a54e4864333a8bc37c5eb3d2a02cbc68370e546f"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_11",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_11",
+      "target": "TARGET_G1",
+      "prompt_description": "Combinatorial Pigeonhole Lemma: Any complete 7-MUB configuration contains $\\ge 5$ Di\u021b\u0103/Fourier bases.",
+      "timestamp": "2026-09-23T22:01:03.532403+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "572298eed5b114a2d48889039b1541b470b0579e137be2bf79b93854741bd907",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_11_A",
+        "PROP_PROMPT_T05_11_B"
+      ],
+      "terminal_state_digest": "6619d043c08ac00cae8711ab074d5169fe50c0f9016b1a9afdc97e65314b1ac7"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_12",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_12",
+      "target": "TARGET_G1",
+      "prompt_description": "Proof that $\\ge 5$ Di\u021b\u0103/Fourier bases force $\\ge 1$ purely Di\u021b\u0103/Fourier triple.",
+      "timestamp": "2026-09-23T22:01:03.537757+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "22f0d032ab3d1526e9434e12ed9dfb6a8566f92097e1d771f446f901ee6e34c8",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_12_A",
+        "PROP_PROMPT_T05_12_B"
+      ],
+      "terminal_state_digest": "584456e4999576c4fd10693aecbd15128fe771cfb32b35395f5a496ad382bc8b"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_13",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_13",
+      "target": "TARGET_G1",
+      "prompt_description": "Connecting the Pigeonhole Lemma to the certified Di\u021b\u0103 moduli atlas.",
+      "timestamp": "2026-09-23T22:01:03.544712+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "34f9f60bd9b6ea86e8e1e30b294092cf6081db3d287dc9e75cf07d889f9fe500",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "13/6"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "7/4"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "-13/6"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-7/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "47/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 47/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "47/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "0/1",
+          "variety_h6_v1->variety_h6_v2": "0/1",
+          "variety_h6_v2->variety_h6_v3": "0/1",
+          "variety_h6_v3->variety_h6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "b46d8157745fed6f0c98b4fe0237ddff0b642e3074d3055066e78d0266b6be32"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_13_A",
+        "PROP_PROMPT_T05_13_B"
+      ],
+      "terminal_state_digest": "92a71440385a38325abddeaa7b850af67581259e7ee4daee873347942bb34848"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_14",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_14",
+      "target": "TARGET_G1",
+      "prompt_description": "Formal discharge of Premise $G_1$ without continuum cover of the non-Di\u021b\u0103 continuum.",
+      "timestamp": "2026-09-23T22:01:03.549646+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "018bc4febafa9be52dd948713b8c0b85f7dfc551904c50e84d56e9cc439cb368",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_14_A",
+        "PROP_PROMPT_T05_14_B"
+      ],
+      "terminal_state_digest": "7f9e2f00fa718eba6de6d7ff9cc2f43b41ea446ef30fd598ef47a578f57c5463"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_15",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_15",
+      "target": "TARGET_G1",
+      "prompt_description": "Exact rational Gr\u00f6bner basis computation on the 18-variable corner ideal.",
+      "timestamp": "2026-09-23T22:01:03.554485+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "b7c7b668a9844816fc42ea8e10d5512a6e8561ea639a80c2c85a1eb9f225d533",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_15_A",
+        "PROP_PROMPT_T05_15_B"
+      ],
+      "terminal_state_digest": "cf5fc3bbeb6b93739d4985d19327785417c64ac9a2e31a913a589357cf634dda"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_16",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_16",
+      "target": "TARGET_G1",
+      "prompt_description": "Real radical ideal computation $\\sqrt[\\mathbb{R}]{I(\\mathcal{H}_6)}$.",
+      "timestamp": "2026-09-23T22:01:03.559599+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "af12c96acd94e995715c918dd50383079c68a0af22d40c80c6dc9f1da2b7885b",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_16_A",
+        "PROP_PROMPT_T05_16_B"
+      ],
+      "terminal_state_digest": "ee3a97daf4f254a02998107b9237add41bbf626959034566bf8bfaa72fdccc6c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_17",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_17",
+      "target": "TARGET_G1",
+      "prompt_description": "Degree bounds on the Nullstellensatz certificates for the corner variety.",
+      "timestamp": "2026-09-23T22:01:03.565773+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "eccab407f27c4e520d6c59b0febcb1e621acd7d723ebc3bc50c60d3d6e1d465d",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "17/6"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "9/4"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "-17/6"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-9/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "61/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 61/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "61/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "0/1",
+          "variety_h6_v1->variety_h6_v2": "0/1",
+          "variety_h6_v2->variety_h6_v3": "0/1",
+          "variety_h6_v3->variety_h6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "b46d8157745fed6f0c98b4fe0237ddff0b642e3074d3055066e78d0266b6be32"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_17_A",
+        "PROP_PROMPT_T05_17_B"
+      ],
+      "terminal_state_digest": "93b0d7c2fb344fd82077cd08f149da202931aa59c5e8d4f15ace92975ba7c313"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_18",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_18",
+      "target": "TARGET_G1",
+      "prompt_description": "Network Simplex dual witness certifying non-extendibility of cross-orbit triples.",
+      "timestamp": "2026-09-23T22:01:03.570924+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "c3f7e7f0642faa558b1ac7cda9e926b1946f14a886bb3c1ba3ad433b078fffa4",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_18_A",
+        "PROP_PROMPT_T05_18_B"
+      ],
+      "terminal_state_digest": "2e76e3722d2dba379100e9c56334151b8c72a96894cf49529311c4942e97a31f"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_19",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_19",
+      "target": "TARGET_G1",
+      "prompt_description": "Exact rational certifier verifying corner reconstruction in Python and Rust.",
+      "timestamp": "2026-09-23T22:01:03.577775+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "52b5c4f248f08e4855a54a52ba151423582a03d58deca483d2bd5cf706ba52cf",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_19_A",
+        "PROP_PROMPT_T05_19_B"
+      ],
+      "terminal_state_digest": "1c8f295a3d29894321de3d46b71ddadf4625edcc11678baf9cdb7c9789024c92"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_20",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_20",
+      "target": "TARGET_G1",
+      "prompt_description": "Negative control test suite rejecting corrupted or perturbed corner matrices.",
+      "timestamp": "2026-09-23T22:01:03.584470+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "e5d70e976a8cd926c03688c226732ebb715bdb645b7fe6895d2c671425f2ac95",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_20_A",
+        "PROP_PROMPT_T05_20_B"
+      ],
+      "terminal_state_digest": "918e2119d5396d0bcf256460889ef738d2a506514e4e5b30cb1997da58406bf0"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_21",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_21",
+      "target": "TARGET_G1",
+      "prompt_description": "Lean 4 formalization of the 50-variable variety equations in `TargetG1OrbitExhaustiveness.lean`.",
+      "timestamp": "2026-09-23T22:01:03.591589+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "a7ebdaef2f130000ca8909d63869055f0a10ff525b8a541f34527d137ade76c1",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "7/2"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "11/4"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "-7/2"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-11/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "0/1",
+          "variety_h6_v1->variety_h6_v2": "0/1",
+          "variety_h6_v2->variety_h6_v3": "0/1",
+          "variety_h6_v3->variety_h6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "b46d8157745fed6f0c98b4fe0237ddff0b642e3074d3055066e78d0266b6be32"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_21_A",
+        "PROP_PROMPT_T05_21_B"
+      ],
+      "terminal_state_digest": "41ebcb20a8cf9da2498ab92f6a013a91f5bdbea9c150f82b7785a02bfb5d3cf7"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_22",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_22",
+      "target": "TARGET_G1",
+      "prompt_description": "Lean 4 proof of the Triad Compatibility Hadamard equivalence (`mu_triple_hadamard_transition`).",
+      "timestamp": "2026-09-23T22:01:03.599381+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "5af1683a0d98ad3c3f8ea89b26d9e657420514cc6a88e5173109bfbbfb0f782e",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_22_A",
+        "PROP_PROMPT_T05_22_B"
+      ],
+      "terminal_state_digest": "f8f04c3fd9a05ae852fc871c256ffafd805d1cb876b29e68c7aa336f82e57bf6"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_23",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_23",
+      "target": "TARGET_G1",
+      "prompt_description": "Lean 4 proof of `TriadModuliPigeonhole` lemma.",
+      "timestamp": "2026-09-23T22:01:03.604298+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "24822a930af5dc3708f818bf6b85d109273e090dd2c16fd163a941830a669992",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_23_A",
+        "PROP_PROMPT_T05_23_B"
+      ],
+      "terminal_state_digest": "8e93c57420f1df836d83a58ddad88c87074fbad527a1b3dee8ff8712a9be1f8c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_24",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_24",
+      "target": "TARGET_G1",
+      "prompt_description": "Axiom audit of the Target G1 Lean formalization: strictly `[propext, Quot.sound]`.",
+      "timestamp": "2026-09-23T22:01:03.610374+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "0fdd516adb0a2548d4b3de577fe5a072070cf12bc8f33508c84d7c3ac3fa11fb",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "1/1",
+          "variety_h6_v1->variety_h6_v2": "1/1",
+          "variety_h6_v2->variety_h6_v3": "1/1",
+          "variety_h6_v3->variety_h6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "98f6e9c9423858750e0311e9c8b5b85bdd078afaae98158698a14576c24a82b1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_24_A",
+        "PROP_PROMPT_T05_24_B"
+      ],
+      "terminal_state_digest": "6be4416daf91e2d9e8c567d9df79285d24d1f4065ceabb0a215d340eaf16e174"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T05_25",
+      "team_id": "team_05",
+      "run_id": "PROMPT_T05_25",
+      "target": "TARGET_G1",
+      "prompt_description": "Master synthesis of Target G1 Foundation & Orbit Exhaustiveness Closure.",
+      "timestamp": "2026-09-23T22:01:03.617046+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "ddac29f80ff5105219d12509c0b8c32c022372db0dd67cd5dcf5e11b731922f5",
+      "constraint_graph": {
+        "vertices": [
+          "variety_h6_v0",
+          "variety_h6_v1",
+          "variety_h6_v2",
+          "variety_h6_v3"
+        ],
+        "edges": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "variety_h6_v0",
+            "v": "variety_h6_v1",
+            "claim": "25/6"
+          },
+          {
+            "u": "variety_h6_v1",
+            "v": "variety_h6_v2",
+            "claim": "13/4"
+          },
+          {
+            "u": "variety_h6_v2",
+            "v": "variety_h6_v3",
+            "claim": "-25/6"
+          },
+          {
+            "u": "variety_h6_v3",
+            "v": "variety_h6_v0",
+            "claim": "-13/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "89/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 89/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "89/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "variety_h6_v0->variety_h6_v1": "0/1",
+          "variety_h6_v1->variety_h6_v2": "0/1",
+          "variety_h6_v2->variety_h6_v3": "0/1",
+          "variety_h6_v3->variety_h6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "b46d8157745fed6f0c98b4fe0237ddff0b642e3074d3055066e78d0266b6be32"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T05_25_A",
+        "PROP_PROMPT_T05_25_B"
+      ],
+      "terminal_state_digest": "31e0025f6c410c434a30214e22b60ab7d87a06f7033b3cd7f011ed9bf3e0a4a9"
+    }
+  ]
+}

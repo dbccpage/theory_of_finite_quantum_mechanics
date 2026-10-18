@@ -1,0 +1,264 @@
+[package]
+autotests = false
+name = "omega_mub"
+version.workspace = true
+edition = "2021"
+description = "Omega-native MUB reconstruction (GTLA/CODA-FOC), separated from the quarantined Apache port `mub`"
+license.workspace = true
+
+[dependencies]
+omega_policy = { path = "../omega_policy" }
+omega_kernel = { path = "../omega_kernel" }
+# Boundary: exact cyclotomic ARITHMETIC is native (cyclotomic24 etc.). This crate has
+# no dependency on the quarantined Apache port: `crates/mub` was deleted 2026-08-04 and
+# the optional `apache-compare` cross-check lane was removed with it.
+nalgebra = "0.33"
+num-bigint = { version = "0.4", features = ["serde"] }
+num-rational = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+num-integer = "0.1"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["raw_value"] }
+flate2 = "1"
+sha2 = "0.10"
+thiserror = "2"
+linear_algebra = { path = "../omega_linear_algebra" }
+omega_functional = { path = "../omega_functional" }
+omega_wdp = { path = "../omega_wdp" }
+omega_types = { path = "../omega_types" }
+omega_contracts = { path = "../omega_contracts" }
+omega_homotopy_type_theory = { path = "../omega_homotopy_type_theory" }
+omega_pipelines = { path = "../omega_pipelines" }
+omega_state = { path = "../omega_state" }
+omega_quantum_physics = { path = "../omega_quantum_physics" }
+omega_number_theory = { path = "../omega_number_theory" }
+omega_solvers = { path = "../omega_solvers" }
+omega_certifiers = { path = "../omega_certifiers" }
+# Thin Jupyter face only — not a Python math core. Off by default.
+pyo3 = { version = "0.29", optional = true }
+
+[dev-dependencies]
+syn = { version = "2", features = ["full", "visit"] }
+proc-macro2 = { version = "1", features = ["span-locations"] }
+omega_symbol_game_runtime = { path = "../omega_symbol_game_runtime" }
+
+[features]
+# omega_mub is Apache-INDEPENDENT: the `mub` crate and its `apache-compare`
+# cross-validation lane were removed 2026-08-04. deep_run's manifest, lower-bound,
+# and upper-bound replays are now unconditionally MissingProofObligation (honest:
+# "not replayed") — the same terminal the default build already produced.
+# `python` = thin PyO3 dict surface; `extension-module` for maturin/cdylib wheels.
+default = []
+python = ["dep:pyo3"]
+extension-module = ["python", "pyo3/extension-module"]
+
+[lib]
+name = "omega_mub"
+path = "src/lib.rs"
+crate-type = ["rlib", "cdylib"]
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/omega_mub`.
+
+[[test]]
+name = "finite_core_adapter"
+path = "../tests/omega_mub/finite_core_adapter.rs"
+
+[[test]]
+name = "fixture_receipts"
+path = "../tests/omega_mub/fixture_receipts.rs"
+
+[[test]]
+name = "float_census"
+path = "../tests/omega_mub/float_census.rs"
+
+[[test]]
+name = "grand_unified_verifier_test"
+path = "../tests/omega_mub/grand_unified_verifier_test.rs"
+
+[[test]]
+name = "haagerup_cover_test"
+path = "../tests/omega_mub/haagerup_cover_test.rs"
+
+[[test]]
+name = "lane_v3_soundness_audit"
+path = "../tests/omega_mub/lane_v3_soundness_audit.rs"
+
+[[test]]
+name = "mub6_backdoor_gate"
+path = "../tests/omega_mub/mub6_backdoor_gate.rs"
+
+[[test]]
+name = "mub6_firewall_e2e"
+path = "../tests/omega_mub/mub6_firewall_e2e.rs"
+
+[[test]]
+name = "s16_003_ownership_firewall"
+path = "../tests/omega_mub/s16_003_ownership_firewall.rs"
+
+[[test]]
+name = "s16_003_runtime_adapter"
+path = "../tests/omega_mub/s16_003_runtime_adapter.rs"
+
+[[test]]
+name = "szollosi_triad_search"
+path = "../tests/omega_mub/szollosi_triad_search.rs"
+
+[[test]]
+name = "tao_cover_test"
+path = "../tests/omega_mub/tao_cover_test.rs"
+
+[[test]]
+name = "test_adversarial_l1_solver"
+path = "../tests/omega_mub/test_adversarial_l1_solver.rs"
+
+[[test]]
+name = "test_collar_solver"
+path = "../tests/omega_mub/test_collar_solver.rs"
+
+[[test]]
+name = "test_continuous_manifold_residue"
+path = "../tests/omega_mub/test_continuous_manifold_residue.rs"
+
+[[test]]
+name = "test_degree2_sdp"
+path = "../tests/omega_mub/test_degree2_sdp.rs"
+
+[[test]]
+name = "test_degree4_sdp"
+path = "../tests/omega_mub/test_degree4_sdp.rs"
+
+[[test]]
+name = "test_degree6_sdp"
+path = "../tests/omega_mub/test_degree6_sdp.rs"
+
+[[test]]
+name = "test_degree8_sdp"
+path = "../tests/omega_mub/test_degree8_sdp.rs"
+
+[[test]]
+name = "test_deltoid_cusp_asymptotics"
+path = "../tests/omega_mub/test_deltoid_cusp_asymptotics.rs"
+
+[[test]]
+name = "test_frame_potential_verifier"
+path = "../tests/omega_mub/test_frame_potential_verifier.rs"
+
+[[test]]
+name = "test_hyper_gramian_verifier"
+path = "../tests/omega_mub/test_hyper_gramian_verifier.rs"
+
+[[test]]
+name = "test_karlsson_volume_cover"
+path = "../tests/omega_mub/test_karlsson_volume_cover.rs"
+
+[[test]]
+name = "test_manifold_integration"
+path = "../tests/omega_mub/test_manifold_integration.rs"
+
+[[test]]
+name = "test_matrix_residuals"
+path = "../tests/omega_mub/test_matrix_residuals.rs"
+
+[[test]]
+name = "test_moment_ledger"
+path = "../tests/omega_mub/test_moment_ledger.rs"
+
+[[test]]
+name = "test_multi_chart_cocycle"
+path = "../tests/omega_mub/test_multi_chart_cocycle.rs"
+
+[[test]]
+name = "test_nerve_chaining"
+path = "../tests/omega_mub/test_nerve_chaining.rs"
+
+[[test]]
+name = "test_omega_mub_verify_all"
+path = "../tests/omega_mub/test_omega_mub_verify_all.rs"
+
+[[test]]
+name = "test_quad_incompatibility_verifier"
+path = "../tests/omega_mub/test_quad_incompatibility_verifier.rs"
+
+[[test]]
+name = "test_symbol_game_host"
+path = "../tests/omega_mub/test_symbol_game_host.rs"
+
+[[test]]
+name = "test_szollosi_deltoid_cover"
+path = "../tests/omega_mub/test_szollosi_deltoid_cover.rs"
+
+[[test]]
+name = "test_tao_confluence_verifier"
+path = "../tests/omega_mub/test_tao_confluence_verifier.rs"
+
+[[test]]
+name = "test_target_3_normalized_triples"
+path = "../tests/omega_mub/test_target_3_normalized_triples.rs"
+
+[[test]]
+name = "test_target_4_gap_propagation"
+path = "../tests/omega_mub/test_target_4_gap_propagation.rs"
+
+[[test]]
+name = "test_target_a10_global_cover"
+path = "../tests/omega_mub/test_target_a10_global_cover.rs"
+
+[[test]]
+name = "test_target_a11_orbit_exhaustiveness"
+path = "../tests/omega_mub/test_target_a11_orbit_exhaustiveness.rs"
+
+[[test]]
+name = "test_target_a12_smale_sentry"
+path = "../tests/omega_mub/test_target_a12_smale_sentry.rs"
+
+[[test]]
+name = "test_target_a13_grand_synthesis"
+path = "../tests/omega_mub/test_target_a13_grand_synthesis.rs"
+
+[[test]]
+name = "test_target_a1_collar_cover"
+path = "../tests/omega_mub/test_target_a1_collar_cover.rs"
+
+[[test]]
+name = "test_target_a2_deltoid_cusp"
+path = "../tests/omega_mub/test_target_a2_deltoid_cusp.rs"
+
+[[test]]
+name = "test_target_a5_cover"
+path = "../tests/omega_mub/test_target_a5_cover.rs"
+
+[[test]]
+name = "test_target_a6_tao_chart"
+path = "../tests/omega_mub/test_target_a6_tao_chart.rs"
+
+[[test]]
+name = "test_target_a7_zerorel_variety"
+path = "../tests/omega_mub/test_target_a7_zerorel_variety.rs"
+
+[[test]]
+name = "test_target_a8_collar_boundary"
+path = "../tests/omega_mub/test_target_a8_collar_boundary.rs"
+
+[[test]]
+name = "test_target_a9_haagerup"
+path = "../tests/omega_mub/test_target_a9_haagerup.rs"
+
+[[test]]
+name = "test_target_b1_continuous_chaining"
+path = "../tests/omega_mub/test_target_b1_continuous_chaining.rs"
+
+[[test]]
+name = "test_target_b2_global_gluing"
+path = "../tests/omega_mub/test_target_b2_global_gluing.rs"
+
+[[test]]
+name = "test_target_b3_manifold_integration"
+path = "../tests/omega_mub/test_target_b3_manifold_integration.rs"
+
+[[test]]
+name = "zero_float_shared_modules"
+path = "../tests/omega_mub/zero_float_shared_modules.rs"
+
+[[test]]
+name = "test_mub6_prompt05_campaign_checks"
+path = "../tests/omega_mub/test_mub6_prompt05_campaign_checks.rs"

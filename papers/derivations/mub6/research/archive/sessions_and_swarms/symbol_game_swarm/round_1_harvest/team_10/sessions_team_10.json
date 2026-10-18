@@ -1,0 +1,3035 @@
+{
+  "team_id": "team_10",
+  "team_name": "Team 10: Fail-Closed Epistemic Gate & Smale Alpha Sentry",
+  "target": "TARGET_Q_SOUNDNESS",
+  "authority_effect": "None",
+  "firewall_line": "stated region only; mints no authority",
+  "total_sessions": 25,
+  "sessions": [
+    {
+      "session_id": "SESSION_PROMPT_T10_01",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_01",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Formulation of the fail-closed epistemic audit schema: `SDPStatus`.",
+      "timestamp": "2026-09-23T22:01:04.312944+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "bba5c6b716d60ae4e9d71e2f379baeed79219243e0dd6be32541d3f52fbd7ebe",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "1/6"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "-1/6"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-1/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "0/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "0/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "0/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "91df1c704ffd9f74c6d841b0d61ac7a7b50191f85f27f0ccccbdb311f1bead73"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_01_A",
+        "PROP_PROMPT_T10_01_B"
+      ],
+      "terminal_state_digest": "6e4d5c107b49e654f59faf1dfd80140d999623da6f522fe48154b1903a6196d3"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_02",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_02",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Definition of status `CERTIFIED_CANDIDATE_REFUTATION` for fixed candidate matrices.",
+      "timestamp": "2026-09-23T22:01:04.317813+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "e17e7370659e9ae183356c7ab865b093784476d9e9f88b46c2feeb42f038de48",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_02_A",
+        "PROP_PROMPT_T10_02_B"
+      ],
+      "terminal_state_digest": "ba94959ad8a657eeb97cd1dd503eee3463605eb6188210383053a29f7c05640f"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_03",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_03",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Definition of status `MISSING_PROOF_OBLIGATION` for global search claims without bridge.",
+      "timestamp": "2026-09-23T22:01:04.323019+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "ef213d6bb5a130d4a14d940d4b0391cf024be13f7f843b750c893d095d317ed0",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_03_A",
+        "PROP_PROMPT_T10_03_B"
+      ],
+      "terminal_state_digest": "fe0484da85e9d32111061bc805b4c36282a5194d1bd3a880466de6cd56b42942"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_04",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_04",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Python implementation of `MissingProofObligationError` in `target_q5_moment_ledger.py`.",
+      "timestamp": "2026-09-23T22:01:04.329401+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "1eebcdc7ea86a601a2b36fa39cf26b0a013f794f04116ef03c3fbb09085d353d",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_04_A",
+        "PROP_PROMPT_T10_04_B"
+      ],
+      "terminal_state_digest": "6e510d9e8c8cea2c07b5924e9ff743ae287f599a3b7f361a44a60d4c1dbe2559"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_05",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_05",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Rust implementation of `MomentSdpStatus::MissingProofObligation` in `mub6_moment_ledger.rs`.",
+      "timestamp": "2026-09-23T22:01:04.333524+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "894625655e7ba7aa252949afff05c4a0d24cb0f58a951d1973c3472c96169e70",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "3/4"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "-5/6"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-3/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "0/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "0/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "0/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "91df1c704ffd9f74c6d841b0d61ac7a7b50191f85f27f0ccccbdb311f1bead73"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_05_A",
+        "PROP_PROMPT_T10_05_B"
+      ],
+      "terminal_state_digest": "b15360ff157808998dcc54716450deea9d5d4a6b6851cc0d909d88f13b9eb60d"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_06",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_06",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Smale $\\alpha$-theory sentry for complex polynomial systems over $\\mathbb{C}^{50}$.",
+      "timestamp": "2026-09-23T22:01:04.337406+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "5f36bf248fea93351a3fa5643ca1b90cb61890aa8a516666b596cdde8077218f",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_06_A",
+        "PROP_PROMPT_T10_06_B"
+      ],
+      "terminal_state_digest": "e1e3431058a5b9b0db0a217a0667531f6ac500522ef2f265d57452f9d141ac2c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_07",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_07",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Calculation of Smale invariant $\\alpha(x) = \\beta(x) \\gamma(x)$ for candidate 4th MUBs.",
+      "timestamp": "2026-09-23T22:01:04.341661+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "61947a2578432fbca2cfc714146fe7931509c33518fe270c340391f5075b1071",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_07_A",
+        "PROP_PROMPT_T10_07_B"
+      ],
+      "terminal_state_digest": "0f2c8f43baf9732be027de680a18a156b1a8ab18050240b9ff6c548e6b9bec2b"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_08",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_08",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Proof that $\\alpha(x) < (13 - 3\\sqrt{17})/4 \\approx 0.15767$ guarantees quadratic convergence to a true root.",
+      "timestamp": "2026-09-23T22:01:04.345778+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "e9e9c293f060156a51a6be444c2339507e5cc9109932d64c9b912f71df05f0a6",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_08_A",
+        "PROP_PROMPT_T10_08_B"
+      ],
+      "terminal_state_digest": "45f06e027c5b80027926360b79520be22b004638c3f8f082638352bdf4212fbe"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_09",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_09",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Smale $\\alpha$-theory rejection sentry: certifying that candidate completions have $\\alpha > 1/2$ (no nearby zero).",
+      "timestamp": "2026-09-23T22:01:04.350065+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "51518d025fa80f769496c87f6e86efa760a21149b7c1d07f6c7034da864e95c2",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "3/2"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "5/4"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "-3/2"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "0/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "0/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "0/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "91df1c704ffd9f74c6d841b0d61ac7a7b50191f85f27f0ccccbdb311f1bead73"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_09_A",
+        "PROP_PROMPT_T10_09_B"
+      ],
+      "terminal_state_digest": "799aa86005810f334af4faafb4dce539fd8885033d169ecd6e3c36e5f5f4f7ea"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_10",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_10",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Exact cyclotomic inner product verification engine over $\\mathbb{Q}(\\zeta_{24})$.",
+      "timestamp": "2026-09-23T22:01:04.355518+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "f588b4add4fb82584b478a4c6e12f54d4a9c6138242a45989eabb5e38d45a146",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_10_A",
+        "PROP_PROMPT_T10_10_B"
+      ],
+      "terminal_state_digest": "214428a4fe6ebb59beefedd5f7c18cdbf8d9cea31fea53488c391ff4bebca7c7"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_11",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_11",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Rejection of approximate or floating-point unitary matrices by the exact cyclotomic sentry.",
+      "timestamp": "2026-09-23T22:01:04.362498+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "8edd95ed89a888a72d9451307b791a6853aaa2e3d5e17b028458a25ba7921cf5",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_11_A",
+        "PROP_PROMPT_T10_11_B"
+      ],
+      "terminal_state_digest": "727cf21ae067c04aae2a793741567a26ab92e1d1537267d5a1f1c32d39a49282"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_12",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_12",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Master CLI verifier in Python: `mub6_verify_all.py` validating 24/24 certification steps.",
+      "timestamp": "2026-09-23T22:01:04.367580+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "4ed40ae629c81fb7f7bf11b2500caf45510b0c449a437f7a8908492bd23eae34",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_12_A",
+        "PROP_PROMPT_T10_12_B"
+      ],
+      "terminal_state_digest": "7d56b55af6ee7095c9640b9dd16d83760eb34b9505cf1e1993713aa2f9378d34"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_13",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_13",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Master native release binary in Rust: `omega_mub_verify_all.rs`.",
+      "timestamp": "2026-09-23T22:01:04.371959+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "04d7e229c32c05e9841e7b170f4f629177195d4f5395fad8a70ab0b69da1c60d",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "13/6"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "7/4"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "-13/6"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-7/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "47/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 47/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "47/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "0/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "0/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "0/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "91df1c704ffd9f74c6d841b0d61ac7a7b50191f85f27f0ccccbdb311f1bead73"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_13_A",
+        "PROP_PROMPT_T10_13_B"
+      ],
+      "terminal_state_digest": "386116f028ad2f8095233d9628c87b8e7ada3c51e4128f6ad25fae4a43f9e1cd"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_14",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_14",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Bit-for-bit SHA-256 digest matching across all canonical receipts in `artifacts/manifest.json`.",
+      "timestamp": "2026-09-23T22:01:04.378057+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "98c24e754235edb320af0b4b220a4d4c385a5c7f4685a2c97edd9ddbf4d92c95",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_14_A",
+        "PROP_PROMPT_T10_14_B"
+      ],
+      "terminal_state_digest": "f4aa34cc9f7a7aec353206218da669937a1f92f896cf14cbc54423c934bdec07"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_15",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_15",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Full text claim hygiene regex audit across all project documentation and source code.",
+      "timestamp": "2026-09-23T22:01:04.381879+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "81f55271b6eb4c838e2dd53cde273f46b98fbe041cb42722acb207f84bdc4b7b",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_15_A",
+        "PROP_PROMPT_T10_15_B"
+      ],
+      "terminal_state_digest": "adb8fb4f4572021ef8435480e7b2a714699f826d6dd08072abd25c8ce2d41ecd"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_16",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_16",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Verification of zero forbidden hype terms (zero declared hype terms).",
+      "timestamp": "2026-09-23T22:01:04.385570+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "71b7d1711c63c4ee25fba28c54ee0c81db1be9b601e42d7239b03895663a8e1b",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_16_A",
+        "PROP_PROMPT_T10_16_B"
+      ],
+      "terminal_state_digest": "db3c92381af38a227e11dd4b0f3dfdd9ac9523877c49fb04f9a189e9166a3fa8"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_17",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_17",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Verification of mandatory firewall line: `stated region only; mints no authority`.",
+      "timestamp": "2026-09-23T22:01:04.391087+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "f0f410d166dced2092607879c4070c1ad1f1becfd857c27b05714b54781269fb",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "17/6"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "9/4"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "-17/6"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-9/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "61/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 61/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "61/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "0/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "0/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "0/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "91df1c704ffd9f74c6d841b0d61ac7a7b50191f85f27f0ccccbdb311f1bead73"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_17_A",
+        "PROP_PROMPT_T10_17_B"
+      ],
+      "terminal_state_digest": "287accfaf62a6d1bac7b4a1e58b0437c9d0e9ce47f85ae75934796ed4366dd45"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_18",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_18",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Verification of `AuthorityEffect: None` in every emitted artifact, receipt, and transcript.",
+      "timestamp": "2026-09-23T22:01:04.397324+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "170bbf8f71f344917ff711ade5f22bc25a56aceceb2a20db161a6b8cf7154403",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_18_A",
+        "PROP_PROMPT_T10_18_B"
+      ],
+      "terminal_state_digest": "7500d18c501b4d5caac896f35254eb6a4d814f0a546c6843920c91fb3d18eb57"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_19",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_19",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Lean 4 formalization of `fail_closed_epistemic_audit_soundness`.",
+      "timestamp": "2026-09-23T22:01:04.413368+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "090ad3f82d2fa15dba2f364bd94740c775962cc9ff7a8f0652219810132371f6",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_19_A",
+        "PROP_PROMPT_T10_19_B"
+      ],
+      "terminal_state_digest": "9953a4f98f73deb67bcef2d1dab78221946b68758551efb79e5fb8e8e022875c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_20",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_20",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Lean 4 formalization of `global_exclusion_requires_bridge`.",
+      "timestamp": "2026-09-23T22:01:04.418508+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "d1fca7e8ea87fb59d03fa694f5985b856636b0a5a86bdf5b8dabea0ecf55c0f9",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_20_A",
+        "PROP_PROMPT_T10_20_B"
+      ],
+      "terminal_state_digest": "51fa57ea697c39c826abe780846c97b13a78e86213f563af82eb1a6174ce95e9"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_21",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_21",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Full Lean 4 package build audit: `lake build` with 0 sorry and standard foundational axioms.",
+      "timestamp": "2026-09-23T22:01:04.423904+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "05224ef2a01a350c4a25aa25dbf9b595c1d4e79d9aad1710a674290c6a3cd89d",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "7/2"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "11/4"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "-7/2"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-11/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "0/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "0/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "0/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "91df1c704ffd9f74c6d841b0d61ac7a7b50191f85f27f0ccccbdb311f1bead73"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_21_A",
+        "PROP_PROMPT_T10_21_B"
+      ],
+      "terminal_state_digest": "8e2af98bf408151aef95889a1e3cd6fd938a39598cdcfe7054e0853354a3b7cd"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_22",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_22",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Full Python regression suite verification: `python -m pytest tests/mub_verify -n 8`.",
+      "timestamp": "2026-09-23T22:01:04.429710+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "100eeca179262b817c63495933a1550a250dbe84b3c1d96b685075b86737f720",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_22_A",
+        "PROP_PROMPT_T10_22_B"
+      ],
+      "terminal_state_digest": "8868eddf84e29699797734b34fd711fb9bfb37d4ccc23cffc33d56e1836f24e9"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_23",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_23",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Full Rust test suite verification: `cargo test -p omega_mub --release`.",
+      "timestamp": "2026-09-23T22:01:04.435255+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "b71a9dd6263e1cf503a5b9282a80d2c2f48e47352189b0a185adfe80ee81d49f",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_23_A",
+        "PROP_PROMPT_T10_23_B"
+      ],
+      "terminal_state_digest": "5e9c366c7b605f2b40163f82fcd3b3ba13d6c416343e797195101496dcdcdbfe"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_24",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_24",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Reproducible release archive generation: `zenodo/mub6_formal_archive_v1.0.tar.gz`.",
+      "timestamp": "2026-09-23T22:01:04.440714+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "ee25e45737a62239be894b81d24da62769b302db1a493b75e0696913e6c3b3c1",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "1/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "1/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "1/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "d42c2b4953844e4f9af0c56207fb87216e99528dc4c01cc94f16239a7cd65fd7"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_24_A",
+        "PROP_PROMPT_T10_24_B"
+      ],
+      "terminal_state_digest": "0f5b57099fce2ba7b288e7545ce68a586e2a3e2a24130e53f69cf492ed64931c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T10_25",
+      "team_id": "team_10",
+      "run_id": "PROMPT_T10_25",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Master Grand Synthesis & Epistemic Gate Final Sign-Off.",
+      "timestamp": "2026-09-23T22:01:04.449610+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "9f3489b6d209f6a0b1fb0b00700b8f8ae57d8b56f04797f8cc365daca3cc168f",
+      "constraint_graph": {
+        "vertices": [
+          "epistemic_sentry_v0",
+          "epistemic_sentry_v1",
+          "epistemic_sentry_v2",
+          "epistemic_sentry_v3"
+        ],
+        "edges": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "epistemic_sentry_v0",
+            "v": "epistemic_sentry_v1",
+            "claim": "25/6"
+          },
+          {
+            "u": "epistemic_sentry_v1",
+            "v": "epistemic_sentry_v2",
+            "claim": "13/4"
+          },
+          {
+            "u": "epistemic_sentry_v2",
+            "v": "epistemic_sentry_v3",
+            "claim": "-25/6"
+          },
+          {
+            "u": "epistemic_sentry_v3",
+            "v": "epistemic_sentry_v0",
+            "claim": "-13/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "89/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 89/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "89/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "epistemic_sentry_v0->epistemic_sentry_v1": "0/1",
+          "epistemic_sentry_v1->epistemic_sentry_v2": "0/1",
+          "epistemic_sentry_v2->epistemic_sentry_v3": "0/1",
+          "epistemic_sentry_v3->epistemic_sentry_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "91df1c704ffd9f74c6d841b0d61ac7a7b50191f85f27f0ccccbdb311f1bead73"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T10_25_A",
+        "PROP_PROMPT_T10_25_B"
+      ],
+      "terminal_state_digest": "1622d1228ccc297b3669d9418fdaba9c711988f6f0c904ee5a486444e989dc75"
+    }
+  ]
+}

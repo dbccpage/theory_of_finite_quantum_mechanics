@@ -1,0 +1,53 @@
+# [TFQ-0396] sealed-tag-to-carrier-gap
+
+> **Stage**: `GENESIS` | **Status**: `GAP`  
+> **UUID**: `9a273d45-27fc-5172-81fe-400133d6a048`  
+> **Parent Derivation**: [TFQ-0395](../01_pregenesis/TFQ-0395_law-bearing-cut-not-two-marks.md)
+
+---
+
+## 1. Abstract & Formal Statement
+
+Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 3100c4e into this book's PrimitiveDifference carrier or candidate Lean mirror. Chapter 1 records the same gap as GAP-F000-S000-001 and says the tag is a mechanical receipt, not a mathematical verdict, and that the sealed derivation does not form cochains. finite_obstruction.py, opened at its header, starts from quotient certificates for a later host. The finite statement still required is that term map, or an explicit decision to leave the row proposed.
+
+### Governing Obligation
+Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.
+
+---
+
+## 2. Derivation Context & Mathematical Grounding
+
+In accordance with strict constructive principles:
+- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
+- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+
+---
+
+## 3. Multi-Tier Code & Proof Witnesses
+
+### Lean 4 Theorems
+- [`missing declaration obligation: a certified map from the sealed tag into HasRawDistinction is absent from the opened chapter and from proposed_gaps.yaml`](../../code/lean4/)
+- [`omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean`](../../code/lean4/)
+
+### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`missing obligation: no term-map crate was opened from tag 3100c4e into the S000 carrier`](../../code/rust/src/)
+
+### Python Oracles & Numerical Evaluators
+- [`missing obligation: test_genesis_bridge_contract.py was listed and not opened; chapter 1 says it checks a pinned reference file and is not a term map`](../../code/python/)
+- [`omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/finite_obstruction.py`](../../code/python/)
+- [`omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_genesis_bridge_contract.py`](../../code/python/)
+
+---
+
+## 4. Downstream Derivations (Outgoing DAG Links)
+
+*None (Leaf or Terminal derivation in current tree)*
+
+---
+
+## 5. Audit Trail & Primary Source Lineage
+
+- **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
+- **Primary Source Paths**:
+  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/claims/proposed_gaps.yaml`
+  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch01_genesis_of_difference.md`

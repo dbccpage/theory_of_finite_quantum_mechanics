@@ -1,0 +1,4065 @@
+{
+  "schema_version": "omega.mub6.option-b-checkpoint.v1",
+  "authority_effect": "None",
+  "status": "RESEARCH_CHECKPOINT",
+  "created_at_utc": "2026-10-10T15:48:17.466704+00:00",
+  "mathematical_goal_complete": false,
+  "publication_ready": false,
+  "all_requested_execution_gates_complete": false,
+  "test_build_and_axiom_gates_complete": true,
+  "full_native_frontier_calculation_complete": false,
+  "execution_scope_note": "The Rust/Python suites and Lean build/axiom audit have completed under their recorded scopes. The required full 56-cell and three-cusp native calculation has not completed.",
+  "base_commit": "4e4bb6ce92a64981d03861d25eae343164288432",
+  "base_tree": "d6f4aa6d1920131525c4d9e26687a57f399b20e7",
+  "checkpoint_parent_commit": "41c35d0fa513576467cf085e4e32a460cacfb569",
+  "branch": "codex/mub6-publication-closure",
+  "subsequent_remote_main_observed": "79fd9db728055deb001b7618e321f86e9ed4f97c",
+  "remote_observation_date": "2026-10-10",
+  "source_binding_note": "Baseline commit supplies unchanged repository sources; byte bindings below cover all local Lean sources, pins, and checkpoint changes. The containing Git commit binds this receipt. Later upstream revisions are outside this experiment.",
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.33.1",
+    "mathlib_commit": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "python": "3.14.2",
+    "cargo": "1.98.0",
+    "katex": "0.16.47"
+  },
+  "verification": {
+    "rust": {
+      "status": "PASS",
+      "command": "cargo test -p omega_mub --lib -j 1 -- --test-threads=1",
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 335,
+      "failed": 0,
+      "ignored": 18,
+      "measured": 0,
+      "filtered_out": 0,
+      "seconds": "2211.19",
+      "indexed": 353,
+      "all_indexed_tests_executed": false,
+      "observed_panic_events": 0,
+      "zero_panics_requirement_met": true,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/rust-full-gauged-balance.log",
+        "bytes": 111135,
+        "sha256_raw": "b6552db0ab46c0eaa2b4c3bbf33cfd534fa3e2983a7e2080a2615b4d115711a4"
+      },
+      "runner_source": {
+        "path": "scratch/mub6-2026-10-09/run_rust_gauged_balance_detached.py",
+        "bytes": 1400,
+        "sha256_raw": "e57503e4fab6ef3e3d1af0eeec6d2d5e10aa6fea95f39593bd27d3fddf25c557"
+      },
+      "status_record": {
+        "path": "scratch/mub6-2026-10-09/rust-gauged-balance-status.json",
+        "bytes": 359,
+        "sha256_raw": "fbb737cf12f6e20d81f4c55dddf4dba1fce12556285b547b37d500525f86337f"
+      },
+      "source_freeze": {
+        "path": "scratch/mub6-2026-10-09/rust-gauged-balance-input-freeze.json",
+        "bytes": 514279,
+        "sha256_raw": "16361394553ac2aa8d4dd10232358aa507bbe0c3bbe00d1542b822a501b2a863"
+      },
+      "source_freeze_check": {
+        "path": "scratch/mub6-2026-10-09/rust-gauged-balance-input-freeze-check.json",
+        "bytes": 96,
+        "sha256_raw": "b22b6fb166bd11a396473ace64df7448f3d6e638cb987248bf732e77eef09cc1"
+      },
+      "ignored_tests": [
+        {
+          "name": "deep_run::tests::deep_run_receipt_checks_pinned_h_transport",
+          "reason": "needs the ../mub/public-export/evidence receipts, which are not in this repository"
+        },
+        {
+          "name": "omega_native::d10_gtfoc_cross_validation::tests::d10_gtfoc_searches_named_word_antiunitary_conjugacy",
+          "reason": "expensive antiunitary conjugacy transport audit"
+        },
+        {
+          "name": "omega_native::d10_gtfoc_cross_validation::tests::d10_gtfoc_searches_named_word_convention_transport",
+          "reason": "expensive HXZ tensor V convention transport audit"
+        },
+        {
+          "name": "omega_native::d6_sos_float_sdp::tests::stage_b_dykstra_margin_scan_diagnostic",
+          "reason": "diagnostic: runs the bounded Stage B f64 Dykstra margin scan and prints JSON"
+        },
+        {
+          "name": "omega_native::d6_sos_float_sdp::tests::stage_b_float_margin_scan_diagnostic",
+          "reason": "diagnostic: runs the bounded Stage B f64 margin scan and prints JSON"
+        },
+        {
+          "name": "omega_native::d6_sos_float_sdp::tests::stage_b_low_rank_margin_scan_diagnostic",
+          "reason": "diagnostic: runs the bounded Stage B f64 low-rank factor margin scan and prints JSON"
+        },
+        {
+          "name": "omega_native::d6_sos_float_sdp::tests::stage_b_spectral_margin_scan_diagnostic",
+          "reason": "diagnostic: runs the bounded Stage B f64 spectral-ascent margin scan and prints JSON"
+        },
+        {
+          "name": "omega_native::local_transport::tests::pinned_transport_receipt_checks_local_h_lane",
+          "reason": "needs the ../mub/public-export/evidence receipts, which are not in this repository"
+        },
+        {
+          "name": "omega_native::local_transport::tests::pinned_transport_receipt_does_not_close_global_mub6",
+          "reason": "needs the ../mub/public-export/evidence receipts, which are not in this repository"
+        },
+        {
+          "name": "omega_native::mub6_cover_run::tests::full_5_torus_cover",
+          "reason": "heavy: full 5-torus cover (run on dedicated compute)"
+        },
+        {
+          "name": "omega_native::mub6_cover_run::tests::full_5_torus_cover_parallel",
+          "reason": "heavy: full 5-torus cover, parallel (run on dedicated compute)"
+        },
+        {
+          "name": "omega_native::mub6_cover_run::tests::full_5_torus_moduli_cover",
+          "reason": "heavy: full 5-torus moduli-neighborhood cover (run on dedicated compute)"
+        },
+        {
+          "name": "omega_native::mub6_cover_run::tests::moduli_delta_sweep",
+          "reason": "moduli neighborhood radius characterization"
+        },
+        {
+          "name": "omega_native::mub6_cover_run::tests::moduli_wall_probe",
+          "reason": "moduli wall diagnostic: interval slop vs structural near-MU configuration"
+        },
+        {
+          "name": "omega_native::mub6_cover_run::tests::one_torus_slice_full_circle",
+          "reason": "heavy: full-circle one-torus slice (run on dedicated compute)"
+        },
+        {
+          "name": "omega_native::mub6_cover_run::tests::torus_scaling",
+          "reason": "scaling characterization across free torus dimension"
+        },
+        {
+          "name": "omega_native::mub6_dita_seed_cover::tests::single_presplit_chunk_can_complete_at_moderate_depth",
+          "reason": ""
+        },
+        {
+          "name": "omega_native::mub6_f6_external_b3::tests::base_mu_full_root_of_unity_lattice_exhaustion",
+          "reason": "heavy: exact 24×24 F6 lattice census for Y2⊗Q{1,2}"
+        }
+      ],
+      "scope": "Fresh serial library run on 2,507 frozen inputs: all tracked Cargo-workspace Rust sources/manifests plus four system fixtures. Eighteen ignored tests did not execute. Other external runtime data require their own bindings. This gate does not supply the depth-64 family/cusp calculation."
+    },
+    "rust_targeted": {
+      "command": "cargo test -p omega_mub --lib -j 1 omega_native::mub6_cover::tests:: -- --test-threads=1",
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 7,
+      "failed": 0,
+      "ignored": 0,
+      "filtered_out": 329,
+      "seconds": "0.50",
+      "observed_panic_events": 0,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/rust-widening-targeted.log",
+        "bytes": 66800,
+        "sha256_raw": "45663c28821e04613dfffe1159aed4a5667b1c869b4b263820552829fb81bb07"
+      }
+    },
+    "python_pre_recertification_failure": {
+      "passed": 69,
+      "failed": 2,
+      "exit_code": 1,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/python-coefficient-pre-recertification-failure.log",
+        "bytes": 3668,
+        "sha256_raw": "ec7403264fc4d44b25c007df6ed02e505f1579e27eee2171730493aa735d4e75"
+      },
+      "scope": "The required manuscript and registry edits left the previous manifest hashes stale. Archive re-certification precedes the successful final suite; neither test was relaxed."
+    },
+    "python": {
+      "command": "py -3.12 -m pytest omega_engine_projects/mub6/tests/ --basetemp scratch/mub6-2026-10-09/pytest-gauged-balance-python312 -o cache_dir=scratch/mub6-2026-10-09/pytest-cache-gauged-balance-python312",
+      "requested_command": "python -m pytest omega_engine_projects/mub6/tests/",
+      "runtime": "Python 3.12.10",
+      "cwd": ".",
+      "exit_code": 0,
+      "passed": 103,
+      "seconds": "73.30",
+      "log": {
+        "path": "scratch/mub6-2026-10-09/python-full-gauged-balance.log",
+        "bytes": 922,
+        "sha256_raw": "e2c59d907877ef9839711b6fdfba683fd7f18b5209c1509c899692a3786637de"
+      }
+    },
+    "continuous_phase_family": {
+      "command": "lake build +SzollosiTwoCirculant +SzollosiQuartetSystem",
+      "cwd": "lean4/research_programs/mub6",
+      "exit_code": 0,
+      "dependency_jobs": 8721,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/lean-szollosi-targeted.log",
+        "bytes": 15467,
+        "sha256_raw": "cc87da9e5b9319e37c82c6b02e6a4ade3a38180e2af460db557e47de26e1efb3"
+      },
+      "scope": "Actual six-phase block Gram identity and normalized unitarity; four-phase compatibility is equivalent to six scalar real parameter equations in eight coordinates. Every point in the intersection of the phase-sum images has such coordinates. Both additional bases remain arbitrary, with all 144 real candidate coordinates retained and rational half-unit containing boxes. Quartet absence is equivalent to empty fourth-basis varieties for every admissible third basis in the constructed block gauge. No classification, dephased equivalence transport, complete cover, cusp analysis, contractor soundness or full reflected exclusion is supplied by these family modules; the subsequent executable export is recorded separately."
+    },
+    "joint_rational_quartet": {
+      "command": "lake build +SzollosiQuadraticSystem",
+      "cwd": "lean4/research_programs/mub6",
+      "exit_code": 0,
+      "dependency_jobs": 8722,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/lean-szollosi-quadratic-targeted.log",
+        "bytes": 17547,
+        "sha256_raw": "1138a25f13858d3d8294e93f7c0cfa7f40f89dbd1297846358951c0838103780"
+      },
+      "variables": 440,
+      "equations": 618,
+      "maximum_total_degree": 2,
+      "coefficient_field": "rational",
+      "executable_native_export_complete": true,
+      "variety_emptiness_established": false,
+      "scope": "Two-way existence correspondence between actual quartets and all rational equation solutions, including each fixed admissible phase parameter. Both additional bases remain arbitrary. Raw scaling is sqrt six, cross-product norm-square target six. All solutions lie in rational boxes of radius one for phases/raw basis entries and three for auxiliary cross products. The Mathlib specification is represented by the checked executable expression export below. Current emitted coefficient and interval data are now kernel-identified with the actual polynomials, as recorded below. The subsequent rectangular soundness and actual-equation bridge are checked. Generic native compiler/decoder qualification, native rectangular image parity, successful checks, equivalence transport, coverage and full reflected exclusion remain open.",
+      "semantic_mutations": {
+        "status": "PASS",
+        "command": "lake env lean <mutated-source>",
+        "cwd": "lean4/research_programs/mub6",
+        "canonical_source": {
+          "path": "lean4/research_programs/mub6/SzollosiQuadraticSystem.lean",
+          "bytes": 36115,
+          "sha256_raw": "1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25"
+        },
+        "status_record": {
+          "path": "scratch/mub6-2026-10-09/joint-mutation-status.json",
+          "bytes": 822,
+          "sha256_raw": "c9ff09f34bda47c97f7d8b3db8661f3c48b26c15e64a50ba6488babf345acc6c"
+        },
+        "results": [
+          {
+            "probe": "raw_overlap_target",
+            "expected_obligation": "overlap_zero_iff",
+            "expected_line_interval": [
+              334,
+              348
+            ],
+            "exit_code": 1,
+            "expected_rejection": true,
+            "diagnostic_contains": "Tactic `rfl` failed",
+            "mutated_source": {
+              "path": "scratch/mub6-2026-10-09/joint-mutation-raw_overlap_target.lean",
+              "bytes": 36015,
+              "sha256_raw": "2ad6fad3a1295d3ade4362c43d3491f92a556bd9c283bb8e98b81c242fec1550"
+            },
+            "log": {
+              "path": "scratch/mub6-2026-10-09/joint-mutation-raw_overlap_target.log",
+              "bytes": 2013,
+              "sha256_raw": "637549271841d2030668fa1fa327c0aa400d3fe81210c3f7c90dcd035aa29530"
+            }
+          },
+          {
+            "probe": "cross_conjugation",
+            "expected_obligation": "complexEval_star",
+            "expected_line_interval": [
+              68,
+              71
+            ],
+            "exit_code": 1,
+            "expected_rejection": true,
+            "diagnostic_contains": "unsolved goals",
+            "mutated_source": {
+              "path": "scratch/mub6-2026-10-09/joint-mutation-cross_conjugation.lean",
+              "bytes": 36014,
+              "sha256_raw": "1ec16df253e05a62d8f89419f04263969bcca63f5e543673cb76c895fe464dfd"
+            },
+            "log": {
+              "path": "scratch/mub6-2026-10-09/joint-mutation-cross_conjugation.log",
+              "bytes": 1805,
+              "sha256_raw": "4e7a19c52b58e9c9dee59adecad51eeaf85f14841de0dc0d8e4fabccfe02f751"
+            }
+          }
+        ]
+      }
+    },
+    "executable_quartet_replay": {
+      "command": "lake build +SzollosiExecutableSystem",
+      "cwd": "lean4/research_programs/mub6",
+      "exit_code": 0,
+      "dependency_jobs": 8723,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/lean-executable-targeted.log",
+        "bytes": 18773,
+        "sha256_raw": "09150f661da10a283d402e001a8c439922106b023b554470d7f3c70d529852d7"
+      },
+      "export_command": "lake env lean --run ../../../omega_engine_projects/mub6/scripts/export_szollosi_system.lean ../../../omega_engine_projects/mub6/artifacts/mub_szollosi_executable_system.json",
+      "export_script": {
+        "path": "omega_engine_projects/mub6/scripts/export_szollosi_system.lean",
+        "bytes": 426,
+        "sha256_raw": "6eba07eb13167508543b96f0dc0e2407fb6554ba6c0b053086c432b27052e056"
+      },
+      "export_log": {
+        "path": "scratch/mub6-2026-10-09/lean-executable-export.log",
+        "bytes": 129,
+        "sha256_raw": "e1c7f523ff813a2359de59edcd4bd69eddcf56e193c9a81948ee1f4e030af9ba"
+      },
+      "exported_system": {
+        "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_executable_system.json",
+        "bytes": 731970,
+        "sha256_raw": "1367d390da36e5ccf65abbc8fbf529ff07f9e154c277bb14c1cd8c36ba24c947"
+      },
+      "export_reproduction": {
+        "bytes": 731970,
+        "sha256": "1367d390da36e5ccf65abbc8fbf529ff07f9e154c277bb14c1cd8c36ba24c947",
+        "identical_independent_exports": true
+      },
+      "export_reproduction_record": {
+        "path": "scratch/mub6-2026-10-09/executable-export-reproduction.json",
+        "bytes": 143,
+        "sha256_raw": "23f3c306f606749eaa03cad11d259322854a1f78f0f06068acf13fa49c433df1"
+      },
+      "export_reproduction_log": {
+        "path": "scratch/mub6-2026-10-09/lean-executable-export-reproduce.log",
+        "bytes": 111,
+        "sha256_raw": "ec666dcd0336da0ac3da7eb9dc548abce21f2c2e12557087aff7481f1d43ff9b"
+      },
+      "independent_export": {
+        "path": "scratch/mub6-2026-10-09/szollosi-export-reproduce.json",
+        "bytes": 731970,
+        "sha256_raw": "1367d390da36e5ccf65abbc8fbf529ff07f9e154c277bb14c1cd8c36ba24c947"
+      },
+      "native_command": "cargo run -p omega_mub -j 1 --bin mub6_smale_sentry -- --inspect-system ../../omega_engine_projects/mub6/artifacts/mub_szollosi_executable_system.json --coefficients ../../omega_engine_projects/mub6/artifacts/mub_szollosi_lean_coefficients.json --receipt ../../omega_engine_projects/mub6/artifacts/mub_szollosi_native_replay_receipt.json",
+      "native_cwd": "omega_engine/crates_rs",
+      "native_exit_code": 0,
+      "native_log": {
+        "path": "scratch/mub6-2026-10-09/native-coefficient-replay.log",
+        "bytes": 66434,
+        "sha256_raw": "d8a69b0cdd05efbb2f1a8d42771110b052e0e1ccce29115090e912356271f3a6"
+      },
+      "native_receipt": {
+        "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_native_replay_receipt.json",
+        "bytes": 672840,
+        "sha256_raw": "17b31a7eec56d0129b0b4b8a837f55d71b37ee0be0d0a91ad6fbb106949633dc"
+      },
+      "native_summary": {
+        "schema": "omega.mub6.szollosi-native-replay.v1",
+        "status": "UNRESOLVED_FULL_BOX",
+        "input_sha256": "1367d390da36e5ccf65abbc8fbf529ff07f9e154c277bb14c1cd8c36ba24c947",
+        "coefficient_reference_sha256": "44656965bb72e735febfc69c1bcd599adbeea2e8512ebd6141025f8524e5d2df",
+        "checked_coefficient_rows": 618,
+        "variable_count": 440,
+        "equation_count": 618,
+        "sparse_terms": 5128,
+        "maximum_degree": 2,
+        "parity_probes": 3,
+        "parity_scalar_comparisons": 1854,
+        "excluded_equation": null,
+        "full_56_cell_and_cusp_calculation_complete": false,
+        "krawczyk_run": false,
+        "kernel_reflection_complete": false
+      },
+      "native_reproduction": {
+        "byte_identical": true,
+        "exit_code": 0,
+        "sha256_raw": "17b31a7eec56d0129b0b4b8a837f55d71b37ee0be0d0a91ad6fbb106949633dc",
+        "bytes": 672840,
+        "command": [
+          "<repo>/omega_engine/crates_rs/target/debug/mub6_smale_sentry.exe",
+          "--inspect-system",
+          "<repo>/omega_engine_projects/mub6/artifacts/mub_szollosi_executable_system.json",
+          "--coefficients",
+          "<repo>/omega_engine_projects/mub6/artifacts/mub_szollosi_lean_coefficients.json",
+          "--receipt",
+          "<repo>/scratch/mub6-2026-10-09/szollosi-native-reproduce.json"
+        ]
+      },
+      "native_reproduction_log": {
+        "path": "scratch/mub6-2026-10-09/native-coefficient-reproduce.log",
+        "bytes": 108,
+        "sha256_raw": "4197cdbd464b8ebc2c2abd0579dc9335bcf6db813d765a7d4cd86cad11132dca"
+      },
+      "independent_native_receipt": {
+        "path": "scratch/mub6-2026-10-09/szollosi-native-reproduce.json",
+        "bytes": 672840,
+        "sha256_raw": "17b31a7eec56d0129b0b4b8a837f55d71b37ee0be0d0a91ad6fbb106949633dc"
+      },
+      "focused_rust": {
+        "command": "cargo test -p omega_mub --lib -j 1 omega_native::mub6_szollosi_executable::tests:: -- --test-threads=1",
+        "exit_code": 0,
+        "passed": 6,
+        "failed": 0,
+        "ignored": 0,
+        "filtered_out": 336,
+        "seconds": "1.83",
+        "log": {
+          "path": "scratch/mub6-2026-10-09/rust-coefficient-targeted.log",
+          "bytes": 66906,
+          "sha256_raw": "fc49cd06afdef5b080b2f72a56ff4090a5c7b689dc63433fa7327dc75827a7a3"
+        }
+      },
+      "native_symbolic_parity_kernel_checked": true,
+      "variety_emptiness_established": false,
+      "scope": "Every Lean expression translates to the checked polynomial and agrees under all real assignments; IDs cover all 440 coordinates and 618 equations. Native sparse compilation matched all 618 independent Lean coefficient rows with 5128 terms and returned UNRESOLVED_FULL_BOX. The emitted coefficient table is kernel-identified with every actual rational equation; its emitted 618 intervals are kernel-identified with sound sparse interval semantics for all real assignments in the full containing box. This is a theorem about these emitted data, without generic Rust compiler/JSON decoder verification. No Krawczyk or complete 56-cell/cusp calculation occurred."
+    },
+    "rational_interval_soundness": {
+      "command": "lake build +SzollosiIntervalExclusion",
+      "cwd": "lean4/research_programs/mub6",
+      "exit_code": 0,
+      "dependency_jobs": 8724,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/lean-interval-targeted.log",
+        "bytes": 19954,
+        "sha256_raw": "c19e8f5473d071a422bd4623f2acfd1e824cf5034e40cc9f111d09326bb81458"
+      },
+      "full_box_exclusion_check": false,
+      "native_sparse_interval_parity_kernel_checked": true,
+      "semantic_mutations": {
+        "status": "PASS",
+        "runner": {
+          "path": "scratch/mub6-2026-10-09/check_interval_mutations.py",
+          "bytes": 2012,
+          "sha256_raw": "31dd948917ef8bd94db02759f2df7b56a8642e306e5f1033eaa4e2cb45f76ec5"
+        },
+        "status_record": {
+          "path": "scratch/mub6-2026-10-09/interval-mutation-status.json",
+          "bytes": 839,
+          "sha256_raw": "b1c28aafc7eadb2cd9425c38c06730df83b0803feb001346d37c5c97956392c6"
+        },
+        "results": [
+          {
+            "probe": "product_lower_bound",
+            "expected_obligation": "contains_mul",
+            "expected_line_interval": [
+              53,
+              68
+            ],
+            "source": "scratch/mub6-2026-10-09/interval-mutation-product_lower_bound.lean",
+            "log": "scratch/mub6-2026-10-09/interval-mutation-product_lower_bound.log",
+            "exit_code": 1,
+            "rejected": true,
+            "mutated_source": {
+              "path": "scratch/mub6-2026-10-09/interval-mutation-product_lower_bound.lean",
+              "bytes": 6812,
+              "sha256_raw": "b6c2832104119d4ec6f390285ec12192abb4fcc367fb4dd51139f00600939b4f"
+            },
+            "diagnostic_log": {
+              "path": "scratch/mub6-2026-10-09/interval-mutation-product_lower_bound.log",
+              "bytes": 2389,
+              "sha256_raw": "3b360b7c4e622cf23cc8630f48d52e8943525ae1b7260388b1c6f6452b4b89e4"
+            }
+          },
+          {
+            "probe": "phase_interior_radius",
+            "expected_obligation": "phase_interior_excluded",
+            "expected_line_interval": [
+              134,
+              135
+            ],
+            "source": "scratch/mub6-2026-10-09/interval-mutation-phase_interior_radius.lean",
+            "log": "scratch/mub6-2026-10-09/interval-mutation-phase_interior_radius.log",
+            "exit_code": 1,
+            "rejected": true,
+            "mutated_source": {
+              "path": "scratch/mub6-2026-10-09/interval-mutation-phase_interior_radius.lean",
+              "bytes": 6808,
+              "sha256_raw": "7cde4d7b8981c2be2713bf3a1b4b80eb8458afc9558d80375af378875c97a5c0"
+            },
+            "diagnostic_log": {
+              "path": "scratch/mub6-2026-10-09/interval-mutation-phase_interior_radius.log",
+              "bytes": 1413,
+              "sha256_raw": "e27f463ff7df4fc2d6461b285806e3dfd831a5fc01c86583a2b314121482b9ac"
+            }
+          }
+        ]
+      },
+      "scope": "AST interval enclosure is derived for every contained real assignment; successful residual interval zero-exclusion implies no actual polynomial solution in that box. The full containing-box check reduces to false inside the kernel. A reflected first-phase interior box excludes an off-domain region with no unit phase, without excluding admissible quartets. No full native cover or Krawczyk analytic soundness theorem is supplied."
+    },
+    "native_reflection_resource_event": {
+      "record": {
+        "path": "scratch/mub6-2026-10-09/native-reflection-resource-event.json",
+        "bytes": 490,
+        "sha256_raw": "5e8151ec89ae51a7294a78e842f03bc4137fbe3c8d6f51646e8a3c45e2aefed3"
+      },
+      "interrupted_coefficient_probe_log": {
+        "path": "scratch/mub6-2026-10-09/lean-native-coeff-reflection-scratch.log",
+        "bytes": 0,
+        "sha256_raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "interrupted_interval_probe_log": {
+        "path": "scratch/mub6-2026-10-09/lean-native-ranges-scratch.log",
+        "bytes": 0,
+        "sha256_raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "scope": "Two redundant scratch compilers were stopped after verified resource exhaustion. No mathematical pass/fail verdict is assigned to them."
+    },
+    "native_reflection_failed_attempts": {
+      "compilation_event": {
+        "path": "scratch/mub6-2026-10-09/native-reflection-compilation-event.json",
+        "bytes": 679,
+        "sha256_raw": "d70847dd7d977a705d0ea7a17a6ab4580ef57e698994dc927bf65fa6a0fa5dec"
+      },
+      "unsplit_source": {
+        "path": "scratch/mub6-2026-10-09/SzollosiNativeReflectionUnsplitFailure.lean",
+        "bytes": 99298,
+        "sha256_raw": "d2ca53666a54d45ed5e284afd8e4976e85aa30c9999a02ffb2d7a2e346bf802e"
+      },
+      "unsplit_log": {
+        "path": "scratch/mub6-2026-10-09/lean-native-reflection-unsplit-failure.log",
+        "bytes": 28589,
+        "sha256_raw": "6caa21b4ae20df8dd66ee243433398ac984fcf0f59c9e6c92ab651fe516ca8db"
+      },
+      "rfl_source": {
+        "path": "scratch/mub6-2026-10-09/SzollosiNativeReflectionRflFailure.lean",
+        "bytes": 142998,
+        "sha256_raw": "d8d2f591913375c4195e1b45844fc091de423a81f5399ce66a3c3c4d9846c32a"
+      },
+      "rfl_log": {
+        "path": "scratch/mub6-2026-10-09/lean-native-reflection-rfl-failure.log",
+        "bytes": 24145,
+        "sha256_raw": "6a901bd53a6aff91f5a1746fd945d63556cee6a8e1ff80da32650c646f1ed14c"
+      },
+      "interrupted_keyed_comparison_log": {
+        "path": "scratch/mub6-2026-10-09/lean-native-keyed-reflection-scratch.log",
+        "bytes": 0,
+        "sha256_raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "scope": "The monolithic literal exceeded the elaboration heartbeat limit. Separate typed rows removed that failure. Closed rfl checks failed and were replaced by kernel computation. Errors and placeholder dependencies from failed attempts are excluded from the successful canonical build and all-declaration audit."
+    },
+    "native_data_semantic_reflection": {
+      "coefficient_normalization": {
+        "command": "lake build +SzollosiTermExpansion",
+        "exit_code": 0,
+        "log": {
+          "path": "scratch/mub6-2026-10-09/lean-coefficient-targeted.log",
+          "bytes": 19134,
+          "sha256_raw": "ba3d1ef7a0af701c19d3c47e0985fab30a2401b1989ee697a5372f16b1f6d66c"
+        },
+        "reference": {
+          "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_lean_coefficients.json",
+          "bytes": 216553,
+          "sha256_raw": "44656965bb72e735febfc69c1bcd599adbeea2e8512ebd6141025f8524e5d2df"
+        },
+        "exporter": {
+          "path": "omega_engine_projects/mub6/scripts/export_szollosi_coefficients.lean",
+          "bytes": 245,
+          "sha256_raw": "c80aa474e6a7a21db81cf3bc8178fd5efc5857f076f221c6cfda285e78f22f24"
+        },
+        "export_log": {
+          "path": "scratch/mub6-2026-10-09/lean-coefficient-export.log",
+          "bytes": 0,
+          "sha256_raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "independent_export": {
+          "path": "scratch/mub6-2026-10-09/szollosi-coefficients-reproduce.json",
+          "bytes": 216553,
+          "sha256_raw": "44656965bb72e735febfc69c1bcd599adbeea2e8512ebd6141025f8524e5d2df"
+        }
+      },
+      "sparse_interval_soundness": {
+        "command": "lake build +SzollosiNativeInterval",
+        "exit_code": 0,
+        "log": {
+          "path": "scratch/mub6-2026-10-09/lean-native-interval-targeted.log",
+          "bytes": 20514,
+          "sha256_raw": "5c1d8af86a4230211366e34ee457e1b7dd20323c90059c5f1ab8adda67c3af95"
+        }
+      },
+      "reflected_data": {
+        "command": "lake build +SzollosiNativeReflection",
+        "exit_code": 0,
+        "log": {
+          "path": "scratch/mub6-2026-10-09/lean-native-reflection-targeted.log",
+          "bytes": 21517,
+          "sha256_raw": "cb2467c6437e07a6adff8f790fbf96159beb6824b35e1b5259f64615ef02cf99"
+        },
+        "formatter": {
+          "path": "omega_engine_projects/mub6/scripts/reflect_szollosi_native.py",
+          "bytes": 13625,
+          "sha256_raw": "837fa0137b029535e2cc6f59734dadf48f8a970f261e49bf80ea8f46cf116f40"
+        },
+        "lint_log": {
+          "path": "scratch/mub6-2026-10-09/python-reflection-lint.log",
+          "bytes": 20,
+          "sha256_raw": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0"
+        },
+        "reproduction": {
+          "byte_identical": true,
+          "exit_code": 0,
+          "sha256_raw": "498061caf5fb238e3999c4d5c56943d6c9e1bfae931430e4674e8dca1f278029",
+          "bytes": 143057,
+          "command": [
+            "python",
+            "<repo>/omega_engine_projects/mub6/scripts/reflect_szollosi_native.py",
+            "--receipt",
+            "<repo>/omega_engine_projects/mub6/artifacts/mub_szollosi_native_replay_receipt.json",
+            "--system",
+            "<repo>/omega_engine_projects/mub6/artifacts/mub_szollosi_executable_system.json",
+            "--coefficients",
+            "<repo>/omega_engine_projects/mub6/artifacts/mub_szollosi_lean_coefficients.json",
+            "--output",
+            "<repo>/scratch/mub6-2026-10-09/SzollosiNativeReflection-reproduce.lean"
+          ]
+        },
+        "reproduction_log": {
+          "path": "scratch/mub6-2026-10-09/native-reflection-reproduce.log",
+          "bytes": 145,
+          "sha256_raw": "2fe82646cf639a74557fd2f7c86f4732997df3a483908055c36be3e4bf0c567c"
+        },
+        "independent_source": {
+          "path": "scratch/mub6-2026-10-09/SzollosiNativeReflection-reproduce.lean",
+          "bytes": 143057,
+          "sha256_raw": "498061caf5fb238e3999c4d5c56943d6c9e1bfae931430e4674e8dca1f278029"
+        }
+      },
+      "coefficient_rows": 618,
+      "nonzero_terms": 5128,
+      "interval_rows": 618,
+      "current_emitted_data_identity_and_soundness": true,
+      "generic_rust_compiler_or_json_decoder_kernel_verified": false,
+      "full_box_exclusion": false,
+      "theorems": [
+        "normalized_equation_polynomial",
+        "native_terms_match",
+        "native_coefficients_polynomial",
+        "native_ranges_match",
+        "native_interval_enclosed",
+        "native_full_box_unresolved",
+        "solution_zero_in_native_interval"
+      ],
+      "semantic_mutations": {
+        "phase": "COMPLETED",
+        "started_at_utc": "2026-10-10T11:39:08.668956+00:00",
+        "runner_pid": 26252,
+        "results": [
+          {
+            "probe": "coefficient",
+            "source": "scratch/mub6-2026-10-09/native-reflection-mutation-coefficient.lean",
+            "log": "scratch/mub6-2026-10-09/native-reflection-mutation-coefficient.log",
+            "expected_obligation": "native_coefficients_checked",
+            "expected_line_interval": [
+              1915,
+              1916
+            ],
+            "exit_code": 1,
+            "rejected": true,
+            "mutated_source": {
+              "path": "scratch/mub6-2026-10-09/native-reflection-mutation-coefficient.lean",
+              "bytes": 138027,
+              "sha256_raw": "33f113e0a3c1145a96e5334d1ecd25559c02174ec9f8f2e8cb537a4be90f0715"
+            },
+            "diagnostic_log": {
+              "path": "scratch/mub6-2026-10-09/native-reflection-mutation-coefficient.log",
+              "bytes": 178,
+              "sha256_raw": "33fcc2298f57e2650c351fbc1b35147a56b6577f6f372c96efae01973f441607"
+            }
+          },
+          {
+            "probe": "interval",
+            "source": "scratch/mub6-2026-10-09/native-reflection-mutation-interval.lean",
+            "log": "scratch/mub6-2026-10-09/native-reflection-mutation-interval.log",
+            "expected_obligation": "native_ranges_checked",
+            "expected_line_interval": [
+              1903,
+              1907
+            ],
+            "exit_code": 1,
+            "rejected": true,
+            "mutated_source": {
+              "path": "scratch/mub6-2026-10-09/native-reflection-mutation-interval.lean",
+              "bytes": 137461,
+              "sha256_raw": "4a1e7345818e320fafc1a46e71a878da78d81ec571b30b8f414a83a284710bd3"
+            },
+            "diagnostic_log": {
+              "path": "scratch/mub6-2026-10-09/native-reflection-mutation-interval.log",
+              "bytes": 480,
+              "sha256_raw": "36b7797e7e8a8272ef525c28c85f9bddd5212c405b513c83dfe67ec4e977698f"
+            }
+          }
+        ],
+        "all_rejected": true,
+        "finished_at_utc": "2026-10-10T11:40:21.071156+00:00"
+      },
+      "mutation_runner": {
+        "path": "scratch/mub6-2026-10-09/check_native_reflection_mutations.py",
+        "bytes": 3005,
+        "sha256_raw": "7701b11fa06c8a5306562da80460cf16de3e25a782ffe8e101699bdb37e7063c"
+      },
+      "mutation_status": {
+        "path": "scratch/mub6-2026-10-09/native-reflection-mutation-status.json",
+        "bytes": 967,
+        "sha256_raw": "abe19825e92b13f604b76498320f74e273400d2e96369833dbd7c328ed77c936"
+      },
+      "scope": "All coefficients and emitted intervals in the current native receipt have kernel-checked polynomial identity and enclosure semantics for every actual real assignment in the full containing box. No row excludes zero. This is not a generic verification of the Rust runtime/compiler/JSON decoder, a Krawczyk computation, complete 56-cell/cusp cover or variety emptiness. This entry concerns the retained original 618-row data only. New 666-row data and the selected-box result are scoped in derived_gauge_balance."
+    },
+    "previous_121_module_gate": {
+      "modules": 121,
+      "declarations": 11748,
+      "exit_code": 0,
+      "build_log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-121.log",
+        "bytes": 211825,
+        "sha256_raw": "e5960e7cf157d5be162b679d2e6c32d7db202167827d9b7ba5c6ffc34e6bd205"
+      },
+      "axiom_log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-121.log",
+        "bytes": 1043313,
+        "sha256_raw": "14e07ab32964f1b2bac1b821efa8e936a7e1d06899ff963cebd933f8afe6f9df"
+      },
+      "axiom_status": {
+        "path": "scratch/mub6-2026-10-09/axiom-background-status-121.json",
+        "bytes": 614,
+        "sha256_raw": "c4864535c705f215a15810c4433bd293509fb4d5ce190f311bc7ec150b8aae3d"
+      }
+    },
+    "previous_full_323_rust_gate": {
+      "passed": 323,
+      "failed": 0,
+      "ignored": 18,
+      "observed_panic_events": 0,
+      "exit_code": 0,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/rust-full-323-retained.log",
+        "bytes": 110588,
+        "sha256_raw": "a58469b3b9f05362f76fd0f0c4a2d0970c4c2a1e6e54937f1e99e914a60fd295"
+      },
+      "status_record": {
+        "path": "scratch/mub6-2026-10-09/rust-background-status-323.json",
+        "bytes": 358,
+        "sha256_raw": "86166f2d84743b1f8b06a2621390eb8d35d89fa4b2f5f60199b26c94eab0fc03"
+      }
+    },
+    "previous_120_module_gate": {
+      "modules": 120,
+      "declarations": 11686,
+      "exit_code": 0,
+      "build_log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-120.log",
+        "bytes": 210644,
+        "sha256_raw": "8548c8167918da14fdde6e145448ce8897864d1c63beaf09f3876659121331aa"
+      },
+      "axiom_log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-120.log",
+        "bytes": 1037406,
+        "sha256_raw": "b001f1200a543068dc64ecc76e22c92aa3415c701e98e59ca5ba16d983ced0dd"
+      },
+      "axiom_status": {
+        "path": "scratch/mub6-2026-10-09/axiom-background-status-120.json",
+        "bytes": 614,
+        "sha256_raw": "d855654d79739c48baf3d1d76efee56a60f842d32a864c4c6261b0cc4879d3b0"
+      }
+    },
+    "previous_119_module_gate": {
+      "modules": 119,
+      "declarations": 11448,
+      "exit_code": 0,
+      "build_log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-119.log",
+        "bytes": 209415,
+        "sha256_raw": "9765ecc4163e4552869a39971121bba0f93377eabbc65288a5f016902272ce1e"
+      },
+      "axiom_log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-119.log",
+        "bytes": 1015476,
+        "sha256_raw": "76cdc84b4199d9c05b3767c36eba083e67f7dee17b3fb4daec035db23646b1ce"
+      },
+      "axiom_status": {
+        "path": "scratch/mub6-2026-10-09/axiom-background-status-119.json",
+        "bytes": 614,
+        "sha256_raw": "74a4d38655533959cd00f90f5e3fd7021195ced19a9c7d162957625f5ddb452d"
+      }
+    },
+    "previous_full_318_rust_gate": {
+      "passed": 318,
+      "failed": 0,
+      "ignored": 18,
+      "observed_panic_events": 0,
+      "exit_code": 0,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/rust-full-318-retained.log",
+        "bytes": 109105,
+        "sha256_raw": "68148da121ed81f541f48200d498fdf16c0b00a8a5e185c1565c97480c844308"
+      },
+      "status_record": {
+        "path": "scratch/mub6-2026-10-09/rust-background-status-318.json",
+        "bytes": 359,
+        "sha256_raw": "d6da4d8fcab673b4548456ba4d1d6e80c687f3c004b86b419942b82da7cf039c"
+      }
+    },
+    "previous_118_module_gate": {
+      "modules": 118,
+      "declarations": 11253,
+      "exit_code": 0,
+      "build_log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-118.log",
+        "bytes": 207335,
+        "sha256_raw": "e3d1aa475775daee336e87def4b280c13138c364f91d580f1055e7b179a2ffe8"
+      },
+      "axiom_log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-118.log",
+        "bytes": 994640,
+        "sha256_raw": "6c05231e48c37668f39fbffa2bf9a71b634c2cffb8d48e90833da28886c6b236"
+      },
+      "axiom_status": {
+        "path": "scratch/mub6-2026-10-09/axiom-background-status-118.json",
+        "bytes": 614,
+        "sha256_raw": "32145d93d5e3f600e295113247b3cab173f81aaffca7d75be9a96c779e8a03e9"
+      }
+    },
+    "previous_116_module_gate": {
+      "modules": 116,
+      "declarations": 11163,
+      "exit_code": 0,
+      "build_log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-116.log",
+        "bytes": 204520,
+        "sha256_raw": "395eb1f857152960439e367cbaa85e5e0f165e5eacb9fe8f8da3e04d787834c4"
+      },
+      "axiom_log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-116.log",
+        "bytes": 985175,
+        "sha256_raw": "582a2524e98bb9931c8bfcee14da3dc37f4cc0f99fe8ab19916c2929f3132c4b"
+      },
+      "axiom_status": {
+        "path": "scratch/mub6-2026-10-09/axiom-background-status-116.json",
+        "bytes": 613,
+        "sha256_raw": "a145aad7d87a93b29ae2cdacbf56a122efff332956705a001997d2440f8b6c0e"
+      }
+    },
+    "finite_reverse_extraction": {
+      "command": "lake build +CommutativeFlatMoments +ConcreteMubFlatExtension +MomentPositivityObligation",
+      "cwd": "lean4/research_programs/mub6",
+      "exit_code": 0,
+      "dependency_jobs": 8720,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/lean-real-flat-targeted.log",
+        "bytes": 17875,
+        "sha256_raw": "e45eb181577c32f7ec78d78ae9c12490349da9f91618619cb273ba27327cdf1c"
+      },
+      "scope": "Normalized positive flat real coordinate moments construct commuting symmetric multiplication operators and a common real point. Finite compatibility with all 180 candidate residuals yields an actual complex unitary candidate with all 108 MU overlaps. Evaluation at a solution supplies rank-one positive flat moments, giving a two-way existence equivalence. Empty variety excludes positivity under normalization, actual flatness and finite relation compatibility. Variety emptiness and arbitrary-nonflat exclusion remain open."
+    },
+    "lean": {
+      "command": "lake build Mub6",
+      "cwd": "lean4/research_programs/mub6",
+      "exit_code": 0,
+      "dependency_jobs": 8848,
+      "environment": {
+        "LEAN_NUM_THREADS": "1"
+      },
+      "log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-gauged-balance.log",
+        "bytes": 222572,
+        "sha256_raw": "de2516436fe91779bbcd83da9a8741ceb4ac4951c1271492000d9636d115912e"
+      },
+      "scope": "All 142 local modules imported by the aggregate; unchanged dependencies may be cached."
+    },
+    "axioms": {
+      "status": "PASS",
+      "command": "lake env lean ../../../omega_engine_projects/mub6/scripts/audit_mub6_axioms.lean",
+      "cwd": "lean4/research_programs/mub6",
+      "exit_code": 0,
+      "modules": 142,
+      "declarations": 14752,
+      "disallowed_dependencies": 0,
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-gauged-balance.log",
+        "bytes": 1403446,
+        "sha256_raw": "e844d1b06669080e741a86ea20e4e49265590426a8cda6d929f153ef0efada43"
+      }
+    },
+    "dependency_revalidation": [
+      {
+        "name": "mathlib",
+        "head": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "tracked_tree_clean": true
+      },
+      {
+        "name": "plausible",
+        "head": "b7eb3304aeae834b12dda98993a37f6a41f6f0bb",
+        "tracked_tree_clean": true
+      },
+      {
+        "name": "LeanSearchClient",
+        "head": "5f4d51b81cbd3f6b32b156bfad9056621a040404",
+        "tracked_tree_clean": true
+      },
+      {
+        "name": "importGraph",
+        "head": "16f02aa7642864af59f1ff0e384a015994db9118",
+        "tracked_tree_clean": true
+      },
+      {
+        "name": "proofwidgets",
+        "head": "4be2e3d5087eeb272cf5a8853b8f9dd025ef5957",
+        "tracked_tree_clean": true
+      },
+      {
+        "name": "aesop",
+        "head": "3448c0bcc5ce01b2d1546e483ec3620e32df3d0e",
+        "tracked_tree_clean": true
+      },
+      {
+        "name": "Qq",
+        "head": "92c15be17b7caf78c2ad767ec40f89052d908d81",
+        "tracked_tree_clean": true
+      },
+      {
+        "name": "batteries",
+        "head": "4488d40d070b9700d4d5a6aa342f0d40c31b2a2d",
+        "tracked_tree_clean": true
+      },
+      {
+        "name": "Cli",
+        "head": "6130a47896ce867c6a4a55373441e59e565bad0f",
+        "tracked_tree_clean": true
+      }
+    ],
+    "dependency_metadata_repair": {
+      "path": "scratch/mub6-2026-10-09/dependency-metadata-repair.json",
+      "bytes": 1076,
+      "sha256_raw": "db438ac61e6c3f37b4ab2ece3c936d27b020de4173a47be9ab7b9d6705544e2e"
+    },
+    "axiom_runner_source": {
+      "path": "scratch/mub6-2026-10-09/run_rectangular_validation.py",
+      "bytes": 1728,
+      "sha256_raw": "6d4a68e4a2ac1847f58b61332f66ac731c4005914436b2b62d8bad2e8de857f1"
+    },
+    "source_scan": {
+      "local_lean_modules": 142,
+      "active_placeholder_or_custom_axiom_violations": [],
+      "quartet_vocabulary_violations": [],
+      "synthesis_plan_byte_parity": true
+    },
+    "render": {
+      "renderer": "micromark + KaTeX",
+      "katex_version": "0.16.47",
+      "strict": "error",
+      "throwOnError": true,
+      "results": [
+        {
+          "file": "paper.md",
+          "math_expressions": 77,
+          "render": "PASS"
+        },
+        {
+          "file": "mub6_claim_ledger.md",
+          "math_expressions": 0,
+          "render": "PASS"
+        },
+        {
+          "file": "mub6_change_log.md",
+          "math_expressions": 2,
+          "render": "PASS"
+        },
+        {
+          "file": "mub6_paper_update_and_frontier_synthesis_plan.md",
+          "math_expressions": 0,
+          "render": "PASS"
+        }
+      ]
+    },
+    "renderer_rejection_probes": {
+      "negative_render_probes": {
+        "invalid_tex": "REJECTED",
+        "unmatched_math": "REJECTED",
+        "conflict_marker": "REJECTED",
+        "unescaped_currency": "REJECTED"
+      },
+      "promotional_vocabulary": "PASS; current quartet prose excluding literal code identifiers"
+    },
+    "polynomial_semantic_mutations": {
+      "status": "PASS",
+      "canonical_source": {
+        "path": "lean4/research_programs/mub6/ConcreteMubPolynomials.lean",
+        "bytes": 10649,
+        "sha256_raw": "bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955"
+      },
+      "runner": {
+        "path": "scratch/mub6-2026-10-09/check_polynomial_mutations.py",
+        "bytes": 1897,
+        "sha256_raw": "a3c4d0e99b3d24d6038bb76b5caafb5359f88288cf562c6f2150e5cdb7c3c4e0"
+      },
+      "status_record": {
+        "path": "scratch/mub6-2026-10-09/polynomial-mutation-status.json",
+        "bytes": 706,
+        "sha256_raw": "0e357c7dd11962c1c018c3b1b55a41694ac6f661bb967ca2b1687e1566cacb2e"
+      },
+      "command": "lake env lean <mutated-source>",
+      "cwd": "lean4/research_programs/mub6",
+      "environment": {
+        "LEAN_NUM_THREADS": "1"
+      },
+      "results": [
+        {
+          "probe": "mu_target",
+          "mutation": "MU target changed from one sixth to one fifth",
+          "exit_code": 1,
+          "expected_rejection": true,
+          "diagnostic_contains": [
+            "unsolved goals",
+            "⊢ False"
+          ],
+          "mutated_source": {
+            "path": "scratch/mub6-2026-10-09/polynomial-mutation-mu_target.lean",
+            "bytes": 10649,
+            "sha256_raw": "56abb8ade2139ad3d6f5497089c58829c29a7858aa04de4da232f4a665db4efd"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/polynomial-mutation-mu_target.log",
+            "bytes": 744,
+            "sha256_raw": "9530840d9c9b6ce8b688b75672835df641f4628659b07dfe1e70e96b642f86df"
+          }
+        },
+        {
+          "probe": "conjugate_sign",
+          "mutation": "Conjugate-overlap imaginary sign changed",
+          "exit_code": 1,
+          "expected_rejection": true,
+          "diagnostic_contains": [
+            "unsolved goals",
+            "-((T a x i).im * (U x j).re)"
+          ],
+          "mutated_source": {
+            "path": "scratch/mub6-2026-10-09/polynomial-mutation-conjugate_sign.lean",
+            "bytes": 10649,
+            "sha256_raw": "f6e9748896014e748f3259a8f56b4cb189a8d9ef6d547786101fc45c384c9870"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/polynomial-mutation-conjugate_sign.log",
+            "bytes": 1253,
+            "sha256_raw": "3635927bdd7ddff5cc219e50979b0933a2ce6c1431a35163e818c8e6cdeddfd6"
+          }
+        },
+        {
+          "probe": "omit_unitarity",
+          "mutation": "Candidate unitarity omitted from simultaneous vanishing",
+          "exit_code": 1,
+          "expected_rejection": true,
+          "diagnostic_contains": [
+            "Type mismatch",
+            "Uᴴ * U = 1"
+          ],
+          "mutated_source": {
+            "path": "scratch/mub6-2026-10-09/polynomial-mutation-omit_unitarity.lean",
+            "bytes": 10552,
+            "sha256_raw": "54734d11944eae79276f9a4bc9bbea84b3e8e938fc2d35cae9204ab7fa577ae1"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/polynomial-mutation-omit_unitarity.log",
+            "bytes": 2001,
+            "sha256_raw": "9aefb633fe3bf25550c90b827008da49b2c7e0104245874b7a8a53ac33fb5e97"
+          }
+        }
+      ],
+      "scope": "Deliberately changed scratch copies were rejected at semantic proof obligations. Their errors and placeholder dependencies are excluded from the successful canonical-source build and audit."
+    },
+    "archive_recertification": {
+      "runner": {
+        "path": "scratch/mub6-2026-10-09/recertify_gauged_balance_archive.py",
+        "bytes": 1852,
+        "sha256_raw": "7faa5f1b10c1bdd4c958c6b68992a5436d04b79cf6e58fcca052e6d4c9e646b3"
+      },
+      "scope": "Fixed historical membership, excluding current manuscript and canonical Lean tree; canonical manuscript digest refreshed; package remains NO-GO.",
+      "members": 474,
+      "manifest_entries": 477,
+      "deterministic_rebuild": true,
+      "first_log": {
+        "path": "scratch/mub6-2026-10-09/archive-gauged-balance-first.log",
+        "bytes": 804,
+        "sha256_raw": "6e432a8cc6367802e6ab8ea026e6db832a29348b698eef13c325672f1e2bb704"
+      },
+      "second_log": {
+        "path": "scratch/mub6-2026-10-09/archive-gauged-balance-second.log",
+        "bytes": 804,
+        "sha256_raw": "6e432a8cc6367802e6ab8ea026e6db832a29348b698eef13c325672f1e2bb704"
+      },
+      "archive_fingerprint": {
+        "bytes": 2132303,
+        "sha256": "69c85da557191af915b4cd2298e109adad9f1fd46ed63eb3b807deb718f87c85"
+      },
+      "independent_raw_audit": {
+        "path": "scratch/mub6-2026-10-09/archive-gauged-balance-raw-audit.json",
+        "bytes": 156,
+        "sha256_raw": "ecf586b9964df25ea5bb6892bd0eb2a80ee537a7992a9261cceca8e262554432"
+      }
+    },
+    "previous_124_module_gate": {
+      "modules": 124,
+      "declarations": 12544,
+      "exit_code": 0,
+      "build_log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-final.log",
+        "bytes": 213387,
+        "sha256_raw": "f5b19a8c259fdd0ddb5cdbbab50d08d9bd58aa56c20d4e169f74d7883f0b9dad"
+      },
+      "axiom_log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-full.log",
+        "bytes": 1142210,
+        "sha256_raw": "6260b8034f1689bc29b6d66033800f68ef1a2376d557cd73f6fc502cf8fbe698"
+      },
+      "axiom_status": {
+        "path": "scratch/mub6-2026-10-09/axiom-background-status.json",
+        "bytes": 614,
+        "sha256_raw": "6694723b52b7c95c08d83d64e48595721ac3fbb97b645ee8cb48596cb8e2aef0"
+      },
+      "prior_checkpoint_receipt": {
+        "path": "scratch/mub6-2026-10-09/option-b-pre-rectangular-receipt.json",
+        "bytes": 82545,
+        "sha256_raw": "463e8005e6f16006a019b24c5d6134d6a65504b147afd8a638e93c17f76bc31c"
+      }
+    },
+    "rectangular_quadratic_exclusion": {
+      "status": "PASS",
+      "command": "lake build +RectangularQuadraticExclusion +SzollosiRectangularExclusion",
+      "cwd": "lean4/research_programs/mub6",
+      "exit_code": 0,
+      "targeted_log": {
+        "path": "scratch/mub6-2026-10-09/lean-rectangular-final-targeted.log",
+        "bytes": 23708,
+        "sha256_raw": "b2f358603e531e4917f1e67acffba0054d7a8c3cbb6f41ae72e68876bb8aded0"
+      },
+      "core_source": {
+        "path": "lean4/research_programs/mub6/RectangularQuadraticExclusion.lean",
+        "bytes": 14767,
+        "sha256_raw": "e7723f9114caacc35e8ada60c9b8295edf87c094b86ec83612c4916d4a98fccf"
+      },
+      "actual_system_bridge": {
+        "path": "lean4/research_programs/mub6/SzollosiRectangularExclusion.lean",
+        "bytes": 4629,
+        "sha256_raw": "0709a45031ecb050772d9e52a57a7d6068b7f4aeea6fa712ad9374390c924173"
+      },
+      "quadratic_midpoint_secant_identity": true,
+      "formal_partial_derivative_identity": true,
+      "rational_derivative_interval_soundness": true,
+      "all_zeros_retained_in_rectangular_image": true,
+      "strict_coordinate_separation_excludes": true,
+      "square_projection_or_inverse_required": false,
+      "actual_equations_retained": 618,
+      "actual_coordinates_retained": 440,
+      "coefficient_shape_derived_from_checked_table": true,
+      "checked_examples": [
+        "Three equations, two coordinates: natural residual intervals include zero while the rectangular image separates a coordinate.",
+        "Endpoint contact is retained by strict separation.",
+        "One coordinate, two inconsistent equations: strict image inclusion holds without a common root."
+      ],
+      "native_rectangular_runtime_or_image_parity_checked": true,
+      "successful_actual_quartet_domain_exclusion": false,
+      "complete_56_cell_and_cusp_calculation": false,
+      "validation_runner": {
+        "path": "scratch/mub6-2026-10-09/run_rectangular_validation.py",
+        "bytes": 1728,
+        "sha256_raw": "6d4a68e4a2ac1847f58b61332f66ac731c4005914436b2b62d8bad2e8de857f1"
+      },
+      "initial_validation_status": {
+        "path": "scratch/mub6-2026-10-09/rectangular-validation-status.json",
+        "bytes": 1541,
+        "sha256_raw": "83774a9729af8f99b5f5aec26cce4f13d286d071ec6d8db209d8ab66557c4f41"
+      },
+      "final_validation_status": {
+        "path": "scratch/mub6-2026-10-09/rectangular-final-validation-status.json",
+        "bytes": 909,
+        "sha256_raw": "17419b3b56e6c03d6591930b4d08526fa499b917dd58c473cd8e95e97fe28a2a"
+      },
+      "mutation_runner": {
+        "path": "scratch/mub6-2026-10-09/check_rectangular_mutations.py",
+        "bytes": 2775,
+        "sha256_raw": "4bb26b4b5f16b47ee523d2c97df90691d21d08b2ea4aa5dbfa5ab035d3fe0cb8"
+      },
+      "mutation_status": {
+        "path": "scratch/mub6-2026-10-09/rectangular-mutation-status.json",
+        "bytes": 2633,
+        "sha256_raw": "cecd362e5689cdbce18d2f981b419d2c92731c65c492122e5682c7a7fc61d40e"
+      },
+      "semantic_mutations": [
+        {
+          "probe": "non_strict_separation",
+          "exit_code": 1,
+          "expected_obligation": "disjoint_sound",
+          "expected_lines": [
+            225,
+            234
+          ],
+          "error_lines": [
+            230,
+            232,
+            293
+          ],
+          "mutated_source": {
+            "path": "scratch/mub6-2026-10-09/rectangular-mutation-non_strict_separation.lean",
+            "bytes": 14771,
+            "sha256_raw": "6f19eedd4b88373708169bd1c90cf4d64c0b226281e01346874cdca74cba72b9"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/rectangular-mutation-non_strict_separation.log",
+            "bytes": 2246,
+            "sha256_raw": "c98f8a41031858f9879f111353ca6268ade02ba5832bb723def17ad47c071925"
+          },
+          "rejected": true
+        },
+        {
+          "probe": "missing_square_derivative",
+          "exit_code": 1,
+          "expected_obligation": "term_derivative_enclosed",
+          "expected_lines": [
+            51,
+            67
+          ],
+          "error_lines": [
+            65
+          ],
+          "mutated_source": {
+            "path": "scratch/mub6-2026-10-09/rectangular-mutation-missing_square_derivative.lean",
+            "bytes": 14744,
+            "sha256_raw": "cc621ba820b7de570865f0e8333a77553da3c21705aa2151c9f567a82accbdc6"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/rectangular-mutation-missing_square_derivative.log",
+            "bytes": 1356,
+            "sha256_raw": "cd7dbb832bf45db819a20a405767705ef8ecb7eb1ff2755756ca25bc1d7f2658"
+          },
+          "rejected": true
+        },
+        {
+          "probe": "wrong_center_sign",
+          "exit_code": 1,
+          "expected_obligation": "root_in_image",
+          "expected_lines": [
+            198,
+            222
+          ],
+          "error_lines": [
+            208
+          ],
+          "mutated_source": {
+            "path": "scratch/mub6-2026-10-09/rectangular-mutation-wrong_center_sign.lean",
+            "bytes": 14763,
+            "sha256_raw": "4580636ead064927069def9e0e5b778d44c66c4d3747206cbbaaef284e5c4e05"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/rectangular-mutation-wrong_center_sign.log",
+            "bytes": 2201,
+            "sha256_raw": "2f6a16932e1cff95d5173e74aa913b75b97a7330bcfb32984cd915f8cd72a8f8"
+          },
+          "rejected": true
+        }
+      ],
+      "failed_scratch_attempts": [
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/RectangularQuadraticExclusion-first-failure.lean",
+            "bytes": 10462,
+            "sha256_raw": "54361a3959be15b5ab2e274afab3ce7aceb3b89e47df7b55f8e81813643b2bcf"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-rectangular-first.log",
+            "bytes": 4315,
+            "sha256_raw": "d351b1c9565fbd6eda82b6ece061e0edf6fa903d36b4ec330d4134bac8b16c68"
+          },
+          "scope": "Failed scratch elaboration, excluded from canonical successful build and axiom scope."
+        },
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/RectangularQuadraticExclusion-second-failure.lean",
+            "bytes": 10542,
+            "sha256_raw": "7f6a409894355a4e48ab0cf4bbcfe47b44669486ea1cddae3707f94882d4a14c"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-rectangular-second.log",
+            "bytes": 2295,
+            "sha256_raw": "b0c71fdbe8d916d64fde75676c52ea3dc7e38059cf4c5fc4484134c23519554d"
+          },
+          "scope": "Failed scratch elaboration, excluded from canonical successful build and axiom scope."
+        },
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/RectangularQuadraticExclusion-third-failure.lean",
+            "bytes": 12535,
+            "sha256_raw": "95d49736b7471e14f1fec02d57a1445eff902601f0590f84467a3e9c2da8150d"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-rectangular-third.log",
+            "bytes": 1156,
+            "sha256_raw": "138bc4c212e0fba61984490aa1280da62c1f7ea0d2f99f1ea08928796b9ad499"
+          },
+          "scope": "Failed scratch elaboration, excluded from canonical successful build and axiom scope."
+        },
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/RectangularQuadraticExclusion-fourth-failure.lean",
+            "bytes": 13973,
+            "sha256_raw": "ce9077b565c5fe7369cbb89fe75d64f9c027bd7a9d9437f41d5e994be69691e9"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-rectangular-fourth.log",
+            "bytes": 1984,
+            "sha256_raw": "22b1d8c47f24f8b7250a39e9329bc5106730bd33f8850681a91f3059eb31bf9b"
+          },
+          "scope": "Failed scratch elaboration, excluded from canonical successful build and axiom scope."
+        }
+      ],
+      "scope": "Every quadratic-system zero is retained in its rational rectangular image for any rational preconditioner and a boxed center. Strict coordinate separation excludes actual solutions. The subsequent native-data section checks the actual current run, which narrows 24 coordinates and excludes none. Full 56-cell/cusp coverage, curvature and root existence are not supplied. This entry concerns the retained original 618-row data only. New 666-row data and the selected-box result are scoped in derived_gauge_balance."
+    },
+    "python_status": {
+      "path": "scratch/mub6-2026-10-09/python-rectangular-status.json",
+      "bytes": 233,
+      "sha256_raw": "e2240b9488f6be352880abbb8579b15fea65d8e78bbaf8bf752d6096d370f2e3"
+    },
+    "checkpoint_writer": {
+      "path": "scratch/mub6-2026-10-09/write_rectangular_checkpoint_receipt.py",
+      "bytes": 43086,
+      "sha256_raw": "9e0d090e9fc9745ca974f0a007771aac63fec9da4a73cd35b7e04fbb1ecdde1f"
+    },
+    "checkpoint_binding_verifier": {
+      "path": "scratch/mub6-2026-10-09/verify_rectangular_checkpoint_bindings.py",
+      "bytes": 5256,
+      "sha256_raw": "764aba945cce9f25244d2b6a56d1a9e22bf67117ae79c1704044b56406701ff2"
+    },
+    "receipt_writer_repair": {
+      "path": "scratch/mub6-2026-10-09/rectangular-receipt-writer-repair.json",
+      "bytes": 382,
+      "sha256_raw": "325db3c696ae73f20003538a8ae045099d295a1e7fbf822ab668a0bcf81d6d7b"
+    },
+    "previous_full_324_rust_gate": {
+      "passed": 324,
+      "failed": 0,
+      "ignored": 18,
+      "exit_code": 0,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/rust-full-final.log",
+        "bytes": 109807,
+        "sha256_raw": "0a17a1e4b2dda8d13dde7c9973fcf86ee7f4667318239b86ea98bc77aaac83e3"
+      },
+      "status_record": {
+        "path": "scratch/mub6-2026-10-09/rust-background-status.json",
+        "bytes": 358,
+        "sha256_raw": "5ddccf6eb1da1b9b4ec4d15cf12e61e135dc9413b1cfc41490428ed5945bfe76"
+      },
+      "scope": "Historical completed run on the preceding Rust revision, retained separately from the current run."
+    },
+    "previous_126_module_gate": {
+      "modules": 126,
+      "declarations": 12613,
+      "build_log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-rectangular-final.log",
+        "bytes": 213862,
+        "sha256_raw": "d6e368ba0b175bf2a3d57c7f5b837bfac696827d3a4fd5cd6946aa10087c2fb2"
+      },
+      "axiom_log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-rectangular-final.log",
+        "bytes": 1149922,
+        "sha256_raw": "f7af4ba81f9e823c4a43760104faf6293e97d1c239adfac9176c27e0d4b21b2a"
+      },
+      "checkpoint_receipt": {
+        "path": "scratch/mub6-2026-10-09/option-b-pre-native-rectangular-receipt.json",
+        "bytes": 93945,
+        "sha256_raw": "483c8428a2c0fb5282a72d7264d1a3c4cdffe274d14fb5151159cd52cdd544fa"
+      },
+      "source_commit": "f0e4e8a9c72a170437e90df9414ab76980cc7e7a"
+    },
+    "native_rectangular_data": {
+      "status": "PASS_CURRENT_DATA_UNRESOLVED_DOMAIN",
+      "native_receipt": {
+        "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_rectangular_native_receipt.json",
+        "bytes": 949441,
+        "sha256_raw": "eccd3b1c075d0058cf729e2aa0af5e210860da93d2178ea09a9d5cfb3b820a76"
+      },
+      "request": {
+        "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_rectangular_request.json",
+        "bytes": 28993,
+        "sha256_raw": "d44dfd0b14fb610ba354ba2bedbea03c56df5f5d18d141cd58a4bd52c27a76af"
+      },
+      "native_status": "CONTRACTED_UNRESOLVED_BOX",
+      "jacobian_rows": 618,
+      "jacobian_support_entries": 9000,
+      "image_rows": 440,
+      "nonzero_preconditioner_entries": 28,
+      "contracted_coordinates": [
+        8,
+        9,
+        14,
+        15,
+        22,
+        23,
+        28,
+        29,
+        36,
+        37,
+        42,
+        43,
+        44,
+        45,
+        50,
+        51,
+        58,
+        59,
+        64,
+        65,
+        72,
+        73,
+        78,
+        79
+      ],
+      "contraction_scope": "The 24 narrowed coordinates belong to the constructed first family matrix. All 144 raw coordinates of both additional bases remain unchanged.",
+      "excluded_coordinate": null,
+      "current_emitted_data_kernel_checked": true,
+      "every_actual_solution_retained": true,
+      "generic_rust_or_json_decoder_verified": false,
+      "root_existence_claimed": false,
+      "complete_56_cell_and_cusp_calculation": false,
+      "curvature_premise_removed": false,
+      "theorems": [
+        "native_jacobian_eq",
+        "native_jacobian_entry_enclosed",
+        "native_images_eq",
+        "solution_in_native_retained",
+        "native_contracted_coordinates_checked",
+        "native_images_have_no_separation"
+      ],
+      "validation_runner": {
+        "path": "scratch/mub6-2026-10-09/run_native_rectangular_validation.py",
+        "bytes": 1829,
+        "sha256_raw": "ed4f7dab3b65055703fbbdc00aed73f7fec0687dd2765abf4117e4b7cb51f01c"
+      },
+      "validation_status": {
+        "path": "scratch/mub6-2026-10-09/native-rectangular-validation-status.json",
+        "bytes": 4805,
+        "sha256_raw": "6fb624ce308f649fc2eaac828b724a0d4469102418caa0208b19e606610bf714"
+      },
+      "stages": [
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobianCore"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobianCore.log",
+          "started_at_utc": "2026-10-10T13:24:03.430604+00:00",
+          "child_pid": 20348,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:24:40.314810+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobianCore.log",
+            "bytes": 24439,
+            "sha256_raw": "1098c5a85f10dc9dbef917ce66069f6a5cada5787bf8dacb8b32ce0c212d8899"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobian0"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobian0.log",
+          "started_at_utc": "2026-10-10T13:24:40.315235+00:00",
+          "child_pid": 21632,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:25:19.133973+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobian0.log",
+            "bytes": 24436,
+            "sha256_raw": "f8c5c075e969510410d33a03c7e3c70da1011273b9b0c8901258afde1c0af207"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobian1"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobian1.log",
+          "started_at_utc": "2026-10-10T13:25:19.134821+00:00",
+          "child_pid": 13448,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:26:56.442168+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobian1.log",
+            "bytes": 24436,
+            "sha256_raw": "bde54ade67ef86199574c0d781b39b54f881bbf36b9f2f1cf29b11acbc675790"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobian2"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobian2.log",
+          "started_at_utc": "2026-10-10T13:26:56.442705+00:00",
+          "child_pid": 7076,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:28:35.160306+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobian2.log",
+            "bytes": 24436,
+            "sha256_raw": "586be8182e1f42b29af7fa31fccb450ba822c0902c6a14ac3f5b9f3b6f9b40ff"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobian3"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobian3.log",
+          "started_at_utc": "2026-10-10T13:28:35.160928+00:00",
+          "child_pid": 11036,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:29:47.252164+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobian3.log",
+            "bytes": 24436,
+            "sha256_raw": "4a0b112ca208383a79a33e60e5bb51942fde96c43a15b0366cb0f0124ac07b28"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobian4"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobian4.log",
+          "started_at_utc": "2026-10-10T13:29:47.253512+00:00",
+          "child_pid": 3468,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:31:33.008654+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobian4.log",
+            "bytes": 24436,
+            "sha256_raw": "e791a5e8d23b91573070010beff87ac1107372ed3eb217657d4e33288bc8187b"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobian5"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobian5.log",
+          "started_at_utc": "2026-10-10T13:31:33.009779+00:00",
+          "child_pid": 19188,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:33:39.856996+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobian5.log",
+            "bytes": 24436,
+            "sha256_raw": "b9f1a41fc9c1d4b5c0b52f54085e9679e03b5612eba117f208728053754b5851"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobian6"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobian6.log",
+          "started_at_utc": "2026-10-10T13:33:39.858171+00:00",
+          "child_pid": 24280,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:35:01.163380+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobian6.log",
+            "bytes": 24436,
+            "sha256_raw": "ddb92e64d35e708ab3225c1b81a2c9e7bd8ca27f34963720cb0f7702676854fc"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularJacobian7"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularJacobian7.log",
+          "started_at_utc": "2026-10-10T13:35:01.163812+00:00",
+          "child_pid": 14672,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:35:45.530312+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularJacobian7.log",
+            "bytes": 24436,
+            "sha256_raw": "a9dc6e9ad460a7b18102501f4ffbfd58505181bb583c6bacf690ff4ab5d2848f"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "+SzollosiRectangularReflection"
+          ],
+          "log": "lean-native-rectangular-SzollosiRectangularReflection.log",
+          "started_at_utc": "2026-10-10T13:35:45.530667+00:00",
+          "child_pid": 18524,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:38:11.276758+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-SzollosiRectangularReflection.log",
+            "bytes": 26082,
+            "sha256_raw": "36f770cc5f4acc83c09c929c647f49355b0a2d487ba1f514caecf285ed085e5d"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "build",
+            "Mub6"
+          ],
+          "log": "lean-full-native-rectangular.log",
+          "started_at_utc": "2026-10-10T13:38:59.847781+00:00",
+          "child_pid": 9288,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:39:40.587020+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-full-native-rectangular.log",
+            "bytes": 216213,
+            "sha256_raw": "a76bd4363250e5369ae5800a0c90d664927d1bd5e99e0fcdd6bfaf903f59b15e"
+          }
+        },
+        {
+          "command": [
+            "lake",
+            "env",
+            "lean",
+            "../../../omega_engine_projects/mub6/scripts/audit_mub6_axioms.lean"
+          ],
+          "log": "lean-axioms-native-rectangular.log",
+          "started_at_utc": "2026-10-10T13:39:40.587685+00:00",
+          "child_pid": 5392,
+          "exit_code": 0,
+          "finished_at_utc": "2026-10-10T13:40:07.797351+00:00",
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-axioms-native-rectangular.log",
+            "bytes": 1383557,
+            "sha256_raw": "6cb67ab89c1edadc33fe6c228116b8a1ca85aeeb96f10fceecaf0f61ce0b5263"
+          }
+        }
+      ],
+      "focused_rust_log": {
+        "path": "scratch/mub6-2026-10-09/rust-native-rectangular-targeted.log",
+        "bytes": 67625,
+        "sha256_raw": "7fd032abe02140035e7bc0186d4cb51b874ea6272126b1a62d3bd6d44e15ac31"
+      },
+      "wire_tests_log": {
+        "path": "scratch/mub6-2026-10-09/python-rectangular-reflection-wire.log",
+        "bytes": 101,
+        "sha256_raw": "e6337eb5bdbc34669aa4ddaaa3b6f3961c5d86a83e6bc80b96857c0b93daa298"
+      },
+      "formatter": {
+        "path": "omega_engine_projects/mub6/scripts/reflect_szollosi_rectangular.py",
+        "bytes": 18104,
+        "sha256_raw": "53cbf7da15e3768071565c64030e7fcbd8f9ccdc5646f4920d977a76aa18d346"
+      },
+      "lint_log": {
+        "path": "scratch/mub6-2026-10-09/python-rectangular-reflection-lint.log",
+        "bytes": 20,
+        "sha256_raw": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0"
+      },
+      "native_reproduction": {
+        "path": "scratch/mub6-2026-10-09/native-rectangular-reproduction.json",
+        "bytes": 555,
+        "sha256_raw": "e47d9ddebc5fd18cde41e1d753ceccc10e3d73f078430db4840ede7548563dfc"
+      },
+      "request_mode_reproduction": {
+        "path": "scratch/mub6-2026-10-09/native-rectangular-request-mode.json",
+        "bytes": 929,
+        "sha256_raw": "b4028dbac0c6baa3c75f41c8a5c887d78601de716919151466288f5a7deb265b"
+      },
+      "cli_alias_checks": {
+        "path": "scratch/mub6-2026-10-09/native-rectangular-cli-refusals.json",
+        "bytes": 499,
+        "sha256_raw": "dd8d92e9a1b67f6511dd84fcd004a8daf1fed0a3275bca26c922e485397d0724"
+      },
+      "semantic_mutations": {
+        "phase": "COMPLETED",
+        "all_rejected": true,
+        "false_controls_passed": true,
+        "results": [
+          {
+            "probe": "jacobian_endpoint",
+            "source": "scratch/mub6-2026-10-09/rectangular-reflection-mutation-jacobian_endpoint.lean",
+            "log": "scratch/mub6-2026-10-09/lean-rectangular-reflection-mutation-jacobian_endpoint.log",
+            "exit_code": 1,
+            "expected_error_line": 7,
+            "rejected": true,
+            "false_control_source": "scratch/mub6-2026-10-09/rectangular-reflection-false-control-jacobian_endpoint.lean",
+            "false_control_log": "scratch/mub6-2026-10-09/lean-rectangular-reflection-false-control-jacobian_endpoint.log",
+            "false_control_exit_code": 0,
+            "changed_endpoint_kernel_value": false,
+            "acceptance_expression_checked": true,
+            "false_control_source_binding": {
+              "path": "scratch/mub6-2026-10-09/rectangular-reflection-false-control-jacobian_endpoint.lean",
+              "bytes": 540,
+              "sha256_raw": "3539bc14d219a56a77b39647a6a981bb9d22260ea43e9ec208d9d4307641aa74"
+            },
+            "false_control_log_binding": {
+              "path": "scratch/mub6-2026-10-09/lean-rectangular-reflection-false-control-jacobian_endpoint.log",
+              "bytes": 87,
+              "sha256_raw": "ee5e4e167556ea23fa9ad71183dae5b482ada724757db45f0d7b38ccc3714579"
+            },
+            "source_binding": {
+              "path": "scratch/mub6-2026-10-09/rectangular-reflection-mutation-jacobian_endpoint.lean",
+              "bytes": 733,
+              "sha256_raw": "080158f6501e12063aa05cb00c3405ac05fdc2d15172e911b82980077dd6c0f1"
+            },
+            "log_binding": {
+              "path": "scratch/mub6-2026-10-09/lean-rectangular-reflection-mutation-jacobian_endpoint.log",
+              "bytes": 219,
+              "sha256_raw": "fb9807ba2e53b013f35f4cd3c478c33e61ced4e5f59f1813e6d317b3af65331b"
+            }
+          },
+          {
+            "probe": "image_endpoint",
+            "source": "scratch/mub6-2026-10-09/rectangular-reflection-mutation-image_endpoint.lean",
+            "log": "scratch/mub6-2026-10-09/lean-rectangular-reflection-mutation-image_endpoint.log",
+            "exit_code": 1,
+            "expected_error_line": 7,
+            "rejected": true,
+            "false_control_source": "scratch/mub6-2026-10-09/rectangular-reflection-false-control-image_endpoint.lean",
+            "false_control_log": "scratch/mub6-2026-10-09/lean-rectangular-reflection-false-control-image_endpoint.log",
+            "false_control_exit_code": 0,
+            "changed_endpoint_kernel_value": false,
+            "acceptance_expression_checked": true,
+            "false_control_source_binding": {
+              "path": "scratch/mub6-2026-10-09/rectangular-reflection-false-control-image_endpoint.lean",
+              "bytes": 422,
+              "sha256_raw": "17f7aba6027e515aa0701512a61a142a408455730c3f0d7fcf2773f8aaa6cea9"
+            },
+            "false_control_log_binding": {
+              "path": "scratch/mub6-2026-10-09/lean-rectangular-reflection-false-control-image_endpoint.log",
+              "bytes": 87,
+              "sha256_raw": "ee5e4e167556ea23fa9ad71183dae5b482ada724757db45f0d7b38ccc3714579"
+            },
+            "source_binding": {
+              "path": "scratch/mub6-2026-10-09/rectangular-reflection-mutation-image_endpoint.lean",
+              "bytes": 498,
+              "sha256_raw": "19eaceaac18199f7af9fd74efa6bc312856cce459efdc0dab92f7b676b7becb5"
+            },
+            "log_binding": {
+              "path": "scratch/mub6-2026-10-09/lean-rectangular-reflection-mutation-image_endpoint.log",
+              "bytes": 216,
+              "sha256_raw": "d82a501e4b1b6f3f3fc29f393c7a57d5282debe25ea71c3aaa9ab990b14ad26a"
+            }
+          }
+        ],
+        "finished_at_utc": "2026-10-10T13:51:34.473288+00:00",
+        "acceptance_rejections_checked": true
+      },
+      "scope": "Exact current data with actual-system derivative and zero-retention semantics; the containing box remains unresolved. The raw native output is preserved, including its false runtime kernel-reflection flag. Subsequent Lean results are bound separately. This entry concerns the retained original 618-row data only. New 666-row data and the selected-box result are scoped in derived_gauge_balance.",
+      "false_control_runner": {
+        "path": "scratch/mub6-2026-10-09/check_rectangular_reflection_mutations.py",
+        "bytes": 3121,
+        "sha256_raw": "22e83c427d598cf974c450854e2baf5faf7024e6fd71e8ea699dd3c1ab6be0c9"
+      },
+      "acceptance_rejection_runner": {
+        "path": "scratch/mub6-2026-10-09/check_rectangular_acceptance_rejections.py",
+        "bytes": 1895,
+        "sha256_raw": "32ea573729b444a73f9ea7873be35c62c55e0a16b433428dc38467cc6e36a7e4"
+      },
+      "acceptance_rejection_log": {
+        "path": "scratch/mub6-2026-10-09/rectangular-acceptance-rejections-runner.log",
+        "bytes": 1387,
+        "sha256_raw": "5bc6a3b3645e6d476acd3ecca2677b30bd8f6473cac3d5fb0492cff9093f65e4"
+      },
+      "false_control_runner_log": {
+        "path": "scratch/mub6-2026-10-09/rectangular-reflection-mutations-false-controls-runner.log",
+        "bytes": 1270,
+        "sha256_raw": "e94dc3b531f8526895c5f5500c95d213a75d832ca68852ca4778f614827fe527"
+      },
+      "superseded_mutation_scope": "Initial rejection diagnostics lacked independent false controls and are not accepted as final evidence. The old status uses original path labels; immutable copies below retain the superseded bytes. The later acceptance-rejection wrapper checks the actual altered Boolean equals true and fails after rewriting its independently checked false value.",
+      "superseded_mutation_evidence": [
+        {
+          "path": "scratch/mub6-2026-10-09/rectangular-reflection-mutation-jacobian_endpoint-list-update-reduction.lean",
+          "bytes": 378,
+          "sha256_raw": "71e58c07187f7bf86699c69fcae427784aabc0cf1de36c5ba4e12132ba09a71c"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-rectangular-reflection-mutation-jacobian_endpoint-list-update-reduction.log",
+          "bytes": 637,
+          "sha256_raw": "5584fd4f445f01c94c7c6fa94a25a4d42a8c4baa78bbfe23708b5eb863e0703c"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/rectangular-reflection-mutation-image_endpoint-list-update-reduction.lean",
+          "bytes": 360,
+          "sha256_raw": "e481cdfe5c57bc89dd31cc6209b8f634c98dbea67ec405bb9f318afe12dabc6f"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-rectangular-reflection-mutation-image_endpoint-list-update-reduction.log",
+          "bytes": 755,
+          "sha256_raw": "33652e4eb619cef5f59c44be71eea0184e987c351eef96e8f577a22cb9bdf93a"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/rectangular-reflection-mutation-jacobian_endpoint-endpoint-type-failure.lean",
+          "bytes": 443,
+          "sha256_raw": "81da97bb41438de345eaeb93655ff56f9dff4bff2c892dfebac9cde29b544c4c"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-rectangular-reflection-mutation-jacobian_endpoint-endpoint-type-failure.log",
+          "bytes": 1316,
+          "sha256_raw": "eca1c2425705aa1d5df105467a0ed196549a4563e06aa1e6e527e3c45e88892e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/check_rectangular_reflection_mutations-before-false-controls.py",
+          "bytes": 2177,
+          "sha256_raw": "914ae713b36830d1abc8b6c41babf194d4a4be2cddb210f357924d171708426a"
+        }
+      ],
+      "validation_status_scope": "The original runner supplies canonical builds and the owned-declaration audit. Its initial mutation phase is superseded by the independent false controls and actual acceptance-expression rejections.",
+      "superseded_mutation_status": {
+        "path": "scratch/mub6-2026-10-09/rectangular-reflection-mutation-list-update-status.json",
+        "bytes": 764,
+        "sha256_raw": "807af69600a037bb58464232a0ee9fe94f1bf7d25f6bf9a3281f03f6e378980e"
+      },
+      "checkpoint_writer": {
+        "path": "scratch/mub6-2026-10-09/write_native_rectangular_checkpoint.py",
+        "bytes": 15311,
+        "sha256_raw": "393c07a8a138e8f1491a408080f776f48534a0b0eb07cccb1b4494cf28a6353e"
+      },
+      "independent_binding_validator": {
+        "path": "scratch/mub6-2026-10-09/verify_native_rectangular_checkpoint_bindings.py",
+        "bytes": 6251,
+        "sha256_raw": "52772254e4525f64c3c52146ea275c68823ea6a6b4dcea05befcd4c468291e45"
+      },
+      "renderer_source": {
+        "path": "scratch/mub6-2026-10-09/render_native_rectangular.mjs",
+        "bytes": 2196,
+        "sha256_raw": "a609d6e382058578d01f9cc60c32690c11e306bbda210884d37fa484dfdb4c38"
+      },
+      "source_audit_runner": {
+        "path": "scratch/mub6-2026-10-09/audit_source_native_rectangular.py",
+        "bytes": 2388,
+        "sha256_raw": "81306bbe4f5907d605997ebfd766e51348fac83076c785e4f30611e81965113e"
+      },
+      "resource_events": [
+        {
+          "path": "scratch/mub6-2026-10-09/rectangular-reflection-resource-event.json",
+          "bytes": 482,
+          "sha256_raw": "39903482f564cdda7c6fd01a402917df22984d003904dc804fea19528a44d19f"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/rectangular-reflection-rowwise-resource-event.json",
+          "bytes": 511,
+          "sha256_raw": "e31b8b82112f08fba90621ce5683c52876416a1207b3c7ec73d64cce7d5a289e"
+        }
+      ],
+      "failed_scratch_attempts": [
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/SzollosiRectangularReflection-first-failure.lean",
+            "bytes": 279543,
+            "sha256_raw": "c360c847c13f1cd75a3b567fd8d28460f1ecd850c3f2cc7b8eaf185c7408ba22"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-reflection-first.log",
+            "bytes": 2860,
+            "sha256_raw": "241f51a99c1ee33fbb7abe33b56dd38da8b3827aa9e46296c959eacd0c0bc27c"
+          },
+          "scope": "Failed or resource-stopped scratch attempt; excluded from successful canonical build and axiom audit."
+        },
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/SzollosiRectangularReflection-third.lean",
+            "bytes": 281017,
+            "sha256_raw": "02e4490e27a9e6834bb77f84639e47e45b92b318f8c964c2268ad88be7937a7d"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-reflection-third.log",
+            "bytes": 0,
+            "sha256_raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "scope": "Failed or resource-stopped scratch attempt; excluded from successful canonical build and axiom audit."
+        },
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/SzollosiRectangularReflection-rowwise.lean",
+            "bytes": 476586,
+            "sha256_raw": "83f077c42865eb3313e0b7d818d2cea8eadb16e47916c9c71b2009aeb842a65d"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-reflection-rowwise.log",
+            "bytes": 17593,
+            "sha256_raw": "4f6a2ec49eb07371fac79d2f8c9392803c7398be6059f1058d6c98ef3813185f"
+          },
+          "scope": "Failed or resource-stopped scratch attempt; excluded from successful canonical build and axiom audit."
+        },
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/SzollosiRectangularReflection-rowwise-second.lean",
+            "bytes": 416860,
+            "sha256_raw": "c7e1abd44bd153e233fe26b86701e3fff6290b2197dde0b44bc7a4b0971fb0cb"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-reflection-rowwise-second.log",
+            "bytes": 0,
+            "sha256_raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "scope": "Failed or resource-stopped scratch attempt; excluded from successful canonical build and axiom audit."
+        },
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/SparseRectangularExclusion-first-failure.lean",
+            "bytes": 6666,
+            "sha256_raw": "ff54b1c7fb2e46a2744fae6a2af8a51209edc95110dffefedfeb3cfb56b0d08b"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-sparse-rectangular-first.log",
+            "bytes": 1036,
+            "sha256_raw": "e8ab23fd1e4813518d40eb1e1d7bfc6833a5961be8f976ad41f43239d19f8962"
+          },
+          "scope": "Failed or resource-stopped scratch attempt; excluded from successful canonical build and axiom audit."
+        },
+        {
+          "source": {
+            "path": "scratch/mub6-2026-10-09/SzollosiRectangularJacobianCore-first-failure.lean",
+            "bytes": 2156,
+            "sha256_raw": "c38ff0a99bb6ee7b7b92ab919e8c52bbc7cb90fa118528468a55c9fd2088c7bb"
+          },
+          "log": {
+            "path": "scratch/mub6-2026-10-09/lean-native-rectangular-core-first-failure.log",
+            "bytes": 26526,
+            "sha256_raw": "013edebdc5b0ba96d68066d7560d95a1b1dc34145a06c153c1b889f03fd31113"
+          },
+          "scope": "Failed or resource-stopped scratch attempt; excluded from successful canonical build and axiom audit."
+        }
+      ]
+    },
+    "git_release_rule_check": {
+      "exit_code": 0,
+      "log": {
+        "path": "scratch/mub6-2026-10-09/git-release-rule-gauged-balance.log",
+        "bytes": 63,
+        "sha256_raw": "7118aa0491d64b7a60c84c84ca30189871cf349f5b6f73853e742e50fa8bb795"
+      },
+      "scope": "CODA atlas zero-hash scan only; separate raw archive and staged-blob checks cover the MUB checkpoint."
+    },
+    "previous_137_module_gate": {
+      "modules": 137,
+      "declarations": 14559,
+      "source_commit": "4d167368b89a7bde113d28ad916af0737edfca86",
+      "checkpoint_receipt": {
+        "path": "scratch/mub6-2026-10-09/option-b-pre-column-gauge-receipt.json",
+        "bytes": 121287,
+        "sha256_raw": "c02c479d2aaac9a956a145ea7c291c95231d55f317bb12971d5be46d857449b0"
+      },
+      "build_log": {
+        "path": "scratch/mub6-2026-10-09/lean-full-native-rectangular.log",
+        "bytes": 216213,
+        "sha256_raw": "a76bd4363250e5369ae5800a0c90d664927d1bd5e99e0fcdd6bfaf903f59b15e"
+      },
+      "axiom_log": {
+        "path": "scratch/mub6-2026-10-09/lean-axioms-native-rectangular.log",
+        "bytes": 1383557,
+        "sha256_raw": "6cb67ab89c1edadc33fe6c228116b8a1ca85aeeb96f10fceecaf0f61ce0b5263"
+      }
+    },
+    "column_gauge_reduction": {
+      "status": "PASS_EXISTENCE_PRESERVING_GAUGE_REDUCTION",
+      "source": {
+        "path": "lean4/research_programs/mub6/SzollosiColumnGauge.lean",
+        "bytes": 12179,
+        "sha256_raw": "40d2a7a43eb4a6af119eacd842f05ee293e6a9f179260a526f8db5dd320933de"
+      },
+      "equations_retained": 618,
+      "variables_retained": 440,
+      "additional_bases_retained": 2,
+      "family_matrix_unchanged": true,
+      "phase_parameters_unchanged": 8,
+      "prescribed_real_coordinates": 24,
+      "prescribed_wire_ids": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163
+      ],
+      "all_original_solutions_already_gauged_claimed": false,
+      "quartet_existence_equivalence_at_each_admissible_parameter": true,
+      "first_row_equalities_derived_from_box_membership": true,
+      "literal_point_coordinates_kernel_checked_by_rfl": true,
+      "gauge_box_definition_and_semantics_checked": true,
+      "generic_json_decoder_verified": false,
+      "gauge_box_export": {
+        "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_column_gauge_box.json",
+        "bytes": 14509,
+        "sha256_raw": "fb8f6f71bc17a7f1006d2dadd8382e433e3117d242b2fb1611ff3df4affc8279"
+      },
+      "duplicate_exports_equal": true,
+      "exporter": {
+        "path": "scratch/mub6-2026-10-09/export_column_gauge_box.lean",
+        "bytes": 559,
+        "sha256_raw": "20e95a632f0dd3e7860a94dadc3b77f78783498d54c80d15aa23ed200aee1c3d"
+      },
+      "export_logs": [
+        {
+          "path": "scratch/mub6-2026-10-09/column-gauge-box-export-first.log",
+          "bytes": 14509,
+          "sha256_raw": "fb8f6f71bc17a7f1006d2dadd8382e433e3117d242b2fb1611ff3df4affc8279"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/column-gauge-box-export-second.log",
+          "bytes": 14509,
+          "sha256_raw": "fb8f6f71bc17a7f1006d2dadd8382e433e3117d242b2fb1611ff3df4affc8279"
+        }
+      ],
+      "validation_runner": {
+        "path": "scratch/mub6-2026-10-09/run_column_gauge_validation.py",
+        "bytes": 1672,
+        "sha256_raw": "1520ec31ed670e30066c9b19f809c874cc003eea5d8ac680ee945a01964e4168"
+      },
+      "validation_status": {
+        "path": "scratch/mub6-2026-10-09/column-gauge-validation-status.json",
+        "bytes": 1630,
+        "sha256_raw": "67e19987e6c634baced30ce6ff77b8682af67b37daa7a89cc77a86aebf55ef0c"
+      },
+      "evidence_runner": {
+        "path": "scratch/mub6-2026-10-09/finish_column_gauge_evidence.py",
+        "bytes": 5582,
+        "sha256_raw": "a0835e0bc990a778d169d71d58b7308feae7dce1d71515940c36450ad762e375"
+      },
+      "evidence_status": {
+        "path": "scratch/mub6-2026-10-09/column-gauge-evidence-status.json",
+        "bytes": 6218,
+        "sha256_raw": "5f27dc8a1956f53a34075995a552736aa4a6cba125c4ce5a9bacb09b6992a251"
+      },
+      "native_summary": {
+        "status": "CONTRACTED_UNRESOLVED_BOX",
+        "contracted_coordinates": [
+          8,
+          9,
+          14,
+          15,
+          22,
+          23,
+          28,
+          29,
+          36,
+          37,
+          42,
+          43,
+          44,
+          45,
+          50,
+          51,
+          58,
+          59,
+          64,
+          65,
+          72,
+          73,
+          78,
+          79
+        ],
+        "gauge_input_point_coordinates": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163
+        ],
+        "duplicate_replay_equal": true,
+        "current_output_kernel_reflected": false,
+        "quartet_exclusion_established": false,
+        "binary_sha256_raw": "6c7b82462ef1a41cd44f9813e3fa55d765c48b98dca9d79a9b49b90b76364626"
+      },
+      "native_input_request": {
+        "path": "scratch/mub6-2026-10-09/column-gauge-native-request.json",
+        "bytes": 28970,
+        "sha256_raw": "7a19dedaabbc9bbd5e8517292ca2b000f8ed80ceecc37e9990ea94d9b2a099e2"
+      },
+      "native_replays": [
+        {
+          "path": "scratch/mub6-2026-10-09/column-gauge-native-replay-1.json",
+          "bytes": 948769,
+          "sha256_raw": "5354e70917f96052c4f8dbe70b6039f57a5fdeb889eac3ee8c6468bcd0a66ea3"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/column-gauge-native-replay-2.json",
+          "bytes": 948769,
+          "sha256_raw": "5354e70917f96052c4f8dbe70b6039f57a5fdeb889eac3ee8c6468bcd0a66ea3"
+        }
+      ],
+      "native_replay_logs": [
+        {
+          "path": "scratch/mub6-2026-10-09/column-gauge-native-replay-1.log",
+          "bytes": 140,
+          "sha256_raw": "ef19e61233802bfca56cbc6a9f539d17e7989c8cdd1e21285256bd7cd62f0509"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/column-gauge-native-replay-2.log",
+          "bytes": 140,
+          "sha256_raw": "ef19e61233802bfca56cbc6a9f539d17e7989c8cdd1e21285256bd7cd62f0509"
+        }
+      ],
+      "native_binary_build_log": {
+        "path": "scratch/mub6-2026-10-09/rust-column-gauge-binary-build-correct-target.log",
+        "bytes": 65695,
+        "sha256_raw": "94cd7ba264daa9aebfe33a63e66b07ff8636e8b535c9dfbbefbbf20615c42ddb"
+      },
+      "negative_controls_source": {
+        "path": "scratch/mub6-2026-10-09/column-gauge-negative-controls.lean",
+        "bytes": 495,
+        "sha256_raw": "e31e64a76300c9203a93073617025abf4e3d097e1b897642a078215b216c4d4b"
+      },
+      "negative_controls_log": {
+        "path": "scratch/mub6-2026-10-09/lean-column-gauge-negative-controls.log",
+        "bytes": 163,
+        "sha256_raw": "9327f93add2aacbc1643d57848086774c329d2e55b633896259d32319f3ad4f7"
+      },
+      "negative_acceptance_rejections": [
+        {
+          "name": "nonunit_phase",
+          "source": "scratch/mub6-2026-10-09/column-gauge-negative-nonunit_phase.lean",
+          "log": "lean-column-gauge-negative-nonunit_phase.log",
+          "exit_code": 1,
+          "correct_control_compiled": true,
+          "false_unit_norm_conclusion_rejected": true,
+          "source_binding": {
+            "path": "scratch/mub6-2026-10-09/column-gauge-negative-nonunit_phase.lean",
+            "bytes": 617,
+            "sha256_raw": "9e81280e5c280e6c4c08af2a968f13aa1717c182fbdfc24d593404b77b711a27"
+          },
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-column-gauge-negative-nonunit_phase.log",
+            "bytes": 325,
+            "sha256_raw": "7461700b6ba71ed8c2d23fbca56f8a7650b48c8c378db17532a3983bc9af3c5c"
+          }
+        },
+        {
+          "name": "zero_first_row",
+          "source": "scratch/mub6-2026-10-09/column-gauge-negative-zero_first_row.lean",
+          "log": "lean-column-gauge-negative-zero_first_row.log",
+          "exit_code": 1,
+          "correct_control_compiled": true,
+          "false_unit_norm_conclusion_rejected": true,
+          "source_binding": {
+            "path": "scratch/mub6-2026-10-09/column-gauge-negative-zero_first_row.lean",
+            "bytes": 607,
+            "sha256_raw": "57c0ced1504b3cbd24003a6cc79d2ba294ce662ee1268304ba4c3e7f5de1f5e5"
+          },
+          "log_binding": {
+            "path": "scratch/mub6-2026-10-09/lean-column-gauge-negative-zero_first_row.log",
+            "bytes": 326,
+            "sha256_raw": "33bbfb9f26ab61ee73716409750fdc94c6a29c56df50a431aebf448ebe40d92e"
+          }
+        }
+      ],
+      "theorems": [
+        "columnRephase_gram",
+        "columnRephase_rawPairMU",
+        "rawCandidates_firstRowDephase",
+        "gaugeSolution_equations",
+        "gaugeSolution_parameters",
+        "gaugeSolution_firstRow",
+        "firstRowGauge_coordinate",
+        "gaugePointCodes_checked",
+        "gauged_solution_in_box",
+        "gauge_box_firstRow",
+        "exists_gauge_box_solution_with_parameters_iff"
+      ],
+      "scope": "Independent column phases fix first rows of both variable bases while retaining a representative of every constructed-family quartet. The new native gauge-box run remains unresolved and its output images are not kernel-reflected. No full cell/cusp coverage, quartet exclusion or curvature closure follows.",
+      "failed_lean_attempts": [
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiColumnGauge-first-failure.lean",
+          "bytes": 8466,
+          "sha256_raw": "ad39c97b25b68ace682063517cc85bee45576701a39b1ca3f1f13ed3fcdebcde"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-column-gauge-first.log",
+          "bytes": 2395,
+          "sha256_raw": "acabd16310acf5e8af9bd8c97f9ad4b277cbcbe7809472b14585290db798bd62"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiColumnGauge-wire-depth-failure.lean",
+          "bytes": 11388,
+          "sha256_raw": "1a358659654bcc3d506325ea024218c91134ec6aaa8ddb4bad451de05d379b01"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-full-column-gauge-wire-depth-failure.log",
+          "bytes": 220033,
+          "sha256_raw": "0742b310f5b3e2c8ac6e273d40fe18875573ea638172f42202e06bf8c8e1266c"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/column-gauge-validation-wire-depth-failure.json",
+          "bytes": 438,
+          "sha256_raw": "341a7cf45bd385a1dd121528d4f2702aacc672dda46ada4c8abb3ec1c5253d24"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiColumnGauge-wire-option-placement-failure.lean",
+          "bytes": 12179,
+          "sha256_raw": "e55aee29d38bf97bcfbd3117fe844cb16e46bf404e3c46dfd54c99f56586e262"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-full-column-gauge-wire-option-placement-failure.log",
+          "bytes": 220055,
+          "sha256_raw": "54591a26dc42e2f8262304c0c690a66488392bf72bc608550701a6dca4bd331d"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/column-gauge-validation-wire-option-placement-failure.json",
+          "bytes": 439,
+          "sha256_raw": "ff5cb5aa85413004089a2e92e1b45720978bcb9f98f0d19bd6d41cd75aa48c31"
+        }
+      ],
+      "cancelled_target_mismatch": {
+        "scope": "Owned scratch runner and its Cargo descendants were stopped before replay after detecting a mismatch between Cargo output target and the selected binary. The subsequent successful build explicitly used the selected shared target directory. This cancelled attempt is not accepted as a successful gate.",
+        "evidence": [
+          {
+            "path": "scratch/mub6-2026-10-09/column-gauge-evidence-before-target-correction.json",
+            "bytes": 419,
+            "sha256_raw": "fddf632877f87ec21bb6e2d4be9be6c8a0fadeebe6b25b7a0a6443919231d0ab"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/finish_column_gauge_evidence-before-target-correction.py",
+            "bytes": 5452,
+            "sha256_raw": "0885b53596d38152a8a7076a00e6dda866c240d72d525b68185da2472bf1bbc0"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/rust-column-gauge-binary-build.log",
+            "bytes": 68710,
+            "sha256_raw": "bd51e4794fed3c63875c74da08d52c36bc9a896d32d4d2ea43d7199410fa14de"
+          }
+        ]
+      },
+      "python_digest_refresh": {
+        "resume_runner": {
+          "path": "scratch/mub6-2026-10-09/resume_column_gauge_python.py",
+          "bytes": 2171,
+          "sha256_raw": "176f5572950e2a961cba3f859d422545889b4cf6e23b5e775f06345be06dfff6"
+        },
+        "original_status": {
+          "path": "scratch/mub6-2026-10-09/column-gauge-evidence-before-manuscript-digest-refresh.json",
+          "bytes": 5766,
+          "sha256_raw": "dbd58160c1ad1ac864ea70a49878b865586a5ee61b7dbd6d14783c95f1d51b67"
+        },
+        "original_failed_log": {
+          "path": "scratch/mub6-2026-10-09/python-full-column-gauge-before-manuscript-digest-refresh.log",
+          "bytes": 1806,
+          "sha256_raw": "cf96b5ab0d1420fe4632edd3630dd72637c372c486dfc21a264a5ae9da49cb6b"
+        },
+        "scope": "First Python run found stale canonical manuscript SHA in the release manifest after the paper update; immutable failed-log copy is retained. Archive custody metadata was regenerated before this retry."
+      },
+      "checkpoint_writer": {
+        "path": "scratch/mub6-2026-10-09/write_column_gauge_checkpoint.py",
+        "bytes": 10676,
+        "sha256_raw": "0229424f4ea499fa4a1c4a6821722c9a77cae054b8f352a6dd6df673fac2323c"
+      },
+      "independent_binding_validator": {
+        "path": "scratch/mub6-2026-10-09/verify_column_gauge_checkpoint_bindings.py",
+        "bytes": 7842,
+        "sha256_raw": "1d23be737b25c8e58c35085b42b5a6d1bce01ba48bc690f7f1d4512a27f5aa26"
+      },
+      "source_audit_runner": {
+        "path": "scratch/mub6-2026-10-09/audit_source_column_gauge.py",
+        "bytes": 2376,
+        "sha256_raw": "9ca0662fe38e522b96106b1ef3e6a700e47cd3e5e73b3ea72a2bd43386851014"
+      },
+      "renderer_source": {
+        "path": "scratch/mub6-2026-10-09/render_column_gauge.mjs",
+        "bytes": 2190,
+        "sha256_raw": "7cd5eae668f26031401d5f8af0f2df582ab0352e6976617322b1028d37ced2f4"
+      },
+      "doc_update_runner": {
+        "path": "scratch/mub6-2026-10-09/update_column_gauge_docs.py",
+        "bytes": 5915,
+        "sha256_raw": "0f19289e0ec1ec90df7497485e0e3436a1297baf1ae3a4ded77803988f593156"
+      }
+    },
+    "previous_138_module_gate": {
+      "source_commit": "41c35d0fa513576467cf085e4e32a460cacfb569",
+      "modules": 138,
+      "declarations": 14607,
+      "checkpoint_receipt": {
+        "path": "scratch/mub6-2026-10-09/option-b-pre-gauged-balance-receipt.json",
+        "bytes": 136375,
+        "sha256_raw": "28944441ec115d0e096b9cb45f29670115882ab62f7faf3e908c38ced81b6bc4"
+      },
+      "lean": {
+        "command": "lake build Mub6",
+        "cwd": "lean4/research_programs/mub6",
+        "exit_code": 0,
+        "dependency_jobs": 8844,
+        "environment": {
+          "LEAN_NUM_THREADS": "1"
+        },
+        "log": {
+          "path": "scratch/mub6-2026-10-09/lean-full-column-gauge.log",
+          "bytes": 218213,
+          "sha256_raw": "0396a2fbb0db5563af1089f05e75e18c4d803e3e7f01639374bd5c4df2fed4f0"
+        },
+        "scope": "All 138 local modules are imported by the aggregate target; unchanged dependencies may be cached."
+      },
+      "axioms": {
+        "status": "PASS",
+        "command": "lake env lean ../../../omega_engine_projects/mub6/scripts/audit_mub6_axioms.lean",
+        "cwd": "lean4/research_programs/mub6",
+        "exit_code": 0,
+        "modules": 138,
+        "declarations": 14607,
+        "disallowed_dependencies": 0,
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log": {
+          "path": "scratch/mub6-2026-10-09/lean-axioms-column-gauge.log",
+          "bytes": 1388498,
+          "sha256_raw": "eb64f9197c223a5b7d344d5fa66236cb697aa887558c002e15166ebdf2eca3cc"
+        }
+      },
+      "rust": {
+        "status": "PASS",
+        "command": [
+          "cargo",
+          "test",
+          "-p",
+          "omega_mub",
+          "--lib",
+          "-j",
+          "1",
+          "--",
+          "--test-threads=1"
+        ],
+        "cwd": "omega_engine/crates_rs",
+        "exit_code": 0,
+        "passed": 330,
+        "failed": 0,
+        "ignored": 18,
+        "measured": 0,
+        "filtered_out": 0,
+        "seconds": "2163.82",
+        "indexed": 348,
+        "all_indexed_tests_executed": false,
+        "observed_panic_events": 0,
+        "zero_panics_requirement_met": true,
+        "log": {
+          "path": "scratch/mub6-2026-10-09/rust-full-native-rectangular.log",
+          "bytes": 110518,
+          "sha256_raw": "abe31d87d24fb460ccfc5be37d5147ce47ef8e9c633bebd883b279ceedc4972d"
+        },
+        "runner_source": {
+          "path": "scratch/mub6-2026-10-09/run_rust_native_rectangular_detached.py",
+          "bytes": 1408,
+          "sha256_raw": "d4d19cf0563d293319448930392a0ee4f12c011622dfdc3a32d5d7771c648a73"
+        },
+        "status_record": {
+          "path": "scratch/mub6-2026-10-09/rust-native-rectangular-status.json",
+          "bytes": 358,
+          "sha256_raw": "277b20d1ea2650b1f0c9480e1618ad139abf4e3ca9948673bfc6a6eade1178f7"
+        },
+        "source_freeze": {
+          "path": "scratch/mub6-2026-10-09/rust-native-rectangular-source-freeze.json",
+          "bytes": 1360,
+          "sha256_raw": "2f75c9489b943e9948d992cbf6b41058b22723952c460e7ba8f6ae792bd03359"
+        },
+        "source_freeze_check": {
+          "path": "scratch/mub6-2026-10-09/rust-native-rectangular-source-freeze-check.json",
+          "bytes": 1503,
+          "sha256_raw": "f7285452974a580cdfd046f3f778e48c768f37c201648399b601263add8df40b"
+        },
+        "ignored_tests": [
+          "test deep_run::tests::deep_run_receipt_checks_pinned_h_transport ... ignored, needs the ../mub/public-export/evidence receipts, which are not in this repository",
+          "test omega_native::d10_gtfoc_cross_validation::tests::d10_gtfoc_searches_named_word_antiunitary_conjugacy ... ignored, expensive antiunitary conjugacy transport audit",
+          "test omega_native::d10_gtfoc_cross_validation::tests::d10_gtfoc_searches_named_word_convention_transport ... ignored, expensive HXZ tensor V convention transport audit",
+          "test omega_native::d6_sos_float_sdp::tests::stage_b_dykstra_margin_scan_diagnostic ... ignored, diagnostic: runs the bounded Stage B f64 Dykstra margin scan and prints JSON",
+          "test omega_native::d6_sos_float_sdp::tests::stage_b_float_margin_scan_diagnostic ... ignored, diagnostic: runs the bounded Stage B f64 margin scan and prints JSON",
+          "test omega_native::d6_sos_float_sdp::tests::stage_b_low_rank_margin_scan_diagnostic ... ignored, diagnostic: runs the bounded Stage B f64 low-rank factor margin scan and prints JSON",
+          "test omega_native::d6_sos_float_sdp::tests::stage_b_spectral_margin_scan_diagnostic ... ignored, diagnostic: runs the bounded Stage B f64 spectral-ascent margin scan and prints JSON",
+          "test omega_native::local_transport::tests::pinned_transport_receipt_checks_local_h_lane ... ignored, needs the ../mub/public-export/evidence receipts, which are not in this repository",
+          "test omega_native::local_transport::tests::pinned_transport_receipt_does_not_close_global_mub6 ... ignored, needs the ../mub/public-export/evidence receipts, which are not in this repository",
+          "test omega_native::mub6_cover_run::tests::full_5_torus_cover ... ignored, heavy: full 5-torus cover (run on dedicated compute)",
+          "test omega_native::mub6_cover_run::tests::full_5_torus_cover_parallel ... ignored, heavy: full 5-torus cover, parallel (run on dedicated compute)",
+          "test omega_native::mub6_cover_run::tests::full_5_torus_moduli_cover ... ignored, heavy: full 5-torus moduli-neighborhood cover (run on dedicated compute)",
+          "test omega_native::mub6_cover_run::tests::moduli_delta_sweep ... ignored, moduli neighborhood radius characterization",
+          "test omega_native::mub6_cover_run::tests::moduli_wall_probe ... ignored, moduli wall diagnostic: interval slop vs structural near-MU configuration",
+          "test omega_native::mub6_cover_run::tests::one_torus_slice_full_circle ... ignored, heavy: full-circle one-torus slice (run on dedicated compute)",
+          "test omega_native::mub6_cover_run::tests::torus_scaling ... ignored, scaling characterization across free torus dimension",
+          "test omega_native::mub6_dita_seed_cover::tests::single_presplit_chunk_can_complete_at_moderate_depth ... ignored",
+          "test omega_native::mub6_f6_external_b3::tests::base_mu_full_root_of_unity_lattice_exhaustion ... ignored, heavy: exact 24×24 F6 lattice census for Y2⊗Q{1,2}"
+        ],
+        "scope": "Fresh full serial library run; 18 declared ignored tests did not execute. Five native-source/fixture inputs are byte and last-write-time equal to their pre-run freeze. Reused for the column-gauge revision: no Rust source changed from commit 4d167368b89a7bde113d28ad916af0737edfca86, and the five frozen native inputs were rechecked against current bytes."
+      },
+      "scope": "Historical gate at the cited commit. Its full source receipt is retained separately; current Rust source has changed and is checked by the fresh run below."
+    },
+    "derived_gauge_balance": {
+      "status": "PASS_DERIVED_BALANCE_AND_SELECTED_CANDIDATE_BOX_EXCLUSION",
+      "source_commit_parent": "41c35d0fa513576467cf085e4e32a460cacfb569",
+      "original_equations_retained": 618,
+      "added_gauge_equations": 24,
+      "derived_balance_equations": 24,
+      "equations": 666,
+      "variables": 440,
+      "sparse_terms": 5320,
+      "probe_comparisons": 1998,
+      "quartet_equivalence_at_each_admissible_parameter": true,
+      "candidate_charts": 6,
+      "native_chart_cover_semantics_checked": true,
+      "chart_results": [
+        {
+          "chart": 0,
+          "coordinate": 368,
+          "status": "UNRESOLVED_BOX",
+          "excluded_coordinate": null,
+          "duplicate_replay_equal": true
+        },
+        {
+          "chart": 1,
+          "coordinate": 370,
+          "status": "UNRESOLVED_BOX",
+          "excluded_coordinate": null,
+          "duplicate_replay_equal": true
+        },
+        {
+          "chart": 2,
+          "coordinate": 372,
+          "status": "UNRESOLVED_BOX",
+          "excluded_coordinate": null,
+          "duplicate_replay_equal": true
+        },
+        {
+          "chart": 3,
+          "coordinate": 374,
+          "status": "UNRESOLVED_BOX",
+          "excluded_coordinate": null,
+          "duplicate_replay_equal": true
+        },
+        {
+          "chart": 4,
+          "coordinate": 376,
+          "status": "UNRESOLVED_BOX",
+          "excluded_coordinate": null,
+          "duplicate_replay_equal": true
+        },
+        {
+          "chart": 5,
+          "coordinate": 378,
+          "status": "UNRESOLVED_BOX",
+          "excluded_coordinate": null,
+          "duplicate_replay_equal": true
+        }
+      ],
+      "root_summary": {
+        "status": "CONTRACTED_UNRESOLVED_BOX",
+        "checked_coefficient_rows": 666,
+        "nonzero_preconditioner_entries": 74,
+        "contracted_coordinates": [
+          8,
+          9,
+          14,
+          15,
+          22,
+          23,
+          28,
+          29,
+          36,
+          37,
+          42,
+          43,
+          44,
+          45,
+          50,
+          51,
+          58,
+          59,
+          64,
+          65,
+          72,
+          73,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163
+        ],
+        "excluded_coordinate": null
+      },
+      "selected_candidate_box_excluded": true,
+      "selected_native_image_semantics_checked": true,
+      "selected_coordinate": 368,
+      "selected_image": {
+        "lo": "7/2",
+        "hi": "17/2"
+      },
+      "selected_input": {
+        "lo": "-1/2",
+        "hi": "1/2"
+      },
+      "excluded_box_has_admissible_phase_point": true,
+      "admissible_phase_example": [
+        "1",
+        "-1",
+        "1",
+        "i"
+      ],
+      "phase_example_is_quartet_claimed": false,
+      "family_parameter_fiber_excluded": false,
+      "all_new_jacobian_and_image_rows_reflected": false,
+      "generic_rust_or_json_decoder_verified": false,
+      "curvature_premise_removed": false,
+      "complete_56_cell_and_cusp_calculation": false,
+      "byte_equal_second_and_third_exports": true,
+      "first_and_second_raw_exports_equal": false,
+      "first_second_export_difference": "Terminal CRLF versus LF only; preserved raw logs. Second/third exports and canonical artifacts are byte equal.",
+      "lean_chart_export_matches_all_native_requests": true,
+      "semantic_mutations": {
+        "correct_controls_compiled": true,
+        "all_rejected": true,
+        "results": [
+          {
+            "name": "coefficient",
+            "source": "scratch/mub6-2026-10-09/gauged-negative-coefficient.lean",
+            "log": "scratch/mub6-2026-10-09/lean-gauged-negative-coefficient.log",
+            "exit_code": 1,
+            "rejected": true,
+            "source_binding": {
+              "path": "scratch/mub6-2026-10-09/gauged-negative-coefficient.lean",
+              "bytes": 1137,
+              "sha256_raw": "8e35ed30482daedfc3852f862a5298e982f3d2a517b3212a20811be437cb776e"
+            },
+            "log_binding": {
+              "path": "scratch/mub6-2026-10-09/lean-gauged-negative-coefficient.log",
+              "bytes": 434,
+              "sha256_raw": "49593c3c441bff17344c765a1b16a690e5a79ebb92397e19d9f94b48fb139a95"
+            }
+          },
+          {
+            "name": "bound",
+            "source": "scratch/mub6-2026-10-09/gauged-negative-bound.lean",
+            "log": "scratch/mub6-2026-10-09/lean-gauged-negative-bound.log",
+            "exit_code": 1,
+            "rejected": true,
+            "source_binding": {
+              "path": "scratch/mub6-2026-10-09/gauged-negative-bound.lean",
+              "bytes": 1137,
+              "sha256_raw": "a5feb087f306fd01b83032073fc693b6c4ee5ec958bf248fe950404dba40ea1f"
+            },
+            "log_binding": {
+              "path": "scratch/mub6-2026-10-09/lean-gauged-negative-bound.log",
+              "bytes": 428,
+              "sha256_raw": "27e011fb4b6f4a04a31f08425fce0ea3019cd7002b4d5c6741ac5e72cf9b845b"
+            }
+          },
+          {
+            "name": "contact",
+            "source": "scratch/mub6-2026-10-09/gauged-negative-contact.lean",
+            "log": "scratch/mub6-2026-10-09/lean-gauged-negative-contact.log",
+            "exit_code": 1,
+            "rejected": true,
+            "source_binding": {
+              "path": "scratch/mub6-2026-10-09/gauged-negative-contact.lean",
+              "bytes": 1149,
+              "sha256_raw": "a14cd614edfe2b188a8f7a76b9c38f0f326c1ae53e6fe9db4415e67203579bfd"
+            },
+            "log_binding": {
+              "path": "scratch/mub6-2026-10-09/lean-gauged-negative-contact.log",
+              "bytes": 430,
+              "sha256_raw": "fcd577b2bde53529db8340efcb549b89cd570944ff1661ce7188c22c134a8cbe"
+            }
+          }
+        ]
+      },
+      "native_binary_sha256_raw": "30f961ab1bace7fab8f42b7a3727a640c2474b0f53499cca518c70222ba3a6f3",
+      "evidence": [
+        {
+          "path": "scratch/mub6-2026-10-09/rust-focused-gauged-balance.log",
+          "bytes": 2147,
+          "sha256_raw": "0696b0f60a4661d4a3e2c188dd63ff48194f5aee2d3a6bc4238056a63e878007"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/rust-gauged-balance-binary-build.log",
+          "bytes": 65924,
+          "sha256_raw": "7e0a1da40cf7a0e07aa4e70d2504287a42ae12ddef8d811c7330d838b73b782b"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/python-focused-gauged-wire.log",
+          "bytes": 829,
+          "sha256_raw": "3c7c9d7cb6ecf947cfc48dad7739c5cd44e43a932d7bd6cc52c40f73a5527393"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-native-runner.log",
+          "bytes": 734,
+          "sha256_raw": "f44ffddf9bcbb5dcfb88ac611c841ca1422fe6fea459904a5e99f3c667395eba"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-export-equality.json",
+          "bytes": 715,
+          "sha256_raw": "32869199cad7b23d0249e314979ee7f4b05e6417d31e5e78b6f26fe564b4061a"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-native-status.json",
+          "bytes": 17561,
+          "sha256_raw": "854ab5ef48800a4bd596062235ddda7077992442c84ea8cffe29b07349990964"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-lean-validation-status.json",
+          "bytes": 1542,
+          "sha256_raw": "a0f59f7cbab2b97123b7edbba01de761dc086f8fd4a05d0920f82d09110ef98c"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauged-negative-controls.log",
+          "bytes": 238,
+          "sha256_raw": "d4f2f7f8ac50b2c5dba0e74b5d6751b5ce3c24cf05acf5c7b68684e520133e58"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-negative-results.json",
+          "bytes": 773,
+          "sha256_raw": "96f7178b861c6f27ecd30c2cea9a29248d9c5187ae6d4fb5b8e00a9166b46ae8"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-negative-runner.log",
+          "bytes": 572,
+          "sha256_raw": "6f664c1c12c15d005ac852615334a253a88d8f415d8295434be95e55a5a17b8b"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-native-inspection.json",
+          "bytes": 697788,
+          "sha256_raw": "bbd5513313a63d73e3410be0ef14c45a3b96198d7eb0a81272d442a275dc5bce"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-root-replay-1.json",
+          "bytes": 971632,
+          "sha256_raw": "9eb8596b1122df8f389c3b8d48e54e2fa3dd142311e4d7cf1ea3a0c92c5040b8"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-root-replay-2.json",
+          "bytes": 971632,
+          "sha256_raw": "9eb8596b1122df8f389c3b8d48e54e2fa3dd142311e4d7cf1ea3a0c92c5040b8"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-balance-exclusion-replay-1.json",
+          "bytes": 970432,
+          "sha256_raw": "2fc7836d2661bb697144cec194b994d8c5f5ff829678cbdcf240c38103c4ea66"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-balance-exclusion-replay-2.json",
+          "bytes": 970432,
+          "sha256_raw": "2fc7836d2661bb697144cec194b994d8c5f5ff829678cbdcf240c38103c4ea66"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-system-export-first.log",
+          "bytes": 747754,
+          "sha256_raw": "f3bec242e54964147f76d8101381b3133bb0e8bc1a9631427e17037ad44d60d4"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-system-export-second.log",
+          "bytes": 747753,
+          "sha256_raw": "7646b0f134b6573805c8f4c8051cbd252422fe93a0a865737aa0afbe8332d5c7"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-system-export-third.log",
+          "bytes": 747753,
+          "sha256_raw": "7646b0f134b6573805c8f4c8051cbd252422fe93a0a865737aa0afbe8332d5c7"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-coefficients-export-first.log",
+          "bytes": 224558,
+          "sha256_raw": "32324f63ec089c539da3196b9cff50c38fdda7367cef1f857ceb62f999c282a7"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-coefficients-export-second.log",
+          "bytes": 224557,
+          "sha256_raw": "f9fffc4d7664fc3a31fe9eee6ee0032a08271ed41184b08310ede5b21411ad44"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-coefficients-export-third.log",
+          "bytes": 224557,
+          "sha256_raw": "f9fffc4d7664fc3a31fe9eee6ee0032a08271ed41184b08310ede5b21411ad44"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-charts-export-first.log",
+          "bytes": 86342,
+          "sha256_raw": "aa7a80ac09c717cf79b5b048c6427d4688ed08c79f2209f312a03d819352e17a"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-charts-export-second.log",
+          "bytes": 86342,
+          "sha256_raw": "aa7a80ac09c717cf79b5b048c6427d4688ed08c79f2209f312a03d819352e17a"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-0-request.json",
+          "bytes": 30518,
+          "sha256_raw": "404d89a012b190ab0ff4b9577721adeec76f1b75879bbea4e2fea70069dec8cd"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-0-replay-1.json",
+          "bytes": 970441,
+          "sha256_raw": "6fcd4f26d64c14b9761bbeb18d2fcce14c11e9c2d69d177e5ac2c3494138db90"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-0-replay-2.json",
+          "bytes": 970441,
+          "sha256_raw": "6fcd4f26d64c14b9761bbeb18d2fcce14c11e9c2d69d177e5ac2c3494138db90"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-0-replay-1.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-0-replay-2.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-1-request.json",
+          "bytes": 30518,
+          "sha256_raw": "9f5209b98114216f900a001c0f396e1976f5dc973b026ca75371b672fff9ded1"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-1-replay-1.json",
+          "bytes": 970441,
+          "sha256_raw": "afb549b3b8941953bf8ea0b6009330063def9e83629bae3cf6a14a49723d0da4"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-1-replay-2.json",
+          "bytes": 970441,
+          "sha256_raw": "afb549b3b8941953bf8ea0b6009330063def9e83629bae3cf6a14a49723d0da4"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-1-replay-1.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-1-replay-2.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-2-request.json",
+          "bytes": 30518,
+          "sha256_raw": "b6dcf8c8cc05fa2779f93388df462c8aa554e26ecfa0f83a8232c92a0caa1c6c"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-2-replay-1.json",
+          "bytes": 970441,
+          "sha256_raw": "e3d78380c955363512fdd39428b3731184a648a55794f35205cabd158fc6883d"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-2-replay-2.json",
+          "bytes": 970441,
+          "sha256_raw": "e3d78380c955363512fdd39428b3731184a648a55794f35205cabd158fc6883d"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-2-replay-1.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-2-replay-2.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-3-request.json",
+          "bytes": 30518,
+          "sha256_raw": "22b5886ee7de7dedaccb96a6e16671e5ca9b77d6324ee81135dba722f784ff2f"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-3-replay-1.json",
+          "bytes": 970441,
+          "sha256_raw": "68c5a2745e7179a60314ede3f1e6d3f73c31f2320ee0511126cb61f3accc19a0"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-3-replay-2.json",
+          "bytes": 970441,
+          "sha256_raw": "68c5a2745e7179a60314ede3f1e6d3f73c31f2320ee0511126cb61f3accc19a0"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-3-replay-1.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-3-replay-2.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-4-request.json",
+          "bytes": 30518,
+          "sha256_raw": "485d2702796e43330cf6eccf7393bd7071967f4b0439d1da7676decb61c23efb"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-4-replay-1.json",
+          "bytes": 970441,
+          "sha256_raw": "6df8d49ff5f09d64db6dda8914ddc1ea67c4fd338b160729bbd444598803f46b"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-4-replay-2.json",
+          "bytes": 970441,
+          "sha256_raw": "6df8d49ff5f09d64db6dda8914ddc1ea67c4fd338b160729bbd444598803f46b"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-4-replay-1.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-4-replay-2.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-5-request.json",
+          "bytes": 30518,
+          "sha256_raw": "a1d5b87d39d6c51c70885f9e6ace0c2d52de4dee9994ff91913fefc129d56e7d"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-5-replay-1.json",
+          "bytes": 970441,
+          "sha256_raw": "4ebacf56a068f7ba41fe21c5fe06ffacde00acb9aae59964d90636f245159e3b"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-5-replay-2.json",
+          "bytes": 970441,
+          "sha256_raw": "4ebacf56a068f7ba41fe21c5fe06ffacde00acb9aae59964d90636f245159e3b"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-5-replay-1.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-chart-5-replay-2.log",
+          "bytes": 128,
+          "sha256_raw": "2f55313faa28b6f346e5188229d4d54ba2694f47d5a79ba4848c95f2c6a42b5e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-root-replay-1.log",
+          "bytes": 140,
+          "sha256_raw": "fcd74f20efb315bfefc5aee30b7305b23ccaaa6c5998bd4ca1ec5abba2abd2c0"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-root-replay-2.log",
+          "bytes": 140,
+          "sha256_raw": "fcd74f20efb315bfefc5aee30b7305b23ccaaa6c5998bd4ca1ec5abba2abd2c0"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-balance-exclusion-replay-1.log",
+          "bytes": 131,
+          "sha256_raw": "03c52aeff23976b3cc8fd1090bf2fc0b95772978f19be53203b91f1427cb0136"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-balance-exclusion-replay-2.log",
+          "bytes": 131,
+          "sha256_raw": "03c52aeff23976b3cc8fd1090bf2fc0b95772978f19be53203b91f1427cb0136"
+        }
+      ],
+      "sources": [
+        {
+          "path": "lean4/research_programs/mub6/SzollosiGaugeBalance.lean",
+          "bytes": 5804,
+          "sha256_raw": "fb2b8eeda0f65497bb3320b0b221011ec333310c46ef654f0f68c9058ad5548b"
+        },
+        {
+          "path": "lean4/research_programs/mub6/SzollosiGaugedExecutable.lean",
+          "bytes": 7207,
+          "sha256_raw": "d87b81d16a62d67d2ed92d8df796dbd2d0a77241b5328c36074ff303dd46a19e"
+        },
+        {
+          "path": "lean4/research_programs/mub6/SzollosiGaugedCover.lean",
+          "bytes": 3527,
+          "sha256_raw": "aeaa4546c8e28788a173348e6e79d0d366d5f1c097e85298f933ba5edb29d354"
+        },
+        {
+          "path": "lean4/research_programs/mub6/SzollosiGaugedReflection.lean",
+          "bytes": 19374,
+          "sha256_raw": "356eab2883d9d9494b06481f1ee41450a5f052a2bd157558657aca48da71c914"
+        }
+      ],
+      "formatter": {
+        "path": "omega_engine_projects/mub6/scripts/reflect_szollosi_gauged.py",
+        "bytes": 15227,
+        "sha256_raw": "8f5b84d946605ac378151510577aaace155d22975447e02c1c89475bfe24556f"
+      },
+      "wire_tests": {
+        "path": "omega_engine_projects/mub6/tests/test_gauged_reflection_wire.py",
+        "bytes": 5305,
+        "sha256_raw": "3d8e893654792be6a10d35e4f970d6e5f215c99274e5aa84d600deada0d91d4d"
+      },
+      "scope": "All original equations and arbitrary additional bases retained up to derived column gauge. Every quartet has a representative in one of six emitted candidate charts. All six remain unresolved. One separate phase-admissible candidate box is excluded using the real transition balance identity. This does not exclude a whole parameter fiber or complete the family/cusp calculation.",
+      "helpers": [
+        {
+          "path": "scratch/mub6-2026-10-09/run_gauged_native.py",
+          "bytes": 3990,
+          "sha256_raw": "ed4992b2a753270dbf15a3e7ebecde1b0160e4f0c073c253e43200093545f128"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/run_gauged_lean_validation.py",
+          "bytes": 1572,
+          "sha256_raw": "c6eb7ea75dce5ebd159471490a674e9c849c417b8bd4b6e0e7a11ed6fa0baaca"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/run_gauged_negative_controls.py",
+          "bytes": 1460,
+          "sha256_raw": "0abb52b4832c613a2cb5d9eba0a673b7603e3b109ac1f7c6049df6053440fd33"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/gauged-balance-negative-controls.lean",
+          "bytes": 1067,
+          "sha256_raw": "a08663d66cf68f6cea1b07cd3cecf735c8679706564c49755e6927ac6032a227"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/export_gauged_system.lean",
+          "bytes": 98,
+          "sha256_raw": "03edc37481bf4ee6942a75be0725038a9c8bf41e108291183d03c8c34d38e713"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/export_gauged_coefficients.lean",
+          "bytes": 105,
+          "sha256_raw": "ad222ab9a29a3694382a85a9bf776dfbf5bed692db39444e8de15dff573f0463"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/export_gauged_charts.lean",
+          "bytes": 103,
+          "sha256_raw": "f237225569bcc44261bc225803fc418c75f797cc4b70ff4d18d26cd45dba20c0"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/finalize_gauged_balance_docs.py",
+          "bytes": 4436,
+          "sha256_raw": "403cd262824369798591f9b6d4fa3966149c4f9ad24d52b54362f24838f8ba8f"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/write_gauged_balance_checkpoint.py",
+          "bytes": 13870,
+          "sha256_raw": "0acb9dc20c083c176b24b0c29cb37a1ccb5def9dfe94018751ee8cf474dc4d3e"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/verify_gauged_balance_checkpoint_bindings.py",
+          "bytes": 9258,
+          "sha256_raw": "26887f1befef25c0f9ffefa9cc3745eda0b2d9a709d256f46d66be27287bc0a3"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/audit_source_gauged_balance.py",
+          "bytes": 2380,
+          "sha256_raw": "efceeb4f1e82558ec07a4d67fcb9cb252b0491bb4f99c92b8c5712c86ba99a79"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/render_gauged_balance.mjs",
+          "bytes": 2192,
+          "sha256_raw": "07061ff7cc2961effe75b663b3371f4fd2f46f3384705b8fee1e6e94159a3066"
+        }
+      ],
+      "rejected_lean_attempts": [
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugeBalance-first-failure.lean",
+          "bytes": 5858,
+          "sha256_raw": "8715b2d864635595425e258e988be48d833914c6fec3c1406dfbd8435c5bdcc1"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugedCover-first-failure.lean",
+          "bytes": 3359,
+          "sha256_raw": "aea729f0a153249d53b9510b795e313f2246582569123dfc71d0d0fc823e6ccc"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugedCover-second-failure.lean",
+          "bytes": 3490,
+          "sha256_raw": "e897f9ee0c3925fac4e2c01efd91ad3a0ca80c1bf14734256414cef5b16fe6c8"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugedCover-third-failure.lean",
+          "bytes": 3496,
+          "sha256_raw": "8dd806ec073fddac1206eabb223cdd570d547b0e2682dab72d93bb1b61adc425"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugedExecutable-first-failure.lean",
+          "bytes": 7135,
+          "sha256_raw": "2e016f0843a91259c3f5f080ba8c9d1b6f89a1f36e4ffc4430bb4a7fcd23ba56"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugedExecutable-second-failure.lean",
+          "bytes": 7189,
+          "sha256_raw": "4b478d08839fcf52eb9c16e3a03a63aba07d11b6ad64dd0628e804a0dd5c3658"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugedReflection-first-failure.lean",
+          "bytes": 15874,
+          "sha256_raw": "504410c10a7a7183da954d01f972486a7ced517d907977f9598e6370ae2a1875"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugedReflection-second-failure.lean",
+          "bytes": 19239,
+          "sha256_raw": "e51387a87943dc2b87e40dc76ef5a8e091e3271a5c8961a5c3b02286cacd9090"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/SzollosiGaugeBalance-first-failure.lean",
+          "bytes": 5858,
+          "sha256_raw": "8715b2d864635595425e258e988be48d833914c6fec3c1406dfbd8435c5bdcc1"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauge-balance-first.log",
+          "bytes": 1073,
+          "sha256_raw": "e9b900f2db1dca30ffa4440272de19d2bfd57da64bacf83626bfb1fcde0138b0"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauged-executable-first.log",
+          "bytes": 4252,
+          "sha256_raw": "1c20bdeee3c27d6fa9f9ccb0c0da14105b1da835c736f9b27cdff33ad757e79f"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauged-executable-second.log",
+          "bytes": 2030,
+          "sha256_raw": "4988f4424a5d95564626e9691b3e18785b6c597818e92b813896032e897b4624"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauged-cover-first.log",
+          "bytes": 8149,
+          "sha256_raw": "03f165777331ee8b414be795bd92206d058e55446e8c5b37a38cb11a43db7035"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauged-cover-second.log",
+          "bytes": 2173,
+          "sha256_raw": "0822951b3b694bb5b57315bcbe9e1033a850983666a3ce879ddab1887fdb4dea"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauged-cover-third.log",
+          "bytes": 703,
+          "sha256_raw": "0b442d58eb283fed8f2929b32a0c918a3b81bb227a616e2b8c1d687167aa04a5"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauged-reflection-first.log",
+          "bytes": 3590,
+          "sha256_raw": "e4436fc12489f94a4cf3ee4bf3e576be8b4e18537118f79222723a7cac214a7b"
+        },
+        {
+          "path": "scratch/mub6-2026-10-09/lean-gauged-reflection-second.log",
+          "bytes": 2012,
+          "sha256_raw": "5e50cc8b63001cee16ba51293dc8c9bb19773fe868a2eabf794cbb5882f64314"
+        }
+      ],
+      "python_runtime_correction": {
+        "accepted_runtime": "Python 3.12.10",
+        "superseded_runtime": "Python 3.14.2",
+        "scope": "The ambient Python command selected 3.14. Its passing test run and deterministic archive were retained, then repeated under the required 3.12 pin. The old and rebuilt archives have byte-identical decompressed tar streams, including order and metadata. Their compressed representations differ; the cause is unestablished. Both runtime rebuilds emitted the same new compressed digest. Only the pinned run is accepted as this checkpoint gate.",
+        "evidence": [
+          {
+            "path": "scratch/mub6-2026-10-09/python-full-gauged-balance-python314.log",
+            "bytes": 184,
+            "sha256_raw": "cc7cd82b7e7e2b0029869fdb487cae02e11a83971256e45c05dcc9f8e2763b02"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/python-focused-gauged-wire-python314.log",
+            "bytes": 101,
+            "sha256_raw": "612c9e11273d58ba5638329ac8a58c3a97f3cdf5db442c1556a5b900a7e2d484"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/archive-gauged-balance-first-python314.log",
+            "bytes": 804,
+            "sha256_raw": "6e432a8cc6367802e6ab8ea026e6db832a29348b698eef13c325672f1e2bb704"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/archive-gauged-balance-second-python314.log",
+            "bytes": 804,
+            "sha256_raw": "6e432a8cc6367802e6ab8ea026e6db832a29348b698eef13c325672f1e2bb704"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/archive-gauged-balance-first-python314.json",
+            "bytes": 103,
+            "sha256_raw": "53386cb74706a947a762daa252b4da473100985eb237d881b531254eb2a54634"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/archive-gauged-balance-raw-audit-python314.json",
+            "bytes": 156,
+            "sha256_raw": "ecf586b9964df25ea5bb6892bd0eb2a80ee537a7992a9261cceca8e262554432"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/recertify_gauged_balance_archive-python314.py",
+            "bytes": 1842,
+            "sha256_raw": "6b3491457fb9382bce6477e802d6dd954e57f973ae58b7df0ac45a6077c39d98"
+          },
+          {
+            "path": "scratch/mub6-2026-10-09/archive-gauged-balance-historical-comparison.json",
+            "bytes": 249,
+            "sha256_raw": "2a01959e7719fb6e44ff206a300fe3519f8ee6d7c52bcda1a884dd6930477b65"
+          }
+        ]
+      }
+    }
+  },
+  "remaining_mathematical_obligations": [
+    "Derive concrete certified Fourier-triple landing from arbitrary seven MU bases; the smaller premise remains supplied.",
+    "Derived column gauge and transition balance retain every constructed-family quartet in a 666-equation, 440-coordinate system at every admissible parameter. The exact six native candidate charts cover those representatives and all remain unresolved. One phase-admissible candidate box has a checked balance-image exclusion, without excluding a whole parameter fiber. Obtain useful further contraction/subdivision and full parameter/candidate coverage; execute and semantically reflect the required depth-64 56-family-cell/three-cusp exclusion and curvature calculation. All new Jacobian/image rows are not yet reflected, and HasCurvatureCertificate remains supplied.",
+    "The direct real coordinate flat-extension bridge is checked: normalized positive flat real moments with finite compatibility for all 180 residuals construct a common real zero and an actual unitary fourth-basis candidate. Actual solutions give rank-one evaluation moments, yielding a two-way existence equivalence. Empty variety excludes positivity under normalization, actual flatness and finite compatibility. Establish the required fixed-variety emptiness and full analytic parameter/candidate coverage; justify flatness for any proposed data. Arbitrary-nonflat exclusion remains open. The separate noncommutative word route retains its dimension-six/rank-one/MU and full star-algebra limits; its data has not been identified with the real coordinate model."
+  ],
+  "package_scope": "The 477-entry manifest binds the refreshed 474-member historical archive. Its layout excludes the current manuscript and canonical Lean tree; no external deposit or submission was made.",
+  "source_files": [
+    {
+      "path": "lean4/research_programs/mub6/AdditiveCharacter.lean",
+      "bytes": 526,
+      "sha256_raw": "65d2bd78fa49323b186325966430799c3424e66d6b684fca60b7d5c4e11bf894"
+    },
+    {
+      "path": "lean4/research_programs/mub6/AlgebraicCoefficientFieldContract.lean",
+      "bytes": 3709,
+      "sha256_raw": "e4cde1c2e6af6d855d7b8fd48207cfe6d5f1fbc19c1dc20f548bac9dce578491"
+    },
+    {
+      "path": "lean4/research_programs/mub6/AlgebraicCornerReconstruction.lean",
+      "bytes": 18458,
+      "sha256_raw": "7dfc78ed8a7455eee7021cfdce35cf4f1293e484a5aa4544244950848388f164"
+    },
+    {
+      "path": "lean4/research_programs/mub6/AlgebraicGtmurLossLedgerContract.lean",
+      "bytes": 4755,
+      "sha256_raw": "a5e8640d4e52302f44903d72f7b856b4a78c50ad695e9aff7c154ab2e07ba27f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/AlgebraicHilbertBasisTransportContract.lean",
+      "bytes": 4976,
+      "sha256_raw": "30ae39423d80c92338f9b892daccecc408a821bcd08504ceedee51a55681963d"
+    },
+    {
+      "path": "lean4/research_programs/mub6/AlgebraicTerminalizerPreservationContract.lean",
+      "bytes": 5405,
+      "sha256_raw": "7af54ca7378fc8ca53b70de13b9d448aadcc74760349dc953415b4a9cfe774ce"
+    },
+    {
+      "path": "lean4/research_programs/mub6/BasisExtensionObstruction.lean",
+      "bytes": 7318,
+      "sha256_raw": "71dc7cdf2503d4e8fd4c5daff93d68374d2fc29007d87c8c808da4fdd833fb53"
+    },
+    {
+      "path": "lean4/research_programs/mub6/CADBranch.lean",
+      "bytes": 5275,
+      "sha256_raw": "daf3f3e75d9afe934b89302fc72a318192780169cf643e212027ef4a18a71d9f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/CandidateGramPositivity.lean",
+      "bytes": 9248,
+      "sha256_raw": "f2845212330cc8023f73cfb78f6c67da3d02c355bfe15b4db76e823cff551802"
+    },
+    {
+      "path": "lean4/research_programs/mub6/CaseCoverage.lean",
+      "bytes": 6268,
+      "sha256_raw": "a407eea1f86308a191a24e2d9da974fc6ba5246689a5adfe365433bd0a8e1097"
+    },
+    {
+      "path": "lean4/research_programs/mub6/CertificatePilot.lean",
+      "bytes": 17003,
+      "sha256_raw": "4d52f139602e5f41d1fe018ab90f53d5b405bc923c0c1028baf25de05788cc66"
+    },
+    {
+      "path": "lean4/research_programs/mub6/CochainObstruction.lean",
+      "bytes": 19853,
+      "sha256_raw": "e26d657810053bab570cbb9ca5ea8fdf569148272e40790a9e2a3444aa93f80c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/CollarGluing.lean",
+      "bytes": 5644,
+      "sha256_raw": "41810d93920ca4b66cb8df888c90d2abea84cfb21959af0e720d7ecb340bfdf1"
+    },
+    {
+      "path": "lean4/research_programs/mub6/CommutativeFlatMoments.lean",
+      "bytes": 26482,
+      "sha256_raw": "a093bd73ebaa1453cd2c08d014f9f5dbeca97f0b254c1e0a8f130deaa79677ea"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ComplexCoefficientScalars.lean",
+      "bytes": 1754,
+      "sha256_raw": "b7c949e840b1583cbcac86bb6223074995a997162d33def8798ab6d044b8eb5b"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ConcreteMubFlatExtension.lean",
+      "bytes": 7447,
+      "sha256_raw": "d953e80582cc32abe39d7a40690d11a968e5d198a2f20195f7d3455646e55c00"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ConcreteMubMoments.lean",
+      "bytes": 10992,
+      "sha256_raw": "d21b5473fcf73cdebafb14c690c72615af4684ea945c419af18204784e85dd57"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ConcreteMubPolynomials.lean",
+      "bytes": 10649,
+      "sha256_raw": "bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ConcreteMubProjectors.lean",
+      "bytes": 5067,
+      "sha256_raw": "f592f57d1ca98cd39a4450be121b582e62f38f2dec9cb1782d67776a60ec6601"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ConcreteSemantics.lean",
+      "bytes": 11344,
+      "sha256_raw": "4ad8410818ff8175720335dab81f0fd79c70108324141334f68d20e76e0e704d"
+    },
+    {
+      "path": "lean4/research_programs/mub6/Conjecture2GeneralMechanization.lean",
+      "bytes": 18935,
+      "sha256_raw": "f52d7b0b6fe7b8c2ce3f0f1718cfc6688c8c0afe0f4291e2ebdb9643597576b3"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ContinuousBoundaryHomotopyPositivstellensatz.lean",
+      "bytes": 16052,
+      "sha256_raw": "345718b84938d65ff1a8c3b41baa41fc88d244456280b4147ca8daca44b04b17"
+    },
+    {
+      "path": "lean4/research_programs/mub6/CornerDeterminantCrossRatio.lean",
+      "bytes": 18859,
+      "sha256_raw": "6b6c3e22c73fb55895497fb0911e5cc20f5599ecfc3c5d0e1d15019a0e69f0bb"
+    },
+    {
+      "path": "lean4/research_programs/mub6/DeltoidCuspGluing.lean",
+      "bytes": 4424,
+      "sha256_raw": "9ce2a5e7826b11540a0b673b3e0cc4332307684de6f0c0fd94bd6c21bf89041c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/DeltoidCuspInputAudit.lean",
+      "bytes": 7082,
+      "sha256_raw": "f4fce333a58b3cd289251b5f3477cfc89654a1ac9a5ed0067a51ec0311954e5b"
+    },
+    {
+      "path": "lean4/research_programs/mub6/DeltoidCuspLiteralSemantics.lean",
+      "bytes": 17335,
+      "sha256_raw": "40ccc826e2f9a24797e3c1514503409068b7777c5766ec04b9a2f1b92e05edfd"
+    },
+    {
+      "path": "lean4/research_programs/mub6/DeltoidCuspLiteralVector.lean",
+      "bytes": 1912,
+      "sha256_raw": "cf9565f91d7ceaeb43da8fabd591adde6e9e9917b676d98f35c7c5705375b856"
+    },
+    {
+      "path": "lean4/research_programs/mub6/DeltoidCuspPhaseReduction.lean",
+      "bytes": 3411,
+      "sha256_raw": "75b83693768c9ec97482c6a8755c7a80296d4ec3f3d22fcf5e2452a81f50a490"
+    },
+    {
+      "path": "lean4/research_programs/mub6/Discrete4DBianchiSpectralContraction.lean",
+      "bytes": 13732,
+      "sha256_raw": "671bb7ab9e8e4646786bdbb9abee7cbb99c8d2a1b106c3368b9e7657fa4955b3"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ExtensionCurvatureObstruction.lean",
+      "bytes": 18666,
+      "sha256_raw": "66a879f2c912e48f2c7660efe4b7437ec88bc04824db0934fb48796c8871d3c4"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FiniteBasisCover.lean",
+      "bytes": 13379,
+      "sha256_raw": "1f7ab1fa5da60cdd5d53063238e3fb3f5ae677acccd89706af38da5250666f12"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FiniteFieldCharacters.lean",
+      "bytes": 3362,
+      "sha256_raw": "53635357ff15c607458b10dece97b90cf0b495600add19f5402ad812188f40e9"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FiniteFieldFamily.lean",
+      "bytes": 2322,
+      "sha256_raw": "3d24aa4b02b3fce47fdb6560e037e1629837d9946943cab70de834f8735d11ce"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FiniteFunctionGtmurLedger.lean",
+      "bytes": 3732,
+      "sha256_raw": "bed4023e8a1ab6b3e31620db1f35ee3964ce060b83855d8a338b56099283bf0a"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FiniteFunctionGtmurLossLedger.lean",
+      "bytes": 6934,
+      "sha256_raw": "a02a54162c501567f005e8ef9a2672e8e96377ba48721a12cb8980a167ec0ad3"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FiniteFunctionHilbertBasisTransport.lean",
+      "bytes": 6377,
+      "sha256_raw": "5ab1b8d1d3c379d3f59f92ec3385b1991184726dd03a0c6969306567afa3c935"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FiniteFunctionTerminalizer.lean",
+      "bytes": 4430,
+      "sha256_raw": "b19721672eea8ef1dcb0543223f8f58805e4751cc9ddd0643efd461ee6eaa53b"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FiniteVectorCover.lean",
+      "bytes": 9831,
+      "sha256_raw": "d2c2762144423d4c889e69c7aafd3b4453cdb3b051f89882c5ff106d0d89b87c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FixedTuplePsiCertificate.lean",
+      "bytes": 6770,
+      "sha256_raw": "91c2175f9b8e113db4f52aa9f149332777726899c557159a44a031660204e11d"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FlatMomentBasisRelations.lean",
+      "bytes": 12381,
+      "sha256_raw": "bf4ba4e84287be003d95729e6ce870b0189bb1c6b9b7a733720e9df3c4470ec8"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FlatMomentProjectorExtraction.lean",
+      "bytes": 21793,
+      "sha256_raw": "46a1f2c66be5cc14899da49af63a0c3ae7d41a79260dbda333016f7e60e0c6fc"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FourierLandingBypass.lean",
+      "bytes": 10917,
+      "sha256_raw": "0a66309dc7bf78410ed5729399bf49b7684ae5e6bc1cc76c2b0c5a423b79db7a"
+    },
+    {
+      "path": "lean4/research_programs/mub6/FramePotentialObstruction.lean",
+      "bytes": 4161,
+      "sha256_raw": "617a9d2aacc8290e1fc291f1befe2fd2a6b65b9559d5df2caaa6ae6e42a0295d"
+    },
+    {
+      "path": "lean4/research_programs/mub6/G1_Orbits.lean",
+      "bytes": 25862,
+      "sha256_raw": "3817981f4a0853214d700b469ab33850403d785623450137c50f67889cfc0de1"
+    },
+    {
+      "path": "lean4/research_programs/mub6/GlobalGaugeChaining.lean",
+      "bytes": 2653,
+      "sha256_raw": "b6b51683f6fc0d21e2ae4b07a89b34b12d1b75fcda23e4ca0194a946dddabfee"
+    },
+    {
+      "path": "lean4/research_programs/mub6/Gluing.lean",
+      "bytes": 17806,
+      "sha256_raw": "f91ca5ba9e538c00bfcb9ae1178616932326f66f3643537b3cb759c2e1b79803"
+    },
+    {
+      "path": "lean4/research_programs/mub6/GrandUnifiedMasterSynthesis.lean",
+      "bytes": 6049,
+      "sha256_raw": "5813500be47b2ef17a697b497e5d899d4bbd6d398b4aa4a161a098ea29532ec7"
+    },
+    {
+      "path": "lean4/research_programs/mub6/GroebnerBranch.lean",
+      "bytes": 5197,
+      "sha256_raw": "45c542888fd50268a34ae7dcb38ec1cb981e99bf5a88e8c5a93ab04a6f900e20"
+    },
+    {
+      "path": "lean4/research_programs/mub6/HilbertMubFamily.lean",
+      "bytes": 5852,
+      "sha256_raw": "ea910bfe5b1160a91e11f16d738c896b7b5c151a5e5f71556a0e9f25e90e3ea4"
+    },
+    {
+      "path": "lean4/research_programs/mub6/HilbertMubStructure.lean",
+      "bytes": 4497,
+      "sha256_raw": "cfaeaef4b61057e06445d455d2a77aae9cfadacf873367e686c065f5a3a5ff4c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/HilbertPhaseNormalization.lean",
+      "bytes": 5118,
+      "sha256_raw": "c6e23a2ba679925c66ba588734b2da66dd210cd6a0872e247a6387294059714c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/HilbertPhaseTransport.lean",
+      "bytes": 3957,
+      "sha256_raw": "2cb361cbdf7c9ab3cd1e6a6a4c1b434945398275a08ff601b68be5adf3ecb21f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/HilbertPhaseVectors.lean",
+      "bytes": 6328,
+      "sha256_raw": "4f0d26c5ae411b2809a95c86b86effc5bea77f41e9c688385c068112fe4fcb41"
+    },
+    {
+      "path": "lean4/research_programs/mub6/HilbertTransportEquiv.lean",
+      "bytes": 6506,
+      "sha256_raw": "72a20ffed0c1cb486808a3424aeffd46ae01d2ea715d3ce2d58f05ba4a27055a"
+    },
+    {
+      "path": "lean4/research_programs/mub6/HyperGramianObstruction.lean",
+      "bytes": 6894,
+      "sha256_raw": "970bcc7d7ec3af36bb4bd78f93d8020b182e0bfc0f4779c9f48b559725f32a45"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KarlssonManifold.lean",
+      "bytes": 17902,
+      "sha256_raw": "7b14e9dcd7552fc37a92a56d3a4f126d53ad24b6571bfd0037dd168ca0132a99"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KarlssonVolumeObstruction.lean",
+      "bytes": 14962,
+      "sha256_raw": "d6dda7e96ffd366609e2f32a1ee79edc02c279f8782402edada2a908629926d2"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflection1024.lean",
+      "bytes": 166005,
+      "sha256_raw": "ddb05076e3dfa22cdc171d3b4d463172a8689a60420834a595fbb4b91441bab1"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionB1Intervals.lean",
+      "bytes": 1697,
+      "sha256_raw": "4ca9f095159ef1e29dc5444de536a2ccc06d553b3fc9e74d443e58a6a3ca66b2"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionBisection.lean",
+      "bytes": 14956,
+      "sha256_raw": "dae39b36d0c0812f52335b618653a6f5c505763d26096e53facfa910248165cf"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionGrandFrontier.lean",
+      "bytes": 1472,
+      "sha256_raw": "d290fffdcc2eeee9e638ca181e6da34f67912431e1b746487638d33b2d814275"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionGrandUnified.lean",
+      "bytes": 28569,
+      "sha256_raw": "10b1c298cdd17f809e5ae4d72790046536429697ed026a710aeb5ec5c70d9f2d"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionKarlssonVolume.lean",
+      "bytes": 48637,
+      "sha256_raw": "d489d7535ca50b761ef5d085848b1f49fb2b4bc6eece34af5baca8336b005d0c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionPilot.lean",
+      "bytes": 7239,
+      "sha256_raw": "1b7bd69ac9e18685241a17ac86d5fd2502a1fc13f393c1968924d2c20052ff63"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionScaled.lean",
+      "bytes": 21940,
+      "sha256_raw": "19dab5633ff5ac1f8078b096ddb1a353b4ea398ac35d2e46bc3e3a484e5d8e3c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionSzollosiDeltoid.lean",
+      "bytes": 25815,
+      "sha256_raw": "ff7fbc6622978d07c47e80d56e8533f7fe81569c758dd7cff7bb776e1d4228ae"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionTaoConfluence.lean",
+      "bytes": 1139,
+      "sha256_raw": "35f06b0bd64a3def0c73dcbc6ac0c32bc4cd4a31e601d2e86b91667148fd28ad"
+    },
+    {
+      "path": "lean4/research_programs/mub6/KernelReflectionTaoHaagerup.lean",
+      "bytes": 41003,
+      "sha256_raw": "45f69e2cb22b70ca6c1bf6931057a3da8cb435ddbadf0e770fda1853c8e90da4"
+    },
+    {
+      "path": "lean4/research_programs/mub6/L1CellBisectionBridge.lean",
+      "bytes": 12227,
+      "sha256_raw": "d8b5d5d4a616117eb8c60bd353fedfa262d327a8e6c0978fef1627c18c9734bf"
+    },
+    {
+      "path": "lean4/research_programs/mub6/LipschitzGapPropagation.lean",
+      "bytes": 6291,
+      "sha256_raw": "ab9135cd9ad45e7b744c1af3cb242936925a9509f926b768cabd52fac79edefb"
+    },
+    {
+      "path": "lean4/research_programs/mub6/LiteralCuspCertificate.lean",
+      "bytes": 152095,
+      "sha256_raw": "b3194845f8cf9ea9c3da5aceb60ab76923002fc4c89004d605d238580bd6251b"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MUB.lean",
+      "bytes": 1461,
+      "sha256_raw": "5083559ca5c2bcb00084773aff671d0461cbbbf6e723c44460ae6124d6f10ce4"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MasterClassification.lean",
+      "bytes": 64097,
+      "sha256_raw": "6bfeb6beb1227f796abd3401de0ce6b7340f43decd0288262a79f57b2fdf615d"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ModuliReduction.lean",
+      "bytes": 14720,
+      "sha256_raw": "00c48c1346ad8892bfff5e122fba99a15be874b0c1a0adc752c9f38bfae58d68"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MomentPositivityObligation.lean",
+      "bytes": 38144,
+      "sha256_raw": "8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947"
+    },
+    {
+      "path": "lean4/research_programs/mub6/Mub6.lean",
+      "bytes": 4481,
+      "sha256_raw": "25030c8b8a00df11dbcdad0b000a0e8921c2192b39f7a4d51de7de6610add9d3"
+    },
+    {
+      "path": "lean4/research_programs/mub6/Mub6L1SnTower.lean",
+      "bytes": 2696,
+      "sha256_raw": "1d9d2e2cb0a82104ef02b8bbe000adb8dcacdf4a650d6d8da81996e2a8be5e55"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MultiChartTransitionCocycle.lean",
+      "bytes": 6784,
+      "sha256_raw": "6c69a8d56b3a0ee4ac66d3e7eed34ff613d172cde5610a8d244d2c003e210a19"
+    },
+    {
+      "path": "lean4/research_programs/mub6/NormalizedTriplesChart.lean",
+      "bytes": 9128,
+      "sha256_raw": "7311387610dda1349db217b46f7701f2b6d74fa7c572588b4489082c69c42390"
+    },
+    {
+      "path": "lean4/research_programs/mub6/PolynomialEncoding.lean",
+      "bytes": 11417,
+      "sha256_raw": "1bea38ba48f10a02ea5a31741731a221b75970899d8e860ca38d61f3289e211f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/QuadIncompatibility.lean",
+      "bytes": 3539,
+      "sha256_raw": "6cbd956f32a61eeafc886e5c2c1712e251b5eeb865dbfe61c8b388a37b3b8fb0"
+    },
+    {
+      "path": "lean4/research_programs/mub6/QuadraticGaussReduction.lean",
+      "bytes": 7007,
+      "sha256_raw": "d42a857965af91fbe7f468048f85527b3d25ccd2d848500659c01dbdcb2b52bd"
+    },
+    {
+      "path": "lean4/research_programs/mub6/RectangularQuadraticExclusion.lean",
+      "bytes": 14767,
+      "sha256_raw": "e7723f9114caacc35e8ada60c9b8295edf87c094b86ec83612c4916d4a98fccf"
+    },
+    {
+      "path": "lean4/research_programs/mub6/RouteCFourierLandingBypass.lean",
+      "bytes": 11378,
+      "sha256_raw": "0e135da99404a8465fc9843678d23779ecaf174159a37894ed40a462156d76d8"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ScopeFirebreak.lean",
+      "bytes": 58885,
+      "sha256_raw": "6dd8db2c2b954eb96836c378e95b1c21f81e2667e93b3df73cc03cc4eefa8dac"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SharedKernelAdditiveCharacter.lean",
+      "bytes": 1628,
+      "sha256_raw": "95266be1e0e30182ad9eedf5329f341748918f969a89c351b7654227a540ac17"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SparseLanding.lean",
+      "bytes": 4682,
+      "sha256_raw": "7edd946643a29a1bfb641f1a038c2846d9c888cf2507310060317fb16424b404"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SparseLandingGeneral.lean",
+      "bytes": 4124,
+      "sha256_raw": "17c3a08aaec22a64cfd27a94269e2d130a0948142137f88da08db1be5e02aab5"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SparseRectangularExclusion.lean",
+      "bytes": 6876,
+      "sha256_raw": "a0696caff8b12f82cdf462faec9912ab7caec6ce66bb07e069c2dc20167c7cd7"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiColumnGauge.lean",
+      "bytes": 12179,
+      "sha256_raw": "40d2a7a43eb4a6af119eacd842f05ee293e6a9f179260a526f8db5dd320933de"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiDeltoid.lean",
+      "bytes": 72013,
+      "sha256_raw": "9f11854c236a200fac54ab981ed2e4a1feb7e4623ebfd67c54b696908ddc8017"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiExecutableSystem.lean",
+      "bytes": 17655,
+      "sha256_raw": "cf5d8e31689fec9872623cc796010df59c082a34a1ce67ea619fc0d1d5ba8288"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiGaugeBalance.lean",
+      "bytes": 5804,
+      "sha256_raw": "fb2b8eeda0f65497bb3320b0b221011ec333310c46ef654f0f68c9058ad5548b"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiGaugedCover.lean",
+      "bytes": 3527,
+      "sha256_raw": "aeaa4546c8e28788a173348e6e79d0d366d5f1c097e85298f933ba5edb29d354"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiGaugedExecutable.lean",
+      "bytes": 7207,
+      "sha256_raw": "d87b81d16a62d67d2ed92d8df796dbd2d0a77241b5328c36074ff303dd46a19e"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiGaugedReflection.lean",
+      "bytes": 19374,
+      "sha256_raw": "356eab2883d9d9494b06481f1ee41450a5f052a2bd157558657aca48da71c914"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiIntervalExclusion.lean",
+      "bytes": 6812,
+      "sha256_raw": "3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiNativeInterval.lean",
+      "bytes": 7023,
+      "sha256_raw": "e6cab169f6f543ecf3b80b1e90d85b1f43ee09fe8d383953d2a37a74e848ba6b"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiNativeReflection.lean",
+      "bytes": 143057,
+      "sha256_raw": "498061caf5fb238e3999c4d5c56943d6c9e1bfae931430e4674e8dca1f278029"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiQuadraticSystem.lean",
+      "bytes": 36115,
+      "sha256_raw": "1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiQuartetSystem.lean",
+      "bytes": 7083,
+      "sha256_raw": "6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularExclusion.lean",
+      "bytes": 4629,
+      "sha256_raw": "0709a45031ecb050772d9e52a57a7d6068b7f4aeea6fa712ad9374390c924173"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobian0.lean",
+      "bytes": 23353,
+      "sha256_raw": "a0667add65a1571f232615d93246566a40f13d01b4ee663ae5b20b60e8555853"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobian1.lean",
+      "bytes": 54652,
+      "sha256_raw": "a4480574228c2f15f3f12783c481e845484de973e7d1e98935705fb5ba5b2156"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobian2.lean",
+      "bytes": 47567,
+      "sha256_raw": "d5ae50493333debee4ddc7f0ab53d56187e024d5904f75ae52f9f453866cb28f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobian3.lean",
+      "bytes": 34826,
+      "sha256_raw": "22bc02e94761c19943701cbfe6d29d775c61f76759b8bd9cb4c7d1d316e3b824"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobian4.lean",
+      "bytes": 60142,
+      "sha256_raw": "dfb99bc3553dacf601be81d8f325493a6041393ae55d8e40f86e67194a45ee85"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobian5.lean",
+      "bytes": 60654,
+      "sha256_raw": "e938acceb15a19241473b37081a18e1b63582c60b355f5c53773f1ed1d544eee"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobian6.lean",
+      "bytes": 37106,
+      "sha256_raw": "9f75149dfaf9684925c7dbf7f3d44b3aef773590b9d123af06c02e4aa9a066a9"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobian7.lean",
+      "bytes": 16690,
+      "sha256_raw": "6c3468a91cfab83511b413005c18bf6b33a4efcf8922eb70e30df6fd95218d2f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularJacobianCore.lean",
+      "bytes": 2240,
+      "sha256_raw": "bf5c95ca1d3960cba576274be712ba6e6ac3a0913ed6e11ebb05d13fa752dc19"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiRectangularReflection.lean",
+      "bytes": 78023,
+      "sha256_raw": "9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiTermExpansion.lean",
+      "bytes": 8738,
+      "sha256_raw": "76cf64e6ab94a0b3dbea606caca8d25bd5d710e3dd2b6a4fc053e1e35910e43d"
+    },
+    {
+      "path": "lean4/research_programs/mub6/SzollosiTwoCirculant.lean",
+      "bytes": 17552,
+      "sha256_raw": "3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TaoConfluenceObstruction.lean",
+      "bytes": 5786,
+      "sha256_raw": "1a4d479e4d4a00449094e35c827e70bb66d6267d7e176eefb1acaadd7dddbfeb"
+    },
+    {
+      "path": "lean4/research_programs/mub6/Target3NormalizedTriples.lean",
+      "bytes": 8673,
+      "sha256_raw": "1845a7b5c65c54593373151630d83a179f08e23fdf4b286c794af9b258af3995"
+    },
+    {
+      "path": "lean4/research_programs/mub6/Target4GapPropagation.lean",
+      "bytes": 13120,
+      "sha256_raw": "cd3d8a0b5644649014da107fa0ecff38b4bddbf5899fc1a65a0273e5ecce4953"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA10GlobalCover.lean",
+      "bytes": 37217,
+      "sha256_raw": "9f650e381fb6b5c78e1ba0ce02cd378db819237132beea2fe9352c8998d00b8c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA11OrbitExhaustiveness.lean",
+      "bytes": 28224,
+      "sha256_raw": "923ea1a83855969df50c727e88dc07463621aae4afbf9455e4f0b6356fe9666f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA12SmaleSentry.lean",
+      "bytes": 28077,
+      "sha256_raw": "18c408e048afc6f38bc52d9c93ea7b76f2fdc05f214d9b95adc8ad3d46e0fe5a"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA13GrandSynthesis.lean",
+      "bytes": 22706,
+      "sha256_raw": "08392c162338ccc5a15f3f9589eda418141bd02ff2f7daf840fca7b28d6a9428"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA1CollarCover.lean",
+      "bytes": 16224,
+      "sha256_raw": "1d0d0c32415d7a8529230f477f054a0234deef64c2ddcbe70ae7f116154e8fa5"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA2DeltoidCusp.lean",
+      "bytes": 18729,
+      "sha256_raw": "268dff212af38f7d478ced8da4dddea1dcafd78dde882e0cf174654879f65312"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA4Gramian.lean",
+      "bytes": 18310,
+      "sha256_raw": "44e2cda37f382c60970a954866216a19a7528f962fc50f3473f2b77a775a9da7"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA5FiniteCover.lean",
+      "bytes": 19433,
+      "sha256_raw": "12ee8de92b0281155b338300aed847a18c238d252c7a1768464b002791cdac3c"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA6TaoConfluence.lean",
+      "bytes": 19620,
+      "sha256_raw": "1abab0037aed321cf822559a7e18aa6dbfa46433804d339f424358ec1c0a9bdb"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA7ZeroRelVariety.lean",
+      "bytes": 10393,
+      "sha256_raw": "0c3408195ed84a0a1f4f85c40dde2352999ad3407784d8cb871d62617c24c16f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA8CollarBoundary.lean",
+      "bytes": 22904,
+      "sha256_raw": "6cdf50becaf8128d94a85e5d11a78b5da2e3988d94b3ea0108d5641e2b69db8a"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetA9Haagerup.lean",
+      "bytes": 32600,
+      "sha256_raw": "75fcb0463dea665672094df85542a783001022702e9d410476e48f3a423174f1"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetB1ContinuousChaining.lean",
+      "bytes": 38299,
+      "sha256_raw": "98eb1deb7628089241d506ac869ca1a74dc7b6ced54740e4a6323774706bdf72"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetB2GlobalGluing.lean",
+      "bytes": 42930,
+      "sha256_raw": "b50e24f77938bbef1605e295b2b3004758de96d7715cc03a2bd4d114c2ca4d10"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetB3ManifoldIntegration.lean",
+      "bytes": 22367,
+      "sha256_raw": "1a1cd3b0746cca8576a3fb673f3df3d45e8edc404b26c3e5172972c0503bbcd4"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetG1OrbitExhaustiveness.lean",
+      "bytes": 30500,
+      "sha256_raw": "e9d19cd503018a5e0c287e9f6e331b4af9829ba79a815e49aff8b9bada802f72"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TargetQArchimedeanPositivstellensatz.lean",
+      "bytes": 16056,
+      "sha256_raw": "3dad17a9032ebb30ef0a542a11e3236da5a164aa509cbed6589979797ab7d102"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TotalUnimodularity.lean",
+      "bytes": 3160,
+      "sha256_raw": "3281f16a0456e063573893e2192873c9f872e4f8d58bc743f1b7f84c9a7739b9"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TripleExtensionAssembly.lean",
+      "bytes": 10057,
+      "sha256_raw": "9c04254453864df852c73373b2cb8ee85611ef2f47538e1cf8b07b12a4122e18"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TripleGaugeReduction.lean",
+      "bytes": 8355,
+      "sha256_raw": "83329598d698ea8c4526b1e5a55b82e1e27716ce53e188064238825923554a12"
+    },
+    {
+      "path": "lean4/research_programs/mub6/TripleHadamardDephase.lean",
+      "bytes": 7341,
+      "sha256_raw": "d9df7a7a4baa5e580e4eb6a974f2a22e4f93887b3809750a14e787fa040de0f0"
+    },
+    {
+      "path": "lean4/research_programs/mub6/UnitaryInvariance.lean",
+      "bytes": 13751,
+      "sha256_raw": "ea5fc8d97025b20cdd98cb4da972e3dca6bdacc3150cd7e136842486d97658b8"
+    },
+    {
+      "path": "lean4/research_programs/mub6/WallTransport.lean",
+      "bytes": 14235,
+      "sha256_raw": "5d3a0e96da3b8cad79894ae080bb6209defea41c204cdc744eb47c26cee163f5"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ZeroRelInvariance.lean",
+      "bytes": 19745,
+      "sha256_raw": "acf6e98e267759f58e21a58121eddcc4f84d0b31540827c748d2af6ed6a15094"
+    },
+    {
+      "path": "lean4/research_programs/mub6/ZeroRelVariety.lean",
+      "bytes": 27274,
+      "sha256_raw": "0d938a461eaf602ae1b166b55e369d5f4e94722376ea4d6eb8a9226695174ad8"
+    },
+    {
+      "path": "lean4/research_programs/mub6/lake-manifest.json",
+      "bytes": 3172,
+      "sha256_raw": "197ffe29d0350c69da85e97b6517d9642fad412fc2470b77ed9eef688792f9a3"
+    },
+    {
+      "path": "lean4/research_programs/mub6/lakefile.toml",
+      "bytes": 4457,
+      "sha256_raw": "7286852961f9d5b2b2106070067e3cb67e897c45a16a5f55bd87c95e43d944d8"
+    },
+    {
+      "path": "lean4/research_programs/mub6/lean-toolchain",
+      "bytes": 25,
+      "sha256_raw": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+    },
+    {
+      "path": "omega_engine/crates_rs/Cargo.lock",
+      "bytes": 70919,
+      "sha256_raw": "fb31f07268b045b8123848bea218a5782286d16b6804c31cac4e13dba84e4cac"
+    },
+    {
+      "path": "omega_engine/crates_rs/Cargo.toml",
+      "bytes": 1594,
+      "sha256_raw": "a6cf0d018ed9b3f875494b3a21d5508707f5a518b2b1b17fc4b20a83af0742ce"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_mub/src/bin/mub6_smale_sentry.rs",
+      "bytes": 4156,
+      "sha256_raw": "0d1727c2262d4751f880ba4555c07afab40953ccbe47d2a98d4449d7df06c6e2"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_mub/src/omega_native/mod.rs",
+      "bytes": 3428,
+      "sha256_raw": "4f45bb9c7b9a044f84bfdaa52ba43c2540775257118e34d8f03363edb63372da"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_mub/src/omega_native/mub6_cover.rs",
+      "bytes": 17877,
+      "sha256_raw": "9c6fe5ad75f332ce3966d848e1aa218b0d7316cb195a62fc2c989ec150010c3a"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_mub/src/omega_native/mub6_szollosi_executable.rs",
+      "bytes": 49886,
+      "sha256_raw": "80654e81f5ef6bbaf5ece1dc278ca7a42bd4d57726bdbd774b7a8e9f229dc712"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_balance_exclusion_receipt.json",
+      "bytes": 970432,
+      "sha256_raw": "2fc7836d2661bb697144cec194b994d8c5f5ff829678cbdcf240c38103c4ea66"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_balance_exclusion_request.json",
+      "bytes": 30543,
+      "sha256_raw": "052e9312ebd75eaa38defc4f11912784d63b8d5f31265082859852e43349d3b8"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_column_gauge_box.json",
+      "bytes": 14509,
+      "sha256_raw": "fb8f6f71bc17a7f1006d2dadd8382e433e3117d242b2fb1611ff3df4affc8279"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_executable_system.json",
+      "bytes": 731970,
+      "sha256_raw": "1367d390da36e5ccf65abbc8fbf529ff07f9e154c277bb14c1cd8c36ba24c947"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_gauged_executable_system.json",
+      "bytes": 747753,
+      "sha256_raw": "7646b0f134b6573805c8f4c8051cbd252422fe93a0a865737aa0afbe8332d5c7"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_gauged_lean_coefficients.json",
+      "bytes": 224557,
+      "sha256_raw": "f9fffc4d7664fc3a31fe9eee6ee0032a08271ed41184b08310ede5b21411ad44"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_gauged_native_inspection.json",
+      "bytes": 697788,
+      "sha256_raw": "bbd5513313a63d73e3410be0ef14c45a3b96198d7eb0a81272d442a275dc5bce"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_gauged_root_receipt.json",
+      "bytes": 971632,
+      "sha256_raw": "9eb8596b1122df8f389c3b8d48e54e2fa3dd142311e4d7cf1ea3a0c92c5040b8"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_lean_coefficients.json",
+      "bytes": 216553,
+      "sha256_raw": "44656965bb72e735febfc69c1bcd599adbeea2e8512ebd6141025f8524e5d2df"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_native_replay_receipt.json",
+      "bytes": 672840,
+      "sha256_raw": "17b31a7eec56d0129b0b4b8a837f55d71b37ee0be0d0a91ad6fbb106949633dc"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_rectangular_native_receipt.json",
+      "bytes": 949441,
+      "sha256_raw": "eccd3b1c075d0058cf729e2aa0af5e210860da93d2178ea09a9d5cfb3b820a76"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/mub_szollosi_rectangular_request.json",
+      "bytes": 28993,
+      "sha256_raw": "d44dfd0b14fb610ba354ba2bedbea03c56df5f5d18d141cd58a4bd52c27a76af"
+    },
+    {
+      "path": "omega_engine_projects/mub6/mub6_paper_update_and_frontier_synthesis_plan.md",
+      "bytes": 17092,
+      "sha256_raw": "37ad6c4d14a07b42eafea1fc291e42178ce19909423640aa028656a4c1507689"
+    },
+    {
+      "path": "omega_engine_projects/mub6/papers/mub6_change_log.md",
+      "bytes": 31695,
+      "sha256_raw": "dc9767feb5f268e5a1d6ef076f0da8f3c4be841d3930b1525f104600c71df61f"
+    },
+    {
+      "path": "omega_engine_projects/mub6/papers/mub6_claim_ledger.md",
+      "bytes": 22695,
+      "sha256_raw": "c08de60c12d76b8b6502507501402a67ae3f01e051b6fea57c54e38cb041d939"
+    },
+    {
+      "path": "omega_engine_projects/mub6/papers/mub6_executive_checkpoint.md",
+      "bytes": 33485,
+      "sha256_raw": "a40afc5b60e046e4503dea877142e7512015e5818d5f0f9791f86d089c3f0942"
+    },
+    {
+      "path": "omega_engine_projects/mub6/papers/mub6_paper_update_and_frontier_synthesis_plan.md",
+      "bytes": 17092,
+      "sha256_raw": "37ad6c4d14a07b42eafea1fc291e42178ce19909423640aa028656a4c1507689"
+    },
+    {
+      "path": "omega_engine_projects/mub6/papers/paper.md",
+      "bytes": 34626,
+      "sha256_raw": "3aa47b4d951ea304fb5ce031693a747f3780516c409c9c7f5adee27175388a29"
+    },
+    {
+      "path": "omega_engine_projects/mub6/research/mub6_gap_registry.json",
+      "bytes": 17214,
+      "sha256_raw": "0322b58f3409f11e668c1e9b5d128740e5285ebc3befc14c2605350cf95d534a"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/audit_mub6_axioms.lean",
+      "bytes": 2535,
+      "sha256_raw": "47de08ac07ca5e40d211596857ade0629a3e115c91050174451762405b69b4e2"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/build_zenodo_release.py",
+      "bytes": 17058,
+      "sha256_raw": "59847a617e064f6a9eb2a2b0a800e707e809bb81d5e006f9e98199938d6bbf13"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/check_manuscript_math.mjs",
+      "bytes": 2949,
+      "sha256_raw": "1c9d2c637fccf8c21439eae5dace70731f2ec1a29828210e25b75e6f78f81c2c"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/export_szollosi_coefficients.lean",
+      "bytes": 245,
+      "sha256_raw": "c80aa474e6a7a21db81cf3bc8178fd5efc5857f076f221c6cfda285e78f22f24"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/export_szollosi_system.lean",
+      "bytes": 426,
+      "sha256_raw": "6eba07eb13167508543b96f0dc0e2407fb6554ba6c0b053086c432b27052e056"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/reflect_szollosi_gauged.py",
+      "bytes": 15227,
+      "sha256_raw": "8f5b84d946605ac378151510577aaace155d22975447e02c1c89475bfe24556f"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/reflect_szollosi_native.py",
+      "bytes": 13625,
+      "sha256_raw": "837fa0137b029535e2cc6f59734dadf48f8a970f261e49bf80ea8f46cf116f40"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/reflect_szollosi_rectangular.py",
+      "bytes": 18104,
+      "sha256_raw": "53cbf7da15e3768071565c64030e7fcbd8f9ccdc5646f4920d977a76aa18d346"
+    },
+    {
+      "path": "omega_engine_projects/mub6/tests/test_gauged_reflection_wire.py",
+      "bytes": 5305,
+      "sha256_raw": "3d8e893654792be6a10d35e4f970d6e5f215c99274e5aa84d600deada0d91d4d"
+    },
+    {
+      "path": "omega_engine_projects/mub6/tests/test_option_b_premises.py",
+      "bytes": 1701,
+      "sha256_raw": "0cb30f15cb8c7638739c1d4a1f843cb06c66fa49fcef4e09bb3c4b9fbb5cf638"
+    },
+    {
+      "path": "omega_engine_projects/mub6/tests/test_rectangular_reflection_wire.py",
+      "bytes": 3998,
+      "sha256_raw": "a6dad513319214362f58dfeb2c0715de6eae5423c545b289029524b86fad5c49"
+    },
+    {
+      "path": "omega_engine_projects/mub6/tests/test_zenodo_release_archive.py",
+      "bytes": 6658,
+      "sha256_raw": "56a1ddebbc4d7eea3743559b0875ff9ad140f522a7888eae9e7d8232ed7c3f44"
+    },
+    {
+      "path": "omega_engine_projects/mub6/zenodo/mub6_formal_archive_v1.0.tar.gz",
+      "bytes": 2132303,
+      "sha256_raw": "69c85da557191af915b4cd2298e109adad9f1fd46ed63eb3b807deb718f87c85"
+    },
+    {
+      "path": "omega_engine_projects/mub6/zenodo/release_checklist.md",
+      "bytes": 1607,
+      "sha256_raw": "c2ed0c477b7160bbaa2d82e8e44b6321fd69bd5edf117ba203f533e4889cc2b4"
+    },
+    {
+      "path": "omega_engine_projects/mub6/zenodo/release_manifest.json",
+      "bytes": 1451,
+      "sha256_raw": "57acc7634cbf43510fe17a4b68bf66d4a7ee7a218ae1d2705858a0184501a050"
+    },
+    {
+      "path": "omega_engine_projects/mub6/zenodo/release_manifest.sha256",
+      "bytes": 75596,
+      "sha256_raw": "61f3c6adb020e562f4e035e01e955d2e2707a19338569b672af79b6239000bba"
+    }
+  ]
+}

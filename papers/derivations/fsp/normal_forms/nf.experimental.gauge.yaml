@@ -1,0 +1,76 @@
+schema_version: smplx.nf.contract.v0
+schema_ref: ./normal_form_contract_schema.yaml
+contract_kind: normal_form_contract
+identity:
+  id: nf.experimental.gauge
+  name: nf.experimental.gauge
+  short_name: GAUGE
+  version: v1
+  theory_status: experimental
+  contract_status: draft
+  verification_status: absent
+  family: experimental
+classification:
+  hierarchy_level: normal_form
+  subject_kind:
+  - relvar
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: uncontracted domain state
+  preserves_invariant: declared relational consistency
+  protected_skeleton:
+  - heading
+  - candidate_keys
+  erased_structure: []
+  non_claims:
+  - does not make quantum market legal or physical domain claims part of the core taxonomy
+  - does not promote experimental data regimes to normal forms
+declarations_required:
+- heading
+- relation_predicate
+evidence_required: []
+validation_criteria:
+- relation satisfies declared contract predicates
+proof_obligations:
+- status: Experimental conjecture
+  item: identify finite verifier obligations for each higher data regime
+terminal_routes:
+- Preserve
+- Lift
+- Escalate
+- Unsupported
+- ClosureFailure
+- BudgetUnknown
+- Quarantine
+- Refuse
+terminal_route_map:
+  Preserve: Preserve
+  Lift: Lift
+  Escalate: Escalate
+  Unsupported: Unsupported
+  ClosureFailure: ClosureFailure
+  BudgetUnknown: Escalate
+  Quarantine: Quarantine
+  Refuse: Refuse
+certification:
+  certificate_required: false
+  certificate_kind: null
+  obstruction_class_required: false
+  loss_ledger_required: false
+  verifier_required: false
+  loss_ledger_trigger_id: null
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: contract predicates violated
+  diagnosis: uncontracted domain state
+  terminal: Refuse
+examples:
+- book/06_gauge_and_higher_data_regimes.md
+normalization:
+  kind: operational_contract
+  claim_scope: Operational evidence contract; no canonical representative, idempotence, or equivalence
+    completeness is established by its route predicates.
+  evidence: ../docs/normal_form_audit.md

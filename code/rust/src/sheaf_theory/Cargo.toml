@@ -1,0 +1,43 @@
+[package]
+autotests = false
+name = "omega_sheaf_theory"
+version.workspace = true
+license.workspace = true
+edition = "2021"
+description = "Sheaf theory, Alexandrov poset topology, Čech cohomology, Grothendieck sites, and stacks (AuthorityEffect None)"
+
+[dependencies]
+omega_homology = { path = "../omega_homology" }
+omega_category_theory = { path = "../omega_category_theory" }
+linear_algebra = { path = "../omega_linear_algebra" }
+omega_solvers = { path = "../omega_solvers" }
+omega_functional = { path = "../omega_functional" }
+num-bigint = "0.4"
+num-rational = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2"
+sha2 = "0.10"
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/omega_sheaf_theory`.
+
+[[test]]
+name = "finite_report_gluing"
+path = "../tests/omega_sheaf_theory/finite_report_gluing.rs"
+
+[[test]]
+name = "review_regressions"
+path = "../tests/omega_sheaf_theory/review_regressions.rs"
+
+[[test]]
+name = "test_sheaf_governance_contracts"
+path = "../tests/omega_sheaf_theory/test_sheaf_governance_contracts.rs"
+
+[[test]]
+name = "empirical_presheaf"
+path = "../tests/omega_sheaf_theory/empirical_presheaf.rs"
+
+[[test]]
+name = "epistemic_observer"
+path = "../tests/omega_sheaf_theory/epistemic_observer.rs"
