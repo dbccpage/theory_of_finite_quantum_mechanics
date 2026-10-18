@@ -1,33 +1,135 @@
-"""Coboundary obstruction of a rational 0-cochain on a triangle.
+"""Triangle coboundary holonomy of a rational 0-cochain.
 
-Edge values are differences of vertex values. The face evaluation
-e01 - e02 + e12 is computed from those edges and must vanish.
+Origin: lean4/CoboundaryHolonomy.lean theorem coboundary_triangle_holonomy_zero
+(path_holonomy (coboundary φ) (triangle_cycle a b c) = 0) and def coboundary
+((δφ)(u, v) = φ v - φ u).
+Claim: urn:omega:fqm:obstruction:triangle-coboundary:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_obstruction_calc.py.
+Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 5; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 5.
+Scope Fence: face_obstruction returns the sum of successive differences around
+a length-3 rational triple after that cycle sum agrees with the reading
+(v1 - v0) - (v2 - v0) + (v2 - v1). certified_obstruction checks (0, 1/2, 3/5)
+and requires 0. The cited theorem is integer holonomy of a coboundary on
+triangle_cycle. This file uses Python Fraction, does not prove that theorem,
+and does not claim square holonomy or that a nonzero cochain is not a
+coboundary.
 """
+
+from __future__ import annotations
+
 from fractions import Fraction
+from typing import Mapping
+
+_FIXTURE: tuple[object, ...] = (Fraction(0), Fraction(1, 2), Fraction(3, 5))
+_ZERO = Fraction(0)
 
 
 class ObstructionError(Exception):
-    """The face obstruction of a coboundary was nonzero."""
+    """One violated triangle-coboundary invariant, with the measured parameters."""
+
+    def __init__(self, invariant: str, parameters: Mapping[str, object] | None = None) -> None:
+        self.invariant = invariant
+        self.parameters = {} if parameters is None else dict(parameters)
+        rendered = ", ".join(f"{key}={value}" for key, value in self.parameters.items())
+        message = invariant if rendered == "" else f"{invariant} ({rendered})"
+        super().__init__(message)
 
 
-def face_obstruction() -> Fraction:
-    """Return e01 - e02 + e12 for the coboundary of (0, 1/2, 3/5)."""
-    vertices = (Fraction(0), Fraction(1, 2), Fraction(3, 5))
-    edge_01 = vertices[1] - vertices[0]
-    edge_02 = vertices[2] - vertices[0]
-    edge_12 = vertices[2] - vertices[1]
-    signed = ((1, edge_01, 0, 1), (-1, edge_02, 0, 2), (1, edge_12, 1, 2))
-    from_edges = sum((sign * value for sign, value, _start, _end in signed), Fraction(0))
-    coefficient = [Fraction(0), Fraction(0), Fraction(0)]
-    for sign, _value, start, end in signed:
-        coefficient[end] += sign
-        coefficient[start] -= sign
-    from_vertices = sum(
-        (coefficient[index] * vertices[index] for index in range(3)),
-        Fraction(0),
-    )
-    if from_edges != from_vertices:
-        raise ObstructionError(f"edge reading {from_edges} differs from {from_vertices}")
-    if from_edges != 0:
-        raise ObstructionError(f"face obstruction is {from_edges}")
-    return from_edges
+def _fail(invariant: str, **parameters: object) -> ObstructionError:
+    return ObstructionError(invariant, parameters)
+
+
+def _default(vertices: object | None) -> object:
+    if vertices is None:
+        return _FIXTURE
+    return vertices
+
+
+def _require_tuple(vertices: object) -> tuple[object, ...]:
+    if isinstance(vertices, (str, bytes)) or not isinstance(vertices, tuple):
+        raise _fail("triangle vertices are not a tuple", received=type(vertices).__name__)
+    return tuple(vertices)
+
+
+def _require_three(vertices: tuple[object, ...]) -> tuple[object, ...]:
+    if len(vertices) != 3:
+        raise _fail("triangle vertices are not three", length=len(vertices))
+    return vertices
+
+
+def _require_value(value: object, index: int) -> Fraction:
+    if isinstance(value, float):
+        raise _fail("float refused at the vertex boundary", index=index, received="float")
+    if type(value) is bool:
+        raise _fail("boolean refused where a rational vertex was required", index=index)
+    if isinstance(value, Fraction):
+        vertex = value
+    elif type(value) is int:
+        vertex = Fraction(value)
+    else:
+        raise _fail(
+            "triangle vertex is not an exact rational",
+            index=index,
+            received=type(value).__name__,
+        )
+    return vertex
+
+
+def _collect(vertices: tuple[object, ...]) -> tuple[Fraction, ...]:
+    collected: list[Fraction] = []
+    for index, value in enumerate(vertices):
+        collected.append(_require_value(value, index))
+    return tuple(collected)
+
+
+def _edge(start: Fraction, end: Fraction) -> Fraction:
+    return end - start
+
+
+def _cycle(vertices: tuple[Fraction, ...]) -> Fraction:
+    first = _edge(vertices[0], vertices[1])
+    second = _edge(vertices[1], vertices[2])
+    third = _edge(vertices[2], vertices[0])
+    return first + second + third
+
+
+def _signed(vertices: tuple[Fraction, ...]) -> Fraction:
+    left = vertices[1] - vertices[0]
+    middle = vertices[2] - vertices[0]
+    right = vertices[2] - vertices[1]
+    return left - middle + right
+
+
+def face_obstruction(vertices: object | None = None) -> Fraction:
+    """Return the triangle coboundary holonomy of a rational triple."""
+    checked = _collect(_require_three(_require_tuple(_default(vertices))))
+    cycle = _cycle(checked)
+    signed = _signed(checked)
+    if cycle != signed:
+        raise _fail(
+            "edge reading differs from the signed face",
+            cycle=str(cycle),
+            signed=str(signed),
+        )
+    return cycle
+
+
+def certified_obstruction() -> Fraction:
+    """Holonomy of (0, 1/2, 3/5). It must be 0."""
+    value = face_obstruction()
+    if value != _ZERO:
+        raise _fail("certified triangle holonomy is not zero", holonomy=str(value))
+    return value
+
+
+def main() -> int:
+    value = certified_obstruction()
+    print(value)
+    if value == _ZERO:
+        return 0
+    return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
