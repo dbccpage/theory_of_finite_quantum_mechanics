@@ -75,3 +75,33 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` (`FINITE_QM_CORE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_CORE-FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1120, -2240, 1680]`, `chord_potential = 1680`, `holonomy_gamma2 = 2240`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY): 4*idx(112) + 3*stage_rank(7) + route_degree(3) == 472` ($\text{value} = 472$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY): R_raw(259) - G_cob(126) - S_decoy(7) == 126 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 126$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 62c4999f1004a22da10c55f9c3f7047137d1e7d034ebf2f0587324f13d1e2928`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION` (`FINITE_QM_STRUCTURE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_STRUCTURE-DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1570, -3140, 2355]`, `chord_potential = 2355`, `holonomy_gamma2 = 3140`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION): 4*idx(157) + 3*stage_rank(8) + route_degree(2) == 654` ($\text{value} = 654$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION): R_raw(354) - G_cob(173) - S_decoy(8) == 173 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 173$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `4` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = d812cb0121a5a508f59d368314f4eb02e86e22bcbf711fb101569a15ca81df55`

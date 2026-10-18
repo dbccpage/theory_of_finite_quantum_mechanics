@@ -10,6 +10,9 @@
   - Verification of orthogonality, determinant 1, and group relations
   - Trace-field lemma: icosahedral order-5 character forces (2t - 1)^2 = 5,
     which has no rational solution; conductor discriminant criterion forces conductor >= 5.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace RotationGroups

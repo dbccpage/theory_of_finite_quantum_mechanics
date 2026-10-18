@@ -12,6 +12,10 @@
   5. Exact Cayley isometry:
      The Cayley step matrix C(w) = [[1 - w^2, -2w], [2w, 1 - w^2]] satisfies C^T C = (1 + w^2)^2 * I_2,
      strictly preserving Euclidean state norms across discrete parameter values w = 0, 1, 2, -1, -2.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H029

@@ -18,6 +18,9 @@
   6. Eastin-Knill transversal limit via finite symplectic quotient closure: The transversal Clifford group
      extension of P_1 by Sp(2, F_2) is finite (|C_1 / U(1)| = 24), hence cannot be dense in SU(2),
      establishing the Eastin-Knill obstruction against transversal dense gate generation.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H046

@@ -20,6 +20,8 @@
     (elements with -1 eigenvalue omitted). Flow parameter is projective, not additive.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H019

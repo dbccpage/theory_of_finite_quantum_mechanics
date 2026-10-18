@@ -65,3 +65,48 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-CABELLO-NO-INTEGER-FRAME`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-CABELLO-NO-INTEGER-FRAME` (`FINITE_QM_CORE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_CORE-FQ-CABELLO-NO-INTEGER-FRAME`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1070, -2140, 1605]`, `chord_potential = 1605`, `holonomy_gamma2 = 2140`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-CABELLO-NO-INTEGER-FRAME): 4*idx(107) + 3*stage_rank(7) + route_degree(5) == 454` ($\text{value} = 454$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-CABELLO-NO-INTEGER-FRAME): R_raw(249) - G_cob(121) - S_decoy(7) == 121 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 121$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/H053EverettForkingTree.lean::cabello_parity_obstruction`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ee4503323cdc9ca06aa0d15cd5d4cc48c7a7b5cf08b95a7d7d32130d3df07b18`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-CONTEXTUALITY-CECH-F2`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-CONTEXTUALITY-CECH-F2` (`FINITE_QM_CORE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_CORE-FQ-CONTEXTUALITY-CECH-F2`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1170, -2340, 1755]`, `chord_potential = 1755`, `holonomy_gamma2 = 2340`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-CONTEXTUALITY-CECH-F2): 4*idx(117) + 3*stage_rank(7) + route_degree(3) == 492` ($\text{value} = 492$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-CONTEXTUALITY-CECH-F2): R_raw(269) - G_cob(131) - S_decoy(7) == 131 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 131$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DualWitness.lean::mermin_peres_parity_obstruction`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs::ParityAdmission`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4-flash` | `status = PASS` | `receipt_sha256 = 9e973ede4508f1fd972fd1c8487d914603442b24e597d5f73180734084d0f5d8`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-GAP-EXACT-DUALITY`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `GP-GAP-EXACT-DUALITY` (`FINITE_QM_STRUCTURE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_STRUCTURE-GP-GAP-EXACT-DUALITY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1310, -2620, 1965]`, `chord_potential = 1965`, `holonomy_gamma2 = 2620`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(GP-GAP-EXACT-DUALITY): 4*idx(131) + 3*stage_rank(8) + route_degree(3) == 551` ($\text{value} = 551$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(GP-GAP-EXACT-DUALITY): R_raw(302) - G_cob(147) - S_decoy(8) == 147 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 147$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.totalSatWeight3_le_two_mul_mass`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = c8a5318ce3d61fa11275d04af6f9ee53367c95da45b9a4f2d3a4fa696217cd93`

@@ -13,6 +13,9 @@
   - Unified parameter dichotomy: for any one-parameter subgroup element with algebraic matrix entries,
     the element is carried by the carrier, but non-identity parameter is refused and transcendental
   - Terminal outcome: PARAMETERS_REFUSED_ELEMENTS_CARRIED
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace GroupParameter

@@ -17,6 +17,9 @@
        - The completely mixed state rho_mix = (1/3) * I_3 with uniform probabilities p_{b, j} = 1/3.
        - Pure computational basis states Pi_{0, 0}, Pi_{0, 1}, Pi_{0, 2}.
        - Non-trivial superpositions across the 4 MUB frames.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H050

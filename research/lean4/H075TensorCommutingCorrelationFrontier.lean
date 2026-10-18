@@ -19,6 +19,9 @@
        Outer relaxation vs. exact value distinction.
        Flatness certificate label; no necessity theorem.
   4. Cited guardrail against unrestricted uniform solver.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H075

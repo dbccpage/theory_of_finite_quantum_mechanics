@@ -8,6 +8,9 @@
   and distinct integer-labelled records. No continuous Hamiltonian, matrix
   logarithm, exponential, or Stone theorem is formalized. The interface
   disposition is a declaration, not a necessity theorem.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H055

@@ -55,3 +55,18 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`
 - **Primary Source Paths**:
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` (`WDP` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-WDP-PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [680, -1360, 1020]`, `chord_potential = 1020`, `holonomy_gamma2 = 1360`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-WDP-GENESIS-BRIDGE-OBLIGATIONS): 4*idx(68) + 3*stage_rank(4) + route_degree(3) == 287` ($\text{value} = 287$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-WDP-GENESIS-BRIDGE-OBLIGATIONS): R_raw(156) - G_cob(76) - S_decoy(4) == 76 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 76$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl`
+- **Sovereign Rust Witness Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ea9f040c6770519a6075d0110842b42d3bbb1f5f9687d4bdde049a289ca0043b`

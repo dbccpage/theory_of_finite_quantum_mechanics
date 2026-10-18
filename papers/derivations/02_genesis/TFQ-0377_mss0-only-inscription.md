@@ -58,3 +58,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch01_genesis_of_difference.md`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-MSS0-ONLY-DIAMOND`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-MSS0-ONLY-DIAMOND` (`GENESIS` / `DEFINITION`)
+- **Mined Operad Family (`M2`)**: `OP-GENESIS-PG-MSS0-ONLY-DIAMOND`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [500, -1000, 750]`, `chord_potential = 750`, `holonomy_gamma2 = 1000`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-MSS0-ONLY-DIAMOND): 4*idx(50) + 3*stage_rank(2) + route_degree(3) == 209` ($\text{value} = 209$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-MSS0-ONLY-DIAMOND): R_raw(110) - G_cob(54) - S_decoy(2) == 54 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 54$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 215ec820cfbee32437f5d9eaed8b4f9197ae69f8fb52fa0a482356f72c1a39ce`

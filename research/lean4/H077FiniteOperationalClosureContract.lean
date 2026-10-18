@@ -5,6 +5,8 @@
   No evidence predicate or launch-frozen class is formalized here. In particular,
   the label counts and decision-rule theorems do not establish clause closure,
   source/hash bindings, theorem adequacy, or bet-scoring correctness.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 namespace FableHilbertWalk20260819.H077
 

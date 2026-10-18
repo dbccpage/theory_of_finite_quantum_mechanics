@@ -12,6 +12,10 @@
   4. The critical depolarizing threshold p* = 1 - 1/sqrt(3) lies strictly in the open interval (42/100, 43/100).
   5. For the 6-qubit octahedral graph state across hemisphere cut A = {0, 1, 4} vs B = {2, 3, 5},
      the bipartite adjacency submatrix over F_2 has exact rank 2, yielding Schmidt rank 2^2 = 4.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H031

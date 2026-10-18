@@ -5,6 +5,10 @@ AuthorityEffect: None.
 Self-contained Lean 4 core verification of Cycle 007 without external Mathlib dependencies.
 Proves that product behaviors have setting-independent marginals, operational independence
 holds, and the signaling witness demonstrates non-vacuity.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace NoSignallingCore

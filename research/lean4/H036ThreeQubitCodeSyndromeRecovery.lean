@@ -14,6 +14,10 @@
      single-qubit error events and stabilizer measurement syndrome outcomes.
   4. For each error E in {I, X1, X2, X3}, the recovery operator R(s) = E satisfies E^2 = I,
      establishing error correction recovery without continuous parameters.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H036

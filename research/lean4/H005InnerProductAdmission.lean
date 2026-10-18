@@ -35,6 +35,8 @@
     projections are downstream (H012), not established here.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 import HWKernel

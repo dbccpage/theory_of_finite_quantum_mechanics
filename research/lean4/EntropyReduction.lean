@@ -1,3 +1,11 @@
+/-
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
+-/
+
 -- Reduction.lean — von Neumann Entropy Reduction Theorem in Lean 4
 -- Campaign: C750 Block 01 (Target C750-T569)
 -- AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).

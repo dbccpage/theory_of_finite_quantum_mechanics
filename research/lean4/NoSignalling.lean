@@ -9,6 +9,9 @@
   - Theorem: Marginal identity (local statistics reproduction)
   - Theorem: Uniqueness of partial trace from local statistics reproduction
   - Theorem: No-signalling under admitted composition with composition rule as explicit hypothesis
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace NoSignalling

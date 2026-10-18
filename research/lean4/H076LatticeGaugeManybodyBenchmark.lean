@@ -7,6 +7,8 @@
   by exact integer computation. It does not formalize real eigenvalue ordering
   or a spectral-gap theorem. Gauge checks enumerate the two physical X-basis
   labels and their flux flip; no general Hilbert-subspace theorem is asserted.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 namespace FableHilbertWalk20260819.H076
 

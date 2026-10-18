@@ -13,6 +13,9 @@
 
   Cited external input (CITED_INPUT, Anchor B7 / Washington Thm 2.1):
   - Washington cyclotomic embedding condition: sqrt(2) in Q(zeta_n) iff 8 | n (imported as CITED_INPUT in C1000-T931; not proved as a cyclotomic field theorem in this module).
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace QuantumCorrelation

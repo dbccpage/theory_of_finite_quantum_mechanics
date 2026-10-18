@@ -1,0 +1,123 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:49:01.318751+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml",
+  "node_id": "FQ-CONTEXTUALITY-CECH-F2",
+  "stage": "FINITE_QM_CORE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_CORE-FQ-CONTEXTUALITY-CECH-F2",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4-flash",
+  "prompt_tokens": 1119,
+  "completion_tokens": 1038,
+  "elapsed_ms": 60000.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_117_fq-contextuality-c_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1063,
+      "completion_tokens": 606,
+      "cost_usd": 0.0001561464,
+      "generation_id": "gen-1792309667-V2O1RlSnNipQNtbkKRud",
+      "elapsed_ms": 14203.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1170,819,4914],\"p_star_chord_potential\":4914,\"p_star_holonomy_gamma2\":5499,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":492,\"countermodel_witness_int\":131,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"author",
+      "gate_status": "FAIL",
+      "gate_failures": [
+        "G2_P_STAR_MISMATCH:got=([1170, 819, 4914], 4914, 5499)"
+      ]
+    },
+    {
+      "attempt_id": "ab_withm3_117_fq-contextuality-c_a2",
+      "model": "deepseek/deepseek-v4-flash",
+      "state": "settled",
+      "prompt_tokens": 1119,
+      "completion_tokens": 1038,
+      "cost_usd": 3.7590624e-05,
+      "generation_id": "gen-1792309681-G9Wa0heylmLM1pu08ufK",
+      "elapsed_ms": 60000.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1170,-2340,1755],\"p_star_chord_potential\":1755,\"p_star_holonomy_gamma2\":2340,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":492,\"countermodel_witness_int\":131,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 131,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1037,
+      "completion_tokens": 918,
+      "elapsed_ms": 26140.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G2_P_STAR_MISMATCH:got=([1170, 819, 4914], 4914, 5499)"
+      ],
+      "emitted_countermodel_int": null,
+      "emitted_unconditional_promotion_refused": null,
+      "prompt_tokens": 1063,
+      "completion_tokens": 606,
+      "elapsed_ms": 14203.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1170,
+      -2340,
+      1755
+    ],
+    "p_star_chord_potential": 1755,
+    "p_star_holonomy_gamma2": 2340,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 492,
+    "countermodel_witness_int": 131,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "FQ-CONTEXTUALITY-CECH-F2",
+    "stage": "FINITE_QM_CORE",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_CORE-FQ-CONTEXTUALITY-CECH-F2",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DualWitness.lean::mermin_peres_parity_obstruction",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs::ParityAdmission",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-CONTEXTUALITY-CECH-F2",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0416,
+    "receipt_sha256": "9e973ede4508f1fd972fd1c8487d914603442b24e597d5f73180734084d0f5d8"
+  },
+  "updated_papers": [
+    "papers/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md"
+  ]
+}

@@ -69,3 +69,33 @@ In accordance with strict constructive principles:
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch01_genesis_of_difference.md`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-INERT-DIAMOND`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-INERT-DIAMOND` (`PREGENESIS` / `DEFINITION`)
+- **Mined Operad Family (`M2`)**: `OP-PREGENESIS-PG-INERT-DIAMOND`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [370, -740, 555]`, `chord_potential = 555`, `holonomy_gamma2 = 740`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-INERT-DIAMOND): 4*idx(37) + 3*stage_rank(1) + route_degree(3) == 154` ($\text{value} = 154$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-INERT-DIAMOND): R_raw(79) - G_cob(39) - S_decoy(1) == 39 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 39$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = e0c9784cc655825ca2c144b9fda4055a20bf16bdfab616cda6f84de22acf6b67`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-ROOT-DIFF-STRUCTURE`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-ROOT-DIFF-STRUCTURE` (`PREGENESIS` / `ADMITTED_PRIMITIVE`)
+- **Mined Operad Family (`M2`)**: `OP-PREGENESIS-PG-ROOT-DIFF-STRUCTURE`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [360, -720, 540]`, `chord_potential = 540`, `holonomy_gamma2 = 720`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-ROOT-DIFF-STRUCTURE): 4*idx(36) + 3*stage_rank(1) + route_degree(4) == 151` ($\text{value} = 151$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-ROOT-DIFF-STRUCTURE): R_raw(77) - G_cob(38) - S_decoy(1) == 38 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 38$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 99dcda861d27c22f53e0bc2d9bf8a58cc8ee851f5c84a144b3301fc634ca4eba`

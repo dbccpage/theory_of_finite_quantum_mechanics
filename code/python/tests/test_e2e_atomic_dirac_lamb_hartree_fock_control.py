@@ -146,7 +146,9 @@ def test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction(
 
 def test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity() -> None:
     paper_root = Path(__file__).resolve().parents[3]
-    lean_file = paper_root / "lean" / "FiniteQM.lean"
+    lean_file = paper_root / "lean4" / "FiniteQM.lean"
+    if not lean_file.exists():
+        lean_file = paper_root / "lean" / "FiniteQM.lean"
     if not lean_file.exists():
         lean_file = paper_root / "research" / "lean4" / "FiniteQM.lean"
     lean_text = lean_file.read_text(encoding="utf-8")

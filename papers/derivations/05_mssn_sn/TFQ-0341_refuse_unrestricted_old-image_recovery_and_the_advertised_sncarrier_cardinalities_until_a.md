@@ -65,3 +65,18 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`
 - **Primary Source Paths**:
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-SN-CARRIER`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-SN-CARRIER` (`MSSN_SN` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-MSSN_SN-PG-SN-CARRIER`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [610, -1220, 915]`, `chord_potential = 915`, `holonomy_gamma2 = 1220`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-SN-CARRIER): 4*idx(61) + 3*stage_rank(3) + route_degree(6) == 259` ($\text{value} = 259$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-SN-CARRIER): R_raw(137) - G_cob(67) - S_decoy(3) == 67 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 67$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = dc89fff93989b563b0dc95d828b34d4ca84ed5616da8430aaf08d82d9107cc58`

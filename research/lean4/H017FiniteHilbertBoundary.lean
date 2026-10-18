@@ -58,6 +58,7 @@
     threading through one object is open residue R0 (FRONTIER.md).
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import HWKernel

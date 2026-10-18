@@ -1,0 +1,42 @@
+{
+  "schema": "omega.pfp.finite_qm.m3_decoy_ablation_receipt.v1",
+  "authority_effect": "None",
+  "prompt_index": 68,
+  "node_id": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
+  "stage": "WDP",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-WDP-PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
+  "expected_finite_shadow_int": 287,
+  "expected_countermodel_int": 76,
+  "without_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "FAIL",
+    "all_gates_passed": false,
+    "failures": [
+      "G4_COUNTERMODEL_MISMATCH:got=80,exp=76"
+    ],
+    "emitted_countermodel_int": 80,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1116,
+    "completion_tokens": 979,
+    "elapsed_ms": 28313.0
+  },
+  "with_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "failures": [],
+    "emitted_countermodel_int": 76,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1138,
+    "completion_tokens": 781,
+    "elapsed_ms": 26141.0
+  },
+  "with_m3_final": {
+    "status": "PASS",
+    "all_gates_passed": true,
+    "attempts_used": 1,
+    "winning_model": "deepseek/deepseek-v4.1-flash",
+    "receipt_sha256": "ea9f040c6770519a6075d0110842b42d3bbb1f5f9687d4bdde049a289ca0043b"
+  }
+}

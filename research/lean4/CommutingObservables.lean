@@ -9,6 +9,7 @@
   - Proved Theorem C1: three-element V poset admits commuting assignment
   - Proved Theorem C2: four-element diamond admits commuting assignment
   - Proved Theorem: three-element antichain is obstructed by Pigeonhole Principle on 2 tensor factors
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import CausalOrder

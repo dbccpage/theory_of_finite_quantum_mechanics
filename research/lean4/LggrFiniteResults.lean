@@ -13,6 +13,10 @@
   Not proved here (still open): LP / non-contextual-fraction equivalences, Vorob'ev sufficiency
   for acyclic covers, delta_0 = 0 iff no-signalling, rational normalisation of weights.
   Weights are natural numbers (unnormalised counts).
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace LggrFiniteResults

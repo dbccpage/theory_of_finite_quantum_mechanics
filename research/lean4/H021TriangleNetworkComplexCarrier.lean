@@ -34,6 +34,7 @@
   Nonclaim boundary:
     No continuous circle S^1 or field C. No continuous U(1) gauge group.
     No infinite-dimensional Hilbert space.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H021

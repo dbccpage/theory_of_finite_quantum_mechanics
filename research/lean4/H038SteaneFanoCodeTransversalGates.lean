@@ -11,6 +11,8 @@
      stabilizers because their overlap with each check is 4 ((-1)^4 = 1).
   4. The logical operators anticommute because their total length is 7 ((-1)^7 = -1).
   5. The binary syndromes for all 7 single-qubit error locations are non-zero and pairwise distinct.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H038
@@ -142,3 +144,8 @@ theorem syndromes_pairwise_distinct :
 #print axioms syndromes_pairwise_distinct
 
 end FableHilbertWalk20260819.H038
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

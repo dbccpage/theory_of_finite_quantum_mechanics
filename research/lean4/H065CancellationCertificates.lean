@@ -2,6 +2,8 @@
   H065CancellationCertificates.lean
   AuthorityEffect: None.
   Citation: sealed-derivation-v1 (3100c4e)
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H065

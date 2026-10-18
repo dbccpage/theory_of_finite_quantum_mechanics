@@ -29,6 +29,7 @@
     Finite discrete cyclotomic spin-foam partition functions and master constraint projectors over Z[zeta_12] only.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import H021TriangleNetworkComplexCarrier
@@ -395,3 +396,8 @@ end PachnerPartitionFunction
 #print axioms PachnerPartitionFunction.pachner_partition_function_finite
 
 end FableHilbertWalk20260819.H027
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

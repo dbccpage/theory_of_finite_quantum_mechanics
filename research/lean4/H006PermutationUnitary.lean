@@ -57,6 +57,7 @@
     honest ceiling is a finite pre-Hilbert isometric automorphism.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import HWKernel

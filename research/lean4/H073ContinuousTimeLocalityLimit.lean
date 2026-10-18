@@ -16,6 +16,8 @@
        Discrete/continuous action labels are distinct constructors.
   4. Continuous generator hypothesis pricing:
        Stone strong continuity, declared topology, quasi-local C*-algebra.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H073

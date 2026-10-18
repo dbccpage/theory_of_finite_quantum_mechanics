@@ -1,0 +1,123 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:49:36.276767+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_DYNAMICS__FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY__PROVED_LEAN.yaml",
+  "node_id": "FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY",
+  "stage": "FINITE_QM_DYNAMICS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_DYNAMICS-FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4-flash",
+  "prompt_tokens": 1168,
+  "completion_tokens": 1074,
+  "elapsed_ms": 64578.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_123_fq-everett-rationa_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1129,
+      "completion_tokens": 628,
+      "cost_usd": 0.0001635912,
+      "generation_id": "gen-1792309693-W6QVX1YqiWpay5R8ZydE",
+      "elapsed_ms": 18594.0,
+      "raw_preview": " {\"p_star_tree_potentials\":[1230,-2460,1845],\"p_star_chord_potential\":1845,\"p_star_holonomy_gamma2\":2460,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":521,\"countermodel_witness_int\":141,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"aut",
+      "gate_status": "FAIL",
+      "gate_failures": [
+        "G6_TRI_LANGUAGE_ANCHOR_MISMATCH"
+      ]
+    },
+    {
+      "attempt_id": "ab_withm3_123_fq-everett-rationa_a2",
+      "model": "deepseek/deepseek-v4-flash",
+      "state": "settled",
+      "prompt_tokens": 1168,
+      "completion_tokens": 1074,
+      "cost_usd": 3.9010112e-05,
+      "generation_id": "gen-1792309711-VCYMAfX0CcGDFROy4I2l",
+      "elapsed_ms": 64578.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1230,-2460,1845],\"p_star_chord_potential\":1845,\"p_star_holonomy_gamma2\":2460,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":521,\"countermodel_witness_int\":141,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 141,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1113,
+      "completion_tokens": 873,
+      "elapsed_ms": 29250.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G6_TRI_LANGUAGE_ANCHOR_MISMATCH"
+      ],
+      "emitted_countermodel_int": null,
+      "emitted_unconditional_promotion_refused": null,
+      "prompt_tokens": 1129,
+      "completion_tokens": 628,
+      "elapsed_ms": 18594.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1230,
+      -2460,
+      1845
+    ],
+    "p_star_chord_potential": 1845,
+    "p_star_holonomy_gamma2": 2460,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 521,
+    "countermodel_witness_int": 141,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY",
+    "stage": "FINITE_QM_DYNAMICS",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_DYNAMICS-FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0409,
+    "receipt_sha256": "837688b6f190b4ab3311dc92d3aa75b5bf71102babb56f3259b2fd37dc3912e0"
+  },
+  "updated_papers": [
+    "papers/derivations/13_finite_qm_information/TFQ-0276_everettian_relative-state_contact.md"
+  ]
+}

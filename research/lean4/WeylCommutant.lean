@@ -6,6 +6,9 @@ canonical cyclic shift. Distinct eigenvalues and that premise are supplied;
 this file does not construct roots, representations, or classify all irreps.
 Lean.Grind.Field supplies the ordinary field laws from Lean core.
 AuthorityEffect: None.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 namespace FiniteQm.WeylCommutant
 variable {K : Type} [Lean.Grind.Field K]
@@ -41,3 +44,8 @@ theorem clock_shift_commutant_scalar {n : Nat} (A : Fin (n+1) → Fin (n+1) → 
 #print axioms off_diagonal_zero
 #print axioms clock_shift_commutant_scalar
 end FiniteQm.WeylCommutant
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

@@ -24,7 +24,12 @@
    cyclic clock shift, Pauli single-site identities behind the GHZ sign, the
    Mermin bound over all 64 deterministic assignments, the rational-Gaussian
    Page-Wootters step unitary, three applications of the Pythagorean
-   phase-damping channel, and the QWZ Chern-number parity table. -/
+   phase-damping channel, and the QWZ Chern-number parity table.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
+-/
 
 namespace FiniteQFTAndGravity
 

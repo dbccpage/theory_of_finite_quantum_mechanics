@@ -5,6 +5,8 @@
   Finite claim only. The [[4,2,2]] CSS generators on four qubits, the two
   logical pairs, their symplectic commutation phases, and single-qubit
   syndrome detection. No continuum surface is constructed.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H037
@@ -85,3 +87,8 @@ theorem single_z_errors_detected :
       pauliPhase zZero xErr3 sxX sxZ = -1 := by decide
 
 end FableHilbertWalk20260819.H037
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

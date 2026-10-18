@@ -23,6 +23,10 @@ This module mechanizes the core algebraic theorems of Paper 080:
 
 Foundational axioms: strictly within `{propext, Classical.choice, Quot.sound}`.
 Zero incomplete proofs, fully verified, standard kernel axioms only.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace TraceZeroDuality

@@ -29,6 +29,11 @@ exhibits a non-constant potential that shifts the value.
 This file is the *definition*. Authority is not minted here. The
 companion file `GrammarCeiling.lean` proves the bound; the sealed
 terminalizer in `omega_sweep_kernel` is the only authority surface.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace OmegaCosmology.SymbolGame

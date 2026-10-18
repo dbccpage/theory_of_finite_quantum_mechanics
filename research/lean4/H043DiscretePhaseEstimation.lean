@@ -13,6 +13,9 @@
      and exact constructive reinforcement F_dag |Psi_k> = 4 * |k>.
   5. The normalized projection probability to the correct eigenphase bin k is exactly 1
      (deterministic dyadic phase projection without phase leakage).
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H043

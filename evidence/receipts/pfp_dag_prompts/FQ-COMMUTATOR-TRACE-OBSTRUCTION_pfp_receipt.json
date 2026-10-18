@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:48:27.959659+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_DYNAMICS__FQ-COMMUTATOR-TRACE-OBSTRUCTION__PROVED_LEAN.yaml",
+  "node_id": "FQ-COMMUTATOR-TRACE-OBSTRUCTION",
+  "stage": "FINITE_QM_DYNAMICS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_DYNAMICS-FQ-COMMUTATOR-TRACE-OBSTRUCTION",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1094,
+  "completion_tokens": 683,
+  "elapsed_ms": 19844.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_119_fq-commutator-trac_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1094,
+      "completion_tokens": 683,
+      "cost_usd": 0.0001692432,
+      "generation_id": "gen-1792309688-mIkKTOydTdbIuuFCzORA",
+      "elapsed_ms": 19844.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1190,-2380,1785],\"p_star_chord_potential\":1785,\"p_star_holonomy_gamma2\":2380,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":507,\"countermodel_witness_int\":137,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=146,exp=137"
+      ],
+      "emitted_countermodel_int": 146,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1069,
+      "completion_tokens": 889,
+      "elapsed_ms": 32375.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 137,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1094,
+      "completion_tokens": 683,
+      "elapsed_ms": 19844.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1190,
+      -2380,
+      1785
+    ],
+    "p_star_chord_potential": 1785,
+    "p_star_holonomy_gamma2": 2380,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 507,
+    "countermodel_witness_int": 137,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "FQ-COMMUTATOR-TRACE-OBSTRUCTION",
+    "stage": "FINITE_QM_DYNAMICS",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_DYNAMICS-FQ-COMMUTATOR-TRACE-OBSTRUCTION",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/H068WeylCcrResidual.lean::tr_comm2_vanishes",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs::canonical_commutator_obstruction",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-COMMUTATOR-TRACE-OBSTRUCTION",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0526,
+    "receipt_sha256": "9c5cfc16491784e2c5221b179df644465e5d6ea354ee630b6f55ed558b497c29"
+  },
+  "updated_papers": [
+    "papers/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md"
+  ]
+}

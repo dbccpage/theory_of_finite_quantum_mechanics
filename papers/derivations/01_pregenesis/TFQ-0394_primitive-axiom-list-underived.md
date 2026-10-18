@@ -63,3 +63,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-PRIMDIFF-AXIOMS`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-PRIMDIFF-AXIOMS` (`PREGENESIS` / `DEFINITION`)
+- **Mined Operad Family (`M2`)**: `OP-PREGENESIS-PG-PRIMDIFF-AXIOMS`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [390, -780, 585]`, `chord_potential = 585`, `holonomy_gamma2 = 780`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-PRIMDIFF-AXIOMS): 4*idx(39) + 3*stage_rank(1) + route_degree(2) == 161` ($\text{value} = 161$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-PRIMDIFF-AXIOMS): R_raw(83) - G_cob(41) - S_decoy(1) == 41 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 41$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 4dca55db1e670e1142617dc1292d8d2d2d076586332e911b559667d196308e6d`

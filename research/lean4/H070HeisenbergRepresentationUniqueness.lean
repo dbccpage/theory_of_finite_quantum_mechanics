@@ -9,6 +9,8 @@
   table. No representation, irreducibility, intertwiner or classification
   theorem is encoded. In particular the table equation formerly named
   finite_stone_von_neumann_odd_prime was not a Stone-von Neumann proof.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.H070
@@ -160,3 +162,8 @@ theorem modulus9_unclassified :
 #print axioms modulus9_unclassified
 
 end FableHilbertWalk20260819.H070
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

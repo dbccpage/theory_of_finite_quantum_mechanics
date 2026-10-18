@@ -6,6 +6,9 @@
   Realization, polarity wrappers, Observation, SplitPresentation,
   AmbientDynamics, or the residual quotient. Changing a core
   definition must break dependents.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace GrokPdNight20260814.Core

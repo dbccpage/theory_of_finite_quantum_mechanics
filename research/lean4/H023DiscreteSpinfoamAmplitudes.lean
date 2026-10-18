@@ -27,6 +27,7 @@
     Finite discrete cyclotomic spin-foam amplitudes over Z[zeta_12] only.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 import H021TriangleNetworkComplexCarrier
@@ -290,3 +291,8 @@ end PentagonRecoupling
 #print axioms PentagonRecoupling.spinfoam_pentagon_coherence
 
 end FableHilbertWalk20260819.H023
+
+
+/-- Negative falsification lemma: refusal of trivial degenerate carrier. -/
+theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
+  decide

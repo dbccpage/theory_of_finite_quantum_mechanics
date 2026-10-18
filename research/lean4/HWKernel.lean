@@ -35,6 +35,7 @@
     opposite: F2 satisfies every field of the same interface.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
 -/
 
 namespace FableHilbertWalk20260819.HWKernel

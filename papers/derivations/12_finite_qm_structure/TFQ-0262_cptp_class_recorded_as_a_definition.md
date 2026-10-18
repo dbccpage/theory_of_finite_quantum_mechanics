@@ -63,3 +63,18 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-CPTP-CLASS-DEFINITION`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-CPTP-CLASS-DEFINITION` (`FINITE_QM_STRUCTURE` / `DEFINITION`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_STRUCTURE-FQ-CPTP-CLASS-DEFINITION`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1110, -2220, 1665]`, `chord_potential = 1665`, `holonomy_gamma2 = 2220`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-CPTP-CLASS-DEFINITION): 4*idx(111) + 3*stage_rank(8) + route_degree(3) == 471` ($\text{value} = 471$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-CPTP-CLASS-DEFINITION): R_raw(262) - G_cob(127) - S_decoy(8) == 127 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 127$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/H063CptpChannelsStinespring.lean::depol_choi_1_3_psd`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs::ExactChoiMatrix`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 3b0b2ee15c1d00783fd40bc1e04a947d6bc37067520c77576589d89a14b77a5e`

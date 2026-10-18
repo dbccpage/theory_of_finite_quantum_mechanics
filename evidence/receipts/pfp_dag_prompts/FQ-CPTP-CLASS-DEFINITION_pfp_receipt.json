@@ -1,0 +1,106 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:47:41.224928+00:00",
+  "prompt_file": "dag/prompts/FINITE_QM_STRUCTURE__FQ-CPTP-CLASS-DEFINITION__DEFINITION.yaml",
+  "node_id": "FQ-CPTP-CLASS-DEFINITION",
+  "stage": "FINITE_QM_STRUCTURE",
+  "dag_status": "DEFINITION",
+  "operad_family_id": "OP-FINITE_QM_STRUCTURE-FQ-CPTP-CLASS-DEFINITION",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1083,
+  "completion_tokens": 686,
+  "elapsed_ms": 21157.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_111_fq-cptp-class-defi_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1083,
+      "completion_tokens": 686,
+      "cost_usd": 0.0001689624,
+      "generation_id": "gen-1792309640-qM2o3eICRsU7i3FBA88Q",
+      "elapsed_ms": 21157.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1110,-2220,1665],\"p_star_chord_potential\":1665,\"p_star_holonomy_gamma2\":2220,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":471,\"countermodel_witness_int\":127,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 127,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1040,
+      "completion_tokens": 595,
+      "elapsed_ms": 15812.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 127,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1083,
+      "completion_tokens": 686,
+      "elapsed_ms": 21157.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1110,
+      -2220,
+      1665
+    ],
+    "p_star_chord_potential": 1665,
+    "p_star_holonomy_gamma2": 2220,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 471,
+    "countermodel_witness_int": 127,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "FQ-CPTP-CLASS-DEFINITION",
+    "stage": "FINITE_QM_STRUCTURE",
+    "dag_status": "DEFINITION",
+    "operad_family_id": "OP-FINITE_QM_STRUCTURE-FQ-CPTP-CLASS-DEFINITION",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/H063CptpChannelsStinespring.lean::depol_choi_1_3_psd",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs::ExactChoiMatrix",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-CPTP-CLASS-DEFINITION",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0241,
+    "receipt_sha256": "3b0b2ee15c1d00783fd40bc1e04a947d6bc37067520c77576589d89a14b77a5e"
+  },
+  "updated_papers": [
+    "papers/derivations/12_finite_qm_structure/TFQ-0262_cptp_class_recorded_as_a_definition.md"
+  ]
+}

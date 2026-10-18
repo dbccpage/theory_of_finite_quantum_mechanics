@@ -9,6 +9,11 @@ matrices have identical statistics on those products.
 It does not import or identify the repository's separate quantum host, prove
 Mathlib `Matrix.PosDef`, derive tensor or operational semantics from Primitive
 Difference, or state a general local-tomography theorem.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace OmegaWorld

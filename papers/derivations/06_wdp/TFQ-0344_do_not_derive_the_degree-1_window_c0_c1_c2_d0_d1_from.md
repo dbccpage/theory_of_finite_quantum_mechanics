@@ -67,3 +67,18 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`
 - **Primary Source Paths**:
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`PG-WDP-DEGREE1-WINDOW`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `PG-WDP-DEGREE1-WINDOW` (`WDP` / `DEFINITION`)
+- **Mined Operad Family (`M2`)**: `OP-WDP-PG-WDP-DEGREE1-WINDOW`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [640, -1280, 960]`, `chord_potential = 960`, `holonomy_gamma2 = 1280`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-WDP-DEGREE1-WINDOW): 4*idx(64) + 3*stage_rank(4) + route_degree(4) == 272` ($\text{value} = 272$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-WDP-DEGREE1-WINDOW): R_raw(148) - G_cob(72) - S_decoy(4) == 72 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 72$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 294b65908bf6f8ef700e364a4e6ff0ef6b5c6b8fb80025c480c4b20985d79a13`

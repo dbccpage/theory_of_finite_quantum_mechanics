@@ -48,3 +48,18 @@ In accordance with strict constructive principles:
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-IMPL-PAIRING-AUDIT`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-IMPL-PAIRING-AUDIT` (`IMPLEMENTATION` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-IMPLEMENTATION-FQ-IMPL-PAIRING-AUDIT`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1290, -2580, 1935]`, `chord_potential = 1935`, `holonomy_gamma2 = 2580`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-IMPL-PAIRING-AUDIT): 4*idx(129) + 3*stage_rank(10) + route_degree(2) == 548` ($\text{value} = 548$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-IMPL-PAIRING-AUDIT): R_raw(308) - G_cob(149) - S_decoy(10) == 149 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 149$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 7c95e7434670df70b89119b08322d5250aa7c71e73c13ee6f0d63c21726ec80a`

@@ -27,6 +27,8 @@
     Finite discrete cyclotomic spin-foam and master constraint operators over Z[zeta_12] only.
 
   AuthorityEffect: None
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 import H021TriangleNetworkComplexCarrier

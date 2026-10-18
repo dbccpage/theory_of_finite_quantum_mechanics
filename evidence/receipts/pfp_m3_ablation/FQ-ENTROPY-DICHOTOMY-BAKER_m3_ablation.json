@@ -1,0 +1,42 @@
+{
+  "schema": "omega.pfp.finite_qm.m3_decoy_ablation_receipt.v1",
+  "authority_effect": "None",
+  "prompt_index": 125,
+  "node_id": "FQ-ENTROPY-DICHOTOMY-BAKER",
+  "stage": "FINITE_QM_CORE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_CORE-FQ-ENTROPY-DICHOTOMY-BAKER",
+  "expected_finite_shadow_int": 523,
+  "expected_countermodel_int": 139,
+  "without_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "failures": [],
+    "emitted_countermodel_int": 139,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1114,
+    "completion_tokens": 593,
+    "elapsed_ms": 21188.0
+  },
+  "with_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "FAIL",
+    "all_gates_passed": false,
+    "failures": [
+      "G2_P_STAR_MISMATCH:got=([125, -3625, 750], 750, 1375)"
+    ],
+    "emitted_countermodel_int": null,
+    "emitted_unconditional_promotion_refused": null,
+    "prompt_tokens": 1142,
+    "completion_tokens": 888,
+    "elapsed_ms": 41047.0
+  },
+  "with_m3_final": {
+    "status": "PASS",
+    "all_gates_passed": true,
+    "attempts_used": 2,
+    "winning_model": "deepseek/deepseek-v4-flash",
+    "receipt_sha256": "38df70300b0b3b490a97a0d11f5f42a379fc4d640287b3a5cb3757a64b369a54"
+  }
+}

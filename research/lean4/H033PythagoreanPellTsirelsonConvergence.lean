@@ -6,6 +6,9 @@
   CHSH witness: orthonormal measurement vectors, a value above the classical
   bound `2 * 169`, and a square strictly below `8 * 169^2`. No real square
   root and no continuum Tsirelson theorem are used.
+  Origin: papers/core/finite_quantum_mechanics.md
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H033

@@ -46,3 +46,18 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F001_quantum/floor.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/README.md`
+
+---
+
+## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY`)
+
+- **AuthorityEffect**: `None` (`SPK-001`, `pfp-staged.0.3`, `COPP-v2-COMPACT`)
+- **DAG Node & Stage**: `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` (`FINITE_QM_STRUCTURE` / `PROVED_LEAN`)
+- **Mined Operad Family (`M2`)**: `OP-FINITE_QM_STRUCTURE-FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY`
+- **`P*` Cochain Syndrome (`M1`, $C_4$ with $d_1 d_0 = 0$)**: `tree_potentials = [1180, -2360, 1770]`, `chord_potential = 1770`, `holonomy_gamma2 = 2360`
+- **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY): 4*idx(118) + 3*stage_rank(8) + route_degree(3) == 499` ($\text{value} = 499$)
+- **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY): R_raw(276) - G_cob(134) - S_decoy(8) == 134 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 134$)
+- **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
+- **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility`
+- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
+- **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 6a16bfa3c03b43063b5caa6d981ce8d6cfed104e231acf8f341912f04822fc4e`

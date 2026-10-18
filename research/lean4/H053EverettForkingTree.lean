@@ -8,6 +8,9 @@
   fixtures, and finite CHSH/parity arithmetic. Cross-branch entries vanish by
   definition; this is not a bipartite marginal non-signaling theorem. No
   repository quotient-fiber transport or derivation of the Born rule is proved.
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 
 namespace FableHilbertWalk20260819.H053

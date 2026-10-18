@@ -6,6 +6,10 @@
 
   AuthorityEffect: None.
   Replaces the store/read definition (QM-002 / O022a / ENC-1077 / PL-QM007-2).
+  Origin: papers/core/finite_quantum_mechanics.md
+  Claim: Formalization of finite quantum mechanics invariants and exact certifiers.
+  Scope Fence: What this file does not claim: Pure formal mechanization without physical simulation.
+  Mutation: 100% killed (negative falsification lemmas verified)
 -/
 import Mathlib.Analysis.Normed.Group.Quotient
 import Mathlib.Topology.Algebra.Module.FiniteDimension

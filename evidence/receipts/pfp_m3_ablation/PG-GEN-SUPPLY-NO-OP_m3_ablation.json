@@ -1,0 +1,42 @@
+{
+  "schema": "omega.pfp.finite_qm.m3_decoy_ablation_receipt.v1",
+  "authority_effect": "None",
+  "prompt_index": 52,
+  "node_id": "PG-GEN-SUPPLY-NO-OP",
+  "stage": "GENESIS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-GENESIS-PG-GEN-SUPPLY-NO-OP",
+  "expected_finite_shadow_int": 218,
+  "expected_countermodel_int": 56,
+  "without_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "FAIL",
+    "all_gates_passed": false,
+    "failures": [
+      "G4_COUNTERMODEL_MISMATCH:got=58,exp=56"
+    ],
+    "emitted_countermodel_int": 58,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1021,
+    "completion_tokens": 806,
+    "elapsed_ms": 43328.0
+  },
+  "with_m3_attempt1": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "failures": [],
+    "emitted_countermodel_int": 56,
+    "emitted_unconditional_promotion_refused": true,
+    "prompt_tokens": 1075,
+    "completion_tokens": 707,
+    "elapsed_ms": 23328.0
+  },
+  "with_m3_final": {
+    "status": "PASS",
+    "all_gates_passed": true,
+    "attempts_used": 1,
+    "winning_model": "deepseek/deepseek-v4.1-flash",
+    "receipt_sha256": "cf82bee9927d85f6ff0f891f4c3a6e49695997befe22c52c4a9c07949462bd0b"
+  }
+}
