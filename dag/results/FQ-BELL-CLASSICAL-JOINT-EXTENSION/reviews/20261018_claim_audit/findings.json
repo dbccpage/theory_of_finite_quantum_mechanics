@@ -1,0 +1,50 @@
+{
+  "task_id": "FQ-BELL-CLASSICAL-JOINT-EXTENSION",
+  "findings": [
+    {
+      "id": "R1",
+      "finding": "Original raw-byte checker silently accepted duplicate object keys.",
+      "repair": "Strict duplicate rejection and regression using a contradictory chsh field.",
+      "status": "fixed_in_review_checker"
+    },
+    {
+      "id": "R2",
+      "finding": "Original checker did not recompute the public context digest; altered anchor labels in request and candidate could pass.",
+      "repair": "Recompute digest; scope-label check explicitly disclaims source or theorem acceptance. Separate source and native gates.",
+      "status": "fixed_in_review_checker"
+    },
+    {
+      "id": "R3",
+      "finding": "Original replay uses optimizable assertions and vacuously accepts empty native receipt arrays.",
+      "repair": "Explicit exceptions, invocation count/module coverage, actual raw logs, corruption regression under python -O.",
+      "status": "fixed_in_review_verifier"
+    },
+    {
+      "id": "R4",
+      "finding": "Historical stage operad deltas include prose/partial references, and generic type substitution was described more strongly than the actual nullary graft showed.",
+      "repair": "Label historical delta format, retain fully typed cumulative records, add kernel-checkable actual Empty-input productsOp graft.",
+      "status": "fresh_native_checks_passed"
+    },
+    {
+      "id": "R5",
+      "finding": "Historical protocol-test receipt was a transcribed completion excerpt, not raw native stdout/stderr.",
+      "repair": "Preserve excerpt honestly; retain a fresh full protocol-suite command and raw logs in this review.",
+      "status": "fresh_native_checks_passed"
+    },
+    {
+      "id": "scope",
+      "finding": "The original supplied-law implication is narrower than Fine equivalence and a fully presented/symmetric operad.",
+      "repair": "Retain open obligations and explicit integral/Q model boundary. No numerical mismatch observed in the 22 original certificates.",
+      "status": "scope_retained"
+    }
+  ],
+  "historical_artifact_policy": "Original run and its manifest are byte-preserved; review supersedes the verification entry point, not the historical evidence.",
+  "validation_receipts": {
+    "python": "validation/python_receipt.json",
+    "rust": "validation/rust_receipt.json",
+    "rust_replay": "validation/rust_replay_receipt.json",
+    "lean": "validation/lean_receipt.json",
+    "protocol": "validation/protocol_receipt.json",
+    "review_tests": "validation/review_tests_receipt.json"
+  }
+}
