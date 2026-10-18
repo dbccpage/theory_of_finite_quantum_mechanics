@@ -1,333 +1,121 @@
-schema_id: omega.pfp.finite_qm.dag_prompt.v1
-packet_type: PromptPacketV0_1
-policy_id: SPK-001
-stage_controller_version: pfp-staged.0.3
-operad_template: COPP-v2-COMPACT
-authority_effect: None
-firewall: stated region only; mints no authority.
-dag_node:
-  prompt_index: 26
-  node_id: GP-IMPORT-TENSOR-PRODUCT
-  stage: L1_TO_L2
-  status: IMPORTED_ASSUMPTION
-  source_status: imported; unique only on the named bilinear Kronecker interface
-  statement: Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous
-    Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report
-    map).
-  bottleneck: Combining-systems uniqueness not derived; needs a second presented carrier (QM_122 7.1 item 1).
-  imported_structure:
-  - 'tensor product combining rule: assumption'
-  incoming_routes: []
-  outgoing_routes:
-  - X-R-IMPORTS-TO-DECLARED-INTERFACE
-  - X-R-DROP-ONE-CENSUS
-  source_refs:
-  - omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-006
-  - omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-04
-  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:154
-  lean_refs:
-  - lean4/quantum_mechanics/H014BilinearProduct.lean::embed_eq_tensor
-  - lean4/quantum_mechanics/H014Interface.lean::two_combinings_share_interface_and_disagree
-  - lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels
-  rust_refs:
-  - omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness
-  - omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
-  - omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
-  paper_refs:
-  - papers/derivations/12_finite_qm_structure/TFQ-0256_product_defect_on_a_bipartite_weight_table.md
-  - papers/derivations/21_implementation_core/TFQ-0127_hilbert_carriers_and_tensor_index.md
-pfp_modes_active:
-- mode_02_packets_and_sealed_envelopes
-- mode_04_epistemic_antibody_injections
-- mode_05_skill_injection_and_operad_morphisms
-- mode_08_discrete_cochain_involutions
-- mode_09_lean4_proof_kernel_elaboration
-- mode_10_cemetery_dag_mining
-- mode_14_fail_closed_typed_refusal
-stages_plan:
-- stage: 1
-  name: admit
-  executor: host
-  gate: Verify YAML schema & 4 operad mining slots
-- stage: 1a_1b
-  name: p_star_cochain_syndrome
-  executor: model_and_host
-  gate: G1_COCHAIN_EXACT_SEQUENCE_D1D0 + G2_P_STAR_TREE_CHORD_SYNDROME_DECODE
-- stage: 2
-  name: ideation
-  executor: model
-  seat: seat_begemot
-  gate: Candidate finite shadow + countermodel ideation
-- stage: 3
-  name: audit
-  executor: model
-  seat: seat_koroviev
-  gate: Congruence Ideal I & Annihilator Decoy O^- audit
-- stage: 4
-  name: l2_extraction
-  executor: model
-  seat: seat_begemot
-  gate: G0_STRICT_TYPED_JSON_SCHEMA
-- stage: 5
-  name: evaluation
-  executor: host
-  seat: seat_woland
-  gate: Sovereign exact integer/rational + Lean4/Rust anchor verification (< 2 ms)
-- stage: 9
-  name: receipt
-  executor: host
-  gate: Emit cryptographic receipt to evidence/receipts/pfp_dag_prompts/ and update papers/
-operad_slots:
-  slot_m1_layer0_ambient_carrier:
-    mining_status: FILLED_BY_4MISSION_MINER
-    mission_id: M1_CARRIER_AND_NORMAL_FORM_MINING
-    algebraic_ring: Z (bilinear maps on Z^2 x Z^2)
-    ambient_carrier: Bipartite carrier Z^2 x Z^2 comparing Kronecker product u tensor v with projection-dump rival
-      ((v0+v1)*u0, (v0+v1)*u1)
-    normal_form_contracts:
-    - nf.cochain.dhnf
-    - nf.epistemic.authority
-    observer_budget: B_O = 100 (exact integer accounting, zero float tolerance)
-    p_star_cochain_syndrome:
-      carrier_graph: C_4(V=4, E=4, F=1) with gauge root v_0 = 0
-      spanning_tree_edges:
-      - edge:
-        - 0
-        - 1
-        du: 260
-      - edge:
-        - 1
-        - 2
-        du: -780
-      - edge:
-        - 2
-        - 3
-        du: 910
-      chord_edge:
-        edge:
-        - 0
-        - 3
-        measured_omega: -130
-      coboundary_law: v_b - v_a = du_e on tree; chord_potential = v_3 - v_0; gamma_2 = |measured_omega - chord_potential|
-  slot_m2_layer1_forward_morphisms:
-    mining_status: FILLED_BY_4MISSION_MINER
-    mission_id: M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING
-    operad_family_id: OP-GP-TENSOR-BILINEAR-RIVAL
-    incoming_routes: []
-    outgoing_routes:
-    - X-R-IMPORTS-TO-DECLARED-INTERFACE
-    - X-R-DROP-ONE-CENSUS
-    source_colours:
-    - CochainCarrierC4
-    - FiniteShadowSpan
-    - CountermodelSpan
-    - ImportBoundaryList
-    target_colour: TypedDerivationCertificate
-    operators:
-    - id: op_stage1_p_star_syndrome
-      signature: (CochainCarrierC4) -> PStarSyndromeReceipt
-      arity: 1
-      rule: Integrate tree coboundaries v_1, v_2, v_3 from v_0=0, evaluate chord_potential = v_3 - v_0, and compute
-        holonomy_gamma2 = |measured_omega - chord_potential|.
-    - id: op_finite_shadow_witness
-      signature: (FiniteShadowSpan) -> ExactIntegerShadowWitness
-      arity: 1
-      rule: 'Evaluate exact finite shadow identity: kronecker_dimension_2x2: 2 * 2 == 4 -> 2 * 2 == 4.'
-    - id: op_countermodel_separation
-      signature: (CountermodelSpan) -> ExactCountermodelWitness
-      arity: 1
-      rule: 'Evaluate exact finite countermodel/obstruction: projDump_collision_defect: ||projDump(e0,e0) - projDump(e0,e1)||_1
-        == ||(1,0) - (1,0)||_1 == 0 (collapses distinct second-system states) -> 1 - 1 == 0.'
-    - id: op_import_boundary_certificate
-      signature: (PStarSyndromeReceipt, ExactIntegerShadowWitness, ExactCountermodelWitness, ImportBoundaryList)
-        -> TypedDerivationCertificate
-      arity: 4
-      rule: Bind unpaid_import_count, refuse unconditional promotion (unconditional_promotion_refused = true), and
-        attach Lean 4 and Rust anchors.
-    planar_grafting_sequence:
-    - op_stage1_p_star_syndrome -> slot_0(op_import_boundary_certificate)
-    - op_finite_shadow_witness -> slot_1(op_import_boundary_certificate)
-    - op_countermodel_separation -> slot_2(op_import_boundary_certificate)
-    - ImportBoundaryList -> slot_3(op_import_boundary_certificate)
-  slot_m3_layer2_ideals_and_annihilators:
-    mining_status: FILLED_BY_4MISSION_MINER
-    mission_id: M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING
-    concrete_spans:
-      node_statement: Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous
-        Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival
-        (dump-the-right-report map).
-      node_bottleneck: Combining-systems uniqueness not derived; needs a second presented carrier (QM_122 7.1 item
-        1).
-      imported_assumptions:
-      - 'tensor product combining rule: assumption'
-      finite_shadow_lhs_expr: 2 * 2
-      countermodel_lhs_expr: 1 - 1
-      raw_candidate_rival_int: 44
-      coboundary_gauge_shift_int: 38
-      sign_double_count_int: 6
-    congruence_ideals:
-    - 'IDEAL_ZERO_FLOAT_TOLERANCE: All output numbers must be exact integers (no floats).'
-    - 'IDEAL_AUTHORITY_EFFECT_NONE: authority_effect == ''None'' and firewall_status == ''stated region only; mints
-      no authority.'''
-    - 'IDEAL_COCHAIN_D1D0_ZERO: cochain_d1_d0_exact_zero == true on the P* C_4 complex.'
-    - 'IDEAL_QUOTIENT_COBOUNDARY_ANNIHILATION: Both coboundary_gauge_shift G_cob and boundary sign_double_count
-      S_decoy lie in Congruence Ideal I and must be subtracted from R_raw.'
-    - 'IDEAL_NON_PROMOTION_FENCE: Node status is IMPORTED_ASSUMPTION; under SPK-001 (stated region only; mints no
-      authority), unconditional_promotion_refused MUST be true even when status is PROVED_LEAN, DEFINITION, or ADMITTED_PRIMITIVE.'
-    annihilator_antibodies:
-    - antibody_id: AB_RAW_RIVAL_DECOY_TRAP
-      target_decoy: Reporting unquotiented R_raw=44 or partially quotiented R_raw - G_cob=6 instead of 1 - 1 ==
-        0
-      refutation_witness: 'NullTree: Congruence Ideal I annihilates both G_cob=38 and S_decoy=6, leaving 0.'
-    - antibody_id: AB_FALSE_UNCONDITIONAL_PROMOTION
-      target_decoy: Setting unconditional_promotion_refused = false because DAG status is IMPORTED_ASSUMPTION
-      refutation_witness: 'NullTree: SPK-001 firewall refuses unconditional authority/continuum promotion for all
-        DAG statuses.'
-    - antibody_id: AB_CONTINUUM_FLOAT_DRIFT
-      target_decoy: Emitting floating-point approximations instead of exact integer invariants
-      refutation_witness: 'NullTree: G0_STRICT_TYPED_JSON_SCHEMA rejects non-integer scalars.'
-  slot_m4_tri_language_witness_anchors:
-    mining_status: FILLED_BY_4MISSION_MINER
-    mission_id: M4_TRI_LANGUAGE_EXACT_WITNESS_MINING
-    finite_shadow_equation: 'kronecker_dimension_2x2: 2 * 2 == 4'
-    finite_shadow_lhs: 2 * 2
-    finite_shadow_rhs: '4'
-    finite_shadow_expected_int: 4
-    countermodel_equation: 'projDump_collision_defect: ||projDump(e0,e0) - projDump(e0,e1)||_1 == ||(1,0) - (1,0)||_1
-      == 0 (collapses distinct second-system states)'
-    countermodel_lhs: 1 - 1
-    countermodel_rhs: '0'
-    countermodel_expected_int: 0
-    unpaid_import_count_expected: 1
-    lean4_theorem_anchor: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels
-    rust_witness_anchor: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
-    paper_refs:
-    - papers/derivations/12_finite_qm_structure/TFQ-0256_product_defect_on_a_bipartite_weight_table.md
-    - papers/derivations/21_implementation_core/TFQ-0127_hilbert_carriers_and_tensor_index.md
-system_prompt: 'You are a precise, fast JSON extraction engine under SPK-001 (AuthorityEffect: None). Do NOT write
-  long reasoning; keep any thinking under 150 tokens and immediately output ONLY a single raw JSON object matching
-  response_schema with no markdown fences and no prose.'
-user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: GP-IMPORT-TENSOR-PRODUCT]\nPolicy: SPK-001 | AuthorityEffect:\
-  \ None | Firewall: stated region only; mints no authority.\nNode: GP-IMPORT-TENSOR-PRODUCT | Stage: L1_TO_L2 |\
-  \ DAG Status: IMPORTED_ASSUMPTION\nOperad Family: OP-GP-TENSOR-BILINEAR-RIVAL\n\nLayer 0 (M1 — Ambient Carrier\
-  \ & P* Cochain Syndrome):\n- Algebraic Ring: Z (bilinear maps on Z^2 x Z^2)\n- Carrier: Bipartite carrier Z^2\
-  \ x Z^2 comparing Kronecker product u tensor v with projection-dump rival ((v0+v1)*u0, (v0+v1)*u1)\n- P* Cycle\
-  \ C_4 (v_0 = 0): tree edges (0->1) du=260, (1->2) du=-780, (2->3) du=910; chord (0->3) measured_omega=-130.\n\
-  \  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 260, v_2 = v_1 + (-780), v_3 = v_2 + (910).\n\
-  \  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential|\
-  \ = |-130 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting\
-  \ o_i):\n- Op 1 (Finite Shadow Witness): kronecker_dimension_2x2: 2 * 2 == 4\n  Evaluate finite_shadow_witness_int\
-  \ = 2 * 2 (which equals 4).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy\
-  \ Equation 1 (Quotient Countermodel Reduction): projDump_collision_defect: ||projDump(e0,e0) - projDump(e0,e1)||_1\
-  \ == ||(1,0) - (1,0)||_1 == 0 (collapses distinct second-system states)\n  Annihilate coboundary shift G_cob=38\
-  \ and boundary sign double-count S_decoy=6 (do NOT report unreduced R_raw=44 or partial 6):\n  Evaluate countermodel_witness_int\
-  \ = 1 - 1 (which equals 0).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1\
-  \ items ['tensor product combining rule: assumption'].\n  Even when DAG Status is IMPORTED_ASSUMPTION, SPK-001\
-  \ refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count\
-  \ = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n\
-  - Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated\
-  \ region only; mints no authority.\"\n- Set node_id = \"GP-IMPORT-TENSOR-PRODUCT\", stage = \"L1_TO_L2\", dag_status\
-  \ = \"IMPORTED_ASSUMPTION\"\n- Set operad_family_id = \"OP-GP-TENSOR-BILINEAR-RIVAL\"\n- Set lean4_theorem_anchor\
-  \ = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels\"\
-  \n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness\"\
-  \n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
-response_schema:
-  $schema: https://json-schema.org/draft/2020-12/schema
-  type: object
-  additionalProperties: false
-  required:
-  - derived_under_policy
-  - authority_effect
-  - firewall_status
-  - node_id
-  - stage
-  - dag_status
-  - operad_family_id
-  - p_star_tree_potentials
-  - p_star_chord_potential
-  - p_star_holonomy_gamma2
-  - cochain_d1_d0_exact_zero
-  - finite_shadow_witness_int
-  - countermodel_witness_int
-  - unpaid_import_count
-  - unconditional_promotion_refused
-  - lean4_theorem_anchor
-  - rust_witness_anchor
-  - should_continue
-  properties:
-    derived_under_policy:
-      type: string
-      enum:
-      - SPK-001
-    authority_effect:
-      type: string
-      enum:
-      - None
-    firewall_status:
-      type: string
-      enum:
-      - stated region only; mints no authority.
-    node_id:
-      type: string
-      enum:
-      - GP-IMPORT-TENSOR-PRODUCT
-    stage:
-      type: string
-      enum:
-      - L1_TO_L2
-    dag_status:
-      type: string
-      enum:
-      - IMPORTED_ASSUMPTION
-    operad_family_id:
-      type: string
-    p_star_tree_potentials:
-      type: array
-      items:
-        type: integer
-      minItems: 3
-      maxItems: 3
-    p_star_chord_potential:
-      type: integer
-    p_star_holonomy_gamma2:
-      type: integer
-    cochain_d1_d0_exact_zero:
-      type: boolean
-    finite_shadow_witness_int:
-      type: integer
-    countermodel_witness_int:
-      type: integer
-    unpaid_import_count:
-      type: integer
-    unconditional_promotion_refused:
-      type: boolean
-    lean4_theorem_anchor:
-      type: string
-    rust_witness_anchor:
-      type: string
-    should_continue:
-      type: boolean
-user_prompt_without_m3_ablation: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK (ABLATED WITHOUT M3 DECOY EQUATIONS):\
-  \ GP-IMPORT-TENSOR-PRODUCT]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no\
-  \ authority.\nNode: GP-IMPORT-TENSOR-PRODUCT | Stage: L1_TO_L2 | DAG Status: IMPORTED_ASSUMPTION\nStatement: Hilbert\
-  \ tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized\
-  \ map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report\
-  \ map).\nOperad Family: OP-GP-TENSOR-BILINEAR-RIVAL\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n\
-  - Algebraic Ring: Z (bilinear maps on Z^2 x Z^2)\n- Carrier: Bipartite carrier Z^2 x Z^2 comparing Kronecker product\
-  \ u tensor v with projection-dump rival ((v0+v1)*u0, (v0+v1)*u1)\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1)\
-  \ du=260, (1->2) du=-780, (2->3) du=910; chord (0->3) measured_omega=-130.\n  Compute p_star_tree_potentials =\
-  \ [v_1, v_2, v_3] where v_1 = 260, v_2 = v_1 + (-780), v_3 = v_2 + (910).\n  Compute p_star_chord_potential =\
-  \ v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-130 - v_3|.\n\
-  \  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Candidate Witness Parameters [M3\
-  \ Decoy Equations Omitted]):\n- Op 1 (Finite Shadow Witness): kronecker_dimension_2x2: 2 * 2 == 4\n  Evaluate\
-  \ finite_shadow_witness_int = 2 * 2 (which equals 4).\n- Op 2 (Candidate Countermodel Parameters — Unreduced):\
-  \ Candidate rival functional raw value R_raw = 44, coboundary gauge shift parameter G_cob = 38, boundary sign\
-  \ double-count parameter S_decoy = 6. Determine integer countermodel_witness_int for node GP-IMPORT-TENSOR-PRODUCT.\n\
-  - Op 3 (Import Boundary & Promotion): Imported assumptions list has 1 items ['tensor product combining rule: assumption'].\
-  \ Set unpaid_import_count = 1. Given DAG Status = IMPORTED_ASSUMPTION and Policy = SPK-001, determine boolean\
-  \ unconditional_promotion_refused.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy\
-  \ = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\
-  \n- Set node_id = \"GP-IMPORT-TENSOR-PRODUCT\", stage = \"L1_TO_L2\", dag_status = \"IMPORTED_ASSUMPTION\"\n-\
-  \ Set operad_family_id = \"OP-GP-TENSOR-BILINEAR-RIVAL\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels\"\
-  \n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness\"\
-  \n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
+schema_id: omega.pfp.finite-qm.prompt-template.v2
+name: Finite QM operadic derivation
+authority_effect: "None"
+workflow: workflow.yaml
+mode: mode.yaml
+
+system_prompt: |
+  You are a mathematical research collaborator working on finite quantum
+  mechanics through the Proposal Fidelity Protocol (PFP). Your job is to derive
+  the requested result, find a counterexample, or isolate the precise mathematical
+  obstruction. Make mathematical progress. An inventory, a plan, or a recital of
+  terminology is not a completed derivation.
+
+  Work from the supplied finite carrier and admitted assumptions. Keep the
+  original target in view throughout the derivation. If a smaller lemma is needed,
+  state how it advances that target and work on it. If the target does not follow,
+  exhibit a rival satisfying the premises or identify the missing implication.
+
+  FIRST, MINE THE FOUR MISSIONS
+  M1 — Carrier. Identify the objects, coefficient ring, dimensions, orientation,
+  boundary conditions and quantifiers. Separate definitions, admitted assumptions,
+  previously established results and the result still sought.
+  M2 — Construction. Identify the useful operations and write their signatures
+  f:(A1,...,An)->B. Compose them into the shortest useful derivation tree. For each
+  composition, check that the output of the inserted operation matches the input
+  slot in carrier, dimension, basis and assumptions. State the relation or theorem
+  that licenses the step; matching labels alone is insufficient.
+  M3 — Relations and traps. Identify the actual quotient, gauge equivalences,
+  orientation signs and forbidden shortcuts. Write the equation that removes a
+  plausible decoy. For example, use R_reduced=R_raw-G_cob-S_decoy only after showing
+  why those terms disappear from the protected quantity. Give a near miss and the
+  invariant that rejects it. Keep algebraic equivalence and policy refusal distinct.
+  M4 — Certificate. Decide what would settle this target: a proof term, primal/dual
+  pair, exact matrix identity, polynomial certificate, finite cover or countermodel.
+  Name the checker and the Lean/Rust/Python/paper anchors that actually exist.
+  Missing anchors remain open obligations, not fabricated references.
+  Reuse supplied, checked mission slots. Fill omissions before attempting a step
+  that depends on them; do not repeat a completed mining exercise as ceremony.
+
+  THEN DERIVE AND CHECK
+  1. State the exact mathematical claim you will attempt and its hypotheses.
+  2. Construct the witness or derivation using the selected operations. Show the
+     equations needed to check each nontrivial step. Prefer a short decisive
+     construction to an essay about possible approaches.
+  3. Check the original equations, dimensions, signs and hypotheses independently
+     of the route used to construct the candidate. Use the existing exact native
+     solvers and Lean checker when available. Record what actually ran.
+  4. Attack the fragile step: try a sign reversal, an inadmissible quotient,
+     a nonconserved dual, a rival carrier, or another task-specific near miss.
+     Also retain a valid control so rejection alone is not mistaken for correctness.
+  5. On a failed check, repair the failed invariant from the original inputs.
+     Use the supplied residual guidance. Do not change the target, weaken the
+     checker, import a new axiom silently, or substitute a known answer.
+  6. Finish with the strongest result actually supported: a checked finite result,
+     a conditional result with named assumptions, a counterexample, or a precise
+     unresolved obstruction and the next lemma or computation that could settle it.
+
+  OPERAD TOOLBOX
+  Select structures because their operations and relations help this derivation.
+  Do not name-drop the whole library in your answer. The working vocabulary is:
+  • Composition and typing: planar coloured operads, symmetric coloured operads,
+    identity operations, partial grafting, operadic algebras and modules;
+    quadratic operads, cooperads, bar/cobar constructions and proposed Koszul
+    duals; finite little-disks/interval constructions and workflow operads.
+  • Algebraic families: As, Com, Lie, Pois, Leib, Zinb, Dend, Dias, PreLie, Perm,
+    Dipt and its dual, 2as and its dual, Tridend, Trias, PostLie, ComTrias, CTD and
+    its dual, Gerst, BV, Mag, Nil2, ComMag and its dual, Quadri and its dual,
+    Dup and its dual, two-associative and compatible-associative structures,
+    L-dendriform, Lie-admissible, PreLiePerm, alternative, parametrized one-relation,
+    MagFine, GenMag, NAP, Moufang, Malcev, Novikov, DoubleLie, DiPreLie, Akivis,
+    Sabinin, Jordan triples, totally/partially associative ternary structures,
+    Lie triple systems, Lie–Yamaguti, interchange, HyperCom, A-infinity,
+    C-infinity, L-infinity, Dend-infinity, P-infinity, brace, multibrace, 2Pois,
+    the catalogued Xi-plus/minus and self-dual unnamed type, and coloured star-operads.
+  • Finite-QM construction families: constructive histories; supply erasure and
+    rewriting; off-image/refinement refusal; obligation monoids and WDP bridges;
+    gauge/cochain/L1 quotients; sector weights and density lifts; L1-to-L2 transport;
+    Gaussian phases and holonomy; Sorkin interference; Born/frame selection;
+    tensor/cone bracketing; phase-blind descent and coherence separation;
+    Bell/CHSH and contextuality; exact primal/dual trace-norm witnesses;
+    Cayley/unitary steps and stochastic/CPTP shadows; Majorana and finite-map
+    controls; realification and embedding; finite-cover/MUB/SOS/Groebner methods;
+    and language/claim/receipt composition.
+  This vocabulary is a set of leads. Instantiate its generators and check its
+  hypotheses before using it. The machine catalog is a separate lookup attachment;
+  its skill names, record counts and metadata are not the mathematical task.
+
+  EXACT MATHEMATICS AND QM SCOPE
+  Use exact integer, rational, Gaussian-rational or explicitly specified algebraic
+  arithmetic. Give rational certificates as reduced numerator/positive-denominator
+  pairs when the task uses that encoding. Track conjugation and field extensions.
+  A numerical approximation can guide a search; an exact claim needs its certificate.
+
+  For an applicable cochain complex, verify d1*d0=0. For r=c-d0*a, an L1 optimum
+  requires a feasible potential and a dual w with d0^T*w=0, ||w||infinity<=1 and
+  ||r||1=<w,c>. Compute Gamma2=||d1*c||1 on the declared faces. Keep closed,
+  exact and nonclosed cases distinct. A C4 tree/chord calculation is useful only
+  for its own cochain claim or as a separately scored diagnostic.
+
+  In a QM derivation, track which of scalar field, Hilbert carrier, positive cone,
+  Born pairing, tensor rule and unitary dynamics are supplied and which are derived.
+  Check positivity, normalization, adjoints, trace and channel equations where
+  relevant. Preserve the gap between a finite shadow and its original target.
+  Do not infer a continuum, uniqueness, or a general nonexistence result from a
+  bounded computation or one failed ansatz.
+
+  RESPONSE
+  If the host supplies a response schema, emit exactly that schema and its bound
+  identifiers, with concise checkable material in the certificate fields.
+  Otherwise write: Target and assumptions; Operadic construction; Derivation;
+  Independent checks and decoy; Result and remaining obstruction.
+  Give mathematical justification, not a private reasoning transcript. Never
+  invent a tool execution or assert your own host acceptance. AuthorityEffect:
+  None. End a claim-bearing report with four short statements: what this supports;
+  what it does not support; narrowest defensible claim; next test needed.
+
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: GP-IMPORT-TENSOR-PRODUCT]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: GP-IMPORT-TENSOR-PRODUCT | Stage: L1_TO_L2 | DAG Status: IMPORTED_ASSUMPTION\nOperad Family: OP-GP-TENSOR-BILINEAR-RIVAL\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z (bilinear maps on Z^2 x Z^2)\n- Carrier: Bipartite carrier Z^2 x Z^2 comparing Kronecker product u tensor v with projection-dump rival ((v0+v1)*u0, (v0+v1)*u1)\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=260, (1->2) du=-780, (2->3) du=910; chord (0->3) measured_omega=-130.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 260, v_2 = v_1 + (-780), v_3 = v_2 + (910).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-130 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): kronecker_dimension_2x2: 2 * 2 == 4\n  Evaluate finite_shadow_witness_int = 2 * 2 (which equals 4).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): projDump_collision_defect: ||projDump(e0,e0) - projDump(e0,e1)||_1 == ||(1,0) - (1,0)||_1 == 0 (collapses distinct second-system states)\n  Annihilate coboundary shift G_cob=38 and boundary sign double-count S_decoy=6 (do NOT report unreduced R_raw=44 or partial 6):\n  Evaluate countermodel_witness_int = 1 - 1 (which equals 0).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['tensor product combining rule: assumption'].\n  Even when DAG Status is IMPORTED_ASSUMPTION, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"GP-IMPORT-TENSOR-PRODUCT\", stage = \"L1_TO_L2\", dag_status = \"IMPORTED_ASSUMPTION\"\n- Set operad_family_id = \"OP-GP-TENSOR-BILINEAR-RIVAL\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
+
+default_stage: P1_DERIVE
+catalog_attachment: ../finite_qm_operad_catalog.json
+catalog_policy: lookup_only_never_append_registry_to_system_prompt
