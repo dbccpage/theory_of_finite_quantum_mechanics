@@ -1,0 +1,3035 @@
+{
+  "team_id": "team_03",
+  "team_name": "Team 3: Szollosi Non-Affine Family B6(theta) & Haagerup Point H6",
+  "target": "TARGET_G1",
+  "authority_effect": "None",
+  "firewall_line": "stated region only; mints no authority",
+  "total_sessions": 25,
+  "sessions": [
+    {
+      "session_id": "SESSION_PROMPT_T03_01",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_01",
+      "target": "TARGET_G1",
+      "prompt_description": "Parameterization of Sz\u00f6ll\u0151si 1-parameter family $B_6(\\theta)$ for $\\theta \\in [0, \\pi]$.",
+      "timestamp": "2026-09-23T22:01:03.185322+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "50fee53575cb828ec875826932b34fe57c8600048b153fa66e5ceff8f4835982",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "1/6"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "-1/6"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-1/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "0/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "0/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "0/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "5a505280b3e24dfef5c2ddd94a170ea42349abac29fb668c28f1ff9f91519937"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_01_A",
+        "PROP_PROMPT_T03_01_B"
+      ],
+      "terminal_state_digest": "3147043567e0fc7d9a944afe496a0193db281afb7f8c64f191766a6223c3c672"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_02",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_02",
+      "target": "TARGET_G1",
+      "prompt_description": "Algebraic phase equations for $B_6(\\theta)$ derived from 2-circulant core blocks.",
+      "timestamp": "2026-09-23T22:01:03.189888+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "18a7413b2559ffe88ca908c49de72491df59c9c0f710cec28d979b37bf94dc92",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_02_A",
+        "PROP_PROMPT_T03_02_B"
+      ],
+      "terminal_state_digest": "1002047a4e98e879b2cb79bdd65f165f2bec65aa3334c66f0a1f2c3b6aeb14a7"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_03",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_03",
+      "target": "TARGET_G1",
+      "prompt_description": "Exact algebraic identification of Haagerup matrix $H_6$ at $\\cos\\theta = (\\sqrt{3}-1)/2$.",
+      "timestamp": "2026-09-23T22:01:03.196455+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "e7b50a0a5b02a41b020d11b650376d99e3e616682a22f4f503c62bb0e468b9f7",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_03_A",
+        "PROP_PROMPT_T03_03_B"
+      ],
+      "terminal_state_digest": "a9fa8a3e1b18ddb289192707d777a67402a1e4fc69f43eda9e927b137cedea3c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_04",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_04",
+      "target": "TARGET_G1",
+      "prompt_description": "Generic defect calculation $d(B_6(\\theta)) = 1$ for $\\theta \\in (0, \\pi) \\setminus \\{\\theta_H\\}$.",
+      "timestamp": "2026-09-23T22:01:03.199800+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "64b08e25758545e0cfed0f9cf9e0549137f2f5f8147121242123474e6ee34371",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_04_A",
+        "PROP_PROMPT_T03_04_B"
+      ],
+      "terminal_state_digest": "9ba295d0c1d8f16fe24e3bc35f7fd08de1f0214bd4ba311557ce3bf4735a9a27"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_05",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_05",
+      "target": "TARGET_G1",
+      "prompt_description": "Evaluation of transition matrix $H_{12} = B_6(\\theta_1)^\\dagger B_6(\\theta_2)$ showing non-unimodularity.",
+      "timestamp": "2026-09-23T22:01:03.204833+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "d0bed270203f9b054b0cb80a9055f76415f28824dc5754674a210009abfdd508",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "3/4"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "-5/6"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-3/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "0/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "0/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "0/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "5a505280b3e24dfef5c2ddd94a170ea42349abac29fb668c28f1ff9f91519937"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_05_A",
+        "PROP_PROMPT_T03_05_B"
+      ],
+      "terminal_state_digest": "380c3bcf9b6bcba801430e2a2be1c111c52601c87235a5db23858a4097958c46"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_06",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_06",
+      "target": "TARGET_G1",
+      "prompt_description": "Proof that no two distinct Sz\u00f6ll\u0151si matrices form an MU triple with $I_6$.",
+      "timestamp": "2026-09-23T22:01:03.212150+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "3252fa2eba1af511197797d8f9117d5cc9838c9eac426ec7101023a378cabcdb",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_06_A",
+        "PROP_PROMPT_T03_06_B"
+      ],
+      "terminal_state_digest": "cd4ca115f2ccd3fd667244787a234b1e04a119564dfcac19aa0ada9d6cd1d3d8"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_07",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_07",
+      "target": "TARGET_G1",
+      "prompt_description": "Desingularization of the deltoid cusp singularities at $\\theta \\in \\{0, 2\\pi/3, 4\\pi/3\\}$.",
+      "timestamp": "2026-09-23T22:01:03.217214+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "a269de7adf81b3e7c0452b031755097b631cbc738d6d2385051ad13b70b11113",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_07_A",
+        "PROP_PROMPT_T03_07_B"
+      ],
+      "terminal_state_digest": "8590e45b3717df24d5b47f6074749d2b736f23dae9dbc3104616bf4972aaecc7"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_08",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_08",
+      "target": "TARGET_G1",
+      "prompt_description": "Projective blow-up coordinates $(u, v)$ along the Segre variety locus $(a-1)(d-1) = (b-1)(c-1)$.",
+      "timestamp": "2026-09-23T22:01:03.222966+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "0971bf30de0197eaa7d1a6cf45e0a5931a5f368e86f86bda3de04859b4390f96",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_08_A",
+        "PROP_PROMPT_T03_08_B"
+      ],
+      "terminal_state_digest": "6c665afcb026be21bde3f5197b007f3140120e8e8f02871fa734d99c22de12ba"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_09",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_09",
+      "target": "TARGET_G1",
+      "prompt_description": "Factored corner determinant on blow-up chart: $P_{\\text{corner}} = r \\cdot \\tilde{P}(u, v)$ with bounded condition number.",
+      "timestamp": "2026-09-23T22:01:03.231380+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "f8cc78ba1645efc6610d28bc99230a6ba3aef245115c6cc10088811d0974de53",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "3/2"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "5/4"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "-3/2"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "0/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "0/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "0/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "5a505280b3e24dfef5c2ddd94a170ea42349abac29fb668c28f1ff9f91519937"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_09_A",
+        "PROP_PROMPT_T03_09_B"
+      ],
+      "terminal_state_digest": "ce1155e34d93d20743948a25f6ca463ae41d2d85c84da80db1978c31ae675545"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_10",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_10",
+      "target": "TARGET_G1",
+      "prompt_description": "Desingularized Lipschitz gap propagation: $f(u, v) \\ge \\varepsilon_{\\text{cusp}} - L_{\\text{proj}}\\delta > 0$.",
+      "timestamp": "2026-09-23T22:01:03.237358+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "fd1af3fa6857e0d4a508ba66feb90622feccc4b644507a8b1b62170a4f822583",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_10_A",
+        "PROP_PROMPT_T03_10_B"
+      ],
+      "terminal_state_digest": "437f0c8ee4d94a21337e25413fc1fbaa66bd7347670dbac454aa7a74a328d245"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_11",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_11",
+      "target": "TARGET_G1",
+      "prompt_description": "Exact rational interval enclosure of Haagerup point $H_6$ over $\\mathbb{Q}(\\sqrt{3})$.",
+      "timestamp": "2026-09-23T22:01:03.245068+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "e8f0e8eeba75bcddf1383b1b7ddfa72f5e0b2ac329e69ad9a81ab5b61ddf91f9",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_11_A",
+        "PROP_PROMPT_T03_11_B"
+      ],
+      "terminal_state_digest": "74a6e939781f0d90fd8faba5ebb855ee722aaaca3d93ebe0f6bc10a95c9f9b78"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_12",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_12",
+      "target": "TARGET_G1",
+      "prompt_description": "ZeroRel curvature lower bound across the Haagerup rational ball $B(H_6, 1/100)$.",
+      "timestamp": "2026-09-23T22:01:03.249629+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "8769303bb2f8901fe4310aa0d2278d6a0b9f669e309d333e9e24e050f658a1ac",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_12_A",
+        "PROP_PROMPT_T03_12_B"
+      ],
+      "terminal_state_digest": "99d0aac46a7520765b6dce150f679d130d23569325c62b6578152ed5c4bb6270"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_13",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_13",
+      "target": "TARGET_G1",
+      "prompt_description": "Cross-ratio invariant spectrum of $H_6$ verifying orbit isolation against $F_6, D_6, S_6$.",
+      "timestamp": "2026-09-23T22:01:03.254522+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "9d1fd9d31d8fc614e986a94dfd2e12c4befec5e3c499820ccd291fd3d9692351",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "13/6"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "7/4"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "-13/6"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-7/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "47/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 47/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "47/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "0/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "0/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "0/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "5a505280b3e24dfef5c2ddd94a170ea42349abac29fb668c28f1ff9f91519937"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_13_A",
+        "PROP_PROMPT_T03_13_B"
+      ],
+      "terminal_state_digest": "7e7f7a501a94c6268b136261a066eb64f17bc603153d812aa6dbfc3720dc7285"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_14",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_14",
+      "target": "TARGET_G1",
+      "prompt_description": "Bounded-depth rational bisection on Sz\u00f6ll\u0151si arc parameter cells.",
+      "timestamp": "2026-09-23T22:01:03.259490+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "f61bbfce2640dc977bb8aa7975b282611e4d689387565e6a24882e6c114bbaa3",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_14_A",
+        "PROP_PROMPT_T03_14_B"
+      ],
+      "terminal_state_digest": "2d46a57e50e3ce5e917abe5991562e09e1430d68aed20519d5ef47180eff7725"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_15",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_15",
+      "target": "TARGET_G1",
+      "prompt_description": "Cycle circulation $\\Phi_1 > 0$ across the composite Sz\u00f6ll\u0151si deltoid partition.",
+      "timestamp": "2026-09-23T22:01:03.265408+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "0435aa8ff2c826c5dd78dcd3f496c2761b8c2378a44c1eb5aed34160e22c11da",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_15_A",
+        "PROP_PROMPT_T03_15_B"
+      ],
+      "terminal_state_digest": "dd28f63297e32887f339ba505d106594229e9332a42237d2d2940dfbcc49da4c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_16",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_16",
+      "target": "TARGET_G1",
+      "prompt_description": "Connecting the Sz\u00f6ll\u0151si family boundary to the Karlsson 3-parameter manifold.",
+      "timestamp": "2026-09-23T22:01:03.269467+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "41816ff3992b9c02c122465ed7f9d99f4fede57b30031d0e2fb6e9132086aaad",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_16_A",
+        "PROP_PROMPT_T03_16_B"
+      ],
+      "terminal_state_digest": "8ac3efc809d48d1f5c83d9296a7a2667d6b2b8dff2d227c49c57a7c56eeb74f7"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_17",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_17",
+      "target": "TARGET_G1",
+      "prompt_description": "Evaluating pairing between $B_6(\\theta)$ and Di\u021b\u0103 family $D_6(\\alpha)$: triad incompatibility.",
+      "timestamp": "2026-09-23T22:01:03.273836+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "346e0e43017daf27c0fe0aca7f9178864c5c79eac3d559c2b8f285ce25483603",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "17/6"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "9/4"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "-17/6"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-9/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "61/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 61/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "61/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "0/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "0/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "0/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "5a505280b3e24dfef5c2ddd94a170ea42349abac29fb668c28f1ff9f91519937"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_17_A",
+        "PROP_PROMPT_T03_17_B"
+      ],
+      "terminal_state_digest": "d5a8dd392e663d656f87ac6fcc2e917f9121196090d9abf830bb162a60230374"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_18",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_18",
+      "target": "TARGET_G1",
+      "prompt_description": "Nullstellensatz certificate for emptiness of $V_{\\mathbb{R}}(\\text{ZeroRel}_{B_6(\\theta)})$ along the arc.",
+      "timestamp": "2026-09-23T22:01:03.279314+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "eaf7118f254aecf64ea3bc2b1fea2e1da180eb6d474a93f51f9d4e7b9a3d3c7c",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_18_A",
+        "PROP_PROMPT_T03_18_B"
+      ],
+      "terminal_state_digest": "42ca95eaa0a29ee1b60904075a012f5dc242ebc6f5ca11d9be03585785230968"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_19",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_19",
+      "target": "TARGET_G1",
+      "prompt_description": "Network Simplex dual witness certification on blown-up cusp cells.",
+      "timestamp": "2026-09-23T22:01:03.283615+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "2f1eeb95692f7ae95fb7d578e8b862a2382392eeb718f6f6f08d941f26615318",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_19_A",
+        "PROP_PROMPT_T03_19_B"
+      ],
+      "terminal_state_digest": "54b63d71e0bdb49ff4e2b8322aeebdb305f465b416aba2efeaad0304613998ec"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_20",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_20",
+      "target": "TARGET_G1",
+      "prompt_description": "Non-existence of 4-MUB sets containing a Sz\u00f6ll\u0151si matrix and a Tao matrix.",
+      "timestamp": "2026-09-23T22:01:03.288892+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "8fa112879bfc74f4f8326ae2f4035e7ad32d7f540b3dd6351d0f14bf54e49dc0",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_20_A",
+        "PROP_PROMPT_T03_20_B"
+      ],
+      "terminal_state_digest": "850e30e1720ae70463598df11b0aa96104cb6e6736644aa1fda0d5e9ea4a45d5"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_21",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_21",
+      "target": "TARGET_G1",
+      "prompt_description": "Exact rational representation of algebraic roots of $B_6(\\theta)$ via minimal polynomials.",
+      "timestamp": "2026-09-23T22:01:03.296371+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "758377fdeac1cd977fe6e3b61d0b6c2f601274bab1347c8ac16eb73cda3f1202",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "7/2"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "11/4"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "-7/2"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-11/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "0/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "0/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "0/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "5a505280b3e24dfef5c2ddd94a170ea42349abac29fb668c28f1ff9f91519937"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_21_A",
+        "PROP_PROMPT_T03_21_B"
+      ],
+      "terminal_state_digest": "1417cb0dca141fdb6f751ea986c556d81c0ac277a545d9d62be1aae486f61f86"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_22",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_22",
+      "target": "TARGET_G1",
+      "prompt_description": "Uniform derivative bounds on the Sz\u00f6ll\u0151si arc away from cusps.",
+      "timestamp": "2026-09-23T22:01:03.302002+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "6960624a647f13300c7039793f5c5cfb60fd3deab0ee7f5e22abd2bd37d4187b",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_22_A",
+        "PROP_PROMPT_T03_22_B"
+      ],
+      "terminal_state_digest": "f047c88049a0ccc2aea18495a335e48a74df2e6a9123e283a96da2ba9db06e77"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_23",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_23",
+      "target": "TARGET_G1",
+      "prompt_description": "Rejection of non-unitary / non-unimodular perturbations along $B_6(\\theta)$.",
+      "timestamp": "2026-09-23T22:01:03.309993+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "3332355277988ac80e353ef659747415acbf24e47f13632ef8d9610ba4b94245",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_23_A",
+        "PROP_PROMPT_T03_23_B"
+      ],
+      "terminal_state_digest": "4160ccc0b552d7ec28023c55ef6b280a352f3f7dd44de937103def1e0e41e29b"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_24",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_24",
+      "target": "TARGET_G1",
+      "prompt_description": "Lean 4 verification of Sz\u00f6ll\u0151si deltoid cusp desingularization.",
+      "timestamp": "2026-09-23T22:01:03.314847+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "5c13bcd7240c4ac3d1114ca01ad27a1c2abd24584bf31af1b573e20b6e2c91fe",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "1/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "1/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "1/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "285fcffd28324c412d3f952fa7a5ab2dc08c119fc6ffe05d024493ca2c4d6906"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_24_A",
+        "PROP_PROMPT_T03_24_B"
+      ],
+      "terminal_state_digest": "4be6c6a1c9c0c735df0c7beae9577b4e8545dc9dbc5827a8740f22b0695017ad"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T03_25",
+      "team_id": "team_03",
+      "run_id": "PROMPT_T03_25",
+      "target": "TARGET_G1",
+      "prompt_description": "Master synthesis of the Sz\u00f6ll\u0151si / Haagerup orbit non-extendibility theorem.",
+      "timestamp": "2026-09-23T22:01:03.319018+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "e9c33737500fc71434bdd6f16b69720d9b18ce4a6bff9f2c3f8bc038f124f7b5",
+      "constraint_graph": {
+        "vertices": [
+          "szollosi_b6_v0",
+          "szollosi_b6_v1",
+          "szollosi_b6_v2",
+          "szollosi_b6_v3"
+        ],
+        "edges": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "szollosi_b6_v0",
+            "v": "szollosi_b6_v1",
+            "claim": "25/6"
+          },
+          {
+            "u": "szollosi_b6_v1",
+            "v": "szollosi_b6_v2",
+            "claim": "13/4"
+          },
+          {
+            "u": "szollosi_b6_v2",
+            "v": "szollosi_b6_v3",
+            "claim": "-25/6"
+          },
+          {
+            "u": "szollosi_b6_v3",
+            "v": "szollosi_b6_v0",
+            "claim": "-13/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "89/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 89/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "89/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "szollosi_b6_v0->szollosi_b6_v1": "0/1",
+          "szollosi_b6_v1->szollosi_b6_v2": "0/1",
+          "szollosi_b6_v2->szollosi_b6_v3": "0/1",
+          "szollosi_b6_v3->szollosi_b6_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "5a505280b3e24dfef5c2ddd94a170ea42349abac29fb668c28f1ff9f91519937"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T03_25_A",
+        "PROP_PROMPT_T03_25_B"
+      ],
+      "terminal_state_digest": "cfd7b3d9b2d1398871b73ac87487ece624f573e66a5f9de66a91dadce6e002bb"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "protocol": "The Symbol Game Proposal Fidelity Protocol (PFP) - 6-Site Scaling",
+  "benchmark": "1D Meron-Cluster Sign Problem (6-site periodic chain, q=3, beta=2)",
+  "date": "2026-10-02",
+  "lattice_dimensions": {
+    "sites": 6,
+    "times": 4,
+    "plaquettes": 12,
+    "space_time_nodes": 24
+  },
+  "ground_truth": {
+    "subgraphs": 4096,
+    "configurations": 33396,
+    "negative_configurations": 192,
+    "signed_partition_z": 33012,
+    "transfer_matrix_trace": 33012,
+    "absolute_partition": 33396,
+    "average_sign": "2751/2783",
+    "meron_graphs": 72,
+    "zero_meron_graphs": 4024,
+    "merons_per_cancelling_graph": 2
+  },
+  "verification_findings": {
+    "multi_meron_loop_identification": "Every cancelling graph possesses exactly 2 meron cycles (neutral meron-antimeron pair).",
+    "blind_sector_reduction": "Pure DDC cycle spectra identify the 72 cancelling graphs and 4024 surviving graphs without prior sector counts.",
+    "gin_posting_index": "Synthesized and certified 192 cancelling configuration doublets across all 72 meron graphs in <0.5s.",
+    "terminal_route": "EXACT_REPAIR",
+    "domain_outcome": "ExactCancellation"
+  }
+}

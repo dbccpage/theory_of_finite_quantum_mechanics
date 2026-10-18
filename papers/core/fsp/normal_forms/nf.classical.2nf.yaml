@@ -1,0 +1,84 @@
+schema_version: smplx.nf.contract.v0
+schema_ref: ./normal_form_contract_schema.yaml
+contract_kind: normal_form_contract
+identity:
+  id: nf.classical.2nf
+  name: Full Functional Dependency Second Normal Form
+  short_name: 2NF
+  version: v0
+  theory_status: established
+  contract_status: active
+  verification_status: absent
+  family: shape
+classification:
+  hierarchy_level: normal_form
+  subject_kind:
+  - relvar
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: partial functional dependency of a non-prime attribute on a proper subset of a candidate
+    key
+  preserves_invariant: every non-prime attribute is fully functionally dependent on every candidate key
+  protected_skeleton:
+  - first_normal_form
+  - candidate_keys
+  - functional_dependencies
+  - prime_attributes
+  erased_structure: []
+  non_claims:
+  - does not resolve transitive dependencies (see 3NF)
+  - does not imply Boyce-Codd Normal Form
+  - does not certify runtime repair without cochain substrate
+  - does not imply authorization
+declarations_required:
+- first_normal_form
+- heading
+- candidate_keys
+- functional_dependencies
+- relation_predicate
+evidence_required: []
+validation_criteria:
+- relvar satisfies 1NF
+- every non-prime attribute is fully functionally dependent on each candidate key
+- no non-prime attribute depends on a proper subset of any composite candidate key
+proof_obligations:
+- id: 2nf.partial_dependency_elimination
+  status: theorem_shaped
+  ref: coda_all_universe/1_the_tower/normal_forms/contracts/_book_09_full_normal_form_atlas.md
+  statement: Every non-prime attribute depends functionally on entire candidate keys rather than proper
+    subsets
+terminal_routes:
+- Accept
+- RejectPartialDependency
+- RequireDecomposition
+terminal_route_map:
+  Accept: Preserve
+  RejectPartialDependency: Reject
+  RequireDecomposition: Decompose
+certification:
+  certificate_required: false
+  certificate_kind: null
+  obstruction_class_required: false
+  loss_ledger_required: false
+  verifier_required: false
+  loss_ledger_trigger_id: null
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: order_line relvar keyed by (order_id, line_no) stores order_date depending only on order_id
+  diagnosis: non-prime attribute depends on a proper subset of a composite key
+  terminal: RejectPartialDependency
+examples:
+- ref: coda_all_universe/1_the_tower/normal_forms/contracts/_book_09_full_normal_form_atlas.md
+  section: 2.1 Classical Relational Normal Forms
+references:
+- coda_all_universe/1_the_tower/normal_forms/contracts/_book_09_full_normal_form_atlas.md
+- coda_all_universe/1_the_tower/normal_forms/contracts/_paper_0_relvar_relation_table_and_boundary_relvar.md
+- ./normal_form_contract_schema.yaml
+normalization:
+  kind: admissibility_predicate
+  claim_scope: Relational admissibility predicate relative to declared dependencies; no unique representative
+    or normalizing algorithm is certified here.
+  evidence: ../docs/normal_form_audit.md

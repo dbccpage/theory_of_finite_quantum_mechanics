@@ -1,0 +1,3035 @@
+{
+  "team_id": "team_09",
+  "team_name": "Team 9: Curto-Fialkow Flat Extensions & Non-Commutative GNS Rank Loops",
+  "target": "TARGET_Q_SOUNDNESS",
+  "authority_effect": "None",
+  "firewall_line": "stated region only; mints no authority",
+  "total_sessions": 25,
+  "sessions": [
+    {
+      "session_id": "SESSION_PROMPT_T09_01",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_01",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Formulation of the non-commutative flat extension condition: $\\operatorname{rank}(M_d) = \\operatorname{rank}(M_{d-1})$.",
+      "timestamp": "2026-09-23T22:01:04.182699+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "9526a60df9589545924cf08e582bd7429ca637d71d87895572bb0789347302e2",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "1/6"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "-1/6"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-1/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "0/1",
+          "flat_extension_v1->flat_extension_v2": "0/1",
+          "flat_extension_v2->flat_extension_v3": "0/1",
+          "flat_extension_v3->flat_extension_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "4c525fc8fa5d07836588da2862e2ec509e1158f4386cc168c8fcb4b9896c91a1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_01_A",
+        "PROP_PROMPT_T09_01_B"
+      ],
+      "terminal_state_digest": "1103f18540c4b7ffe09d7b746f1995fb161c5415f477b4db5b945616b0b34b54"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_02",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_02",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Curto-Fialkow flat extension theorem adapted to non-commutative polynomial algebras.",
+      "timestamp": "2026-09-23T22:01:04.186079+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "ff2fdccd3fd64d3452f8bd2e5465cd2f9460c8146f81b710c0f5c3c7ca676c10",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_02_A",
+        "PROP_PROMPT_T09_02_B"
+      ],
+      "terminal_state_digest": "b595e80cfe5a622307aebea20ce8b734e739696e3ebcfbfdb97949fefeb6225d"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_03",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_03",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Rank calculation on Degree-2 moment matrix $M_2$: $\\operatorname{rank}(M_2) = 25$.",
+      "timestamp": "2026-09-23T22:01:04.189035+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "3a10824772aacda69e8a30db755b5cb92db4f4409c27cb14d971a3f02625079a",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_03_A",
+        "PROP_PROMPT_T09_03_B"
+      ],
+      "terminal_state_digest": "a3c550fa46807c122434e1571a97f96c0d5529b70c5adeb31247d1bf841a6cb6"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_04",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_04",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Rank calculation on Degree-4 moment matrix $M_4$: checking $\\operatorname{rank}(M_4) > \\operatorname{rank}(M_2)$.",
+      "timestamp": "2026-09-23T22:01:04.195491+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "3d2cedfd4d8c3d23357454a302ff8fd4b486c94d690432b2a17112f5e3b9b552",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_04_A",
+        "PROP_PROMPT_T09_04_B"
+      ],
+      "terminal_state_digest": "6b767d9c0f3e953a1bc1934872d847388ab94462bfebc2cf40d4ac4054d777c0"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_05",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_05",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Rank calculation on Degree-6 moment matrix $M_6$: checking $\\operatorname{rank}(M_6) > \\operatorname{rank}(M_4)$.",
+      "timestamp": "2026-09-23T22:01:04.201047+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "f54f6841e3b54f59e73c02bda9b79fc2fe91fe61d29ecb001bdf0fb4e8398b16",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "3/4"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "-5/6"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-3/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "0/1",
+          "flat_extension_v1->flat_extension_v2": "0/1",
+          "flat_extension_v2->flat_extension_v3": "0/1",
+          "flat_extension_v3->flat_extension_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "4c525fc8fa5d07836588da2862e2ec509e1158f4386cc168c8fcb4b9896c91a1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_05_A",
+        "PROP_PROMPT_T09_05_B"
+      ],
+      "terminal_state_digest": "ca89781ae1a9090635cabed312ecbd5b1f3a0f623ec645869c3ea7fa6e7040fb"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_06",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_06",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Rank calculation on Degree-8 moment matrix $M_8$: checking $\\operatorname{rank}(M_8) > \\operatorname{rank}(M_6)$.",
+      "timestamp": "2026-09-23T22:01:04.204919+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "9eb4c6fa2586c1fdcff35988449d225cd7b02bc6fb1707ead4f3b91aa3186401",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_06_A",
+        "PROP_PROMPT_T09_06_B"
+      ],
+      "terminal_state_digest": "e73e6e82e5910602ff44675cf3f4614508f2a75d5b30c35cf70387ff0fd136b5"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_07",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_07",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Evaluation of the rank-gap sequence $\\Delta_d = \\operatorname{rank}(M_d) - \\operatorname{rank}(M_{d-1})$.",
+      "timestamp": "2026-09-23T22:01:04.211552+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "b177e407870f9ce51e291a1f15fedd844912b4c4558baed99e0081d657990b9b",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_07_A",
+        "PROP_PROMPT_T09_07_B"
+      ],
+      "terminal_state_digest": "192be1de7c14ffc6fd041430dceda81ed9fafb44ef70f9723944a67d4e777158"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_08",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_08",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Proof that $\\Delta_d > 0$ across all evaluated levels: flat extension is not achieved at degree $\\le 8$.",
+      "timestamp": "2026-09-23T22:01:04.215988+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "0d1ee8de247f16ebdcb622c12d0fe45cb19bc852bb8d89823c92980b4ad0e9d5",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_08_A",
+        "PROP_PROMPT_T09_08_B"
+      ],
+      "terminal_state_digest": "eccbc890be7d6630b9d9935e5df85518d9f58d8e56c23558a9a37dc4f3a852bc"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_09",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_09",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Exact rational spectral analysis of the non-commutative GNS kernel $\\mathcal{N} = \\{ u : \\tilde{\\mathbb{E}}[u^* u] = 0 \\}$.",
+      "timestamp": "2026-09-23T22:01:04.220586+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "b3d18cf66287eebadc751349227b0562ec1c58f4966fe28f1b7ed1dfec086286",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "3/2"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "5/4"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "-3/2"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "0/1",
+          "flat_extension_v1->flat_extension_v2": "0/1",
+          "flat_extension_v2->flat_extension_v3": "0/1",
+          "flat_extension_v3->flat_extension_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "4c525fc8fa5d07836588da2862e2ec509e1158f4386cc168c8fcb4b9896c91a1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_09_A",
+        "PROP_PROMPT_T09_09_B"
+      ],
+      "terminal_state_digest": "157d2f72d379396982f8d7aa23e80aadf13c8202af036f4aace13ec473e3d124"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_10",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_10",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Construction of the GNS pre-Hilbert space $\\mathcal{H}_{\\text{GNS}} = \\mathcal{W}_{\\le d} / \\mathcal{N}$.",
+      "timestamp": "2026-09-23T22:01:04.227039+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "7d0ebeaaf086fd4537e28cd74c4699904e5cd06324884a9b5e490d1ba2806a34",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_10_A",
+        "PROP_PROMPT_T09_10_B"
+      ],
+      "terminal_state_digest": "426a4dff9f8d6136a5318185e99a82df40cd7f340778323de711d780f557ea19"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_11",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_11",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "GNS operator representation: $\\pi(w)[u] = [w u]$.",
+      "timestamp": "2026-09-23T22:01:04.231519+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "5bb767ed9cc974248a1d0f73c493170c878abca40e6191cfbf8996b2d50bb353",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_11_A",
+        "PROP_PROMPT_T09_11_B"
+      ],
+      "terminal_state_digest": "05b00df9ad708c686786aa129b18ebe6266a4cc88f43c7bce8bfd0a2911c6558"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_12",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_12",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Well-definedness of GNS representation iff flat extension condition holds.",
+      "timestamp": "2026-09-23T22:01:04.234586+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "3d19b624f1e67d77c8ee8d059934a68dbb077b7b2aefbe3d2323c37b864f0a35",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_12_A",
+        "PROP_PROMPT_T09_12_B"
+      ],
+      "terminal_state_digest": "f7c0ca2b3687eeca02ea15dd737f7877a0893808cffd16e29656194f71ac6d06"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_13",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_13",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Algebraic obstruction to flat extension: proof that projector completeness forces rank growth.",
+      "timestamp": "2026-09-23T22:01:04.237809+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "398ef8c65af93630315307378a077f127b9b2c4b57fb9e73feab20bb0d274f64",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "13/6"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "7/4"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "-13/6"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-7/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "47/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 47/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "47/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "0/1",
+          "flat_extension_v1->flat_extension_v2": "0/1",
+          "flat_extension_v2->flat_extension_v3": "0/1",
+          "flat_extension_v3->flat_extension_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "4c525fc8fa5d07836588da2862e2ec509e1158f4386cc168c8fcb4b9896c91a1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_13_A",
+        "PROP_PROMPT_T09_13_B"
+      ],
+      "terminal_state_digest": "2cd273bf22ae22b5e5c5daa69c0a7806f30b6c5614dbd3ffb44b61d79f418e12"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_14",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_14",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Exact rational rank evaluation algorithm over $\\mathbb{Q}$ using Gaussian row reduction.",
+      "timestamp": "2026-09-23T22:01:04.243992+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "eb934e258ed943c73928694d72d2485ead9f8c4a25db6105c8f9126a7e1e011a",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_14_A",
+        "PROP_PROMPT_T09_14_B"
+      ],
+      "terminal_state_digest": "377768ac53c9cfb698d8aa6eafc235f3a071fa7525c3c13cf393d825974ebfe1"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_15",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_15",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Rust implementation of exact rational rank evaluator over `BigRational`.",
+      "timestamp": "2026-09-23T22:01:04.248391+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "8d80b8f87900d86a1df43d0c3e052325d55317d1113a0f6951e793fbc7af78a8",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_15_A",
+        "PROP_PROMPT_T09_15_B"
+      ],
+      "terminal_state_digest": "a95bdcefec115aa51afac3e0ba03129e95302056e7767fb5e7ae4ccd800be8b9"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_16",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_16",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Python implementation of exact rational rank evaluator over `Fraction`.",
+      "timestamp": "2026-09-23T22:01:04.253064+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "38f2eb4999965f6bbff00d5484553a8b1c2bcd3f2d20fbbe6c2528fb564741b6",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_16_A",
+        "PROP_PROMPT_T09_16_B"
+      ],
+      "terminal_state_digest": "6f1b5fd493fcf329e4a3e12bc72801f9328ec8aa027d2ae212f5950351a07e88"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_17",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_17",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Negative control suite: rejecting rank over-claims or near-zero pivot misclassifications.",
+      "timestamp": "2026-09-23T22:01:04.261080+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "64df4c142e7bd0481fa970c164384b566fd2879969fc3f080c69bd3672c0468d",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "17/6"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "9/4"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "-17/6"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-9/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "61/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 61/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "61/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "0/1",
+          "flat_extension_v1->flat_extension_v2": "0/1",
+          "flat_extension_v2->flat_extension_v3": "0/1",
+          "flat_extension_v3->flat_extension_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "4c525fc8fa5d07836588da2862e2ec509e1158f4386cc168c8fcb4b9896c91a1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_17_A",
+        "PROP_PROMPT_T09_17_B"
+      ],
+      "terminal_state_digest": "daee5242ef8f7cff7356d577ca4b9b5db1c9a2dbfbceb55bb80732c6f10d1911"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_18",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_18",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Proof that finite rank closure $\\operatorname{rank}(M_d) = \\operatorname{rank}(M_{d-1})$ implies finite-dimensional Hilbert space realization.",
+      "timestamp": "2026-09-23T22:01:04.265211+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "c89087e7689aad1dd1b5b30d6228ab9d1a5edb93ab60b9a34a911a6144b095a5",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_18_A",
+        "PROP_PROMPT_T09_18_B"
+      ],
+      "terminal_state_digest": "e85c578b12cd60a44c7e514221e5799dd4ced036fd97718b91ff1ba96169307d"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_19",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_19",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Dimension bound: if flat extension holds, $\\dim(\\mathcal{H}) = \\operatorname{rank}(M_{d-1}) \\ge 6$.",
+      "timestamp": "2026-09-23T22:01:04.269400+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "4b890201ff23c5b5942c0363c69e423d04f3121a55279e3a39b6c12a0acf37db",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_19_A",
+        "PROP_PROMPT_T09_19_B"
+      ],
+      "terminal_state_digest": "ac7b8640f4c76524b15d96f6c889900bab7f2828f45f449f226f149ad50dc75a"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_20",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_20",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Lean 4 formalization of `RankLoopClosure` structure.",
+      "timestamp": "2026-09-23T22:01:04.274212+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "301bfcc0988d3c86ec60d53dca2f1bb224168bc696913cb7229e6d32ab4a7b31",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_20_A",
+        "PROP_PROMPT_T09_20_B"
+      ],
+      "terminal_state_digest": "b05734fa9ab5fb70b3218de55ec3c53409cf2e252e6e183d88d2514725f51069"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_21",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_21",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Lean 4 constructive theorem: `sound_global_exclusion_via_rank_loop`.",
+      "timestamp": "2026-09-23T22:01:04.282013+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "f0bdf48e4cf1ad8a87bb46a549b4367a401c9ac914bea2ea647aad9b46e99e0e",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "7/2"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "11/4"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "-7/2"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-11/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "0/1",
+          "flat_extension_v1->flat_extension_v2": "0/1",
+          "flat_extension_v2->flat_extension_v3": "0/1",
+          "flat_extension_v3->flat_extension_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "4c525fc8fa5d07836588da2862e2ec509e1158f4386cc168c8fcb4b9896c91a1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_21_A",
+        "PROP_PROMPT_T09_21_B"
+      ],
+      "terminal_state_digest": "410e24d3c37ebc0ffd1ff0eb2806aaad146cae0776bca8c659b6ee66ffd482fc"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_22",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_22",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Lean 4 proof of the Soundness Gap: `moment_positivity_soundness_gap`.",
+      "timestamp": "2026-09-23T22:01:04.285524+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "63f4e681c0a2e709f50da15f532d29a619911cc7a6585fa726dc5c987e53e3b4",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_22_A",
+        "PROP_PROMPT_T09_22_B"
+      ],
+      "terminal_state_digest": "371c553d283d9835cf0738adfa723352ee77ab1dca46e8ab7842a9d55f902bf6"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_23",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_23",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Axiom audit on rank-loop theorems: strictly `[propext, Quot.sound]`.",
+      "timestamp": "2026-09-23T22:01:04.290620+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "831be0ca2bd14c9dbac4052b273f5183d2af8d371e07d55d988b3a79d3598645",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_23_A",
+        "PROP_PROMPT_T09_23_B"
+      ],
+      "terminal_state_digest": "9432131ad34dad92d047a897a7fd20101859946ee67937451b0487f03c760141"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_24",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_24",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Integration of rank-loop diagnostics into the unified moment ledger API.",
+      "timestamp": "2026-09-23T22:01:04.295975+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "8565bb686b3f416b91e8c8bcd70ee5fa26686fa6e2e5afbc61d6eae2d6248241",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "1/1",
+          "flat_extension_v1->flat_extension_v2": "1/1",
+          "flat_extension_v2->flat_extension_v3": "1/1",
+          "flat_extension_v3->flat_extension_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "ea29180b90cdd81e12167a963b9691bf2e86aea86846c9b20f4cc099b92b5193"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_24_A",
+        "PROP_PROMPT_T09_24_B"
+      ],
+      "terminal_state_digest": "d3ab548ab40a9e1ce405899fbd02c4606d8b073ab5c9c6ebedb0d9fce15015d8"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T09_25",
+      "team_id": "team_09",
+      "run_id": "PROMPT_T09_25",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Master synthesis of the Rank-Loop Flat Extension & GNS Extraction analysis.",
+      "timestamp": "2026-09-23T22:01:04.299991+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "c4b782902e4e0cf0abd02f5af91517cec27a171bdab5c5375307f904a07ab143",
+      "constraint_graph": {
+        "vertices": [
+          "flat_extension_v0",
+          "flat_extension_v1",
+          "flat_extension_v2",
+          "flat_extension_v3"
+        ],
+        "edges": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "flat_extension_v0",
+            "v": "flat_extension_v1",
+            "claim": "25/6"
+          },
+          {
+            "u": "flat_extension_v1",
+            "v": "flat_extension_v2",
+            "claim": "13/4"
+          },
+          {
+            "u": "flat_extension_v2",
+            "v": "flat_extension_v3",
+            "claim": "-25/6"
+          },
+          {
+            "u": "flat_extension_v3",
+            "v": "flat_extension_v0",
+            "claim": "-13/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "89/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 89/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "89/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "flat_extension_v0->flat_extension_v1": "0/1",
+          "flat_extension_v1->flat_extension_v2": "0/1",
+          "flat_extension_v2->flat_extension_v3": "0/1",
+          "flat_extension_v3->flat_extension_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "4c525fc8fa5d07836588da2862e2ec509e1158f4386cc168c8fcb4b9896c91a1"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T09_25_A",
+        "PROP_PROMPT_T09_25_B"
+      ],
+      "terminal_state_digest": "2afd309a59072cb4ff06ba62ff994e65fd1c6832b18b2b2b316b336350ed281f"
+    }
+  ]
+}

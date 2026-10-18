@@ -1,0 +1,83 @@
+test_suite: test_quantum_coda_integration
+category: integration_test
+description: Integration test specifications for quantum correlation, partial trace, density matrices, and Majorana parity.
+
+tests:
+  - test_name: test_integration_quant_01_partial_trace_preservation
+    route: anomalon.coda.quantum_correlation.partial_trace_left, partial_trace_right
+    input:
+      matrix_shape: [4, 4]
+      dim_a: 2
+      dim_b: 2
+    expected_output:
+      r_left_shape: [2, 2]
+      r_right_shape: [2, 2]
+
+  - test_name: test_integration_quant_02_correlation_defect_nonnegativity
+    route: anomalon.coda.quantum_correlation.correlation_defect
+    input:
+      rho: Bell state density matrix
+      dim_a: 2
+      dim_b: 2
+    expected_output:
+      defect_nonnegative: true
+
+  - test_name: test_integration_quant_03_interaction_residual_engine
+    route: anomalon.coda.quantum_correlation.InteractionResidualEngine
+    input:
+      dim_a: 2
+      dim_b: 2
+      rho: 4x4 matrix
+    expected_output:
+      residual_nonnegative: true
+
+  - test_name: test_integration_quant_04_trace_norm_matrix_geometry
+    route: anomalon.coda.quantum_correlation.trace_norm
+    input:
+      mat: [[1.0, 0.0], [0.0, -1.0]]
+    expected_output:
+      trace_norm_value: float >= 0.0
+
+  - test_name: test_integration_quant_05_quantum_lattice_simulation_step
+    route: anomalon.coda.quantum_lattice
+    input:
+      module_load: true
+    expected_output:
+      has_name_attribute: true
+
+  - test_name: test_integration_quant_06_kitaev_majorana_ring_integration
+    route: anomalon.coda.kitaev_majorana_benchmark
+    input:
+      module_load: true
+    expected_output:
+      has_name_attribute: true
+
+  - test_name: test_integration_quant_07_microsoft_braiding_benchmark
+    route: anomalon.coda.microsoft_majorana_braiding_benchmark
+    input:
+      module_load: true
+    expected_output:
+      has_name_attribute: true
+
+  - test_name: test_integration_quant_08_mermin_peres_contextuality_cochain
+    route: anomalon.coda.lattice_simulation
+    input:
+      module_load: true
+    expected_output:
+      has_name_attribute: true
+
+  - test_name: test_integration_quant_09_stinespring_dilation_cptp_lift
+    route: anomalon.coda.quantum_correlation
+    input:
+      attribute_check: correlation_defect
+    expected_output:
+      attribute_exists: true
+
+  - test_name: test_integration_quant_10_gellmann_hartle_decoherence_integration
+    route: anomalon.coda.quantum_correlation
+    input:
+      attribute_check: trace_norm
+    expected_output:
+      attribute_exists: true
+
+

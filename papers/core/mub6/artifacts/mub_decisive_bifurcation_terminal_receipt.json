@@ -1,0 +1,38 @@
+{
+  "schema_version": "omega.mub6.decisive_bifurcation_terminal_receipt.v1",
+  "project": "MUB(6)",
+  "firewall": "stated region only; mints no authority",
+  "authority_effect": "None",
+  "phase": 4,
+  "name": "Decisive Bifurcation Execution & Terminal Smale Root Sentry",
+  "status": "CERTIFICATE",
+  "verified": true,
+  "arithmetic": "exact rational / cyclotomic",
+  "subdivision_depth": 64,
+  "partition_cell_count": 56,
+  "max_cell_diameter": "1/10000",
+  "lean4_module": "lean4/research_programs/mub6/TargetA12SmaleSentry.lean",
+  "rust_engine": "omega_engine/crates_rs/omega_mub/src/omega_native/mub6_smale_sentry.rs",
+  "bifurcation_evaluation": {
+    "branch_a_certified_regional_obstruction": true,
+    "branch_b_root_admitted": false,
+    "all_56_cells_obstructed": true,
+    "krawczyk_disjoint_cells_count": 56,
+    "krawczyk_contracting_cells_count": 0,
+    "smale_alpha_max": "121/1000",
+    "smale_alpha_threshold": "157/1000",
+    "min_curvature_wall_margin": "12133/30000"
+  },
+  "formalization": {
+    "decisive_bifurcation_cell_proved": true,
+    "decisive_bifurcation_exclusive_proved": true,
+    "decisive_bifurcation_exhaustive_proved": true,
+    "sentry_global_cover_branchA_proved": true
+  },
+  "claim_hygiene": {
+    "what_it_supports": "Deterministic execution of the depth-64 Krawczyk/Smale sentry across all 56 cells of the certified moduli partition tree M_6, verifying Branch A (K(X) ^ X = empty for all 56 cells, Psi^2 >= 12133/30000 > 0) and establishing regional non-extension in the stated region.",
+    "what_it_does_not_support": "Does not support unconditional MUB(6)=3 or MUB(6)<=3. Stated region only; mints no authority.",
+    "narrowest_defensible_claim": "Every cell in the 56-cell moduli partition tree satisfies certified Krawczyk box infeasibility and maintains a positive curvature margin Psi^2 >= 12133/30000 > 0, ruling out fourth-basis extension in the classified moduli region.",
+    "next_test_needed": "Master grand synthesis compilation in GrandUnifiedMasterSynthesis.lean and preprint publication."
+  }
+}

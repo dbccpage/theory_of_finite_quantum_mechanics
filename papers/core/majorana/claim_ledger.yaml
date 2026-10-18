@@ -1,0 +1,266 @@
+paper_id: "026_microsoft_majorana_problem"
+title: "The Majorana Problem: Finite Parity Schedules, Ising Algebra, and What Hardware Claims Do Not Discharge"
+authority_effect: "None"
+date: "2026-09-19"
+
+claims:
+  - id: "MAJ-C1"
+    name: "The Microsoft Majorana Problem"
+    statement: "The realization packet gap between continuous laboratory hardware narratives (InAs-Al nanowires, ZBAs, capacitance shifts) and discrete algebraic verification schedules (F2 homology, Ising matrices)."
+    claim_type: "Definition"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["transfer_gap_strictly_positive", "detector_inadequate_when_kernel_nontrivial"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["DetectorAdequacyAudit.audit_syndrome_readout", "DetectorAdequacyAudit.audit_homology_readout"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_detector_adequacy_syndrome_vs_homology", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C2"
+    name: "F2 Residual Trichotomy"
+    statement: "For any cochain complex C0 -> C1 -> C2 over F2 with d1 d0 = 0, every w in C1 is exclusively Exact, ClosedResidual, or OpenObstruction."
+    claim_type: "Theorem"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["coboundary_is_cocycle", "exact_not_open", "exact_not_closed_residual", "closed_residual_not_open", "trichotomy_pairwise_disjoint"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["classify_residual"]
+      tests: ["code/tests/unit/test_gf2_trichotomy.py::test_residual_trichotomy_classification", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C3"
+    name: "Polynomial-Time Decidability"
+    statement: "Lean declaration gaussian_elimination_cubic_bound proves gaussian_elimination_ops n <= n * n * n by Nat.le_refl, and gaussian_elimination_ops n is defined as n * n * n. That declaration does not exhibit Gaussian elimination and does not decide the F2 trichotomy."
+    claim_type: "Theorem"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["gaussian_elimination_cubic_bound"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["GF2Matrix.rank", "GF2Matrix.solve"]
+      tests: ["code/tests/unit/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve"]
+
+  - id: "MAJ-C4"
+    name: "Nilpotency Refusal"
+    statement: "If d1 o d0 != 0 mod 2, evaluation is strictly refused (RepresentationInvalid); no homology labels are emitted."
+    claim_type: "Proposition"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["coboundary_is_cocycle", "nilpotency_refusal_sound"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["F2CochainComplex.is_nilpotent", "classify_residual"]
+      tests: ["code/tests/unit/test_gf2_trichotomy.py::test_cochain_nilpotency_and_refusal", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C5"
+    name: "Surface Toy Scope Fence"
+    statement: "Multi-plaquette surface code models are diagnostic shadows for software schedules, not physical threshold certificates or fault-tolerance proofs. Lean surface_code_error_detection_bound is the identity err_weight < code_distance -> err_weight < code_distance. The fence is this sentence."
+    claim_type: "ScopeFence"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["surface_code_error_detection_bound"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["build_tetron_carrier"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C6"
+    name: "Kitaev Chain Import"
+    statement: "The 1D Kitaev wire Hamiltonian, BdG spectrum, and topological phase bounds are standard imported models, not theorems derived by discrete algebra."
+    claim_type: "ScopeFence"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["mzm_boundary_decoupling", "disjoint_majorana_pair_commute"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["KitaevSweetSpotChain"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C7"
+    name: "Ising Anyon Algebraic Bounds"
+    statement: "Fusion rules sigma x sigma = 1 + psi and specialized Q(zeta16) braid matrices check software consistency, but do not prove physical anyon braiding or universal TQC."
+    claim_type: "ScopeFence"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["ising_quantum_dim_squared"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["IsingFusionAlgebra.verify_quantum_dimensions", "IsingFusionAlgebra.verify_yang_baxter_braid"]
+      tests: ["code/tests/unit/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C8"
+    name: "Parity Observable Isolation"
+    statement: "Z2 parity operator algebra commuting with an effective Hamiltonian is an algebraic consistency property, not experimental proof of quantum capacitance or topological protection."
+    claim_type: "ScopeFence"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["parity_eigenvalues"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["ParityAlgebraModel.verify_involutory_and_hermitian", "ParityAlgebraModel.sector_splitting"]
+      tests: ["code/tests/unit/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C9"
+    name: "Pfaffian Positivity Scope"
+    statement: "Local Pfaffian non-negativity under declared time-reversal/particle-hole symmetries does not solve the generic NP-hard fermion sign problem."
+    claim_type: "ScopeFence"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["pfaffian_topological_sign"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["pfaffian_z2_invariant", "compute_skew_pfaffian"]
+      tests: ["code/tests/unit/test_gf2_trichotomy.py::test_pfaffian_z2_topological_invariant", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C10"
+    name: "Observer Projection Quarantine"
+    statement: "Continuous device baths, continuum BdG spectra, and vendor marketing are external observer projections; they do not populate F2 receipts or mint authority."
+    claim_type: "ScopeFence"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["detector_inadequate_when_kernel_nontrivial"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["DetectorAdequacyAudit.audit_syndrome_readout"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_detector_adequacy_syndrome_vs_homology", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C11"
+    name: "Local Green != Global Red on Surface Schedules"
+    statement: "Lean local_green_not_global_red restates is_closed_residual as is_cocycle and not is_exact by exact h. That declaration does not by itself prove a surface-schedule theorem about non-contractible cycles."
+    claim_type: "Theorem"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["local_green_not_global_red"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["classify_residual"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights"]
+
+  - id: "MAJ-C12"
+    name: "Measured Tetron-Array Homology"
+    statement: "Lean torus_h1_dimension, cylinder_h1_dimension, and disk_h1_dimension are rfl on the enum betti1_of_topology: Torus maps to 2, Cylinder to 1, and Disk to 0. Those declarations do not compute the homology of a tetron array."
+    claim_type: "Computation"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["torus_h1_dimension", "cylinder_h1_dimension", "disk_h1_dimension"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["build_tetron_carrier"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C13"
+    name: "Retraction of Legacy Carrier"
+    statement: "Formal supersession and retraction of legacy tetron_carrier.py, which had dim H1 = 0 identically at all sizes T=1..4 and could not exhibit logical classes."
+    claim_type: "Retraction"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["legacy_carrier_obstruction"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["audit_legacy_carrier"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C14"
+    name: "Toric Code Distance and Additive Diagonal Weight"
+    statement: "Lean toric_distance_3x4 is rfl of toric_distance 3 4, and toric_distance is min. Lean torus_3x4_additive_weight is rfl of (3 : Nat) + 4 = 7. Those declarations do not prove that the distance of a toric-code lattice is min(rows, cols)."
+    claim_type: "Computation"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["toric_distance_3x4", "torus_3x4_additive_weight"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["compute_coset_weight", "logical_representative"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C15"
+    name: "Syndrome Decoding Complexity and Upper Bound Capping"
+    statement: "Computing Phi1([r]) = min_alpha wt(r + d0 alpha) over F2 across general binary linear code families is NP-hard syndrome decoding (while specific restricted families of d0 may admit polynomial-time decoders); capped Gray-code searches return upper bounds and degrade terminal routing to ClosedResidual."
+    claim_type: "Complexity"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["candidate_gauge_is_upper_bound"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["compute_coset_weight"]
+      tests: ["code/tests/integration/test_tetron_surface_codes.py::test_coset_weight_budget_capping"]
+
+  - id: "MAJ-C16"
+    name: "Trichotomy Benchmark"
+    statement: "The Lean declaration cited for this row is gaussian_elimination_cubic_bound, the same reflexivity as MAJ-C3. That declaration does not time a 6 x 6 torus and does not record a 50 ms bound."
+    claim_type: "Benchmark"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["gaussian_elimination_cubic_bound"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["classify_residual"]
+      tests: ["code/tests/unit/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C17"
+    name: "Norm Equivalence on Binary Carriers"
+    statement: "For any v in {0, 1}^n, ||v||_p^p = wt(v) for all p >= 1; l1 and l2 minimizations coincide identically over F2, refuting purported norm separation claims."
+    claim_type: "Theorem"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["f2_weight_l1_l2_coincide"]
+      axioms: []
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["verify_norm_equivalence"]
+      tests: ["code/tests/unit/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C18"
+    name: "Continuous-to-Discrete Transfer Bound under Open-System Dynamics"
+    statement: "In the declared analytical open-system Lindblad envelope model with quasiparticle poisoning gamma_qp > 0, the upper-bound trade-off envelope on the trace-norm transfer defect Delta_transfer has a strictly positive minimum Delta_min > 0; Lean 4 transfer_defect_lower_bound_pos verifies the integer arithmetic positivity (Nat.mul_pos) of the declared rate-duration product rather than an unconditional physical trace-distance lower bound."
+    claim_type: "Theorem"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["transfer_defect_lower_bound_pos", "transfer_pareto_defect_pos", "transfer_gap_strictly_positive"]
+      axioms: ["propext", "Quot.sound"]
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["OpenSystemMajoranaBraidModel.audit_transfer", "OpenSystemMajoranaBraidModel.optimal_braid_time"]
+      tests: ["code/tests/unit/test_open_system_transfer_bounds.py::test_pareto_optimal_sweet_spot_and_positive_infimum", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C19"
+    name: "Non-Markovian Memory-Kernel Transfer Bounds"
+    statement: "Structured bosonic bath spectra J(omega) = 2*pi*alpha * omega_c^(1-s) * omega^s * exp(-omega/omega_c) alter the Pareto scaling exponent beta = 2 / (p + 2) for the minimum transfer defect Delta_min, with sub-Ohmic noise (s < 1) accelerating dephasing and sub-gap cutoffs (omega_c < Delta) exponentially suppressing bulk leakage while maintaining Delta_min > 0 for any alpha > 0."
+    claim_type: "Theorem"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["non_markovian_transfer_defect_pos", "pareto_denominator_pos", "non_markovian_pareto_defect_pos", "sub_ohmic_exponent_shift"]
+      axioms: ["propext", "Quot.sound"]
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["NonMarkovianBosonicBathModel.effective_power_p", "NonMarkovianBosonicBathModel.scaling_exponent_beta", "NonMarkovianBosonicBathModel.audit_transfer"]
+      tests: ["code/tests/unit/test_open_system_transfer_bounds.py::test_non_markovian_scaling_exponents_sub_vs_super_ohmic", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
+  - id: "MAJ-C20"
+    name: "Multi-Terminal Cross-Junction Transfer Bounds under Potential Disorder"
+    statement: "In multi-terminal nanowire cross-junctions (M >= 4), M(M-1)/2 >= 6 inter-arm cross-talk channels and electrostatic potential disorder sigma_V monotonically degrade the effective topological gap Delta_eff(sigma_V), elevating the Pareto transfer defect infimum Delta_min^(M) > 0 for all sigma_V < sigma_crit."
+    claim_type: "Theorem"
+    lean4_formalization:
+      module: "MajoranaCore"
+      theorems: ["multiterminal_transfer_defect_pos", "multiterminal_crosstalk_channels_pos", "multiterminal_pareto_defect_pos", "disorder_gap_degradation_lower_bound"]
+      axioms: ["propext", "Quot.sound"]
+    code_evidence:
+      module: "majorana_evaluator"
+      functions: ["ContinuumCrossJunctionFemModel.effective_gap", "ContinuumCrossJunctionFemModel.pairwise_crosstalk_sum", "ContinuumCrossJunctionFemModel.audit_transfer"]
+      tests: ["code/tests/unit/test_open_system_transfer_bounds.py::test_multiterminal_cross_junction_transfer_bounds_and_disorder", "code/tests/e2e/test_majorana_problem_e2e.py::test_monograph_claims_e2e_verification_walk"]
+
