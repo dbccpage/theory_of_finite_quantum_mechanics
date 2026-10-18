@@ -1,0 +1,157 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-MSS0-ONLY-DIAMOND
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Genesis stage MSS-0: the only admissible node at stage 0 is the inscription <>; every other
+    node needs stage >= 1. The gate returns STRUCTURAL_ONLY, never mathematical or empirical certification.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: Python profile gate only; no Rust or Lean counterpart found for 'MSS-0' (grep returned only
+    Python and archive docs). The Rust analogue is GenesisConstruction::pre_genesis.
+  source_refs:
+  - omega_engine_pfp/domain/tower/profile.py:63-65
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:25-48
+  paper_refs:
+  - dag/derivations/02_genesis/TFQ-0377_mss0-only-inscription.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/02_genesis/TFQ-0377_mss0-only-inscription.md
+  paper_relocations:
+  - from: papers/derivations/02_genesis/TFQ-0377_mss0-only-inscription.md
+    to: dag/derivations/02_genesis/TFQ-0377_mss0-only-inscription.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/02_genesis/TFQ-0377_mss0-only-inscription.md
+    sha256: ce63ce6305713e6ea1484f5af8eaeace282c041223c9465b47aac612efc897f1
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/GENESIS__PG-MSS0-ONLY-DIAMOND__DEFINITION.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: pairInList
+  line: 404
+  signature_excerpt: 'def pairInList (p : Nat × Nat) : List (Nat × Nat) → Bool'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: pg_gen_rewriting_commutation_and_obstruction_persistence
+  line: 414
+  signature_excerpt: "theorem pg_gen_rewriting_commutation_and_obstruction_persistence\n    (pi : Nat → Nat) (h_inj\
+    \ : ∀ x y, pi x = pi y → x = y)\n    (u v : Nat) (h_ne : u ≠ v) (qs : List (Nat × Nat)) (h_mem : pairInList\
+    \ (u, v) qs = true) :\n    pi u ≠ pi v ∧\n    (∀ extra : List (Nat × Nat), pairInList (u, v) (extra.foldr\
+    \ List.cons qs) = true)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: pg_root_coproduct_inert_diamond_and_six_operation_separation
+  line: 1111
+  signature_excerpt: "theorem pg_root_coproduct_inert_diamond_and_six_operation_separation\n    (d s : Int) :\n\
+    \    (((0 : Nat) ≠ 1) ∧ (d + 0 = d ∧ 0 + s = s)) ∧\n    ((∀ op : Fin 6, (if op.val == 3 then 1 else 0) = 1\
+    \ ↔ op.val = 3) ∧\n      ((if (1 : Nat) == 3 then 1 else 0) = 0 ∧ (if (3 : Nat) == 3 then 1 else 0) = 1))\
+    \ ∧\n    ((if (0 : Nat) == 0 then 1 else 0) = 1 ∧ (∀ k : Nat, (if (k + 1) == 0 then 1 else 0) = 0))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 414
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1111
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::GenesisConstruction
+  availability: local
+  symbol: GenesisConstruction
+  path: code/rust/src/wdp/genesis_construction.rs
+  repository: this_repository
+  sha256: 0a8d3f217d67ee6368786e96bc929454b1c7bc87e62f99d6723bdf859e201111
+  declaration_status: declaration_found_not_executed
+  line: 107
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_genesis_rewriting_and_sameness_witness
+  availability: external
+  symbol: verify_genesis_rewriting_and_sameness_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 139
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness
+  availability: external
+  symbol: verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1207
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

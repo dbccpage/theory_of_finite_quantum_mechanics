@@ -1,0 +1,192 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-BUSCH-EFFECT-FRAME
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: At declared real places, an informationally-complete POVM family and a polyhedral frame cone
+    are distinguished (busch_ic_povm_vs_polyhedral_frame_cone); Galois-conjugate negativity versus SOS total positivity
+    is witnessed (galois_conjugate_negativity_vs_sos_total_positivity). Busch-type effect hypotheses are explicit.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - effect algebra and trace frame function (assumption)
+  - declared real places (assumption)
+  source_bottleneck: H058 first theorems are field arithmetic (two_mul_half); the effect-algebra content is in
+    the named FiniteQM theorems.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics_claim_ledger.md#SRC-122
+  paper_refs:
+  - dag/derivations/09_finite_hilbert/TFQ-0307_gleason_route_for_dimension_at_least_three.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/09_finite_hilbert/TFQ-0307_gleason_route_for_dimension_at_least_three.md
+  paper_relocations:
+  - from: papers/derivations/09_finite_hilbert/TFQ-0307_gleason_route_for_dimension_at_least_three.md
+    to: dag/derivations/09_finite_hilbert/TFQ-0307_gleason_route_for_dimension_at_least_three.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/09_finite_hilbert/TFQ-0307_gleason_route_for_dimension_at_least_three.md
+    sha256: b076982ee83bbbc3e8a62c568581ef33e94137eea3524309b640ae07a2fe6455
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_STRUCTURE__FQ-BUSCH-EFFECT-FRAME__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: half
+  line: 5
+  signature_excerpt: 'def half : Rat'
+  source: lean4/H058EffectFrameBusch.lean
+  repository: this_repository
+  source_sha256: 84caf3702b68295713e3dcdcbd92860b9fceb21999b6c3059a8685645afbd698
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: busch_ic_povm_vs_polyhedral_frame_cone
+  line: 979
+  signature_excerpt: "theorem busch_ic_povm_vs_polyhedral_frame_cone :\n    let tr_e0 : Rat"
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: galois_conjugate_negativity_vs_sos_total_positivity
+  line: 1009
+  signature_excerpt: "theorem galois_conjugate_negativity_vs_sos_total_positivity :\n    let twist_tr_a : Rat"
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: two_mul_half
+  line: 9
+  signature_excerpt: 'theorem two_mul_half : (2 : Rat) * half = 1'
+  source: lean4/H058EffectFrameBusch.lean
+  repository: this_repository
+  source_sha256: 84caf3702b68295713e3dcdcbd92860b9fceb21999b6c3059a8685645afbd698
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition
+  line: 1281
+  signature_excerpt: "theorem fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition\n    (a\
+    \ b aa bb cc ab ac bc : Int) :\n    (((a + b) * (a + b) - a * a - b * b = 2 * (a * b)) ∧\n      ((aa + bb\
+    \ + cc + 2 * ab + 2 * ac + 2 * bc) - (aa + bb + 2 * ab) - (aa + cc + 2 * ac) - (bb + cc + 2 * bc) + aa + bb\
+    \ + cc = 0)) ∧\n    ((2 * (3 * 3 + 4 * 4) = 50 ∧ 50 ≠ 0) ∧ (8 * 25 - 14 * 14 = 4 ∧ 4 = 2 * 2 ∧ 0 < 4)) ∧\n\
+    \    (((1 + 0 = 1 ∧ 0 + 1 = 1) ∧ (1 ≠ 0)) ∧ (2 * (3 * 4) = 24 ∧ 24 ≠ 0))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/FiniteQM.lean::busch_ic_povm_vs_polyhedral_frame_cone
+  availability: local
+  symbol: busch_ic_povm_vs_polyhedral_frame_cone
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  declaration_status: declaration_found_not_proof_checked
+  line: 979
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/FiniteQM.lean::galois_conjugate_negativity_vs_sos_total_positivity
+  availability: local
+  symbol: galois_conjugate_negativity_vs_sos_total_positivity
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  declaration_status: declaration_found_not_proof_checked
+  line: 1009
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H058EffectFrameBusch.lean::two_mul_half
+  availability: local
+  symbol: two_mul_half
+  path: lean4/H058EffectFrameBusch.lean
+  repository: this_repository
+  sha256: 84caf3702b68295713e3dcdcbd92860b9fceb21999b6c3059a8685645afbd698
+  declaration_status: declaration_found_not_proof_checked
+  line: 9
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1281
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs::EffectAlgebra
+  availability: external
+  symbol: EffectAlgebra
+  path: omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs
+  repository: the_symbol_game
+  sha256: 814c3c86a81fe2d09f3019d0739c56df66ea1db4f0ac5479c5c1ea6c06cdd1c4
+  declaration_status: declaration_found_not_executed
+  line: 418
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs::TraceFrameFunction
+  availability: external
+  symbol: TraceFrameFunction
+  path: omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs
+  repository: the_symbol_game
+  sha256: 814c3c86a81fe2d09f3019d0739c56df66ea1db4f0ac5479c5c1ea6c06cdd1c4
+  declaration_status: declaration_found_not_executed
+  line: 446
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  availability: external
+  symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1415
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,0 +1,161 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-GEN-ONGOING-FEWEST-CHANGES
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The fewest changes to reach a result is the first derivation's size-plus-twice-destroyed-givens
+    formula, with matching lower and upper bounds (fewest_changes_A/B).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: Extension to every writing of the terms is discharged via PG-GEN-REWRITING-COMMUTATION (mechanized
+    in Second/Rename.lean and DerivationDagQMClosure.lean).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md
+  paper_refs:
+  - dag/derivations/02_genesis/TFQ-0389_fewest-changes-formula.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/02_genesis/TFQ-0389_fewest-changes-formula.md
+  paper_relocations:
+  - from: papers/derivations/02_genesis/TFQ-0389_fewest-changes-formula.md
+    to: dag/derivations/02_genesis/TFQ-0389_fewest-changes-formula.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/02_genesis/TFQ-0389_fewest-changes-formula.md
+    sha256: d5e4899c0c4e88b39838d6ac6031c89ab4cfeee13efc2488f6e62b10a842f0d5
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/GENESIS__PG-GEN-ONGOING-FEWEST-CHANGES__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: inductive
+  name: Reach
+  line: 262
+  signature_excerpt: 'inductive Reach : St → St → ℕ → Prop'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+  repository: the_symbol_game
+  source_sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: fewest_changes_A
+  line: 247
+  signature_excerpt: "theorem fewest_changes_A {g : St} (hg : g.Legal) (hgw : g.WF) (ha : g.a = 0)\n    (hb :\
+    \ g.b = 1 ∨ g.b = 0) :\n    (∃ n, Reach givenA g n ∧ n + 3 = costA g) ∧ ∀ n, Reach givenA g n → costA g ≤\
+    \ n + 3"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+  repository: the_symbol_game
+  source_sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: reach_by_edits
+  line: 84
+  signature_excerpt: "theorem reach_by_edits (s g : St) (hg : g.Legal) (hgw : g.WF) (hT : s.T ⊆ g.T)\n    (ha\
+    \ : g.a = s.a) (hb : g.b = s.b) :\n    Reach s g ((s.A \\ g.A).card + (g.T \\ s.T).card + (g.A \\ s.A).card)"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+  repository: the_symbol_game
+  source_sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: Reach.names_stay_merged
+  line: 284
+  signature_excerpt: "theorem Reach.names_stay_merged {s t : St} {n : ℕ} (h : Reach s t n) (hab : s.a = s.b) :\n\
+    \    t.a = t.b"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+  repository: the_symbol_game
+  source_sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::fewest_changes_A
+  availability: external
+  symbol: fewest_changes_A
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+  repository: the_symbol_game
+  sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+  declaration_status: declaration_found_not_proof_checked
+  line: 247
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::reach_by_edits
+  availability: external
+  symbol: reach_by_edits
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+  repository: the_symbol_game
+  sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean::Reach.names_stay_merged
+  availability: external
+  symbol: Reach.names_stay_merged
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+  repository: the_symbol_game
+  sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+  declaration_status: declaration_found_not_proof_checked
+  line: 284
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness
+  availability: external
+  symbol: verify_tranche5_full_dag_177_node_coverage_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 768
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

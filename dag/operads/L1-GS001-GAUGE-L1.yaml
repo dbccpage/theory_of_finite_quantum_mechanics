@@ -1,0 +1,216 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-GS001-GAUGE-L1
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives
+    weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis
+    set.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: None (Tier-1 direction independence, gauge proportionality, single-orbit uniformity, and
+    ENC-0523 drop-one counterexamples mechanized in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/007_m_compatible_gauge_classification
+  paper_refs:
+  - dag/derivations/07_l1_emergence/TFQ-0356_keep_the_m-compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/07_l1_emergence/TFQ-0356_keep_the_m-compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md
+  paper_relocations:
+  - from: papers/derivations/07_l1_emergence/TFQ-0356_keep_the_m-compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md
+    to: dag/derivations/07_l1_emergence/TFQ-0356_keep_the_m-compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/07_l1_emergence/TFQ-0356_keep_the_m-compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md
+    sha256: 1f90e4d29e13c39fbf1911ebfec9136134d9cb9c1ebf4a65bd561c010746d4f1
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/L1_EMERGENCE__L1-GS001-GAUGE-L1__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: edgeResidualL1
+  line: 74
+  signature_excerpt: 'def edgeResidualL1 : List Nat → Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: l1_gs001_replica_and_phi1_quotient_invariance
+  line: 590
+  signature_excerpt: "theorem l1_gs001_replica_and_phi1_quotient_invariance\n    (w fu fv gu gv : Int) (xs ys\
+    \ : List Nat) :\n    ((w + (gv - gu)) - ((fv + gv) - (fu + gu)) = w - (fv - fu)) ∧\n    (edgeResidualL1 (xs\
+    \ ++ ys) = edgeResidualL1 xs + edgeResidualL1 ys)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity
+  line: 881
+  signature_excerpt: "theorem l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity\n    (lam a b : Nat) :\n\
+    \    (lam * (a + b) = lam * a + lam * b) ∧\n    (3 * 3 + 4 * 4 = 5 * 5 ∧ (5 : Nat) ≠ 3 + 4) ∧\n    ((2 * 3)\
+    \ * (2 * 3) + (2 * 4) * (2 * 4) = 100 ∧ 2 * (3 * 3 + 4 * 4) = 50 ∧ (100 : Nat) ≠ 50)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: gs001_maximal_symmetry_direction_independence_and_gauge_proportionality
+  line: 1366
+  signature_excerpt: "theorem gs001_maximal_symmetry_direction_independence_and_gauge_proportionality\n    {V\
+    \ Endo Edge : Type}\n    (norm j : V → Nat)\n    (apply : Endo → V → V)\n    (opNorm : Endo → Nat)\n    (scale\
+    \ : Nat → V → V)\n    (SameOrbit : Edge → Edge → Prop)\n    (w : Edge → Nat)\n    (e0 : Edge)\n    (h_compat\
+    \ : ∀ (T : Endo) (x : V), j (apply T x) ≤ opNorm T * j x)\n    (h_norming : ∀ u v : V, norm u = 1 → norm v\
+    \ = 1 →\n      ∃ T : Endo, opNorm T ≤ 1 ∧ apply T u = v)\n    (h_homog : ∀ (a : Nat) (u : V), j (scale a u)\
+    \ = a * j u)\n    (h_orbit : ∀ e1 e2 : Edge, SameOrbit e1 e2)\n    (h_inv : ∀ e1 e2 : Edge, SameOrbit e1 e2\
+    \ → w e1 = w e2) :\n    (∀ u v : V, norm u = 1 → norm v = 1 → j u = j v) ∧\n    (∀ u0 x ux : V, norm u0 =\
+    \ 1 → norm ux = 1 → x = scale (norm x) ux →\n      j x = j u0 * norm x) ∧\n    (∀ e : Edge, w e = w e0) ∧\n\
+    \    ((Nat.max 1 1 = 1 ∧ 1 + 1 = 2 ∧ (1 : Nat) ≠ 2) ∧\n     (1 * 1 + 2 * 0 = 1 ∧ 1 * 0 + 2 * 1 = 2 ∧ (1 :\
+    \ Nat) ≠ 2) ∧\n     (¬ ∃ alpha : Nat, 1 = alpha * 1 ∧ 2 = alpha * 1))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 590
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 881
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1366
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1366
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/gauge_classification.rs::standard_l1
+  availability: local
+  symbol: standard_l1
+  path: code/rust/src/wdp/gauge_classification.rs
+  repository: this_repository
+  sha256: bc047a1c21f261ec1a8240d4dc42e455608ed060c0a1719a8e37a492d6d51591
+  declaration_status: declaration_found_not_executed
+  line: 113
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  availability: external
+  symbol: verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 619
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche7_wdp_bridge_o03_o05_sector_orbit_and_gleason_rival_witness
+  availability: external
+  symbol: verify_tranche7_wdp_bridge_o03_o05_sector_orbit_and_gleason_rival_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 917
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  availability: external
+  symbol: verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1613
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  availability: external
+  symbol: verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  path: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1613
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  availability: external
+  symbol: verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  path: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  declaration_status: declaration_found_not_executed
+  line: 1613
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,0 +1,301 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-SN-CARRIER
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: S(n) carrier is presented by a base presentation with a section lift and a retraction outcome;
+    the ground carrier is empty and the old image sits over the base (old_image_base). The education SnCarrier
+    is described as corrected in Pre-Genesis §10 but as defective in the 001_sn_mssn ledger (WDP-P001-019).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - 'Classical.choice in old_image_base (assumption: found in axiom report, against the Fable 05 expectation)'
+  source_bottleneck: Off-image refusal and the advertised carrier cardinalities are not established (PG-SN-OFF-IMAGE-REFUSAL).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:320-371
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md:25
+  paper_refs:
+  - dag/derivations/05_mssn_sn/TFQ-0341_refuse_unrestricted_old-image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/05_mssn_sn/TFQ-0341_refuse_unrestricted_old-image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+  paper_relocations:
+  - from: papers/derivations/05_mssn_sn/TFQ-0341_refuse_unrestricted_old-image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    to: dag/derivations/05_mssn_sn/TFQ-0341_refuse_unrestricted_old-image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/05_mssn_sn/TFQ-0341_refuse_unrestricted_old-image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 01eda908117308f710d7153bcdd4d2f69ac301547db65524b7947145d03dac9f
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/MSSN_SN__PG-SN-CARRIER__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: inductive
+  name: BasePresentation
+  line: 58
+  signature_excerpt: inductive BasePresentation
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+  repository: the_symbol_game
+  source_sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sectionLift
+  line: 70
+  signature_excerpt: 'def sectionLift (stage : Nat) (p : BasePresentation) : SnPresentation'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+  repository: the_symbol_game
+  source_sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: RetractOutcome
+  line: 84
+  signature_excerpt: inductive RetractOutcome
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+  repository: the_symbol_game
+  source_sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: retractionDownMap
+  line: 90
+  signature_excerpt: 'def retractionDownMap (stage : Nat) (p : SnPresentation) : RetractOutcome'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+  repository: the_symbol_game
+  source_sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: ground_carrier_empty
+  line: 88
+  signature_excerpt: 'theorem ground_carrier_empty (x : Carrier 0) : False'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+  repository: the_symbol_game
+  source_sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: old_image_base
+  line: 91
+  signature_excerpt: "theorem old_image_base (n : Nat) (p : BasePresentation) :\n    retractionDownMap n (sectionLift\
+    \ n p) = .accepted p.toPresentation"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+  repository: the_symbol_game
+  source_sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: pg_to_sn_and_wdp_route_chain_composition
+  line: 1257
+  signature_excerpt: "theorem pg_to_sn_and_wdp_route_chain_composition\n    (c0 c1 c2 d : Nat) :\n    ((1 + 1\
+    \ = 2 ∧ 2 > 1) ∧ (0 + 2 = 2)) ∧\n    ((c0 < c1 ∧ c1 < c2 → c0 ≠ c2) ∧ (∀ x y : Fin 3, x.val = y.val → x =\
+    \ y)) ∧\n    (([0, 1] ≠ [1, 0]) ∧ ((1 + 0, 0 + 1) = (0 + 1, 1 + 0))) ∧\n    ((d == 0) = true ↔ d = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+- kind: theorem
+  name: master_dag_177_node_10_stage_and_172_route_partition_conservation
+  line: 1320
+  signature_excerpt: "theorem master_dag_177_node_10_stage_and_172_route_partition_conservation :\n    (132 +\
+    \ 0 + 25 + 14 + 3 + 3 = 177) ∧\n    (14 + 11 + 2 + 6 + 9 + 35 + 30 + 19 + 44 + 7 = 177) ∧\n    (149 + 12 +\
+    \ 11 = 172 ∧ 1 + 7 + 1 + 2 = 11) ∧\n    (2 * 177 = 354 ∧ 354 + 354 = 708)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: master_operad_25_family_composition_and_end_to_end_chain_closure
+  line: 1327
+  signature_excerpt: "theorem master_operad_25_family_composition_and_end_to_end_chain_closure\n    (c0 c1 c2\
+    \ d : Nat) (d0 d1 re_cross a b aa bb cc ab ac bc : Int) (s imp : Bool) :\n    (((1 + 1 = 2 ∧ 2 > 1) ∧ 0 +\
+    \ 2 = 2) ∧\n     ((d0 * 1 = d0 ∧ d1 * 1 = d1) ∧ (d0 + d1 + 2 * re_cross = d0 + d1 ↔ re_cross = 0)) ∧\n   \
+    \  ((a + b) * (a + b) - a * a - b * b = 2 * (a * b) ∧\n      (aa + bb + cc + 2 * ab + 2 * ac + 2 * bc) -\n\
+    \        (aa + bb + 2 * ab) - (aa + cc + 2 * ac) - (bb + cc + 2 * bc) +\n        aa + bb + cc = 0) ∧\n   \
+    \  (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false) = false))) ∧\n    (∀ k : Fin 25,\n  \
+    \    let f (j : Fin 25) : Bool"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::BasePresentation
+  availability: external
+  symbol: BasePresentation
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+  repository: the_symbol_game
+  sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  declaration_status: declaration_found_not_proof_checked
+  line: 58
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::sectionLift
+  availability: external
+  symbol: sectionLift
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+  repository: the_symbol_game
+  sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  declaration_status: declaration_found_not_proof_checked
+  line: 70
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::RetractOutcome
+  availability: external
+  symbol: RetractOutcome
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+  repository: the_symbol_game
+  sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::retractionDownMap
+  availability: external
+  symbol: retractionDownMap
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+  repository: the_symbol_game
+  sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean::ground_carrier_empty
+  availability: external
+  symbol: ground_carrier_empty
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+  repository: the_symbol_game
+  sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  declaration_status: declaration_found_not_proof_checked
+  line: 88
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean::old_image_base
+  availability: external
+  symbol: old_image_base
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+  repository: the_symbol_game
+  sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1257
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1320
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1327
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_category_theory/src/mssn_functor_bridge.rs::MssnFunctorBridge
+  availability: local
+  symbol: MssnFunctorBridge
+  path: code/rust/src/category_theory/mssn_functor_bridge.rs
+  repository: this_repository
+  sha256: 942124d1a8913ed604f52ff6560037b998aba9e96b22773ff50a7245f763e5c1
+  declaration_status: changed_source_declaration_requires_semantic_review
+  role: source_lead_requires_re_review
+  prior_source_binding:
+    original_ref: omega_engine/crates_rs/omega_category_theory/src/mssn_functor_bridge.rs::MssnFunctorBridge
+    availability: local
+    symbol: MssnFunctorBridge
+    path: code/rust/src/category_theory/mssn_functor_bridge.rs
+    repository: this_repository
+    sha256: aca9eeee4a35a33b264973bcf5451ba64ddaf434662a15e65045910e701f72b6
+    declaration_status: declaration_found_not_executed
+    line: 92
+    role: source_lead_only
+    source_revision: c3df2b4cb1f232355ca4fdeb6336b2939324a780
+  line: 6
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  availability: external
+  symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1415
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness
+  availability: external
+  symbol: verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1552
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Upstream restored code/rust/src/category_theory/mssn_functor_bridge.rs after this collection was mined. Re-review
+  its actual semantics; the prior source pin remains in prior_source_binding.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []
