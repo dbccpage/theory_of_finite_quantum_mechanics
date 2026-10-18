@@ -1,0 +1,262 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM074-NO-SIGNALING-MARGINAL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: In a bipartite joint distribution rho(a,b|x,y), the no-signaling marginal condition holds
+    under an admitted composition rule, and local marginals do not force product factorization. The statement
+    is about admitted tables, not about relativistic causality (that is Q-held).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - admitted composition rule for subsystems (assumption)
+  - input independence of remote setting (assumption)
+  source_bottleneck: None (NoSignalling.lean, Entanglement.lean, and DerivationDagQMClosure.ds_qm073_074_chsh_pr_box_and_no_signaling_marginal
+    build under QmCarrierTests).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/074_no_signaling_finite_shadow/qm_074_no_signaling_finite_shadow_claim_ledger.md#QM_074-C1
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/074_no_signaling_finite_shadow/qm_074_no_signaling_finite_shadow_claim_ledger.md#QM_074-C3
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/TFQ-0261_no-signalling_marginals_under_an_admitted_composition.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/TFQ-0261_no-signalling_marginals_under_an_admitted_composition.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/TFQ-0261_no-signalling_marginals_under_an_admitted_composition.md
+    to: dag/derivations/12_finite_qm_structure/TFQ-0261_no-signalling_marginals_under_an_admitted_composition.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/TFQ-0261_no-signalling_marginals_under_an_admitted_composition.md
+    sha256: 733c7bb7095304f0b8943062453cb9c3d506bff0de59212fc59418e1111aa185
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_STRUCTURE__DS-QM074-NO-SIGNALING-MARGINAL__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: id2
+  line: 13
+  signature_excerpt: 'def id2 (i j : Coord2) : Int'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Coord2
+  line: 5
+  signature_excerpt: inductive Coord2
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mul4
+  line: 28
+  signature_excerpt: 'def mul4 (A B : Matrix4) : Matrix4'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Matrix4
+  line: 11
+  signature_excerpt: abbrev Matrix4
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: aliceLocalOp
+  line: 98
+  signature_excerpt: 'def aliceLocalOp (comp : Matrix2 → Matrix2 → Matrix4) (U U_dag : Matrix2) (ρ : Matrix4)
+    : Matrix4'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Matrix2
+  line: 10
+  signature_excerpt: abbrev Matrix2
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsAdmittedTensorComp
+  line: 94
+  signature_excerpt: 'def IsAdmittedTensorComp (comp : Matrix2 → Matrix2 → Matrix4) : Prop'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tensorComp
+  line: 19
+  signature_excerpt: 'def tensorComp (A B : Matrix2) : Matrix4'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mul2
+  line: 22
+  signature_excerpt: 'def mul2 (A B : Matrix2) : Matrix2'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: partialTraceA
+  line: 44
+  signature_excerpt: 'def partialTraceA (ρ : Matrix4) : Matrix2'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: local_flip_b
+  line: 51
+  signature_excerpt: 'def local_flip_b (ψ : BipartiteState2) : BipartiteState2'
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: BipartiteState2
+  line: 5
+  signature_excerpt: structure BipartiteState2
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: reduced_marginal_a
+  line: 48
+  signature_excerpt: 'def reduced_marginal_a (ψ : BipartiteState2) : Int × Int'
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: no_signalling_under_admitted_composition
+  line: 102
+  signature_excerpt: "theorem no_signalling_under_admitted_composition\n    (comp : Matrix2 → Matrix2 → Matrix4)\n\
+    \    (h_comp : IsAdmittedTensorComp comp)\n    (U : Matrix2)\n    (U_dag : Matrix2)\n    (h_unitary : mul2\
+    \ U_dag U = id2)\n    (ρ : Matrix4) :\n    partialTraceA (aliceLocalOp comp U U_dag ρ) = partialTraceA ρ"
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: non_signaling_under_local_b_flip
+  line: 54
+  signature_excerpt: "theorem non_signaling_under_local_b_flip (ψ : BipartiteState2) :\n    reduced_marginal_a\
+    \ (local_flip_b ψ) = reduced_marginal_a ψ"
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: ds_qm073_074_chsh_pr_box_and_no_signaling_marginal
+  line: 726
+  signature_excerpt: "theorem ds_qm073_074_chsh_pr_box_and_no_signaling_marginal :\n    (∀ a0 a1 b0 b1 : Bool,\n\
+    \      let sa0 : Int"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/NoSignalling.lean::no_signalling_under_admitted_composition
+  availability: local
+  symbol: no_signalling_under_admitted_composition
+  path: lean4/NoSignalling.lean
+  repository: this_repository
+  sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  declaration_status: declaration_found_not_proof_checked
+  line: 102
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/Entanglement.lean::non_signaling_under_local_b_flip
+  availability: local
+  symbol: non_signaling_under_local_b_flip
+  path: lean4/Entanglement.lean
+  repository: this_repository
+  sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm073_074_chsh_pr_box_and_no_signaling_marginal
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm073_074_chsh_pr_box_and_no_signaling_marginal
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 726
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs::no_signalling
+  availability: external
+  symbol: no_signalling
+  path: omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs
+  repository: the_symbol_game
+  sha256: c9d5519431331f07e021293ef50722adcb1b01e054029a3739589592eb576976
+  declaration_status: declaration_found_not_executed
+  line: 68
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness
+  availability: external
+  symbol: verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 696
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

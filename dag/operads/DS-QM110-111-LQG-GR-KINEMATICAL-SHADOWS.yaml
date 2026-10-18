@@ -1,0 +1,151 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'On toy carriers: pure-gauge connections have trivial loop holonomy, Q8 plaquette gives a
+    nonzero Wilson loop, Bianchi-shaped d1 d0 = 0, transport composes, an incomplete geodesic is a refusal. Imported:
+    continuum connection and measure, SU(2) representation theory, spin-network Hilbert space, manifold, metric,
+    Levi-Civita, Einstein tensor. Hamiltonian constraint and the Einstein equation are Q-held / open. Q8 is a
+    shadow, not SU(2).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - continuum manifold, metric, connection (assumption)
+  - SU(2) gauge group (assumption)
+  - Hamiltonian constraint / Einstein equation (assumption)
+  source_bottleneck: Lean names not checked by me; dynamics Q-held.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/110_loop_quantum_gravity_kinematical_shadows/qm_110_loop_quantum_gravity_kinematical_shadows_claim_ledger.md#QM-110-C2
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/110_loop_quantum_gravity_kinematical_shadows/qm_110_loop_quantum_gravity_kinematical_shadows_claim_ledger.md#QM-110-C10
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/110_loop_quantum_gravity_kinematical_shadows/qm_110_loop_quantum_gravity_kinematical_shadows_claim_ledger.md#QM-110-C11
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/111_general_relativity_kinematical_shadows/qm_111_general_relativity_kinematical_shadows_claim_ledger.md#QM-111-C7
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/111_general_relativity_kinematical_shadows/qm_111_general_relativity_kinematical_shadows_claim_ledger.md#QM-111-C8
+  paper_refs:
+  - dag/derivations/19_finite_qg/TFQ-0092_qm-110-c11_hamiltonian_constraint_stays_q-held_continuum_su_2_data_in_qm-110-c10_are_imported.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/19_finite_qg/TFQ-0092_qm-110-c11_hamiltonian_constraint_stays_q-held_continuum_su_2_data_in_qm-110-c10_are_imported.md
+  paper_relocations:
+  - from: papers/derivations/19_finite_qg/TFQ-0092_qm-110-c11_hamiltonian_constraint_stays_q-held_continuum_su_2_data_in_qm-110-c10_are_imported.md
+    to: dag/derivations/19_finite_qg/TFQ-0092_qm-110-c11_hamiltonian_constraint_stays_q-held_continuum_su_2_data_in_qm-110-c10_are_imported.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/19_finite_qg/TFQ-0092_qm-110-c11_hamiltonian_constraint_stays_q-held_continuum_su_2_data_in_qm-110-c10_are_imported.md
+    sha256: f98e51ee29c3100d12d23d27ba0f68f9d678ea114a049ff2aa11e58578885a5c
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_STRUCTURE__DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: trivalentSpinAdmissible
+  line: 372
+  signature_excerpt: 'def trivalentSpinAdmissible (twoJ1 twoJ2 twoJ3 : Nat) : Bool'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: qm110_111_lqg_gr_kinematical_witness
+  line: 378
+  signature_excerpt: "theorem qm110_111_lqg_gr_kinematical_witness :\n    trivalentSpinAdmissible 1 1 2 = true\
+    \ ∧\n    trivalentSpinAdmissible 1 1 1 = false ∧\n    (360 - 6 * 60 = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: ds_qm102_110_111_212_syndrome_hamming_lqg_wilson_and_majorana_braid
+  line: 1246
+  signature_excerpt: "theorem ds_qm102_110_111_212_syndrome_hamming_lqg_wilson_and_majorana_braid :\n    ((1 +\
+    \ 3 * 5 = 16 ∧ 16 = 2^4) ∧ (1 + 3 * 4 = 13 ∧ 2^3 = 8 ∧ 8 < 13)) ∧\n    ((∀ b0 b1 b2 b3 : Bool,\n        let\
+    \ s (b : Bool) : Int"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm110_111_lqg_gr_kinematical_witness
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.qm110_111_lqg_gr_kinematical_witness
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 378
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm102_110_111_212_syndrome_hamming_lqg_wilson_and_majorana_braid
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm102_110_111_212_syndrome_hamming_lqg_wilson_and_majorana_braid
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1246
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_ds_qm_dynamics_structure_and_majorana_witness
+  availability: external
+  symbol: verify_ds_qm_dynamics_structure_and_majorana_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 402
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  availability: external
+  symbol: verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1343
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []
