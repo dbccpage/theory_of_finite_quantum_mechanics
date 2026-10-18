@@ -4,6 +4,7 @@ The receipt is proof-model evidence, not automatic Rust refinement or a grade.
 Uses the repository's already prepared Lean/Mathlib project; never fetches it.
 """
 
+import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -16,15 +17,35 @@ from run_audit import ROOT, digest, execute, write_json
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model",choices=("rank","category"),default="rank")
+    model = parser.parse_args().model
+    if model == "rank":
+        proof_name, import_name, namespace = "RankCertificate", "LinearAlgebra/Matrix/Rank", "TFQM.RankCertificate."
+        declarations = ("valid_rank","runChecks_ok_iff","admit_success","admit_success_rank",
+            "producer_failure","explicit_failure","failed_predicate","first_error_preserved",
+            "row_major_index_lt","pivot_increment_fits","augmented_column_lt","identity_area_le")
+        scope = "Exact Q-matrix rank theorem and explicit-refusal model."
+    else:
+        proof_name, import_name, namespace = "FiniteCategory", "CategoryTheory/Category/Basic", "TFQM.FiniteCategory."
+        declarations = ("checks_true_iff","admit_preserves_data","admit_success_laws","failed_guard",
+            "composite_spec","composeArrow_spec","identity_compose","compose_identity",
+            "compose_associative","categoryOfAdmitted")
+        scope = "Finite table admission realizes Mathlib Category; explicit guard refusal and data preservation."
     project = ROOT/"lean4"
-    proof = Path(__file__).resolve().parent/"proofs/RankCertificate.lean"
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-rank-proof"
+    proof = Path(__file__).resolve().parent/"proofs"/(proof_name+".lean")
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-"+model+"-proof"
     output = ROOT/"evidence/quality/category_homology"/stamp
     output.mkdir(parents=True)
     shutil.copyfile(proof,output/proof.name)
+    runtime = {}
+    for source in (Path(__file__),Path(__file__).parent/"run_audit.py"):
+        shutil.copyfile(source,output/source.name)
+        runtime[source.name] = digest(output/source.name)
     inputs = {str(proof):digest(proof)}
     mathlib = project/".lake/packages/mathlib"
-    inputs[str(mathlib/"Mathlib/LinearAlgebra/Matrix/Rank.lean")] = digest(mathlib/"Mathlib/LinearAlgebra/Matrix/Rank.lean")
+    imported = mathlib/"Mathlib"/(import_name+".lean")
+    inputs[str(imported)] = digest(imported)
     write_json(output/"source_manifest.json",inputs)
     tool = subprocess.run(["elan","which","lean"],cwd=project,text=True,capture_output=True)
     if tool.returncode != 0: raise RuntimeError("Cannot resolve the prepared Lean compiler")
@@ -41,7 +62,7 @@ def main():
         if not libraries: raise RuntimeError("No prepared proof dependency path: "+key)
         environment[key] = ";".join(str(path) for path in libraries)
     write_json(output/"environment.json",{"lean_binary":str(binary),"environment":environment,"excluded_main_project_outputs":True})
-    common = [str(binary),"--root="+str(proof.parent)]
+    common = [str(binary),"--memory=1024","--threads=2","--root="+str(proof.parent)]
     dependencies = execute([*common,"--deps",str(proof)],proof.parent,output/"dependencies.log",timeout=60,environment_overlay=environment)
     sources = execute([*common,"--src-deps",str(proof)],proof.parent,output/"dependency-sources.log",timeout=60,environment_overlay=environment)
     paths = set()
@@ -60,13 +81,11 @@ def main():
     status_before = subprocess.check_output(["git","-C",str(mathlib),"status","--porcelain","--untracked-files=no"],text=True).strip()
     checked = execute([*common,str(proof)],proof.parent,output/"check.log",timeout=300,environment_overlay=environment)
     text = (output/"check.log").read_text(encoding="utf-8")
+    warnings = "warning:" in text
     reports = {name:[item.strip() for item in axioms.split(",") if item.strip()]
                for name,axioms in re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]",text)}
     reports.update({name:[] for name in re.findall(r"'([^']+)' does not depend on any axioms",text)})
-    expected = {"TFQM.RankCertificate."+name for name in (
-        "valid_rank","runChecks_ok_iff","admit_success","admit_success_rank",
-        "producer_failure","explicit_failure","failed_predicate","first_error_preserved",
-        "row_major_index_lt","pivot_increment_fits","augmented_column_lt","identity_area_le")}
+    expected = {namespace+name for name in declarations}
     unexpected = sorted({axiom for axioms in reports.values() for axiom in axioms} - {"propext","Classical.choice","Quot.sound"})
     head_after = subprocess.check_output(["git","-C",str(mathlib),"rev-parse","HEAD"],text=True).strip()
     status_after = subprocess.check_output(["git","-C",str(mathlib),"status","--porcelain","--untracked-files=no"],text=True).strip()
@@ -83,11 +102,13 @@ def main():
         "mathlib_tracked_source_clean":not status_before and not status_after,
         "environment_sha256":digest(output/"environment.json"),
         "runner_sha256":digest(Path(__file__)),
+        "runtime_snapshots":runtime,
         "runs":[checked,dependencies,sources],
-        "check_ok":checked["exit_code"] == 0 and dependencies["exit_code"] == 0 and sources["exit_code"] == 0 and expected == set(reports) and not unexpected,
+        "check_ok":checked["exit_code"] == 0 and dependencies["exit_code"] == 0 and sources["exit_code"] == 0 and expected == set(reports) and not unexpected and not warnings,
+        "diagnostic_warnings_detected":warnings,
         "axiom_reports":reports,"unexpected_axioms":unexpected,
         "unfinished_axiom_detected":"sorryAx" in text,
-        "scope":"Exact Q-matrix rank theorem and explicit-refusal model. Rust construction/representation refinement, MIR, allocator totality and crash freedom require separate evidence.",
+        "scope":scope+" Rust construction/representation refinement, MIR, allocator totality and crash freedom require separate evidence.",
     }
     write_json(output/"receipt.json",receipt)
     print(json.dumps({"check_ok":receipt["check_ok"],"sources_unchanged":receipt["sources_unchanged"],"unfinished_axiom_detected":receipt["unfinished_axiom_detected"]}))

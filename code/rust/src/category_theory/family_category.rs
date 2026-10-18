@@ -1,505 +1,440 @@
-pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/family_category.rs";
-pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:family_category:strictly-ascending-arrow-count";
-pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
-pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
+//! --- yaml
+//! title: family_category
+//! file_name: family_category.rs
+//! file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs
+//! lambda: L161
+//! tower_address: ascent/lambdas/l161/family_category.rs
+//! status: Coal
+//! invariance_level: Tier 3
+//! logic_system: Subobject Classifier (Omega)
+//! substrate: Rust
+//! content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448
+//! version: 1
+//! ---
+//!
+//! # Family Category — String Families as Functors
+//!
+//! Agent families are functors `F: Constraint -> String`.
+//! Strings are morphisms `String -> String`.
+//! Meta-Strings (autoString, cartographer, review-Strings) are natural
+//! transformations `eta: F => G` between family functors.
+//!
+//! This module defines the categorical types for String families,
+//! composing with (never replacing) `AgentFunctor` from `agent_functor.rs`.
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum ConstraintError {
-    FloatRefused { invariant: &'static str, measured_len: usize },
-    EmptyCarrier { invariant: &'static str, measured: usize },
-    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
-    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
-    Overflow { invariant: &'static str, measured: i64 },
-}
+use std::collections::HashMap;
 
-impl std::fmt::Display for ConstraintError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{self:?}")
-    }
-}
+// use crate::ascent::lambdas::l161::agent_functor::{String};
 
-impl std::error::Error for ConstraintError {}
+// ---------------------------------------------------------------------------
+// 1. Constraint — Object in the source category
+// ---------------------------------------------------------------------------
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct ArrowLedger {
-    objects: usize,
-    arrows: Vec<(usize, usize)>,
-}
-
-impl ArrowLedger {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, ConstraintError> {
-        refuse_empty(objects)?;
-        refuse_budget(objects, arrows.len())?;
-        refuse_endpoints(objects, &arrows)?;
-        Ok(Self { objects, arrows })
-    }
-
-    pub fn objects(&self) -> usize {
-        self.objects
-    }
-
-    pub fn arrows(&self) -> &[(usize, usize)] {
-        &self.arrows
-    }
-}
-
-fn refuse_empty(objects: usize) -> Result<(), ConstraintError> {
-    if objects == 0 {
-        return Err(ConstraintError::EmptyCarrier {
-            invariant: "family_category-carrier-nonempty",
-            measured: objects,
-        });
-    }
-    Ok(())
-}
-
-fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), ConstraintError> {
-    if objects > 16 {
-        return Err(ConstraintError::EmptyCarrier {
-            invariant: "family_category-carrier-at-most-16",
-            measured: objects,
-        });
-    }
-    if arrow_len > 64 {
-        return Err(ConstraintError::EmptyCarrier {
-            invariant: "family_category-arrow-budget-64",
-            measured: arrow_len,
-        });
-    }
-    Ok(())
-}
-
-fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
-    let src_ok = arrow.0 < objects;
-    let tgt_ok = arrow.1 < objects;
-    src_ok && tgt_ok
-}
-
-fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), ConstraintError> {
-    for (index, arrow) in arrows.iter().enumerate() {
-        if !endpoint_ok(objects, *arrow) {
-            return Err(ConstraintError::IndexOutOfBounds {
-                invariant: "family_category-arrow-endpoint-in-carrier",
-                measured: index,
-                bound: objects,
-            });
-        }
-    }
-    Ok(())
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
+/// A shared invariant that all members of a family must satisfy.
+/// Object in the Constraint category.
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Constraint {
-    ledger: ArrowLedger,
+    /// Unique identifier (e.g. "EVIDENCE_FIRST", "NO_FORCE_PUSH")
+    pub id: String,
+    /// Human-readable description
+    pub description: String,
+    /// Severity level for violations
+    pub severity: Severity,
 }
 
 impl Constraint {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, ConstraintError> {
-        let ledger = ArrowLedger::try_new(objects, arrows)?;
-        Ok(Self { ledger })
-    }
-
-    pub fn selected_count(&self) -> Result<i64, ConstraintError> {
-        measured_count(self.ledger.arrows(), self.ledger.objects())
-    }
-
-    pub fn certificate(&self) -> Result<i64, ConstraintError> {
-        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
-        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
-        agree_folded(measured, expected, self.ledger.objects())
-    }
-}
-
-fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, ConstraintError> {
-    let folded = fold_carrier(measured, objects)?;
-    let expected_folded = fold_carrier(expected, objects)?;
-    require_agreement(folded, expected_folded)
-}
-
-fn selected(arrow: (usize, usize), objects: usize) -> bool {
-    let _budget = objects;
-    arrow.0 < arrow.1
-}
-
-fn unselected(arrow: (usize, usize), objects: usize) -> bool {
-    let keep = selected(arrow, objects);
-    !keep
-}
-
-fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, ConstraintError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if selected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(ConstraintError::Overflow {
-                invariant: "family_category-measured-count-fits-i64",
-                measured: total,
-            })?;
+    pub fn new(id: &str, description: &str, severity: Severity) -> Self {
+        Self {
+            id: id.to_string(),
+            description: description.to_string(),
+            severity,
         }
     }
-    Ok(total)
 }
 
-fn count_all(arrows: &[(usize, usize)]) -> Result<i64, ConstraintError> {
-    let mut total = 0i64;
-    for _arrow in arrows {
-        total = total.checked_add(1).ok_or(ConstraintError::Overflow {
-            invariant: "family_category-arrow-count-fits-i64",
-            measured: total,
-        })?;
-    }
-    Ok(total)
+/// Severity classification for constraint violations.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub enum Severity {
+    Critical,
+    High,
+    Medium,
+    Low,
 }
 
-fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, ConstraintError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if unselected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(ConstraintError::Overflow {
-                invariant: "family_category-complement-count-fits-i64",
-                measured: total,
-            })?;
+impl Severity {
+    /// Parse from an uppercase label (mirrors `MemberStatus::parse`); unknown maps to `Low`.
+    pub fn parse(s: &str) -> Self {
+        match s.to_uppercase().as_str() {
+            "CRITICAL" => Severity::Critical,
+            "HIGH" => Severity::High,
+            "MEDIUM" => Severity::Medium,
+            _ => Severity::Low,
         }
     }
-    Ok(total)
 }
 
-fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, ConstraintError> {
-    let all = count_all(arrows)?;
-    let skipped = count_unselected(arrows, objects)?;
-    all.checked_sub(skipped).ok_or(ConstraintError::Overflow {
-        invariant: "family_category-expected-count-fits-i64",
-        measured: all,
-    })
-}
-
-fn fold_carrier(measured: i64, objects: usize) -> Result<i64, ConstraintError> {
-    let width = i64::try_from(objects).map_err(|_| ConstraintError::Overflow {
-        invariant: "family_category-carrier-width-fits-i64",
-        measured,
-    })?;
-    measured.checked_add(width).ok_or(ConstraintError::Overflow {
-        invariant: "family_category-folded-certificate-fits-i64",
-        measured,
-    })
-}
-
-pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, ConstraintError> {
-    if measured == expected {
-        return Ok(measured);
-    }
-    Err(ConstraintError::ClaimFailed {
-        invariant: "family_category-hom-sum-equals-outgoing",
-        measured,
-        expected,
-    })
-}
-
-pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, ConstraintError> {
-    let mut total = 0i64;
-    for (index, part) in parts.iter().enumerate() {
-        let measured = match i64::try_from(index) {
-            Ok(value) => value,
-            Err(_) => i64::MAX,
-        };
-        total = total.checked_add(*part).ok_or(ConstraintError::Overflow {
-            invariant: "claim-sum-stays-in-i64",
-            measured,
-        })?;
-    }
-    Ok(total)
-}
-
-fn text_has_byte(text: &str, target: u8) -> bool {
-    for byte in text.bytes() {
-        if byte == target {
-            return true;
+impl std::fmt::Display for Severity {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Severity::Critical => write!(f, "CRITICAL"),
+            Severity::High => write!(f, "HIGH"),
+            Severity::Medium => write!(f, "MEDIUM"),
+            Severity::Low => write!(f, "LOW"),
         }
     }
-    false
 }
 
-fn text_refused(text: &str) -> bool {
-    if text.is_empty() {
-        return true;
-    }
-    if text_has_byte(text, 46) {
-        return true;
-    }
-    if text_has_byte(text, 101) {
-        return true;
-    }
-    if text_has_byte(text, 69) {
-        return true;
-    }
-    false
+// ---------------------------------------------------------------------------
+// 2. Propagation Rule — Morphism in the Constraint category
+// ---------------------------------------------------------------------------
+
+/// A propagation rule defines how corrections flow between family members.
+/// Morphism in the Constraint category: Pattern -> Targets.
+#[derive(Debug, Clone)]
+pub struct PropagationRule {
+    /// The pattern name (e.g. "Severity thresholds", "Tool configuration")
+    pub pattern: String,
+    /// Example of the pattern
+    pub example: String,
+    /// Target Strings to propagate to
+    pub targets: Vec<String>,
 }
 
-fn split_sign(text: &str) -> (i64, &str) {
-    if text.starts_with('-') {
-        let rest = match text.get(1..) {
-            Some(value) => value,
-            None => "",
-        };
-        return (-1, rest);
-    }
-    (1, text)
-}
-
-fn digits_only(text: &str) -> bool {
-    if text.is_empty() {
-        return false;
-    }
-    for byte in text.bytes() {
-        if !byte.is_ascii_digit() {
-            return false;
+impl PropagationRule {
+    pub fn new(pattern: &str, example: &str, targets: Vec<String>) -> Self {
+        Self {
+            pattern: pattern.to_string(),
+            example: example.to_string(),
+            targets,
         }
     }
-    true
-}
 
-fn accumulate_digits(text: &str) -> Result<i64, ConstraintError> {
-    let mut value = 0i64;
-    for byte in text.bytes() {
-        value = value.checked_mul(10).ok_or(ConstraintError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-        let digit = i64::from(byte - 48);
-        value = value.checked_add(digit).ok_or(ConstraintError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
+    /// Does this rule target all members of the family?
+    pub fn targets_all(&self) -> bool {
+        self.targets.iter().any(|t| t == "All members")
     }
-    Ok(value)
 }
 
-pub fn parse_exact_i64(text: &str) -> Result<i64, ConstraintError> {
-    if text_refused(text) {
-        return Err(ConstraintError::FloatRefused {
-            invariant: "public-boundary-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let (sign, digits) = split_sign(text);
-    if !digits_only(digits) {
-        return Err(ConstraintError::FloatRefused {
-            invariant: "public-boundary-refuses-non-integer-text",
-            measured_len: text.len(),
-        });
-    }
-    let magnitude = accumulate_digits(digits)?;
-    magnitude.checked_mul(sign).ok_or(ConstraintError::Overflow {
-        invariant: "parsed-signed-integer-fits-i64",
-        measured: magnitude,
-    })
+// ---------------------------------------------------------------------------
+// 3. Member Status — Lifecycle state of a family member
+// ---------------------------------------------------------------------------
+
+/// Lifecycle state of a String within a family.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum MemberStatus {
+    /// Active String on disk
+    Exists,
+    /// Planned but not yet implemented
+    Planned,
+    /// Merged into another String
+    Consolidated { target: String },
+    /// Deprecated in favor of another
+    Deprecated { target: String },
 }
 
-pub fn certify_claim(text: &str) -> Result<i64, ConstraintError> {
-    let spec = parse_spec(text)?;
-    let value = Constraint::try_new(spec.0, spec.1)?;
-    value.certificate()
-}
-
-fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), ConstraintError> {
-    let objects = parse_object_count(text)?;
-    let arrows = parse_arrow_list(&arrow_fields(text))?;
-    Ok((objects, arrows))
-}
-
-fn parse_object_count(text: &str) -> Result<usize, ConstraintError> {
-    if text_refused(text) {
-        return Err(ConstraintError::FloatRefused {
-            invariant: "spec-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let head = match text.split(';').next() {
-        Some(value) => value,
-        None => "",
-    };
-    let objects_i = parse_exact_i64(head)?;
-    usize_from_i64(objects_i)
-}
-
-fn arrow_fields(text: &str) -> Vec<&str> {
-    let mut fields = Vec::new();
-    let mut skipped_head = false;
-    for part in text.split(';') {
-        if skipped_head {
-            fields.push(part);
-        }
-        if !skipped_head {
-            skipped_head = true;
+impl MemberStatus {
+    /// Parse from the `[STATUS]` annotation in family_registry.md
+    pub fn parse(s: &str) -> Self {
+        let s = s.trim();
+        if s == "EXISTS" {
+            MemberStatus::Exists
+        } else if s == "PLANNED" {
+            MemberStatus::Planned
+        } else if let Some(target) = s.strip_prefix("CONSOLIDATED -> ") {
+            MemberStatus::Consolidated {
+                target: target.to_string(),
+            }
+        } else if let Some(target) = s.strip_prefix("DEPRECATED -> consolidated into ") {
+            MemberStatus::Deprecated {
+                target: target.to_string(),
+            }
+        } else if let Some(target) = s.strip_prefix("DEPRECATED -> ") {
+            MemberStatus::Deprecated {
+                target: target.to_string(),
+            }
+        } else {
+            MemberStatus::Planned
         }
     }
-    fields
+
+    pub fn is_active(&self) -> bool {
+        matches!(self, MemberStatus::Exists)
+    }
 }
 
-fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, ConstraintError> {
-    let mut arrows = Vec::new();
-    let mut index = 0usize;
-    while index < fields.len() {
-        let field = match fields.get(index) {
-            Some(value) => *value,
-            None => "",
-        };
-        arrows.push(parse_arrow(field)?);
-        index = index.saturating_add(1);
-    }
-    Ok(arrows)
+// ---------------------------------------------------------------------------
+// 4. Family Member — Annotated String reference within a family
+// ---------------------------------------------------------------------------
+
+/// A String's membership in a family, with lifecycle annotation.
+#[derive(Debug, Clone)]
+pub struct FamilyMember {
+    /// String identifier (e.g. "lint", "code-review")
+    pub string_id: String,
+    /// Lifecycle status
+    pub status: MemberStatus,
 }
 
-fn parse_arrow(part: &str) -> Result<(usize, usize), ConstraintError> {
-    let mut ends = part.split('>');
-    let src_text = ends.next().ok_or(ConstraintError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-source",
-        measured: 0,
-        bound: 0,
-    })?;
-    let tgt_text = ends.next().ok_or(ConstraintError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-target",
-        measured: 0,
-        bound: 0,
-    })?;
-    if ends.next().is_some() {
-        return Err(ConstraintError::IndexOutOfBounds {
-            invariant: "spec-arrow-has-two-ends",
-            measured: part.len(),
-            bound: 2,
-        });
+impl FamilyMember {
+    pub fn new(string_id: &str, status: MemberStatus) -> Self {
+        Self {
+            string_id: string_id.to_string(),
+            status,
+        }
     }
-    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
-    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
-    Ok((src, tgt))
+
+    pub fn active(string_id: &str) -> Self {
+        Self::new(string_id, MemberStatus::Exists)
+    }
 }
 
-fn usize_from_i64(value: i64) -> Result<usize, ConstraintError> {
-    if value < 0 {
-        return Err(ConstraintError::IndexOutOfBounds {
-            invariant: "spec-index-nonnegative",
-            measured: 0,
-            bound: 0,
-        });
-    }
-    usize::try_from(value).map_err(|_| ConstraintError::Overflow {
-        invariant: "spec-index-fits-usize",
-        measured: value,
-    })
+// ---------------------------------------------------------------------------
+// 5. StringFamily — Functor descriptor (static definition)
+// ---------------------------------------------------------------------------
+
+/// A String family definition parsed from `family_registry.md`.
+/// This is the *descriptor* — the static data before runtime activation.
+#[derive(Debug, Clone)]
+pub struct StringFamily {
+    /// Family identifier (e.g. "code-quality", "retinue")
+    pub id: String,
+    /// Human-readable description
+    pub description: String,
+    /// All members (active + planned + consolidated)
+    pub members: Vec<FamilyMember>,
+    /// Shared constraints (objects in the Constraint category)
+    pub constraints: Vec<Constraint>,
+    /// Propagation rules (morphisms in the Constraint category)
+    pub propagation_rules: Vec<PropagationRule>,
+    /// Cross-family related Strings
+    pub related_strings: Vec<String>,
 }
+
+impl StringFamily {
+    pub fn new(id: &str, description: &str) -> Self {
+        Self {
+            id: id.to_string(),
+            description: description.to_string(),
+            members: Vec::new(),
+            constraints: Vec::new(),
+            propagation_rules: Vec::new(),
+            related_strings: Vec::new(),
+        }
+    }
+
+    /// Get only active (EXISTS) members.
+    pub fn active_members(&self) -> Vec<&FamilyMember> {
+        self.members
+            .iter()
+            .filter(|m| m.status.is_active())
+            .collect()
+    }
+
+    /// Get active member IDs.
+    pub fn active_member_ids(&self) -> Vec<&str> {
+        self.members
+            .iter()
+            .filter(|m| m.status.is_active())
+            .map(|m| m.string_id.as_str())
+            .collect()
+    }
+
+    /// Check if a String belongs to this family (active only).
+    pub fn contains_active(&self, string_id: &str) -> bool {
+        self.members
+            .iter()
+            .any(|m| m.string_id == string_id && m.status.is_active())
+    }
+
+    /// Get propagation targets for a given String within this family.
+    pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String> {
+        if !self.contains_active(string_id) {
+            return Vec::new();
+        }
+        let active_ids: Vec<String> = self
+            .active_member_ids()
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+        let mut targets = Vec::new();
+        for rule in &self.propagation_rules {
+            if rule.targets_all() {
+                // "All members" means all active members except source
+                for m in &active_ids {
+                    if m != string_id && !targets.contains(m) {
+                        targets.push(m.clone());
+                    }
+                }
+            } else {
+                for t in &rule.targets {
+                    if t != string_id && !targets.contains(t) && active_ids.contains(t) {
+                        targets.push(t.clone());
+                    }
+                }
+            }
+        }
+        targets
+    }
+}
+
+// ---------------------------------------------------------------------------
+// 6. FamilyFunctor — Runtime functor instance
+// ---------------------------------------------------------------------------
+
+/// Runtime functor `F: Constraint -> String` for a String family.
+///
+/// Composes with `AgentFunctor` — it does NOT replace it.
+/// A `FamilyFunctor` holds references to `String` and `String`
+/// from `agent_functor.rs`.
+#[derive(Debug)]
+pub struct FamilyFunctor {
+    /// The underlying family descriptor
+    pub family: StringFamily,
+    /// Object mapping: Constraint.id -> Vec<String>
+    /// Each constraint maps to the capabilities it enables across members
+    pub constraint_to_capabilities: HashMap<String, Vec<String>>,
+    /// Morphism mapping: PropagationRule.pattern -> Vec<String>
+    /// Each propagation pattern maps to the Strings it activates
+    pub propagation_to_strings: HashMap<String, Vec<String>>,
+}
+
+impl FamilyFunctor {
+    /// Create a new FamilyFunctor from a StringFamily descriptor.
+    pub fn from_family(family: StringFamily) -> Self {
+        Self {
+            family,
+            constraint_to_capabilities: HashMap::new(),
+            propagation_to_strings: HashMap::new(),
+        }
+    }
+
+    /// Register a String that a constraint enables.
+    pub fn map_constraint(&mut self, constraint_id: &str, string: String) {
+        self.constraint_to_capabilities
+            .entry(constraint_id.to_string())
+            .or_default()
+            .push(string);
+    }
+
+    /// Register a String that a propagation rule activates.
+    pub fn map_propagation(&mut self, pattern: &str, string: String) {
+        self.propagation_to_strings
+            .entry(pattern.to_string())
+            .or_default()
+            .push(string);
+    }
+
+    /// Query capabilities enabled by a constraint.
+    pub fn apply_constraint(&self, constraint_id: &str) -> Vec<&String> {
+        self.constraint_to_capabilities
+            .get(constraint_id)
+            .map(|v| v.iter().collect())
+            .unwrap_or_default()
+    }
+
+    /// Query Strings activated by a propagation pattern.
+    pub fn apply_propagation(&self, pattern: &str) -> Vec<&String> {
+        self.propagation_to_strings
+            .get(pattern)
+            .map(|v| v.iter().collect())
+            .unwrap_or_default()
+    }
+
+    /// Get the family ID.
+    pub fn id(&self) -> &str {
+        &self.family.id
+    }
+
+    /// Get all propagation targets for a String in this family.
+    pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String> {
+        self.family.get_propagation_targets(string_id)
+    }
+}
+
+// ---------------------------------------------------------------------------
+// 7. Tests
+// ---------------------------------------------------------------------------
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    const UNIT_EXPECT: i64 = 3;
-    const INTEG_EXPECT: i64 = 3;
-
-    fn show(err: ConstraintError) -> String {
-        format!("{err:?}")
-    }
-
-    fn integration_certificate() -> Result<i64, ConstraintError> {
-        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
-        let value = Constraint::try_new(ledger.objects(), ledger.arrows().to_vec())?;
-        value.certificate()
+    #[test]
+    fn test_severity_ordering() {
+        assert!(Severity::Critical < Severity::High);
+        assert!(Severity::High < Severity::Medium);
+        assert!(Severity::Medium < Severity::Low);
     }
 
     #[test]
-    fn unit_family_category_hom_sum_matches_outgoing() -> Result<(), String> {
-        let value = Constraint::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
-        let got = value.certificate().map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("certificate {got}"));
-        }
-        Ok(())
+    fn test_severity_parse() {
+        assert_eq!(Severity::parse("CRITICAL"), Severity::Critical);
+        assert_eq!(Severity::parse("high"), Severity::High);
+        assert_eq!(Severity::parse("unknown"), Severity::Low);
     }
 
     #[test]
-    fn integration_ledger_and_family_category_agree() -> Result<(), String> {
-        let cert = integration_certificate().map_err(show)?;
-        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
-        if combined != INTEG_EXPECT {
-            return Err(format!("combined {combined}"));
-        }
-        Ok(())
-    }
-
-    #[test]
-    fn e2e_certify_claim_text() -> Result<(), String> {
-        let got = certify_claim("2;0>1;1>1").map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("e2e {got}"));
-        }
-        Ok(())
-    }
-
-    #[test]
-    fn negative_empty_carrier() -> Result<(), String> {
-        let err = Constraint::try_new(0, vec![]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("family_category-carrier-nonempty") {
-                    return Err(text);
-                }
-                Ok(())
+    fn test_member_status_parse() {
+        assert_eq!(MemberStatus::parse("EXISTS"), MemberStatus::Exists);
+        assert_eq!(MemberStatus::parse("PLANNED"), MemberStatus::Planned);
+        assert_eq!(
+            MemberStatus::parse("CONSOLIDATED -> procurators"),
+            MemberStatus::Consolidated {
+                target: "procurators".to_string()
             }
-            Ok(_) => Err("empty carrier accepted".into()),
-        }
+        );
+        assert_eq!(
+            MemberStatus::parse("DEPRECATED -> consolidated into procurators"),
+            MemberStatus::Deprecated {
+                target: "procurators".to_string()
+            }
+        );
     }
 
     #[test]
-    fn negative_float_boundary() -> Result<(), String> {
-        let err = parse_exact_i64("1.5").map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("binary64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("float accepted".into()),
-        }
+    fn test_string_family_active_members() {
+        let mut family = StringFamily::new("test", "Test family");
+        family.members.push(FamilyMember::active("lint"));
+        family.members.push(FamilyMember::active("code-review"));
+        family
+            .members
+            .push(FamilyMember::new("security-scan", MemberStatus::Planned));
+
+        assert_eq!(family.active_members().len(), 2);
+        assert_eq!(family.active_member_ids(), vec!["lint", "code-review"]);
+        assert!(family.contains_active("lint"));
+        assert!(!family.contains_active("security-scan"));
     }
 
     #[test]
-    fn negative_index() -> Result<(), String> {
-        let err = Constraint::try_new(1, vec![(0, 2)]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("endpoint") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("bad arrow accepted".into()),
-        }
+    fn test_propagation_targets() {
+        let mut family = StringFamily::new("code-quality", "Code quality");
+        family.members.push(FamilyMember::active("lint"));
+        family.members.push(FamilyMember::active("code-review"));
+        family.members.push(FamilyMember::active("run-tests"));
+        family.propagation_rules.push(PropagationRule::new(
+            "Severity thresholds",
+            "CRITICAL blocks merge",
+            vec!["All members".to_string()],
+        ));
+        family.propagation_rules.push(PropagationRule::new(
+            "Tool configuration",
+            "ruff rules",
+            vec!["lint".to_string(), "run-tests".to_string()],
+        ));
+
+        let targets = family.get_propagation_targets("lint");
+        assert!(targets.contains(&"code-review".to_string()));
+        assert!(targets.contains(&"run-tests".to_string()));
+        assert!(!targets.contains(&"lint".to_string()));
     }
 
     #[test]
-    fn negative_claim_disagreement() -> Result<(), String> {
-        let err = require_agreement(1, 2).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("family_category-hom-sum-equals-outgoing") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("disagreement accepted".into()),
-        }
-    }
-
-    #[test]
-    fn negative_overflow_sum() -> Result<(), String> {
-        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("claim-sum-stays-in-i64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("overflow accepted".into()),
-        }
+    fn test_family_functor_construction() {
+        let family = StringFamily::new("retinue", "Character Strings");
+        let functor = FamilyFunctor::from_family(family);
+        assert_eq!(functor.id(), "retinue");
+        assert!(functor.constraint_to_capabilities.is_empty());
+        assert!(functor.propagation_to_strings.is_empty());
     }
 }

@@ -7,7 +7,7 @@
     "sha256": "d10f292c869981053835b0afa088be72e2084b33abc7a9af153621281a5f7e2f"
   },
   "reviewer": "Codex source, specification and evidence review",
-  "evaluation_timestamp": "2026-10-18T20:49:29.179693+00:00",
+  "evaluation_timestamp": "2026-10-18T21:23:41.413548+00:00",
   "gates": {
     "G1": "A",
     "G2": "A",
@@ -111,7 +111,8 @@
   "assurance_limits": [
     "Contract attachment remains pending at the user request.",
     "No cross-repository origin attestation, exact compiler-read trace, mechanized source-to-MIR equivalence, global allocator-totality/crash-freedom proof, benchmark-checked resource contract or whole-directory A score is inferred.",
-    "This completed component assessment uses a checked exact/refusal model plus an explicit source refinement audit. It is not a declaration that the Rust implementation was extracted from Lean or independently verified at MIR level."
+    "This completed component assessment uses a checked exact/refusal model plus an explicit source refinement audit. It is not a declaration that the Rust implementation was extracted from Lean or independently verified at MIR level.",
+    "This candidate reuses the source-identical earlier Rust/Lean receipts. The historical proof runner is retained by its original digest; the current multi-model runner is not substituted into that receipt."
   ],
   "unassessed": {},
   "evidence": [
@@ -168,7 +169,7 @@
       "sha256": "4959253aeeae62fc42460986e8dbc33a8d36e3789f29651070d924918453ff81"
     },
     {
-      "path": "code/rust/quality/category_homology/run_rank_proof.py",
+      "path": "evidence/quality/category_homology/20261018T212341Z-rank-runner-custody/run_rank_proof.py",
       "sha256": "ae496e9becba2b6e0d1fea111d497cf42a6a10ea7cc14234afa263f4f15562e1"
     },
     {
@@ -234,6 +235,208 @@
       "sha256": "5deb8c4ff5f3190bb6f1d2b0df31029bddc2f4e8f15b50874f39a112e9b4dfea",
       "proof": "code/rust/quality/category_homology/proofs/RankCertificate.lean",
       "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/homology/boundary.rs",
+      "sha256": "9408d47116a07fee24a3d490c122b9d041dbf51b2f9018b929bf2de7ca96abba"
+    },
+    {
+      "path": "code/rust/src/homology/carrier.rs",
+      "sha256": "8c3cd15da1e2446854173c303752f26ca8fedc5dc92c4cc78d15cebd17a15ef8"
+    },
+    {
+      "path": "code/rust/src/homology/carrier_manifest.rs",
+      "sha256": "56c31afcee6f0c8af9362395fd7813e7060f7cdc438cbcac060c26cb7e766c02"
+    },
+    {
+      "path": "code/rust/src/homology/chain.rs",
+      "sha256": "9713e4b716f7dd05f62433ea0dad249ee48b038afe995312bbfd4344e6639c32"
+    },
+    {
+      "path": "code/rust/src/homology/chain_complex.rs",
+      "sha256": "8de8868140dd9fbd98dae63e84239c28f0009b1bce552c3e12574cef465b8d42"
+    },
+    {
+      "path": "code/rust/src/homology/coboundary.rs",
+      "sha256": "3b4d98c6a891cb131294b1b671d1f5ff65b50c1d48bf9761d12e589afb1ee03a"
+    },
+    {
+      "path": "code/rust/src/homology/cochain.rs",
+      "sha256": "e5f39bda3cdb9b229f076d7a41705e4e1d30f33bf28b2d746736e24e8ddf9778"
+    },
+    {
+      "path": "code/rust/src/homology/cochain_complex.rs",
+      "sha256": "e752e789bd8c3a76cf5adb08070548b459d3e1c735399d7b17f40b66b3a5354a"
+    },
+    {
+      "path": "code/rust/src/homology/errors.rs",
+      "sha256": "c099cb5ff8a727aca82019d75d4afc5be2bdf53ca080da2c08eb8130b84aa8e6"
+    },
+    {
+      "path": "code/rust/src/homology/exact_carrier.rs",
+      "sha256": "45dac03bf600211df22a75bcb2fd02c209e91353d15181e301b598ea35644c83"
+    },
+    {
+      "path": "code/rust/src/homology/exact_scalar.rs",
+      "sha256": "d6c7ebbbeea899412a96cf1f9a686e2fe2a7bf1b09d6eb34ed72f74a0562dc35"
+    },
+    {
+      "path": "code/rust/src/homology/graded_vector.rs",
+      "sha256": "80a2c598049ad838ff219d1491d0d709c8116107afa49869b7fbd469a7c587b7"
+    },
+    {
+      "path": "code/rust/src/homology/hashing.rs",
+      "sha256": "5ec2e16f3cb9dcda7c54ae40a7f824b5878a106bc1d76b0c43c677a5ebc1dd5b"
+    },
+    {
+      "path": "code/rust/src/homology/ids.rs",
+      "sha256": "0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1"
+    },
+    {
+      "path": "code/rust/src/homology/l5a_challenges.rs",
+      "sha256": "0cf95ea5101a91630317a8b76065c71d9b8db01d4846d0169cf87df7a2f01ca6"
+    },
+    {
+      "path": "code/rust/src/homology/mod.rs",
+      "sha256": "2df7a5ef1d81c28031717b5fd0c57dc3e58dfff9e48949288ce8cdaf1ae375c2"
+    },
+    {
+      "path": "code/rust/src/homology/rank_certificate.rs",
+      "sha256": "d10f292c869981053835b0afa088be72e2084b33abc7a9af153621281a5f7e2f"
+    },
+    {
+      "path": "code/rust/src/homology/simplicial.rs",
+      "sha256": "bcc037d479e319a8aa8e0cffb0b7a7106f0b1738e7b059e1c3136c2852cc1c52"
+    },
+    {
+      "path": "code/rust/src/homology/witness.rs",
+      "sha256": "7bfd0a3a4d9610fea754663ece5deaba858045c77883b7d1aa8994f2cdb905c7"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/bareiss_det.rs",
+      "sha256": "ecab1f2e1b2af2679963c83317c11863e7d0dae852a79b5f2c8287ffe7543285"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+      "sha256": "08b2275ef2211c7d5d1434c18454e6da5b163f396cc6a07592c0a4e0d17987b8"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/char_poly.rs",
+      "sha256": "8eecde4caf3d4f9ea3bab01299576321aa8b83356cc2bcc055a4c4d3e7abad83"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/commutant.rs",
+      "sha256": "d5e3bf2926896312dc4b431243d1c5d284f099e824f3e3182dcdf3a32a5a12ca"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/complex_tensor.rs",
+      "sha256": "8f560a34d7c651b9d9f6e273c95ed5858e99e717b2a844e5715132398c11a99b"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/complex_tensor/tests.rs",
+      "sha256": "d5a07aded0ab1936661155dad18bceb98281fc5a7f50b50f103e7a0234d155b5"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/compositum_deg.rs",
+      "sha256": "9acd7a7f779ae821485603c4758f43d50ef62263371d7a13b5da888ed1fb0a1d"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/congruence.rs",
+      "sha256": "220a7ad2131c9e83ac1377ec5efc61caae337a7bac29f373c3646125b1a081ae"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/cyclo_density.rs",
+      "sha256": "d2a02cf5bd64268de62a62387d9de4376ea070e1f63bc70412189f477cacd109"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/elimination.rs",
+      "sha256": "01e1d2528b67e5e8c84077bc5f88697404a249e511242bcab00f0366e9e7df56"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/entropy_dichotomy.rs",
+      "sha256": "232df16ad172ea7bea233c43dfdcef132cfaaaf8b5b953a92af23db250db587f"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/field_factors.rs",
+      "sha256": "718ba7d7450a648784cb95c21c352e169f22ac690b2dbfbb05c398b2e786e1ec"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/field_squares.rs",
+      "sha256": "c257ee509d00353f91f7d283eb23b7f27fc6755b983285fa87d20d541932186d"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/image_kernel.rs",
+      "sha256": "71cf42837a101925c2f385d8bf10ac70c0f6d708ee2c73f6488829c13356270f"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/interpolation.rs",
+      "sha256": "d4eaa6f46d71041b10eb46e336c3343b1b23c63dee3585d06152a877e1d589fb"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/involution.rs",
+      "sha256": "2f80bb28b42571bc1b1cceca487d4bd8263276a9b8fe19a182ff3fc43b3c5a88"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/laws.rs",
+      "sha256": "1e4cddfd7bdef1920cc77dab618e84d48d6aacf18cd3a47162d49a6953bd7fda"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/matrix.rs",
+      "sha256": "637a1ee31adbd1d8af15aca13cd9edeb0fea19e44700f8ece60d6a9ad12d44a0"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/mod.rs",
+      "sha256": "1d7b0e3b1bc454716191b434af66d49541a203c9dad91fa537274843fc6b4722"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/ordered.rs",
+      "sha256": "5c18e0f6f2c40b18f3ffda770aa88154f2230721dadf9809f4633dfb02a8385d"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/poly_roots.rs",
+      "sha256": "093d5db5659d6638ee076a91358c933b62eab650c0dc13d59dee265c918a7414"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/pseudoinverse.rs",
+      "sha256": "ea9973d16a79349a48baccc394d9e228b9055a97523cbaedbd1048a84074ce68"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/quintic_split.rs",
+      "sha256": "f3ef4142f7cea0f144c9c5b5d35816992e88cc511ba346a1df8774fd1eacc8a8"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/rational_factors.rs",
+      "sha256": "5be5f8a20225b8e9863ea09f20010be92f6e444ec64db51769118bbc150c87ff"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/scalars.rs",
+      "sha256": "b6f02490a60610b88c25eabc9df707aba99b0f319ec57a5ae7d04ecdd69cb892"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/second_jet.rs",
+      "sha256": "f604cb70c87a877aec66aa40502fa5718e3eb0188e1216eb269b723c13335764"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/smith_form.rs",
+      "sha256": "80fc079f6cd90ad1cc9582a43aa4cbec3f291d303e9f5e397b2b3055341803fe"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/spectral_factors.rs",
+      "sha256": "454a1d2f22658c9626c8016083419531ad715918fa0152768afddc0c8d11ea15"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/splitting_deg.rs",
+      "sha256": "1c22c530204d3c7a4392f86858f9a0c95b0a6ae881ca0fb05111efa49204ab17"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/tensor_proj.rs",
+      "sha256": "28c81d5749232318791c23bf8de37e80e2607da8b2816db6aaae5a9ad18e2bdc"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/test_support.rs",
+      "sha256": "0075c89caa1042fd4383075b323bd62a0960b92f235ac4ca446e8a8975a60233"
     }
   ]
 }

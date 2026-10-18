@@ -1,389 +1,199 @@
-pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/kleisli_category.rs";
-pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:kleisli_category:strictly-ascending-arrow-count";
-pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
-pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
+//! Kleisli Category Construction — Spec Section 23.
+//!
+//! Given a finite category C and a finite monad T on C, the Kleisli category
+//! C_T has:
+//! - Objects: Same as C.
+//! - Morphisms A → B: Morphisms A → T(B) in C.
+//! - Identity on A: The monad unit η_A : A → T(A).
+//! - Composition of f : A → T(B) and g : B → T(C):
+//!   Defined as μ_C ∘ T(g) ∘ f.
+//!
+//! This module provides two entry points following the Declared → Validated
+//! discipline:
+//!
+//! - `declare_kleisli_category`: builds raw `DeclaredFiniteCategory` from
+//!   unvalidated monad data. The caller is responsible for validation.
+//!
+//! - `build_validated_kleisli_category`: accepts a `ValidatedFiniteCategory`
+//!   and `ValidatedFiniteMonad`, constructs the Kleisli category, and returns
+//!   a `ValidatedFiniteCategory` on success.
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum KleisliNerveError {
-    FloatRefused { invariant: &'static str, measured_len: usize },
-    EmptyCarrier { invariant: &'static str, measured: usize },
-    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
-    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
-    Overflow { invariant: &'static str, measured: i64 },
-}
+use super::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
+use super::finite_category_builder::DeclaredFiniteCategoryBuilder;
+use super::legacy_monad::{DeclaredFiniteMonad, ValidatedFiniteMonad};
+use super::nerve::DeclaredNerve;
+use std::collections::BTreeMap;
 
-impl std::fmt::Display for KleisliNerveError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{self:?}")
-    }
-}
-
-impl std::error::Error for KleisliNerveError {}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct ArrowLedger {
-    objects: usize,
-    arrows: Vec<(usize, usize)>,
-}
-
-impl ArrowLedger {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, KleisliNerveError> {
-        refuse_empty(objects)?;
-        refuse_budget(objects, arrows.len())?;
-        refuse_endpoints(objects, &arrows)?;
-        Ok(Self { objects, arrows })
-    }
-
-    pub fn objects(&self) -> usize {
-        self.objects
-    }
-
-    pub fn arrows(&self) -> &[(usize, usize)] {
-        &self.arrows
-    }
-}
-
-fn refuse_empty(objects: usize) -> Result<(), KleisliNerveError> {
-    if objects == 0 {
-        return Err(KleisliNerveError::EmptyCarrier {
-            invariant: "kleisli_category-carrier-nonempty",
-            measured: objects,
-        });
-    }
-    Ok(())
-}
-
-fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), KleisliNerveError> {
-    if objects > 16 {
-        return Err(KleisliNerveError::EmptyCarrier {
-            invariant: "kleisli_category-carrier-at-most-16",
-            measured: objects,
-        });
-    }
-    if arrow_len > 64 {
-        return Err(KleisliNerveError::EmptyCarrier {
-            invariant: "kleisli_category-arrow-budget-64",
-            measured: arrow_len,
-        });
-    }
-    Ok(())
-}
-
-fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
-    let src_ok = arrow.0 < objects;
-    let tgt_ok = arrow.1 < objects;
-    src_ok && tgt_ok
-}
-
-fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), KleisliNerveError> {
-    for (index, arrow) in arrows.iter().enumerate() {
-        if !endpoint_ok(objects, *arrow) {
-            return Err(KleisliNerveError::IndexOutOfBounds {
-                invariant: "kleisli_category-arrow-endpoint-in-carrier",
-                measured: index,
-                bound: objects,
-            });
-        }
-    }
-    Ok(())
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
+/// A wrapper that owns a validated Kleisli category and provides a safe,
+/// lifetime-free construction path for its nerve.
+#[derive(Debug, Clone)]
 pub struct KleisliNerve {
-    ledger: ArrowLedger,
+    pub kleisli_category: ValidatedFiniteCategory,
 }
 
 impl KleisliNerve {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, KleisliNerveError> {
-        let ledger = ArrowLedger::try_new(objects, arrows)?;
-        Ok(Self { ledger })
+    pub fn try_new(
+        name: &str,
+        category: &ValidatedFiniteCategory,
+        monad: &ValidatedFiniteMonad,
+    ) -> Result<Self, String> {
+        let kleisli_category = build_validated_kleisli_category(name, category, monad)?;
+        Ok(Self { kleisli_category })
     }
 
-    pub fn selected_count(&self) -> Result<i64, KleisliNerveError> {
-        measured_count(self.ledger.arrows(), self.ledger.objects())
-    }
-
-    pub fn certificate(&self) -> Result<i64, KleisliNerveError> {
-        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
-        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
-        agree_folded(measured, expected, self.ledger.objects())
+    pub fn nerve(&self) -> DeclaredNerve<'_> {
+        DeclaredNerve::new(self.kleisli_category.declared())
     }
 }
 
-fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, KleisliNerveError> {
-    let folded = fold_carrier(measured, objects)?;
-    let expected_folded = fold_carrier(expected, objects)?;
-    require_agreement(folded, expected_folded)
+/// Internal record tracking the correspondence between a Kleisli morphism
+/// and its underlying base-category morphism.
+#[derive(Debug, Clone, PartialEq, Eq)]
+struct KleisliMorphism {
+    k_name: String,
+    orig_name: String,
+    source: String,
+    target: String,
 }
 
-fn selected(arrow: (usize, usize), objects: usize) -> bool {
-    let _budget = objects;
-    arrow.0 < arrow.1
-}
+/// Constructs a Kleisli category declaration from raw (unvalidated) inputs.
+///
+/// Returns a `DeclaredFiniteCategory` whose composition table is derived
+/// from the monad's unit, multiplication, and functor action. The result
+/// is **not** validated; use `build_validated_kleisli_category` if you
+/// need a trust-boundary–enforced output.
+///
+/// Kleisli morphism names use the delimiter format `K[f=>B]` to avoid
+/// collisions when morphism or object names contain underscores.
+pub fn declare_kleisli_category(
+    name: &str,
+    category: &DeclaredFiniteCategory,
+    monad: &DeclaredFiniteMonad,
+) -> Result<DeclaredFiniteCategory, String> {
+    let mut builder = DeclaredFiniteCategoryBuilder::new(name);
 
-fn unselected(arrow: (usize, usize), objects: usize) -> bool {
-    let keep = selected(arrow, objects);
-    !keep
-}
+    // 1. Objects: Ob(C_T) = Ob(C).
+    for obj in &category.objects {
+        builder = builder.object(obj);
+    }
 
-fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, KleisliNerveError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if selected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(KleisliNerveError::Overflow {
-                invariant: "kleisli_category-measured-count-fits-i64",
-                measured: total,
+    let mut k_morphisms: Vec<KleisliMorphism> = Vec::new();
+    let mut orig_to_k: BTreeMap<(String, String), String> = BTreeMap::new();
+
+    // 2. Morphisms: For every f : A → T(B) in C, create K[f=>B] : A → B in C_T.
+    for f in category.morphisms.values() {
+        for (b, tb) in &monad.object_map {
+            if tb == &f.target {
+                let k_name = format!("K[{}=>{}]", f.name, b);
+
+                // Detect name collisions (impossible with bracket delimiters
+                // but guarded for defense-in-depth).
+                if orig_to_k.values().any(|existing| existing == &k_name) {
+                    return Err(format!("Kleisli morphism name collision: {}", k_name));
+                }
+
+                builder = builder.morphism(&k_name, &f.source, b);
+                k_morphisms.push(KleisliMorphism {
+                    k_name: k_name.clone(),
+                    orig_name: f.name.clone(),
+                    source: f.source.clone(),
+                    target: b.clone(),
+                });
+                orig_to_k.insert((f.name.clone(), b.clone()), k_name);
+            }
+        }
+    }
+
+    // 3. Identities: The identity on A in Kleisli is η_A : A → T(A).
+    for a in &category.objects {
+        let eta_a = monad
+            .unit_components
+            .get(a)
+            .ok_or_else(|| format!("Monad missing unit for object {}", a))?;
+
+        let k_name = orig_to_k.get(&(eta_a.clone(), a.clone())).ok_or_else(|| {
+            format!(
+                "Unit {} for {} not found as a valid Kleisli morphism",
+                eta_a, a
+            )
+        })?;
+
+        builder = builder.identity(a, k_name);
+    }
+
+    // 4. Composition: f_K : A → B, g_K : B → C
+    //    Their Kleisli composite is h_K : A → C where h = μ_C ∘ T(g) ∘ f.
+    for f_k in &k_morphisms {
+        for g_k in &k_morphisms {
+            if f_k.target != g_k.source {
+                continue;
+            }
+            let c = &g_k.target;
+
+            // Step 1: T(g) — apply the monad's functor action to g.
+            let tg = monad
+                .morphism_map
+                .get(&g_k.orig_name)
+                .ok_or_else(|| format!("Monad missing T({})", g_k.orig_name))?;
+
+            // Step 2: T(g) ∘ f in the base category.
+            let step1 = category.compose(&f_k.orig_name, tg).ok_or_else(|| {
+                format!(
+                    "Base category missing composition {} ∘ {}",
+                    tg, f_k.orig_name
+                )
             })?;
+
+            // Step 3: μ_C — the monad multiplication at C.
+            let mu_c = monad
+                .multiplication_components
+                .get(c)
+                .ok_or_else(|| format!("Monad missing μ_{}", c))?;
+
+            // Step 4: h = μ_C ∘ (T(g) ∘ f) in the base category.
+            let h_orig = category
+                .compose(step1, mu_c)
+                .ok_or_else(|| format!("Base category missing composition {} ∘ {}", mu_c, step1))?;
+
+            // Map the resulting base morphism back to the Kleisli name.
+            let h_k_name = orig_to_k
+                .get(&(h_orig.to_string(), c.clone()))
+                .ok_or_else(|| {
+                    format!(
+                        "Resulting morphism {} → T({}) not found in Kleisli morphisms",
+                        h_orig, c
+                    )
+                })?;
+
+            builder = builder.composition(&f_k.k_name, &g_k.k_name, h_k_name);
         }
     }
-    Ok(total)
+
+    Ok(builder.build())
 }
 
-fn count_all(arrows: &[(usize, usize)]) -> Result<i64, KleisliNerveError> {
-    let mut total = 0i64;
-    for _arrow in arrows {
-        total = total.checked_add(1).ok_or(KleisliNerveError::Overflow {
-            invariant: "kleisli_category-arrow-count-fits-i64",
-            measured: total,
-        })?;
-    }
-    Ok(total)
-}
-
-fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, KleisliNerveError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if unselected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(KleisliNerveError::Overflow {
-                invariant: "kleisli_category-complement-count-fits-i64",
-                measured: total,
-            })?;
-        }
-    }
-    Ok(total)
-}
-
-fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, KleisliNerveError> {
-    let all = count_all(arrows)?;
-    let skipped = count_unselected(arrows, objects)?;
-    all.checked_sub(skipped).ok_or(KleisliNerveError::Overflow {
-        invariant: "kleisli_category-expected-count-fits-i64",
-        measured: all,
-    })
-}
-
-fn fold_carrier(measured: i64, objects: usize) -> Result<i64, KleisliNerveError> {
-    let width = i64::try_from(objects).map_err(|_| KleisliNerveError::Overflow {
-        invariant: "kleisli_category-carrier-width-fits-i64",
-        measured,
-    })?;
-    measured.checked_add(width).ok_or(KleisliNerveError::Overflow {
-        invariant: "kleisli_category-folded-certificate-fits-i64",
-        measured,
-    })
-}
-
-pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, KleisliNerveError> {
-    if measured == expected {
-        return Ok(measured);
-    }
-    Err(KleisliNerveError::ClaimFailed {
-        invariant: "kleisli_category-hom-sum-equals-outgoing",
-        measured,
-        expected,
-    })
-}
-
-pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, KleisliNerveError> {
-    let mut total = 0i64;
-    for (index, part) in parts.iter().enumerate() {
-        let measured = match i64::try_from(index) {
-            Ok(value) => value,
-            Err(_) => i64::MAX,
-        };
-        total = total.checked_add(*part).ok_or(KleisliNerveError::Overflow {
-            invariant: "claim-sum-stays-in-i64",
-            measured,
-        })?;
-    }
-    Ok(total)
-}
-
-fn text_has_byte(text: &str, target: u8) -> bool {
-    for byte in text.bytes() {
-        if byte == target {
-            return true;
-        }
-    }
-    false
-}
-
-fn text_refused(text: &str) -> bool {
-    if text.is_empty() {
-        return true;
-    }
-    if text_has_byte(text, 46) {
-        return true;
-    }
-    if text_has_byte(text, 101) {
-        return true;
-    }
-    if text_has_byte(text, 69) {
-        return true;
-    }
-    false
-}
-
-fn split_sign(text: &str) -> (i64, &str) {
-    if text.starts_with('-') {
-        let rest = match text.get(1..) {
-            Some(value) => value,
-            None => "",
-        };
-        return (-1, rest);
-    }
-    (1, text)
-}
-
-fn digits_only(text: &str) -> bool {
-    if text.is_empty() {
-        return false;
-    }
-    for byte in text.bytes() {
-        if !byte.is_ascii_digit() {
-            return false;
-        }
-    }
-    true
-}
-
-fn accumulate_digits(text: &str) -> Result<i64, KleisliNerveError> {
-    let mut value = 0i64;
-    for byte in text.bytes() {
-        value = value.checked_mul(10).ok_or(KleisliNerveError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-        let digit = i64::from(byte - 48);
-        value = value.checked_add(digit).ok_or(KleisliNerveError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-    }
-    Ok(value)
-}
-
-pub fn parse_exact_i64(text: &str) -> Result<i64, KleisliNerveError> {
-    if text_refused(text) {
-        return Err(KleisliNerveError::FloatRefused {
-            invariant: "public-boundary-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let (sign, digits) = split_sign(text);
-    if !digits_only(digits) {
-        return Err(KleisliNerveError::FloatRefused {
-            invariant: "public-boundary-refuses-non-integer-text",
-            measured_len: text.len(),
-        });
-    }
-    let magnitude = accumulate_digits(digits)?;
-    magnitude.checked_mul(sign).ok_or(KleisliNerveError::Overflow {
-        invariant: "parsed-signed-integer-fits-i64",
-        measured: magnitude,
-    })
-}
-
-pub fn certify_claim(text: &str) -> Result<i64, KleisliNerveError> {
-    let spec = parse_spec(text)?;
-    let value = KleisliNerve::try_new(spec.0, spec.1)?;
-    value.certificate()
-}
-
-fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), KleisliNerveError> {
-    let objects = parse_object_count(text)?;
-    let arrows = parse_arrow_list(&arrow_fields(text))?;
-    Ok((objects, arrows))
-}
-
-fn parse_object_count(text: &str) -> Result<usize, KleisliNerveError> {
-    if text_refused(text) {
-        return Err(KleisliNerveError::FloatRefused {
-            invariant: "spec-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let head = match text.split(';').next() {
-        Some(value) => value,
-        None => "",
-    };
-    let objects_i = parse_exact_i64(head)?;
-    usize_from_i64(objects_i)
-}
-
-fn arrow_fields(text: &str) -> Vec<&str> {
-    let mut fields = Vec::new();
-    let mut skipped_head = false;
-    for part in text.split(';') {
-        if skipped_head {
-            fields.push(part);
-        }
-        if !skipped_head {
-            skipped_head = true;
-        }
-    }
-    fields
-}
-
-fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, KleisliNerveError> {
-    let mut arrows = Vec::new();
-    let mut index = 0usize;
-    while index < fields.len() {
-        let field = match fields.get(index) {
-            Some(value) => *value,
-            None => "",
-        };
-        arrows.push(parse_arrow(field)?);
-        index = index.saturating_add(1);
-    }
-    Ok(arrows)
-}
-
-fn parse_arrow(part: &str) -> Result<(usize, usize), KleisliNerveError> {
-    let mut ends = part.split('>');
-    let src_text = ends.next().ok_or(KleisliNerveError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-source",
-        measured: 0,
-        bound: 0,
-    })?;
-    let tgt_text = ends.next().ok_or(KleisliNerveError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-target",
-        measured: 0,
-        bound: 0,
-    })?;
-    if ends.next().is_some() {
-        return Err(KleisliNerveError::IndexOutOfBounds {
-            invariant: "spec-arrow-has-two-ends",
-            measured: part.len(),
-            bound: 2,
-        });
-    }
-    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
-    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
-    Ok((src, tgt))
-}
-
-fn usize_from_i64(value: i64) -> Result<usize, KleisliNerveError> {
-    if value < 0 {
-        return Err(KleisliNerveError::IndexOutOfBounds {
-            invariant: "spec-index-nonnegative",
-            measured: 0,
-            bound: 0,
-        });
-    }
-    usize::try_from(value).map_err(|_| KleisliNerveError::Overflow {
-        invariant: "spec-index-fits-usize",
-        measured: value,
+/// Constructs and validates a Kleisli category from pre-validated inputs.
+///
+/// Accepts a `ValidatedFiniteCategory` and `ValidatedFiniteMonad`, builds
+/// the Kleisli declaration, then validates the result as a finite category.
+/// This enforces the full trust chain:
+///
+/// ```text
+/// ValidatedFiniteCategory + ValidatedFiniteMonad
+///   → DeclaredFiniteCategory (Kleisli)
+///   → ValidatedFiniteCategory (Kleisli)
+/// ```
+pub fn build_validated_kleisli_category(
+    name: &str,
+    category: &ValidatedFiniteCategory,
+    monad: &ValidatedFiniteMonad,
+) -> Result<ValidatedFiniteCategory, String> {
+    let declared = declare_kleisli_category(name, category.declared(), monad.declared())?;
+    ValidatedFiniteCategory::try_new(declared).map_err(|report| {
+        format!(
+            "Kleisli category failed validation: {:?}",
+            report.typed_violations
+        )
     })
 }
 
@@ -391,115 +201,154 @@ fn usize_from_i64(value: i64) -> Result<usize, KleisliNerveError> {
 mod tests {
     use super::*;
 
-    const UNIT_EXPECT: i64 = 3;
-    const INTEG_EXPECT: i64 = 3;
+    #[test]
+    fn test_declare_kleisli_identity_monad() {
+        // Build base category C with just object A and id_A
+        let cat = DeclaredFiniteCategoryBuilder::new("C")
+            .identity_object("A")
+            .identity_compositions()
+            .build();
 
-    fn show(err: KleisliNerveError) -> String {
-        format!("{err:?}")
+        // Build identity monad: T = id, η = id, μ = id
+        let mut m = DeclaredFiniteMonad::new("Id", "C");
+        m.set_object_map("A", "A");
+        m.set_morphism_map("id_A", "id_A");
+        m.set_unit("A", "id_A");
+        m.set_multiply("A", "id_A");
+
+        let kleisli =
+            declare_kleisli_category("K(C)", &cat, &m).expect("Should build Kleisli category");
+
+        assert_eq!(kleisli.name, "K(C)");
+        assert!(kleisli.has_object("A"));
+
+        // Kleisli should have exactly one morphism K[id_A=>A]
+        let k_id = "K[id_A=>A]";
+        assert!(kleisli.has_morphism(k_id));
+        assert_eq!(kleisli.identity_of("A").unwrap(), k_id);
+
+        // Check composition: k_id ∘ k_id = k_id
+        assert_eq!(kleisli.compose(k_id, k_id).unwrap(), k_id);
     }
 
-    fn integration_certificate() -> Result<i64, KleisliNerveError> {
-        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
-        let value = KleisliNerve::try_new(ledger.objects(), ledger.arrows().to_vec())?;
-        value.certificate()
+    /// Non-trivial test: walking arrow A → B with identity monad.
+    ///
+    /// Base category: {A, B}, morphisms {id_A, id_B, f : A → B}.
+    /// Identity monad: T = id on all.
+    ///
+    /// Expected Kleisli morphisms:
+    ///   K[id_A=>A] : A → A  (identity on A)
+    ///   K[id_B=>B] : B → B  (identity on B)
+    ///   K[f=>B]    : A → B
+    ///
+    /// Expected composition:
+    ///   K[id_A=>A] ∘ K[f=>B] = K[f=>B]
+    ///   K[f=>B] ∘ K[id_B=>B] = K[f=>B]
+    #[test]
+    fn test_kleisli_walking_arrow_with_identity_monad() {
+        let cat = DeclaredFiniteCategoryBuilder::new("WalkingArrow")
+            .identity_object("A")
+            .identity_object("B")
+            .morphism("f", "A", "B")
+            .identity_compositions()
+            .composition("id_A", "f", "f")
+            .composition("f", "id_B", "f")
+            .build();
+
+        let mut m = DeclaredFiniteMonad::new("Id", "WalkingArrow");
+        m.set_object_map("A", "A");
+        m.set_object_map("B", "B");
+        m.set_morphism_map("id_A", "id_A");
+        m.set_morphism_map("id_B", "id_B");
+        m.set_morphism_map("f", "f");
+        m.set_unit("A", "id_A");
+        m.set_unit("B", "id_B");
+        m.set_multiply("A", "id_A");
+        m.set_multiply("B", "id_B");
+
+        let kleisli = declare_kleisli_category("K(WA)", &cat, &m)
+            .expect("Should build walking arrow Kleisli");
+
+        assert!(kleisli.has_object("A"));
+        assert!(kleisli.has_object("B"));
+
+        let k_f = "K[f=>B]";
+        let k_id_a = "K[id_A=>A]";
+        let k_id_b = "K[id_B=>B]";
+
+        assert!(kleisli.has_morphism(k_f));
+        assert!(kleisli.has_morphism(k_id_a));
+        assert!(kleisli.has_morphism(k_id_b));
+
+        // Identity compositions
+        assert_eq!(kleisli.compose(k_id_a, k_f).unwrap(), k_f);
+        assert_eq!(kleisli.compose(k_f, k_id_b).unwrap(), k_f);
+
+        // Identity self-composition
+        assert_eq!(kleisli.compose(k_id_a, k_id_a).unwrap(), k_id_a);
+        assert_eq!(kleisli.compose(k_id_b, k_id_b).unwrap(), k_id_b);
     }
 
     #[test]
-    fn unit_kleisli_category_hom_sum_matches_outgoing() -> Result<(), String> {
-        let value = KleisliNerve::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
-        let got = value.certificate().map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("certificate {got}"));
-        }
-        Ok(())
+    fn test_validated_kleisli_from_validated_inputs() {
+        let cat = DeclaredFiniteCategoryBuilder::new("C")
+            .identity_object("A")
+            .identity_compositions()
+            .build_validated()
+            .expect("Base category should validate");
+
+        let mut m = DeclaredFiniteMonad::new("Id", "C");
+        m.set_object_map("A", "A");
+        m.set_morphism_map("id_A", "id_A");
+        m.set_unit("A", "id_A");
+        m.set_multiply("A", "id_A");
+
+        let validated_monad = ValidatedFiniteMonad::try_new(m, cat.declared())
+            .expect("Identity monad should validate");
+
+        let validated_kleisli = build_validated_kleisli_category("K(C)", &cat, &validated_monad)
+            .expect("Validated Kleisli should succeed");
+
+        assert_eq!(validated_kleisli.declared().name, "K(C)");
+        assert!(validated_kleisli.declared().has_object("A"));
     }
 
     #[test]
-    fn integration_ledger_and_kleisli_category_agree() -> Result<(), String> {
-        let cert = integration_certificate().map_err(show)?;
-        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
-        if combined != INTEG_EXPECT {
-            return Err(format!("combined {combined}"));
-        }
-        Ok(())
-    }
+    fn test_nerve_of_kleisli_walking_arrow_identity_monad() {
+        use super::super::nerve::Simplex;
 
-    #[test]
-    fn e2e_certify_claim_text() -> Result<(), String> {
-        let got = certify_claim("2;0>1;1>1").map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("e2e {got}"));
-        }
-        Ok(())
-    }
+        let cat = DeclaredFiniteCategoryBuilder::new("WalkingArrow")
+            .identity_object("A")
+            .identity_object("B")
+            .morphism("f", "A", "B")
+            .identity_compositions()
+            .composition("id_A", "f", "f")
+            .composition("f", "id_B", "f")
+            .build();
 
-    #[test]
-    fn negative_empty_carrier() -> Result<(), String> {
-        let err = KleisliNerve::try_new(0, vec![]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("kleisli_category-carrier-nonempty") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("empty carrier accepted".into()),
-        }
-    }
+        let mut m = DeclaredFiniteMonad::new("Id", "WalkingArrow");
+        m.set_object_map("A", "A");
+        m.set_object_map("B", "B");
+        m.set_morphism_map("id_A", "id_A");
+        m.set_morphism_map("id_B", "id_B");
+        m.set_morphism_map("f", "f");
+        m.set_unit("A", "id_A");
+        m.set_unit("B", "id_B");
+        m.set_multiply("A", "id_A");
+        m.set_multiply("B", "id_B");
 
-    #[test]
-    fn negative_float_boundary() -> Result<(), String> {
-        let err = parse_exact_i64("1.5").map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("binary64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("float accepted".into()),
-        }
-    }
+        let kleisli =
+            declare_kleisli_category("K(WA)", &cat, &m).expect("Kleisli category should build");
 
-    #[test]
-    fn negative_index() -> Result<(), String> {
-        let err = KleisliNerve::try_new(1, vec![(0, 2)]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("endpoint") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("bad arrow accepted".into()),
-        }
-    }
+        let nerve = DeclaredNerve::new(&kleisli);
 
-    #[test]
-    fn negative_claim_disagreement() -> Result<(), String> {
-        let err = require_agreement(1, 2).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("kleisli_category-hom-sum-equals-outgoing") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("disagreement accepted".into()),
-        }
-    }
+        assert_eq!(nerve.n_simplices(0).len(), 2);
+        assert_eq!(nerve.n_simplices(1).len(), 3);
 
-    #[test]
-    fn negative_overflow_sum() -> Result<(), String> {
-        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("claim-sum-stays-in-i64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("overflow accepted".into()),
-        }
+        let nondegenerate_1 = nerve.nondegenerate_n_simplices(1);
+        assert_eq!(
+            nondegenerate_1,
+            vec![Simplex::Chain(vec!["K[f=>B]".into()])]
+        );
     }
 }

@@ -1,3 +1,8 @@
+//! Finite families of protected questions and their common report quotient.
+//!
+//! Rows are declared alternatives, columns are questions, and answers have exact
+//! equality. No probability, physical realization, or closure under operations is
+//! inferred. Factorization and gluing delegate to the existing category owners.
 
 use crate::finite_report_descent::{DescentError, FiniteReportPresheaf};
 use crate::finite_report_query::{ReportQueryProblem, ReportQueryRefusal};
@@ -24,6 +29,7 @@ pub enum QuestionFamilyError {
     Descent(DescentError),
 }
 
+/// Lexicographically ordered realized profiles; `class_of` keeps source order.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct QuestionQuotient<A> {
     pub profiles: Vec<Vec<A>>,
@@ -36,6 +42,9 @@ pub struct FiniteQuestionFamily<A> {
     answers: Vec<Vec<A>>,
 }
 
+/// The full context retains source alternatives, including indistinguishable
+/// ones. Proper contexts retain only their realized answer profiles. Therefore
+/// gluing can distinguish absence of a global alternative from ambiguity.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct QuestionReportSite<A> {
     presheaf: FiniteReportPresheaf,
@@ -51,6 +60,7 @@ impl<A> QuestionReportSite<A> {
     }
 }
 
+/// Build one total factorization problem without allowing implicit missing rows.
 pub fn factor_tables<R: Ord + Clone + Debug, A: Ord + Clone + Debug>(
     report: &[R],
     query: &[A],
@@ -85,6 +95,7 @@ pub fn factor_tables<R: Ord + Clone + Debug, A: Ord + Clone + Debug>(
 }
 
 impl<A: Ord + Clone + Debug> FiniteQuestionFamily<A> {
+    /// Empty sources and empty question families are valid, distinct cases.
     pub fn new(question_count: usize, answers: Vec<Vec<A>>) -> Result<Self, QuestionFamilyError> {
         for (row, values) in answers.iter().enumerate() {
             if values.len() != question_count {
@@ -108,6 +119,8 @@ impl<A: Ord + Clone + Debug> FiniteQuestionFamily<A> {
         self.question_count
     }
 
+    /// Equal classes iff every declared answer agrees. Any sufficient report
+    /// uniquely decodes these profiles on its realized image (factor_report).
     pub fn quotient(&self) -> QuestionQuotient<A> {
         let profiles: Vec<_> = self
             .answers
@@ -137,6 +150,8 @@ impl<A: Ord + Clone + Debug> FiniteQuestionFamily<A> {
         factor_tables(report, &self.answers)
     }
 
+    /// A partial operation descends iff both availability and target class are
+    /// constant on each source class. `None` means unavailable, never unknown.
     pub fn descend_operation<B: Ord + Clone + Debug>(
         &self,
         target: &FiniteQuestionFamily<B>,
@@ -164,6 +179,8 @@ impl<A: Ord + Clone + Debug> FiniteQuestionFamily<A> {
         factor_tables(&self.quotient().class_of, &query)
     }
 
+    /// Check joint composition on the FULL declared Cartesian product, in
+    /// left-major order. Local sufficiency alone does not imply this equation.
     pub fn descend_composition<B: Ord + Clone + Debug, C: Ord + Clone + Debug>(
         &self,
         right: &FiniteQuestionFamily<B>,
@@ -203,6 +220,10 @@ impl<A: Ord + Clone + Debug> FiniteQuestionFamily<A> {
         factor_tables(&reports, &query)
     }
 
+    /// Questions index a finite site (at most 64). Contexts must contain empty
+    /// and full and be intersection closed; the presheaf owner checks all laws.
+    /// `work_limit` bounds a conservative count of table/compatibility cells,
+    /// not answer byte sizes or CPU time. Exhaustion is not global-red evidence.
     pub fn report_site(
         &self,
         contexts: &BTreeSet<u64>,
@@ -288,6 +309,7 @@ impl<A: Ord + Clone + Debug> FiniteQuestionFamily<A> {
                             .filter(|(i, _)| target & (1u64 << **i) != 0)
                             .map(|(_, a)| a.clone())
                             .collect();
+                        // Every restriction is the projection of the same source row.
                         ids.get(&projected)
                             .copied()
                             .ok_or(QuestionFamilyError::Descent(

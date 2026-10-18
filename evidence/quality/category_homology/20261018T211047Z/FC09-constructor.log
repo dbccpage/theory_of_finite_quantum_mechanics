@@ -1,0 +1,87 @@
+
+running 453 tests
+....................................................................................... 87/453
+............................................ 131/453
+finite_groupoid::tests::missing_composition_and_wrong_inverse_are_refused --- FAILED
+... 135/453
+finite_category::tests::try_new_refuses_object_without_identity --- FAILED
+....................................................................................... 223/453
+......................................... 264/453
+higher::tests::rejects_empty_admission_mechanism_and_broken_unit_tables --- FAILED
+................. 282/453
+l5a_challenges::category_admission::all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions --- FAILED
+.. 285/453
+l5a_challenges::category_admission::composition_domain_closure_boundary_and_undefined_associativity_are_refused --- FAILED
+. 287/453
+l5a_challenges::category_admission::empty_category_and_owned_certificates_keep_their_exact_domains --- FAILED
+l5a_challenges::category_admission::identity_domain_boundary_and_each_unit_law_failure_are_refused --- FAILED
+l5a_challenges::category_lookup_rejects_outside_members_and_mutated_declarations --- FAILED
+l5a_challenges::category_admission::name_and_object_reference_failures_are_reported_and_refused --- FAILED
+....................................................................................... 378/453
+...........................................................................
+failures:
+
+---- finite_groupoid::tests::missing_composition_and_wrong_inverse_are_refused stdout ----
+
+thread 'finite_groupoid::tests::missing_composition_and_wrong_inverse_are_refused' (7380) panicked at src\category_theory\finite_groupoid.rs:222:9:
+assertion failed: matches!(ValidatedFiniteGroupoid::try_new(c, inv),
+    Err(GroupoidError::Dagger(DaggerValidationError::Category(_))))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- finite_category::tests::try_new_refuses_object_without_identity stdout ----
+
+thread 'finite_category::tests::try_new_refuses_object_without_identity' (9840) panicked at src\category_theory\finite_category.rs:222:14:
+an object with no identity is not a category: ValidatedFiniteCategory { declared: DeclaredFiniteCategory { name: "Broken", objects: {"A"}, morphisms: {}, identities: {}, compositions: {} } }
+
+---- higher::tests::rejects_empty_admission_mechanism_and_broken_unit_tables stdout ----
+
+thread 'higher::tests::rejects_empty_admission_mechanism_and_broken_unit_tables' (16796) panicked at src\category_theory\higher.rs:680:13:
+malformed case 5
+
+---- l5a_challenges::category_admission::all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions stdout ----
+
+thread 'l5a_challenges::category_admission::all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions' (27776) panicked at src\category_theory\l5a_challenges.rs:323:13:
+assertion `left == right` failed: table [[0, 1, 2], [1, 0, 0], [2, 0, 0]]
+  left: true
+ right: false
+
+---- l5a_challenges::category_admission::composition_domain_closure_boundary_and_undefined_associativity_are_refused stdout ----
+
+thread 'l5a_challenges::category_admission::composition_domain_closure_boundary_and_undefined_associativity_are_refused' (3672) panicked at src\category_theory\l5a_challenges.rs:209:9:
+assertion failed: ValidatedFiniteCategory::try_new(category).is_err()
+
+---- l5a_challenges::category_admission::empty_category_and_owned_certificates_keep_their_exact_domains stdout ----
+
+thread 'l5a_challenges::category_admission::empty_category_and_owned_certificates_keep_their_exact_domains' (25784) panicked at src\category_theory\l5a_challenges.rs:342:9:
+assertion failed: ValidatedFiniteCategory::try_new(declaration).is_err()
+
+---- l5a_challenges::category_admission::identity_domain_boundary_and_each_unit_law_failure_are_refused stdout ----
+
+thread 'l5a_challenges::category_admission::identity_domain_boundary_and_each_unit_law_failure_are_refused' (9972) panicked at src\category_theory\l5a_challenges.rs:209:9:
+assertion failed: ValidatedFiniteCategory::try_new(category).is_err()
+
+---- l5a_challenges::category_lookup_rejects_outside_members_and_mutated_declarations stdout ----
+
+thread 'l5a_challenges::category_lookup_rejects_outside_members_and_mutated_declarations' (13360) panicked at src\category_theory\l5a_challenges.rs:110:5:
+assertion failed: ValidatedFiniteCategory::try_new(forged).is_err()
+
+---- l5a_challenges::category_admission::name_and_object_reference_failures_are_reported_and_refused stdout ----
+
+thread 'l5a_challenges::category_admission::name_and_object_reference_failures_are_reported_and_refused' (24020) panicked at src\category_theory\l5a_challenges.rs:209:9:
+assertion failed: ValidatedFiniteCategory::try_new(category).is_err()
+
+
+failures:
+    finite_category::tests::try_new_refuses_object_without_identity
+    finite_groupoid::tests::missing_composition_and_wrong_inverse_are_refused
+    higher::tests::rejects_empty_admission_mechanism_and_broken_unit_tables
+    l5a_challenges::category_admission::all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions
+    l5a_challenges::category_admission::composition_domain_closure_boundary_and_undefined_associativity_are_refused
+    l5a_challenges::category_admission::empty_category_and_owned_certificates_keep_their_exact_domains
+    l5a_challenges::category_admission::identity_domain_boundary_and_each_unit_law_failure_are_refused
+    l5a_challenges::category_admission::name_and_object_reference_failures_are_reported_and_refused
+    l5a_challenges::category_lookup_rejects_outside_members_and_mutated_declarations
+
+test result: FAILED. 444 passed; 9 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.71s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

@@ -1,9 +1,12 @@
+//! Exact finite many-sorted partial-algebra and relation descent.
+//! No omitted operation is completed; predicates preserve both truth and falsity.
 use std::collections::BTreeSet;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PartialOperation {
     pub inputs: Vec<usize>,
     pub output: usize,
+    /// Lexicographic Cartesian-product order, last coordinate varies fastest.
     pub values: Vec<Option<usize>>,
 }
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -101,6 +104,8 @@ impl SortQuotient {
         image
     }
 }
+/// Necessary and sufficient descent, including reflection of undefinedness.
+/// Surjectivity makes every target row determined and hence the result unique.
 pub fn descend(
     source: &FinitePartialStructure,
     quotient: &SortQuotient,
@@ -177,6 +182,7 @@ pub fn descend(
         predicates,
     })
 }
+/// Independently regenerate all rows; a proposed target cannot erase a field.
 pub fn verify(
     source: &FinitePartialStructure,
     quotient: &SortQuotient,
@@ -246,6 +252,7 @@ mod tests {
     }
     #[test]
     fn exhaustive_binary_partial_factorization_criterion() {
+        // All 3^4 unary partial tables and all 2^4 predicates on a four-state source.
         let q = SortQuotient {
             target_sizes: vec![2, 2],
             maps: vec![vec![0, 0, 1, 1], vec![0, 1]],

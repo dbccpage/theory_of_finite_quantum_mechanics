@@ -1,0 +1,24 @@
+
+running 453 tests
+....................................................................................... 87/453
+....................................................................................... 174/453
+....................................................................................... 261/453
+.......................... 287/453
+l5a_challenges::category_admission::identity_domain_boundary_and_each_unit_law_failure_are_refused --- FAILED
+....................................................................................... 375/453
+..............................................................................
+failures:
+
+---- l5a_challenges::category_admission::identity_domain_boundary_and_each_unit_law_failure_are_refused stdout ----
+
+thread 'l5a_challenges::category_admission::identity_domain_boundary_and_each_unit_law_failure_are_refused' (448) panicked at src\category_theory\l5a_challenges.rs:201:9:
+missing IdentityLaw: [ValidationViolation { unit: FiniteCategory(CompositionTotality), location: Composition { first: "id_A", second: "f", composite: None }, message: "Composable pair (id_A, f) has no declared composite", severity: Error }, ValidationViolation { unit: FiniteCategory(Associativity), location: Composition { first: "id_A", second: "f", composite: Some("id_B") }, message: "Associativity fails or is undefined for (id_A, f, id_B): None versus None", severity: Error }, ValidationViolation { unit: FiniteCategory(Associativity), location: Composition { first: "id_A", second: "id_A", composite: Some("f") }, message: "Associativity fails or is undefined for (id_A, id_A, f): None versus None", severity: Error }]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    l5a_challenges::category_admission::identity_domain_boundary_and_each_unit_law_failure_are_refused
+
+test result: FAILED. 452 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.84s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

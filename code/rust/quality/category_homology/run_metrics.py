@@ -6,7 +6,7 @@ from pathlib import Path
 import shutil
 import subprocess
 
-from run_audit import ROOT, RUST, clear_debug_outputs, digest, execute, inventory, write_json
+from run_audit import ROOT, RUST, clear_debug_outputs, digest, execute, execute_build, inventory, write_json
 
 
 def main():
@@ -24,13 +24,13 @@ def main():
     copied_binary = work / "metrics.exe"
     try:
         try:
-            runs.append(execute(["cargo", "test", *common], tool, receipt / "calibration.log"))
+            runs.append(execute_build(["cargo", "test", *common], tool, receipt / "calibration.log"))
         finally:
             clear_debug_outputs(build, work)
         if runs[-1]["exit_code"] != 0:
             raise RuntimeError("AST metric calibration failed")
         try:
-            runs.append(execute(["cargo", "build", *common], tool, receipt / "build.log"))
+            runs.append(execute_build(["cargo", "build", *common], tool, receipt / "build.log"))
             if runs[-1]["exit_code"] == 0:
                 shutil.copyfile(build / "debug/tfqm_rust_metrics.exe", copied_binary)
         finally:

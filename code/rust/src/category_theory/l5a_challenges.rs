@@ -181,3 +181,174 @@ fn scalar_density_metadata_rejects_invalid_domains() {
         &Q::new(1.into(), 3.into())
     );
 }
+
+#[cfg(test)]
+mod category_admission {
+    use super::*;
+    use crate::finite_category_validation::validate_finite_category;
+    use crate::validation::{FiniteCategoryValidation as Unit, ValidationUnit};
+
+    fn walking() -> DeclaredFiniteCategory {
+        DeclaredFiniteCategoryBuilder::walking_arrow("Walking", "A", "B", "f").build()
+    }
+
+    fn rejected(category: DeclaredFiniteCategory, unit: Unit) {
+        let before = category.clone();
+        let report = validate_finite_category(&category);
+        assert_eq!(category, before, "diagnostics modified the candidate");
+        assert_eq!(report.results.len(), 8, "missing checker phase");
+        assert!(!report.all_passed());
+        assert!(
+            report
+                .typed_violations
+                .iter()
+                .any(|v| v.unit == ValidationUnit::FiniteCategory(unit)),
+            "missing {unit:?}: {:?}",
+            report.typed_violations
+        );
+        assert!(ValidatedFiniteCategory::try_new(category).is_err());
+    }
+
+    #[test]
+    fn name_and_object_reference_failures_are_reported_and_refused() {
+        let mut c = walking();
+        c.name = " \t".into();
+        rejected(c, Unit::ObjectReference);
+        let mut c = walking();
+        c.objects.insert("\n".into());
+        rejected(c, Unit::ObjectReference);
+        let mut c = walking();
+        c.add_morphism(" ", "A", "B");
+        rejected(c, Unit::MorphismBoundary);
+        let mut c = walking();
+        c.morphisms.get_mut("f").unwrap().name = "alias".into();
+        rejected(c, Unit::ObjectReference);
+        let mut c = walking();
+        c.morphisms.get_mut("f").unwrap().source = "outside".into();
+        rejected(c, Unit::ObjectReference);
+        let mut c = walking();
+        c.morphisms.get_mut("f").unwrap().target = "outside".into();
+        rejected(c, Unit::ObjectReference);
+        let mut c = walking();
+        c.identities.insert("outside".into(), "id_A".into());
+        rejected(c, Unit::ObjectReference);
+    }
+
+    #[test]
+    fn identity_domain_boundary_and_each_unit_law_failure_are_refused() {
+        let mut c = walking();
+        c.identities.remove("A");
+        rejected(c, Unit::IdentityTotality);
+        let mut c = walking();
+        c.identities.insert("A".into(), "outside".into());
+        rejected(c, Unit::IdentityTotality);
+        for object in ["A", "B"] {
+            let mut c = walking();
+            c.identities.insert(object.into(), "f".into());
+            rejected(c, Unit::IdentityTotality);
+        }
+        for (first, second) in [("id_A", "f"), ("f", "id_B")] {
+            let mut c = walking();
+            c.compositions.remove(&(first.into(), second.into()));
+            rejected(c, Unit::IdentityLaw);
+            let mut c = walking();
+            c.set_composition(first, second, "id_A");
+            rejected(c, Unit::IdentityLaw);
+        }
+    }
+
+    #[test]
+    fn composition_domain_closure_boundary_and_undefined_associativity_are_refused() {
+        let mut c = walking();
+        c.compositions.remove(&("f".into(), "id_B".into()));
+        rejected(c.clone(), Unit::CompositionTotality);
+        rejected(c, Unit::Associativity);
+        for (first, second, result) in [
+            ("outside", "id_A", "id_A"),
+            ("id_A", "outside", "id_A"),
+            ("id_A", "id_A", "outside"),
+        ] {
+            let mut c = walking();
+            c.set_composition(first, second, result);
+            rejected(c, Unit::CompositionClosure);
+        }
+        let mut c = walking();
+        c.set_composition("f", "f", "f");
+        rejected(c, Unit::CompositionBoundary);
+        let mut c = walking();
+        c.set_composition("id_A", "f", "id_A");
+        rejected(c, Unit::CompositionBoundary);
+    }
+
+    type Matrix = [[u8; 3]; 3];
+    fn product(a: &Matrix, b: &Matrix) -> Matrix {
+        std::array::from_fn(|i| std::array::from_fn(|j| (0..3).map(|k| a[i][k] * b[k][j]).sum()))
+    }
+
+    /// Regular left actions on a three-dimensional free module. Matrix closure
+    /// means L_(a*b) = L_a L_b. Delta columns recover every action value, giving
+    /// an independent linear-algebra characterization of associativity.
+    fn matrix_oracle(table: &[[usize; 3]; 3]) -> bool {
+        let actions: [Matrix; 3] = std::array::from_fn(|a| {
+            std::array::from_fn(|target| std::array::from_fn(|x| u8::from(table[a][x] == target)))
+        });
+        (0..3).all(|a| (0..3).all(|b| product(&actions[a], &actions[b]) == actions[table[a][b]]))
+    }
+
+    fn one_object(table: &[[usize; 3]; 3]) -> DeclaredFiniteCategory {
+        let mut c = DeclaredFiniteCategory::new("three-arrow monoid");
+        for a in 0..3 {
+            c.add_morphism(&a.to_string(), "*", "*");
+        }
+        c.set_identity("*", "0");
+        for (a, row) in table.iter().enumerate() {
+            for (b, result) in row.iter().enumerate() {
+                c.set_composition(&a.to_string(), &b.to_string(), &result.to_string());
+            }
+        }
+        c
+    }
+
+    #[test]
+    fn all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions() {
+        let mut accepted = 0;
+        for code in 0..81 {
+            let table = [
+                [0, 1, 2],
+                [1, code % 3, (code / 3) % 3],
+                [2, (code / 9) % 3, (code / 27) % 3],
+            ];
+            let expected = matrix_oracle(&table);
+            let result = ValidatedFiniteCategory::try_new(one_object(&table));
+            assert_eq!(result.is_ok(), expected, "table {table:?}");
+            accepted += usize::from(expected);
+        }
+        assert!(
+            accepted > 0 && accepted < 81,
+            "oracle challenge was vacuous"
+        );
+    }
+
+    #[test]
+    fn empty_category_and_owned_certificates_keep_their_exact_domains() {
+        let empty = ValidatedFiniteCategory::try_new(DeclaredFiniteCategory::new("Empty")).unwrap();
+        assert_eq!(empty.id(&"outside".into()), None);
+        assert_eq!(empty.compose(&"outside".into(), &"outside".into()), None);
+        let category = ValidatedFiniteCategory::try_new(walking()).unwrap();
+        let saved = category.clone();
+        let mut declaration = category.clone().into_declared();
+        declaration.morphisms.clear();
+        declaration.compositions.clear();
+        assert!(ValidatedFiniteCategory::try_new(declaration).is_err());
+        assert_eq!(category, saved);
+        assert_eq!(category.id(&"outside".into()), None);
+        assert_eq!(category.src(&"outside".into()), None);
+        assert_eq!(category.tgt(&"outside".into()), None);
+        assert_eq!(category.compose(&"id_A".into(), &"outside".into()), None);
+        assert_eq!(category.compose(&"f".into(), &"f".into()), None);
+        assert_eq!(
+            category.compose(&"id_A".into(), &"f".into()),
+            Some("f".into())
+        );
+    }
+}

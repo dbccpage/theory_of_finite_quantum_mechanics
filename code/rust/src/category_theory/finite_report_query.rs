@@ -1,7 +1,30 @@
+//! Total finite report/query decision contract (realized-image factorization).
+//!
+//! AuthorityEffect: None.
+//!
+//! Inputs are explicitly enumerated finite sets `X` (source), `A` (report
+//! codomain) and `B` (query codomain), together with row tables that must be
+//! total functions `p: X -> A` and `q: X -> B`. Admission refuses duplicate
+//! carrier identities, duplicate rows (including identical duplicates),
+//! missing rows, extraneous rows and values outside the declared codomain.
+//! Codomain membership is a typing premise of `p: X -> A`, not a separate
+//! profile check that may disagree with it.
+//!
+//! On admitted input exactly one outcome holds:
+//!
+//! * `Factorable`: there is one and only one table `D: P -> B` on the
+//!   realized image `P = p(X)` with `D(p(x)) = q(x)` for every `x`;
+//! * `Collision`: there are `x, y` with `p(x) = p(y)` and `q(x) != q(y)`.
+//!
+//! The decoder is unique on `P` only; outside `P` it is not determined, so it
+//! is not emitted there. Refinement transfer is one-way: if `p = h . p_f` and
+//! `q` factors through `p`, then `q` factors through `p_f` with
+//! `D_f = D_c . h`; the converse fails (see the tests).
 
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt;
 
+/// Which declared carrier an admission refusal refers to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum CarrierRole {
     Source,
@@ -9,6 +32,7 @@ pub enum CarrierRole {
     QueryCodomain,
 }
 
+/// Which row table an admission refusal refers to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum MapRole {
     Report,
@@ -16,12 +40,20 @@ pub enum MapRole {
     Refinement,
 }
 
+/// Typed refusals for malformed or partial input. A refusal is never one of
+/// the two mathematical outcomes.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ReportQueryRefusal<X> {
+    /// The enumeration of a carrier repeats an identity; `position` is the
+    /// index of the second occurrence.
     DuplicateIdentity { carrier: CarrierRole, position: usize },
+    /// A source element has two or more rows (identical rows included).
     DuplicateAssignment { map: MapRole, source: X },
+    /// A source element has no row.
     MissingAssignment { map: MapRole, source: X },
+    /// A row names a source element outside the declared source.
     ExtraneousAssignment { map: MapRole, source: X },
+    /// A row value lies outside the declared codomain.
     OutsideCodomain { map: MapRole, source: X },
 }
 
@@ -33,6 +65,7 @@ impl<X: fmt::Debug> fmt::Display for ReportQueryRefusal<X> {
 
 impl<X: fmt::Debug> std::error::Error for ReportQueryRefusal<X> {}
 
+/// An admitted total report/query problem.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ReportQueryProblem<X, A, B> {
     source: BTreeSet<X>,
@@ -58,6 +91,8 @@ fn carrier_or_refuse<T: Ord + Clone, X>(
     Ok(out)
 }
 
+/// Admits a total table `X -> V` against declared source and codomain.
+/// Duplicates are detected on the raw rows, before normalization.
 pub fn admit_total_table<X, V>(
     source: &BTreeSet<X>,
     codomain: &BTreeSet<V>,
@@ -101,6 +136,7 @@ where
     Ok(table)
 }
 
+/// A collision witness: equal reports, unequal queries.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ReportCollision<X, A, B> {
     pub first: X,
@@ -110,6 +146,7 @@ pub struct ReportCollision<X, A, B> {
     pub second_query: B,
 }
 
+/// A factorization certificate on the realized image.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FactorizationCertificate<X, A, B> {
     pub realized_image: BTreeSet<A>,
@@ -117,12 +154,14 @@ pub struct FactorizationCertificate<X, A, B> {
     pub representative: BTreeMap<A, X>,
 }
 
+/// The two mathematical outcomes on admitted input.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ReportQueryDecision<X, A, B> {
     Factorable(FactorizationCertificate<X, A, B>),
     Collision(ReportCollision<X, A, B>),
 }
 
+/// Why a supplied certificate failed replay.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum CertificateRefusal {
     RealizedImageMismatch,
@@ -138,11 +177,16 @@ pub enum CertificateRefusal {
     CollisionQueriesEqual,
 }
 
+/// Refusals of the refinement transfer.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum RefinementRefusal<X, F> {
+    /// The two problems do not share source and query data.
     ProblemsDiffer,
+    /// The `h` table is not a total map `A_f -> A_c`.
     RefinementTable(ReportQueryRefusal<F>),
+    /// `p_c(source) != h(p_f(source))`.
     RefinementEquationFailure { source: X },
+    /// The supplied coarse certificate does not replay against the coarse problem.
     CoarseCertificate(CertificateRefusal),
 }
 
@@ -152,6 +196,7 @@ where
     A: Ord + Clone + fmt::Debug,
     B: Ord + Clone + fmt::Debug,
 {
+    /// Admits a problem from explicit enumerations and raw row tables.
     pub fn new(
         source: &[X],
         report_codomain: &[A],
@@ -189,14 +234,19 @@ where
         &self.query
     }
 
+    /// The realized image `P = p(X)`.
     pub fn realized_image(&self) -> BTreeSet<A> {
         self.report.values().cloned().collect()
     }
 
+    /// Decides the problem by one ordered scan. Deterministic: the collision
+    /// returned pairs the first source element of a fiber with the first later
+    /// element of that fiber whose query differs.
     pub fn decide(&self) -> ReportQueryDecision<X, A, B> {
         let mut decoder: BTreeMap<A, B> = BTreeMap::new();
         let mut representative: BTreeMap<A, X> = BTreeMap::new();
         for (x, a) in &self.report {
+            // Admission enforces totality; a missing query row cannot occur.
             let Some(b) = self.query.get(x) else { continue };
             match (decoder.get(a), representative.get(a)) {
                 (Some(stored), Some(first)) => {
@@ -223,6 +273,7 @@ where
         })
     }
 
+    /// Replays a decision against this problem without trusting its producer.
     pub fn verify_decision(
         &self,
         decision: &ReportQueryDecision<X, A, B>,
@@ -233,6 +284,7 @@ where
         }
     }
 
+    /// Replays a factorization certificate.
     pub fn verify_factorization(
         &self,
         cert: &FactorizationCertificate<X, A, B>,
@@ -269,6 +321,7 @@ where
         Ok(())
     }
 
+    /// Replays a collision witness.
     pub fn verify_collision(
         &self,
         c: &ReportCollision<X, A, B>,
@@ -294,6 +347,12 @@ where
     }
 }
 
+/// One-way refinement transfer. `fine` and `coarse` must share source and
+/// query tables; `h_rows` must be a total table from the fine report codomain
+/// into the coarse report codomain with `p_c(x) = h(p_f(x))` for every `x`;
+/// `coarse_cert` must replay against `coarse`. Returns the fine certificate
+/// `D_f = D_c . h` restricted to the fine realized image, replayed against
+/// `fine` before it is returned.
 pub fn transfer_refinement<X, F, C, B>(
     fine: &ReportQueryProblem<X, F, B>,
     coarse: &ReportQueryProblem<X, C, B>,

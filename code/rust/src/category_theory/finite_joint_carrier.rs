@@ -1,505 +1,135 @@
-pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/finite_joint_carrier.rs";
-pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:finite_joint_carrier:strictly-ascending-arrow-count";
-pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
-pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
+//! Joint questions on an explicitly admitted relation of component states.
+//! Local carriers are the completed protected-future quotients. No Cartesian
+//! product availability, independent preparation, or tensor structure is assumed.
+use crate::finite_continuation::PartialDynamics;
+use crate::finite_question_family::{factor_tables, FiniteQuestionFamily, QuestionQuotient};
+use crate::finite_report_query::ReportQueryDecision;
+use std::collections::BTreeSet;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub enum JointAnalysisError {
-    FloatRefused { invariant: &'static str, measured_len: usize },
-    EmptyCarrier { invariant: &'static str, measured: usize },
-    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
-    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
-    Overflow { invariant: &'static str, measured: i64 },
+pub enum JointError {
+    InvalidRelation,
+    WorkLimit,
+    UnknownLocalClass,
+    CertificateMismatch,
 }
-
-impl std::fmt::Display for JointAnalysisError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{self:?}")
-    }
-}
-
-impl std::error::Error for JointAnalysisError {}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct ArrowLedger {
-    objects: usize,
-    arrows: Vec<(usize, usize)>,
-}
-
-impl ArrowLedger {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, JointAnalysisError> {
-        refuse_empty(objects)?;
-        refuse_budget(objects, arrows.len())?;
-        refuse_endpoints(objects, &arrows)?;
-        Ok(Self { objects, arrows })
-    }
-
-    pub fn objects(&self) -> usize {
-        self.objects
-    }
-
-    pub fn arrows(&self) -> &[(usize, usize)] {
-        &self.arrows
-    }
-}
-
-fn refuse_empty(objects: usize) -> Result<(), JointAnalysisError> {
-    if objects == 0 {
-        return Err(JointAnalysisError::EmptyCarrier {
-            invariant: "finite_joint_carrier-carrier-nonempty",
-            measured: objects,
-        });
-    }
-    Ok(())
-}
-
-fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), JointAnalysisError> {
-    if objects > 16 {
-        return Err(JointAnalysisError::EmptyCarrier {
-            invariant: "finite_joint_carrier-carrier-at-most-16",
-            measured: objects,
-        });
-    }
-    if arrow_len > 64 {
-        return Err(JointAnalysisError::EmptyCarrier {
-            invariant: "finite_joint_carrier-arrow-budget-64",
-            measured: arrow_len,
-        });
-    }
-    Ok(())
-}
-
-fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
-    let src_ok = arrow.0 < objects;
-    let tgt_ok = arrow.1 < objects;
-    src_ok && tgt_ok
-}
-
-fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), JointAnalysisError> {
-    for (index, arrow) in arrows.iter().enumerate() {
-        if !endpoint_ok(objects, *arrow) {
-            return Err(JointAnalysisError::IndexOutOfBounds {
-                invariant: "finite_joint_carrier-arrow-endpoint-in-carrier",
-                measured: index,
-                bound: objects,
-            });
-        }
-    }
-    Ok(())
-}
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct JointAnalysis {
-    ledger: ArrowLedger,
+    pub reports: Vec<(usize, usize)>,
+    pub decision: ReportQueryDecision<usize, (usize, usize), usize>,
+    /// Coarsest refinement retaining BOTH local classes and the joint answer.
+    pub refinement: QuestionQuotient<usize>,
 }
-
-impl JointAnalysis {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, JointAnalysisError> {
-        let ledger = ArrowLedger::try_new(objects, arrows)?;
-        Ok(Self { ledger })
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct JointFiber {
+    pub locals: (usize, usize),
+    /// Complete indices into the caller's admitted-pair table.
+    pub rows: Vec<usize>,
+    pub answers: BTreeSet<usize>,
+}
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct JointCarrierProblem {
+    pairs: Vec<(usize, usize)>,
+    left_classes: Vec<usize>,
+    right_classes: Vec<usize>,
+    reports: Vec<(usize, usize)>,
+    answers: Vec<usize>,
+}
+fn refinement_cost(m: &PartialDynamics) -> Option<usize> {
+    let n = m.reports().len().checked_add(1)?;
+    n.checked_mul(n)?
+        .checked_mul(m.transitions()[0].len().checked_add(1)?)
+}
+impl JointCarrierProblem {
+    /// Joint answers are exact interned labels (a label may name a full profile).
+    /// `max_cells` bounds a conservative refinement/table cost, not elapsed time.
+    pub fn new(
+        left: &PartialDynamics,
+        right: &PartialDynamics,
+        pairs: Vec<(usize, usize)>,
+        answers: Vec<usize>,
+        max_cells: usize,
+    ) -> Result<Self, JointError> {
+        let cost = refinement_cost(left)
+            .and_then(|l| refinement_cost(right).and_then(|r| l.checked_add(r)))
+            .and_then(|n| pairs.len().checked_mul(3).and_then(|p| n.checked_add(p)));
+        if cost.is_none_or(|c| c > max_cells) {
+            return Err(JointError::WorkLimit);
+        }
+        if pairs.len() != answers.len()
+            || pairs.iter().copied().collect::<BTreeSet<_>>().len() != pairs.len()
+            || pairs
+                .iter()
+                .any(|&(l, r)| l >= left.reports().len() || r >= right.reports().len())
+        {
+            return Err(JointError::InvalidRelation);
+        }
+        let mut lc = left.quotient().state_to_block;
+        lc.truncate(left.reports().len());
+        let mut rc = right.quotient().state_to_block;
+        rc.truncate(right.reports().len());
+        let reports = pairs.iter().map(|&(l, r)| (lc[l], rc[r])).collect();
+        Ok(Self {
+            pairs,
+            left_classes: lc,
+            right_classes: rc,
+            reports,
+            answers,
+        })
     }
-
-    pub fn selected_count(&self) -> Result<i64, JointAnalysisError> {
-        measured_count(self.ledger.arrows(), self.ledger.objects())
+    pub fn pairs(&self) -> &[(usize, usize)] {
+        &self.pairs
     }
-
-    pub fn certificate(&self) -> Result<i64, JointAnalysisError> {
-        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
-        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
-        agree_folded(measured, expected, self.ledger.objects())
+    pub fn analyze(&self) -> Result<JointAnalysis, JointError> {
+        let problem =
+            factor_tables(&self.reports, &self.answers).map_err(|_| JointError::InvalidRelation)?;
+        let family = FiniteQuestionFamily::new(
+            3,
+            self.reports
+                .iter()
+                .zip(&self.answers)
+                .map(|(&(l, r), &a)| vec![l, r, a])
+                .collect(),
+        )
+        .map_err(|_| JointError::InvalidRelation)?;
+        Ok(JointAnalysis {
+            reports: self.reports.clone(),
+            decision: problem.decide(),
+            refinement: family.quotient(),
+        })
     }
-}
-
-fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, JointAnalysisError> {
-    let folded = fold_carrier(measured, objects)?;
-    let expected_folded = fold_carrier(expected, objects)?;
-    require_agreement(folded, expected_folded)
-}
-
-fn selected(arrow: (usize, usize), objects: usize) -> bool {
-    let _budget = objects;
-    arrow.0 < arrow.1
-}
-
-fn unselected(arrow: (usize, usize), objects: usize) -> bool {
-    let keep = selected(arrow, objects);
-    !keep
-}
-
-fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, JointAnalysisError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if selected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(JointAnalysisError::Overflow {
-                invariant: "finite_joint_carrier-measured-count-fits-i64",
-                measured: total,
-            })?;
+    pub fn verify_analysis(&self, c: &JointAnalysis) -> Result<(), JointError> {
+        if self.analyze()? == *c {
+            Ok(())
+        } else {
+            Err(JointError::CertificateMismatch)
         }
     }
-    Ok(total)
-}
-
-fn count_all(arrows: &[(usize, usize)]) -> Result<i64, JointAnalysisError> {
-    let mut total = 0i64;
-    for _arrow in arrows {
-        total = total.checked_add(1).ok_or(JointAnalysisError::Overflow {
-            invariant: "finite_joint_carrier-arrow-count-fits-i64",
-            measured: total,
-        })?;
-    }
-    Ok(total)
-}
-
-fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, JointAnalysisError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if unselected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(JointAnalysisError::Overflow {
-                invariant: "finite_joint_carrier-complement-count-fits-i64",
-                measured: total,
-            })?;
+    /// Both local labels must occur in their actual component carriers. Thus an
+    /// empty returned fiber certifies local availability with no admitted join.
+    /// A nonempty fiber can still have multiple rows and multiple joint answers.
+    pub fn fiber(&self, locals: (usize, usize)) -> Result<JointFiber, JointError> {
+        if !self.left_classes.contains(&locals.0) || !self.right_classes.contains(&locals.1) {
+            return Err(JointError::UnknownLocalClass);
         }
+        let rows: Vec<_> = self
+            .reports
+            .iter()
+            .enumerate()
+            .filter_map(|(i, &r)| (r == locals).then_some(i))
+            .collect();
+        let answers = rows.iter().map(|&i| self.answers[i]).collect();
+        Ok(JointFiber {
+            locals,
+            rows,
+            answers,
+        })
     }
-    Ok(total)
-}
-
-fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, JointAnalysisError> {
-    let all = count_all(arrows)?;
-    let skipped = count_unselected(arrows, objects)?;
-    all.checked_sub(skipped).ok_or(JointAnalysisError::Overflow {
-        invariant: "finite_joint_carrier-expected-count-fits-i64",
-        measured: all,
-    })
-}
-
-fn fold_carrier(measured: i64, objects: usize) -> Result<i64, JointAnalysisError> {
-    let width = i64::try_from(objects).map_err(|_| JointAnalysisError::Overflow {
-        invariant: "finite_joint_carrier-carrier-width-fits-i64",
-        measured,
-    })?;
-    measured.checked_add(width).ok_or(JointAnalysisError::Overflow {
-        invariant: "finite_joint_carrier-folded-certificate-fits-i64",
-        measured,
-    })
-}
-
-pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, JointAnalysisError> {
-    if measured == expected {
-        return Ok(measured);
-    }
-    Err(JointAnalysisError::ClaimFailed {
-        invariant: "finite_joint_carrier-hom-sum-equals-outgoing",
-        measured,
-        expected,
-    })
-}
-
-pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, JointAnalysisError> {
-    let mut total = 0i64;
-    for (index, part) in parts.iter().enumerate() {
-        let measured = match i64::try_from(index) {
-            Ok(value) => value,
-            Err(_) => i64::MAX,
-        };
-        total = total.checked_add(*part).ok_or(JointAnalysisError::Overflow {
-            invariant: "claim-sum-stays-in-i64",
-            measured,
-        })?;
-    }
-    Ok(total)
-}
-
-fn text_has_byte(text: &str, target: u8) -> bool {
-    for byte in text.bytes() {
-        if byte == target {
-            return true;
-        }
-    }
-    false
-}
-
-fn text_refused(text: &str) -> bool {
-    if text.is_empty() {
-        return true;
-    }
-    if text_has_byte(text, 46) {
-        return true;
-    }
-    if text_has_byte(text, 101) {
-        return true;
-    }
-    if text_has_byte(text, 69) {
-        return true;
-    }
-    false
-}
-
-fn split_sign(text: &str) -> (i64, &str) {
-    if text.starts_with('-') {
-        let rest = match text.get(1..) {
-            Some(value) => value,
-            None => "",
-        };
-        return (-1, rest);
-    }
-    (1, text)
-}
-
-fn digits_only(text: &str) -> bool {
-    if text.is_empty() {
-        return false;
-    }
-    for byte in text.bytes() {
-        if !byte.is_ascii_digit() {
-            return false;
-        }
-    }
-    true
-}
-
-fn accumulate_digits(text: &str) -> Result<i64, JointAnalysisError> {
-    let mut value = 0i64;
-    for byte in text.bytes() {
-        value = value.checked_mul(10).ok_or(JointAnalysisError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-        let digit = i64::from(byte - 48);
-        value = value.checked_add(digit).ok_or(JointAnalysisError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-    }
-    Ok(value)
-}
-
-pub fn parse_exact_i64(text: &str) -> Result<i64, JointAnalysisError> {
-    if text_refused(text) {
-        return Err(JointAnalysisError::FloatRefused {
-            invariant: "public-boundary-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let (sign, digits) = split_sign(text);
-    if !digits_only(digits) {
-        return Err(JointAnalysisError::FloatRefused {
-            invariant: "public-boundary-refuses-non-integer-text",
-            measured_len: text.len(),
-        });
-    }
-    let magnitude = accumulate_digits(digits)?;
-    magnitude.checked_mul(sign).ok_or(JointAnalysisError::Overflow {
-        invariant: "parsed-signed-integer-fits-i64",
-        measured: magnitude,
-    })
-}
-
-pub fn certify_claim(text: &str) -> Result<i64, JointAnalysisError> {
-    let spec = parse_spec(text)?;
-    let value = JointAnalysis::try_new(spec.0, spec.1)?;
-    value.certificate()
-}
-
-fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), JointAnalysisError> {
-    let objects = parse_object_count(text)?;
-    let arrows = parse_arrow_list(&arrow_fields(text))?;
-    Ok((objects, arrows))
-}
-
-fn parse_object_count(text: &str) -> Result<usize, JointAnalysisError> {
-    if text_refused(text) {
-        return Err(JointAnalysisError::FloatRefused {
-            invariant: "spec-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let head = match text.split(';').next() {
-        Some(value) => value,
-        None => "",
-    };
-    let objects_i = parse_exact_i64(head)?;
-    usize_from_i64(objects_i)
-}
-
-fn arrow_fields(text: &str) -> Vec<&str> {
-    let mut fields = Vec::new();
-    let mut skipped_head = false;
-    for part in text.split(';') {
-        if skipped_head {
-            fields.push(part);
-        }
-        if !skipped_head {
-            skipped_head = true;
-        }
-    }
-    fields
-}
-
-fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, JointAnalysisError> {
-    let mut arrows = Vec::new();
-    let mut index = 0usize;
-    while index < fields.len() {
-        let field = match fields.get(index) {
-            Some(value) => *value,
-            None => "",
-        };
-        arrows.push(parse_arrow(field)?);
-        index = index.saturating_add(1);
-    }
-    Ok(arrows)
-}
-
-fn parse_arrow(part: &str) -> Result<(usize, usize), JointAnalysisError> {
-    let mut ends = part.split('>');
-    let src_text = ends.next().ok_or(JointAnalysisError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-source",
-        measured: 0,
-        bound: 0,
-    })?;
-    let tgt_text = ends.next().ok_or(JointAnalysisError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-target",
-        measured: 0,
-        bound: 0,
-    })?;
-    if ends.next().is_some() {
-        return Err(JointAnalysisError::IndexOutOfBounds {
-            invariant: "spec-arrow-has-two-ends",
-            measured: part.len(),
-            bound: 2,
-        });
-    }
-    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
-    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
-    Ok((src, tgt))
-}
-
-fn usize_from_i64(value: i64) -> Result<usize, JointAnalysisError> {
-    if value < 0 {
-        return Err(JointAnalysisError::IndexOutOfBounds {
-            invariant: "spec-index-nonnegative",
-            measured: 0,
-            bound: 0,
-        });
-    }
-    usize::try_from(value).map_err(|_| JointAnalysisError::Overflow {
-        invariant: "spec-index-fits-usize",
-        measured: value,
-    })
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    const UNIT_EXPECT: i64 = 3;
-    const INTEG_EXPECT: i64 = 3;
-
-    fn show(err: JointAnalysisError) -> String {
-        format!("{err:?}")
-    }
-
-    fn integration_certificate() -> Result<i64, JointAnalysisError> {
-        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
-        let value = JointAnalysis::try_new(ledger.objects(), ledger.arrows().to_vec())?;
-        value.certificate()
-    }
-
-    #[test]
-    fn unit_finite_joint_carrier_hom_sum_matches_outgoing() -> Result<(), String> {
-        let value = JointAnalysis::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
-        let got = value.certificate().map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("certificate {got}"));
-        }
-        Ok(())
-    }
-
-    #[test]
-    fn integration_ledger_and_finite_joint_carrier_agree() -> Result<(), String> {
-        let cert = integration_certificate().map_err(show)?;
-        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
-        if combined != INTEG_EXPECT {
-            return Err(format!("combined {combined}"));
-        }
-        Ok(())
-    }
-
-    #[test]
-    fn e2e_certify_claim_text() -> Result<(), String> {
-        let got = certify_claim("2;0>1;1>1").map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("e2e {got}"));
-        }
-        Ok(())
-    }
-
-    #[test]
-    fn negative_empty_carrier() -> Result<(), String> {
-        let err = JointAnalysis::try_new(0, vec![]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("finite_joint_carrier-carrier-nonempty") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("empty carrier accepted".into()),
-        }
-    }
-
-    #[test]
-    fn negative_float_boundary() -> Result<(), String> {
-        let err = parse_exact_i64("1.5").map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("binary64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("float accepted".into()),
-        }
-    }
-
-    #[test]
-    fn negative_index() -> Result<(), String> {
-        let err = JointAnalysis::try_new(1, vec![(0, 2)]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("endpoint") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("bad arrow accepted".into()),
-        }
-    }
-
-    #[test]
-    fn negative_claim_disagreement() -> Result<(), String> {
-        let err = require_agreement(1, 2).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("finite_joint_carrier-hom-sum-equals-outgoing") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("disagreement accepted".into()),
-        }
-    }
-
-    #[test]
-    fn negative_overflow_sum() -> Result<(), String> {
-        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("claim-sum-stays-in-i64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("overflow accepted".into()),
+    pub fn verify_fiber(&self, locals: (usize, usize), c: &JointFiber) -> Result<(), JointError> {
+        if self.fiber(locals)? == *c {
+            Ok(())
+        } else {
+            Err(JointError::CertificateMismatch)
         }
     }
 }
