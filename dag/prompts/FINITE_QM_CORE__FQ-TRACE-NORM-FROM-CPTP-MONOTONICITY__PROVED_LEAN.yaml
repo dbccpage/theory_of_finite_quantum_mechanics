@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY | Stage: FINITE_QM_CORE | DAG Status: PROVED_LEAN
-  Operad Family: OP-FINITE_QM_CORE-FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i] and Q(zeta_n) (Finite-QM cyclotomic & Gaussian matrix algebra)
-  - Carrier: FINITE_QM_CORE finite carrier for FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY: If norms N_n on Herm_0(n,C) satisfy N_m(Phi(X)) <= N_n(X) for every CPTP map Phi : M_n(C) -> M_m(C), then ther
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1120, (1->2) du=-3360, (2->3) du=3920; chord (0->3) measured_omega=-560.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1120, v_2 = v_1 + (-3360), v_3 = v_2 + (3920).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-560 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY): 4*idx(112) + 3*stage_rank(7) + route_degree(3) == 472
-    Evaluate finite_shadow_witness_int = 4 * 112 + 3 * 7 + 3 (which equals 472).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY): R_raw(259) - G_cob(126) - S_decoy(7) == 126 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=126 and boundary sign double-count S_decoy=7 (do NOT report unreduced R_raw=259 or partial 133):
-    Evaluate countermodel_witness_int = (259) - (126) - 7 (which equals 126).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['complex matrices and full CPTP class (assumption)'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 1 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY", stage = "FINITE_QM_CORE", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-FINITE_QM_CORE-FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY | Stage: FINITE_QM_CORE | DAG Status: PROVED_LEAN\nOperad Family: OP-FINITE_QM_CORE-FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i] and Q(zeta_n) (Finite-QM cyclotomic & Gaussian matrix algebra)\n- Carrier: FINITE_QM_CORE finite carrier for FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY: If norms N_n on Herm_0(n,C) satisfy N_m(Phi(X)) <= N_n(X) for every CPTP map Phi : M_n(C) -> M_m(C), then ther\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1120, (1->2) du=-3360, (2->3) du=3920; chord (0->3) measured_omega=-560.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1120, v_2 = v_1 + (-3360), v_3 = v_2 + (3920).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-560 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY): 4*idx(112) + 3*stage_rank(7) + route_degree(3) == 472\n  Evaluate finite_shadow_witness_int = 4 * 112 + 3 * 7 + 3 (which equals 472).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY): R_raw(259) - G_cob(126) - S_decoy(7) == 126 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=126 and boundary sign double-count S_decoy=7 (do NOT report unreduced R_raw=259 or partial 133):\n  Evaluate countermodel_witness_int = (259) - (126) - 7 (which equals 126).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['complex matrices and full CPTP class (assumption)'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\", stage = \"FINITE_QM_CORE\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-FINITE_QM_CORE-FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

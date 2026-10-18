@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-IMPL-WDP-AMPLITUDE-BRIDGE]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: FQ-IMPL-WDP-AMPLITUDE-BRIDGE | Stage: IMPLEMENTATION | DAG Status: PROVED_LEAN
-  Operad Family: OP-IMPLEMENTATION-FQ-IMPL-WDP-AMPLITUDE-BRIDGE
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z and Q (Three-language Rust/Lean4/Python sovereign custody carrier)
-  - Carrier: IMPLEMENTATION finite carrier for FQ-IMPL-WDP-AMPLITUDE-BRIDGE: omega_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer e
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1270, (1->2) du=-3810, (2->3) du=4445; chord (0->3) measured_omega=-635.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1270, v_2 = v_1 + (-3810), v_3 = v_2 + (4445).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-635 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-IMPL-WDP-AMPLITUDE-BRIDGE): 4*idx(127) + 3*stage_rank(10) + route_degree(3) == 541
-    Evaluate finite_shadow_witness_int = 4 * 127 + 3 * 10 + 3 (which equals 541).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-IMPL-WDP-AMPLITUDE-BRIDGE): R_raw(304) - G_cob(147) - S_decoy(10) == 147 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=147 and boundary sign double-count S_decoy=10 (do NOT report unreduced R_raw=304 or partial 157):
-    Evaluate countermodel_witness_int = (304) - (147) - 10 (which equals 147).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 2 items ['unit phase u=(3+4i)/5 over Q(i) (assumption)', 'oriented graph and integer cochains (assumption)'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 2 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "FQ-IMPL-WDP-AMPLITUDE-BRIDGE", stage = "IMPLEMENTATION", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-IMPLEMENTATION-FQ-IMPL-WDP-AMPLITUDE-BRIDGE"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-IMPL-WDP-AMPLITUDE-BRIDGE]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: FQ-IMPL-WDP-AMPLITUDE-BRIDGE | Stage: IMPLEMENTATION | DAG Status: PROVED_LEAN\nOperad Family: OP-IMPLEMENTATION-FQ-IMPL-WDP-AMPLITUDE-BRIDGE\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z and Q (Three-language Rust/Lean4/Python sovereign custody carrier)\n- Carrier: IMPLEMENTATION finite carrier for FQ-IMPL-WDP-AMPLITUDE-BRIDGE: omega_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer e\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1270, (1->2) du=-3810, (2->3) du=4445; chord (0->3) measured_omega=-635.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1270, v_2 = v_1 + (-3810), v_3 = v_2 + (4445).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-635 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-IMPL-WDP-AMPLITUDE-BRIDGE): 4*idx(127) + 3*stage_rank(10) + route_degree(3) == 541\n  Evaluate finite_shadow_witness_int = 4 * 127 + 3 * 10 + 3 (which equals 541).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-IMPL-WDP-AMPLITUDE-BRIDGE): R_raw(304) - G_cob(147) - S_decoy(10) == 147 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=147 and boundary sign double-count S_decoy=10 (do NOT report unreduced R_raw=304 or partial 157):\n  Evaluate countermodel_witness_int = (304) - (147) - 10 (which equals 147).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 2 items ['unit phase u=(3+4i)/5 over Q(i) (assumption)', 'oriented graph and integer cochains (assumption)'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 2 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\", stage = \"IMPLEMENTATION\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-IMPLEMENTATION-FQ-IMPL-WDP-AMPLITUDE-BRIDGE\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: PG-WDP-GENESIS-BRIDGE-OBLIGATIONS]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: PG-WDP-GENESIS-BRIDGE-OBLIGATIONS | Stage: WDP | DAG Status: PROVED_LEAN
-  Operad Family: OP-WDP-PG-WDP-GENESIS-BRIDGE-OBLIGATIONS
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Q and Z (WDP degree-1 cochain window C0 -> C1 -> C2 with d1 d0 = 0)
-  - Carrier: WDP finite carrier for PG-WDP-GENESIS-BRIDGE-OBLIGATIONS: Five open bridge obligations: O01 carrier/signature/law/challenge-generation floor; O02 source transition/admi
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=680, (1->2) du=-2040, (2->3) du=2380; chord (0->3) measured_omega=-340.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 680, v_2 = v_1 + (-2040), v_3 = v_2 + (2380).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-340 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(PG-WDP-GENESIS-BRIDGE-OBLIGATIONS): 4*idx(68) + 3*stage_rank(4) + route_degree(3) == 287
-    Evaluate finite_shadow_witness_int = 4 * 68 + 3 * 4 + 3 (which equals 287).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(PG-WDP-GENESIS-BRIDGE-OBLIGATIONS): R_raw(156) - G_cob(76) - S_decoy(4) == 76 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=76 and boundary sign double-count S_decoy=4 (do NOT report unreduced R_raw=156 or partial 80):
-    Evaluate countermodel_witness_int = (156) - (76) - 4 (which equals 76).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 0 items [].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 0 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS", stage = "WDP", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-WDP-PG-WDP-GENESIS-BRIDGE-OBLIGATIONS"
-  - Set lean4_theorem_anchor = "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl"
-  - Set rust_witness_anchor = "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: PG-WDP-GENESIS-BRIDGE-OBLIGATIONS]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: PG-WDP-GENESIS-BRIDGE-OBLIGATIONS | Stage: WDP | DAG Status: PROVED_LEAN\nOperad Family: OP-WDP-PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Q and Z (WDP degree-1 cochain window C0 -> C1 -> C2 with d1 d0 = 0)\n- Carrier: WDP finite carrier for PG-WDP-GENESIS-BRIDGE-OBLIGATIONS: Five open bridge obligations: O01 carrier/signature/law/challenge-generation floor; O02 source transition/admi\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=680, (1->2) du=-2040, (2->3) du=2380; chord (0->3) measured_omega=-340.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 680, v_2 = v_1 + (-2040), v_3 = v_2 + (2380).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-340 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(PG-WDP-GENESIS-BRIDGE-OBLIGATIONS): 4*idx(68) + 3*stage_rank(4) + route_degree(3) == 287\n  Evaluate finite_shadow_witness_int = 4 * 68 + 3 * 4 + 3 (which equals 287).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(PG-WDP-GENESIS-BRIDGE-OBLIGATIONS): R_raw(156) - G_cob(76) - S_decoy(4) == 76 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=76 and boundary sign double-count S_decoy=4 (do NOT report unreduced R_raw=156 or partial 80):\n  Evaluate countermodel_witness_int = (156) - (76) - 4 (which equals 76).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 0 items [].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 0 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\", stage = \"WDP\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-WDP-PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\"\n- Set lean4_theorem_anchor = \"omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl\"\n- Set rust_witness_anchor = \"omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY | Stage: FINITE_QM_DYNAMICS | DAG Status: PROVED_LEAN
-  Operad Family: OP-FINITE_QM_DYNAMICS-DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i] and Q (Finite-QM graded path-sum, transfer operator & Cayley unitary carrier)
-  - Carrier: FINITE_QM_DYNAMICS finite carrier for DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY: For D=(d11,d12,d22) in Z^3, globalWeight(D) - localDiagonalWeight(D) = 2 d12. Phase-class descent to H^1(G;U(1
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1420, (1->2) du=-4260, (2->3) du=4970; chord (0->3) measured_omega=-710.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1420, v_2 = v_1 + (-4260), v_3 = v_2 + (4970).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-710 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY): 4*idx(142) + 3*stage_rank(9) + route_degree(2) == 597
-    Evaluate finite_shadow_witness_int = 4 * 142 + 3 * 9 + 2 (which equals 597).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY): R_raw(329) - G_cob(160) - S_decoy(9) == 160 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=160 and boundary sign double-count S_decoy=9 (do NOT report unreduced R_raw=329 or partial 169):
-    Evaluate countermodel_witness_int = (329) - (160) - 9 (which equals 160).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['declared U(1) 1-cocycle (assumption)'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 1 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY", stage = "FINITE_QM_DYNAMICS", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-FINITE_QM_DYNAMICS-DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY | Stage: FINITE_QM_DYNAMICS | DAG Status: PROVED_LEAN\nOperad Family: OP-FINITE_QM_DYNAMICS-DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i] and Q (Finite-QM graded path-sum, transfer operator & Cayley unitary carrier)\n- Carrier: FINITE_QM_DYNAMICS finite carrier for DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY: For D=(d11,d12,d22) in Z^3, globalWeight(D) - localDiagonalWeight(D) = 2 d12. Phase-class descent to H^1(G;U(1\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1420, (1->2) du=-4260, (2->3) du=4970; chord (0->3) measured_omega=-710.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1420, v_2 = v_1 + (-4260), v_3 = v_2 + (4970).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-710 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY): 4*idx(142) + 3*stage_rank(9) + route_degree(2) == 597\n  Evaluate finite_shadow_witness_int = 4 * 142 + 3 * 9 + 2 (which equals 597).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY): R_raw(329) - G_cob(160) - S_decoy(9) == 160 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=160 and boundary sign double-count S_decoy=9 (do NOT report unreduced R_raw=329 or partial 169):\n  Evaluate countermodel_witness_int = (329) - (160) - 9 (which equals 160).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['declared U(1) 1-cocycle (assumption)'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY\", stage = \"FINITE_QM_DYNAMICS\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-FINITE_QM_DYNAMICS-DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

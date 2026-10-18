@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-BELL-CLASSICAL-JOINT-EXTENSION]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: FQ-BELL-CLASSICAL-JOINT-EXTENSION | Stage: FINITE_QM_CORE | DAG Status: PROVED_LEAN
-  Operad Family: OP-FINITE_QM_CORE-FQ-BELL-CLASSICAL-JOINT-EXTENSION
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i] and Q(zeta_n) (Finite-QM cyclotomic & Gaussian matrix algebra)
-  - Carrier: FINITE_QM_CORE finite carrier for FQ-BELL-CLASSICAL-JOINT-EXTENSION: If four binary response variables A0,A1,B0,B1 in {-1,+1} share one positive normalized joint law then every de
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1140, (1->2) du=-3420, (2->3) du=3990; chord (0->3) measured_omega=-570.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1140, v_2 = v_1 + (-3420), v_3 = v_2 + (3990).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-570 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-BELL-CLASSICAL-JOINT-EXTENSION): 4*idx(114) + 3*stage_rank(7) + route_degree(3) == 480
-    Evaluate finite_shadow_witness_int = 4 * 114 + 3 * 7 + 3 (which equals 480).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-BELL-CLASSICAL-JOINT-EXTENSION): R_raw(263) - G_cob(128) - S_decoy(7) == 128 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=128 and boundary sign double-count S_decoy=7 (do NOT report unreduced R_raw=263 or partial 135):
-    Evaluate countermodel_witness_int = (263) - (128) - 7 (which equals 128).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 2 items ['positive normalized joint law (assumption)', 'locality and setting independence for physical reading (assumption)'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 2 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "FQ-BELL-CLASSICAL-JOINT-EXTENSION", stage = "FINITE_QM_CORE", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-FINITE_QM_CORE-FQ-BELL-CLASSICAL-JOINT-EXTENSION"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-BELL-CLASSICAL-JOINT-EXTENSION]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: FQ-BELL-CLASSICAL-JOINT-EXTENSION | Stage: FINITE_QM_CORE | DAG Status: PROVED_LEAN\nOperad Family: OP-FINITE_QM_CORE-FQ-BELL-CLASSICAL-JOINT-EXTENSION\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i] and Q(zeta_n) (Finite-QM cyclotomic & Gaussian matrix algebra)\n- Carrier: FINITE_QM_CORE finite carrier for FQ-BELL-CLASSICAL-JOINT-EXTENSION: If four binary response variables A0,A1,B0,B1 in {-1,+1} share one positive normalized joint law then every de\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1140, (1->2) du=-3420, (2->3) du=3990; chord (0->3) measured_omega=-570.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1140, v_2 = v_1 + (-3420), v_3 = v_2 + (3990).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-570 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-BELL-CLASSICAL-JOINT-EXTENSION): 4*idx(114) + 3*stage_rank(7) + route_degree(3) == 480\n  Evaluate finite_shadow_witness_int = 4 * 114 + 3 * 7 + 3 (which equals 480).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-BELL-CLASSICAL-JOINT-EXTENSION): R_raw(263) - G_cob(128) - S_decoy(7) == 128 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=128 and boundary sign double-count S_decoy=7 (do NOT report unreduced R_raw=263 or partial 135):\n  Evaluate countermodel_witness_int = (263) - (128) - 7 (which equals 128).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 2 items ['positive normalized joint law (assumption)', 'locality and setting independence for physical reading (assumption)'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 2 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\", stage = \"FINITE_QM_CORE\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-FINITE_QM_CORE-FQ-BELL-CLASSICAL-JOINT-EXTENSION\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

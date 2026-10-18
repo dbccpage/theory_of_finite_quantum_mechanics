@@ -20,7 +20,7 @@ Based on a full audit of `omega_engine_pfp/infrastructure/yaml/` (`stages/`, `pr
    - **Stage 4 (`l2_extraction`, model — `seat_begemot`)**: Emits the strict typed JSON derivation certificate over exact arithmetic ($\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{Z}[i]$, $\mathbb{F}_2$).
    - **Stage 5 (`evaluation`, host — `seat_woland`)**: Sovereign deterministic gate engine (`G0`..`G9` + node-specific exact equations + Lean 4 / Rust symbol resolution) executing in `< 2 ms`.
    - **Stage 6 (`adversarial`, model — `seat_margarita`) & Stage 7 (`challenge_replay`, host)**: Probes boundary mutations (e.g., dropping an imported assumption or perturbing a rational witness) and verifies that the host gate catches the perturbation.
-   - **Stage 8 (`selection`, host) & Stage 9 (`receipt`, host)**: Emits a SHA-256 sealed machine receipt to `evidence/receipts/` and updates the corresponding paper in `papers/derivations/`.
+   - **Stage 8 (`selection`, host) & Stage 9 (`receipt`, host)**: Emits a SHA-256 sealed machine receipt to `evidence/receipts/` and updates the corresponding paper in `dag/derivations/`.
 
 2. **3-Layer Compressed Coloured Operad Architecture (`template_operad_compressed.yaml`, `COPP-v2-COMPACT`)**:
    - Replaces verbose prose instructions with a 3-layer planar coloured operad $(\mathcal{C}, \mathcal{O}^+, \circ_i, \mathcal{I}, \mathcal{O}^-)$:
@@ -32,14 +32,14 @@ Based on a full audit of `omega_engine_pfp/infrastructure/yaml/` (`stages/`, `pr
    - **Mode 2 (`Packets & Sealed Envelopes`) & Mode 14 (`Fail-Closed Typed Refusal`)**: Every node with status `IMPORTED_ASSUMPTION`, `CONDITIONAL`, or `OPEN` must explicitly separate its *finite derived shadow* (what holds over $\mathbb{Z}/\mathbb{Q}/\mathbb{Z}[i]$) from its *unpaid external import boundary* (what requires continuum $\mathbb{R}/\mathbb{C}$, $U(1)$ topology, Gleason $\sigma$-additivity, or CPTP complete positivity), accompanied by an exact finite countermodel showing why the unpaid import is not free.
    - **Mode 4 (`Epistemic Antibody Injections`) & Mode 10 (`Cemetery DAG Mining`)**: Injects node-specific decoy traps (`O^-`) mined from `derivation_dag.json` bottlenecks and `H001`–`H062` countermodels.
    - **Mode 5 (`Skill Injection & Operad Morphisms`) & Mode 8 (`Discrete Cochain Involutions`)**: Steers the model along the exact DAG route morphisms in `derivation_dag_operads.binding.yaml`.
-   - **Mode 9 (`Lean 4 Proof Kernel Elaboration`)**: Binds every prompt to its exact theorem anchor in `lean/DerivationDagQMClosure.lean` and Rust witness in `code/rust/src/dag_witnesses.rs`.
+   - **Mode 9 (`Lean 4 Proof Kernel Elaboration`)**: Binds every prompt to its exact theorem anchor in `lean4/DerivationDagQMClosure.lean` and Rust witness in `code/rust/src/dag_witnesses.rs`.
 
 4. **Five Operational Laws for High-Speed Reasoning-Model Execution**:
    - **Law 1 (Zero Nested Schema Wrapping)**: Call `EstimatedBudgetGateway.for_action(attempt_id).complete_result(...)` directly with a single top-level JSON schema (`max_output_tokens = 3000`).
    - **Law 2 (1-Line System Prompt + Compact Operad User Payload)**: Keep `system_prompt` to a single declarative sentence and place the grafted Operad + `P*` payload in `user_prompt` (`< 950` prompt tokens). This prevents reasoning-token blowup on `deepseek/deepseek-v4.1-flash` (`default_effort: "high"`), cutting completion tokens to `~1,000–1,350` and cost to `~$0.000035` per turn.
    - **Law 3 (Multi-Mission Pre-Run Operad Mining)**: Never send an un-mined stub prompt to a model. Populate all 4 operad slots (`slot_m1`..`slot_m4`) via deterministic operad mining before live model dispatch.
    - **Law 4 (Tiered Model Escalation)**: Dispatch first to `deepseek/deepseek-v4.1-flash` via OpenRouter; if any gate in `G0`..`G9` fails, escalate with the exact Stage 5 failure syndrome to `deepseek/deepseek-v4-flash` and then to Anthropic `fable5.1` (`claude-sonnet-4-5`).
-   - **Law 5 (Tri-Language & Paper Closure)**: Every passed prompt writes a cryptographic receipt to `evidence/receipts/pfp_dag_prompts/`, updates the corresponding `TFQ-*.md` paper(s) in `papers/derivations/`, and verifies/updates Python, Rust (`code/rust/src/dag_witnesses.rs`), and Lean 4 (`lean/DerivationDagQMClosure.lean`).
+   - **Law 5 (Tri-Language & Paper Closure)**: Every passed prompt writes a cryptographic receipt to `evidence/receipts/pfp_dag_prompts/`, updates the corresponding `TFQ-*.md` paper(s) in `dag/derivations/`, and verifies/updates Python, Rust (`code/rust/src/dag_witnesses.rs`), and Lean 4 (`lean4/DerivationDagQMClosure.lean`).
 
 ---
 
@@ -61,7 +61,7 @@ For each prompt $k \in \{1, \dots, 35\}$ in `dag/prompts/`:
    - **Mission M1 (Carrier & Normal Form Miner)**: Extracts the exact coefficient ring ($\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{Z}[i]$, $\mathbb{F}_2$), carrier dimensions, and normal-form contracts from `derivation_dag.json` and `omega_engine_pfp/infrastructure/yaml/nf/`.
    - **Mission M2 (Operad Family & Route Morphism Miner)**: Mines the governing operad family and composition rules from `derivation_dag_operads.binding.yaml` and the node's incoming/outgoing routes in `derivation_dag.json`.
    - **Mission M3 (Congruence Ideal & Decoy Antibody Miner)**: Extracts fail-closed quotient fences ($\mathcal{I}$) and decoy refutation witnesses ($\mathcal{O}^-$) from `bottleneck`, `imported_structure`, and the `H001`–`H062` countermodel catalog.
-   - **Mission M4 (Tri-Language Witness & Invariant Miner)**: Mines the exact integer/rational equations, Lean 4 theorem anchors (`lean/DerivationDagQMClosure.lean`), and Rust witness functions (`code/rust/src/dag_witnesses.rs`).
+   - **Mission M4 (Tri-Language Witness & Invariant Miner)**: Mines the exact integer/rational equations, Lean 4 theorem anchors (`lean4/DerivationDagQMClosure.lean`), and Rust witness functions (`code/rust/src/dag_witnesses.rs`).
 2. **Fill the Operad Slots in the Prompt YAML (`mining_status: FILLED_VERIFIED`)**:
    - Writes the mined operads into `operad_slots` and compiles the active `user_prompt` with the grafted 3-Layer Operad + `P*` payload.
 3. **Execute Multi-Stage PFP Run Live**:

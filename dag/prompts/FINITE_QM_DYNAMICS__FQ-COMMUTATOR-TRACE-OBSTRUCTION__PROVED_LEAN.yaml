@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-COMMUTATOR-TRACE-OBSTRUCTION]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: FQ-COMMUTATOR-TRACE-OBSTRUCTION | Stage: FINITE_QM_DYNAMICS | DAG Status: PROVED_LEAN
-  Operad Family: OP-FINITE_QM_DYNAMICS-FQ-COMMUTATOR-TRACE-OBSTRUCTION
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i] and Q (Finite-QM graded path-sum, transfer operator & Cayley unitary carrier)
-  - Carrier: FINITE_QM_DYNAMICS finite carrier for FQ-COMMUTATOR-TRACE-OBSTRUCTION: In nonzero finite dimension, trace cyclicity gives tr[A,B] = 0 while tr(lambda I) = n lambda, so [A,B] = lambd
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1190, (1->2) du=-3570, (2->3) du=4165; chord (0->3) measured_omega=-595.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1190, v_2 = v_1 + (-3570), v_3 = v_2 + (4165).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-595 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-COMMUTATOR-TRACE-OBSTRUCTION): 4*idx(119) + 3*stage_rank(9) + route_degree(4) == 507
-    Evaluate finite_shadow_witness_int = 4 * 119 + 3 * 9 + 4 (which equals 507).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-COMMUTATOR-TRACE-OBSTRUCTION): R_raw(283) - G_cob(137) - S_decoy(9) == 137 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=137 and boundary sign double-count S_decoy=9 (do NOT report unreduced R_raw=283 or partial 146):
-    Evaluate countermodel_witness_int = (283) - (137) - 9 (which equals 137).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['finite dimension (assumption)'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 1 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "FQ-COMMUTATOR-TRACE-OBSTRUCTION", stage = "FINITE_QM_DYNAMICS", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-FINITE_QM_DYNAMICS-FQ-COMMUTATOR-TRACE-OBSTRUCTION"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/H068WeylCcrResidual.lean::tr_comm2_vanishes"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs::canonical_commutator_obstruction"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-COMMUTATOR-TRACE-OBSTRUCTION]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: FQ-COMMUTATOR-TRACE-OBSTRUCTION | Stage: FINITE_QM_DYNAMICS | DAG Status: PROVED_LEAN\nOperad Family: OP-FINITE_QM_DYNAMICS-FQ-COMMUTATOR-TRACE-OBSTRUCTION\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i] and Q (Finite-QM graded path-sum, transfer operator & Cayley unitary carrier)\n- Carrier: FINITE_QM_DYNAMICS finite carrier for FQ-COMMUTATOR-TRACE-OBSTRUCTION: In nonzero finite dimension, trace cyclicity gives tr[A,B] = 0 while tr(lambda I) = n lambda, so [A,B] = lambd\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1190, (1->2) du=-3570, (2->3) du=4165; chord (0->3) measured_omega=-595.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1190, v_2 = v_1 + (-3570), v_3 = v_2 + (4165).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-595 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-COMMUTATOR-TRACE-OBSTRUCTION): 4*idx(119) + 3*stage_rank(9) + route_degree(4) == 507\n  Evaluate finite_shadow_witness_int = 4 * 119 + 3 * 9 + 4 (which equals 507).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-COMMUTATOR-TRACE-OBSTRUCTION): R_raw(283) - G_cob(137) - S_decoy(9) == 137 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=137 and boundary sign double-count S_decoy=9 (do NOT report unreduced R_raw=283 or partial 146):\n  Evaluate countermodel_witness_int = (283) - (137) - 9 (which equals 137).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['finite dimension (assumption)'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"FQ-COMMUTATOR-TRACE-OBSTRUCTION\", stage = \"FINITE_QM_DYNAMICS\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-FINITE_QM_DYNAMICS-FQ-COMMUTATOR-TRACE-OBSTRUCTION\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/H068WeylCcrResidual.lean::tr_comm2_vanishes\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs::canonical_commutator_obstruction\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

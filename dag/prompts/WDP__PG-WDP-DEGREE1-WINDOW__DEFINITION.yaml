@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: PG-WDP-DEGREE1-WINDOW]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: PG-WDP-DEGREE1-WINDOW | Stage: WDP | DAG Status: DEFINITION
-  Operad Family: OP-WDP-PG-WDP-DEGREE1-WINDOW
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Q and Z (WDP degree-1 cochain window C0 -> C1 -> C2 with d1 d0 = 0)
-  - Carrier: WDP finite carrier for PG-WDP-DEGREE1-WINDOW: A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J; Q1 = C1/im d0, kappa1([h]) =
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=640, (1->2) du=-1920, (2->3) du=2240; chord (0->3) measured_omega=-320.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 640, v_2 = v_1 + (-1920), v_3 = v_2 + (2240).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-320 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(PG-WDP-DEGREE1-WINDOW): 4*idx(64) + 3*stage_rank(4) + route_degree(4) == 272
-    Evaluate finite_shadow_witness_int = 4 * 64 + 3 * 4 + 4 (which equals 272).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(PG-WDP-DEGREE1-WINDOW): R_raw(148) - G_cob(72) - S_decoy(4) == 72 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=72 and boundary sign double-count S_decoy=4 (do NOT report unreduced R_raw=148 or partial 76):
-    Evaluate countermodel_witness_int = (148) - (72) - 4 (which equals 72).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 2 items ['Finite-dimensional real/complex vector space and norm J (assumption: declared)', 'Complex/chain structure d1 d0 = 0 (assumption: window hypothesis)'].
-    Even when DAG Status is DEFINITION, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 2 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "PG-WDP-DEGREE1-WINDOW", stage = "WDP", dag_status = "DEFINITION"
-  - Set operad_family_id = "OP-WDP-PG-WDP-DEGREE1-WINDOW"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: PG-WDP-DEGREE1-WINDOW]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: PG-WDP-DEGREE1-WINDOW | Stage: WDP | DAG Status: DEFINITION\nOperad Family: OP-WDP-PG-WDP-DEGREE1-WINDOW\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Q and Z (WDP degree-1 cochain window C0 -> C1 -> C2 with d1 d0 = 0)\n- Carrier: WDP finite carrier for PG-WDP-DEGREE1-WINDOW: A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J; Q1 = C1/im d0, kappa1([h]) =\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=640, (1->2) du=-1920, (2->3) du=2240; chord (0->3) measured_omega=-320.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 640, v_2 = v_1 + (-1920), v_3 = v_2 + (2240).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-320 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(PG-WDP-DEGREE1-WINDOW): 4*idx(64) + 3*stage_rank(4) + route_degree(4) == 272\n  Evaluate finite_shadow_witness_int = 4 * 64 + 3 * 4 + 4 (which equals 272).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(PG-WDP-DEGREE1-WINDOW): R_raw(148) - G_cob(72) - S_decoy(4) == 72 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=72 and boundary sign double-count S_decoy=4 (do NOT report unreduced R_raw=148 or partial 76):\n  Evaluate countermodel_witness_int = (148) - (72) - 4 (which equals 72).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 2 items ['Finite-dimensional real/complex vector space and norm J (assumption: declared)', 'Complex/chain structure d1 d0 = 0 (assumption: window hypothesis)'].\n  Even when DAG Status is DEFINITION, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 2 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"PG-WDP-DEGREE1-WINDOW\", stage = \"WDP\", dag_status = \"DEFINITION\"\n- Set operad_family_id = \"OP-WDP-PG-WDP-DEGREE1-WINDOW\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

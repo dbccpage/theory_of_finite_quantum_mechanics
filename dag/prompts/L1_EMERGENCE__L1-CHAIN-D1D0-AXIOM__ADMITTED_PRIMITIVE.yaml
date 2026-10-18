@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-CHAIN-D1D0-AXIOM]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: L1-CHAIN-D1D0-AXIOM | Stage: L1_EMERGENCE | DAG Status: ADMITTED_PRIMITIVE
-  Operad Family: OP-L1_EMERGENCE-L1-CHAIN-D1D0-AXIOM
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Q and Z (L1 edgewise observer seminorm & KKT primal-dual cone)
-  - Carrier: L1_EMERGENCE finite carrier for L1-CHAIN-D1D0-AXIOM: Flatness d1 o d0 = 0 of the cochain window is assumed in the l1 framework.
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=770, (1->2) du=-2310, (2->3) du=2695; chord (0->3) measured_omega=-385.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 770, v_2 = v_1 + (-2310), v_3 = v_2 + (2695).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-385 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-CHAIN-D1D0-AXIOM): 4*idx(77) + 3*stage_rank(5) + route_degree(6) == 329
-    Evaluate finite_shadow_witness_int = 4 * 77 + 3 * 5 + 6 (which equals 329).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-CHAIN-D1D0-AXIOM): R_raw(179) - G_cob(87) - S_decoy(5) == 87 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=87 and boundary sign double-count S_decoy=5 (do NOT report unreduced R_raw=179 or partial 92):
-    Evaluate countermodel_witness_int = (179) - (87) - 5 (which equals 87).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['presheaf functoriality / restriction system: assumption'].
-    Even when DAG Status is ADMITTED_PRIMITIVE, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 1 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "L1-CHAIN-D1D0-AXIOM", stage = "L1_EMERGENCE", dag_status = "ADMITTED_PRIMITIVE"
-  - Set operad_family_id = "OP-L1_EMERGENCE-L1-CHAIN-D1D0-AXIOM"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-CHAIN-D1D0-AXIOM]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: L1-CHAIN-D1D0-AXIOM | Stage: L1_EMERGENCE | DAG Status: ADMITTED_PRIMITIVE\nOperad Family: OP-L1_EMERGENCE-L1-CHAIN-D1D0-AXIOM\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Q and Z (L1 edgewise observer seminorm & KKT primal-dual cone)\n- Carrier: L1_EMERGENCE finite carrier for L1-CHAIN-D1D0-AXIOM: Flatness d1 o d0 = 0 of the cochain window is assumed in the l1 framework.\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=770, (1->2) du=-2310, (2->3) du=2695; chord (0->3) measured_omega=-385.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 770, v_2 = v_1 + (-2310), v_3 = v_2 + (2695).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-385 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-CHAIN-D1D0-AXIOM): 4*idx(77) + 3*stage_rank(5) + route_degree(6) == 329\n  Evaluate finite_shadow_witness_int = 4 * 77 + 3 * 5 + 6 (which equals 329).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-CHAIN-D1D0-AXIOM): R_raw(179) - G_cob(87) - S_decoy(5) == 87 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=87 and boundary sign double-count S_decoy=5 (do NOT report unreduced R_raw=179 or partial 92):\n  Evaluate countermodel_witness_int = (179) - (87) - 5 (which equals 87).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['presheaf functoriality / restriction system: assumption'].\n  Even when DAG Status is ADMITTED_PRIMITIVE, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"L1-CHAIN-D1D0-AXIOM\", stage = \"L1_EMERGENCE\", dag_status = \"ADMITTED_PRIMITIVE\"\n- Set operad_family_id = \"OP-L1_EMERGENCE-L1-CHAIN-D1D0-AXIOM\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

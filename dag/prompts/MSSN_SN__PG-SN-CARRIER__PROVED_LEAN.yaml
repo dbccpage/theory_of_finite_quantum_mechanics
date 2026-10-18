@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: PG-SN-CARRIER]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: PG-SN-CARRIER | Stage: MSSN_SN | DAG Status: PROVED_LEAN
-  Operad Family: OP-MSSN_SN-PG-SN-CARRIER
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z (S(n) base presentation, section law & obligation monoid)
-  - Carrier: MSSN_SN finite carrier for PG-SN-CARRIER: S(n) carrier is presented by a base presentation with a section lift and a retraction outcome; the ground carr
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=610, (1->2) du=-1830, (2->3) du=2135; chord (0->3) measured_omega=-305.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 610, v_2 = v_1 + (-1830), v_3 = v_2 + (2135).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-305 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(PG-SN-CARRIER): 4*idx(61) + 3*stage_rank(3) + route_degree(6) == 259
-    Evaluate finite_shadow_witness_int = 4 * 61 + 3 * 3 + 6 (which equals 259).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(PG-SN-CARRIER): R_raw(137) - G_cob(67) - S_decoy(3) == 67 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=67 and boundary sign double-count S_decoy=3 (do NOT report unreduced R_raw=137 or partial 70):
-    Evaluate countermodel_witness_int = (137) - (67) - 3 (which equals 67).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['Classical.choice in old_image_base (assumption: found in axiom report, against the Fable 05 expectation)'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 1 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "PG-SN-CARRIER", stage = "MSSN_SN", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-MSSN_SN-PG-SN-CARRIER"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: PG-SN-CARRIER]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: PG-SN-CARRIER | Stage: MSSN_SN | DAG Status: PROVED_LEAN\nOperad Family: OP-MSSN_SN-PG-SN-CARRIER\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z (S(n) base presentation, section law & obligation monoid)\n- Carrier: MSSN_SN finite carrier for PG-SN-CARRIER: S(n) carrier is presented by a base presentation with a section lift and a retraction outcome; the ground carr\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=610, (1->2) du=-1830, (2->3) du=2135; chord (0->3) measured_omega=-305.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 610, v_2 = v_1 + (-1830), v_3 = v_2 + (2135).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-305 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(PG-SN-CARRIER): 4*idx(61) + 3*stage_rank(3) + route_degree(6) == 259\n  Evaluate finite_shadow_witness_int = 4 * 61 + 3 * 3 + 6 (which equals 259).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(PG-SN-CARRIER): R_raw(137) - G_cob(67) - S_decoy(3) == 67 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=67 and boundary sign double-count S_decoy=3 (do NOT report unreduced R_raw=137 or partial 70):\n  Evaluate countermodel_witness_int = (137) - (67) - 3 (which equals 67).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['Classical.choice in old_image_base (assumption: found in axiom report, against the Fable 05 expectation)'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"PG-SN-CARRIER\", stage = \"MSSN_SN\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-MSSN_SN-PG-SN-CARRIER\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

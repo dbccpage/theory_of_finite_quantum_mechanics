@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-QM207-231-FINITE-MAP-CONTROLS]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: FQ-QM207-231-FINITE-MAP-CONTROLS | Stage: FINITE_QM_STRUCTURE | DAG Status: PROVED_LEAN
-  Operad Family: OP-FINITE_QM_STRUCTURE-FQ-QM207-231-FINITE-MAP-CONTROLS
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i], Q, and F_2 (Finite-QM structure, contextuality, CHSH & CPTP carrier)
-  - Carrier: FINITE_QM_STRUCTURE finite carrier for FQ-QM207-231-FINITE-MAP-CONTROLS: Twenty-five finite-map controls QM-207..QM-231 (phase fiber, readout, context parity, frame function, clock to
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1300, (1->2) du=-3900, (2->3) du=4550; chord (0->3) measured_omega=-650.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1300, v_2 = v_1 + (-3900), v_3 = v_2 + (4550).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-650 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-QM207-231-FINITE-MAP-CONTROLS): 4*idx(130) + 3*stage_rank(8) + route_degree(2) == 546
-    Evaluate finite_shadow_witness_int = 4 * 130 + 3 * 8 + 2 (which equals 546).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-QM207-231-FINITE-MAP-CONTROLS): R_raw(300) - G_cob(146) - S_decoy(8) == 146 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=146 and boundary sign double-count S_decoy=8 (do NOT report unreduced R_raw=300 or partial 154):
-    Evaluate countermodel_witness_int = (300) - (146) - 8 (which equals 146).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 2 items ['each row s5.2 "Residual import" column (assumption)', 'completion to R/C, Stone, period integrals (lift)'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 2 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "FQ-QM207-231-FINITE-MAP-CONTROLS", stage = "FINITE_QM_STRUCTURE", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-FINITE_QM_STRUCTURE-FQ-QM207-231-FINITE-MAP-CONTROLS"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: FQ-QM207-231-FINITE-MAP-CONTROLS]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: FQ-QM207-231-FINITE-MAP-CONTROLS | Stage: FINITE_QM_STRUCTURE | DAG Status: PROVED_LEAN\nOperad Family: OP-FINITE_QM_STRUCTURE-FQ-QM207-231-FINITE-MAP-CONTROLS\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i], Q, and F_2 (Finite-QM structure, contextuality, CHSH & CPTP carrier)\n- Carrier: FINITE_QM_STRUCTURE finite carrier for FQ-QM207-231-FINITE-MAP-CONTROLS: Twenty-five finite-map controls QM-207..QM-231 (phase fiber, readout, context parity, frame function, clock to\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1300, (1->2) du=-3900, (2->3) du=4550; chord (0->3) measured_omega=-650.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1300, v_2 = v_1 + (-3900), v_3 = v_2 + (4550).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-650 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(FQ-QM207-231-FINITE-MAP-CONTROLS): 4*idx(130) + 3*stage_rank(8) + route_degree(2) == 546\n  Evaluate finite_shadow_witness_int = 4 * 130 + 3 * 8 + 2 (which equals 546).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(FQ-QM207-231-FINITE-MAP-CONTROLS): R_raw(300) - G_cob(146) - S_decoy(8) == 146 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=146 and boundary sign double-count S_decoy=8 (do NOT report unreduced R_raw=300 or partial 154):\n  Evaluate countermodel_witness_int = (300) - (146) - 8 (which equals 146).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 2 items ['each row s5.2 \"Residual import\" column (assumption)', 'completion to R/C, Stone, period integrals (lift)'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 2 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"FQ-QM207-231-FINITE-MAP-CONTROLS\", stage = \"FINITE_QM_STRUCTURE\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-FINITE_QM_STRUCTURE-FQ-QM207-231-FINITE-MAP-CONTROLS\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json
