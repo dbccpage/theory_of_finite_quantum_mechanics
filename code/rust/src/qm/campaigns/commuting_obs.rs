@@ -10,7 +10,7 @@ use omega_homology::finite_poset::FinitePoset;
 use omega_homology::graph_coloring::{two_coloring, TwoColoring};
 use omega_lie_theory::pauli_symplectic::{pauli, Pauli};
 use omega_number_theory::cyclotomic::GaussianRat;
-use omega_quantum_physics::commuting_obs::*;
+use omega_quantum_physics::commuting_observables::*;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeSet, HashMap};
 

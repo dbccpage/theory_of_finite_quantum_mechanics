@@ -4,6 +4,7 @@
 //! AuthorityEffect: None.
 
 /// Mandatory authority effect declaration.
+extern crate self as omega_combinatorics;
 pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
 
 pub mod cartesian_words;

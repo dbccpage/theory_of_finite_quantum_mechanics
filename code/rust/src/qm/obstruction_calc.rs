@@ -37,7 +37,7 @@ use omega_number_theory::rational::Rational;
 use omega_solvers::data_cochain_packet::CochainPacketError;
 
 use crate::qm::campaigns::residual_density::{CoherenceLicense, ResidualLedger};
-use omega_quantum_physics::residual_density::{
+use omega_quantum_physics::residual_density_calculus::{
     row_stochastic_pushforward, ResidualDensityError,
 };
 

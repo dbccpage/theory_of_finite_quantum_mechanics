@@ -34,7 +34,7 @@ use crate::linear_algebra::matrix::{
 use crate::linear_algebra::{
     charge, element_count, plus, require_square, reserve, times, ExactFieldError, Grid,
 };
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 
 /// The characteristic polynomial `det(xI − A)` as ascending coefficients (see the module
 /// documentation).

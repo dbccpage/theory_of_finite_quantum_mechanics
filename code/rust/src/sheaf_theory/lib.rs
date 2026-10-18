@@ -7,6 +7,7 @@
 //! - 12 Governance Contracts under `omega_engine_governance/contracts/.../sheaf_theory/`
 //! - 25 Sheaf Theory Primitives (SH-01 through SH-25)
 
+extern crate self as omega_sheaf_theory;
 pub mod cech;
 pub mod empirical_presheaf;
 pub mod epistemic_observer;

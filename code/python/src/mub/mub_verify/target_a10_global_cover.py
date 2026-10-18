@@ -1353,10 +1353,9 @@ def generate_target_a10_receipt(
     return receipt
 
 
-def audit_target_a10_receipt(
+def _load_target_a10_receipt_data(
     receipt_file_or_data: Union[str, Path, Dict[str, Any]],
 ) -> Dict[str, Any]:
-    """Audits and validates an exact rational Target A10 certificate receipt."""
     if isinstance(receipt_file_or_data, (str, Path)):
         p = Path(receipt_file_or_data)
         if not p.exists():
@@ -1367,11 +1366,11 @@ def audit_target_a10_receipt(
         data = receipt_file_or_data
     else:
         raise TypeError(f"Expected path or dict, got {type(receipt_file_or_data)}")
-
-    # 1. Zero float verification
     assert_no_float(data, "audit_target_a10_receipt")
+    return data
 
-    # 2. Schema, firewall, authority effect
+
+def _validate_target_a10_header(data: Dict[str, Any]) -> None:
     if data.get("schema_version") != SCHEMA_VERSION:
         raise ValueError(f"Invalid schema_version: {data.get('schema_version')} != {SCHEMA_VERSION}")
     if data.get("firewall") != FIREWALL_LINE:
@@ -1379,14 +1378,14 @@ def audit_target_a10_receipt(
     if data.get("authority_effect") != AUTHORITY_EFFECT:
         raise ValueError(f"Invalid authority_effect: {data.get('authority_effect')} != {AUTHORITY_EFFECT}")
 
-    # 3. Parameters
     params = data.get("canonical_parameters", {})
     if params.get("global_min_margin") != str(GLOBAL_MIN_MARGIN):
         raise ValueError(f"Margin mismatch: {params.get('global_min_margin')} != {GLOBAL_MIN_MARGIN}")
     if params.get("phi1_obstruction") != str(PHI1_OBSTRUCTION):
         raise ValueError(f"Phi1 mismatch: {params.get('phi1_obstruction')} != {PHI1_OBSTRUCTION}")
 
-    # 4. Regional covers
+
+def _validate_target_a10_regions(data: Dict[str, Any]) -> None:
     regions = data.get("regional_covers", {})
     for r in ALL_REGIONS:
         if r not in regions:
@@ -1406,7 +1405,8 @@ def audit_target_a10_receipt(
         if margin <= Fraction(0):
             raise ValueError(f"Region {r} min_margin non-positive: {margin}")
 
-    # 5. Global volume conservation
+
+def _validate_target_a10_global_volume(data: Dict[str, Any]) -> None:
     gvol = data.get("global_volume_conservation", {})
     total_cells = gvol.get("total_cells", 0)
     if total_cells <= 0:
@@ -1422,7 +1422,8 @@ def audit_target_a10_receipt(
     if domain_vol != cells_vol:
         raise ValueError(f"Volume discrepancy: domain {domain_vol} != cells {cells_vol}")
 
-    # 6. Boundary interfaces
+
+def _validate_target_a10_boundaries_and_network(data: Dict[str, Any]) -> None:
     if not data.get("boundary_adjacency_verified", False):
         raise ValueError("Boundary adjacency not verified in receipt")
     ifaces_data = data.get("boundary_interfaces", [])
@@ -1433,7 +1434,6 @@ def audit_target_a10_receipt(
     if not adj_ok:
         raise ValueError(f"Boundary adjacency re-check failed: {adj_msg}")
 
-    # 7. Network Simplex
     ns = data.get("network_simplex", {})
     if not ns.get("phi1_strictly_positive", False):
         raise ValueError("Network simplex reports phi1 not strictly positive")
@@ -1443,6 +1443,17 @@ def audit_target_a10_receipt(
     phi1 = Fraction(ns.get("phi1_obstruction", "0"))
     if phi1 < circ or circ <= Fraction(0):
         raise ValueError(f"Invalid circulation / obstruction values: Phi_1={phi1}, Gamma={circ}")
+
+
+def audit_target_a10_receipt(
+    receipt_file_or_data: Union[str, Path, Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Audits and validates an exact rational Target A10 certificate receipt."""
+    data = _load_target_a10_receipt_data(receipt_file_or_data)
+    _validate_target_a10_header(data)
+    _validate_target_a10_regions(data)
+    _validate_target_a10_global_volume(data)
+    _validate_target_a10_boundaries_and_network(data)
 
     return {
         "verified": True,

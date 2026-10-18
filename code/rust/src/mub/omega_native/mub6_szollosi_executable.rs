@@ -807,18 +807,18 @@ fn rectangular_image(
 mod tests {
     use super::*;
     const SYSTEM: &[u8] = include_bytes!(
-        "../../../../../omega_engine_atlas/coda_atlas/F004_papers/010_mub6/artifacts/mub_szollosi_executable_system.json"
+        "../fixtures/mub_szollosi_executable_system.json"
     );
 
     const COEFFICIENTS: &[u8] = include_bytes!(
-        "../../../../../omega_engine_atlas/coda_atlas/F004_papers/010_mub6/artifacts/mub_szollosi_lean_coefficients.json"
+        "../fixtures/mub_szollosi_lean_coefficients.json"
     );
 
     const GAUGED_SYSTEM: &[u8] = include_bytes!(
-        "../../../../../omega_engine_atlas/coda_atlas/F004_papers/010_mub6/artifacts/mub_szollosi_gauged_executable_system.json"
+        "../fixtures/mub_szollosi_gauged_executable_system.json"
     );
     const GAUGED_COEFFICIENTS: &[u8] = include_bytes!(
-        "../../../../../omega_engine_atlas/coda_atlas/F004_papers/010_mub6/artifacts/mub_szollosi_gauged_lean_coefficients.json"
+        "../fixtures/mub_szollosi_gauged_lean_coefficients.json"
     );
 
     #[test]

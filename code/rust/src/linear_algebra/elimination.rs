@@ -25,7 +25,7 @@ use crate::linear_algebra::matrix::{column, dot, multiply_vector, transpose};
 use crate::linear_algebra::{
     charge, element_count, inverse_of, plus, require_square, reserve, times, ExactFieldError, Grid,
 };
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 
 // ============================================================================
 // Reduction
@@ -510,7 +510,7 @@ mod tests {
     use crate::linear_algebra::test_support::{
         m, q, random_integer_matrix, random_matrix, Fp, Rng, Z6,
     };
-    use crate::crate::crate::crate::linear_algebra::scalars::Semiring;
+    use crate::linear_algebra::scalars::Semiring;
     use num_rational::BigRational;
 
     type Q = BigRational;

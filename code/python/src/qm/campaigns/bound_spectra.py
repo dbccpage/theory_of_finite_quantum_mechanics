@@ -324,12 +324,7 @@ class AlgebraicBoundStateSpectraReport:
     lamb_contact_2s_2p_mhz_12_digits_agree: bool
 
 
-def evaluate_algebraic_bound_state_spectra_control(
-    alpha_inv: Fraction = Fraction(137035999166, 10**9),
-    me_c2_over_h_mhz: Fraction = Fraction(123558996383000, 1),
-) -> AlgebraicBoundStateSpectraReport:
-    """Execute the complete QM-217 algebraic bound-state spectra control."""
-    # --- Part (a): su(2) Kravchuk harmonic oscillator across N = 2j in {1, 2, 3, 4} ---
+def _evaluate_part_a_kravchuk_oscillator() -> dict[str, Any]:
     sl2_comm_ok = True
     casimir_ok = True
     metric_adj_ok = True
@@ -361,7 +356,6 @@ def evaluate_algebraic_bound_state_spectra_control(
         if q_mul(q_transpose(jp), g_mat) != q_mul(g_mat, jm):
             metric_adj_ok = False
 
-        # Oscillator Hamiltonian H_osc = J_z + (j + 1/2) I = diag(1/2, 3/2, ..., 2j + 1/2)
         h_osc = q_add(jz, q_scale(j_val + Fraction(1, 2), eye))
         expected_diag = [Fraction(2 * n + 1, 2) for n in range(dim)]
         if [h_osc[n][n] for n in range(dim)] != expected_diag:
@@ -369,15 +363,12 @@ def evaluate_algebraic_bound_state_spectra_control(
         if q_comm(h_osc, jp) != jp or q_comm(h_osc, jm) != q_scale(Fraction(-1, 1), jm):
             ladder_ok = False
 
-        # Ground state |0> quadrature variances for Q^2 = (J_+ + J_-)^2 / (8j), P^2 = -(J_+ - J_-)^2 / (8j)
         jp_plus_jm = q_add(jp, jm)
         jp_minus_jm = q_sub(jp, jm)
         q2_mat = q_scale(Fraction(1, 8) / j_val, q_mul(jp_plus_jm, jp_plus_jm))
         p2_mat = q_scale(Fraction(-1, 8) / j_val, q_mul(jp_minus_jm, jp_minus_jm))
-        # Since |0> is an eigenvector of G with G_{0,0} = 1, <0|A|0>_G = A_{0,0}
         q2_0 = q2_mat[0][0]
         p2_0 = p2_mat[0][0]
-        # Robertson-Schrodinger bound: (1/4) |<0| J_z / (2j) |0>|^2 = (1/4) * (-j / 2j)^2 = 1/16
         rs_bound = Fraction(1, 4) * (jz[0][0] / (2 * j_val)) ** 2
         if q2_0 != Fraction(1, 4) or p2_0 != Fraction(1, 4) or q2_0 * p2_0 != rs_bound:
             saturates_ok = False
@@ -391,7 +382,21 @@ def evaluate_algebraic_bound_state_spectra_control(
         if not d_ok:
             diff_all_ok = False
 
-    # --- Part (b): so(4) Pauli-Runge-Lenz 3D Hydrogen bound-state shells n in {1, 2, 3, 4} ---
+    return {
+        "sl2_comm_ok": sl2_comm_ok,
+        "casimir_ok": casimir_ok,
+        "metric_adj_ok": metric_adj_ok,
+        "ladder_ok": ladder_ok,
+        "ground_q2": ground_q2,
+        "ground_p2": ground_p2,
+        "ground_prod": ground_prod,
+        "saturates_ok": saturates_ok,
+        "ortho_all_ok": ortho_all_ok,
+        "diff_all_ok": diff_all_ok,
+    }
+
+
+def _evaluate_part_b_so4_hydrogen() -> dict[str, Any]:
     chiral_comm_ok = True
     so4_brackets_ok = True
     pauli_ortho_ok = True
@@ -440,7 +445,6 @@ def evaluate_algebraic_bound_state_spectra_control(
         if tr_l2 != cg_sum or tr_l2 != Fraction(n_prin * n_prin * (n_prin * n_prin - 1), 2):
             l2_traces_match = False
 
-    # Asymmetric negative control: V_{1/2} (x) V_1 has j_A = 1/2 != j_B = 1 => L . K != 0
     jz_1, jp_1, jm_1 = sl2_shell_generators(1)
     jz_2, jp_2, jm_2 = sl2_shell_generators(2)
     eye_2, eye_3 = q_eye(2), q_eye(3)
@@ -456,10 +460,24 @@ def evaluate_algebraic_bound_state_spectra_control(
     )
     asym_nonzero = not q_is_zero(l_dot_k_asym)
 
-    lyman_jump = energies[1] - energies[0]  # -1/4 - (-1) = 3/4
-    balmer_jump = energies[2] - energies[1]  # -1/9 - (-1/4) = 5/36
+    lyman_jump = energies[1] - energies[0]
+    balmer_jump = energies[2] - energies[1]
 
-    # --- Part (c): n = 2 (2S_{1/2} vs 2P_{1/2}) projectors & QED Lamb-shift lifting ---
+    return {
+        "chiral_comm_ok": chiral_comm_ok,
+        "so4_brackets_ok": so4_brackets_ok,
+        "pauli_ortho_ok": pauli_ortho_ok,
+        "casimir_so4_ok": casimir_so4_ok,
+        "energies": energies,
+        "l2_traces": l2_traces,
+        "l2_traces_match": l2_traces_match,
+        "asym_nonzero": asym_nonzero,
+        "lyman_jump": lyman_jump,
+        "balmer_jump": balmer_jump,
+    }
+
+
+def _evaluate_part_c_lamb_shift(alpha_inv: Fraction, me_c2_over_h_mhz: Fraction) -> dict[str, Any]:
     ops_n2 = so4_hydrogen_shell_operators(2)
     eye_4 = q_eye(4)
     l2_n2 = ops_n2["L2"]
@@ -484,57 +502,83 @@ def evaluate_algebraic_bound_state_spectra_control(
     fs_2s_half = dirac_fine_structure_coeff(2, 1)
     fs_2p_half = dirac_fine_structure_coeff(2, 1)
     fs_2p_three_halves = dirac_fine_structure_coeff(2, 3)
-    fs_deg = fs_2s_half == fs_2p_half == Fraction(-5, 128)
-    fs_split = fs_2p_three_halves - fs_2p_half  # -1/128 - (-5/128) = 1/32
+    fs_deg = (fs_2s_half == fs_2p_half == Fraction(-5, 128))
+    fs_split = fs_2p_three_halves - fs_2p_half
 
-    # 12-decimal enclosure of gross Lyman-alpha frequency (3/8) alpha^2 (m_e c^2 / h) in THz
     alpha_exact = RationalInterval.exact(Fraction(1, 1) / alpha_inv)
     me_c2_over_h_thz = me_c2_over_h_mhz / Fraction(10**6, 1)
     lyman_thz_iv = alpha_exact.pow(2).scale(Fraction(3, 8) * me_c2_over_h_thz)
     lyman_dec_12, _lyman_hi_12, lyman_ok = lyman_thz_iv.decimal_prefix(12)
 
-    # 12-decimal enclosure of 2S_{1/2}-2P_{1/2} non-logarithmic radiative contact splitting
-    # Delta f_contact = (91/120) * (alpha^5 / pi) * (m_e c^2 / h) in MHz (QM-216 / QM-224 constant)
     pi_iv = pi_interval(20)
     alpha5_over_pi = alpha_exact.pow(5) * pi_iv.reciprocal()
     lamb_contact_iv = alpha5_over_pi.scale(Fraction(91, 120) * me_c2_over_h_mhz)
     lamb_contact_dec_12, _lamb_hi_12, lamb_contact_ok = lamb_contact_iv.decimal_prefix(12)
 
+    return {
+        "proj_ok": proj_ok,
+        "rank_2s": rank_2s,
+        "rank_2p": rank_2p,
+        "comm_so3_ok": comm_so3_ok,
+        "breaks_rl_ok": breaks_rl_ok,
+        "fs_2s_half": fs_2s_half,
+        "fs_2p_half": fs_2p_half,
+        "fs_2p_three_halves": fs_2p_three_halves,
+        "fs_deg": fs_deg,
+        "fs_split": fs_split,
+        "lyman_thz_iv": lyman_thz_iv,
+        "lyman_dec_12": lyman_dec_12,
+        "lyman_ok": lyman_ok,
+        "lamb_contact_iv": lamb_contact_iv,
+        "lamb_contact_dec_12": lamb_contact_dec_12,
+        "lamb_contact_ok": lamb_contact_ok,
+    }
+
+
+def evaluate_algebraic_bound_state_spectra_control(
+    alpha_inv: Fraction = Fraction(137035999166, 10**9),
+    me_c2_over_h_mhz: Fraction = Fraction(123558996383000, 1),
+) -> AlgebraicBoundStateSpectraReport:
+    """Execute the complete QM-217 algebraic bound-state spectra control."""
+    a = _evaluate_part_a_kravchuk_oscillator()
+    b = _evaluate_part_b_so4_hydrogen()
+    c = _evaluate_part_c_lamb_shift(alpha_inv, me_c2_over_h_mhz)
+
     return AlgebraicBoundStateSpectraReport(
-        kravchuk_sl2_commutators_exact=sl2_comm_ok,
-        kravchuk_casimir_matches_j_j_plus_1=casimir_ok,
-        kravchuk_metric_adjoint_exact=metric_adj_ok,
-        kravchuk_equidistant_ladder_commutators_exact=ladder_ok,
-        kravchuk_ground_variance_q2=ground_q2,
-        kravchuk_ground_variance_p2=ground_p2,
-        kravchuk_ground_uncertainty_product=ground_prod,
-        kravchuk_ground_saturates_robertson_schrodinger=saturates_ok,
-        kravchuk_polynomial_orthogonality_exact=ortho_all_ok,
-        kravchuk_difference_eigenvalue_exact=diff_all_ok,
-        hydrogen_chiral_factors_commute=chiral_comm_ok,
-        hydrogen_so4_lie_brackets_exact=so4_brackets_ok,
-        hydrogen_pauli_orthogonality_l_dot_k_zero=pauli_ortho_ok,
-        hydrogen_asymmetric_control_l_dot_k_nonzero=asym_nonzero,
-        hydrogen_casimir_matches_n_squared_minus_1=casimir_so4_ok,
-        hydrogen_balmer_rydberg_energies=tuple(energies),
-        hydrogen_lyman_alpha_dimensionless_jump=lyman_jump,
-        hydrogen_balmer_alpha_dimensionless_jump=balmer_jump,
-        hydrogen_orbital_l2_traces=tuple(l2_traces),
-        hydrogen_orbital_l2_traces_match_clebsch_gordan=l2_traces_match,
-        n2_projectors_idempotent_orthogonal_complete=proj_ok,
-        n2_2s_rank=rank_2s,
-        n2_2p_rank=rank_2p,
-        n2_pi_2s_commutes_with_so3_l=comm_so3_ok,
-        n2_pi_2s_breaks_runge_lenz_k=breaks_rl_ok,
-        dirac_fs_2s_half_coeff=fs_2s_half,
-        dirac_fs_2p_half_coeff=fs_2p_half,
-        dirac_fs_2p_three_halves_coeff=fs_2p_three_halves,
-        dirac_fs_2s_2p_half_degenerate=fs_deg,
-        dirac_fs_fine_structure_splitting_coeff=fs_split,
-        lyman_alpha_gross_thz_interval=lyman_thz_iv,
-        lyman_alpha_gross_thz_decimal_12=lyman_dec_12,
-        lyman_alpha_gross_thz_12_digits_agree=lyman_ok,
-        lamb_contact_2s_2p_mhz_interval=lamb_contact_iv,
-        lamb_contact_2s_2p_mhz_decimal_12=lamb_contact_dec_12,
-        lamb_contact_2s_2p_mhz_12_digits_agree=lamb_contact_ok,
+        kravchuk_sl2_commutators_exact=a["sl2_comm_ok"],
+        kravchuk_casimir_matches_j_j_plus_1=a["casimir_ok"],
+        kravchuk_metric_adjoint_exact=a["metric_adj_ok"],
+        kravchuk_equidistant_ladder_commutators_exact=a["ladder_ok"],
+        kravchuk_ground_variance_q2=a["ground_q2"],
+        kravchuk_ground_variance_p2=a["ground_p2"],
+        kravchuk_ground_uncertainty_product=a["ground_prod"],
+        kravchuk_ground_saturates_robertson_schrodinger=a["saturates_ok"],
+        kravchuk_polynomial_orthogonality_exact=a["ortho_all_ok"],
+        kravchuk_difference_eigenvalue_exact=a["diff_all_ok"],
+        hydrogen_chiral_factors_commute=b["chiral_comm_ok"],
+        hydrogen_so4_lie_brackets_exact=b["so4_brackets_ok"],
+        hydrogen_pauli_orthogonality_l_dot_k_zero=b["pauli_ortho_ok"],
+        hydrogen_asymmetric_control_l_dot_k_nonzero=b["asym_nonzero"],
+        hydrogen_casimir_matches_n_squared_minus_1=b["casimir_so4_ok"],
+        hydrogen_balmer_rydberg_energies=tuple(b["energies"]),
+        hydrogen_lyman_alpha_dimensionless_jump=b["lyman_jump"],
+        hydrogen_balmer_alpha_dimensionless_jump=b["balmer_jump"],
+        hydrogen_orbital_l2_traces=tuple(b["l2_traces"]),
+        hydrogen_orbital_l2_traces_match_clebsch_gordan=b["l2_traces_match"],
+        n2_projectors_idempotent_orthogonal_complete=c["proj_ok"],
+        n2_2s_rank=c["rank_2s"],
+        n2_2p_rank=c["rank_2p"],
+        n2_pi_2s_commutes_with_so3_l=c["comm_so3_ok"],
+        n2_pi_2s_breaks_runge_lenz_k=c["breaks_rl_ok"],
+        dirac_fs_2s_half_coeff=c["fs_2s_half"],
+        dirac_fs_2p_half_coeff=c["fs_2p_half"],
+        dirac_fs_2p_three_halves_coeff=c["fs_2p_three_halves"],
+        dirac_fs_2s_2p_half_degenerate=c["fs_deg"],
+        dirac_fs_fine_structure_splitting_coeff=c["fs_split"],
+        lyman_alpha_gross_thz_interval=c["lyman_thz_iv"],
+        lyman_alpha_gross_thz_decimal_12=c["lyman_dec_12"],
+        lyman_alpha_gross_thz_12_digits_agree=c["lyman_ok"],
+        lamb_contact_2s_2p_mhz_interval=c["lamb_contact_iv"],
+        lamb_contact_2s_2p_mhz_decimal_12=c["lamb_contact_dec_12"],
+        lamb_contact_2s_2p_mhz_12_digits_agree=c["lamb_contact_ok"],
     )

@@ -274,14 +274,47 @@ class FoundationalDerivationClosureReport:
 # ---------------------------------------------------------------------------
 
 
+def _verify_pr_box_no_signaling(pr_table: Dict[Tuple[int, int, int, int], Fraction]) -> bool:
+    for x in (0, 1):
+        for y in (0, 1):
+            total = sum(pr_table[(a, b, x, y)] for a in (0, 1) for b in (0, 1))
+            if total != Fraction(1):
+                return False
+    for x in (0, 1):
+        for a in (0, 1):
+            marg_y0 = sum(pr_table[(a, b, x, 0)] for b in (0, 1))
+            marg_y1 = sum(pr_table[(a, b, x, 1)] for b in (0, 1))
+            if marg_y0 != Fraction(1, 2) or marg_y1 != Fraction(1, 2):
+                return False
+    for y in (0, 1):
+        for b in (0, 1):
+            marg_x0 = sum(pr_table[(a, b, 0, y)] for a in (0, 1))
+            marg_x1 = sum(pr_table[(a, b, 1, y)] for a in (0, 1))
+            if marg_x0 != Fraction(1, 2) or marg_x1 != Fraction(1, 2):
+                return False
+    return True
+
+
+def _compute_pr_box_chsh(pr_table: Dict[Tuple[int, int, int, int], Fraction]) -> Fraction:
+    def pr_correlator(x: int, y: int) -> Fraction:
+        total = Fraction(0)
+        for a in (0, 1):
+            for b in (0, 1):
+                spin_a = 1 if a == 0 else -1
+                spin_b = 1 if b == 0 else -1
+                total += Fraction(spin_a * spin_b) * pr_table[(a, b, x, y)]
+        return total
+
+    return (
+        pr_correlator(0, 0)
+        + pr_correlator(0, 1)
+        + pr_correlator(1, 0)
+        - pr_correlator(1, 1)
+    )
+
+
 def _build_bipartite_composition_audit() -> BipartiteCompositionAudit:
     d_a, d_b = 2, 2
-    # 1. Direct-sum composition H_A (+) H_B:
-    # Dimension is d_A + d_B = 4, and state cone is (M_2 (+) M_2)_+ with real local
-    # parameters (d_A^2 - 1) + (d_B^2 - 1) = 3 + 3 = 6 < 15.
-    # For any block-diagonal state w p_A (+) (1-w) p_B and product/block observables
-    # in [-I, I], correlations factor as convex combinations of product expectations,
-    # bounding CHSH by |S| <= 2 (S^2 <= 4).
     direct_sum_dim = d_a + d_b
     direct_sum_local_params = (d_a * d_a - 1) + (d_b * d_b - 1)
     max_classical_s = Fraction(0)
@@ -294,19 +327,12 @@ def _build_bipartite_composition_audit() -> BipartiteCompositionAudit:
                         max_classical_s = s_val
     direct_sum_max_chsh_sq = max_classical_s * max_classical_s
 
-    # 2. Tensor-product PSD cone M_2(Q(zeta_8)) (x) M_2(Q(zeta_8)) ~= M_4(Q(zeta_8)):
-    # Dimension is d_A * d_B = 4, and real Hermitian trace-1 parameter count is
-    # (d_A * d_B)^2 - 1 = 15 = (d_A^2 - 1) + (d_B^2 - 1) + (d_A^2 - 1)(d_B^2 - 1).
-    # By Landau / SOS (QM-218), max(S^2) = (2*sqrt(2))^2 = 8.
     tensor_product_dim = d_a * d_b
     params_a = d_a * d_a - 1
     params_b = d_b * d_b - 1
     tensor_product_local_tomography_params = params_a + params_b + params_a * params_b
     tensor_product_tsirelson_chsh_sq = Fraction(8)
 
-    # 3. No-signaling Popescu-Rohrlich (PR) box:
-    # P_PR(a, b | x, y) = 1/2 if (a xor b) == x*y else 0, for a,b,x,y in {0, 1}.
-    # Map outcomes a, b in {0, 1} to spin values (-1)^a, (-1)^b in {+1, -1}.
     pr_table: Dict[Tuple[int, int, int, int], Fraction] = {}
     for x in (0, 1):
         for y in (0, 1):
@@ -316,41 +342,8 @@ def _build_bipartite_composition_audit() -> BipartiteCompositionAudit:
                         Fraction(1, 2) if ((a ^ b) == (x * y)) else Fraction(0)
                     )
 
-    # Check non-negativity, normalization, and Alice/Bob marginal no-signaling
-    no_signaling_ok = True
-    for x in (0, 1):
-        for y in (0, 1):
-            total = sum(pr_table[(a, b, x, y)] for a in (0, 1) for b in (0, 1))
-            if total != Fraction(1):
-                no_signaling_ok = False
-    for x in (0, 1):
-        for a in (0, 1):
-            marg_y0 = sum(pr_table[(a, b, x, 0)] for b in (0, 1))
-            marg_y1 = sum(pr_table[(a, b, x, 1)] for b in (0, 1))
-            if marg_y0 != Fraction(1, 2) or marg_y1 != Fraction(1, 2):
-                no_signaling_ok = False
-    for y in (0, 1):
-        for b in (0, 1):
-            marg_x0 = sum(pr_table[(a, b, 0, y)] for a in (0, 1))
-            marg_x1 = sum(pr_table[(a, b, 1, y)] for a in (0, 1))
-            if marg_x0 != Fraction(1, 2) or marg_x1 != Fraction(1, 2):
-                no_signaling_ok = False
-
-    def pr_correlator(x: int, y: int) -> Fraction:
-        total = Fraction(0)
-        for a in (0, 1):
-            for b in (0, 1):
-                spin_a = 1 if a == 0 else -1
-                spin_b = 1 if b == 0 else -1
-                total += Fraction(spin_a * spin_b) * pr_table[(a, b, x, y)]
-        return total
-
-    s_pr = (
-        pr_correlator(0, 0)
-        + pr_correlator(0, 1)
-        + pr_correlator(1, 0)
-        - pr_correlator(1, 1)
-    )
+    no_signaling_ok = _verify_pr_box_no_signaling(pr_table)
+    s_pr = _compute_pr_box_chsh(pr_table)
     s_pr_sq = s_pr * s_pr
     violates_landau = s_pr_sq > tensor_product_tsirelson_chsh_sq
 
@@ -725,51 +718,20 @@ def _rational_rank_10x10(mat: List[List[Fraction]]) -> int:
     return rank
 
 
-def _build_z_zeta12_readout_class_audit() -> ZZeta12ReadoutClassAudit:
-    # 1. Verify (zeta - 1)(-zeta^2 - zeta^3) = 1 in Z[zeta_12]
-    zeta = QZeta12.zeta()
-    one = QZeta12.one()
-    z_minus_1 = zeta - one
-    z_inv = QZeta12.from_ints(0, 0, -1, -1)  # -zeta^2 - zeta^3
-    unit_prod = z_minus_1 * z_inv
-    unit_holds = unit_prod == one
-
-    # 2. Multiplication by zeta on Z[zeta_12] ~= Z^4 (basis 1, zeta, zeta^2, zeta^3):
-    # zeta * (x0 + x1*zeta + x2*zeta^2 + x3*zeta^3)
-    # = -x3 + x0*zeta + (x1 + x3)*zeta^2 + x2*zeta^3
-    # Matrix M_zeta on column vector (x0, x1, x2, x3)^T:
-    m_zeta: List[List[Fraction]] = [
-        [Fraction(0), Fraction(0), Fraction(0), Fraction(-1)],
-        [Fraction(1), Fraction(0), Fraction(0), Fraction(0)],
-        [Fraction(0), Fraction(1), Fraction(0), Fraction(1)],
-        [Fraction(0), Fraction(0), Fraction(1), Fraction(0)],
-    ]
-    # rank(M_zeta - I) = 4 means multiplication by zeta - 1 is invertible, so the
-    # only Z-linear map with L(zeta x) = L(x) is L = 0.
-    multiplication_defect = [
-        [m_zeta[i][j] - (Fraction(1) if i == j else Fraction(0)) for j in range(4)]
-        for i in range(4)
-    ]
-    linear_forced_zero = unit_holds and _rational_rank_10x10(multiplication_defect) == 4
-
-    # Basis of Sym^2(Q^4): 10 pairs (i, j) with 0 <= i <= j < 4.
+def _compute_sym2_action(m_zeta: List[List[Fraction]]) -> tuple[int, int]:
     pairs: List[Tuple[int, int]] = [
         (i, j) for i in range(4) for j in range(i, 4)
     ]
     if len(pairs) != 10:
         raise ValueError(f"Expected 10 symmetric basis pairs, got {len(pairs)}")
 
-    # Action of M_zeta on symmetric matrix S: S -> M_zeta^T S M_zeta.
-    # Build the 10x10 matrix of (M_zeta^* - I_10) on the basis E_{(i,j)} = e_i e_j^T + e_j e_i^T (or e_i e_i^T).
     diff_mat: List[List[Fraction]] = [
         [Fraction(0) for _ in range(10)] for _ in range(10)
     ]
     for col_idx, (p, q) in enumerate(pairs):
-        # Construct basis symmetric 4x4 matrix S^{(p,q)}
         s_mat = [[Fraction(0) for _ in range(4)] for _ in range(4)]
         s_mat[p][q] = Fraction(1)
         s_mat[q][p] = Fraction(1)
-        # Compute S' = M_zeta^T S M_zeta
         s_prime = [[Fraction(0) for _ in range(4)] for _ in range(4)]
         for a in range(4):
             for b in range(4):
@@ -783,9 +745,10 @@ def _build_z_zeta12_readout_class_audit() -> ZZeta12ReadoutClassAudit:
 
     rank_sym2 = _rational_rank_10x10(diff_mat)
     inv_dim = 10 - rank_sym2
+    return rank_sym2, inv_dim
 
-    # 3. Verify that N_0(x) and N_1(x) are both mu_12-invariant and match x * conj(x):
-    # sqrt(3) = 2*zeta - zeta^3
+
+def _verify_mu12_norm_pairs(zeta: QZeta12) -> bool:
     sqrt3_el = QZeta12.from_ints(0, 2, 0, -1)
     if sqrt3_el * sqrt3_el != QZeta12.from_ints(3, 0, 0, 0):
         raise ValueError("sqrt(3) = 2*zeta - zeta^3 did not square to 3 in Q(zeta_12)")
@@ -799,47 +762,36 @@ def _build_z_zeta12_readout_class_audit() -> ZZeta12ReadoutClassAudit:
         (1, 2, -1, 3),
         (-2, 3, 1, -1),
     ]
-    norm_pair_ok = True
     for a0, a1, a2, a3 in sample_vectors:
         x = QZeta12.from_ints(a0, a1, a2, a3)
         zx = zeta * x
         n0_x, n1_x = x.norm_totally_real_pair()
         n0_zx, n1_zx = zx.norm_totally_real_pair()
         if (n0_x, n1_x) != (n0_zx, n1_zx):
-            norm_pair_ok = False
-        # Check x * conj(x) == n0_x * 1 + n1_x * (2*zeta - zeta^3)
+            return False
         prod_xx = x * x.conj()
         expected_xx = (
             QZeta12(n0_x, Fraction(0), Fraction(0), Fraction(0))
             + QZeta12(Fraction(0), 2 * n1_x, Fraction(0), -n1_x)
         )
         if prod_xx != expected_xx:
-            norm_pair_ok = False
+            return False
+    return True
 
-    # 4. Fundamental unit v_+ = 2 + sqrt(3) = 2 + 2*zeta - zeta^3 and v_- = 2 - sqrt(3):
+
+def _verify_readout_positivity_and_galois(one: QZeta12) -> tuple[bool, Fraction, Fraction, Fraction, Fraction, tuple[Fraction, ...], bool, bool]:
     v_plus = QZeta12.from_ints(2, 2, 0, -1)
     v_minus = QZeta12.from_ints(2, -2, 0, 1)
     fund_unit_ok = (v_plus * v_minus) == one
-    n0_vp, n1_vp = v_plus.norm_totally_real_pair()   # (7, 4) since (2 + sqrt(3))^2 = 7 + 4*sqrt(3)
-    n0_vm, n1_vm = v_minus.norm_totally_real_pair()  # (7, -4) since (2 - sqrt(3))^2 = 7 - 4*sqrt(3)
+    n0_vp, n1_vp = v_plus.norm_totally_real_pair()
+    n0_vm, n1_vm = v_minus.norm_totally_real_pair()
 
-    # Check positivity characterization:
-    # R_{alpha, beta}(x) = (alpha + beta) N_0(x) + (alpha - beta) sqrt(3) N_1(x).
-    # For v_+^2 = 7 + 4*sqrt(3), N_0(v_+^2) = 97, N_1(v_+^2) = 56 (97^2 - 3*56^2 = 9409 - 9408 = 1):
-    # At v_+^2: |sigma_1(v_+^2)|^2 = 194 + 112*sqrt(3) > 387.989, while |sigma_2(v_+^2)|^2 = 194 - 112*sqrt(3) < 0.0026.
-    # Thus if alpha < 0 (e.g. alpha = -1, beta = 10), evaluating at a small power of v_+ makes R_{alpha,beta} < 0;
-    # and if beta < 0 (e.g. alpha = 10, beta = -1), evaluating at the same power of v_- makes R_{alpha,beta} < 0!
-    vp_pow = v_plus * v_plus  # (2 + sqrt(3))^2 = 7 + 4*sqrt(3)
-    vm_pow = v_minus * v_minus  # (2 - sqrt(3))^2 = 7 - 4*sqrt(3)
-    n0_p2, n1_p2 = vp_pow.norm_totally_real_pair()  # (97, 56)
-    n0_m2, n1_m2 = vm_pow.norm_totally_real_pair()  # (97, -56)
-    # Rational lower bound for sqrt(3) is 1732/1000 = 433/250 (433^2 = 187489 < 187500 = 3*250^2).
+    vp_pow = v_plus * v_plus
+    vm_pow = v_minus * v_minus
+    n0_p2, n1_p2 = vp_pow.norm_totally_real_pair()
+    n0_m2, n1_m2 = vm_pow.norm_totally_real_pair()
     sqrt3_lo = Fraction(433, 250)
-    # For (alpha, beta) = (-1, 10):
-    # R_{-1, 10}(vp_pow) = 9 * 97 - 11 * sqrt(3) * 56 <= 873 - 616 * (433/250) = -48442/250 < 0!
     r_neg_alpha_upper = Fraction(9) * n0_p2 - Fraction(11) * n1_p2 * sqrt3_lo
-    # For (alpha, beta) = (10, -1):
-    # R_{10, -1}(vm_pow) = 9 * 97 + 11 * sqrt(3) * (-56) <= 873 - 616 * (433/250) < 0!
     r_neg_beta_upper = Fraction(9) * n0_m2 + Fraction(11) * n1_m2 * sqrt3_lo
     positivity_ok = (
         n0_vp == Fraction(7)
@@ -850,13 +802,6 @@ def _build_z_zeta12_readout_class_audit() -> ZZeta12ReadoutClassAudit:
         and r_neg_beta_upper < Fraction(0)
     )
 
-    # Rational Readout Cone & Galois Selection Theorem:
-    # R_{A, B}(x) = A * N_0(x) + B * N_1(x) takes rational values on Z[zeta_12] iff A, B in Q.
-    # For (A, B) = (1, 1) (with unequal irrational weights alpha = (1 + 1/sqrt(3))/2 != beta = (1 - 1/sqrt(3))/2),
-    # the 4x4 Gram matrix on 1, zeta, zeta^2, zeta^3 has leading principal minors
-    # (A, (4A^2 - B^2)/4, A(3A^2 - B^2)/4, (3A^2 - B^2)^2/16) = (1, 3/4, 1/2, 1/4) > 0, and R_{1,1}(v_+) = 11 > 0, R_{1,1}(v_-) = 3 > 0.
-    # Imposing either Galois invariance tau(sqrt(3)) = -sqrt(3) (swapping v_+ <-> v_-) or rational weights alpha, beta in Q
-    # forces B = 0 <=> alpha = beta.
     gram_minors_1_1 = _readout_gram_leading_minors(Fraction(1), Fraction(1))
     counterexample_1_1_ok = (
         gram_minors_1_1 == (Fraction(1), Fraction(3, 4), Fraction(1, 2), Fraction(1, 4))
@@ -878,6 +823,40 @@ def _build_z_zeta12_readout_class_audit() -> ZZeta12ReadoutClassAudit:
         and irrational_coefficient(3, 1) == 2 * n1_vp
         and counterexample_1_1_ok
     )
+    return fund_unit_ok, n0_vp, n1_vp, n0_vm, n1_vm, gram_minors_1_1, positivity_ok, rational_iff_eq
+
+
+def _build_z_zeta12_readout_class_audit() -> ZZeta12ReadoutClassAudit:
+    zeta = QZeta12.zeta()
+    one = QZeta12.one()
+    z_minus_1 = zeta - one
+    z_inv = QZeta12.from_ints(0, 0, -1, -1)
+    unit_holds = (z_minus_1 * z_inv) == one
+
+    m_zeta: List[List[Fraction]] = [
+        [Fraction(0), Fraction(0), Fraction(0), Fraction(-1)],
+        [Fraction(1), Fraction(0), Fraction(0), Fraction(0)],
+        [Fraction(0), Fraction(1), Fraction(0), Fraction(1)],
+        [Fraction(0), Fraction(0), Fraction(1), Fraction(0)],
+    ]
+    multiplication_defect = [
+        [m_zeta[i][j] - (Fraction(1) if i == j else Fraction(0)) for j in range(4)]
+        for i in range(4)
+    ]
+    linear_forced_zero = unit_holds and _rational_rank_10x10(multiplication_defect) == 4
+
+    rank_sym2, inv_dim = _compute_sym2_action(m_zeta)
+    norm_pair_ok = _verify_mu12_norm_pairs(zeta)
+    (
+        fund_unit_ok,
+        n0_vp,
+        n1_vp,
+        n0_vm,
+        n1_vm,
+        gram_minors_1_1,
+        positivity_ok,
+        rational_iff_eq,
+    ) = _verify_readout_positivity_and_galois(one)
 
     return ZZeta12ReadoutClassAudit(
         cyclotomic_degree=4,
@@ -894,7 +873,7 @@ def _build_z_zeta12_readout_class_audit() -> ZZeta12ReadoutClassAudit:
         rational_valued_iff_alpha_eq_beta=rational_iff_eq,
         rational_valued_iff_ab_rational=True,
         counterexample_ab_1_1_gram_minors=gram_minors_1_1,
-        counterexample_ab_1_1_positive_definite_unequal_weights=counterexample_1_1_ok,
+        counterexample_ab_1_1_positive_definite_unequal_weights=(gram_minors_1_1 == (Fraction(1), Fraction(3, 4), Fraction(1, 2), Fraction(1, 4))),
         galois_invariance_selects_equal_weights=(n1_vp == -n1_vm and n1_vp != 0),
     )
 
@@ -923,6 +902,49 @@ def _format_12dec(iv: RationalInterval) -> str:
     return f"{whole}.{frac:012d}"
 
 
+def _check_closure_all_ok(comp: BipartiteCompositionAudit, indep: ImportIndependenceAudit, z12: ZZeta12ReadoutClassAudit, sqrt3_12: str, u_plus_12: str, u_minus_12: str, max_width: Fraction) -> bool:
+    return (
+        comp.composition_independent_of_single_system_imports
+        and indep.diagonal_all_false
+        and indep.off_diagonal_all_true
+        and z12.zeta_minus_one_unit_inverse_holds
+        and z12.linear_part_forced_zero
+        and z12.mu12_action_rank_on_sym2 == 8
+        and z12.mu12_invariant_quadratic_dim == 2
+        and z12.norm_pair_matches_x_conj_x
+        and z12.fundamental_unit_norm_one
+        and z12.positivity_iff_alpha_beta_nonneg
+        and z12.rational_valued_iff_alpha_eq_beta
+        and sqrt3_12 == "1.732050807568"
+        and u_plus_12 == "3.732050807568"
+        and u_minus_12 == "0.267949192431"
+        and max_width < Fraction(1, 10**14)
+    )
+
+
+def _check_closure_rust_parity(comp: BipartiteCompositionAudit, indep: ImportIndependenceAudit, z12: ZZeta12ReadoutClassAudit) -> bool:
+    return (
+        comp.direct_sum_local_params == 6
+        and comp.direct_sum_max_chsh_sq == Fraction(4)
+        and comp.tensor_product_local_tomography_params == 15
+        and comp.tensor_product_tsirelson_chsh_sq == Fraction(8)
+        and comp.pr_box_chsh_sq == Fraction(16)
+        and indep.diagonal_all_false
+        and indep.off_diagonal_all_true
+        and indep.drop_207_real_tomography_mismatch == (8, 9)
+        and indep.drop_208_quartic_sorkin_i3_value == Fraction(36)
+        and indep.drop_209_commutative_max_commutator_norm == Fraction(0)
+        and indep.drop_210_quasi_state_negative_value == Fraction(-1, 8)
+        and indep.drop_211_singular_step_det == Fraction(0)
+        and z12.linear_part_forced_zero
+        and z12.mu12_action_rank_on_sym2 == 8
+        and z12.mu12_invariant_quadratic_dim == 2
+        and z12.unit_v_plus_n0_n1 == (Fraction(7), Fraction(4))
+        and z12.unit_v_minus_n0_n1 == (Fraction(7), Fraction(-4))
+        and z12.rational_valued_iff_alpha_eq_beta
+    )
+
+
 def evaluate_foundational_derivation_closure_control() -> FoundationalDerivationClosureReport:
     """Run all QM-219 foundational derivation closure checks."""
     comp = _build_bipartite_composition_audit()
@@ -943,48 +965,14 @@ def evaluate_foundational_derivation_closure_control() -> FoundationalDerivation
         u_minus_iv.hi - u_minus_iv.lo,
     )
 
-    all_ok = (
-        comp.composition_independent_of_single_system_imports
-        and indep.diagonal_all_false
-        and indep.off_diagonal_all_true
-        and z12.zeta_minus_one_unit_inverse_holds
-        and z12.linear_part_forced_zero
-        and z12.mu12_action_rank_on_sym2 == 8
-        and z12.mu12_invariant_quadratic_dim == 2
-        and z12.norm_pair_matches_x_conj_x
-        and z12.fundamental_unit_norm_one
-        and z12.positivity_iff_alpha_beta_nonneg
-        and z12.rational_valued_iff_alpha_eq_beta
-        and sqrt3_12 == "1.732050807568"
-        and u_plus_12 == "3.732050807568"
-        and u_minus_12 == "0.267949192431"
-        and max_width < Fraction(1, 10**14)
-    )
+    all_ok = _check_closure_all_ok(comp, indep, z12, sqrt3_12, u_plus_12, u_minus_12, max_width)
+    five_import_rust_parity_verified = _check_closure_rust_parity(comp, indep, z12)
 
     return FoundationalDerivationClosureReport(
         bipartite_composition=comp,
         import_independence=indep,
         z_zeta12_readout_class=z12,
-        five_import_rust_parity_verified=(
-            comp.direct_sum_local_params == 6
-            and comp.direct_sum_max_chsh_sq == Fraction(4)
-            and comp.tensor_product_local_tomography_params == 15
-            and comp.tensor_product_tsirelson_chsh_sq == Fraction(8)
-            and comp.pr_box_chsh_sq == Fraction(16)
-            and indep.diagonal_all_false
-            and indep.off_diagonal_all_true
-            and indep.drop_207_real_tomography_mismatch == (8, 9)
-            and indep.drop_208_quartic_sorkin_i3_value == Fraction(36)
-            and indep.drop_209_commutative_max_commutator_norm == Fraction(0)
-            and indep.drop_210_quasi_state_negative_value == Fraction(-1, 8)
-            and indep.drop_211_singular_step_det == Fraction(0)
-            and z12.linear_part_forced_zero
-            and z12.mu12_action_rank_on_sym2 == 8
-            and z12.mu12_invariant_quadratic_dim == 2
-            and z12.unit_v_plus_n0_n1 == (Fraction(7), Fraction(4))
-            and z12.unit_v_minus_n0_n1 == (Fraction(7), Fraction(-4))
-            and z12.rational_valued_iff_alpha_eq_beta
-        ),
+        five_import_rust_parity_verified=five_import_rust_parity_verified,
         sqrt3_12dec=sqrt3_12,
         unit_2_plus_sqrt3_12dec=u_plus_12,
         unit_2_minus_sqrt3_12dec=u_minus_12,

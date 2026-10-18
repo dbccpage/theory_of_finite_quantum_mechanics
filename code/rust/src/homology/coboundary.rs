@@ -4,7 +4,7 @@ use crate::cochain::Cochain;
 use crate::errors::HomologicalError;
 use crate::hashing::{hash_matrix, Hash256};
 use crate::ids::Degree;
-use crate::crate::crate::linear_algebra::scalars::Q;
+use crate::linear_algebra::scalars::Q;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 
 /// A coboundary map d^n : C^n -> C^{n+1}.
@@ -71,7 +71,7 @@ impl CoboundaryMap {
 mod tests {
     use super::*;
     use crate::ids::BasisId;
-    use crate::crate::crate::linear_algebra::scalars::q;
+    use crate::linear_algebra::scalars::q;
 
     #[test]
     fn apply_rejects_coefficient_length_mismatch() {

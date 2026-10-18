@@ -37,34 +37,24 @@ class BlockValidationError(Exception):
     """Raised when a block result artifact fails schema or verification checks."""
 
 
-def validate_block_result(data: dict[str, Any], expected_block: int = 1, base_dir: Path | None = None) -> list[str]:
-    """Validate a block result dictionary against the declared C250 schema.
-
-    Returns a list of validation notes on success.
-    Raises BlockValidationError on any schema violation or check failure.
-    """
+def _check_required_fields_and_authority(data: dict[str, Any]) -> None:
     if not isinstance(data, dict):
         raise BlockValidationError(f"Root object must be a dict, got {type(data).__name__}")
-
-    # 1. Required fields presence
     missing = [f for f in REQUIRED_FIELDS if f not in data]
     if missing:
         raise BlockValidationError(f"Missing required fields: {missing}")
-
-    # 2. Authority effect
     if data["authority_effect"] != "None":
         raise BlockValidationError(
             f"authority_effect must be exactly 'None', got '{data['authority_effect']}'"
         )
 
-    # 3. Block ID
+
+def _check_block_id_and_steps(data: dict[str, Any], expected_block: int) -> None:
     expected_block_id = f"block_{expected_block:02d}"
     if data["block_id"] != expected_block_id:
         raise BlockValidationError(
             f"block_id '{data['block_id']}' does not match expected '{expected_block_id}'"
         )
-
-    # 4. Global steps
     gs = data["global_steps"]
     if not isinstance(gs, dict):
         raise BlockValidationError(f"global_steps must be a dict, got {type(gs).__name__}")
@@ -81,25 +71,39 @@ def validate_block_result(data: dict[str, Any], expected_block: int = 1, base_di
     if gs["end"] - gs["start"] + 1 != gs["count"]:
         raise BlockValidationError("global_steps count does not equal (end - start + 1)")
 
-    # 5. Status
+
+def _check_status_timestamp_and_subobjects(data: dict[str, Any]) -> None:
     if not isinstance(data["status"], str) or not data["status"]:
         raise BlockValidationError("status must be a non-empty string")
-
-    # 6. Timestamp
     if not isinstance(data["timestamp"], str) or len(data["timestamp"]) < 10:
         raise BlockValidationError("timestamp must be a valid ISO string")
-
-    # 7. Sub-objects type checks
     for field in ("kernel_results", "rust_parity", "lean4_formalization", "adversarial_audit", "verification_gates"):
         if not isinstance(data[field], dict):
             raise BlockValidationError(f"Field '{field}' must be a dict, got {type(data[field]).__name__}")
-
     for field in ("evidence_receipts", "claim_ledger_additions", "gap_register_disposition"):
         if not isinstance(data[field], list):
             raise BlockValidationError(f"Field '{field}' must be a list, got {type(data[field]).__name__}")
 
-    # 8. Evidence receipts validation
-    notes: list[str] = []
+
+def _verify_receipt_disk_file(idx: int, item: dict[str, Any], digest: str, base_dir: Path, notes: list[str]) -> None:
+    relative = Path(item["path"])
+    if relative.is_absolute():
+        raise BlockValidationError("Evidence paths must be relative to the declared root")
+    file_path = (base_dir / relative).resolve()
+    if not file_path.is_relative_to(base_dir.resolve()):
+        raise BlockValidationError("Evidence path escapes the declared root")
+    if not file_path.is_file():
+        raise BlockValidationError(f"Missing evidence file: {item['path']}")
+    actual_digest = hashlib.sha256(file_path.read_bytes()).hexdigest()
+    if actual_digest != digest:
+        raise BlockValidationError(
+            f"evidence_receipts[{idx}] digest mismatch for {item['path']}: "
+            f"declared {digest} != actual {actual_digest}"
+        )
+    notes.append(f"Receipt verified: {item['path']} ({digest[:8]}...)")
+
+
+def _check_evidence_receipts(data: dict[str, Any], base_dir: Path | None, notes: list[str]) -> None:
     if not data["evidence_receipts"]:
         raise BlockValidationError("At least one evidence receipt is required")
     for idx, item in enumerate(data["evidence_receipts"]):
@@ -112,34 +116,31 @@ def validate_block_result(data: dict[str, Any], expected_block: int = 1, base_di
         digest = item["sha256"].lower()
         if not HEX64_REGEX.match(digest):
             raise BlockValidationError(f"evidence_receipts[{idx}] sha256 is not 64 hex characters: {item['sha256']}")
-
-        # If base directory is provided and file exists, verify actual content digest
         if base_dir is not None:
-            relative = Path(item["path"])
-            if relative.is_absolute():
-                raise BlockValidationError("Evidence paths must be relative to the declared root")
-            file_path = (base_dir / relative).resolve()
-            if not file_path.is_relative_to(base_dir.resolve()):
-                raise BlockValidationError("Evidence path escapes the declared root")
-            if not file_path.is_file():
-                raise BlockValidationError(f"Missing evidence file: {item['path']}")
-            if file_path.is_file():
-                actual_digest = hashlib.sha256(file_path.read_bytes()).hexdigest()
-                if actual_digest != digest:
-                    raise BlockValidationError(
-                        f"evidence_receipts[{idx}] digest mismatch for {item['path']}: "
-                        f"declared {digest} != actual {actual_digest}"
-                    )
-                notes.append(f"Receipt verified: {item['path']} ({digest[:8]}...)")
+            _verify_receipt_disk_file(idx, item, digest, base_dir, notes)
 
-    # 9. Verification gates checks
+
+def _check_verification_gates(data: dict[str, Any], base_dir: Path | None, notes: list[str]) -> None:
     vg = data["verification_gates"]
     if not vg or any(type(value) is not bool or not value for value in vg.values()):
         raise BlockValidationError("Every declared verification gate must be exactly true")
     if base_dir is None:
         notes.append("Schema-only check: receipt bytes were not replayed")
 
-    notes.append(f"Block {expected_block_id} structure and schema successfully validated.")
+
+def validate_block_result(data: dict[str, Any], expected_block: int = 1, base_dir: Path | None = None) -> list[str]:
+    """Validate a block result dictionary against the declared C250 schema.
+
+    Returns a list of validation notes on success.
+    Raises BlockValidationError on any schema violation or check failure.
+    """
+    _check_required_fields_and_authority(data)
+    _check_block_id_and_steps(data, expected_block)
+    _check_status_timestamp_and_subobjects(data)
+    notes: list[str] = []
+    _check_evidence_receipts(data, base_dir, notes)
+    _check_verification_gates(data, base_dir, notes)
+    notes.append(f"Block block_{expected_block:02d} structure and schema successfully validated.")
     return notes
 
 
@@ -165,6 +166,34 @@ def parse_clause_expr(expr: str) -> tuple[str, str, Any]:
     raise ValueError(f"Unknown clause expression syntax: {expr}")
 
 
+def _eval_ordered_op(op_type: str, val: Any, operand: Any) -> tuple[str, str]:
+    if isinstance(val, bool) or not isinstance(val, (int, float)) or isinstance(operand, bool) or not isinstance(operand, (int, float)):
+        return "INVALID", f"cannot order-compare {val!r} with {operand!r}"
+    if not math.isfinite(val):
+        return "INVALID", f"field is not finite: {val!r}"
+    ok = {"ge": val >= operand, "le": val <= operand, "gt": val > operand, "lt": val < operand}[op_type]
+    return ("HIT" if ok else "MISS", f"field={val}, operand={operand}")
+
+
+def _eval_clause_op(op_type: str, val: Any, operand: Any) -> tuple[str, str]:
+    if op_type == "eq":
+        ok = val == operand and (isinstance(val, bool) == isinstance(operand, bool))
+        return ("HIT", "") if ok else ("MISS", f"field={val}, bet={operand}")
+    if op_type == "in":
+        ok = isinstance(val, (list, tuple, set)) and operand in val
+        return ("HIT", "") if ok else ("MISS", f"field={val}, bet={operand}")
+    if op_type == "between":
+        a, b = operand
+        ok = type(val) in (int, float) and math.isfinite(val) and a <= val <= b
+        return ("HIT", "") if ok else ("MISS", f"field={val}, range=[{a}, {b}]")
+    if op_type == "ne":
+        same = val == operand and (isinstance(val, bool) == isinstance(operand, bool))
+        return ("MISS" if same else "HIT", f"field={val!r}, excluded={operand!r}")
+    if op_type in ("ge", "le", "gt", "lt"):
+        return _eval_ordered_op(op_type, val, operand)
+    return "OPEN", "unhandled"
+
+
 def parse_and_score_clause(cid: str, forced_label: str, expr: str, result_data: dict[str, Any]) -> dict[str, Any]:
     """Score a single machine clause against result_data."""
     forced = (forced_label == "FORCED")
@@ -177,75 +206,19 @@ def parse_and_score_clause(cid: str, forced_label: str, expr: str, result_data: 
             "detail": "field missing or null",
             "expr": expr,
         }
-
     val = result_data[field]
-    if op_type == "eq":
-        if val == operand and (isinstance(val, bool) == isinstance(operand, bool)):
-            return {"cid": cid, "forced": forced, "status": "HIT", "detail": "", "expr": expr}
-        else:
-            return {
-                "cid": cid,
-                "forced": forced,
-                "status": "MISS",
-                "detail": f"field={val}, bet={operand}",
-                "expr": expr,
-            }
-    elif op_type == "in":
-        if isinstance(val, (list, tuple, set)) and operand in val:
-            return {"cid": cid, "forced": forced, "status": "HIT", "detail": "", "expr": expr}
-        else:
-            return {
-                "cid": cid,
-                "forced": forced,
-                "status": "MISS",
-                "detail": f"field={val}, bet={operand}",
-                "expr": expr,
-            }
-    elif op_type == "between":
-        a, b = operand
-        if type(val) in (int, float) and math.isfinite(val) and a <= val <= b:
-            return {"cid": cid, "forced": forced, "status": "HIT", "detail": "", "expr": expr}
-        else:
-            return {
-                "cid": cid,
-                "forced": forced,
-                "status": "MISS",
-                "detail": f"field={val}, range=[{a}, {b}]",
-                "expr": expr,
-            }
-    elif op_type in ("ne", "ge", "le", "gt", "lt"):
-        if op_type == "ne":
-            same = val == operand and (isinstance(val, bool) == isinstance(operand, bool))
-            return {
-                "cid": cid, "forced": forced,
-                "status": "MISS" if same else "HIT",
-                "detail": f"field={val!r}, excluded={operand!r}",
-                "expr": expr,
-            }
-        # Ordered comparisons need a real number on both sides. A comparison
-        # against a bool or a string is a broken clause, not a miss: say so
-        # rather than letting a TypeError abort scoring for the whole block.
-        if isinstance(val, bool) or not isinstance(val, (int, float)) \
-                or isinstance(operand, bool) or not isinstance(operand, (int, float)):
-            return {
-                "cid": cid, "forced": forced, "status": "INVALID",
-                "detail": f"cannot order-compare {val!r} with {operand!r}",
-                "expr": expr,
-            }
-        if not math.isfinite(val):
-            return {
-                "cid": cid, "forced": forced, "status": "INVALID",
-                "detail": f"field is not finite: {val!r}", "expr": expr,
-            }
-        ok = {"ge": val >= operand, "le": val <= operand,
-              "gt": val > operand, "lt": val < operand}[op_type]
-        return {
-            "cid": cid, "forced": forced,
-            "status": "HIT" if ok else "MISS",
-            "detail": f"field={val}, operand={operand}",
-            "expr": expr,
-        }
-    return {"cid": cid, "forced": forced, "status": "OPEN", "detail": "unhandled", "expr": expr}
+    status, detail = _eval_clause_op(op_type, val, operand)
+    return {"cid": cid, "forced": forced, "status": status, "detail": detail, "expr": expr}
+
+
+def _parse_bet_clause_line(s: str, bet_path: Path, result_data: dict[str, Any], clauses: list[dict[str, Any]]) -> None:
+    m = re.match(r"^(M\d+)\s+\[(FORCED|NOT FORCED)\]:\s*(.+)$", s)
+    if not m:
+        raise ValueError(f"Malformed machine clause in {bet_path}: {s}")
+    cid, forced_label, expr = m.groups()
+    if any(c["cid"] == cid for c in clauses):
+        raise ValueError(f"Duplicate machine clause {cid} in {bet_path}")
+    clauses.append(parse_and_score_clause(cid, forced_label, expr, result_data))
 
 
 def score_bet_file(bet_path: Path, result_data: dict[str, Any]) -> dict[str, Any]:
@@ -258,19 +231,10 @@ def score_bet_file(bet_path: Path, result_data: dict[str, Any]) -> dict[str, Any
         s = line.strip()
         if s.startswith("MACHINE CLAUSES"):
             in_machine = True
-            continue
         elif s.startswith("JUDGED CLAUSES") or s.startswith("WHAT WOULD FALSIFY"):
             in_machine = False
-            continue
-        if in_machine and s.startswith("M"):
-            m = re.match(r"^(M\d+)\s+\[(FORCED|NOT FORCED)\]:\s*(.+)$", s)
-            if m:
-                cid, forced_label, expr = m.groups()
-                if any(c["cid"] == cid for c in clauses):
-                    raise ValueError(f"Duplicate machine clause {cid} in {bet_path}")
-                clauses.append(parse_and_score_clause(cid, forced_label, expr, result_data))
-            else:
-                raise ValueError(f"Malformed machine clause in {bet_path}: {s}")
+        elif in_machine and s.startswith("M"):
+            _parse_bet_clause_line(s, bet_path, result_data, clauses)
 
     if not clauses:
         raise ValueError(f"No machine clauses in {bet_path}")
@@ -288,7 +252,6 @@ def score_bet_file(bet_path: Path, result_data: dict[str, Any]) -> dict[str, Any
         "open": open_count,
         "forced": forced_count,
     }
-
 
 
 def run_self_tests() -> int:

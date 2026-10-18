@@ -26,6 +26,7 @@
 
 #![forbid(unsafe_code)]
 
+extern crate self as omega_majorana;
 pub mod braid_action;
 pub mod classify;
 pub mod complexes;

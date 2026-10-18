@@ -1,19 +1,17 @@
 [package]
-autotests = false
-name = "omega_number_theory"
-version.workspace = true
+name = "tfqm_number_theory"
+version = "0.1.0"
 edition = "2021"
-description = "Foundational exact number theory: rationals, polynomials, quadratic and cyclotomic fields, real-embedding signs, finite fields, GF(2) linear algebra, character sums (AuthorityEffect None)"
-license.workspace = true
+license = "Apache-2.0"
+
+[lib]
+name = "tfqm_number_theory"
+path = "lib.rs"
 
 [dependencies]
-# The scalar tower (`Semiring`/`Ring`/`Field`/`ExactRing`) is owned by linear algebra;
-# every exact scalar here implements it so `BasicMatrix<T>` and the generic exact
-# algorithms apply to it.
-linear_algebra = { path = "../omega_linear_algebra" }
-# Tier 0: the exact rational `Interval` used for isolating intervals and enclosures.
-omega_kernel = { path = "../omega_kernel" }
-omega_combinatorics = { path = "../omega_combinatorics" }
+linear_algebra = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_linear_algebra" }
+omega_kernel = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_kernel" }
+omega_combinatorics = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_combinatorics" }
 num-rational = { version = "0.4", features = ["serde"] }
 num-bigint = { version = "0.4", features = ["serde"] }
 num-traits = "0.2"
@@ -22,55 +20,4 @@ serde = { version = "1.0", features = ["derive"] }
 thiserror = "2"
 
 [dev-dependencies]
-# Wire round-trips of the serialisable exact types.
 serde_json = "1.0"
-
-# Shared integration-test targets. Sources and fixtures live in `../tests/omega_number_theory`.
-
-[[test]]
-name = "certified_angles"
-path = "../tests/omega_number_theory/certified_angles.rs"
-
-[[test]]
-name = "cyclotomic24_identities"
-path = "../tests/omega_number_theory/cyclotomic24_identities.rs"
-
-[[test]]
-name = "cyclotomic_ring_admission"
-path = "../tests/omega_number_theory/cyclotomic_ring_admission.rs"
-
-[[test]]
-name = "cyclotomic_scalar_laws"
-path = "../tests/omega_number_theory/cyclotomic_scalar_laws.rs"
-
-[[test]]
-name = "dyadic_presentation"
-path = "../tests/omega_number_theory/dyadic_presentation.rs"
-
-[[test]]
-name = "factorization_residue"
-path = "../tests/omega_number_theory/factorization_residue.rs"
-
-[[test]]
-name = "finite_field_character_sums"
-path = "../tests/omega_number_theory/finite_field_character_sums.rs"
-
-[[test]]
-name = "gaussian_regular"
-path = "../tests/omega_number_theory/gaussian_regular.rs"
-
-[[test]]
-name = "gf2_tests"
-path = "../tests/omega_number_theory/gf2_tests.rs"
-
-[[test]]
-name = "involution_hermitian_laws"
-path = "../tests/omega_number_theory/involution_hermitian_laws.rs"
-
-[[test]]
-name = "polynomial_map"
-path = "../tests/omega_number_theory/polynomial_map.rs"
-
-[[test]]
-name = "rational_turn_character"
-path = "../tests/omega_number_theory/rational_turn_character.rs"

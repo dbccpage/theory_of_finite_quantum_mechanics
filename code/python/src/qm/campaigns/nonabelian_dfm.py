@@ -378,8 +378,7 @@ class Qm213NonAbelianDfmReceipt:
     dga_stage2_bianchi_identity_zero: bool
 
 
-def run_qm213_nonabelian_dfm_control() -> Qm213NonAbelianDfmReceipt:
-    """Execute the full QM-213 substantial-vs-artificial and hierarchical DFM control."""
+def _run_qm213_part_a_diamond() -> dict[str, Any]:
     potentials = [
         borel2(1, 0, 1),
         borel2(2, 3, Fraction(1, 2)),
@@ -417,7 +416,19 @@ def run_qm213_nonabelian_dfm_control() -> Qm213NonAbelianDfmReceipt:
     u_curv = [borel2(2, 1, 1), borel2(1, 2, 3), id2(), id2(), id2()]
     verdict_curv = classify_punctured_diamond_connection(u_curv)
 
-    # Part (b): Two-stage hierarchical non-Abelian subgroup dressing N <| B_2(Q)
+    return {
+        "verdict_art": verdict_art,
+        "art_all_id": art_all_id,
+        "verdict_sub": verdict_sub,
+        "face_f0_sub": face_f0_sub,
+        "sub_tree_only": sub_tree_only,
+        "second_kind_intertwiner": second_kind_intertwiner,
+        "second_kind_invariants": second_kind_invariants,
+        "verdict_curv": verdict_curv,
+    }
+
+
+def _run_qm213_part_b_hierarchical() -> dict[str, Any]:
     borel_conn = [
         borel2(2, 3, Fraction(1, 2)),
         borel2(3, -1, 2),
@@ -458,7 +469,19 @@ def run_qm213_nonabelian_dfm_control() -> Qm213NonAbelianDfmReceipt:
         mat2_mul(u_t_vec[v], u_n_vec[v]) == full_dressing[v] for v in range(4)
     )
 
-    # Part (c): Poset Restriction DGA on P_5
+    return {
+        "u_n_vec": u_n_vec,
+        "u_t_vec": u_t_vec,
+        "stage1_tree_diag": stage1_tree_diag,
+        "stage1_preserves_quot": stage1_preserves_quot,
+        "stage1_residual_diag": stage1_residual_diag,
+        "conn_stage2": conn_stage2,
+        "full_residual": full_residual,
+        "factorization_matches": factorization_matches,
+    }
+
+
+def _run_qm213_part_c_poset() -> dict[str, Any]:
     m01 = mat2(2, 1, 0, 1)
     m13 = mat2(1, 3, 0, 2)
     m02_flat = mat2(1, 2, 0, 2)
@@ -524,37 +547,61 @@ def run_qm213_nonabelian_dfm_control() -> Qm213NonAbelianDfmReceipt:
     u_tot_p5 = [mat2_mul(t_m, n_m) for t_m, n_m in zip(t_p5, u_n_p5)]
     k_composite = dga_gauge(2, k_cochain, u_tot_p5)
 
+    return {
+        "ok_flat": ok_flat,
+        "flat_curv_zero": flat_curv_zero,
+        "path_dep_global_red": path_dep_global_red,
+        "b2_a": b2_a,
+        "k_cochain": k_cochain,
+        "bianchi_0": bianchi_0,
+        "k_from_a_u_n": k_from_a_u_n,
+        "k_gauged_u_n": k_gauged_u_n,
+        "bianchi_1": bianchi_1,
+        "stage1_preserves_diag_k": stage1_preserves_diag_k,
+        "k_from_a_stage2": k_from_a_stage2,
+        "k_gauged_stage2": k_gauged_stage2,
+        "k_composite": k_composite,
+        "bianchi_2": bianchi_2,
+    }
+
+
+def run_qm213_nonabelian_dfm_control() -> Qm213NonAbelianDfmReceipt:
+    """Execute the full QM-213 substantial-vs-artificial and hierarchical DFM control."""
+    a = _run_qm213_part_a_diamond()
+    b = _run_qm213_part_b_hierarchical()
+    c = _run_qm213_part_c_poset()
+
     return Qm213NonAbelianDfmReceipt(
-        artificial_verdict=verdict_art,
-        artificial_local_dressing_neutralizes_all_edges=art_all_id,
-        artificial_poset_flat_cover_extension_is_ok=ok_flat,
-        artificial_poset_extended_curvature_is_zero=flat_curv_zero,
-        substantial_verdict=verdict_sub,
-        substantial_face_f0_is_local_green=(face_f0_sub == id2()),
-        substantial_tree_dressing_neutralizes_tree_only=sub_tree_only,
-        substantial_poset_returns_path_dependent_global_red=path_dep_global_red,
-        second_kind_tree_change_intertwiner_exact=second_kind_intertwiner,
-        second_kind_cycle_traces_and_dets_invariant=second_kind_invariants,
-        curved_verdict=verdict_curv,
+        artificial_verdict=a["verdict_art"],
+        artificial_local_dressing_neutralizes_all_edges=a["art_all_id"],
+        artificial_poset_flat_cover_extension_is_ok=c["ok_flat"],
+        artificial_poset_extended_curvature_is_zero=c["flat_curv_zero"],
+        substantial_verdict=a["verdict_sub"],
+        substantial_face_f0_is_local_green=(a["face_f0_sub"] == id2()),
+        substantial_tree_dressing_neutralizes_tree_only=a["sub_tree_only"],
+        substantial_poset_returns_path_dependent_global_red=c["path_dep_global_red"],
+        second_kind_tree_change_intertwiner_exact=a["second_kind_intertwiner"],
+        second_kind_cycle_traces_and_dets_invariant=a["second_kind_invariants"],
+        curved_verdict=a["verdict_curv"],
         stage1_u_n_all_in_normal_unipotent_subgroup=all(
-            is_unit_upper_triangular(m) for m in u_n_vec
+            is_unit_upper_triangular(m) for m in b["u_n_vec"]
         ),
-        stage1_tree_edges_reduced_to_diagonal_quotient=stage1_tree_diag,
-        stage1_preserves_b_mod_n_projection_on_all_edges=stage1_preserves_quot,
-        stage1_residual_first_kind_torus_preserves_diagonal_tree=stage1_residual_diag,
-        stage2_u_t_all_in_diagonal_torus=all(is_diagonal_2x2(m) for m in u_t_vec),
-        two_stage_factorization_matches_full_tree_gauge=factorization_matches,
-        stage2_matches_tree_gauge_residual_exactly=(conn_stage2 == full_residual),
+        stage1_tree_edges_reduced_to_diagonal_quotient=b["stage1_tree_diag"],
+        stage1_preserves_b_mod_n_projection_on_all_edges=b["stage1_preserves_quot"],
+        stage1_residual_first_kind_torus_preserves_diagonal_tree=b["stage1_residual_diag"],
+        stage2_u_t_all_in_diagonal_torus=all(is_diagonal_2x2(m) for m in b["u_t_vec"]),
+        two_stage_factorization_matches_full_tree_gauge=b["factorization_matches"],
+        stage2_matches_tree_gauge_residual_exactly=(b["conn_stage2"] == b["full_residual"]),
         dga_poset_vertex_count=5,
         dga_poset_two_chain_count=len(poset_p5_chains(2)),
         dga_poset_three_chain_count=len(poset_p5_chains(3)),
-        dga_b_squared_zero_on_a=all(m == zero2() for m in b2_a.values()),
-        dga_undressed_curvature_nonzero=any(m != zero2() for m in k_cochain.values()),
-        dga_undressed_bianchi_identity_zero=all(m == zero2() for m in bianchi_0.values()),
-        dga_stage1_curvature_equals_gauged_curvature=(k_from_a_u_n == k_gauged_u_n),
-        dga_stage1_preserves_diagonal_b_mod_n_curvature=stage1_preserves_diag_k,
-        dga_stage1_bianchi_identity_zero=all(m == zero2() for m in bianchi_1.values()),
-        dga_quotient_b_mod_n_covariance_exact=(k_from_a_stage2 == k_gauged_stage2),
-        dga_composite_two_stage_curvature_matches=(k_from_a_stage2 == k_composite),
-        dga_stage2_bianchi_identity_zero=all(m == zero2() for m in bianchi_2.values()),
+        dga_b_squared_zero_on_a=all(m == zero2() for m in c["b2_a"].values()),
+        dga_undressed_curvature_nonzero=any(m != zero2() for m in c["k_cochain"].values()),
+        dga_undressed_bianchi_identity_zero=all(m == zero2() for m in c["bianchi_0"].values()),
+        dga_stage1_curvature_equals_gauged_curvature=(c["k_from_a_u_n"] == c["k_gauged_u_n"]),
+        dga_stage1_preserves_diagonal_b_mod_n_curvature=c["stage1_preserves_diag_k"],
+        dga_stage1_bianchi_identity_zero=all(m == zero2() for m in c["bianchi_1"].values()),
+        dga_quotient_b_mod_n_covariance_exact=(c["k_from_a_stage2"] == c["k_gauged_stage2"]),
+        dga_composite_two_stage_curvature_matches=(c["k_from_a_stage2"] == c["k_composite"]),
+        dga_stage2_bianchi_identity_zero=all(m == zero2() for m in c["bianchi_2"].values()),
     )

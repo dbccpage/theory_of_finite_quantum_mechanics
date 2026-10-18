@@ -11,7 +11,7 @@
 
 use crate::cochain_complex::{CochainComplex, TheoremProvenance};
 use crate::errors::HomologicalError;
-use crate::crate::crate::linear_algebra::scalars::Q;
+use crate::linear_algebra::scalars::Q;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
 use num_traits::Zero;

@@ -11,7 +11,7 @@
 
 use crate::linear_algebra::matrix as mx;
 use omega_number_theory::cyclotomic::GaussianRat;
-use omega_quantum_physics::refinement_tower::ObservableEmbedding;
+use omega_quantum_physics::refinement_subsystem_tower::ObservableEmbedding;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

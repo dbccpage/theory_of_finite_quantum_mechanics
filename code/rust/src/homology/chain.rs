@@ -3,7 +3,7 @@
 use crate::errors::HomologicalError;
 use crate::hashing::{hash_vector, Hash256};
 use crate::ids::{BasisId, Degree};
-use crate::crate::crate::linear_algebra::scalars::Q;
+use crate::linear_algebra::scalars::Q;
 use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 
@@ -120,7 +120,7 @@ mod tests {
     use num_rational::Rational64;
 
     fn r(n: i64, d: i64) -> Q {
-        crate::crate::crate::linear_algebra::scalars::qr(n, d)
+        crate::linear_algebra::scalars::qr(n, d)
     }
 
     fn test_basis_id() -> BasisId {

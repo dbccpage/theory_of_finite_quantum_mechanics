@@ -12,7 +12,7 @@
 use serde_json::json;
 
 use num_bigint::BigInt;
-use omega_quantum_physics::axiom_selection::{
+use omega_quantum_physics::operational_axiom_selection::{
     local_tomography_dimensions, FiniteRivalTheory, OperationalModelError,
 };
 /// The report dispatches to checked arbitrary-precision carrier dimensions.
@@ -44,7 +44,7 @@ fn checked_naimark_fixture() -> bool {
     use crate::linear_algebra::matrix;
     use omega_number_theory::{cyclotomic::GaussianRat, rational::rq};
     use omega_quantum_physics::instruments::ExactPovm;
-    use omega_quantum_physics::axiom_selection::{
+    use omega_quantum_physics::operational_axiom_selection::{
         naimark_projective_dilation, verify_naimark_certificate,
     };
     let q = |r| GaussianRat::from_rational(r);

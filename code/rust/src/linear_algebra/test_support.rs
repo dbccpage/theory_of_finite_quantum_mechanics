@@ -8,7 +8,7 @@
 //! AuthorityEffect: None.
 
 use crate::linear_algebra::basic_matrix::BasicMatrix;
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field, Ring, Semiring};
+use crate::linear_algebra::scalars::{ExactRing, Field, Ring, Semiring};
 use num_bigint::BigInt;
 use num_rational::BigRational;
 

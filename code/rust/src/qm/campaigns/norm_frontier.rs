@@ -18,7 +18,7 @@ use serde::{Deserialize, Serialize};
 use omega_number_theory::rational::{ri, rq, Rational};
 
 use omega_number_theory::rational_circle::{nearest_root_of_unity, phase_distance_on_circle};
-use omega_quantum_physics::norm_frontier::{clock_shift_winding, NormFrontierError};
+use omega_quantum_physics::norm_approximation_frontier::{clock_shift_winding, NormFrontierError};
 
 /// Result of verifying the direct-CCR defect lower bounds.
 #[derive(Debug, Clone, Serialize, Deserialize)]

@@ -1,5 +1,5 @@
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError};
-use crate::crate::crate::crate::linear_algebra::scalars::CheckedExactField;
+use crate::linear_algebra::scalars::CheckedExactField;
 use num_rational::Rational64;
 use thiserror::Error;
 

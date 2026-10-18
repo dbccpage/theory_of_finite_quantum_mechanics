@@ -196,6 +196,60 @@ def build_octahedron_packet() -> CochainPacket:
     return CochainPacket(cochain.Complex(n_vertices=6, edges=edges, faces=faces))
 
 
+def _invert_rational_matrix_simplicial(b_mat: list[list[Fraction]], n: int) -> list[list[Fraction]]:
+    aug = [[Fraction(b_mat[i][j]) for j in range(n)] + [Fraction(1 if i == k else 0) for k in range(n)] for i in range(n)]
+    for col in range(n):
+        pivot_r = None
+        for r in range(col, n):
+            if aug[r][col] != 0:
+                pivot_r = r
+                break
+        if pivot_r is None:
+            raise ValueError("Matrix I + tau*X is singular over Q")
+        if pivot_r != col:
+            aug[col], aug[pivot_r] = aug[pivot_r], aug[col]
+        pivot = aug[col][col]
+        for c in range(2 * n):
+            aug[col][c] /= pivot
+        for r in range(n):
+            if r != col and aug[r][col] != 0:
+                fac = aug[r][col]
+                for c in range(2 * n):
+                    aug[r][c] -= fac * aug[col][c]
+    return [[aug[i][n + j] for j in range(n)] for i in range(n)]
+
+
+def _compute_rational_cayley_simplicial(
+    edges: list[tuple[int, int]],
+    n: int,
+    raw_flow: list[Fraction],
+    tau: float | Fraction,
+) -> list[list[Fraction]] | None:
+    if not isinstance(tau, (Fraction, int)):
+        return None
+    tau_frac = Fraction(tau)
+    x_frac = [[Fraction(0) for _ in range(n)] for _ in range(n)]
+    for k, (u, v) in enumerate(edges):
+        val_frac = Fraction(raw_flow[k])
+        x_frac[v][u] += val_frac
+        x_frac[u][v] -= val_frac
+    i_frac = [[Fraction(1 if i == j else 0) for j in range(n)] for i in range(n)]
+    a_frac = [[i_frac[i][j] - tau_frac * x_frac[i][j] for j in range(n)] for i in range(n)]
+    b_frac = [[i_frac[i][j] + tau_frac * x_frac[i][j] for j in range(n)] for i in range(n)]
+    b_inv_frac = _invert_rational_matrix_simplicial(b_frac, n)
+    return [[sum(a_frac[i][k] * b_inv_frac[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
+
+
+def _check_gauss_law(n: int, f_count: int, faces: list[Any], flow: np.ndarray) -> tuple[list[float], float, bool]:
+    face_fluxes = [float(sum(sign * flow[e] for e, sign in face)) for face in faces]
+    if n == 4 and f_count == 4:
+        total_boundary_flux = float(sum(s * fl for s, fl in zip([1.0, -1.0, 1.0, -1.0], face_fluxes)))
+    else:
+        total_boundary_flux = float(sum(face_fluxes))
+    gauss_law_satisfied = bool(abs(total_boundary_flux) < 1e-11)
+    return face_fluxes, total_boundary_flux, gauss_law_satisfied
+
+
 def cayley_evolution_on_simplicial_3complex(
     packet: CochainPacket | cochain.Complex,
     tau: float | Fraction,
@@ -204,7 +258,7 @@ def cayley_evolution_on_simplicial_3complex(
     cochain_flow: np.ndarray | None = None,
 ) -> dict[str, Any]:
     """Loop 1: Discrete Cayley evolution on simplicial 3-complexes with boundary 2-spheres.
-    
+
     Verifies:
       1. Boundary nilpotence d1 d0 = 0 and Euler characteristic chi = 2 (2-sphere topology).
       2. Skew-symmetric flow generator X in so(V, Q) derived from directed 1-cochains.
@@ -223,7 +277,6 @@ def cayley_evolution_on_simplicial_3complex(
     if steps < 0:
         raise ValueError("steps must be non-negative")
 
-    # Directed 1-cochain flow on edges
     if cochain_flow is not None:
         raw_flow = list(cochain_flow)
         if len(raw_flow) != e_count:
@@ -233,7 +286,6 @@ def cayley_evolution_on_simplicial_3complex(
         raw_flow = [Fraction(cx.weight_vector[i]) * (Fraction(1) if i % 2 == 0 else Fraction(-1)) for i in range(e_count)]
         flow = np.array([float(x) for x in raw_flow], dtype=float)
 
-    # Skew-symmetric adjacency generator X on vertex space C^0: X_vu = +flow_k, X_uv = -flow_k
     X = np.zeros((n, n), dtype=float)
     for k, (u, v) in enumerate(cx.edges):
         val = float(flow[k])
@@ -243,49 +295,13 @@ def cayley_evolution_on_simplicial_3complex(
     if not np.allclose(X, -X.T, atol=1e-12):
         raise ValueError("Flow generator must be skew-symmetric")
 
-    # Exact rational Cayley transform when tau is Fraction or int
-    is_exact_fraction = isinstance(tau, (Fraction, int))
-    rational_u = None
-    if is_exact_fraction:
-        tau_frac = Fraction(tau)
-        X_frac = [[Fraction(0) for _ in range(n)] for _ in range(n)]
-        for k, (u, v) in enumerate(cx.edges):
-            val_frac = Fraction(raw_flow[k])
-            X_frac[v][u] += val_frac
-            X_frac[u][v] -= val_frac
-        I_frac = [[Fraction(1 if i == j else 0) for j in range(n)] for i in range(n)]
-        A_frac = [[I_frac[i][j] - tau_frac * X_frac[i][j] for j in range(n)] for i in range(n)]
-        B_frac = [[I_frac[i][j] + tau_frac * X_frac[i][j] for j in range(n)] for i in range(n)]
+    rational_u = _compute_rational_cayley_simplicial(cx.edges, n, raw_flow, tau)
 
-        aug = [[Fraction(B_frac[i][j]) for j in range(n)] + [Fraction(1 if i == k else 0) for k in range(n)] for i in range(n)]
-        for col in range(n):
-            pivot_r = None
-            for r in range(col, n):
-                if aug[r][col] != 0:
-                    pivot_r = r
-                    break
-            if pivot_r is None:
-                raise ValueError("Matrix I + tau*X is singular over Q")
-            if pivot_r != col:
-                aug[col], aug[pivot_r] = aug[pivot_r], aug[col]
-            pivot = aug[col][col]
-            for c in range(2 * n):
-                aug[col][c] /= pivot
-            for r in range(n):
-                if r != col and aug[r][col] != 0:
-                    fac = aug[r][col]
-                    for c in range(2 * n):
-                        aug[r][c] -= fac * aug[col][c]
-        B_inv_frac = [[aug[i][n + j] for j in range(n)] for i in range(n)]
-        rational_u = [[sum(A_frac[i][k] * B_inv_frac[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
-
-    # Floating-point evaluation for state evolution
     tau_fl = float(tau)
     I_fl = np.eye(n, dtype=float)
     u_mat = (I_fl - tau_fl * X) @ np.linalg.inv(I_fl + tau_fl * X)
     is_orthogonal = bool(np.allclose(u_mat.T @ u_mat, I_fl, atol=1e-9))
     det_val = float(np.linalg.det(u_mat))
-
     u_evolved = np.linalg.matrix_power(u_mat, steps)
 
     evolved_state = None
@@ -299,16 +315,7 @@ def cayley_evolution_on_simplicial_3complex(
         norm_out = np.linalg.norm(evolved_state)
         norm_preserved = bool(np.isclose(norm_in, norm_out, atol=1e-9))
 
-    # Discrete Gauss Law: compute face circulations / fluxes
-    face_fluxes = [float(sum(sign * flow[e] for e, sign in face)) for face in cx.faces]
-    if n == 4 and f_count == 4:
-        # 3-simplex boundary orientation signs (1, -1, 1, -1)
-        total_boundary_flux = float(sum(s * fl for s, fl in zip([1.0, -1.0, 1.0, -1.0], face_fluxes)))
-    else:
-        # Standard triangulated sphere boundary sum
-        total_boundary_flux = float(sum(face_fluxes))
-
-    gauss_law_satisfied = bool(abs(total_boundary_flux) < 1e-11)
+    face_fluxes, total_boundary_flux, gauss_law_satisfied = _check_gauss_law(n, f_count, cx.faces, flow)
 
     return {
         "n_vertices": n,
@@ -326,10 +333,6 @@ def cayley_evolution_on_simplicial_3complex(
         "gauss_law_satisfied": gauss_law_satisfied,
     }
 
-
-# --------------------------------------------------------------------------- #
-# Loop 2: Octahedral MUB Frame Polytope, Clifton-Kent Spectrum & Stabilizers
-# --------------------------------------------------------------------------- #
 
 def build_octahedral_mub_polytope() -> dict[str, Any]:
     """Loop 2: Constructs the 6-vertex Octahedral MUB frame polytope.

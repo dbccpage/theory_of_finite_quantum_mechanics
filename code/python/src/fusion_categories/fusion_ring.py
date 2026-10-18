@@ -9,7 +9,7 @@ A FusionRing is a table that has passed the ring laws.
 from __future__ import annotations
 import math
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, Sequence
+from typing import List, Tuple, Optional, Sequence, Dict
 from enum import Enum
 
 
@@ -146,10 +146,8 @@ class FusionTable:
             raise IndexError("Label out of bounds")
         return self._n[(a * self._rank + b) * self._rank + c]
 
-    def first_defect(self) -> Optional[RingDefect]:
+    def _check_unit_defect(self) -> Optional[RingDefect]:
         r = self._rank
-
-        # 1. Unit law: 0 x a = a and a x 0 = a
         for a in range(r):
             for c in range(r):
                 expected = 1 if c == a else 0
@@ -159,8 +157,10 @@ class FusionTable:
                         f"Unit law fails on label {a}",
                         (a,)
                     )
+        return None
 
-        # 2. Commutativity: a x b == b x a
+    def _check_commutativity_defect(self) -> Optional[RingDefect]:
+        r = self._rank
         for a in range(r):
             for b in range(a + 1, r):
                 for c in range(r):
@@ -170,8 +170,10 @@ class FusionTable:
                             f"Labels {a} and {b} do not commute",
                             (a, b)
                         )
+        return None
 
-        # 3. Associativity: (a x b) x c == a x (b x c)
+    def _check_associativity_defect(self) -> Optional[RingDefect]:
+        r = self._rank
         for a in range(r):
             for b in range(r):
                 for c in range(r):
@@ -184,36 +186,39 @@ class FusionTable:
                                 f"Associativity fails on ({a}, {b}, {c}) for outcome {d}",
                                 (a, b, c, d)
                             )
+        return None
 
-        # 4. Duality: unique b such that N_{ab}^0 == 1
-        duals = {}
+    def _check_duality_defect(self) -> Tuple[Optional[RingDefect], Dict[int, int]]:
+        r = self._rank
+        duals: Dict[int, int] = {}
         for a in range(r):
             dual_candidates = [b for b in range(r) if self.n(a, b, 0) == 1]
             if len(dual_candidates) != 1:
-                return RingDefect(
+                return (RingDefect(
                     RingDefectType.DUALITY,
                     f"Label {a} does not have a unique dual",
                     (a,)
-                )
+                ), {})
             b = dual_candidates[0]
             if sum(self.n(a, x, 0) for x in range(r)) != 1:
-                return RingDefect(
+                return (RingDefect(
                     RingDefectType.DUALITY,
                     f"Label {a} has non-unique unit occurrence",
                     (a,)
-                )
+                ), {})
             duals[a] = b
 
-        # Check duality involution: dual(dual(a)) == a
         for a, b in duals.items():
             if duals.get(b) != a:
-                return RingDefect(
+                return (RingDefect(
                     RingDefectType.DUALITY,
                     f"Duality is not an involution: dual({a}) = {b}, dual({b}) = {duals.get(b)}",
                     (a,)
-                )
+                ), {})
+        return (None, duals)
 
-        # 5. Frobenius reciprocity: N_{ab}^c == N_{a* c}^b == N_{c b*}^a
+    def _check_reciprocity_defect(self, duals: Dict[int, int]) -> Optional[RingDefect]:
+        r = self._rank
         for a in range(r):
             a_star = duals[a]
             for b in range(r):
@@ -226,8 +231,22 @@ class FusionTable:
                             f"Frobenius reciprocity fails on ({a}, {b}, {c})",
                             (a, b, c)
                         )
-
         return None
+
+    def first_defect(self) -> Optional[RingDefect]:
+        defect = self._check_unit_defect()
+        if defect is not None:
+            return defect
+        defect = self._check_commutativity_defect()
+        if defect is not None:
+            return defect
+        defect = self._check_associativity_defect()
+        if defect is not None:
+            return defect
+        defect, duals = self._check_duality_defect()
+        if defect is not None:
+            return defect
+        return self._check_reciprocity_defect(duals)
 
 
 class FusionRing:
@@ -284,24 +303,27 @@ class FusionRing:
             v = next_v
         return v[target]
 
-    def frobenius_perron_dimension(self, a: int) -> float:
-        """Computes the Frobenius-Perron dimension d_a as the spectral radius of N_a.
-        Uses a shifted power iteration (N_a + I) to guarantee Perron-Frobenius convergence."""
-        mat = self.fusion_matrix(a)
-        r = self._rank
-        if r == 1:
-            return 1.0
-        # Shifted matrix M = N_a + I
-        M = [[mat[i][j] + (1 if i == j else 0) for j in range(r)] for i in range(r)]
+    @staticmethod
+    def _power_iteration(matrix: List[List[int]], r: int) -> float:
         v = [1.0] * r
         for _ in range(150):
-            next_v = [sum(M[i][j] * v[j] for j in range(r)) for i in range(r)]
+            next_v = [sum(matrix[i][j] * v[j] for j in range(r)) for i in range(r)]
             norm = math.sqrt(sum(x * x for x in next_v))
             if norm == 0:
                 return 0.0
             v = [x / norm for x in next_v]
-        rayleigh_M = sum(v[i] * sum(M[i][j] * v[j] for j in range(r)) for i in range(r))
-        return max(0.0, rayleigh_M - 1.0)
+        return sum(v[i] * sum(matrix[i][j] * v[j] for j in range(r)) for i in range(r))
+
+    def frobenius_perron_dimension(self, a: int) -> float:
+        """Computes the Frobenius-Perron dimension d_a as the spectral radius of N_a.
+        Uses a shifted power iteration (N_a + I) to guarantee Perron-Frobenius convergence."""
+        r = self._rank
+        if r == 1:
+            return 1.0
+        mat = self.fusion_matrix(a)
+        m = [[mat[i][j] + (1 if i == j else 0) for j in range(r)] for i in range(r)]
+        rayleigh_m = self._power_iteration(m, r)
+        return max(0.0, rayleigh_m - 1.0)
 
     def global_dimension_squared(self) -> float:
         return sum(self.frobenius_perron_dimension(a) ** 2 for a in range(self._rank))

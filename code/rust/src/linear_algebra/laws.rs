@@ -33,7 +33,7 @@
 use crate::linear_algebra::involution::Involution;
 use crate::linear_algebra::ordered::{HermitianOrdered, OrderedExactField};
 use crate::linear_algebra::ExactFieldError;
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 
 fn violated(law: &'static str) -> Result<(), ExactFieldError> {
     Err(ExactFieldError::LawViolated { law })
@@ -372,7 +372,7 @@ mod tests {
         // the norm of √2 is −2 < 0.
         #[derive(Debug, Clone, PartialEq, Eq)]
         struct Galois(QSqrt2);
-        use crate::crate::crate::crate::linear_algebra::scalars::{Ring, Semiring};
+        use crate::linear_algebra::scalars::{Ring, Semiring};
         impl Semiring for Galois {
             fn zero() -> Self {
                 Galois(<QSqrt2 as Semiring>::zero())

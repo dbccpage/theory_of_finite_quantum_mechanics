@@ -18,6 +18,7 @@
 //!
 //! AuthorityEffect: None. Not PROVED. Not GlobalGreen.
 
+extern crate self as omega_fusion_categories;
 pub mod braid_group;
 pub mod braided;
 pub mod catalog;

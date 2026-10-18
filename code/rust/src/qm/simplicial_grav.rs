@@ -10,7 +10,7 @@ use omega_number_theory::rational::{ri, rq, Rational as Q};
 use serde_json::{json, Value};
 use std::collections::BTreeMap;
 
-pub use omega_quantum_physics::simplicial_entropy_schedule::{
+pub use crate::qm::domain::simplicial_entropy_schedule::{
     area_model, page_curve, AreaModel, PageStep,
 };
 

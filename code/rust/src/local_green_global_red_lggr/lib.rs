@@ -16,6 +16,7 @@
 //! **AuthorityEffect: None.**
 
 /// Exact rational matrix specialization, with native graph/holonomy owners.
+extern crate self as omega_local_green_global_red_lggr;
 pub mod matrix_path_kernel;
 pub mod lggr_engine;
 pub use lggr_engine as epk_engine;

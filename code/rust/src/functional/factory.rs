@@ -724,7 +724,7 @@ mod tests {
     fn independent_python_vectors_bind_every_serialized_record_field() {
         let vectors: serde_json::Value = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../tests/omega_functional/fixtures/functional_factory_vectors.json"
+            "/fixtures/functional_factory_vectors.json"
         )))
         .unwrap();
         assert_eq!(vectors["AuthorityEffect"], "None");

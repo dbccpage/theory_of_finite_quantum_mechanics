@@ -1,17 +1,18 @@
 [package]
-autotests = false
-name = "omega_epk"
-version.workspace = true
+name = "tfqm_local_green_global_red_lggr"
+version = "0.1.0"
 edition = "2021"
-description = "Evaluated Path Kernels (LGGR I, II, III, and V: exact path composition, soundness check, and detector adequacy)."
-authors = ["Anomalon Contributors"]
-license.workspace = true
+license = "Apache-2.0"
+
+[lib]
+name = "tfqm_local_green_global_red_lggr"
+path = "lib.rs"
 
 [dependencies]
 blake3 = "1.8"
-omega_policy = { path = "../omega_policy" }
-omega_holonomy = { path = "../omega_holonomy" }
-omega_homology = { path = "../omega_homology" }
+omega_policy = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_policy" }
+omega_holonomy = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_holonomy" }
+omega_homology = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_homology" }
 num-bigint = { version = "0.4", features = ["serde"] }
 num-rational = { version = "0.4", features = ["serde"] }
 num-traits = "0.2"
@@ -19,48 +20,10 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 sha2 = "0.10"
 thiserror = "2"
-omega_types = { path = "../omega_types" }
-omega_functional = { path = "../omega_functional" }
-omega_replay = { path = "../omega_replay" }
-omega_linear_algebra = { package = "linear_algebra", path = "../omega_linear_algebra" }
+omega_types = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_types" }
+omega_functional = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_functional" }
+omega_replay = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_replay" }
+omega_linear_algebra = { package = "linear_algebra", path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_linear_algebra" }
 
 [dev-dependencies]
-omega_kernel = { path = "../omega_kernel" }
-
-# Shared integration-test targets. Sources and fixtures live in `../tests/omega_local_green_global_red_lggr`.
-
-[[test]]
-name = "lggr_prime_seam"
-path = "../tests/omega_local_green_global_red_lggr/lggr_prime_seam.rs"
-
-[[test]]
-name = "residual_family_wiring"
-path = "../tests/omega_local_green_global_red_lggr/residual_family_wiring.rs"
-
-[[test]]
-name = "v2_field_isolation"
-path = "../tests/omega_local_green_global_red_lggr/v2_field_isolation.rs"
-
-[[test]]
-name = "canary_no_raw_payload"
-path = "../tests/omega_local_green_global_red_lggr/canary_no_raw_payload.rs"
-
-[[test]]
-name = "cross_instance_stability"
-path = "../tests/omega_local_green_global_red_lggr/cross_instance_stability.rs"
-
-[[test]]
-name = "recurrence_accounting"
-path = "../tests/omega_local_green_global_red_lggr/recurrence_accounting.rs"
-
-[[test]]
-name = "round_trip_gamma2_zero"
-path = "../tests/omega_local_green_global_red_lggr/round_trip_gamma2_zero.rs"
-
-[[test]]
-name = "terminalize_row_seal"
-path = "../tests/omega_local_green_global_red_lggr/terminalize_row_seal.rs"
-
-[[test]]
-name = "wire_phi1_gamma2"
-path = "../tests/omega_local_green_global_red_lggr/wire_phi1_gamma2.rs"
+omega_kernel = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_kernel" }

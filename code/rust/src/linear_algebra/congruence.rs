@@ -32,7 +32,7 @@ use crate::linear_algebra::matrix::{multiply, transpose};
 use crate::linear_algebra::{
     charge, element_count, inverse_of, plus, require_square, reserve, times, ExactFieldError, Grid,
 };
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 
 /// `S* A S = diag(D)` with `S` invertible: a congruence certificate for `A`.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -259,7 +259,7 @@ mod tests {
     use crate::linear_algebra::test_support::{
         gi, gq, m, q, random_matrix, Fp, GaussianRational, Rng,
     };
-    use crate::crate::crate::crate::linear_algebra::scalars::Semiring;
+    use crate::linear_algebra::scalars::Semiring;
     use num_rational::BigRational;
 
     type Q = BigRational;

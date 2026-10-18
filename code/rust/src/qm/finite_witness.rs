@@ -6,7 +6,7 @@ use serde::Serialize;
 use serde_json::Value;
 use std::str::FromStr;
 
-pub const CLAIMS: &str = include_str!("../../python/finite_qm/data/quantum_claims.json");
+pub const CLAIMS: &str = include_str!("data/quantum_claims.json");
 pub fn qstr(q: &Q) -> String {
     if q.denom() == &BigInt::from(1) {
         q.numer().to_string()

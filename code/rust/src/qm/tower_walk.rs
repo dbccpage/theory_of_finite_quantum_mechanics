@@ -31,9 +31,9 @@
 use num_traits::Zero;
 use omega_number_theory::rational::Rational;
 use omega_quantum_physics::composition_tomography::LocalTomographyReport;
-use omega_quantum_physics::separating_preds::MerminPeresSquare;
+use omega_quantum_physics::separating_predictions::MerminPeresSquare;
 
-use crate::m2_quantum_packet::{verify, M2Refusal};
+use crate::qm::quantum_packet::{verify, M2Refusal};
 use omega_quantum_physics::gauge_cochain_complex::M2Packet;
 
 /// The status attached to each transition of the walk.

@@ -1,5 +1,4 @@
 // AuthorityEffect: None.
-use num_traits::Zero;
 use sha2::{Digest, Sha256};
 
 use crate::coda::layer1_foc::Layer1Foc;
@@ -26,27 +25,25 @@ pub fn evaluate_coda_pipeline_with_grant(
     let mut records = Vec::with_capacity(9);
 
     // Stage 1: FOC (Finite Obstruction Calculus)
-    let (rec1, phi1, gamma2, witness, witness_payload, primal_repair) =
-        match Layer1Foc::evaluate_with_payload(problem, &num_rational::BigRational::zero()) {
-            Ok(measured) => measured,
-            Err(record) => {
-                records.push(record);
-                let digest = evidence_digest(problem, external_grant, &records);
-                return Layer9CodaGtla::terminalize_with_payload(
-                    problem,
-                    None,
-                    None,
-                    None,
-                    None,
-                    crate::coda::types::FirewallDecision::RouteRefused,
-                    None,
-                    records,
-                    Some("Invalid cochain complex or unverified quotient certificate".into()),
-                    None,
-                    digest,
-                );
-            }
-        };
+    let (rec1, phi1, gamma2, witness, primal_repair) = match Layer1Foc::evaluate(problem) {
+        Ok(measured) => measured,
+        Err(record) => {
+            records.push(record);
+            let digest = evidence_digest(problem, external_grant, &records);
+            return Layer9CodaGtla::terminalize(
+                problem,
+                None,
+                None,
+                None,
+                crate::coda::types::FirewallDecision::RouteRefused,
+                None,
+                records,
+                Some("Invalid cochain complex or unverified quotient certificate".into()),
+                None,
+                digest,
+            );
+        }
+    };
     records.push(rec1);
 
     // Stage 2: MUR (Meta & Universal Re-Presentation)
@@ -82,12 +79,11 @@ pub fn evaluate_coda_pipeline_with_grant(
     let evidence_digest = evidence_digest(problem, external_grant, &records);
 
     // Stage 9: CODA_GTLA (General Theory of Layered Authority & Master Normal Form)
-    Layer9CodaGtla::terminalize_with_payload(
+    Layer9CodaGtla::terminalize(
         problem,
         Some(phi1),
         Some(gamma2),
         witness,
-        witness_payload,
         decision,
         token,
         records,

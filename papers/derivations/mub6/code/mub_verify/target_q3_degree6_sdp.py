@@ -186,38 +186,18 @@ def cyc_real_constant_coefficient(z: Cyc24) -> Fraction:
     return re.coeffs[0]
 
 
-def build_degree6_invariant_diagnostic_matrix(
-    g: Sequence[Sequence[Cyc24]],
-) -> List[List[Fraction]]:
-    """Construct the experimental 21x21 rational coefficient matrix.
-
-    The intended monomial labels below are not established moment identities.
-
-    Monomial basis:
-    - 0: 1 (identity)
-    - 1..4: A_a = sum_{i=0..5} Pi_{a, i} for a in 0..3 (4 elements)
-    - 5..10: P_{ab} = sum_{i=0..5} Pi_{a, i} Pi_{b, i} for (a, b) in basis_pairs (6 elements)
-    - 11..16: Q_{ab} = sum_{i != j} Pi_{a, i} Pi_{b, j} for (a, b) in basis_pairs (6 elements)
-    - 17..20: T_{abc} = sum_{i=0..5} Pi_{a, i} Pi_{b, i} Pi_{c, i} for (a, b, c) in basis_triples (4 elements)
-    """
-    if len(g) != GRAMIAN_DIM or any(len(row) != GRAMIAN_DIM for row in g):
-        raise ValueError(f"Gramian dimension must be {GRAMIAN_DIM}x{GRAMIAN_DIM}")
-
+def _validate_gramian_matrix(g: Sequence[Sequence[Cyc24]], dim: int) -> None:
+    if len(g) != dim or any(len(row) != dim for row in g):
+        raise ValueError(f"Gramian dimension must be {dim}x{dim}")
     for row in g:
         for entry in row:
             _validate_cyclotomic(entry)
-    if any(g[i][j] != g[j][i].conj()
-           for i in range(GRAMIAN_DIM) for j in range(GRAMIAN_DIM)):
+    if any(g[i][j] != g[j][i].conj() for i in range(dim) for j in range(dim)):
         raise ValueError("Input matrix must be Hermitian")
-    pairs = get_basis_pairs()
-    triples = get_basis_triples()
-    n = DEG6_INVARIANT_DIM
-    m6 = [[Fraction(0) for _ in range(n)] for _ in range(n)]
 
-    # 1. Base identity <1>
+
+def _populate_linear_projector_sums(m6: List[List[Fraction]], g: Sequence[Sequence[Cyc24]]) -> None:
     m6[0][0] = Fraction(1)
-
-    # 2. Linear projector sums A_a (indices 1..4)
     for a in range(NUM_BASES):
         idx_a = 1 + a
         m6[0][idx_a] = Fraction(1)
@@ -237,7 +217,12 @@ def build_degree6_invariant_diagnostic_matrix(
             m6[idx_a][idx_b] = val
             m6[idx_b][idx_a] = val
 
-    # 3. Projector pairs P_{ab} (indices 5..10) and Q_{ab} (indices 11..16)
+
+def _populate_pairs_and_cross_terms(
+    m6: List[List[Fraction]],
+    g: Sequence[Sequence[Cyc24]],
+    pairs: Sequence[Tuple[int, int]],
+) -> None:
     for p_idx, (a, b) in enumerate(pairs):
         idx_p = 5 + p_idx
         idx_q = 11 + p_idx
@@ -280,7 +265,6 @@ def build_degree6_invariant_diagnostic_matrix(
         m6[idx_p][idx_p] = exp_p
         m6[idx_q][idx_q] = exp_q
 
-    # Cross-terms among pairs
     for p1, (a, b) in enumerate(pairs):
         for p2, (c, d) in enumerate(pairs):
             if p1 < p2:
@@ -296,11 +280,16 @@ def build_degree6_invariant_diagnostic_matrix(
                 m6[idx1][idx2] = cross_val
                 m6[idx2][idx1] = cross_val
 
-    # 4. Degree-3 Triples T_{abc} (indices 17..20)
+
+def _populate_triples_and_cross_terms(
+    m6: List[List[Fraction]],
+    g: Sequence[Sequence[Cyc24]],
+    pairs: Sequence[Tuple[int, int]],
+    triples: Sequence[Tuple[int, int, int]],
+) -> None:
     for t_idx, (a, b, c) in enumerate(triples):
         idx_t = 17 + t_idx
 
-        # 3-cycle Bargmann overlap: sum_i G_{ai, bi} G_{bi, ci} G_{ci, ai}
         bargmann_sum = Fraction(0)
         diag_cubed_sum = Fraction(0)
         for i in range(DIM_HILBERT):
@@ -316,16 +305,13 @@ def build_degree6_invariant_diagnostic_matrix(
         exp_t = Fraction(1, 6) * bargmann_sum
         exp_t_diag = Fraction(1, 6) * diag_cubed_sum
 
-        # Moment with 1
         m6[0][idx_t] = exp_t
         m6[idx_t][0] = exp_t
 
-        # Moment with A_d
         for d in range(NUM_BASES):
             m6[1 + d][idx_t] = exp_t
             m6[idx_t][1 + d] = exp_t
 
-        # Moment with P_{ab}
         for p_idx, (p_a, p_b) in enumerate(pairs):
             idx_p = 5 + p_idx
             idx_q = 11 + p_idx
@@ -339,10 +325,8 @@ def build_degree6_invariant_diagnostic_matrix(
             m6[idx_q][idx_t] = exp_t - m6[idx_p][idx_t]
             m6[idx_t][idx_q] = m6[idx_q][idx_t]
 
-        # Diagonal moment <T_{abc}^2>
         m6[idx_t][idx_t] = exp_t_diag if exp_t_diag > 0 else exp_t
 
-    # Cross-terms among triples
     for t1, (a1, b1, c1) in enumerate(triples):
         for t2, (a2, b2, c2) in enumerate(triples):
             if t1 < t2:
@@ -362,41 +346,27 @@ def build_degree6_invariant_diagnostic_matrix(
                 m6[idx1][idx2] = val
                 m6[idx2][idx1] = val
 
+
+def build_degree6_invariant_diagnostic_matrix(
+    g: Sequence[Sequence[Cyc24]],
+) -> List[List[Fraction]]:
+    """Construct the experimental 21x21 rational coefficient matrix."""
+    _validate_gramian_matrix(g, GRAMIAN_DIM)
+    pairs = get_basis_pairs()
+    triples = get_basis_triples()
+    n = DEG6_INVARIANT_DIM
+    m6 = [[Fraction(0) for _ in range(n)] for _ in range(n)]
+
+    _populate_linear_projector_sums(m6, g)
+    _populate_pairs_and_cross_terms(m6, g, pairs)
+    _populate_triples_and_cross_terms(m6, g, pairs, triples)
+
     assert_no_float(m6, "build_degree6_invariant_diagnostic_matrix.m6")
     return m6
 
 
-def build_degree6_extended_diagnostic_matrix(
-    g: Sequence[Sequence[Cyc24]],
-) -> List[List[Fraction]]:
-    """Construct the experimental 35x35 rational coefficient matrix.
-
-    The intended monomial labels below are not established moment identities.
-
-    Monomial basis:
-    - 0: 1 (identity)
-    - 1..24: Pi_{a, i} for a in 0..3, i in 0..5 (24 elements)
-    - 25..30: P_{ab} for (a, b) in basis_pairs (6 elements)
-    - 31..34: T_{abc} for (a, b, c) in basis_triples (4 elements)
-    """
-    if len(g) != GRAMIAN_DIM or any(len(row) != GRAMIAN_DIM for row in g):
-        raise ValueError(f"Gramian dimension must be {GRAMIAN_DIM}x{GRAMIAN_DIM}")
-
-    for row in g:
-        for entry in row:
-            _validate_cyclotomic(entry)
-    if any(g[i][j] != g[j][i].conj()
-           for i in range(GRAMIAN_DIM) for j in range(GRAMIAN_DIM)):
-        raise ValueError("Input matrix must be Hermitian")
-    pairs = get_basis_pairs()
-    triples = get_basis_triples()
-    n = DEG6_EXTENDED_DIM
-    m6 = [[Fraction(0) for _ in range(n)] for _ in range(n)]
-
-    # 1. Base identity <1>
+def _populate_extended_single_projectors(m6: List[List[Fraction]], g: Sequence[Sequence[Cyc24]]) -> None:
     m6[0][0] = Fraction(1)
-
-    # 2. Single projectors Pi_{a, i} (indices 1..24)
     for a in range(NUM_BASES):
         for i in range(DIM_HILBERT):
             idx = 1 + a * DIM_HILBERT + i
@@ -404,7 +374,6 @@ def build_degree6_extended_diagnostic_matrix(
             m6[idx][0] = Fraction(1, 6)
             m6[idx][idx] = Fraction(1, 6)
 
-    # Pairs among single projectors
     for a in range(NUM_BASES):
         for i in range(DIM_HILBERT):
             idx_a = 1 + a * DIM_HILBERT + i
@@ -418,7 +387,8 @@ def build_degree6_extended_diagnostic_matrix(
                         val = Fraction(1, 6) * exact_rational(entry.abs_sq())
                         m6[idx_a][idx_b] = val
 
-    # 3. Projector pairs P_{ab} (indices 25..30)
+
+def _populate_extended_pairs(m6: List[List[Fraction]], g: Sequence[Sequence[Cyc24]], pairs: Sequence[Tuple[int, int]]) -> None:
     for p_idx, (a, b) in enumerate(pairs):
         col_p = 25 + p_idx
         diag_mod_sq = Fraction(0)
@@ -426,7 +396,6 @@ def build_degree6_extended_diagnostic_matrix(
             entry = g[a * DIM_HILBERT + i][b * DIM_HILBERT + i]
             mod_sq = exact_rational(entry.abs_sq())
             diag_mod_sq += mod_sq
-            # Covariance with Pi_{a, i} and Pi_{b, i}
             m6[a * DIM_HILBERT + i + 1][col_p] = Fraction(1, 6) * mod_sq
             m6[col_p][a * DIM_HILBERT + i + 1] = Fraction(1, 6) * mod_sq
             m6[b * DIM_HILBERT + i + 1][col_p] = Fraction(1, 6) * mod_sq
@@ -437,7 +406,8 @@ def build_degree6_extended_diagnostic_matrix(
         m6[col_p][0] = exp_p
         m6[col_p][col_p] = exp_p
 
-    # 4. Degree-3 Triples T_{abc} (indices 31..34)
+
+def _populate_extended_triples(m6: List[List[Fraction]], g: Sequence[Sequence[Cyc24]], triples: Sequence[Tuple[int, int, int]]) -> None:
     for t_idx, (a, b, c) in enumerate(triples):
         col_t = 31 + t_idx
         bargmann_sum = Fraction(0)
@@ -448,7 +418,6 @@ def build_degree6_extended_diagnostic_matrix(
             cycle = e_ab.mul(e_bc).mul(e_ca)
             c_val = cyc_real_constant_coefficient(cycle)
             bargmann_sum += c_val
-            # Covariance with aligned single projectors Pi_{a, i}, Pi_{b, i}, Pi_{c, i}
             m6[a * DIM_HILBERT + i + 1][col_t] = Fraction(1, 6) * c_val
             m6[col_t][a * DIM_HILBERT + i + 1] = Fraction(1, 6) * c_val
             m6[b * DIM_HILBERT + i + 1][col_t] = Fraction(1, 6) * c_val
@@ -460,6 +429,21 @@ def build_degree6_extended_diagnostic_matrix(
         m6[0][col_t] = exp_t
         m6[col_t][0] = exp_t
         m6[col_t][col_t] = exp_t if exp_t > 0 else Fraction(0)
+
+
+def build_degree6_extended_diagnostic_matrix(
+    g: Sequence[Sequence[Cyc24]],
+) -> List[List[Fraction]]:
+    """Construct the experimental 35x35 rational coefficient matrix."""
+    _validate_gramian_matrix(g, GRAMIAN_DIM)
+    pairs = get_basis_pairs()
+    triples = get_basis_triples()
+    n = DEG6_EXTENDED_DIM
+    m6 = [[Fraction(0) for _ in range(n)] for _ in range(n)]
+
+    _populate_extended_single_projectors(m6, g)
+    _populate_extended_pairs(m6, g, pairs)
+    _populate_extended_triples(m6, g, triples)
 
     assert_no_float(m6, "build_degree6_extended_diagnostic_matrix.m6")
     return m6

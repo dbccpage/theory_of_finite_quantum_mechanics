@@ -9,6 +9,7 @@
 //!
 //! AuthorityEffect: None.
 
+extern crate self as omega_operad_theory;
 pub mod kernel;
 pub mod foundation;
 pub mod realization;

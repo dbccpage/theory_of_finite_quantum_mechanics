@@ -12,6 +12,7 @@
 //! Remaining modules may still be shape scaffolds. AuthorityEffect: None.
 //! Not continuum GR. Not PROVED / GlobalGreen.
 
+extern crate self as omega_general_relativity;
 pub mod bi_crossed_product;
 pub mod causal_dynamical_triangulation;
 pub mod causal_set;

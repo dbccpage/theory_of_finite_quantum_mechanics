@@ -4,7 +4,7 @@
 //! coboundary relation d1 * d0 = 0 and exact Betti numbers over Q = BigRational.
 
 use crate::linear_algebra::{ExactMatrix, MatrixError, Q};
-use crate::crate::crate::crate::linear_algebra::scalars::{hash_rational, q};
+use crate::linear_algebra::scalars::{hash_rational, q};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
