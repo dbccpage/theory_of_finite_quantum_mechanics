@@ -3,23 +3,23 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/finite_category_validation.rs"
   language: "Rust"
-  sha256: "8c43c163ab67cc3933588926b09783f0604bbf1dd97e26b2f54467254188d952"
+  sha256: "3ea0e696b41cb5ab361541206ab5f03b257f2040b387fb3ea06bb224170e891d"
 profile: "Exact"
 level: "L3"
 level_basis: "Conservative bounded-domain classification; no upgrade based solely on terminology or module size."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
-grade_ceiling: "B"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L3A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-18T21:31:02.719060+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:finite_category_validation"
@@ -30,18 +30,29 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261018T211047Z/baseline.json", "sha256": "02e9abb5e3fdb94f76fa238407e064031a97ac5e9436c082a0f23ddaa0e2e290", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261018T211047Z/summary.json", "sha256": "748a82c496c586f11554c4e3c89070f0dc61793bde926d7776163451875c9155", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261018T211047Z/mutations.json", "sha256": "2588f75197213ba80b0e18532a2f847946a3a9d19564a986c3391835fd6e58fa", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261018T211112Z-metrics/receipt.json", "sha256": "cc0505b71484b2f5c17349b1dbbc6e17c92105b8a5671e770f985df663d25aaf", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261018T211047Z/dependency_receipt.json", "sha256": "394a42fdbe864d8e2e823425cb28d4d234fc18aeac77f358d795e5e4900e886f", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/finite_category_validation.json", "sha256": "567d4f33ded633f7be8a31ec28548043b290839076e4bff2f05be4b5033508ae", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
   compiled_scope: "shared scoped crate build"
   local_mutant_ids:
-    - "C07-category-associativity"
+    - "FC01-names"
+    - "FC02-object-domain"
+    - "FC03-identities"
+    - "FC04-unit-laws"
+    - "FC05-totality-report"
+    - "FC06-closure"
+    - "FC07-boundaries"
+    - "FC08-associativity"
+    - "FC13-table-view"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 1
+  killed: 9
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
@@ -52,17 +63,15 @@ structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 540
-  parsed_production_functions: 12
-  max_production_ccn: 12
+  physical_lines: 569
+  parsed_production_functions: 15
+  max_production_ccn: 8
   cognitive_complexity_upper_bound: 12
   control_nesting: 3
   opaque_function_macros: []
-  functions_exceeding_A:
-    - {"ccn": 12, "cognitive_upper_bound": 11, "control_nesting": 2, "line": 168, "name": "check_identity_laws", "opaque_macros": []}
+  functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
-  - "Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+open_findings: []
+assurance_limits:
+  - "Contracts remain pending at the user request."
+  - "No mechanized Rust/MIR equivalence, allocator totality, machine-checked crash freedom, exact compiler file-read trace, cross-repository origin attestation or whole-directory A grade is inferred."

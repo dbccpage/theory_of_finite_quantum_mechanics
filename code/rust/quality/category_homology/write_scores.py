@@ -110,6 +110,7 @@ def apply_assessment(record, path):
             raise SystemExit("Assessment evidence drift")
     for proof in assessment.get("proof_receipts",[]):
         verify_proof_receipt(proof)
+    verify_context_inputs(assessment.get("context_inputs",[]))
     if "G5" in assessment["gates"] and grades.index(assessment["gates"]["G5"]) > grades.index(record["grade_ceiling"]):
         raise SystemExit("Gate review exceeds structural ceiling")
     record["gates"].update(assessment["gates"])
@@ -130,12 +131,23 @@ def apply_assessment(record, path):
     record["evidence"].append({"path":path.relative_to(ROOT).as_posix(),"sha256":sha(path),"scope":"Explicit source-pinned gate assessment with invariant and evidence mapping."})
 
 
+def verify_context_inputs(references):
+    """A subject's unchanged bytes cannot conceal changed callees/consumers."""
+    for reference in references:
+        subject = ROOT/reference["path"]
+        if not subject.is_file() or sha(subject) != reference["sha256"]:
+            raise SystemExit("Reviewed source context drift: "+reference["path"])
+
+
 def verify_proof_receipt(reference):
     """Validate model evidence; this never grants a Rust refinement grade."""
     path = ROOT/reference["path"]
     if sha(path) != reference["sha256"]:
         raise SystemExit("Proof receipt altered")
     proof = json.loads(path.read_text())
+    for name,value in proof.get("runtime_snapshots",{}).items():
+        if sha(path.parent/name) != value:
+            raise SystemExit("Proof runtime snapshot altered")
     required = ("check_ok","sources_unchanged","direct_dependencies_unchanged",
                 "mathlib_revision_stable","mathlib_tracked_source_clean")
     if not all(proof[key] for key in required) or proof["unexpected_axioms"] or proof["unfinished_axiom_detected"]:
@@ -149,6 +161,8 @@ def verify_proof_receipt(reference):
     for run in proof["runs"]:
         if run["exit_code"] != 0 or sha(ROOT/run["log"]) != run["log_sha256"]:
             raise SystemExit("Proof execution evidence altered or unsuccessful")
+        if Path(run["log"]).name == "check.log" and "warning:" in (ROOT/run["log"]).read_text(encoding="utf-8"):
+            raise SystemExit("Proof check contains unresolved warnings")
     if sha(ROOT/reference["proof"]) != proof["proof_sha256"]:
         raise SystemExit("Proof source drift")
     if "environment_sha256" in proof:
@@ -316,7 +330,7 @@ def main():
             if not destination.exists() or destination.read_text(encoding="utf-8") != text:
                 failures.append(str(destination))
         else:
-            destination.write_text(text,encoding="utf-8")
+            destination.write_text(text,encoding="utf-8",newline="\n")
         if destination.exists(): manifest[destination.relative_to(ROOT).as_posix()] = sha(destination)
     if failures:
         raise SystemExit("Missing/stale score records:\n"+"\n".join(failures))
@@ -326,7 +340,7 @@ def main():
     if not args.check:
         stored = json.loads(score_manifest.read_text()) if score_manifest.exists() else {}
         stored.update(manifest)
-        score_manifest.write_text(json.dumps(stored,indent=2)+"\n",encoding="utf-8")
+        score_manifest.write_text(json.dumps(stored,indent=2)+"\n",encoding="utf-8",newline="\n")
     else:
         stored = json.loads(score_manifest.read_text())
         if any(stored.get(key) != value for key,value in manifest.items()) or (not args.only and manifest != stored):

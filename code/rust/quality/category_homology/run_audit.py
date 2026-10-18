@@ -38,7 +38,7 @@ def inventory():
 
 
 def write_json(path, value):
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
 
 
 def dependency_inventory(package_roots):
@@ -107,7 +107,7 @@ def bind_dependencies(work, output):
 def execute(command, cwd, log, timeout=300, environment_overlay=None):
     start = time.monotonic()
     with log.open("w", encoding="utf-8") as stream:
-        environment = dict(os.environ, CARGO_INCREMENTAL="0")
+        environment = dict(os.environ, CARGO_INCREMENTAL="0", CARGO_BUILD_JOBS="2")
         environment.update(environment_overlay or {})
         process = subprocess.Popen(command, cwd=cwd, stdout=stream, stderr=subprocess.STDOUT, env=environment)
         try:
@@ -121,7 +121,18 @@ def execute(command, cwd, log, timeout=300, environment_overlay=None):
     return {"command": command, "cwd": str(cwd), "exit_code": code,
             "timed_out": timed_out, "elapsed_seconds": round(time.monotonic()-start, 3),
             "log": str(log.relative_to(ROOT)), "log_sha256": digest(log),
-            "environment":{"CARGO_INCREMENTAL":"0",**(environment_overlay or {})}}
+            "environment":{"CARGO_INCREMENTAL":"0","CARGO_BUILD_JOBS":"2",**(environment_overlay or {})}}
+
+
+def execute_build(command, cwd, log):
+    """Refuse a fresh Cargo invocation without 3 GiB free; start no compiler."""
+    free = shutil.disk_usage(ROOT).free
+    if free >= 3 * 1024**3:
+        return execute(command,cwd,log)
+    log.write_text(f"Build not started: {free} bytes free; 3 GiB headroom required.\n",encoding="utf-8")
+    return {"command":command,"cwd":str(cwd),"exit_code":None,"timed_out":False,
+            "started":False,"resource_refused":True,"elapsed_seconds":0,
+            "log":str(log.relative_to(ROOT)),"log_sha256":digest(log)}
 
 
 def snapshot(destination, scope="all"):
@@ -195,6 +206,19 @@ def mutations():
         ("C08-set-duplicates-valid", c+"foundations/finite_set.rs", "if !seen.insert(e) {", "if seen.insert(e) && false {"),
         ("C06-weight-negatives", c+"finite_profunctor.rs", "if weight.denom() <= &0.into() || weight < BigRational::zero() {", "if false {"),
         ("C07-category-associativity", c+"finite_category_validation.rs", "        check_associativity(category),", "        Vec::new(),"),
+        ("FC01-names", c+"finite_category_validation.rs", "        check_nonempty_names(category),", "        Vec::new(),"),
+        ("FC02-object-domain", c+"finite_category_validation.rs", "        check_object_references(category),", "        Vec::new(),"),
+        ("FC03-identities", c+"finite_category_validation.rs", "        check_identity_totality(category),", "        Vec::new(),"),
+        ("FC04-unit-laws", c+"finite_category_validation.rs", "        check_identity_laws(category),", "        Vec::new(),"),
+        ("FC05-totality-report", c+"finite_category_validation.rs", "        check_composition_totality(category),", "        Vec::new(),"),
+        ("FC06-closure", c+"finite_category_validation.rs", "        check_composition_closure(category),", "        Vec::new(),"),
+        ("FC07-boundaries", c+"finite_category_validation.rs", "        check_composition_boundaries(category),", "        Vec::new(),"),
+        ("FC08-associativity", c+"finite_category_validation.rs", "        check_associativity(category),", "        Vec::new(),"),
+        ("FC09-constructor", c+"finite_category.rs", "if report.all_passed() {", "if true {"),
+        ("FC10-id-domain", c+"finite_category.rs", "self.declared.identity_of(x).map(str::to_string)", "self.declared.identity_of(x).or_else(|| self.declared.identities.values().next().map(String::as_str)).map(str::to_string)"),
+        ("FC11-boundary-domain", c+"finite_category.rs", ".get(morphism)", ".get(morphism).or_else(|| self.morphisms.values().next())"),
+        ("FC12-composition-domain", c+"finite_category.rs", ".get(&(f.into(), g.into()))", ".get(&(f.into(), g.into())).or_else(|| self.compositions.values().next())"),
+        ("FC13-table-view", c+"finite_category_validation.rs", "self.rows.get(index).map(|(_, composite)| *composite)", "None"),
         ("NT01-square-equality", c+"natural_trans.rs", "if left != right {", "if false {"),
         ("NT02-component-domain", c+"natural_trans.rs", "if !nat.components.keys().eq(source.objects.iter()) {", "if false {"),
         ("NT03-functor-laws", c+"natural_trans.rs", 'report.add_typed("nat::source_functor", checked_f.typed_violations);', 'report.add_typed("nat::source_functor", Vec::new());'),
@@ -276,7 +300,7 @@ def main():
         command = ["cargo","test","--target-dir",str(build),"-p",package,"--lib","--offline","--locked","--quiet"]
         command.append("l5a_challenges" if challenge else ("homology" if package.endswith("audit") else ""))
         try:
-            return execute([x for x in command if x], work, output / (name+".log"))
+            return execute_build([x for x in command if x], work, output / (name+".log"))
         finally:
             clear_debug_outputs(build, work)
     packages = [] if args.scope == "homology" else [("tfqm_category_theory","category")]
@@ -315,7 +339,10 @@ def main():
             package = "tfqm_category_theory" if record["path"].startswith("category_theory/") else "tfqm_category_homology_audit"
             run = test(package,record["id"])
             log = (ROOT / run["log"]).read_text(encoding="utf-8",errors="replace")
-            if run["timed_out"]: outcome = "inconclusive"
+            if run.get("resource_refused"):
+                outcome = "unrun"
+                record["reason"] = "No compiler or test started: insufficient free build space."
+            elif run["timed_out"]: outcome = "inconclusive"
             elif run["exit_code"] == 0: outcome = "survived"
             elif "test result: FAILED" in log: outcome = "killed"
             elif "could not compile" in log: outcome = "invalid"

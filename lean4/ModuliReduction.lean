@@ -1,5 +1,7 @@
 import WallTransport
 import ZeroRelVariety
+import G1_Orbits
+import QuadIncompatibility
 
 /-!
 Conditional composition of the abstract orbit, coverage, and gluing interfaces.

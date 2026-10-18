@@ -1,3 +1,6 @@
+//! Explicit finite bridges for accessible self-state, reflexive report provenance,
+//! context stability, and partial later-state comparison. Availability is never
+//! identified with comparison success. Every claim is conditional on the tables.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -9,6 +12,8 @@ pub enum SelfReferenceError {
     ImpossibleSignature,
 }
 
+/// Untrusted provenance candidate: semantic replay, rather than these fields
+/// alone, binds it to accessible self-state and the declared generation relation.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ReflexiveProvenance {
     pub source_observer: usize,
@@ -21,9 +26,11 @@ pub struct ReflexiveProvenance {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PartialComparisonProtocol {
     pub evaluator_id: usize,
+    /// Pairs for which the declared equality comparator can actually run.
     pub domain: BTreeSet<(usize, usize)>,
 }
 
+/// Constructor input. The owner retains a private validated copy.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SelfReferenceData {
     pub observer_id: usize,
@@ -31,12 +38,14 @@ pub struct SelfReferenceData {
     pub accessible_count: usize,
     pub report_count: usize,
     pub sigma: Vec<usize>,
+    /// Accessible-state presentation; richer sigma access need not factor here.
     pub presentation: Vec<usize>,
     pub reports: Vec<Option<usize>>,
     pub provenance: Vec<Option<ReflexiveProvenance>>,
     pub context: Vec<usize>,
     pub later: Vec<usize>,
     pub target: Vec<Option<usize>>,
+    /// Independent finite report-generation semantic relation on A x R.
     pub generation: BTreeSet<(usize, usize)>,
     pub protocol: Option<PartialComparisonProtocol>,
 }
@@ -63,6 +72,9 @@ pub struct SelfReferenceSignature {
 }
 
 impl SelfReferenceSignature {
+    /// Exact iff criterion for all six aggregate predicates. A partial report
+    /// forces every universal bridge false; otherwise linkage verified implies
+    /// provided, and comparison success implies comparison availability.
     pub fn is_realizable(self) -> bool {
         if !self.report_total {
             return !self.linkage_provided
@@ -156,6 +168,7 @@ impl CheckedSelfReference {
         self.data.sigma.len()
     }
 
+    /// Exact per-state criteria for manuscript R1/R2/R3 under these bridges.
     pub fn audit_point(&self, x: usize) -> Result<SelfReferencePoint, SelfReferenceError> {
         if x >= self.point_count() {
             return Err(SelfReferenceError::InvalidMap);
@@ -206,6 +219,8 @@ impl CheckedSelfReference {
         }
     }
 
+    /// Context transport is total: universal stability availability iff reports
+    /// are total. Undefined->undefined is not counted as available or successful.
     pub fn stability_available(&self) -> bool {
         (0..self.point_count()).all(|x| {
             self.audit_point(x)
@@ -214,6 +229,9 @@ impl CheckedSelfReference {
         })
     }
 
+    /// Original R2 on ACTUAL report events: each defined report is transported
+    /// to the same defined value. Unreported states are outside this predicate;
+    /// total successful stability additionally requires report availability.
     pub fn report_events_preserved(&self) -> bool {
         self.data.reports.iter().enumerate().all(|(x, report)| {
             report.is_none() || *report == self.data.reports[self.data.context[x]]
@@ -228,6 +246,8 @@ impl CheckedSelfReference {
             .all(|&(a, r)| generated.insert(a, r).is_none_or(|previous| previous == r))
     }
 
+    /// Partial report determination iff values (including undefined) are constant
+    /// on sigma fibers. This is distinct from reflexive provenance availability.
     pub fn report_factor_accessible(&self) -> Option<BTreeMap<usize, Option<usize>>> {
         partial_factor(&self.data.sigma, &self.data.reports)
     }
@@ -241,6 +261,8 @@ impl CheckedSelfReference {
         partial_factor(&keys, &self.data.reports)
     }
 
+    /// Later target b(l(x)) can be inferred from sigma(x) iff constant on its
+    /// fibers. This returns an explicit partial decoder on realized self-states.
     pub fn later_target_factor_accessible(&self) -> Option<BTreeMap<usize, Option<usize>>> {
         let values: Vec<_> = self
             .data
@@ -251,6 +273,13 @@ impl CheckedSelfReference {
         partial_factor(&self.data.sigma, &values)
     }
 
+    /// Exact existence criterion under FIXED sigma/generation/context/later/
+    /// target/protocol tables: construct a total verified-linked report whose
+    /// later comparisons all succeed, optionally also context-stable. There is
+    /// a solution iff every actual later target is defined, generated from its
+    /// accessible self-state, comparable to itself, and (when requested) stable
+    /// under context. Necessity follows because success forces that report value;
+    /// sufficiency uses these values and exact reflexive provenance records.
     pub fn successful_linked_report_plan(
         &self,
         require_context_stability: bool,
@@ -289,6 +318,8 @@ impl CheckedSelfReference {
         CheckedSelfReference::new(planned).map(Some)
     }
 
+    /// A prescribed current-state target y can be realized as k(l(x)) iff y is
+    /// constant on later-map fibers. None values are genuine partiality data.
     pub fn factor_prescribed_target_through_later(
         &self,
         prescribed: &[Option<usize>],
@@ -305,6 +336,9 @@ impl CheckedSelfReference {
     }
 }
 
+/// Complete constructors for 19 aggregate signatures. The partial-report case
+/// has one model; total reports allow 3 linkage states x 2 stabilities x 3
+/// comparison states. Later-state swap is real, rather than default identity.
 pub fn realize_self_reference(
     signature: SelfReferenceSignature,
 ) -> Result<CheckedSelfReference, SelfReferenceError> {

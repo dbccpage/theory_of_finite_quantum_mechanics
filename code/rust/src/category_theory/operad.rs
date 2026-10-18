@@ -1,505 +1,375 @@
-pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/operad.rs";
-pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:operad:strictly-ascending-arrow-count";
-pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
-pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
+//! Operads — Spec Section 26.
+//!
+//! A colored operad (multicategory) generalizes a category by allowing
+//! operations with multiple inputs and one output.
+//!
+//! An operation f has a profile: (c₁, ..., cₙ) → c
+//! where c_i and c are colors.
+//!
+//! Operad compositions are partial substitutions:
+//! f ∘ᵢ g substitutes the output of g into the i-th slot of f.
+//!
+//! The laws are:
+//!   - Unit: id ∘₀ f = f and f ∘ᵢ id = f
+//!   - Associativity: nested substitutions are independent of order.
+//!   - Equivariance: symmetric group actions commute with substitution.
+//!
+//! This module provides the finite, combinatorial data structure.
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum OperadOperationError {
-    FloatRefused { invariant: &'static str, measured_len: usize },
-    EmptyCarrier { invariant: &'static str, measured: usize },
-    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
-    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
-    Overflow { invariant: &'static str, measured: i64 },
-}
-
-impl std::fmt::Display for OperadOperationError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{self:?}")
-    }
-}
-
-impl std::error::Error for OperadOperationError {}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct ArrowLedger {
-    objects: usize,
-    arrows: Vec<(usize, usize)>,
-}
-
-impl ArrowLedger {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, OperadOperationError> {
-        refuse_empty(objects)?;
-        refuse_budget(objects, arrows.len())?;
-        refuse_endpoints(objects, &arrows)?;
-        Ok(Self { objects, arrows })
-    }
-
-    pub fn objects(&self) -> usize {
-        self.objects
-    }
-
-    pub fn arrows(&self) -> &[(usize, usize)] {
-        &self.arrows
-    }
-}
-
-fn refuse_empty(objects: usize) -> Result<(), OperadOperationError> {
-    if objects == 0 {
-        return Err(OperadOperationError::EmptyCarrier {
-            invariant: "operad-carrier-nonempty",
-            measured: objects,
-        });
-    }
-    Ok(())
-}
-
-fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), OperadOperationError> {
-    if objects > 16 {
-        return Err(OperadOperationError::EmptyCarrier {
-            invariant: "operad-carrier-at-most-16",
-            measured: objects,
-        });
-    }
-    if arrow_len > 64 {
-        return Err(OperadOperationError::EmptyCarrier {
-            invariant: "operad-arrow-budget-64",
-            measured: arrow_len,
-        });
-    }
-    Ok(())
-}
-
-fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
-    let src_ok = arrow.0 < objects;
-    let tgt_ok = arrow.1 < objects;
-    src_ok && tgt_ok
-}
-
-fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), OperadOperationError> {
-    for (index, arrow) in arrows.iter().enumerate() {
-        if !endpoint_ok(objects, *arrow) {
-            return Err(OperadOperationError::IndexOutOfBounds {
-                invariant: "operad-arrow-endpoint-in-carrier",
-                measured: index,
-                bound: objects,
-            });
-        }
-    }
-    Ok(())
-}
+use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct OperadOperation {
-    ledger: ArrowLedger,
+    pub name: String,
+    pub inputs: Vec<String>,
+    pub output: String,
 }
 
 impl OperadOperation {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, OperadOperationError> {
-        let ledger = ArrowLedger::try_new(objects, arrows)?;
-        Ok(Self { ledger })
-    }
-
-    pub fn selected_count(&self) -> Result<i64, OperadOperationError> {
-        measured_count(self.ledger.arrows(), self.ledger.objects())
-    }
-
-    pub fn certificate(&self) -> Result<i64, OperadOperationError> {
-        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
-        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
-        agree_folded(measured, expected, self.ledger.objects())
-    }
-}
-
-fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, OperadOperationError> {
-    let folded = fold_carrier(measured, objects)?;
-    let expected_folded = fold_carrier(expected, objects)?;
-    require_agreement(folded, expected_folded)
-}
-
-fn selected(arrow: (usize, usize), objects: usize) -> bool {
-    let _budget = objects;
-    arrow.0 < arrow.1
-}
-
-fn unselected(arrow: (usize, usize), objects: usize) -> bool {
-    let keep = selected(arrow, objects);
-    !keep
-}
-
-fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, OperadOperationError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if selected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(OperadOperationError::Overflow {
-                invariant: "operad-measured-count-fits-i64",
-                measured: total,
-            })?;
+    pub fn new(name: &str, inputs: Vec<&str>, output: &str) -> Self {
+        Self {
+            name: name.into(),
+            inputs: inputs.into_iter().map(String::from).collect(),
+            output: output.into(),
         }
     }
-    Ok(total)
-}
-
-fn count_all(arrows: &[(usize, usize)]) -> Result<i64, OperadOperationError> {
-    let mut total = 0i64;
-    for _arrow in arrows {
-        total = total.checked_add(1).ok_or(OperadOperationError::Overflow {
-            invariant: "operad-arrow-count-fits-i64",
-            measured: total,
-        })?;
+    pub fn arity(&self) -> usize {
+        self.inputs.len()
     }
-    Ok(total)
 }
 
-fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, OperadOperationError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if unselected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(OperadOperationError::Overflow {
-                invariant: "operad-complement-count-fits-i64",
-                measured: total,
-            })?;
+#[derive(Debug, Clone)]
+pub struct DeclaredFiniteOperad {
+    pub name: String,
+    pub colors: BTreeSet<String>,
+    pub operations: BTreeMap<String, OperadOperation>,
+    pub compositions: BTreeMap<(String, usize, String), String>, // (outer, slot, inner) -> result
+    pub identities: BTreeMap<String, String>,                    // color → identity op name
+}
+
+impl DeclaredFiniteOperad {
+    pub fn new(name: &str) -> Self {
+        Self {
+            name: name.into(),
+            colors: BTreeSet::new(),
+            operations: BTreeMap::new(),
+            compositions: BTreeMap::new(),
+            identities: BTreeMap::new(),
         }
     }
-    Ok(total)
-}
 
-fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, OperadOperationError> {
-    let all = count_all(arrows)?;
-    let skipped = count_unselected(arrows, objects)?;
-    all.checked_sub(skipped).ok_or(OperadOperationError::Overflow {
-        invariant: "operad-expected-count-fits-i64",
-        measured: all,
-    })
-}
-
-fn fold_carrier(measured: i64, objects: usize) -> Result<i64, OperadOperationError> {
-    let width = i64::try_from(objects).map_err(|_| OperadOperationError::Overflow {
-        invariant: "operad-carrier-width-fits-i64",
-        measured,
-    })?;
-    measured.checked_add(width).ok_or(OperadOperationError::Overflow {
-        invariant: "operad-folded-certificate-fits-i64",
-        measured,
-    })
-}
-
-pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, OperadOperationError> {
-    if measured == expected {
-        return Ok(measured);
+    pub fn add_color(&mut self, color: &str) {
+        self.colors.insert(color.into());
     }
-    Err(OperadOperationError::ClaimFailed {
-        invariant: "operad-hom-sum-equals-outgoing",
-        measured,
-        expected,
-    })
+
+    pub fn add_operation(&mut self, op: OperadOperation) {
+        self.operations.insert(op.name.clone(), op);
+    }
+
+    pub fn add_composition(&mut self, outer: &str, slot: usize, inner: &str, result: &str) {
+        self.compositions
+            .insert((outer.into(), slot, inner.into()), result.into());
+    }
+
+    pub fn set_identity(&mut self, color: &str, identity_op: &str) {
+        self.identities.insert(color.into(), identity_op.into());
+    }
+
+    pub fn find_op(&self, name: &str) -> Option<&OperadOperation> {
+        self.operations.get(name)
+    }
+
+    /// Evaluates `outer ∘_{slot} inner`.
+    pub fn compose(&self, outer: &str, slot: usize, inner: &str) -> Option<&str> {
+        self.compositions
+            .get(&(outer.into(), slot, inner.into()))
+            .map(|s| s.as_str())
+    }
 }
 
-pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, OperadOperationError> {
-    let mut total = 0i64;
-    for (index, part) in parts.iter().enumerate() {
-        let measured = match i64::try_from(index) {
-            Ok(value) => value,
-            Err(_) => i64::MAX,
+// ---------------------------------------------------------------------------
+// Validation
+// ---------------------------------------------------------------------------
+
+#[derive(Debug, Clone)]
+pub struct ValidatedFiniteOperad {
+    declared: DeclaredFiniteOperad,
+}
+
+impl ValidatedFiniteOperad {
+    pub fn try_new(declared: DeclaredFiniteOperad) -> Result<Self, Vec<String>> {
+        let mut violations = Vec::new();
+
+        violations.extend(check_operad_identities(&declared));
+        violations.extend(check_operad_composition_typing(&declared));
+        violations.extend(check_operad_unit(&declared));
+        // Associativity is omitted from full verification here because full enumeration
+        // of type-correct triples is required for an exhaustive check.
+        // Tests can use `check_operad_associativity` directly on cases.
+
+        if violations.is_empty() {
+            Ok(Self { declared })
+        } else {
+            Err(violations)
+        }
+    }
+
+    pub fn declared(&self) -> &DeclaredFiniteOperad {
+        &self.declared
+    }
+}
+
+pub fn check_operad_identities(operad: &DeclaredFiniteOperad) -> Vec<String> {
+    let mut violations = Vec::new();
+
+    for color in &operad.colors {
+        let Some(id_name) = operad.identities.get(color) else {
+            violations.push(format!("Color {} has no identity operation", color));
+            continue;
         };
-        total = total.checked_add(*part).ok_or(OperadOperationError::Overflow {
-            invariant: "claim-sum-stays-in-i64",
-            measured,
-        })?;
-    }
-    Ok(total)
-}
 
-fn text_has_byte(text: &str, target: u8) -> bool {
-    for byte in text.bytes() {
-        if byte == target {
-            return true;
-        }
-    }
-    false
-}
-
-fn text_refused(text: &str) -> bool {
-    if text.is_empty() {
-        return true;
-    }
-    if text_has_byte(text, 46) {
-        return true;
-    }
-    if text_has_byte(text, 101) {
-        return true;
-    }
-    if text_has_byte(text, 69) {
-        return true;
-    }
-    false
-}
-
-fn split_sign(text: &str) -> (i64, &str) {
-    if text.starts_with('-') {
-        let rest = match text.get(1..) {
-            Some(value) => value,
-            None => "",
+        let Some(id_op) = operad.find_op(id_name) else {
+            violations.push(format!(
+                "Identity {} for color {} is not declared",
+                id_name, color
+            ));
+            continue;
         };
-        return (-1, rest);
-    }
-    (1, text)
-}
 
-fn digits_only(text: &str) -> bool {
-    if text.is_empty() {
-        return false;
-    }
-    for byte in text.bytes() {
-        if !byte.is_ascii_digit() {
-            return false;
+        if id_op.inputs != vec![color.clone()] || id_op.output != *color {
+            violations.push(format!(
+                "Identity {} for color {} has profile {:?}->{}, expected [{}]->{}",
+                id_name, color, id_op.inputs, id_op.output, color, color
+            ));
         }
     }
-    true
+
+    violations
 }
 
-fn accumulate_digits(text: &str) -> Result<i64, OperadOperationError> {
-    let mut value = 0i64;
-    for byte in text.bytes() {
-        value = value.checked_mul(10).ok_or(OperadOperationError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-        let digit = i64::from(byte - 48);
-        value = value.checked_add(digit).ok_or(OperadOperationError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-    }
-    Ok(value)
-}
+pub fn check_operad_composition_typing(operad: &DeclaredFiniteOperad) -> Vec<String> {
+    let mut violations = Vec::new();
 
-pub fn parse_exact_i64(text: &str) -> Result<i64, OperadOperationError> {
-    if text_refused(text) {
-        return Err(OperadOperationError::FloatRefused {
-            invariant: "public-boundary-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let (sign, digits) = split_sign(text);
-    if !digits_only(digits) {
-        return Err(OperadOperationError::FloatRefused {
-            invariant: "public-boundary-refuses-non-integer-text",
-            measured_len: text.len(),
-        });
-    }
-    let magnitude = accumulate_digits(digits)?;
-    magnitude.checked_mul(sign).ok_or(OperadOperationError::Overflow {
-        invariant: "parsed-signed-integer-fits-i64",
-        measured: magnitude,
-    })
-}
-
-pub fn certify_claim(text: &str) -> Result<i64, OperadOperationError> {
-    let spec = parse_spec(text)?;
-    let value = OperadOperation::try_new(spec.0, spec.1)?;
-    value.certificate()
-}
-
-fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), OperadOperationError> {
-    let objects = parse_object_count(text)?;
-    let arrows = parse_arrow_list(&arrow_fields(text))?;
-    Ok((objects, arrows))
-}
-
-fn parse_object_count(text: &str) -> Result<usize, OperadOperationError> {
-    if text_refused(text) {
-        return Err(OperadOperationError::FloatRefused {
-            invariant: "spec-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let head = match text.split(';').next() {
-        Some(value) => value,
-        None => "",
-    };
-    let objects_i = parse_exact_i64(head)?;
-    usize_from_i64(objects_i)
-}
-
-fn arrow_fields(text: &str) -> Vec<&str> {
-    let mut fields = Vec::new();
-    let mut skipped_head = false;
-    for part in text.split(';') {
-        if skipped_head {
-            fields.push(part);
-        }
-        if !skipped_head {
-            skipped_head = true;
-        }
-    }
-    fields
-}
-
-fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, OperadOperationError> {
-    let mut arrows = Vec::new();
-    let mut index = 0usize;
-    while index < fields.len() {
-        let field = match fields.get(index) {
-            Some(value) => *value,
-            None => "",
+    for ((outer_name, slot, inner_name), result_name) in &operad.compositions {
+        let Some(outer) = operad.find_op(outer_name) else {
+            violations.push(format!(
+                "Composition references unknown outer operation {}",
+                outer_name
+            ));
+            continue;
         };
-        arrows.push(parse_arrow(field)?);
-        index = index.saturating_add(1);
+
+        let Some(inner) = operad.find_op(inner_name) else {
+            violations.push(format!(
+                "Composition references unknown inner operation {}",
+                inner_name
+            ));
+            continue;
+        };
+
+        let Some(result) = operad.find_op(result_name) else {
+            violations.push(format!(
+                "Composition result {} is not a declared operation",
+                result_name
+            ));
+            continue;
+        };
+
+        if *slot >= outer.inputs.len() {
+            violations.push(format!(
+                "Composition {}∘_{}{} has invalid slot for arity {}",
+                outer_name,
+                slot,
+                inner_name,
+                outer.inputs.len()
+            ));
+            continue;
+        }
+
+        let expected_slot_color = &outer.inputs[*slot];
+        if &inner.output != expected_slot_color {
+            violations.push(format!(
+                "Composition {}∘_{}{} ill-typed: inner output {} does not match slot color {}",
+                outer_name, slot, inner_name, inner.output, expected_slot_color
+            ));
+        }
+
+        let mut expected_inputs = Vec::new();
+        expected_inputs.extend_from_slice(&outer.inputs[..*slot]);
+        expected_inputs.extend(inner.inputs.clone());
+        expected_inputs.extend_from_slice(&outer.inputs[(*slot + 1)..]);
+
+        if result.inputs != expected_inputs || result.output != outer.output {
+            violations.push(format!(
+                "Composition {}∘_{}{} has result {} with profile {:?}->{}, expected {:?}->{}",
+                outer_name,
+                slot,
+                inner_name,
+                result_name,
+                result.inputs,
+                result.output,
+                expected_inputs,
+                outer.output
+            ));
+        }
     }
-    Ok(arrows)
+
+    violations
 }
 
-fn parse_arrow(part: &str) -> Result<(usize, usize), OperadOperationError> {
-    let mut ends = part.split('>');
-    let src_text = ends.next().ok_or(OperadOperationError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-source",
-        measured: 0,
-        bound: 0,
-    })?;
-    let tgt_text = ends.next().ok_or(OperadOperationError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-target",
-        measured: 0,
-        bound: 0,
-    })?;
-    if ends.next().is_some() {
-        return Err(OperadOperationError::IndexOutOfBounds {
-            invariant: "spec-arrow-has-two-ends",
-            measured: part.len(),
-            bound: 2,
-        });
+/// Verify unit laws for all declared operations.
+pub fn check_operad_unit(operad: &DeclaredFiniteOperad) -> Vec<String> {
+    let mut violations = Vec::new();
+
+    for op in operad.operations.values() {
+        // Right units: f ∘ᵢ id_c = f
+        for (i, color) in op.inputs.iter().enumerate() {
+            if let Some(id_op) = operad.identities.get(color) {
+                if let Some(result) = operad.compose(&op.name, i, id_op) {
+                    if result != op.name {
+                        violations.push(format!(
+                            "Right unit fails: {} ∘_{} {} = {}, expected {}",
+                            op.name, i, id_op, result, op.name
+                        ));
+                    }
+                } else {
+                    violations.push(format!(
+                        "Right unit undefined: {} ∘_{} {}",
+                        op.name, i, id_op
+                    ));
+                }
+            } else {
+                violations.push(format!("Missing identity for color {}", color));
+            }
+        }
+
+        // Left unit: id_c ∘₀ f = f
+        if let Some(id_op) = operad.identities.get(&op.output) {
+            if let Some(result) = operad.compose(id_op, 0, &op.name) {
+                if result != op.name {
+                    violations.push(format!(
+                        "Left unit fails: {} ∘₀ {} = {}, expected {}",
+                        id_op, op.name, result, op.name
+                    ));
+                }
+            } else {
+                violations.push(format!("Left unit undefined: {} ∘₀ {}", id_op, op.name));
+            }
+        } else {
+            violations.push(format!("Missing identity for color {}", op.output));
+        }
     }
-    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
-    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
-    Ok((src, tgt))
+
+    violations
 }
 
-fn usize_from_i64(value: i64) -> Result<usize, OperadOperationError> {
-    if value < 0 {
-        return Err(OperadOperationError::IndexOutOfBounds {
-            invariant: "spec-index-nonnegative",
-            measured: 0,
-            bound: 0,
-        });
+/// Check targeted associativity cases: (f ∘ᵢ g) ∘_{i+j} h = f ∘ᵢ (g ∘ⱼ h).
+pub fn check_operad_associativity(
+    operad: &DeclaredFiniteOperad,
+    cases: &[(&str, usize, &str, usize, &str)], // (f, i, g, j, h)
+) -> Vec<String> {
+    let mut violations = Vec::new();
+
+    for &(f, i, g, j, h) in cases {
+        let left = operad
+            .compose(f, i, g)
+            .and_then(|fg| operad.compose(fg, i + j, h));
+
+        let right_g_h = operad.compose(g, j, h);
+        let right = match right_g_h {
+            Some(gh) => operad.compose(f, i, gh),
+            None => None,
+        };
+
+        match (left, right) {
+            (Some(l), Some(r)) if l == r => {} // associativity holds
+            (Some(l), Some(r)) => {
+                violations.push(format!(
+                    "Associativity fails for ({}, {}, {}, {}, {}): left = {}, right = {}",
+                    f, i, g, j, h, l, r
+                ));
+            }
+            (None, _) => {
+                violations.push(format!(
+                    "Associativity left side undefined for ({}, {}, {}, {}, {})",
+                    f, i, g, j, h
+                ));
+            }
+            (_, None) => {
+                violations.push(format!(
+                    "Associativity right side undefined for ({}, {}, {}, {}, {})",
+                    f, i, g, j, h
+                ));
+            }
+        }
     }
-    usize::try_from(value).map_err(|_| OperadOperationError::Overflow {
-        invariant: "spec-index-fits-usize",
-        measured: value,
-    })
+
+    violations
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    const UNIT_EXPECT: i64 = 3;
-    const INTEG_EXPECT: i64 = 3;
+    fn build_test_operad() -> DeclaredFiniteOperad {
+        let mut o = DeclaredFiniteOperad::new("O");
+        o.add_color("X");
 
-    fn show(err: OperadOperationError) -> String {
-        format!("{err:?}")
-    }
+        o.add_operation(OperadOperation::new("id_X", vec!["X"], "X"));
+        o.add_operation(OperadOperation::new("m", vec!["X", "X"], "X"));
 
-    fn integration_certificate() -> Result<i64, OperadOperationError> {
-        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
-        let value = OperadOperation::try_new(ledger.objects(), ledger.arrows().to_vec())?;
-        value.certificate()
-    }
+        o.set_identity("X", "id_X");
 
-    #[test]
-    fn unit_operad_hom_sum_matches_outgoing() -> Result<(), String> {
-        let value = OperadOperation::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
-        let got = value.certificate().map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("certificate {got}"));
-        }
-        Ok(())
-    }
+        o.add_composition("id_X", 0, "id_X", "id_X");
+        o.add_composition("id_X", 0, "m", "m");
+        o.add_composition("m", 0, "id_X", "m");
+        o.add_composition("m", 1, "id_X", "m");
 
-    #[test]
-    fn integration_ledger_and_operad_agree() -> Result<(), String> {
-        let cert = integration_certificate().map_err(show)?;
-        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
-        if combined != INTEG_EXPECT {
-            return Err(format!("combined {combined}"));
-        }
-        Ok(())
+        // Associativity for m ∘₀ m and m ∘₁ m
+        o.add_operation(OperadOperation::new("m3", vec!["X", "X", "X"], "X"));
+        o.add_composition("m", 0, "m", "m3");
+        o.add_composition("m", 1, "m", "m3");
+        o.add_composition("id_X", 0, "m3", "m3");
+        o.add_composition("m3", 0, "id_X", "m3");
+        o.add_composition("m3", 1, "id_X", "m3");
+        o.add_composition("m3", 2, "id_X", "m3");
+
+        o
     }
 
     #[test]
-    fn e2e_certify_claim_text() -> Result<(), String> {
-        let got = certify_claim("2;0>1;1>1").map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("e2e {got}"));
-        }
-        Ok(())
+    fn valid_operad_passes() {
+        let o = build_test_operad();
+        assert!(check_operad_identities(&o).is_empty());
+        assert!(check_operad_composition_typing(&o).is_empty());
+        assert!(check_operad_unit(&o).is_empty());
     }
 
     #[test]
-    fn negative_empty_carrier() -> Result<(), String> {
-        let err = OperadOperation::try_new(0, vec![]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("operad-carrier-nonempty") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("empty carrier accepted".into()),
-        }
+    fn invalid_type_composition() {
+        let mut o = build_test_operad();
+        o.add_color("Y");
+        o.add_operation(OperadOperation::new("id_Y", vec!["Y"], "Y"));
+        o.set_identity("Y", "id_Y");
+        o.add_composition("m", 0, "id_Y", "m"); // Type mismatch!
+
+        let errs = check_operad_composition_typing(&o);
+        assert!(!errs.is_empty());
+        assert!(errs[0].contains("ill-typed: inner output Y does not match slot color X"));
     }
 
     #[test]
-    fn negative_float_boundary() -> Result<(), String> {
-        let err = parse_exact_i64("1.5").map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("binary64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("float accepted".into()),
-        }
-    }
+    fn test_associativity() {
+        let mut o = build_test_operad();
+        // Add full associativity:
+        // m ∘₀ (m ∘₀ m) -> m3 ∘₀ m -> m4
+        // (m ∘₀ m) ∘_{0+0} m -> m3 ∘₀ m -> m4
+        o.add_operation(OperadOperation::new("m4", vec!["X", "X", "X", "X"], "X"));
+        o.add_composition("m3", 0, "m", "m4");
+        o.add_composition("m", 0, "m3", "m4");
 
-    #[test]
-    fn negative_index() -> Result<(), String> {
-        let err = OperadOperation::try_new(1, vec![(0, 2)]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("endpoint") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("bad arrow accepted".into()),
-        }
-    }
-
-    #[test]
-    fn negative_claim_disagreement() -> Result<(), String> {
-        let err = require_agreement(1, 2).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("operad-hom-sum-equals-outgoing") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("disagreement accepted".into()),
-        }
-    }
-
-    #[test]
-    fn negative_overflow_sum() -> Result<(), String> {
-        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("claim-sum-stays-in-i64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("overflow accepted".into()),
-        }
+        let cases = vec![("m", 0, "m", 0, "m")];
+        let errs = check_operad_associativity(&o, &cases);
+        assert!(errs.is_empty(), "{:?}", errs);
     }
 }

@@ -1,3 +1,7 @@
+//! First-class finite functor operations.
+//!
+//! This module keeps `DeclaredFiniteFunctor` as auditable data and adds the
+//! derived operations needed to build larger categorical structures.
 
 use super::cat_functor::DeclaredFiniteFunctor;
 use super::finite_category::DeclaredFiniteCategory;
@@ -82,6 +86,8 @@ pub fn identity_functor(category: &DeclaredFiniteCategory, name: &str) -> Declar
     functor
 }
 
+/// Compose raw declared functors F : C -> D and G : D -> E as G after F.
+/// This does not validate that the inputs or output are lawful functors.
 pub fn compose_declared_functors(
     name: &str,
     first: &DeclaredFiniteFunctor,
@@ -120,6 +126,8 @@ pub fn compose_declared_functors(
     Ok(composite)
 }
 
+/// Compose two validated functors. Requires that the first functor's target
+/// exactly matches the second functor's source.
 pub fn compose_validated_functors(
     name: &str,
     first: &ValidatedFiniteFunctor,
@@ -157,6 +165,8 @@ pub fn opposite_category(category: &DeclaredFiniteCategory, name: &str) -> Decla
     opposite
 }
 
+/// Given F : C -> D, returns F^op : C^op -> D^op.
+/// Object and morphism maps are unchanged; source/target categories are reversed externally.
 pub fn opposite_functor(
     name: &str,
     functor: &DeclaredFiniteFunctor,

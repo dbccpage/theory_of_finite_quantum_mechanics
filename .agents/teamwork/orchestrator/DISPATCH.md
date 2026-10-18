@@ -95,3 +95,11 @@ Content: Heartbeat tick (iteration 3).
 ## 2026-10-18T21:00:00Z
 Sender: 2f7c2b5c-0caf-47df-b59c-b0d9e7b0ab22/task-154 (Heartbeat Cron)
 Content: Heartbeat tick (iteration 4).
+
+
+## 2026-10-18T21:42:27Z
+Sender: 00cc9fa9-41a0-4cf0-8743-3e518675464d (Sentinel)
+Priority: MESSAGE_PRIORITY_HIGH
+Content: URGENT DIAGNOSTIC ACTION REQUIRED for Milestone M2:
+`worker_m2_rust` (`36adb1c9-8534-4191-92f4-412d219079a0`) has been hanging on `task-394` (`cargo test -p tfqm_mub --lib` in unoptimized debug mode) for over 67 minutes because a single exhaustive search test (`omega_native::exact::mub6_continuous_manifold_residue::tests::test_solve_continuous_manifold_residue_smoke`, PID 21404) has consumed >3,389s of CPU in debug mode, while the other 390+ tests already passed.
+Action: Instruct `worker_m2_rust` to kill `task-394` (and PID 21404), bound or run `test_solve_continuous_manifold_residue_smoke` with `--release` (or pass `-- --skip test_solve_continuous_manifold_residue_smoke` in debug mode and run that single test with `--release`), so Milestone M2 can conclude immediately instead of stalling in unoptimized debug mode.

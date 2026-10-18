@@ -13,6 +13,9 @@ mutation ratio does not automatically award every file A. In particular, the
 current records do not certify all failure classes, consumer composition,
 macro-expanded flow, resource bounds, or external dependency provenance. The compatibility root
 `category_theory/mod.rs` is distinguished from the actual crate entry `lib.rs`.
+Completed reviews can additionally pin callee and consumer sources in
+`context_inputs`. Verification refuses changed context even when the subject
+file itself is unchanged. A historical score is not a current-tree pass.
 
 The homology core checks exact rational rank certificates using `M = UV`,
 `LU = I`, and `VR = I`. The certificate checker does not trust elimination.
@@ -33,6 +36,18 @@ The category core owns law-checked finite endpoints and functor maps. Metadata
 catalogs remain declarations; their mathematical names do not establish their
 advertised structures. Some public APIs now return `Result`/`Option`, and
 certificate fields are read-only. Weighted records use `BigRational`.
+
+Finite-category validation builds a sorted borrowed composition view for each
+relevant checking phase. Cubic associativity enumeration therefore avoids
+temporary owned lookup strings. The independent category challenge examines all
+81 unital three-arrow tables via regular-action matrices, with explicit malformed
+domain, typed diagnostic and immutable-ownership challenges. `FC05` challenges
+diagnostic completeness: removing the totality phase is still observable even
+where another phase also rejects the same incomplete table.
+`proofs/FiniteCategory.lean` models exact partial composition and reconstructs
+Mathlib's actual `Category` interface, with identity and associativity laws.
+As with the rank model, Rust representation and failure correspondence receive
+a separate source review; a model theorem alone does not verify Rust/MIR.
 
 Natural-transformation admission checks lawful categories and total lawful
 functors, exact component domains and every square. Certificates own their
@@ -71,6 +86,7 @@ Run the audit with Python 3.11+ and Cargo:
 python code/rust/quality/category_homology/run_audit.py --mutations
 python code/rust/quality/category_homology/run_metrics.py
 python code/rust/quality/category_homology/run_rank_proof.py
+python code/rust/quality/category_homology/run_rank_proof.py --model category
 python code/rust/quality/category_homology/write_scores.py --receipt evidence/quality/category_homology/RECEIPT --metrics evidence/quality/category_homology/METRICS
 python code/rust/quality/category_homology/write_scores.py --receipt evidence/quality/category_homology/RECEIPT --metrics evidence/quality/category_homology/METRICS --check
 ```
@@ -114,6 +130,11 @@ costs time; bounded disk use takes precedence. The initial and restored baseline
 candidate is retained as killed, survived, equivalent, invalid, inconclusive,
 or unrun; only eligible semantic candidates enter the conservative ratio.
 Earlier failed or limited campaigns remain in the evidence directory.
+New Cargo invocations require 3 GiB free each time and use two build jobs. A
+headroom refusal starts no compiler and records the mutant as unrun. Proof
+checks use Lean's internal 1024 MB memory limit and two threads. Heavy compiler
+replays are run serially; these controls do not claim a global process-memory or
+disk-space reservation guarantee.
 
 The writer refuses stale source hashes, changed logs, inconsistent mutation
 accounting, stale AST tool sources, or unsuccessful/restoration baselines.
@@ -121,7 +142,30 @@ Rank-model proof receipts also bind the compiler, explicit dependency search
 paths, direct library inputs and clean Mathlib revision. Proof execution uses
 the resolved compiler directly, excluding mutable main-project output modules.
 Timeouts remain unsuccessful even if axiom reports were printed before timeout.
+Unresolved proof warnings also prevent acceptance. New proof receipts retain
+both the exact runner and its execution helper as hashed runtime snapshots.
 `--check` verifies both the adjacent YAML files and their SHA-256 manifest.
 Derived score manifests live in the metric receipt, preserving historical
 semantic receipts. This scoped replay does not
 claim a successful build of every Rust workspace member.
+
+Publication checkpoint (restoration after the concurrent merge): all 192 Rust
+files have adjacent records. `finite_category.rs` is L5A and
+`finite_category_validation.rs` is L3A. The other 190 records have incomplete
+gates. The earlier rank L5A assessment remains historical evidence for its
+pinned provider context; incoming linear-algebra changes invalidate its use as
+a current-tree pass. Those provider changes are preserved. Contracts remain
+pending, and the directory-wide engineering A goal remains unfinished.
+
+Historical execution receipts describe this Windows checkout and its pinned
+local dependency and toolchain paths. They are not portable CI attestations.
+The scoped Git attributes preserve the exact source, harness and evidence
+bytes referenced by their hashes, including historical CRLF source snapshots.
+Fresh replay requires the declared dependencies and produces new receipts.
+
+The publication integration receipt `20261018T214243Z` has successful category
+and homology baselines and a successful category repeat. The homology repeat
+printed 95 passing tests but its Cargo process hit the deadline, so the receipt
+correctly remains unsuccessful. Sources and dependencies stayed stable, and
+all owned build outputs were removed. See the publication checkpoint for this
+limitation; it does not replace the earlier category-only grading receipt.

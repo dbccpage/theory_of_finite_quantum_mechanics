@@ -1,9 +1,42 @@
+//! Finite category validation.
+//!
+//! The checks here validate the shared `DeclaredFiniteCategory` model:
+//! object references, morphism boundaries, identities, composition totality,
+//! closure, boundary compatibility, and associativity.
 
 use super::finite_category::DeclaredFiniteCategory;
 use super::validation::{
     FiniteCategoryValidation, ValidationLocation, ValidationReport, ValidationSeverity,
     ValidationUnit, ValidationViolation,
 };
+
+/// Sorted borrowed table view. Building a view costs O(c) references once per
+/// checking phase; repeated pair lookups do not allocate temporary Strings.
+struct CompositionLookup<'a> {
+    rows: Vec<((&'a str, &'a str), &'a str)>,
+}
+
+impl<'a> CompositionLookup<'a> {
+    fn new(category: &'a DeclaredFiniteCategory) -> Self {
+        Self {
+            rows: category
+                .compositions
+                .iter()
+                .map(|((first, second), composite)| {
+                    ((first.as_str(), second.as_str()), composite.as_str())
+                })
+                .collect(),
+        }
+    }
+
+    fn compose(&self, first: &str, second: &str) -> Option<&'a str> {
+        let index = self
+            .rows
+            .binary_search_by_key(&(first, second), |(key, _)| *key)
+            .ok()?;
+        self.rows.get(index).map(|(_, composite)| *composite)
+    }
+}
 
 fn violation(
     unit: FiniteCategoryValidation,
@@ -162,6 +195,7 @@ pub fn check_identity_totality(category: &DeclaredFiniteCategory) -> Vec<Validat
 
 pub fn check_identity_laws(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation> {
     let mut violations = Vec::new();
+    let lookup = CompositionLookup::new(category);
 
     for morphism in category.morphisms.values() {
         let Some(source_identity) = category.identities.get(&morphism.source) else {
@@ -171,68 +205,45 @@ pub fn check_identity_laws(category: &DeclaredFiniteCategory) -> Vec<ValidationV
             continue;
         };
 
-        match category.compose(source_identity, &morphism.name) {
-            Some(composite) if composite == morphism.name => {}
-            Some(composite) => violations.push(violation(
-                FiniteCategoryValidation::IdentityLaw,
-                ValidationLocation::Composition {
-                    first: source_identity.clone(),
-                    second: morphism.name.clone(),
-                    composite: Some(composite.into()),
-                },
-                format!(
-                    "{} after {} should equal {}, got {}",
-                    morphism.name, source_identity, morphism.name, composite
-                ),
-            )),
-            None => violations.push(violation(
-                FiniteCategoryValidation::IdentityLaw,
-                ValidationLocation::Composition {
-                    first: source_identity.clone(),
-                    second: morphism.name.clone(),
-                    composite: None,
-                },
-                format!(
-                    "Missing left identity composition {} after {}",
-                    morphism.name, source_identity
-                ),
-            )),
-        }
-
-        match category.compose(&morphism.name, target_identity) {
-            Some(composite) if composite == morphism.name => {}
-            Some(composite) => violations.push(violation(
-                FiniteCategoryValidation::IdentityLaw,
-                ValidationLocation::Composition {
-                    first: morphism.name.clone(),
-                    second: target_identity.clone(),
-                    composite: Some(composite.into()),
-                },
-                format!(
-                    "{} after {} should equal {}, got {}",
-                    target_identity, morphism.name, morphism.name, composite
-                ),
-            )),
-            None => violations.push(violation(
-                FiniteCategoryValidation::IdentityLaw,
-                ValidationLocation::Composition {
-                    first: morphism.name.clone(),
-                    second: target_identity.clone(),
-                    composite: None,
-                },
-                format!(
-                    "Missing right identity composition {} after {}",
-                    target_identity, morphism.name
-                ),
-            )),
-        }
+        violations.extend(identity_composition_violation(
+            &lookup,
+            source_identity,
+            &morphism.name,
+            &morphism.name,
+        ));
+        violations.extend(identity_composition_violation(
+            &lookup,
+            &morphism.name,
+            target_identity,
+            &morphism.name,
+        ));
     }
 
     violations
 }
 
+fn identity_composition_violation(
+    lookup: &CompositionLookup<'_>,
+    first: &str,
+    second: &str,
+    expected: &str,
+) -> Option<ValidationViolation> {
+    let composite = lookup.compose(first, second);
+    if composite == Some(expected) {
+        return None;
+    }
+    Some(violation(
+        FiniteCategoryValidation::IdentityLaw,
+        ValidationLocation::Composition {
+            first: first.into(), second: second.into(), composite: composite.map(str::to_string),
+        },
+        format!("Identity composition {second} after {first} should equal {expected}, got {composite:?}"),
+    ))
+}
+
 pub fn check_composition_totality(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation> {
     let mut violations = Vec::new();
+    let lookup = CompositionLookup::new(category);
 
     for first in category.morphisms.values() {
         for second in category.morphisms.values() {
@@ -240,7 +251,7 @@ pub fn check_composition_totality(category: &DeclaredFiniteCategory) -> Vec<Vali
                 continue;
             }
 
-            if category.compose(&first.name, &second.name).is_none() {
+            if lookup.compose(&first.name, &second.name).is_none() {
                 violations.push(violation(
                     FiniteCategoryValidation::CompositionTotality,
                     ValidationLocation::Composition {
@@ -351,9 +362,10 @@ pub fn check_composition_boundaries(category: &DeclaredFiniteCategory) -> Vec<Va
     violations
 }
 
-/// Exhaustive associativity, O(m^3 log c) table lookups and output-sized storage.
+/// Exhaustive associativity, O(c + m^3 log(c+1)) work and O(c + violations) storage.
 pub fn check_associativity(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation> {
     let mut violations = Vec::new();
+    let lookup = CompositionLookup::new(category);
     for first in category.morphisms.values() {
         let seconds = category
             .morphisms
@@ -365,7 +377,7 @@ pub fn check_associativity(category: &DeclaredFiniteCategory) -> Vec<ValidationV
                 .values()
                 .filter(|third| second.target == third.source);
             violations.extend(thirds.filter_map(|third| {
-                associativity_at(category, &first.name, &second.name, &third.name)
+                associativity_at(&lookup, &first.name, &second.name, &third.name)
             }));
         }
     }
@@ -373,17 +385,17 @@ pub fn check_associativity(category: &DeclaredFiniteCategory) -> Vec<ValidationV
 }
 
 fn associativity_at(
-    category: &DeclaredFiniteCategory,
+    lookup: &CompositionLookup<'_>,
     first: &str,
     second: &str,
     third: &str,
 ) -> Option<ValidationViolation> {
-    let left = category
+    let left = lookup
         .compose(first, second)
-        .and_then(|pair| category.compose(pair, third));
-    let right = category
+        .and_then(|pair| lookup.compose(pair, third));
+    let right = lookup
         .compose(second, third)
-        .and_then(|pair| category.compose(first, pair));
+        .and_then(|pair| lookup.compose(first, pair));
     if left.is_some() && left == right {
         return None;
     }
@@ -443,6 +455,28 @@ pub fn validate_finite_category(category: &DeclaredFiniteCategory) -> Validation
 mod tests {
     use super::*;
     use crate::finite_category::DeclaredFiniteCategory;
+
+    #[test]
+    fn borrowed_composition_view_preserves_pair_order_and_missing_keys() {
+        let names = ["", "a", "a\0", "aa", "β", "\u{10ffff}"];
+        let mut category = DeclaredFiniteCategory::new("lookup");
+        for (i, first) in names.iter().enumerate() {
+            for (j, second) in names.iter().enumerate() {
+                if (i + j) % 2 == 0 {
+                    category.set_composition(first, second, &format!("{i}:{j}"));
+                }
+            }
+        }
+        let lookup = CompositionLookup::new(&category);
+        for first in names.iter().chain(["outside"].iter()) {
+            for second in names.iter().chain(["outside"].iter()) {
+                assert_eq!(
+                    lookup.compose(first, second),
+                    category.compose(first, second)
+                );
+            }
+        }
+    }
 
     fn valid_walking_arrow() -> DeclaredFiniteCategory {
         let mut cat = DeclaredFiniteCategory::new("WalkingArrow");
@@ -508,6 +542,8 @@ mod tests {
     #[test]
     fn associativity_failure_is_detected() {
         let mut cat = DeclaredFiniteCategory::new("AssocFail");
+        // We only declare the subset needed to trigger associativity failure to keep the test small.
+        // It will fail other tests (identity/totality) but that is fine for testing associativity specifically.
         cat.add_morphism("f", "A", "B");
         cat.add_morphism("g", "B", "C");
         cat.add_morphism("h", "C", "D");

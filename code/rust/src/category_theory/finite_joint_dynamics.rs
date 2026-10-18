@@ -1,3 +1,6 @@
+//! Joint operations on an explicit relation of component states.
+//! Local transitions must preserve the relation; missing pairs are NOT silently
+//! interpreted as unavailable operations. Interaction tables are supplied premises.
 use crate::finite_continuation::{ContinuationError, DistinguishingWord, PartialDynamics};
 use crate::finite_moore::MooreQuotient;
 use std::collections::BTreeMap;
@@ -6,6 +9,7 @@ use std::collections::BTreeMap;
 pub enum JointOperation {
     Left(usize),
     Right(usize),
+    /// One target row (or genuine unavailability) per admitted pair.
     Interaction(Vec<Option<usize>>),
 }
 
@@ -25,7 +29,9 @@ pub enum JointDynamicsError {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct JointDynamicsAnalysis {
+    /// Includes the separately labelled internal unavailable sink.
     pub refinement: MooreQuotient,
+    /// None iff paired local classes preserve all joint futures/availability.
     pub collision: Option<DistinguishingWord>,
 }
 
@@ -172,6 +178,7 @@ impl JointDynamics {
             collision,
         })
     }
+    /// Recompute against the expected relation AND complete operation table.
     pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError> {
         if self.analyze()? == *c {
             Ok(())

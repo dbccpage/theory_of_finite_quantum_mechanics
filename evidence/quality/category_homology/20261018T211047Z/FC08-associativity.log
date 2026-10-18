@@ -1,0 +1,52 @@
+
+running 453 tests
+....................................................................................... 87/453
+............................................ 131/453
+finite_category_validation::tests::associativity_failure_is_detected --- FAILED
+....................................................................................... 219/453
+.................................................................. 285/453
+l5a_challenges::category_admission::all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions --- FAILED
+l5a_challenges::category_admission::composition_domain_closure_boundary_and_undefined_associativity_are_refused --- FAILED
+....................................................................................... 374/453
+............................................. 419/453
+natural_trans::tests::full_maps_do_not_excuse_unlawful_functors_or_nonassociative_categories --- FAILED
+.................................
+failures:
+
+---- finite_category_validation::tests::associativity_failure_is_detected stdout ----
+
+thread 'finite_category_validation::tests::associativity_failure_is_detected' (21796) panicked at src\category_theory\finite_category_validation.rs:564:9:
+assertion failed: report.typed_violations.iter().any(|violation|
+        {
+            violation.unit ==
+                ValidationUnit::FiniteCategory(FiniteCategoryValidation::Associativity)
+        })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- l5a_challenges::category_admission::all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions stdout ----
+
+thread 'l5a_challenges::category_admission::all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions' (16692) panicked at src\category_theory\l5a_challenges.rs:323:13:
+assertion `left == right` failed: table [[0, 1, 2], [1, 0, 0], [2, 0, 0]]
+  left: true
+ right: false
+
+---- l5a_challenges::category_admission::composition_domain_closure_boundary_and_undefined_associativity_are_refused stdout ----
+
+thread 'l5a_challenges::category_admission::composition_domain_closure_boundary_and_undefined_associativity_are_refused' (3240) panicked at src\category_theory\l5a_challenges.rs:201:9:
+missing Associativity: [ValidationViolation { unit: FiniteCategory(IdentityLaw), location: Composition { first: "f", second: "id_B", composite: None }, message: "Identity composition id_B after f should equal f, got None", severity: Error }, ValidationViolation { unit: FiniteCategory(CompositionTotality), location: Composition { first: "f", second: "id_B", composite: None }, message: "Composable pair (f, id_B) has no declared composite", severity: Error }]
+
+---- natural_trans::tests::full_maps_do_not_excuse_unlawful_functors_or_nonassociative_categories stdout ----
+
+thread 'natural_trans::tests::full_maps_do_not_excuse_unlawful_functors_or_nonassociative_categories' (11588) panicked at src\category_theory\natural_trans.rs:419:9:
+assertion failed: ValidatedFiniteNatTrans::try_new(nat, &cat, &cat, &f, &f).is_err()
+
+
+failures:
+    finite_category_validation::tests::associativity_failure_is_detected
+    l5a_challenges::category_admission::all_81_unital_three_arrow_tables_agree_with_regular_matrix_actions
+    l5a_challenges::category_admission::composition_domain_closure_boundary_and_undefined_associativity_are_refused
+    natural_trans::tests::full_maps_do_not_excuse_unlawful_functors_or_nonassociative_categories
+
+test result: FAILED. 449 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.25s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

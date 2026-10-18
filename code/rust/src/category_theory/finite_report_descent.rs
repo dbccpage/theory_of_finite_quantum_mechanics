@@ -1,3 +1,13 @@
+//! Finite set-valued report presheaves, union coverage and exact descent fibers.
+//!
+//! Objects are declared subsets of a finite carrier, closed under intersection;
+//! arrows are inclusions. Report sets are finite numbered sets. Total restriction
+//! tables are checked for identity and composition, so this is an actual
+//! presheaf, not an unchecked diagram. A union cover is a Grothendieck pretopology:
+//! intersections give pullbacks, and unions prove identity/base-change/transitivity.
+//! For a cover, the restriction map into compatible matching families has finite
+//! fibers: empty = existence obstruction, singleton = unique glue, larger =
+//! ambiguity. Its bijectivity is exactly the sheaf condition for that cover.
 
 use std::collections::BTreeMap;
 use std::fmt;
@@ -228,6 +238,8 @@ impl FiniteReportPresheaf {
         Ok(())
     }
 
+    /// Decide compatibility first, then enumerate exactly the fiber of global
+    /// restriction. No proposed sections or restrictions are silently dropped.
     pub fn descent_fiber(
         &self,
         target: u64,
@@ -273,6 +285,9 @@ impl FiniteReportPresheaf {
         })
     }
 
+    /// Classify every compatible family for the requested cover. The explicit
+    /// Cartesian-product limit is checked before enumeration. Exhaustion is a
+    /// typed refusal, never interpreted as a gluing obstruction or sheaf law.
     pub fn classify_cover(
         &self,
         target: u64,

@@ -1,505 +1,382 @@
-pub const ORIGIN: &str = "Origin: code/rust/src/category_theory/cauchy.rs";
-pub const CLAIM: &str = "Claim: urn:tfqm:category-theory:cauchy:strictly-ascending-arrow-count";
-pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
-pub const MUTATION_KILLS: &str = "killed=3;suite=require_agreement_eq_flip,fold_carrier_add_to_sub,refuse_empty_eq_flip";
+//! Cauchy Completeness — Spec Section 17.
+//!
+//! A category C is Cauchy complete (Karoubi complete, idempotent complete) iff
+//! every idempotent e : A → A splits:
+//!
+//!   ∃ R, s: R → A, r: A → R such that r ∘ s = id_R and s ∘ r = e.
+//!
+//! Bicategorically: every profunctor-retract of a representable is representable.
+//!
+//! This module provides:
+//! - IdempotentSplitting: a witness that an idempotent splits
+//! - CauchyStatus: diagnostic for whether a category is Cauchy complete
+//! - CauchyCompletion: explicitly split all unsplit idempotents
+//! - Validation functions for splitting laws
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum IdempotentSplittingError {
-    FloatRefused { invariant: &'static str, measured_len: usize },
-    EmptyCarrier { invariant: &'static str, measured: usize },
-    IndexOutOfBounds { invariant: &'static str, measured: usize, bound: usize },
-    ClaimFailed { invariant: &'static str, measured: i64, expected: i64 },
-    Overflow { invariant: &'static str, measured: i64 },
-}
+use std::collections::BTreeMap;
 
-impl std::fmt::Display for IdempotentSplittingError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{self:?}")
-    }
-}
+// ---------------------------------------------------------------------------
+// IdempotentSplitting
+// ---------------------------------------------------------------------------
 
-impl std::error::Error for IdempotentSplittingError {}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct ArrowLedger {
-    objects: usize,
-    arrows: Vec<(usize, usize)>,
-}
-
-impl ArrowLedger {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, IdempotentSplittingError> {
-        refuse_empty(objects)?;
-        refuse_budget(objects, arrows.len())?;
-        refuse_endpoints(objects, &arrows)?;
-        Ok(Self { objects, arrows })
-    }
-
-    pub fn objects(&self) -> usize {
-        self.objects
-    }
-
-    pub fn arrows(&self) -> &[(usize, usize)] {
-        &self.arrows
-    }
-}
-
-fn refuse_empty(objects: usize) -> Result<(), IdempotentSplittingError> {
-    if objects == 0 {
-        return Err(IdempotentSplittingError::EmptyCarrier {
-            invariant: "cauchy-carrier-nonempty",
-            measured: objects,
-        });
-    }
-    Ok(())
-}
-
-fn refuse_budget(objects: usize, arrow_len: usize) -> Result<(), IdempotentSplittingError> {
-    if objects > 16 {
-        return Err(IdempotentSplittingError::EmptyCarrier {
-            invariant: "cauchy-carrier-at-most-16",
-            measured: objects,
-        });
-    }
-    if arrow_len > 64 {
-        return Err(IdempotentSplittingError::EmptyCarrier {
-            invariant: "cauchy-arrow-budget-64",
-            measured: arrow_len,
-        });
-    }
-    Ok(())
-}
-
-fn endpoint_ok(objects: usize, arrow: (usize, usize)) -> bool {
-    let src_ok = arrow.0 < objects;
-    let tgt_ok = arrow.1 < objects;
-    src_ok && tgt_ok
-}
-
-fn refuse_endpoints(objects: usize, arrows: &[(usize, usize)]) -> Result<(), IdempotentSplittingError> {
-    for (index, arrow) in arrows.iter().enumerate() {
-        if !endpoint_ok(objects, *arrow) {
-            return Err(IdempotentSplittingError::IndexOutOfBounds {
-                invariant: "cauchy-arrow-endpoint-in-carrier",
-                measured: index,
-                bound: objects,
-            });
-        }
-    }
-    Ok(())
-}
-
+/// A witness that an idempotent e : A → A splits via a retract R.
+///
+/// Laws:
+///   r ∘ s = id_R   (retraction ∘ section = identity on retract)
+///   s ∘ r = e      (section ∘ retraction = the idempotent)
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct IdempotentSplitting {
-    ledger: ArrowLedger,
+    /// The original object carrying the idempotent.
+    pub carrier: String,
+    /// The idempotent morphism e : carrier → carrier.
+    pub idempotent: String,
+    /// The retract object R (may be a new, "virtual" object).
+    pub retract: String,
+    /// The section s : R → carrier.
+    pub section: String,
+    /// The retraction r : carrier → R.
+    pub retraction: String,
 }
 
-impl IdempotentSplitting {
-    pub fn try_new(objects: usize, arrows: Vec<(usize, usize)>) -> Result<Self, IdempotentSplittingError> {
-        let ledger = ArrowLedger::try_new(objects, arrows)?;
-        Ok(Self { ledger })
-    }
+// ---------------------------------------------------------------------------
+// CauchyStatus
+// ---------------------------------------------------------------------------
 
-    pub fn selected_count(&self) -> Result<i64, IdempotentSplittingError> {
-        measured_count(self.ledger.arrows(), self.ledger.objects())
-    }
-
-    pub fn certificate(&self) -> Result<i64, IdempotentSplittingError> {
-        let measured = measured_count(self.ledger.arrows(), self.ledger.objects())?;
-        let expected = expected_count(self.ledger.arrows(), self.ledger.objects())?;
-        agree_folded(measured, expected, self.ledger.objects())
-    }
+/// Diagnostic: is the category Cauchy complete?
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum CauchyStatus {
+    /// All idempotents split. No phantom objects in Prof.
+    Complete,
+    /// Some idempotents do not split.
+    Incomplete {
+        /// Names of the unsplit idempotents.
+        unsplit_idempotents: Vec<String>,
+    },
 }
 
-fn agree_folded(measured: i64, expected: i64, objects: usize) -> Result<i64, IdempotentSplittingError> {
-    let folded = fold_carrier(measured, objects)?;
-    let expected_folded = fold_carrier(expected, objects)?;
-    require_agreement(folded, expected_folded)
+// ---------------------------------------------------------------------------
+// CauchyCompletion
+// ---------------------------------------------------------------------------
+
+/// The Cauchy completion of a finite category: the original category
+/// augmented with splitting objects for every unsplit idempotent.
+#[derive(Debug, Clone)]
+pub struct CauchyCompletion {
+    /// Objects of the original category.
+    pub original_objects: Vec<String>,
+    /// Objects added by the completion (one per unsplit idempotent).
+    pub added_objects: Vec<String>,
+    /// The splittings (one per idempotent that was split).
+    pub splittings: Vec<IdempotentSplitting>,
 }
 
-fn selected(arrow: (usize, usize), objects: usize) -> bool {
-    let _budget = objects;
-    arrow.0 < arrow.1
-}
+// ---------------------------------------------------------------------------
+// Detection: find idempotents and check if they split
+// ---------------------------------------------------------------------------
 
-fn unselected(arrow: (usize, usize), objects: usize) -> bool {
-    let keep = selected(arrow, objects);
-    !keep
-}
-
-fn measured_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, IdempotentSplittingError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if selected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(IdempotentSplittingError::Overflow {
-                invariant: "cauchy-measured-count-fits-i64",
-                measured: total,
-            })?;
+/// Find all idempotents in a finite category.
+///
+/// An idempotent is a morphism e : A → A with e ∘ e = e.
+///
+/// `endomorphisms`: list of (morphism_name, object, is_identity).
+/// `compositions`: (f, g) → g∘f.
+pub fn find_idempotents(
+    endomorphisms: &[(&str, &str, bool)],
+    compositions: &BTreeMap<(String, String), String>,
+) -> Vec<(String, String)> {
+    let mut idempotents = Vec::new();
+    for &(mor, obj, is_id) in endomorphisms {
+        if is_id {
+            continue; // Identities are trivially idempotent, skip.
+        }
+        let key = (mor.to_string(), mor.to_string());
+        if let Some(composed) = compositions.get(&key) {
+            if composed == mor {
+                idempotents.push((mor.to_string(), obj.to_string()));
+            }
         }
     }
-    Ok(total)
+    idempotents
 }
 
-fn count_all(arrows: &[(usize, usize)]) -> Result<i64, IdempotentSplittingError> {
-    let mut total = 0i64;
-    for _arrow in arrows {
-        total = total.checked_add(1).ok_or(IdempotentSplittingError::Overflow {
-            invariant: "cauchy-arrow-count-fits-i64",
-            measured: total,
-        })?;
-    }
-    Ok(total)
-}
+/// Check whether a specific idempotent splits in the given category.
+///
+/// An idempotent e : A → A splits if there exist morphisms
+/// s : R → A and r : A → R such that:
+///   r ∘ s = id_R
+///   s ∘ r = e
+///
+/// `identity_map`: object → identity morphism name.
+pub fn check_idempotent_splits(
+    idempotent: &str,
+    carrier: &str,
+    morphisms_to_carrier: &[(&str, &str)], // (morphism_name, source_object)
+    morphisms_from_carrier: &[(&str, &str)], // (morphism_name, target_object)
+    compositions: &BTreeMap<(String, String), String>,
+    identity_map: &BTreeMap<String, String>,
+) -> Option<IdempotentSplitting> {
+    // Search for a splitting pair (s, r).
+    for &(s, r_obj) in morphisms_to_carrier {
+        for &(r, s_obj) in morphisms_from_carrier {
+            if r_obj != s_obj {
+                continue; // s and r must share the retract object R.
+            }
+            let retract = r_obj;
 
-fn count_unselected(arrows: &[(usize, usize)], objects: usize) -> Result<i64, IdempotentSplittingError> {
-    let mut total = 0i64;
-    for arrow in arrows {
-        if unselected(*arrow, objects) {
-            total = total.checked_add(1).ok_or(IdempotentSplittingError::Overflow {
-                invariant: "cauchy-complement-count-fits-i64",
-                measured: total,
-            })?;
+            // Check r ∘ s = id_R
+            let rs_key = (s.to_string(), r.to_string());
+            let id_r = identity_map.get(retract);
+            let rs_ok = compositions
+                .get(&rs_key)
+                .and_then(|v| id_r.map(|id| v == id))
+                .unwrap_or(false);
+
+            // Check s ∘ r = e
+            let sr_key = (r.to_string(), s.to_string());
+            let sr_ok = compositions
+                .get(&sr_key)
+                .map(|v| v == idempotent)
+                .unwrap_or(false);
+
+            if rs_ok && sr_ok {
+                return Some(IdempotentSplitting {
+                    carrier: carrier.to_string(),
+                    idempotent: idempotent.to_string(),
+                    retract: retract.to_string(),
+                    section: s.to_string(),
+                    retraction: r.to_string(),
+                });
+            }
         }
     }
-    Ok(total)
+    None
 }
 
-fn expected_count(arrows: &[(usize, usize)], objects: usize) -> Result<i64, IdempotentSplittingError> {
-    let all = count_all(arrows)?;
-    let skipped = count_unselected(arrows, objects)?;
-    all.checked_sub(skipped).ok_or(IdempotentSplittingError::Overflow {
-        invariant: "cauchy-expected-count-fits-i64",
-        measured: all,
-    })
-}
+/// Check Cauchy completeness of a finite category.
+///
+/// Returns Complete if all non-identity idempotents split,
+/// Incomplete otherwise.
+pub fn check_cauchy_completeness(
+    endomorphisms: &[(&str, &str, bool)],
+    compositions: &BTreeMap<(String, String), String>,
+    morphisms_to: &BTreeMap<String, Vec<(String, String)>>, // target → [(mor, source)]
+    morphisms_from: &BTreeMap<String, Vec<(String, String)>>, // source → [(mor, target)]
+    identity_map: &BTreeMap<String, String>,
+) -> CauchyStatus {
+    let idempotents = find_idempotents(endomorphisms, compositions);
+    let mut unsplit = Vec::new();
 
-fn fold_carrier(measured: i64, objects: usize) -> Result<i64, IdempotentSplittingError> {
-    let width = i64::try_from(objects).map_err(|_| IdempotentSplittingError::Overflow {
-        invariant: "cauchy-carrier-width-fits-i64",
-        measured,
-    })?;
-    measured.checked_add(width).ok_or(IdempotentSplittingError::Overflow {
-        invariant: "cauchy-folded-certificate-fits-i64",
-        measured,
-    })
-}
+    for (idem, carrier) in &idempotents {
+        let to_carrier: Vec<(&str, &str)> = morphisms_to
+            .get(carrier)
+            .map(|v| v.iter().map(|(m, s)| (m.as_str(), s.as_str())).collect())
+            .unwrap_or_default();
+        let from_carrier: Vec<(&str, &str)> = morphisms_from
+            .get(carrier)
+            .map(|v| v.iter().map(|(m, t)| (m.as_str(), t.as_str())).collect())
+            .unwrap_or_default();
 
-pub fn require_agreement(measured: i64, expected: i64) -> Result<i64, IdempotentSplittingError> {
-    if measured == expected {
-        return Ok(measured);
-    }
-    Err(IdempotentSplittingError::ClaimFailed {
-        invariant: "cauchy-hom-sum-equals-outgoing",
-        measured,
-        expected,
-    })
-}
-
-pub fn checked_claim_sum(parts: &[i64]) -> Result<i64, IdempotentSplittingError> {
-    let mut total = 0i64;
-    for (index, part) in parts.iter().enumerate() {
-        let measured = match i64::try_from(index) {
-            Ok(value) => value,
-            Err(_) => i64::MAX,
-        };
-        total = total.checked_add(*part).ok_or(IdempotentSplittingError::Overflow {
-            invariant: "claim-sum-stays-in-i64",
-            measured,
-        })?;
-    }
-    Ok(total)
-}
-
-fn text_has_byte(text: &str, target: u8) -> bool {
-    for byte in text.bytes() {
-        if byte == target {
-            return true;
+        if check_idempotent_splits(
+            idem,
+            carrier,
+            &to_carrier,
+            &from_carrier,
+            compositions,
+            identity_map,
+        )
+        .is_none()
+        {
+            unsplit.push(idem.clone());
         }
     }
-    false
-}
 
-fn text_refused(text: &str) -> bool {
-    if text.is_empty() {
-        return true;
-    }
-    if text_has_byte(text, 46) {
-        return true;
-    }
-    if text_has_byte(text, 101) {
-        return true;
-    }
-    if text_has_byte(text, 69) {
-        return true;
-    }
-    false
-}
-
-fn split_sign(text: &str) -> (i64, &str) {
-    if text.starts_with('-') {
-        let rest = match text.get(1..) {
-            Some(value) => value,
-            None => "",
-        };
-        return (-1, rest);
-    }
-    (1, text)
-}
-
-fn digits_only(text: &str) -> bool {
-    if text.is_empty() {
-        return false;
-    }
-    for byte in text.bytes() {
-        if !byte.is_ascii_digit() {
-            return false;
+    if unsplit.is_empty() {
+        CauchyStatus::Complete
+    } else {
+        CauchyStatus::Incomplete {
+            unsplit_idempotents: unsplit,
         }
     }
-    true
 }
 
-fn accumulate_digits(text: &str) -> Result<i64, IdempotentSplittingError> {
-    let mut value = 0i64;
-    for byte in text.bytes() {
-        value = value.checked_mul(10).ok_or(IdempotentSplittingError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-        let digit = i64::from(byte - 48);
-        value = value.checked_add(digit).ok_or(IdempotentSplittingError::Overflow {
-            invariant: "parsed-integer-fits-i64",
-            measured: value,
-        })?;
-    }
-    Ok(value)
-}
+// ---------------------------------------------------------------------------
+// Validation: splitting law checker
+// ---------------------------------------------------------------------------
 
-pub fn parse_exact_i64(text: &str) -> Result<i64, IdempotentSplittingError> {
-    if text_refused(text) {
-        return Err(IdempotentSplittingError::FloatRefused {
-            invariant: "public-boundary-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let (sign, digits) = split_sign(text);
-    if !digits_only(digits) {
-        return Err(IdempotentSplittingError::FloatRefused {
-            invariant: "public-boundary-refuses-non-integer-text",
-            measured_len: text.len(),
-        });
-    }
-    let magnitude = accumulate_digits(digits)?;
-    magnitude.checked_mul(sign).ok_or(IdempotentSplittingError::Overflow {
-        invariant: "parsed-signed-integer-fits-i64",
-        measured: magnitude,
-    })
-}
+/// Validate a proposed idempotent splitting.
+///
+/// Checks:
+/// 1. e ∘ e = e (idempotent)
+/// 2. r ∘ s = id_R (retraction section law)
+/// 3. s ∘ r = e (section retraction law)
+pub fn validate_splitting(
+    splitting: &IdempotentSplitting,
+    compositions: &BTreeMap<(String, String), String>,
+    identity_map: &BTreeMap<String, String>,
+) -> Vec<String> {
+    let mut violations = Vec::new();
 
-pub fn certify_claim(text: &str) -> Result<i64, IdempotentSplittingError> {
-    let spec = parse_spec(text)?;
-    let value = IdempotentSplitting::try_new(spec.0, spec.1)?;
-    value.certificate()
-}
-
-fn parse_spec(text: &str) -> Result<(usize, Vec<(usize, usize)>), IdempotentSplittingError> {
-    let objects = parse_object_count(text)?;
-    let arrows = parse_arrow_list(&arrow_fields(text))?;
-    Ok((objects, arrows))
-}
-
-fn parse_object_count(text: &str) -> Result<usize, IdempotentSplittingError> {
-    if text_refused(text) {
-        return Err(IdempotentSplittingError::FloatRefused {
-            invariant: "spec-refuses-binary64-text",
-            measured_len: text.len(),
-        });
-    }
-    let head = match text.split(';').next() {
-        Some(value) => value,
-        None => "",
-    };
-    let objects_i = parse_exact_i64(head)?;
-    usize_from_i64(objects_i)
-}
-
-fn arrow_fields(text: &str) -> Vec<&str> {
-    let mut fields = Vec::new();
-    let mut skipped_head = false;
-    for part in text.split(';') {
-        if skipped_head {
-            fields.push(part);
+    // Check e ∘ e = e
+    let ee_key = (splitting.idempotent.clone(), splitting.idempotent.clone());
+    match compositions.get(&ee_key) {
+        Some(v) if v == &splitting.idempotent => {}
+        Some(v) => {
+            violations.push(format!(
+                "Not idempotent: {} ∘ {} = {} ≠ {}",
+                splitting.idempotent, splitting.idempotent, v, splitting.idempotent
+            ));
         }
-        if !skipped_head {
-            skipped_head = true;
+        None => {
+            violations.push(format!(
+                "Composition {} ∘ {} not defined",
+                splitting.idempotent, splitting.idempotent
+            ));
         }
     }
-    fields
+
+    // Check r ∘ s = id_R
+    let rs_key = (splitting.section.clone(), splitting.retraction.clone());
+    let expected_id = identity_map.get(&splitting.retract);
+    match (compositions.get(&rs_key), expected_id) {
+        (Some(v), Some(id)) if v == id => {}
+        (Some(v), Some(id)) => {
+            violations.push(format!(
+                "Retraction law failed: r ∘ s = {} but id_R = {}",
+                v, id
+            ));
+        }
+        _ => {
+            violations.push("Retraction law: composition r ∘ s or id_R not defined".into());
+        }
+    }
+
+    // Check s ∘ r = e
+    let sr_key = (splitting.retraction.clone(), splitting.section.clone());
+    match compositions.get(&sr_key) {
+        Some(v) if v == &splitting.idempotent => {}
+        Some(v) => {
+            violations.push(format!(
+                "Section law failed: s ∘ r = {} but e = {}",
+                v, splitting.idempotent
+            ));
+        }
+        None => {
+            violations.push("Section law: composition s ∘ r not defined".into());
+        }
+    }
+
+    violations
 }
 
-fn parse_arrow_list(fields: &[&str]) -> Result<Vec<(usize, usize)>, IdempotentSplittingError> {
-    let mut arrows = Vec::new();
-    let mut index = 0usize;
-    while index < fields.len() {
-        let field = match fields.get(index) {
-            Some(value) => *value,
-            None => "",
-        };
-        arrows.push(parse_arrow(field)?);
-        index = index.saturating_add(1);
-    }
-    Ok(arrows)
-}
+/// A wrapper proving that an idempotent splitting has passed structural validation.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ValidatedIdempotentSplitting(IdempotentSplitting);
 
-fn parse_arrow(part: &str) -> Result<(usize, usize), IdempotentSplittingError> {
-    let mut ends = part.split('>');
-    let src_text = ends.next().ok_or(IdempotentSplittingError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-source",
-        measured: 0,
-        bound: 0,
-    })?;
-    let tgt_text = ends.next().ok_or(IdempotentSplittingError::IndexOutOfBounds {
-        invariant: "spec-arrow-has-target",
-        measured: 0,
-        bound: 0,
-    })?;
-    if ends.next().is_some() {
-        return Err(IdempotentSplittingError::IndexOutOfBounds {
-            invariant: "spec-arrow-has-two-ends",
-            measured: part.len(),
-            bound: 2,
-        });
+impl ValidatedIdempotentSplitting {
+    /// Validates and wraps a splitting.
+    pub fn try_new(
+        splitting: IdempotentSplitting,
+        compositions: &BTreeMap<(String, String), String>,
+        identity_map: &BTreeMap<String, String>,
+    ) -> Result<Self, Vec<String>> {
+        let violations = validate_splitting(&splitting, compositions, identity_map);
+        if violations.is_empty() {
+            Ok(Self(splitting))
+        } else {
+            Err(violations)
+        }
     }
-    let src = usize_from_i64(parse_exact_i64(src_text)?)?;
-    let tgt = usize_from_i64(parse_exact_i64(tgt_text)?)?;
-    Ok((src, tgt))
-}
 
-fn usize_from_i64(value: i64) -> Result<usize, IdempotentSplittingError> {
-    if value < 0 {
-        return Err(IdempotentSplittingError::IndexOutOfBounds {
-            invariant: "spec-index-nonnegative",
-            measured: 0,
-            bound: 0,
-        });
+    /// Access the underlying declared splitting.
+    pub fn declared(&self) -> &IdempotentSplitting {
+        &self.0
     }
-    usize::try_from(value).map_err(|_| IdempotentSplittingError::Overflow {
-        invariant: "spec-index-fits-usize",
-        measured: value,
-    })
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    const UNIT_EXPECT: i64 = 3;
-    const INTEG_EXPECT: i64 = 3;
+    #[test]
+    fn discrete_category_is_cauchy_complete() {
+        // No non-identity endomorphisms → trivially complete.
+        let endomorphisms: Vec<(&str, &str, bool)> = vec![("id_A", "A", true), ("id_B", "B", true)];
+        let compositions: BTreeMap<(String, String), String> = vec![
+            (("id_A".into(), "id_A".into()), "id_A".into()),
+            (("id_B".into(), "id_B".into()), "id_B".into()),
+        ]
+        .into_iter()
+        .collect();
 
-    fn show(err: IdempotentSplittingError) -> String {
-        format!("{err:?}")
-    }
-
-    fn integration_certificate() -> Result<i64, IdempotentSplittingError> {
-        let ledger = ArrowLedger::try_new(2, vec![(0, 1)])?;
-        let value = IdempotentSplitting::try_new(ledger.objects(), ledger.arrows().to_vec())?;
-        value.certificate()
+        let status = check_cauchy_completeness(
+            &endomorphisms,
+            &compositions,
+            &BTreeMap::new(),
+            &BTreeMap::new(),
+            &vec![("A".into(), "id_A".into()), ("B".into(), "id_B".into())]
+                .into_iter()
+                .collect(),
+        );
+        assert_eq!(status, CauchyStatus::Complete);
     }
 
     #[test]
-    fn unit_cauchy_hom_sum_matches_outgoing() -> Result<(), String> {
-        let value = IdempotentSplitting::try_new(2, vec![(0, 1), (1, 1)]).map_err(show)?;
-        let got = value.certificate().map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("certificate {got}"));
-        }
-        Ok(())
-    }
+    fn unsplit_idempotent_detected() {
+        // Category with object A and idempotent e: A → A, e∘e = e, e ≠ id_A.
+        let endomorphisms: Vec<(&str, &str, bool)> = vec![("id_A", "A", true), ("e", "A", false)];
+        let compositions: BTreeMap<(String, String), String> = vec![
+            (("id_A".into(), "id_A".into()), "id_A".into()),
+            (("e".into(), "e".into()), "e".into()),
+            (("id_A".into(), "e".into()), "e".into()),
+            (("e".into(), "id_A".into()), "e".into()),
+        ]
+        .into_iter()
+        .collect();
 
-    #[test]
-    fn integration_ledger_and_cauchy_agree() -> Result<(), String> {
-        let cert = integration_certificate().map_err(show)?;
-        let combined = checked_claim_sum(&[cert, 0]).map_err(show)?;
-        if combined != INTEG_EXPECT {
-            return Err(format!("combined {combined}"));
-        }
-        Ok(())
-    }
-
-    #[test]
-    fn e2e_certify_claim_text() -> Result<(), String> {
-        let got = certify_claim("2;0>1;1>1").map_err(show)?;
-        if got != UNIT_EXPECT {
-            return Err(format!("e2e {got}"));
-        }
-        Ok(())
-    }
-
-    #[test]
-    fn negative_empty_carrier() -> Result<(), String> {
-        let err = IdempotentSplitting::try_new(0, vec![]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("cauchy-carrier-nonempty") {
-                    return Err(text);
-                }
-                Ok(())
+        let status = check_cauchy_completeness(
+            &endomorphisms,
+            &compositions,
+            &BTreeMap::new(),
+            &BTreeMap::new(),
+            &vec![("A".into(), "id_A".into())].into_iter().collect(),
+        );
+        assert_eq!(
+            status,
+            CauchyStatus::Incomplete {
+                unsplit_idempotents: vec!["e".into()],
             }
-            Ok(_) => Err("empty carrier accepted".into()),
-        }
+        );
     }
 
     #[test]
-    fn negative_float_boundary() -> Result<(), String> {
-        let err = parse_exact_i64("1.5").map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("binary64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("float accepted".into()),
-        }
-    }
+    fn validate_correct_splitting() {
+        // Objects A, R. Idempotent e: A → A. Section s: R → A, retraction r: A → R.
+        let splitting = IdempotentSplitting {
+            carrier: "A".into(),
+            idempotent: "e".into(),
+            retract: "R".into(),
+            section: "s".into(),
+            retraction: "r".into(),
+        };
 
-    #[test]
-    fn negative_index() -> Result<(), String> {
-        let err = IdempotentSplitting::try_new(1, vec![(0, 2)]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("endpoint") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("bad arrow accepted".into()),
-        }
-    }
+        let compositions: BTreeMap<(String, String), String> = vec![
+            (("e".into(), "e".into()), "e".into()),    // e∘e = e
+            (("s".into(), "r".into()), "id_R".into()), // r∘s = id_R
+            (("r".into(), "s".into()), "e".into()),    // s∘r = e
+        ]
+        .into_iter()
+        .collect();
 
-    #[test]
-    fn negative_claim_disagreement() -> Result<(), String> {
-        let err = require_agreement(1, 2).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("cauchy-hom-sum-equals-outgoing") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("disagreement accepted".into()),
-        }
-    }
+        let identity_map: BTreeMap<String, String> =
+            vec![("R".into(), "id_R".into()), ("A".into(), "id_A".into())]
+                .into_iter()
+                .collect();
 
-    #[test]
-    fn negative_overflow_sum() -> Result<(), String> {
-        let err = checked_claim_sum(&[i64::MAX, 1]).map_err(show);
-        match err {
-            Err(text) => {
-                if !text.contains("claim-sum-stays-in-i64") {
-                    return Err(text);
-                }
-                Ok(())
-            }
-            Ok(_) => Err("overflow accepted".into()),
-        }
+        let violations = validate_splitting(&splitting, &compositions, &identity_map);
+        assert!(
+            violations.is_empty(),
+            "Splitting should validate: {:?}",
+            violations
+        );
     }
 }

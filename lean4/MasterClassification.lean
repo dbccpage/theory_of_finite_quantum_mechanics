@@ -7,7 +7,8 @@ import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.FinCases
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Data.Rat.Basic
+import Mathlib.Data.Rat.Defs
+import Mathlib.Data.Rat.Lemmas
 import ConcreteSemantics
 import PolynomialEncoding
 import CaseCoverage

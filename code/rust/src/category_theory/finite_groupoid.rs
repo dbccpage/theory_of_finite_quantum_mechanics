@@ -1,3 +1,9 @@
+//! Checked finite groupoids and their matrix/group coordinates.
+//!
+//! This strengthens the canonical finite dagger category by requiring every
+//! arrow to be unitary. It does not freely adjoin inverses or identify histories.
+//! Composition retains the category convention: `compose(f, g)` means g after f.
+//! The inherited bound is 64 arrows. AuthorityEffect: None.
 
 use crate::dagger::{DaggerStructure, DaggerValidationError};
 use crate::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
@@ -9,6 +15,7 @@ pub enum GroupoidError {
     Noninvertible {
         morphism: String,
     },
+    /// A required witness could not be resolved; never silently omit it.
     MissingStructure,
 }
 impl std::fmt::Display for GroupoidError {
@@ -18,6 +25,7 @@ impl std::fmt::Display for GroupoidError {
 }
 impl std::error::Error for GroupoidError {}
 
+/// A component with a chosen base object and arrows p_x : root -> x.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GroupoidComponent {
     pub root: String,
@@ -26,6 +34,7 @@ pub struct GroupoidComponent {
     pub connectors: BTreeMap<String, String>,
 }
 
+/// g : x -> y maps to E_(y,x) tensor (p_y^-1 g p_x).
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GroupoidMatrixCoordinate {
     pub component_root: String,
@@ -66,11 +75,15 @@ impl ValidatedFiniteGroupoid {
         self.dagger.dagger(morphism)
     }
 
+    /// Deterministic choices: least remaining object, then least connector;
+    /// the root connector is its identity. No sampled reachability is used.
     pub fn components(&self) -> Result<Vec<GroupoidComponent>, GroupoidError> {
         let c = self.category().declared();
         let mut remaining = c.objects.clone();
         let mut result = Vec::new();
         while let Some(root) = remaining.first().cloned() {
+            // In a groupoid, composites and inverses turn every zigzag into
+            // a single arrow. All connected objects occur among these targets.
             let mut connectors = BTreeMap::new();
             let mut isotropy = BTreeSet::new();
             for (name, arrow) in &c.morphisms {
@@ -144,6 +157,8 @@ impl ValidatedFiniteGroupoid {
         Ok(result)
     }
 
+    /// Structural criterion for a nonzero simple COMPLEX groupoid algebra.
+    /// This is not a claim about admitted states, scalars, or physical processes.
     pub fn is_connected_thin(&self) -> Result<bool, GroupoidError> {
         let components = self.components()?;
         Ok(components.len() == 1 && components[0].isotropy.len() == 1)
@@ -156,6 +171,7 @@ mod tests {
 
     #[test]
     fn an_involutive_dagger_need_not_supply_inverses() {
+        // The idempotent monoid {1,z}, z^2=z, with identity dagger.
         let mut c = DeclaredFiniteCategory::new("noninvertible dagger");
         c.add_identity("x", "1");
         c.add_morphism("z", "x", "x");

@@ -44,3 +44,46 @@ Your Tasks:
 4. Run `cargo test` and verify 0 failures across the workspace.
 5. Write `handoff.md` and report completion.
 **Action**: Resume execution and drive M2 to completion.
+
+
+## 2026-10-18T21:42:47Z
+**Context**: Milestone M2 (Rust Derivation Completion) - test task execution.
+**Content**: URGENT: Your background task `task-394` (`cargo test -p tfqm_mub --lib` in debug mode) has been running for over 67 minutes and stalling because a single test (`omega_native::exact::mub6_continuous_manifold_residue::tests::test_solve_continuous_manifold_residue_smoke`, PID 21404) is doing exhaustive continuous search in unoptimized debug mode, while the other 390+ unit tests in `tfqm_mub` already completed. Furthermore, your primary tasks for M2 (`tfqm_fsp` 13/13 unit tests, 9/9 integration tests in `test_fsp.rs`, and `tfqm_majorana` 126/126 tests) are already verified passing.
+**Action**:
+1. Terminate/kill `task-394` (and terminate PID 21404 if needed via `manage_task(Action="kill", TaskId="36adb1c9-8534-4191-92f4-412d219079a0/task-394")` or shell).
+2. Either run `cargo test -p tfqm_mub --lib -- --skip test_solve_continuous_manifold_residue_smoke` in debug mode, OR run `cargo test -p tfqm_mub --release --lib -- test_solve_continuous_manifold_residue_smoke` if you need that specific test verified.
+3. Conclude Milestone M2: verify that `tfqm_fsp`, `tfqm_majorana`, and workspace integration are complete and clean.
+4. Write your completion report `handoff.md` and report back to parent orchestrator.
+
+
+## 2026-10-18T21:57:25Z
+**Context**: Milestone M2 (Rust Derivation Completion) - tfqm_mub build failure diagnosis.
+**Content**: The `cargo test -p tfqm_mub --lib` command failed during compilation with os error 3 (cannot find path):
+In `code/rust/src/mub/omega_native/mub6_quadratic_lift.rs` (line 455) and `code/rust/src/mub/omega_native/mub6_szollosi_executable.rs` (lines 791, 795, 799, 802):
+The paths use `../../../../../papers/derivations/mub6/artifacts/...`.
+In this repository, the artifacts are at `papers/core/mub6/artifacts/` and the relative depth from `omega_native/` to root is 4 levels (`../../../../`), not 5.
+Specifically, change:
+1. `mub6_quadratic_lift.rs:455`:
+   `"../../../../papers/core/mub6/artifacts/quadratic_lift_coefficients_20261011.jsonl"`
+2. `mub6_szollosi_executable.rs:791`:
+   `"../../../../papers/core/mub6/artifacts/mub_szollosi_executable_system.json"`
+3. `mub6_szollosi_executable.rs:795`:
+   `"../../../../papers/core/mub6/artifacts/mub_szollosi_lean_coefficients.json"`
+4. `mub6_szollosi_executable.rs:799`:
+   `"../../../../papers/core/mub6/artifacts/mub_szollosi_gauged_executable_system.json"`
+5. `mub6_szollosi_executable.rs:802`:
+   `"../../../../papers/core/mub6/artifacts/mub_szollosi_gauged_lean_coefficients.json"`
+
+**Action**: Apply these 5 path updates, rerun `cargo test -p tfqm_mub --lib -- --skip test_solve_continuous_manifold_residue_smoke`, verify clean pass, write `handoff.md`, and report completion.
+
+
+## 2026-10-18T21:58:58Z
+**Context**: Milestone M2 (Rust Derivation Completion) - cargo test compiler suggestion.
+**Content**: In `task-424`, the Rust compiler provided the exact help suggestion:
+The relative path requires 5 levels of `../` due to module inclusion from `exact/`:
+`"../../../../../papers/core/mub6/artifacts/..."`
+Please update the 5 `include_bytes!` in `mub6_quadratic_lift.rs:455` and `mub6_szollosi_executable.rs:791, 795, 799, 802` to use:
+`"../../../../../papers/core/mub6/artifacts/..."`
+(i.e. replacing `papers/derivations/mub6/` with `papers/core/mub6/` while keeping `../../../../../`).
+Then rerun `cargo test -p tfqm_mub --lib -- --skip test_solve_continuous_manifold_residue_smoke`.
+**Action**: Update the 5 paths, rerun the test command, verify passing, write `handoff.md`, and report completion.
