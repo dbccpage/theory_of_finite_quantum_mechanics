@@ -118,6 +118,16 @@ def contextuality_threshold_conductor_d4 : Nat := 1
 theorem threshold_d4_is_one : contextuality_threshold_conductor_d4 = 1 := by
   rfl
 
+/-- Peres–Mermin square. Row products `+1` and column products `+1,+1,-1`
+    cannot be realized by integer entries, because both products equal the
+    product of all nine cells. -/
+theorem mermin_peres_square_uncolorable
+    (a b c d e f g h i : Int)
+    (r1 : a * b * c = 1) (r2 : d * e * f = 1) (r3 : g * h * i = 1)
+    (c1 : a * d * g = 1) (c2 : b * e * h = 1) (c3 : c * f * i = -1) :
+    False := by
+  grind
+
 #print axioms sqrt2_conductor_is_eight
 #print axioms conductor_12_lacks_sqrt2
 #print axioms conductor_24_contains_sqrt2

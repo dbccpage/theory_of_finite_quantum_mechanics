@@ -124,6 +124,17 @@ theorem amplitude10j_vacuum : amplitude10j vacuum4Spins = 1 := by rfl
 /-- Theorem: Inadmissible spin configuration has identically vanishing vertex amplitude. -/
 theorem amplitude10j_inadmissible_vanishes : amplitude10j bad4Spins = 0 := by rfl
 
+/-- Face `f012` doubled. Exactly two boundary tetrahedra see phase `zeta^6 = -1`. -/
+def doubledFace012 : Simplex4Spins := ⟨2, 0, 0, 0, 0, 0, 0, 0, 0, 0⟩
+
+theorem doubled_face_half_turn_pair :
+    simplex4Admissible doubledFace012 = true ∧
+      tetPhasePower doubledFace012.f012 doubledFace012.f014
+          doubledFace012.f024 doubledFace012.f124 = 6 ∧
+      zetaPower 6 = -1 ∧
+      amplitude10j doubledFace012 = (-1) * (-1) := by
+  decide
+
 end TenJAmplitude
 
 -- ==============================================================================

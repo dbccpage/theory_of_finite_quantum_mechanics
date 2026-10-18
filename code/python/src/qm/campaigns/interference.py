@@ -36,30 +36,43 @@ def two_path_cross_term(c1: complex, c2: complex) -> float:
     return float(2.0 * np.real(np.conj(c1) * c2))
 
 
+def _rational_weights(amplitudes: tuple[Fraction, Fraction]) -> tuple[Fraction, Fraction]:
+    return (amplitudes[0] ** 2, amplitudes[1] ** 2)
+
+
+def _rational_interfered(amplitudes: tuple[Fraction, Fraction]) -> Fraction:
+    total = amplitudes[0] + amplitudes[1]
+    return total * total
+
+
 def theorem_a1_separation() -> Dict[str, Any]:
-    r"""Run the qm_061 Theorem A1 separation instead of restating it."""
-    c = np.array([1.0, 1.0], dtype=complex)
-    c_prime = np.array([1.0, -1.0], dtype=complex)
+    """Diagonal Born weights of (1, 1) and (1, -1) agree; the interfered weights do not."""
+    from fractions import Fraction
 
-    l1_c, l1_cp = diagonal_data(c), diagonal_data(c_prime)
-    i_c, i_cp = interfered_weight(c), interfered_weight(c_prime)
-
+    witness_a = (Fraction(1), Fraction(1))
+    witness_b = (Fraction(1), Fraction(-1))
+    diagonal_a = _rational_weights(witness_a)
+    diagonal_b = _rational_weights(witness_b)
+    interfered_a = _rational_interfered(witness_a)
+    interfered_b = _rational_interfered(witness_b)
+    cross_a = interfered_a - sum(diagonal_a, Fraction(0))
+    cross_b = interfered_b - sum(diagonal_b, Fraction(0))
+    same_diagonal = diagonal_a == diagonal_b
+    differs = interfered_a != interfered_b
     return {
-        "witness_a": c,
-        "witness_b": c_prime,
-        "diagonal_data_a": l1_c,
-        "diagonal_data_b": l1_cp,
-        "diagonal_data_identical": bool(np.allclose(l1_c, l1_cp, atol=1e-15)),
-        "interfered_a": i_c,
-        "interfered_b": i_cp,
-        "interfered_differs": bool(not np.isclose(i_c, i_cp, atol=1e-12)),
-        "cross_a": cross_term(c),
-        "cross_b": cross_term(c_prime),
-        "separation_holds": bool(
-            np.allclose(l1_c, l1_cp, atol=1e-15) and not np.isclose(i_c, i_cp, atol=1e-12)
-        ),
+        "witness_a": witness_a,
+        "witness_b": witness_b,
+        "diagonal_data_a": diagonal_a,
+        "diagonal_data_b": diagonal_b,
+        "diagonal_data_identical": same_diagonal,
+        "interfered_a": interfered_a,
+        "interfered_b": interfered_b,
+        "interfered_differs": differs,
+        "cross_a": cross_a,
+        "cross_b": cross_b,
+        "separation_holds": same_diagonal and differs and cross_a == -cross_b and cross_a != 0,
         "claim": "no function of the diagonal Born data determines the interfered weight",
-        "status": "SEPARATION_WITNESSED",
+        "status": "SEPARATION_WITNESSED" if same_diagonal and differs else "SEPARATION_FAILED",
         "authority_effect": "None",
     }
 

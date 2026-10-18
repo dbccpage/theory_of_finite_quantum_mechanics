@@ -2137,8 +2137,8 @@
     {
       "id": "FQ-PRIM-TO-QM-SELECTION-OPEN",
       "stage": "FINITE_QM_CORE",
-      "status": "PROVED_LEAN",
-      "source_status": "GAP-FQM-021 primitive-difference readout non-selection (L1=7 vs Born=25 vs quartic=337 on (3,4) with 4-3=1), Sorkin I3 quadratic vanishing vs cubic rival (I3=6), relational projector rank decompositions on D2/D3/D2xD3/D3^2/D3^3, and state-manifold dimension gap d-1 < d^2-1 mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
+      "status": "CONDITIONAL",
+      "source_status": "7-stage finite relational operad chain (D2, D3, D2xD3, D3^2, D3^3) and d-dimensional diagonal vs rebit vs qubit state-parameter gap (d-1 < d^2-1) mechanized in CoupledRelationalProjectors.lean and DerivationDagQMClosure.lean; continuum Hilbert/Gleason imports remain external",
       "statement": "Primitive difference does not select the declared quantum model or readout. Direct packet-walk execution is an integration result: the complexes, Cayley parameter, cyclotomic weights, detector and squared-amplitude readout were supplied independently of the computed difference value.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105",
@@ -2148,22 +2148,19 @@
       "lean": [
         "lean4/quantum_mechanics/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_and_gleason_busch_tomography_closure",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_and_gleason_busch_tomography_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quadratic",
         "omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs::DeclaredRealComposite",
         "omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs::evaluate_coupled_relational_operad",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
-      "imported_structure": [],
-      "bottleneck": "None (primitive-difference readout non-selection, Sorkin I3 quadratic vs cubic separation, and state-manifold dimension gap mechanized in fq_prim_to_qm_selection_and_gleason_busch_tomography_closure and fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap).",
+      "imported_structure": [
+        "all of FQ-DECLARED-QUANTUM-INTERFACE (assumption)"
+      ],
+      "bottleneck": "Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension gap d-1 < d^2-1 are mechanized without free parameters; full continuum M_n(C) and Gleason n>=3 remain explicit external imports.",
       "tags": [
         "central-gap"
       ]
@@ -2438,8 +2435,8 @@
     {
       "id": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
       "stage": "FINITE_QM_CORE",
-      "status": "PROVED_LEAN",
-      "source_status": "H058 4-effect qubit tomography uniqueness, H058 3x3 principal-minor vs determinant separation (negative_minor_control3 det = -1/16 < 0), H054 Cabello 18-ray non-PSD frame witness and norm-25 sphere clopen partitions (2z^2 != 25, 7z^2 != 25), and d=3 rotated-frame quartic rival elimination mechanized in DerivationDagQMClosure.lean, H054GleasonCyclotomicObstruction.lean, H058EffectFrameBusch.lean, and 006_finite_qm",
+      "status": "CONDITIONAL",
+      "source_status": "Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean; continuum Gleason on S^{n-1} remains an external import",
       "statement": "Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:193",
@@ -2450,20 +2447,19 @@
         "lean4/quantum_mechanics/H013QuarticRivalSeparation.lean::frames_equinorm",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_and_gleason_busch_tomography_closure",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_and_gleason_busch_tomography_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche7_wdp_bridge_o03_o05_sector_orbit_and_gleason_rival_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
-      "imported_structure": [],
-      "bottleneck": "None (H058 4-effect tomography uniqueness, 3x3 false-effect determinant control, H054 Cabello/norm-25 clopen cuts, and d=3 quartic rival elimination mechanized in fq_prim_to_qm_selection_and_gleason_busch_tomography_closure and fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival).",
+      "imported_structure": [
+        "Gleason theorem for d >= 3 (assumption)",
+        "projection lattice (assumption)",
+        "Hilbert space (assumption)"
+      ],
+      "bottleneck": "Finite rational frame obstructions (Cabello 18-9, d=2 plane, and d=3 rotated frame eliminating the quartic rival) are mechanized; continuum Gleason frame additivity on S^{n-1} remains an external import.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-GLEASON",
@@ -2527,8 +2523,8 @@
     {
       "id": "FQ-GAP-TENSOR-UNIQUENESS",
       "stage": "FINITE_QM_CORE",
-      "status": "PROVED_LEAN",
-      "source_status": "H062 locality-dropping bilinear rival projDump(u,v)=(v0+v1)u basis collision and local Pauli-Z covariance failure, composite d=6 product-MUB overlap 1/6 and unbounded GKP conductor C+1 > C, direct-sum vs Kronecker dimension separation, and min-vs-Hilbert-vs-max cone bracketing (50 < 70 < 100) mechanized in DerivationDagQMClosure.lean, H062CompositionTensorMub.lean, and 006_finite_qm",
+      "status": "CONDITIONAL",
+      "source_status": "Direct-sum vs Kronecker dimension separation, min-vs-Hilbert-vs-max cone bracketing (50 < 70 < 100), and product-table zero determinant mechanized in DerivationDagQMClosure.lean",
       "statement": "Hilbert tensor product as the unique way to combine systems remains extra structure; rival exclusions exist only for stated hosts and covariance requirements. Bipartite composition and entangled preparation are load-bearing for Bell (s13.8.2).",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:255",
@@ -2538,21 +2534,18 @@
         "lean4/quantum_mechanics/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_tensor_projection_rival_and_u1_connectedness_shadow_closure",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_tensor_projection_rival_and_u1_connectedness_shadow_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs::evaluate_coupled_relational_operad",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
-      "imported_structure": [],
-      "bottleneck": "None (H062 bilinear rival Pauli-Z covariance failure, composite d=6 product MUBs, unbounded GKP conductor, and min-vs-max cone bracketing mechanized in fq_tensor_projection_rival_and_u1_connectedness_shadow_closure and fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance).",
+      "imported_structure": [
+        "tensor composition (assumption)"
+      ],
+      "bottleneck": "Finite bipartite/tripartite Kronecker projector decompositions and min-vs-max cone bracketing are mechanized; general state-effect tensor uniqueness without host covariance remains conditional.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-TENSOR-PRODUCT"
@@ -2822,8 +2815,8 @@
     {
       "id": "FQ-GAP-U1-CIRCLE",
       "stage": "FINITE_QM_CORE",
-      "status": "PROVED_LEAN",
-      "source_status": "H011Circle sign-group exponent-2 exclusion under the connectedness shadow, non-uniqueness of finite survivors (4 Gaussian units vs Z/3Z 3-cycle), (3+4i)/5 non-square obstruction in Q(i), and Cayley punctured-circle antipodal exclusion mechanized in DerivationDagQMClosure.lean, H011Circle.lean, and 006_finite_qm",
+      "status": "CONDITIONAL",
+      "source_status": "Pythagorean (3+4i)/5 half-angle obstruction and rational Cayley unit-circle parameterization ((1-t^2)^2 + (2t)^2 = (1+t^2)^2 punctured at (-1,0)) mechanized in DerivationDagQMClosure.lean; compact R/Z circle completion remains an external interface",
       "statement": "The circle group U(1) is not constructed on the finite host; continuity of a one-parameter phase group remains a hypothesis. In Q(i), u=(3+4i)/5 has no square root and n -> u^n is injective, so no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:243"
@@ -2831,21 +2824,19 @@
       "lean": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_tensor_projection_rival_and_u1_connectedness_shadow_closure",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_tensor_projection_rival_and_u1_connectedness_shadow_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::half_exponent_obstruction",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
-      "imported_structure": [],
-      "bottleneck": "None (H011Circle sign-group exponent-2 exclusion, non-isomorphic finite survivors Z[i]^x vs Z/3Z, (3+4i)/5 non-square obstruction, and Cayley punctured circle mechanized in fq_tensor_projection_rival_and_u1_connectedness_shadow_closure and fq_gap_u1_circle_pythagorean_half_exponent_obstruction).",
+      "imported_structure": [
+        "circle group U(1) (assumption)",
+        "continuity of one-parameter phase group (assumption)"
+      ],
+      "bottleneck": "Algebraic non-square obstruction in Q(i) and rational Cayley punctured-circle parameterization are mechanized; compact continuous R/Z completion remains a declared external import.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-CIRCLE-U1",
@@ -2914,8 +2905,8 @@
     {
       "id": "FQ-GAP-STONE-CONTINUOUS-TIME",
       "stage": "FINITE_QM_DYNAMICS",
-      "status": "PROVED_LEAN",
-      "source_status": "H055 End(Bool) toggle half-step obstruction vs M_2(Z[i]) scaled square-root non-uniqueness (+-M_scaled) and generator branch ambiguity (2k+1), and H061 modulo-5 residue invariance of Pythagorean rotation powers (3+4i)^n mechanized in DerivationDagQMClosure.lean, H055DiscreteDynamicsStone.lean, H061DynamicsDichotomy.lean, and 006_finite_qm",
+      "status": "CONDITIONAL",
+      "source_status": "Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import",
       "statement": "Continuous time and the Stone theorem are not constructed: strong continuity, one-parameter group and generator selection are priced interfaces; rational entries alone do not imply infinite order. Causal order between events is also admitted externally (GAP-C1000-001, declared_assumption, non-blocking): Q(zeta_n) carriers supply no relation between spacetime events.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:304",
@@ -2924,20 +2915,18 @@
       "lean": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
-      "imported_structure": [],
-      "bottleneck": "None (H055 End(Bool) half-step obstruction, M_2(Z[i]) square-root non-uniqueness, generator branch ambiguity, and H061 modulo-5 infinite-order Pythagorean rotation powers mechanized in fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure and fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction).",
+      "imported_structure": [
+        "continuous time / Stone theorem (assumption)",
+        "external causal order datum (assumption)"
+      ],
+      "bottleneck": "Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms are mechanized; continuous R completion and Stone strong continuity remain declared external imports.",
       "tags": [],
       "see_also": [
         "FQ-DISCRETE-TIME-STONE-AMBIGUITY",
@@ -2947,8 +2936,8 @@
     {
       "id": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
       "stage": "FINITE_QM_CORE",
-      "status": "PROVED_LEAN",
-      "source_status": "H056 Wintner-Wielandt commutator trace obstruction (Tr(AB-BA)=0 vs Tr(k I_2)=2k => k=0), finite Weyl-Heisenberg anticommutation XZ=-ZX, Z[i] non-field obstruction (2*(a^2+b^2) != 1), and discriminant-5 spectral exit from Q(i) mechanized in DerivationDagQMClosure.lean, H056ContinuumLiftBoundary.lean, and 006_finite_qm",
+      "status": "CONDITIONAL",
+      "source_status": "Z[i] non-field obstruction (2*(a^2+b^2) != 1) and symmetric integer matrix M=[[2,1],[1,1]] characteristic discriminant 5 non-square obstruction in Q(i) mechanized in DerivationDagQMClosure.lean",
       "statement": "The transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space is not constructed in any source; QM_122 s6 refuses it. M_n(Z[i]) is recovered for finite report sets but is not M_n(C): Z[i] is not a field and a self-adjoint Gaussian-integer matrix need not have a Gaussian-integer eigenvalue (GAP-F001-S000-009).",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:159",
@@ -2957,20 +2946,18 @@
       "lean": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
-      "imported_structure": [],
-      "bottleneck": "None (H056 Wintner-Wielandt commutator trace obstruction, Z[i] non-field obstruction, and discriminant-5 spectral exit from Q(i) mechanized in fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure and fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction).",
+      "imported_structure": [
+        "continuum Hilbert space (assumption)",
+        "complex field C (assumption)"
+      ],
+      "bottleneck": "Z[i] non-field obstruction and discriminant-5 spectral exit from Q(i) are mechanized; continuum Hilbert completion remains an explicit import.",
       "tags": [
         "cross-ref:L1_TO_L2 QM_020 conditional Hilbert lift"
       ],
@@ -3801,9 +3788,9 @@
     {
       "id": "DS-QM034-035-050-051-095-RESERVED-STUBS",
       "stage": "FINITE_QM_DYNAMICS",
-      "status": "PROVED_LEAN",
-      "source_status": "Complete finite-shadow certificates for 034/035 (scaled rational Cayley vector norm identity ((1-t^2)x-2ty)^2 + (2tx+(1-t^2)y)^2 = (1+t^2)^2(x^2+y^2)), 050/051 (2D Dirac operator H_D(p,m)^2 = (m^2+p^2)I_2), and 095/202/203/205 (non-degenerate diagonal commutant and pointer-basis Z-pinching) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "Unitary finite shadow (034), Hamiltonian generator admission (035), Dirac equation admission (050), spinor structure admission (051), Copenhagen authority shadow (095), and the 200-series slots 200/202/203/204/205 carry finite-shadow algebraic and scope-boundary certificates in DerivationDagQMClosure.lean while their 1-row monograph ledgers remain reserved stub slots.",
+      "status": "CONDITIONAL",
+      "source_status": "Finite rational Cayley unitary shadow U=(I-tJ)(I+tJ)^{-1}, exact quadratic norm preservation vs Euler inflation, and 2D Dirac/Clifford spinor relations mechanized in DerivationDagQMClosure.lean",
+      "statement": "Unitary finite shadow, Hamiltonian generator admission, Dirac equation admission, spinor structure admission, Copenhagen as authority shadow and the 200-series slots 200/202/203/204/205 have 1-row ledgers that only reserve a slot. They contain no claim; recorded as OPEN, not as results. Papers carry release headers over internal stub bodies where I opened them (034, 035, 050, 051, 202, 203, 205).",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/034_unitary_finite_shadow/qm_034_unitary_finite_shadow_claim_ledger.md#QM_034-C0",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/035_hamiltonian_generator_admission/qm_035_hamiltonian_generator_admission_claim_ledger.md#QM_035-C0",
@@ -3817,20 +3804,19 @@
       "lean": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_entropy_purity_and_ds_qm034_051_cayley_clifford_witness",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm034_035_050_051_095_200_series_finite_shadows_and_zero_conditional_dag_closure",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm034_035_050_051_095_200_series_finite_shadows_and_zero_conditional_dag_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
-      "imported_structure": [],
-      "bottleneck": "None (finite-shadow Cayley norm conservation, 2D Dirac/Clifford dispersion square, diagonal commutant, and pointer-basis Z-pinching mechanized in ds_qm034_035_050_051_095_200_series_finite_shadows_and_zero_conditional_dag_closure and fq_entropy_purity_and_ds_qm034_051_cayley_clifford_witness).",
+      "imported_structure": [
+        "unitary group (assumption)",
+        "Hamiltonian generator (assumption)",
+        "Dirac gamma matrices / spinors (assumption)"
+      ],
+      "bottleneck": "Finite rational Cayley unitary shadow U=(I-tJ)(I+tJ)^{-1} and 2D Dirac/Clifford spinor relations are mechanized in DerivationDagQMClosure.lean; full monograph expansions remain conditional on unitary/Hamiltonian/spinor imports.",
       "tags": [
         "stub"
       ]
@@ -5916,11 +5902,10 @@
         "FQ-PRIMDIFF-QUOTIENT-KERNEL"
       ],
       "output": "FQ-PRIM-TO-QM-SELECTION-OPEN",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
     },
     {
@@ -6065,11 +6050,10 @@
         "FQ-POWER-RULE-P2-SELECTION"
       ],
       "output": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
     },
     {
@@ -6105,11 +6089,10 @@
         "FQ-TENSOR-LU-RIVAL-EXCLUSION"
       ],
       "output": "FQ-GAP-TENSOR-UNIQUENESS",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
     },
     {
@@ -6255,11 +6238,10 @@
         "FQ-IMPL-WDP-AMPLITUDE-BRIDGE"
       ],
       "output": "FQ-GAP-U1-CIRCLE",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
     },
     {
@@ -6296,11 +6278,10 @@
         "FQ-COMMUTATOR-TRACE-OBSTRUCTION"
       ],
       "output": "FQ-GAP-STONE-CONTINUOUS-TIME",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
     },
     {
@@ -6310,11 +6291,10 @@
         "FQ-CARRIER-CONTRACT-V2"
       ],
       "output": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
     },
     {
@@ -6567,11 +6547,10 @@
         "DS-QM033-SCHRODINGER-DISCRETE-COCHAIN"
       ],
       "output": "DS-QM034-035-050-051-095-RESERVED-STUBS",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
     },
     {
@@ -7397,12 +7376,11 @@
         "DS-QM033-SCHRODINGER-DISCRETE-COCHAIN"
       ],
       "output": "DS-QM034-035-050-051-095-RESERVED-STUBS",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "mechanism": "Rational Cayley unitary transform U(1/2)=(I-J/2)(I+J/2)^{-1} and 2D Dirac/Clifford spinor relations mechanized in fq_entropy_purity_and_ds_qm034_051_cayley_clifford_witness.",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
     }
   ]

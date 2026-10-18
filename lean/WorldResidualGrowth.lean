@@ -35,6 +35,21 @@ theorem exact_normal_sandwich :
       exactNormalSpeedAtThreeFifths <= escapingUpperAtThreeFifths := by
   decide
 
+/-- Cleared affine law `v(3/5) = 1 + 10*(3/5)`, so `5 * v = 1*5 + 10*3`. -/
+def clearedNormalNumerator : Nat :=
+  normalSpeedZero * 5 + accelerationL1 * 3
+
+theorem affine_speed_from_parameters :
+    clearedNormalNumerator = exactNormalSpeedAtThreeFifths * 5 ∧
+      IsIntermediateScaled ∧
+      escapingLowerAtThreeFifths ≤ exactNormalSpeedAtThreeFifths ∧
+      exactNormalSpeedAtThreeFifths ≤ escapingUpperAtThreeFifths := by
+  unfold clearedNormalNumerator exactNormalSpeedAtThreeFifths IsIntermediateScaled
+    escapingLowerAtThreeFifths escapingUpperAtThreeFifths normalSpeedZero
+    accelerationL1 barAUpper
+  decide
+
 #print axioms exact_normal_sandwich
+#print axioms affine_speed_from_parameters
 
 end OmegaWorld

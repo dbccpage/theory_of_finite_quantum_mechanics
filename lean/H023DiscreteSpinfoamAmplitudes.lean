@@ -161,6 +161,21 @@ theorem tetrahedral_all_one_inadmissible : vertexAmplitude allOneSpins = 0 := by
     Edges (0,1), (1,2), (2,0) have spin 0, others 0 => vacuum is admissible. -/
 theorem vacuum_is_admissible : tetAdmissible vacuumSpins = true := by rfl
 
+/-- Admissible 4-cycle: edges `(0,1), (0,2), (2,3), (3,1)` carry spin 1.
+    Each face sum is 2, so each face phase is a half-turn `zeta^6 = -1`,
+    and the four factors multiply to 1. -/
+def evenLoopSpins : TetSpins := ⟨1, 1, 0, 0, 1, 1⟩
+
+theorem even_loop_half_turn_amplitude :
+    tetAdmissible evenLoopSpins = true ∧
+      facePhasePower evenLoopSpins.e01 evenLoopSpins.e12 evenLoopSpins.e02 = 6 ∧
+      facePhasePower evenLoopSpins.e02 evenLoopSpins.e23 evenLoopSpins.e03 = 6 ∧
+      facePhasePower evenLoopSpins.e03 evenLoopSpins.e31 evenLoopSpins.e01 = 6 ∧
+      facePhasePower evenLoopSpins.e12 evenLoopSpins.e23 evenLoopSpins.e31 = 6 ∧
+      zetaPower 6 = -1 ∧
+      vertexAmplitude evenLoopSpins = (-1) * (-1) * (-1) * (-1) := by
+  decide
+
 end TetrahedralSpinFoam
 
 -- ==============================================================================

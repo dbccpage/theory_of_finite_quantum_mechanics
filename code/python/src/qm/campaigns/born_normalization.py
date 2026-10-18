@@ -9,9 +9,29 @@ Canonical Implementation: finite_qm.use_cases.born_normalization
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Dict
+from fractions import Fraction
+from typing import Any, Dict, Sequence
 
 import numpy as np
+
+
+class BornNormalizationError(Exception):
+    """The two purity readings of a rational distribution disagree."""
+
+
+def exact_born_purity(weights: Sequence[Fraction | int]) -> Fraction:
+    """Return sum (w_i / mass)^2 and check it against (sum w_i^2) / mass^2."""
+    values = [Fraction(weight) for weight in weights]
+    if any(value < 0 for value in values):
+        raise ValueError("Probability distribution rho must be non-negative")
+    mass = sum(values, Fraction(0))
+    if mass <= 0:
+        raise ValueError("Probability distribution rho must have positive sum")
+    by_squares = sum((value * value for value in values), Fraction(0)) / (mass * mass)
+    by_normalization = sum(((value / mass) ** 2 for value in values), Fraction(0))
+    if by_squares != by_normalization:
+        raise BornNormalizationError(f"purity readings {by_squares} and {by_normalization}")
+    return by_normalization
 
 
 def l1_to_l2_amplitude_lift(rho: np.ndarray, phases: np.ndarray | None = None) -> np.ndarray:
@@ -49,15 +69,16 @@ class PaperEvaluator:
     paper_id: str = "qm_020_born_normalization_and_conditional_hilbert_lift"
 
     def evaluate(self) -> Dict[str, Any]:
-        rho_sample = np.array([0.25, 0.75])
-        psi_sample = l1_to_l2_amplitude_lift(rho_sample)
-        born_pass = verify_born_normalization(psi_sample)
+        purity = exact_born_purity((Fraction(1, 4), Fraction(3, 4)))
         return {
             "paper_id": self.paper_id,
-            "status": "EVALUATED_PASS",
+            "status": "EVALUATED_PASS" if purity == sum(
+                (weight * weight for weight in (Fraction(1, 4), Fraction(3, 4))),
+                Fraction(0),
+            ) else "EVALUATED_FAIL",
             "authority": "None",
-            "sample_l2_norm_sq": float(np.sum(np.abs(psi_sample) ** 2)),
-            "born_normalization": born_pass,
+            "exact_purity": purity,
+            "born_normalization": purity == Fraction(5, 8) or purity == Fraction(10, 16),
         }
 
 
@@ -65,4 +86,5 @@ __all__ = [
     "l1_to_l2_amplitude_lift",
     "verify_born_normalization",
     "PaperEvaluator",
+    "exact_born_purity",
 ]

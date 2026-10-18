@@ -109,6 +109,16 @@ def selected_limit_object : LimitObject := LimitObject.q_ab
 theorem limit_object_is_q_ab : selected_limit_object = LimitObject.q_ab := by
   rfl
 
+/-- Dropping the `sqrt(11)` conductor `44` leaves a strictly smaller LCM. -/
+def wConductorBefore11 : Nat :=
+  Nat.lcm (Nat.lcm (Nat.lcm (Nat.lcm (Nat.lcm w_cond_2 w_cond_3) w_cond_5) w_cond_6) w_cond_7) w_cond_10
+
+theorem sqrt11_strictly_refines_w_conductor :
+    wConductorBefore11 = 840 ∧
+      wConductorBefore11 < w_states_minimal_conductor ∧
+      Nat.lcm wConductorBefore11 w_cond_11 = w_states_minimal_conductor := by
+  decide
+
 #print axioms prime_qudit_escalation_sample
 #print axioms cglmp_smallest_conductor_is_3360
 #print axioms cglmp_factors_verified

@@ -7,15 +7,14 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from pathlib import Path as _Path
 
-from ..use_cases.gleason_cyclotomic import GleasonCyclotomic
-from ..use_cases.higher_dim_entanglement import HigherDimEntanglementWitness
+from ..campaigns.gleason_cyclotomic import GleasonCyclotomic
+from ..campaigns.higher_entangle import HigherDimEntanglementWitness
 
 APP_ROOT = next(
-    (parent for parent in _Path(__file__).resolve().parents
+    (parent for parent in Path(__file__).resolve().parents
      if (parent / "finite_quantum_mechanics.md").is_file()),
-    _Path(__file__).resolve().parents[3],
+    Path(__file__).resolve().parents[3],
 )
 METHODS = (
     "verify_cabello_hypergraph_structure", "non_psd_cabello_witness",
@@ -27,6 +26,16 @@ METHODS = (
     "evaluate_clifton_kent_incompleteness_polytope",
     "evaluate_padic_and_nonstandard_obstructions",
 )
+
+def method_census() -> int:
+    """Count Gleason methods the two receipts call, after checking each attribute exists."""
+    missing = [name for name in METHODS if not hasattr(GleasonCyclotomic, name)]
+    if missing:
+        raise AttributeError("gleason receipt methods missing: " + ", ".join(missing))
+    if not hasattr(HigherDimEntanglementWitness, "full_escalation_hierarchy_summary"):
+        raise AttributeError("higher-dimensional receipt is missing full_escalation_hierarchy_summary")
+    return len(METHODS)
+
 
 def render_receipts() -> dict[str, bytes]:
     reports = {

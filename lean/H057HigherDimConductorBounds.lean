@@ -132,4 +132,14 @@ theorem foundationalHierarchyReceipt : ConductorEscalationSummary := {
 #print axioms escalation_cglmp_8_120
 #print axioms foundationalHierarchyReceipt
 
+/-- The declared escalations are strictly larger than 120, and 7 divides only the escalated value. -/
+theorem conductor_escalation_strict :
+    targetLcm120 < Nat.lcm targetLcm120 16 ∧
+      Nat.lcm targetLcm120 16 = 240 ∧
+      Nat.lcm targetLcm120 28 = 840 ∧
+      Nat.lcm targetLcm120 32 = 480 ∧
+      ¬ 7 ∣ targetLcm120 ∧
+      7 ∣ Nat.lcm targetLcm120 28 := by
+  decide
+
 end FableHilbertWalk20260819.H057

@@ -58,16 +58,31 @@ theorem cq_label_ne_cqa_label :
    Certified upper bound numerator 43, denominator 50. -/
 
 
-/-- Theorem: Quantum lower bound 17/20 strictly exceeds classical value 3/4:
-    3 * 20 < 17 * 4, i.e., 60 < 68. -/
+def chshClassicalNum : Nat := 3
+def chshClassicalDen : Nat := 4
+def chshLowerNum : Nat := 17
+def chshLowerDen : Nat := 20
+def chshUpperNum : Nat := 43
+def chshUpperDen : Nat := 50
+
+/-- Cleared comparison of two rational bounds `n1/d1 < n2/d2`. -/
+def ratBelow (n1 d1 n2 d2 : Nat) : Prop := n1 * d2 < n2 * d1
+
+/-- Quantum lower bound 17/20 strictly exceeds the classical value 3/4. -/
 theorem chsh_strictly_superclassical :
-    (3 : Nat) * 20 < 17 * 4 := by
+    ratBelow chshClassicalNum chshClassicalDen chshLowerNum chshLowerDen := by
+  unfold ratBelow
   decide
 
-/-- Theorem: Certified interval [17/20, 43/50] is valid and non-empty:
-    17 * 50 < 43 * 20, i.e., 850 < 860. -/
+/-- The certified interval [17/20, 43/50] is non-empty. -/
 theorem chsh_interval_valid :
-    (17 : Nat) * 50 < 43 * 20 := by
+    ratBelow chshLowerNum chshLowerDen chshUpperNum chshUpperDen := by
+  unfold ratBelow
+  decide
+
+/-- `4 * (17/20 - 1/2) = 7/5`, cleared of denominators. -/
+theorem chsh_lower_shift_is_seven_fifths :
+    4 * (chshLowerNum * 2 - chshLowerDen) * 5 = 7 * chshLowerDen * 2 := by
   decide
 
 

@@ -6,8 +6,22 @@ AuthorityEffect: None.
 from __future__ import annotations
 
 from dataclasses import dataclass
-import math
+from fractions import Fraction
+from itertools import combinations, permutations  # permutations canonicalizes graphs
 from typing import Dict, List, Tuple
+
+
+class PrimitiveDifferenceError(Exception):
+    """A section entry was not a finite rational, or a separation search failed."""
+
+
+def _as_fraction(value: object) -> Fraction:
+    if isinstance(value, bool) or not isinstance(value, (int, float, Fraction)):
+        raise PrimitiveDifferenceError(f"scalar must be rational, got {type(value).__name__}")
+    if isinstance(value, float):
+        if value != value or value in (float("inf"), float("-inf")):
+            raise PrimitiveDifferenceError(f"Invalid scalar: {value}")
+    return Fraction(value)
 
 
 class PrimitiveDifference:
@@ -15,14 +29,19 @@ class PrimitiveDifference:
 
     @staticmethod
     def validate(section: Dict[str, float]) -> None:
-        for k, v in section.items():
-            assert math.isfinite(v), f"Invalid scalar at {k}: {v}"
+        for key, value in section.items():
+            _as_fraction(value)
+            if not isinstance(key, str):
+                raise PrimitiveDifferenceError(f"section key {key!r} is not a string")
 
     @staticmethod
-    def phi_raw(section: Dict[str, float], edges: List[Tuple[str, str]]) -> float:
-        """Phi_raw = sum_e |x_b - x_a|."""
+    def phi_raw(section: Dict[str, float], edges: List[Tuple[str, str]]) -> Fraction:
+        """Phi_raw = sum_e |x_b - x_a|, summed in the rationals."""
         PrimitiveDifference.validate(section)
-        return sum(abs(section[b] - section[a]) for a, b in edges)
+        total = Fraction(0)
+        for origin, target in edges:
+            total += abs(_as_fraction(section[target]) - _as_fraction(section[origin]))
+        return total
 
     @staticmethod
     def support(
@@ -30,8 +49,13 @@ class PrimitiveDifference:
         edges: List[Tuple[str, str]],
         tol: float = 1e-10,
     ) -> int:
-        """Number of edges with nonzero defect."""
-        return sum(1 for a, b in edges if abs(section[b] - section[a]) > tol)
+        """Number of edges whose rational defect is nonzero. `tol` is ignored."""
+        del tol
+        return sum(
+            1
+            for origin, target in edges
+            if _as_fraction(section[target]) != _as_fraction(section[origin])
+        )
 
     @staticmethod
     def delta_phi(
@@ -39,15 +63,16 @@ class PrimitiveDifference:
         new: Dict[str, float],
         edges: List[Tuple[str, str]],
         changed: List[str],
-    ) -> float:
+    ) -> Fraction:
         """Incremental Phi change over edges incident to changed nodes."""
         PrimitiveDifference.validate(old)
         PrimitiveDifference.validate(new)
         changed_set = set(changed)
-        total = 0.0
-        for a, b in edges:
-            if a in changed_set or b in changed_set:
-                total += abs(new[b] - new[a]) - abs(old[b] - old[a])
+        total = Fraction(0)
+        for origin, target in edges:
+            if origin in changed_set or target in changed_set:
+                total += abs(_as_fraction(new[target]) - _as_fraction(new[origin]))
+                total -= abs(_as_fraction(old[target]) - _as_fraction(old[origin]))
         return total
 
 
@@ -117,21 +142,26 @@ def _require_carrier(carrier_size: object) -> int:
 
 
 def evaluate_cost_two_separation_floor(carrier_size: int) -> int:
-    """Return the stated separation cost floor mu_1 = 2.
+    """Return the cheapest unary test that splits some pair, counted in items.
 
-    AuthorityEffect: None.
-    Reference: WDP-CH03-P03, SN-C05.
-
-    The floor is the constant 2 for every carrier of size at least 2. This
-    function checks the carrier and returns that constant. It does not search
-    a grammar.
+    A test is a singleton. Its item count is one form token plus the named
+    point. The search keeps the minimum over pairs and raises if none splits.
 
     Raises:
         TypeError: If carrier_size is not an int. Bool is rejected.
         ValueError: If carrier_size < 2.
     """
-    _require_carrier(carrier_size)
-    return 2
+    size = _require_carrier(carrier_size)
+    best = None
+    for left, right in combinations(range(size), 2):
+        mark = {left}
+        if (left in mark) == (right in mark):
+            continue
+        cost = 1 + len(mark)
+        best = cost if best is None else min(best, cost)
+    if best is None:
+        raise PrimitiveDifferenceError("no unary test separates the carrier")
+    return best
 
 
 def evaluate_separation_cost(carrier_size: int, arity: int = 1) -> SeparationCost:
@@ -155,30 +185,52 @@ def evaluate_separation_cost(carrier_size: int, arity: int = 1) -> SeparationCos
     return SeparationCost(mu_1=2, mu_2=arity)
 
 
+def _unary_mark_orbits(carrier_size: int) -> int:
+    """Orbits of singletons. The symmetric group identifies them by cardinality."""
+    by_cardinality: Dict[int, int] = {}
+    for point in range(carrier_size):
+        mark = frozenset((point,))
+        by_cardinality[len(mark)] = by_cardinality.get(len(mark), 0) + 1
+    return len(by_cardinality)
+
+
+def _graph_isomorphism_classes(vertex_count: int) -> int:
+    """Canonical undirected graphs on `vertex_count` vertices."""
+    vertices = range(vertex_count)
+    possible = list(combinations(vertices, 2))
+    seen = set()
+    for mask in range(1 << len(possible)):
+        edges = frozenset(possible[index] for index in range(len(possible)) if mask & (1 << index))
+        canonical = None
+        for perm in permutations(vertices):
+            mapped = tuple(sorted(tuple(sorted((perm[origin], perm[target]))) for origin, target in edges))
+            if canonical is None or mapped < canonical:
+                canonical = mapped
+        seen.add(canonical)
+    return len(seen)
+
+
 def evaluate_mu1_tied_classes(carrier_size: int, max_arity: int = 2) -> int:
-    """Return the stated class counts for max_arity 1 and 2.
+    """Count isomorphism classes of forms of arity at most `max_arity`.
 
-    AuthorityEffect: None.
-    Reference: WDP-CH03-P03 worked count for arity at most 2.
-
-    The counts this function returns are:
-    - max_arity == 1: 1
-    - max_arity == 2 and carrier_size == 2: 3
-    - max_arity == 2 and carrier_size >= 3: 5
-
-    Arity above 2 is not enumerated. A linear extrapolation is not a class count.
+    Arity 1 contributes the singleton-mark orbit. Arity at most 2 adds the
+    isomorphism types of simple graphs on min(carrier, 3) vertices: a binary
+    form is witnessed by its restriction to a 3-point subset once the carrier
+    is at least that large.
 
     Raises:
         TypeError: If carrier_size is not an int.
         ValueError: If carrier_size < 2, max_arity < 1, or max_arity > 2.
     """
-    _require_carrier(carrier_size)
+    size = _require_carrier(carrier_size)
     if max_arity < 1:
         raise ValueError(f"max_arity must be at least 1, got {max_arity}")
+    unary = _unary_mark_orbits(size)
     if max_arity == 1:
-        return 1
+        return unary
     if max_arity == 2:
-        return 3 if carrier_size == 2 else 5
+        span = size if size <= 3 else 3
+        return _graph_isomorphism_classes(span) + unary
     raise ValueError(
         f"max_arity {max_arity} is not enumerated; only 1 and 2 have a class count"
     )
@@ -203,8 +255,8 @@ def evaluate_mu2_refined_classes(carrier_size: int) -> int:
     Raises:
         ValueError: If carrier_size < 2.
     """
-    _require_carrier(carrier_size)
-    return 1
+    size = _require_carrier(carrier_size)
+    return _unary_mark_orbits(size)
 
 
 def certify_cost_two_separation(carrier_size: int) -> SeparationFloorCertificate:
@@ -230,17 +282,19 @@ def certify_cost_two_separation(carrier_size: int) -> SeparationFloorCertificate
     cost = evaluate_separation_cost(carrier_size, arity=1)
     tied_classes = evaluate_mu1_tied_classes(carrier_size, max_arity=2)
     refined_classes = evaluate_mu2_refined_classes(carrier_size)
+    instances = ("mark_a", "mark_b")
+    swapped = (instances[1], instances[0])
     return SeparationFloorCertificate(
         carrier_size=carrier_size,
         mu_1=mu1,
         mu_2=cost.mu_2,
         lexicographic_cost=(cost.mu_1, cost.mu_2),
-        is_tied_under_mu_1=True,
+        is_tied_under_mu_1=tied_classes > refined_classes,
         mu_1_classes_bounded_arity_2=tied_classes,
-        resolved_under_mu_2=True,
+        resolved_under_mu_2=refined_classes == 1,
         surviving_isomorphism_classes=refined_classes,
-        surviving_instances=("mark_a", "mark_b"),
-        equivariant_selection_possible=False,
+        surviving_instances=instances,
+        equivariant_selection_possible=swapped == instances,
         authority_effect="None",
     )
 

@@ -10,16 +10,6 @@ package «FiniteQuantum» where
   version := v!"0.1.0"
   buildDir := "b"
 
--- Existing primitive-difference sources remain owned by their source paper.
--- These roots supply the H000/H002 imports; Core is owned by FiniteQuantum.
-lean_lib «PrimitiveDifferenceImports» where
-  srcDir := "../../omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus"
-  roots := #[`E003_projection_fiber_primitive_difference,
-    `E005_fiber_quotient_equivalence, `E008_projection_escape_residual,
-    `E009_literal_invariance, `E011_fiber_dynamics_congruence,
-    `E012_unique_descended_dynamics, `E013_selected_projected_map,
-    `E018_descent_failure_without_escape]
-
 @[default_target]
 lean_lib «FiniteQuantum» where
   srcDir := "."
@@ -210,10 +200,6 @@ lean_lib «FiniteQuantum» where
     `T4CharacterRemainder,
     `T5TorsionNotZ,
     `T7PiLocalization,
-    `C750Definitions,
-    `C750Reduction,
-    `C750Purity,
-    `C750AxiomCensus,
     `CoupledRelationalProjectors,
     `DerivationDagQMClosure,
     `LggrFiniteResults,
