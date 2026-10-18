@@ -1,22 +1,103 @@
-"""Theory of Finite Quantum Mechanics: Core Exact Computational Engine."""
+"""Core package re-exports, plus the exported rational identity trace.
 
-from .linear_algebra import ExactMatrix, GaussianRational
+Origin: lean4/H056ContinuumLiftBoundary.lean theorem trace_scalar_identity
+(Tr(k * I_2) = 2 * k) and lean4/H047StoneVonNeumannObstruction.lean theorem
+tr_eye3_nonzero (tr3 eye3 = 3).
+Claim: urn:omega:fqm:linear-algebra:exported-identity-trace:v1
+AuthorityEffect: None
+Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_exported_identity_trace.py.
+Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 5.
+Scope Fence: exported_identity_trace sums the diagonal of the rational identity
+of the size it is given. The cited theorems cover dimension 2 for any integer
+scale and dimension 3 for the unscaled identity only. This file does not prove
+Tr(k I_n) = n * k for arbitrary n, and it does not prove the Heisenberg or
+Wintner-Wielandt obstruction. The other names in this package are re-exports.
+"""
+
+from __future__ import annotations
+
+from fractions import Fraction
+from typing import Mapping
+
 from .homology import Carrier
+from .linear_algebra import ExactMatrix, GaussianRational
 from .qm import DensityOperator
 
-__all__ = ["ExactMatrix", "GaussianRational", "Carrier", "DensityOperator", "exported_identity_trace"]
+
+class ExportTraceError(Exception):
+    """One violated exported-identity-trace invariant, with the measured parameters."""
+
+    def __init__(self, invariant: str, parameters: Mapping[str, object] | None = None) -> None:
+        self.invariant = invariant
+        self.parameters = {} if parameters is None else dict(parameters)
+        rendered = ", ".join(f"{key}={value}" for key, value in self.parameters.items())
+        message = invariant if rendered == "" else f"{invariant} ({rendered})"
+        super().__init__(message)
 
 
-def exported_identity_trace(size: int = 2):
-    """Sum the diagonal of the exported identity. The sum equals the dimension."""
-    from fractions import Fraction
+def _fail(invariant: str, **parameters: object) -> ExportTraceError:
+    return ExportTraceError(invariant, parameters)
 
-    if isinstance(size, bool) or not isinstance(size, int) or size < 0:
-        raise ValueError(f"identity size must be a nonnegative int, got {size!r}")
-    eye = ExactMatrix.identity(size)
+
+def _refuse_float(value: object, role: str) -> None:
+    if isinstance(value, float):
+        raise _fail("float refused at the export boundary", role=role, received="float")
+
+
+def _require_size(value: object) -> int:
+    _refuse_float(value, "size")
+    if type(value) is bool:
+        raise _fail("boolean refused where an export size was required", role="size")
+    if type(value) is int:
+        size = value
+        if size < 0:
+            raise _fail("export size is negative", role="size", received=size)
+        return size
+    raise _fail("export size is not an integer", role="size", received=type(value).__name__)
+
+
+def _require_diagonal(entry: object, index: int) -> Fraction:
+    if type(entry) is float:
+        raise _fail("float refused on the exported diagonal", index=index)
+    if type(entry) is bool:
+        raise _fail("boolean refused on the exported diagonal", index=index)
+    if isinstance(entry, Fraction):
+        return entry
+    if type(entry) is int:
+        return Fraction(entry)
+    raise _fail(
+        "exported diagonal entry is not an exact rational",
+        index=index,
+        received=type(entry).__name__,
+    )
+
+
+def _sum_diagonal(eye: ExactMatrix) -> Fraction:
     total = Fraction(0)
-    for index in range(size):
-        total += Fraction(eye.get(index, index))
-    if total != size:
-        raise ValueError(f"exported identity trace is {total}, not {size}")
+    width = eye.rows
+    for index in range(width):
+        total += _require_diagonal(eye.get(index, index), index)
     return total
+
+
+def _require_trace(total: Fraction, size: int) -> Fraction:
+    expected = Fraction(size)
+    if total != expected:
+        raise _fail("exported identity trace is not the dimension", trace=str(total), size=size)
+    return total
+
+
+def exported_identity_trace(size: int = 2) -> Fraction:
+    """Sum the diagonal of the exported rational identity of size n."""
+    width = _require_size(size)
+    return _require_trace(_sum_diagonal(ExactMatrix.identity(width)), width)
+
+
+__all__ = [
+    "Carrier",
+    "DensityOperator",
+    "ExactMatrix",
+    "ExportTraceError",
+    "GaussianRational",
+    "exported_identity_trace",
+]
