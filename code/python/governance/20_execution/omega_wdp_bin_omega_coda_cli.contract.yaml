@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:bin_omega_coda_cli:v1.0.0
+title: Sovereign CLI binary for omega_coda 9-layer Master Normal Form pipeline.  Reads
+  ProblemInstance / Cochain JSON from s...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/bin/omega_coda_cli.rs
+module: bin::omega_coda_cli
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: bin::omega_coda_cli
+  file: crates_rs/omega_wdp/src/bin/omega_coda_cli.rs
+symbols: []
+owns:
+- bin_omega_coda_cli
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

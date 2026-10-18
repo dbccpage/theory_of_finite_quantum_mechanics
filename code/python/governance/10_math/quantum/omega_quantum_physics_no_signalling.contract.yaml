@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:no_signalling:v1.0.0
+title: Exact local channels and no-signalling on finite bipartite systems over `Q(i)`.  A
+  weighted Kraus channel has checked...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/no_signalling.rs
+module: no_signalling
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: no_signalling
+  file: crates_rs/omega_quantum_physics/src/no_signalling.rs
+symbols:
+- NoSignallingError
+- apply_alice_channel
+- no_signalling
+- certify_no_signalling_map
+- prove_partial_trace_uniqueness
+- proj_0
+- proj_1
+- bell_phi_plus
+- bell_phi_minus
+- bell_psi_plus
+- bell_psi_minus
+- all_bell_states
+- cnot_matrix
+- cz_matrix
+- swap_matrix
+- verify_no_signalling_on_bell_states
+owns:
+- no_signalling_error
+- apply_alice_channel
+- no_signalling
+- certify_no_signalling_map
+- prove_partial_trace_uniqueness
+- proj_0
+- proj_1
+- bell_phi_plus
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

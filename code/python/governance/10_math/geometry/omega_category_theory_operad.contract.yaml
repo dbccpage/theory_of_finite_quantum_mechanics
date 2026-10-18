@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:operad:v1.0.0
+title: Operads — Spec Section 26.  A colored operad (multicategory) generalizes a
+  category by allowing operations with multi...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/operad.rs
+module: operad
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: operad
+  file: crates_rs/omega_category_theory/src/operad.rs
+symbols:
+- OperadOperation
+- new
+- arity
+- DeclaredFiniteOperad
+- add_color
+- add_operation
+- add_composition
+- set_identity
+- find_op
+- compose
+- ValidatedFiniteOperad
+- try_new
+- declared
+- check_operad_identities
+- check_operad_composition_typing
+- check_operad_unit
+- check_operad_associativity
+owns:
+- operad_operation
+- new
+- arity
+- declared_finite_operad
+- add_color
+- add_operation
+- add_composition
+- set_identity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

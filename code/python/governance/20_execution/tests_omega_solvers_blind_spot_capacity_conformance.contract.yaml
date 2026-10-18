@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_solvers_blind_spot_capacity_conformance:v1.0.0
+title: Conformance fixtures for Epoch 19 Blind-Spot Capacity.  Deterministic `f64`
+  numerical-evidence checks. No authority i...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_solvers/blind_spot_capacity_conformance.rs
+module: omega_solvers::blind_spot_capacity_conformance
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_solvers::blind_spot_capacity_conformance
+  file: crates_rs/tests/omega_solvers/blind_spot_capacity_conformance.rs
+symbols: []
+owns:
+- omega_solvers_blind_spot_capacity_conformance
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

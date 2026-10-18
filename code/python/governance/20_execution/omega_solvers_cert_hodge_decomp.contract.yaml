@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:cert_hodge_decomp:v1.0.0
+title: Exact Euclidean Hodge certificate replay over Q. No epsilon acceptance.  This
+  checker binds the potentials and all th...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/cert_hodge_decomp.rs
+module: cert_hodge_decomp
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: cert_hodge_decomp
+  file: crates_rs/omega_solvers/src/cert_hodge_decomp.rs
+symbols:
+- HodgeProblem
+- HodgeCertificate
+- HodgeError
+- VerifiedHodge
+- scalar_ops
+- authority_effect
+- validate_problem
+- check_hodge_certificate
+owns:
+- hodge_problem
+- hodge_certificate
+- hodge_error
+- verified_hodge
+- scalar_ops
+- authority_effect
+- validate_problem
+- check_hodge_certificate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

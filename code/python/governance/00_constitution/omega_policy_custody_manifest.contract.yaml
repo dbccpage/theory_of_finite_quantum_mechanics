@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_policy:custody_manifest:v1.0.0
+title: Custody Manifest V2, Line-Ending Normalized Checksums, Zenodo Release Envelope
+  and Lean 4 Axiom Census Audit Gate.  A...
+kind: rust_file_contract
+status: active
+crate: omega_policy
+file: crates_rs/omega_policy/src/custody_manifest.rs
+module: custody_manifest
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_policy
+  module: custody_manifest
+  file: crates_rs/omega_policy/src/custody_manifest.rs
+symbols:
+- CustodyError
+- CustodyGateStatus
+- ManifestEntry
+- normalize_line_endings_and_bom
+- compute_file_attestation
+- parse_manifest_content
+- validate_two_tier_parity
+- ZenodoRelatedIdentifier
+- ZenodoMetadata
+- validate_zenodo_metadata
+- verify_zenodo_companions
+- LeanDeclarationCensus
+- AxiomCensusReport
+- parse_lean_axiom_report
+- CustodyGateInput
+- AxiomCensusSummary
+- CustodyGateOutcome
+- evaluate_custody_gate
+owns:
+- custody_error
+- custody_gate_status
+- manifest_entry
+- normalize_line_endings_and_bom
+- compute_file_attestation
+- parse_manifest_content
+- validate_two_tier_parity
+- zenodo_related_identifier
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

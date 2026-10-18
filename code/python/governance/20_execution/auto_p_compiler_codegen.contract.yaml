@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_codegen:v1.0.0
+title: '--- yaml title: codegen file_name: codegen.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/compiler/codeg...'
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/codegen.rs
+module: compiler::codegen
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::codegen
+  file: crates_rs/auto_p/src/compiler/codegen.rs
+symbols:
+- generate_python
+- generate_qir
+- generate_tqc_qir
+owns:
+- generate_python
+- generate_qir
+- generate_tqc_qir
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

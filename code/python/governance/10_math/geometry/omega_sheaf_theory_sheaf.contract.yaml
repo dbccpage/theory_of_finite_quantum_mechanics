@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_sheaf_theory:sheaf:v1.0.0
+title: 'Sheaf condition: S1 Locality and S2 Gluing on covers (SH-06, SH-07, SH-08,
+  Sheaf Contract).  AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_sheaf_theory
+file: crates_rs/omega_sheaf_theory/src/sheaf.rs
+module: sheaf
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_sheaf_theory
+  module: sheaf
+  file: crates_rs/omega_sheaf_theory/src/sheaf.rs
+symbols:
+- SheafConditionResult
+- check_separated
+- compute_equalizer_kernel
+- check_sheaf_condition
+owns:
+- sheaf_condition_result
+- check_separated
+- compute_equalizer_kernel
+- check_sheaf_condition
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

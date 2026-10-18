@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_chemistry:periodic_table:v1.0.0
+title: '--- yaml title: periodic_table status: Base invariance_level: Tier 5 logic_system:
+  Quantum Chemical Topology substrat...'
+kind: rust_file_contract
+status: active
+crate: omega_chemistry
+file: crates_rs/omega_chemistry/src/periodic_table.rs
+module: periodic_table
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_chemistry
+  module: periodic_table
+  file: crates_rs/omega_chemistry/src/periodic_table.rs
+symbols:
+- Element
+- all_elements
+- get_first_15_elements
+- element_by_atomic_number
+- element_by_symbol
+- noble_gases
+- max_valency
+- period_of
+- elements_in_period
+owns:
+- element
+- all_elements
+- get_first_15_elements
+- element_by_atomic_number
+- element_by_symbol
+- noble_gases
+- max_valency
+- period_of
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

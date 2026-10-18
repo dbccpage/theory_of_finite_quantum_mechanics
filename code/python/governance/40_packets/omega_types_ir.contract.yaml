@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:ir:v1.0.0
+title: ir.rs  Intermediate Representation (IR) with Subobject Classifier (Î©) logic.
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/ir.rs
+module: ir
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: ir
+  file: crates_rs/omega_types/src/ir.rs
+symbols:
+- ProofTerm
+- OmegaTruthValue
+- and
+- or
+- implies
+- is_false
+- is_true
+- then_true
+- OmegaMetadata
+- Span
+- Node
+- LiteralKind
+- IR
+- is_integer
+- is_float
+owns:
+- proof_term
+- omega_truth_value
+- and
+- or
+- implies
+- is_false
+- is_true
+- then_true
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

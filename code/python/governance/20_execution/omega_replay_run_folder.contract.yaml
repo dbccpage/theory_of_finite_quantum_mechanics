@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_replay:run_folder:v1.0.0
+title: 'Sealed, content-addressed RunFolderV1 for the Symbol Game.  AuthorityEffect:
+  None. Every execution produces exactly o...'
+kind: rust_file_contract
+status: active
+crate: omega_replay
+file: crates_rs/omega_replay/src/run_folder.rs
+module: run_folder
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_replay
+  module: run_folder
+  file: crates_rs/omega_replay/src/run_folder.rs
+symbols:
+- RunTrigger
+- as_str
+- from_str_opt
+- RunMode
+- RunManifestV1
+- RunReceiptV1
+- RunFolderError
+- sanitize_task_slug
+- generate_run_folder_name
+- compute_file_sha256
+- seal_run_folder
+- verify_run_folder
+- RunFolder
+- open
+- load
+- seal
+- verify
+owns:
+- run_trigger
+- as_str
+- from_str_opt
+- run_mode
+- run_manifest_v1
+- run_receipt_v1
+- run_folder_error
+- sanitize_task_slug
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

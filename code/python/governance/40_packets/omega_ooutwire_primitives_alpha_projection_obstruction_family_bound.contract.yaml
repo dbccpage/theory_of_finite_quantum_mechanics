@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:alpha_projection_obstruction_family_bound:v1.0.0
+title: 'Corollary 5.1.A — the uniform family bound on a *supplied* finite family:
+  audit the displayed premises (`g ≤ g*`, act...'
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/family_bound.rs
+module: alpha_projection_obstruction::family_bound
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: alpha_projection_obstruction::family_bound
+  file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/family_bound.rs
+symbols:
+- FiniteFamilyMember
+- new
+- active_edge_count
+- active_edge_density
+- edge_site_density
+- UniformFamilyPremises
+- PremiseRefusal
+- MemberDensityBound
+- UniformFamilyBoundCertificate
+- verify
+- certify_uniform_family
+- receipt_family
+owns:
+- finite_family_member
+- new
+- active_edge_count
+- active_edge_density
+- edge_site_density
+- uniform_family_premises
+- premise_refusal
+- member_density_bound
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

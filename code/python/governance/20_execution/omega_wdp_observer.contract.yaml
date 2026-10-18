@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:observer:v1.0.0
+title: 'Chapters 10 & 14: Layered observer architecture, legacy packet adapters, and
+  functional observer relations audit with...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/observer.rs
+module: observer
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: observer
+  file: crates_rs/omega_wdp/src/observer.rs
+symbols:
+- QuotientObserver
+- new
+- OperationalObserverPacket
+- ObserverObject
+- ObserverBridge
+- is_typed
+- adapt_quotient
+- adapt_operational
+- adapt_retention
+- FunctionalObserverProfile
+- audit_functional_observer_relations
+owns:
+- quotient_observer
+- new
+- operational_observer_packet
+- observer_object
+- observer_bridge
+- is_typed
+- adapt_quotient
+- adapt_operational
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

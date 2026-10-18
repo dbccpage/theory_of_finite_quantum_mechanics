@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:embedding_relativity:v1.0.0
+title: Positivity of quantum operators depends on a declared real embedding.  The
+  scalar owner enumerates Galois classes and...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/embedding_relativity.rs
+module: embedding_relativity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: embedding_relativity
+  file: crates_rs/omega_quantum_physics/src/embedding_relativity.rs
+symbols:
+- PositivityError
+- positivity_under_embeddings
+- born_weights
+- galois_born_weights
+- conductor_5_witness
+- conductor_8_witness
+- verify_conductor_5_witness
+- verify_conductor_8_witness
+owns:
+- positivity_error
+- positivity_under_embeddings
+- born_weights
+- galois_born_weights
+- conductor_5_witness
+- conductor_8_witness
+- verify_conductor_5_witness
+- verify_conductor_8_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

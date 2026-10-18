@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:family_category:v1.0.0
+title: '--- yaml title: family_category file_name: family_category.rs file_location:
+  ~/anomalon/anomalon_kernel/omega_core/sr...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/family_category.rs
+module: family_category
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: family_category
+  file: crates_rs/omega_category_theory/src/family_category.rs
+symbols:
+- Constraint
+- new
+- Severity
+- parse
+- PropagationRule
+- targets_all
+- MemberStatus
+- is_active
+- FamilyMember
+- active
+- StringFamily
+- active_members
+- active_member_ids
+- contains_active
+- get_propagation_targets
+- FamilyFunctor
+- from_family
+- map_constraint
+- map_propagation
+- apply_constraint
+- apply_propagation
+- id
+owns:
+- constraint
+- new
+- severity
+- parse
+- propagation_rule
+- targets_all
+- member_status
+- is_active
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

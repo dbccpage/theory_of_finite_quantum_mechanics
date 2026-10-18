@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:residual_ledger:v1.0.0
+title: 'Act VI: residual declaration and injected failure-history updates. Recorded
+  history is not host-reproduced antibody a...'
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/residual_ledger.rs
+module: residual_ledger
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: residual_ledger
+  file: crates_rs/omega_woland/src/residual_ledger.rs
+symbols:
+- ResidualLedgerInput
+- ResidualLedgerOutcome
+- residual_ledger
+- antibodies_recorded
+- narrative
+- to_dict
+- execute_act6_residual_ledger
+owns:
+- residual_ledger_input
+- residual_ledger_outcome
+- residual_ledger
+- antibodies_recorded
+- narrative
+- to_dict
+- execute_act6_residual_ledger
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

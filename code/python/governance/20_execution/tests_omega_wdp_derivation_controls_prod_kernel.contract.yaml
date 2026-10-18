@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_prod_kernel:v1.0.0
+title: Proof-Carrying Reasoning Kernel (PROD-KERNEL) exact arithmetic verifier.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/prod_kernel.rs
+module: omega_wdp::derivation_controls::prod_kernel
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::prod_kernel
+  file: crates_rs/tests/omega_wdp/derivation_controls/prod_kernel.rs
+symbols:
+- KernelOutcome
+- fnv1a_digest
+- evaluate_kernel_step
+owns:
+- kernel_outcome
+- fnv1a_digest
+- evaluate_kernel_step
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:foundations_finite_set:v1.0.0
+title: 'finite_set shell for omega_category_theory. AuthorityEffect: None. Not PROVED
+  / GlobalGreen.  Related contract (if pr...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/foundations/finite_set.rs
+module: foundations::finite_set
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: foundations::finite_set
+  file: crates_rs/omega_category_theory/src/foundations/finite_set.rs
+symbols:
+- FiniteSet
+- new
+- with_elements
+- cardinality
+- validate_shell
+owns:
+- finite_set
+- new
+- with_elements
+- cardinality
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

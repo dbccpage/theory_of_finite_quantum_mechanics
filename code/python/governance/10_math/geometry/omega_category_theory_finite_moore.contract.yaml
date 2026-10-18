@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:finite_moore:v1.0.0
+title: Exact finite deterministic labelled systems and their minimal report quotient.  This
+  is finite coalgebra mathematics,...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/finite_moore.rs
+module: finite_moore
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: finite_moore
+  file: crates_rs/omega_category_theory/src/finite_moore.rs
+symbols:
+- MooreError
+- FiniteMoore
+- MooreQuotient
+- new
+- reports
+- transitions
+- input_count
+- state_count
+- is_report_congruence
+- behavioral_quotient
+- verify_quotient
+- factor_surjective_quotient
+- same_behavior_set
+owns:
+- moore_error
+- finite_moore
+- moore_quotient
+- new
+- reports
+- transitions
+- input_count
+- state_count
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

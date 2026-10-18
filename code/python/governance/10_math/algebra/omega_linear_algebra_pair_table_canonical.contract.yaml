@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:pair_table_canonical:v1.0.0
+title: Least joint writing of square tables under one shared vertex permutation. This
+  is finite exact enumeration, with the ...
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/pair_table_canonical.rs
+module: pair_table_canonical
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: pair_table_canonical
+  file: crates_rs/omega_linear_algebra/src/pair_table_canonical.rs
+symbols:
+- PairCanonicalError
+- CanonicalPairTables
+- CanonicalDecoratedPairTables
+- canonical_pair_tables
+- canonical_pair_tables_with_decoration
+owns:
+- pair_canonical_error
+- canonical_pair_tables
+- canonical_decorated_pair_tables
+- canonical_pair_tables_with_decoration
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

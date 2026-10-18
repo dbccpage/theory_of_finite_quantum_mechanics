@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_odd_prime_gauss_certificate_gate:v1.0.0
+title: Odd-prime Gauss-certificate gate.  This gate connects the exact Hilbert controls
+  for declared odd-prime dimensions to...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/odd_prime_gauss_certificate_gate.rs
+module: mub::odd_prime_gauss_certificate_gate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::odd_prime_gauss_certificate_gate
+  file: crates_rs/omega_quantum_physics/src/mub/odd_prime_gauss_certificate_gate.rs
+symbols:
+- OddPrimeGaussCertificateStatus
+- OddPrimeGaussCertificateReport
+- verify_current_odd_prime_gauss_certificate_gate
+- verify_odd_prime_gauss_certificate_gate
+owns:
+- odd_prime_gauss_certificate_status
+- odd_prime_gauss_certificate_report
+- verify_current_odd_prime_gauss_certificate_gate
+- verify_odd_prime_gauss_certificate_gate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

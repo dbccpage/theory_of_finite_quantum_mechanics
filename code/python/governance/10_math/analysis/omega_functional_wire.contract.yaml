@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:wire:v1.0.0
+title: Shared parsing of rational wire strings for the Phi2/Phi3/Phi4 certificates.
+  Each caller supplies its own refusal for...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/wire.rs
+module: wire
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: wire
+  file: crates_rs/omega_functional/src/wire.rs
+symbols:
+- parse_rational_vec
+- parse_rational_matrix
+owns:
+- parse_rational_vec
+- parse_rational_matrix
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,55 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:graph_f2:v1.0.0
+title: 'Binary pattern carriers: `same`/`diff` edge patterns on a declared finite
+  graph.  A carrier is a finite graph without...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/graph_f2.rs
+module: graph_f2
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: graph_f2
+  file: crates_rs/omega_homology/src/graph_f2.rs
+symbols:
+- PatternError
+- PatternCarrier
+- new
+- vertex_count
+- edges
+- is_simple
+- pattern_count
+- coboundary
+- full_family
+- image
+- is_removable
+- binary_residual
+- has_unremovable_pattern
+- is_even_subgraph
+- has_cycle
+- pattern_pairing
+- simple_graphs
+- GraphCohomologyF2
+- GraphF2Error
+- cycle_space_basis
+- cycle_rank
+- solve_coboundary
+- parity_certificate
+- minimum_hamming_residual
+owns:
+- pattern_error
+- pattern_carrier
+- new
+- vertex_count
+- edges
+- is_simple
+- pattern_count
+- coboundary
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

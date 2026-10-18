@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:limits:v1.0.0
+title: Finite limits — shared categorical infrastructure.  Provides reusable finite
+  cones and universal-property checks for:...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/limits.rs
+module: limits
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: limits
+  file: crates_rs/omega_category_theory/src/limits.rs
+symbols:
+- LimitValidation
+- morphisms_between
+- DeclaredFiniteCone
+- new
+- set_leg
+- validate_cone
+- DeclaredFiniteProduct
+- DeclaredFiniteEqualizer
+- DeclaredFinitePullback
+- validate_product
+- validate_equalizer
+- validate_pullback
+- check_terminal
+owns:
+- limit_validation
+- morphisms_between
+- declared_finite_cone
+- new
+- set_leg
+- validate_cone
+- declared_finite_product
+- declared_finite_equalizer
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:declared_incidence:v1.0.0
+title: Declared incidence domain for finite abstract simplicial complexes.  A family
+  is in the domain when it is a finite se...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/declared_incidence.rs
+module: declared_incidence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: declared_incidence
+  file: crates_rs/omega_homology/src/declared_incidence.rs
+symbols:
+- DeclaredIncidenceError
+- DeclaredChainReport
+- encode_declared
+- decode_declared
+- declared_chain_report
+owns:
+- declared_incidence_error
+- declared_chain_report
+- encode_declared
+- decode_declared
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lifts:lift_primitive:v1.0.0
+title: '# Lift Primitives  The minimal lift basis â„’_min = âŸ¨EdgeSplit, CycleHubâŸ©
+  for the self-repair causal engine. Each...'
+kind: rust_file_contract
+status: active
+crate: omega_lifts
+file: crates_rs/omega_lifts/src/lift_primitive.rs
+module: lift_primitive
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lifts
+  module: lift_primitive
+  file: crates_rs/omega_lifts/src/lift_primitive.rs
+symbols:
+- LiftPrimitive
+- is_resolving
+- is_refinement
+- kind_name
+- LiftResult
+- LiftContractViolation
+- enforce_lift_contract
+owns:
+- lift_primitive
+- is_resolving
+- is_refinement
+- kind_name
+- lift_result
+- lift_contract_violation
+- enforce_lift_contract
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

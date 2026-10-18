@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:trace_observer_certificate:v1.0.0
+title: 'Exact certificates for the original finite Hermitian trace-gauge observer.
+  AuthorityEffect: None. Repairs are real li...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/trace_observer_certificate.rs
+module: trace_observer_certificate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: trace_observer_certificate
+  file: crates_rs/omega_quantum_physics/src/trace_observer_certificate.rs
+symbols:
+- OperatorObserverError
+- OperatorRepairProblem
+- as_functional_input
+- validate
+- TraceObserverWitness
+- TraceObserverCertificate
+- verify
+- OperatorComparison
+- operator_section_problem
+- verify_operator_repair_transport
+- Operator2CellComplex
+- new
+- validate_for
+- verify_chain_for
+- boundary_norm
+- certify_closure
+- evaluate_face
+- verify_chain_complex_condition
+- verify_operator_2cell_transport
+owns:
+- operator_observer_error
+- operator_repair_problem
+- as_functional_input
+- validate
+- trace_observer_witness
+- trace_observer_certificate
+- verify
+- operator_comparison
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

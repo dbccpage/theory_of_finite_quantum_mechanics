@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:glyph_trajectory:v1.0.0
+title: Bounded native execution of declared glyph-game turns.  Registry metadata chooses
+  an allowlisted native verifier, nev...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/glyph_trajectory.rs
+module: glyph_trajectory
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: glyph_trajectory
+  file: crates_rs/omega_symbol_game/src/glyph_trajectory.rs
+symbols:
+- GlyphRefusalCode
+- GlyphRefusal
+- GlyphTrajectoryRequestV1
+- GlyphTrajectoryReplayV1
+- execute
+- replay
+owns:
+- glyph_refusal_code
+- glyph_refusal
+- glyph_trajectory_request_v1
+- glyph_trajectory_replay_v1
+- execute
+- replay
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

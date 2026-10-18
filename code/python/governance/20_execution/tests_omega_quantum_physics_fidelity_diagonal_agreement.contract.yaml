@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_fidelity_diagonal_agreement:v1.0.0
+title: Integration test asserting that Uhlmann fidelity on diagonal quantum states
+  agrees with computational-basis projectio...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/fidelity_diagonal_agreement.rs
+module: omega_quantum_physics::fidelity_diagonal_agreement
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::fidelity_diagonal_agreement
+  file: crates_rs/tests/omega_quantum_physics/fidelity_diagonal_agreement.rs
+symbols: []
+owns:
+- omega_quantum_physics_fidelity_diagonal_agreement
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

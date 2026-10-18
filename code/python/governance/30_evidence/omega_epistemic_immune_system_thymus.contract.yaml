@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_epistemic_immune_system:thymus:v1.0.0
+title: 'Thymus Gate: Central Tolerance Negative Selection.  AuthorityEffect: None.  Law
+  2: An anti-skill that reacts to any s...'
+kind: rust_file_contract
+status: active
+crate: omega_epistemic_immune_system
+file: crates_rs/omega_epistemic_immune_system/src/thymus.rs
+module: thymus
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_epistemic_immune_system
+  module: thymus
+  file: crates_rs/omega_epistemic_immune_system/src/thymus.rs
+symbols:
+- ThymusVerdict
+- ThymusGate
+- new
+- standard_baseline
+- screen
+owns:
+- thymus_verdict
+- thymus_gate
+- new
+- standard_baseline
+- screen
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

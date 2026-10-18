@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_analysis_module_dependency_graph:v1.0.0
+title: Module Dependency Graph Module
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/analysis/module_dependency_graph.rs
+module: compiler::analysis::module_dependency_graph
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::analysis::module_dependency_graph
+  file: crates_rs/auto_p/src/compiler/analysis/module_dependency_graph.rs
+symbols:
+- ModuleDependencyGraph
+- new
+- add_node
+- add_edge
+- add_import
+- nodes
+- dependencies_of
+- has_path
+- from_modules
+- strongly_connected_components
+- detect_cycles
+- is_mutually_recursive
+owns:
+- module_dependency_graph
+- new
+- add_node
+- add_edge
+- add_import
+- nodes
+- dependencies_of
+- has_path
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

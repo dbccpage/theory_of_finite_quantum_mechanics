@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:observer:v1.0.0
+title: 'Primitive — **observer**: a bit-vector extractor **plus** a reading of the
+  vector.  Kept apart, or the second observe...'
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/observer.rs
+module: observer
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: observer
+  file: crates_rs/omega_ooutwire_primitives/src/observer.rs
+symbols:
+- BitPair
+- Bits
+- Reader
+- Observer
+- PairBits
+- Table
+- nth
+- all
+- behaviour
+- sealed
+- Behaviour
+- separates
+owns:
+- bit_pair
+- bits
+- reader
+- observer
+- pair_bits
+- table
+- nth
+- all
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

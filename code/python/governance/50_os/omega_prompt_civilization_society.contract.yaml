@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_prompt_civilization:society:v1.0.0
+title: 'Prompt Society and Civilization normative data models (NF-01).  Conforms to
+  normative specification: `urn:omega:nf:pr...'
+kind: rust_file_contract
+status: active
+crate: omega_prompt_civilization
+file: crates_rs/omega_prompt_civilization/src/society.rs
+module: society
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_prompt_civilization
+  module: society
+  file: crates_rs/omega_prompt_civilization/src/society.rs
+symbols:
+- AggregateFitnessVectorV1
+- new
+- parse_rational
+- accuracy
+- cost
+- robustness
+- validate
+- weakly_dominates
+- strictly_dominates_any
+- pareto_replaces
+- MigrationPolicyV1
+- is_migration_allowed
+- PromptSocietyV1
+- canonical_digest
+- PromptCivilizationV1
+- check_budget_solvency
+- advance_epoch
+owns:
+- aggregate_fitness_vector_v1
+- new
+- parse_rational
+- accuracy
+- cost
+- robustness
+- validate
+- weakly_dominates
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

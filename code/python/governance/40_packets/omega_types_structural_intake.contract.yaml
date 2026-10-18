@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:structural_intake:v1.0.0
+title: Structural Intake Rust twin (INTAKE-S6 / LIB4-005 / D-LIB-06).  Schema-driven
+  Rust twin for intake observatory. Autho...
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/structural_intake.rs
+module: structural_intake
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: structural_intake
+  file: crates_rs/omega_types/src/structural_intake.rs
+symbols:
+- IntakeMatchKind
+- IntakeCorrespondenceSpan
+- new
+- IntakeObservatoryReport
+- build
+owns:
+- intake_match_kind
+- intake_correspondence_span
+- new
+- intake_observatory_report
+- build
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

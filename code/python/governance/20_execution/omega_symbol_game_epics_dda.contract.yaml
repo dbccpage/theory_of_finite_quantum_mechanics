@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:epics_dda:v1.0.0
+title: Discrete Deformation Calculus composition and the Meron cluster sign solver.  `EPIC-OE-SYMGAM-004`
+  asks for DDA compo...
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/epics/dda.rs
+module: epics::dda
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: epics::dda
+  file: crates_rs/omega_symbol_game/src/epics/dda.rs
+symbols:
+- DdaError
+- chain_composite
+- phi_1
+- compose
+- raw_associator
+- observable_associator
+- predicted_associator
+- defects
+- MeronSurgery
+- MeronClusterSolver
+- fuse_one
+- fuse_all
+- WitnessVerdict
+- MeronSurgeryVerifier
+- verify
+- MeronSurgeryReceiptV1
+- build
+- matmul_into
+owns:
+- dda_error
+- chain_composite
+- phi_1
+- compose
+- raw_associator
+- observable_associator
+- predicted_associator
+- defects
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

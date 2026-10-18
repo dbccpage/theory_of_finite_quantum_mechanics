@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_search:topos_search:v1.0.0
+title: Topos Search Module
+kind: rust_file_contract
+status: active
+crate: omega_search
+file: crates_rs/omega_search/src/topos_search.rs
+module: topos_search
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_search
+  module: topos_search
+  file: crates_rs/omega_search/src/topos_search.rs
+symbols:
+- CertifiedSelectionFunctional
+owns:
+- certified_selection_functional
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

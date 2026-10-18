@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_test_covering_edge_descent:v1.0.0
+title: 'Tests for `omega_wdp::covering_edge_descent`: Verifies Proposition 2.1a, Lemma
+  2.2, Theorem 3.2, Theorem 3.4, Theorem...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/test_covering_edge_descent.rs
+module: omega_wdp::test_covering_edge_descent
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::test_covering_edge_descent
+  file: crates_rs/tests/omega_wdp/test_covering_edge_descent.rs
+symbols: []
+owns:
+- omega_wdp_test_covering_edge_descent
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:smith_normal_form:v1.0.0
+title: Integer Smith Normal Form and the torsion coefficients it exposes.  The rest
+  of `omega_homology` computes homology ov...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/smith_normal_form.rs
+module: smith_normal_form
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: smith_normal_form
+  file: crates_rs/omega_homology/src/smith_normal_form.rs
+symbols:
+- TorsionError
+- invariant_factors
+- torsion_coefficients
+owns:
+- torsion_error
+- invariant_factors
+- torsion_coefficients
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

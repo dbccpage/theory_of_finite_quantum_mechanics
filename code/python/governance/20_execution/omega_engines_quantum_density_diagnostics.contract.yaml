@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:quantum_density_diagnostics:v1.0.0
+title: Density Diagnostics Module
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/quantum/density_diagnostics.rs
+module: quantum::density_diagnostics
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: quantum::density_diagnostics
+  file: crates_rs/omega_engines/src/quantum/density_diagnostics.rs
+symbols:
+- DensityDiagnostics
+- DensityDiagnosticViolation
+- try_validate
+- validate
+owns:
+- density_diagnostics
+- density_diagnostic_violation
+- try_validate
+- validate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

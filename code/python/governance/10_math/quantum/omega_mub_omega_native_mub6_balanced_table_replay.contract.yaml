@@ -1,0 +1,59 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_balanced_table_replay:v1.0.0
+title: 'MUB(6) balanced lift: independent replay of the pinned 648-equation, 320-coordinate
+  table.  The table `balanced_quadr...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_balanced_table_replay.rs
+module: omega_native::mub6_balanced_table_replay
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_balanced_table_replay
+  file: crates_rs/omega_mub/src/omega_native/mub6_balanced_table_replay.rs
+symbols:
+- Monomial
+- RationalPoly
+- ExactMatrix
+- BalancedReplayError
+- BalancedTable
+- coordinate_radius
+- from_bytes
+- evaluate_rational
+- evaluate_exact
+- entry_base
+- core_base
+- modulus_code
+- gram_code
+- graph_code
+- transition_modulus_code
+- regenerate_equations
+- TableInventory
+- inventory
+- real_part
+- imag_part
+- exact_conj_transpose_mul
+- encode_triple
+- BoxMembership
+- box_membership
+- PointEvaluation
+- evaluate_point
+- block_of
+- rows_per_block
+owns:
+- monomial
+- rational_poly
+- exact_matrix
+- balanced_replay_error
+- balanced_table
+- coordinate_radius
+- from_bytes
+- evaluate_rational
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

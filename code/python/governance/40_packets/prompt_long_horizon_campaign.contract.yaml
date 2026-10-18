@@ -1,0 +1,141 @@
+schema_version: omega.contract.v2
+contract_id: urn:omega:prompt:long_horizon_campaign:v1.0.0
+title: Long Horizon Shared Campaign Contract
+kind: prompt_contract
+layer: 40_packets
+role: PromptSpecification
+status: active
+council_owner: L3_nous_glossa
+descriptor:
+  authority_effect: None
+  evidence_ceiling: ShapeOnly
+  runtime_enforcement: false
+  clean_architecture_layer: domain
+  dependencies:
+    contracts:
+    - urn:omega:governance:base_contract:v1.0.0
+    lean4_theorems: []
+  terminals:
+    may_emit: []
+    may_support: []
+  refusals:
+    may_emit:
+    - REFUSAL_INVALID_ARGUMENTS
+    - REFUSAL_GATE_FAILED
+    - REFUSAL_INVARIANT_BREACH
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+  realizes: []
+doctrine:
+  summary: "Shared multi-session campaign law for all domain looping goal prompts\
+    \ under omega_engine/research/prompts/. Domain loops MUST point here or paste\
+    \ L0\u2013L11."
+  invariants:
+  - 'Every agent output, receipt, test green, Lean green, and packet has AuthorityEffect:
+    None.'
+  - 'Human-only transition: READY_FOR_AUTHOR_REVIEW -> PROMOTED (/human-promotion-firewall).'
+  - Close exactly one primary target / story / residual ID per cycle.
+  - 'No silent halts: A campaign loop must never stop without an explicit stated reason.'
+  non_roles:
+  - authority_source
+  - promotion_granter
+  - implicit_coercion
+  required_negative_capabilities:
+  - no_self_certification
+  - no_implicit_authority_upgrade
+  - no_silent_halt
+specification:
+  rules:
+    L0_authority_and_promotion:
+    - 'Every agent output, receipt, test green, Lean green, and packet has AuthorityEffect:
+      None.'
+    - 'Human-only transition: READY_FOR_AUTHOR_REVIEW -> PROMOTED (/human-promotion-firewall).'
+    - No GlobalGreen from agent packaging. Green referee / host gate results are evidence-class
+      only.
+    - Prefer pointers to live files over copying doctrine into prompts. Live control
+      law wins over embedded snapshots.
+    L1_one_primary_target_per_cycle:
+    - Close exactly one primary target / story / residual ID per cycle (or one documented
+      blocking dependency).
+    - Side effects (ledger notes, index fixes, map-lag reports) are allowed; a second
+      primary target is not.
+    - 'Where DERIV-MASTER / derivation order applies: serial waves. Parallel only
+      within a wave on disjoint targets.'
+    L2_dual_channel_packet_discipline:
+    - "Load-bearing work ships as a named packet or residual row under support / proof_packets\
+      \ root \u2014 not as chat-only conclusions."
+    - Packets may request terminals; they do not self-certify TerminalWithinScope
+      or wave exit.
+    - 'ODP law: no promotion of governed artifacts without a declared obstruction
+      / residual packet.'
+    L3_resume_protocol:
+      cold_start: No active RUN_ID directory under support root -> Stage 0A
+      resume: Active RUN_ID with incomplete handoff card -> L3.1
+      re_admit: Caller pins a different residual/target -> Stage 0A with new RUN_ID
+      l3_1_steps:
+      - Read <SUPPORT_ROOT>/<RUN_ID>/00_history_snapshot.json.
+      - Read SESSION_HANDOFF_CARD.md. If missing -> reconstruct from receipts only;
+        mark prior PASS as STALE_UNTIL_REHOST.
+      - Rehash control-law / freeze / roadmap bytes cited in handoff card. Invalidate
+        any PASS whose carrier hash drifted.
+      - Re-run Black Host gates that close open stage.
+      - State exactly one next legal action; refuse multi-target catch-up.
+    L4_session_handoff_card_receipt:
+      handoff_card_path: <SUPPORT_ROOT>/<RUN_ID>/SESSION_HANDOFF_CARD.md
+      evidence_receipt_path: .agents/rip_runs_evidence/rip-programs/<domain>/<RUN_ID>_receipt.yaml
+    L5_anti_collapse_rules:
+    - failure: Finish the whole estate this session
+      behavior: Select one primary ID; list rest as disposition only
+    - failure: Re-proving closed capital as dream debt
+      behavior: Cite live map/freeze; skip re-walk
+    - failure: Baking snapshot tables as current truth
+      behavior: Run status refresh; report map_lag
+    - failure: Silent multi-wave / multi-target advance
+      behavior: Serial gate; one ID
+    - failure: Chat conclusion without receipt path
+      behavior: Write handoff card + named receipt
+    - failure: Agent self-promotion / GlobalGreen
+      behavior: /human-promotion-firewall refuse
+    - failure: Inventing parallel crates/trees
+      behavior: Use declared surfaces only
+    L6_status_snapshot_policy:
+    - Embedded capital tables in domain prompts are illustrative at prompt-revision
+      date only.
+    - Each invocation must re-read live control law / roadmap / freeze and report
+      map_lag = NONE | DRIFT | FICTION.
+    L7_receipt_and_run_identity:
+    - Freeze RUN_ID before Stage 0A writes (RUN_<DOMAIN>_<TARGET_OR_WAVE>_<YYYYMMDD>).
+    - Do not reuse a closed RUN_ID directory for a different primary target.
+    - 'All Rust gates: cargo ... -j 1 (LLVM OOM law).'
+    L8_end_of_cycle_mandatory_box:
+    - 1. What it supports
+    - 2. What it does not support
+    - 3. Narrowest defensible claim
+    - 4. Next test / gate
+    - 5. Target ID + terminal requested (not derived)
+    - '6. AuthorityEffect: None'
+    - 7. Path to SESSION_HANDOFF_CARD.md
+    L9_typed_halt_reasons:
+      BUDGET_EXHAUSTED: Repair/dialogue budget hit; write residual packet for next
+        session
+      UNAUTHORIZED_CONTINUE: Next step would mint authority, promote, or cross freeze
+      MAP_LAG_FICTION: Prompt table contradicts disk and was about to be used as truth
+      GATE_FAILED: Host gate red; residualize, do not package READY
+      EXTERNAL_ROLE_REQUIRED: Human author/review/promotion/credentials only
+      SECOND_PRIMARY_REFUSED: Attempted multi-target cycle
+      MISSING_PACKET_FIELDS: Residual/packet incomplete
+      SIBLING_HANDOFF: Work belongs to another loop
+    L10_paper_review_and_extension_engine:
+    - Load existing paper or research document under published/ or library/.
+    - Evaluate claim ledger, proof steps, and test evidence against active control
+      law.
+    - Propose next-level extension (v1.0 -> v2.0 pre-print).
+    - 'All edits remain under AuthorityEffect: None and require human authorization.'
+    L11_anti_halt_law:
+    - 'NO SILENT HALTS: A campaign loop MUST NEVER stop without an explicit stated
+      reason.'
+    - Must explicitly emit Next Best Recommended Action / Change at cycle end.
+    - If target closed, select and emit next legal primary target.
+    - If true halt occurs, state exact typed halt code from L9 and precise unblock
+      action.

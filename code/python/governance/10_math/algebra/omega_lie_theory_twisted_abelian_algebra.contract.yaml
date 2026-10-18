@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:twisted_abelian_algebra:v1.0.0
+title: A finite abelian group with a fully checked normalized unitary 2-cocycle.  u_g
+  u_h = alpha(g,h) u_(gh). Scalars and m...
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/twisted_abelian_algebra.rs
+module: twisted_abelian_algebra
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: twisted_abelian_algebra
+  file: crates_rs/omega_lie_theory/src/twisted_abelian_algebra.rs
+symbols:
+- TwistedAlgebraError
+- ComplexBlockProfile
+- TwistedAbelianAlgebra
+- new
+- group
+- center_basis
+- phase
+- commutator_phase
+- basis_product
+- basis_star
+- complex_block_profile
+- basis
+- multiply
+- star
+- trace
+- left_regular
+owns:
+- twisted_algebra_error
+- complex_block_profile
+- twisted_abelian_algebra
+- new
+- group
+- center_basis
+- phase
+- commutator_phase
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

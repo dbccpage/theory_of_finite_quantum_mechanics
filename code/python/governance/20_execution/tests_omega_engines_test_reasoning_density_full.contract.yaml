@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_engines_test_reasoning_density_full:v1.0.0
+title: 'Extensive integration & property suite for FORGE-S4 Rust density twin.  Soviet-builder
+  style: each test states an inv...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_engines/test_reasoning_density_full.rs
+module: omega_engines::test_reasoning_density_full
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_engines::test_reasoning_density_full
+  file: crates_rs/tests/omega_engines/test_reasoning_density_full.rs
+symbols: []
+owns:
+- omega_engines_test_reasoning_density_full
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

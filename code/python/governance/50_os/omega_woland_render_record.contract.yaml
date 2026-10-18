@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:render_record:v1.0.0
+title: Source-ordered presentation data; never canonical certificate or money data.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/render_record.rs
+module: render_record
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: render_record
+  file: crates_rs/omega_woland/src/render_record.rs
+symbols:
+- RenderRecord
+- JsonStyle
+- from_json
+- object
+- text
+- as_object
+- as_str
+- truthy
+- pretty_json
+- json
+owns:
+- render_record
+- json_style
+- from_json
+- object
+- text
+- as_object
+- as_str
+- truthy
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

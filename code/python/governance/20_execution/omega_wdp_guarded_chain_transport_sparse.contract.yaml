@@ -1,0 +1,52 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:guarded_chain_transport_sparse:v1.0.0
+title: Sparse evaluation of explicitly selected carrier maps, without enumerating
+  K or T.  Requests recurse only to required...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/guarded_chain_transport/sparse.rs
+module: guarded_chain_transport::sparse
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: guarded_chain_transport::sparse
+  file: crates_rs/omega_wdp/src/guarded_chain_transport/sparse.rs
+symbols:
+- SparseTransportError
+- SparseTransportLimits
+- SparseTransportStats
+- SparseTransport
+- ContractionMethod
+- validate_event_cell
+- validate_task_cell
+- new
+- new_minimum_sweep
+- with_method
+- stats
+- project
+- include
+- homotopy
+- CheckedSparseFilling
+- pairs
+- capacity
+- degree
+- cycle
+- filling
+- verify_sparse_event_filling
+owns:
+- sparse_transport_error
+- sparse_transport_limits
+- sparse_transport_stats
+- sparse_transport
+- contraction_method
+- validate_event_cell
+- validate_task_cell
+- new
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

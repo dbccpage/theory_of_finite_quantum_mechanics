@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_finite_probability:finite_valuation:v1.0.0
+title: 'Exact nonnegative finite Boolean valuations; no normalization requirement.
+  AuthorityEffect: None. FinN requires a non...'
+kind: rust_file_contract
+status: active
+crate: omega_finite_probability
+file: crates_rs/omega_finite_probability/src/finite_valuation.rs
+module: finite_valuation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_finite_probability
+  module: finite_valuation
+  file: crates_rs/omega_finite_probability/src/finite_valuation.rs
+symbols:
+- Event
+- ValuationError
+- BooleanValuation
+- try_new
+- size
+- values
+- atoms
+- atom_masses
+- reconstructed_value
+- singleton_extension
+- singleton_extension_is_unique
+- coarsen
+- pushforward
+owns:
+- event
+- valuation_error
+- boolean_valuation
+- try_new
+- size
+- values
+- atoms
+- atom_masses
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

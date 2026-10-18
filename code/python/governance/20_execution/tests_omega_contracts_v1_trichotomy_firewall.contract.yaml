@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_contracts_v1_trichotomy_firewall:v1.0.0
+title: Task 15 — the floating/tolerance-claims-exact rule is CONTRACT-SPECIFIC (spec
+  §11.5), asserted here, not as a generic...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_contracts/v1_trichotomy_firewall.rs
+module: omega_contracts::v1_trichotomy_firewall
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_contracts::v1_trichotomy_firewall
+  file: crates_rs/tests/omega_contracts/v1_trichotomy_firewall.rs
+symbols: []
+owns:
+- omega_contracts_v1_trichotomy_firewall
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

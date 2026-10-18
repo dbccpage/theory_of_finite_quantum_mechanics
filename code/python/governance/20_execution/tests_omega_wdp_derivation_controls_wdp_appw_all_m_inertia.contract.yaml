@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_appw_all_m_inertia:v1.0.0
+title: Exact Sylvester inertias of the Appendix W response on one finite carrier.
+  L=4, Fock dimension 16, theta=1/10, and M=...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appw_all_m_inertia.rs
+module: omega_wdp::derivation_controls::wdp_appw_all_m_inertia
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_appw_all_m_inertia
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_appw_all_m_inertia.rs
+symbols:
+- Observation
+- witness
+- inertia_claim
+owns:
+- observation
+- witness
+- inertia_claim
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

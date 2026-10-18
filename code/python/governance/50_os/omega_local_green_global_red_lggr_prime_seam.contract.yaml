@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_local_green_global_red_lggr:prime_seam:v1.0.0
+title: The LGGR(EPK) ↔ OE Prime 000/001/002 seam.  The LGGR trilogy (papers 019/020/021)
+  and the OE Prime Algorithms (paper ...
+kind: rust_file_contract
+status: active
+crate: omega_local_green_global_red_lggr
+file: crates_rs/omega_local_green_global_red_lggr/src/prime_seam.rs
+module: prime_seam
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_local_green_global_red_lggr
+  module: prime_seam
+  file: crates_rs/omega_local_green_global_red_lggr/src/prime_seam.rs
+symbols:
+- PrimeIntakeOutcome
+- as_declared_str
+- is_refusal
+- CandidateDeclaration
+- evaluate_intake
+- authority_effect
+- PrimeDeclarationOutcome
+- PrimeDeclarationOrder
+- validate
+- AdequacyKindProjection
+- from_kind
+- as_tag
+- permits_detector_adequate
+- LggrEpkObservation
+- new_bound
+- record_id
+- defect
+- obstruction_status
+- schema
+- ledger
+- verdict
+- adequacy_kind
+- observed_corpus_digest
+- evidence_ceiling
+- detector_adequate
+- PrimeDescentReceipt
+- recomputed_hash
+- VerifiedDescentReceipt
+- seal
+- receipt
+owns:
+- prime_intake_outcome
+- as_declared_str
+- is_refusal
+- candidate_declaration
+- evaluate_intake
+- authority_effect
+- prime_declaration_outcome
+- prime_declaration_order
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

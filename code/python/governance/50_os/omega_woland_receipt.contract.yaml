@@ -1,0 +1,38 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:receipt:v1.0.0
+title: 'Fail-closed receipt. AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/receipt.rs
+module: receipt
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: receipt
+  file: crates_rs/omega_woland/src/receipt.rs
+symbols:
+- ReceiptStatus
+- Fault
+- new
+- Receipt
+- authority_effect
+- pass
+- fail
+- refusal
+owns:
+- receipt_status
+- fault
+- new
+- receipt
+- authority_effect
+- pass
+- fail
+- refusal
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

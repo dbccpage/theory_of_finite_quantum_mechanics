@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:entropy:v1.0.0
+title: Quantum entropy measures (von Neumann entropy, relative entropy, purity) for
+  `omega_quantum_physics`.  The [`DensityM...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/entropy.rs
+module: entropy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: entropy
+  file: crates_rs/omega_quantum_physics/src/entropy.rs
+symbols:
+- EntropyError
+- Entropy
+- von_neumann_enclosure
+- renyi_two_exact
+- new
+- von_neumann
+- von_neumann_exact
+- von_neumann_bits
+- purity
+- relative_entropy
+- shannon
+- degree
+- authority_fence
+owns:
+- entropy_error
+- entropy
+- von_neumann_enclosure
+- renyi_two_exact
+- new
+- von_neumann
+- von_neumann_exact
+- von_neumann_bits
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

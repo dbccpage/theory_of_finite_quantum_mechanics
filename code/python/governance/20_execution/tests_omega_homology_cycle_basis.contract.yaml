@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_homology_cycle_basis:v1.0.0
+title: Cycle Basis Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_homology/cycle_basis.rs
+module: omega_homology::cycle_basis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_homology::cycle_basis
+  file: crates_rs/tests/omega_homology/cycle_basis.rs
+symbols: []
+owns:
+- omega_homology_cycle_basis
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

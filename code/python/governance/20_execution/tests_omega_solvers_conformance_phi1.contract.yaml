@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_solvers_conformance_phi1:v1.0.0
+title: 'Conformance: phi1 obstruction mass on the exact (integer) authority path.
+  Subject = solve_phi1 (per-edge omega). Orac...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_solvers/conformance_phi1.rs
+module: omega_solvers::conformance_phi1
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_solvers::conformance_phi1
+  file: crates_rs/tests/omega_solvers/conformance_phi1.rs
+symbols: []
+owns:
+- omega_solvers_conformance_phi1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

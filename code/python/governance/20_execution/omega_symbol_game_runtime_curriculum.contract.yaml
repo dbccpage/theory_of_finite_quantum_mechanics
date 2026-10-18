@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:curriculum:v1.0.0
+title: 'Curriculum and Self-Play Instance Generators (U23).  Generates certified instances
+  along declared difficulty axes: - ...'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/curriculum.rs
+module: curriculum
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: curriculum
+  file: crates_rs/omega_symbol_game_runtime/src/curriculum.rs
+symbols:
+- CurriculumError
+- Edge
+- CochainInstance
+- CurriculumGenerator
+- generate_cochain_instance
+- compute_canonical_digest
+- verify_judge_fixity
+owns:
+- curriculum_error
+- edge
+- cochain_instance
+- curriculum_generator
+- generate_cochain_instance
+- compute_canonical_digest
+- verify_judge_fixity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

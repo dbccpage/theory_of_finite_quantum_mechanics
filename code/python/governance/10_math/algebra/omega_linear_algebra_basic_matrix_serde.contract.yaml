@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:basic_matrix_serde:v1.0.0
+title: Serialization preserves the checked row-major storage invariant.
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/basic_matrix_serde.rs
+module: basic_matrix_serde
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: basic_matrix_serde
+  file: crates_rs/omega_linear_algebra/src/basic_matrix_serde.rs
+symbols: []
+owns:
+- basic_matrix_serde
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_braid_schedule:v1.0.0
+title: '--- yaml title: braid_schedule file_name: braid_schedule.rs file_location:
+  omega_engine/crates_rs/auto_p/compiler/bra...'
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/braid_schedule.rs
+module: compiler::braid_schedule
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::braid_schedule
+  file: crates_rs/auto_p/src/compiler/braid_schedule.rs
+symbols:
+- PhysicalStrandId
+- LogicalQubitId
+- PhysicalBraidOp
+- strands
+- conflicts_with
+- BraidScheduleLayer
+- new
+- can_accommodate
+- add_op
+- active_strands
+- PhysicalQubitBraidSchedule
+- verify_internal_consistency
+- to_schedule_manifest
+- ScheduleLoweringError
+- attest_witness
+- PtirToBraidScheduleLowerer
+- lower_bundle
+owns:
+- physical_strand_id
+- logical_qubit_id
+- physical_braid_op
+- strands
+- conflicts_with
+- braid_schedule_layer
+- new
+- can_accommodate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

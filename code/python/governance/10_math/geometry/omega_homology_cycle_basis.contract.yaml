@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:cycle_basis:v1.0.0
+title: Fundamental Cycle Basis and Exact Spanning Forest (U13).  Computes spanning
+  forest, chords, exact tree potentials, an...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/cycle_basis.rs
+module: cycle_basis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: cycle_basis
+  file: crates_rs/omega_homology/src/cycle_basis.rs
+symbols:
+- Edge
+- FundamentalCycle
+- CycleBasisCertificate
+- CycleBasisResult
+- compute_cycle_basis
+- compute_cycle_basis_with_tree
+owns:
+- edge
+- fundamental_cycle
+- cycle_basis_certificate
+- cycle_basis_result
+- compute_cycle_basis
+- compute_cycle_basis_with_tree
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

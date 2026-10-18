@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:complete_bout:v1.0.0
+title: Seven-act application controller. IO and independent checks are injected.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/complete_bout.rs
+module: complete_bout
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: complete_bout
+  file: crates_rs/omega_woland/src/complete_bout.rs
+symbols:
+- GovernanceRequest
+- GovernancePort
+- BoutHostPort
+- ReggeScoringPort
+- CompleteBoutInput
+- CompleteBoutPorts
+- CompleteBoutOutcome
+- carrier_state_digest
+- execute_complete_bout
+owns:
+- governance_request
+- governance_port
+- bout_host_port
+- regge_scoring_port
+- complete_bout_input
+- complete_bout_ports
+- complete_bout_outcome
+- carrier_state_digest
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

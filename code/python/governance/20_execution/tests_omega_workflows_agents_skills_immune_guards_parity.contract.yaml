@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_workflows_agents_skills_immune_guards_parity:v1.0.0
+title: Immune Guards Parity Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_workflows_agents_skills/immune_guards_parity.rs
+module: omega_workflows_agents_skills::immune_guards_parity
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_workflows_agents_skills::immune_guards_parity
+  file: crates_rs/tests/omega_workflows_agents_skills/immune_guards_parity.rs
+symbols: []
+owns:
+- omega_workflows_agents_skills_immune_guards_parity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

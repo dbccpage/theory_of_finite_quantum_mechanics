@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:observer_adapter_completeness:v1.0.0
+title: Finite typed observer specialization of universal partial-structure descent.
+  Archival custody and authorization are o...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/observer_adapter_completeness.rs
+module: observer_adapter_completeness
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: observer_adapter_completeness
+  file: crates_rs/omega_wdp/src/observer_adapter_completeness.rs
+symbols:
+- Sort
+- Operation
+- signature
+- Relation
+- ObserverTables
+- ObserverQuotient
+- ObserverAdapterPacket
+- ObserverAdapterReceipt
+- ObserverAdapterError
+- require
+- adapt
+- verify_against
+owns:
+- sort
+- operation
+- signature
+- relation
+- observer_tables
+- observer_quotient
+- observer_adapter_packet
+- observer_adapter_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

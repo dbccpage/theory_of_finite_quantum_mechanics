@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:certifiers:v1.0.0
+title: 'Sovereign certifier integrations bridging omega_certifiers into the Symbol
+  Game host.  AuthorityEffect: None. Certifi...'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/certifiers.rs
+module: certifiers
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: certifiers
+  file: crates_rs/omega_symbol_game/src/certifiers.rs
+symbols:
+- VerifyPhi1FormRequestV1
+- Phi1FormOutcomeV1
+- verify_phi1_form_certificate
+owns:
+- verify_phi1_form_request_v1
+- phi1_form_outcome_v1
+- verify_phi1_form_certificate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

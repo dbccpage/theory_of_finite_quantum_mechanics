@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:lib:v1.0.0
+title: '`omega_lie_theory` -- exact finite groups, Lie groups and Lie algebras.  Every
+  quantity is exact: rationals, cyclotom...'
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/lib.rs
+module: lib
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: lib
+  file: crates_rs/omega_lie_theory/src/lib.rs
+symbols:
+- QMatrix
+owns:
+- q_matrix
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

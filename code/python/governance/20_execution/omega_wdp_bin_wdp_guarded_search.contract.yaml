@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:bin_wdp_guarded_search:v1.0.0
+title: Bounded, deterministic search over a declared finite menu of guarded Source-25
+  causal families (follow-up to Appendix...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/bin/wdp_guarded_search.rs
+module: bin::wdp_guarded_search
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: bin::wdp_guarded_search
+  file: crates_rs/omega_wdp/src/bin/wdp_guarded_search.rs
+symbols: []
+owns:
+- bin_wdp_guarded_search
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

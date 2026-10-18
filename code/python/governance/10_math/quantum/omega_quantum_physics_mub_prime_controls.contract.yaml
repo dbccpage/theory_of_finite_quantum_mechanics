@@ -1,0 +1,57 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_prime_controls:v1.0.0
+title: Exact finite-dimensional control MUB constructors.  These are positive benchmark
+  solves for dimensions supported by t...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/prime_controls.rs
+module: mub::prime_controls
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::prime_controls
+  file: crates_rs/omega_quantum_physics/src/mub/prime_controls.rs
+symbols:
+- Vector
+- Basis
+- BasisSet
+- Vector28
+- Basis28
+- BasisSet28
+- Vector44
+- Basis44
+- BasisSet44
+- BenchmarkStatus
+- PrimeControlReport
+- verify_prime_controls
+- verify_prime_power_controls
+- verify_d2_control
+- verify_d3_control
+- verify_d4_control
+- verify_d7_control
+- verify_d11_control
+- verify_d13_control
+- build_d2_complete_mub
+- build_d3_complete_mub
+- build_d4_complete_mub
+- build_d7_complete_mub
+- build_d11_complete_mub
+- verify_basis_set
+- verify_partial_basis_set
+owns:
+- vector
+- basis
+- basis_set
+- vector28
+- basis28
+- basis_set28
+- vector44
+- basis44
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

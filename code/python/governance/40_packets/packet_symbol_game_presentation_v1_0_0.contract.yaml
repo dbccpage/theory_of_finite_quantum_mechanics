@@ -1,0 +1,44 @@
+schema_version: omega.contract.v2
+contract_id: urn:omega:packet:symbol_game:presentation:v1.0.0
+title: Finite Rewrite Presentation
+kind: packet_contract
+layer: 40_packets
+role: PacketSpecification
+status: active
+council_owner: L3_logos_techne
+descriptor:
+  authority_effect: None
+  evidence_ceiling: LocalReplay
+  runtime_enforcement: true
+  clean_architecture_layer: domain
+  refusals:
+    may_emit:
+    - FW-UNKNOWN-FIELD
+    - FW-DUPLICATE-KEY
+doctrine:
+  summary: A finite rewrite presentation (Sigma, R).
+  invariants:
+  - Rule names are pairwise distinct.
+  - A termination witness is claimed only when every rule strictly reduces symbol
+    length.
+  non_roles:
+  - authority_source
+  - promotion_granter
+  required_negative_capabilities:
+  - no_self_certification
+  - no_implicit_authority_upgrade
+structure:
+  rust_crate: omega_symbol_game_runtime
+  rust_module: rewriting
+  rust_type: Presentation
+  form: struct
+  serde:
+    deny_unknown_fields: true
+  fields:
+  - name: signature
+    rust_type: Vec<String>
+  - name: rules
+    rust_type: Vec<Rule>
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0

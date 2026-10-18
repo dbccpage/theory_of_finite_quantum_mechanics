@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:phi1_coda_adapter:v1.0.0
+title: Shared CODA/CODA_GTLA adapter for the exact integer Phi1 solver.  `solve_phi1`
+  owns candidate construction. This modu...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/phi1_coda_adapter.rs
+module: phi1_coda_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: phi1_coda_adapter
+  file: crates_rs/omega_wdp/src/phi1_coda_adapter.rs
+symbols:
+- Phi1CodaAdapterError
+- Phi1CodaSolution
+- solution
+- evaluation
+- residual_family
+- exact_certificate
+- solve_phi1_coda
+owns:
+- phi1_coda_adapter_error
+- phi1_coda_solution
+- solution
+- evaluation
+- residual_family
+- exact_certificate
+- solve_phi1_coda
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

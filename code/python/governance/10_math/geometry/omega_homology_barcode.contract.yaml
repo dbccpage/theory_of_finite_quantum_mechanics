@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:barcode:v1.0.0
+title: 'Barcode view over a persistence diagram (interval representation).  AuthorityEffect:
+  None. Shell / best-effort comput...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/barcode.rs
+module: barcode
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: barcode
+  file: crates_rs/omega_homology/src/barcode.rs
+symbols:
+- Bar
+- Barcode
+- from_diagram
+- len
+- is_empty
+owns:
+- bar
+- barcode
+- from_diagram
+- len
+- is_empty
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

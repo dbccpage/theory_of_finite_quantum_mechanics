@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game_runtime:rewriting_reduction:v1.0.0
+title: Reduction Module
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game_runtime
+file: crates_rs/omega_symbol_game_runtime/src/rewriting/reduction.rs
+module: rewriting::reduction
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game_runtime
+  module: rewriting::reduction
+  file: crates_rs/omega_symbol_game_runtime/src/rewriting/reduction.rs
+symbols:
+- ReductionStep
+- ReductionPath
+- CriticalPair
+- is_length_reducing
+- Reached
+- reachable
+- apply
+- replay_path
+- critical_pairs
+owns:
+- reduction_step
+- reduction_path
+- critical_pair
+- is_length_reducing
+- reached
+- reachable
+- apply
+- replay_path
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

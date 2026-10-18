@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_pipelines:bounded_rewrite:v1.0.0
+title: Bounded convergence controls over exact immutable rewrite rows.
+kind: rust_file_contract
+status: active
+crate: omega_pipelines
+file: crates_rs/omega_pipelines/src/bounded_rewrite.rs
+module: bounded_rewrite
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_pipelines
+  module: bounded_rewrite
+  file: crates_rs/omega_pipelines/src/bounded_rewrite.rs
+symbols:
+- BoundedRewritePolicy
+- BoundedRewriteTerminal
+- RewriteObserver
+- BoundedRewriteResult
+- final_row
+- diagnostics
+- terminal
+- attempts
+- rejected_attempts
+- authority_effect
+- run_bounded_rewrites
+owns:
+- bounded_rewrite_policy
+- bounded_rewrite_terminal
+- rewrite_observer
+- bounded_rewrite_result
+- final_row
+- diagnostics
+- terminal
+- attempts
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

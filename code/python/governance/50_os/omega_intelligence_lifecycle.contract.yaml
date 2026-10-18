@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_intelligence:lifecycle:v1.0.0
+title: Scoped transfer and closure predicates.
+kind: rust_file_contract
+status: active
+crate: omega_intelligence
+file: crates_rs/omega_intelligence/src/lifecycle.rs
+module: lifecycle
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_intelligence
+  module: lifecycle
+  file: crates_rs/omega_intelligence/src/lifecycle.rs
+symbols:
+- DigestionState
+- SourceRegistration
+- ExtractionRecord
+- TransferReceipt
+- ClosureReceipt
+- FindingRecord
+- LifecycleRequest
+- LifecycleResidual
+- FindingTransferBinding
+- LifecycleCertificate
+- LifecycleDecision
+- evaluate_lifecycle
+- decode_error
+owns:
+- digestion_state
+- source_registration
+- extraction_record
+- transfer_receipt
+- closure_receipt
+- finding_record
+- lifecycle_request
+- lifecycle_residual
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

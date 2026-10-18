@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_certifiers:meron_certificate:v1.0.0
+title: Meron Certificate Module
+kind: rust_file_contract
+status: active
+crate: omega_certifiers
+file: crates_rs/omega_certifiers/src/meron_certificate.rs
+module: meron_certificate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_certifiers
+  module: meron_certificate
+  file: crates_rs/omega_certifiers/src/meron_certificate.rs
+symbols:
+- MeronSystem
+- MeronConfig
+- amplitude
+- signed_contribution
+- MeronInvolutionPair
+- MeronCertificate
+- MeronTerminalKind
+- MeronAuthorityCeiling
+- MeronFiniteVerdict
+- exact_cancellation_finite_verdict
+- is_supported_meron_contract_id
+- is_stale_meron_artifact
+- MeronVerificationError
+- certificate_sha256_hex
+- verify_certificate_hash
+- verify_meron_certificate
+- verify_observable_compatibility
+owns:
+- meron_system
+- meron_config
+- amplitude
+- signed_contribution
+- meron_involution_pair
+- meron_certificate
+- meron_terminal_kind
+- meron_authority_ceiling
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

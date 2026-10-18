@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:clearing_optimization:v1.0.0
+title: 'Clearing lemma speed-up for PH reduction.  AuthorityEffect: None. Best-effort
+  shell for computational topology. Not P...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/clearing_optimization.rs
+module: clearing_optimization
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: clearing_optimization
+  file: crates_rs/omega_homology/src/clearing_optimization.rs
+symbols:
+- ClearingOptimization
+- new
+- with_note
+- validate_shell
+owns:
+- clearing_optimization
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

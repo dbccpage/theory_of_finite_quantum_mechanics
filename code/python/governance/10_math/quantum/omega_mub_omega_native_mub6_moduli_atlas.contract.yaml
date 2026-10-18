@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_moduli_atlas:v1.0.0
+title: 'MUB(6) moduli atlas — the cochain moved one degree up: the TRIPLE becomes
+  the carrier.  The fixed-tuple packet (`mub6...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_moduli_atlas.rs
+module: omega_native::mub6_moduli_atlas
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_moduli_atlas
+  file: crates_rs/omega_mub/src/omega_native/mub6_moduli_atlas.rs
+symbols:
+- ModuliCoverPatch
+- dita_seed_point_cover_path
+- load_t0_neighborhood_patch
+- load_dita_seed_point_patch
+- load_dita_seed_point_patches
+- dita_seed_neighborhood_cover_path
+- load_dita_seed_neighborhood_patch
+- load_dita_seed_neighborhood_patches
+- AtlasTerminal
+- Mub6ModuliAtlas
+- current_moduli_atlas
+owns:
+- moduli_cover_patch
+- dita_seed_point_cover_path
+- load_t0_neighborhood_patch
+- load_dita_seed_point_patch
+- load_dita_seed_point_patches
+- dita_seed_neighborhood_cover_path
+- load_dita_seed_neighborhood_patch
+- load_dita_seed_neighborhood_patches
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

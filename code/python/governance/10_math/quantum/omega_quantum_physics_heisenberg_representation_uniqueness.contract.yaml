@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:heisenberg_representation_uniqueness:v1.0.0
+title: 'Finite odd-prime Schrödinger representation certificate. AuthorityEffect:
+  None. Full Weyl operator reconstruction sup...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs
+module: heisenberg_representation_uniqueness
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: heisenberg_representation_uniqueness
+  file: crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs
+symbols:
+- FiniteIrreducibilityCertificate
+- certify_schrodinger_irreducibility
+owns:
+- finite_irreducibility_certificate
+- certify_schrodinger_irreducibility
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

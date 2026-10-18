@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:evidence_parse:v1.0.0
+title: Semantic admission of checker receipts and fenced critic findings. A parsed
+  receipt states a verdict; reproduction/au...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/evidence_parse.rs
+module: evidence_parse
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: evidence_parse
+  file: crates_rs/omega_woland/src/evidence_parse.rs
+symbols:
+- python_value_repr
+- CheckerReceiptRecord
+- verdict
+- candidate_content_sha256
+- checker_id
+- candidate_id
+- to_dict
+- parse_checker_receipt
+- CritiqueStatus
+- StructuredCritique
+- new
+- blocking
+- status
+- challenge_kind
+- counterexample
+- parse_error
+- parse_structured_critique
+owns:
+- python_value_repr
+- checker_receipt_record
+- verdict
+- candidate_content_sha256
+- checker_id
+- candidate_id
+- to_dict
+- parse_checker_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

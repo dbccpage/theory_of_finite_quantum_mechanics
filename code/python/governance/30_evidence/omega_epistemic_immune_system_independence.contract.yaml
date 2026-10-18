@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_epistemic_immune_system:independence:v1.0.0
+title: Independence checks over the fields consumed from typed signal records. These
+  immutable projections do not replace th...
+kind: rust_file_contract
+status: active
+crate: omega_epistemic_immune_system
+file: crates_rs/omega_epistemic_immune_system/src/independence.rs
+module: independence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_epistemic_immune_system
+  module: independence
+  file: crates_rs/omega_epistemic_immune_system/src/independence.rs
+symbols:
+- MatchEvidence
+- from_bytes
+- from_json
+- new
+- CharacterSpan
+- DangerEvidence
+- danger_type
+- has_defects
+- DetectorContext
+- signal1_digest
+- assert_signals_independent
+owns:
+- match_evidence
+- from_bytes
+- from_json
+- new
+- character_span
+- danger_evidence
+- danger_type
+- has_defects
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

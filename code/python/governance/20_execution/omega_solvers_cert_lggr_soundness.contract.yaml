@@ -1,0 +1,54 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:cert_lggr_soundness:v1.0.0
+title: '--- Math Contract: Object: finite-dimensional real LGGR carriers and observer-kernel
+  subspaces. Preconditions: finite...'
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/cert_lggr_soundness.rs
+module: cert_lggr_soundness
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: cert_lggr_soundness
+  file: crates_rs/omega_solvers/src/cert_lggr_soundness.rs
+symbols:
+- CoveringCarrier
+- EdgeIsolationReport
+- ObserverKernelFamily
+- new
+- zero
+- full
+- BlindSpotError
+- AllGreenSubspace
+- BlindSpotNumericalWitness
+- BlindSpotNumericalResiduals
+- HiddenMassL2Estimate
+- HiddenMassBoundsEstimate
+- AuditBudgetFloorEstimate
+- BlindSpotReplayReport
+- build_delta
+- edge_isolation_rank
+- nec_check
+- validate_kernels
+- all_green_subspace
+- hidden_mass_l2
+- hidden_mass_bounds
+- audit_budget_floor
+- verify_hidden_mass_l2_replay
+owns:
+- covering_carrier
+- edge_isolation_report
+- observer_kernel_family
+- new
+- zero
+- full
+- blind_spot_error
+- all_green_subspace
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

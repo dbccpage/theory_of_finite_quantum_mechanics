@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:ids:v1.0.0
+title: Typed newtype IDs for homological algebra entities.  Each ID type uniquely
+  identifies a specific kind of mathematical...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/ids.rs
+module: ids
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: ids
+  file: crates_rs/omega_homology/src/ids.rs
+symbols:
+- new
+- BasisId
+- Degree
+- value
+owns:
+- new
+- basis_id
+- degree
+- value
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

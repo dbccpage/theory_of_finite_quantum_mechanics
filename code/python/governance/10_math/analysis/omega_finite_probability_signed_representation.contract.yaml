@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_finite_probability:signed_representation:v1.0.0
+title: 'Exact operational classification of normalized signed finite valuations. AuthorityEffect:
+  None. Signed mass is not a ...'
+kind: rust_file_contract
+status: active
+crate: omega_finite_probability
+file: crates_rs/omega_finite_probability/src/signed_representation.rs
+module: signed_representation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_finite_probability
+  module: signed_representation
+  file: crates_rs/omega_finite_probability/src/signed_representation.rs
+symbols:
+- SignedRepresentationError
+- SignedValuation
+- from_weights
+- masses
+- negative_indicator
+- negativity
+- jordan_parts
+- expectation_negativity_bound
+- report_state
+- SignedExpectationBound
+- SignedInstrumentQuotient
+- try_new
+- reports
+- outcome_maps
+- forgetting
+owns:
+- signed_representation_error
+- signed_valuation
+- from_weights
+- masses
+- negative_indicator
+- negativity
+- jordan_parts
+- expectation_negativity_bound
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

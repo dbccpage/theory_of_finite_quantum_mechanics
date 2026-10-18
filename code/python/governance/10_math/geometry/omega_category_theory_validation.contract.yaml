@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:validation:v1.0.0
+title: Validation — cross-cutting validation unit declarations.  Maps directly to
+  spec §4 and §10 validation unit lists. Eac...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/validation.rs
+module: validation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: validation
+  file: crates_rs/omega_category_theory/src/validation.rs
+symbols:
+- FunctorValidation
+- NatTransValidation
+- AdjunctionValidation
+- ProfunctorValidation
+- HigherFunctorValidation
+- CoendValidation
+- KanExtensionValidation
+- CauchyValidation
+- MonadValidation
+- CondensationValidation
+- LawvereValidation
+- OperadValidation
+- FiniteCategoryValidation
+- RewritingValidation
+- ValidationUnit
+- ValidationSeverity
+- ValidationLocation
+- ValidationViolation
+- new
+- ValidationResult
+- pass
+- fail
+- ValidationReport
+- add
+- add_violation
+- add_typed
+- all_passed
+- failure_count
+- violation_count
+owns:
+- functor_validation
+- nat_trans_validation
+- adjunction_validation
+- profunctor_validation
+- higher_functor_validation
+- coend_validation
+- kan_extension_validation
+- cauchy_validation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

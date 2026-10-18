@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:power_rule_outcomes:v1.0.0
+title: Power-law outcome rules on declared real orthonormal contexts, and the context
+  dependence that sets the square apart....
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+module: power_rule_outcomes
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: power_rule_outcomes
+  file: crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+symbols:
+- PowerRuleError
+- Context
+- new
+- dimension
+- normalizer
+- power_rule
+- ContextDependence
+- find_context_dependence
+owns:
+- power_rule_error
+- context
+- new
+- dimension
+- normalizer
+- power_rule
+- context_dependence
+- find_context_dependence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

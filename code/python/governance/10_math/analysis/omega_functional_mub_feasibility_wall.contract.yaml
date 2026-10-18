@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_functional:mub_feasibility_wall:v1.0.0
+title: Diagnostic normalized squared residual functional for MUB feasibility walls.  This
+  is not an exact rational Phi1 proo...
+kind: rust_file_contract
+status: active
+crate: omega_functional
+file: crates_rs/omega_functional/src/mub_feasibility_wall.rs
+module: mub_feasibility_wall
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_functional
+  module: mub_feasibility_wall
+  file: crates_rs/omega_functional/src/mub_feasibility_wall.rs
+symbols:
+- MubFeasibilityWallValue
+- MubFeasibilityWallEvidenceKind
+- MubFeasibilityWallAuthorityKind
+- MubFeasibilityWallTargetComparison
+- MubFeasibilityWallScalarIntervalAttempt
+- MubFeasibilityWallDiagnosticIntervalAttempt
+- MubFeasibilityWallError
+- MubFeasibilityWallFunctional
+- cyclotomic_squared_norm
+- exact_d6_wall
+- cyclotomic_coefficient_energy
+- curvature_floors
+- evaluate_probabilities
+- compare_targets_f64_diagnostic
+- diagnostic_interval_attempt
+owns:
+- mub_feasibility_wall_value
+- mub_feasibility_wall_evidence_kind
+- mub_feasibility_wall_authority_kind
+- mub_feasibility_wall_target_comparison
+- mub_feasibility_wall_scalar_interval_attempt
+- mub_feasibility_wall_diagnostic_interval_attempt
+- mub_feasibility_wall_error
+- mub_feasibility_wall_functional
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

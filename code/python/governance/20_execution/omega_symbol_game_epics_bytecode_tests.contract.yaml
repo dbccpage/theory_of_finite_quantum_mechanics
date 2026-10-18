@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:epics_bytecode_tests:v1.0.0
+title: Tests Module
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/epics/bytecode/tests.rs
+module: epics::bytecode::tests
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: epics::bytecode::tests
+  file: crates_rs/omega_symbol_game/src/epics/bytecode/tests.rs
+symbols: []
+owns:
+- epics_bytecode_tests
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:solver_descent_gradient:v1.0.0
+title: solver_descent_gradient.rs  Sovereign operational gate and evaluator runtime
+  for Guarded Descent Search.  Enforces th...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/solver_descent_gradient.rs
+module: solver_descent_gradient
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: solver_descent_gradient
+  file: crates_rs/omega_solvers/src/solver_descent_gradient.rs
+symbols:
+- EvalReport
+- ObstructionCoordinates
+- new
+- from_phi
+- DescentConfig
+- EvaluationDecision
+- DescentGateReason
+- DescentGateReceipt
+- GuardedDescentGate
+- evaluate_receipt
+- DescentLaw
+- evaluate
+- accept
+- Expr
+- ObstructionEvaluator
+- LexicographicDescentEvaluator
+- select_guarded_descent_candidate
+owns:
+- eval_report
+- obstruction_coordinates
+- new
+- from_phi
+- descent_config
+- evaluation_decision
+- descent_gate_reason
+- descent_gate_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

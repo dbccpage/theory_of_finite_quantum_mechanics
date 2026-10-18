@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:validation_decision:v1.0.0
+title: Decision Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/validation/decision.rs
+module: validation::decision
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: validation::decision
+  file: crates_rs/omega_contracts/src/validation/decision.rs
+symbols:
+- ValidationDecision
+- ValidationStatus
+owns:
+- validation_decision
+- validation_status
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,58 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:quantum_regge_bridge:v1.0.0
+title: Quantum Regge Calculus & Finite Quantum Mechanics Bridge (Hamber §8, Ponzano–Regge,
+  MTW §42.11).  Connects finite-dim...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/quantum_regge_bridge.rs
+module: quantum_regge_bridge
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: quantum_regge_bridge
+  file: crates_rs/omega_quantum_physics/src/quantum_regge_bridge.rs
+symbols:
+- SimplicialSpinNetworkState
+- new
+- set_spin
+- get_spin
+- area_squared_eigenvalues
+- total_state_space_dimension
+- DiscreteMiniSuperspaceWheelerDeWitt
+- potential
+- apply_hamiltonian
+- compute_residual_norm
+- wavefunction_to_population_shadow
+- wavefunction_to_density_matrix
+- scale_factor_dephasing_channel
+- apply_scale_factor_decoherence
+- AnisotropicBianchiWheelerDeWitt
+- total_dim
+- flat_to_multi
+- multi_to_flat
+- directional_dephasing_channel
+- directional_decoherence_rates
+- apply_anisotropic_decoherence
+- simplicial_dirac_to_matrix
+- simplicial_dirac_spectrum
+- simplicial_dirac_thermal_state
+- simplicial_dirac_thermal_cmatrix
+- simplicial_dirac_dephasing_channel
+- simplicial_dirac_dissipation_channel
+owns:
+- simplicial_spin_network_state
+- new
+- set_spin
+- get_spin
+- area_squared_eigenvalues
+- total_state_space_dimension
+- discrete_mini_superspace_wheeler_de_witt
+- potential
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:research_loop:v1.0.0
+title: Host controller for the WF_RESEARCH_PFP research loop.  The loop runs produce
+  → freeze → evaluate → challenge → repai...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/research_loop/mod.rs
+module: research_loop
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: research_loop
+  file: crates_rs/omega_woland/src/research_loop/mod.rs
+symbols:
+- refuse
+owns:
+- refuse
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_economics:business_cycle:v1.0.0
+title: '`business_cycle` — finite dual-face object for `omega_economics`.  AUTHORING_QUALITY:
+  human_llm_best_effort_slop (bes...'
+kind: rust_file_contract
+status: active
+crate: omega_economics
+file: crates_rs/omega_economics/src/business_cycle.rs
+module: business_cycle
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_economics
+  module: business_cycle
+  file: crates_rs/omega_economics/src/business_cycle.rs
+symbols:
+- BusinessCycle
+- new
+- authority_fence
+owns:
+- business_cycle
+- new
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:finite_category:v1.0.0
+title: Shared finite category declarations.  This module is the canonical finite category
+  data model for the functor core.  ...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/finite_category.rs
+module: finite_category
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: finite_category
+  file: crates_rs/omega_category_theory/src/finite_category.rs
+symbols:
+- CompositionTable
+- DeclaredMorphism
+- new
+- DeclaredFiniteCategory
+- add_object
+- add_morphism
+- set_identity
+- add_identity
+- set_composition
+- identity_of
+- boundary_of
+- compose
+- has_object
+- has_morphism
+- object_names
+- morphism_names
+- boundary_triples
+- composition_triples
+- ValidatedFiniteCategory
+- try_new
+- declared
+- into_declared
+owns:
+- composition_table
+- declared_morphism
+- new
+- declared_finite_category
+- add_object
+- add_morphism
+- set_identity
+- add_identity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

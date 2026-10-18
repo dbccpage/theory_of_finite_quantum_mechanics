@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:authorization_basis:v1.0.0
+title: Provisional Authorization Invariant Scaffold & Sealed Red Verification Targets
+  (AP-0 / W1).  IMPLEMENTS THE GOVERNING...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/authorization_basis.rs
+module: authorization_basis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: authorization_basis
+  file: crates_rs/omega_contracts/src/authorization_basis.rs
+symbols:
+- LeaseStore
+- LandingFence
+- new
+- register_lease
+- acquire_landing_fence
+- SourceObservation
+- CollectionTranscript
+- ConsistentAuthorizationCut
+- transcript_1
+- transcript_2
+- construct
+- TrustStore
+- VerifiedOperatorSignature
+- register_trusted_key
+- verify_signature
+- AuthorizationBasis
+- SingleUseStepPermit
+- Lander
+- admit
+- LanderRefusal
+owns:
+- lease_store
+- landing_fence
+- new
+- register_lease
+- acquire_landing_fence
+- source_observation
+- collection_transcript
+- consistent_authorization_cut
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

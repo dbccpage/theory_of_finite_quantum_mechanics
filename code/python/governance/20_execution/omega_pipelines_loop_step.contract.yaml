@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_pipelines:loop_step:v1.0.0
+title: 'omega_certifier_loop: a guard-only no-op Kleisli step over sealed rows (Sprint
+  omega_certifier_loop, 2026-06-21; hone...'
+kind: rust_file_contract
+status: active
+crate: omega_pipelines
+file: crates_rs/omega_pipelines/src/loop_step.rs
+module: loop_step
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_pipelines
+  module: loop_step
+  file: crates_rs/omega_pipelines/src/loop_step.rs
+symbols:
+- LoopStepFace
+- MetaCandidate
+- new
+- new_destructive
+- face
+- proposed_phi1_delta
+- bypass_terminalizer
+- reroutes_sealed_edge
+- TerminalizedRow
+- packet
+- phi1
+- gamma2
+- replay_hash
+- manifest_hash
+- LoopStepDiagnostic
+- loop_step
+- pi_s_sharp_with_loop_step
+owns:
+- loop_step_face
+- meta_candidate
+- new
+- new_destructive
+- face
+- proposed_phi1_delta
+- bypass_terminalizer
+- reroutes_sealed_edge
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

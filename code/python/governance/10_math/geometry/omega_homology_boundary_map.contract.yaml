@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:boundary_map:v1.0.0
+title: Boundary Map Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/boundary_map.rs
+module: boundary_map
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: boundary_map
+  file: crates_rs/omega_homology/src/boundary_map.rs
+symbols:
+- DegreeShift
+- BoundaryMapWitness
+- new
+- BoundaryMapCandidate
+- new_checked
+- apply
+- matrix
+- shift
+- CertifiedBoundaryMap
+- witness
+- candidate
+owns:
+- degree_shift
+- boundary_map_witness
+- new
+- boundary_map_candidate
+- new_checked
+- apply
+- matrix
+- shift
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

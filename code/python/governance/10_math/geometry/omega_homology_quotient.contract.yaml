@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:quotient:v1.0.0
+title: Quotient Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/quotient.rs
+module: quotient
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: quotient
+  file: crates_rs/omega_homology/src/quotient.rs
+symbols:
+- QuotientRelation
+- QuotientMembershipWitness
+- new_unchecked
+- QuotientSpace
+- project
+- QuotientClass
+- new_checked
+- ambient_complex_id
+- representative
+- degree
+- relation
+- witness
+- get_coefficient_domain
+owns:
+- quotient_relation
+- quotient_membership_witness
+- new_unchecked
+- quotient_space
+- project
+- quotient_class
+- new_checked
+- ambient_complex_id
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

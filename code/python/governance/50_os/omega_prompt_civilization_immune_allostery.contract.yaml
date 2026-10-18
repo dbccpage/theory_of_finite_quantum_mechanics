@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_prompt_civilization:immune_allostery:v1.0.0
+title: 'Exact Allosteric Quorum Gate with Integer Hill Coefficient (U16/U20).  Evaluates
+  sigmoidal cooperative consensus: H(t...'
+kind: rust_file_contract
+status: active
+crate: omega_prompt_civilization
+file: crates_rs/omega_prompt_civilization/src/immune/allostery.rs
+module: immune::allostery
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_prompt_civilization
+  module: immune::allostery
+  file: crates_rs/omega_prompt_civilization/src/immune/allostery.rs
+symbols:
+- QuorumState
+- AllostericGate
+- new
+- compute_response
+- evaluate
+owns:
+- quorum_state
+- allosteric_gate
+- new
+- compute_response
+- evaluate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

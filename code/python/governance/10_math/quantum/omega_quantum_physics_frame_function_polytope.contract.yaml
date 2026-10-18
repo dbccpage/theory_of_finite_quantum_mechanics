@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:frame_function_polytope:v1.0.0
+title: Frame functions on a finite configuration of integer rays, their polytope,
+  and the symmetric matrices they come from....
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/frame_function_polytope.rs
+module: frame_function_polytope
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: frame_function_polytope
+  file: crates_rs/omega_quantum_physics/src/frame_function_polytope.rs
+symbols:
+- FramePolytopeError
+- FrameSystem
+- new
+- dimension
+- ray_count
+- incidence
+- incidence_rank
+- ray_degrees
+- projector_span_rank
+- frame_function_of
+- is_frame_function
+- is_feasible
+- is_vertex
+- state_of
+- density_state_of
+- vertices
+- vertices_with_budget
+- eigenvalues_at_least
+- eigenvalues_above
+owns:
+- frame_polytope_error
+- frame_system
+- new
+- dimension
+- ray_count
+- incidence
+- incidence_rank
+- ray_degrees
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

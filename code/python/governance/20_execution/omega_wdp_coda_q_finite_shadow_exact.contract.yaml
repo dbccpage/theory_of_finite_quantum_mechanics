@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_q_finite_shadow_exact:v1.0.0
+title: 'Exact-arithmetic finite shadow system dual (Target 10 — reusable PROD path).  ---
+  Math Contract: - Purpose: carry **e...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/q/finite_shadow_exact.rs
+module: coda::q::finite_shadow_exact
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::q::finite_shadow_exact
+  file: crates_rs/omega_wdp/src/coda/q/finite_shadow_exact.rs
+symbols:
+- ExactNonNegRational
+- new
+- zero
+- numer
+- denom
+- is_negative
+- lt
+- FinDistribution
+- bit
+- n
+- masses
+- total_mass
+- is_pure
+- is_mixed
+- product
+- marginal_a
+- marginal_b
+- probability
+- ShadowTerminalLabel
+- as_python_dual_str
+- ShadowStatus
+- as_str
+- FiniteShadowSystemExact
+- shadows
+- refinements
+- topology
+- cofinal_for_query
+- error_budget
+- convergence_witness
+- with_convergence_witness
+owns:
+- exact_non_neg_rational
+- new
+- zero
+- numer
+- denom
+- is_negative
+- lt
+- fin_distribution
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

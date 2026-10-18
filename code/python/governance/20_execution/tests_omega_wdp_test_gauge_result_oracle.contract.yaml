@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_test_gauge_result_oracle:v1.0.0
+title: Original source-23 differential evidence, with unchanged source/control pins.
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/test_gauge_result_oracle.rs
+module: omega_wdp::test_gauge_result_oracle
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::test_gauge_result_oracle
+  file: crates_rs/tests/omega_wdp/test_gauge_result_oracle.rs
+symbols: []
+owns:
+- omega_wdp_test_gauge_result_oracle
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

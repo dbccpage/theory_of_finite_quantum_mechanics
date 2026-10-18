@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_replay:append_log:v1.0.0
+title: Append-only hash-chained JSONL decision log (`AppendLogV1`).  One record per
+  line; each record seals `{sequence, pare...
+kind: rust_file_contract
+status: active
+crate: omega_replay
+file: crates_rs/omega_replay/src/append_log.rs
+module: append_log
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_replay
+  module: append_log
+  file: crates_rs/omega_replay/src/append_log.rs
+symbols:
+- AppendLogError
+- AppendLogRecordV1
+- AppendLogV1
+- open
+- append
+- head_sha256
+- len
+- is_empty
+- path
+owns:
+- append_log_error
+- append_log_record_v1
+- append_log_v1
+- open
+- append
+- head_sha256
+- len
+- is_empty
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

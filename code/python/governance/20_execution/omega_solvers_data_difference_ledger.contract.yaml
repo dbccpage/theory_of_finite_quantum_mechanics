@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:data_difference_ledger:v1.0.0
+title: Part 5 — the witnessed difference ledger.  Given a carrier `C⁰ →d₀ C¹ →d₁ C²`
+  and a finite family of `C¹` cochains `x...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/data_difference_ledger.rs
+module: data_difference_ledger
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: data_difference_ledger
+  file: crates_rs/omega_solvers/src/data_difference_ledger.rs
+symbols:
+- LedgerError
+- DifferenceVerdict
+- is_coboundary
+- DifferenceEntry
+- DifferenceLedger
+- entries
+- class_of
+- num_classes
+- merkle_root
+- carrier_hash
+- build
+owns:
+- ledger_error
+- difference_verdict
+- is_coboundary
+- difference_entry
+- difference_ledger
+- entries
+- class_of
+- num_classes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

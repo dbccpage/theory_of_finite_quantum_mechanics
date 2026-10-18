@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:authority_lattice:v1.0.0
+title: Canonical authority-effect lattice (STORY-108-004).  The discovery for Sprint
+  108 found **4–5 disjoint `AuthorityEffe...
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/authority_lattice.rs
+module: authority_lattice
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: authority_lattice
+  file: crates_rs/omega_types/src/authority_lattice.rs
+symbols:
+- AuthorityEffectLevel
+- join
+- meet
+- compose_sequential
+- run_grade
+owns:
+- authority_effect_level
+- join
+- meet
+- compose_sequential
+- run_grade
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

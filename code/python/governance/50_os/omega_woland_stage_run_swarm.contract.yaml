@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:stage_run_swarm:v1.0.0
+title: Generic circuit execution through injected ports; no invented evaluation or
+  DDC evidence.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/stage/run_swarm.rs
+module: stage::run_swarm
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: stage::run_swarm
+  file: crates_rs/omega_woland/src/stage/run_swarm.rs
+symbols:
+- SwarmRuntime
+- run_swarm
+owns:
+- swarm_runtime
+- run_swarm
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_mub_test_target_b2_global_gluing:v1.0.0
+title: 'Comprehensive Integration and Unit Test Suite for Target B2: Global Manifold
+  Gluing and Cross-Section Holonomy Obstru...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_mub/test_target_b2_global_gluing.rs
+module: omega_mub::test_target_b2_global_gluing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_mub::test_target_b2_global_gluing
+  file: crates_rs/tests/omega_mub/test_target_b2_global_gluing.rs
+symbols: []
+owns:
+- omega_mub_test_target_b2_global_gluing
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

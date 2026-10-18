@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_prompt_civilization:immune_clonal:v1.0.0
+title: 'Clonal Selection, Somatic Mutation, and Exponential Half-Life Decay (U16).  Enforces:
+  - Guided somatic mutation of ca...'
+kind: rust_file_contract
+status: active
+crate: omega_prompt_civilization
+file: crates_rs/omega_prompt_civilization/src/immune/clonal.rs
+module: immune::clonal
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_prompt_civilization
+  module: immune::clonal
+  file: crates_rs/omega_prompt_civilization/src/immune/clonal.rs
+symbols:
+- DetectorClone
+- new
+- compute_decayed_affinity
+- ClonalPool
+- add_clone
+- prune
+owns:
+- detector_clone
+- new
+- compute_decayed_affinity
+- clonal_pool
+- add_clone
+- prune
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

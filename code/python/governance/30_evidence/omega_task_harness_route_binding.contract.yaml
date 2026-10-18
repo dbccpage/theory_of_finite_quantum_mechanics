@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_task_harness:route_binding:v1.0.0
+title: 'Governed route planning and monotonic skill lifecycle evidence models.  AuthorityEffect:
+  None.'
+kind: rust_file_contract
+status: active
+crate: omega_task_harness
+file: crates_rs/omega_task_harness/src/route_binding.rs
+module: route_binding
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_task_harness
+  module: route_binding
+  file: crates_rs/omega_task_harness/src/route_binding.rs
+symbols:
+- RouteError
+- SkillUsePhase
+- as_str
+- is_valid_transition
+- RoutePlanV1
+- create
+- SkillUseEventV1
+- recomputed_digest
+- verify_skill_lifecycle_chain
+- RouteBinding
+- new
+- record_phase
+- current_phase
+- verify
+owns:
+- route_error
+- skill_use_phase
+- as_str
+- is_valid_transition
+- route_plan_v1
+- create
+- skill_use_event_v1
+- recomputed_digest
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

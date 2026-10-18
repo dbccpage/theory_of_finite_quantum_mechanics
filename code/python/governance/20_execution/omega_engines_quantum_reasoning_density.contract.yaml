@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_engines:quantum_reasoning_density:v1.0.0
+title: Experimental density diagnostics for information-system reasoning traces.  These
+  constructors turn token or embedding...
+kind: rust_file_contract
+status: active
+crate: omega_engines
+file: crates_rs/omega_engines/src/quantum/reasoning_density.rs
+module: quantum::reasoning_density
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_engines
+  module: quantum::reasoning_density
+  file: crates_rs/omega_engines/src/quantum/reasoning_density.rs
+symbols:
+- ReasoningDensityConfig
+- ReasoningDensityReport
+- DensityTrajectory
+- phi_binning
+- build_state_feature_matrix
+- build_density_matrix_from_matrix
+- emit_observables_receipt_json
+- sequence_ensemble_density
+- window_density_trajectory
+- report_for
+- TrajectoryDivergenceReport
+- analyze_trajectory_divergence
+- emit_trajectory_divergence_receipt_json
+owns:
+- reasoning_density_config
+- reasoning_density_report
+- density_trajectory
+- phi_binning
+- build_state_feature_matrix
+- build_density_matrix_from_matrix
+- emit_observables_receipt_json
+- sequence_ensemble_density
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

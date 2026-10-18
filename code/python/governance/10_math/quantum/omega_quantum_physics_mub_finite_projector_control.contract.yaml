@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_finite_projector_control:v1.0.0
+title: Finite characteristic-two projector MUB controls.  The characteristic-two path
+  now has enough local structure to cert...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/finite_projector_control.rs
+module: mub::finite_projector_control
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::finite_projector_control
+  file: crates_rs/omega_quantum_physics/src/mub/finite_projector_control.rs
+symbols:
+- FiniteProjectorControlStatus
+- FiniteProjectorControlReport
+- verify_current_finite_projector_controls
+- verify_finite_projector_control
+owns:
+- finite_projector_control_status
+- finite_projector_control_report
+- verify_current_finite_projector_controls
+- verify_finite_projector_control
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

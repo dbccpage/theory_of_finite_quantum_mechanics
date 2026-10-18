@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:meron_source_field:v1.0.0
+title: A supplied common temperature/source target and exact rational error majorant.
+  The infinite-volume and splitting argu...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/meron_source_field.rs
+module: meron_source_field
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: meron_source_field
+  file: crates_rs/omega_quantum_physics/src/meron_source_field.rs
+symbols:
+- canonical
+- SourceFieldPlan
+- new
+- time
+- field_center
+- field_radius
+- v
+- exponential_majorant
+- finite_density_error
+- thermodynamic_density_error
+- AnalyticResponsePlan
+- AnalyticResponseError
+- source_radius
+- log_pressure_majorant
+- resolution
+- pressure_error
+- response_error
+owns:
+- canonical
+- source_field_plan
+- new
+- time
+- field_center
+- field_radius
+- v
+- exponential_majorant
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

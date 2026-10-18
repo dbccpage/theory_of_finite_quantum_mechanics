@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:coda_foundations_registry:v1.0.0
+title: S07-002 G11 foundations target registry.  The v1 registry accounts for PL-CODA-1
+  through PL-CODA-20 and admits only P...
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/coda_foundations_registry.rs
+module: coda_foundations_registry
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: coda_foundations_registry
+  file: crates_rs/omega_state/src/coda_foundations_registry.rs
+symbols:
+- PlCodaRowIdV1
+- to_coda_id
+- G11WorkKindV1
+- G11MechanizationStatusV1
+- G11SurvivorRouteV1
+- G11FoundationsRowV1
+- G11FoundationsPacketV1
+- G11FoundationsObservationV1
+- G11FoundationsVerificationV1
+- G11FoundationsError
+- canonical_g11_foundations_registry_v1
+- validate
+- validate_g11_foundations_registry_v1
+- g11_foundations_registry_sha256_v1
+- g11_foundations_packet_sha256_v1
+- verify_g11_foundations_v1
+owns:
+- pl_coda_row_id_v1
+- to_coda_id
+- g11_work_kind_v1
+- g11_mechanization_status_v1
+- g11_survivor_route_v1
+- g11_foundations_row_v1
+- g11_foundations_packet_v1
+- g11_foundations_observation_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

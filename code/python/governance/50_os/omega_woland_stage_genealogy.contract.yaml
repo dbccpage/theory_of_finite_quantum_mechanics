@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:stage_genealogy:v1.0.0
+title: Immutable cemetery, failure-count and lineage metadata. These records do not
+  verify defects, admit detectors or mint ...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/stage/genealogy.rs
+module: stage::genealogy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: stage::genealogy
+  file: crates_rs/omega_woland/src/stage/genealogy.rs
+symbols:
+- HeadstoneInput
+- CemeteryHeadstone
+- new
+- input
+- headstone_id
+- to_dict
+- from_json
+- AntibodyEntryInput
+- AntibodyEntry
+- GenealogyInput
+- GenealogyEntry
+- lineage_id
+owns:
+- headstone_input
+- cemetery_headstone
+- new
+- input
+- headstone_id
+- to_dict
+- from_json
+- antibody_entry_input
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

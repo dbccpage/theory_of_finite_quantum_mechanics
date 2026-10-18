@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:enforcement_governance:v1.0.0
+title: Governance enforcement and diagnostic functors.  This module defines the categorical
+  structure of governance enforcem...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/enforcement/governance/mod.rs
+module: enforcement::governance
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: enforcement::governance
+  file: crates_rs/omega_contracts/src/enforcement/governance/mod.rs
+symbols: []
+owns:
+- enforcement_governance
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

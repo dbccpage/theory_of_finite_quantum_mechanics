@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_prompt_civilization:record:v1.0.0
+title: 'Immutable Prompt Genome, Protected Spans, and Derived Views.  Enforces: -
+  F-GENOME-01: The genome is immutable; the v...'
+kind: rust_file_contract
+status: active
+crate: omega_prompt_civilization
+file: crates_rs/omega_prompt_civilization/src/record.rs
+module: record
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_prompt_civilization
+  module: record
+  file: crates_rs/omega_prompt_civilization/src/record.rs
+symbols:
+- CustodyTier
+- RetrievalEligibility
+- PromptMaturity
+- PacketRefV1
+- ParentLinkV1
+- ProtectedSpanV1
+- ExecutionOccurrenceV1
+- PromptGenomeV1
+- compute_id
+- new
+- create_verified
+- PromptViewV1
+owns:
+- custody_tier
+- retrieval_eligibility
+- prompt_maturity
+- packet_ref_v1
+- parent_link_v1
+- protected_span_v1
+- execution_occurrence_v1
+- prompt_genome_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

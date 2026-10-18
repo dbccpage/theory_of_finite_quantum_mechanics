@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_finite_probability:joint_table:v1.0.0
+title: 'Finite bipartite weight tables: marginals, conditionals, independence and
+  couplings.  A [`JointTable`] is a declared ...'
+kind: rust_file_contract
+status: active
+crate: omega_finite_probability
+file: crates_rs/omega_finite_probability/src/joint_table.rs
+module: joint_table
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_finite_probability
+  module: joint_table
+  file: crates_rs/omega_finite_probability/src/joint_table.rs
+symbols:
+- WeightTableError
+- JointTable
+- FrechetBounds
+- new
+- point
+- from_prior_and_kernel
+- independent_coupling
+- northwest_corner_coupling
+- from_product_simplex
+- shape
+- weight
+- weights
+- total
+- marginal_a
+- marginal_b
+- marginal_distribution_a
+- marginal_distribution_b
+- to_simplex
+- transpose
+- conditional_b_given_a
+- conditional_a_given_b
+- product_defect
+- product_defect_mass
+- dependence_total_variation
+- has_vanishing_minors
+- is_independent
+- rank
+- factor_marginals
+- chi_square_statistic
+- expectation_of_product
+owns:
+- weight_table_error
+- joint_table
+- frechet_bounds
+- new
+- point
+- from_prior_and_kernel
+- independent_coupling
+- northwest_corner_coupling
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

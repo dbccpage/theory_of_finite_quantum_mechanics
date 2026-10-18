@@ -1,0 +1,59 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_certifiers:phi1_certifier:v1.0.0
+title: Exact rational max-form LP certificates for the `Phi1` vertical slice.  The
+  verifier checks the same finite weak-dual...
+kind: rust_file_contract
+status: active
+crate: omega_certifiers
+file: crates_rs/omega_certifiers/src/phi1_certifier.rs
+module: phi1_certifier
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_certifiers
+  module: phi1_certifier
+  file: crates_rs/omega_certifiers/src/phi1_certifier.rs
+symbols:
+- Phi1CertificateMetadata
+- lean_phi1_specification
+- lean_phi1_source
+- lean_duality_theorem
+- lean_duality_source
+- allowed_axioms
+- evidence_status
+- normative_effect
+- operational_effect
+- implementation_state
+- release_authority
+- Phi1Certificate
+- primal
+- dual
+- constraint_matrix
+- constraint_bounds
+- objective
+- primal_objective
+- dual_objective
+- metadata
+- CertificateError
+- Phi1Verifier
+- verify
+- try_wl1
+- wl1
+- Phi1FormError
+- Phi1FormCertificate
+- verify_generators
+owns:
+- phi1_certificate_metadata
+- lean_phi1_specification
+- lean_phi1_source
+- lean_duality_theorem
+- lean_duality_source
+- allowed_axioms
+- evidence_status
+- normative_effect
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

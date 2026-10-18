@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_d10_controls:v1.0.0
+title: 'Exact `Q(zeta_120)` controls for the MUB(10) carrier boundary.  The d=10 control
+  is intentionally partial: tensoring ...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/d10_controls.rs
+module: mub::d10_controls
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::d10_controls
+  file: crates_rs/omega_quantum_physics/src/mub/d10_controls.rs
+symbols:
+- Vector120
+- Basis120
+- BasisSet120
+- Cyclotomic120Status
+- Cyclotomic120ControlReport
+- verify_cyclotomic120_controls
+- verify_d5_complete_control
+- verify_d10_product_three_mub_control
+- build_d5_complete_mub
+- build_d10_product_three_mubs
+owns:
+- vector120
+- basis120
+- basis_set120
+- cyclotomic120_status
+- cyclotomic120_control_report
+- verify_cyclotomic120_controls
+- verify_d5_complete_control
+- verify_d10_product_three_mub_control
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

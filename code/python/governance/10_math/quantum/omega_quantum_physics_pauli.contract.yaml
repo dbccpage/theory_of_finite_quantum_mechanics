@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:pauli:v1.0.0
+title: 'The Pauli group: single-qubit letters, phased `n`-qubit strings, the symplectic
+  commutation form, and the exact matri...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/pauli.rs
+module: pauli
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: pauli
+  file: crates_rs/omega_quantum_physics/src/pauli.rs
+symbols:
+- PauliError
+- PhaseZ4
+- from_u8
+- as_u8
+- mul
+- to_real_sign
+- Pauli
+- from_char
+- anticommutes_with
+- symplectic_coords
+- multiply
+- product
+- mul_phased
+- to_operator
+- to_cmatrix
+- letter
+- try_symplectic_inner_product
+- try_pauli_commutes
+- symplectic_inner_product
+- pauli_anticommutes
+- pauli_commutes
+- PauliString
+- new
+- with_phase
+- parse
+- try_parse
+- identity
+- word
+- to_symplectic_vector
+- to_symplectic_bools
+owns:
+- pauli_error
+- phase_z4
+- from_u8
+- as_u8
+- mul
+- to_real_sign
+- pauli
+- from_char
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

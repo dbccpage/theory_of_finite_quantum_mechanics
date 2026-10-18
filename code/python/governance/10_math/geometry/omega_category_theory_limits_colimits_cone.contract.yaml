@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:limits_colimits_cone:v1.0.0
+title: 'cone / cocone shells for omega_category_theory. AuthorityEffect: None. Not
+  PROVED / GlobalGreen.'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/limits_colimits/cone.rs
+module: limits_colimits::cone
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: limits_colimits::cone
+  file: crates_rs/omega_category_theory/src/limits_colimits/cone.rs
+symbols:
+- ConeLeg
+- Cone
+- new
+- with_apex
+- with_leg
+- validate_shell
+- Cocone
+- with_nadir
+owns:
+- cone_leg
+- cone
+- new
+- with_apex
+- with_leg
+- validate_shell
+- cocone
+- with_nadir
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

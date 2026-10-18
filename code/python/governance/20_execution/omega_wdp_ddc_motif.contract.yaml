@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:ddc_motif:v1.0.0
+title: DDC Word N-Gram Miner (U02).  Mines exact integer counts of n-grams (up to
+  n = 6) across DDC operational words. Examp...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/ddc/motif.rs
+module: ddc::motif
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: ddc::motif
+  file: crates_rs/omega_wdp/src/ddc/motif.rs
+symbols:
+- DdcMotifLedgerV1
+- mine_ddc_ngrams
+owns:
+- ddc_motif_ledger_v1
+- mine_ddc_ngrams
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

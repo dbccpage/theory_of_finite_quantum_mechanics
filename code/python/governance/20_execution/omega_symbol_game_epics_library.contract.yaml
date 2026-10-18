@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:epics_library:v1.0.0
+title: 'Research-library custody: the census, the evidence ceiling, and the deduplication
+  invariant.  # The corpus is not in ...'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/epics/library.rs
+module: epics::library
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: epics::library
+  file: crates_rs/omega_symbol_game/src/epics/library.rs
+symbols:
+- DomainCensus
+- LibraryRefusal
+- CorpusState
+- is_present
+- corpus_state
+- CensusReport
+- audit_census
+- domain
+- Placement
+- new
+- corroboration_count
+- cross_listed
+- CitationRole
+- name
+- Citation
+- is_proof
+- admit_as_proof
+- LibraryCustodyReceiptV1
+- custody_receipt
+owns:
+- domain_census
+- library_refusal
+- corpus_state
+- is_present
+- census_report
+- audit_census
+- domain
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

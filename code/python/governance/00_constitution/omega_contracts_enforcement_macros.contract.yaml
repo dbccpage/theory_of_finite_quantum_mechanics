@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:enforcement_macros:v1.0.0
+title: Macros Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/enforcement/macros.rs
+module: enforcement::macros
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: enforcement::macros
+  file: crates_rs/omega_contracts/src/enforcement/macros.rs
+symbols: []
+owns:
+- enforcement_macros
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

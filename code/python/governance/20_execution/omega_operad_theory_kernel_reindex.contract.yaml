@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_operad_theory:kernel_reindex:v1.0.0
+title: Explicit input reindexing of checked planar terms.  Each bijection maps an
+  external input occurrence to its planar le...
+kind: rust_file_contract
+status: active
+crate: omega_operad_theory
+file: crates_rs/omega_operad_theory/src/kernel/reindex.rs
+module: kernel::reindex
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_operad_theory
+  module: kernel::reindex
+  file: crates_rs/omega_operad_theory/src/kernel/reindex.rs
+symbols:
+- InputPermutation
+- new
+- identity
+- as_slice
+- inverse
+- compose
+- ReindexedTerm
+- from_planar
+- planar
+- permutation
+- boundary
+- reindex
+- route_inputs
+- substitute
+- to_canonical
+- canonical_id
+owns:
+- input_permutation
+- new
+- identity
+- as_slice
+- inverse
+- compose
+- reindexed_term
+- from_planar
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

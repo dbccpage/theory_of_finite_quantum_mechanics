@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:observation_cost:v1.0.0
+title: Complete finite certificates for fixed and adaptive priced observation (monograph
+  §14.6–14.7, reused by Appendix X Th...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/observation_cost.rs
+module: observation_cost
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: observation_cost
+  file: crates_rs/omega_wdp/src/observation_cost.rs
+symbols:
+- ObservationCostError
+- Instrument
+- ObservationInstance
+- Verification
+- ObservationCertificate
+- new
+- states
+- instruments
+- instance_sha256
+- unresolved_pairs
+- rational_text
+- solve
+- certificate_json
+- verify_certificate_json
+- verify_lp_pair
+owns:
+- observation_cost_error
+- instrument
+- observation_instance
+- verification
+- observation_certificate
+- new
+- states
+- instruments
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_policy:bin_policy_gate_eval:v1.0.0
+title: 'Stdin gate request, stdout RFC 8785 receipt. AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_policy
+file: crates_rs/omega_policy/src/bin/policy_gate_eval.rs
+module: bin::policy_gate_eval
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_policy
+  module: bin::policy_gate_eval
+  file: crates_rs/omega_policy/src/bin/policy_gate_eval.rs
+symbols: []
+owns:
+- bin_policy_gate_eval
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

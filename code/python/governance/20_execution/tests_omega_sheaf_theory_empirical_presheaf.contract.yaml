@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_sheaf_theory_empirical_presheaf:v1.0.0
+title: 'Integration tests for `omega_sheaf_theory::empirical_presheaf`.  AuthorityEffect:
+  None. Every value below is an exact...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_sheaf_theory/empirical_presheaf.rs
+module: omega_sheaf_theory::empirical_presheaf
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_sheaf_theory::empirical_presheaf
+  file: crates_rs/tests/omega_sheaf_theory/empirical_presheaf.rs
+symbols: []
+owns:
+- omega_sheaf_theory_empirical_presheaf
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

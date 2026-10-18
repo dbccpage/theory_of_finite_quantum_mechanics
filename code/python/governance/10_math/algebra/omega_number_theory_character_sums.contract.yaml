@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:character_sums:v1.0.0
+title: Additive characters and quadratic Gauss sums over `GF(q)`, valued in an exact
+  cyclotomic field.  For `q = p^k`, the c...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/character_sums.rs
+module: character_sums
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: character_sums
+  file: crates_rs/omega_number_theory/src/character_sums.rs
+symbols:
+- CyclotomicField
+- additive_character
+- linear_character_sum
+- quadratic_gauss_sum
+- CharacterSumCertificate
+- verify_character_sum_identities
+owns:
+- cyclotomic_field
+- additive_character
+- linear_character_sum
+- quadratic_gauss_sum
+- character_sum_certificate
+- verify_character_sum_identities
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

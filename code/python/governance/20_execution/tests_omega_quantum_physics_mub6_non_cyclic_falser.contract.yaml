@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_quantum_physics_mub6_non_cyclic_falser:v1.0.0
+title: 'Integration test: Exact solver search and adversarial falsification of candidate
+  4th MUB bases in d=6 across non-cycl...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_quantum_physics/mub6_non_cyclic_falser.rs
+module: omega_quantum_physics::mub6_non_cyclic_falser
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_quantum_physics::mub6_non_cyclic_falser
+  file: crates_rs/tests/omega_quantum_physics/mub6_non_cyclic_falser.rs
+symbols: []
+owns:
+- omega_quantum_physics_mub6_non_cyclic_falser
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_finite_probability:majorization:v1.0.0
+title: Majorization of finite probability vectors, exactly.  A [`ProbabilityVector`]
+  is a nonnegative rational vector summin...
+kind: rust_file_contract
+status: active
+crate: omega_finite_probability
+file: crates_rs/omega_finite_probability/src/majorization.rs
+module: majorization
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_finite_probability
+  module: majorization
+  file: crates_rs/omega_finite_probability/src/majorization.rs
+symbols:
+- MajorizationError
+- ProbabilityVector
+- try_new
+- from_simplex
+- n
+- decreasing
+- partial_sums
+- to_simplex
+- Majorization
+- compare
+- majorizes
+- locc_convertible
+- thermal_ladder
+- TTransform
+- i
+- j
+- lambda
+- apply
+- as_map
+- t_transform_chain
+- apply_chain
+- doubly_stochastic_transform
+owns:
+- majorization_error
+- probability_vector
+- try_new
+- from_simplex
+- n
+- decreasing
+- partial_sums
+- to_simplex
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

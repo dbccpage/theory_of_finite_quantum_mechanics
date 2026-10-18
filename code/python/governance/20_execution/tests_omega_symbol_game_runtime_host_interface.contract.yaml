@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_symbol_game_runtime_host_interface:v1.0.0
+title: The reusable host boundary must preserve the binary's mathematics, refusal
+  vocabulary, inclusive byte fence and raw d...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_symbol_game_runtime/host_interface.rs
+module: omega_symbol_game_runtime::host_interface
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_symbol_game_runtime::host_interface
+  file: crates_rs/tests/omega_symbol_game_runtime/host_interface.rs
+symbols: []
+owns:
+- omega_symbol_game_runtime_host_interface
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

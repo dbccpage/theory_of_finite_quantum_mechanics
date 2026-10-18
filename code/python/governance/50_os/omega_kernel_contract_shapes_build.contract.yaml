@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_kernel:contract_shapes_build:v1.0.0
+title: Contract Shapes Build Module
+kind: rust_file_contract
+status: active
+crate: omega_kernel
+file: crates_rs/contract_shapes_build.rs
+module: contract_shapes_build
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_kernel
+  module: contract_shapes_build
+  file: crates_rs/contract_shapes_build.rs
+symbols:
+- enforce_packet_contracts
+- enforce_packet_contracts_grouped
+owns:
+- enforce_packet_contracts
+- enforce_packet_contracts_grouped
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

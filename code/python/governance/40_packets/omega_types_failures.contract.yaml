@@ -1,0 +1,32 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:failures:v1.0.0
+title: Failures Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/failures.rs
+module: failures
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: failures
+  file: crates_rs/omega_types/src/failures.rs
+symbols:
+- LambdaFailure
+- OperatorFailure
+- InvariantId
+- ReducerFailure
+- TransformFailure
+owns:
+- lambda_failure
+- operator_failure
+- invariant_id
+- reducer_failure
+- transform_failure
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

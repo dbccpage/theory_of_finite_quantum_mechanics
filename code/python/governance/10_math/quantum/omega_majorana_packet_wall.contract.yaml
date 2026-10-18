@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_majorana:packet_wall:v1.0.0
+title: 'Declared repair-capacity **packet wall** (CODE_DEMO; QM_102/QM_101 shape).  #
+  Authority fence (MANDATORY)  - **Author...'
+kind: rust_file_contract
+status: active
+crate: omega_majorana
+file: crates_rs/omega_majorana/src/packet_wall.rs
+module: packet_wall
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_majorana
+  module: packet_wall
+  file: crates_rs/omega_majorana/src/packet_wall.rs
+symbols:
+- PacketWallTerminal
+- DefectEvent
+- RepairAction
+- ToyRepairPacket
+- complete
+- empty
+- PacketWallReceipt
+- terminalize_packet
+- illustrative_p_pair
+- illustrative_suppression_regime
+- wall_with_audit
+- CountRepairAction
+- CountDefectEvent
+- CountRepairPacket
+- PacketMetrics
+- CountPacketReceipt
+- terminalize_count_packet
+- demo_count_packet
+- incomplete_count_packet
+- DiagnosticPacket
+- PacketRefusal
+- admit_or_refuse
+owns:
+- packet_wall_terminal
+- defect_event
+- repair_action
+- toy_repair_packet
+- complete
+- empty
+- packet_wall_receipt
+- terminalize_packet
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

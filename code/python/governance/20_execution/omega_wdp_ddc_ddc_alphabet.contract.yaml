@@ -1,0 +1,56 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:ddc_ddc_alphabet:v1.0.0
+title: 'The canonical DDC operation alphabet — `{E, R, C, I, Λ/Meta, D, M, T}`.  Canonical
+  provenance: `coda_atlas/F004_paper...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/ddc/ddc_alphabet.rs
+module: ddc::ddc_alphabet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: ddc::ddc_alphabet
+  file: crates_rs/omega_wdp/src/ddc/ddc_alphabet.rs
+symbols:
+- DdcOp
+- DdaOp
+- letter
+- from_letter
+- alphabet
+- RefusalReason
+- as_str
+- from_str_code
+- StepOutcome
+- DdcStep
+- DdaStep
+- executed
+- refused
+- is_executed
+- TraceTerminal
+- DdcTrace
+- DdaTrace
+- new
+- emit
+- emit_gated_terminal
+- import
+- steps
+- letters
+- terminal
+- authority_effect
+owns:
+- ddc_op
+- dda_op
+- letter
+- from_letter
+- alphabet
+- refusal_reason
+- as_str
+- from_str_code
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:stage_emission:v1.0.0
+title: Ordered Intelligence Spine emission. Concrete sinks and the clock are injected.
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/stage/emission.rs
+module: stage::emission
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: stage::emission
+  file: crates_rs/omega_woland/src/stage/emission.rs
+symbols:
+- Payload
+- Clock
+- EventDescriptor
+- build_intelligence_event
+- UtsSink
+- DdcSink
+- UnsSink
+- PacketSink
+- TurnSink
+- SgtSink
+- CemeterySink
+- AntibodySink
+- GenealogySink
+- EmitterSuite
+- emit_event
+owns:
+- payload
+- clock
+- event_descriptor
+- build_intelligence_event
+- uts_sink
+- ddc_sink
+- uns_sink
+- packet_sink
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

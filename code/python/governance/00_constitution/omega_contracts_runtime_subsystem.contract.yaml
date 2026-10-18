@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:runtime_subsystem:v1.0.0
+title: Subsystem Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/runtime/subsystem.rs
+module: runtime::subsystem
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: runtime::subsystem
+  file: crates_rs/omega_contracts/src/runtime/subsystem.rs
+symbols:
+- CanonicalTimestamp
+- ArtifactId
+- ContentHash
+- RendererVersion
+- ReportSchemaId
+- ReportGenerationContext
+- ReportAuthority
+- ReportManifest
+- new
+- dummy
+- ReportManifestError
+owns:
+- canonical_timestamp
+- artifact_id
+- content_hash
+- renderer_version
+- report_schema_id
+- report_generation_context
+- report_authority
+- report_manifest
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

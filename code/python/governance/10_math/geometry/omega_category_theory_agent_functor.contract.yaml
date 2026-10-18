@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:agent_functor:v1.0.0
+title: 'Functor abstraction in Category Theory (omega_category_theory).  Aligned with
+  URN contract: `urn:omega:math:functor:v...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/agent_functor.rs
+module: agent_functor
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: agent_functor
+  file: crates_rs/omega_category_theory/src/agent_functor.rs
+symbols:
+- FunctorTrait
+- AgentFunctor
+- new
+- map_skill_morphism
+owns:
+- functor_trait
+- agent_functor
+- new
+- map_skill_morphism
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

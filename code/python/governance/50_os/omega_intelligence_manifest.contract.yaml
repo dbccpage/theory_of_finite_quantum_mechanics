@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_intelligence:manifest:v1.0.0
+title: Immutable source manifests with unambiguous binary framing.
+kind: rust_file_contract
+status: active
+crate: omega_intelligence
+file: crates_rs/omega_intelligence/src/manifest.rs
+module: manifest
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_intelligence
+  module: manifest
+  file: crates_rs/omega_intelligence/src/manifest.rs
+symbols:
+- ArtifactEntry
+- SealManifestRequest
+- SealedManifest
+- framed_sha256
+- seal_manifest
+- seal_bytes
+owns:
+- artifact_entry
+- seal_manifest_request
+- sealed_manifest
+- framed_sha256
+- seal_manifest
+- seal_bytes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

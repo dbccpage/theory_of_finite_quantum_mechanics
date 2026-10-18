@@ -1,0 +1,49 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:alpha_projection_obstruction_gauge_coupling_bridge:v1.0.0
+title: Exact finite matrix diagnostics for a declared corner-based curvature polynomial.
+  This discretization supplies no gau...
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/gauge_coupling_bridge.rs
+module: alpha_projection_obstruction::gauge_coupling_bridge
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: alpha_projection_obstruction::gauge_coupling_bridge
+  file: crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/gauge_coupling_bridge.rs
+symbols:
+- CellCorner
+- so3_generators
+- u1_generator
+- commutator
+- GaugeCouplingBridge
+- new
+- pure_gauge_connection
+- linear_coboundary_d1
+- commutator_curvature
+- total_curvature
+- verify_pure_gauge
+- verify_group_holonomy
+- verify_multipatch_transition
+- PureGaugeCurvatureVerification
+- certificate
+- GroupHolonomyVerification
+- MultiPatchTransitionVerification
+- single_triangle_bridge
+owns:
+- cell_corner
+- so3_generators
+- u1_generator
+- commutator
+- gauge_coupling_bridge
+- new
+- pure_gauge_connection
+- linear_coboundary_d1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

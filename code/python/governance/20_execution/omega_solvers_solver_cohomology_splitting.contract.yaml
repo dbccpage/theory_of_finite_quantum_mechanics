@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:solver_cohomology_splitting:v1.0.0
+title: Searches for a rational complement of `R = im d0` whose residual projection
+  has weighted-`l1` distortion at most a de...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/solver_cohomology_splitting.rs
+module: solver_cohomology_splitting
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: solver_cohomology_splitting
+  file: crates_rs/omega_solvers/src/solver_cohomology_splitting.rs
+symbols:
+- ContractiveComplementError
+- SplittingFrame
+- DistortionVerdict
+- try_new
+- rank
+- certificate
+- distortion_system
+- decide_distortion_at_most
+- decide_contractive_complement
+owns:
+- contractive_complement_error
+- splitting_frame
+- distortion_verdict
+- try_new
+- rank
+- certificate
+- distortion_system
+- decide_distortion_at_most
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

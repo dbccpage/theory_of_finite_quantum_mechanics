@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:time_sliced_action_shadow:v1.0.0
+title: 'Finite time-sliced action shadows with an exact phase policy.  Declared: a
+  partition `t_0 < ... < t_n`, a finite posi...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/time_sliced_action_shadow.rs
+module: time_sliced_action_shadow
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: time_sliced_action_shadow
+  file: crates_rs/omega_quantum_physics/src/time_sliced_action_shadow.rs
+symbols:
+- ShadowRefusal
+- PhaseSum
+- phase
+- terms
+- scale
+- evaluate
+- ShadowHistory
+- ShadowCertificate
+- FreeParticleShadow
+- new
+- replay
+- transfer_kernel
+- refinement_residual
+owns:
+- shadow_refusal
+- phase_sum
+- phase
+- terms
+- scale
+- evaluate
+- shadow_history
+- shadow_certificate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

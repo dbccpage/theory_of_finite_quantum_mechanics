@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:retention:v1.0.0
+title: 'Sort 5 — **History** (retention): a finite sequence of events.  Crate boundary:
+  coda-carrier.  Source: `List Event` t...'
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/retention.rs
+module: retention
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: retention
+  file: crates_rs/omega_ooutwire_primitives/src/retention.rs
+symbols:
+- History
+- mentioned
+- supplied
+- admitted
+owns:
+- history
+- mentioned
+- supplied
+- admitted
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:finite_simulation:v1.0.0
+title: Checked simulations and conservative resource extensions of finite dynamics.
+  A successful exact check reflects availa...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/finite_simulation.rs
+module: finite_simulation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: finite_simulation
+  file: crates_rs/omega_category_theory/src/finite_simulation.rs
+symbols:
+- SimulationMode
+- SimulationError
+- SimulationDecision
+- check_simulation
+- verify_simulation
+owns:
+- simulation_mode
+- simulation_error
+- simulation_decision
+- check_simulation
+- verify_simulation
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

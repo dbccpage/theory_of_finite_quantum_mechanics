@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:meron_spatial_source:v1.0.0
+title: Bounds for the written spatial Gaussian source-functional limit SG-1--SG-8.
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/meron_spatial_source.rs
+module: meron_spatial_source
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: meron_spatial_source
+  file: crates_rs/omega_quantum_physics/src/meron_spatial_source.rs
+symbols:
+- SpatialSourceError
+- SpatialSourcePlan
+- new
+- response
+- norm
+- lipschitz
+- probe
+- quadratic_error
+- finite_log_tail
+- source_functional_error
+owns:
+- spatial_source_error
+- spatial_source_plan
+- new
+- response
+- norm
+- lipschitz
+- probe
+- quadratic_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:primary_gates:v1.0.0
+title: Executable bounded predicates for 22 primary and three empirical PFP gates.
+  Missing finite witnesses HOLD. The option...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/primary_gates.rs
+module: primary_gates
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: primary_gates
+  file: crates_rs/omega_woland/src/primary_gates.rs
+symbols:
+- known_gate_id
+- Sealed
+- PrimaryGateValidator
+- evaluate
+- evaluate_by_id
+- describe
+owns:
+- known_gate_id
+- sealed
+- primary_gate_validator
+- evaluate
+- evaluate_by_id
+- describe
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

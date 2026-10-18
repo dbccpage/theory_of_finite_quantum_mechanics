@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_atlas_reconciliation:row:v1.0.0
+title: The v2 Atlas Reconciliation schema as Rust types.  One `ReconciliationRow`
+  is the full finite judgment for a single a...
+kind: rust_file_contract
+status: active
+crate: omega_atlas_reconciliation
+file: crates_rs/omega_atlas_reconciliation/src/row.rs
+module: row
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_atlas_reconciliation
+  module: row
+  file: crates_rs/omega_atlas_reconciliation/src/row.rs
+symbols:
+- authority_rank
+- pinned_authority_effect
+- role_admits_ceiling
+- ClaimDelta
+- ReconVerdict
+- Surface
+- BuildStatus
+- TestsState
+- AuthorityBasis
+- TerminalStatus
+- Route
+- VerifyResult
+- AuthClaim
+- ProofStatus
+- Terminal
+- VerifyVerdict
+- RoutedItem
+- ReconciliationRow
+- sample_good
+owns:
+- authority_rank
+- pinned_authority_effect
+- role_admits_ceiling
+- claim_delta
+- recon_verdict
+- surface
+- build_status
+- tests_state
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

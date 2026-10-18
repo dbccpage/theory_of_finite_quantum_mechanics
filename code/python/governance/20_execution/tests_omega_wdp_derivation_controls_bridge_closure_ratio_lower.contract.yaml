@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_bridge_closure_ratio_lower:v1.0.0
+title: Exact finite control witness for `BRIDGE-CLOSURE-RATIO-LOWER` (`bridge_closure_ratio_lower`).  Evaluates
+  the declared...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/bridge_closure_ratio_lower.rs
+module: omega_wdp::derivation_controls::bridge_closure_ratio_lower
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::bridge_closure_ratio_lower
+  file: crates_rs/tests/omega_wdp/derivation_controls/bridge_closure_ratio_lower.rs
+symbols:
+- Witness
+- witness
+- reject_expansion_implies_unconditional_termination
+owns:
+- witness
+- reject_expansion_implies_unconditional_termination
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

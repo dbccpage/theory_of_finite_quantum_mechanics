@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:validate:v1.0.0
+title: Validate Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/validate.rs
+module: validate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: validate
+  file: crates_rs/omega_contracts/src/validate.rs
+symbols:
+- validate
+- forbid_capability
+- validate_registry
+owns:
+- validate
+- forbid_capability
+- validate_registry
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

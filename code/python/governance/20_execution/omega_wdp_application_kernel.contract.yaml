@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:application_kernel:v1.0.0
+title: 'Bounded replay of the existing finite belief certificates; never calls a producer.
+  AuthorityEffect: None. Exact ratio...'
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/application_kernel.rs
+module: application_kernel
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: application_kernel
+  file: crates_rs/omega_wdp/src/application_kernel.rs
+symbols:
+- model_digest
+- check_certificate
+owns:
+- model_digest
+- check_certificate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

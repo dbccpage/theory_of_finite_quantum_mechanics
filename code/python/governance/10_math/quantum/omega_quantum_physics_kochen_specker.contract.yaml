@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:kochen_specker:v1.0.0
+title: Exact Kochen–Specker hypergraphs and frame functions on declared finite rays.
+  A KS decision includes both full orthog...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/kochen_specker.rs
+module: kochen_specker
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: kochen_specker
+  file: crates_rs/omega_quantum_physics/src/kochen_specker.rs
+symbols:
+- RaySystemError
+- RaySystem
+- new
+- problem
+- decide
+- deletion_minimal_core
+- projector_coordinates
+- incidence
+- affine_frame_dimension
+- projector_span_rank
+- cabello_18
+- peres_33
+- conductor_12_candidates
+- pythagorean_colour
+owns:
+- ray_system_error
+- ray_system
+- new
+- problem
+- decide
+- deletion_minimal_core
+- projector_coordinates
+- incidence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:two_category:v1.0.0
+title: 'Strict 2-category trait and validated finite representation.  AuthorityEffect:
+  None.'
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/two_category.rs
+module: two_category
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: two_category
+  file: crates_rs/omega_higher_category_theory/src/two_category.rs
+symbols:
+- TwoCategory
+- OneMorphismData
+- new
+- TwoMorphismData
+- Strict2Category
+- with_limits
+- add_zero_cell
+- add_one_cell
+- add_two_cell
+- set_id_1
+- set_id_2
+- set_compose_1
+- set_compose_2_v
+- set_compose_2_h
+- validate_all_laws
+- content_hash
+owns:
+- two_category
+- one_morphism_data
+- new
+- two_morphism_data
+- strict2_category
+- with_limits
+- add_zero_cell
+- add_one_cell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

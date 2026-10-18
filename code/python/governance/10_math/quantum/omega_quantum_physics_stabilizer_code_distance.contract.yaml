@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:stabilizer_code_distance:v1.0.0
+title: Exact distance, syndromes and correction-radius certificates for declared stabilizer
+  codes, computed rather than decl...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/stabilizer_code_distance.rs
+module: stabilizer_code_distance
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: stabilizer_code_distance
+  file: crates_rs/omega_quantum_physics/src/stabilizer_code_distance.rs
+symbols:
+- StabilizerCodeError
+- pauli_string
+- pauli_weight
+- product
+- strings_of_weight
+- StabilizerCode
+- try_new_with_length
+- with_carrier_length
+- try_new
+- n
+- rank
+- k
+- generators
+- syndrome
+- in_stabilizer_group
+- is_logical
+- distance
+- distance_over
+- minimum_weight_decoder
+- is_corrected
+- authority_fence
+- CodeDistance
+- witness
+- alphabet
+- candidates_checked
+- lighter_candidates_checked
+- correction_radius
+- uncorrectable_pair
+- LookupDecoder
+- correction
+owns:
+- stabilizer_code_error
+- pauli_string
+- pauli_weight
+- product
+- strings_of_weight
+- stabilizer_code
+- try_new_with_length
+- with_carrier_length
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

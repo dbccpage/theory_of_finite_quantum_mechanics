@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_prompt_civilization_allosteric_quorum:v1.0.0
+title: 'Allosteric Quorum and Exact Hill-Cooperative Gate Tests (U20).  AuthorityEffect:
+  None.'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_prompt_civilization/allosteric_quorum.rs
+module: omega_prompt_civilization::allosteric_quorum
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_prompt_civilization::allosteric_quorum
+  file: crates_rs/tests/omega_prompt_civilization/allosteric_quorum.rs
+symbols: []
+owns:
+- omega_prompt_civilization_allosteric_quorum
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

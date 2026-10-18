@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:epistemic_sieve:v1.0.0
+title: Epistemic Sieve Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/epistemic_sieve.rs
+module: epistemic_sieve
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: epistemic_sieve
+  file: crates_rs/omega_types/src/epistemic_sieve.rs
+symbols:
+- TrapDetector
+- TrapAlert
+- EpistemicVerdict
+- EpistemicConfidence
+- CognitiveMeasurement
+- MeasurementEvent
+- HilbertBridge
+- DecoherenceAlert
+- DecoherenceAlertType
+- RoundResult
+- TopologicalInvariant
+- ProblemVector
+- GeneratedCode
+- GravitationalAnomaly
+owns:
+- trap_detector
+- trap_alert
+- epistemic_verdict
+- epistemic_confidence
+- cognitive_measurement
+- measurement_event
+- hilbert_bridge
+- decoherence_alert
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

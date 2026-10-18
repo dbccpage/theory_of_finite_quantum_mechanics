@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:certified_dihedral:v1.0.0
+title: Metric-bound rational dihedral and deficit enclosures for finite hinge stars.
+  Edge inputs are squared lengths. A shar...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/certified_dihedral.rs
+module: certified_dihedral
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: certified_dihedral
+  file: crates_rs/omega_general_relativity/src/certified_dihedral.rs
+symbols:
+- GeometryError
+- DihedralEnclosure
+- normal_gram
+- bounds
+- dihedral_enclosure
+- MetricHingeStar
+- new
+- hinge
+- cycle
+- squared_edges
+- simplex
+- DeficitSign
+- DeficitEnclosure
+- source
+- angles
+- sign
+- deficit_enclosure
+owns:
+- geometry_error
+- dihedral_enclosure
+- normal_gram
+- bounds
+- metric_hinge_star
+- new
+- hinge
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

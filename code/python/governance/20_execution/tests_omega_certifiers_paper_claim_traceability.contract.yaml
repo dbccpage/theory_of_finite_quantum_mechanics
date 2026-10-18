@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_certifiers_paper_claim_traceability:v1.0.0
+title: Shape checks for the static paper-claim catalog.  These tests check catalog
+  fields and that each named paper director...
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_certifiers/paper_claim_traceability.rs
+module: omega_certifiers::paper_claim_traceability
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_certifiers::paper_claim_traceability
+  file: crates_rs/tests/omega_certifiers/paper_claim_traceability.rs
+symbols: []
+owns:
+- omega_certifiers_paper_claim_traceability
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

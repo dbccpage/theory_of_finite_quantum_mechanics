@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:stubs_topos:v1.0.0
+title: STUB — `topos` subsystem (DELETED from omega_core). Scaffolding for AP-0 build
+  wiring ONLY. These types reproduce jus...
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/stubs/topos.rs
+module: stubs::topos
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: stubs::topos
+  file: crates_rs/auto_p/src/stubs/topos.rs
+symbols:
+- OmegaVerdict
+- is_executable
+- SimplicialComplex
+- ChainComplex
+- verify_d_squared_zero
+- chain_complex
+- Site
+- SignSheaf
+- Poset
+- InfinityTopos
+- sheaves
+- CechClass
+- CechCohomology
+- compute
+- GlobalSection
+- GlobalSectionSpace
+- mock_constructor_task
+- ModuleDependencyGraph
+- new
+- add_import
+owns:
+- omega_verdict
+- is_executable
+- simplicial_complex
+- chain_complex
+- verify_d_squared_zero
+- site
+- sign_sheaf
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

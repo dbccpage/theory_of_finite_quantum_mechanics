@@ -1,0 +1,33 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_o12_xlm_comparison:v1.0.0
+title: Exact rational witness for `WDP-O12-XLM-COMPARISON` (`derivation.md`).
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_o12_xlm_comparison.rs
+module: omega_wdp::derivation_controls::wdp_o12_xlm_comparison
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_o12_xlm_comparison
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_o12_xlm_comparison.rs
+symbols:
+- Frac
+- mixed_partial_log_x_at_zero
+- rescaled_row_sum
+- Witness
+- witness
+- reject_xlm_positive_theta_promotion
+owns:
+- frac
+- mixed_partial_log_x_at_zero
+- rescaled_row_sum
+- witness
+- reject_xlm_positive_theta_promotion
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

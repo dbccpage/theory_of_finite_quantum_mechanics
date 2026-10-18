@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:coda_layer9_coda_gtla:v1.0.0
+title: Layer9 Coda Gtla Module
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/coda/layer9_coda_gtla.rs
+module: coda::layer9_coda_gtla
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: coda::layer9_coda_gtla
+  file: crates_rs/omega_wdp/src/coda/layer9_coda_gtla.rs
+symbols:
+- Layer9CodaGtla
+- terminalize
+- terminalize_with_payload
+owns:
+- layer9_coda_gtla
+- terminalize
+- terminalize_with_payload
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

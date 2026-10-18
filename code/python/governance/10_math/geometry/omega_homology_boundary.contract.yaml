@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:boundary:v1.0.0
+title: 'Boundary maps in a chain complex: d_n : C_n -> C_{n-1}.'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/boundary.rs
+module: boundary
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: boundary
+  file: crates_rs/omega_homology/src/boundary.rs
+symbols:
+- BoundaryMap
+- new
+- apply
+- source_dim
+- target_dim
+- hash
+owns:
+- boundary_map
+- new
+- apply
+- source_dim
+- target_dim
+- hash
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

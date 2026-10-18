@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:topos_hott_model:v1.0.0
+title: Topos-side model data for HoTT fragments.
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/topos_hott_model.rs
+module: topos_hott_model
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: topos_hott_model
+  file: crates_rs/omega_category_theory/src/topos_hott_model.rs
+symbols:
+- ToposHottModel
+- new
+- validate_minimal_model
+owns:
+- topos_hott_model
+- new
+- validate_minimal_model
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:bounded_counter:v1.0.0
+title: Minimal finite-depth future-legality report for a nonnegative counter.  Increment
+  is always legal; decrement requires...
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/bounded_counter.rs
+module: bounded_counter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: bounded_counter
+  file: crates_rs/omega_category_theory/src/bounded_counter.rs
+symbols:
+- CounterEvent
+- CounterBoundary
+- CounterReportError
+- CounterReport
+- from_count
+- try_from_clip
+- remaining
+- clipped
+- advance
+- observe
+- separating_removals
+owns:
+- counter_event
+- counter_boundary
+- counter_report_error
+- counter_report
+- from_count
+- try_from_clip
+- remaining
+- clipped
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_ooutwire_primitives_review_gauge_adversaries:v1.0.0
+title: Review Gauge Adversaries Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_ooutwire_primitives/review_gauge_adversaries.rs
+module: omega_ooutwire_primitives::review_gauge_adversaries
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_ooutwire_primitives::review_gauge_adversaries
+  file: crates_rs/tests/omega_ooutwire_primitives/review_gauge_adversaries.rs
+symbols: []
+owns:
+- omega_ooutwire_primitives_review_gauge_adversaries
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

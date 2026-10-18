@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:metric_hinge_transport:v1.0.0
+title: Metric-derived transport in oriented orthonormal hinge-adapted frames. The
+  exact class has rational normal-plane cosi...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/metric_hinge_transport.rs
+module: metric_hinge_transport
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: metric_hinge_transport
+  file: crates_rs/omega_general_relativity/src/metric_hinge_transport.rs
+symbols:
+- TransportError
+- Orientation
+- MetricHingeTransport
+- new
+- deficit
+- normal_rotations
+- links
+- holonomy
+- gauged_links
+- gauged_holonomy
+- observed_defect
+owns:
+- transport_error
+- orientation
+- metric_hinge_transport
+- new
+- deficit
+- normal_rotations
+- links
+- holonomy
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

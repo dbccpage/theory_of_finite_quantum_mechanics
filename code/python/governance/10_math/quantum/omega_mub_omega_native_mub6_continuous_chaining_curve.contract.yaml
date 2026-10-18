@@ -1,0 +1,60 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_continuous_chaining_curve:v1.0.0
+title: Curve Module
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_continuous_chaining/curve.rs
+module: omega_native::mub6_continuous_chaining::curve
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_continuous_chaining::curve
+  file: crates_rs/omega_mub/src/omega_native/mub6_continuous_chaining/curve.rs
+symbols:
+- karlsson_boundary_z
+- theta_interval_lower
+- theta_interval_upper
+- t_min_multi_anchor
+- t_max_multi_anchor
+- gap_probe_t
+- num_anchors_min
+- ContinuousChainingError
+- CurveRegime
+- cusp_neighborhood_radius
+- classify
+- name
+- AdaptiveStepEngine
+- canonical
+- new
+- compute_erosion
+- compute_margin
+- is_admissible_step
+- validate_step
+- critical_ratio
+- adapt_step
+- ParameterInterval
+- width
+- contains
+- overlaps
+- ChainingNode
+- evaluate_point_bound
+- IntervalCoverageCertificate
+- ContinuousChainingPath
+- generate_uniform
+owns:
+- karlsson_boundary_z
+- theta_interval_lower
+- theta_interval_upper
+- t_min_multi_anchor
+- t_max_multi_anchor
+- gap_probe_t
+- num_anchors_min
+- continuous_chaining_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

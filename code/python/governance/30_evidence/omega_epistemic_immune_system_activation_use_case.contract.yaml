@@ -1,0 +1,30 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_epistemic_immune_system:activation_use_case:v1.0.0
+title: Guard activation through injected custody and host-observation ports.
+kind: rust_file_contract
+status: active
+crate: omega_epistemic_immune_system
+file: crates_rs/omega_epistemic_immune_system/src/activation_use_case.rs
+module: activation_use_case
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_epistemic_immune_system
+  module: activation_use_case
+  file: crates_rs/omega_epistemic_immune_system/src/activation_use_case.rs
+symbols:
+- subject_digest
+- danger_receipt
+- ActivationRequest
+- activate_learned_guard
+owns:
+- subject_digest
+- danger_receipt
+- activation_request
+- activate_learned_guard
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

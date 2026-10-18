@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:omega_native_mub6_sporadic_chm_solver:v1.0.0
+title: 'MUB(6) Subgap R6: Sporadic Literature CHM Classes Exhaustion Solver.  AuthorityEffect:
+  None. Constitutional Firewall:...'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/omega_native/mub6_sporadic_chm_solver.rs
+module: omega_native::mub6_sporadic_chm_solver
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: omega_native::mub6_sporadic_chm_solver
+  file: crates_rs/omega_mub/src/omega_native/mub6_sporadic_chm_solver.rs
+symbols:
+- Cyc3
+- new
+- from_int
+- zero
+- one
+- omega
+- omega_pow
+- is_zero
+- add
+- sub
+- mul
+- conjugate
+- eisenstein_norm_sq
+- compute_tao_column_exponents
+- compute_tao_eisenstein_norm
+- generate_balanced_permutations_20
+- verify_tao_eisenstein_obstruction
+- SporadicCHMExclusionReceipt
+- solve_and_certify_sporadic_chm_exhaustion
+owns:
+- cyc3
+- new
+- from_int
+- zero
+- one
+- omega
+- omega_pow
+- is_zero
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

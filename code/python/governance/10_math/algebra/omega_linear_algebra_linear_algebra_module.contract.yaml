@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:linear_algebra_module:v1.0.0
+title: Module Module
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/linear_algebra/module.rs
+module: linear_algebra::module
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: linear_algebra::module
+  file: crates_rs/omega_linear_algebra/src/linear_algebra/module.rs
+symbols:
+- ModuleError
+- Module
+- Graded
+- GradedModule
+- FreeModuleVector
+- new
+- dimension
+- coordinates
+- into_coordinates
+- zero_of_dimension
+- checked_add
+- neg
+- checked_sub
+- scale
+- is_zero
+owns:
+- module_error
+- module
+- graded
+- graded_module
+- free_module_vector
+- new
+- dimension
+- coordinates
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

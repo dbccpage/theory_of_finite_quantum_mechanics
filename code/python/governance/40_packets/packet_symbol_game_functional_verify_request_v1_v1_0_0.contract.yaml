@@ -1,0 +1,44 @@
+schema_version: omega.contract.v2
+contract_id: urn:omega:packet:symbol_game:functional_verify_request_v1:v1.0.0
+title: Functional Verify Request v1
+kind: packet_contract
+layer: 40_packets
+role: PacketSpecification
+status: active
+council_owner: L3_logos_techne
+descriptor:
+  authority_effect: None
+  evidence_ceiling: LocalReplay
+  runtime_enforcement: true
+  clean_architecture_layer: domain
+  refusals:
+    may_emit:
+    - FW-UNKNOWN-FIELD
+    - FW-DUPLICATE-KEY
+doctrine:
+  summary: 'FunctionalVerifyRequestV1, the payload of the functional_verify runtime
+    action: a request and the receipt claimed for it.'
+  invariants:
+  - The shape declared here is the shape in functional.rs, enforced at compile time
+    by an exhaustive destructure.
+  - Verification re-evaluates the request and reports every receipt field it does
+    not reproduce; accepted is a verdict on the receipt, not an authority grant.
+  non_roles:
+  - authority_source
+  - promotion_granter
+  required_negative_capabilities:
+  - no_self_certification
+  - no_implicit_authority_upgrade
+structure:
+  rust_crate: omega_symbol_game
+  rust_module: functional
+  rust_type: FunctionalVerifyRequestV1
+  form: struct
+  serde:
+    deny_unknown_fields: true
+  fields:
+  - name: request
+  - name: receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0

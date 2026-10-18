@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:solver_lp_standard_form:v1.0.0
+title: 'General exact standard-form LP: min c.x with A x = b and x >= 0. Two-phase
+  Bland simplex proposes; independent primal...'
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/solver_lp_standard_form.rs
+module: solver_lp_standard_form
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: solver_lp_standard_form
+  file: crates_rs/omega_solvers/src/solver_lp_standard_form.rs
+symbols:
+- StandardLpError
+- StandardLp
+- StandardLpSolution
+- new
+- costs
+- matrix
+- rhs
+- verify
+- solve
+owns:
+- standard_lp_error
+- standard_lp
+- standard_lp_solution
+- new
+- costs
+- matrix
+- rhs
+- verify
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,56 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:descriptors_product_spine:v1.0.0
+title: Product Spine Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/descriptors/product_spine.rs
+module: descriptors::product_spine
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: descriptors::product_spine
+  file: crates_rs/omega_contracts/src/descriptors/product_spine.rs
+symbols:
+- observable_descriptor
+- measurement_descriptor
+- evaluator_descriptor
+- policy_descriptor
+- policy_set_descriptor
+- witness_descriptor
+- certificate_descriptor
+- certificate_store_descriptor
+- replay_verifier_descriptor
+- terminal_mapper_descriptor
+- engine_descriptor
+- public_verify_service_descriptor
+- trace_descriptor
+- diagnostic_descriptor
+- checked_packet_descriptor
+- validator_descriptor
+- auth_interface_descriptor
+- health_model_descriptor
+- kernel_descriptor
+- search_kernel_descriptor
+- solver_kernel_descriptor
+- anomalon_certificate_product_descriptor
+- llm_adapter_descriptor
+- symbol_game_descriptor
+- lift_license_descriptor
+- anomalon_product_spine_descriptors
+owns:
+- observable_descriptor
+- measurement_descriptor
+- evaluator_descriptor
+- policy_descriptor
+- policy_set_descriptor
+- witness_descriptor
+- certificate_descriptor
+- certificate_store_descriptor
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

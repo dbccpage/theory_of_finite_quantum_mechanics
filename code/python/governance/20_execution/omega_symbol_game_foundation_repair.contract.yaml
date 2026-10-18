@@ -1,0 +1,56 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:foundation_repair:v1.0.0
+title: Repair Module
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/foundation/repair.rs
+module: foundation::repair
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: foundation::repair
+  file: crates_rs/omega_symbol_game/src/foundation/repair.rs
+symbols:
+- DetectorEntry
+- new
+- state_id
+- value
+- ExactFiniteDetector
+- detector_id
+- value_of
+- RepairCandidate
+- candidate_id
+- result_state_id
+- DeclaredRepairUniverse
+- context_id
+- source_state_id
+- candidates
+- CandidateEvaluation
+- ExhaustionCertificate
+- certify
+- enumerate
+- evaluations
+- source_value
+- minimum
+- certificate_id
+- R2License
+- residual
+- OesosDecision
+- decide_oesos
+owns:
+- detector_entry
+- new
+- state_id
+- value
+- exact_finite_detector
+- detector_id
+- value_of
+- repair_candidate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

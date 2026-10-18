@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:hashing:v1.0.0
+title: Deterministic BLAKE3 hashing with domain-separated tags.  All hashing functions
+  use domain separation to prevent hash...
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/hashing.rs
+module: hashing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: hashing
+  file: crates_rs/omega_homology/src/hashing.rs
+symbols:
+- Hash256
+- as_bytes
+- to_hex
+- hash_matrix
+- hash_integer_matrix
+- hash_vector
+- hash_chain_complex_manifest
+- hash_cochain_complex_manifest
+- hash_carrier_manifest
+- hash_weights
+- hash_provenance
+- hash_cochain_witness
+owns:
+- hash256
+- as_bytes
+- to_hex
+- hash_matrix
+- hash_integer_matrix
+- hash_vector
+- hash_chain_complex_manifest
+- hash_cochain_complex_manifest
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

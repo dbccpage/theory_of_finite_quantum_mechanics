@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_state:operator_registry_runtime:v1.0.0
+title: Bounded S02-001 operator registry execution and substitution receipts.  The
+  runtime admits one canonical echo operato...
+kind: rust_file_contract
+status: active
+crate: omega_state
+file: crates_rs/omega_state/src/operator_registry_runtime.rs
+module: operator_registry_runtime
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_state
+  module: operator_registry_runtime
+  file: crates_rs/omega_state/src/operator_registry_runtime.rs
+symbols:
+- OperatorRegistryPacketV1
+- validate
+- OperatorRegistryAdmissionV1
+- RegistrySurvivorRouteV1
+- GaugeRunReceiptV1
+- OperatorRegistryClassificationV1
+- OperatorRegistryProducerReceiptV1
+- OperatorRegistryEvaluationReceiptV1
+- OperatorRegistryAuthorityWitnessV1
+- OperatorRegistryReplayReceiptV1
+- OperatorRegistryTerminalReceiptV1
+- OperatorRegistryReceiptBundleV1
+- OperatorRegistryExecutionV1
+- execute_and_evaluate_operator_registry_v1
+- independently_evaluate_claimed_operator_registry_v1
+- operator_registry_observer_sha256_v1
+- operator_registry_packet_sha256_v1
+- operator_registry_sha256_json_v1
+- OperatorRegistryError
+owns:
+- operator_registry_packet_v1
+- validate
+- operator_registry_admission_v1
+- registry_survivor_route_v1
+- gauge_run_receipt_v1
+- operator_registry_classification_v1
+- operator_registry_producer_receipt_v1
+- operator_registry_evaluation_receipt_v1
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

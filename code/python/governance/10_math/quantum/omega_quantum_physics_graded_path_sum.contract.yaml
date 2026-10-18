@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:graded_path_sum:v1.0.0
+title: 'Finite weighted transport: path-sums over a declared commutative semiring.  Weights
+  live in any `linear_algebra::scal...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/graded_path_sum.rs
+module: graded_path_sum
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: graded_path_sum
+  file: crates_rs/omega_quantum_physics/src/graded_path_sum.rs
+symbols:
+- TransportError
+- GreenFunctionCertificate
+- closure
+- NonNegative
+- new
+- value
+- TimeSlicedTransport
+- slice_sizes
+- histories
+- history_weight
+- path_sum
+- propagator
+- split
+- sliced_composition
+- TransportGraph
+- transfer_matrix
+- unroll
+- path_weight
+- check_acyclic
+- all_histories
+- total_path_sum
+- ungraded_split_sum
+owns:
+- transport_error
+- green_function_certificate
+- closure
+- non_negative
+- new
+- value
+- time_sliced_transport
+- slice_sizes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

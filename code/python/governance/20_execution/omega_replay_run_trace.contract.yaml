@@ -1,0 +1,51 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_replay:run_trace:v1.0.0
+title: Run Trace Module
+kind: rust_file_contract
+status: active
+crate: omega_replay
+file: crates_rs/omega_replay/src/run_trace.rs
+module: run_trace
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_replay
+  module: run_trace
+  file: crates_rs/omega_replay/src/run_trace.rs
+symbols:
+- TraceDensityDiagnostics
+- RunTrace
+- PerceptionSnapshot
+- BoundarySnapshot
+- SbeSnapshot
+- SbeTrace
+- BoundaryTrace
+- OffDiagonalCoherence
+- VerdictRecord
+- ObstructionDiagnostics
+- EvaluationGraph
+- NodeLabel
+- TraceStage
+- new
+- with_perception
+- with_forge_boundary
+- with_sieve_boundary
+- with_verdict
+- with_evaluation_graph
+- push_stage
+- with_obstruction_diagnostics
+owns:
+- trace_density_diagnostics
+- run_trace
+- perception_snapshot
+- boundary_snapshot
+- sbe_snapshot
+- sbe_trace
+- boundary_trace
+- off_diagonal_coherence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

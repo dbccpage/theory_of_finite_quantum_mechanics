@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:eilenberg_moore:v1.0.0
+title: Eilenberg Moore Module
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/eilenberg_moore.rs
+module: eilenberg_moore
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: eilenberg_moore
+  file: crates_rs/omega_category_theory/src/eilenberg_moore.rs
+symbols:
+- Obj
+- Monad
+- EMAlgebra
+- Phantom
+- verify_laws
+- AlgebraMorphism
+- new
+- respects_algebras
+- ForgetfulFunctor
+- map
+- FreeAlgebraFunctor
+- ComparisonFunctor
+- Maybe
+- MaybeMonad
+owns:
+- obj
+- monad
+- e_m_algebra
+- phantom
+- verify_laws
+- algebra_morphism
+- new
+- respects_algebras
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_local_green_global_red_lggr:bound_measurement:v1.0.0
+title: '`BoundEpkMeasurement` — the sealed aggregate that owns one source triple.  #
+  Why this exists  Review of PR #1799 esta...'
+kind: rust_file_contract
+status: active
+crate: omega_local_green_global_red_lggr
+file: crates_rs/omega_local_green_global_red_lggr/src/bound_measurement.rs
+module: bound_measurement
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_local_green_global_red_lggr
+  module: bound_measurement
+  file: crates_rs/omega_local_green_global_red_lggr/src/bound_measurement.rs
+symbols:
+- CanonicalHasher
+- new
+- bytes
+- str_field
+- opt_str
+- u8_field
+- i8_field
+- f64_field
+- opt_f64
+- finish
+- verdict_tag
+- BoundMeasurementError
+- BoundEpkMeasurement
+- measure
+- schema
+- corpus_digest
+- metrics
+- ledger
+- adequacy
+- provenance
+- row_count
+- record_id
+- defect
+- verdict
+- authority_effect
+- evidence_ceiling
+- observe
+- descend
+- verify_receipt
+- continuation_evidence
+owns:
+- canonical_hasher
+- new
+- bytes
+- str_field
+- opt_str
+- u8_field
+- i8_field
+- f64_field
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

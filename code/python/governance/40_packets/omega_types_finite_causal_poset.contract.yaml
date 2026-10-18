@@ -1,0 +1,38 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:finite_causal_poset:v1.0.0
+title: Finite Causal Poset Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/finite_causal_poset.rs
+module: finite_causal_poset
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: finite_causal_poset
+  file: crates_rs/omega_types/src/finite_causal_poset.rs
+symbols:
+- CausalResidue
+- RegionId
+- DistinctionNode
+- CausalPoset
+- Site
+- CohomologyGroup
+- PresheafMarker
+- as_site
+owns:
+- causal_residue
+- region_id
+- distinction_node
+- causal_poset
+- site
+- cohomology_group
+- presheaf_marker
+- as_site
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

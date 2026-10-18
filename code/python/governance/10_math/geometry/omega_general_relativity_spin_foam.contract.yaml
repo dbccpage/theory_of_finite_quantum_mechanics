@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:spin_foam:v1.0.0
+title: Exact finite SU(2)_2 tetrahedral recoupling at q=exp(i pi/4). Labels are twice-spin
+  0,1,2. This computes quantum Raca...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/spin_foam.rs
+module: spin_foam
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: spin_foam
+  file: crates_rs/omega_general_relativity/src/spin_foam.rs
+symbols:
+- IsingScalar
+- SpinFoamError
+- ising_admissible
+- quantum_dimension
+- RacahCoefficient
+- factor
+- squared_prefactor
+- squared_value
+- quadratic_value
+- ising_six_j_radical
+- ising_six_j
+- ising_f
+- SpinFoam
+- new
+- from_tetrahedra
+- tetrahedral_amplitude
+- authority_fence
+owns:
+- ising_scalar
+- spin_foam_error
+- ising_admissible
+- quantum_dimension
+- racah_coefficient
+- factor
+- squared_prefactor
+- squared_value
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

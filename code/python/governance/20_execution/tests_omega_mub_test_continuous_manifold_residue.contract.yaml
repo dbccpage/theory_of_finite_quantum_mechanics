@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_mub_test_continuous_manifold_residue:v1.0.0
+title: 'Integration test for the exact rational continuous Diță manifold residue solver.  AuthorityEffect:
+  None'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_mub/test_continuous_manifold_residue.rs
+module: omega_mub::test_continuous_manifold_residue
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_mub::test_continuous_manifold_residue
+  file: crates_rs/tests/omega_mub/test_continuous_manifold_residue.rs
+symbols: []
+owns:
+- omega_mub_test_continuous_manifold_residue
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

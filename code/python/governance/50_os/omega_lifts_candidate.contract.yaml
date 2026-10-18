@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lifts:candidate:v1.0.0
+title: Candidate Module
+kind: rust_file_contract
+status: active
+crate: omega_lifts
+file: crates_rs/omega_lifts/src/candidate.rs
+module: candidate
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lifts
+  module: candidate
+  file: crates_rs/omega_lifts/src/candidate.rs
+symbols:
+- LiftCandidateEval
+- eval_adjoin_repair
+- eval_face_fill
+- eval_edge_split
+- eval_cycle_hub
+- LiftCandidate
+owns:
+- lift_candidate_eval
+- eval_adjoin_repair
+- eval_face_fill
+- eval_edge_split
+- eval_cycle_hub
+- lift_candidate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

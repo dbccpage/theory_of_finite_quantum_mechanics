@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:scalar_curvature:v1.0.0
+title: Discrete scalar curvature from Regge deficits (2D).  At each vertex, ε_v /
+  (local area measure). For the finite 2D fa...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/scalar_curvature.rs
+module: scalar_curvature
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: scalar_curvature
+  file: crates_rs/omega_general_relativity/src/scalar_curvature.rs
+symbols:
+- ScalarCurvature
+- new
+- try_from_regge
+- total
+- max_abs
+- degree
+- authority_fence
+owns:
+- scalar_curvature
+- new
+- try_from_regge
+- total
+- max_abs
+- degree
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_higher_category_theory:dendroidal_set:v1.0.0
+title: Pilot implementation of the planar tree category Omega and minimal dendroidal
+  set inner horn filler.  Provides mathem...
+kind: rust_file_contract
+status: active
+crate: omega_higher_category_theory
+file: crates_rs/omega_higher_category_theory/src/dendroidal_set.rs
+module: dendroidal_set
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_higher_category_theory
+  module: dendroidal_set
+  file: crates_rs/omega_higher_category_theory/src/dendroidal_set.rs
+symbols:
+- TreeEdge
+- TreeVertex
+- PlanarTree
+- corolla
+- graft_two_corollas
+- contract_inner_edge
+- contracted_boundary_colours
+- validate_tree_acyclicity
+- TreeInnerHorn
+- new
+- DendroidalSet
+- add_colour
+- add_operation
+- register_operadic_composition
+- fill_dendroidal_inner_horn
+- verify_dendroidal_inner_horn_property
+- content_hash
+owns:
+- tree_edge
+- tree_vertex
+- planar_tree
+- corolla
+- graft_two_corollas
+- contract_inner_edge
+- contracted_boundary_colours
+- validate_tree_acyclicity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

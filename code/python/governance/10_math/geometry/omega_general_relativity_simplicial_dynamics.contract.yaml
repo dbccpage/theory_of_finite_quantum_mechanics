@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:simplicial_dynamics:v1.0.0
+title: Finite oriented-bivector boundary identities and a declared triad-flux slice.
+  The curvature/master functionals are a ...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/simplicial_dynamics.rs
+module: simplicial_dynamics
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: simplicial_dynamics
+  file: crates_rs/omega_general_relativity/src/simplicial_dynamics.rs
+symbols:
+- V3
+- SimplicialDynamicsError
+- ReggeFourSimplex
+- hinge_bivector
+- tetrahedron_bianchi
+- boundary_bianchi
+- CauchySlice
+- Constraints
+- positions
+- tetrahedra
+- faces
+- holonomies
+- new
+- boundary_faces
+- boundary_edges
+- set_connection
+- constraints
+- relaxation_step
+- evolve
+- scalar_anomaly
+- bianchi
+- emit_angular
+owns:
+- v3
+- simplicial_dynamics_error
+- regge_four_simplex
+- hinge_bivector
+- tetrahedron_bianchi
+- boundary_bianchi
+- cauchy_slice
+- constraints
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

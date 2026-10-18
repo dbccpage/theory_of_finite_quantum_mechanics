@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:branch_finegraining:v1.0.0
+title: 'Exact rational Born branch counting and the cyclotomic irrational-weight obstruction.
+  AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/branch_finegraining.rs
+module: branch_finegraining
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: branch_finegraining
+  file: crates_rs/omega_quantum_physics/src/branch_finegraining.rs
+symbols:
+- BranchCountingError
+- BranchCounting
+- from_cyclotomic_weights
+- new
+- verify
+- from_relative_state
+- FineGrainedBranch
+- FineGrainedTree
+- compute_minimal_finegraining
+- verify_finegraining
+- finegrain_state_rationals
+- ConductorEvaluation
+- ConductorWitness
+- SmallestConductorResult
+- search_smallest_irrational_conductor
+owns:
+- branch_counting_error
+- branch_counting
+- from_cyclotomic_weights
+- new
+- verify
+- from_relative_state
+- fine_grained_branch
+- fine_grained_tree
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

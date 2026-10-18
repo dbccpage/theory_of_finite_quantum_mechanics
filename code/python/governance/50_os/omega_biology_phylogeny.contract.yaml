@@ -1,0 +1,29 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_biology:phylogeny:v1.0.0
+title: '`phylogeny` — finite dual-face object for `omega_biology`.  AUTHORING_QUALITY:
+  human_llm_best_effort_slop (best-effor...'
+kind: rust_file_contract
+status: active
+crate: omega_biology
+file: crates_rs/omega_biology/src/phylogeny.rs
+module: phylogeny
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_biology
+  module: phylogeny
+  file: crates_rs/omega_biology/src/phylogeny.rs
+symbols:
+- Phylogeny
+- new
+- authority_fence
+owns:
+- phylogeny
+- new
+- authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

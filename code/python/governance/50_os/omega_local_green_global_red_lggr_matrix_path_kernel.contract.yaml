@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_local_green_global_red_lggr:matrix_path_kernel:v1.0.0
+title: Exact two-dimensional matrix path kernels and declared overlap/trace checks.  Grounded
+  in FOC-012 ("Local Green, Glob...
+kind: rust_file_contract
+status: active
+crate: omega_local_green_global_red_lggr
+file: crates_rs/omega_local_green_global_red_lggr/src/matrix_path_kernel.rs
+module: matrix_path_kernel
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_local_green_global_red_lggr
+  module: matrix_path_kernel
+  file: crates_rs/omega_local_green_global_red_lggr/src/matrix_path_kernel.rs
+symbols:
+- MatrixPathError
+- EvaluationColor
+- RationalMatrix2x2
+- identity
+- new
+- multiply
+- determinant
+- l1_norm
+- deviation_from_identity
+- EvaluatedPathKernelGraph
+- evaluate_path
+- check_local_green
+- check_global_cycle
+- compute_cech_gluing_defect
+- verify_coda_gtla_trace
+- generate_canonical_lggr_counterexample
+owns:
+- matrix_path_error
+- evaluation_color
+- rational_matrix2x2
+- identity
+- new
+- multiply
+- determinant
+- l1_norm
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

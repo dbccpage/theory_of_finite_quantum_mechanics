@@ -1,0 +1,38 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_majorana:holonomy:v1.0.0
+title: 'Discrete holonomy residual on a declared face (CODE_DEMO).  # What this is
+  (only this)  Given a **declared** finite c...'
+kind: rust_file_contract
+status: active
+crate: omega_majorana
+file: crates_rs/omega_majorana/src/holonomy.rs
+module: holonomy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_majorana
+  module: holonomy
+  file: crates_rs/omega_majorana/src/holonomy.rs
+symbols:
+- HolonomyReceiptGf2
+- HolonomyReceiptCyclotomic
+- face_holonomy_residual_gf2
+- holonomy_receipt_gf2
+- gauge_transform_gf2
+- face_edge_support
+- holonomy_receipt_cyclotomic_face0
+- connect_to_schedule_class
+owns:
+- holonomy_receipt_gf2
+- holonomy_receipt_cyclotomic
+- face_holonomy_residual_gf2
+- gauge_transform_gf2
+- face_edge_support
+- holonomy_receipt_cyclotomic_face0
+- connect_to_schedule_class
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

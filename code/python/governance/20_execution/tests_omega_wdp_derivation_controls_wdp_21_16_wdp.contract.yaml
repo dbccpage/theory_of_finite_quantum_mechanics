@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_21_16_wdp:v1.0.0
+title: 'Exact rational and F2 witness for `WDP-21-16-WDP` (`derivation.md`).  Verifies:
+  1. Packet L: 4x4 rational Bell densit...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_21_16_wdp.rs
+module: omega_wdp::derivation_controls::wdp_21_16_wdp
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_21_16_wdp
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_21_16_wdp.rs
+symbols:
+- Frac
+- Mat4
+- trace_product
+- Witness
+- witness
+- reject_packet_conjunction_or_lr_adapter
+owns:
+- frac
+- mat4
+- trace_product
+- witness
+- reject_packet_conjunction_or_lr_adapter
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

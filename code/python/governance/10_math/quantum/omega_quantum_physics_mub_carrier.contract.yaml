@@ -1,0 +1,36 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:mub_carrier:v1.0.0
+title: Clean-room carrier declarations for Omega-native MUB work.
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/mub/carrier.rs
+module: mub::carrier
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: mub::carrier
+  file: crates_rs/omega_quantum_physics/src/mub/carrier.rs
+symbols:
+- MubTargetScope
+- MubCarrierStatus
+- OmegaMubCarrier
+- pinned_t0_projector_carrier
+- full_mub6_carrier_request
+- mub10_carrier_request
+- general_mub_n_carrier_request
+owns:
+- mub_target_scope
+- mub_carrier_status
+- omega_mub_carrier
+- pinned_t0_projector_carrier
+- full_mub6_carrier_request
+- mub10_carrier_request
+- general_mub_n_carrier_request
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

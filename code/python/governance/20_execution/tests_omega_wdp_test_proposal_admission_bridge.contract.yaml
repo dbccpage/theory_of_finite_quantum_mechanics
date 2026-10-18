@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_test_proposal_admission_bridge:v1.0.0
+title: Test Proposal Admission Bridge Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/test_proposal_admission_bridge.rs
+module: omega_wdp::test_proposal_admission_bridge
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::test_proposal_admission_bridge
+  file: crates_rs/tests/omega_wdp/test_proposal_admission_bridge.rs
+symbols: []
+owns:
+- omega_wdp_test_proposal_admission_bridge
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_state_coda8_import_oracle_firewall:v1.0.0
+title: Coda8 Import Oracle Firewall Module
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_state/coda8_import_oracle_firewall.rs
+module: omega_state::coda8_import_oracle_firewall
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_state::coda8_import_oracle_firewall
+  file: crates_rs/tests/omega_state/coda8_import_oracle_firewall.rs
+symbols: []
+owns:
+- omega_state_coda8_import_oracle_firewall
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

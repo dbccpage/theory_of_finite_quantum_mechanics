@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:pauli_spin_statistics_graph:v1.0.0
+title: 'QM-223: Identical particles, Pauli exclusion, topological spin-statistics
+  on finite graphs (`Conf_2(G)`), Jordan-Wign...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/pauli_spin_statistics_graph.rs
+module: pauli_spin_statistics_graph
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: pauli_spin_statistics_graph
+  file: crates_rs/omega_quantum_physics/src/pauli_spin_statistics_graph.rs
+symbols:
+- SpinStatisticsError
+- Conf2GraphReport
+- analyze_conf2_graph
+- two_particle_slater_and_permanent
+- orbital_slater_or_permanent
+- verify_two_mode_jordan_wigner_car
+- pauli_shell_capacity
+- madelung_noble_gas_closures
+- Qm223SpinStatisticsCertificate
+- verify_qm223_spin_statistics_graph
+owns:
+- spin_statistics_error
+- conf2_graph_report
+- analyze_conf2_graph
+- two_particle_slater_and_permanent
+- orbital_slater_or_permanent
+- verify_two_mode_jordan_wigner_car
+- pauli_shell_capacity
+- madelung_noble_gas_closures
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

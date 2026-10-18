@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:research_loop_response_schema:v1.0.0
+title: A bounded JSON Schema 2020-12 validator for model responses.  It covers the
+  keywords the research packets' response s...
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/research_loop/response_schema.rs
+module: research_loop::response_schema
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: research_loop::response_schema
+  file: crates_rs/omega_woland/src/research_loop/response_schema.rs
+symbols:
+- Violation
+- ResponseSchema
+- compile
+- validate
+owns:
+- violation
+- response_schema
+- compile
+- validate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

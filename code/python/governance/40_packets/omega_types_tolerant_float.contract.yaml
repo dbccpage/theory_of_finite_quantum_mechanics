@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:tolerant_float:v1.0.0
+title: Tolerant Float Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/tolerant_float.rs
+module: tolerant_float
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: tolerant_float
+  file: crates_rs/omega_types/src/tolerant_float.rs
+symbols:
+- TolerantFloat
+- TolerantFloatError
+- new
+- bounded
+- positive
+- non_negative
+- value
+- epsilon
+- tolerant_eq
+- is_converged
+owns:
+- tolerant_float
+- tolerant_float_error
+- new
+- bounded
+- positive
+- non_negative
+- value
+- epsilon
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

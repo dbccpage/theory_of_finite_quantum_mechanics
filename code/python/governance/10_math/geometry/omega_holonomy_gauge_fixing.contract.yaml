@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_holonomy:gauge_fixing:v1.0.0
+title: Gauge fixing on a spanning forest, pure-gauge decisions, holonomy verdicts
+  and the count of flat gauge classes with v...
+kind: rust_file_contract
+status: active
+crate: omega_holonomy
+file: crates_rs/omega_holonomy/src/gauge_fixing.rs
+module: gauge_fixing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_holonomy
+  module: gauge_fixing
+  file: crates_rs/omega_holonomy/src/gauge_fixing.rs
+symbols:
+- cycle_rank
+- EdgeConnection
+- new
+- from_scalars
+- trivial
+- pure_gauge
+- from_discrete_connection
+- to_discrete_connection
+- dim
+- edge_count
+- value
+- step
+- walk
+- loop_holonomy
+- gauge_transform
+- covariant_difference_matrix
+- connection_laplacian
+- face_holonomy
+- FundamentalCycle
+- HolonomyWitness
+- PureGaugeVerdict
+- TreeGauge
+- gauge
+- gauge_map
+- transport_from_root
+- residual
+- residual_value
+- is_tree_edge
+- tree_edges
+- root_of
+owns:
+- cycle_rank
+- edge_connection
+- new
+- from_scalars
+- trivial
+- pure_gauge
+- from_discrete_connection
+- to_discrete_connection
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

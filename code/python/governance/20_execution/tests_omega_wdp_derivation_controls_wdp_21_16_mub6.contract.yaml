@@ -1,0 +1,28 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_wdp_21_16_mub6:v1.0.0
+title: 'Exact witness for the four finite carriers in `derivation.md` for `WDP-21-16-MUB6`.  Computes:
+  1. Recorded Tao `phase...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_wdp/derivation_controls/wdp_21_16_mub6.rs
+module: omega_wdp::derivation_controls::wdp_21_16_mub6
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_wdp::derivation_controls::wdp_21_16_mub6
+  file: crates_rs/tests/omega_wdp/derivation_controls/wdp_21_16_mub6.rs
+symbols:
+- Witness
+- witness
+- reject_moduli_phi1_coverage_claim
+owns:
+- witness
+- reject_moduli_phi1_coverage_claim
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

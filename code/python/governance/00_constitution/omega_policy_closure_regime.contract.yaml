@@ -1,0 +1,39 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_policy:closure_regime:v1.0.0
+title: '# Display-Only Closure Regime  This module provides a display-only view of
+  the exact finite obstruction trichotomy.  ...'
+kind: rust_file_contract
+status: active
+crate: omega_policy
+file: crates_rs/omega_policy/src/closure_regime.rs
+module: closure_regime
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_policy
+  module: closure_regime
+  file: crates_rs/omega_policy/src/closure_regime.rs
+symbols:
+- ClosureRegime
+- from_certified
+- ClosureComparisonMode
+- ClosureRegimeError
+- ClosureRegimeDeclaration
+- try_new
+- admit_exact_trichotomy
+- assert_replay_identity
+owns:
+- closure_regime
+- from_certified
+- closure_comparison_mode
+- closure_regime_error
+- closure_regime_declaration
+- try_new
+- admit_exact_trichotomy
+- assert_replay_identity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_general_relativity:certified_authority_fence:v1.0.0
+title: The PROVED/GlobalGreen fence, discharged structurally.  A carrier in this crate
+  cannot mint authority. `CertifiedAuth...
+kind: rust_file_contract
+status: active
+crate: omega_general_relativity
+file: crates_rs/omega_general_relativity/src/certified_authority_fence.rs
+module: certified_authority_fence
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_general_relativity
+  module: certified_authority_fence
+  file: crates_rs/omega_general_relativity/src/certified_authority_fence.rs
+symbols: []
+owns:
+- certified_authority_fence
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

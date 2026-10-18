@@ -1,0 +1,25 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:invoke_ports:v1.0.0
+title: 'Explicit host effects: provider, filesystem, Woland and subsystem adapter
+  dispatch.'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/invoke/ports.rs
+module: invoke::ports
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: invoke::ports
+  file: crates_rs/omega_symbol_game/src/invoke/ports.rs
+symbols:
+- dispatch
+owns:
+- dispatch
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

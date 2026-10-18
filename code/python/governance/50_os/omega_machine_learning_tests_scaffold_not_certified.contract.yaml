@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_machine_learning:tests_scaffold_not_certified:v1.0.0
+title: Scaffold Not Certified Module
+kind: rust_test_contract
+status: active
+crate: omega_machine_learning
+file: crates_rs/omega_machine_learning/tests/scaffold_not_certified.rs
+module: tests::scaffold_not_certified
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_machine_learning
+  module: tests::scaffold_not_certified
+  file: crates_rs/omega_machine_learning/tests/scaffold_not_certified.rs
+symbols: []
+owns:
+- tests_scaffold_not_certified
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

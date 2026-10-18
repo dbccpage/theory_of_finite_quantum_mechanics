@@ -1,0 +1,27 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:sql_normal_form:v1.0.0
+title: WDP retains declared headings, targets and instances; FD mathematics has its
+  owner.
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/sql_normal_form.rs
+module: sql_normal_form
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: sql_normal_form
+  file: crates_rs/omega_wdp/src/sql_normal_form.rs
+symbols:
+- DeclaredSetDecomposition
+- evaluate
+owns:
+- declared_set_decomposition
+- evaluate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

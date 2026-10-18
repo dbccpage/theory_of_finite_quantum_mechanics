@@ -1,0 +1,43 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:observer_site:v1.0.0
+title: Constrained finite observer presentations with coherent report transports.  A
+  context carries admissible pointwise re...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/observer_site.rs
+module: observer_site
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: observer_site
+  file: crates_rs/omega_wdp/src/observer_site.rs
+symbols:
+- ObserverReport
+- ObserverPresentation
+- ConstrainedObserverSite
+- ObserverSiteError
+- validate
+- ConstraintGluingObstruction
+- ObserverDescentReceipt
+- solve_constrained_observer_descent
+- verify_constrained_observer_descent
+- ObserverCoverClassification
+- classify_observer_cover
+- verify_observer_cover_classification
+owns:
+- observer_report
+- observer_presentation
+- constrained_observer_site
+- observer_site_error
+- validate
+- constraint_gluing_obstruction
+- observer_descent_receipt
+- solve_constrained_observer_descent
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

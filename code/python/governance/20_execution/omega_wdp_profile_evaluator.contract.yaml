@@ -1,0 +1,53 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_wdp:profile_evaluator:v1.0.0
+title: CH20 finite-table evaluator and model-preserving profile transport.  Boolean
+  tables are declared semantics, not physi...
+kind: rust_file_contract
+status: active
+crate: omega_wdp
+file: crates_rs/omega_wdp/src/profile_evaluator.rs
+module: profile_evaluator
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_wdp
+  module: profile_evaluator
+  file: crates_rs/omega_wdp/src/profile_evaluator.rs
+symbols:
+- FiniteProfile
+- new
+- table
+- admitted
+- refused
+- budget
+- verify_evidence
+- status_guards
+- evaluate
+- evaluate_with_receipt
+- verify_receipt
+- TableEvidence
+- ProfileStatus
+- ProfileEvaluationReceipt
+- recompute_digest
+- ProfileTransport
+- source
+- target
+- transport_evidence
+- replay_target
+- verify_target_replay
+- TransportEvaluationReceipt
+owns:
+- finite_profile
+- new
+- table
+- admitted
+- refused
+- budget
+- verify_evidence
+- status_guards
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

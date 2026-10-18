@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:interleaving_distance:v1.0.0
+title: 'Interleaving distance shell (multi-parameter / zigzag).  AuthorityEffect:
+  None. Best-effort shell for computational t...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/interleaving_distance.rs
+module: interleaving_distance
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: interleaving_distance
+  file: crates_rs/omega_homology/src/interleaving_distance.rs
+symbols:
+- InterleavingDistance
+- new
+- with_note
+- validate_shell
+owns:
+- interleaving_distance
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

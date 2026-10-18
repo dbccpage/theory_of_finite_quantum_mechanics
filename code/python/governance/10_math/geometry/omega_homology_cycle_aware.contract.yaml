@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:cycle_aware:v1.0.0
+title: Cycle Aware Module
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/cycle_aware.rs
+module: cycle_aware
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: cycle_aware
+  file: crates_rs/omega_homology/src/cycle_aware.rs
+symbols:
+- XiWitnessError
+- XiWitness
+- try_from_distortions
+- is_valid
+- is_coherent
+- max_distortion
+- try_compute_xi_witness
+- XiDiagnosticError
+- XiDiagnostic
+- is_valid_for_edge_count
+- XiDiagnosticFunctional
+- CorrectionStrategy
+- CycleAwareConfig
+- validate
+- CycleCorrectableState
+- apply_correction
+owns:
+- xi_witness_error
+- xi_witness
+- try_from_distortions
+- is_valid
+- is_coherent
+- max_distortion
+- try_compute_xi_witness
+- xi_diagnostic_error
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

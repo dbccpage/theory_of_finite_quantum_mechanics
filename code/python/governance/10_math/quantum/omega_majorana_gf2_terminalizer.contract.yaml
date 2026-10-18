@@ -1,0 +1,48 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_majorana:gf2_terminalizer:v1.0.0
+title: Majorana GF(2) parity **diagnostic classifier / receipt**, and elements of
+  the cyclotomic ring $\mathbb{Z}[\zeta_{16}...
+kind: rust_file_contract
+status: active
+crate: omega_majorana
+file: crates_rs/omega_majorana/src/gf2_terminalizer.rs
+module: gf2_terminalizer
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_majorana
+  module: gf2_terminalizer
+  file: crates_rs/omega_majorana/src/gf2_terminalizer.rs
+symbols:
+- GF2ScheduleStatus
+- GF2Matrix
+- zeros
+- from_data
+- matmul
+- is_zero
+- rref
+- Gf2ScheduleReceipt
+- Gf2CocycleClassifier
+- verify_boundary
+- classify
+- Cyclotomic16Element
+- zero
+- one
+- from_scalar
+- checked_mul
+- zeta
+owns:
+- g_f2_schedule_status
+- g_f2_matrix
+- zeros
+- from_data
+- matmul
+- is_zero
+- rref
+- gf2_schedule_receipt
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

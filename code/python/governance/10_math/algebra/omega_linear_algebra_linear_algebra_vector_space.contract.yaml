@@ -1,0 +1,54 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:linear_algebra_vector_space:v1.0.0
+title: Vector Space Module
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/linear_algebra/vector_space.rs
+module: linear_algebra::vector_space
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: linear_algebra::vector_space
+  file: crates_rs/omega_linear_algebra/src/linear_algebra/vector_space.rs
+symbols:
+- VectorSpaceError
+- FiniteVectorSpace
+- new
+- dimension
+- matches_coordinate_dimension
+- checked_against_coordinates
+- matches_basis_dimension
+- checked_against_basis
+- CoordinateTuple
+- coordinates
+- coordinate_dimension
+- into_coordinates
+- BasisLabeledVector
+- new_checked
+- basis
+- into_certified_parts
+- new_finite_checked
+- checked_dot
+- checked_norm_sq
+- checked_coordinate_dot_same_basis
+- VectorSpace
+- FiniteDimensionalVectorSpace
+- VectorElement
+- InnerProduct
+owns:
+- vector_space_error
+- finite_vector_space
+- new
+- dimension
+- matches_coordinate_dimension
+- checked_against_coordinates
+- matches_basis_dimension
+- checked_against_basis
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

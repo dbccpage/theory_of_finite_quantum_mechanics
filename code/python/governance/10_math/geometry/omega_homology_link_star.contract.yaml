@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_homology:link_star:v1.0.0
+title: 'Link and star of a simplex in a complex.  AuthorityEffect: None. Best-effort
+  shell for computational topology. Not PR...'
+kind: rust_file_contract
+status: active
+crate: omega_homology
+file: crates_rs/omega_homology/src/link_star.rs
+module: link_star
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_homology
+  module: link_star
+  file: crates_rs/omega_homology/src/link_star.rs
+symbols:
+- LinkStar
+- new
+- with_note
+- validate_shell
+owns:
+- link_star
+- new
+- with_note
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

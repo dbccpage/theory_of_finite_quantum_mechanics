@@ -1,0 +1,54 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_solvers:data_cochain_packet:v1.0.0
+title: Finite cochain packets on declared oriented 2-complexes.  A packet is a finite
+  oriented cell complex ([`omega_holonom...
+kind: rust_file_contract
+status: active
+crate: omega_solvers
+file: crates_rs/omega_solvers/src/data_cochain_packet.rs
+module: data_cochain_packet
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_solvers
+  module: data_cochain_packet
+  file: crates_rs/omega_solvers/src/data_cochain_packet.rs
+symbols:
+- CochainPacketError
+- CochainDimensions
+- FiniteCochainPacket
+- new
+- with_unit_weights
+- build_complex
+- complex
+- weights
+- d0
+- d1
+- vertex_count
+- edge_count
+- face_count
+- primitive_difference
+- face_coboundary
+- raw_mass
+- quotient_mass
+- closure_defect
+- classify
+- dimensions
+- certified_closure_defect
+- certified_closure_defect_with_limits
+- certified_trichotomy
+owns:
+- cochain_packet_error
+- cochain_dimensions
+- finite_cochain_packet
+- new
+- with_unit_weights
+- build_complex
+- complex
+- weights
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

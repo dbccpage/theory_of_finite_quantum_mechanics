@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_intelligence:lib:v1.0.0
+title: Shared native owner for intelligence intake, transfer, certification, and retention
+  policy. Mathematical verification...
+kind: rust_file_contract
+status: active
+crate: omega_intelligence
+file: crates_rs/omega_intelligence/src/lib.rs
+module: lib
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_intelligence
+  module: lib
+  file: crates_rs/omega_intelligence/src/lib.rs
+symbols: []
+owns:
+- lib
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

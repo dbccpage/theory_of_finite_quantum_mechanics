@@ -1,0 +1,26 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:sign_cancellation:v1.0.0
+title: Sign Cancellation Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/sign_cancellation.rs
+module: sign_cancellation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: sign_cancellation
+  file: crates_rs/omega_types/src/sign_cancellation.rs
+symbols:
+- SignCancellationPattern
+- SignCancellationSignature
+owns:
+- sign_cancellation_pattern
+- sign_cancellation_signature
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

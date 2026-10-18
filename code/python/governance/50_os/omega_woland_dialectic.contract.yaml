@@ -1,0 +1,50 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_woland:dialectic:v1.0.0
+title: 'Seven-act dialectic kernel. Depth is capped at 5. AuthorityEffect: None. This
+  is not the live bout runner in `complet...'
+kind: rust_file_contract
+status: active
+crate: omega_woland
+file: crates_rs/omega_woland/src/dialectic.rs
+module: dialectic
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_woland
+  module: dialectic
+  file: crates_rs/omega_woland/src/dialectic.rs
+symbols:
+- Rational
+- Act
+- label
+- parse
+- EvidenceReceipt
+- DialecticTurn
+- WolandState
+- canonical_bytes
+- TurnProposal
+- DialecticBody
+- WolandTurnEngine
+- open
+- nest
+- state
+- step
+- dialectic_bytes
+- receipt_bytes
+- parse_ratio
+- ratio_text
+owns:
+- rational
+- act
+- label
+- parse
+- evidence_receipt
+- dialectic_turn
+- woland_state
+- canonical_bytes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

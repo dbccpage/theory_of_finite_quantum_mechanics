@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:linear_algebra_homology_basis:v1.0.0
+title: Homology Basis Module
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/linear_algebra/homology_basis.rs
+module: linear_algebra::homology_basis
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: linear_algebra::homology_basis
+  file: crates_rs/omega_linear_algebra/src/linear_algebra/homology_basis.rs
+symbols:
+- HomologyBasisError
+- HomologyBasisWitness
+- degree
+- boundary_k_shape
+- boundary_k_plus_1_shape
+- cycle_rank
+- boundary_rank
+- homology_rank
+- provenance
+- HomologyBasis
+- ambient_dimension
+- representatives
+- boundary_basis
+- witness
+- homology_basis
+owns:
+- homology_basis_error
+- homology_basis_witness
+- degree
+- boundary_k_shape
+- boundary_k_plus_1_shape
+- cycle_rank
+- boundary_rank
+- homology_rank
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

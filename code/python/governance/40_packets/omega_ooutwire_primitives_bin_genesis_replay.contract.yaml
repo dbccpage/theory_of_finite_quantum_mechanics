@@ -1,0 +1,23 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_ooutwire_primitives:bin_genesis_replay:v1.0.0
+title: Line-oriented paper reproduction interface, with no registry dependencies.
+kind: rust_file_contract
+status: active
+crate: omega_ooutwire_primitives
+file: crates_rs/omega_ooutwire_primitives/src/bin/genesis_replay.rs
+module: bin::genesis_replay
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_ooutwire_primitives
+  module: bin::genesis_replay
+  file: crates_rs/omega_ooutwire_primitives/src/bin/genesis_replay.rs
+symbols: []
+owns:
+- bin_genesis_replay
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

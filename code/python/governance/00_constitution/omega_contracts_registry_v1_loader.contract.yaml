@@ -1,0 +1,37 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:registry_v1_loader:v1.0.0
+title: omega.contract.v1 loader (spec §4, §7).  Walks `*.contract.yaml`, selects files
+  whose `schema_version` is `omega.cont...
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/registry/v1_loader.rs
+module: registry::v1_loader
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: registry::v1_loader
+  file: crates_rs/omega_contracts/src/registry/v1_loader.rs
+symbols:
+- V1LoadReport
+- NonV1Document
+- DocumentSchema
+- classify_contract_document
+- V1LoadError
+- verify_contract_projection
+- load_v1_dir
+owns:
+- v1_load_report
+- non_v1_document
+- document_schema
+- classify_contract_document
+- v1_load_error
+- verify_contract_projection
+- load_v1_dir
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

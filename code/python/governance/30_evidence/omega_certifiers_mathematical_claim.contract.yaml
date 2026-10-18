@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_certifiers:mathematical_claim:v1.0.0
+title: Static catalog of paper-claim records.  `MASTER_TRACEABILITY_REGISTRY` is the
+  only catalog. It records package ids, c...
+kind: rust_file_contract
+status: active
+crate: omega_certifiers
+file: crates_rs/omega_certifiers/src/mathematical_claim.rs
+module: mathematical_claim
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_certifiers
+  module: mathematical_claim
+  file: crates_rs/omega_certifiers/src/mathematical_claim.rs
+symbols:
+- MathematicalClaim
+- all_registered_claims
+- claims_for_package
+- claims_for_crate
+- registered_packages
+- verify_registry_integrity
+owns:
+- mathematical_claim
+- all_registered_claims
+- claims_for_package
+- claims_for_crate
+- registered_packages
+- verify_registry_integrity
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

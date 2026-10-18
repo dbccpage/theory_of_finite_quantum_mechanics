@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:auto_p:compiler_streaming_compiler:v1.0.0
+title: Streaming Compiler Module
+kind: rust_file_contract
+status: active
+crate: auto_p
+file: crates_rs/auto_p/src/compiler/streaming_compiler.rs
+module: compiler::streaming_compiler
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: auto_p
+  module: compiler::streaming_compiler
+  file: crates_rs/auto_p/src/compiler/streaming_compiler.rs
+symbols:
+- ComputationalManifoldRegion
+- TopologyState
+- ChandrasekharLimit
+- evaluate_wittgenstein_horizon
+- PhysicsTask
+- Verdict
+- VerdictType
+- evaluate
+- LogicSubPoset
+- PTIRFrame
+- from_ptir
+- StreamingResult
+- compile_target_to_task
+- evaluate_pro_finite_stream
+owns:
+- computational_manifold_region
+- topology_state
+- chandrasekhar_limit
+- evaluate_wittgenstein_horizon
+- physics_task
+- verdict
+- verdict_type
+- evaluate
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

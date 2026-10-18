@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_number_theory:cyclotomic_field:v1.0.0
+title: Cyclotomic number fields `Q(zeta_n)` of any conductor `1 <= n <= MAX_CONDUCTOR`,
+  exact.  An element is stored in the ...
+kind: rust_file_contract
+status: active
+crate: omega_number_theory
+file: crates_rs/omega_number_theory/src/cyclotomic_field.rs
+module: cyclotomic_field
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_number_theory
+  module: cyclotomic_field
+  file: crates_rs/omega_number_theory/src/cyclotomic_field.rs
+symbols:
+- CyclotomicError
+- min_poly_of_2cos
+- normalized_conductor
+- contains_cyclotomic_field
+- compositum_conductor
+- intersection_conductor
+- real_subfield_degree
+- embed_cyclotomic
+- CyclotomicNumber
+- from_coefficients
+- from_polynomial
+- to_polynomial
+- zero
+- one
+- from_rational
+- zeta
+- conductor
+- degree
+- coefficients
+- is_zero
+- is_rational
+- as_rational
+- add
+- sub
+- neg
+- scale
+- mul
+- pow
+- inverse
+- checked_div
+owns:
+- cyclotomic_error
+- min_poly_of_2cos
+- normalized_conductor
+- contains_cyclotomic_field
+- compositum_conductor
+- intersection_conductor
+- real_subfield_degree
+- embed_cyclotomic
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

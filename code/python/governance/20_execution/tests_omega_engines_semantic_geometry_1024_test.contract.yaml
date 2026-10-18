@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:tests:omega_engines_semantic_geometry_1024_test:v1.0.0
+title: 'Tests for the 1024-Dimensional Quantum Semantic Geometry Engine.  Validates:
+  1. 1024-dim state construction, entropy,...'
+kind: rust_test_contract
+status: active
+crate: tests
+file: crates_rs/tests/omega_engines/semantic_geometry_1024_test.rs
+module: omega_engines::semantic_geometry_1024_test
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: tests
+  module: omega_engines::semantic_geometry_1024_test
+  file: crates_rs/tests/omega_engines/semantic_geometry_1024_test.rs
+symbols: []
+owns:
+- omega_engines_semantic_geometry_1024_test
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

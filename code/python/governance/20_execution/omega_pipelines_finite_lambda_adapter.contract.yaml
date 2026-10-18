@@ -1,0 +1,40 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_pipelines:finite_lambda_adapter:v1.0.0
+title: Exact CODA/CODA_GTLA adapter for a checked finite-Lambda ledger.
+kind: rust_file_contract
+status: active
+crate: omega_pipelines
+file: crates_rs/omega_pipelines/src/finite_lambda_adapter.rs
+module: finite_lambda_adapter
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_pipelines
+  module: finite_lambda_adapter
+  file: crates_rs/omega_pipelines/src/finite_lambda_adapter.rs
+symbols:
+- FiniteLambdaTerminal
+- FiniteLambdaAdapterError
+- terminal
+- FiniteLambdaEvaluation
+- ledger_hash
+- evaluation
+- authority_effect
+- finite_lambda_ledger_bytes
+- finite_lambda_ledger_hash
+- evaluate_finite_lambda_ledger
+owns:
+- finite_lambda_terminal
+- finite_lambda_adapter_error
+- terminal
+- finite_lambda_evaluation
+- ledger_hash
+- evaluation
+- authority_effect
+- finite_lambda_ledger_bytes
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_mub:bin_mub_tao_confluence_verifier:v1.0.0
+title: 'Emit scoped, deterministic diagnostics. See research/mub6_frontier_synthesis.md.
+  AuthorityEffect: None.'
+kind: rust_file_contract
+status: active
+crate: omega_mub
+file: crates_rs/omega_mub/src/bin/mub_tao_confluence_verifier.rs
+module: bin::mub_tao_confluence_verifier
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_mub
+  module: bin::mub_tao_confluence_verifier
+  file: crates_rs/omega_mub/src/bin/mub_tao_confluence_verifier.rs
+symbols: []
+owns:
+- bin_mub_tao_confluence_verifier
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

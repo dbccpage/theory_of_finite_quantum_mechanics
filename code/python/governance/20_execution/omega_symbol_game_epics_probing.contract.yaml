@@ -1,0 +1,61 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_symbol_game:epics_probing:v1.0.0
+title: 'Prompt topology probing: discrete curvature, exactly.  `EPIC-OE-SYMGAM-013`
+  asks for local curvature, defect cartogra...'
+kind: rust_file_contract
+status: active
+crate: omega_symbol_game
+file: crates_rs/omega_symbol_game/src/epics/probing.rs
+module: epics::probing
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_symbol_game
+  module: epics::probing
+  file: crates_rs/omega_symbol_game/src/epics/probing.rs
+symbols:
+- ProbeRefusal
+- TokenDistance
+- name
+- hamming
+- levenshtein
+- PromptGraph
+- build
+- order
+- distance_kind
+- radius
+- prompts
+- degree
+- neighbours
+- is_edge
+- edges
+- size
+- triangles_on
+- CurvatureKind
+- forman_curvature
+- CurvatureProfile
+- curvature_profile
+- DefectCartography
+- density
+- map_defects
+- laplacian
+- characteristic_polynomial
+- eigenvalues
+- CurvatureReceiptV1
+- probe_receipt
+- render_ascii
+owns:
+- probe_refusal
+- token_distance
+- name
+- hamming
+- levenshtein
+- prompt_graph
+- build
+- order
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,34 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:category:v1.0.0
+title: Identifier-level category objects.
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/category.rs
+module: category
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: category
+  file: crates_rs/omega_types/src/category.rs
+symbols:
+- ObjId
+- MorId
+- Obj
+- new
+- Mor
+- id
+owns:
+- obj_id
+- mor_id
+- obj
+- new
+- mor
+- id
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

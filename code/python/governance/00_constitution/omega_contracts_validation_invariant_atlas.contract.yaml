@@ -1,0 +1,55 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:validation_invariant_atlas:v1.0.0
+title: Invariant Atlas Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/validation/invariant_atlas.rs
+module: validation::invariant_atlas
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: validation::invariant_atlas
+  file: crates_rs/omega_contracts/src/validation/invariant_atlas.rs
+symbols:
+- InvariantAtlasStoreError
+- InvariantAtlasEntry
+- new
+- InvariantAtlasStore
+- canonical
+- from_entries
+- insert
+- get
+- contains
+- len
+- is_empty
+- entries
+- from_yaml_str
+- to_yaml_string
+- load_yaml
+- save_yaml
+- SchemaGate
+- atlas
+- validate_packet
+- validate_transition
+- admit_packet
+- admit_transition
+- SchemaGateWitness
+- SchemaGateViolationKind
+- SchemaGateViolation
+owns:
+- invariant_atlas_store_error
+- invariant_atlas_entry
+- new
+- invariant_atlas_store
+- canonical
+- from_entries
+- insert
+- get
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

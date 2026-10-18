@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_epistemic_immune_system:regulation:v1.0.0
+title: 'Exact native false-discovery policy, distinct from Python Signal-1 toxicity.  AuthorityEffect:
+  None.  FP/(TP+FP) is a...'
+kind: rust_file_contract
+status: active
+crate: omega_epistemic_immune_system
+file: crates_rs/omega_epistemic_immune_system/src/regulation.rs
+module: regulation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_epistemic_immune_system
+  module: regulation
+  file: crates_rs/omega_epistemic_immune_system/src/regulation.rs
+symbols:
+- DetectorTelemetry
+- TregSupervisor
+- try_new
+- max_false_discovery_proportion
+- observed_false_discovery_proportion
+- review
+owns:
+- detector_telemetry
+- treg_supervisor
+- try_new
+- max_false_discovery_proportion
+- observed_false_discovery_proportion
+- review
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

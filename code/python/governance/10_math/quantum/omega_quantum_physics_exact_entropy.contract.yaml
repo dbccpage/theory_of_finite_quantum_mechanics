@@ -1,0 +1,45 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:exact_entropy:v1.0.0
+title: Exact entropy of a declared rational quantum spectrum with multiplicities.
+  Factorization, logarithm forms and real en...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/exact_entropy.rs
+module: exact_entropy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: exact_entropy
+  file: crates_rs/omega_quantum_physics/src/exact_entropy.rs
+symbols:
+- SpectrumError
+- RationalSpectrum
+- try_new
+- entries
+- dimension
+- is_pure
+- power_trace
+- log_reduction
+- LogReduction
+- form
+- enclosure
+- CitedAnchor
+- EntropyClass
+- classify
+owns:
+- spectrum_error
+- rational_spectrum
+- try_new
+- entries
+- dimension
+- is_pure
+- power_trace
+- log_reduction
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

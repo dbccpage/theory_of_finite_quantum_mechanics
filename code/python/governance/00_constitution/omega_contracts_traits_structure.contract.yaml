@@ -1,0 +1,46 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:traits_structure:v1.0.0
+title: Structure Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/traits/structure.rs
+module: traits::structure
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: traits::structure
+  file: crates_rs/omega_contracts/src/traits/structure.rs
+symbols:
+- CarrierId
+- ObservationId
+- ObstructionId
+- CarrierBound
+- QuotientProjection
+- QuotientProjectionReport
+- new
+- ObservableSource
+- ObservationEnvelope
+- ObstructionSignatureProvider
+- ObstructionReport
+- HasTensorShape
+- Boundary
+- CrossingType
+- BoundarySpec
+- BoundaryRefusal
+owns:
+- carrier_id
+- observation_id
+- obstruction_id
+- carrier_bound
+- quotient_projection
+- quotient_projection_report
+- new
+- observable_source
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

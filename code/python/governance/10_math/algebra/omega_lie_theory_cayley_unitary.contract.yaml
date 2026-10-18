@@ -1,0 +1,35 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_lie_theory:cayley_unitary:v1.0.0
+title: Exact unitary Cayley charts and their phase-shifted atlas.  C_tau(H)=(I-i tau
+  H)(I+i tau H)^-1 for Hermitian H. The i...
+kind: rust_file_contract
+status: active
+crate: omega_lie_theory
+file: crates_rs/omega_lie_theory/src/cayley_unitary.rs
+module: cayley_unitary
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_lie_theory
+  module: cayley_unitary
+  file: crates_rs/omega_lie_theory/src/cayley_unitary.rs
+symbols:
+- UnitaryCayleyError
+- cayley_unitary
+- cayley_generator
+- phase_chart_generator
+- phase_chart_step
+- compose_generators
+owns:
+- unitary_cayley_error
+- cayley_unitary
+- cayley_generator
+- phase_chart_generator
+- phase_chart_step
+- compose_generators
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

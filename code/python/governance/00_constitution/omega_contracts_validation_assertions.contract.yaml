@@ -1,0 +1,24 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_contracts:validation_assertions:v1.0.0
+title: Assertions Module
+kind: rust_file_contract
+status: active
+crate: omega_contracts
+file: crates_rs/omega_contracts/src/validation/assertions.rs
+module: validation::assertions
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_contracts
+  module: validation::assertions
+  file: crates_rs/omega_contracts/src/validation/assertions.rs
+symbols:
+- assert_validation_artifact_contract
+owns:
+- assert_validation_artifact_contract
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

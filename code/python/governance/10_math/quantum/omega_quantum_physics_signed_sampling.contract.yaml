@@ -1,0 +1,44 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:signed_sampling:v1.0.0
+title: 'Exact real finite signed sums and declared iid sign-mean statistics. AuthorityEffect:
+  None. No sampler, thermal expon...'
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/signed_sampling.rs
+module: signed_sampling
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: signed_sampling
+  file: crates_rs/omega_quantum_physics/src/signed_sampling.rs
+symbols:
+- SignedSamplingError
+- SignedWeightFamily
+- try_new
+- signed_mass
+- absolute_mass
+- average_sign
+- iid_sign_mean_variance
+- iid_relative_variance
+- independent_copies
+- real_symmetric_hamiltonian
+- HamiltonianStepCertificate
+- verify_real_hamiltonian_step
+- finite_transfer_partition
+owns:
+- signed_sampling_error
+- signed_weight_family
+- try_new
+- signed_mass
+- absolute_mass
+- average_sign
+- iid_sign_mean_variance
+- iid_relative_variance
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

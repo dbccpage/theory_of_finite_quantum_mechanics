@@ -1,0 +1,41 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_types:analysis_kernel:v1.0.0
+title: Analysis Kernel Module
+kind: rust_file_contract
+status: active
+crate: omega_types
+file: crates_rs/omega_types/src/analysis_kernel.rs
+module: analysis_kernel
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_types
+  module: analysis_kernel
+  file: crates_rs/omega_types/src/analysis_kernel.rs
+symbols:
+- GrowthOrder
+- SeriesComparisonInput
+- SeriesComparisonResult
+- AlternatingSeriesInput
+- AlternatingSeriesResult
+- ScalarSamples1D
+- DerivativeSamples1D
+- ScalarFieldJetInput
+- ScalarFieldJet
+- VectorFieldJetInput
+- JacobianMatrix
+owns:
+- growth_order
+- series_comparison_input
+- series_comparison_result
+- alternating_series_input
+- alternating_series_result
+- scalar_samples1_d
+- derivative_samples1_d
+- scalar_field_jet_input
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

@@ -1,0 +1,47 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_prompt_civilization:genealogy:v1.0.0
+title: 'Inheritance DAG and Reference Graph.  Enforces: - F-LINEAGE-01: Edges exist
+  only for witnessed causal relations; matc...'
+kind: rust_file_contract
+status: active
+crate: omega_prompt_civilization
+file: crates_rs/omega_prompt_civilization/src/genealogy.rs
+module: genealogy
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_prompt_civilization
+  module: genealogy
+  file: crates_rs/omega_prompt_civilization/src/genealogy.rs
+symbols:
+- GenealogyError
+- InheritanceRelationship
+- InheritanceEdgeV1
+- LineageTree
+- LineageGraphV1
+- GenealogyGraph
+- new
+- add_node
+- has_path
+- add_inheritance_edge
+- add_reference_edge
+- get_parents
+- get_children
+- derive_generation
+- traverse_ancestors
+- traverse_lineage
+owns:
+- genealogy_error
+- inheritance_relationship
+- inheritance_edge_v1
+- lineage_tree
+- lineage_graph_v1
+- genealogy_graph
+- new
+- add_node
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

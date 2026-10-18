@@ -1,0 +1,31 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_category_theory:category_slice_category:v1.0.0
+title: 'slice_category shell for omega_category_theory. AuthorityEffect: None. Not
+  PROVED / GlobalGreen.  C/c (objects over c...'
+kind: rust_file_contract
+status: active
+crate: omega_category_theory
+file: crates_rs/omega_category_theory/src/category/slice_category.rs
+module: category::slice_category
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_category_theory
+  module: category::slice_category
+  file: crates_rs/omega_category_theory/src/category/slice_category.rs
+symbols:
+- SliceCategoryShell
+- new
+- over
+- validate_shell
+owns:
+- slice_category_shell
+- new
+- over
+- validate_shell
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

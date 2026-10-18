@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_linear_algebra:linear_observer_presentation:v1.0.0
+title: 'Exact general linear sensing and its checked repair-quotient strengthening.
+  AuthorityEffect: None. Coefficients are e...'
+kind: rust_file_contract
+status: active
+crate: omega_linear_algebra
+file: crates_rs/omega_linear_algebra/src/linear_observer_presentation.rs
+module: linear_observer_presentation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_linear_algebra
+  module: linear_observer_presentation
+  file: crates_rs/omega_linear_algebra/src/linear_observer_presentation.rs
+symbols:
+- LinearObserverError
+- LinearObserverPresentation
+- try_new
+- report_map
+- repair_map
+- report
+- LinearSensingPresentation
+- RepairBlindspotWitness
+- try_quotient
+- check_repair_blindspot
+- verify_blindspot_witness
+owns:
+- linear_observer_error
+- linear_observer_presentation
+- try_new
+- report_map
+- repair_map
+- report
+- linear_sensing_presentation
+- repair_blindspot_witness
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims

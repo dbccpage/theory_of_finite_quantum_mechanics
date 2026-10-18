@@ -1,0 +1,42 @@
+schema_version: omega.contract.v1
+contract_id: urn:omega:rust:omega_quantum_physics:phase_estimation:v1.0.0
+title: Discrete Quantum Phase Estimation over exact cyclotomic fields and dyadic rationals.  When
+  the phase theta is an exac...
+kind: rust_file_contract
+status: active
+crate: omega_quantum_physics
+file: crates_rs/omega_quantum_physics/src/phase_estimation.rs
+module: phase_estimation
+authority_effect: none
+evidence_ceiling: LocalReplay
+rust_binding:
+  crate: omega_quantum_physics
+  module: phase_estimation
+  file: crates_rs/omega_quantum_physics/src/phase_estimation.rs
+symbols:
+- dyadic_root_of_unity
+- qft_normalization
+- build_unitary_iqft_matrix
+- verify_qft_unitarity
+- DiscretePhaseEstimation
+- run
+- rational_probability
+- verify_all_dyadic_phases
+- PhaseEstimationError
+- RationalPhaseEstimation
+- from_eigenpair
+owns:
+- dyadic_root_of_unity
+- qft_normalization
+- build_unitary_iqft_matrix
+- verify_qft_unitarity
+- discrete_phase_estimation
+- run
+- rational_probability
+- verify_all_dyadic_phases
+relationships:
+  extends:
+  - urn:omega:governance:base_contract:v1.0.0
+does_not_own:
+- authority_promotion
+- unscoped_claims
