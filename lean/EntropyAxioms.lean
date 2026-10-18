@@ -1,45 +1,34 @@
--- AxiomCensus.lean — Axiom Census & Classical Choice Audit
+-- AxiomCensus.lean — purity certificate for the finite entropy carrier
 -- Campaign: C750 Block 01 (Target C750-T571)
 -- AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e).
+-- The finite purity statement below is the whole claim. No transcendence axiom is added.
 
-import C750Definitions
-import C750Reduction
-import C750Purity
+import EntropyDefs
+import EntropyPurity
 
 namespace FiniteQm.C750.B01.AxiomCensus
 
-/-!
-### Axiom Audit Report for Campaign C750 Block 01 Lean 4 Formalization
+open FiniteQm.C750.B01
 
-Target C750-T571 Audit Criteria:
-1. `classical_choice_declarations = 0`.
-2. All axioms strictly contained within kernel whitelist: `{propext, Quot.sound}`.
-3. Zero `sorry` or unproved hypotheses.
--/
+/-- General dimension is certified by a spectrum, not by a boolean flag:
+    the one-hot state in every positive dimension is pure, and the
+    equal two-point state is mixed. -/
+theorem general_d_purity (d : Nat) (hd : 0 < d) :
+    (pureOne d hd).is_pure ∧ mixedHalf.is_mixed :=
+  ⟨pureOne_is_pure d hd, mixedHalf_is_mixed⟩
 
-#print axioms removable_singularity_zero
-#print axioms Reduction.reduction_theorem_vanishing
-#print axioms Reduction.reduction_theorem_nonvanishing
-#print axioms sum_weighted_exps_of_pure
-#print axioms gamma_num_of_pure
-#print axioms Purity.gamma_vanishing_of_pure
-#print axioms Purity.gamma_nonvanishing_of_mixed
-#print axioms Purity.purity_dichotomy_vanishing
-#print axioms Purity.mixed_entropy_is_transcendental
+/-- A pure prime-reduction term has vanishing numerator `G_i = D * b - D * b`. -/
+theorem pure_term_gamma_vanishes (D b : Nat) :
+    gamma_numerator D b [(D, b)] = 0 :=
+  gamma_num_of_pure (IsPureTermList.single D b)
 
-/-- Proof-theoretical certification of Classical.choice census = 0. -/
-def classical_choice_census_count : Nat := 0
+/-- The zero-weight convention contributes nothing to a logarithmic form. -/
+theorem zero_weight_entropy_term (log_val : RatFrac) :
+    (removable_singularity_term 0 log_val).isZero :=
+  removable_singularity_is_zero log_val
 
-theorem classical_choice_is_zero : classical_choice_census_count = 0 := by
-  rfl
-
-/-- Proof-theoretical certification of general dimension d formalization. -/
-def lean_general_d_certified : Bool := true
-
-theorem general_d_is_true : lean_general_d_certified = true := by
-  rfl
-
-#print axioms classical_choice_is_zero
-#print axioms general_d_is_true
+#print axioms general_d_purity
+#print axioms pure_term_gamma_vanishes
+#print axioms zero_weight_entropy_term
 
 end FiniteQm.C750.B01.AxiomCensus

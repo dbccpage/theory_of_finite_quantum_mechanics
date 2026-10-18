@@ -79,8 +79,22 @@ theorem row_linear_dependence_mod2 :
 theorem r0_r1_independent_mod2 :
     (r0.v0 % 2 ≠ r1.v0 % 2 ∨ r0.v1 % 2 ≠ r1.v1 % 2 ∨ r0.v2 % 2 ≠ r1.v2 % 2) := by decide
 
-/-- Exact Schmidt rank is 2^2 = 4. -/
-theorem octahedral_hemisphere_schmidt_rank : (2 : Int) ^ 2 = 4 := by decide
+/-- Minor of the first two rows, used as the rank witness. -/
+def hemisphereMinor : Int :=
+  r0.v1 * r1.v2 - r0.v2 * r1.v1
+
+/-- Rank 2 from a nonzero `F_2` minor, with the third row the sum of the first two.
+    The cut's Schmidt rank is `2` to that power. -/
+def hemisphereSchmidtRank : Nat :=
+  if hemisphereMinor % 2 ≠ 0 then 2 ^ 2 else 0
+
+theorem octahedral_hemisphere_schmidt_rank :
+    hemisphereMinor % 2 = 1 ∧
+      (r0.v0 + r1.v0) % 2 = r2.v0 ∧
+      (r0.v1 + r1.v1) % 2 = r2.v1 ∧
+      (r0.v2 + r1.v2) % 2 = r2.v2 ∧
+      hemisphereSchmidtRank = 4 := by
+  decide
 
 #print axioms p_42_numerator_eval
 #print axioms p_43_numerator_eval

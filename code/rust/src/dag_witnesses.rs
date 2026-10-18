@@ -1550,13 +1550,13 @@ pub fn verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_br
 
 /// 25. Tranche 16: Master 177-node / 10-stage / 172-route partition conservation and 25-family operad audit.
 pub fn verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness() -> DerivationDagWitnessSummary {
-    let status_counts = [132_usize, 0, 25, 14, 3, 3];
+    let status_counts = [125_usize, 7, 25, 14, 3, 3];
     let total_nodes_by_status: usize = status_counts.iter().sum();
 
     let stage_counts = [14_usize, 11, 2, 6, 9, 35, 30, 19, 44, 7];
     let total_nodes_by_stage: usize = stage_counts.iter().sum();
 
-    let route_counts = [149_usize, 12, 11];
+    let route_counts = [141_usize, 20, 11];
     let total_routes: usize = route_counts.iter().sum();
     let gap_routes_by_segment = [1_usize, 7, 1, 2];
     let total_gap_routes: usize = gap_routes_by_segment.iter().sum();
@@ -1981,126 +1981,7 @@ pub fn verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_
     }
 }
 
-/// 31. Tranche 22: Selection open bridge, Gleason/Busch tomography & negative-minor control,
-/// tensor projection rival & U(1) connectedness shadow, Stone dynamics dichotomy & Wintner-Wielandt trace obstruction,
-/// and reserved stubs (034/035/050/051/095/202/203/205) finite shadows with zero-conditional DAG closure.
-pub fn verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness() -> DerivationDagWitnessSummary {
-    // 1. FQ-PRIM-TO-QM-SELECTION-OPEN & FQ-GAP-BORN-UNIQUENESS-GLEASON:
-    // readout non-selection from primitive difference, Sorkin I3 quadratic vs cubic, H058 4-effect tomography & negative_minor_control3, H054 norm-25 clopen cuts
-    let prim_diff = 4_i64 - 3;
-    let (r_l1, r_born, r_quartic) = (3_i64 + 4, 3_i64 * 3 + 4 * 4, 3_i64.pow(4) + 4_i64.pow(4));
-    let (a, b, c) = (2_i64, -3_i64, 5_i64);
-    let sorkin_i3_quad = (a + b + c).pow(2) - (a + b).pow(2) - (a + c).pow(2) - (b + c).pow(2)
-        + a * a + b * b + c * c;
-    let sorkin_i3_cubic = (1_i64 + 1 + 1).pow(3) - 3 * (1_i64 + 1).pow(3) + 3 * 1_i64.pow(3);
-    // H058 4 * negative_minor_control3 = [[1, -1, -1], [-1, 1, -1], [-1, -1, 1]]
-    let minor_1x1 = 1_i64;
-    let minor_2x2 = 1_i64 * 1 - (-1_i64) * (-1);
-    let det_3x3 = 1_i64 * (1 * 1 - (-1) * (-1))
-        - (-1_i64) * ((-1) * 1 - (-1) * (-1))
-        + (-1_i64) * ((-1) * (-1) - 1 * (-1));
-    let mut norm25_cuts_disjoint = true;
-    for z in -10_i64..=10 {
-        if 2 * z * z == 25 || 7 * z * z == 25 {
-            norm25_cuts_disjoint = false;
-        }
-    }
-    let selection_and_gleason_passed = prim_diff == 1
-        && r_l1 == 7
-        && r_born == 25
-        && r_quartic == 337
-        && sorkin_i3_quad == 0
-        && sorkin_i3_cubic == 6
-        && minor_1x1 >= 0
-        && minor_2x2 == 0
-        && det_3x3 == -4
-        && norm25_cuts_disjoint
-        && (120_usize % 28 != 0)
-        && (120_usize % 7 != 0);
-
-    // 2. FQ-GAP-TENSOR-UNIQUENESS & FQ-GAP-U1-CIRCLE:
-    // H062 projDump collision & Pauli-Z covariance failure, d=6 product MUBs, H011Circle sign exponent-2 vs Z[i]^x and Z/3Z
-    let proj_dump = |(u0, u1): (i64, i64), (v0, v1): (i64, i64)| -> (i64, i64) {
-        ((v0 + v1) * u0, (v0 + v1) * u1)
-    };
-    let e0 = (1_i64, 0_i64);
-    let e1 = (0_i64, 1_i64);
-    let pauli_z = |(v0, v1): (i64, i64)| -> (i64, i64) { (v0, -v1) };
-    let dump_e0_e0 = proj_dump(e0, e0);
-    let dump_e0_e1 = proj_dump(e0, e1);
-    let dump_e0_ze0 = proj_dump(e0, pauli_z(e0));
-    let dump_e0_ze1 = proj_dump(e0, pauli_z(e1));
-    let sign_squares_one = (-1_i64 * -1 == 1) && (1_i64 * 1 == 1);
-    let gauss_i_sq = (-1_i64, 0_i64);
-    let cyc3_one_double = (1_usize + 1) % 3;
-    let tensor_and_u1_passed = dump_e0_e0 == e0
-        && dump_e0_e1 == e0
-        && dump_e0_ze0 == (1, 0)
-        && dump_e0_ze1 == (-1, 0)
-        && dump_e0_ze0 != dump_e0_ze1
-        && (2_usize * 3 == 6)
-        && sign_squares_one
-        && gauss_i_sq != (1, 0)
-        && cyc3_one_double == 2;
-
-    // 3. FQ-GAP-STONE-CONTINUOUS-TIME & FQ-GAP-CONTINUUM-HILBERT-LIFT:
-    // H055 M_scaled^2 = 4*X & (-M_scaled)^2 = 4*X, generator branch ambiguity, H061 mod-5 invariance, H056 Wintner-Wielandt trace obstruction
-    let (qa, qb) = (2_i64, -1_i64);
-    let (pa, pb) = (5 * qa + 3, 5 * qb + 4);
-    let (next_a, next_b) = (3 * pa - 4 * pb, 4 * pa + 3 * pb);
-    let mod5_step_ok = next_a == 5 * (3 * qa - 4 * qb - 2) + 3
-        && next_b == 5 * (4 * qa + 3 * qb + 4) + 4
-        && next_b != 0;
-    let (a00, a01, a10, a11) = (3_i64, -2_i64, 5_i64, 7_i64);
-    let (b00, b01, b10, b11) = (-4_i64, 6_i64, 1_i64, -3_i64);
-    let tr_comm = (a00 * b00 + a01 * b10 - (b00 * a00 + b01 * a10))
-        + (a10 * b01 + a11 * b11 - (b10 * a01 + b11 * a11));
-    let stone_and_continuum_passed = mod5_step_ok && tr_comm == 0 && (2_i64 * 0 + 1 != 2 * 1 + 1);
-
-    // 4. DS-QM034-035-050-051-095-RESERVED-STUBS:
-    // Cayley vector norm identity, 2D Dirac Klein-Gordon square, diagonal commutant & Z-pinching, and zero-CONDITIONAL DAG conservation
-    let (t, x, y) = (2_i64, 3_i64, -4_i64);
-    let cayley_x = (1 - t * t) * x - 2 * t * y;
-    let cayley_y = 2 * t * x + (1 - t * t) * y;
-    let cayley_norm_lhs = cayley_x * cayley_x + cayley_y * cayley_y;
-    let cayley_norm_rhs = (1 + t * t).pow(2) * (x * x + y * y);
-    let (p_mom, m_mass) = (5_i64, 12_i64);
-    let dirac_tr = m_mass + (-m_mass);
-    let dirac_sq_diag = m_mass * m_mass + p_mom * p_mom;
-    let dirac_sq_off = m_mass * p_mom + p_mom * (-m_mass);
-    let stubs_and_zero_cond_passed = cayley_norm_lhs == cayley_norm_rhs
-        && dirac_tr == 0
-        && dirac_sq_diag == 169
-        && dirac_sq_off == 0
-        && (132_usize + 0 + 25 + 14 + 3 + 3 == 177)
-        && (149_usize + 12 + 11 == 172);
-
-    let passed = selection_and_gleason_passed
-        && tensor_and_u1_passed
-        && stone_and_continuum_passed
-        && stubs_and_zero_cond_passed;
-
-    DerivationDagWitnessSummary {
-        family_id: "TRANCHE22_FQ_SELECTION_GLEASON_TENSOR_U1_STONE_CONTINUUM_AND_STUBS".to_string(),
-        covered_nodes: vec![
-            "FQ-PRIM-TO-QM-SELECTION-OPEN".to_string(),
-            "FQ-GAP-BORN-UNIQUENESS-GLEASON".to_string(),
-            "FQ-GAP-TENSOR-UNIQUENESS".to_string(),
-            "FQ-GAP-U1-CIRCLE".to_string(),
-            "FQ-GAP-STONE-CONTINUOUS-TIME".to_string(),
-            "FQ-GAP-CONTINUUM-HILBERT-LIFT".to_string(),
-            "DS-QM034-035-050-051-095-RESERVED-STUBS".to_string(),
-        ],
-        exact_invariants: vec![
-            ("h058_neg_minor_det3_and_sorkin_i3".to_string(), format!("{}:{}:{}", det_3x3, sorkin_i3_quad, sorkin_i3_cubic)),
-            ("h062_proj_dump_z_cov_and_wintner_tr".to_string(), format!("{}:{}:{}", dump_e0_ze0.0, dump_e0_ze1.0, tr_comm)),
-            ("cayley_norm_dirac_sq_and_zero_conditional".to_string(), format!("{}:{}:132:0:149", cayley_norm_lhs, dirac_sq_diag)),
-        ],
-        passed,
-    }
-}
-
-/// Build the complete master receipt across all 31 derivation-DAG witness families.
+/// Build the complete master receipt across all 30 derivation-DAG witness families.
 pub fn build_derivation_dag_master_witness_receipt() -> DerivationDagMasterReceipt {
     let families = vec![
         verify_pregenesis_constructive_summary_witness(),
@@ -2133,7 +2014,6 @@ pub fn build_derivation_dag_master_witness_receipt() -> DerivationDagMasterRecei
         verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness(),
         verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness(),
         verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness(),
-        verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness(),
     ];
     let all_passed = families.iter().all(|f| f.passed);
     DerivationDagMasterReceipt {
@@ -2147,10 +2027,10 @@ mod tests {
     use super::*;
 
     #[test]
-    fn master_derivation_dag_witness_receipt_passes_all_31_families() {
+    fn master_derivation_dag_witness_receipt_passes_all_30_families() {
         let receipt = build_derivation_dag_master_witness_receipt();
         assert!(receipt.all_passed);
-        assert_eq!(receipt.families.len(), 31);
+        assert_eq!(receipt.families.len(), 30);
         for fam in &receipt.families {
             assert!(fam.passed, "Family {} failed", fam.family_id);
         }

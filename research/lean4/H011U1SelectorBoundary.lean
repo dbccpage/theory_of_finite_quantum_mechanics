@@ -89,4 +89,27 @@ theorem u1_selector_boundary :
 
 #print axioms u1_selector_boundary
 
+/-- Discharge fails for every pack that keeps a rival carrier. -/
+theorem selector_requires_rival_exclusion (S : SelectorPack)
+    (hφ : S.phase_composition_law = true)
+    (hτ : S.transport_functoriality = true)
+    (hκ : S.carrier_connectedness = true)
+    (hρ : S.rival_excluded = false) :
+    SelectorDischarged S = false := by
+  simp [SelectorDischarged, hφ, hτ, hκ, hρ]
+
+/-- The sign units `{1, -1}` are closed under multiplication. -/
+theorem sign_units_closed (a b : Int) (ha : a = 1 ∨ a = -1) (hb : b = 1 ∨ b = -1) :
+    a * b = 1 ∨ a * b = -1 := by
+  rcases ha with rfl | rfl <;> rcases hb with rfl | rfl <;> decide
+
+/-- Quarter-turns in `Z/4Z` sit outside the sign subgroup `{0, 2}`. -/
+theorem quarter_turn_outside_sign_subgroup :
+    let one : Fin 4 := 0
+    let quarter : Fin 4 := 1
+    let half : Fin 4 := 2
+    (one + one = one) ∧ (one + half = half) ∧ (half + half = one) ∧
+      (quarter + quarter = half) ∧ quarter ≠ one ∧ quarter ≠ half := by
+  decide
+
 end FableHilbertWalk20260819.H011

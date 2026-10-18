@@ -2,61 +2,86 @@
   H037FourQubitCssSurfaceCode.lean
   AuthorityEffect: None.
 
-  Shows in this model under exact integer arithmetic that:
-  1. The [[4, 2, 2]] CSS surface code on 4 physical qubits has commuting stabilizers:
-     S_Z = Z1 Z2 Z3 Z4 and S_X = X1 X2 X3 X4 commute because (-1)^4 = 1.
-  2. Both logical operators of logical qubit 1 (Z_L1 = Z1 Z2, X_L1 = X1 X3) commute with stabilizers
-     because (-1)^2 = 1.
-  3. Both logical operators of logical qubit 2 (Z_L2 = Z1 Z3, X_L2 = X1 X2) commute with stabilizers
-     because (-1)^2 = 1.
-  4. Each logical pair anticommutes (independent Pauli algebras):
-     {X_L1, Z_L1} = 0 via (-1)^1 = -1, and {X_L2, Z_L2} = 0 via (-1)^1 = -1.
-  5. Cross-logical operators commute: [X_L1, Z_L2] = 0 and [X_L2, Z_L1] = 0 via (-1)^2 = 1.
-  6. Code distance d = 2: all single-qubit Pauli errors overlap on exactly 1 qubit with S_Z or S_X,
-     producing an odd phase (-1)^1 = -1 != 1, yielding deterministic single-error detection.
+  Finite claim only. The [[4,2,2]] CSS generators on four qubits, the two
+  logical pairs, their symplectic commutation phases, and single-qubit
+  syndrome detection. No continuum surface is constructed.
 -/
 
 namespace FableHilbertWalk20260819.H037
 
-/-- Stabilizers S_Z and S_X commute because they share 4 qubits. -/
-theorem stabilizers_commute : (-1 : Int) ^ 4 = 1 := by decide
+def dot4 (a b : List Int) : Int :=
+  (List.zipWith (· * ·) a b).foldl (· + ·) 0
 
-/-- Z_L1 commutes with S_X because they overlap on 2 qubits. -/
-theorem zl1_commutes_with_sx : (-1 : Int) ^ 2 = 1 := by decide
+/-- Symplectic commutation phase of two Pauli operators `(x, z)`. -/
+def pauliPhase (x1 z1 x2 z2 : List Int) : Int :=
+  if (dot4 x1 z2 + dot4 z1 x2) % 2 = 0 then 1 else -1
 
-/-- X_L1 commutes with S_Z because they overlap on 2 qubits. -/
-theorem xl1_commutes_with_sz : (-1 : Int) ^ 2 = 1 := by decide
+def zZero : List Int := [0, 0, 0, 0]
 
-/-- Z_L2 commutes with S_X because they overlap on 2 qubits. -/
-theorem zl2_commutes_with_sx : (-1 : Int) ^ 2 = 1 := by decide
+/-- Stabilizer `S_Z = ZZZZ`. -/
+def szX : List Int := zZero
+def szZ : List Int := [1, 1, 1, 1]
 
-/-- X_L2 commutes with S_Z because they overlap on 2 qubits. -/
-theorem xl2_commutes_with_sz : (-1 : Int) ^ 2 = 1 := by decide
+/-- Stabilizer `S_X = XXXX`. -/
+def sxX : List Int := [1, 1, 1, 1]
+def sxZ : List Int := zZero
 
-/-- Logical qubit 1 anticommutes: X_L1 and Z_L1 overlap on 1 qubit (qubit 1). -/
-theorem logical_qubit_1_anticommutes : (-1 : Int) ^ 1 = -1 := by decide
+/-- Logical qubit 1: `Z_L1 = ZIZI` wait: `Z_L1 = ZZII`, `X_L1 = XIXI`. -/
+def zl1X : List Int := zZero
+def zl1Z : List Int := [1, 1, 0, 0]
+def xl1X : List Int := [1, 0, 1, 0]
+def xl1Z : List Int := zZero
 
-/-- Logical qubit 2 anticommutes: X_L2 and Z_L2 overlap on 1 qubit (qubit 1). -/
-theorem logical_qubit_2_anticommutes : (-1 : Int) ^ 1 = -1 := by decide
+/-- Logical qubit 2: `Z_L2 = ZIZI`, `X_L2 = XXII`. -/
+def zl2X : List Int := zZero
+def zl2Z : List Int := [1, 0, 1, 0]
+def xl2X : List Int := [1, 1, 0, 0]
+def xl2Z : List Int := zZero
 
-/-- Cross-logical operators commute: X_L1 and Z_L2 overlap on 2 qubits (qubits 1 and 3). -/
-theorem cross_logical_x1_z2_commutes : (-1 : Int) ^ 2 = 1 := by decide
+def xErr0 : List Int := [1, 0, 0, 0]
+def xErr1 : List Int := [0, 1, 0, 0]
+def xErr2 : List Int := [0, 0, 1, 0]
+def xErr3 : List Int := [0, 0, 0, 1]
 
-/-- Cross-logical operators commute: X_L2 and Z_L1 overlap on 2 qubits (qubits 1 and 2). -/
-theorem cross_logical_x2_z1_commutes : (-1 : Int) ^ 2 = 1 := by decide
+theorem stabilizers_commute :
+    pauliPhase szX szZ sxX sxZ = 1 := by decide
 
-/-- Distance-2 error detection: single-qubit error overlaps on 1 qubit, producing syndrome -1 != 1. -/
-theorem single_qubit_error_detected : (-1 : Int) ^ 1 ≠ 1 := by decide
+theorem zl1_commutes_with_sx :
+    pauliPhase zl1X zl1Z sxX sxZ = 1 := by decide
 
-#print axioms stabilizers_commute
-#print axioms zl1_commutes_with_sx
-#print axioms xl1_commutes_with_sz
-#print axioms zl2_commutes_with_sx
-#print axioms xl2_commutes_with_sz
-#print axioms logical_qubit_1_anticommutes
-#print axioms logical_qubit_2_anticommutes
-#print axioms cross_logical_x1_z2_commutes
-#print axioms cross_logical_x2_z1_commutes
-#print axioms single_qubit_error_detected
+theorem xl1_commutes_with_sz :
+    pauliPhase xl1X xl1Z szX szZ = 1 := by decide
+
+theorem zl2_commutes_with_sx :
+    pauliPhase zl2X zl2Z sxX sxZ = 1 := by decide
+
+theorem xl2_commutes_with_sz :
+    pauliPhase xl2X xl2Z szX szZ = 1 := by decide
+
+theorem logical_qubit_1_anticommutes :
+    pauliPhase xl1X xl1Z zl1X zl1Z = -1 := by decide
+
+theorem logical_qubit_2_anticommutes :
+    pauliPhase xl2X xl2Z zl2X zl2Z = -1 := by decide
+
+theorem cross_logical_x1_z2_commutes :
+    pauliPhase xl1X xl1Z zl2X zl2Z = 1 := by decide
+
+theorem cross_logical_x2_z1_commutes :
+    pauliPhase xl2X xl2Z zl1X zl1Z = 1 := by decide
+
+/-- Each single-qubit `X` meets `S_Z` once, so the phase is `-1`. -/
+theorem single_x_errors_detected :
+    pauliPhase xErr0 zZero szX szZ = -1 ∧
+      pauliPhase xErr1 zZero szX szZ = -1 ∧
+      pauliPhase xErr2 zZero szX szZ = -1 ∧
+      pauliPhase xErr3 zZero szX szZ = -1 := by decide
+
+/-- Each single-qubit `Z` meets `S_X` once, so the phase is `-1`. -/
+theorem single_z_errors_detected :
+    pauliPhase zZero xErr0 sxX sxZ = -1 ∧
+      pauliPhase zZero xErr1 sxX sxZ = -1 ∧
+      pauliPhase zZero xErr2 sxX sxZ = -1 ∧
+      pauliPhase zZero xErr3 sxX sxZ = -1 := by decide
 
 end FableHilbertWalk20260819.H037

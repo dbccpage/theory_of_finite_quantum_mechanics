@@ -37,11 +37,25 @@ theorem h1_h3_overlap : inner_prod h1 h3 = 2 := by decide
 
 theorem h2_h3_overlap : inner_prod h2 h3 = 2 := by decide
 
-theorem stabilizers_commute_h1_h2 : (-1 : Int) ^ 2 = 1 := by decide
+/-- Commutation phase from an overlap count: even overlap commutes. -/
+def commutePhase (overlap : Int) : Int :=
+  if overlap % 2 = 0 then 1 else -1
 
-theorem logical_commutes_with_stabilizers : (-1 : Int) ^ 4 = 1 := by decide
+/-- Transversal logical `X` and `Z`, supported on all seven Fano points. -/
+def logicalAll : List Int := [1, 1, 1, 1, 1, 1, 1]
 
-theorem logical_operators_anticommute : (-1 : Int) ^ 7 = -1 := by decide
+theorem stabilizers_commute_h1_h2 :
+    commutePhase (inner_prod h1 h2) = 1 ∧ inner_prod h1 h2 = 2 := by decide
+
+theorem logical_commutes_with_stabilizers :
+    commutePhase (inner_prod logicalAll h1) = 1 ∧
+      commutePhase (inner_prod logicalAll h2) = 1 ∧
+      commutePhase (inner_prod logicalAll h3) = 1 ∧
+      inner_prod logicalAll h1 = 4 := by decide
+
+theorem logical_operators_anticommute :
+    commutePhase (inner_prod logicalAll logicalAll) = -1 ∧
+      inner_prod logicalAll logicalAll = 7 := by decide
 
 structure Syndrome3 where
   s1 : Int
@@ -63,6 +77,29 @@ def posSyndrome : QubitPos → Syndrome3
   | .q6 => ⟨1, 1, 1⟩
 
 def zeroSyndrome : Syndrome3 := ⟨0, 0, 0⟩
+
+def basisAt : QubitPos → List Int
+  | .q0 => [1, 0, 0, 0, 0, 0, 0]
+  | .q1 => [0, 1, 0, 0, 0, 0, 0]
+  | .q2 => [0, 0, 1, 0, 0, 0, 0]
+  | .q3 => [0, 0, 0, 1, 0, 0, 0]
+  | .q4 => [0, 0, 0, 0, 1, 0, 0]
+  | .q5 => [0, 0, 0, 0, 0, 1, 0]
+  | .q6 => [0, 0, 0, 0, 0, 0, 1]
+
+/-- Syndrome read from the three Fano checks, not from a separate table. -/
+def checkSyndrome (err : List Int) : Syndrome3 :=
+  ⟨inner_prod h1 err, inner_prod h2 err, inner_prod h3 err⟩
+
+theorem check_syndromes_are_the_columns :
+    checkSyndrome (basisAt .q0) = posSyndrome .q0 ∧
+      checkSyndrome (basisAt .q1) = posSyndrome .q1 ∧
+      checkSyndrome (basisAt .q2) = posSyndrome .q2 ∧
+      checkSyndrome (basisAt .q3) = posSyndrome .q3 ∧
+      checkSyndrome (basisAt .q4) = posSyndrome .q4 ∧
+      checkSyndrome (basisAt .q5) = posSyndrome .q5 ∧
+      checkSyndrome (basisAt .q6) = posSyndrome .q6 := by
+  decide
 
 theorem syndromes_nonzero :
     posSyndrome .q0 ≠ zeroSyndrome ∧

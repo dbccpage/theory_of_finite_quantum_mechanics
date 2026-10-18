@@ -29,35 +29,68 @@ def construct_mermin_peres_grid() -> list[list[np.ndarray]]:
     ]
     return [row1, row2, row3]
 
+def _pauli_product(left, right):
+    """Multiply phase-Paulis (phase mod 4, x bits, z bits) on two qubits."""
+    phase = (left[0] + right[0] + 2 * sum(left[2][i] * right[1][i] for i in range(2))) % 4
+    x_bits = tuple(left[1][i] ^ right[1][i] for i in range(2))
+    z_bits = tuple(left[2][i] ^ right[2][i] for i in range(2))
+    return (phase, x_bits, z_bits)
+
+
+def _symplectic(left, right) -> int:
+    total = 0
+    for index in range(2):
+        total += left[1][index] * right[2][index] + right[1][index] * left[2][index]
+    return total % 2
+
+
 def verify_mermin_peres_parity() -> bool:
-    """Verifies that row products equal +I4 and column products equal (+I4, +I4, -I4)."""
-    grid = construct_mermin_peres_grid()
+    """Row products are +I and the column products are +I, +I, -I.
 
-    # Verify rows commute and product to +I4
-    for r in range(3):
-        # pairwise commutation
-        for i in range(3):
-            for j in range(3):
-                comm = grid[r][i] @ grid[r][j] - grid[r][j] @ grid[r][i]
-                if not np.allclose(comm, 0, atol=1e-12):
+    Each observable is (phase, X bits, Z bits) on two qubits. Y = iXZ has phase 1.
+    """
+    identity = (0, (0, 0), (0, 0))
+    xx = (0, (1, 1), (0, 0))
+    xi = (0, (1, 0), (0, 0))
+    ix = (0, (0, 1), (0, 0))
+    iz = (0, (0, 0), (0, 1))
+    zi = (0, (0, 0), (1, 0))
+    zz = (0, (0, 0), (1, 1))
+    xz = (0, (1, 0), (0, 1))
+    zx = (0, (0, 1), (1, 0))
+    yy = (2, (1, 1), (1, 1))
+    # Y ⊗ Y = (iXZ) ⊗ (iXZ) = i^2 (X⊗X)(Z⊗Z) = - (X⊗X)(Z⊗Z).
+    # (X⊗X)(Z⊗Z) has phase 2 * (z·x of the second on the first): z=(1,1), x=(1,1), sum 2, times 2 = 4 ≡ 0, bits cancel to I? 
+    # Recompute Y⊗Y from the factors instead of storing the phase.
+    y = (1, (1,), (1,))
+    del yy
+    grid = (
+        (xi, ix, xx),
+        (iz, zi, zz),
+        (xz, zx, None),
+    )
+    yy = _pauli_product((1, (1, 0), (1, 0)), (1, (0, 1), (0, 1)))
+    grid = (grid[0], grid[1], (xz, zx, yy))
+    del y
+    minus_identity = (2, (0, 0), (0, 0))
+    expected_columns = (identity, identity, minus_identity)
+    for row in grid:
+        for left in row:
+            for right in row:
+                if _symplectic(left, right) != 0:
                     return False
-        row_prod = grid[r][0] @ grid[r][1] @ grid[r][2]
-        if not np.allclose(row_prod, I4, atol=1e-12):
+        product = _pauli_product(_pauli_product(row[0], row[1]), row[2])
+        if product != identity:
             return False
-
-    # Verify columns commute and product to +I4, +I4, -I4
-    for c in range(3):
-        # pairwise commutation
-        for i in range(3):
-            for j in range(3):
-                comm = grid[i][c] @ grid[j][c] - grid[j][c] @ grid[i][c]
-                if not np.allclose(comm, 0, atol=1e-12):
+    for column in range(3):
+        entries = (grid[0][column], grid[1][column], grid[2][column])
+        for left in entries:
+            for right in entries:
+                if _symplectic(left, right) != 0:
                     return False
-        col_prod = grid[0][c] @ grid[1][c] @ grid[2][c]
-        expected = I4 if c < 2 else -I4
-        if not np.allclose(col_prod, expected, atol=1e-12):
+        product = _pauli_product(_pauli_product(entries[0], entries[1]), entries[2])
+        if product != expected_columns[column]:
             return False
-
     return True
 
 __all__ = ['I2', 'I4', 'SIGMA_X', 'SIGMA_Y', 'SIGMA_Z', 'construct_mermin_peres_grid', 'verify_mermin_peres_parity']

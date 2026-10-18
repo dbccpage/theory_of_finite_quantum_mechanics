@@ -11,7 +11,28 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from .c250_score_block import score_bet_file, validate_block_result
+from fractions import Fraction
+
+from .score_block import score_bet_file, validate_block_result
+
+
+def machine_clause_status(recorded: int, recomputed: int) -> str:
+    """HIT when two integers agree. Bool is rejected so True is not the integer 1."""
+    if isinstance(recorded, bool) or isinstance(recomputed, bool):
+        raise TypeError("clause values must be ints, not bools")
+    if not isinstance(recorded, int) or not isinstance(recomputed, int):
+        raise TypeError("clause values must be ints")
+    if recorded == recomputed:
+        return "HIT"
+    return "MISS"
+
+
+def ledger_hit_fraction(pairs: list[tuple[int, int]]) -> Fraction:
+    """Fraction of machine clauses whose recorded integer equals the recomputed integer."""
+    if not pairs:
+        raise ValueError("ledger is empty")
+    hits = sum(1 for recorded, recomputed in pairs if machine_clause_status(recorded, recomputed) == "HIT")
+    return Fraction(hits, len(pairs))
 
 
 def replay(app: Path) -> dict:
@@ -63,4 +84,4 @@ def main() -> int:
 if __name__ == '__main__':
     raise SystemExit(main())
 
-__all__ = ['main', 'replay']
+__all__ = ['ledger_hit_fraction', 'machine_clause_status', 'main', 'replay']

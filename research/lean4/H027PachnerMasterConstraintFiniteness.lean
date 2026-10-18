@@ -191,6 +191,15 @@ theorem pachner_projector_2tet_idempotent :
 theorem pachner_projector_3tet_idempotent :
     projector3Tet (projector3Tet vacuumState3Tet) = projector3Tet vacuumState3Tet := by rfl
 
+/-- Both master-constraint projectors are idempotent on every boundary state. -/
+theorem projector2Tet_idempotent_all (psi : State2Tet) :
+    projector2Tet (projector2Tet psi) = projector2Tet psi := by
+  cases h : defect2Tet psi.spins == 0 <;> simp [projector2Tet, h]
+
+theorem projector3Tet_idempotent_all (phi : State3Tet) :
+    projector3Tet (projector3Tet phi) = projector3Tet phi := by
+  cases h : defect3Tet phi.spins == 0 <;> simp [projector3Tet, h]
+
 end PachnerMasterProjectors
 
 -- ==============================================================================
@@ -234,6 +243,11 @@ theorem pachner_annihilates_inadmissible :
       O_{2->3} |0>_2 in ker(M_3). -/
 theorem pachner_kernel_preservation :
     projector3Tet (pachner2to3 vacuumState2Tet) = vacuumState3Tet := by rfl
+
+/-- The 2-3 move copies the six external spins, so the Gauss defect is unchanged. -/
+theorem pachner_preserves_external_defect (psi : State2Tet) :
+    defect3Tet (pachner2to3 psi).spins = defect2Tet psi.spins := by
+  simp [pachner2to3, defect3Tet, defect2Tet]
 
 end PachnerIntertwiner
 

@@ -53,4 +53,20 @@ theorem scope_boundary_refuses_kills :
 #print axioms finite_pairing_is_one
 #print axioms scope_boundary_refuses_kills
 
+/-- Finite N=3 clock. `phi1 = 3` counts the steps that close the pairing `1`.
+    No integer `k` satisfies `3 * k = 1`, so the pairing is not an integer
+    multiple of that step count, and it is not a value of `pi`. -/
+theorem three_turns_close :
+    phi1 = (3 : Rat) ∧ periodPairing = (1 : Rat) := by
+  constructor <;> rfl
+
+theorem proper_subperiod_open (steps : Nat) (h : steps < 3) :
+    (steps : Int) ≠ 3 := by
+  omega
+
+theorem no_integer_multiple_of_phi1_is_the_pairing (k : Int) :
+    phi1 = (3 : Rat) ∧ periodPairing = (1 : Rat) ∧ k * (3 : Int) ≠ 1 := by
+  refine ⟨rfl, rfl, ?_⟩
+  omega
+
 end OvernightT7

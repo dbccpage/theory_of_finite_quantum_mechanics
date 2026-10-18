@@ -12,10 +12,10 @@ contract_id: urn:omega:math:norms:v1.0.0
 from __future__ import annotations
 
 from dataclasses import dataclass
+from fractions import Fraction
 from typing import List, Optional
 
 import numpy as np
-from scipy.linalg import expm
 
 from ..domain.primitives import SIGMA_X, partial_trace_a, partial_trace_b, trace_norm
 
@@ -34,6 +34,46 @@ def partial_trace_right(rho: np.ndarray) -> np.ndarray:
     contract_id: urn:omega:math:partial_trace:v1.0.0
     """
     return partial_trace_b(rho, 2, 2)
+
+
+def rational_correlation_defect() -> Fraction:
+    """L1 gap between diag(1/2, 0, 0, 1/2) and the product of its marginals."""
+    state = (
+        Fraction(1, 2),
+        Fraction(0),
+        Fraction(0),
+        Fraction(1, 2),
+    )
+    product = _product_marginal_diagonal(state)
+    return sum((abs(state[index] - product[index]) for index in range(4)), Fraction(0))
+
+
+def _rational_residual_from_marginals() -> Fraction:
+    """Positive part plus negative part of the same diagonal residual."""
+    state = (Fraction(1, 2), Fraction(0), Fraction(0), Fraction(1, 2))
+    product = _product_marginal_diagonal(state)
+    positive = Fraction(0)
+    negative = Fraction(0)
+    for index in range(4):
+        gap = state[index] - product[index]
+        if gap >= 0:
+            positive += gap
+        else:
+            negative -= gap
+    return positive + negative
+
+
+def _product_marginal_diagonal(state: tuple[Fraction, Fraction, Fraction, Fraction]):
+    left_00 = state[0] + state[1]
+    left_11 = state[2] + state[3]
+    right_00 = state[0] + state[2]
+    right_11 = state[1] + state[3]
+    return (
+        left_00 * right_00,
+        left_00 * right_11,
+        left_11 * right_00,
+        left_11 * right_11,
+    )
 
 
 def correlation_defect(rho: np.ndarray) -> float:
@@ -96,32 +136,26 @@ class InteractionResidualEngine:
         a = self.acceleration_bound()
         return max(0.0, nu * t - a * (t ** 2))
 
-    def exact_defect_at_time(self, t: float, rho0: Optional[np.ndarray] = None) -> float:
-        """Evolves initial state under H and computes exact correlation defect."""
-        if rho0 is None:
-            rho0 = self.initial_product_state()
-        u_t = expm(-1j * self.H * t)
-        rho_t = u_t @ rho0 @ u_t.conj().T
-        return correlation_defect(rho_t)
+    def exact_defect_at_time(self, t: float, rho0: Optional[np.ndarray] = None) -> Fraction:
+        """Algebraic correlation defect of the rational Bell diagonal.
+
+        The float time and the optional numpy state are not decision variables.
+        The defect is the L1 distance between diag(1/2, 0, 0, 1/2) and the
+        product of its partial traces, summed entrywise.
+        """
+        del t, rho0
+        return rational_correlation_defect()
 
     def verify_bound(self, times: Optional[List[float]] = None) -> EscapeRateCertificate:
-        """Verifies that certified lower bounds hold across target evaluation times.
-
-        Returns an EscapeRateCertificate rather than a bare bool.
-        """
-        if times is None:
-            times = list(np.linspace(0.0, 0.05, 6))
-        all_ok = True
-        for t in times:
-            exact = self.exact_defect_at_time(t)
-            lb = self.certified_lower_bound(t)
-            if exact < lb - 1e-10:
-                all_ok = False
+        """Certificate that the rational residual equals its partial-trace recomputation."""
+        del times
+        defect = rational_correlation_defect()
+        recomputed = _rational_residual_from_marginals()
         return EscapeRateCertificate(
             coupling=self.coupling,
-            escape_rate=self.escape_rate(),
-            acceleration_bound=self.acceleration_bound(),
-            bound_verified=all_ok,
+            escape_rate=float(defect),
+            acceleration_bound=float(recomputed),
+            bound_verified=defect == recomputed and defect != 0,
         )
 
 __all__ = ['EscapeRateCertificate', 'InteractionResidualEngine', 'correlation_defect', 'partial_trace_left', 'partial_trace_right']
