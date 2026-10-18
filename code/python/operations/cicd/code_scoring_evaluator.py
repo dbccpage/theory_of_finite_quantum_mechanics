@@ -3,11 +3,15 @@
 AuthorityEffect: None.
 Origin: SCORING.md (Version 2.0.0)
 Claim: urn:omega:scoring:code_scoring_evaluator:v2
+Compatibility claim: urn:omega:scoring:grade-minimum-witness:v1
+Scope Fence: grade_minimum_witness checks grade ordering only; the scanner does not certify source.
 Profile: Non-Numeric
+Mutation-Kills: 8 non-equivalent local witness mutants, executed by code/python/operations/cicd/test_scoring_control.py.
+This count covers the legacy integer/order witness only, not the full static evaluator.
 
-This evaluator parses and validates source and formal artifacts against the
-five-gate rubric defined in SCORING.md Version 2.0.0 and verifies compliance
-with the CodeScoringRecordV2 Draft 2020-12 JSON Schema.
+This evaluator records static observations and leaves unsupported gates null.
+It does not execute source, tests or proofs. Complete externally reviewed
+records can be validated against the CodeScoringRecordV2 Draft 2020-12 schema.
 """
 
 from __future__ import annotations
@@ -21,7 +25,7 @@ from pathlib import Path
 import re
 import sys
 import time
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 try:
     import lizard  # type: ignore
@@ -61,7 +65,7 @@ if str(REPO_ROOT) not in sys.path:
 
 # Scoring Constants (SCORING.md Version 2.0.0)
 SCHEMA_VERSION = "2.0.0"
-GRADE_ORDER = ["E", "D", "C", "B", "A", "A+"]
+GRADE_ORDER: tuple[str, ...] = ("E", "D", "C", "B", "A", "A+")
 GRADE_RANKS = {g: i for i, g in enumerate(GRADE_ORDER)}
 
 PROFILES = ["Exact", "Quantized", "Numerical", "Symbolic/Formal", "Non-Numeric"]
@@ -70,6 +74,65 @@ LANGUAGES = [
     "Coq/Rocq", "WolframAlpha", "WolframLanguage", "Other"
 ]
 LEVELS = ["L1", "L2", "L3", "L4", "L5"]
+
+class ScoringError(ValueError):
+    """One violated scoring invariant, with the measured parameters."""
+
+    def __init__(self, invariant: str, parameters: Mapping[str, object] | None = None) -> None:
+        self.invariant = invariant
+        self.parameters = {} if parameters is None else dict(parameters)
+        rendered = ", ".join(f"{key}={value}" for key, value in self.parameters.items())
+        message = invariant if rendered == "" else f"{invariant} ({rendered})"
+        super().__init__(message)
+
+
+def _fail(invariant: str, **parameters: object) -> ScoringError:
+    return ScoringError(invariant, parameters)
+
+
+def _require_int(value: object, role: str) -> int:
+    if isinstance(value, float):
+        raise _fail("float refused at the scoring boundary", role=role, received="float")
+    if isinstance(value, bool):
+        raise _fail("boolean refused where an integer was required", role=role)
+    if isinstance(value, int):
+        return value
+    raise _fail("value is not an integer", role=role, received=type(value).__name__)
+
+
+def checked_int(value: object) -> int:
+    """Return one integer after refusing float and bool."""
+    return _require_int(value, "checked")
+
+
+def _rank(grade: object) -> int:
+    if not isinstance(grade, str) or grade not in GRADE_RANKS:
+        raise _fail("grade is not on the scale", grade=str(grade))
+    return GRADE_RANKS[grade]
+
+
+def _minimum(grades: tuple[str, ...]) -> str:
+    chosen = grades[0]
+    for grade in grades[1:]:
+        if _rank(grade) < _rank(chosen):
+            chosen = grade
+    return chosen
+
+
+def grade_minimum_witness() -> int:
+    """Return 0 when min(A+, A, B) is B and min(E, A+) is E."""
+    high = min_grade(("A+", "A", "B"))
+    low = min_grade(("E", "A+"))
+    if high != "B":
+        raise _fail("minimum of A+, A, B is not B", grade=high)
+    if low != "E":
+        raise _fail("minimum of E and A+ is not E", grade=low)
+    if _rank("A") - _rank("E") != 4:
+        raise _fail("rank gap from E to A is not 4", gap=_rank("A") - _rank("E"))
+    if _rank("A+") - _rank("B") != 2:
+        raise _fail("rank gap from B to A+ is not 2", gap=_rank("A+") - _rank("B"))
+    return checked_int(0)
+
 
 # Draft 2020-12 JSON Schema (from SCORING.md Section 6)
 SCHEMA_V2: Dict[str, Any] = {
@@ -151,10 +214,15 @@ SCHEMA_V2: Dict[str, Any] = {
 
 
 def min_grade(grades: List[Optional[str]]) -> Optional[str]:
-    """Compute mathematical minimum across gates. If any gate is null, returns null."""
+    """Return the weakest known grade; an empty or incomplete assessment is null."""
+    if isinstance(grades, (str, bytes)) or not isinstance(grades, (list, tuple)):
+        raise _fail("grades are not a sequence", received=type(grades).__name__)
+    for grade in grades:
+        if grade is not None:
+            _rank(grade)
     if not grades or any(g is None for g in grades):
         return None
-    return min(grades, key=lambda g: GRADE_RANKS.get(g, -1))
+    return _minimum(tuple(grades))
 
 
 def grade_ceiling(grades: List[Optional[str]]) -> str:
@@ -216,6 +284,7 @@ class FileScoreRecord:
             "language": self.language,
             "profile": self.profile,
             "level": self.level,
+            "level_assessment": "provisional static lower bound; manual capability review required",
             "gates": {
                 "G1": self.provenance.grade,
                 "G2": self.semantic_numeric.grade,
@@ -267,7 +336,7 @@ class FileScoreRecord:
 @dataclass(frozen=True)
 class CodeScoringReceipt:
     """Typed machine receipt for CI/CD code scoring evaluation."""
-    gate_name: str = "code_scoring_evaluator_v1"
+    gate_name: str = "code_scoring_evaluator_v2"
     schema_version: str = SCHEMA_VERSION
     operational_status: str = "STANDBY_OFF"  # "STANDBY_OFF" (advisory) or "ENFORCED"
     enforced: bool = False
@@ -281,7 +350,8 @@ class CodeScoringReceipt:
     nonclaims: Tuple[str, ...] = field(
         default_factory=lambda: (
             "AuthorityEffect: None",
-            "Evaluates text against the five-gate rubric in SCORING.md (Version 2.0.0)",
+            "Static triage only: no tests, proofs, safety or provenance checks are executed",
+            "Capability is a provisional L1 lower bound pending source review",
             "Standby mode does not alter or block commit pipelines unless --enforce is set",
         )
     )
@@ -291,56 +361,61 @@ class CodeScoringReceipt:
 
 
 def validate_record_against_schema(record_dict: Dict[str, Any]) -> List[str]:
-    """Validate a scoring record against CodeScoringRecordV2 schema and semantic rules."""
+    """Validate schema and grade consistency; unavailable validators fail closed."""
+    if not isinstance(record_dict, dict):
+        return ["A scoring record must be an object"]
     errors: List[str] = []
-
     if _HAS_JSONSCHEMA:
-        validator = jsonschema.Draft202012Validator(SCHEMA_V2)
-        for err in validator.iter_errors(record_dict):
-            errors.append(f"JSONSchema violation at {err.json_path}: {err.message}")
+        validator = jsonschema.Draft202012Validator(SCHEMA_V2, format_checker=jsonschema.FormatChecker())
+        errors.extend(f"JSONSchema violation at {err.json_path}: {err.message}"
+                      for err in validator.iter_errors(record_dict))
     else:
-        # Fallback manual validation
-        for field_name in SCHEMA_V2["required"]:
-            if field_name not in record_dict:
-                errors.append(f"Missing required field: {field_name}")
-
-        artifact = record_dict.get("artifact", {})
-        if not isinstance(artifact, dict) or not all(k in artifact for k in ("path", "language", "sha256")):
-            errors.append("Invalid artifact sub-object")
-        elif artifact.get("language") not in LANGUAGES:
-            errors.append(f"Invalid language: {artifact.get('language')}")
-
-        if record_dict.get("profile") not in PROFILES:
-            errors.append(f"Invalid profile: {record_dict.get('profile')}")
-
-        if record_dict.get("level") not in LEVELS:
-            errors.append(f"Invalid level: {record_dict.get('level')}")
-
-    # Semantic rule 1: sha256 length & hex
-    sha = record_dict.get("artifact", {}).get("sha256", "")
-    if not (len(sha) == 64 and all(c in "0123456789abcdef" for c in sha.lower())):
-        errors.append(f"Invalid SHA-256 digest: {sha}")
-
-    # Semantic rule 2: Ordinal minimum match
-    gates = record_dict.get("gates", {})
-    gate_vals = [gates.get("G1"), gates.get("G2"), gates.get("G3"), gates.get("G4"), gates.get("G5")]
-    if all(g in GRADE_ORDER for g in gate_vals):
-        expected_min = min(gate_vals, key=lambda g: GRADE_RANKS[g])
-        if record_dict.get("composite_grade") != expected_min:
-            errors.append(
-                f"Ordinal minimum violation: composite_grade {record_dict.get('composite_grade')} != min({gate_vals}) = {expected_min}"
-            )
-        expected_token = f"{record_dict.get('level')}{expected_min}"
-        if record_dict.get("score_token") != expected_token:
-            errors.append(
-                f"Score token mismatch: score_token {record_dict.get('score_token')} != {expected_token}"
-            )
-    else:
-        if record_dict.get("composite_grade") is not None:
-            errors.append("Incomplete gates require composite_grade to be null")
-        if record_dict.get("score_token") is not None and record_dict.get("score_token") != "null":
-            errors.append("Incomplete gates require score_token to be null")
-
+        errors.append("Draft 2020-12 validation unavailable: install the jsonschema scoring dependency")
+    timestamp = record_dict.get("evaluation_timestamp")
+    try:
+        if not isinstance(timestamp, str) or re.fullmatch(
+                r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})", timestamp, re.IGNORECASE) is None:
+            raise ValueError("timestamp is not an RFC3339 date-time")
+        datetime.datetime.fromisoformat(timestamp.upper().replace("Z", "+00:00"))
+    except ValueError:
+        errors.append("Invalid evaluation_timestamp date-time")
+    artifact = record_dict.get("artifact")
+    gates = record_dict.get("gates")
+    if not isinstance(artifact, dict) or not isinstance(gates, dict):
+        return errors + ["artifact and gates must be objects"]
+    sha = artifact.get("sha256")
+    if not isinstance(sha, str) or re.fullmatch(r"[a-f0-9]{64}", sha) is None:
+        errors.append("Invalid SHA-256 digest")
+    values = [gates.get(key) for key in ("G1", "G2", "G3", "G4", "G5")]
+    if any(key not in gates for key in ("G1", "G2", "G3", "G4", "G5")):
+        errors.append("All five gates must be present")
+    if any(value is not None and (not isinstance(value, str) or value not in GRADE_ORDER) for value in values):
+        return errors + ["Gate values must be known grades or null"]
+    complete = all(value is not None for value in values)
+    expected = min_grade(values)
+    if record_dict.get("composite_grade") != expected:
+        errors.append("composite_grade must equal the five-gate minimum, or null when incomplete")
+    token = f"{record_dict.get('level')}{expected}" if complete else None
+    if record_dict.get("score_token") != token:
+        errors.append("score_token must match the level and completed minimum, or be JSON null")
+    if "is_complete" in record_dict and record_dict["is_complete"] is not complete:
+        errors.append("is_complete disagrees with gate completeness")
+    if "grade_ceiling" in record_dict and record_dict["grade_ceiling"] != grade_ceiling(values):
+        errors.append("grade_ceiling disagrees with assessed gates")
+    mutation = record_dict.get("mutation_accounting")
+    if mutation is not None:
+        outcomes = ("killed", "survived", "demonstrably_equivalent", "invalid", "inconclusive", "unrun")
+        if not isinstance(mutation, dict) or any(type(mutation.get(key)) is not int or mutation[key] < 0 for key in outcomes):
+            errors.append("Mutation accounting requires all six nonnegative integer outcome counts")
+        else:
+            total = sum(mutation[key] for key in outcomes)
+            if "generated" in mutation and (type(mutation["generated"]) is not int or mutation["generated"] != total):
+                errors.append("Mutation outcome counts do not conserve generated candidates")
+            denominator = sum(mutation[key] for key in ("killed", "survived", "inconclusive", "unrun"))
+            ratio = mutation["killed"] / denominator if denominator else None
+            reported = mutation.get("conservative_ratio")
+            if isinstance(reported, bool) or reported != ratio:
+                errors.append("Conservative mutation ratio does not match eligible outcomes")
     return errors
 
 
@@ -411,415 +486,46 @@ def detect_profile(path: Path, text: str, language: str) -> str:
 
 
 def evaluate_gate1_provenance(text: str, language: str) -> GateScore:
-    """Gate 1: Provenance, Claim Mapping & Authority (G1)."""
-    has_authority = bool(re.search(r"AuthorityEffect:\s*([A-Za-z0-9_.-]+)", text, re.IGNORECASE))
-    has_origin = bool(
-        re.search(
-            r"(origin|heritage|citation|commit|paper|EA:\d+|sealed-derivation-v1|parents\[\d+\]|FQM-[A-Za-z0-9_-]+|DS-[A-Za-z0-9_-]+|PG-[A-Za-z0-9_-]+|derivation|mechanization)",
-            text,
-            re.IGNORECASE,
-        )
-    )
-    has_claim = bool(
-        re.search(r"(claim|contract_id|urn:omega:|theorem|obligation|lemma)", text, re.IGNORECASE)
-    )
-    has_scope_fence = bool(
-        re.search(r"(scope fence|does not (claim|inherit|simulate)|what this (file|paper) does not|nonclaims)", text, re.IGNORECASE)
-    )
-
-    # In formal languages, check for vacuous claims (e.g. theorem ... (h : False))
-    if language in ("Lean 4", "Coq/Rocq"):
-        if re.search(r"theorem\s+\w+\s*\([^)]*:\s*False\)", text):
-            return GateScore("Provenance", "E", "Vacuous formal theorem assuming False hypothesis; fails claim mapping")
-
-    if not has_origin and not has_claim:
-        return GateScore("Provenance", "E", "Missing origin, claim, and authority declarations")
-    if not has_origin:
-        return GateScore("Provenance", "D", "Claim present but origin provenance omitted")
-    if has_origin and not has_claim and not has_authority:
-        return GateScore("Provenance", "D", "Origin present without specific claim or authority ceiling")
-    if has_origin and (not has_claim or not has_authority):
-        return GateScore("Provenance", "C", "Origin present, but claim ID or authority effect missing")
-    if has_origin and has_claim and has_authority and has_scope_fence:
-        return GateScore("Provenance", "A+", "Origin, claim, authority effect, and explicit negative scope fence present")
-    if has_origin and has_claim and has_authority:
-        return GateScore("Provenance", "A", "Origin, claim URN, and authority effect verified in text")
-
-    return GateScore("Provenance", "C", "Standard provenance context present")
+    """Source annotations alone do not establish provenance or claim mapping."""
+    return GateScore("Provenance", None,
+                     "Unassessed: source labels require source-pinned provenance and claim review.")
 
 
-def evaluate_gate2_semantic_and_numeric(
-    text: str,
-    language: str,
-    profile: str,
-    is_test_file: bool
-) -> GateScore:
-    """Gate 2: Semantic Correctness & Numeric Discipline (G2) with Profile Awareness."""
-    # Profile 1: Non-Numeric Workflows (scripts, parsers, AST routing, docs)
-    if profile == "Non-Numeric":
-        return GateScore(
-            "Semantic/Numeric",
-            "A",
-            "Non-Numeric Profile: semantic operations verified; no unauthorized arithmetic conversions"
-        )
-
-    # Profile 2: Symbolic / Formal Mechanization (Lean 4, Coq)
-    if profile == "Symbolic/Formal":
-        # Check for trivial implications P -> P advertised as derived theorem
-        if re.search(r"theorem\s+\w+\s*:\s*([A-Za-z0-9_]+)\s*->\s*\1\b", text):
-            return GateScore(
-                "Semantic/Numeric",
-                "E",
-                "Trivial implication P -> P detected; exported statement fails formal claim correspondence"
-            )
-        return GateScore(
-            "Semantic/Numeric",
-            "A+",
-            "Symbolic/Formal Profile: propositions, types, and proof terms strictly conform to formal system"
-        )
-
-    # Profile 3: Numerical Simulation / Estimation
-    if profile == "Numerical":
-        # Numerical profile permits binary floats, but audits for error bounds or convergence checks
-        has_tolerance = bool(re.search(r"(tol|epsilon|abs\([^)]+\)\s*<|norm|threshold|converge|bound)", text, re.IGNORECASE))
-        if has_tolerance:
-            return GateScore(
-                "Semantic/Numeric",
-                "A",
-                "Numerical Profile: floating-point calculations accompanied by explicit tolerance and convergence bounds"
-            )
-        return GateScore(
-            "Semantic/Numeric",
-            "C",
-            "Numerical Profile: floating-point calculations present; formal error tolerance model unrecorded"
-        )
-
-    # Profile 4: Quantized / Bounded Decimal
-    if profile == "Quantized":
-        # Check for decimal types vs unauthorized raw floats
-        has_decimal = bool(re.search(r"\b(NUMERIC|Decimal|decimal|scale|precision|scaled_int)\b", text))
-        has_float = bool(re.search(r"\b(float|f32|f64|DOUBLE PRECISION|REAL)\b", text, re.IGNORECASE if language == "SQL" else 0))
-        if has_float and not is_test_file:
-            return GateScore(
-                "Semantic/Numeric",
-                "E",
-                f"Binary float detected in Quantized profile ({language}); violates decimal/scaled integer contract"
-            )
-        if has_decimal:
-            return GateScore(
-                "Semantic/Numeric",
-                "A",
-                "Quantized Profile: bounded decimal and scaled quantities with defined precision and scale"
-            )
-        return GateScore(
-            "Semantic/Numeric",
-            "B",
-            "Quantized Profile: discrete quantities bounded without precision loss"
-        )
-
-    # Profile 5: Exact Foundational Arithmetic (Default for core mathematics)
-    lines = text.splitlines()
-    code_lines: List[str] = []
-    in_block_comment = False
-
-    for line in lines:
-        stripped = line.strip()
-        if language in ("Python", "SQL") and (stripped.startswith("#") or stripped.startswith("--")):
-            continue
-        if language == "Rust" and stripped.startswith("//"):
-            continue
-        if language in ("Rust", "Lean 4", "SQL", "C++", "C#"):
-            if "/*" in stripped:
-                in_block_comment = True
-            if "*/" in stripped:
-                in_block_comment = False
-                continue
-            if in_block_comment:
-                continue
-        code_lines.append(stripped)
-
-    code_body = "\n".join(code_lines)
-    # Strip string literals so regex patterns and log messages do not false-positive on float digits
-    stripped_code = re.sub(r'("""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\'|"[^"\n]*"|\'[^\'\n]*\')', '""', code_body)
-
-    # Check for binary floats
-    float_patterns = {
-        "Python": r"\b(float|binary64)\b|(?<![a-zA-Z0-9_])\d+\.\d+(?![a-zA-Z0-9_])",
-        "Rust": r"\b(f32|f64|binary64)\b|(?<![a-zA-Z0-9_])\d+\.\d+f(32|64)?\b",
-        "Lean 4": r"\b(Float|Float32|Float64)\b",
-        "SQL": r"\b(FLOAT|DOUBLE PRECISION|REAL)\b",
-        "C#": r"\b(float|double)\b",
-        "C++": r"\b(float|double|long double)\b",
-    }
-    pattern = float_patterns.get(language, r"\b(float|f32|f64)\b")
-    has_float = bool(re.search(pattern, stripped_code, re.IGNORECASE if language == "SQL" else 0))
-
-    if has_float and not is_test_file:
-        return GateScore(
-            "Semantic/Numeric",
-            "E",
-            f"Binary floating-point type or literal detected in Exact profile ({language} code body)"
-        )
-
-    # Check for exact algebraic types
-    has_exact = bool(
-        re.search(
-            r"\b(BigRational|Fraction|BigInt|Integer|Ratio|Nat|Int|Rat|NUMERIC|BIGINT|INTEGER)\b",
-            code_body,
-        )
-    )
-
-    if language == "Python":
-        # Check for boolean subclass guard in contracts (RULE_PY_002)
-        has_bool_guard = "not isinstance" in code_body and "bool" in code_body
-        if has_bool_guard:
-            return GateScore(
-                "Semantic/Numeric",
-                "A+",
-                "Exact Profile: exact numeric types with verified boolean-subclass type fence"
-            )
-        if has_exact:
-            return GateScore(
-                "Semantic/Numeric",
-                "A",
-                "Exact Profile: Fraction/Integer exact representation satisfied"
-            )
-
-    elif language == "Rust":
-        has_big_rational = "BigRational" in code_body or "num_rational" in code_body
-        if has_big_rational:
-            return GateScore(
-                "Semantic/Numeric",
-                "A+",
-                "Exact Profile: sovereign BigRational representation; zero binary floats across code"
-            )
-
-    if has_exact or not has_float:
-        return GateScore(
-            "Semantic/Numeric",
-            "A",
-            f"Exact Profile: discrete algebraic discipline satisfied; zero binary floats detected in {language}"
-        )
-
-    return GateScore("Semantic/Numeric", "C", "Standard discrete numeric representation")
+def evaluate_gate2_semantic_and_numeric(text: str, language: str, profile: str, is_test_file: bool) -> GateScore:
+    """Record the selected profile without treating syntax as mathematical evidence."""
+    return GateScore("Semantic/Numeric", None,
+                     f"Unassessed: {profile} is a profile selection; semantics and domains require review.")
 
 
 def evaluate_gate3_failure_safety(text: str, language: str, is_test_file: bool) -> GateScore:
-    """Gate 3: Failure Behavior, Safety & Trusted Computation (G3)."""
-    if is_test_file:
-        return GateScore("Failure/Safety", "A", "Test file: assertions and panic checks are valid testing mechanisms")
-
-    lines = text.splitlines()
-    code_lines = [line for line in lines if not line.strip().startswith(("#", "//", "--", "*", "/*"))]
-    code_body = "\n".join(code_lines)
-    stripped_code = re.sub(r'("""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\'|"[^"\n]*"|\'[^\'\n]*\')', '""', code_body)
-
-    if language == "Python":
-        # RULE_PY_003: assert statements outside tests drop to E (stripped under -O)
-        if re.search(r"\bassert\s+", stripped_code):
-            return GateScore("Failure/Safety", "E", "assert statement found in production Python code (stripped under -O)")
-        if re.search(r"\braise\s+Exception\b", stripped_code):
-            return GateScore("Failure/Safety", "D", "Bare raise Exception without typed domain error variant")
-        return GateScore("Failure/Safety", "A", "Zero assert statements; failure modes use typed domain exceptions")
-
-    if language == "Rust":
-        # RULE_RS_005: unwrap(), panic! in non-test Rust
-        if "#[cfg(test)]" in text:
-            parts = text.split("#[cfg(test)]")
-            lib_part = parts[0]
-        else:
-            lib_part = text
-
-        lib_lines = [line for line in lib_part.splitlines() if not line.strip().startswith("//")]
-        lib_body = "\n".join(lib_lines)
-        stripped_lib = re.sub(r'("""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\'|"[^"\n]*"|\'[^\'\n]*\')', '""', lib_body)
-
-        has_unwrap = bool(re.search(r"\.unwrap\(\)", stripped_lib))
-        has_expect = bool(re.search(r"\.expect\(", stripped_lib))
-        has_panic = bool(re.search(r"\bpanic!\(", stripped_lib))
-        has_todo = bool(re.search(r"\b(todo!|unimplemented!)\(", stripped_lib))
-
-        if has_unwrap or has_panic:
-            return GateScore("Failure/Safety", "E", "Reachable panic! or unwrap() in library crate body")
-        if has_expect or has_todo:
-            return GateScore("Failure/Safety", "D", "expect() or todo!() abort form in library crate body")
-
-        has_typed_result = bool(re.search(r"Result<.+,\s*.+Error>", lib_body))
-        if has_typed_result:
-            return GateScore("Failure/Safety", "A", "Zero library panics/unwraps; all fallible paths return typed Result<T, E>")
-        return GateScore("Failure/Safety", "C", "No abort forms detected; total functional path")
-
-    if language == "Lean 4":
-        # Filter comments
-        cleaned: List[str] = []
-        in_block = False
-        for l in lines:
-            s = l.strip()
-            if "/-" in s:
-                in_block = True
-            if "-/" in s:
-                in_block = False
-                continue
-            if in_block or s.startswith("--"):
-                continue
-            cleaned.append(s)
-        lean_body = "\n".join(cleaned)
-
-        if re.search(r"\bsorry\b|\bsorryAx\b", lean_body):
-            return GateScore("Failure/Safety", "E", "sorry / sorryAx placeholder found in Lean formalization")
-        if re.search(r"\bpanic!\b", lean_body):
-            return GateScore("Failure/Safety", "E", "panic! found in Lean definition")
-        return GateScore("Failure/Safety", "A+", "Zero sorry/panic! placeholders; pure proof terms with total definitions")
-
-    if language == "Coq/Rocq":
-        if re.search(r"\bAdmitted\b", text):
-            return GateScore("Failure/Safety", "E", "Admitted placeholder found in Coq/Rocq development")
-        return GateScore("Failure/Safety", "A+", "Zero Admitted placeholders; verified formal completion")
-
-    if language == "SQL":
-        return GateScore("Failure/Safety", "A", "Declarative schema/queries with constraint guards; zero unhandled aborts")
-
-    return GateScore("Failure/Safety", "A", "Standard failure mode profile; no unhandled crashes detected")
+    """Absence of abort keywords cannot establish complete failure behavior."""
+    return GateScore("Failure/Safety", None,
+                     "Unassessed: no checked failure-path, reachability or trusted-computation evidence supplied.")
 
 
 def evaluate_gate4_tests(path: Path, language: str) -> Tuple[GateScore, Optional[Dict[str, Any]]]:
-    """Gate 4: Verification Adequacy & Mutation Accounting (G4)."""
-    is_test_file = "test" in path.name.lower() or "tests" in path.parts
-
-    if is_test_file:
-        return GateScore("Verification", "A", "Test harness file providing verification coverage"), None
-
-    text = path.read_text(encoding="utf-8", errors="ignore")
-
-    # In Lean 4 / Coq, formal test discipline includes verification lemmas and negative falsification checks
-    if language in ("Lean 4", "Coq/Rocq"):
-        has_tests = bool(
-            re.search(
-                r"(#guard|#guard_msgs|example|theorem|lemma|countermodel|falsif|refut|not_|obstruct|test_|deficit|gap|refusal)",
-                text,
-                re.IGNORECASE,
-            )
-        )
-        has_mutation = bool(
-            re.search(r"(mutation|mutant|100% killed|negative test)", text, re.IGNORECASE)
-        )
-        if has_tests and has_mutation:
-            return GateScore("Verification", "A", "Verified formal negative falsification lemmas with recorded mutation resistance"), None
-        if has_tests:
-            return GateScore("Verification", "B", "Formal verification lemmas present; mutation campaign unrecorded"), None
-        return GateScore("Verification", "C", "Covered via upstream integration proof elaboration"), None
-
-    # Check for associated test files in Python / Rust
-    stem = path.stem
-    parent = path.parent
-    possible_tests = [
-        parent / f"test_{stem}.py",
-        parent / f"{stem}_test.py",
-        REPO_ROOT / "tests" / f"test_{stem}.py",
-        REPO_ROOT / "tests" / f"test_{stem}.rs",
-        REPO_ROOT / "omega_engine_operations" / "tests" / "cicd" / f"test_{stem}.py",
-    ]
-    if len(path.parts) > 1:
-        subsystem = path.parts[0]
-        possible_tests.extend([
-            REPO_ROOT / subsystem / "tests" / "cicd" / f"test_{stem}.py",
-            REPO_ROOT / subsystem / "tests" / "unit" / f"test_{stem}.py",
-            REPO_ROOT / subsystem / "tests" / f"test_{stem}.py",
-        ])
-
-    test_file_path = next((p for p in possible_tests if p.exists()), None)
-    has_inline_tests = "#[cfg(test)]" in text or "mod tests" in text
-
-    if test_file_path or has_inline_tests:
-        test_content = text
-        if test_file_path:
-            test_content += "\n" + test_file_path.read_text(encoding="utf-8", errors="ignore")
-        has_negative_case = bool(
-            re.search(r"(raises|is_err|Refusal|fail|Error|invalid|assertIsInstance|reject)", test_content, re.IGNORECASE)
-        )
-        if has_negative_case:
-            return GateScore("Verification", "B", "Verified unit/integration coverage with negative failure test cases; mutation suite unrecorded"), None
-        return GateScore("Verification", "C", "Associated unit or integration tests present locking in primary invariant"), None
-
-    return GateScore("Verification", "C", "Covered via upstream integration and E2E pipeline suites"), None
+    """No test, compiler, proof checker or mutation campaign is executed here."""
+    return GateScore("Verification", None,
+                     "Unassessed: test names and mutation comments are not execution receipts."), None
 
 
 def evaluate_gate5_structure_and_complexity(path: Path, text: str, language: str) -> GateScore:
-    """Gate 5: Structure, Cognitive Complexity & Operational Cost (G5)."""
-    # Lizard metric analysis for supported languages
+    """A partial source metric is an observation, not a complete G5 assessment."""
+    detail = "No supported complexity tool measurement available."
     if _HAS_LIZARD and language in ("Python", "Rust", "C++", "C#"):
         try:
             analysis = lizard.analyze_file(str(path))
-            if analysis.function_list:
-                worst_func = max(analysis.function_list, key=lambda f: f.cyclomatic_complexity)
-                worst_ccn = worst_func.cyclomatic_complexity
-                func_name = worst_func.name
-
-                # Metric ceilings table from SCORING.md Section 3.5:
-                # CCN: 0-10 (A/A+), 11-15 (B), 16-20 (C), 21-50 (D), 51+ (E)
-                if worst_ccn <= 10:
-                    return GateScore("Structure/Complexity", "A", f"Max CCN = {worst_ccn} in {func_name} (CCN <= 10)")
-                if worst_ccn <= 15:
-                    return GateScore("Structure/Complexity", "B", f"Max CCN = {worst_ccn} in {func_name} (CCN 11-15 cap: B)")
-                if worst_ccn <= 20:
-                    return GateScore("Structure/Complexity", "C", f"Max CCN = {worst_ccn} in {func_name} (CCN 16-20 cap: C)")
-                if worst_ccn <= 50:
-                    return GateScore("Structure/Complexity", "D", f"Max CCN = {worst_ccn} in {func_name} (CCN 21-50 cap: D)")
-                return GateScore("Structure/Complexity", "E", f"Max CCN = {worst_ccn} in {func_name} exceeds industrial ceiling (>50)")
-            else:
-                return GateScore("Structure/Complexity", "A", f"Zero function complexity; declarative structural definitions (NLOC = {analysis.nloc})")
-        except Exception:
-            pass
-
-    # Heuristic fallback for declarative languages (SQL, Lean 4, Markdown)
-    loc = len([line for line in text.splitlines() if line.strip()])
-    return GateScore("Structure/Complexity", "A", f"Structural line count = {loc}; standard linear control flow")
+            maximum = max((f.cyclomatic_complexity for f in analysis.function_list), default=0)
+            detail = f"Lizard source CCN maximum = {maximum}."
+        except Exception as error:
+            detail = f"Complexity measurement failed: {type(error).__name__}."
+    return GateScore("Structure/Complexity", None,
+                     detail + " Unassessed: cognitive complexity, nesting, expanded code and operational costs need review.")
 
 
 def assign_level(text: str, language: str, path: Path) -> str:
-    """Assign Level (L1 to L5) based on actual code and formal sophistication."""
-    # Check explicit tag in text
-    level_match = re.search(r"\bLevel:\s*(L[1-5])\b", text, re.IGNORECASE)
-    if level_match:
-        return level_match.group(1).upper()
-
-    loc = len([line for line in text.splitlines() if line.strip()])
-
-    if loc <= 10 and not any(k in text for k in ("theorem", "struct", "class")):
-        return "L1"
-
-    # Lean 4 / Coq formalization level
-    if language in ("Lean 4", "Coq/Rocq"):
-        if any(k in text for k in ("theorem", "lemma", "structure", "inductive", "def")) and loc >= 10:
-            return "L4"
-        if loc > 50:
-            return "L3"
-        return "L2"
-
-    # L5: Proof-carrying, formal theorem, certificate evaluator
-    is_l5 = (
-        "certificate" in text.lower()
-        and "BigRational" in text
-        and "Verification" in text
-    )
-    if is_l5:
-        return "L5"
-
-    # L4: Production craft (typed Result, Pydantic, private fields, termination proofs)
-    is_l4 = (
-        ("Result<" in text and "derive(thiserror::Error)" in text)
-        or ("@dataclass(frozen=True)" in text or "BaseModel" in text)
-        or ("PRAGMA foreign_keys" in text and "REFERENCES" in text)
-        or ("termination_by" in text)
-    )
-    if is_l4:
-        return "L4"
-
-    # L3: Research prototype, non-trivial algorithm
-    if loc > 50 or "class " in text or "fn " in text or "def " in text:
-        return "L3"
-
-    return "L2"
+    """Return a provisional lower bound; keyword presence cannot certify capability."""
+    return "L1"
 
 
 def score_source_file(file_path: Path, profile_override: Optional[str] = None) -> FileScoreRecord:
@@ -920,12 +626,19 @@ def evaluate_scoring_rubric(
             if errs:
                 validation_errors.extend([f"{r_dict['artifact']['path']}: {e}" for e in errs])
 
+    if not records:
+        validation_errors.append("No source artifacts were evaluated")
+    for path in target_paths:
+        if not path.exists():
+            validation_errors.append(f"Missing target path: {path}")
     status = "PASS"
     if validation_errors and enforced:
         status = "FAIL"
 
-    if enforced and min_required_grade:
-        min_rank = GRADE_RANKS.get(min_required_grade, 0)
+    if min_required_grade is not None and min_required_grade not in GRADE_ORDER:
+        raise ValueError("Unknown minimum grade")
+    if enforced:
+        min_rank = GRADE_RANKS[min_required_grade or "E"]
         for r in records:
             if r.composite_grade is None or GRADE_RANKS.get(r.composite_grade, 0) < min_rank:
                 status = "FAIL"
@@ -934,7 +647,7 @@ def evaluate_scoring_rubric(
     op_status = "ENFORCED" if enforced else "STANDBY_OFF"
 
     return CodeScoringReceipt(
-        gate_name="code_scoring_evaluator_v1",
+        gate_name="code_scoring_evaluator_v2",
         schema_version=SCHEMA_VERSION,
         operational_status=op_status,
         enforced=enforced,
@@ -948,7 +661,7 @@ def evaluate_scoring_rubric(
     )
 
 
-def main(argv: Optional[List[str]] = None) -> int:
+def evaluate_main(argv: Optional[List[str]] = None) -> int:
     """CLI entrypoint."""
     parser = argparse.ArgumentParser(
         description="Code Scoring Evaluator & Gate (SCORING.md Version 2.0.0)"
@@ -1045,5 +758,13 @@ def main(argv: Optional[List[str]] = None) -> int:
     return 0 if receipt.status == "PASS" else 1
 
 
+def main(argv: Optional[List[str]] = None) -> int:
+    """Keep the no-argument grade-minimum witness API; arguments run static triage."""
+    if not argv:
+        print(grade_minimum_witness())
+        return 0
+    return evaluate_main(argv)
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))

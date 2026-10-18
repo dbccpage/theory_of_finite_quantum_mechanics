@@ -107,3 +107,9 @@ cargo test
 
 # Elaborate formal proofs
 lake build
+
+The scoring evaluator is a static triage tool: source labels, test filenames,
+and proof keywords do not earn engineering grades. Unsupported gates and score
+tokens remain null, capability is a provisional lower bound, and enforcement
+refuses incomplete assessments. Reviewed evidence records need separate
+source-bound validation.

@@ -1,0 +1,99 @@
+{
+  "schema": "finite-qm.weyl-gleason-review-validation.v1",
+  "date": "2026-10-12",
+  "authority_effect": "None",
+  "base_commit": "5452a476dd88d05d19de60c3ea7e6607ac14ede0",
+  "source_inventory": {
+    "path": "research/qm_weyl_gleason_source_inventory.json",
+    "sha256": "b239e02da3e0802bc473f84c987562f6be062d1b0ddaa530ae39fcdcafe647d9"
+  },
+  "checks": [
+    {
+      "check": "falser_unit",
+      "command": "cargo test --offline --manifest-path omega_engine/crates_rs/Cargo.toml -p omega_quantum_physics -j 1 --lib mub::non_cyclic_falser::tests",
+      "status": "passed",
+      "tests_passed": 7,
+      "log_sha256": "f520c64955c1ac517e71b10a8e521ccfa9e40c3332256902ca60ed4219ca16bb"
+    },
+    {
+      "check": "mub_integrations",
+      "command": "cargo test --offline --manifest-path omega_engine/crates_rs/Cargo.toml -p omega_quantum_physics -j 1 --test projective_history_mub6 --test mub6_non_cyclic_falser",
+      "status": "passed",
+      "tests_passed": 4,
+      "log_sha256": "e429333eae91fe2495870cd9f89710a12c1e1353501e608f784244195663b2ad"
+    },
+    {
+      "check": "certificate_and_positivity",
+      "command": "cargo test --offline --manifest-path omega_engine/crates_rs/Cargo.toml -p omega_quantum_physics -j 1 --test gleason_finite_context --test mub_certificate_boundaries",
+      "status": "passed",
+      "tests_passed": 3,
+      "log_sha256": "53935f9d1f95db4ad011d9f755765541eb79ff1639d9d77c27af8fa61dd9d829"
+    },
+    {
+      "check": "weyl_intertwiner",
+      "command": "cargo test --offline --manifest-path omega_engine/crates_rs/Cargo.toml -p omega_lie_theory -j 1 --test weyl_intertwiner",
+      "status": "passed",
+      "tests_passed": 2,
+      "log_sha256": "31f151c8b7931ce7f5fa3ea4ee38a998564c46851d885ba9f827c6e55bba9a33"
+    },
+    {
+      "check": "installed_wheel",
+      "command": "python -m pytest -q tests/integration/test_native_application.py tests/integration/test_native_exact_boundaries.py",
+      "status": "passed",
+      "tests_passed": 49,
+      "log_sha256": "18b805216db03ffd89c02b1b910e1ec8a44bbf04cc4c0da07d24edd67ce4b239"
+    },
+    {
+      "check": "omega_mub_library",
+      "command": "cargo check --offline --manifest-path omega_engine/crates_rs/Cargo.toml -p omega_mub --lib -j 1",
+      "status": "passed",
+      "tests_passed": null,
+      "log_sha256": "6d6c018399eb2e61a75c1d5e0644da04c49a148598633fa4f1eec626a27a51c3"
+    },
+    {
+      "check": "omega_sheaf_library",
+      "command": "cargo check --offline --manifest-path omega_engine/crates_rs/Cargo.toml -p omega_sheaf_theory --lib -j 1",
+      "status": "passed",
+      "tests_passed": null,
+      "log_sha256": "95e627c5cb5f9008723a8169eeaa0bcde4203af73272dc617999de84b4c6e34d"
+    }
+  ],
+  "lean": {
+    "core": {
+      "toolchain": "leanprover/lean4:v4.33.1",
+      "module_count": 184,
+      "lake_jobs": 193,
+      "command": "lake build <all FiniteQuantum roots except EntropyDichotomy>",
+      "status": "passed"
+    },
+    "entropy_pinned": {
+      "toolchain": "leanprover/lean4:v4.33.1",
+      "mathlib_commit": "0df444a360eaa60ab8c11dca51a86af692955474",
+      "status": "not_reproduced",
+      "reason": "Pinned Mathlib cache host lakecache.blob.core.windows.net rejected by network proxy: CONNECT 403"
+    },
+    "entropy_secondary": {
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "mathlib_commit": "5ed2965256430c3649e86755f9576b54eca72435",
+      "command": "lean EntropyDichotomy.lean with LEAN_PATH set to the cached Mathlib/dependency libraries",
+      "status": "passed",
+      "scope": "The Baker input remains a theorem hypothesis; this is not pinned reproduction."
+    }
+  },
+  "wheel": {
+    "name": "finite_qm-0.2.0-cp312-cp312-manylinux_2_34_x86_64.whl",
+    "sha256": "d06aa246d3a37be1e0d7acd0afd6588884626dc8a89f738538f69dcd3d81540c",
+    "profile": "dev",
+    "rust_jobs": 1,
+    "python": "CPython 3.12",
+    "target": "x86_64-unknown-linux-gnu",
+    "status": "built_installed_and_tested"
+  },
+  "boundaries": [
+    "Inventory is not exhaustive semantic verification of every Rust function.",
+    "Only focused tests and default library checks ran, not all crates/features/tests.",
+    "No unrestricted Gleason theorem, MUB6 upper bound, operational theory classification, or primitive-to-QM derivation is claimed.",
+    "Historical source archives and pinned receipt bytes were preserved.",
+    "No GitHub Actions workflows were used or changed."
+  ]
+}
