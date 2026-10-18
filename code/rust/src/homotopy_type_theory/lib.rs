@@ -11,6 +11,7 @@
 //! shape records validated here. The former `omega_engine_native_hott` crate
 //! was a partial copy of this one and was merged into it on 2026-09-25.
 
+extern crate self as omega_homotopy_type_theory;
 pub mod contractible_type;
 pub mod difference;
 pub mod empty_type;

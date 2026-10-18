@@ -1,107 +1,115 @@
 //! Exact linear algebra, scalar fields, polynomial algebra and exact solvers.
 
-use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
-use crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field, Involution};
+use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
 pub mod bareiss_det;
+pub use bareiss_det as rational_bareiss;
 pub mod basic_matrix;
 pub mod char_poly;
 pub mod commutant;
 pub mod complex_tensor;
 pub mod compositum_deg;
+pub use compositum_deg as real_field_compositum_degrees;
 pub mod congruence;
-pub mod cyclo_density;
 pub mod elimination;
 pub mod entropy_dichotomy;
 pub mod field_factors;
+pub use field_factors as real_field_polynomial_factors;
 pub mod field_squares;
+pub use field_squares as real_field_squares;
 pub mod image_kernel;
 pub mod interpolation;
 pub mod involution;
 pub mod laws;
 pub mod matrix;
 pub mod ordered;
-pub mod poly_roots;
 pub mod pseudoinverse;
 pub mod quintic_split;
+pub use quintic_split as quintic_splitting_algebras;
 pub mod rational_factors;
+pub use rational_factors as rational_polynomial_factors;
 pub mod scalars;
 pub mod second_jet;
 pub mod smith_form;
-pub mod spectral_factors;
 pub mod splitting_deg;
+pub use splitting_deg as real_field_splitting_degrees;
 pub mod tensor_proj;
 pub mod test_support;
 
 pub use basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
-pub use matrix::ExactMatrix;
 pub use scalars::{GaussianRational, Q, q, Semiring};
 
-/// Refusals of the exact-field matrix algorithms.
-#[derive(Debug, Clone, PartialEq, Eq, Error)]
-pub enum ExactFieldError {
-    #[error("matrix storage: {0}")]
-    Matrix(#[from] MatrixError),
+/// Exact matrix carrier wrapping `BasicMatrix<F>` for homology and quantum state operators.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct ExactMatrix<F>(pub BasicMatrix<F>);
 
-    #[error("{operation}: incompatible shapes {left:?} and {right:?}")]
-    ShapeMismatch {
-        operation: &'static str,
-        left: (usize, usize),
-        right: (usize, usize),
-    },
+impl<F: Field + ExactRing> ExactMatrix<F> {
+    pub fn rows(&self) -> usize {
+        self.0.rows()
+    }
 
-    #[error("{operation} needs a square matrix, got {rows}x{cols}")]
-    NotSquare {
-        operation: &'static str,
-        rows: usize,
-        cols: usize,
-    },
+    pub fn cols(&self) -> usize {
+        self.0.cols()
+    }
 
-    #[error("row {row} has {len} entries but row 0 has {expected}")]
-    RaggedRows {
-        row: usize,
-        len: usize,
-        expected: usize,
-    },
+    pub fn shape(&self) -> (usize, usize) {
+        self.0.shape()
+    }
 
-    #[error("{operation}: vector has {got} entries, expected {expected}")]
-    VectorLength {
-        operation: &'static str,
-        expected: usize,
-        got: usize,
-    },
+    pub fn as_slice(&self) -> &[F] {
+        self.0.as_slice()
+    }
 
-    #[error("matrix is singular: rank {rank} of dimension {size}")]
-    Singular { rank: usize, size: usize },
+    pub fn get(&self, r: usize, c: usize) -> Result<&F, MatrixError> {
+        self.0.get_ref(r, c)
+    }
 
-    #[error("matrix is not symmetric at ({row}, {col})")]
-    NotSymmetric { row: usize, col: usize },
+    pub fn zeros(rows: usize, cols: usize) -> Self {
+        Self(
+            BasicMatrix::try_from_fn(rows, cols, |_, _| F::zero())
+                .expect("zero matrix dimensions fit within usize"),
+        )
+    }
 
-    #[error("matrix is not Hermitian at ({row}, {col})")]
-    NotHermitian { row: usize, col: usize },
+    pub fn from_rows(rows: Vec<Vec<F>>) -> Result<Self, MatrixError> {
+        let r = rows.len();
+        let c = rows.first().map_or(0, Vec::len);
+        for row in &rows {
+            if row.len() != c {
+                return Err(MatrixError::ShapeMismatch {
+                    rows: r,
+                    cols: c,
+                    len: rows.iter().map(Vec::len).sum(),
+                });
+            }
+        }
+        let data: Vec<F> = rows.into_iter().flatten().collect();
+        Ok(Self(BasicMatrix::from_row_major(r, c, data)?))
+    }
 
-    #[error("{operation} is undefined in characteristic 2")]
-    CharacteristicTwo { operation: &'static str },
+    pub fn mul(&self, rhs: &Self) -> Result<Self, MatrixError> {
+        matrix::multiply(&self.0, &rhs.0)
+            .map(Self)
+            .map_err(|_| MatrixError::DimensionMismatch {
+                left: self.shape(),
+                right: rhs.shape(),
+            })
+    }
 
-    #[error("the entry at ({row}, {col}) does not fit the requested representation")]
-    NotRepresentable { row: usize, col: usize },
-
-    #[error("{operation}: the scalar type violates its contract: {violation}")]
-    ScalarContract {
-        operation: &'static str,
-        violation: &'static str,
-    },
-
-    #[error("{operation}: exact replay of the computed result failed")]
-    ReplayFailed { operation: &'static str },
-
-    #[error("certificate rejected: {reason}")]
-    CertificateRejected { reason: &'static str },
-
-    #[error("law violated on the sample: {law}")]
-    LawViolated { law: &'static str },
+    pub fn rank(&self) -> usize {
+        elimination::rank(&self.0).unwrap_or(0)
+    }
 }
+
+impl<F: Involution> ExactMatrix<F> {
+    pub fn is_hermitian(&self) -> Result<bool, MatrixError> {
+        involution::is_hermitian(&self.0).map_err(|e| MatrixError::InvalidOperation(e.to_string()))
+    }
+}
+
+pub use ::linear_algebra::exact_field::ExactFieldError;
 
 pub(crate) fn reserve<T>(len: usize) -> Result<Vec<T>, MatrixError> {
     let mut data = Vec::new();

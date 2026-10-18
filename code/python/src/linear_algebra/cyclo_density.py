@@ -261,7 +261,7 @@ def validate_psd(matrix: list[list[Cyclotomic]]) -> None:
                     for j in indices] for i in indices]
 
 
-def validated_matrix(case: dict[str, Any]) -> list[list[Cyclotomic]]:
+def _validate_case_structure(case: dict[str, Any]) -> tuple[int, int]:
     kernel.reject_floats(case, "input")
     if not isinstance(case, dict) or set(case) != kernel.INPUT_KEYS or not isinstance(case["fixture_id"], str):
         raise ValueError("typed input requires exactly the five interface fields")
@@ -272,6 +272,10 @@ def validated_matrix(case: dict[str, Any]) -> list[list[Cyclotomic]]:
     dimension, conductor = kernel.CLASS[case["system_id"]]
     if type(case["conductor"]) is not int or case["conductor"] != conductor:
         raise ValueError("frozen conductor mismatch")
+    return dimension, conductor
+
+
+def _parse_and_validate_matrix(case: dict[str, Any], dimension: int, conductor: int) -> list[list[Cyclotomic]]:
     raw = case["matrix"]
     if not isinstance(raw, list) or len(raw) > kernel.MAX_D:
         raise kernel.RefusedAtBudget("matrix_dimension_max=5 exhausted")
@@ -282,20 +286,32 @@ def validated_matrix(case: dict[str, Any]) -> list[list[Cyclotomic]]:
         raise ValueError("input is not Hermitian in its declared cyclotomic field")
     if sum((matrix[i][i] for i in range(dimension)), Cyclotomic.rational(conductor, 0)) != 1:
         raise ValueError("unnormalised spectrum: trace must equal one")
+    return matrix
+
+
+def _validate_case_scope_and_ladder(case: dict[str, Any], matrix: list[list[Cyclotomic]], dimension: int) -> None:
     if case["system_id"] == "S8":
         if case["scope"] != "S8_DIMENSION_ONLY_PROXY":
             raise ValueError("S8 code support unresolved; dimension-only proxy label required")
     elif case["scope"] != "DECLARED_SYSTEM_STATE":
         raise ValueError("state scope label mismatch")
+
     if case["system_id"] in {"S6", "S7"}:
         if any(matrix[i][j] for i in range(dimension) for j in range(dimension) if i != j):
             raise ValueError("frozen ladder states must be diagonal")
+
     if case["system_id"] == "S6":
         if matrix[0][0] <= 0:
             raise ValueError("S6 requires a positive geometric ladder")
         ratio = matrix[1][1] / matrix[0][0]
         if not 0 < ratio < 1 or any(matrix[i][i] != matrix[0][0] * ratio**i for i in range(dimension)):
             raise ValueError("S6 requires the declared decreasing geometric ladder")
+
+
+def validated_matrix(case: dict[str, Any]) -> list[list[Cyclotomic]]:
+    dimension, conductor = _validate_case_structure(case)
+    matrix = _parse_and_validate_matrix(case, dimension, conductor)
+    _validate_case_scope_and_ladder(case, matrix, dimension)
     validate_psd(matrix)
     return matrix
 

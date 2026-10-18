@@ -36,6 +36,61 @@ def _spans_three(rows: Sequence[Sequence[int]]) -> bool:
     return False
 
 
+def _validate_tiles_factors(factors):
+    if len(factors) != 5:
+        raise ValueError("five pairs of three-coordinate factors are required")
+    for a, b in factors:
+        if len(a) != 3 or len(b) != 3:
+            raise ValueError("five pairs of three-coordinate factors are required")
+    vectors = [tuple(x*y for x in a for y in b) for a, b in factors]
+    norms = [sum(x*x for x in v) for v in vectors]
+    if any(n == 0 for n in norms):
+        raise ValueError("zero product vector")
+    for i in range(5):
+        for j in range(i):
+            if sum(x*y for x, y in zip(vectors[i], vectors[j])) != 0:
+                raise ValueError("product vectors are not mutually orthogonal")
+    return vectors, norms
+
+
+def _compute_tiles_partitions(factors) -> List[bool]:
+    partitions = []
+    for mask in range(32):
+        side_a = [factors[k][0] for k in range(5) if mask & (1 << k)]
+        side_b = [factors[k][1] for k in range(5) if not mask & (1 << k)]
+        partitions.append(_spans_three(side_a) or _spans_three(side_b))
+    return partitions
+
+
+def _construct_tiles_rho(vectors, norms) -> List[List[Fraction]]:
+    rho = []
+    for i in range(9):
+        row = []
+        for j in range(9):
+            delta = Fraction(int(i == j))
+            proj = sum(Fraction(v[i]*v[j], n) for v, n in zip(vectors, norms))
+            row.append((delta - proj) / 4)
+        rho.append(row)
+    return rho
+
+
+def _verify_tiles_ppt(rho: List[List[Fraction]]) -> Tuple[Fraction, bool, bool, bool]:
+    trace = sum(rho[i][i] for i in range(9))
+    scaled_projector = True
+    for i in range(9):
+        for j in range(9):
+            if 4 * sum(rho[i][k] * rho[k][j] for k in range(9)) != rho[i][j]:
+                scaled_projector = False
+                break
+        if not scaled_projector:
+            break
+    symmetric = all(rho[i][j] == rho[j][i] for i in range(9) for j in range(9))
+    pt = [[rho[3*(i//3) + j%3][3*(j//3) + i%3] for j in range(9)] for i in range(9)]
+    pt_equals = (pt == rho)
+    ppt = symmetric and scaled_projector and pt_equals
+    return trace, scaled_projector, pt_equals, ppt
+
+
 def tiles_upb_certificate(factors=TILES_FACTORS) -> Dict[str, Any]:
     """Finite exact certificate, under the declared UPB-complement criterion.
 
@@ -44,30 +99,12 @@ def tiles_upb_certificate(factors=TILES_FACTORS) -> Dict[str, Any]:
     nonzero product vector. This is computation, not a Lean theorem or a
     generic classifier of bipartite entanglement.
     """
-    if len(factors) != 5 or any(len(a) != 3 or len(b) != 3 for a, b in factors):
-        raise ValueError("five pairs of three-coordinate factors are required")
-    vectors = [tuple(x*y for x in a for y in b) for a, b in factors]
-    norms = [sum(x*x for x in v) for v in vectors]
-    if any(n == 0 for n in norms):
-        raise ValueError("zero product vector")
-    if any(sum(x*y for x, y in zip(vectors[i], vectors[j])) != 0
-           for i in range(5) for j in range(i)):
-        raise ValueError("product vectors are not mutually orthogonal")
-    partitions = [
-        _spans_three([factors[k][0] for k in range(5) if mask & (1 << k)])
-        or _spans_three([factors[k][1] for k in range(5) if not mask & (1 << k)])
-        for mask in range(32)
-    ]
-    rho = [[(Fraction(int(i == j)) - sum(Fraction(v[i]*v[j], n)
-             for v, n in zip(vectors, norms))) / 4 for j in range(9)] for i in range(9)]
-    trace = sum(rho[i][i] for i in range(9))
-    scaled_projector = all(
-        4 * sum(rho[i][k] * rho[k][j] for k in range(9)) == rho[i][j]
-        for i in range(9) for j in range(9))
-    # rho = 4 rho^T rho gives a rational sum-of-squares PSD certificate.
-    symmetric = all(rho[i][j] == rho[j][i] for i in range(9) for j in range(9))
-    pt = [[rho[3*(i//3) + j%3][3*(j//3) + i%3] for j in range(9)] for i in range(9)]
-    ppt = symmetric and scaled_projector and pt == rho
+    vectors, norms = _validate_tiles_factors(factors)
+    partitions = _compute_tiles_partitions(factors)
+    rho = _construct_tiles_rho(vectors, norms)
+    trace, scaled_projector, pt_equals, ppt = _verify_tiles_ppt(rho)
+    unextendible = all(partitions)
+
     return {
         "name": "Tiles 3x3 UPB complement",
         "dimension": 9, "bipartite_dims": (3, 3), "trace": str(trace),
@@ -75,11 +112,11 @@ def tiles_upb_certificate(factors=TILES_FACTORS) -> Dict[str, Any]:
         "factors": factors, "squared_norms": norms,
         "density_matrix": [[str(x) for x in row] for row in rho],
         "orthogonality_checked": True, "partition_count": len(partitions),
-        "unextendible_by_rank_cover": all(partitions),
+        "unextendible_by_rank_cover": unextendible,
         "scaled_projector_identity": scaled_projector,
-        "partial_transpose_equals_state": pt == rho,
+        "partial_transpose_equals_state": pt_equals,
         "is_ppt": ppt,
-        "is_bound_entangled": trace == 1 and ppt and all(partitions),
+        "is_bound_entangled": trace == 1 and ppt and unextendible,
         "claim_type": "DETERMINISTIC_COMPUTATION_UNDER_DECLARED_UPB_CRITERION",
         "rationale": "Exact rational matrix, PSD sum-of-squares identity, partial transpose and all 32 local rank covers; not a Lean proof.",
     }

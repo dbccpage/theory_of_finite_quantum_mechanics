@@ -96,14 +96,7 @@ def _rank_over_f2(rows: list[list[int]], ncols: int) -> int:
     return rank
 
 
-def analyze_conf2_graph(
-    graph_id: str,
-    n_vertices: int,
-    edges: list[tuple[int, int]],
-) -> Conf2GraphSummary:
-    """Construct the 1-skeleton Conf_2^(1)(G) and square 2-complex Conf_2^(2)(G)
-    for 2 non-colliding identical particles on G.
-    """
+def _validate_and_build_base_adjacency(n_vertices: int, edges: list[tuple[int, int]]) -> tuple[list[tuple[int, int]], list[set[int]]]:
     if n_vertices < 2:
         raise ValueError(f"n_vertices must be >= 2, got {n_vertices}")
     base_adj: list[set[int]] = [set() for _ in range(n_vertices)]
@@ -115,8 +108,10 @@ def analyze_conf2_graph(
         canonical_edges_set.add((a, b))
         base_adj[a].add(b)
         base_adj[b].add(a)
-    sorted_base_edges = sorted(canonical_edges_set)
+    return sorted(canonical_edges_set), base_adj
 
+
+def _build_conf2_adjacency(n_vertices: int, base_adj: list[set[int]]) -> tuple[list[tuple[int, int]], dict[tuple[int, int], int], int, list[set[int]], dict[tuple[int, int], int], int]:
     conf_nodes = list(combinations(range(n_vertices), 2))
     node_to_idx = {pair: idx for idx, pair in enumerate(conf_nodes)}
     n_conf = len(conf_nodes)
@@ -128,22 +123,22 @@ def analyze_conf2_graph(
         u1, v1 = conf_nodes[i]
         for j in range(i + 1, n_conf):
             u2, v2 = conf_nodes[j]
-            if u1 == u2:
-                hop = v2 in base_adj[v1]
-            elif u1 == v2:
-                hop = u2 in base_adj[v1]
-            elif v1 == u2:
-                hop = v2 in base_adj[u1]
-            elif v1 == v2:
-                hop = u2 in base_adj[u1]
-            else:
-                hop = False
+            hop = (
+                (v2 in base_adj[v1]) if u1 == u2 else
+                (u2 in base_adj[v1]) if u1 == v2 else
+                (v2 in base_adj[u1]) if v1 == u2 else
+                (u2 in base_adj[u1]) if v1 == v2 else
+                False
+            )
             if hop:
                 conf_adj[i].add(j)
                 conf_adj[j].add(i)
                 conf_edge_to_idx[(i, j)] = conf_edges
                 conf_edges += 1
+    return conf_nodes, node_to_idx, n_conf, conf_adj, conf_edge_to_idx, conf_edges
 
+
+def _find_conf2_components(n_conf: int, conf_adj: list[set[int]]) -> int:
     visited = [False] * n_conf
     components = 0
     for start in range(n_conf):
@@ -158,10 +153,15 @@ def analyze_conf2_graph(
                 if not visited[nbr]:
                     visited[nbr] = True
                     queue.append(nbr)
+    return components
 
-    betti_1 = conf_edges - n_conf + components
 
-    # Build 2-cells (commuting disjoint-edge squares) of Conf_2^(2)(G)
+def _build_square_2complex_boundaries(
+    sorted_base_edges: list[tuple[int, int]],
+    node_to_idx: dict[tuple[int, int], int],
+    conf_edges: int,
+    conf_edge_to_idx: dict[tuple[int, int], int],
+) -> list[list[int]]:
     square_boundary_rows: list[list[int]] = []
     for idx1 in range(len(sorted_base_edges)):
         a1, b1 = sorted_base_edges[idx1]
@@ -179,7 +179,32 @@ def analyze_conf2_graph(
                     else:
                         row[conf_edge_to_idx[(q, p)]] -= 1
                 square_boundary_rows.append(row)
+    return square_boundary_rows
 
+
+def analyze_conf2_graph(
+    graph_id: str,
+    n_vertices: int,
+    edges: list[tuple[int, int]],
+) -> Conf2GraphSummary:
+    """Construct the 1-skeleton Conf_2^(1)(G) and square 2-complex Conf_2^(2)(G)
+    for 2 non-colliding identical particles on G.
+    """
+    sorted_base_edges, base_adj = _validate_and_build_base_adjacency(n_vertices, edges)
+    (
+        conf_nodes,
+        node_to_idx,
+        n_conf,
+        conf_adj,
+        conf_edge_to_idx,
+        conf_edges,
+    ) = _build_conf2_adjacency(n_vertices, base_adj)
+    components = _find_conf2_components(n_conf, conf_adj)
+    betti_1 = conf_edges - n_conf + components
+
+    square_boundary_rows = _build_square_2complex_boundaries(
+        sorted_base_edges, node_to_idx, conf_edges, conf_edge_to_idx
+    )
     n_squares = len(square_boundary_rows)
     rank_q = _rank_over_q(square_boundary_rows, conf_edges)
     rank_f2 = _rank_over_f2(square_boundary_rows, conf_edges)
@@ -187,8 +212,6 @@ def analyze_conf2_graph(
     b1_2complex_f2 = betti_1 - rank_f2
     z2_torsion_rank = b1_2complex_f2 - b1_2complex_q
 
-    # Z_2 torsion in H_1(Conf_2^(2)(G); Z) forces the exchange loop to have order 2
-    # in homology (chi^2 = 1), restricting 1D exchange characters on the torsion generator to {+1, -1}.
     has_z2_exchange_torsion = z2_torsion_rank > 0
 
     if betti_1 == 0:
@@ -213,8 +236,6 @@ def analyze_conf2_graph(
         has_y_junction_exchange_cycle=has_z2_exchange_torsion,
         admissible_1d_exchange_characters=chars,
     )
-
-
 def _permutation_sign(perm: tuple[int, ...]) -> int:
     inversions = 0
     n = len(perm)
@@ -295,6 +316,78 @@ def verify_two_mode_jordan_wigner_car() -> tuple[bool, bool, Fraction]:
     return all_nilpotent, car_exact, tr_sum
 
 
+def _check_conf2_p3_y_star(p3: Conf2GraphSummary, y: Conf2GraphSummary) -> bool:
+    return (
+        p3.conf2_betti_1 == 0
+        and p3.conf2_z2_torsion_rank == 0
+        and y.conf2_betti_1 == 1
+        and y.conf2_squares == 0
+        and y.conf2_2complex_betti_1_q == 1
+        and y.conf2_z2_torsion_rank == 0
+        and not y.has_y_junction_exchange_cycle
+    )
+
+
+def _check_conf2_c4_k4_k5(c4: Conf2GraphSummary, k4: Conf2GraphSummary, k5: Conf2GraphSummary) -> bool:
+    c4_ok = (
+        c4.conf2_betti_1 == 3
+        and c4.conf2_squares == 2
+        and c4.conf2_2complex_betti_1_q == 1
+        and c4.conf2_z2_torsion_rank == 0
+        and not c4.has_y_junction_exchange_cycle
+    )
+    k4_ok = (
+        k4.conf2_betti_1 == 7
+        and k4.conf2_squares == 3
+        and k4.conf2_2complex_betti_1_q == 4
+        and k4.conf2_z2_torsion_rank == 0
+        and not k4.has_y_junction_exchange_cycle
+    )
+    k5_ok = (
+        k5.conf2_betti_1 == 21
+        and k5.conf2_squares == 15
+        and k5.conf2_2complex_betti_1_q == 6
+        and k5.conf2_2complex_betti_1_f2 == 7
+        and k5.conf2_z2_torsion_rank == 1
+        and k5.has_y_junction_exchange_cycle
+    )
+    return c4_ok and k4_ok and k5_ok
+
+
+def _check_slater_and_hbt(
+    pauli_same_slater: Fraction,
+    swap_ratio_fermion: Fraction,
+    swap_ratio_boson: Fraction,
+    fermi_hole_prob: Fraction,
+    hbt_ratio: Fraction,
+) -> bool:
+    return (
+        pauli_same_slater == Fraction(0)
+        and swap_ratio_fermion == Fraction(-1)
+        and swap_ratio_boson == Fraction(1)
+        and fermi_hole_prob == Fraction(0)
+        and hbt_ratio == Fraction(2)
+    )
+
+
+def _check_jw_and_shells(
+    jw_nil: bool,
+    jw_car: bool,
+    jw_tr: Fraction,
+    orb_deg: tuple[int, ...],
+    shell_caps: tuple[int, ...],
+    noble_closures: list[int],
+) -> bool:
+    return (
+        jw_nil
+        and jw_car
+        and jw_tr == Fraction(4)
+        and orb_deg == (1, 4, 9, 16)
+        and shell_caps == (2, 8, 18, 32)
+        and tuple(noble_closures) == (2, 10, 18, 36, 54, 86, 118)
+    )
+
+
 def build_pauli_spin_statistics_certificate() -> PauliSpinStatisticsCertificate:
     """Build and verify the complete QM-223 Pauli exclusion and spin-statistics certificate."""
     conf2_p3 = analyze_conf2_graph("P_3_1D_path", 3, [(0, 1), (1, 2)])
@@ -346,40 +439,10 @@ def build_pauli_spin_statistics_certificate() -> PauliSpinStatisticsCertificate:
             noble_closures.append(cumulative)
 
     passed = (
-        conf2_p3.conf2_betti_1 == 0
-        and conf2_p3.conf2_z2_torsion_rank == 0
-        and conf2_y_star.conf2_betti_1 == 1
-        and conf2_y_star.conf2_squares == 0
-        and conf2_y_star.conf2_2complex_betti_1_q == 1
-        and conf2_y_star.conf2_z2_torsion_rank == 0
-        and not conf2_y_star.has_y_junction_exchange_cycle
-        and conf2_c4.conf2_betti_1 == 3
-        and conf2_c4.conf2_squares == 2
-        and conf2_c4.conf2_2complex_betti_1_q == 1
-        and conf2_c4.conf2_z2_torsion_rank == 0
-        and not conf2_c4.has_y_junction_exchange_cycle
-        and conf2_k4.conf2_betti_1 == 7
-        and conf2_k4.conf2_squares == 3
-        and conf2_k4.conf2_2complex_betti_1_q == 4
-        and conf2_k4.conf2_z2_torsion_rank == 0
-        and not conf2_k4.has_y_junction_exchange_cycle
-        and conf2_k5.conf2_betti_1 == 21
-        and conf2_k5.conf2_squares == 15
-        and conf2_k5.conf2_2complex_betti_1_q == 6
-        and conf2_k5.conf2_2complex_betti_1_f2 == 7
-        and conf2_k5.conf2_z2_torsion_rank == 1
-        and conf2_k5.has_y_junction_exchange_cycle
-        and pauli_same_slater == Fraction(0)
-        and swap_ratio_fermion == Fraction(-1)
-        and swap_ratio_boson == Fraction(1)
-        and fermi_hole_prob == Fraction(0)
-        and hbt_ratio == Fraction(2)
-        and jw_nil
-        and jw_car
-        and jw_tr == Fraction(4)
-        and orb_deg == (1, 4, 9, 16)
-        and shell_caps == (2, 8, 18, 32)
-        and tuple(noble_closures) == (2, 10, 18, 36, 54, 86, 118)
+        _check_conf2_p3_y_star(conf2_p3, conf2_y_star)
+        and _check_conf2_c4_k4_k5(conf2_c4, conf2_k4, conf2_k5)
+        and _check_slater_and_hbt(pauli_same_slater, swap_ratio_fermion, swap_ratio_boson, fermi_hole_prob, hbt_ratio)
+        and _check_jw_and_shells(jw_nil, jw_car, jw_tr, orb_deg, shell_caps, noble_closures)
     )
 
     return PauliSpinStatisticsCertificate(
@@ -402,3 +465,4 @@ def build_pauli_spin_statistics_certificate() -> PauliSpinStatisticsCertificate:
         conf2_y_star=conf2_y_star,
         conf2_k4=conf2_k4,
     )
+

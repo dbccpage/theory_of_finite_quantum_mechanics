@@ -576,7 +576,7 @@ mod tests {
         }
         let fixtures: Fixtures = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../tests/omega_functional/fixtures/state_trace_distance.json"
+            "/fixtures/state_trace_distance.json"
         )))
         .unwrap();
         assert_eq!(fixtures.schema, "omega.state-trace-distance.fixtures.v1");

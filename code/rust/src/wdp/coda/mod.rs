@@ -57,9 +57,8 @@ pub use layer8_fda::Layer8Fda;
 pub use layer9_coda_gtla::Layer9CodaGtla;
 pub use pipeline::{evaluate_coda_pipeline, evaluate_coda_pipeline_with_grant};
 pub use types::{
-    AuthorityToken, CurvedDualWitness, DualWitness, ExternalAuthorityGrant, FirewallDecision,
-    LayerExecutionRecord, LayerId, MasterNormalFormOutcome, ObstructionWitnessPayload,
-    ProblemInstance, ResidualPair, TerminalKind,
+    AuthorityToken, DualWitness, ExternalAuthorityGrant, FirewallDecision, LayerExecutionRecord,
+    LayerId, MasterNormalFormOutcome, ProblemInstance, ResidualPair, TerminalKind,
 };
 
 // Re-exports for Q-Continuum & CODA Stack

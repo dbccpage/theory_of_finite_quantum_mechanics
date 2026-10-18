@@ -3,10 +3,7 @@ use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use serde_json::json;
 
-use crate::coda::types::{
-    CurvedDualWitness, DualWitness, LayerExecutionRecord, LayerId, ObstructionWitnessPayload,
-    ProblemInstance,
-};
+use crate::coda::types::{DualWitness, LayerExecutionRecord, LayerId, ProblemInstance};
 use omega_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, Gamma2Functional,
 };
@@ -64,27 +61,6 @@ impl Layer1Foc {
         ),
         LayerExecutionRecord,
     > {
-        let (record, phi1, gamma2, witness, _payload, repair) =
-            Self::evaluate_with_payload(problem, tau)?;
-        Ok((record, phi1, gamma2, witness, repair))
-    }
-
-    /// Evaluates Layer 1 returning both backwards-compatible [`DualWitness`] and the
-    /// full typed [`ObstructionWitnessPayload`] certificate variant (`FlatQuotient` vs `CurvedConstrained`).
-    pub fn evaluate_with_payload(
-        problem: &ProblemInstance,
-        tau: &BigRational,
-    ) -> Result<
-        (
-            LayerExecutionRecord,
-            BigRational,
-            BigRational,
-            Option<DualWitness>,
-            Option<ObstructionWitnessPayload>,
-            Vec<BigRational>,
-        ),
-        LayerExecutionRecord,
-    > {
         let failure = |reason: String| {
             Err(
                 LayerExecutionRecord::new(LayerId::FOC, false, reason, BigRational::zero())
@@ -126,12 +102,10 @@ impl Layer1Foc {
                 let gamma2 = gamma2_evidence.value().clone();
                 let phi1 = cert.distance.clone();
 
-                let (witness, payload) = if phi1 > BigRational::zero() {
-                    let dw = DualWitness::new(cert.witness, phi1.clone());
-                    let pl = ObstructionWitnessPayload::FlatQuotient(dw.clone());
-                    (Some(dw), Some(pl))
+                let witness = if phi1 > BigRational::zero() {
+                    Some(DualWitness::new(cert.witness, phi1.clone()))
                 } else {
-                    (None, None)
+                    None
                 };
 
                 let msg = if phi1.is_zero() {
@@ -152,10 +126,9 @@ impl Layer1Foc {
                         .with_metadata("gamma2", json!(gamma2.to_string()))
                         .with_metadata("is_coherent", json!(gamma2.is_zero()))
                         .with_metadata("solver", json!(cert.method))
-                        .with_metadata("witness_payload_variant", json!("FlatQuotient"))
                         .with_metadata("certificate_verified", json!(true));
 
-                Ok((record, phi1, gamma2, witness, payload, cert.repair))
+                Ok((record, phi1, gamma2, witness, cert.repair))
             }
             Err(ExactGamma2Error::CochainIdentityViolation { .. }) => {
                 let verified = Self::evaluate_curved_constrained(problem, tau)?;
@@ -164,19 +137,10 @@ impl Layer1Foc {
                 let repaired_raw_gamma2 = verified.repaired_raw_gamma2().value().clone();
                 let gamma2 = repaired_raw_gamma2.clone();
 
-                let (witness, payload) = if phi1 > BigRational::zero() {
-                    let cw = CurvedDualWitness::new(
-                        verified.dual_y().to_vec(),
-                        verified.dual_z().to_vec(),
-                        verified.dual_lambda().clone(),
-                        tau.clone(),
-                        phi1.clone(),
-                    );
-                    let pl = ObstructionWitnessPayload::CurvedConstrained(cw);
-                    let dw = DualWitness::new(verified.dual_y().to_vec(), phi1.clone());
-                    (Some(dw), Some(pl))
+                let witness = if phi1 > BigRational::zero() {
+                    Some(DualWitness::new(verified.dual_y().to_vec(), phi1.clone()))
                 } else {
-                    (None, None)
+                    None
                 };
 
                 let msg = format!(
@@ -198,16 +162,6 @@ impl Layer1Foc {
                             "solver",
                             json!("exact_curved_constrained_primal_dual_simplex"),
                         )
-                        .with_metadata(
-                            "curved_dual_y",
-                            json!(verified.dual_y().iter().map(ToString::to_string).collect::<Vec<_>>()),
-                        )
-                        .with_metadata(
-                            "curved_dual_z",
-                            json!(verified.dual_z().iter().map(ToString::to_string).collect::<Vec<_>>()),
-                        )
-                        .with_metadata("curved_dual_lambda", json!(verified.dual_lambda().to_string()))
-                        .with_metadata("witness_payload_variant", json!("CurvedConstrained"))
                         .with_metadata("certificate_verified", json!(true));
 
                 Ok((
@@ -215,7 +169,6 @@ impl Layer1Foc {
                     phi1,
                     gamma2,
                     witness,
-                    payload,
                     verified.alpha().to_vec(),
                 ))
             }

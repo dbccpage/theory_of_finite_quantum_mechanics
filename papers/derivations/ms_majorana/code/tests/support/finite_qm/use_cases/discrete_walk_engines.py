@@ -209,6 +209,94 @@ def sorkin_3slit_amplitudes_from_cochain(cochain_1: np.ndarray | Sequence[float]
     return complex(a1), complex(a2), complex(a3)
 
 
+def _invert_rational_matrix_discrete(b_mat: list[list[Fraction]], n: int) -> list[list[Fraction]]:
+    aug = [[Fraction(b_mat[i][j]) for j in range(n)] + [Fraction(1 if i == k else 0) for k in range(n)] for i in range(n)]
+    for col in range(n):
+        pivot_r = None
+        for r in range(col, n):
+            if aug[r][col] != 0:
+                pivot_r = r
+                break
+        if pivot_r is None:
+            raise ValueError("Matrix I + tau*X is singular over Q")
+        if pivot_r != col:
+            aug[col], aug[pivot_r] = aug[pivot_r], aug[col]
+        pivot = aug[col][col]
+        for c in range(2 * n):
+            aug[col][c] /= pivot
+        for r in range(n):
+            if r != col and aug[r][col] != 0:
+                fac = aug[r][col]
+                for c in range(2 * n):
+                    aug[r][c] -= fac * aug[col][c]
+    return [[aug[i][n + j] for j in range(n)] for i in range(n)]
+
+
+def _compute_rational_cayley_discrete(
+    edges: list[tuple[int, int]],
+    n: int,
+    raw_flow: list[Fraction],
+    tau: float | Fraction,
+) -> list[list[Fraction]] | None:
+    if not isinstance(tau, (Fraction, int)):
+        return None
+    tau_frac = Fraction(tau)
+    x_frac = [[Fraction(0) for _ in range(n)] for _ in range(n)]
+    for k, (u, v) in enumerate(edges):
+        val_frac = Fraction(raw_flow[k])
+        x_frac[v][u] += val_frac
+        x_frac[u][v] -= val_frac
+    i_frac = [[Fraction(1 if i == j else 0) for j in range(n)] for i in range(n)]
+    a_frac = [[i_frac[i][j] - tau_frac * x_frac[i][j] for j in range(n)] for i in range(n)]
+    b_frac = [[i_frac[i][j] + tau_frac * x_frac[i][j] for j in range(n)] for i in range(n)]
+    b_inv_frac = _invert_rational_matrix_discrete(b_frac, n)
+    return [[sum(a_frac[i][k] * b_inv_frac[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
+
+
+def _invert_rational_matrix_discrete(b_mat: list[list[Fraction]], n: int) -> list[list[Fraction]]:
+    aug = [[Fraction(b_mat[i][j]) for j in range(n)] + [Fraction(1 if i == k else 0) for k in range(n)] for i in range(n)]
+    for col in range(n):
+        pivot_r = None
+        for r in range(col, n):
+            if aug[r][col] != 0:
+                pivot_r = r
+                break
+        if pivot_r is None:
+            raise ValueError("Matrix I + tau*X is singular over Q")
+        if pivot_r != col:
+            aug[col], aug[pivot_r] = aug[pivot_r], aug[col]
+        pivot = aug[col][col]
+        for c in range(2 * n):
+            aug[col][c] /= pivot
+        for r in range(n):
+            if r != col and aug[r][col] != 0:
+                fac = aug[r][col]
+                for c in range(2 * n):
+                    aug[r][c] -= fac * aug[col][c]
+    return [[aug[i][n + j] for j in range(n)] for i in range(n)]
+
+
+def _compute_rational_cayley_discrete(
+    edges: list[tuple[int, int]],
+    n: int,
+    raw_flow: list[Fraction],
+    tau: float | Fraction,
+) -> list[list[Fraction]] | None:
+    if not isinstance(tau, (Fraction, int)):
+        return None
+    tau_frac = Fraction(tau)
+    x_frac = [[Fraction(0) for _ in range(n)] for _ in range(n)]
+    for k, (u, v) in enumerate(edges):
+        val_frac = Fraction(raw_flow[k])
+        x_frac[v][u] += val_frac
+        x_frac[u][v] -= val_frac
+    i_frac = [[Fraction(1 if i == j else 0) for j in range(n)] for i in range(n)]
+    a_frac = [[i_frac[i][j] - tau_frac * x_frac[i][j] for j in range(n)] for i in range(n)]
+    b_frac = [[i_frac[i][j] + tau_frac * x_frac[i][j] for j in range(n)] for i in range(n)]
+    b_inv_frac = _invert_rational_matrix_discrete(b_frac, n)
+    return [[sum(a_frac[i][k] * b_inv_frac[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
+
+
 def cayley_evolution_from_packet(
     packet: CochainPacket | cochain.Complex,
     tau: float | Fraction,
@@ -217,7 +305,7 @@ def cayley_evolution_from_packet(
     cochain_flow: np.ndarray | None = None,
 ) -> dict[str, Any]:
     """Phase 2b: Exact rational Cayley evolution driven by 1-cochain flow on the graph.
-    
+
     cay_tau(X) = (I - tau*X)(I + tau*X)^(-1) where X in so(V, Q) is the skew-symmetric
     directed flow generator induced by 1-cochains.
     """
@@ -243,46 +331,10 @@ def cayley_evolution_from_packet(
         X[v, u] += val
         X[u, v] -= val
 
-    # Verify skew-symmetry
     if not np.allclose(X, -X.T, atol=1e-12):
         raise ValueError("Flow generator must be skew-symmetric")
 
-    # Exact rational Cayley transform when tau is Fraction or int
-    is_exact_fraction = isinstance(tau, (Fraction, int))
-    rational_u = None
-    if is_exact_fraction:
-        tau_frac = Fraction(tau)
-        X_frac = [[Fraction(0) for _ in range(n)] for _ in range(n)]
-        for k, (u, v) in enumerate(cx.edges):
-            val_frac = Fraction(raw_flow[k])
-            X_frac[v][u] += val_frac
-            X_frac[u][v] -= val_frac
-        I_frac = [[Fraction(1 if i == j else 0) for j in range(n)] for i in range(n)]
-        A_frac = [[I_frac[i][j] - tau_frac * X_frac[i][j] for j in range(n)] for i in range(n)]
-        B_frac = [[I_frac[i][j] + tau_frac * X_frac[i][j] for j in range(n)] for i in range(n)]
-        
-        # Invert B_frac over Q via Gauss-Jordan elimination
-        aug = [[Fraction(B_frac[i][j]) for j in range(n)] + [Fraction(1 if i == k else 0) for k in range(n)] for i in range(n)]
-        for col in range(n):
-            pivot_r = None
-            for r in range(col, n):
-                if aug[r][col] != 0:
-                    pivot_r = r
-                    break
-            if pivot_r is None:
-                raise ValueError("Matrix I + tau*X is singular over Q")
-            if pivot_r != col:
-                aug[col], aug[pivot_r] = aug[pivot_r], aug[col]
-            pivot = aug[col][col]
-            for c in range(2 * n):
-                aug[col][c] /= pivot
-            for r in range(n):
-                if r != col and aug[r][col] != 0:
-                    fac = aug[r][col]
-                    for c in range(2 * n):
-                        aug[r][c] -= fac * aug[col][c]
-        B_inv_frac = [[aug[i][n + j] for j in range(n)] for i in range(n)]
-        rational_u = [[sum(A_frac[i][k] * B_inv_frac[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
+    rational_u = _compute_rational_cayley_discrete(cx.edges, n, raw_flow, tau)
 
     # Floating-point Cayley matrix for state evolution and tests
     tau_fl = float(tau)
@@ -291,9 +343,8 @@ def cayley_evolution_from_packet(
     is_orthogonal = bool(np.allclose(u_mat.T @ u_mat, I_fl, atol=1e-9))
     det_val = float(np.linalg.det(u_mat))
 
-    # Evolve by steps
     u_evolved = np.linalg.matrix_power(u_mat, steps)
-    
+
     evolved_state = None
     norm_preserved = True
     if initial_state is not None:

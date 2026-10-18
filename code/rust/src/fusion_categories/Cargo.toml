@@ -1,33 +1,18 @@
 [package]
-autotests = false
-name = "omega_fusion_categories"
-version.workspace = true
+name = "tfqm_fusion_categories"
+version = "0.1.0"
 edition = "2021"
-description = "Exact fusion rings, multiplicity-free fusion, braided and modular data (F- and R-symbols, pentagon, hexagon, Verlinde) over exact number fields (AuthorityEffect None)"
-license.workspace = true
+license = "Apache-2.0"
+
+[lib]
+name = "tfqm_fusion_categories"
+path = "lib.rs"
 
 [dependencies]
-# The exact scalar tower (`Field`, `ExactRing`) and the dense matrix storage.
-linear_algebra = { path = "../omega_linear_algebra" }
-# Exact number fields (`Q`, `Q(i)`, `Q(zeta_n)`, ...) the symbols take values in.
-omega_number_theory = { path = "../omega_number_theory" }
-# Tier 0: the exact rational `Interval` used for Frobenius-Perron enclosures.
+linear_algebra = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_linear_algebra" }
+omega_number_theory = { path = "C:/Users/a343o/.gemini/antigravity/worktrees/the_symbol_game/create_new_worktree/omega_engine/crates_rs/omega_number_theory" }
 num-bigint = "0.4"
 num-integer = "0.1"
 num-rational = "0.4"
 num-traits = "0.2"
 thiserror = "2"
-
-# Shared integration-test targets. Sources and fixtures live in `../tests/omega_fusion_categories`.
-
-[[test]]
-name = "anyon_models"
-path = "../tests/omega_fusion_categories/anyon_models.rs"
-
-[[test]]
-name = "canonical_matrix_regressions"
-path = "../tests/omega_fusion_categories/canonical_matrix_regressions.rs"
-
-[[test]]
-name = "ising"
-path = "../tests/omega_fusion_categories/ising.rs"

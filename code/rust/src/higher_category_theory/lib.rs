@@ -17,6 +17,7 @@
 //!
 //! AuthorityEffect: None.
 
+extern crate self as omega_higher_category_theory;
 pub mod bicategory;
 pub mod bounded_derived;
 pub mod coherence;

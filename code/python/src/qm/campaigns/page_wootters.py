@@ -595,11 +595,8 @@ class PageWoottersTsirelsonWignerReport:
     tsirelson_per_correlator_decimal_12: str
 
 
-def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWignerReport:
-    """Execute the QM-218 three-part algebraic and rational-interval verification."""
-    # -----------------------------------------------------------------------
-    # Part (a): Page-Wootters Relational Clock Dressing over Q(i)
-    # -----------------------------------------------------------------------
+def _evaluate_page_wootters_relational_dressing():
+    """Execute Part (a): Page-Wootters Relational Clock Dressing over Q(i)."""
     i4 = qi_eye(4)
     i2 = qi_eye(2)
     i8 = qi_eye(8)
@@ -700,9 +697,23 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
         sx_ticks.append(ex.re / norm_hist.re)
         sy_ticks.append(ey.re / norm_hist.re)
 
-    # -----------------------------------------------------------------------
-    # Part (b): Cyclotomic Q(zeta_8) Tsirelson Bound & SOS Certificate
-    # -----------------------------------------------------------------------
+    return (
+        unitary_order4_ok,
+        proj_idem_herm_ok,
+        proj_trace,
+        annihilates_ok,
+        intertwine_ok,
+        decouple_ok,
+        bare_breaks_ok,
+        rel_comm_ok,
+        heisenberg_ok,
+        tuple(sx_ticks),
+        tuple(sy_ticks),
+    )
+
+
+def _evaluate_cyclotomic_tsirelson_bound():
+    """Execute Part (b): Cyclotomic Q(zeta_8) Tsirelson Bound & SOS Certificate."""
     det_values: list[Fraction] = []
     for a0, a1, b0, b1 in itertools.product((-1, 1), repeat=4):
         val = a0 * (b0 + b1) + a1 * (b0 - b1)
@@ -749,9 +760,6 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
     )
     landau_ok = z8_mat_eq(b_chsh_sq, landau_rhs)
 
-    # SOS witnesses W_1 = s_2^{-1}(A_0 + A_1) - B_0, W_2 = s_2^{-1}(A_0 - A_1) - B_1
-    # satisfy W_1^dagger W_1 + W_2^dagger W_2 = 4 I_4 - 2 s_2^{-1} B_CHSH = 4 I_4 - s_2 B_CHSH,
-    # and hence 2 s_2 I_4 - B_CHSH = s_2^{-1}(W_1^dagger W_1 + W_2^dagger W_2).
     w1_sos = z8_sub(z8_scale(inv_s2, z8_add(a0_op, a1_op)), b0_op)
     w2_sos = z8_sub(z8_scale(inv_s2, z8_sub(a0_op, a1_op)), b1_op)
     sos_sum = z8_add(
@@ -778,9 +786,22 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
     sep_exp = z8_inner(sep_00, z8_matvec(b_chsh, sep_00))
     sep_ok = sep_exp == s2
 
-    # -----------------------------------------------------------------------
-    # Part (c): Discrete Weyl-Wigner on (Z_3)^2 & 12-Decimal Enclosures
-    # -----------------------------------------------------------------------
+    return (
+        polytope_count,
+        polytope_max,
+        sqrt2_sq_ok,
+        sqrt2_inv_ok,
+        inv_comm_ok,
+        landau_ok,
+        sos_ok,
+        bell_annihilated_ok,
+        bell_eigen_ok,
+        sep_ok,
+    )
+
+
+def _check_phase_point_operators():
+    """Verify phase point operator Hermiticity, trace, involution, and completeness."""
     i3_z3 = z3_eye(3)
     herm_inv_tr_ok = True
     ortho_comp_ok = True
@@ -807,8 +828,11 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
     if not z3_mat_eq(z3_scale(Fraction(1, 3), sum_all_aqp), i3_z3):
         ortho_comp_ok = False
 
-    # Line marginals: position projectors |q><q| and momentum projectors |p_tilde><p_tilde|
-    line_marginals_ok = True
+    return herm_inv_tr_ok, ortho_comp_ok, all_aqp
+
+
+def _check_line_marginals(all_aqp: list[list[Z3Mat]]) -> bool:
+    """Verify position and momentum line marginals match corresponding projectors."""
     for q in range(3):
         sum_p = z3_zeros(3)
         for p in range(3):
@@ -816,7 +840,7 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
         proj_q = z3_zeros(3)
         proj_q[q][q] = QZeta3.from_int(1)
         if not z3_mat_eq(z3_scale(Fraction(1, 3), sum_p), proj_q):
-            line_marginals_ok = False
+            return False
 
     for p in range(3):
         sum_q = z3_zeros(3)
@@ -827,7 +851,15 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
             for y in range(3):
                 proj_p[x][y] = QZeta3.omega_pow(p * (x - y)).scale(Fraction(1, 3))
         if not z3_mat_eq(z3_scale(Fraction(1, 3), sum_q), proj_p):
-            line_marginals_ok = False
+            return False
+
+    return True
+
+
+def _evaluate_discrete_weyl_wigner_and_enclosures():
+    """Execute Part (c): Discrete Weyl-Wigner on (Z_3)^2 & 12-Decimal Enclosures."""
+    herm_inv_tr_ok, ortho_comp_ok, all_aqp = _check_phase_point_operators()
+    line_marginals_ok = _check_line_marginals(all_aqp)
 
     # Stabilizer state |0> = (1, 0, 0)^T
     psi_stab: Z3Vec = [QZeta3.from_int(1), QZeta3.from_int(0), QZeta3.from_int(0)]
@@ -861,6 +893,66 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
     excess_iv = tsirelson_iv - two_iv
     per_corr_iv = half_iv * sqrt2_iv
 
+    return (
+        herm_inv_tr_ok,
+        ortho_comp_ok,
+        line_marginals_ok,
+        stab_nonneg_norm_ok,
+        stab_negativity,
+        super_ok,
+        super_min,
+        super_negativity,
+        sqrt2_bounds_ok,
+        tsirelson_iv,
+        excess_iv,
+        per_corr_iv,
+    )
+
+
+def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWignerReport:
+    """Execute the QM-218 three-part algebraic and rational-interval verification."""
+    (
+        unitary_order4_ok,
+        proj_idem_herm_ok,
+        proj_trace,
+        annihilates_ok,
+        intertwine_ok,
+        decouple_ok,
+        bare_breaks_ok,
+        rel_comm_ok,
+        heisenberg_ok,
+        sx_ticks,
+        sy_ticks,
+    ) = _evaluate_page_wootters_relational_dressing()
+
+    (
+        polytope_count,
+        polytope_max,
+        sqrt2_sq_ok,
+        sqrt2_inv_ok,
+        inv_comm_ok,
+        landau_ok,
+        sos_ok,
+        bell_annihilated_ok,
+        bell_eigen_ok,
+        sep_ok,
+    ) = _evaluate_cyclotomic_tsirelson_bound()
+
+    (
+        herm_inv_tr_ok,
+        ortho_comp_ok,
+        line_marginals_ok,
+        stab_nonneg_norm_ok,
+        stab_negativity,
+        super_ok,
+        super_min,
+        super_negativity,
+        sqrt2_bounds_ok,
+        tsirelson_iv,
+        excess_iv,
+        per_corr_iv,
+    ) = _evaluate_discrete_weyl_wigner_and_enclosures()
+
     return PageWoottersTsirelsonWignerReport(
         pw_history_shift_unitary_and_order_4=unitary_order4_ok,
         pw_constraint_projector_idempotent_hermitian=proj_idem_herm_ok,
@@ -871,8 +963,8 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
         pw_bare_observable_breaks_constraint=bare_breaks_ok,
         pw_relational_observables_commute_with_constraint=rel_comm_ok,
         pw_heisenberg_step_covariance_exact=heisenberg_ok,
-        pw_static_state_sigma_x_ticks=tuple(sx_ticks),
-        pw_static_state_sigma_y_ticks=tuple(sy_ticks),
+        pw_static_state_sigma_x_ticks=sx_ticks,
+        pw_static_state_sigma_y_ticks=sy_ticks,
         chsh_classical_polytope_vertex_count=polytope_count,
         chsh_classical_polytope_max=polytope_max,
         chsh_cyclotomic_sqrt2_squares_to_2=sqrt2_sq_ok,
@@ -899,3 +991,4 @@ def evaluate_page_wootters_tsirelson_wigner_control() -> PageWoottersTsirelsonWi
         tsirelson_per_correlator_interval=per_corr_iv,
         tsirelson_per_correlator_decimal_12=_format_certified_12(per_corr_iv),
     )
+

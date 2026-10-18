@@ -461,7 +461,7 @@ fn contract(
 #[cfg(test)]
 mod tests {
     use super::*;
-    const TABLE: &[u8] = include_bytes!("../../../../../omega_engine_atlas/coda_atlas/F004_papers/010_mub6/artifacts/quadratic_lift_coefficients_20261011.jsonl");
+    const TABLE: &[u8] = include_bytes!("../fixtures/quadratic_lift_coefficients_20261011.jsonl");
     fn q(n: i64) -> BigRational {
         BigRational::from_integer(n.into())
     }

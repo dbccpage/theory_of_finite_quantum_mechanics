@@ -27,9 +27,9 @@ pub const REQUEST_SCHEMA: &str = "omega.genesis.report-request.v1";
 pub const RESULT_SCHEMA: &str = "omega.genesis.report-result.v1";
 // The binary pins the original executable source, not a caller-supplied digest.
 const SOURCE: &[u8] = include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"),
-    "/../../../omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py"));
+    "/fixtures/model.py"));
 const OBSERVATION_SOURCE: &[u8] = include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"),
-    "/../../../omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py"));
+    "/fixtures/observe.py"));
 
 pub fn source_sha256() -> String {
     let mut digest = Sha256::new();

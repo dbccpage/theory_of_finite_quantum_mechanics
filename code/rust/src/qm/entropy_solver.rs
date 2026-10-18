@@ -538,7 +538,7 @@ pub fn evaluate_fqmi1_system(system_id: &str) -> Result<SystemParityRecord, Stri
         byte_parity_match: false,
     };
     let reference: ParityReceipt =
-        serde_json::from_str(include_str!("../../evidence/c750_b01_parity_receipt.json"))
+        serde_json::from_str(include_str!("data/c750_b01_parity_receipt.json"))
             .map_err(|error| format!("INVALID_PARITY_REFERENCE:{error}"))?;
     record.byte_parity_match = reference
         .systems

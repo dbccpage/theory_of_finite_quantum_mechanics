@@ -82,12 +82,7 @@ def exact_spectrum(case: dict[str, Any], *, _test_subdivision_limit: int | None 
             "scope": SCOPE}
 
 
-def validate_spectrum(case: dict[str, Any], output: Any) -> None:
-    """Recount supplied roots, independently of producer interval choices.
-
-    This checks root containment against the input, unlike an approximation
-    metadata check. It does not verify irreducibility or a splitting degree.
-    """
+def _validate_spectrum_keys_and_polynomials(case: dict[str, Any], output: Any):
     kernel.reject_floats(output, "root_identity")
     expected_keys = {"representation", "carrier_conductor", "embedding", "characteristic_polynomial",
                      "squarefree_factors", "squarefree_radical", "spectrum", "resource", "scope"}
@@ -103,6 +98,10 @@ def validate_spectrum(case: dict[str, Any], output: Any) -> None:
     for key, value in expected.items():
         if kernel.serialized(output[key]) != kernel.serialized(value):
             raise ValueError(f"root_identity: input-bound {key} differs")
+    return expected, polynomial, factors, radical
+
+
+def _validate_spectrum_resource(output: Any, radical: list[int]) -> None:
     resource = output["resource"]
     if (not isinstance(resource, dict)
             or set(resource) != {"kind", "sturm_subdivisions", "sturm_subdivision_limit"}
@@ -112,48 +111,88 @@ def validate_spectrum(case: dict[str, Any], output: Any) -> None:
             or resource["sturm_subdivision_limit"] != kernel.STURM_SUBDIVISION_RESOURCE_LIMIT
             or not 0 <= resource["sturm_subdivisions"] <= resource["sturm_subdivision_limit"]):
         raise ValueError("root_identity: invalid subdivision resource accounting")
-    # Counter provenance is a deterministic traversal replay, not the root
-    # containment argument below. Supplied isolators may differ from ours.
     replay_budget = kernel._Budget(kernel.STURM_SUBDIVISION_RESOURCE_LIMIT,
                                    "IMPLEMENTATION_RESOURCE_LIMIT: sturm_subdivisions")
     kernel.sturm_spectrum_intervals(radical, 0, replay_budget)
     if resource["sturm_subdivisions"] != replay_budget.limit - replay_budget.remaining:
         raise ValueError("root_identity: subdivision counter differs from deterministic traversal")
+
+
+def _parse_and_check_endpoints(label: str, row: dict[str, Any]) -> tuple[Q, Q]:
+    lower, upper = kernel.parse_rat(row["lower"]), kernel.parse_rat(row["upper"])
+    if kernel.rat(lower) != row["lower"] or kernel.rat(upper) != row["upper"]:
+        raise ValueError(f"{label}: invalid exact endpoints")
+    if not 0 <= lower <= upper <= 1:
+        raise ValueError(f"{label}: invalid exact endpoints")
+    return lower, upper
+
+
+def _check_root_endpoints_and_convention(label: str, row: dict[str, Any], previous: tuple[Q, Q] | None) -> tuple[tuple[Q, Q], bool]:
+    lower, upper = _parse_and_check_endpoints(label, row)
+    if previous is not None and (previous[1] > lower or previous == (lower, upper)):
+        raise ValueError(f"{label}: identities overlap or are not ordered")
+    singleton = lower == upper
+    expected_kind = "EXACT_RATIONAL_ROOT" if singleton else "EXACT_REAL_ALGEBRAIC_ROOT"
+    expected_convention = "SINGLETON" if singleton else "OPEN"
+    if row["kind"] != expected_kind or row["endpoint_convention"] != expected_convention:
+        raise ValueError(f"{label}: kind or endpoint convention differs")
+    return (lower, upper), singleton
+
+
+def _validate_root_fields(label: str, row: Any, expected_radical_wire: Any, polynomial_len: int) -> None:
+    row_keys = {"kind", "defining_polynomial", "lower", "upper", "endpoint_convention",
+                "distinct_root_count", "multiplicity"}
+    if not isinstance(row, dict) or set(row) != row_keys:
+        raise ValueError(f"{label}: root field census differs")
+    if kernel.serialized(row["defining_polynomial"]) != kernel.serialized(expected_radical_wire):
+        raise ValueError(f"{label}: defining polynomial differs from squarefree radical")
+    if type(row["distinct_root_count"]) is not int or row["distinct_root_count"] != 1:
+        raise ValueError(f"{label}: one distinct root required")
+    if type(row["multiplicity"]) is not int or not 1 <= row["multiplicity"] <= polynomial_len - 1:
+        raise ValueError(f"{label}: invalid multiplicity")
+
+
+def _validate_single_root_entry(
+    index: int,
+    row: Any,
+    expected_radical_wire: Any,
+    radical: list[int],
+    sequence: Any,
+    polynomial_len: int,
+    factors: list[tuple[list[int], int]],
+    previous: tuple[Q, Q] | None,
+) -> tuple[tuple[Q, Q], int]:
+    label = f"root_identity[{index}]"
+    _validate_root_fields(label, row, expected_radical_wire, polynomial_len)
+    (lower, upper), singleton = _check_root_endpoints_and_convention(label, row, previous)
+    count = (int(kernel._poly_eval(radical, lower) == 0) if singleton
+             else kernel._open_root_count(sequence, lower, upper))
+    if count != 1:
+        raise ValueError(f"{label}: supplied identity does not contain exactly one root")
+    if _multiplicity(lower, upper, factors) != row["multiplicity"]:
+        raise ValueError(f"{label}: multiplicity differs from exact squarefree factor")
+    return (lower, upper), row["multiplicity"]
+
+
+def validate_spectrum(case: dict[str, Any], output: Any) -> None:
+    """Recount supplied roots, independently of producer interval choices.
+
+    This checks root containment against the input, unlike an approximation
+    metadata check. It does not verify irreducibility or a splitting degree.
+    """
+    expected, polynomial, factors, radical = _validate_spectrum_keys_and_polynomials(case, output)
+    _validate_spectrum_resource(output, radical)
     roots = output["spectrum"]
     if not isinstance(roots, list) or len(roots) != len(radical) - 1:
         raise ValueError("root_identity: distinct-root census differs from radical degree")
     sequence = kernel.sturm_sequence(radical)
     previous: tuple[Q, Q] | None = None
     total = 0
-    row_keys = {"kind", "defining_polynomial", "lower", "upper", "endpoint_convention",
-                "distinct_root_count", "multiplicity"}
     for index, row in enumerate(roots):
-        label = f"root_identity[{index}]"
-        if not isinstance(row, dict) or set(row) != row_keys:
-            raise ValueError(f"{label}: root field census differs")
-        if kernel.serialized(row["defining_polynomial"]) != kernel.serialized(expected["squarefree_radical"]):
-            raise ValueError(f"{label}: defining polynomial differs from squarefree radical")
-        if type(row["distinct_root_count"]) is not int or row["distinct_root_count"] != 1:
-            raise ValueError(f"{label}: one distinct root required")
-        if type(row["multiplicity"]) is not int or not 1 <= row["multiplicity"] <= len(polynomial) - 1:
-            raise ValueError(f"{label}: invalid multiplicity")
-        lower, upper = kernel.parse_rat(row["lower"]), kernel.parse_rat(row["upper"])
-        if kernel.rat(lower) != row["lower"] or kernel.rat(upper) != row["upper"] or not 0 <= lower <= upper <= 1:
-            raise ValueError(f"{label}: invalid exact endpoints")
-        if previous is not None and (previous[1] > lower or previous == (lower, upper)):
-            raise ValueError(f"{label}: identities overlap or are not ordered")
-        singleton = lower == upper
-        if (row["kind"] != ("EXACT_RATIONAL_ROOT" if singleton else "EXACT_REAL_ALGEBRAIC_ROOT")
-                or row["endpoint_convention"] != ("SINGLETON" if singleton else "OPEN")):
-            raise ValueError(f"{label}: kind or endpoint convention differs")
-        count = (int(kernel._poly_eval(radical, lower) == 0) if singleton
-                 else kernel._open_root_count(sequence, lower, upper))
-        if count != 1:
-            raise ValueError(f"{label}: supplied identity does not contain exactly one root")
-        if _multiplicity(lower, upper, factors) != row["multiplicity"]:
-            raise ValueError(f"{label}: multiplicity differs from exact squarefree factor")
-        total += row["multiplicity"]
-        previous = lower, upper
+        previous, mult = _validate_single_root_entry(
+            index, row, expected["squarefree_radical"], radical, sequence, len(polynomial), factors, previous
+        )
+        total += mult
     if total != len(polynomial) - 1:
         raise ValueError("root_identity: weighted root census differs from input dimension")
 

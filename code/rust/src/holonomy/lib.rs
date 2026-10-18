@@ -4,6 +4,7 @@
 //! AuthorityEffect: None.
 //! Governing Rule: RULE[user_global] (Strict Zero-Float Law, Soviet Builder discipline).
 
+extern crate self as omega_holonomy;
 pub mod connection;
 pub mod curvature;
 pub mod error;

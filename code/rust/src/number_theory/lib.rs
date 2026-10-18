@@ -33,6 +33,7 @@
 //!
 //! AuthorityEffect: None. Not PROVED. Not GlobalGreen.
 
+extern crate self as omega_number_theory;
 pub mod binary_field;
 pub mod character_sums;
 pub mod certified_angles;

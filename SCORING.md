@@ -212,6 +212,19 @@ In formal interactive theorem proving, syntactic presence of a lemma does not co
 
 ---
 
+### 4.5 Automated Tooling Configuration Matrix
+
+To eliminate subjective evaluation, each language maps directly to sovereign command-line linters, compiler restriction flags, and static analyzers:
+
+| Language | Gate 1 (Provenance) | Gate 2 (Arithmetic) | Gate 3 (Panics & Aborts) | Gate 4 (Tests & Mutation) | Gate 5 (Complexity) |
+|---|---|---|---|---|---|
+| **Python** | Header / URN claim parser | AST float visitor, `bool` guard check | AST non-test `assert` & bare `raise` scanner | `pytest`, `pytest-cov`, `mutmut` | `lizard` ($\text{CCN} \le 10$), `radon` (CCN, MI, Halstead) |
+| **Rust** | `cargo-deny`, `cargo-audit` | `-D clippy::float_arithmetic`<br>`-D clippy::arithmetic_side_effects` | `-D clippy::unwrap_used`<br>`-D clippy::panic`<br>`-D clippy::expect_used` | `cargo test`, `cargo-mutants`, `cargo-tarpaulin` | `rust-code-analysis` ($\text{CCN} \le 10$), `cargo-bloat` |
+| **Lean 4** | `#print axioms` (no custom axioms), `docBlame` | Kernel `Rat`/`Int`/`Nat` inductive representations | Elimination of `sorryAx` & `partial def` | `#guard_msgs`, negative falsification lemmas | Elaboration heartbeats (`maxHeartbeats`), tactic step length, `lake exe shake` |
+| **SQL** | Schema header metadata | Column type linter (`NUMERIC`/`BIGINT` only) | Constraint totality (`CHECK`, `NOT NULL`, foreign keys) | Schema roundtrip replay tests | Query depth, join cardinality, index plan audits |
+
+---
+
 ## 5. Scoring Workflow & Assignment Protocol
 
 Follow this 5-step protocol to score any source file:

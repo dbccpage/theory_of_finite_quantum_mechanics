@@ -24,6 +24,7 @@
 //!
 //! AuthorityEffect: None.
 
+extern crate self as omega_finite_probability;
 pub mod classical_instrument;
 pub mod error;
 pub mod finite_set;

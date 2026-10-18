@@ -16,7 +16,7 @@ use crate::linear_algebra::{
     charge, element_count, plus, require_same_shape, require_square, reserve, times,
     ExactFieldError,
 };
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 use num_bigint::BigInt;
 use num_rational::{BigRational, Rational64};
 use num_traits::ToPrimitive;
@@ -662,7 +662,7 @@ pub fn is_symmetric<F: Field + ExactRing>(m: &BasicMatrix<F>) -> Result<bool, Ex
 mod tests {
     use super::*;
     use crate::linear_algebra::test_support::{m, q, random_matrix, Fp, Rng};
-    use crate::tensor::tensor::kronecker_matrices;
+    use linear_algebra::tensor::tensor::kronecker_matrices;
     use num_bigint::BigInt;
     use num_rational::{BigRational, Rational64};
 

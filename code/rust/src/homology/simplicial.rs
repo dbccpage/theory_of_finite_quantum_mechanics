@@ -6,7 +6,7 @@
 //! coboundary matrices for arbitrary degree.
 
 use crate::errors::HomologicalError;
-use crate::crate::crate::linear_algebra::scalars::{q, Q};
+use crate::linear_algebra::scalars::{q, Q};
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
 use serde::{Deserialize, Serialize};

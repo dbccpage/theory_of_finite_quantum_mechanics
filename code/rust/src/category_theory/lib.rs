@@ -5,6 +5,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 // --- Hierarchical catalog (new) ---
+extern crate self as omega_category_theory;
 pub mod abelian;
 pub mod adjunction;
 pub mod category;

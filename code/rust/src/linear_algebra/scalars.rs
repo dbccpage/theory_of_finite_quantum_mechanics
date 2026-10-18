@@ -6,7 +6,9 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use serde::{Deserialize, Serialize};
-use std::fmt;
+
+pub use ::linear_algebra::exact_field::involution::Involution;
+pub use ::linear_algebra::scalars::{CheckedExactField, ExactRing, Field, Ring, Semiring};
 
 pub type Q = BigRational;
 
@@ -18,77 +20,6 @@ pub fn q(n: i64) -> Q {
 #[inline]
 pub fn qr(n: i64, d: i64) -> Q {
     BigRational::new(BigInt::from(n), BigInt::from(d))
-}
-
-pub trait Semiring: Clone + PartialEq + fmt::Debug {
-    fn zero() -> Self;
-    fn one() -> Self;
-    fn add(&self, rhs: &Self) -> Self;
-    fn mul(&self, rhs: &Self) -> Self;
-    fn is_zero(&self) -> bool;
-}
-
-pub trait Ring: Semiring {
-    fn neg(&self) -> Self;
-    fn sub(&self, other: &Self) -> Self {
-        self.add(&other.neg())
-    }
-}
-
-pub trait Field: Ring {
-    fn try_inv(&self) -> Option<Self>;
-    fn try_div(&self, other: &Self) -> Option<Self> {
-        let inv = other.try_inv()?;
-        Some(self.mul(&inv))
-    }
-}
-
-pub trait ExactRing: Ring {}
-
-pub trait Involution: Field + ExactRing {
-    fn conjugate(&self) -> Self;
-}
-
-impl Semiring for BigRational {
-    fn zero() -> Self {
-        num_traits::Zero::zero()
-    }
-    fn one() -> Self {
-        num_traits::One::one()
-    }
-    fn add(&self, rhs: &Self) -> Self {
-        self + rhs
-    }
-    fn mul(&self, rhs: &Self) -> Self {
-        self * rhs
-    }
-    fn is_zero(&self) -> bool {
-        num_traits::Zero::is_zero(self)
-    }
-}
-
-impl Ring for BigRational {
-    fn neg(&self) -> Self {
-        -self
-    }
-}
-
-impl Field for BigRational {
-    fn try_inv(&self) -> Option<Self> {
-        if num_traits::Zero::is_zero(self) {
-            None
-        } else {
-            Some(self.recip())
-        }
-    }
-}
-
-impl ExactRing for BigRational {}
-
-impl Involution for BigRational {
-    fn conjugate(&self) -> Self {
-        self.clone()
-    }
 }
 
 /// Gaussian rational field Q(i) = { a + b*i | a, b in Q }.

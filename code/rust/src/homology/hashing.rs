@@ -3,7 +3,7 @@
 //! All hashing functions use domain separation to prevent hash collisions
 //! between different mathematical objects that might have the same raw data.
 
-use crate::crate::crate::linear_algebra::scalars::{hash_bigint, hash_rational, Q};
+use crate::linear_algebra::scalars::{hash_bigint, hash_rational, Q};
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use num_bigint::BigInt;
 
@@ -178,7 +178,7 @@ pub fn hash_cochain_witness(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::crate::crate::linear_algebra::scalars::{q, qr};
+    use crate::linear_algebra::scalars::{q, qr};
 
     #[test]
     fn test_hash256_display() {

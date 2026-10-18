@@ -1,0 +1,36 @@
+{
+  "schema": "omega_mub.fixture_values.v1",
+  "authority_effect": "None",
+  "module": "mub6_constants",
+  "description": "The primitive curvature-gap constants of the MUB(6) cover, chaining, gluing and synthesis modules. The crate derives the critical step, the erosion, the margin and the circulation floor from these; it computes none of these four.",
+  "values": {
+    "base_gap": {
+      "value": "37249/90000",
+      "type": "rational",
+      "kind": "assumed_constant",
+      "reason": "Gap floor epsilon = (81/100 - 1/6)^2. Its derivation assumes the candidate fourth basis has col 0 real part in [9/10, 1]; no cover computes it, and every cover that reads it certifies boxes from it.",
+      "used_at": "src/omega_native/mub6_constants.rs"
+    },
+    "lipschitz_bound": {
+      "value": "85/9",
+      "type": "rational",
+      "kind": "assumed_constant",
+      "reason": "Uniform Lipschitz bound L of the curvature gap. No derivation or check in the crate.",
+      "used_at": "src/omega_native/mub6_constants.rs"
+    },
+    "delta_certified": {
+      "value": "1/1000",
+      "type": "rational",
+      "kind": "assumed_constant",
+      "reason": "Mesh step and excision radius delta. Chosen, not derived; the only check is delta < epsilon / L.",
+      "used_at": "src/omega_native/mub6_constants.rs"
+    },
+    "total_domain_volume": {
+      "value": "5001/1000",
+      "type": "rational",
+      "kind": "literal",
+      "reason": "Six-chart domain volume 1 + 1 + 1 + 1 + 1/1000 + 1, written as a sum of declared chart volumes rather than measured from the charts.",
+      "used_at": "src/omega_native/mub6_constants.rs"
+    }
+  }
+}

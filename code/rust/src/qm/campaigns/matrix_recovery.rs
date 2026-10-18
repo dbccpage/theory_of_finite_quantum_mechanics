@@ -22,7 +22,7 @@ use omega_quantum_physics::hermitian_spectral::{
 use omega_quantum_physics::instruments::{
     paid_computational_spectral, InstrumentChannel, LudersInstrument, Povm,
 };
-use omega_quantum_physics::separating_preds::MerminPeresCochainBridge;
+use omega_quantum_physics::separating_predictions::MerminPeresCochainBridge;
 
 /// Fence.
 pub const AUTHORITY_FENCE: &str =

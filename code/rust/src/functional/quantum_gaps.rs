@@ -99,7 +99,7 @@ mod tests {
         }
         let fixtures: Fixtures = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../tests/omega_functional/fixtures/finite_hermitian_spectrum.json"
+            "/fixtures/finite_hermitian_spectrum.json"
         )))
         .unwrap();
         assert_eq!(

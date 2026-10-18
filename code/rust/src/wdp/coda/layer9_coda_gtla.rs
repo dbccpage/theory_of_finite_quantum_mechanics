@@ -5,8 +5,7 @@ use serde_json::json;
 
 use crate::coda::types::{
     AuthorityToken, DualWitness, FirewallDecision, LayerExecutionRecord, LayerId,
-    MasterNormalFormOutcome, ObstructionWitnessPayload, ProblemInstance, ResidualPair,
-    TerminalKind,
+    MasterNormalFormOutcome, ProblemInstance, ResidualPair, TerminalKind,
 };
 
 pub struct Layer9CodaGtla;
@@ -24,39 +23,6 @@ impl Layer9CodaGtla {
         phi1: Option<BigRational>,
         gamma2: Option<BigRational>,
         dual_witness: Option<DualWitness>,
-        firewall_decision: FirewallDecision,
-        authority_token: Option<AuthorityToken>,
-        layer_records: Vec<LayerExecutionRecord>,
-        custom_reason: Option<String>,
-        primal_repair: Option<Vec<BigRational>>,
-        evidence_digest: String,
-    ) -> MasterNormalFormOutcome {
-        let witness_payload = dual_witness
-            .as_ref()
-            .map(|dw| ObstructionWitnessPayload::FlatQuotient(dw.clone()));
-        Self::terminalize_with_payload(
-            problem,
-            phi1,
-            gamma2,
-            dual_witness,
-            witness_payload,
-            firewall_decision,
-            authority_token,
-            layer_records,
-            custom_reason,
-            primal_repair,
-            evidence_digest,
-        )
-    }
-
-    /// Terminalizes the pipeline with explicit dual witness and distinct typed witness payload variants.
-    #[allow(clippy::too_many_arguments)]
-    pub fn terminalize_with_payload(
-        problem: &ProblemInstance,
-        phi1: Option<BigRational>,
-        gamma2: Option<BigRational>,
-        dual_witness: Option<DualWitness>,
-        witness_payload: Option<ObstructionWitnessPayload>,
         firewall_decision: FirewallDecision,
         _authority_token: Option<AuthorityToken>,
         mut layer_records: Vec<LayerExecutionRecord>,
@@ -106,7 +72,6 @@ impl Layer9CodaGtla {
             terminal_kind,
             residual_pair,
             dual_witness,
-            witness_payload,
             authority_token: None,
             layer_records,
             firewall_decision,

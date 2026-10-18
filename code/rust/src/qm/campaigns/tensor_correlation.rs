@@ -9,7 +9,7 @@
 //! Citation: sealed-derivation-v1 (3100c4e).
 
 use omega_number_theory::rational::{rq, Rational};
-use omega_quantum_physics::tensor_correlation::{
+use omega_quantum_physics::tensor_commuting_correlation_frontier::{
     certify_chsh_interval, chsh_game_certificate,
 };
 use serde_json::json;

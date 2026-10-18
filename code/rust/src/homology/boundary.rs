@@ -4,7 +4,7 @@ use crate::chain::Chain;
 use crate::errors::HomologicalError;
 use crate::hashing::{hash_matrix, Hash256};
 use crate::ids::Degree;
-use crate::crate::crate::linear_algebra::scalars::Q;
+use crate::linear_algebra::scalars::Q;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 
 /// A boundary map d_n : C_n -> C_{n-1}.

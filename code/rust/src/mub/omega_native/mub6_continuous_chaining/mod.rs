@@ -30,22 +30,3 @@ mod curve;
 
 pub use anchor::*;
 pub use curve::*;
-
-use num_rational::Ratio;
-
-/// Verifies that two consecutive homotopy slice endpoints match within exact tolerance.
-pub fn verify_chain_link_continuity(t_end: Ratio<i64>, next_t_start: Ratio<i64>) -> bool {
-    t_end == next_t_start
-}
-
-#[cfg(test)]
-mod chain_tests {
-    use super::*;
-
-    #[test]
-    fn test_chain_link() {
-        let r1 = Ratio::new(1, 2);
-        let r2 = Ratio::new(2, 4);
-        assert!(verify_chain_link_continuity(r1, r2));
-    }
-}

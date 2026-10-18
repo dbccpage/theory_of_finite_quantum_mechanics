@@ -1,6 +1,5 @@
 // AuthorityEffect: None.
 use num_rational::BigRational;
-use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
@@ -94,149 +93,6 @@ impl DualWitness {
             vector,
             linfty_norm: max_abs,
             pairing_value,
-        }
-    }
-}
-
-/// Machine-verifiable curved constrained dual witness functional certifying a closure-constrained repair obstruction.
-///
-/// Satisfies the coupled annihilator condition:
-/// ```text
-/// d0^T y + K^T z = 0,   where K = d1 * d0
-/// ```
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-pub struct CurvedDualWitness {
-    pub dual_y: Vec<BigRational>,
-    pub dual_z: Vec<BigRational>,
-    pub dual_lambda: BigRational,
-    pub tau: BigRational,
-    pub objective: BigRational,
-    pub linfty_norm_y: BigRational,
-}
-
-impl CurvedDualWitness {
-    pub fn new(
-        dual_y: Vec<BigRational>,
-        dual_z: Vec<BigRational>,
-        dual_lambda: BigRational,
-        tau: BigRational,
-        objective: BigRational,
-    ) -> Self {
-        let mut max_abs = BigRational::from_integer(0.into());
-        for v in &dual_y {
-            let abs_v = if v < &BigRational::from_integer(0.into()) {
-                -v.clone()
-            } else {
-                v.clone()
-            };
-            if abs_v > max_abs {
-                max_abs = abs_v;
-            }
-        }
-        Self {
-            dual_y,
-            dual_z,
-            dual_lambda,
-            tau,
-            objective,
-            linfty_norm_y: max_abs,
-        }
-    }
-
-    /// Checks the coupled annihilator condition: d0^T y + K^T z = 0 in Q^n.
-    ///
-    /// d0 is m x n, y is m, so d0^T y is n.
-    /// K is p x n, z is p, so K^T z is n.
-    pub fn verify_coupled_annihilator(
-        &self,
-        d0: &[Vec<BigRational>],
-        k: &[Vec<BigRational>],
-    ) -> bool {
-        let m = d0.len();
-        if self.dual_y.len() != m {
-            return false;
-        }
-        let n = if m > 0 { d0[0].len() } else { 0 };
-        let p = k.len();
-        if self.dual_z.len() != p {
-            return false;
-        }
-        for row in k {
-            if row.len() != n {
-                return false;
-            }
-        }
-
-        for j in 0..n {
-            let mut sum = BigRational::zero();
-            // (d0^T y)_j = sum_{i=0}^{m-1} d0[i][j] * y[i]
-            for i in 0..m {
-                sum += &d0[i][j] * &self.dual_y[i];
-            }
-            // (K^T z)_j = sum_{r=0}^{p-1} K[r][j] * z[r]
-            for r in 0..p {
-                sum += &k[r][j] * &self.dual_z[r];
-            }
-            if !sum.is_zero() {
-                return false;
-            }
-        }
-        true
-    }
-}
-
-/// Distinct proof-carrying certificate payload variants for flat vs curved quotient/obstruction verification.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(tag = "variant", content = "certificate")]
-pub enum ObstructionWitnessPayload {
-    /// Exact quotient obstruction witness certifying d0^T y = 0, ||y||_infty <= 1, <y, x> = phi1 > 0.
-    FlatQuotient(DualWitness),
-    /// Coupled curved constrained witness certifying d0^T y + K^T z = 0 with dual multiplier lambda.
-    CurvedConstrained(CurvedDualWitness),
-}
-
-impl ObstructionWitnessPayload {
-    pub fn flat(witness: DualWitness) -> Self {
-        Self::FlatQuotient(witness)
-    }
-
-    pub fn curved(witness: CurvedDualWitness) -> Self {
-        Self::CurvedConstrained(witness)
-    }
-
-    pub fn dual_y(&self) -> &[BigRational] {
-        match self {
-            Self::FlatQuotient(w) => &w.vector,
-            Self::CurvedConstrained(w) => &w.dual_y,
-        }
-    }
-
-    pub fn objective(&self) -> &BigRational {
-        match self {
-            Self::FlatQuotient(w) => &w.pairing_value,
-            Self::CurvedConstrained(w) => &w.objective,
-        }
-    }
-
-    pub fn is_curved(&self) -> bool {
-        matches!(self, Self::CurvedConstrained(_))
-    }
-
-    pub fn is_flat(&self) -> bool {
-        matches!(self, Self::FlatQuotient(_))
-    }
-
-    pub fn as_flat(&self) -> Option<&DualWitness> {
-        match self {
-            Self::FlatQuotient(w) => Some(w),
-            _ => None,
-        }
-    }
-
-    pub fn as_curved(&self) -> Option<&CurvedDualWitness> {
-        match self {
-            Self::CurvedConstrained(w) => Some(w),
-            _ => None,
         }
     }
 }
@@ -345,8 +201,6 @@ pub struct MasterNormalFormOutcome {
     pub terminal_kind: TerminalKind,
     pub residual_pair: Option<ResidualPair>,
     pub dual_witness: Option<DualWitness>,
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub witness_payload: Option<ObstructionWitnessPayload>,
     pub authority_token: Option<AuthorityToken>,
     pub layer_records: Vec<LayerExecutionRecord>,
     pub firewall_decision: FirewallDecision,
@@ -366,29 +220,5 @@ impl MasterNormalFormOutcome {
 
     pub fn is_refused(&self) -> bool {
         self.terminal_kind == TerminalKind::Refused
-    }
-
-    pub fn witness_payload(&self) -> Option<&ObstructionWitnessPayload> {
-        self.witness_payload.as_ref()
-    }
-
-    pub fn is_curved_obstruction(&self) -> bool {
-        self.witness_payload
-            .as_ref()
-            .map_or(false, |p| p.is_curved())
-    }
-
-    pub fn is_flat_obstruction(&self) -> bool {
-        self.witness_payload
-            .as_ref()
-            .map_or(false, |p| p.is_flat())
-    }
-
-    pub fn curved_witness(&self) -> Option<&CurvedDualWitness> {
-        self.witness_payload.as_ref().and_then(|p| p.as_curved())
-    }
-
-    pub fn flat_witness(&self) -> Option<&DualWitness> {
-        self.witness_payload.as_ref().and_then(|p| p.as_flat())
     }
 }

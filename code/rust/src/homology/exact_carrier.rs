@@ -7,7 +7,7 @@
 //! The fundamental relation d₁∘d₀ = 0 is verified at construction time.
 //! Construction fails if the relation does not hold.
 
-use crate::crate::crate::linear_algebra::scalars::{hash_rational, q, Q};
+use crate::linear_algebra::scalars::{hash_rational, q, Q};
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::ExactRowReduction;
 use num_traits::Zero;

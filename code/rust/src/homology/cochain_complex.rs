@@ -6,7 +6,7 @@ use crate::hashing::{
     hash_cochain_complex_manifest, hash_cochain_witness, hash_provenance, Hash256,
 };
 use crate::ids::Degree;
-use crate::crate::crate::linear_algebra::scalars::Q;
+use crate::linear_algebra::scalars::Q;
 use crate::witness::CochainComplexWitness;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use num_traits::Zero;
@@ -170,7 +170,7 @@ mod tests {
     use super::*;
 
     fn r(n: i64) -> Q {
-        crate::crate::crate::linear_algebra::scalars::q(n)
+        crate::linear_algebra::scalars::q(n)
     }
 
     fn zero_matrix(rows: usize, cols: usize) -> BasicMatrix<Q> {

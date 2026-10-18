@@ -5,6 +5,7 @@
 //! execution governors retain authorization. This crate never licenses actions.
 
 /// Marker for the executable functional ownership boundary.
+extern crate self as omega_functional;
 pub struct FunctionalLayerBoundary;
 
 pub mod aggregation;

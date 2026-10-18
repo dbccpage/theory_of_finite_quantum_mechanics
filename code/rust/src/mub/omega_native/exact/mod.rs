@@ -164,27 +164,3 @@ pub mod mub6_zerorel_variety;
 pub mod operator_ladder;
 #[path = "../szollosi_triad_solver.rs"]
 pub mod szollosi_triad_solver;
-
-// ============================================================================
-// Exact Subsystem Invariant & Census Verifier
-// ============================================================================
-
-/// Verifies that the exact MUB(6) mathematical subsystem satisfies exact census completeness.
-pub fn verify_exact_subsystem_census() -> Result<usize, String> {
-    // 42 distinct exact modules formalized under exact/
-    let declared_count = 42usize;
-    if declared_count < 30 {
-        return Err("Exact subsystem census underpopulated".to_string());
-    }
-    Ok(declared_count)
-}
-
-#[cfg(test)]
-mod census_tests {
-    use super::*;
-
-    #[test]
-    fn test_census_count() {
-        assert!(verify_exact_subsystem_census().is_ok());
-    }
-}

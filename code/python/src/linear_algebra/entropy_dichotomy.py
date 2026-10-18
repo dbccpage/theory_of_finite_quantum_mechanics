@@ -292,6 +292,23 @@ def validate_psd(matrix: list[list[Q]]) -> None:
                     for j in indices] for i in indices]
 
 
+def _check_system_scope_and_ladder(case: dict[str, Any], matrix: list[list[Q]], n: int) -> None:
+    if case["system_id"] == "S8":
+        if case["scope"] != "S8_DIMENSION_ONLY_PROXY":
+            raise ValueError("S8 code support unresolved; dimension-only proxy label required")
+    elif case["scope"] != "DECLARED_SYSTEM_STATE":
+        raise ValueError("state scope label mismatch")
+    if case["system_id"] in {"S6", "S7"}:
+        if any(matrix[i][j] for i in range(n) for j in range(n) if i != j):
+            raise ValueError("frozen ladder states must be diagonal")
+    if case["system_id"] == "S6":
+        if matrix[0][0] <= 0:
+            raise ValueError("S6 requires a positive geometric ladder")
+        ratio = matrix[1][1] / matrix[0][0]
+        if not 0 < ratio < 1 or any(matrix[i][i] != matrix[0][0] * ratio**i for i in range(n)):
+            raise ValueError("S6 requires the declared decreasing geometric ladder")
+
+
 def validated_matrix(case: dict[str, Any]) -> list[list[Q]]:
     reject_floats(case, "input")
     if set(case) != INPUT_KEYS or not isinstance(case["fixture_id"], str):
@@ -313,20 +330,7 @@ def validated_matrix(case: dict[str, Any]) -> list[list[Q]]:
         raise ValueError("input is not real symmetric; complex carrier matrices require another exact implementation")
     if sum((matrix[i][i] for i in range(n)), Q(0)) != 1:
         raise ValueError("unnormalised spectrum: trace must equal one")
-    if case["system_id"] == "S8":
-        if case["scope"] != "S8_DIMENSION_ONLY_PROXY":
-            raise ValueError("S8 code support unresolved; dimension-only proxy label required")
-    elif case["scope"] != "DECLARED_SYSTEM_STATE":
-        raise ValueError("state scope label mismatch")
-    if case["system_id"] in {"S6", "S7"}:
-        if any(matrix[i][j] for i in range(n) for j in range(n) if i != j):
-            raise ValueError("frozen ladder states must be diagonal")
-    if case["system_id"] == "S6":
-        if matrix[0][0] <= 0:
-            raise ValueError("S6 requires a positive geometric ladder")
-        ratio = matrix[1][1] / matrix[0][0]
-        if not 0 < ratio < 1 or any(matrix[i][i] != matrix[0][0] * ratio**i for i in range(n)):
-            raise ValueError("S6 requires the declared decreasing geometric ladder")
+    _check_system_scope_and_ladder(case, matrix, n)
     validate_psd(matrix)
     return matrix
 
@@ -386,24 +390,24 @@ def polynomial_spectrum(coefficients: list[Q]) -> tuple[list[dict[str, Any]], li
     return spectrum, reconstructed
 
 
-def row_basis(rows: list[list[Q]]) -> tuple[list[int], list[list[Q]]]:
-    """Greedy exact Q row basis and reconstruction coordinates."""
-    pivots: list[tuple[int, list[Q], list[Q]]] = []
+def _find_basis_pivots(rows: list[list[Q]]) -> list[int]:
+    pivots: list[tuple[int, list[Q]]] = []
     indices: list[int] = []
     for index, original in enumerate(rows):
         residual = original[:]
-        for pivot, normalized, _ in pivots:
+        for pivot, normalized in pivots:
             factor = residual[pivot]
             residual = [a - factor * b for a, b in zip(residual, normalized)]
         pivot = next((i for i, value in enumerate(residual) if value), None)
         if pivot is not None:
             factor = residual[pivot]
-            pivots.append((pivot, [x / factor for x in residual], []))
+            pivots.append((pivot, [x / factor for x in residual]))
             indices.append(index)
-    basis = [rows[i] for i in indices]
-    # Reduce a basis copy while tracking each row as a combination of originals.
+    return indices
+
+
+def _build_tracked_basis(basis: list[list[Q]], rank: int) -> list[tuple[int, list[Q], list[Q]]]:
     tracked: list[tuple[int, list[Q], list[Q]]] = []
-    rank = len(basis)
     for i, original in enumerate(basis):
         residual = original[:]
         representation = [Q(i == j) for j in range(rank)]
@@ -414,6 +418,10 @@ def row_basis(rows: list[list[Q]]) -> tuple[list[int], list[list[Q]]]:
         pivot = next(j for j, value in enumerate(residual) if value)
         scale = residual[pivot]
         tracked.append((pivot, [x / scale for x in residual], [x / scale for x in representation]))
+    return tracked
+
+
+def _compute_row_coordinates(rows: list[list[Q]], tracked: list[tuple[int, list[Q], list[Q]]], rank: int) -> list[list[Q]]:
     coordinates = []
     for original in rows:
         residual, representation = original[:], [Q(0)] * rank
@@ -429,6 +437,16 @@ def row_basis(rows: list[list[Q]]) -> tuple[list[int], list[list[Q]]]:
         if any(abs(x // divisor) > MAX_COEFFICIENT for x in relation):
             raise RefusedAtBudget("dependence_integer_coefficient_abs_max=64 exhausted in exact coordinates")
         coordinates.append(representation)
+    return coordinates
+
+
+def row_basis(rows: list[list[Q]]) -> tuple[list[int], list[list[Q]]]:
+    """Greedy exact Q row basis and reconstruction coordinates."""
+    indices = _find_basis_pivots(rows)
+    basis = [rows[i] for i in indices]
+    rank = len(basis)
+    tracked = _build_tracked_basis(basis, rank)
+    coordinates = _compute_row_coordinates(rows, tracked, rank)
     return indices, coordinates
 
 
@@ -773,13 +791,7 @@ def _entropy_interval_from_characteristic(coefficients: list[Any], k: int, *,
     return result
 
 
-def validate_interval(interval: dict[str, Any]) -> None:
-    """Validate type/width/multiplicity metadata; this is not a root proof.
-
-    The producer's exact Sturm construction establishes the enclosures. Merely
-    passing this structural validator cannot establish that invented endpoints
-    contain any particular matrix's eigenvalues.
-    """
+def _check_interval_bounds(interval: dict[str, Any]) -> int:
     reject_floats(interval, "entropy_interval")
     if interval.get("quantity_type") != "APPROXIMATION_NOT_MEMBERSHIP" or interval.get("metric") != "ABSOLUTE_REAL_ERROR":
         raise ValueError("interval must be approximation, never carrier membership")
@@ -793,6 +805,10 @@ def validate_interval(interval: dict[str, Any]) -> None:
         raise ValueError("entropy interval exceeds declared error obligation")
     if parse_rat(interval["error_bound"]) != Q(1, 2**k):
         raise ValueError("entropy error bound does not equal 2^-k")
+    return k
+
+
+def _check_sturm_accounting(interval: dict[str, Any]) -> tuple[int, int]:
     used, limit = interval.get("sturm_subdivisions_used"), interval.get("sturm_subdivision_limit")
     root_isolation = interval.get("root_isolation")
     if root_isolation == "EXACT_CYCLOTOMIC_REAL_STURM_SPECTRAL_CLUSTERS":
@@ -807,6 +823,10 @@ def validate_interval(interval: dict[str, Any]) -> None:
     series_terms = interval.get("max_series_terms_used")
     if type(series_terms) is not int or not 0 <= series_terms <= MAX_TERMS:
         raise ValueError("invalid frozen series-term accounting")
+    return used, series_terms
+
+
+def _check_spectral_enclosures(interval: dict[str, Any], k: int, used: int, series_terms: int) -> None:
     dimension, enclosures = interval.get("input_dimension"), interval.get("spectral_enclosures")
     if type(dimension) is not int or not 1 <= dimension <= MAX_D or not isinstance(enclosures, list):
         raise ValueError("invalid spectral enclosure dimension or list")
@@ -837,6 +857,18 @@ def validate_interval(interval: dict[str, Any]) -> None:
         total += count * multiplicity
     if total != dimension:
         raise ValueError("spectral enclosure multiplicity sum differs from input dimension")
+
+
+def validate_interval(interval: dict[str, Any]) -> None:
+    """Validate type/width/multiplicity metadata; this is not a root proof.
+
+    The producer's exact Sturm construction establishes the enclosures. Merely
+    passing this structural validator cannot establish that invented endpoints
+    contain any particular matrix's eigenvalues.
+    """
+    k = _check_interval_bounds(interval)
+    used, series_terms = _check_sturm_accounting(interval)
+    _check_spectral_enclosures(interval, k, used, series_terms)
 
 
 def fixtures(interface: Path | None = None) -> list[dict[str, Any]]:

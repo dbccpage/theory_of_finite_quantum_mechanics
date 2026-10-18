@@ -33,20 +33,20 @@ pub fn compiled_source_sha256() -> BTreeMap<&'static str, String> {
             "omega_engine/crates_rs/tests/omega_wdp/test_question_preserving_encoding.rs",
             include_bytes!(concat!(
                 env!("CARGO_MANIFEST_DIR"),
-                "/../tests/omega_wdp/test_question_preserving_encoding.rs"
+                "/fixtures/test_question_preserving_encoding.rs"
             )),
         ),
         (
             "omega_engine/crates_rs/omega_category_theory/src/finite_report_query.rs",
-            include_bytes!("../../omega_category_theory/src/finite_report_query.rs"),
+            include_bytes!("../category_theory/finite_report_query.rs"),
         ),
         (
             "omega_engine/crates_rs/omega_functional/src/gamma2.rs",
-            include_bytes!("../../omega_functional/src/gamma2.rs"),
+            include_bytes!("../functional/gamma2.rs"),
         ),
         (
             "omega_engine/crates_rs/Cargo.lock",
-            include_bytes!("../../Cargo.lock"),
+            include_bytes!("fixtures/Cargo.lock"),
         ),
     ];
     inputs

@@ -4,7 +4,7 @@ use crate::boundary::BoundaryMap;
 use crate::errors::HomologicalError;
 use crate::hashing::{hash_chain_complex_manifest, Hash256};
 use crate::ids::Degree;
-use crate::crate::crate::linear_algebra::scalars::Q;
+use crate::linear_algebra::scalars::Q;
 use crate::witness::ChainComplexWitness;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use num_traits::Zero;
@@ -145,7 +145,7 @@ mod tests {
     use super::*;
 
     fn r(n: i64) -> Q {
-        crate::crate::crate::linear_algebra::scalars::q(n)
+        crate::linear_algebra::scalars::q(n)
     }
 
     fn zero_matrix(rows: usize, cols: usize) -> BasicMatrix<Q> {

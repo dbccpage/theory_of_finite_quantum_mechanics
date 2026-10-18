@@ -1,6 +1,6 @@
 //! Program locality and dense-orbit scope report. AuthorityEffect: None.
 use omega_number_theory::rational::{ri, rq};
-use omega_quantum_physics::locality_limit::*;
+use omega_quantum_physics::continuous_time_locality_limit::*;
 use serde_json::json;
 /// Audit of C250 dense cyclic orbit claim: returns (status, dense_orbit_alone_implies_continuous_action).
 pub fn audit_c250_dense_orbit() -> (&'static str, bool) {

@@ -400,8 +400,6 @@ pub mod genesis_translation;
 
 // Retained paper controls are private test modules, not runtime APIs.
 #[cfg(test)]
-extern crate self as omega_wdp;
-#[cfg(test)]
-#[path = "../../tests/omega_wdp/derivation_controls/mod.rs"]
+#[path = "derivation_controls/mod.rs"]
 mod paper_derivation_controls;
 pub mod application_kernel;

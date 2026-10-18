@@ -20,7 +20,7 @@
 
 use super::{charge, element_count, matrix as mx, plus, reserve, times, ExactFieldError};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum TensorProjectorError {

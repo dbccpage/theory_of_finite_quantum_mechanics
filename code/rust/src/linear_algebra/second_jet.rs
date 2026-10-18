@@ -7,7 +7,7 @@ use crate::linear_algebra::{
     charge, element_count, matrix as mx, plus, require_same_shape, require_square, times,
     ExactFieldError,
 };
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MatrixJet2<F> {

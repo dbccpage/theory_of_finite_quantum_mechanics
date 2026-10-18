@@ -6,7 +6,7 @@ use num_traits::Signed;
 use omega_functional::born_probabilities::{BornProbabilities, BornProbabilityError};
 use omega_number_theory::{cyclotomic::GaussianRat, rational::Rational};
 use omega_quantum_physics::exact_hermitian::{self};
-use omega_quantum_physics::residual_density::{sector_measurement, ResidualDensityError};
+use omega_quantum_physics::residual_density_calculus::{sector_measurement, ResidualDensityError};
 
 /// Nonnegative sector masses with positive total.
 #[derive(Debug, Clone, PartialEq, Eq)]

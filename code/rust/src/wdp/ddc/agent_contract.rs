@@ -800,7 +800,7 @@ pub mod swarm_kernel {
     }
 
     #[derive(Debug, Clone, PartialEq, Eq)]
-    pub struct WolandDdcStep {
+    pub struct MoscowDdcStep {
         pub letter: DdcOp,
         pub before_class: String,
         pub after_class: String,
@@ -810,7 +810,7 @@ pub mod swarm_kernel {
         pub authority_effect: String,
     }
 
-    impl WolandDdcStep {
+    impl MoscowDdcStep {
         pub fn try_new(
             letter: &str,
             before_class: impl Into<String>,
@@ -836,7 +836,7 @@ pub mod swarm_kernel {
         }
     }
 
-    pub fn validate_purity(step: &WolandDdcStep) -> Result<(), SwarmPurityRefusal> {
+    pub fn validate_purity(step: &MoscowDdcStep) -> Result<(), SwarmPurityRefusal> {
         if step.authority_effect != AUTHORITY_EFFECT {
             return Err(SwarmPurityRefusal::AuthorityEffect(step.authority_effect.clone()));
         }
@@ -1006,8 +1006,8 @@ mod tests {
     }
 
     #[test]
-    fn woland_step_accepts_the_lift_alias_and_refuses_authority() {
-        let step = swarm_kernel::WolandDdcStep::try_new(
+    fn moscow_step_accepts_the_lift_alias_and_refuses_authority() {
+        let step = swarm_kernel::MoscowDdcStep::try_new(
             "Lambda",
             "open",
             "lifted",
@@ -1020,7 +1020,7 @@ mod tests {
         assert_eq!(step.letter, crate::ddc::ddc_alphabet::DdcOp::Lift);
         assert!(swarm_kernel::validate_purity(&step).is_ok());
 
-        let refused = swarm_kernel::WolandDdcStep::try_new(
+        let refused = swarm_kernel::MoscowDdcStep::try_new(
             "E",
             "open",
             "closed",
@@ -1033,7 +1033,7 @@ mod tests {
             refused,
             Err(swarm_kernel::SwarmPurityRefusal::AuthorityEffect(_))
         ));
-        assert!(swarm_kernel::WolandDdcStep::try_new(
+        assert!(swarm_kernel::MoscowDdcStep::try_new(
             "Z",
             "open",
             "closed",

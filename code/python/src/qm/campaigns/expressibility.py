@@ -313,17 +313,7 @@ class FiniteQmExpressibilityAndMeasurementReport:
     magic_state_born_overlaps_match_wigner_pairing: bool
 
 
-def evaluate_finite_qm_expressibility_and_measurement_control() -> (
-    FiniteQmExpressibilityAndMeasurementReport
-):
-    # =========================================================================
-    # Part I: Three-Way Finite Expressibility & Strict Finite No-Go Theorems
-    # =========================================================================
-    # Number of Class I items (i)-(xi) listed in the paper; a stated count, not a computation.
-    class_i_count = 11
-    class_ii_count = 4
-    class_iii_count = 3
-
+def _evaluate_weyl_and_kravchuk():
     wh_trace_zero_all = True
     id_trace_nonzero_all = True
     kravchuk_interior_ok = True
@@ -362,6 +352,17 @@ def evaluate_finite_qm_expressibility_and_measurement_control() -> (
         if sum(krav_comm_diag, Q(0, 1)) != 0:
             kravchuk_trace_zero_all = False
 
+    return (
+        wh_trace_zero_all,
+        id_trace_nonzero_all,
+        kravchuk_interior_ok,
+        defect_d3,
+        defect_d4,
+        kravchuk_trace_zero_all,
+    )
+
+
+def _evaluate_lorentz_boosts():
     eta4 = q_zeros(4)
     eta4[0][0] = Q(1, 1)
     eta4[1][1] = Q(-1, 1)
@@ -416,9 +417,21 @@ def evaluate_finite_qm_expressibility_and_measurement_control() -> (
         and surv_probs[4] == Q(1, 1)
     )
 
-    # =========================================================================
-    # Part II: Kraus Measurement Decoherence & Multi-Observer Wigner's-Friend
-    # =========================================================================
+    return (
+        boost_minkowski_ok,
+        boost_gram_not_id,
+        boost_excess_formula_ok,
+        gram_2x2_half,
+        gram_4x4_half,
+        killing_sign_ok,
+        surv_probs,
+        closed_unitary_id_at_n,
+        closed_recurrence_ok,
+    )
+
+
+def _evaluate_kraus_decoherence():
+    i4 = q_eye(4)
     cnot = q_zeros(4)
     cnot[0][0] = Q(1, 1)
     cnot[1][1] = Q(1, 1)
@@ -451,6 +464,22 @@ def evaluate_finite_qm_expressibility_and_measurement_control() -> (
     red_purity = q_trace(q_mul(rho_s_kraus, rho_s_kraus))
     purity_loss = init_purity - red_purity
 
+    return (
+        cnot_unitary_ok,
+        joint_pure_ok,
+        joint_reversal_ok,
+        partial_eq_kraus,
+        kraus_complete_ok,
+        off_diag_zero,
+        init_purity,
+        red_purity,
+        purity_loss,
+    )
+
+
+def _evaluate_wigners_friend():
+    i2 = q_eye(2)
+    i4 = q_eye(4)
     rho_wf = q_zeros(16)
     for r in (0, 15):
         for c in (0, 15):
@@ -514,9 +543,19 @@ def evaluate_finite_qm_expressibility_and_measurement_control() -> (
     wf_violates_classical = s_wf > max_classical and s_wf_sq > Q(4, 1)
     wf_respects_tsirelson = s_wf_sq < Q(8, 1)
 
-    # =========================================================================
-    # Part III: Qutrit Stabilizer-vs-Magic Discrete Wigner Simulation Boundary
-    # =========================================================================
+    return (
+        friends_corr_ok,
+        wf_inv_comm_ok,
+        wf_anticomm_ok,
+        wf_correlators,
+        s_wf,
+        s_wf_sq,
+        wf_violates_classical,
+        wf_respects_tsirelson,
+    )
+
+
+def _build_and_check_qutrit_mubs():
     mubs: List[List[List[Cyclo3]]] = []
     basis_z: List[List[Cyclo3]] = []
     for q0 in range(3):
@@ -547,10 +586,10 @@ def evaluate_finite_qm_expressibility_and_measurement_control() -> (
                     denom = z3_norm_sq3(mubs[b1][i]) * z3_norm_sq3(mubs[b2][j])
                     if ip_norm_sq.a / denom != Q(1, 3):
                         inter_mub_ok = False
+    return mubs, intra_ortho_ok, inter_mub_ok
 
-    stabilizers: List[List[Cyclo3]] = [st for basis in mubs for st in basis]
-    stab_tables = [compute_wigner_table_z3(st) for st in stabilizers]
 
+def _check_stabilizer_wigner_properties(stab_tables):
     stab_nonneg_norm_ok = True
     stab_affine_line_ok = True
     stab_zero_neg_ok = True
@@ -575,7 +614,10 @@ def evaluate_finite_qm_expressibility_and_measurement_control() -> (
             stab_affine_line_ok = False
         if abs_total - Q(1, 1) != 0:
             stab_zero_neg_ok = False
+    return stab_nonneg_norm_ok, stab_affine_line_ok, stab_zero_neg_ok
 
+
+def _check_wigner_born_and_clifford(stabilizers, stab_tables):
     wigner_born_all_pairs_ok = True
     for i in range(len(stabilizers)):
         for j in range(len(stabilizers)):
@@ -603,7 +645,10 @@ def evaluate_finite_qm_expressibility_and_measurement_control() -> (
             target = wigner_phase_point_z3(p_idx, (3 - q_idx) % 3)
             if transformed != target:
                 clifford_cov_ok = False
+    return wigner_born_all_pairs_ok, clifford_cov_ok
 
+
+def _evaluate_magic_state(stabilizers, stab_tables):
     psi_magic = [Cyclo3.from_int(1), Cyclo3.from_int(1), Cyclo3.from_int(-1)]
     w_magic = compute_wigner_table_z3(psi_magic)
     magic_entries = [v for row in w_magic for v in row]
@@ -629,11 +674,67 @@ def evaluate_finite_qm_expressibility_and_measurement_control() -> (
         born = ip_sq / (z3_norm_sq3(psi_magic) * z3_norm_sq3(stab))
         if Q(3, 1) * w_dot != born or born < 0:
             magic_born_ok = False
+    return w_magic, magic_norm_pure_ok, magic_min, magic_negativity, magic_born_ok
+
+
+def evaluate_finite_qm_expressibility_and_measurement_control() -> (
+    FiniteQmExpressibilityAndMeasurementReport
+):
+    (
+        wh_trace_zero_all,
+        id_trace_nonzero_all,
+        kravchuk_interior_ok,
+        defect_d3,
+        defect_d4,
+        kravchuk_trace_zero_all,
+    ) = _evaluate_weyl_and_kravchuk()
+
+    (
+        boost_minkowski_ok,
+        boost_gram_not_id,
+        boost_excess_formula_ok,
+        gram_2x2_half,
+        gram_4x4_half,
+        killing_sign_ok,
+        surv_probs,
+        closed_unitary_id_at_n,
+        closed_recurrence_ok,
+    ) = _evaluate_lorentz_boosts()
+
+    (
+        cnot_unitary_ok,
+        joint_pure_ok,
+        joint_reversal_ok,
+        partial_eq_kraus,
+        kraus_complete_ok,
+        off_diag_zero,
+        init_purity,
+        red_purity,
+        purity_loss,
+    ) = _evaluate_kraus_decoherence()
+
+    (
+        friends_corr_ok,
+        wf_inv_comm_ok,
+        wf_anticomm_ok,
+        wf_correlators,
+        s_wf,
+        s_wf_sq,
+        wf_violates_classical,
+        wf_respects_tsirelson,
+    ) = _evaluate_wigners_friend()
+
+    mubs, intra_ortho_ok, inter_mub_ok = _build_and_check_qutrit_mubs()
+    stabilizers = [st for basis in mubs for st in basis]
+    stab_tables = [compute_wigner_table_z3(st) for st in stabilizers]
+    stab_nonneg_norm_ok, stab_affine_line_ok, stab_zero_neg_ok = _check_stabilizer_wigner_properties(stab_tables)
+    wigner_born_all_pairs_ok, clifford_cov_ok = _check_wigner_born_and_clifford(stabilizers, stab_tables)
+    w_magic, magic_norm_pure_ok, magic_min, magic_negativity, magic_born_ok = _evaluate_magic_state(stabilizers, stab_tables)
 
     return FiniteQmExpressibilityAndMeasurementReport(
-        class_i_exact_finite_identity_count=class_i_count,
-        class_ii_rational_interval_enclosure_count=class_ii_count,
-        class_iii_strict_finite_nogo_count=class_iii_count,
+        class_i_exact_finite_identity_count=11,
+        class_ii_rational_interval_enclosure_count=4,
+        class_iii_strict_finite_nogo_count=3,
         weyl_heisenberg_commutator_trace_zero_all_dims=wh_trace_zero_all,
         identity_trace_nonzero_all_dims=id_trace_nonzero_all,
         kravchuk_interior_commutator_is_one_all_dims=kravchuk_interior_ok,

@@ -18,6 +18,7 @@
 //! The exact finite MUB constructions and the projector-algebra verifier live
 //! in `omega_quantum_physics::mub`; import them from there.
 
+extern crate self as omega_mub;
 pub mod deep_run;
 pub mod omega_native;
 pub mod primitive_map;

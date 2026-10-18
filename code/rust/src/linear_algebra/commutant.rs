@@ -5,7 +5,7 @@
 use super::{charge, element_count, plus, times, ExactFieldError};
 use super::{elimination, matrix};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
-use crate::crate::crate::crate::linear_algebra::scalars::{ExactRing, Field};
+use crate::linear_algebra::scalars::{ExactRing, Field};
 
 fn system<F: Field + ExactRing>(
     n: usize,
