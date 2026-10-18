@@ -1,0 +1,3035 @@
+{
+  "team_id": "team_07",
+  "team_name": "Team 7: Truncated Moment Matrices (Deg 2, 4, 6, 8) & LDL^T Pivots",
+  "target": "TARGET_Q_SOUNDNESS",
+  "authority_effect": "None",
+  "firewall_line": "stated region only; mints no authority",
+  "total_sessions": 25,
+  "sessions": [
+    {
+      "session_id": "SESSION_PROMPT_T07_01",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_01",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Construction of Degree-2 moment matrix $M_2$ (size $25 \\times 25$) over $\\mathbb{Q}$.",
+      "timestamp": "2026-09-23T22:01:03.799514+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "88c4a321cc7e8bb0089269c25ac3657a00b05cc1a9dee7ead84c8601b9e3dd56",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "1/6"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "-1/6"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-1/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "0/1",
+          "moment_sdp_v1->moment_sdp_v2": "0/1",
+          "moment_sdp_v2->moment_sdp_v3": "0/1",
+          "moment_sdp_v3->moment_sdp_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "10a932e45070b6b5c6361b33066a1085fcb120c6d0bebd36afcf5b1743c62742"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_01_A",
+        "PROP_PROMPT_T07_01_B"
+      ],
+      "terminal_state_digest": "d6e2a7f6cfe9eb4cc68fe4dbcd29cbbab118b5d8057dc1fa05e0539ddc93d401"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_02",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_02",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Exact rational $LDL^T$ decomposition of $M_2$ verifying pivot positivity ($D_i > 0$).",
+      "timestamp": "2026-09-23T22:01:03.806165+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "f08d53137679ebf15510223847119601a088534389906583f78778d5c6c5ce96",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_02_A",
+        "PROP_PROMPT_T07_02_B"
+      ],
+      "terminal_state_digest": "c1a2b53dd19286fd1ee60fd0b11ce67e90ef740d44df8f3329089931e8d8db43"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_03",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_03",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Construction of Degree-4 moment matrix $M_4$ incorporating projector pairs.",
+      "timestamp": "2026-09-23T22:01:03.814442+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "aea703ea0d31f7fd60eda6da010ea9298264a98d2a7ffbce3c6ddae5c896444d",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_03_A",
+        "PROP_PROMPT_T07_03_B"
+      ],
+      "terminal_state_digest": "92f2e79bf4df18e7c2810dfed0aaf5a8e6c5b07ca1d2817a621be16eafe3b360"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_04",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_04",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Exact rational $LDL^T$ decomposition of $M_4$ and pivot spectrum analysis.",
+      "timestamp": "2026-09-23T22:01:03.820027+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "8743d06c5712a6a894d33f699f82f3de733cf149f5199a6d12fbe40789ce81d7",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_04_A",
+        "PROP_PROMPT_T07_04_B"
+      ],
+      "terminal_state_digest": "646490628bd20787eb4df7cc2ecbd7acfeda0a362c4f6f5f0c8ac4b92b77490a"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_05",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_05",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Construction of Degree-6 moment matrix $M_6$ incorporating projector triples.",
+      "timestamp": "2026-09-23T22:01:03.826812+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "27439e192333eb3054f0705aa30e65e282f76757898ab0f173fb513e8800da74",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "3/4"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "-5/6"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-3/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "0/1",
+          "moment_sdp_v1->moment_sdp_v2": "0/1",
+          "moment_sdp_v2->moment_sdp_v3": "0/1",
+          "moment_sdp_v3->moment_sdp_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "10a932e45070b6b5c6361b33066a1085fcb120c6d0bebd36afcf5b1743c62742"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_05_A",
+        "PROP_PROMPT_T07_05_B"
+      ],
+      "terminal_state_digest": "e54a5cc239f22a78574655624298f83abb136357516623cf85cfdfcbee217c7c"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_06",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_06",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Evaluation of candidate completion $X = 0$ on $M_6$: $\\operatorname{Tr}(W_6 \\cdot M_6) = -9071/10800 < 0$.",
+      "timestamp": "2026-09-23T22:01:03.832313+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "c257fc45ab76d5495841b594e090dfeb392cf238ecb1b2c9c442ae3f0c4c00d7",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_06_A",
+        "PROP_PROMPT_T07_06_B"
+      ],
+      "terminal_state_digest": "b37dc6c69fc85921ab3c8b5fada8e77f0bbafeb2a994db7ead159cf61c093ee0"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_07",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_07",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Construction of Degree-8 moment matrix $M_8$ incorporating projector quadruples.",
+      "timestamp": "2026-09-23T22:01:03.837443+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "2ff395be3b24705eb756cec7e7e9249ba50f51af29fc457dbc7f669e8c385259",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_07_A",
+        "PROP_PROMPT_T07_07_B"
+      ],
+      "terminal_state_digest": "3de3439e14292666fc7276aca7f051992bc561f6972192d04e60bc7ea98da5b6"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_08",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_08",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Evaluation of candidate completion $X = 0$ on $M_8$: $\\operatorname{Tr}(W_8 \\cdot M_8) = -9071/10800 < 0$.",
+      "timestamp": "2026-09-23T22:01:03.844149+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "ab7c16afcbd7704ad9017198c8c93113f7a7c2ee0372d6f125d2f511e7c95835",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_08_A",
+        "PROP_PROMPT_T07_08_B"
+      ],
+      "terminal_state_digest": "3fbde01a950aaf1aa713e852196244a38ff1cc558006b640660977102128a2a3"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_09",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_09",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Evaluation of synthetic $S_6$ candidate completion on $M_8$: $\\operatorname{Tr}(W_8 \\cdot M_8) = -5046587/129600 < 0$.",
+      "timestamp": "2026-09-23T22:01:03.851251+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "4fcfdce8e8e07fd7eb751959bd1a55153b612d25bce606b7cc972ce60af39a9e",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "3/2"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "5/4"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "-3/2"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "0/1",
+          "moment_sdp_v1->moment_sdp_v2": "0/1",
+          "moment_sdp_v2->moment_sdp_v3": "0/1",
+          "moment_sdp_v3->moment_sdp_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "10a932e45070b6b5c6361b33066a1085fcb120c6d0bebd36afcf5b1743c62742"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_09_A",
+        "PROP_PROMPT_T07_09_B"
+      ],
+      "terminal_state_digest": "28aba470feb150e4504f418d7cf1db25298babcc18aa883c25e2e1732af2727d"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_10",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_10",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Factored dual witness representation $W = \\sum D_k c^{(k)} (c^{(k)})^T$ with $D_k \\ge 0$.",
+      "timestamp": "2026-09-23T22:01:03.856745+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "ffd291945b242e73dfacca690122678c5c5ba0fd061cde857a59cd35b95fbfec",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_10_A",
+        "PROP_PROMPT_T07_10_B"
+      ],
+      "terminal_state_digest": "02bafe905acf5248e52fdb9b221eb9bd16e2b0f2e849ff3b2ae7eef4c6390f41"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_11",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_11",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Constructive proof that $\\operatorname{Tr}(W \\cdot M) < 0$ refutes pseudo-expectation positivity.",
+      "timestamp": "2026-09-23T22:01:03.863610+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "aaa42247627badb4195d281e4a3cb4caa62cb5ed78ff8b1e33127d53ea8bc693",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_11_A",
+        "PROP_PROMPT_T07_11_B"
+      ],
+      "terminal_state_digest": "f13e0480a18de0da60b4649dee52902c8888e86a2083348bc918349e99bbf4b3"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_12",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_12",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Bit-for-bit SHA-256 fingerprint agreement for $M_2, M_4, M_6, M_8$ between Python and Rust.",
+      "timestamp": "2026-09-23T22:01:03.870013+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "1048e33e477f2c064ae71d61a99f3b30e201dee1cc9b7e0d4152fd979d5c75e2",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_12_A",
+        "PROP_PROMPT_T07_12_B"
+      ],
+      "terminal_state_digest": "f3c80c496574d40981b04d1bd7b9af8df9fb009a72ebe4c8df95b70679229c67"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_13",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_13",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Pivot signature verification: confirming zero negative pivots in valid Gramians.",
+      "timestamp": "2026-09-23T22:01:03.882634+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "301df43ebabc4d79a1da76dfbc55810e5979efa40a6d74d88f32050e7cf888ef",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "13/6"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "7/4"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "-13/6"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-7/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "47/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 47/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "47/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "0/1",
+          "moment_sdp_v1->moment_sdp_v2": "0/1",
+          "moment_sdp_v2->moment_sdp_v3": "0/1",
+          "moment_sdp_v3->moment_sdp_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "10a932e45070b6b5c6361b33066a1085fcb120c6d0bebd36afcf5b1743c62742"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_13_A",
+        "PROP_PROMPT_T07_13_B"
+      ],
+      "terminal_state_digest": "5d9ee3e2acfcf8c6f6d15f69e9bc1285207201823ea13eac0957cc6dcabaef90"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_14",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_14",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Cross-runtime fixture validation in `test_target_q4_degree8_sdp.py`.",
+      "timestamp": "2026-09-23T22:01:03.888427+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "2e258c16c47e2e5112ab560b5658f300698c0179ccea642d369bf062727e783f",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "13/12"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/12",
+          "defect_after": "7/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/12 to 7/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/12",
+        "after_cut": "7/12",
+        "terminal": "7/12",
+        "winding_obstruction": "7/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_14_A",
+        "PROP_PROMPT_T07_14_B"
+      ],
+      "terminal_state_digest": "a88c0da3186f7922c18afd5a527936f5c7fa067b47c41bcbb8be3f40a5ed0034"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_15",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_15",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Native Rust release-mode test suite in `test_degree8_sdp.rs`.",
+      "timestamp": "2026-09-23T22:01:03.895114+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "b6e9ca68c205a9ed19bed15d65a9dae9d52ae271ae49cf2df47cb1f2ca4920a3",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_15_A",
+        "PROP_PROMPT_T07_15_B"
+      ],
+      "terminal_state_digest": "293d1ef735ce8b203fd95a4de1c4dabcc2287c7e534e4a3bc2281fbd0c2946b9"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_16",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_16",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Negative control suite: rejecting non-symmetric matrices and indefinite pivots.",
+      "timestamp": "2026-09-23T22:01:03.901236+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "0af680cc32582b51852f966ec7f64f0041d9481b58d6e0a1241ce74477a84d13",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_16_A",
+        "PROP_PROMPT_T07_16_B"
+      ],
+      "terminal_state_digest": "7af1b6945b99e699e5f420d01d5e0b460999d9e9de5e1210c4b2e7d9e1de7ee0"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_17",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_17",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "AST-level zero-float verification on Rust moment matrix builders.",
+      "timestamp": "2026-09-23T22:01:03.912984+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "728cc0cced81158c397e1ba231e8bddb92c636d84a9eb20b0838d3f59db1bf0a",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "17/6"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "9/4"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "-17/6"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-9/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "61/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 61/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "61/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "0/1",
+          "moment_sdp_v1->moment_sdp_v2": "0/1",
+          "moment_sdp_v2->moment_sdp_v3": "0/1",
+          "moment_sdp_v3->moment_sdp_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "10a932e45070b6b5c6361b33066a1085fcb120c6d0bebd36afcf5b1743c62742"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_17_A",
+        "PROP_PROMPT_T07_17_B"
+      ],
+      "terminal_state_digest": "647c3c57ef790221ec217a91682c57f389f95977836f0f1e4019a132b9032800"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_18",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_18",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Recursive `assert_no_float` on all Python moment matrix entries.",
+      "timestamp": "2026-09-23T22:01:03.919112+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "2177763aed5bb625953eec05bdc233f4719530c2a438408acfd11f3b40b43860",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "5/6"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "11/6",
+          "defect_after": "1/3",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 11/6 to 1/3."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "11/6",
+        "after_cut": "1/3",
+        "terminal": "1/3",
+        "winding_obstruction": "1/3"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_18_A",
+        "PROP_PROMPT_T07_18_B"
+      ],
+      "terminal_state_digest": "ccc0a61ae49004edaf6c491ed246f5775ced980c85ad47e63493a49a9b3b944b"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_19",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_19",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Unified diagnostic ledger API for multi-degree SDP moments.",
+      "timestamp": "2026-09-23T22:01:03.924240+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "5501e941ed099e5b5fe0d92878cbe3e5725f4fb6df4f887018198c8b7037d71d",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "11/12"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "23/12",
+          "defect_after": "5/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 23/12 to 5/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "23/12",
+        "after_cut": "5/12",
+        "terminal": "5/12",
+        "winding_obstruction": "5/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_19_A",
+        "PROP_PROMPT_T07_19_B"
+      ],
+      "terminal_state_digest": "fcdb16d3cde32c5bd7c21417a8b19eb96b541d3d482e48f3526175e3bc4a0d88"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_20",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_20",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Separation between candidate refutation and global search refusal.",
+      "timestamp": "2026-09-23T22:01:03.931052+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "fac690ecfd4b82154de15b1b8db589bd98f8753d8d0fb88424db84fe0823b004",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "2",
+          "defect_after": "1/2",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 2 to 1/2."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "2",
+        "after_cut": "1/2",
+        "terminal": "1/2",
+        "winding_obstruction": "1/2"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_20_A",
+        "PROP_PROMPT_T07_20_B"
+      ],
+      "terminal_state_digest": "0470230d8c16beed68aeb0f610b6145552ebc2736a6f37ad4ae5d6a6a5a846df"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_21",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_21",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Lean 4 formalization of factored dual witness and trace inner product.",
+      "timestamp": "2026-09-23T22:01:03.937785+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "20c5b422e9729cd4e1082e3ad320925c9f6fd30dd9f07ec2c4d6f35fe6ebac6c",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "7/2"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "11/4"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "-7/2"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-11/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "25/2",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 25/2 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "25/2",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "0/1",
+          "moment_sdp_v1->moment_sdp_v2": "0/1",
+          "moment_sdp_v2->moment_sdp_v3": "0/1",
+          "moment_sdp_v3->moment_sdp_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "10a932e45070b6b5c6361b33066a1085fcb120c6d0bebd36afcf5b1743c62742"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_21_A",
+        "PROP_PROMPT_T07_21_B"
+      ],
+      "terminal_state_digest": "7008f8b1f2dd8bcc3520561d6d2f097348e7ed817fbc17b3e281a4c7e5817aec"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_22",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_22",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Lean 4 constructive theorem: `certified_candidate_refutation`.",
+      "timestamp": "2026-09-23T22:01:03.946472+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "f7bafd8805beb5c1fb5acca806c66ec3fc7983e2122f19edb8fe56cc481bef87",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "7/12"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "19/12",
+          "defect_after": "1/12",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 19/12 to 1/12."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "19/12",
+        "after_cut": "1/12",
+        "terminal": "1/12",
+        "winding_obstruction": "1/12"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_22_A",
+        "PROP_PROMPT_T07_22_B"
+      ],
+      "terminal_state_digest": "f2ba8ac0f831e42da181ea2da8f63d2264979383b9b8bbabd9d5033bfd5c0a80"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_23",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_23",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Lean 4 constructive theorem: `dual_witness_trace_nonneg_of_moment_positivity`.",
+      "timestamp": "2026-09-23T22:01:03.952677+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "11cd6707e63a62e54af66412d27159e8c399f58724977d3733c2a8bce5c7b214",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "2/3"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "5/3",
+          "defect_after": "1/6",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 5/3 to 1/6."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "5/3",
+        "after_cut": "1/6",
+        "terminal": "1/6",
+        "winding_obstruction": "1/6"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_23_A",
+        "PROP_PROMPT_T07_23_B"
+      ],
+      "terminal_state_digest": "c75c80871b73e4796363c5531b076d1cbdc225d57501a3eaa18930f15adab928"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_24",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_24",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Axiom audit of Lean 4 moment matrix theorems: strictly `[propext, Quot.sound]`.",
+      "timestamp": "2026-09-23T22:01:03.958939+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "d8374001b41306888e9f8584ab7d051892b693b42cb4e8e0ccca95f2d899b5de",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "3/4"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "-1/3"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "1/4"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-5/12"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "7/4",
+          "defect_after": "1/4",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 7/4 to 1/4."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'DUAL_WITNESS'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "DUAL_WITNESS",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'DUAL_WITNESS'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "7/4",
+        "after_cut": "1/4",
+        "terminal": "1/4",
+        "winding_obstruction": "1/4"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "1/1",
+          "moment_sdp_v1->moment_sdp_v2": "1/1",
+          "moment_sdp_v2->moment_sdp_v3": "1/1",
+          "moment_sdp_v3->moment_sdp_v0": "1/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "79ee6f7994c0a15f0052ba9666dd51587e937266518ba4e226446eebc13589d4"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_24_A",
+        "PROP_PROMPT_T07_24_B"
+      ],
+      "terminal_state_digest": "12104da6af1372c4b7ed080246c44ee5f55ebcf15f87ab1c1b82d9c0d22c7055"
+    },
+    {
+      "session_id": "SESSION_PROMPT_T07_25",
+      "team_id": "team_07",
+      "run_id": "PROMPT_T07_25",
+      "target": "TARGET_Q_SOUNDNESS",
+      "prompt_description": "Master synthesis of the multi-degree moment SDP hierarchy ledger.",
+      "timestamp": "2026-09-23T22:01:03.965034+00:00",
+      "authority_effect": "None",
+      "firewall_line": "stated region only; mints no authority",
+      "problem_digest": "3cf2a6741a3e17b9ef509aaf4a7e9fae534a0c65da793b144b4ca242fd4fb3b5",
+      "constraint_graph": {
+        "vertices": [
+          "moment_sdp_v0",
+          "moment_sdp_v1",
+          "moment_sdp_v2",
+          "moment_sdp_v3"
+        ],
+        "edges": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "weight": "1/1"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "weight": "1/1"
+          }
+        ],
+        "initial_claims": [
+          {
+            "u": "moment_sdp_v0",
+            "v": "moment_sdp_v1",
+            "claim": "25/6"
+          },
+          {
+            "u": "moment_sdp_v1",
+            "v": "moment_sdp_v2",
+            "claim": "13/4"
+          },
+          {
+            "u": "moment_sdp_v2",
+            "v": "moment_sdp_v3",
+            "claim": "-25/6"
+          },
+          {
+            "u": "moment_sdp_v3",
+            "v": "moment_sdp_v0",
+            "claim": "-13/4"
+          }
+        ]
+      },
+      "moves": [
+        {
+          "step_idx": 1,
+          "op": "CUT",
+          "event_id": "ev_0001_cut",
+          "defect_before": "89/6",
+          "defect_after": "0",
+          "status": "Admitted",
+          "details": "CUT accepted: defect reduced from 89/6 to 0."
+        },
+        {
+          "step_idx": 2,
+          "op": "VERIFY",
+          "event_id": "ev_0002_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "VERIFY passed for 'ZERO_OBSTRUCTION'."
+        },
+        {
+          "step_idx": 3,
+          "op": "RETRACT",
+          "event_id": "ev_0003_retract",
+          "target_event_id": "ev_0002_verify",
+          "status": "Admitted",
+          "details": "Restored state before event; history logged."
+        },
+        {
+          "step_idx": 4,
+          "op": "VERIFY",
+          "event_id": "ev_0004_verify",
+          "target_property": "ZERO_OBSTRUCTION",
+          "status": "Admitted",
+          "details": "Terminal VERIFY re-established for 'ZERO_OBSTRUCTION'."
+        }
+      ],
+      "defect_trajectory": {
+        "initial": "89/6",
+        "after_cut": "0",
+        "terminal": "0",
+        "winding_obstruction": "0"
+      },
+      "dual_witness_certification": {
+        "dual_witness": {
+          "moment_sdp_v0->moment_sdp_v1": "0/1",
+          "moment_sdp_v1->moment_sdp_v2": "0/1",
+          "moment_sdp_v2->moment_sdp_v3": "0/1",
+          "moment_sdp_v3->moment_sdp_v0": "0/1"
+        },
+        "divergence_free": true,
+        "weight_bounded": true,
+        "duality_gap": "0",
+        "dual_witness_hash": "10a932e45070b6b5c6361b33066a1085fcb120c6d0bebd36afcf5b1743c62742"
+      },
+      "winning_proposals": [
+        "PROP_PROMPT_T07_25_A",
+        "PROP_PROMPT_T07_25_B"
+      ],
+      "terminal_state_digest": "fbb9379723d3fdd2ca882758055023a97fe6c6d2543289d38757c35866329810"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "target_id": "TARGET_Q_SOUNDNESS",
+  "name": "projector_moment_positivity_soundness_gap_and_positivstellensatz",
+  "authority_effect": "None",
+  "firewall_line": "stated region only; mints no authority",
+  "dimension": 6,
+  "number_of_bases": 4,
+  "generator_spec": {
+    "symbol": "Pi_{i, a}",
+    "basis_indices": [0, 1, 2, 3],
+    "outcome_indices": [0, 1, 2, 3, 4, 5],
+    "total_generators": 24
+  },
+  "ideal_relations": [
+    {
+      "relation": "self_adjointness",
+      "formula": "Pi_{i, a}^* = Pi_{i, a}"
+    },
+    {
+      "relation": "idempotency",
+      "formula": "Pi_{i, a}^2 = Pi_{i, a}"
+    },
+    {
+      "relation": "intra_basis_orthogonality",
+      "formula": "Pi_{i, a} Pi_{i, b} = 0 for a != b"
+    },
+    {
+      "relation": "completeness",
+      "formula": "sum_{a=0}^5 Pi_{i, a} = 1"
+    },
+    {
+      "relation": "mutual_unbiasedness",
+      "formula": "Tr(Pi_{i, a} Pi_{j, b}) = 1/6 for i != j"
+    }
+  ],
+  "sdp_moment_hierarchy": {
+    "degrees_evaluated": [2, 4, 6, 8],
+    "npa_levels": [1, 2, 3, 4],
+    "monomial_subspaces": {
+      "deg_1": "Single projectors Pi_{a, i}",
+      "deg_2": "Projector pairs Pi_{a, i} Pi_{b, j}",
+      "deg_3": "Projector triples Pi_{a, i} Pi_{b, j} Pi_{c, k}",
+      "deg_4": "Projector quadruples Pi_{a, i} Pi_{b, j} Pi_{c, k} Pi_{d, l}"
+    },
+    "fixtures_refuted": [
+      {
+        "fixture_id": "X_EQ_0",
+        "description": "Decoupled candidate completion",
+        "trace_deg_6": "-9071/10800",
+        "trace_deg_8": "-9071/10800"
+      },
+      {
+        "fixture_id": "SYNTHETIC_S6",
+        "description": "Synthetic Tao candidate completion",
+        "trace_deg_8": "-5046587/129600"
+      }
+    ]
+  },
+  "soundness_gap_formulation": {
+    "definition": "The mathematical discrepancy between truncated pseudo-expectation feasibility and true physical projector realization on pre-Hilbert space H.",
+    "status_labels": {
+      "candidate_refuted": "CERTIFIED_CANDIDATE_REFUTATION",
+      "universal_unbridged": "MISSING_PROOF_OBLIGATION"
+    },
+    "required_closure_bridges": [
+      {
+        "bridge_type": "ArchimedeanPositivstellensatz",
+        "description": "Algebraic certificate in the quadratic module certifying Archimedean operator norm boundedness (R^2 - sum Pi^2 in Q(T)).",
+        "guarantee": "Convergence of the non-commutative moment-SOS hierarchy to the physical operator state cone."
+      },
+      {
+        "bridge_type": "RankLoopClosure_FlatExtension",
+        "description": "Condition rank(M_d) = rank(M_{d-1}) on the certified moment matrix.",
+        "guarantee": "Curto-Fialkow flat extension theorem and GNS construction guarantee exact finite-dimensional projector realization extraction."
+      }
+    ]
+  },
+  "open_proof_obligations": [
+    {
+      "obligation_id": "Q_OBLIGATION_POSITIVSTELLENSATZ",
+      "statement": "Construct an explicit exact rational Archimedean Positivstellensatz identity bounding the non-commutative projector quadratic module.",
+      "lean4_target": "MUB6.SDP.ArchimedeanPositivstellensatzCertificate"
+    },
+    {
+      "obligation_id": "Q_OBLIGATION_FLAT_EXTENSION",
+      "statement": "Evaluate rank-loop closure conditions rank(M_4) = rank(M_3) or prove algebraic obstruction to flat extension.",
+      "lean4_target": "MUB6.SDP.RankLoopClosure"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# Claim Ledger for the Fermi-Hubbard Sign Problem Package
+
+AuthorityEffect: None.
+
+This ledger records every mathematical claim, empirical finding, and exact witness in `paper.md`, accompanied by its verification mechanism.
+
+| Claim ID | Section | Category | Description | Exact Verification Evidence |
+| :--- | :--- | :--- | :--- | :--- |
+| `CLAIM-HUBBARD-001` | §2.2 | Math | Open chain admits a consistent diagonal sign gauge making all off-diagonal transitions nonpositive. | `test_occupation_gauge_open_chain_succeeds` (SQLite signed double-cover reachability). |
+| `CLAIM-HUBBARD-002` | §2.3 | Obstruction | Periodic ring (4 sites) encounters a 4-hop negative cycle $[19, 21, 22, 26, 19]$ in Fock integer masks. | `test_occupation_gauge_ring_and_star_obstructed` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-003` | §2.3 | Obstruction | 3-leaf star tree graph encounters a 6-hop negative cycle $[19, 22, 21, 28, 25, 26, 19]$ despite having no spatial lattice loops. | `test_occupation_gauge_ring_and_star_obstructed` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-004` | §2.3 | Math | On the 4-site ring sector $(N_\uparrow,N_\downarrow)=(2,1)$, the reconstructed negative cycle is the same at interaction $4$ and $9$. | `test_gauge_cycle_independent_of_interaction` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-005` | §3.2 | Symmetry | For the 4-site ring and $\eta=\mathrm{diag}(1,-1,1,-1)$, the palindromic kinetic matrix satisfies $\eta T \eta T = I$. Each bond factor is built with determinant 1; this test checks the inversion identity. | `test_kinetic_suzuki_palindromic_symmetry` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-006` | §4.1 | Positivity | Repulsive half-filled bipartite ring ($N=4, M=2, z=1$) has $\det(I+P_\downarrow) = \det(I+P_\uparrow)/\det P_\uparrow$, yielding $w(s) \ge 0$ for all 256 fields with average sign $\langle\sigma\rangle = 1$. | `test_repulsive_half_filled_bipartite_positivity` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-007` | §4.2 | Positivity | Attractive Hubbard model ($U < 0$) on frustrated 3-site triangle has $w(s) = h^{-\sum s} [\det(I+P_\uparrow)]^2 \ge 0$ for all 64 fields with average sign $\langle\sigma\rangle = 1$. | `test_attractive_frustrated_triangle_positivity` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-008` | §5.1 | Arithmetic | Auxiliary-field determinant sum in SQLite reproduces the exact full Fock-space transfer trace ($172283601361/21233664$ for repulsive, $180365586961/21233664$ for attractive). | `test_auxiliary_to_fock_trace_reconstruction` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-009` | §5.2 | Observable | Logarithmic fugacity derivative evaluates total particle number expectation without matrix inversion, yielding $\langle N \rangle = 4$ for half-filled 4-site ring. | `test_repulsive_half_filled_bipartite_positivity` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-010` | §6.2 | Witness | Doped bipartite ring ($L=4, M=4, z=2$) field mask 15721 has up determinant $11072073737867929807204939234025/2305843009213693952$ and down determinant $-1034021712177776419381618902295/147573952589676412928$. | `test_explicit_negative_field_existence_witnesses` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-011` | §6.2 | Witness | Frustrated repulsive triangle ($L=3, M=4, z=1$) contains explicit negative field witness mask 1281 where $\det(I+P_\uparrow)\det(I+P_\downarrow) < 0$. | `test_explicit_negative_field_existence_witnesses` in `test_hubbard_paper_reproducibility.py`. |
+| `CLAIM-HUBBARD-012` | §7.0 | Nonclaim | The negative field witnesses delimit the specific protected symmetry boundaries and do not prove NP-hardness for all representations. | Bounded epistemic statement in `paper.md` §7. |

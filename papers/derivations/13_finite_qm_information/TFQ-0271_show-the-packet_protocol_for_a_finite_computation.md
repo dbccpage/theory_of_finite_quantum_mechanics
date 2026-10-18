@@ -1,0 +1,55 @@
+# [TFQ-0271] Show-the-packet protocol for a finite computation
+
+> **Stage**: `FINITE_QM_INFORMATION` | **Status**: `OPEN_OBLIGATION`  
+> **UUID**: `2a0ea7eb-3176-5160-9548-694a1eb958cc`  
+> **Parent Derivation**: [TFQ-0270](TFQ-0270_syndrome_distance_and_repair_capacity.md)
+
+---
+
+## 1. Abstract & Formal Statement
+
+QM_103 is a public-protocol draft, companion to the projection-obstruction papers, asking that a physical quantum computation show its packet. The opened header does not contain a finished derivation of scalable computation. DS-QM103-SHOW-THE-PACKET-PROTOCOL is the derivation-graph id seen for the protocol. Read beside QM_101, the packet must name the code family, the noise hypothesis, the repair capacity, and the residual quotient that the threshold reading is supposed to shrink. A named file or a passing test does not replace that packet.
+
+### Governing Obligation
+Require a declared repair packet before a threshold reading is used, and leave the protocol's device claim open.
+
+---
+
+## 2. Derivation Context & Mathematical Grounding
+
+In accordance with strict constructive principles:
+- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
+- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+
+### Epistemic Bottlenecks & Falsification Fences
+> [!WARNING]
+> Rotated-surface-code packet is an illustrative placeholder (no measured numbers).
+
+---
+
+## 3. Multi-Tier Code & Proof Witnesses
+
+### Lean 4 Theorems
+- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`](../../code/lean4/)
+- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm090_authority_firewall_zero_defect_iff`](../../code/lean4/)
+
+### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_ds_qm_dynamics_structure_and_majorana_witness`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
+
+### Python Oracles & Numerical Evaluators
+- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm`](../../code/python/)
+
+---
+
+## 4. Downstream Derivations (Outgoing DAG Links)
+
+*None (Leaf or Terminal derivation in current tree)*
+
+---
+
+## 5. Audit Trail & Primary Source Lineage
+
+- **Atlas Lineage**: `F001.S000`
+- **Primary Source Paths**:
+  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`

@@ -1,0 +1,50 @@
+# [TFQ-0178] Accept a MUB(6) stated-region bit only from the exact certificate, never from
+
+> **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `COMPUTATIONAL_CONTROL`  
+> **UUID**: `66dbd8c5-f415-58f9-a6ee-3dd2bfcf2b7a`  
+> **Parent Derivation**: [TFQ-0177](TFQ-0177_leave_the_existence_of_seven_mutually_unbiased_bases_in_dimension_6_open.md)
+
+---
+
+## 1. Abstract & Formal Statement
+
+The MUB(6) claim firewall refuses a global solution bit even when a float is handed in. src/omega_native/mub6_firewall.rs stores the line stated region only; mints no authority, with AUTHORITY_EFFECT None. src/omega_native/mub6_claim_gate.rs builds a StatedRegionSeal whose mub6_equals_3, mub6_at_most_3, global_solution, and verified_certificate fields are documented as always false, and certificate_from_exact_only discards its f64 argument. The obligation is to accept only the exact EnclosedTriple certificate from that call.
+
+### Governing Obligation
+Accept a MUB(6) stated-region bit only from the exact certificate, never from a float or a global flag.
+
+---
+
+## 2. Derivation Context & Mathematical Grounding
+
+In accordance with strict constructive principles:
+- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
+- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+
+---
+
+## 3. Multi-Tier Code & Proof Witnesses
+
+### Lean 4 Theorems
+- [`not located`](../../code/lean4/)
+
+### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`omega_engine/crates_rs/omega_mub/src/omega_native/mub6_claim_gate.rs`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_mub/src/omega_native/mub6_firewall.rs`](../../code/rust/src/)
+
+### Python Oracles & Numerical Evaluators
+- [`not located`](../../code/python/)
+
+---
+
+## 4. Downstream Derivations (Outgoing DAG Links)
+
+- [TFQ-0179](TFQ-0179_keep_omega_mub_float_cross-checks_from_authorizing_a_mub_6_existence_claim.md)
+
+---
+
+## 5. Audit Trail & Primary Source Lineage
+
+- **Atlas Lineage**: `F001.S000`
+- **Primary Source Paths**:
+  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`

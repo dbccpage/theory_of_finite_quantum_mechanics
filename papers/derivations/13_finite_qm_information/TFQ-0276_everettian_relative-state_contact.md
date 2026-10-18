@@ -1,0 +1,75 @@
+# [TFQ-0276] Everettian relative-state contact
+
+> **Stage**: `FINITE_QM_INFORMATION` | **Status**: `OPEN_OBLIGATION`  
+> **UUID**: `b807d6f8-9465-5ca8-a4ef-7337d304dcfe`  
+> **Parent Derivation**: [TFQ-0275](TFQ-0275_formal_possibility_is_not_a_physical_terminal.md)
+
+---
+
+## 1. Abstract & Formal Statement
+
+QM_094 obliges a finite relative-state contact and withholds Everettian ontology. The opened header calls the terminal conditional finite relative-state mathematics, and it marks an open obstruction for ontology, preferred basis, and probability interpretation. Authority effect is None. The note depends on the superposition, qubit, and entanglement contacts plus the promotion firewall, so it cannot outrun their gaps. DS-QM094-EVERETT-RELATIVE-STATE-CONTACT and FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY are the derivation-graph ids.
+
+### Governing Obligation
+Keep Everettian contact at finite relative states and rational branch counting, and leave ontology, basis, and probability interpretation open.
+
+---
+
+## 2. Derivation Context & Mathematical Grounding
+
+In accordance with strict constructive principles:
+- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
+- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+
+### Admitted Structural Imports
+- **Admitted**: `Everett forking tree and equal-weight counting (assumption)`
+
+### Epistemic Bottlenecks & Falsification Fences
+> [!WARNING]
+> None (Everett relative-state reduced-density overlap, isometric refinement branch weight conservation, and global coherent distinguishability vs diagonal collapse mechanized in ds_qm094_everett_reduced_state_overlap_isometric_refinement_and_collapse_refutation and ds_qm094_everett_relative_state_and_qm101_threshold_five_obligations).
+
+> [!WARNING]
+> Extension to the irrational sector needs infinite branching; an interface, not derived.
+
+---
+
+## 3. Multi-Tier Code & Proof Witnesses
+
+### Lean 4 Theorems
+- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds`](../../code/lean4/)
+- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm094_everett_reduced_state_overlap_isometric_refinement_and_collapse_refutation`](../../code/lean4/)
+- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm094_everett_relative_state_and_qm101_threshold_five_obligations`](../../code/lean4/)
+- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`](../../code/lean4/)
+- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_thm5_phase_averaged_shadow_and_c10_pinching`](../../code/lean4/)
+- [`lean4/quantum_mechanics/H059RationalSector.lean::conductors_with_real_q_yield_rational_finegraining`](../../code/lean4/)
+- [`lean4/quantum_mechanics/H059RationalSector.lean::rational_finegraining_exists`](../../code/lean4/)
+- [`lean4/quantum_mechanics/H059RationalSector.lean::witness_poly_has_no_candidate_rational_root`](../../code/lean4/)
+- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm094_everett_reduced_state_overlap_isometric_refinement_and_collapse_refutation`](../../code/lean4/)
+
+### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`omega_engine/crates_rs/omega_quantum_physics/src/branch_finegraining.rs::BranchCounting`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_quantum_physics/src/everett.rs::EverettForkingNode`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`](../../code/rust/src/)
+- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness`](../../code/rust/src/)
+- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`](../../code/rust/src/)
+
+### Python Oracles & Numerical Evaluators
+- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm`](../../code/python/)
+
+---
+
+## 4. Downstream Derivations (Outgoing DAG Links)
+
+*None (Leaf or Terminal derivation in current tree)*
+
+---
+
+## 5. Audit Trail & Primary Source Lineage
+
+- **Atlas Lineage**: `F001.S000`
+- **Primary Source Paths**:
+  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`

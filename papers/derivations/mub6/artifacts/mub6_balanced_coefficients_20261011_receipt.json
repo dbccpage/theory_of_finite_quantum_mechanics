@@ -1,0 +1,923 @@
+{
+  "schema_version": 1,
+  "authority_effect": "None",
+  "result": "PARTIAL_LITERAL_REPLAY_PENDING",
+  "created_at_utc": "2026-10-11T14:23:39.413213+00:00",
+  "baseline_remote_main": "d34889300eea2fb351169ec56e348a44bcd7ffcd",
+  "parent_checkpoint_commit": "10d724c83703597d8a6ed8947b72378062df52c5",
+  "branch": "codex/mub6-derivation",
+  "goal_status": "stopped_at_user_request",
+  "commands": [
+    {
+      "command": "LEAN_NUM_THREADS=1 lake build +MubBalancedExport:olean",
+      "working_directory": "scratch/m6",
+      "tool_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+      "exit_code": 0,
+      "tested_scope": "Coefficient semantics, coded-system bridge, exporter and import closure; 3668 jobs.",
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/explicit_checked.log",
+        "sha256": "2c8ca9403611bb4ff058c5d965f433eb1a611ae4f558eb87ba4570ebcdb36e7f"
+      }
+    },
+    {
+      "command": "lake env lean MubBalancedCornerNonempty.lean",
+      "working_directory": "scratch/m6",
+      "tool_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+      "exit_code": 0,
+      "tested_scope": "Positive kernel check that equation 575 is not an empty coefficient list.",
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/corner_nonempty.log",
+        "sha256": "6628503093e8f2c02498a8ec59d4ae2a787fb66d39785faa728e3d04762c7d85"
+      }
+    },
+    {
+      "command": "lake env lean --run MubBalancedExport.lean ../mub6_balanced_coefficients_20261011/export_final_a.jsonl",
+      "working_directory": "scratch/m6",
+      "tool_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+      "exit_code": 0,
+      "tested_scope": "All 648 rows; 2592 direct rational matrix probe comparisons and canonical coefficient shape checks.",
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/export_final_a.log",
+        "sha256": "1366689826ad55d7dddd73efc8069d806972a30766ffa3ecec3d66e8445b9252"
+      }
+    },
+    {
+      "command": "lake env lean --run MubBalancedExport.lean ../mub6_balanced_coefficients_20261011/export_final_b.jsonl",
+      "working_directory": "scratch/m6",
+      "tool_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+      "exit_code": 0,
+      "tested_scope": "All 648 rows; 2592 direct rational matrix probe comparisons and canonical coefficient shape checks.",
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/export_final_b.log",
+        "sha256": "1366689826ad55d7dddd73efc8069d806972a30766ffa3ecec3d66e8445b9252"
+      }
+    },
+    {
+      "command": "lake env lean MubBalancedExportNegative.lean",
+      "working_directory": "scratch/m6",
+      "tool_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+      "exit_code": 1,
+      "tested_scope": "Empty replacement of corner norm row 575 rejected at probe 0.",
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/negative_export_final.log",
+        "sha256": "372920195ca9d081468d41c29d13a6293e454cc32dc9bdc3976e703569767f90"
+      }
+    },
+    {
+      "command": "lake env lean --run MubBalancedExport.lean ../mub6_balanced_coefficients_20261011/export_final_a.jsonl",
+      "working_directory": "scratch/m6",
+      "tool_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+      "exit_code": 1,
+      "tested_scope": "Existing output rejected without changing its bytes.",
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/existing_output.log",
+        "sha256": "1583312969d9372d02c364a1b79c038b48c0348f068b99129bf9e75c06f8e265"
+      }
+    }
+  ],
+  "local_sources": [
+    {
+      "module": "AdditiveCharacter",
+      "path": "lean4/research_programs/mub6/AdditiveCharacter.lean",
+      "sha256": "65d2bd78fa49323b186325966430799c3424e66d6b684fca60b7d5c4e11bf894"
+    },
+    {
+      "module": "CommutativeFlatMoments",
+      "path": "lean4/research_programs/mub6/CommutativeFlatMoments.lean",
+      "sha256": "a093bd73ebaa1453cd2c08d014f9f5dbeca97f0b254c1e0a8f130deaa79677ea"
+    },
+    {
+      "module": "ConcreteMubFlatExtension",
+      "path": "lean4/research_programs/mub6/ConcreteMubFlatExtension.lean",
+      "sha256": "d953e80582cc32abe39d7a40690d11a968e5d198a2f20195f7d3455646e55c00"
+    },
+    {
+      "module": "ConcreteMubPolynomials",
+      "path": "lean4/research_programs/mub6/ConcreteMubPolynomials.lean",
+      "sha256": "bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955"
+    },
+    {
+      "module": "ConcreteMubProjectors",
+      "path": "lean4/research_programs/mub6/ConcreteMubProjectors.lean",
+      "sha256": "f592f57d1ca98cd39a4450be121b582e62f38f2dec9cb1782d67776a60ec6601"
+    },
+    {
+      "module": "ConcreteSemantics",
+      "path": "lean4/research_programs/mub6/ConcreteSemantics.lean",
+      "sha256": "4ad8410818ff8175720335dab81f0fd79c70108324141334f68d20e76e0e704d"
+    },
+    {
+      "module": "FiniteFieldCharacters",
+      "path": "lean4/research_programs/mub6/FiniteFieldCharacters.lean",
+      "sha256": "53635357ff15c607458b10dece97b90cf0b495600add19f5402ad812188f40e9"
+    },
+    {
+      "module": "HilbertMubFamily",
+      "path": "lean4/research_programs/mub6/HilbertMubFamily.lean",
+      "sha256": "ea910bfe5b1160a91e11f16d738c896b7b5c151a5e5f71556a0e9f25e90e3ea4"
+    },
+    {
+      "module": "HilbertMubStructure",
+      "path": "lean4/research_programs/mub6/HilbertMubStructure.lean",
+      "sha256": "cfaeaef4b61057e06445d455d2a77aae9cfadacf873367e686c065f5a3a5ff4c"
+    },
+    {
+      "module": "HilbertPhaseNormalization",
+      "path": "lean4/research_programs/mub6/HilbertPhaseNormalization.lean",
+      "sha256": "c6e23a2ba679925c66ba588734b2da66dd210cd6a0872e247a6387294059714c"
+    },
+    {
+      "module": "HilbertPhaseTransport",
+      "path": "lean4/research_programs/mub6/HilbertPhaseTransport.lean",
+      "sha256": "2cb361cbdf7c9ab3cd1e6a6a4c1b434945398275a08ff601b68be5adf3ecb21f"
+    },
+    {
+      "module": "HilbertPhaseVectors",
+      "path": "lean4/research_programs/mub6/HilbertPhaseVectors.lean",
+      "sha256": "4f0d26c5ae411b2809a95c86b86effc5bea77f41e9c688385c068112fe4fcb41"
+    },
+    {
+      "module": "HilbertTransportEquiv",
+      "path": "lean4/research_programs/mub6/HilbertTransportEquiv.lean",
+      "sha256": "72a20ffed0c1cb486808a3424aeffd46ae01d2ea715d3ce2d58f05ba4a27055a"
+    },
+    {
+      "module": "MubBalancedCodedSystem",
+      "path": "lean4/research_programs/mub6/MubBalancedCodedSystem.lean",
+      "sha256": "fa4623538a3647cce33fd4e70ccc29fbbc6baa9f5a6f14e042d594d53d7ff432"
+    },
+    {
+      "module": "MubBalancedCoefficients",
+      "path": "lean4/research_programs/mub6/MubBalancedCoefficients.lean",
+      "sha256": "da1fc9922ebba33ece469d0ecb5533e3240c912bc9c8dcbc234855a385044a6f"
+    },
+    {
+      "module": "MubBalancedCompletion",
+      "path": "lean4/research_programs/mub6/MubBalancedCompletion.lean",
+      "sha256": "75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44"
+    },
+    {
+      "module": "MubBalancedExport",
+      "path": "lean4/research_programs/mub6/MubBalancedExport.lean",
+      "sha256": "2ab4789a5341d765db5f82d8e4ed414367bfc6c01d1912fd4ab8b8c3fb71bace"
+    },
+    {
+      "module": "MubBalancedIndices",
+      "path": "lean4/research_programs/mub6/MubBalancedIndices.lean",
+      "sha256": "17d6cb43d582c19bb68c771ee038d734fe3689eeeda4423a0e341998ea8a31f2"
+    },
+    {
+      "module": "MubBalancedQuadraticLift",
+      "path": "lean4/research_programs/mub6/MubBalancedQuadraticLift.lean",
+      "sha256": "d831d9c2acdb7d2131bc7b4c058cb8257484a4a0da18c3d3e893e76fd17b87b1"
+    },
+    {
+      "module": "MubBalancedQuadraticPolynomials",
+      "path": "lean4/research_programs/mub6/MubBalancedQuadraticPolynomials.lean",
+      "sha256": "e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5"
+    },
+    {
+      "module": "MubBalancedTable",
+      "path": "lean4/research_programs/mub6/MubBalancedTable.lean",
+      "sha256": "4b4958f27b1152df294195dee2edbf61ea11275d9bfdbe20d74704c104ea0cd0"
+    },
+    {
+      "module": "MubBoundedBlockChart",
+      "path": "lean4/research_programs/mub6/MubBoundedBlockChart.lean",
+      "sha256": "2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917"
+    },
+    {
+      "module": "MubBoundedCoordinates",
+      "path": "lean4/research_programs/mub6/MubBoundedCoordinates.lean",
+      "sha256": "3f9916aa1b0defaac96c2b82066dd4d0aec2ee68a961e093cc63ca8b91c6e025"
+    },
+    {
+      "module": "MubBoundedExportIndices",
+      "path": "lean4/research_programs/mub6/MubBoundedExportIndices.lean",
+      "sha256": "2a6e86adbc80539c7e7b8443c70512ee77ec3f7d2f1956268fc4683c7b0f8340"
+    },
+    {
+      "module": "MubBoundedExpressions",
+      "path": "lean4/research_programs/mub6/MubBoundedExpressions.lean",
+      "sha256": "94a1c1d5da5d68d5b22e437270035082f03429dc83c362e8d900c4400b71e514"
+    },
+    {
+      "module": "MubBoundedPolynomials",
+      "path": "lean4/research_programs/mub6/MubBoundedPolynomials.lean",
+      "sha256": "e50a46de7ba5f9555fa26064f37f93cf868813c2c2b60c3387ca5bf31f23a089"
+    },
+    {
+      "module": "MubBoundedQuartetEquations",
+      "path": "lean4/research_programs/mub6/MubBoundedQuartetEquations.lean",
+      "sha256": "7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b"
+    },
+    {
+      "module": "MubBoundedTermCollection",
+      "path": "lean4/research_programs/mub6/MubBoundedTermCollection.lean",
+      "sha256": "c9a81f53d4489563b939f978f0fdcfca848993469cbb92acec66d4bd6e9e8398"
+    },
+    {
+      "module": "MubIndexTransport",
+      "path": "lean4/research_programs/mub6/MubIndexTransport.lean",
+      "sha256": "4186dcee21cab701b806f565230877b95dc798b2b917b8a994cd77cca77de8f6"
+    },
+    {
+      "module": "MubMinorChart",
+      "path": "lean4/research_programs/mub6/MubMinorChart.lean",
+      "sha256": "941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765"
+    },
+    {
+      "module": "MubMonomialTransport",
+      "path": "lean4/research_programs/mub6/MubMonomialTransport.lean",
+      "sha256": "1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63"
+    },
+    {
+      "module": "MubQuadraticLift",
+      "path": "lean4/research_programs/mub6/MubQuadraticLift.lean",
+      "sha256": "c140f6ac204c6b45deae0fc0aab248b4410ea8e3415595ff6e0c707e80d8b635"
+    },
+    {
+      "module": "MubQuadraticLiftCodedSystem",
+      "path": "lean4/research_programs/mub6/MubQuadraticLiftCodedSystem.lean",
+      "sha256": "61063a0c5e3e53df499d71e7a963a22aa1274e15237193916aae36f8e9f5fe94"
+    },
+    {
+      "module": "MubQuadraticLiftCoefficients",
+      "path": "lean4/research_programs/mub6/MubQuadraticLiftCoefficients.lean",
+      "sha256": "59a14d9f278806a13ac3627ec11f946717c5ac2bf53a2da3ff0c528818f30cbb"
+    },
+    {
+      "module": "MubQuadraticLiftCompatibility",
+      "path": "lean4/research_programs/mub6/MubQuadraticLiftCompatibility.lean",
+      "sha256": "f8753835119e06fe92509b46a224f825a42b5c634d3ee0756ae9fd41ff730c46"
+    },
+    {
+      "module": "MubQuadraticLiftDegree",
+      "path": "lean4/research_programs/mub6/MubQuadraticLiftDegree.lean",
+      "sha256": "bd164a7aabb70859732995321d8586a0b0fd5aea101dfe9898cea1f421f63a80"
+    },
+    {
+      "module": "MubQuadraticLiftIndices",
+      "path": "lean4/research_programs/mub6/MubQuadraticLiftIndices.lean",
+      "sha256": "82cee30d4515bc056db875b7100771dd38f56bba56ba23b4d1ab7a0b87aa3ffd"
+    },
+    {
+      "module": "MubQuadraticLiftNarrowBox",
+      "path": "lean4/research_programs/mub6/MubQuadraticLiftNarrowBox.lean",
+      "sha256": "0e3a98ed598a0b74eaf2b6c2c152cc41ea40a416766501734249920419c053ac"
+    },
+    {
+      "module": "MubQuadraticLiftPolynomials",
+      "path": "lean4/research_programs/mub6/MubQuadraticLiftPolynomials.lean",
+      "sha256": "31456d1bcab425233e7adc5c72f4253abd2071f209c5ad4199e685059bffae1b"
+    },
+    {
+      "module": "MubQuadraticLiftTable",
+      "path": "lean4/research_programs/mub6/MubQuadraticLiftTable.lean",
+      "sha256": "a9b19face97bd0413c997ca484bab4866b89085cee4330d29e55b10c5389b4d8"
+    },
+    {
+      "module": "MubQuartetTransportBridge",
+      "path": "lean4/research_programs/mub6/MubQuartetTransportBridge.lean",
+      "sha256": "9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5"
+    },
+    {
+      "module": "QuadraticGaussReduction",
+      "path": "lean4/research_programs/mub6/QuadraticGaussReduction.lean",
+      "sha256": "d42a857965af91fbe7f468048f85527b3d25ccd2d848500659c01dbdcb2b52bd"
+    },
+    {
+      "module": "SharedKernelAdditiveCharacter",
+      "path": "lean4/research_programs/mub6/SharedKernelAdditiveCharacter.lean",
+      "sha256": "fe2a166a4c41eda8d7660d34ad8d7b6ef15f1bf373b823cd59b0b8db536d3399"
+    },
+    {
+      "module": "SzollosiQuadraticSystem",
+      "path": "lean4/research_programs/mub6/SzollosiQuadraticSystem.lean",
+      "sha256": "1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25"
+    },
+    {
+      "module": "SzollosiQuartetSystem",
+      "path": "lean4/research_programs/mub6/SzollosiQuartetSystem.lean",
+      "sha256": "6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b"
+    },
+    {
+      "module": "SzollosiTwoCirculant",
+      "path": "lean4/research_programs/mub6/SzollosiTwoCirculant.lean",
+      "sha256": "3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac"
+    }
+  ],
+  "local_source_count": 46,
+  "source_copy_bytes_verified": true,
+  "endpoint_axioms": {
+    "MUB.BalancedIndices.variable_codes": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedIndices.variables_complete": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedIndices.variableCode_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedIndices.variableFin_bijective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedIndices.radius_code": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCoefficients.translate_complete": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCoefficients.typedReplacement_poly": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCoefficients.oldCoordinate_code": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCoefficients.codedReplacement_poly": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCoefficients.substituteTerms_poly": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCoefficients.equation_coefficients_polynomial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCoefficients.coded_eval": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCodedSystem.pull_push": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCodedSystem.rename_eval": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCodedSystem.equation_eval": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCodedSystem.codedSolution_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCodedSystem.codedBox_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MUB.BalancedCodedSystem.exists_quartet_iff_coded": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "mathlib",
+      "head": "0df444a360eaa60ab8c11dca51a86af692955474",
+      "source_tree_clean": true
+    },
+    {
+      "name": "plausible",
+      "head": "b7eb3304aeae834b12dda98993a37f6a41f6f0bb",
+      "source_tree_clean": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "head": "5f4d51b81cbd3f6b32b156bfad9056621a040404",
+      "source_tree_clean": true
+    },
+    {
+      "name": "importGraph",
+      "head": "16f02aa7642864af59f1ff0e384a015994db9118",
+      "source_tree_clean": true
+    },
+    {
+      "name": "proofwidgets",
+      "head": "4be2e3d5087eeb272cf5a8853b8f9dd025ef5957",
+      "source_tree_clean": true
+    },
+    {
+      "name": "aesop",
+      "head": "3448c0bcc5ce01b2d1546e483ec3620e32df3d0e",
+      "source_tree_clean": true
+    },
+    {
+      "name": "Qq",
+      "head": "92c15be17b7caf78c2ad767ec40f89052d908d81",
+      "source_tree_clean": true
+    },
+    {
+      "name": "batteries",
+      "head": "4488d40d070b9700d4d5a6aa342f0d40c31b2a2d",
+      "source_tree_clean": true
+    },
+    {
+      "name": "Cli",
+      "head": "6130a47896ce867c6a4a55373441e59e565bad0f",
+      "source_tree_clean": true
+    }
+  ],
+  "build_configuration": [
+    {
+      "path": "scratch/m6/lakefile.toml",
+      "sha256": "5051cb19c2c9f8fef6e918d481cf8cb2617a8098be0cf282a23b7d80fa45b9d5"
+    },
+    {
+      "path": "scratch/m6/lake-manifest.json",
+      "sha256": "197ffe29d0350c69da85e97b6517d9642fad412fc2470b77ed9eef688792f9a3"
+    },
+    {
+      "path": "scratch/m6/lean-toolchain",
+      "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+    }
+  ],
+  "control_sources": [
+    {
+      "path": "scratch/m6/MubBalancedCornerNonempty.lean",
+      "sha256": "a81911cfd3f42dfe817c556c6875392519872a197bb63eb8016ea8898065e1fa"
+    },
+    {
+      "path": "scratch/m6/MubBalancedExportNegative.lean",
+      "sha256": "15bfd21b581e41648ff52cdcb56c7421017d55823056fb142a4117d819ecbe1b"
+    }
+  ],
+  "formal_result": {
+    "coordinates": 320,
+    "equations": 648,
+    "maximum_total_degree": 2,
+    "literal_rows_kernel_checked": false,
+    "literal_bounds_kernel_checked": false,
+    "proposed_kernel_row_blocks": 36,
+    "rows_per_block": 18,
+    "existence_endpoint": "MUB.BalancedCodedSystem.exists_quartet_iff_coded",
+    "unverified_literal_endpoint": "MUB.BalancedTable.exists_quartet_iff_table",
+    "unverified_displayed_endpoints": 6,
+    "literal_build_status": "STOPPED_WHILE_RUNNING_AT_USER_REQUEST",
+    "semantics_endpoint": "MUB.BalancedCoefficients.equation_coefficients_polynomial",
+    "arbitrary_reduced_box_points_expand_into_old_box": false,
+    "reconstructed_bounds_require_equations": true,
+    "coefficient_json_parser_kernel_reflected": false,
+    "global_infeasibility_established": false
+  },
+  "export_result": {
+    "coefficient_file": {
+      "path": "omega_engine_projects/mub6/artifacts/balanced_quadratic_coefficients_20261011.jsonl",
+      "sha256": "cb552359467ede318508279b62b7203e65b3c510abf77b5492d3d3f4a49c217d"
+    },
+    "direct_matrix_probe_comparisons": 2592,
+    "final_source_runs_byte_identical": true,
+    "earlier_helper_runs_byte_identical": true,
+    "total_terms": 8313,
+    "maximum_terms": 676,
+    "empty_rows": 42,
+    "bytes": 230013,
+    "final_formatter_output_reproduced": true,
+    "existing_output_preserved": true
+  },
+  "density_comparison": {
+    "schema": "mub6.balanced_quadratic.density.v1",
+    "authority_effect": "None",
+    "old_model": {
+      "path": "omega_engine_projects/mub6/artifacts/quadratic_lift_coefficients_20261011.jsonl",
+      "sha256": "a8b2dbcbc44d0618bbf0bf36fd2b252d7cc8a03a1168ebf98ecc28010dceed03",
+      "bytes": 169800,
+      "variables": 386,
+      "equations": 648,
+      "total_terms": 4920,
+      "maximum_terms": 12,
+      "zero_rows": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        12,
+        18,
+        24,
+        30,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        108,
+        109,
+        123,
+        137,
+        151,
+        165,
+        179,
+        181,
+        195,
+        209,
+        223,
+        237,
+        251,
+        253,
+        267,
+        281,
+        295,
+        309,
+        323
+      ],
+      "families": [
+        {
+          "name": "unit_entries",
+          "first_id": 0,
+          "end_exclusive": 108,
+          "total_terms": 255,
+          "maximum_terms": 3
+        },
+        {
+          "name": "matrix_gram",
+          "first_id": 108,
+          "end_exclusive": 324,
+          "total_terms": 1977,
+          "maximum_terms": 11
+        },
+        {
+          "name": "transition_graph",
+          "first_id": 324,
+          "end_exclusive": 540,
+          "total_terms": 2364,
+          "maximum_terms": 12
+        },
+        {
+          "name": "transition_norm",
+          "first_id": 540,
+          "end_exclusive": 648,
+          "total_terms": 324,
+          "maximum_terms": 3
+        }
+      ]
+    },
+    "reduced_model": {
+      "path": "omega_engine_projects/mub6/artifacts/balanced_quadratic_coefficients_20261011.jsonl",
+      "sha256": "cb552359467ede318508279b62b7203e65b3c510abf77b5492d3d3f4a49c217d",
+      "bytes": 230013,
+      "variables": 320,
+      "equations": 648,
+      "total_terms": 8313,
+      "maximum_terms": 676,
+      "zero_rows": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        12,
+        18,
+        24,
+        30,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        108,
+        109,
+        123,
+        137,
+        151,
+        165,
+        179,
+        181,
+        195,
+        209,
+        223,
+        237,
+        251,
+        253,
+        267,
+        281,
+        295,
+        309,
+        323
+      ],
+      "families": [
+        {
+          "name": "unit_entries",
+          "first_id": 0,
+          "end_exclusive": 108,
+          "total_terms": 255,
+          "maximum_terms": 3
+        },
+        {
+          "name": "matrix_gram",
+          "first_id": 108,
+          "end_exclusive": 324,
+          "total_terms": 1977,
+          "maximum_terms": 11
+        },
+        {
+          "name": "transition_graph",
+          "first_id": 324,
+          "end_exclusive": 540,
+          "total_terms": 2748,
+          "maximum_terms": 36
+        },
+        {
+          "name": "transition_norm",
+          "first_id": 540,
+          "end_exclusive": 648,
+          "total_terms": 3333,
+          "maximum_terms": 676
+        }
+      ]
+    },
+    "repeated_exports_byte_identical": true,
+    "first_324_rows_identical": true,
+    "numerical_solver_benchmark": false,
+    "inference": "The affine reduction removes 66 coordinates but increases sparse monomial counts. These counts do not establish runtime or exclusion strength.",
+    "next_experiment": "Compare exact contractors on a matched set of solution-preserving domains before replacing the existing 386-coordinate search model."
+  },
+  "initial_attempts": [
+    {
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/coefficients_initial.log",
+        "sha256": "021a7bdf4412c549b65a640acf1ae194f50fed9b4e9dcf87635a94c3c6480bff"
+      },
+      "reason": "Reserved identifier and missing lookup/substitution rewrites; repaired.",
+      "counted_as_validation": false
+    },
+    {
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/negative_export.log",
+        "sha256": "4879642a6aded5d24ffdb638677ee3c5e6c7c8f926a66fec50c2110b6070cbc1"
+      },
+      "reason": "Probe source had an unresolved IO result type; repaired.",
+      "counted_as_validation": false
+    },
+    {
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/negative_literal.log",
+        "sha256": "8886a743fbc483d98a6862ec805c2859da9ad945732af77c839a6ee979d47b74"
+      },
+      "reason": "False equality produced an inconclusive reduction diagnostic, not a decisive rejection.",
+      "counted_as_validation": false
+    },
+    {
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/table_initial.log",
+        "sha256": "e7e7cdaa1d4a91b51c9080a0a793711796609ae7a4816cc61820dd78e174021b"
+      },
+      "reason": "Agent terminated the single whole-table evaluation after observing an 8897867776-byte peak working set; replaced by blockwise kernel proofs.",
+      "counted_as_validation": false
+    },
+    {
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/explicit_completion.log",
+        "sha256": "fcaae66d5a10f0c8e2c195e0c8edad513921df98eb31f3398ee6c1c829ef1141"
+      },
+      "reason": "Explicit completion semantic proof needed numeral ring-hom rewrites; repaired.",
+      "counted_as_validation": false
+    },
+    {
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/negative_literal_explicit.log",
+        "sha256": "8886a743fbc483d98a6862ec805c2859da9ad945732af77c839a6ee979d47b74"
+      },
+      "reason": "False equality again had an inconclusive diagnostic; replaced as evidence by the positive kernel nonempty check.",
+      "counted_as_validation": false
+    },
+    {
+      "log": {
+        "path": "scratch/mub6_balanced_coefficients_20261011/table_chunked.log",
+        "sha256": "4577f052d41f987db267a0286c68a806d464c7b79e34138916bd6b7b9ae5894e"
+      },
+      "reason": "Still running after more than 20 minutes; agent stopped this process to honor the user instruction to commit, push, open a PR, then stop. No mathematical verdict is inferred.",
+      "counted_as_validation": false
+    }
+  ],
+  "paper_render": {
+    "pages": 14,
+    "visual_pages": [
+      1,
+      5,
+      14
+    ],
+    "changed_pages": [
+      5
+    ],
+    "visual_checked": true,
+    "builtin_compiler": "not_rerun_after_stop_scope_edit",
+    "xelatex_log": {
+      "path": "scratch/mub6_balanced_coefficients_20261011/xelatex_2.log",
+      "sha256": "a54d284383d7aaa8013375d4d5afa3ec7aa00455d1993221cf09d99716b8e045"
+    },
+    "pending_miktex_update_notice": true
+  },
+  "dag_validation": {
+    "nodes": 42,
+    "routes": 23,
+    "acyclic": true,
+    "open_conclusions_checked": [
+      "X",
+      "X-bounded",
+      "X-quadratic-lift",
+      "Q",
+      "N3",
+      "N4"
+    ]
+  },
+  "release_checker": {
+    "exit_code": 0,
+    "log": {
+      "path": "scratch/mub6_balanced_coefficients_20261011/release_checker.log",
+      "sha256": "7118aa0491d64b7a60c84c84ca30189871cf349f5b6f73853e742e50fa8bb795"
+    },
+    "actual_scope": "CODA atlas all-zero Markdown content_hash scan only; not Git or MUB proof."
+  },
+  "sources_and_outputs": [
+    {
+      "path": "lean4/research_programs/mub6/Mub6.lean",
+      "sha256": "c4ddfb5e10846e7b7d176b331bed5b291cc189c9920a61dc0c48ef7d8d57131d"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MubBalancedCodedSystem.lean",
+      "sha256": "fa4623538a3647cce33fd4e70ccc29fbbc6baa9f5a6f14e042d594d53d7ff432"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MubBalancedCoefficients.lean",
+      "sha256": "da1fc9922ebba33ece469d0ecb5533e3240c912bc9c8dcbc234855a385044a6f"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MubBalancedExport.lean",
+      "sha256": "2ab4789a5341d765db5f82d8e4ed414367bfc6c01d1912fd4ab8b8c3fb71bace"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MubBalancedIndices.lean",
+      "sha256": "17d6cb43d582c19bb68c771ee038d734fe3689eeeda4423a0e341998ea8a31f2"
+    },
+    {
+      "path": "lean4/research_programs/mub6/MubBalancedTable.lean",
+      "sha256": "4b4958f27b1152df294195dee2edbf61ea11275d9bfdbe20d74704c104ea0cd0"
+    },
+    {
+      "path": "lean4/research_programs/mub6/lakefile.toml",
+      "sha256": "1f007f151c52f3749e859247799b0be9a7c97540136782b3e3174583d185e899"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/balanced_quadratic_coefficients_20261011.jsonl",
+      "sha256": "cb552359467ede318508279b62b7203e65b3c510abf77b5492d3d3f4a49c217d"
+    },
+    {
+      "path": "omega_engine_projects/mub6/artifacts/balanced_quadratic_density_20261011.json",
+      "sha256": "77a01665eef0fe6c21e7486a744bc61e8e7d775128a22f52d01a9aeb2b97a8d7"
+    },
+    {
+      "path": "omega_engine_projects/mub6/papers/paper.md",
+      "sha256": "837a310df3e08859e5d3e2295e3321582a8d5df6f8d25a04132a842eb7671bf7"
+    },
+    {
+      "path": "omega_engine_projects/mub6/papers/paper.pdf",
+      "sha256": "217efab229acd50a27bc5329d7fa0f3c5a05638f9dcb9a7d0a97fe16610ebe33"
+    },
+    {
+      "path": "omega_engine_projects/mub6/papers/paper.tex",
+      "sha256": "d7f4844c564c1afc79cfac2a55f2d062df7872dec1a6888977b6f4c0e99ad781"
+    },
+    {
+      "path": "omega_engine_projects/mub6/research/balanced_coefficients_20261011.md",
+      "sha256": "2d5eb23a3dec2c1618fcbce25f491f178d5d644cd7bd44bce44ab0b0dc629f38"
+    },
+    {
+      "path": "omega_engine_projects/mub6/research/derivation_dag_20261011.json",
+      "sha256": "dd71efe30f5677d93679d1a3107bf6b2ecd883b41f1f54123253ba50084ef958"
+    },
+    {
+      "path": "omega_engine_projects/mub6/scripts/reflect_balanced_quadratic.py",
+      "sha256": "e75caad436f274f600b17354d1875d7202a7a7a782325961e9b0aaa9ab3706a9"
+    }
+  ],
+  "historical_evidence": {
+    "records": [
+      {
+        "path": "omega_engine_projects/mub6/artifacts/mub6_balanced_reduction_20261011_receipt.json",
+        "sha256": "d5d9246c18a49be506f79c964d7a2eecdd770f818ec62ae6e22d4464ce61bb24"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/mub6_quadratic_compatibility_20261011_receipt.json",
+        "sha256": "e1546afbb96ed7cfbca8719d485d0242ab52c9903b995af8237f2a4557ad91f6"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/quadratic_lift_close_columns_box_20261011.json",
+        "sha256": "c8549e2f835a560200f6d0e4cdf5b0066eb918608c0efbab47787cd25cb55952"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/quadratic_lift_close_columns_exclusion_20261011.json",
+        "sha256": "a5815ae39dd7bb2e7a3ac3b172dac76e48b8d6fee6e6686cdec2254377898e03"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/quadratic_lift_full_box_compatibility_20261011.json",
+        "sha256": "96f6cae1354eb2cecec5723790558675a34514587d815e67b51933ca66494663"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/mub6_quadratic_native_20261011_receipt.json",
+        "sha256": "431f9898c87e2d8e0fb8a4eaf9273602129e5b0ba7f608ee0358a85b612cfe32"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/quadratic_lift_full_box_20261011.json",
+        "sha256": "114cc9bf1cd6bea2ab23dd78f20b03d43f2cdc1b58b4b2e3084d47f2a18b323b"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/quadratic_lift_coefficients_20261011.jsonl",
+        "sha256": "a8b2dbcbc44d0618bbf0bf36fd2b252d7cc8a03a1168ebf98ecc28010dceed03"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/mub6_quadratic_coefficients_20261011_receipt.json",
+        "sha256": "70800e21a364edf40b9b2f62710a4be4ce2b6f137b017d3ac45fa45ba3ad1c12"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/mub6_quadratic_lift_20261011_receipt.json",
+        "sha256": "03b011bd2455b7345b54adf99d1c538b68da6eb8e37c35690f6b5b150d351c15"
+      },
+      {
+        "path": "omega_engine_projects/mub6/artifacts/mub6_mu_factor_20261011_receipt.json",
+        "sha256": "13398ae1341df3ca8e250627591224e26dedd557d1d7e41729db22fc2f9029fa"
+      },
+      {
+        "path": "omega_engine/crates_rs/omega_mub/src/omega_native/mub6_quadratic_lift.rs",
+        "sha256": "3f466143892db8f8633d9af22fa6ea919077d6aa0f4efd5d758c50ef8912a8b9"
+      },
+      {
+        "path": "omega_engine/crates_rs/omega_mub/src/bin/mub_quadratic_lift.rs",
+        "sha256": "cf1971529f920a34e61e7b2d8ae01766277b9828e318ae4e26e322caa8d1e27c"
+      },
+      {
+        "path": "omega_engine/crates_rs/Cargo.lock",
+        "sha256": "fb31f07268b045b8123848bea218a5782286d16b6804c31cac4e13dba84e4cac"
+      },
+      {
+        "path": "omega_engine/crates_rs/Cargo.toml",
+        "sha256": "a6cf0d018ed9b3f875494b3a21d5508707f5a518b2b1b17fc4b20a83af0742ce"
+      },
+      {
+        "path": "omega_engine/crates_rs/omega_mub/Cargo.toml",
+        "sha256": "da70d77947f1dce1c762d68361f0568e045833332408d96d6e69e41cf7822b13"
+      },
+      {
+        "path": "omega_engine/crates_rs/omega_kernel/src/interval.rs",
+        "sha256": "96eddfa72b5552103553231edf8537fb8287ecd8ef0d744c723aad031613bcac"
+      },
+      {
+        "path": "omega_engine/crates_rs/omega_kernel/src/exact.rs",
+        "sha256": "dcd47b592cef9c147f0c87ebbce9cae9ecca3f1b3db4a5f947c102bcbef0bda7"
+      }
+    ]
+  },
+  "not_established": [
+    "Successful full literal-table build or its six displayed axiom reports.",
+    "N(6)=3, global quartet exclusion, or an exact quartet witness.",
+    "A native contractor for the 320-coordinate representation, a solver speedup or stronger contraction.",
+    "Constraint independence, solution dimension, or a complete exclusion cover.",
+    "A whole-package Lean build, a new Rust run or full Rust suite, publication, deposit, or authority promotion."
+  ]
+}

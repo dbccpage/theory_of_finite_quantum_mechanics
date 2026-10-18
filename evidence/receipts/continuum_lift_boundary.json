@@ -1,0 +1,129 @@
+{
+  "authority_effect": "None",
+  "schema": "historical-campaign-narrative-v1",
+  "current_status": "HISTORICAL_NOT_A_CURRENT_PROOF_RECEIPT",
+  "scope": "Preserved from PR #205 source 516e14b6. Finite identities are checked in code; global completion, continuous-generator and Born-necessity prose is not verified. See PR205_REVIEW.md.",
+  "historical_payload": {
+    "authority_effect": "None",
+    "citation": "sealed-derivation-v1 (3100c4e)",
+    "band": "Band E (Steps 39-46)",
+    "bet_id": "BET-E",
+    "bet_sha256": "4c4a15dc3d3a6d3952099bcd04b032e4c17a5b6a4f57703b356284ae87258166",
+    "wintner_wielandt_trace_obstruction": {
+      "statement": "tr([X, P]) = 0 != i*hbar*d for all d < infty",
+      "dimensions_verified": [
+        1,
+        2,
+        3,
+        4,
+        8,
+        16
+      ],
+      "trace_commutator": "0",
+      "trace_target_formula": "i * hbar * d",
+      "obstruction_holds": "True",
+      "lean4_theorem": "wintner_wielandt_dim2_obstruction",
+      "conclusion": "Continuous canonical commutation relations [X, P] = i*hbar*I have no finite-dimensional representation."
+    },
+    "finite_weyl_heisenberg_algebra": {
+      "generators": "Clock X and Shift Z in dimension d",
+      "commutation_relation": "X Z = omega^(-1) Z X, where omega = exp(2*pi*i/d) in Q(zeta_d)",
+      "unitarity": "X^dagger X = I, Z^dagger Z = I",
+      "periods": "X^d = I, Z^d = I",
+      "dimensions_tested": [
+        2,
+        3,
+        4,
+        5,
+        8
+      ],
+      "lean4_theorems": [
+        "weyl_periods",
+        "weyl_commutation_anticommute"
+      ],
+      "conclusion": "Finite QM replaces divergent continuous CCR with exact discrete Weyl-Heisenberg unitary operators over Q(zeta_d)."
+    },
+    "topological_completion": {
+      "ground_field": "Q^ab = colim_n Q(zeta_n)",
+      "completion": "C under standard Archimedean absolute value",
+      "density_witness": "Gaussian rationals Q(i) = Q(zeta_4) subset Q^ab are dense in C",
+      "structural_gains": [
+        "Cauchy completeness of the metric space",
+        "Continuous Lie groups U(d) and 1-parameter unitary flows exp(-iHt)",
+        "Continuum spectral theorem for bounded and unbounded self-adjoint operators",
+        "Infinite-dimensional representation of Heisenberg CCR [X, P] = i*hbar*I",
+        "Connected continuous sphere S^(d-1) forcing Gleason quadratic Born uniqueness"
+      ],
+      "structural_losses": [
+        "Countability (cardinality jumps from aleph_0 to 2^aleph_0)",
+        "Decidable equality (equality between arbitrary real numbers is undecidable)",
+        "Absolute Galois group symmetry Gal(Q^ab/Q) = Z_hat^x",
+        "Exact float-free arithmetic and exact algebraic cancellation",
+        "Constructive finitism (reliance on non-constructive continuum axioms)"
+      ]
+    },
+    "target_boundary_classification": {
+      "total_targets": 22,
+      "finite_internal_count": 19,
+      "continuum_interface_required_count": 3,
+      "finite_internal_targets": [
+        "Target 1: Primitive difference operator",
+        "Target 2: Diamond complex geometry",
+        "Target 3: Sorkin 3-slit interference vanishing",
+        "Target 4: Rational Cayley evolution",
+        "Target 5: Pentagon identity (Biedenharn-Elliott)",
+        "Target 6: Cabello 18-ray contextuality polytope",
+        "Target 7: Monotone spinfoam boundary unitarity",
+        "Target 8: Bell-CHSH Pythagorean violation",
+        "Target 9: 3-qubit bitflip code syndrome recovery",
+        "Target 10: Discrete quantum teleportation",
+        "Target 11: Discrete superdense coding",
+        "Target 12: 4-qubit CSS surface code",
+        "Target 13: Prime-p Wigner phase space & negativity",
+        "Target 14: Shor 9-qubit code transversal operations",
+        "Target 15: Discrete quantum phase estimation",
+        "Target 17: Surface code toric braiding",
+        "Target 18: Discrete Grover search algorithm",
+        "Target 20: Richardson error mitigation extrapolation",
+        "Target 22: Exact MUB state tomography inversion"
+      ],
+      "continuum_interface_required_targets": [
+        "Target 16: Continuous Fock space & field mode expansions",
+        "Target 19: Stone-von Neumann CCR [X, P] = i*hbar*I (Wintner-Wielandt trace obstruction)",
+        "Target 21: Continuous field Hamiltonian evolution and continuum thermodynamic limits"
+      ]
+    },
+    "gap_resolution": {
+      "GAP-F001-S000-002": {
+        "title": "Continuum Hilbert lift",
+        "status": "PRICED_CONTINUUM_INTERFACE",
+        "defended_disposition": "PRICED_CONTINUUM_INTERFACE",
+        "rationale": "The finite quantum programme operates strictly on finite-dimensional spaces over cyclotomic fields Q(zeta_n) with n | 120. The continuum Hilbert space is an asymptotic completion functor requiring three imported classical hypotheses: (1) Cauchy metric completeness, (2) infinite-dimensional operator domains (to support canonical commutation [X, P] = i*hbar*I), and (3) continuous sphere topology (for Born uniqueness)."
+      }
+    },
+    "lean4_formalization": {
+      "module": "H056ContinuumLiftBoundary.lean",
+      "status": "PROVED (0 sorry, 0 admit)",
+      "axioms": "strictly within {propext, Quot.sound}",
+      "theorems": [
+        "commutator_trace_zero",
+        "trace_scalar_identity",
+        "wintner_wielandt_dim2_obstruction",
+        "weyl_periods",
+        "weyl_commutation_anticommute",
+        "target19_requires_continuum",
+        "foundational_targets_finite_internal",
+        "gap_002_is_priced_continuum_interface"
+      ]
+    },
+    "rust_verification": {
+      "module": "code_rs/src/continuum.rs",
+      "tests": "3 passed, cargo clippy clean with 0 warnings"
+    },
+    "python_verification": {
+      "module": "code/continuum_lift.py",
+      "tests": "code/tests/unit/test_continuum_lift.py (4 passed)"
+    },
+    "terminal_statement": "The continuum Hilbert space is an external completion functor requiring Cauchy completeness, infinite dimensions (for CCR [X, P] = i*hbar*I), and continuous sphere topology (for Born uniqueness). Finite quantum mechanics is fully and rigorously realized in finite dimensions over cyclotomic fields Q(zeta_n) with n | 120."
+  }
+}

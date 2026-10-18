@@ -1,0 +1,228 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "campaign": "C1000",
+  "receipt_id": "CERT-C1000-20260909-01",
+  "timestamp_utc": "2026-09-09T05:20:00.000000+00:00",
+  "certification_type": "CAMPAIGN_C1000_EXECUTION_FQMR1_CLOSURE",
+  "status": "CERTIFIED_WITH_TERMINAL_FQMR1_CLOSED_AT_DECLARED_CLASS",
+  "zero_float_compliance": true,
+  "normalization_rule": "LF (CRLF -> LF, bare CR -> LF)",
+  "fqmr1_class": {
+    "class_id": "FQMR-1-CLASS-V1",
+    "path": "campaigns/c1000/class/fqmr1_class.json",
+    "sha256": "1e31d811a5245a8b8120bb3d35ad4868537d1bcc4d577d2fcdf13de0de087488",
+    "members_count": 11,
+    "clause_witnesses_count": 10,
+    "systems": [
+      "R1",
+      "R2",
+      "R3",
+      "B1",
+      "B2",
+      "C1",
+      "C2",
+      "Q1",
+      "Q2",
+      "X1",
+      "X2"
+    ]
+  },
+  "fqmr1_clause_adjudication": {
+    "campaign_terminal": "FQMR1_CLOSED_AT_DECLARED_CLASS",
+    "clauses_discharged": 10,
+    "clauses_open": 0,
+    "discharged_clauses": [
+      "1_causal_order_status",
+      "2_composition_and_marginal",
+      "3_no_signalling_verdict",
+      "4_element_inventory_with_price",
+      "5_group_closure_verdict",
+      "6_parameter_verdict",
+      "7_terminating_algorithms",
+      "8_structural_verdicts",
+      "9_correlation_bound_attainment",
+      "10_price_ledger"
+    ],
+    "open_clauses": []
+  },
+  "block_terminals": {
+    "block_01": "CAUSAL_ORDER_ADMITTED_NOT_SUPPLIED",
+    "block_02": "NO_SIGNALLING_DERIVED_FROM_ADMITTED_COMPOSITION",
+    "block_03": "ROTATION_GROUPS_CLOSE_AT_COMPUTED_PRICE",
+    "block_04": "BOOSTS_EXACT_BUT_NEVER_FINITE",
+    "block_05": "TWO_BOOST_COMPOSITION_APERIODIC",
+    "block_06": "TSIRELSON_ATTAINED_IFF_EIGHT_DIVIDES_CONDUCTOR",
+    "block_07": "OBSTRUCTION_CLASSES_COMPUTED_EXACTLY",
+    "block_08": "FINITE_MICROCAUSALITY_CRITERION_AT_SCOPE",
+    "block_09": "PARAMETERS_REFUSED_ELEMENTS_CARRIED",
+    "block_10": "FQMR1_CLOSED_AT_DECLARED_CLASS"
+  },
+  "sealed_digests_verification": {
+    "source_manifest": "C:/Users/a343o/source/repos/_private_bets/finite_qm_c1000/SEALED_DIGESTS.txt",
+    "sealed_targets_source": "apps/finite_qm/campaigns/c1000/sealed_targets.json",
+    "total_verified": 22,
+    "all_digests_match": true,
+    "precondition_5_audit": {
+      "status": "UNMET_OWNER_AUTHORISED",
+      "reason": "Both reviewer and owner bet sets drafted by Claude (Opus 5) under owner direction. Departure authorized and recorded in all LAUNCH.json manifests."
+    }
+  },
+  "bets_scoring_summary": {
+    "reviewer_claude": {
+      "block_machine_totals": {
+        "HIT": 77,
+        "MISS": 7,
+        "FORCED": 8
+      },
+      "block_judged_totals": {
+        "HIT": 28,
+        "MISS": 1,
+        "FORCED": 4
+      },
+      "standing_score": {
+        "HIT": 14,
+        "MISS": 2,
+        "FORCED": 1,
+        "OPEN": 0
+      },
+      "total_not_forced_hits": 119,
+      "total_not_forced_misses": 9,
+      "accuracy_pct": 92.97
+    },
+    "owner_jc": {
+      "block_machine_totals": {
+        "HIT": 66,
+        "MISS": 18,
+        "FORCED": 8
+      },
+      "block_judged_totals": {
+        "HIT": 25,
+        "MISS": 3,
+        "FORCED": 4
+      },
+      "standing_score": {
+        "HIT": 10,
+        "MISS": 6,
+        "FORCED": 1,
+        "OPEN": 0
+      },
+      "total_not_forced_hits": 101,
+      "total_not_forced_misses": 27,
+      "accuracy_pct": 78.91
+    },
+    "anti_clean_sweep_check": {
+      "passed": true,
+      "reviewer_miss_count": 9,
+      "owner_miss_count": 27,
+      "conclusion": "Neither bettor attained a clean sweep; genuine mathematical misses confirmed on contested boundaries."
+    }
+  },
+  "independence_audit": {
+    "grade": "BLIND",
+    "all_10_blocks_blind": true,
+    "cross_campaign_isolation": "Zero artifacts consumed from C750; agreement on element-versus-parameter dichotomy represents independent mathematical derivation."
+  },
+  "price_list_totals": {
+    "total_rows": 40,
+    "total_elements": 14,
+    "total_admitted": 6,
+    "total_derived": 8,
+    "total_refused": 12
+  },
+  "verification_battery": {
+    "verify_campaign": {
+      "command": "python apps/finite_qm/campaigns/c1000/tools/verify_campaign.py",
+      "exit_code": 0,
+      "status": "PLAN_VERIFIED_LAUNCH_BLOCKED"
+    },
+    "check_result_schema": {
+      "command": "python apps/finite_qm/campaigns/check_result_schema.py --campaign c1000",
+      "exit_code": 0,
+      "status": "CONFORMS"
+    },
+    "check_independence": {
+      "command": "python apps/finite_qm/campaigns/check_independence.py check c1000",
+      "exit_code": 0,
+      "status": "CONSISTENT_BLIND"
+    },
+    "check_expectations": {
+      "command": "python apps/finite_qm/campaigns/check_expectations.py check c1000",
+      "exit_code": 0,
+      "status": "CLEAN"
+    },
+    "pytest_c1000_test_suite": {
+      "command": "python -m pytest apps/finite_qm/code/tests/test_*.py (11 targeted suites)",
+      "exit_code": 0,
+      "status": "95_PASSED"
+    }
+  },
+  "targets_adjudication_summary": {
+    "global_targets": "C1000-T801..C1000-T1050",
+    "total_targets": 250,
+    "closed_count": 250,
+    "open_count": 0,
+    "blocks": [
+      {
+        "block": 1,
+        "targets": "C1000-T801..C1000-T825",
+        "status": "CLOSED",
+        "terminal": "CAUSAL_ORDER_ADMITTED_NOT_SUPPLIED"
+      },
+      {
+        "block": 2,
+        "targets": "C1000-T826..C1000-T850",
+        "status": "CLOSED",
+        "terminal": "NO_SIGNALLING_DERIVED_FROM_ADMITTED_COMPOSITION"
+      },
+      {
+        "block": 3,
+        "targets": "C1000-T851..C1000-T875",
+        "status": "CLOSED",
+        "terminal": "ROTATION_GROUPS_CLOSE_AT_COMPUTED_PRICE"
+      },
+      {
+        "block": 4,
+        "targets": "C1000-T876..C1000-T900",
+        "status": "CLOSED",
+        "terminal": "BOOSTS_EXACT_BUT_NEVER_FINITE"
+      },
+      {
+        "block": 5,
+        "targets": "C1000-T901..C1000-T925",
+        "status": "CLOSED",
+        "terminal": "TWO_BOOST_COMPOSITION_APERIODIC"
+      },
+      {
+        "block": 6,
+        "targets": "C1000-T926..C1000-T950",
+        "status": "CLOSED",
+        "terminal": "TSIRELSON_ATTAINED_IFF_EIGHT_DIVIDES_CONDUCTOR"
+      },
+      {
+        "block": 7,
+        "targets": "C1000-T951..C1000-T975",
+        "status": "CLOSED",
+        "terminal": "OBSTRUCTION_CLASSES_COMPUTED_EXACTLY"
+      },
+      {
+        "block": 8,
+        "targets": "C1000-T976..C1000-T1000",
+        "status": "CLOSED",
+        "terminal": "FINITE_MICROCAUSALITY_CRITERION_AT_SCOPE"
+      },
+      {
+        "block": 9,
+        "targets": "C1000-T1001..C1000-T1025",
+        "status": "CLOSED",
+        "terminal": "PARAMETERS_REFUSED_ELEMENTS_CARRIED"
+      },
+      {
+        "block": 10,
+        "targets": "C1000-T1026..C1000-T1050",
+        "status": "CLOSED",
+        "terminal": "FQMR1_CLOSED_AT_DECLARED_CLASS"
+      }
+    ]
+  }
+}

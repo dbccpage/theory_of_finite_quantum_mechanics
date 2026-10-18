@@ -1,0 +1,82 @@
+schema_version: smplx.nf.contract.v0
+schema_ref: ./normal_form_contract_schema.yaml
+contract_kind: normal_form_contract
+identity:
+  id: nf.classical.bcnf
+  name: Boyce-Codd Normal Form
+  short_name: BCNF
+  version: v0
+  theory_status: established
+  contract_status: active
+  verification_status: absent
+  family: shape
+classification:
+  hierarchy_level: normal_form
+  subject_kind:
+  - relvar
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: non-superkey determinant functional dependencies
+  preserves_invariant: every non-trivial functional dependency has a superkey determinant
+  protected_skeleton:
+  - candidate_keys
+  - functional_dependencies
+  - superkeys
+  erased_structure: []
+  non_claims:
+  - may require decompositions that do not preserve every functional dependency in a single relvar (dependency
+    preservation is not guaranteed by BCNF alone)
+  - does not certify runtime repair without cochain substrate
+  - does not imply authorization
+  - unrelated to quarantined BellCNF observer contracts
+declarations_required:
+- heading
+- candidate_keys
+- superkeys
+- functional_dependencies
+- relation_predicate
+evidence_required: []
+validation_criteria:
+- for every non-trivial functional dependency X -> Y (where Y is not a subset of X), X is a superkey
+- dependencies with non-superkey determinants terminalize as decomposition obligations
+proof_obligations:
+- id: bcnf.functional_dependency_superkey_condition
+  status: theorem_shaped
+  ref: coda_all_universe/1_the_tower/normal_forms/contracts/_book_09_full_normal_form_atlas.md
+  statement: In BCNF, every functional determinant is a superkey, eliminating all redundancy from functional
+    dependencies
+terminal_routes:
+- Accept
+- RejectNonSuperkeyDeterminant
+- RequireDecomposition
+terminal_route_map:
+  Accept: Preserve
+  RejectNonSuperkeyDeterminant: Reject
+  RequireDecomposition: Decompose
+certification:
+  certificate_required: false
+  certificate_kind: null
+  obstruction_class_required: false
+  loss_ledger_required: false
+  verifier_required: false
+  loss_ledger_trigger_id: null
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: instructor determines room while instructor is not a candidate key or superkey of the relvar
+  diagnosis: non-superkey determinant functional dependency violating BCNF
+  terminal: RejectNonSuperkeyDeterminant
+examples:
+- ref: coda_all_universe/1_the_tower/normal_forms/contracts/_book_09_full_normal_form_atlas.md
+  section: 2.1 Classical Relational Normal Forms
+references:
+- coda_all_universe/1_the_tower/normal_forms/contracts/_book_09_full_normal_form_atlas.md
+- coda_all_universe/1_the_tower/normal_forms/contracts/_paper_0_relvar_relation_table_and_boundary_relvar.md
+- ./normal_form_contract_schema.yaml
+normalization:
+  kind: admissibility_predicate
+  claim_scope: Relational admissibility predicate relative to declared dependencies; no unique representative
+    or normalizing algorithm is certified here.
+  evidence: ../docs/normal_form_audit.md

@@ -1,0 +1,95 @@
+schema_version: smplx.nf.contract.v0
+contract_kind: form_contract
+identity:
+  id: nf.physics.cdt_zolotarev_overlap
+  name: 4D CDT Rational Zolotarev & Lanczos Overlap Dirac Operator Normal Form
+  short_name: CDT-ZOLOTAREV-NF
+  version: v0
+  theory_status: proposed
+  contract_status: active
+  verification_status: executable
+  family: physics
+classification:
+  hierarchy_level: form
+  subject_kind:
+  - zolotarev_rational_minimax
+  - lanczos_krylov_subspace
+  - multishift_conjugate_gradient
+  - subcubic_complexity_scaling
+  - ginsparg_wilson_tolerance_bound
+  - low_mode_deflation
+  - causal_dynamical_triangulations
+  data_posture: in_motion
+  mathematical_posture: operational
+  domain_posture: rational_minimax_and_krylov_solvers
+purpose:
+  excludes_anomaly: un-isolated fermion doublers, broken Ginsparg-Wilson relation exceeding 1e-8 tolerance,
+    multi-shift CG non-convergence, cubic scaling bottlenecks in dynamical Monte Carlo sampling, and un-deflated
+    spectral gap collapse divergence
+  preserves_invariant: Ginsparg-Wilson residual tolerance ||{D, gamma_5} - a D gamma_5 D||_inf <= 1e-8,
+    sub-cubic operational complexity O(N_iter * nnz(D_w)), multi-shift simultaneous convergence across
+    all rational poles, and formal classification of gapless geometries under ZolotarevSpectralStiffeningObstruction
+  protected_skeleton:
+  - simplicial_wilson_hamiltonian
+  - zolotarev_optimal_rational_coefficients
+  - multishift_conjugate_gradient_solver
+  - lanczos_sign_projection
+  - low_mode_eigen_deflation
+  - subcubic_flops_scaling
+  erased_structure:
+  - dense_spectral_diagonalization_cubed_scaling
+  - redundant_single_shift_linear_inversions
+  non_claims:
+  - does not claim uniform convergence of undecorated rational approximations on gapless triangulations
+    without explicit low-mode deflation
+  - does not claim sub-linear scaling for non-sparse non-local gauge interactions
+declarations_required:
+- zolotarev_rational_coefficients: optimal minimax coefficients c_0, c_l, d_l on [epsilon, 1]
+- multishift_solver: simultaneous solution of (H_w^2 + d_l I) x_l = b in single Krylov run
+- rational_overlap_operator: D_rat = (1/a)(I + gamma_5 R_m(H_w))
+- gw_tolerance: residual ||D_rat gamma_5 + gamma_5 D_rat - a D_rat gamma_5 D_rat||_inf <= 1e-8
+- subcubic_scaling: operational complexity strictly bounded below O(N^3)
+- low_mode_deflation: projection Pi_low isolating low-lying eigenmodes below cutoff
+validation_criteria:
+- gw_tolerance_satisfied: '||D_rat gamma_5 + gamma_5 D_rat - a D_rat gamma_5 D_rat||_inf <= 1e-8'
+- multishift_cg_converged: all shifted linear systems achieve relative residual <= 1e-10
+- subcubic_complexity_certified: multishift solve time and flop count scale as O(N_iter * nnz(D_w))
+- gapped_regular_complex: spectral gap lambda_min(H_w) >= 0.05 routing to SubcubicZolotarevCertified
+- gapless_stiffening_complex: closing spectral gap lambda_min(H_w) < 1e-4 causing stiffening and routing
+    to ZolotarevSpectralStiffeningObstruction
+- deflated_restoration: deflating low-lying eigenmodes restores Ginsparg-Wilson tolerance <= 1e-8 on stiffened
+    geometries
+terminal_routes:
+- SubcubicZolotarevCertified
+- ZolotarevSpectralStiffeningObstruction
+- ZolotarevToleranceBreach
+- LanczosDivergenceDefect
+terminal_route_map:
+  SubcubicZolotarevCertified: Escalate
+  ZolotarevSpectralStiffeningObstruction: Escalate
+  ZolotarevToleranceBreach: Escalate
+  LanczosDivergenceDefect: Escalate
+normalization:
+  kind: operational_contract
+  claim_scope: Operational evidence contract; no canonical representative, idempotence, or equivalence
+    completeness is established by its route predicates.
+  evidence: ../docs/normal_form_audit.md
+  withdrawal: The former verified label was unsupported as certification of normalization laws. Executable
+    means local diagnostic code exists, not that its physical assumptions or exactness are proved.
+  legacy_claim_boundary: Named physics identities and tolerance-based routes below are model declarations
+    or numerical diagnostics, not certified normal-form laws or general physical theorems.
+route_predicates:
+  gapped_subcubic_certified: SubcubicZolotarevCertified
+  gapless_stiffening_obstruction: ZolotarevSpectralStiffeningObstruction
+  tolerance_breach: ZolotarevToleranceBreach
+  lanczos_defect: LanczosDivergenceDefect
+certification:
+  certificate_required: false
+  certificate_kind: null
+  obstruction_class_required: false
+  loss_ledger_required: false
+  loss_ledger_trigger_id: null
+  verifier_required: false
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false

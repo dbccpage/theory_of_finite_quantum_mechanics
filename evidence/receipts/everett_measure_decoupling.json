@@ -1,0 +1,81 @@
+{
+  "authority_effect": "None",
+  "schema": "historical-campaign-narrative-v1",
+  "current_status": "HISTORICAL_NOT_A_CURRENT_PROOF_RECEIPT",
+  "scope": "Preserved from PR #205 source 516e14b6. Finite identities are checked in code; global completion, continuous-generator and Born-necessity prose is not verified. See PR205_REVIEW.md.",
+  "historical_payload": {
+    "authority_effect": "None",
+    "citation": "sealed-derivation-v1 (3100c4e)",
+    "band": "Band B",
+    "steps": "Steps 9–18",
+    "generated_at": "2026-09-05T20:00:00Z",
+    "theorems_and_findings": {
+      "everett_coproduct_decomposition": {
+        "statement": "State vectors in Q(zeta_n)^d decompose into orthogonal measurement branches as elements of the quotient fiber from 060_superposition_as_the_quotient_fiber.",
+        "mechanization": "apps/finite_qm/code/everett_tree.py, apps/finite_qm/code_rs/src/everett.rs, apps/finite_qm/lean4/H053EverettForkingTree.lean",
+        "claim_type": "EXACT FINITE ALGEBRA"
+      },
+      "measure_decoupling_theorem": {
+        "statement": "On the Everett forking tree, the branch-counting measure mu_count and the Born measure mu_Born coincide if and only if all active branch amplitudes have equal modulus (|c_j| = |c_m|). For any non-uniform state, mu_count != mu_Born.",
+        "proof": "H053EverettForkingTree.lean::measure_decoupling_2branch, everett_tree.py::measure_decoupling_theorem, everett.rs::measure_decoupling_theorem",
+        "pythagorean_witness": {
+          "state": "(3/5, 4/5)",
+          "born_weights": [
+            "9/25",
+            "16/25"
+          ],
+          "count_weights": [
+            "1/2",
+            "1/2"
+          ],
+          "max_deviation": "7/50",
+          "decoupled": true
+        },
+        "uniform_witness": {
+          "state": "(1/sqrt(2), 1/sqrt(2)) in Q(zeta_8)",
+          "born_weights": [
+            "1/2",
+            "1/2"
+          ],
+          "count_weights": [
+            "1/2",
+            "1/2"
+          ],
+          "max_deviation": "0",
+          "decoupled": false
+        }
+      },
+      "target_3_sorkin_3slit_vanishing": {
+        "target_id": 3,
+        "parameter": "I_3 = P(123) - P(12) - P(13) - P(23) + P(1) + P(2) + P(3)",
+        "born_result": "I_3 == 0 identically for all amplitudes in Q(zeta_12)",
+        "branch_counting_failure": "Phase-blind branch counting assigns positive weight to paths that undergo complete destructive interference (P_Born(12) = 0 vs P_count(12) = 2/3), demonstrating that branch counting fails to reproduce quantum wave interference.",
+        "lean_proof": "H053EverettForkingTree.lean::sorkin_3slit_fixture_vanishes, sorkin_3slit_pythagorean_vanishes"
+      },
+      "target_8_chsh_nonlocality": {
+        "target_id": 8,
+        "quantum_correlation": "S = 14/5 = 2.8",
+        "classical_bound": "S <= 2.0 (exhaustive check over all 16 deterministic non-contextual assignments)",
+        "violation": true,
+        "implication": "Non-contextual branch counting is strictly bounded by S <= 2 and cannot produce the observed quantum violation S = 14/5 without the Born measure.",
+        "lean_proof": "H053EverettForkingTree.lean::chsh_classical_bound, chsh_pythagorean_quantum_violates_classical"
+      },
+      "target_6_cabello_contextuality": {
+        "target_id": 6,
+        "num_rays": 18,
+        "num_tetrads": 9,
+        "ray_degree": 2,
+        "total_incidence": 36,
+        "parity_obstruction": "9 = 2k has no integer solution; 0 non-contextual {0, 1} valuations exist across the 9 orthogonal tetrads in Q(zeta_12)^4.",
+        "implication": "Any non-contextual branch valuation on quantum measurement projectors is algebraically obstructed.",
+        "lean_proof": "H053EverettForkingTree.lean::cabello_parity_obstruction, H020CabelloSignPolytope.lean::cabello_parity_obstruction"
+      }
+    },
+    "verification": {
+      "pytest": "8/8 passed in test_everett_tree.py",
+      "cargo_test": "5/5 passed in everett.rs (86/86 total)",
+      "cargo_clippy": "0 warnings (-D warnings clean)",
+      "lean4_build": "120 jobs clean, 0 sorry, 0 admit, axioms in {propext, Quot.sound}"
+    }
+  }
+}

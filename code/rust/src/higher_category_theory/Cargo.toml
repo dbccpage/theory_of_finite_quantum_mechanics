@@ -1,0 +1,102 @@
+[package]
+autotests = false
+name = "omega_higher_category_theory"
+version.workspace = true
+edition = "2021"
+description = "Strict 2-categories, bicategories, exchange laws, and Mac Lane coherence for the Omega Engine"
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+constants = { path = "../constants" }
+omega_category_theory = { path = "../omega_category_theory" }
+omega_kernel = { path = "../omega_kernel" }
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "2"
+sha2 = "0.10"
+proptest = "1.5"
+
+[dev-dependencies]
+tempfile = "3"
+linear_algebra = { path = "../omega_linear_algebra" }
+omega_number_theory = { path = "../omega_number_theory" }
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/omega_higher_category_theory`.
+
+[[test]]
+name = "adversarial_challenge_tests"
+path = "../tests/omega_higher_category_theory/adversarial_challenge_tests.rs"
+
+[[test]]
+name = "adversarial_stress_tests"
+path = "../tests/omega_higher_category_theory/adversarial_stress_tests.rs"
+
+[[test]]
+name = "bicategory_coherence_tests"
+path = "../tests/omega_higher_category_theory/bicategory_coherence_tests.rs"
+
+[[test]]
+name = "boundary_tests"
+path = "../tests/omega_higher_category_theory/boundary_tests.rs"
+
+[[test]]
+name = "dendroidal_set_mutation_kill_tests"
+path = "../tests/omega_higher_category_theory/dendroidal_set_mutation_kill_tests.rs"
+
+[[test]]
+name = "dendroidal_set_tests"
+path = "../tests/omega_higher_category_theory/dendroidal_set_tests.rs"
+
+[[test]]
+name = "dg_and_derived_tests"
+path = "../tests/omega_higher_category_theory/dg_and_derived_tests.rs"
+
+[[test]]
+name = "double_category_tests"
+path = "../tests/omega_higher_category_theory/double_category_tests.rs"
+
+[[test]]
+name = "enriched_category_tests"
+path = "../tests/omega_higher_category_theory/enriched_category_tests.rs"
+
+[[test]]
+name = "interchange_proptests"
+path = "../tests/omega_higher_category_theory/interchange_proptests.rs"
+
+[[test]]
+name = "mutation_kill_tests"
+path = "../tests/omega_higher_category_theory/mutation_kill_tests.rs"
+
+[[test]]
+name = "operadic_nerve_mutation_kill_tests"
+path = "../tests/omega_higher_category_theory/operadic_nerve_mutation_kill_tests.rs"
+
+[[test]]
+name = "operadic_nerve_tests"
+path = "../tests/omega_higher_category_theory/operadic_nerve_tests.rs"
+
+[[test]]
+name = "phase2_mutation_kill_tests"
+path = "../tests/omega_higher_category_theory/phase2_mutation_kill_tests.rs"
+
+[[test]]
+name = "phase3_hct_tests"
+path = "../tests/omega_higher_category_theory/phase3_hct_tests.rs"
+
+[[test]]
+name = "phase3_mutation_kill_tests"
+path = "../tests/omega_higher_category_theory/phase3_mutation_kill_tests.rs"
+
+[[test]]
+name = "soviet_allocation_tests"
+path = "../tests/omega_higher_category_theory/soviet_allocation_tests.rs"
+
+[[test]]
+name = "test_higher_cell_projector"
+path = "../tests/omega_higher_category_theory/test_higher_cell_projector.rs"
+
+[[test]]
+name = "triangulated_tests"
+path = "../tests/omega_higher_category_theory/triangulated_tests.rs"

@@ -1,0 +1,77 @@
+schema_version: smplx.nf.contract.v0
+contract_kind: form_contract
+identity:
+  id: nf.physics.wdwnf
+  name: Wheeler-DeWitt Normal Form
+  short_name: WDWNF
+  version: v0
+  theory_status: proposed
+  contract_status: active
+  verification_status: executable
+  family: physics
+classification:
+  hierarchy_level: form
+  subject_kind:
+  - quantum_geometrodynamics
+  - hamiltonian_constraint
+  - mini_superspace
+  data_posture: at_rest
+  mathematical_posture: operational
+  domain_posture: timeless_constraint_kernel
+purpose:
+  excludes_anomaly: spurious time evolution in isolated universe, non-zero global energy states, and non-gauge-invariant
+    wavefunctions
+  preserves_invariant: timeless global state belongs to the kernel of the global Hamiltonian constraint
+    H_global |Psi> = 0
+  protected_skeleton:
+  - timeless_global_state
+  - discrete_hamiltonian_constraint
+  - mini_superspace_basis
+  - kernel_projection
+  erased_structure:
+  - absolute_external_newtonian_time
+  non_claims:
+  - does not solve the operator ordering ambiguity in continuous field theory
+  - does not prove a unique quantum gravity vacuum state without boundary conditions (e.g. Hartle-Hawking
+    / Vilenkin)
+declarations_required:
+- clock_subsystem_dimension: integer dimension d_C
+- system_geometry_dimension: integer dimension d_S
+- global_state_amplitudes: matrix of complex or real amplitudes Psi(c, s)
+- hamiltonian_constraint_matrix: operator matrix H_global
+validation_criteria:
+- constraint_nullity: norm of H_global |Psi> is bounded below machine tolerance (||H |Psi>|| <= 1e-9)
+- normalization: sum of squared amplitudes equals 1
+- relational_reconstruction: conditioned system state |psi_S(t)> reproduces transition operator under
+    clock advancement
+terminal_routes:
+- CertifiedTimelessKernel
+- ConstraintBreach
+- NonNormalizedState
+terminal_route_map:
+  CertifiedTimelessKernel: Escalate
+  ConstraintBreach: Escalate
+  NonNormalizedState: Escalate
+normalization:
+  kind: operational_contract
+  claim_scope: Operational evidence contract; no canonical representative, idempotence, or equivalence
+    completeness is established by its route predicates.
+  evidence: ../docs/normal_form_audit.md
+  withdrawal: The former verified label was unsupported as certification of normalization laws. Executable
+    means local diagnostic code exists, not that its physical assumptions or exactness are proved.
+  legacy_claim_boundary: Named physics identities and tolerance-based routes below are model declarations
+    or numerical diagnostics, not certified normal-form laws or general physical theorems.
+route_predicates:
+  null_residual: CertifiedTimelessKernel
+  non_zero_residual: ConstraintBreach
+  unnormalized: NonNormalizedState
+certification:
+  certificate_required: false
+  certificate_kind: null
+  obstruction_class_required: false
+  loss_ledger_required: false
+  loss_ledger_trigger_id: null
+  verifier_required: false
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false

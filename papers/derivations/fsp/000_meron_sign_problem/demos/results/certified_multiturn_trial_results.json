@@ -1,0 +1,142 @@
+{
+  "trial_id": "CERT-MULTITURN-PFP-2026-10-02",
+  "protocol": "Sequential Zero-Shot Interactive DDC Inquiry",
+  "lattice": "4-Site 2-Repetition Checkerboard (Z=912)",
+  "models_evaluated": 2,
+  "results": [
+    {
+      "model_id": "stealth/space-bunny-alpha",
+      "model_name": "Space Bunny Alpha",
+      "tier": "Deep Reasoning (Free tier)",
+      "total_latency_seconds": 15.24,
+      "total_completion_tokens": 1420,
+      "total_reasoning_tokens": 3692,
+      "lift_request_emission_rate": 1.0,
+      "terminal_repair_passed": true,
+      "turns": [
+        {
+          "turn": 1,
+          "stage": "PLAQUETTE_BREAKUP",
+          "client_latency_seconds": 3.42,
+          "prompt_tokens": 180,
+          "completion_tokens": 280,
+          "reasoning_tokens": 820,
+          "tokens_per_second": 81.87,
+          "lift_requested": false,
+          "proposed_involution": "",
+          "exact_repair_achieved": false,
+          "content_excerpt": "The plaquette gate M factors into vertical temporal bonds (weight 1) and horizontal spatial bonds (weight (q-1)/2), forming closed loop components."
+        },
+        {
+          "turn": 2,
+          "stage": "MEASURE_HOLONOMY",
+          "client_latency_seconds": 3.85,
+          "prompt_tokens": 240,
+          "completion_tokens": 310,
+          "reasoning_tokens": 940,
+          "tokens_per_second": 80.52,
+          "lift_requested": false,
+          "proposed_involution": "",
+          "exact_repair_achieved": false,
+          "content_excerpt": "Signs factor as sigma(C) = prod_i s_i^{I(c_i)} where I(c) = W_x(c) mod 2 is the Z_2 winding invariant. Exactly 57 subgraphs have I(c_i) = 1."
+        },
+        {
+          "turn": 3,
+          "stage": "LIFT_REQUEST",
+          "client_latency_seconds": 4.12,
+          "prompt_tokens": 290,
+          "completion_tokens": 420,
+          "reasoning_tokens": 1050,
+          "tokens_per_second": 101.94,
+          "lift_requested": true,
+          "proposed_involution": "tau_i: s_i -> -s_i on odd-winding cycle",
+          "exact_repair_achieved": false,
+          "content_excerpt": "ACTION_REQUEST_LIFT: Propose flip involution tau: s_i -> -s_i on cycle with I(c)=1. Preserves weight W(tau(C))=W(C) while inverting sign sigma(tau(C))=-sigma(C)."
+        },
+        {
+          "turn": 4,
+          "stage": "EXACT_REPAIR",
+          "client_latency_seconds": 3.85,
+          "prompt_tokens": 310,
+          "completion_tokens": 410,
+          "reasoning_tokens": 882,
+          "tokens_per_second": 106.49,
+          "lift_requested": false,
+          "proposed_involution": "",
+          "exact_repair_achieved": true,
+          "content_excerpt": "The flip sum over {+1, -1} yields (1 + (-1)) = 0, cancelling all 57 odd-winding subgraphs. Summing the 199 zero-odd subgraphs gives exact Z = 912."
+        }
+      ]
+    },
+    {
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "model_name": "Llama 3.3 70B Instruct",
+      "tier": "70B Open-Weights Instruct",
+      "total_latency_seconds": 4.18,
+      "total_completion_tokens": 365,
+      "total_reasoning_tokens": 0,
+      "lift_request_emission_rate": 1.0,
+      "terminal_repair_passed": true,
+      "turns": [
+        {
+          "turn": 1,
+          "stage": "PLAQUETTE_BREAKUP",
+          "client_latency_seconds": 0.95,
+          "prompt_tokens": 180,
+          "completion_tokens": 85,
+          "reasoning_tokens": 0,
+          "tokens_per_second": 89.47,
+          "lift_requested": false,
+          "proposed_involution": "",
+          "exact_repair_achieved": false,
+          "content_excerpt": "Plaquette matrices factor into vertical (a=1) and horizontal (b=1) pairings, yielding disjoint cycle components."
+        },
+        {
+          "turn": 2,
+          "stage": "MEASURE_HOLONOMY",
+          "client_latency_seconds": 1.05,
+          "prompt_tokens": 240,
+          "completion_tokens": 92,
+          "reasoning_tokens": 0,
+          "tokens_per_second": 87.62,
+          "lift_requested": false,
+          "proposed_involution": "",
+          "exact_repair_achieved": false,
+          "content_excerpt": "Global sign factors into cycle characters sigma(C) = prod s_i^{I(c_i)}. Exactly 57 subgraphs have odd-winding cycles."
+        },
+        {
+          "turn": 3,
+          "stage": "LIFT_REQUEST",
+          "client_latency_seconds": 1.1,
+          "prompt_tokens": 290,
+          "completion_tokens": 98,
+          "reasoning_tokens": 0,
+          "tokens_per_second": 89.09,
+          "lift_requested": true,
+          "proposed_involution": "tau_i: s_i -> -s_i on odd-winding cycle",
+          "exact_repair_achieved": false,
+          "content_excerpt": "Involution flip tau(s) = -s on the odd-winding loop reverses sign while keeping weight equal, eliminating the 192 negative states."
+        },
+        {
+          "turn": 4,
+          "stage": "EXACT_REPAIR",
+          "client_latency_seconds": 1.08,
+          "prompt_tokens": 310,
+          "completion_tokens": 90,
+          "reasoning_tokens": 0,
+          "tokens_per_second": 83.33,
+          "lift_requested": false,
+          "proposed_involution": "",
+          "exact_repair_achieved": true,
+          "content_excerpt": "All 57 odd subgraphs vanish by (1 + (-1)) = 0. The remaining 199 zero-odd subgraphs yield exact partition Z = 912."
+        }
+      ]
+    }
+  ],
+  "lift_emission_probability_overall": 1.0,
+  "terminal_repair_rate": 1.0,
+  "verified": false,
+  "evidence_scope": "synthetic_example_without_raw_provider_custody",
+  "live_provider_evidence": false,
+  "prompt_scope": "coached independent requests supply the lift and counts; reported metrics are unverified"
+}

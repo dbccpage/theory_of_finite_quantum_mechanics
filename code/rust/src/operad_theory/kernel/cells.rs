@@ -1,0 +1,992 @@
+//! Replay-bound finite 2-cells; no univalence or infinite-coherence claim.
+//!
+//! Rust face of `omega_engine/kernel/higher_operad/cells.py`.
+
+use serde::{Deserialize, Serialize};
+use serde_json::{json, Value};
+
+use super::canonical::{
+    canonical_id, require_digest, require_identifier, CanonicalError,
+};
+use super::model::AuthorityEffect;
+use super::result::{KernelError, Refusal};
+use super::terms::{normalize_term, substitute, term_from_normalized, NormalizedTerm, OperationTerm};
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum ComparisonVerdict {
+    #[serde(rename = "EquivalentOnScope")]
+    EquivalentOnScope,
+    #[serde(rename = "RefinesOnScope")]
+    RefinesOnScope,
+    #[serde(rename = "NotEquivalentOnScope")]
+    NotEquivalentOnScope,
+    #[serde(rename = "Inconclusive")]
+    Inconclusive,
+}
+
+impl ComparisonVerdict {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::EquivalentOnScope => "EquivalentOnScope",
+            Self::RefinesOnScope => "RefinesOnScope",
+            Self::NotEquivalentOnScope => "NotEquivalentOnScope",
+            Self::Inconclusive => "Inconclusive",
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum EquivalenceGrade {
+    #[serde(rename = "Definitional")]
+    Definitional,
+    #[serde(rename = "CertifiedIsomorphism")]
+    CertifiedIsomorphism,
+    #[serde(rename = "ScopedObservational")]
+    ScopedObservational,
+    #[serde(rename = "Candidate")]
+    Candidate,
+}
+
+impl EquivalenceGrade {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::Definitional => "Definitional",
+            Self::CertifiedIsomorphism => "CertifiedIsomorphism",
+            Self::ScopedObservational => "ScopedObservational",
+            Self::Candidate => "Candidate",
+        }
+    }
+}
+
+pub fn pair_subject_digest(
+    source: &NormalizedTerm,
+    target: &NormalizedTerm,
+    relation_id: &str,
+    scope_digest: &str,
+) -> Result<String, CanonicalError> {
+    let source_id = source.canonical_id()?;
+    let target_id = target.canonical_id()?;
+    canonical_id(
+        "omega.oewas.certified-pair.subject.v1",
+        &json!({
+            "source_term_id": source_id,
+            "target_term_id": target_id,
+            "boundary": source.boundary().to_canonical(),
+            "relation_id": require_identifier(relation_id, "relation_id")?,
+            "scope_digest": require_digest(scope_digest, "scope_digest")?,
+        }),
+    )
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ComparisonEvidence {
+    pub source_term_id: String,
+    pub target_term_id: String,
+    pub relation_id: String,
+    pub scope_digest: String,
+    pub fixture_set_digest: String,
+    pub verifier_ref: String,
+    pub verifier_digest: String,
+    pub replay_receipt_ref: String,
+    pub verdict: ComparisonVerdict,
+    pub equivalence_grade: EquivalenceGrade,
+    pub forward_witness_digest: String,
+    pub inverse_witness_digest: String,
+    pub left_roundtrip_digest: String,
+    pub right_roundtrip_digest: String,
+    pub authority_effect: AuthorityEffect,
+}
+
+impl ComparisonEvidence {
+    #[allow(clippy::too_many_arguments)]
+    pub fn new(
+        source_term_id: &str,
+        target_term_id: &str,
+        relation_id: &str,
+        scope_digest: &str,
+        fixture_set_digest: &str,
+        verifier_ref: &str,
+        verifier_digest: &str,
+        replay_receipt_ref: &str,
+        verdict: ComparisonVerdict,
+        equivalence_grade: EquivalenceGrade,
+        forward_witness_digest: &str,
+        inverse_witness_digest: &str,
+        left_roundtrip_digest: &str,
+        right_roundtrip_digest: &str,
+        authority_effect: AuthorityEffect,
+    ) -> Result<Self, CanonicalError> {
+        let fwd = if !forward_witness_digest.is_empty() {
+            require_digest(forward_witness_digest, "forward_witness_digest")?
+        } else {
+            String::new()
+        };
+        let inv = if !inverse_witness_digest.is_empty() {
+            require_digest(inverse_witness_digest, "inverse_witness_digest")?
+        } else {
+            String::new()
+        };
+        let l_rt = if !left_roundtrip_digest.is_empty() {
+            require_digest(left_roundtrip_digest, "left_roundtrip_digest")?
+        } else {
+            String::new()
+        };
+        let r_rt = if !right_roundtrip_digest.is_empty() {
+            require_digest(right_roundtrip_digest, "right_roundtrip_digest")?
+        } else {
+            String::new()
+        };
+
+        Ok(Self {
+            source_term_id: require_digest(source_term_id, "source_term_id")?,
+            target_term_id: require_digest(target_term_id, "target_term_id")?,
+            relation_id: require_identifier(relation_id, "relation_id")?,
+            scope_digest: require_digest(scope_digest, "scope_digest")?,
+            fixture_set_digest: require_digest(fixture_set_digest, "fixture_set_digest")?,
+            verifier_ref: require_identifier(verifier_ref, "verifier_ref")?,
+            verifier_digest: require_digest(verifier_digest, "verifier_digest")?,
+            replay_receipt_ref: require_digest(replay_receipt_ref, "replay_receipt_ref")?,
+            verdict,
+            equivalence_grade,
+            forward_witness_digest: fwd,
+            inverse_witness_digest: inv,
+            left_roundtrip_digest: l_rt,
+            right_roundtrip_digest: r_rt,
+            authority_effect,
+        })
+    }
+
+    pub fn to_canonical(&self) -> Value {
+        json!({
+            "source_term_id": self.source_term_id,
+            "target_term_id": self.target_term_id,
+            "relation_id": self.relation_id,
+            "scope_digest": self.scope_digest,
+            "fixture_set_digest": self.fixture_set_digest,
+            "verifier_ref": self.verifier_ref,
+            "verifier_digest": self.verifier_digest,
+            "replay_receipt_ref": self.replay_receipt_ref,
+            "verdict": self.verdict.as_str(),
+            "equivalence_grade": self.equivalence_grade.as_str(),
+            "forward_witness_digest": self.forward_witness_digest,
+            "inverse_witness_digest": self.inverse_witness_digest,
+            "left_roundtrip_digest": self.left_roundtrip_digest,
+            "right_roundtrip_digest": self.right_roundtrip_digest,
+            "authority_effect": self.authority_effect.as_str(),
+        })
+    }
+
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        canonical_id("omega.oewas.comparison-evidence.v1", &self.to_canonical())
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Attestation {
+    pub subject_digest: String,
+    pub evidence_digest: String,
+    pub predicate_id: String,
+    pub producer_ref: String,
+    pub verifier_ref: String,
+    pub verifier_digest: String,
+    pub replay_receipt_ref: String,
+    pub environment_digest: String,
+    pub verifier_signature: String,
+    pub authority_effect: AuthorityEffect,
+}
+
+impl Attestation {
+    #[allow(clippy::too_many_arguments)]
+    pub fn new(
+        subject_digest: &str,
+        evidence_digest: &str,
+        predicate_id: &str,
+        producer_ref: &str,
+        verifier_ref: &str,
+        verifier_digest: &str,
+        replay_receipt_ref: &str,
+        environment_digest: &str,
+        verifier_signature: &str,
+        authority_effect: AuthorityEffect,
+    ) -> Result<Self, KernelError> {
+        let p_ref = require_identifier(producer_ref, "producer_ref")?;
+        let v_ref = require_identifier(verifier_ref, "verifier_ref")?;
+        if p_ref == v_ref {
+            return Err(KernelError::Message(
+                "attestation producer and verifier must be independent identities".into(),
+            ));
+        }
+        let sig = require_identifier(verifier_signature, "verifier_signature")?;
+        if !sig.starts_with("hmac-sha256:") || sig.len() != 76 {
+            return Err(KernelError::Message(
+                "verifier_signature must be a canonical hmac-sha256 value".into(),
+            ));
+        }
+
+        Ok(Self {
+            subject_digest: require_digest(subject_digest, "subject_digest")?,
+            evidence_digest: require_digest(evidence_digest, "evidence_digest")?,
+            predicate_id: require_identifier(predicate_id, "predicate_id")?,
+            producer_ref: p_ref,
+            verifier_ref: v_ref,
+            verifier_digest: require_digest(verifier_digest, "verifier_digest")?,
+            replay_receipt_ref: require_digest(replay_receipt_ref, "replay_receipt_ref")?,
+            environment_digest: require_digest(environment_digest, "environment_digest")?,
+            verifier_signature: sig,
+            authority_effect,
+        })
+    }
+
+    pub fn to_canonical(&self) -> Value {
+        json!({
+            "subject_digest": self.subject_digest,
+            "evidence_digest": self.evidence_digest,
+            "predicate_id": self.predicate_id,
+            "producer_ref": self.producer_ref,
+            "verifier_ref": self.verifier_ref,
+            "verifier_digest": self.verifier_digest,
+            "replay_receipt_ref": self.replay_receipt_ref,
+            "environment_digest": self.environment_digest,
+            "verifier_signature": self.verifier_signature,
+            "authority_effect": self.authority_effect.as_str(),
+        })
+    }
+
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        canonical_id("omega.oewas.attestation.v1", &self.to_canonical())
+    }
+}
+
+/// Sealed attestation verified by OEOS replay.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ReplayVerifiedAttestation {
+    attestation: Attestation,
+}
+
+impl ReplayVerifiedAttestation {
+    pub fn seal(attestation: Attestation) -> Self {
+        Self { attestation }
+    }
+
+    pub fn inner(&self) -> &Attestation {
+        &self.attestation
+    }
+
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        self.attestation.canonical_id()
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum AttestationKind {
+    Unsealed(Attestation),
+    ReplaySealed(ReplayVerifiedAttestation),
+}
+
+impl AttestationKind {
+    pub fn raw(&self) -> &Attestation {
+        match self {
+            Self::Unsealed(a) => a,
+            Self::ReplaySealed(r) => r.inner(),
+        }
+    }
+
+    pub fn is_sealed(&self) -> bool {
+        matches!(self, Self::ReplaySealed(_))
+    }
+
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        self.raw().canonical_id()
+    }
+}
+
+impl From<Attestation> for AttestationKind {
+    fn from(a: Attestation) -> Self {
+        Self::Unsealed(a)
+    }
+}
+
+impl From<ReplayVerifiedAttestation> for AttestationKind {
+    fn from(r: ReplayVerifiedAttestation) -> Self {
+        Self::ReplaySealed(r)
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct CertifiedPair {
+    pub source: NormalizedTerm,
+    pub target: NormalizedTerm,
+    pub comparison: ComparisonEvidence,
+    pub attestation: AttestationKind,
+}
+
+impl CertifiedPair {
+    pub fn relation_id(&self) -> &str {
+        &self.comparison.relation_id
+    }
+
+    pub fn scope_digest(&self) -> &str {
+        &self.comparison.scope_digest
+    }
+
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        let subject = pair_subject_digest(
+            &self.source,
+            &self.target,
+            self.relation_id(),
+            self.scope_digest(),
+        )?;
+        canonical_id(
+            "omega.oewas.certified-pair.v1",
+            &json!({
+                "subject_digest": subject,
+                "comparison_id": self.comparison.canonical_id()?,
+                "attestation_id": self.attestation.canonical_id()?,
+            }),
+        )
+    }
+}
+
+fn check_certified_pair_error(
+    left: &NormalizedTerm,
+    right: &NormalizedTerm,
+    comparison: &ComparisonEvidence,
+    attestation: &AttestationKind,
+) -> Option<Refusal> {
+    if !left.boundary().parallel_to(&right.boundary()) {
+        return Some(Refusal {
+            code: "NON_PARALLEL_TERMS".into(),
+            message: "2-cell endpoints must have identical typed boundaries".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    let left_id = match left.canonical_id() {
+        Ok(id) => id,
+        Err(e) => return Some(Refusal {
+            code: "CANONICAL_ERROR".into(),
+            message: e.to_string(),
+            locus: String::new(),
+            details: Vec::new(),
+        }),
+    };
+    let right_id = match right.canonical_id() {
+        Ok(id) => id,
+        Err(e) => return Some(Refusal {
+            code: "CANONICAL_ERROR".into(),
+            message: e.to_string(),
+            locus: String::new(),
+            details: Vec::new(),
+        }),
+    };
+
+    if comparison.source_term_id != left_id || comparison.target_term_id != right_id {
+        return Some(Refusal {
+            code: "COMPARISON_ENDPOINT_MISMATCH".into(),
+            message: "comparison evidence does not bind both term IDs".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    let raw_att = attestation.raw();
+    if comparison.verifier_ref != raw_att.verifier_ref
+        || comparison.verifier_digest != raw_att.verifier_digest
+    {
+        return Some(Refusal {
+            code: "VERIFIER_BINDING_MISMATCH".into(),
+            message: "comparison and attestation name different verifiers".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if comparison.replay_receipt_ref != raw_att.replay_receipt_ref {
+        return Some(Refusal {
+            code: "REPLAY_BINDING_MISMATCH".into(),
+            message: "comparison and attestation name different replay receipts".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if comparison.verdict != ComparisonVerdict::EquivalentOnScope {
+        return Some(Refusal {
+            code: "NON_ADMISSIBLE_COMPARISON".into(),
+            message: "only equivalence evidence supports a Path2".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if comparison.equivalence_grade != EquivalenceGrade::Definitional
+        && comparison.equivalence_grade != EquivalenceGrade::CertifiedIsomorphism
+    {
+        return Some(Refusal {
+            code: "WEAK_EQUIVALENCE_GRADE".into(),
+            message: "scoped observations and candidates do not support a Path2".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if comparison.equivalence_grade == EquivalenceGrade::Definitional && left_id != right_id {
+        return Some(Refusal {
+            code: "FALSE_DEFINITIONAL_EQUALITY".into(),
+            message: "definitional grade requires identical normalized term IDs".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if comparison.equivalence_grade == EquivalenceGrade::CertifiedIsomorphism {
+        if !attestation.is_sealed() {
+            return Some(Refusal {
+                code: "UNVERIFIED_REPLAY_ATTESTATION".into(),
+                message: "certified isomorphism requires an OEOS replay-sealed attestation".into(),
+                locus: String::new(),
+                details: Vec::new(),
+            });
+        }
+        if comparison.forward_witness_digest.is_empty()
+            || comparison.inverse_witness_digest.is_empty()
+            || comparison.left_roundtrip_digest.is_empty()
+            || comparison.right_roundtrip_digest.is_empty()
+        {
+            return Some(Refusal {
+                code: "INCOMPLETE_ISOMORPHISM".into(),
+                message: "certified isomorphism requires forward, inverse, and both round-trip witnesses".into(),
+                locus: String::new(),
+                details: Vec::new(),
+            });
+        }
+    }
+
+    let subject = match pair_subject_digest(left, right, &comparison.relation_id, &comparison.scope_digest) {
+        Ok(s) => s,
+        Err(e) => return Some(Refusal {
+            code: "CANONICAL_ERROR".into(),
+            message: e.to_string(),
+            locus: String::new(),
+            details: Vec::new(),
+        }),
+    };
+
+    if raw_att.subject_digest != subject {
+        return Some(Refusal {
+            code: "ATTESTATION_SUBJECT_MISMATCH".into(),
+            message: "attestation does not bind this parallel pair".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    let comp_id = match comparison.canonical_id() {
+        Ok(id) => id,
+        Err(e) => return Some(Refusal {
+            code: "CANONICAL_ERROR".into(),
+            message: e.to_string(),
+            locus: String::new(),
+            details: Vec::new(),
+        }),
+    };
+
+    if raw_att.evidence_digest != comp_id {
+        return Some(Refusal {
+            code: "ATTESTATION_EVIDENCE_MISMATCH".into(),
+            message: "attestation does not bind this comparison evidence".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if raw_att.predicate_id != comparison.relation_id {
+        return Some(Refusal {
+            code: "ATTESTATION_PREDICATE_MISMATCH".into(),
+            message: "attestation predicate differs from comparison relation".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    None
+}
+
+pub fn admit_certified_pair(
+    source: &OperationTerm,
+    target: &OperationTerm,
+    comparison: &ComparisonEvidence,
+    attestation: &AttestationKind,
+) -> Result<CertifiedPair, Refusal> {
+    let left = normalize_term(source)?;
+    let right = normalize_term(target)?;
+    if let Some(err) = check_certified_pair_error(&left, &right, comparison, attestation) {
+        return Err(err);
+    }
+    Ok(CertifiedPair {
+        source: left,
+        target: right,
+        comparison: comparison.clone(),
+        attestation: attestation.clone(),
+    })
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct AtomicPath2 {
+    pub certified_pair: CertifiedPair,
+}
+
+impl AtomicPath2 {
+    pub fn source(&self) -> &NormalizedTerm {
+        &self.certified_pair.source
+    }
+
+    pub fn target(&self) -> &NormalizedTerm {
+        &self.certified_pair.target
+    }
+
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        canonical_id(
+            "omega.oewas.path2.atomic.v1",
+            &json!({
+                "certified_pair_id": self.certified_pair.canonical_id()?,
+            }),
+        )
+    }
+}
+
+pub fn admit_atomic_path2(
+    source: &OperationTerm,
+    target: &OperationTerm,
+    comparison: &ComparisonEvidence,
+    attestation: &AttestationKind,
+) -> Result<AtomicPath2, Refusal> {
+    let pair = admit_certified_pair(source, target, comparison, attestation)?;
+    Ok(AtomicPath2 { certified_pair: pair })
+}
+
+pub fn admit_equivalence(
+    source: &OperationTerm,
+    target: &OperationTerm,
+    comparison: &ComparisonEvidence,
+    attestation: &AttestationKind,
+) -> Result<AtomicPath2, Refusal> {
+    admit_atomic_path2(source, target, comparison, attestation)
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct IdentityPath2 {
+    pub term: NormalizedTerm,
+}
+
+impl IdentityPath2 {
+    pub fn source(&self) -> &NormalizedTerm {
+        &self.term
+    }
+
+    pub fn target(&self) -> &NormalizedTerm {
+        &self.term
+    }
+
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        canonical_id(
+            "omega.oewas.path2.identity.v1",
+            &json!({
+                "term_id": self.term.canonical_id()?,
+            }),
+        )
+    }
+}
+
+pub fn identity_path2(term: &OperationTerm) -> Result<IdentityPath2, Refusal> {
+    let norm = normalize_term(term)?;
+    Ok(IdentityPath2 { term: norm })
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct VerticalPath2 {
+    pub first: Path2,
+    pub second: Path2,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct HorizontalPath2 {
+    pub outer: Path2,
+    pub slot: usize,
+    pub inner: Path2,
+    pub admitted_composite: AtomicPath2,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct InversePath2 {
+    pub path: Path2,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct WhiskerPath2 {
+    pub context: NormalizedTerm,
+    pub slot: usize,
+    pub path: Path2,
+    pub admitted_composite: AtomicPath2,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Path2 {
+    Atomic(AtomicPath2),
+    Identity(IdentityPath2),
+    Vertical(Box<VerticalPath2>),
+    Horizontal(Box<HorizontalPath2>),
+    Inverse(Box<InversePath2>),
+    Whisker(Box<WhiskerPath2>),
+}
+
+impl Path2 {
+    pub fn source(&self) -> &NormalizedTerm {
+        match self {
+            Self::Atomic(p) => p.source(),
+            Self::Identity(p) => p.source(),
+            Self::Vertical(v) => v.first.source(),
+            Self::Horizontal(h) => h.admitted_composite.source(),
+            Self::Inverse(inv) => inv.path.target(),
+            Self::Whisker(w) => w.admitted_composite.source(),
+        }
+    }
+
+    pub fn target(&self) -> &NormalizedTerm {
+        match self {
+            Self::Atomic(p) => p.target(),
+            Self::Identity(p) => p.target(),
+            Self::Vertical(v) => v.second.target(),
+            Self::Horizontal(h) => h.admitted_composite.target(),
+            Self::Inverse(inv) => inv.path.source(),
+            Self::Whisker(w) => w.admitted_composite.target(),
+        }
+    }
+
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        canonical_path_id(self)
+    }
+}
+
+type PathWord = Vec<(String, i8)>;
+
+fn reduce_path_word(word: PathWord) -> PathWord {
+    let mut reduced: Vec<(String, i8)> = Vec::new();
+    for (generator_id, orientation) in word {
+        if let Some((last_id, last_orient)) = reduced.last() {
+            if *last_id == generator_id && *last_orient == -orientation {
+                reduced.pop();
+                continue;
+            }
+        }
+        reduced.push((generator_id, orientation));
+    }
+    reduced
+}
+
+fn path_word(path: &Path2) -> Result<PathWord, CanonicalError> {
+    match path {
+        Path2::Identity(_) => Ok(Vec::new()),
+        Path2::Vertical(v) => {
+            let mut w1 = path_word(&v.first)?;
+            let w2 = path_word(&v.second)?;
+            w1.extend(w2);
+            Ok(reduce_path_word(w1))
+        }
+        Path2::Inverse(inv) => {
+            let inner_word = path_word(&inv.path)?;
+            let inverted = inner_word
+                .into_iter()
+                .rev()
+                .map(|(gen_id, orient)| (gen_id, -orient))
+                .collect();
+            Ok(reduce_path_word(inverted))
+        }
+        Path2::Atomic(p) => Ok(vec![(p.canonical_id()?, 1)]),
+        Path2::Horizontal(h) => Ok(vec![(
+            canonical_id(
+                "omega.oewas.path2.horizontal.v1",
+                &json!({
+                    "outer": h.outer.canonical_id()?,
+                    "slot": h.slot,
+                    "inner": h.inner.canonical_id()?,
+                    "admitted_composite": h.admitted_composite.canonical_id()?,
+                }),
+            )?,
+            1,
+        )]),
+        Path2::Whisker(w) => Ok(vec![(
+            canonical_id(
+                "omega.oewas.path2.whisker.v1",
+                &json!({
+                    "context": w.context.canonical_id()?,
+                    "slot": w.slot,
+                    "path": w.path.canonical_id()?,
+                    "admitted_composite": w.admitted_composite.canonical_id()?,
+                }),
+            )?,
+            1,
+        )]),
+    }
+}
+
+fn canonical_path_id(path: &Path2) -> Result<String, CanonicalError> {
+    let word = path_word(path)?;
+    if word.is_empty() {
+        return IdentityPath2 {
+            term: path.source().clone(),
+        }
+        .canonical_id();
+    }
+    if word.len() == 1 {
+        let (generator_id, orientation) = &word[0];
+        if *orientation == 1 {
+            return Ok(generator_id.clone());
+        }
+        return canonical_id(
+            "omega.oewas.path2.inverse.v1",
+            &json!({ "generator_id": generator_id }),
+        );
+    }
+    let factors: Vec<Value> = word
+        .into_iter()
+        .map(|(generator_id, orientation)| {
+            json!({
+                "generator_id": generator_id,
+                "orientation": orientation,
+            })
+        })
+        .collect();
+    canonical_id(
+        "omega.oewas.path2.reduced-word.v1",
+        &json!({
+            "source_term_id": path.source().canonical_id()?,
+            "target_term_id": path.target().canonical_id()?,
+            "factors": factors,
+        }),
+    )
+}
+
+pub fn vertical_compose(first: Path2, second: Path2) -> Result<Path2, Refusal> {
+    let first_target = first.target().canonical_id().map_err(|e| Refusal {
+        code: "CANONICAL_ERROR".into(),
+        message: e.to_string(),
+        locus: String::new(),
+        details: Vec::new(),
+    })?;
+    let second_source = second.source().canonical_id().map_err(|e| Refusal {
+        code: "CANONICAL_ERROR".into(),
+        message: e.to_string(),
+        locus: String::new(),
+        details: Vec::new(),
+    })?;
+    if first_target != second_source {
+        return Err(Refusal {
+            code: "VERTICAL_BOUNDARY_MISMATCH".into(),
+            message: "first target must equal second source".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+    Ok(Path2::Vertical(Box::new(VerticalPath2 { first, second })))
+}
+
+pub fn vertical_compose2(first: Path2, second: Path2) -> Result<Path2, Refusal> {
+    vertical_compose(first, second)
+}
+
+pub fn horizontal_compose(
+    outer: Path2,
+    slot: usize,
+    inner: Path2,
+    comparison: &ComparisonEvidence,
+    attestation: &AttestationKind,
+) -> Result<Path2, Refusal> {
+    let source_composite = substitute(&term_from_normalized(outer.source()), slot, &term_from_normalized(inner.source()))?;
+    let target_composite = substitute(&term_from_normalized(outer.target()), slot, &term_from_normalized(inner.target()))?;
+    let admitted = admit_atomic_path2(
+        &term_from_normalized(&source_composite),
+        &term_from_normalized(&target_composite),
+        comparison,
+        attestation,
+    )?;
+    Ok(Path2::Horizontal(Box::new(HorizontalPath2 {
+        outer,
+        slot,
+        inner,
+        admitted_composite: admitted,
+    })))
+}
+
+pub fn inverse2(path: Path2) -> Result<Path2, Refusal> {
+    match path {
+        Path2::Identity(_) => Ok(path),
+        Path2::Inverse(inv) => Ok(inv.path),
+        other => Ok(Path2::Inverse(Box::new(InversePath2 { path: other }))),
+    }
+}
+
+pub fn whisker2(
+    context: &OperationTerm,
+    slot: usize,
+    path: Path2,
+    comparison: &ComparisonEvidence,
+    attestation: &AttestationKind,
+) -> Result<Path2, Refusal> {
+    let normalized_context = normalize_term(context)?;
+    let source = substitute(&term_from_normalized(&normalized_context), slot, &term_from_normalized(path.source()))?;
+    let target = substitute(&term_from_normalized(&normalized_context), slot, &term_from_normalized(path.target()))?;
+    let admitted = admit_atomic_path2(
+        &term_from_normalized(&source),
+        &term_from_normalized(&target),
+        comparison,
+        attestation,
+    )?;
+    Ok(Path2::Whisker(Box::new(WhiskerPath2 {
+        context: normalized_context,
+        slot,
+        path,
+        admitted_composite: admitted,
+    })))
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Refinement {
+    pub source: NormalizedTerm,
+    pub target: NormalizedTerm,
+    pub comparison: ComparisonEvidence,
+    pub attestation: Attestation,
+}
+
+impl Refinement {
+    pub fn canonical_id(&self) -> Result<String, CanonicalError> {
+        canonical_id(
+            "omega.oewas.refinement.v1",
+            &json!({
+                "source": self.source.canonical_id()?,
+                "target": self.target.canonical_id()?,
+                "comparison": self.comparison.canonical_id()?,
+                "attestation": self.attestation.canonical_id()?,
+            }),
+        )
+    }
+}
+
+pub fn admit_refinement(
+    source: &OperationTerm,
+    target: &OperationTerm,
+    comparison: &ComparisonEvidence,
+    attestation: &Attestation,
+) -> Result<Refinement, Refusal> {
+    let left = normalize_term(source)?;
+    let right = normalize_term(target)?;
+
+    if !left.boundary().parallel_to(&right.boundary()) {
+        return Err(Refusal {
+            code: "NON_PARALLEL_TERMS".into(),
+            message: "refinement endpoints must be parallel".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if comparison.verdict != ComparisonVerdict::RefinesOnScope {
+        return Err(Refusal {
+            code: "NOT_A_REFINEMENT".into(),
+            message: "comparison verdict is not RefinesOnScope".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    let left_id = left.canonical_id().map_err(|e| Refusal {
+        code: "CANONICAL_ERROR".into(),
+        message: e.to_string(),
+        locus: String::new(),
+        details: Vec::new(),
+    })?;
+    let right_id = right.canonical_id().map_err(|e| Refusal {
+        code: "CANONICAL_ERROR".into(),
+        message: e.to_string(),
+        locus: String::new(),
+        details: Vec::new(),
+    })?;
+
+    if comparison.source_term_id != left_id || comparison.target_term_id != right_id {
+        return Err(Refusal {
+            code: "COMPARISON_ENDPOINT_MISMATCH".into(),
+            message: "comparison does not bind refinement endpoints".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    let subject = pair_subject_digest(&left, &right, &comparison.relation_id, &comparison.scope_digest).map_err(|e| Refusal {
+        code: "CANONICAL_ERROR".into(),
+        message: e.to_string(),
+        locus: String::new(),
+        details: Vec::new(),
+    })?;
+
+    if attestation.subject_digest != subject {
+        return Err(Refusal {
+            code: "ATTESTATION_SUBJECT_MISMATCH".into(),
+            message: "attestation does not bind refinement endpoints".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    let comp_id = comparison.canonical_id().map_err(|e| Refusal {
+        code: "CANONICAL_ERROR".into(),
+        message: e.to_string(),
+        locus: String::new(),
+        details: Vec::new(),
+    })?;
+
+    if attestation.evidence_digest != comp_id {
+        return Err(Refusal {
+            code: "ATTESTATION_EVIDENCE_MISMATCH".into(),
+            message: "attestation does not bind refinement evidence".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if attestation.predicate_id != comparison.relation_id {
+        return Err(Refusal {
+            code: "ATTESTATION_PREDICATE_MISMATCH".into(),
+            message: "attestation predicate differs from refinement relation".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if comparison.verifier_ref != attestation.verifier_ref
+        || comparison.verifier_digest != attestation.verifier_digest
+    {
+        return Err(Refusal {
+            code: "VERIFIER_BINDING_MISMATCH".into(),
+            message: "comparison and attestation name different verifiers".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    if comparison.replay_receipt_ref != attestation.replay_receipt_ref {
+        return Err(Refusal {
+            code: "REPLAY_BINDING_MISMATCH".into(),
+            message: "comparison and attestation name different replay receipts".into(),
+            locus: String::new(),
+            details: Vec::new(),
+        });
+    }
+
+    Ok(Refinement {
+        source: left,
+        target: right,
+        comparison: comparison.clone(),
+        attestation: attestation.clone(),
+    })
+}

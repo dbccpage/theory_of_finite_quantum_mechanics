@@ -1,0 +1,130 @@
+// AuthorityEffect: None.
+use num_traits::Zero;
+use sha2::{Digest, Sha256};
+
+use crate::coda::layer1_foc::Layer1Foc;
+use crate::coda::layer2_mur::Layer2Mur;
+use crate::coda::layer3_cs::Layer3Cs;
+use crate::coda::layer4_cs_q::Layer4CsQ;
+use crate::coda::layer5_q::Layer5Q;
+use crate::coda::layer6_a::Layer6A;
+use crate::coda::layer7_or::Layer7Or;
+use crate::coda::layer8_fda::Layer8Fda;
+use crate::coda::layer9_coda_gtla::Layer9CodaGtla;
+use crate::coda::types::{ExternalAuthorityGrant, MasterNormalFormOutcome, ProblemInstance};
+
+/// Evaluates a ProblemInstance through the full 9-layer CODA pipeline without external authority grant.
+pub fn evaluate_coda_pipeline(problem: &ProblemInstance) -> MasterNormalFormOutcome {
+    evaluate_coda_pipeline_with_grant(problem, None)
+}
+
+/// Evaluates a ProblemInstance through the full 9-layer CODA pipeline with an optional verified grant.
+pub fn evaluate_coda_pipeline_with_grant(
+    problem: &ProblemInstance,
+    external_grant: Option<&ExternalAuthorityGrant>,
+) -> MasterNormalFormOutcome {
+    let mut records = Vec::with_capacity(9);
+
+    // Stage 1: FOC (Finite Obstruction Calculus)
+    let (rec1, phi1, gamma2, witness, witness_payload, primal_repair) =
+        match Layer1Foc::evaluate_with_payload(problem, &num_rational::BigRational::zero()) {
+            Ok(measured) => measured,
+            Err(record) => {
+                records.push(record);
+                let digest = evidence_digest(problem, external_grant, &records);
+                return Layer9CodaGtla::terminalize_with_payload(
+                    problem,
+                    None,
+                    None,
+                    None,
+                    None,
+                    crate::coda::types::FirewallDecision::RouteRefused,
+                    None,
+                    records,
+                    Some("Invalid cochain complex or unverified quotient certificate".into()),
+                    None,
+                    digest,
+                );
+            }
+        };
+    records.push(rec1);
+
+    // Stage 2: MUR (Meta & Universal Re-Presentation)
+    let (rec2, _loss) = Layer2Mur::evaluate(problem);
+    records.push(rec2);
+
+    // Stage 3: CS (Continuum Shadow)
+    let (rec3, _consistent) = Layer3Cs::evaluate(problem);
+    records.push(rec3);
+
+    // Stage 4: CS_Q (Continuum Shadow to Continuum Bridge)
+    let (rec4, _min_sep) = Layer4CsQ::evaluate(problem);
+    records.push(rec4);
+
+    // Stage 5: Q (The Continuum)
+    let (rec5, _diam) = Layer5Q::evaluate(problem);
+    records.push(rec5);
+
+    // Stage 6: A (Anomalon)
+    let (rec6, _has_residual) = Layer6A::evaluate(problem, &phi1, &gamma2);
+    records.push(rec6);
+
+    // Stage 7: OR (Omniversal Re-Presentation)
+    let (rec7, is_refused) = Layer7Or::evaluate(problem, &gamma2);
+    records.push(rec7);
+    let is_refused = is_refused || records.iter().any(|record| !record.succeeded);
+
+    // Stage 8: FDA (Finite Descent Authority)
+    let (rec8, decision, token) =
+        Layer8Fda::evaluate_with_grant(problem, &phi1, &gamma2, is_refused, external_grant);
+    records.push(rec8);
+
+    let evidence_digest = evidence_digest(problem, external_grant, &records);
+
+    // Stage 9: CODA_GTLA (General Theory of Layered Authority & Master Normal Form)
+    Layer9CodaGtla::terminalize_with_payload(
+        problem,
+        Some(phi1),
+        Some(gamma2),
+        witness,
+        witness_payload,
+        decision,
+        token,
+        records,
+        None,
+        Some(primal_repair),
+        evidence_digest,
+    )
+}
+
+fn evidence_digest(
+    problem: &ProblemInstance,
+    external_grant: Option<&ExternalAuthorityGrant>,
+    records: &[crate::coda::types::LayerExecutionRecord],
+) -> String {
+    // Bind all inputs and actual records; tuple-keyed overlaps use sequences.
+    let evidence = serde_json::json!({
+        "schema": "omega.coda.pipeline.evidence.v1",
+        "problem_id": problem.problem_id,
+        "raw_data": problem.raw_data,
+        "candidate_sieve": problem.candidate_sieve,
+        "coarse_profile": problem.coarse_profile,
+        "fine_profile": problem.fine_profile,
+        "projection_map": problem.projection_map,
+        "local_sections": problem.local_sections,
+        "overlaps": problem.overlaps.iter().collect::<Vec<_>>(),
+        "d0": problem.d0,
+        "d1": problem.d1,
+        "defect_cochain": problem.defect_cochain,
+        "fda_license_granted": problem.fda_license_granted,
+        "enclosure_interval": problem.enclosure_interval,
+        "external_grant": external_grant,
+        "records": records,
+    });
+    format!(
+        "{:x}",
+        Sha256::digest(
+            serde_json::to_vec(&evidence).expect("canonical evidence consists of JSON values")
+        )
+    )
+}

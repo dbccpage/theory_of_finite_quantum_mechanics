@@ -1,0 +1,17 @@
+[package]
+name = "mub6_code_bridge"
+version = "0.1.0"
+edition = "2021"
+description = "Direct bridge wiring omega_engine_atlas/coda_atlas/F004_papers/010_mub6/code to the sovereign omega_mub crate"
+license = "Apache-2.0"
+
+[dependencies]
+omega_mub = { path = "../../../../../omega_engine/crates_rs/omega_mub" }
+
+[lib]
+name = "mub6_code_bridge"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mub6_verify"
+path = "src/main.rs"

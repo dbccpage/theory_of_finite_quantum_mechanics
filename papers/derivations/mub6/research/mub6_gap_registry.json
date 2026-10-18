@@ -1,0 +1,322 @@
+{
+  "schema_version": "omega.mub6.gap-registry.v1",
+  "firewall": "stated region only; mints no authority",
+  "authority_effect": "None",
+  "gap_id_scope": "Frontier planning IDs G1-G5 in this registry; distinct from the Lean G1/G2/G3 synthesis premises in mub6_roadmap.md",
+  "last_updated": "2026-10-16",
+  "active_front": "Option B: concrete landing, sentry reflection, and operator-domain repair",
+  "gaps": [
+    {
+      "id": "G1",
+      "name": "Full Moduli Variety Classification",
+      "description": "Classify every 6x6 CHM that can be a transition matrix of a MUB triple. The earlier target, membership in {F6, B6(theta), K6^(3), S6, H6}, is not a known classification; the 2026-10-11 checkpoint quarantined it in favour of the finite-corner classification (D-external).",
+      "lean4_target": "FullModuliClassification in MasterClassification.lean",
+      "status": "OPEN",
+      "priority": 1,
+      "approach_a": "Literature formalization: construct Cyc24 reps for each literature class, verify via classify_orbit",
+      "approach_b": "Algebraic elimination: Groebner basis on 55-poly / 50-var ideal over Q(zeta_24)",
+      "approach_c": "Matolcsi, Matszangosz, Varga, Weiner et al., published version doi:10.1007/s10801-026-01506-x: Conjecture 2 (Hadamard cube identity), Conjecture 3 (Szollosi family X(alpha) in no MUB quadruplet) and Proposition 4.2 (Conjectures 2 and 3 imply at most three MUBs in C^6). The arXiv v1 2503.14752 has Conjectures 1 and 2 only.",
+      "evaluation_findings_g1": {
+        "full_moduli_classification": "full_moduli_variety_classification_of_five_branch takes FiveBranchRealizationHypothesis",
+        "five_branch_disjunction": "five_component_master_disjunction rewrites a moduli realization as a disjunction",
+        "conjecture_2_ideal_membership": "REFUSED_NON_MEMBERSHIP_TAO_WITNESS",
+        "tao_s6_obstruction": "not re-run for this repair",
+        "admitted_subvariety": "not re-run for this repair",
+        "receipt": "omega_engine_projects/mub6/artifacts/mub_target_g1_matolcsi_conjecture2_receipt.json",
+        "r7_positivstellensatz_receipt": "NOT_A_CERTIFICATE. The 2026-10-15 promotion to CERTIFIED is withdrawn: segre_g_sep equals -1/1000 on the slice by construction (MasterClassification.lean:1071-1086), so the Stengle identity refutes a condition chosen to fail; the 55 CHM equations do not enter. See research/mub6_review_and_next_derivation.md.",
+        "karlsson_volume_cover": "artifact records uncertified_boxes 0; its base term 37249/90000 is a fixture (mub6_karlsson_volume_cover.rs:561, :919), so it is not evidence for R7",
+        "minted_antibody": "#A-G1-001 (Pre-call rejection of unconstrained I_55 ideal membership claim)"
+      },
+      "open_subgaps": [
+        "R6",
+        "R7"
+      ],
+      "discharged_subgaps": [],
+      "blocks": [],
+      "dependencies": [],
+      "key_reference": "doi:10.1007/s10801-026-01506-x (published version; arXiv:2503.14752 v1 lacks Conjecture 3 and Proposition 4.2)"
+    },
+    {
+      "id": "G2",
+      "name": "Candidate Representation Bridge",
+      "description": "MUB quadruple -> tested block matrices + PSD preservation",
+      "lean4_target": "CurvatureWallCertifiedAtlas in lean4/research_programs/mub6/TargetA7ZeroRelVariety.lean",
+      "status": "CONDITIONAL",
+      "priority": 3,
+      "dependencies": [
+        "G1"
+      ],
+      "note": "Supplied finite-model data and semantic/coverage contracts remain required; see papers/mub6_claim_ledger.md. SzollosiQuartetSystem checks actual variable third/fourth bases over the constructed phase family, all 144 candidate coordinates and a rational half-unit containing box. This does not supply chart equivalence transport or an exclusion certificate. SzollosiQuadraticSystem supplies a noncomputable joint rational quadratic specification with 440 real variables, 618 equations, two-way actual quartet semantics and a complete solution-containing rational box. SzollosiExecutableSystem now exports all expressions with checked real polynomial semantics and complete IDs. Native replay matched 1854 rational probe values and returned UNRESOLVED_FULL_BOX with 618 intervals. SzollosiIntervalExclusion checks AST interval enclosure and zero-exclusion soundness; its full-box check is false and its reflected phase-interior example is off domain. The current emitted 618 coefficient rows and 618 intervals have kernel-checked polynomial identity and real enclosure semantics. RectangularQuadraticExclusion now derives exact midpoint secant and formal derivative bounds, zero retention in the rectangular image and strict-separation exclusion. SzollosiRectangularExclusion derives actual-table shape and leaf/full-box implications with all 618 equations and 440 coordinates. The actual full-box native rectangular data now has kernel-checked 618-row Jacobian and 440-image semantics. It narrows 24 coordinates of the constructed first family matrix, leaves all 144 additional-basis coordinates unchanged and excludes none. Generic compiler/decoder qualification for later inputs, useful preconditioners/subdivision, successful quartet-domain checks, full cover, cusp analysis and emptiness remain open.",
+      "evidence_lean": "lean4/research_programs/mub6/TargetA7ZeroRelVariety.lean",
+      "additional_evidence_lean": [
+        "lean4/research_programs/mub6/SzollosiTwoCirculant.lean",
+        "lean4/research_programs/mub6/SzollosiQuartetSystem.lean",
+        "lean4/research_programs/mub6/SzollosiQuadraticSystem.lean",
+        "lean4/research_programs/mub6/SzollosiExecutableSystem.lean",
+        "lean4/research_programs/mub6/SzollosiIntervalExclusion.lean",
+        "lean4/research_programs/mub6/SzollosiTermExpansion.lean",
+        "lean4/research_programs/mub6/SzollosiNativeInterval.lean",
+        "lean4/research_programs/mub6/SzollosiNativeReflection.lean",
+        "lean4/research_programs/mub6/RectangularQuadraticExclusion.lean",
+        "lean4/research_programs/mub6/SzollosiRectangularExclusion.lean",
+        "lean4/research_programs/mub6/SparseRectangularExclusion.lean",
+        "lean4/research_programs/mub6/SzollosiRectangularReflection.lean"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "Analytic Parameter Variation Enclosures",
+      "description": "Rigorous matrix derivative estimates along continuous families",
+      "lean4_target": "Scoped Targets B1-B3; full CHM parameter variation remains open",
+      "status": "PARTIAL",
+      "priority": 5,
+      "dependencies": [],
+      "note": "B1-B3 receipts cover their stated continuous curve, finite nerve, and 28-cell partition; they do not certify parameter variation over all 6x6 CHM moduli. Linear interpolation mu(t) = (1-t)mu_A + t mu_B >= min(mu_A, mu_B) between certified endpoints certifies convex combinations of endpoint margins only, and bounds no matrix derivative or curvature wall along a family. SzollosiTwoCirculant now constructs the full four-phase block family and six real equations in eight coordinates, with phase-sum image coverage, cubic identities and a rational unit box. No interval derivative, complete subdivision or cusp exclusion is derived.",
+      "evidence_receipts": [
+        "omega_engine_projects/mub6/artifacts/mub_target_b1_continuous_chaining_receipt.json",
+        "omega_engine_projects/mub6/artifacts/mub_target_b2_global_gluing_receipt.json",
+        "omega_engine_projects/mub6/artifacts/mub_target_b3_manifold_integration_receipt.json",
+        "omega_engine_projects/mub6/artifacts/mub_continuous_boundary_homotopy_receipt.json"
+      ],
+      "evidence_lean": "lean4/research_programs/mub6/ContinuousBoundaryHomotopyPositivstellensatz.lean"
+    },
+    {
+      "id": "G4",
+      "name": "Genuine Simplicial 1-Cochains",
+      "description": "Actual alternating cochains from chart intersections",
+      "lean4_target": "ContinuousBoundaryHomotopyPositivstellensatz.lean (cycle circulation Phi_1 >= Gamma = 12133/5000 > 0)",
+      "status": "CONDITIONAL",
+      "priority": 4,
+      "dependencies": [
+        "G1"
+      ],
+      "note": "Supplied finite-model data and semantic/coverage contracts remain required; see papers/mub6_claim_ledger.md.",
+      "evidence_receipts": [
+        "omega_engine_projects/mub6/artifacts/mub_continuous_boundary_homotopy_receipt.json"
+      ],
+      "evidence_lean": "lean4/research_programs/mub6/ContinuousBoundaryHomotopyPositivstellensatz.lean"
+    },
+    {
+      "id": "G5",
+      "name": "Projector-Moment Positivity",
+      "description": "Full Lasserre Q3/Q4 hierarchy for generic candidates",
+      "lean4_target": "MomentPositivityObligation.lean",
+      "status": "OPEN",
+      "priority": 5,
+      "dependencies": [],
+      "note": "ConcreteMubFlatExtension now connects normalized positive flat real coordinate moments with finite compatibility for all 180 residuals to an actual unitary fourth-basis candidate. CommutativeFlatMoments constructs symmetric commuting coordinate operators and a common real zero from actual Gram/rank data. Evaluation at an actual solution supplies rank-one positive flat moments, yielding a two-way existence equivalence. Empty variety excludes positive semidefiniteness under normalization, actual flatness and finite compatibility. Variety emptiness, full parameterized-family coverage and exclusion of arbitrary nonflat truncations remain open. The separate complex word extraction retains its dimension-six/rank-one/MU and star-algebra limits; the legacy weak interface still admits the zero-action countermodel.",
+      "evidence_lean": "lean4/research_programs/mub6/ConcreteMubFlatExtension.lean"
+    }
+  ],
+  "open_residuals": [
+    {
+      "id": "R1",
+      "name": "F6 continuous external B3 locus",
+      "status": "PARTIAL",
+      "blocks_gap": "G1"
+    },
+    {
+      "id": "R2",
+      "name": "Y2Q2 delta neighborhood deferred",
+      "status": "OPEN",
+      "blocks_gap": "G1"
+    },
+    {
+      "id": "R3",
+      "name": "Dephased CHM moduli outside delta-patches",
+      "status": "PARTIAL",
+      "blocks_gap": "G1"
+    },
+    {
+      "id": "R4",
+      "name": "Basis gluing and Psi bridge",
+      "status": "FORMALIZED_CONDITIONAL",
+      "blocks_gap": "G1",
+      "note": "Mechanized in lean4/research_programs/mub6/Gluing.lean via theorems vector_of_fourth_basis and r4_basis_gluing_bridge under the BasisVectorMUContract domain contract (depends solely on [propext]). Links continuous vector curvature wall Psi^2(v) > 0 to basis-level non-extension \u00acHasFourthBasis T."
+    },
+    {
+      "id": "R5",
+      "name": "C2 full atlas glue",
+      "status": "PARTIAL",
+      "blocks_gap": "G1",
+      "blocked_by": "R3"
+    },
+    {
+      "id": "R6",
+      "name": "Sporadic literature CHM classes",
+      "status": "NOT_A_CERTIFICATE",
+      "blocks_gap": "G1",
+      "note": "Not a certificate; does not establish MUB(6)=3 or MUB(6)<=3. omega_mub::mub6_sporadic_chm_solver sets fourier_ok and haagerup_ok as literals (lines 228-229). The computed part is the Tao norm 9 over 20 balanced masks (claim C07), which does not show that S6 has no extension. The F6 bound is cited from Jaming et al. (2009), not checked. The pilot_034/035 receipts score model answers. See research/mub6_review_and_next_derivation.md.",
+      "evidence_lean": "lean4/research_programs/mub6/Conjecture2GeneralMechanization.lean",
+      "evidence_receipt": "omega_engine_projects/mub6/artifacts/mub_subgap_r6_closure_receipt.json",
+      "promotion_withdrawn": {
+        "promoted_in": "ff0a9fd22",
+        "promoted_status": "CERTIFIED",
+        "withdrawn": "2026-10-16",
+        "promoted_evidence_receipts": [
+          "omega_engine_atlas/coda_atlas/prompts/pilots/pilot_034/completions/pilot_034_receipt.json",
+          "omega_engine_atlas/coda_atlas/prompts/pilots/pilot_035/completions/pilot_035_receipt.json"
+        ]
+      }
+    },
+    {
+      "id": "R7",
+      "name": "Full 6x6 CHM exhaustion (ENC-1147)",
+      "status": "NOT_A_CERTIFICATE",
+      "blocks_gap": "G1",
+      "note": "Not a certificate. MasterClassification.lean:1071-1086 sets segre_g_sep = segre_f_sep - 1/1000 with segre_f_sep = (1 - 1/1000) * sigma0 + circle_defect and sigma0 a sum of squares of the slice equations, so g_sep = -1/1000 on the slice by construction. The Stengle identity is valid but refutes a condition chosen to fail. The slice is a 4-variable set; the 55 CHM equations do not enter. research/subgap_r7_adversarial_audit_note.md says the same. See research/mub6_review_and_next_derivation.md.",
+      "evidence_lean": [
+        "lean4/research_programs/mub6/MasterClassification.lean",
+        "lean4/research_programs/mub6/KarlssonVolumeObstruction.lean"
+      ],
+      "promotion_withdrawn": {
+        "promoted_in": "9299bb710",
+        "promoted_status": "CERTIFIED",
+        "withdrawn": "2026-10-16",
+        "promoted_evidence_receipts": [
+          "omega_engine_atlas/coda_atlas/prompts/pilots/pilot_032/completions/pilot_032_receipt.json",
+          "omega_engine_projects/mub6/artifacts/mub_r7_genuine_positivstellensatz_receipt.json",
+          "omega_engine_projects/mub6/artifacts/mub_karlsson_volume_cover.json"
+        ]
+      }
+    },
+    {
+      "id": "R8",
+      "name": "Lean kernel reflection scale",
+      "status": "BLOCKED",
+      "blocks_gap": "G1",
+      "note": "Blocked by R7. omega_mub::mub6_chunked_reflection_engine sets r8_unblocked as a literal (line 28); no reflection at scale was run. See research/mub6_review_and_next_derivation.md.",
+      "blocked_by": "R7",
+      "promotion_withdrawn": {
+        "promoted_in": "ff0a9fd22",
+        "promoted_status": "RESOLVED",
+        "withdrawn": "2026-10-16"
+      }
+    },
+    {
+      "id": "R9",
+      "name": "Path B invariant survivor",
+      "status": "OPEN",
+      "blocks_gap": "G1",
+      "note": "Cohomological deformation route. Gate A fails on T0; simplicial nerve homotopy remains open. omega_mub::mub6_nerve_homotopy_solver sets persistent_obstruction_verified as a literal (line 24). See research/mub6_review_and_next_derivation.md.",
+      "promotion_withdrawn": {
+        "promoted_in": "ff0a9fd22",
+        "promoted_status": "CERTIFIED",
+        "withdrawn": "2026-10-16"
+      }
+    }
+  ],
+  "literature_landscape": {
+    "key_papers": [
+      {
+        "id": "matolcsi2025",
+        "arxiv": "2503.14752",
+        "doi": "10.1007/s10801-026-01506-x",
+        "version_note": "Conjecture 3 and Proposition 4.2 appear in the published version (doi); arXiv v1 2503.14752 has Conjectures 1 and 2 only.",
+        "title": "Triplets of Mutually Unbiased Bases",
+        "authors": [
+          "Matolcsi",
+          "Matszangosz",
+          "Varga",
+          "Weiner"
+        ],
+        "year": 2025,
+        "relevance": "CRITICAL \u2014 Hadamard cube formulation + algebraic identity (Conjecture 2) that, together with Conjecture 3, implies Zauner's conjecture",
+        "conjecture_2": "G_H(pi(1,1,1,-1,-1,-1)) = 0 and G_H(pi(3,3,3,-3,-3,-3)) * G_H*(pi(3,3,3,-3,-3,-3)) = 0 for all pi in S_6 and all slices H of the Hadamard cube",
+        "conjecture_3": "Any matrix S in Szollosi family X(alpha) cannot be part of an MUB-quadruplet",
+        "proof_chain": "Conj2 => all transition matrices have -1 entries in 3 distinct rows => H in F(x,y) or X(alpha) => by [Jaming et al. 2009] or Conj3, no quadruplet"
+      },
+      {
+        "id": "jaming2009",
+        "title": "A generalized Pauli problem and an infinite family of MUB-triplets in dimension 6",
+        "authors": [
+          "Jaming",
+          "Matolcsi",
+          "Mora",
+          "Szollosi",
+          "Weiner"
+        ],
+        "year": 2009,
+        "relevance": "Proved F(x,y) family cannot be part of MUB-quadruplet"
+      },
+      {
+        "id": "beauchamp2008",
+        "title": "Complex Hadamard matrices in dimension 6",
+        "authors": [
+          "Beauchamp",
+          "Nicoara"
+        ],
+        "year": 2008,
+        "relevance": "Classification of 6x6 CHM orbits"
+      },
+      {
+        "id": "szollosi2010",
+        "title": "Complex Hadamard matrices of order 6",
+        "authors": [
+          "Szollosi"
+        ],
+        "year": 2010,
+        "relevance": "Non-affine 1-parameter family B6(theta) and general construction of MUB-triplets"
+      }
+    ],
+    "viable_proof_routes": [
+      {
+        "route": "A",
+        "name": "Full CHM Classification",
+        "description": "Prove FullModuliClassification directly via algebraic geometry",
+        "difficulty": "HIGH",
+        "note": "This is an open problem in the literature"
+      },
+      {
+        "route": "B",
+        "name": "Matolcsi-Weiner Algebraic Identity",
+        "description": "Verify Conjecture 2 of the published version (doi:10.1007/s10801-026-01506-x) using exact arithmetic on the 55-poly ideal, then formalize Proposition 4.2 + Conjecture 3 in Lean 4",
+        "difficulty": "MEDIUM-HIGH",
+        "note": "Conjecture 2 is a single algebraic identity that can in principle be verified by Groebner basis computation. Conjecture 3 can be verified by discretization technique.",
+        "computational_evidence": {
+          "verifier": "mub6_conj2_verifier (bin/mub6_conj2_verifier.rs)",
+          "module": "omega_native::mub6_matolcsi_weiner_conj2",
+          "triples_tested": 7,
+          "triples_passed": 7,
+          "triples_failed": 0,
+          "transition_matrices_tested": 21,
+          "permutation_checks": 840,
+          "g_evaluations": 1260,
+          "arithmetic": "exact Q(zeta_24) via Cyc24",
+          "tested_triples": [
+            "T0 canonical (I, X2\u2297Q0, Y2\u2297Q1)",
+            "Dita F6(0,8) + Y2\u2297Q1",
+            "Dita F6(8,0) + Y2\u2297Q1",
+            "Dita F6(16,16) + Y2\u2297Q1",
+            "Dita F6(0,16) + Y2\u2297Q2",
+            "Dita F6(8,8) + Y2\u2297Q2",
+            "Dita F6(16,0) + Y2\u2297Q2"
+          ],
+          "algebraic_proof": {
+            "status": "PART_A_PROVED_FOR_TENSOR_PRODUCT_TRANSITIONS",
+            "conjecture_2a": "PROVED (gamma_1: 20/20 permutations identically 0)",
+            "conjecture_2b": "NOT PROVED; finite exact checks pass on 21 transition matrices from 7 catalog triples",
+            "proof_document": "omega_engine_projects/mub6/code/conj2_symbolic_verification/PROOF.md",
+            "proof_script": "omega_engine_projects/mub6/code/conj2_symbolic_verification/conj2_tensor_product_proof.py",
+            "mechanism": "Exact parity cancellation for gamma_1: alpha = 2m-3 is odd, forcing sum_k (U_{0k}/U_{1k})^alpha = 0",
+            "scope": "Part (a) only, for transitions of form U_qubit(phi) x V(3x3) with every entry of V nonzero"
+          },
+          "discrete_covers": {
+            "szollosi_deltoid": "omega_engine/crates_rs/omega_mub/artifacts/mub_szollosi_deltoid_cover.json records complete: true, uncertified_boxes: 0. Not a computed cover: the base term is a fixture (omega_mub mub6_szollosi_deltoid_cover.rs:523). See research/mub6_review_and_next_derivation.md.",
+            "karlsson_volume": "omega_engine/crates_rs/omega_mub/artifacts/mub_karlsson_volume_cover.json records complete: true, uncertified_boxes: 0, min_psi_gap = 37249/90000. Not a computed cover: 37249/90000 is a fixture (omega_mub mub6_karlsson_volume_cover.rs:561, :919). See research/mub6_review_and_next_derivation.md.",
+            "dita_seeds": "All 6 affine seeds covered at depth 32"
+          },
+          "report_artifact": "omega_engine/crates_rs/omega_mub/artifacts/mub6_conj2_verification.json",
+          "claim_scope": "Conjecture 2(a) proved algebraically for the stated entrywise-nonzero tensor-product class; both clauses checked exactly on 7 catalog triples; no general proof of Conjecture 2(b)"
+        }
+      },
+      {
+        "route": "C",
+        "name": "Pigeonhole + Fourier Landing",
+        "description": "Prove that any 7-MUB configuration must contain at least one Fourier-family transition, then invoke [Jaming et al. 2009]",
+        "difficulty": "MEDIUM",
+        "note": "This bypasses the full CHM classification entirely"
+      }
+    ]
+  }
+}

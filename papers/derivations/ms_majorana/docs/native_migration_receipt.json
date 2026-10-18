@@ -1,0 +1,703 @@
+{
+  "kind": "native_migration_verification",
+  "AuthorityEffect": "None",
+  "status": "PASS",
+  "recorded_at_utc": "2026-10-16T00:43:14.012105+00:00",
+  "branch": "codex/majorana-native-migration",
+  "base_commit": "c7165523102fc71cd6d038c27becc746c8695e8c",
+  "scope": "Declared finite computations in the entry points listed below; this is not a full-paper or full-workspace verification.",
+  "native_owners": [
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/exact_solve.py",
+      "owners": [
+        "linear_algebra::exact_field::elimination"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/family_bound.py",
+      "owners": [
+        "omega_functional::finite_family_bound"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/gf2_matrix.py",
+      "owners": [
+        "omega_number_theory::gf2"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/homological_perturbation.py",
+      "owners": [
+        "omega_homology::homological_perturbation",
+        "linear_algebra::exact_field"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/kitaev_chain_exact.py",
+      "owners": [
+        "omega_majorana::sparse_kitaev"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana/core/gf2_matrix.py",
+      "owners": [
+        "omega_number_theory::gf2"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana_braid_exact.py",
+      "owners": [
+        "omega_majorana::braid_action",
+        "linear_algebra::exact_field"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana_multiqubit_noise.py",
+      "owners": [
+        "omega_majorana::multiqubit_braid",
+        "omega_majorana::pauli_noise"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana_noise_sweep.py",
+      "owners": [
+        "omega_majorana::pauli_noise"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/qmatrix.py",
+      "owners": [
+        "linear_algebra::exact_field"
+      ]
+    },
+    {
+      "source": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/transfer.py",
+      "owners": [
+        "omega_functional::projection_transfer",
+        "linear_algebra::exact_field"
+      ]
+    }
+  ],
+  "process_boundary": "omega_engine_operating_system.adapters.rust_host.ffi.RustSymbolGameHost.invoke_runtime",
+  "python_role": "Input value/shape validation, data carriers, receipt formatting, and experiment orchestration; no solver fallback.",
+  "tools": {
+    "rustc": "1.99.0 (b940084d7 2026-09-28)",
+    "cargo": "1.99.0 (5f94df478 2026-08-27)",
+    "python": "3.12.14",
+    "pytest": "9.1.1"
+  },
+  "environment": {
+    "rust_toolchain_bin": "/workspace/.toolchains/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin",
+    "CARGO_HOME": "/workspace/.toolchains/cargo",
+    "python_executable": "/workspace/scratch/mub6-five-venv/bin/python",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+    "PYTHONPATH": "repository root; runtime site-packages also included for the noise suite",
+    "OMEGA_SYMBOL_GAME_HOST": "/workspace/the_symbol_game/omega_engine/crates_rs/target/debug/omega_symbol_game",
+    "cargo_jobs": 1,
+    "note": "Offline Cargo commands assume dependencies have already been fetched. Logs are local evidence; commands and summarized results are retained here for replay."
+  },
+  "build": {
+    "command": [
+      "cargo",
+      "build",
+      "-j",
+      "1",
+      "-p",
+      "omega_symbol_game",
+      "--bin",
+      "omega_symbol_game",
+      "--offline"
+    ],
+    "cwd": "omega_engine/crates_rs",
+    "exit_code": 0,
+    "output_source": "/workspace/scratch/majorana-migration-host-build.log",
+    "host_sha256": "7700208b9bdfd69f2ad8359bc2d477a21e73ea23fb53c7fd49123a5d77cfd071"
+  },
+  "rust_tests": [
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_majorana",
+        "--lib",
+        "braid_action",
+        "--offline",
+        "--",
+        "--nocapture"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "Codex tool transcript",
+      "transcript_chunk": "971242"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_majorana",
+        "--lib",
+        "sparse_kitaev",
+        "--offline",
+        "--",
+        "--nocapture"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "Codex tool transcript",
+      "transcript_chunk": "ed18db"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_majorana",
+        "--lib",
+        "pauli_noise",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-noise.log",
+      "output_sha256": "537c9a3612aaac1f32e4241694e180e1e7862907ef34cf66ed55b32770841786"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_majorana",
+        "--lib",
+        "multiqubit_braid",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-multiqubit.log",
+      "output_sha256": "de756484ab35559924e6e4c7836a60e4e2cd9d010056b6528ba737bed78a75bc"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_homology",
+        "--test",
+        "homological_perturbation",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 14,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-hpt-tests.log",
+      "output_sha256": "9750f7e917b5e6740056f18ae87c69d43d0cbd21cd66f3a31922c6ca37d377c4",
+      "output_note": "Original Cargo exit0; retained stdout is a successful replay of the same compiled test binary."
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_functional",
+        "--lib",
+        "projection_transfer",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-functional-transfer.log",
+      "output_sha256": "63b2c09e16423520c59fe457855765ad88cfd6155c5cfd90f8320e997d1fd2f9"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_functional",
+        "--lib",
+        "finite_family_bound",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-functional-family.log",
+      "output_sha256": "78344baec142c6de51c4fd53d1663b53e4bd2176e23f703c6c138d115f698ad2"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_ooutwire_primitives",
+        "--lib",
+        "alpha_projection_obstruction::transfer",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-ooutwire-transfer.log",
+      "output_sha256": "d8363e3712eb42eb6cea37fcb7f9eb9b57b28cf17ef3dd719514504169d74309"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_ooutwire_primitives",
+        "--lib",
+        "alpha_projection_obstruction::family_bound",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-ooutwire-family.log",
+      "output_sha256": "9ccebfa84438a0aada87b48c78cd190af45da79a0fd6c604c3393cc3df511fba"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_number_theory",
+        "--lib",
+        "gf2::inverse_tests",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-gf2.log",
+      "output_sha256": "bb28ae39bd06dd854856d68f91c59c2a3ab1761e85361d555dcb4f9aa1aa7fc7"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_symbol_game",
+        "--lib",
+        "invoke::native_",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 14,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-runtime-math.log",
+      "output_sha256": "c9063b368a65847afb6e4a84b544f72c5f31eede298e9ed21d3ad04c69baf2b2"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-j",
+        "1",
+        "-p",
+        "omega_symbol_game",
+        "--lib",
+        "invoke::majorana_math",
+        "--offline"
+      ],
+      "cwd": "omega_engine/crates_rs",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0,
+      "output_source": "/workspace/scratch/majorana-migration-runtime-majorana.log",
+      "output_sha256": "ef634ae912c7d92c833508e5a166635fdbf9ba35f2365d63713130fbcdb3f46a"
+    }
+  ],
+  "python_tests": [
+    {
+      "scope": "Native helper, exact rational/GF(2) adapters, and HPT regressions",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp=/workspace/scratch/majorana-live-math-gf2-strict",
+        "omega_engine_operating_system/tests/test_majorana_math_adapter.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/test_native_math_adapters.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_homological_perturbation.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "passed": 41,
+      "failed": 0,
+      "output_source": "/workspace/scratch/majorana-live-math-gf2-strict.log",
+      "output_sha256": "8876c9830608f9c64826246c16b2934e04138061819f176caaad11a1cf8ba140"
+    },
+    {
+      "scope": "Braid/Kitaev regressions and boundary contracts",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp=/tmp/majorana-native-adapter-tests-20261016",
+        "-q",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_majorana_braid_exact.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_kitaev_chain_exact.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_native_majorana_boundary.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "passed": 82,
+      "failed": 0,
+      "output_source": "/workspace/scratch/majorana-native-braid-kitaev-tests.log",
+      "output_sha256": "4bed8cc624113743771e380f4fea7f09ec8586d03d46684c5c3a9889a2038305"
+    },
+    {
+      "scope": "Multiqubit/noise regressions and boundary contracts",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp=/tmp/majorana-noise-native-20261016-b",
+        "-o",
+        "addopts=",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_majorana_multiqubit_noise.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_majorana_noise_sweep.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_majorana_native_noise_delegation.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "passed": 71,
+      "failed": 0,
+      "output_source": "/workspace/scratch/majorana-noise-native-20261016-b.log",
+      "output_sha256": "b2b2e43488b54f576f4eb6cba9450fa81bcc4d5c8e4e318f934f8b498c05d99d"
+    },
+    {
+      "scope": "Functional delegation contracts and actual-host fixtures",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp=/workspace/scratch/functional-native-tests-20261016-2",
+        "--confcutdir=omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/native",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_native_functional_delegation.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/native/test_functional_native.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "passed": 15,
+      "failed": 0,
+      "output_source": "/workspace/scratch/functional-native-tests-20261016-2.log",
+      "output_sha256": "eb2262603ccefbe9e678a22a6846d23da64d1411b0e93909b67848607d7eaca4"
+    }
+  ],
+  "totals": {
+    "rust_passed": 78,
+    "python_passed": 209,
+    "failed": 0
+  },
+  "python_test_note": "These targeted suites include actual compiled-host integration and mocked boundary/refusal contracts. Counts are distinct cases across the listed files, not repetitions of earlier runs.",
+  "checks": {
+    "rustfmt": {
+      "exit_code": 0,
+      "files": 21,
+      "options": [
+        "--edition",
+        "2021",
+        "--check",
+        "--config",
+        "skip_children=true,reorder_modules=false"
+      ]
+    },
+    "ruff": {
+      "exit_code": 0,
+      "select": [
+        "F401",
+        "F841",
+        "I"
+      ],
+      "scope": "changed Python files"
+    },
+    "git_diff_check": {
+      "exit_code": 0,
+      "scope": "migration files"
+    },
+    "unrelated_changes_preserved": {
+      "files": 183,
+      "sha256_mismatches": 0
+    }
+  },
+  "limits": {
+    "wire_dense_matrix_dimension": 256,
+    "wire_braid_steps": 4096,
+    "functional_members_rates_or_vector_entries": 4096,
+    "wire_rational_string_bytes": 4096,
+    "note": "Individual Rust APIs declare additional dimension and work limits."
+  },
+  "compatibility_and_fixes": [
+    "Preserved braid row-action convention, seeded draw order, exact threshold comparisons, and general rational noise transforms.",
+    "Kitaev commutator_with_mode retains the historical real generator i[H,gamma] convention.",
+    "HPT now requires valid source/target differentials, chain maps, and all normalized side conditions; bypass flags cannot disable verification.",
+    "Contraction hashes bind target differentials and Python receipt digests retain complete native outcomes.",
+    "Zero noise scale yields exact zero; negative scales/tolerances refuse.",
+    "Inverse flags reject truthiness aliases; GF(2) normalization rejects approximate and boolean numeric inputs.",
+    "Updated two moved governance include paths so the canonical host builds from this main snapshot."
+  ],
+  "remaining_scope": [
+    "Evaluator orchestration and diagnostics outside the mapped entry points",
+    "Lefschetz programs",
+    "Graph/residual programs",
+    "Replica programs",
+    "Presentation programs"
+  ],
+  "source_hash_scope": "Current migration files excluding this receipt; paths use ordinal UTF-8 ordering.",
+  "source_sha256": [
+    {
+      "path": "omega_engine/crates_rs/Cargo.lock",
+      "sha256": "9399a35e2bbd5e67fa98d2a0679b6b76d92eccbaacd72323661faa35b56a7b26"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_functional/src/finite_family_bound.rs",
+      "sha256": "08aabd9012fad48893050e4508e35275f4e2b0a6af8c77b3ad4650535fc8ce9a"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_functional/src/lib.rs",
+      "sha256": "5ff8063b1571811f4971bc0b9fae0d7a85bf60b729bdbf46dc5a6c5064fb6177"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_functional/src/projection_transfer.rs",
+      "sha256": "022e4d48e4ae5d8d19d7049e5ca3a5450def16ed1f0611c7559fe41afe68a7ff"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_homology/Cargo.toml",
+      "sha256": "c38a8ea50a7b055728be53121eb12d8f84c591cdb1166e2b975eeda2f1d64530"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_homology/src/homological_perturbation.rs",
+      "sha256": "6c595c5c75c875a72c72c335a540d890cab0d2e8a08b1e23d2f28a361e4ff037"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_homology/src/lib.rs",
+      "sha256": "7464ce1057a473a006ab4acb952d00591a95ed81580f836190e598f754467f4e"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_majorana/src/braid_action.rs",
+      "sha256": "1b7c2cd7ceab34b5469ff5c845df196616728cb6fde1cd431846880fc1eea693"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_majorana/src/lib.rs",
+      "sha256": "d76474906a0e91a5623f0169803bc4c3c6d209c2a539042fe993064586dc3aef"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_majorana/src/multiqubit_braid.rs",
+      "sha256": "6221627162c309f9e14085af972668244522697e04873329ac34d23b8624ba46"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_majorana/src/pauli_noise.rs",
+      "sha256": "4bc210afa499ab60fdcd5eb636ce7cf22e4c967056cdbaf9335b2d773bb0b0aa"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_majorana/src/sparse_kitaev.rs",
+      "sha256": "fd95f89f8d486ea15c36b735059ce321e11b57e137808553fcfc7eb1edc6d785"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_number_theory/src/gf2.rs",
+      "sha256": "d61c47c9c3b9842629d73f42359f86e2fe49a8d0189f95f1ac5fe7a95545f452"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_ooutwire_primitives/Cargo.toml",
+      "sha256": "83eb77b50411d14f5d74dcaf79192b3892b8dbd56d986c423ac78ca96fff5324"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/family_bound.rs",
+      "sha256": "3e608e9c3add86d676f4f8f8a4ceffad02a0123672fbcc36659e4d4d2abaf446"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_ooutwire_primitives/src/alpha_projection_obstruction/transfer.rs",
+      "sha256": "ac72a4bffbaa33aa28b4f462fdc8d2b6a18c740b7b8ae66dc3a45acaf94c9185"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_symbol_game/Cargo.toml",
+      "sha256": "e91d7572c961c561f703b0b5f69acaa1676ebab3c2b002f0ed7704f1f822c1c8"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_symbol_game/src/glyph_trajectory.rs",
+      "sha256": "12de5162ce79145fa82cce1592f14f502f169593302073ef4058db560dd52658"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_symbol_game/src/invoke.rs",
+      "sha256": "1e7ea119cec6b03140ab6c06ea529efc36cfc212045d41804021beff8b70ae91"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_symbol_game/src/invoke/majorana_math.rs",
+      "sha256": "81d0509218b54a417b98ad35c6f432a031c565998e38de6e7e42baacdeacfa9a"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_symbol_game/src/invoke/native_functional.rs",
+      "sha256": "f4a67f587afdddf38e6131ab2589a6b48f918f61f5e9046a3ef2da101ac1fd8b"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_symbol_game/src/invoke/native_homology.rs",
+      "sha256": "0ce70223481298a827bd568cb4651b07c456dcf0e333caf04e9a90ab716a7bf3"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_symbol_game/src/invoke/native_matrix.rs",
+      "sha256": "993ce85fd42585188c4cda13f4cdec109863e7bed9a7ed7884abd6c9f90449e4"
+    },
+    {
+      "path": "omega_engine/crates_rs/omega_symbol_game/src/woland_custody.rs",
+      "sha256": "5076250824f3104097f73b92516f5d3a4aac01163c20708d7aac0ad47252a65f"
+    },
+    {
+      "path": "omega_engine/crates_rs/tests/omega_homology/homological_perturbation.rs",
+      "sha256": "707d86bec0aa6e6c1ea65320ee0a7a32883c151b693b0344310ac631f7b9d1a9"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/README.md",
+      "sha256": "07513037313ef82038a0d72ebcf9e937e0ce8bbe831c1c69c4112a0e70e21857"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/exact_solve.py",
+      "sha256": "7f3ce8cffacb09313163674e8964b8d1914a8f43dc193e9dcb23c47e789d230c"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/family_bound.py",
+      "sha256": "1811e1eb51deba1de38bd7d1450180216b97c17e134b5840c219927371b8a1a0"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/gf2_matrix.py",
+      "sha256": "38b030b38f629102c3e512ed92f11f8bf89daf21d0b6848da6921815b111405c"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/homological_perturbation.py",
+      "sha256": "191879de328cff59b25ecef6fe45eb5477254ed48f8901f8b4f4849b99c23a5f"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/kitaev_chain_exact.py",
+      "sha256": "c9833a4ec1b61372b4e150c4c83ea82d41b49f24edebc50d643c98f80b2fc379"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana/core/gf2_matrix.py",
+      "sha256": "0dca3bcf607bccaefad7ebc90c0ebdba8e79a12bdfd7b9117123c4ee741004bc"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana/core/gf2_schema.py",
+      "sha256": "89ec95e8e3edccdb292ba7cd1c957b0f61a1ee324edfcd1f255586f29675f4a4"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana_braid_exact.py",
+      "sha256": "eb6ff36d986368e04c90389fb321c34b25eb1c53b3847b340d3dad21f8733730"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana_multiqubit_noise.py",
+      "sha256": "4d69d964c8b1c8b6497dce442ef2eedfcee2f661d581f5799cdd864ea2f80961"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana_noise_sweep.py",
+      "sha256": "3a71b1a21e47ab40d96071c046263ff1bf2a9985d6de28abe9561f663c686ed1"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/native_exact_input.py",
+      "sha256": "aada70cf25ccf071707cb842f02c0948f2e8b0af243d8ee828301ffb60b2ace1"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/qmatrix.py",
+      "sha256": "69070eb3a61a6a73236deb3936140745428bb32b4f86e376f87eb8ec995af0ff"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/native/test_functional_native.py",
+      "sha256": "2f12c19278738031fb9710b41d9b9692a022dbe27145983a1fd5717121dcae89"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/test_native_math_adapters.py",
+      "sha256": "764e6c28e099126642f0fadf906c3c278f3f73fd6ceff2d33178d27cc96a167d"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_homological_perturbation.py",
+      "sha256": "94d1d76d513ad8b1ca004e449de12e6ceb1625cac1d3b85846d5f8542ef115c8"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_majorana_native_noise_delegation.py",
+      "sha256": "a24ce6eb608c95c7a3521a5eb288655049de1b69a3e5f80c459fe81bdd2fc87d"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_native_functional_delegation.py",
+      "sha256": "0b54a5c0410e88cea36a18ac887f000b8ad22eec0048a897c689895bc6201706"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/tests/unit/test_native_majorana_boundary.py",
+      "sha256": "201c11487918d896831356e86ebb51c777719cfec1a84b151fbde7102877dd1f"
+    },
+    {
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/transfer.py",
+      "sha256": "7f78c324650ae3446a4141704223757a79fb396d59b354be9c5dffa96031cbf3"
+    },
+    {
+      "path": "omega_engine_operating_system/adapters/rust_host/majorana_math.py",
+      "sha256": "835a84549b3682ad7b93297666941ece43819ac164a8ad36e5de76356765c5fc"
+    },
+    {
+      "path": "omega_engine_operating_system/tests/test_majorana_math_adapter.py",
+      "sha256": "e134da9a9ae3f639ccbda2d7099e4b60262dde0b1bc70fbcea9fb2781e4680bf"
+    }
+  ],
+  "pending_host_actions": {
+    "note": "Ownership alignment on 2026-10-17. The GF(2) schedule, tetron report, LGGR witness, and repair-capacity helper are owned by omega_majorana modules classify, tetron, lggr, and repair_capacity. majorana_gf2_diagnostic is dispatched from omega_engine/crates_rs/omega_symbol_game/src/invoke/majorana_math.rs. Paper Python calls it from code/majorana/core/gf2_diagnostic.py and code/majorana_evaluator.py. TypedHarmonic stays the crate terminal. The evaluator trichotomy reports that class as ClosedResidual and keeps native_terminal. TetronCarrier.code_distance is the declared label, not a measured distance. Float phenomenological probes in majorana_evaluator.py stay Python and are not crate theorems. Manuscript text unchanged. AuthorityEffect: None. Pass counts above are prior receipt output and were not refreshed for this note.",
+    "majorana_gf2_diagnostic_present": true,
+    "intended_owner": "omega_majorana::{classify, tetron, lggr, repair_capacity}"
+  }
+}

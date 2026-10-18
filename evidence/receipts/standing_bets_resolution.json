@@ -1,0 +1,196 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "band": "Band F (Steps 47-50)",
+  "resolving_step": 47,
+  "standing_bets": {
+    "BET-JC-001": {
+      "bettor": "Jeremy H. Carroll",
+      "sealed_sha256": "b44181a9c9e0a95d2eeb093e581d44424170b5e7c04d6fc0041d0114f1b30060",
+      "verified_sha256": "b44181a9c9e0a95d2eeb093e581d44424170b5e7c04d6fc0041d0114f1b30060",
+      "hash_match": true,
+      "verdict": "REVIEWED_MIXED_OPEN",
+      "clause_evaluations": [
+        {
+          "clause": 1,
+          "title": "Cyclotomic Carrier Sufficiency",
+          "prediction": "Every amplitude, unitary and effect in the 22 targets lives in Q(zeta_n). Q^ab = colim_n Q(zeta_n) suffices as scalar carrier.",
+          "status": "OPEN",
+          "evidence": [
+            "apps/finite_qm/evidence/carrier_inventory.json",
+            "apps/finite_qm/lean4/H052CyclotomicTowerDirected.lean",
+            "apps/finite_qm/code/cyclotomic_tower.py",
+            "apps/finite_qm/code_rs/src/tower.rs"
+          ],
+          "findings": "Declared conductor labels have LCM 120; no bridge covers every target amplitude or constructs a field colimit.",
+          "historical_status": "HIT",
+          "historical_findings": "All 22 targets live in Q(zeta_n) with n dividing 120. Tower directedness proved in Lean 4 with 0 sorry."
+        },
+        {
+          "clause": 2,
+          "title": "Conductor Bound n* | 240 and n* <= 5040",
+          "prediction": "Single conductor n* carrying all 22 targets with n* <= 5040 and n* | 240.",
+          "status": "OPEN",
+          "evidence": [
+            "apps/finite_qm/evidence/carrier_inventory.json",
+            "apps/finite_qm/code_rs/src/tower.rs"
+          ],
+          "findings": "120 divides 240, but minimality for actual target objects has not been proved.",
+          "historical_status": "HIT",
+          "historical_findings": "Exact minimal conductor for all 22 targets combined is n* = lcm(1,2,3,4,5,8,12) = 120. 120 <= 5040 and 120 | 240."
+        },
+        {
+          "clause": 3,
+          "title": "Everett as Quotient Fiber Forking",
+          "prediction": "Branch structure is quotient fiber in 060_superposition_as_the_quotient_fiber. Reproduces Sorkin I_3 = 0 and CHSH S = 14/5.",
+          "status": "SCOPED_EVIDENCE",
+          "evidence": [
+            "apps/finite_qm/evidence/everett_measure_decoupling.json",
+            "apps/finite_qm/lean4/H053EverettForkingTree.lean",
+            "apps/finite_qm/code/everett_tree.py",
+            "apps/finite_qm/code_rs/src/everett.rs"
+          ],
+          "findings": "Finite Sorkin/CHSH/parity fixtures hold under declared weights; repository quotient-fiber transport is not proved.",
+          "historical_status": "HIT",
+          "historical_findings": "Forking tree formalized in Lean 4. Sorkin I_3 = 0 verified exact. CHSH S = 14/5 = 2.8 verified exact."
+        },
+        {
+          "clause": 4,
+          "title": "Born Weights in Q(zeta_n)^+",
+          "prediction": "Born weights on a finite forking path are recovered as cyclotomic branch weights in Q(zeta_n)^+ and NOT raw branch counts.",
+          "status": "SCOPED_EVIDENCE",
+          "evidence": [
+            "apps/finite_qm/evidence/everett_measure_decoupling.json",
+            "apps/finite_qm/code/cyclotomic_tower.py",
+            "apps/finite_qm/code_rs/src/tower.rs"
+          ],
+          "findings": "Norm-conjugation identities and nonuniform finite examples hold under a declared measure; the measure is not derived.",
+          "historical_status": "HIT",
+          "historical_findings": "Born weights psi * conj(psi) land in real subfield Q(zeta_n)^+. Measure Decoupling Theorem shows in this model mu_count != mu_Born for non-uniform branches."
+        },
+        {
+          "clause": 5,
+          "title": "Continuum Terminus Scope",
+          "prediction": "The continuum enters only through completion for infinite dimensions and genuinely continuous time; neither is required by the 22 targets.",
+          "status": "OPEN",
+          "evidence": [
+            "apps/finite_qm/evidence/continuum_lift_boundary.json",
+            "apps/finite_qm/lean4/H056ContinuumLiftBoundary.lean",
+            "apps/finite_qm/code/continuum_lift.py"
+          ],
+          "findings": "Finite examples do not establish an exclusive necessity/completion theorem for all targets.",
+          "historical_status": "HIT",
+          "historical_findings": "All 22 targets execute in finite dimensions without continuous time. (Deepened by BET-CLAUDE-001: completion is also required for Born uniqueness)."
+        }
+      ],
+      "historical_verdict": "RESOLVED_HIT",
+      "hash_match_scope": "PLAINTEXT_IDENTITY_ONLY_NOT_PREDICTION_PROOF"
+    },
+    "BET-CLAUDE-001": {
+      "bettor": "Claude Opus 5",
+      "sealed_sha256": "43d90556530beabf6935f75c1c87479058dfb0307c5547e31028d06dba3507b7",
+      "verified_sha256": "43d90556530beabf6935f75c1c87479058dfb0307c5547e31028d06dba3507b7",
+      "hash_match": true,
+      "verdict": "REVIEWED_MIXED_OPEN",
+      "clause_evaluations": [
+        {
+          "clause": 1,
+          "title": "Conductor Specific Prediction",
+          "prediction": "n* | 240, and most likely n* = 24 or n* = 120.",
+          "status": "OPEN",
+          "evidence": [
+            "apps/finite_qm/evidence/carrier_inventory.json"
+          ],
+          "findings": "120 is the LCM of declared labels, not a proved minimal universal field.",
+          "historical_status": "HIT",
+          "historical_findings": "n* is exactly 120, precisely matching Claude's specific prediction."
+        },
+        {
+          "clause": 2,
+          "title": "Branch Counting Non-Contextual Death",
+          "prediction": "Raw branch counting is non-contextual; cannot give S = 14/5 because CHSH > 2 is contextual. Everett needs weighted branches.",
+          "status": "SCOPED_EVIDENCE",
+          "evidence": [
+            "apps/finite_qm/evidence/everett_measure_decoupling.json",
+            "apps/finite_qm/code/everett_tree.py",
+            "apps/finite_qm/code_rs/src/everett.rs"
+          ],
+          "findings": "Finite deterministic local CHSH assignments and Cabello parity are checked; arbitrary branch-counting models are not classified.",
+          "historical_status": "HIT",
+          "historical_findings": "Cabello 18-ray parity (9 != 2k) and CHSH S = 14/5 > 2 prove that raw branch counting fails to produce quantum contextual correlations."
+        },
+        {
+          "clause": 3,
+          "title": "Gleason Obstruction & Connectedness Failure",
+          "prediction": "Gleason does not port. Non-Bornian frame functions exist on Q(zeta_n)-sphere. Q(zeta_n)-sphere is totally disconnected.",
+          "status": "OPEN",
+          "evidence": [
+            "apps/finite_qm/evidence/gleason_cyclotomic_obstruction.json",
+            "apps/finite_qm/lean4/H054GleasonCyclotomicObstruction.lean",
+            "apps/finite_qm/code/gleason_cyclotomic.py",
+            "apps/finite_qm/code_rs/src/gleason.rs"
+          ],
+          "findings": "Finite Cabello/Peres evidence does not construct non-Bornian functions on the dense cyclotomic sphere.",
+          "historical_status": "CONDITIONAL_HIT",
+          "historical_findings": "Explicit non-PSD matrix M on Cabello 18 rays in d=4 over Q(zeta_12) satisfies all frame sum conditions with negative non-declared expectation. The norm-25 integer lattice sphere is disconnected by parity and discriminant cuts; however, the formalization is on integer triples in Z^3 and does not formalize the dense cyclotomic sphere topology or construct non-Bornian frame functions on dense Q(zeta_n)^3.",
+          "note": "2026-09-06: Historical conditional status is mapped strictly to OPEN per governance repair F1."
+        },
+        {
+          "clause": 4,
+          "title": "Named Sub-Outcomes for Gleason Failure",
+          "prediction": "Accepted HIT if explicit non-Bornian frame function demonstrated, or proof that Gleason fails at connectedness step.",
+          "status": "OPEN",
+          "evidence": [
+            "apps/finite_qm/evidence/gleason_cyclotomic_obstruction.json",
+            "apps/finite_qm/lean4/H054GleasonCyclotomicObstruction.lean"
+          ],
+          "findings": "Neither proposed dense-sphere sub-outcome is proved by a norm-25 integer partition.",
+          "historical_status": "CONDITIONAL_HIT",
+          "historical_findings": "Finite ray contextuality defect (sub-outcome a) is confirmed on Cabello 18 rays. Sub-outcome (b) is supported for the discrete integer lattice sphere, but dense cyclotomic sphere Gleason remains open conditional (GAP-F001-S000-004).",
+          "note": "2026-09-06: Historical conditional status is mapped strictly to OPEN per governance repair F1."
+        },
+        {
+          "clause": 5,
+          "title": "GAP Disposition: REFUSED-DERIVABLE vs OPEN (CONDITIONAL)",
+          "prediction": "GAP-F001-S000-004 and GAP-F001-S000-010 close as REFUSED-DERIVABLE. Born rule is imported at every dimension.",
+          "status": "MISS",
+          "evidence": [
+            "apps/finite_qm/claims/gap_register.yaml",
+            "apps/finite_qm/evidence/gleason_cyclotomic_obstruction.json"
+          ],
+          "findings": "Prediction is not met: GAP-F001-S000-004 and GAP-F001-S000-010 both remain OPEN (CONDITIONAL), not REFUSED-DERIVABLE.",
+          "historical_status": "CONDITIONAL_HIT",
+          "historical_findings": "GAP-F001-S000-010 resolves as REFUSED-DERIVABLE (continuum import required), whereas GAP-F001-S000-004 remains OPEN (CONDITIONAL) because candidate non-standard frame functions on d=3 are generated by valid quantum density matrices. Born rule is declared at every dimension.",
+          "note": "2026-09-06: Historical conditional status is mapped strictly to OPEN per governance repair F1."
+        },
+        {
+          "clause": 6,
+          "title": "Dynamics Wall Softer than Probability Wall",
+          "prediction": "Stone (GAP-F001-S000-008) is recoverable in weaker form (discrete steps generate algebraic 1-parameter subgroup); probability wall is the true obstacle.",
+          "status": "SCOPED_EVIDENCE",
+          "evidence": [
+            "apps/finite_qm/evidence/discrete_dynamics_stone.json",
+            "apps/finite_qm/lean4/H055DiscreteDynamicsStone.lean",
+            "apps/finite_qm/code/discrete_dynamics.py",
+            "apps/finite_qm/code_rs/src/dynamics.rs"
+          ],
+          "findings": "Exact finite Cayley identities hold. Integer-labelled Lean records are not continuous generators; comparative probability-wall necessity is open.",
+          "historical_status": "HIT",
+          "historical_findings": "Cayley rational dynamics cay_tau(H) provide exact unitary transitions over Q(i) with abelian composition. Probability wall (Gleason disconnectedness) is absolute, while dynamics admit exact discrete steps."
+        }
+      ],
+      "historical_verdict": "RESOLVED_HIT (CONDITIONAL)",
+      "historical_verdict_note": "2026-09-06: Historical conditional verdict is mapped strictly to OPEN per governance repair F1.",
+      "hash_match_scope": "PLAINTEXT_IDENTITY_ONLY_NOT_PREDICTION_PROOF"
+    }
+  },
+  "terminal_consensus": {
+    "verdict": "FINITE_COMPUTATIONS_AND_SCOPED_LEAN_THEOREMS; MINIMAL_CARRIER_AND_DENSE_SPHERE_GLEASON_OPEN",
+    "authority_effect": "None"
+  },
+  "historical_terminal_consensus": {
+    "verdict": "The cyclotomic tower Q^ab = colim_n Q(zeta_n) with n* = 120 carries all algebra, kinematics, and discrete dynamics across all 22 foundational targets with zero floating-point drift. However, the uniqueness of the Born rule requires continuous sphere topology S^(d-1) and cannot be derived algebraically from finite frame additivity. The honest terminal claim of finite quantum mechanics is: 'Algebra derived, Born declared; the wall is probability, not dynamics.'"
+  },
+  "review_source": "PR #205 review of 516e14b61f9c292d52f66ce1d9d07e4bd7ab033b",
+  "historical_fields_are_not_current_claims": true
+}

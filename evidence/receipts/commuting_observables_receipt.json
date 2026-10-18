@@ -1,0 +1,307 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "campaign": "C1000",
+  "block": 8,
+  "global_targets": "C1000-T976..C1000-T1000",
+  "carrier": "Q1 (Herm_4(Q(i)))",
+  "c1_witness": {
+    "poset": {
+      "n": 3,
+      "strict_relations": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    "spacelike_pairs": [
+      [
+        1,
+        2
+      ]
+    ],
+    "assignment": {
+      "factor_labels": {
+        "0": 1,
+        "1": 1,
+        "2": 2
+      },
+      "observables": {
+        "0": [
+          [
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0",
+            "0"
+          ]
+        ],
+        "1": [
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "-1"
+          ]
+        ],
+        "2": [
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "-1"
+          ]
+        ]
+      }
+    },
+    "independent_verification": {
+      "verified": true,
+      "n": 3,
+      "spacelike_pairs_checked": 1,
+      "reason": "Independent verification passed: Hermitian, non-scalar, commuting on all spacelike pairs, distinct MASAs"
+    },
+    "commuting_assignment_exists": true
+  },
+  "c2_witness": {
+    "poset": {
+      "n": 4,
+      "strict_relations": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "spacelike_pairs": [
+      [
+        1,
+        2
+      ]
+    ],
+    "assignment": {
+      "factor_labels": {
+        "0": 1,
+        "1": 1,
+        "2": 2,
+        "3": 2
+      },
+      "observables": {
+        "0": [
+          [
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0",
+            "0"
+          ]
+        ],
+        "1": [
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "-1"
+          ]
+        ],
+        "2": [
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "-1"
+          ]
+        ],
+        "3": [
+          [
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "0"
+          ]
+        ]
+      }
+    },
+    "independent_verification": {
+      "verified": true,
+      "n": 4,
+      "spacelike_pairs_checked": 1,
+      "reason": "Independent verification passed: Hermitian, non-scalar, commuting on all spacelike pairs, distinct MASAs"
+    },
+    "commuting_assignment_exists": true
+  },
+  "obstructed_witness": {
+    "name": "3-element antichain (C3)",
+    "poset": {
+      "n": 3,
+      "strict_relations": []
+    },
+    "incomparability_graph": "K_3 (odd 3-cycle)",
+    "chromatic_number": 3,
+    "available_tensor_factors": 2,
+    "obstruction_mechanism": "Odd cycle cannot be 2-colored; Pigeonhole Principle forces two incomparable events onto the same qubit factor where commuting non-scalar observables generate identical MASAs, violating non-degeneracy"
+  },
+  "general_criterion": {
+    "statement": "An assignment of non-degenerate pairwise-commuting observables over Q1's two tensor factors exists if and only if the incomparability graph is bipartite (contains no odd cycles).",
+    "status": "PROVED_BOTH_DIRECTIONS",
+    "forward_direction": "Odd cycle implies chromatic number >= 3, requiring >= 3 tensor factors; 2 factors force collision on a single factor violating non-degeneracy.",
+    "reverse_direction": "Bipartite graph admits 2-coloring; assigning factor 1 to color 1 and factor 2 to color 2 places all spacelike edges between distinct tensor factors, satisfying microcausality and non-degeneracy."
+  },
+  "census_search": {
+    "posets_searched": 21,
+    "smallest_obstructed_poset_size": 3,
+    "obstructed_poset_found": true,
+    "odd_cycle_analysed": true,
+    "non_degeneracy_enforced": true,
+    "degenerate_assignments_rejected": 2664,
+    "total_obstructed": 7,
+    "total_admitted": 14
+  },
+  "compatibility_verdict": "OBSTRUCTED",
+  "terminal_outcome": "FINITE_MICROCAUSALITY_CRITERION_AT_SCOPE",
+  "haag_axioms_claimed": false
+}

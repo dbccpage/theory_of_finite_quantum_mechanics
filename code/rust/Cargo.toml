@@ -1,0 +1,40 @@
+[package]
+name = "theory_of_finite_qm"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Sovereign exact rational algebraic certifiers for the Theory of Finite Quantum Mechanics"
+
+[dependencies]
+num-rational = { version = "0.4", features = ["serde"] }
+num-bigint = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+num-integer = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["arbitrary_precision", "raw_value"] }
+thiserror = "2"
+blake3 = "1.5"
+hex = "0.4"
+
+omega_policy = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_policy" }
+omega_functional = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_functional" }
+omega_solvers = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_solvers" }
+omega_kernel = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_kernel" }
+omega_combinatorics = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_combinatorics" }
+omega_lie_theory = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_lie_theory" }
+omega_general_relativity = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_general_relativity" }
+omega_engines = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_engines" }
+omega_quantum_physics = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_quantum_physics" }
+omega_number_theory = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_number_theory" }
+omega_holonomy = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_holonomy" }
+
+[[bin]]
+name = "finite_cli"
+path = "src/bin/finite_cli.rs"
+
+[[bin]]
+name = "entropy_cli"
+path = "src/bin/entropy_cli.rs"
+
+[dev-dependencies]
+omega_types = { path = "../../../the_symbol_game/omega_engine/crates_rs/omega_types" }
