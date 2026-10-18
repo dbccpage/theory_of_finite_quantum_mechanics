@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: PG-WDP-GROWTH-NO-REPAIR]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: PG-WDP-GROWTH-NO-REPAIR | Stage: WDP | DAG Status: PROVED_LEAN
-  Operad Family: OP-WDP-PG-WDP-GROWTH-NO-REPAIR
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Q and Z (WDP degree-1 cochain window C0 -> C1 -> C2 with d1 d0 = 0)
-  - Carrier: WDP finite carrier for PG-WDP-GROWTH-NO-REPAIR: Restricting to a subcomplex never raises Phi1; attaching 2-simplices leaves Phi1 unchanged while possibly rais
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=660, (1->2) du=-1980, (2->3) du=2310; chord (0->3) measured_omega=-330.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 660, v_2 = v_1 + (-1980), v_3 = v_2 + (2310).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-330 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(PG-WDP-GROWTH-NO-REPAIR): 4*idx(66) + 3*stage_rank(4) + route_degree(2) == 278
-    Evaluate finite_shadow_witness_int = 4 * 66 + 3 * 4 + 2 (which equals 278).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(PG-WDP-GROWTH-NO-REPAIR): R_raw(152) - G_cob(74) - S_decoy(4) == 74 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=74 and boundary sign double-count S_decoy=4 (do NOT report unreduced R_raw=152 or partial 78):
-    Evaluate countermodel_witness_int = (152) - (74) - 4 (which equals 74).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 0 items [].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 0 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "PG-WDP-GROWTH-NO-REPAIR", stage = "WDP", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-WDP-PG-WDP-GROWTH-NO-REPAIR"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.wdp_two_simplex_attachment_preserves_phi1"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: PG-WDP-GROWTH-NO-REPAIR]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: PG-WDP-GROWTH-NO-REPAIR | Stage: WDP | DAG Status: PROVED_LEAN\nOperad Family: OP-WDP-PG-WDP-GROWTH-NO-REPAIR\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Q and Z (WDP degree-1 cochain window C0 -> C1 -> C2 with d1 d0 = 0)\n- Carrier: WDP finite carrier for PG-WDP-GROWTH-NO-REPAIR: Restricting to a subcomplex never raises Phi1; attaching 2-simplices leaves Phi1 unchanged while possibly rais\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=660, (1->2) du=-1980, (2->3) du=2310; chord (0->3) measured_omega=-330.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 660, v_2 = v_1 + (-1980), v_3 = v_2 + (2310).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-330 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(PG-WDP-GROWTH-NO-REPAIR): 4*idx(66) + 3*stage_rank(4) + route_degree(2) == 278\n  Evaluate finite_shadow_witness_int = 4 * 66 + 3 * 4 + 2 (which equals 278).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(PG-WDP-GROWTH-NO-REPAIR): R_raw(152) - G_cob(74) - S_decoy(4) == 74 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=74 and boundary sign double-count S_decoy=4 (do NOT report unreduced R_raw=152 or partial 78):\n  Evaluate countermodel_witness_int = (152) - (74) - 4 (which equals 74).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 0 items [].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 0 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"PG-WDP-GROWTH-NO-REPAIR\", stage = \"WDP\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-WDP-PG-WDP-GROWTH-NO-REPAIR\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.wdp_two_simplex_attachment_preserves_phi1\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-OPERATOR-LIFT-TRACE-EMBED-013]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: L1-OPERATOR-LIFT-TRACE-EMBED-013 | Stage: L1_TO_L2 | DAG Status: PROVED_LEAN
-  Operad Family: OP-L1_TO_L2-L1-OPERATOR-LIFT-TRACE-EMBED-013
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i] and Q (L1-to-L2 signed-sqrt lift, Born normalization & phase-blind fiber)
-  - Carrier: L1_TO_L2 finite carrier for L1-OPERATOR-LIFT-TRACE-EMBED-013: For integer lists v the diagonal trace norm equals sum |v_i| (trace_norm_eq_mass). Scaling by c != 0 keeps the
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=780, (1->2) du=-2340, (2->3) du=2730; chord (0->3) measured_omega=-390.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 780, v_2 = v_1 + (-2340), v_3 = v_2 + (2730).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-390 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-OPERATOR-LIFT-TRACE-EMBED-013): 4*idx(78) + 3*stage_rank(6) + route_degree(2) == 332
-    Evaluate finite_shadow_witness_int = 4 * 78 + 3 * 6 + 2 (which equals 332).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-OPERATOR-LIFT-TRACE-EMBED-013): R_raw(186) - G_cob(90) - S_decoy(6) == 90 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=90 and boundary sign double-count S_decoy=6 (do NOT report unreduced R_raw=186 or partial 96):
-    Evaluate countermodel_witness_int = (186) - (90) - 6 (which equals 90).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['real operator / Banach embedding: lift'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 1 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "L1-OPERATOR-LIFT-TRACE-EMBED-013", stage = "L1_TO_L2", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-L1_TO_L2-L1-OPERATOR-LIFT-TRACE-EMBED-013"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-OPERATOR-LIFT-TRACE-EMBED-013]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: L1-OPERATOR-LIFT-TRACE-EMBED-013 | Stage: L1_TO_L2 | DAG Status: PROVED_LEAN\nOperad Family: OP-L1_TO_L2-L1-OPERATOR-LIFT-TRACE-EMBED-013\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i] and Q (L1-to-L2 signed-sqrt lift, Born normalization & phase-blind fiber)\n- Carrier: L1_TO_L2 finite carrier for L1-OPERATOR-LIFT-TRACE-EMBED-013: For integer lists v the diagonal trace norm equals sum |v_i| (trace_norm_eq_mass). Scaling by c != 0 keeps the\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=780, (1->2) du=-2340, (2->3) du=2730; chord (0->3) measured_omega=-390.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 780, v_2 = v_1 + (-2340), v_3 = v_2 + (2730).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-390 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-OPERATOR-LIFT-TRACE-EMBED-013): 4*idx(78) + 3*stage_rank(6) + route_degree(2) == 332\n  Evaluate finite_shadow_witness_int = 4 * 78 + 3 * 6 + 2 (which equals 332).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-OPERATOR-LIFT-TRACE-EMBED-013): R_raw(186) - G_cob(90) - S_decoy(6) == 90 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=90 and boundary sign double-count S_decoy=6 (do NOT report unreduced R_raw=186 or partial 96):\n  Evaluate countermodel_witness_int = (186) - (90) - 6 (which equals 90).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['real operator / Banach embedding: lift'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"L1-OPERATOR-LIFT-TRACE-EMBED-013\", stage = \"L1_TO_L2\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-L1_TO_L2-L1-OPERATOR-LIFT-TRACE-EMBED-013\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

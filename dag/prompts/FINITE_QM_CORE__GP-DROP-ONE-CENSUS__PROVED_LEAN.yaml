@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: GP-DROP-ONE-CENSUS]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: GP-DROP-ONE-CENSUS | Stage: FINITE_QM_CORE | DAG Status: PROVED_LEAN
-  Operad Family: OP-FINITE_QM_CORE-GP-DROP-ONE-CENSUS
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i] and Q(zeta_n) (Finite-QM cyclotomic & Gaussian matrix algebra)
-  - Carrier: FINITE_QM_CORE finite carrier for GP-DROP-ONE-CENSUS: Eight extras (field C, spectral theorem, Gleason at n>=3, CPTP, tensor uniqueness, circle group, continuous ti
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1330, (1->2) du=-3990, (2->3) du=4655; chord (0->3) measured_omega=-665.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1330, v_2 = v_1 + (-3990), v_3 = v_2 + (4655).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-665 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(GP-DROP-ONE-CENSUS): 4*idx(133) + 3*stage_rank(7) + route_degree(2) == 555
-    Evaluate finite_shadow_witness_int = 4 * 133 + 3 * 7 + 2 (which equals 555).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(GP-DROP-ONE-CENSUS): R_raw(301) - G_cob(147) - S_decoy(7) == 147 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=147 and boundary sign double-count S_decoy=7 (do NOT report unreduced R_raw=301 or partial 154):
-    Evaluate countermodel_witness_int = (301) - (147) - 7 (which equals 147).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 0 items [].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 0 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "GP-DROP-ONE-CENSUS", stage = "FINITE_QM_CORE", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-FINITE_QM_CORE-GP-DROP-ONE-CENSUS"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: GP-DROP-ONE-CENSUS]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: GP-DROP-ONE-CENSUS | Stage: FINITE_QM_CORE | DAG Status: PROVED_LEAN\nOperad Family: OP-FINITE_QM_CORE-GP-DROP-ONE-CENSUS\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i] and Q(zeta_n) (Finite-QM cyclotomic & Gaussian matrix algebra)\n- Carrier: FINITE_QM_CORE finite carrier for GP-DROP-ONE-CENSUS: Eight extras (field C, spectral theorem, Gleason at n>=3, CPTP, tensor uniqueness, circle group, continuous ti\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=1330, (1->2) du=-3990, (2->3) du=4655; chord (0->3) measured_omega=-665.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 1330, v_2 = v_1 + (-3990), v_3 = v_2 + (4655).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-665 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(GP-DROP-ONE-CENSUS): 4*idx(133) + 3*stage_rank(7) + route_degree(2) == 555\n  Evaluate finite_shadow_witness_int = 4 * 133 + 3 * 7 + 2 (which equals 555).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(GP-DROP-ONE-CENSUS): R_raw(301) - G_cob(147) - S_decoy(7) == 147 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=147 and boundary sign double-count S_decoy=7 (do NOT report unreduced R_raw=301 or partial 154):\n  Evaluate countermodel_witness_int = (301) - (147) - 7 (which equals 147).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 0 items [].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 0 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"GP-DROP-ONE-CENSUS\", stage = \"FINITE_QM_CORE\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-FINITE_QM_CORE-GP-DROP-ONE-CENSUS\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

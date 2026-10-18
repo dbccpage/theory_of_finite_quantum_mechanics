@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-QM020-THM5-PHASE-AVERAGED-SHADOW]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: L1-QM020-THM5-PHASE-AVERAGED-SHADOW | Stage: L1_TO_L2 | DAG Status: PROVED_LEAN
-  Operad Family: OP-L1_TO_L2-L1-QM020-THM5-PHASE-AVERAGED-SHADOW
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i] and Q (L1-to-L2 signed-sqrt lift, Born normalization & phase-blind fiber)
-  - Carrier: L1_TO_L2 finite carrier for L1-QM020-THM5-PHASE-AVERAGED-SHADOW: Under a chosen Hilbert lift with independent Haar-uniform phases, E |<u, psi(theta)>|^2 = sum |u_gamma|^2 w_ga
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=850, (1->2) du=-2550, (2->3) du=2975; chord (0->3) measured_omega=-425.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 850, v_2 = v_1 + (-2550), v_3 = v_2 + (2975).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-425 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-QM020-THM5-PHASE-AVERAGED-SHADOW): 4*idx(85) + 3*stage_rank(6) + route_degree(2) == 360
-    Evaluate finite_shadow_witness_int = 4 * 85 + 3 * 6 + 2 (which equals 360).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-QM020-THM5-PHASE-AVERAGED-SHADOW): R_raw(200) - G_cob(97) - S_decoy(6) == 97 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=97 and boundary sign double-count S_decoy=6 (do NOT report unreduced R_raw=200 or partial 103):
-    Evaluate countermodel_witness_int = (200) - (97) - 6 (which equals 97).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 3 items ['Haar measure on phases: assumption', 'independence of phases: assumption', 'Hilbert inner product: assumption'].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 3 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "L1-QM020-THM5-PHASE-AVERAGED-SHADOW", stage = "L1_TO_L2", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-L1_TO_L2-L1-QM020-THM5-PHASE-AVERAGED-SHADOW"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_thm5_thm7_and_qm121_ladder_rungs_2_to_6_separation"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-QM020-THM5-PHASE-AVERAGED-SHADOW]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: L1-QM020-THM5-PHASE-AVERAGED-SHADOW | Stage: L1_TO_L2 | DAG Status: PROVED_LEAN\nOperad Family: OP-L1_TO_L2-L1-QM020-THM5-PHASE-AVERAGED-SHADOW\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i] and Q (L1-to-L2 signed-sqrt lift, Born normalization & phase-blind fiber)\n- Carrier: L1_TO_L2 finite carrier for L1-QM020-THM5-PHASE-AVERAGED-SHADOW: Under a chosen Hilbert lift with independent Haar-uniform phases, E |<u, psi(theta)>|^2 = sum |u_gamma|^2 w_ga\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=850, (1->2) du=-2550, (2->3) du=2975; chord (0->3) measured_omega=-425.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 850, v_2 = v_1 + (-2550), v_3 = v_2 + (2975).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-425 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-QM020-THM5-PHASE-AVERAGED-SHADOW): 4*idx(85) + 3*stage_rank(6) + route_degree(2) == 360\n  Evaluate finite_shadow_witness_int = 4 * 85 + 3 * 6 + 2 (which equals 360).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-QM020-THM5-PHASE-AVERAGED-SHADOW): R_raw(200) - G_cob(97) - S_decoy(6) == 97 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=97 and boundary sign double-count S_decoy=6 (do NOT report unreduced R_raw=200 or partial 103):\n  Evaluate countermodel_witness_int = (200) - (97) - 6 (which equals 97).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 3 items ['Haar measure on phases: assumption', 'independence of phases: assumption', 'Hilbert inner product: assumption'].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 3 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\", stage = \"L1_TO_L2\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-L1_TO_L2-L1-QM020-THM5-PHASE-AVERAGED-SHADOW\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_thm5_thm7_and_qm121_ladder_rungs_2_to_6_separation\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-WDP-REALIFICATION-J]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: L1-WDP-REALIFICATION-J | Stage: L1_TO_L2 | DAG Status: DEFINITION
-  Operad Family: OP-L1_TO_L2-L1-WDP-REALIFICATION-J
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Z[i] and Q (L1-to-L2 signed-sqrt lift, Born normalization & phase-blind fiber)
-  - Carrier: L1_TO_L2 finite carrier for L1-WDP-REALIFICATION-J: R(A) = [[P,-Q],[Q,P]] is an injective real-linear multiplicative representation of complex matrices with J^2 =
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=880, (1->2) du=-2640, (2->3) du=3080; chord (0->3) measured_omega=-440.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 880, v_2 = v_1 + (-2640), v_3 = v_2 + (3080).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-440 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-WDP-REALIFICATION-J): 4*idx(88) + 3*stage_rank(6) + route_degree(3) == 373
-    Evaluate finite_shadow_witness_int = 4 * 88 + 3 * 6 + 3 (which equals 373).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-WDP-REALIFICATION-J): R_raw(206) - G_cob(100) - S_decoy(6) == 100 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=100 and boundary sign double-count S_decoy=6 (do NOT report unreduced R_raw=206 or partial 106):
-    Evaluate countermodel_witness_int = (206) - (100) - 6 (which equals 100).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['complex structure J: assumption'].
-    Even when DAG Status is DEFINITION, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 1 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "L1-WDP-REALIFICATION-J", stage = "L1_TO_L2", dag_status = "DEFINITION"
-  - Set operad_family_id = "OP-L1_TO_L2-L1-WDP-REALIFICATION-J"
-  - Set lean4_theorem_anchor = "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification"
-  - Set rust_witness_anchor = "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-WDP-REALIFICATION-J]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: L1-WDP-REALIFICATION-J | Stage: L1_TO_L2 | DAG Status: DEFINITION\nOperad Family: OP-L1_TO_L2-L1-WDP-REALIFICATION-J\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Z[i] and Q (L1-to-L2 signed-sqrt lift, Born normalization & phase-blind fiber)\n- Carrier: L1_TO_L2 finite carrier for L1-WDP-REALIFICATION-J: R(A) = [[P,-Q],[Q,P]] is an injective real-linear multiplicative representation of complex matrices with J^2 =\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=880, (1->2) du=-2640, (2->3) du=3080; chord (0->3) measured_omega=-440.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 880, v_2 = v_1 + (-2640), v_3 = v_2 + (3080).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-440 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-WDP-REALIFICATION-J): 4*idx(88) + 3*stage_rank(6) + route_degree(3) == 373\n  Evaluate finite_shadow_witness_int = 4 * 88 + 3 * 6 + 3 (which equals 373).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-WDP-REALIFICATION-J): R_raw(206) - G_cob(100) - S_decoy(6) == 100 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=100 and boundary sign double-count S_decoy=6 (do NOT report unreduced R_raw=206 or partial 106):\n  Evaluate countermodel_witness_int = (206) - (100) - 6 (which equals 100).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 1 items ['complex structure J: assumption'].\n  Even when DAG Status is DEFINITION, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 1 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"L1-WDP-REALIFICATION-J\", stage = \"L1_TO_L2\", dag_status = \"DEFINITION\"\n- Set operad_family_id = \"OP-L1_TO_L2-L1-WDP-REALIFICATION-J\"\n- Set lean4_theorem_anchor = \"lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification\"\n- Set rust_witness_anchor = \"omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json

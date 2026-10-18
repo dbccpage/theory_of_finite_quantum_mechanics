@@ -114,44 +114,7 @@ system_prompt: |
   None. End a claim-bearing report with four short statements: what this supports;
   what it does not support; narrowest defensible claim; next test needed.
 
-user_prompt: |-
-  [COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-WDP-CH08-C01-REPLICA-L1]
-  Policy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.
-  Node: L1-WDP-CH08-C01-REPLICA-L1 | Stage: L1_EMERGENCE | DAG Status: PROVED_LEAN
-  Operad Family: OP-L1_EMERGENCE-L1-WDP-CH08-C01-REPLICA-L1
-
-  Layer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):
-  - Algebraic Ring: Q and Z (L1 edgewise observer seminorm & KKT primal-dual cone)
-  - Carrier: L1_EMERGENCE finite carrier for L1-WDP-CH08-C01-REPLICA-L1: l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is n
-  - P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=730, (1->2) du=-2190, (2->3) du=2555; chord (0->3) measured_omega=-365.
-    Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 730, v_2 = v_1 + (-2190), v_3 = v_2 + (2555).
-    Compute p_star_chord_potential = v_3 - v_0 = v_3.
-    Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-365 - v_3|.
-    Set cochain_d1_d0_exact_zero = true.
-
-  Layer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):
-  - Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-WDP-CH08-C01-REPLICA-L1): 4*idx(73) + 3*stage_rank(5) + route_degree(2) == 309
-    Evaluate finite_shadow_witness_int = 4 * 73 + 3 * 5 + 2 (which equals 309).
-
-  Layer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):
-  - Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-WDP-CH08-C01-REPLICA-L1): R_raw(171) - G_cob(83) - S_decoy(5) == 83 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)
-    Annihilate coboundary shift G_cob=83 and boundary sign double-count S_decoy=5 (do NOT report unreduced R_raw=171 or partial 88):
-    Evaluate countermodel_witness_int = (171) - (83) - 5 (which equals 83).
-  - Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 0 items [].
-    Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.
-    Set unpaid_import_count = 0 and unconditional_promotion_refused = true.
-
-  Layer 3 (M4 — Tri-Language Anchors & Exact Output Contract):
-  - Set derived_under_policy = "SPK-001"
-  - Set authority_effect = "None"
-  - Set firewall_status = "stated region only; mints no authority."
-  - Set node_id = "L1-WDP-CH08-C01-REPLICA-L1", stage = "L1_EMERGENCE", dag_status = "PROVED_LEAN"
-  - Set operad_family_id = "OP-L1_EMERGENCE-L1-WDP-CH08-C01-REPLICA-L1"
-  - Set lean4_theorem_anchor = "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation"
-  - Set rust_witness_anchor = "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
-  - Set should_continue = false
-
-  Return ONLY the raw JSON object with these exact 18 keys.
+user_prompt: "[COPP-v2-COMPACT + P* MULTI-STAGE DERIVATION TASK: L1-WDP-CH08-C01-REPLICA-L1]\nPolicy: SPK-001 | AuthorityEffect: None | Firewall: stated region only; mints no authority.\nNode: L1-WDP-CH08-C01-REPLICA-L1 | Stage: L1_EMERGENCE | DAG Status: PROVED_LEAN\nOperad Family: OP-L1_EMERGENCE-L1-WDP-CH08-C01-REPLICA-L1\n\nLayer 0 (M1 — Ambient Carrier & P* Cochain Syndrome):\n- Algebraic Ring: Q and Z (L1 edgewise observer seminorm & KKT primal-dual cone)\n- Carrier: L1_EMERGENCE finite carrier for L1-WDP-CH08-C01-REPLICA-L1: l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is n\n- P* Cycle C_4 (v_0 = 0): tree edges (0->1) du=730, (1->2) du=-2190, (2->3) du=2555; chord (0->3) measured_omega=-365.\n  Compute p_star_tree_potentials = [v_1, v_2, v_3] where v_1 = 730, v_2 = v_1 + (-2190), v_3 = v_2 + (2555).\n  Compute p_star_chord_potential = v_3 - v_0 = v_3.\n  Compute p_star_holonomy_gamma2 = |measured_omega - p_star_chord_potential| = |-365 - v_3|.\n  Set cochain_d1_d0_exact_zero = true.\n\nLayer 1 (M2 — Operad Morphisms O^+ & Planar Grafting o_i):\n- Op 1 (Finite Shadow Witness): stage_route_shadow_invariant(L1-WDP-CH08-C01-REPLICA-L1): 4*idx(73) + 3*stage_rank(5) + route_degree(2) == 309\n  Evaluate finite_shadow_witness_int = 4 * 73 + 3 * 5 + 2 (which equals 309).\n\nLayer 2 (M3 — Congruence Ideals I & Annihilator Decoy Equations O^-):\n- Decoy Equation 1 (Quotient Countermodel Reduction): quotient_reduced_countermodel_defect(L1-WDP-CH08-C01-REPLICA-L1): R_raw(171) - G_cob(83) - S_decoy(5) == 83 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)\n  Annihilate coboundary shift G_cob=83 and boundary sign double-count S_decoy=5 (do NOT report unreduced R_raw=171 or partial 88):\n  Evaluate countermodel_witness_int = (171) - (83) - 5 (which equals 83).\n- Decoy Equation 2 (SPK-001 Non-Promotion Fence): Imported assumptions list has 0 items [].\n  Even when DAG Status is PROVED_LEAN, SPK-001 refuses unconditional authority/continuum promotion beyond the stated finite carrier.\n  Set unpaid_import_count = 0 and unconditional_promotion_refused = true.\n\nLayer 3 (M4 — Tri-Language Anchors & Exact Output Contract):\n- Set derived_under_policy = \"SPK-001\"\n- Set authority_effect = \"None\"\n- Set firewall_status = \"stated region only; mints no authority.\"\n- Set node_id = \"L1-WDP-CH08-C01-REPLICA-L1\", stage = \"L1_EMERGENCE\", dag_status = \"PROVED_LEAN\"\n- Set operad_family_id = \"OP-L1_EMERGENCE-L1-WDP-CH08-C01-REPLICA-L1\"\n- Set lean4_theorem_anchor = \"omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation\"\n- Set rust_witness_anchor = \"omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness\"\n- Set should_continue = false\n\nReturn ONLY the raw JSON object with these exact 18 keys."
 
 default_stage: P1_DERIVE
 catalog_attachment: ../finite_qm_operad_catalog.json
