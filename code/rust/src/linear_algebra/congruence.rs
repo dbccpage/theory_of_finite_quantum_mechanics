@@ -26,6 +26,13 @@ impl<F> CongruenceDiagonalisation<F> {
     pub fn into_parts(self) -> (BasicMatrix<F>, Vec<F>) {
         (self.transform, self.diagonal)
     }
+
+    pub fn from_certificate(transform: BasicMatrix<F>, diagonal: Vec<F>) -> Self {
+        Self {
+            transform,
+            diagonal,
+        }
+    }
 }
 
 impl<F: Field + ExactRing> CongruenceDiagonalisation<F> {
@@ -69,6 +76,18 @@ impl<F: Field + ExactRing> CongruenceDiagonalisation<F> {
 
 impl<F: Involution> CongruenceDiagonalisation<F> {
     pub fn verify_hermitian(&self, a: &BasicMatrix<F>) -> Result<(), ExactFieldError> {
+        if hermitian_violation(a)?.is_some() {
+            return Err(ExactFieldError::CertificateRejected {
+                reason: "the certified matrix is not Hermitian",
+            });
+        }
+        for entry in &self.diagonal {
+            if entry.conjugate() != *entry {
+                return Err(ExactFieldError::CertificateRejected {
+                    reason: "a Hermitian diagonal entry is fixed by conjugation",
+                });
+            }
+        }
         self.replay(a, &adjoint(&self.transform)?)
     }
 }
@@ -275,6 +294,21 @@ mod tests {
                 assert!(det == gi(1, 0) || det == gi(-1, 0));
             }
         }
+    }
+
+    #[test]
+    fn a_symmetric_certificate_for_a_non_hermitian_matrix_is_rejected() {
+        let imaginary = gmat(&[&[(0, 1)]]);
+        let certificate = CongruenceDiagonalisation::from_certificate(
+            identity::<G>(1).unwrap(),
+            vec![gi(0, 1)],
+        );
+        assert_eq!(
+            certificate.verify_hermitian(&imaginary),
+            Err(ExactFieldError::CertificateRejected {
+                reason: "the certified matrix is not Hermitian",
+            })
+        );
     }
 
     #[test]

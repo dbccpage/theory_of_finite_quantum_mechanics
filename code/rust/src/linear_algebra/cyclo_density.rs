@@ -807,3 +807,17 @@ pub fn test_negative_remainder_rescaling() -> Result<(usize, usize)> {
     let mutated = root_count(&sequence, &Q::zero(), &Q::one())?;
     Ok((correct, mutated))
 }
+
+#[cfg(test)]
+mod literal_characteristic {
+    use super::*;
+
+    #[test]
+    fn a_zero_one_by_one_matrix_has_the_monic_linear_characteristic_polynomial() {
+        let matrix = vec![vec![Element::rational(1, rat(0, 1))]];
+        assert_eq!(
+            characteristic(&matrix).unwrap(),
+            vec![Element::one(1), Element::zero(1)]
+        );
+    }
+}

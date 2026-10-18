@@ -110,7 +110,7 @@ pub fn interval_divide(
 ) -> Result<RationalEndpoints, NevilleError> {
     validate_interval(a, fuel)?;
     fuel.rational(k)?;
-    fuel.charge(1)?;
+    fuel.charge(2)?;
     if k.is_zero() {
         return Err(RationalError::DivisionByZero.into());
     }
@@ -229,4 +229,27 @@ pub fn lagrange_interval_prefixes(
         prefixes.push(sum);
     }
     Ok(prefixes)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::linear_algebra::bareiss_det::RationalLimits;
+
+    fn q(n: i64) -> BigRational {
+        BigRational::from_integer(n.into())
+    }
+
+    #[test]
+    fn dividing_a_positive_interval_charges_both_explicit_predicates() {
+        let mut fuel = RationalBudget::new(RationalLimits {
+            max_scalar_ops: 100,
+            max_elements: 100,
+            max_bits: 4096,
+        });
+        let scaled = interval_divide(&(q(1), q(2)), &q(2), &mut fuel).unwrap();
+        assert_eq!(scaled.0, q(1) / &q(2));
+        assert_eq!(scaled.1, q(1));
+        assert_eq!(fuel.used(), 12);
+    }
 }

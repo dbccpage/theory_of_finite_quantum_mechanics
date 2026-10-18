@@ -367,8 +367,42 @@ fn factors(p: &[Element], d: u64) -> Result<Vec<(Polynomial, usize)>> {
             result.push((irreducible, multiplicity));
         }
     }
+    if d != 0 {
+        for (factor, _) in &result {
+            if quadratic_has_listed_root(factor, d) {
+                return Err("QUADRATIC_HAS_A_FIELD_ROOT".into());
+            }
+        }
+    }
     result.sort_by(|a, b| a.0.iter().rev().cmp(b.0.iter().rev()));
     Ok(result)
+}
+
+fn evaluate_at(polynomial: &[Element], point: &Element, d: u64) -> Element {
+    let mut acc = Element::zero();
+    for coefficient in polynomial.iter().rev() {
+        acc = acc.mul(point, d).add(coefficient);
+    }
+    acc
+}
+
+fn quadratic_has_listed_root(polynomial: &[Element], d: u64) -> bool {
+    if polynomial.len() < 3 {
+        return false;
+    }
+    let radical = Element {
+        a: Q::zero(),
+        b: Q::one(),
+    };
+    [
+        Element::zero(),
+        Element::one(),
+        Element::one().neg(),
+        radical.clone(),
+        radical.neg(),
+    ]
+    .iter()
+    .any(|point| evaluate_at(polynomial, point, d).is_zero())
 }
 
 fn exact_fields(value: &Value, fields: &[&str]) -> Result<()> {
@@ -527,39 +561,7 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
 }
 
 fn raw_number_admission(input: &str) -> Result<()> {
-    let bytes = input.as_bytes();
-    let mut index = 0;
-    let mut in_string = false;
-    let mut escaped = false;
-    while index < bytes.len() {
-        let byte = bytes[index];
-        if in_string {
-            if escaped {
-                escaped = false;
-            } else if byte == b'\\' {
-                escaped = true;
-            } else if byte == b'"' {
-                in_string = false;
-            }
-            index += 1;
-        } else if byte == b'"' {
-            in_string = true;
-            index += 1;
-        } else if matches!(byte, b'-' | b'0'..=b'9') {
-            index += 1;
-            while index < bytes.len()
-                && matches!(bytes[index], b'0'..=b'9' | b'+' | b'-' | b'.' | b'e' | b'E')
-            {
-                if matches!(bytes[index], b'.' | b'e' | b'E') {
-                    return Err("RAW_INEXACT_JSON_NUMBER".into());
-                }
-                index += 1;
-            }
-        } else {
-            index += 1;
-        }
-    }
-    Ok(())
+    crate::linear_algebra::json_admission::admit_exact_json(input)
 }
 
 fn run() -> Result<Value> {
@@ -589,6 +591,28 @@ fn run() -> Result<Value> {
         .map_err(|_| "CANONICAL_RATIONAL_STRING_REQUIRED")?;
     let request = json!({"operation":operation,"conductor":conductor,"coefficients":coefficients});
     evaluate_request(&request)
+}
+
+#[cfg(test)]
+mod root_challenge {
+    use super::*;
+
+    #[test]
+    fn x_squared_minus_two_over_q_sqrt2_is_not_an_irreducible_factor() {
+        let polynomial = vec![
+            Element {
+                a: Q::from_integer((-2).into()),
+                b: Q::zero(),
+            },
+            Element::zero(),
+            Element::one(),
+        ];
+        assert!(quadratic_has_listed_root(&polynomial, 2));
+        let unchanged_producer = vec![(polynomial, 1usize)];
+        assert!(unchanged_producer
+            .iter()
+            .any(|(factor, _)| quadratic_has_listed_root(factor, 2)));
+    }
 }
 
 fn main() {

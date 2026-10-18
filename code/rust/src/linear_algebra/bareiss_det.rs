@@ -27,6 +27,8 @@ pub enum RationalError {
     Allocation,
     #[error("linear system is inconsistent")]
     Inconsistent,
+    #[error("candidate solution failed exact replay")]
+    ReplayRejected,
     #[error("Bareiss division was not exact")]
     NonExactDivision,
     #[error("division by zero")]
@@ -164,6 +166,9 @@ pub fn dot(
         return Err(RationalError::Shape);
     }
     fuel.elements(a.len(), 1)?;
+    if a.is_empty() {
+        return fuel.result(BigRational::zero());
+    }
     let mut out = BigRational::zero();
     for (x, y) in a.iter().zip(b) {
         let product = fuel.mul(x, y)?;
@@ -189,7 +194,12 @@ pub fn multiply(
     for q in a.as_slice().iter().chain(b.as_slice()) {
         fuel.rational(q)?;
     }
-    let mut out = buffer(count, BigRational::zero())?;
+    let fill = if a.cols() == 0 && count > 0 {
+        fuel.result(BigRational::zero())?
+    } else {
+        BigRational::zero()
+    };
+    let mut out = buffer(count, fill)?;
     for r in 0..a.rows() {
         for c in 0..b.cols() {
             for k in 0..a.cols() {
@@ -352,6 +362,18 @@ pub struct RationalSolution {
     pub pivot_columns: Vec<usize>,
 }
 
+pub(crate) fn certify_replay(
+    a: &BasicMatrix<BigRational>,
+    x: &[BigRational],
+    b: &[BigRational],
+    fuel: &mut RationalBudget,
+) -> Result<(), RationalError> {
+    if multiply_vector(a, x, fuel)? != b {
+        return Err(RationalError::ReplayRejected);
+    }
+    Ok(())
+}
+
 pub fn solve(
     a: &BasicMatrix<BigRational>,
     b: &[BigRational],
@@ -406,7 +428,8 @@ pub fn solve(
     if (pivots.len()..m).any(|r| !grid[r * width + n].is_zero()) {
         return Err(RationalError::Inconsistent);
     }
-    let mut x = buffer(n, BigRational::zero())?;
+    let zero = fuel.result(BigRational::zero())?;
+    let mut x = buffer(n, zero)?;
     for (r, &col) in pivots.iter().enumerate().rev() {
         let mut rhs = BigRational::from_integer(grid[r * width + n].clone());
         for (c, xc) in x.iter().enumerate().skip(col + 1) {
@@ -418,9 +441,7 @@ pub fn solve(
             &BigRational::from_integer(grid[r * width + col].clone()),
         )?;
     }
-    if multiply_vector(a, &x, fuel)? != b {
-        return Err(RationalError::Inconsistent);
-    }
+    certify_replay(a, &x, b, fuel)?;
     Ok(RationalSolution {
         particular: x,
         pivot_columns: pivots,
@@ -572,5 +593,58 @@ mod tests {
                 }
             }
         }
+    }
+
+    fn bits(max_bits: u64) -> RationalLimits {
+        RationalLimits {
+            max_scalar_ops: 1_000,
+            max_elements: 1_000,
+            max_bits,
+        }
+    }
+
+    #[test]
+    fn empty_sums_admit_the_created_zero() {
+        assert_eq!(
+            dot(&[], &[], &mut RationalBudget::new(bits(0))),
+            Err(RationalError::BitLimit)
+        );
+        assert_eq!(
+            dot(&[], &[], &mut RationalBudget::new(bits(1))).unwrap(),
+            q(0, 1)
+        );
+        let left = BasicMatrix::from_row_major(1, 0, vec![]).unwrap();
+        let right = BasicMatrix::from_row_major(0, 1, vec![]).unwrap();
+        assert_eq!(
+            multiply(&left, &right, &mut RationalBudget::new(bits(0))),
+            Err(RationalError::BitLimit)
+        );
+        assert_eq!(
+            multiply(&left, &right, &mut RationalBudget::new(bits(1)))
+                .unwrap()
+                .as_slice(),
+            &[q(0, 1)]
+        );
+    }
+
+    #[test]
+    fn a_bad_candidate_is_replay_rejected_rather_than_inconsistent() {
+        let a = matrix::from_rows(vec![vec![q(1, 1)]]).unwrap();
+        assert_eq!(
+            certify_replay(
+                &a,
+                &[q(2, 1)],
+                &[q(1, 1)],
+                &mut RationalBudget::new(limits())
+            ),
+            Err(RationalError::ReplayRejected)
+        );
+        certify_replay(
+            &a,
+            &[q(1, 1)],
+            &[q(1, 1)],
+            &mut RationalBudget::new(limits()),
+        )
+        .unwrap();
     }
 }

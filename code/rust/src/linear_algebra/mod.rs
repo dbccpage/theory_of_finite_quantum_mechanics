@@ -20,6 +20,7 @@ pub mod field_squares;
 pub use field_squares as real_field_squares;
 pub mod image_kernel;
 pub mod interpolation;
+pub mod json_admission;
 pub mod involution;
 pub mod laws;
 pub mod matrix;
@@ -64,11 +65,8 @@ impl<F: Field + ExactRing> ExactMatrix<F> {
         self.0.get_ref(r, c)
     }
 
-    pub fn zeros(rows: usize, cols: usize) -> Self {
-        Self(
-            BasicMatrix::try_from_fn(rows, cols, |_, _| F::zero())
-                .expect("zero matrix dimensions fit within usize"),
-        )
+    pub fn zeros(rows: usize, cols: usize) -> Result<Self, ExactFieldError> {
+        matrix::zeros(rows, cols).map(Self)
     }
 
     pub fn from_rows(rows: Vec<Vec<F>>) -> Result<Self, MatrixError> {
@@ -87,17 +85,12 @@ impl<F: Field + ExactRing> ExactMatrix<F> {
         Ok(Self(BasicMatrix::from_row_major(r, c, data)?))
     }
 
-    pub fn mul(&self, rhs: &Self) -> Result<Self, MatrixError> {
-        matrix::multiply(&self.0, &rhs.0)
-            .map(Self)
-            .map_err(|_| MatrixError::DimensionMismatch {
-                left: self.shape(),
-                right: rhs.shape(),
-            })
+    pub fn mul(&self, rhs: &Self) -> Result<Self, ExactFieldError> {
+        matrix::multiply(&self.0, &rhs.0).map(Self)
     }
 
-    pub fn rank(&self) -> usize {
-        elimination::rank(&self.0).unwrap_or(0)
+    pub fn rank(&self) -> Result<usize, ExactFieldError> {
+        elimination::rank(&self.0)
     }
 }
 
@@ -306,5 +299,46 @@ pub mod exact_field {
 pub mod backend {
     pub mod basic_matrix {
         pub use crate::linear_algebra::basic_matrix::*;
+    }
+}
+
+#[cfg(test)]
+mod exact_matrix_contract {
+    use super::*;
+    use crate::linear_algebra::test_support::Z6;
+
+    #[test]
+    fn rank_of_a_non_field_keeps_the_scalar_refusal() {
+        let matrix = ExactMatrix::from_rows(vec![
+            vec![Z6::new(2), Z6::new(1)],
+            vec![Z6::new(1), Z6::new(1)],
+        ])
+        .unwrap();
+        assert_eq!(
+            matrix.rank(),
+            Err(ExactFieldError::ScalarContract {
+                operation: "rref",
+                violation: "a nonzero element has no multiplicative inverse",
+            })
+        );
+    }
+
+    #[test]
+    fn multiplication_keeps_an_operation_count_overflow() {
+        let left = ExactMatrix::<crate::linear_algebra::scalars::Q>::zeros(1, 0).unwrap();
+        let right = ExactMatrix::<crate::linear_algebra::scalars::Q>::zeros(0, usize::MAX).unwrap();
+        assert_eq!(
+            left.mul(&right),
+            Err(ExactFieldError::Matrix(MatrixError::OperationCountOverflow))
+        );
+    }
+
+    #[test]
+    fn zeros_returns_the_construction_error() {
+        let refused = ExactMatrix::<crate::linear_algebra::scalars::Q>::zeros(usize::MAX, 2);
+        assert!(matches!(
+            refused,
+            Err(ExactFieldError::Matrix(MatrixError::DimensionOverflow { .. }))
+        ));
     }
 }
