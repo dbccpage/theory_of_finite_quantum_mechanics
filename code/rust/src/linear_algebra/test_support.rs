@@ -39,8 +39,9 @@ impl Rng {
 
     pub(crate) fn range(&mut self, lo: i64, hi: i64) -> i64 {
         assert!(lo <= hi);
-        let span = (hi - lo + 1) as u64;
-        lo + (self.next_u64() % span) as i64
+        let span = (hi as i128 - lo as i128 + 1) as u128;
+        let rand_u128 = ((self.next_u64() as u128) << 64) | (self.next_u64() as u128);
+        (lo as i128 + (rand_u128 % span) as i128) as i64
     }
 }
 
@@ -74,7 +75,7 @@ pub(crate) struct Fp<const P: u64>(u64);
 
 impl<const P: u64> Fp<P> {
     pub(crate) fn new(x: i64) -> Self {
-        Fp(x.rem_euclid(P as i64) as u64)
+        Fp((x as i128).rem_euclid(P as i128) as u64)
     }
 
     fn pow(self, mut exponent: u64) -> Self {
@@ -82,9 +83,9 @@ impl<const P: u64> Fp<P> {
         let mut acc = Fp(1 % P);
         while exponent > 0 {
             if exponent & 1 == 1 {
-                acc = Fp(acc.0 * base.0 % P);
+                acc = acc * base;
             }
-            base = Fp(base.0 * base.0 % P);
+            base = base * base;
             exponent >>= 1;
         }
         acc
@@ -99,10 +100,10 @@ impl<const P: u64> Semiring for Fp<P> {
         Fp(1 % P)
     }
     fn add(&self, rhs: &Self) -> Self {
-        Fp((self.0 + rhs.0) % P)
+        Fp(((self.0 as u128 + rhs.0 as u128) % P as u128) as u64)
     }
     fn mul(&self, rhs: &Self) -> Self {
-        Fp(self.0 * rhs.0 % P)
+        Fp(((self.0 as u128 * rhs.0 as u128) % P as u128) as u64)
     }
     fn is_zero(&self) -> bool {
         self.0 == 0
@@ -111,7 +112,11 @@ impl<const P: u64> Semiring for Fp<P> {
 
 impl<const P: u64> Ring for Fp<P> {
     fn neg(&self) -> Self {
-        Fp((P - self.0) % P)
+        if self.0 == 0 {
+            Fp(0)
+        } else {
+            Fp(P - self.0)
+        }
     }
 }
 
@@ -313,10 +318,11 @@ pub(crate) fn qsi(a: i64, b: i64) -> QSqrt2 {
 }
 
 pub(crate) fn sign_of_rational(x: &BigRational) -> i8 {
-    match x.numer().sign() {
-        num_bigint::Sign::Minus => -1,
-        num_bigint::Sign::NoSign => 0,
-        num_bigint::Sign::Plus => 1,
+    use num_traits::Zero;
+    match x.cmp(&BigRational::zero()) {
+        std::cmp::Ordering::Less => -1,
+        std::cmp::Ordering::Equal => 0,
+        std::cmp::Ordering::Greater => 1,
     }
 }
 
@@ -515,5 +521,41 @@ impl<const MODE: u8> crate::linear_algebra::ordered::HermitianOrdered for Shaky<
 impl crate::linear_algebra::ordered::HermitianOrdered for QSqrt2 {
     fn fixed_field_sign(&self) -> Option<i8> {
         Some(self.real_sign())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn fp_large_prime_arithmetic_exact() {
+        const P: u64 = 4_294_967_311; // 2^32 + 15, prime
+        let x = Fp::<P>::new((P - 1) as i64);
+        let x2 = x * x;
+        assert_eq!(x2.0, 1);
+        let x_pow = x.pow(2);
+        assert_eq!(x_pow.0, 1);
+        let sum = x + x;
+        assert_eq!(sum.0, P - 2);
+    }
+
+    #[test]
+    fn rng_range_min_max_no_overflow() {
+        let mut rng = Rng::new(42);
+        let v = rng.range(i64::MIN, i64::MAX);
+        assert!(v >= i64::MIN && v <= i64::MAX);
+    }
+
+    #[test]
+    fn sign_of_rational_handles_negative_denominators() {
+        let neg_half = BigRational::new_raw(num_bigint::BigInt::from(1), num_bigint::BigInt::from(-2));
+        assert_eq!(sign_of_rational(&neg_half), -1);
+
+        let pos_half = BigRational::new_raw(num_bigint::BigInt::from(-1), num_bigint::BigInt::from(-2));
+        assert_eq!(sign_of_rational(&pos_half), 1);
+
+        let zero = BigRational::new_raw(num_bigint::BigInt::from(0), num_bigint::BigInt::from(5));
+        assert_eq!(sign_of_rational(&zero), 0);
     }
 }

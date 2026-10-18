@@ -52,23 +52,38 @@ pub fn pseudoinverse_with_limits<F: HermitianOrdered>(
     Ok(inverse)
 }
 
-pub fn verify_penrose<F: HermitianOrdered>(
+pub fn check_penrose_identities<F: HermitianOrdered>(
     c: &BasicMatrix<F>,
     inverse: &BasicMatrix<F>,
     limits: OperationLimits,
-) -> Result<(), ExactFieldError> {
+) -> Result<[bool; 4], ExactFieldError> {
     if inverse.shape() != (c.cols(), c.rows()) {
         return Err(ExactFieldError::CertificateRejected {
             reason: "pseudoinverse has wrong shape",
         });
     }
+    let m = c.rows();
+    let n = c.cols();
+    let total_elements = element_count(m, n)?;
+    let total_ops = times(2, times(times(m, n)?, plus(m, n)?)?)?;
+    charge(limits, total_elements, total_ops)?;
+
     let cp = multiply_with_limits(c, inverse, limits)?;
     let pc = multiply_with_limits(inverse, c, limits)?;
-    if multiply_with_limits(&cp, c, limits)? != *c
-        || multiply_with_limits(&pc, inverse, limits)? != *inverse
-        || adjoint(&cp)? != cp
-        || adjoint(&pc)? != pc
-    {
+    let eq1 = multiply_with_limits(&cp, c, limits)? == *c;
+    let eq2 = multiply_with_limits(&pc, inverse, limits)? == *inverse;
+    let eq3 = adjoint(&cp)? == cp;
+    let eq4 = adjoint(&pc)? == pc;
+    Ok([eq1, eq2, eq3, eq4])
+}
+
+pub fn verify_penrose<F: HermitianOrdered>(
+    c: &BasicMatrix<F>,
+    inverse: &BasicMatrix<F>,
+    limits: OperationLimits,
+) -> Result<(), ExactFieldError> {
+    let [eq1, eq2, eq3, eq4] = check_penrose_identities(c, inverse, limits)?;
+    if !eq1 || !eq2 || !eq3 || !eq4 {
         return Err(ExactFieldError::CertificateRejected {
             reason: "a Penrose identity failed",
         });
@@ -109,4 +124,52 @@ mod tests {
         )
         .is_err());
     }
+
+    #[test]
+    fn penrose_each_equation_fails_exclusively() {
+        // Eq 1 fails exclusively: C = [1], X = [0]
+        let c1 = from_rows(vec![vec![q(1)]]).unwrap();
+        let x1 = from_rows(vec![vec![q(0)]]).unwrap();
+        assert_eq!(
+            check_penrose_identities(&c1, &x1, OperationLimits::UNLIMITED).unwrap(),
+            [false, true, true, true]
+        );
+        assert!(verify_penrose(&c1, &x1, OperationLimits::UNLIMITED).is_err());
+
+        // Eq 2 fails exclusively: C = [0], X = [1]
+        let c2 = from_rows(vec![vec![q(0)]]).unwrap();
+        let x2 = from_rows(vec![vec![q(1)]]).unwrap();
+        assert_eq!(
+            check_penrose_identities(&c2, &x2, OperationLimits::UNLIMITED).unwrap(),
+            [true, false, true, true]
+        );
+        assert!(verify_penrose(&c2, &x2, OperationLimits::UNLIMITED).is_err());
+
+        // Eq 3 fails exclusively: C = [1; 0] (2x1), X = [1, 1] (1x2)
+        let c3 = from_rows(vec![vec![q(1)], vec![q(0)]]).unwrap();
+        let x3 = from_rows(vec![vec![q(1), q(1)]]).unwrap();
+        assert_eq!(
+            check_penrose_identities(&c3, &x3, OperationLimits::UNLIMITED).unwrap(),
+            [true, true, false, true]
+        );
+        assert!(verify_penrose(&c3, &x3, OperationLimits::UNLIMITED).is_err());
+
+        // Eq 4 fails exclusively: C = [1, 0] (1x2), X = [1; 1] (2x1)
+        let c4 = from_rows(vec![vec![q(1), q(0)]]).unwrap();
+        let x4 = from_rows(vec![vec![q(1)], vec![q(1)]]).unwrap();
+        assert_eq!(
+            check_penrose_identities(&c4, &x4, OperationLimits::UNLIMITED).unwrap(),
+            [true, true, true, false]
+        );
+        assert!(verify_penrose(&c4, &x4, OperationLimits::UNLIMITED).is_err());
+    }
+
+    #[test]
+    fn pseudoinverse_empty_matrices() {
+        let zero_00 = zeros_with_limits::<BigRational>(0, 0, OperationLimits::UNLIMITED).unwrap();
+        assert_eq!(pseudoinverse(&zero_00).unwrap().shape(), (0, 0));
+        let zero_03 = zeros_with_limits::<BigRational>(0, 3, OperationLimits::UNLIMITED).unwrap();
+        assert_eq!(pseudoinverse(&zero_03).unwrap().shape(), (3, 0));
+    }
+
 }
