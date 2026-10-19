@@ -115,8 +115,17 @@ def execute(command, cwd, log, timeout=300, environment_overlay=None):
             timed_out = False
         except subprocess.TimeoutExpired:
             # Stop the entire compiler/test process tree before restoring a snapshot.
-            subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"], capture_output=True)
-            process.wait()
+            try:
+                subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"], capture_output=True, timeout=15)
+            except subprocess.TimeoutExpired:
+                pass
+            # Sandboxed taskkill can fail for our own Popen child. The retained
+            # process handle still permits terminating that exact child.
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=15)
             code, timed_out = None, True
     return {"command": command, "cwd": str(cwd), "exit_code": code,
             "timed_out": timed_out, "elapsed_seconds": round(time.monotonic()-start, 3),

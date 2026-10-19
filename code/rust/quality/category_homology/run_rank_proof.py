@@ -18,8 +18,13 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex"),default="rank")
-    model = parser.parse_args().model
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology"),default="rank")
+    parser.add_argument("--memory-mb", type=int, default=1024,
+        help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
+    args = parser.parse_args()
+    if not 256 <= args.memory_mb <= 2048:
+        parser.error("Lean memory must stay within 256..2048 MiB")
+    model = args.model
     if model == "rank":
         proof_name, import_name, namespace = "RankCertificate", "LinearAlgebra/Matrix/Rank", "TFQM.RankCertificate."
         declarations = ("valid_rank","runChecks_ok_iff","admit_success","admit_success_rank",
@@ -41,6 +46,20 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "simplicial-homology":
+        proof_name, import_name, namespace = "SimplicialHomology", "LinearAlgebra/Dimension/DivisionRing", "TFQM.SimplicialHomology."
+        declarations = ("range_in_cycles", "rank_sum_bound", "betti_dimension")
+        scope = "Rational homology as cycles modulo boundaries, nonnegative rank sum and exact Betti dimension formula; concrete basis, zero-composition and certified rank correspondence are separate obligations."
+    elif model == "simplicial-boundary":
+        proof_name, import_name, namespace = "SimplicialBoundary", "Data/Matrix/Mul", "TFQM.SimplicialBoundary."
+        declarations = ("paired_term", "pair_cancellation", "signed_faces_cancel", "mapMatrix_comp", "mapMatrix_identity")
+        scope = "Alternating two-face cancellation and exact indicator-matrix composition; concrete list/basis and Rust representation correspondence requires separate review."
+    elif model == "simplicial-closure":
+        proof_name, import_name, namespace = "SimplicialClosure", "Data/Finset/Card", "TFQM.SimplicialClosure."
+        declarations = ("initial_cover", "initial_frontier", "duplicate_cover", "fresh_cover", "duplicate_frontier",
+                        "fresh_frontier", "fresh_sound", "finish_contains", "finish_closed", "fresh_card_bound",
+                        "duplicate_potential", "fresh_potential", "erase_commute", "erase_preserves_distinct", "erase_preserves_order")
+        scope = "Worklist coverage/soundness/closure, cardinality and decreasing work potential, and ordered/distinct face erasure; separate Rust representation review."
     elif model == "two-step-complex":
         proof_name, import_name, namespace = "TwoStepComplex", "Data/Matrix/Mul", "TFQM.TwoStepComplex."
         declarations = ("admission_success_iff", "admission_failure", "admission_preserves", "input_zero_product",
@@ -117,7 +136,7 @@ def main():
         if not libraries: raise RuntimeError("No prepared proof dependency path: "+key)
         environment[key] = ";".join(str(path) for path in libraries)
     write_json(output/"environment.json",{"lean_binary":str(binary),"environment":environment,"excluded_main_project_outputs":True})
-    common = [str(binary),"--memory=1024","--threads=2","--root="+str(proof.parent)]
+    common = [str(binary),"--memory="+str(args.memory_mb),"--threads=2","--root="+str(proof.parent)]
     dependencies = execute([*common,"--deps",str(proof)],proof.parent,output/"dependencies.log",timeout=60,environment_overlay=environment)
     sources = execute([*common,"--src-deps",str(proof)],proof.parent,output/"dependency-sources.log",timeout=60,environment_overlay=environment)
     paths = set()
@@ -146,6 +165,7 @@ def main():
     status_after = subprocess.check_output(["git","-C",str(mathlib),"status","--porcelain","--untracked-files=no"],text=True).strip()
     receipt = {
         "AuthorityEffect":"None", "proof_sha256":digest(proof),
+        "lean_memory_limit_mb":args.memory_mb,
         "source_manifest_sha256":digest(output/"source_manifest.json"),
         "dependency_manifest_sha256":digest(output/"dependency_manifest.json"),
         "sources_unchanged":all(Path(path).is_file() and digest(Path(path)) == value for path,value in inputs.items()),
@@ -156,7 +176,8 @@ def main():
         "mathlib_head":head_after,"mathlib_revision_stable":head_before == head_after,
         "mathlib_tracked_source_clean":not status_before and not status_after,
         "environment_sha256":digest(output/"environment.json"),
-        "runner_sha256":digest(Path(__file__)),
+        "runner_sha256":runtime[Path(__file__).name],
+        "runner_source_unchanged":digest(Path(__file__))==runtime[Path(__file__).name],
         "runtime_snapshots":runtime,
         "runs":[checked,dependencies,sources],
         "check_ok":checked["exit_code"] == 0 and dependencies["exit_code"] == 0 and sources["exit_code"] == 0 and expected == set(reports) and not unexpected and not warnings,

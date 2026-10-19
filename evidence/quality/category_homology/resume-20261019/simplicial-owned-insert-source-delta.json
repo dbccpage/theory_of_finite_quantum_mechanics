@@ -1,0 +1,38 @@
+{
+  "AuthorityEffect": "None",
+  "previous_source": {
+    "path": "evidence/quality/category_homology/resume-20261019/simplicial-before-owned-insert.rs",
+    "sha256": "c340b9486e1746fcc3d60a66affa61e206e1d4db3abcfd21a07ff690f2d3cdf4"
+  },
+  "current_source": {
+    "path": "code/rust/src/homology/simplicial.rs",
+    "sha256": "41168fedb6093f4d25ab9828009a03a60c8adf42fd390903876f2692d26b4a01"
+  },
+  "source_review": {
+    "path": "code/rust/quality/category_homology/assessments/simplicial_source_review.json",
+    "sha256": "123ccbd2ab9f0f5038c98590476475bc2bb7550b4b9b9ddc0c80c7cefa141f1d"
+  },
+  "production_body_delta": [
+    "impl SimplicialComplex::rational_betti_numbers",
+    "module::close_faces"
+  ],
+  "unchanged_bodies": 43,
+  "behavior": "Borrowed set membership eliminates parent-key cloning. The face-count refusal occurs before fresh expansion; duplicates at the limit still pass. Betti ranks are independently certified once per differential, carried forward, and typed rank producer/checker failures propagate. No new mathematical input ceiling is introduced.",
+  "prior_allocation_finding": {
+    "path": "evidence/quality/category_homology/resume-20261019/simplicial-duplicate-allocation-finding.json",
+    "sha256": "e0a6a33ec358c79f2dcd9b65d4ffbb84b2a06e70d46d1ca54d9ac08314801ee2"
+  },
+  "additional_cost_finding": "Previous Betti loop rebuilt and row-reduced every interior differential at two adjacent iterations; the carried rank removes that repeated work. Source-level cost finding, not an allocator benchmark.",
+  "current_native": {
+    "path": "evidence/quality/category_homology/20261019T051112Z/summary.json",
+    "sha256": "7766a49ff178928fa14267d1b5bda7662aaf6cb7717e73b6d4b06f2c32fa0bb7"
+  },
+  "current_metrics": {
+    "path": "evidence/quality/category_homology/20261019T051536Z-metrics/receipt.json",
+    "sha256": "547887d0ff10cde3710752e7bab7587e69a70b567c0c8ca6e69b5a68d9c0fd6f"
+  },
+  "consumer_inventory": {
+    "path": "evidence/quality/category_homology/resume-20261019/simplicial-current-consumers.log",
+    "sha256": "a16b9b0141d9c2b252974e3466146e3d466d05dff4ebd7b12442f11b86164898"
+  }
+}

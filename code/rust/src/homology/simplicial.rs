@@ -7,8 +7,8 @@
 //! exceed their machine representation return a typed refusal.
 
 use crate::homology::errors::HomologicalError;
+use crate::homology::rank_certificate::certify_rank;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
-use crate::linear_algebra::image_kernel::ExactRowReduction;
 use crate::linear_algebra::scalars::{q, Q};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
@@ -104,8 +104,9 @@ impl Simplex {
 
 /// An oriented simplex.
 ///
-/// The stored vertices are canonical. `orientation` is the sign of the input
-/// ordering relative to canonical ascending order.
+/// The stored vertices are canonical and `orientation` is a chosen ±1 sign.
+/// `from_ordered` derives that sign from permutation parity; wire admission
+/// accepts either sign on an already canonical simplex.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 #[serde(try_from = "OrientedWire")]
 pub struct OrientedSimplex {
@@ -486,16 +487,18 @@ impl SimplicialComplex {
     /// Exact rational Betti numbers `b_k = dim H_k(K; Q)` for `0 <= k <= max_dimension`.
     ///
     /// `b_k = dim C_k - rank d_k - rank d_{k+1}`, with ranks by exact row
-    /// reduction. A rank that exceeds the dimension it is subtracted from is a
+    /// reduction followed by independent split-map certificate checks,
+    /// computing each differential's rank once and carrying it to
+    /// the next degree. A rank that exceeds the dimension it is subtracted from is a
     /// typed [`HomologicalError::BettiRankInconsistency`], never a clamp.
     pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError> {
         let max_dim = self.max_dimension();
         let rank = |k: usize| -> Result<usize, HomologicalError> {
-            self.boundary_matrix(k)?
-                .rank()
-                .map_err(|e| HomologicalError::UnsupportedOperation(format!("{}", e)))
+            let matrix = self.boundary_matrix(k)?;
+            Ok(certify_rank(&matrix)?.rank())
         };
         let mut betti = Vec::with_capacity(max_dim + 1);
+        let mut rank_dk = 0;
 
         for k in 0..=max_dim {
             let ck_dim = self.count(k);
@@ -504,7 +507,6 @@ impl SimplicialComplex {
                 continue;
             }
 
-            let rank_dk = if k == 0 { 0 } else { rank(k)? };
             let ker_dk =
                 ck_dim
                     .checked_sub(rank_dk)
@@ -524,6 +526,7 @@ impl SimplicialComplex {
             )?;
 
             betti.push(bk);
+            rank_dk = rank_dk_plus_1;
         }
 
         Ok(betti)
@@ -542,14 +545,16 @@ fn close_faces(simplices: Vec<Simplex>) -> Result<BTreeSet<Simplex>, Homological
     let mut stack = simplices;
 
     while let Some(simplex) = stack.pop() {
-        if all.insert(simplex.clone()) {
-            if all.len() > MAX_SIMPLICES {
-                return Err(HomologicalError::ResourceLimit("simplicial face closure"));
-            }
-            for (face, _) in simplex.faces() {
-                stack.push(face);
-            }
+        if all.contains(&simplex) {
+            continue;
         }
+        if all.len() == MAX_SIMPLICES {
+            return Err(HomologicalError::ResourceLimit("simplicial face closure"));
+        }
+        for (face, _) in simplex.faces() {
+            stack.push(face);
+        }
+        all.insert(simplex);
     }
 
     Ok(all)

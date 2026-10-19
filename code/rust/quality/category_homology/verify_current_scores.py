@@ -26,6 +26,8 @@ def main():
     output = ROOT / "evidence/quality/category_homology" / (stamp + "-score-verification")
     output.mkdir(parents=True)
     shutil.copyfile(__file__,output / "verify_current_scores.py")
+    writer = output / "write_scores.py"
+    shutil.copyfile(Path(__file__).with_name("write_scores.py"),writer)
     groups, rows = defaultdict(dict), []
     for folder in ("category_theory", "homology"):
         for source in sorted((ROOT / "code/rust/src" / folder).rglob("*.rs")):
@@ -59,7 +61,7 @@ def main():
     for index, ((receipt,metrics), mapping) in enumerate(groups.items()):
         map_path = output / f"assessments-{index}.json"
         map_path.write_text(json.dumps(mapping,indent=2) + "\n",encoding="utf-8")
-        command = [sys.executable,str(Path(__file__).with_name("write_scores.py")),"--check",
+        command = [sys.executable,str(writer),"--check",
                    "--receipt",receipt,"--metrics",metrics,"--assessment-map",str(map_path),"--only",*mapping]
         run = subprocess.run(command,cwd=ROOT,capture_output=True,text=True)
         log = output / f"check-{index}.log"
@@ -78,6 +80,7 @@ def main():
             sha((ROOT/row["path"]).with_suffix(".score.yaml")) == row["score_sha256"] for row in rows),
         "completed_checks_passed":all(check["exit_code"] == 0 for check in checks),
         "rows":rows,"checks":checks,"runner_sha256":sha(Path(__file__)),
+        "score_writer_sha256":sha(writer),
         "scope":"All completed records are revalidated; incomplete records remain unassessed, regardless of passing package tests."}
     (output / "summary.json").write_text(json.dumps(summary,indent=2) + "\n",encoding="utf-8")
     print("Receipt:",output,flush=True)

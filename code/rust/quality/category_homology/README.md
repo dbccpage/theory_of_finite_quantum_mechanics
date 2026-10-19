@@ -468,3 +468,46 @@ compiled outputs. An inactive registered Bell cache was separately verified
 and removed; active shared builds were preserved. Exact small source
 snapshots remain for pinned receipts. Contracts and the all-files goal stay
 unfinished.
+
+Simplicial checkpoint: 130 completed A assessments and 62 incomplete out of
+192. Simplicial is L4A; capability is not raised just because it now uses the
+existing L5 rank architecture. Face closure checks duplicate keys by reference
+and moves fresh keys; Betti computes each differential rank once, independently
+checks the split-map certificate, and carries that rank to the next degree.
+Typed rank failures now propagate directly. Public signatures, wire formats,
+mathematical input bounds and the other 43 production bodies are unchanged.
+
+Final native 20261019T051112Z detects all 21 designated valid faults, passes the
+full control (including the 16-vertex Boolean lattice and distinct-face cap),
+and passes 99 original homology tests before/after. Initial 045558Z retains
+18 detected faults and one inconclusive factorial traversal timeout. Its old
+hash-at-end runner discrepancy is recorded against its retained start snapshot;
+that initial run is excluded from grading. Dispatch now uses a small decisive
+fixture for the no-insertion fault. Candidate/harness revisions are separately
+bound, and no identical-byte replay is claimed. The timeout fallback was also
+checked against an owned direct child; future summaries bind their start
+snapshot and report live source drift separately.
+
+The 45-function source/body/failure/consumer review connects 15 worklist/erasure
+lemmas, five signed-face/indicator-matrix lemmas and three rational homology
+lemmas to concrete canonical bases and independently certified ranks. Existing
+index/parity and rank-certificate models retain their actual scopes. Two Betti
+proof attempts exceeded 1024 MiB; the final explicit 1536 MiB check succeeds on
+a host measured to have about 5.4 GiB free RAM, without custom axioms or unfinished
+proofs. Failed and warning receipts remain historical. Representation/runtime
+correspondence is reviewed source evidence, not a Rust/MIR extraction claim.
+An existing external DiscreteSpacetime caller's expect on unsupported degrees
+is documented in the consumer review; no external application grade is awarded.
+
+20261019T052226Z-score-verification revalidates all 130 completed assessments,
+all current source/score digests and 22 receipt groups. Calibrated current source
+metrics place all 45 simplicial functions within A ceilings. The prior allocation
+ceiling is resolved; finite_report_descent's separate metric E ceiling remains
+visible. Cleanup checkpoint 130 finds zero owned debug/tmp or compiled outputs.
+Exact source snapshots remain for receipt custody. Contracts and the all-files
+goal remain unfinished; the draft PR is a partial, reviewable checkpoint.
+
+Current score verification snapshots its exact writer. Refreshing an unchanged
+source/primary/metric now creates a distinct record-digest batch when needed,
+preserving the published historical manifest byte-for-byte. The actual rank
+refresh preservation check is recorded in score-manifest-custody-repair.json.

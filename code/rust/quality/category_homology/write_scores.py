@@ -358,15 +358,24 @@ def main():
         if destination.exists(): manifest[destination.relative_to(ROOT).as_posix()] = sha(destination)
     if failures:
         raise SystemExit("Missing/stale score records:\n"+"\n".join(failures))
-    # A later structural assessment must not overwrite a historical receipt's
-    # original score manifest. Each metric replay records its own derived batch.
+    # Keep every historical batch immutable, even when a review changes while
+    # the primary source/metrics stay identical. Select by current record bytes.
     score_manifest = metric_receipt / ("score_manifest-"+receipt.name+".json")
-    if not args.check:
+    stored = json.loads(score_manifest.read_text()) if score_manifest.exists() else {}
+    matches = all(stored.get(key) == value for key,value in manifest.items())
+    if score_manifest.exists() and (not matches or (not args.only and manifest != stored)):
+        batch = hashlib.sha256(json.dumps(manifest,sort_keys=True).encode("utf-8")).hexdigest()[:16]
+        score_manifest = score_manifest.with_name(score_manifest.stem+"-"+batch+".json")
         stored = json.loads(score_manifest.read_text()) if score_manifest.exists() else {}
-        stored.update(manifest)
-        score_manifest.write_text(json.dumps(stored,indent=2)+"\n",encoding="utf-8",newline="\n")
+    if not args.check:
+        if score_manifest.exists():
+            if any(stored.get(key) != value for key,value in manifest.items()) or (not args.only and manifest != stored):
+                raise SystemExit("Refusing to replace a historical score manifest")
+        else:
+            score_manifest.write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8",newline="\n")
     else:
-        stored = json.loads(score_manifest.read_text())
+        if not score_manifest.exists():
+            raise SystemExit("Missing source-bound score manifest")
         if any(stored.get(key) != value for key,value in manifest.items()) or (not args.only and manifest != stored):
             raise SystemExit("Score manifest mismatch")
     print(("Verified" if args.check else "Wrote"),len(paths),"adjacent score YAML files")
