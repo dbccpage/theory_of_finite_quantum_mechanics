@@ -1,0 +1,82 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "H054 proves no integer assignment for all Int-valued f, stronger than a finite 0/1 enumeration. The short frame_additivity_not_force_psd theorem checks only one frame/ray, so this run selects the stronger compiled all_cabello_checks_do_not_certify_psd theorem covering all rays and frames and independently checks normalized rational arrays.",
+  "carrier": "The 18 source integer rays and nine orthogonal tetrads in real dimension four; integer assignments and real-symmetric rational countermodels.",
+  "coefficient_ring": "Int and Q with explicit positive trace normalization",
+  "production_sources": [
+    "code/python/src/qm/cabello_obstruction.py",
+    "code/python/src/qm/cabello_frame.py",
+    "code/python/src/qm/pfp_exact.py",
+    "code/python/tests/test_cabello_obstruction.py",
+    "code/rust/src/finite_probability/cabello_obstruction.rs",
+    "code/rust/src/finite_probability/cabello_certificates.rs",
+    "code/rust/src/finite_probability/frame_polytope.rs",
+    "code/rust/src/finite_probability/pfp_exact.rs",
+    "code/rust/src/finite_probability/examples/cabello_obstruction_replay.rs",
+    "lean4/PromptCabelloParity.lean",
+    "lean4/H054GleasonCyclotomicObstruction.lean"
+  ],
+  "build_sources": [
+    "code/rust/src/finite_probability/lib.rs",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lakefile.lean",
+    "lean4/lean-toolchain",
+    "lean4/lake-manifest.json"
+  ],
+  "independent_predicates": [
+    "Actual integer linear combination of context equations and gcd divisibility obstruction",
+    "All 18 normalized ray evaluations and all nine exact sum-one frame equations",
+    "Actual negative quadratic witness for the normalized matrix",
+    "Every source scaled division has zero remainder; no floor arithmetic accepted",
+    "An explicit even-context integer assignment as a limited valid control",
+    "Five literal kernel reports and complete exact Rust/Python output"
+  ],
+  "challenge_plan": "Falsify the combined integer row, erase the nonzero remainder, use an unnormalized matrix, replace the negative vector by zero, and falsify the actual even-control assignment.",
+  "composition_tree": "gcd_obstruction(combine_integer_contexts(A,1)); finite_ray_readout(normalize_symmetric_trace(M_bad),r); negative_quadratic_witness(normalize_symmetric_trace(M_bad),v).",
+  "anchors": [
+    "code/python/src/qm/cabello_obstruction.py",
+    "code/python/src/qm/cabello_frame.py",
+    "code/python/src/qm/pfp_exact.py",
+    "code/python/tests/test_cabello_obstruction.py",
+    "code/rust/src/finite_probability/cabello_obstruction.rs",
+    "code/rust/src/finite_probability/cabello_certificates.rs",
+    "code/rust/src/finite_probability/frame_polytope.rs",
+    "code/rust/src/finite_probability/pfp_exact.rs",
+    "code/rust/src/finite_probability/examples/cabello_obstruction_replay.rs",
+    "lean4/PromptCabelloParity.lean",
+    "lean4/H054GleasonCyclotomicObstruction.lean",
+    "QuantumMechanics.PromptCabelloParity.odd_context_total_not_twice_integer",
+    "QuantumMechanics.PromptCabelloParity.no_integer_frame_assignment",
+    "QuantumMechanics.PromptCabelloParity.all_measured_checks_do_not_force_psd",
+    "QuantumMechanics.PromptCabelloParity.scaled_readouts_have_no_integer_rounding",
+    "QuantumMechanics.PromptCabelloParity.positive_normalization_scale_and_negative_numerator"
+  ],
+  "checker_id": "independent-integer-context-combination-and-normalized-frame-countermodel-v1",
+  "python_test": "code/python/tests/test_cabello_obstruction.py",
+  "rust_filter": "cabello_obstruction",
+  "lean_source": "lean4/PromptCabelloParity.lean",
+  "lean_anchors": [
+    "QuantumMechanics.PromptCabelloParity.odd_context_total_not_twice_integer",
+    "QuantumMechanics.PromptCabelloParity.no_integer_frame_assignment",
+    "QuantumMechanics.PromptCabelloParity.all_measured_checks_do_not_force_psd",
+    "QuantumMechanics.PromptCabelloParity.scaled_readouts_have_no_integer_rounding",
+    "QuantumMechanics.PromptCabelloParity.positive_normalization_scale_and_negative_numerator"
+  ],
+  "rust_example": "cabello_obstruction_replay",
+  "construction": "Compute the actual two-regular column combination, gcd/right-side remainder, normalized source matrix and every readout/negative witness; include a genuine even-context integer solution.",
+  "claim_boundary": {
+    "supports": "A universal no-Int-valued-assignment theorem on the fixed nine tetrads and an exact normalized real-symmetric frame-function counterexample to PSD sufficiency.",
+    "does_not_support": "Arbitrary complex-Hermitian frame systems, general even-parity sufficiency, or a fully instantiated refined-carrier operad.",
+    "narrowest_claim": "Literal universal integer parity, full measured-ray/source scaled checks, and the independently verified normalized M_bad/2 countermodel with a negative quadratic direction.",
+    "next_test": "Batch review must compare the source scaled integer checks with actual rational readouts and preserve the even-control limitation."
+  },
+  "result_or_obstruction": "No integer frame assignment exists on the declared Cabello system; finite bounded frame values and additivity still fail to imply PSD.",
+  "next_mathematical_step": "If requested, formalize the normalized rational matrix interpretation and its real PSD refusal as an explicit transport lemma.",
+  "colour_meanings": {
+    "TraceOneSymmetric4": "Trace-one real-symmetric rational matrix; PSD is not assumed.",
+    "DivisibilityDecision": "Actual integer coefficients, gcd and remainder; only a nonzero remainder certifies refusal.",
+    "ExactScaledIntegerOrRefusal": "An exact scaled integer readout only after divisibility is checked."
+  },
+  "report": "# Cabello integer parity and frame-function countermodel\n\nThe universal integer assignment theorem uses the actual nine source tetrads; every ray occurs twice, forcing 9=2k for an integer k, which is impossible. This is not a bounded 0/1 search. The actual normalized matrix M_bad/2 has 18 nonnegative ray values bounded by one and nine exact frame sums one, yet its quadratic value on (0,0,1,1) is -1. Source scale-four integer readouts are checked for exact divisibility before use. An explicit two-context integer assignment is a valid control, not a general sufficiency theorem. General rational-to-real transport and a full refined-carrier operad instance remain explicit formal obligations."
+}

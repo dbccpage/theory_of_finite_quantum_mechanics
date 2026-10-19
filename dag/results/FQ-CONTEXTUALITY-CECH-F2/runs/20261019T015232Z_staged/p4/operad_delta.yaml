@@ -1,0 +1,511 @@
+add_or_refine_generators:
+- id: incidence_map
+  ordered_inputs:
+  - ContextCover
+  - GlobalF2Section
+  output: ContextParityVector
+  arity: 2
+  carrier: Exact finite context sections and overlap cochains
+  coefficient_ring: F2
+  hypotheses:
+  - Actual declared context incidence, local zero-sum constraints, ordered coordinate basis and matching
+    cover.
+  semantic_predicate: Sum actual global variable bits in each context.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: local_overlap_map
+  ordered_inputs:
+  - DegreeTwoContextCover
+  - ZeroSumLocalAdjustments
+  output: OverlapF2Cochain
+  arity: 2
+  carrier: Exact finite context sections and overlap cochains
+  coefficient_ring: F2
+  hypotheses:
+  - Actual declared context incidence, local zero-sum constraints, ordered coordinate basis and matching
+    cover.
+  semantic_predicate: Take actual overlap discrepancies of parity-preserving local adjustments.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: base_discrepancy
+  ordered_inputs:
+  - ContextParitySystem
+  output: OverlapF2Cochain
+  arity: 1
+  carrier: Exact finite context sections and overlap cochains
+  coefficient_ring: F2
+  hypotheses:
+  - Actual declared context incidence, local zero-sum constraints, ordered coordinate basis and matching
+    cover.
+  semantic_predicate: Take overlap differences of the explicit local base sections.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: packed_rank
+  ordered_inputs:
+  - BinaryMatrix
+  output: FiniteRank
+  arity: 1
+  carrier: Exact finite context sections and overlap cochains
+  coefficient_ring: F2
+  hypotheses:
+  - Actual declared context incidence, local zero-sum constraints, ordered coordinate basis and matching
+    cover.
+  semantic_predicate: Compute exact F2 rank of the retained rectangular binary matrix.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: annihilating_character
+  ordered_inputs:
+  - OverlapF2Cochain
+  output: F2Value
+  arity: 1
+  carrier: Exact finite context sections and overlap cochains
+  coefficient_ring: F2
+  hypotheses:
+  - Actual declared context incidence, local zero-sum constraints, ordered coordinate basis and matching
+    cover.
+  semantic_predicate: Pair with the retained left-null character; nonzero value certifies exclusion from
+    the overlap image.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: differential1
+  ordered_inputs:
+  - OverlapF2Cochain
+  - TripleIntersectionDomain
+  output: TripleF2Cochain
+  arity: 2
+  carrier: Exact finite context sections and overlap cochains
+  coefficient_ring: F2
+  hypotheses:
+  - Actual declared context incidence, local zero-sum constraints, ordered coordinate basis and matching
+    cover.
+  semantic_predicate: Apply the second difference on actual triple intersections; selected degree-two
+    covers have an explicitly empty C2 domain.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+add_or_refine_relations:
+- id: d_squared_zero
+  equation_or_predicate: d1(d0(s))=0
+  typing_conditions: Full source finite-cochain definitions
+  evidence_status: Universal source kernel theorem; selected overlap restriction is separately checked
+    natively.
+  scope: No derived nonzero H1 merely from this identity.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+- id: peres_rank8
+  equation_or_predicate: rank(delta0)=8, rank([delta0|b])=9; rank(incidence)=5
+  typing_conditions: Actual 9x12 overlap matrix versus distinct 6x9 global incidence matrix
+  evidence_status: Independent packed-bit rank and full native matrix agreement; formal rank transport
+    remains open.
+  scope: This explicit Peres-Mermin cover.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+- id: cabello_obstruction
+  equation_or_predicate: rank(delta0)=17, augmented rank18; no global parity section
+  typing_conditions: Actual 18x27 overlap matrix and nine Cabello contexts
+  evidence_status: Source universal no-global-section kernel theorem plus actual finite rank/left-null
+    certificate.
+  scope: The actual source ray labels and parity targets.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+- id: left_character_blocks_image
+  equation_or_predicate: chi(delta0*x)=0, chi(b)=1 implies no preimage
+  typing_conditions: Character annihilates every column; explicit nonzero pairing
+  evidence_status: Generic kernel preimage-exclusion theorem plus actual exact column parity checks.
+  scope: The matrix-to-function formal bridge remains an obligation.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+- id: valid_global_section
+  equation_or_predicate: A supplied all-zero global section satisfies every zero-target context
+  typing_conditions: Same Peres cover with zero parity targets
+  evidence_status: Actual native/checker context equations; source X2 is a separate kernel valid-section
+    control.
+  scope: Neither d-squared-zero nor rank8 alone implies obstruction.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+- id: h1_dimension
+  equation_or_predicate: dim ker(d1) - rank(delta0)=1 on both selected obstructed covers
+  typing_conditions: C2 is actually empty because every measurement belongs to exactly two contexts
+  evidence_status: Actual shape/intersection checks and exact F2 rank; not a kernel homology-dimension
+    proof.
+  scope: The two explicit covers only.
+  source_pins:
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CONTEXTUALITY-CECH-F2__PROVED_LEAN.yaml
+    sha256: ad8673e0a5dbf3261f69137fd05cebaedd951e3edc7411911923f406ce18c520
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CONTEXTUALITY-CECH-F2.yaml
+    sha256: d59a1ba18edbbaf506d474eb9b386f6deaf86dac17b03fafdfbfe9839d0e656c
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/ContextualityObstruction.lean
+    sha256: 712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DualWitness.lean
+    sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs
+    sha256: 73b140dbb16108423892a972dfce00045feb0440be55befba44fd19d5a043761
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs
+    sha256: dfff69058fa6a55c223a80aa4857c48e3e38babe260a5ebdfa99939f7f692b0f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0250_mermin-peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cech_f2.py
+    sha256: 3372f0a1738bec15e4e7a2615f43ba99cb173838e1a8535d240c4b97123a9804
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cech_f2.py
+    sha256: 544297090bc4f690f73bd6d571165475f7ee1b656845d2fd2cca414dfbbfc10f
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cech_f2.rs
+    sha256: 0557b5bf4086a8e0003e49673f17870e953b377babb209a5399cc055570c6e46
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cech_f2_replay.rs
+    sha256: a24ec2ca05547b7b28880563b68f2e80b1ccb471a43c03565386f83544afe3d9
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/check_candidate.py
+    sha256: a5b06c9bb196909bb6b6061d164fb2e720d84896df7f23da4b52e90d1e8754a2
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-CONTEXTUALITY-CECH-F2/runs/20261019T015232Z_staged/format_certificate.py
+    sha256: 9235e09df7cf81075f278a140d591b33526d4db5e99654cdf7ed7aafea9c5171
+checked_compositions:
+- outer_operation: annihilating_character
+  input_slot: 0
+  inner_operation: base_discrepancy
+  colour_match: OverlapF2Cochain -> OverlapF2Cochain
+  hypothesis_match: Character and local base sections are on the same actual cover and overlap ordering.
+  licensing_relations:
+  - left_character_blocks_image
+  - cabello_obstruction
+  evidence_status: Actual chi(b)=1 and chi(delta0 columns)=0; generic kernel exclusion theorem remains
+    conditional on these hypotheses.
+- outer_operation: differential1
+  input_slot: 0
+  inner_operation: local_overlap_map
+  colour_match: OverlapF2Cochain -> OverlapF2Cochain
+  hypothesis_match: Same overlap restriction and actual triple-intersection domain.
+  licensing_relations:
+  - d_squared_zero
+  evidence_status: Actual zero-row C2 shape verified; generic full-cochain d-squared theorem separately
+    compiled.
+failed_compositions:
+- outer_operation: packed_rank
+  input_slot: 0
+  inner_operation: local_overlap_map
+  colour_match: Requires the retained coordinate matrix of the linear OverlapF2Cochain map, not a single
+    value.
+  hypothesis_match: Matrix representation is explicitly retained as delta0 on the fixed coordinate basis.
+  licensing_relations:
+  - peres_rank8
+  - cabello_obstruction
+  evidence_status: Matrix-representation adapter is needed; direct typed insertion is not licensed.
+counterexamples:
+- id: same_cover_global_section
+  evidence: The retained third full candidate has zero context targets, actual zero global section and
+    equal ordinary/augmented overlap ranks.
+  lesson: The overlap rank or d-squared-zero identity alone does not establish an obstruction.
+open_obligations:
+- Formalize the concrete zero-sum-local overlap matrices, their ranks and their relation to the source
+  full-cochain definitions in Lean.
+- Do not identify the Peres 6x9 incidence matrix of rank5 with the 9x12 overlap map of rank8.
+- The native H1 dimension is for the explicitly selected parity sheaf/cover; no arbitrary contextuality
+  or physical completeness claim follows.
+- A full refined-carrier operad, coordinate adapters and symmetry/quotient presentation remain open.

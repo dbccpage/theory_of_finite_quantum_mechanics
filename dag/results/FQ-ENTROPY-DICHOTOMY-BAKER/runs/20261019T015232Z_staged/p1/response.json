@@ -1,0 +1,1392 @@
+{
+  "task_id": "FQ-ENTROPY-DICHOTOMY-BAKER",
+  "stage_id": "P1_DERIVE",
+  "attempt_id": "p1",
+  "input_sha256": "09a18d3f46aca447a414b03101ebb750b20f1a7ffcc2dedb94016254ceb5e108",
+  "candidate_certificate": {
+    "schema_id": "finite-qm.domain-certificate.v1",
+    "task_id": "FQ-ENTROPY-DICHOTOMY-BAKER",
+    "stage_id": "P1_DERIVE",
+    "attempt_id": "p1",
+    "input_sha256": "09a18d3f46aca447a414b03101ebb750b20f1a7ffcc2dedb94016254ceb5e108",
+    "source_pins": [
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/code/python/src/qm/entropy_exact.py",
+        "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/code/python/tests/test_entropy_exact.py",
+        "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/entropy_exact.rs",
+        "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+        "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/lean4/PromptEntropyExact.lean",
+        "sha256": "cc6c72e60057b0a9e8a3bd093901f7a5a9142a6015700222a98de6dbe9e22c62"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/lean4/EntropyDichotomy.lean",
+        "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/lib.rs",
+        "sha256": "0c86784a90fa6fa6dc769e88d682a6ebbdf6f4d3b5161d6d33a21727122db1ea"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/Cargo.toml",
+        "sha256": "5d0f58ff83c8e4b387de5df3ff870f91a7a7b566098764b5b4c24da899d19a65"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/code/rust/Cargo.lock",
+        "sha256": "b30901c3b27d2417071d5c1d626f91085558d7a81f2de3abf059bd96f2f76ef6"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/lean4/lakefile.lean",
+        "sha256": "50757afd74e2bd5c99efc98b07fc836e9b61e61e6d565642a33d4d59001593cb"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/lean4/lean-toolchain",
+        "sha256": "a0ada3782cd088719516bbfdf37b9e7032230e211bf424b85d952ee650c51091"
+      },
+      {
+        "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p1/construction/lean4/lake-manifest.json",
+        "sha256": "7420c413da283f6b7aa102fd1a4be076a5c3ba1fbf3227bfeced44c7afcc61d2"
+      }
+    ],
+    "data": {
+      "cases": [
+        {
+          "id": "pure_with_zero",
+          "spectrum": [
+            "0",
+            "1",
+            "0"
+          ],
+          "denominator": "1",
+          "integer_weights": [
+            "0",
+            "1",
+            "0"
+          ],
+          "terms": 12,
+          "purity": "1",
+          "purity_deficit": "0",
+          "integer_power_sums": [
+            "1",
+            "1",
+            "1"
+          ],
+          "power_traces": [
+            "1",
+            "1",
+            "1"
+          ],
+          "term_bounds": [
+            {
+              "mode": "zero_weight",
+              "t": "0",
+              "partial": "0",
+              "tail": "0",
+              "lower": "0",
+              "upper": "0"
+            },
+            {
+              "mode": "positive_weight",
+              "t": "0",
+              "partial": "0",
+              "tail": "0",
+              "lower": "0",
+              "upper": "0"
+            },
+            {
+              "mode": "zero_weight",
+              "t": "0",
+              "partial": "0",
+              "tail": "0",
+              "lower": "0",
+              "upper": "0"
+            }
+          ],
+          "entropy_lower": "0",
+          "entropy_upper": "0",
+          "interval_width": "0",
+          "classification": "PURE",
+          "log_base": "natural",
+          "Baker_status": "EXPLICIT_UNPAID_HYPOTHESIS"
+        },
+        {
+          "id": "maximally_mixed_two",
+          "spectrum": [
+            "1/2",
+            "1/2"
+          ],
+          "denominator": "2",
+          "integer_weights": [
+            "1",
+            "1"
+          ],
+          "terms": 12,
+          "purity": "1/2",
+          "purity_deficit": "1/2",
+          "integer_power_sums": [
+            "2",
+            "2",
+            "2"
+          ],
+          "power_traces": [
+            "1/2",
+            "1/4",
+            "1/8"
+          ],
+          "term_bounds": [
+            {
+              "mode": "positive_weight",
+              "t": "-1/3",
+              "partial": "-346617686907988864/500063617986634845",
+              "tail": "1/9414317882700",
+              "lower": "173308843453994432/500063617986634845",
+              "upper": "6932353738160839627/20002544719465393800"
+            },
+            {
+              "mode": "positive_weight",
+              "t": "-1/3",
+              "partial": "-346617686907988864/500063617986634845",
+              "tail": "1/9414317882700",
+              "lower": "173308843453994432/500063617986634845",
+              "upper": "6932353738160839627/20002544719465393800"
+            }
+          ],
+          "entropy_lower": "346617686907988864/500063617986634845",
+          "entropy_upper": "6932353738160839627/10001272359732696900",
+          "interval_width": "1/9414317882700",
+          "classification": "MIXED",
+          "log_base": "natural",
+          "Baker_status": "EXPLICIT_UNPAID_HYPOTHESIS"
+        },
+        {
+          "id": "mixed_three",
+          "spectrum": [
+            "1/2",
+            "1/3",
+            "1/6"
+          ],
+          "denominator": "6",
+          "integer_weights": [
+            "3",
+            "2",
+            "1"
+          ],
+          "terms": 16,
+          "purity": "7/18",
+          "purity_deficit": "11/18",
+          "integer_power_sums": [
+            "14",
+            "36",
+            "98"
+          ],
+          "power_traces": [
+            "7/18",
+            "1/6",
+            "49/648"
+          ],
+          "term_bounds": [
+            {
+              "mode": "positive_weight",
+              "t": "-1/3",
+              "partial": "-10222343103897452720952704/14747723702258348925112275",
+              "tail": "1/81532888309481004",
+              "lower": "5111171551948726360476352/14747723702258348925112275",
+              "upper": "122668117246769434822000523/353945368854200374202694600"
+            },
+            {
+              "mode": "positive_weight",
+              "t": "-1/2",
+              "partial": "-5323193128076860814623/4845379196126704435200",
+              "tail": "1/106300440576",
+              "lower": "5323193128076860814623/14536137588380113305600",
+              "upper": "2661596564061221372099/7268068794190056652800"
+            },
+            {
+              "mode": "positive_weight",
+              "t": "-5/7",
+              "partial": "-7289678470923309515016223785871469440/4068451022317286363188478841468809133",
+              "tail": "116415321826934814453125/62479051285798939419556926228",
+              "lower": "3644839235461654757508111892935734720/12205353066951859089565436524406427399",
+              "upper": "29158744206178957867510898103690955885/97642824535614872716523492195251419192"
+            }
+          ],
+          "entropy_lower": "132994951770537167723627834836698831876527855069091797333527/131495382265425047444568517523362804847202424310056825651200",
+          "entropy_upper": "199492488909263933424478316740512270536629225470167558929553/197243073398137571166852776285044207270803636465085238476800",
+          "interval_width": "1072360474531481068360616901113976728340541973/3453122192046074253782805452361442235019760062431232",
+          "classification": "MIXED",
+          "log_base": "natural",
+          "Baker_status": "EXPLICIT_UNPAID_HYPOTHESIS"
+        },
+        {
+          "id": "small_positive_weight",
+          "spectrum": [
+            "1/1024",
+            "1023/1024"
+          ],
+          "denominator": "1024",
+          "integer_weights": [
+            "1",
+            "1023"
+          ],
+          "terms": 16,
+          "purity": "523265/524288",
+          "purity_deficit": "1023/524288",
+          "integer_power_sums": [
+            "1046530",
+            "1070599168",
+            "1095222947842"
+          ],
+          "power_traces": [
+            "523265/524288",
+            "1045507/1048576",
+            "547611473921/549755813888"
+          ],
+          "term_bounds": [
+            {
+              "mode": "positive_weight",
+              "t": "-1023/1025",
+              "partial": "-28149297528471545516884663064311971640067700578348241807272910157893834764655149793739910693380649472/6021594906926095048853738775753110072196611921516529298170801454137546215861220844089984893798828125",
+              "tail": "64177378417806882440475541619763486642456521161827219428172203059028123698712421977140711734149151/4403213862008496582877574196734343983470991777961645041727933858055621385574340820312500000000000",
+              "lower": "54979096735295987337665357547484319609507227692086409779829902652136396024717089440898263073009081/12043189813852190097707477551506220144393223843033058596341602908275092431722441688179969787597656250",
+              "upper": "237393462926549248496740175063055967153445830667585032972017938793487587569079684518882574097362324246339/12628199802249874083893715981048186294127269084432232450717492611147463321685791015625000000000000000000000"
+            },
+            {
+              "mode": "positive_weight",
+              "t": "-1/2047",
+              "partial": "-120827929762398089880971642718132169312905501042789908445259152909751439166184157255438237341844564210181316096/123667376274008106291055724999553900369372780716474412641745541779072255039661671956192185378870940966255201107275",
+              "tail": "1/305051137265945051889738758028315473856252583836954673717414224536103534397461699510184149177850726154042935296",
+              "lower": "235992050317183769298772739683851893189268556724199039932146783026858279621453432139527807308290164473010383/241773951659839894997176392961004692804247860638268646415924812862311349051146963746221281288115231605582015850",
+              "upper": "2722011601687304168838529167154081510281135127491971057454798196750880421535796694650512610837074342526964698143513/2788701994492351055102151567680263024380977051882965026026472542291020836569210265228734988727633888056602446371225600"
+            }
+          ],
+          "entropy_lower": "57608527956471089916877271526316696622377177078168276133881765103241324870671759780607747628460162189548110266132635832834063962144089137158132634235630989360681779840689318933226857585161696660435072/10396312650597452995801835854872481405236860936871168220587443803784652814142495573955387222815290272987186807048426021363415761144777333685537534425711824813171220427410190723094274289906024932861328125",
+          "entropy_upper": "2371282140511961194880339113997190396765420359787106884920102944358357078355277936293502799049134544883139904600481183945056627982924865938119237874411320341162371954767694271444363722846059608538510069142273/119914563273041623597784964166946437681754113631146842968777694213970257201665095828514285238058423946165936327263714001548815496739606411913108262677727226568254081939812749624252319335937500000000000000000000",
+          "interval_width": "4672174334328727062800569904299657486902620165819491021264312196348054813849475143979783784588207568781829041468160020813682245083157898613482824149626346004286305488737485923734889213454369225642049537/328251563106272220254370811241172467669516588873505303585631209986970781772521360664729383400148431471548880897377629598587555046602793801241971303177623644842242356389760971069335937500000000000000000000",
+          "classification": "MIXED",
+          "log_base": "natural",
+          "Baker_status": "EXPLICIT_UNPAID_HYPOTHESIS"
+        },
+        {
+          "id": "mixed_zero_control",
+          "spectrum": [
+            "0",
+            "1/3",
+            "2/3"
+          ],
+          "denominator": "3",
+          "integer_weights": [
+            "0",
+            "1",
+            "2"
+          ],
+          "terms": 16,
+          "purity": "5/9",
+          "purity_deficit": "4/9",
+          "integer_power_sums": [
+            "5",
+            "9",
+            "17"
+          ],
+          "power_traces": [
+            "5/9",
+            "1/3",
+            "17/81"
+          ],
+          "term_bounds": [
+            {
+              "mode": "zero_weight",
+              "t": "0",
+              "partial": "0",
+              "tail": "0",
+              "lower": "0",
+              "upper": "0"
+            },
+            {
+              "mode": "positive_weight",
+              "t": "-1/2",
+              "partial": "-5323193128076860814623/4845379196126704435200",
+              "tail": "1/106300440576",
+              "lower": "5323193128076860814623/14536137588380113305600",
+              "upper": "2661596564061221372099/7268068794190056652800"
+            },
+            {
+              "mode": "positive_weight",
+              "t": "-1/5",
+              "partial": "-340809359827582710207006273486464/840539304153062403202056884765625",
+              "tail": "1/1844018697738647460937500",
+              "lower": "681618719655165420414012546972928/2521617912459187209606170654296875",
+              "upper": "1363237439310330840828026917223039/5043235824918374419212341308593750"
+            }
+          ],
+          "entropy_lower": "574468171052758302416914622761591952045849/902522205585000000000000000000000000000000",
+          "entropy_upper": "287234085527794200542048488671681463260053/451261102792500000000000000000000000000000",
+          "interval_width": "423328443007084495367/135000000000000000000000000000000",
+          "classification": "MIXED",
+          "log_base": "natural",
+          "Baker_status": "EXPLICIT_UNPAID_HYPOTHESIS"
+        }
+      ]
+    }
+  },
+  "construction": "Retain exact probability/integer weight lists, orders2/3/4, all per-term series data, actual entropy endpoints and widths; compile the real conditional entropy source.",
+  "remaining_obligations": [
+    "BakerCitedInput is an explicit unpaid assumption, not a proved or supplied native flag.",
+    "Formalize the finite tail inequality and rational-to-real entropy interval transport; the actual Mathlib infinite log series is separately compiled.",
+    "The exact native interval width is recorded, including slow small-eigenvalue convergence; no precision target is fabricated.",
+    "Formalize the indexed-bound collector and refined-carrier operad before treating the semantic family substitution as an ordinary operad insertion."
+  ],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "integer_spectrum",
+        "ordered_inputs": [
+          "NormalizedRationalSpectrum"
+        ],
+        "output": "IntegerSpectrum",
+        "arity": 1,
+        "carrier": "Finite algebraic real spectra; selected exact rational spectra and natural-log series certificates",
+        "coefficient_ring": "Q for certificates; R for the literal entropy theorem",
+        "hypotheses": [
+          "Nonnegative exact rational probabilities summing to one"
+        ],
+        "semantic_predicate": "Retain the common denominator and actual nonnegative integer eigenweights.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "Renyi_power",
+        "ordered_inputs": [
+          "IntegerSpectrum",
+          "PowerOrder"
+        ],
+        "output": "RationalPowerTrace",
+        "arity": 2,
+        "carrier": "Finite algebraic real spectra; selected exact rational spectra and natural-log series certificates",
+        "coefficient_ring": "Q for certificates; R for the literal entropy theorem",
+        "hypotheses": [
+          "Declared finite positive denominator and order k in {2,3,4}"
+        ],
+        "semantic_predicate": "Compute sum w_i^k / D^k with actual integer power sums.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "purity_test",
+        "ordered_inputs": [
+          "NormalizedRationalSpectrum"
+        ],
+        "output": "PureOrMixed",
+        "arity": 1,
+        "carrier": "Finite algebraic real spectra; selected exact rational spectra and natural-log series certificates",
+        "coefficient_ring": "Q for certificates; R for the literal entropy theorem",
+        "hypotheses": [
+          "Same exact normalized nonnegative spectrum"
+        ],
+        "semantic_predicate": "Compute sum p_i^2; it equals one exactly for a pure probability spectrum.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "log_series",
+        "ordered_inputs": [
+          "PositiveRationalProbability",
+          "PositiveTermBudget"
+        ],
+        "output": "RationalLogSeriesBound",
+        "arity": 2,
+        "carrier": "Finite algebraic real spectra; selected exact rational spectra and natural-log series certificates",
+        "coefficient_ring": "Q for certificates; R for the literal entropy theorem",
+        "hypotheses": [
+          "0<p<=1; explicit positive finite N; natural-log series"
+        ],
+        "semantic_predicate": "Retain t, actual odd-power partial sum and geometric tail bound; no guessed decimal anchor.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "entropy_sum",
+        "ordered_inputs": [
+          "NormalizedRationalSpectrum",
+          "RationalLogSeriesBounds"
+        ],
+        "output": "RationalEntropyInterval",
+        "arity": 2,
+        "carrier": "Finite algebraic real spectra; selected exact rational spectra and natural-log series certificates",
+        "coefficient_ring": "Q for certificates; R for the literal entropy theorem",
+        "hypotheses": [
+          "Each strictly positive weight has its own checked series bound; zero weights contribute zero without logging zero"
+        ],
+        "semantic_predicate": "Sum actual weighted rational bounds.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "Baker_transport",
+        "ordered_inputs": [
+          "AlgebraicSpectrum",
+          "BakerCitedInput"
+        ],
+        "output": "ConditionalEntropyDichotomy",
+        "arity": 2,
+        "carrier": "Finite algebraic real spectra; selected exact rational spectra and natural-log series certificates",
+        "coefficient_ring": "Q for certificates; R for the literal entropy theorem",
+        "hypotheses": [
+          "Supplied Baker hypothesis, algebraic coefficients and positive algebraic log arguments; nonzero linear form required"
+        ],
+        "semantic_predicate": "Apply the literal conditional source theorem, never a native Boolean promotion.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "purity_dichotomy",
+        "equation_or_predicate": "entropy(s)=0 iff Pure(s), mixed entropy>0",
+        "typing_conditions": "Actual AlgebraicSpectrum with nonnegativity, normalization and algebraicity",
+        "evidence_status": "Universal source kernel theorems, no Baker input needed for purity/positivity.",
+        "scope": "General finite dimension under the stated spectrum structure.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ]
+      },
+      {
+        "id": "conditional_Baker",
+        "equation_or_predicate": "Mixed entropy is transcendental, assuming BakerCitedInput",
+        "typing_conditions": "Baker hypothesis remains an explicit function argument",
+        "evidence_status": "General-dimension conditional kernel theorem; no native discharge of Baker.",
+        "scope": "Natural-log entropy of algebraic spectra.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ]
+      },
+      {
+        "id": "series_identity",
+        "equation_or_predicate": "2 sum(k>=0) x^(2k+1)/(2k+1) = log(1+x)-log(1-x)",
+        "typing_conditions": "|x|<1",
+        "evidence_status": "Actual imported Mathlib HasSum theorem compiled as a named anchor.",
+        "scope": "Full finite-tail rational-array transport is not proved in Lean here.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ]
+      },
+      {
+        "id": "rational_tail",
+        "equation_or_predicate": "For t in (-1,0], tail magnitude <= 2 |t|^(2N+1)/((2N+1)(1-t^2))",
+        "typing_conditions": "Positive finite N and actual t=(p-1)/(p+1)",
+        "evidence_status": "Independent exact rational arithmetic plus the explicit positive geometric-series argument in README; general kernel remainder transport remains open.",
+        "scope": "No invented precision or unbound cited-anchor constants.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ]
+      },
+      {
+        "id": "integer_Renyi",
+        "equation_or_predicate": "Tr(rho^k)=sum w_i^k / D^k for k=2,3,4",
+        "typing_conditions": "Actual normalized rational diagonal spectrum",
+        "evidence_status": "Independent integer and native exact computations.",
+        "scope": "These finite spectra and orders.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ]
+      },
+      {
+        "id": "cancellation_control",
+        "equation_or_predicate": "log4 - 2 log2 = 0 despite nonzero coefficients",
+        "typing_conditions": "Actual positive algebraic log arguments 4 and2",
+        "evidence_status": "Universal real-log-law kernel equality for this fixed expression.",
+        "scope": "Do not replace the nonzero-linear-form premise by nonzero coefficients.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-ENTROPY-DICHOTOMY-BAKER__PROVED_LEAN.yaml",
+            "sha256": "02cbd91bcfa2b3e8cce91fe68a371e6fe828651e0038f9628d6c4eae1d61c87d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-ENTROPY-DICHOTOMY-BAKER.yaml",
+            "sha256": "cd9755d9a5c84a2b2b9c7016c453fc23c35518ad12b24085dde65b0c32709be1"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/EntropyDichotomy.lean",
+            "sha256": "6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/lean4/quantum_mechanics/C750Purity.lean",
+            "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs",
+            "sha256": "b804cb9d4116e0d67684395533af763af70bf1abee6cecb083ffed1b8dedf4cb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs",
+            "sha256": "38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/TFQ-0268_von_neumann_entropy_interface_for_mixed_states.md",
+            "sha256": "779079b0e7c1dffe83816948b2707939237a3c92d63e6caf7d1e7e1d2f5f2b75"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/entropy_exact.py",
+            "sha256": "400872ab2b9b13a678b69bfdbec8422de26792262b3abea8d8a958bf9e19113d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_entropy_exact.py",
+            "sha256": "31ae3c4897dc70282e9f9ddfe548e7b3d2257d551d1ecd644fcd419afd92ce6d"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/entropy_exact.rs",
+            "sha256": "f40ef198cc3dcd5812a01c63a84035ad9d446a8dbac4409dcaacf6ce54882b09"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/entropy_exact_replay.rs",
+            "sha256": "72b39329b7cd2bf3f8f72a94c0ad9e4b1a76d5ec19d24608b82d1d202d1dc2f4"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "d3d9686e3b38cca3e04d70a4160a0ee91c3f4de957cc5ea158530f42d7c55da0"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "ded3d9696eafceb5a9aade626c4978f66e8490b4c4536ae34fef8242413b4353"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "Renyi_power",
+        "input_slot": 0,
+        "inner_operation": "integer_spectrum",
+        "colour_match": "IntegerSpectrum -> IntegerSpectrum",
+        "hypothesis_match": "The exact same probability list and retained common denominator.",
+        "licensing_relations": [
+          "integer_Renyi"
+        ],
+        "evidence_status": "Actual finite integer power sum and rational power trace equality checked."
+      },
+      {
+        "outer_operation": "entropy_sum",
+        "input_slot": 1,
+        "inner_operation": "log_series",
+        "colour_match": "Requires pointwise collection of RationalLogSeriesBound into RationalLogSeriesBounds.",
+        "hypothesis_match": "Every positive spectrum coordinate must be represented and zero coordinates contribute exactly zero.",
+        "licensing_relations": [
+          "series_identity",
+          "rational_tail"
+        ],
+        "evidence_status": "Actual per-coordinate collection and weighted sums checked; this is an indexed family insertion with the collector adapter declared explicitly."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "outer_operation": "Baker_transport",
+        "input_slot": 1,
+        "inner_operation": "native_transcendence_flag",
+        "colour_match": "A native Boolean is not BakerCitedInput.",
+        "hypothesis_match": "The required general mathematical hypothesis is unpaid.",
+        "licensing_relations": [],
+        "evidence_status": "No unconditional transcendence claim is licensed."
+      },
+      {
+        "outer_operation": "infer_nonzero_log_form",
+        "input_slot": 0,
+        "inner_operation": "nonzero_coefficients",
+        "colour_match": "Nonzero coefficients do not ensure a nonzero form.",
+        "hypothesis_match": "log4-2log2=0.",
+        "licensing_relations": [
+          "cancellation_control"
+        ],
+        "evidence_status": "Actual compiled kernel counterexample."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "BakerCitedInput is an explicit unpaid assumption, not a proved or supplied native flag.",
+      "Formalize the finite tail inequality and rational-to-real entropy interval transport; the actual Mathlib infinite log series is separately compiled.",
+      "The exact native interval width is recorded, including slow small-eigenvalue convergence; no precision target is fabricated.",
+      "Formalize the indexed-bound collector and refined-carrier operad before treating the semantic family substitution as an ordinary operad insertion."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "General finite algebraic purity/positivity and conditional Baker dichotomy kernel theorems; exact selected rational spectrum, Renyi and log-series certificates.",
+    "does_not_support": "An unconditional proof of Baker or transcendence from a native flag, base-two entropy claims, or a kernel-verified finite-tail array transport.",
+    "narrowest_claim": "Literal general-dimension source entropy signatures with explicit Baker hypothesis, plus five exact rational series computations with an explicit analytic remainder argument.",
+    "next_test": "Recompute each rational series/tail/width and challenge both units and hypothesis promotion."
+  },
+  "execution": "Actual local exact producer output; no external provider dispatched."
+}

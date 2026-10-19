@@ -1,0 +1,6 @@
+use std::io::{self,BufRead};
+use tfqm_finite_probability::cech_f2::certify;
+fn main(){for line in io::stdin().lock().lines(){let line=line.unwrap();let f:Vec<_>=line.split('\t').collect();let n:usize=f[1].parse().unwrap();let m:usize=f[2].parse().unwrap();let mut at=3;let mut contexts=vec![];for _ in 0..m{let k:usize=f[at].parse().unwrap();at+=1;contexts.push(f[at..at+k].iter().map(|x|x.parse::<usize>().unwrap()).collect());at+=k;}let targets:Vec<u8>=f[at..].iter().map(|x|x.parse().unwrap()).collect();assert_eq!(targets.len(),m);let c=certify(n,&contexts,&targets).unwrap();
+ let mut out=vec![f[0].to_string()];for x in [c.local_dimension,c.incidence_rank,c.incidence_augmented_rank,c.delta0_rank,c.delta0_augmented_rank,c.h1_dimension,c.obstruction_pairing as usize]{out.push(x.to_string());}
+ for r in &c.incidence{for x in r{out.push(x.to_string());}}for r in &c.overlaps{for x in r{out.push(x.to_string());}}for r in &c.delta0{for x in r{out.push(x.to_string());}}for x in &c.discrepancy{out.push(x.to_string());}
+ out.extend(["0".to_string(),c.overlaps.len().to_string()]);for _ in &c.overlaps{out.push("1".to_string());}for x in &c.character_on_columns{out.push(x.to_string());}match c.global_section{None=>out.push("none".to_string()),Some(g)=>{out.push("some".to_string());for x in g{out.push(x.to_string());}}}println!("{}",out.join("\t"));}}
